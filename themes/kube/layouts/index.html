@@ -1,0 +1,55 @@
+{{ define "title"}} {{ .Site.Title}} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+{{ define "main"}}
+
+<div id="main">
+  <div id="hero">
+    <h1>{{.Title}}</h1>
+    <p>{{.Description}}</p>
+  </div>
+  <div id="action-buttons">
+    <a class="button outline big" href="https://github.com/kubeflow/kubeflow" onclick="_gaq.push(['_trackEvent', 'kubeflow', 'github']);">View on Github</a>
+  </div>
+  <div id="kube-features">
+    <div class="row gutters">
+      <div class="col col-4 item">
+        <figure>
+          <img alt="Kubernetes" height="200" src="{{ "/img/kubernetes-200.png" | relURL }}" >
+        </figure>
+        <h3>Kubernetes</h3>
+        <p>The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures.</p>
+      </div>
+      <div class="col col-4 item">
+        <figure>
+          <img alt="Notebooks" height="200" src="{{ "/img/jupyter-200.png" | relURL }}" >
+        </figure>
+        <h3>Notebooks</h3>
+        <p>A JupyterHub to create and manage interactive Jupyter notebooks. Project Jupyter is a non-profit, open-source project to support interactive data science and scientific computing across all programming languages.</p>
+      </div>
+      <div class="col col-4 item">
+        <figure>
+          <img alt="Training" height="200" src="{{ "/img/tensorflow-200.png" | relURL }}" >
+        </figure>
+        <h3>Model training</h3>
+        <p>A TensorFlow Training Controller that can be configured to use either CPUs or GPUs and dynamically adjusted to the size of a cluster with a single setting. We also provide a TensorFlow job operator.</p>
+      </div>
+    </div>
+    <div class="row gutters">
+      <div class="col col-4 item">
+        <h4>Model serving</h4>
+        <p>A TensorFlow Serving container to export trained TensorFlow models to Kubernetes. We also integrate with Seldon Core, the open source platform for deploying machine learning models on Kubernetes.</p>
+      </div>
+      <div class="col col-4 item">
+        <h4>Multi-framework</h4>
+        <p>Our development plans go beyond TensorFlow, and we are working had to include PyTorch, MXNet and more. We also integrate  with Ambassador for cluster ingress and Pachyderm for managing your data science pipelines.</p>
+      </div>
+      <div class="col col-4 item">
+        <h4>Community</h4>
+        <p>Kubeflow is licensed under <a href="https://opensource.org/licenses/Apache-2.0">Apache 2.0</a>.<br>
+      Kubeflow is absolutely free for personal or commercial use. We welcome contributors!</p>
+    </div>
+  </div>
+</div>
+</div>
+{{ end }}
+{{ define "footer"}} {{ partial "footer" .}} {{end}}
