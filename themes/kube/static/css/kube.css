@@ -335,7 +335,7 @@ sub,
 sup {
   font-size: x-small;
   line-height: 0;
-  margin-left: 1rem/4;
+  margin-left: 0.25rem;
   position: relative; }
 
 sup {
@@ -358,7 +358,7 @@ pre code {
   display: block;
   line-height: 20px;
   color: rgba(49, 52, 57, 0.85);
-  overflow: none;
+  overflow: hidden;
   white-space: pre-wrap; }
 
 pre {
@@ -369,7 +369,7 @@ figcaption {
 
 figure figcaption {
   position: relative;
-  top: -1rem/2; }
+  top: -0.5rem; }
 
 figure pre {
   background: none;
@@ -1029,8 +1029,7 @@ button:hover,
 
 .button.outline {
   background: none;
-  border-width: 2px;
-  border-color: #1c86f2;
+  border: 2px #1c86f2;
   color: #1c86f2; }
   .button.outline:hover {
     background: none;
@@ -1303,7 +1302,7 @@ button:hover,
 
 [class^="kube-"], [class*=" kube-"], .close, .caret {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'Kube' !important;
+  font-family: 'Kube', serif !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -1570,7 +1569,7 @@ button:hover,
   .max-w-medium,
   .max-w-big,
   .max-w-large {
-    max-width: auto; } }
+    max-width: fit-content; } }
 
 .min-w5 {
   min-width: 5%; }
@@ -2006,9 +2005,7 @@ button:hover,
   line-height: 20px;
   background: #e0e1e1;
   color: #313439;
-  padding: 1rem;
-  padding-right: 2.5em;
-  padding-bottom: .75rem;
+  padding: 1rem 2.5em .75rem 1rem;
   margin-bottom: 24px;
   position: relative; }
   .message a {
@@ -2058,8 +2055,7 @@ button:hover,
 
 .modal {
   position: relative;
-  margin: auto;
-  margin-top: 16px;
+  margin: 16px auto auto;
   padding: 0;
   background: #fff;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
