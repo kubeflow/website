@@ -8,6 +8,9 @@
 	Copyright (c) 2009-2017, Imperavi LLC.
 	License: MIT
 */
+/*
+  Modified By Adel Liu on May 1st, 2018
+*/
 html {
   box-sizing: border-box; }
 
@@ -1012,24 +1015,30 @@ button:hover,
 .button.small {
   font-size: 13px;
   min-height: 36px;
-  padding: 6px 20px;
+  line-height: 36px;
+  vertical-align: middle;
+  padding: 0 20px;
   border-radius: 3px; }
 
 .button.big {
   font-size: 17px;
   min-height: 48px;
-  padding: 13px 24px;
+  line-height: 48px;
+  vertical-align: middle;
+  padding: 0 24px;
   border-radius: 3px; }
 
 .button.large {
   font-size: 19px;
   min-height: 56px;
-  padding: 20px 36px;
+  line-height: 56px;
+  vertical-align: middle;
+  padding: 0 36px;
   border-radius: 3px; }
 
 .button.outline {
   background: none;
-  border: 2px #1c86f2;
+  border: solid 2px #1c86f2;
   color: #1c86f2; }
   .button.outline:hover {
     background: none;
@@ -1235,8 +1244,9 @@ button:hover,
   .pagination a {
     border-radius: 3px;
     display: inline-block;
-    padding: 8px 12px;
-    line-height: 1;
+    padding: 0 12px;
+    line-height: 36px;
+    vertical-align: middle;
     white-space: nowrap;
     border: 1px solid transparent; }
   .pagination a {
@@ -1261,7 +1271,7 @@ button:hover,
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 64px;
-  border-color: rgba(0, 0, 0, 0.1); }
+  border: solid 2px rgba(0, 0, 0, 0.1); }
 
 .pager li {
   flex-basis: 50%; }
