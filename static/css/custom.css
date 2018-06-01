@@ -1,0 +1,4 @@
+div#toc {
+    position: static;
+    z-index: 10000;
+}
