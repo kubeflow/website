@@ -2,3 +2,41 @@ div#toc {
     position: static;
     z-index: 10000;
 }
+
+#contents {
+  counter-reset: count;
+  max-width: 300px;
+  margin: 24px auto 60px auto;
+  padding: 2px;
+  background: #fbfbfb;
+  border: 1px solid rgba(0, 0, 0, 0.08); }
+  #contents.wide {
+    max-width: none;
+    margin-bottom: 24px; }
+  #contents ol {
+    margin: 0; }
+  #contents li {
+    line-height: 20px;
+    border-bottom: none;
+    margin-right: 24px;
+    counter-increment: count; }
+  #contents li:last-child {
+    border-bottom: none; }
+  #contents a {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    padding-left: 0px;
+    font-size: 13px;
+    color: #259d92; }
+    #contents a:before {
+      position: absolute;
+      left: 0;
+      content: "";
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.3); }
+    #contents a:hover {
+      -moz-transition: all linear 0.2s;
+      transition: all linear 0.2s;
+      color: #000;
+      text-decoration: underline; }
