@@ -17,18 +17,21 @@
         start: function() {
             this.$element = $( "#toc" )
 
-            p = this
-            $(document).scroll(function() {
+            p = this;
+            p.styleToc();
+            $(window).resize(function() {
                 p.styleToc();
-            });
+             });
         },
         styleToc: function() {
           if (this.detect.isDesktopScreen()) {
-            if ($(document).scrollTop() > 100) {
-                this.$element.css({ position: "fixed", right: "1em" });
-            } else {
-                this.$element.css({ position: "static" });
-            }
+            this.$element.css({ position: "fixed",
+                                right: "1em",
+                                overflowY: "auto",
+                                maxHeight: "800px"});
+          } else {
+              this.$element.css({ position: "static",
+                                  maxHeight: "none"});
           }
         }
     };
