@@ -220,6 +220,42 @@ To Use GPUs
    kubectl create -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/k8s-1.9/nvidia-driver-installer/cos/daemonset-preloaded.yaml
    ```
 
+## Pushing your config to source control
+
+Start a shell in the pod
+
+```
+kubectl -n kubeflow-admin exec -it kubeflow-bootstrapper-0 /bin/bash
+```
+
+Activate the GCP service account.
+
+```
+gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+```
+
+If you don't already have a cloud repository create one
+
+```
+gcloud source repos create ${REPO}
+```
+
+Clone the repository
+
+```
+gcloud source repos clone ${REPO} git_${REPO}
+```
+
+Copy the ksonnet app into the repo and push it
+
+```
+cp -r /opt/bootstrap/default ./git_${REPO}/ks-app
+cd ./git_${REPO}
+git add .
+git commit -m "Kubeflow app"
+git push --set-upstream origin master
+```
+
 ## Deleting your deployment
 
 To delete your deployment and reclaim all resources
@@ -228,6 +264,10 @@ To delete your deployment and reclaim all resources
 gcloud deployment-manager --project=${PROJECT} deployments delete ${DEPLOYMENT_NAME}
 ```
 
+```
+gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+
+```
 ## Troubleshooting
 
 Here are some tips for troubleshooting IAP.
