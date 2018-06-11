@@ -105,7 +105,7 @@ The instructions also take advantage of IAP to provide secure authenticated acce
 
    * ZONE - this will be the zone specified in your ${CONFIG_FILE}
 
-1. Run [create_k8s_secrets.sh]()
+1. Run [create_k8s_secrets.sh](https://github.com/kubeflow/kubeflow/blob/master/docs/gke/create_k8s_secrets.sh)
    to create K8s secrets containing the secrets for the GCP service accounts to be used with Kubeflow
 
    ```
