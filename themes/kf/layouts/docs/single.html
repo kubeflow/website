@@ -1,0 +1,23 @@
+{{ define "title"}} {{ .Title}} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+{{ define "main"}}
+  <div id="subNav" class="">
+  {{ partial "secnav" . }}
+  {{ partial "toc" . }}
+  </div>
+
+  <section id="pageContent">
+    <div id="hero">
+      <h1 id="anchor1"> {{ .Title}} </h1>
+      <p class="hero-lead">
+           {{ .Params.bref | safeHTML }}.
+      </p>
+    </div> 
+
+    {{ .Content }}
+
+  </section>
+  <!-- end pageContent -->
+
+{{ end }}
+{{ define "footer"}} {{ partial "footer" .}} {{end}}

@@ -1,8 +1,8 @@
 baseURL = "/"
 languageCode = "en-us"
 title = "Kubeflow"
-theme = "kube"
-description = "Kube is a professional and a responsive Hugo theme for developers and designers that offers a documentation section mixed with a landing page and a blog"
+theme = "kf"
+description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 Paginate = 4
 [Params]
   RSSLink = "/index.xml"
@@ -12,14 +12,18 @@ Paginate = 4
   email = "myemail@myaddress.xxx"
 
 [[menu.main]]
-    name = "Docs"
-    weight = -100
+    name = "What is Kubeflow?"
+    weight = -103
     url = "/docs/"
 [[menu.main]]
-    name = "Blog"
+    name = "Getting Started"
+    weight = -102
+    url = "/docs/started/getting-started/"
+[[menu.main]]
+    name = "Documentation"
+    weight = -101
+    url = "/docs/"
+[[menu.main]]
+    name = "Additional Resources"
     weight = -100
     url = "/blog/"
-[[menu.main]]
-    name = "FAQ/Help"
-    weight = -100
-    url = "/faq/"

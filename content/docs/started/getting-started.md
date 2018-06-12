@@ -38,8 +38,8 @@ functionality and actively soliciting help from companies and individuals intere
 
 This documentation assumes you have a Kubernetes cluster already available. 
 
-  * For local environment try [Minikube setup](/docs/getting-started-minikube/).
-  * For cloud environment try [GKE setup](/docs/getting-started-gke/).
+  * For local environment try [Minikube setup](/docs/started/getting-started-minikube/).
+  * For cloud environment try [GKE setup](/docs/started/getting-started-gke/).
 
 For more general information on setting up a Kubernetes cluster please refer to [Kubernetes Setup](https://kubernetes.io/docs/setup/). If you want to use GPUs, be sure to follow the Kubernetes [instructions for enabling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
 
