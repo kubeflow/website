@@ -18,6 +18,11 @@ The instructions also take advantage of IAP to provide secure authenticated acce
 
 ## Create the Kubeflow deployment
 
+1. Enable gcloud services:
+
+   * gcloud services enable deploymentmanager.googleapis.com
+   * gcloud services enable servicemanagement.googleapis.com
+
 1. Make a copy of the [configs](https://github.com/kubeflow/kubeflow/tree/master/docs/gke/configs) directory
 
    * Its a good idea to check this into source control to make it easy to version and rollback your configs.
@@ -145,8 +150,10 @@ Create an OAuth Client ID to be used to identify IAP when requesting acces to us
    * Under Application type, select Web application. In the Name box enter a name, and in the Authorized redirect URIs box, enter
 
      ```
-     https://${FQDN}/_gcp_gatekeeper/authenticate
+     https://<hostname>/_gcp_gatekeeper/authenticate
      ```
+
+   * <hostname> should be the one you set for iap-ingress during previous steps. (format: <name>.endpoints.<Project>.cloud.goog)
 
 1. After you enter the details, click Create. Make note of the **client ID** and **client secret** that appear in the OAuth client window because we will
    need them later to enable IAP.
@@ -181,7 +188,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting acces to us
 1. Kubeflow will be available at
 
    ```
-   https://${FQDN}/_gcp_gatekeeper/authenticate
+   https://<hostname>/_gcp_gatekeeper/authenticate
    ```
 
 ### Using Your Own Domain
