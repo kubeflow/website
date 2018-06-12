@@ -154,7 +154,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting acces to us
 1. Create a new Kubernetes Secret with the the OAuth client ID and secret:
 
    ```
-   kubectl -n ${NAMESPACE} create secret generic kubeflow-oauth --from-literal=CLIENT_ID=${CLIENT_ID} --from-literal=CLIENT_SECRET=${CLIENT_SECRET}
+   kubectl -n kubeflow create secret generic kubeflow-oauth --from-literal=CLIENT_ID=${CLIENT_ID} --from-literal=CLIENT_SECRET=${CLIENT_SECRET}
    ```
 
 1. Grant users IAP access
