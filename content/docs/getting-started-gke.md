@@ -105,7 +105,7 @@ The instructions also take advantage of IAP to provide secure authenticated acce
 
    * ZONE - this will be the zone specified in your ${CONFIG_FILE}
 
-1. Run [create_k8s_secrets.sh]()
+1. Run [create_k8s_secrets.sh](https://github.com/kubeflow/kubeflow/blob/master/docs/gke/create_k8s_secrets.sh)
    to create K8s secrets containing the secrets for the GCP service accounts to be used with Kubeflow
 
    ```
@@ -154,7 +154,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting acces to us
 1. Create a new Kubernetes Secret with the the OAuth client ID and secret:
 
    ```
-   kubectl -n ${NAMESPACE} create secret generic kubeflow-oauth --from-literal=CLIENT_ID=${CLIENT_ID} --from-literal=CLIENT_SECRET=${CLIENT_SECRET}
+   kubectl -n kubeflow create secret generic kubeflow-oauth --from-literal=CLIENT_ID=${CLIENT_ID} --from-literal=CLIENT_SECRET=${CLIENT_SECRET}
    ```
 
 1. Grant users IAP access
@@ -166,7 +166,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting acces to us
      1. Update ${CONFIG_FILE} and issue an update
 
         ```
-        gcloud deployment-manager --project=${PROJECT} deployments create ${DEPLOYMENT_NAME} --config=${CONFIG_FILE}
+        gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=${CONFIG_FILE}
         ```
 
 
@@ -228,7 +228,7 @@ To Use GPUs
    1. Update the deployment
 
    ```
-   gcloud deployment-manager --project=${PROJECT} deployments create ${PROJECT} --config=${CONFIG_FILE}
+   gcloud deployment-manager --project=${PROJECT} deployments update ${PROJECT} --config=${CONFIG_FILE}
    ```
 
    **Warning** These deletes the existing node pools and creates new ones. This means all processes currently running
