@@ -166,7 +166,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting acces to us
      1. Update ${CONFIG_FILE} and issue an update
 
         ```
-        gcloud deployment-manager --project=${PROJECT} deployments create ${DEPLOYMENT_NAME} --config=${CONFIG_FILE}
+        gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=${CONFIG_FILE}
         ```
 
 
@@ -228,7 +228,7 @@ To Use GPUs
    1. Update the deployment
 
    ```
-   gcloud deployment-manager --project=${PROJECT} deployments create ${PROJECT} --config=${CONFIG_FILE}
+   gcloud deployment-manager --project=${PROJECT} deployments update ${PROJECT} --config=${CONFIG_FILE}
    ```
 
    **Warning** These deletes the existing node pools and creates new ones. This means all processes currently running
