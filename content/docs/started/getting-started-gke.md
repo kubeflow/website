@@ -83,43 +83,14 @@ The instructions also take advantage of IAP to provide secure authenticated acce
 
    * This file defines environment variables used in the commands below.  
    * We recommend checking a modified version into source control so its easy to source and repeat the commands.
+   * Make sure you have `CLIENT_ID` and `CLIENT_SECRET` in your environment separately. These credentials are
+     sensitive and should not be checked into source control along with `env-kubeflow.sh`.
 
-1. Enable gcloud services:
+1. Run the [deploy.sh](https://github.com/kubeflow/kubeflow/blob/master/docs/gke/configs/deploy.sh) script:
 
-   * gcloud services enable deploymentmanager.googleapis.com
-   * gcloud services enable servicemanagement.googleapis.com
-
-1. Grant sufficient permisions to Cloud services account which is what is used by deployment manager
-
-   ```
-   . env-kubeflow.sh
-   gcloud projects add-iam-policy-binding ${PROJECT} \
-      --member serviceAccount:${PROJECT_NUMBER}@cloudservices.gserviceaccount.com \
-      --role roles/resourcemanager.projectIamAdmin      
-   ```
-
-1. Deploy Kubeflow
-
-   ```
-   gcloud deployment-manager --project=${PROJECT} deployments create ${DEPLOYMENT_NAME} --config=${CONFIG_FILE}
-   ```
-
-1. Get credentials for the newly configured cluster
-
-   ```
-   gcloud --project=${PROJECT} container clusters get-credentials --zone=${ZONE} ${DEPLOYMENT_NAME}
-   ```
-
-   * ZONE - this will be the zone specified in your ${CONFIG_FILE}
-
-1. Run [create_k8s_secrets.sh](https://github.com/kubeflow/kubeflow/blob/master/docs/gke/create_k8s_secrets.sh)
-   to create K8s secrets containing the secrets for the GCP service accounts to be used with Kubeflow
-
-   ```
-   . env-kubeflow.sh
-   ./create_k8s_secrets.sh
-   kubectl -n kubeflow create secret generic kubeflow-oauth --from-literal=CLIENT_ID=${CLIENT_ID} --from-literal=CLIENT_SECRET=${CLIENT_SECRET}
-   ```
+    ```
+    $ ./deploy.sh
+    ```
 
 1. Verify deployment
 
