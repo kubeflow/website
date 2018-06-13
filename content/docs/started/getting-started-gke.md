@@ -82,6 +82,8 @@ The instructions also take advantage of IAP to provide secure authenticated acce
        - group:data-scientists@acme.com
       ```
 
+1. [Create an OAuth Client ID](getting-started-gke.md#create-oauth-client-credentials)
+
 1. Modify [env-kubeflow.sh](https://github.com/kubeflow/kubeflow/blob/master/docs/gke/configs/env-kubeflow.sh)
 
    * This file defines environment variables used in the commands below.  
@@ -115,7 +117,8 @@ The instructions also take advantage of IAP to provide secure authenticated acce
 
    ```
    . env-kubeflow.sh
-   ./create_k8s_secrets.sh 
+   ./create_k8s_secrets.sh
+   kubectl -n kubeflow create secret generic kubeflow-oauth --from-literal=CLIENT_ID=${CLIENT_ID} --from-literal=CLIENT_SECRET=${CLIENT_SECRET}
    ```
 
 1. Verify deployment
@@ -133,6 +136,32 @@ The instructions also take advantage of IAP to provide secure authenticated acce
      ```
      kubectl -n kubeflow get  all
      ```
+
+1. Kubeflow will be available at
+
+   ```
+   https://<hostname>/_gcp_gatekeeper/authenticate
+   ```
+
+1. Grant users IAP access
+
+   * Users/Google groups listed in **users:** in the ${CONFIG_FILE} will be granted IAP access
+
+   * To give access to additional users you have 2 options
+
+     1. Update ${CONFIG_FILE} and issue an update
+
+        ```
+        gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=${CONFIG_FILE}
+        ```
+
+     1. Use gcloud to grant users access
+
+        ```
+        gcloud projects add-iam-policy-binding $PROJECT \
+         --role roles/iap.httpsResourceAccessor \
+         --member user:${USER_EMAIL}
+        ```
 
 ### Create oauth client credentials
 
@@ -158,37 +187,11 @@ Create an OAuth Client ID to be used to identify IAP when requesting acces to us
 1. After you enter the details, click Create. Make note of the **client ID** and **client secret** that appear in the OAuth client window because we will
    need them later to enable IAP.
 
-1. Create a new Kubernetes Secret with the the OAuth client ID and secret:
+1. Create environment variable from the the OAuth client ID and secret:
 
    ```
-   kubectl -n kubeflow create secret generic kubeflow-oauth --from-literal=CLIENT_ID=${CLIENT_ID} --from-literal=CLIENT_SECRET=${CLIENT_SECRET}
-   ```
-
-1. Grant users IAP access
-
-   * Users/Google groups listed in **users:** in the ${CONFIG_FILE} will be granted IAP access
-   
-   * To give access to additional users you have 2 options
-
-     1. Update ${CONFIG_FILE} and issue an update
-
-        ```
-        gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=${CONFIG_FILE}
-        ```
-
-
-     1. Use gcloud to grant users access
-
-        ```
-        gcloud projects add-iam-policy-binding $PROJECT \
-         --role roles/iap.httpsResourceAccessor \
-         --member user:${USER_EMAIL}
-        ```
-
-1. Kubeflow will be available at
-
-   ```
-   https://<hostname>/_gcp_gatekeeper/authenticate
+   export CLIENT_ID=<CLIENT_ID from OAuth page>
+   export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
    ```
 
 ### Using Your Own Domain
