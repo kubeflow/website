@@ -18,11 +18,6 @@ The instructions also take advantage of IAP to provide secure authenticated acce
 
 ## Create the Kubeflow deployment
 
-1. Enable gcloud services:
-
-   * gcloud services enable deploymentmanager.googleapis.com
-   * gcloud services enable servicemanagement.googleapis.com
-
 1. Make a copy of the [configs](https://github.com/kubeflow/kubeflow/tree/master/docs/gke/configs) directory
 
    * Its a good idea to check this into source control to make it easy to version and rollback your configs.
@@ -88,6 +83,11 @@ The instructions also take advantage of IAP to provide secure authenticated acce
 
    * This file defines environment variables used in the commands below.  
    * We recommend checking a modified version into source control so its easy to source and repeat the commands.
+
+1. Enable gcloud services:
+
+   * gcloud services enable deploymentmanager.googleapis.com
+   * gcloud services enable servicemanagement.googleapis.com
 
 1. Grant sufficient permisions to Cloud services account which is what is used by deployment manager
 
