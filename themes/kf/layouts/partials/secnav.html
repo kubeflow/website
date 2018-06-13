@@ -1,0 +1,14 @@
+{{ $dir := .Dir }}
+<nav id="sectionNav">
+<h6 id="sectionNavTrigger" class="trigger collapsible">Section Nav</h6>
+<div class="container">
+    <ul>
+    {{ range .CurrentSection.Pages }}
+      <li> <a href="{{ .Permalink }}">{{ .Title }}</a> </li>
+    {{ end }}
+    {{ range .CurrentSection.Sections }}
+      <li> <a href="{{ .Permalink }}">{{ .Title }}</a> </li>
+    {{ end }}
+    </ul>
+</div>
+</nav>

@@ -1,24 +1,12 @@
 +++
 title = "Getting Started with Kubeflow"
-description = "Quickly get running with your ML Workflow"
-weight = 10
+description = "Quickly get running with your ML Workflow on an existing Kubernetes installation"
+weight = 25
 draft = true
 toc = true
 bref = "The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures. Anywhere you are running Kubernetes, you should be able to run Kubeflow"
 
 +++
-
-## The Kubeflow Mission
-
-Our goal is to make scaling machine learning (ML) models and deploying them to production as simple as possible, by letting Kubernetes do what it's great at:
-
-  * Easy, repeatable, portable deployments on a diverse infrastructure (laptop <-> ML rig <-> training cluster <-> production cluster)
-  * Deploying and managing loosely-coupled microservices
-  * Scaling based on demand
-
-Because ML practitioners use a diverse set of tools, one of the key goals is to customize the stack based on user requirements (within reason) and let the system take care of the "boring stuff". While we have started with a narrow set of technologies, we are working with many different projects to include additional tooling.
-
-Ultimately, we want to have a set of simple manifests that give you an easy to use ML stack _anywhere_ Kubernetes is already running, and can self configure based on the cluster it deploys into.
 
 ## Who should consider using Kubeflow?
 
@@ -38,8 +26,8 @@ functionality and actively soliciting help from companies and individuals intere
 
 This documentation assumes you have a Kubernetes cluster already available. 
 
-  * For local environment try [Minikube setup](/docs/getting-started-minikube/).
-  * For cloud environment try [GKE setup](/docs/getting-started-gke/).
+  * For local environment try [Minikube setup](/docs/started/getting-started-minikube/).
+  * For cloud environment try [GKE setup](/docs/started/getting-started-gke/).
 
 For more general information on setting up a Kubernetes cluster please refer to [Kubernetes Setup](https://kubernetes.io/docs/setup/). If you want to use GPUs, be sure to follow the Kubernetes [instructions for enabling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
 
