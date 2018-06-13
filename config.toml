@@ -14,7 +14,7 @@ Paginate = 4
 [[menu.main]]
     name = "What is Kubeflow?"
     weight = -103
-    url = "/docs/"
+    url = "/docs/kubeflow/"
 [[menu.main]]
     name = "Getting Started"
     weight = -102

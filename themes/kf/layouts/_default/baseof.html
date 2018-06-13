@@ -35,23 +35,7 @@
 <body>
   <!-- mobile nav element -->
   <div id="menu">
-    <nav>
-      <!-- main nav -->
-      <ul>
-        <li>
-          <a href="/generic.html">What is Kubeflow?</a>
-        </li>
-        <li>
-          <a href="/generic.html">Getting Started</a>
-        </li>
-        <li>
-          <a href="/generic.html">Support &amp; Documentation</a>
-        </li>
-        <li>
-          <a href="/generic.html">Additional Resources</a>
-        </li>
-      </ul>
-    </nav>
+    {{ block "mobilenav" . }}{{ end }}
   </div>
 
   <div id="wrapper">
