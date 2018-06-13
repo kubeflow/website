@@ -2,7 +2,6 @@
 title = "Contributing to Kubeflow"
 description = "Information on how to start contributing to Kubeflow"
 weight = 10
-draft = true
 toc = true
 bref= "Get involved"
 +++
