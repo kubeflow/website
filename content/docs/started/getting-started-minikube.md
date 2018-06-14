@@ -1,5 +1,5 @@
 +++
-title = "Getting Started with Minikube for Kubeflow"
+title = "Minikube for Kubeflow"
 description = "Quickly get Kubeflow running locally"
 weight = 10
 draft = true
