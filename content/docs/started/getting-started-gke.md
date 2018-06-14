@@ -1,13 +1,13 @@
 +++
-title = "Getting Started with GKE for Kubeflow"
-description = "Quickly get Kubeflow running on GKE"
+title = "GKE for Kubeflow"
+description = "Get Kubeflow running on GKE"
 weight = 10
 toc = true
 bref = "The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures. Anywhere you are running Kubernetes, you should be able to run Kubeflow"
 
 +++
 
-# Deploying Kubeflow On GKE
+## Deploying Kubeflow On GKE
 
 Instructions for optimizing Kubeflow for GKE.
 
@@ -18,16 +18,14 @@ The instructions also take advantage of IAP to provide secure authenticated acce
 
 ## Create the Kubeflow deployment
 
-1. Make a copy of the [configs](https://github.com/kubeflow/kubeflow/tree/master/docs/gke/configs) directory
-
-   * Its a good idea to check this into source control to make it easy to version and rollback your configs.
+1. Make a copy of the [configs](https://github.com/kubeflow/kubeflow/tree/master/docs/gke/configs) directory. Its a
+good idea to check this into source control to make it easy to version and rollback your configs.
 
 1. Modify `cluster-kubeflow.yaml`
 
    1. Set the zone for your cluster
-   1. Set `ipName` to a value that is unique with respect to your project
-
-      * The ipName needs to be set in two places
+   1. Set `ipName` to a value that is unique with respect to your project.
+      The ipName needs to be set in two places:
 
           1. Inside properties
 
@@ -56,11 +54,11 @@ The instructions also take advantage of IAP to provide secure authenticated acce
    1. Set parameter acmeEmail in bootstrapperConfig to your email address
    1. Set parameter hostname in bootstrapperConfig
 
-      ```
-          - component: iap-ingress
-            name: hostname          
-            value: <name>.endpoints.<Project>.cloud.goog
-      ```
+         ```
+            - component: iap-ingress
+                name: hostname          
+                value: <name>.endpoints.<Project>.cloud.goog
+         ```
 
       * Replace project with the id of your project
       * Replace name with a unique name for your deployment
@@ -71,11 +69,11 @@ The instructions also take advantage of IAP to provide secure authenticated acce
 
    1. List any users (Google Accounts) or Google groups that should be able to access Kubeflow in the **users** section; e.g.
 
-      ```
-      users:
-       - user:john@acme.com
-       - group:data-scientists@acme.com
-      ```
+         ```
+          users:
+            - user:john@acme.com
+            - group:data-scientists@acme.com
+         ```
 
 1. [Create an OAuth Client ID](getting-started-gke.md#create-oauth-client-credentials)
 
@@ -110,9 +108,9 @@ The instructions also take advantage of IAP to provide secure authenticated acce
 
 1. Kubeflow will be available at
 
-   ```
-   https://<hostname>/_gcp_gatekeeper/authenticate
-   ```
+    ```
+    https://<hostname>/_gcp_gatekeeper/authenticate
+    ```
 
 1. Grant users IAP access
 
@@ -153,17 +151,19 @@ Create an OAuth Client ID to be used to identify IAP when requesting acces to us
      https://<hostname>/_gcp_gatekeeper/authenticate
      ```
 
-   * <hostname> should be the one you set for iap-ingress during previous steps. (format: <name>.endpoints.<Project>.cloud.goog)
+   * \<hostname\> should be the one you set for iap-ingress during previous steps. (format: <name>.endpoints.<Project>.cloud.goog)
 
-1. After you enter the details, click Create. Make note of the **client ID** and **client secret** that appear in the OAuth client window because we will
-   need them later to enable IAP.
+1. After you enter the details, click Create.
+Make note of the **client ID** and **client secret** that appear in the
+OAuth client window because we 
+will need them later to enable IAP.
 
 1. Create environment variable from the the OAuth client ID and secret:
 
-   ```
-   export CLIENT_ID=<CLIENT_ID from OAuth page>
-   export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
-   ```
+      ```
+      export CLIENT_ID=<CLIENT_ID from OAuth page>
+      export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
+      ```
 
 ### Using Your Own Domain
 
@@ -173,24 +173,24 @@ If you want to use your own doman instead of **${name}.endpoints.${project}.clou
    e.g. `my-kubeflow.my-domain.com` 
 1. Remove the component `cloud-endpoints` by deleting the following lines
 
-   ```
-   - name: cloud-endpoints
-     prototype: cloud-endpoints
-   ```
+       ```
+        - name: cloud-endpoints
+          prototype: cloud-endpoints
+       ```
 
 1. Remove parameters for component `cloud-endpoints` by deleting the following lines.
 
-   ```
-   - component: cloud-endpoints
-     name: secretName
-     value: admin-gcp-sa
-   ```
+       ```
+        - component: cloud-endpoints
+          name: secretName
+          value: admin-gcp-sa
+       ```
 
 1. After you create the deployment you can get the address of the static ip created
 
-   ```
-   gcloud --project=${PROJECT} addresses describe --global ${IPNAME}
-   ```
+       ```
+       gcloud --project=${PROJECT} addresses describe --global ${IPNAME}
+       ```
 
    * IPNAME - should be the value assigned to property **ipName** in ${CONFIG_FILE}
 
@@ -208,10 +208,9 @@ To Use GPUs
    1. Set a new value for property **pool-version** in ${CONFIG_FILE} 
    1. Update the deployment
 
-   ```
-   gcloud deployment-manager --project=${PROJECT} deployments update ${PROJECT} --config=${CONFIG_FILE}
-   ```
-
+         ```
+         gcloud deployment-manager --project=${PROJECT} deployments update ${PROJECT} --config=${CONFIG_FILE}
+         ```
    **Warning** These deletes the existing node pools and creates new ones. This means all processes currently running
    on your cluster will be restarted and temporarily unavailable
 
@@ -262,11 +261,7 @@ To delete your deployment and reclaim all resources
 
 ```
 gcloud deployment-manager --project=${PROJECT} deployments delete ${DEPLOYMENT_NAME}
-```
-
-```
 gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
-
 ```
 ## Troubleshooting
 
@@ -275,24 +270,25 @@ Here are some tips for troubleshooting IAP.
  * Make sure you are using https
 
 ### 502 Server Error
-* A 502 usually means traffic isn't even making it to the envoy reverse proxy
-* A 502 usually indicates the loadbalancer doesn't think any backends are healthy
-  * In Cloud Console select Network Services -> Load Balancing
-      * Click on the load balancer (the name should contain the name of the ingress)
-      * The exact name can be found by looking at the `ingress.kubernetes.io/url-map` annotation on your ingress object
-      * Click on your loadbalancer
-      * This will show you the backend services associated with the load balancer
-          * There is 1 backend service for each K8s service the ingress rule routes traffic too
-          * The named port will correspond to the NodePort a service is using
-      * Make sure the load balancer reports the backends as healthy
-          * If the backends aren't reported as healthy check that the pods associated with the K8s service are up and running
-          * Check that health checks are properly configured
-            * Click on the health check associated with the backend service for envoy
-            * Check that the path is /healthz and corresponds to the path of the readiness probe on the envoy pods
-            * Seel also [K8s docs](https://github.com/kubernetes/contrib/blob/master/ingress/controllers/gce/examples/health_checks/READMEmd#limitations) for important information about how health checks are determined from readiness probes.
+A 502 usually means traffic isn't even making it to the envoy reverse proxy. And it
+usually indicates the loadbalancer doesn't think any backends are healthy.
 
-          * Check firewall rules to ensure traffic isn't blocked from the GCP loadbalancer
-              * The firewall rule should be added automatically by the ingress but its possible it got deleted if you have some automatic firewall policy enforcement. You can recreate the firewall rule if needed with a rule like this
+* In Cloud Console select Network Services -> Load Balancing
+    * Click on the load balancer (the name should contain the name of the ingress)
+    * The exact name can be found by looking at the `ingress.kubernetes.io/url-map` annotation on your ingress object
+    * Click on your loadbalancer
+    * This will show you the backend services associated with the load balancer
+        * There is 1 backend service for each K8s service the ingress rule routes traffic too
+        * The named port will correspond to the NodePort a service is using
+    * Make sure the load balancer reports the backends as healthy
+        * If the backends aren't reported as healthy check that the pods associated with the K8s service are up and running
+        * Check that health checks are properly configured
+          * Click on the health check associated with the backend service for envoy
+          * Check that the path is /healthz and corresponds to the path of the readiness probe on the envoy pods
+          * See [K8s docs](https://github.com/kubernetes/contrib/blob/master/ingress/controllers/gce/examples/health_checks/READMEmd#limitations) for important information about how health checks are determined from readiness probes.
+
+        * Check firewall rules to ensure traffic isn't blocked from the GCP loadbalancer
+            * The firewall rule should be added automatically by the ingress but its possible it got deleted if you have some automatic firewall policy enforcement. You can recreate the firewall rule if needed with a rule like this
 
                ```
                gcloud compute firewall-rules create $NAME \
@@ -302,36 +298,35 @@ Here are some tips for troubleshooting IAP.
               --source-ranges 130.211.0.0/22,35.191.0.0/16
                ```
 
-                * To get the node tag
+           * To get the node tag
 
-                ```
-                # From the GKE cluster get the name of the managed instance group
-                gcloud --project=$PROJECT container clusters --zone=$ZONE describe $CLUSTER
-                # Get the template associated with the MIG
-                gcloud --project=kubeflow-rl compute instance-groups managed describe --zone=${ZONE} ${MIG_NAME}
-                # Get the instance tags from the template
-                gcloud --project=kubeflow-rl compute instance-templates describe ${TEMPLATE_NAME}
+              ```
+              # From the GKE cluster get the name of the managed instance group
+              gcloud --project=$PROJECT container clusters --zone=$ZONE describe $CLUSTER
+              # Get the template associated with the MIG
+              gcloud --project=kubeflow-rl compute instance-groups managed describe --zone=${ZONE} ${MIG_NAME}
+              # Get the instance tags from the template
+              gcloud --project=kubeflow-rl compute instance-templates describe ${TEMPLATE_NAME}
 
-                ```
+              ```
 
               For more info [see GCP HTTP health check docs](https://cloud.google.com/compute/docs/load-balancing/health-checks)
 
   * In Stackdriver Logging look at the Cloud Http Load Balancer logs
 
-    * logs are labeled with the forwarding rule
+    * Logs are labeled with the forwarding rule
     * The forwarding rules are available via the annotations on the ingress
       ```
       ingress.kubernetes.io/forwarding-rule
       ingress.kubernetes.io/https-forwarding-rule
       ```
 
- * Verify that requests are being properly routed within the cluster
-
+  * Verify that requests are being properly routed within the cluster
   * Connect to one of the envoy proxies
 
-  ```
-  kubectl exec -ti `kubectl get pods --selector=service=envoy -o jsonpath='{.items[0].metadata.name}'` /bin/bash
-  ```
+        ```
+        kubectl exec -ti `kubectl get pods --selector=service=envoy -o jsonpath='{.items[0].metadata.name}'` /bin/bash
+        ```
 
   * Installl curl in the pod
   ```
@@ -339,11 +334,9 @@ Here are some tips for troubleshooting IAP.
   ```
 
   * Verify access to the whoami app
-
   ```
   curl -L -s -i curl -L -s -i http://envoy:8080/noiap/whoami
   ```
-    * If this doesn't return a 200 OK response; then there is a problem with the K8s resources
-
+  * If this doesn't return a 200 OK response; then there is a problem with the K8s resources
       * Check the pods are running
       * Check services are pointing at the points (look at the endpoints for the various services)
