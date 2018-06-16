@@ -160,7 +160,7 @@ $ kubectl -n kubeflow port-forward $POD 8080:80 2>&1 >/dev/null &
 $ POD=`kubectl -n kubeflow get pods --selector=app=tf-hub | awk '{print $1}' | tail -1`
 $ kubectl -n kubeflow port-forward $POD 8000:8000 2>&1 >/dev/null &
 ```
-Now you can access the Kubeflow ashboard at http://localhost:8080/ and JupyterHub at http://localhost:8000/.
+Now you can access the Kubeflow dashboard at http://localhost:8080/ and JupyterHub at http://localhost:8000/.
 For JupyterHub, you'll be landing on a login page. 
 
   - Use any username and password to login
