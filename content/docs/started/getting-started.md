@@ -27,16 +27,35 @@ This documentation assumes you have a Kubernetes cluster already available.
 
   * For local environment try [Minikube setup](/docs/started/getting-started-minikube/).
   * For cloud environment try [GKE setup](/docs/started/getting-started-gke/).
+  * For general k8s cluster try [quick start](/docs/started/getting-started/#quick-start) or [install via ksonnet](/docs/started/getting-started/#install-via-ksonnet).
 
 For more general information on setting up a Kubernetes cluster please refer to [Kubernetes Setup](https://kubernetes.io/docs/setup/). If you want to use GPUs, be sure to follow the Kubernetes [instructions for enabling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
 
+## quick start
 
-### Requirements
+Get kubeflow bootstrapper [yaml spec](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/bootstrapper.yaml)
+
+```
+    kubectl create -f bootstrapper.yaml
+```
+
+You should have kubeflow components deployed to your k8s cluster.
+Exec into pod ```kubeflow-bootstrapper-0``` in namespace ```kubeflow-admin``` if you need to edit your ksonnet app.
+Your ksonnet app is store at ```/opt/bootstrap/default``` in above pod.
+
+The default components are defined in [default.yaml](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/config/default.yaml), user can customize which components to deploy by
+pointing ```--config``` args in ```bootstrapper.yaml``` to their own config (eg. a configmap in k8s clsuter)
+
+This bootstrapper example [config](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/config/gcp_prototype.yaml) can help explain how config customization works.
+
+## Install Via Ksonnet
+
+**Requirements**
 
   * ksonnet version [0.9.2](https://ksonnet.io/#get-started).
   * Kubernetes >= 1.8 [see here](https://github.com/kubeflow/tf-operator#requirements)
 
-### Github Tokens
+**Github Tokens**
 
 It is HIGHLY likely you'll overload Github's API if you are unauthenticated. To get around this, do the following steps:
 
@@ -48,7 +67,7 @@ It is HIGHLY likely you'll overload Github's API if you are unauthenticated. To 
 echo "export GITHUB_TOKEN=${GITHUB_TOKEN}" >> ~/.bashrc
 ```
 
-### Steps
+**Steps**
 
 In order to quickly set up all components, execute the following commands:
 
