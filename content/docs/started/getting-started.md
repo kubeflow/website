@@ -31,7 +31,7 @@ This documentation assumes you have a Kubernetes cluster already available.
 
 For more general information on setting up a Kubernetes cluster please refer to [Kubernetes Setup](https://kubernetes.io/docs/setup/). If you want to use GPUs, be sure to follow the Kubernetes [instructions for enabling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
 
-## quick start
+## Quick start
 
 Get kubeflow bootstrapper [yaml spec](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/bootstrapper.yaml)
 
@@ -41,14 +41,14 @@ Get kubeflow bootstrapper [yaml spec](https://github.com/kubeflow/kubeflow/blob/
 
 You should have kubeflow components deployed to your k8s cluster.
 Exec into pod ```kubeflow-bootstrapper-0``` in namespace ```kubeflow-admin``` if you need to edit your ksonnet app.
-Your ksonnet app is store at ```/opt/bootstrap/default``` in above pod.
+Your ksonnet app is stored at ```/opt/bootstrap/default``` in above pod.
 
 The default components are defined in [default.yaml](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/config/default.yaml), user can customize which components to deploy by
 pointing ```--config``` args in ```bootstrapper.yaml``` to their own config (eg. a configmap in k8s clsuter)
 
 This bootstrapper example [config](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/config/gcp_prototype.yaml) can help explain how config customization works.
 
-## Install Via Ksonnet
+## Install via ksonnet
 
 **Requirements**
 
