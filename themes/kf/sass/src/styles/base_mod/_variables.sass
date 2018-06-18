@@ -1,0 +1,87 @@
+// webfonts
+@mixin fontFace($family, $src, $style: normal, $weight: normal) 
+	@font-face
+		font-family: $family
+		font-style: $style
+		font-weight: $weight
+		src: url('#{$src}.eot') // IE9 compat
+		src: url('#{$src}.eot?#iefix') format('embedded-opentype'),
+		url('#{$src}.woff') format('woff'),
+		url('#{$src}.ttf') format('truetype'),
+		url('#{$src}.svg##{$family}') format('svg')
+
+// define local webfonts and assign variables
+$font-path: '/_assets/styles/fonts'
+
+// Breakpoints
+$small-screen: 480px
+$medium-screen: 769px
+$m-large-screen: 960px
+$large-screen: 1200px
+$x-large-screen: 1600px
+
+// Typography
+$base-font-family: 'Lato',$font-stack-system 
+$heading-font-family: $base-font-family
+$serif-font-family: $font-stack-georgia
+$mono-font-family: 'Roboto Mono',$font-stack-courier-new
+
+// Font Sizes
+$em-base: 16px; 
+$base-font-size: em(16,$em-base)
+$base-font-weight: 400
+$bold-font-weight: 900
+
+$h1-font-size: em(48)
+$h2-font-size: em(36)
+$h3-font-size: em(24)
+$h4-font-size: em(21)
+$h5-font-size: em(18)
+$h6-font-size: em(16)
+
+// Line height
+$base-line-height: 1.5
+$heading-line-height: 1.2
+
+// Other Sizes
+$base-border-radius: 3px
+$base-spacing: $base-line-height * 1em
+$x-large-spacing: $base-spacing * 6
+$large-spacing: $base-spacing * 2
+$small-spacing: $base-spacing / 2
+$tiny-spacing: $base-spacing / 3 // 0.5em (8px)
+$base-z-index: 0
+$base-side-padding: 40px
+
+// Colors
+$base-color: #212121 // charcoal
+$base-color-medium: #757575 // gray 3
+$base-color-light: tint($base-color-medium,48%)
+$brand-color-1: #4279f4 // medium blue
+$brand-color-2: #0028aa // dark blue
+$brand-color-3: #6ca1ff // light-blue
+
+
+// Background Colors
+$base-background-color: tint($base-color-light, 65%)
+
+// Font Colors
+$base-font-color: $base-color
+$action-color: $brand-color-1
+
+// Border
+$base-border-color: $brand-color-1
+$base-border: 2px solid $base-border-color
+
+// Forms
+$form-box-shadow: inset 0 1px 3px rgba(#000, 0.06)
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3)
+
+// Animations
+$base-duration: 150ms
+$base-timing: ease
+$base-transition: all $base-duration $base-timing
+
+// Layout
+$max-width: 100%
+

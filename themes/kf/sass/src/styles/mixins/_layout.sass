@@ -1,0 +1,24 @@
+@mixin outer-container($local-max-width: $max-width)
+	@include clearfix
+	max-width: $local-max-width
+	margin:
+		left: auto
+		right: auto
+
+// centering
+@mixin pure-center()
+	position: absolute
+	top: 50%
+	left: 50%
+	transform: translate(-50%, -50%)
+
+@mixin flex-container($flex: flex, $direction: row, $wrap: nowrap, $justify-content: space-between, $align-items: stretch, $flex-items: 0 1 auto)
+	display: $flex
+	flex-direction: $direction
+	flex-wrap: $wrap
+	justify-content: $justify-content
+	align-items: $align-items
+	> *
+		flex: $flex-items
+
+

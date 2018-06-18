@@ -1,0 +1,141 @@
+html 
+	box-sizing: border-box
+
+*,
+*::before,
+*::after 
+	box-sizing: inherit
+
+html,
+body 
+	height: 100%
+
+.contain
+	margin: 0 auto
+	max-width: $large-screen
+
+body > #wrapper
+	position: relative
+	> header
+		position: relative
+		@include outer-container
+		z-index: 800
+		background: white
+		border-bottom: 2px solid $brand-color-1
+		@include flex-container($align-items: center)
+		padding: 0 $base-spacing 0 4px
+		.logo 
+			display: block
+			position: relative
+			height: 130px
+			padding: 20px
+			background: white
+			z-index: 700
+			> *
+				width: auto
+				height: 100%
+
+	> #hero
+		@include node-bg()
+		color: white
+		text-align: center
+		position: relative
+		padding: $large-spacing $base-spacing
+		.contain
+			position: relative
+			h1:after
+				content: ""
+				display: block
+				margin: $tiny-spacing auto 0
+				height: 4px
+				background-color: white
+				width: 20%
+			h5
+				font-weight: $base-font-weight
+				color: white
+			.button
+				margin-top: $base-spacing
+
+	> #pageContent
+		padding: $base-spacing
+		margin-bottom: $base-spacing
+		*:first-child
+			margin-top: 0
+		.columns
+			margin: $base-spacing 0
+			> *:not(:last-child)
+				margin-bottom: $base-spacing
+
+
+	> footer
+		border-top: 2px solid tint(black,90%)
+		text-align: center
+		margin-top: $base-spacing
+		> div
+			@include node-bg()
+			padding: $base-spacing
+			min-height: 200px
+			p
+				@include pure-center()
+				color: rgba(white,0.7)
+				width: 100%
+				padding: 0 $base-spacing
+				a
+					color: rgba(white,0.7)
+					padding: 0 $tiny-spacing
+					border-right: 1px solid white
+					&:hover
+						color: white
+					&:last-of-type
+						border-right: none
+						padding-right: none
+
+
+
+	@media screen and (min-width: $small-screen)
+		> #pageContent
+			.columns
+				@include flex-container
+				margin: $large-spacing 0
+				> *
+					flex-basis: 50%
+					margin: 0 !important
+					&:nth-child(odd)
+						padding-right: $base-spacing
+					&:nth-child(even)
+						padding-left: $base-spacing
+
+	@media screen and (min-width: $medium-screen)
+		> #pageContent
+			max-width: $large-screen
+			margin: 0 auto
+		
+		> footer
+
+
+	@media screen and (min-width: $m-large-screen)
+		> #hero
+			padding:
+				top: $x-large-spacing
+				bottom: $x-large-spacing
+
+		> header
+			display: block
+			border-bottom: none
+			background: transparent
+			padding: 0
+			.logo
+				position: absolute
+				left: 0
+				top: 0
+				height: 140px
+				display: inline-block
+				margin-left: $base-spacing
+				border: $base-border
+					top: none
+
+
+	// @media screen and (min-width: $large-screen)
+
+
+	// @media screen and (min-width: $x-large-screen)

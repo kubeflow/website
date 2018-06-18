@@ -1,0 +1,54 @@
+// page styles
+
+#overview
+	border-bottom: 2px solid tint($brand-color-3,50%)
+	padding: $large-spacing $base-spacing
+	text-align: center
+	font-size: em(18)
+	margin-bottom: $base-spacing
+
+#pageContent .lead
+	margin: $large-spacing 0
+	> .image 
+		padding: 0 $base-spacing
+		max-width: 60%
+		margin-bottom: $base-spacing
+	> .text
+		p
+			font-size: em(18)
+
+
+@media screen and (min-width: $small-screen)
+	#overview
+		font-size: em(20)
+	#pageContent .lead
+		> .image 
+			max-width: 40%
+			margin-bottom: $large-spacing
+		> .text
+			p
+				font-size: em(20)
+
+
+@media screen and (min-width: $medium-screen)
+	#pageContent .lead
+		margin-top: $x-large-spacing
+		@include flex-container()
+		> .image
+			display: block
+			margin: 0 auto
+			max-width: 100%
+		> .text
+			flex-basis: 70%
+		&:nth-child(2n+0)
+			> .image
+				order: 2
+			>.text
+				order: 1
+		
+			
+
+
+
+
+// @media screen and (min-width: $m-large-screen)
