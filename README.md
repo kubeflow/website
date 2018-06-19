@@ -30,8 +30,9 @@ If you need to make changes to the style, you can update the theme's style using
 
 ```
 cd themes/kf/sass
-# Note the npm install step is needed only the first time.
+# Note the npm install steps are needed only the first time.
 npm install
+npm install gulp-cli -g
 gulp
 ```
 
