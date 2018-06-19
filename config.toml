@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "Kubeflow"
 theme = "kf"
 description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
-Paginate = 4
+Paginate = 20
 [Params]
   RSSLink = "/index.xml"
   author = "kubeflow.org" # add your company name
@@ -27,3 +27,7 @@ Paginate = 4
     name = "Additional Resources"
     weight = -100
     url = "/blog/"
+[[menu.main]]
+    name = "Github"
+    weight = -99
+    url = "https://github.com/kubeflow/"
