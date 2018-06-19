@@ -43,13 +43,15 @@ body > #wrapper
 		padding: $large-spacing $base-spacing
 		.contain
 			position: relative
-			h1:after
-				content: ""
-				display: block
-				margin: $tiny-spacing auto 0
-				height: 4px
-				background-color: white
-				width: 20%
+			h1
+				font-size: em(54)
+				&:after
+					content: ""
+					display: block
+					margin: $tiny-spacing auto 0
+					height: 4px
+					background-color: white
+					width: 20%
 			h5
 				font-weight: $base-font-weight
 				color: white
@@ -109,6 +111,7 @@ body > #wrapper
 		> #pageContent
 			max-width: $large-screen
 			margin: 0 auto
+			padding: $base-spacing $large-spacing
 		
 		> footer
 
@@ -130,7 +133,7 @@ body > #wrapper
 				top: 0
 				height: 140px
 				display: inline-block
-				margin-left: $base-spacing
+				margin-left: $large-spacing
 				border: $base-border
 					top: none
 
