@@ -17,8 +17,16 @@ macOS...sorry :-)
 
 ### Making changes to CSS
 
-The css/sass style code is located in the `themes/kf/sass` directory. If you need
-to make changes to the style, you can update the themes style using:
+The css/sass style code is located in the `themes/kf/sass` directory.
+
+#### CSS Dev Setup
+You'd need to install node.js. Download the binary for your platform 
+[here](https://nodejs.org/en/download/). This will also install npm.
+
+
+#### Updating theme style
+
+If you need to make changes to the style, you can update the theme's style using:
 
 ```
 cd themes/kf/sass
