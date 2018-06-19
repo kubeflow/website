@@ -41,12 +41,12 @@ good idea to check this into source control to make it easy to version and rollb
 
              ```
              properties:
-               bootstrapperConfig: |          
+               bootstrapperConfig: |
                  app:
                    ...
-                   parameters:              
+                   parameters:
                      - component: iap-ingress
-                       name: ipName                
+                       name: ipName
                        value: your-ip-name
                    ...
              ```
@@ -56,7 +56,7 @@ good idea to check this into source control to make it easy to version and rollb
 
          ```
             - component: iap-ingress
-                name: hostname          
+                name: hostname
                 value: <name>.endpoints.<Project>.cloud.goog
          ```
 
@@ -75,11 +75,11 @@ good idea to check this into source control to make it easy to version and rollb
             - group:data-scientists@acme.com
          ```
 
-1. [Create an OAuth Client ID](getting-started-gke.md#create-oauth-client-credentials)
+1. [Create an OAuth Client ID](#create-oauth-client-credentials)
 
 1. Modify [env-kubeflow.sh](https://github.com/kubeflow/kubeflow/blob/master/docs/gke/configs/env-kubeflow.sh)
 
-   * This file defines environment variables used in the commands below.  
+   * This file defines environment variables used in the commands below.
    * We recommend checking a modified version into source control so its easy to source and repeat the commands.
    * Make sure you have `CLIENT_ID` and `CLIENT_SECRET` in your environment separately. These credentials are
      sensitive and should not be checked into source control along with `env-kubeflow.sh`.
@@ -137,14 +137,14 @@ good idea to check this into source control to make it easy to version and rollb
 Create an OAuth Client ID to be used to identify IAP when requesting acces to user's email to verify their identity.
 
 1. Set up your OAuth consent screen:
-  
+
    * Configure the [consent screen](https://console.cloud.google.com/apis/credentials/consent).
    * Under Email address, select the address that you want to display as a public contact. You must use either your email address or a Google Group that you own.
    * In the Product name box, enter a suitable like save `kubeflow`
    * Click Save.
 
 1. On the [Credentials](https://console.cloud.google.com/apis/credentials) Click Create credentials, and then click OAuth client ID.
-  
+
    * Under Application type, select Web application. In the Name box enter a name, and in the Authorized redirect URIs box, enter
 
      ```
@@ -155,7 +155,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting acces to us
 
 1. After you enter the details, click Create.
 Make note of the **client ID** and **client secret** that appear in the
-OAuth client window because we 
+OAuth client window because we
 will need them later to enable IAP.
 
 1. Create environment variable from the the OAuth client ID and secret:
@@ -167,10 +167,10 @@ will need them later to enable IAP.
 
 ### Using Your Own Domain
 
-If you want to use your own doman instead of **${name}.endpoints.${project}.cloud.goog** make these modifications to ${CONFIG_FILE} before you create the deployment. 
+If you want to use your own doman instead of **${name}.endpoints.${project}.cloud.goog** make these modifications to ${CONFIG_FILE} before you create the deployment.
 
 1. Set parameter hostname in bootstrapperConfig to the fully qualified domain you will use
-   e.g. `my-kubeflow.my-domain.com` 
+   e.g. `my-kubeflow.my-domain.com`
 1. Remove the component `cloud-endpoints` by deleting the following lines
 
        ```
@@ -205,7 +205,7 @@ To Use GPUs
 
 1. Follow the instructions in the previous section to create the deployment; if your deployment already exists you can update it as follows
 
-   1. Set a new value for property **pool-version** in ${CONFIG_FILE} 
+   1. Set a new value for property **pool-version** in ${CONFIG_FILE}
    1. Update the deployment
 
          ```
