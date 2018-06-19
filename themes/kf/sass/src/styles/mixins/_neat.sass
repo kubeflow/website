@@ -1,0 +1,30 @@
+// NEAT MIXINS
+
+
+// ------------------------------------------------------------
+// Omega Reset: http://www.joshfry.me/blog/2013/05/13/omega-reset-for-bourbon-neat
+// NOTE: In order to use @include omega-reset(), you need to set Bourbon's $fg-column and $fg-gutter 
+	// variables to match what Bourbon Neat is doing.
+
+// 	HOW: reset the number passed to @include omega() from the previous media query into your new media query
+	// if you are changing the number of columns
+	// 
+	// @include omega-reset()
+	// 
+	// example: 
+	// @include breakpoint(480px)
+	// 	@include span-columns(6)
+	// 	@include omega(2n)
+	// 
+	//   @include breakpoint(768px)
+	// 	@include omega-reset(2n)
+	// 	@include span-columns(4)
+	// 	@include omega(3n)
+	// 
+// ------------------------------------------------------------
+
+@mixin omega-reset($nth)
+	&:nth-child(#{$nth})
+		margin-right: flex-gutter()
+	&:nth-child(#{$nth}+1)
+		clear: none

@@ -1,0 +1,78 @@
+// default matrix-block wrapper styles
+.block
+	position: relative
+	margin: $base-spacing auto
+	*
+		position: relative
+
+	&.wrap, > .wrap
+		@include outer-container()
+
+	&.full
+		// full is always 100% of it's container
+		@include outer-container(100%)
+
+	&.img
+		&.bg
+			// if an image is also "bg" that means it is a background image on the matrix-block container
+			background-size: cover
+			background-position: center center
+			min-height: 70vh
+			
+	&.layout
+		display: flex
+		flex-direction: column
+		.wrap
+			> *
+				padding: $base-spacing
+				@media screen and (min-width: $medium-screen)
+					width: 60%
+					&.right
+						margin-left: 40%
+					&.center
+						margin: 0 auto
+					&.full
+						width: 100%
+
+		&.vert-top
+			justify-content: flex-start
+		&.vert-center
+			justify-content: center
+		&.vert-bottom
+			justify-content: flex-end
+
+	
+	&.overlay
+		// overlay always positions a transparent background on z-index: 3. 
+		// All other descendents should be higher than that.
+		*
+			z-index: 5
+	&.overlay-black
+		color: white
+		&:after
+			@include bg-overlay(black)
+		&.percent-0:after
+			@include bg-overlay(black, 0)
+		&.percent-20:after
+			@include bg-overlay(black, 0.2)
+		&.percent-50:after
+			@include bg-overlay(black, 0.5)
+		&.percent-80:after
+			@include bg-overlay(black, 0.8)
+		&.percent-100:after
+			@include bg-overlay(black, 1)
+	&.overlay-white
+		// This looks best as a darker theme color
+		color: $base-color
+		&:after
+			@include bg-overlay(white)
+		&.percent-0:after
+			@include bg-overlay(white, 0)
+		&.percent-20:after
+			@include bg-overlay(white, 0.2)
+		&.percent-50:after
+			@include bg-overlay(white, 0.5)
+		&.percent-80:after
+			@include bg-overlay(white, 0.8)
+		&.percent-100:after
+			@include bg-overlay(white, 1)

@@ -1,0 +1,31 @@
+// background shade
+@mixin bg-overlay($color: black, $percent: 0.2)
+	content: ""
+	display: block
+	width: 100%
+	height: 100%
+	position: absolute
+	left: 0
+	top: 0
+	z-index: 3
+	background-color: rgba($color, $percent)
+
+// background image defaults
+@mixin bg-img()
+	background-size: cover
+	background-position: center center
+	background-repeat: no-repeat
+
+
+@mixin node-bg()
+	position: relative
+	background: url('/images/bg-w.svg') center center / cover no-repeat shade($brand-color-1,50%) // color
+	&:before
+		content: ""
+		position: absolute
+		width: 100%
+		height: 100%
+		top: 0
+		left: 0
+		display: block
+		background: url('/images/bg-k.svg') center center / cover no-repeat

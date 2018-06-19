@@ -1,0 +1,97 @@
+ul, ol 
+	list-style-type: none
+	margin: 0
+	padding: 0
+
+dl 
+	margin: 0
+
+dt 
+	font-weight: $bold-font-weight
+	margin: 0
+
+dd 
+	margin: 0
+
+#pageContent 
+	// standard text lists inside of pageContent
+	ul, ol
+		overflow: hidden // prevents wrapping issues next to floated elements
+		li
+			margin-bottom: $tiny-spacing
+			ul, ol
+				margin-top: $tiny-spacing / 2
+			li
+				margin-bottom: $tiny-spacing / 2
+			> p:first-child
+				display: inline-block
+
+	ul
+		list-style-type: none
+		padding-left: $base-spacing
+		li
+			position: relative
+			&:before
+				width: $large-spacing
+				margin-left: -$large-spacing
+				top: -$tiny-spacing/2
+				position: relative
+				text-align: center
+				$font-size: em(6)
+				content: "\f111"
+				font-family: "Font Awesome 5 Free"
+				font-size: $font-size
+				font-weight: 700
+				color: $brand-color-1
+				padding-right: $small-spacing
+				display: inline-block
+			ul li
+				&:before
+					font-weight: 400
+				ul li
+					&:before
+						content: "\f0c8"
+						font-weight: 700
+			ol 
+				li
+					&:before
+						font-size: em(16)
+						font-family: $base-font-family
+						top: 0
+
+
+
+
+	ol
+		list-style-type: none
+		padding-left: $large-spacing
+		counter-reset: li
+		li
+			counter-increment: li
+			&:before
+				content: counter(li)
+				color: $brand-color-1
+				display: inline-block
+				width: $large-spacing
+				margin-left: -$large-spacing
+				position: relative
+				text-align: right
+				padding-right: $tiny-spacing
+
+		ol
+			padding-left: $base-spacing
+			counter-reset: li
+			li
+				counter-increment: li
+				&:before
+					content: counter(li, lower-alpha)
+				ol li
+					&:before
+						content: counter(li, lower-roman)
+
+		ul li
+			counter-increment: none
+			&:before
+				content: "\f111"
+				font-weight: 400
+				padding-right: $small-spacing
