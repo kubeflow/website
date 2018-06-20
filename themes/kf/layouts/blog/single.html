@@ -1,0 +1,19 @@
+{{ define "title" }} {{ .Title }} {{ end }}
+{{ define "mobilenav" }} {{ partial "mobilenav" . }} {{ end }}
+{{ define "header" }} {{ partial "header" . }} {{ end }}
+{{ define "main" }}
+  <section id="pageContent">
+    <div>
+      <h1 id="anchor1"> {{ .Title}} </h1>
+      <p>
+           {{ .Params.bref | safeHTML }}
+      </p>
+    </div> 
+
+    {{ .Content }}
+
+  </section>
+  <!-- end pageContent -->
+
+{{ end }}
+{{ define "footer" }} {{ partial "footer" . }} {{ end }}
