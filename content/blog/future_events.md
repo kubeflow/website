@@ -3,10 +3,9 @@ title = "Future Kubeflow Events"
 description = "Events where Kubeflow will be presented"
 weight = 10
 toc = true
-bref= "Future events"
+bref= ""
 +++
 
-## Future Kubeflow Events
 List of events where talks and workshops about Kubeflow will be presented. Please note that
 this might not be an exhaustive list.
 
