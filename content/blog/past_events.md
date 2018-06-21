@@ -10,4 +10,4 @@ bref= "Past events"
 List of events where talks and workshops about Kubeflow were presented. Please note that
 this might not be an exhaustive list.
 
-* [KubeCon Copenhagen, Denmark](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2018/), May 2--4, 2018
+* [KubeCon, Copenhagen](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2018/), 2-4 May, 2018
