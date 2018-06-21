@@ -6,8 +6,6 @@ toc = true
 bref= "Detailed description of Kubeflow usage"
 +++
 
-# Using Kubeflow
-
 This guide will walk you through the basics of deploying and interacting with Kubeflow. Some understanding of Kubernetes, Tensorflow, and Ksonnet are useful in completing the contents of this guide.
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
