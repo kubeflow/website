@@ -34,7 +34,7 @@ Install the Kubeflow packages into your application.
 ```
 # For a list of releases see:
 # https://github.com/kubeflow/kubeflow/releases
-VERSION=v0.1.2
+VERSION=v0.1.3
 
 cd my-kubeflow
 ks registry add kubeflow github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow
@@ -514,18 +514,17 @@ ks delete ${KF_ENV} -c ${MNIST_JOB_NAME}
 
 ## Advanced Customization
 
-* Often times data scientists require a POSIX compliant filesystem
-   * For example, most HDF5 libraries require POSIX and don't work with an object store like GCS or S3
-* When working with teams you might want a shared POSIX filesystem to be mounted into your notebook environments
-  so that data scientists can work collaboratively on the same datasets.
-* Here we show how to customize your Kubeflow deployment to achieve this.
+### Persistent Disks
 
+Frequently data scientists require a POSIX compliant filesystem. For example, most HDF5 libraries require POSIX and don't work with an object store like GCS or S3. Also, when working with teams you might want a shared POSIX filesystem to be mounted into your notebook environments so that data scientists can work collaboratively on the same datasets.
 
-Set the disks parameter to a comma separated list of the Google persistent disks you want to mount
-  * These disks should be in the same zone as your cluster
-  * These disks need to be created manually via gcloud or the Cloud console e.g.
-  * These disks can't be attached to any existing VM or POD.
+Here we show how to customize your Kubeflow deployment to achieve this. Set the disks parameter to a comma separated list of the Google persistent disks you want to mount. These disks
 
+* should be in the same zone as your cluster
+* need to be created manually, for example via gcloud or the Cloud console
+* can't be attached to any existing VM or POD
+
+<br/>
 Create the disks
 
 ```
@@ -533,7 +532,7 @@ Create the disks
   gcloud --project=${PROJECT} compute disks create  --zone=${ZONE} ${PD_DISK2} --description="PD to back NFS storage on GKE." --size=1TB
 ```
 
-Configure the environment to use the disks.
+Configure the environment to use the disks
 
 ```
 ks param set --env=cloud kubeflow-core disks ${PD_DISK1},${PD_DISK2}
@@ -574,7 +573,7 @@ tmpfs                                                           15444244       0
 ## Troubleshooting
 
 ### TensorFlow and AVX
-There are some instances where you may encounter a TensorFlow-related Python installation or a pod launch issue that results in a SIGILL (illegal instruction core dump). Kubeflow uses the pre-built binaries from the TensorFlow project which, beginning with version 1.6, are compiled to make use of the [AVX](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) CPU instruction. This is a recent feature and your CPU might not support it. Check the host environment for your node to determine whether it has this support:
+There are some instances where you may encounter a TensorFlow-related Python installation or a pod launch issue that results in a SIGILL (illegal instruction core dump). Kubeflow uses the pre-built binaries from the TensorFlow project which, beginning with version 1.6, are compiled to make use of the [AVX](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) CPU instruction. This is a recent feature and your CPU might not support it. Check the host environment for your node to determine whether it has this support.
 
 Linux:
 ```
