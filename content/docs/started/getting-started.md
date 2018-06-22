@@ -52,7 +52,7 @@ This bootstrapper example [config](https://github.com/kubeflow/kubeflow/blob/mas
 
 **Requirements**
 
-  * ksonnet version [0.9.2](https://ksonnet.io/#get-started).
+  * ksonnet version [0.11.0](https://ksonnet.io/#get-started).
   * Kubernetes >= 1.8 [see here](https://github.com/kubeflow/tf-operator#requirements)
 
 **Github Tokens**
