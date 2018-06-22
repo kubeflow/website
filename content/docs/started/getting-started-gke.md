@@ -4,9 +4,7 @@ description = "Get Kubeflow running on GKE"
 weight = 10
 toc = true
 bref = "The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures. Anywhere you are running Kubernetes, you should be able to run Kubeflow"
-[menu.docs]
-  parent = "started"
-  weight = 3
+
 +++
 
 ## Deploying Kubeflow On GKE
@@ -221,41 +219,15 @@ To Use GPUs
    kubectl create -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/k8s-1.9/nvidia-driver-installer/cos/daemonset-preloaded.yaml
    ```
 
-## Pushing your config to source control
+## Copying your Kubeflow ksonnet application
 
-Start a shell in the pod
-
-```
-kubectl -n kubeflow-admin exec -it kubeflow-bootstrapper-0 /bin/bash
-```
-
-Activate the GCP service account.
+To further customize your Kubeflow deployment you can copy the app to your local machine
 
 ```
-gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+kubectl cp kubeflow-admin/kubeflow-bootstrapper-0:/opt/bootstrap/default ~/my-kubeflow
 ```
 
-If you don't already have a cloud repository create one
-
-```
-gcloud source repos create ${REPO}
-```
-
-Clone the repository
-
-```
-gcloud source repos clone ${REPO} git_${REPO}
-```
-
-Copy the ksonnet app into the repo and push it
-
-```
-cp -r /opt/bootstrap/default ./git_${REPO}/ks-app
-cd ./git_${REPO}
-git add .
-git commit -m "Kubeflow app"
-git push --set-upstream origin master
-```
+We recommend checking in your deployment to source control.
 
 ## Deleting your deployment
 

@@ -175,3 +175,11 @@ For JupyterHub, you'll be landing on a login page.
   - You should be redirected to a page that waits while the server is starting.
 
 If the page doesn't refresh, please see [troubleshooting](https://github.com/kubeflow/kubeflow/blob/master/user_guide.md#problems-spawning-jupyter-pods).
+
+#### Copy the ksonnet application to your machine
+
+To further customize your Kubeflow deployment you can copy the app to your local machine
+
+```
+kubectl cp kubeflow-admin/kubeflow-bootstrapper-0:/opt/bootstrap/default ~/my-kubeflow
+```
