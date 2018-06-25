@@ -58,7 +58,8 @@
     <a
        id="a3778"
        xlink:href="https://www.pachyderm.io/"
-       xlink:title="Pachyderm">
+       xlink:title="Pachyderm"
+       target="_blank">
       <image
          transform="rotate(0.30872779)"
          width="36.618591"
@@ -72,7 +73,8 @@
     <a
        id="a3785"
        xlink:href="https://pytorch.org/"
-       xlink:title="PyTorch">
+       xlink:title="PyTorch"
+       target="_blank">
       <g
          id="g3783">
         <image
@@ -96,7 +98,8 @@
     <a
        id="a3775"
        xlink:href="https://www.getambassador.io/"
-       xlink:title="Ambassador">
+       xlink:title="Ambassador"
+       target="_blank">
       <image
          width="43.65625"
          height="11.1125"
