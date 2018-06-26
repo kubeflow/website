@@ -55,7 +55,7 @@ body.nav-active
 			min-width: 100%
 
 // default navigation
-#wrapper > header
+#wrapper header
 	nav
 		position: relative
 		flex-grow: 1
@@ -110,7 +110,7 @@ body.nav-active
 						top: $bar-height*2 // height *2
 						width: 0%
 						left: 50%
-#wrapper > #subNav
+#wrapper #subNav
 	position: absolute
 	z-index: 400
 	width: 100%
@@ -179,7 +179,7 @@ body.nav-active
 
 @media screen and (min-width: $medium-screen)
 	#wrapper 
-		> #subNav
+		#subNav
 			background-color: transparent
 			@include flex-container($align-items: flex-start, $justify-content: flex-end)
 			> *
@@ -195,7 +195,7 @@ body.nav-active
 		display: none
 
 	#wrapper 
-		> #subNav
+		#subNav
 			right: 0
 			width: calc(100% - 191px)
 			z-index: 900
@@ -210,7 +210,7 @@ body.nav-active
 				padding-top: 80px
 
 
-		> header
+		header
 			nav
 				background: $brand-color-1
 				position: relative
@@ -237,24 +237,51 @@ body.nav-active
 
 @media screen and (min-width: $large-screen)
 	#wrapper 
-		> #subNav
+		#subNav
 			display: block
 			width: 25%
-			margin-top: 0
+			margin-top: 80px
+			left: 0
 			&.scrolled
 				width: 25%
-			> *:not(:first-child) .trigger
-				border-left: none
+			> *
+				&:not(:first-child) .trigger
+					border-left: none
+				ul, .trigger
+					padding-left: 15px
 			+ #pageContent
-				margin: 0
+				margin: 0 0 0 25%
 				width: 75%
 				padding-right: $large-spacing
 
-
-		> header
+		header
 			nav
 				ul
 					font-size: em(18)
 					li a
 						padding: 29px $base-spacing
+
+
+@media screen and (min-width: $x-large-screen)
+	#wrapper
+		#subNav
+			position: relative
+			flex-basis: 25%
+
+			> *
+				.trigger
+					padding-left: em(24,18)
+				ul
+					padding-left: $base-spacing
+			+ #pageContent
+				flex-basis: 75%
+				margin-left: 0
+
+			&.scrolled
+				position: fixed
+				width: 400px
+				left: -1200px
+				margin: 0 auto
+				+ #pageContent
+					margin-left: 25%
 

@@ -2,6 +2,7 @@
 {{ define "mobilenav" }} {{ partial "mobilenav" . }} {{ end }}
 {{ define "header" }} {{ partial "header" . }} {{ end }}
 {{ define "main" }}
+<div id="contentWrap">
   <section id="pageContent">
     <div>
       <h1 id="anchor1"> {{ .Title}} </h1>
@@ -14,6 +15,8 @@
 
   </section>
   <!-- end pageContent -->
+</div>
+<!-- end contentWrap -->
 
 {{ end }}
 {{ define "footer" }} {{ partial "footer" . }} {{ end }}
