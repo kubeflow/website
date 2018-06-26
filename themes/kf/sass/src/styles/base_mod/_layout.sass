@@ -16,7 +16,7 @@ body
 
 body > #wrapper
 	position: relative
-	> header
+	header
 		position: relative
 		@include outer-container
 		z-index: 800
@@ -35,7 +35,7 @@ body > #wrapper
 				width: auto
 				height: 100%
 
-	> #hero
+	#hero
 		@include node-bg()
 		color: white
 		text-align: center
@@ -58,7 +58,7 @@ body > #wrapper
 			.button
 				margin-top: $base-spacing
 
-	> #pageContent
+	#pageContent
 		padding: $base-spacing
 		margin-bottom: $base-spacing
 		*:first-child
@@ -95,7 +95,7 @@ body > #wrapper
 
 
 	@media screen and (min-width: $small-screen)
-		> #pageContent
+		#pageContent
 			.columns
 				@include flex-container
 				margin: $large-spacing 0
@@ -108,21 +108,18 @@ body > #wrapper
 						padding-left: $base-spacing
 
 	@media screen and (min-width: $medium-screen)
-		> #pageContent
+		#pageContent
 			max-width: $large-screen
 			margin: 0 auto
 			padding: $base-spacing $large-spacing
-		
-		> footer
-
 
 	@media screen and (min-width: $m-large-screen)
-		> #hero
+		#hero
 			padding:
 				top: $x-large-spacing
 				bottom: $x-large-spacing
 
-		> header
+		header
 			display: block
 			border-bottom: none
 			background: transparent
@@ -141,4 +138,9 @@ body > #wrapper
 	// @media screen and (min-width: $large-screen)
 
 
-	// @media screen and (min-width: $x-large-screen)
+	@media screen and (min-width: $x-large-screen)
+		#contentWrap
+			@include flex-container($justify-content: center)
+			position: relative
+			max-width: 1600px
+			margin: 0 auto
