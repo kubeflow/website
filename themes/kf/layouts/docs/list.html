@@ -6,6 +6,7 @@
 <div id="hero" class="wrap">
   <h1>{{ .Title }}</h1>
 </div>
+
 <section id="pageContent">
 {{ range .Paginator.Pages.ByWeight }} {{ partial "page-summary" . }} {{ end }}
 
@@ -18,4 +19,3 @@
 
 {{ end }}
 {{ define "footer" }} {{ partial "footer" . }} {{ end }}
-

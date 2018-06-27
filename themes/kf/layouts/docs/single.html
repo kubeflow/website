@@ -4,19 +4,19 @@
 {{ define "main" }}
 <div id="contentWrap">
   <div id="subNav" class="">
-  {{ if .Params.toc }}
     {{ partial "secnav" . }}
     {{ partial "toc" . }}
-  {{ end }}
   </div>
 
   <section id="pageContent">
     <div>
       <h1 id="anchor1"> {{ .Title}} </h1>
       <p>
-           {{ .Params.bref | safeHTML }}
+           {{  if .Params.bref }}
+             {{ .Params.bref | safeHTML }}
+           {{ end }}
       </p>
-    </div> 
+    </div>
 
     {{ .Content }}
 

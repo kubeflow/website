@@ -4,7 +4,10 @@ description = "Quickly get running with your ML Workflow on an existing Kubernet
 weight = 25
 toc = true
 bref = "The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures. Anywhere you are running Kubernetes, you should be able to run Kubeflow."
-
+aliases = ["/docs/started/"]
+[menu.docs]
+  parent = "started"
+  weight = 1
 +++
 
 ## Who should consider using Kubeflow?
@@ -23,7 +26,7 @@ functionality and actively soliciting help from companies and individuals intere
 
 ## Setup
 
-This documentation assumes you have a Kubernetes cluster already available. 
+This documentation assumes you have a Kubernetes cluster already available.
 
   * For local environment try [Minikube setup](/docs/started/getting-started-minikube/).
   * For cloud environment try [GKE setup](/docs/started/getting-started-gke/).
