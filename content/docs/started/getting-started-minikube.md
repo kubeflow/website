@@ -4,6 +4,9 @@ description = "Quickly get Kubeflow running locally"
 weight = 10
 toc = true
 bref = "This document will outline steps that will get your local installation of Kubeflow running on top of Mikikube. Minikube runs a simple, single-node Kubernetes cluster inside a virtual machine (VM)."
+[menu.docs]
+  parent = "started"
+  weight = 2
 +++
 
 By the end of this document, you'll have a local installation of Minikube kubernetes clsuter along with all the default core components of
@@ -49,7 +52,7 @@ $ brew install kubectl
 ```
 $ sudo apt-get update && sudo apt-get install -y apt-transport-https
 $ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-$ sudo touch /etc/apt/sources.list.d/kubernetes.list 
+$ sudo touch /etc/apt/sources.list.d/kubernetes.list
 $ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 $ sudo apt-get update
 $ sudo apt-get install -y kubectl
@@ -72,7 +75,7 @@ $ sudo yum install -y kubectl
 ```
 
 ### Install & Start Minikube
-Please see [detailed instructions](https://github.com/kubernetes/minikube/releases) for Minikube installation. 
+Please see [detailed instructions](https://github.com/kubernetes/minikube/releases) for Minikube installation.
 For quick setup instructions follow along below.
 
 ##### Mac OS X
@@ -94,12 +97,12 @@ $ sudo mv minikube /usr/local/bin/
 ##### Start your minikube cluster
 
 ```
-$ minikube start --cpus 4 --memory 8096 --disk-size=40g 
+$ minikube start --cpus 4 --memory 8096 --disk-size=40g
 ```
 
 Notes:
 
-1. These are the minimum recommended settings on the VM created by minikube for kubeflow deployment. You are free to adjust them **higher** based on your host machine 
+1. These are the minimum recommended settings on the VM created by minikube for kubeflow deployment. You are free to adjust them **higher** based on your host machine
 capabilities and workload requirements.
 1. Using certain hypervisors might require you to set --vm-driver option [specifying the driver](https://github.com/kubernetes/minikube/blob/master/docs/drivers.md)
 you want to use.
@@ -161,7 +164,7 @@ $ POD=`kubectl -n kubeflow get pods --selector=app=tf-hub | awk '{print $1}' | t
 $ kubectl -n kubeflow port-forward $POD 8000:8000 2>&1 >/dev/null &
 ```
 Now you can access the Kubeflow dashboard at http://localhost:8080/ and JupyterHub at http://localhost:8000/.
-For JupyterHub, you'll be landing on a login page. 
+For JupyterHub, you'll be landing on a login page.
 
   - Use any username and password to login
   - Pick an available CPU tensorflow image
@@ -172,4 +175,3 @@ For JupyterHub, you'll be landing on a login page.
   - You should be redirected to a page that waits while the server is starting.
 
 If the page doesn't refresh, please see [troubleshooting](https://github.com/kubeflow/kubeflow/blob/master/user_guide.md#problems-spawning-jupyter-pods).
-

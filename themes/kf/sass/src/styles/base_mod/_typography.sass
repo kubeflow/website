@@ -21,7 +21,7 @@
 .material-icons.md-light.md-inactive
 	color: rgba(white, 0.3)
 
-body 
+body
 	color: $base-font-color
 	font-family: $base-font-family
 	font-size: $base-font-size
@@ -53,29 +53,33 @@ h6
 	font-size: $h6-font-size
 	text-transform: uppercase
 
-p 
+p
 	margin: 0 0 $small-spacing
 	&:last-child
-		margin-bottom: 0	
+		margin-bottom: 0
 	&.intro
 		color: $brand-color-1
 		font-size: em(20)
 		margin: $large-spacing 0
 	a
-		text-decoration: underline 
+		text-decoration: underline
 
 
-a 
+a
 	color: $action-color
 	text-decoration: none
 	transition: color $base-duration $base-timing
 
+	&.current-page-in-section
+		color: $base-color
+		font-weight: bold
+
 	&:active,
 	&:focus,
-	&:hover 
+	&:hover
 		color: $base-color
 
-hr 
+hr
 	border-bottom: $base-border
 	border-left: 0
 	border-right: 0
@@ -94,16 +98,16 @@ sub, sup
 	line-height: 0
 	position: relative
 
-sup 
+sup
 	top: -0.5em
 
-sub 
+sub
 	bottom: -0.25em
 
 pre
 	font-family: $mono-font-family
 	white-space: pre-wrap
-	padding: $base-spacing
+	padding: $base-spacing * 0.5
 	border: 1px solid rgba($brand-color-1, 0.5)
 	background-color: tint($brand-color-3, 90%)
 	margin: $base-spacing 0
@@ -149,5 +153,3 @@ blockquote
 		font-size: $h5-font-size
 	h6
 		font-size: $h6-font-size
-
-	

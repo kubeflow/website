@@ -1,9 +1,13 @@
 +++
-title = "Contributing to Kubeflow"
+title =  "Contributing to Kubeflow"
 description = "Information on how to start contributing to Kubeflow"
 weight = 10
 toc = true
-bref= "Get involved"
+bref = "Get involved"
+aliases = ["/docs/contributing/"]
+[menu.docs]
+  parent = "about"
+  weight = 3
 +++
 ## Kubeflow Contributor Guide
 Welcome to the Kubeflow project! This document is the single source of truth for how to contribute to the code base.
@@ -290,4 +294,3 @@ Good examples of OWNERS usage:
 - there are more `reviewers` than `approvers`
 - the `approvers` are not in the `reviewers` section
 - OWNERS files that are regularly updated (at least once per release)
-

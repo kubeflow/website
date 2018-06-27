@@ -4,6 +4,10 @@ description = "In-depth instructions for using Kubeflow"
 weight = 10
 toc = true
 bref= "This guide will walk you through the basics of deploying and interacting with Kubeflow. Some understanding of Kubernetes, Tensorflow, and Ksonnet are useful in completing the contents of this guide."
+aliases = ["/docs/user_guide/"]
+[menu.docs]
+  parent = "about"
+  weight = 2
 +++
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)

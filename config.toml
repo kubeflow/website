@@ -14,7 +14,7 @@ Paginate = 20
 [[menu.main]]
     name = "What is Kubeflow?"
     weight = -103
-    url = "/docs/kubeflow/"
+    url = "/docs/about/kubeflow/"
 [[menu.main]]
     name = "Getting Started"
     weight = -102
@@ -22,7 +22,7 @@ Paginate = 20
 [[menu.main]]
     name = "Documentation"
     weight = -101
-    url = "/docs/"
+    url = "/docs/about/kubeflow/"
 [[menu.main]]
     name = "Additional Resources"
     weight = -100
@@ -31,3 +31,14 @@ Paginate = 20
     name = "Github"
     weight = -99
     url = "https://github.com/kubeflow/"
+
+[[menu.docs]]
+  name = "About"
+  weight = 1
+  identifier = "about"
+  url = "/docs/about/"
+[[menu.docs]]
+  name = "Getting Started"
+  weight = 2
+  identifier = "started"
+  url = "/docs/started/"
