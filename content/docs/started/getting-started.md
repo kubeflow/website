@@ -39,7 +39,7 @@ For more general information on setting up a Kubernetes cluster please refer to 
 Get kubeflow bootstrapper [yaml spec](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/bootstrapper.yaml)
 
 ```
-    kubectl create -f bootstrapper.yaml
+kubectl create -f bootstrapper.yaml
 ```
 
 You should have kubeflow components deployed to your k8s cluster.
