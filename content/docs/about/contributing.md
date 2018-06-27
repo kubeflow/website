@@ -4,6 +4,7 @@ description = "Information on how to start contributing to Kubeflow"
 weight = 10
 toc = true
 bref = "Get involved"
+aliases = ["/docs/contributing/"]
 [menu.docs]
   parent = "about"
   weight = 3
