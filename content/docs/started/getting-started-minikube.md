@@ -183,3 +183,7 @@ To further customize your Kubeflow deployment you can copy the app to your local
 ```
 kubectl cp kubeflow-admin/kubeflow-bootstrapper-0:/opt/bootstrap/default ~/my-kubeflow
 ```
+
+### Where to go next
+
+Refer to the [user guide](https://www.kubeflow.org/docs/about/user_guide/)
