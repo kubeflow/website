@@ -375,50 +375,11 @@ the [`TFJob` custom resource](https://github.com/kubeflow/tf-operator) is availa
 
 We treat each TensorFlow job as a [component](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component) in your APP.
 
-Create a component for your job.
-
-```
-JOB_NAME=myjob
-
-ks generate tf-job ${JOB_NAME} --name=${JOB_NAME}
-```
-
-To configure your job you need to set a bunch of parameters. To see a list of parameters run
-
-```
-ks prototype describe tf-job
-```
-
-Parameters can be set using `ks param` e.g. to set the Docker image used
-
-```
-IMAGE=gcr.io/tf-on-k8s-dogfood/tf_sample:d4ef871-dirty-991dde4
-ks param set ${JOB_NAME} image ${IMAGE}
-```
-
-You can also edit the `params.libsonnet` files directly to set parameters.
-
-**Warning** Currently setting args via the command line doesn't work because of escaping issues (see [ksonnet/ksonnet/issues/235](https://github.com/ksonnet/ksonnet/issues/235)). So to set the parameters you will need
-to directly edit the `params.libsonnet` file directly.
-
-To run your job
-
-```
-ks apply ${KF_ENV} -c ${JOB_NAME}
-```
-
-For information on monitoring your job please refer to the [TfJob docs](https://github.com/kubeflow/tf-operator#monitoring-your-job).
-
-To delete your job
-
-```
-ks delete ${KF_ENV} -c ${JOB_NAME}
-```
-
-
 #### Run the TfCnn example
 
 Kubeflow ships with a [ksonnet prototype](https://ksonnet.io/docs/concepts#prototype) suitable for running the [TensorFlow CNN Benchmarks](https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks).
+
+You can also use this prototype to generate a component which you can then customize for your jobs.
 
 Create the component
 
@@ -448,6 +409,28 @@ Delete it
 ```
 ks delete ${KF_ENV} -c ${CNN_JOB_NAME}
 ```
+
+#### Customizing the TFJob
+
+Generating a component as in the previous step will create a file named 
+
+```
+components/${CNN_JOB_NAME}.jsonnet
+```
+
+A jsonnet file is basically a json file defining the manifest for your TFJob. You can modify this manifest
+to run your jobs.
+
+Typically you will want to change the following values
+
+1. Change the image to point to the docker image containing your code
+1. Change the number and types of replicas
+1. Change the resources (requests and limits) assigned to each resource
+1. Set any environment variables
+
+   * For example, you might need to configure various environment variables to talk to datastores like GCS or S3
+
+1. Attach PV's if you want to use PVs for storage.
 
 
 ### Submitting a PyTorch training job
