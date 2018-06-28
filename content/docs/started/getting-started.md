@@ -119,15 +119,15 @@ The above commands are used to setup JupyterHub and a custom resource for runnin
 Used together, these make it easy for a user to transition from training to model serving using Tensorflow with minimal
 effort, and in a portable fashion across different environments.
 
-For more detailed instructions about how to use Kubeflow, including testing the Jupyter Notebook, please refer to the [user guide](docs/about/user_guide/).
+For more detailed instructions about how to use Kubeflow, including testing the Jupyter Notebook, please refer to the [user guide](/docs/about/user_guide/).
 
 **Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explictly
-disabling it please refer to the [Usage Reporting section](docs/about/user_guide/#usage-reporting) of the user guide.
+disabling it please refer to the [Usage Reporting section](/docs/about/user_guide/#usage-reporting) of the user guide.
 
 ## Troubleshooting
-For detailed troubleshooting instructions, please refer to [this section of the user guide](docs/about/user_guide/#usage-reporting#troubleshooting).
+For detailed troubleshooting instructions, please refer to [this section of the user guide](/docs/about/user_guide/#usage-reporting#troubleshooting).
 
 ## Resources
 
-* The [kubeflow user guide](docs/about/user_guide/) provides in-depth instructions for using Kubeflow
+* The [kubeflow user guide](/docs/about/user_guide/) provides in-depth instructions for using Kubeflow
 * Katacoda has produced a [self-paced scenario](https://www.katacoda.com/kubeflow) for learning and trying out Kubeflow
