@@ -7,7 +7,7 @@ bref= "This guide will walk you through using PyTorch with Kubeflow"
 aliases = ["/docs/pytorch/"]
 [menu.docs]
   parent = "about"
-  weight = 2
+  weight = 3
 +++
 
 ## Installing PyTorch Operator
