@@ -1,21 +1,45 @@
-
-# Kubernetes Custom Resource and Operator for PyTorch jobs
-
-[![Build Status](https://travis-ci.org/kubeflow/pytorch-operator.svg?branch=master)](https://travis-ci.org/kubeflow/pytorch-operator)
-[![Go Report Card](https://goreportcard.com/badge/github.com/kubeflow/pytorch-operator)](https://goreportcard.com/report/github.com/kubeflow/pytorch-operator)
-
-## Overview
-
-This repository contains the specification and implementation of `PyTorchJob` custom resource definition. Using this custom resource, users can create and manage PyTorch jobs like other built-in resources in Kubernetes. See [CRD definition](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/pytorch-job/pytorch-operator.libsonnet#L13)
-  
-## Prerequisites
-
-- Kubernetes >= 1.8
-- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl)
++++
+title = "PyTorch"
+description = "Instructions for using PyTorch"
+weight = 10
+toc = true
+bref= "This guide will walk you through using PyTorch with Kubeflow"
+aliases = ["/docs/pytorch/"]
+[menu.docs]
+  parent = "about"
+  weight = 2
++++
 
 ## Installing PyTorch Operator
 
-  Please refer to the installation instructions in the [Kubeflow user guide](https://www.kubeflow.org/docs/user_guide/#deploy-kubeflow). This installs `pytorchjob` CRD and `pytorch-operator` controller to manage the lifecycle of PyTorch jobs.
+If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
+
+An **alpha** version of PyTorch support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow newer than 0.2.0.
+
+## Verify that PyTorch support is included in your Kubeflow deployment
+
+Check that the PyTorch custom resource is installed
+
+```
+kubectl get crd
+```
+
+The output should include `pytorchjobs.kubeflow.org`
+
+```
+NAME                                           AGE
+...
+pytorchjobs.kubeflow.org                       4d
+...
+```
+
+If it is not included you can add it as follows
+
+```
+cd ${KSONNET_APP}
+ks generate pytorch-operator pytorch-operator
+ks apply ${ENVIRONMENT} -c pytorch-operator
+```
 
 ## Creating a PyTorch Job
 
