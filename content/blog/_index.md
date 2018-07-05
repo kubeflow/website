@@ -1,4 +1,4 @@
 +++
-title = "Blog and Events"
+title = "Blog, Talks & Videos"
 description = ""
 +++

@@ -1,9 +1,13 @@
 +++
-title = "Kubeflow Events"
+title = "Events Calendar"
 description = "Events Calendar for Kubeflow"
 weight = 10
 toc = false
 bref= ""
+aliases = ["/docs/events/"]
+[menu.docs]
+  parent = "about"
+  weight = 5
 +++
 
 List of events (in reverse chronological order) with talks and workshops about Kubeflow.
