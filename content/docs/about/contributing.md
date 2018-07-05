@@ -1,9 +1,13 @@
 +++
-title = "Contributing to Kubeflow"
+title =  "Contributing to Kubeflow"
 description = "Information on how to start contributing to Kubeflow"
 weight = 10
 toc = true
-bref= "Get involved"
+bref = "Get involved"
+aliases = ["/docs/contributing/"]
+[menu.docs]
+  parent = "about"
+  weight = 3
 +++
 ## Kubeflow Contributor Guide
 Welcome to the Kubeflow project! This document is the single source of truth for how to contribute to the code base.
@@ -24,7 +28,7 @@ again.
 
 ### Code of Conduct
 
-Please make sure to read and observe our [Code of Conduct](./CODE_OF_CONDUCT.md).
+Please make sure to read and observe our [Code of Conduct](https://github.com/kubeflow/community/blob/master/CODE_OF_CONDUCT.md).
 
 ## Your first contribution
 
@@ -41,9 +45,8 @@ should be fixed, you should own it. Here is how you get started.
 Kubeflow issues that would make good entry points can be found by looking at
 the following tags:
 
-* [`good first issue`](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+org%3Akubeflow+archived%3Afalse+label%3A%22good+first+issue%22)
-* [`help wanted`](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+org%3Akubeflow+archived%3Afalse+label%3A%22help+wanted%22)
-* [`starter`](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+org%3Akubeflow+archived%3Afalse+label%3A%22starter%22)
+* [`good first issue`](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+* [`help wanted`](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
 ## Joining the community
 
@@ -290,4 +293,3 @@ Good examples of OWNERS usage:
 - there are more `reviewers` than `approvers`
 - the `approvers` are not in the `reviewers` section
 - OWNERS files that are regularly updated (at least once per release)
-

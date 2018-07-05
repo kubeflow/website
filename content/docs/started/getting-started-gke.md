@@ -5,6 +5,9 @@ weight = 10
 toc = true
 bref = "The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures. Anywhere you are running Kubernetes, you should be able to run Kubeflow"
 
+[menu.docs]
+  parent = "started"
+  weight = 3
 +++
 
 ## Deploying Kubeflow On GKE
@@ -219,41 +222,15 @@ To Use GPUs
    kubectl create -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/k8s-1.9/nvidia-driver-installer/cos/daemonset-preloaded.yaml
    ```
 
-## Pushing your config to source control
+## Copying your Kubeflow ksonnet application
 
-Start a shell in the pod
-
-```
-kubectl -n kubeflow-admin exec -it kubeflow-bootstrapper-0 /bin/bash
-```
-
-Activate the GCP service account.
+To further customize your Kubeflow deployment you can copy the app to your local machine
 
 ```
-gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+kubectl cp kubeflow-admin/kubeflow-bootstrapper-0:/opt/bootstrap/default ~/my-kubeflow
 ```
 
-If you don't already have a cloud repository create one
-
-```
-gcloud source repos create ${REPO}
-```
-
-Clone the repository
-
-```
-gcloud source repos clone ${REPO} git_${REPO}
-```
-
-Copy the ksonnet app into the repo and push it
-
-```
-cp -r /opt/bootstrap/default ./git_${REPO}/ks-app
-cd ./git_${REPO}
-git add .
-git commit -m "Kubeflow app"
-git push --set-upstream origin master
-```
+We recommend checking in your deployment to source control.
 
 ## Deleting your deployment
 
@@ -285,7 +262,7 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
         * Check that health checks are properly configured
           * Click on the health check associated with the backend service for envoy
           * Check that the path is /healthz and corresponds to the path of the readiness probe on the envoy pods
-          * See [K8s docs](https://github.com/kubernetes/contrib/blob/master/ingress/controllers/gce/examples/health_checks/READMEmd#limitations) for important information about how health checks are determined from readiness probes.
+          * See [K8s docs](https://github.com/kubernetes/contrib/blob/master/ingress/controllers/gce/examples/health_checks/README.md#limitations) for important information about how health checks are determined from readiness probes.
 
         * Check firewall rules to ensure traffic isn't blocked from the GCP loadbalancer
             * The firewall rule should be added automatically by the ingress but its possible it got deleted if you have some automatic firewall policy enforcement. You can recreate the firewall rule if needed with a rule like this

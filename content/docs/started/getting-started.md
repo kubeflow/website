@@ -4,7 +4,10 @@ description = "Quickly get running with your ML Workflow on an existing Kubernet
 weight = 25
 toc = true
 bref = "The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures. Anywhere you are running Kubernetes, you should be able to run Kubeflow."
-
+aliases = ["/docs/started/"]
+[menu.docs]
+  parent = "started"
+  weight = 1
 +++
 
 ## Who should consider using Kubeflow?
@@ -23,7 +26,7 @@ functionality and actively soliciting help from companies and individuals intere
 
 ## Setup
 
-This documentation assumes you have a Kubernetes cluster already available. 
+This documentation assumes you have a Kubernetes cluster already available.
 
   * For local environment try [Minikube setup](/docs/started/getting-started-minikube/).
   * For cloud environment try [GKE setup](/docs/started/getting-started-gke/).
@@ -36,7 +39,7 @@ For more general information on setting up a Kubernetes cluster please refer to 
 Get kubeflow bootstrapper [yaml spec](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/bootstrapper.yaml)
 
 ```
-    kubectl create -f bootstrapper.yaml
+kubectl create -f bootstrapper.yaml
 ```
 
 You should have kubeflow components deployed to your k8s cluster.
@@ -52,7 +55,7 @@ This bootstrapper example [config](https://github.com/kubeflow/kubeflow/blob/mas
 
 **Requirements**
 
-  * ksonnet version [0.9.2](https://ksonnet.io/#get-started).
+  * ksonnet version [0.11.0](https://ksonnet.io/#get-started).
   * Kubernetes >= 1.8 [see here](https://github.com/kubeflow/tf-operator#requirements)
 
 **Github Tokens**
@@ -116,15 +119,15 @@ The above commands are used to setup JupyterHub and a custom resource for runnin
 Used together, these make it easy for a user to transition from training to model serving using Tensorflow with minimal
 effort, and in a portable fashion across different environments.
 
-For more detailed instructions about how to use Kubeflow, including testing the Jupyter Notebook, please refer to the [user guide](user_guide.md).
+For more detailed instructions about how to use Kubeflow, including testing the Jupyter Notebook, please refer to the [user guide](/docs/about/user_guide/).
 
 **Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explictly
-disabling it please refer to the [Usage Reporting section](user_guide.md#usage-reporting) of the user guide.
+disabling it please refer to the [Usage Reporting section](/docs/about/user_guide/#usage-reporting) of the user guide.
 
 ## Troubleshooting
-For detailed troubleshooting instructions, please refer to [this section of the user guide](user_guide.md#troubleshooting).
+For detailed troubleshooting instructions, please refer to [this section of the user guide](/docs/about/user_guide/#usage-reporting#troubleshooting).
 
 ## Resources
 
-* The [kubeflow user guide](user_guide.md) provides in-depth instructions for using Kubeflow
+* The [kubeflow user guide](/docs/about/user_guide/) provides in-depth instructions for using Kubeflow
 * Katacoda has produced a [self-paced scenario](https://www.katacoda.com/kubeflow) for learning and trying out Kubeflow

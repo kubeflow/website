@@ -1,13 +1,18 @@
-{{ $dir := .Dir }}
+{{ $currentPage := . }}
 <nav id="sectionNav">
 <h6 id="sectionNavTrigger" class="trigger collapsible">Section Nav</h6>
 <div class="container">
     <ul>
-    {{ range .CurrentSection.Pages }}
-      <li> <a href="{{ .Permalink }}">{{ .Title }}</a> </li>
-    {{ end }}
-    {{ range .CurrentSection.Sections }}
-      <li> <a href="{{ .Permalink }}">{{ .Title }}</a> </li>
+    {{ range $.Site.Menus.docs.ByWeight }}
+      <li> <a href="{{ .URL }}">{{ .Name }}</a> </li>
+      {{ if .HasChildren }}
+      <ul>
+        {{ range .Children }}
+          <li> <a class="{{if eq $currentPage.Title .Name}}current-page-in-section{{end}}" href="{{ .URL }}">{{ .Name }}</a> </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+
     {{ end }}
     </ul>
 </div>

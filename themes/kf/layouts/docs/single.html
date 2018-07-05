@@ -2,25 +2,28 @@
 {{ define "mobilenav" }} {{ partial "mobilenav" . }} {{ end }}
 {{ define "header" }} {{ partial "header" . }} {{ end }}
 {{ define "main" }}
+<div id="contentWrap">
   <div id="subNav" class="">
-  {{ if .Params.toc }}
     {{ partial "secnav" . }}
     {{ partial "toc" . }}
-  {{ end }}
   </div>
 
   <section id="pageContent">
     <div>
       <h1 id="anchor1"> {{ .Title}} </h1>
       <p>
-           {{ .Params.bref | safeHTML }}
+           {{  if .Params.bref }}
+             {{ .Params.bref | safeHTML }}
+           {{ end }}
       </p>
-    </div> 
+    </div>
 
     {{ .Content }}
 
   </section>
   <!-- end pageContent -->
+</div>
+<!-- end contentWrap -->
 
 {{ end }}
 {{ define "footer" }} {{ partial "footer" . }} {{ end }}
