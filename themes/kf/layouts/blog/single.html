@@ -2,6 +2,13 @@
 {{ define "mobilenav" }} {{ partial "mobilenav" . }} {{ end }}
 {{ define "header" }} {{ partial "header" . }} {{ end }}
 {{ define "main" }}
+  <div id="subNav" class="">
+  {{ if .Params.toc }}
+    {{ partial "secnav" . }}
+    {{ partial "toc" . }}
+  {{ end }}
+  </div>
+
   <section id="pageContent">
     <div>
       <h1 id="anchor1"> {{ .Title}} </h1>

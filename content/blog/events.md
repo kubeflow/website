@@ -2,7 +2,7 @@
 title = "Kubeflow Events"
 description = "Events Calendar for Kubeflow"
 weight = 10
-toc = true
+toc = false
 bref= ""
 +++
 
