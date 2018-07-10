@@ -82,7 +82,7 @@ kubectl create namespace ${NAMESPACE}
 # Which version of Kubeflow to use
 # For a list of releases refer to:
 # https://github.com/kubeflow/kubeflow/releases
-VERSION=v0.1.2
+VERSION=v0.2.0
 
 # Initialize a ksonnet app. Set the namespace for it's default environment.
 APP_NAME=my-kubeflow
@@ -95,7 +95,7 @@ ks registry add kubeflow github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow
 
 ks pkg install kubeflow/core@${VERSION}
 ks pkg install kubeflow/tf-serving@${VERSION}
-ks pkg install kubeflow/tf-job@${VERSION}
+ks pkg install kubeflow/examples@${VERSION}
 
 # Create templates for core components
 ks generate kubeflow-core kubeflow-core
