@@ -88,7 +88,7 @@ Run the following steps to deploy Kubeflow.
    * You can refer to the [script](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deploy.sh) to see a complete list
 
    * More advanced customization can be performed by updating the deployment manager or ksonnet
-     configuration and updating the deployment and/or K8s resources. This is described in more
+     configuration and updating the deployment and K8s resources. This is described in more
      detail in the following section.
 
 1. Check resources deployed in namespace kubeflow
