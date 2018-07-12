@@ -12,128 +12,26 @@ bref = "The Kubeflow project is dedicated to making deployments of machine learn
 
 ## Deploying Kubeflow On GKE
 
-Instructions for optimizing Kubeflow for GKE.
+Instructions for optimizing and deploying Kubeflow on GKE.
 
-These instructions take advantage of [Google Cloud Deployment Manager](https://cloud.google.com/deployment-manager/docs/)
-to manage your GKE cluster and other GCP resources that you might want to use with Kubeflow.
+Running on Kubeflow on GKE comes with the following advantages
 
-The instructions also take advantage of IAP to provide secure authenticated access web-apps running as part of Kubeflow.
+  * We use [Google Cloud Deployment Manager](https://cloud.google.com/deployment-manager/docs/) to 
+    declaratively manage all non K8s resources (incuding the GKE cluster)
 
-## Create the Kubeflow deployment
+      * This makes it easy to customize for your particular use case
 
-1. Make a copy of the [configs](https://github.com/kubeflow/kubeflow/tree/master/docs/gke/configs) directory. Its a
-good idea to check this into source control to make it easy to version and rollback your configs.
+  * You can take advantage of GKE autoscaling to scale your cluster horizontally and vertically
+    to meet the demands of ML workloads will large resource requirements
 
-1. Modify `cluster-kubeflow.yaml`
+  * [Identity Aware Proxy(IAP)](https://cloud.google.com/iap/) makes it easy to securely connect to Jupyter and other
+    web apps running as part of Kubeflow
 
-   1. Set the zone for your cluster
-   1. Set `ipName` to a value that is unique with respect to your project.
-      The ipName needs to be set in two places:
+  * [Stackdriver](https://cloud.google.com/logging/docs/) makes it easy to persist logs to aid in debugging
+    and troubleshooting
 
-          1. Inside properties
+  * GPUs and [TPUs](https://cloud.google.com/tpu/) can be used to accelerate your work
 
-             ```
-             ...
-             properties:
-             ...
-             ipName: your-ip-name
-             ...
-             ```
-
-          1. Parameter ipName in component iap-ingress
-
-             ```
-             properties:
-               bootstrapperConfig: |
-                 app:
-                   ...
-                   parameters:
-                     - component: iap-ingress
-                       name: ipName
-                       value: your-ip-name
-                   ...
-             ```
-
-   1. Set parameter acmeEmail in bootstrapperConfig to your email address
-   1. Set parameter hostname in bootstrapperConfig
-
-         ```
-            - component: iap-ingress
-                name: hostname
-                value: <name>.endpoints.<Project>.cloud.goog
-         ```
-
-      * Replace project with the id of your project
-      * Replace name with a unique name for your deployment
-
-   1. Change the initial number of nodes if desired
-
-      * If you want GPUs set a non-zero number for number of GPU nodes.
-
-   1. List any users (Google Accounts) or Google groups that should be able to access Kubeflow in the **users** section; e.g.
-
-         ```
-          users:
-            - user:john@acme.com
-            - group:data-scientists@acme.com
-         ```
-
-1. [Create an OAuth Client ID](#create-oauth-client-credentials)
-
-1. Modify [env-kubeflow.sh](https://github.com/kubeflow/kubeflow/blob/master/docs/gke/configs/env-kubeflow.sh)
-
-   * This file defines environment variables used in the commands below.
-   * We recommend checking a modified version into source control so its easy to source and repeat the commands.
-   * Make sure you have `CLIENT_ID` and `CLIENT_SECRET` in your environment separately. These credentials are
-     sensitive and should not be checked into source control along with `env-kubeflow.sh`.
-
-1. Run the [deploy.sh](https://github.com/kubeflow/kubeflow/blob/master/docs/gke/configs/deploy.sh) script:
-
-    ```
-    $ ./deploy.sh
-    ```
-
-1. Verify deployment
-
-   * Check the bootstrapper is running without errors
-
-     ```
-     kubectl -n kubeflow-admin get pods
-     NAME                      READY     STATUS    RESTARTS   AGE
-     kubeflow-bootstrapper-0   1/1       Running   1          10m
-     ```
-
-   * Check resources deployed in namespace kubeflow
-
-     ```
-     kubectl -n kubeflow get  all
-     ```
-
-1. Kubeflow will be available at
-
-    ```
-    https://<hostname>/_gcp_gatekeeper/authenticate
-    ```
-
-1. Grant users IAP access
-
-   * Users/Google groups listed in **users:** in the ${CONFIG_FILE} will be granted IAP access
-
-   * To give access to additional users you have 2 options
-
-     1. Update ${CONFIG_FILE} and issue an update
-
-        ```
-        gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=${CONFIG_FILE}
-        ```
-
-     1. Use gcloud to grant users access
-
-        ```
-        gcloud projects add-iam-policy-binding $PROJECT \
-         --role roles/iap.httpsResourceAccessor \
-         --member user:${USER_EMAIL}
-        ```
 
 ### Create oauth client credentials
 
@@ -154,83 +52,148 @@ Create an OAuth Client ID to be used to identify IAP when requesting acces to us
      https://<hostname>/_gcp_gatekeeper/authenticate
      ```
 
-   * \<hostname\> should be the one you set for iap-ingress during previous steps. (format: <name>.endpoints.<Project>.cloud.goog)
+   * \<hostname\> should will be the one set for iap-ingress during the next step
+\<name\>.endpoints.\<Project\>.cloud.goog
+
+   * \<name\> and \<Project\> will be set in the next step when you run [deploy.sh](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deploy.sh)
+
+      * deploy.sh uses **kubeflow** by default as \<name\> but you can configure this with the environment variable **DEPLOYMENT_NAME**
+      * Project will use the default project for **gcloud** but this can be overwritten using the environment variable **PROJECT**
 
 1. After you enter the details, click Create.
-Make note of the **client ID** and **client secret** that appear in the
-OAuth client window because we
-will need them later to enable IAP.
+   Make note of the **client ID** and **client secret** that appear in the
+   OAuth client window because we
+   will need them later to enable IAP.
 
 1. Create environment variable from the the OAuth client ID and secret:
 
-      ```
-      export CLIENT_ID=<CLIENT_ID from OAuth page>
-      export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
-      ```
+    ```
+    export CLIENT_ID=<CLIENT_ID from OAuth page>
+    export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
+    ```
+
+### Create the Kubeflow deployment
+
+Run the following steps to deploy Kubeflow.
+
+1. Run the deploy script to create GCP and K8s resources
+
+     ```
+     export KUBEFLOW_VERSION=0.2.1
+     curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
+     ```
+
+   * Basic settings (e.g. the zone) can be configured using environment variables
+
+   * You can refer to the [script](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deploy.sh) to see a complete list
+
+   * More advanced customization can be performed by updating the deployment manager or ksonnet
+     configuration and updating the deployment and/or K8s resources. This is described in more
+     detail in the following section.
+
+1. Check resources deployed in namespace kubeflow
+
+    ```
+    kubectl -n kubeflow get  all
+    ```
+
+1. Kubeflow will be available at
+
+    ```
+    https://<name>.endpoints.<Project>.cloud.goog/
+    ```
+
+   * It can take 10-15 minutes for the endpoint to become available
+
+     * Kubeflow needs to provision a signed SSL certificate and register a DNS name
+
+   * If you own your own domain and mangage the domain or a subdomain with [Cloud DNS](https://cloud.google.com/dns/docs/)
+     then you can configure this process to be much faster.
+
+     * See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731)
+
+   * While you wait you can access Kubeflow services by using `kubectl proxy` & `kubectl port-forward` to connect
+    to services in the cluster.
+
+1. The deployment script will create the following directories containing your configuration. We recommend
+   checking these into source control.
+
+   * **{DEPLOYMENT_NAME}_deployment_manager_configs** - Configuration for deployment manager
+   * **{DEPLOYMENT_NAME}_ks-app** - Ksonnet application
+
+
+## Customizing Kubeflow
+
+The setup process makes it easy to customize GCP or Kubeflow for your particular use case. 
+Under the hood [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh)
+
+  1. Creates all GCP resources using deployment manager
+  1. Creates K8s resources using kubectl/ksonnet
+
+This makes it easy to change your configuration by updating the config files and reapplying them.
+
+Deployment manager uses [YAML files](https://github.com/kubeflow/kubeflow/tree/v0.2-branch/scripts/gke/deployment_manager_configs)
+to define your GCP infrastructure. [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh) creates a copy of these files in *${DEPLOYMENT_NAME}_deployment_manager_config* 
+
+You can modify these files and then update your deployment.
+
+
+```
+CONFIG_FILE=${DEPLOYMENT_NAME}_deployment_manager_config/cluster-kubeflow.yaml
+gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=${CONFIG_FILE}
+```
+
+### Common Customizations
+
+Add GPU nodes to your cluster
+
+  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L40) 
+
+To use VMs with more CPUs or RAM 
+
+  * Change the machineType 
+  * There are two node pools 
+      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deployment_manager_configs/cluster.jinja#L96)
+      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deployment_manager_configs/cluster.jinja#L96)
+  * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment
+
+To grant additional users IAM permissions to access Kubeflow
+
+  * Add the users [here](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L61)
+
+
+After making the changes you need to update your deployment. 
+
+For more information please refer to the [deployment manager docs](https://cloud.google.com/deployment-manager/docs/).
 
 ### Using Your Own Domain
 
-If you want to use your own doman instead of **${name}.endpoints.${project}.cloud.goog** make these modifications to ${CONFIG_FILE} before you create the deployment.
+If you want to use your own doman instead of **${name}.endpoints.${project}.cloud.goog** follow these instructions. 
 
-1. Set parameter hostname in bootstrapperConfig to the fully qualified domain you will use
-   e.g. `my-kubeflow.my-domain.com`
-1. Remove the component `cloud-endpoints` by deleting the following lines
+1. Modify your ksonnet application to remove the `cloud-endpoints` component
 
-       ```
-        - name: cloud-endpoints
-          prototype: cloud-endpoints
-       ```
+    ```
+    cd ${DEPLOYMENT_NAME}_ks_app
+    ks delete default -c cloud-endpoints
+    ks component rm cloud-endpoints
+    ```
 
-1. Remove parameters for component `cloud-endpoints` by deleting the following lines.
+1. Set the domain for your ingress to be the fully qualified domain name
 
-       ```
-        - component: cloud-endpoints
-          name: secretName
-          value: admin-gcp-sa
-       ```
+    ```
+    ks param set iap-ingress hostname ${FQDN}
+    ks apply default -c iap-ingress
+    ```
 
-1. After you create the deployment you can get the address of the static ip created
+1. Get the address of the static ip created 
 
-       ```
-       gcloud --project=${PROJECT} addresses describe --global ${IPNAME}
-       ```
-
-   * IPNAME - should be the value assigned to property **ipName** in ${CONFIG_FILE}
+    ```
+    IPNAME=${DEPLOYMENT_NAME}-ip
+    gcloud --project=${PROJECT} addresses describe --global ${IPNAME}
+    ```
 
 1. Use your DNS provider to map the fully qualified domain specified in the first step to the ip address reserved
    in GCP.
-
-### Using GPUs
-
-To Use GPUs
-
-1. Set the property **gpu-pool-initialNodeCount** in ${CONFIG_FILE} to the desired number of GPU nodes
-
-1. Follow the instructions in the previous section to create the deployment; if your deployment already exists you can update it as follows
-
-   1. Set a new value for property **pool-version** in ${CONFIG_FILE}
-   1. Update the deployment
-
-         ```
-         gcloud deployment-manager --project=${PROJECT} deployments update ${PROJECT} --config=${CONFIG_FILE}
-         ```
-   **Warning** These deletes the existing node pools and creates new ones. This means all processes currently running
-   on your cluster will be restarted and temporarily unavailable
-
-1. Run the command below to install the GPU drivers on the nodes.
-   ```
-   kubectl create -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/k8s-1.9/nvidia-driver-installer/cos/daemonset-preloaded.yaml
-   ```
-
-## Copying your Kubeflow ksonnet application
-
-To further customize your Kubeflow deployment you can copy the app to your local machine
-
-```
-kubectl cp kubeflow-admin/kubeflow-bootstrapper-0:/opt/bootstrap/default ~/my-kubeflow
-```
-
-We recommend checking in your deployment to source control.
 
 ## Deleting your deployment
 
