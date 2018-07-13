@@ -3,7 +3,7 @@ title = "GKE for Kubeflow"
 description = "Get Kubeflow running on GKE"
 weight = 10
 toc = true
-bref = "The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures. Anywhere you are running Kubernetes, you should be able to run Kubeflow"
+bref = "The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures. Anywhere you are running Kubernetes, you should be able to run Kubeflow."
 
 [menu.docs]
   parent = "started"
@@ -14,59 +14,48 @@ bref = "The Kubeflow project is dedicated to making deployments of machine learn
 
 Instructions for optimizing and deploying Kubeflow on GKE.
 
-Running on Kubeflow on GKE comes with the following advantages
+Running on Kubeflow on GKE comes with the following advantages:
 
   * We use [Google Cloud Deployment Manager](https://cloud.google.com/deployment-manager/docs/) to 
-    declaratively manage all non K8s resources (incuding the GKE cluster)
-
-      * This makes it easy to customize for your particular use case
-
+    declaratively manage all non K8s resources (incuding the GKE cluster), which is easy to customize for your particular use case
   * You can take advantage of GKE autoscaling to scale your cluster horizontally and vertically
-    to meet the demands of ML workloads will large resource requirements
-
+    to meet the demands of ML workloads with large resource requirements
   * [Identity Aware Proxy(IAP)](https://cloud.google.com/iap/) makes it easy to securely connect to Jupyter and other
     web apps running as part of Kubeflow
-
   * [Stackdriver](https://cloud.google.com/logging/docs/) makes it easy to persist logs to aid in debugging
     and troubleshooting
-
   * GPUs and [TPUs](https://cloud.google.com/tpu/) can be used to accelerate your work
 
 
 ### Create oauth client credentials
 
-Create an OAuth Client ID to be used to identify IAP when requesting acces to user's email to verify their identity.
+Create an OAuth Client ID to be used to identify IAP when requesting access to user's email to verify their identity.
 
 1. Set up your OAuth consent screen:
-
    * Configure the [consent screen](https://console.cloud.google.com/apis/credentials/consent).
-   * Under Email address, select the address that you want to display as a public contact. You must use either your email address or a Google Group that you own.
-   * In the Product name box, enter a suitable like save `kubeflow`
+   * Under **Email address**, select the address that you want to display as a public contact. You must use either your email address or a Google Group that you own.
+   * In the **Product name** box, enter a suitable name like `kubeflow`
+   * Under **Authorized domains**, enter
+     ```
+     <Project>.cloud.goog
+     ```
+     where \<Project\> is your GCP project id.
    * Click Save.
-
-1. On the [Credentials](https://console.cloud.google.com/apis/credentials) Click Create credentials, and then click OAuth client ID.
-
-   * Under Application type, select Web application. In the Name box enter a name, and in the Authorized redirect URIs box, enter
-
+1. On the [Credentials](https://console.cloud.google.com/apis/credentials) screen:
+   * Click **Create credentials**, and then click **OAuth client ID**.
+   * Under **Application type**, select **Web application**. In the **Name** box enter a name, and in the **Authorized redirect URIs** box, enter
      ```
      https://<hostname>/_gcp_gatekeeper/authenticate
      ```
-
-   * \<hostname\> should will be the one set for iap-ingress during the next step
-\<name\>.endpoints.\<Project\>.cloud.goog
-
-   * \<name\> and \<Project\> will be set in the next step when you run [deploy.sh](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deploy.sh)
-
+   * \<hostname\> will be used later for iap-ingress, and should be in the format
+     ```
+     <name>.endpoints.<project>.cloud.goog
+     ```
+   * \<name\> and \<project\> will be set in the next step when you run [deploy.sh](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deploy.sh)
       * deploy.sh uses **kubeflow** by default as \<name\> but you can configure this with the environment variable **DEPLOYMENT_NAME**
       * Project will use the default project for **gcloud** but this can be overwritten using the environment variable **PROJECT**
-
-1. After you enter the details, click Create.
-   Make note of the **client ID** and **client secret** that appear in the
-   OAuth client window because we
-   will need them later to enable IAP.
-
+1. After you enter the details, click Create. Make note of the **client ID** and **client secret** that appear in the OAuth client window because we will need them later to enable IAP.
 1. Create environment variable from the the OAuth client ID and secret:
-
     ```
     export CLIENT_ID=<CLIENT_ID from OAuth page>
     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
@@ -77,45 +66,29 @@ Create an OAuth Client ID to be used to identify IAP when requesting acces to us
 Run the following steps to deploy Kubeflow.
 
 1. Run the deploy script to create GCP and K8s resources
-
      ```
      export KUBEFLOW_VERSION=0.2.1
      curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
      ```
-
-   * Basic settings (e.g. the zone) can be configured using environment variables
-
-   * You can refer to the [script](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deploy.sh) to see a complete list
-
+   * Basic settings (e.g. the zone) can be configured using environment variables. Refer to the [script](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deploy.sh) to see a complete list.
    * More advanced customization can be performed by updating the deployment manager or ksonnet configuration and updating the deployment and K8s resources. This is described in more detail in the following section.
-
 1. Check resources deployed in namespace kubeflow
-
     ```
     kubectl -n kubeflow get  all
     ```
-
 1. Kubeflow will be available at
-
     ```
     https://<name>.endpoints.<Project>.cloud.goog/
     ```
-
    * It can take 10-15 minutes for the endpoint to become available
-
      * Kubeflow needs to provision a signed SSL certificate and register a DNS name
-
-   * If you own your own domain and mangage the domain or a subdomain with [Cloud DNS](https://cloud.google.com/dns/docs/)
+   * If you own/manage the domain or a subdomain with [Cloud DNS](https://cloud.google.com/dns/docs/)
      then you can configure this process to be much faster.
-
      * See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731)
-
    * While you wait you can access Kubeflow services by using `kubectl proxy` & `kubectl port-forward` to connect
     to services in the cluster.
-
 1. The deployment script will create the following directories containing your configuration. We recommend
    checking these into source control.
-
    * **{DEPLOYMENT_NAME}_deployment_manager_configs** - Configuration for deployment manager
    * **{DEPLOYMENT_NAME}_ks-app** - Ksonnet application
 
