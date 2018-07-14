@@ -38,13 +38,13 @@ Install the Kubeflow packages into your application.
 ```
 # For a list of releases see:
 # https://github.com/kubeflow/kubeflow/releases
-VERSION=v0.1.3
+VERSION=v0.2.1
 
 cd my-kubeflow
 ks registry add kubeflow github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow
 ks pkg install kubeflow/core@${VERSION}
 ks pkg install kubeflow/tf-serving@${VERSION}
-ks pkg install kubeflow/tf-job@${VERSION}
+ks pkg install kubeflow/examples@${VERSION}
 ```
 
 Create the Kubeflow core component. The core component includes:
