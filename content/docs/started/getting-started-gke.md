@@ -79,7 +79,7 @@ Run the following steps to deploy Kubeflow.
 1. Run the deploy script to create GCP and K8s resources
 
      ```
-     export KUBEFLOW_VERSION=0.2.1
+     export KUBEFLOW_VERSION=0.2.2
      curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
      ```
 
