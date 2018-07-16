@@ -34,8 +34,9 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
 1. Set up your OAuth consent screen:
    * Configure the [consent screen](https://console.cloud.google.com/apis/credentials/consent).
    * Under **Email address**, select the address that you want to display as a public contact. You must use either your email address or a Google Group that you own.
-   * In the **Product name** box, enter a suitable name like `kubeflow`
+   * In the **Product name** box, enter a suitable name like `kubeflow`.
    * Under **Authorized domains**, enter
+
      ```
      <Project>.cloud.goog
      ```
@@ -43,11 +44,15 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
    * Click Save.
 1. On the [Credentials](https://console.cloud.google.com/apis/credentials) screen:
    * Click **Create credentials**, and then click **OAuth client ID**.
-   * Under **Application type**, select **Web application**. In the **Name** box enter a name, and in the **Authorized redirect URIs** box, enter
+   * Under **Application type**, select **Web application**.
+   * In the **Name** box enter any name.
+   * In the **Authorized redirect URIs** box, enter
+
      ```
      https://<hostname>/_gcp_gatekeeper/authenticate
      ```
    * \<hostname\> will be used later for iap-ingress, and should be in the format
+
      ```
      <name>.endpoints.<project>.cloud.goog
      ```
@@ -56,6 +61,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
       * Project will use the default project for **gcloud** but this can be overwritten using the environment variable **PROJECT**
 1. After you enter the details, click Create. Make note of the **client ID** and **client secret** that appear in the OAuth client window because we will need them later to enable IAP.
 1. Create environment variable from the the OAuth client ID and secret:
+
     ```
     export CLIENT_ID=<CLIENT_ID from OAuth page>
     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
@@ -66,6 +72,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
 Run the following steps to deploy Kubeflow.
 
 1. Run the deploy script to create GCP and K8s resources
+
      ```
      export KUBEFLOW_VERSION=0.2.1
      curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
@@ -73,10 +80,12 @@ Run the following steps to deploy Kubeflow.
    * Basic settings (e.g. the zone) can be configured using environment variables. Refer to the [script](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deploy.sh) to see a complete list.
    * More advanced customization can be performed by updating the deployment manager or ksonnet configuration and updating the deployment and K8s resources. This is described in more detail in the following section.
 1. Check resources deployed in namespace kubeflow
+
     ```
     kubectl -n kubeflow get  all
     ```
 1. Kubeflow will be available at
+
     ```
     https://<name>.endpoints.<Project>.cloud.goog/
     ```
