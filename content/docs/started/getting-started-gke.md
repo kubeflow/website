@@ -17,7 +17,7 @@ Instructions for optimizing and deploying Kubeflow on GKE.
 Running on Kubeflow on GKE comes with the following advantages:
 
   * We use [Google Cloud Deployment Manager](https://cloud.google.com/deployment-manager/docs/) to 
-    declaratively manage all non K8s resources (incuding the GKE cluster), which is easy to customize for your particular use case
+    declaratively manage all non K8s resources (including the GKE cluster), which is easy to customize for your particular use case
   * You can take advantage of GKE autoscaling to scale your cluster horizontally and vertically
     to meet the demands of ML workloads with large resource requirements
   * [Identity Aware Proxy(IAP)](https://cloud.google.com/iap/) makes it easy to securely connect to Jupyter and other
@@ -38,9 +38,11 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
    * Under **Authorized domains**, enter
 
      ```
-     <Project>.cloud.goog
+     <project>.cloud.goog
      ```
-     where \<Project\> is your GCP project id.
+       
+     where \<project\> is your GCP project id.
+
    * Click Save.
 1. On the [Credentials](https://console.cloud.google.com/apis/credentials) screen:
    * Click **Create credentials**, and then click **OAuth client ID**.
@@ -59,7 +61,8 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
    * \<name\> and \<project\> will be set in the next step when you run [deploy.sh](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deploy.sh)
       * deploy.sh uses **kubeflow** by default as \<name\> but you can configure this with the environment variable **DEPLOYMENT_NAME**
       * Project will use the default project for **gcloud** but this can be overwritten using the environment variable **PROJECT**
-1. After you enter the details, click Create. Make note of the **client ID** and **client secret** that appear in the OAuth client window because we will need them later to enable IAP.
+1. After you enter the details, click Create. 
+      * Make note of the **client ID** and **client secret** that appear in the OAuth client window because we will need them later to enable IAP.
 1. Create environment variable from the the OAuth client ID and secret:
 
     ```
