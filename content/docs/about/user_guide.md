@@ -23,143 +23,36 @@ For an end to end example illustrating in details how to deploy kubeflow and run
    * A minimum of 0.6 CPU in cluster (Reserved for 3 replicated ambassador pods and according to your need add additional CPUs)
    * Node with storage >= 10 GB (Due to the ML libraries and third party packages being bundled in Kubeflow Docker images)
 
-## Deploy Kubeflow
+## Creating a ksonnet application
 
 We will be using Ksonnet to deploy kubeflow into your cluster.
 
-Initialize a directory to contain your ksonnet application.
 
 ```
-ks init my-kubeflow
+export KUBEFLOW_VERSION=0.2.2
+export KUBEFLOW_KS_DIR=</path/to/store/your/ksonnet/application>
+export_KUBEFLOW_DEPLOY=false
+curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/deploy.sh | bash
 ```
 
-Install the Kubeflow packages into your application.
+This will create a ksonnet application in ${KUBEFLOW_KS_DIR}. Refer to [deploy.sh](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/deploy.sh)
+to see the individual commands run.
+
+**Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow. Do disable usage collection you
+can run the following commands
 
 ```
-# For a list of releases see:
-# https://github.com/kubeflow/kubeflow/releases
-VERSION=v0.2.1
-
-cd my-kubeflow
-ks registry add kubeflow github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow
-ks pkg install kubeflow/core@${VERSION}
-ks pkg install kubeflow/tf-serving@${VERSION}
-ks pkg install kubeflow/examples@${VERSION}
+cd ${KUBEFLOW_KS_DIR}
+ks param set kubeflow-core reportUsage false
 ```
 
-Create the Kubeflow core component. The core component includes:
-  * [JupyterHub](https://jupyterhub.readthedocs.io/en/latest/)
-  * TensorFlow job controller
-
+You can now deploy Kubeflow as follows
 
 ```
-ks generate core kubeflow-core --name=kubeflow-core
-
-# Enable collection of anonymous usage metrics
-# Skip this step if you don't want to enable collection.
-# Or set reportUsage to false (the default).
-ks param set kubeflow-core reportUsage true
-ks param set kubeflow-core usageId $(uuidgen)
+cd ${KUBEFLOW_KS_DIR}
+ks apply default
 ```
 
-Ksonnet allows us to parameterize the Kubeflow deployment according to our needs. We will define two environments: nocloud, and cloud.
-
-
-```
-ks env add nocloud
-ks env add cloud
-```
-
-The `nocloud` environment can be used for minikube or other basic k8s clusters, the `cloud` environment will be used for GKE or Azure in this guide.
-
-If using GKE, we can configure our cloud environment to use GCP features with a single parameter:
-
-```
-ks param set kubeflow-core cloud gke --env=cloud
-```
-
-If the cluster was created on AWS:
-```
-ks param set kubeflow-core cloud aws --env=cloud
-```
-_NOTE_: using 'gke' instead of 'aws' will work too.
-
-If the cluster was created on Azure with AKS/ACS:
-
-```
-ks param set kubeflow-core cloud aks --env=cloud
-```
-
-If it was created with acs-engine instead:
-
-```
-ks param set kubeflow-core cloud acsengine --env=cloud
-```
-
-If it was created on Alibaba Cloud with [ACK](https://www.alibabacloud.com/product/kubernetes):
-
-```
-ks param set kubeflow-core cloud ack --env=cloud
-```
-
-
-Now let's set `${KF_ENV}` to `cloud` or `nocloud` to reflect our environment for the rest of the guide:
-
-```
-$ KF_ENV=cloud|nocloud
-```
-
-
-* By default Kubeflow does not persist any work that is done within the Jupyter notebook.
-* If the container is destroyed or recreated, all of its contents, including users working notebooks and other files are going to be deleted.
-* To enable the persistence of such files, the user will need to have a default StorageClass defined for [persistent volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
-* You can run the following command to check if you have a storage class
-
-```
-kubectl get storageclass
-```
-* Users with a default storage class defined can use the jupyterNotebookPVCMount
-  parameter to create a volume that will be mounted within the notebook
-
-  ```
-  ks param set kubeflow-core jupyterNotebookPVCMount /home/jovyan
-  ```
-
-  * Here we mount the volume at `/home/jovyan` because the notebook
-    always executes as user jovyan
-  * The selected directory will be stored on whatever storage is the default
-    for the cluster (typically some form of persistent disk)
-
-Create a namespace for your deployment and set it as part of the environment. Feel free to change the namespace to a value that better suits your kubernetes cluster.
-
-```
-NAMESPACE=kubeflow
-kubectl create namespace ${NAMESPACE}
-ks env set ${KF_ENV} --namespace ${NAMESPACE}
-```
-
-
-And apply the components to our Kubernetes cluster
-
-```
-ks apply ${KF_ENV} -c kubeflow-core
-```
-
-At any time you can inspect the kubernetes objects definitions for a particular ksonnet component using `ks show` e.g
-
-```
-ks show ${KF_ENV} -c kubeflow-core
-```
-
-If you want to have a Pytorch training job, you have to first install Pytorch operator.
-
-```
-ks pkg install kubeflow/pytorch-job@${VERSION}
-ks generate pytorch-operator pytorch-operator
-ks apply ${KF_ENV} -c pytorch-operator
-```
-
-Once Pytorch operator is installed, follow [instructions](#submitting-a-pytorch-training-job) to submit the training job
 ### Usage Reporting
 
 When enabled, Kubeflow will report **anonymous** usage data using [spartakus](https://github.com/kubernetes-incubator/spartakus), Kubernetes' reporting tool. Spartakus **does not report any personal information**. See [here](https://github.com/kubernetes-incubator/spartakus) for more detail.
