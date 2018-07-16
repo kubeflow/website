@@ -25,7 +25,8 @@ For an end to end example illustrating in details how to deploy kubeflow and run
 
 ## Creating a ksonnet application
 
-We will be using Ksonnet to deploy kubeflow into your cluster.
+We will be using Ksonnet to deploy kubeflow into your existing cluster. The commands below will the cluster currently
+used by `kubectl` and create the namespace `kubeflow`.
 
 
 ```
