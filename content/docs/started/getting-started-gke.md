@@ -14,7 +14,7 @@ bref = "The Kubeflow project is dedicated to making deployments of machine learn
 
 Instructions for optimizing and deploying Kubeflow on GKE.
 
-Running on Kubeflow on GKE comes with the following advantages:
+Running Kubeflow on GKE comes with the following advantages:
 
   * We use [Google Cloud Deployment Manager](https://cloud.google.com/deployment-manager/docs/) to 
     declaratively manage all non K8s resources (including the GKE cluster), which is easy to customize for your particular use case
