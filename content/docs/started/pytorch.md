@@ -6,7 +6,7 @@ toc = true
 bref= "This guide will walk you through using PyTorch with Kubeflow"
 aliases = ["/docs/pytorch/"]
 [menu.docs]
-  parent = "about"
+  parent = "started"
   weight = 3
 +++
 
