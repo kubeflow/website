@@ -32,7 +32,7 @@ used by `kubectl` and create the namespace `kubeflow`.
 ```
 export KUBEFLOW_VERSION=0.2.2
 export KUBEFLOW_KS_DIR=</path/to/store/your/ksonnet/application>
-export_KUBEFLOW_DEPLOY=false
+export KUBEFLOW_DEPLOY=false
 curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/deploy.sh | bash
 ```
 
