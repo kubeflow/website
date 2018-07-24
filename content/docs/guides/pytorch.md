@@ -4,10 +4,10 @@ description = "Instructions for using PyTorch"
 weight = 10
 toc = true
 bref= "This guide will walk you through using PyTorch with Kubeflow"
-aliases = ["/docs/pytorch/"]
+aliases = ["/docs/guides/"]
 [menu.docs]
-  parent = "started"
-  weight = 3
+  parent = "guides"
+  weight = 1
 +++
 
 ## Installing PyTorch Operator
