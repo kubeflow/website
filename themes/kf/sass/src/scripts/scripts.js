@@ -90,7 +90,7 @@ var isMobile = {
 		    hdr = $('header').height();
 
 		$(window).scroll(function() {
-		  if( $(this).scrollTop() > hdr ) {
+		  if( $(this).scrollTop() > hdr + 70) {
 		    sn.addClass(sns);
 		  } else {
 		    sn.removeClass(sns);
