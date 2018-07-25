@@ -37,6 +37,7 @@ If it is not included you can add it as follows
 
 ```
 cd ${KSONNET_APP}
+ks pkg install kubeflow/pytorch-job
 ks generate pytorch-operator pytorch-operator
 ks apply ${ENVIRONMENT} -c pytorch-operator
 ```
@@ -58,7 +59,7 @@ You should now be able to see the created pods matching the specified number of 
 ```
 kubectl get pods -l pytorch_job_name=dist-mnist-for-e2e-test
 ```
-Training should run for about 10 epochs and takes 5-10 minutes on a cpu cluster. Logs can be inspected to see its training progress. 
+Training should run for about 10 epochs and takes 5-10 minutes on a cpu cluster. Logs can be inspected to see its training progress.
 
 ```
 PODNAME=$(kubectl get pods -l pytorch_job_name=dist-mnist-for-e2e-test,task_index=0 -o name)
