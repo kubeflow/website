@@ -1,13 +1,12 @@
 +++
-title = "PyTorch"
+title = "PyTorch Training"
 description = "Instructions for using PyTorch"
 weight = 10
 toc = true
 bref= "This guide will walk you through using PyTorch with Kubeflow"
-aliases = ["/docs/pytorch/"]
 [menu.docs]
-  parent = "started"
-  weight = 3
+  parent = "guides"
+  weight = 70
 +++
 
 ## Installing PyTorch Operator
