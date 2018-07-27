@@ -58,6 +58,9 @@ body > #wrapper
 			.button
 				margin-top: $base-spacing
 
+	#contentWrap
+		position: relative
+
 	#pageContent
 		padding: $base-spacing
 		margin-bottom: $base-spacing
@@ -73,6 +76,9 @@ body > #wrapper
 		border-top: 2px solid tint(black,90%)
 		text-align: center
 		margin-top: $base-spacing
+		position: relative
+		z-index: 900
+		background: white
 		> div
 			@include node-bg()
 			padding: $base-spacing
@@ -135,12 +141,15 @@ body > #wrapper
 					top: none
 
 
-	// @media screen and (min-width: $large-screen)
-
-
-	@media screen and (min-width: $x-large-screen)
+	@media screen and (min-width: $large-screen)
 		#contentWrap
-			@include flex-container($justify-content: center)
-			position: relative
-			max-width: 1600px
-			margin: 0 auto
+			padding-top: 70px
+	// 	header
+	// 		padding-bottom: 55px
+
+	// @media screen and (min-width: $x-large-screen)
+		// #contentWrap
+		// 	@include flex-container($justify-content: center)
+		// 	position: relative
+		// 	max-width: 1600px
+		// 	margin: 0 auto
