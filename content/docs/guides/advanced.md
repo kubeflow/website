@@ -6,7 +6,7 @@ toc = true
 bref= "This guide has information about advanced customizations for Kubeflow."
 [menu.docs]
   parent = "guides"
-  weight = 80
+  weight = 100
 +++
 
 ## Persistent Disks
