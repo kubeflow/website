@@ -3,9 +3,10 @@ title = "Ksonnet"
 description = "Ksonnet information related to Kubeflow"
 weight = 10
 toc = true
+[menu]
 [menu.docs]
-  parent = "guides"
-  weight = 10
+  parent = "components"
+  weight = 20
 +++
 
 ## Creating a ksonnet application

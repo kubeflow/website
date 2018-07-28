@@ -4,9 +4,10 @@ description = ""
 weight = 10
 toc = true
 bref= "Training and serving using TFJob"
+[menu]
 [menu.docs]
-  parent = "guides"
-  weight = 40
+  parent = "components"
+ weight = 50
 +++
 
 ## Serve a model using TensorFlow Serving

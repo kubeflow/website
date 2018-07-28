@@ -4,8 +4,9 @@ description = ""
 weight = 10
 toc = true
 bref= "Training using TensorFlow"
+[menu]
 [menu.docs]
-  parent = "guides"
+  parent = "components"
   weight = 60
 +++
 

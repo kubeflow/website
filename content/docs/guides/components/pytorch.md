@@ -4,9 +4,10 @@ description = "Instructions for using PyTorch"
 weight = 10
 toc = true
 bref= "This guide will walk you through using PyTorch with Kubeflow"
+[menu]
 [menu.docs]
-  parent = "guides"
-  weight = 70
+  parent = "components"
+  weight = 30
 +++
 
 ## Installing PyTorch Operator
