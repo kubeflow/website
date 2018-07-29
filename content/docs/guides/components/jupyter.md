@@ -2,9 +2,10 @@
 title = "Jupyter Notebooks"
 weight = 10
 toc = true
+[menu]
 [menu.docs]
-  parent = "guides"
-  weight = 30
+  parent = "components"
+  weight = 10
 +++
 
 ## Bringing up a Jupyter Notebook

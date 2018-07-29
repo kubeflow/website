@@ -5,7 +5,7 @@ weight = 10
 toc = true
 [menu.docs]
   parent = "guides"
-  weight = 100
+  weight = 20
 +++
 
 

@@ -5,7 +5,7 @@ weight = 10
 toc = true
 [menu.docs]
   parent = "guides"
-  weight = 90
+  weight = 30
 +++
 
 Until 1.0 Kubeflow makes no promises of backwards compatibility or upgradeability. Nontheless, here are some

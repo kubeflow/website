@@ -4,9 +4,10 @@ description = "Seldon Serving"
 weight = 10
 toc = true
 bref= "Model serving using Seldon"
+[menu]
 [menu.docs]
-  parent = "guides"
-  weight = 50
+  parent = "components"
+  weight = 40
 +++
 
 ## Serve a model using Seldon
