@@ -6,10 +6,8 @@ toc = true
 [menu]
 [menu.docs]
   parent = "components"
-  weight = 15
+  weight = 5
 +++
-
-# Katib Quickstart
 
 ## Deploying Katib
 
