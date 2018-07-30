@@ -18,7 +18,7 @@ To deploy katib,
 ```shell
 ks pkg install kubeflow/katib@master
 ks generate katib katib
-ks apply YOUR_ENV -c katib
+ks apply ${ENV} -c katib
 ```
 
 ## Using Katib
