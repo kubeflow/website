@@ -101,7 +101,7 @@ Run the following steps to deploy Kubeflow.
 1. The deployment script will create the following directories containing your configuration.    
    * **{DEPLOYMENT_NAME}_deployment_manager_configs** - Configuration for deployment manager
      * **Important** This directory will contain json files containing secrets for your service accounts. 
-       Checking your keys into source control is not advised.
+       **Checking your keys into source control is not advised**.
    * **{DEPLOYMENT_NAME}_ks-app** - Ksonnet application
 
 
