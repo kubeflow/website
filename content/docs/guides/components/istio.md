@@ -1,5 +1,5 @@
 +++
-title = "Istio Integration (for TF Serving)
+title = "Istio Integration (for TF Serving)"
 description = "Istio Integration (for TF Serving)"
 weight = 10
 toc = true
