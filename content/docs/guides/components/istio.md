@@ -89,8 +89,9 @@ Execute the command:
 kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=grafana -o jsonpath='{.items[0].metadata.name}') 3000:3000 &
 ```
 Visit http://localhost:3000/dashboard/db/istio-dashboard in your web browser.
-Send some requests to the TF serving service, then there should be some data (QPS, success rate, latency) like
-![istio dashboard](istio-dashboard.png)
+Send some requests to the TF serving service, then there should be some data (QPS, success rate, latency)
+like
+![istio dashboard](../istio-dashboard.png)
 
 
 #### Define and view metrics
