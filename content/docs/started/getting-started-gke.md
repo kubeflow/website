@@ -97,11 +97,11 @@ Run the following steps to deploy Kubeflow.
    * If you own/manage the domain or a subdomain with [Cloud DNS](https://cloud.google.com/dns/docs/)
      then you can configure this process to be much faster.
      * See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731)
-   * While you wait you can access Kubeflow services by using `kubectl proxy` & `kubectl port-forward` to connect
-    to services in the cluster.
-1. The deployment script will create the following directories containing your configuration. We recommend
-   checking these into source control.
+   * While you wait you can access Kubeflow services by using `kubectl proxy` & `kubectl port-forward` to connect to services in the cluster.
+1. The deployment script will create the following directories containing your configuration.    
    * **{DEPLOYMENT_NAME}_deployment_manager_configs** - Configuration for deployment manager
+     * **Important** This directory will contain json files containing secrets for your service accounts. 
+       **Checking your keys into source control is not advised**.
    * **{DEPLOYMENT_NAME}_ks-app** - Ksonnet application
 
 
