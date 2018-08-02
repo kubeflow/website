@@ -9,7 +9,7 @@ bref = "This document will outline steps that will get your local installation o
   weight = 2
 +++
 
-By the end of this document, you'll have a local installation of Minikube kubernetes clsuter along with all the default core components of
+By the end of this document, you'll have a local installation of Minikube kubernetes cluster along with all the default core components of
 Kubeflow deployed as services in the pods. You should be able to access JupyterHub notebooks, and the Kubeflow Dashboard.
 
 ### Install a Hypervisor
@@ -94,7 +94,7 @@ $ chmod +x minikube
 $ sudo mv minikube /usr/local/bin/
 ```
 
-##### Start your minikube cluster
+##### Start your Minikube cluster
 
 ```
 $ minikube start --cpus 4 --memory 8096 --disk-size=40g
@@ -102,12 +102,12 @@ $ minikube start --cpus 4 --memory 8096 --disk-size=40g
 
 Notes:
 
-1. These are the minimum recommended settings on the VM created by minikube for kubeflow deployment. You are free to adjust them **higher** based on your host machine
+1. These are the minimum recommended settings on the VM created by Minikube for Kubeflow deployment. You are free to adjust them **higher** based on your host machine
 capabilities and workload requirements.
 1. Using certain hypervisors might require you to set --vm-driver option [specifying the driver](https://github.com/kubernetes/minikube/blob/master/docs/drivers.md)
 you want to use.
 
-In case, you have the default minikube VM already created (following detailed installation instructions), please use the following to update the VM.
+In case, you have the default Minikube VM already created (following detailed installation instructions), please use the following to update the VM.
 
 ```
 $ minikube stop

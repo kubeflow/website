@@ -28,7 +28,9 @@ functionality and actively soliciting help from companies and individuals intere
 
 This documentation assumes you have a Kubernetes cluster already available.
 
-  * For local environment try [Minikube setup](/docs/started/getting-started-minikube/).
+  * For local environment try:
+    * [Minikube setup](/docs/started/getting-started-minikube/) - a Kubernetes VM Appliance.
+    * [Multipass all-in-one setup](/docs/started/getting-started-multipass/) - native VM with scripted [Microk8s](https://microk8s.io) and Kubeflow install. 
   * For cloud environment try [GKE setup](/docs/started/getting-started-gke/).
   * For general k8s cluster try [quick start](/docs/started/getting-started/#quick-start) or [install via ksonnet](/docs/started/getting-started/#install-via-ksonnet).
 
