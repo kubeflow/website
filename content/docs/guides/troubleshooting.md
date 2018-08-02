@@ -142,7 +142,8 @@ export GITHUB_TOKEN=<< token >>
 
 ## ks apply produces error "Unknown variable: env"
 
-Kubeflow requires ksonnet version 0.9.2 or later [see here](/docs/about/user_guide/#requirements). If you run `ks apply` with an older version of ksonnet you will likely get the error `Unknown variable: env` as illustrated below:
+Kubeflow requires [specific version of ksonnet](/docs/guides/requirements).
+If you run `ks apply` with an older version of ksonnet you will likely get the error `Unknown variable: env` as illustrated below:
 
 ```shell
 ks apply ${KF_ENV} -c kubeflow-core
@@ -157,6 +158,6 @@ You can check the ksonnet version as follows:
 ks version
 ```
 
-If your ksonnet version is lower than v0.9.2, please upgrade it and follow the [user_guide](/docs/about/user_guide/) to recreate the app.
+If your ksonnet version is lower than what is specified in the [requirements](/docs/guides/requirements), please upgrade it and follow the [guide](/docs/guides/) to recreate the app.
 
 
