@@ -10,7 +10,7 @@ bref= "Training and serving using TFJob"
  weight = 50
 +++
 
-## Serve a model using TensorFlow Serving
+## Serving a model
 
 We treat each deployed model as a [component](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component) in your APP.
 
@@ -63,4 +63,6 @@ To setup the google cloud credential, you should either have the environment var
 `GOOGLE_APPLICATION_CREDENTIALS` pointing to the credential file, or run `gcloud auth login`.
 See [doc](https://cloud.google.com/docs/authentication/) for more detail.
 
+## Telemetry using Istio
 
+Please look at the [Istio guide](/docs/guides/components/istio/).
