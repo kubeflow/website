@@ -10,7 +10,7 @@ bref= "Training and serving using TFJob"
  weight = 50
 +++
 
-## Serve a model using TensorFlow Serving
+## Serving a model
 
 We treat each deployed model as a [component](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component) in your APP.
 
