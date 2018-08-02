@@ -63,4 +63,6 @@ To setup the google cloud credential, you should either have the environment var
 `GOOGLE_APPLICATION_CREDENTIALS` pointing to the credential file, or run `gcloud auth login`.
 See [doc](https://cloud.google.com/docs/authentication/) for more detail.
 
+## Telemetry using Istio
 
+Please look at the [Istio guide](/docs/guides/components/istio/).
