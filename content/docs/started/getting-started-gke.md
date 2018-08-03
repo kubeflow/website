@@ -192,13 +192,13 @@ Here are some tips for troubleshooting IAP.
 
  * Make sure you are using https
 
-### 404 Page Not Found
+### 404 Page Not Found When Accessing Central Dashboard
 
-If get a 404 when navigating to 
+This section provides troubleshooting information for 404s, page not found, being return by the central dashboard which is served at
 
-```
-https://${KUBEFLOW_FQDN}/
-```
+   ```
+   https://${KUBEFLOW_FQDN}/
+   ```
 
 * Since we were able to sign in this indicates the Ambassador reverse proxy is up and healthy we can confirm this is the case by running the following command
 
