@@ -192,6 +192,72 @@ Here are some tips for troubleshooting IAP.
 
  * Make sure you are using https
 
+### 404 Page Not Found When Accessing Central Dashboard
+
+This section provides troubleshooting information for 404s, page not found, being return by the central dashboard which is served at
+
+   ```
+   https://${KUBEFLOW_FQDN}/
+   ```
+
+* Since we were able to sign in this indicates the Ambassador reverse proxy is up and healthy we can confirm this is the case by running the following command
+
+   ```
+   kubectl -n ${NAMESPACE} get pods -l service=envoy
+
+   NAME                     READY     STATUS    RESTARTS   AGE
+   envoy-76774f8d5c-lx9bd   2/2       Running   2          4m
+   envoy-76774f8d5c-ngjnr   2/2       Running   2          4m
+   envoy-76774f8d5c-sg555   2/2       Running   2          4m
+   ```
+
+* Try other services to see if their accessible e.g
+  
+   ```
+   https://${KUBEFLOW_FQDN}/whoami
+   https://${KUBEFLOW_FQDN}/tfjobs/ui
+   https://${KUBEFLOW_FQDN}/hub
+   ```   
+
+ * If other services are accessible then we know its a problem specific to the central dashboard and not ingress
+ * Check that the centraldashboard is running
+
+    ```
+    kubectl get pods -l app=centraldashboard
+    NAME                                READY     STATUS    RESTARTS   AGE
+    centraldashboard-6665fc46cb-592br   1/1       Running   0          7h
+    ```
+
+ * Check a service for the central dashboard exists
+
+    ```
+    kubectl get service -o yaml centraldashboard
+    ```
+
+ * Check that an Ambassador route is properly defined
+
+    ```
+    kubectl get service centraldashboard -o jsonpath='{.metadata.annotations.getambassador\.io/config}'
+
+    apiVersion: ambassador/v0
+      kind:  Mapping
+      name: centralui-mapping
+      prefix: /
+      rewrite: /
+      service: centraldashboard.kubeflow,
+    ```
+
+ * Check the logs of Ambassador for errors. See if there are errors like the following indicating
+   an error parsing the route.If you are using the new Stackdriver Kubernetes monitoring you can use the following filter in the [stackdriver console](https://console.cloud.google.com/logs/viewer)
+
+    ```
+     resource.type="k8s_container"
+     resource.labels.location=${ZONE}
+     resource.labels.cluster_name=${CLUSTER}
+     metadata.userLabels.service="ambassador"
+    "could not parse YAML"
+    ```
+
 ### 502 Server Error
 A 502 usually means traffic isn't even making it to the envoy reverse proxy. And it
 usually indicates the loadbalancer doesn't think any backends are healthy.
@@ -199,10 +265,20 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
 * In Cloud Console select Network Services -> Load Balancing
     * Click on the load balancer (the name should contain the name of the ingress)
     * The exact name can be found by looking at the `ingress.kubernetes.io/url-map` annotation on your ingress object
+       ```
+       URLMAP=$(kubectl --namespace=${NAMESPACE} get ingress envoy-ingress -o jsonpath='{.metadata.annotations.ingress\.kubernetes\.io/url-map}')
+       echo ${URLMAP}
+       ```
     * Click on your loadbalancer
     * This will show you the backend services associated with the load balancer
         * There is 1 backend service for each K8s service the ingress rule routes traffic too
         * The named port will correspond to the NodePort a service is using
+
+          ```
+          NODE_PORT=$(kubectl --namespace=${NAMESPACE} get svc envoy -o jsonpath='{.spec.ports[0].nodePort}')
+          BACKEND_NAME=$(gcloud compute --project=${PROJECT} backend-services list --filter=name~k8s-be-${NODE_PORT}- --format='value(name)')
+          gcloud compute --project=${PROJECT} backend-services get-health --global ${BACKEND_ID}
+          ```
     * Make sure the load balancer reports the backends as healthy
         * If the backends aren't reported as healthy check that the pods associated with the K8s service are up and running
         * Check that health checks are properly configured
