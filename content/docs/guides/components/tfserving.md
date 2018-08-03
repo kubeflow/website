@@ -87,7 +87,7 @@ Modify `tf-serving-with-request-log.jsonnet` as needed:
   - change the param of http proxy for logging, e.g. `--request_log_prob=0.1` (Default is 0.01).
 
 ```
-ks apply YOUR_ENV -c mnist
+ks apply ENV -c mnist
 ```
 
 Start sending requests, and the fluentd worker will stream them to Bigquery.
