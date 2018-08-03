@@ -200,8 +200,7 @@ If get a 404 when navigating to
 https://${KUBEFLOW_FQDN}/
 ```
 
-* Since we were able to sign in this indicates the Ambassador reverse proxy is up and healthy we can confirm this is the case by
-  running the following command
+* Since we were able to sign in this indicates the Ambassador reverse proxy is up and healthy we can confirm this is the case by running the following command
 
    ```
    kubectl -n ${NAMESPACE} get pods -l service=envoy
@@ -223,11 +222,11 @@ https://${KUBEFLOW_FQDN}/
  * If other services are accessible then we know its a problem specific to the central dashboard and not ingress
  * Check that the centraldashboard is running
 
-   ```
-   kubectl get pods -l app=centraldashboard
-   NAME                                READY     STATUS    RESTARTS   AGE
-   centraldashboard-6665fc46cb-592br   1/1       Running   0          7h
-   ```
+    ```
+    kubectl get pods -l app=centraldashboard
+    NAME                                READY     STATUS    RESTARTS   AGE
+    centraldashboard-6665fc46cb-592br   1/1       Running   0          7h
+    ```
 
  * Check a service for the central dashboard exists
 
@@ -249,9 +248,7 @@ https://${KUBEFLOW_FQDN}/
     ```
 
  * Check the logs of Ambassador for errors. See if there are errors like the following indicating
-   an error parsing the route.
-
-   If you are using the new Stackdriver Kubernetes monitoring you can use the following filter in the [stackdriver console](https://console.cloud.google.com/logs/viewer)
+   an error parsing the route.If you are using the new Stackdriver Kubernetes monitoring you can use the following filter in the [stackdriver console](https://console.cloud.google.com/logs/viewer)
 
     ```
      resource.type="k8s_container"
