@@ -11,19 +11,6 @@ Paginate = 20
   twitter = "" # add your twitter profile
   email = "myemail@myaddress.xxx"
 
-  version = "v0.2"
-  githubbranch = "v0.2-branch"
-
-[[params.versions]]
-version = "master"
-githubbranch = "master"
-url = "https://master.kubeflow.org"
-
-[[params.versions]]
-version = "v0.2"
-githubbranch = "v0.2-branch"
-url = "https://v0-2.kubeflow.org"
-
 [[menu.main]]
     name = "What is Kubeflow?"
     weight = -103
