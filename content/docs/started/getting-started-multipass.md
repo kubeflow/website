@@ -78,4 +78,4 @@ If the page doesn't refresh, please see [troubleshooting](/docs/about/user_guide
 
 ### Where to go next
 
-Refer to the [user guide](/docs/about/user_guide/)
+Refer to the [user guide](/docs/guides/)

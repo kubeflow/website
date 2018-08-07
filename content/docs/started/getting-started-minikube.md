@@ -186,4 +186,4 @@ kubectl cp kubeflow-admin/kubeflow-bootstrapper-0:/opt/bootstrap/default ~/my-ku
 
 ### Where to go next
 
-Refer to the [user guide](/docs/about/user_guide/)
+Refer to the [user guide](/docs/guides/)
