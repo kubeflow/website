@@ -94,12 +94,14 @@ button, [type='button'], [type='reset'], [type='submit'], .button {
   display: none;
   position: absolute;
   background-color: #4279f4;
+}
+
+.dropdown-content ul {
   text-align: left;
 }
 
 .dropdown-content a {
   display: block;
-  text-align: left;  
 }
 
 .dropdown:hover .dropdown-content {display: block;}
