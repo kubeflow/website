@@ -55,3 +55,14 @@ Paginate = 20
   weight = 2
   identifier = "started"
   url = "/docs/started/"
+[[menu.docs]]
+  name = "Guides"
+  weight = 3
+  identifier = "guides"
+  url = "/docs/guides/"
+[[menu.docs]]
+  name = "Components"
+  weight = 4
+  parent = "guides"
+  identifier = "components"
+  url = "/docs/guides/components/"

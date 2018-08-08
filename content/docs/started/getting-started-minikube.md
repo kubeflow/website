@@ -174,7 +174,8 @@ For JupyterHub, you'll be landing on a login page.
   - Click Spawn.
   - You should be redirected to a page that waits while the server is starting.
 
-If the page doesn't refresh, please see [troubleshooting](/docs/about/user_guide/#problems-spawning-jupyter-pods).
+If the page doesn't refresh, please see
+[troubleshooting](/docs/guides/troubleshooting/#problems-spawning-jupyter-pods).
 
 #### Copy the ksonnet application to your machine
 
@@ -186,4 +187,4 @@ kubectl cp kubeflow-admin/kubeflow-bootstrapper-0:/opt/bootstrap/default ~/my-ku
 
 ### Where to go next
 
-Refer to the [user guide](/docs/about/user_guide/)
+Refer to the [guide](/docs/guides/).

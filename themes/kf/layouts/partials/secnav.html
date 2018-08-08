@@ -4,13 +4,27 @@
 <div class="container">
     <ul>
     {{ range $.Site.Menus.docs.ByWeight }}
-      <li> <a href="{{ .URL }}">{{ .Name }}</a> </li>
       {{ if .HasChildren }}
+      <li>
+      <span class="collapsible open">{{ .Name }}</span>
       <ul>
         {{ range .Children }}
+          {{ if .HasChildren }}
+          <li>
+          <span class="collapsible open">{{ .Name }}</span>
+          <ul>
+            {{ range .Children }}
+                <li> <a href="{{ .URL }}">{{ .Name }}</a> </li>
+            {{ end }}
+          </ul>
+          {{ else }}
           <li> <a class="{{if eq $currentPage.Title .Name}}current-page-in-section{{end}}" href="{{ .URL }}">{{ .Name }}</a> </li>
+          {{ end }}
         {{ end }}
       </ul>
+      </li>
+      {{ else }}
+        <li> <a href="{{ .URL }}">{{ .Name }}</a> </li>
       {{ end }}
 
     {{ end }}
