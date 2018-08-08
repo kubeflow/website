@@ -1209,6 +1209,11 @@ body.nav-active #menu {
       text-align: right;
       display: block;
       font-size: 1em; }
+    #wrapper header nav ul #versions {
+      position: relative;
+      text-align: left;
+      display: block;
+      font-size: 1em; }      
       #wrapper header nav ul li {
         display: inline-block;
         font-family: "Lato", -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;

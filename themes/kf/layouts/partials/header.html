@@ -13,7 +13,7 @@
       <div class="dropdown">
         <a href="#">{{ .Site.Params.version }}</a>
         <div class="dropdown-content">
-          <ul>
+          <ul id="versions">
             {{ range .Site.Params.versions }}
             <li><a href="{{  .url }}">{{ .version }}</a></li>
             {{ end }}
