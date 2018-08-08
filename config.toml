@@ -11,9 +11,10 @@ Paginate = 20
   twitter = "" # add your twitter profile
   email = "myemail@myaddress.xxx"
 
-  version = "v0.2"
-  githubbranch = "v0.2-branch"
+  version = "latest"
+  githubbranch = "master"
 
+# Add new release versions here
 [[Params.versions]]
   version = "latest"
   githubbranch = "master"
