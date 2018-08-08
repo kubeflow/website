@@ -99,6 +99,7 @@ button, [type='button'], [type='reset'], [type='submit'], .button {
 
 .dropdown-content a {
   display: block;
+  text-align: left;  
 }
 
 .dropdown:hover .dropdown-content {display: block;}
