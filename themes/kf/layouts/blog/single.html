@@ -7,7 +7,9 @@
     <div>
       <h1 id="anchor1"> {{ .Title}} </h1>
       <p>
+         {{ if .Params.bref }}
            {{ .Params.bref | safeHTML }}
+         {{ end }}
       </p>
     </div> 
 
