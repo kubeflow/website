@@ -16,7 +16,7 @@ Updating your deployments is a two step process
 1. Updating your ksonnet application
 
   1. We recommend checking your app into source control to back it up before proceeding
-  1. Use the script (upgrade_ks_app.py)[https://github.com/kubeflow/kubeflow/tree/master/scripts)
+  1. Use the script (upgrade_ks_app.py)[https://github.com/kubeflow/kubeflow/tree/{{< params "githubbranch" >}}/scripts)
      to update your ksonnet app with the current version for the Kubeflow packages
   1. Note: ksonnet is working on support for this see https://github.com/ksonnet/ksonnet/issues/237
   
