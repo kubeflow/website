@@ -108,7 +108,7 @@ Run the following steps to deploy Kubeflow.
 ## Customizing Kubeflow
 
 The setup process makes it easy to customize GCP or Kubeflow for your particular use case. 
-Under the hood [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh)
+Under the hood [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/{{< params "githubbranch" >}}/scripts/gke/deploy.sh)
 
   1. Creates all GCP resources using deployment manager
   1. Creates K8s resources using kubectl/ksonnet
@@ -116,7 +116,7 @@ Under the hood [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/v
 This makes it easy to change your configuration by updating the config files and reapplying them.
 
 Deployment manager uses [YAML files](https://github.com/kubeflow/kubeflow/tree/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs)
-to define your GCP infrastructure. [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh) creates a copy of these files in *${DEPLOYMENT_NAME}_deployment_manager_config* 
+to define your GCP infrastructure. [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/{{< params "githubbranch" >}}/scripts/gke/deploy.sh) creates a copy of these files in *${DEPLOYMENT_NAME}_deployment_manager_config* 
 
 You can modify these files and then update your deployment.
 
