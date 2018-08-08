@@ -607,6 +607,33 @@ further analysis.
 
 See [here](/docs/guides/monitoring/) for instructions to get logs using Stackdriver.
 
+As described [here](https://www.kubeflow.org/docs/guides/monitoring/#filter-with-labels) its possible
+to fetch the logs for a particular replica based on pod labels. 
+
+Using the Stackdriver UI you can use a query like
+
+```
+resource.type="k8s_container"
+resource.labels.cluster_name="${CLUSTER}"
+metadata.userLabels.tf_job_name="${JOB_NAME}"
+metadata.userLabels.tf-replica-type="${TYPE}"
+metadata.userLabels.tf-replica-index="${INDEX}"
+```
+
+Alternatively using gcloud
+
+```
+QUERY="resource.type=\"k8s_container\" "
+QUERY="${QUERY} resource.labels.cluster_name=\"${CLUSTER}\" "
+QUERY="${QUERY} metadata.userLabels.tf_job_name=\"${JOB_NAME}\" "
+QUERY="${QUERY} metadata.userLabels.tf-replica-type=\"${TYPE}\" "
+QUERY="${QUERY} metadata.userLabels.tf-replica-index=\"${INDEX}\" "
+gcloud --project=${PROJECT} logging read  \
+     --freshness=24h \
+     --order asc  ${QUERY}        
+```
+
+
 ## Troubleshooting
 
 Here are some steps to follow to troubleshoot your job
