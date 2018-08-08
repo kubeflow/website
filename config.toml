@@ -15,9 +15,9 @@ Paginate = 20
   githubbranch = "v0.2-branch"
 
 [[Params.versions]]
-  version = "master"
+  version = "latest"
   githubbranch = "master"
-  url = "https://master.kubeflow.org"
+  url = "https://latest.kubeflow.org"
 
 [[Params.versions]]
   version = "v0.2"
