@@ -93,6 +93,8 @@ button, [type='button'], [type='reset'], [type='submit'], .button {
 .dropdown-content {
   display: none;
   position: absolute;
+  background-color: #4279f4;
+  text-align: left;
 }
 
 .dropdown-content a {
