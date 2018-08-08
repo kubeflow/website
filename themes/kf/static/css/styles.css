@@ -85,6 +85,22 @@ button, [type='button'], [type='reset'], [type='submit'], .button {
     button:disabled:hover, [type='button']:disabled:hover, [type='reset']:disabled:hover, [type='submit']:disabled:hover, .button:disabled:hover {
       background-color: #4279f4; }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+}
+
+.dropdown-content a {
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
 form {
   padding: 1.5em 0;
   margin-bottom: 1.5em; }
