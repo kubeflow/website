@@ -10,6 +10,7 @@
       <li><a href="{{ .URL }}" {{if  $currentPage.IsMenuCurrent "main" . }} class="active"{{end}}>{{ .Name }}</a></li>
   {{end}}
     <li>
+<<<<<<< HEAD
       <div class="dropdown">
         <a href="#">{{ .Site.Params.version }}</a>
         <div class="dropdown-content">
@@ -20,6 +21,16 @@
           </ul>
 	</div>
       </div>
+=======
+      <a href="#">
+        {{ .Site.Params.version }} <span class="ui-icon ui-icon-carat-1-s"></span>
+      </a>
+      <ul>
+        {{ range .Site.Params.versions }}
+        <li><a href="{{  .url }}">{{ .version }}</a></li>
+        {{ end }}
+      </ul>
+>>>>>>> 90f9602b717afd19d909d3227523a024d26697d2
     </li>
   </ul>
 <!-- end main nav -->
