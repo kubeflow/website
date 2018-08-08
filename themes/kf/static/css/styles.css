@@ -85,6 +85,27 @@ button, [type='button'], [type='reset'], [type='submit'], .button {
     button:disabled:hover, [type='button']:disabled:hover, [type='reset']:disabled:hover, [type='submit']:disabled:hover, .button:disabled:hover {
       background-color: #4279f4; }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #4279f4;
+}
+
+.dropdown-content ul {
+  text-align: left;
+}
+
+.dropdown-content a {
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
 form {
   padding: 1.5em 0;
   margin-bottom: 1.5em; }
@@ -1208,6 +1229,11 @@ body.nav-active #menu {
       text-align: right;
       display: block;
       font-size: 1em; }
+    #wrapper header nav ul #versions {
+      position: relative;
+      text-align: left;
+      display: block;
+      font-size: 1em; }      
       #wrapper header nav ul li {
         display: inline-block;
         font-family: "Lato", -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
