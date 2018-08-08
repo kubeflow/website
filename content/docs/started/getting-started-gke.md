@@ -58,7 +58,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
      ```
      <name>.endpoints.<project>.cloud.goog
      ```
-   * \<name\> and \<project\> will be set in the next step when you run [deploy.sh](https://github.com/kubeflow/kubeflow/blob/{{< param "githubbranch" >}}/scripts/gke/deploy.sh)
+   * \<name\> and \<project\> will be set in the next step when you run [deploy.sh](https://github.com/kubeflow/kubeflow/blob/{{< .Site.Params "githubbranch" >}}/scripts/gke/deploy.sh)
       * deploy.sh uses **kubeflow** by default as \<name\> but you can configure this with the environment variable **DEPLOYMENT_NAME**
       * Project will use the default project for **gcloud** but this can be overwritten using the environment variable **PROJECT**
 1. After you enter the details, click Create. 
@@ -80,7 +80,7 @@ Run the following steps to deploy Kubeflow.
      export KUBEFLOW_VERSION=0.2.2
      curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
      ```
-   * Basic settings (e.g. the zone) can be configured using environment variables. Refer to the [script](https://github.com/kubeflow/kubeflow/blob/{{< param "githubbranch" >}}/scripts/gke/deploy.sh) to see a complete list.
+   * Basic settings (e.g. the zone) can be configured using environment variables. Refer to the [script](https://github.com/kubeflow/kubeflow/blob/{{< .Site.Params "githubbranch" >}}/scripts/gke/deploy.sh) to see a complete list.
    * More advanced customization can be performed by updating the deployment manager or ksonnet configuration and updating the deployment and K8s resources. This is described in more detail in the following section.
 1. Check resources deployed in namespace kubeflow
 
@@ -115,7 +115,7 @@ Under the hood [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/v
 
 This makes it easy to change your configuration by updating the config files and reapplying them.
 
-Deployment manager uses [YAML files](https://github.com/kubeflow/kubeflow/tree/{{< param "githubbranch" >}}/scripts/gke/deployment_manager_configs)
+Deployment manager uses [YAML files](https://github.com/kubeflow/kubeflow/tree/{{< .Site.Params "githubbranch" >}}/scripts/gke/deployment_manager_configs)
 to define your GCP infrastructure. [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh) creates a copy of these files in *${DEPLOYMENT_NAME}_deployment_manager_config* 
 
 You can modify these files and then update your deployment.
@@ -130,19 +130,19 @@ gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_N
 
 Add GPU nodes to your cluster
 
-  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/{{< param "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L40) 
+  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/{{< .Site.Params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L40) 
 
 To use VMs with more CPUs or RAM 
 
   * Change the machineType 
   * There are two node pools 
-      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/{{< param "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96)
-      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< param "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96)
-  * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/{{< param "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment
+      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/{{< .Site.Params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96)
+      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< .Site.Params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96)
+  * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/{{< .Site.Params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment
 
 To grant additional users IAM permissions to access Kubeflow
 
-  * Add the users [here](https://github.com/kubeflow/kubeflow/blob/{{< param "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L61)
+  * Add the users [here](https://github.com/kubeflow/kubeflow/blob/{{< .Site.Params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L61)
 
 
 After making the changes you need to update your deployment. 
@@ -284,7 +284,7 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
         * Check that health checks are properly configured
           * Click on the health check associated with the backend service for envoy
           * Check that the path is /healthz and corresponds to the path of the readiness probe on the envoy pods
-          * See [K8s docs](https://github.com/kubernetes/contrib/blob/{{< param "githubbranch" >}}/ingress/controllers/gce/examples/health_checks/README.md#limitations) for important information about how health checks are determined from readiness probes.
+          * See [K8s docs](https://github.com/kubernetes/contrib/blob/{{< .Site.Params "githubbranch" >}}/ingress/controllers/gce/examples/health_checks/README.md#limitations) for important information about how health checks are determined from readiness probes.
 
         * Check firewall rules to ensure traffic isn't blocked from the GCP loadbalancer
             * The firewall rule should be added automatically by the ingress but its possible it got deleted if you have some automatic firewall policy enforcement. You can recreate the firewall rule if needed with a rule like this
