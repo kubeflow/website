@@ -19,10 +19,13 @@ grep -ci avx /proc/cpuinfo
 
 ### AVX2
 Some components requirement AVX2 for better performance, e.g. TF Serving.
-To ensure the nodes support AVX2, we added minCpuPlatform arg in our deployment
+To ensure the nodes support AVX2, we added 
+[minCpuPlatform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+arg in our deployment
 [config](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster.jinja#L105).
 
-On GCP this will fail in regions (e.g. us-central1-a) that do not have Intel Haswell.
+On GCP this will fail in regions (e.g. us-central1-a) that do not explicitly have Intel 
+Haswell (even when there are other newer platforms in the region).
 In that case, please choose another region, or change the config to other 
 [platform](https://en.wikipedia.org/wiki/List_of_Intel_CPU_microarchitectures)
 newer than Haswell.
