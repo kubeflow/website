@@ -14,25 +14,68 @@ bref= "Training and serving using TFJob"
 
 We treat each deployed model as a [component](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component) in your APP.
 
-Create a component for your model located on cloud
+Generate Tensorflow model server component
 
 ```
 MODEL_COMPONENT=serveInception
 MODEL_NAME=inception
-MODEL_PATH=gs://kubeflow-models/inception
 ks generate tf-serving ${MODEL_COMPONENT} --name=${MODEL_NAME}
+```
+
+Depending where model file is located, set correct parameters
+
+*Google cloud*
+
+```
+MODEL_PATH=gs://kubeflow-models/inception
 ks param set ${MODEL_COMPONENT} modelPath ${MODEL_PATH}
 ```
 
-*(Or)* create a  component for your model located on nfs, learn more from `components/k8s-model-server`
+*S3*
+
+To use S3, first you need to create secret that will contain access credentials.
 
 ```
-MODEL_COMPONENT=serveInceptionNFS
-MODEL_NAME=inception-nfs
+apiVersion: v1
+metadata:
+  name: secretname
+data:
+  AWS_ACCESS_KEY_ID: bmljZSB0cnk6KQ==
+  AWS_SECRET_ACCESS_KEY: YnV0IHlvdSBkaWRuJ3QgZ2V0IG15IHNlY3JldCE=
+kind: Secret
+```
+
+Enable S3, set url and point to correct Secret
+
+```
+MODEL_PATH=s3://kubeflow-models/inception
+ks param set ${MODEL_COMPONENT} modelPath ${MODEL_PATH}
+ks param set ${MODEL_COMPONENT} s3Enable True
+ks param set ${MODEL_COMPONENT} s3SecretName secretname
+```
+
+Optionally you can also override default parameters of S3
+
+```
+# S3 region
+ks param set ${MODEL_COMPONENT} s3AwsRegion us-west-1
+
+# true Whether or not to use https for S3 connections
+ks param set ${MODEL_COMPONENT} s3UseHttps true
+
+# Whether or not to verify https certificates for S3 connections
+ks param set ${MODEL_COMPONENT} s3VerifySsl true
+
+# URL for your s3-compatible endpoint.
+ks param set ${MODEL_COMPONENT} s3Endpoint http://s3.us-west-1.amazonaws.com
+```
+
+*NFS*
+
+```
 MODEL_PATH=/mnt/var/nfs/general/inception
 MODEL_STORAGE_TYPE=nfs
 NFS_PVC_NAME=nfs
-ks generate tf-serving ${MODEL_COMPONENT} --name=${MODEL_NAME}
 ks param set ${MODEL_COMPONENT} modelPath ${MODEL_PATH}
 ks param set ${MODEL_COMPONENT} modelStorageType ${MODEL_STORAGE_TYPE}
 ks param set ${MODEL_COMPONENT} nfsPVC ${NFS_PVC_NAME}
@@ -100,4 +143,3 @@ Start sending requests, and the fluentd worker will stream them to Bigquery.
 1. Support different backends other than Bigquery
 1. Support request id (so that the logs can be joined). [Issue](https://github.com/kubeflow/kubeflow/issues/1220).
 1. Optionally logs response and other metadata. We probably need a log config other than just sampling probability.
-
