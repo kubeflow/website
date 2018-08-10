@@ -339,3 +339,15 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
   * If this doesn't return a 200 OK response; then there is a problem with the K8s resources
       * Check the pods are running
       * Check services are pointing at the points (look at the endpoints for the various services)
+
+### CPU platform unavailable in requested zone
+
+By default we set minCpuPlatform to `Intel Haswell` to make sure AVX2 is supported.
+See [troubleshooting]("/docs/guides/troubleshooting/") for more details.
+
+If you encounter this `CPU platform unavailable` error (might manifest as
+`Cluster is currently being created, deleted, updated or repaired and cannot be updated.`),
+you can change the [zone](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L31)
+or change the [minCpuPlatform](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster.jinja#L105).
+See [here](https://cloud.google.com/compute/docs/regions-zones/#available)
+for available zones and cpu platforms.
