@@ -41,6 +41,12 @@ $ sudo systemctl enable libvirtd
 
 ### Install Kubectl
 
+##### GCloud SDK
+
+```
+$ gcloud components install kubectl
+```
+
 ##### Mac OS X
 
 ```
@@ -79,6 +85,12 @@ Please see [detailed instructions](https://github.com/kubernetes/minikube/releas
 For quick setup instructions follow along below.
 
 ##### Mac OS X
+
+```
+$ brew cask install minikube
+```
+
+OR
 
 ```
 $ curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.28.0/minikube-darwin-amd64
