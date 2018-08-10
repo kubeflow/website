@@ -67,6 +67,10 @@ See [doc](https://cloud.google.com/docs/authentication/) for more detail.
 
 Please look at the [Istio guide](/docs/guides/components/istio/).
 
+## Logs and metrics with Stackdriver
+See [here](/docs/guides/monitoring/) for instructions to get logs and metrics
+using Stackdriver.
+
 ## Request logging
 
 It currently supports streaming to BigQuery.

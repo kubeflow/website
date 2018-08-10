@@ -605,98 +605,34 @@ further analysis.
 
 ### Stackdriver on GKE
 
-The default on GKE is to send logs to
-[Stackdriver logging](https://cloud.google.com/logging/docs/).
+See [here](/docs/guides/monitoring/) for instructions to get logs using Stackdriver.
 
-Stackdriver recently introduced new features for [Kubernetes Monitoring](https://cloud.google.com/monitoring/kubernetes-engine/migration) that are currently
-in Beta. These features are only available on Kubernetes v1.10 or later and must
-be explicitly installed. Below are instructions for both versions of Stackdriver Kubernetes.
+As described [here](https://www.kubeflow.org/docs/guides/monitoring/#filter-with-labels) its possible
+to fetch the logs for a particular replica based on pod labels. 
 
-#### Default stackdriver
-
-This section contains instructions for using the existing stackdriver support
-for GKE which is the default.
-
-To get the logs for a particular pod you can use the following
-advanced filter in Stackdriver logging's search UI.
-
-```
-resource.type="container"
-resource.labels.cluster_name="${CLUSTER}"
-resource.labels.pod_id="${POD_NAME}"
-```
-
-where ${POD_NAME} is the name of the pod and ${CLUSTER} is the name of your cluster.
-
-The equivalent gcloud command would be
-
-```
-gcloud --project=${PROJECT} logging read  \
-	   --freshness=24h \
-	   --order asc \
-        "resource.type=\"container\" resource.labels.cluster_name=\"${CLUSTER}\" resource.labels.pod_id=\"${POD}\" "
-```
-
-
-Kubernetes events for the TFJob are also available in stackdriver and can
-be obtained using the following query in the UI
-
-```
-resource.labels.cluster_name="${CLUSTER}"
-logName="projects/${PROJECT}/logs/events" 
-jsonPayload.involvedObject.name="${TFJOB}"
-```
-
-The equivalent gcloud command is
-
-```
-gcloud --project=${PROJECT} logging read  \
-	   --freshness=24h \
-	   --order asc \
-        "resource.labels.cluster_name=\"${CLUSTER}\" jsonPayload.involvedObject.name=\"${TFJOB}\" logName=\"projects/${PROJECT}/logs/events\" "
-```
-
-#### Stackdriver Kubernetes 
-
-This section contains the relevant stackdriver queries and gloud commands
-if you are using the new [Stackdriver Kubernetes Monitoring](https://cloud.google.com/monitoring/kubernetes-engine)
-
-To get the stdout/stderr logs for a particular container you can use the following
-advanced filter in Stackdriver logging's search UI.
+Using the Stackdriver UI you can use a query like
 
 ```
 resource.type="k8s_container"
 resource.labels.cluster_name="${CLUSTER}"
-resource.labels.pod_name="${POD_NAME}"
+metadata.userLabels.tf_job_name="${JOB_NAME}"
+metadata.userLabels.tf-replica-type="${TYPE}"
+metadata.userLabels.tf-replica-index="${INDEX}"
 ```
 
-where ${POD_NAME} is the name of the pod and ${CLUSTER} is the name of your cluster.
-
-The equivalent gcloud command would be
+Alternatively using gcloud
 
 ```
+QUERY="resource.type=\"k8s_container\" "
+QUERY="${QUERY} resource.labels.cluster_name=\"${CLUSTER}\" "
+QUERY="${QUERY} metadata.userLabels.tf_job_name=\"${JOB_NAME}\" "
+QUERY="${QUERY} metadata.userLabels.tf-replica-type=\"${TYPE}\" "
+QUERY="${QUERY} metadata.userLabels.tf-replica-index=\"${INDEX}\" "
 gcloud --project=${PROJECT} logging read  \
-	   --freshness=24h \
-	   --order asc \
-        "resource.type=\"k8s_container\" resource.labels.cluster_name=\"${CLUSTER}\" resource.labels.pod_name=\"${POD_NAME}\" "
+     --freshness=24h \
+     --order asc  ${QUERY}        
 ```
 
-Events about individual pods can be obtained with the following query
-
-```
-resource.type="k8s_pod"
-resource.labels.cluster_name="${CLUSTER}"
-resource.labels.pod_name="${POD_NAME}"
-```
-
-or via gcloud
-
-```
-gcloud --project=${PROJECT} logging read  \
-	   --freshness=24h \
-	   --order asc \
-        "resource.type=\"k8s_pod\" resource.labels.cluster_name=\"${CLUSTER}\" resource.labels.pod_name=\"${POD_NAME}\" "
-```
 
 ## Troubleshooting
 
