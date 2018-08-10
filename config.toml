@@ -11,14 +11,14 @@ Paginate = 20
   twitter = "" # add your twitter profile
   email = "myemail@myaddress.xxx"
 
-  version = "latest"
+  version = "master"
   githubbranch = "master"
 
 # Add new release versions here
 [[Params.versions]]
-  version = "latest"
+  version = "master"
   githubbranch = "master"
-  url = "https://latest.kubeflow.org"
+  url = "https://master.kubeflow.org"
 
 [[Params.versions]]
   version = "v0.2"

@@ -48,7 +48,7 @@ Each branch has a corresponding netlify website that automatically syncs each me
 
 Going forward, the versioned sites should follow this convention:
 * `www.kubeflow.org` always points to the latest *stable* release
-* `latest.kubeflow.org` always points to Github head
+* `master.kubeflow.org` always points to Github head
 * `vXXX-YYY.kubeflow.org` points to the release at vXXX.YYY-branch
 
 Furthermore, whenever any documents reference any source code, the links should be created
