@@ -104,7 +104,7 @@ Notes:
 
 1. These are the minimum recommended settings on the VM created by minikube for kubeflow deployment. You are free to adjust them **higher** based on your host machine
 capabilities and workload requirements.
-1. Using certain hypervisors might require you to set --vm-driver option [specifying the driver](https://github.com/kubernetes/minikube/blob/master/docs/drivers.md)
+1. Using certain hypervisors might require you to set --vm-driver option [specifying the driver](https://github.com/kubernetes/minikube/blob/{{< params "githubbranch" >}}/docs/drivers.md)
 you want to use.
 
 In case, you have the default minikube VM already created (following detailed installation instructions), please use the following to update the VM.
@@ -120,7 +120,7 @@ The following steps will deploy Kubeflow components and start them on the Miniku
 
 Download bootstrapper configuration file.
 ```
-$ curl -O https://raw.githubusercontent.com/kubeflow/kubeflow/master/bootstrap/bootstrapper.yaml
+$ curl -O https://raw.githubusercontent.com/kubeflow/kubeflow/{{< params "githubbranch" >}}/bootstrap/bootstrapper.yaml
 ```
 
 Apply the config.
