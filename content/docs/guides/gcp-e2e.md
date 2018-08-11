@@ -2,7 +2,8 @@
 title = "End-to-end Kubeflow on GCP"
 description = "Guide to Kubeflow on Google Cloud Platform"
 weight = 10
-toc = true 
+toc = true
+draft = true
 [menu.docs]
   parent = "guides"
   weight = 2
