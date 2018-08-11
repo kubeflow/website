@@ -14,8 +14,6 @@ how to deploy Kubeflow on Kubernetes Engine, train a machine learning model for
 image classification, save the trained model, and use the model for online
 inference.
 
-TODO(sarahmaddox): Add screenshot of the prediction UI - same as shown at end of tutorial.
-
 ## Overview of GCP and Kubernetes Engine
 
 Google Cloud Platform (GCP) is a suite of cloud computing services running
@@ -95,11 +93,11 @@ runnable containers for the training and prediction applications.
 
 Download the project files and then go to the directory thus created:
 
-    ```
-    cd ${HOME}
-    git clone https://github.com/kubeflow/examples
-    cd kubeflow-e2e
-    ```
+```
+cd ${HOME}
+git clone https://github.com/kubeflow/examples
+cd kubeflow-e2e
+```
 
 ## Set up your GCP account and SDK
 
@@ -107,7 +105,7 @@ Follow these steps to set up your GCP environment:
 
 1. Select or create a project on the [GCP Console][gcp-console].
 1. Make sure that billing is enabled for your project. See the guide to
-   [modifying a project's billing settings][billing-guide].
+  [modifying a project's billing settings][billing-guide].
 1. Install the [Cloud SDK][cloud-sdk].
 
 Notes:
@@ -115,7 +113,6 @@ Notes:
 * As you work through this tutorial, your project uses billable components of
   GCP. To minimise costs, follow the instructions to
   [clean up resources](#cleanup) when you've finished with them.
-
 * This guide assumes you want to manage your GCP environment on your own server
   rather than in the [Cloud Shell][cloud-shell] environment. If you choose to
   use the Cloud Shell, you'll notice that some of the components are
@@ -126,9 +123,9 @@ Notes:
 After installing the Cloud SDK, run the following command to install the
 `kubectl` command-line tool for Kubernetes:
 
-    ```
-    gcloud components install kubectl
-    ```
+```
+gcloud components install kubectl
+```
 
 ## Install ksonnet
 
@@ -147,9 +144,10 @@ deploy (_apply_) the components directly to the cluster with `ks apply`.
 
 Follow these steps to install ksonnet:
 
-1. Install ksonnet as described in the [ksonnet installation
-   guide][ksonnet-installation], choosing the relevant options for your
-   operating system. If you're on Linux:
+1. Install ksonnet as described in the
+  [ksonnet installation guide][ksonnet-installation].
+
+    Choose the relevant options for your operating system. If you're on Linux:
 
     * Set a variable for the ksonnet version:
 
@@ -173,9 +171,9 @@ Follow these steps to install ksonnet:
 
 1. Add the `ks` command to your path:
 
-      ```
-      export PATH=$PATH:${HOME}/bin/$KS_VER
-      ```
+    ```
+    export PATH=$PATH:${HOME}/bin/$KS_VER
+    ```
 
 ## Create OAuth client credentials
 
@@ -211,30 +209,30 @@ to verify their identity.
         https://<hostname>/_gcp_gatekeeper/authenticate
         ```
 
-      `<hostname>` should have the following format:
+        `<hostname>` should have the following format:
 
         ```
         <name>.endpoints.<project>.cloud.goog
         ```
 
-      `<name>` and `<project>` must have the same values as set in the next
-      step when you run [`deploy.sh`][deploy-script].
+        `<name>` and `<project>` must have the same values as set in the next
+        step when you run [`deploy.sh`][deploy-script].
 
-        * `deploy.sh` uses **kubeflow** by default as `<name>` but you can
-          configure this with the environment variable **DEPLOYMENT_NAME**.
+        `deploy.sh` uses "kubeflow" by default as `<name>` but you can
+        configure this with the environment variable `DEPLOYMENT_NAME`.
 
-        * `deploy.sh` uses your **default GCP project** as `<project>` but you can
-          configure this with the environment variable **PROJECT**.
+        `deploy.sh` uses your default GCP project as `<project>` but you can
+        configure this with the environment variable `PROJECT`.
 
 1. Click Create.
 1. Make note of the **client ID** and **client secret** that appear in the OAuth
   client window. You need them later to enable IAP.
 1. Create environment variables from the OAuth client ID and secret:
 
-        ```
-        export CLIENT_ID=<CLIENT_ID from OAuth page>
-        export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
-        ```
+    ```
+    export CLIENT_ID=<CLIENT_ID from OAuth page>
+    export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
+    ```
 
 ## Deploy Kubeflow on GCP
 
@@ -249,16 +247,15 @@ update the configuration files for the deployment manager or ksonnet.
 Set up and run the `deploy` script:
 
 1. Set an environment variable containing your GCP project ID. In the command
-   below, replace `<YOUR-PROJECT-ID>` with your [project ID][gcp-project-id]
-   (that is, the custom name of your GCP project):
+  below, replace `<YOUR-PROJECT-ID>` with your [project ID][gcp-project-id]
+  (that is, the custom name of your GCP project):
 
-      ```
-      export PROJECT=<YOUR-PROJECT-ID>
-      ```
+    ```
+    export PROJECT=<YOUR-PROJECT-ID>
+    ```
 
 1. Set the zone for your GCP configuration. Choose a zone that offers the
-   resources you need. See the guide to GCP [regions and zones][regions-zones].
-
+  resources you need. See the guide to GCP [regions and zones][regions-zones].
     * Ensure you have enough Compute Engine regional capacity.
       By default, the Kubernetes Engine cluster setup described in this guide
       requires 16 CPUs.
@@ -266,25 +263,25 @@ Set up and run the `deploy` script:
 
     For example, the following command sets the zone to `us-central1-c`:
 
-        ```
-        gcloud config set compute/zone us-central1-c
-        export ZONE=us-central1-c
-        ```
+    ```
+    gcloud config set compute/zone us-central1-c
+    export ZONE=us-central1-c
+    ```
 
 1. If you want a custom name for your deployment, set the `DEPLOYMENT_NAME`
    environment variable. If you don't set this variable, your deployment gets
    the default name of `kubeflow`:
 
-        ```
-        export DEPLOYMENT_NAME=my-kubeflow-deployment
-        ```
+    ```
+    export DEPLOYMENT_NAME=my-kubeflow-deployment
+    ```
 
 1. Run the `deploy` script to create your GCP and Kubernetes resources:
 
-        ```
-        export KUBEFLOW_VERSION=0.2.2
-        curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
-        ```
+    ```
+    export KUBEFLOW_VERSION=0.2.2
+    curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
+    ```
 
 1. Check the resources deployed in the `kubeflow` namespace:
 
@@ -304,32 +301,24 @@ Notes:
   ready to run your code. You can interact with the cluster either by using
   [`kubectl`][kubectl] or by going to the
   [Kubernetes Engine page on the GCP Console][gcp-console-kubernetes-engine].
-
 * While the script is running, you can watch your resources appear on the
   GCP console:
-
     * [Deployment on Deployment Manager][gcp-console-deployment-manager]
     * [Cluster on Kubernetes Engine][gcp-console-kubernetes-engine]
     * [Computing resources on Compute Engine][gcp-console-compute-engine]
-
 * It can take 10-15 minutes for the URI to become available. Kubeflow needs
   to provision a signed SSL certificate and register a DNS name.
-
     * If you own/manage the domain or a subdomain with [Cloud DNS][dns]
       then you can configure this process to be much faster.
     * While you wait you can access Kubeflow services by using `kubectl proxy`
       and `kubectl port-forward` to connect to services in the cluster.
-
 * The deployment script creates the following directories containing
   your configuration:
-
-    * **{DEPLOYMENT_NAME}_deployment_manager_configs**: Configuration for
+    * `{DEPLOYMENT_NAME}_deployment_manager_configs`: Configuration for
       deployment manager.
-
         **Important** This directory contain JSON files containing secrets for your
         service accounts. **Checking your keys into source control is not advised.**
-
-    * **{DEPLOYMENT_NAME}_ks_app**: Your ksonnet application.
+    * `{DEPLOYMENT_NAME}_ks_app`: Your ksonnet application.
 
 ## Create a Cloud Storage bucket
 
@@ -341,16 +330,16 @@ storing data for archival and disaster recovery, or distributing large data
 objects to users via direct download. This tutorial uses Cloud Storage to
 hold the trained machine learning model and associated data.
 
-1. Use the [`gsutil mb`][gsutil-mb] command to create a storage bucket. Your
-   *bucket name* must be unique across all of Cloud Storage.
-   The following commands create a bucket in the `us-central1` region,
-   which corresponds to the `us-central1-c` zone used earlier
-   in the tutorial:
+Use the [`gsutil mb`][gsutil-mb] command to create a storage bucket. Your
+*bucket name* must be unique across all of Cloud Storage.
+The following commands create a bucket in the `us-central1` region,
+which corresponds to the `us-central1-c` zone used earlier
+in the tutorial:
 
-      ```
-      export BUCKET_NAME=kubeflow-${PROJECT}
-      gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
-      ```
+```
+export BUCKET_NAME=kubeflow-${PROJECT}
+gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
+```
 
 ## Test the code locally in a Jupyter notebook
 
@@ -383,23 +372,23 @@ a [Docker][docker] container image and push the image to
 1. Create a version tag from the current UNIX timestamp, to be associated with
    your model each time it runs :
 
-      ```
-      export VERSION_TAG=$(date +%s)
-      ```
+    ```
+    export VERSION_TAG=$(date +%s)
+    ```
 
 1. Set the path in Container Registry that you want to push the image to:
 
-      ```
-      export TRAIN_IMG_PATH=us.gcr.io/${PROJECT_ID}/kubeflow-train:${VERSION_TAG}
-      ```
+    ```
+    export TRAIN_IMG_PATH=us.gcr.io/${PROJECT_ID}/kubeflow-train:${VERSION_TAG}
+    ```
 
 1. Build the `tensorflow-model` directory:
 
-      ```
-      docker build -t ${TRAIN_IMG_PATH} ./tensorflow-model \
-        --build-arg version=${VERSION_TAG} \
-        --build-arg bucket=${BUCKET_NAME}
-      ```
+    ```
+    docker build -t ${TRAIN_IMG_PATH} ./tensorflow-model \
+      --build-arg version=${VERSION_TAG} \
+      --build-arg bucket=${BUCKET_NAME}
+    ```
 
     The container is tagged with its eventual path in Container Registry, but it
     stays local for now.
@@ -413,9 +402,9 @@ a [Docker][docker] container image and push the image to
 
 1. Test the container locally:
 
-      ```
-      docker run -it ${TRAIN_IMG_PATH}
-      ```
+    ```
+    docker run -it ${TRAIN_IMG_PATH}
+    ```
 
     You should see training logs start appearing in your output:
     TODO(sarahmaddox): Add example output.
@@ -430,17 +419,17 @@ TODO(sarahmaddox): Not sure if I need the step below - try without it first.
 
 1. Grant Docker access to your Container Registry:
 
-      ```
-      gcloud auth configure-docker
-      ```
+    ```
+    gcloud auth configure-docker
+    ```
 
     Enter **y** to continue when prompted.
 
 1. Push the container to Container Registry:
 
-      ```
-      docker push ${TRAIN_IMG_PATH}
-      ```
+    ```
+    docker push ${TRAIN_IMG_PATH}
+    ```
 
 1. Wait until the process is complete, then you should see your new container
    image listed on the [Container Registry page][gcp-container-registry]
@@ -456,10 +445,10 @@ Kubernetes Engine.
    from the [`tf-job` prototype][tf-job-prototype]. The code below generates a
    component called `train`:
 
-      ```
-      cd ${HOME}/kubeflow-e2e/${DEPLOYMENT_NAME}_ks_app
-      ks generate tf-job-simple train
-      ```
+    ```
+    cd ${HOME}/kubeflow-e2e/${DEPLOYMENT_NAME}_ks_app
+    ks generate tf-job-simple train
+    ```
 
     You should now see a new file, `train.jsonnet`, in your
     `${DEPLOYMENT_NAME}_ks_app` directory.
@@ -468,19 +457,19 @@ Kubernetes Engine.
    parameters, pointing to your training container in Container Registry and
    your Cloud Storage bucket:
 
-      ```
-      ks param set train image ${TRAIN_IMG_PATH}
-      ks param set train name "train-"${VERSION_TAG}
-      ks param set train output_model_gcs_bucket "${BUCKET_NAME}"
-      ```
+    ```
+    ks param set train image ${TRAIN_IMG_PATH}
+    ks param set train name "train-"${VERSION_TAG}
+    ks param set train output_model_gcs_bucket "${BUCKET_NAME}"
+    ```
 
 1. [Apply][ks-apply] the container to the cluster. The following command applies
    the container in the `default` ksonnet environment, because that's the
    environment created by the `deploy.sh` script:
 
-      ```
-      ks apply default -c train
-      ```
+    ```
+    ks apply default -c train
+    ```
 
     There should now be new workloads on the cluster, with names that start with
     `train-${VERSION_TAG}-`.
@@ -508,7 +497,8 @@ the `tf-job-simple` component every time. When you have a new version to push:
 New model versions will appear in appropriately tagged directories in your
 Cloud Storage bucket.
 
-## Serve the trained model {: #serve-model }
+<a id="serve-model"></a>
+## Serve the trained model
 
 It’s time to put your trained model on a server so that you
 can send it prediction requests. You use the
@@ -525,16 +515,16 @@ requests:
 1. [Generate][ks-generate] a ksonnet component from the prototype. The code
    below names the server `model-serve`:
 
-      ```
-      ks generate tf-serving serve --name=model-serve
-      ```
+    ```
+    ks generate tf-serving serve --name=model-serve
+    ```
 
 1. Set the parameters and [apply][ks-apply] the component to the cluster:
 
-      ```
-      ks param set serve modelPath gs://${BUCKET_NAME}/
-      ks apply default -c serve
-      ```
+    ```
+    ks param set serve modelPath gs://${BUCKET_NAME}/
+    ks apply default -c serve
+    ```
 
     Note that you don’t need to add a `VERSION_TAG`, even though you may have
     multiple versions of your model saved in your bucket. Instead, the serving
@@ -544,13 +534,13 @@ requests:
     You can check the logs of the running server pod to ensure everything is
     working as expected:
 
-        ```
-        export POD_NAME=$(kubectl get pods \
-          --selector=app=model-serve \
-          --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+    ```
+    export POD_NAME=$(kubectl get pods \
+      --selector=app=model-serve \
+      --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
 
-        kubectl logs ${POD_NAME}
-        ```
+    kubectl logs ${POD_NAME}
+    ```
 
     If you get an error, the initialization may not be complete. Wait a moment
     then re-try the command.
@@ -577,28 +567,28 @@ As usual, first build a container from your code:
 
 1. Move back to the `kubeflow-e2e` project directory:
 
-      ```
-      cd ${HOME}/kubeflow-e2e
-      ```
+    ```
+    cd ${HOME}/kubeflow-e2e
+    ```
 
 1. Set the path in [Container Registry][container-registry] to push the
    container image to:
 
-      ```
-      export UI_IMG_PATH=us.gcr.io/${PROJECT}/kubeflow-web-ui
-      ```
+    ```
+    export UI_IMG_PATH=us.gcr.io/${PROJECT}/kubeflow-web-ui
+    ```
 
 1. Build the `web-ui` directory:
 
-      ```
-      docker build -t ${UI_IMG_PATH} ./web-ui
-      ```
+    ```
+    docker build -t ${UI_IMG_PATH} ./web-ui
+    ```
 
 1. Push the container to Container Registry:
 
-      ```
-      docker push ${UI_IMG_PATH}
-      ```
+    ```
+    docker push ${UI_IMG_PATH}
+    ```
 
 ### Create a ksonnet component
 
@@ -609,26 +599,26 @@ server from outside the cluster.
 
 1. Move back into your ksonnet project directory:
 
-      ```
-      cd ${HOME}/kubeflow-e2e/ksonnet-kubeflow
-      ```
+    ```
+    cd ${HOME}/kubeflow-e2e/ksonnet-kubeflow
+    ```
 
 1. [Generate][ks-generate] the component from its prototype:
 
-      ```
-      ks generate deployed-service web-ui \
-        --containerPort=5000 \
-        --image=${UI_IMG_PATH} \
-        --name=web-ui \
-        --servicePort=80 \
-        --type=LoadBalancer
-      ```
+    ```
+    ks generate deployed-service web-ui \
+      --containerPort=5000 \
+      --image=${UI_IMG_PATH} \
+      --name=web-ui \
+      --servicePort=80 \
+      --type=LoadBalancer
+    ```
 
 1. [Apply][ks-apply] the component to your cluster:
 
-      ```
-      ks apply default -c web-ui
-      ```
+    ```
+    ks apply default -c web-ui
+    ```
 
 ### Access the web UI in your browser
 
@@ -637,9 +627,9 @@ access the web UI in your web browser.
 
 1. Find the external IP address of the service:
 
-      ```
-      kubectl get service web-ui
-      ```
+    ```
+    kubectl get service web-ui
+    ```
 
     TODO(sarahmaddox): Show example output of the above command
 
@@ -685,10 +675,10 @@ find any!
 
 Run the following commands to delete your deployment and reclaim all resources:
 
-    ```
-    gcloud deployment-manager --project=${PROJECT} deployments delete ${DEPLOYMENT_NAME}
-    gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
-    ```
+```
+gcloud deployment-manager --project=${PROJECT} deployments delete ${DEPLOYMENT_NAME}
+gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+```
 
 [mnist-data]: http://yann.lecun.com/exdb/mnist/index.html
 
