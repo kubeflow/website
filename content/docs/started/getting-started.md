@@ -30,7 +30,7 @@ This documentation assumes you have a Kubernetes cluster already available.
 
   * For local environment try [Minikube setup](/docs/started/getting-started-minikube/).
   * For cloud environment try [GKE setup](/docs/started/getting-started-gke/).
-  * For general k8s cluster try [quick start](/docs/started/getting-started/#quick-start) or [install via ksonnet](/docs/started/getting-started/#install-via-ksonnet).
+  * For general k8s cluster try [quick start](/docs/started/getting-started/#quick-start) or [install via ksonnet](/docs/guides/components/ksonnet).
 
 For more general information on setting up a Kubernetes cluster please refer to [Kubernetes Setup](https://kubernetes.io/docs/setup/). If you want to use GPUs, be sure to follow the Kubernetes [instructions for enabling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
 
@@ -39,7 +39,7 @@ For more general information on setting up a Kubernetes cluster please refer to 
 Requirements:
 
   * ksonnet version [0.11.0](https://github.com/ksonnet/ksonnet/releases).
-  * Kubernetes >= 1.8 [see here](https://github.com/kubeflow/tf-operator#requirements)
+  * Kubernetes >= 1.8
   * kubectl
 
 Run the following script to create a ksonnet app for Kubeflow and deploy it.
