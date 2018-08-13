@@ -12,9 +12,11 @@ This guide shows you how to use Kubeflow on Kubernetes Engine to implement an
 end-to-end machine learning workflow. By working through the guide, you'll learn
 how to deploy Kubeflow on Kubernetes Engine, train a machine learning model for
 image classification, save the trained model, and use the model for online
-inference.
+inference (also known as online prediction).
 
-## Overview of GCP and Kubernetes Engine
+## Introductions
+
+### Overview of GCP and Kubernetes Engine
 
 Google Cloud Platform (GCP) is a suite of cloud computing services running
 on Google infrastructure. The services include compute power, data storage,
@@ -37,7 +39,7 @@ guide:
   * [Container Registry][container-registry]
   * [Cloud Storage][cloud-storage]
 
-## The model and the data
+### The model and the data
 
 This tutorial trains a [TensorFlow][tensorflow] model on the
 [MNIST dataset][mnist-data], which is the *hello world* for machine learning.
@@ -54,9 +56,7 @@ TODO(sarahmaddox): Add screenshot of the prediction UI - same as shown at end of
 
 TODO(sarahmaddox): Add workflow diagrams at the relevant stages in this tutorial.
 
-## Overview of the workflow
-
-TODO(sarahmaddox): Sort out the steps below when I've defined the rest of the tutorial.
+### The overall workflow
 
 Here's an overview of what you accomplish by following this guide:
 
@@ -78,13 +78,15 @@ Here's an overview of what you accomplish by following this guide:
   * Build a simple web app to send a prediction request to the model and display
     the result.
 
-## Download the project files
+## Setup
 
-TODO(sarahmaddox): Clean up this section when I know what's in the sample repo.
+### Download the project files
 
-TODO(sarahmaddox): Make a repo in kubeflow/examples called kubeflow-e2e at https://github.com/kubeflow/examples/kubernetes-engine-end-to-end
+TODO(sarahmaddox): Update this section when the updated sample is in the Kubeflow repo.
 
-TODO(sarahmaddox): Use an MNIST model but use distributed training in the Python code and YAML files.
+TODO(sarahmaddox): Also change all mentions of directory "kubeflow-introduction" to "kubeflow-gcp" or something similar, depending on repo name.
+
+TODO(sarahmaddox): Add distributed training to the MNIST model (Python code and YAML files).
 
 To simplify this tutorial, you can use a set of prepared files that include
 a TensorFlow application for training your model, a web UI to send prediction
@@ -95,11 +97,11 @@ Download the project files and then go to the directory thus created:
 
 ```
 cd ${HOME}
-git clone https://github.com/kubeflow/examples
-cd kubeflow-e2e
+git clone https://github.com/googlecodelabs/kubeflow-introduction
+cd kubeflow-introduction
 ```
 
-## Set up your GCP account and SDK
+### Set up your GCP account and SDK
 
 Follow these steps to set up your GCP environment:
 
@@ -118,16 +120,70 @@ Notes:
   use the Cloud Shell, you'll notice that some of the components are
   pre-installed in your shell. That's OK.
 
-## Install kubectl
+### Create OAuth client credentials
 
-After installing the Cloud SDK, run the following command to install the
+Create an OAuth client ID to be used to identify the
+[Identity Aware Proxy (IAP)][iap] when requesting access to a user's email
+to verify their identity.
+
+1. Set up your OAuth consent screen:
+
+    * Go to the [consent screen][gcp-console-consent] on the GCP console and
+      enter the information requested.
+    * Under **Email address**, select the address that you want to display as a
+      public contact. You must use either your email address or a Google Group
+      that you own.
+    * In the **Product name** box, enter a suitable name like "kubeflow".
+    * Under **Authorized domains**, enter the following:
+
+        ```
+        <project>.cloud.goog
+        ```
+
+     where `<project>` is your GCP project ID.
+
+   * Click **Save**.
+
+1. On the [Credentials][gcp-console-credentials] screen:
+
+    * Click **Create credentials**, and then click **OAuth client ID**.
+    * Under **Application type**, select **Web application**.
+    * In the **Name** box enter any name.
+    * In the **Authorized redirect URIs** box, enter the following:
+
+        ```
+        https://<name>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate
+        ```
+
+        `<name>` and `<project>` must have the same values as set in the next
+        step when you run [`deploy.sh`][deploy-script].
+
+        `deploy.sh` uses "kubeflow" by default for `<name>` but you can
+        configure this with the environment variable `DEPLOYMENT_NAME`.
+
+        `deploy.sh` uses your default GCP project for `<project>` but you can
+        configure this with the environment variable `PROJECT`.
+
+1. Click Create.
+1. Make note of the **client ID** and **client secret** that appear in the OAuth
+  client window. You need them later to enable IAP.
+1. Create environment variables from the OAuth client ID and secret:
+
+    ```
+    export CLIENT_ID=<CLIENT_ID from OAuth page>
+    export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
+    ```
+
+### Install kubectl
+
+Run the following Cloud SDK command to install the
 `kubectl` command-line tool for Kubernetes:
 
 ```
 gcloud components install kubectl
 ```
 
-## Install ksonnet
+### Install ksonnet
 
 Kubeflow makes use of [ksonnet] to help manage deployments. ksonnet acts as a
 layer on top of `kubectl`. While Kubernetes is typically managed with static
@@ -175,65 +231,6 @@ Follow these steps to install ksonnet:
     export PATH=$PATH:${HOME}/bin/$KS_VER
     ```
 
-## Create OAuth client credentials
-
-Create an OAuth client ID to be used to identify the
-[Identity Aware Proxy (IAP)][iap] when requesting access to a user's email
-to verify their identity.
-
-1. Set up your OAuth consent screen:
-
-    * Configure the [consent screen][gcp-console-consent].
-    * Under **Email address**, select the address that you want to display as a
-      public contact. You must use either your email address or a Google Group
-      that you own.
-    * In the **Product name** box, enter a suitable name like kubeflow".
-    * Under **Authorized domains**, enter the following:
-
-        ```
-        <project>.cloud.goog
-        ```
-
-     where `<project>` is your GCP project ID.
-
-   * Click **Save**.
-
-1. On the [Credentials][gcp-console-credentials] screen:
-
-    * Click **Create credentials**, and then click **OAuth client ID**.
-    * Under **Application type**, select **Web application**.
-    * In the **Name** box enter any name.
-    * In the **Authorized redirect URIs** box, enter the following:
-
-        ```
-        https://<hostname>/_gcp_gatekeeper/authenticate
-        ```
-
-        `<hostname>` should have the following format:
-
-        ```
-        <name>.endpoints.<project>.cloud.goog
-        ```
-
-        `<name>` and `<project>` must have the same values as set in the next
-        step when you run [`deploy.sh`][deploy-script].
-
-        `deploy.sh` uses "kubeflow" by default as `<name>` but you can
-        configure this with the environment variable `DEPLOYMENT_NAME`.
-
-        `deploy.sh` uses your default GCP project as `<project>` but you can
-        configure this with the environment variable `PROJECT`.
-
-1. Click Create.
-1. Make note of the **client ID** and **client secret** that appear in the OAuth
-  client window. You need them later to enable IAP.
-1. Create environment variables from the OAuth client ID and secret:
-
-    ```
-    export CLIENT_ID=<CLIENT_ID from OAuth page>
-    export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
-    ```
-
 ## Deploy Kubeflow on GCP
 
 In this section you'll run the [deploy.sh script][deploy-script]. The script
@@ -273,7 +270,7 @@ Set up and run the `deploy` script:
    the default name of `kubeflow`:
 
     ```
-    export DEPLOYMENT_NAME=my-kubeflow-deployment
+    export DEPLOYMENT_NAME=kubeflow
     ```
 
 1. Run the `deploy` script to create your GCP and Kubernetes resources:
@@ -292,7 +289,7 @@ Set up and run the `deploy` script:
 1. Kubeflow will be available at the following URI:
 
     ```
-    https://<name>.endpoints.<project>.cloud.goog/
+    https://<deployment-name>.endpoints.<project>.cloud.goog/
     ```
 
 Notes:
@@ -347,16 +344,14 @@ TODO(sarahmaddox): Add a section to experiment the code locally using a Jupyter 
 
 ## Prepare and run your training application
 
-TODO(sarahmaddox): Fix this up when I know what the sample project and the Python program look like.
-
 When you downloaded the project files at the start of the tutorial, you
 downloaded the code for your TensorFlow application. The
-`kubeflow-e2e/tensorflow-model` directory contains:
+`kubeflow-introduction/tensorflow-model` directory contains:
 
 * A Python file, `model.py`, containing TensorFlow code.
 * A Dockerfile to build the application into a container image.
 
-`model.py` does the following:
+The Python program, `model.py`, does the following:
 
 * Defines a simple feed-forward neural network with two hidden layers.
 * Defines tensor operations to train and evaluate the model’s weights.
@@ -379,7 +374,7 @@ a [Docker][docker] container image and push the image to
 1. Set the path in Container Registry that you want to push the image to:
 
     ```
-    export TRAIN_IMG_PATH=us.gcr.io/${PROJECT_ID}/kubeflow-train:${VERSION_TAG}
+    export TRAIN_IMG_PATH=us.gcr.io/${PROJECT_ID}/${DEPLOYMENT_NAME}-train:${VERSION_TAG}
     ```
 
 1. Build the `tensorflow-model` directory:
@@ -446,7 +441,7 @@ Kubernetes Engine.
    component called `train`:
 
     ```
-    cd ${HOME}/kubeflow-e2e/${DEPLOYMENT_NAME}_ks_app
+    cd ${HOME}/kubeflow-introduction/${DEPLOYMENT_NAME}_ks_app
     ks generate tf-job-simple train
     ```
 
@@ -554,7 +549,7 @@ interact with a trained model server.
 
 When you downloaded the project files at the start of the tutorial, you
 downloaded the code for a simple web UI. The code is stored in the
-`kubeflow-e2e/web-ui` directory.
+`kubeflow-introduction/web-ui` directory.
 
 The web page consists of a simple [Flask][flask] server that hosts the
 HTML/CSS/JavaScript files for the web page. The Flask server makes use of
@@ -565,10 +560,10 @@ the TensorFlow server.
 
 As usual, first build a container from your code:
 
-1. Move back to the `kubeflow-e2e` project directory:
+1. Move back to the `kubeflow-introduction` project directory:
 
     ```
-    cd ${HOME}/kubeflow-e2e
+    cd ${HOME}/kubeflow-introduction
     ```
 
 1. Set the path in [Container Registry][container-registry] to push the
@@ -600,7 +595,7 @@ server from outside the cluster.
 1. Move back into your ksonnet project directory:
 
     ```
-    cd ${HOME}/kubeflow-e2e/ksonnet-kubeflow
+    cd ${HOME}/kubeflow-introduction/ksonnet-kubeflow
     ```
 
 1. [Generate][ks-generate] the component from its prototype:
