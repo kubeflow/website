@@ -12,7 +12,7 @@ aliases = ["/docs/guides/"]
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 * [Tensorflow](https://www.tensorflow.org/get_started/)
-* [Ksonnet](https://ksonnet.io/docs/tutorial)
+* [ksonnet](https://ksonnet.io/docs/tutorial)
 
 For an end to end example illustrating in details how to deploy kubeflow and run a training job from scratch, check out this [tutorial](https://ai.intel.com/lets-flow-within-kubeflow/).
 

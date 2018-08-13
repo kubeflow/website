@@ -14,7 +14,7 @@ Kubeflow makes use of [ksonnet] to help manage deployments.
 ## Installing ksonnet
 
 Make sure you have the version of ksonnet specified in the 
-[Kubeflow requirements][/docs/guides/requirements].
+[Kubeflow requirements](/docs/guides/requirements).
 
 Follow the steps below to install ksonnet:
 
@@ -84,7 +84,20 @@ ks apply default
 
 See the guide to [upgrading Kubeflow](/docs/guides/upgrade/).
 
-## Overview of ksonnet
+## Why Kubeflow uses ksonnet
+
+ksonnet makes it easier to manage complex deployments consisting of multiple components. It is designed to
+work side by side with kubectl.
+
+ksonnet allows us to generate Kubernetes manifests from parameterized templates. This makes it easy to customize Kubernetes manifests for your
+particular use case. In the examples above we used this functionality to generate manifests for TfServing with a user supplied URI for the model.
+
+One of the reasons we really like ksonnet is because it treats [environment](https://ksonnet.io/docs/concepts#environment) as in (dev, test, staging, prod) as a first class concept. For each environment we can easily deploy the same components but with slightly different parameters
+to customize it for a particular environments. We think this maps really well to common workflows. For example, this feature makes it really
+easy to run a job locally without GPUs for a small number of steps to make sure the code doesn't crash, and then easily move that to the
+Cloud to run at scale with GPUs.
+
+## More about ksonnet
 
 ksonnet acts as a layer on top of `kubectl`. While Kubernetes is typically
 managed with static YAML files, ksonnet adds a further abstraction that is 
@@ -122,18 +135,8 @@ Some useful ksonnet concepts:
   to a cluster. It can also hold different parameters for different
   environments.
 
-## Why Kubeflow uses ksonnet
-
-ksonnet makes it easier to manage complex deployments consisting of multiple components. It is designed to
-work side by side with kubectl.
-
-ksonnet allows us to generate Kubernetes manifests from parameterized templates. This makes it easy to customize Kubernetes manifests for your
-particular use case. In the examples above we used this functionality to generate manifests for TfServing with a user supplied URI for the model.
-
-One of the reasons we really like ksonnet is because it treats [environment](https://ksonnet.io/docs/concepts#environment) as in (dev, test, staging, prod) as a first class concept. For each environment we can easily deploy the same components but with slightly different parameters
-to customize it for a particular environments. We think this maps really well to common workflows. For example, this feature makes it really
-easy to run a job locally without GPUs for a small number of steps to make sure the code doesn't crash, and then easily move that to the
-Cloud to run at scale with GPUs.
+Read more about the core ksonnet conceps in the
+[ksonnet documentation](https://ksonnet.io/docs/concepts/).
 
 [ksonnet]: https://ksonnet.io/
 [ksonnet-installation]: https://ksonnet.io/#get-started
