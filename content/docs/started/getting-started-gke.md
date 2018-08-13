@@ -76,13 +76,12 @@ Run the following steps to deploy Kubeflow.
 
 1. Run the following script to download `kfctl.sh`
 
+    ```
+    mkdir ${KUBEFLOW_SRC}
+    cd ${KUBEFLOW_SRC}
+    export KUBEFLOW_TAG=<version>
+    curl https://raw.githubusercontent.com/kubeflow/kubeflow/{{< params "githubbranch" >}}/scripts/download.sh | bash
      ```
-     mkdir ${KUBEFLOW_SRC}
-     cd ${KUBEFLOW_SRC}
-     export KUBEFLOW_TAG=<version>
-     curl https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/download.sh | bash
-     ```
-   
    * **KUBEFLOW_SRC** directory where you want to download the source to
    * **KUBEFLOW_TAG** a tag corresponding to the version to checkout such as `master` for latest code.
    * **Note** you can also just clone the repository using git.
