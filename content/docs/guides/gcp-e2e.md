@@ -233,10 +233,10 @@ Follow these steps to install ksonnet:
 
 ## Deploy Kubeflow on GCP
 
-In this section you'll run the [deploy.sh script][deploy-script]. The script
-uses [Deployment Manager][deployment-manager] to declaratively manage all non
-Kubernetes resources, including your Kubernetes Engine cluster. This makes it
-easy to customize the configuration for your particular use case.
+In this section you run the Kubeflow [deploy.sh script][deploy-script] for GCP. 
+The script uses [Deployment Manager][deployment-manager] to declaratively manage
+all non Kubernetes resources, including your Kubernetes Engine cluster. This 
+makes it easy to customize the configuration for your particular use case.
 Use environment variables to configure basic settings, such as the deployment
 name (`DEPLOYMENT_NAME`) and GCP zone (`ZONE`). For more advanced customization,
 update the configuration files for the deployment manager or ksonnet.
@@ -266,8 +266,10 @@ Set up and run the `deploy` script:
     ```
 
 1. If you want a custom name for your deployment, set the `DEPLOYMENT_NAME`
-   environment variable. If you don't set this variable, your deployment gets
-   the default name of `kubeflow`:
+   environment variable. Note that the name must be the same as the one you
+   used when configuring the **redirect URI** for the OAuth client credentials
+   earlier in this tutorial. If you don't set this variable, your deployment
+   gets the default name of `kubeflow`:
 
     ```
     export DEPLOYMENT_NAME=kubeflow
