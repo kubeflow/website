@@ -14,8 +14,6 @@ aliases = ["/docs/guides/"]
 * [Tensorflow](https://www.tensorflow.org/get_started/)
 * [Ksonnet](https://ksonnet.io/docs/tutorial)
 
-For an end-to-end example illustrating in detail how to deploy kubeflow and run a training job from scratch, check out this [tutorial](https://ai.intel.com/lets-flow-within-kubeflow/).
-
 ## Requirements
  * ksonnet version [0.11.0](https://ksonnet.io/#get-started)
  * An existing Kubernetes cluster >= 1.8:
