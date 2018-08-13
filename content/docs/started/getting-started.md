@@ -26,11 +26,11 @@ functionality and actively soliciting help from companies and individuals intere
 
 ## Setup
 
-This documentation assumes you have a Kubernetes cluster already available.
+This documentation assumes you have a Kubernetes cluster available. If
+not, setup one of these environments first:
 
-  * For local environment try [Minikube setup](/docs/started/getting-started-minikube/).
-  * For cloud environment try [GKE setup](/docs/started/getting-started-gke/).
-  * For general k8s cluster try [quick start](/docs/started/getting-started/#quick-start) or [install via ksonnet](/docs/started/getting-started/#install-via-ksonnet).
+  * Local: [Minikube setup](/docs/started/getting-started-minikube/)
+  * Cloud: [GKE setup](/docs/started/getting-started-gke/)
 
 For more general information on setting up a Kubernetes cluster please refer to [Kubernetes Setup](https://kubernetes.io/docs/setup/). If you want to use GPUs, be sure to follow the Kubernetes [instructions for enabling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
 
@@ -39,7 +39,7 @@ For more general information on setting up a Kubernetes cluster please refer to 
 Requirements:
 
   * ksonnet version [0.11.0](https://github.com/ksonnet/ksonnet/releases).
-  * Kubernetes >= 1.8 [see here](https://github.com/kubeflow/tf-operator#requirements)
+  * Kubernetes >= 1.8
   * kubectl
 
 Run the following script to create a ksonnet app for Kubeflow and deploy it.
@@ -58,4 +58,15 @@ For detailed troubleshooting instructions, please refer to the [Troubleshooting 
 ## Resources
 
 * The Guides section (see sections on left) provides in-depth instructions for using Kubeflow
-* Katacoda has produced a [self-paced scenario](https://www.katacoda.com/kubeflow) for learning and trying out Kubeflow
+* Self-paced scenarios for learning and trying out Kubeflow
+  * [Codelabs](https://codelabs.developers.google.com/?cat=tensorflow)
+    * [Introduction to Kubeflow on Google Kubernetes Engine](https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html)
+    * [Kubeflow End to End: GitHub Issue Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-e2e-gis/index.html)
+  * [Katacoda](https://www.katacoda.com/kubeflow)
+    * [Deploying GitHub Issue Summarization with Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploying-github-issue-summarization)
+    * [Deploying Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploying-kubeflow)
+    * [Deploying Kubeflow with Ksonnet](https://www.katacoda.com/kubeflow/scenarios/deploying-kubeflow-with-ksonnet)
+    * [Deploying Pytorch with Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploy-pytorch-with-kubeflow)
+  * [Qwiklabs](https://qwiklabs.com/catalog?keywords=kubeflow)
+    * [Introduction to Kubeflow on Google Kubernetes Engine](https://qwiklabs.com/focuses/960?locale=en&parent=catalog)
+    * [Kubeflow End to End: GitHub Issue Summarization](https://qwiklabs.com/focuses/1257?locale=en&parent=catalog)

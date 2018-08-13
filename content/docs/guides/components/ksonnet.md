@@ -1,6 +1,6 @@
 +++
-title = "Ksonnet"
-description = "Ksonnet information related to Kubeflow"
+title = "ksonnet"
+description = "ksonnet information related to Kubeflow"
 weight = 10
 toc = true
 [menu]
@@ -11,7 +11,7 @@ toc = true
 
 ## Creating a ksonnet application
 
-We will be using Ksonnet to deploy kubeflow into your existing cluster. The commands below will the cluster currently
+We will be using ksonnet to deploy kubeflow into your existing cluster. The commands below will the cluster currently
 used by `kubectl` and create the namespace `kubeflow`.
 
 
@@ -42,12 +42,12 @@ ks apply default
 
 
 
-## Why Kubeflow uses Ksonnet
+## Why Kubeflow uses ksonnet
 
-[Ksonnet](https://ksonnet.io/) is a command line tool that makes it easier to manage complex deployments consisting of multiple components. It is designed to
+[ksonnet](https://ksonnet.io/) is a command line tool that makes it easier to manage complex deployments consisting of multiple components. It is designed to
 work side by side with kubectl.
 
-Ksonnet allows us to generate Kubernetes manifests from parameterized templates. This makes it easy to customize Kubernetes manifests for your
+ksonnet allows us to generate Kubernetes manifests from parameterized templates. This makes it easy to customize Kubernetes manifests for your
 particular use case. In the examples above we used this functionality to generate manifests for TfServing with a user supplied URI for the model.
 
 One of the reasons we really like ksonnet is because it treats [environment](https://ksonnet.io/docs/concepts#environment) as in (dev, test, staging, prod) as a first class concept. For each environment we can easily deploy the same components but with slightly different parameters
