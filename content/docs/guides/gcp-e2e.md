@@ -198,23 +198,26 @@ environments for staging and production, for example. You can export your
 ksonnet components as standard Kubernetes YAML files with `ks show`, or you can
 deploy (_apply_) the components directly to the cluster with `ks apply`.
 
-Follow these steps to install ksonnet:
+Make sure you have the version of ksonnet specified in the 
+[Kubeflow requirements](/docs/guides/requirements).
 
-1. Install ksonnet as described in the
-  [ksonnet installation guide][ksonnet-installation].
+Follow the steps below to install ksonnet:
 
-    Choose the relevant options for your operating system. If you're on Linux:
+1. Follow the [ksonnet installation
+   guide][ksonnet-installation], choosing the relevant options for your
+   operating system. For example, if you're on Linux:
 
-    * Set a variable for the ksonnet version:
+    * Set some variables for the ksonnet version:
 
         ```
-        export KS_VER=ks_0.9.2_linux_amd64
+        export KS_VER=0.12.0
+        export KS_PKG=ks_${KS_VER}_linux_amd64
         ```
 
     * Download the ksonnet package:
 
         ```
-        wget -O /tmp/$KS_VER.tar.gz https://github.com/ksonnet/ksonnet/releases/download/v0.9.2/$KS_VER.tar.gz \
+        wget -O /tmp/${KS_PKG}.tar.gz https://github.com/ksonnet/ksonnet/releases/download/v${KS_VER}/${KS_PKG}.tar.gz \
           --no-check-certificate
         ```
 
@@ -222,14 +225,14 @@ Follow these steps to install ksonnet:
 
         ```
         mkdir -p ${HOME}/bin
-        tar -xvf /tmp/$KS_VER.tar.gz -C ${HOME}/bin
+        tar -xvf /tmp/$KS_PKG.tar.gz -C ${HOME}/bin
         ```
 
 1. Add the `ks` command to your path:
 
-    ```
-    export PATH=$PATH:${HOME}/bin/$KS_VER
-    ```
+      ```
+      export PATH=$PATH:${HOME}/bin/$KS_PKG
+      ```
 
 ## Deploy Kubeflow on GCP
 
