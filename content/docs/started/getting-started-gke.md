@@ -125,18 +125,18 @@ Run the following steps to deploy Kubeflow.
 
 The deployment process is controlled by 4 different commands
 
-1. init - one time setup 
-1. generate - Creates config files defining the different resources
-1. apply - Create or Update the resources
-1. delete - Delete the resources
+* **init** - one time setup 
+* **generate** - Creates config files defining the different resources
+* **apply** - Create or Update the resources
+* **delete** - Delete the resources
 
 With the exception of init all commands take an argument which describe the
 set of resources to apply the command to; this can be one of the following
 values
 
-1. platform - All GCP resources; i.e. anything that doesn't run on Kubernetes
-1. k8s - All resources that run on Kubernetes
-1. all - GCP and K8s resources
+* **platform** - All GCP resources; i.e. anything that doesn't run on Kubernetes
+* **k8s** - All resources that run on Kubernetes
+* **all** - GCP and K8s resources
 
 
 ### App Layout
@@ -165,8 +165,9 @@ Your Kubeflow app directory will contain the following files and directories.
 The deployment process is specifically divided into two steps **generate** and **apply** so that you can 
 modify your deployment before actually deploying.
 
-To customize GCP resources (e.g. your GKE cluster), you can modify the deployment manager configs in **${KFAPP}/gcp_config**
-Many change can be applied to an existing configuration in which case you can run 
+To customize GCP resources (e.g. your GKE cluster), you can modify the deployment manager configs in **${KFAPP}/gcp_config**.
+
+Many changes can be applied to an existing configuration in which case you can run 
 
 ```
 cd ${KFAPP}
@@ -193,7 +194,14 @@ ${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
 ```
 
 To customize the Kubeflow resources running within the cluster you can modify the ksonnet app in **${KFAPP}/ks_app**
-You can then redeploy using kfctl
+For example, to mount additional PVs in Jupyter
+
+```
+cd ${KF_APP}/ks_app
+ks param set jupyterhub disks "kubeflow-gcfs"  
+```
+
+You can then redeploy using kfctl. 
 
 ```
 cd ${KFAPP}
