@@ -75,6 +75,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
 Run the following steps to deploy Kubeflow.
 
 1. Run the following script to download `kfctl.sh`
+
     ```
     mkdir ${KUBEFLOW_SRC}
     cd ${KUBEFLOW_SRC}
@@ -120,7 +121,6 @@ Run the following steps to deploy Kubeflow.
     ${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
     ```
 
-DO NOT SUBMIT. 2
 ## Understanding the deployment process
 
 The deployment process is controlled by 4 different commands
