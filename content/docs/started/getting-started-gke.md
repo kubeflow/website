@@ -75,7 +75,6 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
 Run the following steps to deploy Kubeflow.
 
 1. Run the following script to download `kfctl.sh`
-
     ```
     mkdir ${KUBEFLOW_SRC}
     cd ${KUBEFLOW_SRC}
@@ -85,28 +84,22 @@ Run the following steps to deploy Kubeflow.
    * **KUBEFLOW_SRC** directory where you want to download the source to
    * **KUBEFLOW_TAG** a tag corresponding to the version to checkout such as `master` for latest code.
    * **Note** you can also just clone the repository using git.
-
 1. To setup and deploy
-
-   ```
-   ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} --platform gcp --project ${PROJECT}
-   cd ${KFAPP}
-   ${KUBEFLOW_REPO}/scripts/kfctl.sh generate platform
-   ${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
-   ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8s
-   ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
-   ```
-
+    ```
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} --platform gcp --project ${PROJECT}
+    cd ${KFAPP}
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh generate platform
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8s
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+    ```
    * **${KFAPP}** The name of a directory to store your configs. This directory will be created when you run init.
       * The contents of this directory are described in the next section.
-
 1. Check resources deployed in namespace kubeflow
-
     ```
     kubectl -n kubeflow get  all
     ```
 1. Kubeflow will be available at
-
     ```
     https://<name>.endpoints.<Project>.cloud.goog/
     ```
@@ -116,17 +109,14 @@ Run the following steps to deploy Kubeflow.
      then you can configure this process to be much faster.
      * See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731)
    * While you wait you can access Kubeflow services by using `kubectl proxy` & `kubectl port-forward` to connect to services in the cluster.
-
 1. We recommend checking in the contents of **${KFAPP}** into source control.
-
-
 1. To delete your deployment and reclaim all resources
-
     ```
     cd ${KFAPP}
     ${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
     ```
 
+DO NOT SUBMIT.
 ## Understanding the deployment process
 
 The deployment process is controlled by 4 different commands
@@ -307,6 +297,16 @@ yq -r ".resources[0].properties.instanceId=\"${DEPLOYMENT_NAME}\"" ${KFAPP}/gcp_
 mv ${KFAPP}/gcp_config/gcfs.yaml.new ${KFAPP}/gcp_config/gcfs.yaml
 ```
 
+Apply the changes
+
+```
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+```
+
+If you get an error **legacy networks are not supported** follow the instructions
+in the troubleshooting [section]()
+
 #### Configure Kubeflow to mount the GCFS volume
 
 Configure Kubeflow to mount GCFS as a volume
@@ -322,43 +322,6 @@ ks param set jupyterhub disks "kubeflow-gcfs"
 ```
 
 Apply the changes
-
-```
-cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
-```
-
-If you get an error **legacy networks are not supported** follow the instructions
-in the troubleshooting [section]()
-
-### Dealing with Legacy Networks
-
-GCFS tries to use the network named `default` by default. For older projects,
-this will be a legacy network which is incompatible with GCFS. This will
-manifest as an error like the following when deploying GCFS.
-
-```
-ERROR: (gcloud.deployment-manager.deployments.update) Error in Operation [operation-1533189457517-5726d7cfd19c9-e1b0b0b5-58ca11b8]: errors:
-- code: RESOURCE_ERROR
-  location: /deployments/jl-0801-b-gcfs/resources/filestore
-  message: '{"ResourceType":"gcp-types/file-v1beta1:projects.locations.instances","ResourceErrorCode":"400","ResourceErrorMessage":{"code":400,"message":"network
-    default is invalid; legacy networks are not supported.","status":"INVALID_ARGUMENT","statusMessage":"Bad
-    Request","requestPath":"https://file.googleapis.com/v1beta1/projects/cloud-ml-dev/locations/us-central1-a/instances","httpMethod":"POST"}}'
-    
-```
-
-To fix this we can create a new network
-
-```
-cp ${KUBEFLOW_REPO}/scripts/deployment_manager_configs/network.* \
-   ${KFAPP}/gcp_config/
-```
-
-Edit network.yaml to set the name for the network.
-
-Edit gcfs.yaml to use the name of the newly created network.
-
-Apply the changes.
 
 ```
 cd ${KFAPP}
@@ -381,7 +344,7 @@ ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
    ```
 
 
-## Troubleshooting
+## Troubleshooting IAP
 
 Here are some tips for troubleshooting IAP.
 
@@ -535,7 +498,41 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
       * Check the pods are running
       * Check services are pointing at the points (look at the endpoints for the various services)
 
-### CPU platform unavailable in requested zone
+## GCFS: legacy networks are not supported
+
+GCFS tries to use the network named `default` by default. For older projects,
+this will be a legacy network which is incompatible with GCFS. This will
+manifest as an error like the following when deploying GCFS.
+
+```
+ERROR: (gcloud.deployment-manager.deployments.update) Error in Operation [operation-1533189457517-5726d7cfd19c9-e1b0b0b5-58ca11b8]: errors:
+- code: RESOURCE_ERROR
+  location: /deployments/jl-0801-b-gcfs/resources/filestore
+  message: '{"ResourceType":"gcp-types/file-v1beta1:projects.locations.instances","ResourceErrorCode":"400","ResourceErrorMessage":{"code":400,"message":"network
+    default is invalid; legacy networks are not supported.","status":"INVALID_ARGUMENT","statusMessage":"Bad
+    Request","requestPath":"https://file.googleapis.com/v1beta1/projects/cloud-ml-dev/locations/us-central1-a/instances","httpMethod":"POST"}}'
+    
+```
+
+To fix this we can create a new network
+
+```
+cp ${KUBEFLOW_REPO}/scripts/deployment_manager_configs/network.* \
+   ${KFAPP}/gcp_config/
+```
+
+Edit network.yaml to set the name for the network.
+
+Edit gcfs.yaml to use the name of the newly created network.
+
+Apply the changes.
+
+```
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+```
+
+## CPU platform unavailable in requested zone
 
 By default we set minCpuPlatform to `Intel Haswell` to make sure AVX2 is supported.
 See [troubleshooting]("/docs/guides/troubleshooting/") for more details.
