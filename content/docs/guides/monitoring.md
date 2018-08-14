@@ -108,13 +108,13 @@ gcloud --project=${PROJECT} logging read  \
 
 #### Filter with labels
 
-The new agents also supports filter logs with labels.
+The new agents also support querying for logs using pod labels
 For example:
 
 ```
-esource.type="k8s_container"
+resource.type="k8s_container"
 resource.labels.cluster_name="${CLUSTER}"
-metadata.userLables.app="my-app"
+metadata.userLables.${LABEL_KEY}="${LABEL_VALUE}"
 ```
 
 # Monitoring
