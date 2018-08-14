@@ -70,7 +70,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
     ```
 
-### Create the Kubeflow deployment
+### Quickstart: Deploying Kubeflow on GKE
 
 Run the following steps to deploy Kubeflow.
 
@@ -97,27 +97,8 @@ Run the following steps to deploy Kubeflow.
    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
    ```
 
-   * **KFAPP** The name of a directory to store your configs. This directory will be created when you run init.
-   * Running **init** creates a directory named **${KFAPP}**
-      * The directory will be created with a file named **env.sh**
-      * **env.sh** defines several environment variables to be used to configure your Kubeflow deployment
-        * The defaults will be set based on the defaults in `gcloud config`
-
-   * **KFAPP/gcp_config** This directory will contain [Deployment Manager config Files](https://cloud.google.com/deployment-manager/docs/configuration/) defining your GCP infrastructure.
-
-     * You can change the deployment manager configs and then reapply
-
-       ```
-       ${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
-       ```
-
-     * Some settings can only be applied during resource creation; in which case you may need to delete any resources
-       and recreate from scratch using the modified config files
-
-       ```
-       ${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
-       ${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
-       ```
+   * **${KFAPP}** The name of a directory to store your configs. This directory will be created when you run init.
+      * The contents of this directory are described in the next section.
 
 1. Check resources deployed in namespace kubeflow
 
@@ -138,25 +119,97 @@ Run the following steps to deploy Kubeflow.
 
 1. We recommend checking in the contents of **${KFAPP}** into source control.
 
-## Customizing Kubeflow
 
-The setup process makes it easy to customize GCP or Kubeflow for your particular use case. 
-Under the hood [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/{{< params "githubbranch" >}}/scripts/gke/deploy.sh)
+1. To delete your deployment and reclaim all resources
 
-  1. Creates all GCP resources using deployment manager
-  1. Creates K8s resources using kubectl/ksonnet
+    ```
+    cd ${KFAPP}
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
+    ```
 
-This makes it easy to change your configuration by updating the config files and reapplying them.
+## Understanding the deployment process
 
-Deployment manager uses [YAML files](https://github.com/kubeflow/kubeflow/tree/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs)
-to define your GCP infrastructure. [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/{{< params "githubbranch" >}}/scripts/gke/deploy.sh) creates a copy of these files in *${DEPLOYMENT_NAME}_deployment_manager_config* 
+The deployment process is controlled by 4 different commands
 
-You can modify these files and then update your deployment.
+1. init - one time setup 
+1. generate - Creates config files defining the different resources
+1. apply - Create or Update the resources
+1. delete - Delete the resources
 
+With the exception of init all commands take an argument which describe the
+set of resources to apply the command to; this can be one of the following
+values
+
+1. platform - All GCP resources; i.e. anything that doesn't run on Kubernetes
+1. k8s - All resources that run on Kubernetes
+1. all - GCP and K8s resources
+
+
+### App Layout
+
+Your Kubeflow app directory will contain the following files and directories.
+
+* **env.sh** defines several environment variables related to your Kubeflow deployment
+
+  * The values are set when you run `init`
+  * The values are snapshotted inside **env.sh** to make your app self contained.
+
+* **${KFAPP}/gcp_config** This directory will contain [Deployment Manager config Files](https://cloud.google.com/deployment-manager/docs/configuration/) defining your GCP infrastructure.
+
+  * The directory is created when you run `kfctl.sh generate platform`
+  * You can modify these configs to customize your GCP infrastructure
+
+* **${KFAPP}/k8s_specs** This directory contains YAML specs for some daemons deployed on your GKE cluster.
+
+* **${KFAPP}/ks_app** This directory will contain the ksonnet application for Kubeflow.
+
+  * The directory is created when you run `kfctl.sh generate k8s`
+  * You can use ksonnet to customize Kubeflow
+
+### Customizing Kubeflow
+
+The deployment process is specifically divided into two steps **generate** and **apply** so that you can 
+modify your deployment before actually deploying.
+
+To customize GCP resources (e.g. your GKE cluster), you can modify the deployment manager configs in **${KFAPP}/gcp_config**
+Many change can be applied to an existing configuration in which case you can run 
 
 ```
-CONFIG_FILE=${DEPLOYMENT_NAME}_deployment_manager_config/cluster-kubeflow.yaml
-gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=${CONFIG_FILE}
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+```
+
+or using deployment manager directly
+
+```
+. ${KFAPP}/env.sh
+cd ${KFAPP}/gcp_config
+gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=cluster-kubeflow.yaml
+```
+  
+  * We source env.sh to define the environment variables ${PROJECT} and ${DEPLOYMENT_NAME} for this app
+
+Some changes (e.g. VM service account for GKE) can only be set at creation time; in this case you will need
+to teardown your deployment before recreating it
+
+```
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
+```
+
+To customize the Kubeflow resources running within the cluster you can modify the ksonnet app in **${KFAPP}/ks_app**
+You can then redeploy using kfctl
+
+```
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+```
+
+or using ksonnet directly
+```
+cd ${KFAPP}/ks_app
+ks apply default
 ```
 
 ### Common Customizations
@@ -216,7 +269,17 @@ If you want to use your own doman instead of **${name}.endpoints.${project}.clou
 1. Use your DNS provider to map the fully qualified domain specified in the first step to the ip address reserved
    in GCP.
 
-## To create GCFS
+### Using GCFS with Kubeflow
+
+[Google Cloud File Store](https://cloud.google.com/filestore/docs/) is a fully managed NFS offering.
+GCFS is very useful for creating a shared filesystem that can be mounted into pods such as Jupyter.
+
+To setup GCFS and use with Kubeflow follow the directions below.
+
+#### Create a GCFS instance
+
+Follow these instructions to create a GCFS instance; if you already have a GCFS instance you want to
+use you can skip this section.
 
 Copy the GCFS deployment manager configs to the gcp_config directory
 
@@ -244,12 +307,14 @@ yq -r ".resources[0].properties.instanceId=\"${DEPLOYMENT_NAME}\"" ${KFAPP}/gcp_
 mv ${KFAPP}/gcp_config/gcfs.yaml.new ${KFAPP}/gcp_config/gcfs.yaml
 ```
 
+#### Configure Kubeflow to mount the GCFS volume
+
 Configure Kubeflow to mount GCFS as a volume
 
 ```
 cd ${KFAPP}
 . env.sh
-cd ${KUBEFLOW_KS_DIR}
+cd ${KFAPP}/ks_app
 ks generate google-cloud-filestore-pv google-cloud-filestore-pv --name="kubeflow-gcfs" \
    --storageCapacity="${GCFS_STORAGE}" \
    --serverIP="${GCFS_INSTANCE_IP_ADDRESS}"
@@ -260,8 +325,12 @@ Apply the changes
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
 ```
+
+If you get an error **legacy networks are not supported** follow the instructions
+in the troubleshooting [section]()
+
 ### Dealing with Legacy Networks
 
 GCFS tries to use the network named `default` by default. For older projects,
@@ -293,7 +362,7 @@ Apply the changes.
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
 ```
 
 ## Private Clusters
@@ -311,14 +380,6 @@ ${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply all 
    ```
 
-## Deleting your deployment
-
-To delete your deployment and reclaim all resources
-
-```
-cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
-```
 
 ## Troubleshooting
 
