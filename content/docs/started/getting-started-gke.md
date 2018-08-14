@@ -276,7 +276,7 @@ If you want to use your own doman instead of **${name}.endpoints.${project}.clou
 [Google Cloud File Store](https://cloud.google.com/filestore/docs/) is a fully managed NFS offering.
 GCFS is very useful for creating a shared filesystem that can be mounted into pods such as Jupyter.
 
-To setup GCFS and use with Kubeflow follow the directions below.
+To setup GCFS and use it with Kubeflow follow the directions below.
 
 #### Create a GCFS instance
 
@@ -324,14 +324,19 @@ in the troubleshooting [section]()
 Configure Kubeflow to mount GCFS as a volume
 
 ```
-cd ${KFAPP}
-. env.sh
 cd ${KFAPP}/ks_app
 ks generate google-cloud-filestore-pv google-cloud-filestore-pv --name="kubeflow-gcfs" \
    --storageCapacity="${GCFS_STORAGE}" \
    --serverIP="${GCFS_INSTANCE_IP_ADDRESS}"
 ks param set jupyterhub disks "kubeflow-gcfs"  
 ```
+
+  * **GCFS_STORAGE** The size of the persistent volume claim
+  * ""GCFS_INSTANCE_IP_ADDRESS** The ip address of your GCFS instance; you can obtain this with gcloud
+
+     ```
+     gcloud --project=${PROJECT} beta filestore instances list
+     ```
 
 Apply the changes
 
