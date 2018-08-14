@@ -347,6 +347,11 @@ ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
 
 ## Private Clusters
 
+Creating a [private GKE cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters)
+means the GKE nodes won't have public IP addresses. This can improve security by blocking unwanted outbound/inbound
+access to nodes. Removing IP addresses means external services (including GitHub, PyPi, DockerHub etc...) won't be accessible
+from the nodes. Google services (e.g. GCR) are still accessible.
+
 1. Enable private clusters in `${KFAPP}/gcp_configs/cluster-kubeflow.yaml` by updating the line
 
    ```
