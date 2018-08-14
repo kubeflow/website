@@ -85,6 +85,7 @@ Run the following steps to deploy Kubeflow.
    * **KUBEFLOW_TAG** a tag corresponding to the version to checkout such as `master` for latest code.
    * **Note** you can also just clone the repository using git.
 1. To setup and deploy
+    
     ```
     ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} --platform gcp --project ${PROJECT}
     cd ${KFAPP}
@@ -96,10 +97,12 @@ Run the following steps to deploy Kubeflow.
    * **${KFAPP}** The name of a directory to store your configs. This directory will be created when you run init.
       * The contents of this directory are described in the next section.
 1. Check resources deployed in namespace kubeflow
+    
     ```
     kubectl -n kubeflow get  all
     ```
 1. Kubeflow will be available at
+    
     ```
     https://<name>.endpoints.<Project>.cloud.goog/
     ```
@@ -111,12 +114,13 @@ Run the following steps to deploy Kubeflow.
    * While you wait you can access Kubeflow services by using `kubectl proxy` & `kubectl port-forward` to connect to services in the cluster.
 1. We recommend checking in the contents of **${KFAPP}** into source control.
 1. To delete your deployment and reclaim all resources
+    
     ```
     cd ${KFAPP}
     ${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
     ```
 
-DO NOT SUBMIT.
+DO NOT SUBMIT. 2
 ## Understanding the deployment process
 
 The deployment process is controlled by 4 different commands
