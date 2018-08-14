@@ -42,12 +42,27 @@ Requirements:
   * Kubernetes >= 1.8 [see here](https://github.com/kubeflow/tf-operator#requirements)
   * kubectl
 
-Run the following script to create a ksonnet app for Kubeflow and deploy it.
+1. Run the following script to download `kfctl.sh`
 
-```
-export KUBEFLOW_VERSION=0.2.2
-curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/deploy.sh | bash
-```
+    ```
+    mkdir ${KUBEFLOW_SRC}
+    cd ${KUBEFLOW_SRC}
+    export KUBEFLOW_TAG=<version>
+    curl https://raw.githubusercontent.com/kubeflow/kubeflow/{{< params "githubbranch" >}}/scripts/download.sh | bash
+     ```
+   * **KUBEFLOW_SRC** directory where you want to download the source to
+   * **KUBEFLOW_TAG** a tag corresponding to the version to checkout such as `master` for latest code.
+   * **Note** you can also just clone the repository using git.
+1. To setup and deploy
+    
+    ```
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} --platform none
+    cd ${KFAPP}
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8s
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+    ```
+   * **${KFAPP}** The name of a directory to store your configs. This directory will be created when you run init.
+      * The ksonnet app will be created in the directory **${KFAPP}/ks_app**
 
 **Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explictly
 disabling it please refer to the [Usage Reporting section](/docs/guides/usage-reporting/) of the user guide.

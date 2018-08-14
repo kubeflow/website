@@ -332,7 +332,7 @@ ks param set jupyterhub disks "kubeflow-gcfs"
 ```
 
   * **GCFS_STORAGE** The size of the persistent volume claim
-  * ""GCFS_INSTANCE_IP_ADDRESS** The ip address of your GCFS instance; you can obtain this with gcloud
+  * **GCFS_INSTANCE_IP_ADDRESS** The ip address of your GCFS instance; you can obtain this with gcloud
 
      ```
      gcloud --project=${PROJECT} beta filestore instances list
