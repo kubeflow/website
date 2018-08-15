@@ -12,9 +12,10 @@ aliases = ["/docs/guides/"]
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 * [Tensorflow](https://www.tensorflow.org/get_started/)
-* [Ksonnet](https://ksonnet.io/docs/tutorial)
+* [ksonnet](https://ksonnet.io/docs/tutorial)
 
 ## Requirements
+
  * ksonnet version [0.11.0](https://ksonnet.io/#get-started). See the [ksonnet component page](/docs/guides/components/ksonnet/) for an explanation of why we use ksonnet.
  * An existing Kubernetes cluster >= 1.8:
    * A minimum of 0.6 CPU in cluster (Reserved for 3 replicated ambassador pods and according to your need add additional CPUs)
