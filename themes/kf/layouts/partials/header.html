@@ -9,6 +9,18 @@
   {{ range .Site.Menus.main }}
       <li><a href="{{ .URL }}" {{if  $currentPage.IsMenuCurrent "main" . }} class="active"{{end}}>{{ .Name }}</a></li>
   {{end}}
+    <li>
+      <div class="dropdown">
+        <a href="#">{{ .Site.Params.version }}</a>
+        <div class="dropdown-content">
+          <ul id="versions">
+            {{ range .Site.Params.versions }}
+            <li><a href="{{  .url }}">{{ .version }}</a></li>
+            {{ end }}
+          </ul>
+	</div>
+      </div>
+    </li>
   </ul>
 <!-- end main nav -->
 <div id="menuTrigger">
