@@ -84,5 +84,5 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
   - [Bringing Your Data Pipeline into the Machine Learning Era](https://kccnceu18.sched.com/event/E46y/bringing-your-data-pipeline-into-the-machine-learning-era-chris-gaun-jorg-schad-mesosphere-intermediate-skill-level): Chris Gaun, Jörg Schad
     - [Video](https://www.youtube.com/watch?v=f_-3rQoudnc)
 * [KubeCon, Austin](http://events17.linuxfoundation.org/events/kubecon-and-cloudnativecon-north-america), 6-8 December, 2017
-  - ["Hot Dogs or Not" - At Scale with Kubernetes](https://kccncna17.sched.com/event/CU5v/hot-dogs-or-not-at-scale-with-kubernetes-i-vish-kannan-david-aronchick-google): David Aronchick, Vishnu Kannan
+  - ["Hot Dog or Not Hot Dog" at Scale - Kubernetes & Machine Learning](https://kccncna17.sched.com/event/CU5v/hot-dogs-or-not-at-scale-with-kubernetes-i-vish-kannan-david-aronchick-google): David Aronchick, Vishnu Kannan
     - [Video](https://www.youtube.com/watch?v=R3dVF5wWz-g&feature=youtu.be)
