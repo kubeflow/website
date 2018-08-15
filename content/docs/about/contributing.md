@@ -30,6 +30,11 @@ again.
 
 Please make sure to read and observe our [Code of Conduct](https://github.com/kubeflow/community/blob/master/CODE_OF_CONDUCT.md).
 
+### Call for Participation in Kubeflow User Research
+
+Maggie Lynn, a user experience researcher, is conducting user studies to inform future developments for Kubeflow. These typically involve a one hour study session conducted online with a thank you gift for providing your feedback. As a member of the Kubeflow community, your feedback and expertise are extremely valuable to us, so if you have time in the next month, please consider participating. To gather your interest, availability, and some basic information about you, please fill out this form where you’ll find out more details about this research opportunity: [https://goo.gl/forms/sv5sRo3UfsgeUEjK2](https://goo.gl/forms/sv5sRo3UfsgeUEjK2)
+
+
 ## Your first contribution
 
 ### Find something to work on
