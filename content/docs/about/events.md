@@ -59,6 +59,8 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
   - [Architecture of an NLP Deployment](https://qconsp.com/sp2018/sp2018/presentation/architecture-nlp-deployment.html): Michelle Casbon
     - [Video](https://www.youtube.com/watch?v=SbecYkirt8w&t=1975)
 * [KubeCon, Copenhagen](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2018/), 2-4 May, 2018
+  - Interview: Building applications on Kubeflow: Jeremy Lewi
+    - [Video](https://www.youtube.com/watch?v=VTGH9ocdVM0)
   - [Keynote: Cloud Native ML on Kubernetes](https://kccnceu18.sched.com/event/Duoq/keynote-cloud-native-ml-on-kubernetes-david-aronchick-product-manager-cloud-ai-and-co-founder-of-kubeflow-google-vishnu-kannan-sr-software-engineer-google-slides-attached): David Aronchick, Vishnu Kannan
     - [Video](https://www.youtube.com/watch?v=I6iMznIYwM8)
     - [Slides](https://drive.google.com/file/d/1_QxDZXX-sSP8llFZQ6T2zseZOcPFuVLk/view?usp=sharing)
@@ -81,3 +83,6 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
     - [Slides](https://schd.ws/hosted_files/kccnceu18/a1/KubeCon_EU_2018%20%281%29.pdf)
   - [Bringing Your Data Pipeline into the Machine Learning Era](https://kccnceu18.sched.com/event/E46y/bringing-your-data-pipeline-into-the-machine-learning-era-chris-gaun-jorg-schad-mesosphere-intermediate-skill-level): Chris Gaun, Jörg Schad
     - [Video](https://www.youtube.com/watch?v=f_-3rQoudnc)
+* [KubeCon, Austin](http://events17.linuxfoundation.org/events/kubecon-and-cloudnativecon-north-america), 6-8 December, 2017
+  - ["Hot Dogs or Not" - At Scale with Kubernetes](https://kccncna17.sched.com/event/CU5v/hot-dogs-or-not-at-scale-with-kubernetes-i-vish-kannan-david-aronchick-google): David Aronchick, Vishnu Kannan
+    - [Video](https://www.youtube.com/watch?v=R3dVF5wWz-g&feature=youtu.be)
