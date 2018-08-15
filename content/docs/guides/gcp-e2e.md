@@ -60,23 +60,25 @@ TODO(sarahmaddox): Add workflow diagrams at the relevant stages in this tutorial
 
 Here's an overview of what you accomplish by following this guide:
 
-* Set up [Kubeflow][kubeflow] in a [Kubernetes Engine][kubernetes-engine]
+* Setting up [Kubeflow][kubeflow] in a [Kubernetes Engine][kubernetes-engine]
   cluster.
 
-* Test the code locally using a [Jupyter notebook][jupyterhub].
+* Testing the code locally using a [Jupyter notebook][jupyterhub].
 
-* Train the model:
+* Training the model:
 
-  * Package a TensorFlow program in a [Kubernetes][kubernetes] container.
-  * Upload the container to [Container Registry][container-registry].
-  * Submit a [tf.train][tf-train] job.
+  * Packaging a TensorFlow program in a [Kubernetes][kubernetes] container.
+  * Uploading the container to [Container Registry][container-registry].
+  * Submitting a [tf.train][tf-train] job.
 
-* Use the model for prediction (inference):
+* Using the model for prediction (inference):
 
-  * Save the trained model to [Cloud Storage][cloud-storage].
-  * Use [TensorFlow Serving][tf-serving] to serve the model.
-  * Build a simple web app to send a prediction request to the model and display
+  * Saving the trained model to [Cloud Storage][cloud-storage].
+  * Using [TensorFlow Serving][tf-serving] to serve the model.
+  * Building a simple web app to send a prediction request to the model and display
     the result.
+
+Let's get started!
 
 ## Setup
 
