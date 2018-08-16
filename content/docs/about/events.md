@@ -54,7 +54,7 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
     - [Video](https://www.youtube.com/watch?v=rcC11EZdo8Y)
 * [Dockercon, San Francisco](https://2018.dockercon.com/), 12 - 15 June, 2018
   - [Keynote: Moby's Cool Hacks](https://dockercon18.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=224348): David Aronchick, Michelle Casbon
-    - [Video](https://youtu.be/RnWXOAplvjY?t=19m29s)
+    - [Video](https://youtu.be/RnWXOAplvjY?t=1128)
 * [QCon, São Paulo](https://qconsp.com/sp2018/schedule/tabular.html), 9-11 May, 2018
   - [Architecture of an NLP Deployment](https://qconsp.com/sp2018/sp2018/presentation/architecture-nlp-deployment.html): Michelle Casbon
     - [Video](https://www.youtube.com/watch?v=SbecYkirt8w&t=1975)
