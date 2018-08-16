@@ -16,6 +16,7 @@ It has been 6 months since Google announced Kubeflow at KubeCon Austin, and just
   - [Katib](https://github.com/kubeflow/katib) for hyperparameter tuning
   - [Kubernetes volume controller](https://github.com/kubeflow/experimental-kvc) which provides basic volume and data management using volumes and volume sources in a Kubernetes cluster.
   - [Kubebench](https://github.com/kubeflow/kubebench ) for benchmarking of HW and ML stacks
+  - [MPI operator](https://github.com/kubeflow/mpi-operator) for running MPI jobs
   - [Pachyderm](https://github.com/kubeflow/kubeflow/tree/master/kubeflow/pachyderm) for managing complex data pipelines
   - [PyTorch operator](https://github.com/kubeflow/pytorch-operator) for running PyTorch jobs
   - [Seldon Core](https://github.com/kubeflow/kubeflow/tree/master/kubeflow/seldon) for running complex model deployments and non-TensorFlow serving
@@ -58,6 +59,7 @@ The essence of Kubeflow is all about extending the project with new components, 
   - Alpha support for advanced tooling including:
     - Katib for Hyperparameter search
     - PyTorch operator 
+    - MPI operator 
     - Horvod / MPI integration
 
 ### Leveraging Kubernetes for deeper platform integrations
