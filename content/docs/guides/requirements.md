@@ -11,13 +11,13 @@ aliases = ["/docs/guides/"]
 +++
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
-* [Tensorflow](https://www.tensorflow.org/get_started/)
+* [TensorFlow](https://www.tensorflow.org/get_started/)
 * [ksonnet](https://ksonnet.io/docs/tutorial)
 
 ## Requirements
 
- * ksonnet version {{% ksonnet-min-version %}}. See the [ksonnet component page](/docs/guides/components/ksonnet/) for an explanation of why we use ksonnet.
- * An existing Kubernetes cluster >= 1.8:
+ * ksonnet version {{% ksonnet-min-version %}} or later. See the [ksonnet component page](/docs/guides/components/ksonnet/) for an explanation of why we use ksonnet.
+ * An existing Kubernetes cluster using Kubernetes {{% kubernetes-min-version %}} or later:
    * A minimum of 0.6 CPU in cluster (Reserved for 3 replicated ambassador pods and according to your need add additional CPUs)
    * Node with storage >= 10 GB (Due to the ML libraries and third party packages being bundled in Kubeflow Docker images)
 

@@ -46,8 +46,8 @@ For more general information on setting up a Kubernetes cluster please refer to 
 
 Requirements:
 
-  * ksonnet version {{% ksonnet-min-version %}}.
-  * Kubernetes >= 1.8
+  * ksonnet version {{% ksonnet-min-version %}} or later.
+  * Kubernetes {{% kubernetes-min-version %}} or later
   * kubectl
 
 1. Run the following script to download `kfctl.sh`
