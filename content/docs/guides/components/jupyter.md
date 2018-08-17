@@ -10,7 +10,7 @@ toc = true
 
 ## Bringing up a Jupyter Notebook
 
-The kubeflow-core component deployed JupyterHub and a corresponding load balancer service. You can check its status using the kubectl command line.
+The jupyterhub component deployed JupyterHub and a corresponding load balancer service. You can check its status using the kubectl command line.
 
 ```commandline
 kubectl get svc -n=${NAMESPACE}
@@ -26,13 +26,13 @@ By default we are using ClusterIPs for the JupyterHub UI. This can be changed to
 
 - NodePort (for non-cloud) by issuing
   ```
-  ks param set kubeflow-core jupyterHubServiceType NodePort
+  ks param set jupyterhub serviceType NodePort
   ks apply ${KF_ENV}
   ```
 
 - LoadBalancer (for cloud) by issuing
   ```
-  ks param set kubeflow-core jupyterHubServiceType LoadBalancer
+  ks param set jupyterhub serviceType LoadBalancer
   ks apply ${KF_ENV}
   ```
 

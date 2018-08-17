@@ -19,14 +19,14 @@ grep -ci avx /proc/cpuinfo
 
 ### AVX2
 Some components requirement AVX2 for better performance, e.g. TF Serving.
-To ensure the nodes support AVX2, we added 
+To ensure the nodes support AVX2, we added
 [minCpuPlatform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
 arg in our deployment
 [config](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster.jinja#L105).
 
-On GCP this will fail in regions (e.g. us-central1-a) that do not explicitly have Intel 
+On GCP this will fail in regions (e.g. us-central1-a) that do not explicitly have Intel
 Haswell (even when there are other newer platforms in the region).
-In that case, please choose another region, or change the config to other 
+In that case, please choose another region, or change the config to other
 [platform](https://en.wikipedia.org/wiki/List_of_Intel_CPU_microarchitectures)
 newer than Haswell.
 
@@ -133,7 +133,7 @@ oc adm policy add-role-to-user cluster-admin -z tf-job-operator
 The [Docker for Mac](https://www.docker.com/docker-mac) Community Edition now ships with Kubernetes support (1.9.2) which can be enabled from their edge channel. If you decide to use this as your Kubernetes environment on Mac, you may encounter the following error when deploying Kubeflow:
 
 ```commandline
-ks apply default -c kubeflow-core
+ks apply default
 ERROR Attempting to deploy to environment 'default' at 'https://127.0.0.1:8443', but cannot locate a server at that address
 ```
 
@@ -159,8 +159,8 @@ Kubeflow requires a [specific version of ksonnet](/docs/guides/requirements).
 If you run `ks apply` with an older version of ksonnet you will likely get the error `Unknown variable: env` as illustrated below:
 
 ```shell
-ks apply ${KF_ENV} -c kubeflow-core
-ERROR Error reading /Users/xxx/projects/devel/go/src/github.com/kubeflow/kubeflow/my-kubeflow/environments/nocloud/main.jsonnet: /Users/xxx/projects/devel/go/src/github.com/kubeflow/kubeflow/my-kubeflow/components/kubeflow-core.jsonnet:8:49-52 Unknown variable: env
+ks apply ${KF_ENV}
+ERROR Error reading /Users/xxx/projects/devel/go/src/github.com/kubeflow/kubeflow/my-kubeflow/environments/nocloud/main.jsonnet: /Users/xxx/projects/devel/go/src/github.com/kubeflow/kubeflow/my-kubeflow/components/jupyterhub.jsonnet:8:49-52 Unknown variable: env
 
   namespace: if params.namespace == "null" then env.namespace else params.namespace
 ```
