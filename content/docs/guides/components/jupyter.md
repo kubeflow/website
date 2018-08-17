@@ -119,3 +119,37 @@ Please note that when running on most cloud providers, the public IP address wil
 unsecured endpoint by default. For a production deployment with SSL and authentication, refer to the [documentation](https://github.com/kubeflow/kubeflow/tree/{{< params "githubbranch" >}}/components/jupyterhub).
 
 
+## Submitting k8s resources from Jupyter Notebook
+
+The Jupyter Notebook pods are assigned the `jupyter-notebook` service account. This service account is bound to `jupyter-notebook` role which has namespace-scoped permissions to the following k8s resources:
+
+* pods
+* deployments
+* services
+* jobs
+* tfjobs
+* pytorchjobs
+
+This means that you can directly create these k8s resources directly from your jupyter notebook. kubectl is already installed in the notebook, so you can create k8s resources running the following command in a jupyter notebook cell
+
+```
+!kubectl create -f myspec.yaml
+```
+
+## Building docker images from Jupyter Notebook on GCP
+
+If using Jupyter Notebooks on GKE, you can submit docker image builds to Cloud Build which builds your docker images and pushes them to Google Container Registry.
+
+Activate the attached service account using
+
+```
+!gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+```
+
+If you have a Dockerfile in your current directory, you can submit a build using
+
+```
+!gcloud container builds submit --tag gcr.io/myproject/myimage:tag .
+```
+
+Advanced build documentation for docker images is available [here](https://cloud.google.com/cloud-build/docs/quickstart-docker)
