@@ -13,7 +13,7 @@ Kubeflow makes use of [ksonnet] to help manage deployments.
 
 ## Installing ksonnet
 
-Make sure you have the version of ksonnet specified in the 
+Make sure you have the version of ksonnet specified in the
 [Kubeflow requirements](/docs/guides/requirements).
 
 Follow the steps below to install ksonnet:
@@ -70,7 +70,7 @@ can run the following commands
 
 ```
 cd ${KUBEFLOW_KS_DIR}
-ks param set kubeflow-core reportUsage false
+ks param set spartakus reportUsage false
 ```
 
 You can now deploy Kubeflow as follows
@@ -100,7 +100,7 @@ Cloud to run at scale with GPUs.
 ## More about ksonnet
 
 ksonnet acts as a layer on top of `kubectl`. While Kubernetes is typically
-managed with static YAML files, ksonnet adds a further abstraction that is 
+managed with static YAML files, ksonnet adds a further abstraction that is
 closer to the objects in object-oriented programming.
 
 With ksonnet, you manage your resources as *prototypes* with empty parameters.
@@ -126,8 +126,7 @@ Some useful ksonnet concepts:
 * **Prototype:** An object that describes a set of Kubernetes resources and
   associated parameters in an abstract way. Kubeflow includes prototypes for
   `tf-job` (to run a TensorFlow training job), `tf-serving`
-  (to serve a trained model), and `kubeflow-core` (for required helper
-  resources).
+  (to serve a trained model), and a few others.
 
 * **Component:** A specific implementation of a prototype. You create a
   component supplying the empty parameters of a prototype. A component can
