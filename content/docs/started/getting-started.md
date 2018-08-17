@@ -46,7 +46,7 @@ For more general information on setting up a Kubernetes cluster please refer to 
 
 Requirements:
 
-  * ksonnet version [0.11.0](https://github.com/ksonnet/ksonnet/releases).
+  * ksonnet version {{% ksonnet-min-version %}}.
   * Kubernetes >= 1.8
   * kubectl
 
