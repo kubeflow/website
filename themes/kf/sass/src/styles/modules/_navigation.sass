@@ -60,9 +60,19 @@ body.nav-active
 		position: relative
 		flex-grow: 1
 		text-align: right
-		ul 
-			display: none	
-
+		ul
+			display: none
+		div.dropdown
+			position: relative
+			display: inline-block
+			&:hover div.dropdown-content
+				display: block
+		div.dropdown-content
+			background: $brand-color-1
+			display: none
+			position: absolute
+			a
+				display: block
 		#menuTrigger
 			$bar-height: 4px
 			border: 2px solid $brand-color-1
@@ -255,6 +265,9 @@ body.nav-active
 							display: inline-block
 							&:hover, &.active
 								background: $brand-color-3
+					#versions
+						text-align: left
+
 
 @media screen and (min-width: $large-screen)
 	#wrapper 

@@ -17,6 +17,19 @@ Linux:
 grep -ci avx /proc/cpuinfo
 ```
 
+### AVX2
+Some components requirement AVX2 for better performance, e.g. TF Serving.
+To ensure the nodes support AVX2, we added
+[minCpuPlatform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+arg in our deployment
+[config](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster.jinja#L105).
+
+On GCP this will fail in regions (e.g. us-central1-a) that do not explicitly have Intel
+Haswell (even when there are other newer platforms in the region).
+In that case, please choose another region, or change the config to other
+[platform](https://en.wikipedia.org/wiki/List_of_Intel_CPU_microarchitectures)
+newer than Haswell.
+
 ## Minikube
 
 On [Minikube](https://github.com/kubernetes/minikube) the Virtualbox/VMware drivers for Minikube are recommended as there is a known
@@ -45,7 +58,7 @@ If you encounter a jupyter-xxxx pod in Pending status, described with:
 ```
 Warning  FailedScheduling  8s (x22 over 5m)  default-scheduler  0/1 nodes are available: 1 Insufficient memory.
 ```
-  * Then try recreating your Minikube cluster (and re-apply Kubeflow using Ksonnet) with more resources (as your environment allows):
+  * Then try recreating your Minikube cluster (and re-apply Kubeflow using ksonnet) with more resources (as your environment allows):
 
 ## RBAC clusters
 
@@ -120,11 +133,11 @@ oc adm policy add-role-to-user cluster-admin -z tf-job-operator
 The [Docker for Mac](https://www.docker.com/docker-mac) Community Edition now ships with Kubernetes support (1.9.2) which can be enabled from their edge channel. If you decide to use this as your Kubernetes environment on Mac, you may encounter the following error when deploying Kubeflow:
 
 ```commandline
-ks apply default -c kubeflow-core
+ks apply default
 ERROR Attempting to deploy to environment 'default' at 'https://127.0.0.1:8443', but cannot locate a server at that address
 ```
 
-This error is due to the fact that the default cluster installed by Docker for Mac is actually set to `https://localhost:6443`. One option is to directly edit the generated `environments/default/spec.json` file to set the "server" variable to the correct location, then retry the deployment. However, it is preferable to initialize your Ksonnet app using the desired kube config:
+This error is due to the fact that the default cluster installed by Docker for Mac is actually set to `https://localhost:6443`. One option is to directly edit the generated `environments/default/spec.json` file to set the "server" variable to the correct location, then retry the deployment. However, it is preferable to initialize your ksonnet app using the desired kube config:
 
 ```commandline
 kubectl config use-context docker-for-desktop
@@ -142,12 +155,12 @@ export GITHUB_TOKEN=<< token >>
 
 ## ks apply produces error "Unknown variable: env"
 
-Kubeflow requires [specific version of ksonnet](/docs/guides/requirements).
+Kubeflow requires a [specific version of ksonnet](/docs/guides/requirements).
 If you run `ks apply` with an older version of ksonnet you will likely get the error `Unknown variable: env` as illustrated below:
 
 ```shell
-ks apply ${KF_ENV} -c kubeflow-core
-ERROR Error reading /Users/xxx/projects/devel/go/src/github.com/kubeflow/kubeflow/my-kubeflow/environments/nocloud/main.jsonnet: /Users/xxx/projects/devel/go/src/github.com/kubeflow/kubeflow/my-kubeflow/components/kubeflow-core.jsonnet:8:49-52 Unknown variable: env
+ks apply ${KF_ENV}
+ERROR Error reading /Users/xxx/projects/devel/go/src/github.com/kubeflow/kubeflow/my-kubeflow/environments/nocloud/main.jsonnet: /Users/xxx/projects/devel/go/src/github.com/kubeflow/kubeflow/my-kubeflow/components/jupyterhub.jsonnet:8:49-52 Unknown variable: env
 
   namespace: if params.namespace == "null" then env.namespace else params.namespace
 ```
@@ -158,6 +171,4 @@ You can check the ksonnet version as follows:
 ks version
 ```
 
-If your ksonnet version is lower than what is specified in the [requirements](/docs/guides/requirements), please upgrade it and follow the [guide](/docs/guides/) to recreate the app.
-
-
+If your ksonnet version is lower than what is specified in the [requirements](/docs/guides/requirements), please upgrade it and follow the [guide](/docs/guides/components/ksonnet) to recreate the app.

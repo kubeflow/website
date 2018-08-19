@@ -10,7 +10,7 @@ toc = true
 
 ## Bringing up a Jupyter Notebook
 
-The kubeflow-core component deployed JupyterHub and a corresponding load balancer service. You can check its status using the kubectl command line.
+The jupyterhub component deployed JupyterHub and a corresponding load balancer service. You can check its status using the kubectl command line.
 
 ```commandline
 kubectl get svc -n=${NAMESPACE}
@@ -26,13 +26,13 @@ By default we are using ClusterIPs for the JupyterHub UI. This can be changed to
 
 - NodePort (for non-cloud) by issuing
   ```
-  ks param set kubeflow-core jupyterHubServiceType NodePort
+  ks param set jupyterhub serviceType NodePort
   ks apply ${KF_ENV}
   ```
 
 - LoadBalancer (for cloud) by issuing
   ```
-  ks param set kubeflow-core jupyterHubServiceType LoadBalancer
+  ks param set jupyterhub serviceType LoadBalancer
   ks apply ${KF_ENV}
   ```
 
@@ -116,6 +116,40 @@ print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}
 Paste the example into a new Python 3 Jupyter notebook and execute the code. This should result in a 0.9014 accuracy result against the test data.
 
 Please note that when running on most cloud providers, the public IP address will be exposed to the internet and is an
-unsecured endpoint by default. For a production deployment with SSL and authentication, refer to the [documentation](https://github.com/kubeflow/kubeflow/tree/master/components/jupyterhub).
+unsecured endpoint by default. For a production deployment with SSL and authentication, refer to the [documentation](https://github.com/kubeflow/kubeflow/tree/{{< params "githubbranch" >}}/components/jupyterhub).
 
 
+## Submitting k8s resources from Jupyter Notebook
+
+The Jupyter Notebook pods are assigned the `jupyter-notebook` service account. This service account is bound to `jupyter-notebook` role which has namespace-scoped permissions to the following k8s resources:
+
+* pods
+* deployments
+* services
+* jobs
+* tfjobs
+* pytorchjobs
+
+This means that you can directly create these k8s resources directly from your jupyter notebook. kubectl is already installed in the notebook, so you can create k8s resources running the following command in a jupyter notebook cell
+
+```
+!kubectl create -f myspec.yaml
+```
+
+## Building docker images from Jupyter Notebook on GCP
+
+If using Jupyter Notebooks on GKE, you can submit docker image builds to Cloud Build which builds your docker images and pushes them to Google Container Registry.
+
+Activate the attached service account using
+
+```
+!gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+```
+
+If you have a Dockerfile in your current directory, you can submit a build using
+
+```
+!gcloud container builds submit --tag gcr.io/myproject/myimage:tag .
+```
+
+Advanced build documentation for docker images is available [here](https://cloud.google.com/cloud-build/docs/quickstart-docker)

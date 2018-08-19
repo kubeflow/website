@@ -58,7 +58,7 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
      ```
      <name>.endpoints.<project>.cloud.goog
      ```
-   * \<name\> and \<project\> will be set in the next step when you run [deploy.sh](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deploy.sh)
+   * \<name\> and \<project\> will be set in the next step when you run [deploy.sh](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh)
       * deploy.sh uses **kubeflow** by default as \<name\> but you can configure this with the environment variable **DEPLOYMENT_NAME**
       * Project will use the default project for **gcloud** but this can be overwritten using the environment variable **PROJECT**
 1. After you enter the details, click Create. 
@@ -70,25 +70,40 @@ Create an OAuth Client ID to be used to identify IAP when requesting access to u
     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
     ```
 
-### Create the Kubeflow deployment
+### Quickstart: Deploying Kubeflow on GKE
 
 Run the following steps to deploy Kubeflow.
 
-1. Run the deploy script to create GCP and K8s resources
+1. Run the following script to download `kfctl.sh`
 
+    ```
+    mkdir ${KUBEFLOW_SRC}
+    cd ${KUBEFLOW_SRC}
+    export KUBEFLOW_TAG=<version>
+    curl https://raw.githubusercontent.com/kubeflow/kubeflow/{{< params "githubbranch" >}}/scripts/download.sh | bash
      ```
-     export KUBEFLOW_VERSION=0.2.2
-     curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
-     ```
-   * Basic settings (e.g. the zone) can be configured using environment variables. Refer to the [script](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deploy.sh) to see a complete list.
-   * More advanced customization can be performed by updating the deployment manager or ksonnet configuration and updating the deployment and K8s resources. This is described in more detail in the following section.
+   * **KUBEFLOW_SRC** directory where you want to download the source to
+   * **KUBEFLOW_TAG** a tag corresponding to the version to checkout such as `master` for latest code.
+   * **Note** you can also just clone the repository using git.
+1. To setup and deploy
+    
+    ```
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} --platform gcp --project ${PROJECT}
+    cd ${KFAPP}
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh generate platform
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8s
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+    ```
+   * **${KFAPP}** The name of a directory to store your configs. This directory will be created when you run init.
+      * The contents of this directory are described in the next section.
 1. Check resources deployed in namespace kubeflow
-
+    
     ```
     kubectl -n kubeflow get  all
     ```
 1. Kubeflow will be available at
-
+    
     ```
     https://<name>.endpoints.<Project>.cloud.goog/
     ```
@@ -98,54 +113,132 @@ Run the following steps to deploy Kubeflow.
      then you can configure this process to be much faster.
      * See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731)
    * While you wait you can access Kubeflow services by using `kubectl proxy` & `kubectl port-forward` to connect to services in the cluster.
-1. The deployment script will create the following directories containing your configuration.    
-   * **{DEPLOYMENT_NAME}_deployment_manager_configs** - Configuration for deployment manager
-     * **Important** This directory will contain json files containing secrets for your service accounts. 
-       **Checking your keys into source control is not advised**.
-   * **{DEPLOYMENT_NAME}_ks-app** - Ksonnet application
+1. We recommend checking in the contents of **${KFAPP}** into source control.
+1. To delete your deployment and reclaim all resources
+    
+    ```
+    cd ${KFAPP}
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
+    ```
+
+## Understanding the deployment process
+
+The deployment process is controlled by 4 different commands
+
+* **init** - one time setup 
+* **generate** - Creates config files defining the different resources
+* **apply** - Create or Update the resources
+* **delete** - Delete the resources
+
+With the exception of init all commands take an argument which describe the
+set of resources to apply the command to; this can be one of the following
+values
+
+* **platform** - All GCP resources; i.e. anything that doesn't run on Kubernetes
+* **k8s** - All resources that run on Kubernetes
+* **all** - GCP and K8s resources
 
 
-## Customizing Kubeflow
+### App Layout
 
-The setup process makes it easy to customize GCP or Kubeflow for your particular use case. 
-Under the hood [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh)
+Your Kubeflow app directory will contain the following files and directories.
 
-  1. Creates all GCP resources using deployment manager
-  1. Creates K8s resources using kubectl/ksonnet
+* **env.sh** defines several environment variables related to your Kubeflow deployment
 
-This makes it easy to change your configuration by updating the config files and reapplying them.
+  * The values are set when you run `init`
+  * The values are snapshotted inside **env.sh** to make your app self contained.
 
-Deployment manager uses [YAML files](https://github.com/kubeflow/kubeflow/tree/v0.2-branch/scripts/gke/deployment_manager_configs)
-to define your GCP infrastructure. [deploy.sh](https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh) creates a copy of these files in *${DEPLOYMENT_NAME}_deployment_manager_config* 
+* **${KFAPP}/gcp_config** This directory will contain [Deployment Manager config Files](https://cloud.google.com/deployment-manager/docs/configuration/) defining your GCP infrastructure.
 
-You can modify these files and then update your deployment.
+  * The directory is created when you run `kfctl.sh generate platform`
+  * You can modify these configs to customize your GCP infrastructure
 
+* **${KFAPP}/k8s_specs** This directory contains YAML specs for some daemons deployed on your GKE cluster.
+
+* **${KFAPP}/ks_app** This directory will contain the ksonnet application for Kubeflow.
+
+  * The directory is created when you run `kfctl.sh generate k8s`
+  * You can use ksonnet to customize Kubeflow
+
+### Customizing Kubeflow
+
+The deployment process is specifically divided into two steps **generate** and **apply** so that you can 
+modify your deployment before actually deploying.
+
+To customize GCP resources (e.g. your GKE cluster), you can modify the deployment manager configs in **${KFAPP}/gcp_config**.
+
+Many changes can be applied to an existing configuration in which case you can run 
 
 ```
-CONFIG_FILE=${DEPLOYMENT_NAME}_deployment_manager_config/cluster-kubeflow.yaml
-gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=${CONFIG_FILE}
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+```
+
+or using deployment manager directly
+
+```
+. ${KFAPP}/env.sh
+cd ${KFAPP}/gcp_config
+gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=cluster-kubeflow.yaml
+```
+  
+  * We source env.sh to define the environment variables ${PROJECT} and ${DEPLOYMENT_NAME} for this app
+
+Some changes (e.g. VM service account for GKE) can only be set at creation time; in this case you will need
+to teardown your deployment before recreating it
+
+```
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
+```
+
+To customize the Kubeflow resources running within the cluster you can modify the ksonnet app in **${KFAPP}/ks_app**
+For example, to mount additional PVs in Jupyter
+
+```
+cd ${KF_APP}/ks_app
+ks param set jupyterhub disks "kubeflow-gcfs"  
+```
+
+You can then redeploy using kfctl. 
+
+```
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+```
+
+or using ksonnet directly
+```
+cd ${KFAPP}/ks_app
+ks apply default
 ```
 
 ### Common Customizations
 
 Add GPU nodes to your cluster
 
-  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L40) 
+  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L40) 
 
 To use VMs with more CPUs or RAM 
 
   * Change the machineType 
   * There are two node pools 
-      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deployment_manager_configs/cluster.jinja#L96)
-      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deployment_manager_configs/cluster.jinja#L96)
-  * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment
+      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96)
+      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96)
+  * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment
 
 To grant additional users IAM permissions to access Kubeflow
 
-  * Add the users [here](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L61)
+  * Add the users [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L61)
 
 
-After making the changes you need to update your deployment. 
+After making the changes you need to recreate your deployment
+
+```
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
+```
 
 For more information please refer to the [deployment manager docs](https://cloud.google.com/deployment-manager/docs/).
 
@@ -156,7 +249,7 @@ If you want to use your own doman instead of **${name}.endpoints.${project}.clou
 1. Modify your ksonnet application to remove the `cloud-endpoints` component
 
     ```
-    cd ${DEPLOYMENT_NAME}_ks_app
+    cd ${KFAPP}/ks_app
     ks delete default -c cloud-endpoints
     ks component rm cloud-endpoints
     ```
@@ -178,15 +271,100 @@ If you want to use your own doman instead of **${name}.endpoints.${project}.clou
 1. Use your DNS provider to map the fully qualified domain specified in the first step to the ip address reserved
    in GCP.
 
-## Deleting your deployment
+### Using GCFS with Kubeflow
 
-To delete your deployment and reclaim all resources
+[Google Cloud File Store](https://cloud.google.com/filestore/docs/) is a fully managed NFS offering.
+GCFS is very useful for creating a shared filesystem that can be mounted into pods such as Jupyter.
+
+To setup GCFS and use it with Kubeflow follow the directions below.
+
+#### Create a GCFS instance
+
+Follow these instructions to create a GCFS instance; if you already have a GCFS instance you want to
+use you can skip this section.
+
+Copy the GCFS deployment manager configs to the gcp_config directory
 
 ```
-gcloud deployment-manager --project=${PROJECT} deployments delete ${DEPLOYMENT_NAME}
-gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+cp ${KUBEFLOW_REPO}/scripts/deployment_manager_configs/gcfs.yaml \
+   ${KFAPP}/gcp_config/
 ```
-## Troubleshooting
+
+Edit gcfs.yaml to match your desired configuration
+
+  * Set zone
+  * Set name
+  * Set the value of parent to include your project e.g.
+
+    ```
+    projects/${PROJECT}/locations/${ZONE}
+    ```
+
+Using [yq](https://github.com/kislyuk/yq)
+
+```
+cd ${KFAPP}
+. env.sh
+yq -r ".resources[0].properties.instanceId=\"${DEPLOYMENT_NAME}\"" ${KFAPP}/gcp_config/gcfs.yaml > ${KFAPP}/gcp_config/gcfs.yaml.new
+mv ${KFAPP}/gcp_config/gcfs.yaml.new ${KFAPP}/gcp_config/gcfs.yaml
+```
+
+Apply the changes
+
+```
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+```
+
+If you get an error **legacy networks are not supported** follow the instructions
+in the troubleshooting [section]()
+
+#### Configure Kubeflow to mount the GCFS volume
+
+Configure Kubeflow to mount GCFS as a volume
+
+```
+cd ${KFAPP}/ks_app
+ks generate google-cloud-filestore-pv google-cloud-filestore-pv --name="kubeflow-gcfs" \
+   --storageCapacity="${GCFS_STORAGE}" \
+   --serverIP="${GCFS_INSTANCE_IP_ADDRESS}"
+ks param set jupyterhub disks "kubeflow-gcfs"  
+```
+
+  * **GCFS_STORAGE** The size of the persistent volume claim
+  * **GCFS_INSTANCE_IP_ADDRESS** The ip address of your GCFS instance; you can obtain this with gcloud
+
+     ```
+     gcloud --project=${PROJECT} beta filestore instances list
+     ```
+
+Apply the changes
+
+```
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+```
+
+## Private Clusters
+
+Creating a [private GKE cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters)
+means the GKE nodes won't have public IP addresses. This can improve security by blocking unwanted outbound/inbound
+access to nodes. Removing IP addresses means external services (including GitHub, PyPi, DockerHub etc...) won't be accessible
+from the nodes. Google services (e.g. GCR) are still accessible.
+
+1. Enable private clusters in `${KFAPP}/gcp_configs/cluster-kubeflow.yaml` by updating the line
+
+    ```
+    privatecluster: true
+    ```
+1. Create the deployment
+
+    ```
+    cd ${KFAPP}
+    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply all 
+    ```
+
+## Troubleshooting IAP
 
 Here are some tips for troubleshooting IAP.
 
@@ -284,7 +462,7 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
         * Check that health checks are properly configured
           * Click on the health check associated with the backend service for envoy
           * Check that the path is /healthz and corresponds to the path of the readiness probe on the envoy pods
-          * See [K8s docs](https://github.com/kubernetes/contrib/blob/master/ingress/controllers/gce/examples/health_checks/README.md#limitations) for important information about how health checks are determined from readiness probes.
+          * See [K8s docs](https://github.com/kubernetes/contrib/blob/{{< params "githubbranch" >}}/ingress/controllers/gce/examples/health_checks/README.md#limitations) for important information about how health checks are determined from readiness probes.
 
         * Check firewall rules to ensure traffic isn't blocked from the GCP loadbalancer
             * The firewall rule should be added automatically by the ingress but its possible it got deleted if you have some automatic firewall policy enforcement. You can recreate the firewall rule if needed with a rule like this
@@ -339,3 +517,49 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
   * If this doesn't return a 200 OK response; then there is a problem with the K8s resources
       * Check the pods are running
       * Check services are pointing at the points (look at the endpoints for the various services)
+
+## GCFS: legacy networks are not supported
+
+GCFS tries to use the network named `default` by default. For older projects,
+this will be a legacy network which is incompatible with GCFS. This will
+manifest as an error like the following when deploying GCFS.
+
+```
+ERROR: (gcloud.deployment-manager.deployments.update) Error in Operation [operation-1533189457517-5726d7cfd19c9-e1b0b0b5-58ca11b8]: errors:
+- code: RESOURCE_ERROR
+  location: /deployments/jl-0801-b-gcfs/resources/filestore
+  message: '{"ResourceType":"gcp-types/file-v1beta1:projects.locations.instances","ResourceErrorCode":"400","ResourceErrorMessage":{"code":400,"message":"network
+    default is invalid; legacy networks are not supported.","status":"INVALID_ARGUMENT","statusMessage":"Bad
+    Request","requestPath":"https://file.googleapis.com/v1beta1/projects/cloud-ml-dev/locations/us-central1-a/instances","httpMethod":"POST"}}'
+    
+```
+
+To fix this we can create a new network
+
+```
+cp ${KUBEFLOW_REPO}/scripts/deployment_manager_configs/network.* \
+   ${KFAPP}/gcp_config/
+```
+
+Edit network.yaml to set the name for the network.
+
+Edit gcfs.yaml to use the name of the newly created network.
+
+Apply the changes.
+
+```
+cd ${KFAPP}
+${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+```
+
+## CPU platform unavailable in requested zone
+
+By default we set minCpuPlatform to `Intel Haswell` to make sure AVX2 is supported.
+See [troubleshooting]("/docs/guides/troubleshooting/") for more details.
+
+If you encounter this `CPU platform unavailable` error (might manifest as
+`Cluster is currently being created, deleted, updated or repaired and cannot be updated.`),
+you can change the [zone](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L31)
+or change the [minCpuPlatform](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster.jinja#L105).
+See [here](https://cloud.google.com/compute/docs/regions-zones/#available)
+for available zones and cpu platforms.
