@@ -212,6 +212,15 @@ To create a shortcode:
 1. For the file content, add the text and HTML markup that should replace the
    shortcode markup when the web page is built.
 
+To use a shortcode in a document, wrap the name of the shortcode in braces and
+percent signs like this:
+
+  ```
+  {{% shortcode-name %}}
+  ```
+
+The shortcode name is the file name minus the `.html` file extension.
+
 **Example:** The following shortcode defines the minimum required version of
 Kubernetes:
 
