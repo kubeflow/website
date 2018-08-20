@@ -263,11 +263,11 @@ Set up and run the `deploy` script:
       requires 16 CPUs.
     * If you want a GPU, ensure your zone offers GPUs.
 
-    For example, the following command sets the zone to `us-central1-c`:
+    For example, the following commands set the zone to `us-central1-c`:
 
     ```
-    gcloud config set compute/zone us-central1-c
     export ZONE=us-central1-c
+    gcloud config set compute/zone $ZONE
     ```
 
 1. If you want a custom name for your deployment, set the `DEPLOYMENT_NAME`
@@ -283,7 +283,7 @@ Set up and run the `deploy` script:
 1. Run the `deploy` script to create your GCP and Kubernetes resources:
 
     ```
-    export KUBEFLOW_VERSION=0.2.2
+    export KUBEFLOW_VERSION=0.2.3-rc.0
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
     ```
 
@@ -293,7 +293,7 @@ Set up and run the `deploy` script:
     kubectl -n kubeflow get all
     ```
 
-1. Kubeflow will be available at the following URI:
+1. Kubeflow will be available at the following URI after several minutes:
 
     ```
     https://<deployment-name>.endpoints.<project>.cloud.goog/
@@ -320,8 +320,9 @@ Notes:
   your configuration:
     * `{DEPLOYMENT_NAME}_deployment_manager_configs`: Configuration for
       deployment manager.
-        **Important** This directory contain JSON files containing secrets for your
-        service accounts. **Checking your keys into source control is not advised.**
+      **Important:** This directory contains JSON files containing the secrets
+      for your service accounts. **Checking your keys into source control is not
+      advised.**
     * `{DEPLOYMENT_NAME}_ks_app`: Your ksonnet application.
 
 ## Create a Cloud Storage bucket
@@ -341,7 +342,7 @@ which corresponds to the `us-central1-c` zone used earlier
 in the tutorial:
 
 ```
-export BUCKET_NAME=kubeflow-${PROJECT}
+export BUCKET_NAME=${DEPLOYMENT_NAME}-bucket
 gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
 ```
 
@@ -355,10 +356,10 @@ When you downloaded the project files at the start of the tutorial, you
 downloaded the code for your TensorFlow application. The
 `kubeflow-introduction/tensorflow-model` directory contains:
 
-* A Python file, `model.py`, containing TensorFlow code.
+* A Python file, `MNIST.py`, containing TensorFlow code.
 * A Dockerfile to build the application into a container image.
 
-The Python program, `model.py`, does the following:
+The Python program, `MNIST.py`, does the following:
 
 * Defines a simple feed-forward neural network with two hidden layers.
 * Defines tensor operations to train and evaluate the model’s weights.
@@ -371,6 +372,15 @@ To deploy your code to Kubernetes, you must first build your local project into
 a [Docker][docker] container image and push the image to
 [Container Registry][container-registry] so that it's available in the cloud.
 
+TODO(sarahmaddox): Can we change the sample so that we can pass it the name of the directory containing the keys?
+
+1. Copy your key file to the directory containing your sample TensorFlow
+   application, to give Docker access to your Cloud Storage bucket:
+
+    ```
+    cp ${DEPLOYMENT_NAME}_deployment_manager_configs/${DEPLOYMENT_NAME}-admin@${PROJECT}.iam.gserviceaccount.com.json tensorflow-model/key.json
+    ```
+
 1. Create a version tag from the current UNIX timestamp, to be associated with
    your model each time it runs :
 
@@ -381,10 +391,10 @@ a [Docker][docker] container image and push the image to
 1. Set the path in Container Registry that you want to push the image to:
 
     ```
-    export TRAIN_IMG_PATH=us.gcr.io/${PROJECT_ID}/${DEPLOYMENT_NAME}-train:${VERSION_TAG}
+    export TRAIN_IMG_PATH=gcr.io/${PROJECT}/${DEPLOYMENT_NAME}-train:${VERSION_TAG}
     ```
 
-1. Build the `tensorflow-model` directory:
+1. Build the Docker image for the `tensorflow-model` directory:
 
     ```
     docker build -t ${TRAIN_IMG_PATH} ./tensorflow-model \
@@ -393,13 +403,13 @@ a [Docker][docker] container image and push the image to
     ```
 
     The container is tagged with its eventual path in Container Registry, but it
-    stays local for now.
+    hasn't been uploaded to Container Registry yet.
 
     **Note:** The `--build-arg` flags in the `docker build` command are used to
-    pass arguments into the dockerfile, which then passes them on to the
+    pass arguments into the Dockerfile, which then passes them on to the
     Python program.
 
-    If everything went well, your program should be encapsulated in a new
+    If everything went well, your program is now encapsulated in a new
     container.
 
 1. Test the container locally:
@@ -408,24 +418,40 @@ a [Docker][docker] container image and push the image to
     docker run -it ${TRAIN_IMG_PATH}
     ```
 
-    You should see training logs start appearing in your output:
-    TODO(sarahmaddox): Add example output.
+    You may see some warnings from TensorFlow about deprecated functionality.
+    Then you should see training logs start appearing in your output, similar
+    to these:
 
-    If you seeing log entries similar to those above, your model training is
-    working and you can terminate the container with **Ctrl+c**.
+    ```
+    step 0/2000, training accuracy 0.14
+    step 100/2000, training accuracy 0.8
+    step 200/2000, training accuracy 0.94
+    step 300/2000, training accuracy 0.94
+    step 400/2000, training accuracy 0.96
+    step 500/2000, training accuracy 0.94
+    step 600/2000, training accuracy 0.94
+    step 700/2000, training accuracy 0.88
+    step 800/2000, training accuracy 0.98
+    step 900/2000, training accuracy 0.88
+    step 1000/2000, training accuracy 0.84
+    step 1100/2000, training accuracy 0.96
+    step 1200/2000, training accuracy 0.98
+    step 1300/2000, training accuracy 0.94
+    step 1400/2000, training accuracy 0.98
+    step 1500/2000, training accuracy 1
+    step 1600/2000, training accuracy 0.96
+    step 1700/2000, training accuracy 0.96
+    step 1800/2000, training accuracy 0.96
+    step 1900/2000, training accuracy 0.96
+    ```
+
+1. When you see log entries similar to those above, your model training is
+   working. You can terminate the container with **Ctrl+c**. Don't worry if
+   you see an error saying that your service account doesn't
+   have GET access on the bucket. That access is not necessary at this point.
 
 Next, upload the container image to Container Registry so that you can
 run it on your Kubernetes Engine cluster.
-
-TODO(sarahmaddox): Not sure if I need the step below - try without it first.
-
-1. Grant Docker access to your Container Registry:
-
-    ```
-    gcloud auth configure-docker
-    ```
-
-    Enter **y** to continue when prompted.
 
 1. Push the container to Container Registry:
 
@@ -445,24 +471,29 @@ Kubernetes Engine.
 
 1. Use the [`ks generate`][ks-generate] command to generate a ksonnet component
    from the [`tf-job` prototype][tf-job-prototype]. The code below generates a
-   component called `train`:
+   component called `train1`:
 
     ```
     cd ${HOME}/kubeflow-introduction/${DEPLOYMENT_NAME}_ks_app
-    ks generate tf-job-simple train
+    ks generate tf-job-operator train1
     ```
 
-    You should now see a new file, `train.jsonnet`, in your
-    `${DEPLOYMENT_NAME}_ks_app` directory.
+    You should now see a new file, `train1.jsonnet`, in your
+    `${DEPLOYMENT_NAME}_ks_app/components/` directory.
 
 1. Use the [`ks param set`][ks-param-set] command to customize the component’s
    parameters, pointing to your training container in Container Registry and
    your Cloud Storage bucket:
 
     ```
-    ks param set train image ${TRAIN_IMG_PATH}
-    ks param set train name "train-"${VERSION_TAG}
-    ks param set train output_model_gcs_bucket "${BUCKET_NAME}"
+    ks param set train1 image ${TRAIN_IMG_PATH}
+    ks param set train1 name "train1-"${VERSION_TAG}
+    ks param set train1 output_model_gcs_bucket "${BUCKET_NAME}"
+    ```
+1. List the parameters for your component, to check the options set:
+
+    ```
+    ks param list train1
     ```
 
 1. [Apply][ks-apply] the container to the cluster. The following command applies
@@ -470,15 +501,15 @@ Kubernetes Engine.
    environment created by the `deploy.sh` script:
 
     ```
-    ks apply default -c train
+    ks apply default -c train1
     ```
 
     There should now be new workloads on the cluster, with names that start with
-    `train-${VERSION_TAG}-`.
+    `train1-${VERSION_TAG}-`.
 
     You can see the workloads on the
     [Kubernetes Engine Workloads page][gcp-console-workloads] on the GCP
-    console. Click your **train** component, then click the **Logs** tab to
+    console. Click your **train1** component, then click the **Logs** tab to
     see the logs.
 
 When training is complete, you should see the model data pushed into your
@@ -489,10 +520,10 @@ that generated it. To explore, click your bucket name on the
 In a production environment, it’s likely that you will need to run more than one
 training job for the model. Kubeflow gives you a simple deploy pipeline you can
 use to train new versions of your model repeatedly. You don’t need to regenerate
-the `tf-job-simple` component every time. When you have a new version to push:
+the `tf-job-operator` component every time. When you have a new version to push:
 
 * Build a new container with a new version tag.
-* Modify your `tf-job-simple` parameters to point to the new version of your
+* Modify your `tf-job-operator` parameters to point to the new version of your
   container.
 * Re-apply the container to the cluster.
 
@@ -506,7 +537,7 @@ It’s time to put your trained model on a server so that you
 can send it prediction requests. You use the
 [`tf-serving` prototype][tf-serving-prototype] to handle this task. The
 `tf-serving` prototype is the Kubeflow implementation of
-[TensorFlow Serving][tf-serving]. Unlike when using `tf-job-simple`, you don't
+[TensorFlow Serving][tf-serving]. Unlike when using `tf-job-operator`, you don't
 need a custom container for the server process. Instead, all the information the
 server needs is stored in the model file.
 
@@ -577,7 +608,7 @@ As usual, first build a container from your code:
    container image to:
 
     ```
-    export UI_IMG_PATH=us.gcr.io/${PROJECT}/kubeflow-web-ui
+    export UI_IMG_PATH=gcr.io/${PROJECT}/kubeflow-web-ui
     ```
 
 1. Build the `web-ui` directory:
