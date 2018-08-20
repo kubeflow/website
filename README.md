@@ -191,6 +191,51 @@ get going:
   your SSH key passphrase to the managing agent, so that you don't have to
   keep authenticating to GitHub. You need to do this again after every reboot.
 
+## Using Hugo shortcodes
+
+Sometimes it's useful to define a snippet of information in one place and reuse
+it wherever we need it. For example, we want to be able to refer to the minimum
+version of various frameworks/libraries throughout the docs, without
+causing a maintenance nightmare.
+
+For this purpose, we use Hugo's "shortcodes". Shortcodes are similar to Django
+variables. You define a shortcode in a file, then use a specific markup to
+invoke the shortcode in the docs. That markup is replaced by the content of the
+shortcode file when the page is built.
+
+To create a shortcode:
+
+1. Add an HTML file in  the `/website/themes/kf/layouts/shortcodes/` directory.
+   The file name must be short and meaningful, as it determines the shortcode
+   you and others use in the docs.
+
+1. For the file content, add the text and HTML markup that should replace the
+   shortcode markup when the web page is built.
+
+**Example:** The following shortcode defines the minimum required version of
+Kubernetes:
+
+- File name of the shortcode:
+
+  ```
+  kubernetes-min-version.html
+  ```
+
+- Content of the shortcode:
+
+  ```
+  <a href="https://kubernetes.io/docs/imported/release/notes/">1.8</a>
+  ```
+- Usage in a document:
+
+  ```
+  You need Kubernetes {{% kubernetes-min-version %}} or later.
+  ```
+
+Useful Hugo docs:
+- [Shortcode templates][hugo-shortcode-templates]
+- [Shortcodes][hugo-shortcodes]
+
 ## Making changes to CSS
 
 The css/sass style code is located in the `themes/kf/sass` directory.
@@ -235,5 +280,8 @@ https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/
 This ensures that all the links in a versioned webpage point to the correct branch.
 
 [hugo-install]: https://gohugo.io/getting-started/installing/
+[hugo-shortcode-templates]: https://gohugo.io/templates/shortcode-templates/
+[hugo-shortcodes]: https://gohugo.io/content-management/shortcodes/
+
 [kubeflow-contributor-guide]: https://github.com/kubeflow/community/blob/master/CONTRIBUTING.md
 [kubeflow-website-repo]: https://github.com/kubeflow/website
