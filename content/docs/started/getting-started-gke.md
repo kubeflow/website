@@ -365,11 +365,7 @@ from the nodes. Google services (e.g. GCR) are still accessible.
     ${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
     ```
 
-1. To setup ingress to the cluster, it is recommended to use your custom domain instead of Cloud Endpoints.
-cert-manager cannot be used to create HTTPS Certificates because cert-manager needs to talk to LetsEncrypt to get the
-certificate and that is not possible in a private cluster setting. Obtain the HTTPS certificates for your ${FQDN} and create a
-k8s secret with it. Assuming your cert and key are present in files named tls.crt and tls.key, create a secret using the
-following command
+1. To setup ingress to the cluster, it is recommended to use your custom domain instead of Cloud Endpoints. cert-manager cannot be used to create HTTPS Certificates because cert-manager needs to talk to LetsEncrypt to get the certificate and that is not possible in a private cluster setting. Obtain the HTTPS certificates for your ${FQDN} and create a k8s secret with it. Assuming your cert and key are present in files named tls.crt and tls.key, create a secret using the following command
 
     ```
     kubectl create secret generic --namespace=${NAMESPACE} envoy-ingress-tls --from-file=tls.crt=tls.crt --from-file=tls.key=tls.key
@@ -383,8 +379,7 @@ following command
     ks param set iap-ingress privateGKECluster true
     ```
 
-1. Create an A record in your DNS Management service to point ${FQDN} to the static ip which was created by deployment manager.
-It can be found in `gcloud compute addresses list`.
+1. Create an A record in your DNS Management service to point ${FQDN} to the static ip which was created by deployment manager. It can be found in `gcloud compute addresses list`.
 
 1. Update the various ksonnet components to use gcr.io images instead of dockerhub images
 
