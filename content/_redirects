@@ -1,4 +1,4 @@
 # Redirects from what the browser requests to what we serve
-/version/stable/gke/scripts/deploy.sh              https://raw.githubusercontent.com/kubeflow/kubeflow/v0.2.2/scripts/gke/deploy.sh
-/version/stable/scripts/deploy.sh      https://raw.githubusercontent.com/kubeflow/kubeflow/v0.2.2/scripts/deploy.sh
-/version/stable/source.tar.gz          https://github.com/kubeflow/kubeflow/archive/v0.2.2.tar.gz
+/version/stable/gke/scripts/deploy.sh              https://raw.githubusercontent.com/kubeflow/kubeflow/v0.2.4/scripts/gke/deploy.sh
+/version/stable/scripts/deploy.sh      https://raw.githubusercontent.com/kubeflow/kubeflow/v0.2.4/scripts/deploy.sh
+/version/stable/source.tar.gz          https://github.com/kubeflow/kubeflow/archive/v0.2.4.tar.gz
