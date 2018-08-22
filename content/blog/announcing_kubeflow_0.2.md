@@ -32,13 +32,13 @@ We know that many data scientists and ML engineers are new to Kubernetes and Kub
   - A new deployment script which makes getting started on an existing cluster a single command. To get a default deployment running on Kubernetes *anywhere* just execute:
     
     ```
-    export KUBEFLOW_VERSION=0.2.2
+    export KUBEFLOW_VERSION=0.2.4
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/deploy.sh | bash
     ```
 
   - We also offer cloud-specific versions of these deployment scripts so that you can auto create a cluster if you don’t have one available. For example:
     ```
-    export KUBEFLOW_VERSION=0.2.2
+    export KUBEFLOW_VERSION=0.2.4
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
     ```
   - A central UI that gives you visibility into all the components running in your cluster - Central UI - To make it easier to navigate among components
