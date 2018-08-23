@@ -11,7 +11,7 @@ When enabled, Kubeflow will report **anonymous** usage data using [spartakus](ht
 This is entirely voluntary and you can opt out by doing the following
 
 ```
-ks param set kubeflow-core reportUsage false
+ks param set spartakus reportUsage false
 
 # Delete any existing deployments of spartakus
 kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
@@ -20,7 +20,7 @@ kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
 To explictly enable usage reporting repeat the above steps setting reportUsage to `true`
 
 ```
-ks param set kubeflow-core reportUsage true
+ks param set spartakus reportUsage true
 
 # Delete any existing deployments of spartakus
 kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
@@ -32,5 +32,5 @@ allows us to improve the project and helps the many companies working on Kubeflo
 You can improve the quality of the data by giving each Kubeflow deployment a unique id
 
 ```
-ks param set kubeflow-core usageId $(uuidgen)
+ks param set spartakus usageId $(uuidgen)
 ```

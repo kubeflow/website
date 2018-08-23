@@ -13,24 +13,13 @@ bref= "This guide has information about advanced customizations for Kubeflow."
 
 Frequently data scientists require a POSIX compliant filesystem. For example, most HDF5 libraries require POSIX and don't work with an object store like GCS or S3. Also, when working with teams you might want a shared POSIX filesystem to be mounted into your notebook environments so that data scientists can work collaboratively on the same datasets.
 
-Here we show how to customize your Kubeflow deployment to achieve this. Set the disks parameter to a comma separated list of the Google persistent disks you want to mount. These disks
+You can provision your own NFS shares and create Persistent Volume and Persistent Volume Claim objects and then attach them to your jupyter notebooks via the disks flag.
 
-* should be in the same zone as your cluster
-* need to be created manually, for example via gcloud or the Cloud console
-* can't be attached to any existing VM or POD
 
-<br/>
-Create the disks
+Configure jupyterhub to use the disks
 
 ```
-  gcloud --project=${PROJECT} compute disks create  --zone=${ZONE} ${PD_DISK1} --description="PD to back NFS storage on GKE." --size=1TB
-  gcloud --project=${PROJECT} compute disks create  --zone=${ZONE} ${PD_DISK2} --description="PD to back NFS storage on GKE." --size=1TB
-```
-
-Configure the environment to use the disks
-
-```
-ks param set --env=cloud kubeflow-core disks ${PD_DISK1},${PD_DISK2}
+ks param set --env=cloud jupyterhub disks ${PVC_CLAIM1},${PVC_CLAIM2}
 ```
 
 Deploy the environment
@@ -62,6 +51,4 @@ tmpfs                                                           15444244       0
 shm                                                                65536       0      65536   0% /dev/shm
 tmpfs                                                           15444244       0   15444244   0% /sys/firmware
 ```
-  * Here `jlewi-kubeflow-test1` and `jlewi-kubeflow-test2` are the names of the PDs.
-
-
+  * Here `jlewi-kubeflow-test1` and `jlewi-kubeflow-test2` are the names of the PVCs.
