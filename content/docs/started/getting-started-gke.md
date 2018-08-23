@@ -349,15 +349,15 @@ ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
 
 Creating a deployment using `kfctl.sh` creates three service accounts in the GCP Project. These service accounts are created using the principle of least privilege. The three service accounts are:
 
-* kubeflow-admin
-* kubeflow-user
-* kubeflow-vm
+* `${KFAPP}-admin`
+* `${KFAPP}-user`
+* `${KFAPP}-vm`
 
-`kubeflow-admin` is used for some admin tasks like configuring the load balancers. The idea here is that its needed to deploy Kubeflow but not needed to actually run jobs.
+`${KFAPP}-admin` is used for some admin tasks like configuring the load balancers. The idea here is that its needed to deploy Kubeflow but not needed to actually run jobs.
 
-`kubeflow-user` is intended to be used by training jobs, models to access GCP resources (GCS, BigQuery, etc...). It has a much smaller set of privileges compared to admin.
+`${KFAPP}-user` is intended to be used by training jobs, models to access GCP resources (GCS, BigQuery, etc...). It has a much smaller set of privileges compared to admin.
 
-`kubeflow-vm` is used only for the VM service account. It has minimal permissions to send metrics and logs to Stackdriver.
+`${KFAPP}-vm` is used only for the VM service account. It has minimal permissions to send metrics and logs to Stackdriver.
 
 ## Private Clusters
 
