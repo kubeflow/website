@@ -301,21 +301,34 @@ Set up and run the `deploy` script:
 
 Notes:
 
+* While the script is running, you may see an error message like this:
+
+    ```
+    gcloud deployment-manager --project=<your-project> deployments describe <your-deployment>
+    ERROR: (gcloud.deployment-manager.deployments.describe) ResponseError: code=404, message=The object 'projects/<your-project>/global/deployments/<your-deployment>' is not found.
+    ```
+
+    You can safely ignore the message, as the script goes ahead and creates
+    the deployment for you.
+
 * When the script has finished, you should have a running cluster in the cloud
   ready to run your code. You can interact with the cluster either by using
   [`kubectl`][kubectl] or by going to the
   [Kubernetes Engine page on the GCP Console][gcp-console-kubernetes-engine].
+
 * While the script is running, you can watch your resources appear on the
   GCP console:
     * [Deployment on Deployment Manager][gcp-console-deployment-manager]
     * [Cluster on Kubernetes Engine][gcp-console-kubernetes-engine]
     * [Computing resources on Compute Engine][gcp-console-compute-engine]
+
 * It can take 10-15 minutes for the URI to become available. Kubeflow needs
   to provision a signed SSL certificate and register a DNS name.
     * If you own/manage the domain or a subdomain with [Cloud DNS][dns]
       then you can configure this process to be much faster.
     * While you wait you can access Kubeflow services by using `kubectl proxy`
       and `kubectl port-forward` to connect to services in the cluster.
+
 * The deployment script creates the following directories containing
   your configuration:
     * `{DEPLOYMENT_NAME}_deployment_manager_configs`: Configuration for
@@ -346,21 +359,53 @@ export BUCKET_NAME=${DEPLOYMENT_NAME}-bucket
 gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
 ```
 
-## (Optional) Test the code locally in a Jupyter notebook
+## (Optional) Test the code in a Jupyter notebook
 
 The sample you downloaded contains all the code you need. If you like, you
 can experiment with and test the code in a Jupyter notebook.
 
 The Kubeflow deployment script deployed [JupyterHub][jupyterhub] and a
-corresponding load balancer service. 
+corresponding load balancer service. You can choose to connect to JupyterHub
+using the Kubeflow URL or locally.
 
-1. Follow the [Kubeflow guide to Jupyter notebooks][kubeflow-jupyter] to connect
-   to your notebook locally.
+1. Choose one of the options below to connect to JupyterHub:
+
+    * To connect to JupyterHub using the Kubeflow URL:
+
+        1. Open a web browser and go to your Kubeflow URL:
+
+            ```
+            https://<deployment-name>.endpoints.<project>.cloud.goog/
+            ```
+
+        1. Click **JupyterHub**. This takes you to the **Spawner Options** page.
+
+    * Alternatively, follow the
+    [Kubeflow guide to Jupyter notebooks][kubeflow-jupyter] to connect
+    to JupyterHub locally.
+
+1. Enter the following details on the **Spawner Options** page:
+
+    * **Image:** Select a **CPU** image for the TensorFlow version that you're
+      using.
+    * **CPU:** Enter `1`.
+    * **Memory:** Enter `2Gi`.
+    * **Extra Resource Limits:** No need to enter anything here.
+
+1. Click **Spawn**.
+
+    It takes a few minutes for the notebook server to start.
+    After a minute or so, you should see a message on the web page:
+
+    ```
+    Your server is starting up.
+    You will be redirected automatically when it's ready for you.
+    ```
+
+    You should also see an **event log** which you can check periodically
+    while the server starts.
 
 TODO(sarahmaddox): Add some steps they can usefully follow with our sample app.
-
-TODO(sarahmaddox): Solve the auth error I'm getting at http://127.0.0.1:8000/hub/login - 401 unauthorised.
-
 
 ## Prepare and run your training application
 
