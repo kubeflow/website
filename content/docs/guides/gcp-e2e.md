@@ -346,9 +346,21 @@ export BUCKET_NAME=${DEPLOYMENT_NAME}-bucket
 gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
 ```
 
-## Test the code locally in a Jupyter notebook
+## (Optional) Test the code locally in a Jupyter notebook
 
-TODO(sarahmaddox): Add a section to experiment the code locally using a Jupyter notebook
+The sample you downloaded contains all the code you need. If you like, you
+can experiment with and test the code in a Jupyter notebook.
+
+The Kubeflow deployment script deployed [JupyterHub][jupyterhub] and a
+corresponding load balancer service. 
+
+1. Follow the [Kubeflow guide to Jupyter notebooks][kubeflow-jupyter] to connect
+   to your notebook locally.
+
+TODO(sarahmaddox): Add some steps they can usefully follow with our sample app.
+
+TODO(sarahmaddox): Solve the auth error I'm getting at http://127.0.0.1:8000/hub/login - 401 unauthorised.
+
 
 ## Prepare and run your training application
 
@@ -771,3 +783,6 @@ gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS
 [tf-serving-prototype]: https://github.com/kubeflow/kubeflow/tree/master/kubeflow/tf-serving
 
 [deploy-script]: https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deploy.sh
+
+[jupyterhub]: http://jupyter.org/hub
+[kubeflow-jupyter]: /docs/guides/components/jupyter/
