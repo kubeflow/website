@@ -283,7 +283,7 @@ Set up and run the `deploy` script:
 1. Run the `deploy` script to create your GCP and Kubernetes resources:
 
     ```
-    export KUBEFLOW_VERSION=0.2.3-rc.0
+    export KUBEFLOW_VERSION=0.2.4
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
     ```
 
