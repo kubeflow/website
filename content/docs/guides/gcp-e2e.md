@@ -405,9 +405,74 @@ using the Kubeflow URL or locally.
     You should also see an **event log** which you can check periodically
     while the server starts.
 
-TODO(sarahmaddox): Add some steps they can usefully follow with our sample app.
+    When the server is ready, the Jupyter notebook dashboard opens in your
+    browser.
 
-## Prepare and run your training application
+1. Create a new notebook by clicking **New > Python 2** on the Jupyter
+   dashboard.
+
+   You can read about using notebooks in the
+   [Jupyter documentation][jupyter-nbviewer].
+
+1. Copy the code from your sample model at
+   `tensorflow-model/MNIST.py` and paste the code into a cell in your Jupyter
+   notebook.
+
+1. Adjust the code as follows for running in the notebook:
+
+    * Remove the definitions of the input arguments at the top of the program
+      and set the `arg_steps` variable to the specific value of `2000`.
+      Thus in the section on defining input arguments you should have just
+      the following:
+
+      ```
+      # define input arguments
+      arg_steps = 2000
+      ```
+
+    * Remove all code after the training steps. There's no need to export the
+      model or save it to Cloud Storage at this point.
+
+1. Run the cell in the notebook. You should see output directly beneath the
+   notebook cell, something like this:
+
+   ```
+    Extracting MNIST_data/train-images-idx3-ubyte.gz
+    Extracting MNIST_data/train-labels-idx1-ubyte.gz
+    Extracting MNIST_data/t10k-images-idx3-ubyte.gz
+    Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
+    step 0/2000, training accuracy 0.08
+    step 100/2000, training accuracy 0.84
+    step 200/2000, training accuracy 0.82
+    step 300/2000, training accuracy 0.96
+    step 400/2000, training accuracy 0.86
+    step 500/2000, training accuracy 0.94
+    step 600/2000, training accuracy 0.9
+    step 700/2000, training accuracy 0.96
+    step 800/2000, training accuracy 0.98
+    step 900/2000, training accuracy 0.94
+    step 1000/2000, training accuracy 0.94
+    step 1100/2000, training accuracy 0.98
+    step 1200/2000, training accuracy 0.98
+    step 1300/2000, training accuracy 0.98
+    step 1400/2000, training accuracy 0.94
+    step 1500/2000, training accuracy 0.98
+    step 1600/2000, training accuracy 1
+    step 1700/2000, training accuracy 1
+    step 1800/2000, training accuracy 0.98
+    step 1900/2000, training accuracy 0.92
+    0.9589
+    ```
+
+    The above output indicates that the program retrieved the sample training
+    data then trained the model for 2000 steps, reaching a final accuracy level
+    of 0.9589.
+
+If you'd like to play more with the code, try adjusting the number of training
+steps by setting `arg_steps` to a different value, or experiment with adjusting
+other parts of the code.
+
+## Prepare to run your training application on Kubernetes Engine
 
 When you downloaded the project files at the start of the tutorial, you
 downloaded the code for your TensorFlow application. The
@@ -831,3 +896,4 @@ gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS
 
 [jupyterhub]: http://jupyter.org/hub
 [kubeflow-jupyter]: /docs/guides/components/jupyter/
+[jupyter-nbviewer]: https://jupyter-notebook.readthedocs.io/en/latest/notebook.html#notebook-user-interface
