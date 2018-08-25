@@ -411,8 +411,8 @@ using the Kubeflow URL or locally.
 1. Create a new notebook by clicking **New > Python 2** on the Jupyter
    dashboard.
 
-   You can read about using notebooks in the
-   [Jupyter documentation][jupyter-nbviewer].
+     You can read about using notebooks in the
+     [Jupyter documentation][jupyter-nbviewer].
 
 1. Copy the code from your sample model at
    `tensorflow-model/MNIST.py` and paste the code into a cell in your Jupyter
@@ -425,10 +425,10 @@ using the Kubeflow URL or locally.
       Thus in the section on defining input arguments you should have just
       the following:
 
-      ```
-      # define input arguments
-      arg_steps = 2000
-      ```
+        ```
+        # define input arguments
+        arg_steps = 2000
+        ```
 
     * Remove all code after the training steps. There's no need to export the
       model or save it to Cloud Storage at this point.
@@ -436,7 +436,7 @@ using the Kubeflow URL or locally.
 1. Run the cell in the notebook. You should see output directly beneath the
    notebook cell, something like this:
 
-   ```
+    ```
     Extracting MNIST_data/train-images-idx3-ubyte.gz
     Extracting MNIST_data/train-labels-idx1-ubyte.gz
     Extracting MNIST_data/t10k-images-idx3-ubyte.gz
@@ -468,7 +468,7 @@ using the Kubeflow URL or locally.
     data then trained the model for 2000 steps, reaching a final accuracy level
     of 0.9589.
 
-If you'd like to play more with the code, try adjusting the number of training
+If you want to play more with the code, try adjusting the number of training
 steps by setting `arg_steps` to a different value, or experiment with adjusting
 other parts of the code.
 
