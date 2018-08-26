@@ -52,9 +52,9 @@ based on what it's learned about handwritten images. In other words, you send
 an image to the model, and the model does its best to identify the digit shown
 in the image.
 
+<p style="font-weight:bold; color:red">
 TODO(sarahmaddox): Add screenshot of the prediction UI - same as shown at end of tutorial.
-
-TODO(sarahmaddox): Add workflow diagrams at the relevant stages in this tutorial.
+</p>
 
 ### The overall workflow
 
@@ -83,12 +83,6 @@ Let's get started!
 ## Setup
 
 ### Download the project files
-
-TODO(sarahmaddox): Update this section when the updated sample is in the Kubeflow repo.
-
-TODO(sarahmaddox): Also change all mentions of directory "kubeflow-introduction" to "kubeflow-gcp" or something similar, depending on repo name.
-
-TODO(sarahmaddox): Add distributed training to the MNIST model (Python code and YAML files).
 
 To simplify this tutorial, you can use a set of prepared files that include
 a TensorFlow application for training your model, a web UI to send prediction
@@ -480,6 +474,7 @@ downloaded the code for your TensorFlow application. The
 
 * A Python file, `MNIST.py`, containing TensorFlow code.
 * A Dockerfile to build the application into a container image.
+* A README file.
 
 The Python program, `MNIST.py`, does the following:
 
@@ -493,8 +488,6 @@ The Python program, `MNIST.py`, does the following:
 To deploy your code to Kubernetes, you must first build your local project into
 a [Docker][docker] container image and push the image to
 [Container Registry][container-registry] so that it's available in the cloud.
-
-TODO(sarahmaddox): Can we change the sample so that we can pass it the name of the directory containing the keys?
 
 1. Copy your key file to the directory containing your sample TensorFlow
    application, to give Docker access to your Cloud Storage bucket:
@@ -527,8 +520,8 @@ TODO(sarahmaddox): Can we change the sample so that we can pass it the name of t
     The container is tagged with its eventual path in Container Registry, but it
     hasn't been uploaded to Container Registry yet.
 
-    **Note:** The `--build-arg` flags in the `docker build` command are used to
-    pass arguments into the Dockerfile, which then passes them on to the
+    **Note:** The `--build-arg` flags in the `docker build` command
+    pass the arguments into the Dockerfile, which then passes them on to the
     Python program.
 
     If everything went well, your program is now encapsulated in a new
@@ -603,14 +596,97 @@ Kubernetes Engine.
     You should now see a new file, `train1.jsonnet`, in your
     `${DEPLOYMENT_NAME}_ks_app/components/` directory.
 
+1. Edit the file at `${DEPLOYMENT_NAME}_ks_app/components/train1.jsonnet` and
+   replace its contents with the following:
+
+    ```
+    local env = std.extVar("__ksonnet/environments");
+    local params = std.extVar("__ksonnet/params").components["train1"];
+
+    local k = import "k.libsonnet";
+
+    // @param name string Name for the job.
+    // @param image string Path to container image for training app.
+    // @param storage_bucket string Path to your Cloud Storage bucket, like
+    //        gs://your-bucket-name
+
+    local name = params.name;
+    local image = params.image;
+    local storage_bucket = params.storage_bucket;
+    local work_dir = storage_bucket + "/work";
+
+    local namespace = env.namespace;
+
+    local tfjob = {
+    apiVersion: "kubeflow.org/v1alpha2",
+    kind: "TFJob",
+    metadata: {
+        name: name,
+        namespace: namespace,
+    },
+    spec: {
+        tfReplicaSpecs: {
+        Worker: {
+            replicas: 1,
+            template: {
+            spec: {
+                containers: [
+                {
+                    args: [
+                    "python",
+                    "MNIST.py",
+                    "--bucket=" + storage_bucket,
+                    ],
+                    image: image,
+                    name: "tensorflow",
+                    workingDir: work_dir,
+                },
+                ],
+                restartPolicy: "OnFailure",
+            },
+            },
+        },
+        Ps: {
+            replicas: 1,
+            template: {
+            spec: {
+                containers: [
+                {
+                    args: [
+                    "python",
+                    "MNIST.py",
+                    "--bucket=" + storage_bucket,
+                    ],
+                    image: image,
+                    name: "tensorflow",
+                    workingDir: work_dir,
+                },
+                ],
+                restartPolicy: "OnFailure",
+            },
+            },
+            tfReplicaType: "PS",
+        },
+        },
+    },
+    };
+
+    k.core.v1.list.new([
+        tfjob,
+    ])
+    ```
+
+    For more information about the TFJob resource defined in the above file,
+    see the guide to [TensorFlow training with Kubeflow][tf-training].
+
 1. Use the [`ks param set`][ks-param-set] command to customize the component’s
    parameters, pointing to your training container in Container Registry and
    your Cloud Storage bucket:
 
     ```
-    ks param set train1 image ${TRAIN_IMG_PATH}
     ks param set train1 name "train1-"${VERSION_TAG}
-    ks param set train1 output_model_gcs_bucket "${BUCKET_NAME}"
+    ks param set train1 image ${TRAIN_IMG_PATH}
+    ks param set train1 storage_bucket "${BUCKET_NAME}"
     ```
 1. List the parameters for your component, to check the options set:
 
@@ -633,6 +709,12 @@ Kubernetes Engine.
     [Kubernetes Engine Workloads page][gcp-console-workloads] on the GCP
     console. Click your **train1** component, then click the **Logs** tab to
     see the logs.
+
+<p style="font-weight:bold; color:red">
+TODO(sarahmaddox): I'm getting an auth error in GKE saying it doesn't have access to GCR.
+ImagePullBackOff rpc error: code = Unknown desc = unauthorized: authentication required: ErrImagePull
+Need to set up some service account somewhere.
+</p>
 
 When training is complete, you should see the model data pushed into your
 Cloud Storage bucket, tagged with the same version number as the container
@@ -817,7 +899,9 @@ access the web UI in your web browser.
 
 You should see an interface for your machine learning model.
 
+<p style="font-weight:bold; color:red">
 TODO(sarahmaddox): Show screenshot - the same one as at the start of the tutorial
+</p>
 
 Each  time you refresh the page, it loads a random image from the MNIST testing
 set and performs a prediction. The table below the image displays the
@@ -891,6 +975,7 @@ gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS
 [kubeflow-core]: https://github.com/kubeflow/kubeflow/tree/master/kubeflow/core
 [tf-job-prototype]: https://github.com/kubeflow/kubeflow/blob/master/kubeflow/examples/prototypes/tf-job-simple.jsonnet
 [tf-serving-prototype]: https://github.com/kubeflow/kubeflow/tree/master/kubeflow/tf-serving
+[tf-training]: https://www.kubeflow.org/docs/guides/components/tftraining/
 
 [deploy-script]: https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deploy.sh
 
