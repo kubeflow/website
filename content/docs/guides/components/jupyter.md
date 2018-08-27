@@ -10,6 +10,12 @@ toc = true
 
 ## Bringing up a Jupyter Notebook
 
+Beforehand we need to setup a NAMESPACE variable.
+
+```commandline
+export NAMESPACE=kubeflow
+```
+
 The jupyterhub component deployed JupyterHub and a corresponding load balancer service. You can check its status using the kubectl command line.
 
 ```commandline
