@@ -9,6 +9,46 @@ toc = true
   weight = 20
 +++
 
+Kubeflow makes use of [ksonnet] to help manage deployments.
+
+## Installing ksonnet
+
+Make sure you have the minimum required version of ksonnet:
+{{% ksonnet-min-version %}} or later.
+
+Follow the steps below to install ksonnet:
+
+1. Follow the [ksonnet installation
+   guide][ksonnet-installation], choosing the relevant options for your
+   operating system. For example, if you're on Linux:
+
+    * Set some variables for the ksonnet version:
+
+        ```
+        export KS_VER=0.12.0
+        export KS_PKG=ks_${KS_VER}_linux_amd64
+        ```
+
+    * Download the ksonnet package:
+
+        ```
+        wget -O /tmp/${KS_PKG}.tar.gz https://github.com/ksonnet/ksonnet/releases/download/v${KS_VER}/${KS_PKG}.tar.gz \
+          --no-check-certificate
+        ```
+
+    * Unpack the file:
+
+        ```
+        mkdir -p ${HOME}/bin
+        tar -xvf /tmp/$KS_PKG.tar.gz -C ${HOME}/bin
+        ```
+
+1. Add the `ks` command to your path:
+
+      ```
+      export PATH=$PATH:${HOME}/bin/$KS_PKG
+      ```
+
 ## Creating a ksonnet application
 
 We will be using Ksonnet to deploy kubeflow into your existing cluster. The commands below will the cluster currently

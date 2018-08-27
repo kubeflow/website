@@ -38,8 +38,8 @@ For more general information on setting up a Kubernetes cluster please refer to 
 
 Requirements:
 
-  * ksonnet version [0.11.0](https://github.com/ksonnet/ksonnet/releases).
-  * Kubernetes >= 1.8 [see here](https://github.com/kubeflow/tf-operator#requirements)
+  * ksonnet version {{% ksonnet-min-version %}} or later.
+  * Kubernetes {{% kubernetes-min-version %}} or later
   * kubectl
 
 Run the following script to create a ksonnet app for Kubeflow and deploy it.
