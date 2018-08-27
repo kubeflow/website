@@ -608,7 +608,7 @@ ${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
 ## CPU platform unavailable in requested zone
 
 By default we set minCpuPlatform to `Intel Haswell` to make sure AVX2 is supported.
-See [troubleshooting]("/docs/guides/troubleshooting/") for more details.
+See [troubleshooting](/docs/guides/troubleshooting/) for more details.
 
 If you encounter this `CPU platform unavailable` error (might manifest as
 `Cluster is currently being created, deleted, updated or repaired and cannot be updated.`),
