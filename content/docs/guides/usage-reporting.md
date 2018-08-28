@@ -34,3 +34,11 @@ You can improve the quality of the data by giving each Kubeflow deployment a uni
 ```
 ks param set spartakus usageId $(uuidgen)
 ```
+
+**To disable usage reporting** you need to delete spartakus component
+
+```
+ks delete default ${ENV} -c spartakus
+kubectl -n ${NAMESPACE} delete deploy -l app=spartakus
+ks component rm spartakus
+```
