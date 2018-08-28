@@ -8,16 +8,25 @@ toc = true
 +++
 
 When enabled, Kubeflow will report **anonymous** usage data using [spartakus](https://github.com/kubernetes-incubator/spartakus), Kubernetes' reporting tool. Spartakus **does not report any personal information**. See [here](https://github.com/kubernetes-incubator/spartakus) for more detail.
-This is entirely voluntary and you can opt out by doing the following
+This is entirely voluntary and you can opt
 
 ```
-ks param set spartakus reportUsage false
-
 # Delete any existing deployments of spartakus
 kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
 ```
 
-To explictly enable usage reporting repeat the above steps setting reportUsage to `true`
+**To disable usage reporting** you need to delete spartakus component. 
+This command completely deletes any spartakus deployment, while the above 
+command only restarts spartakus with reportUsage set to `false`
+
+```
+ks delete default ${ENV} -c spartakus
+kubectl -n ${NAMESPACE} delete deploy -l app=spartakus
+ks component rm spartakus
+```
+
+
+To explictly enable usage reporting set reportUsage to `true`
 
 ```
 ks param set spartakus reportUsage true
