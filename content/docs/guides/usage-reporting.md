@@ -28,7 +28,7 @@ ks component rm spartakus
 ```
 
 
-To explictly enable usage reporting repeat the above steps setting reportUsage to `true`
+To explictly enable usage reporting set reportUsage to `true`
 
 ```
 ks param set spartakus reportUsage true
