@@ -17,6 +17,17 @@ ks param set spartakus reportUsage false
 kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
 ```
 
+**To disable usage reporting** you need to delete spartakus component. 
+This command completely deletes any spartakus deployment, while the above 
+command only restarts spartakus with reportUsage set to false
+
+```
+ks delete default ${ENV} -c spartakus
+kubectl -n ${NAMESPACE} delete deploy -l app=spartakus
+ks component rm spartakus
+```
+
+
 To explictly enable usage reporting repeat the above steps setting reportUsage to `true`
 
 ```
@@ -33,12 +44,4 @@ You can improve the quality of the data by giving each Kubeflow deployment a uni
 
 ```
 ks param set spartakus usageId $(uuidgen)
-```
-
-**To disable usage reporting** you need to delete spartakus component
-
-```
-ks delete default ${ENV} -c spartakus
-kubectl -n ${NAMESPACE} delete deploy -l app=spartakus
-ks component rm spartakus
 ```
