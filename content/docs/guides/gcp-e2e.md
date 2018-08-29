@@ -289,27 +289,7 @@ Set up and run the `deploy` script:
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
     ```
 
-1. Check the resources deployed in the `kubeflow` namespace:
-
-    ```
-    kubectl -n kubeflow get all
-    ```
-
-1. Note: To fix a problem that currently exists in the deployment script, edit
-   the file at
-   `{DEPLOYMENT_NAME}_deployment_manager_configs/cluster.jinja#L24`.
-   Change that line to add: `https://www.googleapis.com/auth/devstorage.read_only`.
-   See issue [#1432](https://github.com/kubeflow/kubeflow/issues/1432).
-
-1. Kubeflow will be available at the following URI after several minutes:
-
-    ```
-    https://<deployment-name>.endpoints.<project>.cloud.goog/
-    ```
-
-Notes:
-
-* While the script is running, you may see an error message like this:
+    While the script is running, you may see an error message like this:
 
     ```
     gcloud deployment-manager --project=<your-project> deployments describe <your-deployment>
@@ -318,6 +298,27 @@ Notes:
 
     You can safely ignore the message, as the script goes ahead and creates
     the deployment for you.
+
+1. To fix a problem that currently exists in the deployment script, edit
+   the file at
+   `{DEPLOYMENT_NAME}_deployment_manager_configs/cluster.jinja#L24`.
+   Change that line to add: `https://www.googleapis.com/auth/devstorage.read_only`.
+   Then re-run the deployment using your updated version of `cluster.jinja`.
+   See issue [#1432](https://github.com/kubeflow/kubeflow/issues/1432).
+
+1. Check the resources deployed in the `kubeflow` namespace:
+
+    ```
+    kubectl -n kubeflow get all
+    ```
+
+1. Kubeflow will be available at the following URI after several minutes:
+
+    ```
+    https://<deployment-name>.endpoints.<project>.cloud.goog/
+    ```
+
+Notes:
 
 * When the script has finished, you should have a running cluster in the cloud
   ready to run your code. You can interact with the cluster either by using
@@ -723,12 +724,6 @@ Kubernetes Engine.
     [Kubernetes Engine Workloads page][gcp-console-workloads] on the GCP
     console. Click your **train1** component, then click the **Logs** tab to
     see the logs.
-
-<p style="font-weight:bold; color:red">
-TODO(sarahmaddox): I'm getting an auth error in GKE saying it doesn't have access to GCR.
-ImagePullBackOff rpc error: code = Unknown desc = unauthorized: authentication required: ErrImagePull
-Need to set up some service account somewhere.
-</p>
 
 When training is complete, you should see the model data pushed into your
 Cloud Storage bucket, tagged with the same version number as the container
