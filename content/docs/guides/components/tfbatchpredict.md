@@ -17,14 +17,14 @@ TensorFlow model in SavedModel format in a batch mode. It is
 [apache-beam](https://beam.apache.org/)-based and can run either locally
 using a local runner in a K8s cluster or remotely using a remote
 [runners](https://beam.apache.org/documentation/runners/capability-matrix/)
-such as [Google Dataflow](https://cloud.google.com/dataflow) on GCP or other cloud services.
+such as [Google Dataflow](https://cloud.google.com/dataflow) runner on GCP.
 
 
 ## Run a TensorFlow Batch Predict Job
 
 **Note:** Before running a job, you should have [deployed kubeflow to your cluster](#deploy-kubeflow).
 
-We treat each TensorFlow batch predict job as a [component](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component) in your APP.
+We treat TensorFlow batch predict job as a [component](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component) in your APP.
 
 Kubeflow ships with a [ksonnet prototype](https://ksonnet.io/docs/concepts#prototype)
 suitable for you to to generate a component which you can then customize for your jobs.
@@ -66,7 +66,7 @@ ks param set --env=default ${MY_BATCH_PREDICT_JOB} inputFileFormat tfrecord
 ks param set --env=default ${MY_BATCH_PREDICT_JOB} outputResultPrefix gs://my_new_bucket
 ```
 
-### Using GPUs
+### Use GPUs
 
 To use GPUs your cluster must be configured to use GPUs.
 
@@ -84,7 +84,7 @@ integer. For example:
 ks param set --env=default ${MY_BATCH_PREDICT_JOB} numGpus 1
 ```
 
-This way, the batch-predict job will use a GPU version and add appriorate
+This way, the batch-predict job will use a GPU version of docker image and add appriorate
 configuration when starting the kubenetes job.
 
 
@@ -92,7 +92,6 @@ configuration when starting the kubenetes job.
 
 ```
 ks apply ${KF_ENV} -c ${MY_BATCH_PREDICT_JOB_NAME}
-
 ```
 
 You should see that a job is started to provision the batch-predict docker image.
@@ -123,18 +122,16 @@ ks delete ${KF_ENV} -c ${MY_BATCH_PREDICT_JOB_NAME}
 
   * **inputFilePatterns** The list of input files or file patterns, separated by commas.
 
-  * **inputFileFormat** One of the following formats: json, tfrecord, and tfrecord_gzip. For the model in this example, the input is a JPEG-encoded image string tensor. The input file contains TF records of JPEG bytes. If you use a model from the [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md) directly, the input is a numpy array instead. Then, your input file should contain multiple numeric arrays. Then the input format should be json. [Here](gs://kubeflow-examples-data/object-detection-coco/data/object-detection-images.json) is such a sample input, which contains two images.
+  * **inputFileFormat** One of the following formats: json, tfrecord, and tfrecord_gzip.
 
-  * **modelPath** The directory contains the model files in SavedModel format.
+  * **modelPath** The path on GCS contains the model files in SavedModel format.
 
   * **batchSize** Number of records in one batch in the input data. Depending on the memory in your machine, it is
-  recommend to be 1 to 4, up to 8 in this example.
+  recommend to be 1 to 4, up to 8 in a typical Tensorflow object detection model.
 
-  * **outputResultPrefix** Output path to save the prediction results.
+  * **outputResultPrefix** Output path on GCS to save the prediction results.
 
-  * **outputErrorPrefix** Output path to save the prediction errors.
-
-  * **outputErrorPrefix** Output path to save the prediction errors.
+  * **outputErrorPrefix** Output path on GCS to save the prediction errors.
 
   * **numGpus** Number of GPUs to use.
 
