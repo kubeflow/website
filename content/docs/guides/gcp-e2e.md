@@ -97,6 +97,14 @@ git clone https://github.com/googlecodelabs/kubeflow-introduction
 cd kubeflow-introduction
 ```
 
+Check the Dockerfile at `/kubeflow-introduction/tensorflow-model/Dockerfile`.
+If the TensorFlow version isn't 1.10 or later, edit the file and change the
+Tensorflow version to the following:
+
+```
+FROM tensorflow/tensorflow:1.10.0
+```
+
 ### Set up your GCP account and SDK
 
 Follow these steps to set up your GCP environment:
@@ -286,6 +294,12 @@ Set up and run the `deploy` script:
     ```
     kubectl -n kubeflow get all
     ```
+
+1. Note: To fix a problem that currently exists in the deployment script, edit
+   the file at
+   `{DEPLOYMENT_NAME}_deployment_manager_configs/cluster.jinja#L24`.
+   Change that line to add: `https://www.googleapis.com/auth/devstorage.read_only`.
+   See issue [#1432](https://github.com/kubeflow/kubeflow/issues/1432).
 
 1. Kubeflow will be available at the following URI after several minutes:
 
