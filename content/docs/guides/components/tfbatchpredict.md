@@ -53,24 +53,24 @@ ks generate tf-batch-predict ${MY_BATCH_PREDICT_JOB}
   --outputResultPrefix=${OUTPUT_RESULT_PREFIX} \
   --outputErrorPrefix=${OUTPUT_ERROR_PREFIX} \
   --batchSize=${BATCH_SIZE}
-
 ```
 
-Note that gcpCredentialSecretName is needed for running the jobs in GKE to
-output results to GCS.
+Note that gcpCredentialSecretName is only needed for running the jobs in GKE in
+order to output results to GCS.
 
 ### Parameterize the component
 
 You can set or update values for other optional parameters. For example, you can
-set the inputFileFormat to a new value or set the output to another gcs
-location. For example:
+set the modelPath to a new value (e.g. to test out another model) or set the output to
+another gcs location (e.g. in order not to overwrite the results from previous
+runs). For example:
 
 ```
 ks param set --env=default ${MY_BATCH_PREDICT_JOB} modelPath gs://my_new_bucket/my_new_model
 ks param set --env=default ${MY_BATCH_PREDICT_JOB} outputResultPrefix gs://my_new_bucket/my_new_output
 ```
 
-** The supported parameters and their usage: ***
+The supported parameters and their usage:
 
   * **inputFilePatterns** The list of input files or file patterns, separated by commas.
 
@@ -91,7 +91,7 @@ ks param set --env=default ${MY_BATCH_PREDICT_JOB} outputResultPrefix gs://my_ne
 
 ### Use GPUs
 
-Note: This works only with the local runner.
+**Note:** This works only with the local runner.
 
 To use GPUs your cluster must be configured to use GPUs.
 
@@ -128,8 +128,8 @@ kubectl logs -f ${POD_NAME}
 
 You can check the state of the pod to determine if a job is in running,
 failed, or completed. Once it is completed, you can check
-${OUTPUT_RESULT_PREFIX} on gcs to see if any sensible results are generated. If
-anything goes wrong, check ${OUTPUT_ERROR_PREFIX} where the error message is
+the result output location on gcs to see if any sensible results are generated. If
+anything goes wrong, check the error output location where the error message is
 stored.
 
 ### Delete the job
