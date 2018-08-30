@@ -14,10 +14,11 @@ bref= "Batch Prediction for TensorFlow models"
 
 Kubeflow batch-predict allows users to run predict jobs over a trained
 TensorFlow model in SavedModel format in a batch mode. It is
-[apache-beam](https://beam.apache.org/)-based and can run either locally
-using a local runner in a K8s cluster or remotely using a remote
-[runners](https://beam.apache.org/documentation/runners/capability-matrix/)
-such as [Google Dataflow](https://cloud.google.com/dataflow) runner on GCP.
+[apache-beam](https://beam.apache.org/)-based and can run either with a local
+runner or a remote [runners](https://beam.apache.org/documentation/runners/capability-matrix/).
+
+With a local runner, the job runs on a single node in a K8s cluster. A remote runer enables jobs to run
+on a remote Cloud service, potentially in a parallel fashion, such as [Google Dataflow](https://cloud.google.com/dataflow) service on GCP.
 
 
 ## Run a TensorFlow Batch Predict Job
@@ -33,7 +34,7 @@ suitable for you to to generate a component which you can then customize for you
 
 ```
 MY_BATCH_PREDICT_JOB=my_batch_predict_job
-GCP_CREDENTIAL_SECRET_NAME=my_secret
+GCP_CREDENTIAL_SECRET_NAME=user-gcp-sa
 INPUT_FILE_PATTERNS=gs://my_data_bucket/my_file_pattens
 MODEL_PATH=gs://my_model_bucket/my_model
 OUTPUT_RESULT_PREFIX=gs://my_data_bucket/my_result_prefix
@@ -55,6 +56,9 @@ ks generate tf-batch-predict ${MY_BATCH_PREDICT_JOB}
 
 ```
 
+Note that gcpCredentialSecretName is needed for running the jobs in GKE to
+output results to GCS.
+
 ### Parameterize the component
 
 You can set or update values for other optional parameters. For example, you can
@@ -62,11 +66,32 @@ set the inputFileFormat to a new value or set the output to another gcs
 location. For example:
 
 ```
-ks param set --env=default ${MY_BATCH_PREDICT_JOB} inputFileFormat tfrecord
-ks param set --env=default ${MY_BATCH_PREDICT_JOB} outputResultPrefix gs://my_new_bucket
+ks param set --env=default ${MY_BATCH_PREDICT_JOB} modelPath gs://my_new_bucket/my_new_model
+ks param set --env=default ${MY_BATCH_PREDICT_JOB} outputResultPrefix gs://my_new_bucket/my_new_output
 ```
 
+** The supported parameters and their usage: ***
+
+  * **inputFilePatterns** The list of input files or file patterns, separated by commas.
+
+  * **inputFileFormat** One of the following formats: json, tfrecord, and tfrecord_gzip.
+
+  * **modelPath** The path on GCS contains the model files in SavedModel format.
+
+  * **batchSize** Number of records in one batch in the input data. Depending on the memory in your machine, it is
+  recommend to be 1 to 4, up to 8 in a typical Tensorflow object detection model.
+
+  * **outputResultPrefix** Output path on GCS to save the prediction results.
+
+  * **outputErrorPrefix** Output path on GCS to save the prediction errors.
+
+  * **numGpus** Number of GPUs to use.
+
+  * **gcpCredentialSecretName** Secret name if used on GCP.
+
 ### Use GPUs
+
+Note: This works only with the local runner.
 
 To use GPUs your cluster must be configured to use GPUs.
 
@@ -86,7 +111,6 @@ ks param set --env=default ${MY_BATCH_PREDICT_JOB} numGpus 1
 
 This way, the batch-predict job will use a GPU version of docker image and add appriorate
 configuration when starting the kubenetes job.
-
 
 ### Submit the job
 
@@ -108,31 +132,8 @@ ${OUTPUT_RESULT_PREFIX} on gcs to see if any sensible results are generated. If
 anything goes wrong, check ${OUTPUT_ERROR_PREFIX} where the error message is
 stored.
 
-
 ### Delete the job
 
 ```
 ks delete ${KF_ENV} -c ${MY_BATCH_PREDICT_JOB_NAME}
 ```
-
-## Parameters for tf-batch-predict prototype
-
-
-**Parameters**
-
-  * **inputFilePatterns** The list of input files or file patterns, separated by commas.
-
-  * **inputFileFormat** One of the following formats: json, tfrecord, and tfrecord_gzip.
-
-  * **modelPath** The path on GCS contains the model files in SavedModel format.
-
-  * **batchSize** Number of records in one batch in the input data. Depending on the memory in your machine, it is
-  recommend to be 1 to 4, up to 8 in a typical Tensorflow object detection model.
-
-  * **outputResultPrefix** Output path on GCS to save the prediction results.
-
-  * **outputErrorPrefix** Output path on GCS to save the prediction errors.
-
-  * **numGpus** Number of GPUs to use.
-
-  * **gcpCredentialSecretName** Secret name if used on GCP.
