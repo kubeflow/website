@@ -10,7 +10,6 @@ Paginate = 20
   github = "kubeflow" # add your github profile name
   twitter = "" # add your twitter profile
   email = "myemail@myaddress.xxx"
-
   version = "v0.2"
   githubbranch = "v0.2-branch"
 
