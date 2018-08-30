@@ -628,7 +628,7 @@ Kubernetes Engine.
     local name = params.name;
     local image = params.image;
     local storage_bucket = params.storage_bucket;
-    local work_dir = storage_bucket + "/work";
+    local work_dir = "/opt/kubeflow-working";
 
     local namespace = env.namespace;
 
@@ -701,7 +701,7 @@ Kubernetes Engine.
     ```
     ks param set train1 name "train1-"${VERSION_TAG}
     ks param set train1 image ${TRAIN_IMG_PATH}
-    ks param set train1 storage_bucket "${BUCKET_NAME}"
+    ks param set train1 storage_bucket "gs://"${BUCKET_NAME}
     ```
 1. List the parameters for your component, to check the options set:
 
@@ -733,10 +733,12 @@ that generated it. To explore, click your bucket name on the
 In a production environment, it’s likely that you will need to run more than one
 training job for the model. Kubeflow gives you a simple deploy pipeline you can
 use to train new versions of your model repeatedly. You don’t need to regenerate
-the `tf-job-operator` component every time. When you have a new version to push:
+the `tf-job-operator` ksonnet component every time. When you have a new version
+to push:
 
 * Build a new container with a new version tag.
-* Modify your `tf-job-operator` parameters to point to the new version of your
+* Run the `ks param set` command to modify the parameters for the 
+  `tf-job-operator` ksonnet component to point to the new version of your
   container.
 * Re-apply the container to the cluster.
 
