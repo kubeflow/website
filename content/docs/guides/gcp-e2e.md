@@ -599,6 +599,11 @@ run it on your Kubernetes Engine cluster.
 Now you are ready to run the TensorFlow training job on your cluster on
 Kubernetes Engine.
 
+1. Workaround for a permissioning problem: Go to the
+   [GCP IAM](https://console.cloud.google.com/iam-admin/iam) page and add the
+   **Storage Admin** role to your service account:
+   `<DEPLOYMENT_NAME>-admin@<PROJECT_ID>.iam.gserviceaccount.com`.
+
 1. Use the [`ks generate`][ks-generate] command to generate a ksonnet component
    from the [`tf-job` prototype][tf-job-prototype]. The code below generates a
    component called `train1`:
