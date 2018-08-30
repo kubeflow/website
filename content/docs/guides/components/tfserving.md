@@ -81,7 +81,7 @@ ks param set ${MODEL_COMPONENT} modelStorageType ${MODEL_STORAGE_TYPE}
 ks param set ${MODEL_COMPONENT} nfsPVC ${NFS_PVC_NAME}
 ```
 
-Deploy the model component. Ksonnet will pick up existing parameters for your environment (e.g. cloud, nocloud) and customize the resulting deployment appropriately. To see more parameters look through [tf-serving.libsonnet](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/tf-serving/tf-serving.libsonnet).
+Deploy the model component. Ksonnet will pick up existing parameters for your environment (e.g. cloud, nocloud) and customize the resulting deployment appropriately. To see more parameters look through tf-serving {{% tf-serving-version %}} or later.
 
 ```
 ks apply ${KF_ENV} -c ${MODEL_COMPONENT}
