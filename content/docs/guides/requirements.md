@@ -3,18 +3,20 @@ title = "Requirements"
 description = "Requirements"
 weight = 10
 toc = true
-bref= "This guide will walk you through the basics of deploying and interacting with Kubeflow. Some understanding of Kubernetes, Tensorflow, and Ksonnet are useful in completing the contents of this guide."
+bref= "The guides in this section give detailed information about using Kubeflow and its components."
 aliases = ["/docs/guides/"]
 [menu.docs]
   parent = "guides"
   weight = 1
 +++
 
+For best understanding of the guides, it's useful to have some knowledge of
+the following systems:
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 * [TensorFlow](https://www.tensorflow.org/get_started/)
 * [ksonnet](https://ksonnet.io/docs/tutorial)
 
-## Requirements
+## Kubeflow requirements
 
  * ksonnet version {{% ksonnet-min-version %}} or later. See the [ksonnet component page](/docs/guides/components/ksonnet/) for an explanation of why we use ksonnet.
  * An existing Kubernetes cluster using Kubernetes {{% kubernetes-min-version %}} or later:
