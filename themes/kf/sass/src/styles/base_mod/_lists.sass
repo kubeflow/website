@@ -35,7 +35,7 @@ dd
 			&:before
 				width: $large-spacing
 				margin-left: -$large-spacing
-				top: $tiny-spacing
+				top: -$tiny-spacing
 				position: relative
 				text-align: center
 				$font-size: em(6)
@@ -46,7 +46,7 @@ dd
 				color: $brand-color-1
 				padding-right: $small-spacing
 				display: inline-block
-				vertical-align: top
+				// vertical-align: top
 
 			// nested ordered lists counters
 			ol
@@ -59,6 +59,7 @@ dd
 						content: counter(li)
 						font-size: em(16)
 						top: 0
+						font-family: $base-font-family
 					ol
 						counter-reset: li
 						li
