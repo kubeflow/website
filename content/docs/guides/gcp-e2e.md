@@ -505,10 +505,12 @@ a [Docker][docker] container image and push the image to
 [Container Registry][container-registry] so that it's available in the cloud.
 
 1. Copy your key file to the directory containing your sample TensorFlow
-   application, to give Docker access to your Cloud Storage bucket:
+   application, to give Docker access to your Cloud Storage bucket. Make sure
+   you copy the key for the **...-user@...** account, not the key for the
+   `...-admin@...` account:
 
     ```
-    cp ${DEPLOYMENT_NAME}_deployment_manager_configs/${DEPLOYMENT_NAME}-admin@${PROJECT}.iam.gserviceaccount.com.json tensorflow-model/key.json
+    cp ${DEPLOYMENT_NAME}_deployment_manager_configs/${DEPLOYMENT_NAME}-user@${PROJECT}.iam.gserviceaccount.com.json tensorflow-model/key.json
     ```
 
 1. Create a version tag from the current UNIX timestamp, to be associated with
