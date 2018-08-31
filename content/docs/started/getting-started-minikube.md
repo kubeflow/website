@@ -21,22 +21,52 @@ Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [VMware Fusi
 ##### Ubuntu
 Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [KVM](http://www.linux-kvm.org/).
 
+The KVM2 driver is intended to replace KVM driver. The KVM2 driver is maintained by the minikube team, and is built, tested and released with minikube.
 For installing KVM:
 
 ```
-$ sudo apt-get install libvirt-bin kvm virt-manager virt-viewer python-spice-client-gtk qemu-kvm qemu-system
-$ sudo usermod -aG libvirtd $USER
+# Install libvirt and qemu-kvm on your system, e.g.
+# Debian/Ubuntu (for older Debian/Ubuntu versions, you may have to use libvirt-bin instead of libvirt-clients and libvirt-daemon-system)
+$ sudo apt install libvirt-clients libvirt-daemon-system qemu-kvm
+
+# Add yourself to the libvirt group so you don't need to sudo
+# NOTE: For older Debian/Ubuntu versions change the group to `libvirtd`
+$ sudo usermod -a -G libvirt $(whoami)
+
+# Update your current session for the group change to take effect
+# NOTE: For older Debian/Ubuntu versions change the group to `libvirtd`
+$ newgrp libvirt
+```
+Then install the driver itself:
+
+```
+curl -Lo docker-machine-driver-kvm2 https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-kvm2 \
+&& chmod +x docker-machine-driver-kvm2 \
+&& sudo cp docker-machine-driver-kvm2 /usr/local/bin/ \
+&& rm docker-machine-driver-kvm2
 ```
 
 ##### CentOS
 Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [KVM](http://www.linux-kvm.org/).
 
 For installing KVM:
+```
+# Install libvirt and qemu-kvm on your system
+$ sudo yum install libvirt-daemon-kvm qemu-kvm
+
+# Add yourself to the libvirt group so you don't need to sudo
+$ sudo usermod -a -G libvirt $(whoami)
+
+# Update your current session for the group change to take effect
+$ newgrp libvirt
+```
+Then install the driver itself:
 
 ```
-$ sudo yum install qemu-kvm qemu-img virt-manager libvirt libvirt-python libvirt-client virt-install virt-viewer bridge-utils
-$ sudo systemctl start libvirtd
-$ sudo systemctl enable libvirtd
+curl -Lo docker-machine-driver-kvm2 https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-kvm2 \
+&& chmod +x docker-machine-driver-kvm2 \
+&& sudo cp docker-machine-driver-kvm2 /usr/local/bin/ \
+&& rm docker-machine-driver-kvm2
 ```
 
 ### Install Kubectl
