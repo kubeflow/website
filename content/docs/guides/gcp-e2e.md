@@ -777,7 +777,7 @@ requests:
     ks generate tf-serving serve --name=mnist-serve
     ```
 
-1. Set the parameter to define the path to your model on Cloud Storage:
+1. Set a ksonnet parameter to define the path to your model on Cloud Storage:
 
     ```
     ks param set serve modelPath gs://${BUCKET_NAME}/
@@ -825,23 +825,13 @@ the application into a container image.
 
 ### Build a container and push it to Container Registry
 
-As usual, first build a container from your code:
+Follow these steps to build a container from your code:
 
 1. Move back to the `kubeflow-introduction` project directory:
 
     ```
     cd ${HOME}/kubeflow-introduction
     ```
-
-1. Copy your key file to the directory containing your web UI app,
-   to grant access to your Cloud Storage bucket. Make sure
-   you copy the key for the **...-user@...** account, not the key for the
-   `...-admin@...` account:
-
-    ```
-    cp ${DEPLOYMENT_NAME}_deployment_manager_configs/${DEPLOYMENT_NAME}-user@${PROJECT}.iam.gserviceaccount.com.json web-ui/key.json
-    ```
-
 
 1. Set the path in [Container Registry][container-registry] to push the
    container image to:
