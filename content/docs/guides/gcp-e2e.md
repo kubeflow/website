@@ -777,10 +777,15 @@ requests:
     ks generate tf-serving serve --name=mnist-serve
     ```
 
-1. Set the parameters and [apply][ks-apply] the component to the cluster:
+1. Set the parameter to define the path to your model on Cloud Storage:
 
     ```
     ks param set serve modelPath gs://${BUCKET_NAME}/
+    ```
+
+1. [Apply][ks-apply] the component to the cluster:
+
+    ```
     ks apply default -c serve
     ```
 
