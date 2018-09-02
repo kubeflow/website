@@ -590,6 +590,8 @@ run it on your Kubernetes Engine cluster.
     ```
     docker push ${TRAIN_IMG_PATH}
     ```
+    The push may take a few minutes to complete. You should see Docker progress 
+    updates in your command window.
 
 1. Wait until the process is complete, then you should see your new container
    image listed on the [Container Registry page][gcp-container-registry]
@@ -729,8 +731,8 @@ Kubernetes Engine.
 
     You can see the workloads on the
     [Kubernetes Engine Workloads page][gcp-console-workloads] on the GCP
-    console. Click your **train1** component, then click the **Logs** tab to
-    see the logs.
+    console. Click the **train1** workload, then click
+    **Container logs** to see the logs.
 
 When training is complete, you should see the model data pushed into your
 Cloud Storage bucket, tagged with the same version number as the container
@@ -768,10 +770,11 @@ bucket where your model data is stored, so that the server can spin up to handle
 requests:
 
 1. [Generate][ks-generate] a ksonnet component from the prototype. The code
-   below names the server `model-serve`:
+   below names the server `mnist-serve`:
 
     ```
-    ks generate tf-serving serve --name=model-serve
+    cd ${HOME}/kubeflow-introduction/${DEPLOYMENT_NAME}_ks_app
+    ks generate tf-serving serve --name=mnist-serve
     ```
 
 1. Set the parameters and [apply][ks-apply] the component to the cluster:
@@ -786,19 +789,16 @@ requests:
     component picks up on the most recent tag and serves that version of the
     model.
 
-    You can check the logs of the running server pod to ensure everything is
-    working as expected:
+    There should now be a new workload on the cluster, with the name
+    `mnist-serve-v1`.
 
-    ```
-    export POD_NAME=$(kubectl get pods \
-      --selector=app=model-serve \
-      --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+    You can see the workload on the
+    [Kubernetes Engine Workloads page][gcp-console-workloads] on the GCP
+    console. Click the **mnist-serve-v1** workload, then click
+    **Container logs** to see the logs.
 
-    kubectl logs ${POD_NAME}
-    ```
-
-    If you get an error, the initialization may not be complete. Wait a moment
-    then re-try the command.
+    You can also see the **mnist-serve** service on the
+     [Kubernetes Engine Services page][gcp-console-services].
 
 ## Send online prediction requests to your model
 
@@ -811,10 +811,12 @@ When you downloaded the project files at the start of the tutorial, you
 downloaded the code for a simple web UI. The code is stored in the
 `kubeflow-introduction/web-ui` directory.
 
-The web page consists of a simple [Flask][flask] server that hosts the
-HTML/CSS/JavaScript files for the web page. The Flask server makes use of
-`mnist_client.py`, which contains a Python function that interacts directly with
-the TensorFlow server.
+The web UI uses a [Flask][flask] server to host the HTML/CSS/JavaScript files
+for the web page. The Python program, `mnist_client.py`, contains a function
+that interacts directly with the TensorFlow model server.
+
+The `kubeflow-introduction/web-ui` directory also contains a Dockerfile to build
+the application into a container image.
 
 ### Build a container and push it to Container Registry
 
@@ -826,14 +828,24 @@ As usual, first build a container from your code:
     cd ${HOME}/kubeflow-introduction
     ```
 
+1. Copy your key file to the directory containing your web UI app,
+   to grant access to your Cloud Storage bucket. Make sure
+   you copy the key for the **...-user@...** account, not the key for the
+   `...-admin@...` account:
+
+    ```
+    cp ${DEPLOYMENT_NAME}_deployment_manager_configs/${DEPLOYMENT_NAME}-user@${PROJECT}.iam.gserviceaccount.com.json web-ui/key.json
+    ```
+
+
 1. Set the path in [Container Registry][container-registry] to push the
    container image to:
 
     ```
-    export UI_IMG_PATH=gcr.io/${PROJECT}/kubeflow-web-ui
+    export UI_IMG_PATH=gcr.io/${PROJECT}/${DEPLOYMENT_NAME}-web-ui
     ```
 
-1. Build the `web-ui` directory:
+1. Build the Docker image for the `web-ui` directory:
 
     ```
     docker build -t ${UI_IMG_PATH} ./web-ui
@@ -845,17 +857,24 @@ As usual, first build a container from your code:
     docker push ${UI_IMG_PATH}
     ```
 
+    The push may take a few minutes to complete. You should see Docker progress 
+    updates in your command window.
+
+1. Wait until the process is complete, then you should see your new container
+   image listed on the [Container Registry page][gcp-container-registry]
+   on the GCP console.
+
 ### Create a ksonnet component
 
-To deploy the web UI to the cluster, again create a ksonnet component. This
+To deploy the web UI to the cluster, you need another ksonnet component. This
 time, use ksonnet's built-in `deployed-service` prototype. The component
 creates the deployment and load balancer so you can connect with your Flask
 server from outside the cluster.
 
-1. Move back into your ksonnet project directory:
+1. Move back into your ksonnet application directory:
 
     ```
-    cd ${HOME}/kubeflow-introduction/ksonnet-kubeflow
+    cd ${HOME}/kubeflow-introduction/${DEPLOYMENT_NAME}_ks_app
     ```
 
 1. [Generate][ks-generate] the component from its prototype:
@@ -875,40 +894,38 @@ server from outside the cluster.
     ks apply default -c web-ui
     ```
 
+    Now there should be a new web UI running in the cluster. You can see the 
+    **web-ui** entry on the
+    [Kubernetes Engine Workloads page][gcp-console-workloads] and on the
+    [Services page][gcp-console-services].
+
 ### Access the web UI in your browser
 
-Now there should be a new web UI running in the cluster. Follow these steps to
-access the web UI in your web browser.
+Follow these steps to access the web UI in your web browser.
 
-1. Find the external IP address of the service:
+1. Get the external IP address of the service: Go to the
+   the [Kubernetes Engine Services page][gcp-console-services], click the entry
+   for **web-ui** to see the service details, and copy the
+   IP address next to **External endpoints**.
 
-    ```
-    kubectl get service web-ui
-    ```
-
-    TODO(sarahmaddox): Show example output of the above command
-
-1. Copy the external IP address from the output. (Note that it may take a couple
-   of minutes for the IP address to appear.)
-
-1. Paste the IP address into your browser. The web UI should load.
+1. Open the IP address into your browser. The web UI should load.
 
     TODO(sarahmaddox): Show screenshot - 3 fields that need completing
 
 1. On the web page, enter the requested details of the TensorFlow server that's
    running in the cluster:  a name, an address, and a port:
 
-  * **Server Name:** The name that you gave to your serving component:
-    `model-serve`.
+  * **Server Name:** `mnist-serve` - The name that you gave to your serving 
+    component.
 
-  * **Server Address:** You can enter the server address as a domain name or an
-    IP address. Note that this is an internal IP address for the `model-serve`
-    service within your cluster, not a public address. To simplify addressing
-    issues, Kubernetes has an internal DNS service, so you can write the name of
-    the service in the address field: `model-serve`. Kubernetes routes all
-    requests to the required IP address automatically.
+  * **Server Address:** `mnist-serve` - You can enter the server address as a 
+    domain name or an IP address. Note that this is an internal IP address for
+    the `mnist-serve` service within your cluster, not a public address.
+    Kubernetes provides an internal DNS service, so you can write the name of
+    the service in the address field. Kubernetes routes all requests to the 
+    required IP address automatically.
 
-  * **Port:** The server listens on port 9000 by default.
+  * **Port:** `9000` - The server listens on port 9000 by default.
 
 1. Click **Connect**. The system finds the server in your cluster and displays
    the classification results.
@@ -969,6 +986,7 @@ gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS
 [gcp-console-credentials]: https://console.cloud.google.com/apis/credentials
 [gcp-console-deployment-manager]: https://console.cloud.google.com/dm/
 [gcp-console-compute-engine]: https://console.cloud.google.com/compute/
+[gcp-console-services]: https://console.cloud.google.com/kubernetes/discovery
 [cr-tf-models]: https://console.cloud.google.com/gcr/images/tensorflow/GLOBAL/models
 
 [cloud-shell]: https://cloud.google.com/sdk/docs/interactive-gcloud
