@@ -52,9 +52,13 @@ based on what it's learned about handwritten images. In other words, you send
 an image to the model, and the model does its best to identify the digit shown
 in the image.
 
-<p style="font-weight:bold; color:red">
-TODO(sarahmaddox): Add screenshot of the prediction UI - same as shown at end of tutorial.
-</p>
+
+  ![Prediction UI](/docs/images/gcp-e2e-ui-prediction.png)
+
+In the above screenshot, the image shows a hand-written **8**. The table below 
+the image shows a bar graph for each  classification label from 0 to 9. Each bar 
+represents the probability that the image matches the respective label. Looks
+like it's pretty confident this one is an 8!
 
 ### The overall workflow
 
@@ -903,12 +907,14 @@ Follow these steps to access the web UI in your web browser.
    for **web-ui** to see the service details, and copy the
    IP address next to **External endpoints**.
 
-1. Open the IP address into your browser. The web UI should load.
+1. Open the IP address into your browser. The web UI should load, offering you
+   three fields to connect to the prediction server:
 
-    TODO(sarahmaddox): Show screenshot - 3 fields that need completing
+    ![Connection UI](/docs/images/gcp-e2e-ui-connect.png)
 
-1. On the web page, enter the requested details of the TensorFlow server that's
-   running in the cluster:  a name, an address, and a port:
+1. By default, the fields on the above web page are pre-filled with the details 
+   of the TensorFlow server that's running in the cluster:  a name, an address, 
+   and a port. You can change them if you used different values:
 
   * **Server Name:** `mnist-serve` - The name that you gave to your serving 
     component.
@@ -927,17 +933,18 @@ Follow these steps to access the web UI in your web browser.
 
 ## The final product
 
-You should see an interface for your machine learning model.
+Below the connect screen, you should see a prediction UI for your MNIST 
+model.
 
-<p style="font-weight:bold; color:red">
-TODO(sarahmaddox): Show screenshot - the same one as at the start of the tutorial
-</p>
+  ![Prediction UI](/docs/images/gcp-e2e-ui-prediction.png)
 
-Each  time you refresh the page, it loads a random image from the MNIST testing
-set and performs a prediction. The table below the image displays the
-probability of each class label. Because the model was properly trained, the
-confidence level should be high and mistakes should be rare. See if you can
-find any!
+Each  time you refresh the page, it loads a random image from the MNIST test
+dataset and performs a prediction. In the above screenshot, the image shows a
+hand-written **8**. The table below the image shows a bar graph for each 
+classification label from 0 to 9. Each bar represents
+the probability that the image matches the respective label. 
+Because the model was properly trained, the confidence level should be high and 
+mistakes should be rare. See if you can find any!
 
 <a id="cleanup"></a>
 ## Clean up your GCP environment
@@ -1006,7 +1013,7 @@ gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS
 [kubeflow-core]: https://github.com/kubeflow/kubeflow/tree/master/kubeflow/core
 [tf-job-prototype]: https://github.com/kubeflow/kubeflow/blob/master/kubeflow/examples/prototypes/tf-job-simple.jsonnet
 [tf-serving-prototype]: https://github.com/kubeflow/kubeflow/tree/master/kubeflow/tf-serving
-[tf-training]: https://www.kubeflow.org/docs/guides/components/tftraining/
+[tf-training]: /docs/guides/components/tftraining/
 
 [deploy-script]: https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deploy.sh
 
