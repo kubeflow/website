@@ -45,7 +45,7 @@ Requirements:
 Run the following script to create a ksonnet app for Kubeflow and deploy it.
 
 ```
-export KUBEFLOW_VERSION=0.2.4
+export KUBEFLOW_VERSION=0.2.5
 curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/deploy.sh | bash
 ```
 
