@@ -42,7 +42,7 @@ Paginate = 20
     weight = -100
     url = "/blog/"
 [[menu.main]]
-    name = "Github"
+    name = "GitHub"
     weight = -99
     url = "https://github.com/kubeflow/"
 
