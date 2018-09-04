@@ -95,6 +95,3 @@ For detailed troubleshooting instructions, please refer to the [troubleshooting 
   * [Qwiklabs](https://qwiklabs.com/catalog?keywords=kubeflow)
     * [Introduction to Kubeflow on Google Kubernetes Engine](https://qwiklabs.com/focuses/960?locale=en&parent=catalog)
     * [Kubeflow End to End: GitHub Issue Summarization](https://qwiklabs.com/focuses/1257?locale=en&parent=catalog)
-* Blog posts about Kubeflow:
-  * [Kubeflow & Oracle](https://blogs.oracle.com/cloud-infrastructure/deploy-kubeflow-with-oracle-cloud-infrastructure-container-engine-for-kubernetes)
-  * [Kubeflow & MapR](https://mapr.com/blog/kubernetized-machine-learning-and-ai-using-kubeflow/)
