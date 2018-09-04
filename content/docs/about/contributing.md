@@ -51,7 +51,7 @@ Please send a PR adding yourself to
   * The only **required** field is your GitHub username.
   * This is a **prerequisite** for joining the Kubeflow org on GitHub.
 
-### Companies/Organizations
+### Companies/organizations
 
 If you would like your company or organization to be acknowledged for contributing to
 Kubeflow or participatng in the community (being a user counts) please send a PR
@@ -62,7 +62,7 @@ adding the relevant info to
 
 There are many ways to contribute! Join one of our communication channels, 
 attend a community meeting, get to know the community. Read the details in
-our [community guide](docs/about/community).
+our [community guide](/docs/about/community).
 
 ## Your first contribution
 
