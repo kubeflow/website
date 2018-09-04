@@ -3,14 +3,15 @@ title =  "Contributing to Kubeflow"
 description = "Information on how to start contributing to Kubeflow"
 weight = 10
 toc = true
-bref = "Get involved"
+bref = "Welcome to the Kubeflow project! "
 aliases = ["/docs/contributing/"]
 [menu.docs]
   parent = "about"
   weight = 3
 +++
-## Kubeflow Contributor Guide
-Welcome to the Kubeflow project! This document is the single source of truth for how to contribute to the code base.
+## Getting started as a Kubeflow contributor
+
+This document is the single source of truth for how to contribute to the code base.
 We'd love to accept your patches and contributions to this project. There are
 just a few small guidelines you need to follow.
 
@@ -26,14 +27,42 @@ You generally only need to submit a CLA once, so if you've already submitted one
 (even if it was for a different project), you probably don't need to do it
 again.
 
-### Code of Conduct
+### Follow the code of conduct
 
 Please make sure to read and observe our [Code of Conduct](https://github.com/kubeflow/community/blob/master/CODE_OF_CONDUCT.md).
 
-### Call for Participation in Kubeflow User Research
+### Consider participating in Kubeflow user research
 
 Maggie Lynn, a user experience researcher, is conducting user studies to inform future developments for Kubeflow. These typically involve a one hour study session conducted online with a thank you gift for providing your feedback. As a member of the Kubeflow community, your feedback and expertise are extremely valuable to us, so if you have time in the next month, please consider participating. To gather your interest, availability, and some basic information about you, please fill out this form where you’ll find out more details about this research opportunity: [https://goo.gl/forms/sv5sRo3UfsgeUEjK2](https://goo.gl/forms/sv5sRo3UfsgeUEjK2)
 
+## Joining the community
+
+Follow these instructions if you want to
+
+* Become a member of the Kubeflow GitHub org (so you can trigger tests)
+* Become part of the Kubeflow build cop or release teams
+* Be recognized as an individual or organization contributing to Kubeflow
+
+### Individual contributors
+
+Please send a PR adding yourself to 
+[members](https://github.com/kubeflow/community/blob/master/members.yaml).
+
+  * The only **required** field is your GitHub username.
+  * This is a **prerequisite** for joining the Kubeflow org on GitHub.
+
+### Companies/organizations
+
+If you would like your company or organization to be acknowledged for contributing to
+Kubeflow or participatng in the community (being a user counts) please send a PR
+adding the relevant info to
+[member_organizations.yaml](https://github.com/kubeflow/community/blob/master/member_organizations.yaml).
+
+### Community discussions
+
+There are many ways to contribute! Join one of our communication channels, 
+attend a community meeting, get to know the community. Read the details in
+our [community guide](/docs/about/community).
 
 ## Your first contribution
 
@@ -47,33 +76,10 @@ should be fixed, you should own it. Here is how you get started.
 
 ### Starter issues
 
-Kubeflow issues that would make good entry points can be found by looking at
-the following tags:
+To find Kubeflow issues that make good entry points, look at the following tags:
 
 * [`good first issue`](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 * [`help wanted`](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-
-## Joining the community
-
-Follow these instructions if
-
-* You want to become a member of the Kubeflow GitHub org (so you can trigger tests)
-* Become part of the Kubeflow build cop or release teams
-* Be recognized as an individual or organization as contributing to Kubeflow
-
-### Individual contributors
-
-Please send a PR adding yourself to [members](https://github.com/kubeflow/community/blob/master/members.yaml)
-
-  * The only **required** field is your GitHub id
-  * This is a **prerequisite** for joining the GitHub org
-
-### Companies/Organizations
-
-If you would like your company or organization to be acknowledged for contributing to
-Kubeflow or participatng in the community (being a user counts) please send a PR
-adding the relevant info to[member_organizations.yaml](https://github.com/kubeflow/community/blob/master/member_organizations.yaml).
-
 
 ## Owners files and PR workflow
 
@@ -137,7 +143,7 @@ OWNERS_ALIAS files are in YAML format and support the following keys:
 We use aliases for groups instead of GitHub Teams, because changes to GitHub Teams are not
 publicly auditable.
 
-A sample OWNERS_ALISES file looks like:
+A sample OWNERS_ALIASES file looks like:
 
 ```
 aliases:
@@ -151,7 +157,7 @@ aliases:
 
 GitHub usernames and aliases listed in OWNERS files are case-insensitive.
 
-### The Code Review Process
+### The code review process
 
 - The **author** submits a PR
 - Phase 0: Automation suggests **reviewers** and **approvers** for the PR
@@ -182,16 +188,21 @@ GitHub usernames and aliases listed in OWNERS files are case-insensitive.
     [prow](https://prow.k8s.io) ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) applies an
     `approved` label
 - Phase 3: Automation merges the PR:
+
   - If all of the following are true:
-    - All required labels are present (eg: `lgtm`, `approved`)
-    - Any blocking labels are missing (eg: there is no `do-not-merge/hold`, `needs-rebase`)
+
+      - All required labels are present (eg: `lgtm`, `approved`)
+      - Any blocking labels are missing (eg: there is no `do-not-merge/hold`, `needs-rebase`)
+
   - And if any of the following are true:
-    - there are no presubmit prow jobs configured for this repo
-    - there are presubmit prow jobs configured for this repo, and they all pass after automatically
-      being re-run one last time
+
+      - there are no presubmit prow jobs configured for this repo
+      - there are presubmit prow jobs configured for this repo, and they all pass after automatically
+        being re-run one last time
+
   - Then the PR will automatically be merged
 
-### Quirks of the Process
+### Quirks of the process
 
 There are a number of behaviors we've observed that while _possible_ are discouraged, as they go
 against the intent of this review process.  Some of these could be prevented in the future, but this
