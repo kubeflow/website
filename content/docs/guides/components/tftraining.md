@@ -153,10 +153,11 @@ Kubeflow ships with a [ksonnet prototype](https://ksonnet.io/docs/concepts#proto
 
 You can also use this prototype to generate a component which you can then customize for your jobs.
 
-Create the component
+Create the component (update version as appropriate).
 
 ```
 CNN_JOB_NAME=mycnnjob
+VERSION=v0.2-branch
 
 ks registry add kubeflow-git github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow
 ks pkg install kubeflow-git/examples
