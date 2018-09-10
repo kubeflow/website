@@ -7,7 +7,7 @@ bref= ""
 aliases = ["/docs/events/"]
 [menu.docs]
   parent = "about"
-  weight = 4
+  weight = 5
 +++
 
 This is a nonexhaustive list of events (in reverse chronological order) with talks and workshops about Kubeflow.

@@ -48,3 +48,10 @@ to use for each stage of the ML workflow: data preparation, model training,
 prediction serving, and service management.
 
 You can choose to deploy your workloads locally or to a cloud environment.
+
+## Getting involved
+
+There are many ways to contribute to Kubeflow, and we welcome contributions! 
+Read the [contributor's guide](/docs/about/contributing) to get started on the 
+code, and get to know the community in the 
+[community guide](/docs/about/community).
