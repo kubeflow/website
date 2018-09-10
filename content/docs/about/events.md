@@ -24,6 +24,8 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
 * [Kafka Summit, San Francisco](https://kafka-summit.org/), 16-17 October, 2018
 * [O’Reilly AI Conference, London](https://conferences.oreilly.com/artificial-intelligence/ai-eu), 08-11 October, 2018
   - [Machine Learning at Scale with Kubernetes](https://conferences.oreilly.com/artificial-intelligence/ai-eu/public/schedule/detail/69194): Chris Cho
+* Cloud-Native, Docker, and Kubernetes Summit, Dallas, 12 September, 2018
+  - [Deploying Machine Learning Workloads in Kubernetes clusters that support GPUs](https://www.eventbrite.com/e/kubernetes-classes-at-cloud-native-docker-k8s-summit-tickets-44954443952): Michael Iatrou
 * [O’Reilly Strata Data, New York](https://conferences.oreilly.com/strata/strata-ny), 11-13 September, 2018
   - [From Training to Serving: Deploying Tensorflow Models with Kubernetes](https://conferences.oreilly.com/strata/strata-ny/public/schedule/detail/69362): Brian Foo, Jay Smith, David Aronchick
   - [Kubeflow Explained: Portable Machine Learning on Kubernetes](https://conferences.oreilly.com/strata/strata-ny/public/schedule/detail/69041): Michelle Casbon
