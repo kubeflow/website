@@ -172,3 +172,12 @@ ks version
 ```
 
 If your ksonnet version is lower than what is specified in the [requirements](/docs/guides/requirements), please upgrade it and follow the [guide](/docs/guides/components/ksonnet) to recreate the app.
+
+## Ksonnet on Windows
+There are some known issues with ksonnet and Windows. You might consider 
+alternative solutions.
+
+ * construct base object: Failed to filter components; the following 
+ components don't exist:  ['kubeflow-core']  [#481](https://github.com/kubeflow/kubeflow/issues/481)
+ * "ks apply" fails to correctly process paths in Windows shell [#382](https://github.com/ksonnet/ksonnet/issues/382)
+ 
