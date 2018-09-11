@@ -7,7 +7,7 @@ bref= "This guide will walk you through using Chainer for training"
 [menu]
 [menu.docs]
   parent = "components"
-  weight = 30
+  weight = 4
 +++
 
 ## Installing Chainer Operator
