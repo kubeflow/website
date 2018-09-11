@@ -10,6 +10,22 @@ bref= "This guide will walk you through using Chainer for training"
   weight = 4
 +++
 
+## What is Chainer?
+
+[Chainer](https://chainer.org/) is a powerful, flexible and intuitive deep learning framework.
+
+- Chainer supports CUDA computation. It only requires a few lines of code to leverage a GPU. It also runs on multiple GPUs with little effort.
+- Chainer supports various network architectures including feed-forward nets, convnets, recurrent nets and recursive nets. It also supports per-batch architectures.
+- Forward computation can include any control flow statements of Python without lacking the ability of backpropagation. It makes code intuitive and easy to debug.
+
+[ChainerMN](https://github.com/chainer/chainermn) is an additional package for Chainer, a flexible deep learning framework. ChainerMN enables multi-node distributed deep learning with the following features:
+
+- Scalable --- it makes full use of the latest technologies such as NVIDIA NCCL and CUDA-Aware MPI,
+- Flexible --- even dynamic neural networks can be trained in parallel thanks to Chainer's flexibility, and
+- Easy --- minimal changes to existing user code are required.
+
+[This blog post](https://chainer.org/general/2017/02/08/Performance-of-Distributed-Deep-Learning-Using-ChainerMN.html) provides a benchmark results using up to 128 GPUs.
+
 ## Installing Chainer Operator
 
 If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
