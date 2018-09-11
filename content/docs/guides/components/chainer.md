@@ -58,18 +58,56 @@ ks generate chainer-operator chainer-operator
 ks apply ${ENVIRONMENT} -c chainer-operator
 ```
 
-## Creating an Chainer Job
+## Creating a Chainer Job
 
-You can create an Chainer Job by defining an ChainerJob config file. See [examples/chainerjob-reference.yaml](https://github.com/kubeflow/chainer-operator/blob/master/examples/chainerjob-reference.yaml) config file. You may change the config file based on your requirements. By default, the example job is distributed learning with 3 nodes (1 master, 2 workers).
+You can create an Chainer Job by defining an ChainerJob config file.  First, please create a file `example-job-mn.yaml` like below:
 
-```shell
-cat examples/chainerjob-reference.yaml
+```yaml
+apiVersion: kubeflow.org/v1alpha1
+kind: ChainerJob
+metadata:
+  name: example-job-mn
+spec:
+  backend: mpi
+  master:
+    mpiConfig:
+      slots: 1 
+    activeDeadlineSeconds: 6000
+    backoffLimit: 60
+    template:
+      spec:
+        containers:
+        - name: chainer
+          image: everpeace/chainermn:1.3.0
+          command:
+          - sh
+          - -c
+          - |
+            mpiexec -n 3 -N 1 --allow-run-as-root --display-map  --mca mpi_cuda_support 0 \
+            python3 /train_mnist.py -e 2 -b 1000 -u 100
+  workerSets:
+    ws0:
+      replicas: 2
+      mpiConfig:
+        slots: 1
+      template:
+        spec:
+          containers:
+          - name: chainer
+            image: everpeace/chainermn:1.3.0
+            command:
+            - sh
+            - -c
+            - |
+              while true; do sleep 1 & wait; done
 ```
+
+See [examples/chainerjob-reference.yaml](https://github.com/kubeflow/chainer-operator/blob/master/examples/chainerjob-reference.yaml) for definitions of each attributes. You may change the config file based on your requirements. By default, the example job is distributed learning with 3 nodes (1 master, 2 workers).
 
 Deploy the ChainerJob resource to start training:
 
 ```shell
-kubectl create -f examples/chainerjob-reference.yaml
+kubectl create -f example-job-mn.yaml
 ```
 
 You should now be able to see the created pods which consist of the chainer job.
