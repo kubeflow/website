@@ -37,7 +37,7 @@ Originating at Google, Kubeflow is an open source project dedicated to making de
 
 ## History
 
-Kubeflow started as an open sourcing of the way Google ran TensorFlow internally, based on a pipeline called TensorFlow Extended. It began as just a simpler way to run TensorFlow jobs on Kubernetes, but has since expanded to be a multi-architecture, multi-cloud framework for running entire machine learning pipelines.
+Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/). It began as just a simpler way to run TensorFlow jobs on Kubernetes, but has since expanded to be a multi-architecture, multi-cloud framework for running entire machine learning pipelines.
 
 ## Workflow 
 
@@ -54,7 +54,7 @@ prediction serving, and service management.
 You can choose to deploy your workloads locally or to a cloud environment.
 
 ## Notebooks
-Included in Kubeflow is [JupyterHub](https://jupyterhub.readthedocs.io/en/stable/) to create and manage interactive Jupyter notebooks. Project Jupyter is a non-profit, open-source project to support interactive data science and scientific computing across all programming languages.
+Included in Kubeflow is [JupyterHub](https://jupyterhub.readthedocs.io/en/stable/) to create and manage multi-user interactive Jupyter notebooks. Project Jupyter is a non-profit, open-source project to support interactive data science and scientific computing across all programming languages.
 
 ## Getting involved
 
