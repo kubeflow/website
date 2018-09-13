@@ -7,7 +7,10 @@
   <h1>{{ .Title }}</h1>
 </div>
 <section id="pageContent">
-{{ range .Paginator.Pages.ByPublishDate }} {{ partial "page-summary" . }} {{ end }}
+{{ range .Paginator.Pages.ByPublishDate.Reverse }}
+  {{ .PublishDate.Format "Jan 02, 2006" }}
+  {{ partial "page-summary" . }}
+{{ end }}
 
 {{ range .Sections }}
  {{ partial "page-summary" . }}

@@ -2,7 +2,7 @@
 title = "Blog posts about Kubeflow"
 description = "Links to interesting blog posts related to Kubeflow"
 weight = 20
-publishDate = 2018-08-06T11:52:19-07:00
+publishDate = 2018-08-12T11:52:19-07:00
 draft = false
 +++
 Blog posts:
