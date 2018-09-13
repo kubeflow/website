@@ -6,7 +6,7 @@ publishDate = 2018-09-13T09:52:19-07:00
 draft = false
 +++
 
-The need to deploy and serve AI models in production-scale environments has drastically increased as machine learning (ML) and deep learning (DL) development continues to rapidly grow. However, creating an inference solution to deploy ML/DL models in data center production environments is a difficult task.
+The need to deploy and serve AI models in production-scale environments has drastically increased as machine learning (ML) and deep learning (DL) development continues to rapidly grow. However, creating an inference solution to deploy these models is a difficult task.
 
 Since these AI-backed services most often power end-user applications, performance is critical. Support for multiple AI frameworks is also key, since the wide variety of AI use cases, which span recommender systems, convolutional networks, natural language processing, and more, often employ different frameworks.
 
@@ -22,7 +22,7 @@ Figure 1 shows the internal architecture of the NVIDIA TensorRT inference server
 
 <figure class="image">
 					<img src="../tensorrt_inference_server.svg" alt="TensorRT Inference Server - Internal Diagram">
-					<figcaption>Figure 1. The NVIDIA TensorRT inferense server schedules client requests, handles the inference compute, and reports metrics for external inference microservices.</figcaption>
+					<figcaption>Figure 1. The NVIDIA TensorRT inference server schedules client requests, handles the inference compute, and reports metrics.</figcaption>
 </figure
 
 <figure class="image">
@@ -37,8 +37,10 @@ The NVIDIA TensorRT inference server is one major component of a larger inferenc
           <figcaption>Figure 3. The NVIDIA TensorRT inference server enables flexible deployment of the inference model.</figcaption>
 </figure>
 
-## What the NVIDIA TensorRT Inference Server Brings to the Kubeflow Community
-Kubernetes has become the solution of choice for managing containerized workloads. Kubeflow extends the platform to make machine learning on Kubernetes composable, portable, and scalable. Using the NVIDIA TensorRT inference server on a Kubernetes cluster facilitated by Kubleflow’s components enables a powerful ML/DL workflow and allows Kubeflow users to get maximum utilization of their NVIDIA GPUs when deploying models at scale. NVIDIA TensorRT inference server uses NVIDIA® CUDA® streams to exploit the GPU’s hardware scheduling capabilities to simultaneously execute multiple models.
+## NVIDIA TensorRT Inference Server and Kubeflow
+Kubernetes has become the platform of choice for managing containerized workloads. Kubeflow extends the platform to make machine learning composable, portable, and scalable.
+
+Using the NVIDIA TensorRT inference server on a Kubernetes cluster facilitated by Kubleflow’s components enables a powerful ML/DL workflow and allows Kubeflow users to get maximum utilization of their NVIDIA GPUs when deploying models at scale. NVIDIA TensorRT inference server uses NVIDIA® CUDA® streams to exploit the GPU’s hardware scheduling capabilities to simultaneously execute multiple models.
 
 ## Getting Started Using the NVIDIA TensorRT Inference Server and Kubeflow
 To get started using the NVIDIA TensorRT inference server and Kubeflow, you will need to do some initial setup. At a high level, you will start with setting up a Google Kubernetes Engine (GKE) cluster suitable for running the NVIDIA TensorRT inference server and install the NVIDIA® CUDA® driver on the GPU nodes. Once that is complete, you can pull the NVIDIA TensorRT inference server image from the NVIDIA GPU Cloud (NGC) container registry using a Kubernetes secret. Next, configure and place your model repository into a Google Cloud Storage bucket. Then use the io.ksonnet.pkg.nvidia-inference-server prototype to generate Kubernetes YAML and deploy to that cluster. For a more detailed explanation and step-by-step guidance for this process, refer to this [GitHub repo](https://github.com/deadeyegoodwin/kubeflow/tree/deadeyegoodwin/trtserver/kubeflow/nvidia-inference-server).
@@ -54,3 +56,5 @@ For more information on the NVIDIA TensorRT inference server, please refer to th
   - [Release Notes](https://docs.nvidia.com/deeplearning/sdk/inference-release-notes/index.html)
   - [DevTalk Forum](https://devtalk.nvidia.com/default/board/262/container-inference-server/)
 
+*Tripti Singhal (Product Manager – Deep Learning Software, NVIDIA) <br>
+David Goodwin (Principal Software Engineer – Machine Learning, NVIDIA)*
