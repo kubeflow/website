@@ -2,7 +2,7 @@
 title = "GPU-Accelerated Inference for Kubernetes with the NVIDIA TensorRT Inference Server and Kubeflow"
 description = "Scaling inference with GPUs"
 weight = 20
-publishDate = 2018-09-13T09:52:19-07:00
+publishDate = 2018-09-14T09:00:19-07:00
 draft = false
 +++
 
