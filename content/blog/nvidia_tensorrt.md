@@ -45,7 +45,7 @@ Kubernetes has become the platform of choice for managing containerized workload
 Using the NVIDIA TensorRT inference server on a Kubernetes cluster facilitated by Kubleflow’s components enables a powerful ML/DL workflow and allows Kubeflow users to get maximum utilization of their NVIDIA GPUs when deploying models at scale. NVIDIA TensorRT inference server uses NVIDIA® CUDA® streams to exploit the GPU’s hardware scheduling capabilities to simultaneously execute multiple models.
 
 ## Getting Started Using the NVIDIA TensorRT Inference Server and Kubeflow
-Getting started requires some initial setup. At a high level, start with setting up a Google Kubernetes Engine (GKE) cluster suitable for running the NVIDIA TensorRT inference server and install the NVIDIA CUDA driver on the GPU nodes. 
+Getting started requires some initial setup. At a high level, start with setting up a Google Kubernetes Engine (GKE) cluster suitable for running the NVIDIA TensorRT inference server and install the NVIDIA CUDA® driver on the GPU nodes. 
 
 Once that’s complete, pull the NVIDIA TensorRT inference server image from the [NVIDIA GPU Cloud](https://www.nvidia.com/en-us/gpu-cloud/) (NGC) container registry using a Kubernetes secret. Next, configure and place your model repository into a Google Cloud Storage bucket. 
 
@@ -57,7 +57,7 @@ For a more detailed explanation and step-by-step guidance for this process, refe
 ## Learn More About Kubeflow and NVIDIA TensorRT Inference Server 
 Using Kubeflow with the NVIDIA TensorRT inference server makes it simple to deploy GPU-accelerated inference services into data center production environments.
 
-To get involved in the Kubeflow project, learn how to contribute [here](https://www.kubeflow.org/docs/about/contributing/) and try the [Getting Started with Kubeflow](https://www.kubeflow.org/docs/started/getting-started/).
+To get involved in the Kubeflow project, learn how to contribute [here](https://www.kubeflow.org/docs/about/contributing/) and try [Getting Started with Kubeflow](https://www.kubeflow.org/docs/started/getting-started/).
 
 For more information on the NVIDIA TensorRT inference server, please refer to the following resources:
 
