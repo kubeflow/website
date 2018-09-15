@@ -7,7 +7,7 @@ bref= ""
 aliases = ["/docs/community/"]
 [menu.docs]
   parent = "about"
-  weight = 5
+  weight = 4
 +++
 
 In the interest of fostering an open and welcoming environment, we as
@@ -21,9 +21,49 @@ The Kubeflow community is guided by our [Code of
 Conduct](https://github.com/kubeflow/community/blob/master/CODE_OF_CONDUCT.md),
 which we encourage everybody to read before participating.
 
-* [Slack Channel](https://join.slack.com/t/kubeflow/shared_invite/enQtMjgyMzMxNDgyMTQ5LWUwMTIxNmZlZTk2NGU0MmFiNDE4YWJiMzFiOGNkZGZjZmRlNTExNmUwMmQ2NzMwYzk5YzQxOWQyODBlZGY2OTg)
+## Community discussions
+
+There are many ways to contribute! Join one of our communication channels, 
+attend a community meeting, get to know the community, discuss updates, suggest
+exciting new integrations.
+
+### Community meetings
+
+[**Meeting calendar**](https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com&ctz=America%2FLos_Angeles) ([iCal version](https://calendar.google.com/calendar/ical/kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com/public/basic.ics)).
+
+[Meeting notes](http://bit.ly/kf-meeting-notes).
+
+If your group has a regular meeting, talk to
+[@ewilderj](https://github.com/ewilderj) about getting it added to the calendar.
+
+### Kubeflow community call
+
+The project team holds a weekly community call on Tuesdays. This call alternates
+weekly between US East/EMEA and US West/APAC friendly times. Joining the
+[kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss)
+mailing list will automatically send you calendar invitations for the meetings, or you can subscribe to the community meeting calendar above.
+
+Agenda, notes, and a reminder of the next call are sent to the kubeflow-discuss
+mailing list.
+
+### Forums and mailing groups
+
+Summary:
+
+* [Invitation to our Slack channel](https://join.slack.com/t/kubeflow/shared_invite/enQtMjgyMzMxNDgyMTQ5LWUwMTIxNmZlZTk2NGU0MmFiNDE4YWJiMzFiOGNkZGZjZmRlNTExNmUwMmQ2NzMwYzk5YzQxOWQyODBlZGY2OTg)
 * [Twitter](http://twitter.com/kubeflow)
-* [Mailing List](https://groups.google.com/forum/#!forum/kubeflow-discuss)
+* [Mailing list: kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss)
+
+<br>
+More detail:
+
+| Topic                                                           | Mailing list                                                                      | Slack                                                                                             |
+| :----                                                           | :------------                                                                     | :-------------                                                                                    |
+| General discussion                                              | [kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss)      | [#general](https://kubeflow.slack.com/messages/C7REE0EHK)                                         |
+| TF Operator ([Github](https://github.com/kubeflow/tf-operator)) | [tf-operator](https://groups.google.com/a/kubeflow.org/forum/#!forum/tf-operator) | [#tf-operator](https://kubeflow.slack.com/messages/https://kubeflow.slack.com/messages/C985VJN9F) |
+| Community meeting chat                                          | n/a                                                                               | [#community](https://kubeflow.slack.com/messages/C8Q0QJYNB)                                       |
+
+Slack server: [kubeflow.slack.com](https://kubeflow.slack.com/)
 
 ## Who should consider contributing to Kubeflow?
 
@@ -31,6 +71,6 @@ which we encourage everybody to read before participating.
 * Folks who want to bring more Kubernetes magic to ML (e.g. ISTIO integration for prediction)
 * Folks who want to make Kubeflow a richer ML platform (e.g. support for ML pipelines, hyperparameter tuning)
 * Folks who want to tune Kubeflow for their particular Kubernetes distribution or Cloud
-* Folks who want to write tutorials/blog posts showing how to use Kubeflow to solve ML problems
+* Folks who want to write tutorials or blog posts showing how to use Kubeflow to solve ML problems
 
-For more details on contributing please look at [Contributing to Kubeflow](/docs/about/contributing/).
+For details on contributing please look at [the contributor's guide](/docs/about/contributing/).

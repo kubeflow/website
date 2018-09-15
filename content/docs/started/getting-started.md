@@ -24,9 +24,9 @@ Based on the current functionality you should consider using Kubeflow if:
 This list is based ONLY on current capabilities. We are investing significant resources to expand the
 functionality and actively soliciting help from companies and individuals interested in contributing (see [Contributing](/docs/contributing/)).
 
-## Setup Kubernetes
+## Set up Kubernetes
 
-This documentation assumes you have a Kubernetes cluster available. If not, setup one of these environments first:
+This documentation assumes you have a Kubernetes cluster available. If not, set up one of these environments first:
 
   * Local - there are a several options:
     * [Minikube setup](/docs/started/getting-started-minikube/)
@@ -38,11 +38,11 @@ This documentation assumes you have a Kubernetes cluster available. If not, setu
       * [Microk8s](https://microk8s.io) is used to create the Kubernetes cluster inside the virtual machine. It is installed as a [snap](https://snapcraft.io/), which means it has strong isolation and update semantics - your cluster will be updated within a short period after upstream Kubernetes releases.
       * The primary benefits of this approach are - you can use the same VMs locally as you would in the cloud (ie cloud-images), you can use cloud-init to customize the VM (as you might in a cloud), and the Kubernetes cluster you create with Microk8s will be updated at regular intervals.
   * Cloud:
-    * [GKE setup](/docs/started/getting-started-gke/).
+    * [Kubernetes Engine setup](/docs/started/getting-started-gke/).
 
 For more general information on setting up a Kubernetes cluster please refer to [Kubernetes Setup](https://kubernetes.io/docs/setup/). If you want to use GPUs, be sure to follow the Kubernetes [instructions for enabling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
 
-## Quick start
+## Kubeflow quick start
 
 Requirements:
 
@@ -50,18 +50,20 @@ Requirements:
   * Kubernetes {{% kubernetes-min-version %}} or later
   * kubectl
 
-1. Run the following script to download `kfctl.sh`
+Download, set up, and deploy:
+
+1. Run the following script to download `kfctl.sh`:
 
     ```
     mkdir ${KUBEFLOW_SRC}
     cd ${KUBEFLOW_SRC}
     export KUBEFLOW_TAG=<version>
-    curl https://raw.githubusercontent.com/kubeflow/kubeflow/{{< params "githubbranch" >}}/scripts/download.sh | bash
+    curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
      ```
-   * **KUBEFLOW_SRC** directory where you want to download the source to
-   * **KUBEFLOW_TAG** a tag corresponding to the version to checkout such as `master` for latest code.
+   * **KUBEFLOW_SRC** a directory where you want to download the source to
+   * **KUBEFLOW_TAG** a tag corresponding to the version to check out, such as `master` for the latest code.
    * **Note** you can also just clone the repository using git.
-1. To setup and deploy
+1. Run the following scripts to set up and deploy Kubeflow:
     
     ```
     ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} --platform none
@@ -73,15 +75,15 @@ Requirements:
       * The ksonnet app will be created in the directory **${KFAPP}/ks_app**
 
 **Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explictly
-disabling it please refer to the [Usage Reporting section](/docs/guides/usage-reporting/) of the user guide.
+disabling it please refer to the [usage reporting guide](/docs/guides/usage-reporting/).
 
 ## Troubleshooting
-For detailed troubleshooting instructions, please refer to the [Troubleshooting Guide](/docs/guides/troubleshooting/).
+For detailed troubleshooting instructions, please refer to the [troubleshooting guide](/docs/guides/troubleshooting/).
 
 ## Resources
 
-* The Guides section (see sections on left) provides in-depth instructions for using Kubeflow
-* Self-paced scenarios for learning and trying out Kubeflow
+* The [guides section](/docs/guides/) provides in-depth instructions for using Kubeflow
+* Self-paced scenarios for learning and trying out Kubeflow:
   * [Codelabs](https://codelabs.developers.google.com/?cat=tensorflow)
     * [Introduction to Kubeflow on Google Kubernetes Engine](https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html)
     * [Kubeflow End to End: GitHub Issue Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-e2e-gis/index.html)
