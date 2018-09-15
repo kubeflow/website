@@ -11,8 +11,8 @@ You write the pages in Markdown, and Hugo wraps them up into a website.
 
 ## Quickstart
 
-Here's a quick guide to updating the docs. It assumes you're familiar with the 
-GitHub workflow and you're happy to use the automated preview of your doc 
+Here's a quick guide to updating the docs. It assumes you're familiar with the
+GitHub workflow and you're happy to use the automated preview of your doc
 updates:
 
 1. Fork the [kubeflow/website repo][kubeflow-website-repo] on GitHub.
@@ -21,7 +21,7 @@ updates:
   work in progress. You can also add `/hold` in a comment to mark the PR as not
   ready for merge. (**Don't** add the Hugo declarative "draft = true" to the
   page front matter, because that will prevent the auto-deployment of the
-  content preview described in the next point.) 
+  content preview described in the next point.)
 1. Wait for the automated PR workflow to do some checks. When it's ready,
   you should see a comment like this: **deploy/netlify — Deploy preview ready!**
 1. Click **Details** to the right of "Deploy preview ready" to see a preview
@@ -58,7 +58,7 @@ brew install hugo
 
 1. Verify your installation:
 
-    ```  
+    ```
     hugo version
     ```
 
@@ -78,9 +78,9 @@ local machine, then use your local repo as input to your Hugo web server:
     ```
 
 1. Start your website server. Make sure you run this command from the
-   `/website/` directory, so that Hugo can find the config files it needs: 
+   `/website/` directory, so that Hugo can find the config files it needs:
 
-    ``` 
+    ```
     hugo server -D
     ```
 
@@ -115,7 +115,7 @@ get going:
 
 1. Open a command window on your local machine.
 
-1. Clone your forked repo, to copy the files down to your local machine. 
+1. Clone your forked repo, to copy the files down to your local machine.
   This example creates a directory called `kubeflow` and uses SSH cloning to
   download the files:
 
@@ -138,7 +138,7 @@ get going:
     git remote -vv
     ```
 
-    You should have 2 remote repos: 
+    You should have 2 remote repos:
 
       -  `origin` - points to your own fork of the repo on gitHub -
          that is, the one you cloned my local repo from.
@@ -146,7 +146,7 @@ get going:
 
 1. Create a branch. In this example, replace `doc-updates` with any branch name
   you like. Choose a branch name that helps you recognise the updates you plan
-  to make in that branch: 
+  to make in that branch:
 
     ```
     git checkout -b doc-updates
@@ -154,7 +154,7 @@ get going:
 
 1. Add and edit the files as you like. The doc pages are in the
   `/website/content/docs/` directory.
-  
+
 1. Run `git status` at any time, to check the status of your local files.
   Git tells you which files need adding or committing to your local repo.
 
@@ -167,15 +167,15 @@ get going:
     Or:
 
     ```
-    git add add-this-doc.md  
+    git add add-this-doc.md
     git commit -a -m "Added a shiny new doc."
     ```
 
 1. Push from your branch (for example, `doc-updates`) to **the relevant branch
-  on your fork on GitHub:**  
+  on your fork on GitHub:**
 
     ```
-    git checkout doc-updates  
+    git checkout doc-updates
     git push origin doc-updates
     ```
 
@@ -250,7 +250,7 @@ Useful Hugo docs:
 The css/sass style code is located in the `themes/kf/sass` directory.
 
 ### CSS Dev Setup
-You need to install node.js. Download the binary for your platform 
+You need to install node.js. Download the binary for your platform
 [here](https://nodejs.org/en/download/). This will also install npm.
 
 
@@ -277,7 +277,7 @@ example, the documentation for the v0.2 stable release are maintained in the
 Each branch has a corresponding netlify website that automatically syncs each merged PR.
 
 Going forward, the versioned sites should follow this convention:
-* `www.kubeflow.org` always points to the latest *stable* release
+* `www.kubeflow.org` always points to the current *master branch*
 * `master.kubeflow.org` always points to Github head
 * `vXXX-YYY.kubeflow.org` points to the release at vXXX.YYY-branch
 
