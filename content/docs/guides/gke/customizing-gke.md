@@ -7,7 +7,7 @@ bref = "This guide describes how to customize your deployment of Kubeflow on Goo
 aliases = ["/docs/guides/gke/"]
 
 [menu.docs]
-  parent = "GKE"
+  parent = "gke"
   weight = 1
 +++
 

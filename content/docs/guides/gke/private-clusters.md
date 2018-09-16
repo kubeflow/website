@@ -6,7 +6,7 @@ toc = true
 bref = "This guide describes how to create private clusters with Kubeflow on Google Kubernetes Engine (GKE)."
 
 [menu.docs]
-  parent = "GKE"
+  parent = "gke"
   weight = 5
 +++
 

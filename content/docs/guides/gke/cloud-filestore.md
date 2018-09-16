@@ -4,9 +4,9 @@ description = "Using Cloud Filestore with Kubeflow"
 weight = 3
 toc = true
 bref = "This guide describes how to set up and use Cloud Filestore with Kubeflow on Google Cloud Platform (GCP)."
-[menu]
+
 [menu.docs]
-  parent = "GKE"
+  parent = "gke"
   weight = 4
 +++
 

@@ -6,7 +6,7 @@ toc = true
 bref = "This guide helps diagnose and fix issues you may encounter with Kubeflow on Google Kubernetes Engine (GKE)."
 
 [menu.docs]
-  parent = "GKE"
+  parent = "gke"
   weight = 6
 +++
 

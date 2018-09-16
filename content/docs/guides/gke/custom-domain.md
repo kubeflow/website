@@ -6,7 +6,7 @@ toc = true
 bref = "This guide describes how to use a custom domain with Kubeflow on Google Cloud Platform (GCP)."
 
 [menu.docs]
-  parent = "GKE"
+  parent = "gke"
   weight = 3
 +++
 
