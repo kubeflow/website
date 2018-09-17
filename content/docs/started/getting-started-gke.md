@@ -3,16 +3,17 @@ title = "Kubernetes Engine for Kubeflow"
 description = "Get Kubeflow running on Google Cloud Platform"
 weight = 10
 toc = true
-bref = "The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures. Anywhere you are running Kubernetes, you should be able to run Kubeflow."
+bref = "This guide is a quickstart to deploying Kubeflow on Google Kubernetes Engine (GKE)."
 
 [menu.docs]
   parent = "started"
   weight = 3
 +++
 
-## Deploying Kubeflow on Kubernetes Engine
+## Advantages of Kubeflow on GKE
 
-Running Kubeflow on Kubernetes Engine comes with the following advantages:
+Running Kubeflow on [GKE](https://cloud.google.com/kubernetes-engine/docs)
+brings the following advantages:
 
   * We use [Deployment Manager](https://cloud.google.com/deployment-manager/docs/) to
     declaratively manage all non K8s resources (including the Kubernetes Engine cluster), which is easy to customize for your particular use case
@@ -24,8 +25,7 @@ Running Kubeflow on Kubernetes Engine comes with the following advantages:
     and troubleshooting
   * GPUs and [TPUs](https://cloud.google.com/tpu/) can be used to accelerate your work
 
-
-### Create oauth client credentials
+## Create oauth client credentials
 
 Create an OAuth client ID to be used to identify Cloud IAP when requesting access to user's email to verify their identity.
 
@@ -70,7 +70,7 @@ Create an OAuth client ID to be used to identify Cloud IAP when requesting acces
     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
     ```
 
-### Quickstart: Deploying Kubeflow on Kubernetes Engine
+## Deploy Kubeflow on Kubernetes Engine
 
 Run the following steps to deploy Kubeflow:
 
@@ -138,10 +138,9 @@ following:
 * **k8s** - All resources that run on Kubernetes.
 * **all** - GCP and Kubernetes resources.
 
-
 ### App layout
 
-Your Kubeflow app directory will contain the following files and directories:
+Your Kubeflow app directory contains the following files and directories:
 
 * **env.sh** defines several environment variables related to your Kubeflow deployment.
 
@@ -160,191 +159,6 @@ Your Kubeflow app directory will contain the following files and directories:
   * The directory is created when you run `kfctl.sh generate k8s`.
   * You can use ksonnet to customize Kubeflow.
 
-### Customizing Kubeflow
-
-The deployment process is divided into two steps, **generate** and **apply**, so that you can
-modify your deployment before actually deploying.
-
-To customize GCP resources (such as your Kubernetes Engine cluster), you can modify the deployment manager configs in **${KFAPP}/gcp_config**.
-
-Many changes can be applied to an existing configuration in which case you can run:
-
-```
-cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
-```
-
-or using Deployment Manager directly:
-
-```
-. ${KFAPP}/env.sh
-cd ${KFAPP}/gcp_config
-gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=cluster-kubeflow.yaml
-```
-
-  * We source `env.sh` to define the environment variables ${PROJECT} and ${DEPLOYMENT_NAME} for this app.
-
-Some changes (such as the VM service account for Kubernetes Engine) can only be set at creation time; in this case you need
-to tear down your deployment before recreating it:
-
-```
-cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
-```
-
-To customize the Kubeflow resources running within the cluster you can modify the ksonnet app in **${KFAPP}/ks_app**.
-For example, to mount additional physical volumes (PVs) in Jupyter:
-
-```
-cd ${KF_APP}/ks_app
-ks param set jupyterhub disks "kubeflow-gcfs"
-```
-
-You can then redeploy using `kfctl`:
-
-```
-cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
-```
-
-or using ksonnet directly:
-```
-cd ${KFAPP}/ks_app
-ks apply default
-```
-
-### Common customizations
-
-Add GPU nodes to your cluster:
-
-  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L40).
-
-To use VMs with more CPUs or RAM:
-
-  * Change the machineType.
-  * There are two node pools:
-      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96).
-      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96).
-  * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment.
-
-To grant additional users IAM permissions to access Kubeflow:
-
-  * Add the users [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L61).
-
-
-After making the changes you need to recreate your deployment:
-
-```
-cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
-```
-
-For more information please refer to the [Deployment Manager docs](https://cloud.google.com/deployment-manager/docs/).
-
-### Using your own domain
-
-If you want to use your own doman instead of **${name}.endpoints.${project}.cloud.goog**, follow these instructions.
-
-1. Modify your ksonnet application to remove the `cloud-endpoints` component:
-
-    ```
-    cd ${KFAPP}/ks_app
-    ks delete default -c cloud-endpoints
-    ks component rm cloud-endpoints
-    ```
-
-1. Set the domain for your ingress to be the fully qualified domain name:
-
-    ```
-    ks param set iap-ingress hostname ${FQDN}
-    ks apply default -c iap-ingress
-    ```
-
-1. Get the address of the static IP address created:
-
-    ```
-    IPNAME=${DEPLOYMENT_NAME}-ip
-    gcloud --project=${PROJECT} addresses describe --global ${IPNAME}
-    ```
-
-1. Use your DNS provider to map the fully qualified domain specified in the first step to the IP address reserved:
-   in GCP.
-
-### Using Cloud Filestore with Kubeflow
-
-[Cloud File Store](https://cloud.google.com/filestore/docs/) is a fully managed NFS offering.
-Cloud Filestore is very useful for creating a shared filesystem that can be mounted into pods such as Jupyter.
-
-To setup Cloud Filestore and use it with Kubeflow follow the directions below.
-
-#### Create a Cloud Filestore instance
-
-Follow these instructions to create a Cloud Filestore instance; if you already have a Cloud Filestore instance you want to
-use you can skip this section.
-
-Copy the Cloud Filestore deployment manager configs to the `gcp_config` directory:
-
-```
-cp ${KUBEFLOW_REPO}/scripts/deployment_manager_configs/gcfs.yaml \
-   ${KFAPP}/gcp_config/
-```
-
-Edit `gcfs.yaml` to match your desired configuration:
-
-  * Set zone
-  * Set name
-  * Set the value of parent to include your project e.g.
-
-    ```
-    projects/${PROJECT}/locations/${ZONE}
-    ```
-
-Using [yq](https://github.com/kislyuk/yq):
-
-```
-cd ${KFAPP}
-. env.sh
-yq -r ".resources[0].properties.instanceId=\"${DEPLOYMENT_NAME}\"" ${KFAPP}/gcp_config/gcfs.yaml > ${KFAPP}/gcp_config/gcfs.yaml.new
-mv ${KFAPP}/gcp_config/gcfs.yaml.new ${KFAPP}/gcp_config/gcfs.yaml
-```
-
-Apply the changes:
-
-```
-cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
-```
-
-If you get an error **legacy networks are not supported** follow the instructions
-in the [troubleshooting guide](/docs/guides/troubleshooting).
-
-#### Configure Kubeflow to mount the Cloud Filestore volume
-
-Configure Kubeflow to mount Cloud Filestore as a volume:
-
-```
-cd ${KFAPP}/ks_app
-ks generate google-cloud-filestore-pv google-cloud-filestore-pv --name="kubeflow-gcfs" \
-   --storageCapacity="${GCFS_STORAGE}" \
-   --serverIP="${GCFS_INSTANCE_IP_ADDRESS}"
-ks param set jupyterhub disks "kubeflow-gcfs"
-```
-
-  * **GCFS_STORAGE** The size of the Cloud Filestore persistent volume claim
-  * **GCFS_INSTANCE_IP_ADDRESS** The ip address of your Cloud Filestore instance; you can obtain this with `gcloud`:
-
-     ```
-     gcloud --project=${PROJECT} beta filestore instances list
-     ```
-
-Apply the changes:
-
-```
-cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
-```
-
 ### GCP service accounts
 
 Creating a deployment using `kfctl.sh` creates three service accounts in the GCP project. These service accounts are created using the principle of least privilege. The three service accounts are:
@@ -359,260 +173,8 @@ Creating a deployment using `kfctl.sh` creates three service accounts in the GCP
 
 `${KFAPP}-vm` is used only for the VM service account. It has minimal permissions to send metrics and logs to Stackdriver.
 
-## Private clusters
+## Next steps
 
-Creating a [private Kubernetes Engine cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters)
-means the Kubernetes Engine nodes won't have public IP addresses. This can improve security by blocking unwanted outbound/inbound
-access to nodes. Removing IP addresses means external services (including GitHub, PyPi, DockerHub etc...) won't be accessible
-from the nodes. Google services (e.g. Container Registry) are still accessible.
-
-1. Enable private clusters in `${KFAPP}/gcp_configs/cluster-kubeflow.yaml` by updating the following two parameters:
-
-    ```
-    privatecluster: true
-    gkeApiVersion: v1beta1
-    ```
-1. Create the deployment:
-
-    ```
-    cd ${KFAPP}
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
-    ```
-
-1. To set up ingress to the cluster, it is recommended to use your custom domain instead of Cloud Endpoints. cert-manager cannot be used to create HTTPS certificates because cert-manager needs to talk to LetsEncrypt to get the certificate and that is not possible in a private cluster setting. Obtain the HTTPS certificates for your ${FQDN} and create a k8s secret with it. Assuming your cert and key are present in files named tls.crt and tls.key, create a secret using the following command:
-
-    ```
-    kubectl create secret generic --namespace=${NAMESPACE} envoy-ingress-tls --from-file=tls.crt=tls.crt --from-file=tls.key=tls.key
-    ```
-
-1. Update iap-ingress component parameters:
-
-    ```
-    cd ${KFAPP}/ks_app
-    ks param set iap-ingress hostname ${FQDN}
-    ks param set iap-ingress privateGKECluster true
-    ```
-
-1. Create an A record in your DNS management service to point ${FQDN} to the static IP address which was created by deployment manager. It can be found in `gcloud compute addresses list`.
-
-1. Update the various ksonnet components to use `gcr.io` images instead of dockerhub images:
-
-    ```
-    cd ${KFAPP}/ks_app
-    ${KUBEFLOW_REPO}/scripts/gke/use_gcr_for_all_images.sh
-    ```
-
-1. Remove components which are not useful in private clusters:
-
-    ```
-    cd ${KFAPP}/ks_app
-    ks component rm cloud-endpoints
-    ks component rm cert-manager
-    ```
-
-1. Apply all the k8s resources:
-
-    ```
-    cd ${KFAPP}
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
-    ```
-
-## Troubleshooting Cloud IAP
-
-Here are some tips for troubleshooting Cloud IAP.
-
- * Make sure you are using HTTPS
-
-### 404 Page Not Found When Accessing Central Dashboard
-
-This section provides troubleshooting information for 404s, page not found, being return by the central dashboard which is served at
-
-   ```
-   https://${KUBEFLOW_FQDN}/
-   ```
-
-* Since we were able to sign in this indicates the Ambassador reverse proxy is up and healthy we can confirm this is the case by running the following command
-
-   ```
-   kubectl -n ${NAMESPACE} get pods -l service=envoy
-
-   NAME                     READY     STATUS    RESTARTS   AGE
-   envoy-76774f8d5c-lx9bd   2/2       Running   2          4m
-   envoy-76774f8d5c-ngjnr   2/2       Running   2          4m
-   envoy-76774f8d5c-sg555   2/2       Running   2          4m
-   ```
-
-* Try other services to see if their accessible e.g
-
-   ```
-   https://${KUBEFLOW_FQDN}/whoami
-   https://${KUBEFLOW_FQDN}/tfjobs/ui
-   https://${KUBEFLOW_FQDN}/hub
-   ```
-
- * If other services are accessible then we know its a problem specific to the central dashboard and not ingress
- * Check that the centraldashboard is running
-
-    ```
-    kubectl get pods -l app=centraldashboard
-    NAME                                READY     STATUS    RESTARTS   AGE
-    centraldashboard-6665fc46cb-592br   1/1       Running   0          7h
-    ```
-
- * Check a service for the central dashboard exists
-
-    ```
-    kubectl get service -o yaml centraldashboard
-    ```
-
- * Check that an Ambassador route is properly defined
-
-    ```
-    kubectl get service centraldashboard -o jsonpath='{.metadata.annotations.getambassador\.io/config}'
-
-    apiVersion: ambassador/v0
-      kind:  Mapping
-      name: centralui-mapping
-      prefix: /
-      rewrite: /
-      service: centraldashboard.kubeflow,
-    ```
-
- * Check the logs of Ambassador for errors. See if there are errors like the following indicating
-   an error parsing the route.If you are using the new Stackdriver Kubernetes monitoring you can use the following filter in the [stackdriver console](https://console.cloud.google.com/logs/viewer)
-
-    ```
-     resource.type="k8s_container"
-     resource.labels.location=${ZONE}
-     resource.labels.cluster_name=${CLUSTER}
-     metadata.userLabels.service="ambassador"
-    "could not parse YAML"
-    ```
-
-### 502 Server Error
-A 502 usually means traffic isn't even making it to the envoy reverse proxy. And it
-usually indicates the loadbalancer doesn't think any backends are healthy.
-
-* In Cloud Console select Network Services -> Load Balancing
-    * Click on the load balancer (the name should contain the name of the ingress)
-    * The exact name can be found by looking at the `ingress.kubernetes.io/url-map` annotation on your ingress object
-       ```
-       URLMAP=$(kubectl --namespace=${NAMESPACE} get ingress envoy-ingress -o jsonpath='{.metadata.annotations.ingress\.kubernetes\.io/url-map}')
-       echo ${URLMAP}
-       ```
-    * Click on your loadbalancer
-    * This will show you the backend services associated with the load balancer
-        * There is 1 backend service for each K8s service the ingress rule routes traffic too
-        * The named port will correspond to the NodePort a service is using
-
-          ```
-          NODE_PORT=$(kubectl --namespace=${NAMESPACE} get svc envoy -o jsonpath='{.spec.ports[0].nodePort}')
-          BACKEND_NAME=$(gcloud compute --project=${PROJECT} backend-services list --filter=name~k8s-be-${NODE_PORT}- --format='value(name)')
-          gcloud compute --project=${PROJECT} backend-services get-health --global ${BACKEND_ID}
-          ```
-    * Make sure the load balancer reports the backends as healthy
-        * If the backends aren't reported as healthy check that the pods associated with the K8s service are up and running
-        * Check that health checks are properly configured
-          * Click on the health check associated with the backend service for envoy
-          * Check that the path is /healthz and corresponds to the path of the readiness probe on the envoy pods
-          * See [K8s docs](https://github.com/kubernetes/contrib/blob/{{< params "githubbranch" >}}/ingress/controllers/gce/examples/health_checks/README.md#limitations) for important information about how health checks are determined from readiness probes.
-
-        * Check firewall rules to ensure traffic isn't blocked from the GCP loadbalancer
-            * The firewall rule should be added automatically by the ingress but its possible it got deleted if you have some automatic firewall policy enforcement. You can recreate the firewall rule if needed with a rule like this
-
-               ```
-               gcloud compute firewall-rules create $NAME \
-              --project $PROJECT \
-              --allow tcp:$PORT \
-              --target-tags $NODE_TAG \
-              --source-ranges 130.211.0.0/22,35.191.0.0/16
-               ```
-
-           * To get the node tag
-
-              ```
-              # From the Kubernetes Engine cluster get the name of the managed instance group
-              gcloud --project=$PROJECT container clusters --zone=$ZONE describe $CLUSTER
-              # Get the template associated with the MIG
-              gcloud --project=kubeflow-rl compute instance-groups managed describe --zone=${ZONE} ${MIG_NAME}
-              # Get the instance tags from the template
-              gcloud --project=kubeflow-rl compute instance-templates describe ${TEMPLATE_NAME}
-
-              ```
-
-              For more info [see GCP HTTP health check docs](https://cloud.google.com/compute/docs/load-balancing/health-checks)
-
-  * In Stackdriver Logging look at the Cloud Http Load Balancer logs
-
-    * Logs are labeled with the forwarding rule
-    * The forwarding rules are available via the annotations on the ingress
-      ```
-      ingress.kubernetes.io/forwarding-rule
-      ingress.kubernetes.io/https-forwarding-rule
-      ```
-
-  * Verify that requests are being properly routed within the cluster
-  * Connect to one of the envoy proxies
-
-        ```
-        kubectl exec -ti `kubectl get pods --selector=service=envoy -o jsonpath='{.items[0].metadata.name}'` /bin/bash
-        ```
-
-  * Install curl in the pod
-  ```
-  apt-get update && apt-get install -y curl
-  ```
-
-  * Verify access to the whoami app
-  ```
-  curl -L -s -i curl -L -s -i http://envoy:8080/noiap/whoami
-  ```
-  * If this doesn't return a 200 OK response; then there is a problem with the K8s resources
-      * Check the pods are running
-      * Check services are pointing at the points (look at the endpoints for the various services)
-
-## Cloud Filestore: legacy networks are not supported
-
-Cloud Filestore tries to use the network named `default` by default. For older projects,
-this will be a legacy network which is incompatible with Cloud Filestore. This will
-manifest as an error like the following when deploying Cloud Filestore:
-
-```
-ERROR: (gcloud.deployment-manager.deployments.update) Error in Operation [operation-1533189457517-5726d7cfd19c9-e1b0b0b5-58ca11b8]: errors:
-- code: RESOURCE_ERROR
-  location: /deployments/jl-0801-b-gcfs/resources/filestore
-  message: '{"ResourceType":"gcp-types/file-v1beta1:projects.locations.instances","ResourceErrorCode":"400","ResourceErrorMessage":{"code":400,"message":"network
-    default is invalid; legacy networks are not supported.","status":"INVALID_ARGUMENT","statusMessage":"Bad
-    Request","requestPath":"https://file.googleapis.com/v1beta1/projects/cloud-ml-dev/locations/us-central1-a/instances","httpMethod":"POST"}}'
-
-```
-
-To fix this we can create a new network:
-
-```
-cp ${KUBEFLOW_REPO}/scripts/deployment_manager_configs/network.* \
-   ${KFAPP}/gcp_config/
-```
-
-Edit `network.yaml `to set the name for the network.
-
-Edit `gcfs.yaml` to use the name of the newly created network.
-
-Apply the changes.
-
-```
-cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
-```
-
-## CPU platform unavailable in requested zone
-
-By default we set minCpuPlatform to `Intel Haswell` to make sure AVX2 is supported.
-See [troubleshooting](/docs/guides/troubleshooting/) for more details.
-
-If you encounter this `CPU platform unavailable` error (might manifest as
-`Cluster is currently being created, deleted, updated or repaired and cannot be updated.`),
-you can change the [zone](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L31)
-or change the [minCpuPlatform](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster.jinja#L105).
-See [here](https://cloud.google.com/compute/docs/regions-zones/#available)
-for available zones and cpu platforms.
+See how to [customize](/docs/guides/gke/customizing-gke) or 
+[troubleshoot](/docs/guides/gke/troubleshooting-gke) your Kubeflow deployment on
+GKE.
