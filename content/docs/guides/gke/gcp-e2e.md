@@ -8,11 +8,11 @@ toc = true
   weight = 2
 +++
 
-This guide shows you how to use Kubeflow on Kubernetes Engine to implement an
-end-to-end machine learning workflow. By working through the guide, you'll learn
-how to deploy Kubeflow on Kubernetes Engine, train a machine learning model for
-image classification, save the trained model, and use the model for online
-inference (also known as online prediction).
+This guide walks you through an end-to-end example of Kubeflow on Google
+Cloud Platform (GCP). By working through the guide, you'll learn
+how to deploy Kubeflow on Kubernetes Engine (GKE), train a machine learning 
+model for image classification, save the trained model, and use the model for 
+online inference (also known as online prediction).
 
 ## Introductions
 
