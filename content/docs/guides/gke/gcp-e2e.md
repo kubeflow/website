@@ -575,6 +575,12 @@ a [Docker][docker] container image and push the image to
 Next, upload the container image to Container Registry so that you can
 run it on your Kubernetes Engine cluster.
 
+1. Run the following command to authenticate to Container Registry:
+
+    ```
+    gcloud auth configure-docker
+    ```
+
 1. Push the container to Container Registry:
 
     ```
@@ -592,11 +598,6 @@ run it on your Kubernetes Engine cluster.
 
 Now you are ready to run the TensorFlow training job on your cluster on
 Kubernetes Engine.
-
-1. Workaround for a permissioning problem: Go to the
-   [GCP IAM](https://console.cloud.google.com/iam-admin/iam) page and add the
-   **Storage Admin** role to your service account:
-   `<DEPLOYMENT_NAME>-admin@<PROJECT_ID>.iam.gserviceaccount.com`.
 
 1. Use the [`ks generate`][ks-generate] command to generate a ksonnet component
    from the [`tf-job` prototype][tf-job-prototype]. The code below generates a
@@ -721,7 +722,7 @@ Kubernetes Engine.
 
     You can see the workloads on the
     [Kubernetes Engine Workloads page][gcp-console-workloads] on the GCP
-    console. Click the **train1** workload, then click
+    console. Click the **train1...worker-0** workload, then click
     **Container logs** to see the logs.
 
 When training is complete, you should see the model data pushed into your
