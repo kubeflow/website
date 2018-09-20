@@ -4,8 +4,8 @@ description = "Guide to Kubeflow on Google Cloud Platform"
 weight = 10
 toc = true
 [menu.docs]
-  parent = "guides"
-  weight = 2
+  parent = "gke"
+  weight = 10
 +++
 
 This guide walks you through an end-to-end example of Kubeflow on Google
@@ -101,14 +101,6 @@ git clone https://github.com/googlecodelabs/kubeflow-introduction
 cd kubeflow-introduction
 ```
 
-Check the Dockerfile at `/kubeflow-introduction/tensorflow-model/Dockerfile`.
-If the TensorFlow version isn't 1.10 or later, edit the file and change the
-Tensorflow version to the following:
-
-```
-FROM tensorflow/tensorflow:1.10.0
-```
-
 ### Set up your GCP account and SDK
 
 Follow these steps to set up your GCP environment:
@@ -172,7 +164,8 @@ to verify their identity.
         `deploy.sh` uses your default GCP project for `<project>` but you can
         configure this with the environment variable `PROJECT`.
 
-1. Click Create.
+1. Press Enter/Return to add the URI.
+1. Click **Create**.
 1. Make note of the **client ID** and **client secret** that appear in the OAuth
   client window. You need them later to enable IAP.
 1. Create environment variables from the OAuth client ID and secret:
@@ -289,7 +282,7 @@ Set up and run the `deploy` script:
 1. Run the `deploy` script to create your GCP and Kubernetes resources:
 
     ```
-    export KUBEFLOW_VERSION=0.2.4
+    export KUBEFLOW_VERSION=0.2.5
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
     ```
 
@@ -302,13 +295,6 @@ Set up and run the `deploy` script:
 
     You can safely ignore the message, as the script goes ahead and creates
     the deployment for you.
-
-1. To fix a problem that currently exists in the deployment script, edit
-   the file at
-   `{DEPLOYMENT_NAME}_deployment_manager_configs/cluster.jinja#L24`.
-   Change that line to add: `https://www.googleapis.com/auth/devstorage.read_only`.
-   Then re-run the deployment using your updated version of `cluster.jinja`.
-   See issue [#1432](https://github.com/kubeflow/kubeflow/issues/1432).
 
 1. Check the resources deployed in the `kubeflow` namespace:
 
