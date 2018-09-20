@@ -26,6 +26,7 @@ dd
 			> p:first-child
 				display: inline-block
 
+	// Unordered Lists
 	ul
 		list-style-type: none
 		padding-left: $base-spacing
@@ -34,7 +35,7 @@ dd
 			&:before
 				width: $large-spacing
 				margin-left: -$large-spacing
-				top: -$tiny-spacing/2
+				top: -$tiny-spacing
 				position: relative
 				text-align: center
 				$font-size: em(6)
@@ -45,23 +46,31 @@ dd
 				color: $brand-color-1
 				padding-right: $small-spacing
 				display: inline-block
-			ul li
-				&:before
-					font-weight: 400
-				ul li
-					&:before
-						content: "\f0c8"
-						font-weight: 700
-			ol 
+				// vertical-align: top
+
+			// nested ordered lists counters
+			ol
+				list-style-type: none
+				padding-left: $base-spacing
+				counter-reset: li
 				li
+					counter-increment: li
 					&:before
+						content: counter(li)
 						font-size: em(16)
-						font-family: $base-font-family
 						top: 0
+						font-family: $base-font-family
+					ol
+						counter-reset: li
+						li
+							counter-increment: li
+							&:before
+								content: counter(li, lower-alpha)
+							ol li
+								&:before
+									content: counter(li, lower-roman)	
 
-
-
-
+	// Ordered lists
 	ol
 		list-style-type: none
 		padding-left: $large-spacing
@@ -77,21 +86,48 @@ dd
 				position: relative
 				text-align: right
 				padding-right: $tiny-spacing
-
-		ol
-			padding-left: $base-spacing
-			counter-reset: li
-			li
-				counter-increment: li
-				&:before
-					content: counter(li, lower-alpha)
-				ol li
+			ol
+				padding-left: $base-spacing
+				counter-reset: li
+				li
+					counter-increment: li
 					&:before
-						content: counter(li, lower-roman)
+						content: counter(li, lower-alpha)
+					ol li
+						&:before
+							content: counter(li, lower-roman)
 
+			// unordered lists nested inside of ordered lists
+			ul li
+				counter-increment: none
+				&:before
+					content: "\f111"
+					font-weight: 400
+					padding-right: $small-spacing
+					$font-size: em(6) !important
+
+				// reset ordered lists inside of unordered lists inside of ordered lists
+				ol 
+					counter-reset: li
+					li
+						counter-increment: li
+						&:before
+							content: counter(li)
+
+
+	// nested rules for unordered lists inside of both unordered and ordered lists
+	ol li, ul li
+		// unordered list weights and bullets
 		ul li
-			counter-increment: none
 			&:before
-				content: "\f111"
 				font-weight: 400
-				padding-right: $small-spacing
+			ul li
+				&:before
+					content: "\f0c8"
+					font-weight: 700
+
+
+
+
+
+		

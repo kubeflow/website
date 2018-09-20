@@ -42,7 +42,7 @@ Paginate = 20
     weight = -100
     url = "/blog/"
 [[menu.main]]
-    name = "Github"
+    name = "GitHub"
     weight = -99
     url = "https://github.com/kubeflow/"
 
@@ -67,3 +67,9 @@ Paginate = 20
   parent = "guides"
   identifier = "components"
   url = "/docs/guides/components/"
+[[menu.docs]]
+  name = "GKE"
+  weight = 5
+  parent = "guides"
+  identifier = "gke"
+  url = "/docs/guides/gke/"
