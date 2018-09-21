@@ -141,7 +141,7 @@ ks generate prometheus prom --projectId=YOUR_PROJECT --clusterName=YOUR_CLUSTER 
 ks apply YOUR_ENV -c prom
 ```
 
-The prometheus server will scrape the services with annotation `prometheus.io/scrape=true`
+The prometheus server will scrape the services with annotation `prometheus.io/scrape=true`.
 See [here](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.yml#L75) for more detail,
 and [here](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/metric-collector.libsonnet#L83) for an example.
 
@@ -149,7 +149,7 @@ and [here](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/metric
 The Prometheus server will export metrics to Stackdriver, as configured
 [here](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.yml#L127).
 We are using an [image](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.libsonnet#L170)
-provided by Stackdriver. See Stackdrive [doc](https://cloud.google.com/monitoring/kubernetes-engine/prometheus).
+provided by Stackdriver. See Stackdriver [doc](https://cloud.google.com/monitoring/kubernetes-engine/prometheus).
 
 If you don't want to export metrics to Stackdriver, remove the `remote_write` part in the `prometheus.yml`,
 and use a native Prometheus [image](https://hub.docker.com/r/prom/prometheus/tags/).
