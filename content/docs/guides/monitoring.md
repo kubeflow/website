@@ -129,3 +129,38 @@ details on the dashboard.
 Stackdriver by default provides container level CPU/memory metrics.
 We can also define custom Prometheus metrics and view them on the Stackdriver dashboard.
 See [here](https://cloud.google.com/monitoring/kubernetes-engine/prometheus) for more detail.
+
+## Prometheus
+
+### Kubeflow Prometheus component
+Kubeflow provides a Prometheus [component](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.libsonnet).
+To deploy the Prometheus component:
+
+```
+ks generate prometheus prom --projectId=YOUR_PROJECT --clusterName=YOUR_CLUSTER --zone=ZONE
+ks apply YOUR_ENV -c prom
+```
+
+The prometheus server will scrape the services with annotation `prometheus.io/scrape=true`
+See [here](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.yml#L75) for more detail,
+and [here](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/metric-collector.libsonnet#L83) for an example.
+
+#### Export metrics to Stackdriver
+The Prometheus server will export metrics to Stackdriver, as configured
+[here](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.yml#L127).
+We are using an [image](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.libsonnet#L170)
+provided by Stackdriver. See Stackdrive [doc](https://cloud.google.com/monitoring/kubernetes-engine/prometheus).
+
+If you don't want to export metrics to Stackdriver, remove the `remote_write` part in the `prometheus.yml`,
+and use a native Prometheus [image](https://hub.docker.com/r/prom/prometheus/tags/).
+
+### Metric collector component
+Kubeflow also provides a metric-collector [component](https://github.com/kubeflow/kubeflow/tree/master/metric-collector).
+This component periodically pings your Kubeflow endpoint and provides a
+[metric](https://github.com/kubeflow/kubeflow/blob/master/metric-collector/service-readiness/kubeflow-readiness.py#L21) 
+of whether the endpoint is up or not. To deploy it:
+
+```
+ks generate metric-collector mc --targetUrl=YOUR_KF_ENDPOINT
+ks apply YOUR_ENV -c mc
+```
