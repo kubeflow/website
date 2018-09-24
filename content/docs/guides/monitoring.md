@@ -128,7 +128,7 @@ details on the dashboard.
 
 Stackdriver by default provides container level CPU/memory metrics.
 We can also define custom Prometheus metrics and view them on the Stackdriver dashboard.
-See [here](https://cloud.google.com/monitoring/kubernetes-engine/prometheus) for more detail.
+See for more [detail](https://cloud.google.com/monitoring/kubernetes-engine/prometheus).
 
 ## Prometheus
 
@@ -142,12 +142,12 @@ ks apply YOUR_ENV -c prom
 ```
 
 The prometheus server will scrape the services with annotation `prometheus.io/scrape=true`.
-See [here](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.yml#L75) for more detail,
-and [here](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/metric-collector.libsonnet#L83) for an example.
+See for more [detail](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.yml#L75) 
+and an [example](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/metric-collector.libsonnet#L83).
 
 #### Export metrics to Stackdriver
-The Prometheus server will export metrics to Stackdriver, as configured
-[here](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.yml#L127).
+The Prometheus server will export metrics to Stackdriver, as
+[configured](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.yml#L127).
 We are using an [image](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.libsonnet#L170)
 provided by Stackdriver. See Stackdriver [doc](https://cloud.google.com/monitoring/kubernetes-engine/prometheus).
 
