@@ -149,12 +149,13 @@ and an [example](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/
 The Prometheus server will export metrics to Stackdriver, as
 [configured](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.yml#L127).
 We are using an [image](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/core/prometheus.libsonnet#L170)
-provided by Stackdriver. See Stackdriver [doc](https://cloud.google.com/monitoring/kubernetes-engine/prometheus).
+provided by Stackdriver. See Stackdriver [doc](https://cloud.google.com/monitoring/kubernetes-engine/prometheus)
+for more detail, but you don't need to change anything here.
 
 If you don't want to export metrics to Stackdriver, remove the `remote_write` part in the `prometheus.yml`,
 and use a native Prometheus [image](https://hub.docker.com/r/prom/prometheus/tags/).
 
-### Metric collector component
+### Metric collector component for IAP (GKE only)
 Kubeflow also provides a metric-collector [component](https://github.com/kubeflow/kubeflow/tree/master/metric-collector).
 This component periodically pings your Kubeflow endpoint and provides a
 [metric](https://github.com/kubeflow/kubeflow/blob/master/metric-collector/service-readiness/kubeflow-readiness.py#L21) 
