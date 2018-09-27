@@ -22,6 +22,17 @@ MODEL_NAME=inception
 ks generate tf-serving ${MODEL_COMPONENT} --name=${MODEL_NAME}
 ```
 
+### Serving http requests
+To serve http traffic with the REST API, you can deploy the http-proxy container.
+
+Deploy [http proxy](https://github.com/kubeflow/kubeflow/tree/master/components/k8s-model-server/http-proxy)
+```
+ks param set ${MODEL_COMPONENT} deployHttpProxy true
+```
+
+TF Serving now has built-in http server. We will support this and make it easy to use soon.
+
+### Pointing to the model
 Depending where model file is located, set correct parameters
 
 *Google cloud*
@@ -81,23 +92,13 @@ ks param set ${MODEL_COMPONENT} modelStorageType ${MODEL_STORAGE_TYPE}
 ks param set ${MODEL_COMPONENT} nfsPVC ${NFS_PVC_NAME}
 ```
 
+### Deploying
+
 Deploy the model component. Ksonnet will pick up existing parameters for your environment (e.g. cloud, nocloud) and customize the resulting deployment appropriately. To see more parameters look through tf-serving {{% tf-serving-version %}} or later.
 
 ```
 ks apply ${KF_ENV} -c ${MODEL_COMPONENT}
 ```
-
-As before, a few pods and services have been created in your cluster. You can get the inception serving endpoint by querying kubernetes:
-
-```
-kubectl get svc inception -n=${NAMESPACE}
-NAME        TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)          AGE
-...
-inception   LoadBalancer   10.35.255.136   ww.xx.yy.zz   9000:30936/TCP   28m
-...
-```
-
-In this example, you should be able to use the inception_client to hit ww.xx.yy.zz:9000
 
 The model at gs://kubeflow-models/inception is publicly accessible. However, if your environment doesn't
 have google cloud credential setup, TF serving will not be able to read the model.
@@ -105,6 +106,50 @@ See this [issue](https://github.com/kubeflow/kubeflow/issues/621) for example.
 To setup the google cloud credential, you should either have the environment variable
 `GOOGLE_APPLICATION_CREDENTIALS` pointing to the credential file, or run `gcloud auth login`.
 See [doc](https://cloud.google.com/docs/authentication/) for more detail.
+
+### Sending prediction request directly
+If the service type is LoadBalancer, it will have its own accessible external ip.
+Get the external ip by:
+
+```
+kubectl get svc inception
+```
+
+And then send the request
+
+```
+curl -X POST -d @input.json http://EXTERNAL_IP:8000/model/inception:predict
+```
+
+### Sending prediction request through ingress and IAP
+If the service type is ClusterIP, you can access through ingress.
+It's protected and only one with right credentials can access the endpoint.
+Below shows how to programmatically authenticate a service account to access IAP.
+
+1. Save the client id you used to [deploy Kubeflow](https://www.kubeflow.org/docs/started/getting-started-gke/) as `IAP_CLIENT_ID`.
+2. Create a service account
+   ```
+   gcloud iam service-accounts create --project=$PROJECT $SERVICE_ACCOUNT
+   ```
+3. Grant the service account access to IAP enabled resources:
+   ```
+   gcloud projects add-iam-policy-binding $PROJECT \
+    --role roles/iap.httpsResourceAccessor \
+    --member serviceAccount:$SERVICE_ACCOUNT
+   ```
+4. Download the service account key:
+   ```
+   gcloud iam service-accounts keys create ${KEY_FILE} \
+      --iam-account ${SERVICE_ACCOUNT}@${PROJECT}.iam.gserviceaccount.com
+   ```
+5. Export the environment variable `GOOGLE_APPLICATION_CREDENTIALS` to point to the key file of the service account.
+
+Finally, you can send the request with this python
+[script](https://github.com/kubeflow/kubeflow/blob/master/docs/gke/iap_request.py)
+
+```
+python iap_request.py https://YOUR_HOST/models/MODEL_NAME/ IAP_CLIENT_ID --input=YOUR_INPUT_FILE
+```
 
 ## Telemetry using Istio
 
