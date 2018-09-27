@@ -151,6 +151,14 @@ Finally, you can send the request with this python
 python iap_request.py https://YOUR_HOST/models/MODEL_NAME/ IAP_CLIENT_ID --input=YOUR_INPUT_FILE
 ```
 
+## Using GPU
+To serve a model with GPU, first make sure your Kubernetes cluster has a GPU node. Then set an additional param:
+```
+ks param set ${MODEL_COMPONENT} numGpus 1
+```
+ There is an [example](https://github.com/kubeflow/examples/blob/master/object_detection/tf_serving_gpu.md)
+for serving an object detection model with GPU.
+
 ## Telemetry using Istio
 
 Please look at the [Istio guide](/docs/guides/components/istio/).
