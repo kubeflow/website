@@ -32,6 +32,20 @@ If you haven't already done so please follow the [Getting Started Guide](/docs/s
 
 An **alpha** version of [Chainer](https://chainer.org/) support was introduced with Kubeflow 0.3.0. You must be using a version of Kubeflow newer than 0.3.0.
 
+```
+$ cd ${KFAPP}/ks_app
+
+# create when default env doesn't exist
+$ ks env list | grep default || (source ../env.sh && ks env add default --namespace "${K8S_NAMESPACE}")
+
+# deploy chainer-operator
+$ ks apply default -c chainer-operator
+
+# remove defualt environment so that kfctl.sh can automatically 
+# point appropriate cluster when you run kfctl.sh next time.
+$ ks env rm default
+```
+
 ## Verify that Chainer support is included in your Kubeflow deployment
 
 Check that the Chainer Job custom resource is installed
