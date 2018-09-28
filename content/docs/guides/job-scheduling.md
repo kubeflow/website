@@ -42,7 +42,7 @@ spec:
             - --local_parameter_device=cpu
             - --device=gpu
             - --data_format=NHWC
-            image: gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3
+            image: gcr.io/kubeflow/tf-benchmarks-gpu:v20171202-bdab599-dirty-284af3
             name: tensorflow
             resources:
               limits:
