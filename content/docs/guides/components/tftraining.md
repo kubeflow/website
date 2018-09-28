@@ -648,3 +648,6 @@ Events:
  	   * The docker image doesn't exist or can't be accessed (e.g due to permission issues)
 1. If the containers start; check the logs of the containers following the instructions
    in the previous section.
+
+## More information
+* See how to [run a job with gang-scheduling](https://www.kubeflow.org/docs/guides/job-scheduling).

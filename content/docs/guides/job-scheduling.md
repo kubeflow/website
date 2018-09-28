@@ -3,6 +3,8 @@ title = "Job Scheduling"
 description = "Schedule job with gang-scheduling"
 weight = 10
 toc = true
+bref = "This guide describes how to use kube-arbitrator to support gang-scheduling in Kubeflow, to allow jobs to run multiple pods at the same time."
+
 [menu.docs]
   parent = "guides"
   weight = 30
@@ -75,12 +77,12 @@ spec:
           restartPolicy: OnFailure
 ```
 
-### About kube-arbitrator and gang-scheduling
-With using kube-arbitrator to apply gang-scheduling, a job can run only if there are enough resourses for all the pods of the job. Otherwise, all the pods will be in pending state waiting for enough resources. For example, if a job requiring N pods is created and there are only enough resources to schedule N-2 pods, then N pods of the job will stay pending.
+## About kube-arbitrator and gang-scheduling
+With using kube-arbitrator to apply gang-scheduling, a job can run only if there are enough resources for all the pods of the job. Otherwise, all the pods will be in pending state waiting for enough resources. For example, if a job requiring N pods is created and there are only enough resources to schedule N-2 pods, then N pods of the job will stay pending.
 
 **Note:** when in a high workload, if a pod of the job dies when the job is still running, it might give other pods chance to occupied the resources and cause deadlock. 
 
-### Troubleshooting 
+## Troubleshooting 
 
 If you keep getting logs like below in your kube-arbitrator.
 ```
