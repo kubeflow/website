@@ -109,7 +109,7 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
           ```
           NODE_PORT=$(kubectl --namespace=${NAMESPACE} get svc envoy -o jsonpath='{.spec.ports[0].nodePort}')
           BACKEND_NAME=$(gcloud compute --project=${PROJECT} backend-services list --filter=name~k8s-be-${NODE_PORT}- --format='value(name)')
-          gcloud compute --project=${PROJECT} backend-services get-health --global ${BACKEND_ID}
+          gcloud compute --project=${PROJECT} backend-services get-health --global ${BACKEND_NAME}
           ```
     * Make sure the load balancer reports the backends as healthy
         * If the backends aren't reported as healthy check that the pods associated with the K8s service are up and running
