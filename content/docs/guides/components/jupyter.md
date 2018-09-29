@@ -23,8 +23,8 @@ kubectl get svc -n=${NAMESPACE}
 
 NAME               TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 ...
-tf-hub-0           ClusterIP      None            <none>        8000/TCP       1m
-tf-hub-lb          ClusterIP      10.11.245.94    <none>        80/TCP         1m
+jupyterhub-0           ClusterIP      None            <none>        8000/TCP       1m
+jupyterhub-lb          ClusterIP      10.11.245.94    <none>        80/TCP         1m
 ...
 ```
 
@@ -47,7 +47,7 @@ however this will leave your Jupyter notebook open to the Internet.
 To connect to your [Jupyter Notebook](http://jupyter.org/index.html) locally:
 
 ```
-PODNAME=`kubectl get pods --namespace=${NAMESPACE} --selector="app=tf-hub" --output=template --template="{{with index .items 0}}{{.metadata.name}}{{end}}"`
+PODNAME=`kubectl get pods --namespace=${NAMESPACE} --selector="app=jupyterhub" --output=template --template="{{with index .items 0}}{{.metadata.name}}{{end}}"`
 kubectl port-forward --namespace=${NAMESPACE} $PODNAME 8000:8000
 ```
 

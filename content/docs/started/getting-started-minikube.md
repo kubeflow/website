@@ -193,8 +193,8 @@ ambassador         ClusterIP   10.97.168.31     <none>        80/TCP     1m
 ambassador-admin   ClusterIP   10.99.5.81       <none>        8877/TCP   1m
 centraldashboard   ClusterIP   10.111.104.142   <none>        80/TCP     1m
 k8s-dashboard      ClusterIP   10.102.65.244    <none>        443/TCP    1m
-tf-hub-0           ClusterIP   None             <none>        8000/TCP   1m
-tf-hub-lb          ClusterIP   10.101.15.28     <none>        80/TCP     1m
+jupyterhub-0           ClusterIP   None             <none>        8000/TCP   1m
+jupyterhub-lb          ClusterIP   10.101.15.28     <none>        80/TCP     1m
 tf-job-dashboard   ClusterIP   10.106.133.49    <none>        80/TCP     1m
 ```
 
@@ -202,7 +202,7 @@ Setup port forwarding for the central dashboard UI and Jupyter Hub
 ```
 $ POD=`kubectl -n kubeflow get pods --selector=service=ambassador | awk '{print $1}' | tail -1`
 $ kubectl -n kubeflow port-forward $POD 8080:80 2>&1 >/dev/null &
-$ POD=`kubectl -n kubeflow get pods --selector=app=tf-hub | awk '{print $1}' | tail -1`
+$ POD=`kubectl -n kubeflow get pods --selector=app=jupyterhub | awk '{print $1}' | tail -1`
 $ kubectl -n kubeflow port-forward $POD 8000:8000 2>&1 >/dev/null &
 ```
 Now you can access the Kubeflow dashboard at http://localhost:8080/ and JupyterHub at http://localhost:8000/.
