@@ -650,4 +650,4 @@ Events:
    in the previous section.
 
 ## More information
-* See how to [run a job with gang-scheduling](https://www.kubeflow.org/docs/guides/job-scheduling).
+* See how to [run a job with gang-scheduling](/docs/guides/job-scheduling).
