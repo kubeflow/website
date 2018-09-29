@@ -166,7 +166,7 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
 
   * Verify access to the whoami app
   ```
-  curl -L -s -i curl -L -s -i http://envoy:8080/noiap/whoami
+  curl -L -s -i http://envoy:8080/noiap/whoami
   ```
   * If this doesn't return a 200 OK response; then there is a problem with the K8s resources
       * Check the pods are running
