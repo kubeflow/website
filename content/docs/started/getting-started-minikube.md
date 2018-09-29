@@ -193,8 +193,8 @@ ambassador         ClusterIP   10.97.168.31     <none>        80/TCP     1m
 ambassador-admin   ClusterIP   10.99.5.81       <none>        8877/TCP   1m
 centraldashboard   ClusterIP   10.111.104.142   <none>        80/TCP     1m
 k8s-dashboard      ClusterIP   10.102.65.244    <none>        443/TCP    1m
-jupyterhub-0           ClusterIP   None             <none>        8000/TCP   1m
-jupyterhub-lb          ClusterIP   10.101.15.28     <none>        80/TCP     1m
+jupyterhub-0       ClusterIP   None             <none>        8000/TCP   1m
+jupyterhub-lb      ClusterIP   10.101.15.28     <none>        80/TCP     1m
 tf-job-dashboard   ClusterIP   10.106.133.49    <none>        80/TCP     1m
 ```
 

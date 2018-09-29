@@ -23,8 +23,8 @@ kubectl get svc -n=${NAMESPACE}
 
 NAME               TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 ...
-jupyterhub-0           ClusterIP      None            <none>        8000/TCP       1m
-jupyterhub-lb          ClusterIP      10.11.245.94    <none>        80/TCP         1m
+jupyterhub-0       ClusterIP      None            <none>        8000/TCP       1m
+jupyterhub-lb      ClusterIP      10.11.245.94    <none>        80/TCP         1m
 ...
 ```
 
