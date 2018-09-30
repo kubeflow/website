@@ -67,3 +67,9 @@ Paginate = 20
   parent = "guides"
   identifier = "components"
   url = "/docs/guides/components/"
+[[menu.docs]]
+  name = "GKE"
+  weight = 5
+  parent = "guides"
+  identifier = "gke"
+  url = "/docs/guides/gke/"

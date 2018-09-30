@@ -1,6 +1,5 @@
 approvers:
   - abhi-g
-  - ankushagarwal
   - aronchick
   - ewilderj
   - jlewi
@@ -14,7 +13,6 @@ approvers:
   - willingc
 reviewers:
   - abhi-g
-  - ankushagarwal
   - aronchick
   - ewilderj
   - inc0
