@@ -282,7 +282,7 @@ Set up and run the `deploy` script:
 1. Run the `deploy` script to create your GCP and Kubernetes resources:
 
     ```
-    export KUBEFLOW_VERSION=0.2.5
+    export KUBEFLOW_VERSION=0.2.6
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/gke/deploy.sh | bash
     ```
 
@@ -354,7 +354,7 @@ which corresponds to the `us-central1-c` zone used earlier
 in the tutorial:
 
 ```
-export BUCKET_NAME=${DEPLOYMENT_NAME}-bucket
+export BUCKET_NAME=${PROJECT}-${DEPLOYMENT_NAME}-bucket
 gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
 ```
 
@@ -736,11 +736,21 @@ use to train new versions of your model repeatedly. You don’t need to regenera
 the `tf-job-operator` ksonnet component every time. When you have a new version
 to push:
 
-* Build a new container with a new version tag.
+* Build a new image with a new version tag.
 * Run the `ks param set` command to modify the parameters for the 
   `tf-job-operator` ksonnet component to point to the new version of your
-  container.
-* Re-apply the container to the cluster.
+  image:
+
+    ```
+    ks param set train1 image ${TRAIN_IMG_PATH}
+    ```
+
+* Delete and re-apply the component to the cluster with the following commands:
+
+    ```
+    ks delete default -c train1
+    ks apply default -c train1
+    ```
 
 New model versions will appear in appropriately tagged directories in your
 Cloud Storage bucket.
@@ -814,9 +824,9 @@ that interacts directly with the TensorFlow model server.
 The `kubeflow-introduction/web-ui` directory also contains a Dockerfile to build
 the application into a container image.
 
-### Build a container and push it to Container Registry
+### Build an image and push it to Container Registry
 
-Follow these steps to build a container from your code:
+Follow these steps to build an image from your code:
 
 1. Move back to the `kubeflow-introduction` project directory:
 
@@ -936,11 +946,12 @@ mistakes should be rare. See if you can find any!
 <a id="cleanup"></a>
 ## Clean up your GCP environment
 
-Run the following commands to delete your deployment and reclaim all resources:
+Run the following commands to delete your deployment and related resources, and
+to delete your Cloud Storage bucket when you've finished with it:
 
 ```
 gcloud deployment-manager --project=${PROJECT} deployments delete ${DEPLOYMENT_NAME}
-gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+gsutil rm -r gs://${BUCKET_NAME}
 ```
 
 [mnist-data]: http://yann.lecun.com/exdb/mnist/index.html
