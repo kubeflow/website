@@ -763,11 +763,11 @@ can send it prediction requests. You use the
 [`tf-serving` prototype][tf-serving-prototype] to handle this task. The
 `tf-serving` prototype is the Kubeflow implementation of
 [TensorFlow Serving][tf-serving]. Unlike when using `tf-job-operator`, you don't
-need a custom container for the server process. Instead, all the information the
+need a custom image for the serving process. Instead, all the information the
 server needs is stored in the model file.
 
-Follow these instructions to point the server component to the Cloud Storage
-bucket where your model data is stored, so that the server can spin up to handle
+Follow these instructions to point the serving component to the Cloud Storage
+bucket where your model is stored, so that the server can spin up to handle
 requests:
 
 1. [Generate][ks-generate] a ksonnet component from the prototype. The code
