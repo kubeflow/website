@@ -32,7 +32,7 @@ Figure 1 shows the internal architecture of the NVIDIA TensorRT inference server
           <figcaption>Figure 2. The NVIDIA TensorRT inference server provides the above metrics for users to autoscale and monitor usage.</figcaption>
 </figure>
 
-The NVIDIA TensorRT inference server is one major component of a larger inference ecosystem. Figure 3 shows an example of this ecosystem including the NVIDIA TensorRT inference server microservice in collaboration with Kubeflow. Users can utilize their own components outside of the NVIDIA TensorRT inference server or use CNCF recommended components.
+The NVIDIA TensorRT inference server is one major component of a larger inference ecosystem. In today’s Kubeflow and TensorRT inference server integration, you can use the TensorRT inference server with a model store either on a local disk or in Google Cloud Storage. In the future, we plan to add integration of the Prometheus metrics service and autoscaling load balancers with Kubeflow. Figure 3 shows this future version of the ecosystem, including the NVIDIA TensorRT inference server microservice in collaboration with Kubeflow. Users can utilize their own components outside of the NVIDIA TensorRT inference server or use CNCF recommended components.
 
 <figure class="image">
 					<img src="../tensorrt_architecture.svg" alt="TensorRT Inference Server - Architecture">
