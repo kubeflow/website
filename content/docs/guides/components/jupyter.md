@@ -10,52 +10,14 @@ toc = true
 
 ## Bringing up a Jupyter Notebook
 
-Beforehand we need to setup a NAMESPACE variable.
-
-```commandline
-export NAMESPACE=kubeflow
-```
-
-The jupyterhub component deployed JupyterHub and a corresponding load balancer service. You can check its status using the kubectl command line.
-
-```commandline
-kubectl get svc -n=${NAMESPACE}
-
-NAME               TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-...
-tf-hub-0           ClusterIP      None            <none>        8000/TCP       1m
-tf-hub-lb          ClusterIP      10.11.245.94    <none>        80/TCP         1m
-...
-```
-
-By default we are using ClusterIPs for the JupyterHub UI. This can be changed to one of the following:
-
-- NodePort (for non-cloud) by issuing
-  ```
-  ks param set jupyterhub serviceType NodePort
-  ks apply ${KF_ENV}
-  ```
-
-- LoadBalancer (for cloud) by issuing
-  ```
-  ks param set jupyterhub serviceType LoadBalancer
-  ks apply ${KF_ENV}
-  ```
-
-however this will leave your Jupyter notebook open to the Internet.
-
-To connect to your [Jupyter Notebook](http://jupyter.org/index.html) locally:
-
-```
-PODNAME=`kubectl get pods --namespace=${NAMESPACE} --selector="app=tf-hub" --output=template --template="{{with index .items 0}}{{.metadata.name}}{{end}}"`
-kubectl port-forward --namespace=${NAMESPACE} $PODNAME 8000:8000
-```
-
-Then, open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
-
-You should see a sign in prompt.
-
-1. Sign in using any username/password
+1. To connect to Jupyter follow the [instructions](/docs/guides/accessing-uis)
+to access the Kubeflow UI. From there you will be able to navigate to JupyterHub   
+   ![JupyterHub Link](/docs/images/jupyterlink.png)
+1. Sign in 
+   * On GCP you sign in using your Google Account
+     * If you are already logged into your Google Account you may not 
+       be prompted to login again
+   * On all other platforms you can sign in using any username/password   
 1. Click the "Start My Server" button, and you will be greeted by a dialog screen.
 1. Select a CPU or GPU image from the Image dropdown menu depending on whether you are doing CPU or GPU training, or whether or not you have GPUs in your cluster. We currently offer a cpu and gpu image for each tensorflow minor version(eg: 1.4.1,1.5.1,1.6.0). Or you can type in the name of any TF image you want to run.
 1. Allocate memory, CPU, GPU, or other resources according to your need (1 CPU and 2Gi of Memory are good starting points)
