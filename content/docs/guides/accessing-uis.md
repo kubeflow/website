@@ -23,7 +23,7 @@ Kubeflow comes with a number of web UIs e.g.
 To make it easy to connect to these UIs Kubeflow provides a reverse proxy through
 which all UIs are accessible.
 
-Instructions below indicate how to connect to the Kubeflow navigation UI. From
+Instructions below indicate how to connect to the Kubeflow navigation UI(see below). From
 there you can easily navigate to the different serivces.
 
 ![Central UI](/docs/images/central-ui.png)
