@@ -23,8 +23,8 @@ Kubeflow comes with a number of web UIs e.g.
 To make it easy to connect to these UIs Kubeflow provides a reverse proxy through
 which all UIs are accessible.
 
-Instructions below indicate how to connect to the Kubeflow navigation UI(see below). From
-there you can easily navigate to the different serivces.
+Instructions below indicate how to connect to the Kubeflow navigation UI. From
+there you can easily navigate to the different services. The UI looks like this:
 
 ![Central UI](/docs/images/central-ui.png)
 
@@ -32,7 +32,7 @@ there you can easily navigate to the different serivces.
 ## Google Cloud Platform (Kubernetes Engine)
 
 If you followed the [guide for Kubernetes Engine](/docs/started/getting-started-gke), Kubeflow will be deployed with
-IAP and the web UI's will be accessible at
+IAP and the web UIs will be accessible at
 
 ```
 https://<name>.endpoints.<project>.cloud.goog/
@@ -43,8 +43,8 @@ different services.
 
 ## Using Kubectl and port-forwarding
 
-You can use the following command to setup port forwarding to one of the Ambassador
-pods that provides the reverse proxy.
+You can use the following command to setup port forwarding to one of the 
+[Ambassador](https://www.getambassador.io/) pods that provides the reverse proxy.
 
 ```
 export NAMESPACE=kubeflow

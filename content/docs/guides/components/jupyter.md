@@ -13,9 +13,11 @@ toc = true
 1. To connect to Jupyter follow the [instructions](/docs/guides/accessing-uis)
 to access the Kubeflow UI. From there you will be able to navigate to JupyterHub   
    ![JupyterHub Link](/docs/images/jupyterlink.png)
-1. Signing in 
+1. Sign in 
    * On GCP you sign in using your Google Account
-   * On all other platforms you can signin using any username/password   
+     * If you are already logged into your Google Account you may not 
+       be prompted to login again
+   * On all other platforms you can sign in using any username/password   
 1. Click the "Start My Server" button, and you will be greeted by a dialog screen.
 1. Select a CPU or GPU image from the Image dropdown menu depending on whether you are doing CPU or GPU training, or whether or not you have GPUs in your cluster. We currently offer a cpu and gpu image for each tensorflow minor version(eg: 1.4.1,1.5.1,1.6.0). Or you can type in the name of any TF image you want to run.
 1. Allocate memory, CPU, GPU, or other resources according to your need (1 CPU and 2Gi of Memory are good starting points)
