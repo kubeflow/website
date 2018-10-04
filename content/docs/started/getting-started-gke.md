@@ -33,15 +33,18 @@ Create an OAuth client ID to be used to identify Cloud IAP when requesting acces
    * Configure the [consent screen](https://console.cloud.google.com/apis/credentials/consent).
    * Under **Email address**, select the address that you want to display as a public contact. You must use either your email address or a Google Group that you own.
    * In the **Product name** box, enter a suitable name like `kubeflow`.
-   * Under **Authorized domains**, enter
+   * If you see **Authorized domains**, enter
 
      ```
      <project>.cloud.goog
      ```
-
-     where \<project\> is your Google Cloud Platform (GCP) project ID.
-
+     * where \<project\> is your Google Cloud Platform (GCP) project ID.
+     * If you are using your own domain e.g. **acme.com** you should add that as well
+     * Depending on your project **Authorized domains** might not be an option
    * Click Save.
+   * Here's a screenshot
+   
+     ![consent-screen](/docs/images/consent-screen.png)
 1. On the [Credentials](https://console.cloud.google.com/apis/credentials) screen:
    * Click **Create credentials**, and then click **OAuth client ID**.
    * Under **Application type**, select **Web application**.
@@ -51,14 +54,14 @@ Create an OAuth client ID to be used to identify Cloud IAP when requesting acces
         ```
         https://<name>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate
         ```
+        * `<name>` and `<project>` must have the same values as set in the next
+          step when you run the deployment script.
+        * The deployment uses "kubeflow" by default for `<name>` but you can
+          configure this with the environment variable `DEPLOYMENT_NAME`.
+        * `<project>` is your GCP project.
+    * Here's what the form should look like
 
-        `<name>` and `<project>` must have the same values as set in the next
-        step when you run the deployment script.
-
-        The deployment uses "kubeflow" by default for `<name>` but you can
-        configure this with the environment variable `DEPLOYMENT_NAME`.
-
-        `<project>` is your GCP project.
+      ![oauth-credential](/docs/images/oauth-credential.png)
 
 1. Click **Create**.
 1. Make note of the **client ID** and **client secret** that appear in the OAuth
