@@ -26,7 +26,7 @@ Kubeflow deployed as services in the pods. You should be able to access JupyterH
 If you already have a hypervisor on your system, you can follow the [Quick Setup](#quick-setup) to do a guided Minikube setup.
 
 ### Install a Hypervisor
-If you do not already have a hypervisor or a tirtualizer installed, install a new one. Once the hypervisor is installed, you don't need to start or use it directly. Minikube will automatically invoke the hypervisor to start the VM.
+If you do not already have a hypervisor or a virtualizer installed, install a new one. Once the hypervisor is installed, you don't need to start or use it directly. Minikube will automatically invoke the hypervisor to start the VM.
 
 ##### Mac OS X
 Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [VMware Fusion](https://www.vmware.com/products/fusion).
