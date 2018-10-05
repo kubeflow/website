@@ -79,7 +79,7 @@ Run the following steps to deploy Kubeflow:
     ```
     mkdir ${KUBEFLOW_SRC}
     cd ${KUBEFLOW_SRC}
-    export KUBEFLOW_TAG=<version>
+    export KUBEFLOW_TAG={{% kf-stable-tag %}}
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/{{< params "githubbranch" >}}/scripts/download.sh | bash
      ```
    * **KUBEFLOW_SRC** directory where you want to download the source to
