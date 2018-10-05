@@ -35,12 +35,12 @@ Create an OAuth client ID to be used to identify Cloud IAP when requesting acces
    * In the **Product name** box, enter a suitable name like `kubeflow`.
    * If you see **Authorized domains**, enter
 
-     ```
-     <project>.cloud.goog
-     ```
-     * where \<project\> is your Google Cloud Platform (GCP) project ID.
-     * If you are using your own domain e.g. **acme.com** you should add that as well
-     * Depending on your project **Authorized domains** might not be an option
+        ```
+        <project>.cloud.goog
+        ```
+        * where \<project\> is your Google Cloud Platform (GCP) project ID.
+        * If you are using your own domain e.g. **acme.com** you should add that as well
+        * The **Authorized domains** option appears only for certain project configurations. If you don't see the option, then there's nothing you need to set.        
    * Click Save.
    * Here's a screenshot
    
