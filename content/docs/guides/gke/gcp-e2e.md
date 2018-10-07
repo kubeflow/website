@@ -122,8 +122,8 @@ Notes:
 
 ### Create OAuth client credentials
 
-Create an OAuth client ID to be used to identify the
-[Identity Aware Proxy (IAP)][iap] when requesting access to a user's email
+Create an OAuth client ID for the [Identity Aware Proxy (IAP)][iap]. This OAuth
+client ID is used when requesting access to a user's email
 to verify their identity.
 
 1. Set up your OAuth consent screen:
@@ -134,13 +134,18 @@ to verify their identity.
       public contact. You must use either your email address or a Google Group
       that you own.
     * In the **Product name** box, enter a suitable name like "kubeflow".
-    * Under **Authorized domains**, enter the following:
+    * If you see **Authorized domains**, enter the following:
 
         ```
         <project>.cloud.goog
         ```
 
-     where `<project>` is your GCP project ID.
+        * where `<project>` is your GCP project ID.
+        * If you are using your own domain such as **acme.com** you should add 
+          that as well
+        * The **Authorized domains** option appears only for certain project 
+          configurations. If you don't see the option, then there's nothing you 
+          need to set.        
 
    * Click **Save**.
 
