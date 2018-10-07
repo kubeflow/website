@@ -789,6 +789,14 @@ requests:
     ks param set serve modelPath gs://${BUCKET_NAME}/
     ```
 
+1. Set the following parameters to grant the serving container permission to
+   read your Cloud Storage bucket:
+
+    ```
+    ks param set serve gcpCredentialSecretName user-gcp-sa
+    ks param set serve cloud gcp
+    ```
+
 1. [Apply][ks-apply] the component to the cluster:
 
     ```
