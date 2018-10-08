@@ -31,7 +31,7 @@ spec:
       replicas: 1
       template:
         spec:
-          schedulerName: kube-batchd
+          schedulerName: kube-batch
           containers:
           - args:
             - python
@@ -55,7 +55,7 @@ spec:
       replicas: 1
       template:
         spec:
-          schedulerName: kube-batchd
+          schedulerName: kube-batch
           containers:
           - args:
             - python
