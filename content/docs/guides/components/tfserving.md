@@ -175,7 +175,7 @@ It currently supports streaming to BigQuery.
 Logging the requests and responses enables log analysis, continuous training, and skew detection.
 
 ### Usage:
-Create the Bigquery dataset D and table T under your project P.
+Create the BigQuery dataset D and table T under your project P.
 The schema should also be set.
 
 ```
@@ -190,7 +190,7 @@ Modify `tf-serving-with-request-log.jsonnet` as needed:
 ks apply ENV -c mnist
 ```
 
-Start sending requests, and the fluentd worker will stream them to Bigquery.
+Start sending requests, and the fluentd worker will stream them to BigQuery.
 
 ### Next steps:
 1. Support different backends other than Bigquery

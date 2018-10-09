@@ -134,7 +134,7 @@ Some useful ksonnet concepts:
   to a cluster. It can also hold different parameters for different
   environments.
 
-Read more about the core ksonnet conceps in the
+Read more about the core ksonnet concepts in the
 [ksonnet documentation](https://ksonnet.io/docs/concepts/).
 
 [ksonnet]: https://ksonnet.io/

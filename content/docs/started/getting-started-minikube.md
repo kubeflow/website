@@ -9,7 +9,7 @@ bref = "This document will outline steps that will get your local installation o
   weight = 2
 +++
 
-By the end of this document, you'll have a local installation of Minikube kubernetes clsuter along with all the default core components of
+By the end of this document, you'll have a local installation of Minikube kubernetes cluster along with all the default core components of
 Kubeflow deployed as services in the pods. You should be able to access JupyterHub notebooks, and the Kubeflow Dashboard.
 
 ### Prerequisites
@@ -96,7 +96,7 @@ chmod +x setup-minikube.sh
 The script asks for some config input as shown below:
 ![ConfigInputs](../ConfigInputs.png)
 
-Let us consider the example for CPUs configuration. When it asks `Assign CPUs between 3..10 [6]: ` the `3..10` suggest the range of CPU cores available based on your host machine. `[6]` is the sugggested default. You can choose any value within the range and enter the value or just press enter to accept the default value suggested in square brackets. In the image above, we choose the default 6 for CPUs and specified 12GB of memory explicitly. Note that:
+Let us consider the example for CPUs configuration. When it asks `Assign CPUs between 3..10 [6]: ` the `3..10` suggest the range of CPU cores available based on your host machine. `[6]` is the suggested default. You can choose any value within the range and enter the value or just press enter to accept the default value suggested in square brackets. In the image above, we choose the default 6 for CPUs and specified 12GB of memory explicitly. Note that:
 
   1. You will need to specify the virtualizer installed on the system explicitly and it needs to be one of the values provided as options.
   1. If you don't want to mount any local directory into the JupyterHub simply press enter instead of specifying any path.
@@ -218,7 +218,7 @@ The following steps will deploy Kubeflow components and start them on the Miniku
     export KUBEFLOW_TAG=v0.3.0
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_VERSION}/scripts/download.sh | bash
     ```
-    - **KUBEFLOW_SRC** is the directory where you want to donwload the source
+    - **KUBEFLOW_SRC** is the directory where you want to download the source
     - **KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as `v0.3.0`
 
   1. Run the following to setup and deploy Kubeflow:

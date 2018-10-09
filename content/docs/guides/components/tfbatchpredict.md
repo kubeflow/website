@@ -100,7 +100,7 @@ ks param set --env=default ${MY_BATCH_PREDICT_JOB} numGpus 1
 ```
 
 This way, the batch-predict job will use a GPU version of docker image and add appropriate
-configuration to start the kubenetes job.
+configuration to start the kubernetes job.
 
 
 ### Submit the job
