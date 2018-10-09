@@ -26,7 +26,7 @@ ks component rm spartakus
 ```
 
 
-To explictly enable usage reporting set reportUsage to `true`
+To explicitly enable usage reporting set reportUsage to `true`
 
 ```
 ks param set spartakus reportUsage true
@@ -35,8 +35,8 @@ ks param set spartakus reportUsage true
 kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
 ```
 
-**Reporting usage data is one of the most signifcant contributions you can make to Kubeflow; so please consider turning it on.** This data
-allows us to improve the project and helps the many companies working on Kubeflow justify continued investement.
+**Reporting usage data is one of the most significant contributions you can make to Kubeflow; so please consider turning it on.** This data
+allows us to improve the project and helps the many companies working on Kubeflow justify continued investment.
 
 You can improve the quality of the data by giving each Kubeflow deployment a unique id
 

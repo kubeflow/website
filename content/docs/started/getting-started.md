@@ -74,7 +74,7 @@ Download, set up, and deploy:
    * **${KFAPP}** The name of a directory to store your configs. This directory will be created when you run init.
       * The ksonnet app will be created in the directory **${KFAPP}/ks_app**
 
-**Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explictly
+**Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explicitly
 disabling it please refer to the [usage reporting guide](/docs/guides/usage-reporting/).
 
 ## Troubleshooting

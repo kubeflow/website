@@ -8,7 +8,7 @@ toc = true
   weight = 30
 +++
 
-Until 1.0 Kubeflow makes no promises of backwards compatibility or upgradeability. Nontheless, here are some
+Until 1.0 Kubeflow makes no promises of backwards compatibility or upgradeability. Nonetheless, here are some
 instructions for updating your deployments.
 
 Updating your deployments is a two step process
