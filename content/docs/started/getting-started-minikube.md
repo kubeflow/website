@@ -216,7 +216,7 @@ The following steps will deploy Kubeflow components and start them on the Miniku
     mkdir ${KUBEFLOW_SRC}
     cd ${KUBEFLOW_SRC}
     export KUBEFLOW_TAG=v0.3.0
-    curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_VERSION}/scripts/download.sh | bash
+    curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
     ```
     - **KUBEFLOW_SRC** is the directory where you want to download the source
     - **KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as `v0.3.0`
