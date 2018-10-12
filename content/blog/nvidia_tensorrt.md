@@ -51,7 +51,7 @@ Once that’s complete, pull the NVIDIA TensorRT inference server image from the
 
 Then use the io.ksonnet.pkg.nvidia-inference-server prototype to generate Kubernetes YAML and deploy to that cluster. 
 
-For a more detailed explanation and step-by-step guidance for this process, refer to this [GitHub repo](https://github.com/deadeyegoodwin/kubeflow/tree/deadeyegoodwin/trtserver/kubeflow/nvidia-inference-server).
+For a more detailed explanation and step-by-step guidance for this process, refer to this [GitHub repo](https://github.com/kubeflow/kubeflow/tree/master/kubeflow/nvidia-inference-server).
 
 
 ## Learn More About Kubeflow and NVIDIA TensorRT Inference Server 
