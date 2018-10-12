@@ -893,8 +893,7 @@ server from outside the cluster.
       --containerPort=5000 \
       --image=${UI_IMG_PATH} \
       --name=web-ui \
-      --servicePort=80 \
-      --type=LoadBalancer
+      --servicePort=80
     ```
 
 1. [Apply][ks-apply] the component to your cluster:
@@ -912,13 +911,15 @@ server from outside the cluster.
 
 Follow these steps to access the web UI in your web browser.
 
-1. Get the external IP address of the service: Go to the
-   the [Kubernetes Engine Services page][gcp-console-services], click the entry
-   for **web-ui** to see the service details, and copy the
-   IP address next to **External endpoints**.
+1. Run the following command to access the UI via `kubectl port-forward`:
 
-1. Open the IP address into your browser. The web UI should load, offering you
-   three fields to connect to the prediction server:
+    ```
+    kubectl port-forward -n ${NAMESPACE}  `kubectl get pods \
+      --selector=app=web-ui-o jsonpath='{.items[0].metadata.name}'` 8080:80
+    ```
+
+1. Open the UI in your web browser at `localhost:8080`. The web UI should load, 
+   offering you three fields to connect to the prediction server:
 
     ![Connection UI](/docs/images/gcp-e2e-ui-connect.png)
 
