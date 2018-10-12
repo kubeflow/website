@@ -24,6 +24,11 @@ Paginate = 20
   githubbranch = "v0.2-branch"
   url = "https://v0-2.kubeflow.org"
 
+[[Params.versions]]
+  version = "v0.3"
+  githubbranch = "v0.3-branch"
+  url = "https://v0-3.kubeflow.org"
+
 [[menu.main]]
     name = "What is Kubeflow?"
     weight = -103
