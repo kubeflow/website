@@ -11,7 +11,7 @@ bref = "This guide describes how to setup Kubeflow using a GitOps methodology by
 +++
 
 ## What is GitOps?
-GitOps is a Continuous Delivery methodology centered around using Git as a single source of truth for declarative infrastructure and application code.  The Git repo defines the desired state of an application using declarative specifications, and a GitOps tool like Argo CD will reconcile the differences between the manifest defined by the git repo and the live system.  As a result, GitOps enforces an operating model where all changes are observable and verifiable through git commits.  The declarative specifications streamline deployments as developers do not need to hand-roll scripts to build and deploy their application.  Once the application is deployed, debugging becomes simpler as developers have a clear set of change logs through their Git commits history.  Even if the live system has drifted away from the source repo's desired state, the GitOps methodology provides the tools to converge the real system with the desired state through the declarative specs.  Finally, once the breaking commit is found, rollback becomes as simple as syncing a previously good git commit.  All these benefits reduce the amount of work developers have to spend on managing deployments to allow them to focus on other features.
+GitOps is a Continuous Delivery methodology centered around using Git as a single source of truth for declarative infrastructure and application code.  The Git repo defines the desired state of an application using declarative specifications, and a GitOps tool like Argo CD will reconcile the differences between the manifest defined by the git repo and the live system.  As a result, GitOps enforces an operating model where all changes are observable and verifiable through git commits.  The declarative specifications streamline deployments as developers do not need to write scripts to build and deploy their application.  Once the application is deployed, debugging is simplified as developers have a clear set of change logs through their Git commits history.  Even if the live system has drifted away from the source repo's desired state, the GitOps methodology provides the tools to converge the real system with the desired state through the declarative specs.  Finally, once the breaking commit is found, rollback becomes as simple as syncing a previously good git commit.  All these benefits reduce the amount of work developers have to spend on managing deployments to allow them to focus on other features.
 
 ## Argo CD and GitOps
 Argo CD is a Kubernetes-native Declarative Continuous Delivery tool that follows the GitOps methodology.  Along with all the benefits of using GitOps, Argo CD offers:
@@ -26,11 +26,11 @@ Argo CD is a Kubernetes-native Declarative Continuous Delivery tool that follows
 This guide assumes you have a kubernetes cluster. If you don't, follow [this guide](/docs/started/getting-started/#set-up-kubernetes) to create one.
 
 ## Install Argo CD
-Follow the [argo-cd getting start guide](https://github.com/argoproj/argo-cd/blob/master/docs/getting_started.md) up to the '[Create an application from a git repository location](https://github.com/argoproj/argo-cd/blob/master/docs/getting_started.md#6-create-an-application-from-a-git-repository-location)' step.
+Follow the [argo cd getting started guide](https://github.com/argoproj/argo-cd/blob/master/docs/getting_started.md) up to the '[Create an application from a git repository location](https://github.com/argoproj/argo-cd/blob/master/docs/getting_started.md#6-create-an-application-from-a-git-repository-location)' step.
 
 * For example, if your local machine is OSX and you want to deploy Argo CD and Kubeflow to the same GKE cluster, you could run:
 
-1. Install ArgoCD to the Kubernetes Cluster
+1. Install Argo CD to the Kubernetes Cluster
 ```shell
 ARGO_CD_LATEST=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
 kubectl create namespace argocd
@@ -40,6 +40,12 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/$A
 1. Install Argo CD Cli
 ```shell
 brew install argoproj/tap/argocd
+```
+
+1. Set extra permissions for Argo CD
+Since the GKE cluster has RBAC enabled, you will need to grant your account the ability to create new cluster roles by running:
+```shell
+kubectl create clusterrolebinding YOURNAME-cluster-admin-binding --clusterrole=cluster-admin --user=YOUREMAIL@gmail.com
 ```
 
 1. Expose the Argo CD API server
@@ -74,7 +80,7 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
         mkdir ${KUBEFLOW_REPO}
         cd ${KUBEFLOW_REPO}
         export KUBEFLOW_TAG={{% kf-stable-tag %}}
-        curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | shell
+        curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
         ```
         * **KUBEFLOW_REPO** directory where you want to download the source to
         * **KUBEFLOW_TAG** a tag corresponding to the version to checkout such as `master` for latest code.
@@ -84,7 +90,7 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
         ```
         ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} --platform none
         cd ${KFAPP}
-        ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8
+        ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8s
         ```
         * **KFAPP** directory to store all of your kubeflow configuration
 
@@ -92,7 +98,8 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
     * If you are deploying kubeflow in the same cluster as Argo CD, run:
 
     ```shell
-    ks env add default --server https://kubernetes.default.svc
+    cd ks_app
+    ks env add default --server https://kubernetes.default.svc --namespace kubeflow
     ```
     otherwise run:
     ```shell
@@ -103,7 +110,7 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 1.  Add the contents of the KSAPP directory to git repo you created in the first step.
 
 ## Deploying Kubeflow
-1. Run the following commands to create the Kubeflow application in Argo-CD and then sync the manifests in your git repo to your cluster:
+1. Run the following commands to create the Kubeflow application in Argo CD and then sync the manifests in your git repo to your cluster:
 
     ```shell
     export KUBEFLOW_REPO_URL='Replace with a ssh or https git endpoint'
@@ -122,8 +129,11 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 
     * NOTE: There is a [known issue](https://github.com/kubeflow/kubeflow/issues/1145) with the IAP component that prevents the envoy service from becoming synced and causes all subsequent syncs to fail.  As a workaround for this issue, we recommend that you sync individual resources by adding the resource flag to your sync command.
 
+    You can then access your Kubeflow UI by going to `https://<KFAPP>.endpoint.<PROJECT>.cloud.googl/`.
+    * It can take 10–15 minutes for the endpoint to become available. Kubeflow needs to provision a signed SSL certificate and register a DNS name.
+
 ## Going Forward
-When you make a commit a change that modifies the ksonnet application directory of your Kubeflow repository (the ks_app directory if you used the kfctl.sh script), Argo CD will detect that your application is out of sync with your git repo.  To sync the new resource, you can run 
+When you commit a change that modifies the ksonnet application directory of your Kubeflow repository (the ks_app directory if you used the kfctl.sh script), Argo CD will detect that your application is out of sync with your git repo.  To sync the new resource, you can run 
 ```bash
 argocd app sync kubeflow --resource GROUP:KIND:NAME
 ```
@@ -132,5 +142,5 @@ or from the UI:
 ![Argo CD In progress Deployment](/docs/images/argo-cd-partial-sync-ui.png)
 
 
-## More ArgoCD configuration
-Please go to the [Argo CD documention](https://github.com/argoproj/argo-cd/tree/master/docs#argocd-documentation) to read more about how to configure other features like auto-sync, SSO, RBAC, and more!
+## More Argo CD configuration
+Please go to the [Argo CD documentation](https://github.com/argoproj/argo-cd/tree/master/docs#argocd-documentation) to read more about how to configure other features like auto-sync, SSO, RBAC, and more!
