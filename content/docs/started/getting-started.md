@@ -50,9 +50,9 @@ Requirements:
   * Kubernetes {{% kubernetes-min-version %}} or later
   * kubectl
 
-Download, set up, and deploy:
+Download, set up, and deploy (If you prefer to work from source code, feel free to skip step 1):
 
-1. Run the following script to download `kfctl.sh`:
+1. Run the following commands to download `kfctl.sh`
 
     ```
     mkdir ${KUBEFLOW_SRC}
@@ -63,13 +63,13 @@ Download, set up, and deploy:
    * **KUBEFLOW_SRC** a directory where you want to download the source to
    * **KUBEFLOW_TAG** a tag corresponding to the version to check out, such as `master` for the latest code.
    * **Note** you can also just clone the repository using git.
-1. Run the following scripts to set up and deploy Kubeflow:
+1. Run the following commands to setup and deploy Kubeflow:
     
     ```
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} --platform none
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform none
     cd ${KFAPP}
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8s
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
     ```
    * **${KFAPP}** The name of a directory to store your configs. This directory will be created when you run init.
       * The ksonnet app will be created in the directory **${KFAPP}/ks_app**
