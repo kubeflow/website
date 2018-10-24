@@ -61,9 +61,8 @@ You can read about other options to connect to your Argo CD instance [here](http
     kubectl get pods -n argocd -l app=argocd-server -o name | cut -d'/' -f 2
     ```
 
-    Using the above password, login to ArgoCD's external IP:
+    Using the above password, login to ArgoCD by running:
     ```shell
-    kubectl get svc -n argocd argocd-server
     argocd login localhost:8080
     ```
     After logging in, change the password using the command:
