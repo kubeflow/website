@@ -86,12 +86,12 @@ curl -Lo docker-machine-driver-kvm2 https://storage.googleapis.com/minikube/rele
 The following describes a script driven installation that you can use to deploy all
 the necessary components including `kubectl`, `minikube`, `kfctl` along with Kubeflow itself. The script requires input from you on some configuration information and then it drives the rest of the installation. Run the following to start the installation:
 ```
-export KUBEFLOW_TAG=v0.3.0
+export KUBEFLOW_TAG={{% kf-stable-tag %}}
 curl -O https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/setup-minikube.sh
 chmod +x setup-minikube.sh
 ./setup-minikube.sh
 ```
-**KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as `v0.3.0` or `master`. 
+**KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-stable-tag %}} or `master`.
 
 The script asks for some config input as shown below:
 ![ConfigInputs](../ConfigInputs.png)
@@ -215,11 +215,11 @@ The following steps will deploy Kubeflow components and start them on the Miniku
     ```
     mkdir ${KUBEFLOW_SRC}
     cd ${KUBEFLOW_SRC}
-    export KUBEFLOW_TAG=v0.3.0
+    export KUBEFLOW_TAG={{% kf-stable-tag %}}
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
     ```
     - **KUBEFLOW_SRC** is the directory where you want to download the source
-    - **KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as `v0.3.0`
+    - **KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-stable-tag %}}
 
   1. Run the following to setup and deploy Kubeflow:
     
