@@ -84,8 +84,9 @@ Run the following steps to deploy Kubeflow:
     cd ${KUBEFLOW_REPO}
     export KUBEFLOW_TAG={{% kf-stable-tag %}}
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
+    cd ..
      ```
-   * **KUBEFLOW_REPO** directory where you want to download the source to
+   * **KUBEFLOW_REPO** full path to the directory where you want to download the source to
    * **KUBEFLOW_TAG** a tag corresponding to the version to checkout such as `master` for latest code.
    * **Note** you can also just clone the repository using git.
 1. Run the following scripts to set up and deploy Kubeflow:
