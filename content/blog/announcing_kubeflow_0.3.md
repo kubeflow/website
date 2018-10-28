@@ -2,7 +2,7 @@
 title = "Kubeflow 0.3 Simplifies Setup & Improves ML Development"
 description = "Announcing Kubeflow 0.3"
 weight = 20
-publishDate = 2018-08-06T11:52:19-07:00
+publishDate = 2018-10-29T11:52:19-07:00
 draft = false
 +++
 
@@ -41,9 +41,9 @@ We're thrilled to announce the availability of Kubeflow 0.3. This release provid
 
 Combining existing services and applications into a cohesive, unified ML platform is one of the biggest obstacles to leveraging Kubernetes for ML. We are pleased to announce several features as part of our ongoing effort to tackle this problem.
 
-**Declarative and Extensible Deployment** using kfctl
+**Declarative and Extensible Deployment**
 
-We continue to simplify the deployment experience with a new deployment command line script; kfctl.sh. This tool allows Kubeflow to easily be configured and deployed like this:
+We continue to simplify the deployment experience with a new deployment command line script; **kfctl.sh**. This tool allows Kubeflow to easily be configured and deployed like this:
 
 ```
 ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} `--platform gcp --project ${PROJECT}`
@@ -153,4 +153,4 @@ As always, we're listening! Please tell us the feature (or features) you'd reall
 
 Thank you for all your support so far!
 
-Jeremy Lewi, Abhishek Gupta, & Chris Cho _Google
+Jeremy Lewi, Abhishek Gupta, & Chris Cho (Google)
