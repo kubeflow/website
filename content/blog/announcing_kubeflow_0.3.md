@@ -2,7 +2,7 @@
 title = "Kubeflow 0.3 Simplifies Setup & Improves ML Development"
 description = "Announcing Kubeflow 0.3"
 weight = 20
-publishDate = 2018-10-29T11:52:19-07:00
+publishDate = 2018-10-26T11:52:19-07:00
 draft = false
 +++
 
