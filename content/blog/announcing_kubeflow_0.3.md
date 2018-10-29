@@ -35,8 +35,6 @@ For the latest information please refer to our [events calendar](https://www.kub
 
 We're thrilled to announce the availability of Kubeflow 0.3. This release provides streamlined ways to deploy Kubeflow with increased flexibility in existing components and better multi-framework support. Let's walk through some of the highlights:
 
-<span style="color:#333333;"><span style="background-color:#f5f5f5;">We're thrilled to announce the availability of Kubeflow 0.3. This release provides a streamlined and extensible paradigm for Kubeflow deployment, increased flexibility in existing components and continues to extend the multi-framework support.</span></span>
-
 ### Deploy
 
 Combining existing services and applications into a cohesive, unified ML platform is one of the biggest obstacles to leveraging Kubernetes for ML. We are pleased to announce several features as part of our ongoing effort to tackle this problem.
@@ -70,9 +68,9 @@ In order to deliver a complete platform for building ML products, we are continu
 
 We are pleased to announce a number of improvements to our inference capabilities.
 
-Using Apache Beam it is now possible to do batch inference with GPUs (but non distributed) for [TensorFlow](https://www.kubeflow.org/docs/guides/components/tfbatchpredict/).
+Using Apache Beam, it is now possible to do batch inference with GPUs (but non distributed) for [TensorFlow](https://www.kubeflow.org/docs/guides/components/tfbatchpredict/).
 
-We are continuing our efforts to make it easy to run TFServing in production by adding a Liveness probe and using fluentd to log r[equest and responses ](https://www.kubeflow.org/docs/guides/components/tfserving/#request-logging)to enable[ ](https://www.kubeflow.org/docs/guides/components/tfserving/#request-logging)model retraining.
+We are continuing our efforts to make it easy to run TFServing in production by adding a Liveness probe and using fluentd to log [request and responses](https://www.kubeflow.org/docs/guides/components/tfserving/#request-logging)to enable[ ](https://www.kubeflow.org/docs/guides/components/tfserving/#request-logging)model retraining.
 
 In collaboration with NVIDIA we are really excited to be offering more options for online prediction using GPUs by taking advantage of [NVIDIA's TensorRT Inference Server.](https://www.kubeflow.org/blog/nvidia_tensorrt/)
 
@@ -80,7 +78,7 @@ In collaboration with NVIDIA we are really excited to be offering more options f
 
 Finding optimal hyperparameters is one of the biggest barriers to producing high quality models.
 
-In order to make it easy to use hyperparameter tuning without writing any code, we are introducing a new K8s custom controller, StudyJob, that allows a hyperparameter search to be defined using YAML. This [manifest](https://github.com/kubeflow/katib/blob/master/examples/hypb-example.yaml) shows how easy it is to apply hyperband tuning to your jobs.
+In order to make it easy to use hyperparameter tuning without writing any code, we are introducing a new K8s custom controller, StudyJob, that allows a hyperparameter search to be defined using YAML. This [manifest](https://github.com/kubeflow/katib/blob/master/examples/hypb-example.yaml) shows how easy it is to tune your models using the hyperband algorithm.
 
 **Training**
 
@@ -96,7 +94,7 @@ We've added support for gang-scheduling using Kube Arbitrator ([docs](https://ww
 
 We've added numerous examples to illustrate the growing number of ways in which you can leverage Kubeflow.
 
-* The xgboost [example](https://github.com/kubeflow/examples/tree/master/xgboost_ames_housing) illustrates how to use non-DL frameworks with Kubeflow
+* The XGBoost [example](https://github.com/kubeflow/examples/tree/master/xgboost_ames_housing) illustrates how to use non-DL frameworks with Kubeflow
 * The object detection [example-](https://github.com/kubeflow/examples/commits/master/object_detection) illustrates how to leverage GPUs for online and batch inference.
 *   The financial time series prediction example illustrates how to leverage Kubeflow for time series analysis ([blog](https://blog.ml6.eu/using-kubeflow-for-analyzing-financial-time-series-part-i-18580ef5df0b), [code](https://github.com/kubeflow/examples/tree/master/financial_time_series)).
 
@@ -105,7 +103,7 @@ We've added numerous examples to illustrate the growing number of ways in which 
 
 Benchmarking is critical to identifying performance bottlenecks that slow development or waste expensive resources. To address these needs, Cisco has contributed an initial release of [Kubebench](https://github.com/kubeflow/kubebench), a framework for benchmarking ML workloads on Kubeflow.
 
-**TFX**
+**TFX Libraries**
 
 The 0.3 Kubeflow Jupyter images ship with [TF Data-Validation](https://github.com/tensorflow/data-validation). TF Data-Validation is a library for exploring and validating machine learning data.
 
@@ -132,7 +130,7 @@ To make Kubeflow more accessible to data scientists, we want to make it possible
 
 ### Model Tracking
 
-Keeping track of experiments is a major source of toil for data scientists and ML Engineers. In 0.4, we plan on making it easier to track models no matter how they were trained.
+Keeping track of experiments is a major source of toil for data scientists and ML Engineers. In 0.4, we plan on making it easier to track models by providing a simple API and database for tracking models.
 
 
 ### Production Readiness
