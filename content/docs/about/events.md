@@ -13,14 +13,25 @@ aliases = ["/docs/events/"]
 This is a nonexhaustive list of events (in reverse chronological order) with talks and workshops about Kubeflow.
 Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if something is missing or incorrect.
 
+* [Data Day Texas, Austin](https://datadaytexas.com/), 26 January, 2019
+  - Kubeflow: Portable Machine Learning on Kubernetes: Michelle Casbon
 * [KubeCon, Seattle](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-north-america-2018/), 11-13 December, 2018
+* Women in ML & Data Science, Melbourne, 5 December, 2018
+  - Panel: Juliet Hougland, Michelle Casbon
 * [YOW!, Melbourne](https://melbourne.yowconference.com.au/), 4-7 December, 2018
   - [Kubeflow Explained: NLP Architectures on Kubernetes](https://melbourne.yowconference.com.au/proposal/?id=6858): Michelle Casbon
 * [YOW!, Brisbane](https://brisbane.yowconference.com.au/), 3-4 December, 2018
   - [Kubeflow Explained: NLP Architectures on Kubernetes](https://brisbane.yowconference.com.au/proposal/?id=6859): Michelle Casbon
 * [YOW!, Sydney](https://sydney.yowconference.com.au/), 27-30 November, 2018
   - [Kubeflow Explained: NLP Architectures on Kubernetes](https://sydney.yowconference.com.au/proposal/?id=6860): Michelle Casbon
-* [KubeCon, Shanghai](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2018/), 14-15 November, 2018
+* [Scale By the Bay, San Francisco](http://scale.bythebay.io/), 15-17 November, 2018
+  - [Data Engineering & AI Panel](https://sched.co/Fndz): Michelle Casbon
+* [KubeCon, Shanghai](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2018/), 13-15 November, 2018
+  - [CI/CD Pipelines & Machine Learning](https://sched.co/FuJo): Jeremy Lewi
+  - [A Year of Democratizing ML With Kubernetes & Kubeflow](https://sched.co/FuLr): David Aronchick, Fei Xue
+* [Data@Scale, Boston](https://dataatscale2018.splashthat.com/), 25 October, 2018
+  - [Women in Engineering Panel](https://datascalewomensbreakfast.splashthat.com/): Michelle Casbon
+  - Kubeflow: Portable Machine Learning on Kubernetes: Michelle Casbon
 * [Kafka Summit, San Francisco](https://kafka-summit.org/), 16-17 October, 2018
 * [O’Reilly AI Conference, London](https://conferences.oreilly.com/artificial-intelligence/ai-eu), 08-11 October, 2018
   - [Machine Learning at Scale with Kubernetes](https://conferences.oreilly.com/artificial-intelligence/ai-eu/public/schedule/detail/69194): Chris Cho
