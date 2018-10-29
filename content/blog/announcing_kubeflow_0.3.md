@@ -2,7 +2,7 @@
 title = "Kubeflow 0.3 Simplifies Setup & Improves ML Development"
 description = "Announcing Kubeflow 0.3"
 weight = 20
-publishDate = 2018-10-26T11:52:19-07:00
+publishDate = 2018-10-29T05:52:19-07:00
 draft = false
 +++
 
@@ -10,10 +10,7 @@ draft = false
 
 It has been 3 months since landing [0.2](https://www.kubeflow.org/blog/announcing_kubeflow_0.2/) and we have continued to be amazed by the support from the community. The community continues to grow, with 100+ members from 20 different organizations and more than 4,500 Github stars!
 
-In September, we held our first [contributor summit](http://bit.ly/kf-summit-2018-overview)!
-
- 
-We were thrilled to have over 60 participants join in person along with 10 remote contributors from 4 continents! We are tentatively planning our next summit for early 2019.
+In September, we held our first [contributor summit](http://bit.ly/kf-summit-2018-overview)! We were thrilled to have over 60 participants join in person along with 10 remote contributors from 4 continents! We are tentatively planning our next summit for early 2019.
 
 To all our contributors, we want to share our deep appreciation for your support! We are getting closer to our vision of letting data scientists and ML engineers focus on building models and products by giving them a Kubernetes native platform for ML that is  easy-to-use, portable and  scalable.
 
@@ -33,7 +30,7 @@ For the latest information please refer to our [events calendar](https://www.kub
 
 ## Introducing Kubeflow 0.3
 
-We're thrilled to announce the availability of Kubeflow 0.3. This release provides streamlined ways to deploy Kubeflow with increased flexibility in existing components and better multi-framework support. Let's walk through some of the highlights:
+We're thrilled to announce the availability of Kubeflow 0.3. This release provides easier deployment and customization of components and better multi-framework support. Let's walk through some of the highlights:
 
 ### Deploy
 
@@ -70,15 +67,11 @@ We are pleased to announce a number of improvements to our inference capabilitie
 
 Using Apache Beam, it is now possible to do batch inference with GPUs (but non distributed) for [TensorFlow](https://www.kubeflow.org/docs/guides/components/tfbatchpredict/).
 
-We are continuing our efforts to make it easy to run TFServing in production by adding a Liveness probe and using fluentd to log [request and responses](https://www.kubeflow.org/docs/guides/components/tfserving/#request-logging)to enable[ ](https://www.kubeflow.org/docs/guides/components/tfserving/#request-logging)model retraining.
-
-In collaboration with NVIDIA we are really excited to be offering more options for online prediction using GPUs by taking advantage of [NVIDIA's TensorRT Inference Server.](https://www.kubeflow.org/blog/nvidia_tensorrt/)
+We are continuing our efforts to make it easy to run TFServing in production by adding a Liveness probe and using fluentd to log [request and responses](https://www.kubeflow.org/docs/guides/components/tfserving/#request-logging)to enable[ ](https://www.kubeflow.org/docs/guides/components/tfserving/#request-logging)model retraining. In collaboration with NVIDIA we are really excited to be offering more options for online prediction using GPUs by taking advantage of [NVIDIA's TensorRT Inference Server.](https://www.kubeflow.org/blog/nvidia_tensorrt/)
 
 **Hyperparameter tuning**
 
-Finding optimal hyperparameters is one of the biggest barriers to producing high quality models.
-
-In order to make it easy to use hyperparameter tuning without writing any code, we are introducing a new K8s custom controller, StudyJob, that allows a hyperparameter search to be defined using YAML. This [manifest](https://github.com/kubeflow/katib/blob/master/examples/hypb-example.yaml) shows how easy it is to tune your models using the hyperband algorithm.
+Finding optimal hyperparameters is one of the biggest barriers to producing high quality models. In order to make it easy to use hyperparameter tuning without writing any code, we are introducing a new K8s custom controller, StudyJob, that allows a hyperparameter search to be defined using YAML. This [manifest](https://github.com/kubeflow/katib/blob/master/examples/hypb-example.yaml) shows how easy it is to tune your models using the hyperband algorithm.
 
 **Training**
 
@@ -86,9 +79,7 @@ We continue to expand the list of supported frameworks by offering an apha relea
 
 Cisco has created a v1alpha2 API for PyTorch that brings parity and consistency with our TFJob operator.
 
-For PyTorch and TFJob we've added a number of highly requested features needed to handle production workloads.
-
-We've added support for gang-scheduling using Kube Arbitrator ([docs](https://www.kubeflow.org/docs/guides/job-scheduling/)) to avoid stranding resources and deadlockings in clusters under heavy load. We've added a TTL to allow garbage collecting old, completed jobs to avoid taxing the K8s API server. To support multi-tenant clusters, the operators can now be scoped to only claim resources in a specified namespace.
+For PyTorch and TFJob we've added a number of highly requested features needed to handle production workloads. We've added support for gang-scheduling using Kube Arbitrator ([docs](https://www.kubeflow.org/docs/guides/job-scheduling/)) to avoid stranding resources and deadlockings in clusters under heavy load. We've added a TTL to allow garbage collecting old, completed jobs to avoid taxing the K8s API server. To support multi-tenant clusters, the operators can now be scoped to only claim resources in a specified namespace.
 
 **Examples**
 
@@ -109,7 +100,7 @@ The 0.3 Kubeflow Jupyter images ship with [TF Data-Validation](https://github.co
 
 And many more. For a complete list of updates, see the 0.3 [Change Log](https://github.com/kubeflow/kubeflow/blob/master/CHANGELOG.md)  on GitHub.
 
-# Getting Started
+## Getting Started
 
 To get started with Kubeflow we suggest following the steps below:
 
@@ -143,12 +134,12 @@ With 0.4 we want to continue to push Kubeflow towards production readiness by gr
 As always, we're listening! Please tell us the feature (or features) you'd really like to see that aren't there yet. Some options for making your voice heard include:
 
 
-*   The Kubeflow Slack channelThe GitHub repo
-*   The [Kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss) email list
-*   The [Kubeflow Twitter](http://twitter.com/kubeflow) account
-*   Our [weekly community meeting](https://github.com/kubeflow/community)
-*   Please download and run [Kubeflow](https://github.com/kubeflow/kubeflow/pull/330/files), and submit bugs!
+*   Join the Kubeflow [Slack channel](https://join.slack.com/t/kubeflow/shared_invite/enQtMjgyMzMxNDgyMTQ5LWUwMTIxNmZlZTk2NGU0MmFiNDE4YWJiMzFiOGNkZGZjZmRlNTExNmUwMmQ2NzMwYzk5YzQxOWQyODBlZGY2OTg)
+*   File GitHub issues in [kubeflow/kubeflow](https://github.com/kubeflow/kubeflow)
+*   Email the [Kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss) mailing list
+*   Follow us at [Kubeflow Twitter](http://twitter.com/kubeflow) account
+*   Attend our [weekly community meeting](https://github.com/kubeflow/community)
 
 Thank you for all your support so far!
 
-Jeremy Lewi, Abhishek Gupta, & Chris Cho (Google)
+*Jeremy Lewi, Abhishek Gupta, & Chris Cho (Google)*
