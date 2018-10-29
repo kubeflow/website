@@ -92,7 +92,7 @@ We've added numerous examples to illustrate the growing number of ways in which 
 
 **Kubebench**
 
-Benchmarking is critical to identifying performance bottlenecks that slow development or waste expensive resources. To address these needs, Cisco has contributed an initial release of [Kubebench](https://github.com/kubeflow/kubebench), a framework for benchmarking ML workloads on Kubeflow.
+Benchmarking is critical to identifying performance bottlenecks that slow development or waste expensive resources. To address these needs, Cisco created [Kubebench](https://github.com/kubeflow/kubebench), a framework for benchmarking ML workloads on Kubeflow.
 
 **TFX Libraries**
 
