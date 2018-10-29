@@ -86,7 +86,7 @@ In order to make it easy to use hyperparameter tuning without writing any code, 
 
 We continue to expand the list of supported frameworks by offering an apha release of a K8s custom controller for Chainer([docs](https://www.kubeflow.org/docs/guides/components/chainer/)).
 
-For PyTorch we're introducing a v1alpha2 for the API that brings parity and consistency with our TFJob operator.
+Cisco has created a v1alpha2 API for PyTorch that brings parity and consistency with our TFJob operator.
 
 For PyTorch and TFJob we've added a number of highly requested features needed to handle production workloads.
 
@@ -103,7 +103,7 @@ We've added numerous examples to illustrate the growing number of ways in which 
 
 **Kubebench**
 
-Benchmarking is critical to identifying performance bottlenecks that slow development or waste expensive resources. To address these needs, Cisco has provided an initial release of [Kubebench](https://github.com/kubeflow/kubebench), a framework for benchmarking ML workloads on Kubeflow.
+Benchmarking is critical to identifying performance bottlenecks that slow development or waste expensive resources. To address these needs, Cisco has contributed an initial release of [Kubebench](https://github.com/kubeflow/kubebench), a framework for benchmarking ML workloads on Kubeflow.
 
 **TFX**
 
@@ -125,7 +125,7 @@ To get started with Kubeflow we suggest following the steps below:
 Our next major release, 0.4, will be coming by the end of this year. Here are some key areas we are working on.
 
 
-##3 Ease of Use
+### Ease of Use
 
 To make Kubeflow more accessible to data scientists, we want to make it possible to perform common ML tasks without having to learn Kubernetes. In 0.4, we hope to provide an initial version of tooling that makes it possible for data scientists to train and deploy models entirely from a notebook.
 
