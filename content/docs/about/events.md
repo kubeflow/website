@@ -29,6 +29,8 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
 * [KubeCon, Shanghai](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2018/), 13-15 November, 2018
   - [CI/CD Pipelines & Machine Learning](https://sched.co/FuJo): Jeremy Lewi
   - [A Year of Democratizing ML With Kubernetes & Kubeflow](https://sched.co/FuLr): David Aronchick, Fei Xue
+* [DevFest, Seattle](https://www.eventbrite.com/e/devfest-seattle-2018-tickets-50408043816), 3 November, 2018
+  - Kubeflow End to End: Amy Unruh
 * [Data@Scale, Boston](https://dataatscale2018.splashthat.com/), 25 October, 2018
   - [Women in Engineering Panel](https://datascalewomensbreakfast.splashthat.com/): Michelle Casbon
   - Kubeflow: Portable Machine Learning on Kubernetes: Michelle Casbon
