@@ -12,6 +12,8 @@ It has been 3 months since landing [0.2](https://www.kubeflow.org/blog/announcin
 
 In September, we held our first [contributor summit](http://bit.ly/kf-summit-2018-overview)! We were thrilled to have over 60 participants join in person along with 10 remote contributors from 4 continents! We are tentatively planning our next summit for early 2019.
 
+![Contributor Summit](../contributor_summit.jpg)
+
 To all our contributors, we want to share our deep appreciation for your support! We are getting closer to our vision of letting data scientists and ML engineers focus on building models and products by giving them a Kubernetes native platform for ML that is  easy-to-use, portable and  scalable.
 
 ## Upcoming Events
