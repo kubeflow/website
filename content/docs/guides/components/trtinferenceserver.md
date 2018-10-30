@@ -1,4 +1,4 @@
-# Nvidia TensorRT Inference Server
+# NVIDIA TensorRT Inference Server
 
 NVIDIA TensorRT Inference Server is a REST and GRPC service for deep-learning
 inferencing of TensorRT, TensorFlow and Caffe2 models. The server is
