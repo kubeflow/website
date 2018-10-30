@@ -69,7 +69,7 @@ We are pleased to announce a number of improvements to our inference capabilitie
 
 Using [Apache Beam](https://beam.apache.org/), it is now possible to do batch inference with GPUs (but non distributed) for [TensorFlow](https://www.kubeflow.org/docs/guides/components/tfbatchpredict/). Apache Beam makes it easy to write batch and streaming data processing jobs that run on a variety of execution engines.
 
-We are continuing our efforts to make it easy to run TFServing in production by adding a Liveness probe and using fluentd to log [request and responses](https://www.kubeflow.org/docs/guides/components/tfserving/#request-logging)to enable model retraining. 
+We are continuing our efforts to make it easy to run TFServing in production by adding a Liveness probe and using fluentd to log [request and responses](https://www.kubeflow.org/docs/guides/components/tfserving/#request-logging) to enable model retraining. 
 
 In collaboration with NVIDIA we are really excited to be offering more options for online prediction using both CPUs and GPUs by taking advantage of [NVIDIA's TensorRT Inference Server.](https://www.kubeflow.org/blog/nvidia_tensorrt/) The Inference Server is a containerized, production-ready AI inference server that maximizes utilization of GPU servers by running multiple models concurrently on the GPU and supports all the top AI frameworks.
 
