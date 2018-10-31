@@ -98,7 +98,7 @@ Run the following steps to deploy Kubeflow:
     ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8s
     ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
     ```
-   * **${KFAPP}** The name of a directory to store your configs. This directory will be created when you run init.
+   * **${KFAPP}** the `name` of a directory to store your configs. This directory will be created when you run init.
       * The contents of this directory are described in the next section.
 1. Check resources deployed in namespace `kubeflow`:
 

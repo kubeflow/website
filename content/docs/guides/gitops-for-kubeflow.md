@@ -92,7 +92,7 @@ You can read about other options to connect to your Argo CD instance [here](http
         cd ${KFAPP}
         ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8s
         ```
-        * **KFAPP** directory to store all of your kubeflow configuration
+        * **KFAPP** the `name` of a directory to store all of your kubeflow configuration
 
 1. Add the environment to your ksonnet application:
     * If you are deploying kubeflow in the same cluster as Argo CD, run:
