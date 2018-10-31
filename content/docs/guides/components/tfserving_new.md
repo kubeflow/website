@@ -16,14 +16,28 @@ We did a major refactor, and will gradually add features to this new prototypes.
 
 ## Serving a model
 
-We treat each deployed model as a [component](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component) in your APP.
+We treat each deployed model as two [components](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component)
+in your APP: one tf-serving-deployment, and one tf-serving-service.
+We can think of the service as a model, and the deployment as the version of the model.
 
-Generate Tensorflow model server component
+Generate the service(model) component
 
 ```
-MODEL_COMPONENT=serveInception
-MODEL_NAME=inception
-ks generate tf-serving-gcp ${MODEL_COMPONENT} --name=${MODEL_NAME}
+ks generate tf-serving-service mnist-service
+ks param set mnist-service modelName mnist
+ks param set mnist-service trafficRule v1:100    // optional, it's the default value
+```
+
+Generate the deployment(version) component
+
+```
+MODEL_COMPONENT=mnist-v1
+ks generate tf-serving-deployment-gcp ${MODEL_COMPONENT}
+ks param set ${MODEL_COMPONENT} modelName mnist
+ks param set ${MODEL_COMPONENT} versionName v1   // optional, it's the default value
+ks param set ${MODEL_COMPONENT} modelBasePath gs://kubeflow-examples-data/mnist
+ks param set ${MODEL_COMPONENT} gcpCredentialSecretName user-gcp-sa
+ks param set ${MODEL_COMPONENT} injectIstio true   // If you want to use istio
 ```
 
 We enable TF Serving's REST API, and it's able to serve HTTP requests. The API is the same as our http proxy before.
@@ -33,17 +47,12 @@ Depending where model file is located, set correct parameters
 
 *Google cloud*
 
+Set the param as above section.
+
 We need a service account that can access the model.
 If you are using Kubeflow's click-to-deploy app, there should be already a secret, `user-gcp-sa`, in the cluster.
 
-```
-MODEL_PATH=gs://kubeflow-models/inception
-SECRET_NAME=user-gcp-sa
-ks param set ${MODEL_COMPONENT} gcpCredentialSecretName $SECRET_NAME
-ks param set ${MODEL_COMPONENT} modelPath ${MODEL_PATH}
-```
-
-The model at gs://kubeflow-models/inception is publicly accessible. However, if your environment doesn't
+The model at gs://kubeflow-examples-data/mnist is publicly accessible. However, if your environment doesn't
 have google cloud credential setup, TF serving will not be able to read the model.
 See this [issue](https://github.com/kubeflow/kubeflow/issues/621) for example.
 To setup the google cloud credential, you should either have the environment variable
@@ -51,6 +60,8 @@ To setup the google cloud credential, you should either have the environment var
 See [doc](https://cloud.google.com/docs/authentication/) for more detail.
 
 *S3*
+
+TODO(lunkai): fix aws part
 
 To use S3, generate a different prototype
 ```
@@ -104,6 +115,7 @@ for serving an object detection model with GPU.
 ### Deploying
 
 ```
+ks apply ${KF_ENV} -c mnist-service
 ks apply ${KF_ENV} -c ${MODEL_COMPONENT}
 ```
 
@@ -112,13 +124,13 @@ If the service type is LoadBalancer, it will have its own accessible external ip
 Get the external ip by:
 
 ```
-kubectl get svc inception
+kubectl get svc mnist-service
 ```
 
 And then send the request
 
 ```
-curl -X POST -d @input.json http://EXTERNAL_IP:8500/v1/models/inception:predict
+curl -X POST -d @input.json http://EXTERNAL_IP:8500/v1/models/mnist:predict
 ```
 
 ### Sending prediction request through ingress and IAP
@@ -148,10 +160,10 @@ Finally, you can send the request with this python
 [script](https://github.com/kubeflow/kubeflow/blob/master/docs/gke/iap_request.py)
 
 ```
-python iap_request.py https://YOUR_HOST/tfserving/models/inception IAP_CLIENT_ID --input=YOUR_INPUT_FILE
+python iap_request.py https://YOUR_HOST/tfserving/models/mnist IAP_CLIENT_ID --input=YOUR_INPUT_FILE
 ```
 
-## Telemetry using Istio
+## Telemetry and Rolling out model using Istio
 
 Please look at the [Istio guide](/docs/guides/components/istio/).
 
