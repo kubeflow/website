@@ -61,7 +61,7 @@ See [doc](https://cloud.google.com/docs/authentication/) for more detail.
 
 *S3*
 
-TODO(lunkai): fix aws part
+TODO(https://github.com/kubeflow/kubeflow/issues/1309): fix aws part
 
 To use S3, generate a different prototype
 ```

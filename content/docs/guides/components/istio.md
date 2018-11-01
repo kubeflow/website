@@ -54,8 +54,8 @@ servicesIpv4Cidr: 10.7.240.0/20
    `"10.32.0.0/14\,10.35.240.0/20"`.
 
 ### 4. Configure istio-ingressgateway
-We are using a regular ingress instead of Istio's ingressgateway as the entry to cluster, so this service should not
-be of type `LoadBalancer`.
+We recommend using a regular ingress instead of Istio's ingress gateway as the entry to cluster on GCP,
+so this service should not be of type `LoadBalancer`.
 
 - Edit `install/kubernetes/istio-demo.yaml` and change the service type of `istio-ingressgateway` from
   `LoadBalancer` to `NodePort`.
@@ -68,7 +68,8 @@ be of type `LoadBalancer`.
 ### (optional) 5. Deploy the Gateway
 
 This is for rolling out model and doing traffic split. See more detail below.
-TODO(lunkai): update this
+
+TODO(https://github.com/kubeflow/kubeflow/issues/1309): update this
 
 ## Kubeflow TF Serving with Istio
 
@@ -100,7 +101,7 @@ See istio [doc](https://istio.io/docs/tasks/telemetry/metrics-logs.html).
 
 #### Expose Grafana dashboard behind ingress/IAP
 
-TODO(lunkai): update this section
+TODO(https://github.com/kubeflow/kubeflow/issues/1309): update this section
 
 To expose the grafana dashboard as, e.g. `YOUR_HOST/grafana`, follow these steps.
 
