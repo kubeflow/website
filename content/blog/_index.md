@@ -1,4 +1,4 @@
 +++
-title = "Blog, Talks & Videos"
+title = "The Kubeflow Blog"
 description = ""
 +++
