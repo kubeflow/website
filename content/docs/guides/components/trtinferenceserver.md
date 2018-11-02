@@ -1,3 +1,5 @@
++++ title = "NVIDIA TensorRT Inference Server" description = "Serving models using TRT Inference Server" weight = 10 toc = true bref= "Model serving using TRT Inference Server" [menu] [menu.docs] parent = "components" weight = 40 +++
+
 # NVIDIA TensorRT Inference Server
 
 NVIDIA TensorRT Inference Server is a REST and GRPC service for deep-learning
