@@ -1,4 +1,4 @@
-+++ title = "NVIDIA TensorRT Inference Server" description = "Serving models using TRT Inference Server" weight = 10 toc = true bref= "Model serving using TRT Inference Server" [menu] [menu.docs] parent = "components" weight = 40 +++
++++ title = "NVIDIA TensorRT Inference Server" description = "" weight = 10 toc = true bref= "Model serving using TRT Inference Server" [menu] [menu.docs] parent = "components" weight = 40 +++
 
 # NVIDIA TensorRT Inference Server
 
