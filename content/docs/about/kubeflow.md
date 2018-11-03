@@ -29,11 +29,25 @@ Ultimately, we want to have a set of simple manifests that give you an easy to
 use ML stack _anywhere_ Kubernetes is already running, and that can self 
 configure based on the cluster it deploys into.
 
-Kubeflow is *the machine learning toolkit for Kubernetes*. 
-
 ## What is Kubeflow?
 
-Originating at Google, Kubeflow is an open source project dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures. Anywhere you are running Kubernetes, you should be able to run Kubeflow.
+Kubeflow is *the machine learning toolkit for Kubernetes*. 
+
+It's a collection of configuration files and scripts that you download,
+customize, and run. The config files and scripts activate the Kubeflow
+[components](/docs/guides/components/components) to do the work.
+
+The basic workflow is:
+
+* Download the Kubeflow scripts and configuration files.
+* Customize the configuration.
+* Run the scripts to deploy your containers to your chosen environment.
+
+You adapt the configuration to choose the platforms and services that you want
+to use for each stage of the ML workflow: data preparation, model training,
+prediction serving, and service management.
+
+You can choose to deploy your workloads locally or to a cloud environment.
 
 ## History
 
