@@ -6,8 +6,8 @@ toc = true
 bref= "Model serving using TRT Inference Server"
 [menu]
 [menu.docs]
-parent = "components"
-weight = 50
+  parent = "components"
+  weight = 50
 +++
 
 # NVIDIA TensorRT Inference Server
