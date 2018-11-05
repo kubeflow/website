@@ -1,4 +1,14 @@
-# NVIDIA TensorRT Inference Server
++++
+title = "NVIDIA TensorRT Inference Server"
+description = ""
+weight = 10 
+toc = true
+bref= "Model serving using TRT Inference Server"
+[menu]
+[menu.docs]
+  parent = "components"
+  weight = 50
++++
 
 NVIDIA TensorRT Inference Server is a REST and GRPC service for deep-learning
 inferencing of TensorRT, TensorFlow and Caffe2 models. The server is
