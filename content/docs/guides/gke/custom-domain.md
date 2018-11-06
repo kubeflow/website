@@ -39,7 +39,7 @@ If you want to use your own domain instead of **${name}.endpoints.${project}.clo
 
     ```
     IPNAME=${DEPLOYMENT_NAME}-ip
-    gcloud --project=${PROJECT} addresses describe --global ${IPNAME}
+    gcloud --project=${PROJECT} compute addresses describe --global ${IPNAME}
     ```
 
 1. Use your DNS provider to map the fully qualified domain specified in the first step to the IP address reserved:
