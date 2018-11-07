@@ -93,10 +93,10 @@ To use VMs with more CPUs or RAM:
 
 To grant additional users IAM permissions to access Kubeflow:
 
-  * Add the users [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L61).
+  * Add the users by editing [cluster-kubeflow.yaml](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L74).
 
 
-After making the changes you need to recreate your deployment:
+By default, this file can be found at `${KUBEFLOW_REPO}/kubeflow/gcp_config/cluster-kubeflow.yaml` after your first deployment. After making changes to the file, you'll need to apply them:
 
 ```
 cd ${KFAPP}
