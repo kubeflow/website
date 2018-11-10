@@ -6,10 +6,9 @@ publishDate = 2018-11-09T02:00:00+01:00
 draft = false
 +++
 
-##### Guest post by Ankit Bahuguna & Faheem Nadeem, Software Engineer(s), Cliqz GmbH
+![Figure 1: Premise of Kubeflow is that ML products are complex distributed systems involving multiple components working together.](../kubeflow_in_infra_premise.png)
 
-![Kubeflow](../kf.png)
-*Fig. 1: Premise of Kubeflow is that ML products are complex distributed systems involving multiple components working together.*
+*Figure 1: Premise of Kubeflow is that ML products are complex distributed systems involving multiple components working together.*
 
 CEOs and CTOs are being challenged by customers, analysts and investors to define how Artificial Intelligence and Machine Learning will impact their revenues and costs. The leading research and development organizations are quickly migrating to open source machine learning frameworks, especially those that take advantage of the operational and infrastructure efficiencies provided by containers, microservices and [Kubernetes](https://kubernetes.io/). This trend is demonstrated in a recent [451 Research survey](https://www.zdnet.com/article/kubernetes-leads-container-orchestration/) which found that over 70% of enterprise organizations surveyed are using Kubernetes. GitHub has over [95M projects](https://octoverse.github.com/projects), and Kubernetes and Tensorflow are frequently in the top 10 projects, in terms of contributors, discussions, forks, and reviews. With an ever increasing availability of data and compute power, machine learning is turning out to be a powerful tool to solve various problems and helping achieve state of the art results. In such interesting times, [Kubeflow](https://www.kubeflow.org/) has grown very quickly to be one of the most promising ML toolkits in the cloud native open source world.
 
@@ -63,6 +62,7 @@ An interesting theme, common to all teams as described before is cost control. L
 
 We truly believe that Kubernetes is the tool to truly democratize big data and AI. Toolkits like Kubeflow really reinforces the dream where running AI tasks and serving them is not just limited to a handful of organizations but it is easily accessible to everyone. We would like to continue our efforts towards exploring Kubeflow, as we plan to ship it in our production cluster soon. Feel free to reach out to us with your questions or comments here: 
 
-*Ankit Bahuguna (ankit@cliqz.com; [Linkedin](https://www.linkedin.com/in/ankitbahuguna/))* 
+*Ankit Bahuguna (ankit@cliqz.com; [Linkedin](https://www.linkedin.com/in/ankitbahuguna/))*, 
+*Faheem Nadeem (faheem@cliqz.com; [Linkedin](https://www.linkedin.com/in/faheemnadeem/))* 
+[Software Engineer, Cliqz GmbH]
 
-*Faheem Nadeem (faheem@cliqz.com; [Linkedin](https://www.linkedin.com/in/faheemnadeem/))*
