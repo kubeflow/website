@@ -31,20 +31,16 @@ configure based on the cluster it deploys into.
 
 ## What is Kubeflow?
 
-Kubeflow is *the machine learning toolkit for Kubernetes*. 
+Kubeflow is *the machine learning toolkit for Kubernetes*.
 
-It's a collection of configuration files and scripts that you download,
-customize, and run. The config files and scripts activate the Kubeflow
-[components](/docs/guides/components/components) to do the work. 
-
-The basic workflow is:
+To use Kubeflow, the basic workflow is:
 
 * Download the Kubeflow scripts and configuration files.
 * Customize the configuration.
 * Run the scripts to deploy your containers to your chosen environment.
 
 You adapt the configuration to choose the platforms and services that you want
-to use for each stage of the ML workflow: data preparation, model training, 
+to use for each stage of the ML workflow: data preparation, model training,
 prediction serving, and service management.
 
 You can choose to deploy your workloads locally or to a cloud environment.
