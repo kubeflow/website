@@ -55,23 +55,23 @@ Download, set up, and deploy (If you prefer to work from source code, feel free 
 1. Run the following commands to download `kfctl.sh`
 
     ```
-    mkdir ${KUBEFLOW_REPO}
-    cd ${KUBEFLOW_REPO}
+    mkdir ${KUBEFLOW_SRC}
+    cd ${KUBEFLOW_SRC}
     export KUBEFLOW_TAG={{% kf-stable-tag %}}
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
      ```
-   * **KUBEFLOW_REPO** a directory where you want to download the source to
+   * **KUBEFLOW_SRC** a directory where you want to download the source to
    * **KUBEFLOW_TAG** a tag corresponding to the version to check out, such as `master` for the latest code.
    * **Note** you can also just clone the repository using git.
 1. Run the following commands to setup and deploy Kubeflow:
     
     ```
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} --platform none
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform none
     cd ${KFAPP}
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8s
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
     ```
-   * **${KFAPP}** The `name` of a directory to store your configs. This directory will be created when you run init.
+   * **${KFAPP}** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init.
       * The ksonnet app will be created in the directory **${KFAPP}/ks_app**
 
 **Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explicitly

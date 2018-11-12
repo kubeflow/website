@@ -77,22 +77,22 @@ You can read about other options to connect to your Argo CD instance [here](http
     1. Run the following script to download `kfctl.sh`:
 
         ```shell
-        mkdir ${KUBEFLOW_REPO}
-        cd ${KUBEFLOW_REPO}
+        mkdir ${KUBEFLOW_SRC}
+        cd ${KUBEFLOW_SRC}
         export KUBEFLOW_TAG={{% kf-stable-tag %}}
         curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
         ```
-        * **KUBEFLOW_REPO** directory where you want to download the source to
+        * **KUBEFLOW_SRC** directory where you want kubeflow source to be downloaded
         * **KUBEFLOW_TAG** a tag corresponding to the version to checkout such as `master` for latest code.
         * **Note** you can also just clone the repository using git.
     1. Run the following scripts to set up your Kubeflow KS application:
 
         ```
-        ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} --platform none
+        ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform none
         cd ${KFAPP}
-        ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8s
+        ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
         ```
-        * **KFAPP** the `name` of a directory to store all of your kubeflow configuration. This directory will be created when you run init.
+        * **KFAPP** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init.
 
 1. Add the environment to your ksonnet application:
     * If you are deploying kubeflow in the same cluster as Argo CD, run:
@@ -113,8 +113,8 @@ You can read about other options to connect to your Argo CD instance [here](http
 Run the following commands to create the Kubeflow application in Argo CD and then sync the manifests in your git repo to your cluster:
 
 ```shell
-export KUBEFLOW_REPO_URL='Replace with a ssh or https git endpoint'
-argocd app create kubeflow --name kubeflow --repo $KUBEFLOW_REPO_URL --path ks_app --env default
+export KUBEFLOW_SRC_URL='Replace with a ssh or https git endpoint'
+argocd app create kubeflow --name kubeflow --repo $KUBEFLOW_SRC_URL --path ks_app --env default
 argocd app sync kubeflow
 ```
 * You can view the Kubeflow application by running:
