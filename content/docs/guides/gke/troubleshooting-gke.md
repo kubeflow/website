@@ -43,7 +43,7 @@ This section provides troubleshooting information for 404s, page not found, bein
    envoy-76774f8d5c-sg555   2/2       Running   2          4m
    ```
 
-* Try other services to see if their accessible e.g
+* Try other services to see if they're accessible e.g
 
    ```
    https://${KUBEFLOW_FQDN}/whoami

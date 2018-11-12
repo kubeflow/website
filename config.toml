@@ -43,7 +43,7 @@ Paginate = 20
     weight = -101
     url = "/docs/about/kubeflow/"
 [[menu.main]]
-    name = "Additional Resources"
+    name = "Blog"
     weight = -100
     url = "/blog/"
 [[menu.main]]
