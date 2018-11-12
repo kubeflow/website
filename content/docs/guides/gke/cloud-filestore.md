@@ -29,7 +29,7 @@ use you can skip this section.
 Copy the Cloud Filestore deployment manager configs to the `gcp_config` directory:
 
 ```
-cp ${KUBEFLOW_REPO}/scripts/gke/deployment_manager_configs/gcfs.yaml \
+cp ${KUBEFLOW_SRC}/scripts/gke/deployment_manager_configs/gcfs.yaml \
    ${KFAPP}/gcp_config/
 ```
 
@@ -56,7 +56,7 @@ Apply the changes:
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
 ```
 
 If you get an error **legacy networks are not supported** follow the instructions
@@ -85,5 +85,5 @@ Apply the changes:
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
 ```

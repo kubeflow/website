@@ -30,7 +30,7 @@ Many changes can be applied to an existing configuration in which case you can r
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
 ```
 
 or using Deployment Manager directly:
@@ -48,8 +48,8 @@ to tear down your deployment before recreating it:
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
+${KUBEFLOW_SRC}/scripts/kfctl.sh delete all
+${KUBEFLOW_SRC}/scripts/kfctl.sh apply all
 ```
 
 To customize the Kubeflow resources running within the cluster you can modify the ksonnet app in **${KFAPP}/ks_app**.
@@ -64,7 +64,7 @@ You can then redeploy using `kfctl`:
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
 ```
 
 or using ksonnet directly:
@@ -96,11 +96,11 @@ To grant additional users IAM permissions to access Kubeflow:
   * Add users by editing [cluster-kubeflow.yaml](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L74).
 
 
-By default, this file will be located at `${KUBEFLOW_REPO}/kubeflow/gcp_config/cluster-kubeflow.yaml` after your first deployment. After making changes to the file, you'll need to apply them:
+By default, this file will be located at `${KUBEFLOW_SRC}/kubeflow/gcp_config/cluster-kubeflow.yaml` after your first deployment. After making changes to the file, you'll need to apply them:
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply all
+${KUBEFLOW_SRC}/scripts/kfctl.sh apply all
 ```
 
 For more information please refer to the [Deployment Manager docs](https://cloud.google.com/deployment-manager/docs/).

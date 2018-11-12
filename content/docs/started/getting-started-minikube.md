@@ -218,7 +218,7 @@ The following steps will deploy Kubeflow components and start them on the Miniku
     export KUBEFLOW_TAG={{% kf-stable-tag %}}
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
     ```
-    - **KUBEFLOW_SRC** is the directory where you want to download the source
+    - **KUBEFLOW_SRC** directory where you want kubeflow source to be downloaded
     - **KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-stable-tag %}}
 
   1. Run the following to setup and deploy Kubeflow:
@@ -229,7 +229,7 @@ The following steps will deploy Kubeflow components and start them on the Miniku
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate all
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply all
     ```
-    - **KFAPP** is the name of a directory to store your configs. This directory is created when you run init.  Please see [understanding the deployment process](/docs/started/getting-started-gke/#understanding-the-deployment-process) for more details.
+    - **KFAPP** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init. Please see [understanding the deployment process](/docs/started/getting-started-gke/#understanding-the-deployment-process) for more details.
 
 The above installation may take a few minutes. At the end of the installation you should see:
 ```

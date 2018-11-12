@@ -191,7 +191,7 @@ ERROR: (gcloud.deployment-manager.deployments.update) Error in Operation [operat
 To fix this we can create a new network:
 
 ```
-cp ${KUBEFLOW_REPO}/scripts/deployment_manager_configs/network.* \
+cp ${KUBEFLOW_SRC}/scripts/deployment_manager_configs/network.* \
    ${KFAPP}/gcp_config/
 ```
 
@@ -203,7 +203,7 @@ Apply the changes.
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
 ```
 
 ## CPU platform unavailable in requested zone

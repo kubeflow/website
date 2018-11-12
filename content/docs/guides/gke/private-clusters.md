@@ -33,7 +33,7 @@ from the nodes. Google services (for example, Container Registry) are still acce
 
     ```
     cd ${KFAPP}
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
     ```
 
 1. To set up ingress to the cluster, it is recommended to use your custom domain instead of Cloud Endpoints. cert-manager cannot be used to create HTTPS certificates because cert-manager needs to talk to LetsEncrypt to get the certificate and that is not possible in a private cluster setting. Obtain the HTTPS certificates for your ${FQDN} and create a k8s secret with it. Assuming your cert and key are present in files named tls.crt and tls.key, create a secret using the following command:
@@ -56,7 +56,7 @@ from the nodes. Google services (for example, Container Registry) are still acce
 
     ```
     cd ${KFAPP}/ks_app
-    ${KUBEFLOW_REPO}/scripts/gke/use_gcr_for_all_images.sh
+    ${KUBEFLOW_SRC}/scripts/gke/use_gcr_for_all_images.sh
     ```
 
 1. Remove components which are not useful in private clusters:
@@ -71,5 +71,5 @@ from the nodes. Google services (for example, Container Registry) are still acce
 
     ```
     cd ${KFAPP}
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
     ```

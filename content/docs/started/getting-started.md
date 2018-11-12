@@ -71,7 +71,7 @@ Download, set up, and deploy (If you prefer to work from source code, feel free 
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
     ```
-   * **${KFAPP}** The name of a directory to store your configs. This directory will be created when you run init.
+   * **${KFAPP}** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init.
       * The ksonnet app will be created in the directory **${KFAPP}/ks_app**
 
 **Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explicitly

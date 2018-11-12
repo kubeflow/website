@@ -80,25 +80,25 @@ Run the following steps to deploy Kubeflow:
 1. Run the following script to download `kfctl.sh`:
 
     ```
-    mkdir ${KUBEFLOW_REPO}
-    cd ${KUBEFLOW_REPO}
+    mkdir ${KUBEFLOW_SRC}
+    cd ${KUBEFLOW_SRC}
     export KUBEFLOW_TAG={{% kf-stable-tag %}}
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
      ```
-   * **KUBEFLOW_REPO** directory where you want to download the source to
+   * **KUBEFLOW_SRC** a directory where you want to download the source to
    * **KUBEFLOW_TAG** a tag corresponding to the version to checkout such as `master` for latest code.
    * **Note** you can also just clone the repository using git.
 1. Run the following scripts to set up and deploy Kubeflow:
 
     ```
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh init ${KFAPP} --platform gcp --project ${PROJECT}
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform gcp --project ${PROJECT}
     cd ${KFAPP}
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh generate platform
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply platform
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh generate k8s
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh apply k8s
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate platform
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
     ```
-   * **${KFAPP}** The name of a directory to store your configs. This directory will be created when you run init.
+   * **${KFAPP}** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init.
       * The contents of this directory are described in the next section.
 1. Check resources deployed in namespace `kubeflow`:
 
@@ -121,7 +121,7 @@ Run the following steps to deploy Kubeflow:
 
     ```
     cd ${KFAPP}
-    ${KUBEFLOW_REPO}/scripts/kfctl.sh delete all
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh delete all
     ```
 
 ## Understanding the deployment process
