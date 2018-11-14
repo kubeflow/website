@@ -1,14 +1,14 @@
 baseURL = "/"
 languageCode = "en-us"
 title = "Kubeflow"
-theme = "kf"
+theme = ["docsy"]
 description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 Paginate = 20
 [Params]
   RSSLink = "/index.xml"
   author = "kubeflow.org" # add your company name
   github = "kubeflow" # add your github profile name
-  twitter = "" # add your twitter profile
+  twitter = "kubeflow" # add your twitter profile
   email = "myemail@myaddress.xxx"
 
   version = "master"
@@ -29,6 +29,120 @@ Paginate = 20
   version = "v0.3"
   githubbranch = "v0.3-branch"
   url = "https://v0-3.kubeflow.org"
+
+# Docsy: Will give values to .Lastmod etc.
+enableGitInfo = true
+
+# Docsy: Language settings
+contentDir = "content"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+# Docsy: Useful when translating.
+enableMissingTranslationPlaceholders = true
+
+disableKinds = ["taxonomy", "taxonomyTerm"]
+
+# Docsy: Highlighting config
+pygmentsCodeFences = true
+pygmentsUseClasses = false
+# Use the new Chroma Go highlighter in Hugo.
+pygmentsUseClassic = false
+#pygmentsOptions = "linenos=table"
+# See https://help.farbox.com/pygments.html
+pygmentsStyle = "tango"
+
+ # Docsy: First one is picked as the Twitter card image if not set on page.
+ #images = ["images/project-illustration.png"]
+
+# Docsy: Configure how URLs look like per section.
+[permalinks]
+blog = "/:section/:year/:month/:day/:slug/"
+
+## Docsy: Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
+[blackfriday]
+plainIDAnchors = true
+hrefTargetBlank = true
+angledQuotes = false
+latexDashes = true
+
+# Docsy: Image processing configuration.
+[imaging]
+resampleFilter = "CatmullRom"
+quality = 75
+anchor = "smart"
+
+[services]
+[services.googleAnalytics]
+# Docsy: Uncomment and insert your GA tracking ID to enable.
+# id = "INSERT ID"
+
+# Docsy: Language configuration
+
+[languages]
+[languages.en]
+title = "Docsy"
+description = "Docsy does docs"
+languageName ="English"
+# Docsy: Weight used for sorting.
+weight = 1
+#[languages.no]
+#title = "Docsy"
+#description = "Docsy er operativsystem for skyen"
+#languageName ="Norsk"
+#contentDir = "content/no"
+time_format_default = "02.01.2006"
+time_format_blog = "02.01.2006"
+
+# Docsy: All below this are site params
+
+[params]
+github_repo = "https://github.com/kubeflow/kubeflow"
+
+# Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
+#gcs_engine_id = "011737558837375720776:fsdu1nryfng"
+
+# Docsy: User interface configuration
+[params.ui]
+# Docsy: Enable to show the side bar menu in its compact state.
+sidebar_menu_compact = false
+#  Docsy: Set to true to disable breadcrumb navigation.
+breadcrumb_disable = false
+
+[params.links]
+# Docsy: End user relevant links. These will show up on left side of footer and in the community page if you have one.
+[[params.links.user]]
+	name = "User mailing list"
+	url = "https://example.org/mail"
+	icon = "fa fa-envelope"
+        desc = "Discussion and help from your fellow users"
+[[params.links.user]]
+	name ="Twitter"
+	url = "https://example.org/twitter"
+	icon = "fab fa-twitter"
+        desc = "Follow us on Twitter to get the latest news!"
+[[params.links.user]]
+	name = "Stack Overflow"
+	url = "https://example.org/stack"
+	icon = "fab fa-stack-overflow"
+        desc = "Practical questions and curated answers"
+# Docsy: Developer relevant links. These will show up on right side of footer and in the community page if you have one.
+[[params.links.developer]]
+	name = "GitHub"
+	url = "https://github.com/google/docsy"
+	icon = "fab fa-github"
+        desc = "Development takes place here!"
+[[params.links.developer]]
+	name = "Slack"
+	url = "https://example.org/slack"
+	icon = "fab fa-slack"
+        desc = "Chat with other project developers"
+[[params.links.developer]]
+	name = "Developer mailing list"
+	url = "https://example.org/mail"
+	icon = "fa fa-envelope"
+        desc = "Discuss development issues around the project"
+
+# Menu
 
 [[menu.main]]
     name = "What is Kubeflow?"
