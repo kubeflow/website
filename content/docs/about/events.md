@@ -16,6 +16,11 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
 * [Data Day Texas, Austin](https://datadaytexas.com/), 26 January, 2019
   - Kubeflow: Portable Machine Learning on Kubernetes: Michelle Casbon
 * [KubeCon, Seattle](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-north-america-2018/), 11-13 December, 2018
+  - [Workshop: Kubeflow End-to-End: GitHub Issue Summarization](https://sched.co/GrWE): Amy Unruh, Michelle Casbon
+  - [Natural Language Code Search for GitHub Using Kubeflow](https://sched.co/GrVn): Jeremy Lewi, Hamel Husain
+  - [Eco-Friendly ML: How the Kubeflow Ecosystem Bootstrapped Itself](https://sched.co/GrTc): Peter McKinnon
+  - [Deep Dive: Kubeflow BoF](https://sched.co/Ha1X): Jeremy Lewi, David Aronchick
+  - [Machine Learning as Code](https://sched.co/GrVh): Jay Smith
 * Women in ML & Data Science, Melbourne, 5 December, 2018
   - Panel: Juliet Hougland, Michelle Casbon
 * [YOW!, Melbourne](https://melbourne.yowconference.com.au/), 4-7 December, 2018
@@ -33,7 +38,8 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
   - Kubeflow End to End: Amy Unruh
 * [Data@Scale, Boston](https://dataatscale2018.splashthat.com/), 25 October, 2018
   - [Women in Engineering Panel](https://datascalewomensbreakfast.splashthat.com/): Michelle Casbon
-  - Kubeflow: Portable Machine Learning on Kubernetes: Michelle Casbon
+  - [Kubeflow: Portable Machine Learning on Kubernetes](https://code.fb.com/core-data/data-scale-boston/): Michelle Casbon
+      - [Video](https://www.facebook.com/atscaleevents/videos/114311602829170/)
 * [Kafka Summit, San Francisco](https://kafka-summit.org/), 16-17 October, 2018
 * [O’Reilly AI Conference, London](https://conferences.oreilly.com/artificial-intelligence/ai-eu), 08-11 October, 2018
   - [Machine Learning at Scale with Kubernetes](https://conferences.oreilly.com/artificial-intelligence/ai-eu/public/schedule/detail/69194): Chris Cho
