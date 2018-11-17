@@ -4,6 +4,31 @@ title = "Kubeflow"
 theme = ["docsy"]
 description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 Paginate = 20
+
+# Docsy: Gives values to .Lastmod etc.
+enableGitInfo = true
+
+# Docsy: Language settings
+contentDir = "content"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+# Docsy: Useful when translating.
+enableMissingTranslationPlaceholders = true
+
+disableKinds = ["taxonomy", "taxonomyTerm"]
+
+# Docsy: Highlighting config
+pygmentsCodeFences = true
+pygmentsUseClasses = false
+# Use the new Chroma Go highlighter in Hugo.
+pygmentsUseClassic = false
+#pygmentsOptions = "linenos=table"
+# See https://help.farbox.com/pygments.html
+pygmentsStyle = "tango"
+
+ # Docsy: First one is picked as the Twitter card image if not set on page.
+ #images = ["images/project-illustration.png"]
+
 [Params]
   RSSLink = "/index.xml"
   author = "kubeflow.org" # add your company name
@@ -30,31 +55,7 @@ Paginate = 20
   githubbranch = "v0.3-branch"
   url = "https://v0-3.kubeflow.org"
 
-# Docsy: Will give values to .Lastmod etc.
-enableGitInfo = true
-
-# Docsy: Language settings
-contentDir = "content"
-defaultContentLanguage = "en"
-defaultContentLanguageInSubdir = false
-# Docsy: Useful when translating.
-enableMissingTranslationPlaceholders = true
-
-disableKinds = ["taxonomy", "taxonomyTerm"]
-
-# Docsy: Highlighting config
-pygmentsCodeFences = true
-pygmentsUseClasses = false
-# Use the new Chroma Go highlighter in Hugo.
-pygmentsUseClassic = false
-#pygmentsOptions = "linenos=table"
-# See https://help.farbox.com/pygments.html
-pygmentsStyle = "tango"
-
- # Docsy: First one is picked as the Twitter card image if not set on page.
- #images = ["images/project-illustration.png"]
-
-# Docsy: Configure how URLs look like per section.
+# Docsy: Configure the format of URLs per section.
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
 
@@ -80,11 +81,11 @@ anchor = "smart"
 
 [languages]
 [languages.en]
-title = "Docsy"
-description = "Docsy does docs"
+title = "Kubeflow"
+description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 languageName ="English"
-# Docsy: Weight used for sorting.
 weight = 1
+# Example of another language: Norwegian
 #[languages.no]
 #title = "Docsy"
 #description = "Docsy er operativsystem for skyen"
@@ -93,7 +94,7 @@ weight = 1
 time_format_default = "02.01.2006"
 time_format_blog = "02.01.2006"
 
-# Docsy: All below this are site params
+# Docsy: Site params
 
 [params]
 github_repo = "https://github.com/kubeflow/kubeflow"
