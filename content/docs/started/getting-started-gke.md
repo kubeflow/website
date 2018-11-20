@@ -76,6 +76,8 @@ Create an OAuth client ID to be used to identify Cloud IAP when requesting acces
 
 1. Open [https://deploy.kubeflow.cloud/](https://deploy.kubeflow.cloud/#/deploy) in your web browser
 
+   * You will need to login in using a GCP account with admin privileges for your GCP project
+
 1. Fill out the form 
 
 1. Click Create Deployment
