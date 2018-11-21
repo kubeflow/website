@@ -42,13 +42,13 @@ In this demo, 3 hyper parameters
 are randomly generated.
 
 ```
-$ kubectl -n katib get studyjob
+$ kubectl -n kubeflow get studyjob
 ```
 
 Check the study status.
 
 ```
-$ kubectl -n katib describe studyjobs random-example
+$ kubectl -n kubeflow describe studyjobs random-example
 Name:         random-example
 Namespace:    kubeflow
 Labels:       controller-tools.k8s.io=1.0
@@ -60,7 +60,7 @@ Metadata:
   Creation Timestamp:  2018-08-15T01:29:13Z
   Generation:          0
   Resource Version:    173289
-  Self Link:           /apis/kubeflow.org/v1alpha1/namespaces/katib/studyjobs/random-example
+  Self Link:           /apis/kubeflow.org/v1alpha1/namespaces/kubeflow/studyjobs/random-example
   UID:                 9e136400-a02a-11e8-b88c-42010af0008b
 Spec:
   Study Spec:
