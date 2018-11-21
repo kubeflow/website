@@ -208,8 +208,7 @@ Typically you will want to change the following values
 
 ### Accessing the TFJob dashboard
 
-The TFJob dashboard is available at `<path>/tfjobs/ui/` (port `8080`).
-Specifically:
+The TFJob dashboard is available at `<path>/tfjobs/ui/`. Specifically:
 
 * If you're using the central Kubeflow UI, you can access the TFJob dashboard
   by clicking **TFJOB DASHBOARD**:
@@ -217,7 +216,7 @@ Specifically:
     ![Central UI](/docs/images/central-ui.png)
 
 * If you followed the
- [guide for Kubernetes Engine](/docs/started/getting-started-gke), you can
+ [guide for GKE](/docs/started/getting-started-gke), you can
  access the TFJob dashboard at the following URL:
 
     ```
