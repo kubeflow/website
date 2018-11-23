@@ -73,7 +73,14 @@ Create an OAuth client ID to be used to identify Cloud IAP when requesting acces
     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
     ```
 
-## Deploy Kubeflow on Kubernetes Engine
+## Deploy Kubeflow on GKE using the UI
+
+1. Open [https://deploy.kubeflow.cloud/](https://deploy.kubeflow.cloud/#/deploy) in your web browser.
+1. Sign in using a GCP account with admin privileges for your GCP project.
+1. Complete the form.
+1. Click **Create Deployment**.
+
+## Deploy Kubeflow on GKE using the command line
 
 Run the following steps to deploy Kubeflow:
 

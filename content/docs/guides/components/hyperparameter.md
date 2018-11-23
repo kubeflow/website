@@ -9,30 +9,17 @@ toc = true
   weight = 5
 +++
 
-## Deploying Katib
-
-[Katib](https://github.com/kubeflow/katib) is a hyperparameter tuning framework, inspired by
-[Google Vizier](https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/bcb15507f4b52991a0783013df4222240e942381.pdf).
-
-To deploy katib,
-```shell
-ks pkg install kubeflow/katib@master
-ks generate katib katib
-ks apply ${ENV} -c katib
-```
-
 ## Using Katib
 
-Create namespace `katib` as the service launches jobs in this namespace.
-```
-kubectl create namespace katib
-```
-
 Currently we are using port-forwarding to access the katib services.
+kubernetes version 1.9~
 ```
-kubectl get pod -n kubeflow  # Find your vizier-core and modedb-frontend pods
-kubectl port-forward -n kubeflow [vizier-core pod] 6789:6789 &
-kubectl port-forward -n kubeflow [modeldb-frontend pod] 3000:3000 &
+kubectl -n kubeflow port-forward svc/katib-ui 8000:80
+```
+~1.8
+```
+kubectl get pod -n kubeflow  # Find your katib-ui pods
+kubectl port-forward -n kubeflow [katib-ui pod] 8000:80 &
 ```
 ## Creating a Study Job
 You can create Study Job for Katib by defining a StudyJob config file.
@@ -55,15 +42,15 @@ In this demo, 3 hyper parameters
 are randomly generated.
 
 ```
-$ kubectl -n katib get studyjob
+$ kubectl -n kubeflow get studyjob
 ```
 
 Check the study status.
 
 ```
-$ kubectl -n katib describe studyjobs random-example
+$ kubectl -n kubeflow describe studyjobs random-example
 Name:         random-example
-Namespace:    katib
+Namespace:    kubeflow
 Labels:       controller-tools.k8s.io=1.0
 Annotations:  kubectl.kubernetes.io/last-applied-configuration={"apiVersion":"kubeflow.org/v1alpha1","kind":"StudyJob","metadata":{"annotations":{},"labels":{"controller-tools.k8s.io":"1.0"},"name":"random-example"...
 API Version:  kubeflow.org/v1alpha1
@@ -73,7 +60,7 @@ Metadata:
   Creation Timestamp:  2018-08-15T01:29:13Z
   Generation:          0
   Resource Version:    173289
-  Self Link:           /apis/kubeflow.org/v1alpha1/namespaces/katib/studyjobs/random-example
+  Self Link:           /apis/kubeflow.org/v1alpha1/namespaces/kubeflow/studyjobs/random-example
   UID:                 9e136400-a02a-11e8-b88c-42010af0008b
 Spec:
   Study Spec:
@@ -140,4 +127,4 @@ Events:                <none>
 
 It should start a study and run two jobs with different parameters.
 
-Go to http://localhost:3000/katib to see the result.
+Go to http://localhost:8000/katib to see the result.

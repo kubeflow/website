@@ -1,5 +1,6 @@
 +++
-title = "TensorFlow Training"
+title = "TensorFlow Training (TFJob)"
+linkTitle = "TensorFlow Training"
 description = ""
 weight = 10
 toc = true
@@ -147,7 +148,7 @@ the [`TFJob` custom resource](https://github.com/kubeflow/tf-operator) is availa
 
 We treat each TensorFlow job as a [component](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component) in your APP.
 
-### Run the TfCnn example
+### Running the TfCnn example
 
 Kubeflow ships with a [ksonnet prototype](https://ksonnet.io/docs/concepts#prototype) suitable for running the [TensorFlow CNN Benchmarks](https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks).
 
@@ -203,8 +204,33 @@ Typically you will want to change the following values
 
    * For example, you might need to configure various environment variables to talk to datastores like GCS or S3
 
-1. Attach PV's if you want to use PVs for storage.
+1. Attach PVs if you want to use PVs for storage.
 
+### Accessing the TFJob dashboard
+
+The TFJob dashboard is available at `<path>/tfjobs/ui/`. Specifically:
+
+* If you're using the central Kubeflow UI, you can access the TFJob dashboard
+  by clicking **TFJOB DASHBOARD**:
+
+    ![Central UI](/docs/images/central-ui.png)
+
+* If you followed the
+ [guide for GKE](/docs/started/getting-started-gke), you can
+ access the TFJob dashboard at the following URL:
+
+    ```
+    https://<deployment-name>.endpoints.<project>.cloud.goog/tfjobs/ui/
+    ```
+
+* If you're using portforwarding, you can access the TFJob dashboard at the
+  following URL:
+
+    ```
+    http://localhost:8080/tfjobs/ui/
+    ```
+
+See more details about [accessing the Kubeflow UIs](/docs/guides/accessing-uis).
 
 ## Using GPUs
 
