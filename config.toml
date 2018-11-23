@@ -29,32 +29,6 @@ pygmentsStyle = "tango"
  # Docsy: First one is picked as the Twitter card image if not set on page.
  #images = ["images/project-illustration.png"]
 
-[Params]
-  RSSLink = "/index.xml"
-  author = "kubeflow.org" # add your company name
-  github = "kubeflow" # add your github profile name
-  twitter = "kubeflow" # add your twitter profile
-  email = "myemail@myaddress.xxx"
-
-  version = "master"
-  githubbranch = "master"
-
-# Add new release versions here
-[[Params.versions]]
-  version = "master"
-  githubbranch = "master"
-  url = "https://master.kubeflow.org"
-
-[[Params.versions]]
-  version = "v0.2"
-  githubbranch = "v0.2-branch"
-  url = "https://v0-2.kubeflow.org"
-
-[[Params.versions]]
-  version = "v0.3"
-  githubbranch = "v0.3-branch"
-  url = "https://v0-3.kubeflow.org"
-
 # Docsy: Configure the format of URLs per section.
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
@@ -98,6 +72,30 @@ time_format_blog = "02.01.2006"
 
 [params]
 github_repo = "https://github.com/kubeflow/kubeflow"
+RSSLink = "/index.xml"
+author = "kubeflow.org" # add your company name
+github = "kubeflow" # add your github profile name
+twitter = "kubeflow" # add your twitter profile
+email = "myemail@myaddress.xxx"
+
+version = "master"
+githubbranch = "master"
+
+# Add new release versions here
+[[params.versions]]
+  version = "master"
+  githubbranch = "master"
+  url = "https://master.kubeflow.org"
+
+[[params.versions]]
+  version = "v0.2"
+  githubbranch = "v0.2-branch"
+  url = "https://v0-2.kubeflow.org"
+
+[[params.versions]]
+  version = "v0.3"
+  githubbranch = "v0.3-branch"
+  url = "https://v0-3.kubeflow.org"
 
 # Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
 #gcs_engine_id = "011737558837375720776:fsdu1nryfng"
