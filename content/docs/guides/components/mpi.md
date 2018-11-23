@@ -7,7 +7,7 @@ bref= "This guide will walk you through using MPI for training"
 [menu]
 [menu.docs]
   parent = "components"
-  weight = 30
+  weight = 25
 +++
 
 ## Installing MPI Operator
