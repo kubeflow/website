@@ -1,6 +1,6 @@
 +++
-title = "Overview of Kubeflow Pipelines"
-description = "Pipelines for end-to-end orchestration of ML workflows."
+title = "Overview"
+description = "Overview of Kubeflow Pipelines"
 weight = 3
 toc = true
 bref = "Kubeflow Pipelines is a platform for building and deploying portable and scalable end-to-end ML workflows, based on containers."
