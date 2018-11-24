@@ -149,7 +149,8 @@ For example, download bootstrapper:
 PIPELINE_VERSION=0.0.42
 curl https://storage.googleapis.com/ml-pipeline/release/$PIPELINE_VERSION/bootstrapper.yaml --output bootstrapper.yaml
 ```
-and then update argument in the file:
+
+Update the argument in the file:
 
 ```
         args: [
@@ -160,8 +161,11 @@ and then update argument in the file:
         ]
 ```
 
-then create a job using the updated YAML by running 
-```kubectl create -f bootstrapper.yaml```
+Create a job using the updated YAML by running the following command:
+
+```bash
+kubectl create -f bootstrapper.yaml
+```
 
 ## Uninstall
 
@@ -174,7 +178,8 @@ For example, download bootstrapper:
 PIPELINE_VERSION=0.0.42
 curl https://storage.googleapis.com/ml-pipeline/release/$PIPELINE_VERSION/bootstrapper.yaml --output bootstrapper.yaml
 ```
-and then update argument in the file:
+
+Update the argument in the file:
 
 ```
         args: [
@@ -184,5 +189,9 @@ and then update argument in the file:
           ...
         ]
 ```
-then create job using the updated YAML by running 
-```kubectl create -f bootstrapper.yaml```
+
+Create a job using the updated YAML by running the following command:
+
+```bash
+kubectl create -f bootstrapper.yaml
+```
