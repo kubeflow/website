@@ -1,5 +1,5 @@
 +++
-title = "Build Your Own Components"
+title = "Build Your Own Pipeline Components"
 description = "Building your own components for Kubeflow Pipelines."
 weight = 3
 toc = true
@@ -12,7 +12,7 @@ This page is for advanced users. It describes how to build your own pipeline
 components. For an easier start, try 
 [building a pipeline with the provided samples](/docs/guides/pipelines/build-pipeline).
 
-## Overview of components
+## Overview of pipeline components
 
 Kubeflow Pipelines components are implementations of pipeline tasks. Each task 
 takes one or more 
@@ -20,14 +20,6 @@ takes one or more
 input and may produce one or more
 [artifacts](/docs/guides/pipelines/pipelines-concepts#step-output-artifacts) as 
 output.
-
-**Example: XGBoost DataProc components**
-
-* [Set up cluster](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/create_cluster.py)
-* [Analyze](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/analyze.py)
-* [Transform](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/transform.py)
-* [Train (distributed)](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/train.py)
-* [Delete cluster](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/delete_cluster.py)
 
 Each task usually includes two parts:
 
@@ -45,7 +37,30 @@ named "mytask":
 * The `mytask.py` program contains the client code.
 * The `mytask` directory contains all the runtime code.
 
-## Requirements
+A component consists of an interface (inputs/outputs), the implementation 
+(a Docker container image and command-line arguments) and metadata 
+(name, description).
+
+Components can be instantiated inside the `pipeline` function to create tasks.
+
+There are multiple ways to author components:
+
+* Wrap an existing Docker container image using `ContainerOp`, as described 
+  below.
+* Create a 
+  [lightweight python component](/docs/guides/pipelines/lightweight-python-components) 
+  from a Python function
+* Build a new Docker container image from a Python function.
+
+## Example: XGBoost DataProc components
+
+* [Set up cluster](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/create_cluster.py)
+* [Analyze](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/analyze.py)
+* [Transform](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/transform.py)
+* [Train (distributed)](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/train.py)
+* [Delete cluster](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/delete_cluster.py)
+
+## Requirements for building a component
 
 Install [Docker](https://www.docker.com/get-docker).
 
@@ -152,7 +167,8 @@ Note:
 
 See [an example](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py).
 
-## Build your own lightweight components from Python functions
+## Lightweight Python components
 
-See the guide to 
+You can also build lightweight components from Python functions. See the guide 
+to 
 [lightweight python components](/docs/guides/pipelines/lightweight-python-components).

@@ -1,5 +1,5 @@
 +++
-title = "Using the UI"
+title = "Using the Pipelines UI"
 description = "Using the Kubeflow Pipelines UI"
 weight = 3
 toc = true

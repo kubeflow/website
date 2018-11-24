@@ -23,7 +23,8 @@ Pipelines service. You create and edit a pipeline separately from the pipelines
 A building block in the pipeline template; self-contained user code that 
 performs one step in the pipeline, such as preprocessing, transformation, 
 training, etc. A component must be packaged as a 
-[Docker image](https://docs.docker.com/get-started/).
+[Docker image](https://docs.docker.com/get-started/). See the guide to
+[building your own components](/docs/guides/pipelines/build-component).
 
 ## Experiment
 
