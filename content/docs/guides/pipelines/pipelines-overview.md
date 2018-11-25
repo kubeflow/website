@@ -1,5 +1,5 @@
 +++
-title = "Overview"
+title = "Overview of Kubeflow Pipelines"
 description = "Overview of Kubeflow Pipelines"
 weight = 3
 toc = true

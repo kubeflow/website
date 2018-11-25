@@ -1,5 +1,5 @@
 +++
-title = "Set Up and Deploy"
+title = "Set Up and Deploy the Pipelines Service"
 description = "Deploy the Kubeflow Pipelines service"
 weight = 3
 toc = true

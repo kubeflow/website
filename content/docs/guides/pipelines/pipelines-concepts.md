@@ -1,5 +1,5 @@
 +++
-title = "Concepts"
+title = "Concepts in Kubeflow Pipelines"
 description = "Concepts Relevant to Kubeflow Pipelines"
 weight = 3
 toc = true
