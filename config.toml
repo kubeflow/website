@@ -73,8 +73,14 @@ Paginate = 20
   identifier = "components"
   url = "/docs/guides/components/"
 [[menu.docs]]
-  name = "GKE"
+  name = "Pipelines"
   weight = 5
+  parent = "guides"
+  identifier = "pipelines"
+  url = "/docs/guides/pipelines/"
+[[menu.docs]]
+  name = "GKE"
+  weight = 6
   parent = "guides"
   identifier = "gke"
   url = "/docs/guides/gke/"

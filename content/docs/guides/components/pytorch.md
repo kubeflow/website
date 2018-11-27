@@ -7,7 +7,7 @@ bref= "This guide will walk you through using PyTorch with Kubeflow"
 [menu]
 [menu.docs]
   parent = "components"
-  weight = 30
+  weight = 35
 +++
 
 ## Installing PyTorch Operator
