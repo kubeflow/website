@@ -52,7 +52,7 @@ mailing list.
 
 Summary:
 
-* [Invitation to our Slack channel](https://join.slack.com/t/kubeflow/shared_invite/enQtMjgyMzMxNDgyMTQ5LWUwMTIxNmZlZTk2NGU0MmFiNDE4YWJiMzFiOGNkZGZjZmRlNTExNmUwMmQ2NzMwYzk5YzQxOWQyODBlZGY2OTg)
+* [Invitation to our Slack channel](https://join.slack.com/t/kubeflow/shared_invite/enQtNDg5MTM4NTQyNjczLWUyZGI1ZmExZWExYWY4YzlkOWI4NjljNjJhZjhjMjEwNGFjNmVkNjg2NTg4M2I0ZTM5NDExZWI5YTIyMzVmNzM)
 * [Twitter](http://twitter.com/kubeflow)
 * [Mailing list: kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss)
 
