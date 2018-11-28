@@ -61,8 +61,6 @@ See [doc](https://cloud.google.com/docs/authentication/) for more detail.
 
 *S3*
 
-TODO(https://github.com/kubeflow/kubeflow/issues/1309): fix aws part
-
 To use S3, generate a different prototype
 ```
 ks generate tf-serving-aws ${MODEL_COMPONENT} --name=${MODEL_NAME}
