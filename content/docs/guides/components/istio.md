@@ -60,12 +60,12 @@ so this service should not be of type `LoadBalancer`.
 - Edit `install/kubernetes/istio-demo.yaml` and change the service type of `istio-ingressgateway` from
   `LoadBalancer` to `NodePort`.
 
-### 4. Install istio (without mTLS)
+### 5. Install istio (without mTLS)
     ```
     kubectl apply -f install/kubernetes/istio-demo.yaml
     ```
 
-### (optional) 5. Deploy the Gateway
+### 6. Deploy the Gateway
 
 This is for rolling out model and doing traffic split. See more detail below.
 
@@ -81,6 +81,11 @@ ks param set ${MODEL_COMPONENT} injectIstio true
 ```
 
 This will inject an istio sidecar in the TF serving deployment.
+
+#### Routing with Istio v.s. Ambassador
+With the ambassador annotation, a TF serving deployment can be accessed at `HOST/tfserving/models/MODEL_NAME`.
+However, in order to use Istio's Gateway to do traffic split, we should use the path provided by
+Istio routing: `HOST/istio/tfserving/models/MODEL_NAME`
 
 ### Metrics
 The istio sidecar reports data to [Mixer](https://istio.io/docs/concepts/policy-and-control/mixer.html).
@@ -101,24 +106,12 @@ See istio [doc](https://istio.io/docs/tasks/telemetry/metrics-logs.html).
 
 #### Expose Grafana dashboard behind ingress/IAP
 
-TODO(https://github.com/kubeflow/kubeflow/issues/1309): update this section
+Requirement: Gateway is deployed, see above.
 
-To expose the grafana dashboard as, e.g. `YOUR_HOST/grafana`, follow these steps.
+To expose the grafana dashboard, follow these steps:
 
-  - Add ambassador annotation for routing. However, since ambassador only scans the service within
-  its [namespace](https://www.getambassador.io/reference/advanced),
-  we can add the annotation for grafana service in ambassador service. So do
-  `kubectl edit svc -n kubeflow ambassador`, and add annotation
-
-  ```
-  getambassador.io/config: |
-    ---
-    apiVersion: ambassador/v0
-    kind:  Mapping
-    name:  grafana_dashboard_mapping
-    prefix: /grafana/
-    service: grafana.istio-system:3000
-  ```
+  - Deploy the VirtualService for Grafana service,
+    [grafana-virtual-service](https://github.com/kubeflow/kubeflow/blob/master/istio/grafana-virtual-service.yaml)
 
   - Grafana needs to be [configured](http://docs.grafana.org/installation/behind_proxy/#examples-with-sub-path-ex-http-foo-bar-com-grafana)
   to work properly behind a reverse proxy. We can override the default config using
