@@ -17,7 +17,6 @@
     "Twitter, Inc."
   ],
   "scripts": {
-    "build": "NF_IMAGE_VERSION=1 bash ./netlify-build-fix.sh && LD_LIBRARY_PATH=$(pwd)/tmp/usr/lib/x86_64-linux-gnu $(pwd)/tmp/usr/local/bin/hugo",
     "start": "npm-run-all --parallel watch docs-serve",
     "blc": "blc --exclude-external --filter-level 3 --get --ordered --recursive --host-requests 4 --input http://localhost:3000/",
     "http-server": "http-server --silent -p 3000",
