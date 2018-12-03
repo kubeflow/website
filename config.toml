@@ -154,7 +154,7 @@ breadcrumb_disable = false
 [[menu.main]]
     name = "Documentation"
     weight = -101
-    url = "/docs/about/kubeflow/"
+    url = "/docs/"
 [[menu.main]]
     name = "Blog"
     weight = -100
@@ -163,37 +163,3 @@ breadcrumb_disable = false
     name = "GitHub"
     weight = -99
     url = "https://github.com/kubeflow/"
-
-[[menu.docs]]
-  name = "About"
-  weight = 1
-  identifier = "about"
-  url = "/docs/about/"
-[[menu.docs]]
-  name = "Getting Started"
-  weight = 2
-  identifier = "started"
-  url = "/docs/started/"
-[[menu.docs]]
-  name = "Guides"
-  weight = 3
-  identifier = "guides"
-  url = "/docs/guides/"
-[[menu.docs]]
-  name = "Components"
-  weight = 4
-  parent = "guides"
-  identifier = "components"
-  url = "/docs/guides/components/"
-[[menu.docs]]
-  name = "Pipelines"
-  weight = 5
-  parent = "guides"
-  identifier = "pipelines"
-  url = "/docs/guides/pipelines/"
-[[menu.docs]]
-  name = "GKE"
-  weight = 6
-  parent = "guides"
-  identifier = "gke"
-  url = "/docs/guides/gke/"
