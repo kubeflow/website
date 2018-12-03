@@ -1,7 +1,7 @@
 +++
 title = "Requirements"
 description = "Requirements"
-weight = 10
+weight = 1
 toc = true
 bref= "The guides in this section give detailed information about using Kubeflow and its components."
 aliases = ["/docs/guides/"]
