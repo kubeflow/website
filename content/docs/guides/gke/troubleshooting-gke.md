@@ -1,14 +1,11 @@
 +++
 title = "Troubleshooting Deployments on GKE"
 description = "Help fixing problems on GKE and GCP"
-weight = 3
-toc = true
-bref = "This guide helps diagnose and fix issues you may encounter with Kubeflow on Google Kubernetes Engine (GKE)."
-
-[menu.docs]
-  parent = "gke"
-  weight = 6
+weight = 6
 +++
+
+This guide helps diagnose and fix issues you may encounter with Kubeflow on 
+Google Kubernetes Engine (GKE).
 
 ## Before you start
 

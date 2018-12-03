@@ -1,13 +1,9 @@
 +++
 title = "Build Your Own Pipeline Components"
 description = "Building your own components for Kubeflow Pipelines."
-weight = 3
-toc = true
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 6
+weight = 6
 +++
+
 This page is for advanced users. It describes how to build your own pipeline 
 components. For an easier start, try 
 [building a pipeline with the provided samples](/docs/guides/pipelines/build-pipeline).

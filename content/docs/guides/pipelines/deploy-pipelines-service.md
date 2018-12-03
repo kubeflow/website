@@ -1,14 +1,12 @@
 +++
-title = "Set Up and Deploy the Pipelines Service"
-description = "Deploy the Kubeflow Pipelines service"
+title = "Deploy the Pipelines Service"
+description = "Set up and deploy the Kubeflow Pipelines service"
 weight = 3
-toc = true
-bref = "This page guides you through the steps to deploy Kubeflow, including the Kubeflow Pipelines service."
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 3
 +++
+
+This page guides you through the steps to deploy Kubeflow, including the 
+Kubeflow Pipelines service.
+
 ## Deploying Kubeflow Pipelines on a local Minikube cluster
 
 Install [Docker](https://docs.docker.com/install/), socat 

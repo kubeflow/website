@@ -1,14 +1,11 @@
 +++
 title = "Using Cloud Filestore"
 description = "Using Cloud Filestore with Kubeflow"
-weight = 3
-toc = true
-bref = "This guide describes how to set up and use Cloud Filestore with Kubeflow on Google Cloud Platform (GCP)."
-
-[menu.docs]
-  parent = "gke"
-  weight = 4
+weight = 4
 +++
+
+This guide describes how to set up and use Cloud Filestore with Kubeflow on 
+Google Cloud Platform (GCP).
 
 ## About Cloud Filestore
 

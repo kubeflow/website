@@ -1,13 +1,10 @@
 +++
 title = "Advanced Customizations"
-description = "Advanced Customizations for Kubeflow"
-weight = 10
-toc = true
-bref= "This guide has information about advanced customizations for Kubeflow."
-[menu.docs]
-  parent = "guides"
-  weight = 100
+description = "Customizing your deployment of Kubeflow"
+weight = 100
 +++
+
+This guide has information about advanced customizations for Kubeflow.
 
 ## Persistent Disks
 
