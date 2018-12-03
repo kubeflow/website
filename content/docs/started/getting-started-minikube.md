@@ -1,13 +1,12 @@
 +++
 title = "Minikube for Kubeflow"
 description = "Quickly get Kubeflow running locally"
-weight = 10
-toc = true
-bref = "This document will outline steps that will get your local installation of Kubeflow running on top of Mikikube. Minikube runs a simple, single-node Kubernetes cluster inside a virtual machine (VM)."
-[menu.docs]
-  parent = "started"
-  weight = 2
+weight = 2
 +++
+
+This document outlines the steps you can  take to get your local installation 
+of Kubeflow running on top of Minikube. Minikube runs a simple, single-node 
+Kubernetes cluster inside a virtual machine (VM).
 
 By the end of this document, you'll have a local installation of Minikube kubernetes cluster along with all the default core components of
 Kubeflow deployed as services in the pods. You should be able to access JupyterHub notebooks, and the Kubeflow Dashboard.

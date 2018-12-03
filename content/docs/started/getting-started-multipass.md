@@ -1,13 +1,13 @@
 +++
 title = "Microk8s for Kubeflow"
 description = "Quickly get Kubeflow running locally on native hypervisors"
-weight = 10
-toc = true
-bref = "This document will outline steps that will get your local installation of Kubeflow running on top of Microk8s inside of a native Hypervisor. Multipass is used to create a the native VM. Microk8s is used to provide a simple, single-node Kubernetes cluster."
-[menu.docs]
-  parent = "started"
-  weight = 2
+weight = 2
 +++
+
+This document outlines the steps that you can take to get your local 
+installation of Kubeflow running on top of Microk8s inside of a native 
+Hypervisor. Multipass is used to create a the native VM. Microk8s is used to 
+provide a simple, single-node Kubernetes cluster.
 
 By the end of this document, you'll have a local installation of a Kubernetes cluster along with all the default core components of Kubeflow deployed as services in the pods. You should be able to access JupyterHub notebooks, and the Kubeflow Dashboard.
 
