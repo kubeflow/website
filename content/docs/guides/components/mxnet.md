@@ -7,7 +7,7 @@ bref= "This guide will walk you through using MXNet with Kubeflow"
 [menu]
 [menu.docs]
   parent = "components"
-  weight = 30
+  weight = 25
 +++
 
 ## Installing MXNet Operator

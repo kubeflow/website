@@ -1,10 +1,10 @@
 +++
 title = "TensorFlow Training (TFJob)"
-linkTitle = "TensorFlow Training"
+linkTitle = "TensorFlow Training (TFJob)"
 description = ""
 weight = 10
 toc = true
-bref= "Training using TensorFlow"
+bref= "This page describes TFJob for training a machine learning model with TensorFlow."
 [menu]
 [menu.docs]
   parent = "components"
@@ -13,8 +13,10 @@ bref= "Training using TensorFlow"
 
 ## What is TFJob?
 
-TFJob is a Kubernetes [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) that makes it easy to
-run TensorFlow training jobs on Kubernetes.
+TFJob is a Kubernetes 
+[custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) that you can use to run TensorFlow training jobs on Kubernetes. The Kubeflow
+implementation of TFJob is in
+[`tf-operator`](https://github.com/kubeflow/tf-operator).
 
 A TFJob is a resource with a simple YAML representation illustrated below.
 
