@@ -1,14 +1,12 @@
 +++
 title =  "Contributing to Kubeflow"
-description = "Information on how to start contributing to Kubeflow"
-weight = 10
-toc = true
-bref = "Welcome to the Kubeflow project! "
+description = "How to start contributing to Kubeflow"
+weight = 3
 aliases = ["/docs/contributing/"]
-[menu.docs]
-  parent = "about"
-  weight = 3
 +++
+
+Welcome to the Kubeflow project!
+
 ## Getting started as a Kubeflow contributor
 
 This document is the single source of truth for how to contribute to the code base.

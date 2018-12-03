@@ -1,14 +1,12 @@
 +++
 title =  "Docs"
-description = "Information on the Kubeflow docs and how to contribute to the docs"
-weight = 10
-toc = true
-bref = "Welcome to the Kubeflow documentation! This page tells you how the docs work and how you can contribute to them."
+description = "Information on the Kubeflow docs and how to contribute to them"
+weight = 6
 aliases = ["/docs/docs/"]
-[menu.docs]
-  parent = "about"
-  weight = 6
 +++
+
+Welcome to the Kubeflow documentation!
+
 ## Introduction
 
 The Kubeflow docs are published at 
