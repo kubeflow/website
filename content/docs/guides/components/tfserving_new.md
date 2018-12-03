@@ -1,13 +1,7 @@
 +++
 title = "TensorFlow Serving (new)"
-description = ""
-weight = 10
-toc = true
-bref= "Serving Tensorflow models"
-[menu]
-[menu.docs]
-  parent = "components"
- weight = 51
+description = "Serving Tensorflow models"
+weight = 51
 +++
 
 This document is for the new Kubeflow TF Serving 

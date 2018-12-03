@@ -2,14 +2,10 @@
 title = "TensorFlow Training (TFJob)"
 linkTitle = "TensorFlow Training (TFJob)"
 description = ""
-weight = 10
-toc = true
-bref= "This page describes TFJob for training a machine learning model with TensorFlow."
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 60
+weight = 60
 +++
+
+This page describes TFJob for training a machine learning model with TensorFlow.
 
 ## What is TFJob?
 

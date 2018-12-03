@@ -1,13 +1,7 @@
 +++
 title = "TensorFlow Serving"
-description = ""
-weight = 10
-toc = true
-bref= "Training and serving using TFJob"
-[menu]
-[menu.docs]
-  parent = "components"
- weight = 50
+description = "Training and serving using TFJob"
+weight = 50
 +++
 
 ## Serving a model

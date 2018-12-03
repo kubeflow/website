@@ -1,12 +1,7 @@
 +++
 title = "Istio Integration (for TF Serving)"
-description = "Istio Integration (for TF Serving)"
-weight = 10
-toc = true
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 6
+description = "Using Istio for TF Serving"
+weight = 6
 +++
 
 [Istio](https://istio.io/) provides a lot of functionality that we want to have, such as metrics, auth and

@@ -1,14 +1,10 @@
 +++
 title = "PyTorch Training"
 description = "Instructions for using PyTorch"
-weight = 10
-toc = true
-bref= "This guide will walk you through using PyTorch with Kubeflow"
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 35
+weight = 35
 +++
+
+This guide walks you through using PyTorch with Kubeflow.
 
 ## Installing PyTorch Operator
 

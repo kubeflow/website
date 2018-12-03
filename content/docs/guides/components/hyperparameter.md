@@ -1,12 +1,7 @@
 +++
 title = "Hyperparameter Tuning (Katib)"
-description = "Hyperparameter Tuning (Katib)"
-weight = 10
-toc = true
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 5
+description = "Using Katib to tune your model's hyperparameters"
+weight = 5
 +++
 
 ## Using Katib

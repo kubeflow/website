@@ -1,14 +1,10 @@
 +++
 title = "MPI Training"
 description = "Instructions for using MPI for training"
-weight = 10
-toc = true
-bref= "This guide will walk you through using MPI for training"
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 25
+weight = 25
 +++
+
+This guide walks you through using MPI for training.
 
 ## Installing MPI Operator
 

@@ -1,14 +1,10 @@
 +++
 title = "MXNet Training"
 description = "Instructions for using MXNet"
-weight = 10
-toc = true
-bref= "This guide will walk you through using MXNet with Kubeflow"
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 25
+weight = 25
 +++
+
+This guide walks you through using MXNet with Kubeflow.
 
 ## Installing MXNet Operator
 
