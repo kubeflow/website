@@ -67,9 +67,11 @@ so this service should not be of type `LoadBalancer`.
 
 ### 6. Deploy the Gateway
 
-This is for rolling out model and doing traffic split. See more detail below.
+This is for rolling out model and doing traffic split.
 
-TODO(https://github.com/kubeflow/kubeflow/issues/1309): update this
+```
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/kubeflow/master/istio/gateway.yaml
+```
 
 ## Kubeflow TF Serving with Istio
 
@@ -82,7 +84,7 @@ ks param set ${MODEL_COMPONENT} injectIstio true
 
 This will inject an istio sidecar in the TF serving deployment.
 
-#### Routing with Istio v.s. Ambassador
+#### Routing with Istio vs Ambassador
 With the ambassador annotation, a TF serving deployment can be accessed at `HOST/tfserving/models/MODEL_NAME`.
 However, in order to use Istio's Gateway to do traffic split, we should use the path provided by
 Istio routing: `HOST/istio/tfserving/models/MODEL_NAME`
