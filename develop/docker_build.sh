@@ -17,9 +17,9 @@ optional arguments:
 -h                      Print this help page
 -b BUILD_OPTS           Add 'docker build' options
                           Default: None
--f FILE	                Path to Dockerfile
+-f FILE                 Path to Dockerfile
                           Default: develop/Dockerfile
--t TAG	                Set tag name of image to build
+-t TAG                  Set tag name of image to build
                           Default: kf-web
 
 example usage:

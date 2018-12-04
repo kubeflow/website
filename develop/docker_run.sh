@@ -17,9 +17,9 @@ optional arguments:
                           Default: 1313:1313
 -r RUN_OPTS             Add 'docker run' options
                           Default: -it
--t TAG	                Set tag name of image to run
+-t TAG                  Set tag name of image to run
                           Default: kf-web
--u USER	                Set user
+-u USER                 Set user
                           Default: \$(id -u):\$(id -g)
 -w WORKDIR              Set workdir
                           Default: /workdir
