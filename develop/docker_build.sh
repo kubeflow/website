@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ##### VARIABLES #####
-build_context="develop/"            # arg $1
+build_context="develop/"          # arg $1 [PATH | URL | -]
 
 
 ##### FUNCTIONS #####
@@ -24,25 +24,25 @@ optional arguments:
 
 example usage:
 Run Help
-    ./develop/docker_build.sh -h
+  ./develop/docker_build.sh -h
 
 Build Docker image with defaults
-    ./develop/docker_build.sh
+  ./develop/docker_build.sh
 
 Build Docker image with a different file and build context
-    ./develop/docker_build.sh -f path/to/Dockerfile .
+  ./develop/docker_build.sh -f path/to/Dockerfile .
 
 Build Docker image with new tag and build_opts
-    ./develop/docker_build.sh -t usr/repo:kf-dev -b "--no-cache"
+  ./develop/docker_build.sh -t usr/repo:kf-dev -b "--no-cache"
 
 HELP
 }
 
 
 ##### FLAGS #####
-build_opts=			                # flag -b
-file_path="develop/Dockerfile"	    # flag -f
-tag="kf-web"		                # flag -t
+build_opts=			                  # flag -b
+file_path="develop/Dockerfile"    # flag -f
+tag="kf-web"		                  # flag -t
 
 
 ##### MAIN #####
@@ -63,7 +63,7 @@ while getopts ":hb:f:t:" flag; do
 			;;
 		*) 
 			echo "ERROR: Invalid flag ${flag} - Arg ${OPTARG}"
-            _help
+      _help
 			exit 1
 			;;
 	esac

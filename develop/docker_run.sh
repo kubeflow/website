@@ -4,9 +4,9 @@
 _help() {
 cat << HELP
 
-usage: docker_run.sh    [-h] [-k] [-f FILE] [-p PORT:PORT ...]
-                        [-r RUN_OPTS] [-t TAG] [-u USER] [-w WORKDIR]
-                        [-v VOLUME] [COMMAND] [ARG...]
+usage: docker_run.sh  [-h] [-k] [-f FILE] [-p PORT:PORT ...]
+                      [-r RUN_OPTS] [-t TAG] [-u USER] [-w WORKDIR]
+                      [-v VOLUME] [COMMAND] [ARG...]
 
 Run commands inside dev Docker container.
 
@@ -14,7 +14,7 @@ optional arguments:
 -h                      Print this help page
 -k                      Don't automatically remove container on exit
 -p PORT:PORT ...        Expose container ports
-                            Default: 1313:1313
+                          Default: 1313:1313
 -r RUN_OPTS             Add 'docker run' options
                             Default: -it
 -t TAG	                Set tag name of image to run
@@ -28,16 +28,16 @@ optional arguments:
 
 example usage:
 Run Help
-    ./develop/docker_run.sh -h
+  ./develop/docker_run.sh -h
 
 Run Docker image and keep container
-    ./develop/docker_run.sh -k
+  ./develop/docker_run.sh -k
 
 Remove default port & run_opts, change work directory and run gulp
-    ./develop/docker_run.sh  -p "" -r "" -w /workdir/themes/kf/sass gulp
+  ./develop/docker_run.sh  -p "" -r "" -w /workdir/themes/kf/sass gulp
 
 Add 'docker run' options
-    ./develop/docker_run.sh -r "--hostname 0.0.0.0 --memory-swap -1"
+  ./develop/docker_run.sh -r "--hostname 0.0.0.0 --memory-swap -1"
 
 HELP
 }
@@ -45,12 +45,12 @@ HELP
 
 ##### FLAGS #####
 run_opts="-it"		                # flag -r
-keep_opt="--rm"                     # flag -k (toggle keep container)
-port_opt="-p 1313:1313"             # flag -p
-tag="kf-web"                        # flag -t
-user="$(id -u):$(id -g)"            # flag -u
-workdir="/workdir"                  # flag -w
-volume="$(pwd):${workdir}:rw"       # flag -v
+keep_opt="--rm"                   # flag -k (toggle keep container)
+port_opt="-p 1313:1313"           # flag -p
+tag="kf-web"                      # flag -t
+user="$(id -u):$(id -g)"          # flag -u
+workdir="/workdir"                # flag -w
+volume="$(pwd):${workdir}:rw"     # flag -v
 
 
 ##### MAIN #####
@@ -64,18 +64,18 @@ while getopts ":hkr:p:t:u:v:w:" flag; do
 			keep_opt=
 			;;
 		r) 
-            if [ -z "${OPTARG}" ]; then
-                run_opts=""
-            else
-                run_opts="${run_opts} ${OPTARG}"
-            fi
+      if [ -z "${OPTARG}" ]; then
+        run_opts=""
+      else
+        run_opts="${run_opts} ${OPTARG}"
+      fi
 			;;
 		p) 
-            if [ -z "${OPTARG}" ]; then
-                port_opt=
-            else
-                port_opt="-p ${OPTARG}"
-            fi
+      if [ -z "${OPTARG}" ]; then
+        port_opt=
+      else
+        port_opt="-p ${OPTARG}"
+      fi
 			;;
 		t) 
 			tag="${OPTARG}"
@@ -91,7 +91,7 @@ while getopts ":hkr:p:t:u:v:w:" flag; do
 			;;
 		*) 
 			echo "ERROR: Invalid flag ${flag} - Arg ${OPTARG}"
-            _help
+      _help
 			exit 1
 			;;
 	esac
@@ -101,11 +101,11 @@ shift `expr $OPTIND - 1`
 run_opts="${run_opts} ${keep_opt} ${port_opt}"
 
 if [ ! "$(docker ps -q -f name=${tag})" ]; then
-    if [ "$(docker ps -aq -f status=exited -f name=${tag})" ]; then
-        # cleanup
-		docker container rm "${tag}"
-    fi
-    # run container
+  if [ "$(docker ps -aq -f status=exited -f name=${tag})" ]; then
+    # cleanup
+    docker container rm "${tag}"
+  fi
+  # run container
 	docker run \
 		${run_opts} \
 		--name "${tag}" \
