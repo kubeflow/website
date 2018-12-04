@@ -16,15 +16,15 @@ optional arguments:
 -p PORT:PORT ...        Expose container ports
                           Default: 1313:1313
 -r RUN_OPTS             Add 'docker run' options
-                            Default: -it
+                          Default: -it
 -t TAG	                Set tag name of image to run
-                            Default: kf-web
+                          Default: kf-web
 -u USER	                Set user
-                            Default: \$(id -u):\$(id -g)
+                          Default: \$(id -u):\$(id -g)
 -w WORKDIR              Set workdir
-                            Default: /workdir
+                          Default: /workdir
 -v VOLUME               Set volume
-                            Default: \$(pwd):\${workdir}:rw
+                          Default: \$(pwd):\${workdir}:rw
 
 example usage:
 Run Help
@@ -44,7 +44,7 @@ HELP
 
 
 ##### FLAGS #####
-run_opts="-it"		                # flag -r
+run_opts="-it"                    # flag -r
 keep_opt="--rm"                   # flag -k (toggle keep container)
 port_opt="-p 1313:1313"           # flag -p
 tag="kf-web"                      # flag -t
@@ -55,46 +55,46 @@ volume="$(pwd):${workdir}:rw"     # flag -v
 
 ##### MAIN #####
 while getopts ":hkr:p:t:u:v:w:" flag; do
-	case "${flag}" in
-		h) 
-			_help
-			exit 0
-			;;
-		k)
-			keep_opt=
-			;;
-		r) 
+  case "${flag}" in
+    h) 
+      _help
+      exit 0
+      ;;
+    k)
+      keep_opt=
+      ;;
+    r) 
       if [ -z "${OPTARG}" ]; then
         run_opts=""
       else
         run_opts="${run_opts} ${OPTARG}"
       fi
-			;;
-		p) 
+      ;;
+    p) 
       if [ -z "${OPTARG}" ]; then
         port_opt=
       else
         port_opt="-p ${OPTARG}"
       fi
-			;;
-		t) 
-			tag="${OPTARG}"
-			;;
-		u) 
-			user=${OPTARG}
-			;;
-		v) 
-			volume=${OPTARG}
-			;;
-		w) 
-			workdir=${OPTARG}
-			;;
-		*) 
-			echo "ERROR: Invalid flag ${flag} - Arg ${OPTARG}"
+      ;;
+    t) 
+      tag="${OPTARG}"
+      ;;
+    u) 
+      user=${OPTARG}
+      ;;
+    v) 
+      volume=${OPTARG}
+      ;;
+    w) 
+      workdir=${OPTARG}
+      ;;
+    *) 
+      echo "ERROR: Invalid flag ${flag} - Arg ${OPTARG}"
       _help
-			exit 1
-			;;
-	esac
+      exit 1
+      ;;
+  esac
 done
 shift `expr $OPTIND - 1`
 
@@ -106,15 +106,15 @@ if [ ! "$(docker ps -q -f name=${tag})" ]; then
     docker container rm "${tag}"
   fi
   # run container
-	docker run \
-		${run_opts} \
-		--name "${tag}" \
-		-u "${user}" \
-		-w "${workdir}" \
-		-v "${volume}" \
-		${tag} \
-		"$@"
+  docker run \
+    ${run_opts} \
+    --name "${tag}" \
+    -u "${user}" \
+    -w "${workdir}" \
+    -v "${volume}" \
+    ${tag} \
+    "$@"
 else
-	# exec in running container
-	docker exec ${run_opts} ${tag} bash -l "$@"
+  # exec in running container
+  docker exec ${run_opts} ${tag} bash -l "$@"
 fi

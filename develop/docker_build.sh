@@ -16,11 +16,11 @@ Build dev Docker image.
 optional arguments:
 -h                      Print this help page
 -b BUILD_OPTS           Add 'docker build' options
-                            Default: None
+                          Default: None
 -f FILE	                Path to Dockerfile
-                            Default: develop/Dockerfile
+                          Default: develop/Dockerfile
 -t TAG	                Set tag name of image to build
-                            Default: kf-web
+                          Default: kf-web
 
 example usage:
 Run Help
@@ -40,33 +40,33 @@ HELP
 
 
 ##### FLAGS #####
-build_opts=			                  # flag -b
+build_opts=                       # flag -b
 file_path="develop/Dockerfile"    # flag -f
-tag="kf-web"		                  # flag -t
+tag="kf-web"                      # flag -t
 
 
 ##### MAIN #####
 while getopts ":hb:f:t:" flag; do
-	case "${flag}" in
-		h) 
-			_help
-			exit 0
-			;;
-		b) 
-			build_opts="${OPTARG} ${build_opts}"
-			;;
-		f) 
-			file_path="${OPTARG}"
-			;;
-		t) 
-			tag="${OPTARG}"
-			;;
-		*) 
-			echo "ERROR: Invalid flag ${flag} - Arg ${OPTARG}"
+  case "${flag}" in
+    h) 
       _help
-			exit 1
-			;;
-	esac
+      exit 0
+      ;;
+    b) 
+      build_opts="${OPTARG} ${build_opts}"
+      ;;
+    f) 
+      file_path="${OPTARG}"
+      ;;
+    t) 
+      tag="${OPTARG}"
+      ;;
+    *) 
+      echo "ERROR: Invalid flag ${flag} - Arg ${OPTARG}"
+      _help
+      exit 1
+      ;;
+  esac
 done
 shift `expr $OPTIND - 1`
 
