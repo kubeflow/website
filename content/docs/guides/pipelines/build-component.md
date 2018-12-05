@@ -173,5 +173,5 @@ You can also build lightweight components from Python functions. See the guide
 to 
 [lightweight python components](/docs/guides/pipelines/lightweight-python-components).
 
-#### Log metrics
-See [Pipeline metrics](/docs/guides/pipelines/pipelines-metrics.md)
+## Log metrics
+See [Pipeline metrics](/docs/guides/pipelines/pipelines-metrics)
