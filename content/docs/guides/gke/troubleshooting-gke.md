@@ -32,7 +32,8 @@ This section provides troubleshooting information for 404s, page not found, bein
    https://${KUBEFLOW_FQDN}/
    ```
 
-* Since we were able to sign in this indicates the Ambassador reverse proxy is up and healthy we can confirm this is the case by running the following command
+   * ***KUBEFLOW_FQDN*** is your project's OAuth web app URI domain name `<name>.endpoints.<project>.cloud.goog`
+   * Since we were able to sign in this indicates the Ambassador reverse proxy is up and healthy we can confirm this is the case by running the following command
 
    ```
    kubectl -n ${NAMESPACE} get pods -l service=envoy
