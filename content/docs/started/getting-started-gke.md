@@ -69,8 +69,7 @@ Create an OAuth client ID to be used to identify Cloud IAP when requesting acces
         ```
         * `<name>` and `<project>` must have the same values as set in the next
           step when you run the deployment script.
-        * The deployment uses "ks-kubeflow" by default for `<name>` but you can
-          configure this with the environment variable `DEPLOYMENT_NAME`.
+        * The deployment default for `<name>` is the `KFAPP` value used when initializing your Kubeflow app, but you can configure this with the environment variable `DEPLOYMENT_NAME`.
         * `<project>` is your GCP project.
     * Here's what the form should look like
 
