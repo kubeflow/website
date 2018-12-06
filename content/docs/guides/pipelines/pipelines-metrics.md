@@ -1,6 +1,6 @@
 +++
 title = "Pipeline metrics"
-description = "Log and visualize pipeline metrics."
+description = "Export and visualize pipeline metrics."
 weight = 3
 toc = true
 
@@ -8,12 +8,12 @@ toc = true
   parent = "pipelines"
   weight = 6
 +++
-This page is for component author to log metrics from the component. For details about how to build your own component, please see [Editing Build Your Own Component](/docs/guides/pipelines/build-component).
+This page is for component author to export metrics from the component. For details about how to build your own component, please see [Editing Build Your Own Component](/docs/guides/pipelines/build-component).
  
 ## Overview of Metrics
-Kubeflow Pipeline supports scalar metrics logging. Component author can write a list of metrics to describe the performance of the model to a local file which will later be uploaded as run-time metrics by the pipeline agent. The uploaded metrics will be visualized in the experiment runs table in the pipeline UI.
+Kubeflow Pipeline supports scalar metrics exporting. Component author can write a list of metrics to describe the performance of the model to a local file which will later be uploaded as run-time metrics by the pipeline agent. The uploaded metrics will be visualized in the experiment runs table in the pipeline UI.
  
-## Log Metrics File
+## Export Metrics File
 To enable metrics, component author needs to write a file `/mlpipeline-metrics.json`. For example:
 ```Python
   accuracy = accuracy_score(df['target'], df['predicted'])
