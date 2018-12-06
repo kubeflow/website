@@ -1,5 +1,5 @@
 +++
-title = "TensorFlow Serving (new)"
+title = "TensorFlow Serving"
 description = ""
 weight = 10
 toc = true
@@ -9,10 +9,6 @@ bref= "Serving Tensorflow models"
   parent = "components"
  weight = 51
 +++
-
-This document is for the new Kubeflow TF Serving 
-[prototypes](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/tf-serving/tf-serving-template.libsonnet).
-We did a major refactor, and will gradually add features to this new prototypes.
 
 ## Serving a model
 
