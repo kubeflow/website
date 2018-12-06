@@ -32,6 +32,10 @@ The second command installs Istio's core components (without mTLS), with some cu
 The third command deploys some resources for Kubeflow.
 The fourth command label the kubeflow namespace for sidecar injector.
 
+See this [table](https://github.com/istio/istio/issues/6476#issuecomment-399219937) for sidecar injection
+behavior. We want to have configmap disabled, and namespace enabled, so that injection happens if and only if
+the pod has annotation.
+
 ## Kubeflow TF Serving with Istio
 
 After installing Istio, we can deploy the TF Serving component as in [README](README.md) with
