@@ -13,65 +13,24 @@ toc = true
 quota, rollout and A/B testing.
 
 ## Install Istio
-We assume Kubeflow is deployed in the `kubeflow` namespace.
-
-### 1. Download Istio
-Follow the istio [doc](https://istio.io/docs/setup/kubernetes/quick-start/)
-to download istio.
-
-- download or clone the istio source. cd to the directory.
-- Install Istio's CRD,
-    ```
-    kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
-    ```
-
-### 2. Configure sidecar injection
-Before installing Istio components, we will change some configuration.
-We will use isio's automatic sidecar injection. However, we want to inject only to those services with annotation.
-According to this [table](https://github.com/istio/istio/issues/6476#issuecomment-399219937), we will
-label the namespace as `enabled`, and set policy in `istio-sidecar-injector` (a configmap) as `disabled`.
-
-- label the namespace
-   ```
-   kubectl label namespace kubeflow istio-injection=enabled
-   ```
-- Set the policy. This can be done by editing `install/kubernetes/istio-demo.yaml` directly.
-
-
-### 3. Configure egress traffic
-Also, we need to allow egress traffic, e.g. read models from GCS. This is control by the `-i` flag of the args of 
-`istio-init` container in the same configmap `istio-sidecar-injector`. We can also edit it directly.
-To determine the IP values, follow the instructions in the Istio
-[doc](https://istio.io/docs/tasks/traffic-management/egress/#calling-external-services-directly). For example, for GKE you can do
+We assume Kubeflow is already deployed in the `kubeflow` namespace.
 
 ```
-gcloud container clusters describe XXXXXXX --zone=XXXXXX | grep -e clusterIpv4Cidr -e servicesIpv4Cidr
-clusterIpv4Cidr: 10.4.0.0/14
-servicesIpv4Cidr: 10.7.240.0/20
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/kubeflow/master/dependencies/istio/install/crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/kubeflow/master/dependencies/istio/install/istio-noauth.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/kubeflow/master/dependencies/istio/kf-istio-resources.yaml
+
+kubectl label namespace kubeflow istio-injection=enabled
 ```
 
-- Set the outbound IP ranges (direcly in the configmap). The value should be like
-   `"10.32.0.0/14\,10.35.240.0/20"`.
+The first command installs Istio's CRDs.
 
-### 4. Configure istio-ingressgateway
-We recommend using a regular ingress instead of Istio's ingress gateway as the entry to cluster on GCP,
-so this service should not be of type `LoadBalancer`.
+The second command installs Istio's core components (without mTLS), with some customization:
+1. sidecar injection configmap policy is changed from `enabled` to `disabled`
+1. istio-ingressgateway is of type `NodePort` instead of `LoadBalancer`
 
-- Edit `install/kubernetes/istio-demo.yaml` and change the service type of `istio-ingressgateway` from
-  `LoadBalancer` to `NodePort`.
-
-### 5. Install istio (without mTLS)
-    ```
-    kubectl apply -f install/kubernetes/istio-demo.yaml
-    ```
-
-### 6. Deploy the Gateway
-
-This is for rolling out model and doing traffic split.
-
-```
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/kubeflow/master/istio/gateway.yaml
-```
+The third command deploys some resources for Kubeflow.
+The fourth command label the kubeflow namespace for sidecar injector.
 
 ## Kubeflow TF Serving with Istio
 
@@ -108,17 +67,10 @@ See istio [doc](https://istio.io/docs/tasks/telemetry/metrics-logs.html).
 
 #### Expose Grafana dashboard behind ingress/IAP
 
-Requirement: Gateway is deployed, see above.
-
-To expose the grafana dashboard, follow these steps:
-
-  - Deploy the VirtualService for Grafana service,
-    [grafana-virtual-service](https://github.com/kubeflow/kubeflow/blob/master/istio/grafana-virtual-service.yaml)
-
-  - Grafana needs to be [configured](http://docs.grafana.org/installation/behind_proxy/#examples-with-sub-path-ex-http-foo-bar-com-grafana)
-  to work properly behind a reverse proxy. We can override the default config using
-  [environment variable](http://docs.grafana.org/installation/configuration/#using-environment-variables).
-  So do `kubectl edit deploy -n istio-system grafana`, and add env vars
+Grafana needs to be [configured](http://docs.grafana.org/installation/behind_proxy/#examples-with-sub-path-ex-http-foo-bar-com-grafana)
+to work properly behind a reverse proxy. We can override the default config using
+[environment variable](http://docs.grafana.org/installation/configuration/#using-environment-variables).
+So do `kubectl edit deploy -n istio-system grafana`, and add env vars
 
   ```
   - name: GF_SERVER_DOMAIN
