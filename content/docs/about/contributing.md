@@ -56,9 +56,11 @@ There are are a number of ways to contribute to Kubeflow
 
 You can use this [table](https://devstats.kubeflow.org/d/13/developers-table?orgId=1&var-period_name=Last%20decade&var-metric=contributions&var-period=y10) to see how many contributions
 you've made
-  * This only counts GitHub related ways of contributing
+
+  * **Note**: This only counts GitHub related ways of contributing
 
 When you are ready to join
+
   * Send a PR adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml#L19)  
   * Adter the PR is merged an admin will send you an invite
     * This is a manual process that's generally run a couple times a week
