@@ -29,9 +29,12 @@ pygmentsStyle = "tango"
  # Docsy: First one is picked as the Twitter card image if not set on page.
  #images = ["images/project-illustration.png"]
 
+ # Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
+#gcs_engine_id = "011737558837375720776:fsdu1nryfng"
+
 # Docsy: Configure the format of URLs per section.
-[permalinks]
-blog = "/:section/:year/:month/:day/:slug/"
+#[permalinks]
+#blog = "/:section/:year/:month/:day/:slug/"
 
 ## Docsy: Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
 [blackfriday]
@@ -76,7 +79,7 @@ RSSLink = "/index.xml"
 author = "kubeflow.org" # add your company name
 github = "kubeflow" # add your github profile name
 twitter = "kubeflow" # add your twitter profile
-email = "myemail@myaddress.xxx"
+#email = "myemail@myaddress.xxx"
 
 version = "master"
 githubbranch = "master"
@@ -96,9 +99,6 @@ githubbranch = "master"
   version = "v0.3"
   githubbranch = "v0.3-branch"
   url = "https://v0-3.kubeflow.org"
-
-# Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
-#gcs_engine_id = "011737558837375720776:fsdu1nryfng"
 
 # Docsy: User interface configuration
 [params.ui]
