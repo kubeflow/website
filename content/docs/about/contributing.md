@@ -37,17 +37,32 @@ Maggie Lynn, a user experience researcher, is conducting user studies to inform 
 
 Follow these instructions if you want to
 
-* Become a member of the Kubeflow GitHub org (so you can trigger tests)
+* Become a member of the Kubeflow GitHub org (see below)
 * Become part of the Kubeflow build cop or release teams
 * Be recognized as an individual or organization contributing to Kubeflow
 
-### Individual contributors
+### Joining the Kubeflow GitHub Org
 
-Please send a PR adding yourself to 
-[members](https://github.com/kubeflow/community/blob/master/members.yaml).
+Before asking to join the community, we ask that you first make a small number of contributions
+to demonstrate your intent to continue contributing to Kubeflow. 
 
-  * The only **required** field is your GitHub username.
-  * This is a **prerequisite** for joining the Kubeflow org on GitHub.
+There are are a number of ways to contribute to Kubeflow
+
+  * Submit PRs
+  * File issues reporting bugs or providing feedback
+  * Answer questions on slack or GitHub issues
+
+You can use this [table](https://devstats.kubeflow.org/d/13/developers-table?orgId=1&var-period_name=Last%20decade&var-metric=contributions&var-period=y10) to see how many contributions
+you've made
+
+  * **Note**: This only counts GitHub related ways of contributing
+
+When you are ready to join
+
+  * Send a PR adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml#L19)  
+  * Adter the PR is merged an admin will send you an invite
+    * This is a manual process that's generally run a couple times a week
+    * If a week passes without recieving an invite reach out on [kubeflow#community](https://kubeflow.slack.com/messages/C8Q0QJYNB/convo/CABQ2BWHW-1544147308.002500/)
 
 ### Companies/organizations
 
@@ -55,6 +70,9 @@ If you would like your company or organization to be acknowledged for contributi
 Kubeflow or participatng in the community (being a user counts) please send a PR
 adding the relevant info to
 [member_organizations.yaml](https://github.com/kubeflow/community/blob/master/member_organizations.yaml).
+
+If you want your employee's GitHub contributions to be attributed to your company please assk them to set
+the company field in their GitHub profile.
 
 ### Community discussions
 

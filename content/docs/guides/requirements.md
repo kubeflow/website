@@ -9,6 +9,7 @@ its components.
 
 For best understanding of the guides, it's useful to have some knowledge of
 the following systems:
+
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 * [TensorFlow](https://www.tensorflow.org/get_started/)
 * [ksonnet](https://ksonnet.io/docs/tutorial)
