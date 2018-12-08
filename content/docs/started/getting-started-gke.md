@@ -25,6 +25,19 @@ brings the following advantages:
     and troubleshooting
   * GPUs and [TPUs](https://cloud.google.com/tpu/) can be used to accelerate your work
 
+## Prerequisites
+
+  * Ensure [ksonnet](https://ksonnet.io/#get-started) version meets Kubeflow [requirements](/docs/guides/requirements)
+  * Enable [boost mode](https://cloud.google.com/shell/docs/features#boost_mode) to deploy using the [cloud shell](https://cloud.google.com/shell/)
+  * Ensure the following APIs are enabled:
+    * [Compute Engine](https://console.cloud.google.com/apis/library/compute.googleapis.com)
+    * [Kubernetes Engine](https://console.cloud.google.com/apis/library/container.googleapis.com)
+    * [Identity and Access Management (IAM)](https://console.cloud.google.com/apis/library/iam.googleapis.com)
+    * [Deployment Manager](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
+
+
+You do not need a running GKE cluster. A cluster will be created when you execute the command `kfctl.sh apply platform`.
+
 ## Create oauth client credentials
 
 Create an OAuth client ID to be used to identify Cloud IAP when requesting access to user's email to verify their identity.
@@ -56,8 +69,7 @@ Create an OAuth client ID to be used to identify Cloud IAP when requesting acces
         ```
         * `<name>` and `<project>` must have the same values as set in the next
           step when you run the deployment script.
-        * The deployment uses "kubeflow" by default for `<name>` but you can
-          configure this with the environment variable `DEPLOYMENT_NAME`.
+        * The deployment default for `<name>` is the `KFAPP` value used when initializing your Kubeflow app, but you can configure this with the environment variable `DEPLOYMENT_NAME`.
         * `<project>` is your GCP project.
     * Here's what the form should look like
 
