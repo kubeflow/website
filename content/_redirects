@@ -3,3 +3,9 @@
 /version/stable/scripts/deploy.sh      https://raw.githubusercontent.com/kubeflow/kubeflow/v0.2.2/scripts/deploy.sh
 /version/stable/source.tar.gz          https://github.com/kubeflow/kubeflow/archive/v0.2.2.tar.gz
 /blog/                                 https://medium.com/kubeflow
+/blog/why_kubeflow/                    https://medium.com/kubeflow/why-kubeflow-in-your-infrastructure-56b8fabf1f3e
+/blog/announcing_kubeflow_0.3/         https://medium.com/kubeflow/kubeflow-0-3-simplifies-setup-improves-ml-development-98b8ca10bd69
+/blog/blog_posts/                      https://medium.com/kubeflow/blog-posts-about-kubeflow-7068688359f3
+/blog/nvidia_tensorrt/                 https://medium.com/kubeflow/gpu-accelerated-inference-for-kubernetes-with-the-nvidia-tensorrt-inference-server-and-kubeflow-63061305fff2
+/blog/kaggle_on_kubeflow/              https://medium.com/kubeflow/kaggle-on-kubeflow-185a29e27c53
+/blog/announcing_kubeflow_0.2/         https://medium.com/kubeflow/kubeflow-0-2-offers-new-components-and-simplified-setup-735e4c56988d
