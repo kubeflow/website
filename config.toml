@@ -32,6 +32,29 @@ pygmentsStyle = "tango"
  # Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
 #gcs_engine_id = "011737558837375720776:fsdu1nryfng"
 
+# Top-level navigation (horizontal)
+
+[[menu.main]]
+    name = "What is Kubeflow?"
+    weight = -103
+    url = "/docs/about/kubeflow/"
+[[menu.main]]
+    name = "Getting Started"
+    weight = -102
+    url = "/docs/started/getting-started/"
+[[menu.main]]
+    name = "Documentation"
+    weight = -101
+    url = "/docs/"
+[[menu.main]]
+    name = "Blog"
+    weight = -100
+    url = "https://medium.com/kubeflow"
+[[menu.main]]
+    name = "GitHub"
+    weight = -99
+    url = "https://github.com/kubeflow/"
+
 # Docsy: Configure the format of URLs per section.
 #[permalinks]
 #blog = "/:section/:year/:month/:day/:slug/"
@@ -140,26 +163,3 @@ breadcrumb_disable = false
 	url = "https://example.org/mail"
 	icon = "fa fa-envelope"
         desc = "Discuss development issues around the project"
-
-# Top-level navigation (horizontal)
-
-[[menu.main]]
-    name = "What is Kubeflow?"
-    weight = -103
-    url = "/docs/about/kubeflow/"
-[[menu.main]]
-    name = "Getting Started"
-    weight = -102
-    url = "/docs/started/getting-started/"
-[[menu.main]]
-    name = "Documentation"
-    weight = -101
-    url = "/docs/"
-[[menu.main]]
-    name = "Blog"
-    weight = -100
-    url = "https://medium.com/kubeflow"
-[[menu.main]]
-    name = "GitHub"
-    weight = -99
-    url = "https://github.com/kubeflow/"
