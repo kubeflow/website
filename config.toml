@@ -141,7 +141,7 @@ breadcrumb_disable = false
 	icon = "fa fa-envelope"
         desc = "Discuss development issues around the project"
 
-# Menu
+# Top-level navigation (horizontal)
 
 [[menu.main]]
     name = "What is Kubeflow?"
