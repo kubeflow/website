@@ -9,9 +9,23 @@ Add styles or override variables from the theme here.
 $primary: #4279f4;
 $secondary: #fff;
 
-// Navbar
+// Nav bar
 
 $white: #fff;
 $navbar-dark-color: rgba($white, 1) !default;
 $navbar-dark-hover-color: rgba($white, 0.75) !default;
 $navbar-dark-active-color: $navbar-dark-color !default;
+
+// Dropdown menu in nav bar
+
+div.dropdown {
+  position: relative;
+  display: inline-block; }
+div.dropdown:hover div.dropdown-content {
+    display: block; }
+div.dropdown-content {
+  background: #4279f4;
+  display: none;
+  position: absolute; }
+div.dropdown-content a {
+    display: block; }
