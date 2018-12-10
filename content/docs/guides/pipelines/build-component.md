@@ -174,4 +174,5 @@ to
 [lightweight python components](/docs/guides/pipelines/lightweight-python-components).
 
 ## Export metrics
-See [Pipeline metrics](/docs/guides/pipelines/pipelines-metrics)
+
+See the guide to [pipeline metrics](/docs/guides/pipelines/pipelines-metrics).

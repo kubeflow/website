@@ -8,13 +8,15 @@ toc = true
   parent = "pipelines"
   weight = 6
 +++
-This page is for component author to export metrics from the component. For details about how to build your own component, please see [Editing Build Your Own Component](/docs/guides/pipelines/build-component).
+This page shows you how to export metrics from the component. For details about how to build a component, see the guide to [building your own component](/docs/guides/pipelines/build-component).
  
-## Overview of Metrics
-Kubeflow Pipeline supports scalar metrics exporting. Component author can write a list of metrics to describe the performance of the model to a local file which will later be uploaded as run-time metrics by the pipeline agent. The uploaded metrics will be visualized in the experiment runs table in the pipeline UI.
+## Overview of metrics
+
+Kubeflow Pipelines supports scalar metrics exporting. You can write a list of metrics to describe the performance of the model to a local file which will later be uploaded as run-time metrics by the pipeline agent. The uploaded metrics will be visualized in the experiment runs table in the pipeline UI.
  
-## Export Metrics File
-To enable metrics, component author needs to write a file `/mlpipeline-metrics.json`. For example:
+## Export metrics file
+
+To enable metrics, you need to write a file `/mlpipeline-metrics.json`. For example:
 ```Python
   accuracy = accuracy_score(df['target'], df['predicted'])
   metrics = {
@@ -29,7 +31,8 @@ To enable metrics, component author needs to write a file `/mlpipeline-metrics.j
 ```
 See the [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py#L78).
  
-## Visualize Metrics
-To visualize metrics, open the experiment runs page in pipeline UI. The top 3 metrics will be displayed as columns for each run. Use the compare runs UI to display the full metrics.
+## Visualize metrics
+
+To see a visualization of the metrics, open the **Experiment runs** page in the pipeline UI. The top 3 metrics are displayed as columns for each run. Use the **Compare runs** UI to display the full metrics.
  
 ![run metrics](/docs/images/metric.png)
