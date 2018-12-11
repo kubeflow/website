@@ -169,7 +169,9 @@ to verify their identity.
         `deploy.sh` uses your default GCP project for `<project>` but you can
         configure this with the environment variable `PROJECT`.
 
-1. Press Enter/Return to add the URI.
+1. Press **Enter/Return** to add the URI. Check that the URI now appears as
+  a confirmed item under **Authorized redirect URIs**. (It should no longer be
+  editable.)
 1. Click **Create**.
 1. Make note of the **client ID** and **client secret** that appear in the OAuth
   client window. You need them later to enable IAP.
