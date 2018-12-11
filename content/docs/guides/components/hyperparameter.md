@@ -29,10 +29,9 @@ See [random algorithm example](https://github.com/kubeflow/katib/blob/master/exa
 $ kubectl apply -f random-example.yaml
 ```
 Running this command will launch a StudyJob. The study job will run a series of training jobs to train models using different hyperparameters and save the results.
-The configurations for the study (hyper-parameter feasible space, optimization parameter, optimization goal, suggestion algorithm, and so on) are defined in `random-example.yaml`,
+The configurations for the study (hyper-parameter feasible space, optimization parameter, optimization goal, suggestion algorithm, and so on) are defined in [random-example.yaml](https://github.com/kubeflow/katib/blob/master/examples/random-example.yaml).
 In this demo, hyper-parameters are embedded as args.
-You can embed in another way (e.g. eviroment values) by using this template.
-It defined in `WorkerSpec.GoTemplate.RawTemplate`.
+You can embed hyper-parameters in another way (e.g. environment values) by using the template defined in `WorkerSpec.GoTemplate.RawTemplate`.
 It is written in [go template](https://golang.org/pkg/text/template/) format.
 
 In this demo, 3 hyper parameters 
@@ -125,6 +124,6 @@ Status:
 Events:                <none>
 ```
 
-It should start a study and run two jobs with different parameters.
+It should start a study and run three jobs with different parameters.
 
 Go to http://localhost:8000/katib to see the result.
