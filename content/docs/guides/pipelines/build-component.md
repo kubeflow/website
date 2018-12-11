@@ -172,3 +172,7 @@ See [an example](https://github.com/kubeflow/pipelines/blob/master/samples/xgboo
 You can also build lightweight components from Python functions. See the guide 
 to 
 [lightweight python components](/docs/guides/pipelines/lightweight-python-components).
+
+## Export metrics
+
+See the guide to [pipeline metrics](/docs/guides/pipelines/pipelines-metrics).
