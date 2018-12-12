@@ -95,7 +95,7 @@ ks param set ${MODEL_COMPONENT} s3UseHttps true
 ks param set ${MODEL_COMPONENT} s3VerifySsl true
 
 # URL for your s3-compatible endpoint.
-ks param set ${MODEL_COMPONENT} s3Endpoint http://s3.us-west-1.amazonaws.com
+ks param set ${MODEL_COMPONENT} s3Endpoint s3.us-west-1.amazonaws.com
 ```
 
 ### Using GPU
