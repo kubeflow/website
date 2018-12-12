@@ -966,7 +966,7 @@ Run the following commands to delete your deployment and related resources, and
 to delete your Cloud Storage bucket when you've finished with it:
 
 ```
-gcloud deployment-manager --project=${PROJECT} deployments delete ${DEPLOYMENT_NAME}
+gcloud deployment-manager --project=${PROJECT} deployments delete ${DEPLOYMENT_NAME} --delete-policy abandon
 gsutil rm -r gs://${BUCKET_NAME}
 ```
 
