@@ -916,9 +916,9 @@ Follow these steps to access the web UI in your web browser.
 1. Run the following command to access the UI via `kubectl port-forward`:
 
     ```
-    kubectl port-forward -n ${NAMESPACE}  `kubectl get pods \
-      --selector=app=web-ui-o jsonpath='{.items[0].metadata.name}'` 8080:80
-    ```
+    kubectl port-forward -n ${DEPLOYMENT_NAME}  `kubectl get pods --all-namespaces \
+      --selector=app=web-ui -o=jsonpath='{.items[0].metadata.name}'` 8080:5000
+  ```
 
 1. Open the UI in your web browser at `localhost:8080`. The web UI should load, 
    offering you three fields to connect to the prediction server:
