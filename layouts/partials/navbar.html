@@ -16,16 +16,7 @@
 			</li>
       {{ end }}
       <li class="nav-item dropdown d-none d-lg-block">
-        <div class="dropdown">
-          <a href="#">{{ .Site.Params.version }}</a>
-          <div class="dropdown-content">
-            <ul id="versions">
-              {{ range .Site.Params.versions }}
-              <li class="nav-item mr-4 mb-2 mb-lg-0"><a href="{{  .url }}">{{ .version }}</a></li>
-              {{ end }}
-            </ul>
-          </div>
-        </div>
+        {{ partial "navbar-version-selector.html" . }}
       </li>
 			{{ if  (gt (len .Site.Home.Translations) 0) }}
 			<li class="nav-item dropdown d-none d-lg-block">
