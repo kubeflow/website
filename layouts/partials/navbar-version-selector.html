@@ -3,6 +3,6 @@
 </a>
 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 	{{ range .Site.Params.versions }}
-	<a class="dropdown-item" href="{{ .RelPermalink }}">{{ .version }}</a>
+	<a class="dropdown-item" href="{{ .url }}">{{ .version }}</a>
 	{{ end }}
 </div>
