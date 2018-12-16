@@ -72,7 +72,9 @@ Create an OAuth client ID to be used to identify Cloud IAP when requesting acces
 
       ![oauth-credential](/docs/images/oauth-credential.png)
 
-1. Click **Create**.
+1. Press **Enter/Return** to add the URI. Check that the URI now appears as
+  a confirmed item under **Authorized redirect URIs**. (It should no longer be
+  editable.)
 1. Make note of the **client ID** and **client secret** that appear in the OAuth
   client window. You need them later to enable Cloud IAP.
 1. Create environment variables from the OAuth client ID and secret:

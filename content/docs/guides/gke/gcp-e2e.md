@@ -165,7 +165,9 @@ to verify their identity.
         `deploy.sh` uses your default GCP project for `<project>` but you can
         configure this with the environment variable `PROJECT`.
 
-1. Press Enter/Return to add the URI.
+1. Press **Enter/Return** to add the URI. Check that the URI now appears as
+  a confirmed item under **Authorized redirect URIs**. (It should no longer be
+  editable.)
 1. Click **Create**.
 1. Make note of the **client ID** and **client secret** that appear in the OAuth
   client window. You need them later to enable IAP.
@@ -910,9 +912,9 @@ Follow these steps to access the web UI in your web browser.
 1. Run the following command to access the UI via `kubectl port-forward`:
 
     ```
-    kubectl port-forward -n ${NAMESPACE}  `kubectl get pods \
-      --selector=app=web-ui-o jsonpath='{.items[0].metadata.name}'` 8080:80
-    ```
+    kubectl port-forward -n ${DEPLOYMENT_NAME}  `kubectl get pods --all-namespaces \
+      --selector=app=web-ui -o=jsonpath='{.items[0].metadata.name}'` 8080:5000
+  ```
 
 1. Open the UI in your web browser at `localhost:8080`. The web UI should load, 
    offering you three fields to connect to the prediction server:

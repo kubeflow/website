@@ -66,7 +66,13 @@ prediction serving, and service management.
 You can choose to deploy your workloads locally or to a cloud environment.
 
 ## Notebooks
+
 Included in Kubeflow is [JupyterHub](https://jupyterhub.readthedocs.io/en/stable/) to create and manage multi-user interactive Jupyter notebooks. Project Jupyter is a non-profit, open-source project to support interactive data science and scientific computing across all programming languages.
+
+## Using Kubeflow
+
+Read the [getting-started guide](/docs/started/getting-started) to set up your
+environment.
 
 ## Getting involved
 

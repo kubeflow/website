@@ -60,7 +60,7 @@ you've made
 When you are ready to join
 
   * Send a PR adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml#L19)  
-  * Adter the PR is merged an admin will send you an invite
+  * After the PR is merged an admin will send you an invite
     * This is a manual process that's generally run a couple times a week
     * If a week passes without recieving an invite reach out on [kubeflow#community](https://kubeflow.slack.com/messages/C8Q0QJYNB/convo/CABQ2BWHW-1544147308.002500/)
 
