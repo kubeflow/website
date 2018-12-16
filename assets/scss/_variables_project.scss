@@ -1,6 +1,6 @@
 /*
 
-Add styles or override variables from the theme here.
+Add styles or override the theme's variables here.
 
 */
 
@@ -12,9 +12,9 @@ $secondary: #fff;
 // Nav bar
 
 $white: #fff;
-$navbar-dark-color: rgba($white, 1) !default;
-$navbar-dark-hover-color: rgba($white, 0.75) !default;
-$navbar-dark-active-color: $navbar-dark-color !default;
+$navbar-dark-color: rgba($white, 1);
+$navbar-dark-hover-color: rgba($white, 0.75);
+$navbar-dark-active-color: $navbar-dark-color;
 
 // Dropdown menu in nav bar
 
