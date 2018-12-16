@@ -15,17 +15,3 @@ $white: #fff;
 $navbar-dark-color: rgba($white, 1);
 $navbar-dark-hover-color: rgba($white, 0.75);
 $navbar-dark-active-color: $navbar-dark-color;
-
-// Dropdown menu in nav bar
-
-div.dropdown {
-  position: relative;
-  display: inline-block; }
-div.dropdown:hover div.dropdown-content {
-    display: block; }
-div.dropdown-content {
-  background: #4279f4;
-  display: none;
-  position: absolute; }
-div.dropdown-content a {
-    display: block; }
