@@ -164,15 +164,18 @@ VERSION=v0.2-branch
 
 ks registry add kubeflow-git github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow
 ks pkg install kubeflow-git/examples
+```
 
-# list available tf-job prototypes and choose right one match with your crd
-....
-io.ksonnet.pkg.tf-job-operator                  A TensorFlow job operator.
-io.ksonnet.pkg.tf-job-simple                    A simple TFJob to run CNN benchmark
-io.ksonnet.pkg.tf-job-simple-v1alpha1           A simple TFJob to run CNN benchmark
-io.ksonnet.pkg.tf-job-simple-v1beta1            A simple TFJob to run CNN benchmark
-....
+Choose a tf-job prototype from the following list of available prototypes, to match the CRD you're using:
+> Type `ks prototype list` to list all available prototypes
 
+* `io.ksonnet.pkg.tf-job-operator`                  - A TensorFlow job operator.
+* `io.ksonnet.pkg.tf-job-simple`                    - A simple TFJob to run CNN benchmark
+* `io.ksonnet.pkg.tf-job-simple-v1alpha1`           - A simple TFJob to run CNN benchmark
+* `io.ksonnet.pkg.tf-job-simple-v1beta1`            - A simple TFJob to run CNN benchmark
+
+Run the `generate` command:
+```
 ks generate tf-job-simple ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
 ```
 
