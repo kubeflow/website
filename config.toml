@@ -94,7 +94,7 @@ weight = 1
 time_format_default = "02.01.2006"
 time_format_blog = "02.01.2006"
 
-# Docsy: Site params
+# Site params
 
 [params]
 github_repo = "https://github.com/kubeflow/kubeflow"
@@ -103,6 +103,9 @@ author = "kubeflow.org" # add your company name
 github = "kubeflow" # add your github profile name
 twitter = "kubeflow" # add your twitter profile
 #email = "myemail@myaddress.xxx"
+
+copyright = "Kubeflow.org."
+privacy_policy = "https://policies.google.com/privacy"
 
 version = "master"
 githubbranch = "master"
@@ -131,35 +134,37 @@ sidebar_menu_compact = false
 breadcrumb_disable = false
 
 [params.links]
-# Docsy: End user relevant links. These will show up on left side of footer and in the community page if you have one.
+# Docsy: "User" links will show on left side of footer and in the community page if you have one.
 [[params.links.user]]
-	name = "User mailing list"
-	url = "https://example.org/mail"
+	name ="Twitter"
+	url = "https://twitter.com/kubeflow"
+	icon = "fab fa-twitter"
+        desc = "Follow us on Twitter to get the latest news"
+[[params.links.user]]
+	name = "GitHub"
+	url = "https://github.com/kubeflow/kubeflow"
+	icon = "fab fa-github"
+        desc = "Development takes place here!"
+[[params.links.user]]
+	name = "Slack"
+	url = "https://join.slack.com/t/kubeflow/shared_invite/enQtNDg5MTM4NTQyNjczLWUyZGI1ZmExZWExYWY4YzlkOWI4NjljNjJhZjhjMjEwNGFjNmVkNjg2NTg4M2I0ZTM5NDExZWI5YTIyMzVmNzM"
+	icon = "fab fa-slack"
+        desc = "Chat with other project contributors"
+[[params.links.user]]
+	name = "Mailing list"
+	url = "https://groups.google.com/forum/#!forum/kubeflow-discuss"
 	icon = "fa fa-envelope"
         desc = "Discussion and help from your fellow users"
 [[params.links.user]]
-	name ="Twitter"
-	url = "https://example.org/twitter"
-	icon = "fab fa-twitter"
-        desc = "Follow us on Twitter to get the latest news!"
-[[params.links.user]]
-	name = "Stack Overflow"
-	url = "https://example.org/stack"
-	icon = "fab fa-stack-overflow"
-        desc = "Practical questions and curated answers"
-# Docsy: Developer relevant links. These will show up on right side of footer and in the community page if you have one.
-[[params.links.developer]]
-	name = "GitHub"
-	url = "https://github.com/google/docsy"
-	icon = "fab fa-github"
-        desc = "Development takes place here!"
-[[params.links.developer]]
-	name = "Slack"
-	url = "https://example.org/slack"
-	icon = "fab fa-slack"
-        desc = "Chat with other project developers"
-[[params.links.developer]]
-	name = "Developer mailing list"
-	url = "https://example.org/mail"
-	icon = "fa fa-envelope"
-        desc = "Discuss development issues around the project"
+	name = "Calendar"
+	url = "https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com&ctz=America%2FLos_Angeles"
+	icon = "fa fa-calendar"
+        desc = "Discussion and help from your fellow users"
+
+
+# Docsy: "Developer" links will show on right side of footer and in the community page if you have one.
+#[[params.links.developer]]
+#	name = "A name"
+#	url = "http://example.com"
+#	icon = "fab fa-envelope"
+#       desc = "A description"
