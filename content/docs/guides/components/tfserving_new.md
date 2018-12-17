@@ -78,7 +78,7 @@ Enable S3, set url and point to correct Secret
 ```
 MODEL_PATH=s3://kubeflow-models/inception
 ks param set ${MODEL_COMPONENT} modelBasePath ${MODEL_PATH}
-ks param set ${MODEL_COMPONENT} s3Enable True
+ks param set ${MODEL_COMPONENT} s3Enable true
 ks param set ${MODEL_COMPONENT} s3SecretName secretname
 ```
 
