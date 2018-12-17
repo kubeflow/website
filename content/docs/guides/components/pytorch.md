@@ -44,99 +44,101 @@ ks apply ${ENVIRONMENT} -c pytorch-operator
 
 ## Creating a PyTorch Job
 
-You can create PyTorch Job by defining a PyTorchJob config file. See [distributed MNIST example](https://github.com/kubeflow/pytorch-operator/blob/master/examples/dist-mnist/pytorch_job_mnist.yaml) config file. You may change the config file based on your requirements.
+You can create PyTorch Job by defining a PyTorchJob config file. See [distributed MNIST example](https://github.com/kubeflow/pytorch-operator/blob/master/examples/tcp-dist/mnist/v1beta1/pytorch_job_mnist.yaml) config file. You may change the config file based on your requirements.
 
 ```
-cat examples/dist-mnist/pytorch_job_mnist.yaml
+cat pytorch_job_mnist.yaml
 ```
 Deploy the PyTorchJob resource to start training:
 
 ```
-kubectl create -f examples/dist-mnist/pytorch_job_mnist.yaml
+kubectl create -f pytorch_job_mnist.yaml
 ```
 You should now be able to see the created pods matching the specified number of replicas.
 
 ```
-kubectl get pods -l pytorch_job_name=dist-mnist-for-e2e-test
+kubectl get pods -l pytorch_job_name=pytorch-tcp-dist-mnist
 ```
 Training should run for about 10 epochs and takes 5-10 minutes on a cpu cluster. Logs can be inspected to see its training progress.
 
 ```
-PODNAME=$(kubectl get pods -l pytorch_job_name=dist-mnist-for-e2e-test,task_index=0 -o name)
+PODNAME=$(kubectl get pods -l pytorch_job_name=pytorch-tcp-dist-mnist,pytorch-replica-type=master,pytorch-replica-index=0 -o name)
 kubectl logs -f ${PODNAME}
 ```
 ## Monitoring a PyTorch Job
 
 ```
-kubectl get -o yaml pytorchjobs dist-mnist-for-e2e-test
+kubectl get -o yaml pytorchjobs pytorch-tcp-dist-mnist
 ```
 See the status section to monitor the job status. Here is sample output when the job is successfully completed.
 
 ```
-apiVersion: v1
-items:
-- apiVersion: kubeflow.org/v1alpha1
-  kind: PyTorchJob
-  metadata:
-    clusterName: ""
-    creationTimestamp: 2018-06-22T08:16:14Z
-    generation: 1
-    name: dist-mnist-for-e2e-test
-    namespace: default
-    resourceVersion: "3276193"
-    selfLink: /apis/kubeflow.org/v1alpha1/namespaces/default/pytorchjobs/dist-mnist-for-e2e-test
-    uid: 87772d3b-75f4-11e8-bdd9-42010aa00072
-  spec:
-    RuntimeId: kmma
-    pytorchImage: pytorch/pytorch:v0.2
-    replicaSpecs:
-    - masterPort: 23456
-      replicaType: MASTER
-      replicas: 1
-      template:
-        metadata:
-          creationTimestamp: null
-        spec:
-          containers:
-          - image: gcr.io/kubeflow-ci/pytorch-dist-mnist_test:1.0
-            imagePullPolicy: IfNotPresent
-            name: pytorch
-            resources: {}
-          restartPolicy: OnFailure
-    - masterPort: 23456
-      replicaType: WORKER
-      replicas: 3
-      template:
-        metadata:
-          creationTimestamp: null
-        spec:
-          containers:
-          - image: gcr.io/kubeflow-ci/pytorch-dist-mnist_test:1.0
-            imagePullPolicy: IfNotPresent
-            name: pytorch
-            resources: {}
-          restartPolicy: OnFailure
-    terminationPolicy:
-      master:
-        replicaName: MASTER
-        replicaRank: 0
-  status:
-    phase: Done
-    reason: ""
-    replicaStatuses:
-    - ReplicasStates:
-        Succeeded: 1
-      replica_type: MASTER
-      state: Succeeded
-    - ReplicasStates:
-        Running: 1
-        Succeeded: 2
-      replica_type: WORKER
-      state: Running
-    state: Succeeded
-kind: List
+apiVersion: kubeflow.org/v1beta1
+kind: PyTorchJob
 metadata:
-  resourceVersion: ""
-  selfLink: ""
+  clusterName: ""
+  creationTimestamp: 2018-12-16T21:39:09Z
+  generation: 1
+  name: pytorch-tcp-dist-mnist
+  namespace: default
+  resourceVersion: "15532"
+  selfLink: /apis/kubeflow.org/v1beta1/namespaces/default/pytorchjobs/pytorch-tcp-dist-mnist
+  uid: 059391e8-017b-11e9-bf13-06afd8f55a5c
+spec:
+  cleanPodPolicy: None
+  pytorchReplicaSpecs:
+    Master:
+      replicas: 1
+      restartPolicy: OnFailure
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: gcr.io/kubeflow-ci/pytorch-dist-mnist_test:1.0
+            name: pytorch
+            ports:
+            - containerPort: 23456
+              name: pytorchjob-port
+            resources: {}
+    Worker:
+      replicas: 3
+      restartPolicy: OnFailure
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: gcr.io/kubeflow-ci/pytorch-dist-mnist_test:1.0
+            name: pytorch
+            ports:
+            - containerPort: 23456
+              name: pytorchjob-port
+            resources: {}
+status:
+  completionTime: 2018-12-16T21:43:27Z
+  conditions:
+  - lastTransitionTime: 2018-12-16T21:39:09Z
+    lastUpdateTime: 2018-12-16T21:39:09Z
+    message: PyTorchJob pytorch-tcp-dist-mnist is created.
+    reason: PyTorchJobCreated
+    status: "True"
+    type: Created
+  - lastTransitionTime: 2018-12-16T21:39:09Z
+    lastUpdateTime: 2018-12-16T21:40:45Z
+    message: PyTorchJob pytorch-tcp-dist-mnist is running.
+    reason: PyTorchJobRunning
+    status: "False"
+    type: Running
+  - lastTransitionTime: 2018-12-16T21:39:09Z
+    lastUpdateTime: 2018-12-16T21:43:27Z
+    message: PyTorchJob pytorch-tcp-dist-mnist is successfully completed.
+    reason: PyTorchJobSucceeded
+    status: "True"
+    type: Succeeded
+  replicaStatuses:
+    Master: {}
+    Worker: {}
+  startTime: 2018-12-16T21:40:45Z
 
 ```

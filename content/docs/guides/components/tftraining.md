@@ -165,6 +165,14 @@ VERSION=v0.2-branch
 ks registry add kubeflow-git github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow
 ks pkg install kubeflow-git/examples
 
+# list available tf-job prototypes and choose right one match with your crd
+....
+io.ksonnet.pkg.tf-job-operator                  A TensorFlow job operator.
+io.ksonnet.pkg.tf-job-simple                    A simple TFJob to run CNN benchmark
+io.ksonnet.pkg.tf-job-simple-v1alpha1           A simple TFJob to run CNN benchmark
+io.ksonnet.pkg.tf-job-simple-v1beta1            A simple TFJob to run CNN benchmark
+....
+
 ks generate tf-job-simple ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
 ```
 
@@ -244,6 +252,7 @@ To use GPUs your cluster must be configured to use GPUs.
   * For more information:
       * [K8s Instructions For Scheduling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/)
       * [GKE Instructions](https://cloud.google.com/kubernetes-engine/docs/concepts/gpus)
+      * [EKS Instructions](https://docs.aws.amazon.com/eks/latest/userguide/gpu-ami.html)
 
 To attach GPUs specify the GPU resource on the container in the replicas
 that should contain the GPUs; for example.
