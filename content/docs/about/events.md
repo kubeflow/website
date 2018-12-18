@@ -16,24 +16,24 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
 * [Data Day Texas, Austin](https://datadaytexas.com/), 26 January, 2019
   - Kubeflow: Portable Machine Learning on Kubernetes: Michelle Casbon
 * [KubeCon, Seattle](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-north-america-2018/), 11-13 December, 2018
+  - [Deep Dive: Kubeflow BoF](https://sched.co/Ha1X): Jeremy Lewi, David Aronchick
+      - [Slides](https://docs.google.com/presentation/d/1QP-o4O3ygpJ6aVfu6lAm0tMWYhAvdKE9FD6_92DB3EY)
+      - [Video](https://www.youtube.com/watch?v=gbZJ8eSIfJg)
+  - [Eco-Friendly ML: How the Kubeflow Ecosystem Bootstrapped Itself](https://sched.co/GrTc): Peter McKinnon
+      - [Slides](https://docs.google.com/presentation/d/1DUJHiYxz0D6qexBbNGjtRHYi4ERTKUOZ-LvqoHVKS-E)
+      - [Video](https://www.youtube.com/watch?v=EVSfp8HGJXY)
+  - [Machine Learning as Code](https://sched.co/GrVh): Jay Smith
+      - [Slides](https://docs.google.com/presentation/d/1XKyf5fAM9KfF4OSnZREoDu-BP8JBtGkuSv72iX7CARY)
+      - [Video](https://www.youtube.com/watch?v=VXrGp5er1ZE)
+  - [Natural Language Code Search for GitHub Using Kubeflow](https://sched.co/GrVn): Jeremy Lewi, Hamel Husain
+      - [Slides](https://drive.google.com/open?id=1jHE61fAqZNgaDrpItk5L_tCzLU0DuL86rCz4yAKz4Ss)
+      - [Video](https://www.youtube.com/watch?v=SF77UBvfTHU)
   - [Workshop: Kubeflow End-to-End: GitHub Issue Summarization](https://sched.co/GrWE): Amy Unruh, Michelle Casbon
       - [Codelab](g.co/codelabs/kubecon18)
       - [Slides](https://docs.google.com/presentation/d/1FFftSbWidin3opCIl4U0HVPvS6xk17izUFrrMR7e5qk)
       - [Video](https://www.youtube.com/watch?v=UdthJEq8YsA)
-  - [Natural Language Code Search for GitHub Using Kubeflow](https://sched.co/GrVn): Jeremy Lewi, Hamel Husain
-      - [Slides](https://drive.google.com/open?id=1jHE61fAqZNgaDrpItk5L_tCzLU0DuL86rCz4yAKz4Ss)
-      - [Video](https://www.youtube.com/watch?v=SF77UBvfTHU)
-  - [Eco-Friendly ML: How the Kubeflow Ecosystem Bootstrapped Itself](https://sched.co/GrTc): Peter McKinnon
-      - [Slides](https://docs.google.com/presentation/d/1DUJHiYxz0D6qexBbNGjtRHYi4ERTKUOZ-LvqoHVKS-E)
-      - [Video](https://www.youtube.com/watch?v=EVSfp8HGJXY)
-  - [Deep Dive: Kubeflow BoF](https://sched.co/Ha1X): Jeremy Lewi, David Aronchick
-      - [Slides](https://docs.google.com/presentation/d/1QP-o4O3ygpJ6aVfu6lAm0tMWYhAvdKE9FD6_92DB3EY)
-      - [Video](https://www.youtube.com/watch?v=gbZJ8eSIfJg)
-  - [Machine Learning as Code](https://sched.co/GrVh): Jay Smith
-      - [Slides](https://docs.google.com/presentation/d/1XKyf5fAM9KfF4OSnZREoDu-BP8JBtGkuSv72iX7CARY)
-      - [Video](https://www.youtube.com/watch?v=VXrGp5er1ZE)
 * Women in ML & Data Science, Melbourne, 5 December, 2018
-  - Panel: Juliet Hougland, Michelle Casbon
+  - Panel: Michelle Casbon
 * [YOW!, Melbourne](https://melbourne.yowconference.com.au/), 4-7 December, 2018
   - [Kubeflow Explained: NLP Architectures on Kubernetes](https://melbourne.yowconference.com.au/proposal/?id=6858): Michelle Casbon
 * [YOW!, Brisbane](https://brisbane.yowconference.com.au/), 3-4 December, 2018
