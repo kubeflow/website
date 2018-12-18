@@ -24,6 +24,36 @@ Here are some tips for troubleshooting Cloud IAP.
 
  * Make sure you are using HTTPS
 
+### DNS name not registered
+
+This section provides troubleshooting information for problems creating a DNS entry for your ingress. This section assumes
+you are using Cloud Endpoints and the DNS name
+
+```
+https://${DEPLOYMENT_NAME}.endpoints.${PROJECT}.cloud.goog
+```
+
+Symptoms
+
+  * When you access the the URL in chrome you get the error: **server IP address could not be found**
+  * nslookup for the domain name doesn't return the IP address associated with the ingress
+
+    ```
+    nslookup ${DEPLOYMENT_NAME}.endpoints.${PROJECT}.cloud.goog
+    Server:   127.0.0.1
+    Address:  127.0.0.1#53
+
+    ** server can't find ${DEPLOYMENT_NAME}.endpoints.${PROJECT}.cloud.goog: NXDOMAIN
+    ```
+
+Troubleshooting
+
+1. Check the cloud endpoints resource
+
+   ```
+   kubectl get cloudendpoints -o yaml ${DEPLOYMENT_NAME}
+   ```
+
 ### 404 Page Not Found When Accessing Central Dashboard
 
 This section provides troubleshooting information for 404s, page not found, being return by the central dashboard which is served at
