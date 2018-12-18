@@ -13,13 +13,13 @@ toc = true
 
 After ModelDB is deployed using kfctl.sh and the modeldb-db, modeldb-frontend and modeldb-backend pods are running - 
 
-1. Port forward the modeldb-backend port to port 6543 - 
+ Port forward the modeldb-backend pod to port 6543 - 
 
 ```
 kubectl get pods -n kubeflow # Find your modeldb-backend pod
 kubectl port-forward [modeldb-backend pod] 6543:6543 -n kubeflow
 ``` 
-2. Create a ModelDB syncer
+1. Create a ModelDB syncer
 
 ModelDBSyncer is the object that logs models and operations to the ModelDB backend. You can initialize the Syncer with your specified configurations as shown below. Explore the ModelDBSyncer here for more details on the Syncer object and the different ways to initialize it.
 
@@ -39,9 +39,9 @@ syncer_obj = Syncer(
     NewExperimentRun("", "sha_A1B2C3D4"))
 ```
 
-3. Sync Information
+1. Sync Information
 
-Method 1 :
+*Method 1 :
 
 Load all model information from a JSON or a YAML file. The expected key names can be found [here](https://github.com/mitdbg/modeldb/blob/master/client/python/modeldb/utils/MetadataConstants.py). There are also samples JSON and YAML
  files in samples/basic.
@@ -51,7 +51,7 @@ syncer_obj.sync_all(filepath)
 syncer_obj.sync()
 ```
 
-Method 2 :
+*Method 2 :
 
 Initialize the Dataset, Model, ModelConfig, ModelMetrics classes with the needed information as arguments then call the sync methods on the Syncer object. Finally, call syncer_obj.sync().
 ```
@@ -82,14 +82,14 @@ syncer_obj.sync()
 ```
 The code for the API can be found in [ModelDbSyncerBase.py](https://github.com/mitdbg/modeldb/blob/master/client/python/modeldb/basic/ModelDbSyncerBase.py), where the Syncer, Dataset, Model, ModelConfig, ModelMetrics classes and their methods are declared.
 
-4.Port-forward the modeldb-frontend pod to port 3000.
+1. Port-forward the modeldb-frontend pod to port 3000.
 ```
 kubectl get pods -n kubeflow # Get modeldb-frontend pod
 kubectl port-forward [modeldb-frontend pod] 3000 -n kubeflow 
 ```
-5. Run your model in the browser at https://localhost:3000/.
+1. Run your model in the browser at https://localhost:3000/.
 
-##Samples
+## Samples
 
 
 [BasicWorkflow.py](https://github.com/mitdbg/modeldb/blob/master/client/python/samples/basic/BasicWorkflow.py) and [BasicSyncAll.py](https://github.com/mitdbg/modeldb/blob/master/client/python/samples/basic/BasicSyncAll.py)
