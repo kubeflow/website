@@ -17,10 +17,21 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
   - Kubeflow: Portable Machine Learning on Kubernetes: Michelle Casbon
 * [KubeCon, Seattle](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-north-america-2018/), 11-13 December, 2018
   - [Workshop: Kubeflow End-to-End: GitHub Issue Summarization](https://sched.co/GrWE): Amy Unruh, Michelle Casbon
+      - [Codelab](g.co/codelabs/kubecon18)
+      - [Slides](https://docs.google.com/presentation/d/1FFftSbWidin3opCIl4U0HVPvS6xk17izUFrrMR7e5qk)
+      - [Video](https://www.youtube.com/watch?v=UdthJEq8YsA)
   - [Natural Language Code Search for GitHub Using Kubeflow](https://sched.co/GrVn): Jeremy Lewi, Hamel Husain
+      - [Slides](https://drive.google.com/open?id=1jHE61fAqZNgaDrpItk5L_tCzLU0DuL86rCz4yAKz4Ss)
+      - [Video](https://www.youtube.com/watch?v=SF77UBvfTHU)
   - [Eco-Friendly ML: How the Kubeflow Ecosystem Bootstrapped Itself](https://sched.co/GrTc): Peter McKinnon
+      - [Slides](https://docs.google.com/presentation/d/1DUJHiYxz0D6qexBbNGjtRHYi4ERTKUOZ-LvqoHVKS-E)
+      - [Video](https://www.youtube.com/watch?v=EVSfp8HGJXY)
   - [Deep Dive: Kubeflow BoF](https://sched.co/Ha1X): Jeremy Lewi, David Aronchick
+      - [Slides](https://docs.google.com/presentation/d/1QP-o4O3ygpJ6aVfu6lAm0tMWYhAvdKE9FD6_92DB3EY)
+      - [Video](https://www.youtube.com/watch?v=gbZJ8eSIfJg)
   - [Machine Learning as Code](https://sched.co/GrVh): Jay Smith
+      - [Slides](https://docs.google.com/presentation/d/1XKyf5fAM9KfF4OSnZREoDu-BP8JBtGkuSv72iX7CARY)
+      - [Video](https://www.youtube.com/watch?v=VXrGp5er1ZE)
 * Women in ML & Data Science, Melbourne, 5 December, 2018
   - Panel: Juliet Hougland, Michelle Casbon
 * [YOW!, Melbourne](https://melbourne.yowconference.com.au/), 4-7 December, 2018
@@ -31,9 +42,25 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
   - [Kubeflow Explained: NLP Architectures on Kubernetes](https://sydney.yowconference.com.au/proposal/?id=6860): Michelle Casbon
 * [Scale By the Bay, San Francisco](http://scale.bythebay.io/), 15-17 November, 2018
   - [Data Engineering & AI Panel](https://sched.co/Fndz): Michelle Casbon
+      - [Video](https://www.youtube.com/watch?v=sJd9RRmgCH4)
 * [KubeCon, Shanghai](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2018/), 13-15 November, 2018
-  - [CI/CD Pipelines & Machine Learning](https://sched.co/FuJo): Jeremy Lewi
+  - [A Tale of Using Kubeflow to Make the Electricity Smarter in China](https://sched.co/FzGn): Julia Han, Xin Zhang
+      - [Slides](https://schd.ws/hosted_files/kccncchina2018english/34/XinZhang_JuliaHan_En.pdf)
+      - [Video](https://www.youtube.com/watch?v=fad1FsfEvNY)
   - [A Year of Democratizing ML With Kubernetes & Kubeflow](https://sched.co/FuLr): David Aronchick, Fei Xue
+      - [Video](https://www.youtube.com/watch?v=oMlddDdJgEg)
+  - [Benchmarking Machine Learning Workloads on Kubeflow](https://sched.co/FuJw): Xinyuan Huang, Ce Gao
+      - [Video](https://www.youtube.com/watch?v=9sLRIBYYUlQ)
+  - [CI/CD Pipelines & Machine Learning](https://sched.co/FuJo): Jeremy Lewi
+      - [Video](https://www.youtube.com/watch?v=EH850bIQVag)
+  - [Kubeflow From the End User's Perspective](https://sched.co/FuJx): Xin Zhang
+      - [Video](https://www.youtube.com/watch?v=x0CKhyoV9aI)
+  - [Kubernetes CI/CD Hacks with KicroK8s and Kubeflow](https://sched.co/FuJc): Land Lu, Zhang Lei Mao
+      - [Video](https://www.youtube.com/watch?v=1SSvS2w5OMQ)
+  - [Machine Learning on Kubernetes BoF](https://sched.co/FuJs): David Aronchick
+      - [Video](https://www.youtube.com/watch?v=0eEAZ7lmLbo)
+  - [Operating Deep Learning Pipelines Anywhere Using Kubeflow](https://sched.co/FuJt): Jörg Schad, Gilbert Song
+      - [Video](https://www.youtube.com/watch?v=63HJgZK27mU)
 * [DevFest, Seattle](https://www.eventbrite.com/e/devfest-seattle-2018-tickets-50408043816), 3 November, 2018
   - Kubeflow End to End: Amy Unruh
 * [Data@Scale, Boston](https://dataatscale2018.splashthat.com/), 25 October, 2018
