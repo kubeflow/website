@@ -52,8 +52,36 @@ Troubleshooting
 
    ```
    kubectl get cloudendpoints -o yaml ${DEPLOYMENT_NAME}
+   kubectl describe cloudendpoints ${DEPLOYMENT_NAME}
    ```
 
+   * Check if there are errors indicating problems creating the endpoint
+
+1. The status of the cloudendpoints object will contain the cloud operation used to register the operation
+
+   * e.g
+
+     ```
+      status:
+        config: ""
+        configMapHash: ""
+        configSubmit: operations/serviceConfigs.jlewi-1218-001.endpoints.cloud-ml-dev.cloud.goog:43fe6c6f-eb9c-41d0-ac85-b547fc3e6e38
+        endpoint: jlewi-1218-001.endpoints.cloud-ml-dev.cloud.goog
+        ingressIP: 35.227.243.83
+        jwtAudiences: null
+        lastAppliedSig: 4f3b903a06a683b380bf1aac1deca72792472429
+        observedGeneration: 1
+        stateCurrent: ENDPOINT_SUBMIT_PENDING
+
+     ```
+
+  * You can check the status of the operation
+
+    ```
+    gcloud --project=${PROJECT} endpoints operations describe ${OPERATION}
+    ```
+
+    * Operation is everything after "operations/" in the configSubmit field
 ### 404 Page Not Found When Accessing Central Dashboard
 
 This section provides troubleshooting information for 404s, page not found, being return by the central dashboard which is served at
