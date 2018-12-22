@@ -29,17 +29,20 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
       - [Slides](https://drive.google.com/open?id=1jHE61fAqZNgaDrpItk5L_tCzLU0DuL86rCz4yAKz4Ss)
       - [Video](https://www.youtube.com/watch?v=SF77UBvfTHU)
   - [Workshop: Kubeflow End-to-End: GitHub Issue Summarization](https://sched.co/GrWE): Amy Unruh, Michelle Casbon
-      - [Codelab](g.co/codelabs/kubecon18)
+      - [Codelab](https://g.co/codelabs/kubecon18)
       - [Slides](https://docs.google.com/presentation/d/1FFftSbWidin3opCIl4U0HVPvS6xk17izUFrrMR7e5qk)
       - [Video](https://www.youtube.com/watch?v=UdthJEq8YsA)
-* Women in ML & Data Science, Melbourne, 5 December, 2018
-  - Panel: Michelle Casbon
+* [Women in ML & Data Science](https://www.meetup.com/Melbourne-Women-in-Machine-Learning-and-Data-Science/), Melbourne, 5 December, 2018
+  - [Panel](https://www.meetup.com/Melbourne-Women-in-Machine-Learning-and-Data-Science/events/256563019/): Michelle Casbon
 * [YOW!, Melbourne](https://melbourne.yowconference.com.au/), 4-7 December, 2018
   - [Kubeflow Explained: NLP Architectures on Kubernetes](https://melbourne.yowconference.com.au/proposal/?id=6858): Michelle Casbon
+      - [Slides](https://docs.google.com/presentation/d/1lXs1B4xrXTK2QiVe5rJSPCQjTdyMDfNVJcZCLh-Bcu0)
 * [YOW!, Brisbane](https://brisbane.yowconference.com.au/), 3-4 December, 2018
   - [Kubeflow Explained: NLP Architectures on Kubernetes](https://brisbane.yowconference.com.au/proposal/?id=6859): Michelle Casbon
+      - [Slides](https://docs.google.com/presentation/d/1lXs1B4xrXTK2QiVe5rJSPCQjTdyMDfNVJcZCLh-Bcu0)
 * [YOW!, Sydney](https://sydney.yowconference.com.au/), 27-30 November, 2018
   - [Kubeflow Explained: NLP Architectures on Kubernetes](https://sydney.yowconference.com.au/proposal/?id=6860): Michelle Casbon
+      - [Slides](https://docs.google.com/presentation/d/1lXs1B4xrXTK2QiVe5rJSPCQjTdyMDfNVJcZCLh-Bcu0)
 * [Scale By the Bay, San Francisco](http://scale.bythebay.io/), 15-17 November, 2018
   - [Data Engineering & AI Panel](https://sched.co/Fndz): Michelle Casbon
       - [Video](https://www.youtube.com/watch?v=sJd9RRmgCH4)
@@ -48,18 +51,23 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
       - [Slides](https://schd.ws/hosted_files/kccncchina2018english/34/XinZhang_JuliaHan_En.pdf)
       - [Video](https://www.youtube.com/watch?v=fad1FsfEvNY)
   - [A Year of Democratizing ML With Kubernetes & Kubeflow](https://sched.co/FuLr): David Aronchick, Fei Xue
+      - [Slides](https://docs.google.com/presentation/d/1ZuZs32CFPYZ9ub8o8whSK8SA2333UjtAVujRnKJTf2M)
       - [Video](https://www.youtube.com/watch?v=oMlddDdJgEg)
   - [Benchmarking Machine Learning Workloads on Kubeflow](https://sched.co/FuJw): Xinyuan Huang, Ce Gao
+      - [Slides](https://schd.ws/hosted_files/kccncchina2018english/22/Kubebench_KubeCon2018China.pdf)
       - [Video](https://www.youtube.com/watch?v=9sLRIBYYUlQ)
   - [CI/CD Pipelines & Machine Learning](https://sched.co/FuJo): Jeremy Lewi
+      - [Slides](https://schd.ws/hosted_files/kccncchina2018english/ee/KubeConChina2018.pdf)
       - [Video](https://www.youtube.com/watch?v=EH850bIQVag)
   - [Kubeflow From the End User's Perspective](https://sched.co/FuJx): Xin Zhang
       - [Video](https://www.youtube.com/watch?v=x0CKhyoV9aI)
   - [Kubernetes CI/CD Hacks with KicroK8s and Kubeflow](https://sched.co/FuJc): Land Lu, Zhang Lei Mao
+      - [Slides](https://schd.ws/hosted_files/kccncchina2018english/0a/Kubecon%20Shanghai%20-%20CICD%20Hacks_Canonical.pdf)
       - [Video](https://www.youtube.com/watch?v=1SSvS2w5OMQ)
   - [Machine Learning on Kubernetes BoF](https://sched.co/FuJs): David Aronchick
       - [Video](https://www.youtube.com/watch?v=0eEAZ7lmLbo)
   - [Operating Deep Learning Pipelines Anywhere Using Kubeflow](https://sched.co/FuJt): Jörg Schad, Gilbert Song
+      - [Slides](https://schd.ws/hosted_files/kccncchina2018english/fe/Kubecon%20KubeFlow%2B%2B%20Summit.pdf)
       - [Video](https://www.youtube.com/watch?v=63HJgZK27mU)
 * [DevFest, Seattle](https://www.eventbrite.com/e/devfest-seattle-2018-tickets-50408043816), 3 November, 2018
   - Kubeflow End to End: Amy Unruh
@@ -73,7 +81,7 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
 * Cloud-Native, Docker, and Kubernetes Summit, Dallas, 12 September, 2018
   - [Deploying Machine Learning Workloads in Kubernetes clusters that support GPUs](https://www.eventbrite.com/e/kubernetes-classes-at-cloud-native-docker-k8s-summit-tickets-44954443952): Michael Iatrou
 * [O’Reilly Strata Data, New York](https://conferences.oreilly.com/strata/strata-ny), 11-13 September, 2018
-  - [From Training to Serving: Deploying Tensorflow Models with Kubernetes](https://conferences.oreilly.com/strata/strata-ny/public/schedule/detail/69362): Brian Foo, Jay Smith, David Aronchick
+  - [From Training to Serving: Deploying Tensorflow Models with Kubernetes](https://conferences.oreilly.com/strata/strata-ny/public/schedule/detail/69362): Brian Foo, Holden Karau, Jay Smith
   - [Kubeflow Explained: Portable Machine Learning on Kubernetes](https://conferences.oreilly.com/strata/strata-ny/public/schedule/detail/69041): Michelle Casbon
 * [O'Reilly AI Conference, San Francisco](https://conferences.oreilly.com/artificial-intelligence/ai-ca), 4-7 September, 2018
   - [TensorFlow Days: Kubeflow: Portable Machine Learning on Kubernetes](https://conferences.oreilly.com/artificial-intelligence/ai-ca/public/schedule/topic/2899): Michelle Casbon
