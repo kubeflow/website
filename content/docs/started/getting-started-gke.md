@@ -68,7 +68,7 @@ Create an OAuth client ID to be used to identify Cloud IAP when requesting acces
    * Under **Application type**, select **Web application**.
    * In the **Name** box enter any name for your OAuth client ID. This is *not*
      the name of your application nor the name of your Kubeflow deployment. It's
-     just a way to help you identify the OAuth ID.
+     just a way to help you identify the OAuth client ID.
    * In the **Authorized redirect URIs** box, enter the following:
 
         ```
