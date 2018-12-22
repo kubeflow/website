@@ -14,7 +14,7 @@ Generate the service(model) component
 
 ```
 ks generate tf-serving-service mnist-service
-ks param set mnist-service modelName mnist
+ks param set mnist-service modelName mnist    // match your deployment mode name
 ks param set mnist-service trafficRule v1:100    // optional, it's the default value
 ```
 
@@ -53,10 +53,10 @@ See [doc](https://cloud.google.com/docs/authentication/) for more detail.
 
 To use S3, generate a different prototype
 ```
-ks generate tf-serving-aws ${MODEL_COMPONENT} --name=${MODEL_NAME}
+ks generate tf-serving-deployment-aws ${MODEL_COMPONENT} --name=${MODEL_NAME}
 ```
 
-First you need to create secret that will contain access credentials.
+First you need to create secret that will contain access credentials. Use base64 to encode your credentials and check deails in the Kubernetes guide to [creating a secret manually](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret-manually)
 ```
 apiVersion: v1
 metadata:
@@ -71,8 +71,8 @@ Enable S3, set url and point to correct Secret
 
 ```
 MODEL_PATH=s3://kubeflow-models/inception
-ks param set ${MODEL_COMPONENT} modelPath ${MODEL_PATH}
-ks param set ${MODEL_COMPONENT} s3Enable True
+ks param set ${MODEL_COMPONENT} modelBasePath ${MODEL_PATH}
+ks param set ${MODEL_COMPONENT} s3Enable true
 ks param set ${MODEL_COMPONENT} s3SecretName secretname
 ```
 
@@ -82,7 +82,7 @@ Optionally you can also override default parameters of S3
 # S3 region
 ks param set ${MODEL_COMPONENT} s3AwsRegion us-west-1
 
-# true Whether or not to use https for S3 connections
+# Whether or not to use https for S3 connections
 ks param set ${MODEL_COMPONENT} s3UseHttps true
 
 # Whether or not to verify https certificates for S3 connections
