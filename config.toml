@@ -97,7 +97,7 @@ time_format_blog = "02.01.2006"
 # Site params
 
 [params]
-github_repo = "https://github.com/kubeflow/kubeflow"
+github_repo = "https://github.com/kubeflow/website"
 RSSLink = "/index.xml"
 author = "kubeflow.org" # add your company name
 github = "kubeflow" # add your github profile name
