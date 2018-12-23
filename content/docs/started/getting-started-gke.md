@@ -42,35 +42,48 @@ You do not need a running GKE cluster. A cluster will be created when you execut
 
 Create an OAuth client ID to be used to identify Cloud IAP when requesting access to user's email to verify their identity.
 
-1. Set up your OAuth consent screen:
-   * Configure the [consent screen](https://console.cloud.google.com/apis/credentials/consent).
-   * Under **Email address**, select the address that you want to display as a public contact. You must use either your email address or a Google Group that you own.
-   * In the **Product name** box, enter a suitable name like `kubeflow`.
+1. Set up your OAuth [consent screen](https://console.cloud.google.com/apis/credentials/consent):
+   * In the **Application name** box, enter the name of your application.
+     The example below uses the name "Kubeflow".
+   * Under **Support email**, select the email address that you want to display 
+     as a public contact. You must use either your email address or a Google 
+     Group that you own.
    * If you see **Authorized domains**, enter
 
         ```
         <project>.cloud.goog
         ```
         * where \<project\> is your Google Cloud Platform (GCP) project ID.
-        * If you are using your own domain e.g. **acme.com** you should add that as well
-        * The **Authorized domains** option appears only for certain project configurations. If you don't see the option, then there's nothing you need to set.        
-   * Click Save.
+        * If you are using your own domain, such as **acme.com**, you should add 
+          that as well
+        * The **Authorized domains** option appears only for certain project 
+          configurations. If you don't see the option, then there's nothing you 
+          need to set.        
+   * Click **Save**.
    * Here's a screenshot
    
      ![consent-screen](/docs/images/consent-screen.png)
-1. On the [Credentials](https://console.cloud.google.com/apis/credentials) screen:
+1. On the [credentials tab](https://console.cloud.google.com/apis/credentials):
    * Click **Create credentials**, and then click **OAuth client ID**.
    * Under **Application type**, select **Web application**.
-   * In the **Name** box enter any name.
+   * In the **Name** box enter any name for your OAuth client ID. This is *not*
+     the name of your application nor the name of your Kubeflow deployment. It's
+     just a way to help you identify the OAuth client ID.
    * In the **Authorized redirect URIs** box, enter the following:
 
         ```
-        https://<name>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate
+        https://<deployment_name>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate
         ```
-        * `<name>` and `<project>` must have the same values as set in the next
-          step when you run the deployment script.
-        * The deployment default for `<name>` is the `KFAPP` value used when initializing your Kubeflow app, but you can configure this with the environment variable `DEPLOYMENT_NAME`.
-        * `<project>` is your GCP project.
+        * `<deployment_name>` must be the name of your Kubeflow deployment. It 
+          must have the same value as the deployment name used in the next step 
+          when you deploy Kubeflow from the UI or by running the deployment
+          script. 
+          The default value for the deployment name is the `KFAPP` value 
+          used when initializing your Kubeflow app, but you can configure this 
+          with the environment variable `DEPLOYMENT_NAME`.
+        * `<project>` is your GCP project. It must have the same value as used 
+           in the next step when you deploy Kubeflow from the UI or by running 
+           the deployment script.
     * Here's what the form should look like
 
       ![oauth-credential](/docs/images/oauth-credential.png)
@@ -129,13 +142,13 @@ Run the following steps to deploy Kubeflow:
 1. Kubeflow will be available at the following URI:
 
     ```
-    https://<name>.endpoints.<project>.cloud.goog/
+    https://<deployment_name>.endpoints.<project>.cloud.goog/
     ```
    * It can take 10-15 minutes for the endpoint to become available.
-     * Kubeflow needs to provision a signed SSL certificate and register a DNS name.
+     Kubeflow needs to provision a signed SSL certificate and register a DNS name.
    * If you own/manage the domain or a subdomain with [Cloud DNS](https://cloud.google.com/dns/docs/)
      then you can configure this process to be much faster.
-     * See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
+     See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
    * While you wait you can access Kubeflow services by using `kubectl proxy` and `kubectl port-forward` to connect to services in the cluster.
 1. We recommend checking in the contents of **${KFAPP}** into source control.
 1. To delete your deployment and reclaim all resources:
