@@ -104,7 +104,7 @@ github = "kubeflow" # add your github profile name
 twitter = "kubeflow" # add your twitter profile
 #email = "myemail@myaddress.xxx"
 
-copyright = "Kubeflow.org."
+copyright = "The Kubeflow Authors."
 privacy_policy = "https://policies.google.com/privacy"
 
 version = "master"
