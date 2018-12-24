@@ -11,19 +11,20 @@ $secondary: #fff;
 $dark: #213d7a;
 $info: #adb5bd;
 
-// Nav bar
+// Nav bar colors
 
 $white: #fff;
 $navbar-dark-color: rgba($white, 1);
 $navbar-dark-hover-color: rgba($white, 0.75);
 $navbar-dark-active-color: $navbar-dark-color;
 
-// Front page
+// Front page styling
 
 .section-head {
   font-size: 1.25em;
   color: $primary;
   font-weight: bold;
+  padding: 0 0 1em 0;
 }
 
 .contain {
@@ -51,32 +52,33 @@ $navbar-dark-active-color: $navbar-dark-color;
 
 #overview {
   border-bottom: 2px solid #b6d0ff;
-  padding: 1.5em 1.5em;
+  padding: 6em 1.5em 3em 1.5em;
   text-align: center;
-  font-size: 1.125em;
-  margin-bottom: 1.5em; }
+  margin: 0; }
+  #overview p {
+    font-size: 1.125em;}
 
 #pageContent .lead {
-  margin: 3em 0; }
+  margin: 0 1.5em 3em 1.5em;}
   #pageContent .lead > .image {
     padding: 0 1.5em;
     max-width: 60%;
     margin-bottom: 1.5em; }
   #pageContent .lead > .text p {
-    font-size: 1.125em; }
+    font-size: 1em; }
 
 @media screen and (min-width: 480px) {
   #overview {
-    font-size: 1.25em; }
+    font-size: 1.125em; }
   #pageContent .lead > .image {
     max-width: 35%;
     margin-bottom: 3em; }
   #pageContent .lead > .text p {
-    font-size: 1.125em; } }
+    font-size: 1em; } }
 
 @media screen and (min-width: 769px) {
   #pageContent .lead {
-    margin-top: 6em;
+    margin-top: 1em;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: row;
