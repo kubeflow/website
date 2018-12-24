@@ -4,6 +4,13 @@ Add styles or override the theme's variables here.
 
 */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i");
+.td-navbar .navbar-brand svg {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 2px;
+  height: 30px;
+  background: white; }
+
 .section-head {
   font-size: 1.25em;
   color: #4279f4;

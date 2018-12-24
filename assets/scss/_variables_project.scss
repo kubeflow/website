@@ -18,6 +18,20 @@ $navbar-dark-color: rgba($white, 1);
 $navbar-dark-hover-color: rgba($white, 0.75);
 $navbar-dark-active-color: $navbar-dark-color;
 
+// Logo styling
+
+.td-navbar {
+  .navbar-brand {
+    svg {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 2px;
+        height: 30px;
+        background: white;
+    }
+  }
+}
+
 // Front page styling
 
 .section-head {
