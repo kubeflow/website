@@ -27,7 +27,7 @@ Here are some tips for troubleshooting Cloud IAP.
 ### DNS name not registered
 
 This section provides troubleshooting information for problems creating a DNS entry for your [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). The ingress is a K8s resource
-that creates GCP loadbalancer that allows http(s) access to Kubeflow web services from outside
+that creates a GCP loadbalancer to enable http(s) access to Kubeflow web services from outside
 the cluster. This section assumes
 you are using [Cloud Endpoints](https://cloud.google.com/endpoints/) and a DNS name of the following pattern
 
