@@ -26,16 +26,18 @@ Here are some tips for troubleshooting Cloud IAP.
 
 ### DNS name not registered
 
-This section provides troubleshooting information for problems creating a DNS entry for your ingress. This section assumes
-you are using Cloud Endpoints and the DNS name
+This section provides troubleshooting information for problems creating a DNS entry for your [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). The ingress is a K8s resource
+that creates GCP loadbalancer that allows http(s) access to Kubeflow web services from outside
+the cluster. This section assumes
+you are using [Cloud Endpoints](https://cloud.google.com/endpoints/) and a DNS name of the following pattern
 
 ```
 https://${DEPLOYMENT_NAME}.endpoints.${PROJECT}.cloud.goog
 ```
 
-Symptoms
+Symptoms:
 
-  * When you access the the URL in chrome you get the error: **server IP address could not be found**
+  * When you access the the URL in Chrome you get the error: **server IP address could not be found**
   * nslookup for the domain name doesn't return the IP address associated with the ingress
 
     ```
@@ -48,7 +50,7 @@ Symptoms
 
 Troubleshooting
 
-1. Check the cloud endpoints resource
+1. Check the `cloudendpoints` resource
 
    ```
    kubectl get cloudendpoints -o yaml ${DEPLOYMENT_NAME}
@@ -57,9 +59,9 @@ Troubleshooting
 
    * Check if there are errors indicating problems creating the endpoint
 
-1. The status of the cloudendpoints object will contain the cloud operation used to register the operation
+1. The status of the `cloudendpoints` object will contain the cloud operation used to register the operation
 
-   * e.g
+   * For example
 
      ```
       status:
@@ -75,13 +77,14 @@ Troubleshooting
 
      ```
 
-  * You can check the status of the operation
+  * You can check the status of the operation by running:
 
     ```
     gcloud --project=${PROJECT} endpoints operations describe ${OPERATION}
     ```
 
-    * Operation is everything after "operations/" in the configSubmit field
+    * Operation is everything after `operations/` in the `configSubmit` field
+
 ### 404 Page Not Found When Accessing Central Dashboard
 
 This section provides troubleshooting information for 404s, page not found, being return by the central dashboard which is served at
@@ -102,7 +105,7 @@ This section provides troubleshooting information for 404s, page not found, bein
    envoy-76774f8d5c-sg555   2/2       Running   2          4m
    ```
 
-* Try other services to see if they're accessible e.g
+* Try other services to see if they're accessible for example
 
    ```
    https://${KUBEFLOW_FQDN}/whoami
