@@ -14,6 +14,10 @@ how to deploy Kubeflow on Kubernetes Engine (GKE), train a machine learning
 model for image classification, save the trained model, and use the model for 
 online inference (also known as online prediction).
 
+**Note:** This guide works only with **Kubeflow v0.2.7**. We're working on an 
+upgrade  of the code and the guide. See issue 
+[#261](https://github.com/kubeflow/website/issues/261).
+
 ## Introductions
 
 ### Overview of GCP and Kubernetes Engine
