@@ -21,14 +21,14 @@ Follow these steps to deploy Kubeflow and open the pipelines dashboard:
   deploy Kubeflow using the 
   [Kubeflow deployment UI](https://deploy.kubeflow.cloud/).
 
-    (_Due to 
+    _Due to 
     [kubeflow/pipelines#345](https://github.com/kubeflow/pipelines/issues/345) and 
     [kubeflow/pipelines#337](https://github.com/kubeflow/pipelines/issues/337), 
     Kubeflow Pipelines depends on Google Cloud Platform (GCP) services and some of 
-    the pipelines functionality is currently not supported by non-GKE clusters._)
+    the pipelines functionality is currently not supported by non-GKE clusters._
 
 1. When Kubeflow is running, access the Kubeflow UI at a URL of the form
-  `https://<name>.endpoints.<project>.cloud.goog/`, as described in the setup
+  `https://<deployment-name>.endpoints.<project>.cloud.goog/`, as described in the setup
   guide. The Kubeflow UI looks like this:
 
     ![Kubeflow UI](/docs/images/central-ui.png)
@@ -50,14 +50,13 @@ workload:
 
     ![Pipelines UI](/docs/images/click-pipeline-sample.png)
 
-1. Explore the **Graph** and **Source** tabs.
 1. Click **Start an experiment**:
 
     ![Pipelines UI](/docs/images/pipelines-start-experiment.png)
 
-1. Follow the prompts to create an **experiment** and a **run**. The sample 
-  supplies default values for all the parameters you need. The following
-  screenshot assumes you've already created an experiment named
+1. Follow the prompts to create an **experiment** and then create a **run**. 
+  The sample supplies default values for all the parameters you need. The 
+  following screenshot assumes you've already created an experiment named
   _My experiment_ and are now creating a run named _My first run_:
 
     ![Pipelines UI](/docs/images/pipelines-start-run.png)
@@ -79,17 +78,91 @@ repo](https://github.com/kubeflow/pipelines/blob/master/samples/basic/parallel_j
 
 ## Run an ML pipeline
 
-TODO describe how to run the XGBoost sample, also supplied on the Pipelines UI - a sample that includes ML components. Need to enable Dataproc and supply parameters including a GCS location for output.
+This section shows you how to run the XGBoost sample available
+from the pipelines UI. Unlike the basic sample described above, the
+XGBoost sample does include ML components. Before running this sample, 
+you need to set up some GCP services for use by the sample.
 
-TODO Include screenshots.
+Follow these steps to set up the necessary GCP services and run the sample:
 
-TODO Include info about where to find the source code for the pipeline samples.
+1. In addition to the standard GCP APIs that you need for Kubeflow (see the
+  [GKE setup guide](/docs/started/getting-started-gke/)), ensure that the 
+  following APIs are enabled:
+
+    * [Cloud Storage](https://console.cloud.google.com/apis/library/storage-component.googleapis.com)
+    * [Dataproc](https://console.cloud.google.com/apis/library/dataproc.googleapis.com)
+
+1. Create a 
+  [Cloud Storage bucket](https://console.cloud.google.com/storage/create-bucket) 
+  to hold the results of the pipeline run.
+
+  * Your *bucket name* must be unique across all of Cloud Storage.
+  * Each time you create a new run for this pipeline, Kubeflow creates a unique
+    directory within the output bucket, so the output of each run does not
+    override the output of the previous run.
+
+1. Click the name of the sample, 
+  **\[Sample\] ML - XGBoost - Training with Confusion Matrix**, on the pipelines 
+  UI:
+
+    ![Pipelines UI](/docs/images/click-xgboost-sample.png)
+
+1. Click **Start an experiment**.
+1. Follow the prompts to create an **experiment** and then create a **run**.
+  Supply the following **run parameters**:
+
+  * **output:** The Cloud Storage bucket that you created earlier to hold the
+    results of the pipeline run.
+  * **project:** Your GCP project ID.
+
+    The sample supplies the values for the other parameters:
+
+  * region: The GCP geographical region in which the training and evaluaton data
+    are stored.
+  * train-data: Cloud Storage path to the training data.
+  * eval-data: Cloud Storage path to the evaluation data.
+  * schema: Cloud Storage path to a JSON file describing the format of the
+    CSV files that contain the training and evaluation data.
+  * target: Column name of the target variable.
+  * rounds: The number of rounds for XGBoost training.
+  * workers: Number of workers used for distributed training.
+  * true-label: Column to be used for text representation of the label output
+    by the model.
+
+    The arrows on the following screenshot indicate the parameters that you
+    must supply:
+
+    ![Pipelines UI](/docs/images/pipelines-start-xgboost-run.png)
+
+1. Click **Create** to create the run.
+1. Click the name of the run on the experiments dashboard.
+1. Explore the graph and other aspects of your run by clicking on the 
+  components of the graph and the other UI elements. The following screenshot
+  shows the graph when the pipeline has finished running:
+
+    ![Pipelines UI](/docs/images/pipelines-xgboost-graph.png)
+
+You can find the source code for the XGBoost training sample in the 
+[Kubeflow Pipelines 
+repo](https://github.com/kubeflow/pipelines/tree/master/samples/xgboost-spark).
+
+## Clean up your GCP environment
+
+As you work through this guide, your project uses billable components of
+GCP. To minimise costs, follow these steps to clean up resources when you've 
+finished with them:
+
+1. Visit [Deployment Manager](https://console.cloud.google.com/dm) to delete 
+  your deployment and related resources.
+1. Delete your [Cloud Storage bucket](https://console.cloud.google.com/storage) 
+  when you've finished examining the output of the pipeline.
 
 ## Next steps
 
-This page showed you how to run some of the examples supplied in the Kubeflow
-Pipelines UI.
-
-Next, you may want to run a pipeline from a notebook, or compile and run a
-sample from the code. See the guide to 
-[building a pipeline](/docs/guides/pipelines/build-pipeline/).
+* Learn more about the 
+  [important concepts](/docs/guides/pipelines/pipelines-concepts) in Kubeflow
+  Pipelines.
+* This page showed you how to run some of the examples supplied in the Kubeflow
+  Pipelines UI. Next, you may want to run a pipeline from a notebook, or compile 
+  and run a sample from the code. See the guide to 
+  [building a pipeline](/docs/guides/pipelines/build-pipeline/).
