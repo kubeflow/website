@@ -29,13 +29,29 @@ The following are the goals of Kubeflow Pipelines:
 * Easy re-use: enabling you to re-use components and pipelines to quickly 
   cobble together end-to-end solutions, without having to rebuild each time.
 
+Starting from 
+[Kubeflow v0.1.3](https://github.com/kubeflow/pipelines/releases/tag/0.1.3), 
+Kubeflow Pipelines becomes one of the Kubeflow core components. It's 
+automatically deployed during Kubeflow deployment. You can try it currently 
+with a Kubeflow deployment on GKE. See the 
+[GKE setup guide](/docs/started/getting-started-gke/).
+
+Note: Due to 
+[kubeflow/pipelines#345](https://github.com/kubeflow/pipelines/issues/345) and 
+[kubeflow/pipelines#337](https://github.com/kubeflow/pipelines/issues/337), 
+Kubeflow Pipelines depends on GCP services and some of the functionality is
+currently not supported by non-GKE clusters.
 
 ## Getting started
 
-Follow these guides to deploy Kubeflow Pipelines and build your first pipeline:
+Run your first pipeline:
 
-* [Deploy the Kubeflow Pipelines service](/docs/guides/pipelines/deploy-pipelines-service).
-* [Build a pipeline and run the pipeline samples](/docs/guides/pipelines/build-pipeline).
+* Follow the 
+  [pipelines quickstart guide](/docs/guides/pipelines/pipelines-quickstart) to 
+  run a sample pipeline directly from the Kubeflow Pipelines UI.
+* Alternatively, follow the full guides to 
+  [deploy Kubeflow on GKE](/docs/guides/pipelines/deploy-pipelines-service) and
+  [build a pipeline](/docs/guides/pipelines/build-pipeline).
 
 ## The Python code to represent a pipeline workflow graph
 
