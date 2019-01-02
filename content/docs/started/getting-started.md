@@ -66,11 +66,12 @@ Download, set up, and deploy (If you prefer to work from source code, feel free 
 1. Run the following commands to setup and deploy Kubeflow:
     
     ```
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform none
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform none --zone ${ZONE}
     cd ${KFAPP}
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
     ```
+   * **${ZONE}** is the deployment zone, make sure this [zone has GPUs](https://cloud.google.com/compute/docs/regions-zones/).
    * **${KFAPP}** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init.
       * The ksonnet app will be created in the directory **${KFAPP}/ks_app**
 
