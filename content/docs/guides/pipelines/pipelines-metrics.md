@@ -1,12 +1,7 @@
 +++
 title = "Pipeline metrics"
 description = "Export and visualize pipeline metrics."
-weight = 3
-toc = true
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 6
+weight = 9
 +++
 This page shows you how to export metrics from the component. For details about how to build a component, see the guide to [building your own component](/docs/guides/pipelines/build-component).
  
