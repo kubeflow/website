@@ -1,14 +1,9 @@
 +++
 title = "PyTorch Serving"
 description = "Instructions for serving a PyTorch model with Seldon"
-weight = 10
-toc = true
-bref= "This guide will walk you through serving a PyTorch trained model in Kubeflow"
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 35
 +++
+
+This guide walks you through serving a PyTorch trained model in Kubeflow.
 
 ## Serving a model
 

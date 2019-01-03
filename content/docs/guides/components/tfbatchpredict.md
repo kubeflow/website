@@ -1,13 +1,7 @@
 +++
 title = "TensorFlow Batch Predict"
-description = ""
-weight = 10
-toc = true
-bref= "Batch Prediction for TensorFlow models"
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 60
+description = "Batch prediction for TensorFlow models"
+weight = 60
 +++
 
 ## Kubeflow Batch Predict

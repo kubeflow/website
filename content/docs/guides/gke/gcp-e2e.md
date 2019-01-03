@@ -1,11 +1,7 @@
 +++
 title = "End-to-end Kubeflow on GCP"
-description = "Guide to Kubeflow on Google Cloud Platform"
+description = "Kubeflow on Google Cloud Platform"
 weight = 10
-toc = true
-[menu.docs]
-  parent = "gke"
-  weight = 10
 +++
 
 This guide walks you through an end-to-end example of Kubeflow on Google

@@ -1,13 +1,9 @@
 +++
 title = "Use an Output Viewer"
 description = "Using output viewers for pipelines components."
-weight = 3
-toc = true
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 8
+weight = 8
 +++
+
 The Kubeflow Pipelines UI has built-in support for several types of 
 visualizations, in order to provide rich performance evaluation and comparison. 
 Components can use these visualizations by writing a JSON file 

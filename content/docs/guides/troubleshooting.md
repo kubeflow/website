@@ -1,11 +1,7 @@
 +++
 title = "Troubleshooting"
-description = "Troubleshooting Kubeflow"
-weight = 10
-toc = true
-[menu.docs]
-  parent = "guides"
-  weight = 20
+description = "Finding and fixing problems in your Kubeflow deployment"
+weight = 20
 +++
 
 

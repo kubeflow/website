@@ -1,11 +1,7 @@
 +++
 title = "Upgrading Kubeflow Deployments"
-description = "Upgrading Kubeflow"
-weight = 10
-toc = true
-[menu.docs]
-  parent = "guides"
-  weight = 30
+description = "Upgrading your Kubeflow deployment"
+weight = 30
 +++
 
 Until 1.0 Kubeflow makes no promises of backwards compatibility or upgradeability. Nonetheless, here are some

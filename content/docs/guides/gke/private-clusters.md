@@ -1,14 +1,11 @@
 +++
 title = "Creating Private Clusters"
 description = "How to create private GKE clusters"
-weight = 3
-toc = true
-bref = "This guide describes how to create private clusters with Kubeflow on Google Kubernetes Engine (GKE)."
-
-[menu.docs]
-  parent = "gke"
-  weight = 5
+weight = 5
 +++
+
+This guide describes how to create private clusters with Kubeflow on Google 
+Kubernetes Engine (GKE).
 
 ## Before you start
 

@@ -1,11 +1,7 @@
 +++
 title = "Jupyter Notebooks"
+description = "Using Jupyter notebooks in Kubeflow"
 weight = 10
-toc = true
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 10
 +++
 
 ## Bringing up a Jupyter Notebook

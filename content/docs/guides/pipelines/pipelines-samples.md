@@ -1,13 +1,9 @@
 +++
 title = "Pipeline Samples and Notebooks"
 description = "Using the samples and notebooks for pipelines components."
-weight = 3
-toc = true
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 9
+weight = 9
 +++
+
 This page describes how to use the Kubeflow Pipelines 
 [notebooks]( https://github.com/kubeflow/pipelines/tree/master/samples/notebooks)
 and [samples](https://github.com/kubeflow/pipelines/tree/master/samples)

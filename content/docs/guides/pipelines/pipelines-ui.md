@@ -1,13 +1,9 @@
 +++
 title = "Using the Pipelines UI"
-description = "Using the Kubeflow Pipelines UI"
-weight = 3
-toc = true
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 5
+description = "A guide to the Kubeflow Pipelines UI"
+weight = 5
 +++
+
 You can use the Kubeflow Pipelines UI to complete tasks like creating, listing, 
 and managing different resources, and viewing and comparing the outputs of 
 experiments. This guide discusses the different operations you can perform using 

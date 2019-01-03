@@ -1,0 +1,3 @@
+# Ignore the resources files in diffs and merge conflicts
+resources/    linguist-generated=true
+resources/    -diff -merge

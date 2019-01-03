@@ -1,14 +1,11 @@
 +++
 title = "Job Scheduling"
-description = "Schedule job with gang-scheduling"
-weight = 10
-toc = true
-bref = "This guide describes how to use kube-batch to support gang-scheduling in Kubeflow, to allow jobs to run multiple pods at the same time."
-
-[menu.docs]
-  parent = "guides"
-  weight = 30
+description = "How to schedule a job with gang-scheduling"
+weight = 30
 +++
+
+This guide describes how to use kube-batch to support gang-scheduling in 
+Kubeflow, to allow jobs to run multiple pods at the same time.
 
 ## Running jobs with gang-scheduling
 To use gang-scheduling, you have to install kube-batch in your cluster first as a secondary scheduler of Kubernetes and configure operator to enable gang-scheduling. 

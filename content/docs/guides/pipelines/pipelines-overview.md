@@ -1,15 +1,11 @@
 +++
 title = "Overview of Kubeflow Pipelines"
 description = "Overview of Kubeflow Pipelines"
-weight = 3
-toc = true
-bref = "Kubeflow Pipelines is a platform for building and deploying portable and scalable end-to-end ML workflows, based on containers."
-aliases = ["/docs/guides/pipelines/"]
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 1
+weight = 1
 +++
+
+Kubeflow Pipelines is a platform for building and deploying portable and 
+scalable end-to-end ML workflows, based on containers.
 
 ## What is Kubeflow Pipelines?
 

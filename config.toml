@@ -1,34 +1,38 @@
 baseURL = "/"
 languageCode = "en-us"
 title = "Kubeflow"
-theme = "kf"
+theme = ["docsy"]
 description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 Paginate = 20
-[Params]
-  RSSLink = "/index.xml"
-  author = "kubeflow.org" # add your company name
-  github = "kubeflow" # add your github profile name
-  twitter = "" # add your twitter profile
-  email = "myemail@myaddress.xxx"
 
-  version = "master"
-  githubbranch = "master"
+# Docsy: Gives values to .Lastmod etc.
+enableGitInfo = true
 
-# Add new release versions here
-[[Params.versions]]
-  version = "master"
-  githubbranch = "master"
-  url = "https://master.kubeflow.org"
+# Docsy: Language settings
+contentDir = "content"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+# Docsy: Useful when translating.
+enableMissingTranslationPlaceholders = true
 
-[[Params.versions]]
-  version = "v0.2"
-  githubbranch = "v0.2-branch"
-  url = "https://v0-2.kubeflow.org"
+disableKinds = ["taxonomy", "taxonomyTerm"]
 
-[[Params.versions]]
-  version = "v0.3"
-  githubbranch = "v0.3-branch"
-  url = "https://v0-3.kubeflow.org"
+# Docsy: Highlighting config
+pygmentsCodeFences = true
+pygmentsUseClasses = false
+# Use the new Chroma Go highlighter in Hugo.
+pygmentsUseClassic = false
+#pygmentsOptions = "linenos=table"
+# See https://help.farbox.com/pygments.html
+pygmentsStyle = "tango"
+
+ # Docsy: First one is picked as the Twitter card image if not set on page.
+ #images = ["images/project-illustration.png"]
+
+ # Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
+#gcs_engine_id = "011737558837375720776:fsdu1nryfng"
+
+# Top-level navigation (horizontal)
 
 [[menu.main]]
     name = "What is Kubeflow?"
@@ -41,7 +45,7 @@ Paginate = 20
 [[menu.main]]
     name = "Documentation"
     weight = -101
-    url = "/docs/about/kubeflow/"
+    url = "/docs/"
 [[menu.main]]
     name = "Blog"
     weight = -100
@@ -51,36 +55,116 @@ Paginate = 20
     weight = -99
     url = "https://github.com/kubeflow/"
 
-[[menu.docs]]
-  name = "About"
-  weight = 1
-  identifier = "about"
-  url = "/docs/about/"
-[[menu.docs]]
-  name = "Getting Started"
-  weight = 2
-  identifier = "started"
-  url = "/docs/started/"
-[[menu.docs]]
-  name = "Guides"
-  weight = 3
-  identifier = "guides"
-  url = "/docs/guides/"
-[[menu.docs]]
-  name = "Components"
-  weight = 4
-  parent = "guides"
-  identifier = "components"
-  url = "/docs/guides/components/"
-[[menu.docs]]
-  name = "Pipelines"
-  weight = 5
-  parent = "guides"
-  identifier = "pipelines"
-  url = "/docs/guides/pipelines/"
-[[menu.docs]]
-  name = "GKE"
-  weight = 6
-  parent = "guides"
-  identifier = "gke"
-  url = "/docs/guides/gke/"
+# Docsy: Configure the format of URLs per section.
+#[permalinks]
+#blog = "/:section/:year/:month/:day/:slug/"
+
+## Docsy: Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
+[blackfriday]
+plainIDAnchors = true
+hrefTargetBlank = true
+angledQuotes = false
+latexDashes = true
+
+# Docsy: Image processing configuration.
+[imaging]
+resampleFilter = "CatmullRom"
+quality = 75
+anchor = "smart"
+
+[services]
+[services.googleAnalytics]
+# Docsy: Uncomment and insert your GA tracking ID to enable.
+# id = "INSERT ID"
+
+# Docsy: Language configuration
+
+[languages]
+[languages.en]
+title = "Kubeflow"
+description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
+languageName ="English"
+weight = 1
+# Example of another language: Norwegian
+#[languages.no]
+#title = "Docsy"
+#description = "Docsy er operativsystem for skyen"
+#languageName ="Norsk"
+#contentDir = "content/no"
+time_format_default = "02.01.2006"
+time_format_blog = "02.01.2006"
+
+# Site params
+
+[params]
+github_repo = "https://github.com/kubeflow/website"
+RSSLink = "/index.xml"
+author = "kubeflow.org" # add your company name
+github = "kubeflow" # add your github profile name
+twitter = "kubeflow" # add your twitter profile
+#email = "myemail@myaddress.xxx"
+
+copyright = "The Kubeflow Authors."
+privacy_policy = "https://policies.google.com/privacy"
+
+version = "master"
+githubbranch = "master"
+
+# Add new release versions here
+[[params.versions]]
+  version = "master"
+  githubbranch = "master"
+  url = "https://master.kubeflow.org"
+
+[[params.versions]]
+  version = "v0.2"
+  githubbranch = "v0.2-branch"
+  url = "https://v0-2.kubeflow.org"
+
+[[params.versions]]
+  version = "v0.3"
+  githubbranch = "v0.3-branch"
+  url = "https://v0-3.kubeflow.org"
+
+# Docsy: User interface configuration
+[params.ui]
+# Docsy: Enable to show the side bar menu in its compact state.
+sidebar_menu_compact = false
+#  Docsy: Set to true to disable breadcrumb navigation.
+breadcrumb_disable = false
+
+[params.links]
+# Docsy: "User" links will show on left side of footer and in the community page if you have one.
+[[params.links.user]]
+	name ="Twitter"
+	url = "https://twitter.com/kubeflow"
+	icon = "fab fa-twitter"
+        desc = "Follow us on Twitter to get the latest news"
+[[params.links.user]]
+	name = "GitHub"
+	url = "https://github.com/kubeflow/kubeflow"
+	icon = "fab fa-github"
+        desc = "Development takes place here!"
+[[params.links.user]]
+	name = "Slack"
+	url = "https://join.slack.com/t/kubeflow/shared_invite/enQtNDg5MTM4NTQyNjczLWUyZGI1ZmExZWExYWY4YzlkOWI4NjljNjJhZjhjMjEwNGFjNmVkNjg2NTg4M2I0ZTM5NDExZWI5YTIyMzVmNzM"
+	icon = "fab fa-slack"
+        desc = "Chat with other project contributors"
+[[params.links.user]]
+	name = "Mailing list"
+	url = "https://groups.google.com/forum/#!forum/kubeflow-discuss"
+	icon = "fa fa-envelope"
+        desc = "Discussion and help from your fellow users"
+[[params.links.user]]
+	name = "Calendar"
+	url = "https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com&ctz=America%2FLos_Angeles"
+	icon = "fa fa-calendar"
+        desc = "Discussion and help from your fellow users"
+
+
+# Docsy: "Developer" links will show on right side of footer and in the community page if you have one.
+#[[params.links.developer]]
+#	name = "A name"
+#	url = "http://example.com"
+#	icon = "fab fa-envelope"
+#       desc = "A description"

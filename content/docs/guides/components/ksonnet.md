@@ -1,12 +1,7 @@
 +++
 title = "ksonnet"
-description = "ksonnet information related to Kubeflow"
-weight = 10
-toc = true
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 20
+description = "Information about ksonnet as used in Kubeflow"
+weight = 20
 +++
 
 Kubeflow makes use of [ksonnet] to help manage deployments.

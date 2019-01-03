@@ -1,12 +1,8 @@
 +++
 title = "Components Overview"
 description = "Kubeflow components"
-weight = 10
-toc = true
+weight = 1
 aliases = ["/docs/guides/components/", "/docs/components/"]
-[menu.docs]
-  parent = "components"
-  weight = 1
 +++
 
 Kubeflow offers scripts and configuration files to activate a number of

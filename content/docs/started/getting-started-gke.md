@@ -1,14 +1,11 @@
 +++
 title = "Kubernetes Engine for Kubeflow"
 description = "Get Kubeflow running on Google Cloud Platform"
-weight = 10
-toc = true
-bref = "This guide is a quickstart to deploying Kubeflow on Google Kubernetes Engine (GKE)."
-
-[menu.docs]
-  parent = "started"
-  weight = 3
+weight = 3
 +++
+
+This guide is a quickstart to deploying Kubeflow on Google Kubernetes Engine 
+(GKE).
 
 ## Advantages of Kubeflow on GKE
 

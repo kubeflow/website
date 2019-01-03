@@ -1,13 +1,11 @@
 +++
 title = "Logging and monitoring"
-description = "Logging and Monitoring for Kubeflow"
-weight = 10
-toc = true
-bref= "This guide has information about logging and monitoring for Kubeflow."
-[menu.docs]
-  parent = "guides"
-  weight = 100
+description = "Logging and monitoring for Kubeflow"
+weight = 100
 +++
+
+This guide has information about how to set up logging and monitoring for your
+Kubeflow deployment.
 
 # Logging
 

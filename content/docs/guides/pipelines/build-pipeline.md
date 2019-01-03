@@ -1,14 +1,11 @@
 +++
 title = "Build a Pipeline"
 description = "Deploy the Kubeflow Pipelines service"
-weight = 3
-toc = true
-bref = "This page describes how to author pipelines and components, and submit them to the Kubeflow Pipelines system to run."
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 4
+weight = 4
 +++
+
+This page describes how to author pipelines and components, and submit them to 
+the Kubeflow Pipelines system to run.
 
 ## Using a notebook
 

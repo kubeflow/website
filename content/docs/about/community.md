@@ -1,13 +1,8 @@
 +++
 title = "Community"
-description = "Kubeflow Community"
-weight = 10
-toc = false
-bref= ""
+description = "About the Kubeflow Community"
+weight = 4
 aliases = ["/docs/community/"]
-[menu.docs]
-  parent = "about"
-  weight = 4
 +++
 
 In the interest of fostering an open and welcoming environment, we as
