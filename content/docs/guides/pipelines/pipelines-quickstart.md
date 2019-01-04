@@ -1,12 +1,7 @@
 +++
 title = "Pipelines Quickstart"
 description = "Try Kubeflow Pipelines"
-weight = 3
-toc = true
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 1
+weight = 1
 +++
 
 Use this guide if you want to get a simple pipeline running quickly in
@@ -30,13 +25,15 @@ Follow these steps to deploy Kubeflow and open the pipelines dashboard:
 1. When Kubeflow is running, access the Kubeflow UI at a URL of the form
   `https://<deployment-name>.endpoints.<project>.cloud.goog/`, as described in the setup
   guide. The Kubeflow UI looks like this:
-
-    ![Kubeflow UI](/docs/images/central-ui.png)
+  <img src="/docs/images/central-ui.png" 
+    alt="Kubeflow UI"
+    class="mt-3 mb-3 border border-info rounded">
 
 1. Click **Pipeline Dashboard** to access the pipelines UI. The pipelines UI looks like
   this:
-
-    ![Pipelines UI](/docs/images/pipelines-ui.png)
+  <img src="/docs/images/pipelines-ui.png" 
+    alt="Pipelines UI"
+    class="mt-3 mb-3 border border-info rounded">
 
 ## Run a basic pipeline
 
@@ -47,30 +44,34 @@ workload:
 
 1. Click the name of the sample, **\[Sample\] Basic - Parallel Join**, on the pipelines 
   UI:
-
-    ![Pipelines UI](/docs/images/click-pipeline-sample.png)
+  <img src="/docs/images/click-pipeline-sample.png" 
+    alt="Pipelines UI"
+    class="mt-3 mb-3 border border-info rounded">
 
 1. Click **Start an experiment**:
-
-    ![Pipelines UI](/docs/images/pipelines-start-experiment.png)
+  <img src="/docs/images/pipelines-start-experiment.png" 
+    alt="Starting an experiment on the pipelines UI"
+    class="mt-3 mb-3 border border-info rounded">
 
 1. Follow the prompts to create an **experiment** and then create a **run**. 
   The sample supplies default values for all the parameters you need. The 
   following screenshot assumes you've already created an experiment named
   _My experiment_ and are now creating a run named _My first run_:
-
-    ![Pipelines UI](/docs/images/pipelines-start-run.png)
+  <img src="/docs/images/pipelines-start-run.png" 
+    alt="Creating a run on the pipelines UI"
+    class="mt-3 mb-3 border border-info rounded">
 
 1. Click **Create** to create the run.
 1. Click the name of the run on the experiments dashboard:
-
-    ![Pipelines UI](/docs/images/pipelines-experiments-dashboard.png)
-
+  <img src="/docs/images/pipelines-experiments-dashboard.png" 
+    alt="Experiments dashboard on the pipelines UI"
+    class="mt-3 mb-3 border border-info rounded">
 
 1. Explore the graph and other aspects of your run by clicking on the 
   components of the graph and the other UI elements:
-
-    ![Pipelines UI](/docs/images/pipelines-basic-run.png)
+  <img src="/docs/images/pipelines-basic-run.png" 
+    alt="Run results on the pipelines UI"
+    class="mt-3 mb-3 border border-info rounded">
 
 You can find the source code for the basic parallel join sample in the 
 [Kubeflow Pipelines 
@@ -104,8 +105,9 @@ Follow these steps to set up the necessary GCP services and run the sample:
 1. Click the name of the sample, 
   **\[Sample\] ML - XGBoost - Training with Confusion Matrix**, on the pipelines 
   UI:
-
-    ![Pipelines UI](/docs/images/click-xgboost-sample.png)
+  <img src="/docs/images/click-xgboost-sample.png" 
+    alt="XGBoost sample on the pipelines UI"
+    class="mt-3 mb-3 border border-info rounded">
 
 1. Click **Start an experiment**.
 1. Follow the prompts to create an **experiment** and then create a **run**.
@@ -131,16 +133,18 @@ Follow these steps to set up the necessary GCP services and run the sample:
 
     The arrows on the following screenshot indicate the parameters that you
     must supply:
-
-    ![Pipelines UI](/docs/images/pipelines-start-xgboost-run.png)
+    <img src="/docs/images/pipelines-start-xgboost-run.png" 
+      alt="Starting the XGBoost run on the pipelines UI"
+      class="mt-3 mb-3 border border-info rounded">
 
 1. Click **Create** to create the run.
 1. Click the name of the run on the experiments dashboard.
 1. Explore the graph and other aspects of your run by clicking on the 
   components of the graph and the other UI elements. The following screenshot
   shows the graph when the pipeline has finished running:
-
-    ![Pipelines UI](/docs/images/pipelines-xgboost-graph.png)
+    <img src="/docs/images/pipelines-xgboost-graph.png" 
+      alt="XGBoost results on the pipelines UI"
+      class="mt-3 mb-3 border border-info rounded">
 
 You can find the source code for the XGBoost training sample in the 
 [Kubeflow Pipelines 
