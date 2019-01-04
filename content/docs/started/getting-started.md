@@ -67,6 +67,7 @@ Download, set up, and deploy (If you prefer to work from source code, feel free 
     ```
    * **${KFAPP}** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init.
       * The ksonnet app will be created in the directory **${KFAPP}/ks_app**
+   * (optional) For GPU support, make sure your cluster is in a [zone that has GPUs](https://cloud.google.com/compute/docs/regions-zones/). To set the zone explicitly, append `--zone ${ZONE}` to the `init` command.
 
 **Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explicitly
 disabling it please refer to the [usage reporting guide](/docs/guides/usage-reporting/).
