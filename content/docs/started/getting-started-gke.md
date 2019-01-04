@@ -74,10 +74,10 @@ user's identity.
           configurations. If you don't see the option, then there's nothing you 
           need to set.        
    * Click **Save**.
-   * Here's a screenshot:   
+   * Here's an example of the completed form:   
     <img src="/docs/images/consent-screen.png" 
       alt="OAuth consent screen"
-      class="m-3 p-3 border border-info rounded">
+      class="mt-3 mb-3 p-3 border border-info rounded">
 
 1. On the [credentials tab](https://console.cloud.google.com/apis/credentials):
    * Click **Create credentials**, and then click **OAuth client ID**.
@@ -100,10 +100,10 @@ user's identity.
         * `<project>` is your GCP project. It must have the same value as used 
            in the next step when you deploy Kubeflow from the UI or by running 
            the deployment script.
-    * Here's what the form should look like:
+    * Here's an example of the completed form:
       <img src="/docs/images/oauth-credential.png" 
         alt="OAuth credentials"
-        class="m-3 p-3 border border-info rounded">
+        class="mt-3 mb-3 p-3 border border-info rounded">
 
 1. Press **Enter/Return** to add the URI. Check that the URI now appears as
   a confirmed item under **Authorized redirect URIs**. (It should no longer be
@@ -130,7 +130,7 @@ form:
 
 <img src="/docs/images/kubeflow-deployment.png" 
   alt="Kubeflow deployment UI"
-  class="m-3 border border-info rounded">
+  class="mt-3 mb-3 border border-info rounded">
 
 Kubeflow will be available at the following URI:
 
