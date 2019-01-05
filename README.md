@@ -134,6 +134,8 @@ the website to a  later version of the theme, and your changes will be lost.
 
 The theme holds its styles in the 
 [`assets/scss` directory](https://github.com/kubeflow/website/tree/master/themes/docsy/assets/scss).
+**Do not change these files**, because they are overwritten each time we update
+the website to a  later version of the theme, and your changes will be lost.
 
 You can override the default styles and add new ones:
 
@@ -156,9 +158,9 @@ You can override the default styles and add new ones:
 
 Styling of images:
 
-* The [GKE getting-started 
-  page](https://www.kubeflow.org/docs/started/getting-started-gke/#create-oauth-client-credentials) 
-  in the Kubeflow docs includes some styled images. Search for `.png` in the
+* To see some examples of styled images, take a look at the
+  [GKE getting-started page](https://www.kubeflow.org/docs/started/getting-started-gke/#create-oauth-client-credentials) 
+  in the Kubeflow docs. Search for `.png` in the
   [page source](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/started/getting-started-gke.md).
 * For more help, see the guide to
   [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/).
