@@ -3,11 +3,12 @@
 Welcome to the GitHub repository for Kubeflow's public website. The docs are
 hosted at https://www.kubeflow.org.
 
-We use [Hugo](https://gohugo.io/) to format and generate our website, and
-[Netlify](https://www.netlify.com/) to manage the deployment of the site. Hugo
-is an open-source static site generator that provides us with templates, content
-organisation in a standard directory structure, and a website generation engine.
-You write the pages in Markdown, and Hugo wraps them up into a website.
+We use [Hugo](https://gohugo.io/) to format and generate our website, the
+[Docsy](https://github.com/google/docsy) theme for styling and site structure, 
+and [Netlify](https://www.netlify.com/) to manage the deployment of the site. 
+Hugo is an open-source static site generator that provides us with templates, 
+content organisation in a standard directory structure, and a website generation 
+engine. You write the pages in Markdown, and Hugo wraps them up into a website.
 
 ## Quickstart
 
@@ -17,52 +18,46 @@ updates:
 
 1. Fork the [kubeflow/website repo][kubeflow-website-repo] on GitHub.
 1. Make your changes and send a pull request (PR).
-1. If you're not yet ready for a review, add a comment to the PR saying it's a
-  work in progress. You can also add `/hold` in a comment to mark the PR as not
-  ready for merge. (**Don't** add the Hugo declarative "draft = true" to the
-  page front matter, because that will prevent the auto-deployment of the
-  content preview described in the next point.)
+1. If you're not yet ready for a review, add "WIP" to the PR name to indicate 
+  it's a work in progress. Alternatively, you can also `/hold` in a comment to 
+  mark the PR as not ready for merge. (**Don't** add the Hugo declarative 
+  "draft = true" to the page front matter, because that prevents the 
+  auto-deployment of the content preview described in the next point.) See the 
+  [Prow guide](https://prow.k8s.io/command-help) for help with the commands that
+  you can use in a PR comment.
 1. Wait for the automated PR workflow to do some checks. When it's ready,
   you should see a comment like this: **deploy/netlify — Deploy preview ready!**
 1. Click **Details** to the right of "Deploy preview ready" to see a preview
   of your updates.
-1. Continue updating your doc until you're happy with it.
-1. When you're ready for a review, add a comment to the PR and assign a
-  reviewer/approver. See the
+1. Continue updating your doc and pushing your changes until you're happy with 
+  the content.
+1. When you're ready for a review, add a comment to the PR, remove any holds or
+  "WIP" markers, and assign a reviewer/approver. See the
   [Kubeflow contributor guide][kubeflow-contributor-guide].
+
+If you need help with the GitHub workflow, take a look at the quick guide near
+the bottom of this page.
 
 ## Previewing your changes on a local website server
 
 If you'd like to preview your doc updates as you work, you can install Hugo
-and run a local server. This section shows you how.
+and run a local server to host your website. This section shows you how.
 
-### Install Hugo
+### Install Hugo and other dependencies
 
-See the [Hugo installation guide][hugo-install]. Here are some examples:
+The Kubeflow website uses the Docsy theme, which requires a recent, _extended_
+version of Hugo.
 
-#### Mac OS X:
+Follow the instructions in the 
+[Docsy setup guide](https://testydocsy.netlify.com/docs/getting-started/#installation-and-prerequisites). 
+Note the following points in particular:
 
-```
-brew install hugo
-```
+* You must have **Hugo version 0.45** or later, and it must be the **extended** 
+  version of Hugo.
+* If you plan to make changes to the site styling, you need to
+  install some **CSS libraries** .
 
-#### Debian:
-
-1. Download the latest Debian package from the [Hugo website][hugo-install].
-  For example, `hugo_0.46_Linux-64bit.deb`.
-1. Install the package using `dpkg`:
-
-    ```
-    sudo dpkg -i hugo_0.46_Linux-64bit.deb
-    ```
-
-1. Verify your installation:
-
-    ```
-    hugo version
-    ```
-
-### Clone the website repo and run a local website server
+### Fork and clone the website repo and run a local website server
 
 Follow the usual GitHub workflow to fork the repo on GitHub and clone it to your
 local machine, then use your local repo as input to your Hugo web server:
@@ -87,19 +82,164 @@ local machine, then use your local repo as input to your Hugo web server:
 1. Your website is at [http://localhost:1313/](http://localhost:1313/).
 
 1. Continue with the usual GitHub workflow to edit files, commit them, push the
-  changes up to your fork, and create a pull request. (See below.)
+  changes up to your fork, and create a pull request. (There's some help with
+  the GitHub workflow later on this page.)
 
 1. While making the changes, you can preview them on your local version of the
   website at [http://localhost:1313/](http://localhost:1313/). Note that if you
   have more than one local git branch, when you switch between git branches the
   local website reflects the files in the current branch.
 
-Useful Hugo docs:
-- [Hugo installation guide][hugo-install]
+Useful docs:
+- [Docsy theme user guide](https://testydocsy.netlify.com/docs/getting-started/)
+- [Hugo installation guide](https://gohugo.io/getting-started/installing/)
 - [Hugo basic usage](https://gohugo.io/getting-started/usage/)
 - [Hugo site directory structure](https://gohugo.io/getting-started/directory-structure/)
 - [hugo server reference](https://gohugo.io/commands/hugo_server/)
 - [hugo new reference](https://gohugo.io/commands/hugo_new/)
+
+## Menu structure
+
+The site theme has one Hugo menu (`main`), which defines the top navigation bar. 
+You can find and adjust the definition of the menu in the [site configuration 
+file](https://github.com/kubeflow/website/blob/master/config.toml). 
+
+The left-hand navigation panel is defined by the directory structure under 
+the 
+[`docs` directory](https://github.com/kubeflow/website/tree/master/content/docs). 
+
+A `weight` property in the _front matter_ of each page determines the position 
+of the page relative to the others in the same directory. The lower the weight,
+the earlier the page appears in the section. A weight of 1 appears before a
+a weight of 2, and so on. For example, see the front matter of the
+[Kubeflow](https://github.com/kubeflow/website/blob/master/content/docs/about/kubeflow.md)
+page in the "About" section. The page front matter looks like this:
+
+```
++++
+title = "Kubeflow"
+description = "Quickly get running with your ML Workflow"
+weight = 1
++++
+```
+
+## Working with the theme
+
+The theme files are in the 
+[`themes/docsy` directory](https://github.com/kubeflow/website/tree/master/themes/docsy).
+**Do not change these files** as they are overwritten each time we update to a 
+later version of the theme, and your changes will be lost.
+
+## Styling your content
+
+The theme holds its styles in the 
+[`assets/scss` directory](https://github.com/kubeflow/website/tree/master/themes/docsy/assets/scss).
+
+You can override the default styles and add new ones:
+
+* In general, put your files in the project directory structure under `website` 
+  rather than in the theme directory. Hugo looks first at the files in the main 
+  project directories (same name, same relative position) then at the files 
+  under the theme directory.
+* You can update the Kubeflow project variables in the 
+  [`_variables_project.scss` file](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
+  Values in that file override the
+  [Docsy variables](https://github.com/kubeflow/website/blob/master/themes/docsy/assets/scss/_variables.scss).
+  You can also use `_variables_project.scss` to specify your own values for any 
+  of the default 
+  [Bootstrap 4 variables](https://getbootstrap.com/docs/4.0/getting-started/theming/).
+
+
+Styling of images - some useful links:
+
+* The [GKE getting-started 
+  page](https://www.kubeflow.org/docs/started/getting-started-gke/#create-oauth-client-credentials) 
+  in the Kubeflow docs includes some styled images. Search for `.png` in the
+  [page source](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/started/getting-started-gke.md).
+* [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/).
+* [Bootstrap utilities, such as borders](https://getbootstrap.com/docs/4.0/utilities/borders/).
+
+The site's [front page](https://www.kubeflow.org/):
+
+* [Page source](https://github.com/kubeflow/website/blob/master/content/_index.html).
+* [Styles](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
+* Use of the 
+  [cover block](https://testydocsy.netlify.com/docs/getting-started/#blocks-cover) 
+  defined by the theme.
+* The [linkdown block](https://testydocsy.netlify.com/docs/getting-started/#blocks-link-down).
+
+## Using Hugo shortcodes
+
+Sometimes it's useful to define a snippet of information in one place and reuse
+it wherever we need it. For example, we want to be able to refer to the minimum
+version of various frameworks/libraries throughout the docs, without
+causing a maintenance nightmare.
+
+For this purpose, we use Hugo's "shortcodes". Shortcodes are similar to Django
+variables. You define a shortcode in a file, then use a specific markup to
+invoke the shortcode in the docs. That markup is replaced by the content of the
+shortcode file when the page is built.
+
+To create a shortcode:
+
+1. Add an HTML file in  the `/website/themes/kf/layouts/shortcodes/` directory.
+   The file name must be short and meaningful, as it determines the shortcode
+   you and others use in the docs.
+
+1. For the file content, add the text and HTML markup that should replace the
+   shortcode markup when the web page is built.
+
+To use a shortcode in a document, wrap the name of the shortcode in braces and
+percent signs like this:
+
+  ```
+  {{% shortcode-name %}}
+  ```
+
+The shortcode name is the file name minus the `.html` file extension.
+
+**Example:** The following shortcode defines the minimum required version of
+Kubernetes:
+
+- File name of the shortcode:
+
+  ```
+  kubernetes-min-version.html
+  ```
+
+- Content of the shortcode:
+
+  ```
+  <a href="https://kubernetes.io/docs/imported/release/notes/">1.8</a>
+  ```
+- Usage in a document:
+
+  ```
+  You need Kubernetes {{% kubernetes-min-version %}} or later.
+  ```
+
+Useful Hugo docs:
+- [Shortcode templates][hugo-shortcode-templates]
+- [Shortcodes][hugo-shortcodes]
+
+## Versioning of the docs
+
+For each stable release, we create a new branch for the relevant documentation. For
+example, the documentation for the v0.2 stable release is maintained in the
+[v0.2-branch](https://github.com/kubeflow/website/tree/v0.2-branch).
+Each branch has a corresponding Netlify website that automatically syncs each merged PR.
+
+The versioned sites follow this convention:
+* `www.kubeflow.org` always points to the current *master branch*
+* `master.kubeflow.org` always points to Github head
+* `vXXX-YYY.kubeflow.org` points to the release at vXXX.YYY-branch
+
+Furthermore, whenever any documents reference any source code, the links should be created
+using the version shortcode, like so:
+```
+https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
+```
+This ensures that all the links in a versioned webpage point to the correct branch.
 
 ## Quick guide to working with a GitHub repo
 
@@ -191,104 +331,7 @@ get going:
   your SSH key passphrase to the managing agent, so that you don't have to
   keep authenticating to GitHub. You need to do this again after every reboot.
 
-## Using Hugo shortcodes
 
-Sometimes it's useful to define a snippet of information in one place and reuse
-it wherever we need it. For example, we want to be able to refer to the minimum
-version of various frameworks/libraries throughout the docs, without
-causing a maintenance nightmare.
-
-For this purpose, we use Hugo's "shortcodes". Shortcodes are similar to Django
-variables. You define a shortcode in a file, then use a specific markup to
-invoke the shortcode in the docs. That markup is replaced by the content of the
-shortcode file when the page is built.
-
-To create a shortcode:
-
-1. Add an HTML file in  the `/website/themes/kf/layouts/shortcodes/` directory.
-   The file name must be short and meaningful, as it determines the shortcode
-   you and others use in the docs.
-
-1. For the file content, add the text and HTML markup that should replace the
-   shortcode markup when the web page is built.
-
-To use a shortcode in a document, wrap the name of the shortcode in braces and
-percent signs like this:
-
-  ```
-  {{% shortcode-name %}}
-  ```
-
-The shortcode name is the file name minus the `.html` file extension.
-
-**Example:** The following shortcode defines the minimum required version of
-Kubernetes:
-
-- File name of the shortcode:
-
-  ```
-  kubernetes-min-version.html
-  ```
-
-- Content of the shortcode:
-
-  ```
-  <a href="https://kubernetes.io/docs/imported/release/notes/">1.8</a>
-  ```
-- Usage in a document:
-
-  ```
-  You need Kubernetes {{% kubernetes-min-version %}} or later.
-  ```
-
-Useful Hugo docs:
-- [Shortcode templates][hugo-shortcode-templates]
-- [Shortcodes][hugo-shortcodes]
-
-## Making changes to CSS
-
-The css/sass style code is located in the `themes/kf/sass` directory.
-
-### CSS Dev Setup
-You need to install node.js. Download the binary for your platform
-[here](https://nodejs.org/en/download/). This will also install npm.
-
-
-### Updating theme style
-
-If you need to make changes to the style, you can update the theme's style using:
-
-```
-cd themes/kf/sass
-# Note the npm install steps are needed only the first time.
-npm install
-npm install gulp-cli -g
-gulp
-```
-
-Note that if you didn't make any changes to style (most of the time you won't), you
-don't need the above steps at all.
-
-## Versioning
-
-For each stable release, we should create a new branch for the relevant documentation. For
-example, the documentation for the v0.2 stable release are maintained in the
-[v0.2-branch](https://github.com/kubeflow/website/tree/v0.2-branch).
-Each branch has a corresponding netlify website that automatically syncs each merged PR.
-
-Going forward, the versioned sites should follow this convention:
-* `www.kubeflow.org` always points to the current *master branch*
-* `master.kubeflow.org` always points to Github head
-* `vXXX-YYY.kubeflow.org` points to the release at vXXX.YYY-branch
-
-Furthermore, whenever any documents reference any source code, the links should be created
-using the version shortcode, like so:
-```
-https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
-```
-This ensures that all the links in a versioned webpage point to the correct branch.
-
-[hugo-install]: https://gohugo.io/getting-started/installing/
 [hugo-shortcode-templates]: https://gohugo.io/templates/shortcode-templates/
 [hugo-shortcodes]: https://gohugo.io/content-management/shortcodes/
 
