@@ -19,8 +19,8 @@ updates:
 1. Fork the [kubeflow/website repo][kubeflow-website-repo] on GitHub.
 1. Make your changes and send a pull request (PR).
 1. If you're not yet ready for a review, add "WIP" to the PR name to indicate 
-  it's a work in progress. Alternatively, you can also `/hold` in a comment to 
-  mark the PR as not ready for merge. (**Don't** add the Hugo declarative 
+  it's a work in progress. Alternatively, you can also add `/hold` in a comment
+  to mark the PR as not ready for merge. (**Don't** add the Hugo property 
   "draft = true" to the page front matter, because that prevents the 
   auto-deployment of the content preview described in the next point.) See the 
   [Prow guide](https://prow.k8s.io/command-help) for help with the commands that
@@ -52,10 +52,10 @@ Follow the instructions in the
 [Docsy setup guide](https://testydocsy.netlify.com/docs/getting-started/#installation-and-prerequisites). 
 Note the following points in particular:
 
-* You must have **Hugo version 0.45** or later, and it must be the **extended** 
+* You must have **Hugo version 0.45 or later**, and it must be the **extended** 
   version of Hugo.
 * If you plan to make changes to the site styling, you need to
-  install some **CSS libraries** .
+  install some **CSS libraries**.
 
 ### Fork and clone the website repo and run a local website server
 
@@ -79,11 +79,12 @@ local machine, then use your local repo as input to your Hugo web server:
     hugo server -D
     ```
 
-1. Your website is at [http://localhost:1313/](http://localhost:1313/).
+1. You can access your website at 
+  [http://localhost:1313/](http://localhost:1313/).
 
 1. Continue with the usual GitHub workflow to edit files, commit them, push the
   changes up to your fork, and create a pull request. (There's some help with
-  the GitHub workflow later on this page.)
+  the GitHub workflow near the bottom of this page.)
 
 1. While making the changes, you can preview them on your local version of the
   website at [http://localhost:1313/](http://localhost:1313/). Note that if you
@@ -91,12 +92,11 @@ local machine, then use your local repo as input to your Hugo web server:
   local website reflects the files in the current branch.
 
 Useful docs:
-- [Docsy theme user guide](https://testydocsy.netlify.com/docs/getting-started/)
+- [User guide for the Docsy theme](https://testydocsy.netlify.com/docs/getting-started/)
 - [Hugo installation guide](https://gohugo.io/getting-started/installing/)
 - [Hugo basic usage](https://gohugo.io/getting-started/usage/)
 - [Hugo site directory structure](https://gohugo.io/getting-started/directory-structure/)
 - [hugo server reference](https://gohugo.io/commands/hugo_server/)
-- [hugo new reference](https://gohugo.io/commands/hugo_new/)
 
 ## Menu structure
 
@@ -112,13 +112,13 @@ A `weight` property in the _front matter_ of each page determines the position
 of the page relative to the others in the same directory. The lower the weight,
 the earlier the page appears in the section. A weight of 1 appears before a
 a weight of 2, and so on. For example, see the front matter of the
-[Kubeflow](https://github.com/kubeflow/website/blob/master/content/docs/about/kubeflow.md)
-page in the "About" section. The page front matter looks like this:
+[requirements](https://github.com/kubeflow/website/blob/master/content/docs/guides/requirements.md)
+page in the guides section. The page front matter looks like this:
 
 ```
 +++
-title = "Kubeflow"
-description = "Quickly get running with your ML Workflow"
+title = "Requirements"
+description = "Requirements for Kubeflow"
 weight = 1
 +++
 ```
@@ -127,8 +127,8 @@ weight = 1
 
 The theme files are in the 
 [`themes/docsy` directory](https://github.com/kubeflow/website/tree/master/themes/docsy).
-**Do not change these files** as they are overwritten each time we update to a 
-later version of the theme, and your changes will be lost.
+**Do not change these files**, because they are overwritten each time we update
+the website to a  later version of the theme, and your changes will be lost.
 
 ## Styling your content
 
@@ -138,10 +138,14 @@ The theme holds its styles in the
 You can override the default styles and add new ones:
 
 * In general, put your files in the project directory structure under `website` 
-  rather than in the theme directory. Hugo looks first at the files in the main 
-  project directories (same name, same relative position) then at the files 
-  under the theme directory.
-* You can update the Kubeflow project variables in the 
+  rather than in the theme directory. Use the same file name as the theme does,
+  and put the file in the same relative position. Hugo looks first at the file 
+  in the main project directories, if present, then at the files under the theme 
+  directory. For example, the Kubeflow website's 
+  [`layouts/partials/navbar.html`](https://github.com/kubeflow/website/blob/master/layouts/partials/navbar.html)
+  overrides the theme's 
+  [`layouts/partials/navbar.html`](https://github.com/kubeflow/website/blob/master/themes/docsy/layouts/partials/navbar.html).
+* You can update the Kubeflow website's project variables in the 
   [`_variables_project.scss` file](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
   Values in that file override the
   [Docsy variables](https://github.com/kubeflow/website/blob/master/themes/docsy/assets/scss/_variables.scss).
@@ -150,23 +154,27 @@ You can override the default styles and add new ones:
   [Bootstrap 4 variables](https://getbootstrap.com/docs/4.0/getting-started/theming/).
 
 
-Styling of images - some useful links:
+Styling of images:
 
 * The [GKE getting-started 
   page](https://www.kubeflow.org/docs/started/getting-started-gke/#create-oauth-client-credentials) 
   in the Kubeflow docs includes some styled images. Search for `.png` in the
   [page source](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/started/getting-started-gke.md).
-* [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/).
-* [Bootstrap utilities, such as borders](https://getbootstrap.com/docs/4.0/utilities/borders/).
+* For more help, see the guide to
+  [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/).
+* Also see the Bootstrap utilities, such as 
+  [borders](https://getbootstrap.com/docs/4.0/utilities/borders/).
 
 The site's [front page](https://www.kubeflow.org/):
 
-* [Page source](https://github.com/kubeflow/website/blob/master/content/_index.html).
-* [Styles](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
-* Use of the 
+* See the [page source](https://github.com/kubeflow/website/blob/master/content/_index.html).
+* The CSS styles are in the 
+  [project variables file](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
+* The page uses the 
   [cover block](https://testydocsy.netlify.com/docs/getting-started/#blocks-cover) 
   defined by the theme.
-* The [linkdown block](https://testydocsy.netlify.com/docs/getting-started/#blocks-link-down).
+* The page also uses the 
+  [linkdown block](https://testydocsy.netlify.com/docs/getting-started/#blocks-link-down).
 
 ## Using Hugo shortcodes
 
