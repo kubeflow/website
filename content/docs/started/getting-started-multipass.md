@@ -4,18 +4,16 @@ description = "Quickly get Kubeflow running locally on native hypervisors"
 weight = 2
 +++
 
-This document outlines steps to getting your local installation of Kubeflow running on top of Microk8s, a single-node Kubernetes cluster. Microk8s requires linux; if you are not on a linux system, you can use Multipass to create a linux VM on your native hypervisor
-
 This document outlines the steps that you can take to get your local
-installation of Kubeflow running on top of Microk8s, a single-node Kubernetes cluster. Microk8s requires linux; if you are not on a linux system, you can use Multipass to create a linux VM on your native hypervisor.
+installation of Kubeflow running on top of Microk8s, a single-node Kubernetes cluster. Microk8s requires Linux; if you are not on a Linux system, you can use Multipass to create a Linux VM on your native hypervisor.
 
-By the end of this document, you'll have a local installation of a Kubernetes cluster along with all the default core components of Kubeflow deployed as services in the pods. You can access the Kubeflow Dashboard, JupyterHub notebooks, and dashboards of other Kubeflow components.
+By the end of this document, you'll have a local installation of a Kubernetes cluster along with all the default core components of Kubeflow deployed as services in the pods. You can access the Kubeflow dashboard, JupyterHub notebooks, and dashboards of other Kubeflow components.
 
 ## Introduction
 
-If you already have Ubuntu or Linux, you can easily install Kubernetes using [microk8s](https://microk8s.io/). You can jump to the section below on **Install Kubeflow using Microk8s**.
+If you already have Ubuntu or Linux, you can easily install Kubernetes using [Microk8s](https://microk8s.io/). You can jump to the section below on **Install Kubeflow using Microk8s**.
 
-If you don't have a Linux system already, or you would like to confine your kubeflow to a disposable machine, then follow the instructions below on **Create a VM with Multipass** first. That will get you an Ubuntu machine that can be used to install Kubernetes and Kubeflow.
+If you don't have a Linux system already, or you would like to confine your Kubeflow to a disposable machine, then follow the instructions below on **Create a VM with Multipass** first. That will get you an Ubuntu machine that can be used to install Kubernetes and Kubeflow.
 
 ### Quickstart
 
@@ -40,7 +38,7 @@ Read the next sections for more detail!
   * quickly create disposable machine learning appliances
   * leverage the same cloud images locally, reducing surprises when changing from development to staging to production environments in a multi-cloud strategy.
 
-It is simple:
+Here's a summary of the steps involved:
 
 1. Install the CLI
 2. Use the CLI to create a VM
@@ -65,12 +63,12 @@ $ sudo snap install multipass --beta --classic
 
 ### 2. Create an Ubuntu Virtual Machine
 
-The following command will create a VM with 8GB of memory, 40GB of disk space, and 4 CPU. These are the minimum recommended settings. You are free to adjust them **higher** based on your host machine capabilities and workload requirements.
+The following command creates a VM with 8GB of memory, 40GB of disk space, and 4 CPU. These are the minimum recommended settings. You are free to adjust them **higher** based on your host machine capabilities and workload requirements.
 ```
 $ multipass launch bionic -n kubeflow -m 8G -d 40G -c 4
 ```
 
-NB: If you need information on **resource utilization** in the VM, eg memory or disk space or cpu load, you can run ```multipass info kubeflow```
+Note: If you need information on **resource utilization** in the VM, such as memory or disk space or CPU load, you can run ```multipass info kubeflow```
 
 ### 3. Enter the VM
 
@@ -80,14 +78,14 @@ $ multipass shell kubeflow
 
 ## Install Kubeflow using Microk8s
 
-Just two simple steps:
+Here's a summary of the steps involved:
 
-1. Setup Microk8s
-2. Setup Kubeflow
+1. Set up Microk8s
+2. Set up Kubeflow
 
 ### 1. Install and Setup Microk8s
 
-This will install microk8s if it doesn't already exist, and enable services that are useful for kubeflow. Please inspect setup-microk8s.sh for more information.
+This will install Microk8s if it doesn't already exist, and enable services that are useful for Kubeflow. Please inspect setup-microk8s.sh for more information.
 
 ```
 $ git clone https://github.com/canonical-labs/kubernetes-tools
@@ -103,18 +101,18 @@ kubernetes-tools/expose-dashboard.sh
 
 ### 2. Install and Setup Kubeflow
 
-The current approach leverages ksonnet to setup and install kubeflow. The kubeflow-tools repository contains scripts to facilitate this.
+The current approach leverages ksonnet to setup and install Kubeflow. The kubeflow-tools repository contains scripts to facilitate this.
 
 ```
 $ git clone https://github.com/canonical-labs/kubeflow-tools
 $ kubeflow-tools/install-kubeflow.sh
 ```
-This script will print out the port number for Ambassador and for JupyterHub (NB: you can access JupyterHub through Ambassador).
+This script will print out the port number for Ambassador and for JupyterHub (Note: you can access JupyterHub through Ambassador).
 
 
 ## Access Kubeflow
 
-If you installed microk8s on your local host, then you can use localhost as the IP address in your browser. Otherwise, if you used Multipass as per the instructions above, you can get the IP address of the VM with either `multipass list` or `multipass info kubeflow`.
+If you installed Microk8s on your local host, then you can use localhost as the IP address in your browser. Otherwise, if you used Multipass as per the instructions above, you can get the IP address of the VM with either `multipass list` or `multipass info kubeflow`.
 
 ```
 Point browser to either:
@@ -126,4 +124,4 @@ Point browser to either:
 
 * Refer to the [user guide](/docs/guides/)
 * Refer to the [components](/docs/guides/components/)
-* Refer to the [JupyterHube guide](/docs/guides/components/jupyter)
+* Refer to the [JupyterHub guide](/docs/guides/components/jupyter)

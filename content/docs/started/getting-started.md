@@ -28,8 +28,8 @@ This documentation assumes you have a Kubernetes cluster available. If not, set 
       * Minikube defines a fully baked ISO that contains a minimal operating system and kubernetes already installed.
       * This option may be useful if you are just starting to learn and already have one of the virtualization applications already installed.  
     * [Microk8s setup](/docs/started/getting-started-multipass/)
-      * The benefits of using [microk8s](https://microk8s.io/) include:
-          - Installed on any Linux system as a [snap](https://snapcraft.io/)
+      * The benefits of using [Microk8s](https://microk8s.io/) include:
+          - Can be installed on any Linux system as a [snap](https://snapcraft.io/)
           - Strong isolation and update semantics - your single-node cluster will be updated within a short period after upstream Kubernetes releases.
           - GPU pass through built in - e.g. **microk8s.enable gpu**
       * If you are not on a Linux machine, or you want to use Kubeflow in a confined environment, then use [Multipass](https://github.com/CanonicalLtd/multipass) to launch a virtual machine. Benefits include:
