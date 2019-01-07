@@ -23,9 +23,10 @@ www.kubeflow.org points to the **master** branch of the docs. You can access
 other versions by clicking the version dropdown at top right of the website
 menu bar:
 
-<img src="/docs/images/version-dropdown.png"
- style="width:20%;"
- alt="Version dropdown">
+<img src="/docs/images/version-dropdown.png" 
+  alt="Version dropdown"
+  style="width:30%;"
+  class="mt-3 mb-3 border border-info rounded">
 
 We create a new branch of the docs for each stable release of Kubeflow. 
 For example, the docs for the v0.2 stable release are on published on the

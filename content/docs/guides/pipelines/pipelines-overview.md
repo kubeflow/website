@@ -88,14 +88,26 @@ def xgb_train_pipeline(
 
 ## The above pipeline after you've uploaded it
 
-![Job](/docs/images/job.png)
+<img src="/docs/images/job.png" 
+  alt="Job"
+  class="mt-3 mb-3 p-3 border border-info rounded">
 
 ## The runtime execution graph of the pipeline
 
-![Graph](/docs/images/run.png)
+<img src="/docs/images/run.png" 
+  alt="Graph"
+  class="mt-3 mb-3 p-3 border border-info rounded">
 
 ## Outputs from the pipeline
 
-![Prediction Output](/docs/images/predict.png)
-![Confusion Matrix Output](/docs/images/cm.png)
-![ROC Output](/docs/images/roc.png)
+<img src="/docs/images/predict.png" 
+  alt="Prediction output"
+  class="mt-3 mb-3 p-3 border border-info rounded">
+
+<img src="/docs/images/cm.png" 
+  alt="Confusion matrix"
+  class="mt-3 mb-3 p-3 border border-info rounded">
+
+<img src="/docs/images/roc.png" 
+  alt="ROC"
+  class="mt-3 mb-3 p-3 border border-info rounded">

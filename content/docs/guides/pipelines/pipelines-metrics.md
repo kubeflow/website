@@ -29,5 +29,7 @@ See the [full example](https://github.com/kubeflow/pipelines/blob/master/compone
 ## Visualize metrics
 
 To see a visualization of the metrics, open the **Experiment runs** page in the pipeline UI. The top 3 metrics are displayed as columns for each run. Use the **Compare runs** UI to display the full metrics.
- 
-![run metrics](/docs/images/metric.png)
+
+<img src="/docs/images/metric.png" 
+  alt="Run metrics"
+  class="mt-3 mb-3 p-3 border border-info rounded">
