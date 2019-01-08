@@ -45,17 +45,37 @@ and run a local server to host your website. This section shows you how.
 
 ### Install Hugo and other dependencies
 
-The Kubeflow website uses the Docsy theme, which requires a recent, _extended_
-version of Hugo.
+The Kubeflow website uses the Docsy theme, which requires that you have 
+**Hugo version 0.45 or later**, and it must be the **extended** version of Hugo.
 
-Follow the instructions in the 
-[Docsy setup guide](https://testydocsy.netlify.com/docs/getting-started/#installation-and-prerequisites). 
-Note the following points in particular:
+To get the extended version of Hugo:
 
-* You must have **Hugo version 0.45 or later**, and it must be the **extended** 
-  version of Hugo.
-* If you plan to make changes to the site styling, you need to
-  install some **CSS libraries**.
+1.  Go to the [Hugo releases](https://github.com/gohugoio/hugo/releases).
+1.  In the most recent release, scroll down until you find a list of
+    **extended** versions.
+1. Download the relevant file for your operating system.
+1. Unzip the downloaded file into a location of your choice.
+
+For example, to install Hugo on Linux:
+
+1.  Download
+    [hugo_extended_0.53_Linux-64bit.tar.gz](https://github.com/gohugoio/hugo/releases/download/v0.53/hugo_extended_0.53_Linux-64bit.tar.gz)
+    (or the latest version).
+
+1.  Create a new directory:
+
+        mkdir $HOME/hugo
+
+1.  Extract the file you downloaded to `$HOME/hugo`.
+
+        tar -zxvf hugo_extended_0.53_Linux-64bit.tar.gz
+
+For more details about installing Hugo, See the 
+[Hugo installation guide](https://gohugo.io/getting-started/installing/). 
+
+If you plan to make changes to the site styling, you need to install some 
+**CSS libraries** as well. Follow the instructions in the 
+[Docsy theme's setup guide](https://testydocsy.netlify.com/docs/getting-started/#installation-and-prerequisites). 
 
 ### Fork and clone the website repo and run a local website server
 
