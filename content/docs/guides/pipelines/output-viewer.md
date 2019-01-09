@@ -12,7 +12,7 @@ to their local filesystem at any point during their execution.
 ## Metadata for the output viewers
 
 The pipeline component must write a JSON file specifying metadata for the
-output viewers. The file name must be `/metadata.json`, and the file
+output viewers. The file name must be `/mlpipeline-ui-metadata.json`, and the file
 must be written to the root level of the container filesystem.
 
 The JSON specifies an array of outputs, each of which describes metadata for an 
