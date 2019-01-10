@@ -1,7 +1,7 @@
 +++
 title = "Requirements"
 description = "Requirements for Kubeflow"
-weight = 1
+weight = 5
 +++
 
 The guides in this section give detailed information about using Kubeflow and 
