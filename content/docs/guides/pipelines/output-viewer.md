@@ -63,6 +63,8 @@ type:
 
 ## Confusion matrix
 
+**type:** `'confusion_matrix'`
+
 **Metadata fields:**
 
 - `source`
@@ -75,6 +77,8 @@ path, and the schema to be able to parse the data. Labels provide the names of
 the classes to be plotted on the x and y axes.
 
 ## ROC curve
+
+**type:** `'roc'`
 
 **Metadata fields:**
 
@@ -94,6 +98,8 @@ closest fpr and tpr values.
 
 ## Table
 
+**type:** `'table'`
+
 **Metadata fields:**
 
 - `source`
@@ -105,6 +111,8 @@ Builds an HTML table out of the data at the given source path, where the
 supports pagination.
 
 ## Tensorboard
+
+**type:** `'tensorboard'`
 
 **Metadata Fields:**
 
@@ -123,6 +131,8 @@ pipeline runs. The user is responsible for recycling or deleting those Pods
 separately using their Kubernetes management tools.
 
 ## Web app
+
+**type:** `'web-app'`
 
 **Metadata fields:**
 
