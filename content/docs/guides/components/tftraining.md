@@ -17,7 +17,7 @@ implementation of TFJob is in
 A TFJob is a resource with a simple YAML representation illustrated below.
 
 ```yaml
-apiVersion: kubeflow.org/v1alpha2
+apiVersion: kubeflow.org/v1beta1
 kind: TFJob
 metadata:
   labels:
@@ -156,7 +156,7 @@ Create the component (update version as appropriate).
 
 ```
 CNN_JOB_NAME=mycnnjob
-VERSION=v0.2-branch
+VERSION=v0.4.0
 
 ks registry add kubeflow-git github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow
 ks pkg install kubeflow-git/examples
@@ -167,12 +167,11 @@ Choose a tf-job prototype from the following list of available prototypes, to ma
 
 * `io.ksonnet.pkg.tf-job-operator`                  - A TensorFlow job operator.
 * `io.ksonnet.pkg.tf-job-simple`                    - A simple TFJob to run CNN benchmark
-* `io.ksonnet.pkg.tf-job-simple-v1alpha1`           - A simple TFJob to run CNN benchmark
 * `io.ksonnet.pkg.tf-job-simple-v1beta1`            - A simple TFJob to run CNN benchmark
 
 Run the `generate` command:
 ```
-ks generate tf-job-simple ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
+ks generate tf-job-simple-v1beta1 ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
 ```
 
 Submit it
@@ -257,7 +256,7 @@ To attach GPUs specify the GPU resource on the container in the replicas
 that should contain the GPUs; for example.
 
 ```yaml
-apiVersion: "kubeflow.org/v1alpha2"
+apiVersion: "kubeflow.org/v1beta1"
 kind: "TFJob"
 metadata:
   name: "tf-smoke-gpu"
@@ -309,7 +308,7 @@ Here is sample output for an example job
 ```yaml
 apiVersion: v1
 items:
-- apiVersion: kubeflow.org/v1alpha2
+- apiVersion: kubeflow.org/v1beta1
   kind: TFJob
   metadata:
     creationTimestamp: 2018-07-29T00:31:12Z
@@ -319,7 +318,7 @@ items:
     name: tfjob
     namespace: kubeflow
     resourceVersion: "22310"
-    selfLink: /apis/kubeflow.org/v1alpha2/namespaces/kubeflow/tfjobs/tfjob
+    selfLink: /apis/kubeflow.org/v1beta1/namespaces/kubeflow/tfjobs/tfjob
     uid: b20c924b-92c6-11e8-b3ca-42010a80019c
   spec:
     tfReplicaSpecs:
@@ -453,14 +452,14 @@ Name:         tfjob2
 Namespace:    kubeflow
 Labels:       app.kubernetes.io/deploy-manager=ksonnet
 Annotations:  ksonnet.io/managed={"pristine":"H4sIAAAAAAAA/+yRz27UMBDG7zzGnJ3NbkoFjZQTqEIcYEUrekBVNHEmWbOObY3HqcJq3x05UC1/ngCJHKKZbz6P5e93AgzmM3E03kENx9TRYP3TxvNYzju04YAVKDga10MN97fvfQcKJhLsURDqEzicCGqQ4avvsjX3MaCm...
-API Version:  kubeflow.org/v1alpha2
+API Version:  kubeflow.org/v1beta1
 Kind:         TFJob
 Metadata:
   Cluster Name:        
   Creation Timestamp:  2018-07-29T02:46:53Z
   Generation:          1
   Resource Version:    26872
-  Self Link:           /apis/kubeflow.org/v1alpha2/namespaces/kubeflow/tfjobs/tfjob2
+  Self Link:           /apis/kubeflow.org/v1beta1/namespaces/kubeflow/tfjobs/tfjob2
   UID:                 a6bc7b6f-92d9-11e8-b3ca-42010a80019c
 Spec:
   Tf Replica Specs:
