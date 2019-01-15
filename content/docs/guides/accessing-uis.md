@@ -1,14 +1,11 @@
 +++
 title = "Accessing Kubeflow UIs"
-description = "Accessing Kubeflow UIs"
-weight = 10
-toc = true
-bref = "Kubeflow includes a number of different web UIs. This document provides instructions for how to connect to them."
-
-[menu.docs]
-  parent = "guides"
-  weight = 15
+description = "How to access the Kubeflow web UIs"
+weight = 15
 +++
+
+Kubeflow includes a number of web UIs. This document provides instructions on
+how to connect to them.
 
 ## Accessing Kubeflow Web UIs
 

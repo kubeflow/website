@@ -1,12 +1,7 @@
 +++
 title = "Istio Integration (for TF Serving)"
-description = "Istio Integration (for TF Serving)"
-weight = 10
-toc = true
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 6
+description = "Using Istio for TF Serving"
+weight = 6
 +++
 
 [Istio](https://istio.io/) provides a lot of functionality that we want to have, such as metrics, auth and
@@ -62,8 +57,10 @@ kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=gr
 
 Visit http://localhost:3000/dashboard/db/istio-mesh-dashboard in your web browser.
 Send some requests to the TF serving service, then there should be some data (QPS, success rate, latency)
-like
-![istio dashboard](../istio-dashboard.png)
+like this:
+<img src="../istio-dashboard.png" 
+  alt="Istio dashboard"
+  class="mt-3 mb-3 border border-info rounded">
 
 
 #### Define and view metrics

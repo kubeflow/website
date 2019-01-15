@@ -1,14 +1,11 @@
 +++
 title = "Requirements"
-description = "Requirements"
-weight = 10
-toc = true
-bref= "The guides in this section give detailed information about using Kubeflow and its components."
-aliases = ["/docs/guides/"]
-[menu.docs]
-  parent = "guides"
-  weight = 1
+description = "Requirements for Kubeflow"
+weight = 1
 +++
+
+The guides in this section give detailed information about using Kubeflow and 
+its components.
 
 For best understanding of the guides, it's useful to have some knowledge of
 the following systems:

@@ -1,14 +1,11 @@
 +++
 title = "Chainer Training"
 description = "Instructions for using Chainer for training"
-weight = 10
+weight = 4
 toc = true
-bref= "This guide will walk you through using Chainer for training"
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 4
 +++
+
+This guide walks you through using Chainer for training your model.
 
 ## What is Chainer?
 

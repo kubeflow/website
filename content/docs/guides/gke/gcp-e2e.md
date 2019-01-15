@@ -1,11 +1,7 @@
 +++
 title = "End-to-end Kubeflow on GCP"
-description = "Guide to Kubeflow on Google Cloud Platform"
+description = "Kubeflow on Google Cloud Platform"
 weight = 10
-toc = true
-[menu.docs]
-  parent = "gke"
-  weight = 10
 +++
 
 This guide walks you through an end-to-end example of Kubeflow on Google
@@ -13,6 +9,10 @@ Cloud Platform (GCP). By working through the guide, you'll learn
 how to deploy Kubeflow on Kubernetes Engine (GKE), train a machine learning 
 model for image classification, save the trained model, and use the model for 
 online inference (also known as online prediction).
+
+**Note:** This guide works only with **Kubeflow v0.2.7**. We're working on an 
+upgrade  of the code and the guide. See issue 
+[#261](https://github.com/kubeflow/website/issues/261).
 
 ## Introductions
 
@@ -51,9 +51,9 @@ After training, the model classifies incoming images into 10 categories (0 to 9)
 based on what it's learned about handwritten images. In other words, you send
 an image to the model, and the model does its best to identify the digit shown
 in the image.
-
-
-  ![Prediction UI](/docs/images/gcp-e2e-ui-prediction.png)
+<img src="/docs/images/gcp-e2e-ui-prediction.png" 
+    alt="Prediction UI"
+    class="mt-3 mb-3 p-3 border border-info rounded">
 
 In the above screenshot, the image shows a hand-written **8**. The table below 
 the image shows a bar graph for each  classification label from 0 to 9. Each bar 
@@ -922,8 +922,9 @@ Follow these steps to access the web UI in your web browser.
 
 1. Open the UI in your web browser at `localhost:8080`. The web UI should load, 
    offering you three fields to connect to the prediction server:
-
-    ![Connection UI](/docs/images/gcp-e2e-ui-connect.png)
+    <img src="/docs/images/gcp-e2e-ui-connect.png" 
+        alt="Connection UI"
+        class="mt-3 mb-3 border border-info rounded">
 
 1. By default, the fields on the above web page are pre-filled with the details 
    of the TensorFlow server that's running in the cluster:  a name, an address, 
@@ -948,8 +949,9 @@ Follow these steps to access the web UI in your web browser.
 
 Below the connect screen, you should see a prediction UI for your MNIST 
 model.
-
-  ![Prediction UI](/docs/images/gcp-e2e-ui-prediction.png)
+<img src="/docs/images/gcp-e2e-ui-prediction.png" 
+    alt="Prediction UI"
+    class="mt-3 mb-3 p-3 border border-info rounded">
 
 Each  time you refresh the page, it loads a random image from the MNIST test
 dataset and performs a prediction. In the above screenshot, the image shows a

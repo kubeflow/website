@@ -2,13 +2,10 @@
 title = "Using Your Own Domain"
 description = "Using a custom domain with Kubeflow on GKE"
 weight = 3
-toc = true
-bref = "This guide describes how to use a custom domain with Kubeflow on Google Cloud Platform (GCP)."
-
-[menu.docs]
-  parent = "gke"
-  weight = 3
 +++
+
+This guide describes how to use a custom domain with Kubeflow on Google Cloud 
+Platform (GCP).
 
 ## Before you start
 

@@ -1,13 +1,9 @@
 +++
 title = "Build Lightweight Python Components"
 description = "Building your own lightweight pipelines components from Python."
-weight = 3
-toc = true
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 7
+weight = 7
 +++
+
 Lightweight Python components do not require you to build a new container image
 for every code change. They're intended for fast iteration in a notebook 
 environment.

@@ -1,14 +1,12 @@
 +++
 title =  "Docs"
-description = "Information on the Kubeflow docs and how to contribute to the docs"
-weight = 10
-toc = true
-bref = "Welcome to the Kubeflow documentation! This page tells you how the docs work and how you can contribute to them."
+description = "Information on the Kubeflow docs and how to contribute to them"
+weight = 6
 aliases = ["/docs/docs/"]
-[menu.docs]
-  parent = "about"
-  weight = 6
 +++
+
+Welcome to the Kubeflow documentation!
+
 ## Introduction
 
 The Kubeflow docs are published at 
@@ -25,9 +23,10 @@ www.kubeflow.org points to the **master** branch of the docs. You can access
 other versions by clicking the version dropdown at top right of the website
 menu bar:
 
-<img src="/docs/images/version-dropdown.png"
- style="width:20%;"
- alt="Version dropdown">
+<img src="/docs/images/version-dropdown.png" 
+  alt="Version dropdown"
+  style="width:30%;"
+  class="mt-3 mb-3 border border-info rounded">
 
 We create a new branch of the docs for each stable release of Kubeflow. 
 For example, the docs for the v0.2 stable release are on published on the

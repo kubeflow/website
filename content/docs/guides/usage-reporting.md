@@ -1,10 +1,6 @@
 +++
 title = "Usage Reporting"
-weight = 10
-toc = true
-[menu.docs]
-  parent = "guides"
-  weight = 40
+weight = 40
 +++
 
 When enabled, Kubeflow will report **anonymous** usage data using [spartakus](https://github.com/kubernetes-incubator/spartakus), Kubernetes' reporting tool. Spartakus **does not report any personal information**. See [here](https://github.com/kubernetes-incubator/spartakus) for more detail.

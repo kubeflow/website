@@ -1,12 +1,7 @@
 +++
 title = "Pipelines"
 description = "Introduction to Kubeflow Pipelines"
-weight = 10
-toc = true
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 35
+weight = 35
 +++
 
 Kubeflow Pipelines is a platform for building and deploying portable and

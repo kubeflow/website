@@ -1,20 +1,18 @@
 +++
 title = "PyTorch Training"
 description = "Instructions for using PyTorch"
-weight = 10
-toc = true
-bref= "This guide will walk you through using PyTorch with Kubeflow"
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 35
+weight = 35
 +++
+
+This guide walks you through using PyTorch with Kubeflow.
 
 ## Installing PyTorch Operator
 
 If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
 
-An **alpha** version of PyTorch support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow newer than 0.2.0.
+An **alpha** version of PyTorch support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow between 0.2.0 and 0.3.5 to use this version.
+
+More recently, a **beta** version of PyTorch support was introduced with Kubeflow 0.4.0. You must be using a version of Kubeflow newer than 0.4.0 to use this version.
 
 ## Verify that PyTorch support is included in your Kubeflow deployment
 

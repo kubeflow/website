@@ -1,14 +1,11 @@
 +++
 title = "GitOps For Kubeflow Using Argo CD"
 description = "Running Kubeflow using the GitOps methodology with Argo CD"
-weight = 10
-toc = true
-bref = "This guide describes how to setup Kubeflow using a GitOps methodology by leveraging Argo-CD"
-
-[menu.docs]
-  parent = "guides"
-  weight = 30
+weight = 30
 +++
+
+This guide describes how to setup Kubeflow using a GitOps methodology by 
+using Argo-CD.
 
 ## What is GitOps?
 GitOps is a Continuous Delivery methodology centered around using Git as a single source of truth for declarative infrastructure and application code.  The Git repo defines the desired state of an application using declarative specifications, and a GitOps tool like Argo CD will reconcile the differences between the manifest defined by the git repo and the live system.  As a result, GitOps enforces an operating model where all changes are observable and verifiable through git commits.  The declarative specifications streamline deployments as developers do not need to write scripts to build and deploy their application.  Once the application is deployed, debugging is simplified as developers have a clear set of change logs through their Git commits history.  Even if the live system has drifted away from the source repo's desired state, the GitOps methodology provides the tools to converge the real system with the desired state through the declarative specs.  Finally, once the breaking commit is found, rollback becomes as simple as syncing a previously good git commit.  All these benefits reduce the amount of work developers have to spend on managing deployments to allow them to focus on other features.
@@ -123,9 +120,9 @@ argocd app sync kubeflow
 argocd app get kubeflow
 ```
 or from the UI:
-![Argo CD In progress Deployment](/docs/images/argo-cd-deployment-in-progess.png)
-
-
+<img src="/docs/images/argo-cd-deployment-in-progess.png" 
+  alt="Argo CD deployment in progress"
+  class="mt-3 mb-3 border border-info rounded">
 
 * NOTE: There is a [known issue](https://github.com/kubeflow/kubeflow/issues/1145) with the IAP component that prevents the envoy service from becoming synced and causes all subsequent syncs to fail.  As a workaround for this issue, we recommend that you sync individual resources by adding the resource flag to your sync command.
 
@@ -139,8 +136,9 @@ When you commit a change that modifies the ksonnet application directory of your
 argocd app sync kubeflow --resource GROUP:KIND:NAME
 ```
 or from the UI:
-
-![Argo CD In progress Deployment](/docs/images/argo-cd-partial-sync-ui.png)
+<img src="/docs/images/argo-cd-partial-sync-ui.png" 
+  alt="Argo CD partial sync"
+  class="mt-3 mb-3 border border-info rounded">
 
 
 ## More Argo CD configuration

@@ -1,13 +1,7 @@
 +++
 title = "Seldon Serving"
-description = "Seldon Serving"
-weight = 10
-toc = true
-bref= "Model serving using Seldon"
-[menu]
-[menu.docs]
-  parent = "components"
-  weight = 40
+description = "Model serving using Seldon"
+weight = 40
 +++
 
 ## Serve a model using Seldon

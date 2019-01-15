@@ -1,14 +1,12 @@
 +++
 title =  "Contributing to Kubeflow"
-description = "Information on how to start contributing to Kubeflow"
-weight = 10
-toc = true
-bref = "Welcome to the Kubeflow project! "
+description = "How to start contributing to Kubeflow"
+weight = 3
 aliases = ["/docs/contributing/"]
-[menu.docs]
-  parent = "about"
-  weight = 3
 +++
+
+Welcome to the Kubeflow project!
+
 ## Getting started as a Kubeflow contributor
 
 This document is the single source of truth for how to contribute to the code base.
@@ -52,7 +50,7 @@ There are are a number of ways to contribute to Kubeflow
 
   * Submit PRs
   * File issues reporting bugs or providing feedback
-  * Answer questions on slack or GitHub issues
+  * Answer questions on Slack or GitHub issues
 
 You can use this [table](https://devstats.kubeflow.org/d/13/developers-table?orgId=1&var-period_name=Last%20decade&var-metric=contributions&var-period=y10) to see how many contributions
 you've made
@@ -64,7 +62,7 @@ When you are ready to join
   * Send a PR adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml#L19)  
   * After the PR is merged an admin will send you an invite
     * This is a manual process that's generally run a couple times a week
-    * If a week passes without recieving an invite reach out on [kubeflow#community](https://kubeflow.slack.com/messages/C8Q0QJYNB/convo/CABQ2BWHW-1544147308.002500/)
+    * If a week passes without receiving an invite reach out on [kubeflow#community](https://kubeflow.slack.com/messages/C8Q0QJYNB/convo/CABQ2BWHW-1544147308.002500/)
 
 ### Companies/organizations
 
@@ -73,7 +71,7 @@ Kubeflow or participatng in the community (being a user counts) please send a PR
 adding the relevant info to
 [member_organizations.yaml](https://github.com/kubeflow/community/blob/master/member_organizations.yaml).
 
-If you want your employee's GitHub contributions to be attributed to your company please assk them to set
+If you want your employee's GitHub contributions to be attributed to your company please ask them to set
 the company field in their GitHub profile.
 
 ### Community discussions

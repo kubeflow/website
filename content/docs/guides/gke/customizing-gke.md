@@ -1,15 +1,11 @@
 +++
 title = "Customizing Kubeflow on GKE"
 description = "Tailoring a GKE deployment of Kubeflow"
-weight = 3
-toc = true
-bref = "This guide describes how to customize your deployment of Kubeflow on Google Kubernetes Engine (GKE)."
-aliases = ["/docs/guides/gke/"]
-
-[menu.docs]
-  parent = "gke"
-  weight = 1
+weight = 1
 +++
+
+This guide describes how to customize your deployment of Kubeflow on Google 
+Kubernetes Engine (GKE).
 
 ## Before you start
 

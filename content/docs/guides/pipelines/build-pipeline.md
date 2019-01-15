@@ -1,14 +1,11 @@
 +++
 title = "Build a Pipeline"
 description = "Deploy the Kubeflow Pipelines service"
-weight = 3
-toc = true
-bref = "This page describes how to author pipelines and components, and submit them to the Kubeflow Pipelines system to run."
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 4
+weight = 4
 +++
+
+This page describes how to author pipelines and components, and submit them to 
+the Kubeflow Pipelines system to run.
 
 ## Using a notebook
 
@@ -113,7 +110,7 @@ export PATH=MINICONDA_PATH/bin:$PATH
 Run the following to install the Kubeflow Pipelines SDK:
 
 ```bash
-pip3 install https://storage.googleapis.com/ml-pipeline/release/0.1.2/kfp.tar.gz --upgrade
+pip3 install https://storage.googleapis.com/ml-pipeline/release/0.1.7/kfp.tar.gz --upgrade
 ```
 
 After successful installation the command `dsl-compile` should be added to your 

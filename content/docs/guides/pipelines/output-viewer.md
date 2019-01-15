@@ -1,13 +1,9 @@
 +++
 title = "Use an Output Viewer"
 description = "Using output viewers for pipelines components."
-weight = 3
-toc = true
-
-[menu.docs]
-  parent = "pipelines"
-  weight = 8
+weight = 8
 +++
+
 The Kubeflow Pipelines UI has built-in support for several types of 
 visualizations, in order to provide rich performance evaluation and comparison. 
 Components can use these visualizations by writing a JSON file 
@@ -16,7 +12,7 @@ to their local filesystem at any point during their execution.
 ## Metadata for the output viewers
 
 The pipeline component must write a JSON file specifying metadata for the
-output viewers. The file name must be `/metadata.json`, and the file
+output viewers. The file name must be `/mlpipeline-ui-metadata.json`, and the file
 must be written to the root level of the container filesystem.
 
 The JSON specifies an array of outputs, each of which describes metadata for an 
@@ -67,6 +63,8 @@ type:
 
 ## Confusion matrix
 
+**type:** `'confusion_matrix'`
+
 **Metadata fields:**
 
 - `source`
@@ -79,6 +77,8 @@ path, and the schema to be able to parse the data. Labels provide the names of
 the classes to be plotted on the x and y axes.
 
 ## ROC curve
+
+**type:** `'roc'`
 
 **Metadata fields:**
 
@@ -98,6 +98,8 @@ closest fpr and tpr values.
 
 ## Table
 
+**type:** `'table'`
+
 **Metadata fields:**
 
 - `source`
@@ -109,6 +111,8 @@ Builds an HTML table out of the data at the given source path, where the
 supports pagination.
 
 ## Tensorboard
+
+**type:** `'tensorboard'`
 
 **Metadata Fields:**
 
@@ -127,6 +131,8 @@ pipeline runs. The user is responsible for recycling or deleting those Pods
 separately using their Kubernetes management tools.
 
 ## Web app
+
+**type:** `'web-app'`
 
 **Metadata fields:**
 
