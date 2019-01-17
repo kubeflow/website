@@ -33,24 +33,20 @@
     margin: 0;
     z-index: 32;
 
+    .brand-name {
+        display: none;}
+
     @include media-breakpoint-up(md) {
         position: fixed;
         top: 0;
         width: 100%;
-
-        .brand-name {
-            display: none;}
     }
-
-    @include media-breakpoint-down(md) {
-        .navbar-logo {
-            display: none;}
-    }
-
 
     .navbar-brand {
         text-transform: none;
         text-align: middle;
+        margin: 0;
+        padding: 0;
 
         .nav-link {
             display: inline-block;
@@ -61,13 +57,21 @@
             svg {
                 display: inline-block;
                 position: absolute;
+                top: 0;
+                left: 26px;
                 z-index: 33;
-                margin: -32px 10px 0 10px;
                 padding: 10px;
                 height: 95px;
                 background: white;
                 border: 2px solid #4279f4;
                 border-top: none;
+
+                @include media-breakpoint-down(md) {
+                    left: 16px;
+                    width: 80px;
+                    height: auto;
+                    padding: 6px;
+                }
             }
         }
     }
@@ -92,9 +96,10 @@
     @include media-breakpoint-down(md) {
         padding-right: .5rem;
         padding-left: .75rem;
+        align-items: flex-end;
 
         .td-navbar-nav-scroll {
-            max-width: 100%;
+            max-width: calc(100% + .75rem - 96px - 1.5rem);
             height: 2.5rem;
             margin-top: .25rem;
             overflow: hidden;
@@ -106,14 +111,12 @@
             }
 
             .navbar-nav {
+                margin-top: 0 !important;
                 padding-bottom: 2rem;
                 overflow-x: auto;
                 white-space: nowrap;
                 -webkit-overflow-scrolling: touch;
-
             }
         }
-        .navbar-logo {
-            display: none;}
     }
 }
