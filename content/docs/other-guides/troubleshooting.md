@@ -110,6 +110,20 @@ kubectl -n ${NAMESPACE} describe pods ${PODNAME}
   * One common error is not being able to schedule the pod because there aren't
     enough resources in the cluster.
 
+## Pods stuck in Pending state
+
+There are three pods that have 10Gi Persistent Volume Claims (PVC's) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and vizier-db.
+Check the status of PVC requests
+
+```
+kubectl -n ${NAMESPACE} get pvc
+```
+
+  * Look for the status of "Bound"
+  * PVC requests in "Pending" state indicate that the scheduler was unable to bind the required PVC. 
+
+If Dynamic Provisioning is not configured for your cluster and a default StorageClass defined, then you will need to create PersistentVolumes for each of the PVC's. 
+
 ## OpenShift
 If you are deploying Kubeflow in an [OpenShift](https://github.com/openshift/origin) environment which encapsulates Kubernetes, you will need to adjust the security contexts for the ambassador and jupyter-hub deployments in order to get the pods to run.
 
