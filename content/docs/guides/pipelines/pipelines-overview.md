@@ -31,8 +31,8 @@ The following are the goals of Kubeflow Pipelines:
   create end-to-end solutions without having to rebuild each time.
 
 In 
-[Kubeflow v0.1.3](https://github.com/kubeflow/pipelines/releases/tag/0.1.3)
-and later, Kubeflow Pipelines is one of the Kubeflow core components. It's 
+[Kubeflow v0.1.3 and later](https://github.com/kubeflow/pipelines/releases/tag/0.1.3),
+Kubeflow Pipelines is one of the Kubeflow core components. It's 
 automatically deployed during Kubeflow deployment. You can try it currently 
 with a Kubeflow deployment on GKE. See the 
 [GKE setup guide](/docs/started/getting-started-gke/).
@@ -122,11 +122,10 @@ def xgb_train_pipeline(
 
 ### Pipeline data on the Kubeflow Pipelines UI
 
-The screenshot below shows Kubeflow Pipelines UI for kicking off a run of
-the pipeline. The UI form derives its data from
-the pipeline definition in your code, including the parameters that you must
-supply in order to run the pipeline and any default values that you have 
-defined. The arrows on the screenshot indicate the 
+The screenshot below shows the Kubeflow Pipelines UI for kicking off a run of
+the pipeline. The pipeline definition in your code determines which parameters 
+appear in the UI form. The pipeline definition can also set default values for 
+these parameters. The arrows on the screenshot indicate the 
 parameters that do not have useful default values in this particular example: 
 
 <img src="/docs/images/pipelines-start-xgboost-run.png" 
@@ -160,7 +159,7 @@ Receiver operating characteristics (ROC) curve:
 
 * Follow the 
   [pipelines quickstart guide](/docs/guides/pipelines/pipelines-quickstart) to 
-  deploy Kubeflow pipelines and run a sample pipeline directly from the 
+  deploy Kubeflow and run a sample pipeline directly from the 
   Kubeflow Pipelines UI.
 * Follow the full guide to
   [building a pipeline](/docs/guides/pipelines/build-pipeline).
