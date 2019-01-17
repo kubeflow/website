@@ -9,3 +9,7 @@
 /blog/nvidia_tensorrt/                 https://medium.com/kubeflow/gpu-accelerated-inference-for-kubernetes-with-the-nvidia-tensorrt-inference-server-and-kubeflow-63061305fff2
 /blog/kaggle_on_kubeflow/              https://medium.com/kubeflow/kaggle-on-kubeflow-185a29e27c53
 /blog/announcing_kubeflow_0.2/         https://medium.com/kubeflow/kubeflow-0-2-offers-new-components-and-simplified-setup-735e4c56988d
+
+/docs/guides/components/components     /docs/components/
+# Removed the "guides" section from the doc URLs.
+/docs/guides/*  /docs/:splat
