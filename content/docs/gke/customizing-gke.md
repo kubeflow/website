@@ -104,5 +104,5 @@ For more information please refer to the [Deployment Manager docs](https://cloud
 ## More customizations
 
 Refer to the navigation panel on the left of these docs for more customizations,
-including [using your own domain](/docs/guides/gke/custom-domain), 
-[setting up Cloud Filestore](/docs/guides/gke/cloud-filestore), and more.
+including [using your own domain](/docs/gke/custom-domain), 
+[setting up Cloud Filestore](/docs/gke/cloud-filestore), and more.

@@ -238,7 +238,7 @@ The TFJob dashboard is available at `<path>/tfjobs/ui/`. Specifically:
     http://localhost:8080/tfjobs/ui/
     ```
 
-See more details about [accessing the Kubeflow UIs](/docs/guides/accessing-uis).
+See more details about [accessing the Kubeflow UIs](/docs/other-guides/accessing-uis).
 
 ## Using GPUs
 
@@ -577,9 +577,9 @@ further analysis.
 
 ### Stackdriver on GKE
 
-See [here](/docs/guides/monitoring/) for instructions to get logs using Stackdriver.
+See [here](/docs/other-guides/monitoring/) for instructions to get logs using Stackdriver.
 
-As described [here](https://www.kubeflow.org/docs/guides/monitoring/#filter-with-labels) its possible
+As described [here](https://www.kubeflow.org/docs/other-guides/monitoring/#filter-with-labels) its possible
 to fetch the logs for a particular replica based on pod labels. 
 
 Using the Stackdriver UI you can use a query like
@@ -685,4 +685,4 @@ Events:
    in the previous section.
 
 ## More information
-* See how to [run a job with gang-scheduling](/docs/guides/job-scheduling).
+* See how to [run a job with gang-scheduling](/docs/other-guides/job-scheduling).

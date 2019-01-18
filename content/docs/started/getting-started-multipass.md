@@ -122,6 +122,6 @@ Point browser to either:
 
 ### Where to go next
 
-* Refer to the [user guide](/docs/guides/)
-* Refer to the [components](/docs/guides/components/)
-* Refer to the [JupyterHub guide](/docs/guides/components/jupyter)
+* Refer to the [user guide](/docs/)
+* Refer to the [components](/docs/components/)
+* Refer to the [JupyterHub guide](/docs/components/jupyter)

@@ -30,8 +30,8 @@ The following are the goals of Kubeflow Pipelines:
 
 Follow these guides to deploy Kubeflow Pipelines and build your first pipeline:
 
-* [Deploy the Kubeflow Pipelines service](/docs/guides/pipelines/deploy-pipelines-service).
-* [Build a pipeline and run the pipeline samples](/docs/guides/pipelines/build-pipeline).
+* [Deploy the Kubeflow Pipelines service](/docs/pipelines/deploy-pipelines-service).
+* [Build a pipeline and run the pipeline samples](/docs/pipelines/build-pipeline).
 
 ## The Python code to represent a pipeline workflow graph
 

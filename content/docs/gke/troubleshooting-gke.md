@@ -13,7 +13,7 @@ This guide covers troubleshooting specifically for
 [Kubeflow deployments on GKE](/docs/started/getting-started-gke).
 
 For more help, try the 
-[general Kubeflow troubleshooting guide](/docs/guides/troubleshooting).
+[general Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting).
 
 ## Troubleshooting Cloud IAP
 
@@ -268,7 +268,7 @@ ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
 ## CPU platform unavailable in requested zone
 
 By default we set minCpuPlatform to `Intel Haswell` to make sure AVX2 is supported.
-See [troubleshooting](/docs/guides/troubleshooting/) for more details.
+See [troubleshooting](/docs/other-guides/troubleshooting/) for more details.
 
 If you encounter this `CPU platform unavailable` error (might manifest as
 `Cluster is currently being created, deleted, updated or repaired and cannot be updated.`),

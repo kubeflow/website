@@ -16,7 +16,7 @@ You can choose to build your pipeline in a Jupyter notebook.
 We suggest that you use the JupyterHub that is installed in the same cluster as 
 the pipeline system. Follow these steps to start a notebook:
 
-* Follow the [instructions](/docs/guides/pipelines/deploy-pipelines-service) to 
+* Follow the [instructions](/docs/pipelines/deploy-pipelines-service) to 
   deploy a pipeline cluster and run a `kubectl` proxy to connect to the cluster. 
   You should see the Kubeflow Pipelines UI.
 
@@ -142,4 +142,4 @@ Upload the generated `.tar.gz` file through the Kubeflow Pipelines UI.
 ## Advanced: Build your own components
 
 See how to 
-[build your own pipeline components](/docs/guides/pipelines/build-component).
+[build your own pipeline components](/docs/pipelines/build-component).

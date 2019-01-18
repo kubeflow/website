@@ -207,7 +207,7 @@ ksonnet components as standard Kubernetes YAML files with `ks show`, or you can
 deploy (_apply_) the components directly to the cluster with `ks apply`.
 
 Make sure you have the version of ksonnet specified in the 
-[Kubeflow requirements](/docs/guides/requirements).
+[Kubeflow requirements](/docs/started/requirements).
 
 Follow the steps below to install ksonnet:
 
@@ -1029,10 +1029,10 @@ gsutil rm -r gs://${BUCKET_NAME}
 [kubeflow-core]: https://github.com/kubeflow/kubeflow/tree/master/kubeflow/core
 [tf-job-prototype]: https://github.com/kubeflow/kubeflow/blob/master/kubeflow/examples/prototypes/tf-job-simple.jsonnet
 [tf-serving-prototype]: https://github.com/kubeflow/kubeflow/tree/master/kubeflow/tf-serving
-[tf-training]: /docs/guides/components/tftraining/
+[tf-training]: /docs/components/tftraining/
 
 [deploy-script]: https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deploy.sh
 
 [jupyterhub]: http://jupyter.org/hub
-[kubeflow-jupyter]: /docs/guides/components/jupyter/
+[kubeflow-jupyter]: /docs/components/jupyter/
 [jupyter-nbviewer]: https://jupyter-notebook.readthedocs.io/en/latest/notebook.html#notebook-user-interface
