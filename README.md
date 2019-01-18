@@ -132,7 +132,7 @@ A `weight` property in the _front matter_ of each page determines the position
 of the page relative to the others in the same directory. The lower the weight,
 the earlier the page appears in the section. A weight of 1 appears before a
 a weight of 2, and so on. For example, see the front matter of the
-[requirements](https://github.com/kubeflow/website/blob/master/content/docs/guides/requirements.md)
+[requirements](https://github.com/kubeflow/website/blob/master/content/docs/started/requirements.md)
 page in the guides section. The page front matter looks like this:
 
 ```

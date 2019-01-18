@@ -6,7 +6,7 @@ weight = 1
 
 Use this guide if you want to get a simple pipeline running quickly in
 Kubeflow Pipelines. If you need a more in-depth guide, see how to
-[build a pipeline](/docs/guides/pipelines/build-pipeline/).
+[build a pipeline](/docs/pipelines/build-pipeline/).
 
 ## Deploy Kubeflow and open the pipelines UI
 
@@ -160,9 +160,9 @@ finished with them:
 ## Next steps
 
 * Learn more about the 
-  [important concepts](/docs/guides/pipelines/pipelines-concepts) in Kubeflow
+  [important concepts](/docs/pipelines/pipelines-concepts) in Kubeflow
   Pipelines.
 * This page showed you how to run some of the examples supplied in the Kubeflow
   Pipelines UI. Next, you may want to run a pipeline from a notebook, or compile 
   and run a sample from the code. See the guide to 
-  [building a pipeline](/docs/guides/pipelines/build-pipeline/).
+  [building a pipeline](/docs/pipelines/build-pipeline/).

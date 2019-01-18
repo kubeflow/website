@@ -6,15 +6,15 @@ weight = 6
 
 This page is for advanced users. It describes how to build your own pipeline 
 components. For an easier start, try 
-[building a pipeline with the provided samples](/docs/guides/pipelines/build-pipeline).
+[building a pipeline with the provided samples](/docs/pipelines/build-pipeline).
 
 ## Overview of pipeline components
 
 Kubeflow Pipelines components are implementations of pipeline tasks. Each task 
 takes one or more 
-[artifacts](/docs/guides/pipelines/pipelines-concepts#step-output-artifacts) as
+[artifacts](/docs/pipelines/pipelines-concepts#step-output-artifacts) as
 input and may produce one or more
-[artifacts](/docs/guides/pipelines/pipelines-concepts#step-output-artifacts) as 
+[artifacts](/docs/pipelines/pipelines-concepts#step-output-artifacts) as 
 output.
 
 Each task usually includes two parts:
@@ -44,7 +44,7 @@ There are multiple ways to author components:
 * Wrap an existing Docker container image using `ContainerOp`, as described 
   below.
 * Create a 
-  [lightweight python component](/docs/guides/pipelines/lightweight-python-components) 
+  [lightweight python component](/docs/pipelines/lightweight-python-components) 
   from a Python function
 * Build a new Docker container image from a Python function.
 
@@ -167,8 +167,8 @@ See [an example](https://github.com/kubeflow/pipelines/blob/master/samples/xgboo
 
 You can also build lightweight components from Python functions. See the guide 
 to 
-[lightweight python components](/docs/guides/pipelines/lightweight-python-components).
+[lightweight python components](/docs/pipelines/lightweight-python-components).
 
 ## Export metrics
 
-See the guide to [pipeline metrics](/docs/guides/pipelines/pipelines-metrics).
+See the guide to [pipeline metrics](/docs/pipelines/pipelines-metrics).

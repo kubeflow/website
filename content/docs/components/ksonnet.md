@@ -77,7 +77,7 @@ ks apply default
 
 ## Upgrading ksonnet
 
-See the guide to [upgrading Kubeflow](/docs/guides/upgrade/).
+See the guide to [upgrading Kubeflow](/docs/other-guides/upgrade/).
 
 ## Why Kubeflow uses ksonnet
 

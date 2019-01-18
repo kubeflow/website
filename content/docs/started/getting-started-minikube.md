@@ -249,6 +249,6 @@ For JupyterHub, you'll be landing on a login page.
   - You should be redirected to a page that waits while the server is starting.
 
 If the page doesn't refresh, please see
-[troubleshooting](/docs/guides/troubleshooting/#problems-spawning-jupyter-pods).
+[troubleshooting](/docs/other-guides/troubleshooting/#problems-spawning-jupyter-pods).
 
-For further exploration refer to the [guide](/docs/guides/).
+For further exploration refer to the [documentation](/docs/).
