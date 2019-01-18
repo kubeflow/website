@@ -16,9 +16,9 @@ You can choose to build your pipeline in a Jupyter notebook.
 We suggest that you use the JupyterHub that is installed in the same cluster as 
 the pipeline system. Follow these steps to start a notebook:
 
-* Follow the [instructions](/docs/guides/pipelines/deploy-pipelines-service) to 
-  deploy a pipeline cluster and run a `kubectl` proxy to connect to the cluster. 
-  You should see the Kubeflow Pipelines UI.
+* Follow the
+  [quickstart guide](/docs/guides/pipelines/pipelines-quickstart/#deploy-kubeflow-and-open-the-pipelines-ui)
+  to deploy a Kubeflow cluster and open the Kubeflow Pipelines UI.
 
 * Click **Notebooks** in the left-hend menu. If this is the first time you've 
   visited JupyterHub, you need to sign in with any username. Password can be 
