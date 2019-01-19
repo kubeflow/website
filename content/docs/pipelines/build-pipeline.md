@@ -1,13 +1,11 @@
 +++
-title = "Pipeline Samples and Notebooks"
-description = "Using the samples and notebooks for pipelines components."
-weight = 9
+title = "Build a Pipeline"
+description = "Deploy the Kubeflow Pipelines service"
+weight = 4
 +++
 
-This page describes how to use the Kubeflow Pipelines 
-[notebooks]( https://github.com/kubeflow/pipelines/tree/master/samples/notebooks)
-and [samples](https://github.com/kubeflow/pipelines/tree/master/samples)
-to create a pipeline for deployment in Kubeflow.
+This page describes how to author pipelines and components, and submit them to 
+the Kubeflow Pipelines system to run.
 
 ## Using a notebook
 
@@ -16,9 +14,9 @@ You can choose to build your pipeline in a Jupyter notebook.
 We suggest that you use the JupyterHub that is installed in the same cluster as 
 the pipeline system. Follow these steps to start a notebook:
 
-* Follow the [instructions](/docs/guides/pipelines/deploy-pipelines-service) to 
-  deploy a pipeline cluster and run a `kubectl` proxy to connect to the cluster. 
-  You should see the Kubeflow Pipelines UI.
+* Follow the
+  [quickstart guide](/docs/guides/pipelines/pipelines-quickstart/#deploy-kubeflow-and-open-the-pipelines-ui)
+  to deploy a Kubeflow cluster and open the Kubeflow Pipelines UI.
 
 * Click **Notebooks** in the left-hend menu. If this is the first time you've 
   visited JupyterHub, you need to sign in with any username. Password can be 
@@ -36,7 +34,7 @@ the pipeline system. Follow these steps to start a notebook:
   version is at the top right-hand corner in the Jupyter notebook view. You can 
   run the notebooks now.
 
-Note: The notebook samples don't work on Jupyter notebooks outside the cluster, 
+Note: The notebook samples don't work on Jupyter notebooks outside the same cluster, 
 because the Python library communicates with the Kubeflow Pipelines system 
 through in-cluster service names.
 
@@ -61,14 +59,12 @@ The following notebooks are available:
 By following the notebooks you learn how to build pipelines and components with 
 the Kubeflow Pipelines SDK (a Python DSL).
 
-## Using the samples
+## Using the command line
 
 Instead of using a notebook, you can choose to set up things yourself using the 
 command line. But currently you can't use the Python SDK to submit 
 pipelines to a cluster, and you can't build container images using the SDK.
 The DSL compiler works as usual.
-
-### Set up Python
 
 **Python 3.5 or above is required**. If you don't have Python 3 set up, we 
 suggest the following steps to install 
@@ -103,18 +99,18 @@ conda create --name mlpipeline python=3.6
 source activate mlpipeline
 ```
  
-If the `conda` command is not found, be sure to add Miniconda to your path:
+If the `conda` command is not found, be sure to add the Miniconda path:
  
 ```bash
 export PATH=MINICONDA_PATH/bin:$PATH
 ```
-
+ 
 ### Install the Kubeflow Pipelines SDK
 
 Run the following to install the Kubeflow Pipelines SDK:
 
 ```bash
-pip3 install https://storage.googleapis.com/ml-pipeline/release/0.1.2/kfp.tar.gz --upgrade
+pip3 install https://storage.googleapis.com/ml-pipeline/release/0.1.7/kfp.tar.gz --upgrade
 ```
 
 After successful installation the command `dsl-compile` should be added to your 
@@ -142,4 +138,4 @@ Upload the generated `.tar.gz` file through the Kubeflow Pipelines UI.
 ## Advanced: Build your own components
 
 See how to 
-[build your own pipeline components](/docs/guides/pipelines/build-component).
+[build your own pipeline components](/docs/pipelines/build-component).

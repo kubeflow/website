@@ -57,7 +57,7 @@ ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
 ```
 
 If you get an error **legacy networks are not supported** follow the instructions
-in the [troubleshooting guide](/docs/guides/troubleshooting).
+in the [troubleshooting guide](/docs/other-guides/troubleshooting).
 
 ## Configure Kubeflow to mount the Cloud Filestore volume
 

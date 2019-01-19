@@ -17,5 +17,5 @@ The Kubeflow Pipelines platform has the following goals:
   cobble together end-to-end solutions, without having to rebuild each time.
 
   Read more in the 
-  [pipelines section](/docs/guides/pipelines/pipelines-overview)
+  [pipelines section](/docs/pipelines/pipelines-overview)
   of the documentation.

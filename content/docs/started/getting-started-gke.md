@@ -280,10 +280,10 @@ privilege. The three service accounts are:
 ## Next steps
 
 * Run a full ML workflow on Kubeflow, using the
-  [end-to-end MNIST tutorial](/docs/guides/gke/gcp-e2e/) or the
+  [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
   [GitHub issue sumarization 
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
-* See how to [customize](/docs/guides/gke/customizing-gke) your Kubeflow 
+* See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
   deployment on GKE.
-* [Troubleshoot](/docs/guides/gke/troubleshooting-gke) any issues you may
+* [Troubleshoot](/docs/gke/troubleshooting-gke) any issues you may
   find.

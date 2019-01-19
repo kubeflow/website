@@ -153,8 +153,8 @@ python iap_request.py https://YOUR_HOST/tfserving/models/mnist IAP_CLIENT_ID --i
 
 ## Telemetry and Rolling out model using Istio
 
-Please look at the [Istio guide](/docs/guides/components/istio/).
+Please look at the [Istio guide](/docs/components/istio/).
 
 ## Logs and metrics with Stackdriver
-See [here](/docs/guides/monitoring/) for instructions to get logs and metrics
+See [here](/docs/other-guides/monitoring/) for instructions to get logs and metrics
 using Stackdriver.

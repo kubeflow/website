@@ -76,14 +76,14 @@ Download, set up, and deploy (If you prefer to work from source code, feel free 
    * (optional) For GPU support, make sure your cluster is in a [zone that has GPUs](https://cloud.google.com/compute/docs/regions-zones/). To set the zone explicitly, append `--zone ${ZONE}` to the `init` command.
 
 **Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explicitly
-disabling it please refer to the [usage reporting guide](/docs/guides/usage-reporting/).
+disabling it please refer to the [usage reporting guide](/docs/other-guides/usage-reporting/).
 
 ## Troubleshooting
-For detailed troubleshooting instructions, please refer to the [troubleshooting guide](/docs/guides/troubleshooting/).
+For detailed troubleshooting instructions, please refer to the [troubleshooting guide](/docs/other-guides/troubleshooting/).
 
 ## Resources
 
-* The [guides section](/docs/guides/) provides in-depth instructions for using Kubeflow
+* The [documentation](/docs/) provides in-depth instructions for using Kubeflow
 * Self-paced scenarios for learning and trying out Kubeflow:
   * [Codelabs](https://codelabs.developers.google.com/?cat=tensorflow)
       * [Introduction to Kubeflow on Google Kubernetes Engine](https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html)

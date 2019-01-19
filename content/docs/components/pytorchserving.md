@@ -7,7 +7,7 @@ This guide walks you through serving a PyTorch trained model in Kubeflow.
 
 ## Serving a model
 
-We use [seldon-core](https://github.com/SeldonIO/seldon-core) component deployed following [these](/docs/guides/components/seldon/) instructions to serve the model.
+We use [seldon-core](https://github.com/SeldonIO/seldon-core) component deployed following [these](/docs/components/seldon/) instructions to serve the model.
 
 See also this [Example module](https://github.com/kubeflow/examples/blob/master/pytorch_mnist/serving/seldon-wrapper/mnistddpserving.py) which contains the code to wrap the model with Seldon. 
 

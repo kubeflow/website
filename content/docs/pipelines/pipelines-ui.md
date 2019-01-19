@@ -118,7 +118,7 @@ the page displaying the name of the run and containing its own three tabs:
 ### Artifacts
 
 Artifacts are any 
-[viewers](/docs/guides/pipelines/output-viewer) associated with a given 
+[viewers](/docs/pipelines/output-viewer) associated with a given 
 component. There are many kinds of viewers including: 
 
 * TensorBoard instances (accessible via link)

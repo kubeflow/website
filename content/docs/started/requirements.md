@@ -1,7 +1,7 @@
 +++
 title = "Requirements"
 description = "Requirements for Kubeflow"
-weight = 1
+weight = 5
 +++
 
 The guides in this section give detailed information about using Kubeflow and 
@@ -16,7 +16,7 @@ the following systems:
 
 ## Kubeflow requirements
 
- * ksonnet version {{% ksonnet-min-version %}} or later. See the [ksonnet component page](/docs/guides/components/ksonnet/) for an explanation of why we use ksonnet.
+ * ksonnet version {{% ksonnet-min-version %}} or later. See the [ksonnet component page](/docs/components/ksonnet/) for an explanation of why we use ksonnet.
  * An existing Kubernetes cluster using Kubernetes {{% kubernetes-min-version %}} or later:
    * A minimum of 0.6 CPU in cluster (Reserved for 3 replicated ambassador pods and according to your need add additional CPUs)
    * Node with storage >= 10 GB (Due to the ML libraries and third party packages being bundled in Kubeflow Docker images)

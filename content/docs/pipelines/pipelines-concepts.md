@@ -13,7 +13,9 @@ A description of a machine learning (ML) workflow, including all of its
 different components, and how they come together in the form of a graph, as well 
 as a list of the parameters. This is the main shareable artifact in the Kubeflow 
 Pipelines service. You create and edit a pipeline separately from the pipelines
- UI, although you can upload and list pipelines on the UI.
+UI, although you can upload and list pipelines on the UI. For more information,
+see the 
+[overview of Kubeflow Pipelines](/docs/guides/pipelines/pipelines-overview/).
 
 ## Pipeline component
 
@@ -21,7 +23,7 @@ A building block in the pipeline template; self-contained user code that
 performs one step in the pipeline, such as preprocessing, transformation, 
 training, etc. A component must be packaged as a 
 [Docker image](https://docs.docker.com/get-started/). See the guide to
-[building your own components](/docs/guides/pipelines/build-component).
+[building your own components](/docs/pipelines/build-component).
 
 ## Experiment
 

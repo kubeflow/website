@@ -6,7 +6,7 @@ weight = 1
 
 Use this guide if you want to get a simple pipeline running quickly in
 Kubeflow Pipelines. If you need a more in-depth guide, see how to
-[build a pipeline](/docs/guides/pipelines/build-pipeline/).
+[build a pipeline](/docs/pipelines/build-pipeline/).
 
 ## Deploy Kubeflow and open the pipelines UI
 
@@ -16,11 +16,7 @@ Follow these steps to deploy Kubeflow and open the pipelines dashboard:
   deploy Kubeflow using the 
   [Kubeflow deployment UI](https://deploy.kubeflow.cloud/).
 
-    _Due to 
-    [kubeflow/pipelines#345](https://github.com/kubeflow/pipelines/issues/345) and 
-    [kubeflow/pipelines#337](https://github.com/kubeflow/pipelines/issues/337), 
-    Kubeflow Pipelines depends on Google Cloud Platform (GCP) services and some of 
-    the pipelines functionality is currently not supported by non-GKE clusters._
+    {{% pipelines-compatibility %}} 
 
 1. When Kubeflow is running, access the Kubeflow UI at a URL of the form
   `https://<deployment-name>.endpoints.<project>.cloud.goog/`, as described in the setup
@@ -164,9 +160,9 @@ finished with them:
 ## Next steps
 
 * Learn more about the 
-  [important concepts](/docs/guides/pipelines/pipelines-concepts) in Kubeflow
+  [important concepts](/docs/pipelines/pipelines-concepts) in Kubeflow
   Pipelines.
 * This page showed you how to run some of the examples supplied in the Kubeflow
   Pipelines UI. Next, you may want to run a pipeline from a notebook, or compile 
   and run a sample from the code. See the guide to 
-  [building a pipeline](/docs/guides/pipelines/build-pipeline/).
+  [building a pipeline](/docs/pipelines/build-pipeline/).
