@@ -4,8 +4,8 @@ description = "Using Katib to tune your model's hyperparameters"
 weight = 5
 +++
 
-Hyperparameter Tuning on Kubernetes.
-This project is inspired by [Google vizier](https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/bcb15507f4b52991a0783013df4222240e942381.pdf). Katib is a scalable and flexible hyperparameter tuning framework and is tightly integrated with kubernetes. Also it does not depend on a specific Deep Learning framework (e.g. TensorFlow, MXNet, and PyTorch).
+Hyperparameter tuning on Kubernetes.
+This project is inspired by [Google vizier](https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/bcb15507f4b52991a0783013df4222240e942381.pdf). Katib is a scalable and flexible hyperparameter tuning framework and is tightly integrated with Kubernetes. Also it does not depend on a specific deep learning framework (e.g. TensorFlow, MXNet, and PyTorch).
 
 ## Installing Katib
 
@@ -18,6 +18,8 @@ export KF_ENV=default
 ks env set ${KF_ENV} --namespace=kubeflow
 ks registry add kubeflow github.com/kubeflow/kubeflow/tree/master/kubeflow
 ```
+
+You can read more about Kubeflow's use of Ksonnet in the [Ksonnet component guide](/docs/components/ksonnet/).
 
 ### TF operator
 
@@ -49,9 +51,9 @@ ks generate katib katib
 ks apply ${KF_ENV} -c katib
 ```
 
-If you want to use Katib not in GKE and you don't have StorageClass for dynamic volume provisioning at your cluster, you have to create persistent volume to bound your persistent volume claim.
+If you want to use Katib not in GKE and you don't have StorageClass for dynamic volume provisioning at your cluster, you have to create persistent volume (PV) to bound your persistent volume claim (PVC).
 
-This is yaml file for persistent volume
+This is yaml file for PV
 
 ```yaml
 apiVersion: v1
@@ -70,7 +72,7 @@ spec:
     path: /data/katib
 ```
 
-Create this pv after deploying Katib package
+Create this PV after deploying Katib package
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/pv/pv.yaml
@@ -80,7 +82,7 @@ kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manife
 
 After deploy everything, you can run examples.
 
-### Random example
+### Example using random algorithm
 
 You can create Study Job for Katib by defining a StudyJob config file.
 See [random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/random-example.yaml).
@@ -215,7 +217,7 @@ When the `spec.Status.Condition` becomes Completed, the StudyJob is finished.
 
 To run tf operator example, you have to install volume for it.
 
-If you are using GKE and default StorageClass, you have to create this pvc
+If you are using GKE and default StorageClass, you have to create this PVC
 
 ```yaml
 apiVersion: v1
@@ -234,7 +236,7 @@ spec:
       storage: 10Gi
 ```
 
-If you are not using GKE and you don't have StorageClass for dynamic volume provisioning at your cluster, you have to create pvc and pv
+If you are not using GKE and you don't have StorageClass for dynamic volume provisioning at your cluster, you have to create PVC and PV
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfevent-volume/tfevent-pvc.yaml
@@ -268,7 +270,7 @@ You can check study status
 kubectl -n kubeflow describe studyjobs pytorchjob-example
 ```
 
-### Monitoring results
+## Monitoring results
 
 You can monitor your results in Katib UI. For accessing to Katib UI, you have to install Ambassador.
 
@@ -282,7 +284,7 @@ ks apply ${KF_ENV} -c ambassador
 
 After this, you have to port-forward Ambassador service
 
-kubernetes version 1.9~
+Kubernetes version 1.9~
 
 ```
 kubectl port-forward svc/ambassador -n kubeflow 8080:80
@@ -306,13 +308,13 @@ ks delete ${KF_ENV} -c pytorch-operator
 ks delete ${KF_ENV} -c tf-job-operator
 ```
 
-If you create pv for Katib, delete it
+If you create PV for Katib, delete it
 
 ```
 kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/pv/pv.yaml
 ```
 
-If you create pv and pvc for tf operator delete it
+If you create PV and PVC for tf operator delete it
 
 ```
 kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfevent-volume/tfevent-pvc.yaml
