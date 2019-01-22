@@ -71,7 +71,7 @@ Download, set up, and deploy (If you prefer to work from source code, feel free 
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
     ```
-   * **${KFAPP}** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init.
+   * **${KFAPP}** the name for the kubeflow deployment (shouldn't be a path). A directory with the name will be created under `pwd` when you run init, and that is where kubeflow configurations will be stored.
       * The ksonnet app will be created in the directory **${KFAPP}/ks_app**
    * (optional) For GPU support, make sure your cluster is in a [zone that has GPUs](https://cloud.google.com/compute/docs/regions-zones/). To set the zone explicitly, append `--zone ${ZONE}` to the `init` command.
 
