@@ -4,8 +4,10 @@ description = "Deploy the Kubeflow Pipelines service"
 weight = 4
 +++
 
-This page describes how to author pipelines and components, and submit them to 
-the Kubeflow Pipelines system to run.
+This page describes how to author pipelines and components, and submit them to the Kubeflow Pipeline system to run. We will demonstrate the process using the Kubeflow Pipelines
+[notebooks]( https://github.com/kubeflow/pipelines/tree/master/samples/notebooks)
+and [samples](https://github.com/kubeflow/pipelines/tree/master/samples)
+to create a pipeline for deployment.
 
 ## Using a notebook
 
@@ -66,6 +68,8 @@ command line. But currently you can't use the Python SDK to submit
 pipelines to a cluster, and you can't build container images using the SDK.
 The DSL compiler works as usual.
 
+### Set up Python
+
 **Python 3.5 or above is required**. If you don't have Python 3 set up, we 
 suggest the following steps to install 
 [Miniconda](https://conda.io/miniconda.html).
@@ -99,7 +103,7 @@ conda create --name mlpipeline python=3.6
 source activate mlpipeline
 ```
  
-If the `conda` command is not found, be sure to add the Miniconda path:
+If the `conda` command is not found, be sure to add Miniconda to your path:
  
 ```bash
 export PATH=MINICONDA_PATH/bin:$PATH
