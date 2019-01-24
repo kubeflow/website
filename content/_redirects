@@ -17,3 +17,6 @@
 
 # Removed the "guides" section from the doc URLs.
 /docs/guides/*  /docs/:splat
+
+#Merged duplicate page pipelines-samples.md into build-pipelines.md
+/docs/pipelines/pipelines-samples/	https://www.kubeflow.org/docs/pipelines/build-pipeline/
