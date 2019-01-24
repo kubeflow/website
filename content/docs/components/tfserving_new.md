@@ -16,6 +16,7 @@ Generate the service(model) component
 ks generate tf-serving-service mnist-service
 ks param set mnist-service modelName mnist    // match your deployment mode name
 ks param set mnist-service trafficRule v1:100    // optional, it's the default value
+ks param set mnist-service serviceType LoadBalancer    // optional, change type to LoadBalancer to expose external IP
 ```
 
 Generate the deployment(version) component
