@@ -1,17 +1,20 @@
 +++
 title = "Hyperparameter Tuning (Katib)"
-description = "Using Katib to tune your model's hyperparameters"
+description = "Using Katib to tune your model's hyperparameters on Kubernetes"
 weight = 5
 +++
 
-Hyperparameter tuning on Kubernetes.
-This project is inspired by [Google vizier](https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/bcb15507f4b52991a0783013df4222240e942381.pdf). Katib is a scalable and flexible hyperparameter tuning framework and is tightly integrated with Kubernetes. Also it does not depend on a specific deep learning framework (e.g. TensorFlow, MXNet, and PyTorch).
+The [Katib](https://github.com/kubeflow/katib) project is inspired by 
+[Google vizier](https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/bcb15507f4b52991a0783013df4222240e942381.pdf). 
+Katib is a scalable and flexible hyperparameter tuning framework and is tightly 
+integrated with Kubernetes. It does not depend on any specific deep learning 
+framework (such as TensorFlow, MXNet, or PyTorch).
 
 ## Installing Katib
 
-For running Katib jobs, you have to install necessary packages.
+To run Katib jobs, you must install the required packages.
 
-In your Ksonnet app root, run the following
+In your ksonnet application's root directory, run the following commands:
 
 ```
 export KF_ENV=default
@@ -19,11 +22,12 @@ ks env set ${KF_ENV} --namespace=kubeflow
 ks registry add kubeflow github.com/kubeflow/kubeflow/tree/master/kubeflow
 ```
 
-You can read more about Kubeflow's use of Ksonnet in the [Ksonnet component guide](/docs/components/ksonnet/).
+You can read more about Kubeflow's use of ksonnet in the [ksonnet component
+guide](/docs/components/ksonnet/).
 
-### TF operator
+### TFJob (tf-operator)
 
-For installing tf operator, run the following
+To install a TensorFlow job operator, run the following commands:
 
 ```
 ks pkg install kubeflow/tf-training
@@ -32,8 +36,9 @@ ks generate tf-job-operator tf-job-operator
 ks apply ${KF_ENV} -c tf-job-operator
 ```
 
-### Pytorch operator
-For installing pytorch operator, run the following
+### PyTorch operator
+
+To install a PyTorch job operator, run the following commands:
 
 ```
 ks pkg install kubeflow/pytorch-job
@@ -43,7 +48,7 @@ ks apply ${KF_ENV} -c pytorch-operator
 
 ### Katib
 
-Finally, you can install Katib
+Then run the following commands to install Katib:
 
 ```
 ks pkg install kubeflow/katib
@@ -51,9 +56,11 @@ ks generate katib katib
 ks apply ${KF_ENV} -c katib
 ```
 
-If you want to use Katib not in GKE and you don't have StorageClass for dynamic volume provisioning at your cluster, you have to create persistent volume (PV) to bound your persistent volume claim (PVC).
+If you want to use Katib outside Google Kubernetes Engine (GKE) and you don't 
+have a StorageClass for  dynamic volume provisioning in your cluster, you must 
+create a persistent volume  (PV) to bind your persistent volume claim (PVC).
 
-This is yaml file for PV
+This is the YAML file for a PV:
 
 ```yaml
 apiVersion: v1
@@ -72,7 +79,7 @@ spec:
     path: /data/katib
 ```
 
-Create this PV after deploying Katib package
+After deploying the Katib package, run the following command to create the PV:
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/pv/pv.yaml
@@ -80,30 +87,37 @@ kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manife
 
 ## Running examples
 
-After deploy everything, you can run examples.
+After deploying everything, you can run some examples.
 
 ### Example using random algorithm
 
-You can create Study Job for Katib by defining a StudyJob config file.
-See [random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/random-example.yaml).
+You can create a StudyJob for Katib by defining a StudyJob config file. See the 
+[random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/random-example.yaml).
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/random-example.yaml
 ```
 
-Running this command will launch a StudyJob. The study job will run a series of training jobs to train models using different hyperparameters and save the results.
-The configurations for the study (hyper-parameter feasible space, optimization parameter, optimization goal, suggestion algorithm, and so on) are defined in [random-example.yaml](https://github.com/kubeflow/katib/blob/master/examples/random-example.yaml).
+Running this command launches a StudyJob. The study job runs a series of 
+training jobs to train models using different hyperparameters and save the 
+results.
+
+The configurations for the study (hyper-parameter feasible space, optimization 
+parameter, optimization goal, suggestion algorithm, and so on) are defined in 
+[random-example.yaml](https://github.com/kubeflow/katib/blob/master/examples/random-example.yaml).
+
 In this demo, hyper-parameters are embedded as args.
-You can embed hyper-parameters in another way (e.g. environment values) by using the template defined in `WorkerSpec.GoTemplate.RawTemplate`.
+You can embed hyper-parameters in another way (for example, environment values) 
+by using the template defined in `WorkerSpec.GoTemplate.RawTemplate`.
 It is written in [go template](https://golang.org/pkg/text/template/) format.
 
-In this demo, 3 hyper parameters 
+This demo randomly generates 3 hyper parameters:
+
 * Learning Rate (--lr) - type: double
 * Number of NN Layer (--num-layers) - type: int
 * optimizer (--optimizer) - type: categorical
-are randomly generated.
 
-Check the study status.
+Check the study status:
 
 ```
 $ kubectl -n kubeflow describe studyjobs random-example
@@ -210,14 +224,15 @@ Status:
 Events:                 <none>
 ```
 
-It should start a study and run three jobs with different parameters.
-When the `spec.Status.Condition` becomes Completed, the StudyJob is finished.
+The demo should start a study and run three jobs with different parameters.
+When the `spec.Status.Condition` changes to *Completed*, the StudyJob is 
+finished.
 
-### TF operator example
+### TensorFlow operator example
 
-To run tf operator example, you have to install volume for it.
+To run the TensorFlow operator example, you must install a volume.
 
-If you are using GKE and default StorageClass, you have to create this PVC
+If you are using GKE and default StorageClass, you must create this PVC:
 
 ```yaml
 apiVersion: v1
@@ -236,7 +251,8 @@ spec:
       storage: 10Gi
 ```
 
-If you are not using GKE and you don't have StorageClass for dynamic volume provisioning at your cluster, you have to create PVC and PV
+If you are not using GKE and you don't have StorageClass for dynamic volume 
+provisioning in your cluster, you must create a PVC and a PV:
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfevent-volume/tfevent-pvc.yaml
@@ -244,27 +260,27 @@ kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/exampl
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfevent-volume/tfevent-pv.yaml
 ```
 
-Finnaly, you can run tf operator example
+Now you can run the TensorFlow operator example:
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfjob-example.yaml
 ```
 
-You can check study status
+You can check the status of the study:
 
 ```
 kubectl -n kubeflow describe studyjobs tfjob-example
 ```
 
-### Pytorch example
+### PyTorch example
 
-This is example for pytorch operator
+This is an example for the PyTorch operator:
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/pytorchjob-example.yaml
 ```
 
-You can check study status
+You can check the status of the study:
 
 ```
 kubectl -n kubeflow describe studyjobs pytorchjob-example
@@ -272,35 +288,36 @@ kubectl -n kubeflow describe studyjobs pytorchjob-example
 
 ## Monitoring results
 
-You can monitor your results in Katib UI. For accessing to Katib UI, you have to install Ambassador.
+You can monitor your results in the Katib UI. To access the Katib UI, you must 
+install Ambassador.
 
-In your Ksonnet app root, run the following
+In your ksonnet application's root directory, run the following commands:
 
 ```
 ks generate ambassador ambassador
 ks apply ${KF_ENV} -c ambassador
 ```
 
+Then port-forward the Ambassador service:
 
-After this, you have to port-forward Ambassador service
+* For Kubernetes version 1.9 and later:
 
-Kubernetes version 1.9~
+    ```
+    kubectl port-forward svc/ambassador -n kubeflow 8080:80
+    ```
 
-```
-kubectl port-forward svc/ambassador -n kubeflow 8080:80
-```
+* For Kubernetes version 1.8 and earlier:
 
-~1.8
-```
-kubectl get pods -n kubeflow  # Find one of the Ambassador pods
-kubectl port-forward [Ambassador pod] -n kubeflow 8080:80
-```
+    ```
+    kubectl get pods -n kubeflow  # Find one of the Ambassador pods
+    kubectl port-forward [Ambassador pod] -n kubeflow 8080:80
+    ```
 
-Finally, you can access to Katib UI using this URL: ```http://localhost:8080/katib/```.
+Now you can access the Katib UI at this URL: ```http://localhost:8080/katib/```.
 
-## Cleanups
+## Cleanup
 
-Delete installed components
+Delete the installed components:
 
 ```
 ks delete ${KF_ENV} -c katib
@@ -308,20 +325,20 @@ ks delete ${KF_ENV} -c pytorch-operator
 ks delete ${KF_ENV} -c tf-job-operator
 ```
 
-If you create PV for Katib, delete it
+If you created a PV for Katib, delete it:
 
 ```
 kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/pv/pv.yaml
 ```
 
-If you create PV and PVC for tf operator delete it
+If you created a PV and PVC for the TensorFlow operator, delete it:
 
 ```
 kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfevent-volume/tfevent-pvc.yaml
 kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfevent-volume/tfevent-pv.yaml
 ```
 
-If you deploy Ambassador, delete it
+If you deployed Ambassador, delete it:
 
 ```
 ks delete ${KF_ENV} -c ambassador
@@ -329,7 +346,11 @@ ks delete ${KF_ENV} -c ambassador
 
 ## Metrics collector
 
-Katib has metrics collector to take metrics from each worker. Katib collects metrics from stdout of each worker. Metrics should be printed in {metrics name}={value} style. For example when your objective value name is loss and the metrics are recall and precision, your training container should print like this
+Katib has a metrics collector to take metrics from each worker. Katib collects 
+metrics from stdout of each worker. Metrics should print in the following
+format: `{metrics name}={value}`. For example, when your objective value name 
+is `loss` and the metrics are `recall` and `precision`, your training container
+should print like this:
 
 ```
 epoch 1:
@@ -343,4 +364,4 @@ recall=0.55
 precision=0.5
 ```
 
-Katib will collect all logs of metrics.
+Katib collects all logs of metrics.
