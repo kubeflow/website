@@ -12025,6 +12025,7 @@ readers do not read off random characters that represent icons */
     padding: 0; }
 
 .td-content p code {
+  color: inherit;
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
@@ -12389,6 +12390,9 @@ readers do not read off random characters that represent icons */
     min-height: 500px; }
   .td-cover-block--height-max {
     min-height: 650px; } }
+
+.td-cover-logo {
+  margin-right: 0.5em; }
 
 .td-cover-block {
   position: relative;
