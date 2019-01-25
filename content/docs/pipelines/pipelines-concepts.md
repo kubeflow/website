@@ -34,8 +34,8 @@ contain arbitrary runs, and you can add
 
 ## Run
 
-A single execution of a pipeline. Runs comprise an immutable log of all e
-xperiments that you attempt, and are designed to be self-contained to allow for 
+A single execution of a pipeline. Runs comprise an immutable log of all
+experiments that you attempt, and are designed to be self-contained to allow for
 reproducibility. You can track the progress of a run by looking at its details 
 page, where you can see its runtime graph, as well as output artifacts and logs 
 for each of its steps.

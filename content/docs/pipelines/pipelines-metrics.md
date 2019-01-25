@@ -28,7 +28,7 @@ See the [full example](https://github.com/kubeflow/pipelines/blob/master/compone
  
 ## Visualize metrics
 
-To see a visualization of the metrics, open the **Experiment runs** page in the pipeline UI. The top 3 metrics are displayed as columns for each run. Use the **Compare runs** UI to display the full metrics.
+To see a visualization of the metrics, open the **Experiment runs** page in the pipeline UI. The top 3 metrics are displayed as columns for each run. The following example only has one metric named as `accuracy-score`. Use the **Compare runs** UI to display the full metrics.
 
 <img src="/docs/images/metric.png" 
   alt="Run metrics"

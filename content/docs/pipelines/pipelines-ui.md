@@ -123,7 +123,7 @@ component. There are many kinds of viewers including:
 
 * TensorBoard instances (accessible via link)
 * A confusion matrix
-* An ROC curve
+* A ROC curve
 * A simple table
 * User-defined HTML
 * And more
