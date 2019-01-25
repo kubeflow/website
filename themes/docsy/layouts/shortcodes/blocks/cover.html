@@ -1,7 +1,9 @@
 {{ $blockID := printf "td-cover-block-%d" .Ordinal }}
 {{ $promo_image := (.Page.Resources.ByType "image").GetMatch "**background*" }}
+{{ $logo_image := (.Page.Resources.ByType "image").GetMatch "**logo*" }}
 {{ $col_id := .Get "color" | default "dark" }}
 {{ $image_anchor := .Get "image_anchor" | default "smart" }}
+{{ $logo_anchor := .Get "logo_anchor" | default "smart" }}
 {{/* Height can be one of: auto, min, med, max, full. */}}
 {{ $height := .Get "height" | default "max"  }}
 {{ with $promo_image }}
@@ -10,11 +12,11 @@
 <link rel="preload" as="image" href="{{ $promo_image_small.RelPermalink }}" media="(max-width: 1200px)">
 <link rel="preload" as="image" href="{{ $promo_image_big.RelPermalink }}" media="(min-width: 1200px)">
 <style>
-#{{ $blockID }} { 
+#{{ $blockID }} {
     background-image: url({{ $promo_image_small.RelPermalink }}); 
 }
 @media only screen and (min-width: 1200px) {
-    #{{ $blockID }} { 
+    #{{ $blockID }} {
         background-image: url({{ $promo_image_big.RelPermalink }}); 
     }
 }
