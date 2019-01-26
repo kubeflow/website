@@ -1,5 +1,5 @@
 +++
 title = "Other Guides"
 description = "Various instructions on how to use Kubeflow"
-weight = 8
+weight = 9
 +++
