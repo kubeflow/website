@@ -1,6 +1,8 @@
 {{ $url_text := .Get "url_text" }}
 <div class="container-fluid mb-5 mb-lg-0 ">
   <h4 class="h3">{{ .Get "title" | markdownify }}</h4>
+  <p class="text-muted">{{ .Get "date" }}</p>
+
   <p class="mb-0">{{ .Inner }}</p>
-  {{ with .Get "url" }}<p><a href="{{ . }}">{{ with $url_text }}{{ $url_text }}{{ else }}{{ T "ui_read_more" }}{{ end }} …</a></p>{{ end }}
+  {{ with .Get "url" }}<p><a href="{{ . }}">{{ with $url_text }}{{ $url_text }}{{ else }}{{ T "ui_read_more" }}{{ end }}</a></p>{{ end }}
 </div>
