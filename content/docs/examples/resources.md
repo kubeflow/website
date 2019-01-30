@@ -13,9 +13,7 @@ This section introduces the examples in the
 
 {{% blocks/content-item title="Semantic code search"
   url="https://github.com/kubeflow/examples/tree/master/code_search" %}}
-Perform a semantic code search using a Sequence to Sequence natural language 
-processing model. This tutorial runs in a Jupyter notebook and uses Google 
-Cloud Platform (GCP).
+Use a Sequence to Sequence natural language processing model to perform a semantic code search. This tutorial runs in a Jupyter notebook and uses Google Cloud Platform (GCP).
 {{% /blocks/content-item %}}
 
 {{% blocks/content-item title="Financial time series" 
@@ -72,8 +70,7 @@ Run Kubeflow on Red Hat [OpenShift](https://www.openshift.com/).
 
 {{% blocks/content-item title="Katacode scenarios" 
   url="https://www.katacoda.com/kubeflow" %}}
-Follow these tutorials on deploying Kubeflow and running a machine learning 
-model.
+Follow the tutorials to deploy Kubeflow and run a machine learning model.
 {{% /blocks/content-item %}}
 {{< /blocks/content-section >}}
 
@@ -83,6 +80,7 @@ model.
 {{% blocks/content-item %}}
 The following blog posts provide detailed examples and use cases. Be aware that
 a blog post describes the interfaces at the time of publication of the post.
+Some interfaces are under rapid development and therefore may change frequently.
 {{% /blocks/content-item %}}
 
 {{% blocks/content-item title="The Kubeflow blog"
@@ -103,8 +101,8 @@ cluster in Google Cloud Platform (GCP).
 {{% blocks/content-item title="Getting started with Kubeflow Pipelines"
   date="November 16, 2018"
   url="https://cloud.google.com/blog/products/ai-machine-learning/getting-started-kubeflow-pipelines" %}}
-In this article, we’ll describe how you can tackle ML workflow operations with 
-Kubeflow Pipelines, and then we’ll highlight some examples that you can try 
+This article describes how you can tackle ML workflow operations with 
+Kubeflow Pipelines, and highlights some examples that you can try 
 yourself. The examples revolve around a TensorFlow ‘taxi fare tip prediction’ 
 model, with data pulled from a public BigQuery dataset of Chicago taxi trips.
 {{% /blocks/content-item %}}
@@ -128,6 +126,7 @@ model, with data pulled from a public BigQuery dataset of Chicago taxi trips.
 {{% blocks/content-item %}}
 Tutorials and overviews published in video format. Be aware that a video 
 describes the interfaces at the time of publication of the video.
+Some interfaces are under rapid development and therefore may change frequently.
 {{% /blocks/content-item %}}
 
 {{% blocks/content-item title="Machine Learning as Code: and Kubernetes with Kubeflow"
