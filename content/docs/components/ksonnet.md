@@ -20,7 +20,7 @@ Follow the steps below to install ksonnet:
     * Set some variables for the ksonnet version:
 
         ```
-        export KS_VER=0.12.0
+        export KS_VER={{% ksonnet-min-version %}}
         export KS_PKG=ks_${KS_VER}_linux_amd64
         ```
 
