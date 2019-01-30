@@ -183,7 +183,7 @@ ks apply ${KF_ENV} -c ${CNN_JOB_NAME}
 Monitor it (Please refer to the [TfJob docs](https://github.com/kubeflow/tf-operator#monitoring-your-job))
 
 ```
-kubectl get -o yaml tfjobs ${CNN_JOB_NAME} -n kubeflow
+kubectl get -n kubeflow -o yaml tfjobs ${CNN_JOB_NAME}
 ```
 
 Delete it
