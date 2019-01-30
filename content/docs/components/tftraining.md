@@ -171,7 +171,7 @@ Choose a tf-job prototype from the following list of available prototypes, to ma
 
 Run the `generate` command:
 ```
-ks generate tf-job-simple-v1beta1 ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
+ks generate tf-job-simple ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
 ```
 
 Submit it
@@ -183,7 +183,7 @@ ks apply ${KF_ENV} -c ${CNN_JOB_NAME}
 Monitor it (Please refer to the [TfJob docs](https://github.com/kubeflow/tf-operator#monitoring-your-job))
 
 ```
-kubectl get -o yaml tfjobs ${CNN_JOB_NAME}
+kubectl get -o yaml tfjobs ${CNN_JOB_NAME} -n kubeflow
 ```
 
 Delete it
