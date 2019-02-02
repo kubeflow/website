@@ -26,7 +26,7 @@ use you can skip this section.
 Copy the Cloud Filestore deployment manager configs to the `gcp_config` directory:
 
 ```
-cp ${KUBEFLOW_SRC}/scripts/gke/deployment_manager_configs/gcfs.yaml \
+cp ${KUBEFLOW_SRC}/deployment/gke/deployment_manager_configs/gcfs.yaml \
    ${KFAPP}/gcp_config/
 ```
 
