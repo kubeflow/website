@@ -102,7 +102,7 @@ cd examples/mnist
 WORKING_DIR=$(pwd)
 ```
 
-Alternatively, you can download the 
+As an alternative to cloning, you can download the 
 [Kubeflow examples repository zip file](https://github.com/kubeflow/examples/archive/master.zip).
 
 ### Set up your GCP account and SDK
@@ -143,9 +143,7 @@ With ksonnet, you manage your resources as *prototypes* with empty parameters.
 Then you instantiate the prototypes into *components* by defining values for the
 parameters. This system makes it easier to deploy slightly different resources
 to different clusters at the same time. In this way you can maintain different
-environments for staging and production, for example. You can export your
-ksonnet components as standard Kubernetes YAML files with `ks show`, or you can
-deploy (_apply_) the components directly to the cluster with `ks apply`.
+environments for staging and production, for example.
 
 Make sure you have ksonnet version {{% ksonnet-min-version %}} or later.
 
@@ -193,7 +191,7 @@ Set up the following environment variables for use throughout the tutorial:
 
     ```
     export PROJECT=<YOUR-PROJECT-ID>
-    gcloud config set project $PROJECT_ID
+    gcloud config set project ${PROJECT}
     ```
 
 1. Set the zone for your GCP configuration. Choose a zone that offers the
@@ -207,14 +205,14 @@ Set up the following environment variables for use throughout the tutorial:
 
     ```
     export ZONE=us-central1-c
-    gcloud config set compute/zone $ZONE
+    gcloud config set compute/zone ${ZONE}
     ```
 
-1. If you want a custom name for your deployment, set the `DEPLOYMENT_NAME`
-   environment variable. Note that the name must be the same as the one you
-   use in later steps below when configuring the **redirect URI** for the OAuth
-   client credentials. If you don't set this variable, your deployment gets the 
-   default name of `kubeflow`:
+1. If you want a custom name for your Kubeflow deployment, set the 
+   `DEPLOYMENT_NAME` environment variable. Note that the name must be the same 
+   as the one you use in later steps of this tutorial when configuring the 
+   **redirect URI** for the OAuth client credentials. If you don't set this 
+   environment variable, your deployment gets the default name of `kubeflow`:
 
     ```
     export DEPLOYMENT_NAME=kubeflow
@@ -224,19 +222,28 @@ Set up the following environment variables for use throughout the tutorial:
 
 Follow the instructions in the 
 [GKE getting-started guide](/docs/started/getting-started-gke) 
-to deploy Kubeflow on GCP, taking note of the following recommendations:
+to deploy Kubeflow on GCP, taking note of the following:
 
+* Set up **OAuth client credentials** and **Cloud Identity-Aware Proxy (IAP)**
+  as prompted during the deployment process. So, do not choose the deployment 
+  option to skip IAP. IAP ensures you can connect securely to the Kubeflow
+  web applications.
+* When setting up the **authorized redirect URI** for the **OAuth client 
+  credentials**, use the same value for the `<deployment_name>` as you used
+  when setting up the `DEPLOYMENT_NAME` environment variable earlier in this
+  tutorial.
 * Use the Kubeflow **deployment UI** as a quick way to set up a Kubeflow 
   deployment on GCP. The getting-started guide describes how to use the
   deployment UI. If you want more control over the configuration of your
   deployment you can use the `kfctl.sh` script instead of the UI. The script
   is also described in the getting-started guide.
-* Set up **OAuth client credentials** and **Cloud Identity-Aware Proxy (IAP)**
-  as prompted during the deployment process. So, do not choose the deployment 
-  option to skip IAP. IAP ensures you can connect securely to the Kubeflow
-  web applications.
 
-TODO: ADD A SCREENSHOT OF THE DEPLOYMENT UI WITH SUITABLE VALUES E.G. <YOUR-GCP-PROJECT-ID>
+The following screenshot shows the Kubeflow deployment UI with hints about
+the value for each input field:
+
+<img src="/docs/images/gcp-e2e-deploy-kubeflow.png" 
+    alt="Prediction UI"
+    class="mt-3 mb-3 p-3 border border-info rounded">
 
 When the cluster is ready, you can do the following:
 
@@ -244,7 +251,7 @@ When the cluster is ready, you can do the following:
 
     ```
     gcloud container clusters get-credentials \
-        $DEPLOYMENT_NAME --zone $ZONE --project $PROJECT_ID
+        ${DEPLOYMENT_NAME} --zone ${ZONE} --project ${PROJECT}
     ```
 
 1. Switch to the `kubeflow` namespace to see the resources on the Kubeflow 
@@ -260,20 +267,26 @@ When the cluster is ready, you can do the following:
     kubectl get all
     ```
 
-1. Kubeflow becomes available at the following URI after several minutes:
+1. Access the Kubeflow UI, which becomes available at the following URI after 
+   several minutes:
 
     ```
     https://<deployment-name>.endpoints.<project>.cloud.goog/
     ```
 
+The following screenshot shows the Kubeflow UI:
+<img src="/docs/images/central-ui.png" 
+    alt="Prediction UI"
+    class="mt-3 mb-3 p-3 border border-info rounded">
+
 Notes:
 
-* When the script has finished, you should have a running cluster in the cloud
-  ready to run your code. You can interact with the cluster either by using
-  [`kubectl`][kubectl] or by going to the
+* When the deployment has finished, you should have a running cluster in the 
+  cloud ready to run your code. You can interact with the cluster either by 
+  using [`kubectl`][kubectl] or by going to the
   [GKE page on the GCP Console][gcp-console-kubernetes-engine].
 
-* While the script is running, you can watch your resources appear on the
+* While the deployment is running, you can watch your resources appear on the
   GCP console:
     * [Deployment on Deployment Manager][gcp-console-deployment-manager]
     * [Cluster on GKE][gcp-console-kubernetes-engine]
@@ -285,15 +298,6 @@ Notes:
       then you can configure this process to be much faster.
     * While you wait you can access Kubeflow services by using `kubectl proxy`
       and `kubectl port-forward` to connect to services in the cluster.
-
-* The deployment script creates the following directories containing
-  your configuration:
-    * `{DEPLOYMENT_NAME}_deployment_manager_configs`: Configuration for
-      deployment manager.
-      **Important:** This directory contains JSON files containing the secrets
-      for your service accounts. **Checking your keys into source control is not
-      advised.**
-    * `{DEPLOYMENT_NAME}_ks_app`: Your ksonnet application.
 
 ## Create a Cloud Storage bucket
 
@@ -327,27 +331,16 @@ using the Kubeflow URL or locally.
 
 1. Choose one of the options below to connect to JupyterHub:
 
-    * To connect to JupyterHub using the Kubeflow URL:
-
-        1. Open a web browser and go to your Kubeflow URL:
-
-            ```
-            https://<deployment-name>.endpoints.<project>.cloud.goog/
-            ```
-
-        1. Click **JupyterHub**. This takes you to the **Spawner Options** page.
-
+    * Click **JUPYTERHUB** on the Kubeflow UI (see screenshot above).
     * Alternatively, follow the
-    [Kubeflow guide to Jupyter notebooks][kubeflow-jupyter] to connect
-    to JupyterHub locally.
+      [Kubeflow guide to Jupyter notebooks][kubeflow-jupyter] to connect
+      to JupyterHub locally.
 
-1. Enter the following details on the **Spawner Options** page:
+1. Click **Start My Server** if prompted to do so.
 
-    * **Image:** Select a **CPU** image for the TensorFlow version that you're
-      using.
-    * **CPU:** Enter `1`.
-    * **Memory:** Enter `2Gi`.
-    * **Extra Resource Limits:** No need to enter anything here.
+1. Leave the **Image** details at the default setting on the JupyterHub 
+   **Spawner Options** page. The default gives you a standard CPU image
+   with a recent version of TensorFlow.
 
 1. Click **Spawn**.
 
@@ -359,7 +352,7 @@ using the Kubeflow URL or locally.
     You will be redirected automatically when it's ready for you.
     ```
 
-    You should also see an **event log** which you can check periodically
+    You should also see an event log which you can check periodically
     while the server starts.
 
     When the server is ready, the Jupyter notebook dashboard opens in your
@@ -375,90 +368,144 @@ using the Kubeflow URL or locally.
    `${WORKING_DIR}/model.py` and paste the code into a cell in 
    your Jupyter notebook.
 
-TODO
-1. Adjust the code as follows for running in the notebook:
-
-    * Remove the definitions of the input arguments at the top of the program
-      and set the `arg_steps` variable to the specific value of `2000`.
-      Thus in the section on defining input arguments you should have just
-      the following:
-
-        ```
-        # define input arguments
-        arg_steps = 2000
-        ```
-
-    * Remove all code after the training steps. There's no need to export the
-      model or save it to Cloud Storage at this point.
-
 1. Run the cell in the notebook. You should see output directly beneath the
    notebook cell, something like this:
 
     ```
-    Extracting MNIST_data/train-images-idx3-ubyte.gz
-    Extracting MNIST_data/train-labels-idx1-ubyte.gz
-    Extracting MNIST_data/t10k-images-idx3-ubyte.gz
-    Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
-    step 0/2000, training accuracy 0.08
-    step 100/2000, training accuracy 0.84
-    step 200/2000, training accuracy 0.82
-    step 300/2000, training accuracy 0.96
-    step 400/2000, training accuracy 0.86
-    step 500/2000, training accuracy 0.94
-    step 600/2000, training accuracy 0.9
-    step 700/2000, training accuracy 0.96
-    step 800/2000, training accuracy 0.98
-    step 900/2000, training accuracy 0.94
-    step 1000/2000, training accuracy 0.94
-    step 1100/2000, training accuracy 0.98
-    step 1200/2000, training accuracy 0.98
-    step 1300/2000, training accuracy 0.98
-    step 1400/2000, training accuracy 0.94
-    step 1500/2000, training accuracy 0.98
-    step 1600/2000, training accuracy 1
-    step 1700/2000, training accuracy 1
-    step 1800/2000, training accuracy 0.98
-    step 1900/2000, training accuracy 0.92
-    0.9589
+    INFO:tensorflow:TF_CONFIG {}
+    INFO:tensorflow:cluster=None job_name=None task_index=None
+    INFO:tensorflow:Will export model
+    Extracting /tmp/data/train-images-idx3-ubyte.gz
+    Extracting /tmp/data/train-labels-idx1-ubyte.gz
+    Extracting /tmp/data/t10k-images-idx3-ubyte.gz
+    Extracting /tmp/data/t10k-labels-idx1-ubyte.gz
+    WARNING:tensorflow:Using temporary folder as model directory: /tmp/tmpfNskyK
+    INFO:tensorflow:Using config: {'_save_checkpoints_secs': None, '_session_config': None, '_keep_checkpoint_max': 5, '_task_type': 'worker', '_global_id_in_cluster': 0, '_is_chief': True, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x7f3e975ea550>, '_evaluation_master': '', '_save_checkpoints_steps': 1000, '_keep_checkpoint_every_n_hours': 10000, '_service': None, '_num_ps_replicas': 0, '_tf_random_seed': None, '_master': '', '_device_fn': None, '_num_worker_replicas': 1, '_task_id': 0, '_log_step_count_steps': 100, '_model_dir': '/tmp/tmpfNskyK', '_train_distribute': None, '_save_summary_steps': 100}
+    Train and evaluate
+    INFO:tensorflow:Running training and evaluation locally (non-distributed).
+    INFO:tensorflow:Start train and evaluate loop. The evaluate will happen after every checkpoint. Checkpoint frequency is determined based on RunConfig arguments: save_checkpoints_steps 1000 or save_checkpoints_secs None.
+    INFO:tensorflow:Calling model_fn.
+    INFO:tensorflow:Done calling model_fn.
+    INFO:tensorflow:Create CheckpointSaverHook.
+    INFO:tensorflow:Graph was finalized.
+    INFO:tensorflow:Running local_init_op.
+    INFO:tensorflow:Done running local_init_op.
+    INFO:tensorflow:Saving checkpoints for 0 into /tmp/tmpfNskyK/model.ckpt.
+    INFO:tensorflow:loss = 2.3082201, step = 1
+    INFO:tensorflow:global_step/sec: 6.81158
+    INFO:tensorflow:loss = 2.0083964, step = 101 (14.683 sec)
+    INFO:tensorflow:Saving checkpoints for 200 into /tmp/tmpfNskyK/model.ckpt.
+    INFO:tensorflow:Calling model_fn.
+    INFO:tensorflow:Done calling model_fn.
+    INFO:tensorflow:Starting evaluation at 2019-02-02-02:35:00
+    INFO:tensorflow:Graph was finalized.
+    INFO:tensorflow:Restoring parameters from /tmp/tmpfNskyK/model.ckpt-200
+    INFO:tensorflow:Running local_init_op.
+    INFO:tensorflow:Done running local_init_op.
+    INFO:tensorflow:Evaluation [1/1]
+    INFO:tensorflow:Finished evaluation at 2019-02-02-02:35:00
+    INFO:tensorflow:Saving dict for global step 200: accuracy = 0.8046875, global_step = 200, loss = 0.79056215
+    INFO:tensorflow:Saving 'checkpoint_path' summary for global step 200: /tmp/tmpfNskyK/model.ckpt-200
+    INFO:tensorflow:Performing the final export in the end of training.
+    INFO:tensorflow:Calling model_fn.
+    INFO:tensorflow:Done calling model_fn.
+    INFO:tensorflow:Signatures INCLUDED in export for Eval: None
+    INFO:tensorflow:Signatures INCLUDED in export for Classify: None
+    INFO:tensorflow:Signatures INCLUDED in export for Regress: None
+    INFO:tensorflow:Signatures INCLUDED in export for Predict: ['serving_default', 'classes']
+    INFO:tensorflow:Signatures INCLUDED in export for Train: None
+    INFO:tensorflow:Restoring parameters from /tmp/tmpfNskyK/model.ckpt-200
+    INFO:tensorflow:Assets added to graph.
+    INFO:tensorflow:No assets to write.
+    INFO:tensorflow:SavedModel written to: /tmp/tmpfNskyK/export/mnist/temp-1549074900/saved_model.pb
+    INFO:tensorflow:Loss for final step: 0.70332366.
+    Training done
+    Export saved model
+    INFO:tensorflow:Calling model_fn.
+    INFO:tensorflow:Done calling model_fn.
+    INFO:tensorflow:Signatures INCLUDED in export for Eval: None
+    INFO:tensorflow:Signatures INCLUDED in export for Classify: None
+    INFO:tensorflow:Signatures INCLUDED in export for Regress: None
+    INFO:tensorflow:Signatures INCLUDED in export for Predict: ['serving_default', 'classes']
+    INFO:tensorflow:Signatures INCLUDED in export for Train: None
+    INFO:tensorflow:Restoring parameters from /tmp/tmpfNskyK/model.ckpt-200
+    INFO:tensorflow:Assets added to graph.
+    INFO:tensorflow:No assets to write.
+    INFO:tensorflow:SavedModel written to: mnist/temp-1549074900/saved_model.pb
+    Done exporting the model
     ```
 
     The above output indicates that the program retrieved the sample training
-    data then trained the model for 2000 steps, reaching a final accuracy level
-    of 0.9589.
+    data then trained the model for 200 steps, reaching a final accuracy level
+    of 0.70332366.
 
 If you want to play more with the code, try adjusting the number of training
-steps by setting `arg_steps` to a different value, or experiment with adjusting
-other parts of the code.
+steps by setting `TF_TRAIN_STEPS` to a different value, such as `2000`, or 
+experiment with adjusting other parts of the code.
 
 ## Prepare to run your training application on GKE
 
 When you downloaded the project files into your `${WORKING_DIR}` directory at 
-the start of the tutorial, you downloaded the code for your TensorFlow 
-application. The `${WORKING_DIR}` directory contains:
+the start of the tutorial, you downloaded the TensorFlow code for your 
+training application. The code is in a Python file, `model.py`, in your 
+`${WORKING_DIR}` directory.
 
-* A Python file, `model.py`, containing TensorFlow code.
-* A ksonnet application directory, `ks_app`, including the `components`
-  directory which holds a set of `jsonnet` files. These configuration files 
-  represent Kubernetes resources that you can deploy to your Kubeflow cluster.
+The `model.py` program does the following:
 
-TODO:
-The Python program, `model.py`, does the following:
+* Downloads the MNIST dataset and loads it for use by the model training code.
+* Offers a choice between two models:
 
-* Defines a simple feed-forward neural network with two hidden layers.
-* Defines tensor operations to train and evaluate the model’s weights.
+  * A two-layer convolutional neural network (CNN). This tutorial uses the
+    CNN, which is the default model in  `model.py`.
+  * A linear classifier, not used in this tutorial.
+
+* Defines TensorFlow operations to train and evaluate the model.
 * Runs a number of training cycles.
-* Saves the trained model to your Cloud Storage bucket.
+* Saves the trained model to a specified location, such as your Cloud Storage 
+  bucket.
 
 ### Create a ksonnet application
 
-TODO
-1. Create a ksonnet project directory:
+You need a ksonnet project directory to contain the ksonnet configuration files
+for your training application.
+
+Your `${WORKING_DIR}` directory includes an example ksonnet application 
+directory, `ks_app`. The `components` subdirectory holds a set of `jsonnet` 
+configuration files that you can copy and use. These configuration files 
+represent Kubernetes resources that you can deploy to your Kubeflow cluster
+to train and serve a TensorFlow model.
+
+Follow these steps to create your ksonnet application:
+
+1. Use [`ks_init`](https://github.com/ksonnet/ksonnet/blob/master/docs/cli-reference/ks_init.md) 
+   to create a ksonnet project directory:
 
     ```
-    KS_NAME=my_ksonnet_app
-    ks init $KS_NAME
-    cd $KS_NAME
+    export KS_NAME=my_ksonnet_app
+    ks init ${KS_NAME}
     ```
+
+1. Go to the new directory:
+
+    ```
+    cd ${KS_NAME}
+    ```
+
+1. Copy the pre-written components from the example directory:
+
+    ```
+    cp ${WORKING_DIR}/ks_app/components/* ${WORKING_DIR}/${KS_NAME}/components
+    ```
+
+1. Add the required Kubeflow resources to your ksonnet project:
+
+    ```
+    export KUBEFLOW_VERSION=v0.4.1
+    ks registry add kubeflow \
+        github.com/kubeflow/kubeflow/tree/${KUBEFLOW_VERSION}/kubeflow
+    ks pkg install kubeflow/tf-serving@${KUBEFLOW_VERSION}
+    ```
+
 
 
 ### Build the container for your training application
