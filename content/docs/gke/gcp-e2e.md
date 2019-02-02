@@ -506,25 +506,14 @@ Follow these steps to create your ksonnet application:
     ks pkg install kubeflow/tf-serving@${KUBEFLOW_VERSION}
     ```
 
-
-
 ### Build the container for your training application
 
 To deploy your code to Kubernetes, you must first build your local project into
 a [Docker][docker] container image and push the image to
 [Container Registry][container-registry] so that it's available in the cloud.
 
-1. Copy your key file to the directory containing your sample TensorFlow
-   application, to give Docker access to your Cloud Storage bucket. Make sure
-   you copy the key for the **...-user@...** account, not the key for the
-   `...-admin@...` account:
-
-    ```
-    cp ${DEPLOYMENT_NAME}_deployment_manager_configs/${DEPLOYMENT_NAME}-user@${PROJECT}.iam.gserviceaccount.com.json tensorflow-model/key.json
-    ```
-
 1. Create a version tag from the current UNIX timestamp, to be associated with
-   your model each time it runs :
+   your model each time it runs:
 
     ```
     export VERSION_TAG=$(date +%s)
@@ -536,20 +525,14 @@ a [Docker][docker] container image and push the image to
     export TRAIN_IMG_PATH=gcr.io/${PROJECT}/${DEPLOYMENT_NAME}-train:${VERSION_TAG}
     ```
 
-1. Build the Docker image for the `tensorflow-model` directory:
+1. Build the Docker image for your working directory:
 
     ```
-    docker build -t ${TRAIN_IMG_PATH} ./tensorflow-model \
-      --build-arg version=${VERSION_TAG} \
-      --build-arg bucket=${BUCKET_NAME}
+    docker build $WORKING_DIR -t $TRAIN_IMG_PATH -f $WORKING_DIR/Dockerfile.model
     ```
 
     The container is tagged with its eventual path in Container Registry, but it
     hasn't been uploaded to Container Registry yet.
-
-    **Note:** The `--build-arg` flags in the `docker build` command
-    pass the arguments into the Dockerfile, which then passes them on to the
-    Python program.
 
     If everything went well, your program is now encapsulated in a new
     container.
@@ -565,32 +548,46 @@ a [Docker][docker] container image and push the image to
     to these:
 
     ```
-    step 0/2000, training accuracy 0.14
-    step 100/2000, training accuracy 0.8
-    step 200/2000, training accuracy 0.94
-    step 300/2000, training accuracy 0.94
-    step 400/2000, training accuracy 0.96
-    step 500/2000, training accuracy 0.94
-    step 600/2000, training accuracy 0.94
-    step 700/2000, training accuracy 0.88
-    step 800/2000, training accuracy 0.98
-    step 900/2000, training accuracy 0.88
-    step 1000/2000, training accuracy 0.84
-    step 1100/2000, training accuracy 0.96
-    step 1200/2000, training accuracy 0.98
-    step 1300/2000, training accuracy 0.94
-    step 1400/2000, training accuracy 0.98
-    step 1500/2000, training accuracy 1
-    step 1600/2000, training accuracy 0.96
-    step 1700/2000, training accuracy 0.96
-    step 1800/2000, training accuracy 0.96
-    step 1900/2000, training accuracy 0.96
+    Train and evaluate
+    INFO:tensorflow:Running training and evaluation locally (non-distributed).
+    INFO:tensorflow:Start train and evaluate loop. The evaluate will happen after 1 secs (eval_spec.throttle_secs) or training is finished.
+    INFO:tensorflow:Calling model_fn.
+    INFO:tensorflow:Done calling model_fn.
+    INFO:tensorflow:Create CheckpointSaverHook.
+    INFO:tensorflow:Graph was finalized.
+    2019-02-02 04:17:20.655001: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+    INFO:tensorflow:Running local_init_op.
+    INFO:tensorflow:Done running local_init_op.
+    INFO:tensorflow:Saving checkpoints for 1 into /tmp/tmph861eL/model.ckpt.
+    INFO:tensorflow:loss = 2.3235848, step = 1
+    INFO:tensorflow:Saving checkpoints for 4 into /tmp/tmph861eL/model.ckpt.
+    INFO:tensorflow:Loss for final step: 2.2987146.
+    INFO:tensorflow:Calling model_fn.
+    INFO:tensorflow:Done calling model_fn.
+    INFO:tensorflow:Starting evaluation at 2019-02-02-04:17:21
+    INFO:tensorflow:Graph was finalized.
+    INFO:tensorflow:Restoring parameters from /tmp/tmph861eL/model.ckpt-4
+    INFO:tensorflow:Running local_init_op.
+    INFO:tensorflow:Done running local_init_op.
+    INFO:tensorflow:Evaluation [1/1]
+    INFO:tensorflow:Finished evaluation at 2019-02-02-04:17:22
+    INFO:tensorflow:Saving dict for global step 4: accuracy = 0.1640625, global_step = 4, loss = 2.2869625
+    INFO:tensorflow:Calling model_fn.
+    INFO:tensorflow:Done calling model_fn.
+    INFO:tensorflow:Create CheckpointSaverHook.
+    INFO:tensorflow:Graph was finalized.
+    INFO:tensorflow:Restoring parameters from /tmp/tmph861eL/model.ckpt-4
+    INFO:tensorflow:Running local_init_op.
+    INFO:tensorflow:Done running local_init_op.
+    INFO:tensorflow:Saving checkpoints for 5 into /tmp/tmph861eL/model.ckpt.
+    INFO:tensorflow:loss = 2.3025892, step = 5
+    INFO:tensorflow:Saving checkpoints for 7 into /tmp/tmph861eL/model.ckpt.
+    INFO:tensorflow:Loss for final step: 2.2834966.
+    ...
     ```
 
 1. When you see log entries similar to those above, your model training is
-   working. You can terminate the container with **Ctrl+c**. Don't worry if
-   you see an error saying that your service account doesn't
-   have GET access on the bucket. That access is not necessary at this point.
+   working. You can terminate the container with **Ctrl+c**.
 
 Next, upload the container image to Container Registry so that you can
 run it on your GKE cluster.
@@ -598,7 +595,7 @@ run it on your GKE cluster.
 1. Run the following command to authenticate to Container Registry:
 
     ```
-    gcloud auth configure-docker
+    gcloud auth configure-docker --quiet
     ```
 
 1. Push the container to Container Registry:
@@ -613,136 +610,87 @@ run it on your GKE cluster.
    image listed on the [Container Registry page][gcp-container-registry]
    on the GCP console.
 
-<a id="train-model"></a>
-### Train the model on GKE
+### Prepare your training component to run on GKE
 
-Now you are ready to run the TensorFlow training job on your cluster on
-GKE.
-
-1. Use the [`ks generate`][ks-generate] command to generate a ksonnet component
-   from the [`tf-job` prototype][tf-job-prototype]. The code below generates a
-   component called `train1`:
-
-    ```
-    cd ${WORKING_DIR}/${DEPLOYMENT_NAME}_ks_app
-    ks generate tf-job-operator train1
-    ```
-
-    You should now see a new file, `train1.jsonnet`, in your
-    `${DEPLOYMENT_NAME}_ks_app/components/` directory.
-
-1. Edit the file at `${DEPLOYMENT_NAME}_ks_app/components/train1.jsonnet` and
-   replace its contents with the following:
-
-    ```
-    local env = std.extVar("__ksonnet/environments");
-    local params = std.extVar("__ksonnet/params").components["train1"];
-
-    local k = import "k.libsonnet";
-
-    // @param name string Name for the job.
-    // @param image string Path to container image for training app.
-    // @param storage_bucket string Path to your Cloud Storage bucket, like
-    //        gs://your-bucket-name
-
-    local name = params.name;
-    local image = params.image;
-    local storage_bucket = params.storage_bucket;
-    local work_dir = "/opt/kubeflow-working";
-
-    local namespace = env.namespace;
-
-    local tfjob = {
-    apiVersion: "kubeflow.org/v1alpha2",
-    kind: "TFJob",
-    metadata: {
-        name: name,
-        namespace: namespace,
-    },
-    spec: {
-        tfReplicaSpecs: {
-        Worker: {
-            replicas: 1,
-            template: {
-            spec: {
-                containers: [
-                {
-                    args: [
-                    "python",
-                    "MNIST.py",
-                    "--bucket=" + storage_bucket,
-                    ],
-                    image: image,
-                    name: "tensorflow",
-                    workingDir: work_dir,
-                },
-                ],
-                restartPolicy: "OnFailure",
-            },
-            },
-        },
-        Ps: {
-            replicas: 1,
-            template: {
-            spec: {
-                containers: [
-                {
-                    args: [
-                    "python",
-                    "MNIST.py",
-                    "--bucket=" + storage_bucket,
-                    ],
-                    image: image,
-                    name: "tensorflow",
-                    workingDir: work_dir,
-                },
-                ],
-                restartPolicy: "OnFailure",
-            },
-            },
-            tfReplicaType: "PS",
-        },
-        },
-    },
-    };
-
-    k.core.v1.list.new([
-        tfjob,
-    ])
-    ```
-
-    For more information about the TFJob resource defined in the above file,
-    see the guide to [TensorFlow training with Kubeflow][tf-training].
+To run the TensorFlow training job on your cluster on GKE, you use the *train* 
+component (`train.jsonnet`) that you copied into your `my_ksonnet_app` directory 
+earlier in this tutorial. Prepare the component by setting the following
+parameters:
 
 1. Use the [`ks param set`][ks-param-set] command to customize the component’s
    parameters, pointing to your training container in Container Registry and
    your Cloud Storage bucket:
 
     ```
-    ks param set train1 name "train1-"${VERSION_TAG}
-    ks param set train1 image ${TRAIN_IMG_PATH}
-    ks param set train1 storage_bucket "gs://"${BUCKET_NAME}
+    ks param set train name "train-"${VERSION_TAG}
+    ks param set train image ${TRAIN_IMG_PATH}
+    ks param set train modelDir "gs://"${BUCKET_NAME}
+    ks param set train exportDir "gs://"${BUCKET_NAME}/export
     ```
+
 1. List the parameters for your component, to check the options set:
 
     ```
-    ks param list train1
+    ks param list train
     ```
+
+### Check the permissions for your training component
+
+You need to ensure that your Python code has the required permissions 
+to read/write to your Cloud Storage bucket. Kubeflow solves this by creating a 
+[service account](https://cloud.google.com/iam/docs/understanding-service-accounts) 
+within your project as a part of the deployment. You can verify this by listing 
+your service accounts:
+
+```
+gcloud iam service-accounts list | grep ${DEPLOYMENT_NAME}
+```
+
+Kubeflow granted this service account the right permissions to read and write to 
+your storage bucket. Kubeflow also added a 
+[Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/) 
+named `user-gcp-sa` to your cluster, containing the credentials needed to 
+authenticate as this service account within the cluster:
+
+```
+kubectl describe secret user-gcp-sa
+```
+
+To access your storage bucket from inside the `train` container, you must set 
+the 
+[GOOGLE_APPLICATION_CREDENTIALS](https://cloud.google.com/docs/authentication/getting-started)
+environment variable to point to the JSON file contained in the secret. 
+Set the variable by passing the following parameters to the `train.jsonnet` 
+component:
+
+```
+ks param set train secret user-gcp-sa=/var/secrets
+ks param set train envVariables \
+    GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/user-gcp-sa.json
+```
+
+<a id="train-model"></a>
+### Train the model on GKE
+
+TODO: GOT UP TO HERE
+
+Now you are ready to run the TensorFlow training job on your cluster on
+GKE.
 
 1. [Apply][ks-apply] the container to the cluster. The following command applies
    the container in the `default` ksonnet environment, because that's the
    environment created by the `deploy.sh` script:
 
     ```
-    ks apply default -c train1
+    ks apply default -c train
     ```
 
     There should now be new workloads on the cluster, with names that start with
-    `train1-${VERSION_TAG}-`.
+    `train-${VERSION_TAG}-`.
 
     You can see the workloads on the
     [GKE Workloads page][gcp-console-workloads] on the GCP
-    console. Click the **train1...worker-0** workload, then click
+    console. Click the **train...worker-0** workload, then click
     **Container logs** to see the logs.
 
 When training is complete, you should see the model data pushed into your
@@ -762,14 +710,14 @@ to push:
   image:
 
     ```
-    ks param set train1 image ${TRAIN_IMG_PATH}
+    ks param set train image ${TRAIN_IMG_PATH}
     ```
 
 * Delete and re-apply the component to the cluster with the following commands:
 
     ```
-    ks delete default -c train1
-    ks apply default -c train1
+    ks delete default -c train
+    ks apply default -c train
     ```
 
 New model versions will appear in appropriately tagged directories in your
