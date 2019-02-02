@@ -672,18 +672,19 @@ ks param set train envVariables \
 <a id="train-model"></a>
 ### Train the model on GKE
 
-TODO: GOT UP TO HERE
-
 Now you are ready to run the TensorFlow training job on your cluster on
 GKE.
 
-1. [Apply][ks-apply] the container to the cluster. The following command applies
-   the container in the `default` ksonnet environment, because that's the
-   environment created by the `deploy.sh` script:
+1. [Apply][ks-apply] the container to the cluster. The following ksonnet command 
+   applies the container in the `default` 
+   [ksonnet environment](https://github.com/ksonnet/ksonnet/blob/master/docs/concepts.md#environment), 
+   because the downloaded sample provides only the default environment:
 
     ```
     ks apply default -c train
     ```
+
+    TODO: GETTING ERROR ON THE ABOVE COMMAND
 
     There should now be new workloads on the cluster, with names that start with
     `train-${VERSION_TAG}-`.
