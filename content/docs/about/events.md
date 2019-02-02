@@ -9,7 +9,8 @@ This is a nonexhaustive list of events (in reverse chronological order) with tal
 Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if something is missing or incorrect.
 
 * [Data Day Texas, Austin](https://datadaytexas.com/), 26 January, 2019
-  - Kubeflow: Portable Machine Learning on Kubernetes: Michelle Casbon
+  - [Kubeflow: Portable Machine Learning on Kubernetes](https://datadaytexas.com/2019/sessions#casbon): Michelle Casbon
+      - [Slides](https://docs.google.com/presentation/d/1PvtKTw3KNbGurNymDddbsmEfLQd9cOfjbpDQ-2DSNd8)
 * [KubeCon, Seattle](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-north-america-2018/), 11-13 December, 2018
   - [Deep Dive: Kubeflow BoF](https://sched.co/Ha1X): Jeremy Lewi, David Aronchick
       - [Slides](https://docs.google.com/presentation/d/1QP-o4O3ygpJ6aVfu6lAm0tMWYhAvdKE9FD6_92DB3EY)
