@@ -237,6 +237,7 @@ to deploy Kubeflow on GCP, taking note of the following:
   deployment UI. If you want more control over the configuration of your
   deployment you can use the `kfctl.sh` script instead of the UI. The script
   is also described in the getting-started guide.
+* Choose **Kubeflow version v0.4.1** or later.
 
 The following screenshot shows the Kubeflow deployment UI with hints about
 the value for each input field:
@@ -684,15 +685,18 @@ GKE.
     ks apply default -c train
     ```
 
-    TODO: GETTING ERROR ON THE ABOVE COMMAND
+    **Note:** If you're using Cloud Shell and the system hangs when you enter
+    the above command, enable 
+    [boost mode](https://cloud.google.com/shell/docs/features#boost_mode) for 
+    extra computing power.
 
-    There should now be new workloads on the cluster, with names that start with
-    `train-${VERSION_TAG}-`.
+    When the command finishes running, there should be a new workload on the 
+    cluster, with a names like `train-<VERSION_TAG>-chief-0`.
 
     You can see the workloads on the
     [GKE Workloads page][gcp-console-workloads] on the GCP
-    console. Click the **train...worker-0** workload, then click
-    **Container logs** to see the logs.
+    console. To see the logs, click the **train-<VERSION_TAG>-chief-0** 
+    workload, then click **Container logs**.
 
 When training is complete, you should see the model data pushed into your
 Cloud Storage bucket, tagged with the same version number as the container
@@ -701,16 +705,15 @@ that generated it. To explore, click your bucket name on the
 
 In a production environment, it’s likely that you will need to run more than one
 training job for the model. Kubeflow gives you a simple deploy pipeline you can
-use to train new versions of your model repeatedly. You don’t need to regenerate
-the `tf-job-operator` ksonnet component every time. When you have a new version
+use to train new versions of your model repeatedly. When you have a new version
 to push:
 
-* Build a new image with a new version tag.
-* Run the `ks param set` command to modify the parameters for the 
-  `tf-job-operator` ksonnet component to point to the new version of your
-  image:
+* Build a new image with a new version tag and therefore a new path.
+* Run the `ks param set` command to modify the parameters to point to the new
+  version of your image:
 
     ```
+    ks param set train name "train-"${VERSION_TAG}
     ks param set train image ${TRAIN_IMG_PATH}
     ```
 
