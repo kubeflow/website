@@ -19,7 +19,8 @@ After enabling GPU, Kubeflow setup script installs a default GPU pool with type 
 The following code consumes 2 GPUs in a ContainerOp.
 
 ```python
-gpu_op = ContainerOp(name='gpu-op', ...).set_gpu_limit(2)
+import kfp.dsl as dsl
+gpu_op = dsl.ContainerOp(name='gpu-op', ...).set_gpu_limit(2)
 ```
 
 The code above will be compiled into Kubernetes Pod spec:
@@ -35,7 +36,8 @@ container:
 If the cluster has multiple node pools with different GPU types, you can specify the GPU type by the following code.
 
 ```python
-gpu_op = ContainerOp(name='gpu-op', ...).set_gpu_limit(2)
+import kfp.dsl as dsl
+gpu_op = dsl.ContainerOp(name='gpu-op', ...).set_gpu_limit(2)
 gpu_op.add_node_selector_constraint('cloud.google.com/gke-accelerator', 'nvidia-tesla-p4')
 ```
 
@@ -59,7 +61,9 @@ Check [GKE GPU guide](https://cloud.google.com/kubernetes-engine/docs/how-to/gpu
 Use the following code to configure ContainerOp to consumer TPUs on GKE:
 
 ```python
-tpu_op = ContainerOp(name='tpu-op', ...).apply(gcp.use_tpu(
+import kfp.dsl as dsl
+import kfp.gcp as gcp
+tpu_op = dsl.ContainerOp(name='tpu-op', ...).apply(gcp.use_tpu(
   tpu_cores = 8, tpu_resource = 'v2', tf_version = '1.12'))
 ```
 
