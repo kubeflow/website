@@ -671,7 +671,7 @@ ks param set train envVariables \
 ```
 
 <a id="train-model"></a>
-### Train the model on GKE
+## Train the model on GKE
 
 Now you are ready to run the TensorFlow training job on your cluster on
 GKE.
@@ -698,10 +698,22 @@ GKE.
     console. To see the logs, click the **train-<VERSION_TAG>-chief-0** 
     workload, then click **Container logs**.
 
+### View your trained model on Cloud Storage
+
 When training is complete, you should see the model data pushed into your
 Cloud Storage bucket, tagged with the same version number as the container
 that generated it. To explore, click your bucket name on the
 [Cloud Storage page][gcp-console-storage] on the GCP Console.
+
+The output from the training application includes the following:
+
+* A set of checkpoints that you can use to resume training from the a given
+  point later if you need to.
+* An `export` directory that holds the trained model in a format that the
+  [TensorFlow Serving][tf-serving] component can read. Read on to see how
+  to serve your model for prediction using TensorFlow Serving.
+
+### (Information) Running multiple jobs for the same model 
 
 In a production environment, it’s likely that you will need to run more than one
 training job for the model. Kubeflow gives you a simple deploy pipeline you can
@@ -730,44 +742,37 @@ Cloud Storage bucket.
 <a id="serve-model"></a>
 ## Serve the trained model
 
-It’s time to put your trained model on a server so that you
-can send it prediction requests. You use the
-[`tf-serving` prototype][tf-serving-prototype] to handle this task. The
-`tf-serving` prototype is the Kubeflow implementation of
-[TensorFlow Serving][tf-serving]. Unlike when using `tf-job-operator`, you don't
-need a custom image for the serving process. Instead, all the information the
-server needs is stored in the model file.
+Now you can put your trained model on a server so that you can send it 
+prediction requests. To do that, you can use two ksonnet components from the
+project files that you downloaded at the start of the tutorial. The components
+are in your `${WORKING_DIR}/components/my_ksonnet_app` directory. The
+relevant configuration files in that directory are
+`mnist-deploy-gcp.jsonnet` and `mnist-service.jsonnet`.
+
+The `mnist-deploy-gcp` component uses the
+[`tf-serving` prototype][tf-serving-prototype] to spin up a prediction server. 
+The `tf-serving` prototype is the Kubeflow implementation of
+[TensorFlow Serving][tf-serving].
+ 
+Unlike the training job that you ran earlier, the serving process does not
+require a custom image. The model files contain all the information that the 
+server needs.
 
 Follow these instructions to point the serving component to the Cloud Storage
 bucket where your model is stored, so that the server can spin up to handle
 requests:
 
-1. [Generate][ks-generate] a ksonnet component from the prototype. The code
-   below names the server `mnist-serve`:
-
-    ```
-    cd ${WORKING_DIR}/${DEPLOYMENT_NAME}_ks_app
-    ks generate tf-serving serve --name=mnist-serve
-    ```
-
 1. Set a ksonnet parameter to define the path to your model on Cloud Storage:
 
     ```
-    ks param set serve modelPath gs://${BUCKET_NAME}/
-    ```
-
-1. Set the following parameters to grant the serving container permission to
-   read your Cloud Storage bucket:
-
-    ```
-    ks param set serve gcpCredentialSecretName user-gcp-sa
-    ks param set serve cloud gcp
+    ks param set mnist-deploy-gcp modelBasePath "gs://"${BUCKET_NAME}/export
+    ks param set mnist-deploy-gcp modelName mnist
     ```
 
 1. [Apply][ks-apply] the component to the cluster:
 
     ```
-    ks apply default -c serve
+    ks apply default -c mnist-deploy-gcp
     ```
 
     Note that you don’t need to add a `VERSION_TAG`, even though you may have
@@ -776,15 +781,25 @@ requests:
     model.
 
     There should now be a new workload on the cluster, with the name
-    `mnist-serve-v1`.
+    `mnist-deploy-gcp`.
 
     You can see the workload on the
     [GKE Workloads page][gcp-console-workloads] on the GCP
-    console. Click the **mnist-serve-v1** workload, then click
-    **Container logs** to see the logs.
+    console.
 
-    You can also see the **mnist-serve** service on the
-     [GKE Services page][gcp-console-services].
+1. Run the following command to apply the `mnist-serve` component, which
+   makes the above service accessible to other pods. The component creates a
+   [ClusterIP](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) 
+   service associated with the `mnist-deploy-gcp` deployment.
+
+    ```
+    ks apply default -c mnist-service
+    ```
+
+    You can see the **mnist-service** service on the
+    [GKE Services page][gcp-console-services]. If you click through to see the
+    service details, you can see that it listens for connections within the 
+    cluster on port 9000.
 
 ## Send online prediction requests to your model
 
@@ -797,9 +812,9 @@ When you downloaded the project files at the start of the tutorial, you
 downloaded the code for a simple web UI. The code is stored in the
 `${WORKING_DIR}/web-ui` directory.
 
-The web UI uses a [Flask][flask] server to host the HTML/CSS/JavaScript files
-for the web page. The Python program, `mnist_client.py`, contains a function
-that interacts directly with the TensorFlow model server.
+The web UI uses a [Flask][flask] server to host the HTML, CSS, and JavaScript 
+files for the web page. The Python program, `mnist_client.py`, contains a 
+function that interacts directly with the TensorFlow model server.
 
 The `${WORKING_DIR}/web-ui` directory also contains a Dockerfile to build
 the application into a container image.
@@ -824,7 +839,13 @@ Follow these steps to build an image from your code:
 1. Build the Docker image for the `web-ui` directory:
 
     ```
-    docker build -t ${UI_IMG_PATH} ./web-ui
+    docker build ${WORKING_DIR}/web-ui -t ${UI_IMG_PATH}
+    ```
+
+1. Allow Docker access to your Container Registry:
+
+    ```
+    gcloud auth configure-docker --quiet
     ```
 
 1. Push the container to Container Registry:
@@ -839,6 +860,8 @@ Follow these steps to build an image from your code:
 1. Wait until the process is complete, then you should see your new container
    image listed on the [Container Registry page][gcp-container-registry]
    on the GCP console.
+
+TODO: GOT TO THIS POINT.
 
 ### Create a ksonnet component
 
