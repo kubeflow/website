@@ -59,7 +59,8 @@ Check [GKE GPU guide](https://cloud.google.com/kubernetes-engine/docs/how-to/gpu
 Use the following code to configure ContainerOp to consumer TPUs on GKE:
 
 ```python
-tpu_op = ContainerOp(name='tpu-op', ...).apply(gcp.use_tpu(tpu_cores = 8, tpu_resource = 'v2', tf_version = '1.12'))
+tpu_op = ContainerOp(name='tpu-op', ...).apply(gcp.use_tpu(
+  tpu_cores = 8, tpu_resource = 'v2', tf_version = '1.12'))
 ```
 
 The above code uses 8 v2 TPUs with TF version to be 1.12. The code above will be compiled into Kubernetes Pod spec:
