@@ -49,7 +49,7 @@ container:
     limits:
       nvidia.com/gpu: "2"
 nodeSelector:
-  cloud.google.com/gke-accelerator: nvidia-tesla-k80 
+  cloud.google.com/gke-accelerator: nvidia-tesla-p4
 ```
 
 Check [GKE GPU guide](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus) to learn more about GPU settings, 
