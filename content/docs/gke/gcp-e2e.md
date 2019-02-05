@@ -51,11 +51,12 @@ digit shown in the image.
     alt="Prediction UI"
     class="mt-3 mb-3 p-3 border border-info rounded">
 
-In the above screenshot, the image shows a hand-written **7**. The table below 
-the image shows a bar graph for each classification label from 0 to 9. Each bar 
+In the above screenshot, the image shows a hand-written **7**. This image was
+the input to the model. The table below the image shows a bar graph for each 
+classification label from 0 to 9, as output by the model. Each bar 
 represents the probability that the image matches the respective label. 
 Judging by this screenshot, the model seems pretty confident that this image
-is an 7.
+is a 7.
 
 ### The overall workflow
 
@@ -70,7 +71,7 @@ Here's an overview of what you accomplish by following this guide:
 
   * Packaging a TensorFlow program in a [Kubernetes][kubernetes] container.
   * Uploading the container to [Container Registry][container-registry].
-  * Submitting a [tf.train][tf-train] job.
+  * Submitting a Tensorflow training ([tf.train][tf-train]) job.
 
 * Using the model for prediction (inference):
 
@@ -81,7 +82,7 @@ Here's an overview of what you accomplish by following this guide:
 
 Let's get started!
 
-## Setup
+## Set up your environment
 
 ### Download the project files
 
@@ -179,8 +180,6 @@ Follow the steps below to install ksonnet:
       ```
       export PATH=$PATH:${home}/bin/$KS_PKG
       ```
-
-For macOS, use the `ks_0.13.0_darwin_amd64` ksonnet package.
 
 ### Set up some handy environment variables
 
@@ -1029,7 +1028,7 @@ using the [GCP Console][gcp-console].
 [gsutil-acl-ch]: https://cloud.google.com/storage/docs/gsutil/commands/acl#ch
 
 [ksonnet]: https://ksonnet.io/
-[ksonnet-installation]: https://ksonnet.io/#get-started
+[ksonnet-installation]: https://ksonnet.io/get-started/
 [ks-init]: https://ksonnet.io/docs/cli-reference#ks-init
 [ks-generate]: https://github.com/ksonnet/ksonnet/blob/master/docs/cli-reference/ks_generate.md
 [ks-param-set]: https://github.com/ksonnet/ksonnet/blob/master/docs/cli-reference/ks_param_set.md
