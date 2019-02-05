@@ -43,7 +43,7 @@ This tutorial trains a [TensorFlow][tensorflow] model on the
 The MNIST dataset contains a large number of images of hand-written digits in
 the range 0 to 9, as well as the labels identifying the digit in each image.
 
-After training, the model is able to classify incoming images into 10 categories
+After training, the model can classify incoming images into 10 categories
 (0 to 9) based on what it's learned about handwritten images. In other words, 
 you send an image to the model, and the model does its best to identify the 
 digit shown in the image.
@@ -686,11 +686,11 @@ GKE.
 
     **Note:** If you're using Cloud Shell and the system hangs when you enter
     the above command, enable 
-    [boost mode](https://cloud.google.com/shell/docs/features#boost_mode) for 
-    extra computing power.
+    [boost mode](https://cloud.google.com/shell/docs/features#boost_mode) to 
+    temporarily increase computing power.
 
     When the command finishes running, there should be a new workload on the 
-    cluster, with a names like `train-<VERSION_TAG>-chief-0`.
+    cluster, with a name like `train-<VERSION_TAG>-chief-0`.
 
     You can see the workloads on the
     [GKE Workloads page][gcp-console-workloads] on the GCP
@@ -706,8 +706,8 @@ that generated it. To explore, click your bucket name on the
 
 The output from the training application includes the following:
 
-* A set of checkpoints that you can use to resume training from the a given
-  point later if you need to.
+* A set of checkpoints that you can use to resume training from a given
+  point later.
 * An `export` directory that holds the trained model in a format that the
   [TensorFlow Serving][tf-serving] component can read. Read on to see how
   to serve your model for prediction using TensorFlow Serving.
@@ -719,7 +719,7 @@ training job for the model. Kubeflow gives you a simple deploy pipeline you can
 use to train new versions of your model repeatedly. When you have a new version
 to push:
 
-* Build a new image with a new version tag and therefore a new path.
+* Build a new image with a new version tag and a new path.
 * Run the `ks param set` command to modify the parameters to point to the new
   version of your image:
 
@@ -741,8 +741,8 @@ Cloud Storage bucket.
 <a id="serve-model"></a>
 ## Serve the trained model
 
-Now you can put your trained model on a server so that you can send it 
-prediction requests. To do that, you can use two ksonnet components from the
+Now you can put your trained model on a server and send it prediction requests.
+To put the model on a server, you can use two ksonnet components from the
 project files that you downloaded at the start of the tutorial. The components
 are in your `${WORKING_DIR}/components/my_ksonnet_app` directory. The
 relevant configuration files in that directory are
