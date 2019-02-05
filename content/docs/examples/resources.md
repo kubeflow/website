@@ -68,12 +68,32 @@ and codelabs that are hosted outside the Kubeflow repositories.
 Run Kubeflow on Red Hat [OpenShift](https://www.openshift.com/).
 {{% /blocks/content-item %}}
 
-{{% blocks/content-item title="Katacode scenarios" 
+{{% blocks/content-item title="Katacoda scenarios"
   url="https://www.katacoda.com/kubeflow" %}}
 Follow the tutorials to deploy Kubeflow and run a machine learning model.
 {{% /blocks/content-item %}}
-{{< /blocks/content-section >}}
 
+{{% blocks/content-item title="Introduction to Kubeflow Codelab"
+  url="https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html" %}}
+Run MNIST with Kubeflow on Google Kubernetes Engine.
+{{% /blocks/content-item %}}
+
+{{% blocks/content-item title="Introduction to Kubeflow Qwiklab"
+  url="https://www.qwiklabs.com/catalog_lab/933" %}}
+Run MNIST with resources provided by Qwiklabs.
+{{% /blocks/content-item %}}
+
+{{% blocks/content-item title="Kubeflow End to End Codelab"
+  url="https://codelabs.developers.google.com/codelabs/cloud-kubeflow-e2e-gis/index.html" %}}
+Run GitHub Issue Summarization with Kubeflow on Google Kubernetes Engine.
+{{% /blocks/content-item %}}
+
+{{% blocks/content-item title="Kubeflow End to End Qwiklab"
+  url="https://www.qwiklabs.com/catalog_lab/1046" %}}
+Run GitHub Issue Summarization with resources provided by Qwiklabs.
+{{% /blocks/content-item %}}
+
+{{< /blocks/content-section >}}
 
 {{< blocks/content-section title="Blog posts" color="light" >}}
 
