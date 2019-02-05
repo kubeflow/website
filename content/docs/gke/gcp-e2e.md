@@ -51,11 +51,11 @@ digit shown in the image.
     alt="Prediction UI"
     class="mt-3 mb-3 p-3 border border-info rounded">
 
-In the above screenshot, the image shows a hand-written **8**. The table below 
+In the above screenshot, the image shows a hand-written **7**. The table below 
 the image shows a bar graph for each classification label from 0 to 9. Each bar 
 represents the probability that the image matches the respective label. 
 Judging by this screenshot, the model seems pretty confident that this image
-is an 8.
+is an 7.
 
 ### The overall workflow
 
@@ -861,29 +861,23 @@ Follow these steps to build an image from your code:
    image listed on the [Container Registry page][gcp-container-registry]
    on the GCP console.
 
-TODO: GOT TO THIS POINT.
+### Deploy the web UI to the cluster
 
-### Create a ksonnet component
-
-To deploy the web UI to the cluster, you need another ksonnet component. This
-time, use ksonnet's built-in `deployed-service` prototype. The component
-creates the deployment and load balancer so you can connect with your Flask
-server from outside the cluster.
+Follow these steps to deploy the web UI to your Kubeflow cluster:
 
 1. Move back into your ksonnet application directory:
 
     ```
-    cd ${WORKING_DIR}/${DEPLOYMENT_NAME}_ks_app
+    cd ${WORKING_DIR}/my_ksonnet_app
     ```
 
-1. [Generate][ks-generate] the component from its prototype:
+1. Set the ksonnet parameters, using service type 
+   [LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) 
+   so that you can connect with your Flask server from outside the cluster:
 
     ```
-    ks generate deployed-service web-ui \
-      --containerPort=5000 \
-      --image=${UI_IMG_PATH} \
-      --name=web-ui \
-      --servicePort=80
+    ks param set web-ui image ${UI_IMG_PATH}
+    ks param set web-ui type LoadBalancer
     ```
 
 1. [Apply][ks-apply] the component to your cluster:
@@ -899,17 +893,21 @@ server from outside the cluster.
 
 ### Access the web UI in your browser
 
-Follow these steps to access the web UI in your web browser.
+Follow these steps to access the web UI in your web browser. It may take a few 
+minutes for the IP address to be available:
 
-1. Run the following command to access the UI via `kubectl port-forward`:
+1. Find the IP address assigned to the service:
 
     ```
-    kubectl port-forward -n ${DEPLOYMENT_NAME}  `kubectl get pods --all-namespaces \
-      --selector=app=web-ui -o=jsonpath='{.items[0].metadata.name}'` 8080:5000
-  ```
+    kubectl get service web-ui
+    ```
 
-1. Open the UI in your web browser at `localhost:8080`. The web UI should load, 
-   offering you three fields to connect to the prediction server:
+1. Copy the value shown under `EXTERNAL-IP` and paste it into your web
+   browser's address bar. The web UI should appear.
+
+
+
+1. The web UI offers three fields to connect to the prediction server:
     <img src="/docs/images/gcp-e2e-ui-connect.png" 
         alt="Connection UI"
         class="mt-3 mb-3 border border-info rounded">
@@ -918,12 +916,12 @@ Follow these steps to access the web UI in your web browser.
    of the TensorFlow server that's running in the cluster:  a name, an address, 
    and a port. You can change them if you used different values:
 
-  * **Server Name:** `mnist-serve` - The name that you gave to your serving 
+  * **Model Name:** `mnist` - The name that you gave to your serving 
     component.
 
-  * **Server Address:** `mnist-serve` - You can enter the server address as a 
+  * **Server Address:** `mnist-service` - You can enter the server address as a 
     domain name or an IP address. Note that this is an internal IP address for
-    the `mnist-serve` service within your cluster, not a public address.
+    the `mnist-service` service within your cluster, not a public address.
     Kubernetes provides an internal DNS service, so you can write the name of
     the service in the address field. Kubernetes routes all requests to the 
     required IP address automatically.
@@ -932,6 +930,17 @@ Follow these steps to access the web UI in your web browser.
 
 1. Click **Connect**. The system finds the server in your cluster and displays
    the classification results.
+
+As an alternative to the external IP address, you can run the following command 
+to access the UI via `kubectl port-forward`:
+
+```
+kubectl port-forward -n ${DEPLOYMENT_NAME}  `kubectl get pods --all-namespaces \
+    --selector=app=web-ui -o=jsonpath='{.items[0].metadata.name}'` 8080:5000
+```
+
+If you use the port-forwarding option, you can open the UI in your web browser 
+at `localhost:8080`. 
 
 ## The final product
 
@@ -943,22 +952,38 @@ model.
 
 Each  time you refresh the page, it loads a random image from the MNIST test
 dataset and performs a prediction. In the above screenshot, the image shows a
-hand-written **8**. The table below the image shows a bar graph for each 
+hand-written **7**. The table below the image shows a bar graph for each 
 classification label from 0 to 9. Each bar represents
-the probability that the image matches the respective label. 
-Because the model was properly trained, the confidence level should be high and 
-mistakes should be rare. See if you can find any!
+the probability that the image matches the respective label.
 
 <a id="cleanup"></a>
 ## Clean up your GCP environment
 
-Run the following commands to delete your deployment and related resources, and
-to delete your Cloud Storage bucket when you've finished with it:
+Run the following command to delete your deployment and related resources:
 
 ```
 gcloud deployment-manager --project=${PROJECT} deployments delete ${DEPLOYMENT_NAME}
+```
+
+Delete your Cloud Storage bucket when you've finished with it:
+
+```
 gsutil rm -r gs://${BUCKET_NAME}
 ```
+
+Delete the container images uploaded to Container Registry:
+
+```
+// Find the digest id for each container image:
+gcloud container images list-tags us.gcr.io/$PROJECT/kubeflow-train
+gcloud container images list-tags us.gcr.io/$PROJECT/kubeflow-web-ui
+
+// Delete each image:
+gcloud container images delete us.gcr.io/$PROJECT/kubeflow-web-ui:$DIGEST_ID
+gcloud container images delete us.gcr.io/$PROJECT/kubeflow-train:$DIGEST_ID
+```
+As an alternative to the command line, you can delete the various resources 
+using the [GCP Console][gcp-console].
 
 [mnist-data]: http://yann.lecun.com/exdb/mnist/index.html
 
