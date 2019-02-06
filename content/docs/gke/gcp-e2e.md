@@ -171,14 +171,14 @@ Follow the steps below to install ksonnet:
     * Unpack the file:
 
         ```
-        mkdir -p ${home}/bin
-        tar -xvf /tmp/$KS_PKG.tar.gz -C ${home}/bin
+        mkdir -p ${HOME}/bin
+        tar -xvf /tmp/$KS_PKG.tar.gz -C ${HOME}/bin
         ```
 
 1. Add the `ks` command to your path:
 
       ```
-      export PATH=$PATH:${home}/bin/$KS_PKG
+      export PATH=$PATH:${HOME}/bin/$KS_PKG
       ```
 
 ### Set up some handy environment variables
@@ -224,8 +224,8 @@ Follow the instructions in the
 to deploy Kubeflow on GCP, taking note of the following:
 
 * Set up **OAuth client credentials** and **Cloud Identity-Aware Proxy (IAP)**
-  as prompted during the deployment process. So, do not choose the deployment 
-  option to skip IAP. IAP ensures you can connect securely to the Kubeflow
+  as prompted during the deployment process. So, **do not choose the deployment 
+  option to skip IAP**. IAP ensures you can connect securely to the Kubeflow
   web applications.
 * When setting up the **authorized redirect URI** for the **OAuth client 
   credentials**, use the same value for the `<deployment_name>` as you used
@@ -684,11 +684,6 @@ GKE.
     ks apply default -c train
     ```
 
-    **Note:** If you're using Cloud Shell and the system hangs when you enter
-    the above command, enable 
-    [boost mode](https://cloud.google.com/shell/docs/features#boost_mode) to 
-    temporarily increase computing power.
-
     When the command finishes running, there should be a new workload on the 
     cluster, with a name like `train-<VERSION_TAG>-chief-0`.
 
@@ -934,7 +929,7 @@ As an alternative to the external IP address, you can run the following command
 to access the UI via `kubectl port-forward`:
 
 ```
-kubectl port-forward -n ${DEPLOYMENT_NAME}  `kubectl get pods --all-namespaces \
+kubectl port-forward -n kubeflow `kubectl get pods --all-namespaces \
     --selector=app=web-ui -o=jsonpath='{.items[0].metadata.name}'` 8080:5000
 ```
 
