@@ -4,7 +4,7 @@ description = "Enable GPU and TPU for Kubeflow Pipelines on Google Kubernetes En
 weight = 6 
 +++
 
-This page is for advanced users. It describes how to enable GPU or TPU for the pipeline on GKE by using the Pipelines 
+It describes how to enable GPU or TPU for the pipeline on GKE by using the Pipelines 
 DSL language.
 
 ## Prerequisites
