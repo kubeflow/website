@@ -25,7 +25,14 @@ To enable metrics, you need to write a file `/mlpipeline-metrics.json`. For exam
     json.dump(metrics, f)
 ```
 See the [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py#L78).
- 
+
+There are several conventions on the metrics file:
+
+* The file path must be `/mlpipeline-metrics.json`.
+* The name must follow pattern `^[a-z]([-a-z0-9]{0,62}[a-z0-9])?$`.
+* format can only be `PERCENTAGE`, `RAW` or not set.
+* numberValue must be a numeric value.
+
 ## Visualize metrics
 
 To see a visualization of the metrics, open the **Experiment runs** page in the pipeline UI. The top 3 metrics are displayed as columns for each run. The following example only has one metric named as `accuracy-score`. Use the **Compare runs** UI to display the full metrics.
