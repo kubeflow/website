@@ -79,7 +79,7 @@ Download, set up, and deploy (If you prefer to work from source code, feel free 
 disabling it please refer to the [usage reporting guide](/docs/other-guides/usage-reporting/).
 
 ## Remove KubeFlow
-To remove KubeFlow use the same script as above. Note, that it will delete the namespace kubeflow along with everything you have deployed in it!
+To remove your Kubeflow deployment, you can use the same `kfkctl` script as above. Note, that it will delete the namespace kubeflow along with everything you have deployed in it!
 
     
     cd ${KUBEFLOW_SRC}/${KFAPP}
