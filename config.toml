@@ -36,10 +36,6 @@ pygmentsStyle = "tango"
     weight = -103
     url = "/docs/about/kubeflow/"
 [[menu.main]]
-    name = "Getting Started"
-    weight = -102
-    url = "/docs/started/getting-started/"
-[[menu.main]]
     name = "Documentation"
     weight = -101
     url = "/docs/"
