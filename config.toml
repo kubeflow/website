@@ -5,6 +5,9 @@ theme = ["docsy"]
 description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 Paginate = 20
 
+# SEO
+enableRobotsTXT = true
+
 # Docsy: Gives values to .Lastmod etc.
 enableGitInfo = true
 
