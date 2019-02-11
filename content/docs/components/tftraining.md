@@ -287,6 +287,34 @@ spec:
               name: tfjob-port
             resources:
               limits:
+                cpu: '1'
+            workingDir: /opt/tf-benchmarks/scripts/tf_cnn_benchmarks
+          restartPolicy: OnFailure
+    Worker:
+      replicas: 1
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - args:
+            - python
+            - tf_cnn_benchmarks.py
+            - --batch_size=32
+            - --model=resnet50
+            - --variable_update=parameter_server
+            - --flush_stdout=true
+            - --num_gpus=1
+            - --local_parameter_device=cpu
+            - --device=gpu
+            - --data_format=NHWC
+            image: gcr.io/kubeflow/tf-benchmarks-gpu:v20171202-bdab599-dirty-284af3
+            name: tensorflow
+            ports:
+            - containerPort: 2222
+              name: tfjob-port
+            resources:
+              limits:
                 nvidia.com/gpu: 1
             workingDir: /opt/tf-benchmarks/scripts/tf_cnn_benchmarks
           restartPolicy: OnFailure
@@ -311,19 +339,18 @@ items:
 - apiVersion: kubeflow.org/v1beta1
   kind: TFJob
   metadata:
-    creationTimestamp: 2018-07-29T00:31:12Z
+    creationTimestamp: 2019-02-02T15:24:54Z
     generation: 1
-    labels:
-      app.kubernetes.io/deploy-manager: ksonnet
-    name: tfjob
-    namespace: kubeflow
-    resourceVersion: "22310"
-    selfLink: /apis/kubeflow.org/v1beta1/namespaces/kubeflow/tfjobs/tfjob
-    uid: b20c924b-92c6-11e8-b3ca-42010a80019c
+    name: tf-smoke-gpu
+    resourceVersion: "43282271"
+    selfLink: /apis/kubeflow.org/v1beta1/namespaces/kubeflow/tfjobs/tf-smoke-gpu
+    uid: b0e5e256-26fe-11e9-a020-509a4c3d1d6d
   spec:
+    cleanPodPolicy: Running
     tfReplicaSpecs:
       PS:
         replicas: 1
+        restartPolicy: Never
         template:
           metadata:
             creationTimestamp: null
@@ -345,11 +372,14 @@ items:
               ports:
               - containerPort: 2222
                 name: tfjob-port
-              resources: {}
+              resources:
+                limits:
+                  cpu: "1"
               workingDir: /opt/tf-benchmarks/scripts/tf_cnn_benchmarks
             restartPolicy: OnFailure
       Worker:
         replicas: 1
+        restartPolicy: Never
         template:
           metadata:
             creationTimestamp: null
@@ -364,30 +394,42 @@ items:
               - --flush_stdout=true
               - --num_gpus=1
               - --local_parameter_device=cpu
-              - --device=cpu
+              - --device=gpu
               - --data_format=NHWC
-              image: gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3
+              image: gcr.io/kubeflow/tf-benchmarks-gpu:v20171202-bdab599-dirty-284af3
               name: tensorflow
               ports:
               - containerPort: 2222
                 name: tfjob-port
-              resources: {}
+              resources:
+                limits:
+                  nvidia.com/gpu: "1"
               workingDir: /opt/tf-benchmarks/scripts/tf_cnn_benchmarks
             restartPolicy: OnFailure
   status:
     conditions:
-    - lastTransitionTime: 2018-07-29T00:31:48Z
-      lastUpdateTime: 2018-07-29T00:31:48Z
-      message: TFJob tfjob is running.
+    - lastTransitionTime: 2019-02-02T15:24:54Z
+      lastUpdateTime: 2019-02-02T15:24:54Z
+      message: TFJob tf-smoke-gpu is created.
+      reason: TFJobCreated
+      status: "True"
+      type: Created
+    - lastTransitionTime: 2019-02-02T15:25:00Z
+      lastUpdateTime: 2019-02-02T15:25:00Z
+      message: TFJob tf-smoke-gpu is running.
       reason: TFJobRunning
       status: "True"
       type: Running
-    startTime: 2018-07-29T02:18:13Z
-    tfReplicaStatuses:
+    replicaStatuses:
       PS:
         active: 1
       Worker:
         active: 1
+    startTime: 2019-02-02T15:24:56Z
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
 ```
 
 ### Conditions

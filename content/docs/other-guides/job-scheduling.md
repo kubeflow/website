@@ -18,7 +18,7 @@ To use gang-scheduling, you have to install kube-batch in your cluster first as 
 To use kube-batch to schedule your job as a gang, you have to specify the schedulerName in each replica; for example.
 
 ```yaml
-apiVersion: "kubeflow.org/v1alpha2"
+apiVersion: "kubeflow.org/v1beta1"
 kind: "TFJob"
 metadata:
   name: "tfjob-gang-scheduling"
