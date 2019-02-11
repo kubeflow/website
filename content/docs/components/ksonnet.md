@@ -70,7 +70,7 @@ For each environment, you can use ksonnet to deploy the same components
 with slightly different parameters to customize the deployment for a particular 
 environment. For example, this feature makes it easy to run a job locally 
 without GPUs for a small number of steps to make sure the code doesn't crash, 
-then move the deployment to the Cloud to run at scale with GPUs.
+then move the deployment to the cloud to run at scale with GPUs.
 
 ## More about ksonnet
 
