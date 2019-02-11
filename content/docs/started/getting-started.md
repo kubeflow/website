@@ -78,6 +78,14 @@ Download, set up, and deploy (If you prefer to work from source code, feel free 
 **Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explicitly
 disabling it please refer to the [usage reporting guide](/docs/other-guides/usage-reporting/).
 
+## Remove KubeFlow
+To remove your Kubeflow deployment, you can use the same `kfkctl` script as above. Note, that it will delete the namespace kubeflow along with everything you have deployed in it!
+
+    
+    cd ${KUBEFLOW_SRC}/${KFAPP}
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh delete k8s
+    
+    
 ## Troubleshooting
 For detailed troubleshooting instructions, please refer to the [troubleshooting guide](/docs/other-guides/troubleshooting/).
 
