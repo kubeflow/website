@@ -359,7 +359,7 @@ items:
             - args:
               - python
               - tf_cnn_benchmarks.py
-              - --batch_size=4
+              - --batch_size=32
               - --model=resnet50
               - --variable_update=parameter_server
               - --flush_stdout=true
@@ -388,7 +388,7 @@ items:
             - args:
               - python
               - tf_cnn_benchmarks.py
-              - --batch_size=4
+              - --batch_size=32
               - --model=resnet50
               - --variable_update=parameter_server
               - --flush_stdout=true
