@@ -24,7 +24,7 @@ To enable metrics, you need to write a file `/mlpipeline-metrics.json`. For exam
   with file_io.FileIO('/mlpipeline-metrics.json', 'w') as f:
     json.dump(metrics, f)
 ```
-See the [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py#L78).
+See the [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py#L90).
 
 There are several conventions on the metrics file:
 
