@@ -32,19 +32,12 @@ pygmentsStyle = "tango"
  # Docsy: First one is picked as the Twitter card image if not set on page.
  #images = ["images/project-illustration.png"]
 
- # Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
-#gcs_engine_id = "011737558837375720776:fsdu1nryfng"
-
 # Top-level navigation (horizontal)
 
 [[menu.main]]
     name = "What is Kubeflow?"
     weight = -103
     url = "/docs/about/kubeflow/"
-[[menu.main]]
-    name = "Getting Started"
-    weight = -102
-    url = "/docs/started/getting-started/"
 [[menu.main]]
     name = "Documentation"
     weight = -101
@@ -109,6 +102,9 @@ twitter = "kubeflow" # add your twitter profile
 
 copyright = "The Kubeflow Authors."
 privacy_policy = "https://policies.google.com/privacy"
+
+# Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
+gcs_engine_id = "0007239566369470735695:624rglujm-w"
 
 version = "master"
 githubbranch = "master"
