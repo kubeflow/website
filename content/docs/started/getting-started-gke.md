@@ -142,27 +142,28 @@ It can take 10-15 minutes for the URI to become available. You can watch
 for updates in the information box on the deployment UI. If the deployment
 takes longer than expected, try accessing the above URI anyway.
 
-### Deleting your Kubeflow Deployment
-To delete your Kubeflow deployment and reclaim all the resources from the UI:
+### Deleting your Kubeflow deployment
 
-1. Open the Deployment Manager tab in the [cloud
-   console](https://pantheon.corp.google.com/dm/deployments) for your project
-   through the browser.  This should list all the available deployments in your
-   project. Please, make sure that the selected project is the same as the one
+To delete your Kubeflow deployment and reclaim all related resources, using the
+GCP Console:
+
+1. Open the [Deployment Manager in the GCP
+   Console](https://console.cloud.google.com/dm/deployments) for your project.
+   Deployment Manager lists all the available deployments
+   in your project. Make sure that the selected project is the same as the one
    you used for your Kubeflow deployment. 
    <img src="/docs/images/deployments.png"
-   alt="Deployment Manager in Cloud Console"
+   alt="Deployment Manager in GCP Console"
    class="mt-3 mb-3 border border-info rounded">
 
-
-1. Select your Kubeflow deployment with the **deployment name** you used at the
-   time of creation and click Delete button at the top.
+1. Select your Kubeflow deployment with the deployment name you used at the
+   time of creation and click the **Delete** button at the top.
    <img src="/docs/images/delete-deployment.png"
-   alt="Deleting Kubeflow deployment in Cloud Console"
+   alt="Deleting Kubeflow deployment in GCP Console"
    class="mt-3 mb-3 border border-info rounded">
 
-This should delete any running nodes in your deployments, delete service accounts
-that were created and reclaim all resources.
+This action should delete any running nodes in your deployment, delete service
+accounts that were created for the deployment, and reclaim all resources.
 
 ## Deploy Kubeflow on GKE using the command line
 

@@ -46,11 +46,13 @@ For more general information on setting up a Kubernetes cluster please refer to 
 
 Requirements:
 
-  * ksonnet version {{% ksonnet-min-version %}} or later.
+  * ksonnet version {{% ksonnet-min-version %}} or later. See the
+    [ksonnet component guide](/docs/components/ksonnet) for help with
+    installing ksonnet and understanding how Kubeflow uses ksonnet.
   * Kubernetes {{% kubernetes-min-version %}} or later
   * kubectl
 
-Download, set up, and deploy (If you prefer to work from source code, feel free to skip step 1):
+Download, set up, and deploy. (If you prefer to work from source code, feel free to skip step 1):
 
 1. Run the following commands to download `kfctl.sh`
 

@@ -4,7 +4,7 @@ description = "Information about ksonnet as used in Kubeflow"
 weight = 20
 +++
 
-Kubeflow makes use of [ksonnet] to help manage deployments.
+Kubeflow makes use of [ksonnet](https://ksonnet.io/) to help manage deployments.
 
 ## Installing ksonnet
 
@@ -14,8 +14,8 @@ Make sure you have the minimum required version of ksonnet:
 Follow the steps below to install ksonnet:
 
 1. Follow the [ksonnet installation
-   guide][ksonnet-installation], choosing the relevant options for your
-   operating system. For example, if you're on Linux:
+   guide](https://ksonnet.io/get-started/), choosing the relevant options for
+   your operating system. For example, if you're on Linux:
 
     * Set some variables for the ksonnet version:
 
@@ -44,36 +44,11 @@ Follow the steps below to install ksonnet:
       export PATH=$PATH:${HOME}/bin/$KS_PKG
       ```
 
-## Creating a ksonnet application
+## Deploying Kubeflow
 
-This section shows you how to use ksonnet to deploy kubeflow into your existing cluster. The commands below find the cluster currently
-used by `kubectl` and create the namespace `kubeflow`.
-
-
-```
-export KUBEFLOW_VERSION=0.2.2
-export KUBEFLOW_KS_DIR=</path/to/store/your/ksonnet/application>
-export KUBEFLOW_DEPLOY=false
-curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_VERSION}/scripts/deploy.sh | bash
-```
-
-This will create a ksonnet application in ${KUBEFLOW_KS_DIR}. Refer to [deploy.sh](https://github.com/kubeflow/kubeflow/blob/v0.2-branch/scripts/deploy.sh)
-to see the individual commands run.
-
-**Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow. Do disable usage collection you
-can run the following commands
-
-```
-cd ${KUBEFLOW_KS_DIR}
-ks param set spartakus reportUsage false
-```
-
-You can now deploy Kubeflow as follows
-
-```
-cd ${KUBEFLOW_KS_DIR}
-ks apply default
-```
+After installing ksonnet, you can follow the 
+[Kubeflow getting-started guide](/docs/started/getting-started) to deploy
+Kubeflow.
 
 ## Upgrading ksonnet
 
@@ -81,16 +56,21 @@ See the guide to [upgrading Kubeflow](/docs/other-guides/upgrade/).
 
 ## Why Kubeflow uses ksonnet
 
-ksonnet makes it easier to manage complex deployments consisting of multiple components. It is designed to
-work side by side with kubectl.
+ksonnet makes it easier to manage complex deployments consisting of multiple
+components. ksonnet is designed to work side by side with `kubectl`.
 
-ksonnet allows us to generate Kubernetes manifests from parameterized templates. This makes it easy to customize Kubernetes manifests for your
-particular use case. In the examples above we used this functionality to generate manifests for TfServing with a user supplied URI for the model.
+ksonnet allows you to generate Kubernetes manifests from parameterized
+templates. This makes it easy to customize Kubernetes manifests for your
+particular use case.
 
-One of the reasons we really like ksonnet is because it treats [environment](https://ksonnet.io/docs/concepts#environment) as in (dev, test, staging, prod) as a first class concept. For each environment we can easily deploy the same components but with slightly different parameters
-to customize it for a particular environments. We think this maps really well to common workflows. For example, this feature makes it really
-easy to run a job locally without GPUs for a small number of steps to make sure the code doesn't crash, and then easily move that to the
-Cloud to run at scale with GPUs.
+ksonnet treats [environment](https://ksonnet.io/docs/concepts#environment)
+as a first class concept. For example, you can define separate
+environments for your development, test, staging, and production deployments.
+For each environment, you can use ksonnet to deploy the same components 
+with slightly different parameters to customize the deployment for a particular 
+environment. For example, this feature makes it easy to run a job locally 
+without GPUs for a small number of steps to make sure the code doesn't crash, 
+then move the deployment to the cloud to run at scale with GPUs.
 
 ## More about ksonnet
 
@@ -131,6 +111,3 @@ Some useful ksonnet concepts:
 
 Read more about the core ksonnet concepts in the
 [ksonnet documentation](https://ksonnet.io/docs/concepts/).
-
-[ksonnet]: https://ksonnet.io/
-[ksonnet-installation]: https://ksonnet.io/#get-started
