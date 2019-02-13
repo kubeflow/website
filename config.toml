@@ -104,7 +104,7 @@ copyright = "The Kubeflow Authors."
 privacy_policy = "https://policies.google.com/privacy"
 
 # Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
-gcs_engine_id = "0007239566369470735695:624rglujm-w"
+gcs_engine_id = "007239566369470735695:624rglujm-w"
 
 version = "master"
 githubbranch = "master"
