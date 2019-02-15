@@ -60,7 +60,7 @@ Download, set up, and deploy. (If you prefer to work from source code, feel free
     mkdir ${KUBEFLOW_SRC}
     cd ${KUBEFLOW_SRC}
     export KUBEFLOW_TAG={{% kf-stable-tag %}}
-    curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
+    curl https://raw.githubusercontent.com/kubeflow/kubeflow/v${KUBEFLOW_TAG}/scripts/download.sh | bash
      ```
    * **KUBEFLOW_SRC** a directory where you want to download the source to
    * **KUBEFLOW_TAG** a tag corresponding to the version to check out, such as `master` for the latest code.
