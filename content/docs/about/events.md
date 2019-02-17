@@ -8,9 +8,13 @@ aliases = ["/docs/events/"]
 This is a nonexhaustive list of events (in reverse chronological order) with talks and workshops about Kubeflow.
 Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if something is missing or incorrect.
 
+* [Google Cloud Next, San Francisco](https://cloud.withgoogle.com/next/sf), 9-11 April, 2019
+  - [Undoing Human Bias at Scale With Kubeflow](https://cloud.withgoogle.com/next/sf/sessions?session=MLAI206): John Bohannon, Michelle Casbon
 * [Data Day Texas, Austin](https://datadaytexas.com/), 26 January, 2019
   - [Kubeflow: Portable Machine Learning on Kubernetes](https://datadaytexas.com/2019/sessions#casbon): Michelle Casbon
       - [Slides](https://docs.google.com/presentation/d/1PvtKTw3KNbGurNymDddbsmEfLQd9cOfjbpDQ-2DSNd8)
+* [AI NEXTCon, Seattle](http://aisea19.xnextcon.com/), 23-26 January, 2019
+  - [Build and Manage Machine Learning Pipelines](http://aisea19.xnextcon.com/talkabstract.html#ws-kubeflow): Amy Unruh
 * [KubeCon, Seattle](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-north-america-2018/), 11-13 December, 2018
   - [Deep Dive: Kubeflow BoF](https://sched.co/Ha1X): Jeremy Lewi, David Aronchick
       - [Slides](https://docs.google.com/presentation/d/1QP-o4O3ygpJ6aVfu6lAm0tMWYhAvdKE9FD6_92DB3EY)
