@@ -1,7 +1,7 @@
 +++
 title = "Build a Pipeline"
 description = "Deploy the Kubeflow Pipelines service"
-weight = 4
+weight = 5
 +++
 
 This page describes how to author pipelines and components, and submit them to the Kubeflow Pipeline system to run. We will demonstrate the process using the Kubeflow Pipelines

@@ -1,7 +1,7 @@
 +++
 title = "Use an Output Viewer"
 description = "Using output viewers for pipelines components."
-weight = 8
+weight = 9
 +++
 
 The Kubeflow Pipelines UI has built-in support for several types of 
