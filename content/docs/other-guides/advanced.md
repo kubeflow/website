@@ -16,7 +16,7 @@ You can provision your own NFS shares and create Persistent Volume and Persisten
 Configure jupyterhub to use the disks
 
 ```
-ks param set --env=cloud jupyterhub disks ${PVC_CLAIM1},${PVC_CLAIM2}
+ks param set --env=cloud jupyter disks ${PVC_CLAIM1},${PVC_CLAIM2}
 ```
 
 Deploy the environment
