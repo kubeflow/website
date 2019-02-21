@@ -5,13 +5,14 @@ weight = 3
 +++
 
 This guide walks you through a Kubeflow Pipelines sample that runs an MNIST
-machine learning (ML) model on Google Cloud Platform (GCP). By working through
-the guide, you learn how to deploy Kubeflow on Kubernetes Engine (GKE) and run
-a pipeline supplied as a Python sample. The pipeline trains an MNIST model for
-image classification and uses the model for online inference
-(also known as online prediction).
+machine learning (ML) model on Google Cloud Platform (GCP).
 
 ## Introductions
+
+By working through this tutorial, you learn how to deploy Kubeflow on 
+Kubernetes Engine (GKE) and run a pipeline supplied as a Python sample. 
+The pipeline trains an MNIST model for image classification and serves the model
+for online inference (also known as online prediction).
 
 ### Overview of GCP and GKE
 
@@ -83,9 +84,9 @@ Notes:
 
 ### (Optional) Install kubectl
 
-`kubectl` is the command-line tool for Kubernetes. It's useful if you want
-to interact with your Kubeflow cluster locally. If you decide not to use it,
-you can skip the steps later in the tutorial that use the command.
+`kubectl` is the command-line tool for Kubernetes. `kubectl` is useful if you 
+want to interact with your Kubeflow cluster locally. If you decide not to use
+`kubectl`, you can skip the steps later in the tutorial that use the command.
 
 Run the following Cloud SDK command to install `kubectl`:
 
@@ -161,7 +162,7 @@ Deploy Kubeflow on GCP:
         alt="Prediction UI"
         class="mt-3 mb-3 p-3 border border-info rounded">
 
-1. (Optional) Use 'kubectl' to connect to your cluster:
+1. (Optional) Use `kubectl` to connect to your cluster:
 
   * Connect your local `kubectl` session to the cluster:
 
@@ -251,7 +252,7 @@ on GitHub.
 
 ### Download the project files
 
-TODO(sarahmaddox): UPDATE THE LOCATION WHEN THE FILES ARE AVAILABLE
+TODO(sarahmaddox): UPDATE THE GITHUB LOCATION WHEN THE FILES ARE AVAILABLE. ALSO THE DIRECTORY.
 
 Clone the project files and go to the directory containing the MNIST pipeline
 example:
@@ -259,7 +260,7 @@ example:
 ```
 cd ${HOME}
 git clone https://github.com/kubeflow/examples.git
-cd examples/mnist
+cd examples/mnist-pipelines
 WORKING_DIR=$(pwd)
 ```
 
@@ -308,15 +309,12 @@ export PATH=MINICONDA_PATH/bin:$PATH
  
 ### Install the Kubeflow Pipelines SDK
 
-Run the following command to install the Kubeflow Pipelines SDK:
+Install the Kubeflow Pipelines SDK, along with other Python dependencies defined
+in the `requirements.txt` file:
 
 ```bash
-pip3 install https://storage.googleapis.com/ml-pipeline/release/0.1.7/kfp.tar.gz --upgrade
+pip install -r requirements.txt --upgrade
 ```
-
-TODO(sarahmaddox): DOES THIS MEAN IT'S AUTOMATIC OR MUST I DO IT?
-After successful installation the command `dsl-compile` should be added to your 
-PATH.
 
 ### Compile the sample pipeline
 
@@ -325,13 +323,128 @@ downloaded from GitHub. When you execute that Python file, it compiles the
 pipeline to an  intermediate representation which you can then submit to the 
 Kubeflow Pipelines service.
 
-1. Run the following command to compile the pipeline:
+Run the following command to compile the pipeline:
 
-    ```
-    python3 mnist-pipeline.py
-    ```
+```bash
+python3 mnist-pipeline.py
+```
 
-    You should now have a file called `mnist-pipeline.tar.gz` which contains
-    the compiled pipeline.
+Alongside your `mnist-pipeline.py` file, you should now have a file called 
+`mnist-pipeline.py.tar.gz` which contains the compiled pipeline.
 
-1. Upload the compiled pipeline to the Kubeflow Pipelines UI.
+## Run the pipeline
+
+Go back to the earlier step in this tutorial, where you accessed the Kubeflow
+Pipelines UI. Now you're ready to upload and run your pipeline using that UI.
+
+
+1. Click **Upload pipeline** on the Kubeflow Pipelines UI:
+    <img src="/docs/images/pipelines-upload.png" 
+      alt="Upload a pipeline via the UI"
+      class="mt-3 mb-3 border border-info rounded">
+
+1. Upload your `mnist-pipeline.py.tar.gz` file and give the pipeline a name:
+    <img src="/docs/images/pipelines-uploading.png" 
+      alt="Enter the pipeline upload details"
+      class="mt-3 mb-3 border border-info rounded">
+
+1. Your pipeline now appears in the list of pipelines on the UI.
+   Click your pipeline name:
+    <img src="/docs/images/pipelines-mnist-uploaded.png" 
+      alt="Uploaded pipeline in list of pipelines"
+      class="mt-3 mb-3 border border-info rounded">
+
+1. The UI shows your pipeline's graph and various options.
+   Click **Create run**:
+    <img src="/docs/images/pipelines-mnist-uploaded.png" 
+      alt="Pipeline graph and options"
+      class="mt-3 mb-3 border border-info rounded">
+
+1.  Supply the following **run parameters**:
+
+  * **Run name:** A descriptive name for this run of the pipeline. You can
+    submit multiple runs of the same pipeline.
+  * **bucket-path:** The Cloud Storage bucket that you created earlier to hold the
+    results of the pipeline run.
+
+    The sample supplies the values for the other parameters:
+
+  * train-steps: The number of training steps to run.
+  * learning-rate: The learning rate for model training.
+  * batch-size: The batch size for model training.
+
+    Then click **Start**:
+    <img src="/docs/images/pipelines-start-mnist-run.png" 
+      alt="Starting a pipeline run"
+      class="mt-3 mb-3 border border-info rounded">
+
+1. The pipeline run now appears in the list of runs:
+    <img src="/docs/images/pipelines-mnist-run-list.png" 
+      alt="List of pipeline runs"
+      class="mt-3 mb-3 border border-info rounded">
+
+1. Click the run to see its details:
+
+
+
+TODO(sarahmaddox) COMPLETE THE TUTORIAL
+
+<a id="cleanup"></a>
+## Clean up your GCP environment
+
+Run the following command to delete your deployment and related resources:
+
+```
+gcloud deployment-manager --project=${PROJECT} deployments delete ${DEPLOYMENT_NAME}
+```
+
+Delete your Cloud Storage bucket when you've finished with it:
+
+```
+gsutil rm -r gs://${BUCKET_NAME}
+```
+
+As an alternative to the command line, you can delete the various resources 
+using the [GCP Console][gcp-console].
+
+[mnist-data]: http://yann.lecun.com/exdb/mnist/index.html
+
+[tensorflow]: https://www.tensorflow.org/
+
+[kubernetes]: https://kubernetes.io/
+[kubectl]: https://kubernetes.io/docs/reference/kubectl/kubectl/
+
+[kubernetes-engine]: https://cloud.google.com/kubernetes-engine/
+[container-registry]: https://cloud.google.com/container-registry/
+[cloud-storage]: https://cloud.google.com/storage/
+[deployment-manager]: https://cloud.google.com/deployment-manager/
+[compute-engine]: https://cloud.google.com/compute/
+[billing-guide]: https://cloud.google.com/billing/docs/how-to/modify-project
+[regions-zones]: https://cloud.google.com/compute/docs/regions-zones/
+[iap]: https://cloud.google.com/iap/
+[dns]: https://cloud.google.com/dns/docs/
+
+[cloud-sdk]: https://cloud.google.com/sdk/docs/
+[gcloud]: https://cloud.google.com/sdk/gcloud/
+[gcp-project-id]: https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects
+[gcp-locations]: https://cloud.google.com/about/locations/
+[gcp-console]: https://console.cloud.google.com/cloud-resource-manager
+[gcp-console-kubernetes-engine]: https://console.cloud.google.com/kubernetes
+[gcp-console-workloads]: https://console.cloud.google.com/kubernetes/workload
+[gcp-console-storage]: https://console.cloud.google.com/storage
+[gcp-console-consent]: https://console.cloud.google.com/apis/credentials/consent
+[gcp-console-credentials]: https://console.cloud.google.com/apis/credentials
+[gcp-console-deployment-manager]: https://console.cloud.google.com/dm/
+[gcp-console-compute-engine]: https://console.cloud.google.com/compute/
+[gcp-console-services]: https://console.cloud.google.com/kubernetes/discovery
+[cr-tf-models]: https://console.cloud.google.com/gcr/images/tensorflow/GLOBAL/models
+
+[cloud-shell]: https://cloud.google.com/sdk/docs/interactive-gcloud
+[gcloud-container-clusters-create]: https://cloud.google.com/sdk/gcloud/reference/container/clusters/create
+[gcp-machine-types]: https://cloud.google.com/compute/docs/machine-types
+[gcp-service-account]: https://cloud.google.com/iam/docs/understanding-service-accounts
+[gcp-container-registry]: https://console.cloud.google.com/gcr
+[gsutil-mb]: https://cloud.google.com/storage/docs/gsutil/commands/mb
+[gsutil-acl-ch]: https://cloud.google.com/storage/docs/gsutil/commands/acl#ch
+
+
