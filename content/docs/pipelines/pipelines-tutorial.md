@@ -96,8 +96,6 @@ gcloud components install kubectl
 
 ### Set up some handy environment variables
 
-TODO(sarahmaddox): WE DON'T NEED TO DO THIS WHEN THE MNIST MODEL ACCEPTS PARAM VARIABLES.
-
 Set up the following environment variables for use throughout the tutorial:
 
 1. Set your GCP project ID. In the command below, replace `<YOUR-PROJECT-ID>` 
@@ -261,7 +259,6 @@ example:
 cd ${HOME}
 git clone https://github.com/kubeflow/examples.git
 cd examples/mnist-pipelines
-WORKING_DIR=$(pwd)
 ```
 
 As an alternative to cloning, you can download the 
@@ -356,7 +353,7 @@ Pipelines UI. Now you're ready to upload and run your pipeline using that UI.
 
 1. The UI shows your pipeline's graph and various options.
    Click **Create run**:
-    <img src="/docs/images/pipelines-mnist-uploaded.png" 
+    <img src="/docs/images/pipelines-mnist-graph.png" 
       alt="Pipeline graph and options"
       class="mt-3 mb-3 border border-info rounded">
 
@@ -385,7 +382,7 @@ Pipelines UI. Now you're ready to upload and run your pipeline using that UI.
 
 1. Click the run to see its details. In the following screenshot, the first
    two components (`train` and `serve`) have finished successfully and the third
-   component (`web-ui`) is running:
+   component (`web-ui`) is still running:
     <img src="/docs/images/pipelines-mnist-running.png" 
       alt="A running pipeline"
       class="mt-3 mb-3 border border-info rounded">
@@ -420,8 +417,7 @@ of that file.
 
 ### Decorator
 
-Each pipeline must include a `@dsl.pipeline` decorator that provides metadata 
-about the pipeline:
+The `@dsl.pipeline` decorator provides metadata about the pipeline:
 
 ```
 @dsl.pipeline(
@@ -491,7 +487,7 @@ serve.after(train)
 ```
 The `serve` component is slightly different from the `train` component. While 
 `train` runs a single container and then exits, `serve` runs a container that 
-launches long-living resources in the cluster. 
+launches long-lived resources in the cluster. 
 
 The `ContainerOP` takes two arguments: 
 
@@ -513,8 +509,8 @@ sequentially after `train` is complete.
 ### The web UI component (`web-ui`)
 
 The following block defines the `web-ui` component, which displays a simple
-web page which sends an image to the trained model and displays the results
-returned from the model server:
+web page. The web application sends an image to the trained model and displays
+the results:
 
 ```
 web_ui = dsl.ContainerOp(
