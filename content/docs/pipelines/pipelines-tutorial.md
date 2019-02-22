@@ -1,6 +1,6 @@
 +++
-title = "Pipelines end-to-end guide"
-description = "An end-to-end tutorial for Kubeflow Pipelines"
+title = "Pipelines end-to-end on GCP"
+description = "An end-to-end tutorial for Kubeflow Pipelines on GCP"
 weight = 3
 +++
 
@@ -320,7 +320,7 @@ pip install -r requirements.txt --upgrade
 
 The pipeline is defined in the Python file `mnist-pipeline.py` which you
 downloaded from GitHub. When you execute that Python file, it compiles the
-pipeline to an  intermediate representation which you can then submit to the 
+pipeline to an  intermediate representation which you can then upload to the 
 Kubeflow Pipelines service.
 
 Run the following command to compile the pipeline:
@@ -383,11 +383,177 @@ Pipelines UI. Now you're ready to upload and run your pipeline using that UI.
       alt="List of pipeline runs"
       class="mt-3 mb-3 border border-info rounded">
 
-1. Click the run to see its details:
+1. Click the run to see its details. In the following screenshot, the first
+   two components (`train` and `serve`) have finished successfully and the third
+   component (`web-ui`) is running:
+    <img src="/docs/images/pipelines-mnist-running.png" 
+      alt="A running pipeline"
+      class="mt-3 mb-3 border border-info rounded">
 
+1. Click on any component to see its logs. 
+    <img src="/docs/images/pipelines-mnist-logs.png" 
+      alt="Logs for a pipeline component"
+      class="mt-3 mb-3 border border-info rounded">
+    
+1. When the pipeline run is complete, look at the logs for the `web-ui` 
+   component to find the IP address created for the MNIST web interface.
+   Copy the IP address and paste it into your web
+   browser's address bar. The web UI should appear.
 
+    Below the connect screen, you should see a prediction UI for your MNIST 
+    model.
+    <img src="/docs/images/gcp-e2e-ui-prediction.png" 
+        alt="Prediction UI"
+        class="mt-3 mb-3 p-3 border border-info rounded">
 
-TODO(sarahmaddox) COMPLETE THE TUTORIAL
+    Each  time you refresh the page, it loads a random image from the MNIST test
+    dataset and performs a prediction. In the above screenshot, the image shows a
+    hand-written **7**. The table below the image shows a bar graph for each 
+    classification label from 0 to 9. Each bar represents
+    the probability that the image matches the respective label.
+
+## Understanding the pipeline definition code
+
+The pipeline is defined in the Python file `mnist-pipeline.py` which you
+downloaded from GitHub. The following sections give an overview of the content
+of that file.
+
+### Decorator
+
+Each pipeline must include a `@dsl.pipeline` decorator that provides metadata 
+about the pipeline:
+
+```
+@dsl.pipeline(
+  name='MNIST',
+  description='A pipeline to train and serve the MNIST example.'
+)
+```
+
+### Function header
+
+The `mnist_pipeline` function defines the pipeline. The function includes a 
+number of arguments which are exposed in the Kubeflow Pipelines UI when you
+create a new run of the pipeline.
+Although you pass these argeuments as strings, the arguments are of type 
+[`kfp.dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py).
+
+```
+def mnist_pipeline(bucket_path='gs://kubeflow-sanche-testing-project',
+                   train_steps='2',
+                   learning_rate='0.01',
+                   batch_size='100'):
+```
+
+### The training component (`train`)
+
+TODO(sarahmaddox): VERIFY THE CODE SNIPPET BELOW ONCE WE'RE USING PARAMETERS RATHER THAN ENV VARIABLES.
+
+The following block defines the `train` component, which handles the training
+of the ML model: 
+
+```
+train = dsl.ContainerOp(
+        name='train',
+        image='gcr.io/kubeflow-examples/mnist/model:v20190111-v0.2-148-g313770f',
+        ).apply(gcp.use_gcp_secret('user-gcp-sa'))
+train.add_env_variable(V1EnvVar('TF_MODEL_DIR', 'gs://kubeflow-sanche-testing-project'))
+train.add_env_variable(V1EnvVar('TF_EXPORT_DIR', 'gs://kubeflow-sanche-testing-project/export/export'))
+train.add_env_variable(V1EnvVar('TF_TRAIN_STEPS', '20'))
+train.add_env_variable(V1EnvVar('TF_BATCH_SIZE', '100'))
+train.add_env_variable(V1EnvVar('TF_LEARNING_RATE', '0.01'))
+```
+A component consists of a 
+[`kfp.dsl.ContainerOp`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_container_op.py)
+object with a specified container path and a name. The container image for
+the MNIST training component is defined in the MNIST example's
+[`Dockerfile.model`](https://github.com/kubeflow/examples/blob/master/mnist/Dockerfile.model).
+
+The training component runs with access to your `user-gcp-sa` secret, which
+ensures the compoent has read/write access to your Cloud Storage bucket for
+storing the output from the model training.
+
+### The model serving component (`serve`)
+
+The following block defines the `serve` component, which serves the trained 
+model for prediction:
+
+```
+serve = dsl.ContainerOp(
+    name='serve',
+    image='gcr.io/ml-pipeline/ml-pipeline-kubeflow-deployer:6ad2601ec7d04e842c212c50d5c78e548e12ddea',
+    arguments=[
+        '--model-path', 'gs://kubeflow-sanche-testing-project',
+        '--server-name', "mnist-service"
+    ]
+).apply(gcp.use_gcp_secret('user-gcp-sa'))
+serve.after(train)
+```
+The `serve` component is slightly different from the `train` component. While 
+`train` runs a single container and then exits, `serve` runs a container that 
+launches long-living resources in the cluster. 
+
+The `ContainerOP` takes two arguments: 
+
+* A path pointing to the location of your trained model.
+* A server name. 
+
+The component  creates a Kubeflow 
+[`tf-serving`](https://github.com/kubeflow/kubeflow/tree/master/kubeflow/tf-serving) 
+service within the cluster. This service lives on after the pipeline is complete. 
+
+You can see the Dockerfile used to build this container in the 
+[Kubeflow Pipelines repository](https://github.com/kubeflow/pipelines/blob/master/components/kubeflow/deployer/Dockerfile).
+Like the `train` component, `serve` requires access to the `user-gcp-sa` secret 
+for access to the `kubectl` command within the container.
+
+The `serve.after(train)` line specifies that this component must run 
+sequentially after `train` is complete.
+
+### The web UI component (`web-ui`)
+
+The following block defines the `web-ui` component, which displays a simple
+web page which sends an image to the trained model and displays the results
+returned from the model server:
+
+```
+web_ui = dsl.ContainerOp(
+    name='web-ui',
+    # TODO: publish container somewhere
+    image='gcr.io/sanche-testing-project/deploy-service:latest',
+    arguments=[
+        '--image', 'gcr.io/kubeflow-examples/mnist/web-ui:v20190112-v0.2-142-g3b38225',
+        '--name', 'web-ui',
+        '--container-port', '5000',
+        '--service-port', '80',
+        '--service-type', "LoadBalancer"
+    ]
+).apply(gcp.use_gcp_secret('user-gcp-sa'))
+web_ui.after(serve)
+```
+
+Like `serve`, the `web-ui` component launches a service that exists after the 
+pipeline is complete. Instead of launching a Kubeflow resource, the `web-ui`
+component launches a standard Kubernetes deployment/service pair. You can see
+the Dockerfile that builds the deployment image in the 
+`./deploy-service/Dockerfile` that you downloaded with the sample files.
+This image runs the 
+`gcr.io/kubeflow-examples/mnist/web-ui:v20190112-v0.2-142-g3b38225` container, 
+which was built from the MNIST example's 
+[web-ui Dockerfile](https://github.com/kubeflow/examples/blob/master/mnist/web-ui/Dockerfil://github.com/kubeflow/examples/blob/master/mnist/web-ui/Dockerfile).
+
+This compoment provisions a LoadBalancer that gives external access to a 
+`web-ui` deployment launched in the cluster.
+
+### The main function
+
+The `main` function compiles the pipeline:
+
+```
+if __name__ == '__main__':
+    import kfp.compiler as compiler
+    compiler.Compiler().compile(mnist_pipeline, __file__ + '.tar.gz')
+```
 
 <a id="cleanup"></a>
 ## Clean up your GCP environment
