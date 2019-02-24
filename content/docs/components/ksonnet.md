@@ -27,8 +27,7 @@ Follow the steps below to install ksonnet:
     * Download the ksonnet package:
 
         ```
-        wget -O /tmp/${KS_PKG}.tar.gz https://github.com/ksonnet/ksonnet/releases/download/v${KS_VER}/${KS_PKG}.tar.gz \
-          --no-check-certificate
+        wget -O /tmp/${KS_PKG}.tar.gz https://github.com/ksonnet/ksonnet/releases/download/v${KS_VER}/${KS_PKG}.tar.gz
         ```
 
     * Unpack the file:
