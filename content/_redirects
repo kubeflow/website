@@ -18,5 +18,8 @@
 # Removed the "guides" section from the doc URLs.
 /docs/guides/*  /docs/:splat
 
-#Merged duplicate page pipelines-samples.md into build-pipelines.md
-/docs/pipelines/pipelines-samples/	https://www.kubeflow.org/docs/pipelines/build-pipeline/
+# Merged duplicate page pipelines-samples.md into build-pipeline.md
+/docs/pipelines/pipelines-samples/	   /docs/pipelines/build-pipeline/
+
+# Removed redundant UI guide. Quickstart is a better destination.
+/docs/pipelines/pipelines-ui/	         /docs/pipelines/pipelines-quickstart/
