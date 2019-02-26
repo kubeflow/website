@@ -42,7 +42,9 @@ account:
 If you plan to install Kubeflow on the command line:
 
   * Ensure you have installed ksonnet version 
-    {{% ksonnet-min-version %}} or later. 
+    {{% ksonnet-min-version %}} or later. See the
+    [ksonnet component guide](/docs/components/ksonnet) for help with
+    installing ksonnet.
   * If you're using
     [Cloud Shell](https://cloud.google.com/shell/), enable 
     [boost mode](https://cloud.google.com/shell/docs/features#boost_mode).
