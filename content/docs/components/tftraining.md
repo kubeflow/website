@@ -158,6 +158,8 @@ Create the component (update version as appropriate).
 CNN_JOB_NAME=mycnnjob
 VERSION=v0.4.0
 
+ks init ${CNN_JOB_NAME}
+cd ${CNN_JOB_NAME}
 ks registry add kubeflow-git github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow
 ks pkg install kubeflow-git/examples
 ```
@@ -171,7 +173,7 @@ Choose a tf-job prototype from the following list of available prototypes, to ma
 
 Run the `generate` command:
 ```
-ks generate tf-job-simple ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
+ks generate tf-job-simple-v1beta1 ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
 ```
 
 Submit it
