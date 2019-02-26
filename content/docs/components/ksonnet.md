@@ -45,9 +45,9 @@ Follow the steps below to install ksonnet:
 
 Here are the ksonnet package download links for each operating system:
 
-* [macOS](https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_darwin_amd64.tar.gz)
-* [Linux](https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_linux_amd64.tar.gz)
-* [Windows](https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_windows_amd64.zip)
+* [Download ksonnet for macOS](https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_darwin_amd64.tar.gz)
+* [Download ksonnet for Linux](https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_linux_amd64.tar.gz)
+* [Download ksonnet for Windows](https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_windows_amd64.zip)
 
 
 ## Deploying Kubeflow
