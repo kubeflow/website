@@ -10,7 +10,7 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
 
 * [Google Cloud Next, San Francisco](https://cloud.withgoogle.com/next/sf), 9-11 April, 2019
   - [Undoing Human Bias at Scale With Kubeflow](https://cloud.withgoogle.com/next/sf/sessions?session=MLAI206): John Bohannon, Michelle Casbon
-* Kubeflow Contributor Summit 2019, Sunnyvale, CA, 12-13 March 2019
+* Kubeflow Contributor Summit 2019, Sunnyvale, CA, 12-13 March, 2019
 * [Data Day Texas, Austin](https://datadaytexas.com/), 26 January, 2019
   - [Kubeflow: Portable Machine Learning on Kubernetes](https://datadaytexas.com/2019/sessions#casbon): Michelle Casbon
       - [Slides](https://docs.google.com/presentation/d/1PvtKTw3KNbGurNymDddbsmEfLQd9cOfjbpDQ-2DSNd8)
