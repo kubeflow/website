@@ -132,7 +132,7 @@ githubbranch = "master"
 # Docsy: User interface configuration
 [params.ui]
 # Docsy: Enable to show the side bar menu in its compact state.
-sidebar_menu_compact = false
+sidebar_menu_compact = true
 #  Docsy: Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
 
