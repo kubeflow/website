@@ -114,7 +114,7 @@ export PATH=MINICONDA_PATH/bin:$PATH
 Run the following to install the Kubeflow Pipelines SDK:
 
 ```bash
-pip3 install https://storage.googleapis.com/ml-pipeline/release/0.1.7/kfp.tar.gz --upgrade
+pip3 install https://storage.googleapis.com/ml-pipeline/release/0.1.11/kfp.tar.gz --upgrade
 ```
 
 After successful installation the command `dsl-compile` should be added to your 
@@ -122,17 +122,17 @@ PATH.
 
 ### Compile the samples
 
-The pipelines are written in Python, but they must be compiled to an 
+The pipelines are written in Python, but must be compiled to an
 intermediate representation before submitting to the Kubeflow Pipelines service:
 
 ```bash
 dsl-compile --py [path/to/py/file] --output [path/to/output/tar.gz]
 ```
 
-For example:
+For example, to compile [the `sequential.py` example from kubeflow/pipelines](https://github.com/kubeflow/pipelines/blob/0.1.11/samples/basic/sequential.py):
 
 ```bash
-dsl-compile --py [ML_REPO_DIRECTORY]/samples/basic/sequential.py --output [ML_REPO_DIRECTORY]/samples/basic/sequential.tar.gz
+dsl-compile --py "$PIPELINES_REPO_DIRECTORY"/samples/basic/sequential.py --output "$PIPELINES_REPO_DIRECTORY"/samples/basic/sequential.tar.gz
 ```
 
 ### Deploy the samples
