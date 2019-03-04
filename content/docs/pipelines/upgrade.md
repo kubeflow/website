@@ -1,5 +1,5 @@
 +++
-title = "Upgrading and reinstalling Kubeflow Pipelines"
+title = "Upgrading and Reinstalling"
 description = "How to upgrade or reinstall your Kubeflow Pipelines deployment"
 weight = 20
 +++
