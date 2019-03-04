@@ -153,9 +153,8 @@ Kubeflow Pipelines UI.
 **Metadata fields:**
 
 - `storage`
-
-Storage provider service name, or `"inline"` if the source is inlined.
-
 - `source`
 
-Location of the data in the storage service, or inlined markdown string if `storage` field is `"inline"`.
+Renders markdown strings in the output. The markdown data can either be read from
+a file stored remotely, or can be embedded in the metadata field `source`, in
+which case the `storage` field's value must be `"inline"`.
