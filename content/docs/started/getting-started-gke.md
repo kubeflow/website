@@ -311,6 +311,6 @@ privilege. The three service accounts are:
 * See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
   deployment on GKE.
 * See how to [upgrade or reinstall a Kubeflow Pipelines 
-  deployment](/docs/pipelines/upgrade/).
+  deployment](/docs/pipelines/upgrade/).pipelines-dep
 * [Troubleshoot](/docs/gke/troubleshooting-gke) any issues you may
   find.
