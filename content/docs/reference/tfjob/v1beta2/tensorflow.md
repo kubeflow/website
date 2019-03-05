@@ -80,7 +80,7 @@ TFJobSpec
 <td>
 <code>cleanPodPolicy</code></br>
 <em>
-<a href="https://kubeflow.org/docs/references/tfjob/v1beta2/common/#CleanPodPolicy">
+<a href="/docs/reference/tfjob/v1beta2/common/#CleanPodPolicy">
 github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.CleanPodPolicy
 </a>
 </em>
@@ -110,7 +110,7 @@ Default to infinite.</p>
 <td>
 <code>tfReplicaSpecs</code></br>
 <em>
-<a href="https://kubeflow.org/docs/references/tfjob/v1beta2/common/#ReplicaSpec">
+<a href="/docs/reference/tfjob/v1beta2/common/#ReplicaSpec">
 map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1beta2.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.ReplicaSpec
 </a>
 </em>
@@ -132,7 +132,7 @@ For example,
 <td>
 <code>status</code></br>
 <em>
-<a href="https://kubeflow.org/docs/references/tfjob/v1beta2/common/#JobStatus">
+<a href="/docs/reference/tfjob/v1beta2/common/#JobStatus">
 github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.JobStatus
 </a>
 </em>
@@ -167,7 +167,7 @@ Read-only.</p>
 <td>
 <code>cleanPodPolicy</code></br>
 <em>
-<a href="https://kubeflow.org/docs/references/tfjob/v1beta2/common/#CleanPodPolicy">
+<a href="/docs/reference/tfjob/v1beta2/common/#CleanPodPolicy">
 github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.CleanPodPolicy
 </a>
 </em>
@@ -197,7 +197,7 @@ Default to infinite.</p>
 <td>
 <code>tfReplicaSpecs</code></br>
 <em>
-<a href="https://kubeflow.org/docs/references/tfjob/v1beta2/common/#ReplicaSpec">
+<a href="/docs/reference/tfjob/v1beta2/common/#ReplicaSpec">
 map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1beta2.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.ReplicaSpec
 </a>
 </em>
