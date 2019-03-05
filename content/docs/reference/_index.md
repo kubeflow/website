@@ -1,7 +1,7 @@
 +++
 title = "Reference"
-description = "Reference documentation for Kubeflow APIs and services."
-weight = 20
+description = "Reference documentation for Kubeflow."
+weight = 900
 +++
 
 <a id="tfjob">
@@ -14,4 +14,5 @@ using TFJob with Kubeflow, see the [user guide](/docs/components/tftraining/).
 
 API references:
 
+  * [v1beta1](/docs/reference/tfjob/v1beta1/tensorflow/)
   * [v1beta2](/docs/reference/tfjob/v1beta2/tensorflow/)
