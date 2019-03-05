@@ -1,5 +1,5 @@
 +++
-title = "TFJob Common (in development)"
+title = "TFJob Common"
 description = "Reference documentation for TFJob"
 weight = 100
 +++

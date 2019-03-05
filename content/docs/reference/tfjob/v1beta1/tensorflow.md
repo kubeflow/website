@@ -1,5 +1,5 @@
 +++
-title = "TFJob TensorFlow (in development)"
+title = "TFJob TensorFlow"
 description = "Reference documentation for TFJob"
 weight = 100
 +++
@@ -11,7 +11,7 @@ weight = 100
 </ul>
 <h2 id="kubeflow.org">kubeflow.org</h2>
 <p>
-<p>Package v1beta2 is the v1beta2 version of the API.</p>
+<p>Package v1beta1 is the v1beta1 version of the API.</p>
 </p>
 Resource Types:
 <ul><li>
@@ -36,7 +36,7 @@ Resource Types:
 string</td>
 <td>
 <code>
-kubeflow.org/v1beta2
+kubeflow.org/v1beta1
 </code>
 </td>
 </tr>
@@ -80,8 +80,8 @@ TFJobSpec
 <td>
 <code>cleanPodPolicy</code></br>
 <em>
-<a href="/docs/reference/tfjob/v1beta2/common/#CleanPodPolicy">
-github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.CleanPodPolicy
+<a href="/docs/reference/tfjob/v1beta1/common/#CleanPodPolicy">
+github.com/kubeflow/tf-operator/pkg/apis/common/v1beta1.CleanPodPolicy
 </a>
 </em>
 </td>
@@ -110,8 +110,8 @@ Default to infinite.</p>
 <td>
 <code>tfReplicaSpecs</code></br>
 <em>
-<a href="/docs/reference/tfjob/v1beta2/common/#ReplicaSpec">
-map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1beta2.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.ReplicaSpec
+<a href="/docs/reference/tfjob/v1beta1/common/#ReplicaSpec">
+map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1beta1.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta1.ReplicaSpec
 </a>
 </em>
 </td>
@@ -132,8 +132,8 @@ For example,
 <td>
 <code>status</code></br>
 <em>
-<a href="/docs/reference/tfjob/v1beta2/common/#JobStatus">
-github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.JobStatus
+<a href="/docs/reference/tfjob/v1beta1/common/#JobStatus">
+github.com/kubeflow/tf-operator/pkg/apis/common/v1beta1.JobStatus
 </a>
 </em>
 </td>
@@ -167,8 +167,8 @@ Read-only.</p>
 <td>
 <code>cleanPodPolicy</code></br>
 <em>
-<a href="/docs/reference/tfjob/v1beta2/common/#CleanPodPolicy">
-github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.CleanPodPolicy
+<a href="/docs/reference/tfjob/v1beta1/common/#CleanPodPolicy">
+github.com/kubeflow/tf-operator/pkg/apis/common/v1beta1.CleanPodPolicy
 </a>
 </em>
 </td>
@@ -197,8 +197,8 @@ Default to infinite.</p>
 <td>
 <code>tfReplicaSpecs</code></br>
 <em>
-<a href="/docs/reference/tfjob/v1beta2/common/#ReplicaSpec">
-map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1beta2.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.ReplicaSpec
+<a href="/docs/reference/tfjob/v1beta1/common/#ReplicaSpec">
+map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1beta1.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta1.ReplicaSpec
 </a>
 </em>
 </td>
