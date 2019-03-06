@@ -30,7 +30,8 @@
     ],
     "typeDisplayNamePrefixOverrides": {
         "k8s.io/api/": "Kubernetes ",
-        "k8s.io/apimachinery/pkg/apis/": "Kubernetes "
+        "k8s.io/apimachinery/pkg/apis/": "Kubernetes ",
+        "github.com/kubeflow/tf-operator/pkg/apis/common": "common"
     },
     "markdownDisabled": false
 }
