@@ -222,5 +222,5 @@ For example,
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>20ef37df</code>.
+on git commit <code>a91cddc3</code>.
 </em></p>
