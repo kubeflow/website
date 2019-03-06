@@ -81,7 +81,7 @@ TFJobSpec
 <code>cleanPodPolicy</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1beta2/common/#CleanPodPolicy">
-github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.CleanPodPolicy
+common/v1beta2.CleanPodPolicy
 </a>
 </em>
 </td>
@@ -133,7 +133,7 @@ For example,
 <code>status</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1beta2/common/#JobStatus">
-github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.JobStatus
+common/v1beta2.JobStatus
 </a>
 </em>
 </td>
@@ -168,7 +168,7 @@ Read-only.</p>
 <code>cleanPodPolicy</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1beta2/common/#CleanPodPolicy">
-github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.CleanPodPolicy
+common/v1beta2.CleanPodPolicy
 </a>
 </em>
 </td>
@@ -222,5 +222,5 @@ For example,
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>20ef37df</code>.
+on git commit <code>a91cddc3</code>.
 </em></p>

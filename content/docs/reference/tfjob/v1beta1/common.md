@@ -11,7 +11,7 @@ weight = 100
 </ul>
 <h2 id="kubeflow.org">kubeflow.org</h2>
 <p>
-<p>Package v1beta2 is the v1beta2 version of the API.</p>
+<p>Package v1beta1 is the v1beta1 version of the API.</p>
 </p>
 Resource Types:
 <ul></ul>
@@ -153,7 +153,7 @@ Kubernetes meta/v1.Time
 <code>replicaStatuses</code></br>
 <em>
 <a href="#ReplicaStatus">
-map[github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.ReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.ReplicaStatus
+map[github.com/kubeflow/tf-operator/pkg/apis/common/v1beta1.ReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta1.ReplicaStatus
 </a>
 </em>
 </td>
@@ -339,5 +339,5 @@ is RestartPolicyAlways.</p>
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>20ef37df</code>.
+on git commit <code>a91cddc3</code>.
 </em></p>
