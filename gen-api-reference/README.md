@@ -20,9 +20,9 @@ tar -xvf gen-crd-api-reference-docs_linux_amd64.tar.gz -C gen-crd-api-reference-
 
 1. Set the `GEN_DOCS` variable to where you have gen-crd-api-reference extracted.
 
-1. Make sure that your `$GOPATH` is set up correctly.
+1. Set the `WEBSITE_ROOT` variable to where your website repository is cloned.
 
-1. Go to the directory where your API repository is cloned. The tool assumes that you are
+1. Go to the directory where your **API repository** is cloned. The tool assumes that you are
 at the root of the repo, and that your GOPATH is set properly. For example:
 ```
 cd $GOPATH/src/github.com/kubeflow/tf-operator/
