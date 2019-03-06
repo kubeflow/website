@@ -4,7 +4,7 @@ description = "How to upgrade or reinstall your Kubeflow Pipelines deployment"
 weight = 20
 +++
 
-Starting from version TODO:VERSION-NUMBER, Kubeflow Pipelines persists the
+Starting from Kubeflow version 0.5, Kubeflow Pipelines persists the
 pipeline data in a permanent storage volume. Kubeflow Pipelines therefore
 supports the following capabilities:
 
@@ -27,9 +27,10 @@ The MySQL database and the Minio server are both backed by the Kubernetes
 [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)
 (PV) subsystem. 
 
-* If you are deploying to GCP, Kubeflow Pipelines creates a Compute Engine 
-[Persistent Disk](https://cloud.google.com/persistent-disk/) (PD)
-and mounts it as a PV. 
+* If you are deploying to Google Cloud Platform (GCP), Kubeflow Pipelines 
+  creates a Compute Engine 
+  [Persistent Disk](https://cloud.google.com/persistent-disk/) (PD)
+  and mounts it as a PV. 
 * If you are not deploying to GCP, you can specify your own prefered PV.
 
 ## Deploying Kubeflow
@@ -90,7 +91,7 @@ The steps below assume that you already have a Kubernetes cluster set up.
         ```
         cd ks_app
         ks param set pipeline mysqlPvName [YOUR-PRE-CREATED-MYSQL-PV-NAME]
-        ks param set pipeline minioPvName [YOUR-PRE-CREATED-MYSQL-MINIO-NAME]
+        ks param set pipeline minioPvName [YOUR-PRE-CREATED-MINIO-PV-NAME]
         ```
 
   1. Then run the `apply` command as usual:
@@ -107,7 +108,7 @@ performed the original deployment, represented in the deployment guide as
 `${KFAPP}`:
 
 ```
-cd ${KUBEFLOW_SRC}/${KFAPP}
+cd ${KFAPP}
 ${KUBEFLOW_SRC}/scripts/upgrade_kfp.sh
 ```
 
@@ -208,7 +209,7 @@ PV in the new cluster.
     ```
     cd ks_app
     ks param set pipeline mysqlPvName [YOUR-PRE-CREATED-MYSQL-PV-NAME]
-    ks param set pipeline minioPvName [YOUR-PRE-CREATED-MYSQL-MINIO-NAME]
+    ks param set pipeline minioPvName [YOUR-PRE-CREATED-MINIO-PV-NAME]
     ```
 
 1. Then run the `apply` command:
