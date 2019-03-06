@@ -27,7 +27,6 @@ at the root of the repo, and that your GOPATH is set properly. For example:
 ```
 cd $GOPATH/src/github.com/kubeflow/tf-operator/
 ```
-
 1. Run the `gen-tfjob-api.sh` script.
 
 1. Run `git diff` to verify the changes.
