@@ -6,16 +6,15 @@ weight = 10
 
 ## Creating a custom Jupyter image
 You can create your own Jupyter image and use it in your Kubeflow cluster.
-Kubeflow Notebook Controller manages the life cycle of notebooks. Your custom image needs to meet the requirements created by Kubeflow Notebook Controller. 
-Notebook Controller expects the jupyer to be launched upon spawnning a notebook. For that you need to set the default command of your image to launch Jupyter. Tha jupyter launch command needs to be set as follows:
-* Set the working directory: --Notebookapp.notebook-dir=/home/jovyan. This is because  the folder /home/jovyan is backed by Kubernetes Persistent Volume (PV)
-* Allow jupyter to listen on all ips: --Notebookapp.ip=0.0.0.0 
-* Allow the user to run the notebook as root: --NotebookApp.allow_root
-* Set port: --NotebookApp.port=8888
-* Disable authentication. Kubeflow takes care of authentication. Use the following to allow paswordless access to Jupyter: --NotebookApp.password='' --NotebookApp.allow_origin='*' 
-* Set base_url: Kubeflow Notebook Controller manages the base URL for the notebook server using the environment variable called NB_PREFIX. Your should define the variable in your image and set the value of base_url 
-ENV NB_PREFIX /
---base_url /
+Your custom image needs to meet the requirements created by Kubeflow Notebook Controller. Kubeflow Notebook Controlle  manges the life-cycle of notebooks. 
+Notebook Controller expects the jupyer to be launched upon spawnning a Jupyter notebook. For that you need to set the default command of your image to launch Jupyter. Tha Jupyter launch command needs to be set as follows:
+* Set the working directory: `--Notebookapp.notebook-dir=/home/jovyan`. This is because  the folder /home/jovyan is backed by Kubernetes Persistent Volume (PV)
+* Allow jupyter to listen on all ips: `--Notebookapp.ip=0.0.0.0` 
+* Allow the user to run the notebook as root: `--NotebookApp.allow_root`
+* Set port: `--NotebookApp.port=8888`
+* Disable authentication. Kubeflow takes care of authentication. Use the following to allow paswordless access to Jupyter: `--NotebookApp.password='' --NotebookApp.allow_origin='*' `
+* Set base_url: Kubeflow Notebook Controller manages the base URL for the notebook server using the environment variable called `NB_PREFIX`. Your should define the variable in your image and set the value of base_url 
+`--base_url=NB_PREFIX`
 
 ## Bringing up a Jupyter Notebook
 
