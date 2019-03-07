@@ -310,5 +310,8 @@ privilege. The three service accounts are:
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
 * See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
   deployment on GKE.
+* See how to [upgrade Kubeflow](/docs/other-guides/upgrade/) and how to 
+  [upgrade or reinstall a Kubeflow Pipelines 
+  deployment](/docs/pipelines/upgrade/).
 * [Troubleshoot](/docs/gke/troubleshooting-gke) any issues you may
   find.
