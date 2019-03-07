@@ -14,7 +14,7 @@ Notebook Controller expects the jupyer to be launched upon spawnning a Jupyter n
 * Set port: `--NotebookApp.port=8888`
 * Disable authentication. Kubeflow takes care of authentication. Use the following to allow paswordless access to Jupyter: `--NotebookApp.password='' --NotebookApp.allow_origin='*' `
 * Set base_url: Kubeflow Notebook Controller manages the base URL for the notebook server using the environment variable called `NB_PREFIX`. Your should define the variable in your image and set the value of base_url 
-`--base_url=NB_PREFIX`
+as follows: `--base_url=NB_PREFIX`
 
 ## Bringing up a Jupyter Notebook
 
