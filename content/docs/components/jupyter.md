@@ -4,6 +4,9 @@ description = "Using Jupyter notebooks in Kubeflow"
 weight = 10
 +++
 
+
+## Bringing up a Jupyter Notebook
+
 1. To connect to Jupyter follow the [instructions](/docs/other-guides/accessing-uis)
 to access the Kubeflow UI. From there you will be able to navigate to JupyterHub   
    ![JupyterHub Link](/docs/images/jupyterlink.png)
