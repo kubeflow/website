@@ -240,12 +240,12 @@ Kubernetes:
 - Content of the shortcode:
 
   ```
-  <a href="https://kubernetes.io/docs/imported/release/notes/">1.8</a>
+  1.8
   ```
 - Usage in a document:
 
   ```
-  You need Kubernetes {{% kubernetes-min-version %}} or later.
+  You need Kubernetes version {{% kubernetes-min-version %}} or later.
   ```
 
 Useful Hugo docs:
