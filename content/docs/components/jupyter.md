@@ -4,7 +4,6 @@ description = "Using Jupyter notebooks in Kubeflow"
 weight = 10
 +++
 
-
 ## Bringing up a Jupyter Notebook
 
 1. To connect to Jupyter follow the [instructions](/docs/other-guides/accessing-uis)
@@ -109,7 +108,8 @@ Your custom image needs to meet the requirements created by Kubeflow Notebook Co
 * Allow Jupyter to listen on all ips: `--NotebookApp.ip=0.0.0.0`
 * Allow the user to run the notebook as root: `--NotebookApp.allow_root`
 * Set port: `--NotebookApp.port=8888`
-* Disable authentication. Kubeflow takes care of authentication. Use the following to allow passwordless access to Jupyter: `--NotebookApp.password='' --NotebookApp.allow_origin='*' `
+* Disable authentication. Kubeflow takes care of authentication. Use the following to allow passwordless access to Jupyter: `--Notbookapp.token=''  --NotebookApp.password=''`
+* Allow any origin to access your Jupyter: `--NotebookApp.allow_origin='*'`
 * Set base_url: Kubeflow Notebook Controller manages the base URL for the notebook server using the environment variable called `NB_PREFIX`. Your should define the variable in your image and set the value of base_url as follows: `--NotebookApp.base_url=NB_PREFIX`
 
 
