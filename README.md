@@ -245,7 +245,7 @@ Kubernetes:
 - Usage in a document:
 
   ```
-  You need Kubernetes {{% kubernetes-min-version %}} or later.
+  You need Kubernetes version {{% kubernetes-min-version %}} or later.
   ```
 
 Useful Hugo docs:
