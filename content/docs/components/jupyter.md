@@ -110,9 +110,7 @@ Your custom image needs to meet the requirements created by Kubeflow Notebook Co
 * Allow the user to run the notebook as root: `--NotebookApp.allow_root`
 * Set port: `--NotebookApp.port=8888`
 * Disable authentication. Kubeflow takes care of authentication. Use the following to allow passwordless access to Jupyter: `--NotebookApp.password='' --NotebookApp.allow_origin='*' `
-* Set base_url: Kubeflow Notebook Controller manages the base URL for the notebook server using the environment variable called `NB_PREFIX`. Your should define the variable in your image and set the value of base_url
-
-as follows: `--NotebookApp.base_url=NB_PREFIX`
+* Set base_url: Kubeflow Notebook Controller manages the base URL for the notebook server using the environment variable called `NB_PREFIX`. Your should define the variable in your image and set the value of base_url as follows: `--NotebookApp.base_url=NB_PREFIX`
 
 
 ## Building docker images from Jupyter Notebook on GCP
