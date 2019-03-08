@@ -240,7 +240,7 @@ Kubernetes:
 - Content of the shortcode:
 
   ```
-  <a href="https://kubernetes.io/docs/imported/release/notes/">1.8</a>
+  1.8
   ```
 - Usage in a document:
 
