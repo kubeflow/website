@@ -104,13 +104,20 @@ You can create your own Jupyter image and use it in your Kubeflow cluster.
 Your custom image needs to meet the requirements created by Kubeflow Notebook Controller. Kubeflow Notebook Controlle  manages the life-cycle of notebooks.
  Kubeflow Web UI expects the Jupyer to be launched upon spawning a Jupyter notebook. For that you need to set the default command of your image to launch Jupyter. Tha Jupyter launch command needs to be set as follows:
 
-* Set the working directory: `--NotebookApp.notebook-dir=/home/jovyan`. This is because  the folder `/home/jovyan` is backed by Kubernetes Persistent Volume (PV)
-* Allow Jupyter to listen on all ips: `--NotebookApp.ip=0.0.0.0`
-* Allow the user to run the notebook as root: `--NotebookApp.allow_root`
-* Set port: `--NotebookApp.port=8888`
-* Disable authentication. Kubeflow takes care of authentication. Use the following to allow passwordless access to Jupyter: `--Notbookapp.token=''  --NotebookApp.password=''`
-* Allow any origin to access your Jupyter: `--NotebookApp.allow_origin='*'`
-* Set base_url: Kubeflow Notebook Controller manages the base URL for the notebook server using the environment variable called `NB_PREFIX`. Your should define the variable in your image and set the value of base_url as follows: `--NotebookApp.base_url=NB_PREFIX`
+* Set the working directory: 
+`--NotebookApp.notebook-dir=/home/jovyan`. This is because  the folder `/home/jovyan` is backed by Kubernetes Persistent Volume (PV)
+* Allow Jupyter to listen on all ips: 
+`--NotebookApp.ip=0.0.0.0`
+* Allow the user to run the notebook as root: 
+`--NotebookApp.allow_root`
+* Set port: 
+`--NotebookApp.port=8888`
+* Disable authentication. Kubeflow takes care of authentication. Use the following to allow passwordless access to Jupyter: 
+`--Notbookapp.token=''  --NotebookApp.password=''`
+* Allow any origin to access your Jupyter: 
+`--NotebookApp.allow_origin='*'`
+* Set base_url: Kubeflow Notebook Controller manages the base URL for the notebook server using the environment variable called `NB_PREFIX`. Your should define the variable in your image and set the value of base_url as follows: 
+`--NotebookApp.base_url=NB_PREFIX`
 
 
 ## Building docker images from Jupyter Notebook on GCP
