@@ -4,18 +4,6 @@ description = "Using Jupyter notebooks in Kubeflow"
 weight = 10
 +++
 
-## Creating a custom Jupyter image
-You can create your own Jupyter image and use it in your Kubeflow cluster.
-Your custom image needs to meet the requirements created by Kubeflow Notebook Controller. Kubeflow Notebook Controller manages the life-cycle of notebooks.
- Kubeflow Web UI expects the Jupyer to be launched upon spawning a Jupyter notebook. For that you need to set the default command of your image to launch Jupyter. Tha Jupyter launch command needs to be set as follows:
-* Set the working directory: `--NotebookApp.notebook-dir=/home/jovyan`. This is because  the folder /home/jovyan is backed by Kubernetes Persistent Volume (PV)
-* Allow Jupyter to listen on all ips: `--NotebookApp.ip=0.0.0.0`
-* Allow the user to run the notebook as root: `--NotebookApp.allow_root`
-* Set port: `--NotebookApp.port=8888`
-* Disable authentication. Kubeflow takes care of authentication. Use the following to allow passwordless access to Jupyter: `--NotebookApp.password='' --NotebookApp.allow_origin='*' `
-* Set base_url: Kubeflow Notebook Controller manages the base URL for the notebook server using the environment variable called `NB_PREFIX`. Your should define the variable in your image and set the value of base_url
-as follows: `--NotebookApp.base_url=NB_PREFIX`
-
 1. To connect to Jupyter follow the [instructions](/docs/other-guides/accessing-uis)
 to access the Kubeflow UI. From there you will be able to navigate to JupyterHub   
    ![JupyterHub Link](/docs/images/jupyterlink.png)
@@ -113,12 +101,14 @@ This means that you can directly create these k8s resources directly from your j
 You can create your own Jupyter image and use it in your Kubeflow cluster.
 Your custom image needs to meet the requirements created by Kubeflow Notebook Controller. Kubeflow Notebook Controlle  manages the life-cycle of notebooks.
  Kubeflow Web UI expects the Jupyer to be launched upon spawning a Jupyter notebook. For that you need to set the default command of your image to launch Jupyter. Tha Jupyter launch command needs to be set as follows:
+
 * Set the working directory: `--NotebookApp.notebook-dir=/home/jovyan`. This is because  the folder /home/jovyan is backed by Kubernetes Persistent Volume (PV)
 * Allow Jupyter to listen on all ips: `--NotebookApp.ip=0.0.0.0`
 * Allow the user to run the notebook as root: `--NotebookApp.allow_root`
 * Set port: `--NotebookApp.port=8888`
 * Disable authentication. Kubeflow takes care of authentication. Use the following to allow passwordless access to Jupyter: `--NotebookApp.password='' --NotebookApp.allow_origin='*' `
 * Set base_url: Kubeflow Notebook Controller manages the base URL for the notebook server using the environment variable called `NB_PREFIX`. Your should define the variable in your image and set the value of base_url
+
 as follows: `--NotebookApp.base_url=NB_PREFIX`
 
 
