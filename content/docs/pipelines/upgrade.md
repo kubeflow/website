@@ -111,7 +111,7 @@ performed the original deployment, represented in the deployment guide as
 cd ${KFAPP}
 ${KUBEFLOW_SRC}/scripts/upgrade_kfp.sh
 ```
-Or you can upgrade to a specific version of Pipeline by specifying the version ID. You can find the version ID in the Pipeline release page. E.g. to upgrade to v0.1.12
+Or you can upgrade to a specific version of Pipeline by specifying the version ID. You can find the version ID in the Pipeline [release page](https://github.com/kubeflow/pipelines/releases). E.g. to upgrade to v0.1.12
 ```
 ${KUBEFLOW_SRC}/scripts/upgrade_kfp.sh a1afdd6c4b297b56dd103a8bb939ddeae67c2c92
 ```
