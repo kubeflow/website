@@ -67,7 +67,7 @@ Run the following command to install the Kubeflow Pipelines SDK:
 TODO: Use variable for SDK version
 
 ```bash
-pip install https://storage.googleapis.com/ml-pipeline/release/0.1.12/kfp.tar.gz --upgrade
+pip install https://storage.googleapis.com/ml-pipeline/release/{{% pipelines-sdk-version %}}/kfp.tar.gz --upgrade
 ```
 
 After successful installation, the command `dsl-compile` should be available.
@@ -80,10 +80,12 @@ which dsl-compile
 The response should be something like this:
 
 ```
-/<PATH_TO_YOUR_BIN>/miniconda2/envs/mlpipeline/bin/dsl-compile
+/<PATH_TO_YOUR_USER_BIN>/miniconda2/envs/mlpipeline/bin/dsl-compile
 ```
 
 ## Next steps
 
 * [Build a component and a pipeline](/docs/pipelines/build-component).
+* [Get started](/docs/pipelines/pipelines-quickstart) with the 
+  Kubeflow Pipelines UI.
 * Read more about [pipeline concepts](/docs/pipelines/pipelines-concepts).

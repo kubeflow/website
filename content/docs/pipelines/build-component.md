@@ -1,6 +1,6 @@
 +++
 title = "Build Components and Pipelines"
-description = "Building your own components for Kubeflow Pipelines."
+description = "Building your own component and adding it to a pipeline."
 weight = 6
 +++
 
@@ -10,20 +10,19 @@ to combine components into a pipeline. For an easier start, experiment with
 
 ## Overview of pipelines and components
 
-A _pipeline_ is a description of an ML workflow, including all of the components 
-in the workflow and how they combine in the form of a graph. (See the
-screenshot below showing an example of a pipeline graph.) The pipeline
+A _pipeline_ is a description of a machine learning (ML) workflow, including all
+of the components of the workflow and how they work together. The pipeline
 includes the definition of the inputs (parameters) required to run the pipeline 
 and the inputs and outputs of each component.
 
-Pipeline _components_ are implementations of pipeline tasks. Each task 
-takes one or more 
+A pipeline _component_ is an implementation of a pipeline task. A component 
+represents a step in the workflow. Each component takes one or more 
 [artifacts](/docs/pipelines/pipelines-concepts#step-output-artifacts) as
 input and may produce one or more
 [artifacts](/docs/pipelines/pipelines-concepts#step-output-artifacts) as 
 output.
 
-Each task usually includes two parts:
+Each component usually includes two parts:
 
 ``Client code``
   The code that talks to endpoints to submit jobs. For example, code to talk to 
@@ -43,17 +42,6 @@ A component consists of an interface (inputs/outputs), the implementation
 (a Docker container image and command-line arguments) and metadata 
 (name, description).
 
-Components can be instantiated inside the `pipeline` function to create tasks.
-
-There are multiple ways to author components:
-
-* Wrap an existing Docker container image using `ContainerOp`, as described 
-  below.
-* Create a 
-  [lightweight python component](/docs/pipelines/lightweight-python-components) 
-  from a Python function.
-* Build a new Docker container image from a Python function.
-
 ## Before you start
 
 Set up your environment:
@@ -61,27 +49,34 @@ Set up your environment:
 * Install [Docker](https://www.docker.com/get-docker).
 * Install the [Kubeflow Pipelines SDK](/docs/pipelines/install-sdk).
 
-## Create a container for each component
+## Create a container image for each component
 
-In most cases, you must create a container image that includes your 
-program. See the  
-[container building examples](https://github.com/kubeflow/pipelines/blob/master/components). 
-(In the directory, go to any subdirectory and then go to the `containers` directory.)
+This section assumes that you have already created a program to perform the
+task required for a particular step in your ML workflow. For example, if the
+task is to train an ML model, then you must have a program that does the
+training.
+
+Create a [Docker](https://docs.docker.com/get-started/) container image that 
+packages your program. See an example of how to build a container image in the
+Kubeflow Pipelines repository of reusable components:
+[`build_image.sh`](https://github.com/kubeflow/pipelines/blob/master/components/build_image.sh).
 
 If your component creates some outputs to be fed as inputs to the downstream 
 components, each output must be a string and must be written to a separate local 
-text file by the container image. For example, if a trainer component needs to 
-output the trained model path, it writes the path into a  local file 
-`/output.txt`. In the Python class that defines your pipeline 
+text file by the container image. For example, if a training component needs to 
+output the path of the trained model, the component writes the path into a local 
+file, `/output.txt`. In the Python class that defines your pipeline 
 (see [below](#define-pipeline)), you can 
 specify how to map the content of local files to component outputs.
 
-<!---[TODO]: Add how to produce UI metadata.--->
-
 ## Create a Python class for your component
 
-You need a Python class to describe the interactions with the Docker container
-image  that contains your pipeline component. For example, the following
+TODO: Change the example so that it's clear how the component relates to the
+pipeline function - the existing examples are not compatible. Continue to use training
+as the example, and ensure the examples come from the same sample.
+
+Define a Python class to describe the interactions with the Docker container
+image that contains your pipeline component. For example, the following
 Python class describes a component that creates confusion matrix data from 
 prediction results:
 
@@ -125,7 +120,7 @@ Note:
     op.outputs['label']
     ```
 
-If there is only one output then you can also use `op.output`.
+    If there is only one output then you can also use `op.output`.
 
 <a id="define-pipeline"></a>
 ## Create your pipeline as a Python function
@@ -171,8 +166,10 @@ See [an example](https://github.com/kubeflow/pipelines/blob/master/samples/xgboo
 
 ## More information
 
-* You can build lightweight components from Python functions. See the guide to 
-  [lightweight python 
+* You can build lightweight components directly from Python functions. See the 
+  guide to [lightweight python 
   components](/docs/pipelines/lightweight-python-components).
 * See how to 
   [export metrics from your pipeline](/docs/pipelines/pipelines-metrics).
+* [Add metadata for an output viewer](/docs/pipelines/output-viewer) to
+  visualize the output of your component.
