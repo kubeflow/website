@@ -68,57 +68,9 @@ command line. But currently you can't use the Python SDK to submit
 pipelines to a cluster, and you can't build container images using the SDK.
 The DSL compiler works as usual.
 
-### Set up Python
+### Before you start
 
-**Python 3.5 or above is required**. If you don't have Python 3 set up, we 
-suggest the following steps to install 
-[Miniconda](https://conda.io/miniconda.html).
- 
-* In a Debian/Ubuntu/[Cloud shell](https://console.cloud.google.com/cloudshell) 
-  environment:   
-
-    ```bash
-    apt-get update; apt-get install -y wget bzip2
-    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-    bash Miniconda3-latest-Linux-x86_64.sh
-    ```
-
-* In a Windows environment, download the 
-  [installer](https://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86_64.exe) 
-  and  make sure you select the "*Add Miniconda to my PATH environment variable*" 
-  option during the installation.
-
-* In a Mac environment, download the 
-  [installer](https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh) 
-  and run the following command:
-
-    ```bash
-    bash Miniconda3-latest-MacOSX-x86_64.sh
-    ```
-
-Create a clean Python 3 environment:
- 
-```bash
-conda create --name mlpipeline python=3.6
-source activate mlpipeline
-```
- 
-If the `conda` command is not found, be sure to add Miniconda to your path:
- 
-```bash
-export PATH=MINICONDA_PATH/bin:$PATH
-```
- 
-### Install the Kubeflow Pipelines SDK
-
-Run the following to install the Kubeflow Pipelines SDK:
-
-```bash
-pip3 install https://storage.googleapis.com/ml-pipeline/release/0.1.11/kfp.tar.gz --upgrade
-```
-
-After successful installation the command `dsl-compile` should be added to your 
-PATH.
+Install the [Kubeflow Pipelines SDK](/docs/pipelines/install-sdk).
 
 ### Compile the samples
 

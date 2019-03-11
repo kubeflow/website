@@ -1,16 +1,22 @@
 +++
-title = "Build Your Own Pipeline Components"
+title = "Build Components and Pipelines"
 description = "Building your own components for Kubeflow Pipelines."
 weight = 6
 +++
 
-This page is for advanced users. It describes how to build your own pipeline 
-components. For an easier start, try 
-[building a pipeline with the provided samples](/docs/pipelines/build-pipeline).
+This page describes how to create a component for Kubeflow Pipelines and how
+to combine components into a pipeline. For an easier start, experiment with 
+[the Kubeflow Pipelines samples](/docs/pipelines/build-pipeline).
 
-## Overview of pipeline components
+## Overview of pipelines and components
 
-Kubeflow Pipelines components are implementations of pipeline tasks. Each task 
+A _pipeline_ is a description of an ML workflow, including all of the components 
+in the workflow and how they combine in the form of a graph. (See the
+screenshot below showing an example of a pipeline graph.) The pipeline
+includes the definition of the inputs (parameters) required to run the pipeline 
+and the inputs and outputs of each component.
+
+Pipeline _components_ are implementations of pipeline tasks. Each task 
 takes one or more 
 [artifacts](/docs/pipelines/pipelines-concepts#step-output-artifacts) as
 input and may produce one or more
@@ -45,24 +51,19 @@ There are multiple ways to author components:
   below.
 * Create a 
   [lightweight python component](/docs/pipelines/lightweight-python-components) 
-  from a Python function
+  from a Python function.
 * Build a new Docker container image from a Python function.
 
-## Example: XGBoost DataProc components
+## Before you start
 
-* [Set up cluster](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/create_cluster/src/create_cluster.py)
-* [Analyze](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/analyze/src/analyze.py)
-* [Transform](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/transform/src/transform.py)
-* [Train (distributed)](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/train/src/train.py)
-* [Delete cluster](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/delete_cluster/src/delete_cluster.py)
+Set up your environment:
 
-## Requirements for building a component
+* Install [Docker](https://www.docker.com/get-docker).
+* Install the [Kubeflow Pipelines SDK](/docs/pipelines/install-sdk).
 
-Install [Docker](https://www.docker.com/get-docker).
+## Create a container for each component
 
-## Step One: Create a container for each component
-
-In most cases, you need to create your own container image that includes your 
+In most cases, you must create a container image that includes your 
 program. See the  
 [container building examples](https://github.com/kubeflow/pipelines/blob/master/components). 
 (In the directory, go to any subdirectory and then go to the `containers` directory.)
@@ -71,16 +72,18 @@ If your component creates some outputs to be fed as inputs to the downstream
 components, each output must be a string and must be written to a separate local 
 text file by the container image. For example, if a trainer component needs to 
 output the trained model path, it writes the path into a  local file 
-`/output.txt`. In the Python class (in step three), you have the chance to 
-specify how to map the content  of local files to component outputs.
+`/output.txt`. In the Python class that defines your pipeline 
+(see [below](#define-pipeline)), you can 
+specify how to map the content of local files to component outputs.
 
 <!---[TODO]: Add how to produce UI metadata.--->
 
-## Step Two: Create a Python class for your component
+## Create a Python class for your component
 
-The Python classes describe the interactions with the Docker container image 
-created in step one. For example, a component to create confusion matrix data 
-from prediction results looks like this:
+You need a Python class to describe the interactions with the Docker container
+image  that contains your pipeline component. For example, the following
+Python class describes a component that creates confusion matrix data from 
+prediction results:
 
 ```python
 class ConfusionMatrixOp(kfp.dsl.ContainerOp):
@@ -100,20 +103,21 @@ class ConfusionMatrixOp(kfp.dsl.ContainerOp):
 
 Note:
 
-* Each component needs to inherit from `kfp.dsl.ContainerOp`.
-* If you already defined ENTRYPOINT in the container image, you don’t need to 
-  provide `command` unless you want to override it.
-* In the init arguments, there can be Python native types (such as str, int) and 
-  `kfp.dsl.PipelineParam` types. Each `kfp.dsl.PipelineParam` represents a 
-  parameter whose value is usually only known at run time. It might be a 
-  pipeline  parameter whose value is provided at pipeline run time by user, or 
-  it can be an output from an upstream component. 
-  In the above case, `predictions` and `output_path` are `kfp.dsl.PipelineParam` types.
-* Although the value of each PipelineParam is only available at run time, you 
-  can still use the parameters inline in the  argument (note the “%s”). This 
-  means at run time the argument contains the value of the param inline.
+* Each component must inherit from `kfp.dsl.ContainerOp`.
+* If you have already defined ENTRYPOINT in the container image, you don’t need 
+  to provide `command` unless you want to override the entry point.
+* In the `init` arguments, you can include Python native types (such as str, 
+  int) and `kfp.dsl.PipelineParam` types. Each `kfp.dsl.PipelineParam` 
+  represents a parameter whose value is usually only known at run time. It can 
+  be a pipeline parameter for which the user provides a value at pipeline run
+  time, or it can be an output from an upstream component. 
+  In the above example, `predictions` and `output_path` are 
+  `kfp.dsl.PipelineParam` types.
+* Although the value of each `PipelineParam` is only available at run time, you 
+  can still use the parameters inline in the `arguments` (note the “%s”). 
+  At run time the argument contains the value of the parameter.
 * `file_outputs` lists a map between labels and local file paths. In the above 
-  case, the content of `/output.txt` is gathered as a string output of the 
+  example, the content of `/output.txt` is gathered as a string output of the 
   operator. To reference the output in code:
 
     ```python
@@ -121,11 +125,12 @@ Note:
     op.outputs['label']
     ```
 
-If there is only one output then you can also do `op.output`.
+If there is only one output then you can also use `op.output`.
 
-## Step Three: Create your workflow as a Python function
+<a id="define-pipeline"></a>
+## Create your pipeline as a Python function
 
-Each pipeline is identified as a Python function. For example:
+You must identify each pipeline as a Python function. For example:
 
 ```python
 @kfp.dsl.pipeline(
@@ -152,23 +157,22 @@ def train(
 
 Note:
 
-* **@kfp.dsl.pipeline** is a required decoration including `name` and 
+* **@kfp.dsl.pipeline** is a required decoration including the `name` and 
   `description` properties.
-* Input arguments show up as pipeline parameters in the Kubeflow Pipelines UI. 
-  As a Python rule, positional  args go first and keyword args go next.
+* Input arguments show up as pipeline parameters on the Kubeflow Pipelines UI. 
+  As a Python rule, positional arguments appear first, followed by keyword 
+  arguments.
 * Each function argument is of type `kfp.dsl.PipelineParam`. The default values 
   should all be of that type. The default values show up in the Kubeflow 
-  Pipelines UI but can be overwritten.
+  Pipelines UI but the user can override them.
 
 
 See [an example](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py).
 
-## Lightweight Python components
+## More information
 
-You can also build lightweight components from Python functions. See the guide 
-to 
-[lightweight python components](/docs/pipelines/lightweight-python-components).
-
-## Export metrics
-
-See the guide to [pipeline metrics](/docs/pipelines/pipelines-metrics).
+* You can build lightweight components from Python functions. See the guide to 
+  [lightweight python 
+  components](/docs/pipelines/lightweight-python-components).
+* See how to 
+  [export metrics from your pipeline](/docs/pipelines/pipelines-metrics).

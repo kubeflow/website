@@ -1,0 +1,89 @@
++++
+title = "Install the Kubeflow Pipelines SDK"
+description = "Setting up your Kubeflow Pipelines development environment."
+weight = 3
++++
+
+This guide tells you how to install the 
+[Kubeflow Pipelines SDK](https://github.com/kubeflow/pipelines/tree/master/sdk)
+which you can use to build machine learning pipelines. You can use the SDK
+to execute your pipeline, or alternatively you can upload the pipeline to
+the Kubeflow Pipelines UI for execution.
+
+## Set up Python
+
+You need **Python 3.5** or later to use the Kubeflow Pipelines SDK. 
+
+If you haven't yet set up a Python 3 environment, follow the steps below to set 
+up Python using [Miniconda](https://conda.io/miniconda.html):
+
+1. Choose one of the following methods to install Miniconda, depending on your
+  environment:
+
+  * Debian/Ubuntu/[Cloud shell](https://console.cloud.google.com/cloudshell):   
+
+        ```bash
+        apt-get update; apt-get install -y wget bzip2
+        wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        bash Miniconda3-latest-Linux-x86_64.sh
+        ```
+
+  * Windows: Download the 
+    [installer](https://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86_64.exe)
+    and make sure you select the option to
+    **Add Miniconda to my PATH environment variable** during the installation.
+
+  * MacOS: Download the 
+    [installer](https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh)
+    and run the following command:
+
+        ```bash
+        bash Miniconda3-latest-MacOSX-x86_64.sh
+        ```
+
+1. Check that the `conda` command is availabe:
+
+    ```bash
+    which conda
+    ```
+
+    If the `conda` command is not found, add Miniconda to your path:
+ 
+    ```bash
+    export PATH=<YOUR_MINICONDA_PATH>/bin:$PATH
+    ```
+
+1. Create a clean Python 3 environment:
+ 
+    ```bash
+    conda create --name mlpipeline python=3.7
+    source activate mlpipeline
+    ```
+ 
+## Install the Kubeflow Pipelines SDK
+
+Run the following command to install the Kubeflow Pipelines SDK:
+
+TODO: Use variable for SDK version
+
+```bash
+pip install https://storage.googleapis.com/ml-pipeline/release/0.1.12/kfp.tar.gz --upgrade
+```
+
+After successful installation, the command `dsl-compile` should be available.
+You can use this command to verify it:
+
+```bash
+which dsl-compile
+```
+
+The response should be something like this:
+
+```
+/<PATH_TO_YOUR_BIN>/miniconda2/envs/mlpipeline/bin/dsl-compile
+```
+
+## Next steps
+
+* [Build a component and a pipeline](/docs/pipelines/build-component).
+* Read more about [pipeline concepts](/docs/pipelines/pipelines-concepts).
