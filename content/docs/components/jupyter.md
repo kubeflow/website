@@ -115,10 +115,11 @@ Your custom image needs to meet the requirements created by Kubeflow Notebook Co
 As an example your Dockerfile should contain the following:
 
 
-`ENV NB_PREFIX /
+```
+ENV NB_PREFIX /
 
 CMD ["sh","-c", "jupyter notebook --notebook-dir=/home/jovyan --ip=0.0.0.0 --no-browser --allow-root --port=8888 --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_origin='*' --NotebookApp.base_url=${NB_PREFIX}"]
-`
+```
 
 ## Building docker images from Jupyter Notebook on GCP
 
