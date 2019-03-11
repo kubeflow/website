@@ -108,10 +108,15 @@ Your custom image needs to meet the requirements created by Kubeflow Notebook Co
 * Allow Jupyter to listen on all IPs: `--ip=0.0.0.0`
 * Allow the user to run the notebook as root: `--allow-root`
 * Set port: `--port=8888`
-* Disable authentication. Kubeflow takes care of authentication. Use the following to allow passwordless access to Jupyter: `--NotbookApp.token=''  --NotebookApp.password=''`
+* Disable authentication. Kubeflow takes care of authentication. Use the following to allow passwordless access to Jupyter: `--NotebookApp.token=''  --NotebookApp.password=''`
 * Allow any origin to access your Jupyter: `--NotebookApp.allow_origin='*'`
 * Set base_url: Kubeflow Notebook Controller manages the base URL for the notebook server using the environment variable called `NB_PREFIX`. Your should define the variable in your image and set the value of `base_url` as follows: `--NotebookApp.base_url=NB_PREFIX`
 
+Aa an example your Dockerfile should contain the following:
+`
+ENV NB_PREFIX /
+CMD ["sh","-c", "jupyter notebook --notebook-dir=/home/jovyan --ip=0.0.0.0 --no-browser --allow-root --port=8888 --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_origin='*' --NotebookApp.base_url=${NB_PREFIX}"]
+`
 
 ## Building docker images from Jupyter Notebook on GCP
 
