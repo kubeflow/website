@@ -15,7 +15,11 @@ The Kubeflow Pipelines repository includes a variety of
 that you can add to your pipeline. This page highlights the components that
 include usage documentation in the form of README files.
 
-### Reusable components for Cloud Machine Learning Engine
+## Cloud Machine Learning (ML) Engine
+
+The following components submit jobs to
+[Cloud ML Engine](https://cloud.google.com/ml-engine/docs/)
+on Google Cloud Platform (GCP).
 
 **Component:** [Cloud ML Engine model training](https://github.com/kubeflow/pipelines/tree/master/components/gcp/ml_engine/train)
 : Submits a Python training job to 
@@ -27,20 +31,23 @@ include usage documentation in the form of README files.
 
 **Component:** [Cloud ML Engine model deployment](https://github.com/kubeflow/pipelines/tree/master/components/gcp/ml_engine/deploy)
 : Deploys a trained model to 
-  [Cloud Machine Learning Engine](https://cloud.google.com/ml-engine/docs/)
+  [Cloud ML Engine](https://cloud.google.com/ml-engine/docs/)
   from a [Cloud Storage](https://cloud.google.com/storage/docs/) path.
   The component output is the Cloud ML Engine resource name of the deployed 
   model version.
 
 **Component:** [Cloud ML Engine batch prediction](https://github.com/kubeflow/pipelines/tree/master/components/gcp/ml_engine/batch_predict)
 : Submits a batch prediction request to a trained model deployed on 
-  [Cloud Machine Learning Engine](https://cloud.google.com/ml-engine/docs/).
+  [Cloud ML Engine](https://cloud.google.com/ml-engine/docs/).
   The job writes the prediction results to a
   [Cloud Storage](https://cloud.google.com/storage/docs/) location of your
   choice.
   The component output is the ID of the batch prediction job on Cloud ML Engine.
 
-### Reusable components for BigQuery
+## BigQuery
+
+The following components submits a job to
+[BigQuery](https://cloud.google.com/bigquery/docs/) on GCP.
 
 **Component:** [BigQuery query](https://github.com/kubeflow/pipelines/tree/master/components/gcp/bigquery/query)
 : Submits a query to [BigQuery](https://cloud.google.com/bigquery/docs/) 
@@ -48,7 +55,10 @@ include usage documentation in the form of README files.
   [Cloud Storage](https://cloud.google.com/storage/docs/) location of your
   choice.
 
-### Reusable components for Cloud Dataflow
+## Cloud Dataflow
+
+The following components submit jobs to
+[Cloud Dataflow](https://cloud.google.com/dataflow/docs/) on GCP.
 
 **Component:** [Dataflow Python Apache Beam job](https://github.com/kubeflow/pipelines/tree/master/components/gcp/dataflow/launch_python)
 : Submits an Apache Beam job authored in Python to 
