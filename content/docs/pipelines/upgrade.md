@@ -102,7 +102,7 @@ The steps below assume that you already have a Kubernetes cluster set up.
 
 ## Upgrading your Kubeflow Pipelines deployment
 
-To upgrade your Kubeflow Pipelines deployment to latest version, run the following script in the 
+To upgrade your Kubeflow Pipelines deployment to the latest version, run the following script in the 
 Kubeflow application directory. That is, in the same directory where you 
 performed the original deployment, represented in the deployment guide as
 `${KFAPP}`:
@@ -111,7 +111,7 @@ performed the original deployment, represented in the deployment guide as
 cd ${KFAPP}
 ${KUBEFLOW_SRC}/scripts/upgrade_kfp.sh
 ```
-Or you can upgrade to a specific version of Pipeline by specifying the version ID. You can find the version ID in the Pipeline [release page](https://github.com/kubeflow/pipelines/releases). E.g. to upgrade to v0.1.12
+Alternatively, you can upgrade to a specific version of Kubeflow Pipelines by specifying the version tag. You can find the version tag in the Kubeflow Pipelines [release page](https://github.com/kubeflow/pipelines/releases). For example, to upgrade to v0.1.12
 ```
 ${KUBEFLOW_SRC}/scripts/upgrade_kfp.sh a1afdd6c4b297b56dd103a8bb939ddeae67c2c92
 ```
