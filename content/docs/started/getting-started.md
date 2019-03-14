@@ -49,7 +49,7 @@ Requirements:
   * ksonnet version {{% ksonnet-min-version %}} or later. See the
     [ksonnet component guide](/docs/components/ksonnet) for help with
     installing ksonnet and understanding how Kubeflow uses ksonnet.
-  * Kubernetes {{% kubernetes-min-version %}} or later
+  * Kubernetes version {{% kubernetes-min-version %}} or later
   * kubectl
 
 Download, set up, and deploy. (If you prefer to work from source code, feel free to skip step 1):

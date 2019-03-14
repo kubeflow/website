@@ -50,11 +50,11 @@ There are multiple ways to author components:
 
 ## Example: XGBoost DataProc components
 
-* [Set up cluster](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/create_cluster.py)
-* [Analyze](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/analyze.py)
-* [Transform](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/transform.py)
-* [Train (distributed)](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/train.py)
-* [Delete cluster](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/xgboost/delete_cluster.py)
+* [Set up cluster](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/create_cluster/src/create_cluster.py)
+* [Analyze](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/analyze/src/analyze.py)
+* [Transform](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/transform/src/transform.py)
+* [Train (distributed)](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/train/src/train.py)
+* [Delete cluster](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/delete_cluster/src/delete_cluster.py)
 
 ## Requirements for building a component
 

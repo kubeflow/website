@@ -38,15 +38,6 @@ account:
   * [Identity and Access Management (IAM)](https://console.cloud.google.com/apis/library/iam.googleapis.com)
   * [Deployment Manager](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
 
-
-If you plan to install Kubeflow on the command line:
-
-  * Ensure you have installed ksonnet version 
-    {{% ksonnet-min-version %}} or later. 
-  * If you're using
-    [Cloud Shell](https://cloud.google.com/shell/), enable 
-    [boost mode](https://cloud.google.com/shell/docs/features#boost_mode).
-
 You do not need a running GKE cluster. The deployment process will create a
 cluster for you.
 
@@ -171,6 +162,17 @@ If you prefer to have more control over the deployment process and
 configuration, you can use the command line instead of the UI to deploy 
 Kubeflow.
 
+Before installing Kubeflow on the command line:
+
+  * Ensure you have installed ksonnet version 
+    {{% ksonnet-min-version %}} or later. See the
+    [ksonnet component guide](/docs/components/ksonnet) for help with
+    installing ksonnet.
+  * Ensure you have installed [pyyaml](https://pyyaml.org/).
+  * If you're using
+    [Cloud Shell](https://cloud.google.com/shell/), enable 
+    [boost mode](https://cloud.google.com/shell/docs/features#boost_mode).
+
 Follow these steps to deploy Kubeflow:
 
 1. Create environment variables from the OAuth client ID and secret that you
@@ -181,16 +183,18 @@ Follow these steps to deploy Kubeflow:
     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
     ```
 
-1. Run the following script to download `kfctl.sh`:
+1. Run the following commands to download `kfctl.sh`:
 
     ```
+    export KUBEFLOW_SRC=<FULL PATH TO YOUR CHOICE OF DOWNLOAD DIRECTORY>
     mkdir ${KUBEFLOW_SRC}
     cd ${KUBEFLOW_SRC}
     export KUBEFLOW_TAG={{% kf-stable-tag %}}
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
      ```
-   * **KUBEFLOW_SRC** - a directory where you want to download the source to.
-   * **KUBEFLOW_TAG** - a tag corresponding to the Kubeflow version to check 
+   * **KUBEFLOW_SRC** - A directory where you want to download the source to.
+     This value must include the full path to the directory.
+   * **KUBEFLOW_TAG** - A tag corresponding to the Kubeflow version to check 
      out, such as `master` for the latest code.
    * **Note:** You can also just clone the 
      [Kubeflow repository](https://github.com/kubeflow/kubeflow) using `git`.
@@ -198,6 +202,7 @@ Follow these steps to deploy Kubeflow:
 1. Run the following scripts to set up and deploy Kubeflow:
 
     ```
+    export KFAPP=<YOUR CHOICE OF APPLICATION DIRECTORY NAME>
     ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform gcp --project ${PROJECT}
     cd ${KFAPP}
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate platform
@@ -207,6 +212,9 @@ Follow these steps to deploy Kubeflow:
     ```
    * **${KFAPP}** - the _name_ of a directory where you want kubeflow 
      configurations to be stored. This directory is created when you run init.
+     The value of this variable cannot be greater than 25 characters. It must
+     contain just the directory name, not the full path to the directory.
+     The value of this variable becomes the name of your deployment.
      The contents of this directory are described in the next section.
 
 1. Check the resources deployed in namespace `kubeflow`:
@@ -308,5 +316,8 @@ privilege. The three service accounts are:
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
 * See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
   deployment on GKE.
+* See how to [upgrade Kubeflow](/docs/other-guides/upgrade/) and how to 
+  [upgrade or reinstall a Kubeflow Pipelines 
+  deployment](/docs/pipelines/upgrade/).
 * [Troubleshoot](/docs/gke/troubleshooting-gke) any issues you may
   find.

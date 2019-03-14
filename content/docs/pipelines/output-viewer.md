@@ -53,7 +53,7 @@ These are the metadata fields that you can specify:
 | `labels`        | A list of strings that are used to label artifact columns/rows. |
 | `predicted_col` | Name of the predicted column. |
 | `schema`        | A list of {type, name} objects that specify the schema of the artifact data. |
-| `source`        | Full path to data. This can contain wildcards '*', in which case the data is concatenated before it's displayed by the UI. |
+| `source`        | Full path to data. This can contain wildcards '*', in which case the data is concatenated before it's displayed by the UI. For some viewers, this can contain inlined string data. |
 | `storage`       | Storage provider service name, default is 'gcs'. |
 | `target_col`    | Name of the target column. |
 | `type`          | Name of the viewer, one of the ones below. |
@@ -145,3 +145,16 @@ must be self-contained, with no references to other files in the filesystem. It
 can still have absolute references to files on the web, however. Content running 
 inside this web app is isolated in an iframe, and cannot communicate with the 
 Kubeflow Pipelines UI.
+
+## Markdown
+
+**type:** `'markdown'`
+
+**Metadata fields:**
+
+- `storage`
+- `source`
+
+Renders Markdown strings in the output. The Markdown data can either be read from
+a file stored remotely, or can be embedded in the metadata field `source`, in
+which case the `storage` field's value must be `'inline'`.

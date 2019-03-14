@@ -9,7 +9,7 @@ Kubeflow makes use of [ksonnet](https://ksonnet.io/) to help manage deployments.
 ## Installing ksonnet
 
 Make sure you have the minimum required version of ksonnet:
-{{% ksonnet-min-version %}} or later.
+**{{% ksonnet-min-version %}}** or later.
 
 Follow the steps below to install ksonnet:
 
@@ -27,8 +27,7 @@ Follow the steps below to install ksonnet:
     * Download the ksonnet package:
 
         ```
-        wget -O /tmp/${KS_PKG}.tar.gz https://github.com/ksonnet/ksonnet/releases/download/v${KS_VER}/${KS_PKG}.tar.gz \
-          --no-check-certificate
+        wget -O /tmp/${KS_PKG}.tar.gz https://github.com/ksonnet/ksonnet/releases/download/v${KS_VER}/${KS_PKG}.tar.gz
         ```
 
     * Unpack the file:
@@ -43,6 +42,13 @@ Follow the steps below to install ksonnet:
       ```
       export PATH=$PATH:${HOME}/bin/$KS_PKG
       ```
+
+Here are the ksonnet package download links for each operating system:
+
+* [Download ksonnet for macOS](https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_darwin_amd64.tar.gz)
+* [Download ksonnet for Linux](https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_linux_amd64.tar.gz)
+* [Download ksonnet for Windows](https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_windows_amd64.zip)
+
 
 ## Deploying Kubeflow
 
