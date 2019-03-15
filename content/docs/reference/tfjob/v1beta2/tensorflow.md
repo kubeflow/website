@@ -125,6 +125,17 @@ For example,
 }</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>numRetries</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Number of retries for the TFJob</p>
+</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -212,6 +223,17 @@ For example,
 }</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>numRetries</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Number of retries for the TFJob</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="TFReplicaType">TFReplicaType
@@ -222,5 +244,5 @@ For example,
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>a91cddc3</code>.
+on git commit <code>fdb4f405</code>.
 </em></p>
