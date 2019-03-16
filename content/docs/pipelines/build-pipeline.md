@@ -18,9 +18,20 @@ and deploy them using the Kubeflow Pipelines UI.
 
 Set up your environment:
 
-1. Install the [Kubeflow Pipelines SDK](/docs/pipelines/install-sdk).
 1. Clone or download the
-  [Kubeflow Pipelines samples](https://github.com/kubeflow/pipelines/tree/master/samples)
+  [Kubeflow Pipelines samples](https://github.com/kubeflow/pipelines/tree/master/samples).
+1. Install the [Kubeflow Pipelines SDK](/docs/pipelines/install-sdk).
+1. Activate your Python 3 environment if you haven't done so already:
+
+    ```
+    source activate <YOUR-PYTHON-ENVIRONMENT-NAME>
+    ```
+
+    For example:
+
+    ```
+    source activate mlpipeline
+    ```
 
 ### Choose and compile a pipeline
 
@@ -29,7 +40,7 @@ The
 [`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/basic/sequential.py):
 is a good one to start with.
 
-The pipelines are defined as Python programs. Before you can submit a pipeline
+Each pipeline is defined as a Python program. Before you can submit a pipeline
 to the Kubeflow Pipelines service, you must compile the 
 pipeline to an intermediate representation. The intermediate representation
 takes the form of a YAML file compressed into a 
@@ -61,11 +72,24 @@ You can choose to build your pipeline in a Jupyter notebook. The
 walk you through the process.
 
 It's easiest to use the JupyterHub that is installed in the same cluster as 
-the Kubeflow Pipelines system. Follow these steps to start a notebook:
+the Kubeflow Pipelines system. 
 
-1. Follow the
-  [quickstart guide](/docs/pipelines/pipelines-quickstart/#deploy-kubeflow-and-open-the-pipelines-ui)
-  to deploy a Kubeflow cluster and open the Kubeflow Pipelines UI.
+Note: The notebook samples don't work on Jupyter notebooks outside the same 
+cluster, because the Python library communicates with the Kubeflow Pipelines 
+system through in-cluster service names.
+
+Follow these steps to start a notebook:
+
+1. Deploy Kubeflow and open the pipelines dashboard:
+
+    * Follow the [GKE setup guide](/docs/started/getting-started-gke/) to
+      deploy Kubeflow using the 
+      [Kubeflow deployment UI](https://deploy.kubeflow.cloud/).
+
+    * When Kubeflow is running, access the Kubeflow UI at a URL of the form
+      `https://<deployment-name>.endpoints.<project>.cloud.goog/`.
+
+    * Click **Pipeline Dashboard** to access the pipelines UI.
 
 1. Click **Notebooks** in the left-hend menu. If this is the first time you've 
   visited JupyterHub, you need to sign in with any username. Password can be 
@@ -78,16 +102,15 @@ the Kubeflow Pipelines system. Follow these steps to start a notebook:
 1. Download the sample notebooks from 
   https://github.com/kubeflow/pipelines/tree/master/samples/notebooks. 
   
-1. Upload these notebooks from the Jupyter UI. In Jupyter, go to the tree view 
+1. Upload these notebooks from the Jupyter UI: In Jupyter, go to the tree view 
   and find the **upload** button in the top right-hand area of the screen.
 
-1. Open the uploaded notebooks and make sure you are on Python 3. The Python 
-  version is at the top right-hand corner in the Jupyter notebook view. You can 
-  run the notebooks now.
+1. Open one of the uploaded notebooks.
 
-Note: The notebook samples don't work on Jupyter notebooks outside the same 
-cluster, because the Python library communicates with the Kubeflow Pipelines 
-system through in-cluster service names.
+1. Make sure you are on Python 3. The Python version is at the top right-hand 
+  corner in the Jupyter notebook view. 
+  
+1. Follow the instructions in the notebook.
 
 The following notebooks are available:
 
