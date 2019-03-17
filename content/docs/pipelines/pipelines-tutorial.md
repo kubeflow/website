@@ -121,7 +121,8 @@ Set up the following environment variables for use throughout the tutorial:
     ```
 
 1. If you want a custom name for your Kubeflow deployment, set the 
-   `DEPLOYMENT_NAME` environment variable. Note that the name must be the same 
+   `DEPLOYMENT_NAME` environment variable. The deployment name must be 
+   **4-20 characters** in length. Note that the name must be the same 
    as the one you use in later steps of this tutorial when configuring the 
    **redirect URI** for the OAuth client credentials. If you don't set this 
    environment variable, your deployment gets the default name of `kubeflow`:
@@ -245,12 +246,10 @@ gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
 
 To simplify this tutorial, you can use a set of prepared files that include
 the pipeline definition and supporting files. The project files are in the 
-[Kubeflow examples repository](https://github.com/kubeflow/examples)
+[Kubeflow examples repository](https://github.com/kubeflow/examples/tree/master/pipelines/mnist-pipelines)
 on GitHub.
 
 ### Download the project files
-
-TODO(sarahmaddox): UPDATE THE GITHUB LOCATION WHEN THE FILES ARE AVAILABLE. ALSO THE DIRECTORY.
 
 Clone the project files and go to the directory containing the MNIST pipeline
 example:
@@ -258,7 +257,7 @@ example:
 ```
 cd ${HOME}
 git clone https://github.com/kubeflow/examples.git
-cd examples/mnist-pipelines
+cd examples/pipelines/mnist-pipelines
 ```
 
 As an alternative to cloning, you can download the 
@@ -294,7 +293,7 @@ You need **Python 3.5 or above**. If you don't have Python 3 set up, install
 Create a clean Python 3 environment:
  
 ```bash
-conda create --name mlpipeline python=3.6
+conda create --name mlpipeline python=3.7
 source activate mlpipeline
 ```
  
@@ -315,7 +314,7 @@ pip install -r requirements.txt --upgrade
 
 ### Compile the sample pipeline
 
-The pipeline is defined in the Python file `mnist-pipeline.py` which you
+The pipeline is defined in the Python file `mnist_pipeline.py` which you
 downloaded from GitHub. When you execute that Python file, it compiles the
 pipeline to an  intermediate representation which you can then upload to the 
 Kubeflow Pipelines service.
@@ -323,24 +322,24 @@ Kubeflow Pipelines service.
 Run the following command to compile the pipeline:
 
 ```bash
-python3 mnist-pipeline.py
+python3 mnist_pipeline.py
 ```
 
-Alongside your `mnist-pipeline.py` file, you should now have a file called 
-`mnist-pipeline.py.tar.gz` which contains the compiled pipeline.
+Alongside your `mnist_pipeline.py` file, you should now have a file called 
+`mnist_pipeline.py.tar.gz` which contains the compiled pipeline.
 
 ## Run the pipeline
 
-Go back to the earlier step in this tutorial, where you accessed the Kubeflow
-Pipelines UI. Now you're ready to upload and run your pipeline using that UI.
-
+Go back to the the Kubeflow Pipelines UI, which you accessed in an earlier step 
+of this tutorial. Now you're ready to upload and run your pipeline using that 
+UI.
 
 1. Click **Upload pipeline** on the Kubeflow Pipelines UI:
     <img src="/docs/images/pipelines-upload.png" 
       alt="Upload a pipeline via the UI"
       class="mt-3 mb-3 border border-info rounded">
 
-1. Upload your `mnist-pipeline.py.tar.gz` file and give the pipeline a name:
+1. Upload your `mnist_pipeline.py.tar.gz` file and give the pipeline a name:
     <img src="/docs/images/pipelines-uploading.png" 
       alt="Enter the pipeline upload details"
       class="mt-3 mb-3 border border-info rounded">
@@ -411,7 +410,7 @@ Pipelines UI. Now you're ready to upload and run your pipeline using that UI.
 
 ## Understanding the pipeline definition code
 
-The pipeline is defined in the Python file `mnist-pipeline.py` which you
+The pipeline is defined in the Python file `mnist_pipeline.py` which you
 downloaded from GitHub. The following sections give an overview of the content
 of that file.
 
@@ -435,38 +434,38 @@ Although you pass these argeuments as strings, the arguments are of type
 [`kfp.dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py).
 
 ```
-def mnist_pipeline(bucket_path='gs://kubeflow-sanche-testing-project',
-                   train_steps='2',
+def mnist_pipeline(model_export_dir='gs://your-bucket/export',
+                   train_steps='200',
                    learning_rate='0.01',
                    batch_size='100'):
 ```
 
 ### The training component (`train`)
 
-TODO(sarahmaddox): VERIFY THE CODE SNIPPET BELOW ONCE WE'RE USING PARAMETERS RATHER THAN ENV VARIABLES.
-
 The following block defines the `train` component, which handles the training
 of the ML model: 
 
 ```
 train = dsl.ContainerOp(
-        name='train',
-        image='gcr.io/kubeflow-examples/mnist/model:v20190111-v0.2-148-g313770f',
-        ).apply(gcp.use_gcp_secret('user-gcp-sa'))
-train.add_env_variable(V1EnvVar('TF_MODEL_DIR', 'gs://kubeflow-sanche-testing-project'))
-train.add_env_variable(V1EnvVar('TF_EXPORT_DIR', 'gs://kubeflow-sanche-testing-project/export/export'))
-train.add_env_variable(V1EnvVar('TF_TRAIN_STEPS', '20'))
-train.add_env_variable(V1EnvVar('TF_BATCH_SIZE', '100'))
-train.add_env_variable(V1EnvVar('TF_LEARNING_RATE', '0.01'))
+    name='train',
+    image='gcr.io/kubeflow-examples/mnist/model:v20190304-v0.2-176-g15d997b',
+    arguments=[
+        "/opt/model.py",
+        "--tf-export-dir", model_export_dir,
+        "--tf-train-steps", train_steps,
+        "--tf-batch-size", batch_size,
+        "--tf-learning-rate", learning_rate
+        ]
+).apply(gcp.use_gcp_secret('user-gcp-sa'))
 ```
 A component consists of a 
 [`kfp.dsl.ContainerOp`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_container_op.py)
-object with a specified container path and a name. The container image for
+object with a name and a container path. The container image for
 the MNIST training component is defined in the MNIST example's
 [`Dockerfile.model`](https://github.com/kubeflow/examples/blob/master/mnist/Dockerfile.model).
 
 The training component runs with access to your `user-gcp-sa` secret, which
-ensures the compoent has read/write access to your Cloud Storage bucket for
+ensures the component has read/write access to your Cloud Storage bucket for
 storing the output from the model training.
 
 ### The model serving component (`serve`)
@@ -477,26 +476,29 @@ model for prediction:
 ```
 serve = dsl.ContainerOp(
     name='serve',
-    image='gcr.io/ml-pipeline/ml-pipeline-kubeflow-deployer:6ad2601ec7d04e842c212c50d5c78e548e12ddea',
+    image='gcr.io/ml-pipeline/ml-pipeline-kubeflow-deployer:\
+            7775692adf28d6f79098e76e839986c9ee55dd61',
     arguments=[
-        '--model-path', 'gs://kubeflow-sanche-testing-project',
+        '--model-export-path', model_export_dir,
         '--server-name', "mnist-service"
     ]
 ).apply(gcp.use_gcp_secret('user-gcp-sa'))
 serve.after(train)
 ```
-The `serve` component is slightly different from the `train` component. While 
-`train` runs a single container and then exits, `serve` runs a container that 
-launches long-lived resources in the cluster. 
+The `serve` component differs from the `train` component with respect to
+how long the service lasts. While `train` runs a single container and then 
+exits, `serve` runs a container that launches long-lived resources in the 
+cluster. 
 
 The `ContainerOP` takes two arguments: 
 
 * A path pointing to the location of your trained model.
 * A server name. 
 
-The component  creates a Kubeflow 
+The component creates a Kubeflow 
 [`tf-serving`](https://github.com/kubeflow/kubeflow/tree/master/kubeflow/tf-serving) 
-service within the cluster. This service lives on after the pipeline is complete. 
+service within the cluster. This service lives on after the pipeline has
+finished running. 
 
 You can see the Dockerfile used to build this container in the 
 [Kubeflow Pipelines repository](https://github.com/kubeflow/pipelines/blob/master/components/kubeflow/deployer/Dockerfile).
@@ -504,21 +506,21 @@ Like the `train` component, `serve` requires access to the `user-gcp-sa` secret
 for access to the `kubectl` command within the container.
 
 The `serve.after(train)` line specifies that this component must run 
-sequentially after `train` is complete.
+sequentially after the `train` component is complete.
 
 ### The web UI component (`web-ui`)
 
 The following block defines the `web-ui` component, which displays a simple
-web page. The web application sends an image to the trained model and displays
-the results:
+web page. The web application sends an image (picture) to the trained model and 
+displays the prediction results:
 
 ```
 web_ui = dsl.ContainerOp(
     name='web-ui',
-    # TODO: publish container somewhere
-    image='gcr.io/sanche-testing-project/deploy-service:latest',
+    image='gcr.io/kubeflow-examples/mnist/deploy-service:latest',
     arguments=[
-        '--image', 'gcr.io/kubeflow-examples/mnist/web-ui:v20190112-v0.2-142-g3b38225',
+        '--image', 'gcr.io/kubeflow-examples/mnist/web-ui:\
+                v20190304-v0.2-176-g15d997b-pipelines',
         '--name', 'web-ui',
         '--container-port', '5000',
         '--service-port', '80',
@@ -528,27 +530,29 @@ web_ui = dsl.ContainerOp(
 web_ui.after(serve)
 ```
 
-Like `serve`, the `web-ui` component launches a service that exists after the 
-pipeline is complete. Instead of launching a Kubeflow resource, the `web-ui`
-component launches a standard Kubernetes deployment/service pair. You can see
-the Dockerfile that builds the deployment image in the 
+Like `serve`, the `web-ui` component launches a service that continues to exist 
+after the pipeline is complete. Instead of launching a Kubeflow resource, the 
+`web-ui` component launches a standard Kubernetes deployment/service pair. You 
+can see the Dockerfile that builds the deployment image in the 
 `./deploy-service/Dockerfile` that you downloaded with the sample files.
 This image runs the 
-`gcr.io/kubeflow-examples/mnist/web-ui:v20190112-v0.2-142-g3b38225` container, 
-which was built from the MNIST example's 
+`gcr.io/kubeflow-examples/mnist/web-ui:v20190304-v0.2-176-g15d997b-pipelines` 
+container, which was built from the MNIST example's 
 [web-ui Dockerfile](https://github.com/kubeflow/examples/blob/master/mnist/web-ui/Dockerfil://github.com/kubeflow/examples/blob/master/mnist/web-ui/Dockerfile).
 
-This compoment provisions a LoadBalancer that gives external access to a 
+This compoment provisions a LoadBalancer service that gives external access to a 
 `web-ui` deployment launched in the cluster.
 
 ### The main function
 
-The `main` function compiles the pipeline:
+The `main` function compiles the pipeline, converting the Python program to
+the intermediate YAML representation required by the Kubeflow Pipelines service
+and zipping the result into a `tar.gz` file:
 
 ```
 if __name__ == '__main__':
-    import kfp.compiler as compiler
-    compiler.Compiler().compile(mnist_pipeline, __file__ + '.tar.gz')
+  import kfp.compiler as compiler
+  compiler.Compiler().compile(mnist_pipeline, __file__ + '.tar.gz')
 ```
 
 <a id="cleanup"></a>
