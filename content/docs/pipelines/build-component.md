@@ -1,7 +1,7 @@
 +++
 title = "Build Your Own Pipeline Components"
 description = "Building your own components for Kubeflow Pipelines."
-weight = 7
+weight = 6
 +++
 
 This page is for advanced users. It describes how to build your own pipeline 
