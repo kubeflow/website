@@ -216,6 +216,7 @@ Follow these steps to deploy Kubeflow:
      contain just the directory name, not the full path to the directory.
      The value of this variable becomes the name of your deployment.
      The contents of this directory are described in the next section.
+   * **${PROJECT}** - the _name_ of the GCP project where you want kubeflow deployed to.
 
 1. Check the resources deployed in namespace `kubeflow`:
 
