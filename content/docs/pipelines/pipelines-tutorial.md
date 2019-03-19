@@ -10,7 +10,7 @@ machine learning (ML) model on Google Cloud Platform (GCP).
 ## Introductions
 
 By working through this tutorial, you learn how to deploy Kubeflow on 
-Kubernetes Engine (GKE) and run a pipeline supplied as a Python sample. 
+Kubernetes Engine (GKE) and run a pipeline supplied as a Python script. 
 The pipeline trains an MNIST model for image classification and serves the model
 for online inference (also known as online prediction).
 
@@ -40,7 +40,8 @@ guide:
 ### The model and the data
 
 This tutorial trains a [TensorFlow][tensorflow] model on the
-[MNIST dataset][mnist-data], which is the *hello world* for machine learning.
+[MNIST dataset][mnist-data], which is a *hello world* scenario for machine 
+learning.
 
 The MNIST dataset contains a large number of images of hand-written digits in
 the range 0 to 9, as well as the labels identifying the digit in each image.
@@ -139,19 +140,12 @@ Deploy Kubeflow on GCP:
   [GKE getting-started guide](/docs/started/getting-started-gke), 
   taking note of the following:
 
-  * Set up **OAuth client credentials** and **Cloud Identity-Aware Proxy (IAP)**
-    as prompted during the deployment process. So, **do not choose the deployment 
-    option to skip IAP**. IAP ensures you can connect securely to the Kubeflow
-    web applications.
+  * Make sure that you enable **Cloud Identity-Aware Proxy (IAP)**
+    as prompted during the deployment process.
   * When setting up the **authorized redirect URI** for the **OAuth client 
     credentials**, use the same value for the `<deployment_name>` as you used
     when setting up the `DEPLOYMENT_NAME` environment variable earlier in this
     tutorial.
-  * Use the Kubeflow **deployment UI** as a quick way to set up a Kubeflow 
-    deployment on GCP. The getting-started guide describes how to use the
-    deployment UI. If you want more control over the configuration of your
-    deployment you can use the `kfctl.sh` script instead of the UI. The script
-    is also described in the getting-started guide.
   * Choose **Kubeflow version v0.4.1** or later.
 
     The following screenshot shows the Kubeflow deployment UI with hints about
@@ -161,7 +155,8 @@ Deploy Kubeflow on GCP:
         alt="Prediction UI"
         class="mt-3 mb-3 p-3 border border-info rounded">
 
-1. (Optional) Use `kubectl` to connect to your cluster:
+1. (Optional) If you want to examine your cluster while waiting for the UI to
+   be available, you can use `kubectl` to connect to your cluster:
 
   * Connect your local `kubectl` session to the cluster:
 
@@ -217,13 +212,14 @@ Notes:
 * It can take 10-15 minutes for the URI to become available. Kubeflow needs
   to provision a signed SSL certificate and register a DNS name.
     * If you own/manage the domain or a subdomain with [Cloud DNS][dns]
-      then you can configure this process to be much faster.
+      then you can configure this process to be much faster. See 
+      [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
     * While you wait you can access Kubeflow services by using `kubectl proxy`
       and `kubectl port-forward` to connect to services in the cluster.
 
 ### Create a Cloud Storage bucket
 
-The next step is to create a Cloud Storage bucket to hold your trained model
+The next step is to create a Cloud Storage bucket to hold your trained model.
 
 [Cloud Storage][cloud-storage] is a scalable, fully-managed object/blob store.
 You can use it for a range of scenarios including serving website content,
@@ -233,13 +229,13 @@ hold the trained machine learning model and associated data.
 
 Use the [`gsutil mb`][gsutil-mb] command to create a storage bucket. Your
 *bucket name* must be unique across all of Cloud Storage.
-The following commands create a bucket in the `us-central1` region,
-which corresponds to the `us-central1-c` zone used earlier
-in the tutorial:
+The following commands create a bucket in the region that corresponds to the
+zone which you specified earlier in the tutorial:
 
 ```
 export BUCKET_NAME=${PROJECT}-${DEPLOYMENT_NAME}-bucket
-gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
+export REGION=$(gcloud compute zones describe $ZONE --format="value(region.basename())")
+gsutil mb -c regional -l ${REGION} gs://${BUCKET_NAME}
 ```
 
 ## Prepare your pipeline
@@ -265,7 +261,8 @@ As an alternative to cloning, you can download the
 
 ### Set up Python
 
-You need **Python 3.5 or above**. If you don't have Python 3 set up, install
+You need **Python 3.5 or above**. This tutorial uses Python 3.7.
+If you don't have a Python 3 environment set up, install
 [Miniconda](https://conda.io/miniconda.html) as described below:
  
 * In a Debian/Ubuntu/[Cloud shell](https://console.cloud.google.com/cloudshell) 
@@ -290,7 +287,7 @@ You need **Python 3.5 or above**. If you don't have Python 3 set up, install
     bash Miniconda3-latest-MacOSX-x86_64.sh
     ```
 
-Create a clean Python 3 environment:
+Create a clean Python 3 environment (this tutorial uses Python 3.7):
  
 ```bash
 conda create --name mlpipeline python=3.7
@@ -316,7 +313,7 @@ pip install -r requirements.txt --upgrade
 
 The pipeline is defined in the Python file `mnist_pipeline.py` which you
 downloaded from GitHub. When you execute that Python file, it compiles the
-pipeline to an  intermediate representation which you can then upload to the 
+pipeline to an intermediate representation which you can then upload to the 
 Kubeflow Pipelines service.
 
 Run the following command to compile the pipeline:
@@ -430,7 +427,7 @@ The `@dsl.pipeline` decorator provides metadata about the pipeline:
 The `mnist_pipeline` function defines the pipeline. The function includes a 
 number of arguments which are exposed in the Kubeflow Pipelines UI when you
 create a new run of the pipeline.
-Although you pass these argeuments as strings, the arguments are of type 
+Although you pass these arguments as strings, the arguments are of type 
 [`kfp.dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py).
 
 ```
@@ -534,13 +531,13 @@ Like `serve`, the `web-ui` component launches a service that continues to exist
 after the pipeline is complete. Instead of launching a Kubeflow resource, the 
 `web-ui` component launches a standard Kubernetes deployment/service pair. You 
 can see the Dockerfile that builds the deployment image in the 
-`./deploy-service/Dockerfile` that you downloaded with the sample files.
-This image runs the 
+[`./deploy-service/Dockerfile`](https://github.com/kubeflow/examples/blob/master/pipelines/mnist-pipelines/deploy-service/Dockerfile) 
+that you downloaded with the sample files. This image runs the 
 `gcr.io/kubeflow-examples/mnist/web-ui:v20190304-v0.2-176-g15d997b-pipelines` 
 container, which was built from the MNIST example's 
-[web-ui Dockerfile](https://github.com/kubeflow/examples/blob/master/mnist/web-ui/Dockerfil://github.com/kubeflow/examples/blob/master/mnist/web-ui/Dockerfile).
+[web-ui Dockerfile](https://github.com/kubeflow/examples/blob/master/mnist/web-ui/Dockerfile).
 
-This compoment provisions a LoadBalancer service that gives external access to a 
+This component provisions a LoadBalancer service that gives external access to a 
 `web-ui` deployment launched in the cluster.
 
 ### The main function
