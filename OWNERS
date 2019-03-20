@@ -1,6 +1,7 @@
 approvers:
   - abhi-g
   - aronchick
+  - dansanche
   - ewilderj
   - jlewi
   - kunmingg
@@ -25,6 +26,7 @@ approvers:
 reviewers:
   - abhi-g
   - aronchick
+  - dansanche
   - inc0
   - jlewi
   - kunmingg
