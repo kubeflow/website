@@ -1,12 +1,12 @@
 +++
 title = "Pipelines Quickstart"
-description = "Try Kubeflow Pipelines"
+description = "Getting started with Kubeflow Pipelines"
 weight = 1
 +++
 
 Use this guide if you want to get a simple pipeline running quickly in
-Kubeflow Pipelines. If you need a more in-depth guide, see how to
-[build a pipeline](/docs/pipelines/build-pipeline/).
+Kubeflow Pipelines. If you need a more in-depth guide, see the
+[end-to-end tutorial](/docs/pipelines/pipelines-tutorial/).
 
 ## Deploy Kubeflow and open the pipelines UI
 
@@ -164,6 +164,8 @@ finished with them:
 * Learn more about the 
   [important concepts](/docs/pipelines/pipelines-concepts) in Kubeflow
   Pipelines.
+* Follow the [end-to-end tutorial](/docs/pipelines/pipelines-tutorial/) using
+  an MNIST machine-learning model.
 * This page showed you how to run some of the examples supplied in the Kubeflow
   Pipelines UI. Next, you may want to run a pipeline from a notebook, or compile 
   and run a sample from the code. See the guide to 
