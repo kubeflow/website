@@ -198,11 +198,6 @@ Deploy Kubeflow on GCP:
 
 Notes:
 
-* When the deployment has finished, you should have a running cluster in the 
-  cloud ready to run your code. You can interact with the cluster either by 
-  using [`kubectl`][kubectl] or by going to the
-  [GKE page on the GCP Console][gcp-console-kubernetes-engine].
-
 * While the deployment is running, you can watch your resources appear on the
   GCP console:
     * [Deployment on Deployment Manager][gcp-console-deployment-manager]
