@@ -24,13 +24,12 @@ output.
 
 Each component usually includes two parts:
 
-``Client code``
-  The code that talks to endpoints to submit jobs. For example, code to talk to 
-  the Google Dataproc API to submit a Spark job.
+* **Client code:** The code that talks to endpoints to submit jobs. For example, 
+  code to talk to the Google Dataproc API to submit a Spark job.
 
-``Runtime code``
-  The code that does the actual job and usually runs in the cluster. For 
-  example, Spark code that transforms raw data into preprocessed data.
+* **Runtime code:** The code that does the actual job and usually runs in the 
+  cluster. For example, Spark code that transforms raw data into preprocessed 
+  data.
 
 Note the naming convention for client code and runtime code&mdash;for a task 
 named "mytask":

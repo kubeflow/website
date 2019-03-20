@@ -12,15 +12,20 @@ the Kubeflow Pipelines UI for execution.
 
 ## Set up Python
 
-You need **Python 3.5** or later to use the Kubeflow Pipelines SDK. 
+You need **Python 3.5** or later to use the Kubeflow Pipelines SDK. This
+guide uses Python 3.7.
 
-If you haven't yet set up a Python 3 environment, follow the steps below to set 
+If you haven't yet set up a Python 3 environment, do so now. This guide
+recommends [Miniconda](https://conda.io/miniconda.html), but you can use
+a virtual environment manager of your choice, such as `virtualenv`.
+
+Follow the steps below to set 
 up Python using [Miniconda](https://conda.io/miniconda.html):
 
 1. Choose one of the following methods to install Miniconda, depending on your
   environment:
 
-  * Debian/Ubuntu/[Cloud shell](https://console.cloud.google.com/cloudshell):   
+  * Debian/Ubuntu/[Cloud Shell](https://console.cloud.google.com/cloudshell):   
 
         ```bash
         apt-get update; apt-get install -y wget bzip2
@@ -41,7 +46,7 @@ up Python using [Miniconda](https://conda.io/miniconda.html):
         bash Miniconda3-latest-MacOSX-x86_64.sh
         ```
 
-1. Check that the `conda` command is availabe:
+1. Check that the `conda` command is available:
 
     ```bash
     which conda
@@ -53,7 +58,8 @@ up Python using [Miniconda](https://conda.io/miniconda.html):
     export PATH=<YOUR_MINICONDA_PATH>/bin:$PATH
     ```
 
-1. Create a clean Python 3 environment:
+1. Create a clean Python 3 environment with a name of your choosing. This
+  example uses Python 3.7 and an environment name of `mlpipeline`.:
  
     ```bash
     conda create --name mlpipeline python=3.7

@@ -82,8 +82,9 @@ Follow these steps to start a notebook:
 
 1. Deploy Kubeflow and open the pipelines dashboard:
 
-    * Follow the [GKE setup guide](/docs/started/getting-started-gke/) to
-      deploy Kubeflow using the 
+    * Follow the 
+      [Kubernetes Engine (GKE) setup guide](/docs/started/getting-started-gke/) 
+      to deploy Kubeflow using the 
       [Kubeflow deployment UI](https://deploy.kubeflow.cloud/).
 
     * When Kubeflow is running, access the Kubeflow UI at a URL of the form
@@ -92,8 +93,8 @@ Follow these steps to start a notebook:
     * Click **Pipeline Dashboard** to access the pipelines UI.
 
 1. Click **Notebooks** in the left-hend menu. If this is the first time you've 
-  visited JupyterHub, you need to sign in with any username. Password can be 
-  blank. 
+  visited JupyterHub, you need to sign in. You can use any username and you can
+  leave the password blank. 
   
 1. Click the **Spawn** button to create a new instance. After a few 
   minutes, the Jupyter UI opens. You can switch to the JupyterLab UI by changing 
@@ -107,8 +108,8 @@ Follow these steps to start a notebook:
 
 1. Open one of the uploaded notebooks.
 
-1. Make sure you are on Python 3. The Python version is at the top right-hand 
-  corner in the Jupyter notebook view. 
+1. Make sure the notebook kernel is set to Python 3. The Python version is at 
+  the top right-hand corner in the Jupyter notebook view. 
   
 1. Follow the instructions in the notebook.
 
@@ -120,8 +121,8 @@ The following notebooks are available:
   The pipeline includes a TFDV step to infer the schema, a TFT preprocessor, a 
   TensorFlow trainer, a TFMA analyzer, and a model deployer which deploys the 
   trained model to `tf-serving` in the same cluster. The notebook also 
-  demonstrates how to build a component based on Python 3 inside the notebook 
-  including building a Docker container.
+  demonstrates how to build a component based on Python 3 inside the notebook, 
+  including how to build a Docker container.
 
 * [Lightweight Python components](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/Lightweight%20Python%20components%20-%20basics.ipynb): 
   This notebook demonstrates how to build simple Python components based on 
