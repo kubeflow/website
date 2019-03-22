@@ -22,9 +22,11 @@ The first command installs Istio's CRDs.
 
 The second command installs Istio's core components (without mTLS), with some customization:
 1. sidecar injection configmap policy is changed from `enabled` to `disabled`
-1. istio-ingressgateway is of type `NodePort` instead of `LoadBalancer`
+
+2. istio-ingressgateway is of type `NodePort` instead of `LoadBalancer`
 
 The third command deploys some resources for Kubeflow.
+
 The fourth command label the kubeflow namespace for sidecar injector.
 
 See this [table](https://github.com/istio/istio/issues/6476#issuecomment-399219937) for sidecar injection
@@ -33,7 +35,7 @@ the pod has annotation.
 
 ## Kubeflow TF Serving with Istio
 
-After installing Istio, we can deploy the TF Serving component as in [README](README.md) with
+After installing Istio, we can deploy the TF Serving component as in [TensorFlow Serving](docs/components/tfserving_new/) with
 additional params:
 
 ```
@@ -85,24 +87,24 @@ So do `kubectl edit deploy -n istio-system grafana`, and add env vars
 A typical scenario is that we first deploy a model A. Then we develop another model B, and we want to deploy it
 and gradually move traffic from A to B. This can be achieved using Istio's traffic routing.
 
-1. Deploy the first model as described [here](tfserving_new.md). Then you will have the service (Model)
-   and the deployment (Version).
+1. Deploy the first model as described [here](docs/components/tfserving_new/). Then you will have the service (Model) and the deployment (Version).
 
 2. Deploy another version of the model, v2. This time, no need to deploy the service part.
 
-   ```
-   MODEL_COMPONENT2=mnist-v2
-   ks generate tf-serving-deployment-gcp ${MODEL_COMPONENT2}
-   ks param set ${MODEL_COMPONENT2} modelName mnist  // modelName should be the SAME as the previous one
-   ks param set ${MODEL_COMPONENT2} versionName v2   // v2 !!
-   ks param set ${MODEL_COMPONENT2} modelBasePath gs://kubeflow-examples-data/mnist
-   ks param set ${MODEL_COMPONENT2} gcpCredentialSecretName user-gcp-sa
-   ks param set ${MODEL_COMPONENT2} injectIstio true   // This is required
-
-   ks apply ${KF_ENV} -c ${MODEL_COMPONENT2}
-   ```
+    ```
+    MODEL_COMPONENT2=mnist-v2
+    ks generate tf-serving-deployment-gcp ${MODEL_COMPONENT2}
+    ks param set ${MODEL_COMPONENT2} modelName mnist  // modelName should be the SAME as  the previous one
+    ks param set ${MODEL_COMPONENT2} versionName v2   // v2 !!
+    ks param set ${MODEL_COMPONENT2} modelBasePath gs://kubeflow-examples-data/mnist
+    ks param set ${MODEL_COMPONENT2} gcpCredentialSecretName user-gcp-sa
+    ks param set ${MODEL_COMPONENT2} injectIstio true   // This is required
+    
+    ks apply ${KF_ENV} -c ${MODEL_COMPONENT2}
+    ```
 
 3. Update the traffic weight
+   
    ```
    ks param set mnist-service trafficRule v1:90:v2:10   // This routes 90% to v1, and 10% to v2
    ks apply ${KF_ENV} -c mnist-service

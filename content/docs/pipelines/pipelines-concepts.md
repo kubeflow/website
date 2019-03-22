@@ -1,7 +1,7 @@
 +++
 title = "Concepts in Kubeflow Pipelines"
 description = "Glossary of terms relevant to Kubeflow Pipelines"
-weight = 2
+weight = 30
 +++
 
 This page describes the most important concepts used within the Kubeflow 
@@ -46,7 +46,7 @@ A self-contained set of code that performs one step in the pipeline, such as
 data preprocessing, data transformation, model training, and so on. You must 
 package your component as a 
 [Docker image](https://docs.docker.com/get-started/). See the guide to
-[building your own components](/docs/pipelines/build-component).
+[building your own components](/docs/pipelines/sdk/build-component/).
 
 ## Experiment
 
@@ -102,7 +102,8 @@ runs. Artifacts also make it possible to understand how the pipeline’s various
 components work. An artifact can range from a plain textual view of the data to 
 rich interactive visualizations.
 
-Read more about the available [output viewers](/docs/pipelines/output-viewer) 
+Read more about the available 
+[output viewers](/docs/pipelines/metrics/output-viewer/) 
 and how to provide the metadata to make use of the visualizations
 that the output viewers provide.
 
