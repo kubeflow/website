@@ -1,6 +1,6 @@
 +++
 title = "Build Lightweight Python Components"
-description = "Building your own lightweight pipelines components from Python."
+description = "Building your own lightweight pipelines components from Python"
 weight = 4
 +++
 

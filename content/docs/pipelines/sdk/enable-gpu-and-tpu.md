@@ -1,6 +1,6 @@
 +++ 
 title = "Enable GPU and TPU"
-description = "Enable GPU and TPU for Kubeflow Pipelines on Google Kubernetes Engine."
+description = "Enable GPU and TPU for Kubeflow Pipelines on Google Kubernetes Engine"
 weight = 5 
 +++
 
