@@ -78,4 +78,4 @@ The following components submit jobs to
 * For usage instructions for each of the above components, see the README file 
   of the linked component on GitHub.
 * See how to [build your own pipeline 
-  components](/docs/pipelines/build-component).
+  components](/docs/pipelines/sdk/build-component/).

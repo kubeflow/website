@@ -161,6 +161,6 @@ Receiver operating characteristics (ROC) curve:
   [pipelines quickstart guide](/docs/guides/pipelines/pipelines-quickstart) to 
   deploy Kubeflow and run a sample pipeline directly from the 
   Kubeflow Pipelines UI.
-* Follow the full guide to
-  [building a pipeline](/docs/guides/pipelines/build-pipeline).
+* Follow the full guide to experimenting with
+  [the Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).
   

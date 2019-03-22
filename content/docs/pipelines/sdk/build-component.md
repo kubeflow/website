@@ -6,7 +6,7 @@ weight = 3
 
 This page describes how to create a component for Kubeflow Pipelines and how
 to combine components into a pipeline. For an easier start, experiment with 
-[the Kubeflow Pipelines samples](/docs/pipelines/build-pipeline).
+[the Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).
 
 ## Overview of pipelines and components
 
@@ -46,7 +46,7 @@ A component consists of an interface (inputs/outputs), the implementation
 Set up your environment:
 
 * Install [Docker](https://www.docker.com/get-docker).
-* Install the [Kubeflow Pipelines SDK](/docs/pipelines/install-sdk).
+* Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
 
 The examples on this page come from the 
 [XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/tree/master/samples/xgboost-spark) 
@@ -205,9 +205,11 @@ guide to [getting started with the UI](/docs/pipelines/pipelines-quickstart).
 ## Next steps
 
 * See how to 
-  [export metrics from your pipeline](/docs/pipelines/pipelines-metrics).
+  [export metrics from your 
+  pipeline](/docs/pipelines/metrics/pipelines-metrics/).
 * See how to visualize the output of your component by
-  [adding metadata for an output viewer](/docs/pipelines/output-viewer).
+  [adding metadata for an output 
+  viewer](/docs/pipelines/metrics/output-viewer/).
 * For quick iteration, 
-  [build lightweight components](/docs/pipelines/lightweight-python-components)
+  [build lightweight components](/docs/pipelines/sdk/lightweight-python-components/)
    directly from Python functions.
