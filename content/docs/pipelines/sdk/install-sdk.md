@@ -1,7 +1,7 @@
 +++
 title = "Install the Kubeflow Pipelines SDK"
 description = "Setting up your Kubeflow Pipelines development environment."
-weight = 3
+weight = 1
 +++
 
 This guide tells you how to install the 

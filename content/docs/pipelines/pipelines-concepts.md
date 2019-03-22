@@ -1,7 +1,7 @@
 +++
 title = "Concepts in Kubeflow Pipelines"
 description = "Glossary of terms relevant to Kubeflow Pipelines"
-weight = 2
+weight = 30
 +++
 
 This page describes the most important concepts used within the Kubeflow 

@@ -1,5 +1,5 @@
 +++
-title = "Pipeline metrics"
+title = "Pipeline Metrics"
 description = "Export and visualize pipeline metrics."
 weight = 9
 +++

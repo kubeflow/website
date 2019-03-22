@@ -1,7 +1,7 @@
 +++
 title = "Overview of Kubeflow Pipelines"
 description = "Overview of Kubeflow Pipelines"
-weight = 1
+weight = 10
 +++
 
 Kubeflow Pipelines is a platform for building and deploying portable, 
