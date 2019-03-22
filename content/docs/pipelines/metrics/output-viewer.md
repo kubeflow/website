@@ -1,6 +1,6 @@
 +++
 title = "Use an Output Viewer"
-description = "Using output viewers for pipelines components."
+description = "Using output viewers for pipelines components"
 weight = 8
 +++
 
