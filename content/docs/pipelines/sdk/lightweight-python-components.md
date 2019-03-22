@@ -1,7 +1,7 @@
 +++
 title = "Build Lightweight Python Components"
-description = "Building your own lightweight pipelines components from Python."
-weight = 7
+description = "Building your own lightweight pipelines components from Python"
+weight = 4
 +++
 
 Lightweight Python components do not require you to build a new container image

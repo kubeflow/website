@@ -1,7 +1,7 @@
 +++
 title = "Index of Reusable Components"
 description = "A list of Kubeflow Pipelines components that you can use in your pipelines"
-weight = 2
+weight = 60
 +++
 
 A Kubeflow Pipelines *component* is a self-contained set of code that performs 
@@ -78,4 +78,4 @@ The following components submit jobs to
 * For usage instructions for each of the above components, see the README file 
   of the linked component on GitHub.
 * See how to [build your own pipeline 
-  components](/docs/pipelines/build-component).
+  components](/docs/pipelines/sdk/build-component/).

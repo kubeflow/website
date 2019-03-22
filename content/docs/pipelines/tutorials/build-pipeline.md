@@ -1,7 +1,7 @@
 +++
 title = "Experiment with the Pipelines Samples"
 description = "Get started with the Kubeflow Pipelines notebooks and samples"
-weight = 4
+weight = 1
 +++
 
 You can learn how to build and deploy pipelines by running the samples
@@ -20,7 +20,7 @@ Set up your environment:
 
 1. Clone or download the
   [Kubeflow Pipelines samples](https://github.com/kubeflow/pipelines/tree/master/samples).
-1. Install the [Kubeflow Pipelines SDK](/docs/pipelines/install-sdk).
+1. Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
 1. Activate your Python 3 environment if you haven't done so already:
 
     ```
@@ -134,6 +134,6 @@ The following notebooks are available:
 ## Next steps
 
 * See how to 
-  [build your own pipeline components](/docs/pipelines/build-component).
+  [build your own pipeline components](/docs/pipelines/sdk/build-component/).
 * Read more about 
-  [building lightweight components](/docs/pipelines/lightweight-python-components).
+  [building lightweight components](/docs/pipelines/sdk/lightweight-python-components/).
