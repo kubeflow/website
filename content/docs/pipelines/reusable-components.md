@@ -21,57 +21,64 @@ The following components submit jobs to
 [Cloud ML Engine](https://cloud.google.com/ml-engine/docs/)
 on Google Cloud Platform (GCP).
 
-**Component:** [Cloud ML Engine model training](https://github.com/kubeflow/pipelines/tree/master/components/gcp/ml_engine/train)
+[Cloud ML Engine model training](https://github.com/kubeflow/pipelines/tree/master/components/gcp/ml_engine/train)
 : Submits a Python training job to 
   [Cloud ML Engine](https://cloud.google.com/ml-engine/docs/).
   The job writes the trained model and other training results to a
   [Cloud Storage](https://cloud.google.com/storage/docs/) location of your
   choice.
-  The component output is the ID of the training job on Cloud ML Engine.
+  
+  Component output: the ID of the training job on Cloud ML Engine.
 
-**Component:** [Cloud ML Engine model deployment](https://github.com/kubeflow/pipelines/tree/master/components/gcp/ml_engine/deploy)
+[Cloud ML Engine model deployment](https://github.com/kubeflow/pipelines/tree/master/components/gcp/ml_engine/deploy)
 : Deploys a trained model to 
   [Cloud ML Engine](https://cloud.google.com/ml-engine/docs/)
   from a [Cloud Storage](https://cloud.google.com/storage/docs/) path.
-  The component output is the Cloud ML Engine resource name of the deployed 
+  
+  Component output: the Cloud ML Engine resource name of the deployed 
   model version.
 
-**Component:** [Cloud ML Engine batch prediction](https://github.com/kubeflow/pipelines/tree/master/components/gcp/ml_engine/batch_predict)
+[Cloud ML Engine batch prediction](https://github.com/kubeflow/pipelines/tree/master/components/gcp/ml_engine/batch_predict)
 : Submits a batch prediction request to a trained model deployed on 
   [Cloud ML Engine](https://cloud.google.com/ml-engine/docs/).
   The job writes the prediction results to a
   [Cloud Storage](https://cloud.google.com/storage/docs/) location of your
   choice.
-  The component output is the ID of the batch prediction job on Cloud ML Engine.
+  
+  Component output: the ID of the batch prediction job on Cloud ML Engine.
 
 ## BigQuery
 
 The following components submits a job to
 [BigQuery](https://cloud.google.com/bigquery/docs/) on GCP.
 
-**Component:** [BigQuery query](https://github.com/kubeflow/pipelines/tree/master/components/gcp/bigquery/query)
+[BigQuery query](https://github.com/kubeflow/pipelines/tree/master/components/gcp/bigquery/query)
 : Submits a query to [BigQuery](https://cloud.google.com/bigquery/docs/) 
-  and writes the component output to a 
+  and writes the query results to a 
   [Cloud Storage](https://cloud.google.com/storage/docs/) location of your
   choice.
+  
+  Component output: the location of the query results in Cloud Storage.
 
 ## Cloud Dataflow
 
 The following components submit jobs to
 [Cloud Dataflow](https://cloud.google.com/dataflow/docs/) on GCP.
 
-**Component:** [Dataflow Python Apache Beam job](https://github.com/kubeflow/pipelines/tree/master/components/gcp/dataflow/launch_python)
+[Dataflow Python Apache Beam job](https://github.com/kubeflow/pipelines/tree/master/components/gcp/dataflow/launch_python)
 : Submits an Apache Beam job authored in Python to 
   [Cloud Dataflow](https://cloud.google.com/dataflow/docs/). 
-  The Cloud Dataflow pipeline runner executes the Python code. The component 
-  output is the ID of the Dataflow job.
+  The Cloud Dataflow pipeline runner executes the Python code.
+  
+  Component output: the ID of the Dataflow job.
 
-**Component:** [Dataflow job from template](https://github.com/kubeflow/pipelines/tree/master/components/gcp/dataflow/launch_template)
+[Dataflow job from template](https://github.com/kubeflow/pipelines/tree/master/components/gcp/dataflow/launch_template)
 : Submits a job to
   [Cloud Dataflow](https://cloud.google.com/dataflow/docs/) based on a template.
   The template must be stored in
-  [Cloud Storage](https://cloud.google.com/storage/docs/). The component output
-  is the ID of the Dataflow job.
+  [Cloud Storage](https://cloud.google.com/storage/docs/). 
+  
+  Component output: the ID of the Dataflow job.
 
 ## More information
 
