@@ -11,49 +11,49 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
 * [Google Cloud Next, San Francisco](https://cloud.withgoogle.com/next/sf), 9-11 April, 2019
   - [Undoing Human Bias at Scale With Kubeflow](https://cloud.withgoogle.com/next/sf/sessions?session=MLAI206): John Bohannon, Michelle Casbon
 * [Kubeflow Contributor Summit 2019](https://docs.google.com/document/d/14Jr79aWVjsJg8xq38CLVE4rKRwM1_-gHLuxhGAhrGTI/edit?usp=sharing), Sunnyvale, CA, 12-13 March, 2019
-  - [Kubeflow and the ML Landscape](), Jeremy Lewi, Google
+  - Kubeflow and the ML Landscape, Jeremy Lewi, Google
       - [Slides](https://docs.google.com/presentation/d/1kJtBNOLHI8bR7z5OVUNDQHUBJ0K7ayGPwP4UQezMAoA/edit?usp=sharing)
-  - [Updates from the PM Working Group](), David Aronchick, Josh Bottum, Carmine Rimi
+  - Updates from the PM Working Group, David Aronchick, Josh Bottum, Carmine Rimi
       - [Slides](https://docs.google.com/presentation/d/100GXMDDKDyiANSZnvIN_l5kCNxKnsOOcTLq-34-OaJc/edit?usp=sharing)
-  - [Building Together: Community in Kubeflow](), Thea Lamkin, Google
+  - Building Together: Community in Kubeflow, Thea Lamkin, Google
       - [Slides](https://docs.google.com/presentation/d/1kEOkz82lUJEfr0GrfDLnTN-g7D1NaFyvqBAzuEDjce8/edit?usp=sharing)
-  - [Experiment Tracking and Hyperparameter Search](), Lukas Biewald, Weights & Biases
-      - [Slides]()
-  - [Multi-User Environments](), Kam Kasravi & Ebi Shahbazi, Intel
+  - Experiment Tracking and Hyperparameter Search, Lukas Biewald, Weights & Biases
+  - Multi-User Environments, Kam Kasravi & Ebi Shahbazi, Intel
       - [Slides](https://docs.google.com/presentation/d/1xoqu189q54sAXRTQ-Ise3_T09JLkQxVBGe5lCFy4UsE/edit?usp=sharing)
-  - [On-Premise](), Debo Dutta, Cisco
+  - On-Premise, Debo Dutta, Cisco
       - [Slides](https://docs.google.com/presentation/d/1cphcFf4qszQ9PxcEnYkF0pkY3AZEQiEEjs8cso2KJjE/edit?usp=sharing)
-  - [MiniKF: Local Kubeflow](), Vangelis Koukis, Arrikto
+  - MiniKF: Local Kubeflow, Vangelis Koukis, Arrikto
       - [Slides](https://docs.google.com/presentation/d/1ftOhRZtpIF3Iy-2R6z9kwgS3KMUtIFnvA1LHHEyxsp8/edit?usp=sharing)
-  - [Tensorflow 2.0 is coming!](), Paige Bailey, Google
+  - Tensorflow 2.0 is coming!, Paige Bailey, Google
       - [Slides](https://docs.google.com/presentation/d/1G0BE7tvhsCzZn2uaxEZsoosEZyXkjN8CnB3uHvLpiC0/edit?usp=sharing)
-  - [Overview of Kubeflow Pipelines](), Pavel Dournov, Google
+  - Overview of Kubeflow Pipelines, Pavel Dournov, Google
       - [Slides](https://docs.google.com/presentation/d/1aMmJUz7r7Toky4nGZ1bItWKfXW4kSMbs4cofFeyKE-M/edit?usp=sharing)
-  - [Feast: Feature Storage for Machine Learning](), Tim Sell, Google
+  - Feast: Feature Storage for Machine Learning, Tim Sell, Google
       - [Slides](https://docs.google.com/presentation/d/1k2FrlIyob3UfzvzxJ7B8YI9H3dx8B-LTDqCH_FESYCA/edit?usp=sharing)
-  - [Understanding the Earth: Machine Learning with Kubeflow Pipelines](), Faustine Li, Descartes Labs
+  - Understanding the Earth: Machine Learning with Kubeflow Pipelines, Faustine Li, Descartes Labs
       - [Slides](https://docs.google.com/presentation/d/17KeqJmoKM0hBnXDiC5X2qEPutX08TmL56RyTWMbQ34w/edit?usp=sharing)
-  - [Kubeflow Experiments at LinkedIn](), Tengfei Mu & Abin Shahab, LinkedIn
+  - Kubeflow Experiments at LinkedIn, Tengfei Mu & Abin Shahab, LinkedIn
       - [Slides](https://docs.google.com/presentation/d/1bnVZXCvNKOtmqCIMefT2QZCQb62_P0pwBa3PBachNus/edit?usp=sharing)
-  - [Ask the User: Data Science Panel](), Karthik Ramasamy, Ting Chen, Emmanuel Ameisen, Scott Leishman, Caio Soares, June Andrews, Jun Wang
-  - [Simple, GPU-Accelerated Kubeflow Pipeline](), Ananth Sankarasubramanian, NVIDIA
+  - Ask the User: Data Science Panel, Moderator: Karthik Ramasamy, Google
+      - Panelists: Ting Chen, Emmanuel Ameisen, Scott Leishman, Caio Soares, June Andrews, Jun Wang
+  - Simple, GPU-Accelerated Kubeflow Pipeline](), Ananth Sankarasubramanian, NVIDIA
       - [Slides](https://docs.google.com/presentation/d/1B84ix3Dq_s-vj0wRagKGEUtyT4Euhr_siY8oCG-zW1w/edit?usp=sharing)
-  - [Fairing](), Matt Rickard, Google
+  - Fairing, Matt Rickard, Google
       - [Slides](https://docs.google.com/presentation/d/1-gqS-HxMpMd2Kv5-W1_i2TQuXO8O_oM1mL0s-7I2-bA/edit?usp=sharing)
-  - [ModelDB: Open-source model management](), Manasi Vartak - Verta.ai
+  - ModelDB: Open-source model management Manasi Vartak - Verta.ai
       - [Slides](https://docs.google.com/presentation/d/1ri_GrTNyz1XScbaK5f1isvSeA8pGpURg7lmghv8h4Yw/edit?usp=sharing)
-  - [Katib & Hyperparameter Tuning](), Richard Liu, Google
+  - Katib & Hyperparameter Tuning, Richard Liu, Google
       - [Slides](https://docs.google.com/presentation/d/1QbF8naUIHHHvOWKq7uA-DP_jmADbgep8nfjOC_zG_JQ/edit?usp=sharing)
-  - [Kubeflow User Experience](), Derek Ferguson, JP Morgan Chase
+  - Kubeflow User Experience, Derek Ferguson, JP Morgan Chase
       - [Slides](https://docs.google.com/presentation/d/1l4zZVisA1xG1Ty1TNZrWFnDbY9YZ3tZ1TkLe6UqUSXk/edit?usp=sharing)
-  - [Kubeflow & TFX](), Kevin Haas, Google
+  - Kubeflow & TFX, Kevin Haas, Google
       - [Slides](https://docs.google.com/presentation/d/1j4q7AkMs2Pz-9VFmE2vKOanqrR7NFIkN22ObJ_7DVm0/edit?usp=sharing)
-  - [Kubeflow inference on knative](), Dan Sun, Bloomberg
+  - Kubeflow inference on Knative, Dan Sun, Bloomberg
       - [Slides](https://docs.google.com/presentation/d/1sApAPkBWEKBVB5KZCJKHAcsy8Ry2TLzTnGLbpN6EiXA/edit?usp=sharing)
-  - [Arena](), Yang Che, Alibaba
+  - Arena, Yang Che, Alibaba
       - [Slides](https://docs.google.com/presentation/d/1mZ6pjgUYt0LhGN8E-zCM1FE-3GNbtK8Y6NlVeD1WahY/edit?usp=sharing)
       - [Demo video](https://drive.google.com/a/kubeflow.org/file/d/1ITkcf9YvYDJ9KiRlNWOHmMEFOe2DeMGi/view?usp=sharing)
-  - [Examples, Codelabs, & Demos](), Michelle Casbon, Google
+  - Examples, Codelabs, & Demos, Michelle Casbon, Google
       - [Slides](https://docs.google.com/presentation/d/1h001JfBUaAjoPTrHpbuVRNJtrO1jWRMG_YRDzL2Pd3I/edit?usp=sharing)
 * [Data Day Texas, Austin](https://datadaytexas.com/), 26 January, 2019
   - [Kubeflow: Portable Machine Learning on Kubernetes](https://datadaytexas.com/2019/sessions#casbon): Michelle Casbon
