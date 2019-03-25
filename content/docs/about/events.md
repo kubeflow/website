@@ -18,7 +18,8 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
       - [Slides](https://docs.google.com/presentation/d/100GXMDDKDyiANSZnvIN_l5kCNxKnsOOcTLq-34-OaJc/edit?usp=sharing)
   - Building Together: Community in Kubeflow: Thea Lamkin, Google
       - [Slides](https://docs.google.com/presentation/d/1kEOkz82lUJEfr0GrfDLnTN-g7D1NaFyvqBAzuEDjce8/edit?usp=sharing)
-  - Experiment Tracking and Hyperparameter Search, Lukas Biewald, Weights & Biases
+  - Experiment Tracking with Kubeflow, Lukas Biewald, Weights & Biases
+      - [Slides](https://drive.google.com/a/kubeflow.org/file/d/1JEqNlDHk9LKe8QZ0lUQc7X09Y_59Zyga/view?usp=sharing)
   - Multi-User Environments, Kam Kasravi & Ebi Shahbazi, Intel
       - [Slides](https://docs.google.com/presentation/d/1xoqu189q54sAXRTQ-Ise3_T09JLkQxVBGe5lCFy4UsE/edit?usp=sharing)
   - On-Premise: Debo Dutta, Cisco
