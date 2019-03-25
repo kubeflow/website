@@ -58,7 +58,7 @@ The following components submits a job to
   [Cloud Storage](https://cloud.google.com/storage/docs/) location of your
   choice.
   
-  Component output: the location of the query results in Cloud Storage.
+  Component output: the Cloud Storage blob path where the query results are located.
 
 ## Cloud Dataflow
 
