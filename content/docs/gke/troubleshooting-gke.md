@@ -238,7 +238,7 @@ If your logs show the
 the root cause may be that you have exceeded your quota for some 
 backend services such as loadbalancers. 
 This is particularly likely if you have multiple, differently named deployments 
-in the same GCP project using [Cloud AIP](https://cloud.google.com/iap/).
+in the same GCP project using [Cloud IAP](https://cloud.google.com/iap/).
 
 ### The error
 
@@ -275,25 +275,16 @@ Events:
 
 ### Fixing the problem
 
+Note: You can ignore the error you have not enabled Cloud IAP for the cluster,
+that is, if you are connecting via a port-forward.
+
 If you have any redundant Kubeflow deployments, you can delete them using
 the [Deployment Manager](https://cloud.google.com/deployment-manager/docs/).
 
 Alternatively, you can request more backend services quota on the GCP Console.
 
-1. Go to the [quotas page on the 
-  GCP Console](https://console.cloud.google.com/iam-admin/quotas).
-1. Tick the box next to **Compute Engine API**
-1. Click the box under **Metric** and search for **Backend services**:
-    <img src="/docs/images/gcp-backend-quota-1.png" 
-        alt="Connection UI"
-        class="mt-3 mb-3 border border-info rounded">
-
-1. Select **Backend services** and make sure **Backend services** appears 
-  under **Metric**:
-    <img src="/docs/images/gcp-backend-quota-2.png" 
-        alt="Connection UI"
-        class="mt-3 mb-3 border border-info rounded">
-
+1. Go to the [quota settings for backend services on the GCP 
+  Console](https://console.cloud.google.com/iam-admin/quotas?metric=Backend%20services).
 1. Click **EDIT QUOTAS**. A quota editing form opens on the right of the
   screen.
 1. Follow the form instructions to apply for more quota.
