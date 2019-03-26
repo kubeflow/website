@@ -62,7 +62,7 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
       - [Slides](https://docs.google.com/presentation/d/1PvtKTw3KNbGurNymDddbsmEfLQd9cOfjbpDQ-2DSNd8)
 * [AI NEXTCon, Seattle](http://aisea19.xnextcon.com/), 23-26 January, 2019
   - [Build and Manage Machine Learning Pipelines](http://aisea19.xnextcon.com/talkabstract.html#ws-kubeflow): Amy Unruh
-* [KubeCon, Seattle](https://events.linuxfoundation.org/events/kubecon-cloudnativeco n-north-america-2018/), 11-13 December, 2018
+* [KubeCon, Seattle](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-north-america-2018/), 11-13 December, 2018
   - [Deep Dive: Kubeflow BoF](https://sched.co/Ha1X): Jeremy Lewi, David Aronchick
       - [Slides](https://docs.google.com/presentation/d/1QP-o4O3ygpJ6aVfu6lAm0tMWYhAvdKE9FD6_92DB3EY)
       - [Video](https://www.youtube.com/watch?v=gbZJ8eSIfJg)
