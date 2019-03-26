@@ -12024,14 +12024,14 @@ readers do not read off random characters that represent icons */
     margin: 0;
     padding: 0; }
 
-.td-content p code {
+.td-content p code, .td-content li > code {
   color: inherit;
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 0.25rem; }
-  .td-content p code br {
+  .td-content p code br, .td-content li > code br {
     display: none; }
 
 .td-content pre {
