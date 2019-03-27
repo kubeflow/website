@@ -99,8 +99,7 @@ int32
 </td>
 <td>
 <em>(Optional)</em>
-<p>Optional number of retries before marking this job failed.
-Defaults to 6</p>
+<p>Optional number of retries before marking this job failed.</p>
 </td>
 </tr>
 <tr>
@@ -213,8 +212,7 @@ int32
 </td>
 <td>
 <em>(Optional)</em>
-<p>Optional number of retries before marking this job failed.
-Defaults to 6</p>
+<p>Optional number of retries before marking this job failed.</p>
 </td>
 </tr>
 <tr>
@@ -276,5 +274,5 @@ For example,
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>aa322c7b</code>.
+on git commit <code>7e5ece8d</code>.
 </em></p>
