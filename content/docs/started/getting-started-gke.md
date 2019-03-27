@@ -179,7 +179,8 @@ Before installing Kubeflow on the command line:
 
 Follow these steps to deploy Kubeflow:
 
-1. Create user credential: `gcloud auth application-default login`
+1. **IMPORTANT** Create user credential: `gcloud auth application-default login`
+   * You only need to run this command once.
 
 1. Create environment variables for your access control services:
 
@@ -196,7 +197,7 @@ Follow these steps to deploy Kubeflow:
 
 1. Build `kfctl` binary:
 
-    ```
+    ```bash
     export KUBEFLOW_SRC=<FULL PATH TO YOUR CHOICE OF DOWNLOAD DIRECTORY>
     git clone https://github.com/kubeflow/kubeflow.git  ${KUBEFLOW_SRC} \
     --single-branch --branch v0.5-branch
@@ -231,7 +232,7 @@ Follow these steps to deploy Kubeflow:
      The value of this variable becomes the name of your deployment.
      The contents of this directory are described in the next section.
    * **${PROJECT}** - the _name_ of the GCP project where you want kubeflow deployed to.
-   * During init you need to choose to use **EITHER** IAP or basic auth.
+   * During `kfctl init` you need to choose to use **EITHER** IAP or basic auth.
    * `kfctl generate all` will try to fetch user email address from your 
      credential. If it can't find a valid email address, you need to pass a
      valid email address with flag `--email <your email address>`. This email 
@@ -293,11 +294,10 @@ following:
 
 Your Kubeflow app directory contains the following files and directories:
 
-* **env.sh** defines several environment variables related to your Kubeflow
-  deployment.
+* **app.yaml** defines spec related to our Kubeflow deployment.
 
-  * The values are set when you run `init`.
-  * The values are snapshotted inside **env.sh** to make your app 
+  * The values are set when you run `kfctl init`.
+  * The values are snapshotted inside **app.yaml** to make your app 
     self contained.
 
 * **${KFAPP}/gcp_config** is a directory that contains 
@@ -313,12 +313,12 @@ Your Kubeflow app directory contains the following files and directories:
 * **${KFAPP}/ks_app** is a directory that contains the 
   [ksonnet](https://ksonnet.io) application for Kubeflow.
 
-  * The directory is created when you run `kfctl.sh generate k8s`.
+  * The directory is created when you run `kfctl generate`.
   * You can use ksonnet to customize Kubeflow.
 
 ### GCP service accounts
 
-Creating a deployment using `kfctl.sh` creates three service accounts in your 
+Creating a deployment using `kfctl` creates three service accounts in your 
 GCP project. These service accounts are created using the principle of least 
 privilege. The three service accounts are:
 
