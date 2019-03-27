@@ -40,17 +40,17 @@ Before you start, follow these steps to set up your Google Cloud Platform
   [modifying a project's billing 
   settings](https://cloud.google.com/billing/docs/how-to/modify-project).
 
-1. Ensure that the following APIs are enabled on your GCP
-  account:
+1. Go to the following pages on the GCP Console and ensure that the 
+  specified APIs are enabled on your GCP account:
 
-  * [Compute Engine](https://console.cloud.google.com/apis/library/compute.googleapis.com)
-  * [GKE](https://console.cloud.google.com/apis/library/container.googleapis.com)
-  * [Identity and Access Management (IAM)](https://console.cloud.google.com/apis/library/iam.googleapis.com)
-  * [Deployment Manager](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
+  * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
+  * [GKE API](https://console.cloud.google.com/apis/library/container.googleapis.com)
+  * [Identity and Access Management (IAM) API](https://console.cloud.google.com/apis/library/iam.googleapis.com)
+  * [Deployment Manager API](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
 
 1. Check to see if you are eligible for the 
   [GCP Free Tier](https://cloud.google.com/free/docs/gcp-free-tier), which gives
-  gives you free resources to try GCP services. The guide describes:
+  you free resources to try GCP services. The guide describes:
 
   * the GCP services which are always free, and
   * a 12-month trial period with $300 credit that you can use with any GCP 
