@@ -1,5 +1,5 @@
 +++
-title = "TFJob TensorFlow (in development)"
+title = "TFJob TensorFlow"
 description = "Reference documentation for TFJob"
 weight = 100
 +++
@@ -76,6 +76,33 @@ TFJobSpec
 <br/>
 <br/>
 <table>
+<tr>
+<td>
+<code>activeDeadlineSeconds</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Specifies the duration in seconds relative to the startTime that the job may be active
+before the system tries to terminate it; value must be positive integer.
+This method applies only to pods with restartPolicy == OnFailure or Always.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>backoffLimit</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Optional number of retries before marking this job failed.
+Defaults to 6</p>
+</td>
+</tr>
 <tr>
 <td>
 <code>cleanPodPolicy</code></br>
@@ -165,6 +192,33 @@ Read-only.</p>
 <tbody>
 <tr>
 <td>
+<code>activeDeadlineSeconds</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Specifies the duration in seconds relative to the startTime that the job may be active
+before the system tries to terminate it; value must be positive integer.
+This method applies only to pods with restartPolicy == OnFailure or Always.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>backoffLimit</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Optional number of retries before marking this job failed.
+Defaults to 6</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>cleanPodPolicy</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1beta2/common/#CleanPodPolicy">
@@ -222,5 +276,5 @@ For example,
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>a91cddc3</code>.
+on git commit <code>aa322c7b</code>.
 </em></p>

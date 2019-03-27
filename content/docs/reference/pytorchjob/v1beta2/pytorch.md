@@ -1,5 +1,5 @@
 +++
-title = "PyTorchJob (in development)"
+title = "PyTorchJob"
 description = "Reference documentation for PyTorchJob"
 weight = 100
 +++
@@ -76,6 +76,32 @@ PyTorchJobSpec
 <br/>
 <br/>
 <table>
+<tr>
+<td>
+<code>activeDeadlineSeconds</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Specifies the duration in seconds relative to the startTime that the job may be active
+before the system tries to terminate it; value must be positive integer.
+This method applies only to pods with restartPolicy == OnFailure or Always.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>backoffLimit</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Optional number of retries before marking this job failed.</p>
+</td>
+</tr>
 <tr>
 <td>
 <code>cleanPodPolicy</code></br>
@@ -165,6 +191,32 @@ Read-only.</p>
 <tbody>
 <tr>
 <td>
+<code>activeDeadlineSeconds</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Specifies the duration in seconds relative to the startTime that the job may be active
+before the system tries to terminate it; value must be positive integer.
+This method applies only to pods with restartPolicy == OnFailure or Always.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>backoffLimit</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Optional number of retries before marking this job failed.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>cleanPodPolicy</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1beta2/common/#CleanPodPolicy">
@@ -222,5 +274,5 @@ For example,
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>5887db0</code>.
+on git commit <code>e8d4d04</code>.
 </em></p>

@@ -21,7 +21,7 @@ rm temp_pytorch.md
 CONTENT_DIR=$WEBSITE_ROOT/content/docs/reference/pytorchjob/v1beta2
 
 echo "+++
-title = \"PyTorchJob (in development)\"
+title = \"PyTorchJob\"
 description = \"Reference documentation for PyTorchJob\"
 weight = 100
 +++" > $CONTENT_DIR/pytorch.md
