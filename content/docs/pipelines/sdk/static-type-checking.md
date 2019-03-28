@@ -4,9 +4,10 @@ description = "Statically check the component I/O types"
 weight = 6
 +++
 
-This page describes how to integrate the type information in the pipeline and utilize the static type checking for fast development iterations.
+This page describes how to integrate the type information in the pipeline and utilize the 
+static type checking for fast development iterations.
 
-## Overview
+## Motivation
 
 A pipeline is a workflow consisting of [components](/docs/pipelines/sdk/build-component#overview-of-pipelines-and-components) and each
 component contains inputs and outputs. The DSL compiler supports static type checking to ensure the type consistency among the component
@@ -28,7 +29,7 @@ There is a set of [core types](https://github.com/kubeflow/pipelines/blob/master
 pipeline SDK and you can use these core types or define your custom types. 
 
 In the component YAML, types are specified as a string or a dictionary with the OpenAPI Schema, as illustrated below.
-*'component a'* expects an input with Integer type and emits three outputs with type GCSPath, customized_type and GCRPath. 
+"*component a*" expects an input with Integer type and emits three outputs with the type GCSPath, customized_type and GCRPath. 
 Among these types, Integer, GCSPath, and GCRPath are core types that are predefined in the SDK while customized_type is a user-defined
 type.  
 ```yaml
@@ -108,34 +109,34 @@ except InconsistentTypeException as e:
 The basic checking criterion is the equality checking. In other words, type checking passes only when the type name strings are equal
 and the corresponding OpenAPI Schema properties are equal. Examples of type checking failure are:
 
-* 'GCSPath' vs. 'GCRPath'
-* 'Integer' vs. 'Float'
+* "GCSPath" vs. "GCRPath"
+* "Integer" vs. "Float"
 * {'GCSPath': {'openapi_schema_validator': '{"type": "string", "pattern": "^gs://.*$"}'}} vs.  
 {'GCSPath': {'openapi_schema_validator': '{"type": "string", "pattern": "^gcs://.*$"}'}}
 
-If inconsistent types are detected, it throws an InconsistentTypeException.
+If inconsistent types are detected, it throws an [InconsistentTypeException](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/types.py).
 
 
 ## Type checking configuration
 
-Type checking is enabled by default and it can be disabled by two ways:
+Type checking is enabled by default and it can be disabled in two ways:
 
-If the pipeline is compiled programmably:
+If you compile the pipeline programmably:
 ```python
-compiler.Compiler().compile(pipeline_b, 'pipeline_b.tar.gz', type_check=False)
+compiler.Compiler().compile(pipeline_a, 'pipeline_a.tar.gz', type_check=False)
 ```
-If the pipeline is compiled by the dsl-compiler tool:
+If you compile the pipeline using the dsl-compiler tool:
 ```bash
 dsl-compiler --py pipeline.py --output pipeline.zip --disable-type-check
 ```
 ### Fine-grained configuration
 
 Sometimes, you might want to enable the type checking but disable certain arguments. For example, 
-when the upstream component generates an output with type *'Float'* and the downstream can ingest either 
-*'Float'* or *'Integer'*, it might fail if you define the type as *'Float_or_Integer'*. 
+when the upstream component generates an output with type "*Float*" and the downstream can ingest either 
+"*Float*" or "*Integer*", it might fail if you define the type as "*Float_or_Integer*". 
 Disabling the type checking per-argument is also supported as shown below.
 ```python
-@dsl.pipeline(name='type_check_d',
+@dsl.pipeline(name='type_check_a',
     description='')
 def pipeline():
     a = task_factory_a(field_l=12)
@@ -146,10 +147,10 @@ compiler.Compiler().compile(pipeline, 'pipeline.tar.gz', type_check=True)
 
 ### Missing types
 
-DSL compiler passes the type checking if either of the components lack the type information for some parameters. 
-The effects are the same as that of disabling the type checking for the I/Os without types. In other words, 
-type checking would still fail if I/Os with types are incompatible.
+DSL compiler passes the type checking if either of the upstream or the downstream components lack the type information for some parameters. 
+The effects are the same as that of ignoring the type information. However, 
+type checking would still fail if some I/Os lack the type information and some I/O types are incompatible.
 
 ## Next steps
 
-* See [type checking sample](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/).
+* See [type checking sample](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/DSL%20Static%20Type%20Checking.ipynb).
