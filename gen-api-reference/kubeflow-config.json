@@ -31,7 +31,9 @@
     "typeDisplayNamePrefixOverrides": {
         "k8s.io/api/": "Kubernetes ",
         "k8s.io/apimachinery/pkg/apis/": "Kubernetes ",
-        "github.com/kubeflow/tf-operator/pkg/apis/common": "common"
+        "github.com/kubeflow/tf-operator/pkg/apis/common": "common",
+        "github.com/kubeflow/tf-operator/pkg/apis/tensorflow": "tensorflow",
+        "github.com/kubeflow/pytorch-operator/pkg/apis/pytorch": "pytorch"
     },
     "markdownDisabled": false
 }

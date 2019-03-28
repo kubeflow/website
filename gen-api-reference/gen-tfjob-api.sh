@@ -31,7 +31,7 @@ rm temp_tensorflow.md
 CONTENT_DIR=$WEBSITE_ROOT/content/docs/reference/tfjob/v1beta2
 
 echo "+++
-title = \"TFJob Common (in development)\"
+title = \"TFJob Common\"
 description = \"Reference documentation for TFJob\"
 weight = 100
 +++" > $CONTENT_DIR/common.md
@@ -41,7 +41,7 @@ cat temp_common.md >> $CONTENT_DIR/common.md
 rm temp_common.md
 
 echo "+++
-title = \"TFJob TensorFlow (in development)\"
+title = \"TFJob TensorFlow\"
 description = \"Reference documentation for TFJob\"
 weight = 100
 +++" > $CONTENT_DIR/tensorflow.md
