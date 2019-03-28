@@ -24,7 +24,9 @@ brings the following advantages:
     makes it easy to securely connect to Jupyter and other
     web apps running as part of Kubeflow.
   * Basic auth service supports simple username/password access to your 
-    Kubeflow. It is an alternative to Cloud IAP service.
+    Kubeflow. It is an alternative to Cloud IAP service. We recommend IAP for 
+    production and enterprise workloads. Consider basic auth **ONLY** when 
+    trying to test out Kubeflow and use it **WITHOUT** sensitive data.
   * [Stackdriver](https://cloud.google.com/logging/docs/) makes it easy to 
     persist logs to aid in debugging and troubleshooting
   * You can use GPUs and [TPUs](https://cloud.google.com/tpu/) to accelerate 
