@@ -83,7 +83,7 @@ The steps below assume that you already have a Kubernetes cluster set up.
         **Before** running the `apply` command:
 
         ```
-        ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
+        kfctl apply k8s
         ```
 
         You must run the following commands to specify your PVs:
@@ -97,7 +97,7 @@ The steps below assume that you already have a Kubernetes cluster set up.
   1. Then run the `apply` command as usual:
 
         ```
-        ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
+        kfctl apply k8s
         ``` 
 
 ## Upgrading your Kubeflow Pipelines deployment
@@ -149,7 +149,7 @@ change in the procedure:
 1. **Before** running the following `apply` command:
 
     ```
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
+    kfctl apply platform
     ```
 
     You must edit `gcp_config/storage-kubeflow.yaml`:
@@ -163,13 +163,13 @@ change in the procedure:
 1. Then run the `apply` command:
 
     ```
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
+    kfctl apply platform
     ```
 
 1. **Before** running the following `apply` command:
 
     ```
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
+    kfctl apply k8s
     ```
 
     You must run the following command to specify the persistent disk created 
@@ -185,7 +185,7 @@ change in the procedure:
 1. Then run the `apply` command:
 
     ```
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
+    kfctl apply k8s
     ``` 
 
 ### Reinstalling Kubeflow in other environments (non-GCP) 
@@ -205,7 +205,7 @@ PV in the new cluster.
     **Before** running the `apply` command:
 
     ```
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
+    kfctl apply k8s
     ```
 
     You must run the following commands to specify your PVs:
@@ -219,5 +219,5 @@ PV in the new cluster.
 1. Then run the `apply` command:
 
     ```
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
+    kfctl apply k8s
     ``` 
