@@ -35,7 +35,8 @@ the pod has annotation.
 
 ## Kubeflow TF Serving with Istio
 
-After installing Istio, we can deploy the TF Serving component as in [TensorFlow Serving](docs/components/tfserving_new/) with
+After installing Istio, we can deploy the TF Serving component as in 
+[TensorFlow Serving](/docs/components/tfserving_new/) with
 additional params:
 
 ```
@@ -87,7 +88,9 @@ So do `kubectl edit deploy -n istio-system grafana`, and add env vars
 A typical scenario is that we first deploy a model A. Then we develop another model B, and we want to deploy it
 and gradually move traffic from A to B. This can be achieved using Istio's traffic routing.
 
-1. Deploy the first model as described [here](docs/components/tfserving_new/). Then you will have the service (Model) and the deployment (Version).
+1. Deploy the first model as described for 
+  [TensorFlow Serving](/docs/components/tfserving_new/). 
+  Then you will have the service (Model) and the deployment (Version).
 
 2. Deploy another version of the model, v2. This time, no need to deploy the service part.
 
