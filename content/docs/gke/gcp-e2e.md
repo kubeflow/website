@@ -203,7 +203,7 @@ to deploy Kubeflow on GCP, taking note of the following:
 * Use the Kubeflow **deployment UI** as a quick way to set up a Kubeflow 
   deployment on GCP. The getting-started guide describes how to use the
   deployment UI. If you want more control over the configuration of your
-  deployment you can use the `kfctl.sh` script instead of the UI. The script
+  deployment you can use the `kfctl` binary instead of the UI. The binary
   is also described in the getting-started guide.
 * Choose **Kubeflow version v0.4.1** or later.
 
