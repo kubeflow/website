@@ -5,7 +5,7 @@ weight = 6
 +++
 
 This guide helps diagnose and fix issues you may encounter with Kubeflow on 
-Google Kubernetes Engine (GKE).
+Google Kubernetes Engine (GKE) and Google Cloud Platform (GCP).
 
 ## Before you start
 
@@ -230,6 +230,65 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
   * If this doesn't return a 200 OK response; then there is a problem with the K8s resources
       * Check the pods are running
       * Check services are pointing at the points (look at the endpoints for the various services)
+
+## Envoy pods crash-looping: root cause is backend quota exceeded
+
+If your logs show the 
+[Envoy](https://istio.io/docs/concepts/what-is-istio/#envoy) pods crash-looping, 
+the root cause may be that you have exceeded your quota for some 
+backend services such as loadbalancers. 
+This is particularly likely if you have multiple, differently named deployments 
+in the same GCP project using [Cloud IAP](https://cloud.google.com/iap/).
+
+### The error
+
+The error looks like this for the pod's Envoy container:
+
+```
+kubectl logs -n kubeflow envoy-79ff8d86b-z2snp envoy
+[2019-01-22 00:19:44.400][1][info][main] external/envoy/source/server/server.cc:184] initializing epoch 0 (hot restart version=9.200.16384.127.options=capacity=16384, num_slots=8209 hash=228984379728933363)
+[2019-01-22 00:19:44.400][1][critical][main] external/envoy/source/server/server.cc:71] error initializing configuration '/etc/envoy/envoy-config.json': unable to read file: /etc/envoy/envoy-config.json
+```
+
+And the Cloud IAP container shows a message like this:
+
+```
+Waiting for backend id PROJECT=<your-project> NAMESPACE=kubeflow SERVICE=envoy filter=name~k8s-be-30352-...
+```
+
+### Diagnosing the cause
+
+You can verify the cause of the problem by entering the following command:
+
+```
+kubectl -n kubeflow describe ingress
+```
+
+Look for something like this in the output:
+
+```
+Events:
+  Type     Reason  Age                  From                     Message
+  ----     ------  ----                 ----                     -------
+  Warning  Sync    14m (x193 over 19h)  loadbalancer-controller  Error during sync: googleapi: Error 403: Quota 'BACKEND_SERVICES' exceeded. Limit: 5.0 globally., quotaExceeded
+```
+
+### Fixing the problem
+
+Note: You can ignore the error you have not enabled Cloud IAP for the cluster,
+that is, if you are connecting via a port-forward.
+
+If you have any redundant Kubeflow deployments, you can delete them using
+the [Deployment Manager](https://cloud.google.com/deployment-manager/docs/).
+
+Alternatively, you can request more backend services quota on the GCP Console.
+
+1. Go to the [quota settings for backend services on the GCP 
+  Console](https://console.cloud.google.com/iam-admin/quotas?metric=Backend%20services).
+1. Click **EDIT QUOTAS**. A quota editing form opens on the right of the
+  screen.
+1. Follow the form instructions to apply for more quota.
+
 
 ## Cloud Filestore: legacy networks are not supported
 

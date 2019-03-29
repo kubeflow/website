@@ -30,13 +30,35 @@ brings the following advantages:
 
 ## Prerequisites
 
-Ensure that the following APIs are enabled on your Google Cloud Platform (GCP)
-account:
+Before you start, follow these steps to set up your Google Cloud Platform 
+(GCP) account:
 
-  * [Compute Engine](https://console.cloud.google.com/apis/library/compute.googleapis.com)
-  * [GKE](https://console.cloud.google.com/apis/library/container.googleapis.com)
-  * [Identity and Access Management (IAM)](https://console.cloud.google.com/apis/library/iam.googleapis.com)
-  * [Deployment Manager](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
+1. Select or create a project on the 
+  [GCP Console](https://console.cloud.google.com/cloud-resource-manager).
+
+1. Make sure that billing is enabled for your project. See the guide to
+  [modifying a project's billing 
+  settings](https://cloud.google.com/billing/docs/how-to/modify-project).
+
+1. Go to the following pages on the GCP Console and ensure that the 
+  specified APIs are enabled on your GCP account:
+
+  * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
+  * [GKE API](https://console.cloud.google.com/apis/library/container.googleapis.com)
+  * [Identity and Access Management (IAM) API](https://console.cloud.google.com/apis/library/iam.googleapis.com)
+  * [Deployment Manager API](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
+
+1. Check to see if you are eligible for the 
+  [GCP Free Tier](https://cloud.google.com/free/docs/gcp-free-tier), which gives
+  you free resources to try GCP services. The guide describes:
+
+  * the GCP services which are always free, and
+  * a 12-month trial period with $300 credit that you can use with any GCP 
+    services.
+
+1. Read the GCP guide to [resource quotas](https://cloud.google.com/compute/quotas)
+  to understand the quotas on resource usage that Compute Engine enforces, and 
+  to learn how to check your quota and how to request an increase in quota.
 
 You do not need a running GKE cluster. The deployment process will create a
 cluster for you.

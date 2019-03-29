@@ -1,6 +1,6 @@
 +++
-title = "TFJob TensorFlow"
-description = "Reference documentation for TFJob"
+title = "PyTorchJob"
+description = "Reference documentation for PyTorchJob"
 weight = 100
 +++
 <p>Packages:</p>
@@ -15,12 +15,12 @@ weight = 100
 </p>
 Resource Types:
 <ul><li>
-<a href="#TFJob">TFJob</a>
+<a href="#PyTorchJob">PyTorchJob</a>
 </li></ul>
-<h3 id="TFJob">TFJob
+<h3 id="PyTorchJob">PyTorchJob
 </h3>
 <p>
-<p>TFJob represents the configuration of signal TFJob</p>
+<p>PyTorchJob represents the configuration of PyTorchJob</p>
 </p>
 <table>
 <thead>
@@ -45,7 +45,7 @@ kubeflow.org/v1beta1
 <code>kind</code></br>
 string
 </td>
-<td><code>TFJob</code></td>
+<td><code>PyTorchJob</code></td>
 </tr>
 <tr>
 <td>
@@ -66,13 +66,13 @@ Refer to the Kubernetes API documentation for the fields of the
 <td>
 <code>spec</code></br>
 <em>
-<a href="#TFJobSpec">
-TFJobSpec
+<a href="#PyTorchJobSpec">
+PyTorchJobSpec
 </a>
 </em>
 </td>
 <td>
-<p>Specification of the desired behavior of the TFJob.</p>
+<p>Specification of the desired behavior of the PyTorchJob.</p>
 <br/>
 <br/>
 <table>
@@ -86,7 +86,7 @@ common/v1beta1.CleanPodPolicy
 </em>
 </td>
 <td>
-<p>CleanPodPolicy defines the policy to kill pods after TFJob is
+<p>CleanPodPolicy defines the policy to kill pods after PyTorchJob is
 succeeded.
 Default to Running.</p>
 </td>
@@ -99,7 +99,7 @@ int32
 </em>
 </td>
 <td>
-<p>TTLSecondsAfterFinished is the TTL to clean up tf-jobs (temporary
+<p>TTLSecondsAfterFinished is the TTL to clean up pytorch-jobs (temporary
 before kubernetes adds the cleanup controller).
 It may take extra ReconcilePeriod seconds for the cleanup, since
 reconcile gets called periodically.
@@ -108,20 +108,20 @@ Default to infinite.</p>
 </tr>
 <tr>
 <td>
-<code>tfReplicaSpecs</code></br>
+<code>pytorchReplicaSpecs</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1beta1/common/#ReplicaSpec">
-map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1beta1.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta1.ReplicaSpec
+map[github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1beta1.PyTorchReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta1.ReplicaSpec
 </a>
 </em>
 </td>
 <td>
-<p>TFReplicaSpecs is map of TFReplicaType and ReplicaSpec
-specifies the TF replicas to run.
+<p>PyTorchReplicaSpecs is map of PyTorchReplicaType and PyTorchReplicaSpec
+specifies the PyTorch replicas to run.
 For example,
 {
-&ldquo;PS&rdquo;: ReplicaSpec,
-&ldquo;Worker&rdquo;: ReplicaSpec,
+&ldquo;Master&rdquo;: PyTorchReplicaSpec,
+&ldquo;Worker&rdquo;: PyTorchReplicaSpec,
 }</p>
 </td>
 </tr>
@@ -138,7 +138,7 @@ common/v1beta1.JobStatus
 </em>
 </td>
 <td>
-<p>Most recently observed status of the TFJob.
+<p>Most recently observed status of the PyTorchJob.
 This data may not be up to date.
 Populated by the system.
 Read-only.</p>
@@ -146,14 +146,14 @@ Read-only.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="TFJobSpec">TFJobSpec
+<h3 id="PyTorchJobSpec">PyTorchJobSpec
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#TFJob">TFJob</a>)
+<a href="#PyTorchJob">PyTorchJob</a>)
 </p>
 <p>
-<p>TFJobSpec is a desired state description of the TFJob.</p>
+<p>PyTorchJobSpec is a desired state description of the PyTorchJob.</p>
 </p>
 <table>
 <thead>
@@ -173,7 +173,7 @@ common/v1beta1.CleanPodPolicy
 </em>
 </td>
 <td>
-<p>CleanPodPolicy defines the policy to kill pods after TFJob is
+<p>CleanPodPolicy defines the policy to kill pods after PyTorchJob is
 succeeded.
 Default to Running.</p>
 </td>
@@ -186,7 +186,7 @@ int32
 </em>
 </td>
 <td>
-<p>TTLSecondsAfterFinished is the TTL to clean up tf-jobs (temporary
+<p>TTLSecondsAfterFinished is the TTL to clean up pytorch-jobs (temporary
 before kubernetes adds the cleanup controller).
 It may take extra ReconcilePeriod seconds for the cleanup, since
 reconcile gets called periodically.
@@ -195,32 +195,32 @@ Default to infinite.</p>
 </tr>
 <tr>
 <td>
-<code>tfReplicaSpecs</code></br>
+<code>pytorchReplicaSpecs</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1beta1/common/#ReplicaSpec">
-map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1beta1.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta1.ReplicaSpec
+map[github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1beta1.PyTorchReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta1.ReplicaSpec
 </a>
 </em>
 </td>
 <td>
-<p>TFReplicaSpecs is map of TFReplicaType and ReplicaSpec
-specifies the TF replicas to run.
+<p>PyTorchReplicaSpecs is map of PyTorchReplicaType and PyTorchReplicaSpec
+specifies the PyTorch replicas to run.
 For example,
 {
-&ldquo;PS&rdquo;: ReplicaSpec,
-&ldquo;Worker&rdquo;: ReplicaSpec,
+&ldquo;Master&rdquo;: PyTorchReplicaSpec,
+&ldquo;Worker&rdquo;: PyTorchReplicaSpec,
 }</p>
 </td>
 </tr>
 </tbody>
 </table>
-<h3 id="TFReplicaType">TFReplicaType
+<h3 id="PyTorchReplicaType">PyTorchReplicaType
 (<code>string</code> alias)</p></h3>
 <p>
-<p>TFReplicaType is the type for TFReplica.</p>
+<p>PyTorchReplicaType is the type for PyTorchReplica.</p>
 </p>
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>7e5ece8d</code>.
+on git commit <code>e8d4d04</code>.
 </em></p>
