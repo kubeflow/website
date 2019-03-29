@@ -26,26 +26,27 @@ Many changes can be applied to an existing configuration in which case you can r
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
+kfctl apply platform
 ```
 
 or using Deployment Manager directly:
 
 ```
-. ${KFAPP}/env.sh
 cd ${KFAPP}/gcp_config
 gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=cluster-kubeflow.yaml
 ```
 
-  * We source `env.sh` to define the environment variables ${PROJECT} and ${DEPLOYMENT_NAME} for this app.
+  * **PROJECT** Name of your GCP project. You could find it in `${KFAPP}/app.yaml`.
+  * **DEPLOYMENT_NAME** Name of your Kubeflow app. You could also find it in `${KFAPP}/app.yaml`. 
+    In specific, `.metadata.name`
 
 Some changes (such as the VM service account for Kubernetes Engine) can only be set at creation time; in this case you need
 to tear down your deployment before recreating it:
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_SRC}/scripts/kfctl.sh delete all
-${KUBEFLOW_SRC}/scripts/kfctl.sh apply all
+kfctl delete all
+kfctl apply all
 ```
 
 To customize the Kubeflow resources running within the cluster you can modify the ksonnet app in **${KFAPP}/ks_app**.
@@ -60,7 +61,7 @@ You can then redeploy using `kfctl`:
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
+kfctl apply k8s
 ```
 
 or using ksonnet directly:
@@ -96,7 +97,7 @@ By default, this file will be located at `${KUBEFLOW_SRC}/kubeflow/gcp_config/cl
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_SRC}/scripts/kfctl.sh apply all
+kfctl apply all
 ```
 
 For more information please refer to the [Deployment Manager docs](https://cloud.google.com/deployment-manager/docs/).
