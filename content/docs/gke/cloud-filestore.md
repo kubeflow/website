@@ -53,7 +53,7 @@ Apply the changes:
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
+kfctl apply platform
 ```
 
 If you get an error **legacy networks are not supported** follow the instructions
@@ -82,5 +82,5 @@ Apply the changes:
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
+kfctl apply k8s
 ```
