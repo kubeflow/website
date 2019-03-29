@@ -269,6 +269,11 @@ Follow these steps to deploy Kubeflow:
     ```
     kubectl -n kubeflow get  all
     ```
+1. Storage will be a separete deployment. After `kfctl apply` you should notice
+   there will be 2 deployments(clusters):
+   * **{KFAPP}-storage**: This deployment has persistent volumes for your
+     pipelines.
+   * **{KFAPP}**: This deployment has all the components Kubeflow provides.
 
 1. Kubeflow will be available at the following URI:
 
