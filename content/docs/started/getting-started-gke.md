@@ -23,6 +23,11 @@ brings the following advantages:
   * [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/) 
     makes it easy to securely connect to Jupyter and other
     web apps running as part of Kubeflow.
+  * Basic auth service supports simple username/password access to your 
+    Kubeflow. It is an alternative to Cloud IAP service:
+    * We recommend IAP for production and enterprise workloads.
+    * Consider basic auth only when trying to test out Kubeflow and use it 
+      without sensitive data.
   * [Stackdriver](https://cloud.google.com/logging/docs/) makes it easy to 
     persist logs to aid in debugging and troubleshooting
   * You can use GPUs and [TPUs](https://cloud.google.com/tpu/) to accelerate 
@@ -63,7 +68,7 @@ Before you start, follow these steps to set up your Google Cloud Platform
 You do not need a running GKE cluster. The deployment process will create a
 cluster for you.
 
-## Create OAuth client credentials
+## Create OAuth client credentials (skip this section if using basic auth)
 
 Create an OAuth client ID to be used to identify Cloud IAP when requesting 
 access to a user's email account. Kubeflow uses the email address to verify the
@@ -136,6 +141,7 @@ web interface:
 1. Complete the form, following the instructions on the left side of the form.
   In particular, ensure that you enter the same **deployment name** as you used
   when creating the OAuth client ID.
+1. Check **Skip IAP** box if you want to use basic auth.
 1. Click **Create Deployment**.
 
 Here's a partial screenshot of the deployment UI, showing all the fields in the 
@@ -190,47 +196,60 @@ Before installing Kubeflow on the command line:
     {{% ksonnet-min-version %}} or later. See the
     [ksonnet component guide](/docs/components/ksonnet) for help with
     installing ksonnet.
-  * Ensure you have installed [pyyaml](https://pyyaml.org/).
+  * Ensure you have installed 
+    [pyyaml](https://pyyaml.org/), [gcloud](https://cloud.google.com/sdk/gcloud/), 
+    [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
   * If you're using
     [Cloud Shell](https://cloud.google.com/shell/), enable 
     [boost mode](https://cloud.google.com/shell/docs/features#boost_mode).
 
 Follow these steps to deploy Kubeflow:
 
-1. Create environment variables from the OAuth client ID and secret that you
-  obtained earlier:
+1. Create user credentials. You only need to run this command once:
+   `gcloud auth application-default login`
 
-    ```
+1. Create environment variables for your access control services:
+
+    ```bash
+    # If using IAP, create environment variables from the OAuth client ID and
+    # secret that you obtained earlier:
     export CLIENT_ID=<CLIENT_ID from OAuth page>
     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
+
+    # If using basic auth, create environment variables for username/password:
+    export KUBEFLOW_USERNAME=<your username>
+    export KUBEFLOW_PASSWORD=<your password>
     ```
 
-1. Run the following commands to download `kfctl.sh`:
+1. Build `kfctl` binary:
 
-    ```
+    ```bash
     export KUBEFLOW_SRC=<FULL PATH TO YOUR CHOICE OF DOWNLOAD DIRECTORY>
-    mkdir ${KUBEFLOW_SRC}
-    cd ${KUBEFLOW_SRC}
-    export KUBEFLOW_TAG={{% kf-stable-tag %}}
-    curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
-     ```
+    git clone https://github.com/kubeflow/kubeflow.git  ${KUBEFLOW_SRC} \
+    --single-branch --branch v0.5-branch
+    cd ${KUBEFLOW_SRC}/bootstrap
+    make build-kfctl
+    ```
+   * Please take a look at [kfctl developer guide](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/developer_guide.md#building-kfctl)
+     for more information.
    * **KUBEFLOW_SRC** - A directory where you want to download the source to.
      This value must include the full path to the directory.
-   * **KUBEFLOW_TAG** - A tag corresponding to the Kubeflow version to check 
-     out, such as `master` for the latest code.
-   * **Note:** You can also just clone the 
-     [Kubeflow repository](https://github.com/kubeflow/kubeflow) using `git`.
 
 1. Run the following scripts to set up and deploy Kubeflow:
 
-    ```
+    ```bash
+    # This is optional - to make kfctl bin easier to use.
+    export PATH=$PATH:${KUBEFLOW_SRC}/bootstrap/bin
+
     export KFAPP=<YOUR CHOICE OF APPLICATION DIRECTORY NAME>
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform gcp --project ${PROJECT}
+    # Default will be using IAP.
+    kfctl init ${KFAPP} --platform gcp --project ${PROJECT}
+    # or if you want to use basic auth:
+    kfctl init ${KFAPP} --platform gcp --project ${PROJECT} --use_basic_auth -V
+
     cd ${KFAPP}
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate platform
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
+    kfctl generate all -V
+    kfctl apply all -V
     ```
    * **${KFAPP}** - the _name_ of a directory where you want kubeflow 
      configurations to be stored. This directory is created when you run init.
@@ -239,12 +258,22 @@ Follow these steps to deploy Kubeflow:
      The value of this variable becomes the name of your deployment.
      The contents of this directory are described in the next section.
    * **${PROJECT}** - the _name_ of the GCP project where you want kubeflow deployed to.
+   * During `kfctl init` you need to choose to use either IAP or basic auth.
+   * `kfctl generate all` will try to fetch user email address from your 
+     credential. If it can't find a valid email address, you need to pass a
+     valid email address with flag `--email <your email address>`. This email 
+     address will be configured to be an admin of your kubeflow deployment.
 
 1. Check the resources deployed in namespace `kubeflow`:
 
     ```
     kubectl -n kubeflow get  all
     ```
+1. Storage will be a separete deployment. After `kfctl apply` you should notice
+   there will be 2 deployments(clusters):
+   * **{KFAPP}-storage**: This deployment has persistent volumes for your
+     pipelines.
+   * **{KFAPP}**: This deployment has all the components Kubeflow provides.
 
 1. Kubeflow will be available at the following URI:
 
@@ -267,7 +296,11 @@ Follow these steps to deploy Kubeflow:
 
     ```
     cd ${KFAPP}
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh delete all
+    # If you want to delete all the resources, including storage.
+    kfctl delete all --delete_storage
+    # If you want to preserve storage, which contains metadata and information
+    # from mlpipeline.
+    kfctl delete all
     ```
 
 ## Understanding the deployment process
@@ -292,11 +325,10 @@ following:
 
 Your Kubeflow app directory contains the following files and directories:
 
-* **env.sh** defines several environment variables related to your Kubeflow
-  deployment.
+* **app.yaml** defines configurations related to your Kubeflow deployment.
 
-  * The values are set when you run `init`.
-  * The values are snapshotted inside **env.sh** to make your app 
+  * The values are set when you run `kfctl init`.
+  * The values are snapshotted inside **app.yaml** to make your app 
     self contained.
 
 * **${KFAPP}/gcp_config** is a directory that contains 
@@ -312,12 +344,12 @@ Your Kubeflow app directory contains the following files and directories:
 * **${KFAPP}/ks_app** is a directory that contains the 
   [ksonnet](https://ksonnet.io) application for Kubeflow.
 
-  * The directory is created when you run `kfctl.sh generate k8s`.
+  * The directory is created when you run `kfctl generate`.
   * You can use ksonnet to customize Kubeflow.
 
 ### GCP service accounts
 
-Creating a deployment using `kfctl.sh` creates three service accounts in your 
+Creating a deployment using `kfctl` creates three service accounts in your 
 GCP project. These service accounts are created using the principle of least 
 privilege. The three service accounts are:
 

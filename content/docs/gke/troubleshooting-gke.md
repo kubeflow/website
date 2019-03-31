@@ -321,7 +321,7 @@ Apply the changes.
 
 ```
 cd ${KFAPP}
-${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
+kfctl apply platform
 ```
 
 ## CPU platform unavailable in requested zone
