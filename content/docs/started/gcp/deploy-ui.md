@@ -5,7 +5,7 @@ weight = 3
 +++
 
 This page provides instructions for deploying Kubeflow using 
-Click to Deploy web app for Google Cloud.
+the Click to Deploy web app for Google Cloud.
 
 1. Open [https://deploy.kubeflow.cloud/](https://deploy.kubeflow.cloud/#/deploy)
   in your web browser.

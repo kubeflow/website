@@ -46,7 +46,7 @@ Follow these steps to deploy Kubeflow:
     tar -xvf kfctl_${TAG}_${PLATFORM}.tar.gz
    ```
 
-   * For subsequent steps either add the binary kfctl to your path or else use the full path to the kfctl binary.
+    * For subsequent steps either add the binary kfctl to your path or else use the full path to the kfctl binary.
 
 1. Run the following commands to set up and deploy Kubeflow:
 
