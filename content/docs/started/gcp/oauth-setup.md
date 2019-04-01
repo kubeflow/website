@@ -1,7 +1,7 @@
 +++
 title = "OAuth Setup For IAP"
 description = "Instructions for creating an OAuth client for IAP"
-weight = 1
+weight = 2
 +++
 
 If you want to use [identity aware proxy(IAP)](https://cloud.google.com/iap/docs/), 
