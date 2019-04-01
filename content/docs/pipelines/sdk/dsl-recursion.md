@@ -1,10 +1,10 @@
 +++
 title = "DSL Recursion"
-description = "Author a recursive function in DSL."
+description = "Author a recursive function in DSL"
 weight = 7
 +++
 
-This page describes how to write recursive functions in DSL.
+This page describes how to write recursive functions in the domain specific language (DSL) provided by the Kubeflow Pipelines SDK.
 
 ## Motivation
 Recursion is a feature that is supported by almost all languages to express complex semantics in a succinct way. 
@@ -12,12 +12,12 @@ In machine learning workflows, recursions are especially important to enable fea
 iterative model analysis, and hypertuning. The recursion support also covers the loop feature since it enables the same code 
 block to be executed and exited based on dynamic conditions.
 
-## How to write a recursive function?
+## How to write a recursive function
 
 ### Decorator
 
 Decorate the recursive function with [kfp.dsl.graph_component](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_component.py)
-as illustrated below. No arguments to the decorator is required.
+as illustrated below. And, the decorator does not require any arguments.
 ```python
 import kfp.dsl as dsl
 @dsl.graph_component
@@ -40,7 +40,7 @@ def pipeline():
 ```
 
 ### Function signature
-Define the function signature as normal python functions. The input parameters are [PipelineParams](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py).
+Define the function signature as a standard python function. The input parameters are [PipelineParams](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py).
 
 ### Function body
 Similar to the pipeline function body, you can instantiate components, create [conditions](https://github.com/kubeflow/pipelines/blob/f8b0f5bf0cc0b5aceb8aedfd21e93156e363ea48/sdk/python/kfp/dsl/_ops_group.py#L110),
@@ -77,13 +77,13 @@ def pipeline():
   task_factory_c(op_a.output).after(graph_op_a)
 ```
 
-## Limitation
+## Limitations
 
-* Type checking is not working for the recursive function. In other words, The type information that is annotated to the recursive 
+* [Type checking](/docs/pipelines/sdk/static-type-checking) does not work for the recursive functions. In other words, The type information that is annotated to the recursive 
 function signature will not be checked.
-* Since the output of the recursive function cannot be dynamically resolved, output from the recursive functions can be 
-accessed in the downstream ContainerOps.
-* A known [issue](https://github.com/kubeflow/pipelines/issues/1065) that the recursion fails to work when there are 
+* Since the output of the recursive functions cannot be dynamically resolved, the downstream ContainerOps cannot
+access the output from the recursive functions.
+* A known [issue](https://github.com/kubeflow/pipelines/issues/1065) is that the recursion fails to work when there are 
 multiple recursive function calls in the function body.
 
 ## Next steps
