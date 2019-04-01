@@ -1,48 +1,18 @@
 +++
-title = "Kubeflow on Google Cloud"
-description = "Get Kubeflow running on Google Cloud Platform"
-weight = 3
+title = "OAuth Setup For IAP"
+description = "Instructions for creating an OAuth client for IAP"
+weight = 1
 +++
 
-This guide is a quickstart to deploying Kubeflow on Google Kubernetes Engine 
-(GKE).
+If you want to use [identity aware proxy(IAP)](https://cloud.google.com/iap/docs/), 
+then you will need to follow these instructions to create an OAuth client to
+use with Kubeflow.
 
-## Prerequisites
+You can skip this step if you want to use basic auth (username & password) with
+Kubeflow.
 
-Before you start, follow these steps to set up your Google Cloud Platform 
-(GCP) account:
-
-1. Select or create a project on the 
-  [GCP Console](https://console.cloud.google.com/cloud-resource-manager).
-
-1. Make sure that billing is enabled for your project. See the guide to
-  [modifying a project's billing 
-  settings](https://cloud.google.com/billing/docs/how-to/modify-project).
-
-1. Go to the following pages on the GCP Console and ensure that the 
-  specified APIs are enabled on your GCP account:
-
-  * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
-  * [GKE API](https://console.cloud.google.com/apis/library/container.googleapis.com)
-  * [Identity and Access Management (IAM) API](https://console.cloud.google.com/apis/library/iam.googleapis.com)
-  * [Deployment Manager API](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
-
-1. Check to see if you are eligible for the 
-  [GCP Free Tier](https://cloud.google.com/free/docs/gcp-free-tier), which gives
-  you free resources to try GCP services. The guide describes:
-
-  * the GCP services which are always free, and
-  * a 12-month trial period with $300 credit that you can use with any GCP 
-    services.
-
-1. Read the GCP guide to [resource quotas](https://cloud.google.com/compute/quotas)
-  to understand the quotas on resource usage that Compute Engine enforces, and 
-  to learn how to check your quota and how to request an increase in quota.
-
-You do not need a running GKE cluster. The deployment process will create a
-cluster for you.
-
-## Create OAuth client credentials (skip this section if using basic auth)
+IAP is recommended for production deployments or deployments with access to
+sensitive data.
 
 Create an OAuth client ID to be used to identify Cloud IAP when requesting 
 access to a user's email account. Kubeflow uses the email address to verify the
