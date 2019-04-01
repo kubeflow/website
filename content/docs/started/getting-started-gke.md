@@ -221,21 +221,17 @@ Follow these steps to deploy Kubeflow:
     export KUBEFLOW_PASSWORD=<your password>
     ```
 
-1. Build `kfctl` binary:
+1. Download a kfctl release from the [GitHub releases](https://github.com/kubeflow/kubeflow/releases/)
 
-    ```bash
-    export KUBEFLOW_SRC=<FULL PATH TO YOUR CHOICE OF DOWNLOAD DIRECTORY>
-    git clone https://github.com/kubeflow/kubeflow.git  ${KUBEFLOW_SRC} \
-    --single-branch --branch v0.5-branch
-    cd ${KUBEFLOW_SRC}/bootstrap
-    make build-kfctl
-    ```
-   * Please take a look at [kfctl developer guide](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/developer_guide.md#building-kfctl)
-     for more information.
-   * **KUBEFLOW_SRC** - A directory where you want to download the source to.
-     This value must include the full path to the directory.
+1. Unpack the tar ball
 
-1. Run the following scripts to set up and deploy Kubeflow:
+   ```
+    tar -xvf kfctl_${TAG}_${PLATFORM}.tar.gz
+   ```
+
+   * For subsequent steps either add the binary kfctl to your path or else use the full path to the kfctl binary.
+
+1. Run the following commands to set up and deploy Kubeflow:
 
     ```bash
     # This is optional - to make kfctl bin easier to use.

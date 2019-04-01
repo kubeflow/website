@@ -17,26 +17,26 @@ Kubeflow comes with a number of web UIs e.g.
 * Katib
 * TFJobs Dashboard
 
-To make it easy to connect to these UIs Kubeflow provides a reverse proxy through
-which all UIs are accessible.
+To make it easy to connect to these UIs Kubeflow provides a left hand navigation
+bar for navigating between the different applications.
 
-Instructions below indicate how to connect to the Kubeflow navigation UI. From
-there you can easily navigate to the different services. The UI looks like this:
+Instructions below indicate how to connect to the Kubeflow landing page. From
+there you can easily navigate to the different services using the left hand navigation
+bar. The landing page looks like this:
 
-![Central UI](/docs/images/central-ui.png)
+![Landing page](/docs/images/landing-page.png)
 
 
 ## Google Cloud Platform (Kubernetes Engine)
 
 If you followed the [guide for Kubernetes Engine](/docs/started/getting-started-gke), Kubeflow will be deployed with
-IAP and the web UIs will be accessible at
+IAP or Basic Auth and the landing page will be accessible at
 
 ```
 https://<name>.endpoints.<project>.cloud.goog/
 ```
 
-This will bring up a central navigation window that allows you to navigate to the
-different services.
+This will bring up the landing page illustrated above.
 
 ## Using Kubectl and port-forwarding
 
@@ -54,4 +54,5 @@ You can then access the central navigation dashboard at
 http://localhost:8080/
 ```
 
-From here you can easily navigate to the different services.
+* This will only work if you haven't enabled basic auth or IAP. If authentication is enabled requests will be rejected
+  because you are not connecting over https and attaching proper credentials.
