@@ -73,3 +73,7 @@ user's identity.
 1. Make note of the **client ID** and **client secret** that appear in the OAuth
   client window. You need them later to enable Cloud IAP.
 
+## Next Steps
+
+* Deploy Kubeflow with the [CLI](/docs/gke/deploy/deploy-cli) 
+* Deploy Kubeflow with the [UI](/docs/gke/deploy/deploy-ui)

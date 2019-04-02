@@ -33,3 +33,18 @@ https://<deployment_name>.endpoints.<project>.cloud.goog/
 It can take 10-15 minutes for the URI to become available. You can watch
 for updates in the information box on the deployment UI. If the deployment
 takes longer than expected, try accessing the above URI anyway.
+
+## Next Steps
+
+* Run a full ML workflow on Kubeflow, using the
+  [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
+  [GitHub issue sumarization 
+  example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
+* Deleting Kubeflow deployments with the [UI](/docs/gke/deploy/delete-ui)
+* See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
+  deployment on GKE.
+* See how to [upgrade Kubeflow](/docs/other-guides/upgrade/) and how to 
+  [upgrade or reinstall a Kubeflow Pipelines 
+  deployment](/docs/pipelines/upgrade/).
+* [Troubleshoot](/docs/gke/troubleshooting-gke) any issues you may
+  find.
