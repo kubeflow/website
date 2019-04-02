@@ -36,3 +36,8 @@ Before you start, follow these steps to set up your Google Cloud Platform
 
 You do not need a running GKE cluster. The deployment process will create a
 cluster for you.
+
+## Next Steps
+
+* [Setup an OAuth credential](/docs/gke/deploy/oauth-setup) if you want to use [identity aware proxy(IAP)](https://cloud.google.com/iap/docs/)
+* Deploy with the [CLI](/docs/gke/deploy/cli) or [CLI](/docs/gke/deploy/ui) if you want to use basic authentication
