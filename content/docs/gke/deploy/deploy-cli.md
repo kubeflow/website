@@ -93,7 +93,7 @@ Follow these steps to deploy Kubeflow:
     ```
     https://<deployment_name>.endpoints.<project>.cloud.goog/
     ```
-   * It can take 10-15 minutes for the URI to become available.
+   * It can take 20 minutes for the URI to become available.
      Kubeflow needs to provision a signed SSL certificate and register a DNS 
      name.
    * If you own/manage the domain or a subdomain with 
@@ -115,6 +115,9 @@ Follow these steps to deploy Kubeflow:
     # from mlpipeline.
     kfctl delete all
     ```
+
+    * You should consider preserving storage if you think you might want to relaunch
+      Kubeflow in the future and restore data about your pipelines.
 
 ## Understanding the deployment process
 
