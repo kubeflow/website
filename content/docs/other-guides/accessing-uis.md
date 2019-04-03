@@ -24,7 +24,9 @@ Instructions below indicate how to connect to the Kubeflow landing page. From
 there you can easily navigate to the different services using the left hand navigation
 bar. The landing page looks like this:
 
-![Landing page](/docs/images/central-ui.png)
+<img src="/docs/images/central-ui.png" 
+  alt="Kubeflow UI"
+  class="mt-3 mb-3 border border-info rounded">
 
 
 ## Google Cloud Platform (Kubernetes Engine)
