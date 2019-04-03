@@ -1,5 +1,5 @@
 +++
-title = "Setup a GCP Project"
+title = "Set up a GCP Project"
 description = "Instructions for creating a GCP project for using Kubeflow"
 weight = 1
 +++
@@ -37,7 +37,9 @@ Before you start, follow these steps to set up your Google Cloud Platform
 You do not need a running GKE cluster. The deployment process will create a
 cluster for you.
 
-## Next Steps
+## Next steps
 
-* [Setup an OAuth credential](/docs/gke/deploy/oauth-setup) if you want to use [identity aware proxy(IAP)](https://cloud.google.com/iap/docs/)
-* Deploy with the [CLI](/docs/gke/deploy/cli) or [CLI](/docs/gke/deploy/ui) if you want to use basic authentication
+* [Set up an OAuth credential](/docs/gke/deploy/oauth-setup) if you want to use [identity aware proxy(IAP)](https://cloud.google.com/iap/docs/)
+* Deploy Kubeflow 
+  * using the [CLI](/docs/gke/deploy/deploy-cli) 
+  * using [UI](/docs/gke/deploy/deploy-ui)

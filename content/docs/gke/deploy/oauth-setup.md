@@ -1,5 +1,5 @@
 +++
-title = "OAuth Setup For IAP"
+title = "OAuth Set Up For IAP"
 description = "Instructions for creating an OAuth client for IAP"
 weight = 2
 +++
@@ -73,7 +73,7 @@ user's identity.
 1. Make note of the **client ID** and **client secret** that appear in the OAuth
   client window. You need them later to enable Cloud IAP.
 
-## Next Steps
+## Next steps
 
 * Deploy Kubeflow with the [CLI](/docs/gke/deploy/deploy-cli) 
 * Deploy Kubeflow with the [UI](/docs/gke/deploy/deploy-ui)

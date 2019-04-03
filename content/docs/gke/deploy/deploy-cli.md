@@ -120,7 +120,7 @@ Follow these steps to deploy Kubeflow:
 
 The deployment process is controlled by 4 different commands:
 
-* **init** - one time setup.
+* **init** - one time set up.
 * **generate** - creates config files defining the various resources.
 * **apply** - creates or updates the resources.
 * **delete** - deletes the resources.
@@ -176,7 +176,7 @@ privilege. The three service accounts are:
   account has minimal permissions, needed to send metrics and logs to 
   [Stackdriver](https://cloud.google.com/stackdriver/).
 
-## Next Steps
+## Next steps
 
 * Run a full ML workflow on Kubeflow, using the
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
