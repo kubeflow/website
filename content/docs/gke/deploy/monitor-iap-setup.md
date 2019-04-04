@@ -129,7 +129,7 @@ While it requires some effort, the end result is well worth it
           ipAddress: 10.142.0.13
           port: 32694
         kind: compute#backendServiceGroupHealth
-    ```
+     ```
 
     * Both backends should be reported as healthy
 
