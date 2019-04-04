@@ -46,7 +46,7 @@ workload:
     alt="Pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-1. Click **Start an experiment**:
+1. Click **Create an experiment**:
   <img src="/docs/images/pipelines-start-experiment.png" 
     alt="Starting an experiment on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
@@ -59,7 +59,7 @@ workload:
     alt="Creating a run on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-1. Click **Create** to create the run.
+1. Click **Start** to create the run.
 1. Click the name of the run on the experiments dashboard:
   <img src="/docs/images/pipelines-experiments-dashboard.png" 
     alt="Experiments dashboard on the pipelines UI"
