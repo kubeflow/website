@@ -15,8 +15,7 @@ Cloud Filestore is very useful for creating a shared filesystem that can be moun
 ## Before you start
 
 This guide assumes you have already set up Kubeflow on GCP. If you haven't done
-so, follow the guide to 
-[getting started with Kubeflow on Kubernetes Engine](/docs/started/getting-started-gke).
+so, follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
 
 ## Create a Cloud Filestore instance
 

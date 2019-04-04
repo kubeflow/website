@@ -1,20 +1,21 @@
 +++
-title = "OAuth Set Up For IAP"
+title = "Set up OAuth for IAP"
 description = "Instructions for creating an OAuth client for IAP"
 weight = 2
 +++
 
-If you want to use [identity aware proxy(IAP)](https://cloud.google.com/iap/docs/), 
-then you will need to follow these instructions to create an OAuth client to
+If you want to use 
+[Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/) 
+then you must follow these instructions to create an OAuth client to
 use with Kubeflow.
 
-You can skip this step if you want to use basic auth (username & password) with
-Kubeflow.
+You can skip this step if you want to use basic authentication (username and 
+password) with Kubeflow instead of IAP.
 
 IAP is recommended for production deployments or deployments with access to
 sensitive data.
 
-Create an OAuth client ID to be used to identify Cloud IAP when requesting 
+Create an OAuth client ID that identifies Cloud IAP when requesting 
 access to a user's email account. Kubeflow uses the email address to verify the
 user's identity.
 
@@ -75,5 +76,7 @@ user's identity.
 
 ## Next steps
 
-* Deploy Kubeflow with the [CLI](/docs/gke/deploy/deploy-cli) 
-* Deploy Kubeflow with the [UI](/docs/gke/deploy/deploy-ui)
+Choose one of the following ways to deploy Kubeflow:
+
+* Using the [CLI](/docs/gke/deploy/deploy-cli) 
+* Using the [UI](/docs/gke/deploy/deploy-ui)

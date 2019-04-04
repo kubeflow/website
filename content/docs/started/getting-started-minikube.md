@@ -228,7 +228,7 @@ The following steps will deploy Kubeflow components and start them on the Miniku
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate all
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply all
     ```
-    - **KFAPP** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init. Please see [understanding the deployment process](/docs/started/getting-started-gke/#understanding-the-deployment-process) for more details.
+    - **KFAPP** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init. Please see [understanding the deployment process](/docs/gke/deploy/deploy-cli/#understanding-the-deployment-process) for more details.
 
 The above installation may take a few minutes. At the end of the installation you should see:
 ```

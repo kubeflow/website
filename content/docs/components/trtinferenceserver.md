@@ -23,7 +23,7 @@ repository.
 
 ## Setup
 
-Please refer to the [Google Kubernetes Engine Cluster for Kubeflow](https://www.kubeflow.org/docs/started/getting-started-gke/) guide for set up instructions.  
+Please refer to the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).  
 
 ## NVIDIA TensorRT Inference Server Image
 

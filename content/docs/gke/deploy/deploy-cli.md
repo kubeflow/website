@@ -5,13 +5,15 @@ weight = 4
 +++
 
 
-If you prefer to have more control over the deployment process and 
-configuration, you can use the `kfctl` command line tool instead of 
-the UI to deploy Kubeflow.
+This guide describes how to use the `kfctl` command line tool to deploy 
+Kubeflow. The command line deployment gives you more control over the deployment 
+process and configuration than the deployment UI. If you're looking for a
+simpler deployment procedure, see how to deploy Kubeflow
+[using the UI](/docs/gke/deploy/deploy-ui).
 
 Before installing Kubeflow on the command line:
 
-  * Ensure you have installed 
+  * Ensure you have installed the following tools:
     
      * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
      * [gcloud](https://cloud.google.com/sdk/)
@@ -193,9 +195,10 @@ privilege. The three service accounts are:
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
   [GitHub issue sumarization 
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
-* Deleting Kubeflow deployments with the [UI](/docs/gke/deploy/delete-ui)
+* See how to [delete](/docs/gke/deploy/delete-ui) your Kubeflow deployment 
+  using the GCP Console.
 * See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
-  deployment on GKE.
+  deployment.
 * See how to [upgrade Kubeflow](/docs/other-guides/upgrade/) and how to 
   [upgrade or reinstall a Kubeflow Pipelines 
   deployment](/docs/pipelines/upgrade/).

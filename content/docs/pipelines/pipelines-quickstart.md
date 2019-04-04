@@ -12,8 +12,8 @@ Kubeflow Pipelines. If you need a more in-depth guide, see the
 
 Follow these steps to deploy Kubeflow and open the pipelines dashboard:
 
-1. Follow the [GKE setup guide](/docs/started/getting-started-gke/) to
-  deploy Kubeflow using the 
+1. Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
+  including the step to deploy Kubeflow using the 
   [Kubeflow deployment UI](https://deploy.kubeflow.cloud/).
 
     {{% pipelines-compatibility %}} 
@@ -85,7 +85,7 @@ you need to set up some GCP services for use by the sample.
 Follow these steps to set up the necessary GCP services and run the sample:
 
 1. In addition to the standard GCP APIs that you need for Kubeflow (see the
-  [GKE setup guide](/docs/started/getting-started-gke/)), ensure that the 
+  [GCP setup guide](/docs/gke/deploy/project-setup)), ensure that the 
   following APIs are enabled:
 
     * [Cloud Storage](https://console.cloud.google.com/apis/library/storage-component.googleapis.com)
