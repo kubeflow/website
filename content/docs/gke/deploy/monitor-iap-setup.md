@@ -41,56 +41,55 @@ While it requires some effort, the end result is well worth it
 
 1. Verify that a signed SSL certificate could be generated using [Let's Encrypt](https://letsencrypt.org/)
 
-     ```
-kubectl -n kubeflow get certificate envoy-ingress-tls  -o yaml
+      ```
+      kubectl -n kubeflow get certificate envoy-ingress-tls  -o yaml
 
-apiVersion: certmanager.k8s.io/v1alpha1
-kind: Certificate
-metadata:
-  annotations:
-    ksonnet.io/managed: '{"pristine":"H4sIAAAAAAAA/6yRsW7zMAyE9/8xONv+463w2qlLhg5dggyMRDuCJVIQ6RSB4XcvlDQdCnRqN0EHfjzerYA5vFHRIAwDOCqWkHGi0s1P2gX5f+kx5jP20MAc2MMAz1QsjMGhETSQyNCjIQwrRDxR1PqaVZjJKsBJysLEBgMEzG3gqZAqbA0wJoIBiC9yffy3FhXukmZ0VZ+XE41R3uuIZnJ1Abo6uoITHsMEw2EFLwkDKwwHmMf2klCNSsu7viP2WQKbdg9U60LrKUe5JmLrXJTFd5PIBMcGzmZ511f6w+s3j7Btx60BJykJ7+9H/GJlA561Yv7Ae1BdqLzSeGvhs7C4VNzLTYKv2COZErtyzdbmIv4WL7lCtv+pl2379wEAAP//AQAA///uHVhQMgIAAA=="}'
-    kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
-  creationTimestamp: 2019-04-02T22:49:43Z
-  generation: 1
-  labels:
-    app.kubernetes.io/deploy-manager: ksonnet
-    ksonnet.io/component: iap-ingress
-  name: envoy-ingress-tls
-  namespace: kubeflow
-  resourceVersion: "4803"
-  selfLink: /apis/certmanager.k8s.io/v1alpha1/namespaces/kubeflow/certificates/envoy-ingress-tls
-  uid: 9b137b29-5599-11e9-a223-42010a8e020c
-spec:
-  acme:
-    config:
-    - domains:
-      - mykubeflow.endpoints.myproject.cloud.goog
-      http01:
-        ingress: envoy-ingress
-  commonName: kf-vmaster-n01.endpoints.kubeflow-ci-deployment.cloud.goog
-  dnsNames:
-  - mykubeflow.endpoints.myproject.cloud.goog
-  issuerRef:
-    kind: ClusterIssuer
-    name: letsencrypt-prod
-  secretName: envoy-ingress-tls
-status:
-  acme:
-    order:
-      url: https://acme-v02.api.letsencrypt.org/acme/order/54483154/382580193
-  conditions:
-  - lastTransitionTime: 2019-04-02T23:00:28Z
-    message: Certificate issued successfully
-    reason: CertIssued
-    status: "True"
-    type: Ready
-  - lastTransitionTime: null
-    message: Order validated
-    reason: OrderValidated
-    status: "False"
-    type: ValidateFailed
-
-     ```
+      apiVersion: certmanager.k8s.io/v1alpha1
+      kind: Certificate
+      metadata:
+        annotations:
+          ksonnet.io/managed: '{"pristine":"H4sIAAAAAAAA/6yRsW7zMAyE9/8xONv+463w2qlLhg5dggyMRDuCJVIQ6RSB4XcvlDQdCnRqN0EHfjzerYA5vFHRIAwDOCqWkHGi0s1P2gX5f+kx5jP20MAc2MMAz1QsjMGhETSQyNCjIQwrRDxR1PqaVZjJKsBJysLEBgMEzG3gqZAqbA0wJoIBiC9yffy3FhXukmZ0VZ+XE41R3uuIZnJ1Abo6uoITHsMEw2EFLwkDKwwHmMf2klCNSsu7viP2WQKbdg9U60LrKUe5JmLrXJTFd5PIBMcGzmZ511f6w+s3j7Btx60BJykJ7+9H/GJlA561Yv7Ae1BdqLzSeGvhs7C4VNzLTYKv2COZErtyzdbmIv4WL7lCtv+pl2379wEAAP//AQAA///uHVhQMgIAAA=="}'
+          kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
+        creationTimestamp: 2019-04-02T22:49:43Z
+        generation: 1
+        labels:
+          app.kubernetes.io/deploy-manager: ksonnet
+          ksonnet.io/component: iap-ingress
+        name: envoy-ingress-tls
+        namespace: kubeflow
+        resourceVersion: "4803"
+        selfLink: /apis/certmanager.k8s.io/v1alpha1/namespaces/kubeflow/certificates/envoy-ingress-tls
+        uid: 9b137b29-5599-11e9-a223-42010a8e020c
+      spec:
+        acme:
+          config:
+          - domains:
+            - mykubeflow.endpoints.myproject.cloud.goog
+            http01:
+              ingress: envoy-ingress
+        commonName: kf-vmaster-n01.endpoints.kubeflow-ci-deployment.cloud.goog
+        dnsNames:
+        - mykubeflow.endpoints.myproject.cloud.goog
+        issuerRef:
+          kind: ClusterIssuer
+          name: letsencrypt-prod
+        secretName: envoy-ingress-tls
+      status:
+        acme:
+          order:
+            url: https://acme-v02.api.letsencrypt.org/acme/order/54483154/382580193
+        conditions:
+        - lastTransitionTime: 2019-04-02T23:00:28Z
+          message: Certificate issued successfully
+          reason: CertIssued
+          status: "True"
+          type: Ready
+        - lastTransitionTime: null
+          message: Order validated
+          reason: OrderValidated
+          status: "False"
+          type: ValidateFailed
+      ```
 
      * The most recent condition should be **Certificate issued successfully**
      * It can take around 10 minutes to provision a certificate after the GCP loadbalancer is created
