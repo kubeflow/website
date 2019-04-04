@@ -118,18 +118,17 @@ While it requires some effort, the end result is well worth it
      gcloud compute --project=${PROJECT} backend-services get-health --global ${BACKEND_NAME}
 
      https://www.googleapis.com/compute/v1/projects/kubeflow-ci-deployment/zones/us-east1-b/instanceGroups/k8s-ig--686aad7559e1cf0e
-status:
-  healthStatus:
-  - healthState: HEALTHY
-    instance: https://www.googleapis.com/compute/v1/projects/kubeflow-ci-deployment/zones/us-east1-b/instances/gke-kf-vmaster-n01-kf-vmaster-n01-cpu-66360615-xjrc
-    ipAddress: 10.142.0.8
-    port: 32694
-  - healthState: HEALTHY
-    instance: https://www.googleapis.com/compute/v1/projects/kubeflow-ci-deployment/zones/us-east1-b/instances/gke-kf-vmaster-n01-kf-vmaster-n01-cpu-66360615-gmmx
-    ipAddress: 10.142.0.13
-    port: 32694
-  kind: compute#backendServiceGroupHealth
-
+     status:
+        healthStatus:
+        - healthState: HEALTHY
+          instance: https://www.googleapis.com/compute/v1/projects/kubeflow-ci-deployment/zones/us-east1-b/instances/gke-kf-vmaster-n01-kf-vmaster-n01-cpu-66360615-xjrc
+          ipAddress: 10.142.0.8
+          port: 32694
+        - healthState: HEALTHY
+          instance: https://www.googleapis.com/compute/v1/projects/kubeflow-ci-deployment/zones/us-east1-b/instances/gke-kf-vmaster-n01-kf-vmaster-n01-cpu-66360615-gmmx
+          ipAddress: 10.142.0.13
+          port: 32694
+        kind: compute#backendServiceGroupHealth
     ```
 
     * Both backends should be reported as healthy
@@ -141,12 +140,11 @@ status:
     * If the backend is unhealthy check the status of the envoy podss
 
       ```
-kubectl -n kubeflow get pods -l service=envoy
-NAME                     READY     STATUS    RESTARTS   AGE
-envoy-69bf97959c-29dnw   2/2       Running   2          1d
-envoy-69bf97959c-5w5rl   2/2       Running   3          1d
-envoy-69bf97959c-9cjtg   2/2       Running   3          1d
-
+      kubectl -n kubeflow get pods -l service=envoy
+      NAME                     READY     STATUS    RESTARTS   AGE
+      envoy-69bf97959c-29dnw   2/2       Running   2          1d
+      envoy-69bf97959c-5w5rl   2/2       Running   3          1d
+      envoy-69bf97959c-9cjtg   2/2       Running   3          1d
       ```
 
       	* The backends should have status Running
