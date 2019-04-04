@@ -46,7 +46,7 @@ workload:
     alt="Pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-1. Click **Start an experiment**:
+1. Click **Create an experiment**:
   <img src="/docs/images/pipelines-start-experiment.png" 
     alt="Starting an experiment on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
@@ -59,7 +59,7 @@ workload:
     alt="Creating a run on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-1. Click **Create** to create the run.
+1. Click **Start** to create the run.
 1. Click the name of the run on the experiments dashboard:
   <img src="/docs/images/pipelines-experiments-dashboard.png" 
     alt="Experiments dashboard on the pipelines UI"
@@ -107,7 +107,7 @@ Follow these steps to set up the necessary GCP services and run the sample:
     alt="XGBoost sample on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-1. Click **Start an experiment**.
+1. Click **Create an experiment**.
 1. Follow the prompts to create an **experiment** and then create a **run**.
   Supply the following **run parameters**:
 
@@ -129,13 +129,13 @@ Follow these steps to set up the necessary GCP services and run the sample:
   * true-label: Column to be used for text representation of the label output
     by the model.
 
-    The arrows on the following screenshot indicate the parameters that you
+    The arrows on the following screenshot indicate the run parameters that you
     must supply:
     <img src="/docs/images/pipelines-start-xgboost-run.png" 
       alt="Starting the XGBoost run on the pipelines UI"
       class="mt-3 mb-3 border border-info rounded">
 
-1. Click **Create** to create the run.
+1. Click **Start** to create the run.
 1. Click the name of the run on the experiments dashboard.
 1. Explore the graph and other aspects of your run by clicking on the 
   components of the graph and the other UI elements. The following screenshot
