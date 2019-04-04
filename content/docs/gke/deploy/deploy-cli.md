@@ -105,6 +105,9 @@ Follow these steps to deploy Kubeflow:
 
 1. We recommend that you check in the contents of your **${KFAPP}** directory
   into source control.
+
+## Deleting Kubeflow
+
 1. To delete your deployment and reclaim all resources:
 
     ```
