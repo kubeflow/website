@@ -12,10 +12,15 @@ the UI to deploy Kubeflow.
 Before installing Kubeflow on the command line:
 
   * Ensure you have installed 
-    [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+    
+     * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+     * [gcloud](https://cloud.google.com/sdk/)
+
   * If you're using
     [Cloud Shell](https://cloud.google.com/shell/), enable 
     [boost mode](https://cloud.google.com/shell/docs/features#boost_mode).
+
+## Deploy Kubeflow
 
 Follow these steps to deploy Kubeflow:
 

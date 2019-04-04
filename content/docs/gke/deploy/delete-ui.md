@@ -6,6 +6,11 @@ weight = 5
 
 Instructins for deleting Kubeflow using the Google Cloud Console.
 
+Deleting the deployment manager can orphan some resources like Cloud Endpoints.
+
+For best results we recommend using the [CLI to delete](https://deploy-preview-568--competent-brattain-de2d6d.netlify.com/docs/gke/deploy/deploy-cli/#deleting-kubeflow)
+
+
 To delete your Kubeflow deployment and reclaim all related resources, using the
 GCP Console:
 

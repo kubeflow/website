@@ -335,3 +335,15 @@ you can change the [zone](https://github.com/kubeflow/kubeflow/blob/master/scrip
 or change the [minCpuPlatform](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster.jinja#L105).
 See [here](https://cloud.google.com/compute/docs/regions-zones/#available)
 for available zones and cpu platforms.
+
+## Changing the OAuth client used by IAP
+
+If you need to change the OAuth client used by IAP you can runn the following commands
+to replace the K8s secret containing the id and secret.
+
+```
+kubectl -n kubeflow delete secret kubeflow-oauth
+kubectl -n kubeflow create secret generic kubeflow-oauth \
+       --from-literal=CLIENT_ID=${CLIENT_ID} \
+       --from-literal=CLIENT_SECRET=${CLIENT_SECRET}
+```
