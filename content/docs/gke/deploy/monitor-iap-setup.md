@@ -180,9 +180,9 @@ While it requires some effort, the end result is well worth it
        * SSL propogation could take up to 10 minutes
 
 1. After logging in if you get an error **Error: redirect_uri_mismatch** this means the OAuth authorized redirect 
-     URIs does not include your domain
+   URIs does not include your domain
 
-  	 * The full error message will look like the following include the relevant links
+  	 * The full error message will look like the following and include the relevant links
 
   	   ```
   	   The redirect URI in the request, https://mykubeflow.endpoints.myproject.cloud.goog/_gcp_gatekeeper/authenticate, does not match the ones authorized for the OAuth client. 
