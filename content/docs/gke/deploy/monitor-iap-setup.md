@@ -16,7 +16,7 @@ While it requires some effort, the end result is well worth it
  * You rely on Google's security expertise to protect your sensitive workloads
 
 
- 1. The first step is to ensure the ingress and GCB loadbalancer is created
+1. The first step is to ensure the ingress and GCB loadbalancer is created
   
      ```
      kubectl -n kubeflow describe ingress
@@ -39,7 +39,7 @@ While it requires some effort, the end result is well worth it
        or else delete some existing resources.
 
 
- 1. Verify that a signed SSL certificate could be generated using [Let's Encrypt](https://letsencrypt.org/)
+1. Verify that a signed SSL certificate could be generated using [Let's Encrypt](https://letsencrypt.org/)
 
      ```
 kubectl -n kubeflow get certificate envoy-ingress-tls  -o yaml
@@ -111,7 +111,7 @@ status:
          kfctl init myapp-unique --project=myproject --platform=gcp
          ```
 
-  1. Wait for the load balancer to report the backends as healthy
+1. Wait for the load balancer to report the backends as healthy
 
      ```
      NODE_PORT=$(kubectl --namespace=${NAMESPACE} get svc envoy -o jsonpath='{.spec.ports[0].nodePort}')
@@ -161,7 +161,7 @@ envoy-69bf97959c-9cjtg   2/2       Running   3          1d
        kubectl -n kubeflow logs ${POD}
        ```
 
- 1. Now that the certificate exists the ingress should report that it is serving on https as well
+1. Now that the certificate exists the ingress should report that it is serving on https as well
 
        ```
        kubectl -n kubeflow get ingress
@@ -172,7 +172,7 @@ envoy-69bf97959c-9cjtg   2/2       Running   3          1d
      * If you don't see 443 look at the ingress events using `kubectl describe` to see if there are any errors
 
 
- 1. Try accessing IAP at the full qualified domain name in your web browser
+1. Try accessing IAP at the full qualified domain name in your web browser
 
      ```
      https://${FQDN}     
@@ -182,7 +182,7 @@ envoy-69bf97959c-9cjtg   2/2       Running   3          1d
 
        * SSL propogation could take up to 10 minutes
 
-  1. After logging in if you get an error **Error: redirect_uri_mismatch** this means the OAuth authorized redirect 
+1. After logging in if you get an error **Error: redirect_uri_mismatch** this means the OAuth authorized redirect 
      URIs does not include your domain
 
   	 * The full error message will look like the following include the relevant links
