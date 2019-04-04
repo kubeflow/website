@@ -10,7 +10,7 @@ This guide walks you through using MXNet with Kubeflow.
 
 If you haven't already done so please follow the [Getting Started Guide](https://www.kubeflow.org/docs/started/getting-started/) to deploy Kubeflow.
 
-An **alpha** version of MXNet support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow newer than 0.2.0.
+A version of MXNet support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow newer than 0.2.0.
 
 ## Verify that MXNet support is included in your Kubeflow deployment
 
@@ -35,18 +35,33 @@ If it is not included you can add it as follows
 cd ${KSONNET_APP}
 ks pkg install kubeflow/mxnet-job
 ks generate mxnet-operator mxnet-operator
-ks apply ${ENVIRONMENT} -c mxnet-operator
+ks apply default -c mxnet-operator
 ```
 
-## Creating a MXNet Job
+## Creating a MXNet training job
 
 
-You create a job by defining a MXJob and then creating it with.
+You create a training job by defining a MXJob with MXTrain mode and then creating it with
 
 
 ```
-kubectl create -f examples/mx_job_dist.yaml 
+kubectl create -f examples/v1beta1/train/mx_job_dist_gpu.yaml
 ```
+
+
+## Creating a TVM tuning job (AutoTVM)
+
+
+[TVM](https://docs.tvm.ai/tutorials/) is a end to end deep learning compiler stack, you can easily run AutoTVM with mxnet-operator. 
+You can create a auto tuning job by define a type of MXTune job and then creating it with
+
+
+```
+kubectl create -f examples/v1beta1/tune/mx_job_tune_gpu.yaml
+```
+
+
+Before you use the auto-tuning example, there is some preparatory work need to be finished in advance. To let TVM tune your network, you should create a docker image which has TVM module. Then, you need a auto-tuning script to specify which network will be tuned and set the auto-tuning parameters, For more details, please see https://docs.tvm.ai/tutorials/autotvm/tune_relay_mobile_gpu.html#sphx-glr-tutorials-autotvm-tune-relay-mobile-gpu-py. Finally, you need a startup script to start the auto-tuning program. In fact, mxnet-operator will set all the parameters as environment variables and the startup script need to reed these variable and then transmit them to auto-tuning script. We provide an example under examples/v1beta1/tune/, tuning result will be saved in a log file like resnet-18.log in the example we gave. You can refer it for details.
 
 
 ## Monitoring a MXNet Job
@@ -61,99 +76,100 @@ kubectl get -o yaml mxjobs $JOB
 Here is sample output for an example job
 
 ```yaml
-apiVersion: kubeflow.org/v1alpha1
+apiVersion: kubeflow.org/v1beta1
 kind: MXJob
 metadata:
-  clusterName: ""
-  creationTimestamp: 2018-08-10T07:13:39Z
+  creationTimestamp: 2019-03-19T09:24:27Z
   generation: 1
-  name: example-dist-job
+  name: mxnet-job
   namespace: default
-  resourceVersion: "491499"
-  selfLink: /apis/kubeflow.org/v1alpha1/namespaces/default/mxjobs/example-dist-job
-  uid: e800b1ed-9c6c-11e8-962f-704d7b2c0a63
+  resourceVersion: "3681685"
+  selfLink: /apis/kubeflow.org/v1beta1/namespaces/default/mxjobs/mxnet-job
+  uid: cb11013b-4a28-11e9-b7f4-704d7bb59f71
 spec:
-  RuntimeId: aycw
-  jobMode: dist
-  mxImage: mxjob/mxnet:gpu
-  replicaSpecs:
-  - PsRootPort: 9000
-    mxReplicaType: SCHEDULER
-    replicas: 1
-    template:
-      metadata:
-        creationTimestamp: null
-      spec:
-        containers:
-        - args:
-          - train_mnist.py
-          command:
-          - python
-          image: mxjob/mxnet:gpu
-          name: mxnet
-          resources: {}
-          workingDir: /incubator-mxnet/example/image-classification
-        restartPolicy: OnFailure
-  - PsRootPort: 9091
-    mxReplicaType: SERVER
-    replicas: 1
-    template:
-      metadata:
-        creationTimestamp: null
-      spec:
-        containers:
-        - args:
-          - train_mnist.py
-          command:
-          - python
-          image: mxjob/mxnet:gpu
-          name: mxnet
-          resources: {}
-          workingDir: /incubator-mxnet/example/image-classification
-        restartPolicy: OnFailure
-  - PsRootPort: 9091
-    mxReplicaType: WORKER
-    replicas: 1
-    template:
-      metadata:
-        creationTimestamp: null
-      spec:
-        containers:
-        - args:
-          - train_mnist.py
-          - --num-epochs=10
-          - --num-layers=2
-          - --kv-store=dist_device_sync
-          command:
-          - python
-          image: mxjob/mxnet:gpu
-          name: mxnet
-          resources: {}
-          workingDir: /incubator-mxnet/example/image-classification
-        restartPolicy: OnFailure
-  terminationPolicy:
-    chief:
-      replicaIndex: 0
-      replicaName: SCHEDULER
+  cleanPodPolicy: All
+  jobMode: MXTrain
+  mxReplicaSpecs:
+    Scheduler:
+      replicas: 1
+      restartPolicy: Never
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: mxjob/mxnet:gpu
+            name: mxnet
+            ports:
+            - containerPort: 9091
+              name: mxjob-port
+            resources: {}
+    Server:
+      replicas: 1
+      restartPolicy: Never
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: mxjob/mxnet:gpu
+            name: mxnet
+            ports:
+            - containerPort: 9091
+              name: mxjob-port
+            resources: {}
+    Worker:
+      replicas: 1
+      restartPolicy: Never
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - args:
+            - /incubator-mxnet/example/image-classification/train_mnist.py
+            - --num-epochs
+            - "10"
+            - --num-layers
+            - "2"
+            - --kv-store
+            - dist_device_sync
+            - --gpus
+            - "0"
+            command:
+            - python
+            image: mxjob/mxnet:gpu
+            name: mxnet
+            ports:
+            - containerPort: 9091
+              name: mxjob-port
+            resources:
+              limits:
+                nvidia.com/gpu: "1"
 status:
-  phase: Running
-  reason: ""
-  replicaStatuses:
-  - ReplicasStates:
-      Running: 1
-    mx_replica_type: SCHEDULER
-    state: Running
-  - ReplicasStates:
-      Running: 1
-    mx_replica_type: SERVER
-    state: Running
-  - ReplicasStates:
-      Running: 1
-    mx_replica_type: WORKER
-    state: Running
-  state: Running
-
-
+  completionTime: 2019-03-19T09:25:11Z
+  conditions:
+  - lastTransitionTime: 2019-03-19T09:24:27Z
+    lastUpdateTime: 2019-03-19T09:24:27Z
+    message: MXJob mxnet-job is created.
+    reason: MXJobCreated
+    status: "True"
+    type: Created
+  - lastTransitionTime: 2019-03-19T09:24:27Z
+    lastUpdateTime: 2019-03-19T09:24:29Z
+    message: MXJob mxnet-job is running.
+    reason: MXJobRunning
+    status: "False"
+    type: Running
+  - lastTransitionTime: 2019-03-19T09:24:27Z
+    lastUpdateTime: 2019-03-19T09:25:11Z
+    message: MXJob mxnet-job is successfully completed.
+    reason: MXJobSucceeded
+    status: "True"
+    type: Succeeded
+  mxReplicaStatuses:
+    Scheduler: {}
+    Server: {}
+    Worker: {}
+  startTime: 2019-03-19T09:24:29Z
 ```
-
-
