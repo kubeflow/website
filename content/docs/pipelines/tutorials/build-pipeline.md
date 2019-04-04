@@ -82,8 +82,7 @@ Follow these steps to start a notebook:
 
 1. Deploy Kubeflow and open the pipelines dashboard:
 
-    * Follow the 
-      [Kubernetes Engine (GKE) setup guide](/docs/started/getting-started-gke/) 
+    * Follow the [GCP deployment guide](/docs/gke/deploy/), including the step 
       to deploy Kubeflow using the 
       [Kubeflow deployment UI](https://deploy.kubeflow.cloud/).
 

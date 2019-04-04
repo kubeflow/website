@@ -179,9 +179,9 @@ You can override the default styles and add new ones:
 Styling of images:
 
 * To see some examples of styled images, take a look at the
-  [GKE getting-started page](https://www.kubeflow.org/docs/started/getting-started-gke/#create-oauth-client-credentials) 
+  [OAuth setup page](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) 
   in the Kubeflow docs. Search for `.png` in the
-  [page source](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/started/getting-started-gke.md).
+  [page source](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/gke/deploy/oauth-setup.md).
 * For more help, see the guide to
   [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/).
 * Also see the Bootstrap utilities, such as 

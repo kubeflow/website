@@ -11,7 +11,7 @@ Platform (GCP).
 
 This guide assumes you have already set up Kubeflow on GCP. If you haven't done
 so, follow the guide to 
-[getting started with Kubeflow on Kubernetes Engine](/docs/started/getting-started-gke).
+[getting started with Kubeflow on GCP](/docs/gke/deploy/).
 
 ## Using your own domain
 

@@ -5,13 +5,12 @@ weight = 2
 +++
 
 This guide describes how to customize your deployment of Kubeflow on Google 
-Kubernetes Engine (GKE).
+Kubernetes Engine (GKE) in Google Cloud Platform (GCP).
 
 ## Before you start
 
 This guide assumes you have already set up Kubeflow with GKE. If you haven't done
-so, follow the guide to 
-[getting started with Kubeflow on GKE](/docs/started/getting-started-gke).
+so, follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
 
 ## Customizing Kubeflow
 

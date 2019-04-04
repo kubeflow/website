@@ -33,3 +33,6 @@
 /docs/pipelines/lightweight-python-components/ /docs/pipelines/sdk/lightweight-python-components/
 /docs/pipelines/build-pipeline/                /docs/pipelines/tutorials/build-pipeline/
 /docs/pipelines/pipelines-tutorial/            /docs/pipelines/tutorials/pipelines-tutorial/
+
+# Moved the guide to monitoring GKE deployments.
+/docs/other-guides/monitoring/                 /docs/gke/monitoring/

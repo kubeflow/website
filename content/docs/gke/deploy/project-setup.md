@@ -1,6 +1,6 @@
 +++
 title = "Set up a GCP Project"
-description = "Instructions for creating a GCP project for using Kubeflow"
+description = "How to create a GCP project for your Kubeflow deployment"
 weight = 1
 +++
 
@@ -39,7 +39,9 @@ cluster for you.
 
 ## Next steps
 
-* [Set up an OAuth credential](/docs/gke/deploy/oauth-setup) if you want to use [identity aware proxy(IAP)](https://cloud.google.com/iap/docs/)
-* Deploy Kubeflow 
-  * using the [CLI](/docs/gke/deploy/deploy-cli) 
-  * using [UI](/docs/gke/deploy/deploy-ui)
+* [Set up an OAuth credential](/docs/gke/deploy/oauth-setup) if you want to use 
+[identity aware proxy (IAP)](https://cloud.google.com/iap/docs/)
+* Choose one of the following ways to deploy Kubeflow:
+
+  * Using the [CLI](/docs/gke/deploy/deploy-cli) 
+  * Using the [UI](/docs/gke/deploy/deploy-ui)

@@ -127,7 +127,8 @@ If the service type is ClusterIP, you can access through ingress.
 It's protected and only one with right credentials can access the endpoint.
 Below shows how to programmatically authenticate a service account to access IAP.
 
-1. Save the client id you used to [deploy Kubeflow](https://www.kubeflow.org/docs/started/getting-started-gke/) as `IAP_CLIENT_ID`.
+1. Save the client ID that you used to 
+  [deploy Kubeflow](/docs/gke/deploy/) as `IAP_CLIENT_ID`.
 2. Create a service account
    ```
    gcloud iam service-accounts create --project=$PROJECT $SERVICE_ACCOUNT
@@ -157,5 +158,5 @@ python iap_request.py https://YOUR_HOST/tfserving/models/mnist IAP_CLIENT_ID --i
 Please look at the [Istio guide](/docs/components/istio/).
 
 ## Logs and metrics with Stackdriver
-See [here](/docs/other-guides/monitoring/) for instructions to get logs and metrics
-using Stackdriver.
+See the guide to [logging and monitoring](/docs/gke/monitoring/) 
+for instructions on getting logs and metrics using Stackdriver.

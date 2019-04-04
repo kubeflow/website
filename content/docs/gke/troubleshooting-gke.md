@@ -10,7 +10,7 @@ Google Kubernetes Engine (GKE) and Google Cloud Platform (GCP).
 ## Before you start
 
 This guide covers troubleshooting specifically for 
-[Kubeflow deployments on GKE](/docs/started/getting-started-gke).
+[Kubeflow deployments on GCP](/docs/gke/deploy/).
 
 For more help, try the 
 [general Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting).

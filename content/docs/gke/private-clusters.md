@@ -10,8 +10,7 @@ Kubernetes Engine (GKE).
 ## Before you start
 
 This guide assumes you have already set up Kubeflow with GKE. If you haven't done
-so, follow the guide to 
-[getting started with Kubeflow on Kubernetes Engine](/docs/started/getting-started-gke).
+so, follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
 
 ## Private clusters
 

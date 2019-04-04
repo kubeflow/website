@@ -40,8 +40,8 @@ the Kubeflow Pipelines upgrade/installation capability.
 
 ### Deploying Kubeflow on GCP 
 
-Follow the guide to [getting started with Kubeflow on
-GKE](/docs/started/getting-started-gke/). You don't need to do anything extra. 
+Follow the guide to [deploying Kubeflow on
+GCP](/docs/gke/deploy/). You don't need to do anything extra. 
 
 When the deployment has finished, you can see two entries in the GCP 
 Deployment Manager, one for deploying the cluster and one for
@@ -142,8 +142,7 @@ Kubeflow Pipelines using the web interface.
 ### Reinstalling Kubeflow Pipelines on GCP
 
 To reinstall Kubeflow Pipelines, follow the [command line deployment 
-instructions](/docs/started/getting-started-gke/#deploy-kubeflow-on-gke-using-the-command-line)
-in the guide to getting started with Kubeflow on GKE, but note the following
+instructions](/docs/gke/deploy/deploy-cli/), but note the following
 change in the procedure:
 
 1. **Before** running the following `apply` command:

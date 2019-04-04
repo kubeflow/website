@@ -4,8 +4,10 @@ description = "Instructions for deploying Kubeflow using the UI"
 weight = 3
 +++
 
-This page provides instructions for deploying Kubeflow using 
-the Click to Deploy web app for Google Cloud.
+This page provides instructions for using the Kubeflow deployment web app to
+deploy Kubeflow on Google Cloud Platform (GCP). If you prefer to use the
+command line, see the guide to 
+[deployment using the CLI](/docs/gke/deploy/deploy-cli).
 
 1. Open [https://deploy.kubeflow.cloud/](https://deploy.kubeflow.cloud/#/deploy)
   in your web browser.
@@ -34,15 +36,16 @@ It can take 10-15 minutes for the URI to become available. You can watch
 for updates in the information box on the deployment UI. If the deployment
 takes longer than expected, try accessing the above URI anyway.
 
-## Next Steps
+## Next steps
 
 * Run a full ML workflow on Kubeflow, using the
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
   [GitHub issue sumarization 
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
-* Deleting Kubeflow deployments with the [UI](/docs/gke/deploy/delete-ui)
+* See how to [delete](/docs/gke/deploy/delete-ui) your Kubeflow deployment 
+  using the GCP Console.
 * See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
-  deployment on GKE.
+  deployment.
 * See how to [upgrade Kubeflow](/docs/other-guides/upgrade/) and how to 
   [upgrade or reinstall a Kubeflow Pipelines 
   deployment](/docs/pipelines/upgrade/).

@@ -4,12 +4,12 @@ description = "How to access the Kubeflow web UIs"
 weight = 15
 +++
 
-Kubeflow includes a number of web UIs. This document provides instructions on
-how to connect to them.
+Kubeflow includes a number of web user interfaces (UIs). This document provides 
+instructions on how to connect to them.
 
-## Accessing Kubeflow Web UIs
+## Accessing Kubeflow web UIs
 
-Kubeflow comes with a number of web UIs e.g.
+Kubeflow comes with a number of web UIs, including:
 
 * Argo UI
 * Central UI for navigation
@@ -31,18 +31,19 @@ bar. The landing page looks like this:
 
 ## Google Cloud Platform (Kubernetes Engine)
 
-If you followed the [guide for Kubernetes Engine](/docs/started/getting-started-gke), Kubeflow will be deployed with
-IAP or Basic Auth and the landing page will be accessible at
+If you followed the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), Kubeflow 
+is deployed with Cloud Identity-Aware Proxy (Cloud IAP) or basic authentication, 
+and the Kubeflow landing page is accessible at a URL of the following pattern:
 
 ```
 https://<name>.endpoints.<project>.cloud.goog/
 ```
 
-This will bring up the landing page illustrated above.
+This URL brings up the landing page illustrated above.
 
 ## Using Kubectl and port-forwarding
 
-You can use the following command to setup port forwarding to the
+You can use the following command to set up port forwarding to the
 [Ambassador](https://www.getambassador.io/) service that provides the reverse proxy.
 
 ```
@@ -50,7 +51,7 @@ export NAMESPACE=kubeflow
 kubectl port-forward svc/ambassador -n ${NAMESPACE} 8080:80
 ```
 
-You can then access the central navigation dashboard at
+You can then access the central navigation dashboard at:
 
 ```
 http://localhost:8080/

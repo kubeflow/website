@@ -34,8 +34,8 @@ In
 [Kubeflow v0.1.3 and later](https://github.com/kubeflow/pipelines/releases/tag/0.1.3),
 Kubeflow Pipelines is one of the Kubeflow core components. It's 
 automatically deployed during Kubeflow deployment. You can try it currently 
-with a Kubeflow deployment on GKE. See the 
-[GKE setup guide](/docs/started/getting-started-gke/).
+with a Kubeflow deployment on GKE in Google Cloud Platform (GCP). See the guide 
+to [deploying Kubeflow on GCP](/docs/gke/deploy/).
 
 {{% pipelines-compatibility %}}
 

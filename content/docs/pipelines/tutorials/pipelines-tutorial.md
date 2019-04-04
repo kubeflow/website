@@ -137,7 +137,7 @@ Set up the following environment variables for use throughout the tutorial:
 Deploy Kubeflow on GCP:
 
 1. Follow the instructions in the 
-  [GKE getting-started guide](/docs/started/getting-started-gke), 
+  guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
   taking note of the following:
 
   * Make sure that you enable **Cloud Identity-Aware Proxy (IAP)**

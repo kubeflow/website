@@ -75,8 +75,8 @@ There are several options:
 
 ### Cloud
 
-To get started with Kubeflow on the cloud please follow the [Kubernetes Engine
-setup](/docs/started/getting-started-gke/) guide.
+To get started with Kubeflow on the cloud please follow the the 
+guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
 
 For more general information on setting up a Kubernetes cluster please refer to
 [Kubernetes Setup](https://kubernetes.io/docs/setup/). If you want to use GPUs,

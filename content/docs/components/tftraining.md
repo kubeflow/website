@@ -226,7 +226,7 @@ The TFJob dashboard is available at `<path>/tfjobs/ui/`. Specifically:
     ![Central UI](/docs/images/central-ui.png)
 
 * If you followed the
- [guide for GKE](/docs/started/getting-started-gke), you can
+ guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), you can
  access the TFJob dashboard at the following URL:
 
     ```
@@ -621,10 +621,12 @@ further analysis.
 
 ### Stackdriver on GKE
 
-See [here](/docs/other-guides/monitoring/) for instructions to get logs using Stackdriver.
+See the guide to [logging and monitoring](/docs/gke/monitoring/) for 
+instructions on getting logs using Stackdriver.
 
-As described [here](https://www.kubeflow.org/docs/other-guides/monitoring/#filter-with-labels) its possible
-to fetch the logs for a particular replica based on pod labels. 
+As described in the guide to 
+[logging and monitoring](https://www.kubeflow.org/docs/gke/monitoring/#filter-with-labels),
+it's possible to fetch the logs for a particular replica based on pod labels. 
 
 Using the Stackdriver UI you can use a query like
 

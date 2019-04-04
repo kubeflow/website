@@ -1,6 +1,6 @@
 +++
-title = "Next steps"
-description = "Next steps after deploying Kubeflow on GCP"
+title = "Next Steps"
+description = "Suggestions for further exploration after deploying Kubeflow on GCP"
 weight = 6
 +++
 
