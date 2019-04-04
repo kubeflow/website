@@ -1,7 +1,7 @@
 +++
 title = "Customizing Kubeflow on GKE"
 description = "Tailoring a GKE deployment of Kubeflow"
-weight = 1
+weight = 2
 +++
 
 This guide describes how to customize your deployment of Kubeflow on Google 
