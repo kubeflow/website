@@ -4,8 +4,8 @@ description = "Instructions for monitoring and troubleshooting IAP"
 weight = 5
 +++
 
-Identity aware proxy(IAP) is the recommended approach for accessing Kubeflow deployments
-from outside the cluster.
+Using identity aware proxy (IAP) is the recommended solution for accessing your Kubeflow 
+deployment from outside the cluster.
 
 This is a step to step guide to ensuring your IAP secured endpoint comes up and
 debugging problems when it doesn't.
@@ -17,20 +17,18 @@ While it requires some effort, the end result is well worth it
 
 
  1. The first step is to ensure the ingress and GCB loadbalancer is created
-
-    ```
-    kubectl -n kubeflow get ingress
-    NAME            HOSTS                                                        ADDRESS          PORTS     AGE
-    envoy-ingress   mykubeflow.endpoints.myproject.cloud.goog   35.244.132.159   80   1d
-    ```
-
-    * The ip address indicates a loadbalancer was successfully created.
-
- 1. Verify that there are no problems creating the loadbalancer
-
+  
      ```
      kubectl -n kubeflow describe ingress
+
+     Name:             envoy-ingress
+     Namespace:        kubeflow
+     Address:          35.244.132.160
+     Default backend:  default-http-backend:80 (10.20.0.10:8080)
+     ...
      ```
+
+     * If the address isn't set then there was a problem creating the loadbalancer
 
      * If there are any problems creating the loadbalancer they will be reported as Kubernetes events that show up
        when you run describe
@@ -41,10 +39,11 @@ While it requires some effort, the end result is well worth it
        or else delete some existing resources.
 
 
-  1. Verify that a signed SSL certificate could be generated using [Let's Encrypt](https://letsencrypt.org/)
+ 1. Verify that a signed SSL certificate could be generated using [Let's Encrypt](https://letsencrypt.org/)
 
      ```
 kubectl -n kubeflow get certificate envoy-ingress-tls  -o yaml
+
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
 metadata:
@@ -97,7 +96,7 @@ status:
      * It can take around 10 minutes to provision a certificate after the GCP loadbalancer is created
      * The most common error is hitting Let's Encrypt quota issues
        
-       * The easiest fix is to pick a different hostname by recreating and redeploying Kubeflow with a different
+       * The easiest fix to quota issues is to pick a different hostname by recreating and redeploying Kubeflow with a different
          name 
 
        * For example if you ran 
@@ -106,7 +105,7 @@ status:
          kfctl init myapp --project=myproject --platform=gcp
          ```
 
-       * Rerun kfctl with a different name but using a name you hadn't used in the past
+       * Rerun kfctl with a different name that you had not previously used
 
          ```
          kfctl init myapp-unique --project=myproject --platform=gcp
@@ -151,7 +150,8 @@ envoy-69bf97959c-9cjtg   2/2       Running   3          1d
 
       ```
 
-      	* The backends should be in the Running status
+      	* The backends should have status Running
+
       	* A small number of restarts is expected since the envoy containers need to be restarted as part of their configuration process
 
 
@@ -161,18 +161,18 @@ envoy-69bf97959c-9cjtg   2/2       Running   3          1d
        kubectl -n kubeflow logs ${POD}
        ```
 
-  1. Now that the certificate exists the ingress should report that it is serving on https as well
+ 1. Now that the certificate exists the ingress should report that it is serving on https as well
 
-     ```
-     kubectl -n kubeflow get ingress
-     NAME            HOSTS                                                        ADDRESS          PORTS     AGE
-     envoy-ingress   mykubeflow.endpoints.myproject.cloud.goog   35.244.132.159   80, 443   1d
-     ```
+       ```
+       kubectl -n kubeflow get ingress
+       NAME            HOSTS                                                        ADDRESS          PORTS     AGE
+       envoy-ingress   mykubeflow.endpoints.myproject.cloud.goog   35.244.132.159   80, 443   1d
+       ```
 
      * If you don't see 443 look at the ingress events using `kubectl describe` to see if there are any errors
 
 
-  1. Try accessing IAP at the full qualified domain name in your web browser
+ 1. Try accessing IAP at the full qualified domain name in your web browser
 
      ```
      https://${FQDN}     
@@ -182,19 +182,15 @@ envoy-69bf97959c-9cjtg   2/2       Running   3          1d
 
        * SSL propogation could take up to 10 minutes
 
-  1. After logging in you get an error **Error: redirect_uri_mismatch**
-
-  	 * This means the OAuth authorized redirect URIs does not include your domain
+  1. After logging in if you get an error **Error: redirect_uri_mismatch** this means the OAuth authorized redirect 
+     URIs does not include your domain
 
   	 * The full error message will look like the following include the relevant links
 
   	   ```
   	   The redirect URI in the request, https://mykubeflow.endpoints.myproject.cloud.goog/_gcp_gatekeeper/authenticate, does not match the ones authorized for the OAuth client. 
-
   	   To update the authorized redirect URIs, visit: https://console.developers.google.com/apis/credentials/oauthclient/22222222222-7meeee7a9a76jvg54j0g2lv8lrsb4l8g.apps.googleusercontent.com?project=22222222222
   	   ```
 
   	 * Follow the link in the error message to navigate to the OAuth credential being used and add the redirect URI listed in the error
   	   message to the list of authorized URIs
-
-  1. 

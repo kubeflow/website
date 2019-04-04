@@ -34,7 +34,7 @@ It can take 10-15 minutes for the URI to become available. You can watch
 for updates in the information box on the deployment UI. If the deployment
 takes longer than expected, try accessing the above URI anyway.
 
-## Next Steps
+## Next steps
 
 * Run a full ML workflow on Kubeflow, using the
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
