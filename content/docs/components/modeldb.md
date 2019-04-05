@@ -27,13 +27,13 @@ ks apply default -c modeldb
 
 ## Concepts
  
-* ModelDB organizes model data in a 3-level model hierarchy, from bottom to top - 
+ModelDB organizes model data in a 3-level model hierarchy, from bottom to top - 
 
 1. ExperimentRun: every execution of a script/program creates an ExperimentRun.
 1. Experiment: related ExperimentRuns can be grouped into an Experiment (e.g., "running hyperparameter optimization for the Neural Network"). 
 1. Project: Finally, all Experiments and ExperimentRuns belong to a Project (e.g., "churn prediction").
 
-* Classes -
+Classes -
 
 1. Datasets takes  filepaths and optional metadata. Associate a tag (key) for each Dataset (value).
 1. Model takes model type, model and path to model as arguments.
@@ -45,74 +45,88 @@ ks apply default -c modeldb
 After ModelDB is deployed and modeldb-db, modeldb-backend and modeldb-frontend pods are running - 
 
 1. Install ModelDB
+    
+    Modeldb is now a part of the verta library. verta is compatible with python 3.5+ and the latest verta releases are available as source packages over pip. When using pip it is generally recommended to install packages in a virtual environment to avoid modifying system state.
+  
+  - Check your python version : 
+  
+    ```python --version```
+    
+  -  Creating and activating new environment : 
 
-``` 
-pip install modeldb
-```
+     ```python -m venv .env```
+  
+     ``` source .env/bin/activate```
 
-1. Loading Metrics from Python
+  - Install Verta :
+  
+    ```pip install verta==versionNumber```
+  
+2. Setup
 
-   You can use Jupyter notebooks or a Python file for your model script.
+    Get the host and port details of the modelDB backend proxy.
+    ```
+    kubectl get service modeldb-backend-proxy --namespace kubeflow
+    ```
+    Configure HOST and PORT to connect to the modelDB backend. 
+    ```
+    from verta import ModelDBClient
+    HOST = ""
+    PORT = ""
 
-   ModelDBSyncer is the object that logs models and operations to the ModelDB backend.
-   You can initialize the Syncer with your specified configurations as shown below.
+    client = ModelDBClient(HOST, PORT)
+    ```
+3. Creating a project
+    
+    Begin by creating a project and adding all the models as runs within the project. Each run can represent a strategy to solve the problem. 
 
-   Create a syncer using a convenience API
+     ```
+     project = client.set_project(proj_name="My Project")  # a project is a goal
+     experiment = client.set_experiment(expt_name="My Experiment")  # strategy for project
+     run = client.set_experiment_run(run_name="First run")
+     ```
+   
+4. Logging hyperparameters, metrics and datasets
 
+   Use ```run.log_xxx()``` in your code to record metrics, hyperparameters, datasets etc.
+    
    ```
-   syncer_obj = Syncer.create_syncer("Project Name", 
-   "test_user", 
-   "project description", 
-   host="modeldb-backend")
+   #Hyperparameters
+    param_grid = {'n_estimators': [100],
+              'learning_rate':[ 0.1, 0.02],
+              'max_depth' : [6, 4],
+              'max_leaf_nodes': [3, 15],
+              'max_features': [1.0, 0.1]
+             }
+    for h, v in param_grid.items():
+      run.log_hyperparameter(h, v)
+      
+    #Metrics
+    model = GradientBoostingRegressor(**hyperparameters)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    train_score = model.score(X_train, y_train)
+    test_score = model.score(X_test, y_test)
+    run.log_metric("Accuracy_train", train_score)
+    run.log_metric("Accuracy_test", test_score)
+    
+    #Datasets
+    #save models with either joblib or pickle
+    from sklearn.externals import joblib
+    filename_2 = "simple_model_gbr_2.joblib"
+    joblib.dump(model, filename_2)
+    run.log_model("model_gbr_2", filename_2)
    ```
+   
+5. View your models in the webapp
 
-   For other ways of initializing the syncer see [here](https://github.com/mitdbg/modeldb/blob/master/client/python/light_api.md#b-create-a-modeldb-syncer).
-
-1. Sync Information
-
-   Initialize the Dataset, Model, ModelConfig, ModelMetrics classes with the needed information as arguments then call the sync methods on the Syncer object. Finally, call syncer_obj.sync().
-
-   ```
-   # create Datasets by specifying their filepaths and optional metadata
-   # associate a tag (key) for each Dataset (value)
-   datasets = {
-    "train" : Dataset("/path/to/train", {"num_cols" : 15, "dist" : "random"}),
-    "test" : Dataset("/path/to/test", {"num_cols" : 15, "dist" : "gaussian"})
-   }
-
-   # create the Model, ModelConfig, and ModelMetrics instances
-   model = "model_obj"
-   model_type = "NN"
-   mdb_model1 = Model(model_type, model, "/path/to/model1")
-   model_config1 = ModelConfig(model_type, {"l1" : 10})
-   model_metrics1 = ModelMetrics({"accuracy" : 0.8})
-
-   # sync the datasets to modeldb
-   syncer_obj.sync_datasets(datasets)
-
-   # sync the model with its model config and specify which dataset tag to use for it
-   syncer_obj.sync_model("train", model_config1, mdb_model1)
-
-   # sync the metrics to the model and also specify which dataset tag to use for it
-   syncer_obj.sync_metrics("test", mdb_model1, model_metrics1)
-
-   syncer_obj.sync()
-   ```
-   The code for the API can be found in [ModelDbSyncerBase.py](https://github.com/mitdbg/modeldb/blob/master/client/python/modeldb/basic/ModelDbSyncerBase.py), where the Syncer, Dataset, Model, ModelConfig, ModelMetrics classes and
-   their methods are declared.
-
-   For other methods of logging please refer to the ModelDB docs [here](https://github.com/mitdbg/modeldb/blob/master/client/python/light_api.md#c-sync-information).
-
-1. Port-forward the modeldb-frontend pod to port 3000.
-
-   ```
-   kubectl port-forward service/modeldb-frontend 3000 -n kubeflow
-   ```
-1. Run your model in the browser at https://localhost:3000/.
+    Get the IP address of the modelDB webapp service and open it in the browser
+    ```
+    kubectl get service modeldb-webapp --namespace kubeflow
+    ```
 
 ## Samples
-
-
- [BasicWorkflow.py](https://github.com/mitdbg/modeldb/blob/master/client/python/samples/basic/BasicWorkflow.py) and [BasicSyncAll.py](https://github.com/mitdbg/modeldb/blob/master/client/python/samples/basic/BasicSyncAll.py)
- show how ModelDB's Light API can be used. The former shows how each dataset, model, model configuration, and model metrics can be initialized and synced to ModelDB, while the latter shows a simple
- sync_all method where all the data can be imported from a JSON or a YAML file.
+These notebooks show how each dataset, model, model configuration, and model metrics can be initialized and logged into modelDB - 
+* TensorFlow [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/VertaAI/modeldb-client/blob/development/workflows/demos/tensorflow.ipynb)
+* Pytorch [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/VertaAI/modeldb-client/blob/development/workflows/demos/pytorch.ipynb)
+* sklearn [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/VertaAI/modeldb-client/blob/development/workflows/demos/sklearn.ipynb)
