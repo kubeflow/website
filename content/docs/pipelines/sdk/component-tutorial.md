@@ -4,7 +4,7 @@ description = "A detailed tutorial on creating components that you can use in va
 weight = 3
 +++
 
-TODO: ADD LINKS TO DEFINITIONS OF PIPELINE< COMPONENT, ETC, WHEN PR IS MERGED.
+TODO: ADD LINKS TO DEFINITIONS OF PIPELINE, COMPONENT, ETC, WHEN PR IS MERGED.
 
 This page describes how to author a reusable component that you can
 load and run in Kubeflow Pipelines. A reusable component is a pre-implemented
@@ -24,7 +24,7 @@ The rest of this page gives detailed descriptions of the above steps.
 
 ## Passing the data to and from the containerized program
 
-When you want to write a component you need to think about the component
+When planning to write a component you need to think about how the component
 communicates with upstream and downstream components. That is, how it consumes
 input data and produces output data.
 
@@ -33,89 +33,113 @@ input data and produces output data.
 There are several ways to make input data available to a program running inside
 a container:
 
-1.  Small data: Pass the data content as a command-line argument:  
-program.py --param 100  
-    This way is only suitable for small pieces of data (<< 512 KiB).
-1.  Bigger data: Current version of the pipelines system cannot
-    automatically help bring the bigger data to the container running the
-    program. So, right now the program (or the wrapper script) should receive
-    data URIs instead of the data itself and then access the data pointed by
-the URIs:  
-    ` program.py --train-uri
-    [https://server.edu/datasets/1/train.tsv](https://server.edu/datasets/1/train.tsv)
-     --eval-uri
-[https://server.edu/datasets/1/eval.tsv](https://server.edu/datasets/1/train.tsv)  
- program.py --train-gcs-uri gs://bucket/datasets/1/train.tsv  
-     program.py --big-query-table my_table`  
+* **Small pieces of data** - smaller than 512 kibibyte (KiB): Pass the data
+  content as a command-line argument:
+
+  ```
+  program.py --param 100
+  ```
+
+*  **Bigger data** - larger than 512 KiB: Kubeflow Pipelines doesn't provide a
+   way of transferring larger pieces of data to the container running the
+   program. Instead, the program (or the wrapper script) should receive data
+   URIs instead of the data itself and then access the data from the URIs. For
+   example:
+
+  ```
+  program.py --train-uri [https://server.edu/datasets/1/train.tsv](https://server.edu/datasets/1/train.tsv) \
+             --eval-uri [https://server.edu/datasets/1/eval.tsv](https://server.edu/datasets/1/train.tsv)
+  program.py --train-gcs-uri gs://bucket/datasets/1/train.tsv  
+  program.py --big-query-table my_table
+  ``` 
 
 ### Output data
 
-The program needs to write the output data to some location and the system must
-also be informed about those locations so that the system can pass the data
-between steps.  
-Output data should be written to paths provided as command line arguments (i.e.
-paths should not be hardcoded). As a default, we recommend using GCS as the
-general storage solution for writing output. However, the component author
-decides which storage solution to pick, to write the output. For structured data
-the component author can use BigQuery. The user of the component will have to
-provide the specific URI/path, or table name, to which to write the results.  
-The program should upload the data to some storage system, then pass out a URI
-pointing to the data (by writing that URI to a file and instructing the system
-to pick it up and treat as the value of a particular component output).  
-`program.py --out-model-uri gs://bucket/163/output_model --out-model-uri-file
-/outputs/output_model_uri/data`  
-Note that the program here accepts both a URI for uploading and a file path to
-write that URI to.  
+The program must write the output data to some location and inform the system
+about that location so that the system can pass the data between steps.
+You should provide the paths to your output data as command-line arguments.
+That is, you should not hardcode the paths. 
+
+You can choose a suitable storage solution for your output data. Options include 
+the following:
+
+* [Cloud Storage](https://cloud.google.com/storage/docs/) is the recommended 
+  default storage solution for writing output. 
+* For structured data you can use 
+  [BigQuery](https://cloud.google.com/bigquery/docs/).
+  You must provide the specific URI/path or table name to which to write the
+  results.
+
+The program should do the following:
+
+* Upload the data to your chosen storage system.
+* Pass out a URI pointing to the data, by writing that URI to a file and 
+  instructing the system to pick it up and treat it as the value of a particular 
+  component output. 
+
+Note that the example below accepts both a URI for uploading the data into, and
+a file path to write that URI to.
+
+```
+program.py --out-model-uri gs://bucket/163/output_model \
+           --out-model-uri-file /outputs/output_model_uri/data
+```
+
 Why should the program output the URI it has just received as an input argument?
 The reason is that the URIs specified in the pipeline are usually not the real
-URIs, but rather URI templates that contain UIDs that are only resolved at
-runtime when the containerized program is started. Example of such URI:
-`‘gs://my-bucket/{{workflow.uid}}/{{pod.id}}/data'`. The containerized program
-is the only one who sees the fully-resolved URI. If we want another (downstream)
-components to access that URI, the program needs to somehow pass it forward. The
-only way to do it is to write that URI to a file and let the system grab it and
-seamlessly deliver it to the downstream components.  
-Note that in cases where the program cannot control the resulting URI/ID of the
-created object (e.g. in cases where this URI is generated by the outside
-system), the program should just accept the file path to write the resulting
-URI/ID:  
+URIs, but rather URI templates containing UIDs. The system resolves the URIs at
+runtime when the containerized program starts. Only the containerized program 
+sees the fully-resolved URI.
 
-```python
+Below is an example of such a URI:
+
+```
+gs://my-bucket/{{workflow.uid}}/{{pod.id}}/data
+```
+
+In cases where the program cannot control the URI/ID of the created object (for
+example, where the URI is generated by the outside system), the program should
+just accept the file path to write the resulting URI/ID:  
+
+```
 program.py --out-model-uri-file /outputs/output_model_uri/data
 ```
 
 ## Building a component
 
-### Choosing the data passing strategy:
+### Choose the data passing strategy
 
-#### Small data:
+Decide how to pass data from one component to another, based on the above
+description. In summary:
 
-Inputs: Read value from command line argument.  
-Outputs: Write value to a local file (whose path is provided as command-line
-argument).
+For small pieces of data (smaller than 512 kibibyte (KiB)):
 
-#### Bigger data (or storage-specific component):
+* Inputs: Read the value from a command-line argument.  
+* Outputs: Write the value to a local file, using a path provided as a 
+  command-line argument.
 
-Inputs:** Read data URI **from a file provided as command-line argument. Then
-**read the data** from that URI.  
-Outputs: Upload data to the URI provided as command-line argument. Then write
-that URI to a local file (whose path is also provided as command-line
-argument).
+For bigger pieces of data (larger than 512 KiB) or for a storage-specific 
+component:
+
+* Inputs: **Read the data URI** from a file provided as a command-line argument. 
+  Then **read the data** from that URI.  
+* Outputs: Upload the data to the URI provided as a command-line argument. Then 
+  write that URI to a local file, using a path provided as a command-line
+  argument.
 
 ### Future-proofing the program code
 
-If the program has access to the tensorflow package, you can use
-`tensorflow.gfile `to read and write files. It supports both local and GCS
-paths.
+The following guidelines help you avoid the need to modify the program code in
+the near future or have different versions for different storage systems.
 
-If you cannot use `tensorflow.gfile`:  
-To avoid the need to modify the program code in the near future or have
-different versions for different storage systems, a solution is to write a
-program that uses the local files to read inputs and write outputs and then add
-a storage-specific wrapper that downloads and uploads the data from/to a
-specific storage solution like GCS. This way there might be multiple wrappers
-for different storage systems, or the wrapper can be removed if it's no longer
-needed.
+If the program has access to the TensorFlow package, you can use
+[`tf.gfile`](https://www.tensorflow.org/api_docs/python/tf/io/gfile/GFile) 
+to read and write files. The `tf.gfile` module supports both local and Cloud
+Storage paths.
+
+If you cannot use `tf.gfile`, a solution is to read inputs from and write 
+outputs to local files, then add a storage-specific wrapper that downloads and 
+uploads the data from/to a specific storage solution such as Cloud Storage.
 
 ## Writing the program code
 
