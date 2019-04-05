@@ -92,4 +92,4 @@ The response should be something like this:
 * [Build a component and a pipeline](/docs/pipelines/sdk/build-component/).
 * [Get started](/docs/pipelines/pipelines-quickstart) with the 
   Kubeflow Pipelines UI.
-* Read more about [pipeline concepts](/docs/pipelines/pipelines-concepts).
+* Read more about [pipeline concepts](/docs/pipelines/concepts/).
