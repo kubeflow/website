@@ -25,10 +25,21 @@ While it requires some effort, the end result is well worth it
      Namespace:        kubeflow
      Address:          35.244.132.160
      Default backend:  default-http-backend:80 (10.20.0.10:8080)
+     Events:
+        Type     Reason     Age                 From                     Message
+        ----     ------     ----                ----                     -------
+        Normal   ADD        12m                 loadbalancer-controller  kubeflow/envoy-ingress
+        Warning  Translate  12m (x10 over 12m)  loadbalancer-controller  error while evaluating the ingress spec: could not find service "kubeflow/envoy"
+        Warning  Translate  12m (x2 over 12m)   loadbalancer-controller  error while evaluating the ingress spec: error getting BackendConfig for port "8080" on service "kubeflow/envoy", err: no BackendConfig for service port exists.
+        Warning  Sync       12m                 loadbalancer-controller  Error during sync: Error running backend syncing routine: received errors when updating backend service: googleapi: Error 400: The resource 'projects/code-search-demo/global/backendServices/k8s-be-32230--bee2fc38fcd6383f' is not ready, resourceNotReady
+      googleapi: Error 400: The resource 'projects/code-search-demo/global/backendServices/k8s-be-32230--bee2fc38fcd6383f' is not ready, resourceNotReady
+        Normal  CREATE  11m  loadbalancer-controller  ip: 35.244.132.160
      ...
      ```
 
      * If the address isn't set then there was a problem creating the loadbalancer
+
+       * The **CREATE** event indicates the loadbalancer was successfully created on the specified ip address
 
      * If there are any problems creating the loadbalancer they will be reported as Kubernetes events that show up
        when you run describe
@@ -93,7 +104,9 @@ While it requires some effort, the end result is well worth it
 
      * The most recent condition should be **Certificate issued successfully**
      * It can take around 10 minutes to provision a certificate after the GCP loadbalancer is created
-     * The most common error is hitting Let's Encrypt quota issues
+     * The most common error is hitting [Let's Encrypt quota issues](https://letsencrypt.org/docs/rate-limits/)
+
+       * Let's Encrypt enforces a quota of 5 duplicate certificates per week 
        
        * The easiest fix to quota issues is to pick a different hostname by recreating and redeploying Kubeflow with a different
          name 
@@ -178,6 +191,10 @@ While it requires some effort, the end result is well worth it
      * If you get SSL errors this typically means your SSL certificate is still propogating wait a bit and try again
 
        * SSL propogation could take up to 10 minutes
+
+     * If you are not asked to login and you get a 404 error that means IAP is still being configured
+
+       * Keep retrying for up to 10 minutes
 
 1. After logging in if you get an error **Error: redirect_uri_mismatch** this means the OAuth authorized redirect 
    URIs does not include your domain
