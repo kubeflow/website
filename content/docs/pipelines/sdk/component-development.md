@@ -459,5 +459,5 @@ components/<component group>/<component name>/
 ## Next steps
 
 * Consolidate what you've learned by reading the 
-  [best practices](/docs/pipelines/sdk/component-development) for designing and 
+  [best practices](/docs/pipelines/sdk/best-practices) for designing and 
   writing components.
