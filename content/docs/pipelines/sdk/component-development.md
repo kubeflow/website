@@ -4,8 +4,6 @@ description = "A detailed tutorial on creating components that you can use in va
 weight = 3
 +++
 
-TODO: ADD LINKS TO DEFINITIONS OF PIPELINE, COMPONENT, ETC, WHEN PR IS MERGED.
-
 This page describes how to author a reusable component that you can
 load and run in Kubeflow Pipelines. A reusable component is a pre-implemented
 standalone component that is easy to add as a step in any pipeline.
