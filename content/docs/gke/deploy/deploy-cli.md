@@ -4,11 +4,10 @@ description = "Instructions for deploying Kubeflow with the CLI"
 weight = 4
 +++
 
-
-This guide describes how to use the `kfctl` command line tool to deploy 
-Kubeflow. The command line deployment gives you more control over the deployment 
-process and configuration than the deployment UI. If you're looking for a
-simpler deployment procedure, see how to deploy Kubeflow
+This guide describes how to use the `kfctl` command line interface (CLI) to
+deploy Kubeflow. The command line deployment gives you more control over the
+deployment process and configuration than the deployment UI. If you're looking
+for a simpler deployment procedure, see how to deploy Kubeflow 
 [using the UI](/docs/gke/deploy/deploy-ui).
 
 Before installing Kubeflow on the command line:
@@ -45,24 +44,27 @@ Follow these steps to deploy Kubeflow:
     export KUBEFLOW_PASSWORD=<your password>
     ```
 
-1. Download a kfctl release from the [GitHub releases](https://github.com/kubeflow/kubeflow/releases/)
+1. Download a `kfctl` release from the 
+  [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
 
-1. Unpack the tar ball
+1. Unpack the tar ball:
 
-   ```
-    tar -xvf kfctl_${TAG}_${PLATFORM}.tar.gz
-   ```
+    ```
+    tar -xvf kfctl_<release tag>_<platform>.tar.gz
+    ```
 
-    * For subsequent steps either add the binary kfctl to your path or else use the full path to the kfctl binary.
-
-1. Run the following commands to set up and deploy Kubeflow:
+1. Run the following commands to set up and deploy Kubeflow. The code below
+  includes an option command to add the binary `kfctl` to your path. If you 
+  don't add the binary to your path, you must use the full path to the `kfctl` 
+  binary each time you run it.
 
     ```bash
-    # This is optional - to make kfctl bin easier to use.
-    export PATH=$PATH:${KUBEFLOW_SRC}/bootstrap/bin
+    # The following command is optional, to make kfctl binary easier to use.
+    export PATH=$PATH:<path to kfctl in your kubeflow installation>
 
-    export KFAPP=<YOUR CHOICE OF APPLICATION DIRECTORY NAME>
-    # Default will be using IAP.
+    export PROJECT=<your GCP project>
+    export KFAPP=<your choice of application directory name>
+    # Default uses IAP.
     kfctl init ${KFAPP} --platform gcp --project ${PROJECT}
     # or if you want to use basic auth:
     kfctl init ${KFAPP} --platform gcp --project ${PROJECT} --use_basic_auth -V
@@ -71,29 +73,34 @@ Follow these steps to deploy Kubeflow:
     kfctl generate all -V
     kfctl apply all -V
     ```
-   * **${KFAPP}** - the _name_ of a directory where you want kubeflow 
-     configurations to be stored. This directory is created when you run init.
+   * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
+     configurations to be stored. This directory is created when you run
+     `kfctl init`. If you want a custom deployment name, specify that name here.
+     The value of this variable becomes the name of your deployment.
      The value of this variable cannot be greater than 25 characters. It must
      contain just the directory name, not the full path to the directory.
-     The value of this variable becomes the name of your deployment.
-     The contents of this directory are described in the next section.
-   * **${PROJECT}** - the _name_ of the GCP project where you want kubeflow deployed to.
-   * During `kfctl init` you need to choose to use either IAP or basic auth.
-   * `kfctl generate all` will try to fetch user email address from your 
+     The content of this directory is described in the next section.
+   * **${PROJECT}** - the _name_ of the GCP project where you want Kubeflow 
+     deployed.
+   * When you run `kfctl init` you need to choose to use either IAP or basic 
+     authentication, as described below.
+   * `kfctl generate all` attempts to fetch your email address from your 
      credential. If it can't find a valid email address, you need to pass a
      valid email address with flag `--email <your email address>`. This email 
-     address will be configured to be an admin of your kubeflow deployment.
+     address becomes an administrator in the configuration of your Kubeflow 
+     deployment.
 
 1. Check the resources deployed in namespace `kubeflow`:
 
     ```
     kubectl -n kubeflow get  all
     ```
-1. Storage will be a separete deployment. After `kfctl apply` you should notice
-   there will be 2 deployments(clusters):
+
+1. The process creates a separate deployment for your data storage. After 
+   running `kfctl apply` you should notice 2 deployments (clusters):
    * **{KFAPP}-storage**: This deployment has persistent volumes for your
      pipelines.
-   * **{KFAPP}**: This deployment has all the components Kubeflow provides.
+   * **{KFAPP}**: This deployment has all the components of Kubeflow.
 
 1. Kubeflow will be available at the following URI:
 
@@ -112,22 +119,6 @@ Follow these steps to deploy Kubeflow:
 
 1. We recommend that you check in the contents of your **${KFAPP}** directory
   into source control.
-
-## Deleting Kubeflow
-
-1. To delete your deployment and reclaim all resources:
-
-    ```
-    cd ${KFAPP}
-    # If you want to delete all the resources, including storage.
-    kfctl delete all --delete_storage
-    # If you want to preserve storage, which contains metadata and information
-    # from mlpipeline.
-    kfctl delete all
-    ```
-
-    * You should consider preserving storage if you think you might want to relaunch
-      Kubeflow in the future and restore data about your pipelines.
 
 ## Understanding the deployment process
 
@@ -161,7 +152,7 @@ Your Kubeflow app directory contains the following files and directories:
   [Deployment Manager configuration files](https://cloud.google.com/deployment-manager/docs/configuration/) 
   defining your GCP infrastructure.
 
-  * The directory is created when you run `kfctl.sh generate platform`.
+  * The directory is created when you run `kfctl generate platform`.
   * You can modify these configurations to customize your GCP infrastructure.
 
 * **${KFAPP}/k8s_specs** is a directory that contains YAML specifications
@@ -195,8 +186,8 @@ privilege. The three service accounts are:
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
   [GitHub issue sumarization 
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
-* See how to [delete](/docs/gke/deploy/delete-ui) your Kubeflow deployment 
-  using the GCP Console.
+* See how to [delete](/docs/gke/deploy/delete-cli) your Kubeflow deployment 
+  using the CLI.
 * See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
   deployment.
 * See how to [upgrade Kubeflow](/docs/other-guides/upgrade/) and how to 
