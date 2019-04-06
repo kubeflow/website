@@ -162,7 +162,7 @@ finished with them:
 ## Next steps
 
 * Learn more about the 
-  [important concepts](/docs/pipelines/pipelines-concepts) in Kubeflow
+  [important concepts](/docs/pipelines/concepts/) in Kubeflow
   Pipelines.
 * Follow the [end-to-end tutorial](/docs/pipelines/tutorials/pipelines-tutorial/) 
   using an MNIST machine-learning model.
