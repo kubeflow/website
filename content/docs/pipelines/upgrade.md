@@ -83,7 +83,7 @@ The steps below assume that you already have a Kubernetes cluster set up.
         **Before** running the `apply` command:
 
         ```
-        kfctl apply k8s
+        kfctl apply all -V
         ```
 
         You must run the following commands to specify your PVs:
@@ -148,7 +148,7 @@ change in the procedure:
 1. **Before** running the following `apply` command:
 
     ```
-    kfctl apply platform
+    kfctl apply all -V
     ```
 
     You must edit `gcp_config/storage-kubeflow.yaml`:
@@ -159,19 +159,7 @@ change in the procedure:
     ...
     ```
 
-1. Then run the `apply` command:
-
-    ```
-    kfctl apply platform
-    ```
-
-1. **Before** running the following `apply` command:
-
-    ```
-    kfctl apply k8s
-    ```
-
-    You must run the following command to specify the persistent disk created 
+    Also run the following command to specify the persistent disk created 
     in a previous deployment:
 
     ```
@@ -184,7 +172,7 @@ change in the procedure:
 1. Then run the `apply` command:
 
     ```
-    kfctl apply k8s
+    kfctl apply all -V
     ``` 
 
 ### Reinstalling Kubeflow in other environments (non-GCP) 
