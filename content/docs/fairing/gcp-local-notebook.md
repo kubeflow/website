@@ -187,7 +187,7 @@ development environments for training and prediction from Kubeflow Fairing.
     *  You can deploy Kubeflow using the [command line][kubeflow-install].
 
 1.  Update your `kubeconfig` with appropriate credentials and endpoint
-    information to point `kubectl` at your Kubeflow cluster. To find your
+    information for your Kubeflow cluster. To find your
     cluster's name, run the following command to list the clusters in your
     project:
 
@@ -220,7 +220,6 @@ development environments for training and prediction from Kubeflow Fairing.
 [docker-non-root]: https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user
 [docker-attack]: https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface
 [docker-start]: https://docs.docker.com/config/daemon/#start-the-daemon-using-operating-system-utilities
-[kubectl-install]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 [gcloud-install]: https://cloud.google.com/sdk/docs/
 [kubeflow-install-gke]: https://www.kubeflow.org/docs/gke/deploy/
 [kubeflow-install]: https://www.kubeflow.org/docs/gke/deploy/deploy-cli/
