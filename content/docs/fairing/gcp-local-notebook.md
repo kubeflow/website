@@ -108,8 +108,8 @@ your development environment with access to GCP.
 
 1.  Kubeflow Fairing needs a service account to make API calls to GCP. The
     recommended way to provide Fairing with access to this
-    service account is to set the `GOOGLE_APPLICATION_CREDENTIALS` environmental
-    variable. To check for the `GOOGLE_APPLICATION_CREDENTIALS` environmental
+    service account is to set the `GOOGLE_APPLICATION_CREDENTIALS` environment
+    variable. To check for the `GOOGLE_APPLICATION_CREDENTIALS` environment
     variable, run the following command:
 
     ```bash
@@ -128,16 +128,19 @@ your development environment with access to GCP.
     ```bash
     export SA_NAME=<your-sa-name>
     gcloud iam service-accounts create $SA_NAME
-    gcloud projects add-iam-policy-binding $PROJECT_ID --member serviceAccount:$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com  --role 'roles/editor'
+    gcloud projects add-iam-policy-binding $PROJECT_ID \
+        --member serviceAccount:$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com \
+        --role 'roles/editor'
     ```
 
     Create a key for your service account.
 
     ```bash
-    gcloud iam service-accounts keys create ~/key.json --iam-account $SA_NAME@$PROJECT_ID.iam.gserviceaccount.com
+    gcloud iam service-accounts keys create ~/key.json \
+        --iam-account $SA_NAME@$PROJECT_ID.iam.gserviceaccount.com
     ```
 
-    Create the `GOOGLE_APPLICATION_CREDENTIALS` environmental variable.
+    Create the `GOOGLE_APPLICATION_CREDENTIALS` environment variable.
 
     ```bash
     export GOOGLE_APPLICATION_CREDENTIALS=~/key.json
@@ -173,10 +176,6 @@ gcloud auth configure-docker
 
 Use the following instructions to set up and configure your Kubeflow and
 development environments for training and prediction from Kubeflow Fairing.
-
-1.  You need to have kubectl installed to use Kubeflow Fairing. To set up
-    kubectl, follow the instructions in the guide to [installing and setting
-    up kubectl][kubectl-install].
 
 1.  If you do not have a Kubeflow environment, follow the guide to [deploying
     Kubeflow on GKE][kubeflow-install-gke] to set up your Kubeflow environment.
