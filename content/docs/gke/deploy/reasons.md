@@ -1,7 +1,7 @@
 +++
 title = "Reasons to Use Kubeflow on GCP"
 description = "Reasons to deploy Kubeflow on GCP"
-weight = 6
+weight = 8
 +++
 
 Running Kubeflow on [GKE](https://cloud.google.com/kubernetes-engine/docs)

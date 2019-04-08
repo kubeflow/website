@@ -42,8 +42,9 @@ takes longer than expected, try accessing the above URI anyway.
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
   [GitHub issue sumarization 
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
-* See how to [delete](/docs/gke/deploy/delete-ui) your Kubeflow deployment 
-  using the GCP Console.
+* See how to delete your Kubeflow deployment using the 
+  [CLI](/docs/gke/deploy/delete-cli) 
+   or the [GCP Console](/docs/gke/deploy/delete-ui).
 * See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
   deployment.
 * See how to [upgrade Kubeflow](/docs/other-guides/upgrade/) and how to 

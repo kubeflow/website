@@ -1,17 +1,17 @@
 +++
 title = "Delete using Cloud Console"
 description = "Instructions for deleting Kubeflow using the Cloud Console"
-weight = 5
+weight = 6
 +++
 
-Instructins for deleting Kubeflow using the Google Cloud Console.
+This page contains instructions for deleting Kubeflow using Deployment Manager
+in the Google Cloud Platform (GCP) Console.
 
-Deleting the deployment manager can orphan some resources like Cloud Endpoints.
+**Note:** For best results you should use the 
+[CLI to delete Kubeflow](/docs/gke/deploy/delete-cli/). Deleting with Deployment 
+Manager as described below can orphan some resources like Cloud Endpoints.
 
-For best results we recommend using the [CLI to delete](https://deploy-preview-568--competent-brattain-de2d6d.netlify.com/docs/gke/deploy/deploy-cli/#deleting-kubeflow)
-
-
-To delete your Kubeflow deployment and reclaim all related resources, using the
+To delete your Kubeflow deployment and reclaim all related resources using the
 GCP Console:
 
 1. Open the [Deployment Manager in the GCP
@@ -20,15 +20,14 @@ GCP Console:
    in your project. Make sure that the selected project is the same as the one
    you used for your Kubeflow deployment. 
    <img src="/docs/images/deployments.png"
-   alt="Deployment Manager in GCP Console"
-   class="mt-3 mb-3 border border-info rounded">
+    alt="Deployment Manager in GCP Console"
+    class="mt-3 mb-3 border border-info rounded">
 
-1. Select your Kubeflow deployment with the deployment name you used at the
+1. Select the Kubeflow deployment with the deployment name you used at the
    time of creation and click the **Delete** button at the top.
    <img src="/docs/images/delete-deployment.png"
-   alt="Deleting Kubeflow deployment in GCP Console"
-   class="mt-3 mb-3 border border-info rounded">
+    alt="Deleting Kubeflow deployment in GCP Console"
+    class="mt-3 mb-3 border border-info rounded">
 
 This action should delete any running nodes in your deployment, delete service
 accounts that were created for the deployment, and reclaim all resources.
-

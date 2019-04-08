@@ -1,7 +1,7 @@
 +++
 title = "Next Steps"
 description = "Suggestions for further exploration after deploying Kubeflow on GCP"
-weight = 6
+weight = 7
 +++
 
 * Run a full ML workflow on Kubeflow, using the
