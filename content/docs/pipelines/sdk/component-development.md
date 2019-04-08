@@ -154,9 +154,9 @@ is Python 3.
 import argparse
 import os
 from pathlib import Path
-from tensorflow import gfile #Supports both local paths and GCS/S3
+from tensorflow import gfile # Supports both local paths and GCS/S3
 
-#Function doing the actual work
+# Function doing the actual work
 def do_work(input1_file, output1_file, param1):
   for x in range(param1):
     line = next(input1_file)
@@ -164,7 +164,7 @@ def do_work(input1_file, output1_file, param1):
       break
     _ = output1_file.write(line)
 
-#Defining and parsing the command-line arguments
+# Defining and parsing the command-line arguments
 parser = argparse.ArgumentParser(description='My program description')
 parser.add_argument('--input1-path', type=str, help='Path of the local file or GCS blob containing the Input 1 data.')
 parser.add_argument('--param1', type=int, default=100, help='Parameter 1.')
@@ -173,11 +173,11 @@ parser.add_argument('--output1-path-file', type=str, help='Path of the local fil
 args = parser.parse_args()
 
 gfile.MakeDirs(os.path.dirname(args.output1_path))
-#Opening the input/output files and perform the actual work
+# Opening the input/output files and performing the actual work
 with gfile.Open(args.input1_path, 'r') as input1_file, gfile.Open(args.output1_path, 'w') as output1_file:
     do_work(input1_file, output1_file, args.param1)
 
-#Writing args.output1_path to a file so that it will be passed to downstream tasks
+# Writing args.output1_path to a file so that it will be passed to downstream tasks
 Path(args.output1_path_file).parent.mkdir(parents=True, exist_ok=True)
 Path(args.output1_path_file).write_text(args.output1_path)
 ```
@@ -241,7 +241,7 @@ and use the strict image name for reproducibility.
 
 ```bash
 #!/bin/bash -e
-image_name=gcr.io/my-org/my-image #Specify the image name here
+image_name=gcr.io/my-org/my-image # Specify the image name here
 image_tag=latest
 full_image_name=${image_name}:${image_tag}
 base_image_tag=1.12.0-py3
@@ -250,7 +250,7 @@ cd "$(dirname "$0")"
 docker build --build-arg BASE_IMAGE_TAG=$base_image_tag -t "$full_image_name" .
 docker push "$full_image_name"
 
-#Output the strict image name (which contains the sha256 image digest)
+# Output the strict image name (which contains the sha256 image digest)
 docker inspect --format="{{index .RepoDigests 0}}" "$IMAGE_NAME"
 ```
 
@@ -354,13 +354,13 @@ implementation:
     command: [
       python3, /pipelines/component/src/program.py,
       --input1-path,
-      {inputValue: Input 1 URI}, #Refers to the "Input 1 URI" input
+      {inputValue: Input 1 URI}, # Refers to the "Input 1 URI" input
       --param1,
-      {inputValue: Parameter 1}, #Refers to the "Parameter 1" input
+      {inputValue: Parameter 1}, # Refers to the "Parameter 1" input
       --output1-path,
-      {inputValue: Output 1 URI template}, #Refers to "Output 1 URI template" input
+      {inputValue: Output 1 URI template}, # Refers to "Output 1 URI template" input
       --output1-path-file,
-      {outputPath: Output 1 URI}, #Refers to the "Output 1 URI" output
+      {outputPath: Output 1 URI}, # Refers to the "Output 1 URI" output
     ]
 ```
 
@@ -378,7 +378,7 @@ name: Do dummy work
 description: Performs some dummy work.
 inputs:
 - {name: Input 1 URI, type: GCSPath, description='GCS path to Input 1'}
-- {name: Parameter 1, type: Integer, default='100', description='Parameter 1 description'} #The default values must be specified as YAML strings.
+- {name: Parameter 1, type: Integer, default='100', description='Parameter 1 description'} # The default values must be specified as YAML strings.
 - {name: Output 1 URI template, type: GCSPath, description='GCS path template for Output 1'}
 outputs:
 - {name: Output 1 URI, type: GCSPath, description='GCS path for Output 1'}
@@ -401,35 +401,49 @@ compose a pipeline
  
 ```python
 import kfp
-#Load the component by calling load_component_from_file or load_component_from_url
-#To load the component, the pipeline author only needs to have access to the component.yaml file. The Kubernetes cluster executing the pipeline will need access to the container image specified in the component.
+# Load the component by calling load_component_from_file or load_component_from_url
+# To load the component, the pipeline author only needs to have access to the component.yaml file.
+# The Kubernetes cluster executing the pipeline needs access to the container image specified in the component.
 dummy_op = kfp.components.load_component_from_file(os.path.join(component_root, 'component.yaml')) 
-#dummy_op = kfp.components.load_component_from_url('http://....../component.yaml')
+# dummy_op = kfp.components.load_component_from_url('http://....../component.yaml')
 
-#dummy_op is now a "factory function" that accepts the arguments for the component's inputs and produces a task object (e.g. ContainerOp instance).
-#Inspect the dummy_op function in Jupyter Notebook by typing "dummy_op(" and pressing Shift+Tab
-#You can also get help by writing help(dummy_op) or dummy_op? or dummy_op??
-#The signature of the dummy_op function corresponds to the inputs section of the component. ! Some tweaks are performed to make the signature valid and pythonic:
-#1) All inputs with default values will come after the inputs without default values
-#2) The input names are converted to pythonic names (spaces and symbols replaced with underscores and letters lowercased).
+# dummy_op is now a "factory function" that accepts the arguments for the component's inputs
+# and produces a task object (e.g. ContainerOp instance).
+# Inspect the dummy_op function in Jupyter Notebook by typing "dummy_op(" and pressing Shift+Tab
+# You can also get help by writing help(dummy_op) or dummy_op? or dummy_op??
+# The signature of the dummy_op function corresponds to the inputs section of the component.
+# Some tweaks are performed to make the signature valid and pythonic:
+# 1) All inputs with default values will come after the inputs without default values
+# 2) The input names are converted to pythonic names (spaces and symbols replaced
+#    with underscores and letters lowercased).
 
-#Define a pipeline and create a task from a component:
+# Define a pipeline and create a task from a component:
 @kfp.dsl.pipeline(name='My pipeline', description='')
 def my_pipeline():
     dummy1_task = dummy_op(
-        input_1_uri='gs://my-bucket/datasets/train.tsv', #Input name "Input 1 GCS URI" got converted to pythonic parameter name "input_1_uri"
+        # Input name "Input 1 GCS URI" is converted to pythonic parameter name "input_1_uri"
+        input_1_uri='gs://my-bucket/datasets/train.tsv',
         parameter_1='100',
-        output_1_uri='gs://my-bucket/{{workflow.uid}}/{{pod.name}}/output_1/data', #Currently, the pipeline author must use Argo placeholders ("{{workflow.uid}}" and "{{pod.name}}") to guarantee that the outputs from different pipeline runs and tasks write to unique locations and do not overwrite each other.
-    ).apply(kfp.gcp.use_gcp_secret('user-gcp-sa')) #To access GCS, we must configure the container to have access to a GCS secret that grants required access to the bucket.
-    #The outputs of the dummy1_task can be referenced using the dummy1_task.outputs dictionary. ! At this moment, the output names are converted to lowercased dashed names.
+        # You must use Argo placeholders ("{{workflow.uid}}" and "{{pod.name}}")
+        # to guarantee that the outputs from different pipeline runs and tasks write
+        # to unique locations and do not overwrite each other.
+        output_1_uri='gs://my-bucket/{{workflow.uid}}/{{pod.name}}/output_1/data',
+    ).apply(kfp.gcp.use_gcp_secret('user-gcp-sa')) 
+    # To access Cloud Storage, you must configure the container to have access to a
+    # Cloud Storag secret that grants required access to the bucket.
+    # The outputs of the dummy1_task can be referenced using the
+    # dummy1_task.outputs dictionary.
+    # ! The output names are converted to lowercased dashed names.
 
-    #Pass the outputs of the dummy1_task to some other component
+    # Pass the outputs of the dummy1_task to some other component
     dummy2_task = dummy_op(
         input_1_uri=dummy1_task.outputs['output-1-uri'],
         parameter_1='200',
         output_1_uri='gs://my-bucket/{{workflow.uid}}/{{pod.name}}/output_1/data',
-    ).apply(kfp.gcp.use_gcp_secret('user-gcp-sa')) #To access GCS, we must configure the container to have access to a GCS secret that grants required access to the bucket.
-#This pipeline can be compiled, uploaded and submitted for execution.
+    ).apply(kfp.gcp.use_gcp_secret('user-gcp-sa')) 
+    # To access Cloud Storage, you must configure the container to have access to a
+    # Cloud Storag secret that grants required access to the bucket.
+# This pipeline can be compiled, uploaded and submitted for execution.
 ```
 
 ## Organizing the component files
