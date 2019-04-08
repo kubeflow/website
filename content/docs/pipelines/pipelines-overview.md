@@ -183,20 +183,23 @@ At a high level, the execution of a pipeline proceeds as follows:
   example controller is the **[Argo
   Workflow**](https://github.com/argoproj/argo) controller, which
   orchestrates task-driven workflows. 
-* **Artifact storage**: The Pods store two kinds of data: they call a Data
-  Artifact Storage Service (Minio Server, Google Cloud Storage, etc. to store
-  data artifacts. They call a Metrics Artifact Storage Service (GCP Stackdriver,
-  on-prem equivalent, etc) to store metrics artifacts.
+* **Artifact storage**: The Pods store two kinds of data: 
+
+  * **Metadata:** Experiments, jobs, runs, etc. Kubeflow Pipelines 
+  stores the pipeline metadata in a MySQL database.
+  * **Artifacts:** Pipeline packages, metrics, views, etc. Kubeflow Pipelines 
+  stores the artifacts in a [Minio server](https://docs.minio.io/).
+
+    The MySQL database and the Minio server are both backed by the Kubernetes
+    [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)
+    (PV) subsystem. 
+
 * **Persistence agent and ML metadata**: The Pipeline Persistence Agent
   watches the Kubernetes resources created by the Pipeline Service and
   persists the state of these resources in the ML Metadata Service. The
   Pipeline Persistence Agent records the set of containers that executed as
   well as their inputs and outputs. The input/output consists of either
   container parameters or data artifact URIs. 
-* **Garbage collection**: The Data Artifact Garbage Collector queries the
-  Machine Learning Metadata Service to delete artifacts from artifact storage
-  if the system has been configured to delete artifacts that meet a certain
-  condition (for example, a time-to-live (TTL) has expired). 
 * **Pipeline web server**: The Pipeline web server gathers data from various
   services to display relevant views: the list of pipelines currently running,
   the history of pipeline execution, the list of data artifacts, debugging
