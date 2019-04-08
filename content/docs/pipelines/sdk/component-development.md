@@ -154,7 +154,7 @@ is Python 3.
 import argparse
 import os
 from pathlib import Path
-from tensorflow import gfile # Supports both local paths and GCS/S3
+from tensorflow import gfile # Supports both local paths and Cloud Storage (GCS) or S3
 
 # Function doing the actual work
 def do_work(input1_file, output1_file, param1):
@@ -421,7 +421,7 @@ dummy_op = kfp.components.load_component_from_file(os.path.join(component_root, 
 @kfp.dsl.pipeline(name='My pipeline', description='')
 def my_pipeline():
     dummy1_task = dummy_op(
-        # Input name "Input 1 GCS URI" is converted to pythonic parameter name "input_1_uri"
+        # Input name "Input 1 URI" is converted to pythonic parameter name "input_1_uri"
         input_1_uri='gs://my-bucket/datasets/train.tsv',
         parameter_1='100',
         # You must use Argo placeholders ("{{workflow.uid}}" and "{{pod.name}}")
@@ -429,8 +429,8 @@ def my_pipeline():
         # to unique locations and do not overwrite each other.
         output_1_uri='gs://my-bucket/{{workflow.uid}}/{{pod.name}}/output_1/data',
     ).apply(kfp.gcp.use_gcp_secret('user-gcp-sa')) 
-    # To access Cloud Storage, you must configure the container to have access to a
-    # Cloud Storag secret that grants required access to the bucket.
+    # To access GCS, you must configure the container to have access to a
+    # GCS secret that grants required access to the bucket.
     # The outputs of the dummy1_task can be referenced using the
     # dummy1_task.outputs dictionary.
     # ! The output names are converted to lowercased dashed names.
@@ -441,8 +441,8 @@ def my_pipeline():
         parameter_1='200',
         output_1_uri='gs://my-bucket/{{workflow.uid}}/{{pod.name}}/output_1/data',
     ).apply(kfp.gcp.use_gcp_secret('user-gcp-sa')) 
-    # To access Cloud Storage, you must configure the container to have access to a
-    # Cloud Storag secret that grants required access to the bucket.
+    # To access GCS, you must configure the container to have access to a
+    # GCS secret that grants required access to the bucket.
 # This pipeline can be compiled, uploaded and submitted for execution.
 ```
 
