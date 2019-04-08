@@ -80,7 +80,9 @@ This section describes the
     * `type`: Specifies the type of input/output. The types are used
         as hints for pipeline authors and can be used by the pipeline system/UI
         to validate arguments and connections between components. Basic types
-        are **String**, **Integer**, **Number**, **Boolean**.
+        are **String**, **Integer**, **Float**, and **Bool**. See the full list
+        of [types](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/types.py)
+        defined by the Kubeflow Pipelines SDK.
 
 ### Implementation
 
@@ -131,5 +133,5 @@ The placeholder is replaced by the contents of the input argument.
 Output paths are filled in by the pipeline system. The Output construct is
 replaced by a path. (The path can possibly point to a mounted output volume.)
 
-* In `component.yaml': `{outputPath: Trained model}`
+* In `component.yaml`: `{outputPath: Trained model}`
 * Resulting Argo YAML: `"/outputs/trained_model/data"`
