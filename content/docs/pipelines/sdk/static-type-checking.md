@@ -1,7 +1,7 @@
 +++
 title = "DSL Static Type Checking"
 description = "Statically check the component I/O types"
-weight = 6
+weight = 40
 +++
 
 This page describes how to integrate the type information in the pipeline and utilize the 

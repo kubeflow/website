@@ -1,7 +1,7 @@
 +++
 title = "DSL Recursion"
 description = "Author a recursive function in DSL"
-weight = 7
+weight = 50
 +++
 
 This page describes how to write recursive functions in the domain specific language (DSL) provided by the Kubeflow Pipelines SDK.

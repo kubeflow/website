@@ -1,7 +1,7 @@
 +++ 
 title = "Enable GPU and TPU"
 description = "Enable GPU and TPU for Kubeflow Pipelines on Google Kubernetes Engine"
-weight = 5 
+weight = 30
 +++
 
 This page describes how to enable GPU or TPU for the pipeline on GKE by using the Pipelines 
