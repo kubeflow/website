@@ -17,9 +17,9 @@ and the inputs and outputs of each component.
 
 A pipeline _component_ is an implementation of a pipeline task. A component 
 represents a step in the workflow. Each component takes one or more 
-[artifacts](/docs/pipelines/pipelines-concepts#step-output-artifact) as
+[artifacts](/docs/pipelines/concepts/output-artifact/) as
 input and may produce one or more
-[artifacts](/docs/pipelines/pipelines-concepts#step-output-artifact) as 
+[artifacts](/docs/pipelines/concepts/output-artifact/) as 
 output.
 
 Each component usually includes two parts:

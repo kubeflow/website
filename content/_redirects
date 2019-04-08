@@ -36,3 +36,6 @@
 
 # Moved the guide to monitoring GKE deployments.
 /docs/other-guides/monitoring/                 /docs/gke/monitoring/
+
+# Created a new section for pipeline concepts.
+/docs/pipelines/pipelines-concepts/            /docs/pipelines/concepts/
