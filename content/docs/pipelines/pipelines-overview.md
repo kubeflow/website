@@ -185,10 +185,15 @@ At a high level, the execution of a pipeline proceeds as follows:
   orchestrates task-driven workflows. 
 * **Artifact storage**: The Pods store two kinds of data: 
 
-  * **Metadata:** Experiments, jobs, runs, etc. Kubeflow Pipelines 
-  stores the pipeline metadata in a MySQL database.
-  * **Artifacts:** Pipeline packages, metrics, views, etc. Kubeflow Pipelines 
-  stores the artifacts in a [Minio server](https://docs.minio.io/).
+  * **Metadata:** Experiments, jobs, runs, etc. Also single scalar metrics, 
+    generally aggregated for the purposes of sorting and filtering. 
+    Kubeflow Pipelines stores the metadata in a MySQL database.
+  * **Artifacts:** Pipeline packages, views, etc. Also
+    large-scale metrics like time series, usually used for investigating an 
+    individual run's performance and for debugging. Kubeflow Pipelines 
+    stores the artifacts in an artifact store like
+    [Minio server](https://docs.minio.io/) or 
+    [Cloud Storage](https://cloud.google.com/storage/docs/).
 
     The MySQL database and the Minio server are both backed by the Kubernetes
     [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)
