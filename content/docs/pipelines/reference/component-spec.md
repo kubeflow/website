@@ -123,15 +123,49 @@ use the component inside a pipeline.
 
 ### Consuming input by value (parameter)
 
-The placeholder is replaced by the contents of the input argument.
+The placeholder is replaced by the value of the input argument:
 
-* In `component.yaml`: `{inputValue: Rounds}`
-* Resulting Argo YAML: `"{{input.parameters.rounds}}"`
+* In `component.yaml`:
+  
+  ```
+  command: [program.py, --rounds, {inputValue: Rounds}]
+  ```
+
+* In the pipeline code:
+
+  ```
+  task1 = component1(rounds=150)
+  ```
+
+* Resulting command-line code (showing the value of the input argument that
+  has replaced the placeholder):
+
+  ```
+  program.py --rounds 150
+  ```
 
 ### Outputs
 
-Output paths are filled in by the pipeline system. The Output construct is
-replaced by a path. (The path can possibly point to a mounted output volume.)
+Output paths are filled in by the pipeline system. The `outputPath` placeholder
+is replaced by a path. (The path can point to a mounted output volume, for
+example.) The parent directories of the path may or may not not exist. Your
+program must handle both cases without error.
 
-* In `component.yaml`: `{outputPath: Trained model}`
-* Resulting Argo YAML: `"/outputs/trained_model/data"`
+* In `component.yaml`:
+
+  ```
+  command: [program.py, --out-model, {outputPath: trained_model}]
+  ```
+
+* In the pipeline code:
+
+  ```
+  task1 = component1()
+  ```
+
+* Resulting command-line code (the placeholder is replaced by the 
+  generated path):
+
+  ```
+  program.py --out-model /outputs/trained_model/data
+  ```
