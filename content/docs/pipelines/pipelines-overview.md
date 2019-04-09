@@ -155,6 +155,62 @@ Receiver operating characteristics (ROC) curve:
   alt="ROC"
   class="mt-3 mb-3 p-3 border border-info rounded">
 
+## Architectural overview
+
+<img src="/docs/images/pipelines-architecture.png" 
+  alt="Pipelines architectural diagram"
+  class="mt-3 mb-3 p-3 border border-info rounded">
+
+At a high level, the execution of a pipeline proceeds as follows: 
+
+* **Python SDK**: You create components or specify a pipeline using the Kubeflow
+  Pipelines domain-specific language 
+  ([DSL](https://github.com/kubeflow/pipelines/tree/master/sdk/python/kfp/dsl)).
+* **DSL compiler**: The
+  [DSL compiler](https://github.com/kubeflow/pipelines/tree/master/sdk/python/kfp/compiler)
+  transforms your pipeline's Python code into a static configuration (YAML).
+* **Pipeline Service**: You call the Pipeline Service to create a
+  pipeline run from the static configuration. 
+* **Kubernetes resources**: The Pipeline Service calls the Kubernetes API
+  server to create the necessary Kubernetes resources
+  ([CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/))
+  to run the pipeline.   
+* **Orchestration controllers**: A set of orchestration controllers
+  execute the containers needed to complete the pipeline execution specified
+  by the Kubernetes resources
+  ([CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)).
+  The containers execute within Kubernetes Pods on virtual machines. An
+  example controller is the **[Argo
+  Workflow**](https://github.com/argoproj/argo) controller, which
+  orchestrates task-driven workflows. 
+* **Artifact storage**: The Pods store two kinds of data: 
+
+  * **Metadata:** Experiments, jobs, runs, etc. Also single scalar metrics, 
+    generally aggregated for the purposes of sorting and filtering. 
+    Kubeflow Pipelines stores the metadata in a MySQL database.
+  * **Artifacts:** Pipeline packages, views, etc. Also
+    large-scale metrics like time series, usually used for investigating an 
+    individual run's performance and for debugging. Kubeflow Pipelines 
+    stores the artifacts in an artifact store like
+    [Minio server](https://docs.minio.io/) or 
+    [Cloud Storage](https://cloud.google.com/storage/docs/).
+
+    The MySQL database and the Minio server are both backed by the Kubernetes
+    [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)
+    (PV) subsystem. 
+
+* **Persistence agent and ML metadata**: The Pipeline Persistence Agent
+  watches the Kubernetes resources created by the Pipeline Service and
+  persists the state of these resources in the ML Metadata Service. The
+  Pipeline Persistence Agent records the set of containers that executed as
+  well as their inputs and outputs. The input/output consists of either
+  container parameters or data artifact URIs. 
+* **Pipeline web server**: The Pipeline web server gathers data from various
+  services to display relevant views: the list of pipelines currently running,
+  the history of pipeline execution, the list of data artifacts, debugging
+  information about individual pipeline runs, execution status about individual
+  pipeline runs.
+
 ## Next steps
 
 * Follow the 
