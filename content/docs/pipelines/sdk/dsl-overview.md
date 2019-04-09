@@ -69,7 +69,12 @@ Usage:
 @kfp.dsl.component
 def my_component(my_param):
   ...
+  return dsl.ContainerOp()
 ```
+
+The above `component` decorator requires the function to return a `ContainerOp` 
+instance. The main purpose of using this decorator is to enable 
+[DSL static type checking](/docs/pipelines/sdk/static-type-checking).
 
 ### Pipeline parameters
 
@@ -94,6 +99,17 @@ def my_pipeline(
     my_name = dsl.PipelineParam(name='my-name', value='some text'),
     my_url = dsl.PipelineParam(name='foo-url', value='http://example.com')):
   ...
+```
+
+The DSL supports auto-conversion from string to `PipelineParam`. You can
+therefore write the same function like this:
+
+```python
+@kfp.dsl.pipeline(
+  name='My pipeline',
+  description='My machine learning pipeline'
+)
+def my_pipeline(my_num='1000', my_name='some text', my_url='http://example.com')
 ```
 
 See more about `PipelineParam` objects in the guide to [building a 
