@@ -109,7 +109,11 @@ therefore write the same function like this:
   name='My pipeline',
   description='My machine learning pipeline'
 )
-def my_pipeline(my_num='1000', my_name='some text', my_url='http://example.com')
+def my_pipeline(
+    my_num='1000', 
+    my_name='some text', 
+    my_url='http://example.com'):
+  ...
 ```
 
 See more about `PipelineParam` objects in the guide to [building a 
