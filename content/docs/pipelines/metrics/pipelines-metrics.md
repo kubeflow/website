@@ -9,11 +9,17 @@ how to build a component, see the guide to
  
 ## Overview of metrics
 
-Kubeflow Pipelines supports scalar metrics exporting. You can write a list of metrics to describe the performance of the model to a local file which will later be uploaded as run-time metrics by the pipeline agent. The uploaded metrics will be visualized in the experiment runs table in the pipeline UI.
+Kubeflow Pipelines supports the export of scalar metrics. You can write a list
+of metrics to a local file to describe the performance of the model. The
+pipeline agent uploads the local file as your run-time metrics. You can view the
+uploaded metrics as a visualization in the experiment runs page in the Kubeflow
+Pipelines UI.
  
-## Export metrics file
+## Export the metrics file
 
-To enable metrics, you need to write a file `/mlpipeline-metrics.json`. For example:
+To enable metrics, your program must to write a file `/mlpipeline-metrics.json`.
+For example:
+
 ```Python
   accuracy = accuracy_score(df['target'], df['predicted'])
   metrics = {
@@ -26,19 +32,24 @@ To enable metrics, you need to write a file `/mlpipeline-metrics.json`. For exam
   with file_io.FileIO('/mlpipeline-metrics.json', 'w') as f:
     json.dump(metrics, f)
 ```
-See the [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py#L90).
+See the 
+[full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py#L90).
 
-There are several conventions on the metrics file:
+There are several conventions for the metrics file:
 
 * The file path must be `/mlpipeline-metrics.json`.
-* The name must follow pattern `^[a-z]([-a-z0-9]{0,62}[a-z0-9])?$`.
-* format can only be `PERCENTAGE`, `RAW` or not set.
-* numberValue must be a numeric value.
+* The name must follow the pattern `^[a-z]([-a-z0-9]{0,62}[a-z0-9])?$`.
+* The format can only be `PERCENTAGE`, `RAW` or not set.
+* `numberValue` must be a numeric value.
 
-## Visualize metrics
+## Visualize the metrics
 
-To see a visualization of the metrics, open the **Experiment runs** page in the pipeline UI. The top 3 metrics are displayed as columns for each run. The following example only has one metric named as `accuracy-score`. Use the **Compare runs** UI to display the full metrics.
+To see a visualization of the metrics, open the **Experiments** page in the
+Kubeflow Pipelines UI, and select an experiment. The UI shows the top three
+metrics as columns for each run. The following example shows two metrics,
+**accuracy-score** and **roc-auc-score**. Click **Compare runs** to display the 
+full metrics.
 
 <img src="/docs/images/metric.png" 
   alt="Run metrics"
-  class="mt-3 mb-3 p-3 border border-info rounded">
+  class="mt-3 mb-3 border border-info rounded">
