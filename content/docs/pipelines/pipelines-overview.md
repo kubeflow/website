@@ -47,7 +47,6 @@ screenshot below showing an example of a pipeline graph.) The pipeline
 includes the definition of the inputs (parameters) required to run the pipeline 
 and the inputs and outputs of each component.
 
-A pipeline is the main shareable artifact in the Kubeflow Pipelines platform. 
 After developing your pipeline, you can upload and share it on the 
 Kubeflow Pipelines UI.
 
@@ -55,6 +54,9 @@ A _pipeline component_ is a self-contained set of user code, packaged as a
 [Docker image](https://docs.docker.com/get-started/), that 
 performs one step in the pipeline. For example, a component can be responsible
 for data preprocessing, data transformation, model training, and so on.
+
+See the conceptual guides to [pipelines](/docs/pipelines/concepts/pipeline/)
+and [components](/docs/pipelines/concepts/component/).
 
 ## Example of a pipeline
 

@@ -15,31 +15,15 @@ of the components of the workflow and how they work together. The pipeline
 includes the definition of the inputs (parameters) required to run the pipeline 
 and the inputs and outputs of each component.
 
-A pipeline _component_ is an implementation of a pipeline task. A component 
-represents a step in the workflow. Each component takes one or more 
-[artifacts](/docs/pipelines/concepts/output-artifact/) as
-input and may produce one or more
-[artifacts](/docs/pipelines/concepts/output-artifact/) as 
-output.
+A pipeline _component_ is an implementation of a pipeline task. A component
+represents a step in the workflow. Each component takes one or more inputs and
+may produce one or more outputs. A component consists of an interface
+(inputs/outputs), the implementation (a Docker container image and command-line
+arguments) and metadata (name, description).
 
-Each component usually includes two parts:
-
-* **Client code:** The code that talks to endpoints to submit jobs. For example, 
-  code to talk to the Google Dataproc API to submit a Spark job.
-
-* **Runtime code:** The code that does the actual job and usually runs in the 
-  cluster. For example, Spark code that transforms raw data into preprocessed 
-  data.
-
-Note the naming convention for client code and runtime code&mdash;for a task 
-named "mytask":
-
-* The `mytask.py` program contains the client code.
-* The `mytask` directory contains all the runtime code.
-
-A component consists of an interface (inputs/outputs), the implementation 
-(a Docker container image and command-line arguments) and metadata 
-(name, description).
+For more information, see the conceptual guides to 
+[pipelines](/docs/pipelines/concepts/pipeline/)
+and [components](/docs/pipelines/concepts/component/).
 
 ## Before you start
 
@@ -204,12 +188,16 @@ guide to [getting started with the UI](/docs/pipelines/pipelines-quickstart).
 
 ## Next steps
 
-* See how to 
-  [export metrics from your 
+* Build a [reusable component](/docs/pipelines/sdk/component-development/) for
+  sharing in multiple pipelines.
+* Learn more about the 
+  [Kubeflow Pipelines domain-specific language (DSL)](/docs/pipelines/sdk/dsl-overview/),
+  a set of Python libraries that you can use to specify ML pipelines.
+* See how to [export metrics from your 
   pipeline](/docs/pipelines/metrics/pipelines-metrics/).
-* See how to visualize the output of your component by
+* Visualize the output of your component by
   [adding metadata for an output 
   viewer](/docs/pipelines/metrics/output-viewer/).
 * For quick iteration, 
   [build lightweight components](/docs/pipelines/sdk/lightweight-python-components/)
-   directly from Python functions.
+  directly from Python functions.

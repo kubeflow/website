@@ -1,12 +1,15 @@
 +++
 title = "Best Practices for Designing Components"
-description = "Designgin and writing components for Kubeflow Pipelines"
+description = "Designing and writing components for Kubeflow Pipelines"
 weight = 10
 +++
 
 This page describes some recommended practices for designing
 components. For an application of these best practices, see the
-[component development guide](/docs/pipelines/sdk/component-development).
+[component development guide](/docs/pipelines/sdk/component-development). If 
+you're new to pipelines, see the conceptual guides to 
+[pipelines](/docs/pipelines/concepts/pipeline/)
+and [components](/docs/pipelines/concepts/component/).
 
 <a id="general">
 ### General component design rules
@@ -104,6 +107,8 @@ components. For an application of these best practices, see the
 
 ## Writing a component specification YAML file
 
+For the complete definition of a Kubeflow Pipelines component, see the
+[component specification](/docs/pipelines/reference/component-spec/).
 When creating your `component.yaml` file, you can look at the definitions for 
 some
 [existing components](https://github.com/kubeflow/pipelines/search?q=filename%3Acomponent.yaml&unscoped_q=filename%3Acomponent.yaml).
