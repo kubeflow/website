@@ -134,5 +134,7 @@ See the guide to
 
 * See how to
   [build a pipeline](/docs/pipelines/sdk/build-component/#create-a-python-class-for-your-component).
+* Build a [reusable component](/docs/pipelines/sdk/component-development/) for
+  sharing in multiple pipelines.
 * Read about [writing recursive functions in the 
   DSL](/docs/pipelines/sdk/dsl-recursion).

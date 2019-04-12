@@ -8,6 +8,12 @@ This page describes how to author a reusable component that you can
 load and run in Kubeflow Pipelines. A reusable component is a pre-implemented
 standalone component that is easy to add as a step in any pipeline.
 
+If you're new to
+pipelines, see the conceptual guides to [pipelines](/docs/pipelines/concepts/pipeline/)
+and [components](/docs/pipelines/concepts/component/).
+
+## Summary
+
 Below is a summary of the steps involved in creating and using a component:
 
 1.  Write the program that contains your component's logic. The program must
@@ -265,8 +271,11 @@ chmod +x build_image.sh
 You need a component specification in YAML format that describes the
 component for the Kubeflow Pipelines system.
 
-You don't need to know the full schema of the component specification. This
-tutorial provides enough information for most of the components.
+For the complete definition of a Kubeflow Pipelines component, see the
+[component specification](/docs/pipelines/reference/component-spec/).
+However, for this tutorial you don't need to know the full schema of the 
+component specification. The tutorial provides enough information for the 
+relevant the components.
 
 Start writing the component definition (`component.yaml`) by specifying your
 container image in the component's implementation section:
