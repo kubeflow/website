@@ -484,3 +484,4 @@ components/<component group>/<component name>/
 * Consolidate what you've learned by reading the 
   [best practices](/docs/pipelines/sdk/best-practices) for designing and 
   writing components.
+* See the [index of reusable components](/docs/pipelines/reusable-components/).
