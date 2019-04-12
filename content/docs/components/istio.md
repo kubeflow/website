@@ -96,6 +96,7 @@ and gradually move traffic from A to B. This can be achieved using Istio's traff
 
     ```
     MODEL_COMPONENT2=mnist-v2
+    KF_ENV=default
     ks generate tf-serving-deployment-gcp ${MODEL_COMPONENT2}
     ks param set ${MODEL_COMPONENT2} modelName mnist  // modelName should be the SAME as  the previous one
     ks param set ${MODEL_COMPONENT2} versionName v2   // v2 !!
@@ -105,6 +106,12 @@ and gradually move traffic from A to B. This can be achieved using Istio's traff
     
     ks apply ${KF_ENV} -c ${MODEL_COMPONENT2}
     ```
+
+    The `KF_ENV` environment variable represents a conceptual deployment environment 
+    such as development, test, staging, or production, as defined by 
+    ksonnet. For this example, we use the `default` environment.
+    You can read more about Kubeflow's use of ksonnet in the Kubeflow 
+    [ksonnet component guide](/docs/components/ksonnet/).
 
 3. Update the traffic weight
    

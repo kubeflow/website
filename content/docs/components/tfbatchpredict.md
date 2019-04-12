@@ -100,8 +100,15 @@ configuration to start the kubernetes job.
 ### Submit the job
 
 ```
+export KF_ENV=default
 ks apply ${KF_ENV} -c ${MY_BATCH_PREDICT_JOB_NAME}
 ```
+
+The `KF_ENV` environment variable represents a conceptual deployment environment 
+such as development, test, staging, or production, as defined by 
+ksonnet. For this example, we use the `default` environment.
+You can read more about Kubeflow's use of ksonnet in the Kubeflow 
+[ksonnet component guide](/docs/components/ksonnet/).
 
 You should see that a job is started to provision the batch-predict docker image.
 Then a pod starts to run the job.

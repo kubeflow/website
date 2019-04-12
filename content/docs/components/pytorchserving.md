@@ -36,10 +36,18 @@ You can find more details about wrapping a model with seldon-core [here](https:/
 ## Deploying the model to your Kubeflow cluster
 
 We need to have seldon component deployed, you can deploy the model once trained using a pre-defined ksonnet component, similar to [this](https://github.com/kubeflow/examples/blob/master/pytorch_mnist/ks_app/components/serving_model.jsonnet) example.
-We need to setup our own environment `${KF_ENV}` (e.g., 'default') and modify the Ksonnet component 
+
+Create an environment variable, `${KF_ENV}`, to represent a conceptual
+deployment environment such as development, test, staging, or production, as
+defined by ksonnet. For this example, we use the `default` environment. You can
+read more about Kubeflow's use of ksonnet in the Kubeflow 
+[ksonnet component guide](/docs/components/ksonnet/).
+
+Then modify the Ksonnet component 
 [parameters](https://github.com/kubeflow/examples/blob/master/pytorch_mnist/ks_app/components/params.libsonnet) to use your specific image.
 
 ```bash
+export KF_ENV=default
 cd ks_app
 ks env add ${KF_ENV}
 ks apply ${KF_ENV} -c serving_model

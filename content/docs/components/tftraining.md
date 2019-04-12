@@ -176,13 +176,20 @@ Run the `generate` command:
 ks generate tf-job-simple-v1beta1 ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
 ```
 
-Submit it
+Submit the job:
 
 ```
+export KF_ENV=default
 ks apply ${KF_ENV} -c ${CNN_JOB_NAME}
 ```
 
-Monitor it (Please refer to the [TfJob docs](https://github.com/kubeflow/tf-operator#monitoring-your-job))
+The `KF_ENV` environment variable represents a conceptual deployment environment 
+such as development, test, staging, or production, as defined by 
+ksonnet. For this example, we use the `default` environment.
+You can read more about Kubeflow's use of ksonnet in the Kubeflow 
+[ksonnet component guide](/docs/components/ksonnet/).
+
+Monitor the job (see the [TFJob docs](/docs/components/tftraining/#monitoring-your-job)):
 
 ```
 kubectl get -n kubeflow -o yaml tfjobs ${CNN_JOB_NAME}

@@ -12,7 +12,8 @@ framework (such as TensorFlow, MXNet, or PyTorch).
 
 ## Installing Katib
 
-To run Katib jobs, you must install the required packages.
+To run Katib jobs, you must install the required packages as shown in this
+section.
 
 In your ksonnet application's root directory, run the following commands:
 
@@ -22,8 +23,12 @@ ks env set ${KF_ENV} --namespace=kubeflow
 ks registry add kubeflow github.com/kubeflow/kubeflow/tree/master/kubeflow
 ```
 
-You can read more about Kubeflow's use of ksonnet in the [ksonnet component
-guide](/docs/components/ksonnet/).
+The `KF_ENV` environment variable represents a conceptual deployment environment 
+such as development, test, staging, or production, as defined by 
+ksonnet. For this example, we use the `default` environment.
+
+You can read more about Kubeflow's use of ksonnet in the Kubeflow 
+[ksonnet component guide](/docs/components/ksonnet/).
 
 ### TFJob (tf-operator)
 
