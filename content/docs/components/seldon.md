@@ -28,8 +28,15 @@ ks generate seldon seldon
 Deploy seldon cluster manager:
 
 ```
+export KF_ENV=default
 ks apply ${KF_ENV} -c seldon
 ```
+
+The `KF_ENV` environment variable represents a conceptual deployment environment 
+such as development, test, staging, or production, as defined by 
+ksonnet. For this example, we use the `default` environment.
+You can read more about Kubeflow's use of ksonnet in the Kubeflow 
+[ksonnet component guide](/docs/components/ksonnet/).
 
 ### Seldon Deployment Graphs
 

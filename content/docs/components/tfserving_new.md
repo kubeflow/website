@@ -104,9 +104,16 @@ for serving an object detection model with GPU.
 ### Deploying
 
 ```
+export KF_ENV=default
 ks apply ${KF_ENV} -c mnist-service
 ks apply ${KF_ENV} -c ${MODEL_COMPONENT}
 ```
+
+The `KF_ENV` environment variable represents a conceptual deployment environment 
+such as development, test, staging, or production, as defined by 
+ksonnet. For this example, we use the `default` environment.
+You can read more about Kubeflow's use of ksonnet in the Kubeflow 
+[ksonnet component guide](/docs/components/ksonnet/).
 
 ### Sending prediction request directly
 If the service type is LoadBalancer, it will have its own accessible external ip.
