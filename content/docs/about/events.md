@@ -8,6 +8,10 @@ aliases = ["/docs/events/"]
 This is a nonexhaustive list of events (in reverse chronological order) with talks and workshops about Kubeflow.
 Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if something is missing or incorrect.
 
+* [O'Reilly Software Architecture Conference, San Jose](https://conferences.oreilly.com/software-architecture/sa-ca), 10-13 June, 2019
+  - [Architecting and Deploying Machine Learning for Private Cloud] (https://conferences.oreilly.com/software-architecture/sa-ca/public/schedule/detail/75271): Laura Schornack and Derek Ferguson
+* [GOTO Chicago 2019, Chicago](https://https://gotochgo.com), 28 April - May 1, 2019
+  - [Accelerating Machine Learning DevOps with Kubeflow] (https://gotochgo.com/2019/sessions/837): Derek Ferguson
 * [Google Cloud Next, San Francisco](https://cloud.withgoogle.com/next/sf), 9-11 April, 2019
   - [Undoing Human Bias at Scale With Kubeflow](https://cloud.withgoogle.com/next/sf/sessions?session=MLAI206): John Bohannon, Michelle Casbon
 * [Kubeflow Contributor Summit 2019](https://docs.google.com/document/d/14Jr79aWVjsJg8xq38CLVE4rKRwM1_-gHLuxhGAhrGTI/edit?usp=sharing), Sunnyvale, CA, 12-13 March, 2019
