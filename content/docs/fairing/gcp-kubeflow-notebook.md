@@ -20,7 +20,7 @@ demonstrate how to:
 1.  Use the Kubeflow user interface to open your hosted notebook environment
     in Kubeflow.
 
-1.  In your hosted noteboo environment, click **New** and select **Terminal**
+1.  In your hosted notebook environment, click **New** and select **Terminal**
     to start a new terminal session in your notebook environment. Use the
     terminal session to configure your notebook environment to run the XGBoost
     quickstart notebook:
