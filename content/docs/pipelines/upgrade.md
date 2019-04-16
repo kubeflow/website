@@ -177,7 +177,7 @@ change in the procedure:
 
 ### Reinstalling Kubeflow in other environments (non-GCP) 
 
-The steps are the same as for anys non-GCP installation, except that you
+The steps are the same as for any non-GCP installation, except that you
 must use the same PV definitions as in your previous deployment to create the
 PV in the new cluster.
 
