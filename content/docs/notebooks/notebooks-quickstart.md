@@ -22,7 +22,7 @@ environment.
 
 TODO...
 
-1. Click **Jupyterhub** to access Jupyter notebooks in Kubeflow:
+1. Click **Notebooks** to access Jupyter notebooks in Kubeflow:
   <img src="/docs/images/central-ui.png" 
     alt="Kubeflow UI"
     class="mt-3 mb-3 border border-info rounded">
