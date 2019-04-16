@@ -15,6 +15,9 @@ to demonstrate how to:
 *  Use Kubeflow Fairing to deploy a trained model to Kubeflow, and
 *  Call the deployed endpoint for predictions.
 
+Follow these instructions to set up your environment and run the XGBoost
+quickstart notebook:
+
 1.  If you do not have a Kubeflow environment, follow the guide to [deploying
     Kubeflow on GKE][kubeflow-install-gke] to set up your Kubeflow environment.
     The guide provides two options for setting up your environment:
