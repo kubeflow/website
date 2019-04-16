@@ -1,5 +1,5 @@
 +++
 title = "Pipelines"
 description = "Documentation for Kubeflow Pipelines."
-weight = 4
+weight = 40
 +++
