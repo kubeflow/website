@@ -97,10 +97,10 @@ After deploying everything, you can run some examples.
 ### Example using random algorithm
 
 You can create a StudyJob for Katib by defining a StudyJob config file. See the 
-[random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/random-example.yaml).
+[random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1alpha1/random-example.yaml).
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/random-example.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha1/random-example.yaml
 ```
 
 Running this command launches a StudyJob. The study job runs a series of 
@@ -109,7 +109,7 @@ results.
 
 The configurations for the study (hyper-parameter feasible space, optimization 
 parameter, optimization goal, suggestion algorithm, and so on) are defined in 
-[random-example.yaml](https://github.com/kubeflow/katib/blob/master/examples/random-example.yaml).
+[random-example.yaml](https://github.com/kubeflow/katib/blob/master/examples/v1alpha1/random-example.yaml).
 
 In this demo, hyper-parameters are embedded as args.
 You can embed hyper-parameters in another way (for example, environment values) 
