@@ -1,7 +1,7 @@
 +++
 title = "Create a Custom Jupyter Image"
 description = "Creating a custom Docker image for your Jupyter notebook"
-weight = 40
+weight = 30
 +++
 
 This guide tells you how to configure a custom Docker image for your Jupyter
@@ -75,6 +75,6 @@ CMD ["sh","-c", "jupyter notebook --notebook-dir=/home/jovyan --ip=0.0.0.0 --no-
 
 ## Next steps
 
-* When starting a Jupyter notebook server from the
-  Kubeflow UI, specify your custom Docker image. See the guide to [setting up
-  your Jupyter notebooks](/docs/notebooks/setup/).
+When starting a Jupyter notebook server from the
+Kubeflow UI, specify your custom Docker image. See the guide to [setting up
+your Jupyter notebooks](/docs/notebooks/setup/).

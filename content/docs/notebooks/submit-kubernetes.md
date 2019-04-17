@@ -1,20 +1,38 @@
 +++
 title = "Submit Kubernetes Resources"
 description = "Submitting Kubernetes resources from a Jupyter notebook"
-weight = 30
+weight = 40
 +++
 
-The Jupyter Notebook pods are assigned the `jupyter-notebook` service account. This service account is bound to `jupyter-notebook` role which has namespace-scoped permissions to the following k8s resources:
+Kubeflow assigns the `jupyter-notebook` service account to the Jupyter notebook
+Pods. This service account is bound to the `jupyter-notebook` role, which has namespace-scoped permissions to the following Kubernetes resources:
 
-* pods
-* deployments
-* services
-* jobs
-* tfjobs
-* pytorchjobs
+* Pods
+* Deployments
+* Services
+* Jobs
+* TFJobs
+* PyTorchJobs
 
-This means that you can directly create these k8s resources directly from your jupyter notebook. kubectl is already installed in the notebook, so you can create k8s resources running the following command in a jupyter notebook cell
+You can therefore create the above Kubernetes resources directly from your
+Jupyter notebook in Kubeflow. The Kubernetes 
+[`kubectl`(https://kubernetes.io/docs/tasks/tools/install-kubectl/)] 
+command-line tool is pre-installed in the notebook.
+
+Run the following command in a Jupyter notebook cell to create Kubernetes 
+resources:
 
 ```
 !kubectl create -f myspec.yaml
 ```
+
+The `myspec.yaml` file should describe one of the above Kubernetes resources.
+For information about the format of the YAML file, see the 
+[Kubernetes object guide](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/).
+
+## Next steps
+
+* See the guide to [setting up
+  your Jupyter notebooks in Kubeflow](/docs/notebooks/setup/).
+* Explore the [components of Kubeflow](/docs/components.), including custom 
+  Kubernetes resources.

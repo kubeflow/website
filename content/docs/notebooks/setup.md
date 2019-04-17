@@ -4,12 +4,12 @@ description = "Getting started with Jupyter notebooks on Kubeflow"
 weight = 10
 +++
 
-Your Kubeflow deployment includes support for spawning and managing Jupyter
+Your Kubeflow deployment includes services for spawning and managing Jupyter
 notebooks. 
 
 You can set up multiple *notebook servers* per Kubeflow deployment. Each
 notebook server can include multiple *notebooks*. Each notebook server belongs
-to a single *namespace*, which defines the project group or team for that
+to a single *namespace*, which corresponds to the project group or team for that
 server.
 
 This guide shows you how to set up a notebook server for your Jupyter notebooks
@@ -69,7 +69,18 @@ getting-started guide for your chosen environment. For example:
      to your Google Account you may not need to log in again.)
    * On all other platforms, sign in using any username and password.
 
-1. Click **NEW SERVER**.
+1. Click **NEW SERVER** on the **Notebook Servers** page:
+
+    <img src="/docs/images/add-notebook-server.png" 
+      alt="The Kubeflow notebook servers page"
+      class="mt-3 mb-3 border border-info rounded">
+
+    You should see the **New Notebook Server** page:
+
+    <img src="/docs/images/new-notebook-server.png" 
+      alt="Form for adding a Kubeflow notebook server"
+      class="mt-3 mb-3 border border-info rounded">
+
 1. Enter a **name** of your choice for the notebook server. The name can
   include letters and numbers, but no spaces. For example, `my-first-notebook`.
 1. Enter a **namespace** to identify the project group or team to which this 
@@ -114,7 +125,8 @@ getting-started guide for your chosen environment. For example:
 
 1. Specify a **workspace volume** to hold your personal workspace for this
   notebook server. Kubeflow provisions a 
-  [Kubernetes persistent volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for your workspace volume.
+  [Kubernetes persistent volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for your workspace volume. The PV ensures that you can
+  retain data even if you destroy your notebook server.
 
   * The default is to create a new volume for your workspace with the
     following configuration:
