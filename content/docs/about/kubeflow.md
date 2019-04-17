@@ -53,7 +53,7 @@ Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://
 
 ## Notebooks
 
-Included in Kubeflow is [JupyterHub](https://jupyterhub.readthedocs.io/en/stable/) to create and manage multi-user interactive Jupyter notebooks. Project Jupyter is a non-profit, open-source project to support interactive data science and scientific computing across all programming languages.
+Kubeflow includes services for spawning and managing [Jupyter notebooks](https://jupyter-notebook.readthedocs.io/en/latest/). Project Jupyter is a non-profit, open-source project to support interactive data science and scientific computing across all programming languages.
 
 ## Using Kubeflow
 

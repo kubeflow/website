@@ -10,10 +10,10 @@ This guide has information about advanced customizations for Kubeflow.
 
 Frequently data scientists require a POSIX compliant filesystem. For example, most HDF5 libraries require POSIX and don't work with an object store like GCS or S3. Also, when working with teams you might want a shared POSIX filesystem to be mounted into your notebook environments so that data scientists can work collaboratively on the same datasets.
 
-You can provision your own NFS shares and create Persistent Volume and Persistent Volume Claim objects and then attach them to your jupyter notebooks via the disks flag.
+You can provision your own NFS shares and create Persistent Volume and Persistent Volume Claim objects and then attach them to your Jupyter notebooks via the disks flag.
 
 
-Configure jupyterhub to use the disks
+Configure Jupyter to use the disks
 
 ```
 ks param set jupyter disks ${PVC_CLAIM1},${PVC_CLAIM2}

@@ -65,7 +65,7 @@ Here's an overview of what you accomplish by following this guide:
 * Setting up [Kubeflow][kubeflow] in a [GKE][kubernetes-engine]
   cluster.
 
-* Testing the code locally using a [Jupyter notebook][jupyterhub].
+* Testing the code locally using a [Jupyter notebook][jupyter-notebook].
 
 * Training the model:
 
@@ -294,38 +294,13 @@ gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
 The sample you downloaded contains all the code you need. If you like, you
 can experiment with and test the code in a Jupyter notebook.
 
-The Kubeflow deployment includes [JupyterHub][jupyterhub] and a
-corresponding load balancer service. You can choose to connect to JupyterHub
-using the Kubeflow URL or locally.
+The Kubeflow deployment includes services for spawning and managing 
+[Jupyter notebooks][jupyter-notebook]. 
 
-1. Choose one of the options below to connect to JupyterHub:
-
-    * Click **JUPYTERHUB** on the Kubeflow UI (see screenshot above).
-    * Alternatively, follow the
-      [Kubeflow guide to Jupyter notebooks][kubeflow-jupyter] to connect
-      to JupyterHub locally.
-
-1. Click **Start My Server** if prompted to do so.
-
-1. Leave the **Image** details at the default setting on the JupyterHub 
-   **Spawner Options** page. The default gives you a standard CPU image
-   with a recent version of TensorFlow.
-
-1. Click **Spawn**.
-
-    It takes a few minutes for the notebook server to start.
-    After a minute or so, you should see a message on the web page:
-
-    ```
-    Your server is starting up.
-    You will be redirected automatically when it's ready for you.
-    ```
-
-    You should also see an event log which you can check periodically
-    while the server starts.
-
-    When the server is ready, the Jupyter notebook dashboard opens in your
-    browser.
+1. Follow the [Kubeflow notebooks setup guide](/docs/notebooks/setup/) to
+  create a Jupyter notebook server and open the Jupyter UI.
+  Accept the default settings when configuring your notebook server. The 
+  default configuration gives you a standard CPU image with a recent version of TensorFlow.
 
 1. Create a new notebook by clicking **New > Python 2** on the Jupyter
    dashboard.
@@ -999,7 +974,6 @@ using the [GCP Console][gcp-console].
 [ks-apply]: https://github.com/ksonnet/ksonnet/blob/master/docs/cli-reference/ks_apply.md
 
 [flask]: http://flask.pocoo.org/
-[jupyterhub]: https://jupyter.org/hub
 
 [kubeflow]: https://www.kubeflow.org/
 [kubeflow-core]: https://github.com/kubeflow/kubeflow/tree/master/kubeflow/core
@@ -1009,6 +983,6 @@ using the [GCP Console][gcp-console].
 
 [deploy-script]: https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deploy.sh
 
-[jupyterhub]: http://jupyter.org/hub
-[kubeflow-jupyter]: /docs/components/jupyter/
+[jupyter-notebook]: https://jupyter-notebook.readthedocs.io
+[kubeflow-jupyter]: /docs/notebooks/
 [jupyter-nbviewer]: https://jupyter-notebook.readthedocs.io/en/latest/notebook.html#notebook-user-interface

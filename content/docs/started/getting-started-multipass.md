@@ -7,7 +7,7 @@ weight = 2
 This document outlines the steps that you can take to get your local
 installation of Kubeflow running on top of Microk8s, a single-node Kubernetes cluster. Microk8s requires Linux; if you are not on a Linux system, you can use Multipass to create a Linux VM on your native hypervisor.
 
-By the end of this document, you'll have a local installation of a Kubernetes cluster along with all the default core components of Kubeflow deployed as services in the pods. You can access the Kubeflow dashboard, JupyterHub notebooks, and dashboards of other Kubeflow components.
+By the end of this document, you'll have a local installation of a Kubernetes cluster along with all the default core components of Kubeflow deployed as services in the pods. You can access the Kubeflow dashboard, Jupyter notebooks, and dashboards of other Kubeflow components.
 
 ## Introduction
 
@@ -107,7 +107,8 @@ The current approach leverages ksonnet to setup and install Kubeflow. The kubefl
 $ git clone https://github.com/canonical-labs/kubeflow-tools
 $ kubeflow-tools/install-kubeflow.sh
 ```
-This script will print out the port number for Ambassador and for JupyterHub (Note: you can access JupyterHub through Ambassador).
+This script will print out the port number for Ambassador and for Jupyter notebooks
+(Note: you can access Jupyter notebooks through Ambassador).
 
 
 ## Access Kubeflow
@@ -124,4 +125,4 @@ Point browser to either:
 
 * Refer to the [user guide](/docs/)
 * Refer to the [components](/docs/components/)
-* Refer to the [JupyterHub guide](/docs/components/jupyter)
+* Refer to the guide to [Jupyter notebooks in Kubeflow](/docs/notebooks/)

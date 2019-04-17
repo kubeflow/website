@@ -53,7 +53,7 @@ For example, to mount additional physical volumes (PVs) in Jupyter:
 
 ```
 cd ${KF_APP}/ks_app
-ks param set jupyterhub disks "kubeflow-gcfs"
+ks param set jupyter disks "kubeflow-gcfs"
 ```
 
 You can then redeploy using `kfctl`:

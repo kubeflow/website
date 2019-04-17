@@ -9,7 +9,7 @@ of Kubeflow running on top of Minikube. Minikube runs a simple, single-node
 Kubernetes cluster inside a virtual machine (VM).
 
 By the end of this document, you'll have a local installation of Minikube kubernetes cluster along with all the default core components of
-Kubeflow deployed as services in the pods. You should be able to access JupyterHub notebooks, and the Kubeflow Dashboard.
+Kubeflow deployed as services in the pods. You should be able to access Jupyter notebooks, and the Kubeflow Dashboard.
 
 ### Prerequisites
   - Laptop, Desktop or a Workstation
@@ -98,12 +98,12 @@ The script asks for some config input as shown below:
 Let us consider the example for CPUs configuration. When it asks `Assign CPUs between 3..10 [6]: ` the `3..10` suggest the range of CPU cores available based on your host machine. `[6]` is the suggested default. You can choose any value within the range and enter the value or just press enter to accept the default value suggested in square brackets. In the image above, we choose the default 6 for CPUs and specified 12GB of memory explicitly. Note that:
 
   1. You will need to specify the virtualizer installed on the system explicitly and it needs to be one of the values provided as options.
-  1. If you don't want to mount any local directory into the JupyterHub simply press enter instead of specifying any path.
+  1. If you don't want to mount any local directory into the Jupyter notebooks simply press enter instead of specifying any path.
 
 After the configuration is complete, the script will continue execution for the next few minutes and when finished successfully should output some like:
 ![LocalDeployment](../LocalDeployment.png)
 
-When the installation finishes successfully, you can access JupyterHub as described in [Where to go next](#where-to-go-next). If you have trouble with the installation script or run into errors, you can follow the detailed installation steps manually as described below.
+When the installation finishes successfully, you can access Jupyter notebooks as described in [Where to go next](#where-to-go-next). If you have trouble with the installation script or run into errors, you can follow the detailed installation steps manually as described below.
 
 ### Install Kubectl
 
@@ -233,12 +233,13 @@ The following steps will deploy Kubeflow components and start them on the Miniku
 The above installation may take a few minutes. At the end of the installation you should see:
 ```
 Access Kubeflow dashboard at http://localhost:8080/
-Access JupyterHub at http://localhost:8080/hub/
+Access Jupyter notebooks at http://localhost:8080/notebooks/
 ```
 
 ### Where to go next
-Now you can access the Kubeflow dashboard at http://localhost:8080/ and JupyterHub at http://localhost:8080/hub/.
-For JupyterHub, you'll be landing on a login page.
+Now you can access the Kubeflow dashboard at http://localhost:8080/ and Jupyter
+notebooks at http://localhost:8080/notebooks/.
+For Jupyter notebooks, you'll be landing on a login page.
 
   - Use any username and password to login
   - Pick an available CPU tensorflow image
