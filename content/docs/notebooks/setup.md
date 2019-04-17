@@ -1,13 +1,34 @@
 +++
-title = "Notebooks Quickstart"
+title = "Set Up Your Notebooks"
 description = "Getting started with Jupyter notebooks on Kubeflow"
 weight = 10
 +++
 
-Use this guide to get a notebook running quickly in Kubeflow. 
-If you need a more in-depth guide to building, training, and
-deploying a machine learning (ML) model from a notebook, see the
-[Kubeflow Fairing documentation](/docs/fairing/).
+Your Kubeflow deployment includes support for spawning and managing Jupyter
+notebooks. 
+
+You can set up multiple *notebook servers* per Kubeflow deployment. Each
+notebook server can include multiple *notebooks*. Each notebook server belongs
+to a single *namespace*, which defines the project group or team for that
+server.
+
+This guide shows you how to set up a notebook server for your Jupyter notebooks
+in Kubeflow.
+
+## Quick guide
+
+Summary of steps:
+
+1. Follow the [Kubeflow getting-started guide](/docs/started/getting-started/) to
+set up your Kubeflow deployment and open the Kubeflow UI.
+
+1. Click **Notebooks** in the left-hand panel of the Kubeflow UI.
+1. Click **NEW SERVER** to create a notebook server.
+1. When the notebook server provisioning is complete, click **CONNECT**.
+1. Click **Upload** to upload an existing notebook, or click **New** to
+  create an empty notebook.
+
+The rest of this page contains details of the above steps.
 
 ## Install Kubeflow and open the Kubeflow UI
 
@@ -35,10 +56,10 @@ getting-started guide for your chosen environment. For example:
 * For other environments, see the getting-started guide for your chosen 
   environment.
 
-## Bring up a Jupyter notebook
+## Create a Jupyter notebook server and add a notebook
 
 1. Click **Notebooks** in the left-hand panel of the Kubeflow UI to access the
-  Jupyter notebook servers deployed with Kubeflow:
+  Jupyter notebook services deployed with Kubeflow:
   <img src="/docs/images/jupyterlink.png" 
     alt="Opening notebooks from the Kubeflow UI"
     class="mt-3 mb-3 border border-info rounded">
@@ -51,15 +72,16 @@ getting-started guide for your chosen environment. For example:
 1. Click **NEW SERVER**.
 1. Enter a **name** of your choice for the notebook server. The name can
   include letters and numbers, but no spaces. For example, `my-first-notebook`.
-1. Enter a **namespace** to identify the project group to which this server
-  belongs. The default is `kubeflow`.
+1. Enter a **namespace** to identify the project group or team to which this 
+  notebook server belongs. The default is `kubeflow`.
 
-1. Select a Docker **image** for the baseline deployment of your Jupyter server.
-  You can choose from a range of *standard* images or specify a *custom* image:
+1. Select a Docker **image** for the baseline deployment of your notebook 
+  server. You can choose from a range of *standard* images or specify a 
+  *custom* image:
 
-  * **Standard**: The standard Docker images include typical ML 
-    packages that you can use within your Jupyter notebooks on 
-    this server. Select an image from the **Image** dropdown menu.
+  * **Standard**: The standard Docker images include typical machine learning 
+    (ML) packages that you can use within your Jupyter notebooks on 
+    this notebook server. Select an image from the **Image** dropdown menu.
     The image names indicate the following choices:
 
       * A TensorFlow version (for example, `tensorflow-1.13.1`). Kubeflow offers
@@ -79,7 +101,9 @@ getting-started guide for your chosen environment. For example:
     
 
   * **Custom**: If you select the custom option, you must specify a Docker image 
-    in  the form `registry/image:tag`.
+    in  the form `registry/image:tag`. For guidelines on creating a Docker
+    image for your notebook, see the guide to 
+    [creating a custom Jupyter image](/docs/notebooks/custom-notebook/).
 
 1. Specify the total amount of **CPU** that your notebook server should reserve. 
   The default is `0.5`. For CPU-intensive jobs, you can choose more than one CPU 
@@ -89,8 +113,8 @@ getting-started guide for your chosen environment. For example:
   reserve. The default is `1.0Gi`.
 
 1. Specify a **workspace volume** to hold your personal workspace for this
-  notebook server. The volume is a 
-  [Kubernetes persistent volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
+  notebook server. Kubeflow provisions a 
+  [Kubernetes persistent volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for your workspace volume.
 
   * The default is to create a new volume for your workspace with the
     following configuration:
@@ -105,8 +129,8 @@ getting-started guide for your chosen environment. For example:
 
 1. *(Optional)* Specify one or more **data volumes** if you want to store and
   access data from the notebooks on this notebook server. You can add new
-  volumes or specify existing volumes. The volume is a 
-  [Kubernetes persistent volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
+  volumes or specify existing volumes. Kubeflow provisions a 
+  [Kubernetes persistent volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for each of your data volumes.
 
 1. Click **SPAWN** and wait a while. You should see an entry for your new
   notebook server on the **Notebook Servers** page, with a spinning indicator in 
@@ -129,8 +153,8 @@ getting-started guide for your chosen environment. For example:
           jupyter-accounts-2egoogle-2ecom-3USER-40DOMAIN-2eEXT
           ```
 
-1. When the server provisioning is complete, you should see an entry for your
-  notebook server on the **Notebook Servers** page, with a check mark in the
+1. When the notebook server provisioning is complete, you should see an entry
+  for your server on the **Notebook Servers** page, with a check mark in the
   **Status** column:
 
     <img src="/docs/images/notebook-servers.png" 

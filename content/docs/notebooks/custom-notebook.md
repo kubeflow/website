@@ -1,10 +1,15 @@
 +++
-title = "Custom Jupyter Image"
-description = "Creating a custom Jupyter image"
+title = "Create a Custom Jupyter Image"
+description = "Creating a custom Docker image for your Jupyter notebook"
 weight = 40
 +++
 
 You can create your own Jupyter image and use it in your Kubeflow cluster.
+When starting a Jupyter notebook server from the Kubeflow UI, you can
+specify a custom Docker image. See the guide to 
+[setting up your Jupyter notebooks](/docs/notebooks/setup/).
+
+
 Your custom image needs to meet the requirements created by Kubeflow Notebook Controller. Kubeflow Notebook Controller  manages the life-cycle of notebooks.
  Kubeflow Web UI expects the Jupyer to be launched upon running the docker image with only `docker run`. For that you need to set the default command of your image to launch Jupyter. The Jupyter launch command needs to be set as follows:
 

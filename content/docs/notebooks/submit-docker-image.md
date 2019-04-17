@@ -1,5 +1,5 @@
 +++
-title = "Docker Image"
+title = "Submit a Docker Image to Container Registry"
 description = "Building docker images from Jupyter Notebook on GCP"
 weight = 50
 +++
