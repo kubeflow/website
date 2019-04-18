@@ -107,8 +107,9 @@ The current approach leverages ksonnet to setup and install Kubeflow. The kubefl
 $ git clone https://github.com/canonical-labs/kubeflow-tools
 $ kubeflow-tools/install-kubeflow.sh
 ```
-This script will print out the port number for Ambassador and for Jupyter notebooks
-(Note: you can access Jupyter notebooks through Ambassador).
+This script will print out the port number for Ambassador and for Jupyter notebook 
+servers.
+(Note: you can access your Jupyter notebook server through Ambassador).
 
 
 ## Access Kubeflow

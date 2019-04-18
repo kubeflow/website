@@ -16,7 +16,7 @@ Pods. This service account is bound to the `jupyter-notebook` role, which has na
 
 You can therefore create the above Kubernetes resources directly from your
 Jupyter notebook in Kubeflow. The Kubernetes 
-[`kubectl`(https://kubernetes.io/docs/tasks/tools/install-kubectl/)] 
+[`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 command-line tool is pre-installed in the notebook.
 
 Run the following command in a Jupyter notebook cell to create Kubernetes 

@@ -9,7 +9,7 @@ of Kubeflow running on top of Minikube. Minikube runs a simple, single-node
 Kubernetes cluster inside a virtual machine (VM).
 
 By the end of this document, you'll have a local installation of Minikube kubernetes cluster along with all the default core components of
-Kubeflow deployed as services in the pods. You should be able to access Jupyter notebooks, and the Kubeflow Dashboard.
+Kubeflow deployed as services in the pods. You should be able to access Jupyter notebooks and the Kubeflow Dashboard.
 
 ### Prerequisites
   - Laptop, Desktop or a Workstation
@@ -98,7 +98,7 @@ The script asks for some config input as shown below:
 Let us consider the example for CPUs configuration. When it asks `Assign CPUs between 3..10 [6]: ` the `3..10` suggest the range of CPU cores available based on your host machine. `[6]` is the suggested default. You can choose any value within the range and enter the value or just press enter to accept the default value suggested in square brackets. In the image above, we choose the default 6 for CPUs and specified 12GB of memory explicitly. Note that:
 
   1. You will need to specify the virtualizer installed on the system explicitly and it needs to be one of the values provided as options.
-  1. If you don't want to mount any local directory into the Jupyter notebooks simply press enter instead of specifying any path.
+  1. If you don't want to mount any local directory into the Jupyter notebook server simply press enter instead of specifying any path.
 
 After the configuration is complete, the script will continue execution for the next few minutes and when finished successfully should output some like:
 ![LocalDeployment](../LocalDeployment.png)
@@ -237,19 +237,11 @@ Access Jupyter notebooks at http://localhost:8080/notebooks/
 ```
 
 ### Where to go next
+
 Now you can access the Kubeflow dashboard at http://localhost:8080/ and Jupyter
 notebooks at http://localhost:8080/notebooks/.
-For Jupyter notebooks, you'll be landing on a login page.
 
-  - Use any username and password to login
-  - Pick an available CPU tensorflow image
-  - Provide at least 2 CPUs
-  - Provide 4Gi for the memory
-  - Leave "Extra Resource Limits" alone for now
-  - Click Spawn.
-  - You should be redirected to a page that waits while the server is starting.
-
-If the page doesn't refresh, please see
-[troubleshooting](/docs/other-guides/troubleshooting/#problems-spawning-jupyter-pods).
+For Jupyter notebooks, you can use any username and password to log in. 
+Follow the guide to [setting up your Jupyter notebooks on Kubeflow](/docs/notebooks/setup/).
 
 For further exploration refer to the [documentation](/docs/).

@@ -131,10 +131,16 @@ getting-started guide for your chosen environment. For example:
   * The default is to create a new volume for your workspace with the
     following configuration:
   
-      * Name: `notebook-workspace`
+      * Name: The volume name is synced with the name of the notebook server.
+        When you start typing the notebook server name, the volume name takes 
+        the same value. You can edit the volume name, but if you later edit the 
+        notebook server name, the volume name changes to match the notebook 
+        server name.
       * Size: `10Gi`
       * Mount path: `/home/jovyan`
-      * Access mode: `ReadWriteOnce`
+      * Access mode: `ReadWriteOnce`. This setting means that the volume can be 
+        mounted as read-write by a single node. See the 
+        [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for more details about access modes.
 
   * Alternatively, you can point the notebook server at an existing volume by 
     specifying the name, mount path, and access mode for the existing volume.
@@ -149,21 +155,27 @@ getting-started guide for your chosen environment. For example:
   the **Status** column. It can take a few minutes to set up
   the notebook server.
 
-    * You can check the status of your pod by entering the following command:
+    * You can check the status of your Pod by hovering your mouse cursor over 
+      the icon in the **Status** column next to the entry for your notebook
+      server. For example, if the image is downloading then the status spinner 
+      has a tooltip that says `ContainerCreating`.
+
+        Alternatively, you can check the Pod status by entering the following 
+        command:
 
         ```
         kubectl -n <NAMESPACE> describe pods jupyter-<USERNAME>
         ```
 
-        * Where `<NAMESPACE>` is the namespace you specified earlier 
-          (default `kubeflow`) and `<USERNAME>` is the name you used to log in.
-          **A note for GCP users:** If you have IAP turned on, the Pod has
-          a different name. For example, if you signed in as `USER@DOMAIN.EXT` 
-          the Pod has a name of the following form:
+        Where `<NAMESPACE>` is the namespace you specified earlier 
+        (default `kubeflow`) and `<USERNAME>` is the name you used to log in.
+        **A note for GCP users:** If you have IAP turned on, the Pod has
+        a different name. For example, if you signed in as `USER@DOMAIN.EXT` 
+        the Pod has a name of the following form:
 
-          ```
-          jupyter-accounts-2egoogle-2ecom-3USER-40DOMAIN-2eEXT
-          ```
+        ```
+        jupyter-accounts-2egoogle-2ecom-3USER-40DOMAIN-2eEXT
+        ```
 
 1. When the notebook server provisioning is complete, you should see an entry
   for your server on the **Notebook Servers** page, with a check mark in the
@@ -173,7 +185,7 @@ getting-started guide for your chosen environment. For example:
       alt="Opening notebooks from the Kubeflow UI"
       class="mt-3 mb-3 border border-info rounded">
 
-1. Click **CONNECT** to start the notebook server, and wait a while.
+1. Click **CONNECT** to start the notebook server.
 
 1. When the notebook server is running, you should see the Jupyter dashboard
   interface. If you requested a new workspace, the dashboard should be empty
@@ -248,4 +260,4 @@ exposed to the internet and is an unsecured endpoint by default.
   building, training, and deploying an ML model from a notebook.
 * Learn the advanced features available from a Kubeflow notebook, such as
   [submitting Kubernetes resources](/docs/notebooks/submit-kubernetes/) or
-  [building Docker images](/docs/notebooks/docker-image/). 
+  [building Docker images](/docs/notebooks/submit-docker-image/). 
