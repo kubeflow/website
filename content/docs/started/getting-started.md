@@ -4,34 +4,11 @@ description = "Quickly get running with your ML Workflow"
 weight = 1
 +++
 
-## Who should consider using Kubeflow?
+There are a variety of ways to instal Kubeflow
 
-Based on the current functionality you should consider using Kubeflow if:
-
-  * You want to train/serve TensorFlow models in different environments (e.g.
-    local, on prem, and cloud)
-  * You want to use Jupyter notebooks to manage TensorFlow training jobs
-  * You want to launch training jobs that use resources -- such as additional
-    CPUs or GPUs -- that aren't available on your personal computer
-  * You want to combine TensorFlow with other processes
-       * For example, you may want to use
-	 [tensorflow/agents](https://github.com/tensorflow/agents) to run
-	 simulations to generate data for training reinforcement learning
-	 models.
-
-This list is based ONLY on current capabilities. We are investing significant
-resources to expand the functionality and actively soliciting help from
-companies and individuals interested in contributing (see
-[Contributing](/docs/contributing/)).
-
-## Installation without pre-existing Kubernetes
-
-Here is how you can get Kubeflow up and running if you don't have a K8s cluster
-running already.
-
-### Local
-
-There are several options:
+* GCP users should follow [guide for deploying on GCP](/docs/gke/deploy/)
+* On prem users or users with an existing Kubernetes cluster should follow the [guide for deploying on kubernetes](/docs/started/getting-started-k8s.md)
+ * Users who want to run Kubernetes locally in a virtual machine can select one of the following options
 
    * [MiniKF setup](/docs/started/getting-started-minikf/)
       * MiniKF is a fast and easy way to get started with Kubeflow.
@@ -72,79 +49,6 @@ There are several options:
 	   - Eliminates the need to install a separate virtualization
 	     application.
 	   - You can use cloud-init to customize the VM (as you might in a cloud)
-
-### Cloud
-
-To get started with Kubeflow on the cloud please follow the the 
-guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
-
-For more general information on setting up a Kubernetes cluster please refer to
-[Kubernetes Setup](https://kubernetes.io/docs/setup/). If you want to use GPUs,
-be sure to follow the Kubernetes [instructions for enabling
-GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
-
-## Installation on existing Kubernetes
-
-Use these instructions if you are already running a Κ8s cluster on prem.
-
-### Install Kubeflow
-
-Requirements:
-
-  * ksonnet version {{% ksonnet-min-version %}} or later. See the
-    [ksonnet component guide](/docs/components/ksonnet) for help with installing
-    ksonnet and understanding how Kubeflow uses ksonnet.
-  * Kubernetes version {{% kubernetes-min-version %}} or later
-  * kubectl
-
-Download, set up, and deploy. (If you prefer to work from source code, feel free
-to skip step 1):
-
-1. Run the following commands to download `kfctl.sh`
-
-    ```
-    mkdir ${KUBEFLOW_SRC}
-    cd ${KUBEFLOW_SRC}
-    export KUBEFLOW_TAG={{% kf-stable-tag %}}
-    curl
-    https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
-     ```
-   * **KUBEFLOW_SRC** a directory where you want to download the source to
-   * **KUBEFLOW_TAG** a tag corresponding to the version to check out, such as
-     `master` for the latest code.
-   * **Note** you can also just clone the repository using git.
-
-2. Run the following commands to setup and deploy Kubeflow:
-
-    ```
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform none
-    cd ${KFAPP}
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
-    ```
-   * **${KFAPP}** the name for the kubeflow deployment (shouldn't be a path). A
-     directory with the name will be created under `pwd` when you run init, and
-     that is where kubeflow configurations will be stored.
-      * The ksonnet app will be created in the directory **${KFAPP}/ks_app**
-   * (optional) For GPU support, make sure your cluster is in a
-     [zone that has GPUs](https://cloud.google.com/compute/docs/regions-zones/).
-     To set the zone explicitly, append `--zone ${ZONE}` to the `init` command.
-
-**Important**: The commands above will enable collection of **anonymous** user
-data to help us improve Kubeflow; for more information including instructions
-for explicitly disabling it please refer to the [usage reporting
-guide](/docs/other-guides/usage-reporting/).
-
-### Remove KubeFlow
-
-To remove your Kubeflow deployment, you can use the same `kfkctl` script as
-above. Note, that it will delete the namespace kubeflow along with everything
-you have deployed in it!
-
-    
-    cd ${KUBEFLOW_SRC}/${KFAPP}
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh delete k8s
-    
     
 ## Troubleshooting
 
