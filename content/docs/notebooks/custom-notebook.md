@@ -12,7 +12,7 @@ controller which manages the life cycle of notebooks. The Kubeflow UI expects
 Jupyter to start after launching the Docker image with `docker run`. You must
 therefore set the default command of your Docker image to launch Jupyter.
 
-Follow these steps to configure your Docker image:
+Follow these steps to configure the launch command (`CMD`) in your Docker image:
 
 * Set the working directory:
 
@@ -41,8 +41,13 @@ Follow these steps to configure your Docker image:
     --port=8888
     ```
 
-* Disable authentication, as Kubeflow takes care of authentication. Use the 
-  following setting to allow passwordless access to Jupyter:
+* Disable authentication. (Kubeflow takes care of authentication based on
+  the type of authentication selected during deployment of Kubeflow. After
+  authentication to Kubeflow, users can access all Kubeflow components
+  from the UI, including notebooks.)
+  
+    Use the following setting to allow passwordless access to your Jupyter
+    notebook servers:
 
     ```
     --NotebookApp.token=''  --NotebookApp.password=''
