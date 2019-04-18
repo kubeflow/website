@@ -4,11 +4,11 @@ description = "Quickly get running with your ML Workflow"
 weight = 1
 +++
 
-There are a variety of ways to instal Kubeflow
+There are a variety of ways to install Kubeflow
 
-* GCP users should follow [guide for deploying on GCP](/docs/gke/deploy/)
+* GCP users should follow the [guide for deploying on GCP](/docs/gke/deploy/)
 * On prem users or users with an existing Kubernetes cluster should follow the [guide for deploying on kubernetes](/docs/started/getting-started-k8s.md)
- * Users who want to run Kubernetes locally in a virtual machine can select one of the following options
+* Users who want to run Kubernetes locally in a virtual machine can select one of the following options
 
    * [MiniKF setup](/docs/started/getting-started-minikf/)
       * MiniKF is a fast and easy way to get started with Kubeflow.
