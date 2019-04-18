@@ -7,7 +7,7 @@ weight = 1
 There are a variety of ways to install Kubeflow
 
 * GCP users should follow the [guide for deploying on GCP](/docs/gke/deploy/)
-* On prem users or users with an existing Kubernetes cluster should follow the [guide for deploying on kubernetes](/docs/started/getting-started-k8s.md)
+* On prem users or users with an existing Kubernetes cluster should follow the [guide for deploying on kubernetes](/docs/started/getting-started-k8s/)
 * Users who want to run Kubernetes locally in a virtual machine can select one of the following options
 
    * [MiniKF setup](/docs/started/getting-started-minikf/)
