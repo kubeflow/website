@@ -34,5 +34,5 @@ For information about the format of the YAML file, see the
 
 * See the guide to [setting up
   your Jupyter notebooks in Kubeflow](/docs/notebooks/setup/).
-* Explore the [components of Kubeflow](/docs/components.), including custom 
+* Explore the [components of Kubeflow](/docs/components/), including custom 
   Kubernetes resources.
