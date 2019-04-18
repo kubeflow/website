@@ -1,6 +1,6 @@
 +++
 title = "Kubeflow on Kubernetes"
-description = "Instructions for installing Kubeflow on your existing Kubernetes platform"
+description = "Instructions for installing Kubeflow on your existing Kubernetes cluster"
 weight = 4
 +++
 
@@ -9,30 +9,19 @@ cluster.
 
 If you are using a Kubernetes distribution or Cloud Provider which has specific
 instructions for installing Kubeflow we recommend following those instructions.
-
-The insturctions specific to particular platforms/Clouds do additional setup
-to create a really great Kubeflow experience.
+Those instuctions do additional Cloud specific setup to create a really great 
+Kubeflow experience.
 
 Before installing Kubeflow on the command line:
 
   * Ensure you have installed the following tools:
     
      * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-     * [gcloud](https://cloud.google.com/sdk/)
 
-  * If you're using
-    [Cloud Shell](https://cloud.google.com/shell/), enable 
-    [boost mode](https://cloud.google.com/shell/docs/features#boost_mode).
 
 ## Deploy Kubeflow
 
 Follow these steps to deploy Kubeflow:
-
-1. Create user credentials. You only need to run this command once:
-   
-   ```
-   gcloud auth application-default login
-   ```
 
 1. Download a `kfctl` release from the 
   [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
@@ -66,15 +55,6 @@ Follow these steps to deploy Kubeflow:
      The value of this variable cannot be greater than 25 characters. It must
      contain just the directory name, not the full path to the directory.
      The content of this directory is described in the next section.
-   * **${PROJECT}** - the _name_ of the GCP project where you want Kubeflow 
-     deployed.
-   * When you run `kfctl init` you need to choose to use either IAP or basic 
-     authentication, as described below.
-   * `kfctl generate all` attempts to fetch your email address from your 
-     credential. If it can't find a valid email address, you need to pass a
-     valid email address with flag `--email <your email address>`. This email 
-     address becomes an administrator in the configuration of your Kubeflow 
-     deployment.
 
 1. Check the resources deployed in namespace `kubeflow`:
 
