@@ -13,7 +13,7 @@ Kubeflow comes with a number of web UIs, including:
 
 * Argo UI
 * Central UI for navigation
-* JupyterHub
+* Jupyter notebooks
 * Katib
 * TFJobs Dashboard
 
@@ -66,3 +66,8 @@ http://localhost:8080/
   * So if you deployed Kubeflow with an ingress serving at `https://acme.mydomain.com` and configured an application
     to be served at the URL `https://acme.mydomain.com/myapp` then the app may not work when served on
     `https://localhost:8080/myapp` because the paths do not match. 
+
+## Next steps
+
+See how to [set up your Jupyter notebooks](/docs/notebooks/setup/) in
+Kubeflow.

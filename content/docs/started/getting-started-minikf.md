@@ -65,7 +65,7 @@ http://10.10.10.10
 
 ### How to log in
 Use these credentials to log in to all services, for example,
-JupyterHub, Rok:
+Jupyter notebooks, Rok:
 
 ```
 username: user

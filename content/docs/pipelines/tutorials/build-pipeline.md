@@ -71,7 +71,7 @@ You can choose to build your pipeline in a Jupyter notebook. The
 [sample notebooks](https://github.com/kubeflow/pipelines/tree/master/samples/notebooks)
 walk you through the process.
 
-It's easiest to use the JupyterHub that is installed in the same cluster as 
+It's easiest to use the Jupyter services that are installed in the same cluster as 
 the Kubeflow Pipelines system. 
 
 Note: The notebook samples don't work on Jupyter notebooks outside the same 
@@ -80,7 +80,7 @@ system through in-cluster service names.
 
 Follow these steps to start a notebook:
 
-1. Deploy Kubeflow and open the pipelines dashboard:
+1. Deploy Kubeflow:
 
     * Follow the [GCP deployment guide](/docs/gke/deploy/), including the step 
       to deploy Kubeflow using the 
@@ -89,15 +89,8 @@ Follow these steps to start a notebook:
     * When Kubeflow is running, access the Kubeflow UI at a URL of the form
       `https://<deployment-name>.endpoints.<project>.cloud.goog/`.
 
-    * Click **Pipeline Dashboard** to access the pipelines UI.
-
-1. Click **Notebooks** in the left-hend menu. If this is the first time you've 
-  visited JupyterHub, you need to sign in. You can use any username and you can
-  leave the password blank. 
-  
-1. Click the **Spawn** button to create a new instance. After a few 
-  minutes, the Jupyter UI opens. You can switch to the JupyterLab UI by changing 
-  `/tree` to `/lab` in the URL.
+1. Follow the [Kubeflow notebooks setup guide](/docs/notebooks/setup/) to
+  create a Jupyter notebook server and open the Jupyter UI.
 
 1. Download the sample notebooks from 
   https://github.com/kubeflow/pipelines/tree/master/samples/notebooks. 

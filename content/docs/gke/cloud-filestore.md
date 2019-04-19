@@ -67,7 +67,7 @@ cd ${KFAPP}/ks_app
 ks generate google-cloud-filestore-pv google-cloud-filestore-pv --name="kubeflow-gcfs" \
    --storageCapacity="${GCFS_STORAGE}" \
    --serverIP="${GCFS_INSTANCE_IP_ADDRESS}"
-ks param set jupyterhub disks "kubeflow-gcfs"
+ks param set jupyter disks "kubeflow-gcfs"
 ```
 
   * **GCFS_STORAGE** The size of the Cloud Filestore persistent volume claim
