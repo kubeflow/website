@@ -14,84 +14,133 @@ TFJob is a Kubernetes
 implementation of TFJob is in
 [`tf-operator`](https://github.com/kubeflow/tf-operator).
 
-A TFJob is a resource with a simple YAML representation illustrated below.
+A TFJob is a resource with a YAML representation like the one below (edit to use the container image and entrypoint command for your own training code):
 
 ```yaml
 apiVersion: kubeflow.org/v1beta1
 kind: TFJob
 metadata:
-  labels:
-    experiment: experiment10
-  name: tfjob
-  namespace: kubeflow
+  generateName: tfjob
+  namespace: default
 spec:
   tfReplicaSpecs:
-    Ps:
-      replicas: 1
-      template:
-        metadata:
-          creationTimestamp: null
-        spec:
-          containers:
-          - args:
-            - python
-            - tf_cnn_benchmarks.py
-            - --batch_size=32
-            - --model=resnet50
-            - --variable_update=parameter_server
-            - --flush_stdout=true
-            - --num_gpus=1
-            - --local_parameter_device=cpu
-            - --device=cpu
-            - --data_format=NHWC
-            image: gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3
-            name: tensorflow
-            ports:
-            - containerPort: 2222
-              name: tfjob-port
-            resources: {}
-            workingDir: /opt/tf-benchmarks/scripts/tf_cnn_benchmarks
-          restartPolicy: OnFailure
-    Worker:
-      replicas: 1
-      template:
-        metadata:
-          creationTimestamp: null
-        spec:
-          containers:
-          - args:
-            - python
-            - tf_cnn_benchmarks.py
-            - --batch_size=32
-            - --model=resnet50
-            - --variable_update=parameter_server
-            - --flush_stdout=true
-            - --num_gpus=1
-            - --local_parameter_device=cpu
-            - --device=cpu
-            - --data_format=NHWC
-            image: gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3
-            name: tensorflow
-            ports:
-            - containerPort: 2222
-              name: tfjob-port
-            resources: {}
-            workingDir: /opt/tf-benchmarks/scripts/tf_cnn_benchmarks
-          restartPolicy: OnFailure
-status:
-  conditions:
-  - lastTransitionTime: 2018-07-29T00:31:48Z
-    lastUpdateTime: 2018-07-29T00:31:48Z
-    message: TFJob tfjob is running.
-    reason: TFJobRunning
-    status: "True"
-    type: Running
-  startTime: 2018-07-29T21:40:13Z
-  tfReplicaStatuses:
     PS:
-      active: 1
+      replicas: 1
+      restartPolicy: OnFailure
+      template:
+        spec:
+          containers:
+          - name: tensorflow
+            image: gcr.io/your-project/your-image
+            command:
+              - python
+              - -m
+              - trainer.task
     Worker:
-      active: 1
+      replicas: 3
+      restartPolicy: OnFailure
+      template:
+        spec:
+          containers:
+          - name: tensorflow
+            image: gcr.io/your-project/your-image
+            command:
+              - python
+              - -m
+              - trainer.task
+    Master:
+          replicas: 1
+          restartPolicy: OnFailure
+          template:
+            spec:
+              containers:
+              - name: tensorflow
+                image: gcr.io/your-project/your-image
+                command:
+                  - python
+                  - -m
+                  - trainer.task
+```
+
+If you want to give your TFJob pods access to credentials secrets, such as the GCP credentials automatically created when you do a GKE-based Kubeflow installation, you can mount and use a secret like this:
+
+```yaml
+apiVersion: kubeflow.org/v1beta1
+kind: TFJob
+metadata:
+  generateName: tfjob
+  namespace: default
+spec:
+  tfReplicaSpecs:
+    PS:
+      replicas: 1
+      restartPolicy: OnFailure
+      template:
+        spec:
+          containers:
+          - name: tensorflow
+            image: gcr.io/your-project/your-image
+            command:
+              - python
+              - -m
+              - trainer.task
+            env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/etc/secrets/user-gcp-sa.json"
+            volumeMounts:
+            - name: sa
+              mountPath: "/etc/secrets"
+              readOnly: true
+          volumes:
+          - name: sa
+            secret:
+              secretName: user-gcp-sa
+    Worker:
+      replicas: 1
+      restartPolicy: OnFailure
+      template:
+        spec:
+          containers:
+          - name: tensorflow
+            image: gcr.io/your-project/your-image
+            command:
+              - python
+              - -m
+              - trainer.task
+            env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/etc/secrets/user-gcp-sa.json"
+            volumeMounts:
+            - name: sa
+              mountPath: "/etc/secrets"
+              readOnly: true
+          volumes:
+          - name: sa
+            secret:
+              secretName: user-gcp-sa
+    Master:
+          replicas: 1
+          restartPolicy: OnFailure
+          template:
+            spec:
+              containers:
+              - name: tensorflow
+                image: gcr.io/your-project/your-image
+                command:
+                  - python
+                  - -m
+                  - trainer.task
+                env:
+                - name: GOOGLE_APPLICATION_CREDENTIALS
+                  value: "/etc/secrets/user-gcp-sa.json"
+                volumeMounts:
+                - name: sa
+                  mountPath: "/etc/secrets"
+                  readOnly: true
+              volumes:
+              - name: sa
+                secret:
+                  secretName: user-gcp-sa
 ```
 
 If you are not familiar with Kubernetes resources please refer to the page [Understanding Kubernetes Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/).
