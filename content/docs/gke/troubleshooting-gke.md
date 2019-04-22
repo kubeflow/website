@@ -290,11 +290,15 @@ Alternatively, you can request more backend services quota on the GCP Console.
 1. Follow the form instructions to apply for more quota.
 
 
-## Cloud Filestore: legacy networks are not supported
+## Legacy networks are not supported
 
-Cloud Filestore tries to use the network named `default` by default. For older projects,
-this will be a legacy network which is incompatible with Cloud Filestore. This will
-manifest as an error like the following when deploying Cloud Filestore:
+Cloud Filestore and GKE tries to use the network named `default` by default. For older projects,
+this will be a legacy network which is incompatible with Cloud Filestore and newer GKE features
+like private clusters. This will
+manifest as the error **"default is invalid; legacy networks are not supported"** when
+deploying Kubeflow.
+
+Here's an example error when deploying Cloud Filestore:
 
 ```
 ERROR: (gcloud.deployment-manager.deployments.update) Error in Operation [operation-1533189457517-5726d7cfd19c9-e1b0b0b5-58ca11b8]: errors:
@@ -309,8 +313,9 @@ ERROR: (gcloud.deployment-manager.deployments.update) Error in Operation [operat
 To fix this we can create a new network:
 
 ```
-cp ${KUBEFLOW_SRC}/scripts/deployment_manager_configs/network.* \
-   ${KFAPP}/gcp_config/
+cd ${KFAPP}
+cp .cache/master/deployment/gke/deployment_manager_configs/network.* \
+   ./gcp_config/
 ```
 
 Edit `network.yaml `to set the name for the network.
