@@ -38,7 +38,6 @@ Before installing Kubeflow ensure you have installed the following tools:
       ```
       git clone https://github.com/kubeflow/kubeflow.git git_kubeflow      
       ```
-
    1. Use [Google Cloud Builder(GCB)](https://cloud.google.com/cloud-build/docs/) to replicate the images
 
       ```
