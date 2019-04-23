@@ -14,14 +14,14 @@ TFJob is a Kubernetes
 implementation of TFJob is in
 [`tf-operator`](https://github.com/kubeflow/tf-operator).
 
-A TFJob is a resource with a YAML representation like the one below (edit to use the container image and entrypoint command for your own training code):
+A TFJob is a resource with a YAML representation like the one below (edit to use the container image and command for your own training code):
 
 ```yaml
 apiVersion: kubeflow.org/v1beta1
 kind: TFJob
 metadata:
   generateName: tfjob
-  namespace: default
+  namespace: kubeflow
 spec:
   tfReplicaSpecs:
     PS:
@@ -36,6 +36,8 @@ spec:
               - python
               - -m
               - trainer.task
+              - --batch_size=32
+              - --training_steps=1000
     Worker:
       replicas: 3
       restartPolicy: OnFailure
@@ -48,6 +50,8 @@ spec:
               - python
               - -m
               - trainer.task
+              - --batch_size=32
+              - --training_steps=1000
     Master:
           replicas: 1
           restartPolicy: OnFailure
@@ -60,6 +64,8 @@ spec:
                   - python
                   - -m
                   - trainer.task
+                  - --batch_size=32
+                  - --training_steps=1000
 ```
 
 If you want to give your TFJob pods access to credentials secrets, such as the GCP credentials automatically created when you do a GKE-based Kubeflow installation, you can mount and use a secret like this:
@@ -69,7 +75,7 @@ apiVersion: kubeflow.org/v1beta1
 kind: TFJob
 metadata:
   generateName: tfjob
-  namespace: default
+  namespace: kubeflow
 spec:
   tfReplicaSpecs:
     PS:
@@ -84,6 +90,8 @@ spec:
               - python
               - -m
               - trainer.task
+              - --batch_size=32
+              - --training_steps=1000
             env:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: "/etc/secrets/user-gcp-sa.json"
@@ -107,6 +115,8 @@ spec:
               - python
               - -m
               - trainer.task
+              - --batch_size=32
+              - --training_steps=1000
             env:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: "/etc/secrets/user-gcp-sa.json"
@@ -130,6 +140,8 @@ spec:
                   - python
                   - -m
                   - trainer.task
+                  - --batch_size=32
+                  - --training_steps=1000
                 env:
                 - name: GOOGLE_APPLICATION_CREDENTIALS
                   value: "/etc/secrets/user-gcp-sa.json"
