@@ -5,8 +5,8 @@ weight = 35
 +++
 
 This guide introduces you to using [Kubeflow Fairing][fairing-repo] to train and
-deploy a model to Kubeflow on Google Kubernetes Engine (GKE) and Google Cloud
-ML Engine.
+deploy a model to Kubeflow on Google Kubernetes Engine (GKE) and 
+Google AI Platform Training.
 
 Your Kubeflow deployment includes services for spawning and managing Jupyter
 notebooks. Kubeflow Fairing is preinstalled in the Kubeflow notebooks, along
@@ -28,7 +28,8 @@ to demonstrate how to:
 
 *  Train an XGBoost model in a notebook,
 *  Use Kubeflow Fairing to train an XGBoost model remotely on Kubeflow,
-*  Use Kubeflow Fairing to train an XGBoost model remotely on Cloud ML Engine, 
+*  Use Kubeflow Fairing to train an XGBoost model remotely on 
+   AI Platform Training, 
 *  Use Kubeflow Fairing to deploy a trained model to Kubeflow, and
 *  Call the deployed endpoint for predictions.
 
