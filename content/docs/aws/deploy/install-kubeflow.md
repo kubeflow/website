@@ -4,63 +4,63 @@ description = "Instructions for deploying Kubeflow with the shell"
 weight = 4
 +++
 
-This guide describes how to use the `kfctl.sh`to
-deploy Kubeflow.
+This guide describes how to use the `kfctl.sh` script to
+deploy Kubeflow on AWS.
 
-> Note: AWS is moving from `kfctl.sh` to command line interface (CLI) which gives your more control on the configuration and better reliability.
+> Note: AWS is moving from `kfctl.sh` to a command line interface (CLI) which gives you more control over your configuration and better reliability.
 
 
 ## Prerequisites
 
 * Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl)
-* Install and configure the AWS Command Line Interface (AWS CLI)
+* Install and configure the AWS Command Line Interface (AWS CLI):
     * Install the [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
-    * Configure the AWS CLI by running the following command: aws configure .
-    * Enter your Access Keys [Access Key ID and Secret Access Key](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys)
-    * Enter Region and default output options.
-* Install [eksctl](https://github.com/weaveworks/eksctl) (require 0.1.27 or newer) and [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
-* Install [jq](https://stedolan.github.io/jq/download/)
-* Install [ksonnet](https://github.com/ksonnet/ksonnet)
+    * Configure the AWS CLI by running the following command: `aws configure`.
+    * Enter your Access Keys ([Access Key ID and Secret Access Key](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys)).
+    * Enter your preferred AWS Region and default output options.
+* Install [eksctl](https://github.com/weaveworks/eksctl) (version 0.1.27 or newer) and the [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
+* Install [jq](https://stedolan.github.io/jq/download/).
+* Install [ksonnet](https://github.com/ksonnet/ksonnet).
 
-You do not need a running EKS cluster. The deployment process will create a cluster for you.
+You do not need to have an existing EKS cluster. The deployment process will create a cluster for you.
 
 
 ## Understanding the deployment process
 
 The deployment process is controlled by 4 different commands:
 
-* **init** - one time set up.
-* **generate** - creates config files defining the various resources.
-* **apply** - creates or updates the resources.
-* **delete** - deletes the resources.
+* **init** - The initial one-time set up.
+* **generate** - Creates the configuration files that define your various resources.
+* **apply** - Creates or updates the resources.
+* **delete** - Deletes the resources.
 
 With the exception of `init`, all commands take an argument which describes the set of resources to apply the command to; this argument can be one of the following:
 
-* **platform** - all AWS resources; that is, anything that doesn’t run on Kubernetes. Like IAM policy attach, eks cluster creation
-* **k8s** - all resources that run on Kubernetes. Kubeflow packages and addon packages like fluentd, istio.
-* **all** - AWS and Kubernetes resources.
+* **platform** - All AWS resources; that is, anything that doesn’t run on Kubernetes. Like IAM policy attachments, Amazon EKS cluster creation, etc.
+* **k8s** - All Kubernetes resources. Such as Kubeflow packages and add-on packages like `fluentd` or `istio`.
+* **all** - Both AWS and Kubernetes resources.
 
 ### App layout
 
-Your Kubeflow app directory contains the following files and directories:
+Your Kubeflow `app` directory contains the following files and directories:
 
-* **app.yaml** defines configurations related to your Kubeflow deployment.
-    * The values are set when you run `kfctl init`.
-    * The values are snapshotted inside *app.yaml* to make your app self contained.
-* **${KFAPP}/aws_config** is a directory that contains sample eksctl cluster config file defining your AWS cluster and policy files we want to attach to node group roles.
-    * The directory is created when you run `kfctl.sh generate platform`.
-    * You can modify these configurations `cluster_config.yaml` and `cluster_features.sh` to customize your AWS infrastructure.
-* **${KFAPP}/k8s_specs** is a directory that contains YAML specifications for daemons deployed on your Kubernetes Engine cluster.
-* **${KFAPP}/ks_app** is a directory that contains the [ksonnet](https://ksonnet.io/) application for Kubeflow.
+* **app.yaml** - Defines the configuration related to your Kubeflow deployment.
+    * These values are set when you run `kfctl init`.
+    * These values are snapshotted inside `app.yaml` to make your app self contained.
+* **${KFAPP}/aws_config** - A directory that contains a sample `eksctl` cluster configuration file that defines the AWS cluster and policy files to attach to your node group roles.
+    * This directory is created when you run `kfctl.sh generate platform`.
+    * You can modify the `cluster_config.yaml` and `cluster_features.sh` files to customize your AWS infrastructure.
+* **${KFAPP}/k8s_specs** - A directory that contains YAML specifications for daemons deployed on your Kubernetes Engine cluster.
+* **${KFAPP}/ks_app** - A directory that contains the [ksonnet](https://ksonnet.io/) application for Kubeflow.
     * The directory is created when you run `kfctl generate k8s`.
     * You can use ksonnet to customize Kubeflow.
 
 
-The provision scripts can either bring up a new cluster and install kubeflow on it or just install kubeflow on your existing cluster. We recommend you to create a new cluster for better isolation.
+The provisioning scripts can either bring up a new cluster and install kubeflow on it, or just install kubeflow on your existing cluster. We recommend that you create a new cluster for better isolation.
 
 ## Kubeflow Installation
 
-1. Run the following commands to download lastest `kfctl.sh`
+1. Run the following commands to download the latest `kfctl.sh`
 
     ```
     export KUBEFLOW_SRC=/tmp/kubeflow-aws
@@ -80,9 +80,9 @@ The provision scripts can either bring up a new cluster and install kubeflow on 
     #curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
     ```
 
-    *KUBEFLOW_SRC* - Full path to your choice of download directory. Please do use full absolute path, for example `/tmp/kubeflow-aws`
+    *KUBEFLOW_SRC* - Full path to your preferred download directory. Please use the full absolute path, for example `/tmp/kubeflow-aws`
 
-1. Run the following scripts to setup environment.
+1. Run the following commands to setup your environment.
 
     ```
     export KFAPP=kfapp
@@ -91,53 +91,53 @@ The provision scripts can either bring up a new cluster and install kubeflow on 
     ```
 
     AWS_CLUSTER_NAME - EKS cluster name
-    KFAPP - Use relative directory name here rather than absolute path, like `kfapp`
-    REGION - Use the region you want to create cluster.
+    KFAPP - Use a relative directory name here rather than absolute path, like `kfapp`
+    REGION - Use the AWS Region you want to create your cluster in.
 
-1. Init cluster config.
+1. Initialize your cluster configuration.
 
-    For non-existing cluster, please check [setup](/docs/aws/deploy/new-cluster)
+    For new clusters, please check [setup](/docs/aws/deploy/new-cluster)
 
-    For existing cluster, please check [setup](/docs/aws/deploy/existing-cluster)
+    For existing clusters, please check [setup](/docs/aws/deploy/existing-cluster)
 
 1. Generate and apply platform changes.
 
-    You can customize your cluster configs, logging and private access before you `apply platform`, please check [Customizing Kubeflow on AWS](/docs/aws/customizing-aws.md) for details.
+    You can customize your cluster configuration, control plane logging, and private cluster endpoint access before you `apply platform`, please check [Customizing Kubeflow on AWS](/docs/aws/customizing-aws.md) for details.
 
     ```
     cd ${KFAPP}
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate platform
-    # Customize your eks cluster configuration before following step
+    # Customize your Amazon EKS cluster configuration before following the next step
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
     ```
 
-1. Generate and apply kubernetes changes.
+1. Generate and apply the Kubernetes changes.
 
     ```
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
     ```
 
-    *Important!!!* By default, scripts will create an AWS Application Load Balancer for kubeflow and this is open to public. This is good for dev tests for short term but risky to leak your information for production environment.
+    *Important!!!* By default, the scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
 
-    If you want to secure your endpoints, you have two options.
+    To secure your installation, you have two options:
 
-    1. Disable ingress before you `apply k8s`. Open `${KUBEFLOW_SRC}/${KFAPP}/env.sh` and edit `KUBEFLOW_COMPONENTS` environment viriable. Delete `,\"alb-ingress-controller\",\"istio-ingress\"` and save the file.
+    1. Disable ingress before you `apply k8s`. Open `${KUBEFLOW_SRC}/${KFAPP}/env.sh` and edit `KUBEFLOW_COMPONENTS` environment variable. Delete `,\"alb-ingress-controller\",\"istio-ingress\"` and save the file.
     > Note: Don't forget to delete common.
 
-    1. Follow [instruction](/docs/aws/authentication.md) and add authentication before you `apply k8s`
+    1. Follow the [instructions here](/docs/aws/authentication.md) to add authentication before you `apply k8s`
 
-    Once your customization is done, you can run this command to deploy kubeflow.
+    Once your customization is done, you can run this command to deploy Kubeflow.
     ```
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
     ```
 
-1. Wait for all the resources ready in namespace kubeflow
+1. Wait for all the resources to become ready in the `kubeflow ` namespace.
     ```
     kubectl -n kubeflow get all
     ```
 
 1. Open Kubeflow Dashboard
-    * If you choose to use load balancer, You can get dns name here.
+    * If you chose to use a load balancer, you can retrieve the public DNS name here.
 
       ```
       kubectl get ingress -n istio-system
@@ -146,9 +146,9 @@ The provision scripts can either bring up a new cluster and install kubeflow on 
       istio-system   istio-ingress   *       a743484b-istiosystem-istio-2af2-xxxxxx.us-west-2.elb.amazonaws.com   80      1h
       ```
 
-      This may takes 3-5 mins to be ready. Verify that the address works by opening it in the browser. If you think this is not secure, you can also `kubectl delete istio-ingress -n istio-system` to remove load balancer.
+      This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser. You can also run `kubectl delete istio-ingress -n istio-system` to remove the load balancer entirely.
 
-    * If you don't create load balancer, please use port-forward to visit your cluster. Run following command and visit `localhost:8080`.
+    * If you didn't create a load balancer, please use port-forwarding to visit your cluster. Run following command and visit `localhost:8080`.
 
       ```
       kubectl port-forward -n kubeflow `kubectl get pods -n kubeflow --selector=service=ambassador -o jsonpath='{.items[0].metadata.name}'` 8080:80

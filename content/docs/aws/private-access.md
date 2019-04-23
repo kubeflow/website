@@ -6,7 +6,7 @@ weight = 80
 
 This section helps you to enable private access for your Amazon EKS cluster's Kubernetes API server endpoint and completely disable public access so that it's not accessible from the internet.
 
-## Enable Private Access for cluster's API server endpoint
+## Enable Private Access for your cluster's API server endpoint
 
 You can enable private access to the Kubernetes API server so that all communication between your worker nodes and the API server stays within your VPC. You can also completely disable public access to your API server so that it's not accessible from the internet.
 
