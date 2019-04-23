@@ -292,7 +292,7 @@ Alternatively, you can request more backend services quota on the GCP Console.
 
 ## Legacy networks are not supported
 
-Cloud Filestore and GKE tries to use the network named `default` by default. For older projects,
+Cloud Filestore and GKE try to use the network named `default` by default. For older projects,
 this will be a legacy network which is incompatible with Cloud Filestore and newer GKE features
 like private clusters. This will
 manifest as the error **"default is invalid; legacy networks are not supported"** when
