@@ -191,19 +191,17 @@ Before installing Kubeflow ensure you have installed the following tools:
     ```
 1. Wait for Kubeflow to become accessible and then access it at
 
-   ```
-   https://${FQDN}/
-   ```
+    ```
+    https://${FQDN}/
+    ```
+    * ${FQDN} is the host associated with your ingress
 
-   * ${FQDN} is the host associated with your ingress
+       * You can get it by running `kubectl get ingress`
 
-      * You can get it by running `kubectl get ingress`
-
-
-   * Follow the [instructions](/docs/gke/deploy/monitor-iap-setup/) to monitor the 
-     deployment
-
-   * It can take 10-20 minutes for the endpoint to become fully available
+    * Follow the [instructions](/docs/gke/deploy/monitor-iap-setup/) to monitor the 
+      deployment
+ 
+    * It can take 10-20 minutes for the endpoint to become fully available
 
 ## Next steps
 
