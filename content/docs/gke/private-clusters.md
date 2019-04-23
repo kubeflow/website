@@ -35,15 +35,15 @@ Before installing Kubeflow ensure you have installed the following tools:
 
    1. Clone the Kubeflow source 
 
-      ```
-      git clone https://github.com/kubeflow/kubeflow.git git_kubeflow      
-      ```
+       ```
+       git clone https://github.com/kubeflow/kubeflow.git git_kubeflow      
+       ```
    1. Use [Google Cloud Builder(GCB)](https://cloud.google.com/cloud-build/docs/) to replicate the images
 
-      ```
-      cd ~/git_kubeflow/scripts/gke
-      PROJECT=<PROJECT> make copy-gcb
-      ```
+       ```
+       cd ~/git_kubeflow/scripts/gke
+       PROJECT=<PROJECT> make copy-gcb
+       ```
 
    * This is needed because your GKE nodes won't be able to pull images from non GCR
      registries because they don't have public internet addresses
