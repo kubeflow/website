@@ -3,11 +3,11 @@ title = "Init cluster setup for new cluster"
 weight = 5
 +++
 
-## Before start
+## Before you start
 
-This is one step of [tutoral](/docs/aws/deploy/install-kubeflow), please make sure you have previous setup done.
+This is one step of [installing Kubeflow](/docs/aws/deploy/install-kubeflow), please make sure you have completed the prerequisite steps there before proceeding.
 
-## Setup new cluster
+## Setup a new cluster
 
 ```
 export AWS_CLUSTER_NAME=kubeflow-aws
@@ -19,4 +19,4 @@ ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform aws \
 --awsRegion ${REGION}
 ```
 
-AWS_CLUSTER_NAME - EKS cluster name
+`AWS_CLUSTER_NAME` - Specify a unique name for your Amazon EKS.

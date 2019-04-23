@@ -3,23 +3,23 @@ title = "Init cluster setup for existing cluster"
 weight = 6
 +++
 
-## Before start
+## Before you start
 
-This is one step of [tutoral](/docs/aws/deploy/install-kubeflow), please make sure you have previous setup done.
+This is one step of [installing Kubeflow](/docs/aws/deploy/install-kubeflow), please make sure you have completed the prerequisite steps there before proceeding.
 
-### Deploy Kubeflow on existing EKS Cluster
+### Deploy Kubeflow on existing Amazon EKS Cluster
 
-If you would like to deploy Kubeflow on existing EKS cluster, the only difference setup is when you init platform setup. Since you manage your own cluster resources, you need to provide `AWS_CLUSTER_NAME` and `AWS_NODE_GROUP_ROLE_NAMES`.
+If you would like to deploy Kubeflow on existing Amazon EKS cluster, the only difference in setup is when you initialize the platform setup. Since you manage your own cluster resources, you need to provide `AWS_CLUSTER_NAME` and `AWS_NODE_GROUP_ROLE_NAMES`.
 
 
-1. Get your cluster name and node group roles ready
+1. Retrieve your Amazon EKS cluster name and the IAM role name for your worker nodes. Set these values to the following environment variables.
 
     ```
     export AWS_CLUSTER_NAME=<YOUR EKS CLUSTER NAME>
     export AWS_NODE_GROUP_ROLE_NAMES=<YOUR NODE GROUP ROLE NAMES>
     ```
 
-    > Note: To get your EKS cluster node groups, you can check IAM setting or running following commands. We assume you use `eksctl` to create cluster. If you use other provision tools to create node groups, please find the roles by yourself.
+    > Note: To get your Amazon EKS worker node IAM role name, you can check IAM setting by running the following commands. This command assumes that you used `eksctl` to create your cluster. If you use other provisioning tools to create your worker node groups, please find the role that is associated with your worker nodes in the Amazon EC2 console.
 
     ```
     aws iam list-roles \
@@ -31,9 +31,9 @@ If you would like to deploy Kubeflow on existing EKS cluster, the only differenc
     eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
     ```
 
-    If you have multiple node groups, you will see corresponding number of node group roles. In that case, please use comma , between roles for string concat.
+    If you have multiple node groups, you will see corresponding number of node group roles. In that case, please provide the role names as a comma-separated list.
 
-1. Init setups
+1. Initial setup
 
     ```
     cd ${KUBEFLOW_SRC}

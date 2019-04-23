@@ -1,5 +1,5 @@
 +++
 title = "Deployment"
-description = "Instructions for deploying Kubeflow with the shell"
+description = "Instructions for deploying Kubeflow on AWS"
 weight = 4
 +++

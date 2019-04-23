@@ -4,28 +4,28 @@ description = "Tailoring a AWS deployment of Kubeflow"
 weight = 20
 +++
 
-This guide describes how to customize your deployment of Kubeflow on EKS.
-Some of the steps can be done before `apply platform`, some of them can be done before `apply k8s`. Please check following sections for details. If you don't understand development phase. Please check [deploy](/docs/aws/deploy) for details.
+This guide describes how to customize your deployment of Kubeflow on Amazon EKS.
+Some of the steps can be done before you run the `apply platform` command, and some of them can be done before you run the `apply k8s` command. Please see the following sections for details. If you don't understand the deployment process, please see [deploy](/docs/aws/deploy) for details.
 
 
 ## Customizing Kubeflow
 
-Here're all configuration options for kfctl for platform aws.
+Here are the optional configuration parameters for `kfctl` on the AWS platform.
 
 | Options  | Description  | Required |
 |---|---|---|
-| awsClusterName | Name of new cluster or existing eks cluster  |  YES |
-| awsRegion  |  Region EKS cluster launch in |  YES |
-| awsNodegroupRoleNames  |  EKS node groups role names | YES for existing cluster/ No for new cluster |
+| `awsClusterName` | Name of your new or existing Amazon EKS cluster  |  YES |
+| `awsRegion`  |  The AWS Region to launch in |  YES |
+| `awsNodegroupRoleNames`  |  The IAM role names for your worker nodes | YES for existing clusters / No for new clusters |
 
 
-### Customize EKS cluster
+### Customize your Amazon EKS cluster
 
-Before you run `${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform`, you can edit cluster configuration file to change cluster specs before cluster creation.
+Before you run `${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform`, you can edit the cluster configuration file to change cluster specification before you create the cluster.
 
-Cluster config is located in `${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_config.yaml`. Please check [eksctl](https://eksctl.io/) for configuration details.
+Cluster configuration is stored in `${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_config.yaml`. Please see [eksctl](https://eksctl.io/) for configuration details.
 
-For example, this is a cluster manifest with one node group which has 2 p2.xlarge instance. You can easily enable SSH and configure public key. All worker nodes will be in single availability zone.
+For example, the following is a cluster manifest with one node group which has 2 `p2.xlarge` instances. You can easily enable SSH and configure a public key. All worker nodes will be in single Availability Zone.
 
 ```yaml
 apiVersion: eksctl.io/v1alpha4
@@ -39,7 +39,7 @@ metadata:
 #availabilityZones: ["us-west-2b", "us-west-2c", "us-west-2d"]
 
 # NodeGroup holds all configuration attributes that are specific to a nodegroup
-# You can have several node group in your cluster.
+# You can have several node groups in your cluster.
 nodeGroups:
   - name: eks-gpu
     instanceType: p2.xlarge
@@ -77,10 +77,10 @@ nodeGroups:
 ```
 
 ### Customize Private Access
-Please check [section](/docs/aws/private-access)
+Please see [section](/docs/aws/private-access)
 
 ### Customize Logging
-Please check [section](/docs/aws/logging)
+Please see [section](/docs/aws/logging)
 
 ### Customize Authentication
-Please check [section](/docs/aws/authentication)
+Please see [section](/docs/aws/authentication)

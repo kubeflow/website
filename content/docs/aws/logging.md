@@ -6,7 +6,7 @@ weight = 70
 
 Amazon EKS control plane logging provides audit and diagnostic logs directly from the Amazon EKS control plane to [CloudWatch](https://aws.amazon.com/cloudwatch/) Logs in your account. These logs make it easy for you to secure and run your clusters. You can select the exact log types you need, and logs are sent as log streams to a group for each Amazon EKS cluster in [CloudWatch](https://aws.amazon.com/cloudwatch/).
 
-If you look at `${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_features.sh`, you will see following configuration.
+If you look at `${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_features.sh`, you will see following configuration:
 
 ```
 CONTROL_PLANE_LOGGING=false
@@ -18,7 +18,7 @@ WORKER_NODE_GROUP_LOGGING=false
 By default, cluster control plane logs and worker node group logs aren't sent to CloudWatch Logs. You must enable each log type individually to send logs for your cluster.
 
 
-### Control Plane
+### Control Plane Logging
 
 You can update `CONTROL_PLANE_LOGGING=true` to enable control plane logs and customize the components you want to collect logs from. Only these components are available and you have to use command between components.
 
@@ -32,8 +32,8 @@ Open the [CloudWatch Console](https://console.aws.amazon.com/cloudwatch/home#log
 
 > Note: If you set `CONTROL_PLANE_LOGGING=false`, the value of `CONTROL_PLANE_LOGGING_COMPONENTS` will not be used.
 
-### Woker Node Group
+### Worker Node Group Logging
 
-You can update `WORKER_NODE_GROUP_LOGGING=true` to enable worker node group logs and logs of all pod will be shipped to CloudWatch.  The log group name format is `/eks/${AWS_CLUSTER_NAME}/containers`.
+You can update `WORKER_NODE_GROUP_LOGGING=true` to enable worker node group logs and all pod logs are sent to CloudWatch.  The log group name format is `/eks/${AWS_CLUSTER_NAME}/containers`.
 
-If you want to change logs setting after you create the cluster, please check [here](https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html) for details.
+If you want to change logs setting after you have created your cluster, please check [here](https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html) for details.

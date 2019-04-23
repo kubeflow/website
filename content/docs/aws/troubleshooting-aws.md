@@ -1,6 +1,6 @@
 +++
-title = "Troubleshooting Deployments on EKS"
-description = "Help diagnose and fix issues you may encounter in kubeflow deployment"
+title = "Troubleshooting Deployments on Amazon EKS"
+description = "Help diagnose and fix issues you may encounter in your Kubeflow deployment"
 weight = 100
 +++
 
@@ -12,7 +12,7 @@ weight = 100
 /tmp/kubeflow-aws/scripts/kfctl.sh: line 485: env.sh: No such file or directory
 ```
 
-When you run generate/apply platform/k8s, Please make sure your follow steps and run command under ${KFAPP} folder
+When you run generate/apply platform/k8s, Please make sure you verify the following steps and run your command from within the ${KFAPP} folder.
 
 
 ### kfapp already exists
@@ -23,18 +23,17 @@ Directory kfapp already exists
 + exit 1
 ```
 
-This happens if you have invalid arguments when you init configurations and you try to rerun command with correct arguments. kfapp folder already exists. Delete kfapp and try again.
+This happens if you have invalid arguments when you initialize your configuration and you try to rerun command with correct arguments. The `kfapp` folder already exists. Delete `kfapp` and try again.
 
 
 ### EKS Cluster Creation Failure
 
-There're several problem could lead cluster creation fail. If you see some errors when creating cluster using eksctl. Please go to CloudFormation and check stacks. To recover from failure, you need to follow guidance from eksctl outputs. Once you understand root case, you can delete cluster and rerun  ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform.
+There are several problems that could lead to cluster creation failure. If you see some errors when creating your cluster using `eksctl`, please open the CloudFormation console and check your stacks. To recover from failure, you need to follow the guidance from the `eksctl` output logs. Once you understand the root cause of your failure, you can delete your cluster and rerun `${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform`.
 
 Common issues:
 
-1. VPC limit is 5 per region
-1. You need to subscribe EKS-optimized AMI with GPU Support in AWS Marketplace to use GPU AMI.
-1. Invalid arguments
+1. The default VPC limit is 5 VPCs per region
+1. Invalid command arguments
 
 ```
 + eksctl create cluster --config-file=/tmp/cluster_config.yaml
@@ -68,7 +67,7 @@ Common issues:
 [✖]  failed to create cluster "test-cluster"
 ```
 
-### Resource Not Found in delete all
+### Resource Not Found in `delete all`
 
 ```shell
 + kubectl get ns/kubeflow
@@ -78,7 +77,7 @@ Error from server (NotFound): namespaces "kubeflow" not found
 + echo 'namespace kubeflow successfully deleted.'
 ```
 
-You can ignore kubernetes resource not found issues in deletion phase.
+You can ignore kubernetes resource not found issues in the deletion phase.
 
 
 ### InvalidParameterException in UpdateCluster
@@ -90,7 +89,7 @@ You can ignore kubernetes resource not found issues in deletion phase.
 An error occurred (InvalidParameterException) when calling the UpdateClusterConfig operation: No changes needed for the logging config provided
 ```
 
-UpdateCluster will fail if you have invalid parameters. For example, if you already enable logs in your EKS cluster, and you choose to create kubeflow on existing cluster and also enable logs. You will get this error.
+The Amazon EKS `UpdateCluster` API operation will fail if you have invalid parameters. For example, if you already enabled logs in your EKS cluster, and you choose to create Kubeflow on existing cluster and also enable logs, you will get this error.
 
 ### FSX Mount Failure
 
@@ -110,7 +109,7 @@ usage: mount.lustre [-fhnvV] [-o <mntopt>] <device> <mountpt>
   -f|--fake: fake mount (updates /etc/mtab)
 ```
 
-FSX dnsName is incorrect, you can delete your pod using this pvc. Next step is to delete pv and pvc. Last step is to correct your input and reapply PV and PVC.
+The Amazon FSx `dnsName` is incorrect, you can delete your pod using this persistent volume claim. The next step is to delete the PV and PVC. Next correct your input and reapply the PV and PVC.
 
 ```shell
 kubectl delete pod ${pod_using_pvc}
