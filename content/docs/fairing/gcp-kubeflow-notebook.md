@@ -63,7 +63,7 @@ Follow these instructions to run the XGBoost quickstart notebook:
 
     1.  Train an XGBoost model in a notebook,
     1.  Use Kubeflow Fairing to train an XGBoost model remotely on Kubeflow,
-    1.  Use Kubeflow Fairing to train an XGBoost model remotely on Cloud ML Engine, 
+    1.  Use Kubeflow Fairing to train an XGBoost model remotely on AI Platform Training, 
     1.  Use Kubeflow Fairing to deploy a trained model to Kubeflow, and
     1.  Call the deployed endpoint for predictions.
 
