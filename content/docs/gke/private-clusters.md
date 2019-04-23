@@ -28,10 +28,9 @@ Before installing Kubeflow ensure you have installed the following tools:
 
 1. Set user credentials. You only need to run this command once:
    
-   ```
-   gcloud auth application-default login
-   ```
-
+    ```
+    gcloud auth application-default login
+    ```
 1. Copy non-GCR hosted images to your GCR registry
 
    1. Clone the Kubeflow source 
