@@ -8,7 +8,7 @@ Amazon EKS control plane logging provides audit and diagnostic logs directly fro
 
 If you look at `${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_features.sh`, you will see following configuration:
 
-```
+```shell
 CONTROL_PLANE_LOGGING=false
 CONTROL_PLANE_LOGGING_COMPONENTS=api,audit,authenticator,controllerManager,scheduler
 

@@ -5,6 +5,18 @@ weight = 100
 +++
 
 
+### 404 Command Not Found when downloading scripts
+```shell
+➜ https://raw.githubusercontent.com/kubeflow/kubeflow/$\{KUBEFLOW_TAG\}/scripts/download.sh | bash
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    15  100    15    0     0     84      0 --:--:-- --:--:-- --:--:--    84
+bash: line 1: 404:: command not found
+```
+
+Please remove backslash around `{KUBEFLOW_TAG}`.
+
+
 ### Environment File Not Found
 
 ```shell
@@ -35,7 +47,7 @@ Common issues:
 1. The default VPC limit is 5 VPCs per region
 1. Invalid command arguments
 
-```
+```shell
 + eksctl create cluster --config-file=/tmp/cluster_config.yaml
 [ℹ]  using region us-west-2
 [ℹ]  subnets for us-west-2b - public:192.168.0.0/19 private:192.168.96.0/19

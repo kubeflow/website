@@ -58,76 +58,72 @@ Your Kubeflow `app` directory contains the following files and directories:
 
 The provisioning scripts can either bring up a new cluster and install kubeflow on it, or just install kubeflow on your existing cluster. We recommend that you create a new cluster for better isolation.
 
+If you meet any problems in the middle, please check [troubleshooting guidance](/docs/aws/troubleshooting-aws)
+
+
 ## Kubeflow Installation
 
 1. Run the following commands to download the latest `kfctl.sh`
 
-    ```
+    ```shell
     export KUBEFLOW_SRC=/tmp/kubeflow-aws
     export KUBEFLOW_TAG=master
 
     mkdir -p ${KUBEFLOW_SRC} && cd ${KUBEFLOW_SRC}
-
-    # Use Jiaxin's own Repo for testing. Will be deleted after PR merged.
-    export KUBEFLOW_PKG=/tmp/kubeflow-pkg
-    mkdir ${KUBEFLOW_PKG} && git clone https://github.com/jeffwan/kubeflow.git -b make_ingress_optional ${KUBEFLOW_PKG}
-
-    cp -r ${KUBEFLOW_PKG}/kubeflow ./
-    cp -r ${KUBEFLOW_PKG}/scripts ./
-    cp -r ${KUBEFLOW_PKG}/deployment ./
-
-    # Once PR is merged
-    #curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
+    curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
     ```
 
-    *KUBEFLOW_SRC* - Full path to your preferred download directory. Please use the full absolute path, for example `/tmp/kubeflow-aws`
+    * KUBEFLOW_SRC - Full path to your preferred download directory. Please use the full absolute path, for example `/tmp/kubeflow-aws`
 
-1. Run the following commands to setup your environment.
+1. Run the following commands to setup environment and initialize the cluster.
 
-    ```
+    > Note: If you like to install kubeflow on your existing EKS cluster, please skip this step
+    > and follow steps instead [setup](/docs/aws/deploy/existing-cluster).
+    > Once you're done, please go to next step directly.
+
+
+    ```shell
     export KFAPP=kfapp
-    export AWS_CLUSTER_NAME=kubeflow-aws
     export REGION=us-west-2
+    export AWS_CLUSTER_NAME=kubeflow-aws
+
+    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform aws \
+    --awsClusterName ${AWS_CLUSTER_NAME} \
+    --awsRegion ${REGION}
     ```
 
-    AWS_CLUSTER_NAME - EKS cluster name
-    KFAPP - Use a relative directory name here rather than absolute path, like `kfapp`
-    REGION - Use the AWS Region you want to create your cluster in.
 
-1. Initialize your cluster configuration.
-
-    For new clusters, please check [setup](/docs/aws/deploy/new-cluster)
-
-    For existing clusters, please check [setup](/docs/aws/deploy/existing-cluster)
+    * AWS_CLUSTER_NAME - Specify a unique name for your Amazon EKS.
+    * KFAPP - Use a relative directory name here rather than absolute path, like `kfapp`
+    * REGION - Use the AWS Region you want to create your cluster in.
 
 1. Generate and apply platform changes.
 
-    You can customize your cluster configuration, control plane logging, and private cluster endpoint access before you `apply platform`, please check [Customizing Kubeflow on AWS](/docs/aws/customizing-aws.md) for details.
+    You can customize your cluster configuration, control plane logging, and private cluster endpoint access before you `apply platform`, please check [Customizing Kubeflow on AWS](/docs/aws/customizing-aws) for details.
 
-    ```
+    ```shell
     cd ${KFAPP}
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate platform
-    # Customize your Amazon EKS cluster configuration before following the next step
+    # Customize your Amazon EKS cluster configuration before next step
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
     ```
 
 1. Generate and apply the Kubernetes changes.
 
-    ```
+    ```shell
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
     ```
 
-    *Important!!!* By default, the scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
+    __*Important!!!*__ By default, the scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
 
     To secure your installation, you have two options:
 
-    1. Disable ingress before you `apply k8s`. Open `${KUBEFLOW_SRC}/${KFAPP}/env.sh` and edit `KUBEFLOW_COMPONENTS` environment variable. Delete `,\"alb-ingress-controller\",\"istio-ingress\"` and save the file.
-    > Note: Don't forget to delete common.
+    * Disable ingress before you `apply k8s`. Open `${KUBEFLOW_SRC}/${KFAPP}/env.sh` and edit `KUBEFLOW_COMPONENTS` environment variable. Delete `,\"alb-ingress-controller\",\"istio-ingress\"` and save the file.
 
-    1. Follow the [instructions here](/docs/aws/authentication.md) to add authentication before you `apply k8s`
+    * Follow the [instructions](/docs/aws/authentication) to add authentication before you `apply k8s`
 
     Once your customization is done, you can run this command to deploy Kubeflow.
-    ```
+    ```shell
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
     ```
 
@@ -139,17 +135,17 @@ The provisioning scripts can either bring up a new cluster and install kubeflow 
 1. Open Kubeflow Dashboard
     * If you chose to use a load balancer, you can retrieve the public DNS name here.
 
-      ```
-      kubectl get ingress -n istio-system
+        ```shell
+        kubectl get ingress -n istio-system
 
-      NAMESPACE      NAME            HOSTS   ADDRESS                                                             PORTS   AGE
-      istio-system   istio-ingress   *       a743484b-istiosystem-istio-2af2-xxxxxx.us-west-2.elb.amazonaws.com   80      1h
-      ```
+        NAMESPACE      NAME            HOSTS   ADDRESS                                                             PORTS   AGE
+        istio-system   istio-ingress   *       a743484b-istiosystem-istio-2af2-xxxxxx.us-west-2.elb.amazonaws.com   80      1h
+        ```
 
-      This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser. You can also run `kubectl delete istio-ingress -n istio-system` to remove the load balancer entirely.
+        This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser. You can also run `kubectl delete istio-ingress -n istio-system` to remove the load balancer entirely.
 
     * If you didn't create a load balancer, please use port-forwarding to visit your cluster. Run following command and visit `localhost:8080`.
 
-      ```
-      kubectl port-forward -n kubeflow `kubectl get pods -n kubeflow --selector=service=ambassador -o jsonpath='{.items[0].metadata.name}'` 8080:80
-      ```
+        ```shell
+        kubectl port-forward -n kubeflow `kubectl get pods -n kubeflow --selector=service=ambassador -o jsonpath='{.items[0].metadata.name}'` 8080:80
+        ```
