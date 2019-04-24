@@ -1,6 +1,6 @@
 +++
 title = "Kubeflow on AWS Features"
-weight = 2
+weight = 200
 +++
 
 ## Reasons to use Kubeflow on AWS
