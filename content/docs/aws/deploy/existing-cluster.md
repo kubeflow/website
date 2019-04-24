@@ -12,7 +12,7 @@ This is one step of [installing Kubeflow](/docs/aws/deploy/install-kubeflow), pl
 If you would like to deploy Kubeflow on existing Amazon EKS cluster, the only difference in setup is when you initialize the platform setup. Since you manage your own cluster resources, you need to provide `AWS_CLUSTER_NAME` and `AWS_NODE_GROUP_ROLE_NAMES`.
 
 
-1. Retrieve your Amazon EKS cluster region, name and the IAM role name for your worker nodes. Set these values to the following environment variables.
+1. Retrieve the Amazon EKS cluster name, AWS Region, and IAM role name for your worker nodes. Set these values to the following environment variables.
 
     ```shell
     export KFAPP=kfapp
