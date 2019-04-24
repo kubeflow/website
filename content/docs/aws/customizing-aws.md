@@ -77,10 +77,10 @@ nodeGroups:
 ```
 
 ### Customize Private Access
-Please see [section](/docs/aws/private-access)
+Please see [this section](/docs/aws/private-access)
 
 ### Customize Logging
-Please see [section](/docs/aws/logging)
+Please see [this section](/docs/aws/logging)
 
 ### Customize Authentication
-Please see [section](/docs/aws/authentication)
+Please see [this section](/docs/aws/authentication)

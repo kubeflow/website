@@ -14,7 +14,7 @@ weight = 100
 bash: line 1: 404:: command not found
 ```
 
-Please remove backslash around `{KUBEFLOW_TAG}`.
+Please remove the escape backslashes surrounding `{KUBEFLOW_TAG}`.
 
 
 ### Environment File Not Found
@@ -89,7 +89,7 @@ Error from server (NotFound): namespaces "kubeflow" not found
 + echo 'namespace kubeflow successfully deleted.'
 ```
 
-You can ignore kubernetes resource not found issues in the deletion phase.
+You can ignore any Kubernetes "resource not found" errors that occur during the deletion phase.
 
 
 ### InvalidParameterException in UpdateCluster

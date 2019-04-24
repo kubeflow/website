@@ -12,7 +12,7 @@ External Traffic → [ Ingress → Istio ingress gateway → ambassador ]
 
 When you generate and apply kubernetes resources, an ingress is created to manage external traffic to Kubernetes services. The AWS ALB Ingress Controller will provision an Application Load balancer for that ingress. By default, TLS and authentication are not enabled at creation time.
 
-The Kubeflow community plans to move from [Ambassador](https://www.getambassador.io/) to [Istio](https://istio.io/) to manage internal traffic, see [issue](https://github.com/kubeflow/kubeflow/issues/2261). Currently, [Ambassador](https://www.getambassador.io/) still plays the role of an API gateway. TLS, authentication, and authorization either can be done at the ALB or Istio layer for the AWS platform, and we plan to have Istio forward ingress traffic to the Istio gateway and then on to Ambassador when this happens. Once receive a clear direction from the community, we will enable TLS and authentication by default.
+The Kubeflow community plans to move from [Ambassador](https://www.getambassador.io/) to [Istio](https://istio.io/) to manage internal traffic (see [this issue](https://github.com/kubeflow/kubeflow/issues/2261)). Currently, [Ambassador](https://www.getambassador.io/) still plays the role of an API gateway. TLS, authentication, and authorization either can be done at the ALB or Istio layer for the AWS platform, and we plan to have Istio forward ingress traffic to the Istio gateway and then on to Ambassador when this happens. Once receive a clear direction from the community, we will enable TLS and authentication by default.
 
 
 ## Enable TLS and Authentication
@@ -21,7 +21,7 @@ Right now, certificates for ALB public DNS names are not supported. Instead, you
 
 [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/) is a service that lets you easily provision, manage, and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with AWS services and your internal connected resources.
 
-To get TLS support from the ALB Ingress Controller, you need to follow [tutorial](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html) to request a certificate in AWS Certificate Manager. After successful validation, you will get a certificate ARN to use with the ALB Ingress Controller.
+To get TLS support from the ALB Ingress Controller, you need to follow [this tutorial](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html) to request a certificate in AWS Certificate Manager. After successful validation, you will get a certificate ARN to use with the ALB Ingress Controller.
 
 <img src="/docs/images/aws/cognito-certarn.png"
   alt="Cognito Certificate ARN"
@@ -57,7 +57,7 @@ After your ingress DNS is ready, you need to create a `CNAME` in your DNS record
   alt="Custom Domain CNAME"
   class="mt-3 mb-3 border border-info rounded">
 
-Then you can visit `https://www.shanjiaxin.com`, which is a custom domain we use in this case, it will redirect you to an authentication page. We added a user `kubeflow-test-user` in the cognito setting and we can use this user for the login service.
+Then you can visit `https://www.shanjiaxin.com`, which is a custom domain we use in this case, it will redirect you to an authentication page. We added a user `kubeflow-test-user` in the Cognito setting and we can use this user for the login service.
 
 <img src="/docs/images/aws/authentication.png"
   alt="Cognito Authentication pop-up"

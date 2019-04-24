@@ -56,9 +56,9 @@ Your Kubeflow `app` directory contains the following files and directories:
     * You can use ksonnet to customize Kubeflow.
 
 
-The provisioning scripts can either bring up a new cluster and install kubeflow on it, or just install kubeflow on your existing cluster. We recommend that you create a new cluster for better isolation.
+The provisioning scripts can either bring up a new cluster and install Kubeflow on it, or you can install Kubeflow on your existing cluster. We recommend that you create a new cluster for better isolation.
 
-If you meet any problems in the middle, please check [troubleshooting guidance](/docs/aws/troubleshooting-aws)
+If you experience any issues running these scripts, see the [troubleshooting guidance](/docs/aws/troubleshooting-aws) for more information.
 
 
 ## Kubeflow Installation
@@ -75,11 +75,11 @@ If you meet any problems in the middle, please check [troubleshooting guidance](
 
     * KUBEFLOW_SRC - Full path to your preferred download directory. Please use the full absolute path, for example `/tmp/kubeflow-aws`
 
-1. Run the following commands to setup environment and initialize the cluster.
+1. Run the following commands to set up your environment and initialize the cluster.
 
-    > Note: If you like to install kubeflow on your existing EKS cluster, please skip this step
-    > and follow steps instead [setup](/docs/aws/deploy/existing-cluster).
-    > Once you're done, please go to next step directly.
+    > Note: If you would like to install Kubeflow on your existing EKS cluster, please skip this step
+    > and follow follow these instructions instead [setup](/docs/aws/deploy/existing-cluster).
+    > When you are finished, return here and resume with the next step.
 
 
     ```shell
@@ -93,18 +93,18 @@ If you meet any problems in the middle, please check [troubleshooting guidance](
     ```
 
 
-    * AWS_CLUSTER_NAME - Specify a unique name for your Amazon EKS.
-    * KFAPP - Use a relative directory name here rather than absolute path, like `kfapp`
+    * AWS_CLUSTER_NAME - Specify a unique name for your Amazon EKS cluster.
+    * KFAPP - Use a relative directory name here rather than absolute path, such as `kfapp`.
     * REGION - Use the AWS Region you want to create your cluster in.
 
 1. Generate and apply platform changes.
 
-    You can customize your cluster configuration, control plane logging, and private cluster endpoint access before you `apply platform`, please check [Customizing Kubeflow on AWS](/docs/aws/customizing-aws) for details.
+    You can customize your cluster configuration, control plane logging, and private cluster endpoint access before you `apply platform`, please see [Customizing Kubeflow on AWS](/docs/aws/customizing-aws) for more information.
 
     ```shell
     cd ${KFAPP}
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate platform
-    # Customize your Amazon EKS cluster configuration before next step
+    # Customize your Amazon EKS cluster configuration before following the next step
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
     ```
 
@@ -114,11 +114,11 @@ If you meet any problems in the middle, please check [troubleshooting guidance](
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
     ```
 
-    __*Important!!!*__ By default, the scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
+    __*Important!!!*__ By default, these scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
 
     To secure your installation, you have two options:
 
-    * Disable ingress before you `apply k8s`. Open `${KUBEFLOW_SRC}/${KFAPP}/env.sh` and edit `KUBEFLOW_COMPONENTS` environment variable. Delete `,\"alb-ingress-controller\",\"istio-ingress\"` and save the file.
+    * Disable ingress before you `apply k8s`. Open `${KUBEFLOW_SRC}/${KFAPP}/env.sh` and edit the `KUBEFLOW_COMPONENTS` environment variable. Delete `,\"alb-ingress-controller\",\"istio-ingress\"` and save the file.
 
     * Follow the [instructions](/docs/aws/authentication) to add authentication before you `apply k8s`
 
