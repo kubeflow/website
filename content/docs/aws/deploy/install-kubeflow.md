@@ -78,7 +78,7 @@ If you experience any issues running these scripts, see the [troubleshooting gui
 1. Run the following commands to set up your environment and initialize the cluster.
 
     > Note: If you would like to install Kubeflow on your existing EKS cluster, please skip this step
-    > and follow follow these instructions instead [setup](/docs/aws/deploy/existing-cluster).
+    > and follow these instructions instead [setup](/docs/aws/deploy/existing-cluster).
     > When you are finished, return here and resume with the next step.
 
 
