@@ -24,10 +24,10 @@ remotely with Kubeflow Fairing:
 ## What is Kubeflow Fairing?
 
 Kubeflow Fairing is a Python package that makes it easy to train and deploy ML
-models on [Kubeflow][kubeflow], or [Google AI Platform][ai-platform]. 
+models on [Kubeflow][kubeflow] or [Google AI Platform][ai-platform]. 
 
 Kubeflow Fairing packages your Jupyter notebook, Python function, or Python
-file as a Docker image, then deploys and runs the training job on Kubeflow,
+file as a Docker image, then deploys and runs the training job on Kubeflow
 or AI Platform. After your training job is complete, you can use Kubeflow
 Fairing to deploy your trained model as a prediction endpoint on Kubeflow. 
 
