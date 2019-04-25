@@ -111,13 +111,13 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
 1. Create an access level to allow Google Container Builder to access resources inside the permiter
 
-    ```
-    cat << EOF > members.yaml
-    - members:      
-      - serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
-      - user:<your email>
-    EOF
-    ```
+    * Create a members.yaml file with the following contents
+    
+       ```    
+       - members:      
+        - serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
+        - user:<your email>
+       ```
 
     * Google Container Builder is used to mirror Kubeflow images into the perimeter
     * Adding your email allows you to access the GCP services
@@ -154,28 +154,28 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
 1. Setup container registry for GKE private clusters (for more info see [instructions](https://cloud.google.com/vpc-service-controls/docs/set-up-gke))
 
-   1. Create a managed private zone
+    1. Create a managed private zone
 
-       ```
-       export ZONE_NAME=kubeflow
-       export NETWORK=<Network you are using for your cluster>
-       gcloud beta dns managed-zones create ${ZONE_NAME} \
-        --visibility=private \
-        --networks=https://www.googleapis.com/compute/v1/projects/${PROJECT}/global/networks/${NETWORK} \
-        --description="Kubeflow DNS" \
-        --dns-name=gcr.io \
-        --project=${PROJECT}
-       ```
+        ```
+        export ZONE_NAME=kubeflow
+        export NETWORK=<Network you are using for your cluster>
+        gcloud beta dns managed-zones create ${ZONE_NAME} \
+         --visibility=private \
+         --networks=https://www.googleapis.com/compute/v1/projects/${PROJECT}/global/networks/${NETWORK} \
+         --description="Kubeflow DNS" \
+         --dns-name=gcr.io \
+         --project=${PROJECT}
+        ```
 
-   1. Start a transaction
+    1. Start a transaction
 
-       ```
-        gcloud dns record-sets transaction start \
-          --zone=${ZONE_NAME} \
-          --project=${PROJECT}
-       ```
+        ```
+         gcloud dns record-sets transaction start \
+           --zone=${ZONE_NAME} \
+           --project=${PROJECT}
+        ```
 
-   1. Add a CNAME record for \*.gcr.io
+    1. Add a CNAME record for \*.gcr.io
 
        ```
        gcloud dns record-sets transaction add \
@@ -185,24 +185,24 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
         --ttl=300 \
         --project=${PROJECT}
        ```
-   1. Add an A record for the restricted VIP
+    1. Add an A record for the restricted VIP
 
-       ```      
-        gcloud dns record-sets transaction add \
-          --name=gcr.io. \
-          --type=A 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 \
+        ```      
+         gcloud dns record-sets transaction add \
+           --name=gcr.io. \
+           --type=A 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 \
+           --zone=${ZONE_NAME} \
+           --ttl=300 \
+           --project=${PROJECT}
+        ```
+
+    1. Commit the transaction
+
+        ```
+         gcloud dns record-sets transaction execute \
           --zone=${ZONE_NAME} \
-          --ttl=300 \
           --project=${PROJECT}
-       ```
-
-   1. Commit the transaction
-
-       ```
-        gcloud dns record-sets transaction execute \
-         --zone=${ZONE_NAME} \
-         --project=${PROJECT}
-       ```
+        ```
 
 ## Deploy Kubeflow with Private GKE
 
