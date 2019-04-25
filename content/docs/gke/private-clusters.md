@@ -177,14 +177,15 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
     1. Add a CNAME record for \*.gcr.io
 
+        ```
+        gcloud dns record-sets transaction add \
+         --name=*.gcr.io. \
+         --type=CNAME gcr.io. \
+         --zone=${ZONE_NAME} \
+         --ttl=300 \
+         --project=${PROJECT}
        ```
-       gcloud dns record-sets transaction add \
-        --name=*.gcr.io. \
-        --type=CNAME gcr.io. \
-        --zone=${ZONE_NAME} \
-        --ttl=300 \
-        --project=${PROJECT}
-       ```
+
     1. Add an A record for the restricted VIP
 
         ```      
