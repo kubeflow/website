@@ -224,7 +224,7 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     1. Use [Google Cloud Builder(GCB)](https://cloud.google.com/cloud-build/docs/) to replicate the images
 
         ```
-        cd ~/git_kubeflow/scripts/gke
+        cd git_kubeflow/scripts/gke
         PROJECT=<PROJECT> make copy-gcb
         ```
 
@@ -371,7 +371,7 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
     ```
     cd ${KFAPP}
-    kfctl apply Kubernetes
+    kfctl apply k8s
     ```
 1. Wait for Kubeflow to become accessible and then access it at
 
