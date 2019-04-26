@@ -1,19 +1,13 @@
 +++
-title = "Creating Private Clusters"
-description = "How to create private GKE clusters"
+title = "Securing Your Clusters"
+description = "How to secure Kubeflow clusters using VPC service controls and private GKE"
 weight = 5
 +++
 
-This guide describes how to secure Kubeflow using private GKE and [VPC service Controls](https://cloud.google.com/vpc-service-controls/docs/)
+This guide describes how to secure Kubeflow using [VPC service Controls](https://cloud.google.com/vpc-service-controls/docs/) and private GKE.
 
 Together these two features signficantly increase security
 and mitigate the risk of data exfiltration
-
-  * Private GKE removes public IP addresses from GKE nodes making
-    them inaccessible from the public internet
-
-    * Kubeflow uses IAP to make Kubeflow web apps accessible
-      from your browser.
 
   * VPC Service Controls allow you to define a perimeter around
     GCP services
@@ -21,6 +15,18 @@ and mitigate the risk of data exfiltration
     * Kubeflow uses VPC Service Controls to prevent applications
       running on GKE from writing data to GCP resources outside
       the perimeter.
+
+  * Private GKE removes public IP addresses from GKE nodes making
+    them inaccessible from the public internet
+
+    * Kubeflow uses IAP to make Kubeflow web apps accessible
+      from your browser.
+
+VPC Service Controls allow you to restrict which Google services are accessible from your
+GKE/Kubeflow clusters. This is an important part of security and in particular
+mitigating the risks of data exfiltration.
+
+For more information refer to the [VPC Service Control Docs](https://cloud.google.com/vpc-service-controls/docs/overview).
 
 Creating a [private Kubernetes Engine cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters)
 means the Kubernetes Engine nodes won't have public IP addresses. This can improve security by blocking unwanted outbound/inbound
@@ -30,12 +36,6 @@ from the nodes. Google services (BigQuery, Cloud Storage, etc...) are still acce
 Importantly this means you can continue to use your [Google Container Registry (GCR)](https://cloud.google.com/container-registry/docs/) to host your Docker images. Other Docker registries (for example DockerHub) will not be accessible. If you need to use Docker images
 hosted outside Google Container Registry you can use the scripts provided by Kubeflow
 to mirror them to your GCR registry.
-
-VPC Service Controls allow you to restrict which Google services are accessible from your
-GKE/Kubeflow clusters. This is an important part of security and in particular
-mitigating the risks of data exfiltration.
-
-For more information refer to the [VPC Service Control Docs](https://cloud.google.com/vpc-service-controls/docs/overview).
 
 
 ## Before you start
@@ -53,6 +53,8 @@ You will need to know your gcloud organization id and project number; you can ge
 export ORGANIZATION=$(gcloud organizations list --filter=DISPLAY_NAME=<ORG_NAME> --format='value(name)')
 export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(projectNumber)')
 ```
+
+  * Projects are identified by names, ids and numbers for more info see [here](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
 
 ## Known issues
 
