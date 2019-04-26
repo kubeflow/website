@@ -1,5 +1,5 @@
 +++
-title = "Init cluster setup for existing cluster"
+title = "Initial cluster setup for existing cluster"
 weight = 6
 +++
 

@@ -5,9 +5,9 @@ weight = 4
 +++
 
 This guide describes how to use the `kfctl.sh` script to
-deploy Kubeflow on AWS.
+deploy Kubeflow on Amazon Web Services (AWS).
 
-> Note: AWS is moving from `kfctl.sh` to a command line interface (CLI) which gives you more control over your configuration and better reliability.
+> Note: Amazon Web Services (AWS) is moving from `kfctl.sh` to a command line interface (CLI) which gives you more control over your configuration and better reliability.
 
 
 ## Prerequisites
@@ -22,7 +22,7 @@ deploy Kubeflow on AWS.
 * Install [jq](https://stedolan.github.io/jq/download/).
 * Install [ksonnet](https://github.com/ksonnet/ksonnet).
 
-You do not need to have an existing EKS cluster. The deployment process will create a cluster for you.
+You do not need to have an existing Amazon Elastic Container Service for Kubernetes (Amazon EKS) cluster. The deployment process will create a cluster for you.
 
 
 ## Understanding the deployment process
@@ -61,7 +61,7 @@ The provisioning scripts can either bring up a new cluster and install Kubeflow 
 If you experience any issues running these scripts, see the [troubleshooting guidance](/docs/aws/troubleshooting-aws) for more information.
 
 
-## Kubeflow Installation
+## Kubeflow installation
 
 1. Run the following commands to download the latest `kfctl.sh`
 
@@ -78,7 +78,7 @@ If you experience any issues running these scripts, see the [troubleshooting gui
 1. Run the following commands to set up your environment and initialize the cluster.
 
     > Note: If you would like to install Kubeflow on your existing EKS cluster, please skip this step
-    > and follow these instructions instead [setup](/docs/aws/deploy/existing-cluster).
+    > and follow the setup instructions for an [existing cluster](/docs/aws/deploy/existing-cluster) instead.
     > When you are finished, return here and resume with the next step.
 
 
