@@ -61,6 +61,7 @@ Follow these steps to deploy Kubeflow:
     ```bash
     # The following command is optional, to make kfctl binary easier to use.
     export PATH=$PATH:<path to kfctl in your kubeflow installation>
+    export ZONE=<your target zone> #where the deployment will be created
 
     export PROJECT=<your GCP project>
     export KFAPP=<your choice of application directory name>
@@ -70,7 +71,7 @@ Follow these steps to deploy Kubeflow:
     kfctl init ${KFAPP} --platform gcp --project ${PROJECT} --use_basic_auth -V
 
     cd ${KFAPP}
-    kfctl generate all -V
+    kfctl generate all -V --zone ${ZONE}
     kfctl apply all -V
     ```
    * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
