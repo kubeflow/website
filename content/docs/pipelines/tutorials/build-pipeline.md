@@ -57,7 +57,7 @@ For example, to compile the
 
 ```bash
 export DIR=[YOUR PIPELINES REPO DIRECTORY]/samples/basic
-dsl-compile --py $DIR/sequential.py --output $DIR/sequential.tar.gz
+dsl-compile --py ${DIR}/sequential.py --output ${DIR}/sequential.tar.gz
 ```
 
 ### Deploy the pipeline

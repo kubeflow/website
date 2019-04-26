@@ -103,7 +103,7 @@ your development environment with access to GCP.
 
     ```bash
     export PROJECT_ID=<your-project-id>
-    gcloud config set project $PROJECT_ID
+    gcloud config set project ${PROJECT_ID}
     ```
 
 1.  Kubeflow Fairing needs a service account to make API calls to GCP. The
@@ -113,7 +113,7 @@ your development environment with access to GCP.
     variable, run the following command:
 
     ```bash
-    ls "$GOOGLE_APPLICATION_CREDENTIALS"
+    ls "${GOOGLE_APPLICATION_CREDENTIALS}"
     ```
 
     The response should be something like this:
@@ -127,9 +127,9 @@ your development environment with access to GCP.
 
     ```bash
     export SA_NAME=<your-sa-name>
-    gcloud iam service-accounts create $SA_NAME
-    gcloud projects add-iam-policy-binding $PROJECT_ID \
-        --member serviceAccount:$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com \
+    gcloud iam service-accounts create ${SA_NAME}
+    gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+        --member serviceAccount:${SA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com \
         --role 'roles/editor'
     ```
 
@@ -137,7 +137,7 @@ your development environment with access to GCP.
 
     ```bash
     gcloud iam service-accounts keys create ~/key.json \
-        --iam-account $SA_NAME@$PROJECT_ID.iam.gserviceaccount.com
+        --iam-account ${SA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com
     ```
 
     Create the `GOOGLE_APPLICATION_CREDENTIALS` environment variable.
@@ -202,7 +202,7 @@ development environments for training and prediction from Kubeflow Fairing.
     ```bash
     export CLUSTER_NAME=kubeflow
     export ZONE=us-central1-a
-    gcloud container clusters get-credentials $CLUSTER_NAME --region $ZONE
+    gcloud container clusters get-credentials ${CLUSTER_NAME} --region ${ZONE}
     ```
 
 ## Use Kubeflow Fairing to train a model locally and on GCP
