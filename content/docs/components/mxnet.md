@@ -70,7 +70,7 @@ Before you use the auto-tuning example, there is some preparatory work need to b
 To get the status of your job
 
 ```bash
-kubectl get -o yaml mxjobs $JOB
+kubectl get -o yaml mxjobs ${JOB}
 ```   
 
 Here is sample output for an example job

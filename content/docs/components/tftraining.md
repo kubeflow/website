@@ -398,7 +398,7 @@ for using GPUs.
 To get the status of your job
 
 ```bash
-kubectl get -o yaml tfjobs $JOB
+kubectl get -o yaml tfjobs ${JOB}
 ```
 
 Here is sample output for an example job
