@@ -1,5 +1,5 @@
 +++
-title = "Uninstall kubeflow"
+title = "Uninstall Kubeflow"
 description = "Instructions for uninstall Kubeflow"
 weight = 10
 +++

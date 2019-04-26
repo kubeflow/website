@@ -4,13 +4,13 @@ description = "Add TLS and authentication with your custom domain"
 weight = 90
 +++
 
-This section shows the how to add TLS support and create a user pool to authenticate users with your custom domain.
+This section shows the how to add TLS support and create a user pool to authenticate users with your custom domain in Amazon Web Services (AWS).
 
 
 ## Traffic Flow
 External Traffic → [ Ingress → Istio ingress gateway → ambassador ]
 
-When you generate and apply kubernetes resources, an ingress is created to manage external traffic to Kubernetes services. The AWS ALB Ingress Controller will provision an Application Load balancer for that ingress. By default, TLS and authentication are not enabled at creation time.
+When you generate and apply kubernetes resources, an ingress is created to manage external traffic to Kubernetes services. The AWS Appliction Load Balancer(ALB) Ingress Controller will provision an Application Load balancer for that ingress. By default, TLS and authentication are not enabled at creation time.
 
 The Kubeflow community plans to move from [Ambassador](https://www.getambassador.io/) to [Istio](https://istio.io/) to manage internal traffic (see [this issue](https://github.com/kubeflow/kubeflow/issues/2261)). Currently, [Ambassador](https://www.getambassador.io/) still plays the role of an API gateway. TLS, authentication, and authorization either can be done at the ALB or Istio layer for the AWS platform, and we plan to have Istio forward ingress traffic to the Istio gateway and then on to Ambassador when this happens. Once receive a clear direction from the community, we will enable TLS and authentication by default.
 

@@ -18,9 +18,9 @@ ENDPOINT_PUBLIC_ACCESS=true
 ENDPOINT_PRIVATE_ACCESS=false
 ```
 
-By default, this API server endpoint is public to the internet (`ENDPOINT_PUBLIC_ACCESS=true`) , and access to the API server is secured using a combination of AWS Identity and Access Management (IAM) and native Kubernetes [Role Based Access Control](https://kubernetes.io/docs/admin/authorization/rbac/)(`ENDPOINT_PRIVATE_ACCESS=false`).
+By default, this API server endpoint is public to the internet (`ENDPOINT_PUBLIC_ACCESS=true`) , and access to the API server is secured using a combination of [AWS Identity and Access Management (IAM)](https://aws.amazon.com/iam/) and native Kubernetes [Role Based Access Control](https://kubernetes.io/docs/admin/authorization/rbac/) (`ENDPOINT_PRIVATE_ACCESS=false`).
 
-You can enable private access to the Kubernetes API server so that all communication between your worker nodes and the API server stays within your VPC(`ENDPOINT_PRIVATE_ACCESS=true`). You can also completely disable public access to your API server so that it's not accessible from the internet. (`ENDPOINT_PUBLIC_ACCESS=false`). In this case, you need to have an instance inside your VPC to talk with your kubernetes API server.
+You can enable private access to the Kubernetes API server so that all communication between your worker nodes and the API server stays within your VPC (`ENDPOINT_PRIVATE_ACCESS=true`). You can also completely disable public access to your API server so that it's not accessible from the internet (`ENDPOINT_PUBLIC_ACCESS=false`). In this case, you need to have an instance inside your VPC to talk with your Kubernetes API server.
 
 Note: You may see `InvalidParameterException` if you have invalid combination.
 
