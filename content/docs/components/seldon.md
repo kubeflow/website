@@ -5,7 +5,7 @@ weight = 40
 +++
 
 ## Serve a model using Seldon
-[Seldon-core](https://github.com/SeldonIO/seldon-core) provides deployment for any machine learning runtime that can be [packaged in a Docker container](https://github.com/SeldonIO/seldon-core/blob/master/docs/wrappers/readme.md).
+[Seldon-core](https://github.com/SeldonIO/seldon-core) provides deployment for any machine learning runtime that can be [packaged in a Docker container](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html).
 
 Install the seldon package:
 
@@ -40,7 +40,7 @@ You can read more about Kubeflow's use of ksonnet in the Kubeflow
 
 ### Seldon Deployment Graphs
 
-Seldon allows complex runtime graphs for model inference to be deployed. Some example prototypes have been provided to help you get started. Follow the [Seldon docs](https://github.com/SeldonIO/seldon-core/blob/master/docs/wrappers/readme.md) to wrap your model code into an image that can be managed by Seldon. In the examples below we will use a model image ```seldonio/mock_classifier``` ; replace this with your actual model image. You will also need to choose between the v1alpha2 and v1alpha1 prototype examples depending on which version of Seldon you generated above. The following prototypes are available:
+Seldon allows complex runtime graphs for model inference to be deployed. Some example prototypes have been provided to help you get started. Follow the [Seldon docs](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html) to wrap your model code into an image that can be managed by Seldon. In the examples below we will use a model image ```seldonio/mock_classifier``` ; replace this with your actual model image. You will also need to choose between the v1alpha2 and v1alpha1 prototype examples depending on which version of Seldon you generated above. The following prototypes are available:
 
  * **A single model to serve**.
     * ```ks generate seldon-serve-simple-<seldonVersion> mymodel --image <image>```
@@ -72,5 +72,3 @@ Assuming Ambassador is exposed at ```<ambassadorEndpoint>``` and with a Seldon d
   * To understand how to upgrade your Seldon manifest's from v1alpha1 to v1alpha2 follow [this guide](https://github.com/SeldonIO/seldon-core/blob/master/docs/v1alpha2_update.md).
   * For an example end-to-end integration see the [kubeflow-seldon example](https://github.com/kubeflow/example-seldon).
   * For more details and example on the above see the [Seldon documentation](https://github.com/SeldonIO/seldon-core).
-
-
