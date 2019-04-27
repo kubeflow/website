@@ -25,10 +25,10 @@ Deploy the environment
 ks apply cloud
 ```
 
-Start Juptyer
+Start Jupyter
 You should see your NFS volumes mounted as `/mnt/${DISK_NAME}`
 
-In a Juptyer cell you can run
+In a Jupyter cell you can run
 
 ```
 !df

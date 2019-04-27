@@ -185,7 +185,7 @@ privilege. The three service accounts are:
 
 * Run a full ML workflow on Kubeflow, using the
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
-  [GitHub issue sumarization 
+  [GitHub issue summarization 
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
 * See how to [delete](/docs/gke/deploy/delete-cli) your Kubeflow deployment 
   using the CLI.

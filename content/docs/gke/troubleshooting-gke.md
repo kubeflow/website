@@ -343,7 +343,7 @@ for available zones and cpu platforms.
 
 ## Changing the OAuth client used by IAP
 
-If you need to change the OAuth client used by IAP you can runn the following commands
+If you need to change the OAuth client used by IAP you can run the following commands
 to replace the K8s secret containing the id and secret.
 
 ```

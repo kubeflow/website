@@ -188,9 +188,9 @@ While it requires some effort, the end result is well worth it
      https://${FQDN}     
      ```
 
-     * If you get SSL errors this typically means your SSL certificate is still propogating wait a bit and try again
+     * If you get SSL errors this typically means your SSL certificate is still propagating wait a bit and try again
 
-       * SSL propogation could take up to 10 minutes
+       * SSL propagation could take up to 10 minutes
 
      * If you are not asked to login and you get a 404 error that means IAP is still being configured
 
