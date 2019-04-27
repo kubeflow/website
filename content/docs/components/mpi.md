@@ -44,7 +44,7 @@ kubectl create -f deploy/
 
 ## Creating an MPI Job
 
-You can create an MPI job by defining an `MPIJob` config file. See [Tensorflow benchmark example](https://github.com/kubeflow/mpi-operator/blob/master/examples/tensorflow-benchmarks.yaml) config file for launching a multi-node TensorFlow benchmark training job. You may change the config file based on your requirements.
+You can create an MPI job by defining an `MPIJob` config file. See [TensorFlow benchmark example](https://github.com/kubeflow/mpi-operator/blob/master/examples/tensorflow-benchmarks.yaml) config file for launching a multi-node TensorFlow benchmark training job. You may change the config file based on your requirements.
 
 ```
 cat examples/tensorflow-benchmarks.yaml

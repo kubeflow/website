@@ -26,7 +26,7 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
       - [Slides](https://docs.google.com/presentation/d/1cphcFf4qszQ9PxcEnYkF0pkY3AZEQiEEjs8cso2KJjE/edit?usp=sharing)
   - MiniKF: Local Kubeflow: Vangelis Koukis, Arrikto
       - [Slides](https://docs.google.com/presentation/d/1ftOhRZtpIF3Iy-2R6z9kwgS3KMUtIFnvA1LHHEyxsp8/edit?usp=sharing)
-  - Tensorflow 2.0 is coming!: Paige Bailey, Google
+  - TensorFlow 2.0 is coming!: Paige Bailey, Google
       - [Slides](https://docs.google.com/presentation/d/1G0BE7tvhsCzZn2uaxEZsoosEZyXkjN8CnB3uHvLpiC0/edit?usp=sharing)
   - Overview of Kubeflow Pipelines: Pavel Dournov, Google
       - [Slides](https://docs.google.com/presentation/d/1aMmJUz7r7Toky4nGZ1bItWKfXW4kSMbs4cofFeyKE-M/edit?usp=sharing)
@@ -128,7 +128,7 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
 * Cloud-Native, Docker, and Kubernetes Summit, Dallas, 12 September, 2018
   - [Deploying Machine Learning Workloads in Kubernetes clusters that support GPUs](https://www.eventbrite.com/e/kubernetes-classes-at-cloud-native-docker-k8s-summit-tickets-44954443952): Michael Iatrou
 * [O’Reilly Strata Data, New York](https://conferences.oreilly.com/strata/strata-ny), 11-13 September, 2018
-  - [From Training to Serving: Deploying Tensorflow Models with Kubernetes](https://conferences.oreilly.com/strata/strata-ny/public/schedule/detail/69362): Brian Foo, Holden Karau, Jay Smith
+  - [From Training to Serving: Deploying TensorFlow Models with Kubernetes](https://conferences.oreilly.com/strata/strata-ny/public/schedule/detail/69362): Brian Foo, Holden Karau, Jay Smith
   - [Kubeflow Explained: Portable Machine Learning on Kubernetes](https://conferences.oreilly.com/strata/strata-ny/public/schedule/detail/69041): Michelle Casbon
 * [O'Reilly AI Conference, San Francisco](https://conferences.oreilly.com/artificial-intelligence/ai-ca), 4-7 September, 2018
   - [TensorFlow Days: Kubeflow: Portable Machine Learning on Kubernetes](https://conferences.oreilly.com/artificial-intelligence/ai-ca/public/schedule/topic/2899): Michelle Casbon
@@ -148,7 +148,7 @@ Please raise a [GitHub issue](https://github.com/kubeflow/website/issues/new) if
   - [Spotlight Lab: Kubeflow End-to-End: GitHub Issue Summarization](https://cloud.withgoogle.com/next18/sf/sessions/session/229637): Michelle Casbon
       - [Codelab](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-e2e-gis/index.html)
 * [O'Reilly Open Source Convention, Portland](https://conferences.oreilly.com/oscon/oscon-or-2018), 16-19 July, 2018
-  - [Tensorflow Day: Hassle-free, scalable machine learning with Kubeflow](https://conferences.oreilly.com/oscon/oscon-or/public/schedule/detail/70899): Barbara Fusinska
+  - [TensorFlow Day: Hassle-free, scalable machine learning with Kubeflow](https://conferences.oreilly.com/oscon/oscon-or/public/schedule/detail/70899): Barbara Fusinska
 * [SciPy, Austin](https://scipy2018.scipy.org/ehome/index.php?eventid=299527), 09-15 July, 2018
   - Kubeflow: Pythonic Machine Learning at Scale on Kubernetes: David Aronchick, Paige Bailey
       - [Video](https://www.youtube.com/watch?v=b_CvqzmB51M)

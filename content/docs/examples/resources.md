@@ -40,7 +40,7 @@ model using TensorFlow.
 {{% blocks/content-item title="Object detection - cats and dogs" 
   url="https://github.com/kubeflow/examples/tree/master/object_detection" %}}
 Train a distribued model for recognizing breeds of cats and
-dogs with the Tensorflow Object Detection API. Serve the model using TensorFlow.
+dogs with the TensorFlow Object Detection API. Serve the model using TensorFlow.
 {{% /blocks/content-item %}}
 
 {{% blocks/content-item title="PyTorch MNIST" 

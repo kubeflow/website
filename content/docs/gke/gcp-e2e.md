@@ -71,7 +71,7 @@ Here's an overview of what you accomplish by following this guide:
 
   * Packaging a TensorFlow program in a [Kubernetes][kubernetes] container.
   * Uploading the container to [Container Registry][container-registry].
-  * Submitting a Tensorflow training ([tf.train][tf-train]) job.
+  * Submitting a TensorFlow training ([tf.train][tf-train]) job.
 
 * Using the model for prediction (inference):
 

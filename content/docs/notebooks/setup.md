@@ -202,7 +202,7 @@ getting-started guide for your chosen environment. For example:
 ## Experiment with your notebook
 
 The default notebook image includes all the plugins that you need to train a 
-Tensorflow model with Jupyter, including
+TensorFlow model with Jupyter, including
 [Tensorboard](https://www.tensorflow.org/get_started/summaries_and_tensorboard) 
 for rich visualizations and insights into your model.
 
