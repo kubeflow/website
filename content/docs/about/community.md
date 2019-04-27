@@ -57,7 +57,7 @@ More detail:
 | Topic                                                           | Mailing list                                                                      | Slack                                                                                             |
 | :----                                                           | :------------                                                                     | :-------------                                                                                    |
 | General discussion                                              | [kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss)      | [#general](https://kubeflow.slack.com/messages/C7REE0EHK)                                         |
-| TF Operator ([Github](https://github.com/kubeflow/tf-operator)) | [tf-operator](https://groups.google.com/a/kubeflow.org/forum/#!forum/tf-operator) | [#tf-operator](https://kubeflow.slack.com/messages/https://kubeflow.slack.com/messages/C985VJN9F) |
+| TF Operator ([GitHub](https://github.com/kubeflow/tf-operator)) | [tf-operator](https://groups.google.com/a/kubeflow.org/forum/#!forum/tf-operator) | [#tf-operator](https://kubeflow.slack.com/messages/https://kubeflow.slack.com/messages/C985VJN9F) |
 | Community meeting chat                                          | n/a                                                                               | [#community](https://kubeflow.slack.com/messages/C8Q0QJYNB)                                       |
 
 Slack server: [kubeflow.slack.com](https://kubeflow.slack.com/)

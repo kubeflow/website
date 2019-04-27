@@ -1,6 +1,6 @@
 +++
 title = "TensorFlow Serving"
-description = "Serving Tensorflow models"
+description = "Serving TensorFlow models"
 weight = 51
 +++
 

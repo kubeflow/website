@@ -78,7 +78,7 @@ how RBAC interacts with IAM on GCP.
 
 ## Problems spawning Jupyter pods
 
-If you're having trouble spawning jupyter notebooks, check that the pod is getting
+If you're having trouble spawning Jupyter notebooks, check that the pod is getting
 scheduled
 
 ```
@@ -148,7 +148,7 @@ EOF
 
 
 ## OpenShift
-If you are deploying Kubeflow in an [OpenShift](https://github.com/openshift/origin) environment which encapsulates Kubernetes, you will need to adjust the security contexts for the ambassador and jupyter-hub deployments in order to get the pods to run.
+If you are deploying Kubeflow in an [OpenShift](https://github.com/openshift/origin) environment which encapsulates Kubernetes, you will need to adjust the security contexts for the ambassador and Jupyter-hub deployments in order to get the pods to run.
 
 ```commandline
 oc adm policy add-scc-to-user anyuid -z ambassador
@@ -179,8 +179,8 @@ ks init my-kubeflow
 
 ## 403 API rate limit exceeded error
 
-Because ksonnet uses Github to pull kubeflow, unless user specifies Github API token, it will quickly consume maximum API call quota for anonymous.
-To fix this issue first create Github API token using this [guide](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/), and assign this token to GITHUB_TOKEN environment variable.
+Because ksonnet uses GitHub to pull kubeflow, unless user specifies GitHub API token, it will quickly consume maximum API call quota for anonymous.
+To fix this issue first create GitHub API token using this [guide](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/), and assign this token to GITHUB_TOKEN environment variable.
 
 ```commandline
 export GITHUB_TOKEN=<< token >>
