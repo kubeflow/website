@@ -6,7 +6,7 @@ weight = 7
 
 * Run a full ML workflow on Kubeflow, using the
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
-  [GitHub issue sumarization 
+  [GitHub issue summarization 
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
 * See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
   deployment on GKE.

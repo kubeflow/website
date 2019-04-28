@@ -67,7 +67,7 @@ When you are ready to join
 ### Companies/organizations
 
 If you would like your company or organization to be acknowledged for contributing to
-Kubeflow or participatng in the community (being a user counts) please send a PR
+Kubeflow or participating in the community (being a user counts) please send a PR
 adding the relevant info to
 [member_organizations.yaml](https://github.com/kubeflow/community/blob/master/member_organizations.yaml).
 

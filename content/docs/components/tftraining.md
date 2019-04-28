@@ -509,7 +509,7 @@ A TFJob has a TFJobStatus, which has an array of TFJobConditions through which t
 * The **lastUpdateTime** field provides the last time this condition was updated.
 * The **lastTransitionTime** field provides the last time the condition transitioned from one status to another.
 * The **message** field is a human readable message indicating details about the transition.
-* The **reason** field is a unique, one-word, CamelCase reson for the condition's
+* The **reason** field is a unique, one-word, CamelCase reason for the condition's
   last transition.
 * The **status** field is a string with possible values "True", "False", and "Unknown".
 * The **type** field is a string with the following possible values:

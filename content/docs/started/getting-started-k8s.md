@@ -9,7 +9,7 @@ cluster.
 
 If you are using a Kubernetes distribution or Cloud Provider which has specific
 instructions for installing Kubeflow we recommend following those instructions.
-Those instuctions do additional Cloud specific setup to create a really great 
+Those instructions do additional Cloud specific setup to create a really great 
 Kubeflow experience.
 
 Before installing Kubeflow on the command line:

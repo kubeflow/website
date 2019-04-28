@@ -7,7 +7,7 @@ We use [Hugo](https://gohugo.io/) to format and generate our website, the
 [Docsy](https://github.com/google/docsy) theme for styling and site structure, 
 and [Netlify](https://www.netlify.com/) to manage the deployment of the site. 
 Hugo is an open-source static site generator that provides us with templates, 
-content organisation in a standard directory structure, and a website generation 
+content organization in a standard directory structure, and a website generation 
 engine. You write the pages in Markdown, and Hugo wraps them up into a website.
 
 ## Quickstart

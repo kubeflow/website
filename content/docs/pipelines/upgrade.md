@@ -31,7 +31,7 @@ The MySQL database and the Minio server are both backed by the Kubernetes
   creates a Compute Engine 
   [Persistent Disk](https://cloud.google.com/persistent-disk/) (PD)
   and mounts it as a PV. 
-* If you are not deploying to GCP, you can specify your own prefered PV.
+* If you are not deploying to GCP, you can specify your own preferred PV.
 
 ## Deploying Kubeflow
 

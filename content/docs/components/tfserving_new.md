@@ -57,7 +57,7 @@ To use S3, generate a different prototype
 ks generate tf-serving-deployment-aws ${MODEL_COMPONENT} --name=${MODEL_NAME}
 ```
 
-First you need to create secret that will contain access credentials. Use base64 to encode your credentials and check deails in the Kubernetes guide to [creating a secret manually](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret-manually)
+First you need to create secret that will contain access credentials. Use base64 to encode your credentials and check details in the Kubernetes guide to [creating a secret manually](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret-manually)
 ```
 apiVersion: v1
 metadata:
