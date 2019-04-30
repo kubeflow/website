@@ -21,7 +21,7 @@ remotely with Kubeflow Fairing:
 *  Learn how to [train and deploy a model on GCP from a notebook hosted on
    Kubeflow][gcp-kubeflow].
 *  Learn how to [train and deploy a model on GCP from a notebook hosted on
-   AI Platform][gcp-ai-platform].
+   Google AI Platform Notebooks][gcp-ai-platform].
 
 ## What is Kubeflow Fairing?
 

@@ -1,10 +1,10 @@
 +++
 title = "Train and Deploy on GCP from an AI Platform Notebook"
-description = "Use Kubeflow Fairing to train and deploy a model on Google Cloud Platform (GCP) from a notebook that is hosted on Google Cloud AI Platform"
+description = "Use Kubeflow Fairing to train and deploy a model on Google Cloud Platform (GCP) from a notebook that is hosted on Google AI Platform"
 weight = 35
 +++
 
-This guide introduces you to using [Kubeflow Fairing][fairing-repo] to train and
+This guide introduces you to using [Kubeflow Fairing][fairing] to train and
 deploy a model to Kubeflow on [Google Kubernetes Engine (GKE)][gke] and [Google AI 
 Platform][ai-platform]. As an example, this guide uses a notebook that is hosted
 on [AI Platform Notebooks][ai-notebooks] to demonstrate how to:
@@ -104,13 +104,13 @@ quickstart notebook:
 
 1.  Follow the instructions in the notebook to:
 
-    1.  Train an XGBoost model in a notebook,
-    1.  Use Kubeflow Fairing to train an XGBoost model remotely on Kubeflow,
-    1.  Use Kubeflow Fairing to train an XGBoost model remotely on AI Platform, 
-    1.  Use Kubeflow Fairing to deploy a trained model to Kubeflow, and
-    1.  Call the deployed endpoint for predictions.
+    *  Train an XGBoost model in a notebook,
+    *  Use Kubeflow Fairing to train an XGBoost model remotely on Kubeflow,
+    *  Use Kubeflow Fairing to train an XGBoost model remotely on AI Platform, 
+    *  Use Kubeflow Fairing to deploy a trained model to Kubeflow, and
+    *  Call the deployed endpoint for predictions.
 
-[fairing-repo]: https://github.com/kubeflow/fairing
+[fairing]: /docs/fairing/fairing-overview/
 [kubeflow-install-gke]: /docs/gke/deploy/
 [kubeflow-install]: /docs/gke/deploy/deploy-cli/
 [kubeflow-deploy]: https://deploy.kubeflow.cloud
@@ -119,3 +119,4 @@ quickstart notebook:
 [ai-notebook-open]: https://cloud.google.com/ml-engine/docs/notebooks/create-new#open_a_notebook
 [container-registry]: https://cloud.google.com/container-registry/
 [gke]: https://cloud.google.com/kubernetes-engine/
+[ai-notebooks]: https://cloud.google.com/ml-engine/docs/notebooks/overview 
