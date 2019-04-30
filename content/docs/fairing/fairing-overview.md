@@ -20,6 +20,8 @@ remotely with Kubeflow Fairing:
    a local notebook][gcp-local].
 *  Learn how to [train and deploy a model on GCP from a notebook hosted on
    Kubeflow][gcp-kubeflow].
+*  Learn how to [train and deploy a model on GCP from a notebook hosted on
+   AI Platform][gcp-ai-platform].
 
 ## What is Kubeflow Fairing?
 
@@ -49,6 +51,7 @@ The following are the goals of the [Kubeflow Fairing project][fairing-repo]:
 
 [gcp-local]: /docs/fairing/gcp-local-notebook/
 [gcp-kubeflow]: /docs/fairing/gcp-kubeflow-notebook/
+[gcp-ai-platform]: /docs/fairing/gcp-ai-platform-notebook/
 [kubeflow-notebooks]: /docs/notebooks/setup/
 [ai-platform]: https://cloud.google.com/ml-engine/docs/
 [fairing-repo]: https://github.com/kubeflow/fairing
