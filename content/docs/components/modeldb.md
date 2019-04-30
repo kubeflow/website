@@ -127,6 +127,7 @@ After ModelDB is deployed and modeldb-db, modeldb-backend and modeldb-frontend p
 
 ## Samples
 These notebooks show how each dataset, model, model configuration, and model metrics can be initialized and logged into modelDB - 
+
 * TensorFlow [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/VertaAI/modeldb-client/blob/development/workflows/demos/tensorflow.ipynb)
 * Pytorch [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/VertaAI/modeldb-client/blob/development/workflows/demos/pytorch.ipynb)
 * sklearn [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/VertaAI/modeldb-client/blob/development/workflows/demos/sklearn.ipynb)
