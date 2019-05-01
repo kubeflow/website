@@ -36,7 +36,6 @@ to suit your environment (cloud, on premises (on prem), or local):
 
    * [MicroK8s setup](/docs/started/getting-started-multipass/)
       * [MicroK8s](https://microk8s.io/) can provide the following benefits:
-        following:
           - A small, fast, secure, single node Kubernetes that installs on any
             Linux system as a [snap](https://snapcraft.io/microk8s).
           - Strong isolation and update semantics - your cluster
