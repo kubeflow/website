@@ -41,7 +41,7 @@ to suit your environment (cloud, on premises (on prem), or local):
           - Strong isolation and update semantics - your cluster
             is updated within a short period after upstream Kubernetes
             releases.
-          - Built-in support for enabling an already-installed GPU:
+          - Built-in support to enable an installed GPU:
             `microk8s.enable gpu`
       * MicroK8s requires Linux. If you are not on a Linux machine, or you want
         to confine your Kubeflow to a disposable machine, the installation guide
