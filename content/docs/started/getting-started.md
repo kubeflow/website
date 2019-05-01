@@ -5,7 +5,7 @@ weight = 1
 +++
 
 There are various ways to install Kubeflow. Choose one of the following options
-to suit your environment (cloud, on premises (on prem) or local):
+to suit your environment (cloud, on premises (on prem), or local):
 
 * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
   follow the [GCP deployment guide](/docs/gke/deploy/).
