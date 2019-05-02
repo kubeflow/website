@@ -1,14 +1,14 @@
 +++
 title = "Deploy using CLI"
-description = "Instructions for deploying Kubeflow with the CLI"
+description = "Instructions for using the CLI to deploy Kubeflow on Google Cloud Platform (GCP)"
 weight = 4
 +++
 
 This guide describes how to use the `kfctl` command line interface (CLI) to
-deploy Kubeflow. The command line deployment gives you more control over the
-deployment process and configuration than the deployment UI. If you're looking
-for a simpler deployment procedure, see how to deploy Kubeflow 
-[using the UI](/docs/gke/deploy/deploy-ui).
+deploy Kubeflow on GCP. The command line deployment gives you more control over
+the deployment process and configuration than you get if you use the deployment 
+UI. If you're looking for a simpler deployment procedure, see how to deploy 
+Kubeflow [using the deployment UI](/docs/gke/deploy/deploy-ui).
 
 Before installing Kubeflow on the command line:
 
@@ -54,7 +54,7 @@ Follow these steps to deploy Kubeflow:
     ```
 
 1. Run the following commands to set up and deploy Kubeflow. The code below
-  includes an option command to add the binary `kfctl` to your path. If you 
+  includes an optional command to add the binary `kfctl` to your path. If you 
   don't add the binary to your path, you must use the full path to the `kfctl` 
   binary each time you run it.
 
@@ -126,12 +126,12 @@ Follow these steps to deploy Kubeflow:
 The deployment process is controlled by 4 different commands:
 
 * **init** - one time set up.
-* **generate** - creates config files defining the various resources.
+* **generate** - creates configuration files defining the various resources.
 * **apply** - creates or updates the resources.
 * **delete** - deletes the resources.
 
 With the exception of `init`, all commands take an argument which describes the
-set of resources to apply the command to; this argument can be one of the
+set of resources to apply the command to. This argument can be one of the
 following:
 
 * **platform** - all GCP resources; that is, anything that doesn't run on 
