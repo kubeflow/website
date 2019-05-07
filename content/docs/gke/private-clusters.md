@@ -50,7 +50,7 @@ Before installing Kubeflow ensure you have installed the following tools:
 You will need to know your gcloud organization id and project number; you can get it via gcloud
 
 ```
-export PROJECT=<your project id>
+export PROJECT=<your GCP project id>
 export ORGANIZATION_NAME=<name of your organization>
 export ORGANIZATION=$(gcloud organizations list --filter=DISPLAY_NAME=${ORGANIZATION_NAME} --format='value(name)')
 export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(projectNumber)')
@@ -137,7 +137,7 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     gcloud beta access-context-manager levels create kubeflow \
        --basic-level-spec=members.yaml \
        --policy=${POLICYID} \
-       --title="Kubflow ${PROJECT}"
+       --title="Kubeflow ${PROJECT}"
     ```
 
      * The name for the level can't have any hyphens
@@ -154,22 +154,22 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     1. Create a managed private zone
 
         ```
-          export ZONE_NAME=kubeflow
-          export NETWORK=<Network you are using for your cluster>
-          gcloud beta dns managed-zones create ${ZONE_NAME} \
-          --visibility=private \
-           --networks=https://www.googleapis.com/compute/v1/projects/${PROJECT}/global/networks/${NETWORK} \
-           --description="Kubeflow DNS" \
-           --dns-name=gcr.io \
-           --project=${PROJECT}
+        export ZONE_NAME=kubeflow
+        export NETWORK=<Network you are using for your cluster>
+        gcloud beta dns managed-zones create ${ZONE_NAME} \
+         --visibility=private \
+         --networks=https://www.googleapis.com/compute/v1/projects/${PROJECT}/global/networks/${NETWORK} \
+         --description="Kubeflow DNS" \
+         --dns-name=gcr.io \
+         --project=${PROJECT}
         ```
 
     1. Start a transaction
 
         ```
-         gcloud dns record-sets transaction start \
-           --zone=${ZONE_NAME} \
-           --project=${PROJECT}
+        gcloud dns record-sets transaction start \
+         --zone=${ZONE_NAME} \
+         --project=${PROJECT}
         ```
 
     1. Add a CNAME record for \*.gcr.io
