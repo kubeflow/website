@@ -116,9 +116,9 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     * Create a members.yaml file with the following contents
 
        ```    
-       - members:      
-        - serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
-        - user:<your email>
+        - members:      
+         - serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
+         - user:<your email>
        ```
 
     * Google Container Builder is used to mirror Kubeflow images into the perimeter
@@ -129,7 +129,6 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
          from your local machine.
 
     * For more information refer to the [docs](https://cloud.google.com/access-context-manager/docs/create-access-level#members-example).
-
 
 1. Create the access level
 
