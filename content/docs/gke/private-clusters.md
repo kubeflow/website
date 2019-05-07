@@ -323,9 +323,9 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
    
      * To get the name of the new network run
       
-       ```
-       gcloud --project=${PROJECT} compute networks list
-       ``` 
+        ```
+        gcloud --project=${PROJECT} compute networks list
+        ``` 
 
        * The name will contain the value ${KFAPP}
 
