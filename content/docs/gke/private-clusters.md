@@ -114,7 +114,7 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 1. Create an access level to allow Google Container Builder to access resources inside the permiter
 
     * Create a members.yaml file with the following contents
-    
+
        ```    
        - members:      
         - serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
