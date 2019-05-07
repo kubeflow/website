@@ -308,18 +308,18 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
      * You will need to manually create the network as a work around for [kubeflow/kubeflow#3071](https://github.com/kubeflow/kubeflow/issues/3071)
 
-       ```
-       cd ${KFAPP}/gcp_configs
-       gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP}-network --config=network.yaml
-       ```
+        ```
+        cd ${KFAPP}/gcp_configs
+        gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP}-network --config=network.yaml
+        ```
 
      * Then edit **gcp_config/cluster.jinja** to add a field **network** in your cluster
      
-       ```
-       cluster:
-          name: {{ CLUSTER_NAME }}
-          network: <name of the new network>
-       ```
+        ```
+        cluster:
+           name: {{ CLUSTER_NAME }}
+           network: <name of the new network>
+        ```
    
      * To get the name of the new network run
       
