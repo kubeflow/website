@@ -94,7 +94,7 @@ If you select this option, you see the form:
 We recommend this option when you want to [Deploy using CLI](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/). If you want to deploy Kubeflow using the web interface, use the options [Login with GCP IAP[({:#Login_with_GCP_IAPSection}) and [Login with Username Password]({:#Login_with_UsernamePassword_Section}).
 - The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
 - The Kubeflow version cannot be changed currently.
-
+ 
 Note: The three buttons at the bottom of the form are: 
 ![Setup endpoint later buttons](docs/images/Setup endpoint later buttons.png "Setup endpoint later buttons")
 - **Create Deployment**: Click this to deploy your Kubeflow project.
