@@ -115,11 +115,11 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
     * Create a members.yaml file with the following contents
 
-        ```
-        - members:      
-          - serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
-          - user:<your email>
-        ```
+       ```
+       - members:      
+         - serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
+         - user:<your email>
+       ```
 
     * Google Container Builder is used to mirror Kubeflow images into the perimeter
     * Adding your email allows you to access the GCP services
