@@ -50,16 +50,13 @@ Before installing Kubeflow ensure you have installed the following tools:
 You will need to know your gcloud organization id and project number; you can get it via gcloud
 
 ```
-export ORGANIZATION=$(gcloud organizations list --filter=DISPLAY_NAME=<ORG_NAME> --format='value(name)')
+export PROJECT=<your GCP project id>
+export ORGANIZATION_NAME=<name of your organization>
+export ORGANIZATION=$(gcloud organizations list --filter=DISPLAY_NAME=${ORGANIZATION_NAME} --format='value(name)')
 export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(projectNumber)')
 ```
 
   * Projects are identified by names, ids and numbers for more info see [here](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
-
-## Known issues
-
-* [kubeflow/kubeflow#3106](https://github.com/kubeflow/kubeflow/issues/3106) cloud endpoints ksonnet component doesn't use the override parameter for the image.
-
 
 ## Enable VPC Service Controls In Your Project
 
@@ -69,7 +66,8 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     ```
     export PROJECT=<Your project>
     gcloud services enable accesscontextmanager.googleapis.com \
-                           cloudresourcemanager.googleapis.com --project=${PROJECT}
+                           cloudresourcemanager.googleapis.com \
+                           dns.googleapis.com  --project=${PROJECT}
     ```
 
 1. Check if you have an access policy object already created
@@ -85,7 +83,7 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 1. If you don't have an access policy object create one
 
     ```
-    gcloud bet access-context-manager policies create \
+    gcloud beta access-context-manager policies create \
     --title "default" --organization=${ORGANIZATION}
     ```
 
@@ -111,14 +109,16 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
       resources owned by this project is now restricted; by default access from outside
       the perimeter will be blocked
 
+    * More than one project can be added to the same perimeter
+
 1. Create an access level to allow Google Container Builder to access resources inside the permiter
 
     * Create a members.yaml file with the following contents
-    
-       ```    
+
+       ```
        - members:      
-        - serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
-        - user:<your email>
+         - serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
+         - user:<your email>
        ```
 
     * Google Container Builder is used to mirror Kubeflow images into the perimeter
@@ -130,30 +130,24 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
     * For more information refer to the [docs](https://cloud.google.com/access-context-manager/docs/create-access-level#members-example).
 
-
 1. Create the access level
 
     ```
-    gcloud beta access-context-manager levels create cloudbuild \
+    gcloud beta access-context-manager levels create kubeflow \
        --basic-level-spec=members.yaml \
        --policy=${POLICYID} \
-       --title="Cloud Build"
+       --title="Kubeflow ${PROJECT}"
     ```
+
+     * The name for the level can't have any hyphens
 
 1. Bind Access Level to a Service Perimeter
 
     ```
     gcloud beta access-context-manager perimeters update KubeflowZone \
-     --add-access-levels=cloudbuild \
+     --add-access-levels=kubeflow \
      --policy=${POLICYID}
     ```
-
-    * gcloud will return an error even though the job is
-      submited successfully and will run successfully
-      see [kubeflow/kubeflow#3105](https://github.com/kubeflow/kubeflow/issues/3105)
-
-    * You can use the Cloud console to monitor your GCB job.
-
 1. Setup container registry for GKE private clusters (for more info see [instructions](https://cloud.google.com/vpc-service-controls/docs/set-up-gke))
 
     1. Create a managed private zone
@@ -172,9 +166,9 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     1. Start a transaction
 
         ```
-         gcloud dns record-sets transaction start \
-           --zone=${ZONE_NAME} \
-           --project=${PROJECT}
+        gcloud dns record-sets transaction start \
+         --zone=${ZONE_NAME} \
+         --project=${PROJECT}
         ```
 
     1. Add a CNAME record for \*.gcr.io
@@ -231,13 +225,21 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     * This is needed because your GKE nodes won't be able to pull images from non GCR
       registries because they don't have public internet addresses
 
+
+    * gcloud may return an error even though the job is
+      submited successfully and will run successfully
+      see [kubeflow/kubeflow#3105](https://github.com/kubeflow/kubeflow/issues/3105)
+
+    * You can use the Cloud console to monitor your GCB job.
+
+
 1. Follow the [instructions](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) for creating an OAuth client
 
 1. Create environment variables for IAP OAuth access
 
     ```bash
-    export CLIENT_ID=<CLIENT_ID from OAuth page>
-    export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
+     export CLIENT_ID=<CLIENT_ID from OAuth page>
+     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
     ```
 
 1. Download a `kfctl` release from the 
@@ -305,24 +307,24 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
      * You will need to manually create the network as a work around for [kubeflow/kubeflow#3071](https://github.com/kubeflow/kubeflow/issues/3071)
 
-       ```
-       cd ${KFAPP}/gcp_configs
-       gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP}-network --config=network.yaml
-       ```
+        ```
+        cd ${KFAPP}/gcp_configs
+        gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP}-network --config=network.yaml
+        ```
 
      * Then edit **gcp_config/cluster.jinja** to add a field **network** in your cluster
      
-       ```
-       cluster:
-          name: {{ CLUSTER_NAME }}
-          network: <name of the new network>
-       ```
+        ```
+        cluster:
+           name: {{ CLUSTER_NAME }}
+           network: <name of the new network>
+        ```
    
      * To get the name of the new network run
       
-       ```
-       gcloud --project=${PROJECT} compute networks list
-       ``` 
+        ```
+        gcloud --project=${PROJECT} compute networks list
+        ``` 
 
        * The name will contain the value ${KFAPP}
 
