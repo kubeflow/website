@@ -115,7 +115,7 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
     * Create a members.yaml file with the following contents
 
-        ```    
+        ```
         - members:      
           - serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
           - user:<your email>
