@@ -46,6 +46,8 @@ helm install nuclio/nuclio --name=nuclio --namespace=nuclio --set dashboard.node
 kubectl -n nuclio get all
 ```
 
+Browse to the dashboard URL, you can create, test, and manage functions using a visual editor.
+
 > Note: you can change the NodePort number or skip that option for in-cluster use.
 
 ## Writing and Deploying a Simple Function 
@@ -84,7 +86,7 @@ and we write our code as usual, just make sure we have a handler function which
 is invoked to initiate our run. The function accepts a context and an event, e.g.:
  `def handler(context, event)`
  
-Function code
+**Function code**
 
 the following example show accepting text and doing NLP processing (correction, translation, sentiments):
 
