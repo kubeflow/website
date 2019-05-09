@@ -1,23 +1,23 @@
 +++
-title = "Set up OAuth for IAP"
-description = "Instructions for creating an OAuth client for IAP"
+title = "Set up OAuth for Cloud IAP"
+description = "Creating an OAuth client for Cloud IAP on Google Cloud Platform (GCP)"
 weight = 2
 +++
 
 If you want to use 
 [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/) 
-then you must follow these instructions to create an OAuth client to
-use with Kubeflow.
+when deploying Kubeflow on GCP,
+then you must follow these instructions to create an OAuth client for use
+with Kubeflow.
 
-You can skip this step if you want to use basic authentication (username and 
-password) with Kubeflow instead of IAP.
+You can skip the instructons on this page if you want to use basic 
+authentication (username and password) with Kubeflow instead of Cloud IAP.
+Cloud IAP is recommended for production deployments or deployments with access 
+to sensitive data.
 
-IAP is recommended for production deployments or deployments with access to
-sensitive data.
-
-Create an OAuth client ID that identifies Cloud IAP when requesting 
-access to a user's email account. Kubeflow uses the email address to verify the
-user's identity.
+Follow the steps below to create an OAuth client ID that identifies Cloud IAP 
+when requesting access to a user's email account. Kubeflow uses the email 
+address to verify the user's identity.
 
 1. Set up your OAuth [consent screen](https://console.cloud.google.com/apis/credentials/consent):
    * In the **Application name** box, enter the name of your application.
@@ -69,7 +69,7 @@ user's identity.
         class="mt-3 mb-3 p-3 border border-info rounded">
 
 1. Press **Enter/Return** to add the URI. Check that the URI now appears as
-  a confirmed item under **Authorized redirect URIs**. (It should no longer be
+  a confirmed item under **Authorized redirect URIs**. (The URI should no longer be
   editable.)
 1. Make note of the **client ID** and **client secret** that appear in the OAuth
   client window. You need them later to enable Cloud IAP.
@@ -78,5 +78,7 @@ user's identity.
 
 Choose one of the following ways to deploy Kubeflow:
 
-* Using the [CLI](/docs/gke/deploy/deploy-cli) 
-* Using the [UI](/docs/gke/deploy/deploy-ui)
+* [Using the UI](/docs/gke/deploy/deploy-ui). This option provides a simple
+  way to deploy Kubeflow.
+* [Using the CLI](/docs/gke/deploy/deploy-cli). This option provides more
+  control over the deployment process.

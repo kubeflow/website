@@ -1,11 +1,11 @@
 +++
 title = "Set up a GCP Project"
-description = "How to create a GCP project for your Kubeflow deployment"
+description = "Creating a Google Cloud Platform (GCP) project for your Kubeflow deployment"
 weight = 1
 +++
 
-Before you start, follow these steps to set up your Google Cloud Platform 
-(GCP) account and project:
+Follow these steps to set up a GCP account and project if you don't already
+have one:
 
 1. Select or create a project on the 
   [GCP Console](https://console.cloud.google.com/cloud-resource-manager).
@@ -18,7 +18,7 @@ Before you start, follow these steps to set up your Google Cloud Platform
   specified APIs are enabled on your GCP account:
 
   * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
-  * [GKE API](https://console.cloud.google.com/apis/library/container.googleapis.com)
+  * [Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com)
   * [Identity and Access Management (IAM) API](https://console.cloud.google.com/apis/library/iam.googleapis.com)
   * [Deployment Manager API](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
 
@@ -40,8 +40,13 @@ cluster for you.
 ## Next steps
 
 * [Set up an OAuth credential](/docs/gke/deploy/oauth-setup) if you want to use 
-[identity aware proxy (IAP)](https://cloud.google.com/iap/docs/)
+  [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/).
+  Cloud IAP is recommended for production deployments or deployments with access 
+  to sensitive data. You can skip this step if you want to test Kubeflow
+  in a non-production environment.
 * Choose one of the following ways to deploy Kubeflow:
 
-  * Using the [CLI](/docs/gke/deploy/deploy-cli) 
-  * Using the [UI](/docs/gke/deploy/deploy-ui)
+  * [Using the UI](/docs/gke/deploy/deploy-ui). This option provides a simple
+    way to deploy Kubeflow.
+  * [Using the CLI](/docs/gke/deploy/deploy-cli). This option provides more
+    control over the deployment process.

@@ -1,5 +1,5 @@
 +++
 title = "Deploying Kubeflow"
-description = "How to deploy Kubeflow on Google Cloud Platform"
+description = "Instructions for deploying and deleting Kubeflow on Google Cloud Platform (GCP)"
 weight = 1
 +++

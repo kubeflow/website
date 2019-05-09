@@ -1,11 +1,11 @@
 +++
 title = "Deploy using UI"
-description = "Instructions for deploying Kubeflow using the UI"
+description = "Instructions for using the UI to deploy Kubeflow on Google Cloud Platform (GCP)"
 weight = 3
 +++
 
 This page provides instructions for using the Kubeflow deployment web app to
-deploy Kubeflow on Google Cloud Platform (GCP). If you prefer to use the
+deploy Kubeflow on GCP. If you prefer to use the
 command line, see the guide to 
 [deployment using the CLI](/docs/gke/deploy/deploy-cli).
 

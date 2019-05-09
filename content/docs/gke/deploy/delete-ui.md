@@ -1,15 +1,16 @@
 +++
-title = "Delete using Cloud Console"
-description = "Instructions for deleting Kubeflow using the Cloud Console"
-weight = 6
+title = "Delete using GCP Console"
+description = "Deleting Kubeflow using the Google Cloud Platform (GCP) Console"
+weight = 7
 +++
 
-This page contains instructions for deleting Kubeflow using Deployment Manager
-in the Google Cloud Platform (GCP) Console.
+This page shows you how to delete your Kubeflow deployment using Deployment 
+Manager in the GCP Console.
 
 **Note:** For best results you should use the 
 [CLI to delete Kubeflow](/docs/gke/deploy/delete-cli/). Deleting with Deployment 
-Manager as described below can orphan some resources like Cloud Endpoints.
+Manager as described below can orphan some resources like 
+[Cloud Endpoints](https://cloud.google.com/endpoints/docs/).
 
 To delete your Kubeflow deployment and reclaim all related resources using the
 GCP Console:
