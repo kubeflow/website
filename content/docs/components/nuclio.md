@@ -2,6 +2,7 @@
 title = "Nuclio functions"
 description = "Nuclio - High performance serverless for data processing and ML"
 weight = 40
+toc = true
 +++
 
 ## Nuclio Overview
@@ -18,11 +19,11 @@ nuclio can run in the cloud as a [managed offering](https://www.iguazio.com/), o
 ## Using Nuclio In Data Science Pipelines 
 
 Nuclio functions can be used in the following ML pipline tasks:
-* Data collectors, ETL, stream processing
-* Data preparation and analysis
-* Hyper parameter model training
-* Real-time model serving
-* Feature vector assembly (real-time data preparation)
+- Data collectors, ETL, stream processing
+- Data preparation and analysis
+- Hyper parameter model training
+- Real-time model serving
+- Feature vector assembly (real-time data preparation)
  
 Containerized functions (+ dependent files and spec) can be created directly from a Jupyter Notebook 
 using `%nuclio` magic commands or SDK API calls (see [nuclio-jupyter](https://github.com/nuclio/nuclio-jupyter)), 
@@ -166,8 +167,8 @@ Notebook, e.g. we can create `Go` functions if we need performance/concurrency f
 
 Some useful function example Notebooks:
 
-* [TensorFlow Serving function](https://github.com/v3io/tutorials/blob/master/demos/image-classification/infer.ipynb)
-* [Predictive Infrastructure Monitoring (Scikit Learn)](https://github.com/v3io/tutorials/blob/master/demos/netops/04-infer.ipynb)
-* [Twitter Feed NLP](https://github.com/v3io/tutorials/blob/master/demos/stocks/read-tweets.ipynb)
-* [Real-time Stock data reader](https://github.com/v3io/tutorials/blob/master/demos/stocks/read-stocks.ipynb)
+- [TensorFlow Serving function](https://github.com/v3io/tutorials/blob/master/demos/image-classification/infer.ipynb)
+- [Predictive Infrastructure Monitoring (Scikit Learn)](https://github.com/v3io/tutorials/blob/master/demos/netops/04-infer.ipynb)
+- [Twitter Feed NLP](https://github.com/v3io/tutorials/blob/master/demos/stocks/read-tweets.ipynb)
+- [Real-time Stock data reader](https://github.com/v3io/tutorials/blob/master/demos/stocks/read-stocks.ipynb)
 
