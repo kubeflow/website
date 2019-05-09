@@ -87,7 +87,7 @@ spec:
 After deploying the Katib package, run the following command to create the PV:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/pv/pv.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha1/pv/pv.yaml
 ```
 
 ## Running examples
