@@ -19,6 +19,7 @@ nuclio can run in the cloud as a [managed offering](https://www.iguazio.com/), o
 ## Using Nuclio In Data Science Pipelines 
 
 Nuclio functions can be used in the following ML pipline tasks:
+
 - Data collectors, ETL, stream processing
 - Data preparation and analysis
 - Hyper parameter model training
