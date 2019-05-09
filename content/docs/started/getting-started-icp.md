@@ -40,7 +40,7 @@ NAME         STATUS    ROLES                      AGE       VERSION
 
 1. Create image policy for the namespace.
 
-    The image policy defination file (`image-policy.yaml`) is as following:
+    The image policy definition file (`image-policy.yaml`) is as following:
 
     ```yaml
     apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
