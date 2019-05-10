@@ -17,6 +17,7 @@ Before installing Kubeflow on the command line:
   * Ensure you have installed the following tools:
     
      * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+     * [ks] (https://github.com/ksonnet/ksonnet/releases/)
 
 
 ## Deploy Kubeflow
