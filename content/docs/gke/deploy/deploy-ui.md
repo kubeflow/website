@@ -66,7 +66,7 @@ If you select this option, you see the form:
 
 Note: The three buttons at the bottom of the form are:
 - **Create Deployment**: Click this to deploy your Kubeflow project.
-- **Kubeflow Service Endpoint**: <!-- need info on this--> 
+- **Kubeflow Service Endpoint**: Click this to get to the URI of your newly created Kubeflow service.
 - **View YAML**: Click this to display the deployment YAML details in a new popup box, as shown below:
 
 ```YAML
@@ -171,7 +171,7 @@ defaultApp:
 
 Note: The three buttons at the bottom of the form are:
 - **Create Deployment**: Click this to deploy your Kubeflow project.
-- **Kubeflow Service Endpoint**: <!-- need info on this--> 
+- **Kubeflow Service Endpoint**: Click this to get to the URI of your newly created Kubeflow service.
 - **View YAML**: Click this to display the deployment YAML details in a new popup box, as shown below:
 
 ``` YAML
@@ -277,7 +277,7 @@ If you select this option, you see the form:
 Note: The three buttons at the bottom of the form are: 
 
 - **Create Deployment**: Click this to deploy your Kubeflow project.
-- **Port Forward**: <!-- need info on this-->
+- **Port Forward**:  Click this to access Google Kubernetes Engine (GKE) for running the newly created kubeflow cluster.
 - **View YAML**: Click this to display the deployment YAML details in a new popup box, as shown below:<!--LMK if there is more PII in YAML code that i should remove-->
 
 ``` YAML
