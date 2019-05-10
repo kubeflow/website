@@ -44,7 +44,7 @@ Follow these steps to deploy Kubeflow:
 
     export KFAPP=<your choice of application directory name>
     # Default uses IAP.
-    kfctl init ${KFAPP}
+    kfctl init -v <git release tag, e.g. v0.5.1> ${KFAPP}
     cd ${KFAPP}
     kfctl generate all -V
     kfctl apply all -V
