@@ -71,7 +71,7 @@ up Python using [Miniconda](https://conda.io/miniconda.html):
 Run the following command to install the Kubeflow Pipelines SDK:
 
 ```bash
-latest_version=$(curl --silent https://api.github.com/repos/kubeflow/pipelines/releases/latest |   jq -r .tag_name)
+latest_version=$(curl --silent https://api.github.com/repos/kubeflow/pipelines/releases/latest | jq -r .tag_name)
 pip install https://storage.googleapis.com/ml-pipeline/release/$latest_version/kfp.tar.gz --upgrade
 ```
 
