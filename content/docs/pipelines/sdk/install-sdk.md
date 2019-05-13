@@ -71,7 +71,8 @@ up Python using [Miniconda](https://conda.io/miniconda.html):
 Run the following command to install the Kubeflow Pipelines SDK:
 
 ```bash
-pip install https://storage.googleapis.com/ml-pipeline/release/{{% pipelines-sdk-version %}}/kfp.tar.gz --upgrade
+latest_version=$(curl --silent https://api.github.com/repos/kubeflow/pipelines/releases/latest | jq -r .tag_name)
+pip install https://storage.googleapis.com/ml-pipeline/release/${latest_version}/kfp.tar.gz --upgrade
 ```
 
 After successful installation, the command `dsl-compile` should be available.
