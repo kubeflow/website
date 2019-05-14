@@ -25,10 +25,10 @@ Before installing Kubeflow on the command line:
 
 1. If you want to use [Cloud Identity-Aware Proxy (Cloud 
   IAP)](https://cloud.google.com/iap/docs/) for access control, follow the guide
-  to [setting up an OAuth credential](/docs/gke/deploy/oauth-setup). 
+  to [setting up OAuth credentials](/docs/gke/deploy/oauth-setup/). 
   Cloud IAP is recommended for production deployments or deployments with 
-  access to sensitive data. The alternative is basic authentication (username
-  and password).
+  access to sensitive data. Alternatively, you can use basic authentication 
+  with a username and password.
 
 ## Deploy Kubeflow
 

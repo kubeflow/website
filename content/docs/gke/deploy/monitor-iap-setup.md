@@ -220,9 +220,9 @@ problems:
     https://<your-fully-qualified-domain-name>     
     ```
 
-    If you get SSL errors, this typically means your SSL certificate is still
-    propagating. Wait a bit and try again. SSL propagation can take up to 10 
-    minutes.
+    If you get SSL errors when you log in, this typically means that your SSL 
+    certificate is still propagating. Wait a few minutes and try again. SSL 
+    propagation can take up to 10 minutes.
 
     If you do not see a login prompt and you get a 404 error, the configuration
     of Cloud IAP is not yet complete. Keep retrying for up to 10 minutes.
