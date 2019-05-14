@@ -15,7 +15,7 @@ command line, see the guide to [deployment using the CLI](/docs/gke/deploy/deplo
 
 Here's a partial screenshot of the deployment UI, showing all the fields in the 
 form: </br> 
-<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/Kubeflow-deployment.PNG" 
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/kubeflow-deployment.PNG" 
   alt="Kubeflow deployment UI"
   class="mt-3 mb-3 border border-info rounded">
   
@@ -56,7 +56,7 @@ Note:
 <H2 id="Login with GCP Iap">Login with GCP Iap</H2>
 If you select this option, you see the form:
 
-<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/Kubeflow-deployment.PNG" 
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/kubeflow-deployment.PNG" 
   alt="Login with GCP IAP option"
   class="mt-3 mb-3 border border-info rounded">
   
@@ -161,7 +161,7 @@ defaultApp:
 <H2 id="Login with Username Password">Login with Username Password</H2>
 </br>If you select this option, you see the form: 
 
-<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/Login-username-password.PNG" 
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/login-username-password.PNG" 
   alt="Login with username password option"
   class="mt-3 mb-3 border border-info rounded">
   
@@ -266,7 +266,7 @@ defaultApp:
 
 If you select this option, you see the form: 
 
-<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/Setup-endpoint-later.PNG" 
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/setup-endpoint-later.PNG" 
   alt="Setup endpoint later option"
   class="mt-3 mb-3 border border-info rounded">
 
