@@ -6,25 +6,28 @@ weight = 3
 
 This page provides instructions for using the Kubeflow deployment web app to
 deploy Kubeflow on GCP. If you prefer to use the
-command line, see [deployment using the CLI](/docs/gke/deploy/deploy-cli).
+command line, see the guide to [deployment using the CLI](/docs/gke/deploy/deploy-cli).
 
 1. Open [https://deploy.kubeflow.cloud/](https://deploy.kubeflow.cloud/#/deploy)
   in your web browser.
-2. Sign in using a GCP account that has administrator privileges for your GCP project. <!-- when i click on this link, there is no sign in page that gets loaded. Isn't this statement confusing for the user? -->
-3. Complete the form, following the instructions on the left side of the form. In particular, ensure that you enter the same deployment name as you used when creating the OAuth client ID. <!-- is OAuth client ID created before doing this? then we can link to that step here-->
+2. Sign in using a GCP account that has administrator privileges for your GCP project. <!-- no sign in page gets loaded when link is clicked? -->
+3. Complete the form, following the instructions on the left side of the form. In particular, ensure that you enter the same deployment name as you used when creating the OAuth client ID. <!-- OAuth client ID created before this step? link it here?-->
+
 Here's a partial screenshot of the deployment UI, showing all the fields in the 
-form: <img src="/docs/images/Kubeflow form.PNG" 
+form: </br> 
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/Kubeflow-deployment.PNG" 
   alt="Kubeflow deployment UI"
   class="mt-3 mb-3 border border-info rounded">
+  
 4. The field **Choose how to connect to a kubeflow service:*** has three options:
-  - [Login with GCP Iap](#Login_with_GCP_IAPSection)
-  - [Login with Username Password](#Login_with_UsernamePassword_Section)
-  - [Setup Endpoint later](#Setup_endpoint_later_Section)
-5. Click **Create Deployment**. Kubeflow will be available at the following URI:
-```
-https://<deployment_name>.endpoints.<project>.cloud.goog/
-```
-  It can take 10-15 minutes for the URI to become available. You can watch
+  
+  - <A href="#Login with GCP Iap">Login with GCP Iap</A>
+  - <A href="#Login with Username Password">Login with Username Password</A>
+  - <A href="#Setup Endpoint later">Setup Endpoint later</A>
+  
+5. Click **Create Deployment**. Kubeflow will be available at the following URI:</br>
+`https://<deployment_name>.endpoints.<project>.cloud.goog/`
+  </br>It can take 10-15 minutes for the URI to become available. You can watch
   for updates in the information box on the deployment UI. If the deployment
   takes longer than expected, try accessing the above URI anyway.
 
@@ -49,58 +52,319 @@ Note:
 * [Troubleshoot](/docs/gke/troubleshooting-gke) any issues you may
   find.
   
-  <!--Sub-sections, these will be not be part of this page  -->
-## Login with GCP Iap {:#Login_with_GCP_IAPSection}
+<!--Sub-sections -->
+<H2 id="Login with GCP Iap">Login with GCP Iap</H2>
 If you select this option, you see the form:
-<img src="/docs/images/Login with GCP IAP option.png" 
+
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/Kubeflow-deployment.PNG" 
   alt="Login with GCP IAP option"
   class="mt-3 mb-3 border border-info rounded">
+  
 - If you haven’t already done so, create an [OAuth Client](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) and enter the client ID and secret in the field.
 - The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
 - The Kubeflow version cannot be changed currently.
 
 Note: The three buttons at the bottom of the form are:
 - **Create Deployment**: Click this to deploy your Kubeflow project.
-- **Kubeflow Service Endpoint**: <!-- need info on this--> 
+- **Kubeflow Service Endpoint**: Click this to get to the URI of your newly created Kubeflow service.
 - **View YAML**: Click this to display the deployment YAML details in a new popup box, as shown below:
-```
-{"appAddress":"https://deploy.kubeflow.cloud","defaultApp":{"components":[{"name":"ambassador","prototype":"ambassador"},{"name":"argo","prototype":"argo"},{"name":"centraldashboard","prototype":"centraldashboard"},{"name":"cert-manager","prototype":"cert-manager"},{"name":"cloud-endpoints","prototype":"cloud-endpoints"},{"name":"gcp-credentials-admission-webhook","prototype":"gcp-credentials-admission-webhook"},{"name":"gpu-driver","prototype":"gpu-driver"},{"name":"iap-ingress","prototype":"iap-ingress"},{"name":"jupyter-web-app","prototype":"jupyter-web-app"},{"name":"katib","prototype":"katib"},{"name":"metacontroller","prototype":"metacontroller"},{"name":"notebook-controller","prototype":"notebook-controller"},{"name":"pipeline","prototype":"pipeline"},{"name":"pytorch-operator","prototype":"pytorch-operator"},{"name":"tf-job-operator","prototype":"tf-job-operator"},{"name":"spartakus","prototype":"spartakus"}],"parameters":[{"component":"cloud-endpoints","name":"secretName","value":"admin-gcp-sa"},{"component":"cert-manager","name":"acmeEmail","value":"user@email.com"},{"component":"iap-ingress","name":"ipName","value":"kubeflow-ip"},{"component":"iap-ingress","name":"hostname","value":"kubeflow.endpoints..cloud.goog"},{"component":"ambassador","name":"platform","value":"gke"},{"component":"spartakus","name":"usageId","value":"73733067"},{"component":"spartakus","name":"reportUsage","value":"true"}],"registries":[{"name":"kubeflow","repo":"https://github.com/kubeflow/kubeflow","version":"v0.5.0","path":"kubeflow"}]}}
+
+```YAML
+appAddress: 'https://deploy.kubeflow.cloud'
+defaultApp:
+  components:
+    -
+      name: ambassador
+      prototype: ambassador
+    -
+      name: argo
+      prototype: argo
+    -
+      name: centraldashboard
+      prototype: centraldashboard
+    -
+      name: cert-manager
+      prototype: cert-manager
+    -
+      name: cloud-endpoints
+      prototype: cloud-endpoints
+    -
+      name: gcp-credentials-admission-webhook
+      prototype: gcp-credentials-admission-webhook
+    -
+      name: gpu-driver
+      prototype: gpu-driver
+    -
+      name: iap-ingress
+      prototype: iap-ingress
+    -
+      name: jupyter-web-app
+      prototype: jupyter-web-app
+    -
+      name: katib
+      prototype: katib
+    -
+      name: metacontroller
+      prototype: metacontroller
+    -
+      name: notebook-controller
+      prototype: notebook-controller
+    -
+      name: pipeline
+      prototype: pipeline
+    -
+      name: pytorch-operator
+      prototype: pytorch-operator
+    -
+      name: tf-job-operator
+      prototype: tf-job-operator
+    -
+      name: spartakus
+      prototype: spartakus
+  parameters:
+    -
+      component: cloud-endpoints
+      name: secretName
+      value: admin-gcp-sa
+    -
+      component: cert-manager
+      name: acmeEmail
+      value: user@email.com
+    -
+      component: iap-ingress
+      name: ipName
+      value: kubeflow-ip
+    -
+      component: iap-ingress
+      name: hostname
+      value: kubeflow.endpoints..cloud.goog
+    -
+      component: ambassador
+      name: platform
+      value: gke
+    -
+      component: spartakus
+      name: usageId
+      value: '90204578'
+    -
+      component: spartakus
+      name: reportUsage
+      value: 'true'
+  registries:
+    -
+      name: kubeflow
+      repo: 'https://github.com/kubeflow/kubeflow'
+      version: v0.5.0
+      path: kubeflow
 
 ```
+<H2 id="Login with Username Password">Login with Username Password</H2>
+</br>If you select this option, you see the form: 
 
-## Login with Username Password  {:#Login_with_UsernamePassword_Section}
-If you select this option, you see the form: 
-<img src="/docs/images/Login with username password option.png" 
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/Login-username-password.PNG" 
   alt="Login with username password option"
   class="mt-3 mb-3 border border-info rounded">
-1. Fill in the details to create a new user name and password.
-2. The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
-3. The Kubeflow version cannot be changed currently.
+  
+- Fill in the details to create a new user name and password.
+- The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
+- The Kubeflow version cannot be changed currently.
 
 Note: The three buttons at the bottom of the form are:
 - **Create Deployment**: Click this to deploy your Kubeflow project.
-- **Kubeflow Service Endpoint**: <!-- need info on this--> 
+- **Kubeflow Service Endpoint**: Click this to get to the URI of your newly created Kubeflow service.
 - **View YAML**: Click this to display the deployment YAML details in a new popup box, as shown below:
-```
-{"appAddress":"https://deploy.kubeflow.cloud","defaultApp":{"components":[{"name":"ambassador","prototype":"ambassador"},{"name":"argo","prototype":"argo"},{"name":"centraldashboard","prototype":"centraldashboard"},{"name":"cert-manager","prototype":"cert-manager"},{"name":"cloud-endpoints","prototype":"cloud-endpoints"},{"name":"gcp-credentials-admission-webhook","prototype":"gcp-credentials-admission-webhook"},{"name":"gpu-driver","prototype":"gpu-driver"},{"name":"iap-ingress","prototype":"iap-ingress"},{"name":"jupyter-web-app","prototype":"jupyter-web-app"},{"name":"katib","prototype":"katib"},{"name":"metacontroller","prototype":"metacontroller"},{"name":"notebook-controller","prototype":"notebook-controller"},{"name":"pipeline","prototype":"pipeline"},{"name":"pytorch-operator","prototype":"pytorch-operator"},{"name":"tf-job-operator","prototype":"tf-job-operator"},{"name":"spartakus","prototype":"spartakus"}],"parameters":[{"component":"cloud-endpoints","name":"secretName","value":"admin-gcp-sa"},{"component":"cert-manager","name":"acmeEmail","value":"user@email.com"},{"component":"iap-ingress","name":"ipName","value":"kubeflow-ip"},{"component":"iap-ingress","name":"hostname","value":"kubeflow.endpoints..cloud.goog"},{"component":"ambassador","name":"platform","value":"gke"},{"component":"spartakus","name":"usageId","value":"73733067"},{"component":"spartakus","name":"reportUsage","value":"true"}],"registries":[{"name":"kubeflow","repo":"https://github.com/kubeflow/kubeflow","version":"v0.5.0","path":"kubeflow"}]}}
 
+``` YAML
+appAddress: 'https://deploy.kubeflow.cloud'
+defaultApp:
+  components:
+    -
+      name: ambassador
+      prototype: ambassador
+    -
+      name: argo
+      prototype: argo
+    -
+      name: centraldashboard
+      prototype: centraldashboard
+    -
+      name: cert-manager
+      prototype: cert-manager
+    -
+      name: cloud-endpoints
+      prototype: cloud-endpoints
+    -
+      name: gcp-credentials-admission-webhook
+      prototype: gcp-credentials-admission-webhook
+    -
+      name: gpu-driver
+      prototype: gpu-driver
+    -
+      name: iap-ingress
+      prototype: iap-ingress
+    -
+      name: jupyter-web-app
+      prototype: jupyter-web-app
+    -
+      name: katib
+      prototype: katib
+    -
+      name: metacontroller
+      prototype: metacontroller
+    -
+      name: notebook-controller
+      prototype: notebook-controller
+    -
+      name: pipeline
+      prototype: pipeline
+    -
+      name: pytorch-operator
+      prototype: pytorch-operator
+    -
+      name: tf-job-operator
+      prototype: tf-job-operator
+    -
+      name: spartakus
+      prototype: spartakus
+  parameters:
+    -
+      component: cloud-endpoints
+      name: secretName
+      value: admin-gcp-sa
+    -
+      component: cert-manager
+      name: acmeEmail
+      value: user@email.com
+    -
+      component: iap-ingress
+      name: ipName
+      value: kubeflow-ip
+    -
+      component: iap-ingress
+      name: hostname
+      value: kubeflow.endpoints..cloud.goog
+    -
+      component: ambassador
+      name: platform
+      value: gke
+    -
+      component: spartakus
+      name: usageId
+      value: '90204578'
+    -
+      component: spartakus
+      name: reportUsage
+      value: 'true'
+  registries:
+    -
+      name: kubeflow
+      repo: 'https://github.com/kubeflow/kubeflow'
+      version: v0.5.0
+      path: kubeflow
 ```
+<H2 id="Setup Endpoint later">Setup Endpoint later</H2>
 
-## Setup Endpoint later {:#Setup_endpoint_later_Section}
 If you select this option, you see the form: 
-<img src="/docs/images/Setup endpoint later option.png" 
+
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/Setup-endpoint-later.PNG" 
   alt="Setup endpoint later option"
   class="mt-3 mb-3 border border-info rounded">
-We recommend this option when you want to [Deploy using CLI](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/). If you want to deploy Kubeflow using the web interface, use the options [Login with GCP IAP[({:#Login_with_GCP_IAPSection}) and [Login with Username Password]({:#Login_with_UsernamePassword_Section}).
+
+</br>We recommend this option when you want to [Deploy using CLI](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/). If you want to deploy Kubeflow using the web interface, use the options <A href="#Login with GCP Iap">Login with GCP Iap</A> and <A href="#Login with Username Password">Login with Username Password</A>.
 - The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
 - The Kubeflow version cannot be changed currently.
  
 Note: The three buttons at the bottom of the form are: 
-![Setup endpoint later buttons](docs/images/Setup endpoint later buttons.png "Setup endpoint later buttons")
-- **Create Deployment**: Click this to deploy your Kubeflow project.
-- **Port Forward**: <!-- need info on this-->
-- **View YAML**: Click this to display the deployment YAML details in a new popup box, as shown below:
-```
-{"appAddress":"https://deploy.kubeflow.cloud","defaultApp":{"components":[{"name":"ambassador","prototype":"ambassador"},{"name":"argo","prototype":"argo"},{"name":"centraldashboard","prototype":"centraldashboard"},{"name":"cert-manager","prototype":"cert-manager"},{"name":"cloud-endpoints","prototype":"cloud-endpoints"},{"name":"gcp-credentials-admission-webhook","prototype":"gcp-credentials-admission-webhook"},{"name":"gpu-driver","prototype":"gpu-driver"},{"name":"iap-ingress","prototype":"iap-ingress"},{"name":"jupyter-web-app","prototype":"jupyter-web-app"},{"name":"katib","prototype":"katib"},{"name":"metacontroller","prototype":"metacontroller"},{"name":"notebook-controller","prototype":"notebook-controller"},{"name":"pipeline","prototype":"pipeline"},{"name":"pytorch-operator","prototype":"pytorch-operator"},{"name":"tf-job-operator","prototype":"tf-job-operator"},{"name":"spartakus","prototype":"spartakus"}],"parameters":[{"component":"cloud-endpoints","name":"secretName","value":"admin-gcp-sa"},{"component":"cert-manager","name":"acmeEmail","value":"user@email.com"},{"component":"iap-ingress","name":"ipName","value":"kubeflow-ip"},{"component":"iap-ingress","name":"hostname","value":"kubeflow.endpoints..cloud.goog"},{"component":"ambassador","name":"platform","value":"gke"},{"component":"spartakus","name":"usageId","value":"73733067"},{"component":"spartakus","name":"reportUsage","value":"true"}],"registries":[{"name":"kubeflow","repo":"https://github.com/kubeflow/kubeflow","version":"v0.5.0","path":"kubeflow"}]}}
 
+- **Create Deployment**: Click this to deploy your Kubeflow project.
+- **Port Forward**:  Click this to access Google Kubernetes Engine (GKE) for running the newly created kubeflow cluster.
+- **View YAML**: Click this to display the deployment YAML details in a new popup box, as shown below:<!--LMK if there is more PII in YAML code that i should remove-->
+
+``` YAML
+appAddress: 'https://deploy.kubeflow.cloud'
+defaultApp:
+  components:
+    -
+      name: ambassador
+      prototype: ambassador
+    -
+      name: argo
+      prototype: argo
+    -
+      name: centraldashboard
+      prototype: centraldashboard
+    -
+      name: cert-manager
+      prototype: cert-manager
+    -
+      name: cloud-endpoints
+      prototype: cloud-endpoints
+    -
+      name: gcp-credentials-admission-webhook
+      prototype: gcp-credentials-admission-webhook
+    -
+      name: gpu-driver
+      prototype: gpu-driver
+    -
+      name: iap-ingress
+      prototype: iap-ingress
+    -
+      name: jupyter-web-app
+      prototype: jupyter-web-app
+    -
+      name: katib
+      prototype: katib
+    -
+      name: metacontroller
+      prototype: metacontroller
+    -
+      name: notebook-controller
+      prototype: notebook-controller
+    -
+      name: pipeline
+      prototype: pipeline
+    -
+      name: pytorch-operator
+      prototype: pytorch-operator
+    -
+      name: tf-job-operator
+      prototype: tf-job-operator
+    -
+      name: spartakus
+      prototype: spartakus
+  parameters:
+    -
+      component: cloud-endpoints
+      name: secretName
+      value: admin-gcp-sa
+    -
+      component: cert-manager
+      name: acmeEmail
+      value: user@email.com
+    -
+      component: iap-ingress
+      name: ipName
+      value: kubeflow-ip
+    -
+      component: iap-ingress
+      name: hostname
+      value: kubeflow.endpoints..cloud.goog
+    -
+      component: ambassador
+      name: platform
+      value: gke
+    -
+      component: spartakus
+      name: usageId
+      value: '90204578'
+    -
+      component: spartakus
+      name: reportUsage
+      value: 'true'
+  registries:
+    -
+      name: kubeflow
+      repo: 'https://github.com/kubeflow/kubeflow'
+      version: v0.5.0
+      path: kubeflow
 ```
