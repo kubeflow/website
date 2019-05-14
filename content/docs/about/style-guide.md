@@ -83,7 +83,7 @@ has sanctioned the abbreviation.
 
 ## Be consistent with punctuation
 
-Use punctuation consistently within a page For example, if you use a period 
+Use punctuation consistently within a page. For example, if you use a period 
 (full stop) after every item in list, then use a period on all other lists on 
 the page.
 
@@ -141,9 +141,9 @@ Avoid future tense ("will") and complex syntax such as conjunctive mood
       </tr>
       <tr>
         <td>If you add this configuration element, the system is open to
-          the Internet.</td>
+          the Internet</td>
         <td>If you added this configuration element, the system would be open to
-          the Internet.</td>
+          the Internet</td>
       </tr>
     </tbody>
   </table>
@@ -176,7 +176,7 @@ know whether you're referring to the reader or the users of their product.
     <tbody>
       <tr>
         <td>Include the directory in your path</td>
-        <td>The user must make sure that the directory is included in their path.
+        <td>The user must make sure that the directory is included in their path
         </td>
       </tr>
       <tr>
@@ -230,9 +230,9 @@ Below are some tips for writing short sentences.
     <tbody>
       <tr>
         <td>You do not need a running GKE cluster. The deployment process
-          creates a cluster for you.</td>
+          creates a cluster for you</td>
         <td>You do not need a running GKE cluster, because the deployment 
-          process creates a cluster for you.</td>
+          process creates a cluster for you</td>
       </tr>
     </tbody>
   </table>
@@ -242,7 +242,7 @@ Below are some tips for writing short sentences.
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
-        <th colspan="2">Convert a long sentence showing various options into a bulleted list</th>
+        <th colspan="2">Use a list instead of a long sentence showing various options</th>
       </tr>
       <tr>
         <th>Use this</th>
@@ -253,11 +253,11 @@ Below are some tips for writing short sentences.
       <tr>
         <td>
           <p>To train a model:</p>
-          <ul>
+          <ol>
             <li>Package your program in a Kubernetes container.</li>
             <li>Upload the container to an online registry.</li>
             <li>Submit your training job.</li>
-          </ul>
+          </ol>
         </td>
         <td>To train a model, you must package your program in a Kubernetes 
           container, upload the container to an online registry, and submit your 
