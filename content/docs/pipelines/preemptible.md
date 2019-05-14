@@ -1,6 +1,6 @@
 +++
-title = "Using Preemptible VMs and GPUs"
-description = "Configuring preemptible VMs and GPUs for Kubeflow Pipelines"
+title = "Using Preemptible VMs and GPUs on GCP"
+description = "Configuring preemptible VMs and GPUs for Kubeflow Pipelines on GCP"
 weight = 65
 +++
 
@@ -99,8 +99,8 @@ The above function works for both methods of generating the `ContainerOp`:
 
 **Note**: 
 
-+   Include `.set_retry(#NUM_RETRY)`in the `ContainerOp` to retry the
-    task after Compute Engine has preempted the VM.
++   Call `.set_retry(#NUM_RETRY)` on your `ContainerOp` to retry 
+    the task after the task is preempted.
 +   If you modified the
     [node taint](https://cloud.google.com/kubernetes-engine/docs/how-to/node-taints)
     when creating the node pool, pass the same node toleration to the
@@ -218,11 +218,11 @@ The above function works for both methods of generating the `ContainerOp`:
 
 **Note**: 
 
-+   Include `.set_gpu_limit(#NUM_GPUs, GPU_VENDOR)` in the `ContainerOp`
-    to specify the GPU limit (for example, `1`) and vendor (for example,
-    `'nvidia'`).
-+   Include `.set_retry(#NUM_RETRY)`in the `ContainerOp` to retry the task
-    after Compute Engine has preempted the VM.
++   Call `.set_gpu_limit(#NUM_GPUs, GPU_VENDOR)` on your 
+    `ContainerOp` to specify the GPU limit (for example, `1`) and vendor (for 
+    example, `'nvidia'`).
++   Call `.set_retry(#NUM_RETRY)` on your `ContainerOp` to retry 
+    the task after the task is preempted.
 +   If you modified the
     [node taint](https://cloud.google.com/kubernetes-engine/docs/how-to/node-taints)
     when creating the node pool, pass the same node toleration to the
