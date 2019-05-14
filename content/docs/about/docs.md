@@ -38,7 +38,7 @@ GitHub.
 ## Contributing to the docs
 
 We welcome updates to the docs! Please help us make them better. Small fixes,
-typos, big fixes, plugging gaps&mdash;all are useful. 
+typos, bug fixes, plugging gaps&mdash;all are useful. 
 
 * For help with getting started, take a look at the 
   [README](https://github.com/kubeflow/website/blob/master/README.md).
