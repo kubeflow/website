@@ -10,16 +10,25 @@ the deployment process and configuration than you get if you use the deployment
 UI. If you're looking for a simpler deployment procedure, see how to deploy 
 Kubeflow [using the deployment UI](/docs/gke/deploy/deploy-ui).
 
+## Before you start
+
 Before installing Kubeflow on the command line:
 
-  * Ensure you have installed the following tools:
-    
-     * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-     * [gcloud](https://cloud.google.com/sdk/)
+1. Ensure you have installed the following tools:
+  
+    * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+    * [gcloud](https://cloud.google.com/sdk/)
 
-  * If you're using
-    [Cloud Shell](https://cloud.google.com/shell/), enable 
-    [boost mode](https://cloud.google.com/shell/docs/features#boost_mode).
+1. If you're using
+  [Cloud Shell](https://cloud.google.com/shell/), enable 
+  [boost mode](https://cloud.google.com/shell/docs/features#boost_mode).
+
+1. If you want to use [Cloud Identity-Aware Proxy (Cloud 
+  IAP)](https://cloud.google.com/iap/docs/) for access control, follow the guide
+  to [setting up OAuth credentials](/docs/gke/deploy/oauth-setup/). 
+  Cloud IAP is recommended for production deployments or deployments with 
+  access to sensitive data. Alternatively, you can use basic authentication 
+  with a username and password.
 
 ## Deploy Kubeflow
 
@@ -34,12 +43,13 @@ Follow these steps to deploy Kubeflow:
 1. Create environment variables for your access control services:
 
     ```bash
-    # If using IAP, create environment variables from the OAuth client ID and
-    # secret that you obtained earlier:
+    # If using Cloud IAP, create environment variables from the
+    # OAuth client ID and secret that you obtained earlier:
     export CLIENT_ID=<CLIENT_ID from OAuth page>
     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
 
-    # If using basic auth, create environment variables for username/password:
+    # If using basic authentication, create environment variables for
+    # username and password:
     export KUBEFLOW_USERNAME=<your username>
     export KUBEFLOW_PASSWORD=<your password>
     ```
@@ -65,9 +75,9 @@ Follow these steps to deploy Kubeflow:
 
     export PROJECT=<your GCP project>
     export KFAPP=<your choice of application directory name>
-    # Default uses IAP.
+    # Default uses Cloud IAP:
     kfctl init ${KFAPP} --platform gcp --project ${PROJECT}
-    # or if you want to use basic auth:
+    # Alternatively, use this command if you want to use basic authentication:
     kfctl init ${KFAPP} --platform gcp --project ${PROJECT} --use_basic_auth -V
 
     cd ${KFAPP}
