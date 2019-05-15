@@ -89,17 +89,13 @@ To use VMs with more CPUs or RAM:
 
 To grant additional users IAM permissions to access Kubeflow:
 
-  * Add users by editing [cluster-kubeflow.yaml](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L74).
+  * Users can be granted access to Kubeflow by adding the “IAP-secured Web App User” role on the GCP console [here](https://console.cloud.google.com/iam-admin/iam). Make sure you are in the same project as your Kubeflow deployment.
 
-
-By default, this file will be located at `${KUBEFLOW_SRC}/kubeflow/gcp_config/cluster-kubeflow.yaml` after your first deployment. After making changes to the file, you'll need to apply them:
-
+  * The update can be confirmed by inspecting the IAM policy for your project. This can be accessed by running:
 ```
-cd ${KFAPP}
-kfctl apply all
+gcloud projects get-iam-policy ${PROJECT}
 ```
-
-For more information please refer to the [Deployment Manager docs](https://cloud.google.com/deployment-manager/docs/).
+  * Users able to access Kubeflow will be listed as having the role `roles/iap.httpsResourceAccessor`
 
 ## More customizations
 
