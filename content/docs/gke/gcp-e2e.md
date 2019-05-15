@@ -133,22 +133,12 @@ Run the following Cloud SDK command to install the
 gcloud components install kubectl
 ```
 
-### Install ksonnet
+### Install kustomize
 
-Kubeflow makes use of [ksonnet] to help manage deployments. ksonnet acts as a
-layer on top of `kubectl`. While Kubernetes is typically managed with static
-YAML files, ksonnet adds a further abstraction that is closer to the objects
-in object-oriented programming.
+Kubeflow makes use of [kustomize](https://github.com/kubernetes-sigs/kustomize) to help manage deployments. 
 
-With ksonnet, you manage your resources as *prototypes* with empty parameters.
-Then you instantiate the prototypes into *components* by defining values for the
-parameters. This system makes it easier to deploy slightly different resources
-to different clusters at the same time. In this way you can maintain different
-environments for staging and production, for example.
-
-Make sure you have ksonnet version {{% ksonnet-min-version %}} or later.
-See the [ksonnet component guide](/docs/components/ksonnet) for help with
-installing ksonnet.
+Make sure you have kustomize version 2.0.3 or later.
+See the [kustomize installation guide](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/INSTALL.md) for help with installing kustomize.
 
 ### Set up some handy environment variables
 
@@ -408,48 +398,6 @@ The `model.py` program does the following:
 * Saves the trained model to a specified location, such as your Cloud Storage 
   bucket.
 
-### Create a ksonnet application
-
-You need a ksonnet project directory to contain the ksonnet configuration files
-for your training application.
-
-Your `${WORKING_DIR}` directory includes an example ksonnet application 
-directory, `ks_app`. The `components` subdirectory holds a set of `jsonnet` 
-configuration files that you can copy and use. These configuration files 
-represent Kubernetes resources that you can deploy to your Kubeflow cluster
-to train and serve a TensorFlow model.
-
-Follow these steps to create your ksonnet application:
-
-1. Use [`ks_init`](https://github.com/ksonnet/ksonnet/blob/master/docs/cli-reference/ks_init.md) 
-   to create a ksonnet project directory:
-
-    ```
-    export KS_NAME=my_ksonnet_app
-    ks init ${KS_NAME}
-    ```
-
-1. Go to the new directory:
-
-    ```
-    cd ${KS_NAME}
-    ```
-
-1. Copy the pre-written components from the example directory:
-
-    ```
-    cp ${WORKING_DIR}/ks_app/components/* ${WORKING_DIR}/${KS_NAME}/components
-    ```
-
-1. Add the required Kubeflow resources to your ksonnet project:
-
-    ```
-    export KUBEFLOW_VERSION=v0.4.1
-    ks registry add kubeflow \
-        github.com/kubeflow/kubeflow/tree/${KUBEFLOW_VERSION}/kubeflow
-    ks pkg install kubeflow/tf-serving@${KUBEFLOW_VERSION}
-    ```
-
 ### Build the container for your training application
 
 To deploy your code to Kubernetes, you must first build your local project into
@@ -530,11 +478,9 @@ a [Docker][docker] container image and push the image to
     ...
     ```
 
-1. When you see log entries similar to those above, your model training is
-   working. You can terminate the container with **Ctrl+c**.
+1. When you see log entries similar to those above, your model training is working. You can terminate the container with **Ctrl+c**.
 
-Next, upload the container image to Container Registry so that you can
-run it on your GKE cluster.
+Next, upload the container image to Container Registry so that you can run it on your GKE cluster.
 
 1. Run the following command to authenticate to Container Registry:
 
@@ -556,26 +502,43 @@ run it on your GKE cluster.
 
 ### Prepare your training component to run on GKE
 
-To run the TensorFlow training job on your cluster on GKE, you use the *train* 
-component (`train.jsonnet`) that you copied into your `my_ksonnet_app` directory 
-earlier in this tutorial. Prepare the component by setting the following
-parameters:
-
-1. Use the [`ks param set`][ks-param-set] command to customize the component’s
-   parameters, pointing to your training container in Container Registry and
-   your Cloud Storage bucket:
+1. Enter the `training/GCS` directory:
 
     ```
-    ks param set train name "train-"${VERSION_TAG}
-    ks param set train image ${TRAIN_IMG_PATH}
-    ks param set train modelDir "gs://"${BUCKET_NAME}
-    ks param set train exportDir "gs://"${BUCKET_NAME}/export
+    cd ${WORKING_DIR}/training/GCS
     ```
 
-1. List the parameters for your component, to check the options set:
+1. Give the job a different name (to distinguish it from your job which didn't use Cloud Storage):
 
     ```
-    ks param list train
+    kustomize edit add configmap mnist-map-training   --from-literal=name=mnist-train-dist
+    ```
+
+1. Configure your custom training image:
+
+    ```
+    kustomize edit set image training-image=${TRAIN_IMG_PATH}
+    ```
+
+1. Optionally configure it to run distributed by setting the number of parameter servers and workers to use. The `numPs` means the number of Ps (parameter server) and the `numWorkers` means the number of worker:
+
+    ```
+    ../base/definition.sh --numPs 1 --numWorkers 2
+    ```
+
+1. Set the training parameters, such as training steps, batch size and learning rate:
+
+    ```
+    kustomize edit add configmap mnist-map-training   --from-literal=trainSteps=200
+    kustomize edit add configmap mnist-map-training   --from-literal=batchSize=100
+    kustomize edit add configmap mnist-map-training   --from-literal=learningRate=0.01
+    ```
+
+1. Configure parameters and save the model to Cloud Storage:
+
+    ```
+    kustomize edit add configmap mnist-map-training   --from-literal=modelDir=gs://${BUCKET_NAME}/
+    kustomize edit add configmap mnist-map-training   --from-literal=exportDir=gs://${BUCKET_NAME}/export
     ```
 
 ### Check the permissions for your training component
@@ -600,17 +563,12 @@ authenticate as this service account within the cluster:
 kubectl describe secret user-gcp-sa
 ```
 
-To access your storage bucket from inside the `train` container, you must set 
-the 
-[GOOGLE_APPLICATION_CREDENTIALS](https://cloud.google.com/docs/authentication/getting-started)
-environment variable to point to the JSON file contained in the secret. 
-Set the variable by passing the following parameters to the `train.jsonnet` 
-component:
+To access your storage bucket from inside the `train` container, you must set the [GOOGLE_APPLICATION_CREDENTIALS](https://cloud.google.com/docs/authentication/getting-started) environment variable to point to the JSON file contained in the secret. 
+Set the variable by passing the following parameters:
 
 ```
-ks param set train secret user-gcp-sa=/var/secrets
-ks param set train envVariables \
-    GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/user-gcp-sa.json
+kustomize edit add configmap mnist-map-training --from-literal=secretName=user-gcp-sa
+kustomize edit add configmap mnist-map-training --from-literal=secretMountPath=/var/secrets
 ```
 
 <a id="train-model"></a>
@@ -619,22 +577,16 @@ ks param set train envVariables \
 Now you are ready to run the TensorFlow training job on your cluster on
 GKE.
 
-1. [Apply][ks-apply] the container to the cluster. The following ksonnet command 
-   applies the container in the `default` 
-   [ksonnet environment](https://github.com/ksonnet/ksonnet/blob/master/docs/concepts.md#environment), 
-   because the downloaded sample provides only the default environment:
+Apply the container to the cluster:
 
-    ```
-    ks apply default -c train
-    ```
+```
+kustomize build . |kubectl apply -f -
+```
 
-    When the command finishes running, there should be a new workload on the 
+When the command finishes running, there should be a new workload on the 
     cluster, with a name like `train-<VERSION_TAG>-chief-0`.
 
-    You can see the workloads on the
-    [GKE Workloads page][gcp-console-workloads] on the GCP
-    console. To see the logs, click the **train-<VERSION_TAG>-chief-0** 
-    workload, then click **Container logs**.
+You can see the workloads on the [GKE Workloads page][gcp-console-workloads] on the GCP console. To see the logs, click the **train-<VERSION_TAG>-chief-0** workload, then click **Container logs**.
 
 ### View your trained model on Cloud Storage
 
@@ -651,93 +603,46 @@ The output from the training application includes the following:
   [TensorFlow Serving][tf-serving] component can read. Read on to see how
   to serve your model for prediction using TensorFlow Serving.
 
-### (Information) Running multiple jobs for the same model 
-
-In a production environment, it’s likely that you will need to run more than one
-training job for the model. Kubeflow gives you a simple deploy pipeline you can
-use to train new versions of your model repeatedly. When you have a new version
-to push:
-
-* Build a new image with a new version tag and a new path.
-* Run the `ks param set` command to modify the parameters to point to the new
-  version of your image:
-
-    ```
-    ks param set train name "train-"${VERSION_TAG}
-    ks param set train image ${TRAIN_IMG_PATH}
-    ```
-
-* Delete and re-apply the component to the cluster with the following commands:
-
-    ```
-    ks delete default -c train
-    ks apply default -c train
-    ```
-
-New model versions will appear in appropriately tagged directories in your
-Cloud Storage bucket.
-
 <a id="serve-model"></a>
 ## Serve the trained model
 
 Now you can put your trained model on a server and send it prediction requests.
-To put the model on a server, you can use two ksonnet components from the
-project files that you downloaded at the start of the tutorial. The components
-are in your `${WORKING_DIR}/components/my_ksonnet_app` directory. The
-relevant configuration files in that directory are
-`mnist-deploy-gcp.jsonnet` and `mnist-service.jsonnet`.
 
-The `mnist-deploy-gcp` component uses the
-[`tf-serving` prototype][tf-serving-prototype] to spin up a prediction server. 
-The `tf-serving` prototype is the Kubeflow implementation of
-[TensorFlow Serving][tf-serving].
- 
-Unlike the training job that you ran earlier, the serving process does not
-require a custom image. The model files contain all the information that the 
-server needs.
-
-Follow these instructions to point the serving component to the Cloud Storage
-bucket where your model is stored, so that the server can spin up to handle
-requests:
-
-1. Set a ksonnet parameter to define the path to your model on Cloud Storage:
-
+1. Enter the `serving/GCS` directory:
     ```
-    ks param set mnist-deploy-gcp modelBasePath "gs://"${BUCKET_NAME}/export
-    ks param set mnist-deploy-gcp modelName mnist
+    cd $WORKING_DIR/serving/GCS
     ```
 
-1. [Apply][ks-apply] the component to the cluster:
+1. Set a different name for the tf-serving:
 
     ```
-    ks apply default -c mnist-deploy-gcp
+    kustomize edit add configmap mnist-map-serving   --from-literal=name=mnist-gcs-dist
     ```
 
-    Note that you don’t need to add a `VERSION_TAG`, even though you may have
-    multiple versions of your model saved in your bucket. Instead, the serving
-    component picks up on the most recent tag and serves that version of the
-    model.
-
-    There should now be a new workload on the cluster, with the name
-    `mnist-deploy-gcp`.
-
-    You can see the workload on the
-    [GKE Workloads page][gcp-console-workloads] on the GCP
-    console.
-
-1. Run the following command to apply the `mnist-serve` component, which
-   makes the above service accessible to other pods. The component creates a
-   [ClusterIP](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) 
-   service associated with the `mnist-deploy-gcp` deployment.
+1. Set your model path:
 
     ```
-    ks apply default -c mnist-service
+    kustomize edit add configmap mnist-map-serving   --from-literal=modelBasePath=${EXPORT_DIR} 
     ```
 
-    You can see the **mnist-service** service on the
-    [GKE Services page][gcp-console-services]. If you click through to see the
-    service details, you can see that it listens for connections within the 
-    cluster on port 9000.
+1. Deploy it, and run a service to make the deployment accessible to other pods in the cluster:
+
+    ```
+    kustomize build . |kubectl apply -f -
+    ```
+
+1. You can check the deployment by running:
+
+    ```
+    kubectl describe deployments mnist-gcs-dist
+    ```
+
+1. The service should make the `mnist-gcs-dist` deployment accessible over port 9000:
+
+    ```
+    kubectl describe service mnist-gcs-dist
+    ```
+    You can see the **mnist-gcs-dist** service on the [GKE Services page][gcp-console-services]. If you click through to see the service details, you can see that it listens for connections within the cluster on port 9000.
 
 ## Send online prediction requests to your model
 
@@ -757,7 +662,7 @@ function that interacts directly with the TensorFlow model server.
 The `${WORKING_DIR}/web-ui` directory also contains a Dockerfile to build
 the application into a container image.
 
-### Build an image and push it to Container Registry
+### (Optional) Build an image and push it to Container Registry
 
 Follow these steps to build an image from your code:
 
@@ -803,31 +708,23 @@ Follow these steps to build an image from your code:
 
 Follow these steps to deploy the web UI to your Kubeflow cluster:
 
-1. Move back into your ksonnet application directory:
+The example comes with a simple web front end that can be used with your model.
+
+1. Enter the `front` directory:
 
     ```
-    cd ${WORKING_DIR}/my_ksonnet_app
+    cd front
     ```
 
-1. Set the ksonnet parameters, using service type 
-   [LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) 
-   so that you can connect with your Flask server from outside the cluster:
+2. Optionally update the image to the ${UI_IMG_PATH} in the `deployment.yaml`.
 
+3. To deploy the web front end to your cluster:
+    
     ```
-    ks param set web-ui image ${UI_IMG_PATH}
-    ks param set web-ui type LoadBalancer
-    ```
-
-1. [Apply][ks-apply] the component to your cluster:
-
-    ```
-    ks apply default -c web-ui
+    kustomize build . |kubectl apply -f -
     ```
 
-    Now there should be a new web UI running in the cluster. You can see the 
-    **web-ui** entry on the
-    [GKE Workloads page][gcp-console-workloads] and on the
-    [Services page][gcp-console-services].
+    Now there should be a new web UI running in the cluster. You can see the **web-ui** entry on the [GKE Workloads page][gcp-console-workloads] and on the [Services page][gcp-console-services].
 
 ### Access the web UI in your browser
 
@@ -965,13 +862,6 @@ using the [GCP Console][gcp-console].
 [gcp-container-registry]: https://console.cloud.google.com/gcr
 [gsutil-mb]: https://cloud.google.com/storage/docs/gsutil/commands/mb
 [gsutil-acl-ch]: https://cloud.google.com/storage/docs/gsutil/commands/acl#ch
-
-[ksonnet]: https://ksonnet.io/
-[ksonnet-installation]: https://ksonnet.io/get-started/
-[ks-init]: https://ksonnet.io/docs/cli-reference#ks-init
-[ks-generate]: https://github.com/ksonnet/ksonnet/blob/master/docs/cli-reference/ks_generate.md
-[ks-param-set]: https://github.com/ksonnet/ksonnet/blob/master/docs/cli-reference/ks_param_set.md
-[ks-apply]: https://github.com/ksonnet/ksonnet/blob/master/docs/cli-reference/ks_apply.md
 
 [flask]: http://flask.pocoo.org/
 
