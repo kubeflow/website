@@ -264,6 +264,17 @@ The versioned sites follow this convention:
 * `master.kubeflow.org` always points to Github head
 * `vXXX-YYY.kubeflow.org` points to the release at vXXX.YYY-branch
 
+We also hook up each version to the dropdown on the website menu bar. To add a 
+version to the dropdown, edit `config.toml` and add a `params.versions` entry.
+For example, to add v0.5, add this entry:
+
+```
+[[params.versions]]
+  version = "v0.5"
+  githubbranch = "v0.5-branch"
+  url = "https://v0-5.kubeflow.org"
+```
+
 Furthermore, whenever any documents reference any source code, the links should be created
 using the version shortcode, like so:
 ```
