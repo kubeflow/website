@@ -60,11 +60,11 @@ Note: </br>
 If you select this option, you see the form:
 
 <img src="/docs/images/kubeflow-deployment.PNG" alt="Login with GCP IAP option" class="mt-3 mb-3 border border-info rounded">
-  
-- If you haven’t already done so, create an [OAuth Client](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) and enter the client ID and secret in the field.
-- The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
-- The Kubeflow version cannot be changed currently.
-
+ <ul> 
+<li> If you haven’t already done so, create an <A href="https://www.kubeflow.org/docs/gke/deploy/oauth-setup/">OAuth Client</A> and enter the client ID and secret in the field.</li>
+<li> The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.</li>
+<li> The Kubeflow version cannot be changed currently.</li>
+</ul>
 Note: The three buttons at the bottom of the form are:</br>
 <ul>
 <li> **Create Deployment**: Click this to deploy your Kubeflow project.</li>
@@ -165,11 +165,11 @@ defaultApp:
 </br>If you select this option, you see the form: 
 
 <img src="/docs/images/login-username-password.PNG" alt="Login with username password option" class="mt-3 mb-3 border border-info rounded">
-  
-- Fill in the details to create a new user name and password.
-- The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
-- The Kubeflow version cannot be changed currently.
-
+  <ul>
+<li> Fill in the details to create a new user name and password.
+<li> The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
+<li> The Kubeflow version cannot be changed currently.
+</ul>
 Note: The three buttons at the bottom of the form are:
 <ul>
 <li> **Create Deployment**: Click this to deploy your Kubeflow project.</li>
@@ -274,9 +274,10 @@ If you select this option, you see the form:
   class="mt-3 mb-3 border border-info rounded">
 
 </br>We recommend this option when you want to [Deploy using CLI](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/). If you want to deploy Kubeflow using the web interface, use the options <A href="#Login with GCP Iap">Login with GCP Iap</A> and <A href="#Login with Username Password">Login with Username Password</A>.
-- The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
-- The Kubeflow version cannot be changed currently.
- 
+</ul>
+<li> The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.</li>
+<li> The Kubeflow version cannot be changed currently.</li>
+ </ul>
 Note: The three buttons at the bottom of the form are: 
 
 <li> **Create Deployment**: Click this to deploy your Kubeflow project.</li>
