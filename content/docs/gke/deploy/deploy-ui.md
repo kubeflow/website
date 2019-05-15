@@ -8,32 +8,37 @@ This page provides instructions for using the Kubeflow deployment web app to
 deploy Kubeflow on GCP. If you prefer to use the
 command line, see the guide to [deployment using the CLI](/docs/gke/deploy/deploy-cli).
 
-1. Open [https://deploy.kubeflow.cloud/](https://deploy.kubeflow.cloud/#/deploy)
+<ol>
+<li> Open [https://deploy.kubeflow.cloud/](https://deploy.kubeflow.cloud/#/deploy)
   in your web browser.
-2. Sign in using a GCP account that has administrator privileges for your GCP project. <!-- no sign in page gets loaded when link is clicked? -->
-3. Complete the form, following the instructions on the left side of the form. In particular, ensure that you enter the same deployment name as you used when creating the OAuth client ID. <!-- OAuth client ID created before this step? link it here?-->
+  </li> 
+<li> Sign in using a GCP account that has administrator privileges for your GCP project. <!-- no sign in page gets loaded when link is clicked? -->
+  </li> 
+<li> Complete the form, following the instructions on the left side of the form. In particular, ensure that you enter the same deployment name as you used when creating the OAuth client ID. <!-- OAuth client ID created before this step? link it here?-->
 
 Here's a partial screenshot of the deployment UI, showing all the fields in the 
 form: </br> 
 <img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/kubeflow-deployment.PNG" 
   alt="Kubeflow deployment UI"
   class="mt-3 mb-3 border border-info rounded">
-  
-4. The field **Choose how to connect to a kubeflow service:*** has three options:
+ </li>  
+<li> The field **Choose how to connect to a kubeflow service:*** has three options:</br>
   
   - <A href="#Login with GCP Iap">Login with GCP Iap</A>
   - <A href="#Login with Username Password">Login with Username Password</A>
   - <A href="#Setup Endpoint later">Setup Endpoint later</A>
-  
-5. Click **Create Deployment**. Kubeflow will be available at the following URI:</br>
+ </li> 
+<li> Click **Create Deployment**. Kubeflow will be available at the following URI:</br>
 `https://<deployment_name>.endpoints.<project>.cloud.goog/`
+  
   </br>It can take 10-15 minutes for the URI to become available. You can watch
   for updates in the information box on the deployment UI. If the deployment
   takes longer than expected, try accessing the above URI anyway.
-
+  </li> 
+</ol>
 Note: 
 **Create Permanent Storage** and **Share Anonymous Usage Reports**, at the bottom of the form, are optional.
-**Create Permanent Storage** creates a physical storage <!--in ?? --> which will be available to you even after your Kubeflow project is completed or deleted.
+**Create Permanent Storage** creates a physical storage <!--where is this created--> which will be available to you even after your Kubeflow project is completed or deleted.
 
 ## Next steps
 
@@ -64,7 +69,7 @@ If you select this option, you see the form:
 - The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
 - The Kubeflow version cannot be changed currently.
 
-Note: The three buttons at the bottom of the form are:
+Note: The three buttons at the bottom of the form are:</br>
 - **Create Deployment**: Click this to deploy your Kubeflow project.
 - **Kubeflow Service Endpoint**: Click this to get to the URI of your newly created Kubeflow service.
 - **View YAML**: Click this to display the deployment YAML details in a new popup box, as shown below:
@@ -368,3 +373,4 @@ defaultApp:
       version: v0.5.0
       path: kubeflow
 ```
+  
