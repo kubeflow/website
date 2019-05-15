@@ -16,7 +16,7 @@ command line, see the guide to [deployment using the CLI](/docs/gke/deploy/deplo
   </li> 
 <li> Complete the form, following the instructions on the left side of the form. In particular, ensure that you enter the same deployment name as you used when creating the OAuth client ID. <!-- OAuth client ID created before this step? link it here?-->
 
-Here's a partial screenshot of the deployment UI, showing all the fields in the form:
+Here's a partial screenshot of the deployment UI, showing all the fields in the form:</br>
 
 <img src="/docs/images/kubeflow-deployment.PNG" alt="Kubeflow deployment UI" class="mt-3 mb-3 border border-info rounded">
  
@@ -57,7 +57,7 @@ Note: </br>
   
 <!--Sub-sections -->
 <H2 id="Login with GCP Iap">Login with GCP Iap</H2>
-If you select this option, you see the form:
+If you select this option, you see the form:</br>
 
 <img src="/docs/images/kubeflow-deployment.PNG" alt="Login with GCP IAP option" class="mt-3 mb-3 border border-info rounded">
  <ul> 
@@ -65,6 +65,7 @@ If you select this option, you see the form:
 <li> The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.</li>
 <li> The Kubeflow version cannot be changed currently.</li>
 </ul>
+  
 Note: The three buttons at the bottom of the form are:</br>
 <ul>
 <li> **Create Deployment**: Click this to deploy your Kubeflow project.</li>
@@ -162,9 +163,10 @@ defaultApp:
 ```
 
 <H2 id="Login with Username Password">Login with Username Password</H2>
-</br>If you select this option, you see the form: 
+</br>If you select this option, you see the form: </br>
 
 <img src="/docs/images/login-username-password.PNG" alt="Login with username password option" class="mt-3 mb-3 border border-info rounded">
+
   <ul>
 <li> Fill in the details to create a new user name and password.
 <li> The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
@@ -267,7 +269,7 @@ defaultApp:
 ```
 <H2 id="Setup Endpoint later">Setup Endpoint later</H2>
 
-If you select this option, you see the form: 
+If you select this option, you see the form: </br>
 
 <img src="/docs/images/setup-endpoint-later.PNG" 
   alt="Setup endpoint later option"
@@ -278,8 +280,8 @@ If you select this option, you see the form:
 <li> The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.</li>
 <li> The Kubeflow version cannot be changed currently.</li>
  </ul>
-Note: The three buttons at the bottom of the form are: 
-
+ 
+</br>Note: The three buttons at the bottom of the form are: 
 <li> **Create Deployment**: Click this to deploy your Kubeflow project.</li>
 <li>**Port Forward**:  Click this to access Google Kubernetes Engine (GKE) for running the newly created kubeflow cluster.</li>
 <li> **View YAML**: Click this to display the deployment YAML details in a new popup box, as shown below:</li><!--LMK if there is more PII in YAML code that i should remove-->
