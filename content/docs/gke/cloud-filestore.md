@@ -25,8 +25,9 @@ use you can skip this section.
 Copy the Cloud Filestore deployment manager configs to the `gcp_config` directory:
 
 ```
-cp ${KUBEFLOW_SRC}/deployment/gke/deployment_manager_configs/gcfs.yaml \
-   ${KFAPP}/gcp_config/
+cd ${KFAPP}
+cp .cache/${VERSION}/deployment/gke/deployment_manager_configs/gcfs.yaml \
+   ./gcp_config/
 ```
 
 Edit `gcfs.yaml` to match your desired configuration:
@@ -50,27 +51,47 @@ mv ${KFAPP}/gcp_config/gcfs.yaml.new ${KFAPP}/gcp_config/gcfs.yaml
 
 Apply the changes:
 
+<!-- 
+  TODO(https://github.com/kubeflow/kubeflow/issues/3265): When this is fixed we
+  should be able to just rerun kfctl apply platform rather than running gcloud
+-->
+
 ```
-cd ${KFAPP}
-kfctl apply platform
+cd ${KFAPP}/gcp_config
+gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP-NAME}-nfs --config=gcfs.yaml
 ```
 
 If you get an error **legacy networks are not supported** follow the instructions
 in the [troubleshooting guide](/docs/other-guides/troubleshooting).
 
-## Configure Kubeflow to mount the Cloud Filestore volume
+## Create a PVC to mount the filestore.
 
-Configure Kubeflow to mount Cloud Filestore as a volume:
+Create a PVC for Cloud Filestore instance.
+
+Run the following command to get the ip address of the cloud file store instance
+
+```
+gcloud --project=${PROJECT} filestore instances list
+```
+
+The output will be something like the following and give you the IP address of your instance.
+
+```
+INSTANCE_NAME          ZONE        TIER      CAPACITY_GB  FILE_SHARE_NAME  IP_ADDRESS     STATE  CREATE_TIME
+mykubeflow-nfs  us-east1-d  STANDARD  1024         kubeflow         10.20.148.194  READY  2019-05-15T01:23:53
+
+```
+
+Now create the PVC
 
 ```
 cd ${KFAPP}/ks_app
 ks generate google-cloud-filestore-pv google-cloud-filestore-pv --name="kubeflow-gcfs" \
    --storageCapacity="${GCFS_STORAGE}" \
    --serverIP="${GCFS_INSTANCE_IP_ADDRESS}"
-ks param set jupyter disks "kubeflow-gcfs"
 ```
 
-  * **GCFS_STORAGE** The size of the Cloud Filestore persistent volume claim
+  * **GCFS_STORAGE** The size of the Cloud Filestore persistent volume claim; e.g. "1G"
   * **GCFS_INSTANCE_IP_ADDRESS** The ip address of your Cloud Filestore instance; you can obtain this with `gcloud`:
 
      ```
@@ -83,3 +104,9 @@ Apply the changes:
 cd ${KFAPP}
 kfctl apply k8s
 ```
+
+## Using the PVC
+
+### With Jupyter
+
+In the UI to create a jupyter notebook you can specify the PVC as an extra data volume.
