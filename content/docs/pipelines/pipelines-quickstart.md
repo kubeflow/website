@@ -8,6 +8,13 @@ Use this guide if you want to get a simple pipeline running quickly in
 Kubeflow Pipelines. If you need a more in-depth guide, see the
 [end-to-end tutorial](/docs/pipelines/tutorials/pipelines-tutorial/).
 
+* This quickstart guide shows you how to use one of the samples that come with 
+  the Kubeflow Pipelines installation and are visible on the Kubeflow Pipelines
+  user interface (UI). You can use this guide as an introduction to the 
+  Kubeflow Pipelines UI.
+* The end-to-end tutorial shows you how to prepare and compile a pipeline, 
+  upload it to Kubeflow Pipelines, then run it.
+
 ## Deploy Kubeflow and open the pipelines UI
 
 Follow these steps to deploy Kubeflow and open the pipelines dashboard:
