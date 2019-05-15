@@ -12,6 +12,11 @@ instructions for installing Kubeflow we recommend following those instructions.
 Those instructions do additional Cloud specific setup to create a really great 
 Kubeflow experience.
 
+You can use either [kind](https://github.com/kubernetes-sigs/kind#installation-and-usage) or
+[Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) to install a Kubernetes cluster and it
+is recommended to use [kind](https://github.com/kubernetes-sigs/kind#installation-and-usage)
+as it is more simple to install.
+
 Before installing Kubeflow on the command line:
 
   * Ensure you have installed the following tools:
