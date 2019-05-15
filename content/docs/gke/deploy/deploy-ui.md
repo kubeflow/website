@@ -18,7 +18,7 @@ command line, see the guide to [deployment using the CLI](/docs/gke/deploy/deplo
 
 Here's a partial screenshot of the deployment UI, showing all the fields in the form:
 
-<img src="master/content/docs/images/kubeflow-deployment.PNG" alt="Kubeflow deployment UI" class="mt-3 mb-3 border border-info rounded">
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/kubeflow-deployment.PNG" alt="Kubeflow deployment UI" class="mt-3 mb-3 border border-info rounded">
  
  </li>  
 <li> The field <b>Choose how to connect to a kubeflow service:*</b> has three options:</br>
@@ -59,7 +59,7 @@ Note: </br>
 <H2 id="Login with GCP Iap">Login with GCP Iap</H2>
 If you select this option, you see the form:
 
-<img src="master/content/docs/images/kubeflow-deployment.PNG" alt="Login with GCP IAP option" class="mt-3 mb-3 border border-info rounded">
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/kubeflow-deployment.PNG" alt="Login with GCP IAP option" class="mt-3 mb-3 border border-info rounded">
   
 - If you haven’t already done so, create an [OAuth Client](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) and enter the client ID and secret in the field.
 - The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
@@ -164,7 +164,7 @@ defaultApp:
 <H2 id="Login with Username Password">Login with Username Password</H2>
 </br>If you select this option, you see the form: 
 
-<img src="master/content/docs/images/login-username-password.PNG" alt="Login with username password option" class="mt-3 mb-3 border border-info rounded">
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/login-username-password.PNG" alt="Login with username password option" class="mt-3 mb-3 border border-info rounded">
   
 - Fill in the details to create a new user name and password.
 - The default GKE zone is us-central-1a. Use the dropdown to select the zone you want.
@@ -269,7 +269,7 @@ defaultApp:
 
 If you select this option, you see the form: 
 
-<img src="master/content/docs/images/setup-endpoint-later.PNG" 
+<img src="https://github.com/jay-saldanha/website/blob/master/content/docs/images/setup-endpoint-later.PNG" 
   alt="Setup endpoint later option"
   class="mt-3 mb-3 border border-info rounded">
 
