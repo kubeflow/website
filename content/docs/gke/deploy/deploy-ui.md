@@ -9,7 +9,7 @@ deploy Kubeflow on GCP. If you prefer to use the
 command line, see the guide to [deployment using the CLI](/docs/gke/deploy/deploy-cli).
 
 <ol>
-<li> Open [https://deploy.kubeflow.cloud/](https://deploy.kubeflow.cloud/#/deploy)
+<li> Open <a href="https://deploy.kubeflow.cloud/#/deploy">https://deploy.kubeflow.cloud</a>
   in your web browser.
   </li> 
 <li> Sign in using a GCP account that has administrator privileges for your GCP project. <!-- no sign in page gets loaded when link is clicked? -->
@@ -22,23 +22,21 @@ form: </br>
   alt="Kubeflow deployment UI"
   class="mt-3 mb-3 border border-info rounded">
  </li>  
-<li> The field **Choose how to connect to a kubeflow service:*** has three options:</br>
+<li> The field <b>Choose how to connect to a kubeflow service:*</b> has three options:</br>
   
   - <A href="#Login with GCP Iap">Login with GCP Iap</A>
   - <A href="#Login with Username Password">Login with Username Password</A>
   - <A href="#Setup Endpoint later">Setup Endpoint later</A>
  </li> 
-<li> Click **Create Deployment**. Kubeflow will be available at the following URI:</br>
-`https://<deployment_name>.endpoints.<project>.cloud.goog/`
-  
-  </br>It can take 10-15 minutes for the URI to become available. You can watch
-  for updates in the information box on the deployment UI. If the deployment
-  takes longer than expected, try accessing the above URI anyway.
+<li> Click <b>Create Deployment</b>. Kubeflow will be available at the following URI:</br>
+<code>https://<deployment_name>.endpoints.<project>.cloud.goog/</code>
+  </br>It can take 10-15 minutes for the URI to become available. You can watch for updates in the information box on the deployment UI. If the deployment takes longer than expected, try accessing the above URI anyway.
   </li> 
 </ol>
-Note: 
-**Create Permanent Storage** and **Share Anonymous Usage Reports**, at the bottom of the form, are optional.
-**Create Permanent Storage** creates a physical storage <!--where is this created--> which will be available to you even after your Kubeflow project is completed or deleted.
+
+Note: </br>
+<b>Create Permanent Storage</b> and <b>Share Anonymous Usage Reports</b>, at the bottom of the form, are optional.
+<b>Create Permanent Storage</b> creates a physical storage <!--where is this created--> which will be available to you even after your Kubeflow project is completed or deleted.
 
 ## Next steps
 
