@@ -72,6 +72,11 @@ Run the following command to get the ip address of the cloud file store instance
 
 ```
 gcloud --project=${PROJECT} filestore instances list
+```
+
+The output will be something like the following and give you the IP address of your instance.
+
+```
 INSTANCE_NAME          ZONE        TIER      CAPACITY_GB  FILE_SHARE_NAME  IP_ADDRESS     STATE  CREATE_TIME
 mykubeflow-nfs  us-east1-d  STANDARD  1024         kubeflow         10.20.148.194  READY  2019-05-15T01:23:53
 
