@@ -99,3 +99,9 @@ Apply the changes:
 cd ${KFAPP}
 kfctl apply k8s
 ```
+
+## Using the PVC
+
+### With Jupyter
+
+In the UI to create a jupyter notebook you can specify the PVC as an extra data volume.
