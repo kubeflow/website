@@ -36,9 +36,9 @@ Follow these steps to deploy Kubeflow:
 
 1. Create user credentials. You only need to run this command once:
    
-   ```
-   gcloud auth application-default login
-   ```
+    ```
+    gcloud auth application-default login
+    ```
 
 1. Create environment variables for your access control services:
 
