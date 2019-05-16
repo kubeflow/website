@@ -89,13 +89,13 @@ To use VMs with more CPUs or RAM:
 
 To grant additional users IAM permissions to access Kubeflow:
 
-  * Users can be granted access to Kubeflow by adding the “IAP-secured Web App User” role on the GCP console [here](https://console.cloud.google.com/iam-admin/iam). Make sure you are in the same project as your Kubeflow deployment.
+  * To grant users access to Kubeflow, add the “IAP-secured Web App User” role on the [IAM page in the GCP console](https://console.cloud.google.com/iam-admin/iam). Make sure you are in the same project as your Kubeflow deployment.
 
-  * The update can be confirmed by inspecting the IAM policy for your project. This can be accessed by running:
+  * You can confirm the update by inspecting the IAM policy for your project:
 ```
 gcloud projects get-iam-policy ${PROJECT}
 ```
-  * Users able to access Kubeflow will be listed as having the role `roles/iap.httpsResourceAccessor`
+  * In the output from the above command, users able to access Kubeflow have the following role: `roles/iap.httpsResourceAccessor`.
 
 ## More customizations
 
