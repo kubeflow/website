@@ -150,6 +150,11 @@ The theme files are in the
 **Do not change these files**, because they are overwritten each time we update
 the website to a  later version of the theme, and your changes will be lost.
 
+## Documentation style guide
+
+For guidance on writing effective documentation, see the [style guide for the
+Kubeflow docs](https://kubeflow.org/docs/about/style-guide/).
+
 ## Styling your content
 
 The theme holds its styles in the 

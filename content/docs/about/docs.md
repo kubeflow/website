@@ -10,7 +10,7 @@ Welcome to the Kubeflow documentation!
 ## Introduction
 
 The Kubeflow docs are published at 
-[www.kubeflow.org](https://www.kubeflow.org/), along with the Kubeflow blog.
+[www.kubeflow.org](https://www.kubeflow.org/).
 
 The source for the docs is in the 
 [kubeflow/website repo](https://github.com/kubeflow/website/) on GitHub.
@@ -38,6 +38,9 @@ GitHub.
 ## Contributing to the docs
 
 We welcome updates to the docs! Please help us make them better. Small fixes,
-typos, big fixes, plugging gaps&mdash;all are useful. For help with getting
-started, take a look at the 
-[README](https://github.com/kubeflow/website/blob/master/README.md).
+typos, bug fixes, plugging gaps&mdash;all are useful. 
+
+* For help with getting started, take a look at the 
+  [README](https://github.com/kubeflow/website/blob/master/README.md).
+* For guidance on writing effective documentation, see the 
+  [style guide](/docs/about/style-guide/).
