@@ -79,7 +79,7 @@ Add Cloud TPUs to your cluster:
 
   * Set `enable_tpu:true` [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L52).
 
-To use VMs with more CPUs or RAM:
+Add VMs with more CPUs or RAM:
 
   * Change the machineType.
   * There are two node pools:
@@ -87,19 +87,15 @@ To use VMs with more CPUs or RAM:
       * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96).
   * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment.
 
-To grant additional users IAM permissions to access Kubeflow:
+Add users to Kubeflow:
 
-  * Add users by editing [cluster-kubeflow.yaml](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L74).
+  * To grant users access to Kubeflow, add the “IAP-secured Web App User” role on the [IAM page in the GCP console](https://console.cloud.google.com/iam-admin/iam). Make sure you are in the same project as your Kubeflow deployment.
 
-
-By default, this file will be located at `${KUBEFLOW_SRC}/kubeflow/gcp_config/cluster-kubeflow.yaml` after your first deployment. After making changes to the file, you'll need to apply them:
-
+  * You can confirm the update by inspecting the IAM policy for your project:
 ```
-cd ${KFAPP}
-kfctl apply all
+gcloud projects get-iam-policy ${PROJECT}
 ```
-
-For more information please refer to the [Deployment Manager docs](https://cloud.google.com/deployment-manager/docs/).
+  * In the output from the above command, users able to access Kubeflow have the following role: `roles/iap.httpsResourceAccessor`.
 
 ## More customizations
 
