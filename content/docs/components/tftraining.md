@@ -314,13 +314,13 @@ See more details about [accessing the Kubeflow UIs](/docs/other-guides/accessing
 
 To use GPUs your cluster must be configured to use GPUs.
 
-  * Nodes must have GPUs attached
-  * K8s cluster must recognize the `nvidia.com/gpu` resource type
+  * Nodes must have GPUs attached.
+  * The Kubernetes cluster must recognize the `nvidia.com/gpu` resource type.
   * GPU drivers must be installed on the cluster.
   * For more information:
-      * [K8s Instructions For Scheduling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/)
-      * [GKE Instructions](https://cloud.google.com/kubernetes-engine/docs/concepts/gpus)
-      * [EKS Instructions](https://docs.aws.amazon.com/eks/latest/userguide/gpu-ami.html)
+      * [Kubernetes instructions for scheduling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/)
+      * [GKE instructions](https://cloud.google.com/kubernetes-engine/docs/concepts/gpus)
+      * [EKS instructions](https://docs.aws.amazon.com/eks/latest/userguide/gpu-ami.html)
 
 To attach GPUs specify the GPU resource on the container in the replicas
 that should contain the GPUs; for example.
@@ -682,7 +682,7 @@ The policy can be one of the following values
   when the job finishes.
 * The **None** policy means that no pods will be deleted when the job completes.
 
-If your cluster takes advantage of K8s
+If your cluster takes advantage of Kubernetes
 [cluster logging](https://kubernetes.io/docs/concepts/cluster-administration/logging/)
 then your logs may also be shipped to an appropriate data store for
 further analysis.

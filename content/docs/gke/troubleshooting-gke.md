@@ -344,7 +344,7 @@ for available zones and cpu platforms.
 ## Changing the OAuth client used by IAP
 
 If you need to change the OAuth client used by IAP you can run the following commands
-to replace the K8s secret containing the id and secret.
+to replace the Kubernetes secret containing the ID and secret.
 
 ```
 kubectl -n kubeflow delete secret kubeflow-oauth

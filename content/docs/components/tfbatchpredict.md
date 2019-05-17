@@ -9,7 +9,7 @@ weight = 60
 Kubeflow batch-predict allows users to run predict jobs over a trained
 TensorFlow model in SavedModel format in a batch mode. It is
 [apache-beam](https://beam.apache.org/)-based and currently runs with a local
-runner on a single node in a K8s cluster.
+runner on a single node in a Kubernetes cluster.
 
 
 ## Run a TensorFlow Batch Predict Job
@@ -79,15 +79,14 @@ ks param set --env=default ${MY_BATCH_PREDICT_JOB} outputResultPrefix gs://my_ne
 
 To use GPUs your cluster must be configured to use GPUs.
 
-  * Nodes must have GPUs attached
-  * K8s cluster must recognize the `nvidia.com/gpu` resource type
+  * Nodes must have GPUs attached.
+  * The Kubernetes cluster must recognize the `nvidia.com/gpu` resource type.
   * GPU drivers must be installed on the cluster.
   * For more information:
-      * [K8s Instructions For Scheduling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/)
-      * [GKE Instructions](https://cloud.google.com/kubernetes-engine/docs/concepts/gpus)
+      * [Kubernetes instructions for scheduling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/)
+      * [GKE instructions](https://cloud.google.com/kubernetes-engine/docs/concepts/gpus)
 
-When all the conditions above are satisfied, you should set the number of GPU to a positive
-integer. For example:
+When all the conditions above are satisfied, you should set the number of GPUs to a positive integer. For example:
 
 ```
 ks param set --env=default ${MY_BATCH_PREDICT_JOB} numGpus 1
