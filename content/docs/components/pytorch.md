@@ -42,7 +42,7 @@ ks apply ${ENVIRONMENT} -c pytorch-operator
 
 ## Creating a PyTorch Job
 
-You can create PyTorch Job by defining a PyTorchJob config file. See [distributed MNIST example](https://github.com/kubeflow/pytorch-operator/blob/master/examples/tcp-dist/mnist/v1beta1/pytorch_job_mnist.yaml) config file. You may change the config file based on your requirements.
+You can create PyTorch Job by defining a PyTorchJob config file. See the manifests for the [distributed MNIST example](https://github.com/kubeflow/pytorch-operator/tree/master/examples/mnist). You may change the config file based on your requirements.
 
 ```
 cat pytorch_job_mnist.yaml
