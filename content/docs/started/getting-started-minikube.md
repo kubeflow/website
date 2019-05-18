@@ -1,16 +1,15 @@
 +++
 title = "Minikube for Kubeflow"
 description = "Quickly get Kubeflow running locally"
-weight = 10
-toc = true
-bref = "This document will outline steps that will get your local installation of Kubeflow running on top of Mikikube. Minikube runs a simple, single-node Kubernetes cluster inside a virtual machine (VM)."
-[menu.docs]
-  parent = "started"
-  weight = 2
+weight = 2
 +++
 
+This document outlines the steps you can  take to get your local installation 
+of Kubeflow running on top of Minikube. Minikube runs a simple, single-node 
+Kubernetes cluster inside a virtual machine (VM).
+
 By the end of this document, you'll have a local installation of Minikube kubernetes cluster along with all the default core components of
-Kubeflow deployed as services in the pods. You should be able to access JupyterHub notebooks, and the Kubeflow Dashboard.
+Kubeflow deployed as services in the pods. You should be able to access Jupyter notebooks and the Kubeflow Dashboard.
 
 ### Prerequisites
   - Laptop, Desktop or a Workstation
@@ -99,12 +98,12 @@ The script asks for some config input as shown below:
 Let us consider the example for CPUs configuration. When it asks `Assign CPUs between 3..10 [6]: ` the `3..10` suggest the range of CPU cores available based on your host machine. `[6]` is the suggested default. You can choose any value within the range and enter the value or just press enter to accept the default value suggested in square brackets. In the image above, we choose the default 6 for CPUs and specified 12GB of memory explicitly. Note that:
 
   1. You will need to specify the virtualizer installed on the system explicitly and it needs to be one of the values provided as options.
-  1. If you don't want to mount any local directory into the JupyterHub simply press enter instead of specifying any path.
+  1. If you don't want to mount any local directory into the Jupyter notebook server simply press enter instead of specifying any path.
 
 After the configuration is complete, the script will continue execution for the next few minutes and when finished successfully should output some like:
 ![LocalDeployment](../LocalDeployment.png)
 
-When the installation finishes successfully, you can access JupyterHub as described in [Where to go next](#where-to-go-next). If you have trouble with the installation script or run into errors, you can follow the detailed installation steps manually as described below.
+When the installation finishes successfully, you can access Jupyter notebooks as described in [Where to go next](#where-to-go-next). If you have trouble with the installation script or run into errors, you can follow the detailed installation steps manually as described below.
 
 ### Install Kubectl
 
@@ -229,27 +228,20 @@ The following steps will deploy Kubeflow components and start them on the Miniku
     ${KUBEFLOW_SRC}/scripts/kfctl.sh generate all
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply all
     ```
-    - **KFAPP** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init. Please see [understanding the deployment process](/docs/started/getting-started-gke/#understanding-the-deployment-process) for more details.
+    - **KFAPP** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init. Please see [understanding the deployment process](/docs/gke/deploy/deploy-cli/#understanding-the-deployment-process) for more details.
 
 The above installation may take a few minutes. At the end of the installation you should see:
 ```
 Access Kubeflow dashboard at http://localhost:8080/
-Access JupyterHub at http://localhost:8080/hub/
+Access Jupyter notebooks at http://localhost:8080/notebooks/
 ```
 
 ### Where to go next
-Now you can access the Kubeflow dashboard at http://localhost:8080/ and JupyterHub at http://localhost:8080/hub/.
-For JupyterHub, you'll be landing on a login page.
 
-  - Use any username and password to login
-  - Pick an available CPU tensorflow image
-  - Provide at least 2 CPUs
-  - Provide 4Gi for the memory
-  - Leave "Extra Resource Limits" alone for now
-  - Click Spawn.
-  - You should be redirected to a page that waits while the server is starting.
+Now you can access the Kubeflow dashboard at http://localhost:8080/ and Jupyter
+notebooks at http://localhost:8080/notebooks/.
 
-If the page doesn't refresh, please see
-[troubleshooting](/docs/guides/troubleshooting/#problems-spawning-jupyter-pods).
+For Jupyter notebooks, you can use any username and password to log in. 
+Follow the guide to [setting up your Jupyter notebooks on Kubeflow](/docs/notebooks/setup/).
 
-For further exploration refer to the [guide](/docs/guides/).
+For further exploration refer to the [documentation](/docs/).

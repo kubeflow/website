@@ -1,81 +1,129 @@
 +++
 title = "Microk8s for Kubeflow"
 description = "Quickly get Kubeflow running locally on native hypervisors"
-weight = 10
-toc = true
-bref = "This document will outline steps that will get your local installation of Kubeflow running on top of Microk8s inside of a native Hypervisor. Multipass is used to create a the native VM. Microk8s is used to provide a simple, single-node Kubernetes cluster."
-[menu.docs]
-  parent = "started"
-  weight = 2
+weight = 2
 +++
 
-By the end of this document, you'll have a local installation of a Kubernetes cluster along with all the default core components of Kubeflow deployed as services in the pods. You should be able to access JupyterHub notebooks, and the Kubeflow Dashboard.
+This document outlines the steps that you can take to get your local
+installation of Kubeflow running on top of Microk8s, a single-node Kubernetes cluster. Microk8s requires Linux; if you are not on a Linux system, you can use Multipass to create a Linux VM on your native hypervisor.
 
-### Install Multipass
-If you do not already have a multipass installed, install a new one.
+By the end of this document, you'll have a local installation of a Kubernetes cluster along with all the default core components of Kubeflow deployed as services in the pods. You can access the Kubeflow dashboard, Jupyter notebooks, and dashboards of other Kubeflow components.
 
-##### Mac OS X
-Install Multipass using the native Mac OS [installer](https://github.com/CanonicalLtd/multipass/releases/download/2018.6.1/multipass-2018.6.1-full-Darwin-signed.zip).
+## Introduction
 
-##### Linux
+If you already have Ubuntu or Linux, you can easily install Kubernetes using [Microk8s](https://microk8s.io/). You can jump to the section below on **Install Kubeflow using Microk8s**.
 
-It can be installed with the following command on any [snap-enabled linux](https://snapcraft.io):
+If you don't have a Linux system already, or you would like to confine your Kubeflow to a disposable machine, then follow the instructions below on **Create a VM with Multipass** first. That will get you an Ubuntu machine that can be used to install Kubernetes and Kubeflow.
+
+### Quickstart
+
+Here's a consolidated list of instructions to launch a VM, install Kubernetes, and install Kubeflow, all with default settings:
+
+```
+$ multipass launch bionic -n kubeflow -m 8G -d 40G -c 4
+$ multipass shell kubeflow
+$ git clone https://github.com/canonical-labs/kubernetes-tools
+$ sudo kubernetes-tools/setup-microk8s.sh
+$ git clone https://github.com/canonical-labs/kubeflow-tools
+$ kubeflow-tools/install-kubeflow.sh
+# Point browser: http://<kubeflow VM IP>:<Ambassador PORT>
+```
+
+Read the next sections for more detail!
+
+## Create a VM with Multipass
+
+[Multipass](https://github.com/CanonicalLtd/multipass) is a general purpose command line interface (CLI) that launches Ubuntu virtual machines based on [cloud-images](http://cloud-images.ubuntu.com/). The benefits of using Multipass include the following:
+
+  * quickly create disposable machine learning appliances
+  * leverage the same cloud images locally, reducing surprises when changing from development to staging to production environments in a multi-cloud strategy.
+
+Here's a summary of the steps involved:
+
+1. Install the CLI
+2. Use the CLI to create a VM
+3. Enter the VM
+
+### 1. Install Multipass
+
+#### Mac OS X
+
+Install Multipass using the native Mac OS installer:
+
+* Download the latest \*-Darwin.pkg [here](https://github.com/CanonicalLtd/multipass/releases)
+* For more information and documentation, visit the project on [GitHub](https://github.com/CanonicalLtd/multipass).
+
+#### Linux
+
+Install Multipass using [snapcraft](https://snapcraft.io):
 
 ```
 $ sudo snap install multipass --beta --classic
 ```
 
-### Start an Ubuntu Virtual Machine
+### 2. Create an Ubuntu Virtual Machine
 
-##### Download cloud-init file
-This cloud-init file can be used repeatedly, each time a new multipass VM is created
+The following command creates a VM with 8GB of memory, 40GB of disk space, and 4 CPU. These are the minimum recommended settings. You are free to adjust them **higher** based on your host machine capabilities and workload requirements.
 ```
-wget https://bit.ly/2tOfMUA -O kubeflow.init
-```
-
-##### Start your Multipass VM
-You can mount a local volume into the VM. The second command adds the local directory.
-```
-$ multipass launch bionic -n kubeflow -m 8G -d 40G -c 4 --cloud-init kubeflow.init
-$ multipass mount . kubeflow:/multipass
+$ multipass launch bionic -n kubeflow -m 8G -d 40G -c 4
 ```
 
-**Note**: These are the minimum recommended settings on the VM created by Multipass for the Kubeflow deployment. You are free to adjust them **higher** based on your host machine capabilities and workload requirements.
+Note: If you need information on **resource utilization** in the VM, such as memory or disk space or CPU load, you can run ```multipass info kubeflow```
 
-### Install Kubernetes
-Log into the VM and install some basic supporting tools. This will install kubernetes, powered by microk8s, and other tools necessary to deploy Kubeflow
-```
-multipass shell kubeflow                      # log into vm
-sudo /kubeflow/install-kubeflow-pre-micro.sh  # install microk8s, etc.
-```
-
-### Install Kubeflow
-This step assumes you've stored your github token in a file in the host machine. If you
-haven't already done this, please put: `export GITHUB_TOKEN=<your token>` into /multipass/github-token.txt
+### 3. Enter the VM
 
 ```
-source /multipass/github-token.txt   # exports your github token
-/kubeflow/install-kubeflow.sh        # waits until all pods are “running”; prints the port
+$ multipass shell kubeflow
 ```
 
-This script will print out the port number of JupyterHub.
+## Install Kubeflow using Microk8s
 
-### Access Kubeflow
+Here's a summary of the steps involved:
 
-You can get the IP address of the VM using `multipass list`. Assuming you've used the same name (kubeflow) above, you can now access the JupyterHub page from your browser at http://<kubeflow vm IP>:<Jupyter Hub PORT>
+1. Set up Microk8s
+2. Set up Kubeflow
 
-For JupyterHub, you'll be landing on a login page.
+### 1. Install and Setup Microk8s
 
-  - Use any username and password to login
-  - Pick an available CPU tensorflow image
-  - Provide at least 2 CPUs
-  - Provide 4Gi for the memory
-  - Leave "Extra Resource Limits" alone for now
-  - Click Spawn.
-  - You should be redirected to a page that waits while the server is starting.
+This will install Microk8s if it doesn't already exist, and enable services that are useful for Kubeflow. Please inspect setup-microk8s.sh for more information.
 
-If the page doesn't refresh, please see [troubleshooting](/docs/about/user_guide/#problems-spawning-jupyter-pods).
+```
+$ git clone https://github.com/canonical-labs/kubernetes-tools
+$ sudo kubernetes-tools/setup-microk8s.sh
+# If you have a GPU, run: `microk8s.enable gpu`
+```
+
+If you would like access to the Kubernetes dashboard, please run this command:
+
+```
+kubernetes-tools/expose-dashboard.sh
+```
+
+### 2. Install and Setup Kubeflow
+
+The current approach leverages ksonnet to setup and install Kubeflow. The kubeflow-tools repository contains scripts to facilitate this.
+
+```
+$ git clone https://github.com/canonical-labs/kubeflow-tools
+$ kubeflow-tools/install-kubeflow.sh
+```
+This script will print out the port number for Ambassador and for Jupyter notebook 
+servers.
+(Note: you can access your Jupyter notebook server through Ambassador).
+
+
+## Access Kubeflow
+
+If you installed Microk8s on your local host, then you can use localhost as the IP address in your browser. Otherwise, if you used Multipass as per the instructions above, you can get the IP address of the VM with either `multipass list` or `multipass info kubeflow`.
+
+```
+Point browser to either:
+- http://<kubeflow VM IP>:<Ambassador PORT>
+- http://localhost:<Ambassador PORT>
+```
 
 ### Where to go next
 
-Refer to the [user guide](/docs/guides/)
+* Refer to the [user guide](/docs/)
+* Refer to the [components](/docs/components/)
+* Refer to the guide to [Jupyter notebooks in Kubeflow](/docs/notebooks/)

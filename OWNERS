@@ -1,6 +1,7 @@
 approvers:
   - abhi-g
   - aronchick
+  - dansanche
   - ewilderj
   - jlewi
   - kunmingg
@@ -12,10 +13,20 @@ approvers:
   - texasmichelle
   - willingc
   - dsdinter
+  - Ark-kun
+  - gaoning777
+  - hongye-sun
+  - IronPan
+  - neuromage 
+  - paveldournov
+  - qimingj
+  - rileyjbauer
+  - vicaire
+  - yebrahim
 reviewers:
   - abhi-g
   - aronchick
-  - ewilderj
+  - dansanche
   - inc0
   - jlewi
   - kunmingg
@@ -27,3 +38,13 @@ reviewers:
   - texasmichelle
   - willingc
   - dsdinter
+  - Ark-kun
+  - gaoning777
+  - hongye-sun
+  - IronPan
+  - neuromage 
+  - paveldournov
+  - qimingj
+  - rileyjbauer
+  - vicaire
+  - yebrahim

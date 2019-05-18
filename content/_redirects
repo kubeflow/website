@@ -1,4 +1,6 @@
 # Redirects from what the browser requests to what we serve
+# Info: https://www.netlify.com/docs/redirects/
+
 /version/stable/gke/scripts/deploy.sh  https://raw.githubusercontent.com/kubeflow/kubeflow/v0.2.2/scripts/gke/deploy.sh
 /version/stable/scripts/deploy.sh      https://raw.githubusercontent.com/kubeflow/kubeflow/v0.2.2/scripts/deploy.sh
 /version/stable/source.tar.gz          https://github.com/kubeflow/kubeflow/archive/v0.2.2.tar.gz
@@ -9,3 +11,31 @@
 /blog/nvidia_tensorrt/                 https://medium.com/kubeflow/gpu-accelerated-inference-for-kubernetes-with-the-nvidia-tensorrt-inference-server-and-kubeflow-63061305fff2
 /blog/kaggle_on_kubeflow/              https://medium.com/kubeflow/kaggle-on-kubeflow-185a29e27c53
 /blog/announcing_kubeflow_0.2/         https://medium.com/kubeflow/kubeflow-0-2-offers-new-components-and-simplified-setup-735e4c56988d
+
+/docs/guides/components/components     /docs/components/
+/docs/guides/pipelines/deploy-pipelines-service/  /docs/pipelines/pipelines-quickstart/
+
+# Removed the "guides" section from the doc URLs.
+/docs/guides/*  /docs/:splat
+
+# Merged duplicate page pipelines-samples.md into build-pipeline.md
+/docs/pipelines/pipelines-samples/	   /docs/pipelines/build-pipeline/
+
+# Removed redundant UI guide. Quickstart is a better destination.
+/docs/pipelines/pipelines-ui/	         /docs/pipelines/pipelines-quickstart/
+
+# Restructured the pipelines docs.
+/docs/pipelines/output-viewer/                 /docs/pipelines/metrics/output-viewer/
+/docs/pipelines/pipelines-metrics/             /docs/pipelines/metrics/pipelines-metrics/
+/docs/pipelines/build-component/               /docs/pipelines/sdk/build-component/
+/docs/pipelines/enable-gpu-and-tpu/            /docs/pipelines/sdk/enable-gpu-and-tpu/
+/docs/pipelines/install-sdk/                   /docs/pipelines/sdk/install-sdk/
+/docs/pipelines/lightweight-python-components/ /docs/pipelines/sdk/lightweight-python-components/
+/docs/pipelines/build-pipeline/                /docs/pipelines/tutorials/build-pipeline/
+/docs/pipelines/pipelines-tutorial/            /docs/pipelines/tutorials/pipelines-tutorial/
+
+# Moved the guide to monitoring GKE deployments.
+/docs/other-guides/monitoring/                 /docs/gke/monitoring/
+
+# Created a new section for pipeline concepts.
+/docs/pipelines/pipelines-concepts/            /docs/pipelines/concepts/

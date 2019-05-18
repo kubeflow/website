@@ -1,97 +1,90 @@
 +++
 title = "Getting Started with Kubeflow"
-description = "Quickly get running with your ML Workflow on an existing Kubernetes installation"
-weight = 25
-toc = true
-bref = "The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable. Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures. Anywhere you are running Kubernetes, you should be able to run Kubeflow."
-aliases = ["/docs/started/"]
-[menu.docs]
-  parent = "started"
-  weight = 1
+description = "Get your machine-learning workflow up and running on Kubeflow"
+weight = 1
 +++
 
-## Who should consider using Kubeflow?
+There are various ways to install Kubeflow. Choose one of the following options
+to suit your environment (cloud, on premises (on prem), or local):
 
-Based on the current functionality you should consider using Kubeflow if:
+* To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
+  follow the [GCP deployment guide](/docs/gke/deploy/).
+* To use Kubeflow on Amazon Web Services (AWS),
+  follow the [AWS deployment guide](/docs/aws/deploy/).
+* If you have an existing Kubernetes cluster or want to use Kubeflow on prem,
+  follow the [guide to deploying Kubeflow on 
+  Kubernetes](/docs/started/getting-started-k8s/).
+* If you want to run Kubernetes locally in a virtual machine (VM), choose one of 
+  the following options:
 
-  * You want to train/serve TensorFlow models in different environments (e.g. local, on prem, and cloud)
-  * You want to use Jupyter notebooks to manage TensorFlow training jobs
-  * You want to launch training jobs that use resources -- such as additional
-    CPUs or GPUs -- that aren't available on your personal computer
-  * You want to combine TensorFlow with other processes
-       * For example, you may want to use [tensorflow/agents](https://github.com/tensorflow/agents) to run simulations to generate data for training reinforcement learning models.
+   * [MiniKF setup](/docs/started/getting-started-minikf/)
+      * MiniKF is a fast and easy way to get started with Kubeflow.
+      * It installs with just two commands and then you are up for
+	      experimentation, and for running complete Kubeflow Pipelines.
+      * MiniKF runs on all major operating systems (Linux, macOS, Windows).
 
-This list is based ONLY on current capabilities. We are investing significant resources to expand the
-functionality and actively soliciting help from companies and individuals interested in contributing (see [Contributing](/docs/contributing/)).
+   * [Minikube setup](/docs/started/getting-started-minikube/)
+      * Minikube uses virtualization applications like 
+        [VirtualBox](https://www.virtualbox.org/) or [VMware
+        Fusion](https://www.vmware.com/products/fusion.html) to host the VM
+	      and provides a CLI that you can use outside the VM.
+      * Minikube defines a fully-baked
+       [ISO image](https://en.wikipedia.org/wiki/ISO_image) that contains a
+        minimal operating system and Kubernetes already installed.
+      * This option may be useful if you are just starting to learn and already
+	      have one of the virtualization applications installed.
 
-## Set up Kubernetes
-
-This documentation assumes you have a Kubernetes cluster available. If not, set up one of these environments first:
-
-  * Local - there are a several options:
-    * [Minikube setup](/docs/started/getting-started-minikube/)
-      * Minikube leverages virtualization applications like [Virtual Box](https://www.virtualbox.org/) or [VMware Fusion](https://www.vmware.com/products/fusion.html) to host the virtual machine and provides a CLI that can be leveraged outside of the VM.
-      * Minikube defines a fully baked ISO that contains a minimal operating system and kubernetes already installed.
-      * This option may be useful if you are just starting to learn and already have one of the virtualization applications already installed.  
-    * [Multipass & Microk8s setup](/docs/started/getting-started-multipass/)
-      * Multipass is a general purpose CLI that launches virtual machines, with Ubuntu [cloud-images](http://cloud-images.ubuntu.com/) already integrated. Multipass uses lightweight, native operating system mechanisms (e.g. [Hypervisor Framework](https://developer.apple.com/documentation/hypervisor) on MacOS, [Hyper-V on Windows 10](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v), QEMU/KVM for linux), which means you don't need to install a virtualization application.
-      * [Microk8s](https://microk8s.io) is used to create the Kubernetes cluster inside the virtual machine. It is installed as a [snap](https://snapcraft.io/), which means it has strong isolation and update semantics - your cluster will be updated within a short period after upstream Kubernetes releases.
-      * The primary benefits of this approach are - you can use the same VMs locally as you would in the cloud (ie cloud-images), you can use cloud-init to customize the VM (as you might in a cloud), and the Kubernetes cluster you create with Microk8s will be updated at regular intervals.
-  * Cloud:
-    * [Kubernetes Engine setup](/docs/started/getting-started-gke/).
-
-For more general information on setting up a Kubernetes cluster please refer to [Kubernetes Setup](https://kubernetes.io/docs/setup/). If you want to use GPUs, be sure to follow the Kubernetes [instructions for enabling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
-
-## Kubeflow quick start
-
-Requirements:
-
-  * ksonnet version {{% ksonnet-min-version %}} or later.
-  * Kubernetes {{% kubernetes-min-version %}} or later
-  * kubectl
-
-Download, set up, and deploy (If you prefer to work from source code, feel free to skip step 1):
-
-1. Run the following commands to download `kfctl.sh`
-
-    ```
-    mkdir ${KUBEFLOW_SRC}
-    cd ${KUBEFLOW_SRC}
-    export KUBEFLOW_TAG={{% kf-stable-tag %}}
-    curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
-     ```
-   * **KUBEFLOW_SRC** a directory where you want to download the source to
-   * **KUBEFLOW_TAG** a tag corresponding to the version to check out, such as `master` for the latest code.
-   * **Note** you can also just clone the repository using git.
-1. Run the following commands to setup and deploy Kubeflow:
+   * [MicroK8s setup](/docs/started/getting-started-multipass/)
+      * [MicroK8s](https://microk8s.io/) can provide the following benefits:
+          - A small, fast, secure, single node Kubernetes installation that installs on any
+            Linux system as a [snap](https://snapcraft.io/microk8s).
+          - Strong isolation and update semantics - your cluster
+            is updated within a short period after upstream Kubernetes
+            releases.
+          - Built-in support to enable an installed GPU:
+            `microk8s.enable gpu`
+      * MicroK8s requires Linux. If you are not on a Linux machine, or you want
+        to confine your Kubeflow to a disposable machine, the installation guide
+        show you how to use
+        [Multipass](https://github.com/CanonicalLtd/multipass) to launch a VM.
+        Benefits include:
+          - [Ubuntu Cloud Images](http://cloud-images.ubuntu.com/) already
+            integrated.
+          - Lightweight hypervisor using native operating system mechanisms
+            (for example, [Hypervisor
+            Framework](https://developer.apple.com/documentation/hypervisor) on
+            macOS, [Hyper-V on Windows
+            10](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v), or
+            QEMU/KVM for Linux).
+          - No need to install a separate virtualization application.
+          - Use of `cloud-init` to customize the VM.
     
-    ```
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform none
-    cd ${KFAPP}
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
-    ```
-   * **${KFAPP}** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init.
-      * The ksonnet app will be created in the directory **${KFAPP}/ks_app**
-
-**Important**: The commands above will enable collection of **anonymous** user data to help us improve Kubeflow; for more information including instructions for explicitly
-disabling it please refer to the [usage reporting guide](/docs/guides/usage-reporting/).
-
 ## Troubleshooting
-For detailed troubleshooting instructions, please refer to the [troubleshooting guide](/docs/guides/troubleshooting/).
+
+See the [Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting/).
 
 ## Resources
 
-* The [guides section](/docs/guides/) provides in-depth instructions for using Kubeflow
+* The [documentation](/docs/) provides in-depth instructions for using Kubeflow.
 * Self-paced scenarios for learning and trying out Kubeflow:
   * [Codelabs](https://codelabs.developers.google.com/?cat=tensorflow)
-    * [Introduction to Kubeflow on Google Kubernetes Engine](https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html)
-    * [Kubeflow End to End: GitHub Issue Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-e2e-gis/index.html)
+      * [Introduction to Kubeflow on Google Kubernetes
+        Engine](https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html)
+      * [Kubeflow End to End: GitHub Issue
+        Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-e2e-gis/index.html)
+      * [Kubeflow Pipelines: GitHub Issue
+        Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-pipelines-gis/index.html)
   * [Katacoda](https://www.katacoda.com/kubeflow)
-    * [Deploying GitHub Issue Summarization with Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploying-github-issue-summarization)
-    * [Deploying Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploying-kubeflow)
-    * [Deploying Kubeflow with Ksonnet](https://www.katacoda.com/kubeflow/scenarios/deploying-kubeflow-with-ksonnet)
-    * [Deploying Pytorch with Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploy-pytorch-with-kubeflow)
+      * [Deploying GitHub Issue Summarization with
+        Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploying-github-issue-summarization)
+      * [Deploying
+        Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploying-kubeflow)
+      * [Deploying Kubeflow with
+        Ksonnet](https://www.katacoda.com/kubeflow/scenarios/deploying-kubeflow-with-ksonnet)
+      * [Deploying Pytorch with
+        Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploy-pytorch-with-kubeflow)
   * [Qwiklabs](https://qwiklabs.com/catalog?keywords=kubeflow)
-    * [Introduction to Kubeflow on Google Kubernetes Engine](https://qwiklabs.com/focuses/960?locale=en&parent=catalog)
-    * [Kubeflow End to End: GitHub Issue Summarization](https://qwiklabs.com/focuses/1257?locale=en&parent=catalog)
+      * [Introduction to Kubeflow on Google Kubernetes
+        Engine](https://qwiklabs.com/focuses/960?locale=en&parent=catalog)
+      * [Kubeflow End to End: GitHub Issue
+        Summarization](https://qwiklabs.com/focuses/1257?locale=en&parent=catalog)
