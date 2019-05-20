@@ -158,3 +158,8 @@ Kubeflow Pipelines UI.
 Renders Markdown strings in the output. The Markdown data can either be read from
 a file stored remotely, or can be embedded in the metadata field `source`, in
 which case the `storage` field's value must be `'inline'`.
+
+## Next steps
+
+* See how to [export metrics from your 
+  pipeline](/docs/pipelines/metrics/pipelines-metrics/).
