@@ -1,3 +1,8 @@
++++
+title = "Pipelines API"
+description = "Reference documentation for Pipelines API"
+weight = 100
++++
 <!DOCTYPE html>
 <html>
 <head>
