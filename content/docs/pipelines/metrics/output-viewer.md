@@ -1,22 +1,23 @@
 +++
-title = "Use an Output Viewer"
-description = "Using output viewers for pipelines components"
+title = "Visualize Component Results on the Pipelines UI"
+description = "Visualizing the results of your pipelines component"
 weight = 8
 +++
 
 The Kubeflow Pipelines UI has built-in support for several types of 
 visualizations, in order to provide rich performance evaluation and comparison. 
-Components can use these visualizations by writing a JSON file 
-to their local filesystem at any point during their execution. 
+As a pipeline creator, you can use these visualizations by writing a JSON file 
+to the component's local filesystem at any point during the pipeline execution. 
 
 ## Metadata for the output viewers
 
 The pipeline component must write a JSON file specifying metadata for the
-output viewers. The file name must be `/mlpipeline-ui-metadata.json`, and the file
+output viewer(s) that the component needs. The file name must be 
+`/mlpipeline-ui-metadata.json`, and the file
 must be written to the root level of the container filesystem.
 
-The JSON specifies an array of outputs, each of which describes metadata for an 
-output viewer. The JSON structure looks like this:
+The JSON specifies an array of `outputs`. Each `outputs` entry describes the
+metadata for an output viewer. The JSON structure looks like this:
 
 ```
 {
@@ -37,29 +38,30 @@ output viewer. The JSON structure looks like this:
 }
 ```
 
-If the component writes such a file to its container filesystem, Kubeflow 
-Pipelines extracts the file, and the UI uses the file to generate the 
+If the component writes such a file to its container filesystem, the Kubeflow 
+Pipelines system extracts the file, and the UI uses the file to generate the 
 specified viewer(s). The metadata specifies where the artifact data should be 
 loaded from, and then the UI loads the data **into memory** and renders it. 
 It's important to keep this data at a level that's manageable by the UI, for 
 example by running a sampling step before exporting the file as an artifact.
 
-These are the metadata fields that you can specify:
+You can specify the following metadata fields for each entry in the `outputs`
+array:
 
 | Field name      | Description |
 | -------------   | ------------- |
-| `format`        | Specifies the format of the artifact data, default is 'csv'. *NOTE* The only format supported as of now is 'csv'. |
-| `header`        | A list of strings that are used as the header of the artifact data. |
-| `labels`        | A list of strings that are used to label artifact columns/rows. |
+| `format`        | The format of the artifact data; default is 'csv'. *Note:* The only format currently available is 'csv'. |
+| `header`        | A list of strings to be used as headers for the artifact data. For example, in a table these strings are used in the first row. |
+| `labels`        | A list of strings to be used as labels for artifact columns or rows. |
 | `predicted_col` | Name of the predicted column. |
-| `schema`        | A list of {type, name} objects that specify the schema of the artifact data. |
-| `source`        | Full path to data. This can contain wildcards '*', in which case the data is concatenated before it's displayed by the UI. For some viewers, this can contain inlined string data. |
-| `storage`       | Storage provider service name, default is 'gcs'. |
+| `schema`        | A list of `{type, name}` objects that specify the schema of the artifact data. |
+| `source`        | The full path to the data. This path can contain wildcards '*', in which case the UI concatenates the data from the matching source files. For some viewers, this field can contain inlined string data instead of a path. |
+| `storage`       | Name of the storage provider; default is Google Cloud Storage ('gcs'). |
 | `target_col`    | Name of the target column. |
-| `type`          | Name of the viewer, one of the ones below. |
+| `type`          | Name of the viewer to be used to visualize the data. The list below shows the available types. |
 
-Below are the supported viewer types and the required metadata fields for each
-type:
+The sections below describe the available viewer types and the required metadata 
+fields for each type:
 
 ## Confusion matrix
 
@@ -107,8 +109,8 @@ closest fpr and tpr values.
 - `format`
 
 Builds an HTML table out of the data at the given source path, where the 
-`header` field specifies what shows up in the first row of the table. The table 
-supports pagination.
+`header` field specifies the values to be shown in the first row of the table. 
+The table supports pagination.
 
 ## Tensorboard
 
