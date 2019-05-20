@@ -3,6 +3,7 @@ title = "Pipeline Metrics"
 description = "Export and visualize pipeline metrics"
 weight = 9
 +++
+
 This page shows you how to export metrics from a Kubeflow Pipelines component. 
 For details about how to build a component, see the guide to 
 [building your own component](/docs/pipelines/sdk/build-component/).
@@ -58,10 +59,10 @@ The following example shows two metrics, **accuracy-score** and
   alt="Metrics from a pipeline run"
   class="mt-3 mb-3 border border-info rounded">
 
-The above example comes from the tax tip prediction sample that is pre-installed 
-when you deploy Kubeflow. You can run the sample by selecting
-**[Sample] ML - TFX - Taxi Tip Prediction Model Trainer** from the 
-Kubeflow Pipelines UI. For help getting started with the UI, follow the
+The above example comes from the *tax tip prediction* sample that is
+pre-installed when you deploy Kubeflow. You can run the sample by selecting **[Sample]
+ML - TFX - Taxi Tip Prediction Model Trainer** from the Kubeflow Pipelines UI.
+For help getting started with the UI, follow the 
 [Kubeflow Pipelines quickstart](/docs/pipelines/pipelines-quickstart/).
 
 The sample code is available in the [Kubeflow Pipelines samples 

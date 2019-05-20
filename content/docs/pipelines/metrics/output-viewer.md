@@ -1,20 +1,61 @@
 +++
-title = "Visualize Component Results on the Pipelines UI"
+title = "Visualize Results in the Pipelines UI"
 description = "Visualizing the results of your pipelines component"
 weight = 8
 +++
 
-The Kubeflow Pipelines UI has built-in support for several types of 
-visualizations, in order to provide rich performance evaluation and comparison. 
-As a pipeline creator, you can use these visualizations by writing a JSON file 
-to the component's local filesystem at any point during the pipeline execution. 
+This page shows you how to use the Kubeflow Pipelines UI to visualize output 
+from a Kubeflow Pipelines component. 
+For details about how to build a component, see the guide to 
+[building your own component](/docs/pipelines/sdk/build-component/).
 
-## Metadata for the output viewers
+## Introduction
+
+The Kubeflow Pipelines UI offers built-in support for several types of 
+visualizations, which you can use to provide rich performance evaluation and 
+comparison data. To make use of this programmable UI, your pipeline component 
+must write a JSON file to the component's local filesystem. You can do this at 
+any point during the pipeline execution.
+
+You can view the output visualizations in the following places on the Kubeflow
+Pipelines UI:
+
+* The **Run output** tab shows the visualizations for all pipeline steps in the
+  selected run. To open the tab in the Kubeflow Pipelines UI:
+
+  1. Click **Experiments** to see your current pipeline experiments.
+  1. Click the *experiment name* of the experiment that you want to view.
+  1. Click the *run name* of the run that you want to view.
+  1. Click the **Run output** tab.
+
+    <img src="/docs/images/taxi-tip-run-output.png" 
+      alt="Output visualization from a pipeline run"
+      class="mt-3 mb-3 border border-info rounded">
+
+* The **Artifacts** tab shows the visualization for the selected pipeline step.
+  To open the tab in the Kubeflow Pipelines UI:
+
+  1. Click **Experiments** to see your current pipeline experiments.
+  1. Click the *experiment name* of the experiment that you want to view.
+  1. Click the *run name* of the run that you want to view.
+  1. On the **Graph** tab, click the step representing the pipeline component 
+    that you want to view. The step details slide into view, showing the
+    **Artifacts** tab.
+
+    <img src="/docs/images/taxi-tip-prediction-step-output-table.png" 
+      alt="Table-based visualization from a pipeline component"
+      class="mt-3 mb-3 border border-info rounded">
+
+All screenshots and code snippets on this page come from a 
+sample pipeline that you can run directly from the Kubeflow Pipelines UI.
+See the [sample description and links below](#example-source).
+
+## Writing out metadata for the output viewers
 
 The pipeline component must write a JSON file specifying metadata for the
-output viewer(s) that the component needs. The file name must be 
-`/mlpipeline-ui-metadata.json`, and the file
-must be written to the root level of the container filesystem.
+output viewer(s) that you want to use for visualizing the results. The file name 
+must be `/mlpipeline-ui-metadata.json`, and the component must write the file
+to the root level of the container filesystem.
 
 The JSON specifies an array of `outputs`. Each `outputs` entry describes the
 metadata for an output viewer. The JSON structure looks like this:
@@ -26,10 +67,13 @@ metadata for an output viewer. The JSON structure looks like this:
     {
       "type": "confusion_matrix",
       "format": "csv",
-      "source": "dir1/matrix.csv",
-      "schema": "dir1/schema.json",
-      "predicted_col": "column1",
-      "target_col": "column2"
+      "source": "my-dir/my-matrix.csv",
+      "schema": [
+        {"name": "target", "type": "CATEGORY"},
+        {"name": "predicted", "type": "CATEGORY"},
+        {"name": "count", "type": "NUMBER"},
+      ],
+      "labels": "vocab"
     },
     {
       ...
@@ -38,34 +82,85 @@ metadata for an output viewer. The JSON structure looks like this:
 }
 ```
 
-If the component writes such a file to its container filesystem, the Kubeflow 
-Pipelines system extracts the file, and the UI uses the file to generate the 
-specified viewer(s). The metadata specifies where the artifact data should be 
-loaded from, and then the UI loads the data **into memory** and renders it. 
-It's important to keep this data at a level that's manageable by the UI, for 
-example by running a sampling step before exporting the file as an artifact.
+If the component writes such a file to its container filesystem, the Kubeflow
+Pipelines system extracts the file, and the Kubeflow Pipelines UI uses the file
+to generate the specified viewer(s). The metadata specifies where to load the
+artifact data from. The Kubeflow Pipelines UI loads the data **into memory**
+and renders it. *Note:* You should keep this data at a volume that's manageable
+by the UI, for example by running a sampling step before exporting the file as
+an artifact.
 
 You can specify the following metadata fields for each entry in the `outputs`
 array:
 
-| Field name      | Description |
-| -------------   | ------------- |
-| `format`        | The format of the artifact data; default is 'csv'. *Note:* The only format currently available is 'csv'. |
-| `header`        | A list of strings to be used as headers for the artifact data. For example, in a table these strings are used in the first row. |
-| `labels`        | A list of strings to be used as labels for artifact columns or rows. |
-| `predicted_col` | Name of the predicted column. |
-| `schema`        | A list of `{type, name}` objects that specify the schema of the artifact data. |
-| `source`        | The full path to the data. This path can contain wildcards '*', in which case the UI concatenates the data from the matching source files. For some viewers, this field can contain inlined string data instead of a path. |
-| `storage`       | Name of the storage provider; default is Google Cloud Storage ('gcs'). |
-| `target_col`    | Name of the target column. |
-| `type`          | Name of the viewer to be used to visualize the data. The list below shows the available types. |
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Field name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>format</code></td>
+        <td>The format of the artifact data. The default is <code>csv</code>. 
+          <em>Note:</em> The only format currently available is 
+          <code>csv</code>.
+        </td>
+      </tr>
+      <tr>
+        <td><code>header</code></td>
+        <td>A list of strings to be used as headers for the artifact data. For 
+          example, in a table these strings are used in the first row.</td>
+      </tr>
+      <tr>
+        <td><code>labels</code></td>
+        <td>A list of strings to be used as labels for artifact columns or 
+          rows.</td>
+      </tr>
+      <tr>
+        <td><code>predicted_col</code></td>
+        <td>Name of the predicted column.</td>
+      </tr>
+      <tr>
+        <td><code>schema</code></td>
+        <td>A list of <code>{type, name}</code> objects that specify the schema 
+          of the artifact data.</td>
+      </tr>
+      <tr>
+        <td><code>source</code></td>
+        <td>The full path to the data. This path can contain wildcards ‘*’, in 
+          which case the Kubeflow Pipelines UI concatenates the data from the 
+          matching source files. For some viewers, this field can contain 
+          inlined string data instead of a path.</td>
+      </tr>
+      <tr>
+        <td><code>storage</code></td>
+        <td>Name of the storage provider. The default is Google Cloud Storage 
+          (<code>gcs</code>).</td>
+      </tr>
+      <tr>
+        <td><code>target_col</code></td>
+        <td>Name of the target column.</td>
+      </tr>
+      <tr>
+        <td><code>type</code></td>
+        <td>Name of the viewer to be used to visualize the data. The list below 
+          shows the available types.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Available output viewers
 
 The sections below describe the available viewer types and the required metadata 
-fields for each type:
+fields for each type.
 
-## Confusion matrix
+### Confusion matrix
 
-**type:** `'confusion_matrix'`
+**Type:** `confusion_matrix`
 
 **Metadata fields:**
 
@@ -74,13 +169,61 @@ fields for each type:
 - `schema`
 - `format`
 
-Plots a confusion matrix visualization using the data from the given source 
-path, and the schema to be able to parse the data. Labels provide the names of 
-the classes to be plotted on the x and y axes.
+The `confusion_matrix` viewer plots a confusion matrix visualization of the data
+from the given `source` path, using the `schema` to parse the data. The `labels`
+provide the names of the classes to be plotted on the x and y axes.
 
-## ROC curve
+**Example:**
 
-**type:** `'roc'`
+```Python
+  metadata = {
+    'outputs' : [{
+      'type': 'confusion_matrix',
+      'format': 'csv',
+      'schema': [
+        {'name': 'target', 'type': 'CATEGORY'},
+        {'name': 'predicted', 'type': 'CATEGORY'},
+        {'name': 'count', 'type': 'NUMBER'},
+      ],
+      'source': cm_file,
+      # Convert vocab to string because for bealean values we want "True|False" to match csv data.
+      'labels': list(map(str, vocab)),
+    }]
+  }
+  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
+    json.dump(metadata, f)
+```
+
+**Visualization on the Kubeflow Pipelines UI:**
+
+<img src="/docs/images/taxi-tip-confusion-matrix-step-output.png" 
+  alt="Confusion matrix visualization from a pipeline component"
+  class="mt-3 mb-3 border border-info rounded">
+
+### Markdown
+
+**Type:** `markdown`
+
+**Metadata fields:**
+
+- `storage`
+- `source`
+
+The `markdown` viewer renders Markdown strings on the Kubeflow Pipelines UI. 
+The viewer can read the Markdown data from the following locations:
+
+* Markdown code in a remote file, at a path specified in the `source` field.
+  The `storage` field specifies the name of the storage provider. The default 
+  is Google Cloud Storage (`gcs`).
+* Markdown code embedded in the `source` field. The value of the `storage` field 
+  must be `inline`.
+
+**Example:** *None available. See issue [kubeflow/website 
+#723](https://github.com/kubeflow/website/issues/723).*
+
+### ROC curve
+
+**Type:** `roc`
 
 **Metadata fields:**
 
@@ -88,19 +231,51 @@ the classes to be plotted on the x and y axes.
 - `format`
 - `schema`
 
-Plots a ROC curve using the data from the given source path. It assumes the 
-schema includes three columns with the following names: 
+The `roc` viewer plots a receiver operating characteristic 
+([ROC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic))
+curve using the data from the given source path. The Kubeflow Pipelines UI
+assumes that the schema includes three columns with the following names:
 
-* fpr
-* tpr
-* thresholds
+* `fpr` (false positive rate)
+* `tpr` (true positive rate)
+* `thresholds`
 
-Hovering on the ROC curve shows the threshold value used for the cursor's 
-closest fpr and tpr values.
+When viewing the ROC curve, you can hover your cursor over the ROC curve to see 
+the threshold value used for the cursor's closest `fpr` and `tpr` values.
 
-## Table
+**Example:**
 
-**type:** `'table'`
+```Python
+  df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr, 'thresholds': thresholds})
+  roc_file = os.path.join(args.output, 'roc.csv')
+  with file_io.FileIO(roc_file, 'w') as f:
+    df_roc.to_csv(f, columns=['fpr', 'tpr', 'thresholds'], header=False, index=False)
+
+  metadata = {
+    'outputs': [{
+      'type': 'roc',
+      'format': 'csv',
+      'schema': [
+        {'name': 'fpr', 'type': 'NUMBER'},
+        {'name': 'tpr', 'type': 'NUMBER'},
+        {'name': 'thresholds', 'type': 'NUMBER'},
+      ],
+      'source': roc_file
+    }]
+  }
+  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
+    json.dump(metadata, f)
+```
+
+**Visualization on the Kubeflow Pipelines UI:**
+
+<img src="/docs/images/taxi-tip-roc-step-output.png" 
+  alt="ROC curve visualization from a pipeline component"
+  class="mt-3 mb-3 border border-info rounded">
+
+### Table
+
+**Type:** `table`
 
 **Metadata fields:**
 
@@ -108,60 +283,145 @@ closest fpr and tpr values.
 - `header`
 - `format`
 
-Builds an HTML table out of the data at the given source path, where the 
-`header` field specifies the values to be shown in the first row of the table. 
-The table supports pagination.
+The `table` viewer builds an HTML table out of the data at the given `source`
+path, where the `header` field specifies the values to be shown in the first row
+of the table. The table supports pagination.
 
-## Tensorboard
+**Example:**
 
-**type:** `'tensorboard'`
+```Python
+  metadata = {
+    'outputs' : [{
+      'type': 'table',
+      'storage': 'gcs',
+      'format': 'csv',
+      'header': [x['name'] for x in schema],
+      'source': prediction_results
+    }]
+  }
+  with open('/mlpipeline-ui-metadata.json', 'w') as f:
+    json.dump(metadata, f)
+```
+
+**Visualization on the Kubeflow Pipelines UI:**
+
+<img src="/docs/images/taxi-tip-prediction-step-output-table.png" 
+  alt="Table-based visualization from a pipeline component"
+  class="mt-3 mb-3 border border-info rounded">
+
+### Tensorboard
+
+**Type:** `tensorboard`
 
 **Metadata Fields:**
 
 - `source`
 
-Adds a "Start Tensorboard" button to the output page. Clicking this button 
-starts a Tensorboard Pod in the Kubernetes cluster, and switches the button to
- "Open Tensorboard." Clicking this button again opens up the Tensorboard 
- interface in a new tab, pointing it to the logdir data specified in the 
- `source` field.
+The `tensorboard` viewer adds a **Start Tensorboard** button to the output page. 
 
-It's important to point out that Tensorboard instances are not completely 
-managed by the Kubeflow Pipelines UI. The "Start Tensorboard" is only a 
-convenience feature to avoid interrupting the user's workflow when looking at 
-pipeline runs. The user is responsible for recycling or deleting those Pods 
-separately using their Kubernetes management tools.
+When viewing the output page, you can:
 
-## Web app
+* Click **Start Tensorboard** to start a 
+  [TensorBoard](https://www.tensorflow.org/guide/summaries_and_tensorboard) Pod
+  in your Kubeflow cluster. The button text switches to **Open Tensorboard**. 
+* Click **Open Tensorboard** to open the TensorBoard interface in a new tab, 
+  pointing to the logdir data specified in the `source` field.
 
-**type:** `'web-app'`
+**Note:** The Kubeflow Pipelines UI doesn't fully manage your TensorBoard 
+instances. The "Start Tensorboard" button is a convenience feature so that
+you don't have to interrupt your workflow when looking at pipeline runs. You're
+responsible for recycling or deleting the TensorBoard Pods using your Kubernetes
+management tools.
+
+**Example:**
+
+```Python
+  metadata = {
+    'outputs' : [{
+      'type': 'tensorboard',
+      'source': args.job_dir,
+    }]
+  }
+  with open('/mlpipeline-ui-metadata.json', 'w') as f:
+    json.dump(metadata, f)
+```
+
+**Visualization on the Kubeflow Pipelines UI:**
+
+<img src="/docs/images/taxi-tip-training-step-output-tensorboard.png" 
+  alt="TensorBoard option output from a pipeline component"
+  class="mt-3 mb-3 border border-info rounded">
+
+### Web app
+
+**Type:** `web-app`
 
 **Metadata fields:**
 
 - `source`
 
-In order to provide more flexibility rendering custom output, 
-this viewer supports specifying an HTML file that is created by the component 
-and is rendered in the outputs page as is. It's important to note that this file 
-must be self-contained, with no references to other files in the filesystem. It 
-can still have absolute references to files on the web, however. Content running 
-inside this web app is isolated in an iframe, and cannot communicate with the 
-Kubeflow Pipelines UI.
+The `web-app` viewer provides flexibility for rendering custom output. You can
+specify an HTML file that your component creates, and the Kubeflow Pipelines UI
+renders that HTML in the output page. The HTML file must be self-contained, with
+no references to other files in the filesystem. The HTML file can contain
+absolute references to files on the web. Content running inside the web app is
+isolated in an iframe and cannot communicate with the Kubeflow Pipelines UI.
 
-## Markdown
+**Example:**
 
-**type:** `'markdown'`
+```Python
+  static_html_path = os.path.join(output_dir, _OUTPUT_HTML_FILE)
+  file_io.write_string_to_file(static_html_path, rendered_template)
 
-**Metadata fields:**
+  metadata = {
+    'outputs' : [{
+      'type': 'web-app',
+      'storage': 'gcs',
+      'source': static_html_path,
+    }]
+  }
+  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
+    json.dump(metadata, f)
+```
 
-- `storage`
-- `source`
+**Visualization on the Kubeflow Pipelines UI:**
 
-Renders Markdown strings in the output. The Markdown data can either be read from
-a file stored remotely, or can be embedded in the metadata field `source`, in
-which case the `storage` field's value must be `'inline'`.
+<img src="/docs/images/taxi-tip-analysis-step-output-webapp-popped-out.png" 
+  alt="Web app output from a pipeline component"
+  class="mt-3 mb-3 border border-info rounded">
 
-## Next steps
+<a id="example-source"></a>
+## Source of examples on this page
 
-* See how to [export metrics from your 
-  pipeline](/docs/pipelines/metrics/pipelines-metrics/).
+The above examples come from the *tax tip prediction* sample that is
+pre-installed when you deploy Kubeflow. 
+
+You can run the sample by selecting 
+**[Sample] ML - TFX - Taxi Tip Prediction Model Trainer** from the 
+Kubeflow Pipelines UI. For help getting started with the UI, follow the 
+[Kubeflow Pipelines quickstart](/docs/pipelines/pipelines-quickstart/).
+
+The sample code is available in the [Kubeflow Pipelines samples 
+repo](https://github.com/kubeflow/pipelines/tree/master/samples/tfx). The
+pipeline uses a number of prebuilt, reusable components, including:
+
+* The [Confusion Matrix 
+  component](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py)
+  which writes out the data for the `confusion_matrix` viewer.
+* The [ROC 
+  component](https://github.com/kubeflow/pipelines/blob/master/components/local/roc/src/roc.py)
+  which writes out the data for the `roc` viewer.
+* The [dnntrainer 
+  component](https://github.com/kubeflow/pipelines/blob/master/components/kubeflow/dnntrainer/src/trainer/task.py)
+  which writes out the data for the `tensorboard` viewer.
+* The [tfma 
+  component](https://github.com/kubeflow/pipelines/blob/master/components/dataflow/tfma/src/model_analysis.py)
+  which writes out the data for the `web-app` viewer.
+* The [dataflow predict 
+  component](https://github.com/kubeflow/pipelines/blob/master/components/dataflow/predict/src/predict.py)
+  which writes out the data for the `table` viewer.
+
+## Next step
+
+See how to [export metrics from your 
+pipeline](/docs/pipelines/metrics/pipelines-metrics/).
