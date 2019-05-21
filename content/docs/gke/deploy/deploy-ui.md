@@ -22,7 +22,8 @@ Follow these steps to open the deployment UI and deploy Kubeflow on GCP:
 1. Open [https://deploy.kubeflow.cloud/](https://deploy.kubeflow.cloud/#/deploy)
   in your web browser. You should see a form like the one in the above
   screenshot.
-1. Sign in to your browser using a GCP account that has administrator privileges 
+1. Sign in to your browser using an account that has the 
+  [`owner` role](https://cloud.google.com/iam/docs/understanding-roles) 
   for your GCP project.
 1. Complete the following fields on the form:
 
@@ -31,7 +32,8 @@ Follow these steps to open the deployment UI and deploy Kubeflow on GCP:
       deployment of Kubeflow. If you plan to use [Cloud Identity-Aware Proxy
       (Cloud IAP)](https://cloud.google.com/iap/docs/) for access control (see
       the next option below), make sure you use the same deployment name 
-      on the deployment UI and when creating the OAuth client ID.
+      on the deployment UI and when [creating the OAuth 
+      client ID](/docs/gke/deploy/oauth-setup/).
       The maximum length for the deployment name is 25 characters.
     * **Choose how to connect to Kubeflow:** You can choose one of the
       following options:
