@@ -90,8 +90,10 @@ and renders it. *Note:* You should keep this data at a volume that's manageable
 by the UI, for example by running a sampling step before exporting the file as
 an artifact.
 
-You can specify the following metadata fields for each entry in the `outputs`
-array:
+The table below shows the available metadata fields that you can specify in the 
+`outputs` array. Each `outputs` entry must have a `type`. Depending on value of 
+`type`, other fields may also be required as described in the list of output 
+viewers later on the page.
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -155,14 +157,14 @@ array:
 
 ## Available output viewers
 
-The sections below describe the available viewer types and the required metadata 
-fields for each type.
+The sections below describe the available viewer types and the **required** 
+metadata fields for each type.
 
 ### Confusion matrix
 
 **Type:** `confusion_matrix`
 
-**Metadata fields:**
+**Required metadata fields:**
 
 - `source`
 - `labels`
@@ -204,7 +206,7 @@ provide the names of the classes to be plotted on the x and y axes.
 
 **Type:** `markdown`
 
-**Metadata fields:**
+**Required metadata fields:**
 
 - `storage`
 - `source`
@@ -215,8 +217,8 @@ The viewer can read the Markdown data from the following locations:
 * Markdown code in a remote file, at a path specified in the `source` field.
   The `storage` field specifies the name of the storage provider. The default 
   is Google Cloud Storage (`gcs`).
-* Markdown code embedded in the `source` field. The value of the `storage` field 
-  must be `inline`.
+* A Markdown-formatted string embedded in the `source` field. The value of the
+ `storage` field must be `inline`.
 
 **Example:** *None available. See issue [kubeflow/website 
 #723](https://github.com/kubeflow/website/issues/723).*
@@ -225,7 +227,7 @@ The viewer can read the Markdown data from the following locations:
 
 **Type:** `roc`
 
-**Metadata fields:**
+**Required metadata fields:**
 
 - `source`
 - `format`
@@ -277,7 +279,7 @@ the threshold value used for the cursor's closest `fpr` and `tpr` values.
 
 **Type:** `table`
 
-**Metadata fields:**
+**Required metadata fields:**
 
 - `source`
 - `header`
@@ -309,11 +311,11 @@ of the table. The table supports pagination.
   alt="Table-based visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
 
-### Tensorboard
+### TensorBoard
 
 **Type:** `tensorboard`
 
-**Metadata Fields:**
+**Required metadata Fields:**
 
 - `source`
 
@@ -356,7 +358,7 @@ management tools.
 
 **Type:** `web-app`
 
-**Metadata fields:**
+**Required metadata fields:**
 
 - `source`
 
