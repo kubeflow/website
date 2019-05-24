@@ -11,7 +11,7 @@ weight = 100
 </ul>
 <h2 id="kubeflow.org">kubeflow.org</h2>
 <p>
-<p>Package v1beta2 is the v1beta2 version of the API.</p>
+<p>Package v1 is the v1 version of the API.</p>
 </p>
 Resource Types:
 <ul><li>
@@ -20,7 +20,7 @@ Resource Types:
 <h3 id="TFJob">TFJob
 </h3>
 <p>
-<p>TFJob represents the configuration of signal TFJob</p>
+<p>Represents a TFJob resource.</p>
 </p>
 <table>
 <thead>
@@ -36,7 +36,7 @@ Resource Types:
 string</td>
 <td>
 <code>
-kubeflow.org/v1beta2
+kubeflow.org/v1
 </code>
 </td>
 </tr>
@@ -57,7 +57,7 @@ Kubernetes meta/v1.ObjectMeta
 </em>
 </td>
 <td>
-<p>Standard object&rsquo;s metadata.</p>
+<p>Standard Kubernetes object&rsquo;s metadata.</p>
 Refer to the Kubernetes API documentation for the fields of the
 <code>metadata</code> field.
 </td>
@@ -72,7 +72,7 @@ TFJobSpec
 </em>
 </td>
 <td>
-<p>Specification of the desired behavior of the TFJob.</p>
+<p>Specification of the desired state of the TFJob.</p>
 <br/>
 <br/>
 <table>
@@ -85,9 +85,9 @@ int64
 </td>
 <td>
 <em>(Optional)</em>
-<p>Specifies the duration in seconds relative to the startTime that the job may be active
-before the system tries to terminate it; value must be positive integer.
-This method applies only to pods with restartPolicy == OnFailure or Always.</p>
+<p>Specifies the duration (in seconds) since startTime during which the job can remain active
+before it is terminated. Must be a positive integer.
+This setting applies only to pods where restartPolicy is OnFailure or Always.</p>
 </td>
 </tr>
 <tr>
@@ -99,7 +99,7 @@ int32
 </td>
 <td>
 <em>(Optional)</em>
-<p>Optional number of retries before marking this job failed.</p>
+<p>Number of retries before marking this job as failed.</p>
 </td>
 </tr>
 <tr>
@@ -107,14 +107,13 @@ int32
 <code>cleanPodPolicy</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1/common/#CleanPodPolicy">
-common/v1beta2.CleanPodPolicy
+common/v1.CleanPodPolicy
 </a>
 </em>
 </td>
 <td>
-<p>CleanPodPolicy defines the policy to kill pods after TFJob is
-succeeded.
-Default to Running.</p>
+<p>Defines the policy for cleaning up pods after the TFJob completes.
+Defaults to Running.</p>
 </td>
 </tr>
 <tr>
@@ -125,11 +124,11 @@ int32
 </em>
 </td>
 <td>
-<p>TTLSecondsAfterFinished is the TTL to clean up tf-jobs (temporary
+<p>Defines the TTL for cleaning up finished TFJobs (temporary
 before kubernetes adds the cleanup controller).
 It may take extra ReconcilePeriod seconds for the cleanup, since
 reconcile gets called periodically.
-Default to infinite.</p>
+Defaults to infinite.</p>
 </td>
 </tr>
 <tr>
@@ -137,13 +136,12 @@ Default to infinite.</p>
 <code>tfReplicaSpecs</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1/common/#ReplicaSpec">
-map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1beta2.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.ReplicaSpec
+map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1.ReplicaSpec
 </a>
 </em>
 </td>
 <td>
-<p>TFReplicaSpecs is map of TFReplicaType and ReplicaSpec
-specifies the TF replicas to run.
+<p>A map of TFReplicaType (type) to ReplicaSpec (value). Specifies the TF cluster configuration.
 For example,
 {
 &ldquo;PS&rdquo;: ReplicaSpec,
@@ -159,15 +157,13 @@ For example,
 <code>status</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1/common/#JobStatus">
-common/v1beta2.JobStatus
+common/v1.JobStatus
 </a>
 </em>
 </td>
 <td>
 <p>Most recently observed status of the TFJob.
-This data may not be up to date.
-Populated by the system.
-Read-only.</p>
+Read-only (modified by the system).</p>
 </td>
 </tr>
 </tbody>
@@ -198,9 +194,9 @@ int64
 </td>
 <td>
 <em>(Optional)</em>
-<p>Specifies the duration in seconds relative to the startTime that the job may be active
-before the system tries to terminate it; value must be positive integer.
-This method applies only to pods with restartPolicy == OnFailure or Always.</p>
+<p>Specifies the duration (in seconds) since startTime during which the job can remain active
+before it is terminated. Must be a positive integer.
+This setting applies only to pods where restartPolicy is OnFailure or Always.</p>
 </td>
 </tr>
 <tr>
@@ -212,7 +208,7 @@ int32
 </td>
 <td>
 <em>(Optional)</em>
-<p>Optional number of retries before marking this job failed.</p>
+<p>Number of retries before marking this job as failed.</p>
 </td>
 </tr>
 <tr>
@@ -220,14 +216,13 @@ int32
 <code>cleanPodPolicy</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1/common/#CleanPodPolicy">
-common/v1beta2.CleanPodPolicy
+common/v1.CleanPodPolicy
 </a>
 </em>
 </td>
 <td>
-<p>CleanPodPolicy defines the policy to kill pods after TFJob is
-succeeded.
-Default to Running.</p>
+<p>Defines the policy for cleaning up pods after the TFJob completes.
+Defaults to Running.</p>
 </td>
 </tr>
 <tr>
@@ -238,11 +233,11 @@ int32
 </em>
 </td>
 <td>
-<p>TTLSecondsAfterFinished is the TTL to clean up tf-jobs (temporary
+<p>Defines the TTL for cleaning up finished TFJobs (temporary
 before kubernetes adds the cleanup controller).
 It may take extra ReconcilePeriod seconds for the cleanup, since
 reconcile gets called periodically.
-Default to infinite.</p>
+Defaults to infinite.</p>
 </td>
 </tr>
 <tr>
@@ -250,13 +245,12 @@ Default to infinite.</p>
 <code>tfReplicaSpecs</code></br>
 <em>
 <a href="/docs/reference/tfjob/v1/common/#ReplicaSpec">
-map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1beta2.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.ReplicaSpec
+map[github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1.TFReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1.ReplicaSpec
 </a>
 </em>
 </td>
 <td>
-<p>TFReplicaSpecs is map of TFReplicaType and ReplicaSpec
-specifies the TF replicas to run.
+<p>A map of TFReplicaType (type) to ReplicaSpec (value). Specifies the TF cluster configuration.
 For example,
 {
 &ldquo;PS&rdquo;: ReplicaSpec,
@@ -269,7 +263,8 @@ For example,
 <h3 id="TFReplicaType">TFReplicaType
 (<code>string</code> alias)</p></h3>
 <p>
-<p>TFReplicaType is the type for TFReplica.</p>
+<p>TFReplicaType is the type for TFReplica. Can be one of: &ldquo;Chief&rdquo;/&ldquo;Master&rdquo; (semantically equivalent),
+&ldquo;Worker&rdquo;, &ldquo;PS&rdquo;, or &ldquo;Evaluator&rdquo;.</p>
 </p>
 <hr/>
 <p><em>

@@ -15,7 +15,7 @@ using TFJob with Kubeflow, see the [user guide](/docs/components/tftraining/).
 
 API references:
 
-  * [v1beta1](/docs/reference/tfjob/v1beta1/tensorflow/)
+  * [v1](/docs/reference/tfjob/v1/tensorflow/)
   * [v1beta2](/docs/reference/tfjob/v1beta2/tensorflow/)
 
 <a id="pytorchjob">

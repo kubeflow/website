@@ -20,6 +20,10 @@
             "docsURLTemplate": "https://godoc.org/github.com/knative/pkg/apis/duck/{{arrIndex .PackageSegments -1}}#{{.TypeIdentifier}}"
         },
         {
+            "typeMatchPrefix": "^github\\.com/kubeflow/tf-operator/pkg/apis/common/v1",
+            "docsURLTemplate": "/docs/reference/tfjob/v1/common/#{{.TypeIdentifier}}"
+        },
+        {
             "typeMatchPrefix": "^github\\.com/kubeflow/tf-operator/pkg/apis/common/v1beta1",
             "docsURLTemplate": "/docs/reference/tfjob/v1beta1/common/#{{.TypeIdentifier}}"
         },
