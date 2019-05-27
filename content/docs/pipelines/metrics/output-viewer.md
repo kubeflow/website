@@ -132,15 +132,25 @@ viewers later on the page.
       </tr>
       <tr>
         <td><code>source</code></td>
-        <td>The full path to the data. This path can contain wildcards ‘*’, in 
+        <td><p>The full path to the data. The available locations
+          include the local filesystem, <code>http</code>, <code>https</code>, 
+          <a href="https://aws.amazon.com/s3/">Amazon S3</a>, 
+          <a href="https://docs.minio.io/">Minio</a>, and 
+          <a href="https://cloud.google.com/storage/docs/">Google Cloud 
+          Storage</a>.</p>
+        
+          <p>The path can contain wildcards ‘*’, in 
           which case the Kubeflow Pipelines UI concatenates the data from the 
-          matching source files. For some viewers, this field can contain 
-          inlined string data instead of a path.</td>
+          matching source files.</p>
+          
+          <p>For some viewers, this field can contain inlined string 
+          data instead of a path.</p>
+          </td>
       </tr>
       <tr>
         <td><code>storage</code></td>
-        <td>Name of the storage provider. The default is Google Cloud Storage 
-          (<code>gcs</code>).</td>
+        <td>Applies only to outputs of type <code>markdown</code>. See 
+        <a href="#type-markdown">below</a>.</td>
       </tr>
       <tr>
         <td><code>target_col</code></td>
@@ -148,13 +158,14 @@ viewers later on the page.
       </tr>
       <tr>
         <td><code>type</code></td>
-        <td>Name of the viewer to be used to visualize the data. The list below 
-          shows the available types.</td>
+        <td>Name of the viewer to be used to visualize the data. The list 
+          <a href="#output-types">below</a> shows the available types.</td>
       </tr>
     </tbody>
   </table>
 </div>
 
+<a id="output-types"></a>
 ## Available output viewers
 
 The sections below describe the available viewer types and the **required** 
@@ -166,10 +177,10 @@ metadata fields for each type.
 
 **Required metadata fields:**
 
-- `source`
+- `format`
 - `labels`
 - `schema`
-- `format`
+- `source`
 
 The `confusion_matrix` viewer plots a confusion matrix visualization of the data
 from the given `source` path, using the `schema` to parse the data. The `labels`
@@ -202,23 +213,24 @@ provide the names of the classes to be plotted on the x and y axes.
   alt="Confusion matrix visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
 
+<a id="type-markdown"></a>
 ### Markdown
 
 **Type:** `markdown`
 
 **Required metadata fields:**
 
-- `storage`
 - `source`
+- `storage`
 
 The `markdown` viewer renders Markdown strings on the Kubeflow Pipelines UI. 
 The viewer can read the Markdown data from the following locations:
 
-* Markdown code in a remote file, at a path specified in the `source` field.
-  The `storage` field specifies the name of the storage provider. The default 
-  is Google Cloud Storage (`gcs`).
 * A Markdown-formatted string embedded in the `source` field. The value of the
  `storage` field must be `inline`.
+* Markdown code in a remote file, at a path specified in the `source` field.
+  The source cannot be a file on the local filesystem.
+  The `storage` field can contain any value except `inline`.
 
 **Example:** *None available. See issue [kubeflow/website 
 #723](https://github.com/kubeflow/website/issues/723).*
@@ -229,9 +241,9 @@ The viewer can read the Markdown data from the following locations:
 
 **Required metadata fields:**
 
-- `source`
 - `format`
 - `schema`
+- `source`
 
 The `roc` viewer plots a receiver operating characteristic 
 ([ROC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic))
@@ -281,9 +293,9 @@ the threshold value used for the cursor's closest `fpr` and `tpr` values.
 
 **Required metadata fields:**
 
-- `source`
-- `header`
 - `format`
+- `header`
+- `source`
 
 The `table` viewer builds an HTML table out of the data at the given `source`
 path, where the `header` field specifies the values to be shown in the first row

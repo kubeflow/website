@@ -49,17 +49,19 @@ The metrics file has the following requirements:
 To see a visualization of the metrics:
 
 1. Open the **Experiments** page in the Kubeflow Pipelines UI.
-1. Click one of your experiments. The **Runs** page opens, showing the top three 
-  metrics as columns for each run.
+1. Click one of your experiments. The **Runs** page opens showing the top two 
+  metrics, where *top* is determined by prevalence (that is, the metrics with 
+  the highest count) and then by metric name. 
+  The metrics appear as columns for each run.
   
-The following example shows two metrics, **accuracy-score** and 
-**roc-auc-score**, for two runs within an experiment:
+The following example shows the **accuracy-score** and 
+**roc-auc-score** metrics for two runs within an experiment:
 
 <img src="/docs/images/taxi-tip-run-scores.png" 
   alt="Metrics from a pipeline run"
   class="mt-3 mb-3 border border-info rounded">
 
-The above example comes from the *tax tip prediction* sample that is
+The above example comes from the *taxi tip prediction* sample that is
 pre-installed when you deploy Kubeflow. You can run the sample by selecting **[Sample]
 ML - TFX - Taxi Tip Prediction Model Trainer** from the Kubeflow Pipelines UI.
 For help getting started with the UI, follow the 
