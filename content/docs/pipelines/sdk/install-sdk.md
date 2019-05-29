@@ -10,6 +10,8 @@ which you can use to build machine learning pipelines. You can use the SDK
 to execute your pipeline, or alternatively you can upload the pipeline to
 the Kubeflow Pipelines UI for execution.
 
+All of the SDK's classes and methods are described in the auto-generated [SDK reference docs](https://kubeflow-pipelines.readthedocs.io/en/latest/).
+
 ## Set up Python
 
 You need **Python 3.5** or later to use the Kubeflow Pipelines SDK. This
