@@ -484,4 +484,10 @@ components/<component group>/<component name>/
 * Consolidate what you've learned by reading the 
   [best practices](/docs/pipelines/sdk/best-practices) for designing and 
   writing components.
-* See the [index of reusable components](/docs/pipelines/reusable-components/).
+* See how to [export metrics from your 
+  pipeline](/docs/pipelines/metrics/pipelines-metrics/).
+* Visualize the output of your component by
+  [adding metadata for an output 
+  viewer](/docs/pipelines/metrics/output-viewer/).
+* Explore the 
+  [index of reusable components](/docs/pipelines/reusable-components/).
