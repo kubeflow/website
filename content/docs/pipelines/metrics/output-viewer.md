@@ -133,7 +133,7 @@ viewers later on the page.
       <tr>
         <td><code>source</code></td>
         <td><p>The full path to the data. The available locations
-          include the local filesystem, <code>http</code>, <code>https</code>, 
+          include <code>http</code>, <code>https</code>, 
           <a href="https://aws.amazon.com/s3/">Amazon S3</a>, 
           <a href="https://docs.minio.io/">Minio</a>, and 
           <a href="https://cloud.google.com/storage/docs/">Google Cloud 
@@ -229,7 +229,6 @@ The viewer can read the Markdown data from the following locations:
 * A Markdown-formatted string embedded in the `source` field. The value of the
  `storage` field must be `inline`.
 * Markdown code in a remote file, at a path specified in the `source` field.
-  The source cannot be a file on the local filesystem.
   The `storage` field can contain any value except `inline`.
 
 **Example:** *None available. See issue [kubeflow/website 
