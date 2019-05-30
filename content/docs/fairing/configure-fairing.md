@@ -14,8 +14,8 @@ environment. Use the following guides to configure Kubeflow Fairing with access
 to your hosted Kubeflow environment.
 
 *  To use Kubeflow Fairing to train and deploy on Kubeflow on Google Kubernetes
-   Engine or Google AI Platform, follow the guide to [configuring Kubeflow
-   Fairing with access to Google Cloud Platform][conf-gcp].  
+   Engine, follow the guide to [configuring Kubeflow Fairing with access to
+   Google Cloud Platform][conf-gcp].  
 
 ## Prerequisites
 

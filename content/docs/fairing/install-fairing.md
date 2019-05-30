@@ -62,7 +62,7 @@ not been tested on Windows.
     If you do not have virtualenv, use pip3 to install virtualenv.
 
     ```bash
-    pip3 install --upgrade virtualenv
+    pip3 install virtualenv
     ```
 
     Create a new virtual environment, and activate it.
@@ -78,7 +78,7 @@ Run the following command to install Kubeflow Fairing in your virtual
 environment.
 
 ```bash
-pip install --upgrade fairing
+pip install fairing
 ```
 
 After successful installation, the `fairing` python package should be
@@ -189,7 +189,7 @@ with your hosted notebook environment.
 1.  Run the following command to install Kubeflow Fairing.
 
     ```bash
-    pip3 install --upgrade fairing
+    pip3 install fairing
     ```
 
     After successful installation, the `fairing` python package should be

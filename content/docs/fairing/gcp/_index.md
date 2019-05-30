@@ -1,5 +1,5 @@
 +++
 title = "Fairing on GCP"
-description = "Documentation for using Kubeflow Fairing to train or deploy on Kubeflow on GKE or AI Platform"
+description = "Documentation for using Kubeflow Fairing to train or deploy on Google Cloud Platform (GCP)"
 weight = 45
 +++

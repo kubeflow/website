@@ -5,9 +5,7 @@ weight = 50
 +++
 
 Use the following tutorials to learn more about using Kubeflow Fairing to train
-and deploy on Google Cloud Platform (GCP). The following tutorials describe how
-to use Kubeflow Fairing to train and deploy on Kubeflow on Google Kubernetes
-Engine and Google AI Platform.
+and deploy on Google Cloud Platform (GCP).
 
 *  Learn how to [train and deploy a model on GCP from a local
    notebook][gcp-local].

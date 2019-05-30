@@ -1,13 +1,12 @@
 +++
 title = "Configure Kubeflow Fairing with Access to GCP"
-description = "Configuring your Kubeflow Fairing development environment to access Kubeflow on GKE or AI Platform"
+description = "Configuring your Kubeflow Fairing development environment to access Kubeflow on GKE"
 weight = 20
 +++
 
 This guide describes how to configure your development environment with access
 to Google Cloud Platform (GCP), so you can use Kubeflow Fairing to train or
-deploy a model on Kubeflow on Google Kubernetes Engine (GKE) or Google AI
-Platform.
+deploy a model on Kubeflow on Google Kubernetes Engine (GKE).
 
 If you have not installed Kubeflow Fairing, follow the guide to [installing
 Kubeflow Fairing][fairing-install] before continuing.
@@ -25,8 +24,8 @@ with access to your Kubeflow environment.
 ## Install and configure the Google Cloud SDK
 
 Follow these instructions to set up the Google Cloud SDK in your local
-development environment. If you are using Kubeflow notebooks on GKE or an
-AI Platform Notebooks instance, you do not need to complete these steps. 
+development environment. If you are using Kubeflow notebooks on GKE, you do
+not need to complete these steps. 
 
 1.  To check if you have the Google Cloud SDK installed, run the following
     command:
