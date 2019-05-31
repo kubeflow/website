@@ -18,7 +18,7 @@ deploy Kubeflow on Amazon Web Services (AWS).
     * Configure the AWS CLI by running the following command: `aws configure`.
     * Enter your Access Keys ([Access Key ID and Secret Access Key](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys)).
     * Enter your preferred AWS Region and default output options.
-* Install [eksctl](https://github.com/weaveworks/eksctl) (version 0.1.27 or newer) and the [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
+* Install [eksctl](https://github.com/weaveworks/eksctl) (version 0.1.31 or newer) and the [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
 * Install [jq](https://stedolan.github.io/jq/download/).
 * Install [ksonnet](https://github.com/ksonnet/ksonnet).
 
@@ -107,6 +107,8 @@ If you experience any issues running these scripts, see the [troubleshooting gui
     # Customize your Amazon EKS cluster configuration before following the next step
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
     ```
+
+    > Note: If you see `no kind "ClusterConfig" is registered for version "eksctl.io/v1alpha5"` error, it means your eksctl version is low and not compatible with latest version. Please upgrade it and have another try.
 
 1. Generate and apply the Kubernetes changes.
 

@@ -238,6 +238,10 @@ Access Jupyter notebooks at http://localhost:8080/notebooks/
 
 ### Where to go next
 
+You can use the following command to set up port forwarding and access the Web UIs:
+
+{{% code-webui-port-forward %}}
+
 Now you can access the Kubeflow dashboard at http://localhost:8080/ and Jupyter
 notebooks at http://localhost:8080/notebooks/.
 

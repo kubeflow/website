@@ -150,16 +150,36 @@ resp = requests.get('http://' + addr)
 print(resp.text)
 ```
 
-and we can deploy functions as part of a KubeFlow pipeline step:
+## Using Nuclio with KubeFlow Pipelines
+
+We can deploy and test functions as part of a KubeFlow pipeline step.
+after installing nuclio in your cluster (see instructions above), you can run the following pipeline:
 
 ```python
-nuclio_dep = kfp.components.load_component_from_file('deploy/component.yaml')
+import kfp
+from kfp import dsl
 
-def my_pipeline():
-    new_func = nuclio_dep(url='git://github.com/nuclio/nuclio#master:/hack/examples/python/helloworld', name='myfunc', project='myproj', tag='0.11') 
+# load nuclio kubeflow components
+nuclio_deploy = kfp.components.load_component(url='https://raw.githubusercontent.com/kubeflow/pipelines/master/components/nuclio/deploy/component.yaml')
+nuclio_invoke = kfp.components.load_component(url='https://raw.githubusercontent.com/kubeflow/pipelines/master/components/nuclio/invoker/component.yaml')
+
+@dsl.pipeline(
+    name='Nuclio deploy and invoke demo',
+    description='Nuclio demo, build/deploy a function from notebook + test the function rest endpoint'
+)
+def nuc_pipeline(
+   txt='good morningf',
+):
+    nb_path = 'https://raw.githubusercontent.com/nuclio/nuclio-jupyter/master/docs/nlp-example.ipynb'
+    dashboard='http://nuclio-dashboard.nuclio.svc:8070'
     
-    ...
+    # build the function image & CRD from a notebook file (in the above URL)
+    build = nuclio_deploy(url=nb_path, name='myfunc', project='myproj', tag='0.11', dashboard=dashboard)
+    
+    # test the function with real data (function URL is taken from the build output)
+    test = nuclio_invoke(build.output, txt)
 ```
+the code above assumes nuclio was deployed into the `nuclio` namespace on the same cluster, when using a remote cluster or a different namespace you just need to change the `dashboard` URL.
 
 See [nuclio pipline components](https://github.com/kubeflow/pipelines/tree/master/components/nuclio) (allowing to deploy, delete, or invoke functions) 
 

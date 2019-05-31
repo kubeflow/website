@@ -46,10 +46,7 @@ This URL brings up the landing page illustrated above.
 You can use the following command to set up port forwarding to the
 [Ambassador](https://www.getambassador.io/) service that provides the reverse proxy.
 
-```
-export NAMESPACE=kubeflow
-kubectl port-forward svc/ambassador -n ${NAMESPACE} 8080:80
-```
+{{% code-webui-port-forward %}}
 
 You can then access the central navigation dashboard at:
 

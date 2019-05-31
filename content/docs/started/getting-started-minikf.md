@@ -4,6 +4,8 @@ description = "A fast and easy way to deploy Kubeflow on your laptop"
 weight = 2
 +++
 
+*Latest version: 20190521.1.0*
+
 A production-ready, full-fledged, local Kubeflow deployment that
 installs in minutes.
 
@@ -53,21 +55,42 @@ vagrant init arrikto/minikf
 vagrant up
 ```
 
-This will take a few minutes to complete. Once the installation is
-completed successfully, follow the on-screen instructions.
+MiniKF will take a few minutes to boot. When this is done, navigate to
+http://10.10.10.10 and follow the on-screen instructions to start Kubeflow and
+Rok.
 
-### Kubeflow dashboard
-You can access the Kubeflow dashboard by opening a browser and going to:
+### MiniKF upgrade
+Here are step-by-step instructions for upgrading from a previous version:
 
+1. Upgrade the MiniKF box to the latest version:
 ```
-http://10.10.10.10
+vagrant box update
+```
+2. Ensure you have updated to the latest version:
+```
+vagrant box list
+```
+3. Upgrade the `vagrant-persistent-storage` plugin to v0.0.47 or later:
+```
+vagrant plugin update vagrant-persistent-storage
+```
+4. Destroy the VM:
+```
+vagrant destroy
+```
+5. Remove all local state. This will remove all of your customization in MiniKF
+   (notebooks, pipelines, Rok snapshots):
+     - [Windows] ```del minikf-user-data.vdi```
+     - [Linux/macOS] ```rm minikf-user-data.vdi```
+6. Re-create your VM:
+```
+vagrant up
 ```
 
-### How to log in
-Use these credentials to log in to all services, for example,
-Jupyter notebooks, Rok:
+### Installation video
+Here is a demo of installing MiniKF from scratch:
 
-```
-username: user
-password: 12341234
-```
+[![MiniKF
+installation](https://img.youtube.com/vi/rVak_NIKF88/0.jpg)](https://www.youtube.com/watch?v=rVak_NIKF88
+"minikf-installation")
+
