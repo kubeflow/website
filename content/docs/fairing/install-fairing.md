@@ -107,9 +107,8 @@ google-api-python-client, docker, oauth2client
 
 ### Docker setup
 
-You need to have Docker installed to use Kubeflow Fairing. Kubeflow Fairing
-packages your code as a docker image and executes it in a remote cluster.
-To check if your local Docker daemon is running, run the following command:
+Kubeflow Fairing uses Docker to package your code. Run the following command
+to verify if Docker is installed and running:
 
 ```bash
 docker ps
@@ -162,19 +161,19 @@ with your hosted notebook environment.
     ```
     Python 3.6.5
     ```
-1.  You need to have Docker installed to use Kubeflow Fairing. Kubeflow Fairing
-    packages your code as a docker image and executes it in a remote cluster.
-    To check if your local Docker daemon is running, run the following command
-    in your terminal session:
+
+1.  Kubeflow Fairing uses Docker to package your code. Run the following
+    command in your terminal session to verify if Docker is installed and
+    running in your notebook environment:
 
     ```bash
     docker ps
     ```
 
-    *  If you get a message like `docker: command not found`, then [install
+    *  If you receive the `docker: command not found` message, [install
        Docker](https://docs.docker.com/install/).
-    *  If you get an error like `Error response from daemon: Bad response from
-       Docker engine`, then [restart your docker daemon][docker-start].
+    *  If you receive the `Error response from daemon: Bad response from
+       Docker engine` message, [restart your docker daemon][docker-start].
     *  If you are using Linux and you use sudo to access Docker, follow these
        steps to [add your user to the docker group][docker-non-root]. Note, the
        docker group grants privileges equivalent to the root user. To learn

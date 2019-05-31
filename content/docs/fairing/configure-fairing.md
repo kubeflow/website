@@ -29,9 +29,9 @@ and Kubeflow Fairing installed in your development environment.
 
 ## Using Kubeflow Fairing with Kubeflow notebooks
 
-Kubeflow notebook servers that are built from one of the standard Jupyter
-Docker images include Kubeflow Fairing and come preconfigured for using
-Kubeflow Fairing to run training jobs on your Kubeflow cluster.
+The standard Kubeflow notebook images include Kubeflow Fairing and come
+preconfigured to run training jobs on your Kubeflow cluster. No additional
+configuration is required.
 
 If you built your Kubeflow notebook server from a custom Jupyter Docker image,
 follow the instruction in this guide to configure your notebooks environment
