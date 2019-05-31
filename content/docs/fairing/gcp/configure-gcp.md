@@ -112,7 +112,7 @@ GKE][kubeflow-gcp-install] to set one up.
     gcloud container clusters list
     ```
 
-1.  Update the following command with your cluster's name and GCP zone, then
+1.  Update the following command with your cluster's name and GCP zone. Then,
     run the command to update your `kubeconfig` to provide it with credentials
     to access this cluster.
 

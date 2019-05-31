@@ -5,7 +5,7 @@ weight = 10
 +++
 
 You can use Kubeflow Fairing to build, train, and deploy machine learning (ML)
-models in a hybrid cloud environment, directly from Python code or a Jupyter
+models in a hybrid cloud environment directly from Python code or a Jupyter
 notebook. This guide describes how to install Kubeflow Fairing in your
 development environment for [local development][local], or [development in a
 hosted notebook][hosted].
@@ -53,7 +53,7 @@ not been tested on Windows.
     which virtualenv
     ```
 
-    The response should be something like this.
+    The response should be something like this:
 
     ```bash
     /usr/bin/virtualenv
@@ -81,7 +81,7 @@ environment.
 pip install fairing
 ```
 
-After successful installation, the `fairing` python package should be
+After the install is complete, the `fairing` python package is
 available. Run the following command to verify that Kubeflow Fairing
 is installed:
 
@@ -115,10 +115,10 @@ To check if your local Docker daemon is running, run the following command:
 docker ps
 ```
 
-*  If you get a message like `docker: command not found`, then [install
+*  If you receive the `docker: command not found` message, [install
    Docker](https://docs.docker.com/install/).
-*  If you get an error like `Error response from daemon: Bad response from
-   Docker engine`, then [restart your docker daemon][docker-start].
+*  If you receive the `Error response from daemon: Bad response from
+   Docker engine` message, [restart your docker daemon][docker-start].
 *  If you are using Linux and you use sudo to access Docker, follow these
    steps to [add your user to the docker group][docker-non-root]. Note, the
    docker group grants privileges equivalent to the root user. To learn more
@@ -127,7 +127,7 @@ docker ps
 
 ### Configure Kubeflow Fairing
 
-To configure Kubeflow Fairing with access to the environment you would like to
+To configure Kubeflow Fairing with access to an environment that you would like to
 use for training and deployment, follow the instructions in the [guide to
 configuring Kubeflow Fairing][conf].
 

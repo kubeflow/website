@@ -4,7 +4,7 @@ description = "Try the samples and follow detailed tutorials for training and de
 weight = 50
 +++
 
-Use the following tutorials to learn more about using Kubeflow Fairing to train
+Read the following tutorials to learn more about using Kubeflow Fairing to train
 and deploy on Google Cloud Platform (GCP).
 
 *  Learn how to [train and deploy a model on GCP from a local

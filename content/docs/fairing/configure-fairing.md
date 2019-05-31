@@ -19,13 +19,13 @@ to your hosted Kubeflow environment.
 
 ## Prerequisites
 
-Before you configure Kubeflow Fairing, your need to have a Kubeflow environment
+Before you configure Kubeflow Fairing, you must have a Kubeflow environment
 and Kubeflow Fairing installed in your development environment.
 
-*  If you do not have a Kubeflow cluster, follow the guide to [getting started
-   with Kubeflow][kubeflow-install] to set one up.
-*  If you have not installed Kubeflow Fairing, follow the guide to [installing
-   Kubeflow Fairing][fairing-install].
+*  If you do not have a Kubeflow cluster, follow the [getting started
+   with Kubeflow][kubeflow-install] guide to set one up.
+*  If you have not installed Kubeflow Fairing, follow the [installing
+   Kubeflow Fairing][fairing-install] guide.
 
 ## Using Kubeflow Fairing with Kubeflow notebooks
 
@@ -33,7 +33,7 @@ Kubeflow notebook servers that are built from one of the standard Jupyter
 Docker images include Kubeflow Fairing and come preconfigured for using
 Kubeflow Fairing to run training jobs on your Kubeflow cluster.
 
-If your Kubeflow notebook server was built from a custom Jupyter Docker image,
+If you built your Kubeflow notebook server from a custom Jupyter Docker image,
 follow the instruction in this guide to configure your notebooks environment
 with access to your Kubeflow environment.
 
