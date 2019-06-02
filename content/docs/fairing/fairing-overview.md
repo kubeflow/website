@@ -11,22 +11,24 @@ job locally or in the cloud, directly from Python code or a Jupyter
 notebook. After your training job is complete, you can use Kubeflow Fairing to
 deploy your trained model as a prediction endpoint.
 
-## Quickstart
+## Getting started
 
-Follow a quickstart guide to learn how to get started running training jobs
-remotely with Kubeflow Fairing:
+Use the following guides to get started with Kubeflow Fairing:
 
-*  Learn how to [train and deploy a model on Google Cloud Platform (GCP) from
-   a local notebook][gcp-local].
-*  Learn how to [train and deploy a model on GCP from a notebook hosted on
-   Kubeflow][gcp-kubeflow].
-*  Learn how to [train and deploy a model on GCP from a notebook hosted on
-   Google AI Platform Notebooks][gcp-ai-platform].
+1.  To set up your development environment, follow the guide to [installing
+    Kubeflow Fairing][install].
+1.  To ensure that Kubeflow Fairing can access your Kubeflow cluster, follow
+    the guide to [configuring your development environment with access
+    to Kubeflow][conf].
+1.  To learn more about how to use Kubeflow Fairing in your environment,
+    [follow the Kubeflow Fairing tutorials][tutorials].
 
 ## What is Kubeflow Fairing?
 
 Kubeflow Fairing is a Python package that makes it easy to train and deploy ML
-models on [Kubeflow][kubeflow] or [Google AI Platform][ai-platform]. 
+models on [Kubeflow][kubeflow]. Kubeflow Fairing can also been extended to
+train or deploy on other platforms. Currently, Kubeflow Fairing has been
+extended to train on [Google AI Platform][ai-platform]. 
 
 Kubeflow Fairing packages your Jupyter notebook, Python function, or Python
 file as a Docker image, then deploys and runs the training job on Kubeflow
@@ -49,10 +51,11 @@ The following are the goals of the [Kubeflow Fairing project][fairing-repo]:
 *  Learn how to [set up a Jupyter notebooks instance on your Kubeflow
    cluster][kubeflow-notebooks].
 
-[gcp-local]: /docs/fairing/gcp-local-notebook/
-[gcp-kubeflow]: /docs/fairing/gcp-kubeflow-notebook/
-[gcp-ai-platform]: /docs/fairing/gcp-ai-platform-notebook/
 [kubeflow-notebooks]: /docs/notebooks/setup/
 [ai-platform]: https://cloud.google.com/ml-engine/docs/
 [fairing-repo]: https://github.com/kubeflow/fairing
 [kubeflow]: /docs/about/kubeflow/
+
+[conf]: /docs/fairing/configure-fairing/
+[install]: /docs/fairing/install-fairing/
+[tutorials]: /docs/fairing/tutorials/other-tutorials/
