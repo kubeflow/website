@@ -63,17 +63,16 @@ If you experience any issues running these scripts, see the [troubleshooting gui
 
 ## Kubeflow installation
 
-1. Run the following commands to download the latest `kfctl.sh`
+1. Download a ```kfctl``` release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
 
     ```shell
-    export KUBEFLOW_SRC=/tmp/kubeflow-aws
-    export KUBEFLOW_TAG=master
-
-    mkdir -p ${KUBEFLOW_SRC} && cd ${KUBEFLOW_SRC}
-    curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
+    wget https://github.com/kubeflow/kubeflow/releases/download/<release_tag>/kfctl_<release_tag>_<platform>.tar.gz
     ```
+1. Unpack the tar ball:
 
-    * KUBEFLOW_SRC - Full path to your preferred download directory. Please use the full absolute path, for example `/tmp/kubeflow-aws`
+    ```
+    tar -xvf kfctl_<release tag>_<platform>.tar.gz
+    ```
 
 1. Run the following commands to set up your environment and initialize the cluster.
 
@@ -83,11 +82,14 @@ If you experience any issues running these scripts, see the [troubleshooting gui
 
 
     ```shell
+    # The following command is optional, to make the kfctl binary easier to use.
+    export PATH=$PATH:<path to kfctl in your kubeflow installation>
+    
     export KFAPP=kfapp
     export REGION=us-west-2
     export AWS_CLUSTER_NAME=kubeflow-aws
 
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform aws \
+    kfctl init ${KFAPP} --platform aws \
     --awsClusterName ${AWS_CLUSTER_NAME} \
     --awsRegion ${REGION}
     ```
@@ -103,28 +105,28 @@ If you experience any issues running these scripts, see the [troubleshooting gui
 
     ```shell
     cd ${KFAPP}
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate platform
+    kfctl generate platform
     # Customize your Amazon EKS cluster configuration before following the next step
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform
+    kfctl apply platform
     ```
 
 1. Generate and apply the Kubernetes changes.
 
     ```shell
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate k8s
+    kfctl generate k8s
     ```
 
     __*Important!!!*__ By default, these scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
 
     To secure your installation, you have two options:
 
-    * Disable ingress before you `apply k8s`. Open `${KUBEFLOW_SRC}/${KFAPP}/env.sh` and edit the `KUBEFLOW_COMPONENTS` environment variable. Delete `,\"alb-ingress-controller\",\"istio-ingress\"` and save the file.
+    * Disable ingress before you `apply k8s`. Open `env.sh` in your $KFAPP directory and edit the `KUBEFLOW_COMPONENTS` environment variable. Delete `,\"alb-ingress-controller\",\"istio-ingress\"` and save the file.
 
     * Follow the [instructions](/docs/aws/authentication) to add authentication before you `apply k8s`
 
     Once your customization is done, you can run this command to deploy Kubeflow.
     ```shell
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
+    kfctl apply k8s
     ```
 
 1. Wait for all the resources to become ready in the `kubeflow ` namespace.
