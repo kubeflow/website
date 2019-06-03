@@ -120,7 +120,7 @@ If you experience any issues running these scripts, see the [troubleshooting gui
 
     To secure your installation, you have two options:
 
-    * Disable ingress before you `apply k8s`. Open `env.sh` in your $KFAPP directory and edit the `KUBEFLOW_COMPONENTS` environment variable. Delete `,\"alb-ingress-controller\",\"istio-ingress\"` and save the file.
+    * Disable ingress before you `apply k8s`. Open `env.sh` in your ${KFAPP} directory and edit the `KUBEFLOW_COMPONENTS` environment variable. Delete `,\"alb-ingress-controller\",\"istio-ingress\"` and save the file.
 
     * Follow the [instructions](/docs/aws/authentication) to add authentication before you `apply k8s`
 
