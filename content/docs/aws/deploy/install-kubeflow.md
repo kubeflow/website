@@ -4,7 +4,7 @@ description = "Instructions for deploying Kubeflow with the shell"
 weight = 4
 +++
 
-This guide describes how to use the `kfctl` script to
+This guide describes how to use the `kfctl` binary to
 deploy Kubeflow on Amazon Web Services (AWS).
 
 
