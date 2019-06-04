@@ -185,7 +185,7 @@ privilege. The three service accounts are:
   balancers. The principle is that this account is needed to deploy Kubeflow but 
   not needed to actually run jobs.
 * `${KFAPP}-user` is intended to be used by training jobs and models to access 
-  GCP resources (Cloud Storate, BigQuery, etc.). This account has a much smaller 
+  GCP resources (Cloud Storage, BigQuery, etc.). This account has a much smaller 
   set of privileges compared to `admin`.
 * `${KFAPP}-vm` is used only for the virtual machine (VM) service account. This
   account has minimal permissions, needed to send metrics and logs to 
