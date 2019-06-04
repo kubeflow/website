@@ -39,8 +39,8 @@ If you would like to deploy Kubeflow on existing Amazon EKS cluster, the only di
 
     ```shell
     cd ${KUBEFLOW_SRC}
-
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform aws \
+    # This command assumes you have added the binary to your path.
+    kfctl init ${KFAPP} --platform aws \
     --awsClusterName ${AWS_CLUSTER_NAME} \
     --awsRegion ${AWS_REGION} \
     --awsNodegroupRoleNames ${AWS_NODEGROUP_ROLE_NAMES}

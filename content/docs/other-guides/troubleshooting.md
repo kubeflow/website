@@ -144,7 +144,7 @@ spec:
     path: "/mnt/pv1"
 EOF
 ```
- Repeat two more times creating a new directory and changing the name and path fields to satisfy all three PVCs. Once created the scheduler will successfully start the remaining three pods. The PVs may also be created prior to running any of the `kfctl.sh` commands.
+ Repeat two more times creating a new directory and changing the name and path fields to satisfy all three PVCs. Once created the scheduler will successfully start the remaining three pods. The PVs may also be created prior to running any of the `kfctl` commands.
 
 
 ## OpenShift

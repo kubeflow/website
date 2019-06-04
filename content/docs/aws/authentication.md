@@ -49,7 +49,7 @@ ks param set istio-ingress enableCognito true
 ks param set istio-ingress certArn arn:aws:acm:us-west-2:xxx:certificate/xxxe4031c
 ```
 
-After you finish the TLS and Authentication configuration, then you can run `${KUBEFLOW_SRC}/${KFAPP}/scripts/kfctl.sh apply k8s`.
+After you finish the TLS and Authentication configuration, then you can run `kfctl apply k8s`. (This command assumes you have added kfctl to your path)
 
 After your ingress DNS is ready, you need to create a `CNAME` in your DNS records.
 

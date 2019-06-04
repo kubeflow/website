@@ -4,10 +4,8 @@ description = "Instructions for deploying Kubeflow with the shell"
 weight = 4
 +++
 
-This guide describes how to use the `kfctl.sh` script to
+This guide describes how to use the `kfctl` script to
 deploy Kubeflow on Amazon Web Services (AWS).
-
-> Note: Amazon Web Services (AWS) is moving from `kfctl.sh` to a command line interface (CLI) which gives you more control over your configuration and better reliability.
 
 
 ## Prerequisites
@@ -48,7 +46,7 @@ Your Kubeflow `app` directory contains the following files and directories:
     * These values are set when you run `kfctl init`.
     * These values are snapshotted inside `app.yaml` to make your app self contained.
 * **${KFAPP}/aws_config** - A directory that contains a sample `eksctl` cluster configuration file that defines the AWS cluster and policy files to attach to your node group roles.
-    * This directory is created when you run `kfctl.sh generate platform`.
+    * This directory is created when you run `kfctl generate platform`.
     * You can modify the `cluster_config.yaml` and `cluster_features.sh` files to customize your AWS infrastructure.
 * **${KFAPP}/k8s_specs** - A directory that contains YAML specifications for daemons deployed on your Kubernetes Engine cluster.
 * **${KFAPP}/ks_app** - A directory that contains the [ksonnet](https://ksonnet.io/) application for Kubeflow.
