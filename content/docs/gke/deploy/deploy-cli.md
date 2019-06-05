@@ -74,14 +74,13 @@ Follow these steps to deploy Kubeflow:
     export ZONE=<your target zone> #where the deployment will be created
 
     export PROJECT=<your GCP project>
-    # label must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character (e.g. 'kf',  or 'kfc-test'
+    # The value of KFAPP must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character (e.g. 'kubeflow-test',  or 'kfc-test'
     export KFAPP=<your choice of application directory name>
     # Default uses Cloud IAP:
     kfctl init ${KFAPP} --platform gcp --project ${PROJECT}
     # Alternatively, use this command if you want to use basic authentication:
     kfctl init ${KFAPP} --platform gcp --project ${PROJECT} --use_basic_auth -V
     
-    mv kfctl ${KFAPP}
     cd ${KFAPP}
     kfctl generate all -V --zone ${ZONE}
     kfctl apply all -V
