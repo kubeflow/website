@@ -32,7 +32,17 @@ Follow these steps to deploy Kubeflow and open the pipelines dashboard:
     alt="Kubeflow UI"
     class="mt-3 mb-3 border border-info rounded">
 
-    If you skipped the IAP option when deploying Kubeflow, run ```kubectl port-forward -n kubeflow `kubectl get pods -n kubeflow --selector=service=ambassador -o jsonpath='{.items[0].metadata.name}'` 8080:80``` and go to http://localhost:8080/
+    If you skipped the Cloud IAP option when deploying Kubeflow, or if you 
+    haven't yet set up your Kubeflow endpoint, you can access Kubeflow via 
+    `kubectl` and port-forwarding:
+    
+    1. Install `kubectl` if you haven't already done so, by running the 
+      following command on the command line: 
+      `gcloud components install kubectl`. For more information, see the 
+      [`kubectl` 
+      documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+    1. Run ```kubectl port-forward -n kubeflow `kubectl get pods -n kubeflow --selector=service=ambassador -o jsonpath='{.items[0].metadata.name}'` 8080:80``` and go to http://localhost:8080/
 
 1. Click **Pipeline Dashboard** to access the pipelines UI. The pipelines UI looks like
   this:
