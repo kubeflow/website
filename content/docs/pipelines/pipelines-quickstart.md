@@ -42,7 +42,7 @@ Follow these steps to deploy Kubeflow and open the pipelines dashboard:
       [`kubectl` 
       documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-    1. Run ```kubectl port-forward -n kubeflow `kubectl get pods -n kubeflow --selector=service=ambassador -o jsonpath='{.items[0].metadata.name}'` 8080:80``` and go to http://localhost:8080/
+    1. Run ```kubectl port-forward -n kubeflow `kubectl get pods -n kubeflow --selector=service=ambassador -o jsonpath='{.items[0].metadata.name}'` 8080:80``` and go to `http://localhost:8080/`.
 
 1. Click **Pipeline Dashboard** to access the pipelines UI. The pipelines UI looks like
   this:

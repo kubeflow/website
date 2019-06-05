@@ -69,9 +69,9 @@ Kubeflow endpoint, you can access Kubeflow via `kubectl` and port-forwarding.
     authentication is enabled requests will be rejected
     because you are not connecting over HTTPS and attaching proper credentials.
 
-  * Depending on how you've configured Kubeflow, not all UIs will work behind port-forwarding to the reverse proxy
+  * Depending on how you've configured Kubeflow, not all UIs will work behind port-forwarding to the reverse proxy.
 
-    * Some web applications need to be configured to know the base URL they are serving on
+    * Some web applications need to be configured to know the base URL they are serving on.
     * So if you deployed Kubeflow with an ingress serving at `https://acme.mydomain.com` and configured an application
       to be served at the URL `https://acme.mydomain.com/myapp` then the app may not work when served on
       `https://localhost:8080/myapp` because the paths do not match. 
