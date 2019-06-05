@@ -178,7 +178,8 @@ consists of 3 fields
 * **replicas** The number of replicas of this type to spawn for this TFJob.
 * **template** A [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#podtemplatespec-v1-core) that describes the pod to create
  for each replica. 
-    * **The pod must include a container named tensorflow**.
+    * **The pod must include a container named `tensorflow`**.
+
 * **restartPolicy** Determines whether pods will be restarted when they exit. The
  allowed values are as follows
     * **Always** means the pod will always be restarted. This policy is good 
@@ -188,12 +189,41 @@ consists of 3 fields
         * A non-zero exit code indicates a failure. 
         * An exit code of 0 indicates success and the pod will not be restarted. 
         * This policy is good for chief and workers.
-    * **ExitCode** means the restart behavior is dependent on the exit code of the
-      tensorflow container as follows
-        * **0** indicates the process completed successfully and will not be restarted.
-        * **1-127** indicates a permanent error and the container will not be restarted.
-        * **128-255** indicates a retryable error and the container will be restarted.
-          This policy is good for the chief and workers.
+
+    * **ExitCode** means the restart behavior is dependent on the exit code of
+      the `tensorflow` container as follows:
+
+        * Exit code `0` indicates the process completed successfully and will 
+          not be restarted.
+
+        * The following exit codes indicate a permanent error and the container 
+          will not be restarted:
+
+          * `1`: general errors
+          * `2`: misuse of shell builtins
+          * `126`: command invoked cannot execute
+          * `127`: command not found
+          * `128`: invalid argument to exit
+          * `139`: container terminated by SIGSEGV (invalid memory reference)
+
+        * The following exit codes indicate a retryable error and the container 
+          will be restarted:
+
+          * `130`: container terminated by SIGINT (keyboard Control-C)
+          * `137`: container received a SIGKILL
+          * `143`: container received a SIGTERM
+
+        * Exit code `138` corresponds to SIGUSR1 and is reserved for 
+          user-specified retryable errors.
+
+        * Other exit codes are undefined and there is no guarantee about the
+          behavior.
+
+        For background information on exit codes, see the [GNU guide to 
+        termination signals](https://www.gnu.org/software/libc/manual/html_node/Termination-Signals.html)
+        and the  [Linux Documentation 
+        Project](http://tldp.org/LDP/abs/html/exitcodes.html).
+
     * **Never** means pods that terminate will never be restarted. This policy
       should rarely be used because Kubernetes will terminate pods for any number
       of reasons (e.g. node becomes unhealthy) and this will prevent the job from
