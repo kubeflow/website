@@ -10,6 +10,21 @@ Add styles or override the theme's variables here.
   font-weight: bold;
   padding: 0 0 1em 0; }
 
+.td-content > table {
+  border: 1px solid #cccccc;
+  padding: 0;
+  width: 100%; }
+  .td-content > table td {
+    background-color: #fff;
+    text-align: left;
+    width: 50%; }
+  .td-content > table thead, .td-content > table th {
+    background-color: #dee2e6; }
+
+.td-content > h3 code {
+  color: #4279f4;
+  font-size: 20px; }
+
 .contain {
   margin: 0 auto;
   max-width: 1200px; }
@@ -1145,7 +1160,7 @@ pre {
 .table, .td-content > table {
   width: 100%;
   margin-bottom: 1rem;
-  background-color: transparent; }
+  background-color: #fff; }
   .table th, .td-content > table th,
   .table td,
   .td-content > table td {
@@ -1291,7 +1306,7 @@ pre {
 
 .table .thead-light th, .td-content > table .thead-light th {
   color: #495057;
-  background-color: #eee;
+  background-color: #dee2e6;
   border-color: #dee2e6; }
 
 .table-dark {

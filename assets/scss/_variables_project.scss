@@ -12,6 +12,11 @@ $dark: #213d7a;
 $info: #adb5bd;
 $light: #dee2e6;
 
+// Table colors
+
+$table-bg: $secondary;
+$table-head-bg: $light;
+
 // Nav bar colors
 
 $white: #fff;
@@ -26,6 +31,29 @@ $navbar-dark-active-color: $navbar-dark-color;
   color: $primary;
   font-weight: bold;
   padding: 0 0 1em 0;
+}
+
+.td-content {
+  > table {
+    border: 1px solid #cccccc;
+    padding: 0;
+    width: 100%;
+
+    td {
+      background-color: $table-bg;
+      text-align: left;
+      width: 50%;
+    }
+
+    thead, th {
+      background-color: $table-head-bg;
+    }
+  }
+
+  > h3 code {
+      color: $primary;
+      font-size: 20px;
+    }
 }
 
 .contain {
