@@ -11,9 +11,7 @@ Add styles or override the theme's variables here.
   padding: 0 0 1em 0; }
 
 .td-content > table {
-  border: 1px solid #cccccc;
-  padding: 0;
-  width: 100%; }
+  border: 1px solid #cccccc; }
   .td-content > table td {
     background-color: #fff;
     text-align: left;
