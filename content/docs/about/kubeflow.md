@@ -16,8 +16,8 @@ you are running Kubernetes, you should be able to run Kubeflow.
 Follow the [getting-started guide](/docs/started/getting-started) to set up your
 environment.
 
-Then read the [documentation](/docs/) to learn how to use Kubelow.
-Highlights include the following:
+Then read the [documentation](/docs/) to learn about the features of Kubeflow, 
+including the following guides to Kubeflow components:
 
 * Kubeflow includes services for spawning and managing 
   [Jupyter notebooks](/docs/notebooks/). [Project Jupyter](https://jupyter.org/) 
@@ -40,8 +40,8 @@ To use Kubeflow, the basic workflow is:
 
 * Download and run the Kubeflow deployment binary.
 * Customize the resulting configuration files.
-* Run the specified scripts to deploy your containers to your chosen 
-environment.
+* Run the specified scripts to deploy your containers to your specific
+  environment.
 
 You can adapt the configuration to choose the platforms and services that you 
 want to use for each stage of the ML workflow: data preparation, model training,
