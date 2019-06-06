@@ -11,6 +11,44 @@ recreate other services, but to provide a straightforward way to deploy
 best-of-breed open-source systems for ML to diverse infrastructures. Anywhere 
 you are running Kubernetes, you should be able to run Kubeflow.
 
+## Getting started with Kubeflow
+
+Follow the [getting-started guide](/docs/started/getting-started) to set up your
+environment.
+
+Then read the [documentation](/docs/) to learn how to use Kubelow.
+Highlights include the following:
+
+* Kubeflow includes services for spawning and managing 
+  [Jupyter notebooks](/docs/notebooks/). [Project Jupyter](https://jupyter.org/) 
+  is a non-profit, open source project that supports interactive data science 
+  and scientific computing across many programming languages.
+
+* [Kubeflow Pipelines](/docs/pipelines/pipelines-overview/) is a platform for 
+  building, deploying, and managing multi-step ML workflows based on Docker 
+  containers.
+
+* Kubeflow offers a number of [components](/docs/components/) that you can use
+  to build your ML training, hyperparameter tuning, and serving workloads across
+  multiple platforms.
+
+## What is Kubeflow?
+
+Kubeflow is *the machine learning toolkit for Kubernetes*.
+
+To use Kubeflow, the basic workflow is:
+
+* Download and run the Kubeflow deployment binary.
+* Customize the resulting configuration files.
+* Run the specified scripts to deploy your containers to your chosen 
+environment.
+
+You can adapt the configuration to choose the platforms and services that you 
+want to use for each stage of the ML workflow: data preparation, model training,
+prediction serving, and service management.
+
+You can choose to deploy your workloads locally or to a cloud environment.
+
 ## The Kubeflow mission
 
 Our goal is to make scaling machine learning (ML) models and deploying them to
@@ -31,34 +69,9 @@ Ultimately, we want to have a set of simple manifests that give you an easy to
 use ML stack _anywhere_ Kubernetes is already running, and that can self 
 configure based on the cluster it deploys into.
 
-## What is Kubeflow?
-
-Kubeflow is *the machine learning toolkit for Kubernetes*.
-
-To use Kubeflow, the basic workflow is:
-
-* Download the Kubeflow scripts and configuration files.
-* Customize the configuration.
-* Run the scripts to deploy your containers to your chosen environment.
-
-You adapt the configuration to choose the platforms and services that you want
-to use for each stage of the ML workflow: data preparation, model training,
-prediction serving, and service management.
-
-You can choose to deploy your workloads locally or to a cloud environment.
-
 ## History
 
 Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/). It began as just a simpler way to run TensorFlow jobs on Kubernetes, but has since expanded to be a multi-architecture, multi-cloud framework for running entire machine learning pipelines.
-
-## Notebooks
-
-Kubeflow includes services for spawning and managing [Jupyter notebooks](https://jupyter-notebook.readthedocs.io/en/latest/). Project Jupyter is a non-profit, open-source project to support interactive data science and scientific computing across all programming languages.
-
-## Using Kubeflow
-
-Read the [getting-started guide](/docs/started/getting-started) to set up your
-environment.
 
 ## Getting involved
 
