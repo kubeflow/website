@@ -39,7 +39,7 @@ Follow these steps to deploy Kubeflow:
     ```
 
 1. Run the following commands to set up and deploy Kubeflow. The code below
-  includes an option command to add the binary `kfctl` to your path. If you 
+  includes an optional command to add the binary `kfctl` to your path. If you 
   don't add the binary to your path, you must use the full path to the `kfctl` 
   binary each time you run it.
 
@@ -118,3 +118,11 @@ Your Kubeflow app directory contains the following files and directories:
 
   * The directory is created when you run `kfctl generate`.
   * You can use ksonnet to customize Kubeflow.
+
+## Next steps
+
+* Follow the instructions to [connect to the Kubeflow web 
+  UIs](/docs/other-guides/accessing-uis/), where you can manage various 
+  aspects of your Kubeflow deployment.
+* Run a [sample machine learning workflow](/docs/examples/resources/).
+* Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/).
