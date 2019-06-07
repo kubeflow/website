@@ -71,7 +71,7 @@ kubectl get -o yaml pytorchjobs pytorch-tcp-dist-mnist
 See the status section to monitor the job status. Here is sample output when the job is successfully completed.
 
 ```
-apiVersion: kubeflow.org/v1beta1
+apiVersion: kubeflow.org/v1
 kind: PyTorchJob
 metadata:
   clusterName: ""
@@ -80,7 +80,7 @@ metadata:
   name: pytorch-tcp-dist-mnist
   namespace: default
   resourceVersion: "15532"
-  selfLink: /apis/kubeflow.org/v1beta1/namespaces/default/pytorchjobs/pytorch-tcp-dist-mnist
+  selfLink: /apis/kubeflow.org/v1/namespaces/default/pytorchjobs/pytorch-tcp-dist-mnist
   uid: 059391e8-017b-11e9-bf13-06afd8f55a5c
 spec:
   cleanPodPolicy: None
