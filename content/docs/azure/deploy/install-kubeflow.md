@@ -91,6 +91,7 @@ Run the following commands to set up and deploy Kubeflow. The code below include
         tar -xvf kfctl_<release tag>_<platform>.tar.gz
 
 1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the `kfctl` binary each time you run it.
+
 ```
 # The following command is optional, to make kfctl binary easier to use.
 export PATH=$PATH:<path to kfctl in your kubeflow installation>
@@ -104,15 +105,18 @@ cd ${KFAPP}
 kfctl generate all -V
 kfctl apply k8s -V
 ```
-${KFAPP} - the name of a directory where you want Kubeflow configurations to be stored. This directory is created when you runkfctl init. If you want a custom deployment name, specify that name here. The value of this variable becomes the name of your deployment. The value of this variable cannot be greater than 25 characters. It must contain just the directory name, not the full path to the directory. The content of this directory is described in the next section.
+
+    * ${KFAPP} - the name of a directory where you want Kubeflow configurations to be stored. This directory is created when you runkfctl init. If you want a custom deployment name, specify that name here. The value of this variable becomes the name of your deployment. The value of this variable cannot be greater than 25 characters. It must contain just the directory name, not the full path to the directory. The content of this directory is described in the next section.
 
 1. Check the resources deployed correctly in namespace `kubeflow`
 
         kubectl get all -n kubeflow
 
 1. Open Kubeflow Dashboard
-You may choose to use a load balancer:
+
 ```
+# You may choose to use a load balancer:
+
 kubectl get svc –n kubeflow
 kubectl expose svc ambassador -n kubeflow --type LoadBalancer --name <SVC_NAME>
 kfctl apply k8s -V
@@ -122,7 +126,7 @@ kfctl apply k8s -V
 kubectl get svc –n kubeflow
 ```
 
-In our case, the external IP for our service named 'amb1' was 40.XX.XXX.XXX
+In this case, the external IP for the service named 'amb1' was 40.XX.XXX.XXX, so it was accessible at that address.
     
 If you didn’t create a load balancer, please use port-forwarding to visit your cluster. Run the following command and visit localhost:8080.
     

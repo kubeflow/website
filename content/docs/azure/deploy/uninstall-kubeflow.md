@@ -4,7 +4,7 @@ description = "Instructions for uninstalling Kubeflow"
 weight = 10
 +++
 
-## Uninstall Kubeflow on your Azure AKS cluster.
+Uninstall Kubeflow on your Azure AKS cluster.
 
 ```
 # Go to KFAPP Directory
