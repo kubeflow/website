@@ -47,7 +47,8 @@ You can adapt the configuration to choose the platforms and services that you
 want to use for each stage of the ML workflow: data preparation, model training,
 prediction serving, and service management.
 
-You can choose to deploy your workloads locally or to a cloud environment.
+You can choose to deploy your Kubernetes workloads locally or to a cloud 
+environment.
 
 ## The Kubeflow mission
 
