@@ -54,8 +54,8 @@ address to verify the user's identity.
         https://iap.googleapis.com/v1/oauth/clientIds/<CLIENT_ID>:handleRedirect
         ```
         * `<CLIENT_ID>` is the name for your OAuth client ID.
-        * Note that the url is not depending on kubeflow deployement or url, so mulitple
-          kubeflow deployments can share the same oauth client without modifying redirecit URIs.
+        * Note that the url is not depending on kubeflow deployement and its endpoint, so mulitple
+          kubeflow deployments can share the same oauth client without modifying redirect URIs.
     * Here's an example of the completed form:
       <img src="/docs/images/oauth-credential.png" 
         alt="OAuth credentials"
