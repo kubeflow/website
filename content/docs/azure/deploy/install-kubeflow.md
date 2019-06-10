@@ -49,7 +49,7 @@ Your Kubeflow `app` directory contains the following files and directories:
     * You can use ksonnet to customize Kubeflow.
 
 
-If you experience any issues running these scripts, see the [troubleshooting guidance](/docs/aws/troubleshooting-azure) for more information.
+If you experience any issues running these scripts, see the [troubleshooting guidance](/docs/azure/troubleshooting-azure) for more information.
 
 ## Azure Setup
 
