@@ -17,7 +17,7 @@ implementation of TFJob is in
 A TFJob is a resource with a YAML representation like the one below (edit to use the container image and command for your own training code):
 
 ```yaml
-apiVersion: kubeflow.org/v1beta1
+apiVersion: kubeflow.org/v1
 kind: TFJob
 metadata:
   generateName: tfjob
@@ -71,7 +71,7 @@ spec:
 If you want to give your TFJob pods access to credentials secrets, such as the GCP credentials automatically created when you do a GKE-based Kubeflow installation, you can mount and use a secret like this:
 
 ```yaml
-apiVersion: kubeflow.org/v1beta1
+apiVersion: kubeflow.org/v1
 kind: TFJob
 metadata:
   generateName: tfjob
@@ -260,11 +260,11 @@ Choose a tf-job prototype from the following list of available prototypes, to ma
 
 * `io.ksonnet.pkg.tf-job-operator`                  - A TensorFlow job operator.
 * `io.ksonnet.pkg.tf-job-simple`                    - A simple TFJob to run CNN benchmark
-* `io.ksonnet.pkg.tf-job-simple-v1beta1`            - A simple TFJob to run CNN benchmark
+* `io.ksonnet.pkg.tf-job-simple-v1`            - A simple TFJob to run CNN benchmark
 
 Run the `generate` command:
 ```
-ks generate tf-job-simple-v1beta1 ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
+ks generate tf-job-simple-v1 ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
 ```
 
 Submit the job:
@@ -356,7 +356,7 @@ To attach GPUs specify the GPU resource on the container in the replicas
 that should contain the GPUs; for example.
 
 ```yaml
-apiVersion: "kubeflow.org/v1beta1"
+apiVersion: "kubeflow.org/v1"
 kind: "TFJob"
 metadata:
   name: "tf-smoke-gpu"
@@ -436,14 +436,14 @@ Here is sample output for an example job
 ```yaml
 apiVersion: v1
 items:
-- apiVersion: kubeflow.org/v1beta1
+- apiVersion: kubeflow.org/v1
   kind: TFJob
   metadata:
     creationTimestamp: 2019-02-02T15:24:54Z
     generation: 1
     name: tf-smoke-gpu
     resourceVersion: "43282271"
-    selfLink: /apis/kubeflow.org/v1beta1/namespaces/kubeflow/tfjobs/tf-smoke-gpu
+    selfLink: /apis/kubeflow.org/v1/namespaces/kubeflow/tfjobs/tf-smoke-gpu
     uid: b0e5e256-26fe-11e9-a020-509a4c3d1d6d
   spec:
     cleanPodPolicy: Running
@@ -594,14 +594,14 @@ Name:         tfjob2
 Namespace:    kubeflow
 Labels:       app.kubernetes.io/deploy-manager=ksonnet
 Annotations:  ksonnet.io/managed={"pristine":"H4sIAAAAAAAA/+yRz27UMBDG7zzGnJ3NbkoFjZQTqEIcYEUrekBVNHEmWbOObY3HqcJq3x05UC1/ngCJHKKZbz6P5e93AgzmM3E03kENx9TRYP3TxvNYzju04YAVKDga10MN97fvfQcKJhLsURDqEzicCGqQ4avvsjX3MaCm...
-API Version:  kubeflow.org/v1beta1
+API Version:  kubeflow.org/v1
 Kind:         TFJob
 Metadata:
   Cluster Name:        
   Creation Timestamp:  2018-07-29T02:46:53Z
   Generation:          1
   Resource Version:    26872
-  Self Link:           /apis/kubeflow.org/v1beta1/namespaces/kubeflow/tfjobs/tfjob2
+  Self Link:           /apis/kubeflow.org/v1/namespaces/kubeflow/tfjobs/tfjob2
   UID:                 a6bc7b6f-92d9-11e8-b3ca-42010a80019c
 Spec:
   Tf Replica Specs:
