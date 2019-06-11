@@ -4,6 +4,19 @@ Add styles or override the theme's variables here.
 
 */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i");
+.table-responsive, .td-box .row > table, .td-content > table, .td-content > table {
+  border: 1px solid #cccccc;
+  padding: 0; }
+  .table-responsive td, .td-box .row > table td, .td-content > table td, .td-content > table td {
+    background-color: #fff;
+    text-align: left;
+    width: 50%; }
+  .table-responsive thead, .td-box .row > table thead, .td-content > table thead, .table-responsive th, .td-box .row > table th, .td-content > table th, .td-content > table thead, .td-content > table th {
+    background-color: #e2e5eb; }
+
+.td-content h3 code {
+  color: #397af3; }
+
 .section-head {
   font-size: 1.25em;
   color: #4279f4;

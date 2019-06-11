@@ -19,6 +19,28 @@ $navbar-dark-color: rgba($white, 1);
 $navbar-dark-hover-color: rgba($white, 0.75);
 $navbar-dark-active-color: $navbar-dark-color;
 
+.table-responsive, .td-content > table {
+    border: 1px solid #cccccc;
+    padding: 0;
+
+    td {
+      background-color: $secondary;
+      text-align: left;
+      width: 50%;
+    }
+
+    thead, th {
+      background-color: #e2e5eb;
+    }
+}
+
+.td-content {
+  h3 code {
+    color: #397af3;
+  }
+}
+
+
 // Front page styling
 
 .section-head {

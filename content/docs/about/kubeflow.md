@@ -55,8 +55,8 @@ environment.
 Our goal is to make scaling machine learning (ML) models and deploying them to
 production as simple as possible, by letting Kubernetes do what it's great at:
 
-  * Easy, repeatable, portable deployments on a diverse infrastructure (laptop
-    <-> ML rig <-> training cluster <-> production cluster)
+  * Easy, repeatable, portable deployments on a diverse infrastructure:
+     Kubernetes cluster on laptop, training cluster, production cluster
   * Deploying and managing loosely-coupled microservices
   * Scaling based on demand
 
