@@ -48,14 +48,15 @@ address to verify the user's identity.
    * In the **Name** box enter any name for your OAuth client ID. This is *not*
      the name of your application nor the name of your Kubeflow deployment. It's
      just a way to help you identify the OAuth client ID.
-   * In the **Authorized redirect URIs** box, enter the following (if not already exists):
+   * In the **Authorized redirect URIs** box, enter the following (if it's not already present
+     in the list of authorized redirect URIs):
 
         ```
         https://iap.googleapis.com/v1/oauth/clientIds/<CLIENT_ID>:handleRedirect
         ```
-        * `<CLIENT_ID>` is the name for your OAuth client ID.
-        * Note that the url is not depending on kubeflow deployement and its endpoint, so mulitple
-          kubeflow deployments can share the same oauth client without modifying redirect URIs.
+        * `<CLIENT_ID>` is the OAuth client ID, something like `XXX.apps.googleusercontent.com`.
+        * Note that the URI is not dependent on the Kubeflow deployment or endpoint. Multiple Kubeflow
+          deployments can share the same OAuth client without the need to modify the redirect URIs.
     * Here's an example of the completed form:
       <img src="/docs/images/oauth-credential.png" 
         alt="OAuth credentials"
