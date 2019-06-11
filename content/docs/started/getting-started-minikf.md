@@ -4,7 +4,9 @@ description = "A fast and easy way to deploy Kubeflow on your laptop"
 weight = 2
 +++
 
-*Latest version: 20190521.1.0*
+![MiniKF latest
+version](https://www.arrikto.com/wp-content/uploads/2019/06/minikf-latest-version.svg
+"MiniKF latest version")
 
 A production-ready, full-fledged, local Kubeflow deployment that
 installs in minutes.
