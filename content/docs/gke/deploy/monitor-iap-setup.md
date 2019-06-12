@@ -20,6 +20,9 @@ or the [command-line interface](/docs/gke/deploy/deploy-cli/),
 you choose the authentication method you want to use. One of the options is
 Cloud IAP. This document assumes that you have already deployed Kubeflow.
 
+Kubeflow uses the [Let's Encrypt](https://letsencrypt.org/) service to provide 
+an SSL certificate for the Kubeflow UI.
+
 Cloud IAP gives you the following benefits:
 
  * Users can log in in using their GCP accounts.
@@ -242,3 +245,14 @@ problems:
     and add the redirect URI listed in the error message to the list of 
     authorized URIs. For more information, read the guide to 
     [setting up OAuth for Cloud IAP](/docs/gke/deploy/oauth-setup/).
+
+## Expiry of the SSL certificate from Let's Encrypt
+
+Let's Encrypt recommends renewing your certificate when the
+certificate has existed for two thirds of its lifetime. By default, the 
+certificates are valid for 90 days, which means you should renew 60 days
+after deploying Kubeflow. See the [Let's Encrypt 
+documentation](https://letsencrypt.org/docs/integration-guide/).
+
+For questions and support about the certificate, visit 
+[Let's Encrypt support](https://community.letsencrypt.org/).

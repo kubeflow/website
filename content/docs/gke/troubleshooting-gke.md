@@ -15,11 +15,14 @@ This guide covers troubleshooting specifically for
 For more help, try the 
 [general Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting).
 
-## Troubleshooting Cloud IAP
+## Troubleshooting Cloud Identity-Aware Proxy (Cloud IAP)
 
 Here are some tips for troubleshooting Cloud IAP.
 
- * Make sure you are using HTTPS
+ * Make sure you are using HTTPS.
+ * See the guide to 
+  [monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
+* See the sections below for troubleshooting specific problems.
 
 ### DNS name not registered
 
@@ -230,6 +233,11 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
   * If this doesn't return a 200 OK response; then there is a problem with the K8s resources
       * Check the pods are running
       * Check services are pointing at the points (look at the endpoints for the various services)
+
+### Problems with SSL certificate from Let's Encrypt
+
+See the guide to 
+[monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
 
 ## Envoy pods crash-looping: root cause is backend quota exceeded
 
