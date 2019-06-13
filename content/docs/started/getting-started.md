@@ -9,6 +9,8 @@ to suit your environment (cloud, on premises (on prem), or local):
 
 * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
   follow the [GCP deployment guide](/docs/gke/deploy/).
+* To use Kubeflow on Azure,
+  follow the [Azure deployment guide](/docs/azure/deploy/).
 * To use Kubeflow on Amazon Web Services (AWS),
   follow the [AWS deployment guide](/docs/aws/deploy/).
 * To use Kubeflow on IBM Cloud Private (ICP), 
