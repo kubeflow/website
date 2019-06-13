@@ -248,10 +248,9 @@ problems:
 
 ## Expiry of the SSL certificate from Let's Encrypt
 
-Let's Encrypt recommends renewing your certificate when the
-certificate has existed for two thirds of its lifetime. By default, the 
-certificates are valid for 90 days, which means you should renew 60 days
-after deploying Kubeflow. See the [Let's Encrypt 
+Kubeflow runs an agent in your cluster to renew the Let's Encrypt certificate
+automatically. You don't need to take any action.
+For more information, see the [Let's Encrypt 
 documentation](https://letsencrypt.org/docs/integration-guide/).
 
 For questions and support about the certificate, visit 
