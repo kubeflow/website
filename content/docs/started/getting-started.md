@@ -11,6 +11,8 @@ to suit your environment (cloud, on premises (on prem), or local):
   follow the [GCP deployment guide](/docs/gke/deploy/).
 * To use Kubeflow on Amazon Web Services (AWS),
   follow the [AWS deployment guide](/docs/aws/deploy/).
+* To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
+  follow the [AKS deployment guide](/docs/azure/deploy/).
 * To use Kubeflow on IBM Cloud Private (ICP), 
 	follow the [ICP deployment guide](/docs/started/getting-started-icp/).  
 * If you have an existing Kubernetes cluster or want to use Kubeflow on prem,
