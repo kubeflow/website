@@ -7,7 +7,7 @@ weight = 4
 This guide describes how to use the `kfctl.sh` script to
 deploy Kubeflow on Amazon Web Services (AWS).
 
-> Note: Amazon Web Services (AWS) is moving from `kfctl.sh` to a command line interface (CLI) which gives you more control over your configuration and better reliability.
+> Note: Amazon Web Services (AWS) is moving from `kfctl.sh` to a command line interface (CLI) which gives you more control over your configuration and better reliability. It's under development and will be released around end of June.
 
 
 ## Prerequisites
@@ -67,7 +67,7 @@ If you experience any issues running these scripts, see the [troubleshooting gui
 
     ```shell
     export KUBEFLOW_SRC=/tmp/kubeflow-aws
-    export KUBEFLOW_TAG=master
+    export KUBEFLOW_TAG=v0.5-branch
 
     mkdir -p ${KUBEFLOW_SRC} && cd ${KUBEFLOW_SRC}
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
