@@ -17,6 +17,11 @@ ${GEN_DOCS}/gen-crd-api-reference-docs -config ${WEBSITE_ROOT}/gen-api-reference
 cat temp_common.md >> ${CONTENT_DIR}/common.md
 rm temp_common.md
 
+# substitute table elements in common.md
+sed 's/<table>/<div class=\"table-responsive\"><table class=\"table table-bordered\">/g' ${CONTENT_DIR}/common.md > temp_common.md
+sed 's/<thead>/<thead class=\"thead-light\">/g' temp_common.md > ${CONTENT_DIR}/common.md
+rm temp_common.md
+
 echo "+++
 title = \"TFJob TensorFlow\"
 description = \"Reference documentation for TFJob\"
@@ -25,6 +30,11 @@ weight = 100
 
 ${GEN_DOCS}/gen-crd-api-reference-docs -config ${WEBSITE_ROOT}/gen-api-reference/kubeflow-config.json -template-dir ${GEN_DOCS}/template -api-dir "github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1beta2" -out-file temp_tensorflow.md
 cat temp_tensorflow.md >> ${CONTENT_DIR}/tensorflow.md
+rm temp_tensorflow.md
+
+# substitute table elements in tensorflow.md
+sed 's/<table>/<div class=\"table-responsive\"><table class=\"table table-bordered\">/g' ${CONTENT_DIR}/tensorflow.md > temp_tensorflow.md
+sed 's/<thead>/<thead class=\"thead-light\">/g' temp_tensorflow.md > ${CONTENT_DIR}/tensorflow.md
 rm temp_tensorflow.md
 
 # V1
@@ -36,8 +46,14 @@ description = \"Reference documentation for TFJob\"
 weight = 100
 +++" > ${CONTENT_DIR}/common.md
 
+
 ${GEN_DOCS}/gen-crd-api-reference-docs -config ${WEBSITE_ROOT}/gen-api-reference/kubeflow-config.json -template-dir ${GEN_DOCS}/template -api-dir "github.com/kubeflow/tf-operator/pkg/apis/common/v1" -out-file temp_common.md
 cat temp_common.md >> ${CONTENT_DIR}/common.md
+rm temp_common.md
+
+# substitute table elements in common.md
+sed 's/<table>/<div class=\"table-responsive\"><table class=\"table table-bordered\">/g' ${CONTENT_DIR}/common.md > temp_common.md
+sed 's/<thead>/<thead class=\"thead-light\">/g' temp_common.md > ${CONTENT_DIR}/common.md
 rm temp_common.md
 
 echo "+++
@@ -48,4 +64,9 @@ weight = 100
 
 ${GEN_DOCS}/gen-crd-api-reference-docs -config ${WEBSITE_ROOT}/gen-api-reference/kubeflow-config.json -template-dir ${GEN_DOCS}/template -api-dir "github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1" -out-file temp_tensorflow.md
 cat temp_tensorflow.md >> ${CONTENT_DIR}/tensorflow.md
+rm temp_tensorflow.md
+
+# substitute table elements in tensorflow.md
+sed 's/<table>/<div class=\"table-responsive\"><table class=\"table table-bordered\">/g' ${CONTENT_DIR}/tensorflow.md > temp_tensorflow.md
+sed 's/<thead>/<thead class=\"thead-light\">/g' temp_tensorflow.md > ${CONTENT_DIR}/tensorflow.md
 rm temp_tensorflow.md

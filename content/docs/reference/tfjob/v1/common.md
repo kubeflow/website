@@ -15,23 +15,23 @@ weight = 100
 </p>
 Resource Types:
 <ul></ul>
-<h3 id="CleanPodPolicy">CleanPodPolicy
+<h3 id="github.com/kubeflow/tf-operator/pkg/apis/common/v1.CleanPodPolicy">CleanPodPolicy
 (<code>string</code> alias)</p></h3>
 <p>
 <p>CleanPodPolicy describes how to deal with pods when the job is finished. Can be one
 of: All, Running, or None.</p>
 </p>
-<h3 id="JobCondition">JobCondition
+<h3 id="github.com/kubeflow/tf-operator/pkg/apis/common/v1.JobCondition">JobCondition
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#JobStatus">JobStatus</a>)
+<a href="#github.com%2fkubeflow%2ftf-operator%2fpkg%2fapis%2fcommon%2fv1.JobStatus">JobStatus</a>)
 </p>
 <p>
 <p>JobCondition describes the state of the job at a certain point.</p>
 </p>
-<table>
-<thead>
+<div class="table-responsive"><table class="table table-bordered">
+<thead class="thead-light">
 <tr>
 <th>Field</th>
 <th>Description</th>
@@ -42,7 +42,7 @@ of: All, Running, or None.</p>
 <td>
 <code>type</code></br>
 <em>
-<a href="#JobConditionType">
+<a href="#github.com/kubeflow/tf-operator/pkg/apis/common/v1.JobConditionType">
 JobConditionType
 </a>
 </em>
@@ -114,23 +114,23 @@ Kubernetes meta/v1.Time
 </tr>
 </tbody>
 </table>
-<h3 id="JobConditionType">JobConditionType
+<h3 id="github.com/kubeflow/tf-operator/pkg/apis/common/v1.JobConditionType">JobConditionType
 (<code>string</code> alias)</p></h3>
 <p>
 (<em>Appears on:</em>
-<a href="#JobCondition">JobCondition</a>)
+<a href="#github.com%2fkubeflow%2ftf-operator%2fpkg%2fapis%2fcommon%2fv1.JobCondition">JobCondition</a>)
 </p>
 <p>
 <p>JobConditionType defines all possible types of JobStatus. Can be one of:
 Created, Running, Restarting, Succeeded, or Failed.</p>
 </p>
-<h3 id="JobStatus">JobStatus
+<h3 id="github.com/kubeflow/tf-operator/pkg/apis/common/v1.JobStatus">JobStatus
 </h3>
 <p>
 <p>JobStatus represents the current observed state of the training job.</p>
 </p>
-<table>
-<thead>
+<div class="table-responsive"><table class="table table-bordered">
+<thead class="thead-light">
 <tr>
 <th>Field</th>
 <th>Description</th>
@@ -141,8 +141,8 @@ Created, Running, Restarting, Succeeded, or Failed.</p>
 <td>
 <code>conditions</code></br>
 <em>
-<a href="#JobCondition">
-[]JobCondition
+<a href="#github.com/kubeflow/tf-operator/pkg/apis/common/v1.JobCondition">
+[][]github.com/kubeflow/tf-operator/pkg/apis/common/v1.JobCondition
 </a>
 </em>
 </td>
@@ -154,7 +154,7 @@ Created, Running, Restarting, Succeeded, or Failed.</p>
 <td>
 <code>replicaStatuses</code></br>
 <em>
-<a href="#ReplicaStatus">
+<a href="#github.com/kubeflow/tf-operator/pkg/apis/common/v1.ReplicaStatus">
 map[github.com/kubeflow/tf-operator/pkg/apis/common/v1.ReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1.ReplicaStatus
 </a>
 </em>
@@ -210,13 +210,13 @@ It is represented in RFC3339 form and is in UTC.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="ReplicaSpec">ReplicaSpec
+<h3 id="github.com/kubeflow/tf-operator/pkg/apis/common/v1.ReplicaSpec">ReplicaSpec
 </h3>
 <p>
 <p>ReplicaSpec is a description of the job replica.</p>
 </p>
-<table>
-<thead>
+<div class="table-responsive"><table class="table table-bordered">
+<thead class="thead-light">
 <tr>
 <th>Field</th>
 <th>Description</th>
@@ -253,7 +253,7 @@ RestartPolicy in PodTemplateSpec will be overidden by RestartPolicy in ReplicaSp
 <td>
 <code>restartPolicy</code></br>
 <em>
-<a href="#RestartPolicy">
+<a href="#github.com/kubeflow/tf-operator/pkg/apis/common/v1.RestartPolicy">
 RestartPolicy
 </a>
 </em>
@@ -266,17 +266,17 @@ Defaults to Never.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="ReplicaStatus">ReplicaStatus
+<h3 id="github.com/kubeflow/tf-operator/pkg/apis/common/v1.ReplicaStatus">ReplicaStatus
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#JobStatus">JobStatus</a>)
+<a href="#github.com%2fkubeflow%2ftf-operator%2fpkg%2fapis%2fcommon%2fv1.JobStatus">JobStatus</a>)
 </p>
 <p>
 <p>ReplicaStatus represents the current observed state of the replica.</p>
 </p>
-<table>
-<thead>
+<div class="table-responsive"><table class="table table-bordered">
+<thead class="thead-light">
 <tr>
 <th>Field</th>
 <th>Description</th>
@@ -318,17 +318,17 @@ int32
 </tr>
 </tbody>
 </table>
-<h3 id="ReplicaType">ReplicaType
+<h3 id="github.com/kubeflow/tf-operator/pkg/apis/common/v1.ReplicaType">ReplicaType
 (<code>string</code> alias)</p></h3>
 <p>
 <p>ReplicaType represents the type of the job replica. Each operator (e.g. TensorFlow, PyTorch)
 needs to define its own set of ReplicaTypes.</p>
 </p>
-<h3 id="RestartPolicy">RestartPolicy
+<h3 id="github.com/kubeflow/tf-operator/pkg/apis/common/v1.RestartPolicy">RestartPolicy
 (<code>string</code> alias)</p></h3>
 <p>
 (<em>Appears on:</em>
-<a href="#ReplicaSpec">ReplicaSpec</a>)
+<a href="#github.com%2fkubeflow%2ftf-operator%2fpkg%2fapis%2fcommon%2fv1.ReplicaSpec">ReplicaSpec</a>)
 </p>
 <p>
 <p>RestartPolicy describes how the replicas should be restarted.
@@ -339,5 +339,5 @@ is RestartPolicyAlways.</p>
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>7cbb6a81</code>.
+on git commit <code>fd76deec</code>.
 </em></p>
