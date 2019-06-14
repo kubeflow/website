@@ -11,11 +11,11 @@ instructions on how to connect to them.
 
 Kubeflow comes with a number of web UIs, including:
 
-* Argo UI
 * Central UI for navigation
 * Jupyter notebooks
-* Katib
-* TFJobs Dashboard
+* TFJob Dashboard
+* Katib Dashboard
+* Pipelines Dashboard
 
 To make it easy to connect to these UIs Kubeflow provides a left hand navigation
 bar for navigating between the different applications.
@@ -41,6 +41,12 @@ https://<name>.endpoints.<project>.cloud.goog/
 ```
 
 This URL brings up the landing page illustrated above.
+
+When deployed with Cloud IAP, Kubeflow uses the 
+[Let's Encrypt](https://letsencrypt.org/) service to provide an SSL certificate 
+for the Kubeflow UI. For troubleshooting issues with your certificate, see the 
+guide to 
+[monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
 
 ## Using Kubectl and port-forwarding
 
