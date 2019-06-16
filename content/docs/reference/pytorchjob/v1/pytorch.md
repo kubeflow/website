@@ -15,15 +15,15 @@ weight = 100
 </p>
 Resource Types:
 <ul><li>
-<a href="#PyTorchJob">PyTorchJob</a>
+<a href="#github.com%2fkubeflow%2fpytorch-operator%2fpkg%2fapis%2fpytorch%2fv1.PyTorchJob">PyTorchJob</a>
 </li></ul>
-<h3 id="PyTorchJob">PyTorchJob
+<h3 id="github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1.PyTorchJob">PyTorchJob
 </h3>
 <p>
 <p>Represents a PyTorchJob resource.</p>
 </p>
-<table>
-<thead>
+<div class="table-responsive"><table class="table table-bordered">
+<thead class="thead-light">
 <tr>
 <th>Field</th>
 <th>Description</th>
@@ -66,7 +66,7 @@ Refer to the Kubernetes API documentation for the fields of the
 <td>
 <code>spec</code></br>
 <em>
-<a href="#PyTorchJobSpec">
+<a href="#github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1.PyTorchJobSpec">
 PyTorchJobSpec
 </a>
 </em>
@@ -75,7 +75,7 @@ PyTorchJobSpec
 <p>Specification of the desired state of the PyTorchJob.</p>
 <br/>
 <br/>
-<table>
+<div class="table-responsive"><table class="table table-bordered">
 <tr>
 <td>
 <code>activeDeadlineSeconds</code></br>
@@ -168,17 +168,17 @@ Read-only (modified by the system).</p>
 </tr>
 </tbody>
 </table>
-<h3 id="PyTorchJobSpec">PyTorchJobSpec
+<h3 id="github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1.PyTorchJobSpec">PyTorchJobSpec
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#PyTorchJob">PyTorchJob</a>)
+<a href="#github.com%2fkubeflow%2fpytorch-operator%2fpkg%2fapis%2fpytorch%2fv1.PyTorchJob">PyTorchJob</a>)
 </p>
 <p>
 <p>PyTorchJobSpec is a desired state description of the PyTorchJob.</p>
 </p>
-<table>
-<thead>
+<div class="table-responsive"><table class="table table-bordered">
+<thead class="thead-light">
 <tr>
 <th>Field</th>
 <th>Description</th>
@@ -260,7 +260,7 @@ For example,
 </tr>
 </tbody>
 </table>
-<h3 id="PyTorchReplicaType">PyTorchReplicaType
+<h3 id="github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1.PyTorchReplicaType">PyTorchReplicaType
 (<code>string</code> alias)</p></h3>
 <p>
 <p>PyTorchReplicaType is the type for PyTorchReplica. Can be one of &ldquo;Master&rdquo; or &ldquo;Worker&rdquo;.</p>
@@ -268,5 +268,5 @@ For example,
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>a94fee5</code>.
+on git commit <code>e775742</code>.
 </em></p>
