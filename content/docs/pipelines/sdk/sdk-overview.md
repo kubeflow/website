@@ -170,14 +170,9 @@ Below is a more detailed explanation of the above diagram:
       name='My pipeline',
       description='My machine learning pipeline'
     )
-    def my_pipeline(
-        my_num='1000', 
-        my_name='some text', 
-        my_url='http://example.com'):
+    def my_pipeline(a: PipelineParam, b: PipelineParam):
       ...
     ```
-
-    TODO:IMPROVE THE ABOVE EXAMPLE TO SHOW A COMPONENT AND BETTER/NO PARAMS
 
 1. Compile the pipeline to generate a compressed YAML definition of the 
   pipeline. The Kubeflow Pipelines service converts the static configuration 
@@ -219,6 +214,19 @@ Python application, by creating components from existing containerized
 applications.
 
 TODO
+
+TODO: INCORPORATE THIS EXAMPLE FROM THE ORIGINAL DSL OVERVIEW:
+
+```python
+@kfp.dsl.component
+def my_component(my_param):
+  ...
+  return dsl.ContainerOp()
+```
+
+The above `component` decorator requires the function to return a `ContainerOp` 
+instance. The main purpose of using this decorator is to enable 
+[DSL static type checking](/docs/pipelines/sdk/static-type-checking).
 
 ### Using prebuilt, reusable components in your pipeline
 
