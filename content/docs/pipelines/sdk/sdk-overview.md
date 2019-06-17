@@ -119,17 +119,15 @@ conceptual guide to the relationship between the following concepts:
 <a id="standard-component-in-app"></a>
 ### Building components and pipeline within your application code
 
-This section describes how to create a component and a pipeline *inside* your
-Python application, as part of the application. This code therefore runs
-inside your Docker container.
-As an alternative, you can build components after writing and containerizing the
-application code. See the section on creating components outside your 
-application code [below](#standard-component-outside-app).
+This section describes how to create a pipeline component *inside* your
+Python application, as part of the application. The DSL code for creating a
+component therefore runs inside your Docker container.
 
-This section describes standard pipeline components, which involve
-containerizing each component before you can run it. As an alternative, you can
-create *lightweight components* that don't require containers. See the section
-on lightweight components [below](#lightweight-component).
+<img src="/docs/images/pipelines-sdk-within-app.svg" 
+  alt="Building components within your application code"
+  class="mt-3 mb-3 border border-info rounded">
+
+Below is a more detailed explanation of the above diagram:
 
 1. Write your code in a Python function. For example, write code to transform 
   data or train a model.
@@ -138,8 +136,6 @@ on lightweight components [below](#lightweight-component).
     def my_python_func(a: str, b: int) -> str:
       ...
     ```
-
-    TODO: DIAGRAM
 
 1. Use the 
   [`kfp.dsl.python_component`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.python_component)
@@ -157,13 +153,9 @@ on lightweight components [below](#lightweight-component).
       ...
     ```
 
-    TODO: DIAGRAM
-
 1. Use 
   [`kfp.compiler.build_python_component`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.build_python_component)
   to create a container image for the component.
-
-    TODO: DIAGRAM
 
     TODO: EXAMPLE FROM SAMPLES and include my_python_func
 
@@ -187,8 +179,6 @@ on lightweight components [below](#lightweight-component).
 
     TODO:IMPROVE THE ABOVE EXAMPLE TO SHOW A COMPONENT AND BETTER/NO PARAMS
 
-    TODO: DIAGRAM
-
 1. Compile the pipeline to generate a compressed YAML definition of the 
   pipeline. The Kubeflow Pipelines service converts the static configuration 
   into a set of Kubernetes resources for execution.
@@ -206,8 +196,6 @@ on lightweight components [below](#lightweight-component).
 
         TODO: Example
 
-    TODO: DIAGRAM
-
 1. Upload the pipeline to the Kubeflow Pipelines UI, share the pipeline in
   a shared repository, or use the Kubeflow Pipelines SDK to run the pipeline:
 
@@ -217,8 +205,6 @@ on lightweight components [below](#lightweight-component).
     ```
 
     TODO:EXPAND THE ABOVE EXAMPLE
-
-    TODO: DIAGRAM
 
 <a id="lightweight-component"></a>
 ### Building lightweight components and pipeline
