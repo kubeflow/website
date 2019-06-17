@@ -15,15 +15,15 @@ weight = 100
 </p>
 Resource Types:
 <ul><li>
-<a href="#TFJob">TFJob</a>
+<a href="#github.com%2fkubeflow%2ftf-operator%2fpkg%2fapis%2ftensorflow%2fv1.TFJob">TFJob</a>
 </li></ul>
-<h3 id="TFJob">TFJob
+<h3 id="github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1.TFJob">TFJob
 </h3>
 <p>
 <p>Represents a TFJob resource.</p>
 </p>
-<table>
-<thead>
+<div class="table-responsive"><table class="table table-bordered">
+<thead class="thead-light">
 <tr>
 <th>Field</th>
 <th>Description</th>
@@ -66,7 +66,7 @@ Refer to the Kubernetes API documentation for the fields of the
 <td>
 <code>spec</code></br>
 <em>
-<a href="#TFJobSpec">
+<a href="#github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1.TFJobSpec">
 TFJobSpec
 </a>
 </em>
@@ -75,7 +75,7 @@ TFJobSpec
 <p>Specification of the desired state of the TFJob.</p>
 <br/>
 <br/>
-<table>
+<div class="table-responsive"><table class="table table-bordered">
 <tr>
 <td>
 <code>activeDeadlineSeconds</code></br>
@@ -168,17 +168,17 @@ Read-only (modified by the system).</p>
 </tr>
 </tbody>
 </table>
-<h3 id="TFJobSpec">TFJobSpec
+<h3 id="github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1.TFJobSpec">TFJobSpec
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#TFJob">TFJob</a>)
+<a href="#github.com%2fkubeflow%2ftf-operator%2fpkg%2fapis%2ftensorflow%2fv1.TFJob">TFJob</a>)
 </p>
 <p>
 <p>TFJobSpec is a desired state description of the TFJob.</p>
 </p>
-<table>
-<thead>
+<div class="table-responsive"><table class="table table-bordered">
+<thead class="thead-light">
 <tr>
 <th>Field</th>
 <th>Description</th>
@@ -260,7 +260,7 @@ For example,
 </tr>
 </tbody>
 </table>
-<h3 id="TFReplicaType">TFReplicaType
+<h3 id="github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1.TFReplicaType">TFReplicaType
 (<code>string</code> alias)</p></h3>
 <p>
 <p>TFReplicaType is the type for TFReplica. Can be one of: &ldquo;Chief&rdquo;/&ldquo;Master&rdquo; (semantically equivalent),
@@ -269,5 +269,5 @@ For example,
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>7cbb6a81</code>.
+on git commit <code>fd76deec</code>.
 </em></p>
