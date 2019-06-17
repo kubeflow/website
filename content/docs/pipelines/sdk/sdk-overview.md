@@ -133,7 +133,7 @@ Below is a more detailed explanation of the above diagram:
   data or train a model.
 
     ```python
-    def my_python_func(a: str, b: int) -> str:
+    def my_python_func(a: str, b: str) -> str:
       ...
     ```
 
@@ -141,15 +141,14 @@ Below is a more detailed explanation of the above diagram:
   [`kfp.dsl.python_component`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.python_component)
   decorator to convert your Python function into 
   a pipeline component. To use the decorator, you can add the 
-  `@dsl.python_component` annotation to your function:
+  `@kfp.dsl.python_component` annotation to your function:
 
     ```python
-    @dsl.python_component(
-      name='my awesome component',
-      description='Come, Let's play',
-      base_image='tensorflow/tensorflow:1.11.0-py3',
+    @kfp.dsl.python_component(
+      name='My awesome component',
+      description='Come and play',
     )
-    def my_python_func(a: str, b: int) -> str:
+    def my_python_func(a: str, b: str) -> str:
       ...
     ```
 
@@ -157,21 +156,26 @@ Below is a more detailed explanation of the above diagram:
   [`kfp.compiler.build_python_component`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.build_python_component)
   to create a container image for the component.
 
-    TODO: EXAMPLE FROM SAMPLES and include my_python_func
+    ```python
+    MyOp = compiler.build_python_component(
+      component_func=my_python_func,
+      staging_gcs_path=OUTPUT_DIR,
+      target_image=TARGET_IMAGE)
+    ```
 
 1. Write a pipeline function using the Kubeflow Pipelines DSL to define the 
   pipeline and include all the pipeline components. Use the 
   [`kfp.dsl.pipeline`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.pipeline)
   decorator to build a pipeline from your pipeline function, by adding 
-  the `@dsl.pipeline` annotation to your pipeline function:
+  the `@kfp.dsl.pipeline` annotation to your pipeline function:
 
     ```python
     @kfp.dsl.pipeline(
       name='My pipeline',
       description='My machine learning pipeline'
     )
-    def my_pipeline(a: PipelineParam, b: PipelineParam):
-      ...
+    def my_pipeline(param_1: PipelineParam, param_2: PipelineParam):
+      myFunc = MyOp(a='a', b='b')
     ```
 
 1. Compile the pipeline to generate a compressed YAML definition of the 
@@ -183,28 +187,35 @@ Below is a more detailed explanation of the above diagram:
 
     * Use the 
       [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.Compiler) 
-      method.
+      method:
 
-        TODO: Example
+        ```python
+        kfp.compiler.Compiler().compile(my_pipeline,  
+          'my-pipeline.zip')
+        ```
 
-    * Use the `dsl-compile` command on the command line.
+    * Alternatively, use the `dsl-compile` command on the command line.
 
-        TODO: Example
+        ```shell
+        dsl-compile --py [path/to/python/file] --output my-pipeline.zip
+        ```
 
-1. Upload the pipeline to the Kubeflow Pipelines UI, share the pipeline in
-  a shared repository, or use the Kubeflow Pipelines SDK to run the pipeline:
+1. Use the Kubeflow Pipelines SDK to run the pipeline:
 
     ```python
-    kfp.Client.create_experiment
-    kfp.Client.run_pipeline
+    client = kfp.Client()
+    my_experiment = client.create_experiment(name='demo')
+    my_run = client.run_pipeline(my_experiment.id, 'my-pipeline', 
+      'my-pipeline.zip')
     ```
 
-    TODO:EXPAND THE ABOVE EXAMPLE
+You can also choose to share your pipeline as follows:
 
-<a id="lightweight-component"></a>
-### Building lightweight components and pipeline
-
-TODO
+* Upload the pipeline zip file to the Kubeflow Pipelines UI. For more 
+  information about the UI, see the [Kubeflow Pipelines quickstart 
+  guide](/docs/pipelines/pipelines-quickstart/).
+* Upload the pipeline zipe file to a shared repository, such as
+  [AI Hub](https://cloud.google.com/ai-hub/docs/publish-pipeline).
 
 <a id="standard-component-outside-app"></a>
 ### Creating components outside your application code
@@ -213,7 +224,13 @@ This section describes how to create a component and a pipeline *outside* your
 Python application, by creating components from existing containerized
 applications.
 
-TODO
+<img src="/docs/images/pipelines-sdk-outside-app.svg" 
+  alt="Building components outside your application code"
+  class="mt-3 mb-3 border border-info rounded">
+
+Below is a more detailed explanation of the above diagram:
+
+1. TODO
 
 TODO: INCORPORATE THIS EXAMPLE FROM THE ORIGINAL DSL OVERVIEW:
 
@@ -228,6 +245,12 @@ The above `component` decorator requires the function to return a `ContainerOp`
 instance. The main purpose of using this decorator is to enable 
 [DSL static type checking](/docs/pipelines/sdk/static-type-checking).
 
+<a id="lightweight-component"></a>
+### Building lightweight components
+
+TODO
+
+<a id="prebuilt-component"></a>
 ### Using prebuilt, reusable components in your pipeline
 
 TODO
