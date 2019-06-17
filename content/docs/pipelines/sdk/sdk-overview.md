@@ -11,13 +11,9 @@ machine learning (ML) workflows. A *pipeline* is a description of an ML
 workflow, including all of the *components* that make up the steps in the 
 workflow and how the components interact with each other. 
 
-If you're new to Kubeflow Pipelines, see the conceptual guides to 
-[pipelines](/docs/pipelines/concepts/pipeline/)
-and [components](/docs/pipelines/concepts/component/).
-
 ## SDK packages
 
-The SDK includes the following packages:
+The Kubeflow Pipelines SDK includes the following packages:
 
 * [`kfp.compiler`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html)
   includes classes and methods for building Docker container images for your
@@ -112,9 +108,135 @@ Follow the guide to
 ## Building pipelines and components
 
 This section summarizes the ways you can use the SDK to build pipelines and 
-components, and provides links to further information.
+components, and provides links to further information. The diagrams provide a
+conceptual guide to the relationship between the following concepts:
 
-### TODO VARIOUS WAYS OF BUILDING WITH SDK
+* Your Python code
+* A pipeline component
+* A Docker container image
+* A pipeline
+
+<a id="standard-component-in-app"></a>
+### Building components and pipeline within your application code
+
+This section describes how to create a component and a pipeline *inside* your
+Python application, as part of the application. This code therefore runs
+inside your Docker container.
+As an alternative, you can build components after writing and containerizing the
+application code. See the section on creating components outside your 
+application code [below](#standard-component-outside-app).
+
+This section describes standard pipeline components, which involve
+containerizing each component before you can run it. As an alternative, you can
+create *lightweight components* that don't require containers. See the section
+on lightweight components [below](#lightweight-component).
+
+1. Write your code in a Python function. For example, write code to transform 
+  data or train a model.
+
+    ```python
+    def my_python_func(a: str, b: int) -> str:
+      ...
+    ```
+
+    TODO: DIAGRAM
+
+1. Use the 
+  [`kfp.dsl.python_component`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.python_component)
+  decorator to convert your Python function into 
+  a pipeline component. To use the decorator, you can add the 
+  `@dsl.python_component` annotation to your function:
+
+    ```python
+    @dsl.python_component(
+      name='my awesome component',
+      description='Come, Let's play',
+      base_image='tensorflow/tensorflow:1.11.0-py3',
+    )
+    def my_python_func(a: str, b: int) -> str:
+      ...
+    ```
+
+    TODO: DIAGRAM
+
+1. Use 
+  [`kfp.compiler.build_python_component`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.build_python_component)
+  to create a container image for the component.
+
+    TODO: DIAGRAM
+
+    TODO: EXAMPLE FROM SAMPLES and include my_python_func
+
+1. Write a pipeline function using the Kubeflow Pipelines DSL to define the 
+  pipeline and include all the pipeline components. Use the 
+  [`kfp.dsl.pipeline`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.pipeline)
+  decorator to build a pipeline from your pipeline function, by adding 
+  the `@dsl.pipeline` annotation to your pipeline function:
+
+    ```python
+    @kfp.dsl.pipeline(
+      name='My pipeline',
+      description='My machine learning pipeline'
+    )
+    def my_pipeline(
+        my_num='1000', 
+        my_name='some text', 
+        my_url='http://example.com'):
+      ...
+    ```
+
+    TODO:IMPROVE THE ABOVE EXAMPLE TO SHOW A COMPONENT AND BETTER/NO PARAMS
+
+    TODO: DIAGRAM
+
+1. Compile the pipeline to generate a compressed YAML definition of the 
+  pipeline. The Kubeflow Pipelines service converts the static configuration 
+  into a set of Kubernetes resources for execution.
+  
+    To compile the pipeline, you can choose one of the following 
+    options:
+
+    * Use the 
+      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.Compiler) 
+      method.
+
+        TODO: Example
+
+    * Use the `dsl-compile` command on the command line.
+
+        TODO: Example
+
+    TODO: DIAGRAM
+
+1. Upload the pipeline to the Kubeflow Pipelines UI, share the pipeline in
+  a shared repository, or use the Kubeflow Pipelines SDK to run the pipeline:
+
+    ```python
+    kfp.Client.create_experiment
+    kfp.Client.run_pipeline
+    ```
+
+    TODO:EXPAND THE ABOVE EXAMPLE
+
+    TODO: DIAGRAM
+
+<a id="lightweight-component"></a>
+### Building lightweight components and pipeline
+
+TODO
+
+<a id="standard-component-outside-app"></a>
+### Creating components outside your application code
+
+This section describes how to create a component and a pipeline *outside* your
+Python application, by creating components from existing containerized
+applications.
+
+TODO
+
+### Using prebuilt, reusable components in your pipeline
+
+TODO
 
 ## DSL techniques
 
