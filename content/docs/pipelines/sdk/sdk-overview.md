@@ -332,7 +332,15 @@ structured data in CSV format.
 <a id="lightweight-component"></a>
 ### Building lightweight components
 
-TODO
+This section describes how to TODO
+
+<img src="/docs/images/pipelines-sdk-lightweight.svg" 
+  alt="Building lightweight Python components"
+  class="mt-3 mb-3 border border-info rounded">
+
+Below is a more detailed explanation of the above diagram:
+
+1. TODO
 
 <a id="prebuilt-component"></a>
 ### Using prebuilt, reusable components in your pipeline
