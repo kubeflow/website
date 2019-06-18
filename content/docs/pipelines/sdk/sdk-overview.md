@@ -1,6 +1,6 @@
 +++
-title = "Introducion to the Pipelines SDK"
-description = "Introduction to building components and pipelines"
+title = "Introduction to the Pipelines SDK"
+description = "Overview of using the SDK to build components and pipelines"
 weight = 2
 +++
 
@@ -70,8 +70,8 @@ The Kubeflow Pipelines SDK includes the following packages:
   * `kfp.dsl.ContainerOp` represents a pipeline task (op) implemented by a 
     container image.
   * `kfp.dsl.PipelineParam` represents a pipeline parameter that you can pass
-    from one pipeline component to another. See more details 
-    [below](#pipeline-param).
+    from one pipeline component to another. See the guide to 
+    [pipeline parameters](/docs/pipelines/sdk/parameters/).
   * `kfp.dsl.component` is a decorator for DSL functions that returns a
     pipeline component.
     ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp)).
@@ -79,8 +79,12 @@ The Kubeflow Pipelines SDK includes the following packages:
     pipeline.
   * `kfp.dsl.python_component` is a decorator for Python functions that adds
     pipeline component metadata to the function object.
-  * `kfp.dsl.types` contains a list of types defined by the Kubeflow Pipelines 
-    SDK. See more details [below](#types).
+  * [`kfp.dsl.types`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.types.html) 
+    contains a list of types defined by the Kubeflow Pipelines SDK. Types
+    include basic types like `String`, `Integer`, `Float`, and `Bool`, as well
+    as domain-specific types like `GCPProjectID` and `GCRPath`.
+    See the guide to 
+    [DSL static type checking](/docs/pipelines/sdk/static-type-checking).
 
 * [`kfp.Client`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html)
   contains the Python client libraries for the [Kubeflow Pipelines 
@@ -93,7 +97,6 @@ The Kubeflow Pipelines SDK includes the following packages:
   * `kfp.Client.run_pipeline` runs a pipeline and returns a run object.
 
 * [`kfp.notebook`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.notebook.html)
-  TODO CURRENTLY EMPTY ON READ THE DOCS
 
 * [KFP extension modules](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html)
   include classes and functions for specific platforms on which you can use
@@ -238,7 +241,7 @@ Below is a more detailed explanation of the above diagram:
   transform data or train a model.
 
 1. Create a [Docker](https://docs.docker.com/get-started/) container image that 
-  packages your program (`my-app-code.py`), and upload the container image to a 
+  packages your program (`my-app-code.py`) and upload the container image to a 
   registry. To build a container image based on a given 
   [Dockerfile](https://docs.docker.com/engine/reference/builder/), you can use 
   the [Docker command-line 
@@ -335,68 +338,6 @@ TODO
 ### Using prebuilt, reusable components in your pipeline
 
 TODO
-
-## DSL techniques
-
-This section describes specific techniques for using the Kubeflow Pipelines
-DSL. 
-
-<a id="pipeline-param"></a>
-### Pipeline parameters
-
-The [`kfp.dsl.PipelineParam` 
-class](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineParam)
-represents a data type that you can pass between pipeline components.
-
-You can use a `PipelineParam` object as an argument in your pipeline function.
-The object is then a pipeline parameter that shows up in Kubeflow Pipelines UI.
-A `PipelineParam` can also represent an intermediate value that you pass between 
-components.
-
-The following code sample shows how to use `PipelineParam` objects as
-arguments in a pipeline function:
-
-```python
-@kfp.dsl.pipeline(
-  name='My pipeline',
-  description='My machine learning pipeline'
-)
-def my_pipeline(
-    my_num = dsl.PipelineParam(name='num-foos', value=1000),
-    my_name = dsl.PipelineParam(name='my-name', value='some text'),
-    my_url = dsl.PipelineParam(name='foo-url', value='http://example.com')):
-  ...
-```
-
-The DSL supports auto-conversion from string to `PipelineParam`. You can
-therefore write the same function like this:
-
-```python
-@kfp.dsl.pipeline(
-  name='My pipeline',
-  description='My machine learning pipeline'
-)
-def my_pipeline(
-    my_num='1000', 
-    my_name='some text', 
-    my_url='http://example.com'):
-  ...
-```
-
-See more about `PipelineParam` objects in the guide to [building a 
-component](/docs/pipelines/sdk/build-component/#create-a-python-class-for-your-component).
-
-<a id="types"></a>
-### Types
-
-The [`kfp.dsl.types` 
-module](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.types.html)
-contains a list of types defined by the Kubeflow Pipelines SDK. Types
-include basic types like `String`, `Integer`, `Float`, and `Bool`, as well as
-domain-specific types like `GCPProjectID` and `GCRPath`.
-
-See the guide to 
-[DSL static type checking](/docs/pipelines/sdk/static-type-checking).
 
 ## Next steps
 
