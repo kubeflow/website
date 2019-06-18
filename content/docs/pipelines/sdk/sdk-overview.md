@@ -111,8 +111,16 @@ Follow the guide to
 ## Building pipelines and components
 
 This section summarizes the ways you can use the SDK to build pipelines and 
-components, and provides links to further information. The diagrams provide a
-conceptual guide to the relationship between the following concepts:
+components:
+
+* [Creating components within your application code](#standard-component-in-app)
+* [Creating components outside your application 
+  code](#standard-component-outside-app)
+* [Creating lightweight components](#lightweight-component)
+* [Using prebuilt, reusuable components in your pipeline](#prebuilt-component)
+
+The diagrams provide a conceptual guide to the relationships between the 
+following concepts:
 
 * Your Python code
 * A pipeline component
@@ -120,7 +128,7 @@ conceptual guide to the relationship between the following concepts:
 * A pipeline
 
 <a id="standard-component-in-app"></a>
-### Building components and pipeline within your application code
+### Creating components within your application code
 
 This section describes how to create a pipeline component *inside* your
 Python application, as part of the application. The DSL code for creating a
@@ -232,7 +240,7 @@ Python application, by creating components from existing containerized
 applications.
 
 <img src="/docs/images/pipelines-sdk-outside-app.svg" 
-  alt="Building components outside your application code"
+  alt="Creating components outside your application code"
   class="mt-3 mb-3 border border-info rounded">
 
 Below is a more detailed explanation of the above diagram:
@@ -330,7 +338,7 @@ pipeline sample on GitHub. The pipeline creates an XGBoost model using
 structured data in CSV format.
 
 <a id="lightweight-component"></a>
-### Building lightweight components
+### Creating lightweight components
 
 This section describes how to TODO
 
