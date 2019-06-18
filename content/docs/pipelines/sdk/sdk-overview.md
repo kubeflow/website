@@ -1,5 +1,5 @@
 +++
-title = "Overview of the Pipelines SDK"
+title = "Introducion to the Pipelines SDK"
 description = "Introduction to building components and pipelines"
 weight = 2
 +++
@@ -73,7 +73,7 @@ The Kubeflow Pipelines SDK includes the following packages:
     from one pipeline component to another. See more details 
     [below](#pipeline-param).
   * `kfp.dsl.component` is a decorator for DSL functions that returns a
-    pipeline component
+    pipeline component.
     ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp)).
   * `kfp.dsl.pipeline` is a decorator for Python functions that returns a
     pipeline.
@@ -130,16 +130,16 @@ component therefore runs inside your Docker container.
 Below is a more detailed explanation of the above diagram:
 
 1. Write your code in a Python function. For example, write code to transform 
-  data or train a model.
+  data or train a model:
 
     ```python
     def my_python_func(a: str, b: str) -> str:
       ...
     ```
 
-1. Use the 
-  [`kfp.dsl.python_component`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.python_component)
-  decorator to convert your Python function into 
+1. Use the [`kfp.dsl.python_component`
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.python_component)
+  to convert your Python function into 
   a pipeline component. To use the decorator, you can add the 
   `@kfp.dsl.python_component` annotation to your function:
 
@@ -164,9 +164,9 @@ Below is a more detailed explanation of the above diagram:
     ```
 
 1. Write a pipeline function using the Kubeflow Pipelines DSL to define the 
-  pipeline and include all the pipeline components. Use the 
-  [`kfp.dsl.pipeline`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.pipeline)
-  decorator to build a pipeline from your pipeline function, by adding 
+  pipeline and include all the pipeline components. Use the [`kfp.dsl.pipeline`
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.pipeline)
+  to build a pipeline from your pipeline function, by adding 
   the `@kfp.dsl.pipeline` annotation to your pipeline function:
 
     ```python
@@ -175,7 +175,7 @@ Below is a more detailed explanation of the above diagram:
       description='My machine learning pipeline'
     )
     def my_pipeline(param_1: PipelineParam, param_2: PipelineParam):
-      myFunc = MyOp(a='a', b='b')
+      myStep = MyOp(a='a', b='b')
     ```
 
 1. Compile the pipeline to generate a compressed YAML definition of the 
@@ -217,6 +217,10 @@ You can also choose to share your pipeline as follows:
 * Upload the pipeline zipe file to a shared repository, such as
   [AI Hub](https://cloud.google.com/ai-hub/docs/publish-pipeline).
 
+For an example of the workflow described in the above section, see the
+Jupyter notebook titled [KubeFlow Pipeline Using TFX OSS 
+Components](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/KubeFlow%20Pipeline%20Using%20TFX%20OSS%20Components.ipynb) on GitHub.
+
 <a id="standard-component-outside-app"></a>
 ### Creating components outside your application code
 
@@ -230,20 +234,97 @@ applications.
 
 Below is a more detailed explanation of the above diagram:
 
-1. TODO
+1. Write your application code, `my-app-code.py`. For example, write code to
+  transform data or train a model.
 
-TODO: INCORPORATE THIS EXAMPLE FROM THE ORIGINAL DSL OVERVIEW:
+1. Create a [Docker](https://docs.docker.com/get-started/) container image that 
+  packages your program (`my-app-code.py`), and upload the container image to a 
+  registry. To build a container image based on a given 
+  [Dockerfile](https://docs.docker.com/engine/reference/builder/), you can use 
+  the [Docker command-line 
+  interface](https://docs.docker.com/engine/reference/commandline/cli/)
+  or the 
+  [`kfp.compiler.build_docker_image` method](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.build_docker_image) from the Kubeflow Pipelines 
+  SDK.
 
-```python
-@kfp.dsl.component
-def my_component(my_param):
-  ...
-  return dsl.ContainerOp()
-```
+1. Write a component function using the Kubeflow Pipelines DSL to define your
+  pipeline's interactions with the component’s Docker container. Your
+  component function must return a
+  [`kfp.dsl.ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp).
+  Optionally, you can use the [`kfp.dsl.component` 
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.component)
+  to enable [static type checking](/docs/pipelines/sdk/static-type-checking) in 
+  the DSL compiler. To use the decorator, you can add the `@kfp.dsl.component` 
+  annotation to your component function:
 
-The above `component` decorator requires the function to return a `ContainerOp` 
-instance. The main purpose of using this decorator is to enable 
-[DSL static type checking](/docs/pipelines/sdk/static-type-checking).
+    ```python
+    @kfp.dsl.component
+    def my_component(my_param):
+      ...
+      return kfp.dsl.ContainerOp(
+        name='My component name',
+        image='gcr.io/path/to/container/image'
+      )
+    ```
+
+1. Write a pipeline function using the Kubeflow Pipelines DSL to define the 
+  pipeline and include all the pipeline components. Use the [`kfp.dsl.pipeline`
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.pipeline)
+  to build a pipeline from your pipeline function. To use the decorator, you can
+  add the `@kfp.dsl.pipeline` annotation to your pipeline function:
+
+    ```python
+    @kfp.dsl.pipeline(
+      name='My pipeline',
+      description='My machine learning pipeline'
+    )
+    def my_pipeline(param_1: PipelineParam, param_2: PipelineParam):
+      myStep = my_component(my_param='a')
+    ```
+
+1. Compile the pipeline to generate a compressed YAML definition of the 
+  pipeline. The Kubeflow Pipelines service converts the static configuration 
+  into a set of Kubernetes resources for execution.
+  
+    To compile the pipeline, you can choose one of the following 
+    options:
+
+    * Use the 
+      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.Compiler) 
+      method:
+
+        ```python
+        kfp.compiler.Compiler().compile(my_pipeline,  
+          'my-pipeline.zip')
+        ```
+
+    * Alternatively, use the `dsl-compile` command on the command line.
+
+        ```shell
+        dsl-compile --py [path/to/python/file] --output my-pipeline.zip
+        ```
+
+1. Use the Kubeflow Pipelines SDK to run the pipeline:
+
+    ```python
+    client = kfp.Client()
+    my_experiment = client.create_experiment(name='demo')
+    my_run = client.run_pipeline(my_experiment.id, 'my-pipeline', 
+      'my-pipeline.zip')
+    ```
+
+You can also choose to share your pipeline as follows:
+
+* Upload the pipeline zip file to the Kubeflow Pipelines UI. For more 
+  information about the UI, see the [Kubeflow Pipelines quickstart 
+  guide](/docs/pipelines/pipelines-quickstart/).
+* Upload the pipeline zipe file to a shared repository, such as
+  [AI Hub](https://cloud.google.com/ai-hub/docs/publish-pipeline).
+
+For an example of the workflow described in the above section, see the
+[`xgboost-training-cm.py`](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py)
+pipeline sample on GitHub. The pipeline creates an XGBoost model using 
+structured data in CSV format.
 
 <a id="lightweight-component"></a>
 ### Building lightweight components
