@@ -41,7 +41,7 @@ The Kubeflow Pipelines SDK includes the following packages:
   Methods in this package include, but are not limited to, the following:
 
   * `kfp.components.func_to_container_op` converts a Python function to a 
-    pipeline component and returns factory function.
+    pipeline component and returns a factory function.
     You can then call the factory function to construct an instance of a 
     pipeline task
     ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp)) 
