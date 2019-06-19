@@ -58,8 +58,8 @@ If you experience any issues running these scripts, see the [troubleshooting gui
 ### Initial cluster setup for new cluster
 
 Create a resource group:
+    
     az group create --name <RESOURCE_GROUP_NAME> --location <LOCATION>
-
 Example variables:
 
 - RESOURCE_GROUP_NAME=KubeTest 
@@ -106,7 +106,7 @@ kfctl generate all -V
 kfctl apply k8s -V
 ```
 
-    * ${KFAPP} - the name of a directory where you want Kubeflow configurations to be stored. This directory is created when you runkfctl init. If you want a custom deployment name, specify that name here. The value of this variable becomes the name of your deployment. The value of this variable cannot be greater than 25 characters. It must contain just the directory name, not the full path to the directory. The content of this directory is described in the next section.
+* ${KFAPP} - the name of a directory where you want Kubeflow configurations to be stored. This directory is created when you runkfctl init. If you want a custom deployment name, specify that name here. The value of this variable becomes the name of your deployment. The value of this variable cannot be greater than 25 characters. It must contain just the directory name, not the full path to the directory. The content of this directory is described in the next section.
 
 1. Check the resources deployed correctly in namespace `kubeflow`
 
