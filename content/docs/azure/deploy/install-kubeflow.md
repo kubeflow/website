@@ -11,7 +11,6 @@ deploy Kubeflow on Azure.
 
 -   Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux)
 -   Install and configure the [Azure Command Line Interface (Az)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-	-  Configure it with ```az init```  
 	-  Log in with ```az login```
 -  Install ksonnet (in the process of being deprecated) 
 	-   Download the [binary](https://github.com/ksonnet/ksonnet/releases) for your OS and unpack
