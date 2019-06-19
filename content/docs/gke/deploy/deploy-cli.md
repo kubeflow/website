@@ -73,7 +73,7 @@ Follow these steps to deploy Kubeflow:
     export PATH=$PATH:<path to kfctl in your kubeflow installation>
     export ZONE=<your target zone> #where the deployment will be created
 
-    export PROJECT=<your GCP project>
+    export PROJECT=<your GCP project ID>
     export KFAPP=<your choice of application directory name>
     # Default uses Cloud IAP:
     kfctl init ${KFAPP} --platform gcp --project ${PROJECT}
@@ -91,7 +91,7 @@ Follow these steps to deploy Kubeflow:
      The value of this variable cannot be greater than 25 characters. It must
      contain just the directory name, not the full path to the directory.
      The content of this directory is described in the next section.
-   * **${PROJECT}** - the _name_ of the GCP project where you want Kubeflow 
+   * **${PROJECT}** - the project ID of the GCP project where you want Kubeflow 
      deployed.
    * When you run `kfctl init` you need to choose to use either IAP or basic 
      authentication, as described below.
