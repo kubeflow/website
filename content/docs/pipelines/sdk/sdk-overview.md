@@ -186,7 +186,7 @@ Below is a more detailed explanation of the above diagram:
       description='My machine learning pipeline'
     )
     def my_pipeline(param_1: PipelineParam, param_2: PipelineParam):
-      myStep = my_component(my_param='a')
+      my_step = my_component(my_param='a')
     ```
 
 1. Compile the pipeline to generate a compressed YAML definition of the 
@@ -279,7 +279,7 @@ Below is a more detailed explanation of the above diagram:
   to create a container image for the component.
 
     ```python
-    MyOp = compiler.build_python_component(
+    my_op = compiler.build_python_component(
       component_func=my_python_func,
       staging_gcs_path=OUTPUT_DIR,
       target_image=TARGET_IMAGE)
@@ -297,7 +297,7 @@ Below is a more detailed explanation of the above diagram:
       description='My machine learning pipeline'
     )
     def my_pipeline(param_1: PipelineParam, param_2: PipelineParam):
-      myStep = MyOp(a='a', b='b')
+      my_step = my_op(a='a', b='b')
     ```
 
 1. Compile the pipeline to generate a compressed YAML definition of the 
@@ -348,7 +348,9 @@ Components](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/
 <a id="lightweight-component"></a>
 ### Creating lightweight components
 
-This section describes how to TODO
+This section describes how to create lightweight Python components that do not
+require you to build a container image. Lightweight components simplify 
+prototyping and rapid development, especially in a Jupyter notebook environment.
 
 <img src="/docs/images/pipelines-sdk-lightweight.svg" 
   alt="Building lightweight Python components"
@@ -356,12 +358,120 @@ This section describes how to TODO
 
 Below is a more detailed explanation of the above diagram:
 
-1. TODO
+1. Write your code in a Python function. For example, write code to transform 
+  data or train a model:
+
+    ```python
+    def my_python_func(a: str, b: str) -> str:
+      ...
+    ```
+
+1. Use 
+  [`kfp.components.func_to_container_op`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.func_to_container_op)
+  to convert your Python function into a pipeline component:
+
+    ```python
+    my_op = kfp.components.func_to_container_op(my_python_func)
+    ```
+
+    Optionally, you can write the component to a file that you can share or use
+    in another pipeline:
+
+    ```python
+    my_op = kfp.components.func_to_container_op(my_python_func, 
+      output_component_file='my-op.component')
+    ```
+
+1. If you stored your lightweight component in a file as described in the 
+  previous step, use 
+  [`kfp.components.load_component_from_file`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.load_component_from_file)
+  to load the component:
+
+    ```python
+    my_op = kfp.components.load_component_from_file('my-op.component')
+    ```
+
+1. Write a pipeline function using the Kubeflow Pipelines DSL to define the 
+  pipeline and include all the pipeline components. Use the [`kfp.dsl.pipeline`
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.pipeline)
+  to build a pipeline from your pipeline function, by adding 
+  the `@kfp.dsl.pipeline` annotation to your pipeline function:
+
+    ```python
+    @kfp.dsl.pipeline(
+      name='My pipeline',
+      description='My machine learning pipeline'
+    )
+    def my_pipeline(param_1: PipelineParam, param_2: PipelineParam):
+      my_step = my_op(a='a', b='b')
+    ```
+
+1. Compile the pipeline to generate a compressed YAML definition of the 
+  pipeline. The Kubeflow Pipelines service converts the static configuration 
+  into a set of Kubernetes resources for execution.
+  
+    To compile the pipeline, you can choose one of the following 
+    options:
+
+    * Use the 
+      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.Compiler) 
+      method:
+
+        ```python
+        kfp.compiler.Compiler().compile(my_pipeline,  
+          'my-pipeline.zip')
+        ```
+
+    * Alternatively, use the `dsl-compile` command on the command line.
+
+        ```shell
+        dsl-compile --py [path/to/python/file] --output my-pipeline.zip
+        ```
+
+1. Use the Kubeflow Pipelines SDK to run the pipeline:
+
+    ```python
+    client = kfp.Client()
+    my_experiment = client.create_experiment(name='demo')
+    my_run = client.run_pipeline(my_experiment.id, 'my-pipeline', 
+      'my-pipeline.zip')
+    ```
+
+{{% alert title="More about the above workflow" color="info" %}}
+For more detailed instructions, see the guide to [building lightweight 
+components](/docs/pipelines/sdk/lightweight-python-components/).
+
+For an example, see the [Lightweight Python components - 
+basics](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/Lightweight%20Python%20components%20-%20basics.ipynb)
+notebook on GitHub.
+{{% /alert %}}
 
 <a id="prebuilt-component"></a>
 ### Using prebuilt, reusable components in your pipeline
 
+This section describes how to TODO
+applications. This technique is useful when TODO you have already created a 
+TensorFlow program, for example, and you want to use it in a pipeline.
+
+<img src="/docs/images/pipelines-sdk-reusable.svg" 
+  alt="Using prebuilt, reusable components in your pipeline"
+  class="mt-3 mb-3 border border-info rounded">
+
+Below is a more detailed explanation of the above diagram:
+
+1. TODO
+
+{{% alert title="More about the above workflow" color="info" %}}
 TODO
+
+For more detailed instructions, see the guide to [building components and 
+pipelines](/docs/pipelines/sdk/build-component/).
+
+For an example, see the
+[`xgboost-training-cm.py`](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py)
+pipeline sample on GitHub. The pipeline creates an XGBoost model using 
+structured data in CSV format.
+{{% /alert %}}
 
 ## Next steps
 
