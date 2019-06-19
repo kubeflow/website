@@ -449,9 +449,9 @@ notebook on GitHub.
 <a id="prebuilt-component"></a>
 ### Using prebuilt, reusable components in your pipeline
 
-This section describes how to TODO
-applications. This technique is useful when TODO you have already created a 
-TensorFlow program, for example, and you want to use it in a pipeline.
+A reusable component is one that someone has built and made available for others
+to use. To use the component in your pipeline, you need the YAML file that
+defines the component.
 
 <img src="/docs/images/pipelines-sdk-reusable.svg" 
   alt="Using prebuilt, reusable components in your pipeline"
@@ -459,14 +459,64 @@ TensorFlow program, for example, and you want to use it in a pipeline.
 
 Below is a more detailed explanation of the above diagram:
 
-1. TODO
+1. Find the YAML file that defines the reusable component. For example, use
+  one of the components listed in the [index of reusable 
+  components](/docs/pipelines/reusable-components/).
 
+1. Use 
+  [`kfp.components.load_component_from_url`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.load_component_from_url)
+  to load the component:
+
+    ```python
+    my_op = kfp.components.load_component_from_url('https://path/to/component.yaml')
+    ```
+
+1. Write a pipeline function using the Kubeflow Pipelines DSL to define the 
+  pipeline and include all the pipeline components. Use the [`kfp.dsl.pipeline`
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.pipeline)
+  to build a pipeline from your pipeline function, by adding 
+  the `@kfp.dsl.pipeline` annotation to your pipeline function:
+
+    ```python
+    @kfp.dsl.pipeline(
+      name='My pipeline',
+      description='My machine learning pipeline'
+    )
+    def my_pipeline(param_1: PipelineParam, param_2: PipelineParam):
+      my_step = my_op(a='a', b='b')
+    ```
+
+1. Compile the pipeline to generate a compressed YAML definition of the 
+  pipeline. The Kubeflow Pipelines service converts the static configuration 
+  into a set of Kubernetes resources for execution.
+  
+    To compile the pipeline, you can choose one of the following 
+    options:
+
+    * Use the 
+      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.Compiler) 
+      method:
+
+        ```python
+        kfp.compiler.Compiler().compile(my_pipeline,  
+          'my-pipeline.zip')
+        ```
+
+    * Alternatively, use the `dsl-compile` command on the command line.
+
+        ```shell
+        dsl-compile --py [path/to/python/file] --output my-pipeline.zip
+        ```
+
+1. Use the Kubeflow Pipelines SDK to run the pipeline:
+
+    ```python
+    client = kfp.Client()
+    my_experiment = client.create_experiment(name='demo')
+    my_run = client.run_pipeline(my_experiment.id, 'my-pipeline', 
+      'my-pipeline.zip')
+    ```
 {{% alert title="More about the above workflow" color="info" %}}
-TODO
-
-For more detailed instructions, see the guide to [building components and 
-pipelines](/docs/pipelines/sdk/build-component/).
-
 For an example, see the
 [`xgboost-training-cm.py`](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py)
 pipeline sample on GitHub. The pipeline creates an XGBoost model using 
@@ -475,9 +525,8 @@ structured data in CSV format.
 
 ## Next steps
 
-* See how to
-  [build a pipeline](/docs/pipelines/sdk/build-component/#create-a-python-class-for-your-component).
+* [Use pipeline parameters](/docs/pipelines/sdk/parameters/) to pass data between components.
+* Learn how to [write recursive functions in the 
+  DSL](/docs/pipelines/sdk/dsl-recursion).
 * Build a [reusable component](/docs/pipelines/sdk/component-development/) for
   sharing in multiple pipelines.
-* Read about [writing recursive functions in the 
-  DSL](/docs/pipelines/sdk/dsl-recursion).
