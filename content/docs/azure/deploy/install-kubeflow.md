@@ -11,7 +11,6 @@ deploy Kubeflow on Azure.
 
 -   Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux)
 -   Install and configure the [Azure Command Line Interface (Az)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-	-  Configure it with ```az init```  
 	-  Log in with ```az login```
 -  Install ksonnet (in the process of being deprecated) 
 	-   Download the [binary](https://github.com/ksonnet/ksonnet/releases) for your OS and unpack
@@ -58,6 +57,7 @@ If you experience any issues running these scripts, see the [troubleshooting gui
 ### Initial cluster setup for new cluster
 
 Create a resource group:
+    
     az group create --name <RESOURCE_GROUP_NAME> --location <LOCATION>
 
 Example variables:
@@ -92,19 +92,19 @@ Run the following commands to set up and deploy Kubeflow. The code below include
 
 1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the `kfctl` binary each time you run it.
 
-```
-# The following command is optional, to make kfctl binary easier to use.
-export PATH=$PATH:<path to kfctl in your kubeflow installation>
+    ```
+    # The following command is optional, to make kfctl binary easier to use.
+    export PATH=$PATH:<path to kfctl in your kubeflow installation>
 
-# Initialize a kubeflow app:
-export KFAPP=<your choice of application directory name> (ensure this is lowercase)
-kfctl init ${KFAPP}
-   
-# Generate and deploy the app:
-cd ${KFAPP}
-kfctl generate all -V
-kfctl apply k8s -V
-```
+    # Initialize a kubeflow app:
+    export KFAPP=<your choice of application directory name> (ensure this is lowercase)
+    kfctl init ${KFAPP}
+    
+    # Generate and deploy the app:
+    cd ${KFAPP}
+    kfctl generate all -V
+    kfctl apply k8s -V
+    ```
 
     * ${KFAPP} - the name of a directory where you want Kubeflow configurations to be stored. This directory is created when you runkfctl init. If you want a custom deployment name, specify that name here. The value of this variable becomes the name of your deployment. The value of this variable cannot be greater than 25 characters. It must contain just the directory name, not the full path to the directory. The content of this directory is described in the next section.
 
@@ -114,17 +114,17 @@ kfctl apply k8s -V
 
 1. Open Kubeflow Dashboard
 
-```
-# You may choose to use a load balancer:
+    ```
+    # You may choose to use a load balancer:
 
-kubectl get svc –n kubeflow
-kubectl expose svc ambassador -n kubeflow --type LoadBalancer --name <SVC_NAME>
-kfctl apply k8s -V
+    kubectl get svc –n kubeflow
+    kubectl expose svc ambassador -n kubeflow --type LoadBalancer --name <SVC_NAME>
+    kfctl apply k8s -V
 
-  
-# Find the external IP to access the dashboard:
-kubectl get svc –n kubeflow
-```
+    
+    # Find the external IP to access the dashboard:
+    kubectl get svc –n kubeflow
+    ```
 
 In this case, the external IP for the service named 'amb1' was 40.XX.XXX.XXX, so it was accessible at that address.
     
