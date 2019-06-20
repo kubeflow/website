@@ -1,7 +1,7 @@
 +++
 title = "Upgrading and Reinstalling"
 description = "How to upgrade or reinstall your Kubeflow Pipelines deployment"
-weight = 70
+weight = 50
 +++
 
 Starting from Kubeflow version 0.5, Kubeflow Pipelines persists the

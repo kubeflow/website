@@ -1,7 +1,7 @@
 +++
 title = "Pipeline Metrics"
 description = "Export and visualize pipeline metrics"
-weight = 9
+weight = 90
 +++
 
 This page shows you how to export metrics from a Kubeflow Pipelines component. 

@@ -1,7 +1,7 @@
 +++
 title = "Best Practices for Designing Components"
 description = "Designing and writing components for Kubeflow Pipelines"
-weight = 10
+weight = 60
 +++
 
 This page describes some recommended practices for designing

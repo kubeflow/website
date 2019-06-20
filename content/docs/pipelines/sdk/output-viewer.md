@@ -1,7 +1,7 @@
 +++
 title = "Visualize Results in the Pipelines UI"
 description = "Visualizing the results of your pipelines component"
-weight = 8
+weight = 80
 +++
 
 This page shows you how to use the Kubeflow Pipelines UI to visualize output 

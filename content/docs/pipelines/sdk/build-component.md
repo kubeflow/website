@@ -1,7 +1,7 @@
 +++
 title = "Build Components and Pipelines"
 description = "Building your own component and adding it to a pipeline"
-weight = 3
+weight = 30
 +++
 
 This page describes how to create a component for Kubeflow Pipelines and how

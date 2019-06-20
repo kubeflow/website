@@ -1,7 +1,7 @@
 +++
 title = "Pipeline Parameters"
 description = "Passing data between pipeline components"
-weight = 35
+weight = 70
 +++
 
 The [`kfp.dsl.PipelineParam` 

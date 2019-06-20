@@ -1,7 +1,7 @@
 +++
 title = "Introduction to the Pipelines SDK"
 description = "Overview of using the SDK to build components and pipelines"
-weight = 2
+weight = 10
 +++
 
 The [Kubeflow Pipelines 

@@ -1,7 +1,7 @@
 +++
 title = "Index of Reusable Components"
 description = "A list of Kubeflow Pipelines components that you can use in your pipelines"
-weight = 60
+weight = 120
 +++
 
 A Kubeflow Pipelines *component* is a self-contained set of code that performs 
