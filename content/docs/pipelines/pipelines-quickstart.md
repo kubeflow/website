@@ -1,7 +1,7 @@
 +++
 title = "Pipelines Quickstart"
 description = "Getting started with Kubeflow Pipelines"
-weight = 20
+weight = 10
 +++
 
 Use this guide if you want to get a simple pipeline running quickly in

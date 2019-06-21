@@ -1,7 +1,7 @@
 +++
 title = "Build Reusable Components"
 description = "A detailed tutorial on creating components that you can use in various pipelines"
-weight = 3
+weight = 40
 +++
 
 This page describes how to author a reusable component that you can

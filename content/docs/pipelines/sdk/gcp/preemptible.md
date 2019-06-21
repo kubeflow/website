@@ -1,7 +1,7 @@
 +++
 title = "Using Preemptible VMs and GPUs on GCP"
 description = "Configuring preemptible VMs and GPUs for Kubeflow Pipelines on GCP"
-weight = 65
+weight = 10
 +++
 
 This document describes how to configure preemptible virtual machines

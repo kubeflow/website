@@ -1,6 +1,6 @@
 +++
 title = "Overview of Kubeflow Pipelines"
-description = "Overview of Kubeflow Pipelines"
+description = "Understanding the goals and main concepts of Kubeflow Pipelines"
 weight = 10
 +++
 
