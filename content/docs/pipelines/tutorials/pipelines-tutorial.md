@@ -565,6 +565,11 @@ gsutil rm -r gs://${BUCKET_NAME}
 As an alternative to the command line, you can delete the various resources 
 using the [GCP Console][gcp-console].
 
+## Next steps
+
+Build your own machine-learning pipelines with the [Kubeflow Pipelines 
+SDK](/docs/pipelines/sdk/sdk-overview/).
+
 [mnist-data]: http://yann.lecun.com/exdb/mnist/index.html
 
 [tensorflow]: https://www.tensorflow.org/

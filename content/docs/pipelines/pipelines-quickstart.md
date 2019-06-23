@@ -187,3 +187,5 @@ finished with them:
   Pipelines UI. Next, you may want to run a pipeline from a notebook, or compile 
   and run a sample from the code. See the guide to experimenting with
   [the Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).
+* Build your own machine-learning pipelines with the [Kubeflow Pipelines 
+  SDK](/docs/pipelines/sdk/sdk-overview/).

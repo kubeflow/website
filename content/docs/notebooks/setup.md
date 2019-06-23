@@ -256,6 +256,8 @@ exposed to the internet and is an unsecured endpoint by default.
 
 ## Next steps
 
+* Build machine-learning pipelines with the [Kubeflow Pipelines 
+  SDK](/docs/pipelines/sdk/sdk-overview/).
 * Explore [Kubeflow Fairing](/docs/fairing/) for a complete solution to 
   building, training, and deploying an ML model from a notebook.
 * Learn the advanced features available from a Kubeflow notebook, such as
