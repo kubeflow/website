@@ -65,7 +65,7 @@ up Python using [Miniconda](https://conda.io/miniconda.html):
  
     ```bash
     conda create --name mlpipeline python=3.7
-    source activate mlpipeline
+    conda activate mlpipeline
     ```
  
 ## Install the Kubeflow Pipelines SDK
