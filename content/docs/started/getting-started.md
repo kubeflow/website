@@ -67,10 +67,12 @@ to suit your environment (cloud, on premises (on prem), or local):
 
 See the [Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting/).
 
-## Resources
+## Next steps
 
-* The [documentation](/docs/) provides in-depth instructions for using Kubeflow.
-* Self-paced scenarios for learning and trying out Kubeflow:
+* See the [documentation](/docs/) for in-depth instructions on using Kubeflow.
+* Build machine-learning pipelines with the [Kubeflow Pipelines 
+  SDK](/docs/pipelines/sdk/sdk-overview/).
+* Explore the self-paced scenarios for learning and trying out Kubeflow:
   * [Codelabs](https://codelabs.developers.google.com/?cat=tensorflow)
       * [Introduction to Kubeflow on Google Kubernetes
         Engine](https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html)

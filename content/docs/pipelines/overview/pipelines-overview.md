@@ -10,7 +10,7 @@ scalable machine learning (ML) workflows based on Docker containers.
 ## Quickstart
 
 Run your first pipeline by following the 
-[pipelines quickstart guide](/docs/guides/pipelines/pipelines-quickstart).
+[pipelines quickstart guide](/docs/pipelines/pipelines-quickstart).
 
 ## What is Kubeflow Pipelines?
 
@@ -213,9 +213,11 @@ At a high level, the execution of a pipeline proceeds as follows:
 ## Next steps
 
 * Follow the 
-  [pipelines quickstart guide](/docs/guides/pipelines/pipelines-quickstart) to 
+  [pipelines quickstart guide](/docs/pipelines/pipelines-quickstart) to 
   deploy Kubeflow and run a sample pipeline directly from the 
   Kubeflow Pipelines UI.
+* Build machine-learning pipelines with the [Kubeflow Pipelines 
+  SDK](/docs/pipelines/sdk/sdk-overview/).
 * Follow the full guide to experimenting with
   [the Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).
   

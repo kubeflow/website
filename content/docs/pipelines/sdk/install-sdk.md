@@ -92,7 +92,7 @@ The response should be something like this:
 
 ## Next steps
 
+* [See how to use the SDK](/docs/pipelines/sdk/sdk-overview/).
 * [Build a component and a pipeline](/docs/pipelines/sdk/build-component/).
-* [Get started](/docs/pipelines/pipelines-quickstart) with the 
-  Kubeflow Pipelines UI.
-* Read more about [pipeline concepts](/docs/pipelines/concepts/).
+* [Get started with the UI](/docs/pipelines/pipelines-quickstart).
+* [Understand pipeline concepts](/docs/pipelines/concepts/).
