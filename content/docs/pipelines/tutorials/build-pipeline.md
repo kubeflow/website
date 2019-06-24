@@ -125,7 +125,7 @@ The following notebooks are available:
 
 ## Next steps
 
-* Understand the various ways to use the [Kubeflow Pipelines 
+* Learn the various ways to use the [Kubeflow Pipelines 
   SDK](/docs/pipelines/sdk/sdk-overview/).
 * See how to 
   [build your own pipeline components](/docs/pipelines/sdk/build-component/).
