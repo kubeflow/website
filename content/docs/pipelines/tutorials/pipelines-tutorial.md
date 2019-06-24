@@ -286,7 +286,7 @@ Create a clean Python 3 environment (this tutorial uses Python 3.7):
  
 ```bash
 conda create --name mlpipeline python=3.7
-source activate mlpipeline
+conda activate mlpipeline
 ```
  
 If the `conda` command is not found, be sure to add Miniconda to your path:
