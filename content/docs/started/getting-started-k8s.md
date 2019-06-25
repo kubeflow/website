@@ -11,9 +11,9 @@ This installation of Kubeflow uses [Dex](https://github.com/dexidp/dex) and Isti
 ![platform existing architecture](https://i.imgur.com/OlaN73j.png)
 
 ## Prerequisites
-  - Kubernetes Cluster with LoadBalancer support.
+- Kubernetes Cluster with LoadBalancer support.
 
-If you don't have a Kubernetes Cluster, you can create a compliant GKE cluster with the following script:
+If you don't have a Kubernetes Cluster, you can create a compliant Kubernetes Engine (GKE) on Google Cloud Platform cluster with the following script:
 
 <details>
 
@@ -23,6 +23,9 @@ If you don't have a Kubernetes Cluster, you can create a compliant GKE cluster w
 #!/bin/bash
 
 set -e
+
+# This script uses the gcloud command.
+# For more info, visit: https://cloud.google.com/sdk/gcloud/reference/container/
 
 # Edit according to your preference
 GCP_USER="$(gcloud config list account --format "value(core.account)")"
@@ -36,7 +39,7 @@ CLUSTER_NAME="kubeflow"
 # Create and setup cluster #
 ############################
 
-gcloud beta container clusters create ${CLUSTER_NAME} \
+gcloud container clusters create ${CLUSTER_NAME} \
 --project ${GCP_PROJECT} \
 --zone ${GCP_ZONE} \
 --cluster-version ${CLUSTER_VERSION} \
@@ -83,6 +86,14 @@ cd ${KFAPP}
 kfctl generate all -V
 kfctl apply all -V
 ```
+
+ * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
+  configurations to be stored. This directory is created when you run
+  `kfctl init`. If you want a custom deployment name, specify that name here.
+  The value of this variable becomes the name of your deployment.
+  The value of this variable cannot be greater than 25 characters. It must
+  contain just the directory name, not the full path to the directory.
+  The content of this directory is described in the next section.
 
 ## Accessing Kubeflow
 
@@ -144,9 +155,6 @@ following:
 
 Your Kubeflow app directory contains the following files and directories:
 
- * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
-   configurations to be stored. This directory is created when you run
-   `kfctl init`.
 * **${KFAPP}/app.yaml** defines configurations related to your Kubeflow deployment.
 * **${KFAPP}/kustomize**: contains the YAML manifests that will be deployed.
 
