@@ -38,7 +38,7 @@ NAME         STATUS    ROLES                      AGE       VERSION
     ```
     * **K8S_NAMESPACE** is namespace name that the Kubeflow will be installed in. By default should be "kubeflow".
 
-1. Create image policy for the namespace.
+2. Create image policy for the namespace.
 
     The image policy definition file (`image-policy.yaml`) is as following:
 
@@ -65,7 +65,7 @@ NAME         STATUS    ROLES                      AGE       VERSION
     kubectl create -n $K8S_NAMESPACE -f image-policy.yaml 
     ```
 
-2. Create persistent volume (PV) for Kubeflow components.
+3. Create persistent volume (PV) for Kubeflow components.
    
     Some Kubeflow components need PVs to storage data, such as minio, mysql katib. We need to create PVs for those pods in advance. 
     The PVs defination file (`pv.yaml`) is as following:
@@ -157,7 +157,7 @@ Follow these steps to deploy Kubeflow:
      contain just the directory name, not the full path to the directory.
      The content of this directory is described in the next section.
 
-1. Check the resources deployed in namespace `kubeflow`:
+4. Check the resources deployed in namespace `kubeflow`:
 
     ```bash
     kubectl -n kubeflow get  all
@@ -165,7 +165,7 @@ Follow these steps to deploy Kubeflow:
 
 ## Access Kubeflow dashboard
 
-Change the Ambassador service type to NodePort, then access the Kubeflow dashboard throgh Ambassador.
+Change the Ambassador service type to NodePort, then access the Kubeflow dashboard through Ambassador.
 ```bash
 kubectl -n kubeflow patch service ambassador -p '{"spec":{"type": "NodePort"}}'
 AMBASSADOR_PORT=$(kubectl -n kubeflow get service ambassador -ojsonpath='{.spec.ports[?(@.name=="ambassador")].nodePort}')
