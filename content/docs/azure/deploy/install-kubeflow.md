@@ -75,6 +75,8 @@ Example variables:
 - AGENT_COUNT=3
 - Use the same resource group and name from the previous step
 
+**NOTE:  If you are using a GPU based AKS cluster (For example: AGENT_SIZE=Standard_NC6), you also need to [install the NVidia drivers](https://docs.microsoft.com/azure/aks/gpu-cluster#install-nvidia-drivers) on the cluster nodes before you can use GPUs with Kubeflow.**
+
 ## Kubeflow Installation
 Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the ```kfctl``` binary each time you run it.
 
