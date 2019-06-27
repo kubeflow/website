@@ -4,126 +4,69 @@ description = "Instructions for installing Kubeflow on your existing Kubernetes 
 weight = 4
 +++
 
-Follow these instructions if you want to install Kubeflow on an existing Kubernetes cluster.
+Follow these instructions if you want to install Kubeflow on an existing Kubernetes
+cluster.
 
-This installation of Kubeflow uses [Dex](https://github.com/dexidp/dex) and Istio for vendor-neutral authentication.
+If you are using a Kubernetes distribution or Cloud Provider which has specific
+instructions for installing Kubeflow we recommend following those instructions.
+Those instructions do additional Cloud specific setup to create a really great 
+Kubeflow experience.
 
-![platform existing architecture](https://i.imgur.com/OlaN73j.png)
+You can use either [kind](https://github.com/kubernetes-sigs/kind#installation-and-usage) or
+[Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) to install a Kubernetes cluster and it
+is recommended to use [kind](https://github.com/kubernetes-sigs/kind#installation-and-usage)
+as it is more simple to install.
 
-## Prerequisites
-- Kubernetes Cluster with LoadBalancer support.
+Before installing Kubeflow on the command line:
 
-If you don't have a Kubernetes Cluster, you can create a compliant Kubernetes Engine (GKE) on Google Cloud Platform cluster with the following script:
+  * Ensure you have installed the following tools:
+    
+     * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+     * [ks] (https://github.com/ksonnet/ksonnet/releases/)
 
-<details>
-
-<summary>GKE Cluster Creation Script</summary>
-
-```bash
-#!/bin/bash
-
-set -e
-
-# This script uses the gcloud command.
-# For more info, visit: https://cloud.google.com/sdk/gcloud/reference/container/
-
-# Edit according to your preference
-GCP_USER="$(gcloud config list account --format "value(core.account)")"
-GCP_PROJECT="$(gcloud config list project --format "value(core.project)")"
-GCP_ZONE="us-west1-b"
-
-CLUSTER_VERSION="$(gcloud container get-server-config --format="value(validMasterVersions[0])")" 
-CLUSTER_NAME="kubeflow"
-
-############################
-# Create and setup cluster #
-############################
-
-gcloud container clusters create ${CLUSTER_NAME} \
---project ${GCP_PROJECT} \
---zone ${GCP_ZONE} \
---cluster-version ${CLUSTER_VERSION} \
---machine-type "n1-standard-8" --num-nodes "1" \
---image-type "UBUNTU" \
---disk-type "pd-ssd" --disk-size "50" \
---no-enable-cloud-logging --no-enable-cloud-monitoring \
---no-enable-ip-alias \
---enable-autoupgrade --enable-autorepair
-
-echo "Getting credentials for newly created cluster..."
-gcloud container clusters get-credentials ${CLUSTER_NAME} --zone=${GCP_ZONE}
-
-echo "Setting up GKE RBAC..."
-kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=${GCP_USER}
-```
-
-</details>
 
 ## Deploy Kubeflow
 
 Follow these steps to deploy Kubeflow:
 
-1. Download a `kfctl` release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/) and unpack it:
+1. Download a `kfctl` release from the 
+  [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
+
+1. Unpack the tar ball:
 
     ```
     tar -xvf kfctl_<release tag>_<platform>.tar.gz
     ```
 
-2. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl` binary each time you run it.
+1. Run the following commands to set up and deploy Kubeflow. The code below
+  includes an optional command to add the binary `kfctl` to your path. If you 
+  don't add the binary to your path, you must use the full path to the `kfctl` 
+  binary each time you run it.
 
-```bash
-# Add kfctl to PATH, to make the kfctl binary easier to use.
-export PATH=$PATH:"<path to kfctl in your kubeflow installation>"
-export KFAPP="<your choice of application directory name>"
-export CONFIG="https://github.com/kubeflow/kubeflow/tree/master/bootstrap/config/kfctl_platform_existing.yaml"
+    ```bash
+    # The following command is optional, to make kfctl binary easier to use.
+    export PATH=$PATH:<path to kfctl in your kubeflow installation>
 
-# Specify credentials for the default user.
-export KUBEFLOW_USER_EMAIL="admin@kubeflow.org"
-export KUBEFLOW_PASSWORD="12341234"
+    export KFAPP=<your choice of application directory name>
+    # Default uses IAP.
+    kfctl init ${KFAPP}
+    cd ${KFAPP}
+    kfctl generate all -V
+    kfctl apply all -V
+    ```
+   * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
+     configurations to be stored. This directory is created when you run
+     `kfctl init`. If you want a custom deployment name, specify that name here.
+     The value of this variable becomes the name of your deployment.
+     The value of this variable cannot be greater than 25 characters. It must
+     contain just the directory name, not the full path to the directory.
+     The content of this directory is described in the next section.
 
-kfctl init ${KFAPP} --config=${CONFIG}
-cd ${KFAPP}
-kfctl generate all -V
-kfctl apply all -V
-```
+1. Check the resources deployed in namespace `kubeflow`:
 
- * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
-  configurations to be stored. This directory is created when you run
-  `kfctl init`. If you want a custom deployment name, specify that name here.
-  The value of this variable becomes the name of your deployment.
-  The value of this variable cannot be greater than 25 characters. It must
-  contain just the directory name, not the full path to the directory.
-  The content of this directory is described in the next section.
-
-## Accessing Kubeflow
-
-### Log in with static user
-
-After deploying Kubeflow, the Kubeflow Dashboard is available at the Istio Gateway IP.
-To get the Istio Gateway IP, run:
-
-```bash
-kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
-```
-
-Get the IP and open it in a browser.
-
-Enter the credentials you specified in `KUBEFLOW_USER_EMAIL`, `KUBEFLOW_PASSWORD` and access the Kubeflow Dashboard!
-
-### Add static users for basic auth
-
-To add users to basic auth, you just have to edit the Dex ConfigMap under the key `staticPasswords`.
-```bash
-# Download the dex config
-kubectl get cm dex -n kubeflow -o jsonpath='{.data.config\.yaml}' > dex-config.yaml
-
-# Edit the dex config with extra users.
-# The password must be hashed with bcrypt with an at least 10 difficulty level.
-# You can use an online tool like: https://passwordhashing.com/BCrypt
-
-# After editing the config, update the ConfigMap
-kubectl create cm dex --from-file=config.yaml=dex-config.yaml --dry-run -oyaml | kubectl apply -f -
-```
+    ```
+    kubectl -n kubeflow get  all
+    ```
 
 ## Delete Kubeflow
 
@@ -131,7 +74,10 @@ Run the following commands to delete your deployment and reclaim all resources:
 
 ```
 cd ${KFAPP}
-# If you want to delete all the resources, run:
+# If you want to delete all the resources, including storage.
+kfctl delete all --delete_storage
+# If you want to preserve storage, which contains metadata and information
+# from mlpipeline.
 kfctl delete all
 ```
 
@@ -155,8 +101,23 @@ following:
 
 Your Kubeflow app directory contains the following files and directories:
 
-* **${KFAPP}/app.yaml** defines configurations related to your Kubeflow deployment.
-* **${KFAPP}/kustomize**: contains the YAML manifests that will be deployed.
+* **app.yaml** defines configurations related to your Kubeflow deployment.
+
+  * The values are set when you run `kfctl init`.
+  * The values are snapshotted inside **app.yaml** to make your app 
+    self contained.
+
+  * The directory is created when you run `kfctl generate platform`.
+  * You can modify these configurations to customize your GCP infrastructure.
+
+* **${KFAPP}/k8s_specs** is a directory that contains YAML specifications
+  for some daemons deployed on your Kubernetes Engine cluster.
+
+* **${KFAPP}/ks_app** is a directory that contains the 
+  [ksonnet](https://ksonnet.io) application for Kubeflow.
+
+  * The directory is created when you run `kfctl generate`.
+  * You can use ksonnet to customize Kubeflow.
 
 ## Next steps
 
@@ -164,4 +125,4 @@ Your Kubeflow app directory contains the following files and directories:
   UIs](/docs/other-guides/accessing-uis/), where you can manage various 
   aspects of your Kubeflow deployment.
 * Run a [sample machine learning workflow](/docs/examples/resources/).
-* Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/)
+* Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/).
