@@ -18,8 +18,10 @@ the Kubeflow UI. The Kubeflow Pipelines UI looks like this:
 From the Kubeflow Pipelines UI you can perform the following tasks:
 
 * Run one or more of the preloaded samples to try out pipelines quickly.
-* Upload a pipeline as a zipped YAML file. The pipeline can be one that you
-  have built or one that someone has shared with you.
+* Upload a pipeline as a compressed file. The pipeline can be one that you
+  have built (see how to [build a 
+  pipeline](/docs/pipelines/sdk/build-component/#compile-the-pipeline)) or one 
+  that someone has shared with you.
 * Create an *experiment* to group one or more of your pipeline runs.
   See the [definition of an
   experiment](/docs/pipelines/overview/concepts/experiment/).
@@ -28,6 +30,7 @@ From the Kubeflow Pipelines UI you can perform the following tasks:
   run](/docs/pipelines/overview/concepts/run/).
 * Explore the configuration, graph, and output of your pipeline run.
 * Compare the results of one or more runs within an experiment.
+* Schedule runs by creating a recurring run.
 
 See the [quickstart guide](/docs/pipelines/pipelines-quickstart/) for more
 information about accessing the Kubeflow Pipelines UI and running the samples.
@@ -50,7 +53,7 @@ use the SDK to build pipeline components and pipelines.
 
 The Kubeflow Pipelines API is useful for continuous integration/deployment
 systems, for example, where you want to incorporate your pipeline executions
-into shell scripts or other systems where the Python SDK is not useful. 
+into shell scripts or other systems. 
 For example, you may want to trigger a pipeline run when new data comes in.
 
 See the [Kubeflow Pipelines API reference 
