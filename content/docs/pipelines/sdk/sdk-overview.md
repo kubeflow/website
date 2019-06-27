@@ -85,6 +85,20 @@ The Kubeflow Pipelines SDK includes the following packages:
     as domain-specific types like `GCPProjectID` and `GCRPath`.
     See the guide to 
     [DSL static type checking](/docs/pipelines/sdk/static-type-checking).
+  * [`kfp.dsl.ResourceOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ResourceOp)
+    represents a pipeline task (op) which lets you directly manipulate 
+    Kubernetes resources (`create`, `get`, `apply`, ...).
+  * [`kfp.dsl.VolumeOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.VolumeOp)
+    represents a pipeline task (op) which creates a new `PersistentVolumeClaim` 
+    (PVC). It aims to make the common case of creating a `PersistentVolumeClaim` 
+    fast.
+  * [`kfp.dsl.VolumeSnapshotOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.VolumeSnapshotOp)
+    represents a pipeline task (op) which creates a new `VolumeSnapshot`. It 
+    aims to make the common case of creating a `VolumeSnapshot` fast.
+  * [`kfp.dsl.PipelineVolume`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineVolume)
+    represents a volume used to pass data between pipeline steps. `ContainerOp`s 
+    can mount a `PipelineVolume` either via the constructor's argument 
+    `pvolumes` or `add_pvolumes()` method.
 
 * [`kfp.Client`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html)
   contains the Python client libraries for the [Kubeflow Pipelines 
