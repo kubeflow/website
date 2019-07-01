@@ -112,7 +112,7 @@ kubectl -n ${NAMESPACE} describe pods ${PODNAME}
 
 ## Pods stuck in Pending state
 
-There are three pods that have 10Gi Persistent Volume Claims (PVCs) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and vizier-db.
+There are three pods that have Persistent Volume Claims (PVCs) (1 for 10Gi and 2 for 20Gi) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and vizier-db.
 Check the status of the PVC requests
 
 ```
@@ -124,7 +124,7 @@ kubectl -n ${NAMESPACE} get pvc
 
 If you have not configured [dynamic provisioning] (https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) for your cluster, including a default storage class, then you must create a [persistent volume] (https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for each of the PVCs.
 
-You can use the example below to create a local 10Gi persistent volume. 
+You can use the example below to create a local persistent volume. 
 
 ```commandline
 sudo mkdir /mnt/pv1
@@ -144,7 +144,7 @@ spec:
     path: "/mnt/pv1"
 EOF
 ```
- Repeat two more times creating a new directory and changing the name and path fields to satisfy all three PVCs. Once created the scheduler will successfully start the remaining three pods. The PVs may also be created prior to running any of the `kfctl.sh` commands.
+ Repeat two more times (changing `10Gi` to `20Gi`) creating a new directory and changing the name and path fields to satisfy all three PVCs. Once created the scheduler will successfully start the remaining three pods. The PVs may also be created prior to running any of the `kfctl.sh` commands.
 
 
 ## OpenShift
