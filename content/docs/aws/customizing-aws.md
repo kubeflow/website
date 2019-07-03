@@ -48,8 +48,9 @@ nodeGroups:
     minSize: 0
     maxSize: 2
     volumeSize: 30
-    allowSSH: true
-    sshPublicKeyPath: '~/.ssh/id_rsa.pub'
+    ssh:
+      allow: true
+      publicKeyPath: '~/.ssh/id_rsa.pub'
 
   # Example of GPU node group
   # - name: Tesla-V100
@@ -64,8 +65,9 @@ nodeGroups:
   # Node Root Disk
   #   volumeSize: 50
   # Enable SSH out side your VPC.
-  #   allowSSH: true
-  #   sshPublicKeyPath: '~/.ssh/id_rsa.pub'
+  #   ssh:
+  #     allow: true
+  #     publicKeyPath: '~/.ssh/id_rsa.pub'
   # Customize Labels
   #   labels:
   #     'k8s.amazonaws.com/accelerator': 'nvidia-tesla-k80'
