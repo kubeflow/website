@@ -79,15 +79,15 @@ Follow these steps to deploy Kubeflow:
     tar -xvf kfctl_<release tag>_<platform>.tar.gz
     ```
 
-   Alternatively, you can easily build the `kfctl` binary yourself:
+    Alternatively, you can build the `kfctl` binary yourself:
 
     ```
     git clone https://github.com/kubeflow/kubeflow.git
     cd kubeflow/bootstrap
     make build-kfctl-container
     ```    
-    
-2. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl` binary each time you run it.
+
+1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl` binary each time you run it.
 
 ```bash
 # Add kfctl to PATH, to make the kfctl binary easier to use.
@@ -112,6 +112,7 @@ kfctl apply all -V
   The value of this variable cannot be greater than 25 characters. It must
   contain just the directory name, not the full path to the directory.
   The content of this directory is described in the next section.
+
 
 ### Accessing Kubeflow
 
