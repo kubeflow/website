@@ -15,7 +15,7 @@ To use gang-scheduling, you have to install volcano scheduler in your cluster fi
 
 **Note:** Volcano scheduler and operator in Kubeflow achieve gang-scheduling by using pdb. operator will create the pdb of the job automatically. You can know more about pdb [here](https://kubernetes.io/docs/tasks/run-application/configure-pdb/).
 
-To use volcano scheduler to schedule your job as a gang, you have to specify the schedulerName in each replica; for example.
+The yaml to use volcano scheduler to schedule your job as a gang is the same as non-gang-scheduler, for example.
 
 ```yaml
 apiVersion: "kubeflow.org/v1beta1"
@@ -28,7 +28,6 @@ spec:
       replicas: 1
       template:
         spec:
-          schedulerName: kube-batch
           containers:
           - args:
             - python
@@ -52,7 +51,6 @@ spec:
       replicas: 1
       template:
         spec:
-          schedulerName: kube-batch
           containers:
           - args:
             - python
