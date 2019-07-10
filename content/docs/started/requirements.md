@@ -12,13 +12,13 @@ the following systems:
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 * [TensorFlow](https://www.tensorflow.org/get_started/)
-* [ksonnet](https://ksonnet.io/docs/tutorial)
+* [kustomize](https://https://kustomize.io/)
 
 ## Kubeflow requirements
 
- * ksonnet version {{% ksonnet-min-version %}} or later. See the 
-   [ksonnet component guide](/docs/components/ksonnet/) for details about
-   installing ksonnet.
+ * kustomize version {{% kustomize-min-version %}} or later. See the 
+   [kustomize component guide](/docs/components/ksonnet/) for details about
+   installing kustomize.
  * An existing Kubernetes cluster using Kubernetes version 
    {{% kubernetes-min-version %}} or later:
 
