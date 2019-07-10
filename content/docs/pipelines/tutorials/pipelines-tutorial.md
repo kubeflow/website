@@ -86,6 +86,43 @@ Notes:
   [clean up your GCP resources](#cleanup) when you've finished with them.
 * This guide assumes you want to manage your GCP environment in the [Cloud Shell][cloud-shell] environment rather than your own server. If you choose to use a local server instead, some of the components (such as Cloud SDK) must be manually installed.
 
+### Set up some handy environment variables
+
+Set up the following environment variables for use throughout the tutorial:
+
+1. Set your GCP project ID. In the command below, replace `<YOUR-PROJECT-ID>` 
+  with your [project ID][gcp-project-id]:
+
+    ```
+    export PROJECT=<YOUR-PROJECT-ID>
+    gcloud config set project ${PROJECT}
+    ```
+
+1. Set the zone for your GCP configuration. Choose a zone that offers the
+  resources you need. See the guide to [GCP regions and zones][regions-zones].
+    * Ensure you have enough Compute Engine regional capacity.
+      By default, the GKE cluster setup described in this guide
+      requires 16 CPUs.
+    * If you want a GPU, ensure your zone offers GPUs.
+
+    For example, the following commands set the zone to `us-central1-c`:
+
+    ```
+    export ZONE=us-central1-c
+    gcloud config set compute/zone ${ZONE}
+    ```
+
+1. If you want a custom name for your Kubeflow deployment, set the 
+   `DEPLOYMENT_NAME` environment variable. The deployment name must be 
+   **4-20 characters** in length. Note that the name must be the same 
+   as the one you use in later steps of this tutorial when configuring the 
+   **redirect URI** for the OAuth client credentials. If you don't set this 
+   environment variable, your deployment gets the default name of `kubeflow`:
+
+    ```
+    export DEPLOYMENT_NAME=kubeflow
+    ```
+    
 ### Deploy Kubeflow
 
 Deploy Kubeflow on GCP:
@@ -100,7 +137,7 @@ Deploy Kubeflow on GCP:
     credentials**, use the same value for the `<deployment_name>` as you used
     when setting up the `DEPLOYMENT_NAME` environment variable earlier in this
     tutorial.
-  * Choose **Kubeflow version v0.5.0** or later.
+  * Choose the most curent version of Kubeflow (verify on the [release page][release-page]).
 
     The following screenshot shows the Kubeflow deployment UI with hints about
     the value for each input field:
@@ -112,7 +149,7 @@ Deploy Kubeflow on GCP:
 1. (Optional) If you want to examine your cluster while waiting for the UI to
    be available, you can use `kubectl` to connect to your cluster:
 
-  * Connect your local `kubectl` session to the cluster:
+  * Connect your cloud shell session to the cluster:
 
       ```
       gcloud container clusters get-credentials \
@@ -218,7 +255,7 @@ If you don't have a Python 3 environment set up, install
   environment, run the following commands:   
 
     ```bash
-    apt-get update; apt-get install -y wget bzip2
+    apt-get update; 
     wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
     bash Miniconda3-latest-Linux-x86_64.sh
     ```
@@ -565,4 +602,4 @@ SDK](/docs/pipelines/sdk/sdk-overview/).
 [gsutil-acl-ch]: https://cloud.google.com/storage/docs/gsutil/commands/acl#ch
 
 [granting-changing-revoking-access]: https://cloud.google.com/iam/docs/granting-changing-revoking-access#quick_updates_using_the_gcloud_command-line_tool
-
+[release-page]:https://github.com/kubeflow/kubeflow/releases
