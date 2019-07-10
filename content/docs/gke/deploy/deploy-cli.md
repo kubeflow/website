@@ -151,7 +151,7 @@ following:
 
 ### App layout
 
-Your Kubeflow app directory contains the following files and directories:
+Your Kubeflow app directory **${KFAPP}** contains the following files and directories:
 
 * **app.yaml** defines configurations related to your Kubeflow deployment.
 
@@ -159,21 +159,17 @@ Your Kubeflow app directory contains the following files and directories:
   * The values are snapshotted inside **app.yaml** to make your app 
     self contained.
 
-* **${KFAPP}/gcp_config** is a directory that contains 
+* **gcp_config** is a directory that contains 
   [Deployment Manager configuration files](https://cloud.google.com/deployment-manager/docs/configuration/) 
   defining your GCP infrastructure.
 
   * The directory is created when you run `kfctl generate platform`.
   * You can modify these configurations to customize your GCP infrastructure.
 
-* **${KFAPP}/k8s_specs** is a directory that contains YAML specifications
-  for some daemons deployed on your Kubernetes Engine cluster.
-
-* **${KFAPP}/ks_app** is a directory that contains the 
-  [ksonnet](https://ksonnet.io) application for Kubeflow.
+* **kustomize** is a directory that contains the kustomize packages for Kubeflow applications.
 
   * The directory is created when you run `kfctl generate`.
-  * You can use ksonnet to customize Kubeflow.
+  * You can customize the k8s resouces (modify the manifests and run `kfctl apply` again)
 
 ### GCP service accounts
 
