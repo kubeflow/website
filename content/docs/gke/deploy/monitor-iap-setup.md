@@ -169,11 +169,11 @@ problems:
     healthy.
 
     The service with port `31380` is the one that handles Kubeflow 
-    traffic. (31380 is the default port of the service istio-ingressgateway)
+    traffic. (31380 is the default port of the service `istio-ingressgateway`.)
 
-    If the backend is unhealthy, check the pods in istio-system
-    * kubectl get pods -n istio-system
-    * The `istio-ingressgateway-XX` ones should be running
+    If the backend is unhealthy, check the pods in `istio-system`:
+    * `kubectl get pods -n istio-system`
+    * The `istio-ingressgateway-XX` pods should be running
     * Check the logs of `backend-updater-0`, `ingress-bootstrap-XX`, `iap-enabler-XX` to see if there is any error
 
 1. Now that the certificate exists, the Ingress resource should report that it 
