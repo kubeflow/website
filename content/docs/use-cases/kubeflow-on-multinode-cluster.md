@@ -1,5 +1,5 @@
 +++
-title = "Kubeflow in on-prem k8s multi-node cluster"
+title = "Kubeflow on-prem in k8s multi-node cluster"
 description = "How to install Kubeflow on-prem leveraging Dynamic Volume Provisioning and NFS volumes"
 weight = 30
 +++
@@ -8,26 +8,60 @@ This guide describes how to setup Kubeflow on premise in a multi-node cluster us
 
 ## Vanilla on-prem KubeFlow installation
 
-## Consideration about Storage on kubernetes
+In order to install KubeFlow in a on-prem kubernetes cluster (both single node and multi-node) you can follow this guide
+[Kubeflow on Kubernetes](/docs/started/getting-started-k8s).
+
+At the end of installation, as stated in the troubleshooting section [Pods stuck in Pending state](/docs/other-guides/troubleshooting/#pods-stuck-in-pending-state), you could have some Persistent Volume Claims (PVCs) ubounded.
+
+In fact, in KubeFlow there are three pods that have 10Gi PVCs that will get stuck in pending state 
+if they are unable to bind their PVC. The three pods are minio, mysql, and vizier-db. 
+You can check the status of the PVC requests:
+
+```
+kubectl -n ${NAMESPACE} get pvc
+```
+
+  * Look for the status of "Bound"
+  * PVC requests in "Pending" state indicate that the scheduler was unable to bind the required PVC.
+
+In order to change status of PersistentVolumeClaims in "Bound" three Persistent Volumes (PVs) must be provisioned.
+
+But wait! 
+
+There are a couple of problems to solve before: you are in a multi-node cluster, you cannot simply create an *hostPath* PersistentVolume (the volume that exposes a filesystem directory to a Pod) like in a single node scenario.
+
+## A step back: the storage on kubernetes
+
 Kubernetes defines several ways to attach Volumes to Pods. 
 
-A best practice consists in decoupling the need for storage ([Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims): PVC) from the real storage ([Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/): PV). The latter is provisioned by kubernetes administratore based on the available resources. Persistent Volume can be one of the [several supported](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes).
+The best practice consists in decoupling the need for storage ([Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims): PVC) from the real storage ([Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/): PV). The latter is provisioned by kubernetes administratore based on the available resources. Persistent Volume can be one of the [several supported](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes).
 
-In development clusters (e.g. Minikube) or single node clusters, PVCs can be binded to HostPath Volumes: this is a particular kind of Volume that maps the Pod's Volume to a directory of the filesystem.
+Cloud providers define in their kubernetes cluster mechanisms to allocate PVs based on existing PVCs using their storage infrastructure; on-prem cluster must provision their PV according the existing capability of the system.
 
-This approach, however, is not a solution in multi-node clusters, as the data underlying a Pod can change from time to time. A Pod, in fact, can live in several nodes during its existence: kubernetes can kill a Pod and restart it at another node at any time based on the resources available in the cluster.
+In development clusters (e.g. Minikube) or single node clusters, PVCs can be binded to HostPath PVs: a particular kind of volume that maps the Pod's Volume to a directory of the filesystem.
 
-Cose da fare (ESEMPIO):
-* Integrations with templating tools like Ksonnet, Helm, and Kustomize in addition to plain yaml files to define the desired state of an application
-* Automated or manual syncing of applications to its desired state
-* Intuitive UI to provide observability into the state of applications
-* Extensive CLI to integrate Argo CD with any CI system
-* Enterprise-ready features like auditability, compliance, security, RBAC, and SSO
+This approach, however, is not a feasible solution in multi-node clusters. A Pod, in fact, can be on different nodes during its lifecycle: kubernetes can kill and restart it on another node at any time based on the resources available in the cluster. In this scenario, the migrated Pod will not find its old data after restarting on a new node.
 
+A common solution is to use a remote volume mounted in the Pods so that it can be reached from any node in the cluster. 
+
+In this document we will show you:
+
+* how to associate a remote NFS volume to KubeFlow Pods so you don't have any problems when Pod is scheduled on different cluster nodes during its lifecycle. 
+* how simplify the life of the cluster administrator using [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) and leaving to kubernetes the task to create different PV for each PVC without needs on manual intervention.
 
 ## NFS Persistent Volumes
 
-*TODO* introduction on NFS volumes
+[NFS](https://en.wikipedia.org/wiki/Network_File_System) is the a popular distributed filesystem commonly used in Unix operating systems. 
+
+We want to use a NFS server to create PV where Pods can write their data.
+
+In order to do this you should provide a NFS server with an IP reachble from inside the kubernetes cluster.
+
+For simplicity, we will use one of the kubernetes nodes for this purpose. In general this is not a good idea because in case of fault of one of the nodes you will loose your data.  
+
+
+
+
 
 In order to provide a NFS volume you need to have a NFS server:
 
@@ -52,7 +86,7 @@ In order to allow any node of the cluster to be able to mount NFS filesystem:
 sudo apt install nfs-common
 ```
 
-## Install Dynamic Volume Provisioner
+## Install Dynamic Provisioner
 
 *TODO* introduction
 
@@ -111,7 +145,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   annotations:
-    ksonnet.io/managed: '{"pristine":"H4sIAAAAAAAA/yyOPU8DMRBEe37G1Be+SrcUVAhEEQpEsfENyDp71/H6glB0/x05Svf0dvU0Z0hNezZPpgg4PWDCknRGwNuw3ql9b3ktfMqSCiYUdpmlC8IZWQ7MPmhxU2W/TXYXrVRTakdATZU5KbFNUClEQPnzY97V0y5eg8N7lTiOy3rgd7bf8e+VcaQlRrq/2ExH+MQ7Zf5oqfNVI/E1odFtbZGXHY3Hld4v7N2a/Izs4/1zwrZt280/AAAA//8BAAD//y8JyQ7xAAAA"}'
+    ksonnet.io/managed: '...'
     kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
   labels:
     app.kubernetes.io/deploy-manager: ksonnet
@@ -133,7 +167,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   annotations:
-    ksonnet.io/managed: '{"pristine":"H4sIAAAAAAAA/zyOsU40MQyE+/8xpt4fuHZbCioEojgKROHNDii6JM7FXhA65d1RFkE3ns/67AukxiObRS2Y8XHAhFMsK2Y8jtacxY+atszbJDFjQqbLKi6YL0iyMNlIUitmnMTjMhSmpdCvol4HzVULi//hPqFI5u/8P3/ZOeGntCphJ9vCt6SfY9kqw34iBJrd60rD/IInyvrcovOhBOJ1QqPp1gL3fxrPG833bK5N3of2cHMX0Xvv/74BAAD//wEAAP//9g4X9/kAAAA="}'
+    ksonnet.io/managed: '...'
     kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
   labels:
     app: katib
@@ -156,7 +190,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   annotations:
-    ksonnet.io/managed: '{"pristine":"H4sIAAAAAAAA/zyOsU40MQyE+/8xpt4fuHZbCioEojgKROHNDii6JM7FXhA65d1RFkE3ns/67AukxiObRS2Y8XHAhFMsK2Y8jtacxY+atszbJDFjQqbLKi6YL0iyMNlIUitmnMTjMhSmpdCvol4HzVULi//hPqFI5u/8P3/ZOeGntCphJ9vCt6SfY9kqw34iBJrd60rD/IInyvrcovOhBOJ1QqPp1gL3fxrPG833bK5N3of2cHMX0Xvv/74BAAD//wEAAP//9g4X9/kAAAA="}'
+    ksonnet.io/managed: '...'
     kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
   labels:
     app: katib
