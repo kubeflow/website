@@ -71,13 +71,13 @@ Follow these steps to set up your GCP environment:
 1. Select or create a project on the [GCP Console][gcp-console].
 1. Make sure that billing is enabled for your project. See the guide to
   [modifying a project's billing settings][billing-guide].
-1. Use Cloud Shell to grant your team access to Kubeflow by granting them **Project Owner** and **IAP-secured Web App User** roles:
+1. Use Cloud Shell to grant your team access to Kubeflow by granting them **IAP-secured Web App User** roles:
 
       ```
       gcloud projects add-iam-policy-binding <PROJECT>
-      --member user:<EMAIL> --role <ROLE>
+      --member user:<EMAIL> --role IAP-secured Web App User
       ```
-    For more details, see [Granting, changing, and revoking access to resources][granting-changing-revoking-access].
+    For more details, see the [granting access to GCP resources guide][granting-changing-revoking-access].
 
 Notes:
 
