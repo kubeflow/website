@@ -13,54 +13,14 @@ framework (such as TensorFlow, MXNet, or PyTorch).
 ## Installing Katib
 
 To run Katib jobs, you must install the required packages as shown in this
-section.
-
-In your ksonnet application's root directory, run the following commands:
-
+section. You can do so by following the Kubeflow [deployment guide]
+(/docs/gke/deploy/), or by installing Katib directly from its repository:
 ```
-export KF_ENV=default
-ks env set ${KF_ENV} --namespace=kubeflow
-ks registry add kubeflow github.com/kubeflow/kubeflow/tree/master/kubeflow
+git clone https://github.com/kubeflow/katib
+./katib/scripts/v1alpha2/deploy.sh
 ```
 
-The `KF_ENV` environment variable represents a conceptual deployment environment 
-such as development, test, staging, or production, as defined by 
-ksonnet. For this example, we use the `default` environment.
-
-You can read more about Kubeflow's use of ksonnet in the Kubeflow 
-[ksonnet component guide](/docs/components/ksonnet/).
-
-### TFJob (tf-operator)
-
-To install a TensorFlow job operator, run the following commands:
-
-```
-ks pkg install kubeflow/tf-training
-ks pkg install kubeflow/common
-ks generate tf-job-operator tf-job-operator
-ks apply ${KF_ENV} -c tf-job-operator
-```
-
-### PyTorch operator
-
-To install a PyTorch job operator, run the following commands:
-
-```
-ks pkg install kubeflow/pytorch-job
-ks generate pytorch-operator pytorch-operator
-ks apply ${KF_ENV} -c pytorch-operator
-```
-
-### Katib
-
-Then run the following commands to install Katib:
-
-```
-ks pkg install kubeflow/katib
-ks generate katib katib
-ks apply ${KF_ENV} -c katib
-```
-
+### Persistent Volumes
 If you want to use Katib outside Google Kubernetes Engine (GKE) and you don't 
 have a StorageClass for  dynamic volume provisioning in your cluster, you must 
 create a persistent volume  (PV) to bind your persistent volume claim (PVC).
@@ -87,7 +47,7 @@ spec:
 After deploying the Katib package, run the following command to create the PV:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha1/pv/pv.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha2/pv/pv.yaml
 ```
 
 ## Running examples
@@ -96,20 +56,20 @@ After deploying everything, you can run some examples.
 
 ### Example using random algorithm
 
-You can create a StudyJob for Katib by defining a StudyJob config file. See the 
-[random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1alpha1/random-example.yaml).
+You can create an Experiment for Katib by defining an Experiment config file. See the 
+[random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1alpha2/random-example.yaml).
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha1/random-example.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/random-example.yaml
 ```
 
-Running this command launches a StudyJob. The study job runs a series of 
+Running this command launches an Experiment. It runs a series of 
 training jobs to train models using different hyperparameters and save the 
 results.
 
-The configurations for the study (hyper-parameter feasible space, optimization 
+The configurations for the experiment (hyper-parameter feasible space, optimization 
 parameter, optimization goal, suggestion algorithm, and so on) are defined in 
-[random-example.yaml](https://github.com/kubeflow/katib/blob/master/examples/v1alpha1/random-example.yaml).
+[random-example.yaml](https://github.com/kubeflow/katib/blob/master/examples/v1alpha2/random-example.yaml).
 
 In this demo, hyper-parameters are embedded as args.
 You can embed hyper-parameters in another way (for example, environment values) 
@@ -122,16 +82,16 @@ This demo randomly generates 3 hyper parameters:
 * Number of NN Layer (--num-layers) - type: int
 * optimizer (--optimizer) - type: categorical
 
-Check the study status:
+Check the experiment status:
 
 ```
-$ kubectl -n kubeflow describe studyjobs random-example
+$ kubectl -n kubeflow describe experiment random-example
 Name:         random-example
 Namespace:    kubeflow
 Labels:       controller-tools.k8s.io=1.0
 Annotations:  <none>
-API Version:  kubeflow.org/v1alpha1
-Kind:         StudyJob
+API Version:  kubeflow.org/v1alpha2
+Kind:         Experiment
 Metadata:
   Creation Timestamp:  2019-01-18T16:30:46Z
   Finalizers:
@@ -229,8 +189,8 @@ Status:
 Events:                 <none>
 ```
 
-The demo should start a study and run three jobs with different parameters.
-When the `spec.Status.Condition` changes to *Completed*, the StudyJob is 
+The demo should start an experiment and run three jobs with different parameters.
+When the `spec.Status.Condition` changes to *Completed*, the experiment is 
 finished.
 
 ### TensorFlow operator example
@@ -288,19 +248,15 @@ kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/exampl
 You can check the status of the study:
 
 ```
-kubectl -n kubeflow describe studyjobs pytorchjob-example
+kubectl -n kubeflow describe experiment pytorchjob-example
 ```
 
 ## Monitoring results
 
-You can monitor your results in the Katib UI. To access the Katib UI, you must 
-install Ambassador.
-
-In your ksonnet application's root directory, run the following commands:
-
+You can monitor your results in the Katib UI. If you installed Kubeflow
+using the deployment guide, you can access the Katib UI at
 ```
-ks generate ambassador ambassador
-ks apply ${KF_ENV} -c ambassador
+https://<kubeflow endpoint>/katib/
 ```
 
 Then port-forward the Ambassador service:
@@ -325,28 +281,20 @@ Now you can access the Katib UI at this URL: ```http://localhost:8080/katib/```.
 Delete the installed components:
 
 ```
-ks delete ${KF_ENV} -c katib
-ks delete ${KF_ENV} -c pytorch-operator
-ks delete ${KF_ENV} -c tf-job-operator
+./scripts/v1alpha2/undeploy.sh
 ```
 
 If you created a PV for Katib, delete it:
 
 ```
-kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha1/pv/pv.yaml
+kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha2/pv/pv.yaml
 ```
 
 If you created a PV and PVC for the TensorFlow operator, delete it:
 
 ```
-kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfevent-volume/tfevent-pvc.yaml
-kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfevent-volume/tfevent-pv.yaml
-```
-
-If you deployed Ambassador, delete it:
-
-```
-ks delete ${KF_ENV} -c ambassador
+kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/tfevent-volume/tfevent-pvc.yaml
+kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/tfevent-volume/tfevent-pv.yaml
 ```
 
 ## Metrics collector
