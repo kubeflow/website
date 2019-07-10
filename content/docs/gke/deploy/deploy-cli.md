@@ -169,7 +169,7 @@ Your Kubeflow app directory **${KFAPP}** contains the following files and direct
 * **kustomize** is a directory that contains the kustomize packages for Kubeflow applications.
 
   * The directory is created when you run `kfctl generate`.
-  * You can customize the k8s resouces (modify the manifests and run `kfctl apply` again)
+  * You can customize the Kubernetes resources (modify the manifests and run `kfctl apply` again).
 
 ### GCP service accounts
 
