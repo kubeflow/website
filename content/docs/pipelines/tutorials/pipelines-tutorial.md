@@ -20,8 +20,7 @@ Google Cloud Platform (GCP) is a suite of cloud computing services running
 on Google infrastructure. The services include compute power, data storage,
 data analytics, and machine learning.
 
-The [Cloud SDK][cloud-sdk] is a set of tools that you can use to interact with
-GCP from the command line, including the `gcloud` command and others.
+The [Cloud Shell][cloud-shell] is a browser interface that provides command-line access to cloud resources that you can use to interact with GCP, including the `gcloud` command and others. 
 
 [Kubernetes Engine][kubernetes-engine] (GKE) is a managed service on GCP where
 you can deploy containerized applications. You describe the resources that your
@@ -72,65 +71,20 @@ Follow these steps to set up your GCP environment:
 1. Select or create a project on the [GCP Console][gcp-console].
 1. Make sure that billing is enabled for your project. See the guide to
   [modifying a project's billing settings][billing-guide].
-1. Install the [Cloud SDK][cloud-sdk].
+1. Grant users access to kubeflow with the `Owner` and `IAP-secured Web App User` roles:
+
+      ```
+      gcloud projects add-iam-policy-binding <PROJECT>
+      --member user:<EMAIL> --role <ROLE>
+      ```
+    For more details, see [Granting, changing, and revoking access to resources][granting-changing-revoking-access].
 
 Notes:
 
 * As you work through this tutorial, your project uses billable components of
   GCP. To minimise costs, follow the instructions to
   [clean up your GCP resources](#cleanup) when you've finished with them.
-* This guide assumes you want to manage your GCP environment on your own server
-  rather than in the [Cloud Shell][cloud-shell] environment. If you choose to
-  use the Cloud Shell, some of the components are pre-installed in your shell.
-
-### (Optional) Install kubectl
-
-`kubectl` is the command-line tool for Kubernetes. `kubectl` is useful if you 
-want to interact with your Kubeflow cluster locally. If you decide not to use
-`kubectl`, you can skip the steps later in the tutorial that use the command.
-
-Run the following Cloud SDK command to install `kubectl`:
-
-```
-gcloud components install kubectl
-```
-
-### Set up some handy environment variables
-
-Set up the following environment variables for use throughout the tutorial:
-
-1. Set your GCP project ID. In the command below, replace `<YOUR-PROJECT-ID>` 
-  with your [project ID][gcp-project-id]:
-
-    ```
-    export PROJECT=<YOUR-PROJECT-ID>
-    gcloud config set project ${PROJECT}
-    ```
-
-1. Set the zone for your GCP configuration. Choose a zone that offers the
-  resources you need. See the guide to [GCP regions and zones][regions-zones].
-    * Ensure you have enough Compute Engine regional capacity.
-      By default, the GKE cluster setup described in this guide
-      requires 16 CPUs.
-    * If you want a GPU, ensure your zone offers GPUs.
-
-    For example, the following commands set the zone to `us-central1-c`:
-
-    ```
-    export ZONE=us-central1-c
-    gcloud config set compute/zone ${ZONE}
-    ```
-
-1. If you want a custom name for your Kubeflow deployment, set the 
-   `DEPLOYMENT_NAME` environment variable. The deployment name must be 
-   **4-20 characters** in length. Note that the name must be the same 
-   as the one you use in later steps of this tutorial when configuring the 
-   **redirect URI** for the OAuth client credentials. If you don't set this 
-   environment variable, your deployment gets the default name of `kubeflow`:
-
-    ```
-    export DEPLOYMENT_NAME=kubeflow
-    ```
+* This guide assumes you want to manage your GCP environment in the [Cloud Shell][cloud-shell] environment rather than your own server. If you choose to use a local server instead, some of the components (such as Cloud SDK) must be manually installed.
 
 ### Deploy Kubeflow
 
@@ -146,7 +100,7 @@ Deploy Kubeflow on GCP:
     credentials**, use the same value for the `<deployment_name>` as you used
     when setting up the `DEPLOYMENT_NAME` environment variable earlier in this
     tutorial.
-  * Choose **Kubeflow version v0.4.1** or later.
+  * Choose **Kubeflow version v0.5.0** or later.
 
     The following screenshot shows the Kubeflow deployment UI with hints about
     the value for each input field:
@@ -610,4 +564,5 @@ SDK](/docs/pipelines/sdk/sdk-overview/).
 [gsutil-mb]: https://cloud.google.com/storage/docs/gsutil/commands/mb
 [gsutil-acl-ch]: https://cloud.google.com/storage/docs/gsutil/commands/acl#ch
 
+[granting-changing-revoking-access]: https://cloud.google.com/iam/docs/granting-changing-revoking-access#quick_updates_using_the_gcloud_command-line_tool
 
