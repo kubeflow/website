@@ -1,4 +1,4 @@
-+++ title = "Azure for Kubeflow" 
++++ title = "Kubeflow on Azure"
 description = "Get Kubeflow running on Microsoft Azure" 
 weight = 2
 +++

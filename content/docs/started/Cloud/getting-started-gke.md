@@ -1,5 +1,5 @@
 +++
-title = "Google Cloud for Kubeflow"
+title = "Kubeflow on Google Cloud"
 description = "Get Kubeflow running on Google Cloud Platform (GCP)"
 weight = 2
 +++

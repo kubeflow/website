@@ -1,5 +1,5 @@
 +++
-title = "Microk8s for Kubeflow"
+title = "Kubeflow on Microk8s"
 description = "Quickly get Kubeflow running locally on native hypervisors"
 weight = 2
 +++

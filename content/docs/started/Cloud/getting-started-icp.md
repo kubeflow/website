@@ -1,5 +1,5 @@
 +++
-title = "IBM Cloud Private for Kubeflow"
+title = "Kubeflow on IBM Cloud Private"
 description = "Get Kubeflow running on IBM Cloud Private"
 weight = 2
 +++

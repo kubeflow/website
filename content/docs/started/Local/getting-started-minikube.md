@@ -1,5 +1,5 @@
 +++
-title = "Minikube for Kubeflow"
+title = "Kubeflow on Minikube"
 description = "Quickly get Kubeflow running locally"
 weight = 2
 +++

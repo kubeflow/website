@@ -1,5 +1,5 @@
 +++
-title = "AWS for Kubeflow"
+title = "Kubeflow on AWS"
 description = "Get Kubeflow running on Amazon Web Services (AWS)"
 weight = 2
 +++
