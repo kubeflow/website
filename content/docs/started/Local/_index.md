@@ -4,13 +4,13 @@ description = "Get started with Kuberflow on local hardware"
 weight = 1
 +++
 
-   * [MiniKF](/docs/started/getting-started-minikf/)
+   * [MiniKF](/docs/started/local/getting-started-minikf/)
       * MiniKF is a fast and easy way to get started with Kubeflow.
       * It installs with just two commands and then you are up for
 	      experimentation, and for running complete Kubeflow Pipelines.
       * MiniKF runs on all major operating systems (Linux, macOS, Windows).
 
-   * [Minikube](/docs/started/getting-started-minikube/)
+   * [Minikube](/docs/started/local/getting-started-minikube/)
       * Minikube uses virtualization applications like 
         [VirtualBox](https://www.virtualbox.org/) or [VMware
         Fusion](https://www.vmware.com/products/fusion.html) to host the VM
@@ -21,7 +21,7 @@ weight = 1
       * This option may be useful if you are just starting to learn and already
 	      have one of the virtualization applications installed.
 
-   * [MicroK8s](/docs/started/getting-started-multipass/)
+   * [MicroK8s](/docs/started/local/getting-started-multipass/)
       * [MicroK8s](https://microk8s.io/) can provide the following benefits:
           - A small, fast, secure, single node Kubernetes installation that installs on any
             Linux system as a [snap](https://snapcraft.io/microk8s).
