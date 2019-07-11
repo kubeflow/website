@@ -39,7 +39,7 @@ problems:
   and Google Cloud Build (GCB) load balancer to make sure it is available:
   
      ```
-     kubectl -n kubeflow describe ingress
+     kubectl -n istio-system describe ingress
 
      Name:             envoy-ingress
      Namespace:        kubeflow
@@ -75,7 +75,7 @@ problems:
   [Let's Encrypt](https://letsencrypt.org/):
 
       ```
-      kubectl -n kubeflow get certificate envoy-ingress-tls  -o yaml
+      kubectl -n istio-system get certificate envoy-ingress-tls  -o yaml
 
       apiVersion: certmanager.k8s.io/v1alpha1
       kind: Certificate
@@ -89,7 +89,7 @@ problems:
           app.kubernetes.io/deploy-manager: ksonnet
           ksonnet.io/component: iap-ingress
         name: envoy-ingress-tls
-        namespace: kubeflow
+        namespace: istio-system
         resourceVersion: "4803"
         selfLink: /apis/certmanager.k8s.io/v1alpha1/namespaces/kubeflow/certificates/envoy-ingress-tls
         uid: 9b137b29-5599-11e9-a223-42010a8e020c
@@ -153,61 +153,34 @@ problems:
 1. Wait for the load balancer to report the back ends as healthy:
 
      ```
-     NODE_PORT=$(kubectl --namespace=${NAMESPACE} get svc envoy -o jsonpath='{.spec.ports[0].nodePort}')
-     BACKEND_NAME=$(gcloud compute --project=${PROJECT} backend-services list --filter=name~k8s-be-${NODE_PORT}- --format='value(name)')
-     gcloud compute --project=${PROJECT} backend-services get-health --global ${BACKEND_NAME}
+     kubectl describe -n istio-system ingress envoy-ingress
 
-     https://www.googleapis.com/compute/v1/projects/kubeflow-ci-deployment/zones/us-east1-b/instanceGroups/k8s-ig--686aad7559e1cf0e
-     status:
-        healthStatus:
-        - healthState: HEALTHY
-          instance: https://www.googleapis.com/compute/v1/projects/kubeflow-ci-deployment/zones/us-east1-b/instances/gke-kf-vmaster-n01-kf-vmaster-n01-cpu-66360615-xjrc
-          ipAddress: 10.142.0.8
-          port: 32694
-        - healthState: HEALTHY
-          instance: https://www.googleapis.com/compute/v1/projects/kubeflow-ci-deployment/zones/us-east1-b/instances/gke-kf-vmaster-n01-kf-vmaster-n01-cpu-66360615-gmmx
-          ipAddress: 10.142.0.13
-          port: 32694
-        kind: compute#backendServiceGroupHealth
+     ...
+     Annotations:
+      kubernetes.io/ingress.global-static-ip-name:  kubeflow-ip
+      kubernetes.io/tls-acme:                       true
+      certmanager.k8s.io/issuer:                    letsencrypt-prod
+      ingress.kubernetes.io/backends:               {"k8s-be-31380--5e1566252944dfdb":"HEALTHY","k8s-be-32133--5e1566252944dfdb":"HEALTHY"}
+     ...
      ```
 
-    Both back ends should be reported as healthy.
+    Both backends should be reported as healthy.
     It can take several minutes for the load balancer to consider the back ends 
     healthy.
 
-    The service with port `${NODE_PORT}` is the one that handles Kubeflow 
-    traffic.
+    The service with port `31380` is the one that handles Kubeflow 
+    traffic. (31380 is the default port of the service `istio-ingressgateway`.)
 
-    If a back end is unhealthy check the status of the Envoy pods:
-
-    ```
-    kubectl -n kubeflow get pods -l service=envoy
-    NAME                     READY     STATUS    RESTARTS   AGE
-    envoy-69bf97959c-29dnw   2/2       Running   2          1d
-    envoy-69bf97959c-5w5rl   2/2       Running   3          1d
-    envoy-69bf97959c-9cjtg   2/2       Running   3          1d
-    ```
-
-    * The back ends should have status `Running`.
-
-    * A small number of restarts is expected since the configuration process
-      restarts the Envoy containers.
-
-    * If the pods are crash looping look at the logs to try to figure out why.
-
-        ```
-        kubectl -n kubeflow logs ${POD}
-        ```
-
-        Refer to the [troubleshooting 
-        guide](/docs/gke/troubleshooting-gke/#envoy-pods-crash-looping-root-cause-is-backend-quota-exceeded)
-        for common problems, including exceeded quota.
+    If the backend is unhealthy, check the pods in `istio-system`:
+    * `kubectl get pods -n istio-system`
+    * The `istio-ingressgateway-XX` pods should be running
+    * Check the logs of `backend-updater-0`, `ingress-bootstrap-XX`, `iap-enabler-XX` to see if there is any error
 
 1. Now that the certificate exists, the Ingress resource should report that it 
   is serving on HTTPS:
 
     ```
-    kubectl -n kubeflow get ingress
+    kubectl -n istio-system get ingress
     NAME            HOSTS                                                        ADDRESS          PORTS     AGE
     envoy-ingress   mykubeflow.endpoints.myproject.cloud.goog   35.244.132.159   80, 443   1d
     ```
