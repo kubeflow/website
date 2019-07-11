@@ -148,15 +148,21 @@ using a NFS server: now you can finally install KubeFlow following the Vanilla o
 At the end of procedure you'll see that all PVCs defined by KubeFlow will be binded to some
 automatically created PV with the storage class *nfs*.
 
+Notice that the provisioner will create a directory for each PVC with a unique name related 
+to that PVC inside the root NFS directory.
+
 ## In case of existing kubeflow installation
 
-In case you setup Dynamic Provisioning *after* the installation of KubeFlow you can 
+In case you setup Dynamic Provisioning *after* the installation of KubeFlow you must change the storage class on your existing unbinded PVCs.
 
-Se kubeflow è già stato istallato e i PVC sono appesi in attesa del bound, nessun problema: possiamo manualmente editare i PVC e aggiungere la classe *nfs*
+Unlikely Kubernetes doesn't allow to change storage class of PVCs on the fly.
 
-In order to trigger the automatic assigment for Kubeflow's PVCs you need to remove them and then add them again: you cannot modify storageClassName at runtime.
+To perform this task you need to:
+* download existing PVCs.
+* change in them storage class
+* delete and recreate them in the cluster.
 
-In order to perform this you can download the three PVCs:
+Download the three PVCs:
 
 ```shell
 kubectl get pvc/mysql-pv-claim -n kubeflow -o yaml > mysql-pv-claim.yaml
@@ -164,77 +170,45 @@ kubectl get pvc/minio-pvc -n kubeflow -o yaml > minio-pvc.yaml
 kubectl get pvc/katib-mysql -n kubeflow -o yaml > katib.yaml
 ```
 
-And then modify files to add the right storageClassName like in those examples:
+And then modify files to add the right storageClassName under *spec* section:
 
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  annotations:
-    ksonnet.io/managed: '...'
-    kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
-  labels:
-    app.kubernetes.io/deploy-manager: ksonnet
-    ksonnet.io/component: pipeline
   name: mysql-pv-claim
   namespace: kubeflow
+  ...
 spec:
-  accessModes:
-  - ReadWriteOnce
-  storageClassName: nfs-client
-  resources:
-    requests:
-      storage: 20Gi
-  volumeMode: Filesystem
+  storageClassName: nfs
+  ...
 ```
 
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  annotations:
-    ksonnet.io/managed: '...'
-    kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
-  labels:
-    app: katib
-    app.kubernetes.io/deploy-manager: ksonnet
-    ksonnet.io/component: katib
   name: katib-mysql
   namespace: kubeflow
+  ...
 spec:
-  accessModes:
-  - ReadWriteOnce
   storageClassName: nfs-client
-  resources:
-    requests:
-      storage: 10Gi
-  volumeMode: Filesystem
+  ...
 ```
 
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  annotations:
-    ksonnet.io/managed: '...'
-    kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
-  labels:
-    app: katib
-    app.kubernetes.io/deploy-manager: ksonnet
-    ksonnet.io/component: katib
   name: katib-mysql
   namespace: kubeflow
+  ...
 spec:
-  accessModes:
-  - ReadWriteOnce
   storageClassName: nfs-client
-  resources:
-    requests:
-      storage: 10Gi
-  volumeMode: Filesystem
+  ...
 ```
 
-Finally use the files to remove:
+Finally remove old ones:
 
 ```shell
 kubectl delete -f mysql-pv-claim.yaml
@@ -242,13 +216,15 @@ kubectl delete -f minio-pvc.yaml
 kubectl delete -f katib.yaml
 ```
 
-and add again:
+and add them again:
 
 ```shell
 kubectl apply -f mysql-pv-claim.yaml
 kubectl apply -f minio-pvc.yaml
 kubectl apply -f katib.yaml
 ```
+
+As you'll see, the PVCs wil lbi binded to your NFS storage.
 
 ## Limitations
 
