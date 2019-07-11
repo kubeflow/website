@@ -51,3 +51,6 @@
 
 # Replaces Pipelines DSL overview with SDK overview
 /docs/pipelines/sdk/dsl-overview/              /docs/pipelines/sdk/sdk-overview/
+
+# Removed the downloads page from Reference to Getting Started with Kubeflow
+/docs/reference/downloads/                     /docs/started/getting-started/
