@@ -31,7 +31,7 @@ docker run -v $(pwd):/my_model seldonio/core-python-wrapper:0.7 /my_model mnistd
 
 You can then push the image by running `gcloud docker -- push gcr.io/kubeflow-examples/mnistddpserving:0.1`.
 
-You can find more details about wrapping a model with seldon-core [here](https://github.com/SeldonIO/seldon-core/blob/master/docs/wrappers/python.md)
+You can find more details about wrapping a model with seldon-core [here](https://docs.seldon.io/projects/seldon-core/en/latest/python/index.html)
 
 ## Deploying the model to your Kubeflow cluster
 
