@@ -116,7 +116,7 @@ kfctl apply all -V
 
 ### Accessing Kubeflow
 
-##### Log in as a static user
+#### Log in as a static user
 
 After deploying Kubeflow, the Kubeflow Dashboard is available at the Istio Gateway IP.
 To get the Istio Gateway IP, run:
@@ -144,11 +144,342 @@ kubectl get cm dex -n kubeflow -o jsonpath='{.data.config\.yaml}' > dex-config.y
 kubectl create cm dex --from-file=config.yaml=dex-config.yaml --dry-run -oyaml | kubectl apply -f -
 ```
 
+#### Log in with LDAP / Active Directory
+
+As you saw in the overview, we use [Dex](https://github.com/dexidp/dex) for providing user authentication.
+Dex supports several authentication methods:
+
+* Static Users (what we used so far)
+* LDAP / Active Directory
+* External IdP (eg Google, LinkedIn, Github, ...)
+
+This section focuses on setting up Dex to authenticate with an existing LDAP database.
+
+1. **[OPTIONAL]** If you don't have an LDAP database, you can set up one following these instructions:
+    
+    1. Deploy a new LDAP Server as a StatefulSet. This also deploys phpLDAPadmin, a GUI for interacting with your LDAP Server.
+        
+        <details>
+        
+        <summary>LDAP Server Manifest</summary>
+        {{< highlight yaml >}}
+        apiVersion: v1
+        kind: Service
+        metadata:
+          labels:
+            app: ldap
+          name: ldap-service
+          namespace: kubeflow
+        spec:
+          type: ClusterIP
+          clusterIP: None
+          ports:
+            - port: 389
+          selector:
+            app: ldap
+        ---
+        
+        apiVersion: apps/v1
+        kind: StatefulSet
+        metadata:
+          name: ldap
+          namespace: kubeflow
+          labels:
+            app: ldap
+        spec:
+          serviceName: ldap-service
+          replicas: 1
+          selector:
+            matchLabels:
+              app: ldap
+          template:
+            metadata:
+              labels:
+                app: ldap
+            spec:
+              containers:
+                - name: ldap
+                  image: osixia/openldap:1.2.4
+                  volumeMounts:
+                    - name: ldap-data
+                      mountPath: /var/lib/ldap
+                    - name: ldap-config
+                      mountPath: /etc/ldap/slapd.d
+                  ports:
+                    - containerPort: 389
+                      name: openldap
+                  env:
+                    - name: LDAP_LOG_LEVEL
+                      value: "256"
+                    - name: LDAP_ORGANISATION
+                      value: "Arrikto"
+                    - name: LDAP_DOMAIN
+                      value: "arrikto.com"
+                    - name: LDAP_ADMIN_PASSWORD
+                      value: "admin"
+                    - name: LDAP_CONFIG_PASSWORD
+                      value: "config"
+                    - name: LDAP_BACKEND
+                      value: "mdb"
+                    - name: LDAP_TLS
+                      value: "false"
+                    - name: LDAP_REPLICATION
+                      value: "false"
+                    - name: KEEP_EXISTING_CONFIG
+                      value: "false"
+                    - name: LDAP_REMOVE_CONFIG_AFTER_SETUP
+                      value: "true"
+              volumes:
+                - name: ldap-config
+                  emptyDir: {}
+          volumeClaimTemplates:
+              - metadata:
+                  name: ldap-data
+                spec:
+                  accessModes: [ "ReadWriteOnce" ]
+                  resources:
+                    requests:
+                      storage: 10Gi
+        
+        ---
+        
+        apiVersion: v1
+        kind: Service
+        metadata:
+          labels:
+            app: phpldapadmin
+          name: phpldapadmin-service
+          namespace: kubeflow
+        spec:
+          type: ClusterIP
+          ports:
+            - port: 80
+          selector:
+            app: phpldapadmin
+        
+        ---
+        
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: phpldapadmin
+          namespace: kubeflow
+          labels:
+            app: phpldapadmin
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              app: phpldapadmin
+          template:
+            metadata:
+              labels:
+                app: phpldapadmin
+            spec:
+              containers:
+                - name: phpldapadmin
+                  image: osixia/phpldapadmin:0.8.0
+                  ports:
+                    - name: http-server
+                      containerPort: 80
+                  env:
+                    - name: PHPLDAPADMIN_HTTPS
+                      value: "false"
+                    - name: PHPLDAPADMIN_LDAP_HOSTS
+                      value : "#PYTHON2BASH:[{'ldap-service.kubeflow.svc.cluster.local': [{'server': [{'tls': False}]},{'login': [        {'bind_id': 'cn=admin,dc=arrikto,dc=com'}]}]}]"
+        {{< /highlight >}}
+        
+        </details>
+        
+        
+    2. Seed the LDAP database with new entries.
+        
+        ```bash
+        kubectl exec -it -n kubeflow ldap-0 -- bash
+        ldapadd -x -D "cn=admin,dc=arrikto,dc=com" -W
+        # Enter password "admin".
+        # Press Ctrl+D to complete after pasting the snippet below.
+        ```
+        
+        <details>
+        
+        <summary>LDAP Seed Users and Groups</summary>
+        ```ldif
+        # This already exists.
+        # If it doesn't, uncomment this.
+        #dn: dc=arrikto,dc=com
+        #objectClass: dcObject
+        #objectClass: organization
+        #o: Arrikto
+        #dc: arrikto
+        
+        dn: ou=People,dc=arrikto,dc=com
+        objectClass: organizationalUnit
+        ou: People
+        
+        dn: cn=Yannis Zarkadas,ou=People,dc=arrikto,dc=com
+        objectClass: person
+        objectClass: inetOrgPerson
+        givenName: Yannis
+        sn: Zarkadas
+        cn: Yannis Zarkadas
+        uid: yanniszark
+        mail: yanniszark@arrikto.com
+        userpassword: 12341234
+        
+        dn: cn=Vangelis Koukis,ou=People,dc=arrikto,dc=com
+        objectClass: person
+        objectClass: inetOrgPerson
+        givenName: Vangelis
+        sn: Koukis
+        cn: Vangelis Koukis
+        uid: vkoukis
+        mail: vkoukis@arrikto.com
+        userpassword: 43214321
+        
+        # Group definitions.
+        
+        dn: ou=Groups,dc=arrikto,dc=com
+        objectClass: organizationalUnit
+        ou: Groups
+        
+        dn: cn=admins,ou=Groups,dc=arrikto,dc=com
+        objectClass: groupOfNames
+        cn: admins
+        member: cn=Yannis Zarkadas,ou=People,dc=arrikto,dc=com
+        
+        dn: cn=developers,ou=Groups,dc=arrikto,dc=com
+        objectClass: groupOfNames
+        cn: developers
+        member: cn=Yannis Zarkadas,ou=People,dc=arrikto,dc=com
+        member: cn=Vangelis Koukis,ou=People,dc=arrikto,dc=com
+        ```
+        
+        </details>
+
+2. To use your LDAP/AD server with Dex, you have to edit the Dex config.To edit the ConfigMap containing the Dex config, run:
+
+    1. Get the current Dex config from the corresponding Config Map.
+        
+        {{< highlight bash >}}
+        kubectl get configmap -n kubeflow -o jsonpath='{.data.config\.yaml}' > dex-config.yaml
+        {{< /highlight >}}
+
+    1. Add the LDAP-specific options. Here is an example to help you out. It is configured to work with the example LDAP Server you set up previously.
+        
+        <details>
+        
+        <summary>Dex LDAP Config Section</summary>
+        {{< highlight yaml >}}
+        connectors:
+        - type: ldap
+          # Required field for connector id.
+          id: ldap
+          # Required field for connector name.
+          name: LDAP
+          config:
+            # Host and optional port of the LDAP server in the form "host:port".
+            # If the port is not supplied, it will be guessed based on "insecureNoSSL",
+            # and "startTLS" flags. 389 for insecure or StartTLS connections, 636
+            # otherwise.
+            host: ldap-service.kubeflow.svc.cluster.local:389
+          
+            # Following field is required if the LDAP host is not using TLS (port 389).
+            # Because this option inherently leaks passwords to anyone on the same network
+            # as dex, THIS OPTION MAY BE REMOVED WITHOUT WARNING IN A FUTURE RELEASE.
+            #
+            insecureNoSSL: true
+          
+            # If a custom certificate isn't provide, this option can be used to turn off
+            # TLS certificate checks. As noted, it is insecure and shouldn't be used outside
+            # of explorative phases.
+            #
+            insecureSkipVerify: true
+          
+            # When connecting to the server, connect using the ldap:// protocol then issue
+            # a StartTLS command. If unspecified, connections will use the ldaps:// protocol
+            #
+            startTLS: false
+          
+            # Path to a trusted root certificate file. Default: use the host's root CA.
+            # rootCA: /etc/dex/ldap.ca
+            # clientCert: /etc/dex/ldap.cert
+            # clientKey: /etc/dex/ldap.key
+          
+            # A raw certificate file can also be provided inline.
+            # rootCAData: ( base64 encoded PEM file )
+          
+            # The DN and password for an application service account. The connector uses
+            # these credentials to search for users and groups. Not required if the LDAP
+            # server provides access for anonymous auth.
+            # Please note that if the bind password contains a `$`, it has to be saved in an
+            # environment variable which should be given as the value to `bindPW`.
+            bindDN: cn=admin,dc=arrikto,dc=com
+            bindPW: admin
+          
+            # The attribute to display in the provided password prompt. If unset, will
+            # display "Username"
+            usernamePrompt: Arrikto username
+          
+            # User search maps a username and password entered by a user to a LDAP entry.
+            userSearch:
+              # BaseDN to start the search from. It will translate to the query
+              # "(&(objectClass=person)(uid=<username>))".
+              baseDN: ou=People,dc=arrikto,dc=com
+              # Optional filter to apply when searching the directory.
+              filter: "(objectClass=inetOrgPerson)"
+          
+              # username attribute used for comparing user entries. This will be translated
+              # and combined with the other filter as "(<attr>=<username>)".
+              username: uid
+              # The following three fields are direct mappings of attributes on the user entry.
+              # String representation of the user.
+              idAttr: uid
+              # Required. Attribute to map to Email.
+              emailAttr: mail
+              # Maps to display name of users. No default value.
+              nameAttr: givenName
+          
+            # Group search queries for groups given a user entry.
+            groupSearch:
+              # BaseDN to start the search from. It will translate to the query
+              # "(&(objectClass=group)(member=<user uid>))".
+              baseDN: ou=Groups,dc=arrikto,dc=com
+              # Optional filter to apply when searching the directory.
+              filter: "(objectClass=groupOfNames)"
+          
+              # Following two fields are used to match a user to a group. It adds an additional
+              # requirement to the filter that an attribute in the group must match the user's
+              # attribute value.
+              userAttr: DN
+              groupAttr: member
+          
+              # Represents group name.
+              nameAttr: cn
+        {{< /highlight >}}
+        
+        </details>
+        
+    1. Append the LDAP config section to the dex config.
+        
+        {{< highlight bash >}}
+        cat dex-config.yaml dex-config-ldap-partial.yaml > dex-config-final.yaml
+        {{< /highlight >}}
+        
+    1. Apply the new config.
+        {{< highlight bash >}}
+        kubectl create configmap --from-file=dex-config-final.yaml -n kubeflow | kubectl apply -f -
+        {{< /highlight >}}
+        
+    1. Restart the Dex deployment, by doing one of the following:
+        * Force recreation, by deleting the Dex deployment's Pod(s).
+        * Trigger a rolling update, by adding/updating a label on the PodTemplate of the Dex deployment.
+
 ### Delete Kubeflow
 
 Run the following commands to delete your deployment and reclaim all resources:
 
-```
+```bash
 cd ${KFAPP}
 # If you want to delete all the resources, run:
 kfctl delete all
