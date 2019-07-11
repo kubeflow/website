@@ -125,8 +125,6 @@ More information can be found in the
 [Kubernetes docs](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole).
 
 # In-Cluster Authentication
-Sometimes, you may wish to authenticate to GCP from within the cluster, to upload a file to Google Container 
-Storage for example. The recommended way to do this is using the Kubeflow GCP service accounts.
 
 ### Kubeflow GCP Service Accounts
 When you set up Kubeflow for GCP, it will automatically 
