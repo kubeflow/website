@@ -95,97 +95,84 @@ Kind:         Experiment
 Metadata:
   Creation Timestamp:  2019-01-18T16:30:46Z
   Finalizers:
-    clean-studyjob-data
+    clean-data-in-db
   Generation:        5
   Resource Version:  1777650
-  Self Link:         /apis/kubeflow.org/v1alpha1/namespaces/kubeflow/studyjobs/random-example
+  Self Link:         /apis/kubeflow.org/v1alpha2/namespaces/kubeflow/experiments/random-example
   UID:               687a67f9-1b3e-11e9-a0c2-c6456c1f5f0a
 Spec:
-  Metricsnames:
-    accuracy
-  Objectivevaluename:  Validation-accuracy
-  Optimizationgoal:    0.88
-  Optimizationtype:    maximize
-  Owner:               crd
-  Parameterconfigs:
-    Feasible:
-      Max:          0.03
-      Min:          0.01
-    Name:           --lr
-    Parametertype:  double
-    Feasible:
-      Max:          5
-      Min:          2
-    Name:           --num-layers
-    Parametertype:  int
-    Feasible:
+  Algorithm:
+    Algorithm Name:  random
+    Algorithm Settings:
+  Max Failed Trial Count:  3
+  Max Trial Count:         100
+  Objective:
+    Additional Metric Names:
+      accuracy
+    Goal:                   0.99
+    Objective Metric Name:  Validation-accuracy
+    Type:                   maximize
+  Parallel Trial Count:     10
+  Parameters:
+    Feasible Space:
+      Max:           0.03
+      Min:           0.01
+    Name:            --lr
+    Parameter Type:  double
+    Feasible Space:
+      Max:           5
+      Min:           2
+    Name:            --num-layers
+    Parameter Type:  int
+    Feasible Space:
       List:
         sgd
         adam
         ftrl
-    Name:           --optimizer
-    Parametertype:  categorical
-  Requestcount:     4
-  Study Name:       random-example
-  Suggestion Spec:
-    Request Number:        3
-    Suggestion Algorithm:  random
-    Suggestion Parameters:
-      Name:   SuggestionCount
-      Value:  0
-  Worker Spec:
+    Name:            --optimizer
+    Parameter Type:  categorical
+  Trial Template:
     Go Template:
-      Raw Template:  apiVersion: batch/v1
-kind: Job
-metadata:
-  name: {{.WorkerID}}
-  namespace: kubeflow
-spec:
-  template:
-    spec:
-      containers:
-      - name: {{.WorkerID}}
-        image: katib/mxnet-mnist-example
-        command:
-        - "python"
-        - "/mxnet/example/image-classification/train_mnist.py"
-        - "--batch-size=64"
-        {{- with .HyperParameters}}
-        {{- range .}}
-        - "{{.Name}}={{.Value}}"
-        {{- end}}
-        {{- end}}
-      restartPolicy: Never
+      Template Spec:
+        Config Map Name:       trial-template
+        Config Map Namespace:  kubeflow
+        Template Path:         mnist-trial-template
 Status:
-  Condition:                    Running
-  Early Stopping Parameter Id:  
-  Last Reconcile Time:          2019-01-18T16:30:46Z
-  Start Time:                   2019-01-18T16:30:46Z
-  Studyid:                      y456536bd1e0ad5e
-  Suggestion Count:             1
-  Suggestion Parameter Id:      i31c2adcab54f891
-  Trials:
-    Trialid:  ka897d189e024460
-    Workeridlist:
-      Completion Time:  <nil>
-      Condition:        Running
-      Kind:             Job
-      Start Time:       2019-01-18T16:30:46Z
-      Workerid:         ma76ebe2b23fec02
-    Trialid:            v9ec0edbb16befd7
-    Workeridlist:
-      Completion Time:  <nil>
-      Condition:        Running
-      Kind:             Job
-      Start Time:       2019-01-18T16:30:46Z
-      Workerid:         yc5053df337dbeec
-    Trialid:            be68860be22cfce3
-    Workeridlist:
-      Completion Time:  <nil>
-      Condition:        Running
-      Kind:             Job
-      Start Time:       2019-01-18T16:30:46Z
-      Workerid:         v095e6b93d87e9eb
+  Completion Time:  2019-06-20T00:12:07Z
+  Conditions:
+    Last Transition Time:  2019-06-19T23:20:56Z
+    Last Update Time:      2019-06-19T23:20:56Z
+    Message:               Experiment is created
+    Reason:                ExperimentCreated
+    Status:                True
+    Type:                  Created
+    Last Transition Time:  2019-06-20T00:12:07Z
+    Last Update Time:      2019-06-20T00:12:07Z
+    Message:               Experiment is running
+    Reason:                ExperimentRunning
+    Status:                False
+    Type:                  Running
+    Last Transition Time:  2019-06-20T00:12:07Z
+    Last Update Time:      2019-06-20T00:12:07Z
+    Message:               Experiment has succeeded because max trial count has reached
+    Reason:                ExperimentSucceeded
+    Status:                True
+    Type:                  Succeeded
+  Current Optimal Trial:
+    Observation:
+      Metrics:
+        Name:   Validation-accuracy
+        Value:  0.982483983039856
+    Parameter Assignments:
+      Name:          --lr
+      Value:         0.026666666666666665
+      Name:          --num-layers
+      Value:         2
+      Name:          --optimizer
+      Value:         sgd
+  Start Time:        2019-06-19T23:20:55Z
+  Trials:            100
+  Trials Succeeded:  100
 Events:                 <none>
 ```
 
@@ -220,21 +207,21 @@ If you are not using GKE and you don't have StorageClass for dynamic volume
 provisioning in your cluster, you must create a PVC and a PV:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfevent-volume/tfevent-pvc.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/tfevent-volume/tfevent-pvc.yaml
 
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfevent-volume/tfevent-pv.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/tfevent-volume/tfevent-pv.yaml
 ```
 
 Now you can run the TensorFlow operator example:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/tfjob-example.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/tfjob-example.yaml
 ```
 
-You can check the status of the study:
+You can check the status of the experiment:
 
 ```
-kubectl -n kubeflow describe studyjobs tfjob-example
+kubectl -n kubeflow describe experiment tfjob-example
 ```
 
 ### PyTorch example
@@ -242,10 +229,10 @@ kubectl -n kubeflow describe studyjobs tfjob-example
 This is an example for the PyTorch operator:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/pytorchjob-example.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/pytorchjob-example.yaml
 ```
 
-You can check the status of the study:
+You can check the status of the experiment:
 
 ```
 kubectl -n kubeflow describe experiment pytorchjob-example
@@ -259,20 +246,11 @@ using the deployment guide, you can access the Katib UI at
 https://<kubeflow endpoint>/katib/
 ```
 
-Then port-forward the Ambassador service:
+Otherwise, you can set port-forwarding for the Katib UI service:
 
-* For Kubernetes version 1.9 and later:
-
-    ```
-    kubectl port-forward svc/ambassador -n kubeflow 8080:80
-    ```
-
-* For Kubernetes version 1.8 and earlier:
-
-    ```
-    kubectl get pods -n kubeflow  # Find one of the Ambassador pods
-    kubectl port-forward [Ambassador pod] -n kubeflow 8080:80
-    ```
+```
+kubectl port-forward svc/katib-ui -n kubeflow 8080:80
+```
 
 Now you can access the Katib UI at this URL: ```http://localhost:8080/katib/```.
 
@@ -299,8 +277,8 @@ kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/exampl
 
 ## Metrics collector
 
-Katib has a metrics collector to take metrics from each worker. Katib collects 
-metrics from stdout of each worker. Metrics should print in the following
+Katib has a metrics collector to take metrics from each trial. Katib collects
+metrics from stdout of each trial. Metrics should print in the following
 format: `{metrics name}={value}`. For example, when your objective value name 
 is `loss` and the metrics are `recall` and `precision`, your training container
 should print like this:
@@ -317,4 +295,4 @@ recall=0.55
 precision=0.5
 ```
 
-Katib collects all logs of metrics.
+Katib will then periodically launch CronJobs to collect metrics from pods.
