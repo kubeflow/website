@@ -13,8 +13,8 @@ framework (such as TensorFlow, MXNet, or PyTorch).
 ## Installing Katib
 
 To run Katib jobs, you must install the required packages as shown in this
-section. You can do so by following the Kubeflow [deployment guide]
-(/docs/gke/deploy/), or by installing Katib directly from its repository:
+section. You can do so by following the Kubeflow [deployment guide](/docs/gke/deploy/),
+or by installing Katib directly from its repository:
 ```
 git clone https://github.com/kubeflow/katib
 ./katib/scripts/v1alpha2/deploy.sh
@@ -67,16 +67,16 @@ Running this command launches an Experiment. It runs a series of
 training jobs to train models using different hyperparameters and save the 
 results.
 
-The configurations for the experiment (hyper-parameter feasible space, optimization 
+The configurations for the experiment (hyperparameter feasible space, optimization 
 parameter, optimization goal, suggestion algorithm, and so on) are defined in 
 [random-example.yaml](https://github.com/kubeflow/katib/blob/master/examples/v1alpha2/random-example.yaml).
 
-In this demo, hyper-parameters are embedded as args.
-You can embed hyper-parameters in another way (for example, environment values) 
+In this demo, hyperparameters are embedded as args.
+You can embed hyperparameters in another way (for example, environment values) 
 by using the template defined in `TrialTemplate.GoTemplate.RawTemplate`.
 It is written in [go template](https://golang.org/pkg/text/template/) format.
 
-This demo randomly generates 3 hyper parameters:
+This demo randomly generates 3 hyperparameters:
 
 * Learning Rate (--lr) - type: double
 * Number of NN Layer (--num-layers) - type: int
@@ -243,7 +243,12 @@ kubectl -n kubeflow describe experiment pytorchjob-example
 You can monitor your results in the Katib UI. If you installed Kubeflow
 using the deployment guide, you can access the Katib UI at
 ```
-https://<kubeflow endpoint>/katib/
+https://<your kubeflow endpoint>/katib/
+```
+
+For example, if you deployed Kubeflow on GKE, your endpoint would be
+```
+https://<deployment_name>.endpoints.<project>.cloud.goog/
 ```
 
 Otherwise, you can set port-forwarding for the Katib UI service:
@@ -295,4 +300,4 @@ recall=0.55
 precision=0.5
 ```
 
-Katib will then periodically launch CronJobs to collect metrics from pods.
+Katib periodically launches CronJobs to collect metrics from pods.
