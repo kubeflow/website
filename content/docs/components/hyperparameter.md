@@ -23,7 +23,7 @@ git clone https://github.com/kubeflow/katib
 ### Persistent Volumes
 If you want to use Katib outside Google Kubernetes Engine (GKE) and you don't 
 have a StorageClass for  dynamic volume provisioning in your cluster, you must 
-create a persistent volume  (PV) to bind your persistent volume claim (PVC).
+create a persistent volume (PV) to bind your persistent volume claim (PVC).
 
 This is the YAML file for a PV:
 
@@ -73,7 +73,7 @@ parameter, optimization goal, suggestion algorithm, and so on) are defined in
 
 In this demo, hyper-parameters are embedded as args.
 You can embed hyper-parameters in another way (for example, environment values) 
-by using the template defined in `WorkerSpec.GoTemplate.RawTemplate`.
+by using the template defined in `TrialTemplate.GoTemplate.RawTemplate`.
 It is written in [go template](https://golang.org/pkg/text/template/) format.
 
 This demo randomly generates 3 hyper parameters:
