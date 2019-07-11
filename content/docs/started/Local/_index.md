@@ -1,6 +1,6 @@
 +++
 title = "Local Installation"
-description = "Get started with Kuberflow on local hardware"
+description = "Get started with Kubeflow on local hardware"
 weight = 1
 +++
 
