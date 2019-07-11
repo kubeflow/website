@@ -8,10 +8,10 @@ This guide describes how to setup Kubeflow on premise in a multi-node cluster us
 
 ## Vanilla on-prem KubeFlow installation
 
-In order to install KubeFlow in a on-prem kubernetes cluster (both single node and multi-node) you can follow this guide
+In order to install KubeFlow in a on-prem Kubernetes cluster (both single node and multi-node) you can follow this guide
 [Kubeflow on Kubernetes](/docs/started/getting-started-k8s).
 
-At the end of installation, as stated in the troubleshooting section [Pods stuck in Pending state](/docs/other-guides/troubleshooting/#pods-stuck-in-pending-state), you could have some Persistent Volume Claims (PVCs) ubounded.
+At the end of the installation, as stated in the troubleshooting section [Pods stuck in Pending state](/docs/other-guides/troubleshooting/#pods-stuck-in-pending-state), you could have some Persistent Volume Claims (PVCs) ubounded.
 
 In fact, in KubeFlow there are three pods that have 10Gi PVCs that will get stuck in pending state 
 if they are unable to bind their PVC. The three pods are minio, mysql, and vizier-db. 
@@ -30,40 +30,34 @@ But wait!
 
 There are a couple of problems to solve before: you are in a multi-node cluster, you cannot simply create an *hostPath* PersistentVolume (the volume that exposes a filesystem directory to a Pod) like in a single node scenario.
 
-## A step back: the storage on kubernetes
+## A step back: the storage on Kubernetes
 
 Kubernetes defines several ways to attach Volumes to Pods. 
 
-The best practice consists in decoupling the need for storage ([Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims): PVC) from the real storage ([Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/): PV). The latter is provisioned by kubernetes administratore based on the available resources. Persistent Volume can be one of the [several supported](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes).
+The best practice consists in decoupling the need for storage ([Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims): PVC) from the real storage ([Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/): PV). The latter is provisioned by Kubernetes administratore based on the available resources. PV can be one of the [several supported](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes).
 
-Cloud providers define in their kubernetes cluster mechanisms to allocate PVs based on existing PVCs using their storage infrastructure; on-prem cluster must provision their PV according the existing capability of the system.
+Cloud providers define, in their Kubernetes cluster, mechanisms to allocate PVs based on existing PVCs using their storage infrastructure; on-prem cluster must provision their PV according the existing capability of the system.
 
 In development clusters (e.g. Minikube) or single node clusters, PVCs can be binded to HostPath PVs: a particular kind of volume that maps the Pod's Volume to a directory of the filesystem.
 
-This approach, however, is not a feasible solution in multi-node clusters. A Pod, in fact, can be on different nodes during its lifecycle: kubernetes can kill and restart it on another node at any time based on the resources available in the cluster. In this scenario, the migrated Pod will not find its old data after restarting on a new node.
+This approach, however, is not a feasible solution in multi-node clusters. A Pod, in fact, can be on different nodes during its lifecycle: Kubernetes can kill and restart it on another node at any time based on the resources available in the cluster. In this scenario, the migrated Pod will not find its old data after restarting on a new node.
 
 A common solution is to use a remote volume mounted in the Pods so that it can be reached from any node in the cluster. 
 
 In this document we will show you:
 
 * how to associate a remote NFS volume to KubeFlow Pods so you don't have any problems when Pod is scheduled on different cluster nodes during its lifecycle. 
-* how simplify the life of the cluster administrator using [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) and leaving to kubernetes the task to create different PV for each PVC without needs on manual intervention.
+* how simplify the life of the cluster administrator using [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) and leaving to Kubernetes the task to create different PV for each PVC without needs on manual intervention.
 
 ## NFS Persistent Volumes
 
-[NFS](https://en.wikipedia.org/wiki/Network_File_System) is the a popular distributed filesystem commonly used in Unix operating systems. 
+[NFS](https://en.wikipedia.org/wiki/Network_File_System) is a popular distributed filesystem commonly used in Unix operating systems. 
 
 We want to use a NFS server to create PV where Pods can write their data.
 
-In order to do this you should provide a NFS server with an IP reachble from inside the kubernetes cluster.
+In order to do this you should provide a NFS server with an IP reachable from inside the Kubernetes cluster.
 
-For simplicity, we will use one of the kubernetes nodes for this purpose. In general this is not a good idea because in case of fault of one of the nodes you will loose your data.  
-
-
-
-
-
-In order to provide a NFS volume you need to have a NFS server:
+If a NFS volume is not available and reachble for your cluster, you can transform, for simplicity, one of the nodes of the cluster as NFS server with the following commands:
 
 ```shell
 sudo apt install nfs-common
@@ -71,16 +65,18 @@ sudo apt install nfs-kernel-server
 sudo mkdir /nfsroot
 ```
 
-Configure /etc/exports to share that directory:
+Than you need to configure /etc/exports to share that directory:
 
 ```shell
 /nfsroot 192.168.0.0/16(rw,no_root_squash,no_subtree_check)
 ```
 
 Notice that 192.168.0.0 is the nodes' CIDR, not the Kubernetes CIDR.
-NFS Client
 
-In order to allow any node of the cluster to be able to mount NFS filesystem:
+### NFS Client
+
+Each node of the cluster must be able to establish connection to NFS server.
+This can be done by installing the right NFS client library in any node:
 
 ```shell
 sudo apt install nfs-common
@@ -88,19 +84,34 @@ sudo apt install nfs-common
 
 ## Install Dynamic Provisioner
 
-*TODO* introduction
+Now you can create NFS PVs to enable each Pod to write its own data 
+in a common place from any node it will be spawned.
+ 
+In order to successfully complete the KubeFlow installation a NFS PV to
+be binded to all the PVCs must be created.
+
+Since shis operation can be tedious, Kubernetes has a mechanism to solve this problem
+and make creation of PVs based on existing PVCs automatic:
+[Dynamic Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
+
+In next section we will install a Dynamic Provisioner for NFS volumes via Helm in our cluster.
 
 ### Install Helm
 
-https://helm.sh/docs/using_helm/#install-helm
+Helm is the Kubernetes packet manager. You can follow [this guide](https://helm.sh/docs/using_helm/#install-helm) to install it a couple of steps.
 
 ### Install NFS Provisioner
 
-*TODO* spiega la default class
+The Dynamic Provisioner we are going to install will be able to create PVs for any PVC for a given [storage class](https://kubernetes.io/docs/concepts/storage/storage-classes/).
 
-In order to work with Dynamic Volume Provisioning and with NFS you need to install a provisioner: a component that create automatically NFS persistent volume based on existing Persistent Volume Claims.
+A storage class is a label associated to volumes to specify a class of storage: using storage class 
+definition is possible to query and provision volumes with different performances or capabilities
+ (e.g SSD or slower disks)
 
-NFS client provisioner can be found here.
+A special storage class is *default*: any PV or PVC that doesn't
+specify one is associated to it.
+
+NFS client provisioner can be found [here](https://github.com/helm/charts/tree/master/stable/nfs-client-provisioner).
 
 You can install it with Helm:
 
@@ -114,7 +125,7 @@ helm install
   stable/nfs-client-provisioner
 ```
 
-The component in the system will add a Storage Class that you can see in this way:
+The component in the system will add a *nfs* Storage Class that you can see in this way:
 
 ```shell
 kubectl get storageclass -n kubeflow
@@ -124,13 +135,26 @@ nfs (default)          cluster.local/nfs-client-provisioner   6h13m
 ...
 ```
 
+As you noticed we specified an optional parameter storageClass.defaultClass to true: 
+this will define *nfs* storage class as default.
+In this way during KubeFlow installation, all PVCs will be labelled
+with *nfs* storage class.
+
+## Finally: peform installation
+
+We finally prepared our on-prem multi-node Kubernetes cluster to manage transparently volumes
+using a NFS server: now you can finally install KubeFlow following the Vanilla on-prem KubeFlow installation guidelinein the top of this document.
+
+
+
+
 ### In case of existing kubeflow installation
 
 Se kubeflow è già stato istallato e i PVC sono appesi in attesa del bound, nessun problema: possiamo manualmente editare i PVC e aggiungere la classe *nfs*
 
-In ordert to trigger the automatic assigment for Kubeflow's Persistent Volume Claims you need to remove them and then add them again: you cannot modify storageClassName at runtime.
+In ordert to trigger the automatic assigment for Kubeflow's PVCs you need to remove them and then add them again: you cannot modify storageClassName at runtime.
 
-In order to perform this you can download the three Persistent Volume Claims:
+In order to perform this you can download the three PVCs:
 
 ```shell
 kubectl get pvc/mysql-pv-claim -n kubeflow -o yaml > mysql-pv-claim.yaml
@@ -231,12 +255,17 @@ NFS è un filesystem remoto molto performante in lettura e meno performante in s
 Inoltre è preferibile utilizzare la versione 4 di NFS anzichè la 3: quest'ultima ha dei problemi di scrittura parziale per cui non vi trovate i file scritti, mentre la 4 risolve questi problemi. In caso abbiate già un server NFS assicuratevi che sia della versione 4. La versione 3 ha anche problemi con i permessi.
 
 
+Usare NFS su solo un nodo
+In general this is not a good idea because in case of fault of one of the nodes you will loose your data.  
+
+
 ## Resources
 
-* helm chart per NFS provisioner
-* dynamic provisioning
-* tipi di volumi esistenti
+This short guide is intended to be complete. 
+For more information about the followind Kubernetes resources please refer to the official documentation:
 
-Please go to the [Argo CD documentation](https://github.com/argoproj/argo-cd/tree/master/docs#argocd-documentation) to read more about how to configure other features like auto-sync, SSO, RBAC, and more!
-
-
+* [Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
+* [Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
+* [Storage Class](https://kubernetes.io/docs/concepts/storage/storage-classes/)
+* [Storage Types Supported by Kubernetes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)
+* [Dynamic Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
