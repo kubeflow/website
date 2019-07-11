@@ -1,7 +1,7 @@
 +++
 title = "Examples and tutorials"
 description = "A summary of recommended walkthroughs, blog posts, tutorials, and codelabs"
-weight = 50
+weight = 80
 +++
 
 {{< blocks/content-section title="Kubeflow samples" color="light" >}}
