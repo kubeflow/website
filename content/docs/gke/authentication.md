@@ -1,10 +1,17 @@
-## Authenticating gcloud
++++
+title = "Authenticating Kubeflow to GCP"
+description = "Troubleshooting guide for authentication and authorization to GCP"
+weight = 4
++++
+
+
+# Authenticating gcloud
 
 [The `gcloud` tool](https://cloud.google.com/sdk/gcloud/) is used to interact with Google Cloud Platform (GCP) over the command line. 
 It can be used to [set up Google Kubernetes Engine (GKE) clusters](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create), 
 and interact with other Google services.
 
-#### Logging in
+### Logging in
 
 There are two ways to authenticate the gcloud command:
 
@@ -21,7 +28,7 @@ which brings up a browser window to start the familiar Google authentication flo
 
 More information can be found in the [GCP docs](https://cloud.google.com/sdk/docs/authorizing).
 
-#### Listing Active Accounts
+### Listing Active Accounts
 
 You can run the following commend to verify you are authenticating with the expected account. 
 Your active account will be denoted with an asterisk.
@@ -30,7 +37,7 @@ Your active account will be denoted with an asterisk.
 gcloud auth list
 ```
 
-#### IAM Roles
+### Viewing IAM Roles
 
 Permissions are handled in GCP using [IAM Roles](https://cloud.google.com/iam/docs/understanding-roles). 
 These roles define which resources your account can read or write to. You can check which roles were assigned to your account using the following gcloud command:
@@ -50,10 +57,10 @@ Roles can also be viewed and modified through the
 More information about IAM can be found in the 
 [GCP docs](https://cloud.google.com/iam/docs/granting-changing-revoking-access).
 
-## Authenticating kubectl
+# Authenticating kubectl
 The [`kubectl` tool](https://kubernetes.io/docs/reference/kubectl/overview/) is used for interacting with a Kubernetes cluster through the command line
 
-### Authorizing with a GCP Account
+### Connecting to a Cluster using a GCP Account
 If you set up your Kubernetes cluster using GKE, you can authenticate with the cluster using a GCP account. 
 The following command will fetch the credentials for your cluster and save them to your local 
 [`kubeconfig` file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/):
@@ -117,7 +124,7 @@ By default, `Roles` and `RoleBindings` apply only to resources in a specific nam
 More information can be found in the 
 [Kubernetes docs](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole).
 
-## In-Cluster Authentication
+# In-Cluster Authentication
 Sometimes, you may wish to authenticate to GCP from within the cluster, to upload a file to Google Container 
 Storage for example. The recommended way to do this is using the Kubeflow GCP service accounts.
 
