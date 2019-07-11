@@ -87,10 +87,10 @@ sudo apt install nfs-common
 Now you can create NFS PVs to enable each Pod to write its own data 
 in a common place from any node it will be spawned.
  
-In order to successfully complete the KubeFlow installation a NFS PV to
+In order to successfully complete the KubeFlow installation, a NFS PV must be created, to
 be binded to all the PVCs must be created.
 
-Since shis operation can be tedious, Kubernetes has a mechanism to solve this problem
+Since this operation can be tedious, Kubernetes has a mechanism to solve this problem
 and make creation of PVs based on existing PVCs automatic:
 [Dynamic Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
@@ -98,7 +98,7 @@ In next section we will install a Dynamic Provisioner for NFS volumes via Helm i
 
 ### Install Helm
 
-Helm is the Kubernetes packet manager. You can follow [this guide](https://helm.sh/docs/using_helm/#install-helm) to install it a couple of steps.
+Helm is the Kubernetes packet manager. You can follow [this guide](https://helm.sh/docs/using_helm/#install-helm) to install it in a couple of steps.
 
 ### Install NFS Provisioner
 
@@ -140,19 +140,21 @@ this will define *nfs* storage class as default.
 In this way during KubeFlow installation, all PVCs will be labelled
 with *nfs* storage class.
 
-## Finally: peform installation
+## Finally: install KubeFlow!
 
 We finally prepared our on-prem multi-node Kubernetes cluster to manage transparently volumes
-using a NFS server: now you can finally install KubeFlow following the Vanilla on-prem KubeFlow installation guidelinein the top of this document.
+using a NFS server: now you can finally install KubeFlow following the Vanilla on-prem KubeFlow installation guideline that you encountered in the top of this document.
 
+At the end of procedure you'll see that all PVCs defined by KubeFlow will be binded to some
+automatically created PV with the storage class *nfs*.
 
+## In case of existing kubeflow installation
 
-
-### In case of existing kubeflow installation
+In case you setup Dynamic Provisioning *after* the installation of KubeFlow you can 
 
 Se kubeflow è già stato istallato e i PVC sono appesi in attesa del bound, nessun problema: possiamo manualmente editare i PVC e aggiungere la classe *nfs*
 
-In ordert to trigger the automatic assigment for Kubeflow's PVCs you need to remove them and then add them again: you cannot modify storageClassName at runtime.
+In order to trigger the automatic assigment for Kubeflow's PVCs you need to remove them and then add them again: you cannot modify storageClassName at runtime.
 
 In order to perform this you can download the three PVCs:
 
@@ -250,14 +252,15 @@ kubectl apply -f katib.yaml
 
 ## Limitations
 
-NFS è un filesystem remoto molto performante in lettura e meno performante in scrittura e e pertanto ogni scrittura introduce latenze dovute al protocollo rispetto al mero salvataggio
+NFS is a remote filesystem that is high performant in reading while in writing it is slower.
+If you have to write a huge amount of data in your workflow, you will need to do some 
+consideration to understand if NFS filesystem is the right choice.
 
-Inoltre è preferibile utilizzare la versione 4 di NFS anzichè la 3: quest'ultima ha dei problemi di scrittura parziale per cui non vi trovate i file scritti, mentre la 4 risolve questi problemi. In caso abbiate già un server NFS assicuratevi che sia della versione 4. La versione 3 ha anche problemi con i permessi.
+It is preferable to use version 4 of NFS (instead 3): NFS 3 can have some problems like 
+partial write of documents and has no authentication. Ensure that you are using version 4 of NFS.
 
-
-Usare NFS su solo un nodo
-In general this is not a good idea because in case of fault of one of the nodes you will loose your data.  
-
+In this document we used one of the nodes as NFS server. This is not a good idea for production
+environment because you will have a single point of failure in your cluster.
 
 ## Resources
 
