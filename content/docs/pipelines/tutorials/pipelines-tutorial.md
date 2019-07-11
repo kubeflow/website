@@ -149,7 +149,7 @@ Deploy Kubeflow on GCP:
 1. (Optional) If you want to examine your cluster while waiting for the UI to
    be available, you can use `kubectl` to connect to your cluster:
 
-  * Connect your cloud shell session to the cluster:
+  * Connect your Cloud Shell session to the cluster:
 
       ```
       gcloud container clusters get-credentials \
