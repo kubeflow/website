@@ -50,7 +50,9 @@ Your Kubeflow `app` directory contains the following files and directories:
     * This directory is created when you run `kfctl.sh generate platform`.
     * You can modify the `cluster_config.yaml` and `cluster_features.sh` files to customize your AWS infrastructure.
 * **${KFAPP}/k8s_specs** - A directory that contains YAML specifications for daemons deployed on your Kubernetes Engine cluster.
-
+* **kustomize** is a directory that contains the kustomize packages for Kubeflow applications.
+    * The directory is created when you run `kfctl generate`.
+    * You can customize the Kubernetes resources (modify the manifests and run `kfctl apply` again).
 
 The provisioning scripts can either bring up a new cluster and install Kubeflow on it, or you can install Kubeflow on your existing cluster. We recommend that you create a new cluster for better isolation.
 

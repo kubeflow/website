@@ -40,6 +40,9 @@ Your Kubeflow `app` directory contains the following files and directories:
 * **app.yaml** - Defines the configuration related to your Kubeflow deployment.
     * These values are set when you run `kfctl init`.
     * These values are snapshotted inside `app.yaml` to make your app self contained.
+* **kustomize** is a directory that contains the kustomize packages for Kubeflow applications.
+    * The directory is created when you run `kfctl generate`.
+    * You can customize the Kubernetes resources (modify the manifests and run `kfctl apply` again).
 
 If you experience any issues running these scripts, see the [troubleshooting guidance](/docs/azure/troubleshooting-azure) for more information.
 
