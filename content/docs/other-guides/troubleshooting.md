@@ -112,7 +112,7 @@ kubectl -n ${NAMESPACE} describe pods ${PODNAME}
 
 ## Pods stuck in Pending state
 
-There are three pods that have Persistent Volume Claims (PVCs) (1 for 10Gi and 2 for 20Gi) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and vizier-db.
+There are three pods that have Persistent Volume Claims (PVCs) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and vizier-db.
 Check the status of the PVC requests
 
 ```
@@ -124,10 +124,10 @@ kubectl -n ${NAMESPACE} get pvc
 
 If you have not configured [dynamic provisioning] (https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) for your cluster, including a default storage class, then you must create a [persistent volume] (https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for each of the PVCs.
 
-You can use the example below to create a local persistent volume. 
+You can use the example below to create local persistent volumes.
 
 ```commandline
-sudo mkdir /mnt/pv1
+sudo mkdir /mnt/pv[1-3]
 
 kubectl create -f - <<EOF
 kind: PersistentVolume
@@ -142,9 +142,35 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: "/mnt/pv1"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-volume2
+spec:
+  storageClassName:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/pv2"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-volume3
+spec:
+  storageClassName:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/pv3"
 EOF
 ```
- Repeat two more times (changing `10Gi` to `20Gi`) creating a new directory and changing the name and path fields to satisfy all three PVCs. Once created the scheduler will successfully start the remaining three pods. The PVs may also be created prior to running any of the `kfctl.sh` commands.
+Once created the scheduler will successfully start the remaining three pods. The PVs may also be created prior to running any of the `kfctl.sh` commands.
 
 
 ## OpenShift
