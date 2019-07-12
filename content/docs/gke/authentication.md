@@ -29,7 +29,7 @@ which brings up a browser window to start the familiar Google authentication flo
 
 More information can be found in the [GCP docs](https://cloud.google.com/sdk/docs/authorizing).
 
-### Listing Active Accounts
+### Listing active accounts
 
 You can run the following command to verify you are authenticating with the expected account. 
 Your active account will be denoted with an asterisk.
@@ -38,7 +38,7 @@ Your active account will be denoted with an asterisk.
 gcloud auth list
 ```
 
-### Viewing IAM Roles
+### Viewing IAM roles
 
 Permissions are handled in GCP using [IAM Roles](https://cloud.google.com/iam/docs/understanding-roles). 
 These roles define which resources your account can read or write to. You can check which roles were assigned to your account using the following gcloud command:
@@ -61,7 +61,7 @@ More information about IAM can be found in the
 # Authenticating kubectl
 The [`kubectl` tool](https://kubernetes.io/docs/reference/kubectl/overview/) is used for interacting with a Kubernetes cluster through the command line.
 
-### Connecting to a Cluster using a GCP Account
+### Connecting to a cluster using a GCP account
 If you set up your Kubernetes cluster using GKE, you can authenticate with the cluster using a GCP account. 
 The following command will fetch the credentials for your cluster and save them to your local 
 [`kubeconfig` file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/):
@@ -76,7 +76,7 @@ gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE
 More information can be found in the 
 [GCP docs](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
 
-### Changing Active Clusters
+### Changing active clusters
 If you work with multiple Kubernetes clusters, you may have multiple contexts saved in your local 
 [`kubeconfig` file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/).
 You can view the clusters you have saved by run the following command:
@@ -96,7 +96,7 @@ kubectl config set-context $CONTEXT_NAME
 More information can be found in the 
 [Kubernetes docs](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
-### Checking RBAC Permissions
+### Checking RBAC permissions
 
 Like GKE IAM, Kubernetes permissions are typically handled with a "role-based authorization control" (RBAC) system.
 Each Kubernetes service account has a set of authorized roles associated with it. If your account doesn't have the 
@@ -113,7 +113,7 @@ kubectl auth can-i create deployments --namespace kubeflow
 More information can be found in the 
 [Kubernetes docs](https://kubernetes.io/docs/reference/access-authn-authz/authorization/).
 
-### Adding RBAC Permissions
+### Adding RBAC permissions
 If you find you are missing a permission you need, you can grant the missing roles to your service account using
 Kubernetes resources.
 
@@ -126,7 +126,7 @@ By default, `Roles` and `RoleBindings` apply only to resources in a specific nam
 More information can be found in the 
 [Kubernetes docs](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole).
 
-# In-Cluster Authentication
+# In-Cluster authentication
 
 When you [set up Kubeflow for GCP](/docs/gke/deploy), it will automatically 
 [provision three service accounts](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/#gcp-service-accounts) with different
@@ -140,8 +140,8 @@ The secret will have basic access to a limited set of GCP services by default, b
 ### Authentication from a Pod
 To access the service account from a Pod, you have to do two things:
 
-1. **Mount the secret as a file.** This will give your pod access to your GCP account, 
-so be careful which pods you grant access to.
+1. **Mount the secret as a file.** This will give your Pod access to your GCP account, 
+so be careful which Pods you grant access to.
 1. **Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable** to point to the service account.
 GCP libraries will use this environment variable to find the service account and authenticate with GCP.
 
