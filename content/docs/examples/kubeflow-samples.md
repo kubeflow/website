@@ -1,6 +1,6 @@
 +++
 title = "Kubeflow samples"
-description = "How to access the Kubeflow web UIs"
+description = "This section introduces the examples in the kubeflow/examples repo."
 weight = 10
 +++
 
