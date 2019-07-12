@@ -8,7 +8,7 @@ weight = 4
 # Authenticating gcloud
 
 [The `gcloud` tool](https://cloud.google.com/sdk/gcloud/) is used to interact with Google Cloud Platform (GCP) over the command line. 
-It can be used to [set up Google Kubernetes Engine (GKE) clusters](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create), 
+You can use the `gcloud` command to [set up Google Kubernetes Engine (GKE) clusters](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create), 
 and interact with other Google services.
 
 ### Logging in
@@ -16,13 +16,15 @@ and interact with other Google services.
 There are two ways to authenticate the `gcloud` command:
 
 
-- A **service account** is an account set up within your GCP project. Authentication is handled by 
+- A **service account** is an account set up within your GCP project. You can use a service account to
+authenticate to GCP by 
 [downloading a `.json` key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) 
-associated with the account, and registering it with gcloud using 
-[`gcloud auth activate-service-account`](https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account).
+associated with the account, and running the 
+[`gcloud auth activate-service-account`](https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account)
+command.
 This is the recommended way to authenticate with GCP.
 
-- A **user account** is a Google (typically Gmail) account that users can use to authenticate.
+- A **user account** is a Google (typically Gmail) account that end-users can use to authenticate.
 You can register a user account using [`gcloud auth login`](https://cloud.google.com/sdk/gcloud/reference/auth/login), 
 which brings up a browser window to start the familiar Google authentication flow.
 
@@ -78,14 +80,14 @@ More information can be found in the
 ### Changing Active Clusters
 If you work with multiple Kubernetes clusters, you may have multiple contexts saved in your local 
 [`kubeconfig` file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/).
-To view the clusters you have saved, run the following command:
+You can view the clusters you have saved by run the following command:
 
 ```
 kubectl config get-contexts
 ```
 
 This will show which cluster is currently being controlled by your `kubectl` commands.
-To change your active cluster, run the following command:
+You can change your active cluster with the following command:
 ```
 CONTEXT_NAME=your-new-context
 
@@ -101,7 +103,7 @@ Like GKE IAM, Kubernetes permissions are typically handled with a "role-based au
 Each Kubernetes service account has a set of authorized roles associated with it. If your account doesn't have the 
 right roles assigned to it, certain tasks will fail.
 
-To check if an account has the proper permissions to run a command, you can build a query structured as
+You can check if an account has the proper permissions to run a command by building a query structured as
 `kubectl auth can-i [VERB] [RESOURCE] --namespace [NAMESPACE]`. For example, the following command will verify
 that your account has permissions to create deployments in the `kubeflow` namespace:
 , 
