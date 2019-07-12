@@ -129,7 +129,7 @@ More information can be found in the
 ### Kubeflow GCP Service Accounts
 When you set up Kubeflow for GCP, it will automatically 
 [provision three service accounts](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/#gcp-service-accounts) with different
-privileges. In particular, the `user-gcp-sa` service account is meant to grant your user services access to GCP. 
+privileges. In particular, the `${KFAPP}-user` service account is meant to grant your user services access to GCP. 
 The credentials to this service account can be accessed within the cluster as a
 [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/).
 
@@ -143,7 +143,7 @@ so be careful which pods you grant access to.
 1. **Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable** to point to the service account.
 GCP libraries will use this environment variable to find the service account and authenticate with GCP.
 
-The following YAML describes Pod that has access to the `user-gcp-sa` service account:
+The following YAML describes Pod that has access to the `${KFAPP}-user` service account:
 ```
 apiVersion: v1
 kind: Pod
@@ -155,21 +155,21 @@ spec:
     image: myimage
     env:
     - name: GOOGLE_APPLICATION_CREDENTIALS
-      value: "/var/secrets/user-gcp-sa.json"
+      value: "/var/secrets/user-sa.json"
     volumeMounts:
     - name: gcp-secret
-      mountPath: "/var/secrets/user-gcp-sa.json"
+      mountPath: "/var/secrets/user-sa.json"
       readOnly: true
   volumes:
   - name: gcp-secret
     secret:
-      secretName: user-gcp-sa
+      secretName: myappname-user
 ```
 
 ### Authentication from Kubeflow Pipelines
 In [Kubeflow Pipelines](https://www.kubeflow.org/docs/pipelines/), each step describes a 
 container that is run independently. If you want to grant access for a single step to use
 the credentials in one of your service account secrets, you can use 
-[`kfp.gcp.use_gcp_secret(user-gcp-sa)`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret)
+[`kfp.gcp.use_gcp_secret()`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret)
 Examples for how to use this function can be found in the 
 [Kubeflow examples repo](https://github.com/kubeflow/examples/blob/871895c54402f68685c8e227c954d86a81c0575f/pipelines/mnist-pipelines/mnist_pipeline.py#L97).
