@@ -137,7 +137,8 @@ The secret will have basic access to a limited set of GCP services by default, b
 [GCP IAM console](https://console.cloud.google.com/iam-admin/).
 
 ### Authentication from a Pod
-To access the service account from a Pod, you have to do two things:
+
+You must do two things to access a GCP service account from a Pod:
 
 1. **Mount the secret as a file.** This will give your Pod access to your GCP account, 
 so be careful which Pods you grant access to.
