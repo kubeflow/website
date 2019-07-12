@@ -71,6 +71,8 @@ kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-ad
 
 ### Deploy Kubeflow
 
+If you are deploying Kubeflow on a multi-node cluster, you can follow this [guide](/docs/use-cases/kubeflow-on-multinode-cluster) to set up your system to use a remote NFS filesystem in cluster nodes.
+
 Follow these steps to deploy Kubeflow:
 
 1. Download a `kfctl` release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/) and unpack it:
