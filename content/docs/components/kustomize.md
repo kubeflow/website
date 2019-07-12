@@ -57,11 +57,12 @@ kustomize:
 kustomize lets you customize raw, template-free YAML files for multiple
 purposes, leaving the original YAML untouched and usable as is.
 
-kustomize directories can be built using `kustomize build <kustomization_directory>`
-and applied using `kustomize build <kustomization_directory> | kubectl apply -f -`.
+kustomize directories can be built and applied using
+`kustomize build <kustomization_directory> | kubectl apply -f -`.
 
-Kubernetes 1.14 supports kustomize directly using the `-k` flag:
-`kubectl apply -k <kustomization_directory>`
+The [kustomize manifests repo](https://github.com/kubeflow/manifests) contains
+kustomize targets, each with a `base` directory. You can use kustomize to
+generate YAML output and pass it to the kubeflow CLI, `kfctl`.
 
 Some useful kustomize terms:
 
