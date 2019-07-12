@@ -41,4 +41,3 @@ model, with data pulled from a public BigQuery dataset of Chicago taxi trips.
  [part 2](https://towardsdatascience.com/how-to-deploy-jupyter-notebooks-as-components-of-a-kubeflow-ml-pipeline-part-2-b1df77f4e5b3)
  (using Jupyter notebooks).
 {{% /blocks/content-item %}}
-{{< /blocks/content-section >}}

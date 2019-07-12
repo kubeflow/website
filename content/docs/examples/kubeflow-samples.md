@@ -51,4 +51,3 @@ Train a distributed PyTorch model on GCP and serve the model with Seldon Core.
 Train an XGBoost model using the Kaggle Ames Housing Prices prediction on GCP.
 Use Seldon Core to serve the model locally, or GCP to serve it in the cloud.
 {{% /blocks/content-item %}}
-{{< /blocks/content-section >}}
