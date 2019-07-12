@@ -30,7 +30,7 @@ More information can be found in the [GCP docs](https://cloud.google.com/sdk/doc
 
 ### Listing Active Accounts
 
-You can run the following commend to verify you are authenticating with the expected account. 
+You can run the following command to verify you are authenticating with the expected account. 
 Your active account will be denoted with an asterisk.
 
 ```
@@ -58,7 +58,7 @@ More information about IAM can be found in the
 [GCP docs](https://cloud.google.com/iam/docs/granting-changing-revoking-access).
 
 # Authenticating kubectl
-The [`kubectl` tool](https://kubernetes.io/docs/reference/kubectl/overview/) is used for interacting with a Kubernetes cluster through the command line
+The [`kubectl` tool](https://kubernetes.io/docs/reference/kubectl/overview/) is used for interacting with a Kubernetes cluster through the command line.
 
 ### Connecting to a Cluster using a GCP Account
 If you set up your Kubernetes cluster using GKE, you can authenticate with the cluster using a GCP account. 
@@ -115,6 +115,7 @@ More information can be found in the
 ### Adding RBAC Permissions
 If you find you are missing a permission you need, you can grant the missing roles to your service account using
 Kubernetes resources.
+
 - **Roles** describe the permissions you want to assign. For example, `verbs: ["create"], resources:["deployments"]`
 - **RoleBindings** define a mapping between the `Role`, and a specific service account
 
