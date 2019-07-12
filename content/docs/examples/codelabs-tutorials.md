@@ -1,6 +1,6 @@
 +++
 title = "Codelabs, Workshops, and Tutorials"
-description = "Below is a list of recommended end-to-end tutorials, workshops, walkthroughs, and codelabs that are hosted outside the Kubeflow repositories."
+description = "Recommended end-to-end tutorials, workshops, walk-throughs, and codelabs"
 weight = 20
 +++
 
