@@ -63,7 +63,7 @@ The [`kubectl` tool](https://kubernetes.io/docs/reference/kubectl/overview/) is 
 
 ### Connecting to a cluster using a GCP account
 If you set up your Kubernetes cluster using GKE, you can authenticate with the cluster using a GCP account. 
-The following command will fetch the credentials for your cluster and save them to your local 
+The following commands fetch the credentials for your cluster and saves them to your local 
 [`kubeconfig` file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/):
 
 ```
@@ -85,8 +85,7 @@ You can view the clusters you have saved by run the following command:
 kubectl config get-contexts
 ```
 
-This will show which cluster is currently being controlled by your `kubectl` commands.
-You can change your active cluster with the following command:
+You can view which cluster is currently being controlled by your `kubectl` tool with the following command:
 ```
 CONTEXT_NAME=your-new-context
 
@@ -105,7 +104,7 @@ right roles assigned to it, certain tasks will fail.
 You can check if an account has the proper permissions to run a command by building a query structured as
 `kubectl auth can-i [VERB] [RESOURCE] --namespace [NAMESPACE]`. For example, the following command will verify
 that your account has permissions to create deployments in the `kubeflow` namespace:
-, 
+
 ```
 kubectl auth can-i create deployments --namespace kubeflow
 ```
@@ -175,3 +174,7 @@ container that is run independently. If you want to grant access for a single st
 [`kfp.gcp.use_gcp_secret()`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret)
 Examples for how to use this function can be found in the 
 [Kubeflow examples repo](https://github.com/kubeflow/examples/blob/871895c54402f68685c8e227c954d86a81c0575f/pipelines/mnist-pipelines/mnist_pipeline.py#L97).
+
+## Next steps
+
+See the [troubleshooting guide](/docs/gke/troubleshooting-gke/) for help with diagnosing and fixing issues you may encounter with Kubeflow on GCP
