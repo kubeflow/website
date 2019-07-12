@@ -1,8 +1,6 @@
 +++
 title = "Videos"
-description = "Tutorials and overviews published in video format. Be aware that a video
-describes the interfaces at the time of publication of the video.
-Some interfaces are under rapid development and therefore may change frequently."
+description = "Tutorials and overviews published in video format. Be aware that a video describes the interfaces at the time of publication of the video. Some interfaces are under rapid development and therefore may change frequently."
 weight = 40
 +++
 
