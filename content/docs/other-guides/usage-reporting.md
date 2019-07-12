@@ -26,9 +26,8 @@ set `reportUsage` to `true`:
 ```
 reportUsage=true
 ```
-Then restart spartakus:
+Then delete any existing deployments of spartakus:
 ```
-# Delete any existing deployments of spartakus
 kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
 ```
 
@@ -38,5 +37,13 @@ allows us to improve the project and helps the many companies working on Kubeflo
 You can improve the quality of the data by giving each Kubeflow deployment a unique id by editing `spartakus.yaml`:
 
 ```
-usageId=$(uuidgen)
+apiVersion: v1
+data:
+  usageId: "your usage id"
+kind: ConfigMap
+metadata:
+  labels:
+    kustomize.component: spartakus
+  name: spartakus-parameters
+  namespace: kubeflow
 ```
