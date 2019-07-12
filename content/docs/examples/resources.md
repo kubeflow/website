@@ -68,6 +68,12 @@ and codelabs that are hosted outside the Kubeflow repositories.
 Run Kubeflow on Red Hat [OpenShift](https://www.openshift.com/).
 {{% /blocks/content-item %}}
 
+{{% blocks/content-item title="Agile Stacks Kubeflow Pipelines Tutorial"
+  url="https://www.agilestacks.com/tutorials/ml-pipelines" %}}
+Run Kubeflow Pipelines tutorials on AWS, GCP, or on-prem hardware using [Agile Stacks](https://www.agilestacks.com/).
+Pipeline templates provide step-by-step examples for working with object storage filesystem, Kaniko, Keras, and Seldon.
+{{% /blocks/content-item %}}
+
 {{% blocks/content-item title="Katacoda scenarios"
   url="https://www.katacoda.com/kubeflow" %}}
 Follow the tutorials to deploy Kubeflow and run a machine learning model.

@@ -36,12 +36,12 @@ to suit your environment (cloud, on premises (on prem), or local):
   follow the [AWS deployment guide](/docs/aws/deploy/).
 * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
   follow the [AKS deployment guide](/docs/azure/deploy/).
-* To use Kubeflow on IBM Cloud Private (ICP), 
+* To use Kubeflow on IBM Cloud Private (ICP),
 	follow the [ICP deployment guide](/docs/started/getting-started-icp/).  
 * If you have an existing Kubernetes cluster or want to use Kubeflow on prem,
-  follow the [guide to deploying Kubeflow on 
+  follow the [guide to deploying Kubeflow on
   Kubernetes](/docs/started/getting-started-k8s/).
-* If you want to run Kubernetes locally in a virtual machine (VM), choose one of 
+* If you want to run Kubernetes locally in a virtual machine (VM), choose one of
   the following options:
 
    * [MiniKF setup](/docs/started/getting-started-minikf/)
@@ -51,7 +51,7 @@ to suit your environment (cloud, on premises (on prem), or local):
       * MiniKF runs on all major operating systems (Linux, macOS, Windows).
 
    * [Minikube setup](/docs/started/getting-started-minikube/)
-      * Minikube uses virtualization applications like 
+      * Minikube uses virtualization applications like
         [VirtualBox](https://www.virtualbox.org/) or [VMware
         Fusion](https://www.vmware.com/products/fusion.html) to host the VM
 	      and provides a CLI that you can use outside the VM.
@@ -85,7 +85,16 @@ to suit your environment (cloud, on premises (on prem), or local):
             QEMU/KVM for Linux).
           - No need to install a separate virtualization application.
           - Use of `cloud-init` to customize the VM.
-    
+
+## Installing command line tools
+
+* Download the `kfctl` command line interface from the
+  [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
+
+* Follow the `kubectl` installation and setup from the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+* Download the `kustomize` command line interface from the [kustomize release page](https://github.com/kubernetes-sigs/kustomize/releases/).
+
 ## Troubleshooting
 
 See the [Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting/).
@@ -93,7 +102,7 @@ See the [Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting/).
 ## Next steps
 
 * See the [documentation](/docs/) for in-depth instructions on using Kubeflow.
-* Build machine-learning pipelines with the [Kubeflow Pipelines 
+* Build machine-learning pipelines with the [Kubeflow Pipelines
   SDK](/docs/pipelines/sdk/sdk-overview/).
 * Explore the self-paced scenarios for learning and trying out Kubeflow:
   * [Codelabs](https://codelabs.developers.google.com/?cat=tensorflow)
