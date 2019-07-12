@@ -14,7 +14,7 @@ so, follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
 
 ## Customizing Kubeflow
 
-You can use ksonnet to customize Kubeflow.
+You can use [kustomize](https://kustomize.io/) to customize Kubeflow.
 
 The deployment process is divided into two steps, **generate** and **apply**, so that you can
 modify your deployment before actually deploying.
@@ -48,25 +48,25 @@ kfctl delete all
 kfctl apply all
 ```
 
-To customize the Kubeflow resources running within the cluster you can modify the ksonnet app in **${KFAPP}/ks_app**.
-For example, to mount additional physical volumes (PVs) in Jupyter:
+To customize the Kubeflow resources running within the cluster you can modify the kustomize manifests in **${KFAPP}/kustomize**.
+For example, to change the storage class for Jupyter:
 
 ```
-cd ${KF_APP}/ks_app
-ks param set jupyter disks "kubeflow-gcfs"
+cd ${KF_APP}/kustomize
+gvim jupyter.yaml
 ```
 
-You can then redeploy using `kfctl`:
+Find and replace the value for `STORAGE_CLASS`. You can then redeploy using `kfctl`:
 
 ```
 cd ${KFAPP}
 kfctl apply k8s
 ```
 
-or using ksonnet directly:
+or using kubectl directly:
 ```
-cd ${KFAPP}/ks_app
-ks apply default
+cd ${KFAPP}/kustomize
+kubectl apply -f jupyter.yaml
 ```
 
 ## Common customizations
