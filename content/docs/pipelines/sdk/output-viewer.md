@@ -234,11 +234,14 @@ The viewer can read the Markdown data from the following locations:
 **Example:**
 ```Python
   metadata = {
-    'outputs' : [{
+    'outputs' : [
+    # Markdown that is hardcoded inline
+    {
       'storage': 'inline',
       'source': '# Inline Markdown\n[A link](https://www.kubeflow.org/)',
       'type': 'markdown',
     },
+    # Markdown that is read from a file
     {
       'source': 'gs://your_project/your_bucket/your_markdown_file',
       'type': 'markdown',
