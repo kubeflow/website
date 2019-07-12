@@ -4,10 +4,8 @@ description = "Examples that demonstrate machine learning with Kubeflow"
 weight = 10
 +++
 
-{{% blocks/content-item %}}
 This section introduces the examples in the
 [kubeflow/examples](https://github.com/kubeflow/examples) repo.
-{{% /blocks/content-item %}}
 
 {{% blocks/content-item title="Semantic code search"
   url="https://github.com/kubeflow/examples/tree/master/code_search" %}}
