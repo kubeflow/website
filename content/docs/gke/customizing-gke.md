@@ -49,14 +49,32 @@ kfctl apply all
 ```
 
 To customize the Kubeflow resources running within the cluster you can modify the kustomize manifests in **${KFAPP}/kustomize**.
-For example, to change the storage class for Jupyter:
+For example, to modify settings for the Jupyter web app:
 
 ```
 cd ${KF_APP}/kustomize
-gvim jupyter.yaml
+gvim jupyter-web-app.yaml
 ```
 
-Find and replace the value for `STORAGE_CLASS`. You can then redeploy using `kfctl`:
+Find and replace the parameter values:
+```
+apiVersion: v1
+data:
+  ROK_SECRET_NAME: secret-rok-{username}
+  UI: default
+  clusterDomain: cluster.local
+  policy: Always
+  prefix: jupyter
+kind: ConfigMap
+metadata:
+  labels:
+    app: jupyter-web-app
+    kustomize.component: jupyter-web-app
+  name: jupyter-web-app-parameters
+  namespace: kubeflow
+  ```
+
+You can then redeploy using `kfctl`:
 
 ```
 cd ${KFAPP}
@@ -66,7 +84,7 @@ kfctl apply k8s
 or using kubectl directly:
 ```
 cd ${KFAPP}/kustomize
-kubectl apply -f jupyter.yaml
+kubectl apply -f jupyter-web-app.yaml
 ```
 
 ## Common customizations
