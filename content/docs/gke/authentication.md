@@ -13,7 +13,7 @@ and interact with other Google services.
 
 ### Logging in
 
-There are two ways to authenticate the gcloud command:
+There are two ways to authenticate the `gcloud` command:
 
 
 - A **service account** is an account set up within your GCP project. Authentication is handled by 
