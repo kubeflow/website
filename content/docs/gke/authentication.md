@@ -103,7 +103,7 @@ right roles assigned to it, certain tasks will fail.
 
 To check if an account has the proper permissions to run a command, you can build a query structured as
 `kubectl auth can-i [VERB] [RESOURCE] --namespace [NAMESPACE]`. For example, the following command will verify
-that your account has permissions to create deployments in the `Kubeflow` namespace:
+that your account has permissions to create deployments in the `kubeflow` namespace:
 , 
 ```
 kubectl auth can-i create deployments --namespace kubeflow
@@ -126,8 +126,7 @@ More information can be found in the
 
 # In-Cluster Authentication
 
-### Kubeflow GCP Service Accounts
-When you set up Kubeflow for GCP, it will automatically 
+When you [set up Kubeflow for GCP](/docs/gke/deploy), it will automatically 
 [provision three service accounts](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/#gcp-service-accounts) with different
 privileges. In particular, the `${KFAPP}-user` service account is meant to grant your user services access to GCP. 
 The credentials to this service account can be accessed within the cluster as a
@@ -138,12 +137,13 @@ The secret will have basic access to a limited set of GCP services by default, b
 
 ### Authentication from a Pod
 To access the service account from a Pod, you have to do two things:
+
 1. **Mount the secret as a file.** This will give your pod access to your GCP account, 
 so be careful which pods you grant access to.
 1. **Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable** to point to the service account.
 GCP libraries will use this environment variable to find the service account and authenticate with GCP.
 
-The following YAML describes Pod that has access to the `${KFAPP}-user` service account:
+The following YAML describes a Pod that has access to the `${KFAPP}-user` service account:
 ```
 apiVersion: v1
 kind: Pod
@@ -169,7 +169,7 @@ spec:
 ### Authentication from Kubeflow Pipelines
 In [Kubeflow Pipelines](https://www.kubeflow.org/docs/pipelines/), each step describes a 
 container that is run independently. If you want to grant access for a single step to use
-the credentials in one of your service account secrets, you can use 
+ one of your service accounts, you can use 
 [`kfp.gcp.use_gcp_secret()`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret)
 Examples for how to use this function can be found in the 
 [Kubeflow examples repo](https://github.com/kubeflow/examples/blob/871895c54402f68685c8e227c954d86a81c0575f/pipelines/mnist-pipelines/mnist_pipeline.py#L97).
