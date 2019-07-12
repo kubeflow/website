@@ -61,7 +61,7 @@ Notice that 192.168.0.0 is the nodes' Classless Inter-Domain Routing (CIDR), not
 
 ### NFS Client
 
-Each node of the cluster must be able to establish a connection to NFS server.
+Each node of the cluster must be able to establish a connection to the NFS server.
 To enable this, install the following NFS client library on each node:
 
 ```shell
@@ -130,7 +130,7 @@ After installing Kubeflow, notice that that Kubernetes binds each PVC created by
 
 ## In case of existing Kubeflow installation
 
-If you set up Dynamic Provisioning *after* installing Kubeflow, you must change the storage class on your existing unbinded PVCs.
+If you set up Dynamic Provisioning *after* installing Kubeflow, you must change the storage class on your existing unbound PVCs.
 
 To perform this task you need to:
 
@@ -219,7 +219,7 @@ environment because you will have a single point of failure in your cluster.
 ## Resources
 
 This short guide is not intended to be complete. 
-For more information about the following Kubernetes resources please refer to the official documentation:
+For more information about the following Kubernetes resources, please refer to the official documentation:
 
 * [Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
 * [Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
