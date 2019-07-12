@@ -49,8 +49,11 @@
 # Created a new section for pipeline concepts.
 /docs/pipelines/pipelines-concepts/            /docs/pipelines/concepts/
 
-# Replaces Pipelines DSL overview with SDK overview.
+# Replaces Pipelines DSL overview with SDK overview
 /docs/pipelines/sdk/dsl-overview/              /docs/pipelines/sdk/sdk-overview/
+
+# Removed the downloads page from Reference to Getting Started with Kubeflow
+/docs/reference/downloads/                     /docs/started/getting-started/
 
 # Merges requirements.md with getting-started.md 
 /docs/started/requirements/               /docs/started/getting-started/
