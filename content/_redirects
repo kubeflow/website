@@ -54,6 +54,3 @@
 
 # Removed the downloads page from Reference to Getting Started with Kubeflow
 /docs/reference/downloads/                     /docs/started/getting-started/
-
-# Merges requirements.md with getting-started.md 
-/docs/started/requirements/               /docs/started/getting-started/
