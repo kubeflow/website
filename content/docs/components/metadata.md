@@ -10,29 +10,29 @@ The goal of the [Metadata](https://github.com/kubeflow/metadata) project is to h
 
 The Metadata component is installed by default for Kubeflow versions >= 0.6.
 
-If you want to install the latest version of the Metadata component or install it as an application of your Kubernetes cluster, you can follow these steps.
+If you want to install the latest version of the Metadata component or install it as an application in your Kubernetes cluster, you can follow these steps:
 
-1. Download Kubeflow manifests repository.
+1. Download the Kubeflow manifests repository.
 ```
 git clone https://github.com/kubeflow/manifests
 ```
 
-2. Run the following commands in the manifest repository to deploy services of Metadata component.
+2. Run the following commands in the manifest repository to deploy services of the Metadata component.
 ```
-cd metadata/base
+cd manifests/metadata/base
 kustomize build . | kubectl apply -n kubeflow -f -
 ```
 
 ## Python Library
 
-A [Python library](https://github.com/kubeflow/metadata/tree/master/sdk/python#python-client) is published for logging metadata.
+The Metadata project publishes a [Python library](https://github.com/kubeflow/metadata/tree/master/sdk/python#python-client) for logging metadata.
 
-You can install it via
+You can install it via the following command:
 ```
 pip install kfmd
 ```
 
-To help you describe your ML workflows, the Python library has [predefined types](https://github.com/kubeflow/metadata/tree/master/schema) to capture models, datasets, evaluation metrics and executions.
+To help you describe your ML workflows, the Python library has [predefined types](https://github.com/kubeflow/metadata/tree/master/schema) to capture models, datasets, evaluation metrics, and executions.
 
 You can find an example of how to use the logging API in this [notebook](https://github.com/kubeflow/metadata/blob/master/sdk/python/demo.ipynb).
 
