@@ -22,7 +22,7 @@ associated with the account, and registering it with gcloud using
 [`gcloud auth activate-service-account`](https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account).
 This is the recommended way to authenticate with GCP.
 
-- A **user account** is a Google (typically gmail) account that users can use to authenticate.
+- A **user account** is a Google (typically Gmail) account that users can use to authenticate.
 You can register a user account using [`gcloud auth login`](https://cloud.google.com/sdk/gcloud/reference/auth/login), 
 which brings up a browser window to start the familiar Google authentication flow.
 
