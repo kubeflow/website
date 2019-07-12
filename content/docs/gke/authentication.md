@@ -1,6 +1,6 @@
 +++
 title = "Authenticating Kubeflow to GCP"
-description = "Troubleshooting guide for authentication and authorization to GCP"
+description = "Authentication and authorization to GCP"
 weight = 4
 +++
 
