@@ -27,12 +27,12 @@ This is the recommended way to authenticate with GCP.
 You can register a user account using [`gcloud auth login`](https://cloud.google.com/sdk/gcloud/reference/auth/login), 
 which brings up a browser window to start the familiar Google authentication flow.
 
-More information can be found in the [GCP docs](https://cloud.google.com/sdk/docs/authorizing).
+You can find more information in the [GCP docs](https://cloud.google.com/sdk/docs/authorizing).
 
 ### Listing active accounts
 
 You can run the following command to verify you are authenticating with the expected account. 
-Your active account will be denoted with an asterisk.
+In the output of the command, an asterisk denotes your active account.
 
 ```
 gcloud auth list
@@ -51,11 +51,11 @@ gcloud projects get-iam-policy $PROJECT_ID --flatten="bindings[].members" \
     --filter="bindings.members:$(gcloud config list account --format 'value(core.account)')"
 ```
 
-Roles can also be viewed and modified through the 
+You can view and modify roles through the 
 [GCP IAM console](https://console.cloud.google.com/iam-admin/).
 
 
-More information about IAM can be found in the 
+You can find more information about IAM in the 
 [GCP docs](https://cloud.google.com/iam/docs/granting-changing-revoking-access).
 
 # Authenticating kubectl
@@ -73,7 +73,7 @@ ZONE=your-gcp-zone
 gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE
 ```
 
-More information can be found in the 
+You can find more information in the 
 [GCP docs](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
 
 ### Changing active clusters
@@ -93,7 +93,7 @@ CONTEXT_NAME=your-new-context
 kubectl config set-context $CONTEXT_NAME
 ```
 
-More information can be found in the 
+You can find more information in the 
 [Kubernetes docs](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
 ### Checking RBAC permissions
@@ -110,7 +110,7 @@ that your account has permissions to create deployments in the `kubeflow` namesp
 kubectl auth can-i create deployments --namespace kubeflow
 ```
 
-More information can be found in the 
+You can find more information in the 
 [Kubernetes docs](https://kubernetes.io/docs/reference/access-authn-authz/authorization/).
 
 ### Adding RBAC permissions
@@ -123,7 +123,7 @@ Kubernetes resources.
 By default, `Roles` and `RoleBindings` apply only to resources in a specific namespace, but there are also
 `ClusterRoles` and `ClusterRoleBindings` that can grant access to resources cluster-wide
 
-More information can be found in the 
+You can find more information in the 
 [Kubernetes docs](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole).
 
 # In-Cluster authentication
