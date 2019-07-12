@@ -20,7 +20,6 @@ deploy Kubeflow on Amazon Web Services (AWS).
     * Enter your preferred AWS Region and default output options.
 * Install [eksctl](https://github.com/weaveworks/eksctl) (version 0.1.31 or newer) and the [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
 * Install [jq](https://stedolan.github.io/jq/download/).
-* Install [ksonnet](https://github.com/ksonnet/ksonnet).
 
 You do not need to have an existing Amazon Elastic Container Service for Kubernetes (Amazon EKS) cluster. The deployment process will create a cluster for you.
 
@@ -51,9 +50,6 @@ Your Kubeflow `app` directory contains the following files and directories:
     * This directory is created when you run `kfctl.sh generate platform`.
     * You can modify the `cluster_config.yaml` and `cluster_features.sh` files to customize your AWS infrastructure.
 * **${KFAPP}/k8s_specs** - A directory that contains YAML specifications for daemons deployed on your Kubernetes Engine cluster.
-* **${KFAPP}/ks_app** - A directory that contains the [ksonnet](https://ksonnet.io/) application for Kubeflow.
-    * The directory is created when you run `kfctl generate k8s`.
-    * You can use ksonnet to customize Kubeflow.
 
 
 The provisioning scripts can either bring up a new cluster and install Kubeflow on it, or you can install Kubeflow on your existing cluster. We recommend that you create a new cluster for better isolation.
@@ -129,7 +125,7 @@ If you experience any issues running these scripts, see the [troubleshooting gui
     ${KUBEFLOW_SRC}/scripts/kfctl.sh apply k8s
     ```
 
-1. Wait for all the resources to become ready in the `kubeflow ` namespace.
+1. Wait for all the resources to become ready in the `kubeflow` namespace.
     ```
     kubectl -n kubeflow get all
     ```
