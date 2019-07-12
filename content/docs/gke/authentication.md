@@ -13,7 +13,7 @@ and interact with other Google services.
 
 ### Logging in
 
-There are two ways to authenticate the `gcloud` command:
+You have two options for authenticating the `gcloud` command:
 
 
 - You can create a **service account** within your GCP project. You can then
@@ -23,7 +23,7 @@ associated with the account, and run the
 command to authenticate your `gcloud` session.
 This is the recommended way to authenticate with GCP.
 
-- A **user account** is a Google (typically Gmail) account that end-users can use to authenticate.
+- You can use a **user account** to authenticate using a Google account (typically Gmail). 
 You can register a user account using [`gcloud auth login`](https://cloud.google.com/sdk/gcloud/reference/auth/login), 
 which brings up a browser window to start the familiar Google authentication flow.
 
@@ -85,7 +85,7 @@ You can view the clusters you have saved by run the following command:
 kubectl config get-contexts
 ```
 
-You can view which cluster is currently being controlled by your `kubectl` tool with the following command:
+You can view which cluster is currently being controlled by `kubectl` with the following command:
 ```
 CONTEXT_NAME=your-new-context
 
