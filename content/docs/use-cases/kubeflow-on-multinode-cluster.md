@@ -4,13 +4,13 @@ description = "How to install Kubeflow on-prem using dynamic volume provisioning
 weight = 30
 +++
 
-This guide describes how to set up Kubeflow on premise in a multi-node cluster using [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
+This guide describes how to set up Kubeflow on premises (on-prem) in a multi-node cluster using [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
 ## Vanilla on-prem Kubeflow installation
 
 In order to install Kubeflow in an on-prem Kubernetes cluster, follow the [Kubeflow on Kubernetes](/docs/started/getting-started-k8s) guide. This guide works for single node and multi-node clusters.
 
-At the end of the installation, some Persistent Volume Claims (PVCs) might be unbounded. To fix this issue, see the troubleshooting section [Pods stuck in Pending state](/docs/other-guides/troubleshooting/#pods-stuck-in-pending-state).
+At the end of the installation, some Persistent Volume Claims (PVCs) might be unbound. To fix this issue, see the troubleshooting section [Pods stuck in Pending state](/docs/other-guides/troubleshooting/#pods-stuck-in-pending-state).
 
 However, when you set up Kubeflow in a multi-node cluster you might run into an additional issue: you can't create a *HostPath* PersistentVolume (which exposes a filesystem directory to a Pod), because this type of PersistentVolume only works on a single node cluster.
 
@@ -211,9 +211,9 @@ NFS is a remote filesystem that is high performant in reading but slower in writ
 If you have to write a huge amount of data in your workflow, NFS might not be the right choice.
 
 Ensure that you are using version 4 of NFS (instead of version 3): NFS 3 can have some problems like 
-partial writing of documents and it does not support authentication. Ensure that you are using version 4 of NFS.
+partial writing of documents and it does not support authentication.
 
-In this document you used one of the nodes as NFS server. This is not a good idea for a production
+In this document you used one of the nodes as an NFS server. This is not a good idea for a production
 environment because you will have a single point of failure in your cluster.
 
 ## Resources
