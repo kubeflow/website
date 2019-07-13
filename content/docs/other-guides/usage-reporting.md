@@ -19,22 +19,10 @@ command only restarts spartakus with reportUsage set to `false`
 kubectl -n ${NAMESPACE} delete deploy -l app=spartakus
 ```
 
-
-To explicitly enable usage reporting, find `spartakus.yaml` in your local installation directory and
-set `reportUsage` to `true`:
-
-```
-reportUsage=true
-```
-Then delete any existing deployments of spartakus:
-```
-kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
-```
-
 **Reporting usage data is one of the most significant contributions you can make to Kubeflow; so please consider turning it on.** This data
 allows us to improve the project and helps the many companies working on Kubeflow justify continued investment.
 
-You can improve the quality of the data by giving each Kubeflow deployment a unique id by editing `spartakus.yaml`:
+You can improve the quality of the data by giving each Kubeflow deployment a unique id by editing `spartakus.yaml` in your `KF_APP` directory:
 
 ```
 apiVersion: v1
@@ -46,4 +34,9 @@ metadata:
     kustomize.component: spartakus
   name: spartakus-parameters
   namespace: kubeflow
+```
+
+Then deploy your changes:
+```
+kubectl apply -f spartakus.yaml`
 ```
