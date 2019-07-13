@@ -1,8 +1,31 @@
 +++
 title = "Getting Started with Kubeflow"
-description = "Get your machine-learning workflow up and running on Kubeflow"
+description = "Overview"
 weight = 1
 +++
+
+## Before you begin
+
+This document provides information about setting up Kubeflow in various environments.
+
+Before you set up Kubeflow, it's important to some knowledge of the following systems and tools:
+
+* [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
+* [TensorFlow](https://www.tensorflow.org/get_started/)
+* [kustomize](https://kustomize.io/)
+
+### Kubeflow requirements
+
+ * kustomize version {{% kustomize-min-version %}} or later. See the 
+   [kustomize component guide](https://github.com/kubeflow/manifests#using-kustomize) for details about
+   installing kustomize.
+ * An existing Kubernetes cluster using Kubernetes version 
+   {{% kubernetes-min-version %}} or later:
+
+   * A minimum of 0.6 CPU in cluster (Reserved for 3 replicated ambassador pods and according to your need add additional CPUs)
+   * Node with storage >= 10 GB (Due to the ML libraries and third party packages being bundled in Kubeflow Docker images)
+
+## Get your machine-learning workflow up and running on Kubeflow
 
 There are various ways to install Kubeflow. Choose one of the following options
 to suit your environment (cloud, on premises (on prem), or local):
