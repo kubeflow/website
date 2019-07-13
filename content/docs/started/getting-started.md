@@ -4,17 +4,17 @@ description = "Overview"
 weight = 1
 +++
 
-The guides in this section give detailed information about using Kubeflow and 
-its components.
+## Before you begin
 
-For best understanding of the guides, it's useful to have some knowledge of
-the following systems:
+This document provides information about setting up Kubeflow in various environments.
+
+Before you set up Kubeflow, it's important to some knowledge of the following systems and tools:
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 * [TensorFlow](https://www.tensorflow.org/get_started/)
 * [kustomize](https://kustomize.io/)
 
-## Kubeflow requirements
+### Kubeflow requirements
 
  * kustomize version {{% kustomize-min-version %}} or later. See the 
    [kustomize component guide](https://github.com/kubeflow/manifests#using-kustomize) for details about
