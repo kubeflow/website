@@ -62,7 +62,10 @@ kustomize directories can be built and applied using
 
 The [kustomize manifests repo](https://github.com/kubeflow/manifests) contains
 kustomize targets, each with a `base` directory. You can use kustomize to
-generate YAML output and pass it to the kubeflow CLI, `kfctl`.
+generate YAML output and pass it to the kubeflow CLI, `kfctl`. You can also make
+changes to the kustomize targets in the manifests repo as needed and more
+information can be found at
+[customizing kubeflow](https://www.kubeflow.org/docs/gke/customizing-gke/).
 
 Some useful kustomize terms:
 
