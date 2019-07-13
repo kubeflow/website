@@ -70,5 +70,6 @@
 /docs/components/trtinferenceserver            /docs/components/serving/trtinferenceserver
 /docs/components/tfbatchpredict                /docs/components/serving/tfbatchpredict
 /docs/components/tftraining                    /docs/components/training/tftraining
-/docs/components/pytorchserving                /docs/components/training/pytorchserving
+/docs/components/pytorchserving                /docs/components/serving/pytorchserving
+/docs/components/tfserving_new                 /docs/components/serving/tfserving_new
 
