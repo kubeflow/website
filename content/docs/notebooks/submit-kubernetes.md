@@ -15,11 +15,11 @@ Pods. This service account is bound to the `jupyter-notebook` role, which has na
 * PyTorchJobs
 
 You can therefore create the above Kubernetes resources directly from your
-Jupyter notebook in Kubeflow. The Kubernetes 
+Jupyter notebook in Kubeflow. The Kubernetes
 [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 command-line tool is pre-installed in the notebook.
 
-Run the following command in a Jupyter notebook cell to create Kubernetes 
+Run the following command in a Jupyter notebook cell to create Kubernetes
 resources:
 
 ```
@@ -27,12 +27,12 @@ resources:
 ```
 
 The `myspec.yaml` file should describe one of the above Kubernetes resources.
-For information about the format of the YAML file, see the 
+For information about the format of the YAML file, see the
 [Kubernetes object guide](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/).
 
 ## Next steps
 
 * See the guide to [setting up
   your Jupyter notebooks in Kubeflow](/docs/notebooks/setup/).
-* Explore the [components of Kubeflow](/docs/components/), including custom 
+* Explore the [components of Kubeflow](/docs/components/), including custom
   Kubernetes resources.

@@ -231,8 +231,31 @@ The viewer can read the Markdown data from the following locations:
 * Markdown code in a remote file, at a path specified in the `source` field.
   The `storage` field can contain any value except `inline`.
 
-**Example:** *None available. See issue [kubeflow/website 
-#723](https://github.com/kubeflow/website/issues/723).*
+**Example:**
+```Python
+  metadata = {
+    'outputs' : [
+    # Markdown that is hardcoded inline
+    {
+      'storage': 'inline',
+      'source': '# Inline Markdown\n[A link](https://www.kubeflow.org/)',
+      'type': 'markdown',
+    },
+    # Markdown that is read from a file
+    {
+      'source': 'gs://your_project/your_bucket/your_markdown_file',
+      'type': 'markdown',
+    }]
+  }
+  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
+    json.dump(metadata, f)
+```
+
+**Visualization on the Kubeflow Pipelines UI:**
+
+<img src="/docs/images/markdown-output.png" 
+  alt="Markdown visualization from a pipeline component"
+  class="mt-3 mb-3 border border-info rounded">
 
 ### ROC curve
 
