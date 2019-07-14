@@ -137,7 +137,7 @@ Deploy Kubeflow on GCP:
     credentials**, use the same value for the `<deployment_name>` as you used
     when setting up the `DEPLOYMENT_NAME` environment variable earlier in this
     tutorial.
-  * Choose **Kubeflow version {{% kubeflow-current-version %}}** or later.
+  * Choose **Kubeflow {{% kf-stable-tag %}}** or later.
 
     The following screenshot shows the Kubeflow deployment UI with hints about
     the value for each input field:
