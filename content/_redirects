@@ -57,3 +57,21 @@
 
 # Adding the content of Requirements to Getting Started and removing Requirements
 docs/started/requirements/                    /docs/started/getting-started/
+
+# Created a new components layout
+/docs/components/hyperparameter                /docs/components/hyperparameter-tuning/hyperparameter
+/docs/components/chainer                       /docs/components/training/chainer
+/docs/components/istio                         /docs/components/serving/istio
+/docs/components/modeldb                       /docs/components/misc/modeldb
+/docs/components/mpi                           /docs/components/training/mpi
+/docs/components/mxnet                         /docs/components/training/mxnet
+/docs/components/pipelines                     /docs/components/pipelines/pipelines
+/docs/components/pytorch                       /docs/components/training/pytorch
+/docs/components/nuclio                        /docs/components/misc/nuclio
+/docs/components/seldon                        /docs/components/serving/seldon
+/docs/components/trtinferenceserver            /docs/components/serving/trtinferenceserver
+/docs/components/tfbatchpredict                /docs/components/serving/tfbatchpredict
+/docs/components/tftraining                    /docs/components/training/tftraining
+/docs/components/pytorchserving                /docs/components/serving/pytorchserving
+/docs/components/tfserving_new                 /docs/components/serving/tfserving_new
+
