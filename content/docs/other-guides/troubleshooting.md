@@ -127,7 +127,7 @@ If you have not configured [dynamic provisioning] (https://kubernetes.io/docs/co
 You can use the example below to create local persistent volumes.
 
 ```commandline
-sudo mkdir /mnt/pv[1-3]
+sudo mkdir /mnt/pv{1..3}
 
 kubectl create -f - <<EOF
 kind: PersistentVolume
