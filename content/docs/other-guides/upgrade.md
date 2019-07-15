@@ -20,7 +20,7 @@ Updating your deployment is a two step process:
 
        ```
        export KUBEFLOW_VERSION={{% kf-latest-version %}}
-       export KFAPP="<the name of your Kubeflow application directory?"
+       export KFAPP="<the name of your Kubeflow application directory>"
        kfctl init ${KFAPP} --version=${KUBEFLOW_VERSION} --package-manager=kustomize@${KUBEFLOW_VERSION}
        ```
 
