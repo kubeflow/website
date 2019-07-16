@@ -256,6 +256,7 @@ exposed to the internet and is an unsecured endpoint by default.
 
 ## Next steps
 
+* See a [simple example](https://github.com/kubeflow/examples/tree/master/pipelines/simple-notebook-pipeline) of creating Kubeflow pipelines in a jupyter notebook on GCP.
 * Build machine-learning pipelines with the [Kubeflow Pipelines 
   SDK](/docs/pipelines/sdk/sdk-overview/).
 * Explore [Kubeflow Fairing](/docs/fairing/) for a complete solution to 
