@@ -34,10 +34,10 @@ pytorchjobs.kubeflow.org                       4d
 If it is not included you can add it as follows
 
 ```
-cd ${KSONNET_APP}
-ks pkg install kubeflow/pytorch-job
-ks generate pytorch-operator pytorch-operator
-ks apply ${ENVIRONMENT} -c pytorch-operator
+export KFAPP=<your Kubeflow installation directory>
+cd ${KFAPP}/kustomize
+kubectl apply -f pytorch-job-crds.yaml
+kubectl apply -f pytorch-operator.yaml
 ```
 
 ## Creating a PyTorch Job
