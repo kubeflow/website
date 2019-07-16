@@ -406,7 +406,7 @@ status:
     lastUpdateTime: "2019-07-16T02:45:20Z"
     message: TFJob mnist is running.
     reason: TFJobRunning
-    status: "False"
+    status: "True"
     type: Running
   replicaStatuses:
     Worker:
@@ -523,7 +523,7 @@ Status:
     Last Update Time:      2019-07-16T02:45:20Z
     Message:               TFJob mnist is running.
     Reason:                TFJobRunning
-    Status:                False
+    Status:                True
     Type:                  Running
   Replica Statuses:
     Worker:
