@@ -17,19 +17,31 @@ so, follow the guide to
 
 If you want to use your own domain instead of **${name}.endpoints.${project}.cloud.goog**, follow these instructions:
 
-1. Modify your ksonnet application to remove the `cloud-endpoints` component:
+1. Remove the `cloud-endpoints` component:
 
     ```
-    cd ${KFAPP}/ks_app
-    ks delete default -c cloud-endpoints
-    ks component rm cloud-endpoints
+    cd ${KFAPP}/kustomize
+    kubectl delete -f cloud-endpoints.yaml
     ```
 
 1. Set the domain for your ingress to be the fully qualified domain name:
 
     ```
-    ks param set iap-ingress hostname ${FQDN}
-    ks apply default -c iap-ingress
+    cd ${KFAPP}/kustomize
+    gvim iap-ingress.yaml    # Or basic-auth-ingress.yaml
+    ```
+
+   Find and replace the value for the hostname:
+
+    ```
+    data:
+      hostname: <enter your endpoint here>
+    ```
+
+   Apply the changes:
+
+    ```
+    kubectl apply -f iap-ingress.yaml
     ```
 
 1. Get the address of the static IP address created:

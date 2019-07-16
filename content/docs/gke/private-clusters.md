@@ -44,7 +44,6 @@ Before installing Kubeflow ensure you have installed the following tools:
     
   * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
   * [gcloud](https://cloud.google.com/sdk/)
-  * [jsonnet](https://github.com/google/jsonnet/releases)
 
 
 You will need to know your gcloud organization id and project number; you can get it via gcloud
@@ -292,8 +291,8 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 1. Remove components which are not useful in private clusters:
 
     ```
-    cd ${KFAPP}/ks_app
-    ks component rm cert-manager
+    cd ${KFAPP}/kustomize
+    kubectl delete -f cert-manager.yaml
     ```
 1. Create the deployment:
 
@@ -331,8 +330,20 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 1. Update iap-ingress component parameters:
 
     ```
-    cd ${KFAPP}/ks_app
-    ks param set iap-ingress privateGKECluster true
+    cd ${KFAPP}/kustomize
+    gvim basic-auth-ingress.yaml  # Or iap-ingress.yaml if you are using IAP
+    ```
+
+   Find and set the `privateGKECluster` parameter to true:
+
+    ```
+    privateGKECluster: "true"
+    ```
+
+   Then apply your changes:
+
+    ```
+    kubectl apply -f basic-auth-ingress.yaml
     ```
 
 1. Obtain an HTTPS certificate for your ${FQDN} and create a Kubernetes secret with it. 
@@ -347,8 +358,8 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
         you can get it by running
 
         ```
-        cd ${KFAPP}/ks_app
-        ks param list | grep hostname
+        cd ${KFAPP}/kustomize
+        grep hostname: basic-auth-ingress.yaml
         ```
 
     * Then create your Kubernetes secret
@@ -362,12 +373,7 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
      * See [kubeflow/kubeflow#3079](https://github.com/kubeflow/kubeflow/issues/3079)
 
-1. Update the various ksonnet components to use `gcr.io` images instead of Docker Hub images:
-
-    ```
-    cd ${KFAPP}/ks_app
-    ${KUBEFLOW_SRC}/scripts/gke/use_gcr_for_all_images.sh --registry=gcr.io/${PROJECT}
-    ```
+1. Update the various kustomize manifests to use `gcr.io` images instead of Docker Hub images.
 
 1. Apply all the Kubernetes resources:
 
