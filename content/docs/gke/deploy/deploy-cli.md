@@ -75,7 +75,7 @@ Follow these steps to deploy Kubeflow:
 
     export PROJECT=<your GCP project ID>
     
-    # The value of KFAPP must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character. (for example,  'kubeflow-test',  or 'kfw-test').
+    # The value of KFAPP must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character. (For example,  'kubeflow-test' or 'kfw-test'.)
     export KFAPP=<your choice of application directory name>
     # Default uses Cloud IAP:
     kfctl init ${KFAPP} --platform gcp --project ${PROJECT}
