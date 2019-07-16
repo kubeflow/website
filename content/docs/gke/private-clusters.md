@@ -334,17 +334,17 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     gvim basic-auth-ingress.yaml  # Or iap-ingress.yaml if you are using IAP
     ```
 
-   Find and set the `privateGKECluster` parameter to true:
+   * Find and set the `privateGKECluster` parameter to true:
 
-    ```
-    privateGKECluster: "true"
-    ```
+     ```
+     privateGKECluster: "true"
+     ```
 
-   Then apply your changes:
+   * Then apply your changes:
 
-    ```
-    kubectl apply -f basic-auth-ingress.yaml
-    ```
+     ```
+     kubectl apply -f basic-auth-ingress.yaml
+     ```
 
 1. Obtain an HTTPS certificate for your ${FQDN} and create a Kubernetes secret with it. 
 
