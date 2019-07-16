@@ -602,5 +602,5 @@ SDK](/docs/pipelines/sdk/sdk-overview/).
 [gsutil-mb]: https://cloud.google.com/storage/docs/gsutil/commands/mb
 [gsutil-acl-ch]: https://cloud.google.com/storage/docs/gsutil/commands/acl#ch
 
-[granting-changing-revoking-access]: https://cloud.google.com/iam/docs/granting-changing-revoking-access#quick_updates_using_the_gcloud_command-line_tool
+[granting-changing-revoking-access]: https://cloud.google.com/iam/docs/granting-changing-revoking-access#using_the
 [release-page]:https://github.com/kubeflow/kubeflow/releases
