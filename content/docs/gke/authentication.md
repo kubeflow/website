@@ -95,7 +95,9 @@ gcloud auth list
 ##### Viewing IAM roles
 
 Permissions are handled in GCP using [IAM Roles](https://cloud.google.com/iam/docs/understanding-roles). 
-These roles define which resources your account can read or write to. You can check which roles were assigned to your account using the following gcloud command:
+These roles define which resources your account can read or write to. Provided you have the 
+[necessary permissions](https://cloud.google.com/iam/docs/understanding-custom-roles#required_permissions_and_roles_),
+you can check which roles were assigned to your account using the following gcloud command:
 
 ```
 PROJECT_ID=your-gcp-project-id-here
