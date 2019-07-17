@@ -5,6 +5,59 @@ weight = 4
 +++
 
 
+# In-Cluster authentication
+
+When you [set up Kubeflow for GCP](/docs/gke/deploy), it will automatically 
+[provision three service accounts](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/#gcp-service-accounts) with different
+privileges. In particular, the `${KFAPP}-user` service account is meant to grant your user services access to GCP. 
+The credentials to this service account can be accessed within the cluster as a
+[Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/).
+
+The secret will have basic access to a limited set of GCP services by default, but more roles can be granted through the
+[GCP IAM console](https://console.cloud.google.com/iam-admin/).
+
+### Authentication from a Pod
+
+You must do two things to access a GCP service account from a Pod:
+
+1. **Mount the secret as a file.** This will give your Pod access to your GCP account, 
+so be careful which Pods you grant access to.
+1. **Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable** to point to the service account.
+GCP libraries will use this environment variable to find the service account and authenticate with GCP.
+
+The following YAML describes a Pod that has access to the `${KFAPP}-user` service account:
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: myimage
+    env:
+    - name: GOOGLE_APPLICATION_CREDENTIALS
+      value: "/var/secrets/user-sa.json"
+    volumeMounts:
+    - name: gcp-secret
+      mountPath: "/var/secrets/user-sa.json"
+      readOnly: true
+  volumes:
+  - name: gcp-secret
+    secret:
+      secretName: myappname-user
+```
+
+### Authentication from Kubeflow Pipelines
+In [Kubeflow Pipelines](https://www.kubeflow.org/docs/pipelines/), each step describes a 
+container that is run independently. If you want to grant access for a single step to use
+ one of your service accounts, you can use 
+[`kfp.gcp.use_gcp_secret()`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret).
+Examples for how to use this function can be found in the 
+[Kubeflow examples repo](https://github.com/kubeflow/examples/blob/871895c54402f68685c8e227c954d86a81c0575f/pipelines/mnist-pipelines/mnist_pipeline.py#L97).
+
+
+
 # Authenticating gcloud
 
 [The `gcloud` tool](https://cloud.google.com/sdk/gcloud/) is used to interact with Google Cloud Platform (GCP) over the command line. 
@@ -122,57 +175,6 @@ By default, `Roles` and `RoleBindings` apply only to resources in a specific nam
 
 You can find more information in the 
 [Kubernetes docs](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole).
-
-# In-Cluster authentication
-
-When you [set up Kubeflow for GCP](/docs/gke/deploy), it will automatically 
-[provision three service accounts](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/#gcp-service-accounts) with different
-privileges. In particular, the `${KFAPP}-user` service account is meant to grant your user services access to GCP. 
-The credentials to this service account can be accessed within the cluster as a
-[Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/).
-
-The secret will have basic access to a limited set of GCP services by default, but more roles can be granted through the
-[GCP IAM console](https://console.cloud.google.com/iam-admin/).
-
-### Authentication from a Pod
-
-You must do two things to access a GCP service account from a Pod:
-
-1. **Mount the secret as a file.** This will give your Pod access to your GCP account, 
-so be careful which Pods you grant access to.
-1. **Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable** to point to the service account.
-GCP libraries will use this environment variable to find the service account and authenticate with GCP.
-
-The following YAML describes a Pod that has access to the `${KFAPP}-user` service account:
-```
-apiVersion: v1
-kind: Pod
-metadata:
-  name: mypod
-spec:
-  containers:
-  - name: mypod
-    image: myimage
-    env:
-    - name: GOOGLE_APPLICATION_CREDENTIALS
-      value: "/var/secrets/user-sa.json"
-    volumeMounts:
-    - name: gcp-secret
-      mountPath: "/var/secrets/user-sa.json"
-      readOnly: true
-  volumes:
-  - name: gcp-secret
-    secret:
-      secretName: myappname-user
-```
-
-### Authentication from Kubeflow Pipelines
-In [Kubeflow Pipelines](https://www.kubeflow.org/docs/pipelines/), each step describes a 
-container that is run independently. If you want to grant access for a single step to use
- one of your service accounts, you can use 
-[`kfp.gcp.use_gcp_secret()`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret).
-Examples for how to use this function can be found in the 
-[Kubeflow examples repo](https://github.com/kubeflow/examples/blob/871895c54402f68685c8e227c954d86a81c0575f/pipelines/mnist-pipelines/mnist_pipeline.py#L97).
 
 ## Next steps
 
