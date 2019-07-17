@@ -5,7 +5,7 @@ weight = 4
 +++
 
 
-# In-Cluster authentication
+# In-cluster authentication
 
 When you [set up Kubeflow for GCP](/docs/gke/deploy), it will automatically 
 [provision three service accounts](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/#gcp-service-accounts) with different
@@ -57,8 +57,10 @@ Examples for how to use this function can be found in the
 [Kubeflow examples repo](https://github.com/kubeflow/examples/blob/871895c54402f68685c8e227c954d86a81c0575f/pipelines/mnist-pipelines/mnist_pipeline.py#L97).
 
 
+# Local Authentication
 
-# Authenticating gcloud
+## gcloud
+
 
 [The `gcloud` tool](https://cloud.google.com/sdk/gcloud/) is used to interact with Google Cloud Platform (GCP) over the command line. 
 You can use the `gcloud` command to [set up Google Kubernetes Engine (GKE) clusters](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create), 
@@ -109,7 +111,9 @@ You can view and modify roles through the
 You can find more information about IAM in the 
 [GCP docs](https://cloud.google.com/iam/docs/granting-changing-revoking-access).
 
-# Authenticating kubectl
+---
+
+## kubectl
 The [`kubectl` tool](https://kubernetes.io/docs/reference/kubectl/overview/) is used for interacting with a Kubernetes cluster through the command line.
 
 ### Connecting to a cluster using a GCP account
