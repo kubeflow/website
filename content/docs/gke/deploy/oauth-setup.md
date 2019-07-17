@@ -49,20 +49,22 @@ address to verify the user's identity.
      the name of your application nor the name of your Kubeflow deployment. It's
      just a way to help you identify the OAuth client ID.
 
-1. Click create; after creating create you will see a dialog box like the one below
+1. You need to click create 
 
-   <img src="/docs/images/new-oauth.png" 
-    alt="OAuth consent screen"
-    class="mt-3 mb-3 p-3 border border-info rounded">
+   * You will see a dialog box like the one below
 
-   * Write down the CLIENT_ID you will need it in the next step
+     <img src="/docs/images/new-oauth.png" 
+      alt="OAuth consent screen"
+      class="mt-3 mb-3 p-3 border border-info rounded">
+
+   * You should write down the CLIENT_ID because you will need it in the next step
 
 1. From the credentials tab find your newly created OAuth credential and click the pencil icon to
    edit
    
-   <img src="/docs/images/oauth-edit.png" 
-    alt="OAuth consent screen"
-    class="mt-3 mb-3 p-3 border border-info rounded">
+    <img src="/docs/images/oauth-edit.png" 
+     alt="OAuth consent screen"
+     class="mt-3 mb-3 p-3 border border-info rounded">
 
 1. In the **Authorized redirect URIs** box, enter the following (if it's not already present
    in the list of authorized redirect URIs):
