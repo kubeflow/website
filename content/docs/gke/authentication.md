@@ -15,17 +15,15 @@ and interact with other Google services.
 
 You have two options for authenticating the `gcloud` command:
 
+- You can use a **user account** to authenticate using a Google account (typically Gmail). 
+You can register a user account using [`gcloud auth login`](https://cloud.google.com/sdk/gcloud/reference/auth/login), 
+which brings up a browser window to start the familiar Google authentication flow.
 
 - You can create a **service account** within your GCP project. You can then
 [download a `.json` key file](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) 
 associated with the account, and run the 
 [`gcloud auth activate-service-account`](https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account)
 command to authenticate your `gcloud` session.
-This is the recommended way to authenticate with GCP.
-
-- You can use a **user account** to authenticate using a Google account (typically Gmail). 
-You can register a user account using [`gcloud auth login`](https://cloud.google.com/sdk/gcloud/reference/auth/login), 
-which brings up a browser window to start the familiar Google authentication flow.
 
 You can find more information in the [GCP docs](https://cloud.google.com/sdk/docs/authorizing).
 
