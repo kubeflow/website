@@ -63,7 +63,7 @@ The [`kubectl` tool](https://kubernetes.io/docs/reference/kubectl/overview/) is 
 
 ### Connecting to a cluster using a GCP account
 If you set up your Kubernetes cluster using GKE, you can authenticate with the cluster using a GCP account. 
-The following commands fetch the credentials for your cluster and saves them to your local 
+The following commands fetch the credentials for your cluster and save them to your local 
 [`kubeconfig` file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/):
 
 ```
@@ -172,7 +172,7 @@ spec:
 In [Kubeflow Pipelines](https://www.kubeflow.org/docs/pipelines/), each step describes a 
 container that is run independently. If you want to grant access for a single step to use
  one of your service accounts, you can use 
-[`kfp.gcp.use_gcp_secret()`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret)
+[`kfp.gcp.use_gcp_secret()`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret).
 Examples for how to use this function can be found in the 
 [Kubeflow examples repo](https://github.com/kubeflow/examples/blob/871895c54402f68685c8e227c954d86a81c0575f/pipelines/mnist-pipelines/mnist_pipeline.py#L97).
 
