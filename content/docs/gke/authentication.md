@@ -5,7 +5,7 @@ weight = 4
 +++
 
 
-# In-cluster authentication
+## In-cluster authentication
 
 When you [set up Kubeflow for GCP](/docs/gke/deploy), it will automatically 
 [provision three service accounts](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/#gcp-service-accounts) with different
@@ -56,17 +56,18 @@ container that is run independently. If you want to grant access for a single st
 Examples for how to use this function can be found in the 
 [Kubeflow examples repo](https://github.com/kubeflow/examples/blob/871895c54402f68685c8e227c954d86a81c0575f/pipelines/mnist-pipelines/mnist_pipeline.py#L97).
 
+---
 
-# Local Authentication
+## Local Authentication
 
-## gcloud
+### gcloud
 
 
 [The `gcloud` tool](https://cloud.google.com/sdk/gcloud/) is used to interact with Google Cloud Platform (GCP) over the command line. 
 You can use the `gcloud` command to [set up Google Kubernetes Engine (GKE) clusters](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create), 
 and interact with other Google services.
 
-### Logging in
+##### Logging in
 
 You have two options for authenticating the `gcloud` command:
 
@@ -82,7 +83,7 @@ command to authenticate your `gcloud` session.
 
 You can find more information in the [GCP docs](https://cloud.google.com/sdk/docs/authorizing).
 
-### Listing active accounts
+##### Listing active accounts
 
 You can run the following command to verify you are authenticating with the expected account. 
 In the output of the command, an asterisk denotes your active account.
@@ -91,7 +92,7 @@ In the output of the command, an asterisk denotes your active account.
 gcloud auth list
 ```
 
-### Viewing IAM roles
+##### Viewing IAM roles
 
 Permissions are handled in GCP using [IAM Roles](https://cloud.google.com/iam/docs/understanding-roles). 
 These roles define which resources your account can read or write to. You can check which roles were assigned to your account using the following gcloud command:
@@ -113,10 +114,10 @@ You can find more information about IAM in the
 
 ---
 
-## kubectl
+### kubectl
 The [`kubectl` tool](https://kubernetes.io/docs/reference/kubectl/overview/) is used for interacting with a Kubernetes cluster through the command line.
 
-### Connecting to a cluster using a GCP account
+##### Connecting to a cluster using a GCP account
 If you set up your Kubernetes cluster using GKE, you can authenticate with the cluster using a GCP account. 
 The following commands fetch the credentials for your cluster and save them to your local 
 [`kubeconfig` file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/):
@@ -131,7 +132,7 @@ gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE
 You can find more information in the 
 [GCP docs](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
 
-### Changing active clusters
+##### Changing active clusters
 If you work with multiple Kubernetes clusters, you may have multiple contexts saved in your local 
 [`kubeconfig` file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/).
 You can view the clusters you have saved by run the following command:
@@ -150,7 +151,7 @@ kubectl config set-context $CONTEXT_NAME
 You can find more information in the 
 [Kubernetes docs](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
-### Checking RBAC permissions
+##### Checking RBAC permissions
 
 Like GKE IAM, Kubernetes permissions are typically handled with a "role-based authorization control" (RBAC) system.
 Each Kubernetes service account has a set of authorized roles associated with it. If your account doesn't have the 
@@ -167,7 +168,7 @@ kubectl auth can-i create deployments --namespace kubeflow
 You can find more information in the 
 [Kubernetes docs](https://kubernetes.io/docs/reference/access-authn-authz/authorization/).
 
-### Adding RBAC permissions
+##### Adding RBAC permissions
 If you find you are missing a permission you need, you can grant the missing roles to your service account using
 Kubernetes resources.
 
