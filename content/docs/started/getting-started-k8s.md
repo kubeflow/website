@@ -149,13 +149,13 @@ kubectl create cm dex --from-file=config.yaml=dex-config.yaml --dry-run -oyaml |
 As you saw in the overview, we use [Dex](https://github.com/dexidp/dex) for providing user authentication.
 Dex supports several authentication methods:
 
-* Static Users (what we used so far)
+* Static users, as described above
 * LDAP / Active Directory
-* External IdP (eg Google, LinkedIn, Github, ...)
+* External Identity Provider (IdP) (for example Google, LinkedIn, GitHub, ...)
 
 This section focuses on setting up Dex to authenticate with an existing LDAP database.
 
-1. **[OPTIONAL]** If you don't have an LDAP database, you can set up one following these instructions:
+1. ***(Optional)*** If you don't have an LDAP database, you can set one up following these instructions:
     
     1. Deploy a new LDAP Server as a StatefulSet. This also deploys phpLDAPadmin, a GUI for interacting with your LDAP Server.
         
@@ -212,9 +212,9 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
                     - name: LDAP_LOG_LEVEL
                       value: "256"
                     - name: LDAP_ORGANISATION
-                      value: "Arrikto"
+                      value: "Example"
                     - name: LDAP_DOMAIN
-                      value: "arrikto.com"
+                      value: "example.com"
                     - name: LDAP_ADMIN_PASSWORD
                       value: "admin"
                     - name: LDAP_CONFIG_PASSWORD
@@ -286,17 +286,17 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
                     - name: PHPLDAPADMIN_HTTPS
                       value: "false"
                     - name: PHPLDAPADMIN_LDAP_HOSTS
-                      value : "#PYTHON2BASH:[{'ldap-service.kubeflow.svc.cluster.local': [{'server': [{'tls': False}]},{'login': [        {'bind_id': 'cn=admin,dc=arrikto,dc=com'}]}]}]"
+                      value : "#PYTHON2BASH:[{'ldap-service.kubeflow.svc.cluster.local': [{'server': [{'tls': False}]},{'login': [        {'bind_id': 'cn=admin,dc=example,dc=com'}]}]}]"
         {{< /highlight >}}
         
         </details>
         
         
-    2. Seed the LDAP database with new entries.
+    1. Seed the LDAP database with new entries.
         
         ```bash
         kubectl exec -it -n kubeflow ldap-0 -- bash
-        ldapadd -x -D "cn=admin,dc=arrikto,dc=com" -W
+        ldapadd -x -D "cn=admin,dc=example,dc=com" -W
         # Enter password "admin".
         # Press Ctrl+D to complete after pasting the snippet below.
         ```
@@ -305,59 +305,60 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
         
         <summary>LDAP Seed Users and Groups</summary>
         ```ldif
-        # This already exists.
+        # If you used the OpenLDAP Server deployment in step 1,
+        # then this object already exists.
         # If it doesn't, uncomment this.
-        #dn: dc=arrikto,dc=com
+        #dn: dc=example,dc=com
         #objectClass: dcObject
         #objectClass: organization
-        #o: Arrikto
-        #dc: arrikto
+        #o: Example
+        #dc: example
         
-        dn: ou=People,dc=arrikto,dc=com
+        dn: ou=People,dc=example,dc=com
         objectClass: organizationalUnit
         ou: People
         
-        dn: cn=Yannis Zarkadas,ou=People,dc=arrikto,dc=com
+        dn: cn=Nick Kiliadis,ou=People,dc=example,dc=com
         objectClass: person
         objectClass: inetOrgPerson
-        givenName: Yannis
-        sn: Zarkadas
-        cn: Yannis Zarkadas
-        uid: yanniszark
-        mail: yanniszark@arrikto.com
+        givenName: Nick
+        sn: Kiliadis
+        cn: Nick Kiliadis
+        uid: nkili
+        mail: nkili@example.com
         userpassword: 12341234
         
-        dn: cn=Vangelis Koukis,ou=People,dc=arrikto,dc=com
+        dn: cn=Robin Spanakopita,ou=People,dc=example,dc=com
         objectClass: person
         objectClass: inetOrgPerson
-        givenName: Vangelis
-        sn: Koukis
-        cn: Vangelis Koukis
-        uid: vkoukis
-        mail: vkoukis@arrikto.com
+        givenName: Robin
+        sn: Spanakopita
+        cn: Robin Spanakopita
+        uid: rspanakopita
+        mail: rspanakopita@example.com
         userpassword: 43214321
         
         # Group definitions.
         
-        dn: ou=Groups,dc=arrikto,dc=com
+        dn: ou=Groups,dc=example,dc=com
         objectClass: organizationalUnit
         ou: Groups
         
-        dn: cn=admins,ou=Groups,dc=arrikto,dc=com
+        dn: cn=admins,ou=Groups,dc=example,dc=com
         objectClass: groupOfNames
         cn: admins
-        member: cn=Yannis Zarkadas,ou=People,dc=arrikto,dc=com
+        member: cn=Nick Kiliadis,ou=People,dc=example,dc=com
         
-        dn: cn=developers,ou=Groups,dc=arrikto,dc=com
+        dn: cn=developers,ou=Groups,dc=example,dc=com
         objectClass: groupOfNames
         cn: developers
-        member: cn=Yannis Zarkadas,ou=People,dc=arrikto,dc=com
-        member: cn=Vangelis Koukis,ou=People,dc=arrikto,dc=com
+        member: cn=Nick Kiliadis,ou=People,dc=example,dc=com
+        member: cn=Robin Spanakopita,ou=People,dc=example,dc=com
         ```
         
         </details>
 
-2. To use your LDAP/AD server with Dex, you have to edit the Dex config.To edit the ConfigMap containing the Dex config, run:
+1. To use your LDAP/AD server with Dex, you have to edit the Dex config. To edit the ConfigMap containing the Dex config, follow these steps:
 
     1. Get the current Dex config from the corresponding Config Map.
         
@@ -414,18 +415,18 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
             # server provides access for anonymous auth.
             # Please note that if the bind password contains a `$`, it has to be saved in an
             # environment variable which should be given as the value to `bindPW`.
-            bindDN: cn=admin,dc=arrikto,dc=com
+            bindDN: cn=admin,dc=example,dc=com
             bindPW: admin
           
             # The attribute to display in the provided password prompt. If unset, will
             # display "Username"
-            usernamePrompt: Arrikto username
+            usernamePrompt: username
           
             # User search maps a username and password entered by a user to a LDAP entry.
             userSearch:
               # BaseDN to start the search from. It will translate to the query
               # "(&(objectClass=person)(uid=<username>))".
-              baseDN: ou=People,dc=arrikto,dc=com
+              baseDN: ou=People,dc=example,dc=com
               # Optional filter to apply when searching the directory.
               filter: "(objectClass=inetOrgPerson)"
           
@@ -444,7 +445,7 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
             groupSearch:
               # BaseDN to start the search from. It will translate to the query
               # "(&(objectClass=group)(member=<user uid>))".
-              baseDN: ou=Groups,dc=arrikto,dc=com
+              baseDN: ou=Groups,dc=example,dc=com
               # Optional filter to apply when searching the directory.
               filter: "(objectClass=groupOfNames)"
           
@@ -473,7 +474,11 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
         
     1. Restart the Dex deployment, by doing one of the following:
         * Force recreation, by deleting the Dex deployment's Pod(s).
+          * `kubectl delete pods -n kubeflow -l app=dex`
         * Trigger a rolling update, by adding/updating a label on the PodTemplate of the Dex deployment.
+          * `kubectl edit deployment dex -n kubeflow` will open the Dex deployment in a text editor.
+          * Add or update a label on the PodTemplate.
+          * Save the deployment to trigger a rolling update.
 
 ### Delete Kubeflow
 
