@@ -23,6 +23,9 @@ deploy Kubeflow on Amazon Web Services (AWS).
 
 You do not need to have an existing Amazon Elastic Container Service for Kubernetes (Amazon EKS) cluster. The deployment process will create a cluster for you.
 
+The install tools uses `eksctl` command, and doesn't support `--profile` option, now.
+So please use `aws sts assume-role` commands with [this document](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html) if you use switch role.
+
 
 ## Understanding the deployment process
 
