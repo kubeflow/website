@@ -53,10 +53,9 @@ title = "Kubeflow"
           <h5 class="card-title text-light section-head">Notebooks</h5>
           <p class="card-text text-light">
             Kubeflow includes services to create and manage interactive <a target='_blank' class='text-light' href="https://jupyter.org/">Jupyter
-            notebooks</a>. You can choose custom images, and allocate specific
-            compute resources based on your data science needs. This
-            comprehensive experience allows you to create workflows locally, and
-            deploy them with ease.
+            notebooks</a>.  You can customize your notebook deployment and your compute resources to
+            suit your data science needs. Experiment with your workflows locally, then
+            deploy them to a cloud when you're ready.
           </p>
         </div>
       </div>
@@ -73,10 +72,9 @@ title = "Kubeflow"
             TensorFlow model training
           </h5>
           <p class="card-text text-light">
-            Kubeflow has a built-in <a target='_blank' class='text-light' href="https://www.tensorflow.org/">TensorFlow </a> job operator that you can use to
-            train a machine learning model with TensorFlow. The training
-            controller can be configured to use various compute resources (CPUs
-            or GPUs) and is compatible with various cluster sizes.
+            Kubeflow provides a custom <a target='_blank' class='text-light' href="/docs/components/tfserving_new/">Model Training</a>
+            job operator that you can use to train your ML model. In particular, Kubeflow's job operator can handle distributed TensorFlow training jobs. 
+            Configure the training controller to use CPUs or GPUs and to suit various cluster sizes.
           </p>
         </div>
       </div>
@@ -86,15 +84,15 @@ title = "Kubeflow"
 		  class="card-img-top"
 		  draggable="false"
           style="padding: 2rem;"
-          alt="Model Serving image"
+          alt="Model serving image"
         />
         <div class="card-body bg-primary">
-          <h5 class="card-title text-light section-head">Model Serving</h5>
+          <h5 class="card-title text-light section-head">Model serving</h5>
           <p class="card-text text-light">
-            Kubeflow supports a <a target='_blank' class='text-light' href="https://www.tensorflow.org/">TensorFlow </a> Serving container to export trained
+            Kubeflow supports a <a target='_blank' class='text-light' href="/docs/components/tfserving_new/">TensorFlow </a> Serving container to export trained
             TensorFlow models to Kubernetes. Kubeflow is also integrated with
-            <a target='_blank' class='text-light' href="https://www.seldon.io/">Seldon Core <a/>, an open source platform for deploying machine learning
-            models on Kubernetes, and <a target='_blank' class='text-light' href="https://www.developer.nvidia.com/tensorrt/">NVIDIA TensorRT</a> Inference Server for
+            <a target='_blank' class='text-light' href="/docs/components/serving/seldon/">Seldon Core<a/>, an open source platform for deploying machine learning
+            models on Kubernetes, and <a target='_blank' class='text-light' href="/docs/components/serving/trtinferenceserver/">NVIDIA TensorRT</a> Inference Server for
             maximized GPU utilization when deploying ML/DL models at scale.
           </p>
         </div>
@@ -113,10 +111,9 @@ title = "Kubeflow"
         <div class="card-body bg-primary">
           <h5 class="card-title text-light section-head">Pipelines</h5>
           <p class="card-text text-light">
-			<a target='_blank' class='text-light' href="https://www.kubeflow.org/docs/pipelines/overview/pipelines-overview/" >Kubeflow’s pipeline dashboard</a> is a comprehensive solution to deploy
-            and manage end-to-end machine learning workflows, providing rapid
-            and reliable ML experimentation. Each run is heavily detailed and
-            the ability to schedule runs is also included.
+			<a target='_blank' class='text-light' href="/docs/pipelines/overview/pipelines-overview/" >Kubeflow Pipelines</a> is a comprehensive solution for deploying
+            and managing end-to-end ML workflow. Use Kubeflow Pipelines for rapid and reliable experiementation. 
+            You can schedule and compare runs, and examine detailed reports on each run.
           </p>
         </div>
       </div>
@@ -131,15 +128,15 @@ title = "Kubeflow"
         <div class="card-body bg-primary">
           <h5 class="card-title text-light section-head">Multi-framework</h5>
           <p class="card-text text-light">
-            Our development plans exist beyond <a target='_blank' class='text-light' href="https://www.tensorflow.org/"=>TensorFlow </a>, and we are working
-			hard in continuing to include 
-			<a target='_blank' class='text-light' href="https://pytorch.org/">PyTorch</a>, 
-			<a target='_blank' class='text-light' href="https://mxnet.apache.org/"> MXNet</a>, 
-			<a target='_blank' class='text-light' href="https://www.chainer.org/"> Chainer</a>, and more. We
+            Our development plans extend beyond <a target='_blank' class='text-light' href="/docs/components/tfserving_new/">TensorFlow</a>. We're working
+			hard to extend the support of 
+			<a target='_blank' class='text-light' href="/docs/components/serving/pytorchserving/">PyTorch</a>, 
+			<a target='_blank' class='text-light' href="/docs/components/training/mxnet/"> MXNet</a>, 
+			<a target='_blank' class='text-light' href="/docs/components/training/chainer/"> Chainer</a>, and more. We
 			also integrate with 
-			<a target='_blank' class='text-light' href="https://istio.io/">istio</a> and 
+			<a target='_blank' class='text-light' href="/docs/components/serving/istio/">Istio</a> and 
 			<a target='_blank' class='text-light' href="https://www.getambassador.io/">Ambassador</a> for ingress, 
-			<a target='_blank' class='text-light' href="https://nuclio.io/">Nuclio</a> as a
+			<a target='_blank' class='text-light' href="/docs/components/misc/nuclio/">Nuclio</a> as a
             fast multi-purpose serverless framework, and <a target='_blank' class='text-light' href="https://www.pachyderm.io/">Pachyderm</a> for managing
             your data science pipelines.
           </p>
@@ -157,9 +154,8 @@ title = "Kubeflow"
           <h5 class="card-title text-light section-head">Community</h5>
           <p class="card-text text-light">
             We are an open and welcoming community of software developers, data
-            scientists, and organizations that are working to make it easier to
-            develop and deploy scalable ML workflows across the industry. Access
-            our <a target='_blank' class='text-light' href='https://join.slack.com/t/kubeflow/shared_invite/enQtNDg5MTM4NTQyNjczLWUyZGI1ZmExZWExYWY4YzlkOWI4NjljNjJhZjhjMjEwNGFjNmVkNjg2NTg4M2I0ZTM5NDExZWI5YTIyMzVmNzM'>Slack Community</a> for assistance with any issues you face.
+            scientists, and organizations! Join our <a target='_blank' class='text-light' href='https://join.slack.com/t/kubeflow/shared_invite/enQtNDg5MTM4NTQyNjczLWUyZGI1ZmExZWExYWY4YzlkOWI4NjljNjJhZjhjMjEwNGFjNmVkNjg2NTg4M2I0ZTM5NDExZWI5YTIyMzVmNzM'>Slack workspace</a> 
+            for help with any issues you may face, and read <a target="_blank" class='text-light' href='https://www.kubeflow.org/docs/about/community/'>more about the community</a>.
           </p>
         </div>
       </div>
