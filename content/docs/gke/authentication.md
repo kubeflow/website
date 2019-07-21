@@ -183,6 +183,79 @@ By default, `Roles` and `RoleBindings` apply only to resources in a specific nam
 You can find more information in the 
 [Kubernetes docs](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole).
 
+### Namespaces
+
+Starting from version 0.6, you can consume Kubeflow in individual namespaces. In order to do this you will need to
+install GCP credentials into the new namespace and create a PodDefault object to attach the credentials to certain
+pods.
+
+##### Credentials
+
+You can add credentials to the new namespace by either copying them from an existing Kubeflow namespace or by
+creating a new service account.
+
+To copy credentials from one namespace to another namespace use the following CLI commands (**Note**: there is an
+[issue](https://github.com/kubeflow/kubeflow/issues/3640) filed to automate this):
+
+```
+NAMESPACE=<new kubeflow namespace>
+SOURCE=kubeflow
+NAME=user-gcp-sa
+SECRET=$(kubectl -n ${SOURCE} get secrets ${NAME} -o jsonpath="{.data.${NAME}\.json}" | base64 -d)
+kubectl create -n ${NAMESPACE} secret generic ${NAME} --from-literal="${NAME}.json=${SECRET}"
+```
+
+To create a new service account instead of copying credentials, use the following steps:
+
+1. Create a service account with the desired roles
+```
+export PROJECT_ID=<GCP project id>
+export NAMESPACE=<new kubeflow namespace>
+export SA_NAME=<service account name>
+export GCPROLES=roles/editor
+gcloud --project=${PROJECT_ID} iam service-accounts create $SA_NAME
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member serviceAccount:$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com \
+    --role $GCPROLES
+```
+
+2. Download the JSON service account key, set `KEYPATH` to the correct path, and create the key 
+```
+export KEYPATH=some/path/${SA_NAME}.gcp.json
+gcloud --project=${PROJECT_ID} iam service-accounts keys create ${KEYPATH} \
+   --iam-account $SA_NAME@$PROJECT_ID.iam.gserviceaccount.com
+```
+
+3. Upload the JSON service account key to cluster as a secret
+```
+kubectl create secret generic user-gcp-sa -n $NAMESPACE \ --from-file=user-gcp-sa.json=${KEYPATH}
+```
+
+##### PodDefault Object
+
+Create a pod default in a file called `add-gcp-secret.yaml` and apply it using: `kubectl apply -f add-gcp-secret.yaml -n $NAMESPACE`
+```
+apiVersion: "kubeflow.org/v1alpha1"
+kind: PodDefault
+metadata:
+  name: add-gcp-secret
+spec:
+ selector:
+  matchLabels:
+    addgcpsecret: "true"
+ desc: "add gcp credential"
+ env:
+ - name: GOOGLE_APPLICATION_CREDENTIALS
+   value: /secret/gcp/user-gcp-sa.json
+ volumeMounts:
+ - name: secret-volume
+   mountPath: /secret/gcp
+ volumes:
+ - name: secret-volume
+   secret:
+    secretName: user-gcp-sa
+```
+
 ## Next steps
 
 See the [troubleshooting guide](/docs/gke/troubleshooting-gke/) for help with diagnosing and fixing issues you may encounter with Kubeflow on GCP
