@@ -208,7 +208,7 @@ cd tf-operator/examples/v1/mnist_with_summaries
 # Deploy the event volume
 kubectl apply -f tfevent-volume
 # Submit the TFJob
-kubectl apply tf_job_mnist.yaml
+kubectl apply -f tf_job_mnist.yaml
 ```
 
 Monitor the job (see the [TFJob docs](/docs/components/tftraining/#monitoring-your-job)):
