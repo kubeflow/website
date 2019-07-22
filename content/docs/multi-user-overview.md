@@ -1,7 +1,7 @@
 +++
-title = "Overview of Multi-user Isolation Support"
+title = "Multi-user Isolation Support"
 description = "Isolation of user created resources for convenience and organization"
-weight = 5
+weight = 50
 +++
 
 Kubeflow v0.6 release enables support for multi-user isolation of user created
@@ -29,7 +29,9 @@ A user can select their active profile from the top bar on
 the Kubeflow Central Dashboard. Note that the user can only view the profiles
 in the dropdown list that they have view or modify access to.
 
-Todo(abhishek): add screenshot
+<img src="/docs/images/select-profile.png" 
+  alt="Select active profile "
+  class="mt-3 mb-3 border border-info rounded">
 
 For this overview we will illustrate the user isolation functionality using the
 Jupyter notebooks service which is the first service in the system to have full
@@ -42,7 +44,19 @@ the active profile, the view will switch the list of active notebooks
 appropriately. The user can connect to any of the listed notebook servers and
 view and modify the existing Jupyter notebooks available in the server.
 
-Todo(abhishek): screenshots of notebook server lists
+For example, the following image shows the list of Notebook servers available
+in the user's primary profile:
+
+<img src="/docs/images/notebooks-in-profile.png" 
+  alt="List of notebooks in active profile "
+  class="mt-3 mb-3 border border-info rounded">
+
+And when an unauthorized user accesses the Notebooks in this profile, they are
+presented with an error.
+
+<img src="/docs/images/notebook-access-error.png" 
+  alt="Error listing notebooks in inacessible profile"
+  class="mt-3 mb-3 border border-info rounded">
 
 When the users create Jupyter notebook servers from the Notebooks Manager UI,
 the notebook pods are created in the active profile. If the user doesn't have
@@ -50,8 +64,6 @@ modify access to the active profile, the user can only browse currently active
 notebook servers and access the existing jupyter notebooks but cannot create
 new notebook servers in that profile. Clearly the users can create notebook
 servers in their primary profile which they have view and modify access to.
-
-Todo(abhishek): Screenshot for successful creation & failed creation
 
 ### Creating a user profile
 
@@ -80,7 +92,18 @@ The above creates a profile named *profileName* whose owner is
 *userid@email.com* and has view and modify access to that profile.
 The following resources are created as part of the profile creation:
 
-  - TODO (abhishek/kunming): List of resources created, eg. namespace, service accounts etc.
+  - A Kubernetes namespace that shares the same name with the corresponding
+    profile.
+  - Kubernetes RBAC rolebinding for the namespace *Admin*. This makes the
+    profile owner the namespace admin, allowing access to the namespace via
+    Kubernetes API (using kubectl).
+  - Istio namespace-scoped ServiceRole *ns-access-istio*. This allows access to
+    all services in the target namespace via Istio routing.
+  - Istio namespace-scoped ServiceRoleBinding *owner-binding-istio*. This binds
+    the ServiceRole ns-access-istio to the profile owner. The profile owner can
+    therefore access services in the namespace created.
+  - Namespace-scoped service-accounts editor and viewer to be used by
+    user-created pods in above namespace.
 
 ### Listing and describing profiles
 
@@ -104,6 +127,11 @@ This will delete the profile, the corresponding namespace and any kubernetes
 resources associated with the profile. The profile's owner or other users with
 access to the profile will no longer have access to the profile and will not see
 it in the dropdown list on the Central Dashboard.
+
+### Sharing access to a profile with another user
+
+An owner of a profile can share view only or view and modify access to the profile
+with another user in the system. 
 
 
 
