@@ -16,7 +16,7 @@ The credentials to this service account can be accessed within the cluster as a
 The secret will have basic access to a limited set of GCP services by default, but more roles can be granted through the
 [GCP IAM console](https://console.cloud.google.com/iam-admin/).
 
-### Namespaces
+### Distributing Secrets
 
 Starting from Kubeflow version 0.6, you can consume Kubeflow in individual namespaces. The `kubeflow` namespace is
 intended for running Kubeflow system components while individual jobs and model deployments are expected to run in
@@ -67,7 +67,12 @@ kubectl create secret generic user-gcp-sa -n $NAMESPACE \ --from-file=user-gcp-s
 
 ##### PodDefault Object
 
-Create a pod default in a file called `add-gcp-secret.yaml` and apply it using: `kubectl apply -f add-gcp-secret.yaml -n $NAMESPACE`
+The PodDefault object is a way to centrally manage configurations that should be added to all pods.
+
+The PodDefault will match all pods with the specified selector and modify the pods to inject the volumes,
+secrets, and environment variables listed in the pod manifest.
+
+Create a pod default in a file called `add-gcp-secret.yaml` and apply it using: `kubectl apply -f add-gcp-secret.yaml -n $NAMESPACE`.
 ```
 apiVersion: "kubeflow.org/v1alpha1"
 kind: PodDefault
