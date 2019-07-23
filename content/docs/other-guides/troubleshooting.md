@@ -54,7 +54,7 @@ If you encounter a jupyter-xxxx pod in Pending status, described with:
 ```
 Warning  FailedScheduling  8s (x22 over 5m)  default-scheduler  0/1 nodes are available: 1 Insufficient memory.
 ```
-  * Then try recreating your Minikube cluster (and re-apply Kubeflow using ksonnet) with more resources (as your environment allows):
+  * Then try recreating your Minikube cluster (and re-apply Kubeflow using kustomize) with more resources (as your environment allows):
 
 ## RBAC clusters
 
@@ -112,7 +112,7 @@ kubectl -n ${NAMESPACE} describe pods ${PODNAME}
 
 ## Pods stuck in Pending state
 
-There are three pods that have Persistent Volume Claims (PVCs) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and vizier-db.
+There are three pods that have Persistent Volume Claims (PVCs) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and katib-db.
 Check the status of the PVC requests
 
 ```
@@ -127,7 +127,7 @@ If you have not configured [dynamic provisioning] (https://kubernetes.io/docs/co
 You can use the example below to create local persistent volumes.
 
 ```commandline
-sudo mkdir /mnt/pv[1-3]
+sudo mkdir /mnt/pv{1..3}
 
 kubectl create -f - <<EOF
 kind: PersistentVolume
@@ -172,7 +172,6 @@ EOF
 ```
 Once created the scheduler will successfully start the remaining three pods. The PVs may also be created prior to running any of the `kfctl.sh` commands.
 
-
 ## OpenShift
 If you are deploying Kubeflow in an [OpenShift](https://github.com/openshift/origin) environment which encapsulates Kubernetes, you will need to adjust the security contexts for the ambassador and Jupyter-hub deployments in order to get the pods to run.
 
@@ -188,55 +187,11 @@ You will also need to adjust the privileges of the tf-job-operator service accou
 oc adm policy add-role-to-user cluster-admin -z tf-job-operator
 ```
 
-## Docker for Mac
-The [Docker for Mac](https://www.docker.com/docker-mac) Community Edition now ships with Kubernetes support (1.9.2) which can be enabled from their edge channel. If you decide to use this as your Kubernetes environment on Mac, you may encounter the following error when deploying Kubeflow:
-
-```commandline
-ks apply default
-ERROR Attempting to deploy to environment 'default' at 'https://127.0.0.1:8443', but cannot locate a server at that address
-```
-
-This error is due to the fact that the default cluster installed by Docker for Mac is actually set to `https://localhost:6443`. One option is to directly edit the generated `environments/default/spec.json` file to set the "server" variable to the correct location, then retry the deployment. However, it is preferable to initialize your ksonnet app using the desired kube config:
-
-```commandline
-kubectl config use-context docker-for-desktop
-ks init my-kubeflow
-```
-
 ## 403 API rate limit exceeded error
 
-Because ksonnet uses GitHub to pull kubeflow, unless user specifies GitHub API token, it will quickly consume maximum API call quota for anonymous.
+Because kubectl uses GitHub to pull kubeflow, unless user specifies GitHub API token, it will quickly consume maximum API call quota for anonymous.
 To fix this issue first create GitHub API token using this [guide](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/), and assign this token to GITHUB_TOKEN environment variable.
 
 ```commandline
 export GITHUB_TOKEN=<< token >>
 ```
-
-## ks apply produces error "Unknown variable: env"
-
-Kubeflow requires a [specific version of ksonnet](/docs/started/requirements).
-If you run `ks apply` with an older version of ksonnet you will likely get the error `Unknown variable: env` as illustrated below:
-
-```shell
-export KF_ENV=default
-ks apply ${KF_ENV}
-ERROR Error reading /Users/xxx/projects/devel/go/src/github.com/kubeflow/kubeflow/my-kubeflow/environments/nocloud/main.jsonnet: /Users/xxx/projects/devel/go/src/github.com/kubeflow/kubeflow/my-kubeflow/components/jupyterhub.jsonnet:8:49-52 Unknown variable: env
-
-  namespace: if params.namespace == "null" then env.namespace else params.namespace
-```
-
-You can check the ksonnet version as follows:
-
-```shell
-ks version
-```
-
-If your ksonnet version is lower than what is specified in the [requirements](/docs/started/requirements), please upgrade it and follow the [guide](/docs/components/ksonnet) to recreate the app.
-
-## ksonnet on Windows
-There are some known issues with ksonnet and Windows. You might consider 
-alternative solutions.
-
- * construct base object: Failed to filter components ([kubeflow #481](https://github.com/kubeflow/kubeflow/issues/481))
- * "ks apply" fails to correctly process paths in Windows shell ([ksonnet #382](https://github.com/ksonnet/ksonnet/issues/382))
- 

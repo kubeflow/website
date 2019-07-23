@@ -52,20 +52,6 @@ spec:
               - trainer.task
               - --batch_size=32
               - --training_steps=1000
-    Master:
-          replicas: 1
-          restartPolicy: OnFailure
-          template:
-            spec:
-              containers:
-              - name: tensorflow
-                image: gcr.io/your-project/your-image
-                command:
-                  - python
-                  - -m
-                  - trainer.task
-                  - --batch_size=32
-                  - --training_steps=1000
 ```
 
 If you want to give your TFJob pods access to credentials secrets, such as the GCP credentials automatically created when you do a GKE-based Kubeflow installation, you can mount and use a secret like this:
@@ -128,31 +114,6 @@ spec:
           - name: sa
             secret:
               secretName: user-gcp-sa
-    Master:
-          replicas: 1
-          restartPolicy: OnFailure
-          template:
-            spec:
-              containers:
-              - name: tensorflow
-                image: gcr.io/your-project/your-image
-                command:
-                  - python
-                  - -m
-                  - trainer.task
-                  - --batch_size=32
-                  - --training_steps=1000
-                env:
-                - name: GOOGLE_APPLICATION_CREDENTIALS
-                  value: "/etc/secrets/user-gcp-sa.json"
-                volumeMounts:
-                - name: sa
-                  mountPath: "/etc/secrets"
-                  readOnly: true
-              volumes:
-              - name: sa
-                secret:
-                  secretName: user-gcp-sa
 ```
 
 If you are not familiar with Kubernetes resources please refer to the page [Understanding Kubernetes Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/).
@@ -235,75 +196,36 @@ consists of 3 fields
 **Note:** Before submitting a training job, you should have [deployed kubeflow to your cluster](#deploy-kubeflow). Doing so ensures that
 the [`TFJob` custom resource](https://github.com/kubeflow/tf-operator) is available when you submit the training job.
 
-We treat each TensorFlow job as a [component](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component) in your APP.
+### Running the MNist example
 
-### Running the TfCnn example
+Kubeflow ships with an [example](https://github.com/kubeflow/tf-operator/tree/master/examples/v1/mnist_with_summaries) suitable for running
+a simple [MNist model](http://yann.lecun.com/exdb/mnist/).
 
-Kubeflow ships with a [ksonnet prototype](https://ksonnet.io/docs/concepts#prototype) suitable for running the [TensorFlow CNN Benchmarks](https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks).
-
-You can also use this prototype to generate a component which you can then customize for your jobs.
-
-Create the component (update version as appropriate).
 
 ```
-CNN_JOB_NAME=mycnnjob
-VERSION=v0.4.0
-
-ks init ${CNN_JOB_NAME}
-cd ${CNN_JOB_NAME}
-ks registry add kubeflow-git github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow
-ks pkg install kubeflow-git/examples
+git clone https://github.com/kubeflow/tf-operator
+cd tf-operator/examples/v1/mnist_with_summaries
+# Deploy the event volume
+kubectl apply -f tfevent-volume
+# Submit the TFJob
+kubectl apply -f tf_job_mnist.yaml
 ```
-
-Choose a tf-job prototype from the following list of available prototypes, to match the CRD you're using:
-> Type `ks prototype list` to list all available prototypes
-
-* `io.ksonnet.pkg.tf-job-operator`                  - A TensorFlow job operator.
-* `io.ksonnet.pkg.tf-job-simple`                    - A simple TFJob to run CNN benchmark
-* `io.ksonnet.pkg.tf-job-simple-v1`            - A simple TFJob to run CNN benchmark
-
-Run the `generate` command:
-```
-ks generate tf-job-simple-v1 ${CNN_JOB_NAME} --name=${CNN_JOB_NAME}
-```
-
-Submit the job:
-
-```
-export KF_ENV=default
-ks apply ${KF_ENV} -c ${CNN_JOB_NAME}
-```
-
-The `KF_ENV` environment variable represents a conceptual deployment environment 
-such as development, test, staging, or production, as defined by 
-ksonnet. For this example, we use the `default` environment.
-You can read more about Kubeflow's use of ksonnet in the Kubeflow 
-[ksonnet component guide](/docs/components/ksonnet/).
 
 Monitor the job (see the [TFJob docs](/docs/components/tftraining/#monitoring-your-job)):
 
 ```
-kubectl get -n kubeflow -o yaml tfjobs ${CNN_JOB_NAME}
+kubectl -n kubeflow get tfjob mnist -o yaml
 ```
 
 Delete it
 
 ```
-ks delete ${KF_ENV} -c ${CNN_JOB_NAME}
+kubectl -n kubeflow delete tfjob mnist
 ```
 
 ### Customizing the TFJob
 
-Generating a component as in the previous step will create a file named 
-
-```
-components/${CNN_JOB_NAME}.jsonnet
-```
-
-A jsonnet file is basically a json file defining the manifest for your TFJob. You can modify this manifest
-to run your jobs.
-
-Typically you will want to change the following values
+Typically you can change the following values in the TFJob yaml file:
 
 1. Change the image to point to the docker image containing your code
 1. Change the number and types of replicas
@@ -434,102 +356,63 @@ kubectl get -o yaml tfjobs ${JOB}
 Here is sample output for an example job
 
 ```yaml
-apiVersion: v1
-items:
-- apiVersion: kubeflow.org/v1
-  kind: TFJob
-  metadata:
-    creationTimestamp: 2019-02-02T15:24:54Z
-    generation: 1
-    name: tf-smoke-gpu
-    resourceVersion: "43282271"
-    selfLink: /apis/kubeflow.org/v1/namespaces/kubeflow/tfjobs/tf-smoke-gpu
-    uid: b0e5e256-26fe-11e9-a020-509a4c3d1d6d
-  spec:
-    cleanPodPolicy: Running
-    tfReplicaSpecs:
-      PS:
-        replicas: 1
-        restartPolicy: Never
-        template:
-          metadata:
-            creationTimestamp: null
-          spec:
-            containers:
-            - args:
-              - python
-              - tf_cnn_benchmarks.py
-              - --batch_size=32
-              - --model=resnet50
-              - --variable_update=parameter_server
-              - --flush_stdout=true
-              - --num_gpus=1
-              - --local_parameter_device=cpu
-              - --device=cpu
-              - --data_format=NHWC
-              image: gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3
-              name: tensorflow
-              ports:
-              - containerPort: 2222
-                name: tfjob-port
-              resources:
-                limits:
-                  cpu: "1"
-              workingDir: /opt/tf-benchmarks/scripts/tf_cnn_benchmarks
-            restartPolicy: OnFailure
-      Worker:
-        replicas: 1
-        restartPolicy: Never
-        template:
-          metadata:
-            creationTimestamp: null
-          spec:
-            containers:
-            - args:
-              - python
-              - tf_cnn_benchmarks.py
-              - --batch_size=32
-              - --model=resnet50
-              - --variable_update=parameter_server
-              - --flush_stdout=true
-              - --num_gpus=1
-              - --local_parameter_device=cpu
-              - --device=gpu
-              - --data_format=NHWC
-              image: gcr.io/kubeflow/tf-benchmarks-gpu:v20171202-bdab599-dirty-284af3
-              name: tensorflow
-              ports:
-              - containerPort: 2222
-                name: tfjob-port
-              resources:
-                limits:
-                  nvidia.com/gpu: "1"
-              workingDir: /opt/tf-benchmarks/scripts/tf_cnn_benchmarks
-            restartPolicy: OnFailure
-  status:
-    conditions:
-    - lastTransitionTime: 2019-02-02T15:24:54Z
-      lastUpdateTime: 2019-02-02T15:24:54Z
-      message: TFJob tf-smoke-gpu is created.
-      reason: TFJobCreated
-      status: "True"
-      type: Created
-    - lastTransitionTime: 2019-02-02T15:25:00Z
-      lastUpdateTime: 2019-02-02T15:25:00Z
-      message: TFJob tf-smoke-gpu is running.
-      reason: TFJobRunning
-      status: "True"
-      type: Running
-    replicaStatuses:
-      PS:
-        active: 1
-      Worker:
-        active: 1
-    startTime: 2019-02-02T15:24:56Z
-kind: List
+apiVersion: kubeflow.org/v1
+kind: TFJob
 metadata:
-  resourceVersion: ""
-  selfLink: ""
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"kubeflow.org/v1","kind":"TFJob","metadata":{"annotations":{},"name":"mnist","namespace":"kubeflow"},"spec":{"cleanPodPolicy":"None","tfReplicaSpecs":{"Worker":{"replicas":1,"restartPolicy":"Never","template":{"spec":{"containers":[{"command":["python","/var/tf_mnist/mnist_with_summaries.py","--log_dir=/train","--learning_rate=0.01","--batch_size=150"],"image":"gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0","name":"tensorflow","volumeMounts":[{"mountPath":"/train","name":"training"}]}],"volumes":[{"name":"training","persistentVolumeClaim":{"claimName":"tfevent-volume"}}]}}}}}}
+  creationTimestamp: "2019-07-16T02:44:38Z"
+  generation: 1
+  name: mnist
+  namespace: kubeflow
+  resourceVersion: "10429537"
+  selfLink: /apis/kubeflow.org/v1/namespaces/kubeflow/tfjobs/mnist
+  uid: a77b9fb4-a773-11e9-91fe-42010a960094
+spec:
+  cleanPodPolicy: None
+  tfReplicaSpecs:
+    Worker:
+      replicas: 1
+      restartPolicy: Never
+      template:
+        spec:
+          containers:
+          - command:
+            - python
+            - /var/tf_mnist/mnist_with_summaries.py
+            - --log_dir=/train
+            - --learning_rate=0.01
+            - --batch_size=150
+            image: gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0
+            name: tensorflow
+            volumeMounts:
+            - mountPath: /train
+              name: training
+          volumes:
+          - name: training
+            persistentVolumeClaim:
+              claimName: tfevent-volume
+status:
+  completionTime: "2019-07-16T02:45:23Z"
+  conditions:
+  - lastTransitionTime: "2019-07-16T02:44:38Z"
+    lastUpdateTime: "2019-07-16T02:44:38Z"
+    message: TFJob mnist is created.
+    reason: TFJobCreated
+    status: "True"
+    type: Created
+  - lastTransitionTime: "2019-07-16T02:45:20Z"
+    lastUpdateTime: "2019-07-16T02:45:20Z"
+    message: TFJob mnist is running.
+    reason: TFJobRunning
+    status: "True"
+    type: Running
+  replicaStatuses:
+    Worker:
+      running: 1
+  startTime: "2019-07-16T02:44:38Z"
+
 ```
 
 ### Conditions
@@ -590,95 +473,67 @@ kubectl describe tfjobs ${JOB}
 which will produce output like
 
 ```
-Name:         tfjob2
+Name:         mnist
 Namespace:    kubeflow
-Labels:       app.kubernetes.io/deploy-manager=ksonnet
-Annotations:  ksonnet.io/managed={"pristine":"H4sIAAAAAAAA/+yRz27UMBDG7zzGnJ3NbkoFjZQTqEIcYEUrekBVNHEmWbOObY3HqcJq3x05UC1/ngCJHKKZbz6P5e93AgzmM3E03kENx9TRYP3TxvNYzju04YAVKDga10MN97fvfQcKJhLsURDqEzicCGqQ4avvsjX3MaCm...
+Labels:       <none>
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"kubeflow.org/v1","kind":"TFJob","metadata":{"annotations":{},"name":"mnist","namespace":"kubeflow"},"spec":{"cleanPodPolicy...
 API Version:  kubeflow.org/v1
 Kind:         TFJob
 Metadata:
-  Cluster Name:        
-  Creation Timestamp:  2018-07-29T02:46:53Z
+  Creation Timestamp:  2019-07-16T02:44:38Z
   Generation:          1
-  Resource Version:    26872
-  Self Link:           /apis/kubeflow.org/v1/namespaces/kubeflow/tfjobs/tfjob2
-  UID:                 a6bc7b6f-92d9-11e8-b3ca-42010a80019c
+  Resource Version:    10429537
+  Self Link:           /apis/kubeflow.org/v1/namespaces/kubeflow/tfjobs/mnist
+  UID:                 a77b9fb4-a773-11e9-91fe-42010a960094
 Spec:
+  Clean Pod Policy:  None
   Tf Replica Specs:
-    PS:
-      Replicas:  1
-      Template:
-        Metadata:
-          Creation Timestamp:  <nil>
-        Spec:
-          Containers:
-            Args:
-              python
-              tf_cnn_benchmarks.py
-              --batch_size=32
-              --model=resnet50
-              --variable_update=parameter_server
-              --flush_stdout=true
-              --num_gpus=1
-              --local_parameter_device=cpu
-              --device=cpu
-              --data_format=NHWC
-            Image:  gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3
-            Name:   tensorflow
-            Ports:
-              Container Port:  2222
-              Name:            tfjob-port
-            Resources:
-            Working Dir:   /opt/tf-benchmarks/scripts/tf_cnn_benchmarks
-          Restart Policy:  OnFailure
     Worker:
-      Replicas:  1
+      Replicas:        1
+      Restart Policy:  Never
       Template:
-        Metadata:
-          Creation Timestamp:  <nil>
         Spec:
           Containers:
-            Args:
+            Command:
               python
-              tf_cnn_benchmarks.py
-              --batch_size=32
-              --model=resnet50
-              --variable_update=parameter_server
-              --flush_stdout=true
-              --num_gpus=1
-              --local_parameter_device=cpu
-              --device=cpu
-              --data_format=NHWC
-            Image:  gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3
+              /var/tf_mnist/mnist_with_summaries.py
+              --log_dir=/train
+              --learning_rate=0.01
+              --batch_size=150
+            Image:  gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0
             Name:   tensorflow
-            Ports:
-              Container Port:  2222
-              Name:            tfjob-port
-            Resources:
-            Working Dir:   /opt/tf-benchmarks/scripts/tf_cnn_benchmarks
-          Restart Policy:  OnFailure
+            Volume Mounts:
+              Mount Path:  /train
+              Name:        training
+          Volumes:
+            Name:  training
+            Persistent Volume Claim:
+              Claim Name:  tfevent-volume
 Status:
+  Completion Time:  2019-07-16T02:45:23Z
   Conditions:
-    Last Transition Time:  2018-07-29T02:46:55Z
-    Last Update Time:      2018-07-29T02:46:55Z
-    Message:               TFJob tfjob2 is running.
+    Last Transition Time:  2019-07-16T02:44:38Z
+    Last Update Time:      2019-07-16T02:44:38Z
+    Message:               TFJob mnist is created.
+    Reason:                TFJobCreated
+    Status:                True
+    Type:                  Created
+    Last Transition Time:  2019-07-16T02:45:20Z
+    Last Update Time:      2019-07-16T02:45:20Z
+    Message:               TFJob mnist is running.
     Reason:                TFJobRunning
     Status:                True
     Type:                  Running
-  Start Time:              2018-07-29T02:46:55Z
-  Tf Replica Statuses:
-    PS:
-      Active:  1
+  Replica Statuses:
     Worker:
-      Active:  1
+      Running:  1
+  Start Time:  2019-07-16T02:44:38Z
 Events:
-  Type     Reason                          Age                From         Message
-  ----     ------                          ----               ----         -------
-  Warning  SettedPodTemplateRestartPolicy  19s (x2 over 19s)  tf-operator  Restart policy in pod template will be overwritten by restart policy in replica spec
-  Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-worker-0
-  Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-worker-0
-  Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-ps-0
-  Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-ps-0
+  Type    Reason                   Age    From         Message
+  ----    ------                   ----   ----         -------
+  Normal  SuccessfulCreatePod      8m6s   tf-operator  Created pod: mnist-worker-0
+  Normal  SuccessfulCreateService  8m6s   tf-operator  Created service: mnist-worker-0
 ```
 
 Here the events indicate that the pods and services were successfully created.

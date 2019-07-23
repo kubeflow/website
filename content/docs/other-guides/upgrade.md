@@ -12,32 +12,27 @@ deployments.
 
 Updating your deployment is a two step process:
 
-1. Update your ksonnet application:
+1. Update your kustomize manifests:
 
-  1. We recommend checking your app into source control to back it up before 
+  1. We recommend checking your local packages into source control to back it up before 
      proceeding.
-  1. Use the script 
-     [upgrade_ks_app.py](https://github.com/kubeflow/kubeflow/tree/{{< params "githubbranch" >}}/scripts)
-     to update your ksonnet app with the current version for the Kubeflow 
-     packages.
+  1. Use `kfctl` to download the desired version of Kubeflow. For example:
 
-     Note: ksonnet is working on support for this capability. 
-     See https://github.com/ksonnet/ksonnet/issues/237
+       ```
+       export KUBEFLOW_VERSION={{% kf-latest-version %}}
+       export KFAPP="<the name of your Kubeflow application directory>"
+       kfctl init ${KFAPP} --version=${KUBEFLOW_VERSION} --package-manager=kustomize@${KUBEFLOW_VERSION}
+       ```
+
+     Note that this will overwrite your previous manifest files.
   
 1. Update the actual deployment:
 
-  1. Delete TFJobs v1alpha1 because Kubernetes can't deploy multiple versions of
-     a CRD:
-
-        ```
-        kubectl delete crd tfjobs.kubeflow.org
-        ```
-
-  1. Redeploy Kubeflow:
-
-        ```
-        ks apply ${ENVIRONMENT} -c ${COMPONENT}
-        ```
+     ```
+     cd ${KFAPP}
+     kfctl generate all -V --zone ${ZONE}
+     kfctl apply -V all
+     ```
 
 ## Upgrading or reinstalling Kubeflow Pipelines
 

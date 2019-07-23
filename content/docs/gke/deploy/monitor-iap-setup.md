@@ -80,14 +80,10 @@ problems:
       apiVersion: certmanager.k8s.io/v1alpha1
       kind: Certificate
       metadata:
-        annotations:
-          ksonnet.io/managed: '{"pristine":"H4sIAAAAAAAA/6yRsW7zMAyE9/8xONv+463w2qlLhg5dggyMRDuCJVIQ6RSB4XcvlDQdCnRqN0EHfjzerYA5vFHRIAwDOCqWkHGi0s1P2gX5f+kx5jP20MAc2MMAz1QsjMGhETSQyNCjIQwrRDxR1PqaVZjJKsBJysLEBgMEzG3gqZAqbA0wJoIBiC9yffy3FhXukmZ0VZ+XE41R3uuIZnJ1Abo6uoITHsMEw2EFLwkDKwwHmMf2klCNSsu7viP2WQKbdg9U60LrKUe5JmLrXJTFd5PIBMcGzmZ511f6w+s3j7Btx60BJykJ7+9H/GJlA561Yv7Ae1BdqLzSeGvhs7C4VNzLTYKv2COZErtyzdbmIv4WL7lCtv+pl2379wEAAP//AQAA///uHVhQMgIAAA=="}'
-          kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
         creationTimestamp: 2019-04-02T22:49:43Z
         generation: 1
         labels:
-          app.kubernetes.io/deploy-manager: ksonnet
-          ksonnet.io/component: iap-ingress
+          kustomize.component: iap-ingress
         name: envoy-ingress-tls
         namespace: istio-system
         resourceVersion: "4803"
