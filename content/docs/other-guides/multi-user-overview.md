@@ -115,6 +115,43 @@ The following resources are created as part of the profile creation:
   - Namespace-scoped service-accounts editor and viewer to be used by
     user-created pods in above namespace.
 
+### Batch creation of user profiles
+
+Administrators might want to create profiles for multiple users as a batch. This can
+be done by creating a `profile.yaml` on the local machine with multiple sections of
+profile descriptions as shown below:
+
+```
+$ cat << EOF > profile.yaml
+apiVersion: kubeflow.org/v1alpha1
+kind: Profile
+metadata:
+  name: profileName1   # replace with the name of profile you want
+spec:
+  owner:
+    kind: User
+    name: userid1@email.com   # replace with the email of the user
+---
+apiVersion: kubeflow.org/v1alpha1
+kind: Profile
+metadata:
+  name: profileName2   # replace with the name of profile you want
+spec:
+  owner:
+    kind: User
+    name: userid2@email.com   # replace with the email of the user
+EOF
+```
+
+Apply to the Kubernetes cluster using:
+```
+kubectl create -f profile.yaml
+```
+
+This will create multiple profiles for each individual listed in the sections
+in `profile.yaml`.
+
+
 ## Listing and describing profiles
 
 An **administrator** can list the existing profiles in the system:
@@ -138,11 +175,15 @@ resources associated with the profile. The profile's owner or other users with
 access to the profile will no longer have access to the profile and will not see
 it in the dropdown list on the central dashboard.
 
+<!-- Commented until we have UI support for sharing profiles. Current
+     method using CURL on the profiles API server is not recommended.
+
 ## Sharing access to a profile with another user
 
 An owner of a profile can share view only or view and modify access to the profile
 with another user in the system. 
 
+-->
 
 
 
