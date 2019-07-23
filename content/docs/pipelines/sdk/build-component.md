@@ -67,33 +67,45 @@ image that contains your pipeline component. For example, the following
 Python class describes a component that trains an XGBoost model:
 
 ```python
-class TrainerOp(dsl.ContainerOp):
-
-  def __init__(self, name, project, region, cluster_name, train_data, eval_data,
-               target, analysis, workers, rounds, output, is_classification=True):
+def dataproc_train_op(
+    project,
+    region,
+    cluster_name,
+    train_data,
+    eval_data,
+    target,
+    analysis,
+    workers,
+    rounds,
+    output,
+    is_classification=True
+):
     if is_classification:
       config='gs://ml-pipeline-playground/trainconfcla.json'
     else:
       config='gs://ml-pipeline-playground/trainconfreg.json'
 
-    super(TrainerOp, self).__init__(
-      name=name,
-      image='gcr.io/ml-pipeline/ml-pipeline-dataproc-train:7775692adf28d6f79098e76e839986c9ee55dd61',
-      arguments=[
-          '--project', project,
-          '--region', region,
-          '--cluster', cluster_name,
-          '--train', train_data,
-          '--eval', eval_data,
-          '--analysis', analysis,
-          '--target', target,
-          '--package', 'gs://ml-pipeline-playground/xgboost4j-example-0.8-SNAPSHOT-jar-with-dependencies.jar',
-          '--workers', workers,
-          '--rounds', rounds,
-          '--conf', config,
-          '--output', output,
-      ],
-      file_outputs={'output': '/output.txt'})
+    return dsl.ContainerOp(
+        name='Dataproc - Train XGBoost model',
+        image='gcr.io/ml-pipeline/ml-pipeline-dataproc-train:ac833a084b32324b56ca56e9109e05cde02816a4',
+        arguments=[
+            '--project', project,
+            '--region', region,
+            '--cluster', cluster_name,
+            '--train', train_data,
+            '--eval', eval_data,
+            '--analysis', analysis,
+            '--target', target,
+            '--package', 'gs://ml-pipeline-playground/xgboost4j-example-0.8-SNAPSHOT-jar-with-dependencies.jar',
+            '--workers', workers,
+            '--rounds', rounds,
+            '--conf', config,
+            '--output', output,
+        ],
+        file_outputs={
+            'output': '/output.txt',
+        }
+    )
 
 ```
 
@@ -121,7 +133,7 @@ Note:
   component. To reference the output in code:
 
     ```python
-    op = TrainerOp(...)
+    op = dataproc_train_op(...)
     op.outputs['label']
     ```
 
