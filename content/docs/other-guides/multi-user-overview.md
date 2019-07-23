@@ -1,10 +1,10 @@
 +++
-title = "Multi-user Isolation Support"
-description = "Isolation of user created resources for convenience and organization"
+title = "Multi-user Isolation"
+description = "Isolation of user-created resources for convenience and organization"
 weight = 50
 +++
 
-Kubeflow v0.6 release enables support for multi-user isolation of user created
+As of v0.6, Kubeflow supports for multi-user isolation of user-created
 resources in a Kubeflow deployment. The primary purpose of this functionality
 is to enable multiple users to operate on a shared Kubeflow deployment without
 stepping on each others' jobs and resources. It provides the users with the
@@ -19,25 +19,30 @@ profiles.
 
 An administrator needs to deploy Kubeflow and configure the authentication.
 service for the deployment.  A user can log into the system and will by default
-be accessing their primary profile. Users have view and modify access to their
-primary profile. The owner of a profile can share access to the profile with
-another user in the system. When sharing the access to a profile, the owner can
-choose to share it as a view access only or view and modify access with the
-user.
+be accessing their *primary profile*. A *profile* is a collection of Kubernetes
+resources along with a Kubernetes namespace of the same name. Users have view
+and modify access to their primary profile. The owner of a profile can share
+access to the profile with another user in the system. When sharing the access
+to a profile, the owner can choose to share it as a view access only or view
+and modify access with the user. For all practical purposes when working
+through the Kubeflow central dashboard, the active namespace is directly tied
+with the active profile.
 
-A user can select their active profile from the top bar on
-the Kubeflow Central Dashboard. Note that the user can only view the profiles
-in the dropdown list that they have view or modify access to.
+## Example of usage
+
+A user can select their active profile from the top bar on the Kubeflow central
+dashboard.  Note that the user can only view the profiles in the dropdown list
+that they have view or modify access to.
 
 <img src="/docs/images/select-profile.png" 
   alt="Select active profile "
   class="mt-3 mb-3 border border-info rounded">
 
-For this overview we will illustrate the user isolation functionality using the
-Jupyter notebooks service which is the first service in the system to have full
+This guide illustrates the user isolation functionality using the Jupyter
+notebooks service which is the first service in the system to have full
 integration with the multi-user isolation functionality.  
 
-Once an active profile has been selected by the user, the Notebooks Manager UI
+Once an active profile has been selected by the user, the Notebooks Servers UI
 will display only the active notebook servers in the currently selected
 profile. All other notebook servers remain hidden from the user. If they switch
 the active profile, the view will switch the list of active notebooks
@@ -58,17 +63,22 @@ presented with an error.
   alt="Error listing notebooks in inacessible profile"
   class="mt-3 mb-3 border border-info rounded">
 
-When the users create Jupyter notebook servers from the Notebooks Manager UI,
+When the users create Jupyter notebook servers from the Notebooks Servers UI,
 the notebook pods are created in the active profile. If the user doesn't have
 modify access to the active profile, the user can only browse currently active
 notebook servers and access the existing jupyter notebooks but cannot create
-new notebook servers in that profile. Clearly the users can create notebook
+new notebook servers in that profile. The users can create notebook
 servers in their primary profile which they have view and modify access to.
 
-### Creating a user profile
+## Creating a user profile
 
 An **administrator** needs to create a profile for any user in the system.
-Create a profile.yaml file with the following contents:
+Here an administrator is a person who has
+[*cluster-admin*](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
+role binding in the Kubernetes cluster. This person has permissions to create
+and modify Kubernetes resources in the cluster. For example, the person who
+deployed Kubeflow will have administration privileges in the cluster.  Create a
+`profile.yaml` file with the following contents on your local machine:
 
 ```
 $ cat << EOF > profile.yaml
@@ -82,7 +92,7 @@ spec:
     name: userid@email.com   # replace with the email of the user
 EOF
 ```
-Create the correspoding profile resource using:
+Create the corresponding profile resource using:
 
 ```
 $ kubectl create -f profile.yaml
@@ -105,7 +115,7 @@ The following resources are created as part of the profile creation:
   - Namespace-scoped service-accounts editor and viewer to be used by
     user-created pods in above namespace.
 
-### Listing and describing profiles
+## Listing and describing profiles
 
 An **administrator** can list the existing profiles in the system:
 ```
@@ -116,19 +126,19 @@ and describe a specific profile using:
 $ kubectl describe profile profileName
 ```
 
-### Deleting an existing profile
+## Deleting an existing profile
 
 An **administrator** can delete an existing profile using:
 ```
 $ kubectl delete profile profileName
 ```
 
-This will delete the profile, the corresponding namespace and any kubernetes
+This will delete the profile, the corresponding namespace and any Kubernetes
 resources associated with the profile. The profile's owner or other users with
 access to the profile will no longer have access to the profile and will not see
-it in the dropdown list on the Central Dashboard.
+it in the dropdown list on the central dashboard.
 
-### Sharing access to a profile with another user
+## Sharing access to a profile with another user
 
 An owner of a profile can share view only or view and modify access to the profile
 with another user in the system. 
