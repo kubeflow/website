@@ -12,6 +12,7 @@ Pre-requisites:
 - Laptop, Desktop or a Workstation
 - Mac OS X or Windows 10
 - Docker Desktop (https://www.docker.com/products/docker-desktop) for Mac or Windows
+- kubectl installed 
 - sudo or admin access on the local machine
 - Access to an Internet connection with reasonable bandwidth
 
@@ -20,11 +21,6 @@ Pre-requisites:
 1. Click on the Docker Desktop logo and select 'Preferences...' 
 2. On the 'Kubernetes' tab tick the 'Enable Kubernetes' checkbox and then click on 'Apply'. 
 
-# Install kubectl
-
-```bash
-$ brew install kubectl
-```
 
 # Download and install Kubeflow 
 
