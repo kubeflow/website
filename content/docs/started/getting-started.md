@@ -8,7 +8,7 @@ weight = 1
 
 This document provides information about setting up Kubeflow in various environments.
 
-Before you set up Kubeflow, it's important to some knowledge of the following systems and tools:
+Before you set up Kubeflow, it's important to have some knowledge of the following systems and tools:
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 * [TensorFlow](https://www.tensorflow.org/get_started/)
