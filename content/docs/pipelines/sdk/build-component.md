@@ -116,13 +116,12 @@ Note:
 
 * Each component must inherit from 
   [`dsl.ContainerOp`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_container_op.py).
-* In the `init` arguments, you can include Python native types (such as `str` 
+* In the `dataproc_train_op` arguments, you can include Python native types (such as `str` 
   and `int`) and
   [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py) 
   types. Each `dsl.PipelineParam` represents a parameter whose value is usually 
-  only known at run time. The parameter can be a one for which the user provides 
-  a value at pipeline run time, or it can be an output from an upstream 
-  component. 
+  only known at run time. The value is either provided by the user at pipeline run time or received as an output 
+  from an upstream component. 
 * Although the value of each `dsl.PipelineParam` is only available at run time,
   you can still use the parameters inline in the `arguments` by using `%s`
   variable substitution. At run time the argument contains the value of the 
