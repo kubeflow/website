@@ -8,20 +8,20 @@ weight = 4
 ## In-cluster authentication
 
 When you [set up Kubeflow for GCP](/docs/gke/deploy), it will automatically
-[provision three service accounts](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/#gcp-service-accounts) with different
-privileges. In particular, the `${KFAPP}-user` service account is meant to grant your user services access to GCP.
-The credentials to this service account can be accessed within the cluster as a
-[Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/).
+[provision three service accounts](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/#gcp-service-accounts)
+with different privileges in the `kubeflow` namespace. In particular, the `${KFAPP}-user` service account is
+meant to grant your user services access to GCP. The credentials to this service account can be accessed within
+the cluster as a [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/) called `user-gcp-sa`.
 
 The secret will have basic access to a limited set of GCP services by default, but more roles can be granted through the
 [GCP IAM console](https://console.cloud.google.com/iam-admin/).
 
 ### Distributing Secrets
 
-Starting from Kubeflow version 0.6, you can consume Kubeflow in individual namespaces. The `kubeflow` namespace is
-intended for running Kubeflow system components while individual jobs and model deployments are expected to run in
-separate namespaces. In order to do this you will need to install GCP credentials into the new namespace and create
-a PodDefault object to attach the credentials to certain pods.
+Starting from Kubeflow version 0.6, you can consume Kubeflow from custom namespaces (i.e., namespaces other than `kubeflow`).
+The `kubeflow` namespace is intended for running Kubeflow system components while individual jobs and model deployments
+are expected to run in separate namespaces. In order to do this you will need to install GCP credentials into the new
+namespace and create a PodDefault object to attach the credentials to certain pods.
 
 ##### Credentials
 
