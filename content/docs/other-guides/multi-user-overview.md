@@ -70,14 +70,25 @@ notebook servers and access the existing jupyter notebooks but cannot create
 new notebook servers in that profile. The users can create notebook
 servers in their primary profile which they have view and modify access to.
 
-## Creating a user profile
+## Onboard new user
 
-An **administrator** needs to create a profile for any user in the system.
+An **administrator** needs to create a profile for any user in kubeflow cluster.
 Here an administrator is a person who has
 [*cluster-admin*](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
 role binding in the Kubernetes cluster. This person has permissions to create
 and modify Kubernetes resources in the cluster. For example, the person who
-deployed Kubeflow will have administration privileges in the cluster.  Create a
+deployed Kubeflow will have administration privileges in the cluster.
+
+There are 2 steps to onboard a new user:
+
+#### Step 1: Grant user minimal k8s cluster view access
+
+User should be given minimal permission scope that allow them connecting to k8s cluster.
+For example for GCP users, they can be granted IAM role: **Kubernetes Engine Cluster Viewer**
+
+#### Step 2: creating a user profile 
+
+Create a
 `profile.yaml` file with the following contents on your local machine:
 
 ```
