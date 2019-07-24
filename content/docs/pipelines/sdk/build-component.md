@@ -62,9 +62,9 @@ specify how to map the content of local files to component outputs.
 
 ## Create a Python class for your component
 
-Define a Python class to describe the interactions with the Docker container
+Define a Python function to describe the interactions with the Docker container
 image that contains your pipeline component. For example, the following
-Python class describes a component that trains an XGBoost model:
+Python function describes a component that trains an XGBoost model:
 
 ```python
 def dataproc_train_op(
@@ -109,7 +109,7 @@ def dataproc_train_op(
 
 ```
 
-The above class is an extract from the
+The above function is an extract from the
 [XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py).
 
 Note:
