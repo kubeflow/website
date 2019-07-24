@@ -72,7 +72,7 @@ servers in their primary profile which they have view and modify access to.
 
 ## Onboard new user
 
-An **administrator** needs to create a profile for any user in kubeflow cluster.
+An **administrator** needs to create a profile for any user in the kubeflow cluster.
 Here an administrator is a person who has
 [*cluster-admin*](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
 role binding in the Kubernetes cluster. This person has permissions to create
@@ -83,10 +83,10 @@ There are 2 steps to onboard a new user:
 
 #### Step 1: Grant user minimal k8s cluster view access
 
-User should be given minimal permission scope that allow them connecting to k8s cluster.
+User should be given minimal permission scope that allows them to connect to the Kubernetes cluster.
 For example for GCP users, they can be granted IAM role: **Kubernetes Engine Cluster Viewer**
 
-#### Step 2: creating a user profile 
+#### Step 2: Creating a user profile 
 
 Create a
 `profile.yaml` file with the following contents on your local machine:
