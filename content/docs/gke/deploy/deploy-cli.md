@@ -215,6 +215,17 @@ The three service accounts are:
   account has the minimal permissions needed to send metrics and logs to 
   [Stackdriver](https://cloud.google.com/stackdriver/).
 
+## Deployment Trouble Shooting
+
+* Make sure user are GCP project owner
+* Check project [quota page](https://pantheon.corp.google.com/iam-admin/quotas) to see if there are any quota limit, increase them as needed.
+* Check [deployment manager page](https://console.cloud.google.com/deployments) and see if there’s a failed deployment.
+* Check if endpoint is up: do [DNS lookup](https://mxtoolbox.com/DNSLookup.aspx) against your IAP url and see if can resolve to correct ip.
+* Check if certificate succeeded: “kubectl describe certificates -n kubeflow” should give you certificate status.
+* Ensure that you added https://<deployment>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate 
+as an authorized redirect URI for the OAUTH credentials used to create the deployment.
+* Please report bug to kubeflow-engineering@google.com if all above items look good.
+
 ## Next steps
 
 * Run a full ML workflow on Kubeflow, using the
