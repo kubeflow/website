@@ -219,7 +219,7 @@ The three service accounts are:
 * Check [deployment manager page](https://console.cloud.google.com/deployments) and see if there’s a failed deployment.
 * Check if endpoint is up: do [DNS lookup](https://mxtoolbox.com/DNSLookup.aspx) against your IAP url and see if can resolve to correct ip.
 * Check if certificate succeeded: “kubectl describe certificates -n kubeflow” should give you certificate status.
-* Ensure that you added https://<deployment>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate 
+* If you use IAP: ensure that you added https://<deployment>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate 
 as an authorized redirect URI for the OAUTH credentials used to create the deployment.
 * Please report bug to kubeflow-engineering@google.com if all above items look good.
 
