@@ -4,60 +4,15 @@ description = "Instructions for installing Kubeflow with authentication support"
 weight = 4
 +++
 
-This installation of Kubeflow is maintained by [Arrikto](https://www.arrikto.com/), is geared towards existing Kubernetes clusters and does not depend on any cloud-specific feature.
+This installation of Kubeflow is geared towards existing Kubernetes clusters and does not depend on any cloud-specific feature.
 
 In this reference architecture, we use [Dex](https://github.com/dexidp/dex) and [Istio](https://istio.io/) for vendor-neutral authentication.
 
 ![platform existing architecture](https://i.imgur.com/OlaN73j.png)
 
 ### Prerequisites
-- Kubernetes Cluster with LoadBalancer support.
+- Kubernetes Cluster with LoadBalancer support. Refer [Load Balancer](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/) guide.
 
-If you don't have a Kubernetes Cluster, you can create a compliant Kubernetes Engine (GKE) on Google Cloud Platform cluster with the following script:
-
-<details>
-
-<summary>GKE Cluster Creation Script</summary>
-
-```bash
-#!/bin/bash
-
-set -e
-
-# This script uses the gcloud command.
-# For more info, visit: https://cloud.google.com/sdk/gcloud/reference/container/
-
-# Edit according to your preference
-GCP_USER="$(gcloud config list account --format "value(core.account)")"
-GCP_PROJECT="$(gcloud config list project --format "value(core.project)")"
-GCP_ZONE="us-west1-b"
-
-CLUSTER_VERSION="$(gcloud container get-server-config --format="value(validMasterVersions[0])")" 
-CLUSTER_NAME="kubeflow"
-
-############################
-# Create and setup cluster #
-############################
-
-gcloud container clusters create ${CLUSTER_NAME} \
---project ${GCP_PROJECT} \
---zone ${GCP_ZONE} \
---cluster-version ${CLUSTER_VERSION} \
---machine-type "n1-standard-8" --num-nodes "1" \
---image-type "UBUNTU" \
---disk-type "pd-ssd" --disk-size "50" \
---no-enable-cloud-logging --no-enable-cloud-monitoring \
---no-enable-ip-alias \
---enable-autoupgrade --enable-autorepair
-
-echo "Getting credentials for newly created cluster..."
-gcloud container clusters get-credentials ${CLUSTER_NAME} --zone=${GCP_ZONE}
-
-echo "Setting up GKE RBAC..."
-kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=${GCP_USER}
-```
-
-</details>
 
 ### Deploy Kubeflow
 
@@ -70,14 +25,7 @@ Follow these steps to deploy Kubeflow:
     ```
     tar -xvf kfctl_<release tag>_<platform>.tar.gz
     ```
-
-    Alternatively, you can build the `kfctl` binary yourself:
-
-    ```
-    git clone https://github.com/kubeflow/kubeflow.git
-    cd kubeflow/bootstrap
-    make build-kfctl-container
-    ```    
+ 
 
 1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl` binary each time you run it.
 
