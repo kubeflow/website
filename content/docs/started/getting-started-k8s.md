@@ -46,6 +46,15 @@ kfctl apply all -V
   The content of this directory is described in the next section.
 
 
+1. Check the resources deployed in namespace `kubeflow`:
+
+```
+kubectl -n kubeflow get  all
+
+```
+
+1. Once Kubeflow is deployed, the Kubeflow Dashboard can be accessed via `Istio IngressGateway`. Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/)
+
 ### Delete Kubeflow
 
 Run the following commands to delete your deployment and reclaim all resources:
