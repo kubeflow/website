@@ -24,20 +24,20 @@ Follow these steps to deploy Kubeflow:
 
 1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl` binary each time you run it.
 
-```bash
-# Add kfctl to PATH, to make the kfctl binary easier to use.
-export PATH=$PATH:"<path to kfctl>"
-export KFAPP="<your choice of application directory name>"
-# Installs istio by default. Comment out istio components in the config file to skip istio installation. See https://github.com/kubeflow/kubeflow/pull/3663
-export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/master/bootstrap/config/kfctl_k8s_istio.yaml"
+   ```bash
+   # Add kfctl to PATH, to make the kfctl binary easier to use.
+   export PATH=$PATH:"<path to kfctl>"
+   export KFAPP="<your choice of application directory name>"
+   # Installs istio by default. Comment out istio components in the config file to skip istio installation. See https://github.com/kubeflow/kubeflow/pull/3663
+   export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/master/bootstrap/config/kfctl_k8s_istio.yaml"
 
-kfctl init ${KFAPP} --config=${CONFIG} -V
-cd ${KFAPP}
-kfctl generate all -V
-kfctl apply all -V
-```
+   kfctl init ${KFAPP} --config=${CONFIG} -V
+   cd ${KFAPP}
+   kfctl generate all -V
+   kfctl apply all -V
+   ```
 
- * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
+   * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
   configurations to be stored. This directory is created when you run
   `kfctl init`. If you want a custom deployment name, specify that name here.
   The value of this variable becomes the name of your deployment.
@@ -48,10 +48,10 @@ kfctl apply all -V
 
 1. Check the resources deployed in namespace `kubeflow`:
 
-```
-kubectl -n kubeflow get  all
+   ```
+   kubectl -n kubeflow get  all
 
-```
+   ```
 
 1. Once Kubeflow is deployed, the Kubeflow Dashboard can be accessed via `Istio IngressGateway`. Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/)
 
