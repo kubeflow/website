@@ -128,7 +128,7 @@ Deploy Kubeflow on GCP:
   guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
   taking note of the following:
 
-  * For the simplest deployment experience, use the Kubeflow deployment web app
+  * If you want the most simple deployment experience, use the Kubeflow deployment web app
     as described in the guide to 
     [deployment using the UI](/docs/gke/deploy/deploy-ui/).
     The deployment web app currently supports 
