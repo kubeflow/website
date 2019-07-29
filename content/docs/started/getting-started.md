@@ -8,7 +8,7 @@ weight = 1
 
 This document provides information about setting up Kubeflow in various environments.
 
-Before you set up Kubeflow, it's important to have some knowledge of the following systems and tools:
+It's important that you have some knowledge of the following systems and tools:
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 * [TensorFlow](https://www.tensorflow.org/get_started/)
@@ -16,14 +16,21 @@ Before you set up Kubeflow, it's important to have some knowledge of the followi
 
 ### Kubeflow requirements
 
- * kustomize version {{% kustomize-min-version %}} or later. See the 
-   [kustomize component guide](https://github.com/kubeflow/manifests#using-kustomize) for details about
-   installing kustomize.
- * An existing Kubernetes cluster using Kubernetes version 
-   {{% kubernetes-min-version %}} or later:
+Before installing Kubeflow, ensure that your environment meets the
+following requirements:
 
-   * A minimum of 0.6 CPU in cluster (Reserved for 3 replicated ambassador pods and according to your need add additional CPUs)
-   * Node with storage >= 10 GB (Due to the ML libraries and third party packages being bundled in Kubeflow Docker images)
+* You need kustomize version {{% kustomize-min-version %}} or later. See the 
+  [kustomize component guide](/docs/components/misc/kustomize/) 
+  for details about installing kustomize.
+
+* If you intend to install Kubeflow on an existing Kubernetes cluster, the
+  cluster must meet the following requirements:
+
+  * Kubernetes version {{% kubernetes-min-version %}} or later.
+  * A minimum of 0.6 CPU in cluster. (Reserved for 3 replicated ambassador pods 
+    and according to your needs add additional CPUs.)
+  * Node with storage >= 10 GB. (Due to the ML libraries and third party packages 
+    bundled in the Kubeflow Docker images.)
 
 ## Get your machine-learning workflow up and running on Kubeflow
 
@@ -88,12 +95,17 @@ to suit your environment (cloud, on premises (on prem), or local):
 
 ## Installing command line tools
 
-* Download the `kfctl` command line interface from the
+The following information is useful if you need or prefer to use command line
+tools for deploying and managing Kubeflow:
+
+* Download the `kfctl` binary from the
   [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
 
-* Follow the `kubectl` installation and setup from the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-
-* Download the `kustomize` command line interface from the [kustomize release page](https://github.com/kubernetes-sigs/kustomize/releases/).
+* Follow the `kubectl` installation and setup from the [Kubernetes 
+  documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+  As described in the Kubernetes documentation, your kubectl 
+  version must be within one minor version of the Kubernetes version that you
+  use in your Kubeflow cluster.
 
 ## Troubleshooting
 
