@@ -91,11 +91,11 @@ kubectl apply -f jupyter-web-app.yaml
 
 Add GPU nodes to your cluster:
 
-  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L40).
+  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/master/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L56).
 
 Add Cloud TPUs to your cluster:
 
-  * Set `enable_tpu:true` [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L52).
+  * Set `enable_tpu:true` [here](https://github.com/kubeflow/kubeflow/blob/master/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L78).
 
 Add VMs with more CPUs or RAM:
 
