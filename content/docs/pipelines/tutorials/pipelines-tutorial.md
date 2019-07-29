@@ -128,22 +128,30 @@ Deploy Kubeflow on GCP:
   guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
   taking note of the following:
 
+  * If you want the most simple deployment experience, use the Kubeflow deployment web app
+    as described in the guide to 
+    [deployment using the UI](/docs/gke/deploy/deploy-ui/).
+    The deployment web app currently supports 
+    **Kubeflow {{% kf-deployment-ui-version %}}**.
+  * For more control
+    over the deployment, use the guide to 
+    [deployment using the CLI](/docs/gke/deploy/deploy-cli/).
+    The CLI supports **Kubeflow {{% kf-latest-version %}}** and later versions.
   * Make sure that you enable **Cloud Identity-Aware Proxy (IAP)**
     as prompted during the deployment process.
   * When setting up the **authorized redirect URI** for the **OAuth client 
     credentials**, use the same value for the `<deployment_name>` as you used
     when setting up the `DEPLOYMENT_NAME` environment variable earlier in this
     tutorial.
-  * Choose **Kubeflow {{% kf-stable-tag %}}** or later.
-
-    The following screenshot shows the Kubeflow deployment UI with hints about
+  * The following screenshot shows the Kubeflow deployment UI with hints about
     the value for each input field:
 
     <img src="/docs/images/gcp-e2e-deploy-kubeflow.png" 
         alt="Prediction UI"
         class="mt-3 mb-3 p-3 border border-info rounded">
 
-1. (Optional) If you want to examine your cluster while waiting for the UI to
+1. (Optional) If you want to examine your cluster while waiting for the 
+   Kubeflow dashboard to
    be available, you can use `kubectl` to connect to your cluster:
 
   * Connect your Cloud Shell session to the cluster:
