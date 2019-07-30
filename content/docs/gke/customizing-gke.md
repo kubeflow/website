@@ -52,7 +52,7 @@ To customize the Kubeflow resources running within the cluster you can modify th
 For example, to modify settings for the Jupyter web app:
 
 ```
-cd ${KF_APP}/kustomize
+cd ${KFAPP}/kustomize
 gvim jupyter-web-app.yaml
 ```
 
