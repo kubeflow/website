@@ -91,18 +91,18 @@ kubectl apply -f jupyter-web-app.yaml
 
 Add GPU nodes to your cluster:
 
-  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L40).
+  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L56).
 
 Add Cloud TPUs to your cluster:
 
-  * Set `enable_tpu:true` [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L52).
+  * Set `enable_tpu:true` [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L78).
 
 Add VMs with more CPUs or RAM:
 
   * Change the machineType.
   * There are two node pools:
-      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96).
-      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96).
+      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L109).
+      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L149).
   * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment.
 
 Add users to Kubeflow:
