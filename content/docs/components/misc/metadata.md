@@ -8,7 +8,7 @@ The goal of the [Metadata](https://github.com/kubeflow/metadata) project is to h
 
 ## Installation
 
-The Metadata component is installed by default for Kubeflow versions >= 0.6.
+The Metadata component is installed by default for Kubeflow versions >= 0.6.1.
 
 If you want to install the latest version of the Metadata component or install it as an application in your Kubernetes cluster, you can follow these steps:
 
