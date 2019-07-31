@@ -101,28 +101,8 @@ See the [Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting/).
 
 ## Next steps
 
-* See the [documentation](/docs/) for in-depth instructions on using Kubeflow.
+* Read the [documentation](/docs/) for in-depth instructions on using Kubeflow.
+* Explore the [tutorials and 
+  codelabs](/docs/examples/codelabs-tutorials/) for learning and trying out Kubeflow.
 * Build machine-learning pipelines with the [Kubeflow Pipelines
   SDK](/docs/pipelines/sdk/sdk-overview/).
-* Explore the self-paced scenarios for learning and trying out Kubeflow:
-  * [Codelabs](https://codelabs.developers.google.com/?cat=tensorflow)
-      * [Introduction to Kubeflow on Google Kubernetes
-        Engine](https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html)
-      * [Kubeflow End to End: GitHub Issue
-        Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-e2e-gis/index.html)
-      * [Kubeflow Pipelines: GitHub Issue
-        Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-pipelines-gis/index.html)
-  * [Katacoda](https://www.katacoda.com/kubeflow)
-      * [Deploying GitHub Issue Summarization with
-        Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploying-github-issue-summarization)
-      * [Deploying
-        Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploying-kubeflow)
-      * [Deploying Kubeflow with
-        Ksonnet](https://www.katacoda.com/kubeflow/scenarios/deploying-kubeflow-with-ksonnet)
-      * [Deploying Pytorch with
-        Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploy-pytorch-with-kubeflow)
-  * [Qwiklabs](https://qwiklabs.com/catalog?keywords=kubeflow)
-      * [Introduction to Kubeflow on Google Kubernetes
-        Engine](https://qwiklabs.com/focuses/960?locale=en&parent=catalog)
-      * [Kubeflow End to End: GitHub Issue
-        Summarization](https://qwiklabs.com/focuses/1257?locale=en&parent=catalog)
