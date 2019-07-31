@@ -1,13 +1,17 @@
 +++
 title = "Pipelines End-to-end on GCP"
 description = "An end-to-end tutorial for Kubeflow Pipelines on GCP"
-weight = 2
+weight = 15
 +++
 
 This guide walks you through a Kubeflow Pipelines sample that runs an MNIST
 machine learning (ML) model on Google Cloud Platform (GCP).
 
 ## Introductions
+
+[Kubeflow Pipelines](/docs/pipelines/) is a platform for building and 
+deploying portable, scalable machine learning (ML) workflows based on 
+Docker containers. When you install Kubeflow, you get Kubeflow Pipelines too.
 
 By working through this tutorial, you learn how to deploy Kubeflow on 
 Kubernetes Engine (GKE) and run a pipeline supplied as a Python script. 
