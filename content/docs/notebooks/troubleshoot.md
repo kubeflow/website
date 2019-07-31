@@ -69,7 +69,6 @@ Warning  FailedCreate  2m19s (x26 over 7m39s)  statefulset-controller  create Po
 To fix this problem, create a service account named `default-editor` with cluster-admin role.
 
 ```
-kubectl create clusterrolebinding default-editor \
-  --clusterrole=cluster-admin \
-  --group=system:serviceaccounts
+kubectl create sa default-editor
+kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user default-editor
 ```
