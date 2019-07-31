@@ -8,7 +8,7 @@ weight = 50
 
 First, make sure that PVCs are bounded when using jupter notebooks. This should
 not be a problem when using managed Kuberenets. But if you are using Kubernetes
-on-prem, checkout [https://www.kubeflow.org/docs/use-cases/kubeflow-on-multinode-cluster/](this) guide.
+on-prem, checkout [this](https://www.kubeflow.org/docs/use-cases/kubeflow-on-multinode-cluster/) guide.
 
 ## Check the status of notebooks
 
