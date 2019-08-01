@@ -1,41 +1,42 @@
 +++
 title = "Codelabs, Workshops, and Tutorials"
-description = "Recommended end-to-end tutorials, workshops, walk-throughs, and codelabs"
+description = "Recommended end-to-end tutorials, workshops, walk throughs, and codelabs"
 weight = 20
 +++
 
-{{% blocks/content-item title="OpenShift Kubeflow Workshop"
-  url="https://github.com/AICoE/openshift_kubeflow_workshop" %}}
-Run Kubeflow on Red Hat [OpenShift](https://www.openshift.com/).
-{{% /blocks/content-item %}}
+## Agile Stacks Kubeflow Pipelines tutorials
 
-{{% blocks/content-item title="Agile Stacks Kubeflow Pipelines Tutorial"
-  url="https://www.agilestacks.com/tutorials/ml-pipelines" %}}
 Run Kubeflow Pipelines tutorials on AWS, GCP, or on-prem hardware using [Agile Stacks](https://www.agilestacks.com/).
 Pipeline templates provide step-by-step examples for working with object storage filesystem, Kaniko, Keras, and Seldon.
-{{% /blocks/content-item %}}
 
-{{% blocks/content-item title="Katacoda scenarios"
-  url="https://www.katacoda.com/kubeflow" %}}
-Follow the tutorials to deploy Kubeflow and run a machine learning model.
-{{% /blocks/content-item %}}
+* [ML Pipeline Templates: End-to-end Tutorial](https://www.agilestacks.com/tutorials/ml-pipelines).
 
-{{% blocks/content-item title="Introduction to Kubeflow Codelab"
-  url="https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html" %}}
-Run MNIST with Kubeflow on Google Kubernetes Engine.
-{{% /blocks/content-item %}}
+## Google codelabs
 
-{{% blocks/content-item title="Introduction to Kubeflow Qwiklab"
-  url="https://www.qwiklabs.com/catalog_lab/933" %}}
-Run MNIST with resources provided by Qwiklabs.
-{{% /blocks/content-item %}}
+Google Developers Codelabs provide a guided, tutorial, hands-on coding experience.
 
-{{% blocks/content-item title="Kubeflow End to End Codelab"
-  url="https://codelabs.developers.google.com/codelabs/cloud-kubeflow-e2e-gis/index.html" %}}
-Run GitHub Issue Summarization with Kubeflow on Google Kubernetes Engine.
-{{% /blocks/content-item %}}
+* [Introduction to Kubeflow on GKE](https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html): Run MNIST with Kubeflow on Google Kubernetes Engine (GKE).
 
-{{% blocks/content-item title="Kubeflow End to End Qwiklab"
-  url="https://www.qwiklabs.com/catalog_lab/1046" %}}
-Run GitHub Issue Summarization with resources provided by Qwiklabs.
-{{% /blocks/content-item %}}
+* [Kubeflow End to End - GitHub Issue Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-e2e-gis/): Run GitHub Issue Summarization with Kubeflow on GKE.
+
+* [Kubeflow Pipelines - GitHub Issue
+  Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-pipelines-gis/index.html): Run GitHub Issue Summarization with Kubeflow Pipelines on GKE.
+
+## Katacoda scenarios
+
+Follow the [Katacoda tutorials](https://www.katacoda.com/kubeflow) to deploy Kubeflow and run a machine learning model.
+
+* [Deploying GitHub Issue Summarization with
+  Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploying-github-issue-summarization).
+* [Deploying
+  Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploying-kubeflow).
+* [Deploying Kubeflow with
+  ksonnet](https://www.katacoda.com/kubeflow/scenarios/deploying-kubeflow-with-ksonnet).
+* [Deploying Pytorch with
+  Kubeflow](https://www.katacoda.com/kubeflow/scenarios/deploy-pytorch-with-kubeflow).
+
+## OpenShift Kubeflow workshops
+
+Run Kubeflow on [Red Hat OpenShift](https://www.openshift.com/).
+
+* [Kubeflow on OpenShift Workshop](https://github.com/AICoE/openshift_kubeflow_workshop).

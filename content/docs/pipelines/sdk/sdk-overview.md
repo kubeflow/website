@@ -239,7 +239,7 @@ You can also choose to share your pipeline as follows:
 * Upload the pipeline zip file to the Kubeflow Pipelines UI. For more 
   information about the UI, see the [Kubeflow Pipelines quickstart 
   guide](/docs/pipelines/pipelines-quickstart/).
-* Upload the pipeline zipe file to a shared repository, such as
+* Upload the pipeline zip file to a shared repository, such as
   [AI Hub](https://cloud.google.com/ai-hub/docs/publish-pipeline).
 
 {{% alert title="More about the above workflow" color="info" %}}
@@ -350,7 +350,7 @@ You can also choose to share your pipeline as follows:
 * Upload the pipeline zip file to the Kubeflow Pipelines UI. For more 
   information about the UI, see the [Kubeflow Pipelines quickstart 
   guide](/docs/pipelines/pipelines-quickstart/).
-* Upload the pipeline zipe file to a shared repository, such as
+* Upload the pipeline zip file to a shared repository, such as
   [AI Hub](https://cloud.google.com/ai-hub/docs/publish-pipeline).
 
 {{% alert title="More about the above workflow" color="info" %}}
