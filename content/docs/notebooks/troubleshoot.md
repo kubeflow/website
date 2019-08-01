@@ -6,12 +6,11 @@ weight = 50
 
 ## Persistent Volumes and Persistent Volumes Claims
 
-First, make sure that PVCs are bounded when using jupter notebooks. This should
-not be a problem when using managed Kuberenets. But if you are using Kubernetes
-on-prem, checkout [this](https://www.kubeflow.org/docs/use-cases/kubeflow-on-multinode-cluster/) guide.
+First, make sure that PVCs are bounded when using Jupter notebooks. This should
+not be a problem when using managed Kuberenetes. But if you are using Kubernetes
+on-prem, check out the guide to [Kubeflow on-prem in a multi-node Kubernetes cluster](/docs/use-cases/kubeflow-on-multinode-cluster/) if you are running Kubeflow in multi-node on-prem environment. Otherwise, look at the [Pods stuck in Pending State](/docs/other-guides/troubleshooting/#pods-stuck-in-pending-state) guide to troubleshoot this problem.
 
 ## Check the status of notebooks
-
 
 Run the commands below.
 
@@ -20,9 +19,9 @@ kubectl get notebooks -o yaml ${NOTEBOOK}
 kubectl describe notebooks ${NOTEBOOK}
 ```
 
-Check the `events` section to make sure that there is not any errors.
+Check the `events` section to make sure that there are no errors.
 
-## Check the status of statufulsets
+## Check the status of statefulsets
 
 Make sure that the number of `statefulsets` equals the desired number. If it is
 not the case, check for errors using the `kubectl describe`. 
@@ -43,13 +42,35 @@ your-notebook   1         1         9m4s
 
 If the number of statefulsets didn't match the desired number, make sure that 
 the number of Pods match the number of desired Pods in the first  command. 
-In case it didn't match run the command below and check for any errors 
-in the `events` section.
+In case it didn't match, follow the steps below to further investigate the issue.
 
 ```
 kubectl get pod -o yaml ${NOTEBOOK}-0
+```
+
+* The name of the Pod should start with `jupter`
+* If you are using username/password auth with Jupyter the pod will be named
+
+```
+jupyter-${USERNAME}
+```
+
+* If you are using IAP on GKE the pod will be named
+
+```
+jupyter-accounts-2egoogle-2ecom-3USER-40DOMAIN-2eEXT
+```
+    * Where USER@DOMAIN.EXT is the Google account used with IAP
+
+Once you know the name of the pod do
+
+```
 kubectl describe pod ${NOTEBOOK}-0
 ```
+
+* Look at the `events` to see if there are any errors trying to schedule the pod
+* One common error is not being able to schedule the pod because there aren’t enough resources in the cluster.
+
 
 If the error still persisted, check for the errors in the logs of containers.
 
