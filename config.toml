@@ -105,12 +105,12 @@ privacy_policy = "https://policies.google.com/privacy"
 # Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
 gcs_engine_id = "007239566369470735695:624rglujm-w"
 
-version = "master"
+version = "master (v0.6)"
 githubbranch = "master"
 
 # Add new release versions here
 [[params.versions]]
-  version = "master"
+  version = "master (v0.6)"
   githubbranch = "master"
   url = "https://master.kubeflow.org"
 
