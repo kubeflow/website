@@ -10,7 +10,7 @@ Kubeflow, to allow jobs to run multiple pods at the same time.
 ## Running jobs with gang-scheduling
 To use gang-scheduling, you have to install volcano scheduler in your cluster first as a secondary scheduler of Kubernetes and configure operator to enable gang-scheduling. 
 
-* Volcano's repo is [here](https://github.com/volcano-sh/volcano)  and check how to install it [here](https://github.com/volcano-sh/volcano).
+* Follow the [instructions in the volcano repository](https://github.com/volcano-sh/volcano) to install Volcano.
 * Take tf-operator for example, enable gang-scheduling in tf-operator by setting true to `--enable-gang-scheduling` flag.
 
 **Note:** Volcano scheduler and operator in Kubeflow achieve gang-scheduling by using [PodGroup](https://github.com/volcano-sh/volcano/blob/master/pkg/apis/scheduling/v1alpha2/types.go). operator will create the PodGroup of the job automatically.
