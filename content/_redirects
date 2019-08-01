@@ -42,7 +42,8 @@
 /docs/pipelines/pipelines-overview/            /docs/pipelines/overview/pipelines-overview/
 /docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/pipelines/sdk/gcp/enable-gpu-and-tpu/
 /docs/pipelines/preemptible/                   /docs/pipelines/sdk/gcp/preemptible/
-/docs/pipelines/reusable-components/           /docs/pipelines/sdk/reusable-components/
+/docs/pipelines/reusable-components/           /docs/examples/shared-resources/
+/docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
 
 # Moved the guide to monitoring GKE deployments.
 /docs/other-guides/monitoring/                 /docs/gke/monitoring/
