@@ -7,15 +7,16 @@
     headings.forEach(function(heading) {
       if (heading.id) {
         var a = document.createElement('a');
-        a.style.display = 'none';
+        // set visibility: hidden, not display: none to avoid layout change
+        a.style.visibility = 'hidden';
         a.innerHTML = ' #'
         a.href = '#'+heading.id;
         heading.insertAdjacentElement('beforeend', a);
         heading.addEventListener('mouseenter', function() {
-          a.style.display = 'inline';
+          a.style.visibility = 'initial';
         });
         heading.addEventListener('mouseleave', function() {
-          a.style.display = 'none';
+          a.style.visibility = 'hidden';
         });
       }
     });
