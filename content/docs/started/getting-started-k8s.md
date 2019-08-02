@@ -2,9 +2,6 @@
 title = "Kubeflow on Existing Kubernetes Clusters"
 description = "Instructions for installing Kubeflow on your existing Kubernetes cluster with list of supported options"
 weight = 4
-aliases = [
-    "/docs/k8s/"
-]
 +++
 
 Follow these instructions if you want to install Kubeflow on an existing Kubernetes cluster.
