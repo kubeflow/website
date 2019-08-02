@@ -1,14 +1,23 @@
 <script>
-  // Add anchor links to headings in markdown.
-  const article = document.getElementsByTagName('main')[0];
-  const headings = article.querySelectorAll('h1, h2, h3, h4, h5, h6');
-  headings.forEach(function(heading){
-    if (heading.id){
-      var a = document.createElement('a');
-      a.innerHTML = heading.innerHTML;
-      a.href = '#'+heading.id;
-      heading.innerHTML = '';
-      heading.appendChild(a);
-    }
-  });
+  // avoid polluting global namespace
+  (function() {
+    // Append anchor links to headings in markdown.
+    var article = document.getElementsByTagName('main')[0];
+    var headings = article.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach(function(heading) {
+      if (heading.id) {
+        var a = document.createElement('a');
+        a.style.display = 'none';
+        a.innerHTML = ' #'
+        a.href = '#'+heading.id;
+        heading.insertAdjacentElement('beforeend', a);
+        heading.addEventListener('mouseenter', function() {
+          a.style.display = 'inline';
+        });
+        heading.addEventListener('mouseleave', function() {
+          a.style.display = 'none';
+        });
+      }
+    });
+  })();
 </script>
