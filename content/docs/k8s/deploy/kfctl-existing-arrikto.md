@@ -1,12 +1,12 @@
 +++
-title = "Kubeflow Authentication with Istio and Dex"
-description = "Instructions for installing Kubeflow with authentication support"
+title = "Kubeflow Deployment with kfctl_existing_arrikto"
+description = "Instructions for installing Kubeflow with kfctl_existing_arrikto config"
 weight = 4
 +++
 
-This installation of Kubeflow is geared towards existing Kubernetes clusters and does not depend on any cloud-specific feature.
+This deployment uses [Dex](https://github.com/dexidp/dex) and [Istio](https://istio.io/) for vendor-neutral authentication.
 
-In this reference architecture, we use [Dex](https://github.com/dexidp/dex) and [Istio](https://istio.io/) for vendor-neutral authentication.
+**Maintainer and supporter: Arrikto**
 
 ![platform existing architecture](https://i.imgur.com/OlaN73j.png)
 
