@@ -60,7 +60,7 @@ local file, such as `/output.txt`. In the Python class that defines your
 pipeline (see [below](#define-pipeline)) you can 
 specify how to map the content of local files to component outputs.
 
-## Create a Python class for your component
+## Create a Python function to wrap your component
 
 Define a Python function to describe the interactions with the Docker container
 image that contains your pipeline component. For example, the following
@@ -109,19 +109,16 @@ def dataproc_train_op(
 
 ```
 
-The above function is an extract from the
+The function must returns a dsl.ContainerOp from the
 [XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py).
 
 Note:
 
 * Each component must inherit from 
   [`dsl.ContainerOp`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_container_op.py).
-* In the `dataproc_train_op` arguments, you can include Python native types (such as `str` 
-  and `int`) and
-  [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py) 
-  types. Each `dsl.PipelineParam` represents a parameter whose value is usually 
-  only known at run time. The value is either provided by the user at pipeline run time or received as an output 
-  from an upstream component. 
+* Allowed arguments for `dataproc_train_op` include both Python scalar types (such as `str` and ` int`) and           [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py) types when constructing 
+  `dsl.ContainerOp`. Each `dsl.PipelineParam` represents a parameter whose value is usually only known at run time. The value is 
+  either provided by the user at pipeline run time or received as an output from an upstream component. 
 * Although the value of each `dsl.PipelineParam` is only available at run time,
   you can still use the parameters inline in the `arguments` by using `%s`
   variable substitution. At run time the argument contains the value of the 
