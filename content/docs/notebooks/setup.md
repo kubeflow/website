@@ -265,4 +265,6 @@ exposed to the internet and is an unsecured endpoint by default.
 * Learn the advanced features available from a Kubeflow notebook, such as
   [submitting Kubernetes resources](/docs/notebooks/submit-kubernetes/) or
   [building Docker images](/docs/notebooks/submit-docker-image/). 
-  
+* Visit the [troubleshooting guide](/docs/notebooks/troubleshoot) for fixing common
+  errors in creating Jupyter notebooks in Kubeflow
+
