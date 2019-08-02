@@ -12,10 +12,13 @@ This page links to websites where you can find machine learning
 [AI Hub](https://aihub.cloud.google.com/) is a platform for discovering and 
 deploying ML products.
 
-AI Hub includes the following shared resources that you can use within your Kubeflow deployment:
+AI Hub includes the following shared resources that you can use within your 
+Kubeflow deployment:
 
-* [Pipelines and compo](https://aihub.cloud.google.com/s?category=pipeline) that you can use with Kubeflow Pipelines.
-* [Jupyter notebooks](https://aihub.cloud.google.com/s?category=notebook) that you can upload to the notebooks server in your Kubeflow cluster.
+* [Pipelines and components](https://aihub.cloud.google.com/s?category=pipeline) 
+  that you can use with Kubeflow Pipelines.
+* [Jupyter notebooks](https://aihub.cloud.google.com/s?category=notebook) that 
+  you can upload to the notebooks server in your Kubeflow cluster.
 
 ## Reusable components for Kubeflow Pipelines
 
