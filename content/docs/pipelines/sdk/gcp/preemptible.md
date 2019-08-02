@@ -254,7 +254,7 @@ For example:
       flip = FlipCoinOp().set_gpu_limit(1, 'nvidia').apply(gcp.use_preemptible_nodepool())
     if __name__ == '__main__':
       import kfp.compiler as compiler
-      compiler.Compiler().compile(flipcoin, __file__ + '.
+      compiler.Compiler().compile(flipcoin, __file__ + '.zip')
 
 ## Comparison with Cloud AI Platform Training service
 

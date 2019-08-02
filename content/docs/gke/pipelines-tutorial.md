@@ -1,13 +1,17 @@
 +++
 title = "Pipelines End-to-end on GCP"
 description = "An end-to-end tutorial for Kubeflow Pipelines on GCP"
-weight = 2
+weight = 15
 +++
 
 This guide walks you through a Kubeflow Pipelines sample that runs an MNIST
 machine learning (ML) model on Google Cloud Platform (GCP).
 
 ## Introductions
+
+[Kubeflow Pipelines](/docs/pipelines/) is a platform for building and 
+deploying portable, scalable ML workflows based on 
+Docker containers. When you install Kubeflow, you get Kubeflow Pipelines too.
 
 By working through this tutorial, you learn how to deploy Kubeflow on 
 Kubernetes Engine (GKE) and run a pipeline supplied as a Python script. 
@@ -20,8 +24,7 @@ Google Cloud Platform (GCP) is a suite of cloud computing services running
 on Google infrastructure. The services include compute power, data storage,
 data analytics, and machine learning.
 
-The [Cloud SDK][cloud-sdk] is a set of tools that you can use to interact with
-GCP from the command line, including the `gcloud` command and others.
+The [Cloud Shell][cloud-shell] is a browser interface that provides command-line access to cloud resources that you can use to interact with GCP, including the `gcloud` command and others. 
 
 [Kubernetes Engine][kubernetes-engine] (GKE) is a managed service on GCP where
 you can deploy containerized applications. You describe the resources that your
@@ -72,28 +75,17 @@ Follow these steps to set up your GCP environment:
 1. Select or create a project on the [GCP Console][gcp-console].
 1. Make sure that billing is enabled for your project. See the guide to
   [modifying a project's billing settings][billing-guide].
-1. Install the [Cloud SDK][cloud-sdk].
+1. Use [Cloud console to grant your team access][granting-changing-revoking-access] to Kubeflow by assigning them the following roles:
 
+    - **Project Owner**: Ensures that your team can access all of the resources used in this guide.
+    - **IAP-secured Web App User**: This guide uses Cloud Identity-Aware Proxy (IAP) to secure access to your Kubeflow cluster. Your team must be members of the IAP-secured Web App User role to authenticate with the Kubeflow web application.
+     
 Notes:
 
 * As you work through this tutorial, your project uses billable components of
   GCP. To minimise costs, follow the instructions to
   [clean up your GCP resources](#cleanup) when you've finished with them.
-* This guide assumes you want to manage your GCP environment on your own server
-  rather than in the [Cloud Shell][cloud-shell] environment. If you choose to
-  use the Cloud Shell, some of the components are pre-installed in your shell.
-
-### (Optional) Install kubectl
-
-`kubectl` is the command-line tool for Kubernetes. `kubectl` is useful if you 
-want to interact with your Kubeflow cluster locally. If you decide not to use
-`kubectl`, you can skip the steps later in the tutorial that use the command.
-
-Run the following Cloud SDK command to install `kubectl`:
-
-```
-gcloud components install kubectl
-```
+* This guide uses [Cloud Shell][cloud-shell] to manage your GCP environment, to save you the steps of installing [Cloud SDK][cloud-sdk] and [kubectl][kubectl]. 
 
 ### Set up some handy environment variables
 
@@ -131,7 +123,7 @@ Set up the following environment variables for use throughout the tutorial:
     ```
     export DEPLOYMENT_NAME=kubeflow
     ```
-
+    
 ### Deploy Kubeflow
 
 Deploy Kubeflow on GCP:
@@ -140,25 +132,33 @@ Deploy Kubeflow on GCP:
   guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
   taking note of the following:
 
+  * If you want the most simple deployment experience, use the Kubeflow deployment web app
+    as described in the guide to 
+    [deployment using the UI](/docs/gke/deploy/deploy-ui/).
+    The deployment web app currently supports 
+    **Kubeflow {{% kf-deployment-ui-version %}}**.
+  * For more control
+    over the deployment, use the guide to 
+    [deployment using the CLI](/docs/gke/deploy/deploy-cli/).
+    The CLI supports **Kubeflow {{% kf-latest-version %}}** and later versions.
   * Make sure that you enable **Cloud Identity-Aware Proxy (IAP)**
     as prompted during the deployment process.
   * When setting up the **authorized redirect URI** for the **OAuth client 
     credentials**, use the same value for the `<deployment_name>` as you used
     when setting up the `DEPLOYMENT_NAME` environment variable earlier in this
     tutorial.
-  * Choose **Kubeflow version v0.4.1** or later.
-
-    The following screenshot shows the Kubeflow deployment UI with hints about
+  * The following screenshot shows the Kubeflow deployment UI with hints about
     the value for each input field:
 
     <img src="/docs/images/gcp-e2e-deploy-kubeflow.png" 
         alt="Prediction UI"
         class="mt-3 mb-3 p-3 border border-info rounded">
 
-1. (Optional) If you want to examine your cluster while waiting for the UI to
+1. (Optional) If you want to examine your cluster while waiting for the 
+   Kubeflow dashboard to
    be available, you can use `kubectl` to connect to your cluster:
 
-  * Connect your local `kubectl` session to the cluster:
+  * Connect your Cloud Shell session to the cluster:
 
       ```
       gcloud container clusters get-credentials \
@@ -264,7 +264,7 @@ If you don't have a Python 3 environment set up, install
   environment, run the following commands:   
 
     ```bash
-    apt-get update; apt-get install -y wget bzip2
+    apt-get update 
     wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
     bash Miniconda3-latest-Linux-x86_64.sh
     ```
@@ -400,6 +400,10 @@ UI.
     classification label from 0 to 9. Each bar represents
     the probability that the image matches the respective label.
 
+Notes:
+
+* You can find your trained model data in the bucket path you entered in step 5 of this procedure.
+ 
 ## Understanding the pipeline definition code
 
 The pipeline is defined in the Python file `mnist_pipeline.py` which you
@@ -610,4 +614,5 @@ SDK](/docs/pipelines/sdk/sdk-overview/).
 [gsutil-mb]: https://cloud.google.com/storage/docs/gsutil/commands/mb
 [gsutil-acl-ch]: https://cloud.google.com/storage/docs/gsutil/commands/acl#ch
 
-
+[granting-changing-revoking-access]: https://cloud.google.com/iam/docs/granting-changing-revoking-access#using_the
+[release-page]:https://github.com/kubeflow/kubeflow/releases

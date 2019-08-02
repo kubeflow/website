@@ -142,7 +142,7 @@ Download the three PVCs:
 
 ```shell
 kubectl get pvc/mysql-pv-claim -n kubeflow -o yaml > mysql-pv-claim.yaml
-kubectl get pvc/minio-pvc -n kubeflow -o yaml > minio-pvc.yaml
+kubectl get pvc/minio-pv-claim -n kubeflow -o yaml > minio-pvc.yaml
 kubectl get pvc/katib-mysql -n kubeflow -o yaml > katib.yaml
 ```
 
@@ -166,7 +166,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minio-pvc
+  name: minio-pv-claim
   namespace: kubeflow
   ...
 spec:
