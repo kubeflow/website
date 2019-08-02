@@ -473,9 +473,9 @@ defines the component.
 
 Below is a more detailed explanation of the above diagram:
 
-1. Find the YAML file that defines the reusable component. For example, use
-  one of the components listed in the [index of reusable 
-  components](/docs/pipelines/reusable-components/).
+1. Find the YAML file that defines the reusable component. For example, take a
+  look at the [reusable components and other shared 
+  resources](/docs/examples/shared-resources/).
 
 1. Use 
   [`kfp.components.load_component_from_url`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.load_component_from_url)
