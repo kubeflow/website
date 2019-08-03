@@ -7,6 +7,12 @@ weight = 50
 This page links to websites where you can find machine learning 
 (ML) resources shared by various communities and organizations.
 
+{{% alert title="Check the provider of any resource that you use" color="warning" %}}
+Pipelines, components, and other resources contain executable code.
+Before downloading and using a resource, make sure that you trust the provider
+of the resource.
+{{% /alert %}}
+
 ## AI Hub
 
 [AI Hub](https://aihub.cloud.google.com/) is a platform for discovering and 
