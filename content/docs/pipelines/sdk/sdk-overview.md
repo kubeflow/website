@@ -532,7 +532,7 @@ Below is a more detailed explanation of the above diagram:
     ```
 {{% alert title="More about the above workflow" color="info" %}}
 For an example, see the
-[`xgboost-training-cm.py`](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py)
+[`xgboost-training-cm.py`](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost-spark/xgboost-training-cm.py)
 pipeline sample on GitHub. The pipeline creates an XGBoost model using 
 structured data in CSV format.
 {{% /alert %}}
