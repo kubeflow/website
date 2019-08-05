@@ -72,16 +72,18 @@ Follow these steps to deploy Kubeflow:
 
     ```bash
     # The following command is optional, to make kfctl binary easier to use.
-    export PATH=$PATH:<path to kfctl in your kubeflow installation>
-    export ZONE=<your target zone> #where the deployment will be created
+    export PATH=$PATH:<path to your kfctl file>
+    export ZONE=<your target GCP zone> # where the deployment will be created
 
     export PROJECT=<your GCP project ID>
     
-    # The value of KFAPP must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character. (For example,  'kubeflow-test' or 'kfw-test'.)
+    # Set KFAPP to the name of your Kubeflow application. See detailed
+    # description in the text below this code snippet.
+    # For example,  'kubeflow-test' or 'kfw-test'.
     export KFAPP=<your choice of application directory name>
-    # Default uses Cloud IAP:
+    # Run this command for the default installation which uses Cloud IAP:
     kfctl init ${KFAPP} --platform gcp --project ${PROJECT}
-    # Alternatively, use this command if you want to use basic authentication:
+    # Alternatively, run this command if you want to use basic authentication:
     kfctl init ${KFAPP} --platform gcp --project ${PROJECT} --use_basic_auth -V
 
     cd ${KFAPP}
@@ -92,23 +94,27 @@ Follow these steps to deploy Kubeflow:
      configurations to be stored. This directory is created when you run
      `kfctl init`. If you want a custom deployment name, specify that name here.
      The value of this variable becomes the name of your deployment.
+     The value of KFAPP must consist of lower case alphanumeric characters or
+     '-', and must start and end with an alphanumeric character.
+     For example,  'kubeflow-test' or 'kfw-test'.
      The value of this variable cannot be greater than 25 characters. It must
      contain just the directory name, not the full path to the directory.
      The content of this directory is described in the next section.
    * **${PROJECT}** - the project ID of the GCP project where you want Kubeflow 
      deployed.
    * When you run `kfctl init` you need to choose to use either IAP or basic 
-     authentication, as described below.
+     authentication, as described above.
    * `kfctl generate all` attempts to fetch your email address from your 
      credential. If it can't find a valid email address, you need to pass a
      valid email address with flag `--email <your email address>`. This email 
      address becomes an administrator in the configuration of your Kubeflow 
      deployment.
 
-1. Check the resources deployed in namespace `kubeflow`:
+1. You can run the following command to check the resources deployed in 
+  namespace `kubeflow`:
 
     ```
-    kubectl -n kubeflow get  all
+    kubectl -n kubeflow get all
     ```
 
 1. The process creates a separate deployment for your data storage. After 
@@ -117,10 +123,11 @@ Follow these steps to deploy Kubeflow:
      pipelines.
    * **{KFAPP}**: This deployment has all the components of Kubeflow.
 
-1. Kubeflow will be available at the following URI:
+1. Access the Kubeflow central dashboard at the following URI when it becomes
+  available:
 
     ```
-    https://<deployment_name>.endpoints.<project>.cloud.goog/
+    https://<KFAPP>.endpoints.<project-id>.cloud.goog/
     ```
    * It can take 20 minutes for the URI to become available.
      Kubeflow needs to provision a signed SSL certificate and register a DNS 
@@ -137,9 +144,9 @@ Follow these steps to deploy Kubeflow:
 
 ## Understanding the deployment process
 
-The deployment process is controlled by 4 different commands:
+The `kfctl` deployment process includes by the following commands:
 
-* **init** - one time set up.
+* **init** - performs a one-time setup.
 * **generate** - creates configuration files defining the various resources.
 * **apply** - creates or updates the resources.
 * **delete** - deletes the resources.
@@ -151,7 +158,7 @@ following:
 * **platform** - all GCP resources; that is, anything that doesn't run on 
   Kubernetes.
 * **k8s** - all resources that run on Kubernetes.
-* **all** - GCP and Kubernetes resources.
+* **all** - all GCP and Kubernetes resources.
 
 ### App layout
 
@@ -170,16 +177,20 @@ Your Kubeflow app directory **${KFAPP}** contains the following files and direct
   * The directory is created when you run `kfctl generate platform`.
   * You can modify these configurations to customize your GCP infrastructure.
 
-* **kustomize** is a directory that contains the kustomize packages for Kubeflow applications.
+* **kustomize** is a directory that contains the kustomize packages for Kubeflow 
+  applications. See 
+  [how Kubeflow uses kustomize](/docs/components/misc/kustomize/).
 
   * The directory is created when you run `kfctl generate`.
-  * You can customize the Kubernetes resources (modify the manifests and run `kfctl apply` again).
+  * You can customize the Kubernetes resources by modifying the manifests and 
+    running `kfctl apply` again.
 
 ### GCP service accounts
 
 Creating a deployment using `kfctl` creates three service accounts in your 
-GCP project. These service accounts are created using the principle of least 
-privilege. The three service accounts are:
+GCP project. These service accounts are created using the [principle of least 
+privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). 
+The three service accounts are:
 
 * `${KFAPP}-admin` is used for some admin tasks like configuring the load 
   balancers. The principle is that this account is needed to deploy Kubeflow but 
@@ -188,7 +199,7 @@ privilege. The three service accounts are:
   GCP resources (Cloud Storage, BigQuery, etc.). This account has a much smaller 
   set of privileges compared to `admin`.
 * `${KFAPP}-vm` is used only for the virtual machine (VM) service account. This
-  account has minimal permissions, needed to send metrics and logs to 
+  account has the minimal permissions needed to send metrics and logs to 
   [Stackdriver](https://cloud.google.com/stackdriver/).
 
 ## Next steps
