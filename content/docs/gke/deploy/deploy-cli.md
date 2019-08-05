@@ -16,8 +16,10 @@ Before installing Kubeflow on the command line:
 
 1. Ensure you have installed the following tools:
   
-    * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-    * [gcloud](https://cloud.google.com/sdk/)
+  * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+  * [gcloud](https://cloud.google.com/sdk/). If you already have `gcloud`
+    installed, run `gcloud components update` to
+     get the latest version of all your installed Cloud SDK components.
 
 1. If you're using
   [Cloud Shell](https://cloud.google.com/shell/), enable 
