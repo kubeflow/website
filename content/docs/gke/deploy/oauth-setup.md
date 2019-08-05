@@ -55,7 +55,8 @@ address to verify the user's identity.
       alt="OAuth consent screen"
       class="mt-3 mb-3 p-3 border border-info rounded">
 
-    Copy the **client ID** because you need it in the next step.
+1. Copy the **client ID** shown in the dialog box, because you need the client
+  ID in the next step.
 
 1. On the **Create credentials** screen, find your newly created OAuth 
   credential and click the pencil icon to edit it:
@@ -89,9 +90,9 @@ address to verify the user's identity.
 
 1. Click **Save**.
 
-1. Make note of where you can find the your OAuth client, so that you can
-  retrieve the **client ID** and **client secret** later. 
-  You need them to enable Cloud IAP.
+1. Make note that you can find your OAuth client credentials in the credentials
+  section of the GCP Console. You need to retrieve the **client ID** and 
+  **client secret** later when you're ready to enable Cloud IAP.
 
 ## Next steps
 
