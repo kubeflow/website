@@ -109,14 +109,14 @@ def dataproc_train_op(
 
 ```
 
-The function must returns a dsl.ContainerOp from the
+The function must return a dsl.ContainerOp from the
 [XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py).
 
 Note:
 
 * Each component must inherit from 
   [`dsl.ContainerOp`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_container_op.py).
-* Allowed arguments for `dataproc_train_op` include both Python scalar types (such as `str` and ` int`) and           [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py) types when constructing 
+* Allowed arguments for `dataproc_train_op` include both Python scalar types (such as `str` and ` int`) and [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py) types when constructing 
   `dsl.ContainerOp`. Each `dsl.PipelineParam` represents a parameter whose value is usually only known at run time. The value is 
   either provided by the user at pipeline run time or received as an output from an upstream component. 
 * Although the value of each `dsl.PipelineParam` is only available at run time,
