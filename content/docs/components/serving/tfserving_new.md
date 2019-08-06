@@ -6,6 +6,8 @@ weight = 51
 
 ## Serving a model
 
+_This section has not yet been converted to kustomize, please refer to [kubeflow/website/issues/958](https://github.com/kubeflow/website/issues/958)._
+
 We treat each deployed model as two [components](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component)
 in your APP: one tf-serving-deployment, and one tf-serving-service.
 We can think of the service as a model, and the deployment as the version of the model.
