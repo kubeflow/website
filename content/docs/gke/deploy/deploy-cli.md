@@ -102,6 +102,8 @@ Follow these steps to deploy Kubeflow:
      The content of this directory is described in the next section.
    * **${PROJECT}** - the project ID of the GCP project where you want Kubeflow 
      deployed.
+   * **${ZONE}** - You can see a list of zones [here](https://cloud.google.com/compute/docs/regions-zones/#available).
+     If you plan to use accelerators, make sure to pick a zone that supports the type you want.
    * When you run `kfctl init` you need to choose to use either IAP or basic 
      authentication, as described above.
    * `kfctl generate all` attempts to fetch your email address from your 
@@ -110,18 +112,28 @@ Follow these steps to deploy Kubeflow:
      address becomes an administrator in the configuration of your Kubeflow 
      deployment.
 
-1. You can run the following command to check the resources deployed in 
-  namespace `kubeflow`:
+
+1. The deployment process creates a separate deployment for your data storage. 
+   After running `kfctl apply` you should notice two new [deployments](https://console.cloud.google.com/dm/deployments):
+   * **{KFAPP}-storage**: This deployment has persistent volumes for your
+     pipelines.
+   * **{KFAPP}**: This deployment has all the components of Kubeflow, including 
+     a [GKE cluster](https://console.cloud.google.com/kubernetes/list) 
+     named **${KFAPP}** with Kubeflow installed.
+
+1. When the deployment finishes, check the resources installed in the namespace
+   `kubeflow` in your new cluster.  To do this from the command line, first set 
+   your `kubectl` credentials to point to the new cluster:
+
+    ```
+    gcloud container clusters get-credentials ${KFAPP} --zone ${ZONE} --project ${PROJECT}
+    ```
+
+   Then see what's installed in the `kubeflow` namespace of your GKE cluster:
 
     ```
     kubectl -n kubeflow get all
     ```
-
-1. The process creates a separate deployment for your data storage. After 
-   running `kfctl apply` you should notice 2 deployments (clusters):
-   * **{KFAPP}-storage**: This deployment has persistent volumes for your
-     pipelines.
-   * **{KFAPP}**: This deployment has all the components of Kubeflow.
 
 1. Access the Kubeflow central dashboard at the following URI when it becomes
   available:

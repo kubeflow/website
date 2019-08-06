@@ -8,6 +8,8 @@ This guide walks you through using MPI for training.
 
 ## Installation
 
+_This section has not yet been converted to kustomize, please refer to [kubeflow/manifests/issues/227](https://github.com/kubeflow/manifests/issues/227)._
+
 If you haven’t already done so please follow the [Getting Started Guide](https://www.kubeflow.org/docs/started/getting-started/) to deploy Kubeflow.
 
 An alpha version of MPI support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow newer than 0.2.0.

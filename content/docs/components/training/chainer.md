@@ -31,6 +31,8 @@ An **alpha** version of [Chainer](https://chainer.org/) support was introduced w
 
 ## Verify that Chainer support is included in your Kubeflow deployment
 
+_This section has not yet been converted to kustomize, please refer to [kubeflow/manifests/issues/232](https://github.com/kubeflow/manifests/issues/232)._
+
 Check that the Chainer Job custom resource is installed
 
 ```shell
