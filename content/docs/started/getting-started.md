@@ -47,7 +47,7 @@ to suit your environment (cloud, on premises (on prem), or local):
 	follow the [ICP deployment guide](/docs/started/getting-started-icp/).  
 * If you have an existing Kubernetes cluster or want to use Kubeflow on prem,
   follow the [guide to deploying Kubeflow on
-  Kubernetes](/docs/started/getting-started-k8s/).
+  Kubernetes](/docs/started/k8s/overview/).
 * If you want to run Kubernetes locally in a virtual machine (VM), choose one of
   the following options:
 
