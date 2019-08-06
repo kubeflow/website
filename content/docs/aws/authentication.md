@@ -8,11 +8,11 @@ This section shows the how to add TLS support and create a user pool to authenti
 
 
 ## Traffic Flow
-External Traffic → [ Ingress → Istio ingress gateway → ambassador ]
+External Traffic → [ Ingress → Istio ingress gateway → Istio virtual services ]
 
 When you generate and apply kubernetes resources, an ingress is created to manage external traffic to Kubernetes services. The AWS Appliction Load Balancer(ALB) Ingress Controller will provision an Application Load balancer for that ingress. By default, TLS and authentication are not enabled at creation time.
 
-The Kubeflow community plans to move from [Ambassador](https://www.getambassador.io/) to [Istio](https://istio.io/) to manage internal traffic (see [this issue](https://github.com/kubeflow/kubeflow/issues/2261)). Currently, [Ambassador](https://www.getambassador.io/) still plays the role of an API gateway. TLS, authentication, and authorization either can be done at the ALB or Istio layer for the AWS platform, and we plan to have Istio forward ingress traffic to the Istio gateway and then on to Ambassador when this happens. Once receive a clear direction from the community, we will enable TLS and authentication by default.
+In Kubeflow 0.6 release, community already move from [Ambassador](https://www.getambassador.io/) to [Istio](https://istio.io/) to manage internal traffic. In AWS solution, TLS, authentication,can be done at the ALB and and authorization can be done at Istio layer.
 
 
 ## Enable TLS and Authentication
@@ -39,17 +39,24 @@ To get TLS support from the ALB Ingress Controller, you need to follow [this tut
 
 In order to authenticate and manage users for Kubeflow, let's create a user pool. You can follow these instructions here. Once a user pool created, we will have a `UserPoolId`, a Cognito Domain name, and a Cognito Pool Arn.
 
-Before you apply k8s, you can go into ${KUBEFLOW_SRC}/${KFAPP}/ks_app,
+Before you `generate all -V`, please update Cognito spec in `app.yaml` like this,
 
 ```
-ks param set istio-ingress CognitoUserPoolArn arn:aws:cognito-idp:us-west-2:xxx:userpool/xxx
-ks param set istio-ingress CognitoAppClientId xxxxxx
-ks param set istio-ingress CognitoUserPoolDomain xxxx
-ks param set istio-ingress enableCognito true
-ks param set istio-ingress certArn arn:aws:acm:us-west-2:xxx:certificate/xxxe4031c
+plugins:
+    - name: aws
+      spec:
+        auth:
+          cognito:
+            cognitoUserPoolArn: arn:aws:cognito-idp:us-west-2:xxxxx:userpool/us-west-2_xxxxxx
+            cognitoAppClientId: xxxxxbxxxxxx
+            cognitoUserPoolDomain: your-user-pool
+            certArn: arn:aws:acm:us-west-2:xxxxx:certificate/xxxxxxxxxxxxx-xxxx
+        roles:
+          - eksctl-kubeflow-aws-nodegroup-ng-a2-NodeInstanceRole-xxxxx
+        region: us-west-2
 ```
 
-After you finish the TLS and Authentication configuration, then you can run `${KUBEFLOW_SRC}/${KFAPP}/scripts/kfctl.sh apply k8s`.
+After you finish the TLS and Authentication configuration, then you can run `kfctl generate all -V`.
 
 After your ingress DNS is ready, you need to create a `CNAME` in your DNS records.
 

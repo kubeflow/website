@@ -9,16 +9,14 @@ This is one step of [installing Kubeflow](/docs/aws/deploy/install-kubeflow), pl
 
 ### Deploy Kubeflow on existing Amazon EKS Cluster
 
-If you would like to deploy Kubeflow on existing Amazon EKS cluster, the only difference in setup is when you initialize the platform setup. Since you manage your own cluster resources, you need to provide `AWS_CLUSTER_NAME` and `AWS_NODEGROUP_ROLE_NAMES`.
+If you would like to deploy Kubeflow on existing Amazon EKS cluster, the only difference in setup is when you initialize the platform setup. Since you manage your own cluster resources, you need to provide `AWS_CLUSTER_NAME`, `cluster region` and `worker roles`.
 
 
-1. Retrieve the Amazon EKS cluster name, AWS Region, and IAM role name for your worker nodes. Set these values to the following environment variables.
+1. Retrieve the Amazon EKS cluster name, AWS Region, and IAM role name for your worker nodes. Set these values in the manifest file.
 
     ```shell
-    export KFAPP=kfapp
-    export REGION=<YOUR EKS CLUSTER REGION>
     export AWS_CLUSTER_NAME=<YOUR EKS CLUSTER NAME>
-    export AWS_NODEGROUP_ROLE_NAMES=<YOUR NODE GROUP ROLE NAMES>
+    export KFAPP=${AWS_CLUSTER_NAME}
     ```
 
     > Note: To get your Amazon EKS worker node IAM role name, you can check IAM setting by running the following commands. This command assumes that you used `eksctl` to create your cluster. If you use other provisioning tools to create your worker node groups, please find the role that is associated with your worker nodes in the Amazon EC2 console.
@@ -33,15 +31,22 @@ If you would like to deploy Kubeflow on existing Amazon EKS cluster, the only di
     eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
     ```
 
-    If you have multiple node groups, you will see corresponding number of node group roles. In that case, please provide the role names as a comma-separated list.
+    If you have multiple node groups, you will see corresponding number of node group roles. In that case, please provide the role names as an array.
+
+    ```shell
+    roles:
+      - eksctl-kubeflow-aws-nodegroup-ng-a2-NodeInstanceRole-xxxxxxx1
+      - eksctl-kubeflow-aws-nodegroup-ng-a2-NodeInstanceRole-xxxxxxx2
+    region: us-west-2
+    ```
 
 1. Initial setup
 
     ```shell
-    cd ${KUBEFLOW_SRC}
-
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform aws \
-    --awsClusterName ${AWS_CLUSTER_NAME} \
-    --awsRegion ${REGION} \
-    --awsNodegroupRoleNames ${AWS_NODEGROUP_ROLE_NAMES}
+    kfctl init ${KFAPP} --config=${CONFIG} -V
+    cd ${KFAPP}
+    kfctl generate all -v
+    kfctl apply all -v
     ```
+
+All rest steps are exact same for both install kubeflow on new cluster and existing cluster. Please come back to [Installing Kubeflow](/docs/aws/deploy/install-kubeflow) for details.
