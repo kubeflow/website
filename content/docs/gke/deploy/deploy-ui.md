@@ -30,7 +30,7 @@ Follow these steps to open the deployment UI and deploy Kubeflow on GCP:
   for your GCP project.
 1. Complete the following fields on the form:
 
-    * **Project:** Enter your GCP project name.
+    * **Project:** Enter your GCP project ID.
     * **Deployment name:** Enter a short name that you can use to recognize this 
       deployment of Kubeflow. If you plan to use [Cloud Identity-Aware Proxy
       (Cloud IAP)](https://cloud.google.com/iap/docs/) for access control (see
