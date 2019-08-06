@@ -9,50 +9,47 @@ instructions on how to connect to them.
 
 ## Accessing Kubeflow web UIs
 
-Kubeflow comes with a number of web UIs, including:
+The Kubeflow web UIs include the following:
 
-* Central UI for navigation
-* Jupyter notebooks
-* TFJob Dashboard
-* Katib Dashboard
-* Pipelines Dashboard
-* Artifact Store Dashboard
+* A central **Kubeflow** UI for navigation between the Kubeflow applications.
+* **Pipelines** for a Kubeflow Pipelines dashboard
+* **Notebook Servers** for Jupyter notebooks.
+* **Katib** for hyperparameter tuning.
+* **Artifact Store** for tracking of artifact metadata.
+* **tf-operator** for a TFJob dashboard.
 
-To make it easy to connect to these UIs Kubeflow provides a left hand navigation
-bar for navigating between the different applications.
+Instructions below indicate how to connect to the Kubeflow central UI. From
+there you can navigate to the different services using the left hand navigation
+bar. 
 
-Instructions below indicate how to connect to the Kubeflow landing page. From
-there you can easily navigate to the different services using the left hand navigation
-bar. The landing page looks like this:
+The central UI dashboard looks like this:
 
 <img src="/docs/images/central-ui.png"
-  alt="Kubeflow UI"
+  alt="Kubeflow central UI"
   class="mt-3 mb-3 border border-info rounded">
 
+## URL pattern with Google Cloud Platform (GCP)
 
-## Google Cloud Platform (Kubernetes Engine)
-
-If you followed the guide to [deploying Kubeflow on Google Cloud Platform
-(GCP)](/docs/gke/deploy/), Kubeflow
-is deployed with Cloud Identity-Aware Proxy (Cloud IAP) or basic authentication,
-and the Kubeflow landing page is accessible at a URL of the following pattern:
+If you followed the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
+the Kubeflow central UI is accessible at a URL of the following pattern:
 
 ```
-https://<name>.endpoints.<project>.cloud.goog/
+https://<application-name>.endpoints.<project-ID>.cloud.goog/
 ```
 
-This URL brings up the landing page illustrated above.
+The URL brings up the dashboard illustrated above.
 
-When deployed with Cloud IAP, Kubeflow uses the
+If you deploy Kubeflow with Cloud Identity-Aware Proxy (IAP), Kubeflow uses the
 [Let's Encrypt](https://letsencrypt.org/) service to provide an SSL certificate
 for the Kubeflow UI. For troubleshooting issues with your certificate, see the
 guide to
 [monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
 
-## Using Kubectl and port-forwarding
+## Using kubectl and port-forwarding
 
-If you're not using the Cloud IAP option or if you haven't yet set up your
-Kubeflow endpoint, you can access Kubeflow via `kubectl` and port-forwarding.
+If you're not using a GCP deployment or if you haven't yet set up your
+Kubeflow endpoint, you can access Kubeflow via `kubectl` and port-forwarding
+as follows:
 
 1. Install `kubectl` if you haven't already done so:
 
@@ -72,18 +69,24 @@ Kubeflow endpoint, you can access Kubeflow via `kubectl` and port-forwarding.
     http://localhost:8080/
     ```
 
-  * This will only work if you haven't enabled basic auth or Cloud IAP. If
-    authentication is enabled requests will be rejected
-    because you are not connecting over HTTPS and attaching proper credentials.
+  * This will only work if you haven't enabled GCP's basic authentication or 
+    Cloud IAP authentication protocols. If
+    authentication is enabled, requests will be rejected
+    because you are not connecting over HTTPS with proper credentials.
 
-  * Depending on how you've configured Kubeflow, not all UIs will work behind port-forwarding to the reverse proxy.
+  * Depending on how you've configured Kubeflow, not all UIs work behind 
+    port-forwarding to the reverse proxy.
 
-    * Some web applications need to be configured to know the base URL they are serving on.
-    * So if you deployed Kubeflow with an ingress serving at `https://acme.mydomain.com` and configured an application
-      to be served at the URL `https://acme.mydomain.com/myapp` then the app may not work when served on
-      `https://localhost:8080/myapp` because the paths do not match.
+        For some web applications, you need to configure the base URL on which
+        the app is serving.
+        
+        For example, if you deployed Kubeflow with an ingress serving at 
+        `https://example.mydomain.com` and configured an application
+        to be served at the URL `https://example.mydomain.com/myapp`, then the 
+        app may not work when served on
+        `https://localhost:8080/myapp` because the paths do not match.
 
 ## Next steps
 
-See how to [set up your Jupyter notebooks](/docs/notebooks/setup/) in
-Kubeflow.
+* See how to [access the TFJob dashboard](/docs/components/training/tftraining/).
+* [Set up your Jupyter notebooks](/docs/notebooks/setup/) in Kubeflow.
