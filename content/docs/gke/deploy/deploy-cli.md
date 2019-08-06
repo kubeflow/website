@@ -110,7 +110,7 @@ Follow these steps to deploy Kubeflow:
    running `kfctl apply` you should notice two new [deployments](https://console.cloud.google.com/dm/deployments):
    * **{KFAPP}-storage**: This deployment has persistent volumes for your
      pipelines.
-   * **{KFAPP}**: This deployment has all the components of Kubeflow, including a [GKE cluster](https://console.cloud.google.com/kubernetes/list?project=aju-vtests2) named **${KFAPP}** with Kubeflow installed.
+   * **{KFAPP}**: This deployment has all the components of Kubeflow, including a [GKE cluster](https://console.cloud.google.com/kubernetes/list) named **${KFAPP}** with Kubeflow installed.
 
 1. Once the deployment finishes, check the resources installed in the namespace `kubeflow` in your new cluster.  To do this from the command line, first set your `kubectl` credentials to point to the new cluster:
 
