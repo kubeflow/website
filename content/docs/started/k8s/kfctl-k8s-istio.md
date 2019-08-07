@@ -10,8 +10,8 @@ This config creates a vanilla deployment of Kubeflow with all its core component
 
 ### Deploy Kubeflow
 
-This Kubeflow deployment requires default StorageClass with a provisioner. Verify the `provisioner` field of your default StorageClass definition.
-If you don't have a provisioner, ensure you have configured volume provisioning in your Kubernetes cluster appropriately as mentioned [below](#provisioning-of-persistent-volumes-in-kubernetes).
+This Kubeflow deployment requires a default StorageClass with a [dynamic volume provisioner](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) . Verify the `provisioner` field of your default StorageClass definition.
+If you don't have a provisioner, ensure that you have configured volume provisioning in your Kubernetes cluster appropriately as mentioned [below](#provisioning-of-persistent-volumes-in-kubernetes).
 
 Follow these steps to deploy Kubeflow:
 
@@ -91,7 +91,7 @@ Your Kubeflow app directory contains the following files and directories:
 
 ### Provisioning of Persistent Volumes in Kubernetes
 
-Note that you can skip this step if you have a [dynamic volume provisioner](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) already installed in your cluster.
+Note that you can skip this step if you have a dynamic volume provisioner already installed in your cluster.
 
 If you don't have one:
 
@@ -114,4 +114,4 @@ Check if PersistentVolumeClaims get `Bound` to PersistentVolumes.
 
    ```
 
-If the PersistentVolumeClaims (PVCs) are in `Pending` state after deployment and they are not bound to PersistentVolumes (PVs), you may have to either manually create PVs for each PVC in your Kubernetes Cluster or an alternative is to set up [dynamic volume provisioning](#automatic-provisioning-of-persistent-volumes-in-kubernetes) to create PVs on demand and redeploy Kubeflow after deleting existing PVCs.
+If the PersistentVolumeClaims (PVCs) are in `Pending` state after deployment and they are not bound to PersistentVolumes (PVs), you may have to either manually create PVs for each PVC in your Kubernetes Cluster or an alternative is to set up [dynamic volume provisioning](#provisioning-of-persistent-volumes-in-kubernetes) to create PVs on demand and redeploy Kubeflow after deleting existing PVCs.
