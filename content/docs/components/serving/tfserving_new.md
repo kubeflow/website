@@ -6,7 +6,12 @@ weight = 51
 
 ## Serving a model
 
-Below is an example of a yaml manifest that deploys a mnist model for serving.
+To deploy a model we create following resources as illustrated below
+
+- A deployment to deploy the model using TFServing
+- A K8s service to create an endpoint a service
+- An Istio virtual service to route traffic to the model and expose it through the Istio gateway
+- An Istio DestinationRule is for doing traffic splitting.
 
 ```yaml
 apiVersion: v1
@@ -14,7 +19,6 @@ kind: Service
 metadata:
   labels:
     app: mnist
-    ksonnet.io/component: mnist-service
   name: mnist-service
   namespace: kubeflow
 spec:
@@ -34,9 +38,127 @@ kind: Deployment
 metadata:
   labels:
     app: mnist
-    ksonnet.io/component: mnist-v1
   name: mnist-v1
   namespace: kubeflow
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+      labels:
+        app: mnist
+        version: v1
+    spec:
+      containers:
+      - args:
+        - --port=9000
+        - --rest_api_port=8500
+        - --model_name=mnist
+        - --model_base_path=YOUR_MODEL
+        command:
+        - /usr/bin/tensorflow_model_server
+        image: tensorflow/serving:1.11.1
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          tcpSocket:
+            port: 9000
+        name: mnist
+        ports:
+        - containerPort: 9000
+        - containerPort: 8500
+        resources:
+          limits:
+            cpu: "4"
+            memory: 4Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
+        volumeMounts:
+        - mountPath: /var/config/
+          name: config-volume
+      volumes:
+      - configMap:
+          name: mnist-v1-config
+        name: config-volume
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  labels:
+  name: mnist-service
+  namespace: kubeflow
+spec:
+  host: mnist-service
+  subsets:
+  - labels:
+      version: v1
+    name: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  labels:
+  name: mnist-service
+  namespace: kubeflow
+spec:
+  gateways:
+  - kubeflow-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - method:
+        exact: POST
+      uri:
+        prefix: /tfserving/models/mnist
+    rewrite:
+      uri: /v1/models/mnist:predict
+    route:
+    - destination:
+        host: mnist-service
+        port:
+          number: 8500
+        subset: v1
+      weight: 100
+```
+
+Referring to the above example, you can customize your deployment by changing the following configurations in the YAML file:
+
+- In the deployment resource, the `model_base_path` argument points to the model.
+  Change the value to your own model. 
+
+- The example contains three configurations for Google Cloud Storage (GCS) access:
+  volumes (secret `user-gcp-sa`), volumeMounts, and
+  env (GOOGLE_APPLICATION_CREDENTIALS).
+  If your model is not at GCS (e.g. using S3 from AWS), See the section below on 
+  how to setup access.
+
+- GPU. If you want to use GPU, add `nvidia.com/gpu: 1`
+  in container resources, and use a GPU image, for example:
+  `tensorflow/serving:1.11.1-gpu`.
+  ```yaml
+  resources:
+    limits:
+      cpu: "4"
+      memory: 4Gi
+      nvidia.com/gpu: 1
+  ```
+
+- The resource `VirtualService` and `DestinationRule` are for routing.
+  With the example above, the model is accessible at `HOSTNAME/tfserving/models/mnist` 
+  (HOSTNAME is your Kubeflow deployment hostname). To change the path, edit the
+  `http.match.uri` of VirtualService.
+
+### Pointing to the model
+Depending where model file is located, set correct parameters
+
+*Google cloud*
+
+Change the deployment spec as follows:
+
+```yaml
 spec:
   template:
     metadata:
@@ -88,75 +210,12 @@ spec:
       - name: gcp-credentials
         secret:
           secretName: user-gcp-sa
----
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  labels:
-    ksonnet.io/component: mnist-service
-  name: mnist-service
-  namespace: kubeflow
-spec:
-  host: mnist-service
-  subsets:
-  - labels:
-      version: v1
-    name: v1
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  labels:
-    ksonnet.io/component: mnist-service
-  name: mnist-service
-  namespace: kubeflow
-spec:
-  gateways:
-  - kubeflow-gateway
-  hosts:
-  - '*'
-  http:
-  - match:
-    - method:
-        exact: POST
-      uri:
-        prefix: /tfserving/models/mnist
-    rewrite:
-      uri: /v1/models/mnist:predict
-    route:
-    - destination:
-        host: mnist-service
-        port:
-          number: 8500
-        subset: v1
-      weight: 100
 ```
 
-There are several places we can customize:
-
-1. In the deployment resource, the container arg: `model_base_path` points to the model.
-   Change the value to your own model. 
-
-1. There are 3 parts for GCS access: volumes (secret `user-gcp-sa`), volumeMounts, and
-   env (GOOGLE_APPLICATION_CREDENTIALS).
-   If your model is not at GCS (e.g. using S3 from AWS), See the section below on 
-   how to setup access.
-
-1. GPU. Here the examples is using one GPU. If you don't want to use GPU, remove the
-   `nvidia.com/gpu: 1` in container resources, and use a CPU image instead of
-   `tensorflow/serving:1.11.1-gpu`.
-
-1. The resource `VirtualService` and `DestinationRule` are for routing.
-   With the example above, the model is accessible at `HOSTNAME/tfserving/models/mnist` 
-   (HOSTNAME is your KF deployment hostname). To change the path, edit the
-   `http.match.uri` of VirtualService.
-
-### Pointing to the model
-Depending where model file is located, set correct parameters
-
-*Google cloud*
-
-Set the param as above section.
+The changes are:
+- environment variable  `GOOGLE_APPLICATION_CREDENTIALS`
+- volume `gcp-credentials`
+- volumeMount `gcp-credentials`
 
 We need a service account that can access the model.
 If you are using Kubeflow's click-to-deploy app, there should be already a secret, `user-gcp-sa`, in the cluster.
@@ -190,7 +249,6 @@ kind: Deployment
 metadata:
   labels:
     app: s3
-    ksonnet.io/component: s3model
   name: s3
   namespace: kubeflow
 spec:
