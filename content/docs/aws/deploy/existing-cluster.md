@@ -14,14 +14,14 @@ If you would like to deploy Kubeflow on existing Amazon EKS cluster, the only di
 
 1. Retrieve the Amazon EKS cluster name, AWS Region, and IAM role name for your worker nodes. Set these values in the manifest file.
 
-    ```shell
+    ```
     export AWS_CLUSTER_NAME=<YOUR EKS CLUSTER NAME>
     export KFAPP=${AWS_CLUSTER_NAME}
     ```
 
     > Note: To get your Amazon EKS worker node IAM role name, you can check IAM setting by running the following commands. This command assumes that you used `eksctl` to create your cluster. If you use other provisioning tools to create your worker node groups, please find the role that is associated with your worker nodes in the Amazon EC2 console.
 
-    ```shell
+    ```
     aws iam list-roles \
         | jq -r ".Roles[] \
         | select(.RoleName \
