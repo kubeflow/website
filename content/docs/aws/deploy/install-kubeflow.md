@@ -25,7 +25,7 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
 
 ## Kubeflow installation
 
-1. Download the latest `kfctl` golang binary from [kubeflow release oage](https://github.com/kubeflow/kubeflow/releases) and unpack it.
+1. Download the latest `kfctl` golang binary from [Kubeflow release page](https://github.com/kubeflow/kubeflow/releases) and unpack it.
 
     ```shell
     # Add kfctl to PATH, to make the kfctl binary easier to use.
@@ -74,7 +74,7 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
     * CONFIG - Path to the configuration file
 
 
-    __*Important!!!*__ By default, these scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
+    *Important!!!* By default, these scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
 
     To secure your installation, Follow the [instructions](/docs/aws/authentication) to add authentication.
 
@@ -84,7 +84,7 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
     kubectl -n kubeflow get all
     ```
 
-1. Open Kubeflow Dashboard
+1. Get Kubeflow service endpoint.
 
     ```shell
     kubectl get ingress -n istio-system
