@@ -27,7 +27,7 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
 
 1. Download the latest `kfctl` golang binary from [Kubeflow release page](https://github.com/kubeflow/kubeflow/releases) and unpack it.
 
-    ```shell
+    ```
     # Add kfctl to PATH, to make the kfctl binary easier to use.
     tar -xvf kfctl_<release tag>_<platform>.tar.gz
     export PATH=$PATH:"<path to kfctl>"
@@ -43,7 +43,6 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
 
     * `kfctl_aws.yaml` is one of setup manifests, please check [kfctl_aws_cognito.yaml](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/config/kfctl_aws_cognito.yaml) for the template to enable authentication.
 
-
     - If you plan to use `kfctl` to create a new eks cluster, please remove follow lines in the manifest file.
     - If you want to install on existing EKS cluster, please change roles to your worker node group roles.
 
@@ -53,14 +52,13 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
     ```
 
 1. Run the following commands to set up your environment and initialize the cluster.
+
     Since there're many ways to create your cluster, we highly recommend you to get our own eks cluster ready.
 
-    > Note: If you would like to install Kubeflow on your existing EKS cluster, please skip this step
-    > and follow the setup instructions for an [existing cluster](/docs/aws/deploy/existing-cluster) instead.
-    > When you are finished, return here and resume with the next step.
+    Note: If you would like to install Kubeflow on your existing EKS cluster,
+    please skip this step and follow the setup instructions for an [existing cluster](/docs/aws/deploy/existing-cluster) instead.
 
-
-    ```shell
+    ```
     export KFAPP=kfaws
 
     kfctl init ${KFAPP} --config=${CONFIG} -V
@@ -84,9 +82,9 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
     kubectl -n kubeflow get all
     ```
 
-1. Get Kubeflow service endpoint.
+1. Get Kubeflow service endpoint and copy link in browser.
 
-    ```shell
+    ```
     kubectl get ingress -n istio-system
 
     NAMESPACE      NAME            HOSTS   ADDRESS                                                             PORTS   AGE
@@ -99,7 +97,7 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
 
 Kubeflow 0.6 release brings multi-tenancy support and user are not able to create notebooks in `kubeflow`, `default` namespace. Instead, please create a `Profile` using `kubectl apply -f profile.yaml` and profile controller will create new namespace and service account which is allowed to create notebook in that namespace.
 
-```
+```yaml
 apiVersion: kubeflow.org/v1alpha1
 kind: Profile
 metadata:

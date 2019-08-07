@@ -33,14 +33,14 @@ If you would like to deploy Kubeflow on existing Amazon EKS cluster, the only di
 
     If you have multiple node groups, you will see corresponding number of node group roles. In that case, please provide the role names as an array.
 
-    ```shell
+    ```
+    region: us-west-2
     roles:
       - eksctl-kubeflow-aws-nodegroup-ng-a2-NodeInstanceRole-xxxxxxx1
       - eksctl-kubeflow-aws-nodegroup-ng-a2-NodeInstanceRole-xxxxxxx2
-    region: us-west-2
     ```
 
-1. Initial setup
+1. Install Kubeflow
 
     ```shell
     kfctl init ${KFAPP} --config=${CONFIG} -V
