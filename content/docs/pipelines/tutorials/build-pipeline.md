@@ -37,7 +37,7 @@ Set up your environment:
 
 Examine the pipeline samples that you downloaded and choose one to work with.
 The 
-[`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/basic/sequential.py):
+[`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/sequential/sequential.py):
 is a good one to start with.
 
 Each pipeline is defined as a Python program. Before you can submit a pipeline
@@ -53,7 +53,7 @@ dsl-compile --py [path/to/python/file] --output [path/to/output/tar.gz]
 ```
 
 For example, to compile the
-[`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/basic/sequential.py):
+[`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/sequential/sequential.py):
 
 ```bash
 export DIR=[YOUR PIPELINES REPO DIRECTORY]/samples/basic
