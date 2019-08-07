@@ -114,13 +114,13 @@ spec:
     server: ${NFS_SERVER_IP}
 ```
     
-    * **NFS_SERVER_IP** is the NFS server IP, that can be management node IP but need management node need to support NFS mounting. 
-    * **NFS_SHARED_DIR** is the NFS shared path that can be mounted by othe nodes in IBM Cloud Private cluster. And ensure the sub-folders(`pv1, pv2,pv3`) in defination above are created.
+   * **NFS_SERVER_IP** is the NFS server IP, that can be management node IP but need management node need to support NFS mounting. 
+   * **NFS_SHARED_DIR** is the NFS shared path that can be mounted by othe nodes in IBM Cloud Private cluster. And ensure the sub-folders(`pv1, pv2,pv3`) in defination above are created.
   
-    Create PV by running below command:
-    ```bash
-    kubectl create -f pv.yaml
-    ```
+Create PV by running below command:
+```bash
+kubectl create -f pv.yaml
+```
 
 ### Installing Kubeflow
 
