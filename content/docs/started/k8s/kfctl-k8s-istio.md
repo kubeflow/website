@@ -10,6 +10,8 @@ This config creates a vanilla deployment of Kubeflow with all its core component
 
 ### Deploy Kubeflow
 
+Before you proceed to install Kubeflow, ensure you have configured volume provisioning in your Kubernetes cluster appropriately as mentioned [below](#automatic-provisioning-of-persistent-volumes-in-kubernetes).
+
 Follow these steps to deploy Kubeflow:
 
 1. Download a `kfctl` release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/) and unpack it:
@@ -33,7 +35,7 @@ Follow these steps to deploy Kubeflow:
    kfctl apply all -V
    ```
 
-   * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
+   * **${KFAPP}** - the _name_ of a directory where you want Kubeflow
   configurations to be stored. This directory is created when you run
   `kfctl init`. If you want a custom deployment name, specify that name here.
   The value of this variable becomes the name of your deployment.
@@ -86,7 +88,32 @@ Your Kubeflow app directory contains the following files and directories:
 * **${KFAPP}/app.yaml** defines configurations related to your Kubeflow deployment.
 * **${KFAPP}/kustomize**: contains the YAML manifests that will be deployed.
 
+### Automatic Provisioning of Persistent Volumes in Kubernetes
+
+Set up [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) to create PVs on demand, if not present in your Kubernetes cluster.
+
+Available Dynamic Volume Provisioners:
+
+* [Install Local Path Provisioner](https://github.com/rancher/local-path-provisioner#deployment)
+
+Ensure that the StorageClass used by this provisioner is the default storage class.
+
+Note that you can skip this step if you have a dynamic volume provisioner already installed in your cluster or if you choose to create PVs manually after deployment of kubeflow.
+
 ### Next steps
 
 * Run a [sample machine learning workflow](/docs/examples/resources/).
 * Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/)
+
+
+### Troubleshooting
+
+#### Persistent Volume Claims are in Pending State
+
+Check if PersistentVolumeClaims get `Bound` to PersistentVolumes.
+   ```
+   kubectl -n kubeflow get pvc
+
+   ```
+
+If the PersistentVolumeClaims (PVCs) are in `Pending` state after deployment and they are not bound to PersistentVolumes (PVs), you may have to either manually create PVs for each PVC in your Kubernetes Cluster or an alternative is to set up [dynamic volume provisioning](#automatic-provisioning-of-persistent-volumes-in-kubernetes) to create PVs on demand and redeploy Kubeflow after deleting it.
