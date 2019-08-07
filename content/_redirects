@@ -77,3 +77,5 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pytorchserving                /docs/components/serving/pytorchserving
 /docs/components/tfserving_new                 /docs/components/serving/tfserving_new
 
+# Restructured the getting-started guide for existing Kubernetes.
+/docs/started/getting-started-k8s/             /docs/started/k8s/
