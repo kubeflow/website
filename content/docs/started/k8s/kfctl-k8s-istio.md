@@ -10,7 +10,8 @@ This config creates a vanilla deployment of Kubeflow with all its core component
 
 ### Deploy Kubeflow
 
-Before you proceed to install Kubeflow, ensure you have configured volume provisioning in your Kubernetes cluster appropriately as mentioned [below](#automatic-provisioning-of-persistent-volumes-in-kubernetes). This installation creates PersistentVolumeClaims with the default StorageClass. Verify this by checking the `provisioner` field of your default StorageClass definition.
+This Kubeflow deployment requires default StorageClass with a provisioner. Verify the `provisioner` field of your default StorageClass definition.
+If you don't have a provisioner, ensure you have configured volume provisioning in your Kubernetes cluster appropriately as mentioned [below](#provisioning-of-persistent-volumes-in-kubernetes).
 
 Follow these steps to deploy Kubeflow:
 
@@ -88,18 +89,14 @@ Your Kubeflow app directory contains the following files and directories:
 * **${KFAPP}/app.yaml** defines configurations related to your Kubeflow deployment.
 * **${KFAPP}/kustomize**: contains the YAML manifests that will be deployed.
 
-### Automatic Provisioning of Persistent Volumes in Kubernetes
+### Provisioning of Persistent Volumes in Kubernetes
 
-Note that you can skip this step if you have a dynamic volume provisioner already installed in your cluster or if you choose to create PVs manually after deployment of kubeflow.
+Note that you can skip this step if you have a [dynamic volume provisioner](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) already installed in your cluster.
 
-Set up [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) to create PVs on demand, if not present in your Kubernetes cluster.
+If you don't have one:
 
-Reference Dynamic Volume Provisioners:
-
-* [Install Local Path Provisioner](https://github.com/rancher/local-path-provisioner#deployment)
-
-Ensure that the StorageClass used by this provisioner is the default storage class.
-
+* You can choose to create PVs manually after deployment of Kubeflow.
+* Or install a dynamic volume provisioner like [Local Path Provisioner](https://github.com/rancher/local-path-provisioner#deployment). Ensure that the StorageClass used by this provisioner is the default StorageClass.
 
 ### Next steps
 
