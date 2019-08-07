@@ -42,7 +42,8 @@
 /docs/pipelines/pipelines-overview/            /docs/pipelines/overview/pipelines-overview/
 /docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/pipelines/sdk/gcp/enable-gpu-and-tpu/
 /docs/pipelines/preemptible/                   /docs/pipelines/sdk/gcp/preemptible/
-/docs/pipelines/reusable-components/           /docs/pipelines/sdk/reusable-components/
+/docs/pipelines/reusable-components/           /docs/examples/shared-resources/
+/docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
 
 # Moved the guide to monitoring GKE deployments.
 /docs/other-guides/monitoring/                 /docs/gke/monitoring/
@@ -76,3 +77,5 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pytorchserving                /docs/components/serving/pytorchserving
 /docs/components/tfserving_new                 /docs/components/serving/tfserving_new
 
+# Restructured the getting-started guide for existing Kubernetes.
+/docs/started/getting-started-k8s/             /docs/started/k8s/

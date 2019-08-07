@@ -239,8 +239,8 @@ You can also choose to share your pipeline as follows:
 * Upload the pipeline zip file to the Kubeflow Pipelines UI. For more 
   information about the UI, see the [Kubeflow Pipelines quickstart 
   guide](/docs/pipelines/pipelines-quickstart/).
-* Upload the pipeline zip file to a shared repository, such as
-  [AI Hub](https://cloud.google.com/ai-hub/docs/publish-pipeline).
+* Upload the pipeline zip file to a shared repository. See the 
+  [reusable components and other shared resources](/docs/examples/shared-resources/).
 
 {{% alert title="More about the above workflow" color="info" %}}
 For more detailed instructions, see the guide to [building components and 
@@ -350,8 +350,8 @@ You can also choose to share your pipeline as follows:
 * Upload the pipeline zip file to the Kubeflow Pipelines UI. For more 
   information about the UI, see the [Kubeflow Pipelines quickstart 
   guide](/docs/pipelines/pipelines-quickstart/).
-* Upload the pipeline zip file to a shared repository, such as
-  [AI Hub](https://cloud.google.com/ai-hub/docs/publish-pipeline).
+* Upload the pipeline zip file to a shared repository. See the 
+  [reusable components and other shared resources](/docs/examples/shared-resources/).
 
 {{% alert title="More about the above workflow" color="info" %}}
 For an example of the above workflow, see the
@@ -473,9 +473,9 @@ defines the component.
 
 Below is a more detailed explanation of the above diagram:
 
-1. Find the YAML file that defines the reusable component. For example, use
-  one of the components listed in the [index of reusable 
-  components](/docs/pipelines/reusable-components/).
+1. Find the YAML file that defines the reusable component. For example, take a
+  look at the [reusable components and other shared 
+  resources](/docs/examples/shared-resources/).
 
 1. Use 
   [`kfp.components.load_component_from_url`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.load_component_from_url)
