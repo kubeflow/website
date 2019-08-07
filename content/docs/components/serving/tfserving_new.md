@@ -213,6 +213,7 @@ spec:
 ```
 
 The changes are:
+
 - environment variable  `GOOGLE_APPLICATION_CREDENTIALS`
 - volume `gcp-credentials`
 - volumeMount `gcp-credentials`
