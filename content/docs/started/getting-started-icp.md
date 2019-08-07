@@ -70,49 +70,49 @@ NAME         STATUS    ROLES                      AGE       VERSION
     Some Kubeflow components need PVs to storage data, such as minio, mysql katib. We need to create PVs for those pods in advance. 
     The PVs defination file (`pv.yaml`) is as following:
     
-    ```yaml
-    apiVersion: v1
-    kind: PersistentVolume
-    metadata:
-      name: kubeflow-pv1
-    spec:
-      capacity:
-        storage: 20Gi
-      accessModes:
-      - ReadWriteOnce
-      persistentVolumeReclaimPolicy: Retain
-      nfs:
-        path: '${NFS_SHARED_DIR}/pv1'
-        server: '${NFS_SERVER_IP}'
-    ---
-    apiVersion: v1
-    kind: PersistentVolume
-    metadata:
-      name: kubeflow-pv2
-    spec:
-      capacity:
-        storage: 20Gi
-      accessModes:
-      - ReadWriteOnce
-      persistentVolumeReclaimPolicy: Retain
-      nfs:
-        path: '${NFS_SHARED_DIR}/pv2'
-        server: '${NFS_SERVER_IP}'
-    ---
-    apiVersion: v1
-    kind: PersistentVolume
-    metadata:
-      name: kubeflow-pv3
-    spec:
-      capacity:
-        storage: 20Gi
-      accessModes:
-      - ReadWriteOnce
-      persistentVolumeReclaimPolicy: Retain
-      nfs:
-        path: '${NFS_SHARED_DIR}/pv3'
-        server: '${NFS_SERVER_IP}'
-    ```
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kubeflow-pv1
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: ${NFS_SHARED_DIR}/pv1
+    server: ${NFS_SERVER_IP}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kubeflow-pv2
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: ${NFS_SHARED_DIR}/pv2
+    server: ${NFS_SERVER_IP}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kubeflow-pv3
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: ${NFS_SHARED_DIR}/pv3
+    server: ${NFS_SERVER_IP}
+```
     
     * **NFS_SERVER_IP** is the NFS server IP, that can be management node IP but need management node need to support NFS mounting. 
     * **NFS_SHARED_DIR** is the NFS shared path that can be mounted by othe nodes in IBM Cloud Private cluster. And ensure the sub-folders(`pv1, pv2,pv3`) in defination above are created.
