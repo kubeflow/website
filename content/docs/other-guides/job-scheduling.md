@@ -4,16 +4,16 @@ description = "How to schedule a job with gang-scheduling"
 weight = 30
 +++
 
-This guide describes how to use [volcano scheduler](https://github.com/volcano-sh/scheduler) to support gang-scheduling in 
+This guide describes how to use [volcano scheduler](https://github.com/volcano-sh/volcano) to support gang-scheduling in 
 Kubeflow, to allow jobs to run multiple pods at the same time.
 
 ## Running jobs with gang-scheduling
 To use gang-scheduling, you have to install volcano scheduler in your cluster first as a secondary scheduler of Kubernetes and configure operator to enable gang-scheduling. 
 
-* Volcano's scheduler repo is [here](https://github.com/volcano-sh/scheduler)  and check how to install it [here](https://github.com/volcano-sh/volcano).
+* Follow the [instructions in the volcano repository](https://github.com/volcano-sh/volcano) to install Volcano.
 * Take tf-operator for example, enable gang-scheduling in tf-operator by setting true to `--enable-gang-scheduling` flag.
 
-**Note:** Volcano scheduler and operator in Kubeflow achieve gang-scheduling by using pdb. operator will create the pdb of the job automatically. You can know more about pdb [here](https://kubernetes.io/docs/tasks/run-application/configure-pdb/).
+**Note:** Volcano scheduler and operator in Kubeflow achieve gang-scheduling by using [PodGroup](https://github.com/volcano-sh/volcano/blob/master/pkg/apis/scheduling/v1alpha2/types.go). operator will create the PodGroup of the job automatically.
 
 The yaml to use volcano scheduler to schedule your job as a gang is the same as non-gang-scheduler, for example.
 

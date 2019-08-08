@@ -5,6 +5,9 @@ weight = 40
 +++
 
 ## Serve a model using Seldon
+
+_This section has not yet been converted to kustomize, please refer to [kubeflow/manifests/issues/10](https://github.com/kubeflow/manifests/issues/10)._
+
 [Seldon-core](https://github.com/SeldonIO/seldon-core) provides deployment for any machine learning runtime that can be [packaged in a Docker container](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html).
 
 Install the seldon package:

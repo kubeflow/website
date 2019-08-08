@@ -8,7 +8,9 @@ This guide describes how to set up Kubeflow on premises (on-prem) in a multi-nod
 
 ## Vanilla on-prem Kubeflow installation
 
-In order to install Kubeflow in an on-prem Kubernetes cluster, follow the [Kubeflow on Kubernetes](/docs/started/getting-started-k8s) guide. This guide works for single node and multi-node clusters.
+In order to install Kubeflow in an on-prem Kubernetes cluster, follow the guide
+to [installing Kubeflow on existing clusters](/docs/started/k8s), which works 
+for single node and multi-node clusters.
 
 At the end of the installation, some Persistent Volume Claims (PVCs) might be unbound. To fix this issue, see the troubleshooting section [Pods stuck in Pending state](/docs/other-guides/troubleshooting/#pods-stuck-in-pending-state).
 
@@ -121,10 +123,11 @@ Notice that the installation command set the `storageClass.defaultClass` paramet
 This sets the *nfs* as the default storage class. 
 Therefore when you install Kubeflow, all PVCs will be labelled with the *nfs* storage class.
 
-## Finally: install Kubeflow!
+## Finally: install Kubeflow
 
-Now that you have prepared your on-prem, multi-node Kubernetes cluster to manage volumes using an NFS server, 
-you can install Kubeflow using the [Kubeflow on Kubernetes](/docs/started/getting-started-k8s/) guide.
+Now that you have prepared your on-prem, multi-node Kubernetes cluster to manage 
+volumes using an NFS server, you can install Kubeflow by following the guide to 
+[installing Kubeflow on existing clusters](/docs/started/k8s).
 
 After installing Kubeflow, notice that that Kubernetes binds each PVC created by Kubeflow to an automatically created PV with the *nfs* storage class. Notice also that the provisioner has created a directory for each PVC inside the root NFS directory.
 

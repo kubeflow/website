@@ -57,7 +57,7 @@ Follow these instructions to run the XGBoost quickstart notebook:
         ```
 
 1.  Use the notebook user interface to open the XGBoost quickstart notebook
-    at `[path-to-cloned-fairing-repo]fairing/examples/prediction/xgboost-high-level-apis.ipynb`.
+    at `fairing/examples/prediction/xgboost-high-level-apis.ipynb`.
 
 1.  Follow the instructions in the notebook to:
 
