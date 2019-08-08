@@ -95,8 +95,9 @@ getting-started guide for your chosen environment. For example:
 
 1. Enter a **name** of your choice for the notebook server. The name can
   include letters and numbers, but no spaces. For example, `my-first-notebook`.
-1. Enter the **namespace** that you selected in a previous step. This ensures 
-  that the new notebook server is in a namespace that you can access.
+1. Kubeflow automatically updates the value in the **namespace** field to
+  be the same as the namespace that you selected in a previous step. This 
+  ensures that the new notebook server is in a namespace that you can access.
 
 1. Select a Docker **image** for the baseline deployment of your notebook 
   server. You can choose from a range of *standard* images or specify a 
