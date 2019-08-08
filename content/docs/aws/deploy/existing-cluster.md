@@ -11,6 +11,18 @@ This is one step of [installing Kubeflow](/docs/aws/deploy/install-kubeflow), pl
 
 If you would like to deploy Kubeflow on existing Amazon EKS cluster, the only difference in setup is when you initialize the platform setup. Since you manage your own cluster resources, you need to provide `AWS_CLUSTER_NAME`, `cluster region` and `worker roles`.
 
+1. Download `kfctl` binary and config file
+
+    ```shell
+    # Add kfctl to PATH, to make the kfctl binary easier to use.
+    tar -xvf kfctl_<release tag>_<platform>.tar.gz
+    export PATH=$PATH:"<path to kfctl>"
+
+    # Download config files
+    export CONFIG="/tmp/kfctl_aws.yaml"
+    wget https://raw.githubusercontent.com/kubeflow/kubeflow/master/bootstrap/config/kfctl_aws.yaml -O ${CONFIG}
+    ```
+
 
 1. Retrieve the Amazon EKS cluster name, AWS Region, and IAM role name for your worker nodes. Set these values in the manifest file.
 
@@ -48,4 +60,4 @@ If you would like to deploy Kubeflow on existing Amazon EKS cluster, the only di
     kfctl apply all -v
     ```
 
-All rest steps are exact same for both install kubeflow on new cluster and existing cluster. Please come back to [Installing Kubeflow](/docs/aws/deploy/install-kubeflow) for details.
+All rest steps are exact same for both install kubeflow on new cluster and existing cluster. Please come back to [Installing Kubeflow](/docs/aws/deploy/install-kubeflow) to finish post installation step.
