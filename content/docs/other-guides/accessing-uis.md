@@ -47,9 +47,7 @@ guide to
 
 ## Using kubectl and port-forwarding
 
-If you're not using a GCP deployment or if you haven't yet set up your
-Kubeflow endpoint, you can access Kubeflow via `kubectl` and port-forwarding
-as follows:
+You can access Kubeflow via `kubectl` and port-forwarding as follows:
 
 1. Install `kubectl` if you haven't already done so:
 
@@ -69,10 +67,7 @@ as follows:
     http://localhost:8080/
     ```
 
-  * This will only work if you haven't enabled GCP's basic authentication or 
-    Cloud IAP authentication protocols. If
-    authentication is enabled, requests will be rejected
-    because you are not connecting over HTTPS with proper credentials.
+  * Port-forwarding will not work if you're using basic authentication with GCP. 
 
   * Depending on how you've configured Kubeflow, not all UIs work behind 
     port-forwarding to the reverse proxy.
