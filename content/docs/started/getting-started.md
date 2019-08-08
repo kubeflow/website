@@ -11,46 +11,24 @@ This document provides information about setting up Kubeflow in various environm
 It's important that you have some knowledge of the following systems and tools:
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
-* [TensorFlow](https://www.tensorflow.org/get_started/)
-* [kustomize](https://kustomize.io/)
+* [Kustomize](https://kustomize.io/)
 
-### Kubeflow requirements
-
-Before installing Kubeflow, ensure that your environment meets the
-following requirements:
-
-* You need kustomize version {{% kustomize-min-version %}} or later. See the 
-  [kustomize component guide](/docs/components/misc/kustomize/) 
-  for details about installing kustomize.
-
-* If you intend to install Kubeflow on an existing Kubernetes cluster, the
-  cluster must meet the following requirements:
-
-  * Kubernetes version {{% kubernetes-min-version %}} or later.
-  * A minimum of 0.6 CPU in cluster. (Reserved for 3 replicated ambassador pods 
-    and according to your needs add additional CPUs.)
-  * Node with storage >= 10 GB. (Due to the ML libraries and third party packages 
-    bundled in the Kubeflow Docker images.)
-
-## Get your machine-learning workflow up and running on Kubeflow
+## Installing Kubeflow
 
 There are various ways to install Kubeflow. Choose one of the following options
-to suit your environment (cloud, on premises (on prem), or local):
+to suit your environment ([desktop or server](#node), [Kubernetes cluster or public cloud](#cloud)):
 
-* To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
-  follow the [GCP deployment guide](/docs/gke/deploy/).
-* To use Kubeflow on Amazon Web Services (AWS),
-  follow the [AWS deployment guide](/docs/aws/deploy/).
-* To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
-  follow the [AKS deployment guide](/docs/azure/deploy/).
-* To use Kubeflow on IBM Cloud Private (ICP),
-	follow the [ICP deployment guide](/docs/started/getting-started-icp/).  
-* If you have an existing Kubernetes cluster or want to use Kubeflow on prem,
-  follow the [guide to deploying Kubeflow on
-  Kubernetes](/docs/started/k8s/overview/).
-* If you want to run Kubernetes locally in a virtual machine (VM), choose one of
-  the following options:
 
+* Installing Kubeflow on a **Desktop** or **Server**:  <a id="node">
+
+  * To use Kubeflow on Windows,
+  follow the [Windows deployment guide](/docs/started/getting-started-windows/).
+  * To use Kubeflow on MacOS,
+  follow the [MacOS deployment guide](/docs/started/getting-started-macos/).
+  * To use Kubeflow on Linux,
+  follow the [Linux deployment guide](/docs/started/getting-started-linux/).
+
+<!-- Propose to refactor this into the windows / mac / linux pages
    * [MiniKF setup](/docs/started/getting-started-minikf/)
       * MiniKF is a fast and easy way to get started with Kubeflow.
       * It installs with just two commands and then you are up for
@@ -92,6 +70,22 @@ to suit your environment (cloud, on premises (on prem), or local):
             QEMU/KVM for Linux).
           - No need to install a separate virtualization application.
           - Use of `cloud-init` to customize the VM.
+-->
+
+
+* Installing Kubeflow on a **Kubernetes Cluster** or a **Public Cloud**: <a id="cloud">
+
+  * Installing Kubeflow on a Kubernetes cluster, follow the
+  [guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
+  * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
+  follow the [GCP deployment guide](/docs/gke/deploy/).
+  * To use Kubeflow on Amazon Web Services (AWS),
+  follow the [AWS deployment guide](/docs/aws/deploy/).
+  * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
+  follow the [AKS deployment guide](/docs/azure/deploy/).
+  * To use Kubeflow on IBM Cloud Private (ICP),
+	follow the [ICP deployment guide](/docs/started/getting-started-icp/).
+
 
 ## Installing command line tools
 
@@ -101,11 +95,15 @@ tools for deploying and managing Kubeflow:
 * Download the `kfctl` binary from the
   [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
 
-* Follow the `kubectl` installation and setup from the [Kubernetes 
+* Follow the `kubectl` installation and setup instructions from the [Kubernetes
   documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-  As described in the Kubernetes documentation, your kubectl 
+  As described in the Kubernetes documentation, your kubectl
   version must be within one minor version of the Kubernetes version that you
   use in your Kubeflow cluster.
+
+* Follow the `kustomize` installation and setup instructions from the
+  [kustomize component guide](/docs/components/misc/kustomize/).
+
 
 ## Troubleshooting
 
@@ -114,7 +112,7 @@ See the [Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting/).
 ## Next steps
 
 * Read the [documentation](/docs/) for in-depth instructions on using Kubeflow.
-* Explore the [tutorials and 
+* Explore the [tutorials and
   codelabs](/docs/examples/codelabs-tutorials/) for learning and trying out Kubeflow.
 * Build machine-learning pipelines with the [Kubeflow Pipelines
   SDK](/docs/pipelines/sdk/sdk-overview/).

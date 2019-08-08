@@ -4,8 +4,8 @@ description = "Quickly get Kubeflow running locally"
 weight = 2
 +++
 
-This document outlines the steps you can  take to get your local installation 
-of Kubeflow running on top of Minikube. Minikube runs a simple, single-node 
+This document outlines the steps you can  take to get your local installation
+of Kubeflow running on top of Minikube. Minikube runs a simple, single-node
 Kubernetes cluster inside a virtual machine (VM).
 
 By the end of this document, you'll have a local installation of Minikube kubernetes cluster along with all the default core components of
@@ -206,6 +206,10 @@ $ minikube delete
 $ minikube start --cpus 4 --memory 8096 --disk-size=40g
 ```
 
+<!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- -->
+<!-- At this point, the user should be directed to "installing on an existing cluster" -->
+<!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- -->
+
 ### Installing Kubeflow using kfctl
 The following steps will deploy Kubeflow components and start them on the Minikube you created above.
 
@@ -221,7 +225,7 @@ The following steps will deploy Kubeflow components and start them on the Miniku
     - **KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-latest-version %}}
 
   1. Run the following to setup and deploy Kubeflow:
-    
+
     ```
     KUBEFLOW_REPO=${KUBEFLOW_SRC} ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform minikube
     cd ${KFAPP}
@@ -245,7 +249,7 @@ You can use the following command to set up port forwarding and access the Web U
 Now you can access the Kubeflow dashboard at http://localhost:8080/ and Jupyter
 notebooks at http://localhost:8080/notebooks/.
 
-For Jupyter notebooks, you can use any username and password to log in. 
+For Jupyter notebooks, you can use any username and password to log in.
 Follow the guide to [setting up your Jupyter notebooks on Kubeflow](/docs/notebooks/setup/).
 
 For further exploration refer to the [documentation](/docs/).

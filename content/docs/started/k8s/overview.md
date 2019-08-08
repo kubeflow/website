@@ -4,7 +4,13 @@ description = "Instructions for installing Kubeflow on your existing Kubernetes 
 weight = 1
 +++
 
-Follow these instructions if you want to install Kubeflow on an existing Kubernetes cluster.
+Follow these instructions if you want to install Kubeflow on an existing Kubernetes cluster. The cluster must meet the following requirements:
+
+  * Kubernetes version {{% kubernetes-min-version %}} or later.
+  * A minimum of 0.6 CPU in cluster. (Reserved for 3 replicated ambassador pods
+    and according to your needs add additional CPUs.)
+  * Node with storage >= 10 GB. (Due to the ML libraries and third party packages
+    bundled in the Kubeflow Docker images.)
 
 If you are using a Kubernetes distribution or Cloud Provider which has specific instructions for installing Kubeflow we recommend following those instructions. Those instructions do additional Cloud specific setup to create a really great Kubeflow experience.
 

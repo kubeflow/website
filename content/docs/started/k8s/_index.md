@@ -1,5 +1,5 @@
 +++
-title = "Kubeflow on Existing Kubernetes Clusters"
-description = "Instructions for installing Kubeflow on your existing clusters"
+title = "Kubernetes Install"
+description = "Instructions for installing Kubeflow on an existing Kubernetes clusters"
 weight = 2
 +++
