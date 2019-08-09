@@ -34,7 +34,7 @@ If you followed the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/),
 the Kubeflow central UI is accessible at a URL of the following pattern:
 
 ```
-https://<application-name>.endpoints.<project-ID>.cloud.goog/
+https://<application-name>.endpoints.<project-id>.cloud.goog/
 ```
 
 The URL brings up the dashboard illustrated above.
