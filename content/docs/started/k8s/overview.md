@@ -60,8 +60,8 @@ This section includes the deployment solutions that are supported by specific ve
     </thead>
     <tbody>
       <tr>
-        <td>existing_arrikto.yaml</td>
-        <td> This deployment uses Dex and Istio for vendor-neutral authentication. <br />Follow instructions: <a href="/docs/started/k8s/kfctl-existing-arrikto/">Kubeflow Deployment with existing_arrikto</a></td>
+        <td>kfctl_existing_arrikto.yaml</td>
+        <td> This config creates a Kubeflow deployment with all its core components, and uses Dex and Istio for vendor-neutral authentication. <br />Follow instructions: <a href="/docs/started/k8s/kfctl-existing-arrikto/">Multi-user, auth-enabled Kubeflow with kfctl_existing_arrikto</a></td>
         <td><a href="https://www.arrikto.com/">Arrikto</a></td>
       </tr>
     </tbody>
