@@ -15,15 +15,15 @@ weight = 100
 </p>
 Resource Types:
 <ul><li>
-<a href="#PyTorchJob">PyTorchJob</a>
+<a href="#github.com%2fkubeflow%2fpytorch-operator%2fpkg%2fapis%2fpytorch%2fv1beta2.PyTorchJob">PyTorchJob</a>
 </li></ul>
-<h3 id="PyTorchJob">PyTorchJob
+<h3 id="github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1beta2.PyTorchJob">PyTorchJob
 </h3>
 <p>
 <p>PyTorchJob represents the configuration of PyTorchJob</p>
 </p>
-<table>
-<thead>
+<div class="table-responsive"><table class="table table-bordered">
+<thead class="thead-light">
 <tr>
 <th>Field</th>
 <th>Description</th>
@@ -66,7 +66,7 @@ Refer to the Kubernetes API documentation for the fields of the
 <td>
 <code>spec</code></br>
 <em>
-<a href="#PyTorchJobSpec">
+<a href="#github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1beta2.PyTorchJobSpec">
 PyTorchJobSpec
 </a>
 </em>
@@ -75,7 +75,7 @@ PyTorchJobSpec
 <p>Specification of the desired behavior of the PyTorchJob.</p>
 <br/>
 <br/>
-<table>
+<div class="table-responsive"><table class="table table-bordered">
 <tr>
 <td>
 <code>activeDeadlineSeconds</code></br>
@@ -106,7 +106,7 @@ int32
 <td>
 <code>cleanPodPolicy</code></br>
 <em>
-<a href="/docs/reference/tfjob/v1beta2/common/#CleanPodPolicy">
+<a href="/docs/reference/tfjob/v1/common/#CleanPodPolicy">
 common/v1beta2.CleanPodPolicy
 </a>
 </em>
@@ -136,7 +136,7 @@ Default to infinite.</p>
 <td>
 <code>pytorchReplicaSpecs</code></br>
 <em>
-<a href="/docs/reference/tfjob/v1beta2/common/#ReplicaSpec">
+<a href="/docs/reference/tfjob/v1/common/#ReplicaSpec">
 map[github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1beta2.PyTorchReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.ReplicaSpec
 </a>
 </em>
@@ -158,7 +158,7 @@ For example,
 <td>
 <code>status</code></br>
 <em>
-<a href="/docs/reference/tfjob/v1beta2/common/#JobStatus">
+<a href="/docs/reference/tfjob/v1/common/#JobStatus">
 common/v1beta2.JobStatus
 </a>
 </em>
@@ -172,17 +172,17 @@ Read-only.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="PyTorchJobSpec">PyTorchJobSpec
+<h3 id="github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1beta2.PyTorchJobSpec">PyTorchJobSpec
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#PyTorchJob">PyTorchJob</a>)
+<a href="#github.com%2fkubeflow%2fpytorch-operator%2fpkg%2fapis%2fpytorch%2fv1beta2.PyTorchJob">PyTorchJob</a>)
 </p>
 <p>
 <p>PyTorchJobSpec is a desired state description of the PyTorchJob.</p>
 </p>
-<table>
-<thead>
+<div class="table-responsive"><table class="table table-bordered">
+<thead class="thead-light">
 <tr>
 <th>Field</th>
 <th>Description</th>
@@ -219,7 +219,7 @@ int32
 <td>
 <code>cleanPodPolicy</code></br>
 <em>
-<a href="/docs/reference/tfjob/v1beta2/common/#CleanPodPolicy">
+<a href="/docs/reference/tfjob/v1/common/#CleanPodPolicy">
 common/v1beta2.CleanPodPolicy
 </a>
 </em>
@@ -249,7 +249,7 @@ Default to infinite.</p>
 <td>
 <code>pytorchReplicaSpecs</code></br>
 <em>
-<a href="/docs/reference/tfjob/v1beta2/common/#ReplicaSpec">
+<a href="/docs/reference/tfjob/v1/common/#ReplicaSpec">
 map[github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1beta2.PyTorchReplicaType]*github.com/kubeflow/tf-operator/pkg/apis/common/v1beta2.ReplicaSpec
 </a>
 </em>
@@ -266,7 +266,7 @@ For example,
 </tr>
 </tbody>
 </table>
-<h3 id="PyTorchReplicaType">PyTorchReplicaType
+<h3 id="github.com/kubeflow/pytorch-operator/pkg/apis/pytorch/v1beta2.PyTorchReplicaType">PyTorchReplicaType
 (<code>string</code> alias)</p></h3>
 <p>
 <p>PyTorchReplicaType is the type for PyTorchReplica.</p>
@@ -274,5 +274,5 @@ For example,
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>e8d4d04</code>.
+on git commit <code>e775742</code>.
 </em></p>

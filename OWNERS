@@ -22,10 +22,11 @@ approvers:
   - qimingj
   - rileyjbauer
   - vicaire
-  - yebrahim
+  - joeliedtke
 reviewers:
   - abhi-g
   - aronchick
+  - carmine
   - dansanche
   - inc0
   - jlewi
@@ -46,5 +47,5 @@ reviewers:
   - paveldournov
   - qimingj
   - rileyjbauer
+  - thedriftofwords
   - vicaire
-  - yebrahim

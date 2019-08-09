@@ -25,17 +25,57 @@
 /docs/pipelines/pipelines-ui/	         /docs/pipelines/pipelines-quickstart/
 
 # Restructured the pipelines docs.
-/docs/pipelines/output-viewer/                 /docs/pipelines/metrics/output-viewer/
-/docs/pipelines/pipelines-metrics/             /docs/pipelines/metrics/pipelines-metrics/
+/docs/pipelines/output-viewer/                 /docs/pipelines/sdk/output-viewer/
+/docs/pipelines/pipelines-metrics/             /docs/pipelines/sdk/pipelines-metrics/
 /docs/pipelines/build-component/               /docs/pipelines/sdk/build-component/
-/docs/pipelines/enable-gpu-and-tpu/            /docs/pipelines/sdk/enable-gpu-and-tpu/
+/docs/pipelines/enable-gpu-and-tpu/            /docs/pipelines/sdk/gcp/enable-gpu-and-tpu/
 /docs/pipelines/install-sdk/                   /docs/pipelines/sdk/install-sdk/
 /docs/pipelines/lightweight-python-components/ /docs/pipelines/sdk/lightweight-python-components/
 /docs/pipelines/build-pipeline/                /docs/pipelines/tutorials/build-pipeline/
-/docs/pipelines/pipelines-tutorial/            /docs/pipelines/tutorials/pipelines-tutorial/
+/docs/pipelines/pipelines-tutorial/            /docs/gke/pipelines-tutorial/
+/docs/pipelines/tutorials/pipelines-tutorial/  /docs/gke/pipelines-tutorial/
+
+/docs/pipelines/metrics/                       /docs/pipelines/sdk/pipelines-metrics/
+/docs/pipelines/metrics/pipelines-metrics/     /docs/pipelines/sdk/pipelines-metrics/
+/docs/pipelines/metrics/output-viewer/         /docs/pipelines/sdk/output-viewer/
+/docs/pipelines/concepts/*                     /docs/pipelines/overview/concepts/:splat
+/docs/pipelines/pipelines-overview/            /docs/pipelines/overview/pipelines-overview/
+/docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/pipelines/sdk/gcp/enable-gpu-and-tpu/
+/docs/pipelines/preemptible/                   /docs/pipelines/sdk/gcp/preemptible/
+/docs/pipelines/reusable-components/           /docs/examples/shared-resources/
+/docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
 
 # Moved the guide to monitoring GKE deployments.
 /docs/other-guides/monitoring/                 /docs/gke/monitoring/
 
 # Created a new section for pipeline concepts.
 /docs/pipelines/pipelines-concepts/            /docs/pipelines/concepts/
+
+# Replaces Pipelines DSL overview with SDK overview
+/docs/pipelines/sdk/dsl-overview/              /docs/pipelines/sdk/sdk-overview/
+
+# Removed the downloads page from Reference to Getting Started with Kubeflow
+/docs/reference/downloads/                     /docs/started/getting-started/
+
+# Adding the content of Requirements to Getting Started and removing Requirements
+docs/started/requirements/                    /docs/started/getting-started/
+
+# Created a new components layout
+/docs/components/hyperparameter                /docs/components/hyperparameter-tuning/hyperparameter
+/docs/components/chainer                       /docs/components/training/chainer
+/docs/components/istio                         /docs/components/serving/istio
+/docs/components/modeldb                       /docs/components/misc/modeldb
+/docs/components/mpi                           /docs/components/training/mpi
+/docs/components/mxnet                         /docs/components/training/mxnet
+/docs/components/pipelines                     /docs/components/pipelines/pipelines
+/docs/components/pytorch                       /docs/components/training/pytorch
+/docs/components/nuclio                        /docs/components/misc/nuclio
+/docs/components/seldon                        /docs/components/serving/seldon
+/docs/components/trtinferenceserver            /docs/components/serving/trtinferenceserver
+/docs/components/tfbatchpredict                /docs/components/serving/tfbatchpredict
+/docs/components/tftraining                    /docs/components/training/tftraining
+/docs/components/pytorchserving                /docs/components/serving/pytorchserving
+/docs/components/tfserving_new                 /docs/components/serving/tfserving_new
+
+# Restructured the getting-started guide for existing Kubernetes.
+/docs/started/getting-started-k8s/             /docs/started/k8s/

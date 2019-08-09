@@ -1,12 +1,12 @@
 +++
 title = "Pipelines Quickstart"
 description = "Getting started with Kubeflow Pipelines"
-weight = 20
+weight = 10
 +++
 
 Use this guide if you want to get a simple pipeline running quickly in
 Kubeflow Pipelines. If you need a more in-depth guide, see the
-[end-to-end tutorial](/docs/pipelines/tutorials/pipelines-tutorial/).
+[end-to-end tutorial](/docs/gke/pipelines-tutorial/).
 
 * This quickstart guide shows you how to use one of the samples that come with 
   the Kubeflow Pipelines installation and are visible on the Kubeflow Pipelines
@@ -32,7 +32,17 @@ Follow these steps to deploy Kubeflow and open the pipelines dashboard:
     alt="Kubeflow UI"
     class="mt-3 mb-3 border border-info rounded">
 
-    If you skipped the IAP option when deploying Kubeflow, run ```kubectl port-forward -n kubeflow `kubectl get pods -n kubeflow --selector=service=ambassador -o jsonpath='{.items[0].metadata.name}'` 8080:80``` and go to http://localhost:8080/
+    If you skipped the Cloud IAP option when deploying Kubeflow, or if you 
+    haven't yet set up your Kubeflow endpoint, you can access Kubeflow via 
+    `kubectl` and port-forwarding:
+    
+    1. Install `kubectl` if you haven't already done so, by running the 
+      following command on the command line: 
+      `gcloud components install kubectl`. For more information, see the 
+      [`kubectl` 
+      documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+    1. Run ```kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80``` and go to `http://localhost:8080/`.
 
 1. Click **Pipeline Dashboard** to access the pipelines UI. The pipelines UI looks like
   this:
@@ -171,9 +181,11 @@ finished with them:
 * Learn more about the 
   [important concepts](/docs/pipelines/concepts/) in Kubeflow
   Pipelines.
-* Follow the [end-to-end tutorial](/docs/pipelines/tutorials/pipelines-tutorial/) 
+* Follow the [end-to-end tutorial](/docs/gke/pipelines-tutorial/) 
   using an MNIST machine-learning model.
 * This page showed you how to run some of the examples supplied in the Kubeflow
   Pipelines UI. Next, you may want to run a pipeline from a notebook, or compile 
   and run a sample from the code. See the guide to experimenting with
   [the Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).
+* Build your own machine-learning pipelines with the [Kubeflow Pipelines 
+  SDK](/docs/pipelines/sdk/sdk-overview/).

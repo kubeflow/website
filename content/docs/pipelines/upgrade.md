@@ -1,7 +1,7 @@
 +++
 title = "Upgrading and Reinstalling"
 description = "How to upgrade or reinstall your Kubeflow Pipelines deployment"
-weight = 70
+weight = 50
 +++
 
 Starting from Kubeflow version 0.5, Kubeflow Pipelines persists the
@@ -151,23 +151,31 @@ change in the procedure:
     kfctl apply all -V
     ```
 
-    You must edit `gcp_config/storage-kubeflow.yaml`:
+    You should first:
+    * Edit `gcp_config/storage-kubeflow.yaml` to skip creating new storages:
 
-    ```
-    ...
-    createPipelinePersistentStorage: false
-    ...
-    ```
+      ```
+      ...
+      createPipelinePersistentStorage: false
+      ...
+      ```
 
-    Also run the following command to specify the persistent disk created 
-    in a previous deployment:
+    * Edit the following files to specify the persistent disks created
+      in a previous deployment:
 
-    ```
-    cd ks_app
-    ks param set pipeline mysqlPd [NAME-OF-METADATA-STORAGE-DISK]
-    ks param set pipeline minioPd [NAME-OF-ARTIFACT-STORAGE-DISK]
-    cd ..
-    ```
+      `kustomize/minio/overlays/minioPd/params.env`
+      ```
+      ...
+      minioPd=[NAME-OF-ARTIFACT-STORAGE-DISK]
+      ...
+      ```
+
+      `kustomize/mysql/overlays/mysqlPd/params.env`
+      ```
+      ...
+      mysqlPd=[NAME-OF-METADATA-STORAGE-DISK]
+      ...
+      ```
 
 1. Then run the `apply` command:
 
@@ -195,12 +203,20 @@ PV in the new cluster.
     kfctl apply k8s
     ```
 
-    You must run the following commands to specify your PVs:
+    You should first edit the following files to specify your PVs:
 
+    `kustomize/minio/overlays/minioPd/params.env`
     ```
-    cd ks_app
-    ks param set pipeline mysqlPvName [YOUR-PRE-CREATED-MYSQL-PV-NAME]
-    ks param set pipeline minioPvName [YOUR-PRE-CREATED-MINIO-PV-NAME]
+    ...
+    minioPd=[YOUR-PRE-CREATED-MINIO-PV-NAME]
+    ...
+    ```
+
+    `kustomize/mysql/overlays/mysqlPd/params.env`
+    ```
+    ...
+    mysqlPd=[YOUR-PRE-CREATED-MYSQL-PV-NAME]
+    ...
     ```
 
 1. Then run the `apply` command:

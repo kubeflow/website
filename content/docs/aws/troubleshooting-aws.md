@@ -129,3 +129,14 @@ ks delete default -c ${COMPONENT}
 ks param set ${COMPONENT} dnsName fs-0xxxxx2a216cf.fsx.us-west-2.amazonaws.com
 ks apply default -c ${COMPONENT}
 ```
+
+### Incompatible eksctl version
+
+If you see this error when you run `apply platform`, it means your eksctl cli version is not compatible with `eksctl.io` version in cluster_config.yaml. Please upgrade your eksctl and try again.
+`v1alpha5` is introduced from 0.1.31.
+
+We are working with eksctl team to make sure feature release support backward compatibility at least for one version.
+
+```
+loading config file "${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_config.yaml": no kind "ClusterConfig" is registered for version "eksctl.io/v1alpha5" in scheme "k8s.io/client-go/kubernetes/scheme/register.go:60"
+```

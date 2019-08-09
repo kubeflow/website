@@ -1,7 +1,7 @@
 +++
 title = "Build Components and Pipelines"
 description = "Building your own component and adding it to a pipeline"
-weight = 3
+weight = 30
 +++
 
 This page describes how to create a component for Kubeflow Pipelines and how
@@ -60,57 +60,64 @@ local file, such as `/output.txt`. In the Python class that defines your
 pipeline (see [below](#define-pipeline)) you can 
 specify how to map the content of local files to component outputs.
 
-## Create a Python class for your component
+## Create a Python function to wrap your component
 
-Define a Python class to describe the interactions with the Docker container
+Define a Python function to describe the interactions with the Docker container
 image that contains your pipeline component. For example, the following
-Python class describes a component that trains an XGBoost model:
+Python function describes a component that trains an XGBoost model:
 
 ```python
-class TrainerOp(dsl.ContainerOp):
-
-  def __init__(self, name, project, region, cluster_name, train_data, eval_data,
-               target, analysis, workers, rounds, output, is_classification=True):
+def dataproc_train_op(
+    project,
+    region,
+    cluster_name,
+    train_data,
+    eval_data,
+    target,
+    analysis,
+    workers,
+    rounds,
+    output,
+    is_classification=True
+):
     if is_classification:
       config='gs://ml-pipeline-playground/trainconfcla.json'
     else:
       config='gs://ml-pipeline-playground/trainconfreg.json'
 
-    super(TrainerOp, self).__init__(
-      name=name,
-      image='gcr.io/ml-pipeline/ml-pipeline-dataproc-train:7775692adf28d6f79098e76e839986c9ee55dd61',
-      arguments=[
-          '--project', project,
-          '--region', region,
-          '--cluster', cluster_name,
-          '--train', train_data,
-          '--eval', eval_data,
-          '--analysis', analysis,
-          '--target', target,
-          '--package', 'gs://ml-pipeline-playground/xgboost4j-example-0.8-SNAPSHOT-jar-with-dependencies.jar',
-          '--workers', workers,
-          '--rounds', rounds,
-          '--conf', config,
-          '--output', output,
-      ],
-      file_outputs={'output': '/output.txt'})
+    return dsl.ContainerOp(
+        name='Dataproc - Train XGBoost model',
+        image='gcr.io/ml-pipeline/ml-pipeline-dataproc-train:ac833a084b32324b56ca56e9109e05cde02816a4',
+        arguments=[
+            '--project', project,
+            '--region', region,
+            '--cluster', cluster_name,
+            '--train', train_data,
+            '--eval', eval_data,
+            '--analysis', analysis,
+            '--target', target,
+            '--package', 'gs://ml-pipeline-playground/xgboost4j-example-0.8-SNAPSHOT-jar-with-dependencies.jar',
+            '--workers', workers,
+            '--rounds', rounds,
+            '--conf', config,
+            '--output', output,
+        ],
+        file_outputs={
+            'output': '/output.txt',
+        }
+    )
 
 ```
 
-The above class is an extract from the
+The function must return a dsl.ContainerOp from the
 [XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py).
 
 Note:
 
 * Each component must inherit from 
   [`dsl.ContainerOp`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_container_op.py).
-* In the `init` arguments, you can include Python native types (such as `str` 
-  and `int`) and
-  [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py) 
-  types. Each `dsl.PipelineParam` represents a parameter whose value is usually 
-  only known at run time. The parameter can be a one for which the user provides 
-  a value at pipeline run time, or it can be an output from an upstream 
-  component. 
+* Values in the `arguments` list that's used by the `dsl.ContainerOp` constructor above must be either Python scalar types (such as `str` and ` int`) or [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py) types. Each `dsl.PipelineParam` represents a parameter whose value is usually only known at run time. The value is 
+  either provided by the user at pipeline run time or received as an output from an upstream component. 
 * Although the value of each `dsl.PipelineParam` is only available at run time,
   you can still use the parameters inline in the `arguments` by using `%s`
   variable substitution. At run time the argument contains the value of the 
@@ -121,7 +128,7 @@ Note:
   component. To reference the output in code:
 
     ```python
-    op = TrainerOp(...)
+    op = dataproc_train_op(...)
     op.outputs['label']
     ```
 

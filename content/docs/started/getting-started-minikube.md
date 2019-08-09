@@ -85,12 +85,12 @@ curl -Lo docker-machine-driver-kvm2 https://storage.googleapis.com/minikube/rele
 The following describes a script driven installation that you can use to deploy all
 the necessary components including `kubectl`, `minikube`, `kfctl` along with Kubeflow itself. The script requires input from you on some configuration information and then it drives the rest of the installation. Run the following to start the installation:
 ```
-export KUBEFLOW_TAG={{% kf-stable-tag %}}
+export KUBEFLOW_TAG={{% kf-latest-version %}}
 curl -O https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/setup-minikube.sh
 chmod +x setup-minikube.sh
 ./setup-minikube.sh
 ```
-**KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-stable-tag %}} or `master`.
+**KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-latest-version %}} or `master`.
 
 The script asks for some config input as shown below:
 ![ConfigInputs](../ConfigInputs.png)
@@ -214,11 +214,11 @@ The following steps will deploy Kubeflow components and start them on the Miniku
     ```
     mkdir ${KUBEFLOW_SRC}
     cd ${KUBEFLOW_SRC}
-    export KUBEFLOW_TAG={{% kf-stable-tag %}}
+    export KUBEFLOW_TAG={{% kf-latest-version %}}
     curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
     ```
     - **KUBEFLOW_SRC** directory where you want kubeflow source to be downloaded
-    - **KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-stable-tag %}}
+    - **KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-latest-version %}}
 
   1. Run the following to setup and deploy Kubeflow:
     
@@ -237,6 +237,10 @@ Access Jupyter notebooks at http://localhost:8080/notebooks/
 ```
 
 ### Where to go next
+
+You can use the following command to set up port forwarding and access the Web UIs:
+
+{{% code-webui-port-forward %}}
 
 Now you can access the Kubeflow dashboard at http://localhost:8080/ and Jupyter
 notebooks at http://localhost:8080/notebooks/.

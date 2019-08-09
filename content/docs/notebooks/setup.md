@@ -256,8 +256,15 @@ exposed to the internet and is an unsecured endpoint by default.
 
 ## Next steps
 
+* See a [simple example](https://github.com/kubeflow/examples/tree/master/pipelines/simple-notebook-pipeline) of creating Kubeflow pipelines in a Jupyter notebook on GCP.
+* Build machine-learning pipelines with the [Kubeflow Pipelines 
+  SDK](/docs/pipelines/sdk/sdk-overview/).
 * Explore [Kubeflow Fairing](/docs/fairing/) for a complete solution to 
   building, training, and deploying an ML model from a notebook.
+* See how to configure [multi-user isolation](/docs/other-guides/multi-user-overview/) in Kubeflow, to separate the notebooks for each user in a shared Kubeflow deployment.
 * Learn the advanced features available from a Kubeflow notebook, such as
   [submitting Kubernetes resources](/docs/notebooks/submit-kubernetes/) or
   [building Docker images](/docs/notebooks/submit-docker-image/). 
+* Visit the [troubleshooting guide](/docs/notebooks/troubleshoot) for fixing common
+  errors in creating Jupyter notebooks in Kubeflow
+

@@ -10,7 +10,7 @@ when deploying Kubeflow on GCP,
 then you must follow these instructions to create an OAuth client for use
 with Kubeflow.
 
-You can skip the instructons on this page if you want to use basic 
+You can skip the instructions on this page if you want to use basic 
 authentication (username and password) with Kubeflow instead of Cloud IAP.
 Cloud IAP is recommended for production deployments or deployments with access 
 to sensitive data.
@@ -42,37 +42,57 @@ address to verify the user's identity.
       alt="OAuth consent screen"
       class="mt-3 mb-3 p-3 border border-info rounded">
 
-1. On the [credentials tab](https://console.cloud.google.com/apis/credentials):
+1. On the [credentials screen](https://console.cloud.google.com/apis/credentials):
    * Click **Create credentials**, and then click **OAuth client ID**.
    * Under **Application type**, select **Web application**.
    * In the **Name** box enter any name for your OAuth client ID. This is *not*
      the name of your application nor the name of your Kubeflow deployment. It's
      just a way to help you identify the OAuth client ID.
-   * In the **Authorized redirect URIs** box, enter the following:
 
-        ```
-        https://<deployment_name>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate
-        ```
-        * `<deployment_name>` must be the name of your Kubeflow deployment. It 
-          must have the same value as the deployment name used in the next step 
-          when you deploy Kubeflow from the UI or by running the deployment
-          script. **Deployment name must be 4-20 characters long.**
-          The default value for the deployment name is the `KFAPP` value 
-          used when initializing your Kubeflow app, but you can configure this 
-          with the environment variable `DEPLOYMENT_NAME`.
-        * `<project>` is your GCP project. It must have the same value as used 
-           in the next step when you deploy Kubeflow from the UI or by running 
-           the deployment script.
-    * Here's an example of the completed form:
-      <img src="/docs/images/oauth-credential.png" 
-        alt="OAuth credentials"
-        class="mt-3 mb-3 p-3 border border-info rounded">
+1. Click **Create**. A dialog box appears, like the one below:
+
+     <img src="/docs/images/new-oauth.png" 
+      alt="OAuth consent screen"
+      class="mt-3 mb-3 p-3 border border-info rounded">
+
+1. Copy the **client ID** shown in the dialog box, because you need the client
+  ID in the next step.
+
+1. On the **Create credentials** screen, find your newly created OAuth 
+  credential and click the pencil icon to edit it:
+   
+    <img src="/docs/images/oauth-edit.png" 
+     alt="OAuth consent screen"
+     class="mt-3 mb-3 p-3 border border-info rounded">
+
+1. In the **Authorized redirect URIs** box, enter the following (if it's not 
+  already present in the list of authorized redirect URIs):
+
+    ```
+    https://iap.googleapis.com/v1/oauth/clientIds/<CLIENT_ID>:handleRedirect
+    ```
+    * `<CLIENT_ID>` is the OAuth client ID, something like 
+      `XXX.apps.googleusercontent.com`. Do not include the angle brackets around
+      the client ID.
+    * Note that the URI is not dependent on the Kubeflow deployment or endpoint. 
+      Multiple Kubeflow deployments can share the same OAuth client without the 
+      need to modify the redirect URIs.
+    
 
 1. Press **Enter/Return** to add the URI. Check that the URI now appears as
   a confirmed item under **Authorized redirect URIs**. (The URI should no longer be
   editable.)
-1. Make note of the **client ID** and **client secret** that appear in the OAuth
-  client window. You need them later to enable Cloud IAP.
+
+    Here's an example of the completed form:
+    <img src="/docs/images/oauth-credential.png" 
+      alt="OAuth credentials"
+      class="mt-3 mb-3 p-3 border border-info rounded">
+
+1. Click **Save**.
+
+1. Make note that you can find your OAuth client credentials in the credentials
+  section of the GCP Console. You need to retrieve the **client ID** and 
+  **client secret** later when you're ready to enable Cloud IAP.
 
 ## Next steps
 

@@ -569,6 +569,7 @@ Set the variable by passing the following parameters:
 ```
 kustomize edit add configmap mnist-map-training --from-literal=secretName=user-gcp-sa
 kustomize edit add configmap mnist-map-training --from-literal=secretMountPath=/var/secrets
+kustomize edit add configmap mnist-map-training --from-literal=GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/user-gcp-sa.json
 ```
 
 <a id="train-model"></a>

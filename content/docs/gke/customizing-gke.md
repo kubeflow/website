@@ -14,7 +14,7 @@ so, follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
 
 ## Customizing Kubeflow
 
-You can use ksonnet to customize Kubeflow.
+You can use [kustomize](https://kustomize.io/) to customize Kubeflow.
 
 The deployment process is divided into two steps, **generate** and **apply**, so that you can
 modify your deployment before actually deploying.
@@ -48,13 +48,31 @@ kfctl delete all
 kfctl apply all
 ```
 
-To customize the Kubeflow resources running within the cluster you can modify the ksonnet app in **${KFAPP}/ks_app**.
-For example, to mount additional physical volumes (PVs) in Jupyter:
+To customize the Kubeflow resources running within the cluster you can modify the kustomize manifests in **${KFAPP}/kustomize**.
+For example, to modify settings for the Jupyter web app:
 
 ```
-cd ${KF_APP}/ks_app
-ks param set jupyter disks "kubeflow-gcfs"
+cd ${KFAPP}/kustomize
+gvim jupyter-web-app.yaml
 ```
+
+Find and replace the parameter values:
+```
+apiVersion: v1
+data:
+  ROK_SECRET_NAME: secret-rok-{username}
+  UI: default
+  clusterDomain: cluster.local
+  policy: Always
+  prefix: jupyter
+kind: ConfigMap
+metadata:
+  labels:
+    app: jupyter-web-app
+    kustomize.component: jupyter-web-app
+  name: jupyter-web-app-parameters
+  namespace: kubeflow
+  ```
 
 You can then redeploy using `kfctl`:
 
@@ -63,28 +81,28 @@ cd ${KFAPP}
 kfctl apply k8s
 ```
 
-or using ksonnet directly:
+or using kubectl directly:
 ```
-cd ${KFAPP}/ks_app
-ks apply default
+cd ${KFAPP}/kustomize
+kubectl apply -f jupyter-web-app.yaml
 ```
 
 ## Common customizations
 
 Add GPU nodes to your cluster:
 
-  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L40).
+  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L56).
 
 Add Cloud TPUs to your cluster:
 
-  * Set `enable_tpu:true` [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L52).
+  * Set `enable_tpu:true` [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L78).
 
 Add VMs with more CPUs or RAM:
 
   * Change the machineType.
   * There are two node pools:
-      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96).
-      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L96).
+      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L109).
+      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L149).
   * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment.
 
 Add users to Kubeflow:

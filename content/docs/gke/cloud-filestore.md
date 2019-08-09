@@ -17,6 +17,12 @@ Cloud Filestore is very useful for creating a shared filesystem that can be moun
 This guide assumes you have already set up Kubeflow on GCP. If you haven't done
 so, follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
 
+The instructions below assume that the `${KFAPP}` environment variable contains 
+the *name* (not the full path) of the directory containing your Kubeflow 
+configurations. See the
+[Kubeflow deployment guide](/docs/gke/deploy/deploy-cli/) for details of this
+directory.
+
 ## Create a Cloud Filestore instance
 
 Follow these instructions to create a Cloud Filestore instance; if you already have a Cloud Filestore instance you want to
@@ -25,7 +31,7 @@ use you can skip this section.
 Copy the Cloud Filestore deployment manager configs to the `gcp_config` directory:
 
 ```
-cd ${KFAPP}
+cd /<path-to-kubeflow-deployment>/${KFAPP}
 cp .cache/${VERSION}/deployment/gke/deployment_manager_configs/gcfs.yaml \
    ./gcp_config/
 ```
@@ -43,10 +49,10 @@ Edit `gcfs.yaml` to match your desired configuration:
 Using [yq](https://github.com/kislyuk/yq):
 
 ```
-cd ${KFAPP}
+cd /<path-to-kubeflow-deployment>/${KFAPP}
 . env.sh
-yq -r ".resources[0].properties.instanceId=\"${DEPLOYMENT_NAME}\"" ${KFAPP}/gcp_config/gcfs.yaml > ${KFAPP}/gcp_config/gcfs.yaml.new
-mv ${KFAPP}/gcp_config/gcfs.yaml.new ${KFAPP}/gcp_config/gcfs.yaml
+yq -r ".resources[0].properties.instanceId=\"${DEPLOYMENT_NAME}\"" gcp_config/gcfs.yaml > gcp_config/gcfs.yaml.new
+mv gcp_config/gcfs.yaml.new gcp_config/gcfs.yaml
 ```
 
 Apply the changes:
@@ -57,7 +63,7 @@ Apply the changes:
 -->
 
 ```
-cd ${KFAPP}/gcp_config
+cd /<path-to-kubeflow-deployment>/${KFAPP}/gcp_config
 gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP-NAME}-nfs --config=gcfs.yaml
 ```
 
@@ -85,7 +91,7 @@ mykubeflow-nfs  us-east1-d  STANDARD  1024         kubeflow         10.20.148.19
 Now create the PVC
 
 ```
-cd ${KFAPP}/ks_app
+cd /<path-to-kubeflow-deployment>/${KFAPP}/ks_app
 ks generate google-cloud-filestore-pv google-cloud-filestore-pv --name="kubeflow-gcfs" \
    --storageCapacity="${GCFS_STORAGE}" \
    --serverIP="${GCFS_INSTANCE_IP_ADDRESS}"
@@ -101,7 +107,7 @@ ks generate google-cloud-filestore-pv google-cloud-filestore-pv --name="kubeflow
 Apply the changes:
 
 ```
-cd ${KFAPP}
+cd /<path-to-kubeflow-deployment>/${KFAPP}
 kfctl apply k8s
 ```
 
