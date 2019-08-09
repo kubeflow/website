@@ -86,12 +86,20 @@ The steps below assume that you already have a Kubernetes cluster set up.
         kfctl apply all -V
         ```
 
-        You must run the following commands to specify your PVs:
+        You should first edit the following files to specify your PVs:
 
+        `${KFAPP}/kustomize/minio/overlays/minioPd/params.env`
         ```
-        cd ks_app
-        ks param set pipeline mysqlPvName [YOUR-PRE-CREATED-MYSQL-PV-NAME]
-        ks param set pipeline minioPvName [YOUR-PRE-CREATED-MINIO-PV-NAME]
+        ...
+        minioPd=[YOUR-PRE-CREATED-MINIO-PV-NAME]
+        ...
+        ```
+
+        `${KFAPP}/kustomize/mysql/overlays/mysqlPd/params.env`
+        ```
+        ...
+        mysqlPd=[YOUR-PRE-CREATED-MYSQL-PV-NAME]
+        ...
         ```
 
   1. Then run the `apply` command as usual:
