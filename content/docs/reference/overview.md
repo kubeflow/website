@@ -34,6 +34,8 @@ API references:
 <a id="metadata">
 ## Metadata
 
+The goal of the [Metadata](https://github.com/kubeflow/metadata) project is to help Kubeflow users understand and manage their machine learning workflows by tracking and managing the metadata of workflows.
+
 API references:
 
   * [v1alpha1](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec.html)
