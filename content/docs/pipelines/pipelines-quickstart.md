@@ -90,7 +90,7 @@ workload:
 
 You can find the source code for the basic parallel join sample in the 
 [Kubeflow Pipelines 
-repo](https://github.com/kubeflow/pipelines/blob/master/samples/basic/parallel_join.py).
+repo](https://github.com/kubeflow/pipelines/blob/master/samples/core/parallel_join/parallel_join.py).
 
 ## Run an ML pipeline
 

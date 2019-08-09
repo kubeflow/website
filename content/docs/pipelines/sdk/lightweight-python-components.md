@@ -54,6 +54,6 @@ There are several requirements for the component function:
 ## Tutorials
 
 See the notebook on 
-[lightweight Python component basics](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/Lightweight%20Python%20components%20-%20basics.ipynb) 
+[lightweight Python component basics](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/Lightweight%20Python%20components%20-%20basics.ipynb) 
 for an example of creating lightweight Python components and using them in a 
 pipeline.
