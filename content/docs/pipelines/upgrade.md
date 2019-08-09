@@ -108,36 +108,44 @@ The steps below assume that you already have a Kubernetes cluster set up.
         kfctl apply k8s
         ``` 
 
-## Upgrading your Kubeflow Pipelines deployment
+## Upgrading your Kubeflow deployment
 
-To upgrade your Kubeflow Pipelines deployment to the latest version, run the following script in the 
-Kubeflow application directory. That is, in the same directory where you 
-performed the original deployment, represented in the deployment guide as
-`${KFAPP}`:
+### Upgrading your Kubeflow deployment on GCP
 
-```
-cd ${KFAPP}
-${KUBEFLOW_SRC}/scripts/upgrade_kfp.sh
-```
-Alternatively, you can upgrade to a specific version of Kubeflow Pipelines by specifying the version tag. You can find the version tag in the Kubeflow Pipelines [release page](https://github.com/kubeflow/pipelines/releases). For example, to upgrade to v0.1.12
-```
-${KUBEFLOW_SRC}/scripts/upgrade_kfp.sh a1afdd6c4b297b56dd103a8bb939ddeae67c2c92
-```
+You don't need to do anything extra. Just follow [Kubeflow upgrade guide](/docs/other-guides/upgrade/). 
 
-If you used the web interface
-([https://deploy.kubeflow.cloud/#/deploy](https://deploy.kubeflow.cloud/#/deploy))
-to deploy Kubeflow, you must first clone the Kubeflow application directory 
-from your project's 
-[Cloud Source Repository](https://cloud.google.com/sdk/gcloud/reference/source/repos/clone), 
-then proceed with the upgrade:
+### Upgrading your Kubeflow deployment in other environments (non-GCP)
 
-```
-export PROJECT=[YOUR-GCP-PROJECT]
-export CLOUD_SRC_REPO=${PROJECT}-kubeflow-config
-gcloud source repos clone ${CLOUD_SRC_REPO} --project=${PROJECT}
-kubectl create clusterrolebinding admin-binding --clusterrole=cluster-admin --user=[YOUR-EMAIL-ADDRESS]
-${KUBEFLOW_SRC}/scripts/upgrade_kfp.sh 
-```
+Follow [Kubeflow upgrade guide](/docs/other-guides/upgrade/) with the following in mind.
+
+1. **Before** running the following `apply` command:
+
+    ```
+    kfctl apply -V all
+    ```
+
+    You should first edit the following files to specify the persistent disks created
+    in a previous deployment:
+
+    * `${KFAPP}/kustomize/minio/overlays/minioPd/params.env`
+      ```
+      ...
+      minioPd=[NAME-OF-ARTIFACT-STORAGE-DISK]
+      ...
+      ```
+
+    * `${KFAPP}/kustomize/mysql/overlays/mysqlPd/params.env`
+      ```
+      ...
+      mysqlPd=[NAME-OF-METADATA-STORAGE-DISK]
+      ...
+      ```
+
+1. Then run the `apply` command:
+
+    ```
+    kfctl apply -V all
+    ``` 
 
 ## Reinstalling Kubeflow Pipelines
 
@@ -152,6 +160,8 @@ Kubeflow Pipelines using the web interface.
 To reinstall Kubeflow Pipelines, follow the [command line deployment 
 instructions](/docs/gke/deploy/deploy-cli/), but note the following
 change in the procedure:
+
+1. Warning, when you do `kfctl init ${KFAPP} --other-flags`, you should use a different `${KFAPP}` name from your existing `${KFAPP}`. Otherwise, your existing PVs will be deleted during `kfctl apply all -V`.
 
 1. **Before** running the following `apply` command:
 
@@ -171,14 +181,14 @@ change in the procedure:
     * Edit the following files to specify the persistent disks created
       in a previous deployment:
 
-      `kustomize/minio/overlays/minioPd/params.env`
+      `${KFAPP}/kustomize/minio/overlays/minioPd/params.env`
       ```
       ...
       minioPd=[NAME-OF-ARTIFACT-STORAGE-DISK]
       ...
       ```
 
-      `kustomize/mysql/overlays/mysqlPd/params.env`
+      `${KFAPP}/kustomize/mysql/overlays/mysqlPd/params.env`
       ```
       ...
       mysqlPd=[NAME-OF-METADATA-STORAGE-DISK]
@@ -213,14 +223,14 @@ PV in the new cluster.
 
     You should first edit the following files to specify your PVs:
 
-    `kustomize/minio/overlays/minioPd/params.env`
+    `${KFAPP}/kustomize/minio/overlays/minioPd/params.env`
     ```
     ...
     minioPd=[YOUR-PRE-CREATED-MINIO-PV-NAME]
     ...
     ```
 
-    `kustomize/mysql/overlays/mysqlPd/params.env`
+    `${KFAPP}/kustomize/mysql/overlays/mysqlPd/params.env`
     ```
     ...
     mysqlPd=[YOUR-PRE-CREATED-MYSQL-PV-NAME]
