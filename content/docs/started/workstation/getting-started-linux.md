@@ -9,8 +9,8 @@ weight = 2
   more quickly
 -->
 
-For Linux systems you have options for servers and desktops. The server options apply to
-the desktop as well.
+For Linux systems you have options for servers (physical or virtual) and desktops.
+The server options apply to the desktop as well.
 
 ## Linux Server
 
@@ -44,7 +44,7 @@ The only following applications are required to use MiniKF:
 - Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 
 The full set of instructions are available on the
-[MiniKF getting started](/docs/started/workstation/appliances/getting-started-minikf/) page.
+[MiniKF getting started](/docs/reference/virtual-dev/getting-started-minikf/) page.
 
 ### Linux Appliance
 
@@ -54,7 +54,7 @@ of flexibility. You only need to install a single application to follow this pat
 
 - Install [Multipass](https://multipass.run/#install)
 
-The instructions on [Multipass and MicroK8s getting started](/docs/started/workstation/appliances/getting-started-multipass/)
+The instructions on [Multipass and MicroK8s getting started](/docs/reference/virtual-dev/getting-started-multipass/)
 page will complete this path.
 
 ### Kubernetes Appliance
@@ -75,4 +75,4 @@ appliance, you only need to install a couple of applications, and then install K
 - Install [Minikube](https://github.com/kubernetes/minikube/releases)
 
 The full set of instructions are available on the
-[Minikube getting started](/docs/started/workstation/appliances/getting-started-minikube/) page.
+[Minikube getting started](/docs/reference/virtual-dev/getting-started-minikube/) page.

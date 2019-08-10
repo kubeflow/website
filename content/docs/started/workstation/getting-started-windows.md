@@ -26,13 +26,13 @@ necessary supporting software is installed no further installation steps are req
 ### MiniKF
 
 MiniKF is a predefined virtual machine that installs onto VirtualBox through Vagrant.
-The only following applications are required to use MiniKF:
+The following applications are required to use MiniKF:
 
 - Install [Vagrant](https://www.vagrantup.com/downloads.html)
 - Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 
 The full set of instructions are available on the
-[MiniKF getting started](/docs/started/workstation/appliances/getting-started-minikf/) page.
+[MiniKF getting started](/docs/reference/virtual-dev/getting-started-minikf/) page.
 
 ## Linux Appliance
 
@@ -42,7 +42,7 @@ of flexibility. You only need to install a single application to follow this pat
 
 - Install [Multipass](https://multipass.run/#install)
 
-The instructions on [Multipass and MicroK8s getting started](/docs/started/workstation/appliances/getting-started-multipass/)
+The instructions on [Multipass and MicroK8s getting started](/docs/reference/virtual-dev/getting-started-multipass/)
 page will complete this path.
 
 ## Kubernetes Appliance
@@ -63,4 +63,4 @@ appliance, you only need to install a couple of applications, and then install K
 - Install [Minikube](https://github.com/kubernetes/minikube/releases)
 
 The full set of instructions are available on the
-[Minikube getting started](/docs/started/workstation/appliances/getting-started-minikube/) page.
+[Minikube getting started](/docs/reference/virtual-dev/getting-started-minikube/) page.
