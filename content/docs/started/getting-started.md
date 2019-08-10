@@ -13,67 +13,26 @@ It's important that you have some knowledge of the following systems and tools:
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 * [Kustomize](https://kustomize.io/)
 
+If you plan to deploy Kubeflow on an existing Kubernetes cluster, review these
+[Kubernetes system requirements](/docs/started/k8s/overview#minimum-system-requirements).
+
+
 ## Installing Kubeflow
 
 There are various ways to install Kubeflow. Choose one of the following options
-to suit your environment ([desktop or server](#node), [Kubernetes cluster or public cloud](#cloud)):
+to suit your environment (desktop or server, existing Kubernetes cluster or public cloud):
 
 
-* Installing Kubeflow on a **Desktop** or **Server**:  <a id="node">
+* Installing Kubeflow on a **desktop** or **server**:
 
   * To use Kubeflow on Windows,
-  follow the [Windows deployment guide](/docs/started/getting-started-windows/).
+  follow the [Windows deployment guide](/docs/started/workstation/getting-started-windows/).
   * To use Kubeflow on MacOS,
-  follow the [MacOS deployment guide](/docs/started/getting-started-macos/).
+  follow the [MacOS deployment guide](/docs/started/workstation/getting-started-macos/).
   * To use Kubeflow on Linux,
-  follow the [Linux deployment guide](/docs/started/getting-started-linux/).
+  follow the [Linux deployment guide](/docs/started/workstation/getting-started-linux/).
 
-<!-- Propose to refactor this into the windows / mac / linux pages
-   * [MiniKF setup](/docs/started/getting-started-minikf/)
-      * MiniKF is a fast and easy way to get started with Kubeflow.
-      * It installs with just two commands and then you are up for
-	      experimentation, and for running complete Kubeflow Pipelines.
-      * MiniKF runs on all major operating systems (Linux, macOS, Windows).
-
-   * [Minikube setup](/docs/started/getting-started-minikube/)
-      * Minikube uses virtualization applications like
-        [VirtualBox](https://www.virtualbox.org/) or [VMware
-        Fusion](https://www.vmware.com/products/fusion.html) to host the VM
-	      and provides a CLI that you can use outside the VM.
-      * Minikube defines a fully-baked
-       [ISO image](https://en.wikipedia.org/wiki/ISO_image) that contains a
-        minimal operating system and Kubernetes already installed.
-      * This option may be useful if you are just starting to learn and already
-	      have one of the virtualization applications installed.
-
-   * [MicroK8s setup](/docs/started/getting-started-multipass/)
-      * [MicroK8s](https://microk8s.io/) can provide the following benefits:
-          - A small, fast, secure, single node Kubernetes installation that installs on any
-            Linux system as a [snap](https://snapcraft.io/microk8s).
-          - Strong isolation and update semantics - your cluster
-            is updated within a short period after upstream Kubernetes
-            releases.
-          - Built-in support to enable an installed GPU:
-            `microk8s.enable gpu`
-      * MicroK8s requires Linux. If you are not on a Linux machine, or you want
-        to confine your Kubeflow to a disposable machine, the installation guide
-        show you how to use
-        [Multipass](https://github.com/CanonicalLtd/multipass) to launch a VM.
-        Benefits include:
-          - [Ubuntu Cloud Images](http://cloud-images.ubuntu.com/) already
-            integrated.
-          - Lightweight hypervisor using native operating system mechanisms
-            (for example, [Hypervisor
-            Framework](https://developer.apple.com/documentation/hypervisor) on
-            macOS, [Hyper-V on Windows
-            10](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v), or
-            QEMU/KVM for Linux).
-          - No need to install a separate virtualization application.
-          - Use of `cloud-init` to customize the VM.
--->
-
-
-* Installing Kubeflow on a **Kubernetes Cluster** or a **Public Cloud**: <a id="cloud">
+* Installing Kubeflow on a **existing Kubernetes cluster** or a **public cloud**:
 
   * Installing Kubeflow on a Kubernetes cluster, follow the
   [guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
@@ -84,7 +43,7 @@ to suit your environment ([desktop or server](#node), [Kubernetes cluster or pub
   * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
   follow the [AKS deployment guide](/docs/azure/deploy/).
   * To use Kubeflow on IBM Cloud Private (ICP),
-	follow the [ICP deployment guide](/docs/started/getting-started-icp/).
+	follow the [ICP deployment guide](/docs/started/cloud/getting-started-icp/).
 
 
 ## Installing command line tools

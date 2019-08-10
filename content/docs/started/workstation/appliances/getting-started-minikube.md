@@ -206,39 +206,11 @@ $ minikube delete
 $ minikube start --cpus 4 --memory 8096 --disk-size=40g
 ```
 
-<!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- -->
-<!-- At this point, the user should be directed to "installing on an existing cluster" -->
-<!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- -->
+### Install Kubeflow on an existing Kubernetes cluster
 
-### Installing Kubeflow using kfctl
-The following steps will deploy Kubeflow components and start them on the Minikube you created above.
-
-  1. Download Kubeflow source
-
-    ```
-    mkdir ${KUBEFLOW_SRC}
-    cd ${KUBEFLOW_SRC}
-    export KUBEFLOW_TAG={{% kf-latest-version %}}
-    curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
-    ```
-    - **KUBEFLOW_SRC** directory where you want kubeflow source to be downloaded
-    - **KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-latest-version %}}
-
-  1. Run the following to setup and deploy Kubeflow:
-
-    ```
-    KUBEFLOW_REPO=${KUBEFLOW_SRC} ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform minikube
-    cd ${KFAPP}
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate all
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply all
-    ```
-    - **KFAPP** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init. Please see [understanding the deployment process](/docs/gke/deploy/deploy-cli/#understanding-the-deployment-process) for more details.
-
-The above installation may take a few minutes. At the end of the installation you should see:
-```
-Access Kubeflow dashboard at http://localhost:8080/
-Access Jupyter notebooks at http://localhost:8080/notebooks/
-```
+Now that you have a Kubernetes cluster running - the Minikube cluster - follow the
+[existing Kubernetes cluster]((/docs/started/k8s/overview/)) instructions for installing
+Kubeflow.
 
 ### Where to go next
 
