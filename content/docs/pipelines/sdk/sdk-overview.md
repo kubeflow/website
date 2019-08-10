@@ -247,7 +247,7 @@ For more detailed instructions, see the guide to [building components and
 pipelines](/docs/pipelines/sdk/build-component/).
 
 For an example, see the
-[`xgboost-training-cm.py`](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py)
+[`xgboost-training-cm.py`](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost_training_cm/xgboost_training_cm.py)
 pipeline sample on GitHub. The pipeline creates an XGBoost model using 
 structured data in CSV format.
 {{% /alert %}}
@@ -356,7 +356,7 @@ You can also choose to share your pipeline as follows:
 {{% alert title="More about the above workflow" color="info" %}}
 For an example of the above workflow, see the
 Jupyter notebook titled [KubeFlow Pipeline Using TFX OSS 
-Components](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/KubeFlow%20Pipeline%20Using%20TFX%20OSS%20Components.ipynb) on GitHub.
+Components](https://github.com/kubeflow/pipelines/blob/master/samples/core/kubeflow_pipeline_using_TFX_OSS_components/KubeFlow%20Pipeline%20Using%20TFX%20OSS%20Components.ipynb) on GitHub.
 {{% /alert %}}
 
 <a id="lightweight-component"></a>
@@ -456,7 +456,7 @@ For more detailed instructions, see the guide to [building lightweight
 components](/docs/pipelines/sdk/lightweight-python-components/).
 
 For an example, see the [Lightweight Python components - 
-basics](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/Lightweight%20Python%20components%20-%20basics.ipynb)
+basics](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/Lightweight%20Python%20components%20-%20basics.ipynb)
 notebook on GitHub.
 {{% /alert %}}
 
