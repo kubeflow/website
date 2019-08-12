@@ -9,8 +9,8 @@ help Kubeflow users understand and manage their machine learning (ML) workflows
 by tracking and managing the metadata that the workflows produce. 
 
 In this context, _metadata_ means information about executions (runs), models, 
-datasets, and other _artifacts_ that form the inputs and outputs of the workflow 
-components.
+datasets, and other artifacts. _Artifacts_ are the files and objects that form 
+the inputs and outputs of the components in your ML workflow.
 
 ## Installing the Metadata component
 
@@ -27,8 +27,7 @@ steps:
     git clone https://github.com/kubeflow/manifests
     ```
 
-2. Run the following commands in the manifests repository to deploy the services 
-  of the Metadata component:
+2. Run the following commands to deploy the services of the Metadata component:
 
     ```
     cd manifests/metadata/base
@@ -41,7 +40,7 @@ The Metadata project publishes a
 [Python library (SDK)](https://github.com/kubeflow/metadata/tree/master/sdk/python#python-client)
 that you can use to log (record) your metadata.
 
-You can install the Metadata SDK by running the following command:
+Run the following command to install the Metadata SDK:
 
 ```
 pip install kfmd
@@ -100,9 +99,6 @@ that you can use to describe your ML workflows:
 * [`model.json`](https://github.com/kubeflow/metadata/blob/master/schema/alpha/artifacts/model.json)
   to capture metadata for an ML model that your workflow produces.
 
-
-TODO Extending by adding more types.
-
 <a id="metadata-ui"></a>
 ## Tracking artifacts on the Metadata UI
 
@@ -157,6 +153,23 @@ to manage the metadata and relationships.
 The backend exposes a 
 [REST API](https://github.com/kubeflow/metadata/blob/master/api/service.swagger.json).
 
+You can add your own metadata types so that you can log metadata for custom
+artifacts. To add a custom type:
+
+* Define your custom metadata type using the same 
+  [schema format](https://github.com/kubeflow/metadata/tree/master/schema) as 
+  the predefined types.
+* Load your custom type by sending a REST API request to the schema registration
+  endpoint. For example, the following request sets up a `data_set` type:
+
+    ```
+    curl -X POST http://localhost:8080/v1/type/namespaces/my-company.com/kinds/data_set/apiversions/v1 --header "Content-Type: application/json" -d @data_set_schema.json
+    ```
+
 ## Next steps
 
-TODO
+Run the 
+[xgboost-synthetic notebook](https://github.com/kubeflow/examples/tree/master/xgboost_synthetic)
+to build, train, and deploy an XGBoost model using Kubeflow Fairing and Kubeflow
+Pipelines with synthetic data. Examine the metadata output after running
+through the steps in the notebook.
