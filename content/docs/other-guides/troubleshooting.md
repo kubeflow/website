@@ -1,7 +1,7 @@
 +++
 title = "Troubleshooting"
 description = "Finding and fixing problems in your Kubeflow deployment"
-weight = 20
+weight = 100
 +++
 
 

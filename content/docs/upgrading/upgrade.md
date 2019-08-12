@@ -1,6 +1,6 @@
 +++
-title = "Upgrading Kubeflow Deployments"
-description = "Upgrading your Kubeflow deployment"
+title = "Upgrading a Kubeflow Deployment"
+description = "Upgrading your deployment to a later version of Kubeflow"
 weight = 30
 +++
 
