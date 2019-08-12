@@ -1,5 +1,6 @@
 +++
 title = "Usage Reporting"
+description = "Opting in or out of anonymous usage data reported from Kubeflow"
 weight = 40
 +++
 
