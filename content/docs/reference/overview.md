@@ -38,4 +38,4 @@ The goal of the [Metadata](https://github.com/kubeflow/metadata) project is to h
 
 API references:
 
-  * [v1alpha1](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec.html)
+  * [v1alpha1](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/)

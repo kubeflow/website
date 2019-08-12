@@ -38,7 +38,7 @@ You can find an example of how to use the logging API in this [notebook](https:/
 
 ## Backend
 
-The backend uses [ML-Metadata](https://github.com/google/ml-metadata/blob/master/g3doc/get_started.md) to manage all the metadata and relations. It exposes a [REST API](/docs/reference/metadata/).
+The backend uses [ML-Metadata](https://github.com/google/ml-metadata/blob/master/g3doc/get_started.md) to manage all the metadata and relations. It exposes a [REST API](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/).
 
 ## UI
 
