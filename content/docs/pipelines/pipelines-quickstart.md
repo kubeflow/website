@@ -161,7 +161,7 @@ Follow these steps to set up the necessary GCP services and run the sample:
 
 You can find the source code for the XGBoost training sample in the 
 [Kubeflow Pipelines 
-repo](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost-spark).
+repo](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm).
 
 ## Clean up your GCP environment
 
