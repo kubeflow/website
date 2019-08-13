@@ -146,7 +146,7 @@ service.
    or the [GCP Console](/docs/gke/deploy/delete-ui).
 * See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
   deployment.
-* See how to [upgrade Kubeflow](/docs/other-guides/upgrade/) and how to 
+* See how to [upgrade Kubeflow](/docs/upgrading/upgrade/) and how to 
   [upgrade or reinstall a Kubeflow Pipelines 
   deployment](/docs/pipelines/upgrade/).
 * [Troubleshoot](/docs/gke/troubleshooting-gke) any issues you may

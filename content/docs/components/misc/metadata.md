@@ -158,7 +158,7 @@ The Kubeflow metadata backend uses [ML Metadata
 to manage the metadata and relationships. 
 
 The backend exposes a 
-[REST API](https://github.com/kubeflow/metadata/blob/master/api/service.swagger.json).
+[REST API](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/).
 
 You can add your own metadata types so that you can log metadata for custom
 artifacts. To add a custom type, send a REST API request to the

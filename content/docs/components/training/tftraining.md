@@ -682,4 +682,4 @@ Events:
 ## More information
 
 * Explore the [TFJob reference documentation](/docs/reference#tfjob).
-* See how to [run a job with gang-scheduling](/docs/other-guides/job-scheduling).
+* See how to [run a job with gang-scheduling](/docs/use-cases/job-scheduling).

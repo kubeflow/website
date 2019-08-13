@@ -1,7 +1,7 @@
 +++
 title = "Accessing Kubeflow UIs"
 description = "How to access the Kubeflow web UIs"
-weight = 15
+weight = 1
 +++
 
 Kubeflow includes a number of web user interfaces (UIs). This document provides
