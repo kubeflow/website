@@ -56,8 +56,7 @@ guide to
 ## Using kubectl and port-forwarding
 
 If you didn't configure Kubeflow to integrate with an identity provider and perform 
-any authorization checks (for example you aren't using IAP with Google or DEX)
-then you can port-forward directly to the ISTIO gateway.
+any authorization then you can port-forward directly to the ISTIO gateway.
 
 Port-forwarding typically won't work if any of the following are true
 
