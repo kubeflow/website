@@ -51,8 +51,7 @@ KUBEFLOW_REPO=${KUBEFLOW_SRC} ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --p
 cd ${KFAPP}
 ${KUBEFLOW_SRC}/scripts/kfctl.sh generate platform docker-for-desktop
 
-mkdir ks_app #in the kf_app directory. 
-cd to ks_app
+ks init ks_app
 ${KUBEFLOW_SRC}/scripts/kfctl.sh apply all
 ```
 
