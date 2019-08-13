@@ -7,6 +7,14 @@ weight = 1
 Kubeflow includes a number of web user interfaces (UIs). This document provides
 instructions on how to connect to them.
 
+To access the Kubeflow UI's you need to connect to the 
+[ISTIO gateway](https://istio.io/docs/concepts/traffic-management/#gateways) that 
+provides access to the Kubeflow 
+[service mesh](https://istio.io/docs/concepts/what-is-istio/#what-is-a-service-mesh).
+
+How you access the ISTIO gateway will vary depending on how you've configured it.
+
+
 ## Accessing Kubeflow web UIs
 
 The Kubeflow web UIs include the following:
@@ -47,6 +55,17 @@ guide to
 
 ## Using kubectl and port-forwarding
 
+If you didn't configure Kubeflow to integrate with an identity provider and perform 
+any authorization then you can port-forward directly to the ISTIO gateway.
+
+Port-forwarding typically won't work if any of the following are true
+
+  * you've configured the ISTIO ingress to only accept 
+HTTPS traffic on a specific domain or IP address
+
+  * you've configured the ISTIO ingress to perform an authorization check (e.g. using IAP or Dex)
+
+
 You can access Kubeflow via `kubectl` and port-forwarding as follows:
 
 1. Install `kubectl` if you haven't already done so:
@@ -57,7 +76,7 @@ You can access Kubeflow via `kubectl` and port-forwarding as follows:
     installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 1. Use the following command to set up port forwarding to the
-  [Ambassador](https://www.getambassador.io/) service that provides the reverse proxy.
+  [ISTIO gateway](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
 
     {{% code-webui-port-forward %}}
 
