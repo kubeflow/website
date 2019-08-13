@@ -40,10 +40,10 @@ In order to deploy Kubeflow on your existing Amazon EKS cluster, you need to pro
 
     # Download config file
     export CONFIG="/tmp/kfctl_aws.yaml"
-    wget https://raw.githubusercontent.com/kubeflow/kubeflow/master/bootstrap/config/kfctl_aws.yaml -O ${CONFIG}
+    wget https://raw.githubusercontent.com/kubeflow/kubeflow/{{% kf-latest-version %}}/bootstrap/config/kfctl_aws.yaml -O ${CONFIG}
     ```
 
-    * `kfctl_aws.yaml` is one of setup manifests, please check [kfctl_aws_cognito.yaml](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/config/kfctl_aws_cognito.yaml) for the template to enable authentication.
+    * `kfctl_aws.yaml` is one of setup manifests, please check [kfctl_aws_cognito.yaml](https://github.com/kubeflow/kubeflow/blob/v0.6-branch/bootstrap/config/kfctl_aws_cognito.yaml) for the template to enable authentication.
 
 1. Customize your config file. Retrieve the Amazon EKS cluster name, AWS Region, and IAM role name for your worker nodes.
 
