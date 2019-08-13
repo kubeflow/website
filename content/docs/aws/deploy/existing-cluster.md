@@ -20,7 +20,7 @@ If you would like to deploy Kubeflow on existing Amazon EKS cluster, the only di
 
     # Download config files
     export CONFIG="/tmp/kfctl_aws.yaml"
-    wget https://raw.githubusercontent.com/kubeflow/kubeflow/master/bootstrap/config/kfctl_aws.yaml -O ${CONFIG}
+    wget https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6-branch/bootstrap/config/kfctl_aws.yaml -O ${CONFIG}
     ```
 
 

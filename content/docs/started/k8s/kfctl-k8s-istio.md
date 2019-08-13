@@ -28,7 +28,7 @@ Follow these steps to deploy Kubeflow:
    export PATH=$PATH:"<path to kfctl>"
    export KFAPP="<your choice of application directory name>"
    # Installs istio by default. Comment out istio components in the config file to skip istio installation. See https://github.com/kubeflow/kubeflow/pull/3663
-   export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/master/bootstrap/config/kfctl_k8s_istio.yaml"
+   export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6-branch/bootstrap/config/kfctl_k8s_istio.yaml"
 
    kfctl init ${KFAPP} --config=${CONFIG} -V
    cd ${KFAPP}

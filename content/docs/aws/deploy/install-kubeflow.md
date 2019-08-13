@@ -38,10 +38,10 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
     ```shell
     # Download config files
     export CONFIG="/tmp/kfctl_aws.yaml"
-    wget https://raw.githubusercontent.com/kubeflow/kubeflow/master/bootstrap/config/kfctl_aws.yaml -O ${CONFIG}
+    wget https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6-branch/bootstrap/config/kfctl_aws.yaml -O ${CONFIG}
     ```
 
-    * `kfctl_aws.yaml` is one of setup manifests, please check [kfctl_aws_cognito.yaml](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/config/kfctl_aws_cognito.yaml) for the template to enable authentication.
+    * `kfctl_aws.yaml` is one of setup manifests, please check [kfctl_aws_cognito.yaml](https://github.com/kubeflow/kubeflow/blob/v0.6-branch/bootstrap/config/kfctl_aws_cognito.yaml) for the template to enable authentication.
 
     - If you plan to use `kfctl` to create a new eks cluster, please remove follow lines in the manifest file.
     - If you want to install on existing EKS cluster, please change roles to your worker node group roles. See [existing cluster](/docs/aws/deploy/existing-cluster) for details.
