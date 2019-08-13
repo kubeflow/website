@@ -12,6 +12,13 @@ In this context, _metadata_ means information about executions (runs), models,
 datasets, and other artifacts. _Artifacts_ are the files and objects that form 
 the inputs and outputs of the components in your ML workflow.
 
+{{% alert title="Alpha version" color="warning" %}}
+This is an <b>alpha</b> release of the Metadata API. The next version of Kubeflow
+will introduce breaking changes. The development team is interested in any
+feedback you have while using the Metadata component, and in particular your
+feedback on any gaps in the functionality that the component offers.
+{{% /alert %}}
+
 ## Installing the Metadata component
 
 Kubeflow v0.6.1 and later versions install the Metadata component by default.
@@ -154,17 +161,21 @@ The backend exposes a
 [REST API](https://github.com/kubeflow/metadata/blob/master/api/service.swagger.json).
 
 You can add your own metadata types so that you can log metadata for custom
-artifacts. To add a custom type:
+artifacts. To add a custom type, send a REST API request to the
+[`artifact_types` endpoint](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/#operation--api-v1alpha1-artifact_types-post). 
 
-* Define your custom metadata type using the same 
-  [schema format](https://github.com/kubeflow/metadata/tree/master/schema) as 
-  the predefined types.
-* Load your custom type by sending a REST API request to the schema registration
-  endpoint. For example, the following request sets up a `data_set` type:
+For example, The following request registers an artifact type with 
+_name_ `myorg/mytype/v1` and three _properties_: 
 
-    ```
-    curl -X POST http://localhost:8080/v1/type/namespaces/my-company.com/kinds/data_set/apiversions/v1 --header "Content-Type: application/json" -d @data_set_schema.json
-    ```
+* `f1` (string)
+* `f2` (integer)
+* `f3` (double)
+
+```
+curl -X POST http://localhost:8080/api/v1alpha1/artifact_types \
+  --header "Content-Type: application/json" -d \
+  '{"name":"myorg/mytype/v1","properties":{"f1":"STRING", "f2":"INT", "f3": "DOUBLE"}}'
+```
 
 ## Next steps
 
