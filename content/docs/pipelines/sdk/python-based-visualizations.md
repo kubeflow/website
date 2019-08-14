@@ -5,21 +5,19 @@ weight = 80
 +++
 
 This page describes python based visualizations, how to create them, and how to
-use them to visualize results within the Pipelines UI. For more information
-about visualizing data within the Pipelines UI, see the guide about
-[visualizing results in the Pipelines UI](/docs/pipelines/sdk/output-viewer).
+use them to visualize results within the Pipelines UI.
 
 ## Introduction
 
 Python based visualizations are a new method to visualize results within the
 Pipelines UI. This new method of visualizing results is done through the usage
-of [nbcovert](https://github.com/jupyter/nbconvert), the tool used in Jupyter
+of [nbcovert](https://github.com/jupyter/nbconvert), the tool used by Jupyter
 Notebook that generates outputs. Alongside the usage of nbconvert, results of a
 pipeline can now be visualized without a component being included within the
-pipeline itself. The process of visualizing results is decoupled from a
-pipeline, components are no longer required to visualize results.
+pipeline itself. The process of visualizing results are now decoupled from a
+pipeline.
 
-Python based visualizations are two categories of visualizations. The first
+Python based visualizations provide two categories of visualizations. The first
 being **predefined visualizations**. These visualizations are curated by the
 Kubeflow Pipelines Team and serve as a way for users to easily and quickly
 generate powerful visualizations. However, these are not limited to just the
@@ -41,7 +39,9 @@ they are able to utilize existing predefined visualization and build their own.
 For some users, such as those who use Pipelines with a team or those who
 frequently generate complex and specialized visualizations, predefined
 visualizations can be leveraged to reduce development time and provide
-standardizations of visualized results.
+standardizations of visualized results. Details about how to create predefined
+visualizations can be found [below](/docs/pipelines/sdk/
+python-based-visualizations/#how-to-create-predefined-visualizations).
 
 ## How to Create Predefined Visualizations
 
@@ -50,7 +50,7 @@ standardizations of visualized results.
 [visualization.proto](https://github.com/kubeflow/pipelines/blob
 /master/backend/api/visualization.proto#L78) file.
     * The name of the visualization should be in screaming snake case
-    (i.e. `ROC_CURVE`).
+    (i.e. `VISUALIZATION_NAME`).
 3. Run [`./generate_api.sh`](https://github.com/kubeflow/pipelines/blob/master
 /backend/api/generate_api.sh) within the `backend/api` directory.
 4. Download the [Swagger Codegen](https://swagger.io/tools/swagger-codegen/)
@@ -67,10 +67,10 @@ jar file.
 7. Run `npm run apis:visualization` within the `frontend` directory.
 8. Create a new python file that will be executed to generate a visualization.
     * Python 3 **MUST** be used.
-    * The new python file should be created within the `backend/src/apiserver/
-    visualization` directory and it should have the same name as the type
-    that was created earlier, but use snake case instead of screaming snake case
-    (i.e. `roc_curve.py`).
+    * The new python file should be created within the
+    `backend/src/apiserver/visualization` directory and it should have the same
+    name as the type that was created earlier, use snake case instead of
+    screaming snake case (i.e. `visualization.py`).
     * Dependency injection is used to pass variables from the Pipelines UI to
     a visualization.
         * To obtain a path or path pattern from the Pipelines UI, you can use
@@ -104,10 +104,14 @@ jar file.
             # accessing it because accessing a key from a dict when it does not
             # exist will result in an exception being raised.
             if "key" in variables:
-              # Variable of name key is provided
+              # Variable of name key is provided.
+              # Use the value of the specified variable to manipulate the way
+              # a visualization is generated here.
               pass
             else:
-              # Variable of name key is not provided
+              # Variable of name key is not provided.
+              # You can provide a default operation here if a variable is not
+              # provided or throw an error if the variable must be provided.
               pass
             ...
             # Accessing a variable
@@ -151,5 +155,23 @@ cluster.
 4. At the top of the tab you should see a card named **Visualization Creator**
 5. Within the card, provide a visualization type, a source, and any necessary
 arguments
+    * Any required or optional arguments will be shown as a placeholder
+6. Click **Generate Visualization**
+7. View generated visualization by scrolling down
 
 ## Using Arbitrary Visualizations
+
+1. Enable arbitrary visualizations within Kubeflow Pipelines
+2. Open the details of a run
+3. Select a component
+    * The component that is selected does not matter. But, if you want to
+    visualize the output of a specific component, it is easier to do that within
+    that component.
+4. Select the **Artifacts** tab
+5. At the top of the tab you should see a card named **Visualization Creator**
+6. Within the card, select the **CUSTOM** visualization type then provide a
+source, and any necessary arguments (the source and argument variables are
+optional for custom visualizations)
+7. Provide the arbitrary visualization code
+8. Click **Generate Visualization**
+9. View generated visualization by scrolling down
