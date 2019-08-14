@@ -25,6 +25,7 @@ Follow these steps to deploy Kubeflow:
 
    ```bash
    # Add kfctl to PATH, to make the kfctl binary easier to use.
+   # only use alphanumeric characters or - for the folder name 
    export PATH=$PATH:"<path to kfctl>"
    export KFAPP="<your choice of application directory name>"
    # Installs istio by default. Comment out istio components in the config file to skip istio installation. See https://github.com/kubeflow/kubeflow/pull/3663
