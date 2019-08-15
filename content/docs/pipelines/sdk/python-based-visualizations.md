@@ -4,7 +4,7 @@ description = "Predefined and arbitrary visualizations of pipeline outputs"
 weight = 80
 +++
 
-This page describes python based visualizations, how to create them, and how to
+This page describes Python based visualizations, how to create them, and how to
 use them to visualize results within the Kubeflow Pipelines UI.
 
 ## Introduction
@@ -21,7 +21,7 @@ being **predefined visualizations**. These visualizations are provided by
 default in Kubeflow Pipelines and serve as a way for you and your customers to
 easily and quickly generate powerful visualizations. The second category is
 **arbitrary visualizations**. Arbitrary visualizations allow for you and your
-customers provided python visualization code to be used to generate
+customers to provided Python visualization code to be used to generate
 visualizations. These visualizations allow for rapid development,
 experimentation, and customizability when visualizing results.
 
@@ -47,9 +47,9 @@ jar file.
 5. Place the Swagger Codegen jar file in the `frontend` directory.
 6. Rename the Swagger Codegen har file to **swagger-codegen-cli.jar**.
 7. Run `npm run apis:visualization` within the `frontend` directory.
-8. Create a new python file that will be executed to generate a visualization.
+8. Create a new Python file that will be executed to generate a visualization.
     * Python 3 **MUST** be used.
-    * The new python file should be created within the
+    * The new Python file should be created within the
     `backend/src/apiserver/visualization` directory and it should have the same
     name as the type that was created earlier, use snake case instead of
     screaming snake case (i.e. `visualization.py`).
