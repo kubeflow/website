@@ -9,9 +9,9 @@ from a Kubeflow Pipelines component.
 For details about how to build a component, see the guide to 
 [building your own component](/docs/pipelines/sdk/build-component/).
 
-For details on the new method of generating visualizations, see the guide
-to utilize
-[Python Based Visualizations](/docs/pipelines/sdk/python-based-visualizations).
+Kubeflow Pipelines provides a new method of generating visualizations. See the
+guide to [Python Based Visualizations](/docs/pipelines/sdk/
+python-based-visualizations).
 
 ## Introduction
 
