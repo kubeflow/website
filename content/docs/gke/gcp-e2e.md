@@ -5,7 +5,7 @@ weight = 10
 +++
 
 This guide walks you through an end-to-end example of Kubeflow on Google
-Cloud Platform (GCP). By working through the guide, you'll learn
+Cloud Platform (GCP). By working through the guide, you learn
 how to deploy Kubeflow on Kubernetes Engine (GKE), train an MNIST machine
 learning model for image classification, and use the model for online inference
 (also known as online prediction).
@@ -24,7 +24,7 @@ GCP from the command line, including the `gcloud` command and others.
 [Kubernetes Engine][kubernetes-engine] (GKE) is a managed service on GCP where
 you can deploy containerized applications. You describe the resources that your
 application needs, and GKE provisions and manages the underlying
-cloud resources automatically.
+cloud resources.
 
 Here's a list of the primary GCP services that you use when following this
 guide:
@@ -90,8 +90,8 @@ To simplify this tutorial, you can use a set of prepared files that include
 a TensorFlow application for training your model, a web UI to send prediction
 requests and display the results, and the [Docker][docker] files to build
 runnable containers for the training and prediction applications.
-The project files are in the 
-[Kubeflow examples repository](https://github.com/kubeflow/examples)
+The project files are in the [Kubeflow examples 
+repository](https://github.com/kubeflow/examples/tree/master/mnist)
 on GitHub.
 
 Clone the project files and go to the directory containing the MNIST example:
@@ -113,7 +113,8 @@ Follow these steps to set up your GCP environment:
 1. Select or create a project on the [GCP Console][gcp-console].
 1. Make sure that billing is enabled for your project. See the guide to
   [modifying a project's billing settings][billing-guide].
-1. Install the [Cloud SDK][cloud-sdk].
+1. Install the [Cloud SDK][cloud-sdk]. If you already have the SDK installed,
+  run `gcloud components update` to get the latest versions of the SDK tools.
 
 Notes:
 
@@ -123,6 +124,10 @@ Notes:
 * This guide assumes you want to manage your GCP environment on your own server
   rather than in the [Cloud Shell][cloud-shell] environment. If you choose to
   use the Cloud Shell, some of the components are pre-installed in your shell.
+
+### Install Docker
+
+Follow the [Docker installation guide](https://docs.docker.com/install/).
 
 ### Install kubectl
 
@@ -167,9 +172,7 @@ Set up the following environment variables for use throughout the tutorial:
     ```
 
 1. If you want a custom name for your Kubeflow deployment, set the 
-   `DEPLOYMENT_NAME` environment variable. Note that the name must be the same 
-   as the one you use in later steps of this tutorial when configuring the 
-   **redirect URI** for the OAuth client credentials. If you don't set this 
+   `DEPLOYMENT_NAME` environment variable. If you don't set this 
    environment variable, your deployment gets the default name of `kubeflow`:
 
     ```
@@ -182,27 +185,11 @@ Follow the instructions in the
 guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
 taking note of the following:
 
+* Make sure you deploy Kubeflow **{{% kf-latest-version %}}** or later.
+* You can choose to deploy Kubelow using the deployment UI or the CLI. Check
+  the Kubeflow version to be deployed when using either the UI or the CLI.
 * Set up **OAuth client credentials** and **Cloud Identity-Aware Proxy (IAP)**
-  as prompted during the deployment process. So, **do not choose the deployment 
-  option to skip IAP**. IAP ensures you can connect securely to the Kubeflow
-  web applications.
-* When setting up the **authorized redirect URI** for the **OAuth client 
-  credentials**, use the same value for the `<deployment_name>` as you used
-  when setting up the `DEPLOYMENT_NAME` environment variable earlier in this
-  tutorial.
-* Use the Kubeflow **deployment UI** as a quick way to set up a Kubeflow 
-  deployment on GCP. The getting-started guide describes how to use the
-  deployment UI. If you want more control over the configuration of your
-  deployment you can use the `kfctl` binary instead of the UI. The binary
-  is also described in the getting-started guide.
-* Choose **Kubeflow version v0.4.1** or later.
-
-The following screenshot shows the Kubeflow deployment UI with hints about
-the value for each input field:
-
-<img src="/docs/images/gcp-e2e-deploy-kubeflow.png" 
-    alt="Prediction UI"
-    class="mt-3 mb-3 p-3 border border-info rounded">
+  as prompted during the deployment process.
 
 When the cluster is ready, you can do the following:
 
@@ -255,12 +242,13 @@ Notes:
   to provision a signed SSL certificate and register a DNS name.
     * If you own/manage the domain or a subdomain with [Cloud DNS][dns]
       then you can configure this process to be much faster.
-    * While you wait you can access Kubeflow services by using `kubectl proxy`
-      and `kubectl port-forward` to connect to services in the cluster.
+    * While you wait you can use
+      `kubectl port-forward` to connect to the Kubeflow UI. See the guide to
+      [accessing the Kubeflow UIs](/docs/other-guides/accessing-uis/#using-kubectl-and-port-forwarding). 
 
 ## Create a Cloud Storage bucket
 
-The next step is to create a Cloud Storage bucket to hold your trained model
+The next step is to create a Cloud Storage bucket to hold your trained model.
 
 [Cloud Storage][cloud-storage] is a scalable, fully-managed object/blob store.
 You can use it for a range of scenarios including serving website content,
@@ -280,6 +268,8 @@ gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
 ```
 
 ## (Optional) Test the code in a Jupyter notebook
+
+TODO: This section doesn't work. (I get the same errors as noted in https://github.com/kubeflow/website/issues/1012.) Consider removing the notebook section, or finding out why the model won't run in a Jupyter notebook.
 
 The sample you downloaded contains all the code you need. If you like, you
 can experiment with and test the code in a Jupyter notebook.
@@ -520,13 +510,13 @@ Next, upload the container image to Container Registry so that you can run it on
     kustomize edit set image training-image=${TRAIN_IMG_PATH}
     ```
 
-1. Optionally configure it to run distributed by setting the number of parameter servers and workers to use. The `numPs` means the number of Ps (parameter server) and the `numWorkers` means the number of worker:
+1. Configure the image to run distributed by setting the number of parameter servers and workers to use. The `numPs` means the number of Ps (parameter server) and the `numWorkers` means the number of worker:
 
     ```
     ../base/definition.sh --numPs 1 --numWorkers 2
     ```
 
-1. Set the training parameters, such as training steps, batch size and learning rate:
+1. Set the training parameters (training steps, batch size and learning rate):
 
     ```
     kustomize edit add configmap mnist-map-training   --from-literal=trainSteps=200
