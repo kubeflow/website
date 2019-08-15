@@ -25,21 +25,6 @@ customers provided python visualization code to be used to generate
 visualizations. These visualizations allow for rapid development,
 experimentation, and customizability when visualizing results.
 
-## Why Predefined Visualizations are Important
-
-Predefined visualizations provide major benefits for the Kubeflow Pipelines Team
-and users of Kubeflow Pipelines. The Kubeflow Pipelines Team is able to develop
-predefined visualizations to provide users of Pipelines with powerful,
-extensible, and standardized visualizations that work out of the box. For users
-of Kubeflow Pipelines, they are able to utilize existing predefined
-visualization and build their own. For some users, such as those who use
-Kubeflow Pipelines with a team or those who frequently generate complex and
-specialized visualizations, predefined visualizations can be leveraged to reduce
-development time and provide standardizations of visualized results. Details
-about how to create predefined visualizations can be found
-[below](/docs/pipelines/sdk/python-based-visualizations/
-#how-to-create-predefined-visualizations).
-
 ## How to Create Predefined Visualizations
 
 1. Determine what the new visualization will be.
