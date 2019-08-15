@@ -14,7 +14,7 @@ the inputs and outputs of the components in your ML workflow.
 
 {{% alert title="Alpha version" color="warning" %}}
 This is an <b>alpha</b> release of the Metadata API. The next version of Kubeflow
-will introduce breaking changes. The development team is interested in any
+may introduce breaking changes. The development team is interested in any
 feedback you have while using the Metadata component, and in particular your
 feedback on any gaps in the functionality that the component offers.
 {{% /alert %}}
