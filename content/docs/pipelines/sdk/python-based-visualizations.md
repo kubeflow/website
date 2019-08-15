@@ -17,14 +17,11 @@ component being included within the pipeline itself. The process of visualizing
 results are now decoupled from a pipeline.
 
 Python based visualizations provide two categories of visualizations. The first
-being **predefined visualizations**. These visualizations are curated by the
-Kubeflow Pipelines Team and serve as a way for users to easily and quickly
-generate powerful visualizations. However, these are not limited to just the
-Pipelines Team and this will be discussed further below in
-[Why Predefined Visualizations are Important](/docs/pipelines/sdk/
-python-based-visualizations/#why-predefined-visualizations-are-important).
-The second category is **arbitrary visualizations**. Arbitrary visualizations
-allow for user provided python visualization code to be used to generate
+being **predefined visualizations**. These visualizations are provided by
+default in Kubeflow Pipelines and serve as a way for you and your customers to
+easily and quickly generate powerful visualizations. The second category is
+**arbitrary visualizations**. Arbitrary visualizations allow for you and your
+customers provided python visualization code to be used to generate
 visualizations. These visualizations allow for rapid development,
 experimentation, and customizability when visualizing results.
 
