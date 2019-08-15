@@ -32,7 +32,7 @@ experimentation, and customizability when visualizing results.
 [visualization.proto](https://github.com/kubeflow/pipelines/blob
 /master/backend/api/visualization.proto#L78) file.
     * The name of the visualization should be in screaming snake case
-    (i.e. `VISUALIZATION_NAME`).
+    (that is `VISUALIZATION_NAME`).
 3. Run [`./generate_api.sh`](https://github.com/kubeflow/pipelines/blob/master
 /backend/api/generate_api.sh) within the `backend/api` directory.
 4. Download the [Swagger Codegen](https://swagger.io/tools/swagger-codegen/)
@@ -52,7 +52,7 @@ jar file.
     * The new Python file should be created within the
     `backend/src/apiserver/visualization` directory and it should have the same
     name as the type that was created earlier, use snake case instead of
-    screaming snake case (i.e. `visualization.py`).
+    screaming snake case (that is `visualization.py`).
     * Dependency injection is used to pass variables from the Kubeflow Pipelines
     UI to a visualization.
         * To obtain a path or path pattern from the Kubeflow Pipelines UI, you
