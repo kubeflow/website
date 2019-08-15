@@ -5,17 +5,17 @@ weight = 80
 +++
 
 This page describes python based visualizations, how to create them, and how to
-use them to visualize results within the Pipelines UI.
+use them to visualize results within the Kubeflow Pipelines UI.
 
 ## Introduction
 
 Python based visualizations are a new method to visualize results within the
-Pipelines UI. This new method of visualizing results is done through the usage
-of [nbcovert](https://github.com/jupyter/nbconvert), the tool used by Jupyter
-Notebook that generates outputs. Alongside the usage of nbconvert, results of a
-pipeline can now be visualized without a component being included within the
-pipeline itself. The process of visualizing results are now decoupled from a
-pipeline.
+Kubeflow Pipelines UI. This new method of visualizing results is done through
+the usage of [nbcovert](https://github.com/jupyter/nbconvert), the tool used by
+Jupyter Notebook that generates outputs. Alongside the usage of nbconvert,
+results of a pipeline can now be visualized without a component being included
+within the pipeline itself. The process of visualizing results are now decoupled
+from a pipeline.
 
 Python based visualizations provide two categories of visualizations. The first
 being **predefined visualizations**. These visualizations are curated by the
@@ -31,17 +31,18 @@ experimentation, and customizability when visualizing results.
 
 ## Why Predefined Visualizations are Important
 
-Predefined visualizations provide major benefits for the Pipelines Team and
-users of Pipelines. The Pipelines Team is able to develop predefined
-visualizations to provide users of Pipelines with powerful, extensible, and
-standardized visualizations that work out of the box. For users of Pipelines,
-they are able to utilize existing predefined visualization and build their own.
-For some users, such as those who use Pipelines with a team or those who
-frequently generate complex and specialized visualizations, predefined
-visualizations can be leveraged to reduce development time and provide
-standardizations of visualized results. Details about how to create predefined
-visualizations can be found [below](/docs/pipelines/sdk/
-python-based-visualizations/#how-to-create-predefined-visualizations).
+Predefined visualizations provide major benefits for the Kubeflow Pipelines Team
+and users of Kubeflow Pipelines. The Kubeflow Pipelines Team is able to develop
+predefined visualizations to provide users of Pipelines with powerful,
+extensible, and standardized visualizations that work out of the box. For users
+of Kubeflow Pipelines, they are able to utilize existing predefined
+visualization and build their own. For some users, such as those who use
+Kubeflow Pipelines with a team or those who frequently generate complex and
+specialized visualizations, predefined visualizations can be leveraged to reduce
+development time and provide standardizations of visualized results. Details
+about how to create predefined visualizations can be found
+[below](/docs/pipelines/sdk/python-based-visualizations/
+#how-to-create-predefined-visualizations).
 
 ## How to Create Predefined Visualizations
 
@@ -71,23 +72,24 @@ jar file.
     `backend/src/apiserver/visualization` directory and it should have the same
     name as the type that was created earlier, use snake case instead of
     screaming snake case (i.e. `visualization.py`).
-    * Dependency injection is used to pass variables from the Pipelines UI to
-    a visualization.
-        * To obtain a path or path pattern from the Pipelines UI, you can use
-        the following syntax:
+    * Dependency injection is used to pass variables from the Kubeflow Pipelines
+    UI to a visualization.
+        * To obtain a path or path pattern from the Kubeflow Pipelines UI, you
+        can use the following syntax:
 
             ```python
             # The variable "source" will be injected to any visualization. The
-            # value of "source" will be provided by the Pipelines UI and will
-            # never be an empty string.
+            # value of "source" will be provided by the Kubeflow Pipelines UI
+            # and will never be an empty string.
             ...
             # Open a file with a provided path or path pattern from the
-            # Pipelines UI and append DataFrame to an array of DataFrames
+            # Kubeflow Pipelines UI and append DataFrame to an array of
+            # DataFrames
             dfs = []
             for f in file_io.get_matching_files(source):
                 dfs.append(pd.read_csv(f))
             ...
-            # Get a path from the Pipelines UI and create a DataFrame
+            # Get a path from the Kubeflow Pipelines UI and create a DataFrame
             df = pd.read_csv(source)
             ...
             ```
