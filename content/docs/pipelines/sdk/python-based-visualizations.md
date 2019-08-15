@@ -25,7 +25,7 @@ customers to provided Python visualization code to be used to generate
 visualizations. These visualizations allow for rapid development,
 experimentation, and customizability when visualizing results.
 
-## How to Create Predefined Visualizations
+## How to create predefined visualizations
 
 1. Determine what the new visualization will be.
 2. Add a new type for the visualization within the.
@@ -127,7 +127,7 @@ jar file.
 10. Submit these changes as a PR or build docker image for usage within your
 cluster.
 
-## Using Predefined Visualizations
+## Using predefined visualizations
 
 1. Open the details of a run
 2. Select a component
@@ -142,7 +142,7 @@ arguments
 6. Click **Generate Visualization**
 7. View generated visualization by scrolling down
 
-## Using Arbitrary Visualizations
+## Using arbitrary visualizations
 
 1. Enable arbitrary visualizations within Kubeflow Pipelines
 2. Open the details of a run
