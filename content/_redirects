@@ -92,3 +92,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/other-guides/upgrade/                    /docs/upgrading/upgrade/
 
 /docs/use-cases/kubeflow-on-multinode-cluster/ /docs/other-guides/kubeflow-on-multinode-cluster/
+
+# Remove Kubeflow installation on existing EKS cluster
+/docs/aws/deploy/existing-cluster/             /docs/aws/deploy/install-kubeflow/
