@@ -121,9 +121,7 @@ Set up the following environment variables for use throughout the tutorial:
 
 1. If you want a custom name for your Kubeflow deployment, set the 
    `DEPLOYMENT_NAME` environment variable. The deployment name must be 
-   **4-20 characters** in length. Note that the name must be the same 
-   as the one you use in later steps of this tutorial when configuring the 
-   **redirect URI** for the OAuth client credentials. If you don't set this 
+   **4-20 characters** in length. If you don't set this 
    environment variable, your deployment gets the default name of `kubeflow`:
 
     ```
@@ -212,11 +210,10 @@ Notes:
 
 * It can take 10-15 minutes for the URI to become available. Kubeflow needs
   to provision a signed SSL certificate and register a DNS name.
-    * If you own/manage the domain or a subdomain with [Cloud DNS][dns]
-      then you can configure this process to be much faster. See 
-      [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
-    * While you wait you can access Kubeflow services by using `kubectl proxy`
-      and `kubectl port-forward` to connect to services in the cluster.
+
+    If you own/manage the domain or a subdomain with [Cloud DNS][dns]
+    then you can configure this process to be much faster. See 
+    [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
 
 ### Create a Cloud Storage bucket
 

@@ -148,8 +148,6 @@ Follow these steps to deploy Kubeflow:
      [Cloud DNS](https://cloud.google.com/dns/docs/)
      then you can configure this process to be much faster.
      See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
-   * While you wait you can access Kubeflow services by using `kubectl proxy` 
-     and `kubectl port-forward` to connect to services in the cluster.
 
 1. We recommend that you check in the contents of your **${KFAPP}** directory
   into source control.
