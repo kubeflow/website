@@ -240,11 +240,9 @@ Notes:
 
 * It can take 10-15 minutes for the URI to become available. Kubeflow needs
   to provision a signed SSL certificate and register a DNS name.
-    * If you own/manage the domain or a subdomain with [Cloud DNS][dns]
-      then you can configure this process to be much faster.
-    * While you wait you can use
-      `kubectl port-forward` to connect to the Kubeflow UI. See the guide to
-      [accessing the Kubeflow UIs](/docs/other-guides/accessing-uis/#using-kubectl-and-port-forwarding). 
+
+    If you own/manage the domain or a subdomain with [Cloud DNS][dns]
+    then you can configure this process to be much faster.
 
 ## Create a Cloud Storage bucket
 
@@ -755,18 +753,7 @@ minutes for the IP address to be available:
   * **Port:** `9000` - The server listens on port 9000 by default.
 
 1. Click **Connect**. The system finds the server in your cluster and displays
-   the classification results.
-
-As an alternative to the external IP address, you can run the following command 
-to access the UI via `kubectl port-forward`:
-
-```
-kubectl port-forward -n kubeflow `kubectl get pods --all-namespaces \
-    --selector=app=web-ui -o=jsonpath='{.items[0].metadata.name}'` 8080:5000
-```
-
-If you use the port-forwarding option, you can open the UI in your web browser 
-at `localhost:8080`. 
+   the classification results. 
 
 ## The final product
 
