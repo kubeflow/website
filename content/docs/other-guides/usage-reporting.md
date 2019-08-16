@@ -5,7 +5,7 @@ weight = 40
 +++
 
 When enabled, Kubeflow will report **anonymous** usage data using [spartakus](https://github.com/kubernetes-incubator/spartakus), Kubernetes' reporting tool. Spartakus **does not report any personal information**. See [here](https://github.com/kubernetes-incubator/spartakus) for more detail.
-This is entirely voluntary and you can opt
+This is entirely voluntary and you can opt out by doing the following:
 
 ```
 # Delete any existing deployments of spartakus
@@ -20,24 +20,28 @@ command only restarts spartakus with reportUsage set to `false`
 kubectl -n ${NAMESPACE} delete deploy -l app=spartakus
 ```
 
-**Reporting usage data is one of the most significant contributions you can make to Kubeflow; so please consider turning it on.** This data
-allows us to improve the project and helps the many companies working on Kubeflow justify continued investment.
+**Reporting usage data is one of the most significant contributions you can make to Kubeflow; so please consider turning it on.** This data allows us to improve the project and helps the many companies working on Kubeflow justify continued investment.
 
-You can improve the quality of the data by giving each Kubeflow deployment a unique id by editing `spartakus.yaml` in your `KF_APP` directory:
+**To prevent Spartakus from being deployed,** do the following before running `kfctl apply`:
+- Edit `${KFAPP}/app.yaml`
+- Delete the entry in KfDef.Spec.Applications for spartakus
 
 ```
-apiVersion: v1
-data:
-  usageId: "your usage id"
-kind: ConfigMap
-metadata:
-  labels:
-    kustomize.component: spartakus
-  name: spartakus-parameters
-  namespace: kubeflow
+  - kustomizeConfig:
+      parameters:
+      - initRequired: true
+        name: usageId
+        value: <randomly-generated-id>
+      - initRequired: true
+        name: reportUsage
+        value: "true"
+      repoRef:
+        name: manifests
+        path: common/spartakus
+    name: spartakus
 ```
-
-Then deploy your changes:
-```
-kubectl apply -f spartakus.yaml`
-```
+- Delete the entry in KfDef.Spec.ComponentParams for spartakus``` spartakus: 
+    * initRequired: true name: usageId value: 
+    * initRequired: true name: reportUsage value: ```
+- Delete the entry in KfDef.Spec.Components for spartakus```
+    * spartakus```
