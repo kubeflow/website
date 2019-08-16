@@ -87,6 +87,12 @@ Notes:
   [clean up your GCP resources](#cleanup) when you've finished with them.
 * This guide uses [Cloud Shell][cloud-shell] to manage your GCP environment, to save you the steps of installing [Cloud SDK][cloud-sdk] and [kubectl][kubectl]. 
 
+### Start your Cloud Shell
+
+Follow the link to activate a 
+[Cloud Shell environment](https://console.cloud.google.com/cloudshell) in your 
+browser.
+
 ### Set up some handy environment variables
 
 Set up the following environment variables for use throughout the tutorial:
@@ -190,7 +196,7 @@ Deploy Kubeflow on GCP:
         alt="Prediction UI"
         class="mt-3 mb-3 p-3 border border-info rounded">
 
-1. Click **Pipeline Dashboard** to access the pipelines UI. The pipelines UI
+1. Click **Pipelines** to access the pipelines UI. The pipelines UI
    looks like this:
     <img src="/docs/images/pipelines-ui.png" 
       alt="Pipelines UI"
@@ -606,7 +612,7 @@ SDK](/docs/pipelines/sdk/sdk-overview/).
 [gcp-console-services]: https://console.cloud.google.com/kubernetes/discovery
 [cr-tf-models]: https://console.cloud.google.com/gcr/images/tensorflow/GLOBAL/models
 
-[cloud-shell]: https://cloud.google.com/sdk/docs/interactive-gcloud
+[cloud-shell]: https://cloud.google.com/shell/
 [gcloud-container-clusters-create]: https://cloud.google.com/sdk/gcloud/reference/container/clusters/create
 [gcp-machine-types]: https://cloud.google.com/compute/docs/machine-types
 [gcp-service-account]: https://cloud.google.com/iam/docs/understanding-service-accounts

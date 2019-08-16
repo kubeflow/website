@@ -6,41 +6,217 @@ weight = 51
 
 ## Serving a model
 
-_This section has not yet been converted to kustomize, please refer to [kubeflow/website/issues/958](https://github.com/kubeflow/website/issues/958)._
+To deploy a model we create following resources as illustrated below
 
-We treat each deployed model as two [components](https://ksonnet.io/docs/tutorial#2-generate-and-deploy-an-app-component)
-in your APP: one tf-serving-deployment, and one tf-serving-service.
-We can think of the service as a model, and the deployment as the version of the model.
+- A deployment to deploy the model using TFServing
+- A K8s service to create an endpoint a service
+- An Istio virtual service to route traffic to the model and expose it through the Istio gateway
+- An Istio DestinationRule is for doing traffic splitting.
 
-Generate the service(model) component
-
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mnist
+  name: mnist-service
+  namespace: kubeflow
+spec:
+  ports:
+  - name: grpc-tf-serving
+    port: 9000
+    targetPort: 9000
+  - name: http-tf-serving
+    port: 8500
+    targetPort: 8500
+  selector:
+    app: mnist
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: mnist
+  name: mnist-v1
+  namespace: kubeflow
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+      labels:
+        app: mnist
+        version: v1
+    spec:
+      containers:
+      - args:
+        - --port=9000
+        - --rest_api_port=8500
+        - --model_name=mnist
+        - --model_base_path=YOUR_MODEL
+        command:
+        - /usr/bin/tensorflow_model_server
+        image: tensorflow/serving:1.11.1
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          tcpSocket:
+            port: 9000
+        name: mnist
+        ports:
+        - containerPort: 9000
+        - containerPort: 8500
+        resources:
+          limits:
+            cpu: "4"
+            memory: 4Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
+        volumeMounts:
+        - mountPath: /var/config/
+          name: config-volume
+      volumes:
+      - configMap:
+          name: mnist-v1-config
+        name: config-volume
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  labels:
+  name: mnist-service
+  namespace: kubeflow
+spec:
+  host: mnist-service
+  subsets:
+  - labels:
+      version: v1
+    name: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  labels:
+  name: mnist-service
+  namespace: kubeflow
+spec:
+  gateways:
+  - kubeflow-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - method:
+        exact: POST
+      uri:
+        prefix: /tfserving/models/mnist
+    rewrite:
+      uri: /v1/models/mnist:predict
+    route:
+    - destination:
+        host: mnist-service
+        port:
+          number: 8500
+        subset: v1
+      weight: 100
 ```
-ks generate tf-serving-service mnist-service
-ks param set mnist-service modelName mnist    // match your deployment mode name
-ks param set mnist-service trafficRule v1:100    // optional, it's the default value
-ks param set mnist-service serviceType LoadBalancer    // optional, change type to LoadBalancer to expose external IP
-```
 
-Generate the deployment(version) component
+Referring to the above example, you can customize your deployment by changing the following configurations in the YAML file:
 
-```
-MODEL_COMPONENT=mnist-v1
-ks generate tf-serving-deployment-gcp ${MODEL_COMPONENT}
-ks param set ${MODEL_COMPONENT} modelName mnist
-ks param set ${MODEL_COMPONENT} versionName v1   // optional, it's the default value
-ks param set ${MODEL_COMPONENT} modelBasePath gs://kubeflow-examples-data/mnist
-ks param set ${MODEL_COMPONENT} gcpCredentialSecretName user-gcp-sa
-ks param set ${MODEL_COMPONENT} injectIstio true   // If you want to use istio
-```
+- In the deployment resource, the `model_base_path` argument points to the model.
+  Change the value to your own model. 
 
-We enable TF Serving's REST API, and it's able to serve HTTP requests. The API is the same as our http proxy before.
+- The example contains three configurations for Google Cloud Storage (GCS) access:
+  volumes (secret `user-gcp-sa`), volumeMounts, and
+  env (GOOGLE_APPLICATION_CREDENTIALS).
+  If your model is not at GCS (e.g. using S3 from AWS), See the section below on 
+  how to setup access.
+
+- GPU. If you want to use GPU, add `nvidia.com/gpu: 1`
+  in container resources, and use a GPU image, for example:
+  `tensorflow/serving:1.11.1-gpu`.
+  ```yaml
+  resources:
+    limits:
+      cpu: "4"
+      memory: 4Gi
+      nvidia.com/gpu: 1
+  ```
+
+- The resource `VirtualService` and `DestinationRule` are for routing.
+  With the example above, the model is accessible at `HOSTNAME/tfserving/models/mnist` 
+  (HOSTNAME is your Kubeflow deployment hostname). To change the path, edit the
+  `http.match.uri` of VirtualService.
 
 ### Pointing to the model
 Depending where model file is located, set correct parameters
 
 *Google cloud*
 
-Set the param as above section.
+Change the deployment spec as follows:
+
+```yaml
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+      labels:
+        app: mnist
+        version: v1
+    spec:
+      containers:
+      - args:
+        - --port=9000
+        - --rest_api_port=8500
+        - --model_name=mnist
+        - --model_base_path=gs://kubeflow-examples-data/mnist
+        command:
+        - /usr/bin/tensorflow_model_server
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /secret/gcp-credentials/user-gcp-sa.json
+        image: tensorflow/serving:1.11.1-gpu
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          tcpSocket:
+            port: 9000
+        name: mnist
+        ports:
+        - containerPort: 9000
+        - containerPort: 8500
+        resources:
+          limits:
+            cpu: "4"
+            memory: 4Gi
+            nvidia.com/gpu: 1
+          requests:
+            cpu: "1"
+            memory: 1Gi
+        volumeMounts:
+        - mountPath: /var/config/
+          name: config-volume
+        - mountPath: /secret/gcp-credentials
+          name: gcp-credentials
+      volumes:
+      - configMap:
+          name: mnist-v1-config
+        name: config-volume
+      - name: gcp-credentials
+        secret:
+          secretName: user-gcp-sa
+```
+
+The changes are:
+
+- environment variable  `GOOGLE_APPLICATION_CREDENTIALS`
+- volume `gcp-credentials`
+- volumeMount `gcp-credentials`
 
 We need a service account that can access the model.
 If you are using Kubeflow's click-to-deploy app, there should be already a secret, `user-gcp-sa`, in the cluster.
@@ -54,12 +230,7 @@ See [doc](https://cloud.google.com/docs/authentication/) for more detail.
 
 *S3*
 
-To use S3, generate a different prototype
-```
-ks generate tf-serving-deployment-aws ${MODEL_COMPONENT} --name=${MODEL_NAME}
-```
-
-First you need to create secret that will contain access credentials. Use base64 to encode your credentials and check details in the Kubernetes guide to [creating a secret manually](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret-manually)
+To use S3, first you need to create secret that will contain access credentials. Use base64 to encode your credentials and check details in the Kubernetes guide to [creating a secret manually](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret-manually)
 ```
 apiVersion: v1
 metadata:
@@ -70,52 +241,81 @@ data:
 kind: Secret
 ```
 
-Enable S3, set url and point to correct Secret
+Then use the following manifest as an example:
+
+```yaml
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: s3
+  name: s3
+  namespace: kubeflow
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: null
+      labels:
+        app: s3
+        version: v1
+    spec:
+      containers:
+      - args:
+        - --port=9000
+        - --rest_api_port=8500
+        - --model_name=s3
+        - --model_base_path=s3://abc
+        - --monitoring_config_file=/var/config/monitoring_config.txt
+        command:
+        - /usr/bin/tensorflow_model_server
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              key: AWS_ACCESS_KEY_ID
+              name: secretname
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: AWS_SECRET_ACCESS_KEY
+              name: secretname
+        - name: AWS_REGION
+          value: us-west-1
+        - name: S3_USE_HTTPS
+          value: "true"
+        - name: S3_VERIFY_SSL
+          value: "true"
+        - name: S3_ENDPOINT
+          value: s3.us-west-1.amazonaws.com
+        image: tensorflow/serving:1.11.1
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          tcpSocket:
+            port: 9000
+        name: s3
+        ports:
+        - containerPort: 9000
+        - containerPort: 8500
+        resources:
+          limits:
+            cpu: "4"
+            memory: 4Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
+        volumeMounts:
+        - mountPath: /var/config/
+          name: config-volume
+      volumes:
+      - configMap:
+          name: s3-config
+        name: config-volume
 
 ```
-MODEL_PATH=s3://kubeflow-models/inception
-ks param set ${MODEL_COMPONENT} modelBasePath ${MODEL_PATH}
-ks param set ${MODEL_COMPONENT} s3Enable true
-ks param set ${MODEL_COMPONENT} s3SecretName secretname
-```
-
-Optionally you can also override default parameters of S3
-
-```
-# S3 region
-ks param set ${MODEL_COMPONENT} s3AwsRegion us-west-1
-
-# Whether or not to use https for S3 connections
-ks param set ${MODEL_COMPONENT} s3UseHttps true
-
-# Whether or not to verify https certificates for S3 connections
-ks param set ${MODEL_COMPONENT} s3VerifySsl true
-
-# URL for your s3-compatible endpoint.
-ks param set ${MODEL_COMPONENT} s3Endpoint s3.us-west-1.amazonaws.com
-```
-
-### Using GPU
-To serve a model with GPU, first make sure your Kubernetes cluster has a GPU node. Then set an additional param:
-```
-ks param set ${MODEL_COMPONENT} numGpus 1
-```
- There is an [example](https://github.com/kubeflow/examples/blob/master/object_detection/tf_serving_gpu.md)
-for serving an object detection model with GPU.
-
-### Deploying
-
-```
-export KF_ENV=default
-ks apply ${KF_ENV} -c mnist-service
-ks apply ${KF_ENV} -c ${MODEL_COMPONENT}
-```
-
-The `KF_ENV` environment variable represents a conceptual deployment environment 
-such as development, test, staging, or production, as defined by 
-ksonnet. For this example, we use the `default` environment.
-You can read more about Kubeflow's use of ksonnet in the Kubeflow 
-[ksonnet component guide](/docs/components/ksonnet/).
 
 ### Sending prediction request directly
 If the service type is LoadBalancer, it will have its own accessible external ip.

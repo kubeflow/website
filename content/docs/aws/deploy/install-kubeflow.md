@@ -17,50 +17,64 @@ deploy Kubeflow on Amazon Web Services (AWS).
     * Enter your preferred AWS Region and default output options.
 * Install [eksctl](https://github.com/weaveworks/eksctl) (version 0.1.31 or newer) and the [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
 
-You do not need to have an existing Amazon Elastic Container Service for Kubernetes (Amazon EKS) cluster. The deployment process will create a cluster for you.
+## EKS cluster
+There're many ways to provision EKS cluster, using AWS EKS CLI, CloudFormation or Terraform, AWS CDK or eksctl.
+Here, we highly recommend you to create an EKS cluster using [eksctl](https://github.com/weaveworks/eksctl).
+
+You are required to have an existing Amazon Elastic Container Service for Kubernetes (Amazon EKS) cluster before moving the next step.
 
 The installation tool uses the `eksctl` command and doesn't support the `--profile` option in that command.
 If you need to switch role, use the `aws sts assume-role` commands. See the AWS guide to [using temporary security credentials to request access to AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html).
 
 
 ## Kubeflow installation
+In order to deploy Kubeflow on your existing Amazon EKS cluster, you need to provide `AWS_CLUSTER_NAME`, `cluster region` and `worker roles`.
+
 
 1. Download the latest `kfctl` golang binary from [Kubeflow release page](https://github.com/kubeflow/kubeflow/releases) and unpack it.
 
-    ```
+    ```shell
     # Add kfctl to PATH, to make the kfctl binary easier to use.
     tar -xvf kfctl_<release tag>_<platform>.tar.gz
     export PATH=$PATH:"<path to kfctl>"
-    ```
 
-1. Download manifest and config setups
-
-    ```shell
-    # Download config files
+    # Download config file
     export CONFIG="/tmp/kfctl_aws.yaml"
     wget https://raw.githubusercontent.com/kubeflow/kubeflow/master/bootstrap/config/kfctl_aws.yaml -O ${CONFIG}
     ```
 
     * `kfctl_aws.yaml` is one of setup manifests, please check [kfctl_aws_cognito.yaml](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/config/kfctl_aws_cognito.yaml) for the template to enable authentication.
 
-    - If you plan to use `kfctl` to create a new eks cluster, please remove follow lines in the manifest file.
-    - If you want to install on existing EKS cluster, please change roles to your worker node group roles. See [existing cluster](/docs/aws/deploy/existing-cluster) for details.
+1. Customize your config file. Retrieve the Amazon EKS cluster name, AWS Region, and IAM role name for your worker nodes.
+
+     ```shell
+    export AWS_CLUSTER_NAME=<YOUR EKS CLUSTER NAME>
+    export KFAPP=${AWS_CLUSTER_NAME}
+    ```
+
+    > Note: To get your Amazon EKS worker node IAM role name, you can check IAM setting by running the following commands. This command assumes that you used `eksctl` to create your cluster. If you use other provisioning tools to create your worker node groups, please find the role that is associated with your worker nodes in the Amazon EC2 console.
 
     ```shell
-    roles:
-      - eksctl-kubeflow-aws-nodegroup-ng-a2-NodeInstanceRole-xxxxxxx
+    aws iam list-roles \
+        | jq -r ".Roles[] \
+        | select(.RoleName \
+        | startswith(\"eksctl-$AWS_CLUSTER_NAME\") and contains(\"NodeInstanceRole\")) \
+        .RoleName"
+
+    eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
     ```
+
+    Change cluster region and worker roles names in your `kfctl_aws.yaml`
+    ```yaml
+      region: us-west-2
+      roles:
+        - eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
+    ```
+    > If you have multiple node groups, you will see corresponding number of node group roles. In that case, please provide the role names as an array.
 
 1. Run the following commands to set up your environment and initialize the cluster.
 
-    Since there're many ways to create your cluster, we highly recommend you to get our own eks cluster ready.
-
-    Note: If you would like to install Kubeflow on your existing EKS cluster,
-    please skip this step and follow the setup instructions for an [existing cluster](/docs/aws/deploy/existing-cluster) instead.
-
-    ```
-    export KFAPP=kfaws
-
+    ```shell
     kfctl init ${KFAPP} --config=${CONFIG} -V
     cd ${KFAPP}
 
@@ -70,7 +84,6 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
 
     * KFAPP - Use a relative directory name here rather than absolute path, such as `kfapp`. It will be used as eks cluster name.
     * CONFIG - Path to the configuration file
-
 
     *Important!!!* By default, these scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
 

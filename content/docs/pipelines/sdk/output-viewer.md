@@ -438,7 +438,7 @@ Kubeflow Pipelines UI. For help getting started with the UI, follow the
 [Kubeflow Pipelines quickstart](/docs/pipelines/pipelines-quickstart/).
 
 The sample code is available in the [Kubeflow Pipelines samples 
-repo](https://github.com/kubeflow/pipelines/tree/master/samples/tfx). The
+repo](https://github.com/kubeflow/pipelines/tree/master/samples/core/tfx_cab_classification). The
 pipeline uses a number of prebuilt, reusable components, including:
 
 * The [Confusion Matrix 

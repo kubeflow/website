@@ -1,22 +1,157 @@
 +++
-title = "Kubeflow Deployment with kfctl_existing_arrikto"
-description = "Instructions for installing Kubeflow with kfctl_existing_arrikto config"
+title = "Multi-user, auth-enabled Kubeflow with kfctl_existing_arrikto"
+description = "Instructions for installing Kubeflow with kfctl_existing_arrikto.yaml config"
 weight = 4
 +++
 
-This deployment uses [Dex](https://github.com/dexidp/dex) and [Istio](https://istio.io/) for vendor-neutral authentication.
+Follow these instructions if you want to install Kubeflow on an existing Kubernetes cluster.
 
-**Maintainer and supporter: Arrikto**
+This installation of Kubeflow is maintained by
+[Arrikto](https://www.arrikto.com/), it is geared towards existing Kubernetes
+clusters and does not depend on any cloud-specific feature.
 
-![platform existing architecture](https://i.imgur.com/OlaN73j.png)
+In this reference architecture, we use [Dex](https://github.com/dexidp/dex) and
+[Istio](https://istio.io/) for vendor-neutral authentication.
+
+This deployment works well for on-prem installations, where companies/organizations need LDAP/AD integration for multi-user authentication, and they don't want to depend on any cloud-specific feature.
+
+![kfctl_existing_arrikto_architecture](../../kfctl_existing_arrikto-architecture.svg)
+
+Read the relevant [article](https://journal.arrikto.com/kubeflow-authentication-with-istio-dex-5eafdfac4782) for more info about this architecture.
+
 
 ### Prerequisites
-- Kubernetes Cluster with LoadBalancer support. Refer [Load Balancer](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/) guide.
+
+You need a Kubernetes Cluster with LoadBalancer support.
+
+If you don't have support for LoadBalancer on your cluster, please follow the instructions below to deploy MetalLB in Layer 2 mode. (You can read more about Layer 2 mode in the [MetalLB docs](https://metallb.universe.tf/configuration/#layer-2-configuration).)
+
+<details>
+
+<summary>MetalLB deployment</summary>
+
+**Deploy MetalLB:**
+
+1. Apply the manifest:
+      
+    ```
+    kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifests/metallb.yaml
+    ```
+  
+1. Allocate a pool of addresses on your local network for MetalLB to use. You
+   need at least one address for the Istio Gateway. This example assumes
+   addresses `10.0.0.100-10.0.0.110`. *You must modify these addresses based on
+   your environment*.
+
+    ```
+    cat <<EOF | kubectl apply -f -
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      namespace: metallb-system
+      name: config
+    data:
+      config: |
+        address-pools:
+        - name: default
+          protocol: layer2
+          addresses:
+          - 10.0.0.100-10.0.0.110
+    EOF
+    ```
+
+
+**Ensure that MetalLB works as expected (optional):**
+
+1. Create a dummy service:
+
+    ```
+    kubectl create service loadbalancer nginx --tcp=80:80
+    service/nginx created
+    ```
+
+1. Ensure that MetalLB has allocated an IP address for the service:
+
+    ```
+    kubectl describe service nginx
+    ...
+    Events:
+      Type    Reason       Age   From                Message
+      ----    ------       ----  ----                -------
+      Normal  IPAllocated  69s   metallb-controller  Assigned IP "10.0.0.101"
+    ```
+
+1. Check the corresponding MetalLB logs:
+
+    ```
+    kubectl logs -n metallb-system -l component=controller
+    ...
+    {"caller":"service.go:98","event":"ipAllocated","ip":"10.0.0.101","msg":"IP address assigned by controller","service":"default/nginx","ts":"2019-08-09T15:12:09.376779263Z"}
+    ```
+    
+1. Create a pod that will be exposed with the service:
+
+    ```
+    kubectl run nginx --image nginx --restart=Never -l app=nginx
+    pod/nginx created
+    ```
+    
+1. Ensure that MetalLB has assigned a node to announce the allocated IP address:
+
+    ```
+    kubectl describe service nginx
+    ...
+    Events:
+      Type    Reason       Age   From                Message
+      ----    ------       ----  ----                -------
+       Normal  nodeAssigned  4s    metallb-speaker     announcing from node "node-2"
+    ```
+    
+1. Check the corresponding MetalLB logs:
+
+    ```
+    kubectl logs -n metallb-system -l component=speaker
+    ...
+    {"caller":"main.go:246","event":"serviceAnnounced","ip":"10.0.0.101","msg":"service has IP, announcing","pool":"default","protocol":"layer2","service":"default/nginx","ts":"2019-08-09T15:14:02.433876894Z"}
+    ```
+    
+1. Check that MetalLB responds to ARP requests for the allocated IP address:
+
+    ```
+    arping -I eth0 10.0.0.101
+    ...
+    ARPING 10.0.0.101 from 10.0.0.204 eth0
+    Unicast reply from 10.0.0.101 [6A:13:5A:D2:65:CB]  2.619ms
+    ```
+    
+1. Check the corresponding MetalLB logs:
+
+    ```
+    kubectl logs -n metallb-system -l component=speaker
+    ...
+    {"caller":"arp.go:102","interface":"eth0,"ip":"10.0.0.101","msg":"got ARP request for service IP, sending response","responseMAC":"6a:13:5a:d2:65:cb","senderIP":"10.0.0.204","senderMAC":"9a:1f:7c:95:ca:dc","ts":"2019-08-09T15:14:52.912056021Z"}
+    ```
+    
+1. Verify that everything works as expected:
+
+    ```
+    curl http://10.0.0.101
+    ...
+    <p><em>Thank you for using nginx.</em></p>
+    ...
+    ```
+    
+1. Clean up:
+
+    ```
+    kubectl delete service nginx
+    kubectl delete pod nginx
+    ```
+    
+</details>
 
 
 ### Deploy Kubeflow
-
-If you are deploying Kubeflow on a multi-node cluster, you can follow this [guide](/docs/use-cases/kubeflow-on-multinode-cluster) to set up your system to use a remote NFS filesystem in cluster nodes.
 
 Follow these steps to deploy Kubeflow:
 
@@ -33,7 +168,7 @@ Follow these steps to deploy Kubeflow:
 # Add kfctl to PATH, to make the kfctl binary easier to use.
 export PATH=$PATH:"<path to kfctl>"
 export KFAPP="<your choice of application directory name>"
-export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/master/bootstrap/config/kfctl_existing_arrikto.0.6.yaml"
+export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/master/bootstrap/config/kfctl_existing_arrikto.yaml"
 
 # Specify credentials for the default user.
 export KUBEFLOW_USER_EMAIL="admin@kubeflow.org"
@@ -58,16 +193,16 @@ kfctl apply all -V
 
 #### Log in as a static user
 
-After deploying Kubeflow, the Kubeflow Dashboard is available at the Istio Gateway IP.
+After deploying Kubeflow, the Kubeflow dashboard is available at the Istio Gateway IP.
 To get the Istio Gateway IP, run:
 
 ```bash
 kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
 
-Get the IP and open it in a browser: `https://<ip>/`.
+Get the IP and open it in a browser: `https://<LoadBalancerIP address>/`.
 
-Enter the credentials you specified in `KUBEFLOW_USER_EMAIL`, `KUBEFLOW_PASSWORD` and access the Kubeflow Dashboard!
+Enter the credentials you specified in `KUBEFLOW_USER_EMAIL`, `KUBEFLOW_PASSWORD` and access the Kubeflow dashboard!
 
 #### Add static users for basic auth
 
@@ -420,6 +555,81 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
           * Add or update a label on the PodTemplate.
           * Save the deployment to trigger a rolling update.
 
+### Troubleshooting
+
+If the Kubeflow dashboard is not available at `https://<LoadBalancerIP address>` ensure that:
+
+1. the LoadBalancer service for Istio has obtained an external IP, for example:
+
+    ```
+    kubectl get services -n istio-system istio-ingressgateway -o yaml
+    ...
+    status:
+      loadBalancer:
+        ingress:
+        - ip: 10.0.0.100
+    ```
+    
+    If not, then probably there is a misconfiguration of MetalLB.
+
+1. the virtual services have been created:
+
+    ```
+    kubectl get virtualservices -n kubeflow
+    kubectl get virtualservices -n kubeflow centraldashboard -o yaml
+    ```
+    
+    If not, then kfctl has aborted for some reason, and not completed successfully.
+
+1. OIDC auth service redirects you to Dex:
+
+    ```
+    curl -k https://<LoadBalancerIP address>/ -v
+    ...
+    < HTTP/2 302
+    < content-type: text/html; charset=utf-8
+    < location:
+    /dex/auth?client_id=kubeflow-authservice-oidc&redirect_uri=%2Flogin%2Foidc&response_type=code&scope=openid+profile+email+groups&state=vSCMnJ2D
+    < date: Fri, 09 Aug 2019 14:33:21 GMT
+    < content-length: 181
+    < x-envoy-upstream-service-time: 0
+    < server: istio-envoy
+    ```
+    
+Please join the [Kubeflow Slack](https://kubeflow.slack.com/join/shared_invite/enQtNDg5MTM4NTQyNjczLWUyZGI1ZmExZWExYWY4YzlkOWI4NjljNjJhZjhjMjEwNGFjNmVkNjg2NTg4M2I0ZTM5NDExZWI5YTIyMzVmNzM) to report any issues, request help, and give us feedback on this config.
+
+Some additional debugging information:
+
+OIDC Service logs:
+```bash
+kubectl logs -n istio-system -l app=authservice
+```
+Dex logs:
+```bash
+kubectl logs -n kubeflow -l app=dex
+```
+Istio ingress-gateway logs:
+```bash
+kubectl logs -n istio-system -l istio=ingressgateway
+```
+
+Istio ingressgateway service:
+```bash
+kubectl get service -n istio-system istio-ingressgateway -o yaml
+```
+
+MetalLB logs:
+```bash
+kubectl logs -n metallb-system -l component=speaker
+...
+{"caller":"arp.go:102","interface":"br100","ip":"10.0.0.100","msg":"got ARP request for service IP, sending response","responseMAC":"62:41:bd:5f:cc:0d","senderIP":"10.0.0.204","senderMAC":"9a:1f:7c:95:ca:dc","ts":"2019-07-31T13:19:19.7082836Z"}
+```
+```bash
+kubectl logs -n metallb-system  -l component=controller
+...
+{"caller":"service.go:98","event":"ipAllocated","ip":"10.0.0.100","msg":"IP address assigned by controller","service":"istio-system/istio-ingressgateway","ts":"2019-07-31T12:17:46.234638607Z"}
+```
+
 ### Delete Kubeflow
 
 Run the following commands to delete your deployment and reclaim all resources:
@@ -446,7 +656,7 @@ following:
 * **k8s** - all resources that run on Kubernetes.
 * **all** - platform and Kubernetes resources.
 
-#### App layout
+### App layout
 
 Your Kubeflow app directory contains the following files and directories:
 
