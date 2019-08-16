@@ -13,7 +13,11 @@ This config creates a vanilla deployment of Kubeflow with all its core component
 Follow these steps to deploy Kubeflow:
 
 1. Download the latest `kfctl` release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/) and unpack it:
-
+    ```
+    tar -xvf kfctl_<release tag>_<platform>.tar.gz
+    ```
+    
+    Script to download and unpack for Linux/MacOS:
     ```
     opsys=linux # darwin for Mac
     
