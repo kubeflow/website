@@ -15,10 +15,21 @@ If you don't have a provisioner, ensure that you have configured volume provisio
 
 Follow these steps to deploy Kubeflow:
 
-1. Download a `kfctl` release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/) and unpack it:
-
+1. Download the latest `kfctl` release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/) and unpack it:
     ```
     tar -xvf kfctl_<release tag>_<platform>.tar.gz
+    ```
+    
+    Script to download and unpack for Linux/MacOS:
+    ```
+    opsys=linux # darwin for Mac
+    
+    curl -s https://api.github.com/repos/kubeflow/kubeflow/releases/latest |\
+        grep browser_download |\
+        grep $opsys |\
+        cut -d '"' -f 4 |\
+        xargs curl -O -L && \
+        tar -zvxf kfctl_*_${opsys}.tar.gz 
     ```
 
 1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl` binary each time you run it.
