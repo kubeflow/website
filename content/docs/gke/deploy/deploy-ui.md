@@ -32,11 +32,7 @@ Follow these steps to open the deployment UI and deploy Kubeflow on GCP:
 
     * **Project:** Enter your GCP project ID.
     * **Deployment name:** Enter a short name that you can use to recognize this 
-      deployment of Kubeflow. If you plan to use [Cloud Identity-Aware Proxy
-      (Cloud IAP)](https://cloud.google.com/iap/docs/) for access control (see
-      the next option below), make sure you use the same deployment name 
-      on the deployment UI and when [creating the OAuth 
-      client ID](/docs/gke/deploy/oauth-setup/).
+      deployment of Kubeflow.
       The maximum length for the deployment name is 25 characters.
     * **Choose how to connect to Kubeflow:** You can choose one of the
       following options:
@@ -49,9 +45,9 @@ Follow these steps to open the deployment UI and deploy Kubeflow on GCP:
       * **Login with Username Password:** Choose this option if you want to
         allow users to access Kubeflow with a username and password, that is,
         with basic authentication. See more details [below](#basic-auth).
-      * **Setup Endpoint later:** Choose this option if you want to skip
-        the authentication process and set up the URI for the Kubeflow UI later.
-        See more details [below](#later-auth).
+      * **Setup Endpoint later:** *(Not recommended.)* Choose this option if you 
+        want to skip the authentication process and set up the URI for the 
+        Kubeflow UI later. See more details [below](#later-auth).
 
     * **GKE zone:** Enter the 
       [GCP zone](https://cloud.google.com/compute/docs/regions-zones/) in which 
@@ -120,16 +116,12 @@ password) to control access to Kubeflow.
 1. Click **Kubeflow Service Endpoint** to access your Kubeflow URI.
 
 <a id="later-auth"></a>
-## Setting up your endpoint later
+## Setting up your endpoint later (not recommended)
 
 You can choose to deploy Kubeflow without creating an endpoint for the Kubeflow
 service.
 
 1. Choose the **Setup Endpoint later** option on the Kubeflow deployment UI.
-1. Click **Port Forward** to set up port forwarding and access your Kubeflow 
-  cluster at `http://localhost:8080/`. For more information about port 
-  forwarding, see the guide to 
-  [accessing the Kubeflow UIs](/docs/other-guides/accessing-uis/).
 1. Finish the setup later by inserting your OAuth client into the
   Kubeflow cluster. Read more about 
   [customizing Kubeflow](/docs/gke/customizing-gke/) and
