@@ -30,12 +30,12 @@ The central UI dashboard looks like this:
 
 ## Overview of accessing the Kubeflow UIs
 
-To access the Kubeflow UIs you need to connect to the 
-[ISTIO gateway](https://istio.io/docs/concepts/traffic-management/#gateways) that 
+To access the Kubeflow UIs, you need to connect to the 
+[Istio gateway](https://istio.io/docs/concepts/traffic-management/#gateways) that 
 provides access to the Kubeflow 
 [service mesh](https://istio.io/docs/concepts/what-is-istio/#what-is-a-service-mesh).
 
-How you access the ISTIO gateway varies depending on how you've configured it.
+How you access the Istio gateway varies depending on how you've configured it.
 
 ## URL pattern with Google Cloud Platform (GCP)
 
@@ -57,7 +57,7 @@ guide to
 ## Using kubectl and port-forwarding
 
 If you didn't configure Kubeflow to integrate with an identity provider and perform 
-any authorization then you can port-forward directly to the ISTIO gateway.
+any authorization then you can port-forward directly to the Istio gateway.
 
 Port-forwarding typically does not work if any of the following are true:
 
@@ -68,10 +68,10 @@ Port-forwarding typically does not work if any of the following are true:
     cluster using the [`kfctl_k8s_istio` 
     configuration](/docs/started/k8s/kfctl-k8s-istio/).)
 
-  * You've configured the ISTIO ingress to only accept 
+  * You've configured the Istio ingress to only accept 
     HTTPS traffic on a specific domain or IP address.
 
-  * You've configured the ISTIO ingress to perform an authorization check 
+  * You've configured the Istio ingress to perform an authorization check 
     (for example, using Cloud IAP or [Dex](https://github.com/dexidp/dex)).
 
 
@@ -85,7 +85,7 @@ You can access Kubeflow via `kubectl` and port-forwarding as follows:
     installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 1. Use the following command to set up port forwarding to the
-  [ISTIO gateway](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
+  [Istio gateway](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
 
     {{% code-webui-port-forward %}}
 
