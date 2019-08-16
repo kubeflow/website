@@ -8,10 +8,11 @@ Starting from Kubeflow version 0.5, Kubeflow Pipelines persists the
 pipeline data in a permanent storage volume. Kubeflow Pipelines therefore
 supports the following capabilities:
 
-* **Upgrade:** You can upgrade your Kubeflow Pipelines deployment to a
-  later version without deleting and recreating the cluster.
 * **Reinstall:** You can delete a cluster and create a new cluster, specifying
   the storage to retrieve the original data in the new cluster.
+
+Note that upgrade isn't currently supported, check [this issue](https://github.com/kubeflow/kubeflow/issues/3727)
+for progress.
 
 ## Context
 
@@ -36,7 +37,7 @@ The MySQL database and the Minio server are both backed by the Kubernetes
 ## Deploying Kubeflow
 
 This section describes how to deploy Kubeflow in a way that ensures you can use
-the Kubeflow Pipelines upgrade/installation capability.
+the Kubeflow Pipelines reinstallation capability.
 
 ### Deploying Kubeflow on GCP 
 
@@ -107,45 +108,6 @@ The steps below assume that you already have a Kubernetes cluster set up.
         ```
         kfctl apply k8s
         ``` 
-
-## Upgrading your Kubeflow deployment
-
-### Upgrading your Kubeflow deployment on GCP
-
-You don't need to do anything extra. Just follow [Kubeflow upgrade guide](/docs/other-guides/upgrade/). 
-
-### Upgrading your Kubeflow deployment in other environments (non-GCP)
-
-Follow [Kubeflow upgrade guide](/docs/other-guides/upgrade/) with the following in mind.
-
-1. **Before** running the following `apply` command:
-
-    ```
-    kfctl apply -V all
-    ```
-
-    You should first edit the following files to specify the persistent disks created
-    in a previous deployment:
-
-    * `${KFAPP}/kustomize/minio/overlays/minioPd/params.env`
-      ```
-      ...
-      minioPd=[NAME-OF-ARTIFACT-STORAGE-DISK]
-      ...
-      ```
-
-    * `${KFAPP}/kustomize/mysql/overlays/mysqlPd/params.env`
-      ```
-      ...
-      mysqlPd=[NAME-OF-METADATA-STORAGE-DISK]
-      ...
-      ```
-
-1. Then run the `apply` command:
-
-    ```
-    kfctl apply -V all
-    ``` 
 
 ## Reinstalling Kubeflow Pipelines
 
