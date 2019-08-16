@@ -86,9 +86,8 @@ workload:
     alt="Run results on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-You can find the source code for the basic parallel join sample in the 
-[Kubeflow Pipelines 
-repo](https://github.com/kubeflow/pipelines/blob/master/samples/core/parallel_join/parallel_join.py).
+You can find [the source code for the basic parallel join sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/parallel_join/parallel_join.py)
+in the Kubeflow Pipelines repo.
 
 ## Run an ML pipeline
 
