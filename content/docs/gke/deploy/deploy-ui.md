@@ -45,7 +45,7 @@ Follow these steps to open the deployment UI and deploy Kubeflow on GCP:
       * **Login with Username Password:** Choose this option if you want to
         allow users to access Kubeflow with a username and password, that is,
         with basic authentication. See more details [below](#basic-auth).
-      * **Setup Endpoint later:** _(Not recommended.) Choose this option if you 
+      * **Setup Endpoint later:** *(Not recommended.)* Choose this option if you 
         want to skip the authentication process and set up the URI for the 
         Kubeflow UI later. See more details [below](#later-auth).
 
