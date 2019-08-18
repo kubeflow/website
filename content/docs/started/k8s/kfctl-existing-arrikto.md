@@ -438,7 +438,7 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
     1. Get the current Dex config from the corresponding Config Map.
         
         {{< highlight bash >}}
-        kubectl get configmap -n kubeflow -o jsonpath='{.data.config\.yaml}' > dex-config.yaml
+        kubectl get configmap dex -n kubeflow -o jsonpath='{.data.config\.yaml}' > dex-config.yaml
         {{< /highlight >}}
 
     1. Add the LDAP-specific options. Here is an example to help you out. It is configured to work with the example LDAP Server you set up previously.
