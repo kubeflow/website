@@ -11,62 +11,75 @@ See the [Spartakus docs](https://github.com/kubernetes-incubator/spartakus) for
 more detail. 
 
 Allowing usage reporting is entirely voluntary.
-**Reporting usage data is one of the most significant contributions you can make 
-to Kubeflow; so please consider allowing the reporting of usage data.** 
+
+{{% alert title="Reporting usage data is one of the most significant contributions you can make to Kubeflow" color="info" %}}
+Please consider allowing the reporting of usage data.
 The data helps the Kubeflow community to improve the project and helps the many 
 companies working on Kubeflow justify continued investment.
+{{% /alert %}}
 
-**To opt out of usage reporting,** run the following command:
+## Disable usage reporting on an existing Kubeflow deployment
+
+If you've already deployed Kubeflow, run the following command to disable usage 
+reporting on your existing deployment. The command removes the 
+`spartakus-volunteer` component:
 
 ```bash
+export NAMESPACE=kubeflow
 kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
 ```
 
-**To disable usage reporting,** you need to delete the Spartakus component. 
-The above command restarts Spartakus with the `reportUsage` flag set to `false`, 
-while the following command completely removes any Spartakus deployment:
+You can run the following command to check for existence of the component:
 
 ```bash
-kubectl -n ${NAMESPACE} delete deploy -l app=spartakus
+kubectl get -n ${NAMESPACE} deploy spartakus-volunteer
 ```
 
-**To prevent Spartakus from being deployed,** edit `${KFAPP}/app.yaml` before 
-running `kfctl apply`. Make the following changes to the YAML file:
+## Remove usage reporting before deploying Kubeflow
 
-- Delete the Spartakus entry in the `applications` section. These are the lines
-  to delete:
+The following instructions assume that you plan to use the `kfctl` command-line
+tool to deploy Kubeflow, as described in the 
+[Kubeflow getting-started guides](/docs/started/getting-started/).
 
-  ```
-  - kustomizeConfig:
-      parameters:
-      - initRequired: true
-        name: usageId
-        value: <randomly-generated-id>
-      - initRequired: true
-        name: reportUsage
-        value: "true"
-      repoRef:
-        name: manifests
-        path: common/spartakus
-    name: spartakus
-  ```
+To prevent Spartakus from being deployed, edit your `${KFAPP}/app.yaml` 
+configuration file before running `kfctl apply`. 
+(`KFAPP` represents the directory where your Kubeflow configuration is stored 
+during deployment.)
 
-- Delete the Spartakus entry in the `componentParams` section. These are the
-  lines to delete:
+You need to remove the Spartakus entry from `KfDef.Spec.Applications`. To do 
+that, find the `applications` section of the YAML file and delete the following 
+lines:
 
-  ```
-  spartakus:
-  - initRequired: true
-    name: usageId
-    value: "<randomly-generated-id>"
-  - initRequired: true
-    name: reportUsage
-    value: "true"
-  ```
+    - kustomizeConfig:
+        parameters:
+        - initRequired: true
+          name: usageId
+          value: <randomly-generated-id>
+        - initRequired: true
+          name: reportUsage
+          value: "true"
+        repoRef:
+          name: manifests
+          path: common/spartakus
+      name: spartakus
 
-- Delete the Spartakus entry in the `components` section. This is the line
-  to delete:
+**Alternatively,** some YAML configuration files may include entries for 
+`KfDef.Spec.Components` and `KfDef.Spec.ComponentParams` instead of 
+`KfDef.Spec.Applications`. In this case:
 
-  ```
-  - spartakus
-  ```
+- Find the `componentParams` section of the YAML file and delete the following 
+  lines:
+
+        spartakus:
+        - initRequired: true
+          name: usageId
+          value: "<randomly-generated-id>"
+        - initRequired: true
+          name: reportUsage
+          value: "true"
+
+
+- Find the `components` section of the YAML file and delete the following 
+  line:
+
+        - spartakus
