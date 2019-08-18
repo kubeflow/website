@@ -4,30 +4,39 @@ description = "Opting in or out of anonymous usage data reported from Kubeflow"
 weight = 40
 +++
 
-When enabled, Kubeflow will report **anonymous** usage data using [spartakus](https://github.com/kubernetes-incubator/spartakus), Kubernetes' reporting tool. Spartakus **does not report any personal information**. See [here](https://github.com/kubernetes-incubator/spartakus) for more detail.
-This is entirely voluntary and you can opt out by doing the following:
+When enabled, Kubeflow will report **anonymous** usage data using 
+[Spartakus](https://github.com/kubernetes-incubator/spartakus), Kubernetes' 
+reporting tool. Spartakus does not report any personal information. 
+See the [Spartakus docs](https://github.com/kubernetes-incubator/spartakus) for 
+more detail. 
+
+Allowing usage reporting is entirely voluntary.
+**Reporting usage data is one of the most significant contributions you can make 
+to Kubeflow; so please consider allowing the reporting of usage data.** 
+The data helps the Kubeflow community to improve the project and helps the many 
+companies working on Kubeflow justify continued investment.
+
+**To opt out of usage reporting,** run the following command:
 
 ```bash
-# Delete any existing deployments of spartakus
 kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
 ```
 
-**To disable usage reporting** you need to delete spartakus component. 
-This command completely deletes any spartakus deployment, while the above 
-command only restarts spartakus with reportUsage set to `false`
+**To disable usage reporting,** you need to delete the Spartakus component. 
+The above command restarts Spartakus with the `reportUsage` flag set to `false`, 
+while the following command completely removes any Spartakus deployment:
 
 ```bash
 kubectl -n ${NAMESPACE} delete deploy -l app=spartakus
 ```
 
-**Reporting usage data is one of the most significant contributions you can make to Kubeflow; so please consider turning it on.** This data allows us to improve the project and helps the many companies working on Kubeflow justify continued investment.
+**To prevent Spartakus from being deployed,** edit `${KFAPP}/app.yaml` before 
+running `kfctl apply`. Make the following changes to the YAML file:
 
-**To prevent Spartakus from being deployed,** do the following before running `kfctl apply`:
+- Delete the Spartakus entry in the `applications` section. These are the lines
+  to delete:
 
-- Edit `${KFAPP}/app.yaml`
-- Delete the entry in KfDef.Spec.Applications for spartakus
-
-```
+  ```
   - kustomizeConfig:
       parameters:
       - initRequired: true
@@ -40,13 +49,24 @@ kubectl -n ${NAMESPACE} delete deploy -l app=spartakus
         name: manifests
         path: common/spartakus
     name: spartakus
-```
+  ```
 
-- Delete the entry in KfDef.Spec.ComponentParams for spartakus
+- Delete the Spartakus entry in the `componentParams` section. These are the
+  lines to delete:
 
-    * initRequired: true name: usageId value: 
-    * initRequired: true name: reportUsage value:
+  ```
+  spartakus:
+  - initRequired: true
+    name: usageId
+    value: "<randomly-generated-id>"
+  - initRequired: true
+    name: reportUsage
+    value: "true"
+  ```
 
-- Delete the entry in KfDef.Spec.Components for spartakus
+- Delete the Spartakus entry in the `components` section. This is the line
+  to delete:
 
-    * spartakus
+  ```
+  - spartakus
+  ```
