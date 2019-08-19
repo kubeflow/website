@@ -29,7 +29,7 @@ export NAMESPACE=kubeflow
 kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
 ```
 
-You can run the following command to check for existence of the component:
+You can run the following command to check for existence of the application:
 
 ```bash
 kubectl get -n ${NAMESPACE} deploy spartakus-volunteer
