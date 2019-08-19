@@ -22,7 +22,7 @@ companies working on Kubeflow justify continued investment.
 
 If you've already deployed Kubeflow, run the following command to disable usage 
 reporting on your existing deployment. The command removes the 
-`spartakus-volunteer` component:
+`spartakus-volunteer` application:
 
 ```bash
 export NAMESPACE=kubeflow
