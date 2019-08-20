@@ -4,49 +4,82 @@ description = "Opting in or out of anonymous usage data reported from Kubeflow"
 weight = 40
 +++
 
-When enabled, Kubeflow will report **anonymous** usage data using [spartakus](https://github.com/kubernetes-incubator/spartakus), Kubernetes' reporting tool. Spartakus **does not report any personal information**. See [here](https://github.com/kubernetes-incubator/spartakus) for more detail.
-This is entirely voluntary and you can opt out by doing the following:
+When enabled, Kubeflow will report **anonymous** usage data using 
+[Spartakus](https://github.com/kubernetes-incubator/spartakus), Kubernetes' 
+reporting tool. Spartakus does not report any personal information. 
+See the [Spartakus docs](https://github.com/kubernetes-incubator/spartakus) for 
+more detail. 
+
+Allowing usage reporting is entirely voluntary.
+
+{{% alert title="Reporting usage data is one of the most significant contributions you can make to Kubeflow" color="info" %}}
+Please consider allowing the reporting of usage data.
+The data helps the Kubeflow community to improve the project and helps the many 
+companies working on Kubeflow justify continued investment.
+{{% /alert %}}
+
+## Disable usage reporting on an existing Kubeflow deployment
+
+If you've already deployed Kubeflow, run the following command to disable usage 
+reporting on your existing deployment. The command removes the 
+`spartakus-volunteer` application:
 
 ```bash
-# Delete any existing deployments of spartakus
+export NAMESPACE=kubeflow
 kubectl delete -n ${NAMESPACE} deploy spartakus-volunteer
 ```
 
-**To disable usage reporting** you need to delete spartakus component. 
-This command completely deletes any spartakus deployment, while the above 
-command only restarts spartakus with reportUsage set to `false`
+You can run the following command to check for existence of the application:
 
 ```bash
-kubectl -n ${NAMESPACE} delete deploy -l app=spartakus
+kubectl get -n ${NAMESPACE} deploy spartakus-volunteer
 ```
 
-**Reporting usage data is one of the most significant contributions you can make to Kubeflow; so please consider turning it on.** This data allows us to improve the project and helps the many companies working on Kubeflow justify continued investment.
+## Remove usage reporting before deploying Kubeflow
 
-**To prevent Spartakus from being deployed,** do the following before running `kfctl apply`:
+The following instructions assume that you plan to use the `kfctl` command-line
+tool to deploy Kubeflow, as described in the 
+[Kubeflow getting-started guides](/docs/started/getting-started/).
 
-- Edit `${KFAPP}/app.yaml`
-- Delete the entry in KfDef.Spec.Applications for spartakus
+To prevent Spartakus from being deployed, edit your `${KFAPP}/app.yaml` 
+configuration file before running `kfctl apply`. 
+(`KFAPP` represents the directory where your Kubeflow configuration is stored 
+during deployment.)
 
-```
-  - kustomizeConfig:
-      parameters:
-      - initRequired: true
-        name: usageId
-        value: <randomly-generated-id>
-      - initRequired: true
-        name: reportUsage
-        value: "true"
-      repoRef:
-        name: manifests
-        path: common/spartakus
-    name: spartakus
-```
+You need to remove the Spartakus entry from `KfDef.Spec.Applications`. To do 
+that, find the `applications` section of the YAML file and delete the following 
+lines:
 
-- Delete the entry in KfDef.Spec.ComponentParams for spartakus
+    - kustomizeConfig:
+        parameters:
+        - initRequired: true
+          name: usageId
+          value: <randomly-generated-id>
+        - initRequired: true
+          name: reportUsage
+          value: "true"
+        repoRef:
+          name: manifests
+          path: common/spartakus
+      name: spartakus
 
-    * initRequired: true name: usageId value: 
-    * initRequired: true name: reportUsage value:
+**Alternatively,** some YAML configuration files may include entries for 
+`KfDef.Spec.Components` and `KfDef.Spec.ComponentParams` instead of 
+`KfDef.Spec.Applications`. In this case:
 
-- Delete the entry in KfDef.Spec.Components for spartakus
+- Find the `componentParams` section of the YAML file and delete the following 
+  lines:
 
-    * spartakus
+        spartakus:
+        - initRequired: true
+          name: usageId
+          value: "<randomly-generated-id>"
+        - initRequired: true
+          name: reportUsage
+          value: "true"
+
+
+- Find the `components` section of the YAML file and delete the following 
+  line:
+
+        - spartakus
