@@ -8,10 +8,11 @@ Starting from Kubeflow version 0.5, Kubeflow Pipelines persists the
 pipeline data in a permanent storage volume. Kubeflow Pipelines therefore
 supports the following capabilities:
 
-* **Upgrade:** You can upgrade your Kubeflow Pipelines deployment to a
-  later version without deleting and recreating the cluster.
 * **Reinstall:** You can delete a cluster and create a new cluster, specifying
   the storage to retrieve the original data in the new cluster.
+
+Note that upgrade isn't currently supported, check [this issue](https://github.com/kubeflow/kubeflow/issues/3727)
+for progress.
 
 ## Context
 
@@ -36,7 +37,7 @@ The MySQL database and the Minio server are both backed by the Kubernetes
 ## Deploying Kubeflow
 
 This section describes how to deploy Kubeflow in a way that ensures you can use
-the Kubeflow Pipelines upgrade/installation capability.
+the Kubeflow Pipelines reinstallation capability.
 
 ### Deploying Kubeflow on GCP 
 
@@ -86,12 +87,20 @@ The steps below assume that you already have a Kubernetes cluster set up.
         kfctl apply all -V
         ```
 
-        You must run the following commands to specify your PVs:
+        You should first edit the following files to specify your PVs:
 
+        `${KFAPP}/kustomize/minio/overlays/minioPd/params.env`
         ```
-        cd ks_app
-        ks param set pipeline mysqlPvName [YOUR-PRE-CREATED-MYSQL-PV-NAME]
-        ks param set pipeline minioPvName [YOUR-PRE-CREATED-MINIO-PV-NAME]
+        ...
+        minioPd=[YOUR-PRE-CREATED-MINIO-PV-NAME]
+        ...
+        ```
+
+        `${KFAPP}/kustomize/mysql/overlays/mysqlPd/params.env`
+        ```
+        ...
+        mysqlPd=[YOUR-PRE-CREATED-MYSQL-PV-NAME]
+        ...
         ```
 
   1. Then run the `apply` command as usual:
@@ -99,37 +108,6 @@ The steps below assume that you already have a Kubernetes cluster set up.
         ```
         kfctl apply k8s
         ``` 
-
-## Upgrading your Kubeflow Pipelines deployment
-
-To upgrade your Kubeflow Pipelines deployment to the latest version, run the following script in the 
-Kubeflow application directory. That is, in the same directory where you 
-performed the original deployment, represented in the deployment guide as
-`${KFAPP}`:
-
-```
-cd ${KFAPP}
-${KUBEFLOW_SRC}/scripts/upgrade_kfp.sh
-```
-Alternatively, you can upgrade to a specific version of Kubeflow Pipelines by specifying the version tag. You can find the version tag in the Kubeflow Pipelines [release page](https://github.com/kubeflow/pipelines/releases). For example, to upgrade to v0.1.12
-```
-${KUBEFLOW_SRC}/scripts/upgrade_kfp.sh a1afdd6c4b297b56dd103a8bb939ddeae67c2c92
-```
-
-If you used the web interface
-([https://deploy.kubeflow.cloud/#/deploy](https://deploy.kubeflow.cloud/#/deploy))
-to deploy Kubeflow, you must first clone the Kubeflow application directory 
-from your project's 
-[Cloud Source Repository](https://cloud.google.com/sdk/gcloud/reference/source/repos/clone), 
-then proceed with the upgrade:
-
-```
-export PROJECT=[YOUR-GCP-PROJECT]
-export CLOUD_SRC_REPO=${PROJECT}-kubeflow-config
-gcloud source repos clone ${CLOUD_SRC_REPO} --project=${PROJECT}
-kubectl create clusterrolebinding admin-binding --clusterrole=cluster-admin --user=[YOUR-EMAIL-ADDRESS]
-${KUBEFLOW_SRC}/scripts/upgrade_kfp.sh 
-```
 
 ## Reinstalling Kubeflow Pipelines
 
@@ -144,6 +122,8 @@ Kubeflow Pipelines using the web interface.
 To reinstall Kubeflow Pipelines, follow the [command line deployment 
 instructions](/docs/gke/deploy/deploy-cli/), but note the following
 change in the procedure:
+
+1. Warning, when you do `kfctl init ${KFAPP} --other-flags`, you should use a different `${KFAPP}` name from your existing `${KFAPP}`. Otherwise, your data in existing PDs will be deleted during `kfctl apply all -V`.
 
 1. **Before** running the following `apply` command:
 
@@ -163,14 +143,14 @@ change in the procedure:
     * Edit the following files to specify the persistent disks created
       in a previous deployment:
 
-      `kustomize/minio/overlays/minioPd/params.env`
+      `${KFAPP}/kustomize/minio/overlays/minioPd/params.env`
       ```
       ...
       minioPd=[NAME-OF-ARTIFACT-STORAGE-DISK]
       ...
       ```
 
-      `kustomize/mysql/overlays/mysqlPd/params.env`
+      `${KFAPP}/kustomize/mysql/overlays/mysqlPd/params.env`
       ```
       ...
       mysqlPd=[NAME-OF-METADATA-STORAGE-DISK]
@@ -205,14 +185,14 @@ PV in the new cluster.
 
     You should first edit the following files to specify your PVs:
 
-    `kustomize/minio/overlays/minioPd/params.env`
+    `${KFAPP}/kustomize/minio/overlays/minioPd/params.env`
     ```
     ...
     minioPd=[YOUR-PRE-CREATED-MINIO-PV-NAME]
     ...
     ```
 
-    `kustomize/mysql/overlays/mysqlPd/params.env`
+    `${KFAPP}/kustomize/mysql/overlays/mysqlPd/params.env`
     ```
     ...
     mysqlPd=[YOUR-PRE-CREATED-MYSQL-PV-NAME]
