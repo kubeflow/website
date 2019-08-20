@@ -1,6 +1,6 @@
 +++
 title = "Python Based Visualizations"
-description = "Predefined and arbitrary visualizations of pipeline outputs"
+description = "Predefined and custom visualizations of pipeline outputs"
 weight = 80
 +++
 
@@ -20,7 +20,7 @@ Python based visualizations provide two categories of visualizations. The first
 being **predefined visualizations**. These visualizations are provided by
 default in Kubeflow Pipelines and serve as a way for you and your customers to
 easily and quickly generate powerful visualizations. The second category is
-**arbitrary visualizations**. Arbitrary visualizations allow for you and your
+**custom visualizations**. Arbitrary visualizations allow for you and your
 customers to provided Python visualization code to be used to generate
 visualizations. These visualizations allow for rapid development,
 experimentation, and customizability when visualizing results.
@@ -40,9 +40,10 @@ arguments.
 6. Click **Generate Visualization**.
 7. View generated visualization by scrolling down.
 
-## Using arbitrary visualizations
+## Using custom visualizations
 
-1. Enable arbitrary visualizations within Kubeflow Pipelines.
+1. Enable custom visualizations within Kubeflow Pipelines.
+    * TODO: Update to include steps for enabling custom visualizations
 2. Open the details of a run.
 3. Select a component.
     * The component that is selected does not matter. But, if you want to
@@ -53,10 +54,11 @@ arguments.
 6. Within the card, select the **CUSTOM** visualization type then provide a
 source, and any necessary arguments (the source and argument variables are
 optional for custom visualizations).
-7. Provide the arbitrary visualization code.
+7. Provide the custom visualization code.
 8. Click **Generate Visualization**.
 9. View generated visualization by scrolling down.
 
-## Next Steps
-* Create a [predefined visualization](https://github.com/kubeflow/pipelines/
-blob/master/backend/src/apiserver/visualization/developer_guide.md).
+## Next steps
+If you'd like to add a predefined visualization to Kubeflow, take a look at the
+[developer docs](https://github.com/kubeflow/pipelines/blob/master/backend/src/
+apiserver/visualization/README.md).
