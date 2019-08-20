@@ -209,7 +209,7 @@ $ minikube start --cpus 4 --memory 8096 --disk-size=40g
 ### Install Kubeflow on an existing Kubernetes cluster
 
 Now that you have a Kubernetes cluster running - the Minikube cluster - follow the
-[existing Kubernetes cluster]((/docs/started/k8s/overview/)) instructions for installing
+[existing Kubernetes cluster](/docs/started/k8s/overview/) instructions for installing
 Kubeflow.
 
 ### Where to go next
