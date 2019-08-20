@@ -123,7 +123,7 @@ To reinstall Kubeflow Pipelines, follow the [command line deployment
 instructions](/docs/gke/deploy/deploy-cli/), but note the following
 change in the procedure:
 
-1. Warning, when you do `kfctl init ${KFAPP} --other-flags`, you should use a different `${KFAPP}` name from your existing `${KFAPP}`. Otherwise, your existing PVs will be deleted during `kfctl apply all -V`.
+1. Warning, when you do `kfctl init ${KFAPP} --other-flags`, you should use a different `${KFAPP}` name from your existing `${KFAPP}`. Otherwise, your data in existing PDs will be deleted during `kfctl apply all -V`.
 
 1. **Before** running the following `apply` command:
 
