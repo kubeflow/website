@@ -88,4 +88,4 @@ multiple recursive function calls in the function body.
 
 ## Next steps
 
-* See [recursion sample](https://github.com/kubeflow/pipelines/blob/master/samples/basic/recursion.py)
+* See [recursion sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/recursion/recursion.py)

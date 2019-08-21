@@ -1,5 +1,5 @@
 +++
-title = "Other Guides"
-description = "Various instructions on how to use Kubeflow"
+title = "Further Setup and Troubleshooting"
+description = "Various guides to setting up and troubleshooting your Kubeflow deployment"
 weight = 90
 +++

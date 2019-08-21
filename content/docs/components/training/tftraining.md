@@ -211,7 +211,7 @@ kubectl apply -f tfevent-volume
 kubectl apply -f tf_job_mnist.yaml
 ```
 
-Monitor the job (see the [TFJob docs](/docs/components/tftraining/#monitoring-your-job)):
+Monitor the job (see the [detailed guide below](#monitoring-your-job)):
 
 ```
 kubectl -n kubeflow get tfjob mnist -o yaml
@@ -238,12 +238,8 @@ Typically you can change the following values in the TFJob yaml file:
 
 ### Accessing the TFJob dashboard
 
-The TFJob dashboard is available at `<path>/tfjobs/ui/`. Specifically:
-
-* If you're using the central Kubeflow UI, you can access the TFJob dashboard
-  by clicking **TFJOB DASHBOARD**:
-
-    ![Central UI](/docs/images/central-ui.png)
+The TFJob dashboard has the title **kubeflow/tf-operator**. 
+You can access it at `<path>/tfjobs/ui/`. Specifically:
 
 * If you followed the
  guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), you can
@@ -686,4 +682,4 @@ Events:
 ## More information
 
 * Explore the [TFJob reference documentation](/docs/reference#tfjob).
-* See how to [run a job with gang-scheduling](/docs/other-guides/job-scheduling).
+* See how to [run a job with gang-scheduling](/docs/use-cases/job-scheduling).

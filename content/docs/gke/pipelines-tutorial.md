@@ -1,13 +1,17 @@
 +++
 title = "Pipelines End-to-end on GCP"
 description = "An end-to-end tutorial for Kubeflow Pipelines on GCP"
-weight = 2
+weight = 15
 +++
 
 This guide walks you through a Kubeflow Pipelines sample that runs an MNIST
 machine learning (ML) model on Google Cloud Platform (GCP).
 
 ## Introductions
+
+[Kubeflow Pipelines](/docs/pipelines/) is a platform for building and 
+deploying portable, scalable ML workflows based on 
+Docker containers. When you install Kubeflow, you get Kubeflow Pipelines too.
 
 By working through this tutorial, you learn how to deploy Kubeflow on 
 Kubernetes Engine (GKE) and run a pipeline supplied as a Python script. 
@@ -83,6 +87,12 @@ Notes:
   [clean up your GCP resources](#cleanup) when you've finished with them.
 * This guide uses [Cloud Shell][cloud-shell] to manage your GCP environment, to save you the steps of installing [Cloud SDK][cloud-sdk] and [kubectl][kubectl]. 
 
+### Start your Cloud Shell
+
+Follow the link to activate a 
+[Cloud Shell environment](https://console.cloud.google.com/cloudshell) in your 
+browser.
+
 ### Set up some handy environment variables
 
 Set up the following environment variables for use throughout the tutorial:
@@ -111,9 +121,7 @@ Set up the following environment variables for use throughout the tutorial:
 
 1. If you want a custom name for your Kubeflow deployment, set the 
    `DEPLOYMENT_NAME` environment variable. The deployment name must be 
-   **4-20 characters** in length. Note that the name must be the same 
-   as the one you use in later steps of this tutorial when configuring the 
-   **redirect URI** for the OAuth client credentials. If you don't set this 
+   **4-20 characters** in length. If you don't set this 
    environment variable, your deployment gets the default name of `kubeflow`:
 
     ```
@@ -128,22 +136,30 @@ Deploy Kubeflow on GCP:
   guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
   taking note of the following:
 
+  * If you want the most simple deployment experience, use the Kubeflow deployment web app
+    as described in the guide to 
+    [deployment using the UI](/docs/gke/deploy/deploy-ui/).
+    The deployment web app currently supports 
+    **Kubeflow {{% kf-deployment-ui-version %}}**.
+  * For more control
+    over the deployment, use the guide to 
+    [deployment using the CLI](/docs/gke/deploy/deploy-cli/).
+    The CLI supports **Kubeflow {{% kf-latest-version %}}** and later versions.
   * Make sure that you enable **Cloud Identity-Aware Proxy (IAP)**
     as prompted during the deployment process.
   * When setting up the **authorized redirect URI** for the **OAuth client 
     credentials**, use the same value for the `<deployment_name>` as you used
     when setting up the `DEPLOYMENT_NAME` environment variable earlier in this
     tutorial.
-  * Choose **Kubeflow {{% kf-stable-tag %}}** or later.
-
-    The following screenshot shows the Kubeflow deployment UI with hints about
+  * The following screenshot shows the Kubeflow deployment UI with hints about
     the value for each input field:
 
     <img src="/docs/images/gcp-e2e-deploy-kubeflow.png" 
         alt="Prediction UI"
         class="mt-3 mb-3 p-3 border border-info rounded">
 
-1. (Optional) If you want to examine your cluster while waiting for the UI to
+1. (Optional) If you want to examine your cluster while waiting for the 
+   Kubeflow dashboard to
    be available, you can use `kubectl` to connect to your cluster:
 
   * Connect your Cloud Shell session to the cluster:
@@ -178,7 +194,7 @@ Deploy Kubeflow on GCP:
         alt="Prediction UI"
         class="mt-3 mb-3 p-3 border border-info rounded">
 
-1. Click **Pipeline Dashboard** to access the pipelines UI. The pipelines UI
+1. Click **Pipelines** to access the pipelines UI. The pipelines UI
    looks like this:
     <img src="/docs/images/pipelines-ui.png" 
       alt="Pipelines UI"
@@ -194,11 +210,10 @@ Notes:
 
 * It can take 10-15 minutes for the URI to become available. Kubeflow needs
   to provision a signed SSL certificate and register a DNS name.
-    * If you own/manage the domain or a subdomain with [Cloud DNS][dns]
-      then you can configure this process to be much faster. See 
-      [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
-    * While you wait you can access Kubeflow services by using `kubectl proxy`
-      and `kubectl port-forward` to connect to services in the cluster.
+
+    If you own/manage the domain or a subdomain with [Cloud DNS][dns]
+    then you can configure this process to be much faster. See 
+    [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
 
 ### Create a Cloud Storage bucket
 
@@ -594,7 +609,7 @@ SDK](/docs/pipelines/sdk/sdk-overview/).
 [gcp-console-services]: https://console.cloud.google.com/kubernetes/discovery
 [cr-tf-models]: https://console.cloud.google.com/gcr/images/tensorflow/GLOBAL/models
 
-[cloud-shell]: https://cloud.google.com/sdk/docs/interactive-gcloud
+[cloud-shell]: https://cloud.google.com/shell/
 [gcloud-container-clusters-create]: https://cloud.google.com/sdk/gcloud/reference/container/clusters/create
 [gcp-machine-types]: https://cloud.google.com/compute/docs/machine-types
 [gcp-service-account]: https://cloud.google.com/iam/docs/understanding-service-accounts

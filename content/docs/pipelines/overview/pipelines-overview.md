@@ -60,7 +60,7 @@ and [components](/docs/pipelines/concepts/component/).
 The screenshots and code below show the `xgboost-training-cm.py` pipeline, which
 creates an XGBoost model using structured data in CSV format. You can see the
 source code and other information about the pipeline on 
-[GitHub](https://github.com/kubeflow/pipelines/tree/master/samples/xgboost-spark).
+[GitHub](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost-spark).
 
 ### The runtime execution graph of the pipeline
 
@@ -75,7 +75,7 @@ Kubeflow Pipelines UI:
 
 Below is an extract from the Python code that defines the 
 `xgboost-training-cm.py` pipeline. You can see the full code on 
-[GitHub](https://github.com/kubeflow/pipelines/tree/master/samples/xgboost-spark).
+[GitHub](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost-spark).
 
 ```python
 

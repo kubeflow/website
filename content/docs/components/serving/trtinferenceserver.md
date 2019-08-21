@@ -81,6 +81,8 @@ $ gsutil cp -r model_store gs://inference-server-model-store
 
 ## Kubernetes Generation and Deploy
 
+_This section has not yet been converted to kustomize, please refer to [kubeflow/website/issues/959](https://github.com/kubeflow/website/issues/959)._
+
 Next use ksonnet to generate Kubernetes configuration for the NVIDIA TensorRT
 Inference Server deployment and service. The --image option points to
 the NVIDIA Inference Server container in the [NVIDIA GPU Cloud

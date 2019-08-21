@@ -283,9 +283,6 @@ Events:
 
 ### Fixing the problem
 
-Note: You can ignore the error you have not enabled Cloud IAP for the cluster,
-that is, if you are connecting via a port-forward.
-
 If you have any redundant Kubeflow deployments, you can delete them using
 the [Deployment Manager](https://cloud.google.com/deployment-manager/docs/).
 
