@@ -1,7 +1,7 @@
 +++
-title = "kustomize"
-description = "Information about kustomize as used in Kubeflow"
-weight = 20
+title = "Configuring Kubeflow with kustomize"
+description = "The basics of Kubeflow configuration with kustomize"
+weight = 10
 +++
 
 Kubeflow makes use of [kustomize](https://kustomize.io/) to help customize YAML
