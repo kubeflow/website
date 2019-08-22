@@ -72,7 +72,7 @@ Follow these steps to deploy Kubeflow:
 
     ```bash
     # The following command is optional, to make kfctl binary easier to use.
-    export PATH=$PATH:<path to your kfctl file>
+    export PATH=$PATH:<path to the dir containing your kfctl file>
     export ZONE=<your target GCP zone> # where the deployment will be created
 
     export PROJECT=<your GCP project ID>
