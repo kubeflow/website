@@ -194,7 +194,7 @@ Deploy Kubeflow on GCP:
         alt="Prediction UI"
         class="mt-3 mb-3 p-3 border border-info rounded">
 
-1. Click **Pipelines** to access the pipelines UI. The pipelines UI
+1. Click **Pipelines Dashboard** to access the pipelines UI. The pipelines UI
    looks like this:
     <img src="/docs/images/pipelines-ui.png" 
       alt="Pipelines UI"
