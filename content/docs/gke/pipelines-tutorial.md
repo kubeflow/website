@@ -47,7 +47,7 @@ This tutorial trains a [TensorFlow][tensorflow] model on the
 learning.
 
 The MNIST dataset contains a large number of images of hand-written digits in
-the range 0 to 9, as well as the labels identifying the digit in each image.
+the range of 0 to 9, as well as the labels identifying the digit in each image.
 
 After training, the model can classify incoming images into 10 categories
 (0 to 9) based on what it's learned about handwritten images. In other words, 
