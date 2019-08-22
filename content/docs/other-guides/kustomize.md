@@ -120,7 +120,7 @@ Make sure that you have the minimum required version of kustomize:
       export PATH=$PATH:${HOME}/bin/kustomize
       ```
 
-## Using kustomize
+## Modifying configuration before deployment
 
 kustomize lets you customize raw, template-free YAML files for multiple
 purposes, leaving the original YAML untouched and usable as is.
@@ -136,23 +136,12 @@ kustomize build targets, each with a `base` directory. You can use kustomize to
 generate YAML output and pass it to kfctl. You can also make
 changes to the kustomize targets in the manifests repo as needed. 
 
-### Modifying configuration before deployment
+## Modifying the configuration of an existing deployment
 
-TODO
-
-
-### Modifying the configuration of an existing deployment
-
-You can apply many changes to an existing configuration by running
-the following command, where `KFAPP` is the directory where you've stored 
-your Kubeflow configurations during deployment:
-
-```
-cd ${KFAPP}
-kfctl apply platform
-```
-
-To customize the Kubeflow resources running within the cluster you can modify the kustomize manifests in `${KFAPP}/kustomize`.
+To customize the Kubeflow resources running within the cluster, you can modify
+the kustomize manifests in `${KFAPP}/kustomize`, where `KFAPP` is the directory 
+where you stored your Kubeflow configurations during deployment. Then run
+'kfctl apply`.
 
 For example, to modify settings for the Jupyter web app:
 

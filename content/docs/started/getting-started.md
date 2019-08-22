@@ -11,7 +11,7 @@ This document provides information about setting up Kubeflow in various environm
 It's important that you have some knowledge of the following systems and tools:
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
-* [Kustomize](https://kustomize.io/)
+* [kustomize](https://kustomize.io/)
 
 If you plan to deploy Kubeflow on an existing Kubernetes cluster, review these
 [Kubernetes system requirements](/docs/started/k8s/overview#minimum-system-requirements).
