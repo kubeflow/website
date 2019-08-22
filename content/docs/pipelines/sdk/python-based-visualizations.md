@@ -5,7 +5,15 @@ weight = 80
 +++
 
 This page describes Python based visualizations, how to create them, and how to
-use them to visualize results within the Kubeflow Pipelines UI.
+use them to visualize results within the Kubeflow Pipelines UI. While Python
+based visualizations are intended to be the main method of visualizing data
+within the Kubeflow Pipelines UI, they do not replace the previous method
+of visualizing data within the Kubeflow Pipelines UI. When considering which
+method of visualization to use within your pipeline, check the
+[limitations of python based visualizations](https://github.com/kubeflow/
+pipelines/blob/master/backend/src/apiserver/visualization/
+README.md#known-limitations) and compare them with the requirements of your
+visualizations.
 
 ## Introduction
 
@@ -43,7 +51,24 @@ arguments.
 ## Using custom visualizations
 
 1. Enable custom visualizations within Kubeflow Pipelines.
-    * TODO: Update to include steps for enabling custom visualizations
+    * If you have not yet deployed Kubeflow Pipelines to your cluster,
+    you can edit the [frontend deployment YAML](https://github.com/kubeflow/
+    pipelines/blob/master/manifests/kustomize/base/pipeline/
+    ml-pipeline-ui-deployment.yaml)
+    file to include the following YAML that specifies that custom visualizations
+    are allowed via environment variables.
+
+    ```YAML
+    - env:
+      - name: ALLOW_CUSTOM_VISUALIZATIONS
+        value: true
+    ```
+    * If you already have Kubeflow Pipelines deployed within a cluster, you can
+    edit the frontend deployment YAML to specify that custom visualizations are
+    allowed in the same way described above. Details about updating
+    deployments can be found in the Kubernetes documentation about
+    [updating a deployment](https://kubernetes.io/docs/concepts/workloads/
+    controllers/deployment/#updating-a-deployment).
 2. Open the details of a run.
 3. Select a component.
     * The component that is selected does not matter. But, if you want to
