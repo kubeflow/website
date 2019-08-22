@@ -8,17 +8,18 @@ Kubeflow makes use of [kustomize](https://kustomize.io/) to help customize YAML
 configurations. 
 
 With kustomize, you can traverse a Kubernetes manifest to add, remove or update 
-configuration options without forking. A _manifest_ is a YAML file containing a 
-description of all the components that you want to deploy.
+configuration options without forking the manifest. A _manifest_ is a YAML file 
+containing a description of the applications that you want to include in your
+Kubeflow deployment.
 
 ## Overview of kfctl and kustomize
 
-This section describes how Kubeflow's command-line interface (CLI), kfctl, works 
+This section describes how kfctl, Kubeflow's command-line interface (CLI), works 
 with kustomize to configure your Kubeflow deployment.
 
 ### The Kubeflow installation process
 
-kfctl is Kubeflow's CLI that you can use to set up a Kubernetes cluster with 
+kfctl is the Kubeflow CLI that you can use to set up a Kubernetes cluster with 
 Kubeflow installed, or to deploy Kubeflow to an existing Kubernetes cluster. 
 See the [Kubeflow getting-started guide](/docs/started/getting-started/) for
 installation instructions based on your deployment scenario.
@@ -33,9 +34,10 @@ Kubeflow.
 
 ### Your Kubeflow directory layout
 
-Your Kubeflow app directory, `${KFAPP}`, is the directory where you've stored 
-your Kubeflow configurations during deployment. The directory contains the 
-following files and directories:
+Your Kubeflow app directory is the directory where you choose to store 
+your Kubeflow configurations during deployment. This guide refers to the
+directory as `${KFAPP}`. The directory contains the  following files and 
+directories:
 
 * **app.yaml** stores your primary Kubeflow configuration in the form of a
   `KfDef` Kubernetes object.
@@ -45,7 +47,7 @@ following files and directories:
     self contained.
   * The YAML defines each Kubeflow application as a kustomize package.  
 
-* **<platform-name>_config** is a directory that contains 
+* **[platform-name]_config** is a directory that contains 
   configurations specific to your chosen platform or cloud provider. This 
   directory may or may not be present, depending on your setup.
 
@@ -53,7 +55,7 @@ following files and directories:
   * You can modify these configurations to customize your infrastructure.
 
 * **kustomize** is a directory that contains Kubeflow application manifests.
-  In other words, it contains the kustomize packages for the Kubeflow 
+  That is, the directory contains the kustomize packages for the Kubeflow 
   applications that are included in your deployment.
 
   * The directory is created when you run `kfctl generate`.
@@ -141,9 +143,10 @@ changes to the kustomize targets in the manifests repo as needed.
 To customize the Kubeflow resources running within the cluster, you can modify
 the kustomize manifests in `${KFAPP}/kustomize`, where `KFAPP` is the directory 
 where you stored your Kubeflow configurations during deployment. Then run
-'kfctl apply`.
+`kfctl apply`.
 
-For example, to modify settings for the Jupyter web app:
+For example, to modify settings for the Jupyter web app within your Kubeflow
+deployment:
 
 1. Edit the configuration file at `${KFAPP}/kustomize/jupyter-web-app.yaml`.
 
@@ -166,7 +169,7 @@ For example, to modify settings for the Jupyter web app:
     namespace: kubeflow
     ```
 
-1. Redeploy using `kfctl`:
+1. Redeploy using kfctl:
 
     ```
     cd ${KFAPP}
@@ -187,23 +190,27 @@ GKE](https://www.kubeflow.org/docs/gke/customizing-gke/).
 
 ## More about kustomize
 
-Below are some useful kustomize terms (from the 
-[kustomize glossary](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md)):
+Below are some useful kustomize terms, from the 
+[kustomize glossary](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md):
+
+* **base:** A combination of a kustomization and resource(s). Bases can be
+  referred to by other kustomizations.
 
 * **kustomization:** Refers to a `kustomization.yaml` file, or more generally to
   a directory containing the `kustomization.yaml` file and all the relative file 
   paths that the YAML file references.
 
-* **resource:** Any valid YAML file that defines an object with a kind and a
-metadata/name field.
+* **overlay:** A combination of a kustomization that refers to a base, and a
+patch. An overlay may have multiple bases.
 
 * **patch:** General instructions to modify a resource.
 
-* **base:** A combination of a kustomization and resource(s). Bases can be
-referred to by other kustomizations.
+* **resource:** Any valid YAML file that defines an object with a kind and a
+metadata/name field.
 
-* **overlay:** A combination of a kustomization that refers to a base, and a
-patch. An overlay may have multiple bases.
+* **target:** The argument to `kustomize build`. For example, 
+  `kustomize build $TARGET`. A target must be a path or a URL to a 
+  kustomization. A target can be a base or an overlay.
 
 * **variant:** The outcome of applying an overlay to a base.
 
