@@ -7,7 +7,7 @@ weight = 10
 Kubeflow makes use of [kustomize](https://kustomize.io/) to help customize YAML
 configurations. 
 
-With kustomize, you can traverse a Kubernetes manifest to add, remove or update 
+With kustomize, you can traverse a Kubernetes manifest to add, remove, or update 
 configuration options without forking the manifest. A _manifest_ is a YAML file 
 containing a description of the applications that you want to include in your
 Kubeflow deployment.
@@ -201,12 +201,12 @@ Below are some useful kustomize terms, from the
   paths that the YAML file references.
 
 * **overlay:** A combination of a kustomization that refers to a base, and a
-patch. An overlay may have multiple bases.
+  patch. An overlay may have multiple bases.
 
 * **patch:** General instructions to modify a resource.
 
 * **resource:** Any valid YAML file that defines an object with a kind and a
-metadata/name field.
+  metadata/name field.
 
 * **target:** The argument to `kustomize build`. For example, 
   `kustomize build $TARGET`. A target must be a path or a URL to a 
