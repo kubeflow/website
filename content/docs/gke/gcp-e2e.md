@@ -267,8 +267,6 @@ gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
 
 ## (Optional) Test the code in a Jupyter notebook
 
-TODO: This section doesn't work. (I get the same errors as noted in https://github.com/kubeflow/website/issues/1012.) Consider removing the notebook section, or finding out why the model won't run in a Jupyter notebook.
-
 The sample you downloaded contains all the code you need. If you like, you
 can experiment with and test the code in a Jupyter notebook.
 
@@ -361,8 +359,14 @@ The Kubeflow deployment includes services for spawning and managing
     data then trained the model for 200 steps, reaching a final accuracy level
     of 0.70332366.
 
+    Don't worry if you see the following message after the model has finished
+    exporting:
+    `An exception has occurred, use %tb to see the full traceback. SystemExit.`
+    The message occurs because you haven't yet set up a location for storing the
+    model.
+
 If you want to play more with the code, try adjusting the number of training
-steps by setting `TF_TRAIN_STEPS` to a different value, such as `2000`, or 
+steps by setting `max_steps` to a different value, such as `2000`, or 
 experiment with adjusting other parts of the code.
 
 ## Prepare to run your training application on GKE
