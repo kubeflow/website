@@ -28,7 +28,7 @@ Python based visualizations provide two categories of visualizations. The first
 being **predefined visualizations**. These visualizations are provided by
 default in Kubeflow Pipelines and serve as a way for you and your customers to
 easily and quickly generate powerful visualizations. The second category is
-**custom visualizations**. Arbitrary visualizations allow for you and your
+**custom visualizations**. Custom visualizations allow for you and your
 customers to provided Python visualization code to be used to generate
 visualizations. These visualizations allow for rapid development,
 experimentation, and customizability when visualizing results.
