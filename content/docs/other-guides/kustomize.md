@@ -1,21 +1,22 @@
 +++
-title = "Configuring Kubeflow with kustomize"
-description = "The basics of Kubeflow configuration with kustomize"
+title = "Configuring Kubeflow with kfctl and kustomize"
+description = "The basics of Kubeflow configuration with kfctl and kustomize"
 weight = 10
 +++
 
-Kubeflow makes use of [kustomize](https://kustomize.io/) to help customize YAML
-configurations. 
+kfctl is the Kubeflow command-line interface (CLI) that you can use to
+install and configure Kubeflow.
 
-With kustomize, you can traverse a Kubernetes manifest to add, remove, or update 
-configuration options without forking the manifest. A _manifest_ is a YAML file 
-containing a description of the applications that you want to include in your
-Kubeflow deployment.
+Kubeflow makes use of [kustomize](https://kustomize.io/) to help customize YAML
+configurations. With kustomize, you can traverse a Kubernetes manifest to add, 
+remove, or update configuration options without forking the manifest. A 
+_manifest_ is a YAML file containing a description of the applications that you 
+want to include in your Kubeflow deployment.
 
 ## Overview of kfctl and kustomize
 
-This section describes how kfctl, Kubeflow's command-line interface (CLI), works 
-with kustomize to configure your Kubeflow deployment.
+This section describes how kfctl works with kustomize to set up your 
+Kubeflow deployment.
 
 ### The Kubeflow installation process
 
@@ -31,6 +32,36 @@ Kubeflow.
 * `kfctl init` - one time set up.
 * `kfctl generate` - creates config files defining the various resources.
 * `kfctl apply` - creates or updates the resources.
+
+### Specifying a configuration file when initializing your deployment
+
+When you install Kubeflow, the deployment process uses one of a few possible
+YAML configuration files to determine the configuration.
+
+Typically, you specify the configuration file with a `--config` parameter
+when you run `kfctl init`. For example:
+
+```
+export KFAPP="<your choice of application directory name>"
+export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/{{% kf-latest-version %}}/bootstrap/config/kfctl_existing_arrikto.yaml"
+kfctl init ${KFAPP} --config=${CONFIG} -V
+```
+
+*For details of the above deployment, see the guide to deployment using the 
+[kfctl_existing_arrikto configuration](/docs/started/k8s/kfctl-existing-arrikto/).*
+
+Some deployment processes use a default config file and you don't need to
+add the `--config` argument. For example, the 
+Google Cloud Platform (GCP) initialization command looks like this:
+
+```
+export PROJECT="<your GCP project ID>"
+export KFAPP="<your choice of application directory name>"
+kfctl init ${KFAPP} --platform gcp --project ${PROJECT}
+```
+
+*For details of the above deployment, see the guide to deployment 
+[on GCP using the CLI](/docs/gke/deploy/deploy-cli/).*
 
 ### Your Kubeflow directory layout
 
@@ -185,8 +216,8 @@ deployment:
 
 ### More examples
 
-For more usage examples, see the guide to [customizing Kubeflow on 
-GKE](https://www.kubeflow.org/docs/gke/customizing-gke/).
+For more examples of customizing your deployment, see the guide to [customizing 
+Kubeflow on GKE](https://www.kubeflow.org/docs/gke/customizing-gke/).
 
 ## More about kustomize
 
