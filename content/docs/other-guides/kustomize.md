@@ -36,7 +36,7 @@ Kubeflow.
 ### Specifying a configuration file when initializing your deployment
 
 When you install Kubeflow, the deployment process uses one of a few possible
-YAML configuration files to determine the configuration.
+YAML configuration files to bootstrap the configuration.
 
 Typically, you specify the configuration file with a `--config` parameter
 when you run `kfctl init`. For example:
@@ -83,21 +83,25 @@ directories:
   directory may or may not be present, depending on your setup.
 
   * The directory is created when you run `kfctl generate platform`.
-  * You can modify these configurations to customize your infrastructure.
+  * To customize these configurations, you can modify parameters in the `KfDef`
+    object in your `app.yaml` file, and then re-run `kfctl generate` and 
+    `kfctl apply`.
 
 * **kustomize** is a directory that contains Kubeflow application manifests.
   That is, the directory contains the kustomize packages for the Kubeflow 
   applications that are included in your deployment.
 
   * The directory is created when you run `kfctl generate`.
-  * You can customize the Kubernetes resources by modifying the manifests and 
-    running `kfctl apply` again.
+  * To customize these configurations, you can modify parameters in the `KfDef`
+    object in your `app.yaml` file, and then re-run `kfctl generate` and 
+    `kfctl apply`.
 
 ### How your configuration is generated
 
 The content of your `app.yaml` is the result of running kustomize 
 on the base and overlay `kustomization.yaml` files in the 
-[Kubeflow config](https://github.com/kubeflow/kubeflow/tree/master/bootstrap/config) directory. The overlays reflect the options that you choose when calling 
+[Kubeflow config](https://github.com/kubeflow/kubeflow/tree/master/bootstrap/config) 
+directory. The overlays reflect the options that you choose when calling 
 `kfctl init`.
 
 Below are some examples of `KfDef` configuration files:
@@ -172,9 +176,9 @@ changes to the kustomize targets in the manifests repo as needed.
 ## Modifying the configuration of an existing deployment
 
 To customize the Kubeflow resources running within the cluster, you can modify
-the kustomize manifests in `${KFAPP}/kustomize`, where `KFAPP` is the directory 
-where you stored your Kubeflow configurations during deployment. Then run
-`kfctl apply`.
+parameters in the `KfDef` object in your `${KFAPP}/app.yaml` file, where 
+`KFAPP` is the directory where you stored your Kubeflow configurations during 
+deployment. Then re-run `kfctl generate` and `kfctl apply`.
 
 For example, to modify settings for the Jupyter web app within your Kubeflow
 deployment:
