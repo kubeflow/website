@@ -75,7 +75,7 @@ Kubeflow Pipelines UI:
 
 Below is an extract from the Python code that defines the 
 `xgboost-training-cm.py` pipeline. You can see the full code on 
-[GitHub](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost-spark).
+[GitHub](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm).
 
 ```python
 
