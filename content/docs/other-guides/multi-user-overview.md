@@ -126,6 +126,11 @@ The following resources are created as part of the profile creation:
   - Namespace-scoped service-accounts editor and viewer to be used by
     user-created pods in above namespace.
 
+
+**Note**: Due the 1-to-1 correspondence of Profiles with Kubernetes Namespaces,
+you will at times notice Profiles and Namespaces used interchangably in the
+documentation.
+
 ### Batch creation of user profiles
 
 Administrators might want to create profiles for multiple users as a batch. This can
@@ -162,6 +167,24 @@ kubectl create -f profile.yaml
 This will create multiple profiles for each individual listed in the sections
 in `profile.yaml`.
 
+### Automatic creation of Profiles
+
+Kubeflow v0.6.2 onwards provides automatic profile creations as a convenience
+to the users:
+
+  - Kubeflow deployment process automatically creates a profile for the user
+    performing the deployment. When the user access the Central Dashboard
+    they'll already see their profile in the dropdown list.
+  - When an authenticated user logs into the system and visits the Central
+    Dashboard for the first time, they trigger a profile creation automaticlly.
+      - A brief message introduces profiles <img
+        src="/docs/images/auto-profile1.png" alt="Automatic profile creation
+        step 1" class="mt-3 mb-3 border border-info rounded">
+      - The user can name their profile and click *Finish*.  <img
+        src="/docs/images/auto-profile2.png" alt="Automatic profile creation
+        step 2" class="mt-3 mb-3 border border-info rounded">
+      - This redirects the user to the dashboard where they can view and select
+      thier profile in the dropdown list.
 
 ## Listing and describing profiles
 
@@ -186,15 +209,51 @@ resources associated with the profile. The profile's owner or other users with
 access to the profile will no longer have access to the profile and will not see
 it in the dropdown list on the central dashboard.
 
-<!-- Commented until we have UI support for sharing profiles. Current
-     method using CURL on the profiles API server is not recommended.
 
-## Sharing access to a profile with another user
+## Managing Contributors through UI
 
-An owner of a profile can share view only or view and modify access to the profile
-with another user in the system. 
+Kubeflow v0.6.2 onwards allows sharing of profiles with other users in the
+system.  An owner of a profile can share access to their profile using the
+*Manage Contributors* tab available through the dashboard.
 
--->
+<img src="/docs/images/multi-user-contributors.png" 
+  alt="Manage Contributors in Profiles"
+  class="mt-3 mb-3 border border-info rounded">
+
+Here is an example of the Manage Contributors tab view:
+
+<img src="/docs/images/manage-contributors.png" 
+  alt="Manage Contributors in Profiles"
+  class="mt-3 mb-3 border border-info rounded">
+
+Notice that in the above view the account associated with the profile is
+*Cluster Admin* as this account was used to deploy Kubeflow. It lists the
+profiles accessible to the user along with the role associated with that
+profile.
+
+Adding and removing contributors is easily possible by simply adding/removing the 
+email address or the user identifier in the *Contributors to your namespace* field.
+
+<img src="/docs/images/add-contributors.png" 
+  alt="Add Contributors"
+  class="mt-3 mb-3 border border-info rounded">
+
+Once added, the Manage Contributors tab will show the profiles with thier
+corresponding contributors listed. Note that *Cluster Admin* can view all the 
+profiles in the system along with their contributors.
+
+<img src="/docs/images/view-contributors.png" 
+  alt="View Contributors"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+The contributors will have access to all the Kubernetes resources in the
+namespace and will be able to created notebook servers as well as access
+existing notebooks.  The contributor's access can be removed by the owner of a
+profile by visiting the *Manage Contributors* tab and removing the user
+email/id from the list of contributors.
+
+
 
 ## Current Integration and Limitations
 
