@@ -4,7 +4,7 @@ description = "The basics of Kubeflow configuration with kfctl and kustomize"
 weight = 10
 +++
 
-kfctl is the Kubeflow command-line interface (CLI) that you can use to
+Kfctl is the Kubeflow command-line interface (CLI) that you can use to
 install and configure Kubeflow.
 
 Kubeflow makes use of [kustomize](https://kustomize.io/) to help customize YAML
@@ -20,7 +20,7 @@ Kubeflow deployment.
 
 ### The Kubeflow installation process
 
-kfctl is the Kubeflow CLI that you can use to set up a Kubernetes cluster with 
+Kfctl is the Kubeflow CLI that you can use to set up a Kubernetes cluster with 
 Kubeflow installed, or to deploy Kubeflow to an existing Kubernetes cluster. 
 See the [Kubeflow getting-started guide](/docs/started/getting-started/) for
 installation instructions based on your deployment scenario.
@@ -159,7 +159,7 @@ Make sure that you have the minimum required version of kustomize:
 
 ## Modifying configuration before deployment
 
-kustomize lets you customize raw, template-free YAML files for multiple
+Kustomize lets you customize raw, template-free YAML files for multiple
 purposes, leaving the original YAML untouched and usable as is.
 
 You can use the following command to build and apply kustomize directories:
@@ -180,48 +180,54 @@ parameters in the `KfDef` object in your `${KFAPP}/app.yaml` file, where
 `KFAPP` is the directory where you stored your Kubeflow configurations during 
 deployment. Then re-run `kfctl generate` and `kfctl apply`.
 
-For example, to modify settings for the Jupyter web app within your Kubeflow
-deployment:
+For example, to modify settings for the Spartakus usage reporting tool within 
+your Kubeflow deployment:
 
-1. Edit the configuration file at `${KFAPP}/kustomize/jupyter-web-app.yaml`.
+1. Edit the configuration file at `${KFAPP}/app.yaml`.
 
-1. Find and replace the parameter values:
+1. Find and replace the parameter values for `spartakus` to suit your
+  requirements:
 
-    ```
-    apiVersion: v1
-    data:
-    ROK_SECRET_NAME: secret-rok-{username}
-    UI: default
-    clusterDomain: cluster.local
-    policy: Always
-    prefix: jupyter
-    kind: ConfigMap
-    metadata:
-    labels:
-        app: jupyter-web-app
-        kustomize.component: jupyter-web-app
-    name: jupyter-web-app-parameters
-    namespace: kubeflow
-    ```
+        - kustomizeConfig:
+            parameters:
+            - initRequired: true
+                name: usageId
+                value: <randomly-generated-id>
+            - initRequired: true
+                name: reportUsage
+                value: "true"
+            repoRef:
+                name: manifests
+                path: common/spartakus
+            name: spartakus
 
-1. Redeploy using kfctl:
+1. Due to 
+  [Kubeflow issue #3810](https://github.com/kubeflow/kubeflow/issues/3810),
+  you currently need to tear down your Kubeflow cluster before applying the
+  configuration change. This command **deletes all your Kubeflow resources**:
 
     ```
     cd ${KFAPP}
-    kfctl apply k8s
+    kfctl delete all -V
     ```
 
-    Alternatively, you can redeploy using kubectl directly:
+
+1. Regenerate and deploy your Kubeflow resources:
 
     ```
-    cd ${KFAPP}/kustomize
-    kubectl apply -f jupyter-web-app.yaml
+    cd ${KFAPP}
+    kfctl generate all -V
+    kfctl apply all -V
     ```
+
 
 ### More examples
 
-For more examples of customizing your deployment, see the guide to [customizing 
-Kubeflow on GKE](https://www.kubeflow.org/docs/gke/customizing-gke/).
+For examples of customizing your deployment, see the guide to [customizing 
+Kubeflow on GKE](/docs/gke/customizing-gke/).
+
+For information about how Kubeflow uses Spartakus, see the guide to
+[usage reporting](/docs/other-guides/usage-reporting/).
 
 ## More about kustomize
 
