@@ -168,7 +168,7 @@ Follow these steps to deploy Kubeflow:
 # Add kfctl to PATH, to make the kfctl binary easier to use.
 export PATH=$PATH:"<path to kfctl>"
 export KFAPP="<your choice of application directory name>"
-export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/{{% kf-latest-version %}}/bootstrap/config/kfctl_existing_arrikto.0.6.yaml"
+export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6-branch/bootstrap/config/kfctl_existing_arrikto.0.6.2.yaml"
 
 # Specify credentials for the default user.
 export KUBEFLOW_USER_EMAIL="admin@kubeflow.org"
