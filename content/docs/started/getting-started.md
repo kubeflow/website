@@ -11,7 +11,7 @@ This document provides information about setting up Kubeflow in various environm
 It's important that you have some knowledge of the following systems and tools:
 
 * [Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
-* [Kustomize](https://kustomize.io/)
+* [kustomize](https://kustomize.io/)
 
 If you plan to deploy Kubeflow on an existing Kubernetes cluster, review these
 [Kubernetes system requirements](/docs/started/k8s/overview#minimum-system-requirements).
@@ -51,18 +51,17 @@ to suit your environment (desktop or server, existing Kubernetes cluster or publ
 The following information is useful if you need or prefer to use command line
 tools for deploying and managing Kubeflow:
 
-* Download the `kfctl` binary from the
+* Download the kfctl binary from the
   [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
 
-* Follow the `kubectl` installation and setup instructions from the [Kubernetes
+* Follow the kubectl installation and setup instructions from the [Kubernetes
   documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
   As described in the Kubernetes documentation, your kubectl
   version must be within one minor version of the Kubernetes version that you
   use in your Kubeflow cluster.
 
-* Follow the `kustomize` installation and setup instructions from the
-  [kustomize component guide](/docs/components/misc/kustomize/).
-
+* Follow the kustomize installation and setup instructions from the guide to
+  [kustomize in Kubeflow](/docs/other-guides/kustomize/).
 
 ## Troubleshooting
 
