@@ -80,6 +80,11 @@ role binding in the Kubernetes cluster. This person has permissions to create
 and modify Kubernetes resources in the cluster. For example, the person who
 deployed Kubeflow will have administration privileges in the cluster.
 
+### Pre-requisite: Grant user minimal Kubernetes cluster view access
+
+User should be given minimal permission scope that allows them to connect to the Kubernetes cluster.
+For example for GCP users, they can be granted IAM role: **Kubernetes Engine Cluster Viewer**
+
 ### Automatic creation of Profiles
 
 Kubeflow v0.6.2 onwards provides automatic profile creations as a convenience
@@ -102,14 +107,6 @@ to the users:
 ### Manual profile creation
 
 An administrator can manually create profiles for users as described below.
-There are 2 steps to onboard a new user:
-
-#### Step 1: Grant user minimal k8s cluster view access
-
-User should be given minimal permission scope that allows them to connect to the Kubernetes cluster.
-For example for GCP users, they can be granted IAM role: **Kubernetes Engine Cluster Viewer**
-
-#### Step 2: Creating a user profile 
 
 Create a
 `profile.yaml` file with the following contents on your local machine:
