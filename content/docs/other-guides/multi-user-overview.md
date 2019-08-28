@@ -150,8 +150,8 @@ The following resources are created as part of the profile creation:
     user-created pods in above namespace.
 
 
-**Note**: Due the 1-to-1 correspondence of Profiles with Kubernetes Namespaces,
-you will at times notice Profiles and Namespaces used interchangably in the
+**Note**: Due to a 1-to-1 correspondence of Profiles with Kubernetes
+Namespaces, Profiles and Namespaces are sometimes used interchangably in the
 documentation.
 
 ### Batch creation of user profiles
