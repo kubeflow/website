@@ -83,7 +83,7 @@ deployed Kubeflow will have administration privileges in the cluster.
 ### Pre-requisite: Grant user minimal Kubernetes cluster view access
 
 User should be given minimal permission scope that allows them to connect to the Kubernetes cluster.
-For example for GCP users, they can be granted IAM role: **Kubernetes Engine Cluster Viewer**
+For example for GCP users, they can be granted IAM roles: **Kubernetes Engine Cluster Viewer** and **IAP-secured Web App User**
 
 ### Automatic creation of Profiles
 
