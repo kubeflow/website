@@ -72,13 +72,36 @@ servers in their primary profile which they have view and modify access to.
 
 ## Onboard new user
 
-An **administrator** needs to create a profile for any user in the kubeflow cluster.
-Here an administrator is a person who has
+Kubeflow v0.6.2 provides automatic profile creation for authenticated users on
+first login. Additionally, an **administrator** can create a profile for any
+user in the kubeflow cluster.  Here an administrator is a person who has
 [*cluster-admin*](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
 role binding in the Kubernetes cluster. This person has permissions to create
 and modify Kubernetes resources in the cluster. For example, the person who
 deployed Kubeflow will have administration privileges in the cluster.
 
+### Automatic creation of Profiles
+
+Kubeflow v0.6.2 onwards provides automatic profile creations as a convenience
+to the users:
+
+  - Kubeflow deployment process automatically creates a profile for the user
+    performing the deployment. When the user access the Central Dashboard
+    they'll already see their profile in the dropdown list.
+  - When an authenticated user logs into the system and visits the Central
+    Dashboard for the first time, they trigger a profile creation automaticlly.
+      - A brief message introduces profiles <img
+        src="/docs/images/auto-profile1.png" alt="Automatic profile creation
+        step 1" class="mt-3 mb-3 border border-info rounded">
+      - The user can name their profile and click *Finish*.  <img
+        src="/docs/images/auto-profile2.png" alt="Automatic profile creation
+        step 2" class="mt-3 mb-3 border border-info rounded">
+      - This redirects the user to the dashboard where they can view and select
+      thier profile in the dropdown list.
+
+### Manual profile creation
+
+An administrator can manually create profiles for users as described below.
 There are 2 steps to onboard a new user:
 
 #### Step 1: Grant user minimal k8s cluster view access
@@ -166,25 +189,6 @@ kubectl create -f profile.yaml
 
 This will create multiple profiles for each individual listed in the sections
 in `profile.yaml`.
-
-### Automatic creation of Profiles
-
-Kubeflow v0.6.2 onwards provides automatic profile creations as a convenience
-to the users:
-
-  - Kubeflow deployment process automatically creates a profile for the user
-    performing the deployment. When the user access the Central Dashboard
-    they'll already see their profile in the dropdown list.
-  - When an authenticated user logs into the system and visits the Central
-    Dashboard for the first time, they trigger a profile creation automaticlly.
-      - A brief message introduces profiles <img
-        src="/docs/images/auto-profile1.png" alt="Automatic profile creation
-        step 1" class="mt-3 mb-3 border border-info rounded">
-      - The user can name their profile and click *Finish*.  <img
-        src="/docs/images/auto-profile2.png" alt="Automatic profile creation
-        step 2" class="mt-3 mb-3 border border-info rounded">
-      - This redirects the user to the dashboard where they can view and select
-      thier profile in the dropdown list.
 
 ## Listing and describing profiles
 
