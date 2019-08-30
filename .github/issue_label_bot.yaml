@@ -1,5 +1,5 @@
 # for https://mlbot.net a GitHub bot that automatically labels issues using Kubeflow.
 label-alias:
   bug: 'kind/bug'
-  feature_request: 'improvement/enhancement'
-  question: 'community/question'
+  feature_request: 'kind/feature'
+  question: 'kind/question'
