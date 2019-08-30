@@ -7,8 +7,8 @@ weight = 80
 This page describes Python based visualizations, how to create them, and how to
 use them to visualize results within the Kubeflow Pipelines UI. Python based
 visualizations are available in Kubeflow Pipelines version
-[0.1.28](https://github.com/kubeflow/pipelines/releases/tag/0.1.28) and Kubeflow
-version [0.7.0](https://github.com/kubeflow/kubeflow/releases/tag/0.7.0).
+[0.1.28](https://github.com/kubeflow/pipelines/releases/tag/0.1.28) and will
+be avaliable in Kubeflow version 0.7.0.
 
 While Python based visualizations are intended to be the main method of
 visualizing data within the Kubeflow Pipelines UI, they do not replace the
