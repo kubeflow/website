@@ -84,7 +84,7 @@ Follow these steps to deploy Kubeflow:
     # Run this command for the default installation which uses Cloud IAP:
     kfctl init ${KFAPP} --project ${PROJECT} --config=https://raw.githubusercontent.com/kubeflow/kubeflow/c54401e/bootstrap/config/kfctl_gcp_iap.0.6.2.yaml -V
     # Alternatively, run this command if you want to use basic authentication:
-    kfctl init ${KFAPP} --project ${PROJECT} --config=https://raw.githubusercontent.com/kubeflow/kubeflow/c54401e/bootstrap/config/kfctl_gcp_basic_auth.0.6.2.yaml -V
+    kfctl init ${KFAPP} --project ${PROJECT} --config=https://raw.githubusercontent.com/kubeflow/kubeflow/c54401e/bootstrap/config/kfctl_gcp_basic_auth.0.6.2.yaml -V --use_basic_auth
 
     cd ${KFAPP}
     kfctl generate all -V --zone ${ZONE}
