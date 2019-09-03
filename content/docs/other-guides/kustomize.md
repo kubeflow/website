@@ -43,20 +43,20 @@ when you run `kfctl init`. For example:
 
 ```
 export KFAPP="<your choice of application directory name>"
-export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/{{% kf-latest-version %}}/bootstrap/config/kfctl_existing_arrikto.yaml"
+export CONFIG="{{% config-uri-existing-arrikto %}}"
 kfctl init ${KFAPP} --config=${CONFIG} -V
 ```
 
 *For details of the above deployment, see the guide to deployment using the 
 [kfctl_existing_arrikto configuration](/docs/started/k8s/kfctl-existing-arrikto/).*
 
-Some deployment processes use a default config file and you don't need to
-add the `--config` argument. For example, the 
+As another example, the 
 Google Cloud Platform (GCP) initialization command looks like this:
 
 ```
 export PROJECT="<your GCP project ID>"
 export KFAPP="<your choice of application directory name>"
+export CONFIG="{{% config-uri-gcp-iap %}}"
 kfctl init ${KFAPP} --platform gcp --project ${PROJECT}
 ```
 
