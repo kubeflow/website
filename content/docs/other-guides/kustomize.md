@@ -54,10 +54,10 @@ As another example, the
 Google Cloud Platform (GCP) initialization command looks like this:
 
 ```
-export PROJECT="<your GCP project ID>"
 export KFAPP="<your choice of application directory name>"
+export PROJECT="<your GCP project ID>"
 export CONFIG="{{% config-uri-gcp-iap %}}"
-kfctl init ${KFAPP} --platform gcp --project ${PROJECT}
+kfctl init ${KFAPP} --project=${PROJECT} --config=${CONFIG} -V
 ```
 
 *For details of the above deployment, see the guide to deployment 

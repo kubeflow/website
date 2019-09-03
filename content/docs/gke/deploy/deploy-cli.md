@@ -73,20 +73,21 @@ Follow these steps to deploy Kubeflow:
     ```bash
     # The following command is optional, to make kfctl binary easier to use.
     export PATH=$PATH:<path to your kfctl file>
-    export ZONE=<your target GCP zone> # where the deployment will be created
 
-    export PROJECT=<your GCP project ID>
-    
     # Set KFAPP to the name of your Kubeflow application. See detailed
     # description in the text below this code snippet.
     # For example,  'kubeflow-test' or 'kfw-test'.
     export KFAPP=<your choice of application directory name>
+
+    export ZONE=<your target GCP zone> # where the deployment will be created
+    export PROJECT=<your GCP project ID>
+
     # Run the following commands for the default installation which uses Cloud IAP:
     export CONFIG="{{% config-uri-gcp-iap %}}"
-    kfctl init ${KFAPP} --project ${PROJECT} --config ${CONFIG} -V
+    kfctl init ${KFAPP} --project=${PROJECT} --config=${CONFIG} -V
     # Alternatively, run these commands if you want to use basic authentication:
     export CONFIG="{{% config-uri-gcp-basic-auth %}}"
-    kfctl init ${KFAPP} --project ${PROJECT} --config ${CONFIG} -V --use_basic_auth
+    kfctl init ${KFAPP} --project=${PROJECT} --config=${CONFIG} -V --use_basic_auth
 
     cd ${KFAPP}
     kfctl generate all -V --zone ${ZONE}
