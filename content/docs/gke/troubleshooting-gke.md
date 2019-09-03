@@ -19,10 +19,18 @@ For more help, try the
 
 Here are some tips for troubleshooting Cloud IAP.
 
- * Make sure you are using HTTPS.
- * See the guide to 
+* Make sure you are GCP project owner
+* Make sure you are using HTTPS.
+* Check project [quota page](https://pantheon.corp.google.com/iam-admin/quotas) to see if there are any quota limit, increase them as needed.
+* Check [deployment manager page](https://console.cloud.google.com/deployments) and see if there’s a failed deployment.
+* Check if endpoint is up: do [DNS lookup](https://mxtoolbox.com/DNSLookup.aspx) against your IAP url and see if can resolve to correct ip.
+* Check if certificate succeeded: “kubectl describe certificates -n kubeflow” should give you certificate status.
+* Make sure you added https://<deployment>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate 
+as an authorized redirect URI for the OAUTH credentials used to create the deployment.
+* See the guide to 
   [monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
 * See the sections below for troubleshooting specific problems.
+* Please [report bug](https://github.com/kubeflow/kubeflow/issues/new?template=bug_report.md) if all above items look good.
 
 ### DNS name not registered
 
