@@ -257,10 +257,14 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 1. Initialize the directory containing your Kubeflow deployment config files
     
     ```bash
-    export PROJECT=<your GCP project>
+    export PROJECT=<your GCP project ID>
     export KFAPP=<your choice of application directory name>
-    # Default uses IAP.
-    kfctl init ${KFAPP} --platform gcp --project ${PROJECT}
+    # Run the following commands for the default installation which uses Cloud IAP:
+    export CONFIG="{{% config-uri-gcp-iap %}}"
+    kfctl init ${KFAPP} --project=${PROJECT} --config=${CONFIG} -V
+    # Alternatively, run these commands if you want to use basic authentication:
+    export CONFIG="{{% config-uri-gcp-basic-auth %}}"
+    kfctl init ${KFAPP} --project=${PROJECT} --config=${CONFIG} -V --use_basic_auth
 
     cd ${KFAPP}
     kfctl generate all -V
@@ -272,10 +276,8 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
      The value of this variable cannot be greater than 25 characters. It must
      contain just the directory name, not the full path to the directory.
      The content of this directory is described in the next section.
-   * **${PROJECT}** - the _name_ of the GCP project where you want Kubeflow 
+   * **${PROJECT}** - the ID of the GCP project where you want Kubeflow 
      deployed.
-   * When you run `kfctl init` you need to choose to use either IAP or basic 
-     authentication, as described below.
    * `kfctl generate all` attempts to fetch your email address from your 
      credential. If it can't find a valid email address, you need to pass a
      valid email address with flag `--email <your email address>`. This email 
