@@ -54,7 +54,7 @@ If you experience any issues running these scripts, see the [troubleshooting gui
 
 Create a resource group:
 
-    az group create --name <RESOURCE_GROUP_NAME> --location <LOCATION>
+    az group create -n <RESOURCE_GROUP_NAME> -l <LOCATION>
 
 Example variables:
 
@@ -64,6 +64,7 @@ Example variables:
 Create a specifically defined cluster:
 
     az aks create -g <RESOURCE_GROUP_NAME> -n <NAME> -s <AGENT_SIZE> -c <AGENT_COUNT> -l <LOCATION> --generate-ssh-keys
+
 Example variables: 
 
 - NAME=KubeTestCluster
@@ -78,11 +79,11 @@ Run the following commands to set up and deploy Kubeflow. The code below include
 
 1. Create user credentials. You only need to run this command once.
 
-        az aks get-credentials --name <NAME> --resource-group <RG>
+        az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
 
-1. Run the following commands to download the latest binary from the Kubeflow releases page (link = https://github.com/kubeflow/kubeflow/releases/).
+1. Run the following commands to download the latest kfctl binary from the Kubeflow releases page (links from https://github.com/kubeflow/kubeflow/releases). While writing this document, the latest release was https://github.com/kubeflow/kubeflow/releases/tag/v0.6.2)
 
-        wget <link to your release>
+        wget <link to the release e.g. https://github.com/kubeflow/kubeflow/releases/download/v0.6.2/kfctl_v0.6.2_linux.tar.gz>
 
 1. Unpack the tar ball
 
@@ -92,19 +93,19 @@ Run the following commands to set up and deploy Kubeflow. The code below include
 
     ```
     # The following command is optional, to make kfctl binary easier to use.
-    export PATH=$PATH:<path to kfctl in your kubeflow installation>
+    export PATH=$PATH:<path to where kfctl was unpacked>
 
     # Initialize a kubeflow app:
     export KFAPP=<your choice of application directory name> (ensure this is lowercase)
-    kfctl init ${KFAPP}
+    kfctl init ${KFAPP} --config <file path or url to config to used e.g. https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6.2/bootstrap/config/kfctl_k8s_istio.0.6.2.yaml)
 
     # Generate and deploy the app:
     cd ${KFAPP}
     kfctl generate all -V
-    kfctl apply k8s -V
+    kfctl apply all -V
     ```
 
-    * ${KFAPP} - the name of a directory where you want Kubeflow configurations to be stored. This directory is created when you runkfctl init. If you want a custom deployment name, specify that name here. The value of this variable becomes the name of your deployment. The value of this variable cannot be greater than 25 characters. It must contain just the directory name, not the full path to the directory. The content of this directory is described in the next section.
+    * ${KFAPP} - the name of a directory where you want Kubeflow configurations to be stored. This directory is created when you run kfctl init. If you want a custom deployment name, specify that name here. The value of this variable becomes the name of your deployment. The value of this variable cannot be greater than 25 characters. It must contain just the directory name, not the full path to the directory.
 
 1. Check the resources deployed correctly in namespace `kubeflow`
 
@@ -112,19 +113,18 @@ Run the following commands to set up and deploy Kubeflow. The code below include
 
 1. Open Kubeflow Dashboard
 
-    ```
-    # You may choose to use a load balancer:
+The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster. Run the following command and visit http://localhost:8080.
 
-    kubectl get svc –n kubeflow
-    kubectl expose svc ambassador -n kubeflow --type LoadBalancer --name <SVC_NAME>
-    kfctl apply k8s -V
+    kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
 
-    # Find the external IP to access the dashboard:
-    kubectl get svc –n kubeflow
-    ```
+In case you want to expose the Kubeflow Dashboard over an external IP, you can change the type of the ingress gateway. To do that, you can edit the service:
 
-In this case, the external IP for the service named 'amb1' was 40.XX.XXX.XXX, so it was accessible at that address.
+        kubectl edit -n istio-system svc/istio-ingressgateway
 
-If you didn’t create a load balancer, please use port-forwarding to visit your cluster. Run the following command and visit localhost:8080.
+From that file, replace `type: NodePort` with `type: LoadBalancer` and save.
 
-    kubectl port-forward svc/ambassador -n kubeflow 8080:80
+While the change is being applied, you can watch the service until below command prints a value under the `EXTERNAL-IP` column:
+
+        kubectl get -w -n istio-system svc/istio-ingressgateway
+
+The external IP should be accessible by visiting http://<EXTERNAL-IP>. Note that above installation instructions do not create any protection for the external endpoint so it will be accessible to anyone without any authentication. You can read more about authentication from [Access Control for Azure Deployment](/docs/azure/authentication).
