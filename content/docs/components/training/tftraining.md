@@ -236,28 +236,6 @@ Typically you can change the following values in the TFJob yaml file:
 
 1. Attach PVs if you want to use PVs for storage.
 
-### Accessing the TFJob dashboard
-
-The TFJob dashboard has the title **kubeflow/tf-operator**. 
-You can access it at `<path>/tfjobs/ui/`. Specifically:
-
-* If you followed the
- guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), you can
- access the TFJob dashboard at the following URL:
-
-    ```
-    https://<deployment-name>.endpoints.<project>.cloud.goog/tfjobs/ui/
-    ```
-
-* If you're using portforwarding, you can access the TFJob dashboard at the
-  following URL:
-
-    ```
-    http://localhost:8080/tfjobs/ui/
-    ```
-
-See more details about [accessing the Kubeflow UIs](/docs/other-guides/accessing-uis).
-
 ## Using GPUs
 
 To use GPUs your cluster must be configured to use GPUs.
