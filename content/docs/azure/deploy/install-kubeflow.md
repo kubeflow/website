@@ -81,7 +81,7 @@ Run the following commands to set up and deploy Kubeflow. The code below include
 
         az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
 
-1. Run the following commands to download the latest kfctl binary from the Kubeflow releases page (links from https://github.com/kubeflow/kubeflow/releases). While writing this document, the latest release was https://github.com/kubeflow/kubeflow/releases/tag/v0.6.2)
+1. Run the following commands to download the latest kfctl binary from the Kubeflow releases page (links from https://github.com/kubeflow/kubeflow/releases). While writing this document, the latest release was https://github.com/kubeflow/kubeflow/releases/tag/v0.6.2
 
         wget <link to the release e.g. https://github.com/kubeflow/kubeflow/releases/download/v0.6.2/kfctl_v0.6.2_linux.tar.gz>
 
@@ -97,7 +97,8 @@ Run the following commands to set up and deploy Kubeflow. The code below include
 
     # Initialize a kubeflow app:
     export KFAPP=<your choice of application directory name> (ensure this is lowercase)
-    kfctl init ${KFAPP} --config <file path or url to config to used e.g. https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6.2/bootstrap/config/kfctl_k8s_istio.0.6.2.yaml)
+    export CONFIG=<file path or url to config to use, for example: https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6.2/bootstrap/config/kfctl_k8s_istio.0.6.2.yaml>
+    kfctl init ${KFAPP} --config=${CONFIG}
 
     # Generate and deploy the app:
     cd ${KFAPP}
@@ -128,3 +129,7 @@ While the change is being applied, you can watch the service until below command
         kubectl get -w -n istio-system svc/istio-ingressgateway
 
 The external IP should be accessible by visiting http://<EXTERNAL-IP>. Note that above installation instructions do not create any protection for the external endpoint so it will be accessible to anyone without any authentication. You can read more about authentication from [Access Control for Azure Deployment](/docs/azure/authentication).
+
+## Additional Information
+
+You can find general information about Kubeflow configuration in the guide to [configuring Kubeflow with kfctl and kustomize](/docs/other-guides/kustomize/).
