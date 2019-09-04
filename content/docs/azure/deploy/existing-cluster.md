@@ -8,6 +8,6 @@ weight = 5
 
 Get the Kubeconfig file:
 
-	az aks get-credentials --name <NAME> --resource-group <RG>
+	az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
 
 From here on, please see [Install Kubeflow](/docs/azure/deploy/install-kubeflow).
