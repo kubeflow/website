@@ -12,11 +12,10 @@ instructions on how to connect to them.
 The Kubeflow UIs include the following:
 
 * A central **Kubeflow** UI for navigation between the Kubeflow applications.
-* **Pipelines** for a Kubeflow Pipelines dashboard
+* **Pipelines** for a Kubeflow Pipelines dashboard.
 * **Notebook Servers** for Jupyter notebooks.
 * **Katib** for hyperparameter tuning.
 * **Artifact Store** for tracking of artifact metadata.
-* **tf-operator** for a TFJob dashboard.
 
 Instructions below indicate how to connect to the Kubeflow central UI. From
 there you can navigate to the different services using the left hand navigation
@@ -109,5 +108,4 @@ You can access Kubeflow via `kubectl` and port-forwarding as follows:
 
 ## Next steps
 
-* See how to [access the TFJob dashboard](/docs/components/training/tftraining/).
 * [Set up your Jupyter notebooks](/docs/notebooks/setup/) in Kubeflow.
