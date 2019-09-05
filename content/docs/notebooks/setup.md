@@ -22,7 +22,7 @@ Summary of steps:
 1. Follow the [Kubeflow getting-started guide](/docs/started/getting-started/) 
   to set up your Kubeflow deployment and open the Kubeflow UI.
 
-1. Click **Notebook** in the left-hand panel of the Kubeflow UI.
+1. Click **Notebooks** in the left-hand panel of the Kubeflow UI.
 1. Choose the **namespace** corresponding to your Kubeflow profile.
 1. Click **NEW SERVER** to create a notebook server.
 1. When the notebook server provisioning is complete, click **CONNECT**.
@@ -59,7 +59,7 @@ getting-started guide for your chosen environment. For example:
 
 ## Create a Jupyter notebook server and add a notebook
 
-1. Click **Notebook** in the left-hand panel of the Kubeflow UI to 
+1. Click **Notebooks** in the left-hand panel of the Kubeflow UI to 
   access the Jupyter notebook services deployed with Kubeflow:
   <img src="/docs/images/jupyterlink.png" 
     alt="Opening notebooks from the Kubeflow UI"
