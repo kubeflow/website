@@ -1,6 +1,6 @@
 +++
 title = "Manipulate Kubernetes Resources"
-description = "Overview of using the SDK to manipulate Kubernetes resources as steps of the pipeline"
+description = "Overview of using the SDK to manipulate Kubernetes resources dynamically as steps of the pipeline"
 weight = 35
 +++
 
