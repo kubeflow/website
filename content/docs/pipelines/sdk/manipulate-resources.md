@@ -272,4 +272,4 @@ For better understanding, please refer to the following samples:
   [Kubeflow Pipelines domain-specific language (DSL)](/docs/pipelines/sdk/dsl-overview/),
   a set of Python libraries that you can use to specify ML pipelines.
 * For quick iteration, 
-  [build components and pipelines](/docs/pipelines/sdk/build-components/).
+  [build components and pipelines](/docs/pipelines/sdk/build-component/).
