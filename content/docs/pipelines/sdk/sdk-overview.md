@@ -544,3 +544,5 @@ structured data in CSV format.
   DSL](/docs/pipelines/sdk/dsl-recursion).
 * Build a [reusable component](/docs/pipelines/sdk/component-development/) for
   sharing in multiple pipelines.
+* Find out how to use the DSL to [manipulate Kubernetes resources dynamically 
+  as steps of your pipeline](/docs/pipelines/sdk/manipulate-resources/).
