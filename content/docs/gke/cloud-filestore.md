@@ -70,7 +70,7 @@ gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP-NAME}-
 If you get an error **legacy networks are not supported** follow the instructions
 in the [troubleshooting guide](/docs/other-guides/troubleshooting).
 
-## Create a PVC to mount the filestore.
+## Create a PV and PVC to mount the filestore.
 
 Create a PVC for Cloud Filestore instance.
 
@@ -88,28 +88,7 @@ mykubeflow-nfs  us-east1-d  STANDARD  1024         kubeflow         10.20.148.19
 
 ```
 
-Now create the PVC
-
-```
-cd /<path-to-kubeflow-deployment>/${KFAPP}/ks_app
-ks generate google-cloud-filestore-pv google-cloud-filestore-pv --name="kubeflow-gcfs" \
-   --storageCapacity="${GCFS_STORAGE}" \
-   --serverIP="${GCFS_INSTANCE_IP_ADDRESS}"
-```
-
-  * **GCFS_STORAGE** The size of the Cloud Filestore persistent volume claim; e.g. "1G"
-  * **GCFS_INSTANCE_IP_ADDRESS** The ip address of your Cloud Filestore instance; you can obtain this with `gcloud`:
-
-     ```
-     gcloud --project=${PROJECT} beta filestore instances list
-     ```
-
-Apply the changes:
-
-```
-cd /<path-to-kubeflow-deployment>/${KFAPP}
-kfctl apply k8s
-```
+Now follow the instructions [Accessing Fileshared from Google Kubernetes](https://cloud.google.com/filestore/docs/accessing-fileshares) to create a PV and PVC.
 
 ## Using the PVC
 
