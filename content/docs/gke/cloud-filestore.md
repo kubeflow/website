@@ -88,7 +88,7 @@ mykubeflow-nfs  us-east1-d  STANDARD  1024         kubeflow         10.20.148.19
 
 ```
 
-Now follow the instructions [Accessing Fileshared from Google Kubernetes](https://cloud.google.com/filestore/docs/accessing-fileshares) to create a PV and PVC.
+Now follow the instructions [Accessing Fileshares from Google Kubernetes](https://cloud.google.com/filestore/docs/accessing-fileshares) to create a PV and PVC.
 
 ## Using the PVC
 
