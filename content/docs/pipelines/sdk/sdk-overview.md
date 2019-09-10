@@ -456,7 +456,7 @@ For more detailed instructions, see the guide to [building lightweight
 components](/docs/pipelines/sdk/lightweight-python-components/).
 
 For an example, see the [Lightweight Python components - 
-basics](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/Lightweight%20Python%20components%20-%20basics.ipynb)
+basics](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb)
 notebook on GitHub.
 {{% /alert %}}
 
