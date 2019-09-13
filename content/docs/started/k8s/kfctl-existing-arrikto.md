@@ -668,5 +668,5 @@ Your Kubeflow app directory contains the following files and directories:
 * Follow the instructions to [connect to the Kubeflow web 
   UIs](/docs/other-guides/accessing-uis/), where you can manage various 
   aspects of your Kubeflow deployment.
-* Run a [sample machine learning workflow](/docs/examples/resources/).
-* Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/)
+* Run a [sample machine learning workflow](/docs/examples/kubeflow-samples/).
+* Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/).

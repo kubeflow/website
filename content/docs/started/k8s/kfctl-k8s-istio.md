@@ -123,5 +123,8 @@ If the PersistentVolumeClaims (PVCs) are in `Pending` state after deployment and
 
 ### Next steps
 
+* Follow the instructions to [connect to the Kubeflow web
+  UIs](/docs/other-guides/accessing-uis/), where you can manage various
+  aspects of your Kubeflow deployment.
 * Run a [sample machine learning workflow](/docs/examples/kubeflow-samples/).
-* Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/)
+* Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/).
