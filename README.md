@@ -269,24 +269,9 @@ The versioned sites follow this convention:
 * `master.kubeflow.org` always points to GitHub head
 * `vXXX-YYY.kubeflow.org` points to the release at vXXX.YYY-branch
 
-We also hook up each version to the dropdown on the website menu bar. To update
-the website to a new version, edit `config.toml` as follows: 
-
-1. Add a `params.versions` entry. For example, to add v0.5, add this entry:
-
-    ```
-    [[params.versions]]
-      version = "v0.5"
-      githubbranch = "v0.5-branch"
-      url = "https://v0-5.kubeflow.org"
-    ```
-
-2. Update the version number in the text for the master version on two lines. 
-  For example, to update to v0.5, the text on both lines should be:
-  
-    ```
-    version = "master (v0.5)"
-    ```
+We also hook up each version to the dropdown on the website menu bar. For 
+information on how to update the website to a new version, see the [Kubeflow
+release guide](https://github.com/kubeflow/kubeflow/blob/master/docs_dev/releasing.md#releasing-a-new-version-of-the-website).
 
 Whenever any documents reference any source code, you should use the version
 shortcode in the links, like so:
