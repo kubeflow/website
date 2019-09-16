@@ -21,11 +21,11 @@ Here are some tips for troubleshooting Cloud IAP.
 
 * Make sure you are GCP project owner
 * Make sure you are using HTTPS.
-* Check project [quota page](https://pantheon.corp.google.com/iam-admin/quotas) to see if there are any quota limit, increase them as needed.
+* Check project [quota page](https://console.cloud.google.com/iam-admin/quotas) to see if any service's current usage reached quota limit, increase them as needed.
 * Check [deployment manager page](https://console.cloud.google.com/deployments) and see if there’s a failed deployment.
 * Check if endpoint is up: do [DNS lookup](https://mxtoolbox.com/DNSLookup.aspx) against your IAP url and see if can resolve to correct ip.
-* Check if certificate succeeded: “kubectl describe certificates -n kubeflow” should give you certificate status.
-* Make sure you added https://<deployment>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate 
+* Check if certificate succeeded: `kubectl describe certificates -n kubeflow` should give you certificate status.
+* Make sure you [added](/docs/gke/deploy/oauth-setup/) `https://<deployment>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate`
 as an authorized redirect URI for the OAUTH credentials used to create the deployment.
 * See the guide to 
   [monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
