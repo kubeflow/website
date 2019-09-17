@@ -93,7 +93,7 @@ chmod +x setup-minikube.sh
 **KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-latest-version %}} or `master`.
 
 The script asks for some config input as shown below:
-![ConfigInputs](../ConfigInputs.png)
+![ConfigInputs](/content/docs/started/ConfigInputs.png)
 
 Let us consider the example for CPUs configuration. When it asks `Assign CPUs between 3..10 [6]: ` the `3..10` suggest the range of CPU cores available based on your host machine. `[6]` is the suggested default. You can choose any value within the range and enter the value or just press enter to accept the default value suggested in square brackets. In the image above, we choose the default 6 for CPUs and specified 12GB of memory explicitly. Note that:
 
