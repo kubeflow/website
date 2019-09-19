@@ -7,17 +7,15 @@ weight = 80
 This page describes Python based visualizations, how to create them, and how to
 use them to visualize results within the Kubeflow Pipelines UI. Python based
 visualizations are available in Kubeflow Pipelines version
-[0.1.28](https://github.com/kubeflow/pipelines/releases/tag/0.1.28) and will
+[0.1.29](https://github.com/kubeflow/pipelines/releases/tag/0.1.29) and will
 be avaliable in Kubeflow version 0.7.0.
 
 While Python based visualizations are intended to be the main method of
 visualizing data within the Kubeflow Pipelines UI, they do not replace the
 previous method of visualizing data within the Kubeflow Pipelines UI. When
 considering which method of visualization to use within your pipeline, check the
-[limitations of python based visualizations](https://github.com/kubeflow/
-pipelines/blob/master/backend/src/apiserver/visualization/
-README.md#known-limitations) and compare them with the requirements of your
-visualizations.
+limitations of Python based visualizations in the section below and compare
+them with the requirements of your visualizations.
 
 ## Introduction
 
@@ -98,6 +96,60 @@ optional for custom visualizations).
 7. Provide the custom visualization code.
 8. Click **Generate Visualization**.
 9. View generated visualization by scrolling down.
+
+## Known limitations
+* Multiple visualizations cannot be generated concurrently.
+    * This is because a single Python kernel is used to generate visualizations.
+    * If visualizations are a major part of your workflow, it is recommended to
+    increase the number of replicas within the
+    [visualization deployment YAML](https://github.com/kubeflow/pipelines/tree/
+    master/manifests/kustomize/base/pipeline/
+    ml-pipeline-visualization-deployment.yaml)
+    file or within the visualization service deployment itself.
+        * _Please note that this does not directly solve the issue, instead it
+        decreases the likelihood of experiencing delays when generating
+        visualizations._
+* Visualizations that take longer than 30 seconds will fail to generate.
+    * For visualizations where the 30 second timeout is reached, you can add the
+    **TimeoutValue** header to the request made by the frontend, specifying a
+    _positive integer as ASCII string of at most 8 digits_ for the length of
+    time required to generate a visualization as specified by the
+    [grpc documentation](https://github.com/grpc/grpc/blob/master/doc/
+    PROTOCOL-HTTP2.md#requests).
+    * For visualizations that take longer than 100 seconds, you will have to
+    specify a **TimeoutValue** within the request headers **AND** change the
+    default kernel timeout of the visualization service. To change the default
+    kernel timeout of the visualization service, set the **KERNEL_TIMEOUT**
+    environment variable of the visualization service deployment to be the new
+    timeout length in seconds within the
+    [visualization deployment YAML](https://github.com/kubeflow/pipelines/tree/
+    master/manifests/kustomize/base/pipeline/
+    ml-pipeline-visualization-deployment.yaml)
+    file or within the visualization service deployment itself.
+    ```YAML
+    - env:
+          - name: KERNEL_TIMEOUT
+            value: 100
+    ```
+* The HTML content of the generated visualizations cannot be larger than 4MB.
+    * gRPC by default imposes a limit of 4MB as the maximum size that can be
+    sent and received by a server. To allow for visualizations that are larger
+    than 4MB in size to be generated, you must manually set
+    **MaxCallRecvMsgSize** for gRPC. This can be done by editing the provided
+    options given to the gRPC server within [main.go](https://github.com/
+    kubeflow/pipelines/blob/master/backend/src/apiserver/main.go#L128)
+    to
+    ```golang
+    var maxCallRecvMsgSize = 4 * 1024 * 1024
+    if serviceName == "Visualization" {
+          // Only change the maxCallRecvMesSize if it is for visualizations
+          maxCallRecvMsgSize = 50 * 1024 * 1024
+    }
+    opts := []grpc.DialOption{
+          grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(maxCallRecvMsgSize)),
+          grpc.WithInsecure(),
+    }
+    ```
 
 ## Next steps
 If you'd like to add a predefined visualization to Kubeflow, take a look at the
