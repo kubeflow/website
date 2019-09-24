@@ -72,7 +72,7 @@ address to verify the user's identity.
     https://iap.googleapis.com/v1/oauth/clientIds/<CLIENT_ID>:handleRedirect
     ```
     * `<CLIENT_ID>` is the OAuth client ID, something like 
-      `XXX.apps.googleusercontent.com`. Do not include the angle brackets around
+      `XXX.apps.googleusercontent.com`. In this example, it would be `711890160434-uhj4e162q3r11n8nmtnjoasg66op5mvi.apps.googleusercontent.com` Do not include the angle brackets around
       the client ID.
     * Note that the URI is not dependent on the Kubeflow deployment or endpoint. 
       Multiple Kubeflow deployments can share the same OAuth client without the 
