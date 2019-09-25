@@ -76,7 +76,7 @@ You can read about other options to connect to your Argo CD instance [here](http
         ```shell
         mkdir ${KUBEFLOW_SRC}
         cd ${KUBEFLOW_SRC}
-        export KUBEFLOW_TAG={{% kf-stable-tag %}}
+        export KUBEFLOW_TAG=v0.5.0
         curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
         ```
         * **KUBEFLOW_SRC** directory where you want kubeflow source to be downloaded

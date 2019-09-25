@@ -4,8 +4,8 @@ description = "Quickly get Kubeflow running locally"
 weight = 2
 +++
 
-This document outlines the steps you can  take to get your local installation 
-of Kubeflow running on top of Minikube. Minikube runs a simple, single-node 
+This document outlines the steps you can  take to get your local installation
+of Kubeflow running on top of Minikube. Minikube runs a simple, single-node
 Kubernetes cluster inside a virtual machine (VM).
 
 By the end of this document, you'll have a local installation of Minikube kubernetes cluster along with all the default core components of
@@ -85,12 +85,12 @@ curl -Lo docker-machine-driver-kvm2 https://storage.googleapis.com/minikube/rele
 The following describes a script driven installation that you can use to deploy all
 the necessary components including `kubectl`, `minikube`, `kfctl` along with Kubeflow itself. The script requires input from you on some configuration information and then it drives the rest of the installation. Run the following to start the installation:
 ```
-export KUBEFLOW_TAG={{% kf-stable-tag %}}
+export KUBEFLOW_TAG={{% kf-latest-version %}}
 curl -O https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/setup-minikube.sh
 chmod +x setup-minikube.sh
 ./setup-minikube.sh
 ```
-**KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-stable-tag %}} or `master`.
+**KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-latest-version %}} or `master`.
 
 The script asks for some config input as shown below:
 ![ConfigInputs](../ConfigInputs.png)
@@ -206,35 +206,11 @@ $ minikube delete
 $ minikube start --cpus 4 --memory 8096 --disk-size=40g
 ```
 
-### Installing Kubeflow using kfctl
-The following steps will deploy Kubeflow components and start them on the Minikube you created above.
+### Install Kubeflow on an existing Kubernetes cluster
 
-  1. Download Kubeflow source
-
-    ```
-    mkdir ${KUBEFLOW_SRC}
-    cd ${KUBEFLOW_SRC}
-    export KUBEFLOW_TAG={{% kf-stable-tag %}}
-    curl https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/download.sh | bash
-    ```
-    - **KUBEFLOW_SRC** directory where you want kubeflow source to be downloaded
-    - **KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-stable-tag %}}
-
-  1. Run the following to setup and deploy Kubeflow:
-    
-    ```
-    KUBEFLOW_REPO=${KUBEFLOW_SRC} ${KUBEFLOW_SRC}/scripts/kfctl.sh init ${KFAPP} --platform minikube
-    cd ${KFAPP}
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh generate all
-    ${KUBEFLOW_SRC}/scripts/kfctl.sh apply all
-    ```
-    - **KFAPP** the _name_ of a directory where you want kubeflow configurations to be stored. This directory will be created when you run init. Please see [understanding the deployment process](/docs/gke/deploy/deploy-cli/#understanding-the-deployment-process) for more details.
-
-The above installation may take a few minutes. At the end of the installation you should see:
-```
-Access Kubeflow dashboard at http://localhost:8080/
-Access Jupyter notebooks at http://localhost:8080/notebooks/
-```
+Now that you have a Kubernetes cluster running - the Minikube cluster - follow the
+[existing Kubernetes cluster](/docs/started/k8s/overview/) instructions for installing
+Kubeflow.
 
 ### Where to go next
 
@@ -245,7 +221,7 @@ You can use the following command to set up port forwarding and access the Web U
 Now you can access the Kubeflow dashboard at http://localhost:8080/ and Jupyter
 notebooks at http://localhost:8080/notebooks/.
 
-For Jupyter notebooks, you can use any username and password to log in. 
+For Jupyter notebooks, you can use any username and password to log in.
 Follow the guide to [setting up your Jupyter notebooks on Kubeflow](/docs/notebooks/setup/).
 
 For further exploration refer to the [documentation](/docs/).

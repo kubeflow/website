@@ -37,7 +37,7 @@ Set up your environment:
 
 Examine the pipeline samples that you downloaded and choose one to work with.
 The 
-[`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/basic/sequential.py):
+[`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/sequential/sequential.py):
 is a good one to start with.
 
 Each pipeline is defined as a Python program. Before you can submit a pipeline
@@ -53,7 +53,7 @@ dsl-compile --py [path/to/python/file] --output [path/to/output/tar.gz]
 ```
 
 For example, to compile the
-[`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/basic/sequential.py):
+[`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/sequential/sequential.py):
 
 ```bash
 export DIR=[YOUR PIPELINES REPO DIRECTORY]/samples/basic
@@ -107,7 +107,7 @@ Follow these steps to start a notebook:
 
 The following notebooks are available:
 
-* [KubeFlow pipeline using TFX OSS components](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/KubeFlow%20Pipeline%20Using%20TFX%20OSS%20Components.ipynb): 
+* [KubeFlow pipeline using TFX OSS components](https://github.com/kubeflow/pipelines/blob/master/samples/core/kubeflow_pipeline_using_TFX_OSS_components/KubeFlow%20Pipeline%20Using%20TFX%20OSS%20Components.ipynb): 
   This notebook demonstrates how to build a machine learning pipeline based on
   [TensorFlow Extended (TFX)](https://www.tensorflow.org/tfx/) components. 
   The pipeline includes a TFDV step to infer the schema, a TFT preprocessor, a 
@@ -116,7 +116,7 @@ The following notebooks are available:
   demonstrates how to build a component based on Python 3 inside the notebook, 
   including how to build a Docker container.
 
-* [Lightweight Python components](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/Lightweight%20Python%20components%20-%20basics.ipynb): 
+* [Lightweight Python components](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb): 
   This notebook demonstrates how to build simple Python components based on 
   Python 3 and use them in a pipeline with fast iterations. If you use this
   technique, you don't need to build a Docker container when you build a

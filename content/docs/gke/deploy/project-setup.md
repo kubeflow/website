@@ -9,6 +9,11 @@ have one:
 
 1. Select or create a project on the 
   [GCP Console](https://console.cloud.google.com/cloud-resource-manager).
+  The deployment process creates various Service Accounts with
+  appropriate roles in order to enable seamless integration with
+  GCP services. This requires that the user has 
+  [owner role](https://cloud.google.com/iam/docs/understanding-roles#primitive_role_definitions)
+  for the project in order to deploy Kubeflow.
 
 1. Make sure that billing is enabled for your project. See the guide to
   [modifying a project's billing 

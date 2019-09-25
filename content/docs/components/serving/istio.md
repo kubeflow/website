@@ -35,6 +35,8 @@ the pod has annotation.
 
 ## Kubeflow TF Serving with Istio
 
+_This section has not yet been converted to kustomize, please refer to [kubeflow/manifests/issues/18](https://github.com/kubeflow/manifests/issues/18)._
+
 After installing Istio, we can deploy the TF Serving component as in 
 [TensorFlow Serving](/docs/components/tfserving_new/) with
 additional params:
