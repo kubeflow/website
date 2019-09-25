@@ -110,7 +110,7 @@ def dataproc_train_op(
 ```
 
 The function must return a dsl.ContainerOp from the
-[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost_training_cm/xgboost_training_cm).
+[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost_training_cm/xgboost_training_cm.py).
 
 Note:
 
@@ -172,7 +172,7 @@ Note:
 
 
 See the full code in the
-[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost_training_cm/xgboost_training_cm).
+[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost_training_cm/xgboost_training_cm.py).
 
 ## Compile the pipeline
 
