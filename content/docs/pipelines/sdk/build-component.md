@@ -122,7 +122,7 @@ Note:
   you can still use the parameters inline in the `arguments` by using `%s`
   variable substitution. At run time the argument contains the value of the 
   parameter. For an example of this technique in operation, see the 
-  [taxi cab classification pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/tfx/taxi-cab-classification-pipeline.py). 
+  [taxi cab classification pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/tfx_cab_classification/tfx_cab_classification.py). 
 * `file_outputs` is a mapping between labels and local file paths. In the above 
   example, the content of `/output.txt` contains the string output of the 
   component. To reference the output in code:
@@ -172,7 +172,7 @@ Note:
 
 
 See the full code in the
-[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py).
+[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost_training_cm/xgboost_training_cm).
 
 ## Compile the pipeline
 
