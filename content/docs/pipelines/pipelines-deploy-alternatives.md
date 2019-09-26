@@ -1,6 +1,6 @@
 +++
-title = "Deploy Kubeflow Pipelines Alternatives"
-description = "Alternative approaches to deploy just Pipelines to a cluster"
+title = "Pipelines Deploy Alternatives"
+description = "Alternative approaches to deploy just Kubeflow Pipelines to a cluster"
 weight = 15
 +++
 
@@ -9,7 +9,7 @@ follow the instruction to deploy Kubeflow Pipelines (without other components of
 Kubeflow) in an existing cluster.
 
 Knowledge about Kubernetes, kubectl and kustomize will help you understand this
-document.
+document and customize based on your needs.
 
 
 ## TL;DR
@@ -18,7 +18,7 @@ To deploy Kubeflow Pipelines in an existing Kubernetes cluster, do the following
 
 1. Deploy latest version of Kubeflow Pipelines
 ```
-export PIPELINE_VERSION=0.1.31
+export PIPELINE_VERSION={{% kfp-latest-version %}}
 kubectl apply -f https://storage.googleapis.com/ml-pipeline/pipeline-lite/$PIPELINE_VERSION/namespaced-install.yaml
 ```
 
@@ -34,6 +34,8 @@ kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercon
     You have many options from cloud service providers. For GCP, you can reference
     [Creating a cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster).
 
+    You can also set up your own Kubernetes cluster.
+
     Cluster minimum requirement: node pool with at least 2 nodes and 2 CPUs per node.
 
 1. Download kubectl CLI tool
@@ -47,7 +49,7 @@ kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercon
 1. Deploy latest version of Kubeflow Pipelines Lite to your cluster
 
     ```
-    export PIPELINE_VERSION=0.1.31
+    export PIPELINE_VERSION={{% kfp-latest-version %}}
     kubectl apply -f kubectl apply -f https://storage.googleapis.com/ml-pipeline/pipeline-lite/$PIPELINE_VERSION/namespaced-install.yaml
     ```
 
@@ -65,6 +67,9 @@ Customization can be done through Kustomize [Overlay](https://github.com/kuberne
 Note - The instruction below assume you installed kubectl v1.14.0 or later, which has native support of kustomize.
 To get latest kubectl, visit [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
+For the following instructions, first clone [Kubeflow Pipelines repo](https://github.com/kubeflow/pipelines),
+and use it as working directory.
+
 ### Deploy on GCP with CloudSQL and GCS
 This is recommended for production environments. See
 [here](https://github.com/kubeflow/pipelines/tree/master/manifests/kustomize/env/gcp) for more details. 
@@ -76,7 +81,7 @@ or [gcp/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/ma
 namespace section to FOO
 - Then run 
 ```
-kubectl apply -k $PIPELINES_REPO/manifests/kustomize/env/dev # or other env of your choice
+kubectl apply -k manifests/kustomize/env/dev # or other env of your choice
 ```
 
 ### Disable the public endpoint
@@ -84,7 +89,7 @@ By default, the deployment install an [invert proxy agent](https://github.com/go
 - Comment out the proxy component in the [kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/base/kustomization.yaml).
 - Then run 
 ```
-kubectl apply -k $PIPELINES_REPO/manifests/kustomize/env/dev # or other env of your choice
+kubectl apply -k manifests/kustomize/env/dev # or other env of your choice
 ```
 
 The UI is still accessible by port-forwarding
@@ -98,15 +103,15 @@ and open http://localhost:8080/
 ## Uninstall
 You can uninstall Kubeflow Pipelines by running
 ```
-export PIPELINE_VERSION=0.1.31
+export PIPELINE_VERSION={{% kfp-latest-version %}}
 kubectl delete -f https://raw.githubusercontent.com/kubeflow/pipelines/$PIPELINE_VERSION/manifests/kustomize/namespaced-install.yaml
 ```
 
-Or if you deploy through kustomize
+Or if you deployed through kustomize
 ```
-kubectl kustomize env/dev | kubectl delete -f -
+kubectl delete -k manifests/kustomize/env/dev
 # or
-kubectl kustomize env/gcp | kubectl delete -f -
+kubectl delete -k manifests/kustomize/env/gcp
 ```
 
 ## Troubleshooting
@@ -117,14 +122,17 @@ Run
 kubectl create clusterrolebinding your-binding --clusterrole=cluster-admin --user=[your-user-name]
 ```
 
-### Samples requires "user-gcp-sa" secret
+### Samples that require "user-gcp-sa" secret
 If sample code requires a "user-gcp-sa" secret, you could create one by 
+
 - First download the GCE VM service account token [Document](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys)
-```
-gcloud iam service-accounts keys create application_default_credentials.json \
-  --iam-account [SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com
-```
+    ```
+    gcloud iam service-accounts keys create application_default_credentials.json \
+      --iam-account [SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com
+    ```
+
 - Run
-```
-kubectl create secret -n [your-namespace] generic user-gcp-sa --from-file=user-gcp-sa.json=application_default_credentials.json
-```
+    ```
+    kubectl create secret -n [your-namespace] generic user-gcp-sa \
+      --from-file=user-gcp-sa.json=application_default_credentials.json
+    ```
