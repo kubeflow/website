@@ -4,12 +4,13 @@ description = "Alternative approaches to deploy lightweight Kubeflow Pipelines t
 weight = 15
 +++
 
-Kubeflow Pipelines has kustomize manifests for lite deployment solution. You can
-follow the instruction to deploy Kubeflow Pipelines (without other components of
-Kubeflow) in an existing cluster.
+Despite [deploying Kubeflow](/docs/started/getting-started/#installing-kubeflow) as a
+whole with many components including pipelines, you also have a choice to deploy
+Kubeflow Pipelines' lite deployment. Pipelines has a kustomize manifests for
+this. You can follow the instructions below to deploy it in an existing cluster.
 
-Knowledge about Kubernetes, kubectl and kustomize will help you understand this
-document and customize based on your needs.
+Knowledge about [Kubernetes](https://kubernetes.io/docs/home/), [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) and [kustomize](https://kustomize.io/) will help you understand this
+document better and be able to customize based on your needs.
 
 
 ## TL;DR
