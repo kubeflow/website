@@ -1,6 +1,6 @@
 +++
 title = "Pipelines Deploy Alternatives"
-description = "Alternative approaches to deploy just Kubeflow Pipelines to a cluster"
+description = "Alternative approaches to deploy lightweight Kubeflow Pipelines to a cluster"
 weight = 15
 +++
 
