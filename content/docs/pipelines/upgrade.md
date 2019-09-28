@@ -11,8 +11,13 @@ supports the following capabilities:
 * **Reinstall:** You can delete a cluster and create a new cluster, specifying
   the storage to retrieve the original data in the new cluster.
 
-Note that upgrade isn't currently supported, check [this issue](https://github.com/kubeflow/kubeflow/issues/3727)
-for progress.
+Note that upgrade isn't currently supported for Kubeflow deployment, check
+[this issue](https://github.com/kubeflow/kubeflow/issues/3727) for progress.
+
+We provide an alternative lite deployment to deploy Kubeflow Pipelines. It is
+documented [here](docs/pipelines/pipelines-deploy-alternatives). This lite
+deployment has upgrade support. (Note, you cannot upgrade Kubeflow deployment by
+that approach.)
 
 ## Context
 
