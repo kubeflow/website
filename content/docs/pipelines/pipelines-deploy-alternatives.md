@@ -51,7 +51,7 @@ kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercon
 
     ```
     export PIPELINE_VERSION={{% kfp-latest-version %}}
-    kubectl apply -f kubectl apply -f https://storage.googleapis.com/ml-pipeline/pipeline-lite/$PIPELINE_VERSION/namespaced-install.yaml
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
     Kubeflow pipelines applications take a while (~3 minutes) to start.
@@ -105,7 +105,7 @@ and open http://localhost:8080/
 You can uninstall Kubeflow Pipelines by running
 ```
 export PIPELINE_VERSION={{% kfp-latest-version %}}
-kubectl delete -f https://raw.githubusercontent.com/kubeflow/pipelines/$PIPELINE_VERSION/manifests/kustomize/namespaced-install.yaml
+kubectl delete -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
 ```
 
 Or if you deployed through kustomize
