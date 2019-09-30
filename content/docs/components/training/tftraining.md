@@ -422,7 +422,6 @@ Success or failure of a job is determined as follows
   * For the restartPolicy ExitCode the behavior is exit code dependent.
   * If the restartPolicy doesn't allow restarts a non-zero exit code is considered
     a permanent failure and the job is marked failed.
-  * For the restartPolicy ExitCode the behavior is exit code dependent.        
 
 ### tfReplicaStatuses
 
