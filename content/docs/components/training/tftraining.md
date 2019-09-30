@@ -316,7 +316,7 @@ spec:
           restartPolicy: OnFailure
 ```
 
-Follow TensorFlow's [instructions](https://www.tensorflow.org/tutorials/using_gpu)
+Follow TensorFlow's [instructions](https://www.tensorflow.org/guide/gpu)
 for using GPUs.
 
 ## Monitoring your job

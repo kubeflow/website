@@ -108,7 +108,7 @@ Below are some examples of `KfDef` configuration files:
 
 * [kfctl_k8s_istio.yaml](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/config/kfctl_k8s_istio.yaml) 
   to install Kubeflow on an existing Kubernetes cluster.
-* [kfctl_gcp_basic_auth.yaml](https://github.com/kubeflow/kubeflow/blob/master/bootstrap/config/kfctl_gcp_basic_auth.yaml) 
+* [kfctl_gcp_basic_auth.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_gcp_basic_auth.yaml)
   to set up a Google Kubernetes Engine (GKE) cluster with Kubeflow using basic
   authentication.
 

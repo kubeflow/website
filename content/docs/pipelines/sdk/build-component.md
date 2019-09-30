@@ -41,12 +41,12 @@ in the Kubeflow Pipelines sample repository.
 This section assumes that you have already created a program to perform the
 task required in a particular step of your ML workflow. For example, if the
 task is to train an ML model, then you must have a program that does the
-training, such as the program that 
-[trains an XGBoost model](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/train/src/train.py).
+training, such as the program that
+[trains an XGBoost model](https://github.com/kubeflow/pipelines/blob/master/components/deprecated/dataproc/train/src/train.py).
 
-Create a [Docker](https://docs.docker.com/get-started/) container image that 
-packages your program. See the 
-[Docker file](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/train/Dockerfile)
+Create a [Docker](https://docs.docker.com/get-started/) container image that
+packages your program. See the
+[Docker file](https://github.com/kubeflow/pipelines/blob/master/components/deprecated/dataproc/train/Dockerfile)
 for the example XGBoost model training program mentioned above. You can also
 examine the generic
 [`build_image.sh`](https://github.com/kubeflow/pipelines/blob/master/components/build_image.sh)
