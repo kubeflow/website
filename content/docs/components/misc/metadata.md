@@ -63,9 +63,8 @@ To run the notebook in your Kubeflow cluster:
 
 1. Follow the guide to 
   [setting up your Jupyter notebooks in Kubeflow](/docs/notebooks/setup/).
-1. Go to the [`demo` notebook on 
-  GitHub](https://github.com/kubeflow/metadata/blob/master/sdk/python/sample/demo.ipynb).
-1. Download the notebook code by opening the **Raw** view of the file, then 
+1. Go to the [`demo` notebook on GitHub](https://github.com/kubeflow/metadata/blob/master/sdk/python/sample/demo.ipynb).
+1. Download the notebook code by opening the **Raw** view of the file, then
   right-clicking on the content and saving the file locally as `demo.ipynb`.
 1. Go back to your Jupyter notebook server in the Kubeflow UI. (If you've
   moved away from the notebooks section in Kubeflow, click
