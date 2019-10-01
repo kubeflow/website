@@ -9,7 +9,7 @@ This guide is a quick start to deploy Kubeflow on [IBM Cloud Private](https://ww
 ### Prerequisites
 
 - Get the system requirements from [IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/supported_system_config/hardware_reqs.html) for IBM Cloud Private.
-  
+
 - Setup NFS Server and export one or more path for persistent volume.
 
 ### Installing IBM Cloud Private
@@ -62,12 +62,12 @@ NAME         STATUS    ROLES                      AGE       VERSION
     ```
     Create ImagePolicy for the specified namespace.
     ```bash
-    kubectl create -n $K8S_NAMESPACE -f image-policy.yaml 
+    kubectl create -n $K8S_NAMESPACE -f image-policy.yaml
     ```
 
 3. Create persistent volume (PV) for Kubeflow components.
-   
-    Some Kubeflow components need PVs to storage data, such as minio, mysql katib. We need to create PVs for those pods in advance. 
+
+    Some Kubeflow components need PVs to storage data, such as minio, mysql katib. We need to create PVs for those pods in advance.
     The PVs defination file (`pv.yaml`) is as following:
 
      ```yaml
@@ -114,9 +114,9 @@ NAME         STATUS    ROLES                      AGE       VERSION
           server: ${NFS_SERVER_IP}
      ```
 
-    * **NFS_SERVER_IP** is the NFS server IP, that can be management node IP but need management node need to support NFS mounting. 
+    * **NFS_SERVER_IP** is the NFS server IP, that can be management node IP but need management node need to support NFS mounting.
     * **NFS_SHARED_DIR** is the NFS shared path that can be mounted by othe nodes in IBM Cloud Private cluster. And ensure the sub-folders(`pv1, pv2,pv3`) in defination above are created.
-  
+
     Create PV by running below command:
     ```bash
     kubectl create -f pv.yaml
@@ -135,7 +135,7 @@ Follow these steps to deploy Kubeflow:
     ```
 
 3. Run the following commands to set up and deploy Kubeflow. The code below
-  includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl` 
+  includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl`
   binary each time you run it.
 
     ```bash
@@ -150,7 +150,7 @@ Follow these steps to deploy Kubeflow:
     kfctl generate all -V
     kfctl apply all -V
     ```
-   * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
+   * **${KFAPP}** - the _name_ of a directory where you want Kubeflow
      configurations to be stored. This directory is created when you run
      `kfctl init`. If you want a custom deployment name, specify that name here.
      The value of this variable becomes the name of your deployment.
@@ -179,9 +179,6 @@ http://${MANAGEMENT_IP}:$AMBASSADOR_PORT/
 ```
 * **MANAGEMENT_IP** is management node IP.
 * **AMBASSADOR_PORT** is the ambassador port.
-  
-
-For Kubeflow 0.6.1, the Ambassador service has been dropped. The Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard. Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).  
 
 
 ## Delete Kubeflow
