@@ -141,10 +141,11 @@ Follow these steps to deploy Kubeflow:
     ```bash
     # The following command is optional, to make kfctl binary easier to use.
     export PATH=$PATH:<path to kfctl in your Kubeflow installation>
-
     export KFAPP=<your choice of application directory name>
-    # Default uses IAP.
-    kfctl init ${KFAPP}
+    # Installs Istio by default. Comment out Istio components in the config file to skip Istio installation.
+    export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6-branch/bootstrap/config/kfctl_k8s_istio.0.6.2.yaml"
+
+    kfctl init ${KFAPP} --config=${CONFIG} -V
     cd ${KFAPP}
     kfctl generate all -V
     kfctl apply all -V
@@ -165,7 +166,9 @@ Follow these steps to deploy Kubeflow:
 
 ## Access Kubeflow dashboard
 
-Change the Ambassador service type to NodePort, then access the Kubeflow dashboard through Ambassador.
+From Kubeflow 0.6, the Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard. Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
+
+For Kubeflow version lower than 0.6, access the Kubeflow Dashboard via Ambassador service. Change the Ambassador service type to NodePort, then access the Kubeflow dashboard through Ambassador.
 ```bash
 kubectl -n kubeflow patch service ambassador -p '{"spec":{"type": "NodePort"}}'
 AMBASSADOR_PORT=$(kubectl -n kubeflow get service ambassador -ojsonpath='{.spec.ports[?(@.name=="ambassador")].nodePort}')
@@ -179,6 +182,7 @@ http://${MANAGEMENT_IP}:$AMBASSADOR_PORT/
   
 
 For Kubeflow 0.6.1, the Ambassador service has been dropped. The Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard. Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).  
+
 
 ## Delete Kubeflow
 

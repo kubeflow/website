@@ -116,7 +116,7 @@ Note:
 
 * Each component must inherit from
   [`dsl.ContainerOp`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_container_op.py).
-* Values in the `arguments` list that's used by the `dsl.ContainerOp` constructor above must be either Python scalar types (such as `str` and ` int`) or [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py) types. Each `dsl.PipelineParam` represents a parameter whose value is usually only known at run time. The value is
+* Values in the `arguments` list that's used by the `dsl.ContainerOp` constructor above must be either Python scalar types (such as `str` and ` int`) or [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py) types. Each `dsl.PipelineParam` represents a parameter whose value is usually only known at run time. The value is 
   either provided by the user at pipeline run time or received as an output from an upstream component.
 * Although the value of each `dsl.PipelineParam` is only available at run time,
   you can still use the parameters inline in the `arguments` by using `%s`
@@ -178,7 +178,7 @@ See the full code in the
 
 After defining the pipeline in Python as described above, you must compile the
 pipeline to an intermediate representation before you can submit it to the
-Kubeflow Pipelines service. The intermediate representation is a workflow 
+Kubeflow Pipelines service. The intermediate representation is a workflow
 specification in the form of a YAML file compressed into a
 `.tar.gz` file.
 

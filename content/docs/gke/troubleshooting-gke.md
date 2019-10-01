@@ -269,7 +269,7 @@ Waiting for backend id PROJECT=<your-project> NAMESPACE=kubeflow SERVICE=envoy f
 You can verify the cause of the problem by entering the following command:
 
 ```
-kubectl -n kubeflow describe ingress
+kubectl -n istio-system describe ingress
 ```
 
 Look for something like this in the output:

@@ -50,7 +50,7 @@ that you can use to log (record) your metadata.
 Run the following command to install the Metadata SDK:
 
 ```
-pip install kfmd
+pip install kubeflow-metadata
 ```
 
 <a id="demo-notebook"></a>
