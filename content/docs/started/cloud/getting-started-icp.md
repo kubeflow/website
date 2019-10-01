@@ -193,3 +193,32 @@ kfctl delete all --delete_storage
 # from mlpipeline.
 kfctl delete all
 ```
+## TroubleShooting
+### Insufficient Pods 
+  
+Default installation of IBM Cloud Private configures 10 allocatable pods per core. So if you have 8 cores, there will be 80 allocatable pods. However, execution of IBM Cloud Private (from default installation) requires ~40 pods and Kubeflow requires ~45 pods, so you may have insufficient pods issue.  
+
+To increase the number of pods, you can edit /etc/cfc/kubelet/kubelet-service-config, increase podsPerCore from 10 to 20 (or 30). Save your change and restart kubelet.
+```
+systemctl restart kubelet
+```
+
+### Kubeflow Central Dashboard: connection reset error or slow response   
+This may happen when there is not enough memory (e.g. if you only have 16G memory). You may consider turning off some non-essential services in IBM Cloud Private
+
+```
+kubectl -n kube-system patch ds logging-elk-filebeat-ds  --patch '{ "spec": { "template": { "spec": { "nodeSelector": { "switch": "down" } } } } }'
+kubectl -n kube-system patch ds nvidia-device-plugin  --patch '{ "spec": { "template": { "spec": { "nodeSelector": { "switch": "down" } } } } }'
+kubectl -n kube-system patch ds audit-logging-fluentd-ds  --patch '{ "spec": { "template": { "spec": { "nodeSelector": { "switch": "down" } } } } }'
+
+kubectl -n kube-system scale deploy logging-elk-client --replicas=0
+kubectl -n kube-system scale deploy logging-elk-kibana --replicas=0
+kubectl -n kube-system scale deploy logging-elk-logstash --replicas=0
+kubectl -n kube-system scale deploy logging-elk-master --replicas=0
+kubectl -n kube-system scale deploy secret-watcher --replicas=0
+```
+
+ 
+
+
+
