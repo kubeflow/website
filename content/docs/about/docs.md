@@ -5,7 +5,7 @@ weight = 6
 aliases = ["/docs/docs/"]
 +++
 
-Welcome to the Kubeflow documentation! Testing a style change.
+Welcome to the Kubeflow documentation! Testing style change.
 
 ## Introduction
 
