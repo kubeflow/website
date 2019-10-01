@@ -162,7 +162,7 @@ Deploy Kubeflow on GCP:
    Kubeflow dashboard to
    be available, you can use `kubectl` to connect to your cluster:
 
-  * Connect your Cloud Shell session to the cluster:
+  * Connect your Cloud Shell/kubectl session to the cluster:
 
       ```
       gcloud container clusters get-credentials \
