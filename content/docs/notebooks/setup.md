@@ -19,10 +19,11 @@ in Kubeflow.
 
 Summary of steps:
 
-1. Follow the [Kubeflow getting-started guide](/docs/started/getting-started/) to
-set up your Kubeflow deployment and open the Kubeflow UI.
+1. Follow the [Kubeflow getting-started guide](/docs/started/getting-started/) 
+  to set up your Kubeflow deployment and open the Kubeflow UI.
 
-1. Click **Notebooks** in the left-hand panel of the Kubeflow UI.
+1. Click **Notebook Servers** in the left-hand panel of the Kubeflow UI.
+1. Choose the **namespace** corresponding to your Kubeflow profile.
 1. Click **NEW SERVER** to create a notebook server.
 1. When the notebook server provisioning is complete, click **CONNECT**.
 1. Click **Upload** to upload an existing notebook, or click **New** to
@@ -58,8 +59,8 @@ getting-started guide for your chosen environment. For example:
 
 ## Create a Jupyter notebook server and add a notebook
 
-1. Click **Notebooks** in the left-hand panel of the Kubeflow UI to access the
-  Jupyter notebook services deployed with Kubeflow:
+1. Click **Notebook Servers** in the left-hand panel of the Kubeflow UI to 
+  access the Jupyter notebook services deployed with Kubeflow:
   <img src="/docs/images/jupyterlink.png" 
     alt="Opening notebooks from the Kubeflow UI"
     class="mt-3 mb-3 border border-info rounded">
@@ -69,13 +70,24 @@ getting-started guide for your chosen environment. For example:
      to your Google Account you may not need to log in again.)
    * On all other platforms, sign in using any username and password.
 
+1. Select a namespace:
+   * Click the namespace dropdown to see the list of available namespaces.
+   * Choose the namespace that corresponds to your Kubeflow profile. (See
+     the page on [multi-user isolation](/docs/other-guides/multi-user-overview/) 
+     for more information about namespaces.)
+
+    <img src="/docs/images/notebooks-namespace.png" 
+      alt="Selecting a Kubeflow namespace"
+      class="mt-3 mb-3 border border-info rounded">
+
 1. Click **NEW SERVER** on the **Notebook Servers** page:
 
     <img src="/docs/images/add-notebook-server.png" 
       alt="The Kubeflow notebook servers page"
       class="mt-3 mb-3 border border-info rounded">
 
-    You should see the **New Notebook Server** page:
+    You should see a page for entering details of your new server. Here is a 
+    partial screenshot of the page:
 
     <img src="/docs/images/new-notebook-server.png" 
       alt="Form for adding a Kubeflow notebook server"
@@ -83,8 +95,9 @@ getting-started guide for your chosen environment. For example:
 
 1. Enter a **name** of your choice for the notebook server. The name can
   include letters and numbers, but no spaces. For example, `my-first-notebook`.
-1. Enter a **namespace** to identify the project group or team to which this 
-  notebook server belongs. The default is `kubeflow`.
+1. Kubeflow automatically updates the value in the **namespace** field to
+  be the same as the namespace that you selected in a previous step. This 
+  ensures that the new notebook server is in a namespace that you can access.
 
 1. Select a Docker **image** for the baseline deployment of your notebook 
   server. You can choose from a range of *standard* images or specify a 
@@ -150,7 +163,7 @@ getting-started guide for your chosen environment. For example:
   volumes or specify existing volumes. Kubeflow provisions a 
   [Kubernetes persistent volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for each of your data volumes.
 
-1. Click **SPAWN** and wait a while. You should see an entry for your new
+1. Click **LAUNCH**. You should see an entry for your new
   notebook server on the **Notebook Servers** page, with a spinning indicator in 
   the **Status** column. It can take a few minutes to set up
   the notebook server.
@@ -256,11 +269,15 @@ exposed to the internet and is an unsecured endpoint by default.
 
 ## Next steps
 
-* See a [simple example](https://github.com/kubeflow/examples/tree/master/pipelines/simple-notebook-pipeline) of creating Kubeflow pipelines in a jupyter notebook on GCP.
+* See a [simple example](https://github.com/kubeflow/examples/tree/master/pipelines/simple-notebook-pipeline) of creating Kubeflow pipelines in a Jupyter notebook on GCP.
 * Build machine-learning pipelines with the [Kubeflow Pipelines 
   SDK](/docs/pipelines/sdk/sdk-overview/).
 * Explore [Kubeflow Fairing](/docs/fairing/) for a complete solution to 
   building, training, and deploying an ML model from a notebook.
+* See how to configure [multi-user isolation](/docs/other-guides/multi-user-overview/) in Kubeflow, to separate the notebooks for each user in a shared Kubeflow deployment.
 * Learn the advanced features available from a Kubeflow notebook, such as
   [submitting Kubernetes resources](/docs/notebooks/submit-kubernetes/) or
   [building Docker images](/docs/notebooks/submit-docker-image/). 
+* Visit the [troubleshooting guide](/docs/notebooks/troubleshoot) for fixing common
+  errors in creating Jupyter notebooks in Kubeflow
+

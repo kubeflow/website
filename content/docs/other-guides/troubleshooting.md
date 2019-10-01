@@ -1,7 +1,7 @@
 +++
 title = "Troubleshooting"
 description = "Finding and fixing problems in your Kubeflow deployment"
-weight = 20
+weight = 100
 +++
 
 
@@ -78,37 +78,8 @@ how RBAC interacts with IAM on GCP.
 
 ## Problems spawning Jupyter pods
 
-If you're having trouble spawning Jupyter notebooks, check that the pod is getting
-scheduled
+This section has been moved to [Jupyter Notebooks Troubleshooting Guide] (/docs/notebooks/troubleshoot/).
 
-```
-kubectl -n ${NAMESPACE} get pods
-```
-
-  * Look for pods whose name starts with juypter
-  * If you are using username/password auth with Jupyter the pod will be named
-
-  ```
-  jupyter-${USERNAME}
-  ```
-
-  * If you are using IAP on GKE the pod will be named
-
-    ```
-    jupyter-accounts-2egoogle-2ecom-3USER-40DOMAIN-2eEXT
-    ```
-
-    * Where USER@DOMAIN.EXT is the Google account used with IAP
-
-Once you know the name of the pod do
-
-```
-kubectl -n ${NAMESPACE} describe pods ${PODNAME}
-```
-
-  * Look at the events to see if there are any errors trying to schedule the pod
-  * One common error is not being able to schedule the pod because there aren't
-    enough resources in the cluster.
 
 ## Pods stuck in Pending state
 

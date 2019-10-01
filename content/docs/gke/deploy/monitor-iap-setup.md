@@ -136,14 +136,14 @@ problems:
     For example if you originally ran the following `kfctl init` command:
 
     ```
-    kfctl init myapp --project=myproject --platform=gcp
+    kfctl init myapp --project=myproject --config=myconfig -V
     ```
 
     Then rerun `kfctl init` with a different name that you haven't used
     before:
 
     ```
-    kfctl init myapp-unique --project=myproject --platform=gcp
+    kfctl init myapp-unique --project=myproject --config=myconfig -V
     ```
 
 1. Wait for the load balancer to report the back ends as healthy:

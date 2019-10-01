@@ -5,7 +5,7 @@ weight = 10
 +++
 
 This guide walks you through an end-to-end example of Kubeflow on Google
-Cloud Platform (GCP). By working through the guide, you'll learn
+Cloud Platform (GCP). By working through the guide, you learn
 how to deploy Kubeflow on Kubernetes Engine (GKE), train an MNIST machine
 learning model for image classification, and use the model for online inference
 (also known as online prediction).
@@ -24,7 +24,7 @@ GCP from the command line, including the `gcloud` command and others.
 [Kubernetes Engine][kubernetes-engine] (GKE) is a managed service on GCP where
 you can deploy containerized applications. You describe the resources that your
 application needs, and GKE provisions and manages the underlying
-cloud resources automatically.
+cloud resources.
 
 Here's a list of the primary GCP services that you use when following this
 guide:
@@ -90,8 +90,8 @@ To simplify this tutorial, you can use a set of prepared files that include
 a TensorFlow application for training your model, a web UI to send prediction
 requests and display the results, and the [Docker][docker] files to build
 runnable containers for the training and prediction applications.
-The project files are in the 
-[Kubeflow examples repository](https://github.com/kubeflow/examples)
+The project files are in the [Kubeflow examples 
+repository](https://github.com/kubeflow/examples/tree/master/mnist)
 on GitHub.
 
 Clone the project files and go to the directory containing the MNIST example:
@@ -113,7 +113,8 @@ Follow these steps to set up your GCP environment:
 1. Select or create a project on the [GCP Console][gcp-console].
 1. Make sure that billing is enabled for your project. See the guide to
   [modifying a project's billing settings][billing-guide].
-1. Install the [Cloud SDK][cloud-sdk].
+1. Install the [Cloud SDK][cloud-sdk]. If you already have the SDK installed,
+  run `gcloud components update` to get the latest versions of the SDK tools.
 
 Notes:
 
@@ -123,6 +124,10 @@ Notes:
 * This guide assumes you want to manage your GCP environment on your own server
   rather than in the [Cloud Shell][cloud-shell] environment. If you choose to
   use the Cloud Shell, some of the components are pre-installed in your shell.
+
+### Install Docker
+
+Follow the [Docker installation guide](https://docs.docker.com/install/).
 
 ### Install kubectl
 
@@ -135,10 +140,18 @@ gcloud components install kubectl
 
 ### Install kustomize
 
-Kubeflow makes use of [kustomize](https://github.com/kubernetes-sigs/kustomize) to help manage deployments. 
+Kubeflow makes use of [kustomize](https://github.com/kubernetes-sigs/kustomize) 
+to help manage deployments.
 
-Make sure you have kustomize version 2.0.3 or later.
-See the [kustomize installation guide](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/INSTALL.md) for help with installing kustomize.
+{{% alert title="Make sure you have version 2.0.3 of kustomize" color="warning" %}}
+This tutorial does not work with later versions of kustomize, due to bug
+<a href="https://github.com/kubernetes-sigs/kustomize/issues/1295">/kustomize/issues/1295</a>.
+{{% /alert %}}
+
+Install kustomize 
+[v2.0.3](https://github.com/kubernetes-sigs/kustomize/releases/tag/v2.0.3). 
+See the [kustomize installation 
+guide](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/INSTALL.md).
 
 ### Set up some handy environment variables
 
@@ -167,9 +180,7 @@ Set up the following environment variables for use throughout the tutorial:
     ```
 
 1. If you want a custom name for your Kubeflow deployment, set the 
-   `DEPLOYMENT_NAME` environment variable. Note that the name must be the same 
-   as the one you use in later steps of this tutorial when configuring the 
-   **redirect URI** for the OAuth client credentials. If you don't set this 
+   `DEPLOYMENT_NAME` environment variable. If you don't set this 
    environment variable, your deployment gets the default name of `kubeflow`:
 
     ```
@@ -182,27 +193,9 @@ Follow the instructions in the
 guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
 taking note of the following:
 
+* Make sure you deploy Kubeflow **{{% kf-latest-version %}}** or later.
 * Set up **OAuth client credentials** and **Cloud Identity-Aware Proxy (IAP)**
-  as prompted during the deployment process. So, **do not choose the deployment 
-  option to skip IAP**. IAP ensures you can connect securely to the Kubeflow
-  web applications.
-* When setting up the **authorized redirect URI** for the **OAuth client 
-  credentials**, use the same value for the `<deployment_name>` as you used
-  when setting up the `DEPLOYMENT_NAME` environment variable earlier in this
-  tutorial.
-* Use the Kubeflow **deployment UI** as a quick way to set up a Kubeflow 
-  deployment on GCP. The getting-started guide describes how to use the
-  deployment UI. If you want more control over the configuration of your
-  deployment you can use the `kfctl` binary instead of the UI. The binary
-  is also described in the getting-started guide.
-* Choose **Kubeflow version v0.4.1** or later.
-
-The following screenshot shows the Kubeflow deployment UI with hints about
-the value for each input field:
-
-<img src="/docs/images/gcp-e2e-deploy-kubeflow.png" 
-    alt="Prediction UI"
-    class="mt-3 mb-3 p-3 border border-info rounded">
+  as prompted during the deployment process.
 
 When the cluster is ready, you can do the following:
 
@@ -253,14 +246,13 @@ Notes:
 
 * It can take 10-15 minutes for the URI to become available. Kubeflow needs
   to provision a signed SSL certificate and register a DNS name.
-    * If you own/manage the domain or a subdomain with [Cloud DNS][dns]
-      then you can configure this process to be much faster.
-    * While you wait you can access Kubeflow services by using `kubectl proxy`
-      and `kubectl port-forward` to connect to services in the cluster.
+
+    If you own/manage the domain or a subdomain with [Cloud DNS][dns]
+    then you can configure this process to be much faster.
 
 ## Create a Cloud Storage bucket
 
-The next step is to create a Cloud Storage bucket to hold your trained model
+The next step is to create a Cloud Storage bucket to hold your trained model.
 
 [Cloud Storage][cloud-storage] is a scalable, fully-managed object/blob store.
 You can use it for a range of scenarios including serving website content,
@@ -373,8 +365,14 @@ The Kubeflow deployment includes services for spawning and managing
     data then trained the model for 200 steps, reaching a final accuracy level
     of 0.70332366.
 
+    Don't worry if you see the following message after the model has finished
+    exporting:
+    `An exception has occurred, use %tb to see the full traceback. SystemExit.`
+    The message occurs because you haven't yet set up a location for storing the
+    model.
+
 If you want to play more with the code, try adjusting the number of training
-steps by setting `TF_TRAIN_STEPS` to a different value, such as `2000`, or 
+steps by setting `max_steps` to a different value, such as `2000`, or 
 experiment with adjusting other parts of the code.
 
 ## Prepare to run your training application on GKE
@@ -508,7 +506,7 @@ Next, upload the container image to Container Registry so that you can run it on
     cd ${WORKING_DIR}/training/GCS
     ```
 
-1. Give the job a different name (to distinguish it from your job which didn't use Cloud Storage):
+1. Give the job a name so that you can identify it later:
 
     ```
     kustomize edit add configmap mnist-map-training   --from-literal=name=mnist-train-dist
@@ -520,13 +518,13 @@ Next, upload the container image to Container Registry so that you can run it on
     kustomize edit set image training-image=${TRAIN_IMG_PATH}
     ```
 
-1. Optionally configure it to run distributed by setting the number of parameter servers and workers to use. The `numPs` means the number of Ps (parameter server) and the `numWorkers` means the number of worker:
+1. Configure the image to run distributed by setting the number of parameter servers and workers to use. The `numPs` means the number of Ps (parameter server) and the `numWorkers` means the number of worker:
 
     ```
     ../base/definition.sh --numPs 1 --numWorkers 2
     ```
 
-1. Set the training parameters, such as training steps, batch size and learning rate:
+1. Set the training parameters (training steps, batch size and learning rate):
 
     ```
     kustomize edit add configmap mnist-map-training   --from-literal=trainSteps=200
@@ -544,17 +542,18 @@ Next, upload the container image to Container Registry so that you can run it on
 ### Check the permissions for your training component
 
 You need to ensure that your Python code has the required permissions 
-to read/write to your Cloud Storage bucket. Kubeflow solves this by creating a 
+to read/write to your Cloud Storage bucket. Kubeflow solves this by creating a
+`user` 
 [service account](https://cloud.google.com/iam/docs/understanding-service-accounts) 
-within your project as a part of the deployment. You can verify this by listing 
-your service accounts:
+within your project as a part of the deployment. You can use the following
+command to list the service accounts for your Kubeflow deployment:
 
 ```
 gcloud iam service-accounts list | grep ${DEPLOYMENT_NAME}
 ```
 
-Kubeflow granted this service account the right permissions to read and write to 
-your storage bucket. Kubeflow also added a 
+Kubeflow granted the `user` service account the necessary permissions to read
+and write to your storage bucket. Kubeflow also added a 
 [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/) 
 named `user-gcp-sa` to your cluster, containing the credentials needed to 
 authenticate as this service account within the cluster:
@@ -585,9 +584,11 @@ kustomize build . |kubectl apply -f -
 ```
 
 When the command finishes running, there should be a new workload on the 
-    cluster, with a name like `train-<VERSION_TAG>-chief-0`.
-
-You can see the workloads on the [GKE Workloads page][gcp-console-workloads] on the GCP console. To see the logs, click the **train-<VERSION_TAG>-chief-0** workload, then click **Container logs**.
+cluster, with the name `mnist-train-dist-chief-0`. If you set the option to run
+a distributed workload, the `worker` workloads show up on the cluster too. 
+You can see the workloads on the [GKE Workloads page][gcp-console-workloads] 
+on the GCP console. To see the logs, click the **mnist-train-dist-chief-0** 
+workload, then click **Container logs**.
 
 ### View your trained model on Cloud Storage
 
@@ -614,7 +615,7 @@ Now you can put your trained model on a server and send it prediction requests.
     cd $WORKING_DIR/serving/GCS
     ```
 
-1. Set a different name for the tf-serving:
+1. Set a name for the TensorFlow Serving job:
 
     ```
     kustomize edit add configmap mnist-map-serving   --from-literal=name=mnist-gcs-dist
@@ -626,24 +627,29 @@ Now you can put your trained model on a server and send it prediction requests.
     kustomize edit add configmap mnist-map-serving   --from-literal=modelBasePath=${EXPORT_DIR} 
     ```
 
-1. Deploy it, and run a service to make the deployment accessible to other pods in the cluster:
+1. Deploy the model, and run a service to make the deployment accessible to 
+  other pods in the cluster:
 
     ```
     kustomize build . |kubectl apply -f -
     ```
 
-1. You can check the deployment by running:
+1. You can check the deployment by running the following command:
 
     ```
     kubectl describe deployments mnist-gcs-dist
     ```
 
-1. The service should make the `mnist-gcs-dist` deployment accessible over port 9000:
+1. The service makes the `mnist-gcs-dist` deployment accessible over port 9000.
+  Run the following command to get the details of the service:
 
     ```
     kubectl describe service mnist-gcs-dist
     ```
-    You can see the **mnist-gcs-dist** service on the [GKE Services page][gcp-console-services]. If you click through to see the service details, you can see that it listens for connections within the cluster on port 9000.
+    You can also see the **mnist-gcs-dist** service on the 
+    [GKE Services page][gcp-console-services] on the GCP Console. Click the
+    service name to see the service details. You can see that it listens for 
+    connections within the cluster on port 9000.
 
 ## Send online prediction requests to your model
 
@@ -663,6 +669,7 @@ function that interacts directly with the TensorFlow model server.
 The `${WORKING_DIR}/web-ui` directory also contains a Dockerfile to build
 the application into a container image.
 
+<a id="build-ui"></a>
 ### (Optional) Build an image and push it to Container Registry
 
 Follow these steps to build an image from your code:
@@ -703,7 +710,7 @@ Follow these steps to build an image from your code:
 
 1. Wait until the process is complete, then you should see your new container
    image listed on the [Container Registry page][gcp-container-registry]
-   on the GCP console.
+   on the GCP console. The container name is `<DEPLOYMENT_NAME>-web-ui`.
 
 ### Deploy the web UI to the cluster
 
@@ -714,23 +721,42 @@ The example comes with a simple web front end that can be used with your model.
 1. Enter the `front` directory:
 
     ```
-    cd front
+    cd ${WORKING_DIR}/front
     ```
 
-2. Optionally update the image to the ${UI_IMG_PATH} in the `deployment.yaml`.
+2. If you chose to build an image for the web UI and uploaded it to
+  Container Registry in the [previous step](#build-ui), then you need to update
+  the path to the image in the deployment configuration:
 
-3. To deploy the web front end to your cluster:
+  * Edit the `deployment.yaml` file in `${WORKING_DIR}/front`.
+  * Change the `image` value to  match your `${UI_IMG_PATH}`. The result should
+    look like this:
+
+    ```
+    ...
+    spec:
+    containers:
+    - image: gcr.io/<your-project>/<your-deployment-name>
+    ...
+    ```
+
+    (You can choose to use the image already deployed to Container Registry. In
+    that case, you do not need to edit the `deployment.yaml` file.)
+
+3. Deploy the web front end to your cluster:
     
     ```
     kustomize build . |kubectl apply -f -
     ```
 
-    Now there should be a new web UI running in the cluster. You can see the **web-ui** entry on the [GKE Workloads page][gcp-console-workloads] and on the [Services page][gcp-console-services].
+    Now there should be a new web UI running in the cluster. You can see the 
+    **web-ui** entry on the [GKE Workloads page][gcp-console-workloads] and on 
+    the [Services page][gcp-console-services].
 
 ### Access the web UI in your browser
 
 Follow these steps to access the web UI in your web browser. It may take a few 
-minutes for the IP address to be available:
+minutes for the IP address to become available:
 
 1. Find the IP address assigned to the service:
 
@@ -740,8 +766,6 @@ minutes for the IP address to be available:
 
 1. Copy the value shown under `EXTERNAL-IP` and paste it into your web
    browser's address bar. The web UI should appear.
-
-
 
 1. The web UI offers three fields to connect to the prediction server:
     <img src="/docs/images/gcp-e2e-ui-connect.png" 
@@ -765,18 +789,7 @@ minutes for the IP address to be available:
   * **Port:** `9000` - The server listens on port 9000 by default.
 
 1. Click **Connect**. The system finds the server in your cluster and displays
-   the classification results.
-
-As an alternative to the external IP address, you can run the following command 
-to access the UI via `kubectl port-forward`:
-
-```
-kubectl port-forward -n kubeflow `kubectl get pods --all-namespaces \
-    --selector=app=web-ui -o=jsonpath='{.items[0].metadata.name}'` 8080:5000
-```
-
-If you use the port-forwarding option, you can open the UI in your web browser 
-at `localhost:8080`. 
+   the classification results. 
 
 ## The final product
 
@@ -811,12 +824,12 @@ Delete the container images uploaded to Container Registry:
 
 ```
 // Find the digest id for each container image:
-gcloud container images list-tags us.gcr.io/$PROJECT/kubeflow-train
-gcloud container images list-tags us.gcr.io/$PROJECT/kubeflow-web-ui
+gcloud container images list-tags gcr.io/${PROJECT}/${DEPLOYMENT_NAME}-train
+gcloud container images list-tags gcr.io/${PROJECT}/${DEPLOYMENT_NAME}-web-ui
 
 // Delete each image:
-gcloud container images delete us.gcr.io/$PROJECT/kubeflow-web-ui:$DIGEST_ID
-gcloud container images delete us.gcr.io/$PROJECT/kubeflow-train:$DIGEST_ID
+gcloud container images delete gcr.io/$PROJECT/${DEPLOYMENT_NAME}-train:$DIGEST_ID
+gcloud container images delete gcr.io/$PROJECT/${DEPLOYMENT_NAME}-web-ui:$DIGEST_ID
 ```
 As an alternative to the command line, you can delete the various resources 
 using the [GCP Console][gcp-console].

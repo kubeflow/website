@@ -8,6 +8,8 @@ This guide walks you through using MXNet with Kubeflow.
 
 ## Installing MXNet Operator
 
+_This section has not yet been converted to kustomize, please refer to [kubeflow/manifests/issues/228](https://github.com/kubeflow/manifests/issues/228)._
+
 If you haven't already done so please follow the [Getting Started Guide](https://www.kubeflow.org/docs/started/getting-started/) to deploy Kubeflow.
 
 A version of MXNet support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow newer than 0.2.0.

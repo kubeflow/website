@@ -5,70 +5,21 @@ weight = 40
 +++
 
 ## Serve a model using Seldon
-[Seldon-core](https://github.com/SeldonIO/seldon-core) provides deployment for any machine learning runtime that can be [packaged in a Docker container](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html).
 
-Install the seldon package:
+Seldon comes installed with Kubeflow. Full documentation for running Seldon inference is provided within the [Seldon documentation site](https://docs.seldon.io/projects/seldon-core/en/latest/).
 
-```
-ks pkg install kubeflow/seldon
-```
-Generate the core components for v1alpha2 of Seldon's CRD:
+If you have a saved model in a PersistentVolume (PV), Google Cloud Storage bucket or Amazon S3 Storage you can use one of the [prepackaged model servers provided by Seldon](https://docs.seldon.io/projects/seldon-core/en/latest/servers/overview.html).
 
-```
-ks generate seldon seldon
-```
+Seldon also provides [language specific model wrappers](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html) to wrap your inference code for it to run in Seldon.
 
-If you wish to use Seldon's previous v1alpha1 version of its CRD you need to set the ```seldonVersion``` parameter to one in the 0.1.x range, for example:
+### Kubeflow Specifics
 
-```
-ks param set seldon seldonVersion 0.1.8
-ks generate seldon seldon
-```
+  * By default Seldon is configured to use the istio Gateway `kubeflow-gateway` and will add Virtual Services for the Seldon resources you create which [expose Seldon paths to the Kubeflow istio gateway](https://docs.seldon.io/projects/seldon-core/en/latest/workflow/serving.html#istio).
 
-Deploy seldon cluster manager:
+### Examples
 
-```
-export KF_ENV=default
-ks apply ${KF_ENV} -c seldon
-```
+   * [Kubeflow Seldon E2E Pipeline](https://docs.seldon.io/projects/seldon-core/en/latest/examples/kubeflow_seldon_e2e_pipeline.html)
 
-The `KF_ENV` environment variable represents a conceptual deployment environment 
-such as development, test, staging, or production, as defined by 
-ksonnet. For this example, we use the `default` environment.
-You can read more about Kubeflow's use of ksonnet in the Kubeflow 
-[ksonnet component guide](/docs/components/ksonnet/).
+Seldon provides a [large set of example notebooks](https://docs.seldon.io/projects/seldon-core/en/latest/examples/notebooks.html) showing how to run inference code for a wide range of machine learning toolkits.
 
-### Seldon Deployment Graphs
 
-Seldon allows complex runtime graphs for model inference to be deployed. Some example prototypes have been provided to help you get started. Follow the [Seldon docs](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html) to wrap your model code into an image that can be managed by Seldon. In the examples below we will use a model image ```seldonio/mock_classifier``` ; replace this with your actual model image. You will also need to choose between the v1alpha2 and v1alpha1 prototype examples depending on which version of Seldon you generated above. The following prototypes are available:
-
- * **A single model to serve**.
-    * ```ks generate seldon-serve-simple-<seldonVersion> mymodel --image <image>```
-    * Example: ```ks generate seldon-serve-simple-v1alpha2 mymodel --image seldonio/mock_classifier:1.0```
- * **An A-B test between two models**.
-    * ```ks generate seldon-abtest-<seldonVersion> myabtest --imageA <imageA> --imageB <imageB>```
-    * Example: ```ks generate seldon-abtest-v1alpha2 myabtest --imageA seldonio/mock_classifier:1.0 --imageB seldonio/mock_classifier:1.0```
- * **A multi-armed bandit between two models**. Allowing you to dynamically push traffic to the best model in real time. For more details see an [e-greedy algorithm example](https://github.com/SeldonIO/seldon-core/blob/master/notebooks/epsilon_greedy_gcp.ipynb).
-    * ```ks generate seldon-mab-<seldonVersion> mymab --imageA <imageA> --imageB <imageB>```
-    * Example: ```ks generate seldon-mab-v1alpha2 mymab --imageA seldonio/mock_classifier:1.0 --imageB seldonio/mock_classifier:1.0```
- * **An outlier detector for a single model**. See more details on the [default Mahalanobis outlier detection algorithm](https://github.com/SeldonIO/seldon-core/blob/master/components/outlier-detection/mahalanobis/outlier_mahalanobis.ipynb).
-    * ```ks generate seldon-outlier-detector-<seldonVersion> myout --image <image>```
-    * Example: ```ks generate seldon-outlier-detector-v1alpha2 myout --image seldonio/mock_classifier:1.0```
-
-### Endpoints
-
-Seldon exposes your prediction graph via REST and gRPC endpoints. Within Kubeflow these will be available via the Ambassador reverse proxy or via Seldon's OAuth API gateway if you installed it (set the ```withApife``` parameter to 'true' in the seldon component).
-
-Assuming Ambassador is exposed at ```<ambassadorEndpoint>``` and with a Seldon deployment name ```<deploymentName>```:
-
- * A REST endpoint will be exposed at : ```http://<ambassadorEndpoint>/seldon/<deploymentName>/api/v0.1/predictions```
- * A gRPC endpoint will be exposed at ```<ambassadorEndpoint>``` and you should send metadata in your request with key ```seldon``` and value ```<deploymentName>```.
-
-[Example Jupyter notebooks](https://github.com/SeldonIO/seldon-core#quick-start) are provided in Seldon's docs that show code that can be used as a basis to test the endpoints.
-
-### Next Steps with Seldon
-
-  * Seldon provides a set of generic building blocks so users can create their own components to place in their runtime inference graphs. Aside from models, there are Routers (e.g., A-B tests, Multi-Armed Bandits), Combiners (e.g., Ensemblers) and  Transformers (e.g., feature normalisation, outlier detection). To understand more [consult the Seldon docs](https://github.com/SeldonIO/seldon-core/blob/master/docs/reference/internal-api.md).
-  * To understand how to upgrade your Seldon manifest's from v1alpha1 to v1alpha2 follow [this guide](https://github.com/SeldonIO/seldon-core/blob/master/docs/v1alpha2_update.md).
-  * For an example end-to-end integration see the [kubeflow-seldon example](https://github.com/kubeflow/example-seldon).
-  * For more details and example on the above see the [Seldon documentation](https://github.com/SeldonIO/seldon-core).

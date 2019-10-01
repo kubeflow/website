@@ -153,4 +153,4 @@ type checking would still fail if some I/Os lack the type information and some I
 
 ## Next steps
 
-* See [type checking sample](https://github.com/kubeflow/pipelines/blob/master/samples/notebooks/DSL%20Static%20Type%20Checking.ipynb).
+* See [type checking sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/dsl_static_type_checking/dsl_static_type_checking.ipynb).

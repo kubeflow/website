@@ -32,7 +32,8 @@
 /docs/pipelines/install-sdk/                   /docs/pipelines/sdk/install-sdk/
 /docs/pipelines/lightweight-python-components/ /docs/pipelines/sdk/lightweight-python-components/
 /docs/pipelines/build-pipeline/                /docs/pipelines/tutorials/build-pipeline/
-/docs/pipelines/pipelines-tutorial/            /docs/pipelines/tutorials/pipelines-tutorial/
+/docs/pipelines/pipelines-tutorial/            /docs/gke/pipelines-tutorial/
+/docs/pipelines/tutorials/pipelines-tutorial/  /docs/gke/pipelines-tutorial/
 
 /docs/pipelines/metrics/                       /docs/pipelines/sdk/pipelines-metrics/
 /docs/pipelines/metrics/pipelines-metrics/     /docs/pipelines/sdk/pipelines-metrics/
@@ -41,7 +42,8 @@
 /docs/pipelines/pipelines-overview/            /docs/pipelines/overview/pipelines-overview/
 /docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/pipelines/sdk/gcp/enable-gpu-and-tpu/
 /docs/pipelines/preemptible/                   /docs/pipelines/sdk/gcp/preemptible/
-/docs/pipelines/reusable-components/           /docs/pipelines/sdk/reusable-components/
+/docs/pipelines/reusable-components/           /docs/examples/shared-resources/
+/docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
 
 # Moved the guide to monitoring GKE deployments.
 /docs/other-guides/monitoring/                 /docs/gke/monitoring/
@@ -75,3 +77,23 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pytorchserving                /docs/components/serving/pytorchserving
 /docs/components/tfserving_new                 /docs/components/serving/tfserving_new
 
+# Restructured the getting-started and other-guides sections.
+/docs/started/getting-started-k8s/             /docs/started/k8s/
+/docs/started/getting-started-minikf/          /docs/other-guides/virtual-dev/getting-started-minikf/
+/docs/started/getting-started-minikube/        /docs/other-guides/virtual-dev/getting-started-minikube/
+/docs/started/getting-started-multipass/       /docs/other-guides/virtual-dev/getting-started-multipass/
+/docs/started/getting-started-aws/             /docs/started/cloud/getting-started-aws/
+/docs/started/getting-started-azure/           /docs/started/cloud/getting-started-azure/
+/docs/started/getting-started-gke/             /docs/started/cloud/getting-started-gke/
+/docs/started/getting-started-icp/             /docs/started/cloud/getting-started-icp/
+
+/docs/other-guides/job-scheduling/             /docs/use-cases/job-scheduling/
+/docs/other-guides/upgrade/                    /docs/upgrading/upgrade/
+
+/docs/use-cases/kubeflow-on-multinode-cluster/ /docs/other-guides/kubeflow-on-multinode-cluster/
+
+# Remove Kubeflow installation on existing EKS cluster
+/docs/aws/deploy/existing-cluster/             /docs/aws/deploy/install-kubeflow/
+
+# Move the kustomize guide to the config section
+/docs/components/misc/kustomize/              /docs/other-guides/kustomize/

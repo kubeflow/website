@@ -5,14 +5,14 @@ weight = 30
 +++
 
 This page describes how to create a component for Kubeflow Pipelines and how
-to combine components into a pipeline. For an easier start, experiment with 
+to combine components into a pipeline. For an easier start, experiment with
 [the Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).
 
 ## Overview of pipelines and components
 
 A _pipeline_ is a description of a machine learning (ML) workflow, including all
 of the components of the workflow and how they work together. The pipeline
-includes the definition of the inputs (parameters) required to run the pipeline 
+includes the definition of the inputs (parameters) required to run the pipeline
 and the inputs and outputs of each component.
 
 A pipeline _component_ is an implementation of a pipeline task. A component
@@ -21,7 +21,7 @@ may produce one or more outputs. A component consists of an interface
 (inputs/outputs), the implementation (a Docker container image and command-line
 arguments) and metadata (name, description).
 
-For more information, see the conceptual guides to 
+For more information, see the conceptual guides to
 [pipelines](/docs/pipelines/concepts/pipeline/)
 and [components](/docs/pipelines/concepts/component/).
 
@@ -32,8 +32,8 @@ Set up your environment:
 * Install [Docker](https://www.docker.com/get-docker).
 * Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
 
-The examples on this page come from the 
-[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/tree/master/samples/xgboost-spark) 
+The examples on this page come from the
+[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/tree/master/samples/xgboost-spark)
 in the Kubeflow Pipelines sample repository.
 
 ## Create a container image for each component
@@ -41,11 +41,11 @@ in the Kubeflow Pipelines sample repository.
 This section assumes that you have already created a program to perform the
 task required in a particular step of your ML workflow. For example, if the
 task is to train an ML model, then you must have a program that does the
-training, such as the program that 
+training, such as the program that
 [trains an XGBoost model](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/train/src/train.py).
 
-Create a [Docker](https://docs.docker.com/get-started/) container image that 
-packages your program. See the 
+Create a [Docker](https://docs.docker.com/get-started/) container image that
+packages your program. See the
 [Docker file](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/train/Dockerfile)
 for the example XGBoost model training program mentioned above. You can also
 examine the generic
@@ -53,11 +53,11 @@ examine the generic
 script in the Kubeflow Pipelines repository of reusable components.
 
 Your component can create outputs that the downstream components can use as
-inputs. Each output must be a string and the container image must write each 
-output to a separate local text file. For example, if a training component needs 
-to output the path of the trained model, the component writes the path into a 
-local file, such as `/output.txt`. In the Python class that defines your 
-pipeline (see [below](#define-pipeline)) you can 
+inputs. Each output must be a string and the container image must write each
+output to a separate local text file. For example, if a training component needs
+to output the path of the trained model, the component writes the path into a
+local file, such as `/output.txt`. In the Python class that defines your
+pipeline (see [below](#define-pipeline)) you can
 specify how to map the content of local files to component outputs.
 
 ## Create a Python function to wrap your component
@@ -110,21 +110,21 @@ def dataproc_train_op(
 ```
 
 The function must return a dsl.ContainerOp from the
-[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py).
+[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost_training_cm/xgboost_training_cm.py).
 
 Note:
 
-* Each component must inherit from 
+* Each component must inherit from
   [`dsl.ContainerOp`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_container_op.py).
-* Values in the `arguments` list that's used by the `dsl.ContainerOp` constructor above must be either Python scalar types (such as `str` and ` int`) or [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py) types. Each `dsl.PipelineParam` represents a parameter whose value is usually only known at run time. The value is 
-  either provided by the user at pipeline run time or received as an output from an upstream component. 
+* Values in the `arguments` list that's used by the `dsl.ContainerOp` constructor above must be either Python scalar types (such as `str` and ` int`) or [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py) types. Each `dsl.PipelineParam` represents a parameter whose value is usually only known at run time. The value is
+  either provided by the user at pipeline run time or received as an output from an upstream component.
 * Although the value of each `dsl.PipelineParam` is only available at run time,
   you can still use the parameters inline in the `arguments` by using `%s`
-  variable substitution. At run time the argument contains the value of the 
-  parameter. For an example of this technique in operation, see the 
-  [taxi cab classification pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/tfx/taxi-cab-classification-pipeline.py). 
-* `file_outputs` is a mapping between labels and local file paths. In the above 
-  example, the content of `/output.txt` contains the string output of the 
+  variable substitution. At run time the argument contains the value of the
+  parameter. For an example of this technique in operation, see the
+  [taxi cab classification pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/tfx_cab_classification/tfx_cab_classification.py).
+* `file_outputs` is a mapping between labels and local file paths. In the above
+  example, the content of `/output.txt` contains the string output of the
   component. To reference the output in code:
 
     ```python
@@ -160,26 +160,26 @@ def xgb_train_pipeline(
 
 Note:
 
-* **@dsl.pipeline** is a required decoration including the `name` and 
+* **@dsl.pipeline** is a required decoration including the `name` and
   `description` properties.
-* Input arguments show up as pipeline parameters on the Kubeflow Pipelines UI. 
-  As a Python rule, positional arguments appear first, followed by keyword 
+* Input arguments show up as pipeline parameters on the Kubeflow Pipelines UI.
+  As a Python rule, positional arguments appear first, followed by keyword
   arguments.
-* Each function argument is of type 
-  [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py). 
-  The default values should all be of that type. The default values show up in 
+* Each function argument is of type
+  [`dsl.PipelineParam`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py).
+  The default values should all be of that type. The default values show up in
   the Kubeflow Pipelines UI but the user can override them.
 
 
 See the full code in the
-[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/xgboost-spark/xgboost-training-cm.py).
+[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost_training_cm/xgboost_training_cm.py).
 
 ## Compile the pipeline
 
-After defining the pipeline in Python as described above, you must compile the 
-pipeline to an intermediate representation before you can submit it to the 
+After defining the pipeline in Python as described above, you must compile the
+pipeline to an intermediate representation before you can submit it to the
 Kubeflow Pipelines service. The intermediate representation is a workflow 
-specification in the form of a YAML file compressed into a 
+specification in the form of a YAML file compressed into a
 `.tar.gz` file.
 
 Use the `dsl-compile` command to compile your pipeline:
@@ -197,14 +197,14 @@ guide to [getting started with the UI](/docs/pipelines/pipelines-quickstart).
 
 * Build a [reusable component](/docs/pipelines/sdk/component-development/) for
   sharing in multiple pipelines.
-* Learn more about the 
+* Learn more about the
   [Kubeflow Pipelines domain-specific language (DSL)](/docs/pipelines/sdk/dsl-overview/),
   a set of Python libraries that you can use to specify ML pipelines.
-* See how to [export metrics from your 
+* See how to [export metrics from your
   pipeline](/docs/pipelines/metrics/pipelines-metrics/).
 * Visualize the output of your component by
-  [adding metadata for an output 
+  [adding metadata for an output
   viewer](/docs/pipelines/metrics/output-viewer/).
-* For quick iteration, 
+* For quick iteration,
   [build lightweight components](/docs/pipelines/sdk/lightweight-python-components/)
   directly from Python functions.
