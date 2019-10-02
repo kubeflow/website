@@ -12,10 +12,24 @@ KFServing encapsulates the complexity of autoscaling, networking, health checkin
 
 <img src="../kfserving.png" alt="KFServing" class="mt-3 mb-3 border border-info rounded">
 
+## Examples
+* [Tensorflow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow).
+* [PyTorch](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pytorch).
+* [XGBoost](https://github.com/kubeflow/kfserving/tree/master/docs/samples/xgboost).
+* [Scikit-Learn](https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn).
+* [ONNX](https://github.com/kubeflow/kfserving/tree/master/docs/samples/onnx).
+* [Custom](https://github.com/kubeflow/kfserving/tree/master/docs/samples/custom).
+* [TensorRT](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorrt).
+* [GPU](https://github.com/kubeflow/kfserving/tree/master/docs/samples/accelerators).
+* [Autoscaling](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling).
+* [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines).
+* [Explainability](https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi).
+
+Please be on lookout, we are comstantly adding [more examples about available features](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
+
 ## Learn More
 * Join our [Working Group](https://groups.google.com/forum/#!forum/kfserving) for meeting invites and discussion.
 * [Read the Docs](https://github.com/kubeflow/kfserving/tree/master/docs).
-* [Examples](https://github.com/kubeflow/kfserving/tree/master/docs/samples).
 * [API Docs](https://github.com/kubeflow/kfserving/tree/master/docs/apis/README.md)
 * [Roadmap](https://github.com/kubeflow/kfserving/tree/master/ROADMAP.md).
 * [KFServing 101 Slides](https://drive.google.com/file/d/16oqz6dhY5BR0u74pi9mDThU97Np__AFb/view).
