@@ -29,8 +29,8 @@ Please be on the lookout, we are constantly adding [more examples](https://githu
 
 ## Learn More
 * Join our [Working Group](https://groups.google.com/forum/#!forum/kfserving) for meeting invites and discussion.
-* [Read the Docs](https://github.com/kubeflow/kfserving/tree/master/docs).
-* [API Docs](https://github.com/kubeflow/kfserving/tree/master/docs/apis/README.md)
+* [Read the docs](https://github.com/kubeflow/kfserving/tree/master/docs).
+* [API docs](https://github.com/kubeflow/kfserving/tree/master/docs/apis/README.md)
 * [Roadmap](https://github.com/kubeflow/kfserving/tree/master/ROADMAP.md).
 * [KFServing 101 Slides](https://drive.google.com/file/d/16oqz6dhY5BR0u74pi9mDThU97Np__AFb/view).
 
