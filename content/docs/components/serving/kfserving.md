@@ -6,11 +6,11 @@ weight = 2
 
 KFServing can be installed with Kubeflow v0.7, and KFServing kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
 
-KFServing provides a Kubernetes [Custom Resource Definition](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) for serving ML Models on arbitrary frameworks. It aims to solve 80% of model serving use cases by providing performant, high abstraction interfaces for common ML frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX. 
+KFServing provides a Kubernetes [Custom Resource Definition](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) for serving ML Models on arbitrary frameworks. It aims to solve production model serving use cases by providing performant, high abstraction interfaces for common ML frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX. 
 
 KFServing encapsulates the complexity of autoscaling, networking, health checking, and server configuration to bring cutting edge serving features like GPU Autoscaling, Scale to Zero, and Canary Rollouts to your ML deployments. It enables a simple, pluggable, and complete story for production ML Inference Server by providing prediction, pre-processing, post-processing and explainability out of the box.
 
-<img src="../kfserving.png" alt="KFServing" class="mt-3 mb-3 border border-info rounded">
+<img src="../kfserving.png" alt="KFServing">
 
 ## Examples
 * [Tensorflow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow)
@@ -39,7 +39,7 @@ KNative Serving (v0.8.0 +) and Istio (v1.1.7+) should be available on Kubernetes
 
 If you want to install Knative, you may find this [installation instruction](https://github.com/kubeflow/kfserving/blob/master/docs/DEVELOPER_GUIDE.md#install-knative-on-a-kubernetes-cluster) useful.
 
-## KFServing independent install
+## KFServing installation using kubectl
 ```
 TAG=v0.1.0
 kubectl apply -f ./install/$TAG/kfserving.yaml
@@ -50,7 +50,7 @@ kubectl apply -f ./install/$TAG/kfserving.yaml
 ```
 pip install kfserving
 ```
-* Follow the [example here](docs/samples/client/kfserving_sdk_sample.ipynb) to use the KFServing SDK to create, patch, and delete a KFService instance.
+* Follow the [example here](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb) to use the KFServing SDK to create, patch, and delete a KFService instance.
 
 ## Contribute
 * [Developer Guide](https://github.com/kubeflow/kfserving/tree/master/docs/DEVELOPER_GUIDE.md).
