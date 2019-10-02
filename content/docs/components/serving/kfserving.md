@@ -30,9 +30,9 @@ Please be on the lookout, we are constantly adding [more examples](https://githu
 ## Learn More
 * Join our [Working Group](https://groups.google.com/forum/#!forum/kfserving) for meeting invites and discussion.
 * [Read the docs](https://github.com/kubeflow/kfserving/tree/master/docs).
-* [API docs](https://github.com/kubeflow/kfserving/tree/master/docs/apis/README.md)
+* [API docs](https://github.com/kubeflow/kfserving/tree/master/docs/apis/README.md).
 * [Roadmap](https://github.com/kubeflow/kfserving/tree/master/ROADMAP.md).
-* [KFServing 101 Slides](https://drive.google.com/file/d/16oqz6dhY5BR0u74pi9mDThU97Np__AFb/view).
+* [KFServing 101 slides](https://drive.google.com/file/d/16oqz6dhY5BR0u74pi9mDThU97Np__AFb/view).
 
 ## Prerequisits
 KNative Serving (v0.8.0 +) and Istio (v1.1.7+) should be available on Kubernetes Cluster.
@@ -53,5 +53,5 @@ pip install kfserving
 * Follow the [example here](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb) to use the KFServing SDK to create, patch, and delete a KFService instance.
 
 ## Contribute
-* [Developer Guide](https://github.com/kubeflow/kfserving/tree/master/docs/DEVELOPER_GUIDE.md).
+* [Developer guide](https://github.com/kubeflow/kfserving/tree/master/docs/DEVELOPER_GUIDE.md).
 
