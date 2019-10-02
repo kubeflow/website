@@ -11664,7 +11664,7 @@ readers do not read off random characters that represent icons */
     border: 0; }
 
 .td-navbar-cover {
-  background: #f4bc42; }
+  background: #fff; }
   @media (min-width: 768px) {
     .td-navbar-cover {
       background: transparent !important; }
@@ -11676,7 +11676,7 @@ readers do not read off random characters that represent icons */
     text-shadow: none; }
 
 .navbar-bg-onscroll {
-  background: #f4bc42 !important;
+  background: #fff !important;
   opacity: inherit; }
 
 .td-navbar {

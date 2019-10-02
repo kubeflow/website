@@ -3,7 +3,7 @@
 //
 
 .td-navbar-cover {
-    background: $primary;
+    background: $secondary;
 
     @include media-breakpoint-up(md) {
         background: transparent !important;
@@ -23,7 +23,7 @@
 }
 
 .navbar-bg-onscroll {
-    background: $primary !important;
+    background: $secondary !important;
     opacity: inherit;
 }
 
