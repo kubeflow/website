@@ -105,6 +105,10 @@ The above function works for both methods of generating the `ContainerOp`:
     [node taint](https://cloud.google.com/kubernetes-engine/docs/how-to/node-taints)
     when creating the node pool, pass the same node toleration to the
     `use_preemptible_nodepool()` function.
++   `use_preemptible_nodepool()` also accepts a parameter `hard_constraint`. When the `hard_constraint` is
+    `True`, the system will strictly schedule the task in preemptible VMs. When the `hard_constraint` is 
+    `False`, the system will try to schedule the task in preemptible VMs. If it cannot find the preemptible VMs,
+    or the preemptible VMs are busy, the system will schedule the task in normal VMs.
 
 For example:
 
@@ -227,6 +231,10 @@ The above function works for both methods of generating the `ContainerOp`:
     [node taint](https://cloud.google.com/kubernetes-engine/docs/how-to/node-taints)
     when creating the node pool, pass the same node toleration to the
     `use_preemptible_nodepool()` function.
++   `use_preemptible_nodepool()` also accepts a parameter `hard_constraint`. When the `hard_constraint` is
+    `True`, the system will strictly schedule the task in preemptible VMs. When the `hard_constraint` is 
+    `False`, the system will try to schedule the task in preemptible VMs. If it cannot find the preemptible VMs,
+    or the preemptible VMs are busy, the system will schedule the task in normal VMs.
 
 For example:
 
