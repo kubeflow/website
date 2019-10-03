@@ -1,3 +1,4 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
 {{ $col_id := .Get "color" | default .Ordinal }}
 {{ $height := .Get "height" | default "auto"  }}
 {{ $type   := .Get "type" | default "" }} 
@@ -5,7 +6,7 @@
 <section class="row td-box td-box--{{ $col_id }} td-box--gradient td-box--height-{{ $height }}">
 	<div class="col">
 		<div class="row {{ $type }}">
-			{{ .Inner }}
+			{{ .Inner | markdownify}}
 		</div>
 	</div>
 </section>
