@@ -71,7 +71,7 @@ specification.
 ### Samples
 
 For better understanding, please refer to the following samples:
-[1](https://github.com/kubeflow/pipelines/blob/master/samples/core/resource_ops/resourceop_basic.py)
+[1](https://github.com/kubeflow/pipelines/blob/master/samples/core/resource_ops/resource_ops.py)
 
 ---
 
@@ -256,7 +256,7 @@ The user may otherwise use the `step.outputs["name"]` as `data_source`.
 ### Samples
 
 For better understanding, please refer to the following samples:
-[1](https://github.com/kubeflow/pipelines/blob/master/samples/core/volume_snapshot_ops/volume_snapshot_op.py),
+[1](https://github.com/kubeflow/pipelines/blob/master/samples/core/volume_snapshot_ops/volume_snapshot_ops.py),
 [2](https://github.com/kubeflow/pipelines/blob/master/samples/contrib/volume_snapshot_ops/volume_snapshotop_rokurl.py)
 
 ## Next steps

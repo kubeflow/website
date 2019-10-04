@@ -32,8 +32,8 @@ Set up your environment:
 * Install [Docker](https://www.docker.com/get-docker).
 * Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
 
-The examples on this page come from the 
-[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/tree/master/samples/xgboost-spark) 
+The examples on this page come from the
+[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm)
 in the Kubeflow Pipelines sample repository.
 
 ## Create a container image for each component

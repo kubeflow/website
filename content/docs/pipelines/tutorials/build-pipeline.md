@@ -68,7 +68,7 @@ guide to [getting started with the UI](/docs/pipelines/pipelines-quickstart).
 ## Building a pipeline in a Jupyter notebook
 
 You can choose to build your pipeline in a Jupyter notebook. The
-[sample notebooks](https://github.com/kubeflow/pipelines/tree/master/samples/notebooks)
+[sample notebooks](https://github.com/kubeflow/pipelines/tree/master/samples/core)
 walk you through the process.
 
 It's easiest to use the Jupyter services that are installed in the same cluster as 
@@ -92,10 +92,10 @@ Follow these steps to start a notebook:
 1. Follow the [Kubeflow notebooks setup guide](/docs/notebooks/setup/) to
   create a Jupyter notebook server and open the Jupyter UI.
 
-1. Download the sample notebooks from 
-  https://github.com/kubeflow/pipelines/tree/master/samples/notebooks. 
-  
-1. Upload these notebooks from the Jupyter UI: In Jupyter, go to the tree view 
+1. Download the sample notebooks from
+  https://github.com/kubeflow/pipelines/tree/master/samples/core.
+
+1. Upload these notebooks from the Jupyter UI: In Jupyter, go to the tree view
   and find the **upload** button in the top right-hand area of the screen.
 
 1. Open one of the uploaded notebooks.
@@ -107,7 +107,7 @@ Follow these steps to start a notebook:
 
 The following notebooks are available:
 
-* [KubeFlow pipeline using TFX OSS components](https://github.com/kubeflow/pipelines/blob/master/samples/core/kubeflow_pipeline_using_TFX_OSS_components/KubeFlow%20Pipeline%20Using%20TFX%20OSS%20Components.ipynb): 
+* [KubeFlow pipeline using TFX OSS components](https://github.com/kubeflow/pipelines/blob/master/samples/core/tfx-oss/TFX%20Example.ipynb):
   This notebook demonstrates how to build a machine learning pipeline based on
   [TensorFlow Extended (TFX)](https://www.tensorflow.org/tfx/) components. 
   The pipeline includes a TFDV step to infer the schema, a TFT preprocessor, a 

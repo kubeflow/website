@@ -67,8 +67,8 @@ ML - TFX - Taxi Tip Prediction Model Trainer** from the Kubeflow Pipelines UI.
 For help getting started with the UI, follow the 
 [Kubeflow Pipelines quickstart](/docs/pipelines/pipelines-quickstart/).
 
-The sample code is available in the [Kubeflow Pipelines samples 
-repo](https://github.com/kubeflow/pipelines/tree/master/samples/tfx). The
+The sample code is available in the [Kubeflow Pipelines samples
+repo](https://github.com/kubeflow/pipelines/tree/master/samples/core/tfx-oss). The
 pipeline uses a number of prebuilt components, including:
 
 * The [Confusion Matrix 
