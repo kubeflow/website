@@ -121,8 +121,7 @@ Note:
 * Although the value of each `dsl.PipelineParam` is only available at run time,
   you can still use the parameters inline in the `arguments` by using `%s`
   variable substitution. At run time the argument contains the value of the 
-  parameter. For an example of this technique in operation, see the 
-  [taxi cab classification pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/tfx_cab_classification/tfx_cab_classification.py). 
+  parameter. 
 * `file_outputs` is a mapping between labels and local file paths. In the above 
   example, the content of `/output.txt` contains the string output of the 
   component. To reference the output in code:
