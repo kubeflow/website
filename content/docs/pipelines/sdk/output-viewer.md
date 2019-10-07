@@ -437,7 +437,7 @@ You can run the sample by selecting
 Kubeflow Pipelines UI. For help getting started with the UI, follow the 
 [Kubeflow Pipelines quickstart](/docs/pipelines/pipelines-quickstart/).
 
-# Will replace the tfx cab with tfx oss when it is ready.
+<!--- TODO: Will replace the tfx cab with tfx oss when it is ready.-->
 The pipeline uses a number of prebuilt, reusable components, including:
 
 * The [Confusion Matrix 
