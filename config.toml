@@ -106,6 +106,7 @@ privacy_policy = "https://policies.google.com/privacy"
 gcs_engine_id = "007239566369470735695:624rglujm-w"
 
 version = "v0.6"
+version_menu = "v0.6"
 githubbranch = "v0.6-branch"
 
 # Add new release versions here
