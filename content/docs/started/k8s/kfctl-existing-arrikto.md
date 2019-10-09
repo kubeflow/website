@@ -166,8 +166,9 @@ Follow these steps to deploy Kubeflow:
 
 ```bash
 # Add kfctl to PATH, to make the kfctl binary easier to use.
-export PATH=$PATH:"<path to kfctl>"
-export KFAPP="<your choice of application directory name>"
+# Use only alphanumeric characters or - in the directory name.
+export PATH=$PATH:"<path-to-kfctl>"
+export KFAPP="<your-choice-of-application-directory-name>"
 export CONFIG="{{% config-uri-existing-arrikto %}}"
 
 # Specify credentials for the default user.
