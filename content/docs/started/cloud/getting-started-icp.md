@@ -218,7 +218,8 @@ kubectl -n kube-system scale deploy logging-elk-master --replicas=0
 kubectl -n kube-system scale deploy secret-watcher --replicas=0
 ```
 
- 
+### Deployed Service's EXTERNAL-IP field stuck in PENDING state
+If you have deployed a service of `LoadBalancer` type, but the EXTERNAL-IP field stucks in `<pending>` state, this is because IBM Cloud Private doesn't provide a built-in support for the `LoadBalancer` service. To enable the `LoadBalancer` service on IBM Cloud Private, please see options desribed [here](https://medium.com/ibm-cloud/working-with-loadbalancer-services-on-ibm-cloud-private-26b7f0d22b44).
 
 
 
