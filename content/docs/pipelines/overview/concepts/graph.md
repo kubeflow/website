@@ -13,17 +13,17 @@ corresponds to a step within the pipeline and is labeled accordingly.
 
 The screenshot below shows an example of a pipeline graph:
 
-<img src="/docs/images/pipelines-xgboost-graph.png" 
+<img src="/docs/images/pipelines/pipelines-xgboost-graph.png"
   alt="XGBoost results on the pipelines UI"
   class="mt-3 mb-3 border border-info rounded">
 
 At the top right of each node is an icon indicating its status: running,
-succeeded, failed, or skipped. (A node can be skipped when its 
+succeeded, failed, or skipped. (A node can be skipped when its
 parent contains a conditional clause.)
 
 ## Next steps
 
 * Read an [overview of Kubeflow Pipelines](/docs/pipelines/pipelines-overview/).
-* Follow the [pipelines quickstart guide](/docs/pipelines/pipelines-quickstart/) 
-  to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
+* Follow the [pipelines quickstart guide](/docs/pipelines/pipelines-quickstart/)
+  to deploy Kubeflow and run a sample pipeline directly from the Kubeflow
   Pipelines UI.

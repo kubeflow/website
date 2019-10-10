@@ -4,7 +4,7 @@ description = "Running Kubeflow using the GitOps methodology with Argo CD"
 weight = 30
 +++
 
-This guide describes how to setup Kubeflow using a GitOps methodology by 
+This guide describes how to setup Kubeflow using a GitOps methodology by
 using Argo-CD.
 
 ## What is GitOps?
@@ -120,7 +120,7 @@ argocd app sync kubeflow
 argocd app get kubeflow
 ```
 or from the UI:
-<img src="/docs/images/argo-cd-deployment-in-progess.png" 
+<img src="/docs/images/misc/argo-cd-deployment-in-progess.png"
   alt="Argo CD deployment in progress"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -136,7 +136,7 @@ When you commit a change that modifies the ksonnet application directory of your
 argocd app sync kubeflow --resource GROUP:KIND:NAME
 ```
 or from the UI:
-<img src="/docs/images/argo-cd-partial-sync-ui.png" 
+<img src="/docs/images/misc/argo-cd-partial-sync-ui.png"
   alt="Argo CD partial sync"
   class="mt-3 mb-3 border border-info rounded">
 

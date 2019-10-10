@@ -44,17 +44,17 @@ The MNIST dataset contains a large number of images of hand-written digits in
 the range 0 to 9, as well as the labels identifying the digit in each image.
 
 After training, the model can classify incoming images into 10 categories
-(0 to 9) based on what it's learned about handwritten images. In other words, 
-you send an image to the model, and the model does its best to identify the 
+(0 to 9) based on what it's learned about handwritten images. In other words,
+you send an image to the model, and the model does its best to identify the
 digit shown in the image.
-<img src="/docs/images/gcp-e2e-ui-prediction.png" 
+<img src="/docs/images/gke/gcp-e2e-ui-prediction.png"
     alt="Prediction UI"
     class="mt-3 mb-3 p-3 border border-info rounded">
 
 In the above screenshot, the image shows a hand-written **7**. This image was
-the input to the model. The table below the image shows a bar graph for each 
-classification label from 0 to 9, as output by the model. Each bar 
-represents the probability that the image matches the respective label. 
+the input to the model. The table below the image shows a bar graph for each
+classification label from 0 to 9, as output by the model. Each bar
+represents the probability that the image matches the respective label.
 Judging by this screenshot, the model seems pretty confident that this image
 is a 7.
 
@@ -77,7 +77,7 @@ Here's an overview of what you accomplish by following this guide:
 
   * Saving the trained model to [Cloud Storage][cloud-storage].
   * Using [TensorFlow Serving][tf-serving] to serve the model.
-  * Running a simple web app to send a prediction request to the model and 
+  * Running a simple web app to send a prediction request to the model and
     display the result.
 
 Let's get started!
@@ -90,7 +90,7 @@ To simplify this tutorial, you can use a set of prepared files that include
 a TensorFlow application for training your model, a web UI to send prediction
 requests and display the results, and the [Docker][docker] files to build
 runnable containers for the training and prediction applications.
-The project files are in the [Kubeflow examples 
+The project files are in the [Kubeflow examples
 repository](https://github.com/kubeflow/examples/tree/master/mnist)
 on GitHub.
 
@@ -103,7 +103,7 @@ cd examples/mnist
 WORKING_DIR=$(pwd)
 ```
 
-As an alternative to cloning, you can download the 
+As an alternative to cloning, you can download the
 [Kubeflow examples repository zip file](https://github.com/kubeflow/examples/archive/master.zip).
 
 ### Set up your GCP account and SDK
@@ -140,7 +140,7 @@ gcloud components install kubectl
 
 ### Install kustomize
 
-Kubeflow makes use of [kustomize](https://github.com/kubernetes-sigs/kustomize) 
+Kubeflow makes use of [kustomize](https://github.com/kubernetes-sigs/kustomize)
 to help manage deployments.
 
 {{% alert title="Make sure you have version 2.0.3 of kustomize" color="warning" %}}
@@ -148,16 +148,16 @@ This tutorial does not work with later versions of kustomize, due to bug
 <a href="https://github.com/kubernetes-sigs/kustomize/issues/1295">/kustomize/issues/1295</a>.
 {{% /alert %}}
 
-Install kustomize 
-[v2.0.3](https://github.com/kubernetes-sigs/kustomize/releases/tag/v2.0.3). 
-See the [kustomize installation 
+Install kustomize
+[v2.0.3](https://github.com/kubernetes-sigs/kustomize/releases/tag/v2.0.3).
+See the [kustomize installation
 guide](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/INSTALL.md).
 
 ### Set up some handy environment variables
 
 Set up the following environment variables for use throughout the tutorial:
 
-1. Set your GCP project ID. In the command below, replace `<YOUR-PROJECT-ID>` 
+1. Set your GCP project ID. In the command below, replace `<YOUR-PROJECT-ID>`
   with your [project ID][gcp-project-id]:
 
     ```
@@ -179,8 +179,8 @@ Set up the following environment variables for use throughout the tutorial:
     gcloud config set compute/zone ${ZONE}
     ```
 
-1. If you want a custom name for your Kubeflow deployment, set the 
-   `DEPLOYMENT_NAME` environment variable. If you don't set this 
+1. If you want a custom name for your Kubeflow deployment, set the
+   `DEPLOYMENT_NAME` environment variable. If you don't set this
    environment variable, your deployment gets the default name of `kubeflow`:
 
     ```
@@ -189,8 +189,8 @@ Set up the following environment variables for use throughout the tutorial:
 
 ## Deploy Kubeflow
 
-Follow the instructions in the 
-guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
+Follow the instructions in the
+guide to [deploying Kubeflow on GCP](/docs/gke/deploy/),
 taking note of the following:
 
 * Make sure you deploy Kubeflow **{{% kf-latest-version %}}** or later.
@@ -206,7 +206,7 @@ When the cluster is ready, you can do the following:
         ${DEPLOYMENT_NAME} --zone ${ZONE} --project ${PROJECT}
     ```
 
-1. Switch to the `kubeflow` namespace to see the resources on the Kubeflow 
+1. Switch to the `kubeflow` namespace to see the resources on the Kubeflow
    cluster:
 
     ```
@@ -219,7 +219,7 @@ When the cluster is ready, you can do the following:
     kubectl get all
     ```
 
-1. Access the Kubeflow UI, which becomes available at the following URI after 
+1. Access the Kubeflow UI, which becomes available at the following URI after
    several minutes:
 
     ```
@@ -227,14 +227,14 @@ When the cluster is ready, you can do the following:
     ```
 
 The following screenshot shows the Kubeflow UI:
-<img src="/docs/images/central-ui.png" 
+<img src="/docs/images/misc/central-ui.png"
     alt="Prediction UI"
     class="mt-3 mb-3 p-3 border border-info rounded">
 
 Notes:
 
-* When the deployment has finished, you should have a running cluster in the 
-  cloud ready to run your code. You can interact with the cluster either by 
+* When the deployment has finished, you should have a running cluster in the
+  cloud ready to run your code. You can interact with the cluster either by
   using [`kubectl`][kubectl] or by going to the
   [GKE page on the GCP Console][gcp-console-kubernetes-engine].
 
@@ -276,12 +276,12 @@ gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
 The sample you downloaded contains all the code you need. If you like, you
 can experiment with and test the code in a Jupyter notebook.
 
-The Kubeflow deployment includes services for spawning and managing 
-[Jupyter notebooks][jupyter-notebook]. 
+The Kubeflow deployment includes services for spawning and managing
+[Jupyter notebooks][jupyter-notebook].
 
 1. Follow the [Kubeflow notebooks setup guide](/docs/notebooks/setup/) to
   create a Jupyter notebook server and open the Jupyter UI.
-  Accept the default settings when configuring your notebook server. The 
+  Accept the default settings when configuring your notebook server. The
   default configuration gives you a standard CPU image with a recent version of TensorFlow.
 
 1. Create a new notebook by clicking **New > Python 2** on the Jupyter
@@ -291,7 +291,7 @@ The Kubeflow deployment includes services for spawning and managing
      [Jupyter documentation][jupyter-nbviewer].
 
 1. Copy the code from your sample model at
-   `${WORKING_DIR}/model.py` and paste the code into a cell in 
+   `${WORKING_DIR}/model.py` and paste the code into a cell in
    your Jupyter notebook.
 
 1. Run the cell in the notebook. You should see output directly beneath the
@@ -372,14 +372,14 @@ The Kubeflow deployment includes services for spawning and managing
     model.
 
 If you want to play more with the code, try adjusting the number of training
-steps by setting `max_steps` to a different value, such as `2000`, or 
+steps by setting `max_steps` to a different value, such as `2000`, or
 experiment with adjusting other parts of the code.
 
 ## Prepare to run your training application on GKE
 
-When you downloaded the project files into your `${WORKING_DIR}` directory at 
-the start of the tutorial, you downloaded the TensorFlow code for your 
-training application. The code is in a Python file, `model.py`, in your 
+When you downloaded the project files into your `${WORKING_DIR}` directory at
+the start of the tutorial, you downloaded the TensorFlow code for your
+training application. The code is in a Python file, `model.py`, in your
 `${WORKING_DIR}` directory.
 
 The `model.py` program does the following:
@@ -393,7 +393,7 @@ The `model.py` program does the following:
 
 * Defines TensorFlow operations to train and evaluate the model.
 * Runs a number of training cycles.
-* Saves the trained model to a specified location, such as your Cloud Storage 
+* Saves the trained model to a specified location, such as your Cloud Storage
   bucket.
 
 ### Build the container for your training application
@@ -491,7 +491,7 @@ Next, upload the container image to Container Registry so that you can run it on
     ```
     docker push ${TRAIN_IMG_PATH}
     ```
-    The push may take a few minutes to complete. You should see Docker progress 
+    The push may take a few minutes to complete. You should see Docker progress
     updates in your command window.
 
 1. Wait until the process is complete, then you should see your new container
@@ -541,10 +541,10 @@ Next, upload the container image to Container Registry so that you can run it on
 
 ### Check the permissions for your training component
 
-You need to ensure that your Python code has the required permissions 
+You need to ensure that your Python code has the required permissions
 to read/write to your Cloud Storage bucket. Kubeflow solves this by creating a
-`user` 
-[service account](https://cloud.google.com/iam/docs/understanding-service-accounts) 
+`user`
+[service account](https://cloud.google.com/iam/docs/understanding-service-accounts)
 within your project as a part of the deployment. You can use the following
 command to list the service accounts for your Kubeflow deployment:
 
@@ -553,16 +553,16 @@ gcloud iam service-accounts list | grep ${DEPLOYMENT_NAME}
 ```
 
 Kubeflow granted the `user` service account the necessary permissions to read
-and write to your storage bucket. Kubeflow also added a 
-[Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/) 
-named `user-gcp-sa` to your cluster, containing the credentials needed to 
+and write to your storage bucket. Kubeflow also added a
+[Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/)
+named `user-gcp-sa` to your cluster, containing the credentials needed to
 authenticate as this service account within the cluster:
 
 ```
 kubectl describe secret user-gcp-sa
 ```
 
-To access your storage bucket from inside the `train` container, you must set the [GOOGLE_APPLICATION_CREDENTIALS](https://cloud.google.com/docs/authentication/getting-started) environment variable to point to the JSON file contained in the secret. 
+To access your storage bucket from inside the `train` container, you must set the [GOOGLE_APPLICATION_CREDENTIALS](https://cloud.google.com/docs/authentication/getting-started) environment variable to point to the JSON file contained in the secret.
 Set the variable by passing the following parameters:
 
 ```
@@ -583,11 +583,11 @@ Apply the container to the cluster:
 kustomize build . |kubectl apply -f -
 ```
 
-When the command finishes running, there should be a new workload on the 
+When the command finishes running, there should be a new workload on the
 cluster, with the name `mnist-train-dist-chief-0`. If you set the option to run
-a distributed workload, the `worker` workloads show up on the cluster too. 
-You can see the workloads on the [GKE Workloads page][gcp-console-workloads] 
-on the GCP console. To see the logs, click the **mnist-train-dist-chief-0** 
+a distributed workload, the `worker` workloads show up on the cluster too.
+You can see the workloads on the [GKE Workloads page][gcp-console-workloads]
+on the GCP console. To see the logs, click the **mnist-train-dist-chief-0**
 workload, then click **Container logs**.
 
 ### View your trained model on Cloud Storage
@@ -624,10 +624,10 @@ Now you can put your trained model on a server and send it prediction requests.
 1. Set your model path:
 
     ```
-    kustomize edit add configmap mnist-map-serving   --from-literal=modelBasePath=${EXPORT_DIR} 
+    kustomize edit add configmap mnist-map-serving   --from-literal=modelBasePath=${EXPORT_DIR}
     ```
 
-1. Deploy the model, and run a service to make the deployment accessible to 
+1. Deploy the model, and run a service to make the deployment accessible to
   other pods in the cluster:
 
     ```
@@ -646,9 +646,9 @@ Now you can put your trained model on a server and send it prediction requests.
     ```
     kubectl describe service mnist-gcs-dist
     ```
-    You can also see the **mnist-gcs-dist** service on the 
+    You can also see the **mnist-gcs-dist** service on the
     [GKE Services page][gcp-console-services] on the GCP Console. Click the
-    service name to see the service details. You can see that it listens for 
+    service name to see the service details. You can see that it listens for
     connections within the cluster on port 9000.
 
 ## Send online prediction requests to your model
@@ -662,8 +662,8 @@ When you downloaded the project files at the start of the tutorial, you
 downloaded the code for a simple web UI. The code is stored in the
 `${WORKING_DIR}/web-ui` directory.
 
-The web UI uses a [Flask][flask] server to host the HTML, CSS, and JavaScript 
-files for the web page. The Python program, `mnist_client.py`, contains a 
+The web UI uses a [Flask][flask] server to host the HTML, CSS, and JavaScript
+files for the web page. The Python program, `mnist_client.py`, contains a
 function that interacts directly with the TensorFlow model server.
 
 The `${WORKING_DIR}/web-ui` directory also contains a Dockerfile to build
@@ -705,7 +705,7 @@ Follow these steps to build an image from your code:
     docker push ${UI_IMG_PATH}
     ```
 
-    The push may take a few minutes to complete. You should see Docker progress 
+    The push may take a few minutes to complete. You should see Docker progress
     updates in your command window.
 
 1. Wait until the process is complete, then you should see your new container
@@ -744,18 +744,18 @@ The example comes with a simple web front end that can be used with your model.
     that case, you do not need to edit the `deployment.yaml` file.)
 
 3. Deploy the web front end to your cluster:
-    
+
     ```
     kustomize build . |kubectl apply -f -
     ```
 
-    Now there should be a new web UI running in the cluster. You can see the 
-    **web-ui** entry on the [GKE Workloads page][gcp-console-workloads] and on 
+    Now there should be a new web UI running in the cluster. You can see the
+    **web-ui** entry on the [GKE Workloads page][gcp-console-workloads] and on
     the [Services page][gcp-console-services].
 
 ### Access the web UI in your browser
 
-Follow these steps to access the web UI in your web browser. It may take a few 
+Follow these steps to access the web UI in your web browser. It may take a few
 minutes for the IP address to become available:
 
 1. Find the IP address assigned to the service:
@@ -768,40 +768,40 @@ minutes for the IP address to become available:
    browser's address bar. The web UI should appear.
 
 1. The web UI offers three fields to connect to the prediction server:
-    <img src="/docs/images/gcp-e2e-ui-connect.png" 
+    <img src="/docs/images/gke/gcp-e2e-ui-connect.png"
         alt="Connection UI"
         class="mt-3 mb-3 border border-info rounded">
 
-1. By default, the fields on the above web page are pre-filled with the details 
-   of the TensorFlow server that's running in the cluster:  a name, an address, 
+1. By default, the fields on the above web page are pre-filled with the details
+   of the TensorFlow server that's running in the cluster:  a name, an address,
    and a port. You can change them if you used different values:
 
-  * **Model Name:** `mnist` - The name that you gave to your serving 
+  * **Model Name:** `mnist` - The name that you gave to your serving
     component.
 
-  * **Server Address:** `mnist-service` - You can enter the server address as a 
+  * **Server Address:** `mnist-service` - You can enter the server address as a
     domain name or an IP address. Note that this is an internal IP address for
     the `mnist-service` service within your cluster, not a public address.
     Kubernetes provides an internal DNS service, so you can write the name of
-    the service in the address field. Kubernetes routes all requests to the 
+    the service in the address field. Kubernetes routes all requests to the
     required IP address automatically.
 
   * **Port:** `9000` - The server listens on port 9000 by default.
 
 1. Click **Connect**. The system finds the server in your cluster and displays
-   the classification results. 
+   the classification results.
 
 ## The final product
 
-Below the connect screen, you should see a prediction UI for your MNIST 
+Below the connect screen, you should see a prediction UI for your MNIST
 model.
-<img src="/docs/images/gcp-e2e-ui-prediction.png" 
+<img src="/docs/images/gke/gcp-e2e-ui-prediction.png"
     alt="Prediction UI"
     class="mt-3 mb-3 p-3 border border-info rounded">
 
 Each  time you refresh the page, it loads a random image from the MNIST test
 dataset and performs a prediction. In the above screenshot, the image shows a
-hand-written **7**. The table below the image shows a bar graph for each 
+hand-written **7**. The table below the image shows a bar graph for each
 classification label from 0 to 9. Each bar represents
 the probability that the image matches the respective label.
 
@@ -831,7 +831,7 @@ gcloud container images list-tags gcr.io/${PROJECT}/${DEPLOYMENT_NAME}-web-ui
 gcloud container images delete gcr.io/$PROJECT/${DEPLOYMENT_NAME}-train:$DIGEST_ID
 gcloud container images delete gcr.io/$PROJECT/${DEPLOYMENT_NAME}-web-ui:$DIGEST_ID
 ```
-As an alternative to the command line, you can delete the various resources 
+As an alternative to the command line, you can delete the various resources
 using the [GCP Console][gcp-console].
 
 [mnist-data]: http://yann.lecun.com/exdb/mnist/index.html

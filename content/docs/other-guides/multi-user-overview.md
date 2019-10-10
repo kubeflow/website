@@ -34,13 +34,13 @@ A user can select their active profile from the top bar on the Kubeflow central
 dashboard.  Note that the user can only view the profiles in the dropdown list
 that they have view or modify access to.
 
-<img src="/docs/images/select-profile.png" 
+<img src="/docs/images/misc/select-profile.png"
   alt="Select active profile "
   class="mt-3 mb-3 border border-info rounded">
 
 This guide illustrates the user isolation functionality using the Jupyter
 notebooks service which is the first service in the system to have full
-integration with the multi-user isolation functionality.  
+integration with the multi-user isolation functionality.
 
 Once an active profile has been selected by the user, the Notebooks Servers UI
 will display only the active notebook servers in the currently selected
@@ -52,14 +52,14 @@ view and modify the existing Jupyter notebooks available in the server.
 For example, the following image shows the list of Notebook servers available
 in the user's primary profile:
 
-<img src="/docs/images/notebooks-in-profile.png" 
+<img src="/docs/images/misc/notebooks-in-profile.png"
   alt="List of notebooks in active profile "
   class="mt-3 mb-3 border border-info rounded">
 
 And when an unauthorized user accesses the Notebooks in this profile, they are
 presented with an error.
 
-<img src="/docs/images/notebook-access-error.png" 
+<img src="/docs/images/misc/notebook-access-error.png"
   alt="Error listing notebooks in inacessible profile"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -217,13 +217,13 @@ Kubeflow v0.6.2 onwards allows sharing of profiles with other users in the
 system.  An owner of a profile can share access to their profile using the
 *Manage Contributors* tab available through the dashboard.
 
-<img src="/docs/images/multi-user-contributors.png" 
+<img src="/docs/images/misc/multi-user-contributors.png"
   alt="Manage Contributors in Profiles"
   class="mt-3 mb-3 border border-info rounded">
 
 Here is an example of the Manage Contributors tab view:
 
-<img src="/docs/images/manage-contributors.png" 
+<img src="/docs/images/misc/manage-contributors.png"
   alt="Manage Contributors in Profiles"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -232,18 +232,18 @@ Notice that in the above view the account associated with the profile is
 profiles accessible to the user along with the role associated with that
 profile.
 
-Adding and removing contributors is easily possible by simply adding/removing the 
+Adding and removing contributors is easily possible by simply adding/removing the
 email address or the user identifier in the *Contributors to your namespace* field.
 
-<img src="/docs/images/add-contributors.png" 
+<img src="/docs/images/misc/add-contributors.png"
   alt="Add Contributors"
   class="mt-3 mb-3 border border-info rounded">
 
 Once added, the Manage Contributors tab will show the profiles with thier
-corresponding contributors listed. Note that *Cluster Admin* can view all the 
+corresponding contributors listed. Note that *Cluster Admin* can view all the
 profiles in the system along with their contributors.
 
-<img src="/docs/images/view-contributors.png" 
+<img src="/docs/images/misc/view-contributors.png"
   alt="View Contributors"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -259,7 +259,7 @@ email/id from the list of contributors.
 ## Current Integration and Limitations
 
 The Jupyter notebooks service is the first application to be fully integrated with
-multi-user isolation. Access to the notebooks and the creation of notebooks is 
+multi-user isolation. Access to the notebooks and the creation of notebooks is
 controlled by the profile access policies set by the Administrator or the owners
 of the profiles. Resources created by the notebooks (eg. Training jobs and
 deployments) will also inherit the same access.
@@ -277,12 +277,3 @@ similar header to provide identity information.
 For on-premise deployments, Kubeflow leverages Dex as a federated OpenID connection
 provider and can be integrated with LDAP or Active Directory to provide authentication
 and identity services.
-
-
-
-
-
-
-
-
-

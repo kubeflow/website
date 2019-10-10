@@ -4,12 +4,12 @@ description = "Tracking and managing metadata of machine learning workflows in K
 weight = 5
 +++
 
-The goal of the [Metadata](https://github.com/kubeflow/metadata) project is to 
+The goal of the [Metadata](https://github.com/kubeflow/metadata) project is to
 help Kubeflow users understand and manage their machine learning (ML) workflows
-by tracking and managing the metadata that the workflows produce. 
+by tracking and managing the metadata that the workflows produce.
 
-In this context, _metadata_ means information about executions (runs), models, 
-datasets, and other artifacts. _Artifacts_ are the files and objects that form 
+In this context, _metadata_ means information about executions (runs), models,
+datasets, and other artifacts. _Artifacts_ are the files and objects that form
 the inputs and outputs of the components in your ML workflow.
 
 {{% alert title="Alpha version" color="warning" %}}
@@ -25,7 +25,7 @@ Kubeflow v0.6.1 and later versions install the Metadata component by default.
 You can skip this section if you are running Kubeflow v0.6.1 or later.
 
 If you want to install the latest version of the Metadata component or to
-install the component as an application in your Kubernetes cluster, follow these 
+install the component as an application in your Kubernetes cluster, follow these
 steps:
 
 1. Download the Kubeflow manifests repository:
@@ -43,7 +43,7 @@ steps:
 
 ## Using the Metadata SDK to record metadata
 
-The Metadata project publishes a 
+The Metadata project publishes a
 [Python library (SDK)](https://github.com/kubeflow/metadata/tree/master/sdk/python#python-client)
 that you can use to log (record) your metadata.
 
@@ -56,16 +56,16 @@ pip install kfmd
 <a id="demo-notebook"></a>
 ### Try the Metadata SDK in a sample Jupyter notebook
 
-You can find an example of how to use the Metadata SDK in this 
+You can find an example of how to use the Metadata SDK in this
 [`demo` notebook](https://github.com/kubeflow/metadata/blob/master/sdk/python/demo.ipynb).
 
 To run the notebook in your Kubeflow cluster:
 
-1. Follow the guide to 
+1. Follow the guide to
   [setting up your Jupyter notebooks in Kubeflow](/docs/notebooks/setup/).
-1. Go to the [`demo` notebook on 
+1. Go to the [`demo` notebook on
   GitHub](https://github.com/kubeflow/metadata/blob/master/sdk/python/demo.ipynb).
-1. Download the notebook code by opening the **Raw** view of the file, then 
+1. Download the notebook code by opening the **Raw** view of the file, then
   right-clicking on the content and saving the file locally as `demo.ipynb`.
 1. Go back to your Jupyter notebook server in the Kubeflow UI. (If you've
   moved away from the notebooks section in Kubeflow, click
@@ -79,7 +79,7 @@ To run the notebook in your Kubeflow cluster:
 When you have finished running through the steps in the `demo.ipynb` notebook,
 you can view the resulting metadata on the Kubeflow UI:
 
-1. Click **Artifact Store** in the left-hand navigation panel on the Kubeflow 
+1. Click **Artifact Store** in the left-hand navigation panel on the Kubeflow
   UI.
 1. On the **Artifacts** screen you should see the following items:
 
@@ -88,7 +88,7 @@ you can view the resulting metadata on the Kubeflow UI:
   * A **dataset** metadata item with the name **mytable-dump**.
 
     You can click the name of each item to view the details. See the section
-    below about the [Metadata UI](#metadata-ui) for more details. 
+    below about the [Metadata UI](#metadata-ui) for more details.
 
 ### Learn more about the Metadata SDK
 
@@ -109,43 +109,43 @@ that you can use to describe your ML workflows:
 <a id="metadata-ui"></a>
 ## Tracking artifacts on the Metadata UI
 
-You can view a list of logged artifacts and the details of each individual 
+You can view a list of logged artifacts and the details of each individual
 artifact in the **Artifact Store** on the Kubeflow UI.
 
-1. Go to Kubeflow in your browser. (If you haven't yet opened the 
+1. Go to Kubeflow in your browser. (If you haven't yet opened the
   Kubeflow UI, find out how to [access the
   Kubeflow UIs](https://www.kubeflow.org/docs/other-guides/accessing-uis/).)
 1. Click **Artifact Store** in the left-hand navigation panel:
-  <img src="/docs/images/metadata-ui-option.png" 
+  <img src="/docs/images/misc/metadata-ui-option.png"
     alt="Metadata UI"
     class="mt-3 mb-3 border border-info rounded">
 
 1. The **Artifacts** screen opens and displays a list of items for all the
-  metadata events that your workflows have logged. You can click the name of 
-  each item to view the details. 
-  
-    The following examples show the items that appear when you run the 
+  metadata events that your workflows have logged. You can click the name of
+  each item to view the details.
+
+    The following examples show the items that appear when you run the
     `demo.ipynb` notebook described [above](#demo-notebook):
 
-    <img src="/docs/images/metadata-artifacts-list.png" 
+    <img src="/docs/images/misc/metadata-artifacts-list.png"
     alt="A list of metadata items"
     class="mt-3 mb-3 border border-info rounded">
 
   * Example of **model** metadata with the name "MNIST":
 
-        <img src="/docs/images/metadata-model.png" 
+        <img src="/docs/images/misc/metadata-model.png"
           alt="Model metadata for an example MNIST model"
           class="mt-3 mb-3 border border-info rounded">
 
   * Example of **metrics** metadata with the name "MNIST-evaluation":
 
-        <img src="/docs/images/metadata-metrics.png" 
+        <img src="/docs/images/misc/metadata-metrics.png"
           alt="Metrics metadata for an evaluation of an MNIST model"
           class="mt-3 mb-3 border border-info rounded">
 
   * Example of **dataset** metadata with the name "mytable-dump":
 
-        <img src="/docs/images/metadata-dataset.png" 
+        <img src="/docs/images/misc/metadata-dataset.png"
           alt="Dataset metadata"
           class="mt-3 mb-3 border border-info rounded">
 
@@ -154,18 +154,18 @@ artifact in the **Artifact Store** on the Kubeflow UI.
 ## Backend and REST API
 
 The Kubeflow metadata backend uses [ML Metadata
-(MLMD)](https://github.com/google/ml-metadata/blob/master/g3doc/get_started.md) 
-to manage the metadata and relationships. 
+(MLMD)](https://github.com/google/ml-metadata/blob/master/g3doc/get_started.md)
+to manage the metadata and relationships.
 
-The backend exposes a 
+The backend exposes a
 [REST API](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/).
 
 You can add your own metadata types so that you can log metadata for custom
 artifacts. To add a custom type, send a REST API request to the
-[`artifact_types` endpoint](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/#operation--api-v1alpha1-artifact_types-post). 
+[`artifact_types` endpoint](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/#operation--api-v1alpha1-artifact_types-post).
 
-For example, The following request registers an artifact type with 
-_name_ `myorg/mytype/v1` and three _properties_: 
+For example, The following request registers an artifact type with
+_name_ `myorg/mytype/v1` and three _properties_:
 
 * `f1` (string)
 * `f2` (integer)
@@ -179,7 +179,7 @@ curl -X POST http://localhost:8080/api/v1alpha1/artifact_types \
 
 ## Next steps
 
-Run the 
+Run the
 [xgboost-synthetic notebook](https://github.com/kubeflow/examples/tree/master/xgboost_synthetic)
 to build, train, and deploy an XGBoost model using Kubeflow Fairing and Kubeflow
 Pipelines with synthetic data. Examine the metadata output after running

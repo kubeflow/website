@@ -9,9 +9,9 @@ machine learning (ML) workflows with Kubeflow Pipelines.
 
 ## User interface (UI)
 
-You can access the Kubeflow Pipelines UI by clicking **Pipeline Dashboard** on 
+You can access the Kubeflow Pipelines UI by clicking **Pipeline Dashboard** on
 the Kubeflow UI. The Kubeflow Pipelines UI looks like this:
-  <img src="/docs/images/pipelines-ui.png" 
+  <img src="/docs/images/misc/pipelines-ui.png"
     alt="Pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
@@ -19,8 +19,8 @@ From the Kubeflow Pipelines UI you can perform the following tasks:
 
 * Run one or more of the preloaded samples to try out pipelines quickly.
 * Upload a pipeline as a compressed file. The pipeline can be one that you
-  have built (see how to [build a 
-  pipeline](/docs/pipelines/sdk/build-component/#compile-the-pipeline)) or one 
+  have built (see how to [build a
+  pipeline](/docs/pipelines/sdk/build-component/#compile-the-pipeline)) or one
   that someone has shared with you.
 * Create an *experiment* to group one or more of your pipeline runs.
   See the [definition of an
@@ -36,16 +36,16 @@ See the [quickstart guide](/docs/pipelines/pipelines-quickstart/) for more
 information about accessing the Kubeflow Pipelines UI and running the samples.
 
 When building a pipeline component, you can write out information for display
-in the UI. See the guides to [exporting 
-metrics](/docs/pipelines/sdk/pipelines-metrics/) and [visualizing results in 
+in the UI. See the guides to [exporting
+metrics](/docs/pipelines/sdk/pipelines-metrics/) and [visualizing results in
 the UI](/docs/pipelines/sdk/output-viewer/).
 
 ## Python SDK
 
-The Kubeflow Pipelines SDK provides a set of Python packages that you can use to 
+The Kubeflow Pipelines SDK provides a set of Python packages that you can use to
 specify and run your ML workflows.
 
-See the [introduction to the Kubeflow Pipelines 
+See the [introduction to the Kubeflow Pipelines
 SDK](/docs/pipelines/sdk/sdk-overview/) for an overview of the ways you can
 use the SDK to build pipeline components and pipelines.
 
@@ -53,8 +53,8 @@ use the SDK to build pipeline components and pipelines.
 
 The Kubeflow Pipelines API is useful for continuous integration/deployment
 systems, for example, where you want to incorporate your pipeline executions
-into shell scripts or other systems. 
+into shell scripts or other systems.
 For example, you may want to trigger a pipeline run when new data comes in.
 
-See the [Kubeflow Pipelines API reference 
+See the [Kubeflow Pipelines API reference
 documentation](/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/).
