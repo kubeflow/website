@@ -56,7 +56,7 @@ For example, to compile the
 [`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/sequential/sequential.py):
 
 ```bash
-export DIR=[YOUR PIPELINES REPO DIRECTORY]/samples/basic
+export DIR=[YOUR PIPELINES REPO DIRECTORY]/samples/core/sequential
 dsl-compile --py ${DIR}/sequential.py --output ${DIR}/sequential.tar.gz
 ```
 
