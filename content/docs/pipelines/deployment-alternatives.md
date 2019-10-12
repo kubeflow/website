@@ -1,25 +1,25 @@
 +++
-title = "Pipelines Deployment Alternatives"
-description = "Alternative approaches to deploy lightweight Kubeflow Pipelines to a cluster"
+title = "Pipelines Standalone Deployment Alternatives"
+description = "Alternative approaches to deploy Kubeflow Pipelines standalone to a cluster"
 weight = 15
 +++
 
 As an alternative to [deploying Kubeflow](/docs/started/getting-started/#installing-kubeflow) as a
 whole with many components including pipelines, you also have a choice to deploy
-Kubeflow Pipelines lite deployment. Follow the instructions below to deploy
-Kubeflow Pipelines in an existing cluster, using the supplied kustomize
+only Kubeflow Pipelines. Follow the instructions below to deploy
+Kubeflow Pipelines standalone using the supplied kustomize
 manifests.
 
 Knowledge about [Kubernetes](https://kubernetes.io/docs/home/), [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) and [kustomize](https://kustomize.io/) will help you understand this
 document better and be able to customize based on your needs.
 
 
-## Deploying Kubeflow Pipelines to an existing cluster
+## Deploying Kubeflow Pipelines standalone to an existing cluster
 
 1. Deploy latest version of Kubeflow Pipelines:
 ```
 export PIPELINE_VERSION={{% kfp-latest-version %}}
-kubectl apply -f https://storage.googleapis.com/ml-pipeline/pipeline-lite/$PIPELINE_VERSION/namespaced-install.yaml
+kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
 ```
 
 2. Get the URL for the Kubeflow Pipelines UI :
@@ -27,7 +27,7 @@ kubectl apply -f https://storage.googleapis.com/ml-pipeline/pipeline-lite/$PIPEL
 kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercontent.com 
 ```
 
-## Deploying Kubeflow Pipelines from scratch
+## Deploying Kubeflow Pipelines standalone from scratch
 
 1. Prepare a Kubernetes cluster:
 
@@ -46,7 +46,7 @@ kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercon
 
     For GCP, you can reference [Configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
 
-1. Deploy latest version of Kubeflow Pipelines Lite to your cluster:
+1. Deploy latest version of Kubeflow Pipelines standalone to your cluster:
 
     ```
     export PIPELINE_VERSION={{% kfp-latest-version %}}
@@ -75,7 +75,7 @@ This is recommended for production environments. See
 [here](https://github.com/kubeflow/pipelines/tree/master/manifests/kustomize/env/gcp) for more details. 
 
 ### Change deployment namespace
-To deploy Kubeflow Pipelines in namespace FOO:
+To deploy Kubeflow Pipelines standalone in namespace FOO:
 
 - Edit [dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml)
 or [gcp/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/gcp/kustomization.yaml)
@@ -101,7 +101,6 @@ kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
 and open http://localhost:8080/.
 
 
-
 ## Uninstall
 You can uninstall Kubeflow Pipelines by running:
 ```
@@ -118,14 +117,14 @@ kubectl delete -k manifests/kustomize/env/gcp
 
 ## Troubleshooting
 
-### Permission error installing Kubeflow Pipelines to a cluster
+### Permission error installing Kubeflow Pipelines standalone to a cluster
 Run:
 ```
 kubectl create clusterrolebinding your-binding --clusterrole=cluster-admin --user=[your-user-name]
 ```
 
 ### Samples that require "user-gcp-sa" secret
-If sample code requires a "user-gcp-sa" secret, you could create one by:
+If sample pipeline requires a "user-gcp-sa" secret, you could create one by:
 
 - First download the GCE VM service account token [Document](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys):
     ```
