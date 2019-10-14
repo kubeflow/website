@@ -46,7 +46,7 @@ If you want to install Knative, you may find this [installation instruction](htt
 
 ## KFServing installation using kubectl
 ```
-TAG=v0.1.0
+TAG=v0.2.0
 kubectl apply -f ./install/$TAG/kfserving.yaml
 ```
 
