@@ -25,7 +25,12 @@ KFServing encapsulates the complexity of autoscaling, networking, health checkin
 * [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
 * [Explainability](https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi)
 
-Please be on the lookout, we are constantly adding [more examples](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines) about available features
+## Sample Notebooks
+* [SDK Client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb)
+* [Transformer (Pre/Post Processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
+* [ONNX](https://github.com/kubeflow/kfserving/blob/master/docs/samples/onnx/mosaic-onnx.ipynb)
+
+Please be on the lookout, we are constantly adding [more examples](https://github.com/kubeflow/kfserving/tree/master/docs/samples/) about available features
 
 ## Learn More
 * Join our [Working Group](https://groups.google.com/forum/#!forum/kfserving) for meeting invites and discussion.
