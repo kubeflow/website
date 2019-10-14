@@ -141,12 +141,13 @@ To perform this task you need to:
 2. Change their storage class.
 3. Delete and recreate them in the cluster.
 
-Download the three PVCs:
+Download the four PVCs:
 
 ```shell
 kubectl get pvc/mysql-pv-claim -n kubeflow -o yaml > mysql-pv-claim.yaml
 kubectl get pvc/minio-pv-claim -n kubeflow -o yaml > minio-pvc.yaml
 kubectl get pvc/katib-mysql -n kubeflow -o yaml > katib.yaml
+kubectl get pvc/metadata-mysql -n kubeflow -o yaml > metadata.yaml
 ```
 
 And then modify files to add the right `storageClassName` under the `spec` section:
@@ -190,12 +191,26 @@ spec:
   ...
 ```
 
+```yaml
+# metadata.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: metadata-mysql
+  namespace: kubeflow
+  ...
+spec:
+  storageClassName: nfs
+  ...
+```
+
 Next, remove the old PVCs:
 
 ```shell
 kubectl delete -f mysql-pv-claim.yaml
 kubectl delete -f minio-pvc.yaml
 kubectl delete -f katib.yaml
+kubectl delete -f metadata.yaml
 ```
 
 Finally, add the modified PVCs:
@@ -204,6 +219,7 @@ Finally, add the modified PVCs:
 kubectl apply -f mysql-pv-claim.yaml
 kubectl apply -f minio-pvc.yaml
 kubectl apply -f katib.yaml
+kubectl apply -f metadata.yaml
 ```
 
 The PVCs are now bound to your NFS storage.
