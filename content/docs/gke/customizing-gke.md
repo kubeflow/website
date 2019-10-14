@@ -7,37 +7,83 @@ weight = 2
 This guide describes how to customize your deployment of Kubeflow on Google 
 Kubernetes Engine (GKE) in Google Cloud Platform (GCP).
 
+## Customizing Kubeflow before deployment
+
+The Kubeflow deployment process is divided into two steps, **build** and 
+**apply**, so that you can modify your configuration before deploying your 
+Kubeflow cluster.
+
+Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/).
+When you reach the 
+[setup and deploy step](/docs/gke/deploy/deploy-cli/#set-up-and-deploy), run the
+**build** command as described in that step. Now you can edit the
+configuration files before deploying Kubeflow.
+
+## Customizing an existing deployment
+
+You can also customize an existing Kubeflow deployment. In that case, this 
+guide assumes that you have already followed the guide to 
+[deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/) and have deployed
+Kubeflow to a GKE cluster.
+
 ## Before you start
 
-This guide assumes you have already set up Kubeflow with GKE. If you haven't done
-so, follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
+This guide assumes the following settings: 
 
-## Customizing Kubeflow
+* The `${KFAPP}` environment variable contains the name
+  of your Kubeflow application directory, as described in the guide to
+  [deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/):
 
-You can use [kustomize](https://kustomize.io/) to customize Kubeflow.
+  ```
+  export KFAPP=<your choice of application directory name>
+  ```
 
-The deployment process is divided into two steps, **generate** and **apply**, so that you can
-modify your deployment before actually deploying.
+* The `${CONFIG}` environment variable contains the path to a kfctl 
+  configuration file, as described in the section on [preparing your environment 
+  for deployment](/docs/gke/deploy/deploy-cli/#prepare-environment):
 
-To customize GCP resources (such as your Kubernetes Engine cluster), you can modify the deployment manager configs in **${KFAPP}/gcp_config**.
+  ```
+  export CONFIG="{{% config-uri-gcp-iap %}}"
+  ```
 
-Many changes can be applied to an existing configuration in which case you can run:
+    Or:
+
+  ```
+  export CONFIG="{{% config-uri-gcp-basic-auth %}}"
+  ```
+
+* All commands below start from the parent directory that contains your 
+  `${KFAPP}` directory:
+
+  ```
+  cd <the parent directory of your KFAPP directory>
+  ```
+
+## Customizing GCP resources
+
+To customize GCP resources, such as your Kubernetes Engine cluster, you can 
+modify the Deployment Manager configuration settings in `${KFAPP}/gcp_config`.
+
+After modifying your existing configuration, run the following command to apply
+the changes:
 
 ```
 cd ${KFAPP}
-kfctl apply platform
+kfctl apply -V -f ${CONFIG}
 ```
 
-or using Deployment Manager directly:
+Alternatively, you can use Deployment Manager directly:
 
 ```
 cd ${KFAPP}/gcp_config
 gcloud deployment-manager --project=${PROJECT} deployments update ${DEPLOYMENT_NAME} --config=cluster-kubeflow.yaml
 ```
 
-  * **PROJECT** Name of your GCP project. You could find it in `${KFAPP}/app.yaml`.
-  * **DEPLOYMENT_NAME** Name of your Kubeflow app. You could also find it in `${KFAPP}/app.yaml`. 
-    In specific, `.metadata.name`
+  * **PROJECT** The ID of your GCP project. You can find the project ID in 
+    your `${KFAPP}/app.yaml` file, as the value for the `project` key.
+  * **DEPLOYMENT_NAME** The name of your Kubeflow application. You can find 
+    the name in your `${KFAPP}/app.yaml` file, as the value for the 
+    `metadata.name` key.
 
 Some changes (such as the VM service account for Kubernetes Engine) can only be set at creation time; in this case you need
 to tear down your deployment before recreating it:
@@ -45,18 +91,19 @@ to tear down your deployment before recreating it:
 ```
 cd ${KFAPP}
 kfctl delete all
-kfctl apply all
+kfctl apply -V -f ${CONFIG}
 ```
 
-To customize the Kubeflow resources running within the cluster you can modify the kustomize manifests in **${KFAPP}/kustomize**.
+## Customizing Kubernetes resources
+
+You can use [kustomize](https://kustomize.io/) to customize Kubeflow.
+To customize the Kubernetes resources running within the cluster, you can modify 
+the kustomize manifests in `${KFAPP}/kustomize`.
+
 For example, to modify settings for the Jupyter web app:
 
-```
-cd ${KFAPP}/kustomize
-gvim jupyter-web-app.yaml
-```
-
-Find and replace the parameter values:
+1. Open `${KFAPP}/kustomize/jupyter-web-app.yaml` in a text editor.
+1. Find and replace the parameter values:
 ```
 apiVersion: v1
 data:
@@ -74,18 +121,18 @@ metadata:
   namespace: kubeflow
   ```
 
-You can then redeploy using `kfctl`:
+1. Redeploy Kubeflow using kfctl:
 
-```
-cd ${KFAPP}
-kfctl apply k8s
-```
+  ```
+  cd ${KFAPP}
+  kfctl apply -V -f ${CONFIG}
+  ```
 
-or using kubectl directly:
-```
-cd ${KFAPP}/kustomize
-kubectl apply -f jupyter-web-app.yaml
-```
+    Or use kubectl directly:
+  ```
+  cd ${KFAPP}/kustomize
+  kubectl apply -f jupyter-web-app.yaml
+  ```
 
 ## Common customizations
 
