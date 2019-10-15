@@ -26,7 +26,7 @@ deployed Kubeflow.
   If you deployed Kubeflow [using the UI](/docs/gke/deploy/deploy-ui/), the 
   value of `${KFAPP}` is the value of the **Deployment name** field on the UI.
 * If you deployed Kubeflow [using the CLI](/docs/gke/deploy/deploy-cli/), use 
-  the same value as you used when you ran `kfctl init`.
+  the same value as you used when you ran `kfctl build` or `kfctl apply`.
 
 You should consider preserving storage if you may want to relaunch
 Kubeflow in the future and restore the data from your 

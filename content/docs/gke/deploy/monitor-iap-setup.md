@@ -133,17 +133,23 @@ problems:
     recreating and redeploying Kubeflow with a different
     name. 
 
-    For example if you originally ran the following `kfctl init` command:
+    For example if you originally ran the following commands to deploy Kubeflow:
 
     ```
-    kfctl init myapp --project=myproject --config=myconfig -V
+    export KFAPP=myapp
+    mkdir ${KFAPP}
+    cd ${KFAPP}
+    kfctl apply -V -f ${CONFIG}
     ```
 
-    Then rerun `kfctl init` with a different name that you haven't used
+    Then rerun the commands with a different name that you haven't used
     before:
 
     ```
-    kfctl init myapp-unique --project=myproject --config=myconfig -V
+    export KFAPP=myapp-unique
+    mkdir ${KFAPP}
+    cd ${KFAPP}
+    kfctl apply -V -f ${CONFIG}
     ```
 
 1. Wait for the load balancer to report the back ends as healthy:
