@@ -221,16 +221,15 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
         PROJECT=<PROJECT> make copy-gcb
         ```
 
-    * This is needed because your GKE nodes won't be able to pull images from non GCR
-      registries because they don't have public internet addresses
+      * This is needed because your GKE nodes won't be able to pull images from non GCR
+        registries because they don't have public internet addresses
 
 
-    * gcloud may return an error even though the job is
-      submited successfully and will run successfully
-      see [kubeflow/kubeflow#3105](https://github.com/kubeflow/kubeflow/issues/3105)
+      * gcloud may return an error even though the job is
+        submited successfully and will run successfully
+        see [kubeflow/kubeflow#3105](https://github.com/kubeflow/kubeflow/issues/3105)
 
-    * You can use the Cloud console to monitor your GCB job.
-
+      * You can use the Cloud console to monitor your GCB job.
 
 1. Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/).
   When you reach the 
@@ -259,31 +258,31 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     kfctl apply -V -f ${CONFIG}
     ```
 
-   * If you get an error **legacy networks not supported**, follow the 
-     [troubleshooting guide]( /docs/gke/troubleshooting-gke/#legacy-networks-are-not-supported) to create a new network.
+      * If you get an error **legacy networks not supported**, follow the 
+        [troubleshooting guide]( /docs/gke/troubleshooting-gke/#legacy-networks-are-not-supported) to create a new network.
 
-     * You will need to manually create the network as a work around for [kubeflow/kubeflow#3071](https://github.com/kubeflow/kubeflow/issues/3071)
+        * You will need to manually create the network as a work around for [kubeflow/kubeflow#3071](https://github.com/kubeflow/kubeflow/issues/3071)
 
-        ```
-        cd ${KFAPP}/gcp_configs
-        gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP}-network --config=network.yaml
-        ```
+            ```
+            cd ${KFAPP}/gcp_configs
+            gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP}-network --config=network.yaml
+            ```
 
-     * Then edit **gcp_config/cluster.jinja** to add a field **network** in your cluster
-     
-        ```
-        cluster:
-           name: {{ CLUSTER_NAME }}
-           network: <name of the new network>
-        ```
-   
-     * To get the name of the new network run
+        * Then edit **gcp_config/cluster.jinja** to add a field **network** in your cluster
+        
+            ```
+            cluster:
+              name: {{ CLUSTER_NAME }}
+              network: <name of the new network>
+            ```
       
-        ```
-        gcloud --project=${PROJECT} compute networks list
-        ``` 
+        * To get the name of the new network run
+          
+            ```
+            gcloud --project=${PROJECT} compute networks list
+            ``` 
 
-       * The name will contain the value ${KFAPP}
+          * The name will contain the value ${KFAPP}
 
 1. Update iap-ingress component parameters:
 
@@ -292,44 +291,44 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     gvim basic-auth-ingress.yaml  # Or iap-ingress.yaml if you are using IAP
     ```
 
-   * Find and set the `privateGKECluster` parameter to true:
+      * Find and set the `privateGKECluster` parameter to true:
 
-     ```
-     privateGKECluster: "true"
-     ```
+        ```
+        privateGKECluster: "true"
+        ```
 
-   * Then apply your changes:
+      * Then apply your changes:
 
-     ```
-     kubectl apply -f basic-auth-ingress.yaml
-     ```
+        ```
+        kubectl apply -f basic-auth-ingress.yaml
+        ```
 
 1. Obtain an HTTPS certificate for your ${FQDN} and create a Kubernetes secret with it. 
 
-   * You can create a self signed cert using [kube-rsa](https://github.com/kelseyhightower/kube-rsa)
+      * You can create a self signed cert using [kube-rsa](https://github.com/kelseyhightower/kube-rsa)
 
-      ```
-      go get github.com/kelseyhightower/kube-rsa
-      kube-rsa ${FQDN}
-      ```
-      * The fully qualified domain is the host field specified for your ingress; 
-        you can get it by running
+          ```
+          go get github.com/kelseyhightower/kube-rsa
+          kube-rsa ${FQDN}
+          ```
+          * The fully qualified domain is the host field specified for your ingress; 
+            you can get it by running
 
+            ```
+            cd ${KFAPP}/kustomize
+            grep hostname: basic-auth-ingress.yaml
+            ```
+
+        * Then create your Kubernetes secret
+
+          ```
+          kubectl create secret tls --namespace=kubeflow envoy-ingress-tls --cert=ca.pem --key=ca-key.pem
         ```
-        cd ${KFAPP}/kustomize
-        grep hostname: basic-auth-ingress.yaml
-        ```
 
-    * Then create your Kubernetes secret
+      * An alternative option is to upgrade to GKE 1.12 or later and use 
+        [managed certificates](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs#migrating_to_google-managed_certificates_from_self-managed_certificates)
 
-      ```
-      kubectl create secret tls --namespace=kubeflow envoy-ingress-tls --cert=ca.pem --key=ca-key.pem
-     ```
-
-   * An alternative option is to upgrade to GKE 1.12 or later and use 
-     [managed certificates](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs#migrating_to_google-managed_certificates_from_self-managed_certificates)
-
-     * See [kubeflow/kubeflow#3079](https://github.com/kubeflow/kubeflow/issues/3079)
+        * See [kubeflow/kubeflow#3079](https://github.com/kubeflow/kubeflow/issues/3079)
 
 1. Update the various kustomize manifests to use `gcr.io` images instead of Docker Hub images.
 
@@ -344,14 +343,14 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     ```
     https://${FQDN}/
     ```
-    * ${FQDN} is the host associated with your ingress
+      * ${FQDN} is the host associated with your ingress
 
-       * You can get it by running `kubectl get ingress`
+        * You can get it by running `kubectl get ingress`
 
-    * Follow the [instructions](/docs/gke/deploy/monitor-iap-setup/) to monitor the 
-      deployment
- 
-    * It can take 10-20 minutes for the endpoint to become fully available
+      * Follow the [instructions](/docs/gke/deploy/monitor-iap-setup/) to monitor the 
+        deployment
+  
+      * It can take 10-20 minutes for the endpoint to become fully available
 
 ## Next steps
 
