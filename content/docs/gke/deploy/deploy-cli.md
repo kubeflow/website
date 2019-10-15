@@ -178,21 +178,27 @@ Follow these steps to verify the deployment:
 
 ## Access the Kubeflow user interface (UI)
 
-Access the Kubeflow central dashboard at the following URI when it becomes
-available:
+Follow these steps to access the Kubeflow central dashboard:
 
-```
-https://<KFAPP>.endpoints.<project-id>.cloud.goog/
-```
+1. Enter the following URI into your browser address bar. It can take 20
+  minutes for the URI to become available:
 
-It can take 20 minutes for the URI to become available.
-Kubeflow needs to provision a signed SSL certificate and register a DNS 
-name.
+  ```
+  https://<KFAPP>.endpoints.<project-id>.cloud.goog/
+  ```
 
-If you own/manage the domain or a subdomain with 
-[Cloud DNS](https://cloud.google.com/dns/docs/)
-then you can configure this process to be much faster.
-See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
+1. Follow the instructions on the UI to create a namespace. See the guide to 
+  [creation of profiles](/docs/other-guides/multi-user-overview/#automatic-creation-of-profiles).
+
+Notes:
+
+* It can take 20 minutes for the URI to become available.
+  Kubeflow needs to provision a signed SSL certificate and register a DNS 
+  name.
+* If you own or manage the domain or a subdomain with 
+  [Cloud DNS](https://cloud.google.com/dns/docs/)
+  then you can configure this process to be much faster.
+  See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
 
 ## Understanding the deployment process
 
