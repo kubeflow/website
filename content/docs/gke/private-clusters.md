@@ -232,57 +232,13 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
     * You can use the Cloud console to monitor your GCB job.
 
 
-1. Follow the [instructions](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) for creating an OAuth client
-
-1. Create environment variables for IAP OAuth access
-
-    ```bash
-     export CLIENT_ID=<CLIENT_ID from OAuth page>
-     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
-    ```
-
-1. Download a `kfctl` release from the 
-  [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
-
-1. Unpack the tar ball:
-
-    ```
-    tar -xvf kfctl_<release tag>_<platform>.tar.gz
-    ```
-   
-   * **Optional** Add the kfctl binary to your path. 
-   * If you don't add the kfctl binary to your path then in all subsequent
-     steps you will need to replace `kfctl` with the full path to the binary.
-
-1. Initialize the directory containing your Kubeflow deployment config files
-    
-    ```bash
-    export PROJECT=<your GCP project ID>
-    export KFAPP=<your choice of application directory name>
-    # Run the following commands for the default installation which uses Cloud IAP:
-    export CONFIG="{{% config-uri-gcp-iap %}}"
-    kfctl init ${KFAPP} --project=${PROJECT} --config=${CONFIG} -V
-    # Alternatively, run these commands if you want to use basic authentication:
-    export CONFIG="{{% config-uri-gcp-basic-auth %}}"
-    kfctl init ${KFAPP} --project=${PROJECT} --config=${CONFIG} -V --use_basic_auth
-
-    cd ${KFAPP}
-    kfctl generate all -V
-    ```
-   * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
-     configurations to be stored. This directory is created when you run
-     `kfctl init`. If you want a custom deployment name, specify that name here.
-     The value of this variable becomes the name of your deployment.
-     The value of this variable cannot be greater than 25 characters. It must
-     contain just the directory name, not the full path to the directory.
-     The content of this directory is described in the next section.
-   * **${PROJECT}** - the ID of the GCP project where you want Kubeflow 
-     deployed.
-   * `kfctl generate all` attempts to fetch your email address from your 
-     credential. If it can't find a valid email address, you need to pass a
-     valid email address with flag `--email <your email address>`. This email 
-     address becomes an administrator in the configuration of your Kubeflow 
-     deployment.
+1. Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/).
+  When you reach the 
+  [setup and deploy step](/docs/gke/deploy/deploy-cli/#set-up-and-deploy), 
+  **skip the `kfctl apply` command** and run the **`kfctl build`** command 
+  instead, as described in that step. Now you can edit the configuration files
+  before deploying Kubeflow. Retain the environment variables that you set
+  during the setup, such as `${KFAPP}` and `${CONFIG}`.
 
 1. Enable private clusters by editing `${KFAPP}/gcp_configs/cluster-kubeflow.yaml` and updating the following two parameters:
 
@@ -300,7 +256,7 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
     ```
     cd ${KFAPP}
-    kfctl apply platform
+    kfctl apply -V -f ${CONFIG}
     ```
 
    * If you get an error **legacy networks not supported**, follow the 
@@ -381,7 +337,7 @@ export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(pr
 
     ```
     cd ${KFAPP}
-    kfctl apply k8s
+    kfctl apply -V -f ${CONFIG}
     ```
 1. Wait for Kubeflow to become accessible and then access it at
 

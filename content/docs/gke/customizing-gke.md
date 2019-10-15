@@ -15,9 +15,10 @@ Kubeflow cluster.
 
 Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/).
 When you reach the 
-[setup and deploy step](/docs/gke/deploy/deploy-cli/#set-up-and-deploy), run the
-**build** command as described in that step. Now you can edit the
-configuration files before deploying Kubeflow.
+[setup and deploy step](/docs/gke/deploy/deploy-cli/#set-up-and-deploy),
+**skip the `kfctl apply` command** and run the **`kfctl build`** command 
+instead, as  described in that step. Now you can edit the configuration files 
+before deploying Kubeflow.
 
 ## Customizing an existing deployment
 
