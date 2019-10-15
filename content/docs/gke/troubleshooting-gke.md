@@ -342,7 +342,7 @@ Apply the changes.
 
 ```
 cd ${KFAPP}
-kfctl apply platform
+kfctl apply -V -f ${CONFIG}
 ```
 
 ## CPU platform unavailable in requested zone
