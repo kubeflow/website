@@ -121,7 +121,7 @@ spec:
 
 ## Understanding the deployment process
 
-The deployment process is controlled by 4 different commands:
+The deployment process is controlled by the following commands:
 
 * **build** - (Optional) Creates configuration files defining the various
   resources in your deployment. You only need to run `kfctl build` if you want
