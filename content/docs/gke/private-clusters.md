@@ -52,7 +52,7 @@ You will need to know your gcloud organization id and project number; you can ge
 export PROJECT=<your GCP project id>
 export ORGANIZATION_NAME=<name of your organization>
 export ORGANIZATION=$(gcloud organizations list --filter=DISPLAY_NAME=${ORGANIZATION_NAME} --format='value(name)')
-export PROJECT_NUMBER=$(gcloud projects describe kubeflow-dev --format='value(projectNumber)')
+export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(projectNumber)')
 ```
 
   * Projects are identified by names, ids and numbers for more info see [here](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
