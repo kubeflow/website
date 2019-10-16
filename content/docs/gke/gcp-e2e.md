@@ -532,10 +532,10 @@ Next, upload the container image to Container Registry so that you can run it on
     kustomize edit add configmap mnist-map-training   --from-literal=learningRate=0.01
     ```
 
-1. Configure parameters for where the training results and exported model will be saved in Cloud Storage.  We'll use a timestamp-based subdirectory so that if the tutorial is run more than once, the training will start fresh each time.
+1. Configure parameters for where the training results and exported model will be saved in Cloud Storage.  Use a subdirectory based on the `VERSION_TAG`, so that if the tutorial is run more than once, the training can start fresh each time.
 
     ```
-    export BUCKET_PATH=${BUCKET_NAME}/$(date +%s)
+    export BUCKET_PATH=${BUCKET_NAME}/${VERSION_TAG}
     kustomize edit add configmap mnist-map-training   --from-literal=modelDir=gs://${BUCKET_PATH}/
     kustomize edit add configmap mnist-map-training   --from-literal=exportDir=gs://${BUCKET_PATH}/export
     ```
@@ -762,19 +762,8 @@ The web-ui service added is of type `ClusterIP`, meaning it can’t be accessed 
 kubectl port-forward svc/web-ui 8080:80
 ```
 
-Then, visit `http://localhost:8080/` to access the web UI in your browser. (If you're working from the [Cloud Shell](https://cloud.google.com/shell/), you can instead click the ['web preview'](https://cloud.google.com/shell/docs/using-web-preview) button and then select "Preview on Port 8080" to connect.)
+Visit `http://localhost:8080/` to access the web UI in your browser. (If you're working from the [Cloud Shell](https://cloud.google.com/shell/), you can instead click the ['web preview'](https://cloud.google.com/shell/docs/using-web-preview) button and then select "Preview on Port 8080" to connect.)
 
-<!-- Follow these steps to access the web UI in your web browser. It may take a few
-minutes for the IP address to become available:
-
-1. Find the IP address assigned to the service:
-
-    ```
-    kubectl get service web-ui
-    ```
-
-1. Copy the value shown under `EXTERNAL-IP` and paste it into your web
-   browser's address bar. The web UI should appear. -->
 
 1. The web UI offers three fields to connect to the prediction server:
     <img src="/docs/images/gcp-e2e-ui-connect.png"
