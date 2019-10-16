@@ -4,7 +4,7 @@ description = "Instructions for deploying Kubeflow with the shell"
 weight = 4
 +++
 
-This guide describes how to use the `kfctl` binary to
+This guide describes how to use the kfctl binary to
 deploy Kubeflow on Azure.
 
 ## Prerequisites
@@ -20,28 +20,23 @@ You do not need to have an existing Azure Resource Group or Cluster for AKS (Azu
 
 ## Understanding the deployment process
 
-The deployment process is controlled by 4 different commands:
+The deployment process is controlled by the following commands:
 
-*    init - The initial one-time set up.
-*  generate - Creates the configuration files that define your various resources.
-*   apply - Creates or updates the resources.
-*   delete - Deletes the resources.
-
-With the exception of init, all commands take an argument which describes the set of resources to apply the command to; this argument can be one of the following:
-
--   k8s - All Kubernetes resources. Such as Kubeflow packages and add-on packages like fluentd or istio.
--   all - Both Azure (WIP) and Kubernetes resources.
-- `${KFAPP}` - the name of a directory where you want Kubeflow configurations to be stored. This directory is created when you runkfctl init. If you want a custom deployment name, specify that name here. The value of this variable becomes the name of your deployment. The value of this variable cannot be greater than 25 characters. It must contain just the directory name, not the full path to the directory. The content of this directory is described in the next section.
+* **build** - (Optional) Creates configuration files defining the various
+  resources in your deployment. You only need to run `kfctl build` if you want
+  to edit the resources before running `kfctl apply`.
+* **apply** - Creates or updates the resources.
+* **delete** - Deletes the resources.
 
 ### App layout
 
-Your Kubeflow `app` directory contains the following files and directories:
+Your Kubeflow app directory **${KFAPP}** contains the following files and directories:
 
 * **app.yaml** - Defines the configuration related to your Kubeflow deployment.
-    * These values are set when you run `kfctl init`.
+    * These values are set when you run `kfctl build` or `kfctl apply`.
     * These values are snapshotted inside `app.yaml` to make your app self contained.
 * **kustomize** is a directory that contains the kustomize packages for Kubeflow applications.
-    * The directory is created when you run `kfctl generate`.
+    * The directory is created when you run `kfctl build` or `kfctl apply`.
     * You can customize the Kubernetes resources (modify the manifests and run `kfctl apply` again).
 
 If you experience any issues running these scripts, see the [troubleshooting guidance](/docs/azure/troubleshooting-azure) for more information.
@@ -75,21 +70,19 @@ Example variables:
 **NOTE:  If you are using a GPU based AKS cluster (For example: AGENT_SIZE=Standard_NC6), you also need to [install the NVidia drivers](https://docs.microsoft.com/azure/aks/gpu-cluster#install-nvidia-drivers) on the cluster nodes before you can use GPUs with Kubeflow.**
 
 ## Kubeflow Installation
-Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the ```kfctl``` binary each time you run it.
+Run the following commands to set up and deploy Kubeflow.
 
 1. Create user credentials. You only need to run this command once.
 
         az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
 
-1. Run the following commands to download the latest kfctl binary from the Kubeflow releases page (links from https://github.com/kubeflow/kubeflow/releases). While writing this document, the latest release was https://github.com/kubeflow/kubeflow/releases/tag/v0.6.2
-
-        wget <link to the release e.g. https://github.com/kubeflow/kubeflow/releases/download/v0.6.2/kfctl_v0.6.2_linux.tar.gz>
+1. Download the latest kfctl binary from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases).
 
 1. Unpack the tar ball
 
         tar -xvf kfctl_<release tag>_<platform>.tar.gz
 
-1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the `kfctl` binary each time you run it.
+1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
 
     ```
     # The following command is optional, to make kfctl binary easier to use.
@@ -97,16 +90,16 @@ Run the following commands to set up and deploy Kubeflow. The code below include
 
     # Initialize a kubeflow app:
     export KFAPP=<your choice of application directory name> (ensure this is lowercase)
-    export CONFIG=<file path or url to config to use, for example: https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6.2/bootstrap/config/kfctl_k8s_istio.0.6.2.yaml>
-    kfctl init ${KFAPP} --config=${CONFIG}
+    # Set the configuration file to use, such as the file specified below:
+    export CONFIG="{{% config-uri-k8s-istio %}}"
 
-    # Generate and deploy the app:
+    # Generate and deploy Kubeflow:
+    mkdir ${KFAPP}
     cd ${KFAPP}
-    kfctl generate all -V
-    kfctl apply all -V
+    kfctl apply -V -f ${CONFIG}
     ```
 
-    * ${KFAPP} - the name of a directory where you want Kubeflow configurations to be stored. This directory is created when you run kfctl init. If you want a custom deployment name, specify that name here. The value of this variable becomes the name of your deployment. The value of this variable cannot be greater than 25 characters. It must contain just the directory name, not the full path to the directory.
+    * ${KFAPP} - the name of a directory where you want Kubeflow configurations to be stored. If you want a custom deployment name, specify that name here. The value of this variable becomes the name of your deployment. The value of this variable cannot be greater than 25 characters. It must contain just the directory name, not the full path to the directory.
 
 1. Check the resources deployed correctly in namespace `kubeflow`
 
