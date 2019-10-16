@@ -10,7 +10,7 @@ Some of the steps can be done before you run the `apply platform` command, and s
 
 ## Customizing Kubeflow
 
-Here are the optional configuration parameters for `kfctl` on the AWS platform.
+Here are the optional configuration parameters for kfctl on the AWS platform.
 
 | Options  | Description  | Required |
 |---|---|---|
@@ -21,7 +21,7 @@ Here are the optional configuration parameters for `kfctl` on the AWS platform.
 
 ### Customize your Amazon EKS cluster
 
-Before you run `${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform`, you can edit the cluster configuration file to change cluster specification before you create the cluster.
+Before you run `kfctl apply -V -f ${CONFIG}`, you can edit the cluster configuration file to change cluster specification before you create the cluster.
 
 Cluster configuration is stored in `${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_config.yaml`. Please see [eksctl](https://eksctl.io/) for configuration details.
 

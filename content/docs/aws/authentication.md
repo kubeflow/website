@@ -56,7 +56,7 @@ plugins:
         region: us-west-2
 ```
 
-After you finish the TLS and Authentication configuration, then you can run `kfctl generate all -V`.
+After you finish the TLS and Authentication configuration, then you can run `kfctl apply -V -f ${CONFIG}`.
 
 After your ingress DNS is ready, you need to create a `CNAME` in your DNS records.
 
