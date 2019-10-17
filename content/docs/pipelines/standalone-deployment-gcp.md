@@ -8,7 +8,7 @@ As an alternative to [deploying Kubeflow](/docs/started/getting-started/#install
 whole with many components including pipelines, you also have a choice to deploy
 only Kubeflow Pipelines. Follow the instructions below to deploy
 Kubeflow Pipelines standalone using the supplied kustomize
-manifests in GCP.
+manifests.
 
 Knowledge about [Kubernetes](https://kubernetes.io/docs/home/), [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) and [kustomize](https://kustomize.io/) will help you understand this
 document better and be able to customize based on your needs.
@@ -22,7 +22,7 @@ export PIPELINE_VERSION={{% kfp-latest-version %}}
 kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
 ```
 
-2. Get the URL for the Kubeflow Pipelines UI :
+1. Get the URL for the Kubeflow Pipelines UI :
 
 ```
 kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercontent.com
@@ -32,55 +32,57 @@ kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercon
 
 1. Prepare a Kubernetes cluster:
 
-   You can reference [Creating a cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster) for Google Cloud Platform (GCP).
+    You can reference [Creating a cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster) for Google Cloud Platform (GCP).
 
-   Recommend using the following gcloud command to create a cluster that can run all pipeline samples:
+    Recommend using the following gcloud command to create a cluster that can run all pipeline samples:
 
-   ```
-   # The following parameters can be customized based on your needs.
-   CLUSTER_NAME="kubeflow-pipelines-standalone"
-   # You can find available zones in https://cloud.google.com/compute/docs/regions-zones/#available
-   ZONE="us-central1-a"
-   MACHINE_TYPE="n1-standard-2" # 2 CPU and 7.50GB memory
-   SCOPES="storage-rw,cloud-platform" # These scopes are needed for running some pipeline samples
-   gcloud container clusters create $CLUSTER_NAME \
-       --zone $ZONE \
-       --machine-type $MACHINE_TYPE \
-       --scopes $SCOPES \
-       --num-nodes 2 \
-       --max-nodes 5 \
-       --min-nodes 2 \
-       --enable-autoscaling
-   ```
+    ```
+    # The following parameters can be customized based on your needs.
 
-   Reference:
+    CLUSTER_NAME="kubeflow-pipelines-standalone"
+    ZONE="us-central1-a"
+    MACHINE_TYPE="n1-standard-2" # A machine with 2 CPUs and 7.50GB memory
+    SCOPES="storage-rw,cloud-platform" # These scopes are needed for running some pipeline samples
 
-   - Get gcloud CLI tool at https://cloud.google.com/sdk/gcloud/.
-   - Read `gcloud container clusters create` command documentation at https://cloud.google.com/sdk/gcloud/reference/container/clusters/create.
+    gcloud container clusters create $CLUSTER_NAME \
+        --zone $ZONE \
+        --machine-type $MACHINE_TYPE \
+        --scopes $SCOPES \
+        --num-nodes 2 \
+        --max-nodes 5 \
+        --min-nodes 2 \
+        --enable-autoscaling
+    ```
+
+    Reference:
+
+    - You can find available zones in https://cloud.google.com/compute/docs/regions-zones/#available.
+    - Get gcloud CLI tool at https://cloud.google.com/sdk/gcloud/.
+    - Read `gcloud container clusters create` command documentation at https://cloud.google.com/sdk/gcloud/reference/container/clusters/create.
 
 1. Download kubectl CLI tool:
 
-   You can get kubectl from [its official doc](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+    You can get kubectl from [its official doc](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-   Requirement: kubectl >=1.14 for native support of kustomize (the `kubectl apply -k` options you will see below).
+    You need kubectl version 1.14 or later, for native support of kustomize (the `kubectl apply -k` option you will see below).
 
 1. Configure kubectl to talk to your cluster:
 
-   For GCP, you can reference [Configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
+    You can reference [Configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
 
 1. Deploy latest version of Kubeflow Pipelines standalone to your cluster:
 
-   ```
-   export PIPELINE_VERSION={{% kfp-latest-version %}}
-   kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
-   ```
+    ```
+    export PIPELINE_VERSION={{% kfp-latest-version %}}
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    ```
 
-   Kubeflow Pipelines applications take a while (~3 minutes) to start.
+    Kubeflow Pipelines applications take a while (~3 minutes) to start.
 
 1. Get public URL of Pipelines UI and use it to access Kubeflow Pipelines:
-   ```
-   kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercontent.com
-   ```
+    ```
+    kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercontent.com
+    ```
 
 ## Customization
 
@@ -102,7 +104,7 @@ This is recommended for production environments. See
 To deploy Kubeflow Pipelines standalone in namespace FOO:
 
 - Edit [dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml)
-  or [gcp/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/gcp/kustomization.yaml)
+    or [gcp/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/gcp/kustomization.yaml)
   namespace section to FOO.
 - Then run
 
@@ -166,13 +168,13 @@ If sample pipeline requires a "user-gcp-sa" secret, you could create one by:
 
 - First download the GCE VM service account token [Document](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys):
 
-  ```
-  gcloud iam service-accounts keys create application_default_credentials.json \
-    --iam-account [SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com
-  ```
+    ```
+    gcloud iam service-accounts keys create application_default_credentials.json \
+      --iam-account [SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com
+    ```
 
 - Run:
-  ```
-  kubectl create secret -n [your-namespace] generic user-gcp-sa \
-    --from-file=user-gcp-sa.json=application_default_credentials.json
-  ```
+    ```
+    kubectl create secret -n [your-namespace] generic user-gcp-sa \
+      --from-file=user-gcp-sa.json=application_default_credentials.json
+    ```
