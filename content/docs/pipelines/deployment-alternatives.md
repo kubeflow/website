@@ -1,5 +1,5 @@
 +++
-title = "Pipelines Standalone Deployment"
+title = "Pipelines Standalone Deployment in GCP"
 description = "Instructions to deploy Kubeflow Pipelines standalone to a cluster"
 weight = 15
 +++
@@ -34,11 +34,35 @@ kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercon
 
    You can reference [Creating a cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster) for Google Cloud Platform (GCP).
 
-   Cluster minimum requirement: node pool with at least 2 nodes and 2 CPUs per node.
+   Recommend using the following gcloud command to create a cluster that can run all pipeline samples:
+
+   ```
+   # The following parameters can be customized based on your needs.
+   CLUSTER_NAME="kubeflow-pipelines-standalone"
+   # You can find available zones in https://cloud.google.com/compute/docs/regions-zones/#available
+   ZONE="us-central1-a"
+   MACHINE_TYPE="n1-standard-2" # 2 CPU and 7.50GB memory
+   SCOPES="storage-rw,cloud-platform" # These scopes are needed for running some pipeline samples
+   gcloud container clusters create $CLUSTER_NAME \
+       --zone $ZONE \
+       --machine-type $MACHINE_TYPE \
+       --scopes $SCOPES \
+       --num-nodes 2 \
+       --max-nodes 5 \
+       --min-nodes 2 \
+       --enable-autoscaling
+   ```
+
+   Reference:
+
+   - Get gcloud CLI tool at https://cloud.google.com/sdk/gcloud/.
+   - Read `gcloud clusters create` command documentation at https://cloud.google.com/sdk/gcloud/reference/container/clusters/create.
 
 1. Download kubectl CLI tool:
 
    You can get kubectl from [its official doc](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+   Requirement: kubectl >=1.14 for native support of kustomize (the `kubectl apply -k` options you will see below).
 
 1. Configure kubectl to talk to your cluster:
 
