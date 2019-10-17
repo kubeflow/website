@@ -127,12 +127,14 @@ NAME         STATUS    ROLES                      AGE       VERSION
 
 Follow these steps to deploy Kubeflow:
 
-1. Download a kfctl v0.7.0 or later release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
+1. Download the kfctl {{% kf-latest-version %}} release from the
+  [Kubeflow releases 
+  page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
 
 1. Unpack the tar ball:
 
     ```
-    tar -xvf kfctl_<release tag>_<platform>.tar.gz
+    tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
     ```
 
 1. Run the following commands to set up and deploy Kubeflow. The code below
@@ -144,7 +146,7 @@ Follow these steps to deploy Kubeflow:
     export PATH=$PATH:<path to kfctl in your Kubeflow installation>
 
     # Set KFAPP to the name of your Kubeflow application.
-    export KFAPP=<your choice of application directory name>
+    export KFAPP=<your choice of Kubeflow application name>
     # Installs Istio by default. Comment out Istio components in the config file to skip Istio installation.
     export CONFIG="{{% config-uri-k8s-istio %}}"
 
@@ -152,10 +154,11 @@ Follow these steps to deploy Kubeflow:
     cd ${KFAPP}
     kfctl apply -V -f ${CONFIG}
     ```
-      * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
-        configurations to be stored. 
+      * **${KFAPP}** - the name of your Kubeflow application. This value also
+        becomes the name of the directory where your Kubeflow configurations are 
+        stored. 
         If you want a custom deployment name, specify that name here.
-        The value of this variable becomes the name of your deployment.
+        For example,  `kubeflow-test` or `kfw-test`.
         The value of this variable cannot be greater than 25 characters. It must
         contain just the directory name, not the full path to the directory.
         The content of this directory is described in the next section.
