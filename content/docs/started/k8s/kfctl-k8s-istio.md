@@ -15,12 +15,12 @@ If you don't have a provisioner, ensure that you have configured volume provisio
 
 Follow these steps to deploy Kubeflow:
 
-1. Download the latest `kfctl` release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/) and unpack it:
+1. Download the latest kfctl release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/) and unpack it:
     ```
     tar -xvf kfctl_<release tag>_<platform>.tar.gz
     ```
 
-1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl` binary each time you run it.
+1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the kfctl binary to your path. If you don't add the binary to your path, you must use the full path to the kfctl binary each time you run it.
 
    ```bash
    # Add kfctl to PATH, to make the kfctl binary easier to use.
@@ -30,15 +30,15 @@ Follow these steps to deploy Kubeflow:
    # Installs Istio by default. Comment out Istio components in the config file to skip Istio installation. See https://github.com/kubeflow/kubeflow/pull/3663
    export CONFIG="{{% config-uri-k8s-istio %}}"
 
-   kfctl init ${KFAPP} --config=${CONFIG} -V
-   cd ${KFAPP}
-   kfctl generate all -V
-   kfctl apply all -V
+  * Create configurations and deploy Kubeflow.
+  mkdir ${KFAPP}
+  cd ${KFAPP}
+  kfctl apply -V -f ${CONFIG}
    ```
 
    * **${KFAPP}** - the _name_ of a directory where you want Kubeflow
-  configurations to be stored. This directory is created when you run
-  `kfctl init`. If you want a custom deployment name, specify that name here.
+  configurations to be stored. 
+  If you want a custom deployment name, specify that name here.
   The value of this variable becomes the name of your deployment.
   The value of this variable cannot be greater than 25 characters. It must
   contain just the directory name, not the full path to the directory.

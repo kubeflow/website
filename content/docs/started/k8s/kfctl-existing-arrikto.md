@@ -155,14 +155,14 @@ If you don't have support for LoadBalancer on your cluster, please follow the in
 
 Follow these steps to deploy Kubeflow:
 
-1. Download a `kfctl` release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/) and unpack it:
+1. Download a kfctl release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/) and unpack it:
 
     ```
     tar -xvf kfctl_<release tag>_<platform>.tar.gz
     ```
  
 
-1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl` binary each time you run it.
+1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the kfctl binary to your path. If you don't add the binary to your path, you must use the full path to the kfctl binary each time you run it.
 
 ```bash
 # Add kfctl to PATH, to make the kfctl binary easier to use.
@@ -175,15 +175,15 @@ export CONFIG="{{% config-uri-existing-arrikto %}}"
 export KUBEFLOW_USER_EMAIL="admin@kubeflow.org"
 export KUBEFLOW_PASSWORD="12341234"
 
-kfctl init ${KFAPP} --config=${CONFIG} -V
+* Create configurations and deploy Kubeflow.
+mkdir ${KFAPP}
 cd ${KFAPP}
-kfctl generate all -V
-kfctl apply all -V
+kfctl apply -V -f ${CONFIG}
 ```
 
  * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
-  configurations to be stored. This directory is created when you run
-  `kfctl init`. If you want a custom deployment name, specify that name here.
+  configurations to be stored. If you want a custom deployment name, specify 
+  that name here.
   The value of this variable becomes the name of your deployment.
   The value of this variable cannot be greater than 25 characters. It must
   contain just the directory name, not the full path to the directory.
@@ -643,25 +643,19 @@ kfctl delete all
 
 ### Understanding the deployment process
 
-The deployment process is controlled by 4 different commands:
+The deployment process is controlled by the following commands:
 
-* **init** - one time set up.
-* **generate** - creates config files defining the various resources.
+* **build** - (Optional) Creates configuration files defining the various
+  resources in your deployment. You only need to run `kfctl build` if you want
+  to edit the resources before running `kfctl apply`.
 * **apply** - creates or updates the resources.
 * **delete** - deletes the resources.
-
-With the exception of `init`, all commands take an argument which describes the
-set of resources to apply the command to; this argument can be one of the
-following:
-
-* **k8s** - all resources that run on Kubernetes.
-* **all** - platform and Kubernetes resources.
 
 ### App layout
 
 Your Kubeflow app directory contains the following files and directories:
 
-* **${KFAPP}/app.yaml** defines configurations related to your Kubeflow deployment.
+* **${KFAPP}/app.yaml**: defines configurations related to your Kubeflow deployment.
 * **${KFAPP}/kustomize**: contains the YAML manifests that will be deployed.
 
 ### Next steps
