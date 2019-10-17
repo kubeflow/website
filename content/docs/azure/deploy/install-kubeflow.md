@@ -76,11 +76,13 @@ Run the following commands to set up and deploy Kubeflow.
 
         az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
 
-1. Download the latest kfctl binary from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases).
+1. Download the kfctl {{% kf-latest-version %}} release from the
+  [Kubeflow releases 
+  page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
 
 1. Unpack the tar ball
 
-        tar -xvf kfctl_<release tag>_<platform>.tar.gz
+        tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
 
 1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
 
@@ -89,7 +91,7 @@ Run the following commands to set up and deploy Kubeflow.
     export PATH=$PATH:<path to where kfctl was unpacked>
 
     # Initialize a kubeflow app:
-    export KFAPP=<your choice of application directory name> (ensure this is lowercase)
+    export KFAPP=<your choice of application name for Kubeflow> (ensure this is lowercase)
     # Set the configuration file to use, such as the file specified below:
     export CONFIG="{{% config-uri-k8s-istio %}}"
 
@@ -99,7 +101,14 @@ Run the following commands to set up and deploy Kubeflow.
     kfctl apply -V -f ${CONFIG}
     ```
 
-    * ${KFAPP} - the name of a directory where you want Kubeflow configurations to be stored. If you want a custom deployment name, specify that name here. The value of this variable becomes the name of your deployment. The value of this variable cannot be greater than 25 characters. It must contain just the directory name, not the full path to the directory.
+    * ${KFAPP} - The name of your Kubeflow application. This value also
+  becomes the name of the directory where your Kubeflow configurations are 
+  stored. If you want a custom deployment name, specify that name here.
+  For example,  `kubeflow-test` or `kfw-test`.
+  The value of KFAPP must consist of lower case alphanumeric characters or
+  '-', and must start and end with an alphanumeric character.
+  The value of this variable cannot be greater than 25 characters. It must
+  contain just a name, not a directory path.
 
 1. Check the resources deployed correctly in namespace `kubeflow`
 
