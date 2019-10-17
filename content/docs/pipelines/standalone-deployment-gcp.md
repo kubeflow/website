@@ -17,16 +17,16 @@ document better and be able to customize based on your needs.
 
 1. Deploy latest version of Kubeflow Pipelines:
 
-```
-export PIPELINE_VERSION={{% kfp-latest-version %}}
-kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
-```
+    ```
+    export PIPELINE_VERSION={{% kfp-latest-version %}}
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    ```
 
 1. Get the URL for the Kubeflow Pipelines UI :
 
-```
-kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercontent.com
-```
+    ```
+    kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercontent.com
+    ```
 
 ## Deploying Kubeflow Pipelines standalone from scratch
 
