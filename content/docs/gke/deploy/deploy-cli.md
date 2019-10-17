@@ -35,17 +35,17 @@ Before installing Kubeflow on the command line:
 <a id="prepare-environment"></a>
 ## Prepare your environment
 
-Follow these steps to download kfctl (the Kubeflow installer) and set some handy
-environment variables:
+Follow these steps to download the kfctl binary for the Kubeflow CLI and set
+some handy environment variables:
 
-
-1. Download a kfctl release from the 
-  [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
+1. Download the kfctl {{% kf-latest-version %}} release from the
+  [Kubeflow releases 
+  page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
 
 1. Unpack the tar ball:
 
     ```
-    tar -xvf kfctl_<release tag>_<platform>.tar.gz
+    tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
     ```
 
 1. Create user credentials. You only need to run this command once:
@@ -84,7 +84,7 @@ environment variables:
     # name of the application directory too. See the detailed
     # description in the text below this code snippet.
     # For example, your app name can be  'kubeflow-test' or 'kfw-test'.
-    export KFAPP=<your choice of application directory name>
+    export KFAPP=<your choice of name for the Kubeflow deployment>
 
     # The following command is optional. It adds the kfctl binary to your path.
     # If you don't add kfctl to your path, you must use the full path
@@ -92,11 +92,29 @@ environment variables:
     export PATH=$PATH:<path to your kfctl file>
     ```
 
+Notes:
+
+* **${KFAPP}** - The name of your Kubeflow application. This value also
+  becomes the name of the directory where your Kubeflow configurations are 
+  stored. If you want a custom deployment name, specify that name here.
+  For example,  `kubeflow-test` or `kfw-test`.
+  The value of KFAPP must consist of lower case alphanumeric characters or
+  '-', and must start and end with an alphanumeric character.
+  The value of this variable cannot be greater than 25 characters. It must
+  contain just a name, not a directory path.
+* **${PROJECT}** - The project ID of the GCP project where you want Kubeflow 
+  deployed.
+* **${ZONE}** - The GCP zone where you want to create the Kubeflow deployment.
+  You can see a list of zones in the 
+  [Compute Engine documentation](https://cloud.google.com/compute/docs/regions-zones/#available).
+  If you plan to use accelerators, make sure to pick a zone that supports the 
+  type you want.
+
 <a id="set-up-and-deploy"></a>
 ## Set up and deploy Kubeflow
 
 To set up and deploy Kubeflow using the **default settings**,
-run the **apply** command:
+run the `kfctl apply` command:
 
 ```
 mkdir ${KFAPP}
@@ -104,10 +122,13 @@ cd ${KFAPP}
 kfctl apply -V -f ${CONFIG}
 ```
 
-Alternatively, you can set up your configuration files without deploying 
-Kubeflow, so that you can customize the configuration before deployment:
+## Alternatively, set up your configuration for later deployment
 
-1. Run the **build** command to set up your configuration:
+If you want to customize your configuration before deploying Kubeflow, you can 
+set up your configuration files first, then edit the configuration, then
+deploy Kubeflow:
+
+1. Run the `kfctl build` command to set up your configuration:
 
   ```
   mkdir ${KFAPP}
@@ -117,37 +138,13 @@ Kubeflow, so that you can customize the configuration before deployment:
 
 1. Edit the configuration files, as described in the guide to
   [customizing your Kubeflow deployment](/docs/gke/customizing-gke).
-1. When you have finished editing the configuration, run the **apply**
+
+1. When you have finished editing the configuration, run the `kfctl apply`
   command to deploy Kubeflow:
 
   ```
   kfctl apply -V -f ${CONFIG}
   ```
-
-Notes:
-
-* **${KFAPP}** - The _name_ of a directory where you want Kubeflow 
-  configurations to be stored. 
-  If you want a custom deployment name, specify that name here.
-  The value of this variable becomes the name of your deployment.
-  The value of KFAPP must consist of lower case alphanumeric characters or
-  '-', and must start and end with an alphanumeric character.
-  For example,  `kubeflow-test` or `kfw-test`.
-  The value of this variable cannot be greater than 25 characters. It must
-  contain just the directory name, not the full path to the directory.
-  The content of this directory is described in the next section.
-* **${PROJECT}** - The project ID of the GCP project where you want Kubeflow 
-  deployed.
-* **${ZONE}** - The GCP zone where you want to create the Kubeflow deployment.
-  You can see a list of zones in the 
-  [Compute Engine documentation](https://cloud.google.com/compute/docs/regions-zones/#available).
-  If you plan to use accelerators, make sure to pick a zone that supports the 
-  type you want.
-* `kfctl apply` attempts to fetch your email address from your 
-  credential. If it can't find a valid email address, you must use the
-  flag `--email <your email address>` to pass a valid email address. This email 
-  address becomes an administrator in the configuration of your Kubeflow 
-  deployment.
 
 ## Check your deployment
 
@@ -187,6 +184,20 @@ Follow these steps to access the Kubeflow central dashboard:
   https://<KFAPP>.endpoints.<project-id>.cloud.goog/
   ```
 
+    You can run the following command to get the URI for your deployment:
+
+  ```
+  kubectl -n istio-system get ingress
+  NAME            HOSTS                                                      ADDRESS         PORTS   AGE
+  envoy-ingress   your-kubeflow-name.endpoints.your-gcp-project.cloud.goog   34.102.232.34   80      5d13h
+  ```
+
+    The following command sets an environment variable named `HOST` to the URI:
+
+  ```
+  export HOST=$(kubectl -n istio-system get ingress envoy-ingress -o=jsonpath={.spec.rules[0].host})
+  ```
+
 1. Follow the instructions on the UI to create a namespace. See the guide to 
   [creation of profiles](/docs/other-guides/multi-user-overview/#automatic-creation-of-profiles).
 
@@ -202,14 +213,53 @@ Notes:
 
 ## Understanding the deployment process
 
-The `kfctl` deployment process includes the following commands:
+The kfctl deployment process includes the following commands:
 
-* **build** - (Optional) Creates configuration files defining the various 
+* `kfctl build` - (Optional) Creates configuration files defining the various 
   resources in your deployment. You only need to run `kfctl build` if you want 
   to edit the resources before running `kfctl apply`. See the guide to
   [customizing your Kubeflow deployment](/docs/gke/customizing-gke).
-* **apply** - Creates or updates the resources.
-* **delete** - Deletes the resources.
+* `kfctl apply` - Creates or updates the resources.
+* `kfctl delete` - Deletes the resources.
+
+The kfctl deployment tool applies default values to certain properties
+as follows:
+
+* **Email address:** kfctl attempts to fetch your email address from your
+  Cloud SDK configuration. You can run `gcloud config list` to see the default 
+  email address, which the command output lists as the **account**.
+  If kfctl can't find a valid email address, you must use the
+  flag `--email <your email address>` to pass a valid email address. This email 
+  address becomes an administrator in the configuration of your Kubeflow 
+  deployment.
+
+* **GCP project ID:** kfctl attempts to fetch your project ID from your
+  Cloud SDK configuration. You can run `gcloud config list` to see your 
+  active project ID.
+
+* **GCP zone:** kfctl attempts to fetch the zone from your Cloud SDK
+  configuration. You can run `gcloud config list` to see your active zone.
+
+* **Kubeflow application name:** kfctl defaults to the name of the directory
+  where you run the `kfctl build` or `kfctl apply` command.
+
+You can also explicitly set the following values in the `app.yaml` configuration
+file:
+
+* Kubeflow application name
+* GCP project
+* GCP zone
+* Email address
+
+
+The following snippet shows you how to set values in the configuration file,
+using [yq](https://github.com/mikefarah/yq/releases):
+
+```
+yq w -i app.yaml spec.plugins[0].spec.project ${PROJECT}
+yq w -i app.yaml spec.plugins[0].spec.zone ${ZONE}
+yq w -i app.yaml metadata.name ${KFAPP}
+```
 
 ### App layout
 
