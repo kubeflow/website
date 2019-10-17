@@ -56,7 +56,7 @@ kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercon
    Reference:
 
    - Get gcloud CLI tool at https://cloud.google.com/sdk/gcloud/.
-   - Read `gcloud clusters create` command documentation at https://cloud.google.com/sdk/gcloud/reference/container/clusters/create.
+   - Read `gcloud container clusters create` command documentation at https://cloud.google.com/sdk/gcloud/reference/container/clusters/create.
 
 1. Download kubectl CLI tool:
 
