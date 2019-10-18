@@ -38,6 +38,13 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/$A
 ```shell
 brew install argoproj/tap/argocd
 ```
+2. For Ubuntu
+```
+wget https://github.com/argoproj/argo-cd/releases/download/v1.2.3/argocd-linux-amd64
+mv argocd-linux-amd64 argocd
+chmod u+x argocd
+export PATH=$PATH:$HOME/path/to/argocd
+```
 
 1. Set extra permissions for Argo CD
 Since the GKE cluster has RBAC enabled, you will need to grant your account the ability to create new cluster roles by running:
