@@ -66,7 +66,7 @@ some handy environment variables:
 
     # Use the following kfctl configuration file for authentication with 
     # Cloud IAP (recommended):
-    export CONFIG="{{% config-uri-gcp-iap %}}"
+    export CONFIG_URI="{{% config-uri-gcp-iap %}}"
     # If using Cloud IAP for authentication, create environment variables
     # from the OAuth client ID and secret that you obtained earlier:
     export CLIENT_ID=<CLIENT_ID from OAuth page>
@@ -74,17 +74,23 @@ some handy environment variables:
 
     # Alternatively, use the following kfctl configuration if you want to use 
     # basic authentication:
-    export CONFIG="{{% config-uri-gcp-basic-auth %}}"
+    export CONFIG_URI="{{% config-uri-gcp-basic-auth %}}"
     # If using basic authentication, create environment variables
     # for username and password:
     export KUBEFLOW_USERNAME=<your username>
     export KUBEFLOW_PASSWORD=<your password>
 
-    # Set KFAPP to the name of your Kubeflow application. This will be the
-    # name of the application directory too. See the detailed
+    # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
+    # name of the directory containing your configuration. See the detailed
     # description in the text below this code snippet.
-    # For example, your app name can be  'kubeflow-test' or 'kfw-test'.
-    export KFAPP=<your choice of name for the Kubeflow deployment>
+    # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
+    export KF_NAME=<your choice of name for the Kubeflow deployment>
+
+    # Set the path the base directory where you want to store one or more 
+    # Kubeflow deployments. For example, /opt/.
+    # Then set the Kubeflow configuration directory.
+    export BASE_DIR=<Path to a base directory>
+    export KF_DIR=${BASE_DIR}/${KF_NAME}
 
     # The following command is optional. It adds the kfctl binary to your path.
     # If you don't add kfctl to your path, you must use the full path
@@ -94,14 +100,16 @@ some handy environment variables:
 
 Notes:
 
-* **${KFAPP}** - The name of your Kubeflow application. This value also
-  becomes the name of the directory where your Kubeflow configurations are 
-  stored. If you want a custom deployment name, specify that name here.
-  For example,  `kubeflow-test` or `kfw-test`.
-  The value of KFAPP must consist of lower case alphanumeric characters or
+* **${KF_NAME}** - The name of your Kubeflow deployment.
+  If you want a custom deployment name, specify that name here.
+  For example,  `my-kubeflow` or `kfw-test`.
+  The value of KF_NAME must consist of lower case alphanumeric characters or
   '-', and must start and end with an alphanumeric character.
   The value of this variable cannot be greater than 25 characters. It must
   contain just a name, not a directory path.
+  This value also becomes the name of the directory where your Kubeflow 
+  configurations are stored. The full path to the directory is stored in
+  **${KF_DIR}**.
 * **${PROJECT}** - The project ID of the GCP project where you want Kubeflow 
   deployed.
 * **${ZONE}** - The GCP zone where you want to create the Kubeflow deployment.
@@ -117,9 +125,9 @@ To set up and deploy Kubeflow using the **default settings**,
 run the `kfctl apply` command:
 
 ```
-mkdir ${KFAPP}
-cd ${KFAPP}
-kfctl apply -V -f ${CONFIG}
+mkdir -p ${KF_DIR}
+cd ${KF_DIR}
+kfctl apply -V -f ${CONFIG_URI}
 ```
 
 ## Alternatively, set up your configuration for later deployment
@@ -131,19 +139,30 @@ deploy Kubeflow:
 1. Run the `kfctl build` command to set up your configuration:
 
   ```
-  mkdir ${KFAPP}
-  cd ${KFAPP}
-  kfctl build -V -f ${CONFIG}
+  mkdir -p ${KF_DIR}
+  cd ${KF_DIR}
+  kfctl build -V -f ${CONFIG_URI}
   ```
 
 1. Edit the configuration files, as described in the guide to
   [customizing your Kubeflow deployment](/docs/gke/customizing-gke).
 
-1. When you have finished editing the configuration, run the `kfctl apply`
-  command to deploy Kubeflow:
+1. Set an environment variable for your local configuration file:
 
   ```
-  kfctl apply -V -f ${CONFIG}
+  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_iap.yaml
+  ```
+
+    Or:
+
+  ```
+  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_basic_auth.yaml
+  ```
+
+1. Run the `kfctl apply` command to deploy Kubeflow:
+
+  ```
+  kfctl apply -V -f ${CONFIG_FILE}
   ```
 
 ## Check your deployment
@@ -153,18 +172,18 @@ Follow these steps to verify the deployment:
 1. The deployment process creates a separate deployment for your data storage. 
    After running `kfctl apply` you should notice two new 
    [deployments](https://console.cloud.google.com/dm/deployments):
-   * **{KFAPP}-storage**: This deployment has persistent volumes for your
+   * **{KF_NAME}-storage**: This deployment has persistent volumes for your
      pipelines.
-   * **{KFAPP}**: This deployment has all the components of Kubeflow, including 
+   * **{KF_NAME}**: This deployment has all the components of Kubeflow, including 
      a [GKE cluster](https://console.cloud.google.com/kubernetes/list) 
-     named **${KFAPP}** with Kubeflow installed.
+     named **${KF_NAME}** with Kubeflow installed.
 
 1. When the deployment finishes, check the resources installed in the namespace
    `kubeflow` in your new cluster.  To do this from the command line, first set 
    your `kubectl` credentials to point to the new cluster:
 
     ```
-    gcloud container clusters get-credentials ${KFAPP} --zone ${ZONE} --project ${PROJECT}
+    gcloud container clusters get-credentials ${KF_NAME} --zone ${ZONE} --project ${PROJECT}
     ```
 
     Then see what's installed in the `kubeflow` namespace of your GKE cluster:
@@ -181,7 +200,7 @@ Follow these steps to access the Kubeflow central dashboard:
   minutes for the URI to become available:
 
   ```
-  https://<KFAPP>.endpoints.<project-id>.cloud.goog/
+  https://<KF_NAME>.endpoints.<project-id>.cloud.goog/
   ```
 
     You can run the following command to get the URI for your deployment:
@@ -240,13 +259,13 @@ as follows:
 * **GCP zone:** kfctl attempts to fetch the zone from your Cloud SDK
   configuration. You can run `gcloud config list` to see your active zone.
 
-* **Kubeflow application name:** kfctl defaults to the name of the directory
+* **Kubeflow deployment name:** kfctl defaults to the name of the directory
   where you run the `kfctl build` or `kfctl apply` command.
 
-You can also explicitly set the following values in the `app.yaml` configuration
-file:
+You can also explicitly set the following values in your `${CONFIG_FILE}`
+configuration file:
 
-* Kubeflow application name
+* Kubeflow deployment name
 * GCP project
 * GCP zone
 * Email address
@@ -256,20 +275,21 @@ The following snippet shows you how to set values in the configuration file,
 using [yq](https://github.com/mikefarah/yq/releases):
 
 ```
-yq w -i app.yaml spec.plugins[0].spec.project ${PROJECT}
-yq w -i app.yaml spec.plugins[0].spec.zone ${ZONE}
-yq w -i app.yaml metadata.name ${KFAPP}
+yq w -i ${CONFIG_FILE}.yaml spec.plugins[0].spec.project ${PROJECT}
+yq w -i ${CONFIG_FILE}.yaml spec.plugins[0].spec.zone ${ZONE}
+yq w -i ${CONFIG_FILE}.yaml metadata.name ${KF_NAME}
 ```
 
 ### App layout
 
-Your Kubeflow app directory **${KFAPP}** contains the following files and 
+Your Kubeflow app directory **${KF_DIR}** contains the following files and 
 directories:
 
-* **app.yaml** defines configurations related to your Kubeflow deployment.
+* **${CONFIG_FILE}** is a YAML file that defines configurations related to your 
+  Kubeflow deployment.
 
   * The values are set when you run `kfctl build` or `kfctl apply`.
-  * The values are snapshotted inside **app.yaml** to make your app 
+  * The values are snapshotted inside **${CONFIG_FILE}** to make your app 
     self contained.
 
 * **gcp_config** is a directory that contains 
@@ -288,7 +308,7 @@ directories:
   * You can customize the Kubernetes resources by modifying the manifests and 
     running `kfctl apply` again.
 
-We recommend that you check in the contents of your **${KFAPP}** directory
+We recommend that you check in the contents of your **${KF_DIR}** directory
 into source control.
 
 ### GCP service accounts
@@ -298,13 +318,13 @@ GCP project. These service accounts are created using the [principle of least
 privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). 
 The three service accounts are:
 
-* `${KFAPP}-admin` is used for some admin tasks like configuring the load 
+* `${KF_NAME}-admin` is used for some admin tasks like configuring the load 
   balancers. The principle is that this account is needed to deploy Kubeflow but 
   not needed to actually run jobs.
-* `${KFAPP}-user` is intended to be used by training jobs and models to access 
+* `${KF_NAME}-user` is intended to be used by training jobs and models to access 
   GCP resources (Cloud Storage, BigQuery, etc.). This account has a much smaller 
   set of privileges compared to `admin`.
-* `${KFAPP}-vm` is used only for the virtual machine (VM) service account. This
+* `${KF_NAME}-vm` is used only for the virtual machine (VM) service account. This
   account has the minimal permissions needed to send metrics and logs to 
   [Stackdriver](https://cloud.google.com/stackdriver/).
 
