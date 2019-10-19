@@ -237,9 +237,9 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
   **skip the `kfctl apply` command** and run the **`kfctl build`** command 
   instead, as described in that step. Now you can edit the configuration files
   before deploying Kubeflow. Retain the environment variables that you set
-  during the setup, such as `${KFAPP}` and `${CONFIG}`.
+  during the setup, including `${KF_NAME}`, `${KF_DIR}`, and `${CONFIG_FILE}`.
 
-1. Enable private clusters by editing `${KFAPP}/gcp_configs/cluster-kubeflow.yaml` and updating the following two parameters:
+1. Enable private clusters by editing `${KF_DIR}/gcp_config/cluster-kubeflow.yaml` and updating the following two parameters:
 
     ```
     privatecluster: true
@@ -248,14 +248,14 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 1. Remove components which are not useful in private clusters:
 
     ```
-    cd ${KFAPP}/kustomize
+    cd ${KF_DIR}/kustomize
     kubectl delete -f cert-manager.yaml
     ```
 1. Create the deployment:
 
     ```
-    cd ${KFAPP}
-    kfctl apply -V -f ${CONFIG}
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_FILE}
     ```
 
       * If you get an error **legacy networks not supported**, follow the 
@@ -264,11 +264,11 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
         * You will need to manually create the network as a work around for [kubeflow/kubeflow#3071](https://github.com/kubeflow/kubeflow/issues/3071)
 
             ```
-            cd ${KFAPP}/gcp_configs
-            gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP}-network --config=network.yaml
+            cd ${KF_DIR}/gcp_config
+            gcloud --project=${PROJECT} deployment-manager deployments create ${KF_NAME}-network --config=network.yaml
             ```
 
-        * Then edit **gcp_config/cluster.jinja** to add a field **network** in your cluster
+        * Then edit `${KF_DIR}/gcp_config/cluster.jinja` to add a field **network** in your cluster
         
             ```
             cluster:
@@ -282,12 +282,12 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
             gcloud --project=${PROJECT} compute networks list
             ``` 
 
-          * The name will contain the value ${KFAPP}
+          * The name will contain the value ${KF_NAME}
 
 1. Update iap-ingress component parameters:
 
     ```
-    cd ${KFAPP}/kustomize
+    cd ${KF_DIR}/kustomize
     gvim basic-auth-ingress.yaml  # Or iap-ingress.yaml if you are using IAP
     ```
 
@@ -315,7 +315,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
             you can get it by running
 
             ```
-            cd ${KFAPP}/kustomize
+            cd ${KF_DIR}/kustomize
             grep hostname: basic-auth-ingress.yaml
             ```
 
@@ -335,8 +335,8 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 1. Apply all the Kubernetes resources:
 
     ```
-    cd ${KFAPP}
-    kfctl apply -V -f ${CONFIG}
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_FILE}
     ```
 1. Wait for Kubeflow to become accessible and then access it at
 
