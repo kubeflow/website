@@ -31,16 +31,19 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
 In order to deploy Kubeflow on your existing Amazon EKS cluster, you need to provide `AWS_CLUSTER_NAME`, `cluster region` and `worker roles`.
 
 
-1. Download the latest kfctl binary from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}) and unpack it.
+1. Download the latest kfctl binary from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}})
+
+1. Unpack the downloaded file and set up your environment:
 
     ```
-    # Add kfctl to PATH, to make the kfctl binary easier to use.
     tar -xvf kfctl_<release tag>_<platform>.tar.gz
+
+    # Add kfctl to PATH, to make the kfctl binary easier to use.
     export PATH=$PATH:"<path to kfctl>"
 
     # Download config file
     export CONFIG="/tmp/kfctl_aws.yaml"
-    wget https://raw.githubusercontent.com/kubeflow/kubeflow/{{% kf-latest-version %}}/bootstrap/config/kfctl_aws.yaml -O ${CONFIG}
+    wget https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_aws.yaml -O ${CONFIG}
     ```
 
     * `kfctl_aws.yaml` is one of setup manifests, please check [kfctl_aws_cognito.yaml](https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_aws_cognito.yaml) for the template to enable authentication.
@@ -49,7 +52,7 @@ In order to deploy Kubeflow on your existing Amazon EKS cluster, you need to pro
 
      ```shell
     export AWS_CLUSTER_NAME=<YOUR EKS CLUSTER NAME>
-    export KFAPP=${AWS_CLUSTER_NAME}
+    export KF_NAME=${AWS_CLUSTER_NAME}
     ```
 
     > Note: To get your Amazon EKS worker node IAM role name, you can check IAM setting by running the following commands. This command assumes that you used `eksctl` to create your cluster. If you use other provisioning tools to create your worker node groups, please find the role that is associated with your worker nodes in the Amazon EC2 console.
@@ -75,13 +78,16 @@ In order to deploy Kubeflow on your existing Amazon EKS cluster, you need to pro
 1. Run the following commands to set up your environment and initialize the cluster.
 
     ```
-    mkdir ${KFAPP}
-    cd ${KFAPP}
+    # Set the path to the base directory where you want to store one or more 
+    # Kubeflow deployments. For example, /opt/.
+    # Then set the Kubeflow application directory for this deployment.
+    export BASE_DIR=<path to a base directory>
+    export KF_DIR=${BASE_DIR}/${KF_NAME}
+
+    mkdir ${KF_DIR}
+    cd ${KF_DIR}
     kfctl apply -V -f ${CONFIG}
     ```
-
-    * KFAPP - Use a relative directory name here rather than absolute path, such as `kfapp`. It will be used as eks cluster name.
-    * CONFIG - Path to the configuration file
 
     *Important!!!* By default, these scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
 
@@ -121,22 +127,28 @@ spec:
 
 ## Understanding the deployment process
 
-The deployment process is controlled by the following commands:
+The kfctl deployment process is controlled by the following commands:
 
-* **build** - (Optional) Creates configuration files defining the various
+* `kfctl build` - (Optional) Creates configuration files defining the various
   resources in your deployment. You only need to run `kfctl build` if you want
   to edit the resources before running `kfctl apply`.
-* **apply** - Creates or updates the resources.
-* **delete** - Deletes the resources.
+* `kfctl apply` - Creates or updates the resources.
+* `kfctl delete` - Deletes the resources.
 
 ### App layout
 
-Your Kubeflow app directory **${KFAPP}** contains the following files and directories:
+Your Kubeflow app directory **${KF_DIR}** contains the following files and directories:
 
-* **app.yaml** - Defines the configuration related to your Kubeflow deployment.
-    * These values are set when you run `kfctl build` or `kfctl apply`.
-    * These values are snapshotted inside `app.yaml` to make your app self contained.
-* **${KFAPP}/aws_config** - A directory that contains a sample `eksctl` cluster configuration file that defines the AWS cluster and policy files to attach to your node group roles.
+* **${CONFIG_FILE}** is a YAML file that defines configurations related to your 
+  Kubeflow deployment.
+
+  * This file is a copy of the GitHub-based configuration YAML file that
+    you used when deploying Kubeflow.
+  * When you run `kfctl apply` or `kfctl build`, kfctl creates
+    a local version of the configuration file, `${CONFIG_FILE},`
+    which you can further customize if necessary.
+
+* **aws_config** is a directory that contains a sample `eksctl` cluster configuration file that defines the AWS cluster and policy files to attach to your node group roles.
     * You can modify the `cluster_config.yaml` and `cluster_features.yaml` files to customize your AWS infrastructure.
 * **kustomize** is a directory that contains the kustomize packages for Kubeflow applications.
     * The directory is created when you run `kfctl build` or `kfctl apply`.

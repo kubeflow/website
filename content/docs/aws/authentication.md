@@ -39,7 +39,8 @@ To get TLS support from the ALB Ingress Controller, you need to follow [this tut
 
 In order to authenticate and manage users for Kubeflow, let's create a user pool. You can follow these instructions here. Once a user pool created, we will have a `UserPoolId`, a Cognito Domain name, and a Cognito Pool Arn.
 
-Before you `generate all -V`, please update Cognito spec in `app.yaml` like this,
+Before you `generate all -V`, please update Cognito spec in your Kubeflow
+configuration file at `${CONFIG}`, so that it looks like this:
 
 ```
 plugins:

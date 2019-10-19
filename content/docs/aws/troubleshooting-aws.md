@@ -24,7 +24,7 @@ Please remove the escape backslashes surrounding `{KUBEFLOW_TAG}`.
 /tmp/kubeflow-aws/scripts/kfctl.sh: line 485: env.sh: No such file or directory
 ```
 
-When you run generate/apply platform/k8s, Please make sure you verify the following steps and run your command from within the ${KFAPP} folder.
+When you run generate/apply platform/k8s, Please make sure you verify the following steps and run your command from within the ${KF_DIR} folder.
 
 
 ### kfapp already exists
@@ -138,5 +138,5 @@ If you see this error when you run `apply platform`, it means your eksctl cli ve
 We are working with eksctl team to make sure feature release support backward compatibility at least for one version.
 
 ```
-loading config file "${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_config.yaml": no kind "ClusterConfig" is registered for version "eksctl.io/v1alpha5" in scheme "k8s.io/client-go/kubernetes/scheme/register.go:60"
+loading config file "${KF_DIR}/aws_config/cluster_config.yaml": no kind "ClusterConfig" is registered for version "eksctl.io/v1alpha5" in scheme "k8s.io/client-go/kubernetes/scheme/register.go:60"
 ```

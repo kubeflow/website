@@ -15,7 +15,7 @@ By default, the Amazon EFS CSI driver is not enabled and you need to follow step
 ### Deploy the Amazon EFS CSI Plugin
 
 ```shell
-cd ${KUBEFLOW_SRC}/${KFAPP}/ks_app
+cd ${KF_DIR}/ks_app
 export COMPONENT=aws-efs-csi-driver
 ks generate aws-efs-csi-driver ${COMPONENT}
 ks apply default -c ${COMPONENT}
@@ -28,7 +28,7 @@ Please pay special attention to the Security Groups, and make sure that traffic 
 Then you will get a file system ID and you can use it to create persistent volumes and persistent volume claims.
 
 ```shell
-cd ${KUBEFLOW_SRC}/${KFAPP}/ks_app
+cd ${KF_DIR}/ks_app
 export COMPONENT=efs-storage
 ks generate aws-efs-pv ${COMPONENT} --efsId=${your_file_system_id}
 ks apply default -c ${COMPONENT}
@@ -49,7 +49,7 @@ Lustre is another file system that supports `ReadWriteMany`. Once difference bet
 ### Deploy the Amazon FSx CSI Plugin
 
 ```shell
-cd ${KUBEFLOW_SRC}/${KFAPP}/ks_app
+cd ${KF_DIR}/ks_app
 export COMPONENT=aws-fsx-csi-driver
 ks generate aws-fsx-csi-driver ${COMPONENT}
 ks apply default -c ${COMPONENT}
@@ -60,7 +60,7 @@ ks apply default -c ${COMPONENT}
 You can statically provision Amazon FSx for Lustre and then pass the file system ID and DNS name to generate persistent volumes and persistent volume claims. It will create default storage class `fsx-default`.
 
 ```shell
-cd ${KUBEFLOW_SRC}/${KFAPP}/ks_app
+cd ${KF_DIR}/ks_app
 export COMPONENT=fsx-static-storage
 
 ks generate aws-fsx-pv-static ${COMPONENT} --fsxId=fs-048xxxx7c25 --dnsName=fs-048xxxx7c25.fsx.us-west-2.amazonaws.com
@@ -88,7 +88,7 @@ If you already have a training dataset in Amazon S3, you can pass your bucket na
 It will create Storage Class, Persistent Volume, and PersistentVolumeClaim Kubernetes resources for you.
 
 ```shell
-cd ${KUBEFLOW_SRC}/${KFAPP}/ks_app
+cd ${KF_DIR}/ks_app
 export COMPONENT=fsx-dynamic-storage
 
 ks generate aws-fsx-pv-dynamic ${COMPONENT} --securityGroupIds=sg-0c380xxxxxxxx --subnetId=subnet-007f9cxxxxxxx

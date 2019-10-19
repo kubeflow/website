@@ -23,7 +23,7 @@ Here are the optional configuration parameters for kfctl on the AWS platform.
 
 Before you run `kfctl apply -V -f ${CONFIG}`, you can edit the cluster configuration file to change cluster specification before you create the cluster.
 
-Cluster configuration is stored in `${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_config.yaml`. Please see [eksctl](https://eksctl.io/) for configuration details.
+Cluster configuration is stored in `${KF_DIR}/aws_config/cluster_config.yaml`. Please see [eksctl](https://eksctl.io/) for configuration details.
 
 For example, the following is a cluster manifest with one node group which has 2 `p2.xlarge` instances. You can easily enable SSH and configure a public key. All worker nodes will be in single Availability Zone.
 
