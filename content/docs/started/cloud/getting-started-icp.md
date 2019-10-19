@@ -145,23 +145,31 @@ Follow these steps to deploy Kubeflow:
     # The following command is optional, to make kfctl binary easier to use.
     export PATH=$PATH:<path to kfctl in your Kubeflow installation>
 
-    # Set KFAPP to the name of your Kubeflow application.
-    export KFAPP=<your choice of Kubeflow application name>
-    # Installs Istio by default. Comment out Istio components in the config file to skip Istio installation.
-    export CONFIG="{{% config-uri-k8s-istio %}}"
+    # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
+    # name of the directory containing your configuration.
+    # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
+    export KF_NAME=<your choice of name for the Kubeflow deployment>
 
-    mkdir ${KFAPP}
-    cd ${KFAPP}
-    kfctl apply -V -f ${CONFIG}
+    # Set the path to the base directory where you want to store one or more 
+    # Kubeflow deployments. For example, /opt/.
+    # Then set the Kubeflow application directory for this deployment.
+    export BASE_DIR=<path to a base directory>
+    export KF_DIR=${BASE_DIR}/${KF_NAME}
+
+    # Installs Istio by default. Comment out Istio components in the config file to skip Istio installation.
+    export CONFIG_URI="{{% config-uri-k8s-istio %}}"
+
+    mkdir ${KF_DIR}
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_URI}
     ```
-      * **${KFAPP}** - the name of your Kubeflow application. This value also
+      * **${KF_NAME}** - the name of your Kubeflow deployment. This value also
         becomes the name of the directory where your Kubeflow configurations are 
         stored. 
         If you want a custom deployment name, specify that name here.
-        For example,  `kubeflow-test` or `kfw-test`.
+        For example,  `my-kubeflow` or `kf-test`.
         The value of this variable cannot be greater than 25 characters. It must
-        contain just the directory name, not the full path to the directory.
-        The content of this directory is described in the next section.
+        contain just the deployment name, not the full path to the directory.
 
 1. Check the resources deployed in namespace `kubeflow`:
 
@@ -188,15 +196,22 @@ http://${MANAGEMENT_IP}:$AMBASSADOR_PORT/
 
 ## Delete Kubeflow
 
+Set the `${CONFIG_FILE}` environment variable to the path for your 
+Kubeflow configuration file:
+
+  ```
+  export CONFIG_FILE=${KF_DIR}/kfctl_k8s_istio.yaml
+  ```
+
 Run the following commands to delete your deployment and reclaim all resources:
 
 ```bash
-cd ${KFAPP}
+cd ${KF_DIR}
 # If you want to delete all the resources, including storage.
-kfctl delete all --delete_storage
+kfctl delete -f ${CONFIG_FILE} --delete_storage
 # If you want to preserve storage, which contains metadata and information
-# from mlpipeline.
-kfctl delete all
+# from Kubeflow Pipelines.
+kfctl delete -f ${CONFIG_FILE}
 ```
 ## TroubleShooting
 ### Insufficient Pods 
