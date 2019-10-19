@@ -39,29 +39,29 @@ This guide assumes the following settings:
   export KF_DIR=<path to your Kubeflow application directory>
   ``` 
 
-* The `${KF_CONFIG_FILE}` environment variable contains the name of your 
+* The `${CONFIG_FILE}` environment variable contains the name of your 
   Kubeflow configuration file.
 
   ```
-  export KF_CONFIG_FILE="kfctl_gcp_iap.yaml"
+  export CONFIG_FILE="kfctl_gcp_iap.yaml"
   ```
 
     Or:
 
   ```
-  export KF_CONFIG_FILE="kfctl_gcp_basic_auth.yaml"
+  export CONFIG_FILE="kfctl_gcp_basic_auth.yaml"
   ```
 
 * The `${PROJECT}` environment variable contains the ID of your GCP project. 
   You can find the project ID in 
-  your `${KF_DIR}/${KF_CONFIG_FILE}` file, as the value for the `project` key.
+  your `${KF_DIR}/${CONFIG_FILE}` file, as the value for the `project` key.
 
   ```
   export PROJECT=<your GCP project ID>
   ```
 
 * The `${KF_NAME}` environment variable contains the name of your Kubeflow 
-  deployment. You can find the name in your `${KF_DIR}/${KF_CONFIG_FILE}` 
+  deployment. You can find the name in your `${KF_DIR}/${CONFIG_FILE}` 
   file, as the value for the `metadata.name` key.
 
   ```
@@ -81,7 +81,7 @@ the changes:
 
 ```
 cd ${KF_DIR}
-kfctl apply -V -f ${KF_CONFIG_FILE}
+kfctl apply -V -f ${CONFIG_FILE}
 ```
 
 Alternatively, you can use Deployment Manager directly:
@@ -96,8 +96,8 @@ to tear down your deployment before recreating it:
 
 ```
 cd ${KF_DIR}
-kfctl delete -f ${KF_CONFIG_FILE}
-kfctl apply -V -f ${KF_CONFIG_FILE}
+kfctl delete -f ${CONFIG_FILE}
+kfctl apply -V -f ${CONFIG_FILE}
 ```
 
 ## Customizing Kubernetes resources
@@ -131,7 +131,7 @@ metadata:
 
   ```
   cd ${KF_DIR}
-  kfctl apply -V -f ${KF_CONFIG_FILE}
+  kfctl apply -V -f ${CONFIG_FILE}
   ```
 
     Or use kubectl directly:

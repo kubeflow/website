@@ -136,20 +136,24 @@ problems:
     For example if you originally ran the following commands to deploy Kubeflow:
 
     ```
-    export KFAPP=myapp
-    mkdir ${KFAPP}
-    cd ${KFAPP}
-    kfctl apply -V -f ${CONFIG}
+    export KF_NAME=my-app
+    export BASE_DIR=<path to a base directory>
+    export KF_DIR=${BASE_DIR}/${KF_NAME}
+    mkdir -p ${KF_DIR}
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_FILE}
     ```
 
     Then rerun the commands with a different name that you haven't used
     before:
 
     ```
-    export KFAPP=myapp-unique
-    mkdir ${KFAPP}
-    cd ${KFAPP}
-    kfctl apply -V -f ${CONFIG}
+    export KF_NAME=my-app-unique
+    export BASE_DIR=<path to a base directory>
+    export KF_DIR=${BASE_DIR}/${KF_NAME}
+    mkdir -p ${KF_DIR}
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_FILE}
     ```
 
 1. Wait for the load balancer to report the back ends as healthy:
