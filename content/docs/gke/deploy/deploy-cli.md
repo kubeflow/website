@@ -88,7 +88,7 @@ some handy environment variables:
     # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
     export KF_NAME=<your choice of name for the Kubeflow deployment>
 
-    # Set the path the base directory where you want to store one or more 
+    # Set the path to the base directory where you want to store one or more 
     # Kubeflow deployments. For example, /opt/.
     # Then set the Kubeflow application directory for this deployment.
     export BASE_DIR=<path to a base directory>
@@ -110,11 +110,16 @@ Notes:
   If you plan to use accelerators, make sure to pick a zone that supports the 
   type you want.
 * **${CONFIG_URI}** - The GitHub address of the configuration YAML file that
-  you want to use to deploy Kubeflow. For GCP deployments, the options are
-  `{{% config-uri-gcp-iap %}}` and `{{% config-uri-gcp-basic-auth %}}`. 
-  When you run `kfctl apply` or `kfctl build` (see the next step), kfctl creates
-  a local version of the configuration YAML file which you can further
-  customize if necessary.
+  you want to use to deploy Kubeflow. For GCP deployments, the following
+  configurations are available:
+
+  * `{{% config-uri-gcp-iap %}}` 
+  * `{{% config-uri-gcp-basic-auth %}}`
+
+    When you run `kfctl apply` or `kfctl build` (see the next step), kfctl creates
+    a local version of the configuration YAML file which you can further
+    customize if necessary.
+
 * **${KF_NAME}** - The name of your Kubeflow deployment.
   If you want a custom deployment name, specify that name here.
   For example,  `my-kubeflow` or `kf-test`.
@@ -124,7 +129,8 @@ Notes:
   contain just a name, not a directory path.
   This value also becomes the name of the directory where your Kubeflow 
   configurations are stored, that is, the Kubeflow application directory. 
-  The full path to the directory is stored in **${KF_DIR}**.
+  
+* **${KF_DIR}** - The full path to your Kubeflow application directory.
 
 <a id="set-up-and-deploy"></a>
 ## Set up and deploy Kubeflow
@@ -285,13 +291,13 @@ configuration file:
 * Email address
 
 
-The following snippet shows you how to set values in the configuration file,
+The following snippet shows you how to set values in the configuration file
 using [yq](https://github.com/mikefarah/yq/releases):
 
 ```
-yq w -i ${CONFIG_FILE}.yaml spec.plugins[0].spec.project ${PROJECT}
-yq w -i ${CONFIG_FILE}.yaml spec.plugins[0].spec.zone ${ZONE}
-yq w -i ${CONFIG_FILE}.yaml metadata.name ${KF_NAME}
+yq w -i ${CONFIG_FILE} spec.plugins[0].spec.project ${PROJECT}
+yq w -i ${CONFIG_FILE} spec.plugins[0].spec.zone ${ZONE}
+yq w -i ${CONFIG_FILE} metadata.name ${KF_NAME}
 ```
 
 ### Application layout

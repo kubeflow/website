@@ -39,30 +39,30 @@ This guide assumes the following settings:
   export KF_DIR=<path to your Kubeflow application directory>
   ``` 
 
-* The `${CONFIG_FILE}` environment variable contains the name of your 
+* The `${CONFIG_FILE}` environment variable contains the path to your 
   Kubeflow configuration file.
 
   ```
-  export CONFIG_FILE="kfctl_gcp_iap.yaml"
+  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_iap.yaml
   ```
 
     Or:
 
   ```
-  export CONFIG_FILE="kfctl_gcp_basic_auth.yaml"
+  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_basic_auth.yaml
   ```
 
 * The `${KF_NAME}` environment variable contains the name of your Kubeflow 
-  deployment. You can find the name in your `${KF_DIR}/${CONFIG_FILE}` 
-  file, as the value for the `metadata.name` key.
+  deployment. You can find the name in your
+  `${CONFIG_FILE}` configuration file, as the value for the `metadata.name` key.
 
   ```
   export KF_NAME=<the name of your Kubeflow deployment>
   ```
 
 * The `${PROJECT}` environment variable contains the ID of your GCP project. 
-  You can find the project ID in 
-  your `${KF_DIR}/${CONFIG_FILE}` file, as the value for the `project` key.
+  You can find the project ID in your
+  `${CONFIG_FILE}` configuration file, as the value for the `project` key.
 
   ```
   export PROJECT=<your GCP project ID>
