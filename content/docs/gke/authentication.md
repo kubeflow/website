@@ -9,7 +9,7 @@ weight = 4
 
 When you [set up Kubeflow for GCP](/docs/gke/deploy), it will automatically
 [provision three service accounts](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/#gcp-service-accounts)
-with different privileges in the `kubeflow` namespace. In particular, the `${KFAPP}-user` service account is
+with different privileges in the `kubeflow` namespace. In particular, the `${KF_NAME}-user` service account is
 meant to grant your user services access to GCP. The credentials to this service account can be accessed within
 the cluster as a [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/) called `user-gcp-sa`.
 
@@ -104,7 +104,7 @@ so be careful which Pods you grant access to.
 1. **Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable** to point to the service account.
 GCP libraries will use this environment variable to find the service account and authenticate with GCP.
 
-The following YAML describes a Pod that has access to the `${KFAPP}-user` service account:
+The following YAML describes a Pod that has access to the `${KF_NAME}-user` service account:
 ```
 apiVersion: v1
 kind: Pod
