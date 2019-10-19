@@ -30,11 +30,18 @@ The deployment process is controlled by the following commands:
 
 ### App layout
 
-Your Kubeflow app directory **${KFAPP}** contains the following files and directories:
+Your Kubeflow application directory **${KF_DIR}** contains the following files and 
+directories:
 
-* **app.yaml** - Defines the configuration related to your Kubeflow deployment.
-    * These values are set when you run `kfctl build` or `kfctl apply`.
-    * These values are snapshotted inside `app.yaml` to make your app self contained.
+* **${CONFIG_FILE}** is a YAML file that defines configurations related to your 
+  Kubeflow deployment.
+
+  * This file is a copy of the GitHub-based configuration YAML file that
+    you used when deploying Kubeflow. For example, {{% config-uri-k8s-istio %}}.
+  * When you run `kfctl apply` or `kfctl build`, kfctl creates
+    a local version of the configuration file, `${CONFIG_FILE}`,
+    which you can further customize if necessary.
+
 * **kustomize** is a directory that contains the kustomize packages for Kubeflow applications.
     * The directory is created when you run `kfctl build` or `kfctl apply`.
     * You can customize the Kubernetes resources (modify the manifests and run `kfctl apply` again).
@@ -90,25 +97,37 @@ Run the following commands to set up and deploy Kubeflow.
     # The following command is optional, to make kfctl binary easier to use.
     export PATH=$PATH:<path to where kfctl was unpacked>
 
-    # Initialize a kubeflow app:
-    export KFAPP=<your choice of application name for Kubeflow> (ensure this is lowercase)
+    # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
+    # name of the directory containing your configuration.
+    # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
+    export KF_NAME=<your choice of name for the Kubeflow deployment>
+
+    # Set the path to the base directory where you want to store one or more 
+    # Kubeflow deployments. For example, /opt/.
+    # Then set the Kubeflow application directory for this deployment.
+    export BASE_DIR=<path to a base directory>
+    export KF_DIR=${BASE_DIR}/${KF_NAME}
+
     # Set the configuration file to use, such as the file specified below:
-    export CONFIG="{{% config-uri-k8s-istio %}}"
+    export CONFIG_URI="{{% config-uri-k8s-istio %}}"
 
     # Generate and deploy Kubeflow:
-    mkdir ${KFAPP}
-    cd ${KFAPP}
-    kfctl apply -V -f ${CONFIG}
+    mkdir -p ${KF_DIR}
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_URI}
     ```
 
-    * ${KFAPP} - The name of your Kubeflow application. This value also
-  becomes the name of the directory where your Kubeflow configurations are 
-  stored. If you want a custom deployment name, specify that name here.
-  For example,  `kubeflow-test` or `kfw-test`.
-  The value of KFAPP must consist of lower case alphanumeric characters or
-  '-', and must start and end with an alphanumeric character.
-  The value of this variable cannot be greater than 25 characters. It must
-  contain just a name, not a directory path.
+    * **${KF_NAME}** - The name of your Kubeflow deployment.
+      If you want a custom deployment name, specify that name here.
+      For example,  `my-kubeflow` or `kf-test`.
+      The value of KF_NAME must consist of lower case alphanumeric characters or
+      '-', and must start and end with an alphanumeric character.
+      The value of this variable cannot be greater than 25 characters. It must
+      contain just a name, not a directory path.
+      This value also becomes the name of the directory where your Kubeflow 
+      configurations are stored, that is, the Kubeflow application directory. 
+
+    * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
 1. Check the resources deployed correctly in namespace `kubeflow`
 

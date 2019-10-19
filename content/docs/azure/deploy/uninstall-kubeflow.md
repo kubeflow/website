@@ -7,9 +7,9 @@ weight = 10
 Uninstall Kubeflow on your Azure AKS cluster.
 
 ```
-# Go to KFAPP Directory
-cd ${KUBEFLOW_SRC}/${KFAPP}
+# Go to your Kubeflow deployment directory
+cd ${KF_DIR}
 
 # Remove Kubeflow
-kfctl delete all
+kfctl delete -f ${CONFIG_FILE}
 ```
