@@ -24,7 +24,7 @@ The environment variables are as follows:
   files. For example, `/opt/my-kubeflow/`.
 * `KF_CONFIG_FILE` is the name of your Kubeflow configuration file. 
   For example, `kfctl_gcp_iap.yaml`. 
-* For further details, see the guide to
+* For further background about the above settings, see the guide to
   [deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
 
 You should consider preserving storage if you may want to relaunch

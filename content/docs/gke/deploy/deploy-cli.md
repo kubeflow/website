@@ -91,7 +91,7 @@ some handy environment variables:
     # Set the path the base directory where you want to store one or more 
     # Kubeflow deployments. For example, /opt/.
     # Then set the Kubeflow application directory for this deployment.
-    export BASE_DIR=<Path to a base directory>
+    export BASE_DIR=<path to a base directory>
     export KF_DIR=${BASE_DIR}/${KF_NAME}
 
     # The following command is optional. It adds the kfctl binary to your path.
