@@ -20,12 +20,12 @@ kfctl delete -f ${KF_DIR}/${KF_CONFIG_FILE}
 ```
 The environment variables are as follows:
 
-* `KF_NAME` is the name that you chose for your Kubeflow deployment. 
-  For example, 'my-kubeflow'.
 * `KF_DIR` is the path to the directory which holds your Kubeflow configuration 
   files. For example, `/opt/my-kubeflow/`.
-* `KF_CONFIG_FILE` is the name of the configuration file that you used when
-  deploying Kubeflow. For example, `kfctl_gcp_iap.yaml`.
+* `KF_CONFIG_FILE` is the name of your Kubeflow configuration file. 
+  For example, `kfctl_gcp_iap.yaml`. 
+* For further details, see the guide to
+  [deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
 
 You should consider preserving storage if you may want to relaunch
 Kubeflow in the future and restore the data from your 

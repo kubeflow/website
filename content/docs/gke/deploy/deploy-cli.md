@@ -67,6 +67,7 @@ some handy environment variables:
     # Use the following kfctl configuration file for authentication with 
     # Cloud IAP (recommended):
     export CONFIG_URI="{{% config-uri-gcp-iap %}}"
+
     # If using Cloud IAP for authentication, create environment variables
     # from the OAuth client ID and secret that you obtained earlier:
     export CLIENT_ID=<CLIENT_ID from OAuth page>
@@ -75,6 +76,7 @@ some handy environment variables:
     # Alternatively, use the following kfctl configuration if you want to use 
     # basic authentication:
     export CONFIG_URI="{{% config-uri-gcp-basic-auth %}}"
+
     # If using basic authentication, create environment variables
     # for username and password:
     export KUBEFLOW_USERNAME=<your username>
@@ -88,7 +90,7 @@ some handy environment variables:
 
     # Set the path the base directory where you want to store one or more 
     # Kubeflow deployments. For example, /opt/.
-    # Then set the Kubeflow configuration directory.
+    # Then set the Kubeflow application directory for this deployment.
     export BASE_DIR=<Path to a base directory>
     export KF_DIR=${BASE_DIR}/${KF_NAME}
 
@@ -100,16 +102,6 @@ some handy environment variables:
 
 Notes:
 
-* **${KF_NAME}** - The name of your Kubeflow deployment.
-  If you want a custom deployment name, specify that name here.
-  For example,  `my-kubeflow` or `kfw-test`.
-  The value of KF_NAME must consist of lower case alphanumeric characters or
-  '-', and must start and end with an alphanumeric character.
-  The value of this variable cannot be greater than 25 characters. It must
-  contain just a name, not a directory path.
-  This value also becomes the name of the directory where your Kubeflow 
-  configurations are stored. The full path to the directory is stored in
-  **${KF_DIR}**.
 * **${PROJECT}** - The project ID of the GCP project where you want Kubeflow 
   deployed.
 * **${ZONE}** - The GCP zone where you want to create the Kubeflow deployment.
@@ -117,6 +109,22 @@ Notes:
   [Compute Engine documentation](https://cloud.google.com/compute/docs/regions-zones/#available).
   If you plan to use accelerators, make sure to pick a zone that supports the 
   type you want.
+* **${CONFIG_URI}** - The GitHub address of the configuration YAML file that
+  you want to use to deploy Kubeflow. For GCP deployments, the options are
+  `{{% config-uri-gcp-iap %}}` and `{{% config-uri-gcp-basic-auth %}}`. 
+  When you run `kfctl apply` or `kfctl build` (see the next step), kfctl creates
+  a local version of the configuration YAML file which you can further
+  customize if necessary.
+* **${KF_NAME}** - The name of your Kubeflow deployment.
+  If you want a custom deployment name, specify that name here.
+  For example,  `my-kubeflow` or `kf-test`.
+  The value of KF_NAME must consist of lower case alphanumeric characters or
+  '-', and must start and end with an alphanumeric character.
+  The value of this variable cannot be greater than 25 characters. It must
+  contain just a name, not a directory path.
+  This value also becomes the name of the directory where your Kubeflow 
+  configurations are stored, that is, the Kubeflow application directory. 
+  The full path to the directory is stored in **${KF_DIR}**.
 
 <a id="set-up-and-deploy"></a>
 ## Set up and deploy Kubeflow
@@ -232,6 +240,12 @@ Notes:
 
 ## Understanding the deployment process
 
+This section gives you more details about the kfctl configuration and 
+deployment process, so that you can customize your Kubeflow deployment if
+necessary.
+
+### kfctl process and configuration
+
 The kfctl deployment process includes the following commands:
 
 * `kfctl build` - (Optional) Creates configuration files defining the various 
@@ -241,7 +255,7 @@ The kfctl deployment process includes the following commands:
 * `kfctl apply` - Creates or updates the resources.
 * `kfctl delete` - Deletes the resources.
 
-The kfctl deployment tool applies default values to certain properties
+The kfctl deployment process applies default values to certain properties
 as follows:
 
 * **Email address:** kfctl attempts to fetch your email address from your
@@ -280,17 +294,21 @@ yq w -i ${CONFIG_FILE}.yaml spec.plugins[0].spec.zone ${ZONE}
 yq w -i ${CONFIG_FILE}.yaml metadata.name ${KF_NAME}
 ```
 
-### App layout
+### Application layout
 
-Your Kubeflow app directory **${KF_DIR}** contains the following files and 
+Your Kubeflow application directory **${KF_DIR}** contains the following files and 
 directories:
 
 * **${CONFIG_FILE}** is a YAML file that defines configurations related to your 
   Kubeflow deployment.
 
-  * The values are set when you run `kfctl build` or `kfctl apply`.
-  * The values are snapshotted inside **${CONFIG_FILE}** to make your app 
-    self contained.
+  * This file is a copy of the GitHub-based configuration YAML file that
+    you used when deploying Kubeflow: 
+      * either `{{% config-uri-gcp-iap %}}`
+      * or `{{% config-uri-gcp-basic-auth %}}`.
+  * When you run `kfctl apply` or `kfctl build`, kfctl creates
+    a local version of the configuration file, **${CONFIG_FILE}**,
+    which you can further customize if necessary.
 
 * **gcp_config** is a directory that contains 
   [Deployment Manager configuration files](https://cloud.google.com/deployment-manager/docs/configuration/) 
@@ -313,10 +331,10 @@ into source control.
 
 ### GCP service accounts
 
-Creating a deployment using `kfctl` creates three service accounts in your 
-GCP project. These service accounts are created using the [principle of least 
+The kfctl deployment process creates three service accounts in your 
+GCP project. These service accounts follow the [principle of least 
 privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). 
-The three service accounts are:
+The service accounts are:
 
 * `${KF_NAME}-admin` is used for some admin tasks like configuring the load 
   balancers. The principle is that this account is needed to deploy Kubeflow but 
