@@ -20,7 +20,7 @@ This deployment works well for on-prem installations, where companies/organizati
 Read the relevant [article](https://journal.arrikto.com/kubeflow-authentication-with-istio-dex-5eafdfac4782) for more info about this architecture.
 
 
-### Prerequisites
+### Before you start
 
 You need a Kubernetes Cluster with LoadBalancer support.
 
@@ -151,44 +151,108 @@ If you don't have support for LoadBalancer on your cluster, please follow the in
 </details>
 
 
-### Deploy Kubeflow
+<a id="prepare-environment"></a>
+## Prepare your environment
 
-Follow these steps to deploy Kubeflow:
+Follow these steps to download the kfctl binary for the Kubeflow CLI and set
+some handy environment variables:
 
-1. Download a kfctl release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/) and unpack it:
+1. Download the kfctl {{% kf-latest-version %}} release from the
+  [Kubeflow releases 
+  page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
+
+1. Unpack the tar ball:
 
     ```
     tar -xvf kfctl_<release tag>_<platform>.tar.gz
     ```
- 
 
-1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the kfctl binary to your path. If you don't add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+1. Create environment variables to make the deployment process easier:
 
 ```bash
 # Add kfctl to PATH, to make the kfctl binary easier to use.
 # Use only alphanumeric characters or - in the directory name.
 export PATH=$PATH:"<path-to-kfctl>"
-export KFAPP="<your-choice-of-application-directory-name>"
-export CONFIG="{{% config-uri-existing-arrikto %}}"
+
+# Set the following kfctl configuration file:
+export CONFIG_URI="{{% config-uri-existing-arrikto %}}"
+
+# Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
+# name of the directory containing your configuration.
+# For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
+export KF_NAME=<your choice of name for the Kubeflow deployment>
+
+# Set the path to the base directory where you want to store one or more 
+# Kubeflow deployments. For example, /opt/.
+# Then set the Kubeflow application directory for this deployment.
+export BASE_DIR=<path to a base directory>
+export KF_DIR=${BASE_DIR}/${KF_NAME}
 
 # Specify credentials for the default user.
 export KUBEFLOW_USER_EMAIL="admin@kubeflow.org"
 export KUBEFLOW_PASSWORD="12341234"
+```
+Notes:
 
-* Create configurations and deploy Kubeflow.
-mkdir ${KFAPP}
-cd ${KFAPP}
-kfctl apply -V -f ${CONFIG}
+* **${KF_NAME}** - The name of your Kubeflow deployment.
+  If you want a custom deployment name, specify that name here.
+  For example,  `my-kubeflow` or `kf-test`.
+  The value of KF_NAME must consist of lower case alphanumeric characters or
+  '-', and must start and end with an alphanumeric character.
+  The value of this variable cannot be greater than 25 characters. It must
+  contain just a name, not a directory path.
+  This value also becomes the name of the directory where your Kubeflow 
+  configurations are stored, that is, the Kubeflow application directory. 
+
+* **${KF_DIR}** - The full path to your Kubeflow application directory.
+
+* **${CONFIG_URI}** - The GitHub address of the configuration YAML file that
+  you want to use to deploy Kubeflow. The URI used in this guide is
+  {{% config-uri-existing-arrikto %}}.
+  When you run `kfctl apply` or `kfctl build` (see the next step), kfctl creates
+  a local version of the configuration YAML file which you can further
+  customize if necessary.
+
+<a id="set-up-and-deploy"></a>
+## Set up and deploy Kubeflow
+
+To set up and deploy Kubeflow using the **default settings**,
+run the `kfctl apply` command:
+
+```
+mkdir -p ${KF_DIR}
+cd ${KF_DIR}
+kfctl apply -V -f ${CONFIG_URI}
 ```
 
- * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
-  configurations to be stored. If you want a custom deployment name, specify 
-  that name here.
-  The value of this variable becomes the name of your deployment.
-  The value of this variable cannot be greater than 25 characters. It must
-  contain just the directory name, not the full path to the directory.
-  The content of this directory is described in the next section.
+## Alternatively, set up your configuration for later deployment
 
+If you want to customize your configuration before deploying Kubeflow, you can 
+set up your configuration files first, then edit the configuration, then
+deploy Kubeflow:
+
+1. Run the `kfctl build` command to set up your configuration:
+
+  ```
+  mkdir -p ${KF_DIR}
+  cd ${KF_DIR}
+  kfctl build -V -f ${CONFIG_URI}
+  ```
+
+1. Edit the configuration files, as described in the guide to
+  [customizing your Kubeflow deployment](/docs/other-guides/kustomize/).
+
+1. Set an environment variable pointing to your local configuration file:
+
+  ```
+  export CONFIG_FILE=${KF_DIR}/kfctl_existing_arrikto.yaml
+  ```
+
+1. Run the `kfctl apply` command to deploy Kubeflow:
+
+  ```
+  kfctl apply -V -f ${CONFIG_FILE}
+  ```
 
 ### Accessing Kubeflow
 
@@ -636,32 +700,47 @@ kubectl logs -n metallb-system  -l component=controller
 Run the following commands to delete your deployment and reclaim all resources:
 
 ```bash
-cd ${KFAPP}
+cd ${KF_DIR}
 # If you want to delete all the resources, run:
-kfctl delete all
+kfctl delete -f ${CONFIG_FILE}
 ```
 
 ### Understanding the deployment process
 
-The deployment process is controlled by the following commands:
+The kfctl deployment process includes the following commands:
 
-* **build** - (Optional) Creates configuration files defining the various
+* `kfctl build` - (Optional) Creates configuration files defining the various
   resources in your deployment. You only need to run `kfctl build` if you want
   to edit the resources before running `kfctl apply`.
-* **apply** - creates or updates the resources.
-* **delete** - deletes the resources.
+* `kfctl apply` - Creates or updates the resources.
+* `kfctl delete` - Deletes the resources.
 
-### App layout
+### Application layout
 
-Your Kubeflow app directory contains the following files and directories:
+Your Kubeflow application directory **${KF_DIR}** contains the following files and 
+directories:
 
-* **${KFAPP}/app.yaml**: defines configurations related to your Kubeflow deployment.
-* **${KFAPP}/kustomize**: contains the YAML manifests that will be deployed.
+* **${CONFIG_FILE}** is a YAML file that defines configurations related to your 
+  Kubeflow deployment.
+
+  * This file is a copy of the GitHub-based configuration YAML file that
+    you used when deploying Kubeflow: {{% config-uri-existing-arrikto %}}
+  * When you run `kfctl apply` or `kfctl build`, kfctl creates
+    a local version of the configuration file, `${CONFIG_FILE}`,
+    which you can further customize if necessary.
+
+* **kustomize** is a directory that contains the kustomize packages for Kubeflow
+  applications. See 
+  [how Kubeflow uses kustomize](/docs/other-guides/kustomize/).
+
+  * The directory is created when you run `kfctl build` or `kfctl apply`.
+  * You can customize the Kubernetes resources by modifying the manifests and
+    running `kfctl apply` again.
+
+We recommend that you check in the contents of your `${KF_DIR}` directory
+into source control.
 
 ### Next steps
 
-* Follow the instructions to [connect to the Kubeflow web 
-  UIs](/docs/other-guides/accessing-uis/), where you can manage various 
-  aspects of your Kubeflow deployment.
 * Run a [sample machine learning workflow](/docs/examples/kubeflow-samples/).
 * Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/).
