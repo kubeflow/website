@@ -40,7 +40,7 @@ This happens if you have invalid arguments when you initialize your configuratio
 
 ### EKS Cluster Creation Failure
 
-There are several problems that could lead to cluster creation failure. If you see some errors when creating your cluster using `eksctl`, please open the CloudFormation console and check your stacks. To recover from failure, you need to follow the guidance from the `eksctl` output logs. Once you understand the root cause of your failure, you can delete your cluster and rerun `kfctl apply -V -f ${CONFIG}`.
+There are several problems that could lead to cluster creation failure. If you see some errors when creating your cluster using `eksctl`, please open the CloudFormation console and check your stacks. To recover from failure, you need to follow the guidance from the `eksctl` output logs. Once you understand the root cause of your failure, you can delete your cluster and rerun `kfctl apply -V -f ${CONFIG_FILE}`.
 
 Common issues:
 

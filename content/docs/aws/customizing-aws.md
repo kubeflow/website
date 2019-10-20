@@ -21,7 +21,7 @@ Here are the optional configuration parameters for kfctl on the AWS platform.
 
 ### Customize your Amazon EKS cluster
 
-Before you run `kfctl apply -V -f ${CONFIG}`, you can edit the cluster configuration file to change cluster specification before you create the cluster.
+Before you run `kfctl apply -V -f ${CONFIG_FILE}`, you can edit the cluster configuration file to change cluster specification before you create the cluster.
 
 Cluster configuration is stored in `${KF_DIR}/aws_config/cluster_config.yaml`. Please see [eksctl](https://eksctl.io/) for configuration details.
 
