@@ -140,7 +140,7 @@ configuration before deploying Kubeflow:
     groups, find the role that is associated with your worker nodes in the 
     Amazon EC2 console.
 
-1. Change cluster region and worker roles names in your `kfctl_aws.yaml` file:
+1. Change cluster region and worker role names in your `${CONFIG_FILE}` file:
 
   ```
     region: us-west-2
