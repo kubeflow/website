@@ -93,7 +93,7 @@ Check the resources deployed in namespace `kubeflow`:
 ```
 kubectl -n kubeflow get all
 ```
-
+<a id="alt-set-up-and-deploy"></a>
 ## Alternatively, set up your configuration for later deployment
 
 If you want to customize your configuration before deploying Kubeflow, you can 

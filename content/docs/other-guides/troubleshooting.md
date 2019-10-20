@@ -141,7 +141,7 @@ spec:
     path: "/mnt/pv3"
 EOF
 ```
-Once created the scheduler will successfully start the remaining three pods. The PVs may also be created prior to running any of the `kfctl.sh` commands.
+Once created the scheduler will successfully start the remaining three pods. The PVs may also be created prior to running any of the kfctl commands.
 
 ## OpenShift
 If you are deploying Kubeflow in an [OpenShift](https://github.com/openshift/origin) environment which encapsulates Kubernetes, you will need to adjust the security contexts for the ambassador and Jupyter-hub deployments in order to get the pods to run.
