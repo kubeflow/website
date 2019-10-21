@@ -20,7 +20,7 @@ This deployment works well for on-prem installations, where companies/organizati
 Read the relevant [article](https://journal.arrikto.com/kubeflow-authentication-with-istio-dex-5eafdfac4782) for more info about this architecture.
 
 
-### Before you start
+## Before you start
 
 You need a Kubernetes Cluster with LoadBalancer support.
 
@@ -254,9 +254,9 @@ deploy Kubeflow:
   kfctl apply -V -f ${CONFIG_FILE}
   ```
 
-### Accessing Kubeflow
+## Accessing Kubeflow
 
-#### Log in as a static user
+### Log in as a static user
 
 After deploying Kubeflow, the Kubeflow dashboard is available at the Istio Gateway IP.
 To get the Istio Gateway IP, run:
@@ -269,7 +269,7 @@ Get the IP and open it in a browser: `https://<LoadBalancerIP address>/`.
 
 Enter the credentials you specified in `KUBEFLOW_USER_EMAIL`, `KUBEFLOW_PASSWORD` and access the Kubeflow dashboard!
 
-#### Add static users for basic auth
+### Add static users for basic auth
 
 To add users to basic auth, you just have to edit the Dex ConfigMap under the key `staticPasswords`.
 ```bash
@@ -284,7 +284,7 @@ kubectl get configmap dex -n kubeflow -o jsonpath='{.data.config\.yaml}' > dex-c
 kubectl create configmap dex --from-file=config.yaml=dex-config.yaml -n kubeflow --dry-run -oyaml | kubectl apply -f -
 ```
 
-#### Log in with LDAP / Active Directory
+### Log in with LDAP / Active Directory
 
 As you saw in the overview, we use [Dex](https://github.com/dexidp/dex) for providing user authentication.
 Dex supports several authentication methods:
@@ -620,7 +620,7 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
           * Add or update a label on the PodTemplate.
           * Save the deployment to trigger a rolling update.
 
-### Troubleshooting
+## Troubleshooting
 
 If the Kubeflow dashboard is not available at `https://<LoadBalancerIP address>` ensure that:
 
@@ -695,7 +695,7 @@ kubectl logs -n metallb-system  -l component=controller
 {"caller":"service.go:98","event":"ipAllocated","ip":"10.0.0.100","msg":"IP address assigned by controller","service":"istio-system/istio-ingressgateway","ts":"2019-07-31T12:17:46.234638607Z"}
 ```
 
-### Delete Kubeflow
+## Delete Kubeflow
 
 Run the following commands to delete your deployment and reclaim all resources:
 
@@ -705,7 +705,7 @@ cd ${KF_DIR}
 kfctl delete -f ${CONFIG_FILE}
 ```
 
-### Understanding the deployment process
+## Understanding the deployment process
 
 The kfctl deployment process includes the following commands:
 
@@ -715,7 +715,7 @@ The kfctl deployment process includes the following commands:
 * `kfctl apply` - Creates or updates the resources.
 * `kfctl delete` - Deletes the resources.
 
-### Application layout
+## Application layout
 
 Your Kubeflow application directory **${KF_DIR}** contains the following files and 
 directories:
@@ -740,7 +740,7 @@ directories:
 We recommend that you check in the contents of your `${KF_DIR}` directory
 into source control.
 
-### Next steps
+## Next steps
 
 * Run a [sample machine learning workflow](/docs/examples/kubeflow-samples/).
 * Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/).

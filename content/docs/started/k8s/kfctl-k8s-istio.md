@@ -8,7 +8,7 @@ This configuration creates a vanilla deployment of Kubeflow with all its core co
 
 **Maintainer and supporter: Kubeflow community**
 
-### Before you start
+## Before you start
 
 This Kubeflow deployment requires a default StorageClass with a [dynamic volume provisioner](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/). Verify the `provisioner` field of your default StorageClass definition.
 If you don't have a provisioner, ensure that you have configured volume provisioning in your Kubernetes cluster appropriately as mentioned [below](#provisioning-of-persistent-volumes-in-kubernetes).
@@ -123,11 +123,11 @@ deploy Kubeflow:
   kfctl apply -V -f ${CONFIG_FILE}
   ```
 
-### Access the Kubeflow user interface (UI)
+## Access the Kubeflow user interface (UI)
 
 After Kubeflow is deployed, the Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard.Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
 
-### Delete Kubeflow
+## Delete Kubeflow
 
 Run the following commands to delete your deployment and reclaim all resources:
 
@@ -137,7 +137,7 @@ cd ${KF_DIR}
 kfctl delete -f ${CONFIG_FILE}
 ```
 
-### Understanding the deployment process
+## Understanding the deployment process
 
 The kfctl deployment process includes the following commands:
 
@@ -147,7 +147,7 @@ The kfctl deployment process includes the following commands:
 * `kfctl apply` - Creates or updates the resources.
 * `kfctl delete` - Deletes the resources.
 
-### Application layout
+## Application layout
 
 Your Kubeflow application directory **${KF_DIR}** contains the following files 
 and directories:
@@ -171,7 +171,7 @@ and directories:
 We recommend that you check in the contents of your `${KF_DIR}` directory
 into source control.
 
-### Provisioning of Persistent Volumes in Kubernetes
+## Provisioning of Persistent Volumes in Kubernetes
 
 Note that you can skip this step if you have a dynamic volume provisioner already installed in your cluster.
 
@@ -180,9 +180,9 @@ If you don't have one:
 * You can choose to create PVs manually after deployment of Kubeflow.
 * Or install a dynamic volume provisioner like [Local Path Provisioner](https://github.com/rancher/local-path-provisioner#deployment). Ensure that the StorageClass used by this provisioner is the default StorageClass.
 
-### Troubleshooting
+## Troubleshooting
 
-#### Persistent Volume Claims are in Pending State
+### Persistent Volume Claims are in Pending State
 
 Check if PersistentVolumeClaims get `Bound` to PersistentVolumes.
    ```
@@ -192,7 +192,7 @@ Check if PersistentVolumeClaims get `Bound` to PersistentVolumes.
 
 If the PersistentVolumeClaims (PVCs) are in `Pending` state after deployment and they are not bound to PersistentVolumes (PVs), you may have to either manually create PVs for each PVC in your Kubernetes Cluster or an alternative is to set up [dynamic volume provisioning](#provisioning-of-persistent-volumes-in-kubernetes) to create PVs on demand and redeploy Kubeflow after deleting existing PVCs.
 
-### Next steps
+## Next steps
 
 * Run a [sample machine learning workflow](/docs/examples/kubeflow-samples/).
 * Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/).
