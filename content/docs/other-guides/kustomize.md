@@ -24,8 +24,6 @@ Kfctl is the Kubeflow CLI that you can use to set up a Kubernetes cluster with
 Kubeflow installed, or to deploy Kubeflow to an existing Kubernetes cluster. 
 See the [Kubeflow getting-started guide](/docs/started/getting-started/) for
 installation instructions based on your deployment scenario.
-For example, see the guide to 
-[deploying Kubeflow with kfctl_k8s_istio](/docs/started/k8s/kfctl-k8s-istio/).
 
 The kfctl deployment process includes the following commands:
 
@@ -39,10 +37,13 @@ The kfctl deployment process includes the following commands:
 ### Specifying a configuration file when initializing your deployment
 
 When you install Kubeflow, the deployment process uses one of a few possible
-YAML configuration files to bootstrap the configuration. As an example,
-this guide uses the 
+YAML configuration files to bootstrap the configuration. You can see all the
+[configuration files on 
+GitHub](https://github.com/kubeflow/manifests/tree/master/kfdef).
+
+As an example, this guide uses the 
 [kfctl_k8s_istio.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_k8s_istio.yaml)
-configuration. For more details, see the
+configuration. For more details about this configuration, see the
 [kfctl_k8s_istio deployment guide](/docs/started/k8s/kfctl-k8s-istio/).
 
 Typically, you specify the configuration file with a `-f <config-file>` 
@@ -71,19 +72,6 @@ cd ${KF_DIR}
 kfctl build -V -f ${CONFIG_URI}
 ```
 
-As another example, the 
-Google Cloud Platform (GCP) build command looks like this:
-
-```shell
-export CONFIG_URI="{{% config-uri-gcp-iap %}}"
-mkdir -p ${KF_DIR}
-cd ${KF_DIR}
-kfctl build -V -f ${CONFIG_URI}
-```
-
-*For details of the above deployment, see the guide to deployment 
-[on GCP using the CLI](/docs/gke/deploy/deploy-cli/).*
-
 Kfctl has now built the configuration files in your Kubeflow application
 directory (see [below](#kubeflow-directory)) but has not yet deployed Kubeflow.
 To complete the deployment, run `kfctl apply`. See the next section on 
@@ -99,7 +87,9 @@ which you can further customize if necessary.
 Follow these steps to apply the configurations to your Kubeflow cluster:
 
 1. Set an environment variable pointing to your local configuration file.
-  For example:
+  For example, this guide uses the `kfctl_k8s_istio.yaml` configuration. If you
+  chose a different configuration in the previous step, you
+  must change the file name to reflect your configuration:
 
   ```
   export CONFIG_FILE=${KF_DIR}/kfctl_k8s_istio.yaml
@@ -122,9 +112,9 @@ directories:
 * **${CONFIG_FILE}** is a YAML file that stores your primary Kubeflow 
   configuration in the form of a `KfDef` Kubernetes object.
 
-  * This file is a **copy** of the GitHub-based configuration YAML file that
-    you used when deploying Kubeflow. For example, the file is a copy of
-    {{% config-uri-k8s-istio %}}.
+  * This file is a **copy** of the [GitHub-based configuration YAML 
+    file](https://github.com/kubeflow/manifests/tree/master/kfdef) that
+    you used when deploying Kubeflow.
   * When you first run `kfctl build` or `kfctl apply`, kfctl creates
     a local version of the configuration file at `${CONFIG_FILE}`,
     which you can further customize if necessary.
@@ -161,6 +151,9 @@ Below are some examples of configuration files:
 
 * [kfctl_k8s_istio.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_k8s_istio.yaml) 
   to install Kubeflow on an existing Kubernetes cluster.
+* [kfctl_existing_arrikto.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_existing_arrikto.yaml) 
+  to install Kubeflow on an existing Kubernetes cluster with Dex and Istio for
+  authentication.
 * [kfctl_gcp_iap.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_gcp_iap.yaml)
   to create a Google Kubernetes Engine (GKE) cluster with Kubeflow using
   Cloud Identity-Aware Proxy (Cloud IAP) for access control.
