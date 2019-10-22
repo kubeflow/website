@@ -1,3 +1,4 @@
++++
 title = "GitOps For Kubeflow Using Argo CD"
 description = "Running Kubeflow using the GitOps methodology with Argo CD"
 weight = 30
