@@ -41,11 +41,8 @@ Follow the [argo cd getting started guide](https://github.com/argoproj/argo-cd/b
 
 1. Install ArgoCD CLI
 
-   1. On MacOS:
-
-      ​   ```$ brew install argoproj/tap/argocd```
+   1. On MacOS: ```$ brew install argoproj/tap/argocd```
    1. On Ubuntu:
-
       ```
       $ wget https://github.com/argoproj/argocd/releases/download/v1.2.3/argocd-linux-amd64
       $ mv argocd-linux-amd64 argocd
