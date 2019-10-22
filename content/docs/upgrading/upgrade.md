@@ -12,7 +12,8 @@ deployments.
 
 Follow these steps to upgrade your Kubeflow deployment:
 
-1. Check your local ${CONFIG_FILE} into source control as backup.
+1. Check your Kubeflow configuration directory (`${KF_DIR}`) into source control
+  as a backup.
 
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 
@@ -31,7 +32,7 @@ Follow these steps to upgrade your Kubeflow deployment:
   kfctl build -V -f ${CONFIG_FILE}
   ```
 
-  Note that this will overwrite your previous manifest files.
+    Note that this will overwrite your previous manifest files.
   
 1. Re-apply any customizations that you need.
 
