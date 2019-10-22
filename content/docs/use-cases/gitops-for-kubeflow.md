@@ -39,13 +39,13 @@ Follow the [argo cd getting started guide](https://github.com/argoproj/argo-cd/b
    $ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/$ARGO_CD_LATEST/manifests/install.yaml
    ```
 
-2. Install ArgoCD CLI
+1. Install ArgoCD CLI
 
    1. On MacOS:
 
-      ​	```$ brew install argoproj/tap/argocd```
+      ​```$ brew install argoproj/tap/argocd```
 
-   2. On Ubuntu:
+   1. On Ubuntu:
 
       ```
       $ wget https://github.com/argoproj/argocd/releases/download/v1.2.3/argocd-linux-amd64
@@ -54,7 +54,7 @@ Follow the [argo cd getting started guide](https://github.com/argoproj/argo-cd/b
       $ export PATH=$PATH:$HOME/path/to/argocd
       ```
 
-2. Set extra permissions for Argo CD
+1. Set extra permissions for Argo CD
    Since the GKE cluster has RBAC enabled, you will need to grant your account the ability to create new cluster roles by running:
 
    ```
