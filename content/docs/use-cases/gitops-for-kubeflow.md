@@ -43,7 +43,9 @@ Follow the [argo cd getting started guide](https://github.com/argoproj/argo-cd/b
 
    1. On MacOS:
 
-      ​```$ brew install argoproj/tap/argocd```
+      ​```
+      $ brew install argoproj/tap/argocd
+      ```
 
    1. On Ubuntu:
 
