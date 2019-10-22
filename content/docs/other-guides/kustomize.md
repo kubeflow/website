@@ -51,8 +51,8 @@ parameter when you run `kfctl build` or `kfctl apply`. The following example
 uses `kfctl build`:
 
 ```shell
-# Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
-# name of the directory containing your configuration.
+# Set KF_NAME to the name of your Kubeflow deployment. You also use this
+# value as directory name when creating your configuration directory.
 # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
 export KF_NAME=<your choice of name for the Kubeflow deployment>
 

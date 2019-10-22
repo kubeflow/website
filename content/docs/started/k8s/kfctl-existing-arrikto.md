@@ -177,8 +177,8 @@ export PATH=$PATH:"<path-to-kfctl>"
 # Set the following kfctl configuration file:
 export CONFIG_URI="{{% config-uri-existing-arrikto %}}"
 
-# Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
-# name of the directory containing your configuration.
+# Set KF_NAME to the name of your Kubeflow deployment. You also use this
+# value as directory name when creating your configuration directory.
 # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
 export KF_NAME=<your choice of name for the Kubeflow deployment>
 
@@ -201,8 +201,9 @@ Notes:
   '-', and must start and end with an alphanumeric character.
   The value of this variable cannot be greater than 25 characters. It must
   contain just a name, not a directory path.
-  This value also becomes the name of the directory where your Kubeflow 
-  configurations are stored, that is, the Kubeflow application directory. 
+  You also use this value as directory name when creating the directory where 
+  your Kubeflow  configurations are stored, that is, the Kubeflow application 
+  directory.
 
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
