@@ -142,15 +142,46 @@ metadata:
 
 ## Common customizations
 
-Add GPU nodes to your cluster:
+<a id="gpu-config"></a>
+### Add GPU nodes to your cluster
 
-  * Set gpu-pool-initialNodeCount [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L56).
+To add GPU accelerators to your Kubeflow cluster, you have the following
+options:
 
-Add Cloud TPUs to your cluster:
+* Pick a GCP zone that provides NVIDIA Tesla K80 Accelerators 
+  (`nvidia-tesla-k80`).
+* Or disable node-autoprovisioning in your Kubeflow cluster.
+* Or change your node-autoprovisioning configuration.
 
-  * Set `enable_tpu:true` [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/deployment/gke/deployment_manager_configs/cluster-kubeflow.yaml#L78).
+To see which accelerators are available in each zone, run the following
+command:
 
-Add VMs with more CPUs or RAM:
+```
+gcloud compute accelerator-types list
+```
+ 
+To disable node-autoprovisioning, run `kfctl build` as described above.
+Then edit `${KF_DIR}/gcp_config/cluster-kubeflow.yaml` and set 
+[`enabled`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L73) 
+to `false`:
+
+```
+    ...
+    gpu-type: nvidia-tesla-k80
+    autoprovisioning-config:
+      enabled: false
+    ...
+```
+
+You must also set 
+[`gpu-pool-initialNodeCount`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L58).
+
+### Add Cloud TPUs to your cluster
+
+Set [`enable_tpu:true`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L80)
+in `${KF_DIR}/gcp_config/cluster-kubeflow.yaml`.
+
+### Add VMs with more CPUs or RAM
 
   * Change the machineType.
   * There are two node pools:
@@ -158,7 +189,7 @@ Add VMs with more CPUs or RAM:
       * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L149).
   * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment.
 
-Add users to Kubeflow:
+### Add users to Kubeflow
 
   * To grant users access to Kubeflow, add the “IAP-secured Web App User” role on the [IAM page in the GCP console](https://console.cloud.google.com/iam-admin/iam). Make sure you are in the same project as your Kubeflow deployment.
 

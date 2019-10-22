@@ -82,9 +82,9 @@ some handy environment variables:
     export KUBEFLOW_USERNAME=<your username>
     export KUBEFLOW_PASSWORD=<your password>
 
-    # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
-    # name of the directory containing your configuration. See the detailed
-    # description in the text below this code snippet.
+    # Set KF_NAME to the name of your Kubeflow deployment. You also use this
+    # value as directory name when creating your configuration directory. 
+    # See the detailed description in the text below this code snippet.
     # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
     export KF_NAME=<your choice of name for the Kubeflow deployment>
 
@@ -107,8 +107,9 @@ Notes:
 * **${ZONE}** - The GCP zone where you want to create the Kubeflow deployment.
   You can see a list of zones in the 
   [Compute Engine documentation](https://cloud.google.com/compute/docs/regions-zones/#available).
-  If you plan to use accelerators, make sure to pick a zone that supports the 
-  type you want.
+  If you plan to use accelerators, you must choose a zone that supports the
+  type you want. See the guide to 
+  [customizing your Kubeflow deployment](/docs/gke/customizing-gke/#gpu-config).
 * **${CONFIG_URI}** - The GitHub address of the configuration YAML file that
   you want to use to deploy Kubeflow. For GCP deployments, the following
   configurations are available:
@@ -127,8 +128,9 @@ Notes:
   '-', and must start and end with an alphanumeric character.
   The value of this variable cannot be greater than 25 characters. It must
   contain just a name, not a directory path.
-  This value also becomes the name of the directory where your Kubeflow 
-  configurations are stored, that is, the Kubeflow application directory. 
+  You also use this value as directory name when creating the directory where 
+  your Kubeflow  configurations are stored, that is, the Kubeflow application 
+  directory. 
   
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
@@ -159,7 +161,7 @@ deploy Kubeflow:
   ```
 
 1. Edit the configuration files, as described in the guide to
-  [customizing your Kubeflow deployment](/docs/gke/customizing-gke).
+  [customizing your Kubeflow deployment](/docs/gke/customizing-gke/).
 
 1. Set an environment variable for your local configuration file:
 
@@ -257,7 +259,7 @@ The kfctl deployment process includes the following commands:
 * `kfctl build` - (Optional) Creates configuration files defining the various 
   resources in your deployment. You only need to run `kfctl build` if you want 
   to edit the resources before running `kfctl apply`. See the guide to
-  [customizing your Kubeflow deployment](/docs/gke/customizing-gke).
+  [customizing your Kubeflow deployment](/docs/gke/customizing-gke/).
 * `kfctl apply` - Creates or updates the resources.
 * `kfctl delete` - Deletes the resources.
 
@@ -358,12 +360,12 @@ The service accounts are:
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
   [GitHub issue summarization 
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
-* See how to [delete](/docs/gke/deploy/delete-cli) your Kubeflow deployment 
+* See how to [delete](/docs/gke/deploy/delete-cli/) your Kubeflow deployment 
   using the CLI.
-* See how to [customize](/docs/gke/customizing-gke) your Kubeflow 
+* See how to [customize](/docs/gke/customizing-gke/) your Kubeflow 
   deployment.
 * See how to [upgrade Kubeflow](/docs/upgrading/upgrade/) and how to 
   [upgrade or reinstall a Kubeflow Pipelines 
   deployment](/docs/pipelines/upgrade/).
-* [Troubleshoot](/docs/gke/troubleshooting-gke) any issues you may
+* [Troubleshoot](/docs/gke/troubleshooting-gke/) any issues you may
   find.
