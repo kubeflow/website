@@ -105,11 +105,19 @@ privacy_policy = "https://policies.google.com/privacy"
 # Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
 gcs_engine_id = "007239566369470735695:624rglujm-w"
 
-version = "v0.6"
-version_menu = "v0.6"
-githubbranch = "v0.6-branch"
+# This param doesn't seem to be used.
+# Raised https://github.com/kubeflow/website/issues/1263 to investigate.
+version = "v0.7"
 
-# Add new release versions here
+# Text label for the version menu in the top bar of the website.
+version_menu = "v0.7RC"
+
+# A variable used in various docs to determine URLs for config files etc.
+# To find occurrences, search the repo for 'params "githubbranch"'.
+githubbranch = "v0.7-branch"
+
+# Add new release versions here. These entries appear in the drop-down menu
+# at the top of the website.
 [[params.versions]]
   version = "master"
   githubbranch = "master"
