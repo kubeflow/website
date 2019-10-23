@@ -32,13 +32,14 @@ NAME         STATUS    ROLES                      AGE       VERSION
 
 1. Create Kubernetes namespace.
 
-    ```bash
+    ```
     export K8S_NAMESPACE=kubeflow
     kubectl create namespace $K8S_NAMESPACE
     ```
+
     * **K8S_NAMESPACE** is namespace name that the Kubeflow will be installed in. By default should be "kubeflow".
 
-2. Create image policy for the namespace.
+1. Create image policy for the namespace.
 
     The image policy definition file (`image-policy.yaml`) is as following:
 
@@ -65,7 +66,7 @@ NAME         STATUS    ROLES                      AGE       VERSION
     kubectl create -n $K8S_NAMESPACE -f image-policy.yaml 
     ```
 
-3. Create persistent volume (PV) for Kubeflow components.
+1. Create persistent volume (PV) for Kubeflow components.
    
     Some Kubeflow components need PVs to storage data, such as minio, mysql katib. We need to create PVs for those pods in advance. 
     The PVs defination file (`pv.yaml`) is as following:
@@ -126,49 +127,61 @@ NAME         STATUS    ROLES                      AGE       VERSION
 
 Follow these steps to deploy Kubeflow:
 
-1. Download a `kfctl` v0.5.0 or later release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
+1. Download the kfctl {{% kf-latest-version %}} release from the
+  [Kubeflow releases 
+  page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
 
-2. Unpack the tar ball:
+1. Unpack the tar ball:
 
-    ```bash
-    tar -xvf kfctl_<release tag>_<platform>.tar.gz
+    ```
+    tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
     ```
 
-3. Run the following commands to set up and deploy Kubeflow. The code below
-  includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl` 
+1. Run the following commands to set up and deploy Kubeflow. The code below
+  includes an optional command to add the kfctl binary to your path. If you don't add the binary to your path, you must use the full path to the kfctl 
   binary each time you run it.
 
-    ```bash
+    ```
     # The following command is optional, to make kfctl binary easier to use.
     export PATH=$PATH:<path to kfctl in your Kubeflow installation>
-    export KFAPP=<your choice of application directory name>
+
+    # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
+    # name of the directory containing your configuration.
+    # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
+    export KF_NAME=<your choice of name for the Kubeflow deployment>
+
+    # Set the path to the base directory where you want to store one or more 
+    # Kubeflow deployments. For example, /opt/.
+    # Then set the Kubeflow application directory for this deployment.
+    export BASE_DIR=<path to a base directory>
+    export KF_DIR=${BASE_DIR}/${KF_NAME}
+
     # Installs Istio by default. Comment out Istio components in the config file to skip Istio installation.
-    export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6-branch/bootstrap/config/kfctl_k8s_istio.0.6.2.yaml"
+    export CONFIG_URI="{{% config-uri-k8s-istio %}}"
 
-    kfctl init ${KFAPP} --config=${CONFIG} -V
-    cd ${KFAPP}
-    kfctl generate all -V
-    kfctl apply all -V
+    mkdir ${KF_DIR}
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_URI}
     ```
-   * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
-     configurations to be stored. This directory is created when you run
-     `kfctl init`. If you want a custom deployment name, specify that name here.
-     The value of this variable becomes the name of your deployment.
-     The value of this variable cannot be greater than 25 characters. It must
-     contain just the directory name, not the full path to the directory.
-     The content of this directory is described in the next section.
+      * **${KF_NAME}** - the name of your Kubeflow deployment. This value also
+        becomes the name of the directory where your Kubeflow configurations are 
+        stored. 
+        If you want a custom deployment name, specify that name here.
+        For example,  `my-kubeflow` or `kf-test`.
+        The value of this variable cannot be greater than 25 characters. It must
+        contain just the deployment name, not the full path to the directory.
 
-4. Check the resources deployed in namespace `kubeflow`:
+1. Check the resources deployed in namespace `kubeflow`:
 
-    ```bash
+    ```
     kubectl -n kubeflow get  all
     ```
 
 ## Access Kubeflow dashboard
 
-From Kubeflow 0.6, the Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard. Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
+From Kubeflow v0.6, the Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard. Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
 
-For Kubeflow version lower than 0.6, access the Kubeflow Dashboard via Ambassador service. Change the Ambassador service type to NodePort, then access the Kubeflow dashboard through Ambassador.
+For Kubeflow version lower than v0.6, access the Kubeflow Dashboard via Ambassador service. Change the Ambassador service type to NodePort, then access the Kubeflow dashboard through Ambassador.
 ```bash
 kubectl -n kubeflow patch service ambassador -p '{"spec":{"type": "NodePort"}}'
 AMBASSADOR_PORT=$(kubectl -n kubeflow get service ambassador -ojsonpath='{.spec.ports[?(@.name=="ambassador")].nodePort}')
@@ -183,15 +196,22 @@ http://${MANAGEMENT_IP}:$AMBASSADOR_PORT/
 
 ## Delete Kubeflow
 
+Set the `${CONFIG_FILE}` environment variable to the path for your 
+Kubeflow configuration file:
+
+  ```
+  export CONFIG_FILE=${KF_DIR}/kfctl_k8s_istio.yaml
+  ```
+
 Run the following commands to delete your deployment and reclaim all resources:
 
 ```bash
-cd ${KFAPP}
+cd ${KF_DIR}
 # If you want to delete all the resources, including storage.
-kfctl delete all --delete_storage
+kfctl delete -f ${CONFIG_FILE} --delete_storage
 # If you want to preserve storage, which contains metadata and information
-# from mlpipeline.
-kfctl delete all
+# from Kubeflow Pipelines.
+kfctl delete -f ${CONFIG_FILE}
 ```
 ## TroubleShooting
 ### Insufficient Pods 
