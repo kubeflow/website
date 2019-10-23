@@ -17,11 +17,54 @@ Cloud Filestore is very useful for creating a shared filesystem that can be moun
 This guide assumes you have already set up Kubeflow on GCP. If you haven't done
 so, follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
 
-The instructions below assume that the `${KFAPP}` environment variable contains 
-the *name* (not the full path) of the directory containing your Kubeflow 
-configurations. See the
-[Kubeflow deployment guide](/docs/gke/deploy/deploy-cli/) for details of this
-directory.
+This guide assumes the following settings: 
+
+* The `${KF_DIR}` environment variable contains the path to
+  your Kubeflow application directory, which holds your Kubeflow configuration 
+  files. For example, `/opt/my-kubeflow/`.
+
+  ```
+  export KF_DIR=<path to your Kubeflow application directory>
+  ``` 
+
+* The `${CONFIG_FILE}` environment variable contains the path to your 
+  Kubeflow configuration file.
+
+  ```
+  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_iap.yaml
+  ```
+
+    Or:
+
+  ```
+  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_basic_auth.yaml
+  ```
+
+* The `${KF_NAME}` environment variable contains the name of your Kubeflow 
+  deployment. You can find the name in your `${CONFIG_FILE}` 
+  configuration file, as the value for the `metadata.name` key.
+
+  ```
+  export KF_NAME=<the name of your Kubeflow deployment>
+  ```
+
+* The `${PROJECT}` environment variable contains the ID of your GCP project. 
+  You can find the project ID in 
+  your `${CONFIG_FILE}` configuraiton file, as the value for the `project` key.
+
+  ```
+  export PROJECT=<your GCP project ID>
+  ```
+
+* The `${ZONE}` environment variable contains the GCP zone where your
+  Kubeflow resources are deployed.
+
+  ```
+  export ZONE=<your GCP zone>
+  ```
+
+* For further background about the above settings, see the guide to
+  [deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
 
 ## Create a Cloud Filestore instance
 
@@ -31,7 +74,7 @@ use you can skip this section.
 Copy the Cloud Filestore deployment manager configs to the `gcp_config` directory:
 
 ```
-cd /<path-to-kubeflow-deployment>/${KFAPP}
+cd ${KF_DIR}
 cp .cache/${VERSION}/deployment/gke/deployment_manager_configs/gcfs.yaml \
    ./gcp_config/
 ```
@@ -49,9 +92,9 @@ Edit `gcfs.yaml` to match your desired configuration:
 Using [yq](https://github.com/kislyuk/yq):
 
 ```
-cd /<path-to-kubeflow-deployment>/${KFAPP}
+cd ${KF_DIR}
 . env.sh
-yq -r ".resources[0].properties.instanceId=\"${DEPLOYMENT_NAME}\"" gcp_config/gcfs.yaml > gcp_config/gcfs.yaml.new
+yq -r ".resources[0].properties.instanceId=\"${KF_NAME}\"" gcp_config/gcfs.yaml > gcp_config/gcfs.yaml.new
 mv gcp_config/gcfs.yaml.new gcp_config/gcfs.yaml
 ```
 
@@ -63,8 +106,8 @@ Apply the changes:
 -->
 
 ```
-cd /<path-to-kubeflow-deployment>/${KFAPP}/gcp_config
-gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP-NAME}-nfs --config=gcfs.yaml
+cd ${KF_DIR}/gcp_config
+gcloud --project=${PROJECT} deployment-manager deployments create ${KF_NAME}-nfs --config=gcfs.yaml
 ```
 
 If you get an error **legacy networks are not supported** follow the instructions

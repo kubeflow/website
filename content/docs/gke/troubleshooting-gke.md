@@ -15,6 +15,55 @@ This guide covers troubleshooting specifically for
 For more help, try the 
 [general Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting).
 
+This guide assumes the following settings: 
+
+* The `${KF_DIR}` environment variable contains the path to
+  your Kubeflow application directory, which holds your Kubeflow configuration 
+  files. For example, `/opt/my-kubeflow/`.
+
+  ```
+  export KF_DIR=<path to your Kubeflow application directory>
+  ``` 
+
+* The `${CONFIG_FILE}` environment variable contains the path to your 
+  Kubeflow configuration file.
+
+  ```
+  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_iap.yaml
+  ```
+
+    Or:
+
+  ```
+  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_basic_auth.yaml
+  ```
+
+* The `${KF_NAME}` environment variable contains the name of your Kubeflow 
+  deployment. You can find the name in your `${CONFIG_FILE}` 
+  configuration file, as the value for the `metadata.name` key.
+
+  ```
+  export KF_NAME=<the name of your Kubeflow deployment>
+  ```
+
+* The `${PROJECT}` environment variable contains the ID of your GCP project. 
+  You can find the project ID in 
+  your `${CONFIG_FILE}` configuration file, as the value for the `project` key.
+
+  ```
+  export PROJECT=<your GCP project ID>
+  ```
+
+* The `${ZONE}` environment variable contains the GCP zone where your
+  Kubeflow resources are deployed.
+
+  ```
+  export ZONE=<your GCP zone>
+  ```
+
+* For further background about the above settings, see the guide to
+  [deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
+
 ## Troubleshooting kubeflow deployment on GCP
 
 Here are some tips for troubleshooting Cloud IAP.
@@ -43,7 +92,7 @@ the cluster. This section assumes
 you are using [Cloud Endpoints](https://cloud.google.com/endpoints/) and a DNS name of the following pattern
 
 ```
-https://${DEPLOYMENT_NAME}.endpoints.${PROJECT}.cloud.goog
+https://${KF_NAME}.endpoints.${PROJECT}.cloud.goog
 ```
 
 Symptoms:
@@ -52,11 +101,11 @@ Symptoms:
   * nslookup for the domain name doesn't return the IP address associated with the ingress
 
     ```
-    nslookup ${DEPLOYMENT_NAME}.endpoints.${PROJECT}.cloud.goog
+    nslookup ${KF_NAME}.endpoints.${PROJECT}.cloud.goog
     Server:   127.0.0.1
     Address:  127.0.0.1#53
 
-    ** server can't find ${DEPLOYMENT_NAME}.endpoints.${PROJECT}.cloud.goog: NXDOMAIN
+    ** server can't find ${KF_NAME}.endpoints.${PROJECT}.cloud.goog: NXDOMAIN
     ```
 
 Troubleshooting
@@ -64,8 +113,8 @@ Troubleshooting
 1. Check the `cloudendpoints` resource
 
    ```
-   kubectl get cloudendpoints -o yaml ${DEPLOYMENT_NAME}
-   kubectl describe cloudendpoints ${DEPLOYMENT_NAME}
+   kubectl get cloudendpoints -o yaml ${KF_NAME}
+   kubectl describe cloudendpoints ${KF_NAME}
    ```
 
    * Check if there are errors indicating problems creating the endpoint
@@ -329,7 +378,7 @@ ERROR: (gcloud.deployment-manager.deployments.update) Error in Operation [operat
 To fix this we can create a new network:
 
 ```
-cd ${KFAPP}
+cd ${KF_DIR}
 cp .cache/master/deployment/gke/deployment_manager_configs/network.* \
    ./gcp_config/
 ```
@@ -341,8 +390,8 @@ Edit `gcfs.yaml` to use the name of the newly created network.
 Apply the changes.
 
 ```
-cd ${KFAPP}
-kfctl apply platform
+cd ${KF_DIR}
+kfctl apply -V -f ${CONFIG}
 ```
 
 ## CPU platform unavailable in requested zone
