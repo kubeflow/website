@@ -65,9 +65,9 @@ Where:
     autoscaling](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-autoscaler)
     functionality.
 +   `DEPLOYMENT_NAME` is the name of your Kubeflow deployment. If you used
-    [the CLI to deploy Kubeflow](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/),
-    this name is the value of the `${KFAPP}` environment variable. If you used
-    the [deployment UI](https://www.kubeflow.org/docs/gke/deploy/deploy-ui/),
+    [the CLI to deploy Kubeflow](/docs/gke/deploy/deploy-cli/),
+    this name is the value of the `${KF_NAME}` environment variable. If you used
+    the [deployment UI](/docs/gke/deploy/deploy-ui/),
     this name is the value you specified as the deployment name.
 +   `PROJECT_NAME` is the name of your GCP project.
 
@@ -85,7 +85,7 @@ Below is an example of the command:
 After configuring a node pool with preemptible VMs, you must configure your
 pipelines to run on the preemptible VMs. 
 
-In the [DSL code](https://www.kubeflow.org/docs/pipelines/sdk/dsl-overview/) for
+In the [DSL code](/docs/pipelines/sdk/sdk-overview/) for
 your pipeline, add the following to the `ContainerOp` instance:
 
     .apply(gcp.use_preemptible_nodepool())
@@ -187,9 +187,9 @@ Where:
     [GKE autoscaling](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-autoscaler)
     functionality.
 +   `DEPLOYMENT_NAME` is the name of your Kubeflow deployment. If you used
-    [the CLI to deploy Kubeflow](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/),
-    this name is the value of the `${KFAPP}` environment variable. If you used
-    the [deployment UI](https://www.kubeflow.org/docs/gke/deploy/deploy-ui/),
+    [the CLI to deploy Kubeflow](/docs/gke/deploy/deploy-cli/),
+    this name is the value of the `${KF_NAME}` environment variable. If you used
+    the [deployment UI](/docs/gke/deploy/deploy-ui/),
     this name is the value you specified as the deployment name.
 +   `PROJECT_NAME` is the name of your GCP project.
 +   `GPU_TYPE` is the [type of
@@ -208,7 +208,7 @@ Below is an example of the command:
 
 ### 3. Schedule your pipeline to run on the preemptible VMs with preemptible GPUs
 
-In the [DSL code](https://www.kubeflow.org/docs/pipelines/sdk/dsl-overview/) for
+In the [DSL code](/docs/pipelines/sdk/sdk-overview/) for
 your pipeline, add the following to the `ContainerOp` instance:
 
     .apply(gcp.use_preemptible_nodepool()
