@@ -84,19 +84,19 @@ The steps below assume that you already have a Kubernetes cluster set up.
         **Before** running the `apply` command:
 
         ```
-        kfctl apply all -V
+        kfctl apply -V -f ${CONFIG_FILE}
         ```
 
         You should first edit the following files to specify your PVs:
 
-        `${KFAPP}/kustomize/minio/overlays/minioPd/params.env`
+        `${KF_DIR}/kustomize/minio/overlays/minioPd/params.env`
         ```
         ...
         minioPd=[YOUR-PRE-CREATED-MINIO-PV-NAME]
         ...
         ```
 
-        `${KFAPP}/kustomize/mysql/overlays/mysqlPd/params.env`
+        `${KF_DIR}/kustomize/mysql/overlays/mysqlPd/params.env`
         ```
         ...
         mysqlPd=[YOUR-PRE-CREATED-MYSQL-PV-NAME]
@@ -106,7 +106,7 @@ The steps below assume that you already have a Kubernetes cluster set up.
   1. Then run the `apply` command as usual:
 
         ```
-        kfctl apply k8s
+        kfctl apply -V -f ${CONFIG_FILE}
         ``` 
 
 ## Reinstalling Kubeflow Pipelines
@@ -123,16 +123,18 @@ To reinstall Kubeflow Pipelines, follow the [command line deployment
 instructions](/docs/gke/deploy/deploy-cli/), but note the following
 change in the procedure:
 
-1. Warning, when you do `kfctl init ${KFAPP} --other-flags`, you should use a different `${KFAPP}` name from your existing `${KFAPP}`. Otherwise, your data in existing PDs will be deleted during `kfctl apply all -V`.
+1. Warning, when you do `kfctl apply` or `kfctl build`, you should use a 
+  different `${KF_NAME}` name from your existing `${KF_NAME}`. Otherwise, your 
+  data in existing PDs will be deleted during `kfctl apply`.
 
 1. **Before** running the following `apply` command:
 
     ```
-    kfctl apply all -V
+    kfctl apply -V -f ${CONFIG_FILE}
     ```
 
     You should first:
-    * Edit `gcp_config/storage-kubeflow.yaml` to skip creating new storages:
+    * Edit `${KF_DIR}/gcp_config/storage-kubeflow.yaml` to skip creating new storages:
 
       ```
       ...
@@ -143,14 +145,14 @@ change in the procedure:
     * Edit the following files to specify the persistent disks created
       in a previous deployment:
 
-      `${KFAPP}/kustomize/minio/overlays/minioPd/params.env`
+      `${KF_DIR}/kustomize/minio/overlays/minioPd/params.env`
       ```
       ...
       minioPd=[NAME-OF-ARTIFACT-STORAGE-DISK]
       ...
       ```
 
-      `${KFAPP}/kustomize/mysql/overlays/mysqlPd/params.env`
+      `${KF_DIR}/kustomize/mysql/overlays/mysqlPd/params.env`
       ```
       ...
       mysqlPd=[NAME-OF-METADATA-STORAGE-DISK]
@@ -160,7 +162,7 @@ change in the procedure:
 1. Then run the `apply` command:
 
     ```
-    kfctl apply all -V
+    kfctl apply -V -f ${CONFIG_FILE}
     ``` 
 
 ### Reinstalling Kubeflow in other environments (non-GCP) 
@@ -180,19 +182,19 @@ PV in the new cluster.
     **Before** running the `apply` command:
 
     ```
-    kfctl apply k8s
+    kfctl apply -V -f ${CONFIG_FILE}
     ```
 
     You should first edit the following files to specify your PVs:
 
-    `${KFAPP}/kustomize/minio/overlays/minioPd/params.env`
+    `${KF_DIR}/kustomize/minio/overlays/minioPd/params.env`
     ```
     ...
     minioPd=[YOUR-PRE-CREATED-MINIO-PV-NAME]
     ...
     ```
 
-    `${KFAPP}/kustomize/mysql/overlays/mysqlPd/params.env`
+    `${KF_DIR}/kustomize/mysql/overlays/mysqlPd/params.env`
     ```
     ...
     mysqlPd=[YOUR-PRE-CREATED-MYSQL-PV-NAME]
@@ -202,5 +204,5 @@ PV in the new cluster.
 1. Then run the `apply` command:
 
     ```
-    kfctl apply k8s
+    kfctl apply -V -f ${CONFIG_FILE}
     ``` 

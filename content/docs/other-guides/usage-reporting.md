@@ -37,18 +37,38 @@ kubectl get -n ${NAMESPACE} deploy spartakus-volunteer
 
 ## Remove usage reporting before deploying Kubeflow
 
-The following instructions assume that you plan to use the `kfctl` command-line
-tool to deploy Kubeflow, as described in the 
-[Kubeflow getting-started guides](/docs/started/getting-started/).
+The following instructions assume that you plan to use the kfctl command-line
+interface to deploy Kubeflow.
 
-To prevent Spartakus from being deployed, edit your `${KFAPP}/app.yaml` 
-configuration file before running `kfctl apply`. 
-(`KFAPP` represents the directory where your Kubeflow configuration is stored 
-during deployment.)
+This guide refers to the `${CONFIG_FILE}`, which is the Kubeflow configuration 
+file in your Kubeflow deployment directory. For example,
+`${KF_DIR}/kfctl_k8s_istio.yaml` or `${KF_DIR}/kfctl_gcp_iap.yaml`.
 
-You need to remove the Spartakus entry from `KfDef.Spec.Applications`. To do 
-that, find the `applications` section of the YAML file and delete the following 
-lines:
+To prevent Spartakus from being deployed:
+
+1. Follow your chosen guide to deploying Kubeflow, but stop before you deploy
+  Kubeflow. For example, see the guide to 
+  [deploying Kubeflow with kfctl_k8s_istio](/docs/started/k8s/kfctl-k8s-istio/).
+1. When you reach the 
+  [setup and deploy step](/docs/started/k8s/kfctl-k8s-istio/#alt-set-up-and-deploy),
+  **skip the `kfctl apply` command** and run the **`kfctl build`** command 
+  instead, as  described in the above guide. Now you can edit the configuration
+  files before deploying Kubeflow.
+1. Edit your `${CONFIG_FILE}` file as described [below](#remove-spartakus).
+
+1. Run the `kfctl apply` command to deploy Kubeflow:
+
+  ```
+  cd ${KF_DIR}
+  kfctl apply -V -f ${CONFIG_FILE}
+  ```
+
+<a id="remove-spartakus"></a>
+### Removing Spartakus from your configuration
+
+You need to remove the Spartakus entry from `KfDef.Spec.Applications` in
+the `${CONFIG_FILE}` file. Find the `applications` section of the YAML 
+file and delete the following lines:
 
     - kustomizeConfig:
         parameters:
