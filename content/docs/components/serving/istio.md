@@ -9,6 +9,7 @@ quota, rollout and A/B testing.
 
 ## Install Istio
 We assume Kubeflow is already deployed in the `kubeflow` namespace.
+If istio is not installed by kubeflow, you can follow the below steps to install it in Linux.
 
 ```
 $ curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.3 sh -
