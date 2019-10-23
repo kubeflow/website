@@ -22,7 +22,7 @@ Read the relevant [article](https://journal.arrikto.com/kubeflow-authentication-
 
 ## Before you start
 
-* Existing Kubernetes Cluster.
+The instructions below assume that you have an existing Kubernetes cluster.
 
 <a id="prepare-environment"></a>
 ## Prepare your environment
@@ -60,8 +60,6 @@ export KF_NAME=<your choice of name for the Kubeflow deployment>
 # Then set the Kubeflow application directory for this deployment.
 export BASE_DIR=<path to a base directory>
 export KF_DIR=${BASE_DIR}/${KF_NAME}
-
-# Credentials for the default user are admin@kubeflow.org:12341234
 ```
 Notes:
 
@@ -94,7 +92,17 @@ run the `kfctl apply` command:
 ```bash
 mkdir -p ${KF_DIR}
 cd ${KF_DIR}
-kfctl apply -V -f ${CONFIG_URI}
+
+# Recommended: Download the config file and change the default login credentials.
+wget -O kfctl_existing_arrikto.yaml $CONFIG_URI
+export CONFIG_FILE=${KF_DIR}/kfctl_existing_arrikto.yaml
+
+# Credentials for the default user are admin@kubeflow.org:12341234
+# To change them, please edit the dex-auth application parameters
+# inside the KfDef file.
+vim $CONFIG_FILE
+
+kfctl apply -V -f ${CONFIG_FILE}
 ```
 
 ## Alternatively, set up your configuration for later deployment
@@ -138,7 +146,8 @@ This enables you to get started quickly without imposing any requirements on you
 kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
 ```
 
-The credentials of the default user are `admin@kubeflow.org`:`12341234`.
+The credentials are the ones you specified in the KfDef file, or the default (`admin@kubeflow.org`:`12341234`).
+It is highly recommended to change the default credentials.
 To add static users or change the existing one, see [the relevant section](#add-static-users-for-basic-auth).
 
 When you're ready, you can expose your Kubeflow deployment with a LoadBalancer Service or an Ingress.
@@ -149,14 +158,17 @@ For more information, see the [expose kubeflow section](#expose-kubeflow).
 To add users to basic auth, you just have to edit the Dex ConfigMap under the key `staticPasswords`.
 ```bash
 # Download the dex config
-kubectl get configmap dex -n kubeflow -o jsonpath='{.data.config\.yaml}' > dex-config.yaml
+kubectl get configmap dex -n auth -o jsonpath='{.data.config\.yaml}' > dex-config.yaml
 
 # Edit the dex config with extra users.
 # The password must be hashed with bcrypt with an at least 10 difficulty level.
 # You can use an online tool like: https://passwordhashing.com/BCrypt
 
 # After editing the config, update the ConfigMap
-kubectl create configmap dex --from-file=config.yaml=dex-config.yaml -n kubeflow --dry-run -oyaml | kubectl apply -f -
+kubectl create configmap dex --from-file=config.yaml=dex-config.yaml -n auth --dry-run -oyaml | kubectl apply -f -
+
+# Restart Dex to pick up the changes in the ConfigMap
+kubectl rollout restart deployment dex -n auth
 ```
 
 ### Log in with LDAP / Active Directory
@@ -378,7 +390,7 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
     1. Get the current Dex config from the corresponding Config Map.
         
         {{< highlight bash >}}
-        kubectl get configmap dex -n kubeflow -o jsonpath='{.data.config\.yaml}' > dex-config.yaml
+        kubectl get configmap dex -n auth -o jsonpath='{.data.config\.yaml}' > dex-config.yaml
         {{< /highlight >}}
 
     1. Add the LDAP-specific options. Here is an example to help you out. It is configured to work with the example LDAP Server you set up previously.
@@ -484,21 +496,18 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
         
     1. Apply the new config.
         {{< highlight bash >}}
-        kubectl create configmap dex --from-file=config.yaml=dex-config-final.yaml -n kubeflow --dry-run -oyaml | kubectl apply -f -
+        kubectl create configmap dex --from-file=config.yaml=dex-config-final.yaml -n auth --dry-run -oyaml | kubectl apply -f -
         {{< /highlight >}}
         
-    1. Restart the Dex deployment, by doing one of the following:
-        * Force recreation, by deleting the Dex deployment's Pod(s).
-          * `kubectl delete pods -n kubeflow -l app=dex`
-        * Trigger a rolling update, by adding/updating a label on the PodTemplate of the Dex deployment.
-          * `kubectl edit deployment dex -n kubeflow` will open the Dex deployment in a text editor.
-          * Add or update a label on the PodTemplate.
-          * Save the deployment to trigger a rolling update.
+    1. Restart the Dex deployment: `kubectl rollout restart deployment dex -n auth`
 
 ### Expose Kubeflow
 
 While port-forward is a great way to get started, it is not a long-term, production-ready solution.
 In this section, we explore the process of exposing your cluster to the outside world.
+
+NOTE: It is highly recommended to change the default credentials before exposing your Kubeflow cluster.
+See [the relevant section](#add-static-users-for-basic-auth) for how to edit Dex static users.
 
 #### Secure with HTTPS
 
@@ -691,7 +700,7 @@ metadata:
   namespace: istio-system
 spec:
   commonName: istio-ingressgateway.istio-system.svc
-  # Use ipAdresses if your LoadBalancer issues an IP
+  # Use ipAddresses if your LoadBalancer issues an IP
   ipAddresses:
   - <LoadBalancer IP>
   # Use dnsNames if your LoadBalancer issues a hostname (eg on AWS)
@@ -707,7 +716,7 @@ spec:
 After applying the above Certificate, cert-manager will generate the TLS certificate inside the istio-ingressgateway-certs secrets.
 The istio-ingressgateway-certs secret is mounted on the istio-ingressgateway deployment and used to serve HTTPS.
 
-Navigate to `https://<LoadBalancer Adress>/` and start using Kubeflow.
+Navigate to `https://<LoadBalancer Address>/` and start using Kubeflow.
 
 ### Troubleshooting
 
@@ -747,7 +756,7 @@ kubectl logs -n istio-system -l app=authservice
 ```
 Dex logs:
 ```bash
-kubectl logs -n kubeflow -l app=dex
+kubectl logs -n auth -l app=dex
 ```
 Istio ingress-gateway logs:
 ```bash
