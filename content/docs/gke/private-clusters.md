@@ -221,70 +221,25 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
         PROJECT=<PROJECT> make copy-gcb
         ```
 
-    * This is needed because your GKE nodes won't be able to pull images from non GCR
-      registries because they don't have public internet addresses
+      * This is needed because your GKE nodes won't be able to pull images from non GCR
+        registries because they don't have public internet addresses
 
 
-    * gcloud may return an error even though the job is
-      submited successfully and will run successfully
-      see [kubeflow/kubeflow#3105](https://github.com/kubeflow/kubeflow/issues/3105)
+      * gcloud may return an error even though the job is
+        submited successfully and will run successfully
+        see [kubeflow/kubeflow#3105](https://github.com/kubeflow/kubeflow/issues/3105)
 
-    * You can use the Cloud console to monitor your GCB job.
+      * You can use the Cloud console to monitor your GCB job.
 
+1. Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/).
+  When you reach the 
+  [setup and deploy step](/docs/gke/deploy/deploy-cli/#set-up-and-deploy), 
+  **skip the `kfctl apply` command** and run the **`kfctl build`** command 
+  instead, as described in that step. Now you can edit the configuration files
+  before deploying Kubeflow. Retain the environment variables that you set
+  during the setup, including `${KF_NAME}`, `${KF_DIR}`, and `${CONFIG_FILE}`.
 
-1. Follow the [instructions](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) for creating an OAuth client
-
-1. Create environment variables for IAP OAuth access
-
-    ```bash
-     export CLIENT_ID=<CLIENT_ID from OAuth page>
-     export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
-    ```
-
-1. Download a `kfctl` release from the 
-  [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
-
-1. Unpack the tar ball:
-
-    ```
-    tar -xvf kfctl_<release tag>_<platform>.tar.gz
-    ```
-   
-   * **Optional** Add the kfctl binary to your path. 
-   * If you don't add the kfctl binary to your path then in all subsequent
-     steps you will need to replace `kfctl` with the full path to the binary.
-
-1. Initialize the directory containing your Kubeflow deployment config files
-    
-    ```bash
-    export PROJECT=<your GCP project ID>
-    export KFAPP=<your choice of application directory name>
-    # Run the following commands for the default installation which uses Cloud IAP:
-    export CONFIG="{{% config-uri-gcp-iap %}}"
-    kfctl init ${KFAPP} --project=${PROJECT} --config=${CONFIG} -V
-    # Alternatively, run these commands if you want to use basic authentication:
-    export CONFIG="{{% config-uri-gcp-basic-auth %}}"
-    kfctl init ${KFAPP} --project=${PROJECT} --config=${CONFIG} -V --use_basic_auth
-
-    cd ${KFAPP}
-    kfctl generate all -V
-    ```
-   * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
-     configurations to be stored. This directory is created when you run
-     `kfctl init`. If you want a custom deployment name, specify that name here.
-     The value of this variable becomes the name of your deployment.
-     The value of this variable cannot be greater than 25 characters. It must
-     contain just the directory name, not the full path to the directory.
-     The content of this directory is described in the next section.
-   * **${PROJECT}** - the ID of the GCP project where you want Kubeflow 
-     deployed.
-   * `kfctl generate all` attempts to fetch your email address from your 
-     credential. If it can't find a valid email address, you need to pass a
-     valid email address with flag `--email <your email address>`. This email 
-     address becomes an administrator in the configuration of your Kubeflow 
-     deployment.
-
-1. Enable private clusters by editing `${KFAPP}/gcp_configs/cluster-kubeflow.yaml` and updating the following two parameters:
+1. Enable private clusters by editing `${KF_DIR}/gcp_config/cluster-kubeflow.yaml` and updating the following two parameters:
 
     ```
     privatecluster: true
@@ -293,109 +248,109 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 1. Remove components which are not useful in private clusters:
 
     ```
-    cd ${KFAPP}/kustomize
+    cd ${KF_DIR}/kustomize
     kubectl delete -f cert-manager.yaml
     ```
 1. Create the deployment:
 
     ```
-    cd ${KFAPP}
-    kfctl apply platform
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_FILE}
     ```
 
-   * If you get an error **legacy networks not supported**, follow the 
-     [troubleshooting guide]( /docs/gke/troubleshooting-gke/#legacy-networks-are-not-supported) to create a new network.
+      * If you get an error **legacy networks not supported**, follow the 
+        [troubleshooting guide]( /docs/gke/troubleshooting-gke/#legacy-networks-are-not-supported) to create a new network.
 
-     * You will need to manually create the network as a work around for [kubeflow/kubeflow#3071](https://github.com/kubeflow/kubeflow/issues/3071)
+        * You will need to manually create the network as a work around for [kubeflow/kubeflow#3071](https://github.com/kubeflow/kubeflow/issues/3071)
 
-        ```
-        cd ${KFAPP}/gcp_configs
-        gcloud --project=${PROJECT} deployment-manager deployments create ${KFAPP}-network --config=network.yaml
-        ```
+            ```
+            cd ${KF_DIR}/gcp_config
+            gcloud --project=${PROJECT} deployment-manager deployments create ${KF_NAME}-network --config=network.yaml
+            ```
 
-     * Then edit **gcp_config/cluster.jinja** to add a field **network** in your cluster
-     
-        ```
-        cluster:
-           name: {{ CLUSTER_NAME }}
-           network: <name of the new network>
-        ```
-   
-     * To get the name of the new network run
+        * Then edit `${KF_DIR}/gcp_config/cluster.jinja` to add a field **network** in your cluster
+        
+            ```
+            cluster:
+              name: {{ CLUSTER_NAME }}
+              network: <name of the new network>
+            ```
       
-        ```
-        gcloud --project=${PROJECT} compute networks list
-        ``` 
+        * To get the name of the new network run
+          
+            ```
+            gcloud --project=${PROJECT} compute networks list
+            ``` 
 
-       * The name will contain the value ${KFAPP}
+          * The name will contain the value ${KF_NAME}
 
 1. Update iap-ingress component parameters:
 
     ```
-    cd ${KFAPP}/kustomize
+    cd ${KF_DIR}/kustomize
     gvim basic-auth-ingress.yaml  # Or iap-ingress.yaml if you are using IAP
     ```
 
-   * Find and set the `privateGKECluster` parameter to true:
+      * Find and set the `privateGKECluster` parameter to true:
 
-     ```
-     privateGKECluster: "true"
-     ```
+        ```
+        privateGKECluster: "true"
+        ```
 
-   * Then apply your changes:
+      * Then apply your changes:
 
-     ```
-     kubectl apply -f basic-auth-ingress.yaml
-     ```
+        ```
+        kubectl apply -f basic-auth-ingress.yaml
+        ```
 
 1. Obtain an HTTPS certificate for your ${FQDN} and create a Kubernetes secret with it. 
 
-   * You can create a self signed cert using [kube-rsa](https://github.com/kelseyhightower/kube-rsa)
+      * You can create a self signed cert using [kube-rsa](https://github.com/kelseyhightower/kube-rsa)
 
-      ```
-      go get github.com/kelseyhightower/kube-rsa
-      kube-rsa ${FQDN}
-      ```
-      * The fully qualified domain is the host field specified for your ingress; 
-        you can get it by running
+          ```
+          go get github.com/kelseyhightower/kube-rsa
+          kube-rsa ${FQDN}
+          ```
+          * The fully qualified domain is the host field specified for your ingress; 
+            you can get it by running
 
+            ```
+            cd ${KF_DIR}/kustomize
+            grep hostname: basic-auth-ingress.yaml
+            ```
+
+        * Then create your Kubernetes secret
+
+          ```
+          kubectl create secret tls --namespace=kubeflow envoy-ingress-tls --cert=ca.pem --key=ca-key.pem
         ```
-        cd ${KFAPP}/kustomize
-        grep hostname: basic-auth-ingress.yaml
-        ```
 
-    * Then create your Kubernetes secret
+      * An alternative option is to upgrade to GKE 1.12 or later and use 
+        [managed certificates](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs#migrating_to_google-managed_certificates_from_self-managed_certificates)
 
-      ```
-      kubectl create secret tls --namespace=kubeflow envoy-ingress-tls --cert=ca.pem --key=ca-key.pem
-     ```
-
-   * An alternative option is to upgrade to GKE 1.12 or later and use 
-     [managed certificates](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs#migrating_to_google-managed_certificates_from_self-managed_certificates)
-
-     * See [kubeflow/kubeflow#3079](https://github.com/kubeflow/kubeflow/issues/3079)
+        * See [kubeflow/kubeflow#3079](https://github.com/kubeflow/kubeflow/issues/3079)
 
 1. Update the various kustomize manifests to use `gcr.io` images instead of Docker Hub images.
 
 1. Apply all the Kubernetes resources:
 
     ```
-    cd ${KFAPP}
-    kfctl apply k8s
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_FILE}
     ```
 1. Wait for Kubeflow to become accessible and then access it at
 
     ```
     https://${FQDN}/
     ```
-    * ${FQDN} is the host associated with your ingress
+      * ${FQDN} is the host associated with your ingress
 
-       * You can get it by running `kubectl get ingress`
+        * You can get it by running `kubectl get ingress`
 
-    * Follow the [instructions](/docs/gke/deploy/monitor-iap-setup/) to monitor the 
-      deployment
- 
-    * It can take 10-20 minutes for the endpoint to become fully available
+      * Follow the [instructions](/docs/gke/deploy/monitor-iap-setup/) to monitor the 
+        deployment
+  
+      * It can take 10-20 minutes for the endpoint to become fully available
 
 ## Next steps
 
