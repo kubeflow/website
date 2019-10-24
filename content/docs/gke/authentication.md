@@ -11,7 +11,7 @@ Starting from Kubeflow version 0.6, you can consume Kubeflow from custom namespa
 The `kubeflow` namespace is intended for running Kubeflow system components while individual jobs and model deployments
 are expected to run in separate namespaces. In order to do this you will need to install GCP credentials into the new namespace.
 
-### Staring in 0.7: Workload Identity
+### Starting in 0.7: GKE Workload Identity
 
 Starting in 0.7, we use the new GKE feature: [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity).
 This is the recommended way to access GCP APIs from your GKE cluster.
@@ -22,7 +22,8 @@ In your user namespace (e.g. kubeflow-NAME), there should be a KSA called defaul
 ```
 kubectl -n kubeflow-NAME describe serviceaccount default-editor
 
-Name default-editor
+...
+Name:        default-editor
 Annotations: iam.gke.io/gcp-service-account: KFAPP-user@PROJECT.iam.gserviceaccount.com
 ...
 ```
@@ -33,9 +34,9 @@ You can double check that GSA is also properly setup:
 gcloud --project=${PROJECT} iam service-accounts get-iam-policy KFAPP-user@PROJECT.iam.gserviceaccount.com
 ```
 
-When a pod uses KSA default-editor, it can access GCP API with the role granted to the GSA.
+When a pod uses KSA default-editor, it can access GCP APIs with the role granted to the GSA.
 
-More details on workload identity can be found at official [docs](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity).
+More details on workload identity can be found in the official [docs](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity).
 
 ### 0.6 and before: GCP Service Account key as secret
 
