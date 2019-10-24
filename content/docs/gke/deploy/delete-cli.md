@@ -23,13 +23,13 @@ This guide assumes the following settings:
   Kubeflow configuration file.
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_iap.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-iap %}}
   ```
 
     Or:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_basic_auth.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-basic-auth %}}
   ```
 
 For further background about the above settings, see the guide to

@@ -166,13 +166,13 @@ deploy Kubeflow:
 1. Set an environment variable for your local configuration file:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_iap.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-iap %}}
   ```
 
     Or:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_basic_auth.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-basic-auth %}}
   ```
 
 1. Run the `kfctl apply` command to deploy Kubeflow:
