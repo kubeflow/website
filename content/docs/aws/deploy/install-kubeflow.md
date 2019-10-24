@@ -110,13 +110,13 @@ configuration before deploying Kubeflow:
 1. Set an environment variable pointing to your local configuration file:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_aws.0.7.0.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-aws-standard %}}
   ```
 
     Or:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_aws_cognito.0.7.0.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-aws-cognito %}}
   ```
 
 ## Customize your configuration

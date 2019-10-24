@@ -22,7 +22,7 @@ Nonetheless, here are some instructions for updating your deployment::
 
     The `${CONFIG_FILE}` environment variable must contain the path to the 
     Kubeflow configuration file in your `${KF_DIR}` directory. For example,
-    `${KF_DIR}/kfctl_k8s_istio.yaml` or `${KF_DIR}/kfctl_existing_arrikto.yaml`
+    `${KF_DIR}/{{% config-file-k8s-istio %}}` or `${KF_DIR}/kfctl_existing_arrikto.yaml`
 
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 

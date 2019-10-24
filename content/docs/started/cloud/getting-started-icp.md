@@ -200,7 +200,7 @@ Set the `${CONFIG_FILE}` environment variable to the path for your
 Kubeflow configuration file:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_k8s_istio.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-k8s-istio %}}
   ```
 
 Run the following commands to delete your deployment and reclaim all resources:
