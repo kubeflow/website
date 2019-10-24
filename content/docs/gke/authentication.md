@@ -7,7 +7,7 @@ weight = 4
 
 ## In-cluster authentication
 
-Starting from Kubeflow version 0.6, you can consume Kubeflow from custom namespaces (i.e., namespaces other than `kubeflow`).
+Starting from Kubeflow version 0.6, you consume Kubeflow from custom namespaces (i.e., namespaces other than `kubeflow`).
 The `kubeflow` namespace is intended for running Kubeflow system components while individual jobs and model deployments
 are expected to run in separate namespaces. In order to do this you will need to install GCP credentials into the new namespace.
 
@@ -17,21 +17,37 @@ Starting in 0.7, we use the new GKE feature: [workload identity](https://cloud.g
 This is the recommended way to access GCP APIs from your GKE cluster.
 We will no longer download GCP service account key. Instead, we configure a Kubernetes service account (KSA) to act as a GCP service account (GSA).
 
-In your user namespace (e.g. kubeflow-NAME), there should be a KSA called default-editor. This KSA should have an annotation of the corresponding GSA:
+In your default user namespace (e.g. kubeflow-NAME, created during kubeflow deployment), this is already configured.
+During kubeflow deployment, we create a GSA, and create the default profile that uses WorkloadIdentity with the GSA.
+More info for profile [here](https://www.kubeflow.org/docs/other-guides/multi-user-overview/).
+As an example, the profile spec looks like:
 
 ```
-kubectl -n kubeflow-NAME describe serviceaccount default-editor
+apiVersion: kubeflow.org/v1beta1
+kind: Profile
+spec:
+  plugins:
+  - kind: WorkloadIdentity
+    spec:
+      gcpServiceAccount: XXX
+...
+```
+
+You can verify that there should be a KSA called default-editor, and it has an annotation of the corresponding GSA:
+
+```
+kubectl -n ${KFNAMESPACE} describe serviceaccount default-editor
 
 ...
 Name:        default-editor
-Annotations: iam.gke.io/gcp-service-account: KFAPP-user@PROJECT.iam.gserviceaccount.com
+Annotations: iam.gke.io/gcp-service-account: ${KFNAME}-user@${PROJECT}.iam.gserviceaccount.com
 ...
 ```
 
 You can double check that GSA is also properly setup:
 
 ```
-gcloud --project=${PROJECT} iam service-accounts get-iam-policy KFAPP-user@PROJECT.iam.gserviceaccount.com
+gcloud --project=${PROJECT} iam service-accounts get-iam-policy ${KFNAME}-user@${PROJECT}.iam.gserviceaccount.com
 ```
 
 When a pod uses KSA default-editor, it can access GCP APIs with the role granted to the GSA.
