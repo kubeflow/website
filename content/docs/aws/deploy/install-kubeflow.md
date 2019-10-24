@@ -36,7 +36,7 @@ Follow these steps to download the kfctl binary for the Kubeflow CLI and set
 some handy environment variables:
 
 1. Download the kfctl {{% kf-latest-version %}} release from the
-  [Kubeflow releases 
+  [Kubeflow releases
   page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
 
 1. Unpack the tar ball:
@@ -51,10 +51,10 @@ some handy environment variables:
     # Add kfctl to PATH, to make the kfctl binary easier to use.
     export PATH=$PATH:"<path to kfctl>"
 
-    # Use the following kfctl configuration file for the standard AWS setup: 
+    # Use the following kfctl configuration file for the standard AWS setup:
     export CONFIG_URI="{{% config-uri-aws-standard %}}"
 
-    # Alternatively, use the following kfctl configuration if you want to enable 
+    # Alternatively, use the following kfctl configuration if you want to enable
     # authentication:
     export CONFIG_URI="{{% config-uri-aws-cognito %}}"
 
@@ -63,7 +63,7 @@ some handy environment variables:
     export AWS_CLUSTER_NAME=<YOUR EKS CLUSTER NAME>
     export KF_NAME=${AWS_CLUSTER_NAME}
 
-    # Set the path to the base directory where you want to store one or more 
+    # Set the path to the base directory where you want to store one or more
     # Kubeflow deployments. For example, /opt/.
     # Then set the Kubeflow application directory for this deployment.
     export BASE_DIR=<path to a base directory>
@@ -76,7 +76,7 @@ Notes:
   you want to use to deploy Kubeflow. For AWS deployments, the following
   configurations are available:
 
-  * `{{% config-uri-aws-standard %}}` 
+  * `{{% config-uri-aws-standard %}}`
   * `{{% config-uri-aws-cognito %}}`
 
     When you run `kfctl apply` or `kfctl build` (see the next step), kfctl creates
@@ -89,14 +89,14 @@ Notes:
   '-', and must start and end with an alphanumeric character.
   The value of this variable cannot be greater than 25 characters. It must
   contain just a name, not a directory path.
-  This value also becomes the name of the directory where your Kubeflow 
-  configurations are stored, that is, the Kubeflow application directory. 
-  
+  This value also becomes the name of the directory where your Kubeflow
+  configurations are stored, that is, the Kubeflow application directory.
+
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
 ## Set up your Kubeflow configuration
 
-Run kfctl to build your configuration files, so that you can edit the 
+Run kfctl to build your configuration files, so that you can edit the
 configuration before deploying Kubeflow:
 
 1. Run the `kfctl build` command to set up your configuration:
@@ -110,13 +110,13 @@ configuration before deploying Kubeflow:
 1. Set an environment variable pointing to your local configuration file:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_aws.yaml
+  export CONFIG_FILE=${KF_DIR}/kfctl_aws.0.7.0.yaml
   ```
 
     Or:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_aws_cognito.yaml
+  export CONFIG_FILE=${KF_DIR}/kfctl_aws_cognito.0.7.0.yaml
   ```
 
 ## Customize your configuration
@@ -130,7 +130,7 @@ configuration before deploying Kubeflow:
   ```
 
 1. Retrieve the AWS Region and IAM role name for your worker nodes.
-  To get the IAM role name for your Amazon EKS worker node, run the following 
+  To get the IAM role name for your Amazon EKS worker node, run the following
   command:
 
   ```
@@ -143,9 +143,9 @@ configuration before deploying Kubeflow:
   eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
   ```
 
-    Note: The above command assumes that you used `eksctl` to create your 
-    cluster. If you use other provisioning tools to create your worker node 
-    groups, find the role that is associated with your worker nodes in the 
+    Note: The above command assumes that you used `eksctl` to create your
+    cluster. If you use other provisioning tools to create your worker node
+    groups, find the role that is associated with your worker nodes in the
     Amazon EC2 console.
 
 1. Change cluster region and worker role names in your `${CONFIG_FILE}` file:
@@ -216,7 +216,7 @@ The kfctl deployment process is controlled by the following commands:
 
 Your Kubeflow app directory **${KF_DIR}** contains the following files and directories:
 
-* **${CONFIG_FILE}** is a YAML file that defines configurations related to your 
+* **${CONFIG_FILE}** is a YAML file that defines configurations related to your
   Kubeflow deployment.
 
   * This file is a copy of the GitHub-based configuration YAML file that
