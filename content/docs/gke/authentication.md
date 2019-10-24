@@ -29,7 +29,7 @@ spec:
   plugins:
   - kind: WorkloadIdentity
     spec:
-      gcpServiceAccount: XXX
+      gcpServiceAccount: ${SANAME}@${PROJECT}.iam.gserviceaccount.com
 ...
 ```
 
