@@ -93,7 +93,7 @@ run the `kfctl apply` command:
 mkdir -p ${KF_DIR}
 cd ${KF_DIR}
 
-# Recommended: Download the config file and change the default login credentials.
+# Download the config file and change the default login credentials.
 wget -O kfctl_existing_arrikto.yaml $CONFIG_URI
 export CONFIG_FILE=${KF_DIR}/kfctl_existing_arrikto.yaml
 
