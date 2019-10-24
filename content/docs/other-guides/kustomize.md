@@ -182,9 +182,10 @@ Make sure that you have the minimum required version of kustomize:
     * Download the kustomize binary:
 
         ```
-        curl -s https://api.github.com/repos/kubernetes-sigs/kustomize/releases/latest |\
+        curl -s https://api.github.com/repos/kubernetes-sigs/kustomize/releases |\
         grep browser_download |\
-        grep $opsys |\
+        grep download/kustomize |\
+        grep -m 1 $opsys |\
         cut -d '"' -f 4 |\
         xargs curl -O -L
         ```
