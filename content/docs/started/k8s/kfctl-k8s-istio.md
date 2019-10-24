@@ -115,7 +115,7 @@ deploy Kubeflow:
 1. Set an environment variable pointing to your local configuration file:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_k8s_istio.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-k8s-istio %}}
   ```
 
 1. Run the `kfctl apply` command to deploy Kubeflow:

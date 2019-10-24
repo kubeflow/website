@@ -87,12 +87,12 @@ which you can further customize if necessary.
 Follow these steps to apply the configurations to your Kubeflow cluster:
 
 1. Set an environment variable pointing to your local configuration file.
-  For example, this guide uses the `kfctl_k8s_istio.yaml` configuration. If you
-  chose a different configuration in the previous step, you
-  must change the file name to reflect your configuration:
+  For example, this guide uses the `{{% config-file-k8s-istio %}}` 
+  configuration. If you chose a different configuration in the previous step, 
+  you must change the file name to reflect your configuration:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_k8s_istio.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-k8s-istio %}}
   ```
 
 1. Apply the configurations:
