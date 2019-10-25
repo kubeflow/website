@@ -1,7 +1,7 @@
 +++
-title = "Manipulate Kubernetes Resources"
+title = "Manipulate Kubernetes Resources as part of pipeline"
 description = "Overview of using the SDK to manipulate Kubernetes resources dynamically as steps of the pipeline"
-weight = 35
+weight = 1350
 +++
 
 This page describes how to manipulate Kubernetes resources through individual
