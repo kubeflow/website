@@ -178,8 +178,10 @@ curl -X POST http://localhost:8080/api/v1alpha1/artifact_types \
 
 ## Next steps
 
-Run the 
+- Run the 
 [xgboost-synthetic notebook](https://github.com/kubeflow/examples/tree/master/xgboost_synthetic)
 to build, train, and deploy an XGBoost model using Kubeflow Fairing and Kubeflow
 Pipelines with synthetic data. Examine the metadata output after running
 through the steps in the notebook.
+
+- Besides using the Python SDK to log metadata directly, you can add your own [metadata watcher](https://github.com/kubeflow/metadata/blob/master/watcher/README.md) to watch Kubernetes resource changes and save the metadata into the metadata service.
