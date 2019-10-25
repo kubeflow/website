@@ -1,151 +1,67 @@
 +++
-title = "Build Reusable Components"
+title = "Create Reusable Components"
 description = "A detailed tutorial on creating components that you can use in various pipelines"
 weight = 40
 +++
 
 This page describes how to author a reusable component that you can
-load and run in Kubeflow Pipelines. A reusable component is a pre-implemented
-standalone component that is easy to add as a step in any pipeline.
+load and use as part of a pipeline.
 
 If you're new to
 pipelines, see the conceptual guides to [pipelines](/docs/pipelines/concepts/pipeline/)
 and [components](/docs/pipelines/concepts/component/).
+
+This tutorial describes the manual way of writing a full component program (in any language) and a component definition for it.
+For quickly building component from a python function see [Build component from Python function](/docs/pipelines/sdk/lightweight-python-components/) and [Data Passing in Python components](https://github.com/kubeflow/pipelines/blob/master/samples/tutorials/Data%20passing%20in%20python%20components.ipynb).
 
 ## Summary
 
 Below is a summary of the steps involved in creating and using a component:
 
 1.  Write the program that contains your component's logic. The program must
-    use specific methods to pass data to and from the component.
+    use files and command-line arguments to pass data to and from the component.
 1.  Containerize the program.
 1.  Write a component specification in YAML format that describes the
     component for the Kubeflow Pipelines system.
-1.  Use the Kubeflow Pipelines SDK to load and run the component in your 
-    pipeline.
+1.  Use the Kubeflow Pipelines SDK to load your component, use it in a pipeline and run that pipeline.
 
 The rest of this page gives some explanation about input and output data, 
 followed by detailed descriptions of the above steps.
 
+## Components and data passing
+
+The concept of component is very similar to the concept of a function.
+Every component can have inputs and outputs (which must be declared in the component specification).
+The component code takes the data passed to it's inputs and produces the data for its outputs.
+A pipeline then connects component instances together by passing data from outputs of some components to inputs of other components.
+That's very similar to how a function calls other functions and passes the results between them.
+The Pipelines system handles the actual data passing while the components are responsible for consuming the input data and producing the output data.
+
 ## Passing the data to and from the containerized program
 
-When planning to write a component you need to think about how the component
-communicates with upstream and downstream components. That is, how it consumes
-input data and produces output data.
+When creating a component you need to think about how the component
+will communicate with upstream and downstream components. That is, how it will consume
+the input data and produce the output data.
 
-### Summary
+### Producing data
 
-For small pieces of data (smaller than 512 kibibyte (KiB)):
-
-* Inputs: Read the value from a command-line argument.  
-* Outputs: Write the value to a local file, using a path provided as a 
-  command-line argument.
-
-For bigger pieces of data (larger than 512 KiB) or for a storage-specific 
-component:
-
-* Inputs: **Read the data URI** from a file provided as a command-line argument. 
-  Then **read the data** from that URI.  
-* Outputs: Upload the data to the URI provided as a command-line argument. Then 
-  write that URI to a local file, using a path provided as a command-line
-  argument.
-
-### More about input data
-
-There are several ways to make input data available to a program running inside
-a container:
-
-* **Small pieces of data** (smaller than 512 kibibyte (KiB)): Pass the data
-  content as a command-line argument:
-
-  ```
-  program.py --param 100
-  ```
-
-*  **Bigger data** (larger than 512 KiB): Kubeflow Pipelines doesn't provide a
-   way of transferring larger pieces of data to the container running the
-   program. Instead, the program (or the wrapper script) should receive data
-   URIs instead of the data itself and then access the data from the URIs. For
-   example:
-
-  ```
-  program.py --train-uri [https://server.edu/datasets/1/train.tsv](https://server.edu/datasets/1/train.tsv) \
-             --eval-uri [https://server.edu/datasets/1/eval.tsv](https://server.edu/datasets/1/train.tsv)
-  program.py --train-gcs-uri gs://bucket/datasets/1/train.tsv  
-  program.py --big-query-table my_table
-  ``` 
-
-### More about output data
-
-The program must write the output data to some location and inform the system
+To output any piece of data, the component program must write the output data to some location and inform the system
 about that location so that the system can pass the data between steps.
-You should provide the paths to your output data as command-line arguments.
-That is, you should not hardcode the paths. 
+The program should accept the paths for the output data as command-line arguments. That is, you should not hardcode the paths.
 
-You can choose a suitable storage solution for your output data. Options include 
-the following:
+#### Advanced: Producing data in an external system
 
-* [Google Cloud Storage](https://cloud.google.com/storage/docs/) is the
-  recommended default storage solution for writing output.
-* For structured data you can use 
-  [BigQuery](https://cloud.google.com/bigquery/docs/).
-  You must provide the specific URI/path or table name to which to write the
-  results.
+In some scenarios, the goal of the component is to create some data object in an external service (E.g. a BigQuery table).
+In thais case the component program should do that and then output some identifier of the produced data location (e.g. BigQuery table name) instead of the data itself.
+This scenario should be limited to cases where the data must be put into external system instead of keeping it inside the Pipelines system.
+The class of components where this behavior is common is exporters (e.g. "upload data to GCS").
+Note that the Pipelines system cannot provide consistency and reproducibility guarantees for the data outside of its control.
 
-The program should do the following:
+### Consuming data
 
-* Upload the data to your chosen storage system.
-* Pass out a URI pointing to the data, by writing that URI to a file and 
-  instructing the system to pick it up and treat it as the value of a particular 
-  component output. 
-
-Note that the example below accepts both a URI for uploading the data into, and
-a file path to write that URI to.
-
-```
-program.py --out-model-uri gs://bucket/163/output_model \
-           --out-model-uri-file /outputs/output_model_uri/data
-```
-
-Why should the program output the URI it has just received as an input argument?
-The reason is that the URIs specified in the pipeline are usually not the real
-URIs, but rather URI templates containing UIDs. The system resolves the URIs at
-runtime when the containerized program starts. Only the containerized program 
-sees the fully-resolved URI.
-
-Below is an example of such a URI:
-
-```
-gs://my-bucket/{{workflow.uid}}/{{pod.id}}/data
-```
-
-In cases where the program cannot control the URI/ID of the created object (for
-example, where the URI is generated by the outside system), the program should
-just accept the file path to write the resulting URI/ID:  
-
-```
-program.py --out-model-uri-file /outputs/output_model_uri/data
-```
-<a id="future-proof">
-### Future-proofing your code
-
-The following guidelines help you avoid the need to modify the program code in
-the near future or have different versions for different storage systems.
-
-If the program has access to the TensorFlow package, you can use
-[`tf.gfile`](https://www.tensorflow.org/api_docs/python/tf/io/gfile/GFile) 
-to read and write files. The `tf.gfile` module supports both local and Cloud
-Storage paths.
-
-If you cannot use `tf.gfile`, a solution is to read inputs from and write 
-outputs to local files, then add a storage-specific wrapper that downloads and 
-uploads the data from/to a specific storage solution such as
-[Cloud Storage](https://cloud.google.com/storage/docs/) or 
-[Amazon S3](https://aws.amazon.com/s3/).
-For example, create a wrapper script that uses the [`gsutil
-cp`](https://cloud.google.com/storage/docs/gsutil/commands/cp) command to
-download the input data before running the main program and to upload the output
-data after the program finishes.
+There are two main ways a command-line program usually consumes data:
+* Small pieces of data are usually passed as command-line arguments: `program.py --param1 100`.
+* Bigger data or binary data is usually stored in files and then the file paths are passed to the program: `program.py --data1 /inputs/data1.txt`. The system needs to be aware about the need to put some data into files and pass their paths to the program.
 
 ## Writing the program code
 
@@ -158,11 +74,9 @@ is Python 3.
 ```python
 #!/usr/bin/env python3
 import argparse
-import os
 from pathlib import Path
-from tensorflow import gfile # Supports both local paths and Cloud Storage (GCS) or S3
 
-# Function doing the actual work
+# Function doing the actual work (Outputs first N lines from a text file)
 def do_work(input1_file, output1_file, param1):
   for x in range(param1):
     line = next(input1_file)
@@ -172,35 +86,26 @@ def do_work(input1_file, output1_file, param1):
 
 # Defining and parsing the command-line arguments
 parser = argparse.ArgumentParser(description='My program description')
-parser.add_argument('--input1-path', type=str, help='Path of the local file or GCS blob containing the Input 1 data.')
+parser.add_argument('--input1-path', type=str, help='Path of the local file containing the Input 1 data.') # Paths should be passed in, not hardcoded
 parser.add_argument('--param1', type=int, default=100, help='Parameter 1.')
-parser.add_argument('--output1-path', type=str, help='Path of the local file or GCS blob where the Output 1 data should be written.')
-parser.add_argument('--output1-path-file', type=str, help='Path of the local file where the Output 1 URI data should be written.')
+parser.add_argument('--output1-path', type=str, help='Path of the local file where the Output 1 data should be written.') # Paths should be passed in, not hardcoded
 args = parser.parse_args()
 
-gfile.MakeDirs(os.path.dirname(args.output1_path))
-# Opening the input/output files and performing the actual work
-with gfile.Open(args.input1_path, 'r') as input1_file, gfile.Open(args.output1_path, 'w') as output1_file:
-    do_work(input1_file, output1_file, args.param1)
+# Creating the directory where the output file will be created (the directory may or may not exist).
+Path(args.output1_path).parent.mkdir(parents=True, exist_ok=True)
 
-# Writing args.output1_path to a file so that it will be passed to downstream tasks
-Path(args.output1_path_file).parent.mkdir(parents=True, exist_ok=True)
-Path(args.output1_path_file).write_text(args.output1_path)
+with open(args.input1_path, 'r') as input1_file:
+    with open(args.output1_path, 'w') as output1_file:
+        do_work(input1_file, output1_file, args.param1)
 ```
 
 The command line invocation of this program is:
 
 ```
-python3 program.py --input1-path <URI to Input 1 data> \
-                   --param1 <value of Param1 input> --output1-path <URI for Output 1 data> \
-                   --output1-path-file <local file path for the Output 1 URI>
+python3 program.py --input1-path <local file path to Input 1 data> \
+                   --param1 <value of Param1 input> \
+                   --output1-path <local file path for the Output 1 data>
 ```
-
-You need to pass the `URI for Output 1 data` forward so that the downstream
-steps can access the UI. The program write the URI to a local file and tells the
-system to grab it and expose it as an output. You should avoid hard-coding any
-paths, so the program receives the path to the local file path through the
-`--output1-path-file` command-line argument.
 
 ## Writing a Dockerfile to containerize your application
 
@@ -227,8 +132,7 @@ Think of a name for your container image. This guide uses the name
 ### Example Dockerfile
 
 ```
-ARG BASE_IMAGE_TAG=1.12.0-py3
-FROM tensorflow/tensorflow:$BASE_IMAGE_TAG
+FROM python:3.7
 RUN python3 -m pip install keras
 COPY ./src /pipelines/component/src
 ```
@@ -250,10 +154,9 @@ and use the strict image name for reproducibility.
 image_name=gcr.io/my-org/my-image # Specify the image name here
 image_tag=latest
 full_image_name=${image_name}:${image_tag}
-base_image_tag=1.12.0-py3
 
 cd "$(dirname "$0")" 
-docker build --build-arg BASE_IMAGE_TAG=${base_image_tag} -t "${full_image_name}" .
+docker build -t "${full_image_name}" .
 docker push "$full_image_name"
 
 # Output the strict image name (which contains the sha256 image digest)
@@ -268,7 +171,7 @@ chmod +x build_image.sh
 
 ## Writing your component definition file
 
-You need a component specification in YAML format that describes the
+To create a component from you containerized program you need to write component specification in YAML format that describes the
 component for the Kubeflow Pipelines system.
 
 For the complete definition of a Kubeflow Pipelines component, see the
@@ -286,7 +189,7 @@ implementation:
     image: gcr.io/my-org/my-image@sha256:a172..752f # Name of a container image that you've pushed to a container repo.
 ```
 
-Complete the component's implementation section based on your (wrapper) program:  
+Complete the component's implementation section based on your program:  
  
 ```
 implementation:
@@ -297,10 +200,9 @@ implementation:
     # Here we use the "flow syntax" - comma-separated strings inside square brackets.
     command: [
       python3, /kfp/component/src/program.py, # Path of the program inside the container
-      --input1-path, <URI to Input 1 data>,
+      --input1-path, <local file path for the Input 1 data>,
       --param1, <value of Param1 input>,
-      --output1-path, <URI template for Output 1 data>,
-      --output1-path-file, <local file path for the Output 1 URI>,
+      --output1-path, <local file path for the Output 1 data>,
     ]
 ```
 
@@ -314,12 +216,16 @@ three placeholders available:
 *   `{inputValue: Some input name}`   
     This placeholder is replaced by the **value** of the argument to the
     specified input. This is useful for small pieces of input data.
+*   `{inputPath: Some input name}`   
+    This placeholder is replaced by the auto-generated **local path** where the
+    system will put the input data passed to the component during the pipeline run.
+    This placeholder instructs the system to write the input argument data to a file and pass the path to that data file to the component program (insttead of passing the whole data).
 *   `{outputPath: Some output name}`   
     This placeholder is replaced by the auto-generated **local path** where the
     program should write its output data. This instructs the system to read the
     content of the file and store it as the value of the specified output.
 
-As well as putting real placeholders in the command line, you need to add
+In addition to putting real placeholders in the command line, you need to add
 corresponding input and output specifications to the inputs and outputs
 sections. The input/output specification contains the input name, type,
 description and default value. Only the name is required. The input and output
@@ -329,47 +235,38 @@ command-line flags which are usually quite short.
    
 Replace the placeholders as follows:
 
-+   Replace `<URI to Input 1 file>` with `{inputValue: Input 1 URI}` and
-    add `Input 1 URI` to the inputs section. URLs are small, so we're passing
++   Replace `<local file path for the Input 1 data>` with `{inputPath: Input 1}` and
+    add `Input 1` to the `inputs` section.
     them in as command-line arguments.
 +   Replace `<value of Param1 input>` with `{inputValue: Parameter 1}` and add
-    `Parameter 1` to the inputs section. Integers are small, so we're passing
+    `Parameter 1` to the `inputs` section. Integers are small, so we're passing
     them in as command-line arguments.
-+   Replace `<URI template for Output 1 file>` with `{inputValue: Output 1 URI
-    template}` and add `Output 1 URI template` to the **inputs** section. This
-    looks very confusing: you're adding an output URI into the inputs section.
-    The reason is that currently you must manually pass in URIs, so this
-    is input, not output.
-+   Replace `<local file path for the Output 1 URI>` with `{outputPath: Output
-    1 URI}` and add `Output 1 URI` to the **outputs** section. Again, this looks
-    quite confusing: you now have both input and output called `Output 1 URI`.
-    (Note that you can use different names.) The reason is that the URI is
-    *pass through*. It's passed to the task as input and is then output from
-    the task, so that downstream tasks have access to it.
++   Replace `<local file path for the Output 1 data>` with `{outputPath: Output 1}`
+    and add `Output 1` to the `outputs` section.
 
 After replacing the placeholders and adding inputs/outputs, your
 `component.yaml` looks like this:
 
 ```
 inputs: #List of input specs. Each input spec is a map.
-- {name: Input 1 URI}
+- {name: Input 1}
 - {name: Parameter 1}
-- {name: Output 1 URI template}
 outputs:
-- {name: Output 1 URI}
+- {name: Output 1}
 implementation:
   container:
     image: gcr.io/my-org/my-image@sha256:a172..752f
     command: [
       python3, /pipelines/component/src/program.py,
+
       --input1-path,
-      {inputValue: Input 1 URI}, # Refers to the "Input 1 URI" input
+      {inputValue: Input 1}, # Refers to the "Input 1" input
+
       --param1,
       {inputValue: Parameter 1}, # Refers to the "Parameter 1" input
+
       --output1-path,
-      {inputValue: Output 1 URI template}, # Refers to "Output 1 URI template" input
-      --output1-path-file,
-      {outputPath: Output 1 URI}, # Refers to the "Output 1 URI" output
+      {outputPath: Output 1}, # Refers to the "Output 1" output
     ]
 ```
 
@@ -386,20 +283,18 @@ Final version of `component.yaml`:
 name: Do dummy work
 description: Performs some dummy work.
 inputs:
-- {name: Input 1 URI, type: GCSPath, description='GCS path to Input 1'}
+- {name: Input 1, type: GCSPath, description='Data for Input 1'}
 - {name: Parameter 1, type: Integer, default='100', description='Parameter 1 description'} # The default values must be specified as YAML strings.
-- {name: Output 1 URI template, type: GCSPath, description='GCS path template for Output 1'}
 outputs:
-- {name: Output 1 URI, type: GCSPath, description='GCS path for Output 1'}
+- {name: Output 1, description='Output 1 data'}
 implementation:
   container:
     image: gcr.io/my-org/my-image@sha256:a172..752f
     command: [
       python3, /pipelines/component/src/program.py,
-      --input1-path,       {inputValue: Input 1 URI},
-      --param1,            {inputValue: Parameter 1},
-      --output1-path,      {inputValue: Output 1 URI template},
-      --output1-path-file, {outputPath: Output 1 URI},
+      --input1-path,  {inputValue: Input 1},
+      --param1,       {inputValue: Parameter 1},
+      --output1-path, {inputValue: Output 1},
     ]
 ```
 
@@ -416,6 +311,10 @@ import kfp
 dummy_op = kfp.components.load_component_from_file(os.path.join(component_root, 'component.yaml')) 
 # dummy_op = kfp.components.load_component_from_url('http://....../component.yaml')
 
+# Load two more components for importing and exporting the data:
+download_from_gcs_op = kfp.components.load_component_from_url('http://....../component.yaml')
+upload_to_gcs_op = kfp.components.load_component_from_url('http://....../component.yaml')
+
 # dummy_op is now a "factory function" that accepts the arguments for the component's inputs
 # and produces a task object (e.g. ContainerOp instance).
 # Inspect the dummy_op function in Jupyter Notebook by typing "dummy_op(" and pressing Shift+Tab
@@ -427,32 +326,18 @@ dummy_op = kfp.components.load_component_from_file(os.path.join(component_root, 
 #    with underscores and letters lowercased).
 
 # Define a pipeline and create a task from a component:
-@kfp.dsl.pipeline(name='My pipeline', description='')
 def my_pipeline():
     dummy1_task = dummy_op(
-        # Input name "Input 1 URI" is converted to pythonic parameter name "input_1_uri"
-        input_1_uri='gs://my-bucket/datasets/train.tsv',
-        parameter_1='100',
-        # You must use Argo placeholders ("{{workflow.uid}}" and "{{pod.name}}")
-        # to guarantee that the outputs from different pipeline runs and tasks write
-        # to unique locations and do not overwrite each other.
-        output_1_uri='gs://my-bucket/{{workflow.uid}}/{{pod.name}}/output_1/data',
-    ).apply(kfp.gcp.use_gcp_secret('user-gcp-sa')) 
-    # To access GCS, you must configure the container to have access to a
-    # GCS secret that grants required access to the bucket.
+        # Input name "Input 1" is converted to pythonic parameter name "input_1"
+        input_1="one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten",
+        parameter_1='5',
+    )
     # The outputs of the dummy1_task can be referenced using the
-    # dummy1_task.outputs dictionary.
-    # ! The output names are converted to lowercased dashed names.
+    # dummy1_task.outputs dictionary: dummy1_task.outputs['output_1']
+    # ! The output names are converted to pythonic ("snake_case") names.
 
-    # Pass the outputs of the dummy1_task to some other component
-    dummy2_task = dummy_op(
-        input_1_uri=dummy1_task.outputs['output-1-uri'],
-        parameter_1='200',
-        output_1_uri='gs://my-bucket/{{workflow.uid}}/{{pod.name}}/output_1/data',
-    ).apply(kfp.gcp.use_gcp_secret('user-gcp-sa')) 
-    # To access GCS, you must configure the container to have access to a
-    # GCS secret that grants required access to the bucket.
 # This pipeline can be compiled, uploaded and submitted for execution.
+kfp.Client().create_run_from_pipeline_func(my_pipeline, arguuments={})
 ```
 
 ## Organizing the component files
@@ -463,7 +348,7 @@ the standard organization makes it possible to reuse the same scripts for
 testing, image building and component versioning.  
 See this
 [sample component](https://github.com/kubeflow/pipelines/tree/master/components/sample/keras/train_classifier)
-for an real-life component example.
+for a real-life component example.
 
 ```
 components/<component group>/<component name>/
@@ -484,6 +369,9 @@ components/<component group>/<component name>/
 * Consolidate what you've learned by reading the 
   [best practices](/docs/pipelines/sdk/best-practices) for designing and 
   writing components.
+* For quick iteration, 
+  [build lightweight components](/docs/pipelines/sdk/lightweight-python-components/)
+  directly from Python functions.
 * See how to [export metrics from your 
   pipeline](/docs/pipelines/metrics/pipelines-metrics/).
 * Visualize the output of your component by
