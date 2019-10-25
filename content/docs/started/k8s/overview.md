@@ -13,13 +13,14 @@ existing Kubernetes cluster is from one of those, consider following those instr
 
 The Kubernetes cluster must meet the following minimum requirements:
 
-  * Your cluster must run Kubernetes version {{% kubernetes-min-version %}} 
-    or later. 
-  
+  * The recommended Kubernetes version is {{% kubernetes-tested-version %}}.
+    Kubeflow has been validated and tested on Kubernetes
+    {{% kubernetes-tested-version %}}.
+    * Your cluster must run at least Kubernetes version 
+    {{% kubernetes-min-version %}}. 
     * Kubeflow **does not work** on Kubernetes 
       {{% kubernetes-incompatible-versions %}}.
-    * Kubeflow integration testing runs on Kubernetes Engine (GKE) with
-      Kubernetes {{% kubernetes-tested-version %}}.
+
   * Your cluster must include at least one worker node with a minimum of:
     * 4 CPU
     * 50 GB storage
