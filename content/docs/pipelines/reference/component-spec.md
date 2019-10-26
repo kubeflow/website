@@ -54,9 +54,10 @@ This section describes the
 * `description`: Description of the component.
 * `metadata`: Standard object's metadata:
 
-    * `annotations`: A string key-value map used to add information about the component. Current limitation: the key cannot contain more that one slash ("/").
-        The annotations get translated to Kubernetes annotations when the component task is executed. See more information in the
+    * `annotations`: A string key-value map used to add information about the component.
+        Currently, the annotations get translated to Kubernetes annotations when the component task is executed on Kubernetes. Current limitation: the key cannot contain more that one slash ("/"). See more information in the
         [Kubernetes user guide](http://kubernetes.io/docs/user-guide/annotations).
+    * `labels`: Deprecated. Use `annotations`.
 
 ### Interface
 
@@ -116,7 +117,7 @@ use the component inside a pipeline.
 
 ### Consuming input by value
 
-The `{inputValue: <input name>}` placeholder is replaced by the value of the input argument:
+The `{inputValue: <Input name>}` placeholder is replaced by the value of the input argument:
 
 * In `component.yaml`:
   
@@ -139,7 +140,7 @@ The `{inputValue: <input name>}` placeholder is replaced by the value of the inp
 
 ### Consuming input by file
 
-The `{inputPath: <Input name>}` placeholder is replaced by the (auto-generated) local file path where the system has put the argument data passed for the "<input name>" input.
+The `{inputPath: <Input name>}` placeholder is replaced by the (auto-generated) local file path where the system has put the argument data passed for the "Input name" input.
 
 * In `component.yaml`:
 

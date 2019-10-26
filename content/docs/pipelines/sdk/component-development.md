@@ -32,7 +32,7 @@ followed by detailed descriptions of the above steps.
 
 The concept of component is very similar to the concept of a function.
 Every component can have inputs and outputs (which must be declared in the component specification).
-The component code takes the data passed to it's inputs and produces the data for its outputs.
+The component code takes the data passed to its inputs and produces the data for its outputs.
 A pipeline then connects component instances together by passing data from outputs of some components to inputs of other components.
 That's very similar to how a function calls other functions and passes the results between them.
 The Pipelines system handles the actual data passing while the components are responsible for consuming the input data and producing the output data.
@@ -51,15 +51,16 @@ The program should accept the paths for the output data as command-line argument
 
 #### Advanced: Producing data in an external system
 
-In some scenarios, the goal of the component is to create some data object in an external service (E.g. a BigQuery table).
-In thais case the component program should do that and then output some identifier of the produced data location (e.g. BigQuery table name) instead of the data itself.
-This scenario should be limited to cases where the data must be put into external system instead of keeping it inside the Pipelines system.
-The class of components where this behavior is common is exporters (e.g. "upload data to GCS").
+In some scenarios, the goal of the component is to create some data object in an external service (for example a BigQuery table).
+In this case the component program should do that and then output some identifier of the produced data location (for example BigQuery table name) instead of the data itself.
+This scenario should be limited to cases where the data must be put into external system instead of keeping it inside the Kubeflow Pipelines system.
+The class of components where this behavior is common is exporters (for example "upload data to GCS").
 Note that the Pipelines system cannot provide consistency and reproducibility guarantees for the data outside of its control.
 
 ### Consuming data
 
 There are two main ways a command-line program usually consumes data:
+
 * Small pieces of data are usually passed as command-line arguments: `program.py --param1 100`.
 * Bigger data or binary data is usually stored in files and then the file paths are passed to the program: `program.py --data1 /inputs/data1.txt`. The system needs to be aware about the need to put some data into files and pass their paths to the program.
 
@@ -171,7 +172,7 @@ chmod +x build_image.sh
 
 ## Writing your component definition file
 
-To create a component from you containerized program you need to write component specification in YAML format that describes the
+To create a component from your containerized program you need to write component specification in YAML format that describes the
 component for the Kubeflow Pipelines system.
 
 For the complete definition of a Kubeflow Pipelines component, see the
@@ -214,14 +215,14 @@ YAML's mapping syntax to distinguish them from the verbatim strings. There are
 three placeholders available:
 
 *   `{inputValue: Some input name}`   
-    This placeholder is replaced by the **value** of the argument to the
+    This placeholder is replaced with the **value** of the argument to the
     specified input. This is useful for small pieces of input data.
 *   `{inputPath: Some input name}`   
-    This placeholder is replaced by the auto-generated **local path** where the
+    This placeholder is replaced with the auto-generated **local path** where the
     system will put the input data passed to the component during the pipeline run.
-    This placeholder instructs the system to write the input argument data to a file and pass the path to that data file to the component program (insttead of passing the whole data).
+    This placeholder instructs the system to write the input argument data to a file and pass the path of that data file to the component program.
 *   `{outputPath: Some output name}`   
-    This placeholder is replaced by the auto-generated **local path** where the
+    This placeholder is replaced with the auto-generated **local path** where the
     program should write its output data. This instructs the system to read the
     content of the file and store it as the value of the specified output.
 
@@ -292,16 +293,16 @@ implementation:
     image: gcr.io/my-org/my-image@sha256:a172..752f
     command: [
       python3, /pipelines/component/src/program.py,
-      --input1-path,  {inputValue: Input 1},
+      --input1-path,  {inputPath:  Input 1},
       --param1,       {inputValue: Parameter 1},
-      --output1-path, {inputValue: Output 1},
+      --output1-path, {outputPath: Output 1},
     ]
 ```
 
 ## Build your component into a pipeline with the Kubeflow Pipelines SDK
 
 Here is a sample pipeline that shows how to load a component and use it to
-compose a pipeline  
+compose a pipeline.
  
 ```python
 import kfp
