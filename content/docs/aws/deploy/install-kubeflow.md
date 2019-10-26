@@ -163,6 +163,7 @@ configuration before deploying Kubeflow:
 
     ```
     cd ${KF_DIR}
+    rm -rf kustomize/  # Remove kustomize folder and regenerate files after customization
     kfctl apply -V -f ${CONFIG_FILE}
     ```
 
