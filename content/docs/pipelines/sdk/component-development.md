@@ -261,7 +261,7 @@ implementation:
       python3, /pipelines/component/src/program.py,
 
       --input1-path,
-      {inputValue: Input 1}, # Refers to the "Input 1" input
+      {inputPath: Input 1}, # Refers to the "Input 1" input
 
       --param1,
       {inputValue: Parameter 1}, # Refers to the "Parameter 1" input
