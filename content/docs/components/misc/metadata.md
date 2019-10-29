@@ -106,6 +106,11 @@ that you can use to describe your ML workflows:
   to capture metadata for an ML model that your workflow produces.
 
 <a id="metadata-ui"></a>
+
+## Using metadata watcher to record metadata
+
+Besides using the Python SDK to log metadata directly, you can add your own [metadata watcher](https://github.com/kubeflow/metadata/blob/master/watcher/README.md) to watch Kubernetes resource changes and save the metadata into the metadata service.
+
 ## Tracking artifacts on the Metadata UI
 
 You can view a list of logged artifacts and the details of each individual 
