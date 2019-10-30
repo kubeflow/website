@@ -25,6 +25,9 @@ Before installing Kubeflow on the command line:
   [Cloud Shell](https://cloud.google.com/shell/), enable 
   [boost mode](https://cloud.google.com/shell/docs/features#boost_mode).
 
+1. Make sure that your GCP project meets the minimum requirements
+  described in the [project setup guide](/docs/gke/deploy/project-setup/).
+
 1. If you want to use [Cloud Identity-Aware Proxy (Cloud 
   IAP)](https://cloud.google.com/iap/docs/) for access control, follow the guide
   to [setting up OAuth credentials](/docs/gke/deploy/oauth-setup/). 
