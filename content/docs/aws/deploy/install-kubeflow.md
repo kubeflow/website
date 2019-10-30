@@ -21,7 +21,7 @@ deploy Kubeflow on Amazon Web Services (AWS).
 There're many ways to provision EKS cluster, using AWS EKS CLI, CloudFormation or Terraform, AWS CDK or eksctl.
 Here, we highly recommend you to create an EKS cluster using [eksctl](https://github.com/weaveworks/eksctl).
 
-You are required to have an existing Amazon Elastic Container Service for Kubernetes (Amazon EKS) cluster before moving the next step.
+You are required to have an existing Amazon Elastic Kubernetes Service (Amazon EKS) cluster before moving the next step.
 
 The installation tool uses the `eksctl` command and doesn't support the `--profile` option in that command.
 If you need to switch role, use the `aws sts assume-role` commands. See the AWS guide to [using temporary security credentials to request access to AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html).
