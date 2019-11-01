@@ -193,7 +193,7 @@ configuration before deploying Kubeflow:
 Kubeflow 0.6 release brings multi-tenancy support and user are not able to create notebooks in `kubeflow`, `default` namespace. Instead, please create a `Profile` using `kubectl apply -f profile.yaml` and profile controller will create new namespace and service account which is allowed to create notebook in that namespace.
 
 ```yaml
-apiVersion: kubeflow.org/v1alpha1
+apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
   name: aws-sample-user
