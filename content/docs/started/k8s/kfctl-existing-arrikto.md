@@ -56,7 +56,7 @@ export CONFIG_URI="{{% config-uri-existing-arrikto %}}"
 export KF_NAME=<your choice of name for the Kubeflow deployment>
 
 # Set the path to the base directory where you want to store one or more 
-# Kubeflow deployments. For example, /opt/.
+# Kubeflow deployments. For example, /opt.
 # Then set the Kubeflow application directory for this deployment.
 export BASE_DIR=<path to a base directory>
 export KF_DIR=${BASE_DIR}/${KF_NAME}
