@@ -152,6 +152,42 @@ kubectl delete -k manifests/kustomize/env/dev
 # kubectl delete -k manifests/kustomize/env/gcp
 ```
 
+## Best practice maintaining custom manifests
+
+### Maintain a repo for your manifests
+
+Save the following to a source controlled repo.
+
+File `kustomization.yaml`.
+```
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# Edit the following to change the deployment to your custom namespace.
+namespace: kubeflow
+# You can add other customizations here using kustomize.
+# Edit ref in the following link to deploy a different version of Kubeflow Pipelines.
+bases:
+- github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref={{% kfp-latest-version %}}
+```
+
+### How to
+* Deploy: `kubectl apply -k $YOUR_REPO`
+* Upgrade:
+    1. (Recommended) backup your data storages for KFP.
+    1. Edit `ref={{% kfp-latest-version %}}` to a version you want to upgrade to.
+￼    Check [Kubeflow Pipelines github repo](https://github.com/kubeflow/pipelines/releases) for available releases.
+￼    1. Deploy: `kubectl apply -k $YOUR_REPO`.
+￼* Downgrade:
+￼    1. Make sure you make a Back up before upgrading.
+		￼1. Delete the deployment: `kubectl delete -k $YOUR_REPO`.
+    1. Edit `kustomization.yaml` to use backup storage.
+￼    1. Deploy: `kubectl apply -k $YOUR_REPO`.
+￼
+￼### Further reading
+
+￼kustomize's [recommended workflow using an off-the-shelf configuration](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration)
+￼like KFP lite we provide.
+    
 ## Troubleshooting
 
 ### Permission error installing Kubeflow Pipelines standalone to a cluster
