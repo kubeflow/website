@@ -83,7 +83,7 @@ You can access Kubeflow via `kubectl` and port-forwarding as follows:
   * Alternatively, follow the [`kubectl`
     installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-1. Use the following command to set up port forwarding to the
+1. Use the following command to set up portforwarding to the
   [Istio gateway](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
 
     {{% code-webui-port-forward %}}
