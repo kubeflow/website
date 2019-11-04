@@ -4,6 +4,8 @@ description = "Instructions for installing Kubeflow on your existing Kubernetes 
 weight = 2
 +++
 
+{{% v1-dot-zero-ready %}}
+
 This configuration creates a vanilla deployment of Kubeflow with all its core components without any external dependencies. The deployment can be customized based on your environment needs.
 
 **Maintainer and supporter: Kubeflow community**

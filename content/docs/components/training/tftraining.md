@@ -1,9 +1,11 @@
 +++
 title = "TensorFlow Training (TFJob)"
 linkTitle = "TensorFlow Training (TFJob)"
-description = ""
+description = "Using TFJob to train a model with TensorFlow"
 weight = 60
 +++
+
+{{% v1-dot-zero-ready %}}
 
 This page describes TFJob for training a machine learning model with TensorFlow.
 

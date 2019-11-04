@@ -63,6 +63,17 @@ tools for deploying and managing Kubeflow:
 * Follow the kustomize installation and setup instructions from the guide to
   [kustomize in Kubeflow](/docs/other-guides/kustomize/).
 
+## Understanding the Kubeflow versioning policies
+
+With the launch of Kubeflow v1.0, the Kubeflow community attributes 
+*production-ready status* to those applications and deployment platforms that 
+meet the required level of stability, supportability, and upgradability.
+
+Read about the 
+[Kubeflow versioning policies](/docs/reference/version-policy/),
+including the production-ready status of Kubeflow applications and deployment 
+platforms.
+
 ## Troubleshooting
 
 See the [Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting/).
