@@ -30,7 +30,8 @@ Examples of Kubeflow version numbers:
 * `v1.0.0`
 * `v1.0.1`
 
-## Application versioning
+<a id="app-versioning"></a>
+## Application versioning and production-ready status
 
 When you deploy Kubeflow to a Kubernetes cluster, your deployment includes a
 number of applications. Application versioning is independent of Kubeflow 
@@ -38,52 +39,94 @@ versioning. An application moves to version **1.0** when the application meets
 certain 
 [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md) 
 in terms of stability, upgradability, and the provision of services such as 
-logging and monitoring. An application version number of 1.0 or greater 
-indicates that the Kubeflow community attributes production-ready status to the 
-application.
+logging and monitoring. 
+
+An application version number of 1.0 or greater indicates that the Kubeflow 
+community attributes **production-ready** status to the application.
 
 When an application moves to version 1.0, the Kubeflow community will decide 
 whether to include that version of the application in the next major or minor
 release of Kubeflow.
 
-<a id="application-versions"></a>
-## Version matrix for Kubeflow applications
+<a id="application-matrix"></a>
+## Kubeflow application matrix
 
-The following table shows the version of the applications that
+The following table shows the production-ready status of the applications that
 are deployed to your Kubernetes cluster when you deploy Kubeflow. You can use
 this information to decide which of the applications you should deploy to
 your production servers.
+
+* **Production-ready** means that the application has reached version 1.0 or
+  later, according to the criteria defined <a href="#app-versioning">above</a>.
+* **Beta** means that the application is working towards a version 1.0 release
+  and is expected to meet the criteria soon.
+* **Alpha** means that the application is in the early phases of development
+  and/or integration into Kubeflow.
 
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
         <th>Application</th>
-        <th>Version in Kubeflow v1.0</th>
+        <th>Production readiness in Kubeflow v1.0</th>
+        <th>Docs</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Central Dashboard (Kubeflow UI)</td>
-        <td>1.0</td>
+        <td><a href="https://github.com/kubeflow/kubeflow/tree/master/components/centraldashboard">Central 
+        dashboard (Kubeflow UI)</a></td>
+        <td>Production-ready</td>
+        <td><a href="/docs/other-guides/accessing-uis/">Accessing Kubeflow 
+        UIs</td>
       </tr>
       <tr>
-        <td>Jupyter UI</td>
-        <td>1.0</td>
+        <td><a href="https://github.com/kubeflow/kubeflow/tree/master/components/jupyter-web-app">Jupyter 
+        web app</a></td>
+        <td>Production-ready</td>
+        <td><a href="/docs/notebooks/">Using Jupyter notebooks</a></td>
       </tr>
       <tr>
-        <td>Notebook Controller</td>
-        <td>1.0</td>
+        <td><a href="https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller">Jupyter
+        notebook controller</a></td>
+        <td>Production-ready</td>
+        <td><a href="/docs/notebooks/">Using Jupyter notebooks</a></td>
       </tr>
       <tr>
-        <td>Profile Controller</td>
-        <td>1.0</td>
+        <td><a href="https://github.com/kubeflow/katib">Katib</a></td>
+        <td>Beta</td>
+        <td><a href="/docs/components/hyperparameter-tuning/hyperparameter/">Hyperparameter
+          tuning</a></td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/kubeflow/kfserving">KFServing</a></td>
+        <td>Beta</td>
+        <td><a href="/docs/components/serving/kfserving/">KFServing</a></td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/kubeflow/pipelines">Pipelines</a></td>
+        <td>Beta</td>
+        <td><a href="/docs/pipelines/pipelines-quickstart/">Pipelines
+         quickstart</a></td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller">Profile 
+        Controller</a></td>
+        <td>Production-ready</td>
+        <td><a href="/docs/other-guides/multi-user-overview/">Multi-user
+         isolation</a></td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/kubeflow/tf-operator">TFJob</a></td>
+        <td>Production-ready</td>
+        <td><a href="/docs/components/training/tftraining/">TensorFlow
+          training</a></td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<a id="platform-versions"></a>
+<a id="platform-matrix"></a>
 ## Version matrix for Kubeflow configurations and deployment platforms
 
 Kubeflow v1.0 also offers a subset of configurations and deployment platforms
