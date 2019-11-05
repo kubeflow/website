@@ -13,6 +13,11 @@ existing Kubernetes cluster is from one of those, consider following those instr
 
 The Kubernetes cluster must meet the following minimum requirements:
 
+  * Your cluster must include at least one worker node with a minimum of:
+    * 4 CPU
+    * 50 GB storage
+    * 12 GB memory
+
   * The recommended Kubernetes version is {{% kubernetes-tested-version %}}.
     Kubeflow has been validated and tested on Kubernetes
     {{% kubernetes-tested-version %}}.
@@ -20,11 +25,68 @@ The Kubernetes cluster must meet the following minimum requirements:
     {{% kubernetes-min-version %}}. 
     * Kubeflow **does not work** on Kubernetes 
       {{% kubernetes-incompatible-versions %}}.
+    * Older versions of Kubernetes may not be compatible with the latest Kubernetes versions.  The following matrix
+    provides information about compatibility between Kubeflow and Kubernetes versions.
 
-  * Your cluster must include at least one worker node with a minimum of:
-    * 4 CPU
-    * 50 GB storage
-    * 12 GB memory
+    
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Kubernetes Versions</th>
+        <th>Kubeflow 0.4</th>
+        <th>Kubeflow 0.5</th>
+        <th>Kubeflow 0.6</th>
+        <th>Kubeflow 0.7</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1.11</td>
+        <td>supported</td>
+        <td>supported</td>
+        <td>unsupported</td>
+        <td>unsupported</td>
+      </tr>
+      <tr>
+        <td>1.12</td>
+        <td>supported</td>
+        <td>supported</td>
+        <td>unsupported</td>
+        <td>unsupported</td>
+      </tr>
+      <tr>
+        <td>1.13</td>
+        <td>supported</td>
+        <td>supported</td>
+        <td>unsupported</td>
+        <td>unsupported</td>
+      </tr>
+      <tr>
+        <td>1.14</td>
+        <td>supported</td>
+        <td>supported</td>
+        <td>supported</td>
+        <td>supported</td>
+      </tr>
+      <tr>
+        <td>1.15</td>
+        <td>supported</td>
+        <td>supported</td>
+        <td>supported</td>
+        <td>supported</td>
+      </tr>
+      <tr>
+        <td>1.16</td>
+        <td>unsupported</td>
+        <td>unsupported</td>
+        <td>unsupported</td>
+        <td>unsupported</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+    
 
 ## Kubeflow Deployment Configurations
 
