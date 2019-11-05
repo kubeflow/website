@@ -8,19 +8,20 @@ With the launch of Kubeflow v1.0, the Kubeflow community attributes
 *production-ready status* to those applications and deployment platforms that 
 meet the required level of stability, supportability, and upgradability.
 
-This page describes the Kubeflow versioning policies and provides a matrix
-of Kubeflow applications and deployment platforms, indicating the
-production-ready status of each application and platform.
+This page describes the Kubeflow versioning policies and provides a version matrix for Kubeflow applications and deployment platforms.
 
-## Kubeflow versioning and application status
+## Kubeflow versioning
 
 Kubeflow version numbers are of the form **vX.Y.Z**, where **X** is the major 
 version, **Y** is the minor version, and **Z** is the patch version. The
 version policy follows the [Semantic Versioning](https://semver.org/) 
 terminology.
-The name **vX.Y.Z** refers to the version (git tag) of the kfctl release. If
-included, the appendix **rcN**, where **N** is a number, indicates a 
-*release candidate*, which is a pre-release version of an upcoming release.
+
+The version name **vX.Y.Z** refers to the version (git tag) of the 
+[kfctl release](https://github.com/kubeflow/kubeflow/releases). 
+If the version number includes an appendix **rcN**, where **N** is a
+number, the appendix indicates a *release candidate*, which is a pre-release 
+version of an upcoming release.
 
 Examples of Kubeflow version numbers:
 
@@ -29,32 +30,61 @@ Examples of Kubeflow version numbers:
 * `v1.0.0`
 * `v1.0.1`
 
+## Application versioning
+
 When you deploy Kubeflow to a Kubernetes cluster, your deployment includes a
-number of applications. As the deployer of Kubeflow, you can choose which of 
-the applications you deploy to your production servers. *TODO: HOW DO THEY CHOOSE?*
-
-Application versioning is independent of Kubeflow versioning. When an 
-application moves to v1.0, the Kubeflow community will decide whether to include 
-that application in the next release of Kubeflow v1.x (or v2.x, depending on
-the upcoming release of Kubeflow).
-
-Kubeflow v1.0 attributes production-ready status to those applications that meet 
-certain
-[specified criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md) 
+number of applications. Application versioning is independent of Kubeflow 
+versioning. An application moves to version **1.0** when the application meets 
+certain 
+[criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md) 
 in terms of stability, upgradability, and the provision of services such as 
-logging and monitoring.
+logging and monitoring. An application version number of 1.0 or greater 
+indicates that the Kubeflow community attributes production-ready status to the 
+application.
 
-To discover the production-ready status of each application, 
-see the [application version matrix](#application-versions) below.
+When an application moves to version 1.0, the Kubeflow community will decide 
+whether to include that version of the application in the next major or minor
+release of Kubeflow.
 
 <a id="application-versions"></a>
-## Kubeflow application versions
+## Version matrix for Kubeflow applications
 
+The following table shows the version of the applications that
+are deployed to your Kubernetes cluster when you deploy Kubeflow. You can use
+this information to decide which of the applications you should deploy to
+your production servers.
 
-TODO Include a matrix of Kubeflow versions and the related app versions. Include what will be beta versus 1.0 product-ready with Kubeflow v1.0.
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Application</th>
+        <th>Version in Kubeflow v1.0</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Central Dashboard (Kubeflow UI)</td>
+        <td>1.0</td>
+      </tr>
+      <tr>
+        <td>Jupyter UI</td>
+        <td>1.0</td>
+      </tr>
+      <tr>
+        <td>Notebook Controller</td>
+        <td>1.0</td>
+      </tr>
+      <tr>
+        <td>Profile Controller</td>
+        <td>1.0</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <a id="platform-versions"></a>
-## Kubeflow configurations and deployment platforms
+## Version matrix for Kubeflow configurations and deployment platforms
 
 Kubeflow v1.0 also offers a subset of configurations and deployment platforms
 that are compatible with Kubeflow v1.0 and that the Kubeflow community considers

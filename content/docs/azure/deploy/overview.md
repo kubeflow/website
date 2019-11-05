@@ -1,6 +1,6 @@
 +++
 title = "Overview"
-description = "Kubeflow on AWS"
+description = "Kubeflow on Microsoft Azure"
 weight = 1
 +++
 
