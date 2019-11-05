@@ -17,7 +17,7 @@ Please browse through the [KFServing GitHub repo](https://github.com/kubeflow/kf
 ## Installation with Kubeflow v0.7 ##
 KFServing can be installed with Kubeflow v0.7, and KFServing kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
 
-<img src="../kfserving.png" alt="KFServing">
+<img src="./kfserving.png" alt="KFServing">
 
 ## Examples
 * [Tensorflow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow)
