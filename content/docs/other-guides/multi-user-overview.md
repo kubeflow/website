@@ -154,9 +154,9 @@ documentation.
 ### Cloud API Authenticate with Profile
 
 **GCP**: User profile on GCP will be integrated with [GKE Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity).
-User pods will be authenticated automatically when talk to GCP APIs.
+With workload identity, GCP credentials can be assigned to a pod by binding a Google Service Account to the Kubernetes Service Account used by the pod.
 
-By default all profiles in a cluster will share a public GCP service account identity.
+If you deployed Kubeflow following the GCP instructions then the profiler controller will automatically bind the "default-editor" service account to a default GCP service account paired with your GKE cluster.
 If admin want to achieve fine grain access control like 1 GCP service account per user, they can do:
 1. for user `user1@email.com`, create a reserved GCP service account: `user1-gcp@<project-id>.iam.gserviceaccount.com`, bind necessary roles to it.
 2. [Grant `owner` permission](https://cloud.google.com/sdk/gcloud/reference/iam/service-accounts/add-iam-policy-binding) of service account `user1-gcp@<project-id>.iam.gserviceaccount.com` to cluster account `<cluster-name>-admin@<project-id>.iam.gserviceaccount.com`.
