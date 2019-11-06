@@ -38,24 +38,7 @@ set up your Kubeflow deployment in your environment of choice (locally, on
 premises, or in the cloud).
 
 When Kubeflow is running, access the Kubeflow UI as described in the
-getting-started guide for your chosen environment. For example:
-
-* If you deployed Kubeflow on Google Cloud Platform (GCP), the Kubeflow UI is
-  available at the following URI:
-
-    ```
-    https://<deployment_name>.endpoints.<project>.cloud.goog/
-    ```
-
-* If you set up port forwarding to the Ambassador service, the Kubeflow UI is
-  available at the following URI:
-
-    ```
-    http://localhost:8080/
-    ```
-
-* For other environments, see the getting-started guide for your chosen 
-  environment.
+getting-started guide for your chosen environment. Follow [accessing Kubeflow UIs guide](https://www.kubeflow.org/docs/other-guides/accessing-uis/) for instructions on how to connect to Kubeflow UI.
 
 ## Create a Jupyter notebook server and add a notebook
 
