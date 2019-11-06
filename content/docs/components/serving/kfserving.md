@@ -8,8 +8,11 @@ KFServing enables Serverless Inferencing on Kubernetes and provides performant, 
 
 KFServing: 
 * Provides a Kubernetes [Custom Resource Definition](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) for serving ML models on arbitrary frameworks.
+
 * Encapsulates the complexity of autoscaling, networking, health checking, and server configuration to bring cutting edge serving features like GPU autoscaling, scale to zero, and canary rollouts to your ML deployments
+
 * Enables a simple, pluggable, and complete story for your production ML inference server by providing prediction, pre-processing, post-processing and explainability out of the box.
+
 * Is evolving with strong community contributions, and has a Technical Steering Committee driven by Google, IBM, Microsoft, Seldon, and Bloomberg
 
 Please browse through the [KFServing GitHub repo](https://github.com/kubeflow/kfserving) and give us feedback! 
@@ -17,7 +20,7 @@ Please browse through the [KFServing GitHub repo](https://github.com/kubeflow/kf
 ## Installation with Kubeflow v0.7 ##
 KFServing can be installed with Kubeflow v0.7, and KFServing kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
 
-<img src="./kfserving.png" alt="KFServing">
+<img src="../kfserving.png" alt="KFServing">
 
 ## Examples
 * [Tensorflow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow)
