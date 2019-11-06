@@ -4,6 +4,8 @@ description = "Model serving using Seldon"
 weight = 40
 +++
 
+{{% v1-dot-zero-ready %}}
+
 ## Serve a model using Seldon
 
 Seldon comes installed with Kubeflow. Full documentation for running Seldon inference is provided within the [Seldon documentation site](https://docs.seldon.io/projects/seldon-core/en/latest/).

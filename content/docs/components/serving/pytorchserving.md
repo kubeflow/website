@@ -3,6 +3,8 @@ title = "PyTorch Serving"
 description = "Instructions for serving a PyTorch model with Seldon"
 +++
 
+{{% v1-dot-zero-ready %}}
+
 This guide walks you through serving a PyTorch trained model in Kubeflow.
 
 ## Serving a model
