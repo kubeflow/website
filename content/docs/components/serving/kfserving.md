@@ -1,10 +1,10 @@
 +++
 title = "KFServing"
-description = "Using KFServing for serving models"
+description = "Model Serving using KFServing"
 weight = 2
 +++
 
-KFServing enables Serverless Inferencing on Kubernetes and provides performant, high abstraction interfaces for common ML frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX to solve production model serving use cases
+KFServing enables Serverless inferencing on Kubernetes and provides performant, high abstraction interfaces for common ML frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX to solve production model serving use cases
 
 KFServing:
 
