@@ -6,7 +6,8 @@ weight = 2
 
 KFServing enables Serverless Inferencing on Kubernetes and provides performant, high abstraction interfaces for common ML frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX to solve production model serving use cases
 
-KFServing: 
+KFServing:
+
 * Provides a Kubernetes [Custom Resource Definition](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) for serving ML models on arbitrary frameworks.
 
 * Encapsulates the complexity of autoscaling, networking, health checking, and server configuration to bring cutting edge serving features like GPU autoscaling, scale to zero, and canary rollouts to your ML deployments
