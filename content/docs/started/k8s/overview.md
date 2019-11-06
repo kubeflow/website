@@ -44,38 +44,38 @@ The Kubernetes cluster must meet the following minimum requirements:
     <tbody>
       <tr>
         <td>1.11</td>
-        <td>compatible</td>
-        <td>compatible</td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
         <td>incompatible</td>
         <td>incompatible</td>
       </tr>
       <tr>
         <td>1.12</td>
-        <td>compatible</td>
-        <td>compatible</td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
         <td>incompatible</td>
         <td>incompatible</td>
       </tr>
       <tr>
         <td>1.13</td>
-        <td>compatible</td>
-        <td>compatible</td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
         <td>incompatible</td>
         <td>incompatible</td>
       </tr>
       <tr>
         <td>1.14</td>
-        <td>compatible</td>
-        <td>compatible</td>
-        <td>compatible</td>
-        <td>compatible</td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
       </tr>
       <tr>
         <td>1.15</td>
-        <td>compatible</td>
-        <td>compatible</td>
-        <td>compatible</td>
-        <td>compatible</td>
+        <td>incompatible</td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
       </tr>
       <tr>
         <td>1.16</td>
