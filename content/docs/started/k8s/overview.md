@@ -18,6 +18,7 @@ The Kubernetes cluster must meet the following minimum requirements:
     * 50 GB storage
     * 12 GB memory
 
+
   * The recommended Kubernetes version is {{% kubernetes-tested-version %}}.
     Kubeflow has been validated and tested on Kubernetes
     {{% kubernetes-tested-version %}}.
@@ -43,45 +44,45 @@ The Kubernetes cluster must meet the following minimum requirements:
     <tbody>
       <tr>
         <td>1.11</td>
-        <td>supported</td>
-        <td>supported</td>
-        <td>unsupported</td>
-        <td>unsupported</td>
+        <td>compatible</td>
+        <td>compatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
       <tr>
         <td>1.12</td>
-        <td>supported</td>
-        <td>supported</td>
-        <td>unsupported</td>
-        <td>unsupported</td>
+        <td>compatible</td>
+        <td>compatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
       <tr>
         <td>1.13</td>
-        <td>supported</td>
-        <td>supported</td>
-        <td>unsupported</td>
-        <td>unsupported</td>
+        <td>compatible</td>
+        <td>compatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
       <tr>
         <td>1.14</td>
-        <td>supported</td>
-        <td>supported</td>
-        <td>supported</td>
-        <td>supported</td>
+        <td>compatible</td>
+        <td>compatible</td>
+        <td>compatible</td>
+        <td>compatible</td>
       </tr>
       <tr>
         <td>1.15</td>
-        <td>supported</td>
-        <td>supported</td>
-        <td>supported</td>
-        <td>supported</td>
+        <td>compatible</td>
+        <td>compatible</td>
+        <td>compatible</td>
+        <td>compatible</td>
       </tr>
       <tr>
         <td>1.16</td>
-        <td>unsupported</td>
-        <td>unsupported</td>
-        <td>unsupported</td>
-        <td>unsupported</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
     </tbody>
   </table>
