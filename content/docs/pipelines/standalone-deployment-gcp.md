@@ -177,11 +177,6 @@ bases:
     1. Edit `ref={{% kfp-latest-version %}}` to a version you want to upgrade to.
 ￼    Check [Kubeflow Pipelines github repo](https://github.com/kubeflow/pipelines/releases) for available releases.
 ￼    1. Deploy: `kubectl apply -k $YOUR_REPO`.
-￼* Downgrade:
-￼    1. Make sure you make a Back up before upgrading.
-    ￼1. Delete the deployment: `kubectl delete -k $YOUR_REPO`.
-    1. Edit `kustomization.yaml` to explicitly bind PVCs to existing back up PVs.
-￼    1. Deploy: `kubectl apply -k $YOUR_REPO`.
 
 ### Further reading
 * kustomize's [recommended workflow using an off-the-shelf configuration](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration).
