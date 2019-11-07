@@ -53,15 +53,18 @@ gcloud --project=${PROJECT} iam service-accounts get-iam-policy ${KFNAME}-user@$
 
 When a pod uses KSA default-editor, it can access GCP APIs with the role granted to the GSA.
 
-**fine grain access control**:
-To control what GCP resources are accessible from a specific profile/namespace, you can explicitly specify which GCP service account to use when creating the profile.
+**Provisioning Custom Google Service Accounts In Namespaces**:
+Instead of using default GCP service account for every profile namespace, if you want to use custom GCP service account per namespace to control what GCP resources are accessible from a specific profile namespace, 
+you can explicitly specify which GCP service account to use when creating the profile.
 
-1. for user `user1@email.com`, if you don't already have a GCP service account you want to use, create a new one like: `user1-gcp@<project-id>.iam.gserviceaccount.com`: 
+Prerequisite: you need to have permission to edit GCP project IAM policy and create profile CR in kubeflow cluster.
+
+1. if you don't already have a GCP service account you want to use, create a new one like: `user1-gcp@<project-id>.iam.gserviceaccount.com`: 
 ```
 gcloud iam service-accounts create user1-gcp@<project-id>.iam.gserviceaccount.com
 ```
 
-2. Bind necessary roles to the GCP service account to allow `user1` to access GCP resources. For example if user1 need to run bigquery job, we can bgrant access by:
+2. You can bind roles to the GCP service account to allow access to the desired GCP resources. For example to run bigquery job, you can grant access by:
 ```
 gcloud projects add-iam-policy-binding <project-id> \
       --member='serviceAccount:user1-gcp@<project-id>.iam.gserviceaccount.com' \
@@ -75,7 +78,7 @@ gcloud iam service-accounts add-iam-policy-binding \
       --member='serviceAccount:<cluster-name>-admin@<project-id>.iam.gserviceaccount.com' --role='roles/owner'
 ```
 
-4. Manual create profile for user1, and specify the GCP service account to bind in `plugins` field.
+4. Manually create profile for user1, and specify the GCP service account to bind in `plugins` field.
 
 ```
 apiVersion: kubeflow.org/v1beta1
@@ -91,6 +94,10 @@ spec:
     spec:
       gcpServiceAccount: user1-gcp@project-id.iam.gserviceaccount.com
 ```
+
+**Note:**
+Profile controller currently doesn't perform any access control check to see whether the user creating the profile should be able to use the GCP service account. 
+So any user who can create a profile can get access to any service account for which the admin controller has owner permissions on. We will improve this in subsequent releases and link to an issue.
 
 More details on workload identity can be found in the official [docs](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity).
 
