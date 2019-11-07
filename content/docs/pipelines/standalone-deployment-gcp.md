@@ -84,6 +84,15 @@ document better and be able to customize based on your needs.
     kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercontent.com
     ```
 
+## Upgrade
+1. Make sure kubectl talks to your cluster.
+1. Upgrade to a version of Kubeflow Pipelines standalone you choose:
+    ```
+    export PIPELINE_VERSION=<version-you-want-to-upgrade-to>
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    ```
+    Check [Kubeflow Pipelines github repo](https://github.com/kubeflow/pipelines/releases) for available releases.
+
 ## Customization
 
 Customization can be done through kustomize [overlays](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#overlay).
@@ -177,6 +186,7 @@ bases:
     1. Edit `ref={{% kfp-latest-version %}}` to a version you want to upgrade to.
 ￼    Check [Kubeflow Pipelines github repo](https://github.com/kubeflow/pipelines/releases) for available releases.
 ￼    1. Deploy: `kubectl apply -k $YOUR_REPO`.
+* Uninstall: `kubectl delete -k $YOUR_REPO`.
 
 ### Further reading
 * kustomize's [recommended workflow using an off-the-shelf configuration](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration).
