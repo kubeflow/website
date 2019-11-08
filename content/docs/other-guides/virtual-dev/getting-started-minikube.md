@@ -80,37 +80,6 @@ curl -Lo docker-machine-driver-kvm2 https://storage.googleapis.com/minikube/rele
 && sudo cp docker-machine-driver-kvm2 /usr/local/bin/ \
 && rm docker-machine-driver-kvm2
 ```
-
-### Quick Setup
-The following describes a script driven installation that you can use to deploy all
-the necessary components including `kubectl`, `minikube`, `kfctl` along with Kubeflow itself. The script requires input from you on some configuration information and then it drives the rest of the installation. Run the following to start the installation:
-```
-export KUBEFLOW_TAG={{% kf-latest-version %}}
-curl -O https://raw.githubusercontent.com/kubeflow/kubeflow/${KUBEFLOW_TAG}/scripts/setup-minikube.sh
-chmod +x setup-minikube.sh
-./setup-minikube.sh
-```
-**KUBEFLOW_TAG** is a tag corresponding to the version to checkout such as {{% kf-latest-version %}} or `master`.
-
-The script asks for some config input as shown below:
-
-<img src="/docs/started/ConfigInputs.png" 
-  alt="Config inputs"
-  class="mt-3 mb-3 border border-info rounded">
-
-Let us consider the example for CPUs configuration. When it asks `Assign CPUs between 3..10 [6]: ` the `3..10` suggest the range of CPU cores available based on your host machine. `[6]` is the suggested default. You can choose any value within the range and enter the value or just press enter to accept the default value suggested in square brackets. In the image above, we choose the default 6 for CPUs and specified 12GB of memory explicitly. Note that:
-
-  1. You will need to specify the virtualizer installed on the system explicitly and it needs to be one of the values provided as options.
-  1. If you don't want to mount any local directory into the Jupyter notebook server simply press enter instead of specifying any path.
-
-After the configuration is complete, the script will continue execution for the next few minutes and when finished successfully should output some like:
-
-<img src="/docs/started/LocalDeployment.png" 
-  alt="Local deployment"
-  class="mt-3 mb-3 border border-info rounded">
-
-When the installation finishes successfully, you can access Jupyter notebooks as described in [Where to go next](#where-to-go-next). If you have trouble with the installation script or run into errors, you can follow the detailed installation steps manually as described below.
-
 ### Install Kubectl
 
 ##### GCloud SDK
