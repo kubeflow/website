@@ -113,10 +113,10 @@ Create a
 
 ```
 $ cat << EOF > profile.yaml
-apiVersion: kubeflow.org/v1alpha1
+apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
-  name: profileName   # replace with the name of profile you want
+  name: profileName   # replace with the name of profile you want, this will be user's namespace name
 spec:
   owner:
     kind: User
