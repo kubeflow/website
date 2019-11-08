@@ -18,7 +18,7 @@ document better and be able to customize based on your needs.
 1. Deploy latest version of Kubeflow Pipelines:
 
     ```
-    export PIPELINE_VERSION={{% kfp-latest-version %}}
+    export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
@@ -73,7 +73,7 @@ document better and be able to customize based on your needs.
 1. Deploy latest version of Kubeflow Pipelines standalone to your cluster:
 
     ```
-    export PIPELINE_VERSION={{% kfp-latest-version %}}
+    export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
@@ -140,7 +140,7 @@ and open http://localhost:8080/.
 You can uninstall Kubeflow Pipelines by running:
 
 ```
-export PIPELINE_VERSION={{% kfp-latest-version %}}
+export PIPELINE_VERSION={{% pipelines/latest-version %}}
 kubectl delete -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
 ```
 
