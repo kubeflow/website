@@ -13,6 +13,18 @@ manifests.
 Knowledge about [Kubernetes](https://kubernetes.io/docs/home/), [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) and [kustomize](https://kustomize.io/) will help you understand this
 document better and be able to customize based on your needs.
 
+## Common Prerequisites
+
+These are common one time setups you need for all the instructions below:
+
+### Download kubectl CLI tool
+You can get kubectl from [its official doc](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+You need kubectl version 1.14 or later, for native support of kustomize (the `kubectl apply -k` option you will see below).
+
+### Configure kubectl to talk to your cluster
+You can reference [Configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
+
 ## Deploying Kubeflow Pipelines standalone to an existing cluster
 
 1. Deploy latest version of Kubeflow Pipelines:
@@ -60,15 +72,7 @@ document better and be able to customize based on your needs.
     - Get gcloud CLI tool at https://cloud.google.com/sdk/gcloud/.
     - Read `gcloud container clusters create` command documentation at https://cloud.google.com/sdk/gcloud/reference/container/clusters/create.
 
-1. Download kubectl CLI tool:
-
-    You can get kubectl from [its official doc](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-
-    You need kubectl version 1.14 or later, for native support of kustomize (the `kubectl apply -k` option you will see below).
-
-1. Configure kubectl to talk to your cluster:
-
-    You can reference [Configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
+1. Configure kubectl to talk to your newly created cluster. Refer to [Configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
 
 1. Deploy latest version of Kubeflow Pipelines standalone to your cluster:
 
@@ -83,6 +87,15 @@ document better and be able to customize based on your needs.
     ```
     kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercontent.com
     ```
+
+## Upgrade
+1. Configure kubectl to talk to your cluster. Refer to [Configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
+1. Upgrade to a version of Kubeflow Pipelines standalone you choose:
+    ```
+    export PIPELINE_VERSION=<version-you-want-to-upgrade-to>
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    ```
+    Check [Kubeflow Pipelines github repo](https://github.com/kubeflow/pipelines/releases) for available releases.
 
 ## Customization
 
@@ -137,20 +150,54 @@ and open http://localhost:8080/.
 
 ## Uninstall
 
-You can uninstall Kubeflow Pipelines by running:
+You can uninstall Kubeflow Pipelines by:
 
+1. Configure kubectl to talk to your cluster. Refer to [Configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
+
+1. Uninstall Pipelines:
+    ```
+    export PIPELINE_VERSION={{% pipelines/latest-version %}}
+    kubectl delete -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    ```
+
+    Or if you deployed through kustomize:
+
+    ```
+    kubectl delete -k manifests/kustomize/env/dev
+    # Or the following if using GCP Cloud SQL + Google Cloud Storage
+    # kubectl delete -k manifests/kustomize/env/gcp
+    ```
+
+## Best practices maintaining custom manifests
+
+### Maintain a repo for your manifests
+
+Save the following to a source controlled repo.
+
+File `kustomization.yaml`.
 ```
-export PIPELINE_VERSION={{% pipelines/latest-version %}}
-kubectl delete -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# Edit the following to change the deployment to your custom namespace.
+namespace: kubeflow
+# You can add other customizations here using kustomize.
+# Edit ref in the following link to deploy a different version of Kubeflow Pipelines.
+bases:
+- github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref={{% pipelines/latest-version %}}
 ```
 
-Or if you deployed through kustomize:
+### How to deploy, upgrade and uninstall using the repo
+* Deploy: `kubectl apply -k $YOUR_REPO`
+* Upgrade:
+    1. (Recommended) backup your data storages for KFP.
+    1. Edit `ref={{% pipelines/latest-version %}}` to a version you want to upgrade to.
 
-```
-kubectl delete -k manifests/kustomize/env/dev
-# Or the following if using GCP Cloud SQL + Google Cloud Storage
-# kubectl delete -k manifests/kustomize/env/gcp
-```
+        Check [Kubeflow Pipelines github repo](https://github.com/kubeflow/pipelines/releases) for available releases.
+    1. Deploy: `kubectl apply -k $YOUR_REPO`.
+* Uninstall: `kubectl delete -k $YOUR_REPO`.
+
+### Further reading
+* kustomize's [recommended workflow using an off-the-shelf configuration](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration).
 
 ## Troubleshooting
 
