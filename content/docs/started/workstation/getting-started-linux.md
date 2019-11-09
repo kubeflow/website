@@ -25,7 +25,7 @@ GCP, AWS and Azure.
 and Ubuntu derivative operating systems.
 
 1. Install MicroK8s - `snap install microk8s --classic`
-2. Follow the getting started guid for Kubeflow on an
+2. Follow the getting started guide for Kubeflow on an
 [existing Kubernetes cluster](/docs/started/k8s/overview/).
 
 ## Linux Desktop

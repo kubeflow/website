@@ -1,14 +1,25 @@
 +++
 title = "KFServing"
-description = "Using KFServing for serving models"
+description = "Model Serving using KFServing"
 weight = 2
 +++
 
+KFServing enables Serverless inferencing on Kubernetes and provides performant, high abstraction interfaces for common ML frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX to solve production model serving use cases
+
+KFServing:
+
+* Provides a Kubernetes [Custom Resource Definition](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) for serving ML models on arbitrary frameworks.
+
+* Encapsulates the complexity of autoscaling, networking, health checking, and server configuration to bring cutting edge serving features like GPU autoscaling, scale to zero, and canary rollouts to your ML deployments
+
+* Enables a simple, pluggable, and complete story for your production ML inference server by providing prediction, pre-processing, post-processing and explainability out of the box.
+
+* Is evolving with strong community contributions, and has a Technical Steering Committee driven by Google, IBM, Microsoft, Seldon, and Bloomberg
+
+Please browse through the [KFServing GitHub repo](https://github.com/kubeflow/kfserving) and give us feedback! 
+
+## Installation with Kubeflow v0.7 ##
 KFServing can be installed with Kubeflow v0.7, and KFServing kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
-
-KFServing provides a Kubernetes [Custom Resource Definition](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) for serving machine learning (ML) models on arbitrary frameworks. It aims to solve production model serving use cases by providing performant, high abstraction interfaces for common ML frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX. 
-
-KFServing encapsulates the complexity of autoscaling, networking, health checking, and server configuration to bring cutting edge serving features like GPU Autoscaling, Scale to Zero, and Canary Rollouts to your ML deployments. It enables a simple, pluggable, and complete story for production ML Inference Server by providing prediction, pre-processing, post-processing and explainability out of the box.
 
 <img src="../kfserving.png" alt="KFServing">
 
@@ -55,7 +66,7 @@ kubectl apply -f ./install/$TAG/kfserving.yaml
 ```
 pip install kfserving
 ```
-* Follow the [example](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb) to use the KFServing SDK to create, patch, and delete a KFService instance.
+* Follow the [example](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb) to use the KFServing SDK to create, patch, rollout and delete a KFService instance.
 
 ## Contribute
 * [Developer guide](https://github.com/kubeflow/kfserving/tree/master/docs/DEVELOPER_GUIDE.md).

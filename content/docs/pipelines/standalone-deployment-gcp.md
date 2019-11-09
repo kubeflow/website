@@ -30,7 +30,7 @@ You can reference [Configuring cluster access for kubectl](https://cloud.google.
 1. Deploy latest version of Kubeflow Pipelines:
 
     ```
-    export PIPELINE_VERSION={{% kfp-latest-version %}}
+    export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
@@ -77,7 +77,7 @@ You can reference [Configuring cluster access for kubectl](https://cloud.google.
 1. Deploy latest version of Kubeflow Pipelines standalone to your cluster:
 
     ```
-    export PIPELINE_VERSION={{% kfp-latest-version %}}
+    export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
@@ -156,7 +156,7 @@ You can uninstall Kubeflow Pipelines by:
 
 1. Uninstall Pipelines:
     ```
-    export PIPELINE_VERSION={{% kfp-latest-version %}}
+    export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl delete -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
@@ -183,14 +183,14 @@ namespace: kubeflow
 # You can add other customizations here using kustomize.
 # Edit ref in the following link to deploy a different version of Kubeflow Pipelines.
 bases:
-- github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref={{% kfp-latest-version %}}
+- github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref={{% pipelines/latest-version %}}
 ```
 
 ### How to deploy, upgrade and uninstall using the repo
 * Deploy: `kubectl apply -k $YOUR_REPO`
 * Upgrade:
     1. (Recommended) backup your data storages for KFP.
-    1. Edit `ref={{% kfp-latest-version %}}` to a version you want to upgrade to.
+    1. Edit `ref={{% pipelines/latest-version %}}` to a version you want to upgrade to.
 
         Check [Kubeflow Pipelines github repo](https://github.com/kubeflow/pipelines/releases) for available releases.
     1. Deploy: `kubectl apply -k $YOUR_REPO`.
