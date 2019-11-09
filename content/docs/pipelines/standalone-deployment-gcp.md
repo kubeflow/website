@@ -191,7 +191,8 @@ bases:
 * Upgrade:
     1. (Recommended) backup your data storages for KFP.
     1. Edit `ref={{% kfp-latest-version %}}` to a version you want to upgrade to.
-￼    Check [Kubeflow Pipelines github repo](https://github.com/kubeflow/pipelines/releases) for available releases.
+
+        Check [Kubeflow Pipelines github repo](https://github.com/kubeflow/pipelines/releases) for available releases.
     1. Deploy: `kubectl apply -k $YOUR_REPO`.
 * Uninstall: `kubectl delete -k $YOUR_REPO`.
 
