@@ -21,7 +21,7 @@ you choose the authentication method you want to use. One of the options is
 Cloud IAP. This document assumes that you have already deployed Kubeflow.
 
 Kubeflow uses the [Google-managed certificate](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs)
-to provide an SSL certificate for the Kubeflow UI.
+to provide an SSL certificate for the Kubeflow Ingress.
 
 Cloud IAP gives you the following benefits:
 
@@ -86,7 +86,7 @@ problems:
      kubectl describe -n istio-system managedcertificate gke-certificate
      ```
 
-     The status field should have information about the current status of Certificate.
+     The status field should have information about the current status of the Certificate.
      Eventually, certificate status should be `Active`.
 
 1. Wait for the load balancer to report the back ends as healthy:
@@ -113,7 +113,8 @@ problems:
     If the backend is unhealthy, check the pods in `istio-system`:
     * `kubectl get pods -n istio-system`
     * The `istio-ingressgateway-XX` pods should be running
-    * Check the logs of `backend-updater-0`, `ingress-bootstrap-XX`, `iap-enabler-XX` to see if there is any error
+    * Check the logs of pod `backend-updater-0`, `iap-enabler-XX` to see if there is any error
+    * Follow the steps [here](https://www.kubeflow.org/docs/gke/troubleshooting-gke/#502-server-error) to check the load balancer and backend service on GCP.
 
 
 1. Try accessing Cloud IAP at the fully qualified domain name in your web 
