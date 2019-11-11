@@ -159,7 +159,7 @@ profile descriptions as shown below:
 
 ```
 $ cat << EOF > profile.yaml
-apiVersion: kubeflow.org/v1alpha1
+apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
   name: profileName1   # replace with the name of profile you want
@@ -168,7 +168,7 @@ spec:
     kind: User
     name: userid1@email.com   # replace with the email of the user
 ---
-apiVersion: kubeflow.org/v1alpha1
+apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
   name: profileName2   # replace with the name of profile you want
