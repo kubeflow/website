@@ -1,7 +1,7 @@
 +++
-title = "Overview"
+title = "Features of Kubeflow on GCP"
 description = "Reasons to use Kubeflow on Google Cloud Platform (GCP)"
-weight = 1
+weight = 10
 +++
 
 Running Kubeflow on GCP brings you the following features:
@@ -32,4 +32,9 @@ Running Kubeflow on GCP brings you the following features:
 
 ## Next steps
 
-* [Set up your GCP project](/docs/gke/deploy/).
+* [Deploy Kubeflow](/docs/gke/deploy/deploy-ui/) if you haven't already done so.
+* Run a full ML workflow on Kubeflow, using the
+  [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
+  [GitHub issue summarization 
+  example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
+  
