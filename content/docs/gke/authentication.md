@@ -17,8 +17,9 @@ Starting in 0.7, we use the new GKE feature: [workload identity](https://cloud.g
 This is the recommended way to access GCP APIs from your GKE cluster.
 We will no longer download GCP service account key. Instead, we configure a Kubernetes service account (KSA) to act as a GCP service account (GSA).
 
-In your default user namespace (e.g. kubeflow-NAME, created during kubeflow deployment), this is already configured.
-During kubeflow deployment, we create a GSA, and create the default profile that uses WorkloadIdentity with the GSA.
+If you deployed Kubeflow following the GCP instructions then for every profile namespace the profiler controller will automatically 
+bind the "default-editor" service account to a default GCP service account created during kubeflow deployment, 
+we also create a default profile for cluster admin during kubeflow deployment.
 More info for profile [here](https://www.kubeflow.org/docs/other-guides/multi-user-overview/).
 As an example, the profile spec looks like:
 
@@ -36,7 +37,7 @@ spec:
 You can verify that there should be a KSA called default-editor, and it has an annotation of the corresponding GSA:
 
 ```
-kubectl -n ${KFNAMESPACE} describe serviceaccount default-editor
+kubectl -n ${PROFILE_NAME} describe serviceaccount default-editor
 
 ...
 Name:        default-editor
@@ -51,6 +52,52 @@ gcloud --project=${PROJECT} iam service-accounts get-iam-policy ${KFNAME}-user@$
 ```
 
 When a pod uses KSA default-editor, it can access GCP APIs with the role granted to the GSA.
+
+**Provisioning Custom Google Service Accounts In Namespaces**:
+Instead of using default GCP service account for every profile namespace, if you want to use custom GCP service account per namespace to control what GCP resources are accessible from a specific profile namespace, 
+you can explicitly specify which GCP service account to use when creating the profile.
+
+Prerequisite: you need to have permission to edit GCP project IAM policy and create profile CR in kubeflow cluster.
+
+1. if you don't already have a GCP service account you want to use, create a new one like: `user1-gcp@<project-id>.iam.gserviceaccount.com`: 
+```
+gcloud iam service-accounts create user1-gcp@<project-id>.iam.gserviceaccount.com
+```
+
+2. You can bind roles to the GCP service account to allow access to the desired GCP resources. For example to run bigquery job, you can grant access by:
+```
+gcloud projects add-iam-policy-binding <project-id> \
+      --member='serviceAccount:user1-gcp@<project-id>.iam.gserviceaccount.com' \
+      --role='roles/bigquery.jobUser'
+```
+
+3. [Grant `owner` permission](https://cloud.google.com/sdk/gcloud/reference/iam/service-accounts/add-iam-policy-binding) of service account `user1-gcp@<project-id>.iam.gserviceaccount.com` to cluster account `<cluster-name>-admin@<project-id>.iam.gserviceaccount.com`.
+```
+gcloud iam service-accounts add-iam-policy-binding \
+      user1-gcp@<project-id>.iam.gserviceaccount.com \
+      --member='serviceAccount:<cluster-name>-admin@<project-id>.iam.gserviceaccount.com' --role='roles/owner'
+```
+
+4. Manually create profile for user1, and specify the GCP service account to bind in `plugins` field.
+
+```
+apiVersion: kubeflow.org/v1beta1
+kind: Profile
+metadata:
+  name: profileName   # replace with the name of profile you want, this will be user's namespace name
+spec:
+  owner:
+    kind: User
+    name: user1@email.com   # replace with the email of the user
+  plugins:
+  - kind: WorkloadIdentity
+    spec:
+      gcpServiceAccount: user1-gcp@project-id.iam.gserviceaccount.com
+```
+
+**Note:**
+Profile controller currently doesn't perform any access control check to see whether the user creating the profile should be able to use the GCP service account. 
+So any user who can create a profile can get access to any service account for which the admin controller has owner permissions on. We will improve this in subsequent releases.
 
 More details on workload identity can be found in the official [docs](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity).
 
