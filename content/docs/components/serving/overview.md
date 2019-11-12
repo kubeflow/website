@@ -16,7 +16,8 @@ Kubeflow provides two supported open source model serving systems that allow mul
 |                | PyTorch        | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pytorch) | [x](https://www.kubeflow.org/docs/components/serving/pytorchserving/) |
 | Custom         |  Container     | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/custom) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html) |
 |                | Python Wrapper | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/python/index.html) |
-|                | Java Wrapper   | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/java/README.html) |                | R Wrapper      | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/R/README.html) |
+|                | Java Wrapper   | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/java/README.html)
+|                | R Wrapper      | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/R/README.html) |
 |                | Multi-Container | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/graph/inference-graph.html) |
 | Graph          | Transformers   | [x](https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/examples/transformer_spam_model.html)
 |                | Combiner       | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/examples/openvino_ensemble.html) |
