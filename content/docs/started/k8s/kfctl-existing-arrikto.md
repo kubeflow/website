@@ -4,8 +4,6 @@ description = "Instructions for installing Kubeflow with kfctl_existing_arrikto.
 weight = 4
 +++
 
-{{% v1-dot-zero-ready %}}
-
 Follow these instructions if you want to install Kubeflow on an existing Kubernetes cluster.
 
 This installation of Kubeflow is maintained by

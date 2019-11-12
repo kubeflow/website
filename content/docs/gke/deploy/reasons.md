@@ -4,8 +4,6 @@ description = "Reasons to use Kubeflow on Google Cloud Platform (GCP)"
 weight = 1
 +++
 
-{{% v1-dot-zero-ready %}}
-
 Running Kubeflow on GCP brings you the following features:
 
   * You use

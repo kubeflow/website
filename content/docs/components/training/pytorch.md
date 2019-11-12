@@ -4,7 +4,7 @@ description = "Instructions for using PyTorch"
 weight = 35
 +++
 
-{{% v1-dot-zero-ready %}}
+{{% stable-status %}}
 
 This guide walks you through using PyTorch with Kubeflow.
 

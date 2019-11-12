@@ -4,8 +4,6 @@ description = "Get Kubeflow running on IBM Cloud Private"
 weight = 2
 +++
 
-{{% v1-dot-zero-ready %}}
-
 This guide is a quick start to deploy Kubeflow on [IBM Cloud Private](https://www.ibm.com/cloud/private) 3.1.0 or later.  IBM Cloud Private is an enterprise PaaS layer for developing and managing on-premises, containerized applications. It is an integrated environment for managing containers that includes the container orchestrator Kubernetes, a private image registry, a management console, and monitoring frameworks.
 
 ### Prerequisites

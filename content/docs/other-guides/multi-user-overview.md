@@ -4,7 +4,7 @@ description = "Isolation of user-created resources for convenience and organizat
 weight = 50
 +++
 
-{{% v1-dot-zero-ready %}}
+{{% stable-status %}}
 
 As of v0.6, Kubeflow supports for multi-user isolation of user-created
 resources in a Kubeflow deployment. The primary purpose of this functionality
