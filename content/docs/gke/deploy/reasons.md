@@ -37,4 +37,3 @@ Running Kubeflow on GCP brings you the following features:
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
   [GitHub issue summarization 
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
-  
