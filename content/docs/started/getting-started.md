@@ -1,7 +1,7 @@
 +++
-title = "Getting Started with Kubeflow"
-description = "Overview"
-weight = 1
+title = "Installing Kubeflow"
+description = "Overview of installation choices for various environments"
+weight = 20
 +++
 
 ## Before you begin
