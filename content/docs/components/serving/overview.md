@@ -20,8 +20,8 @@ Kubeflow provides two supported open source model serving systems that allow mul
 |                | R Wrapper      | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/R/README.html) |
 |                | Multi-Container | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/graph/inference-graph.html) |
 | Graph          | Transformers   | [x](https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/examples/transformer_spam_model.html)
-|                | Combiner       | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/examples/openvino_ensemble.html) |
-|                | Router         | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/analytics/routers.html) |
+|                | Combiners       | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/examples/openvino_ensemble.html) |
+|                | Routers incl ([MAB](https://en.wikipedia.org/wiki/Multi-armed_bandit))         | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/analytics/routers.html) |
 | Analytics      | Explanations   | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/analytics/explainers.html) |
 | Scaling        | Knative        | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling) | |
 |                | HPA            |  x | [x](https://docs.seldon.io/projects/seldon-core/en/latest/graph/autoscaling.html) |
