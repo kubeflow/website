@@ -11,12 +11,13 @@ Microsoft Azure is an open, flexible, enterprise-grade cloud computing platform 
 The [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) is a set of tools that you can use to interact with Azure from the command line.
 
 Azure Kubernetes Service (AKS) on Azure allows you to deploy containerized applications, within which you describe the resources your application needs, and AKS will manage the underlying resources automatically. This workflow is especially efficient at scale.
+
 ### The overall workflow
-This guide takes you through using your Kubeflow deployment to build a machine learning (ML) pipeline on Azure. This guide uses a sample pipeline to detail the process of creating an ML workflow from scratch. This guide allows you to create and run a pipeline that processes data, trains a model, and then registers and deploys that model as a webservice.
+This guide takes you through using your Kubeflow deployment to build a machine learning (ML) pipeline on Azure. This guide uses a sample pipeline to detail the process of creating an ML workflow from scratch. You will learn how to create and run a pipeline that processes data, trains a model, and then registers and deploys that model as a webservice.
 
- To build your pipeline, you must create and build containers using Docker images. Containers are used to abstract the dependencies for each step of the pipeline. You can manage your containers using [Azure's portal](https://ms.portal.azure.com/#home), specifically using the Container Registry to store the containers in the cloud. Kubelfow pulls the containers from this registry as they are needed in each step of the pipeline.
+To build your pipeline, you must create and build containers using Docker images. Containers are used to abstract the dependencies for each step of the pipeline. You can manage your containers using [Azure's portal](https://ms.portal.azure.com/#home), specifically using the Container Registry to store the containers in the cloud. Kubelfow pulls the containers from this registry as they are needed in each step of the pipeline.
 
-By following this guide, you will be able to:
+By following this guide, you will learn how to:
 
 - Set up Kubeflow in an AKS Cluster
 - Create and compile a pipeline that can:
@@ -131,12 +132,19 @@ For other OS: [Docker Desktop](https://hub.docker.com/?overlay=onboarding)
 To deploy your code to Kubernetes, you must build your local project’s Docker images and push the containers to your Container Registry so that they are available in the cloud.
 
 1. Set the path in Container Registry that you want to push the containers to:
-`export REGISTRY_PATH=<REGISTRY_NAME>.azurecr.io`
+```
+export REGISTRY_PATH=<REGISTRY_NAME>.azurecr.io
+```
 
 2. Run the following command to authenticate your Container Registry:
-`az acr login --name <REGISTRY_NAME>`
+```
+az acr login --name <REGISTRY_NAME>
+```
 
-3. Create a version, to be associated with your model each time it runs (change this accordingly): `export VERSION_TAG=1`
+3. Create a version, to be associated with your model each time it runs (change this accordingly): 
+```
+export VERSION_TAG=1
+```
 
 Each docker image will be built and uploaded to the cloud using the Container Registry.
 
