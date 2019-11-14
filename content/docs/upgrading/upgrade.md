@@ -8,7 +8,7 @@ Until version 1.0, Kubeflow makes no promises of backwards compatibility or
 upgradeability. There is **no clean upgrade path** to the latest version of 
 Kubeflow ({{% kf-latest-version %}}).
 
-Nonetheless, here are some instructions for updating your deployment::
+Nonetheless, here are some instructions for updating your deployment:
 
 1. Check your Kubeflow configuration directory (`${KF_DIR}`) into source control
   as a backup.
