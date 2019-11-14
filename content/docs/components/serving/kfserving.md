@@ -49,7 +49,7 @@ We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfse
 * [KFServing 101 slides](https://drive.google.com/file/d/16oqz6dhY5BR0u74pi9mDThU97Np__AFb/view).
 
 ## Prerequisites
-KNative Serving (v0.8.0 +) and Istio (v1.1.7+) are available on Kubernetes Cluster.
+KNative Serving (v0.8.0 +) and Istio (v1.1.7+) should be available on Kubernetes cluster.
 
 Read more about [installing Knative on a Kubernetes cluster](https://github.com/kubeflow/kfserving/blob/master/docs/DEVELOPER_GUIDE.md#install-knative-on-a-kubernetes-cluster).
 
