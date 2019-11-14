@@ -27,7 +27,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
 
 ## Deploying Kubeflow Pipelines standalone to an existing cluster
 
-1. Deploy latest version of Kubeflow Pipelines:
+1. Deploy the latest version of Kubeflow Pipelines:
 
     ```
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
