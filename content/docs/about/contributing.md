@@ -15,9 +15,9 @@ just a few small guidelines you need to follow.
 
 ### Sign the CLA
 
-Contributions to this project must be accompanied by a Contributor License
-Agreement. You (or your employer) retain the copyright to your contribution,
-this simply gives us permission to use and redistribute your contributions as
+Contributions to this project must be accompanied by a Contributor License Agreement (CLA). 
+You (or your employer) retain the copyright to your contribution.
+This gives us permission to use and redistribute your contributions as
 part of the project. Head over to <https://cla.developers.google.com/> to see
 your current agreements on file or to sign a new one.
 
@@ -52,7 +52,7 @@ There are are a number of ways to contribute to Kubeflow
   * File issues reporting bugs or providing feedback
   * Answer questions on Slack or GitHub issues
 
-You can use this [table](https://devstats.kubeflow.org/d/13/developers-table?orgId=1&var-period_name=Last%20decade&var-metric=contributions&var-period=y10) to see how many contributions
+You can use this [table](http://devstats.kubeflow.org/d/9/developers-summary) to see how many contributions
 you've made
 
   * **Note**: This only counts GitHub related ways of contributing
@@ -60,9 +60,9 @@ you've made
 When you are ready to join
 
   * Send a PR adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml#L19)  
-  * After the PR is merged an admin will send you an invite
+  * After the PR is merged an admin will send you an invitation
     * This is a manual process that's generally run a couple times a week
-    * If a week passes without receiving an invite reach out on [kubeflow#community](https://kubeflow.slack.com/messages/C8Q0QJYNB/convo/CABQ2BWHW-1544147308.002500/)
+    * If a week passes without receiving an invitation reach out on [kubeflow#community](https://kubeflow.slack.com/messages/C8Q0QJYNB/convo/CABQ2BWHW-1544147308.002500/)
 
 ### Companies/organizations
 
