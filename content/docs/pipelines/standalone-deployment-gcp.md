@@ -18,7 +18,7 @@ document better and be able to customize based on your needs.
 These are common one time setups you need for all the instructions below:
 
 ### Download kubectl CLI tool
-Follow the [kubectl installation guide].(https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+Follow the [kubectl installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 You need kubectl version 1.14 or later, for native support of kustomize.
 
