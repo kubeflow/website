@@ -64,15 +64,15 @@ This guide assumes the following settings:
 * For further background about the above settings, see the guide to
   [deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
 
-## Troubleshooting kubeflow deployment on GCP
+## Troubleshooting Kubeflow deployment on GCP
 
-Here are some tips for troubleshooting Cloud IAP.
+Here are some tips for troubleshooting GCP.
 
-* Make sure you are GCP project owner
+* Make sure you are a GCP project owner.
 * Make sure you are using HTTPS.
 * Check project [quota page](https://console.cloud.google.com/iam-admin/quotas) to see if any service's current usage reached quota limit, increase them as needed.
 * Check [deployment manager page](https://console.cloud.google.com/deployments) and see if there’s a failed deployment.
-* Check if endpoint is up: do [DNS lookup](https://mxtoolbox.com/DNSLookup.aspx) against your IAP url and see if can resolve to correct ip.
+* Check if endpoint is up: do [DNS lookup](https://mxtoolbox.com/DNSLookup.aspx) against your Cloud Identity-Aware Proxy (Cloud IAP) URL and see if it resolves to the correct IP address.
 * Check if certificate succeeded: `kubectl describe certificates -n istio-system` should give you certificate status.
 * Check ingress status: `kubectl describe ingress -n istio-system`
 * Check if [endpoint entry](https://console.cloud.google.com/endpoints) is created. There should be one entry with name `<deployment>.endpoints.<project>.cloud.goog`
@@ -82,7 +82,7 @@ as an authorized redirect URI for the OAUTH credentials used to create the deplo
 * If using IAP: see the guide to 
   [monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
 * See the sections below for troubleshooting specific problems.
-* Please [report bug](https://github.com/kubeflow/kubeflow/issues/new?template=bug_report.md) if all above items look good.
+* Please [report a bug](https://github.com/kubeflow/kubeflow/issues/new?template=bug_report.md) if you can't resolve the problem by following the above steps.
 
 ### DNS name not registered
 
