@@ -37,8 +37,7 @@ Follow the [Kubeflow getting-started guide](/docs/started/getting-started/) to
 set up your Kubeflow deployment in your environment of choice (locally, on 
 premises, or in the cloud).
 
-When Kubeflow is running, access the Kubeflow UI as described in the
-getting-started guide for your chosen environment. Follow [accessing Kubeflow UIs guide](/docs/other-guides/accessing-uis/) for instructions on how to connect to Kubeflow UI.
+When Kubeflow is running, you can access the Kubeflow user interface (UI). If the getting-started guide for your chosen environment has instructions on accessing the UI, follow those instructions. Alternatively, see the generic guide to [accessing the Kubeflow UIs](/docs/other-guides/accessing-uis/).
 
 ## Create a Jupyter notebook server and add a notebook
 
