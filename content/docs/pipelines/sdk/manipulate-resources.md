@@ -1,5 +1,5 @@
 +++
-title = "Manipulate Kubernetes Resources as part of pipeline"
+title = "Manipulate Kubernetes Resources as Part of Pipeline"
 description = "Overview of using the SDK to manipulate Kubernetes resources dynamically as steps of the pipeline"
 weight = 1350
 +++
