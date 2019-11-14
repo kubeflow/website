@@ -1,33 +1,31 @@
 +++
 title = "KFServing"
-description = "Model Serving using KFServing"
+description = "Model serving using KFServing"
 weight = 2
 +++
 
-KFServing enables Serverless inferencing on Kubernetes and provides performant, high abstraction interfaces for common ML frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX to solve production model serving use cases
+KFServing enables serverless inferencing on Kubernetes and provides performant, high abstraction interfaces for common machine learning (ML) frameworks like TensorFlow, XGBoost, scikit-learn, PyTorch, and ONNX to solve production model serving use cases.
 
-KFServing:
+You can use KFServing to do the following:
 
-* Provides a Kubernetes [Custom Resource Definition](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) for serving ML models on arbitrary frameworks.
+* Provide a Kubernetes [Custom Resource Definition](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) for serving ML models on arbitrary frameworks.
 
-* Encapsulates the complexity of autoscaling, networking, health checking, and server configuration to bring cutting edge serving features like GPU autoscaling, scale to zero, and canary rollouts to your ML deployments
+* Encapsulate the complexity of autoscaling, networking, health checking, and server configuration to bring cutting edge serving features like GPU autoscaling, scale to zero, and canary roll outs to your ML deployments.
 
-* Enables a simple, pluggable, and complete story for your production ML inference server by providing prediction, pre-processing, post-processing and explainability out of the box.
+* Enable a simple, pluggable, and complete story for your production ML inference server by providing prediction, pre-processing, post-processing and explainability out of the box.
 
-* Is evolving with strong community contributions, and has a Technical Steering Committee driven by Google, IBM, Microsoft, Seldon, and Bloomberg
+Our strong community contributions help KFServing to grow. We have a Technical Steering Committee driven by Google, IBM, Microsoft, Seldon, and Bloomberg. [Browse the KFServing GitHub repo](https://github.com/kubeflow/kfserving) to give us feedback!
 
-Please browse through the [KFServing GitHub repo](https://github.com/kubeflow/kfserving) and give us feedback! 
-
-## Installation with Kubeflow v0.7 ##
-KFServing can be installed with Kubeflow v0.7, and KFServing kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
+## Install with Kubeflow
+KFServing works with Kubeflow 0.7. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
 
 <img src="../kfserving.png" alt="KFServing">
 
 ## Examples
-* [Tensorflow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow)
+* [TensorFlow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow)
 * [PyTorch](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pytorch)
 * [XGBoost](https://github.com/kubeflow/kfserving/tree/master/docs/samples/xgboost)
-* [Scikit-Learn](https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn)
+* [scikit-learn](https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn)
 * [ONNX](https://github.com/kubeflow/kfserving/tree/master/docs/samples/onnx)
 * [Custom](https://github.com/kubeflow/kfserving/tree/master/docs/samples/custom)
 * [TensorRT](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorrt)
@@ -36,24 +34,24 @@ KFServing can be installed with Kubeflow v0.7, and KFServing kustomize installat
 * [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
 * [Explainability](https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi)
 
-## Sample Notebooks
-* [SDK Client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb)
-* [Transformer (Pre/Post Processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
+## Sample notebooks
+* [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb)
+* [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
 * [ONNX](https://github.com/kubeflow/kfserving/blob/master/docs/samples/onnx/mosaic-onnx.ipynb)
 
-Please be on the lookout, we are constantly adding [more examples](https://github.com/kubeflow/kfserving/tree/master/docs/samples/) about available features
+We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfserving/tree/master/docs/samples/).
 
-## Learn More
-* Join our [Working Group](https://groups.google.com/forum/#!forum/kfserving) for meeting invites and discussion.
+## Learn more
+* Join our [working group](https://groups.google.com/forum/#!forum/kfserving) for meeting invitations and discussion.
 * [Read the docs](https://github.com/kubeflow/kfserving/tree/master/docs).
 * [API docs](https://github.com/kubeflow/kfserving/tree/master/docs/apis/README.md).
 * [Roadmap](https://github.com/kubeflow/kfserving/tree/master/ROADMAP.md).
 * [KFServing 101 slides](https://drive.google.com/file/d/16oqz6dhY5BR0u74pi9mDThU97Np__AFb/view).
 
 ## Prerequisites
-KNative Serving (v0.8.0 +) and Istio (v1.1.7+) should be available on Kubernetes Cluster.
+KNative Serving (v0.8.0 +) and Istio (v1.1.7+) are available on Kubernetes Cluster.
 
-If you want to install Knative, you may find this [installation instruction](https://github.com/kubeflow/kfserving/blob/master/docs/DEVELOPER_GUIDE.md#install-knative-on-a-kubernetes-cluster) useful.
+Read more about [installing Knative on a Kubernetes cluster](https://github.com/kubeflow/kfserving/blob/master/docs/DEVELOPER_GUIDE.md#install-knative-on-a-kubernetes-cluster).
 
 ## KFServing installation using kubectl
 ```
@@ -62,12 +60,11 @@ kubectl apply -f ./install/$TAG/kfserving.yaml
 ```
 
 ## Use
-* Install the SDK
+1. Install the SDK.
 ```
 pip install kfserving
 ```
-* Follow the [example](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb) to use the KFServing SDK to create, patch, rollout and delete a KFService instance.
+1. [Follow the example](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb) to use the KFServing SDK to create, patch, roll out, and delete a KFServing instance.
 
 ## Contribute
 * [Developer guide](https://github.com/kubeflow/kfserving/tree/master/docs/DEVELOPER_GUIDE.md).
-
