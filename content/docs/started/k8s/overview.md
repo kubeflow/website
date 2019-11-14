@@ -1,5 +1,5 @@
 +++
-title = "Deploying Kubeflow on Existing Clusters"
+title = "Overview of Deployment on Existing Clusters"
 description = "Instructions for installing Kubeflow on your existing Kubernetes cluster with list of supported options"
 weight = 1
 +++
@@ -92,7 +92,7 @@ The Kubernetes cluster must meet the following minimum requirements:
 ## Kubeflow Deployment Configurations
 
 The following tables list the options for installing Kubeflow on an existing Kubernetes
-Cluster and links to detailed instructions.
+cluster and links to detailed instructions.
 
 ### Community maintained
 
