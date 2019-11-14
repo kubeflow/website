@@ -18,7 +18,7 @@ In addition, with the recent announcement of
 some of the [linux installation options](/docs/started/workstation/getting-started-linux)
 for Kubeflow will be available on Windows, once WSL2 is formally released.
 
-## Kubeflow Appliance
+## Kubeflow appliance
 
 A Kubeflow appliance is a virtual machine that has Kubeflow already installed. Once the
 necessary supporting software is installed no further installation steps are required.
@@ -34,7 +34,7 @@ The following applications are required to use MiniKF:
 The full set of instructions are available on the
 [MiniKF getting started](/docs/other-guides/virtual-dev/getting-started-minikf/) page.
 
-## Linux Appliance
+## Linux appliance
 
 A Linux appliance is a virtual machine that holds the linux operating system. From there
 you have complete choice over Kubernetes and Kubeflow, which offers the greatest degree
@@ -45,7 +45,7 @@ of flexibility. You only need to install a single application to follow this pat
 The instructions on [Multipass and MicroK8s getting started](/docs/other-guides/virtual-dev/getting-started-multipass/)
 page will complete this path.
 
-## Kubernetes Appliance
+## Kubernetes appliance
 
 Similar to the Kubeflow appliance, the Kubernetes appliance is a virtual machine has a
 Kubernetes cluster already installed. After starting the virtual machine you will need
