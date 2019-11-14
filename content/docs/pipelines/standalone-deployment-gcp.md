@@ -18,12 +18,12 @@ document better and be able to customize based on your needs.
 These are common one time setups you need for all the instructions below:
 
 ### Download kubectl CLI tool
-You can get kubectl from [its official doc](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+Follow the [kubectl installation guide].(https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-You need kubectl version 1.14 or later, for native support of kustomize (the `kubectl apply -k` option you will see below).
+You need kubectl version 1.14 or later, for native support of kustomize.
 
 ### Configure kubectl to talk to your cluster
-You can reference [Configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
+See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
 
 ## Deploying Kubeflow Pipelines standalone to an existing cluster
 
@@ -44,7 +44,7 @@ You can reference [Configuring cluster access for kubectl](https://cloud.google.
 
 1. Prepare a Kubernetes cluster:
 
-    You can reference [Creating a cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster) for Google Cloud Platform (GCP).
+    See the GKE guide to [creating a cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster) for Google Cloud Platform (GCP).
 
     Recommend using the following gcloud command to create a cluster that can run all pipeline samples:
 
@@ -74,7 +74,7 @@ You can reference [Configuring cluster access for kubectl](https://cloud.google.
 
 1. Configure kubectl to talk to your newly created cluster. Refer to [Configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
 
-1. Deploy latest version of Kubeflow Pipelines standalone to your cluster:
+1. Deploy the latest version of Kubeflow Pipelines standalone to your cluster:
 
     ```
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
