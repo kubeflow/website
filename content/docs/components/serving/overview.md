@@ -4,7 +4,7 @@ description = "Model Serving Overview"
 weight = 1
 +++
 
-Kubeflow provides two supported open source model serving systems that allow multi-framework model serving: KFServing and Seldon Core. You should choose the framework that best supports your model serving requirements. If you only serve  Tensorflow models using Tensorflow Serving is an option although both KfServing and Seldon support Tensorflow. A rough comparison between KfServing and Seldon Core is shown below:
+Kubeflow provides two supported open source model serving systems that allow multi-framework model serving: KFServing and Seldon Core. You should choose the framework that best supports your model serving requirements. If you only serve  Tensorflow models using Tensorflow Serving is an option although both KFServing and Seldon support Tensorflow. A rough comparison between KFServing and Seldon Core is shown below:
 
 | Feature        | sub-feature    | KFServing | Seldon |
 |----------------|----------------|  :--:     |  :--:  |
@@ -28,9 +28,9 @@ Kubeflow provides two supported open source model serving systems that allow mul
 
 Notes:
 
-   * Both projects share technology including Explainability (via [Seldon Alibi](https://github.com/SeldonIO/alibi)) and Payload Logging amongst other areas.
+   * Both projects share technology including Explainability (via [Seldon Alibi Explain](https://github.com/SeldonIO/alibi)) and Payload Logging amongst other areas.
    * A commercial product [Seldon Deploy](https://www.seldon.io/tech/products/deploy/) is available from Seldon that supports both KFServing and Seldon in production.
-   * KfServing is part of the Kubeflow project ecosystem. Seldon is an external project supported within Kubeflow.
+   * KFServing is part of the Kubeflow project ecosystem. Seldon is an external project supported within Kubeflow.
 
 For further information:
 
