@@ -19,12 +19,15 @@ Kubeflow provides two supported open source model serving systems that allow mul
 |                | Routers incl ([MAB](https://en.wikipedia.org/wiki/Multi-armed_bandit))         | Roadmap | [x](https://docs.seldon.io/projects/seldon-core/en/latest/analytics/routers.html) |
 | Analytics      | Explanations   | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/analytics/explainers.html) |
 | Scaling        | Knative        | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling) | |
+|                | GPU AutoScaling| [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling) | |
 |                | HPA            |  x | [x](https://docs.seldon.io/projects/seldon-core/en/latest/graph/autoscaling.html) |
 | Custom         |  Container     | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/custom) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html) |
-|                | Python Wrapper | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/python/index.html) |
-|                | Java Wrapper   | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/java/README.html)
-|                | R Wrapper      | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/R/README.html) |
+|                | Language Wrappers | | [python](https://docs.seldon.io/projects/seldon-core/en/latest/python/index.html), [java](https://docs.seldon.io/projects/seldon-core/en/latest/java/README.html), [R](https://docs.seldon.io/projects/seldon-core/en/latest/R/README.html) |
 |                | Multi-Container | | [x](https://docs.seldon.io/projects/seldon-core/en/latest/graph/inference-graph.html) |
+| Rollout        | Canary         | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/rollouts) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/examples/istio_canary.html) |
+|                | Shadow          | | x |
+| istio          |                 | x | x |
+
 
 Notes:
 
