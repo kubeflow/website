@@ -11,9 +11,9 @@ Kubeflow Pipelines standalone using the supplied kustomize
 manifests.
 
 Knowledge about [Kubernetes](https://kubernetes.io/docs/home/), [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) and [kustomize](https://kustomize.io/) will help you understand this
-document better and be able to customize based on your needs.
+document better and be able to customize your deployment based on your needs.
 
-## Common Prerequisites
+## Common prerequisites
 
 These are common one time setups you need for all the instructions below:
 
@@ -116,10 +116,10 @@ This is recommended for production environments. See
 
 To deploy Kubeflow Pipelines standalone in namespace FOO:
 
-- Edit [dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml)
+1. Edit [dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml)
     or [gcp/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/gcp/kustomization.yaml)
   namespace section to FOO.
-- Then run
+1. Then run
 
 ```
 kubectl apply -k manifests/kustomize/env/dev
@@ -131,8 +131,8 @@ kubectl apply -k manifests/kustomize/env/dev
 
 By default, the deployment installs an [inverting proxy agent](https://github.com/google/inverting-proxy) that exposes a public URL. If you want to skip installing it,
 
-- Comment out the proxy component in the [kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/base/kustomization.yaml).
-- Then run:
+1. Comment out the proxy component in the [kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/base/kustomization.yaml).
+1. Then run:
 
 ```
 kubectl apply -k manifests/kustomize/env/dev
@@ -187,14 +187,17 @@ bases:
 ```
 
 ### How to deploy, upgrade and uninstall using the repo
-* Deploy: `kubectl apply -k $YOUR_REPO`
-* Upgrade:
-    1. (Recommended) backup your data storages for KFP.
-    1. Edit `ref={{% pipelines/latest-version %}}` to a version you want to upgrade to.
+Deploy: `kubectl apply -k $YOUR_REPO`
+
+Upgrade:
+
+   1. (Recommended) Back up your data storages for KFP.
+   1. Edit `ref={{% pipelines/latest-version %}}` to a version you want to upgrade to.
 
         Check [Kubeflow Pipelines github repo](https://github.com/kubeflow/pipelines/releases) for available releases.
-    1. Deploy: `kubectl apply -k $YOUR_REPO`.
-* Uninstall: `kubectl delete -k $YOUR_REPO`.
+   1. Deploy: `kubectl apply -k $YOUR_REPO`.
+
+Uninstall: `kubectl delete -k $YOUR_REPO`.
 
 ### Further reading
 * kustomize's [recommended workflow using an off-the-shelf configuration](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration).
@@ -213,14 +216,14 @@ kubectl create clusterrolebinding your-binding --clusterrole=cluster-admin --use
 
 If sample pipeline requires a "user-gcp-sa" secret, you could create one by:
 
-- First download the GCE VM service account token [Document](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys):
+1. First download the GCE VM service account token [Document](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys):
 
     ```
     gcloud iam service-accounts keys create application_default_credentials.json \
       --iam-account [SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com
     ```
 
-- Run:
+1. Run:
     ```
     kubectl create secret -n [your-namespace] generic user-gcp-sa \
       --from-file=user-gcp-sa.json=application_default_credentials.json
