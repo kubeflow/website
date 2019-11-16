@@ -14,7 +14,7 @@ supports the following capabilities:
 Note that upgrade isn't currently supported for Kubeflow. Check [this issue](https://github.com/kubeflow/kubeflow/issues/3727)
 for progress.
 
-If you want the latest Kubeflow Pipelines in Google Cloud Platform (GCP), we recommend that you use the Kubeflow Pipelines standalone deployment (../standalone-deployment-gcp).
+If you want the latest Kubeflow Pipelines in Google Cloud Platform (GCP), we recommend that you use the [Kubeflow Pipelines standalone deployment](/docs/pipelines/standalone-deployment-gcp/).
 
 ## Context
 
