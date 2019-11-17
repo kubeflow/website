@@ -21,7 +21,7 @@ deploy Kubeflow on Amazon Web Services (AWS).
 There're many ways to provision EKS cluster, using AWS EKS CLI, CloudFormation or Terraform, AWS CDK or eksctl.
 Here, we highly recommend you to create an EKS cluster using [eksctl](https://github.com/weaveworks/eksctl).
 
-You are required to have an existing Amazon Elastic Container Service for Kubernetes (Amazon EKS) cluster before moving the next step.
+You are required to have an existing Amazon Elastic Kubernetes Service (Amazon EKS) cluster before moving the next step.
 
 The installation tool uses the `eksctl` command and doesn't support the `--profile` option in that command.
 If you need to switch role, use the `aws sts assume-role` commands. See the AWS guide to [using temporary security credentials to request access to AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html).
@@ -110,13 +110,13 @@ configuration before deploying Kubeflow:
 1. Set an environment variable pointing to your local configuration file:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_aws.0.7.0.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-aws-standard %}}
   ```
 
     Or:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_aws_cognito.0.7.0.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-aws-cognito %}}
   ```
 
 ## Customize your configuration
@@ -163,6 +163,7 @@ configuration before deploying Kubeflow:
 
     ```
     cd ${KF_DIR}
+    rm -rf kustomize/  # Remove kustomize folder and regenerate files after customization
     kfctl apply -V -f ${CONFIG_FILE}
     ```
 
@@ -192,7 +193,7 @@ configuration before deploying Kubeflow:
 Kubeflow 0.6 release brings multi-tenancy support and user are not able to create notebooks in `kubeflow`, `default` namespace. Instead, please create a `Profile` using `kubectl apply -f profile.yaml` and profile controller will create new namespace and service account which is allowed to create notebook in that namespace.
 
 ```yaml
-apiVersion: kubeflow.org/v1alpha1
+apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
   name: aws-sample-user

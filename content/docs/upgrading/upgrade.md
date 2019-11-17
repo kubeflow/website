@@ -8,7 +8,7 @@ Until version 1.0, Kubeflow makes no promises of backwards compatibility or
 upgradeability. There is **no clean upgrade path** to the latest version of 
 Kubeflow ({{% kf-latest-version %}}).
 
-Nonetheless, here are some instructions for updating your deployment::
+Nonetheless, here are some instructions for updating your deployment:
 
 1. Check your Kubeflow configuration directory (`${KF_DIR}`) into source control
   as a backup.
@@ -22,7 +22,7 @@ Nonetheless, here are some instructions for updating your deployment::
 
     The `${CONFIG_FILE}` environment variable must contain the path to the 
     Kubeflow configuration file in your `${KF_DIR}` directory. For example,
-    `${KF_DIR}/kfctl_k8s_istio.yaml` or `${KF_DIR}/kfctl_existing_arrikto.yaml`
+    `${KF_DIR}/{{% config-file-k8s-istio %}}` or `${KF_DIR}/kfctl_existing_arrikto.yaml`
 
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 

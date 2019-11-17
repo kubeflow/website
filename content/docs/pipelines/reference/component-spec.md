@@ -23,7 +23,7 @@ name: xgboost4j - Train classifier
 description: Trains a boosted tree ensemble classifier using xgboost4j
 
 inputs:
-- {name: Training data URI}
+- {name: Training data}
 - {name: Rounds, type: Integer, default: '30', help: Number of training rounds}
 
 outputs:
@@ -34,7 +34,7 @@ implementation:
     image: gcr.io/ml-pipeline/xgboost-classifier-train@sha256:b3a64d57
     command: [
       /ml/train.py,
-      --train-uri, {inputValue: Training data URI},
+      --train-set, {inputPath: Training data},
       --rounds,    {inputValue: Rounds},
       --out-model, {outputPath: Trained model},
     ]
@@ -54,16 +54,10 @@ This section describes the
 * `description`: Description of the component.
 * `metadata`: Standard object's metadata:
 
-    * `annotations`: An unstructured key value map
-        stored with a resource. External tools can set this property to store and
-        retrieve arbitrary metadata. Annotations are not queryable and should be
-        preserved when modifying objects. See more information in the
+    * `annotations`: A string key-value map used to add information about the component.
+        Currently, the annotations get translated to Kubernetes annotations when the component task is executed on Kubernetes. Current limitation: the key cannot contain more that one slash ("/"). See more information in the
         [Kubernetes user guide](http://kubernetes.io/docs/user-guide/annotations).
-
-    * `labels`: A map of string keys and values that can be used to
-        organize and categorize (scope and select) objects. May match selectors
-        of replication controllers and services. See more information in the
-        [Kubernetes user guide](http://kubernetes.io/docs/user-guide/labels).
+    * `labels`: Deprecated. Use `annotations`.
 
 ### Interface
 
@@ -100,11 +94,11 @@ This section describes the
         * `command`: Entrypoint array. The Docker image's
             ENTRYPOINT is used if this is not provided. Each item is either a
             string or a placeholder. The most common placeholders are
-            `{inputValue: Input name}` and `{outputPath: Output name}`.
+            `{inputValue: Input name}`, `{inputPath: Input name}` and `{outputPath: Output name}`.
         * `args`: Arguments to the entrypoint. The Docker
             image's CMD is used if this is not provided. Each item is either a
             string or a placeholder. The most common placeholders are
-            `{inputValue: Input name}` and `{outputPath: Output name}`.
+            `{inputValue: Input name}`, `{inputPath: Input name}` and `{outputPath: Output name}`.
         * `env`: Map of environment variables to set in the container.
         * `fileOutputs`: Legacy property that is only needed in
             cases where the container always stores the output data in some
@@ -121,51 +115,75 @@ use the component inside a pipeline.
 
 ## Using placeholders for command-line arguments
 
-### Consuming input by value (parameter)
+### Consuming input by value
 
-The placeholder is replaced by the value of the input argument:
+The `{inputValue: <Input name>}` placeholder is replaced by the value of the input argument:
 
 * In `component.yaml`:
   
-  ```
+  ```yaml
   command: [program.py, --rounds, {inputValue: Rounds}]
   ```
 
 * In the pipeline code:
 
-  ```
+  ```python
   task1 = component1(rounds=150)
   ```
 
 * Resulting command-line code (showing the value of the input argument that
   has replaced the placeholder):
 
-  ```
+  ```shell
   program.py --rounds 150
   ```
 
-### Outputs
+### Consuming input by file
 
-Output paths are filled in by the pipeline system. The `outputPath` placeholder
-is replaced by a path. (The path can point to a mounted output volume, for
-example.) The parent directories of the path may or may not not exist. Your
-program must handle both cases without error.
+The `{inputPath: <Input name>}` placeholder is replaced by the (auto-generated) local file path where the system has put the argument data passed for the "Input name" input.
 
 * In `component.yaml`:
 
-  ```
-  command: [program.py, --out-model, {outputPath: trained_model}]
+  ```yaml
+  command: [program.py, --train-set, {inputPath: training_data}]
   ```
 
 * In the pipeline code:
 
-  ```
-  task1 = component1()
+  ```python
+  task2 = component1(training_data=some_task1.outputs['some_data'])
   ```
 
 * Resulting command-line code (the placeholder is replaced by the 
   generated path):
 
+  ```shell
+  program.py --train-set /inputs/train_data/data
   ```
+
+
+### Producing outputs
+
+The `{outputPath: <Output name>}` placeholder is replaced by a (generated) local file path where the component program is supposed to write the output data.
+The parent directories of the path may or may not not exist. Your
+program must handle both cases without error.
+
+* In `component.yaml`:
+
+  ```yaml
+  command: [program.py, --out-model, {outputPath: trained_model}]
+  ```
+
+* In the pipeline code:
+
+  ```python
+  task1 = component1()
+  # You can now pass `task1.outputs['trained_model']` to other components as argument.
+  ```
+
+* Resulting command-line code (the placeholder is replaced by the 
+  generated path):
+
+  ```shell
   program.py --out-model /outputs/trained_model/data
   ```

@@ -42,7 +42,8 @@ interface to deploy Kubeflow.
 
 This guide refers to the `${CONFIG_FILE}`, which is the Kubeflow configuration 
 file in your Kubeflow deployment directory. For example,
-`${KF_DIR}/kfctl_k8s_istio.yaml` or `${KF_DIR}/kfctl_gcp_iap.yaml`.
+`${KF_DIR}/{{% config-file-k8s-istio %}}` or 
+`${KF_DIR}/{{% config-file-gcp-iap %}}`.
 
 To prevent Spartakus from being deployed:
 

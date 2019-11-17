@@ -25,6 +25,8 @@ approvers:
   - vicaire
   - joeliedtke
   - animeshsingh
+  - alecglassford # Temporary for WtD AU 2019 fixit
+  - rionam # Temporary for WtD AU 2019 fixit
 reviewers:
   - abhi-g
   - aronchick
@@ -53,3 +55,5 @@ reviewers:
   - thedriftofwords
   - vicaire
   - animeshsingh
+  - alecglassford # Temporary for WtD AU 2019 fixit
+  - rionam # Temporary for WtD AU 2019 fixit

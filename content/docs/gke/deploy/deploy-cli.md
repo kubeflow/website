@@ -25,6 +25,9 @@ Before installing Kubeflow on the command line:
   [Cloud Shell](https://cloud.google.com/shell/), enable 
   [boost mode](https://cloud.google.com/shell/docs/features#boost_mode).
 
+1. Make sure that your GCP project meets the minimum requirements
+  described in the [project setup guide](/docs/gke/deploy/project-setup/).
+
 1. If you want to use [Cloud Identity-Aware Proxy (Cloud 
   IAP)](https://cloud.google.com/iap/docs/) for access control, follow the guide
   to [setting up OAuth credentials](/docs/gke/deploy/oauth-setup/). 
@@ -166,13 +169,13 @@ deploy Kubeflow:
 1. Set an environment variable for your local configuration file:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_iap.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-iap %}}
   ```
 
     Or:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_gcp_basic_auth.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-basic-auth %}}
   ```
 
 1. Run the `kfctl apply` command to deploy Kubeflow:

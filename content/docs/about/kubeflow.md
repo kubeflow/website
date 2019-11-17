@@ -1,6 +1,6 @@
 +++
 title = "Kubeflow"
-description = "Quickly get running with your ML Workflow"
+description = "An introduction to Kubeflow"
 weight = 1
 aliases = ["/docs/", "/docs/about/", "/docs/kubeflow/"]
 +++

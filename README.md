@@ -217,7 +217,7 @@ shortcode file when the page is built.
 
 To create a shortcode:
 
-1. Add an HTML file in  the `/website/themes/kf/layouts/shortcodes/` directory.
+1. Add an HTML file in  the `/website/layouts/shortcodes/` directory.
    The file name must be short and meaningful, as it determines the shortcode
    you and others use in the docs.
 

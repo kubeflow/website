@@ -1,5 +1,5 @@
 +++
-title = "Deploying Kubeflow on Existing Clusters"
+title = "Overview of Deployment on Existing Clusters"
 description = "Instructions for installing Kubeflow on your existing Kubernetes cluster with list of supported options"
 weight = 1
 +++
@@ -13,16 +13,86 @@ existing Kubernetes cluster is from one of those, consider following those instr
 
 The Kubernetes cluster must meet the following minimum requirements:
 
-  * Kubernetes version {{% kubernetes-min-version %}} or later.
-  * At least one worker node with a minimum of:
+  * Your cluster must include at least one worker node with a minimum of:
     * 4 CPU
     * 50 GB storage
     * 12 GB memory
 
+
+  * The recommended Kubernetes version is {{% kubernetes-tested-version %}}.
+    Kubeflow has been validated and tested on Kubernetes
+    {{% kubernetes-tested-version %}}.
+    * Your cluster must run at least Kubernetes version 
+    {{% kubernetes-min-version %}}. 
+    * Kubeflow **does not work** on Kubernetes 
+      {{% kubernetes-incompatible-versions %}}.
+    * Older versions of Kubernetes may not be compatible with the latest Kubeflow versions.  The following matrix
+    provides information about compatibility between Kubeflow and Kubernetes versions.
+
+    
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Kubernetes Versions</th>
+        <th>Kubeflow 0.4</th>
+        <th>Kubeflow 0.5</th>
+        <th>Kubeflow 0.6</th>
+        <th>Kubeflow 0.7</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1.11</td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+      </tr>
+      <tr>
+        <td>1.12</td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+      </tr>
+      <tr>
+        <td>1.13</td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+      </tr>
+      <tr>
+        <td>1.14</td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
+      </tr>
+      <tr>
+        <td>1.15</td>
+        <td>incompatible</td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
+      </tr>
+      <tr>
+        <td>1.16</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+    
+
 ## Kubeflow Deployment Configurations
 
 The following tables list the options for installing Kubeflow on an existing Kubernetes
-Cluster and links to detailed instructions.
+cluster and links to detailed instructions.
 
 ### Community maintained
 

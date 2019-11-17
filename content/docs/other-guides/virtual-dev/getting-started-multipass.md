@@ -5,7 +5,7 @@ weight = 2
 +++
 
 This document outlines the steps that you can take to get your local
-installation of Kubeflow running on top of Microk8s, a single-node Kubernetes cluster. Microk8s requires Linux; if you are not on a Linux system, you can use Multipass to create a Linux VM on your native hypervisor.
+installation of Kubeflow running on top of Microk8s, a single-node Kubernetes cluster. Microk8s requires Linux; if you are not on a Linux system, you can use Multipass to create a Linux VM (virtual machine) on your native hypervisor.
 
 By the end of this document, you'll have a local installation of a Kubernetes cluster along with all the default core components of Kubeflow deployed as services in the pods. You can access the Kubeflow dashboard, Jupyter notebooks, and dashboards of other Kubeflow components.
 
@@ -36,7 +36,7 @@ Read the next sections for more detail!
 [Multipass](https://github.com/CanonicalLtd/multipass) is a general purpose command line interface (CLI) that launches Ubuntu virtual machines based on [cloud-images](http://cloud-images.ubuntu.com/). The benefits of using Multipass include the following:
 
   * quickly create disposable machine learning appliances
-  * leverage the same cloud images locally, reducing surprises when changing from development to staging to production environments in a multi-cloud strategy.
+  * leverage the same cloud images locally, reducing surprises when changing from development to staging to production environments in a multi-cloud strategy
 
 Here's a summary of the steps involved:
 
@@ -51,7 +51,7 @@ Here's a summary of the steps involved:
 Install Multipass using the native Mac OS installer:
 
 * Download the latest \*-Darwin.pkg [here](https://github.com/CanonicalLtd/multipass/releases)
-* For more information and documentation, visit the project on [GitHub](https://github.com/CanonicalLtd/multipass).
+* For more information and documentation, visit the project on [GitHub](https://github.com/CanonicalLtd/multipass)
 
 #### Linux
 
@@ -61,7 +61,7 @@ Install Multipass using [snapcraft](https://snapcraft.io):
 $ sudo snap install multipass --beta --classic
 ```
 
-### 2. Create an Ubuntu Virtual Machine
+### 2. Create an Ubuntu virtual machine
 
 The following command creates a VM with 8GB of memory, 40GB of disk space, and 4 CPU. These are the minimum recommended settings. You are free to adjust them **higher** based on your host machine capabilities and workload requirements.
 ```
@@ -83,9 +83,9 @@ Here's a summary of the steps involved:
 1. Set up Microk8s
 2. Set up Kubeflow
 
-### 1. Install and Setup Microk8s
+### 1. Install and set up Microk8s
 
-This will install Microk8s if it doesn't already exist, and enable services that are useful for Kubeflow. Please inspect setup-microk8s.sh for more information.
+This will install Microk8s if it doesn't already exist, and enable services that are useful for Kubeflow. Please inspect `setup-microk8s.sh` for more information.
 
 ```
 $ git clone https://github.com/canonical-labs/kubernetes-tools
@@ -99,9 +99,9 @@ If you would like access to the Kubernetes dashboard, please run this command:
 kubernetes-tools/expose-dashboard.sh
 ```
 
-### 2. Install and Setup Kubeflow
+### 2. Install and set up Kubeflow
 
-The current approach leverages ksonnet to setup and install Kubeflow. The kubeflow-tools repository contains scripts to facilitate this.
+The current approach leverages ksonnet to set up and install Kubeflow. The kubeflow-tools repository contains scripts to facilitate this.
 
 ```
 $ git clone https://github.com/canonical-labs/kubeflow-tools
@@ -122,7 +122,7 @@ Point browser to either:
 - http://localhost:<Ambassador PORT>
 ```
 
-### Where to go next
+## Next steps
 
 * Refer to the [user guide](/docs/)
 * Refer to the [components](/docs/components/)

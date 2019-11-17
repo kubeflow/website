@@ -17,7 +17,7 @@ section. You can do so by following the Kubeflow [deployment guide](/docs/gke/de
 or by installing Katib directly from its repository:
 ```
 git clone https://github.com/kubeflow/katib
-./katib/scripts/v1alpha2/deploy.sh
+bash ./katib/scripts/v1alpha3/deploy.sh
 ```
 
 ### Persistent Volumes
@@ -47,7 +47,7 @@ spec:
 After deploying the Katib package, run the following command to create the PV:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha2/pv/pv.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha3/pv/pv.yaml
 ```
 
 ## Running examples
@@ -57,10 +57,10 @@ After deploying everything, you can run some examples.
 ### Example using random algorithm
 
 You can create an Experiment for Katib by defining an Experiment config file. See the 
-[random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1alpha2/random-example.yaml).
+[random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/random-example.yaml).
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/random-example.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/random-example.yaml
 ```
 
 Running this command launches an Experiment. It runs a series of 
@@ -69,7 +69,7 @@ results.
 
 The configurations for the experiment (hyperparameter feasible space, optimization 
 parameter, optimization goal, suggestion algorithm, and so on) are defined in 
-[random-example.yaml](https://github.com/kubeflow/katib/blob/master/examples/v1alpha2/random-example.yaml).
+[random-example.yaml](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/random-example.yaml).
 
 In this demo, hyperparameters are embedded as args.
 You can embed hyperparameters in another way (for example, environment values) 
@@ -90,29 +90,32 @@ Name:         random-example
 Namespace:    kubeflow
 Labels:       controller-tools.k8s.io=1.0
 Annotations:  <none>
-API Version:  kubeflow.org/v1alpha2
+API Version:  kubeflow.org/v1alpha3
 Kind:         Experiment
 Metadata:
-  Creation Timestamp:  2019-01-18T16:30:46Z
+  Creation Timestamp:  2019-10-29T02:02:25Z
   Finalizers:
-    clean-data-in-db
-  Generation:        5
-  Resource Version:  1777650
-  Self Link:         /apis/kubeflow.org/v1alpha2/namespaces/kubeflow/experiments/random-example
-  UID:               687a67f9-1b3e-11e9-a0c2-c6456c1f5f0a
+    update-prometheus-metrics
+  Generation:        2
+  Resource Version:  55900050
+  Self Link:         /apis/kubeflow.org/v1alpha3/namespaces/kubeflow/experiments/random-example
+  UID:               275eee5b-f9f0-11e9-a6cc-00163e01b303
 Spec:
   Algorithm:
-    Algorithm Name:  random
-    Algorithm Settings:
+    Algorithm Name:        random
+    Algorithm Settings:    <nil>
   Max Failed Trial Count:  3
   Max Trial Count:         100
+  Metrics Collector Spec:
+    Collector:
+      Kind:  StdOut
   Objective:
     Additional Metric Names:
       accuracy
     Goal:                   0.99
     Objective Metric Name:  Validation-accuracy
     Type:                   maximize
-  Parallel Trial Count:     10
+  Parallel Trial Count:     3
   Parameters:
     Feasible Space:
       Max:           0.03
@@ -138,22 +141,22 @@ Spec:
         Config Map Namespace:  kubeflow
         Template Path:         mnist-trial-template
 Status:
-  Completion Time:  2019-06-20T00:12:07Z
+  Completion Time:  2019-10-29T02:09:12Z
   Conditions:
-    Last Transition Time:  2019-06-19T23:20:56Z
-    Last Update Time:      2019-06-19T23:20:56Z
+    Last Transition Time:  2019-10-29T02:02:26Z
+    Last Update Time:      2019-10-29T02:02:26Z
     Message:               Experiment is created
     Reason:                ExperimentCreated
     Status:                True
     Type:                  Created
-    Last Transition Time:  2019-06-20T00:12:07Z
-    Last Update Time:      2019-06-20T00:12:07Z
+    Last Transition Time:  2019-10-29T02:09:12Z
+    Last Update Time:      2019-10-29T02:09:12Z
     Message:               Experiment is running
     Reason:                ExperimentRunning
     Status:                False
     Type:                  Running
-    Last Transition Time:  2019-06-20T00:12:07Z
-    Last Update Time:      2019-06-20T00:12:07Z
+    Last Transition Time:  2019-10-29T02:09:12Z
+    Last Update Time:      2019-10-29T02:09:12Z
     Message:               Experiment has succeeded because max trial count has reached
     Reason:                ExperimentSucceeded
     Status:                True
@@ -162,18 +165,18 @@ Status:
     Observation:
       Metrics:
         Name:   Validation-accuracy
-        Value:  0.982483983039856
+        Value:  0.978702
     Parameter Assignments:
       Name:          --lr
-      Value:         0.026666666666666665
+      Value:         0.016331188424169637
       Name:          --num-layers
-      Value:         2
+      Value:         4
       Name:          --optimizer
       Value:         sgd
-  Start Time:        2019-06-19T23:20:55Z
+  Start Time:        2019-10-29T02:02:26Z
   Trials:            100
   Trials Succeeded:  100
-Events:                 <none>
+Events:              <none>
 ```
 
 The demo should start an experiment and run three jobs with different parameters.
@@ -182,40 +185,10 @@ finished.
 
 ### TensorFlow operator example
 
-To run the TensorFlow operator example, you must install a volume.
-
-If you are using GKE and default StorageClass, you must create this PVC:
-
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: tfevent-volume
-  namespace: kubeflow
-  labels:
-    type: local
-    app: tfjob
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-```
-
-If you are not using GKE and you don't have StorageClass for dynamic volume 
-provisioning in your cluster, you must create a PVC and a PV:
+This is an example for the Tensorflow operator:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/tfevent-volume/tfevent-pvc.yaml
-
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/tfevent-volume/tfevent-pv.yaml
-```
-
-Now you can run the TensorFlow operator example:
-
-```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/tfjob-example.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/tfjob-example.yaml
 ```
 
 You can check the status of the experiment:
@@ -229,7 +202,7 @@ kubectl -n kubeflow describe experiment tfjob-example
 This is an example for the PyTorch operator:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/pytorchjob-example.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/pytorchjob-example.yaml
 ```
 
 You can check the status of the experiment:
@@ -264,20 +237,13 @@ Now you can access the Katib UI at this URL: ```http://localhost:8080/katib/```.
 Delete the installed components:
 
 ```
-./scripts/v1alpha2/undeploy.sh
+bash ./scripts/v1alpha3/undeploy.sh
 ```
 
 If you created a PV for Katib, delete it:
 
 ```
-kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha2/pv/pv.yaml
-```
-
-If you created a PV and PVC for the TensorFlow operator, delete it:
-
-```
-kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/tfevent-volume/tfevent-pvc.yaml
-kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha2/tfevent-volume/tfevent-pv.yaml
+kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha3/pv/pv.yaml
 ```
 
 ## Metrics collector
@@ -300,4 +266,5 @@ recall=0.55
 precision=0.5
 ```
 
-Katib periodically launches CronJobs to collect metrics from pods.
+Katib adds metrics collector sidecar container to training Pod to collect metrics
+from training container when training job done.

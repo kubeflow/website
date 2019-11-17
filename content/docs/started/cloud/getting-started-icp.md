@@ -4,17 +4,17 @@ description = "Get Kubeflow running on IBM Cloud Private"
 weight = 2
 +++
 
-This guide is a quick start to deploy Kubeflow on [IBM Cloud Private](https://www.ibm.com/cloud/private) 3.1.0 or later.  IBM Cloud Private is an enterprise PaaS layer for developing and managing on-premises, containerized applications. It is an integrated environment for managing containers that includes the container orchestrator Kubernetes, a private image registry, a management console, and monitoring frameworks.
+This guide is a quick start to deploying Kubeflow on [IBM Cloud Private](https://www.ibm.com/cloud/private) 3.1.0 or later.  IBM Cloud Private is an enterprise platform as a service (PaaS) layer for developing and managing on-premises, containerized applications. It is an integrated environment for managing containers that includes the container orchestrator Kubernetes, a private image registry, a management console, and monitoring frameworks.
 
-### Prerequisites
+## Prerequisites
 
 - Get the system requirements from [IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/supported_system_config/hardware_reqs.html) for IBM Cloud Private.
   
-- Setup NFS Server and export one or more path for persistent volume.
+- Set up NFS Server and export one or more paths for persistent volume(s).
 
-### Installing IBM Cloud Private
+## Installing IBM Cloud Private
 
-Following [installation steps in IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/installing/install.html) to install IBM Cloud Private 3.1.0 or later with master, proxy, worker, and optional management and vulnerability advisory nodes in your cluster in standard or high availability configurations.
+Follow the [installation steps in IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/installing/install.html) to install IBM Cloud Private 3.1.0 or later with master, proxy, worker, and optional management and vulnerability advisory nodes in your cluster in standard or high availability configurations.
 
 The guide takes IBM Cloud Private 3.1.0 as example below. You can check the IBM Cloud Private after installation.
 
@@ -28,7 +28,9 @@ NAME         STATUS    ROLES                      AGE       VERSION
 10.43.0.46   Ready     worker                     11d       v1.11.1+icp-ee
 10.43.0.49   Ready     worker                     11d       v1.11.1+icp-ee
 ```
-### Creating image policy and persistent volume
+## Creating image policy and persistent volume
+
+Follow these steps to create an image policy for your Kubernetes namespace and a persistent volume (PV) for your Kubeflow components:
 
 1. Create Kubernetes namespace.
 
@@ -123,7 +125,7 @@ NAME         STATUS    ROLES                      AGE       VERSION
     kubectl create -f pv.yaml
     ```
 
-### Installing Kubeflow
+## Installing Kubeflow
 
 Follow these steps to deploy Kubeflow:
 
@@ -200,7 +202,7 @@ Set the `${CONFIG_FILE}` environment variable to the path for your
 Kubeflow configuration file:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_k8s_istio.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-k8s-istio %}}
   ```
 
 Run the following commands to delete your deployment and reclaim all resources:

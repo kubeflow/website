@@ -12,9 +12,23 @@ For more control over your deployment, see the guide to
 [deployment using the CLI](/docs/gke/deploy/deploy-cli).
 The CLI supports Kubeflow {{% kf-latest-version %}} and later versions.
 
-## Overview of the deployment user interface (UI)
+## Before you start
 
-Here's a partial screenshot of the deployment UI:
+Check the following requirements before installing Kubeflow:
+
+1. Make sure that your GCP project meets the minimum requirements
+  described in the [project setup guide](/docs/gke/deploy/project-setup/).
+
+1. If you want to use [Cloud Identity-Aware Proxy (Cloud 
+  IAP)](https://cloud.google.com/iap/docs/) for access control, follow the guide
+  to [setting up OAuth credentials](/docs/gke/deploy/oauth-setup/). 
+  Cloud IAP is recommended for production deployments or deployments with 
+  access to sensitive data. Alternatively, you can use basic authentication 
+  with a username and password.
+
+## Deploy Kubeflow
+
+Here's a partial screenshot of the deployment user interface (UI):
 
 <img src="/docs/images/kubeflow-deployment.png" 
   alt="Kubeflow deployment UI"

@@ -87,12 +87,12 @@ which you can further customize if necessary.
 Follow these steps to apply the configurations to your Kubeflow cluster:
 
 1. Set an environment variable pointing to your local configuration file.
-  For example, this guide uses the `kfctl_k8s_istio.yaml` configuration. If you
-  chose a different configuration in the previous step, you
-  must change the file name to reflect your configuration:
+  For example, this guide uses the `{{% config-file-k8s-istio %}}` 
+  configuration. If you chose a different configuration in the previous step, 
+  you must change the file name to reflect your configuration:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_k8s_istio.yaml
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-k8s-istio %}}
   ```
 
 1. Apply the configurations:
@@ -182,9 +182,10 @@ Make sure that you have the minimum required version of kustomize:
     * Download the kustomize binary:
 
         ```
-        curl -s https://api.github.com/repos/kubernetes-sigs/kustomize/releases/latest |\
+        curl -s https://api.github.com/repos/kubernetes-sigs/kustomize/releases |\
         grep browser_download |\
-        grep $opsys |\
+        grep download/kustomize |\
+        grep -m 1 $opsys |\
         cut -d '"' -f 4 |\
         xargs curl -O -L
         ```
