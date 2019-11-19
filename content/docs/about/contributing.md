@@ -94,8 +94,8 @@ should be fixed, you should own it. Here is how you get started.
 
 To find Kubeflow issues that make good entry points, look at the following tags:
 
-* [`good first issue`](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-* [`help wanted`](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+* [`good first issue`](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+org%3Akubeflow)
+* [`help wanted`](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22+org%3Akubeflow)
 
 ## Owners files and PR workflow
 
