@@ -213,6 +213,11 @@ one of the following Kubeflow SDKs and command-line interfaces
         <td>Stable</td>
         <td>1.0</td>
       </tr>
+      <tr>
+        <td><a href="https://kubeflow-pipelines.readthedocs.io/en/latest/">Kubeflow Pipelines SDK</a> (<a href="/docs/pipelines/sdk/">docs</a>)</td>
+        <td>Beta</td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
 </div>
