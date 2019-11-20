@@ -18,9 +18,6 @@ build: ## Build site with production settings and put deliverables in ./public
 build-preview: ## Build site with drafts and future posts enabled
 	hugo --buildDrafts --buildFuture
 
-functions-build:
-	$(NETLIFY_FUNC) build functions-src
-
 check-headers-file:
 	scripts/check-headers-file.sh
 
@@ -40,10 +37,6 @@ docker-build:
 
 docker-serve:
 	$(DOCKER_RUN) -p 1313:1313 $(DOCKER_IMAGE) hugo server --buildFuture --bind 0.0.0.0
-
-test-examples:
-	scripts/test_examples.sh install
-	scripts/test_examples.sh run
 
 check-hugo-versions:
 	scripts/hugo-version-check.sh $(HUGO_VERSION)
