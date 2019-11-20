@@ -118,6 +118,38 @@ Useful docs:
 - [Hugo site directory structure](https://gohugo.io/getting-started/directory-structure/)
 - [hugo server reference](https://gohugo.io/commands/hugo_server/)
 
+### Running the website locally using Docker
+
+The recommended way to run the Kubeflow website locally is to run a specialized [Docker](https://docker.com) image that includes the [Hugo](https://gohugo.io) static website generator.
+
+> If you are running on Windows, you'll need a few more tools which you can install with [Chocolatey](https://chocolatey.org). `choco install make`
+
+> If you'd prefer to run the website locally without Docker, see [Running the website locally using Hugo](#running-the-site-locally-using-hugo) below.
+
+If you have Docker [up and running](https://www.docker.com/get-started), build the `kubernetes-hugo` Docker image locally:
+
+```bash
+make docker-image
+```
+
+Once the image has been built, you can run the website locally:
+
+```bash
+make docker-serve
+```
+
+Open up your browser to http://localhost:1313 to view the website. As you make changes to the source files, Hugo updates the website and forces a browser refresh.
+
+### Running the website locally using Hugo
+
+See the [official Hugo documentation](https://gohugo.io/getting-started/installing/) for Hugo installation instructions. Make sure to install the Hugo extended version specified by the `HUGO_VERSION` environment variable in the [`netlify.toml`](netlify.toml#L9) file.
+
+
+### Maintaining Hugo Version
+
+You need to change `HUGO_VERSION` in the `Makefile` and build the Dockerimage again.
+
+
 ## Menu structure
 
 The site theme has one Hugo menu (`main`), which defines the top navigation bar. 
