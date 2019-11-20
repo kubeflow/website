@@ -4,6 +4,11 @@ description = "How Kubeflow helps you organize your ML workflow"
 weight = 10
 +++
 
+<!--
+Note for authors: The source of the diagrams is held in Google Slides decks,
+in the "Doc diagrams" folder in the public Kubeflow shared drive.
+-->
+
 This guide introduces Kubeflow as a platform for developing and deploying a
 machine learning (ML) system.
 
