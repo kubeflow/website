@@ -126,7 +126,7 @@ configuration before deploying Kubeflow:
   the file. For example, use this `sed` command:
 
   ```
-  sed -i '.bak' -e 's/kubeflow-aws/'"$AWS_CLUSTER_NAME"'/' ${CONFIG_FILE}
+  sed -i'.bak' -e 's/kubeflow-aws/'"$AWS_CLUSTER_NAME"'/' ${CONFIG_FILE}
   ```
 
 1. Retrieve the AWS Region and IAM role name for your worker nodes.
