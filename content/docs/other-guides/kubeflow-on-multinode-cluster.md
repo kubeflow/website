@@ -141,13 +141,19 @@ To perform this task you need to:
 2. Change their storage class.
 3. Delete and recreate them in the cluster.
 
-Download the four PVCs:
+For downloading the existing PVCs, first get list of all PVCs:
 
 ```shell
-kubectl get pvc/mysql-pv-claim -n kubeflow -o yaml > mysql-pv-claim.yaml
-kubectl get pvc/minio-pv-claim -n kubeflow -o yaml > minio-pvc.yaml
-kubectl get pvc/katib-mysql -n kubeflow -o yaml > katib.yaml
-kubectl get pvc/metadata-mysql -n kubeflow -o yaml > metadata.yaml
+kubectl get pvc --all-namespaces
+```
+
+This will show the list of PVCs with details including `NAMESPACE`, `STATUS`, `STORAGECLASS`.
+(e.g. `mysql-pv-claim` in `Kubeflow` namespace and `authservice-pvc` in `istio-systems` namespace).
+
+Download the PVCs:
+
+```shell
+kubectl get pvc/<PVC-NAME> -n <NAMESPACE> -o yaml > <PVC-NAME>.yaml
 ```
 
 And then modify files to add the right `storageClassName` under the `spec` section:
@@ -165,61 +171,16 @@ spec:
   ...
 ```
 
-```yaml
-# minio-pvc.yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: minio-pv-claim
-  namespace: kubeflow
-  ...
-spec:
-  storageClassName: nfs
-  ...
-```
-
-```yaml
-# katib.yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: katib-mysql
-  namespace: kubeflow
-  ...
-spec:
-  storageClassName: nfs
-  ...
-```
-
-```yaml
-# metadata.yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: metadata-mysql
-  namespace: kubeflow
-  ...
-spec:
-  storageClassName: nfs
-  ...
-```
-
-Next, remove the old PVCs:
+After modifying all downloaded PVCs, remove the old PVCs. Note that the field `<PVC-NAME>` below stands for the downloaded file name and not the actual PVC name.
 
 ```shell
-kubectl delete -f mysql-pv-claim.yaml
-kubectl delete -f minio-pvc.yaml
-kubectl delete -f katib.yaml
-kubectl delete -f metadata.yaml
+kubectl delete -f <PVC-NAME>.yaml
 ```
 
 Finally, add the modified PVCs:
 
 ```shell
-kubectl apply -f mysql-pv-claim.yaml
-kubectl apply -f minio-pvc.yaml
-kubectl apply -f katib.yaml
-kubectl apply -f metadata.yaml
+kubectl apply -f <PVC-NAME>.yaml
 ```
 
 The PVCs are now bound to your NFS storage.
