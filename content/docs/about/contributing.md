@@ -92,10 +92,20 @@ should be fixed, you should own it. Here is how you get started.
 
 ### Starter issues
 
-To find Kubeflow issues that make good entry points, look at the following tags:
+To find Kubeflow issues that make good entry points:
 
-* [`good first issue`](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+org%3Akubeflow)
-* [`help wanted`](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22+org%3Akubeflow)
+* Start with issues labeled **good first issue**. For example, see the good
+  first issues in the [kubeflow/website 
+  repository](https://github.com/kubeflow/website/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+  for doc updates, and in the [kubeflow/kubeflow 
+  repository](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+  for updates to the core Kubeflow code.
+* For issues that require deeper knowledge of one or more technical aspects, 
+  look at issues labeled **help wanted**. For example, see these issues in the
+  [kubeflow/kubeflow
+  repository](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+* Examine the issues in any of the 
+  [Kubeflow repositories](https://github.com/kubeflow).
 
 ## Owners files and PR workflow
 
