@@ -130,3 +130,23 @@ problems:
 
     If you do not see a login prompt and you get a 404 error, the configuration
     of Cloud IAP is not yet complete. Keep retrying for up to 10 minutes.
+
+1. If you get an error `Error: redirect_uri_mismatch` after logging in, this means the list of OAuth authorized redirect URIs does not include your domain.	
+
+    The full error message looks like the following example and includes the 	
+    relevant links:	
+
+    ```	
+    The redirect URI in the request, https://mykubeflow.endpoints.myproject.cloud.goog/_gcp_gatekeeper/authenticate, does not match the ones authorized for the OAuth client. 	
+    To update the authorized redirect URIs, visit: https://console.developers.google.com/apis/credentials/oauthclient/22222222222-7meeee7a9a76jvg54j0g2lv8lrsb4l8g.apps.googleusercontent.com?project=22222222222	
+    ```	
+
+    Follow the link in the error message to find the OAuth credential being used	
+    and add the redirect URI listed in the error message to the list of 	
+    authorized URIs. For more information, read the guide to 	
+    [setting up OAuth for Cloud IAP](/docs/gke/deploy/oauth-setup/).	
+
+## Next Steps
+* The Troubleshooting [Guide](https://www.kubeflow.org/docs/gke/troubleshooting-gke/) for Kubeflow.
+* [Docs](https://www.kubeflow.org/docs/other-guides/multi-user-overview/#onboard-new-user) to share cluster access
+* Cloud IAP [Docs](https://cloud.google.com/iap/docs/)
