@@ -146,7 +146,7 @@ problems:
     authorized URIs. For more information, read the guide to 	
     [setting up OAuth for Cloud IAP](/docs/gke/deploy/oauth-setup/).	
 
-## Next Steps
-* The Troubleshooting [Guide](https://www.kubeflow.org/docs/gke/troubleshooting-gke/) for Kubeflow.
-* [Docs](https://www.kubeflow.org/docs/other-guides/multi-user-overview/#onboard-new-user) to share cluster access
-* Cloud IAP [Docs](https://cloud.google.com/iap/docs/)
+## Next steps
+* The [GCP troubleshooting guide](https://www.kubeflow.org/docs/gke/troubleshooting-gke/) for Kubeflow.
+* Guide to [sharing cluster access](https://www.kubeflow.org/docs/other-guides/multi-user-overview/#onboard-new-user)
+* GCP guide to [Cloud IAP](https://cloud.google.com/iap/docs/)
