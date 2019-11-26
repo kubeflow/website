@@ -4,7 +4,7 @@ description = "Model serving overview"
 weight = 1
 +++
 
-## Multi-frmaework Serving
+## Multi-framework serving
 
 Kubeflow provides two supported open source model serving systems that allow multi-framework model serving: KFServing and Seldon Core. You should choose the framework that best supports your model serving requirements.  A rough comparison between KFServing and Seldon Core is shown below:
 
