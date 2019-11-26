@@ -1,17 +1,19 @@
 +++
 title = "Overview"
-description = "Model Serving Overview"
+description = "Model serving overview"
 weight = 1
 +++
 
-Kubeflow provides two supported open source model serving systems that allow multi-framework model serving: KFServing and Seldon Core. You should choose the framework that best supports your model serving requirements. If you only serve  Tensorflow models using Tensorflow Serving is an option although both KFServing and Seldon support Tensorflow. A rough comparison between KFServing and Seldon Core is shown below:
+## Multi-frmaework Serving
+
+Kubeflow provides two supported open source model serving systems that allow multi-framework model serving: KFServing and Seldon Core. You should choose the framework that best supports your model serving requirements.  A rough comparison between KFServing and Seldon Core is shown below:
 
 | Feature        | sub-feature    | KFServing | Seldon |
 |----------------|----------------|  :--:     |  :--:  |
-| Framework      | Tensorflow     | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/servers/tensorflow.html)  |
+| Framework      | TensorFlow     | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/servers/tensorflow.html)  |
 |                | XGBoost        | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/xgboost) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/servers/xgboost.html) |
-|                | Sklearn        | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/servers/sklearn.html) |
-|                | TensorRT IS    | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorrt) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/examples/nvidia_mnist.html) |
+|                | scikit-learn        | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/servers/sklearn.html) |
+|                | NVIDIA TensorRT Inference Server    | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorrt) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/examples/nvidia_mnist.html) |
 |                | ONNX           | [x](https://docs.seldon.io/projects/seldon-core/en/latest/examples/onnx_resnet.html) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/examples/onnx_resnet.html) |
 |                | PyTorch        | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pytorch) | [x](https://www.kubeflow.org/docs/components/serving/pytorchserving/) |
 | Graph          | Transformers   | [x](https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/examples/transformer_spam_model.html)
@@ -46,4 +48,18 @@ For further information:
    * [Kubeflow documentation](https://www.kubeflow.org/docs/components/serving/seldon/)
    * [External Documentation](https://docs.seldon.io/projects/seldon-core/en/latest/)
    * [Community](https://github.com/SeldonIO/seldon-core#community)
+
+
+## TensorFlow Serving
+
+For TensorFlow models you can use TensorFlow Serving for both [real-time](/docs/components/serving/tfserving_new) and [batch](/docs/components/serving/tfbatchpredict) prediction. Documentation is also provided on using [TensorFlow serving via Istio](/docs/components/serving/istio). However, if you are thinking of utlizing multiple frameworks we would suggest you use KFServing or Seldon Core as described above.
+
+## NVIDIA TensorRT Inference Server
+
+NVIDIA TensorRT Inference Server is a REST and GRPC service for deep-learning
+inferencing of TensorRT, TensorFlow and Caffe2 models. The server is
+optimized deploy machine and deep learning algorithms on both GPUs and
+CPUs at scale.
+
+You can use [NVIDIA TensorRT Inference Server standalone](/docs/components/serving/trtinferenceserver) but we also recommend you look at using KFServing which includes support for NVIDIA TensorRT Inference Server.
 
