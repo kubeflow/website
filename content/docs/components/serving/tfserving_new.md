@@ -41,6 +41,9 @@ metadata:
   name: mnist-v1
   namespace: kubeflow
 spec:
+  selector:
+    matchLabels:
+      app: mnist
   template:
     metadata:
       annotations:
@@ -160,6 +163,9 @@ Change the deployment spec as follows:
 
 ```yaml
 spec:
+  selector:
+    matchLabels:
+      app: mnist
   template:
     metadata:
       annotations:
@@ -253,6 +259,9 @@ metadata:
   name: s3
   namespace: kubeflow
 spec:
+  selector:
+    matchLabels:
+      app: mnist
   template:
     metadata:
       annotations:
