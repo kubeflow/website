@@ -81,10 +81,9 @@ When Kubeflow is running, you can access the Kubeflow user interface (UI). If th
   be the same as the namespace that you selected in a previous step. This 
   ensures that the new notebook server is in a namespace that you can access.
 
-<a id="docker-image"></a>
-1. Select a Docker **image** for the baseline deployment of your notebook 
-  server. You can choose from a range of *standard* images or specify a 
-  *custom* image:
+1. <a id="docker-image"></a> Select a Docker **image** for the baseline 
+  deployment of your notebook server. You can choose from a range of *standard* 
+  images or specify a *custom* image:
 
   * **Standard**: The standard Docker images include typical machine learning 
     (ML) packages that you can use within your Jupyter notebooks on 
