@@ -51,19 +51,17 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     ```
     # The following parameters can be customized based on your needs.
 
+    gcloud config set project <your-gcp-project>
+
     CLUSTER_NAME="kubeflow-pipelines-standalone"
     ZONE="us-central1-a"
-    MACHINE_TYPE="n1-standard-2" # A machine with 2 CPUs and 7.50GB memory
-    SCOPES="storage-rw,cloud-platform" # These scopes are needed for running some pipeline samples
+    MACHINE_TYPE="n1-standard-2" # Minimum required resources
+    SCOPES="cloud-platform" # Allow talks with GCP APIs without additional settings
 
     gcloud container clusters create $CLUSTER_NAME \
         --zone $ZONE \
         --machine-type $MACHINE_TYPE \
-        --scopes $SCOPES \
-        --num-nodes 2 \
-        --max-nodes 5 \
-        --min-nodes 2 \
-        --enable-autoscaling
+        --scopes $SCOPES
     ```
 
     Reference:
@@ -73,6 +71,11 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     - Read `gcloud container clusters create` command documentation at https://cloud.google.com/sdk/gcloud/reference/container/clusters/create.
 
 1. Configure kubectl to talk to your newly created cluster. Refer to [Configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
+
+    ```
+    # The following command help your kubectl talks with your cluster
+    gcloud container clusters get-credentials $CLUSTER_NAME --zone=$ZONE
+    ```
 
 1. Deploy the latest version of Kubeflow Pipelines standalone to your cluster:
 
@@ -167,6 +170,14 @@ You can uninstall Kubeflow Pipelines by:
     # Or the following if using GCP Cloud SQL + Google Cloud Storage
     # kubectl delete -k manifests/kustomize/env/gcp
     ```
+
+## Optionally delete cluster
+
+If you don't want the cluster in the future, run following command to delete it.
+
+```
+gcloud container clusters delete $CLUSTER_NAME --zone $ZONE
+```
 
 ## Best practices maintaining custom manifests
 
