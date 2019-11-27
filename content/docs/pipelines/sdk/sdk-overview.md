@@ -355,8 +355,7 @@ You can also choose to share your pipeline as follows:
 
 {{% alert title="More about the above workflow" color="info" %}}
 For an example of the above workflow, see the
-Jupyter notebook titled [KubeFlow Pipeline Using TFX OSS 
-Components](https://github.com/kubeflow/pipelines/blob/master/samples/core/kubeflow_pipeline_using_TFX_OSS_components/KubeFlow%20Pipeline%20Using%20TFX%20OSS%20Components.ipynb) on GitHub.
+Jupyter notebook titled [KubeFlow Pipelines basic component build](https://github.com/kubeflow/pipelines/blob/master/samples/core/component_build/component_build.ipynb) on GitHub.
 {{% /alert %}}
 
 <a id="lightweight-component"></a>
@@ -456,7 +455,7 @@ For more detailed instructions, see the guide to [building lightweight
 components](/docs/pipelines/sdk/lightweight-python-components/).
 
 For an example, see the [Lightweight Python components - 
-basics](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/Lightweight%20Python%20components%20-%20basics.ipynb)
+basics](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb)
 notebook on GitHub.
 {{% /alert %}}
 

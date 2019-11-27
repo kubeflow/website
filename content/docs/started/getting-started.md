@@ -34,7 +34,7 @@ to suit your environment (desktop or server, existing Kubernetes cluster or publ
 
 * Installing Kubeflow on a **existing Kubernetes cluster** or a **public cloud**:
 
-  * Installing Kubeflow on a Kubernetes cluster, follow the
+  * To install Kubeflow on a Kubernetes cluster, follow the
   [guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
   * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
   follow the [GCP deployment guide](/docs/gke/deploy/).

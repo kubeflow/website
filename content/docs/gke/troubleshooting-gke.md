@@ -15,14 +15,25 @@ This guide covers troubleshooting specifically for
 For more help, try the 
 [general Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting).
 
-## Troubleshooting Cloud Identity-Aware Proxy (Cloud IAP)
+## Troubleshooting kubeflow deployment on GCP
 
 Here are some tips for troubleshooting Cloud IAP.
 
- * Make sure you are using HTTPS.
- * See the guide to 
+* Make sure you are GCP project owner
+* Make sure you are using HTTPS.
+* Check project [quota page](https://console.cloud.google.com/iam-admin/quotas) to see if any service's current usage reached quota limit, increase them as needed.
+* Check [deployment manager page](https://console.cloud.google.com/deployments) and see if there’s a failed deployment.
+* Check if endpoint is up: do [DNS lookup](https://mxtoolbox.com/DNSLookup.aspx) against your IAP url and see if can resolve to correct ip.
+* Check if certificate succeeded: `kubectl describe certificates -n istio-system` should give you certificate status.
+* Check ingress status: `kubectl describe ingress -n istio-system`
+* Check if [endpoint entry](https://console.cloud.google.com/endpoints) is created. There should be one entry with name `<deployment>.endpoints.<project>.cloud.goog`
+  * If endpoint entry doesn't exist, check `kubectl describe cloudendpoint -n istio-system`
+* If using IAP: make sure you [added](/docs/gke/deploy/oauth-setup/) `https://<deployment>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate`
+as an authorized redirect URI for the OAUTH credentials used to create the deployment.
+* If using IAP: see the guide to 
   [monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
 * See the sections below for troubleshooting specific problems.
+* Please [report bug](https://github.com/kubeflow/kubeflow/issues/new?template=bug_report.md) if all above items look good.
 
 ### DNS name not registered
 
@@ -269,7 +280,7 @@ Waiting for backend id PROJECT=<your-project> NAMESPACE=kubeflow SERVICE=envoy f
 You can verify the cause of the problem by entering the following command:
 
 ```
-kubectl -n kubeflow describe ingress
+kubectl -n istio-system describe ingress
 ```
 
 Look for something like this in the output:

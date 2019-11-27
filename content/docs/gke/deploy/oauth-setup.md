@@ -71,9 +71,8 @@ address to verify the user's identity.
     ```
     https://iap.googleapis.com/v1/oauth/clientIds/<CLIENT_ID>:handleRedirect
     ```
-    * `<CLIENT_ID>` is the OAuth client ID, something like 
-      `XXX.apps.googleusercontent.com`. Do not include the angle brackets around
-      the client ID.
+    * `<CLIENT_ID>` is the OAuth client ID that you copied from the dialog box in
+      step four. It looks like `XXX.apps.googleusercontent.com`.
     * Note that the URI is not dependent on the Kubeflow deployment or endpoint. 
       Multiple Kubeflow deployments can share the same OAuth client without the 
       need to modify the redirect URIs.

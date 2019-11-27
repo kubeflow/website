@@ -26,6 +26,9 @@ Join the discussion on the
 [#minikf](https://kubeflow.slack.com/messages/CGRKM3N0G/) Slack channel,
 ask questions, request features, and get support for MiniKF.
 
+To join the Kubeflow Slack workspace, please [request an
+invite](https://kubeflow.slack.com/join/shared_invite/enQtNDg5MTM4NTQyNjczLWUyZGI1ZmExZWExYWY4YzlkOWI4NjljNjJhZjhjMjEwNGFjNmVkNjg2NTg4M2I0ZTM5NDExZWI5YTIyMzVmNzM).
+
 ### System requirements
 For a smooth experience we recommend that your system meets the
 following requirements:

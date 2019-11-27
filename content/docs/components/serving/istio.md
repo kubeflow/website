@@ -69,7 +69,7 @@ like this:
 
 
 #### Define and view metrics
-See istio [doc](https://istio.io/docs/tasks/telemetry/metrics-logs.html).
+See istio [doc](https://istio.io/docs/tasks/telemetry/).
 
 #### Expose Grafana dashboard behind ingress/IAP
 

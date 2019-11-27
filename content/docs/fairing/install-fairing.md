@@ -78,7 +78,7 @@ Run the following command to install Kubeflow Fairing in your virtual
 environment.
 
 ```bash
-pip install fairing
+pip install kubeflow-fairing
 ```
 
 After the install is complete, the `fairing` python package is
@@ -86,23 +86,21 @@ available. Run the following command to verify that Kubeflow Fairing
 is installed:
 
 ```bash
-pip show fairing
+pip show kubeflow-fairing
 ```
 
 The response should be something like this:
 
 ```
-Name: fairing
-Version: 0.5.2
-Summary: Python SDK for building, training, and deploying ML models
+Name: kubeflow-fairing
+Version: 0.6.0
+Summary: Kubeflow Fairing Python SDK.
 Home-page: https://github.com/kubeflow/fairing
 Author: Kubeflow Authors
-Author-email: None
-License: UNKNOWN
+Author-email: hejinchi@cn.ibm.com
+License: Apache License Version 2.0
 Location: <path-to-kubeflow-fairing>
-Requires: google-auth, six, setuptools, httplib2, cloudpickle, requests,
-future, kubernetes, google-cloud-storage, notebook, tornado, numpy,
-google-api-python-client, docker, oauth2client
+Requires: notebook, future, docker, tornado, cloudpickle, oauth2client, numpy, requests, setuptools, httplib2, google-auth, google-api-python-client, urllib3, boto3, azure, six, kubernetes, google-cloud-storage
 ```
 
 ### Docker setup
@@ -188,7 +186,7 @@ with your hosted notebook environment.
 1.  Run the following command to install Kubeflow Fairing.
 
     ```bash
-    pip3 install fairing
+    pip3 install kubeflow-fairing
     ```
 
     After successful installation, the `fairing` python package should be
@@ -196,23 +194,21 @@ with your hosted notebook environment.
     is installed:
 
     ```bash
-    pip3 show fairing
+    pip3 show kubeflow-fairing
     ```
 
     The response should be something like this:
 
     ```
-    Name: fairing
-    Version: 0.5.2
-    Summary: Python SDK for building, training, and deploying ML models
+    Name: kubeflow-fairing
+    Version: 0.6.0
+    Summary: Kubeflow Fairing Python SDK.
     Home-page: https://github.com/kubeflow/fairing
     Author: Kubeflow Authors
-    Author-email: None
-    License: UNKNOWN
+    Author-email: hejinchi@cn.ibm.com
+    License: Apache License Version 2.0
     Location: <path-to-kubeflow-fairing>
-    Requires: google-auth, six, setuptools, httplib2, cloudpickle, requests,
-    future, kubernetes, google-cloud-storage, notebook, tornado, numpy,
-    google-api-python-client, docker, oauth2client
+    Requires: notebook, future, docker, tornado, cloudpickle, oauth2client, numpy, requests, setuptools, httplib2, google-auth, google-api-python-client, urllib3, boto3, azure, six, kubernetes, google-cloud-storage
     ```
 
 ### Configure Kubeflow Fairing

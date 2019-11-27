@@ -437,9 +437,8 @@ You can run the sample by selecting
 Kubeflow Pipelines UI. For help getting started with the UI, follow the 
 [Kubeflow Pipelines quickstart](/docs/pipelines/pipelines-quickstart/).
 
-The sample code is available in the [Kubeflow Pipelines samples 
-repo](https://github.com/kubeflow/pipelines/tree/master/samples/core/tfx_cab_classification). The
-pipeline uses a number of prebuilt, reusable components, including:
+<!--- TODO: Will replace the tfx cab with tfx oss when it is ready.-->
+The pipeline uses a number of prebuilt, reusable components, including:
 
 * The [Confusion Matrix 
   component](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py)

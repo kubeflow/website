@@ -32,8 +32,8 @@ Set up your environment:
 * Install [Docker](https://www.docker.com/get-docker).
 * Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
 
-The examples on this page come from the 
-[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/tree/master/samples/xgboost-spark) 
+The examples on this page come from the
+[XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm)
 in the Kubeflow Pipelines sample repository.
 
 ## Create a container image for each component
@@ -41,12 +41,12 @@ in the Kubeflow Pipelines sample repository.
 This section assumes that you have already created a program to perform the
 task required in a particular step of your ML workflow. For example, if the
 task is to train an ML model, then you must have a program that does the
-training, such as the program that 
-[trains an XGBoost model](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/train/src/train.py).
+training, such as the program that
+[trains an XGBoost model](https://github.com/kubeflow/pipelines/blob/master/components/deprecated/dataproc/train/src/train.py).
 
-Create a [Docker](https://docs.docker.com/get-started/) container image that 
-packages your program. See the 
-[Docker file](https://github.com/kubeflow/pipelines/blob/master/components/dataproc/train/Dockerfile)
+Create a [Docker](https://docs.docker.com/get-started/) container image that
+packages your program. See the
+[Docker file](https://github.com/kubeflow/pipelines/blob/master/components/deprecated/dataproc/train/Dockerfile)
 for the example XGBoost model training program mentioned above. You can also
 examine the generic
 [`build_image.sh`](https://github.com/kubeflow/pipelines/blob/master/components/build_image.sh)
@@ -121,8 +121,7 @@ Note:
 * Although the value of each `dsl.PipelineParam` is only available at run time,
   you can still use the parameters inline in the `arguments` by using `%s`
   variable substitution. At run time the argument contains the value of the 
-  parameter. For an example of this technique in operation, see the 
-  [taxi cab classification pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/tfx_cab_classification/tfx_cab_classification.py). 
+  parameter. 
 * `file_outputs` is a mapping between labels and local file paths. In the above 
   example, the content of `/output.txt` contains the string output of the 
   component. To reference the output in code:

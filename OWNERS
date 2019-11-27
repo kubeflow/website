@@ -3,6 +3,7 @@ approvers:
   - aronchick
   - dansanche
   - ewilderj
+  - jinchihe
   - jlewi
   - kunmingg
   - lluunn
@@ -23,12 +24,14 @@ approvers:
   - rileyjbauer
   - vicaire
   - joeliedtke
+  - animeshsingh
 reviewers:
   - abhi-g
   - aronchick
   - carmine
   - dansanche
   - inc0
+  - jinchihe
   - jlewi
   - kunmingg
   - lluunn
@@ -49,3 +52,4 @@ reviewers:
   - rileyjbauer
   - thedriftofwords
   - vicaire
+  - animeshsingh

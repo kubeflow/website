@@ -141,10 +141,11 @@ Follow these steps to deploy Kubeflow:
     ```bash
     # The following command is optional, to make kfctl binary easier to use.
     export PATH=$PATH:<path to kfctl in your Kubeflow installation>
-
     export KFAPP=<your choice of application directory name>
-    # Default uses IAP.
-    kfctl init ${KFAPP}
+    # Installs Istio by default. Comment out Istio components in the config file to skip Istio installation.
+    export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6-branch/bootstrap/config/kfctl_k8s_istio.0.6.2.yaml"
+
+    kfctl init ${KFAPP} --config=${CONFIG} -V
     cd ${KFAPP}
     kfctl generate all -V
     kfctl apply all -V
@@ -165,7 +166,9 @@ Follow these steps to deploy Kubeflow:
 
 ## Access Kubeflow dashboard
 
-Change the Ambassador service type to NodePort, then access the Kubeflow dashboard through Ambassador.
+From Kubeflow 0.6, the Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard. Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
+
+For Kubeflow version lower than 0.6, access the Kubeflow Dashboard via Ambassador service. Change the Ambassador service type to NodePort, then access the Kubeflow dashboard through Ambassador.
 ```bash
 kubectl -n kubeflow patch service ambassador -p '{"spec":{"type": "NodePort"}}'
 AMBASSADOR_PORT=$(kubectl -n kubeflow get service ambassador -ojsonpath='{.spec.ports[?(@.name=="ambassador")].nodePort}')
@@ -176,9 +179,7 @@ http://${MANAGEMENT_IP}:$AMBASSADOR_PORT/
 ```
 * **MANAGEMENT_IP** is management node IP.
 * **AMBASSADOR_PORT** is the ambassador port.
-  
 
-For Kubeflow 0.6.1, the Ambassador service has been dropped. The Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard. Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).  
 
 ## Delete Kubeflow
 
@@ -192,3 +193,33 @@ kfctl delete all --delete_storage
 # from mlpipeline.
 kfctl delete all
 ```
+## TroubleShooting
+### Insufficient Pods 
+  
+Default installation of IBM Cloud Private configures 10 allocatable pods per core. So if you have 8 cores, there will be 80 allocatable pods. However, execution of IBM Cloud Private (from default installation) requires ~40 pods and Kubeflow requires ~45 pods, so you may have insufficient pods issue.  
+
+To increase the number of pods, you can edit /etc/cfc/kubelet/kubelet-service-config, increase podsPerCore from 10 to 20 (or 30). Save your change and restart kubelet.
+```
+systemctl restart kubelet
+```
+
+### Kubeflow Central Dashboard: connection reset error or slow response   
+This may happen when there is not enough memory (e.g. if you only have 16G memory). You may consider turning off some non-essential services in IBM Cloud Private
+
+```
+kubectl -n kube-system patch ds logging-elk-filebeat-ds  --patch '{ "spec": { "template": { "spec": { "nodeSelector": { "switch": "down" } } } } }'
+kubectl -n kube-system patch ds nvidia-device-plugin  --patch '{ "spec": { "template": { "spec": { "nodeSelector": { "switch": "down" } } } } }'
+kubectl -n kube-system patch ds audit-logging-fluentd-ds  --patch '{ "spec": { "template": { "spec": { "nodeSelector": { "switch": "down" } } } } }'
+
+kubectl -n kube-system scale deploy logging-elk-client --replicas=0
+kubectl -n kube-system scale deploy logging-elk-kibana --replicas=0
+kubectl -n kube-system scale deploy logging-elk-logstash --replicas=0
+kubectl -n kube-system scale deploy logging-elk-master --replicas=0
+kubectl -n kube-system scale deploy secret-watcher --replicas=0
+```
+
+### Deployed Service's EXTERNAL-IP field stuck in PENDING state
+If you have deployed a service of `LoadBalancer` type, but the EXTERNAL-IP field stucks in `<pending>` state, this is because IBM Cloud Private doesn't provide a built-in support for the `LoadBalancer` service. To enable the `LoadBalancer` service on IBM Cloud Private, please see options desribed [here](https://medium.com/ibm-cloud/working-with-loadbalancer-services-on-ibm-cloud-private-26b7f0d22b44).
+
+
+

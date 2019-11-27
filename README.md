@@ -45,8 +45,8 @@ and run a local server to host your website. This section shows you how.
 
 ### Install Hugo and other dependencies
 
-The Kubeflow website uses the Docsy theme, which requires that you have 
-**Hugo version 0.45 or later**, and it must be the **extended** version of Hugo.
+The Kubeflow website uses the Docsy theme, which recommends that you have 
+**Hugo version 0.53 or later**, and it must be the **extended** version of Hugo.
 
 To get the extended version of Hugo:
 
@@ -75,7 +75,7 @@ For more details about installing Hugo, See the
 
 If you plan to make changes to the site styling, you need to install some 
 **CSS libraries** as well. Follow the instructions in the 
-[Docsy theme's setup guide](https://testydocsy.netlify.com/docs/getting-started/#installation-and-prerequisites). 
+[Docsy theme's setup guide](https://www.docsy.dev/docs/getting-started/#install-postcss).
 
 ### Fork and clone the website repo and run a local website server
 
@@ -112,7 +112,7 @@ local machine, then use your local repo as input to your Hugo web server:
   local website reflects the files in the current branch.
 
 Useful docs:
-- [User guide for the Docsy theme](https://testydocsy.netlify.com/docs/getting-started/)
+- [User guide for the Docsy theme](https://www.docsy.dev/docs/getting-started/)
 - [Hugo installation guide](https://gohugo.io/getting-started/installing/)
 - [Hugo basic usage](https://gohugo.io/getting-started/usage/)
 - [Hugo site directory structure](https://gohugo.io/getting-started/directory-structure/)
@@ -132,13 +132,13 @@ A `weight` property in the _front matter_ of each page determines the position
 of the page relative to the others in the same directory. The lower the weight,
 the earlier the page appears in the section. A weight of 1 appears before a
 a weight of 2, and so on. For example, see the front matter of the
-[requirements](https://github.com/kubeflow/website/blob/master/content/docs/started/requirements.md)
-page in the guides section. The page front matter looks like this:
+[Getting Started with Kubeflow](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/started/getting-started.md)
+page. The page front matter looks like this:
 
 ```
 +++
-title = "Requirements"
-description = "Requirements for Kubeflow"
+title = "Getting Started with Kubeflow"
+description = "Overview"
 weight = 1
 +++
 ```
@@ -198,10 +198,10 @@ The site's [front page](https://www.kubeflow.org/):
 * The CSS styles are in the 
   [project variables file](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
 * The page uses the 
-  [cover block](https://testydocsy.netlify.com/docs/getting-started/#blocks-cover) 
+  [cover block](https://www.docsy.dev/docs/adding-content/shortcodes/#blocks-cover) 
   defined by the theme.
 * The page also uses the 
-  [linkdown block](https://testydocsy.netlify.com/docs/getting-started/#blocks-link-down).
+  [linkdown block](https://www.docsy.dev/docs/adding-content/shortcodes/#blocks-link-down).
 
 ## Using Hugo shortcodes
 
@@ -269,24 +269,9 @@ The versioned sites follow this convention:
 * `master.kubeflow.org` always points to GitHub head
 * `vXXX-YYY.kubeflow.org` points to the release at vXXX.YYY-branch
 
-We also hook up each version to the dropdown on the website menu bar. To update
-the website to a new version, edit `config.toml` as follows: 
-
-1. Add a `params.versions` entry. For example, to add v0.5, add this entry:
-
-    ```
-    [[params.versions]]
-      version = "v0.5"
-      githubbranch = "v0.5-branch"
-      url = "https://v0-5.kubeflow.org"
-    ```
-
-2. Update the version number in the text for the master version on two lines. 
-  For example, to update to v0.5, the text on both lines should be:
-  
-    ```
-    version = "master (v0.5)"
-    ```
+We also hook up each version to the dropdown on the website menu bar. For 
+information on how to update the website to a new version, see the [Kubeflow
+release guide](https://github.com/kubeflow/kubeflow/blob/master/docs_dev/releasing.md#releasing-a-new-version-of-the-website).
 
 Whenever any documents reference any source code, you should use the version
 shortcode in the links, like so:

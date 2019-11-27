@@ -1,3 +1,6 @@
-# Ignore the resources files in diffs and merge conflicts
+# Ignore the resources files in diffs and merge conflicts.
 resources/**    linguist-generated=true
 resources/**    -diff -merge
+
+# Ignore the vendor files in diffs.
+themes/docsy/assets/vendor/**    linguist-generated=true

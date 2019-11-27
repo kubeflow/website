@@ -166,8 +166,9 @@ Follow these steps to deploy Kubeflow:
 
 ```bash
 # Add kfctl to PATH, to make the kfctl binary easier to use.
-export PATH=$PATH:"<path to kfctl>"
-export KFAPP="<your choice of application directory name>"
+# Use only alphanumeric characters or - in the directory name.
+export PATH=$PATH:"<path-to-kfctl>"
+export KFAPP="<your-choice-of-application-directory-name>"
 export CONFIG="{{% config-uri-existing-arrikto %}}"
 
 # Specify credentials for the default user.
@@ -209,14 +210,14 @@ Enter the credentials you specified in `KUBEFLOW_USER_EMAIL`, `KUBEFLOW_PASSWORD
 To add users to basic auth, you just have to edit the Dex ConfigMap under the key `staticPasswords`.
 ```bash
 # Download the dex config
-kubectl get cm dex -n kubeflow -o jsonpath='{.data.config\.yaml}' > dex-config.yaml
+kubectl get configmap dex -n kubeflow -o jsonpath='{.data.config\.yaml}' > dex-config.yaml
 
 # Edit the dex config with extra users.
 # The password must be hashed with bcrypt with an at least 10 difficulty level.
 # You can use an online tool like: https://passwordhashing.com/BCrypt
 
 # After editing the config, update the ConfigMap
-kubectl create cm dex --from-file=config.yaml=dex-config.yaml --dry-run -oyaml | kubectl apply -f -
+kubectl create configmap dex --from-file=config.yaml=dex-config.yaml -n kubeflow --dry-run -oyaml | kubectl apply -f -
 ```
 
 #### Log in with LDAP / Active Directory
@@ -544,7 +545,7 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
         
     1. Apply the new config.
         {{< highlight bash >}}
-        kubectl create configmap --from-file=dex-config-final.yaml -n kubeflow | kubectl apply -f -
+        kubectl create configmap dex --from-file=config.yaml=dex-config-final.yaml -n kubeflow --dry-run -oyaml | kubectl apply -f -
         {{< /highlight >}}
         
     1. Restart the Dex deployment, by doing one of the following:
@@ -668,5 +669,5 @@ Your Kubeflow app directory contains the following files and directories:
 * Follow the instructions to [connect to the Kubeflow web 
   UIs](/docs/other-guides/accessing-uis/), where you can manage various 
   aspects of your Kubeflow deployment.
-* Run a [sample machine learning workflow](/docs/examples/resources/).
-* Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/)
+* Run a [sample machine learning workflow](/docs/examples/kubeflow-samples/).
+* Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/).
