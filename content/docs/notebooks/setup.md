@@ -81,6 +81,7 @@ When Kubeflow is running, you can access the Kubeflow user interface (UI). If th
   be the same as the namespace that you selected in a previous step. This 
   ensures that the new notebook server is in a namespace that you can access.
 
+<a id="docker-image"></a>
 1. Select a Docker **image** for the baseline deployment of your notebook 
   server. You can choose from a range of *standard* images or specify a 
   *custom* image:
@@ -126,24 +127,64 @@ When Kubeflow is running, you can access the Kubeflow user interface (UI). If th
   * The default is to create a new volume for your workspace with the
     following configuration:
   
-      * Name: The volume name is synced with the name of the notebook server.
-        When you start typing the notebook server name, the volume name takes 
-        the same value. You can edit the volume name, but if you later edit the 
+      * Name: The volume name is synced with the name of the notebook server,
+        and has the form `workspace-<volume-name>`.
+        When you start typing the notebook server name, the volume name appears. 
+        You can edit the volume name, but if you later edit the 
         notebook server name, the volume name changes to match the notebook 
         server name.
       * Size: `10Gi`
-      * Mount path: `/home/jovyan`
       * Access mode: `ReadWriteOnce`. This setting means that the volume can be 
         mounted as read-write by a single node. See the 
         [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for more details about access modes.
+      * Mount point: `/home/jovyan`
 
   * Alternatively, you can point the notebook server at an existing volume by 
-    specifying the name, mount path, and access mode for the existing volume.
+    specifying the name of the existing volume.
 
 1. *(Optional)* Specify one or more **data volumes** if you want to store and
   access data from the notebooks on this notebook server. You can add new
   volumes or specify existing volumes. Kubeflow provisions a 
   [Kubernetes persistent volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for each of your data volumes.
+
+1. *(Optional)* Specify one or more additional **configurations** as a list of
+  PodDefault labels. To make use of this option, you must create a
+  [PodDefault manifest](https://github.com/kubeflow/kubeflow/blob/master/components/admission-webhook/README.md). In the PodDefault manifest, you can specify configurations
+  including volumes, secrets, and environment variables. 
+  Kubeflow matches the labels in the **configurations** field against
+  the properties specified in the PodDefault manifest. Kubeflow then injects 
+  these configurations into all the notebook Pods on this notebook server.
+  
+    For example, enter the label `addgcpsecret` in the **configurations** field
+    to match to a PodDefault manifest containing the following configuration:
+
+    ```
+    matchLabels:
+    addgcpsecret: "true"
+    ```
+
+    For indepth information on PodDefault usage, see the [admission-webhook
+    README](https://github.com/kubeflow/kubeflow/blob/master/components/admission-webhook/README.md).
+
+1. *(Optional)* Change the setting for **enable shared memory**. The default is
+  that shared memory is enabled. Some libraries like PyTorch use shared memory
+  for multiprocessing. Currently there is no implementation in Kubernetes to 
+  activate shared memory. As a workaround, Kubeflow creates ab empty directory 
+  at `/dev/shm`. 
+
+1. *(Optional)* Specify one or more **extra resources** as a JSON string. The
+   JSON string must specify the value for one or more of the
+   `spec.containers[].resources.limits` options described in the [Kubernetes 
+   documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container).
+
+    For example, if you want to schedule GPUs for your notebook server, as 
+    discussed above in the section on [specifying your Docker 
+    image](#docker-image), you can reserve two GPUs by entering the following 
+    JSON code in the **Extra Resources** section:
+
+    ```
+    {"nvidia.com/gpu": 2}
+    ```
 
 1. Click **LAUNCH**. You should see an entry for your new
   notebook server on the **Notebook Servers** page, with a spinning indicator in 
