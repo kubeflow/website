@@ -128,7 +128,7 @@ When Kubeflow is running, you can access the Kubeflow user interface (UI). If th
     following configuration:
   
       * Name: The volume name is synced with the name of the notebook server,
-        and has the form `workspace-<volume-name>`.
+        and has the form `workspace-<server-name>`.
         When you start typing the notebook server name, the volume name appears. 
         You can edit the volume name, but if you later edit the 
         notebook server name, the volume name changes to match the notebook 
