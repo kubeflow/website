@@ -159,7 +159,7 @@ When Kubeflow is running, you can access the Kubeflow user interface (UI). If th
 
     ```
     matchLabels:
-    addgcpsecret: "true"
+      addgcpsecret: "true"
     ```
 
     For indepth information on PodDefault usage, see the [admission-webhook
@@ -168,7 +168,7 @@ When Kubeflow is running, you can access the Kubeflow user interface (UI). If th
 1. *(Optional)* Change the setting for **enable shared memory**. The default is
   that shared memory is enabled. Some libraries like PyTorch use shared memory
   for multiprocessing. Currently there is no implementation in Kubernetes to 
-  activate shared memory. As a workaround, Kubeflow creates ab empty directory 
+  activate shared memory. As a workaround, Kubeflow creates an empty directory 
   at `/dev/shm`. 
 
 1. *(Optional)* Specify one or more **extra resources** as a JSON string. The
