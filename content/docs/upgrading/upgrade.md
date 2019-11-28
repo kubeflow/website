@@ -13,16 +13,13 @@ Nonetheless, here are some instructions for updating your deployment:
 1. Check your Kubeflow configuration directory (`${KF_DIR}`) into source control
   as a backup.
 
-1. Delete your existing Kubeflow cluster (if you are upgrading from v0.6.2, apply step# 3 and 4 below first to get the latest verison of kfctl (Kubeflow v0.7.0) that support -f flag):
+1. Delete your existing Kubeflow cluster:
 
-  ```
-  export CONFIG_FILE=<the path to your Kubeflow config file>
-  kfctl delete -V -f ${CONFIG_FILE}
+  ```  
+  kfctl delete -V 
   ```
 
-    The `${CONFIG_FILE}` environment variable must contain the path to the 
-    Kubeflow configuration file in your `${KF_DIR}` directory. For example,
-    `${KF_DIR}/{{% config-file-k8s-istio %}}` or `${KF_DIR}/kfctl_existing_arrikto.yaml`
+    
 
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 
@@ -37,8 +34,12 @@ Nonetheless, here are some instructions for updating your deployment:
 1. Update your kustomize manifests:
 
   ```
+  export CONFIG_FILE=<the path to your Kubeflow config file>
   kfctl build -V -f ${CONFIG_FILE}
   ```
+    The `${CONFIG_FILE}` environment variable must contain the path to the 
+    Kubeflow configuration file in your `${KF_DIR}` directory. For example,
+    `${KF_DIR}/{{% config-file-k8s-istio %}}` or `${KF_DIR}/kfctl_existing_arrikto.yaml`
   
 1. Re-apply any customizations that you need.
 
