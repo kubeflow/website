@@ -20,8 +20,8 @@ or the [command-line interface](/docs/gke/deploy/deploy-cli/),
 you choose the authentication method you want to use. One of the options is
 Cloud IAP. This document assumes that you have already deployed Kubeflow.
 
-Kubeflow uses the [Let's Encrypt](https://letsencrypt.org/) service to provide 
-an SSL certificate for the Kubeflow UI.
+Kubeflow uses the [Google-managed certificate](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs)
+to provide an SSL certificate for the Kubeflow Ingress.
 
 Cloud IAP gives you the following benefits:
 
@@ -45,6 +45,8 @@ problems:
      Namespace:        kubeflow
      Address:          35.244.132.160
      Default backend:  default-http-backend:80 (10.20.0.10:8080)
+     Annotations:
+     ...
      Events:
         Type     Reason     Age                 From                     Message
         ----     ------     ----                ----                     -------
@@ -57,8 +59,15 @@ problems:
      ...
      ```
 
-       Any problems with creating the load balancer are reported as Kubernetes 
-       events in the results of the above `describe` command.
+    There should be an annotation indicating that we are using managed certificate:
+
+    ```
+    annotation:
+      networking.gke.io/managed-certificates: gke-certificate
+    ```
+
+    Any problems with creating the load balancer are reported as Kubernetes
+    events in the results of the above `describe` command.
 
      * If the address isn't set then there was a problem creating the load 
        balancer.
@@ -71,90 +80,14 @@ problems:
        project or delete some existing resources.
 
 
-1. Verify that a signed SSL certificate was generated from 
-  [Let's Encrypt](https://letsencrypt.org/):
+1. Verify that a managed certificate resource is generated:
+   
+     ```
+     kubectl describe -n istio-system managedcertificate gke-certificate
+     ```
 
-      ```
-      kubectl -n istio-system get certificate envoy-ingress-tls  -o yaml
-
-      apiVersion: certmanager.k8s.io/v1alpha1
-      kind: Certificate
-      metadata:
-        creationTimestamp: 2019-04-02T22:49:43Z
-        generation: 1
-        labels:
-          kustomize.component: iap-ingress
-        name: envoy-ingress-tls
-        namespace: istio-system
-        resourceVersion: "4803"
-        selfLink: /apis/certmanager.k8s.io/v1alpha1/namespaces/kubeflow/certificates/envoy-ingress-tls
-        uid: 9b137b29-5599-11e9-a223-42010a8e020c
-      spec:
-        acme:
-          config:
-          - domains:
-            - mykubeflow.endpoints.myproject.cloud.goog
-            http01:
-              ingress: envoy-ingress
-        commonName: kf-vmaster-n01.endpoints.kubeflow-ci-deployment.cloud.goog
-        dnsNames:
-        - mykubeflow.endpoints.myproject.cloud.goog
-        issuerRef:
-          kind: ClusterIssuer
-          name: letsencrypt-prod
-        secretName: envoy-ingress-tls
-      status:
-        acme:
-          order:
-            url: https://acme-v02.api.letsencrypt.org/acme/order/54483154/382580193
-        conditions:
-        - lastTransitionTime: 2019-04-02T23:00:28Z
-          message: Certificate issued successfully
-          reason: CertIssued
-          status: "True"
-          type: Ready
-        - lastTransitionTime: null
-          message: Order validated
-          reason: OrderValidated
-          status: "False"
-          type: ValidateFailed
-      ```
-
-    It can take around 10 minutes to provision a certificate after the 
-    creation of the load balancer.
-
-    The most recent condition should be `Certificate issued successfully`.
-
-    The most common error is running out of [Let's Encrypt 
-    quota](https://letsencrypt.org/docs/rate-limits/).
-    Let's Encrypt enforces a quota of 5 duplicate certificates per week.
-      
-    The easiest fix to quota issues is to pick a different hostname by 
-    recreating and redeploying Kubeflow with a different
-    name. 
-
-    For example if you originally ran the following commands to deploy Kubeflow:
-
-    ```
-    export KF_NAME=my-app
-    export BASE_DIR=<path to a base directory>
-    export KF_DIR=${BASE_DIR}/${KF_NAME}
-    mkdir -p ${KF_DIR}
-    cd ${KF_DIR}
-    kfctl apply -V -f ${CONFIG_FILE}
-    ```
-
-    Then rerun the commands with a different name that you haven't used
-    before:
-
-    ```
-    export KF_NAME=my-app-unique
-    export BASE_DIR=<path to a base directory>
-    export KF_DIR=${BASE_DIR}/${KF_NAME}
-    mkdir -p ${KF_DIR}
-    cd ${KF_DIR}
-    kfctl apply -V -f ${CONFIG_FILE}
-    ```
+     The status field should have information about the current status of the Certificate.
+     Eventually, certificate status should be `Active`.
 
 1. Wait for the load balancer to report the back ends as healthy:
 
@@ -180,19 +113,8 @@ problems:
     If the backend is unhealthy, check the pods in `istio-system`:
     * `kubectl get pods -n istio-system`
     * The `istio-ingressgateway-XX` pods should be running
-    * Check the logs of `backend-updater-0`, `ingress-bootstrap-XX`, `iap-enabler-XX` to see if there is any error
-
-1. Now that the certificate exists, the Ingress resource should report that it 
-  is serving on HTTPS:
-
-    ```
-    kubectl -n istio-system get ingress
-    NAME            HOSTS                                                        ADDRESS          PORTS     AGE
-    envoy-ingress   mykubeflow.endpoints.myproject.cloud.goog   35.244.132.159   80, 443   1d
-    ```
-
-    If you don't see port 443, look at the Ingress events using 
-    `kubectl describe` to see if there are any errors.
+    * Check the logs of pod `backend-updater-0`, `iap-enabler-XX` to see if there is any error
+    * Follow the steps [here](https://www.kubeflow.org/docs/gke/troubleshooting-gke/#502-server-error) to check the load balancer and backend service on GCP.
 
 
 1. Try accessing Cloud IAP at the fully qualified domain name in your web 
@@ -209,28 +131,22 @@ problems:
     If you do not see a login prompt and you get a 404 error, the configuration
     of Cloud IAP is not yet complete. Keep retrying for up to 10 minutes.
 
-1. If you get an error `Error: redirect_uri_mismatch` after logging in, this 
-  means the list of OAuth authorized redirect URIs does not include your domain.
+1. If you get an error `Error: redirect_uri_mismatch` after logging in, this means the list of OAuth authorized redirect URIs does not include your domain.	
 
-    The full error message looks like the following example and includes the 
-    relevant links:
+    The full error message looks like the following example and includes the 	
+    relevant links:	
 
-    ```
-    The redirect URI in the request, https://mykubeflow.endpoints.myproject.cloud.goog/_gcp_gatekeeper/authenticate, does not match the ones authorized for the OAuth client. 
-    To update the authorized redirect URIs, visit: https://console.developers.google.com/apis/credentials/oauthclient/22222222222-7meeee7a9a76jvg54j0g2lv8lrsb4l8g.apps.googleusercontent.com?project=22222222222
-    ```
+    ```	
+    The redirect URI in the request, https://mykubeflow.endpoints.myproject.cloud.goog/_gcp_gatekeeper/authenticate, does not match the ones authorized for the OAuth client. 	
+    To update the authorized redirect URIs, visit: https://console.developers.google.com/apis/credentials/oauthclient/22222222222-7meeee7a9a76jvg54j0g2lv8lrsb4l8g.apps.googleusercontent.com?project=22222222222	
+    ```	
 
-    Follow the link in the error message to find the OAuth credential being used
-    and add the redirect URI listed in the error message to the list of 
-    authorized URIs. For more information, read the guide to 
-    [setting up OAuth for Cloud IAP](/docs/gke/deploy/oauth-setup/).
+    Follow the link in the error message to find the OAuth credential being used	
+    and add the redirect URI listed in the error message to the list of 	
+    authorized URIs. For more information, read the guide to 	
+    [setting up OAuth for Cloud IAP](/docs/gke/deploy/oauth-setup/).	
 
-## Expiry of the SSL certificate from Let's Encrypt
-
-Kubeflow runs an agent in your cluster to renew the Let's Encrypt certificate
-automatically. You don't need to take any action.
-For more information, see the [Let's Encrypt 
-documentation](https://letsencrypt.org/docs/integration-guide/).
-
-For questions and support about the certificate, visit 
-[Let's Encrypt support](https://community.letsencrypt.org/).
+## Next steps
+* The [GCP troubleshooting guide](/docs/gke/troubleshooting-gke/) for Kubeflow.
+* Guide to [sharing cluster access](/docs/other-guides/multi-user-overview/#onboard-new-user).
+* GCP guide to [Cloud IAP](https://cloud.google.com/iap/docs/).
