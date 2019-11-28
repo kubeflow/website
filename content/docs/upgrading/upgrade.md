@@ -13,7 +13,7 @@ Nonetheless, here are some instructions for updating your deployment:
 1. Check your Kubeflow configuration directory (`${KF_DIR}`) into source control
   as a backup.
 
-1. Delete your existing Kubeflow cluster:
+1. Delete your existing Kubeflow cluster (if you are upgrading from v0.6.2, apply step# 3 and 4 below first to get the latest verison of kfctl (Kubeflow v0.7.0) that support -f flag):
 
   ```
   export CONFIG_FILE=<the path to your Kubeflow config file>
