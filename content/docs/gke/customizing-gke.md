@@ -176,6 +176,25 @@ to `false`:
 You must also set 
 [`gpu-pool-initialNodeCount`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L58).
 
+### Add GPU node pool to an existing kubeflow cluster
+
+You can add a GPU node pool to your kubeflow cluster using the following command
+```
+export GPU_POOL_NAME=<name of the new gpu pool>
+
+gcloud container node-pools create ${GPU_POOL_NAME} \
+--accelerator type=nvidia-tesla-k80,count=1 \
+--zone us-central1-a --cluster ${KF_NAME} \
+--num-nodes=1 --machine-type=n1-standard-4 --min-nodes=0 --max-nodes=5 --enable-autoscaling
+```
+
+After adding GPU nodes to your cluster, you need to install NVIDIA's device drivers to the nodes. Google provides a DaemonSet that automatically installs the drivers for you.
+
+To deploy the installation DaemonSet, run the following command:
+```
+kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
+```
+
 ### Add Cloud TPUs to your cluster
 
 Set [`enable_tpu:true`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L80)
