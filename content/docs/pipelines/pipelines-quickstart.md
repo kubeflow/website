@@ -143,8 +143,8 @@ Follow these steps to set up the necessary GCP services and run the sample:
   * true-label: Column to be used for text representation of the label output
     by the model.
 
-    The arrows on the following screenshot indicate the run parameters that you
-    must supply:
+    The following partial screenshot shows the run parameters, including the 
+    two parameters that you must supply:
     <img src="/docs/images/pipelines-start-xgboost-run.png" 
       alt="Starting the XGBoost run on the pipelines UI"
       class="mt-3 mb-3 border border-info rounded">
