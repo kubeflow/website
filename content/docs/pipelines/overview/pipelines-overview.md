@@ -181,13 +181,12 @@ def xgb_train_pipeline(
         gcp.use_gcp_secret('user-gcp-sa'))
 ```
 
-### Pipeline data on the Kubeflow Pipelines UI
+### Pipeline input data on the Kubeflow Pipelines UI
 
-The screenshot below shows the Kubeflow Pipelines UI for kicking off a run of
-the pipeline. The pipeline definition in your code determines which parameters 
-appear in the UI form. The pipeline definition can also set default values for 
-these parameters. The arrows on the screenshot indicate the 
-parameters that do not have useful default values in this particular example: 
+The partial screenshot below shows the Kubeflow Pipelines UI for kicking off a 
+run of the pipeline. The pipeline definition in your code determines which 
+parameters appear in the UI form. The pipeline definition can also set default 
+values for the parameters: 
 
 <img src="/docs/images/pipelines-start-xgboost-run.png" 
   alt="Starting the XGBoost run on the pipelines UI"

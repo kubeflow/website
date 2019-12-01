@@ -131,8 +131,8 @@ Follow these steps to set up the necessary GCP services and run the sample:
 
     The sample supplies the values for the other parameters:
 
-  * region: The GCP geographical region in which the training and evaluaton data
-    are stored.
+  * region: The GCP geographical region in which the training and evaluation
+    data is stored.
   * train-data: Cloud Storage path to the training data.
   * eval-data: Cloud Storage path to the evaluation data.
   * schema: Cloud Storage path to a JSON file describing the format of the
