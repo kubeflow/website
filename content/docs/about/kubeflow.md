@@ -13,24 +13,8 @@ you are running Kubernetes, you should be able to run Kubeflow.
 
 ## Getting started with Kubeflow
 
-Follow the [getting-started guide](/docs/started/getting-started) to set up your
-environment.
-
-Then read the [documentation](/docs/) to learn about the features of Kubeflow, 
-including the following guides to Kubeflow components:
-
-* Kubeflow includes services for spawning and managing 
-  [Jupyter notebooks](/docs/notebooks/). [Project Jupyter](https://jupyter.org/) 
-  is a non-profit, open source project that supports interactive data science 
-  and scientific computing across many programming languages.
-
-* [Kubeflow Pipelines](/docs/pipelines/pipelines-overview/) is a platform for 
-  building, deploying, and managing multi-step ML workflows based on Docker 
-  containers.
-
-* Kubeflow offers a number of [components](/docs/components/) that you can use
-  to build your ML training, hyperparameter tuning, and serving workloads across
-  multiple platforms.
+Follow the [getting-started guide](/docs/started/getting-started/) to set up
+your environment and install Kubeflow.
 
 ## What is Kubeflow?
 
@@ -47,8 +31,12 @@ You can adapt the configuration to choose the platforms and services that you
 want to use for each stage of the ML workflow: data preparation, model training,
 prediction serving, and service management.
 
-You can choose to deploy your Kubernetes workloads locally or to a cloud 
-environment.
+You can choose to deploy your Kubernetes workloads locally, on-premises, or to 
+a cloud environment.
+
+Read the [Kubeflow overview](/docs/started/kubeflow-overview/) for an
+introduction to the Kubeflow architecture and to see how you can use Kubeflow
+to manage your ML workflow.
 
 ## The Kubeflow mission
 

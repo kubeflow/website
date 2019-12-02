@@ -67,7 +67,23 @@ components are useful at each stage of the workflow:
   alt="A typical machine learning workflow"
   class="mt-3 mb-3 border border-info rounded">
 
-TODO diagram in words.
+TODO diagram in words, using the info below.
+
+Then read the [documentation](/docs/) to learn about the features of Kubeflow, 
+including the following guides to Kubeflow components:
+
+* Kubeflow includes services for spawning and managing 
+  [Jupyter notebooks](/docs/notebooks/). [Project Jupyter](https://jupyter.org/) 
+  is a non-profit, open source project that supports interactive data science 
+  and scientific computing across many programming languages.
+
+* [Kubeflow Pipelines](/docs/pipelines/pipelines-overview/) is a platform for 
+  building, deploying, and managing multi-step ML workflows based on Docker 
+  containers.
+
+* Kubeflow offers a number of [components](/docs/components/) that you can use
+  to build your ML training, hyperparameter tuning, and serving workloads across
+  multiple platforms.
 
 ## Kubeflow interfaces
 
