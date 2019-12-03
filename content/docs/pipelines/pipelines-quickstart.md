@@ -131,8 +131,8 @@ Follow these steps to set up the necessary GCP services and run the sample:
 
     The sample supplies the values for the other parameters:
 
-  * region: The GCP geographical region in which the training and evaluaton data
-    are stored.
+  * region: The GCP geographical region in which the training and evaluation
+    data is stored.
   * train-data: Cloud Storage path to the training data.
   * eval-data: Cloud Storage path to the evaluation data.
   * schema: Cloud Storage path to a JSON file describing the format of the
@@ -143,8 +143,8 @@ Follow these steps to set up the necessary GCP services and run the sample:
   * true-label: Column to be used for text representation of the label output
     by the model.
 
-    The arrows on the following screenshot indicate the run parameters that you
-    must supply:
+    The following partial screenshot shows the run parameters, including the 
+    two parameters that you must supply:
     <img src="/docs/images/pipelines-start-xgboost-run.png" 
       alt="Starting the XGBoost run on the pipelines UI"
       class="mt-3 mb-3 border border-info rounded">
