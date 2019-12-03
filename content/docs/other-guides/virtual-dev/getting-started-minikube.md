@@ -134,21 +134,20 @@ Server Version: version.Info{Major:"1", Minor:"10+", GitVersion:"v1.10.7-gke.2",
 ```
 
 ### Install & Start Minikube
-Please see [detailed instructions](https://github.com/kubernetes/minikube/releases) for Minikube installation.
+Please see [detailed instructions](https://minikube.sigs.k8s.io/docs/start/) for Minikube installation.
 For quick setup instructions follow along below.
 
 ##### Mac OS X
 
 ```
-$ brew cask install minikube
+$ brew install minikube
 ```
 
 OR
 
 ```
-$ curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.28.0/minikube-darwin-amd64
-$ chmod +x minikube
-$ sudo mv minikube /usr/local/bin/
+$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 \
+  && sudo install minikube-darwin-amd64 /usr/local/bin/minikube
 ```
 
 ##### Ubuntu or CentOS
