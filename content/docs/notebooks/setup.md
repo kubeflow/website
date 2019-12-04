@@ -176,14 +176,20 @@ When Kubeflow is running, you can access the Kubeflow user interface (UI). If th
    `spec.containers[].resources.limits` options described in the [Kubernetes 
    documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container).
 
-    For example, if you want to schedule GPUs for your notebook server, as 
-    discussed above in the section on [specifying your Docker 
-    image](#docker-image), you can reserve two GPUs by entering the following 
-    JSON code in the **Extra Resources** section:
+    In addition to the `spec.containers[].resources.limits` options shown in the
+    above Kubernetes document, you can also use the **Extra Resources** section
+    to schedule GPUs for your notebook server, as discussed earlier in the
+    section on [specifying your Docker image](#docker-image).
+    
+    For example, you can reserve two GPUs by entering the following JSON code in 
+    the **Extra Resources** section:
 
     ```
     {"nvidia.com/gpu": 2}
     ```
+
+    You can find more details about scheduling GPUs in the [Kubernetes 
+    documentation](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
 
 1. Click **LAUNCH**. You should see an entry for your new
   notebook server on the **Notebook Servers** page, with a spinning indicator in 
