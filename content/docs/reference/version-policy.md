@@ -43,18 +43,22 @@ in terms of stability, upgradability, and the provision of services such as
 logging and monitoring. 
 
 When an application moves to version 1.0, the Kubeflow community will 
-decide whether to include that version of the application in the next major 
-or minor release of Kubeflow.
+decide whether to mark that version of the application as *stable* in the next 
+major or minor release of Kubeflow.
 
 <a id="application-matrix"></a>
 ## Kubeflow application matrix
 
-The following table shows the stable status of the applications that
-may be deployed to your Kubernetes cluster when you deploy Kubeflow. 
-The applications are specified in the 
+The following table shows the status (stable, beta, or experimental) of the 
+applications that may be deployed to your Kubernetes cluster when you deploy 
+Kubeflow. The applications and their versions are specified in the 
 [manifest](https://github.com/kubeflow/manifests/tree/master/kfdef) that you 
-use to deploy Kubeflow. You can use the information below to decide which of 
-the applications you should deploy to your production system.
+use to deploy Kubeflow. (The kfctl deployment tool does not discriminate against 
+an application based on its status.) You can use the information below to decide 
+which of the applications you should deploy to your production system, and
+adjust the manifest accordingly.
+
+Application status indicators for Kubeflow:
 
 * **Stable** means that the application has reached application 
   version 1.0 or later, and complies with the criteria defined <a href="#app-versioning">above</a> to reach version 1.0.
@@ -63,13 +67,13 @@ the applications you should deploy to your production system.
 * **Experimental** means that the application is in the early phases of 
   development and/or integration into Kubeflow.
 
-The application version number in the table reflects the version in the
-manifest at the time when Kubeflow {{% kf-latest-version %}} was
+The application version number in the table reflects the application version in
+the manifest at the time when Kubeflow {{% kf-latest-version %}} was
 released. This is therefore the default version of the application that you
 receive when you deploy Kubeflow {{% kf-latest-version %}}. Some applications 
-may provide later versions that you can choose to install into your Kubeflow  
+may release later versions that you can choose to install into your Kubeflow  
 deployment. If you need a later version of a specific application, refer to the
- documentation for that application.
+documentation for that application.
 
 <div class="table-responsive">
   <table class="table table-bordered">
