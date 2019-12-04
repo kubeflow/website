@@ -49,29 +49,34 @@ major or minor release of Kubeflow.
 <a id="application-matrix"></a>
 ## Kubeflow application matrix
 
-The following table shows the status (stable, beta, or experimental) of the 
-applications that may be deployed to your Kubernetes cluster when you deploy 
-Kubeflow. The applications and their versions are specified in the 
+The following table shows the **status** (stable, beta, or experimental) of the 
+applications that you can deploy to your Kubernetes cluster when you deploy 
+Kubeflow. The applications are specified in the 
 [manifest](https://github.com/kubeflow/manifests/tree/master/kfdef) that you 
-use to deploy Kubeflow. (The kfctl deployment tool does not discriminate against 
-an application based on its status.) You can use the information below to decide 
-which of the applications you should deploy to your production system, and
-adjust the manifest accordingly.
+use to deploy Kubeflow. The kfctl deployment tool deploys the applications 
+strictly according to the manifest. kfctl does not decide whether to deploy or
+not deploy an application based on the application status.
+
+You can use the information below to decide which of the applications you should
+deploy to your production system, and adjust the manifest accordingly.
 
 Application status indicators for Kubeflow:
 
-* **Stable** means that the application has reached application 
-  version 1.0 or later, and complies with the criteria defined <a href="#app-versioning">above</a> to reach version 1.0.
+* **Stable** means that the application complies with the 
+  [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md)
+  to reach application version 1.0, and that the Kubeflow community has deemed 
+  the application stable for this release of Kubeflow.
 * **Beta** means that the application is working towards a version 1.0 release
-  and is expected to meet the criteria for version 1.0 soon.
+  its maintainers have communicated a timeline for satisfying the criteria
+  for the stable status.
 * **Experimental** means that the application is in the early phases of 
   development and/or integration into Kubeflow.
 
-The application version number in the table reflects the application version in
+The **application version** in the table reflects the application version in
 the manifest at the time when Kubeflow {{% kf-latest-version %}} was
 released. This is therefore the default version of the application that you
 receive when you deploy Kubeflow {{% kf-latest-version %}}. Some applications 
-may release later versions that you can choose to install into your Kubeflow  
+may release later versions that you can choose to install into your Kubeflow
 deployment. If you need a later version of a specific application, refer to the
 documentation for that application.
 
@@ -81,7 +86,7 @@ documentation for that application.
       <tr>
         <th>Application</th>
         <th>Status in Kubeflow {{% kf-latest-version %}}</th>
-        <th>App version in Kubeflow {{% kf-latest-version %}}</th>
+        <th>Application version in Kubeflow {{% kf-latest-version %}}</th>
       </tr>
     </thead>
     <tbody>
@@ -148,7 +153,7 @@ documentation for that application.
       </tr>
       <tr>
         <td><a href="https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller">Profile 
-        Controller</a> (<a href="/docs/other-guides/multi-user-overview/">docs</a>)</td>
+        Controller for multi-user isolation</a> (<a href="/docs/other-guides/multi-user-overview/">docs</a>)</td>
         <td>Stable</td>
         <td>1.0</td>
       </tr>
@@ -202,7 +207,7 @@ one of the following Kubeflow SDKs and command-line interfaces
     <thead class="thead-light">
       <tr>
         <th>SDK / CLI</th>
-        <th>Status in Kubeflow {{% kf-latest-version %}}</th>
+        <th>Status with Kubeflow {{% kf-latest-version %}}</th>
         <th>SDK/CLI version</th>
       </tr>
     </thead>
