@@ -48,7 +48,7 @@ In case it didn't match, follow the steps below to further investigate the issue
 kubectl get pod -o yaml ${NOTEBOOK}-0
 ```
 
-* The name of the Pod should start with `jupter`
+* The name of the Pod should start with `jupyter`
 * If you are using username/password auth with Jupyter the pod will be named
 
 ```
