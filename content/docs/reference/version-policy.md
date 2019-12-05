@@ -67,7 +67,7 @@ Application status indicators for Kubeflow:
   to reach application version 1.0, and that the Kubeflow community has deemed 
   the application stable for this release of Kubeflow.
 * **Beta** means that the application is working towards a version 1.0 release
-  its maintainers have communicated a timeline for satisfying the criteria
+  and its maintainers have communicated a timeline for satisfying the criteria
   for the stable status.
 * **Experimental** means that the application is in the early phases of 
   development and/or integration into Kubeflow.
