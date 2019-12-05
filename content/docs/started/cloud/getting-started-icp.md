@@ -241,7 +241,16 @@ kubectl -n kube-system scale deploy secret-watcher --replicas=0
 ```
 
 ### Deployed Service's EXTERNAL-IP field stuck in PENDING state
-If you have deployed a service of `LoadBalancer` type, but the EXTERNAL-IP field stucks in `<pending>` state, this is because IBM Cloud Private doesn't provide a built-in support for the `LoadBalancer` service. To enable the `LoadBalancer` service on IBM Cloud Private, please see options desribed [here](https://medium.com/ibm-cloud/working-with-loadbalancer-services-on-ibm-cloud-private-26b7f0d22b44).
+If you have deployed a service of `LoadBalancer` type, but the EXTERNAL-IP field stucks in `<pending>` state, this is because IBM Cloud Private doesn't provide a built-in support for the `LoadBalancer` service. To enable the `LoadBalancer` service on IBM Cloud Private, please see options described [here](https://medium.com/ibm-cloud/working-with-loadbalancer-services-on-ibm-cloud-private-26b7f0d22b44).
+
+
+### CustomResourceDefinition.apiextensions.k8s.io "profiles.kubeflow.org" is invalid during v0.7 installation
+If you install Kubeflow v0.7 in IBM Cloud Private 3.1.0, you may encounter the following error:
+```
+failed to apply:  (kubeflow.error): Code 500 with message: kfApp Apply failed for kustomize:  (kubeflow.error): Code 500 with message: Apply.Run  Error error when creating "/tmp/kout904105401": CustomResourceDefinition.apiextensions.k8s.io "profiles.kubeflow.org" is invalid: spec.validation.openAPIV3Schema: Invalid value:...
+must only have "properties", "required" or "description" at the root if the status subresource is enabled
+```
+The default Kubernetes version in IBM Cloud Private 3.1.0 is 1.11 which is incompatilbe with Kubeflow v0.7. Please upgrade IBM Cloud Private with a Kubernetes version that is compatible with the Kubeflow version as described in [Minimum system requirements](https://www.kubeflow.org/docs/started/k8s/overview/).
 
 
 
