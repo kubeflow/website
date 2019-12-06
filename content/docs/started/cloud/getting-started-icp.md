@@ -16,6 +16,8 @@ This guide is a quick start to deploying Kubeflow on [IBM Cloud Private](https:/
 
 Follow the [installation steps in IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/installing/install.html) to install IBM Cloud Private 3.1.0 or later with master, proxy, worker, and optional management and vulnerability advisory nodes in your cluster in standard or high availability configurations.
 
+Please note IBM Cloud Private 3.2.0 is a prerequisite for installing Kubeflow v0.7.
+
 The guide takes IBM Cloud Private 3.1.0 as example below. You can check the IBM Cloud Private after installation.
 
 ```bash
