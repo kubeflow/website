@@ -92,6 +92,18 @@ To learn more, read the following guides to the Kubeflow components:
   to build your ML training, hyperparameter tuning, and serving workloads across
   multiple platforms.
 
+## Example of a specific ML workflow
+
+The following diagram shows a simple example of a specific ML workflow that you
+can use to train and serve a model trained on the MNIST dataset:
+
+<img src="/docs/images/kubeflow-gcp-e2e-tutorial.svg" 
+  alt="ML workflow for training and serving an MNIST model"
+  class="mt-3 mb-3 border border-info rounded">
+
+For details of the workflow and to run the system yourself, see the 
+[end-to-end tutorial for Kubeflow on GCP](/docs/gke/gcp-e2e/).
+
 ## Kubeflow interfaces
 
 This section introduces the interfaces that you can use to interact with
