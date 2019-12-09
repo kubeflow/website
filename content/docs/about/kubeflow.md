@@ -13,6 +13,10 @@ you are running Kubernetes, you should be able to run Kubeflow.
 
 ## Getting started with Kubeflow
 
+Read the [Kubeflow overview](/docs/started/kubeflow-overview/) for an
+introduction to the Kubeflow architecture and to see how you can use Kubeflow
+to manage your ML workflow.
+
 Follow the [getting-started guide](/docs/started/getting-started/) to set up
 your environment and install Kubeflow.
 
@@ -24,7 +28,7 @@ To use Kubeflow, the basic workflow is:
 
 * Download and run the Kubeflow deployment binary.
 * Customize the resulting configuration files.
-* Run the specified scripts to deploy your containers to your specific
+* Run the specified script to deploy your containers to your specific
   environment.
 
 You can adapt the configuration to choose the platforms and services that you 
@@ -34,9 +38,7 @@ prediction serving, and service management.
 You can choose to deploy your Kubernetes workloads locally, on-premises, or to 
 a cloud environment.
 
-Read the [Kubeflow overview](/docs/started/kubeflow-overview/) for an
-introduction to the Kubeflow architecture and to see how you can use Kubeflow
-to manage your ML workflow.
+Read the [Kubeflow overview](/docs/started/kubeflow-overview/) for more details.
 
 ## The Kubeflow mission
 

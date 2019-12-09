@@ -27,18 +27,17 @@ components of your ML system on top of Kubernetes:
   alt="An architectural overview of Kubeflow on Kubernetes"
   class="mt-3 mb-3 border border-info rounded">
 
-## Kubeflow components in the ML workflow
+## Introducing the ML workflow
 
-Developing an ML system is an iterative process. You need to evaluate the
-the output of your ML model continuously, and apply changes to the model and
-parameters when necessary to ensure the model keeps producing the results you
-need.
+When you develop and deploy an ML system, the ML workflow typically consists of 
+a number of stages. Developing an ML system is an iterative process. 
+You need to evaluate the output of various stages of the ML workflow, and apply
+changes to the model and parameters when necessary to ensure the model keeps 
+producing the results you need.
 
-When you develop and deploy an ML system, you typically need to develop a 
-workflow that consists of a number of stages.
-To keep the explanation as simple as possible, the following diagram
+For the sake of simplicity, the following diagram
 shows the workflow stages in sequence, with just one arrow at the end pointing
-back into the flow, to indicate the iterative nature of the process:
+back into the flow as an indication of the iterative nature of the process:
 
 <img src="/docs/images/kubeflow-overview-workflow-diagram-1.svg" 
   alt="A typical machine learning workflow"
@@ -46,8 +45,9 @@ back into the flow, to indicate the iterative nature of the process:
 
 Looking at the stages in more detail:
 
-* In the experimental phase, you develop and test your model based on 
-  assumptions:
+* In the experimental phase, you develop your model based on initial
+  assumptions, and test and update the model iteratively to produce the
+  results you're looking for:
 
   * Identify the problem you want the ML system to solve.
   * Collect and analyse the data you need to train your ML model.
@@ -68,6 +68,8 @@ Looking at the stages in more detail:
   * Serve the model for online prediction or for running in batch mode.
   * Monitor the model's performance, and feed the results into your processes
     for tuning or retraining the model.
+
+## Kubeflow components in the ML workflow
 
 The next diagram adds Kubeflow to the workflow, showing which Kubeflow
 components are useful at each stage:
