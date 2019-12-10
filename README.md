@@ -16,7 +16,8 @@ Here's a quick guide to updating the docs. It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
 updates:
 
-1. Fork the [kubeflow/website repo](https://github.com/kubeflow/website) on GitHub.
+1. Fork the [kubeflow/website 
+  repository](https://github.com/kubeflow/website) on GitHub.
 1. Make your changes and send a pull request (PR).
 1. If you're not yet ready for a review, add "WIP" to the PR name to indicate 
   it's a work in progress. Alternatively, you can also add `/hold` in a comment
@@ -33,9 +34,9 @@ updates:
   the content.
 1. When you're ready for a review, add a comment to the PR, remove any holds or
   "WIP" markers, and assign a reviewer/approver. See the
-  [Kubeflow contributor guide](https://github.com/kubeflow/community/blob/master/CONTRIBUTING.md).
+  [Kubeflow contributor guide](https://www.kubeflow.org/docs/about/contributing/).
 
-If you need more help with the GitHub workflow, take a look at this
+If you need more help with the GitHub workflow, follow this
 [guide to a standard GitHub
 workflow](https://github.com/kubeflow/website/blob/master/quick-github-guide.md). 
 
@@ -78,13 +79,14 @@ If you plan to make changes to the site styling, you need to install some
 **CSS libraries** as well. Follow the instructions in the 
 [Docsy theme's setup guide](https://www.docsy.dev/docs/getting-started/#install-postcss).
 
-### Fork and clone the website repo and run a local website server
+### Fork and clone the website repository and run a local website server
 
-Follow the usual GitHub workflow to fork the repo on GitHub and clone it to your
-local machine, then use your local repo as input to your Hugo web server:
+Follow the usual GitHub workflow to fork the repository on GitHub and clone it 
+to your local machine, then use your local repository as input to your Hugo web 
+server:
 
-1. **Fork** the [kubeflow/website repo](https://github.com/kubeflow/website) in
-  the GitHub UI.
+1. **Fork** the [kubeflow/website 
+  repository](https://github.com/kubeflow/website) in the GitHub UI.
 1. Clone your fork locally. This example uses SSH cloning:
 
     ```
@@ -110,7 +112,7 @@ local machine, then use your local repo as input to your Hugo web server:
 
 1. While making the changes, you can preview them on your local version of the
   website at [http://localhost:1313/](http://localhost:1313/). Note that if you
-  have more than one local git branch, when you switch between git branches the
+  have more than one local Git branch, when you switch between Git branches the
   local website reflects the files in the current branch.
 
 Useful docs:

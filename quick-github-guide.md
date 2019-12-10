@@ -1,10 +1,10 @@
-# Quick guide to working with a GitHub repo
+# Quick guide to working with a GitHub repository
 
 This page is intended for people who want to update the
 [Kubeflow docs](https://www.kubeflow.org/docs/) and
-who don't use git or GitHub often. The page gives you a quick guide to
-get going with a GitHub repo, using either the GitHub web user interface (UI)
-or git on the command line.
+who don't use Git or GitHub often. The page gives you a quick guide to
+get going with a GitHub repository, using either the GitHub web user interface 
+(UI) or Git on the command line.
 
 ## Using the GitHub web UI
 
@@ -24,7 +24,7 @@ Follow these steps to edit a page using the GitHub UI:
 1. If this is the first time you're updating a file in the Kubeflow
   website repository, a screen opens asking you to *fork* the repository. A
   fork is a copy of the repository where you can make your updates before
-  submitting them for review. You only have to do this once:
+  submitting them for review. You only have to fork the repository once:
 
     * Click **Fork this repository**.
     * If GitHub asks you **Where should we fork website** and offers your
@@ -71,17 +71,18 @@ Follow these steps to edit a page using the GitHub UI:
 
 ## Using the command line
 
-Here's a quick guide to a fairly standard GitHub workflow using git on the command line:
+Here's a quick guide to a fairly standard GitHub workflow using Git on the command line:
 
-1. Fork the kubeflow/website repo:
+1. Fork the kubeflow/website repository:
 
-    * Go to the [kubeflow/website repo](https://github.com/kubeflow/website) on GitHub.
-    * Click **Fork** to make your own copy of the repo. GitHub creates a copy
-      at `https://github.com/<your-github-username>/website`.
+    * Go to the [kubeflow/website 
+      repository](https://github.com/kubeflow/website) on GitHub.
+    * Click **Fork** to make your own copy of the repository. GitHub creates a 
+      copy at `https://github.com/<your-github-username>/website`.
 
 1. Open a command window on your local machine.
 
-1. Clone your forked repo, to copy the files down to your local machine.
+1. Clone your forked repository, to copy the files down to your local machine.
   This example creates a directory called `kubeflow` and uses SSH cloning to
   download the files:
 
@@ -92,7 +93,7 @@ Here's a quick guide to a fairly standard GitHub workflow using git on the comma
     cd website/
     ```
 
-1. Add the upstream repo as a git remote repo:
+1. Add the upstream repository as a Git remote repository:
 
     ```
     git remote add upstream https://github.com/kubeflow/website.git
@@ -104,11 +105,11 @@ Here's a quick guide to a fairly standard GitHub workflow using git on the comma
     git remote -vv
     ```
 
-    You should have 2 remote repos:
+    You should have 2 remote repositories:
 
-      -  `origin` - points to your own fork of the repo on gitHub -
-         that is, the one you cloned my local repo from.
-      -  `upstream` - points to the actual repo on gitHub.
+      -  `origin` - points to your own fork of the repository on gitHub -
+         that is, the one you cloned your local repository from.
+      -  `upstream` - points to the actual repository on gitHub.
 
 1. Create a branch. In this example, replace `doc-updates` with any branch name
   you like. Choose a branch name that helps you recognise the updates you plan
@@ -122,9 +123,9 @@ Here's a quick guide to a fairly standard GitHub workflow using git on the comma
   `/website/content/docs/` directory.
 
 1. Run `git status` at any time, to check the status of your local files.
-  Git tells you which files need adding or committing to your local repo.
+  Git tells you which files need adding or committing to your local repository.
 
-1. Commit your updated files to your local git repo. Example commit:
+1. Commit your updated files to your local Git repository. Example commit:
 
     ```
     git commit -a -m "Fixed some doc errors."
@@ -147,11 +148,12 @@ Here's a quick guide to a fairly standard GitHub workflow using git on the comma
 
 1. When you're ready to start the review process, create a pull request (PR)
   **in the branch** on **your fork** on the GitHub UI, based on the above push.
-  The PR is auto-sent to the upstream repo - that is, the one you forked from.
+  The PR is auto-sent to the upstream repository - that is, the one you forked 
+  from.
 
 1. If you need to make changes to the files in your PR, continue making them
   locally in the same branch, then push them again in the same way. GitHub
-  automatically sends them through to the same PR on the upstream repo!
+  automatically sends them through to the same PR on the upstream repository!
 
 1. **Hint:** If you're authenticating to GitHub via SSH, use `ssh-add` to add
   your SSH key passphrase to the managing agent, so that you don't have to
