@@ -254,5 +254,12 @@ must only have "properties", "required" or "description" at the root if the stat
 ```
 The default Kubernetes version in IBM Cloud Private 3.1.0 is 1.11 which is incompatilbe with Kubeflow v0.7. Please upgrade IBM Cloud Private with a Kubernetes version that is compatible with the Kubeflow version as described in [Minimum system requirements](https://www.kubeflow.org/docs/started/k8s/overview/).
 
+### v.07 Kubeflow pods stuck in CreateContainerConfigError state
+If you install Kubeflow v0.7 in IBM Cloud Private 3.2.0, you may find pods stuck in CreateContainerConfigError state and describe pod show the following error: 
+``` 
+Error: container has runAsNonRoot and image will run as root
+```
+If you install IBM Cloud Private version 3.2.0 or later as a new installation, the default pod security policy setting is the [ibm-restricted-psp policy](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.2.0/manage_cluster/security.html), which is applied to all of the existing and newly created namespaces. You can bypass this by deploying Kubeflow using a non-root user id. You can also use [IBM Cloud private CLI cm commands](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/manage_cluster/cli_cm_commands.html) to change the default setting.  See [Pod isolation](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/user_management/iso_pod.html) for other options.
+
 
 
