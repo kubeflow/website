@@ -112,7 +112,7 @@ Here's a quick guide to a fairly standard GitHub workflow using Git on the comma
       -  `upstream` - points to the actual repository on gitHub.
 
 1. Create a branch. In this example, replace `doc-updates` with any branch name
-  you like. Choose a branch name that helps you recognise the updates you plan
+  you like. Choose a branch name that helps you recognize the updates you plan
   to make in that branch:
 
     ```
@@ -151,7 +151,7 @@ Here's a quick guide to a fairly standard GitHub workflow using Git on the comma
   The PR is auto-sent to the upstream repository - that is, the one you forked 
   from.
 
-1. If you need to make changes to the files in your PR, continue making them
+1. If you need to change the files in your PR, continue changing them
   locally in the same branch, then push them again in the same way. GitHub
   automatically sends them through to the same PR on the upstream repository!
 
