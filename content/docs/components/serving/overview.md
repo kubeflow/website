@@ -4,11 +4,19 @@ description = "Model serving overview"
 weight = 1
 +++
 
-## Multi-framework serving
+Kubeflow supports two model serving systems that allow multi-framework model 
+serving: KFServing and Seldon Core. Alternatively, you can choose to use a
+standalone model serving system. This page gives an overview of the options, so
+that you can choose the framework that best supports your model serving 
+requirements.
 
-Kubeflow provides two supported open source model serving systems that allow multi-framework model serving: KFServing and Seldon Core. You should choose the framework that best supports your model serving requirements.  A rough comparison between KFServing and Seldon Core is shown below:
+## Multi-framework serving with KFServing or Seldon Core
 
-| Feature        | sub-feature    | KFServing | Seldon |
+KFServing and Seldon Core are both open source systems that allow 
+multi-framework model serving. The following table gives a rough comparison 
+between KFServing and Seldon Core:
+
+| Feature        | Sub-feature    | KFServing | Seldon Core |
 |----------------|----------------|  :--:     |  :--:  |
 | Framework      | TensorFlow     | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/servers/tensorflow.html)  |
 |                | XGBoost        | [x](https://github.com/kubeflow/kfserving/tree/master/docs/samples/xgboost) | [x](https://docs.seldon.io/projects/seldon-core/en/latest/servers/xgboost.html) |
@@ -33,33 +41,44 @@ Kubeflow provides two supported open source model serving systems that allow mul
 
 Notes:
 
-   * Both projects share technology including Explainability (via [Seldon Alibi Explain](https://github.com/SeldonIO/alibi)) and Payload Logging amongst other areas.
-   * A commercial product [Seldon Deploy](https://www.seldon.io/tech/products/deploy/) is available from Seldon that supports both KFServing and Seldon in production.
-   * KFServing is part of the Kubeflow project ecosystem. Seldon is an external project supported within Kubeflow.
+   * KFServing and Seldon Core share some technology, including explainability
+     (using [Seldon Alibi Explain](https://github.com/SeldonIO/alibi)) and 
+     payload logging, as well as other areas.
+   * A commercial product, 
+     [Seldon Deploy](https://www.seldon.io/tech/products/deploy/) supports both 
+     KFServing and Seldon in production.
+   * KFServing is part of the Kubeflow project ecosystem. Seldon Core is an
+     external project supported within Kubeflow.
 
-For further information:
+Further information:
 
  * KFServing:
-   * [Github Repo](https://github.com/kubeflow/kfserving)
-   * [Kubeflow Documentation](https://www.kubeflow.org/docs/components/serving/kfserving/)
+   * [Kubeflow documentation](/docs/components/serving/kfserving/)
+   * [GitHub repository](https://github.com/kubeflow/kfserving)
    * [Community](https://www.kubeflow.org/docs/about/community/)
- * Seldon
-   * [Github Repo](https://github.com/SeldonIO/seldon-core)
-   * [Kubeflow documentation](https://www.kubeflow.org/docs/components/serving/seldon/)
-   * [External Documentation](https://docs.seldon.io/projects/seldon-core/en/latest/)
+ * Seldon Core
+   * [Kubeflow documentation](/docs/components/serving/seldon/)
+   * [GitHub repository](https://github.com/SeldonIO/seldon-core)
+   * [Seldon Core documentation](https://docs.seldon.io/projects/seldon-core/en/latest/)
    * [Community](https://github.com/SeldonIO/seldon-core#community)
-
 
 ## TensorFlow Serving
 
-For TensorFlow models you can use TensorFlow Serving for both [real-time](/docs/components/serving/tfserving_new) and [batch](/docs/components/serving/tfbatchpredict) prediction. Documentation is also provided on using [TensorFlow serving via Istio](/docs/components/serving/istio). However, if you are thinking of utlizing multiple frameworks we would suggest you use KFServing or Seldon Core as described above.
+For TensorFlow models you can use TensorFlow Serving for both 
+[real-time](/docs/components/serving/tfserving_new) and 
+[batch](/docs/components/serving/tfbatchpredict) prediction. Kubeflow also
+a guide to [TensorFlow serving via Istio](/docs/components/serving/istio). 
+However, if you plan to use multiple frameworks, you should consider KFServing
+or Seldon Core as described above.
 
 ## NVIDIA TensorRT Inference Server
 
 NVIDIA TensorRT Inference Server is a REST and GRPC service for deep-learning
 inferencing of TensorRT, TensorFlow and Caffe2 models. The server is
-optimized deploy machine and deep learning algorithms on both GPUs and
+optimized to deploy machine learning algorithms on both GPUs and
 CPUs at scale.
 
-You can use [NVIDIA TensorRT Inference Server standalone](/docs/components/serving/trtinferenceserver) but we also recommend you look at using KFServing which includes support for NVIDIA TensorRT Inference Server.
-
+You can use NVIDIA TensorRT Inference Server as a 
+[standalone system](/docs/components/serving/trtinferenceserver),
+but you should consider KFServing as described above. KFServing includes support 
+for NVIDIA TensorRT Inference Server.
