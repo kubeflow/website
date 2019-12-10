@@ -27,6 +27,14 @@ components of your ML system on top of Kubernetes:
   alt="An architectural overview of Kubeflow on Kubernetes"
   class="mt-3 mb-3 border border-info rounded">
 
+Kubeflow builds on [Kubernetes](https://kubernetes.io/) as a system for 
+deploying, scaling, and managing complex systems.
+
+Using the Kubeflow configuration interfaces (see [below](#interfaces)) you can
+specify the ML tools required for your workflow. Then you can deploy the 
+workflow to various clouds, local, and on-prem platforms for experimentation and 
+for production use.
+
 ## Introducing the ML workflow
 
 When you develop and deploy an ML system, the ML workflow typically consists of 
@@ -104,6 +112,7 @@ can use to train and serve a model trained on the MNIST dataset:
 For details of the workflow and to run the system yourself, see the 
 [end-to-end tutorial for Kubeflow on GCP](/docs/gke/gcp-e2e/).
 
+<a id="interfaces"></a>
 ## Kubeflow interfaces
 
 This section introduces the interfaces that you can use to interact with
