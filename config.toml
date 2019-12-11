@@ -182,7 +182,7 @@ no = 'Sorry to hear that. Please <a href="https://github.com/kubeflow/website/is
         desc = "Development takes place here!"
 [[params.links.user]]
 	name = "Slack"
-	url = "https://join.slack.com/t/kubeflow/shared_invite/enQtNDg5MTM4NTQyNjczLWUyZGI1ZmExZWExYWY4YzlkOWI4NjljNjJhZjhjMjEwNGFjNmVkNjg2NTg4M2I0ZTM5NDExZWI5YTIyMzVmNzM"
+	url = "https://kubeflow.slack.com/join/shared_invite/enQtNDg5MTM4NTQyNjczLTdkNTVhMjg1ZTExOWI0N2QyYTQ2MTIzNTJjMWRiOTFjOGRlZWEzODc1NzMwNTMwM2EzNjY1MTFhODczNjk4MTk"
 	icon = "fab fa-slack"
         desc = "Chat with other project contributors"
 [[params.links.user]]
