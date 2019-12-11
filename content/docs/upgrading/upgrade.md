@@ -18,19 +18,19 @@ Prerequisites:
   kubectl get namespace $NAMESPACE -o yaml > ns.yaml
   ```
 
-  Examine the contents of the file. You should see something like:
-  ```yaml
-  metadata:
-    labels:
-      control-plane: kubeflow
-      katib-metricscollector-injection: enabled
-  ```
+    Examine the contents of the file. You should see something like:
+    ```yaml
+    metadata:
+      labels:
+        control-plane: kubeflow
+        katib-metricscollector-injection: enabled
+    ```
 
-  If the label is not present, you can manually add it to the file, then do
-  ```
-  kubectl apply -f ns.yaml
-  ```
-  to update the existing namespace.
+    If the label is not present, you can manually add it to the file, then do
+    ```
+    kubectl apply -f ns.yaml
+    ```
+    to update the existing namespace.
 
 * You must have a local Kubeflow application directory matching your current
   deployment. We'll call this `${KF_DIR}`.
@@ -45,59 +45,59 @@ Upgrade instructions:
 a v0.7.0 deployment to v0.7.1, use
 [this specification](https://github.com/kubeflow/manifests/blob/v0.7-branch/kfdef/kfctl_upgrade_gcp_iap_0.7.1.yaml).
 
-  Modify the configuration for your deployment:
-  ```yaml
-  apiVersion: kfupgrade.apps.kubeflow.org/v1alpha1
-  kind: KfUpgrade
-  metadata:
-    name: kf-upgrade-v0.7.1
-  spec:
-    currentKfDef:
-      # Replace with the name of your Kubeflow app
-      name: kubeflow-app
-      version: v0.7.0
-    newKfDef:
-      # Replace with the name of your kubeflow app
-      name: kubeflow-app
-      version: v0.7.1
-    # Replace this with the path to the KfDef that you are upgrading to
-    baseConfigPath: https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_gcp_iap.0.7.1.yaml
-  ```
-
-Your directory structure should look like:
-```
-${PARENT_DIR}
-|----${KF_DIR}
-|----kfctl_upgrade_spec.yaml
-
-```
-
-1. Run the `apply` command to upgrade your deployment:
-
-  ```
-  kfctl apply -f ${UPGRADE_SPEC} -V
-  ```
-
-  1. Alternatively you can run a build command first:
+    Modify the configuration for your deployment:
+    ```yaml
+    apiVersion: kfupgrade.apps.kubeflow.org/v1alpha1
+    kind: KfUpgrade
+    metadata:
+      name: kf-upgrade-v0.7.1
+    spec:
+      currentKfDef:
+        # Replace with the name of your Kubeflow app
+        name: kubeflow-app
+        version: v0.7.0
+      newKfDef:
+        # Replace with the name of your kubeflow app
+        name: kubeflow-app
+        version: v0.7.1
+      # Replace this with the path to the KfDef that you are upgrading to
+      baseConfigPath: https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_gcp_iap.0.7.1.yaml
     ```
-    kfctl build -f ${UPGRADE_SPEC} -V
-    ```
-    This command will create a new Kubeflow application in the same directory, with a name
-    in the form of a 7-character long hash value. The directory structure should look like:
+
+    Your directory structure should look like:
     ```
     ${PARENT_DIR}
     |----${KF_DIR}
-    |----${UPGRADE_DIR}
     |----kfctl_upgrade_spec.yaml
 
     ```
-    You can examine and change the kustomize parameter values in
-    `${UPGRADE_DIR}`.
 
-  1. Then run the `apply` command:
+1. Run the `apply` command to upgrade your deployment:
+
     ```
     kfctl apply -f ${UPGRADE_SPEC} -V
     ```
+
+    1. Alternatively you can run a build command first:
+      ```
+      kfctl build -f ${UPGRADE_SPEC} -V
+      ```
+      This command will create a new Kubeflow application in the same directory, with a name
+      in the form of a 7-character long hash value. The directory structure should look like:
+      ```
+      ${PARENT_DIR}
+      |----${KF_DIR}
+      |----${UPGRADE_DIR}
+      |----kfctl_upgrade_spec.yaml
+
+      ```
+      You can examine and change the kustomize parameter values in
+      `${UPGRADE_DIR}`.
+
+    1. Then run the `apply` command:
+      ```
+      kfctl apply -f ${UPGRADE_SPEC} -V
+      ```
 
 ### Upgrades from earlier versions of Kubeflow
 
