@@ -11,7 +11,6 @@ Prerequisites:
 
 * Download the latest kfctl binary from the
   [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
-
 * Ensure that your Kubeflow namespace is annotated with the
   `control-plane: kubeflow` label. You can verify this by doing:
   ```
@@ -31,19 +30,20 @@ Prerequisites:
     kubectl apply -f ns.yaml
     ```
     to update the existing namespace.
-
 * You must have a local Kubeflow application directory matching your current
   deployment. We'll call this `${KF_DIR}`.
-  * This should be present if you deployed Kubeflow using the kfctl tool.
-  * If you deployed Kubeflow using some other method (e.g. the 
-    [Deployment UI](/docs/gke/deploy/deploy-ui/)),
-    you will need to first create a local deployment directory.
+    * This should be present if you deployed Kubeflow using the kfctl tool.
+    * If you deployed Kubeflow using some other method (e.g. the 
+      [Deployment UI](/docs/gke/deploy/deploy-ui/)),
+      you will need to first create a local deployment directory.
+
 
 Upgrade instructions:
 
 1. Create an upgrade specification in the parent directory of your `${KF_DIR}`. For example, to upgrade
 a v0.7.0 deployment to v0.7.1, use
 [this specification](https://github.com/kubeflow/manifests/blob/v0.7-branch/kfdef/kfctl_upgrade_gcp_iap_0.7.1.yaml).
+
 
     Modify the configuration for your deployment:
     ```yaml
@@ -79,25 +79,25 @@ a v0.7.0 deployment to v0.7.1, use
     ```
 
     1. Alternatively you can run a build command first:
-      ```
-      kfctl build -f ${UPGRADE_SPEC} -V
-      ```
-      This command will create a new Kubeflow application in the same directory, with a name
-      in the form of a 7-character long hash value. The directory structure should look like:
-      ```
-      ${PARENT_DIR}
-      |----${KF_DIR}
-      |----${UPGRADE_DIR}
-      |----kfctl_upgrade_spec.yaml
+        ```
+        kfctl build -f ${UPGRADE_SPEC} -V
+        ```
+        This command will create a new Kubeflow application in the same directory, with a name
+        in the form of a 7-character long hash value. The directory structure should look like:
+        ```
+        ${PARENT_DIR}
+        |----${KF_DIR}
+        |----${UPGRADE_DIR}
+        |----kfctl_upgrade_spec.yaml
 
-      ```
-      You can examine and change the kustomize parameter values in
-      `${UPGRADE_DIR}`.
+        ```
+        You can examine and change the kustomize parameter values in
+        `${UPGRADE_DIR}`.
 
     1. Then run the `apply` command:
-      ```
-      kfctl apply -f ${UPGRADE_SPEC} -V
-      ```
+        ```
+        kfctl apply -f ${UPGRADE_SPEC} -V
+        ```
 
 ### Upgrades from earlier versions of Kubeflow
 
