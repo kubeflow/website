@@ -4,11 +4,71 @@ description = "Upgrading your deployment to a later version of Kubeflow"
 weight = 30
 +++
 
-Until version 1.0, Kubeflow makes no promises of backwards compatibility or 
-upgradeability. There is **no clean upgrade path** to the latest version of 
-Kubeflow ({{% kf-latest-version %}}).
+Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or later.
 
-Nonetheless, here are some instructions for updating your deployment:
+Prerequisites:
+
+1. Download the latest kfctl binary from the
+  [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
+
+
+1. Ensure that your kubeflow namespace is annotated with the following label:
+```
+  labels:
+    control-plane: kubeflow
+```
+
+1. You must have a local Kubeflow application directory matching your current
+   deployment.
+
+Upgrade instructions:
+
+1. Create an upgrade spec in the parent directory of the Kubeflow application. An example is provided
+[here](https://github.com/kubeflow/manifests/blob/v0.7-branch/kfdef/kfctl_upgrade_gcp_iap_0.7.1.yaml).
+
+```
+apiVersion: kfupgrade.apps.kubeflow.org/v1alpha1
+kind: KfUpgrade
+metadata:
+  name: kf-upgrade-v0.7.1
+spec:
+  currentKfDef:
+    # Replace with the name of your Kubeflow app
+    name: kubeflow-app
+    version: v0.7.0
+  newKfDef:
+    # Replace with the name of your kubeflow app
+    name: kubeflow-app
+    version: v0.7.1
+  # Replace this with the path to the KfDef that you are upgrading to
+  baseConfigPath: https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_gcp_iap.0.7.1.yaml
+```
+
+1. Run the upgrade command:
+
+```
+kfctl apply -f ${UPGRADE_SPEC} -V
+```
+
+Alternatively you can run a build command first:
+```
+kfctl build -f ${UPGRADE_SPEC} -V
+```
+
+This will create a new Kubeflow application in the same directory (the name
+should be a 7-character long hash value). You can examine and change the
+kustomize parameter values.
+
+Then apply the update:
+```
+kfctl apply -f ${UPGRADE_SPEC} -V
+```
+
+
+### Upgrades from Earlier Versions of Kubeflow
+
+For earlier versions, Kubeflow makes no promises of backwards compatibility or 
+upgradeability. Nonetheless, here are some instructions for updating your deployment:
 
 1. Check your Kubeflow configuration directory (`${KF_DIR}`) into source control
   as a backup.
