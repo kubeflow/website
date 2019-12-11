@@ -24,7 +24,7 @@ Upgrade instructions:
 1. Create an upgrade spec in the parent directory of the Kubeflow application. An example is provided
 [here](https://github.com/kubeflow/manifests/blob/v0.7-branch/kfdef/kfctl_upgrade_gcp_iap_0.7.1.yaml).
 
-```
+```yaml
 apiVersion: kfupgrade.apps.kubeflow.org/v1alpha1
 kind: KfUpgrade
 metadata:
@@ -47,16 +47,15 @@ spec:
 kfctl apply -f ${UPGRADE_SPEC} -V
 ```
 
-Alternatively you can run a build command first:
+1. Alternatively you can run a build command first:
 ```
 kfctl build -f ${UPGRADE_SPEC} -V
 ```
-
 This will create a new Kubeflow application in the same directory (the name
 should be a 7-character long hash value). You can examine and change the
 kustomize parameter values.
 
-Then apply the update:
+1. Then apply the update:
 ```
 kfctl apply -f ${UPGRADE_SPEC} -V
 ```
