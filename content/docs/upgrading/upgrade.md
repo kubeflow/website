@@ -19,7 +19,7 @@ Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or 
   ```
 
     Examine the contents of the file. You should see something like:
-    ```yaml
+    ```
     metadata:
       labels:
         control-plane: kubeflow
@@ -54,7 +54,7 @@ Your directory structure should look like:
     ```
 
 1. Modify the configuration for your deployment:
-    ```yaml
+    ```
     apiVersion: kfupgrade.apps.kubeflow.org/v1alpha1
     kind: KfUpgrade
     metadata:
