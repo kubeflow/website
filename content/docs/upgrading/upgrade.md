@@ -7,7 +7,7 @@ weight = 30
 ## Upgrading from Kubeflow v0.7.0 or later
 Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or later.
 
-Prerequisites:
+### Prerequisites
 
 * Download the latest kfctl binary from the
   [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
@@ -40,7 +40,7 @@ deployment. We'll call this `${KF_DIR}`.
       you will need to first create a local deployment directory.
 
 
-Upgrade instructions:
+### Upgrade instructions
 
 1. Create an upgrade specification in the parent directory of your `${KF_DIR}`. For example, to upgrade
 a v0.7.0 deployment to v0.7.1, use
@@ -71,6 +71,7 @@ Your directory structure should look like:
       # Replace this with the path to the KfDef that you are upgrading to
       baseConfigPath: https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_gcp_iap.0.7.1.yaml
     ```
+
 
 1. Run the `apply` command to upgrade your deployment:
 
