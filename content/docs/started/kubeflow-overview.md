@@ -17,7 +17,7 @@ ML pipelines. Kubeflow is also for ML engineers and operational teams who want
 to deploy ML systems to various environments for development, testing, and
 production-level serving.
 
-## Architectural overview
+## Conceptual overview
 
 Kubeflow is *the ML toolkit for Kubernetes*.
 The following diagram shows Kubeflow as a platform for arranging the
