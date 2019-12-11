@@ -8,17 +8,15 @@ Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or 
 
 Prerequisites:
 
-1. Download the latest kfctl binary from the
+* Download the latest kfctl binary from the
   [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
 
-
-1. Ensure that your kubeflow namespace is annotated with the following label:
+* Ensure that your kubeflow namespace is annotated with the following label:
 ```
   labels:
     control-plane: kubeflow
 ```
-
-1. You must have a local Kubeflow application directory matching your current
+* You must have a local Kubeflow application directory matching your current
    deployment.
 
 Upgrade instructions:
@@ -43,7 +41,6 @@ spec:
   # Replace this with the path to the KfDef that you are upgrading to
   baseConfigPath: https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_gcp_iap.0.7.1.yaml
 ```
-
 1. Run the upgrade command:
 
 ```
