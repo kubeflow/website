@@ -71,8 +71,7 @@ Your directory structure should look like:
       # Replace this with the path to the KfDef that you are upgrading to
       baseConfigPath: https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_gcp_iap.0.7.1.yaml
     ```
-
-
+  
 1. Run the `apply` command to upgrade your deployment:
 
     ```
