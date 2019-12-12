@@ -84,7 +84,7 @@ Your directory structure should look like:
       baseConfigPath: https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_gcp_iap.0.7.1.yaml
     ```
   
-1. If you don't need to change any kustomize parameter values in your configuration, run the `apply`
+If you don't need to change any kustomize parameter values in your configuration, run the `apply`
 command now to upgrade your deployment:
 
     ```
