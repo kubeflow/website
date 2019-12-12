@@ -37,7 +37,18 @@ deployment. We'll call this `${KF_DIR}`.
     * This should be present if you deployed Kubeflow using the kfctl tool.
     * If you deployed Kubeflow using some other method (e.g. the 
       [Deployment UI](/docs/gke/deploy/deploy-ui/)),
-      you will need to first create a local deployment directory.
+      you will need to first create a local deployment directory:
+      1. Follow the instructions for [environment preparations](docs/gke/deploy/deploy-cli/#prepare-your-environment).
+          * Make sure that the `${PROJECT}`, `${ZONE}`, and `${KF_NAME}`
+            variables match exactly with your deployment.
+          * For `${CONFIG_URI}`, use the `kfctl_gcp_iap` file if your deployment
+            uses Cloud IAP for authentication. Use the `kfctl_gcp_basic_auth` file if your deployment uses username and password.
+      1. Create your local deployment files:
+          ```
+          mkdir -p ${KF_DIR}
+          cd ${KF_DIR}
+          kfctl build -V -f ${CONFIG_URI}
+          ```
 
 
 ### Upgrade instructions
