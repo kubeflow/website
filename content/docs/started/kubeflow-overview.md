@@ -32,7 +32,7 @@ deploying, scaling, and managing complex systems.
 
 Using the Kubeflow configuration interfaces (see [below](#interfaces)) you can
 specify the ML tools required for your workflow. Then you can deploy the 
-workflow to various clouds, local, and on-prem platforms for experimentation and 
+workflow to various clouds, local, and on-premises platforms for experimentation and 
 for production use.
 
 ## Introducing the ML workflow
@@ -44,7 +44,7 @@ changes to the model and parameters when necessary to ensure the model keeps
 producing the results you need.
 
 For the sake of simplicity, the following diagram
-shows the workflow stages in sequence, with just one arrow at the end pointing
+shows the workflow stages in sequence, with one arrow at the end pointing
 back into the flow as an indication of the iterative nature of the process:
 
 <img src="/docs/images/kubeflow-overview-workflow-diagram-1.svg" 
@@ -58,7 +58,7 @@ Looking at the stages in more detail:
   results you're looking for:
 
   * Identify the problem you want the ML system to solve.
-  * Collect and analyse the data you need to train your ML model.
+  * Collect and analyze the data you need to train your ML model.
   * Choose an ML framework and algorithm, and code the initial version of your 
     model.
   * Experiment with the data and with training your model.
