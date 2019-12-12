@@ -54,7 +54,7 @@ Your directory structure should look like:
     |----kfctl_upgrade_spec.yaml
     ```
 
-1. Modify the configuration for your deployment:
+1. Modify the contents of the upgrade specification for your deployment:
     ```
     apiVersion: kfupgrade.apps.kubeflow.org/v1alpha1
     kind: KfUpgrade
@@ -80,9 +80,9 @@ command now to upgrade your deployment:
     kfctl apply -f ${UPGRADE_SPEC} -V
     ```
 
-Alternatively you can follow these steps to change the configuration before applying the upgrade:
+    Alternatively you can follow these steps to change the configuration before applying the upgrade:
 
-1. Run a `'build` command:
+1. Run a `build` command:
     ```
     kfctl build -f ${UPGRADE_SPEC} -V
     ```
