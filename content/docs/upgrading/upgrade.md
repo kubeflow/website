@@ -80,7 +80,7 @@ command now to upgrade your deployment:
     kfctl apply -f ${UPGRADE_SPEC} -V
     ```
 
-    Alternatively you can follow these steps to change the configuration before applying the upgrade:
+Alternatively you can follow these steps to change the configuration before applying the upgrade:
 
 1. Run a `build` command:
     ```
