@@ -14,7 +14,8 @@ requirements.
 
 KFServing and Seldon Core are both open source systems that allow 
 multi-framework model serving. The following table compares 
-KFServing and Seldon Core:
+KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
+(KFServing or Seldon Core) supports the feature specified in that row.
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -31,134 +32,134 @@ KFServing and Seldon Core:
       <tr>
         <td>Framework</td>
         <td>TensorFlow</td>
-        <td><a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow" target="_blank">x</a></td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/servers/tensorflow.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow">sample</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/servers/tensorflow.html">docs</a></td>
       </tr>
 
       <tr>
         <td></td>
         <td>XGBoost</td>
-        <td><a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/xgboost" target="_blank">x</a></td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/servers/xgboost.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/xgboost">sample</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/servers/xgboost.html">docs</a></td>
       </tr>
 
       <tr>
         <td></td>
         <td>scikit-learn</td>
-        <td><a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn" target="_blank">x</a></td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/servers/sklearn.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn">sample</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/servers/sklearn.html">docs</a></td>
       </tr>
 
       <tr>
         <td></td>
         <td>NVIDIA TensorRT Inference Server</td>
-        <td><a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorrt" target="_blank">x</a></td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/nvidia_mnist.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorrt">sample</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/nvidia_mnist.html">docs</a></td>
       </tr>
 
       <tr>
         <td></td>
         <td>ONNX</td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/onnx_resnet.html" target="_blank">x</a></td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/onnx_resnet.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/onnx_resnet.html">docs</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/onnx_resnet.html">docs</a></td>
       </tr>
 
       <tr>
         <td></td>
         <td>PyTorch</td>
-        <td><a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/pytorch" target="_blank">x</a></td>
-        <td><a href="/docs/components/serving/pytorchserving/" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/pytorch">sample</a></td>
+        <td><b>&check;</b> <a href="/docs/components/serving/pytorchserving/">docs</a></td>
       </tr>
 
       <tr>
         <td>Graph</td>
         <td>Transformers</td>
-        <td><a href="https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb" target="_blank">x</a></td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/transformer_spam_model.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb">sample</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/transformer_spam_model.html">docs</a></td>
       </tr>
 
       <tr>
         <td></td>
         <td>Combiners</td>
         <td>Roadmap</td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/openvino_ensemble.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/openvino_ensemble.html">sample</a></td>
       </tr>
 
       <tr>
         <td></td>
-        <td>Routers incl (<a href="https://en.wikipedia.org/wiki/Multi-armed_bandit" target="_blank">MAB</a>)</td>
+        <td>Routers including <a href="https://en.wikipedia.org/wiki/Multi-armed_bandit">MAB</a></td>
         <td>Roadmap</td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/analytics/routers.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/analytics/routers.html">docs</a></td>
       </tr>
 
       <tr>
         <td>Analytics</td>
         <td>Explanations</td>
-        <td><a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi" target="_blank">x</a></td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/analytics/explainers.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi">sample</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/analytics/explainers.html">docs</a></td>
       </tr>
 
       <tr>
         <td>Scaling</td>
         <td>Knative</td>
-        <td><a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling">sample</a></td>
         <td></td>
       </tr>
 
       <tr>
         <td></td>
         <td>GPU AutoScaling</td>
-        <td><a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling">sample</a></td>
         <td></td>
       </tr>
 
       <tr>
         <td></td>
         <td>HPA</td>
-        <td>x</td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/graph/autoscaling.html" target="_blank">x</a></td>
+        <td><b>&check;</b></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/graph/autoscaling.html">docs</a></td>
       </tr>
 
       <tr>
         <td>Custom</td>
         <td>Container</td>
-        <td><a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/custom" target="_blank">x</a></td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/custom">sample</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html">docs</a></td>
       </tr>
 
       <tr>
         <td></td>
         <td>Language Wrappers</td>
         <td></td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/python/index.html" target="_blank">python</a>, <a href="https://docs.seldon.io/projects/seldon-core/en/latest/java/README.html" target="_blank">java</a>, <a href="https://docs.seldon.io/projects/seldon-core/en/latest/R/README.html" target="_blank">R</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/python/index.html">Python</a>, <a href="https://docs.seldon.io/projects/seldon-core/en/latest/java/README.html">Java</a>, <a href="https://docs.seldon.io/projects/seldon-core/en/latest/R/README.html">R</a></td>
       </tr>
 
       <tr>
         <td></td>
         <td>Multi-Container</td>
         <td></td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/graph/inference-graph.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/graph/inference-graph.html">docs</a></td>
       </tr>
 
       <tr>
         <td>Rollout</td>
         <td>Canary</td>
-        <td><a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/rollouts" target="_blank">x</a></td>
-        <td><a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/istio_canary.html" target="_blank">x</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/rollouts">sample</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/istio_canary.html">docs</a></td>
       </tr>
 
       <tr>
         <td></td>
         <td>Shadow</td>
         <td></td>
-        <td>x</td>
+        <td><b>&check;</b></td>
       </tr>
 
       <tr>
         <td>istio</td>
         <td></td>
-        <td>x</td>
-        <td>x</td>
+        <td><b>&check;</b></td>
+        <td><b>&check;</b></td>
       </tr>
     </tbody>
   </table>
