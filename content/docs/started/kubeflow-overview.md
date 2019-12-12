@@ -105,7 +105,7 @@ To learn more, read the following guides to the Kubeflow components:
 The following diagram shows a simple example of a specific ML workflow that you
 can use to train and serve a model trained on the MNIST dataset:
 
-<img src="/docs/images/kubeflow-gcp-e2e-tutorial.svg" 
+<img src="/docs/images/kubeflow-gcp-e2e-tutorial-simplified.svg" 
   alt="ML workflow for training and serving an MNIST model"
   class="mt-3 mb-3 border border-info rounded">
 
