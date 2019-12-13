@@ -38,14 +38,14 @@ for production use.
 ## Introducing the ML workflow
 
 When you develop and deploy an ML system, the ML workflow typically consists of 
-a number of stages. Developing an ML system is an iterative process. 
+several stages. Developing an ML system is an iterative process. 
 You need to evaluate the output of various stages of the ML workflow, and apply
 changes to the model and parameters when necessary to ensure the model keeps 
 producing the results you need.
 
 For the sake of simplicity, the following diagram
-shows the workflow stages in sequence, with one arrow at the end pointing
-back into the flow as an indication of the iterative nature of the process:
+shows the workflow stages in sequence. The arrow at the end of the workflow
+points back into the flow to indicate the iterative nature of the process:
 
 <img src="/docs/images/kubeflow-overview-workflow-diagram-1.svg" 
   alt="A typical machine learning workflow"
@@ -68,10 +68,10 @@ Looking at the stages in more detail:
 * In the production phase, you deploy a system that performs the following 
   processes:
 
-  * Transform the data into the format that your training system needs. The
-    transformation process must be the same in the experimental and production
-    phases, to ensure that the ML model bases its predictions on the same data 
-    format as that used during training.
+  * Transform the data into the format that your training system needs.
+    To ensure that your model behaves consistently during training and 
+    prediction, the transformation process must be the same in the experimental 
+    and production phases.
   * Train the ML model.
   * Serve the model for online prediction or for running in batch mode.
   * Monitor the model's performance, and feed the results into your processes
@@ -96,7 +96,7 @@ To learn more, read the following guides to the Kubeflow components:
   building, deploying, and managing multi-step ML workflows based on Docker 
   containers.
 
-* Kubeflow offers a number of [components](/docs/components/) that you can use
+* Kubeflow offers several [components](/docs/components/) that you can use
   to build your ML training, hyperparameter tuning, and serving workloads across
   multiple platforms.
 
