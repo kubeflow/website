@@ -87,9 +87,9 @@ Your directory structure should look like:
 If you don't need to change any kustomize parameter values in your configuration, run the `apply`
 command now to upgrade your deployment:
 
-    ```
-    kfctl apply -f ${UPGRADE_SPEC} -V
-    ```
+```
+kfctl apply -f ${UPGRADE_SPEC} -V
+```
 
 Alternatively you can follow these steps to change the configuration before applying the upgrade:
 
