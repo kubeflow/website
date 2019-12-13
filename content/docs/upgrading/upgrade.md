@@ -10,6 +10,7 @@ weight = 30
 This feature is currently in <b>Alpha</b> with limited support. The Kubeflow
 team is interested in any feedback you may have, in particular with regards to
 usability of the feature.
+{{% /alert %}}
 
 Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or later.
 
