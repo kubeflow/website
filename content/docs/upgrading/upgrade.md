@@ -5,6 +5,12 @@ weight = 30
 +++
 
 ## Upgrading from Kubeflow v0.7.0 or later
+
+{{% alert title="Alpha version" color="warning" %}}
+This feature is currently in <b>Alpha</b> with limited support. The Kubeflow
+team is interested in any feedback you may have, in particular with regards to
+usability of the feature.
+
 Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or later.
 
 ### Prerequisites
@@ -15,22 +21,20 @@ Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or 
 * Ensure that your Kubeflow namespace is annotated with the
   `control-plane: kubeflow` label. You can verify this by doing:
   ```
-  kubectl get namespace $NAMESPACE -o yaml > ns.yaml
+  kubectl get namespace $NAMESPACE -o yaml
   ```
 
-    Examine the contents of the file. You should see something like:
+    You should see something like:
     ```
     metadata:
       labels:
         control-plane: kubeflow
-        katib-metricscollector-injection: enabled
     ```
 
-    If the label is not present, you can manually add it to the file, then do
+    If the label is not present, you can patch the namespace by doing
     ```
-    kubectl apply -f ns.yaml
+    kubectl label namespace $NAMESPACE control-plane=kubeflow
     ```
-    to update the existing namespace.
 
 * You must have a local Kubeflow application directory matching your current
 deployment. We'll call this `${KF_DIR}`.
