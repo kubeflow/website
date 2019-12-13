@@ -60,7 +60,14 @@ is a 7.
 
 ### The overall workflow
 
-Here's an overview of what you accomplish by following this guide:
+The following diagram shows what you accomplish by following this guide:
+
+<img src="/docs/images/kubeflow-gcp-e2e-tutorial.svg" 
+  alt="ML workflow for training and serving an MNIST model"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+In summary:
 
 * Setting up [Kubeflow][kubeflow] in a [GKE][kubernetes-engine]
   cluster.
@@ -80,7 +87,7 @@ Here's an overview of what you accomplish by following this guide:
   * Running a simple web app to send a prediction request to the model and
     display the result.
 
-Let's get started!
+It's time to get started!
 
 ## Set up your environment
 
