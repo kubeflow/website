@@ -33,6 +33,10 @@ KFServing works with Kubeflow 0.7. Kustomize installation files are [located in 
 * [Autoscaling](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling)
 * [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
 * [Explainability](https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi)
+* [Azure](https://github.com/kubeflow/kfserving/tree/master/docs/samples/azure)
+* [Kafka](https://github.com/kubeflow/kfserving/tree/master/docs/samples/kafka)
+* [S3](https://github.com/kubeflow/kfserving/tree/master/docs/samples/s3)
+* [On-prem cluster](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pvc)
 
 ## Sample notebooks
 * [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb)
