@@ -64,21 +64,20 @@ The matrix is therefore an alternative way of accessing the information in the
     </thead>
     <tbody>
       <tr>
-        <td><b>Existing Kubernetes cluster</b>: vanilla Kubeflow with no external 
-          dependencies</td>
+        <td><b>Existing Kubernetes cluster</b> using a standard Kubeflow 
+          installation</td>
         <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a> 
         </td>
         <td><a href="/docs/started/k8s/kfctl-k8s-istio/">Docs</a></td>
       </tr>
       <tr>
-        <td><b>Existing Kubernetes cluster</b> using Dex and Istio for
-          authentication</td>
+        <td><b>Existing Kubernetes cluster</b> using Dex for authentication</td>
         <td><a href="{{% config-uri-existing-arrikto %}}">{{% config-file-existing-arrikto %}}</a> 
         </td>
         <td><a href="/docs/started/k8s/kfctl-existing-arrikto/">Docs</a></td>
       </tr>
       <tr>
-        <td><b>Amazon Web Services (AWS)</b>: standard setup</td>
+        <td><b>Amazon Web Services (AWS)</b>using the standard setup</td>
         <td><a href="{{% config-uri-aws-standard %}}">{{% config-file-aws-standard %}}</a> 
         </td>
         <td><a href="/docs/aws/deploy/install-kubeflow/">Docs</a></td>
