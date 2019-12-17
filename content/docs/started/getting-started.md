@@ -77,7 +77,7 @@ The matrix is therefore an alternative way of accessing the information in the
         <td><a href="/docs/started/k8s/kfctl-existing-arrikto/">Docs</a></td>
       </tr>
       <tr>
-        <td><b>Amazon Web Services (AWS)</b>using the standard setup</td>
+        <td><b>Amazon Web Services (AWS)</b> using the standard setup</td>
         <td><a href="{{% config-uri-aws-standard %}}">{{% config-file-aws-standard %}}</a> 
         </td>
         <td><a href="/docs/aws/deploy/install-kubeflow/">Docs</a></td>
