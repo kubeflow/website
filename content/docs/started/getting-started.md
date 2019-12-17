@@ -16,12 +16,11 @@ It's important that you have some knowledge of the following systems and tools:
 If you plan to deploy Kubeflow on an existing Kubernetes cluster, review these
 [Kubernetes system requirements](/docs/started/k8s/overview#minimum-system-requirements).
 
-
+<a id="installation-guides"></a>
 ## Installing Kubeflow
 
 There are various ways to install Kubeflow. Choose one of the following options
-to suit your environment (desktop or server, existing Kubernetes cluster or public cloud):
-
+to suit your environment (desktop or server, existing Kubernetes cluster, or public cloud):
 
 * Installing Kubeflow on a **desktop** or **server**:
 
@@ -46,6 +45,78 @@ to suit your environment (desktop or server, existing Kubernetes cluster or publ
   * To use Kubeflow on IBM Cloud Private (ICP),
 	follow the [ICP deployment guide](/docs/started/cloud/getting-started-icp/).
 
+## Configuration quick reference
+
+Below is a matrix of the platforms where you can deploy Kubeflow and the 
+corresponding manifest files that specify the default configuration for each
+platform. The matrix shows the same manifests as the installation guides.
+The matrix is therefore an alternative way of accessing the information in the
+[installation section above](#installation-guides).
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Deployment platform</th>
+        <th>Manifest</th>
+        <th>Deployment guide</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Existing Kubernetes cluster</b>: vanilla Kubeflow with no external 
+          dependencies</td>
+        <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a> 
+        </td>
+        <td><a href="/docs/started/k8s/kfctl-k8s-istio/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Existing Kubernetes cluster</b> using Dex and Istio for
+          authentication</td>
+        <td><a href="{{% config-uri-existing-arrikto %}}">{{% config-file-existing-arrikto %}}</a> 
+        </td>
+        <td><a href="/docs/started/k8s/kfctl-existing-arrikto/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Amazon Web Services (AWS)</b>: standard setup</td>
+        <td><a href="{{% config-uri-aws-standard %}}">{{% config-file-aws-standard %}}</a> 
+        </td>
+        <td><a href="/docs/aws/deploy/install-kubeflow/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Amazon Web Services (AWS)</b> with authentication</td>
+        <td><a href="{{% config-uri-aws-cognito %}}">{{% config-file-aws-cognito %}}</a> 
+        </td>
+        <td><a href="/docs/aws/deploy/install-kubeflow/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Microsoft Azure</b></td>
+        <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a>  
+        </td>
+        <td><a href="/docs/azure/deploy/install-kubeflow/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Google Cloud Platform (GCP)</b> with basic authentication</td>
+        <td><a href="{{% config-uri-gcp-basic-auth %}}">{{% config-file-gcp-basic-auth %}}</a>  
+        </td>
+        <td><a href="/docs/gke/deploy/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Google Cloud Platform (GCP)</b> with Cloud Identity-Aware Proxy 
+          (Cloud IAP)</td>
+        <td><a href="{{% config-uri-gcp-iap %}}">{{% config-file-gcp-iap %}}</a>  
+        </td>
+        <td><a href="/docs/gke/deploy/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>IBM Cloud Private</b></td>
+        <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a>  
+        </td>
+        <td><a href="/docs/started/cloud/getting-started-icp/">Docs</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Installing command line tools
 
