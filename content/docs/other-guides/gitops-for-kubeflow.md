@@ -1,7 +1,7 @@
 +++
 title = "GitOps For Kubeflow Using Argo CD"
 description = "Running Kubeflow using the GitOps methodology with Argo CD"
-weight = 30
+weight = 60
 +++
 
 This guide describes how to set up Kubeflow using Argo-CD as a GitOps methodology.

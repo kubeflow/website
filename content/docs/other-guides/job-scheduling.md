@@ -1,7 +1,7 @@
 +++
 title = "Job Scheduling"
 description = "How to schedule a job with gang-scheduling"
-weight = 30
+weight = 70
 +++
 
 This guide describes how to use [volcano scheduler](https://github.com/volcano-sh/volcano) to support gang-scheduling in 
