@@ -87,10 +87,11 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/started/getting-started-gke/             /docs/started/cloud/getting-started-gke/
 /docs/started/getting-started-icp/             /docs/started/cloud/getting-started-icp/
 
-/docs/other-guides/job-scheduling/             /docs/use-cases/job-scheduling/
 /docs/other-guides/upgrade/                    /docs/upgrading/upgrade/
 
 /docs/use-cases/kubeflow-on-multinode-cluster/ /docs/other-guides/kubeflow-on-multinode-cluster/
+/docs/use-cases/job-scheduling/                /docs/other-guides/job-scheduling/
+/docs/use-cases/gitops-for-kubeflow/           /docs/other-guides/gitops-for-kubeflow/
 
 # Remove Kubeflow installation on existing EKS cluster
 /docs/aws/deploy/existing-cluster/             /docs/aws/deploy/install-kubeflow/
