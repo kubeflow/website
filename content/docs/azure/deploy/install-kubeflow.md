@@ -70,8 +70,8 @@ Create a specifically defined cluster:
 Example variables: 
 
 - NAME=KubeTestCluster
-- AGENT_SIZE=Standard_D2_v2
-- AGENT_COUNT=3
+- AGENT_SIZE=Standard_D4_v3
+- AGENT_COUNT=2
 - Use the same resource group and name from the previous step
 
 **NOTE:  If you are using a GPU based AKS cluster (For example: AGENT_SIZE=Standard_NC6), you also need to [install the NVidia drivers](https://docs.microsoft.com/azure/aks/gpu-cluster#install-nvidia-drivers) on the cluster nodes before you can use GPUs with Kubeflow.**
