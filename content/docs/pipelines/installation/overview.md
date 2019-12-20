@@ -40,8 +40,8 @@ Notes on specific features
 <a id="standalone"></a>
 ## Kubeflow Pipelines Standalone
 
-Use this option to deploy Kubeflow Pipelines to your local machine, on-premises,
-or to a cloud, without the other components of Kubeflow.
+Use this option to deploy Kubeflow Pipelines to an on-premises or cloud
+Kubernetes cluster, without the other components of Kubeflow.
 
 Installation guide
 : [Kubeflow Pipelines Standalone deployment 
@@ -57,9 +57,9 @@ Interfaces
 Notes on specific features
 : After deployment, your Kubernetes cluster contains Kubeflow Pipelines only. 
   It does not include the other Kubeflow components. 
-  For example, to use a Jupyter Notebook, you must use a separate notebook 
-  server.
-
+  For example, to use a Jupyter Notebook, you must use a local notebook or a 
+  hosted notebook in a cloud service such as the [AI Platform 
+  Notebooks](https://cloud.google.com/ai-platform/notebooks/docs/).
 
 <a id="marketplace"></a>
 ## GCP Marketplace
