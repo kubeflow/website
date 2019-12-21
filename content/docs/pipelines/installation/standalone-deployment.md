@@ -1,7 +1,7 @@
 +++
 title = "Pipelines Standalone Deployment in GCP"
 description = "Instructions to deploy Kubeflow Pipelines standalone to a cluster"
-weight = 15
+weight = 20
 +++
 
 As an alternative to [deploying Kubeflow](/docs/started/getting-started/#installing-kubeflow) as a
@@ -12,6 +12,13 @@ manifests.
 
 Knowledge about [Kubernetes](https://kubernetes.io/docs/home/), [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) and [kustomize](https://kustomize.io/) will help you understand this
 document better and be able to customize your deployment based on your needs.
+
+{{% alert title="Installation outside GCP is also available" color="info" %}}
+<p>This guide currently describes how to install Kubeflow Pipelines standalone 
+on Google Cloud Platform (GCP). You can also install Kubeflow Pipelines on other
+platforms. This guide needs updating. See
+<a href="https://github.com/kubeflow/website/issues/1253">issue #1253</a>.</p>
+{{% /alert %}}
 
 ## Common prerequisites
 
