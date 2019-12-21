@@ -200,6 +200,24 @@ kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container
 Set [`enable_tpu:true`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L80)
 in `${KF_DIR}/gcp_config/cluster-kubeflow.yaml`.
 
+
+### Specify a minimum CPU
+
+Certain instructions sets or hardware features are only available on specific CPUs, so to ensure your cluster utilizes the appropriate hardware, you need to set a minimum CPU value. 
+
+In brief, inside `gcp_config/cluster.jinja` change the `minCpuPlatform` property for the CPU node pool. For example, `Intel Broadwell` becomes `Intel Skylake`. Setting a minimum CPU needs to occur during cluster/node creation; it cannot be applied to an existing cluster/node.
+
+More detailed instructions follow.
+
+* Choose a zone you want to deploy in that has your required CPU. Zones are listed in the [Regions and Zones documentation](https://cloud.google.com/compute/docs/regions-zones/).
+
+* Deploy Kubeflow normally as specified in the ["Deploy using CLI" documentation](/docs/gke/deploy/deploy-cli/), but stop at section ["Set up and deploy Kubeflow"](/docs/gke/deploy/deploy-cli/#set-up-and-deploy-kubeflow). Instead, navigate to section ["Alternatively, set up your configuration for later deployment"](/docs/gke/deploy/deploy-cli/#alternatively-set-up-your-configuration-for-later-deployment). Then follow the steps until you are instructed to edit configuration files.
+
+* Navigate to the `gcp_config directory` and open the `cluster.jinja` file. Change the cluster property `minCpuPlatform`. For example, from `Intel Broadwell` to `Intel Skylake`. Note: you may notice there are two minCpuPlatform properties in the file. One of them is for GPU node pools. Not all CPU/GPU combinations are compatible, so leave the GPU minCpuPlatform property untouched.
+
+* Follow the remaining steps of ["Alternatively, set up your configuration for later deployment"](/docs/gke/deploy/deploy-cli/#alternatively-set-up-your-configuration-for-later-deployment).
+
+
 ### Add VMs with more CPUs or RAM
 
   * Change the machineType.
