@@ -60,7 +60,7 @@ KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
       <tr>
         <td></td>
         <td>ONNX</td>
-        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/onnx_resnet.html">docs</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/onnx">sample</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/onnx_resnet.html">docs</a></td>
       </tr>
 
