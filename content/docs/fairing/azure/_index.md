@@ -38,7 +38,7 @@ service principal with access to these resources. If you want to use the same
 service principal as your AKS cluster, you can get the service principal ID
 with the following command:
 
-```bash
+```
 az aks show -g <resource-group-name> -n <name>
 ```
 
@@ -53,7 +53,7 @@ The above command has output like this:
 The role you grant must have at least read and write permissions to ACR and
 Storage.
 
-To learn more about how to grant the Service Principal access, follow the
+To learn more about how to grant the service principal access, follow the
 [Azure role-based authentication documentation][az-roles].
 
 ## Setting up credentials as Kubernetes secrets
@@ -66,7 +66,7 @@ Run the following commands to set up your credentials as a Kubernetes secret.
 
 1.  Set environment variables to use in the following commands.
 
-    ```bash
+    ```
     export AZ_CLIENT_ID=<service-principal-client-id>
     export AZ_CLIENT_SECRET=<service-principal-client-secret>
     export AZ_TENANT_ID=<tenant-id>
@@ -75,9 +75,9 @@ Run the following commands to set up your credentials as a Kubernetes secret.
     export ACR_NAME=<acr-name>
     ```
 
-    * **AZ_CLIENT_ID:** The Service Principal client ID. You can get the
+    * **AZ_CLIENT_ID:** The service principal client ID. You can get the
       `client_id` property from ~/.azure/aksServicePrincipal.json.
-    * **AZ_CLIENT_SECRET:** The Service Principal secret. You can get the
+    * **AZ_CLIENT_SECRET:** The service principal secret. You can get the
       `client_secret` property from ~/.azure/aksServicePrincipal.json.
     * **AZ_TENANT_ID:** The Azure Tenant ID of your account. You can get the
       Tenant ID from the `tenantId` field in the output of `az account show`.
@@ -86,12 +86,12 @@ Run the following commands to set up your credentials as a Kubernetes secret.
       show`.
     * **TARGET_NAMESPACE:** Specify the namespace that your Notebook Server is
       in. For example, this guide recommends using `kubeflow-anonymous`.
-    * **ACR_NAME:** The name of an ACR that the Service Principal can access.
-
+    * **ACR_NAME:** The name of an ACR that the service principal can access.
+    
 1.  Use the following command to create a secret that Kubeflow can use to access
     Azure APIs.
 
-    ```bash
+    ```
     kubectl create secret generic -n ${TARGET_NAMESPACE} azcreds \
     --from-literal=AZ_CLIENT_ID=${AZ_CLIENT_ID} \
     --from-literal=AZ_CLIENT_SECRET=${AZ_CLIENT_SECRET} \
@@ -101,8 +101,7 @@ Run the following commands to set up your credentials as a Kubernetes secret.
 
 1.  Use the following command to create a secret that Kubeflow can use to access
     ACR.
-
-    ```bash
+    ```
     kubectl create secret docker-registry -n ${TARGET_NAMESPACE} acrcreds \
     --docker-server=${ACR_NAME}.azurecr.io \
     --docker-username=${AZ_CLIENT_ID} \
@@ -137,9 +136,11 @@ Clone the Kubeflow Fairing repository to download the files used in this example
     <img src="/docs/images/azure-notebook-new-terminal.png" alt="Creating new terminal after connecting to notebook server" class="mt-3 mb-3 p-3 border border-info rounded" />
 
 1.  Run the following command to clone the Kubeflow Fairing project:
-    ```bash
+    
+    ```
     git clone https://github.com/kubeflow/fairing.git
     ```
+
     This command clones the project including the example into your notebook server.
 
 You can now close the terminal window, and you should now see the `fairing` folder
@@ -155,7 +156,7 @@ In the `xgboost-high-level-apis.ipynb` notebook, find the cell tagged with
 `parameters` and update this cell to use Azure. Update following values to
 configure Fairing to use your Azure backend and Storage.
 
-```bash
+```
 export FAIRING_BACKEND = 'KubeflowAzureBackend'
 export DOCKER_REGISTRY = '<acr-name>.azurecr.io'
 export AZURE_REGION = None # This is only relevant if you haven't created a
