@@ -235,7 +235,7 @@ Events:              <none>
 ```
 
 When the last value in `Status.Conditions.Type` is `Succeeded`, the experiment
-is finished.
+is complete.
 
 View the results of the experiment in the Katib UI:
 
@@ -249,14 +249,16 @@ View the results of the experiment in the Katib UI:
       class="mt-3 mb-3 border border-info rounded">
 
 1. Click on the right-hand panel to close the drop-down menu. You should see
-  the  experiment listed on the page:
+  the list of experiments:
 
-    <img src="/docs/images/katib-random-example.png" 
+    <img src="/docs/images/katib-experiments.png" 
       alt="The random example in the list of Katib experiments"
       class="mt-3 mb-3 border border-info rounded">
 
 1. Click the name of the experiment, **random-example**.
-1. You should see a graph similar to this one:
+1. You should see a graph showing the level of accuracy for various 
+  combinations of the hyperparameter values (learning rate, number of layers, 
+  and optimizer):
 
     <img src="/docs/images/katib-random-example-graph.png" 
       alt="Graph produced by the random example"
@@ -271,7 +273,8 @@ View the results of the experiment in the Katib UI:
 
 ### TensorFlow operator example
 
-This is an example for the Tensorflow operator:
+Run the following command to launch an experiment using the Kubeflow's 
+TensorFlow training job operator:
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/tfjob-example.yaml
@@ -283,9 +286,13 @@ You can check the status of the experiment:
 kubectl -n kubeflow describe experiment tfjob-example
 ```
 
+Follow the steps as described for the *random algorithm example* above, 
+to see the results of the experiment in the Katib UI.
+
 ### PyTorch example
 
-This is an example for the PyTorch operator:
+Run the following command to launch an experiment using Kubeflow's PyTorch 
+training job operator:
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/pytorchjob-example.yaml
@@ -296,6 +303,9 @@ You can check the status of the experiment:
 ```
 kubectl -n kubeflow describe experiment pytorchjob-example
 ```
+
+Follow the steps as described for the *random algorithm example* above, 
+to see the results of the experiment in the Katib UI.
 
 ## Cleanup
 
