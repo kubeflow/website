@@ -10,82 +10,126 @@ Katib is a scalable and flexible hyperparameter tuning framework and is tightly
 integrated with Kubernetes. It does not depend on any specific deep learning 
 framework (such as TensorFlow, MXNet, or PyTorch).
 
-## Installing Katib
+## Katib setup
 
-To run Katib jobs, you must install the required packages as shown in this
-section. You can do so by following the Kubeflow [deployment guide](/docs/gke/deploy/),
-or by installing Katib directly from its repository:
+This section describes some configurations that you may need to add to your
+Kubernetes cluster, depending on the way you're using Kubeflow and Katib.
+
+### Installing Katib
+
+You can skip this step if you have already installed Kubeflow. Your Kubeflow
+deployment includes Katib. 
+
+To install Katib as part of Kubeflow, follow the 
+[Kubeflow installation guide](/docs/started/getting-started/).
+
+If you want to install Katib separately from Kubeflow, or to get a later version
+of Katib, run the following commands to install Katib directly from its 
+repository on GitHub and deploy Katib to your cluster:
+
 ```
 git clone https://github.com/kubeflow/katib
 bash ./katib/scripts/v1alpha3/deploy.sh
 ```
 
-### Persistent Volumes
-If you want to use Katib outside Google Kubernetes Engine (GKE) and you don't 
-have a StorageClass for  dynamic volume provisioning in your cluster, you must 
-create a persistent volume (PV) to bind your persistent volume claim (PVC).
+### Setting up persistent volumes
 
-This is the YAML file for a PV:
+You can skip this step if you're using Kubeflow on Google Kubernetes Engine 
+(GKE) or if your Kubernetes cluster includes a StorageClass for dynamic volume 
+provisioning. For more information, see the Kubernetes documentation on
+[dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
+and [persistent volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
 
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: katib-mysql
-  labels:
-    type: local
-    app: katib
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /data/katib
-```
+If you're using Katib outside GKE and your cluster doesn't include a 
+StorageClass for dynamic volume provisioning, you must create a persistent 
+volume (PV) to bind to your persistent volume claim (PVC). 
 
-After deploying the Katib package, run the following command to create the PV:
+After deploying Katib to your cluster, run the following command to create the 
+PV:
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha3/pv/pv.yaml
 ```
 
-## Running examples
+The above `kubectl create` command uses a YAML file 
+([`pv.yaml`](https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha3/pv/pv.yaml))
+that defines the properties of the PV.
 
-After deploying everything, you can run some examples.
+<a id="katib-ui"></a>
+## Accessing the Katib UI
+
+You can use the Katib user interface (UI) to submit experiments and to monitor 
+your results. The Katib home page within Kubeflow looks like this:
+
+<img src="/docs/images/katib-home.png" 
+  alt="The Katib home page within the Kubeflow UI"
+  class="mt-3 mb-3 border border-info rounded">
+
+If you installed Katib as part of Kubeflow, you can access the 
+Katib UI from the Kubeflow UI:
+
+1. Open the Kubeflow UI. See the guide to 
+  [accessing the Kubeflow UI](/docs/other-guides/accessing-uis/).
+1. Click **Katib** in the left-hand menu.
+
+Alternatively, you can set port-forwarding for the Katib UI service:
+
+```
+kubectl port-forward svc/katib-ui -n kubeflow 8080:80
+```
+
+Then you can access the Katib UI at this URL:
+
+```
+http://localhost:8080/katib/
+```
+
+## Examples
+
+This section introduces some examples that you can run to try Katib.
 
 ### Example using random algorithm
 
-You can create an Experiment for Katib by defining an Experiment config file. See the 
+You can create an experiment for Katib by defining the experiment in a YAML 
+configuration file. The YAML file defines the configurations for the experiment,
+including the hyperparameter feasible space, optimization parameter, 
+optimization goal, suggestion algorithm, and so on.
+
+This example uses the YAML file for the
 [random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/random-example.yaml).
+
+The random algorithm example uses an MXNet neural network to train an image
+classification model using the MNIST dataset. The experiment runs three 
+training jobs with various hyperparameters and saves the results.
+
+Run the following command to launch an experiment using the random algorithm
+example:
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/random-example.yaml
 ```
 
-Running this command launches an Experiment. It runs a series of 
-training jobs to train models using different hyperparameters and save the 
-results.
+This example embeds the hyperparameters as arguments. You can embed
+hyperparameters in another way (for example, using environment variables) 
+by using the template defined in the `TrialTemplate.GoTemplate.RawTemplate`
+section of the YAML file. The template uses the 
+[Go template format](https://golang.org/pkg/text/template/).
 
-The configurations for the experiment (hyperparameter feasible space, optimization 
-parameter, optimization goal, suggestion algorithm, and so on) are defined in 
-[random-example.yaml](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/random-example.yaml).
+This example randomly generates the following hyperparameters:
 
-In this demo, hyperparameters are embedded as args.
-You can embed hyperparameters in another way (for example, environment values) 
-by using the template defined in `TrialTemplate.GoTemplate.RawTemplate`.
-It is written in [go template](https://golang.org/pkg/text/template/) format.
-
-This demo randomly generates 3 hyperparameters:
-
-* Learning Rate (--lr) - type: double
-* Number of NN Layer (--num-layers) - type: int
-* optimizer (--optimizer) - type: categorical
+* `--lr`: Learning rate. Type: double.
+* `--num-layers`: Number of layers in the neural network. Type: integer.
+* `--optimizer`: Optimizer. Type: categorical.
 
 Check the experiment status:
 
 ```
-$ kubectl -n kubeflow describe experiment random-example
+kubectl -n kubeflow describe experiment random-example
+```
+
+The output of the above command should look similar to this:
+
+```
 Name:         random-example
 Namespace:    kubeflow
 Labels:       controller-tools.k8s.io=1.0
@@ -93,19 +137,19 @@ Annotations:  <none>
 API Version:  kubeflow.org/v1alpha3
 Kind:         Experiment
 Metadata:
-  Creation Timestamp:  2019-10-29T02:02:25Z
+  Creation Timestamp:  2019-12-22T22:53:25Z
   Finalizers:
     update-prometheus-metrics
   Generation:        2
-  Resource Version:  55900050
+  Resource Version:  720692
   Self Link:         /apis/kubeflow.org/v1alpha3/namespaces/kubeflow/experiments/random-example
-  UID:               275eee5b-f9f0-11e9-a6cc-00163e01b303
+  UID:               dc6bc15a-250d-11ea-8cae-42010a80010f
 Spec:
   Algorithm:
     Algorithm Name:        random
     Algorithm Settings:    <nil>
   Max Failed Trial Count:  3
-  Max Trial Count:         100
+  Max Trial Count:         12
   Metrics Collector Spec:
     Collector:
       Kind:  StdOut
@@ -136,52 +180,94 @@ Spec:
     Parameter Type:  categorical
   Trial Template:
     Go Template:
-      Template Spec:
-        Config Map Name:       trial-template
-        Config Map Namespace:  kubeflow
-        Template Path:         mnist-trial-template
+      Raw Template:  apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{.Trial}}
+  namespace: {{.NameSpace}}
+spec:
+  template:
+    spec:
+      containers:
+      - name: {{.Trial}}
+        image: docker.io/kubeflowkatib/mxnet-mnist-example
+        command:
+        - "python"
+        - "/mxnet/example/image-classification/train_mnist.py"
+        - "--batch-size=64"
+        {{- with .HyperParameters}}
+        {{- range .}}
+        - "{{.Name}}={{.Value}}"
+        {{- end}}
+        {{- end}}
+      restartPolicy: Never
 Status:
-  Completion Time:  2019-10-29T02:09:12Z
   Conditions:
-    Last Transition Time:  2019-10-29T02:02:26Z
-    Last Update Time:      2019-10-29T02:02:26Z
+    Last Transition Time:  2019-12-22T22:53:25Z
+    Last Update Time:      2019-12-22T22:53:25Z
     Message:               Experiment is created
     Reason:                ExperimentCreated
     Status:                True
     Type:                  Created
-    Last Transition Time:  2019-10-29T02:09:12Z
-    Last Update Time:      2019-10-29T02:09:12Z
+    Last Transition Time:  2019-12-22T22:55:10Z
+    Last Update Time:      2019-12-22T22:55:10Z
     Message:               Experiment is running
     Reason:                ExperimentRunning
-    Status:                False
-    Type:                  Running
-    Last Transition Time:  2019-10-29T02:09:12Z
-    Last Update Time:      2019-10-29T02:09:12Z
-    Message:               Experiment has succeeded because max trial count has reached
-    Reason:                ExperimentSucceeded
     Status:                True
-    Type:                  Succeeded
+    Type:                  Running
   Current Optimal Trial:
     Observation:
       Metrics:
         Name:   Validation-accuracy
-        Value:  0.978702
+        Value:  0.981091
     Parameter Assignments:
       Name:          --lr
-      Value:         0.016331188424169637
+      Value:         0.025139701133432946
       Name:          --num-layers
       Value:         4
       Name:          --optimizer
       Value:         sgd
-  Start Time:        2019-10-29T02:02:26Z
-  Trials:            100
-  Trials Succeeded:  100
+  Start Time:        2019-12-22T22:53:25Z
+  Trials:            12
+  Trials Running:    2
+  Trials Succeeded:  10
 Events:              <none>
 ```
 
-The demo should start an experiment and run three jobs with different parameters.
-When the `spec.Status.Condition` changes to *Completed*, the experiment is 
-finished.
+When the last value in `Status.Conditions.Type` is `Succeeded`, the experiment
+is finished.
+
+View the results of the experiment in the Katib UI:
+
+1. Open the Katib UI as described [above](#katib-ui).
+1. Click **Hyperparameter Tuning** on the Katib home page.
+1. Open the Katib drop-down menu on the left, then open the **HP** section and
+  click **Monitor**:
+
+    <img src="/docs/images/katib-menu.png" 
+      alt="The Katib drop-down menu"
+      class="mt-3 mb-3 border border-info rounded">
+
+1. Click on the right-hand panel to close the drop-down menu. You should see
+  the  experiment listed on the page:
+
+    <img src="/docs/images/katib-random-example.png" 
+      alt="The random example in the list of Katib experiments"
+      class="mt-3 mb-3 border border-info rounded">
+
+1. Click the name of the experiment, **random-example**.
+1. You should see a graph similar to this one:
+
+    <img src="/docs/images/katib-random-example-graph.png" 
+      alt="Graph produced by the random example"
+      class="mt-3 mb-3 border border-info rounded">
+
+1. Below the graph is a list of trials that ran within the experiment:
+
+    <img src="/docs/images/katib-random-example-trials.png" 
+      alt="Trials that ran during the experiment"
+      class="mt-3 mb-3 border border-info rounded">
+
 
 ### TensorFlow operator example
 
@@ -210,27 +296,6 @@ You can check the status of the experiment:
 ```
 kubectl -n kubeflow describe experiment pytorchjob-example
 ```
-
-## Monitoring results
-
-You can monitor your results in the Katib UI. If you installed Kubeflow
-using the deployment guide, you can access the Katib UI at
-```
-https://<your kubeflow endpoint>/katib/
-```
-
-For example, if you deployed Kubeflow on GKE, your endpoint would be
-```
-https://<deployment_name>.endpoints.<project>.cloud.goog/
-```
-
-Otherwise, you can set port-forwarding for the Katib UI service:
-
-```
-kubectl port-forward svc/katib-ui -n kubeflow 8080:80
-```
-
-Now you can access the Katib UI at this URL: ```http://localhost:8080/katib/```.
 
 ## Cleanup
 
