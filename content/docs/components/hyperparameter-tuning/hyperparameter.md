@@ -95,8 +95,8 @@ configuration file. The YAML file defines the configurations for the experiment,
 including the hyperparameter feasible space, optimization parameter, 
 optimization goal, suggestion algorithm, and so on.
 
-This example uses the YAML file for the
-[random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/random-example.yaml).
+This example uses the [YAML file for the
+random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/random-example.yaml).
 
 The random algorithm example uses an MXNet neural network to train an image
 classification model using the MNIST dataset. The experiment runs three 
@@ -274,7 +274,7 @@ View the results of the experiment in the Katib UI:
 ### TensorFlow operator example
 
 Run the following command to launch an experiment using the Kubeflow's 
-TensorFlow training job operator:
+TensorFlow training job operator, TFJob:
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/tfjob-example.yaml
@@ -292,7 +292,7 @@ to see the results of the experiment in the Katib UI.
 ### PyTorch example
 
 Run the following command to launch an experiment using Kubeflow's PyTorch 
-training job operator:
+training job operator, PyTorchJob:
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/pytorchjob-example.yaml
