@@ -51,6 +51,12 @@ some handy environment variables:
     tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
     ```
 
+1. Log in. You only need to run this command once:
+
+    ```
+    gcloud auth login
+    ```
+
 1. Create user credentials. You only need to run this command once:
    
     ```
