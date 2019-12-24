@@ -1,14 +1,16 @@
 +++
-title = "Hyperparameter Tuning (Katib)"
-description = "Using Katib to tune your model's hyperparameters on Kubernetes"
-weight = 5
+title = "Getting started with Katib"
+description = "How to set up Katib and run some hyperparameter tuning examples"
+weight = 20
 +++
 
-The [Katib](https://github.com/kubeflow/katib) project is inspired by 
-[Google vizier](https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/bcb15507f4b52991a0783013df4222240e942381.pdf). 
-Katib is a scalable and flexible hyperparameter tuning framework and is tightly 
-integrated with Kubernetes. It does not depend on any specific deep learning 
-framework (such as TensorFlow, MXNet, or PyTorch).
+This page gets you started with Katib. Follow this guide to perform any
+additional setup you may need, depending on your environment, and to run a few
+examples using the command line and the Katib user interface (UI).
+
+For an overview of the concepts around Katib and hyperparameter tuning, read the
+[introduction to 
+Katib](/docs/components/hyperparameter-tuning/katib-introduction/).
 
 ## Katib setup
 
@@ -42,7 +44,7 @@ and [persistent volumes](https://kubernetes.io/docs/concepts/storage/persistent-
 
 If you're using Katib outside GKE and your cluster doesn't include a 
 StorageClass for dynamic volume provisioning, you must create a persistent 
-volume (PV) to bind to your persistent volume claim (PVC). 
+volume (PV) to bind to the persistent volume claim (PVC) required by Katib. 
 
 After deploying Katib to your cluster, run the following command to create the 
 PV:
