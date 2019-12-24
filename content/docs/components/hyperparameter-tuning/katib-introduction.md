@@ -114,17 +114,6 @@ You can use the following interaces to interact with Katib:
 
 This section describes the terms used in Katib.
 
-### Search space or feasible set
-
-The *search space* is the set of all possible hyperparameter values that the
-hyperparameter tuning job should consider for optimization. Other names for
-search space include *feasible set* and *solution space*.
-
-To specify the search space, you provide configuration settings 
-for the Katib job. For example, you may provide the names of the 
-hyperparameters that you want to optimize. For each hyperparameter, you may
-provide a *minimum* and *maximum* value or a *list* of allowable values.
-
 ### Experiment
 
 An *experiment* is a single optimization run, or tuning run, over the search 
@@ -138,8 +127,10 @@ You specify configuration settings to define the experiment:
   specify whether you want the hyperparameter tuning job to *maximize* or 
   *minimize* the metric.
 
-* **Search space**: The hyperparameters that you want to optimize, and the
-  constraints for each hyperparameter. For example, you may provide the
+* **Search space**: The set of all possible hyperparameter values that the
+  hyperparameter tuning job should consider for optimization, and the
+  constraints for each hyperparameter. Other names for search space include 
+  *feasible set* and *solution space*. For example, you may provide the
   names of the hyperparameters that you want to optimize. For each
   hyperparameter, you may provide a *minimum* and *maximum* value or a *list* 
   of allowable values.
