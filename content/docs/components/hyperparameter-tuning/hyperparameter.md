@@ -345,3 +345,8 @@ precision=0.5
 
 Katib adds metrics collector sidecar container to training Pod to collect metrics
 from training container when training job done.
+
+## Next steps
+
+For details of how to define your experiment, see the guide to [defining an 
+experiment](/docs/components/hyperparameter-tuning/experiment/).
