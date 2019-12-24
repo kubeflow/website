@@ -348,5 +348,5 @@ from training container when training job done.
 
 ## Next steps
 
-For details of how to define your experiment, see the guide to [defining an 
+For details of how to define your experiment, see the guide to [running an 
 experiment](/docs/components/hyperparameter-tuning/experiment/).

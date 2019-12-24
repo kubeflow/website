@@ -138,7 +138,7 @@ You specify configuration settings to define the experiment:
 * **Search algorithm**: The algorithm to use when searching for the optimal
   hyperparameter values.
 
-For details of how to define your experiment, see the guide to [defining an 
+For details of how to define your experiment, see the guide to [running an 
 experiment](/docs/components/hyperparameter-tuning/experiment/).
 
 ### Suggestion
