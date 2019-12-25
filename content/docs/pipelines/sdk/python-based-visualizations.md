@@ -60,7 +60,7 @@ arguments.
 
 ## Using TFX visualizations
 
-<video width="640" height="360" controls>
+<video width="800" height="450" controls>
   <source src="/docs/videos/tfdv_example_with_taxi_pipeline.webm" type="video/webm">
 </video>
 
