@@ -79,7 +79,7 @@ In order to successfully complete the Kubeflow installation, your cluster must h
 
 Since creating NFS PVs can be tedious, you can set up [Dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) to automatically create PVs based on existing PVCs.
 
-Follow the instructions in this section to instal a Dynamic Provisioner for NFS volumes in your cluster.
+Follow the instructions in this section to install a Dynamic Provisioner for NFS volumes in your cluster.
 
 ### Install Helm
 
