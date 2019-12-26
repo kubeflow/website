@@ -41,6 +41,8 @@ experimentation, and customization when visualizing results.
 
 ## Using predefined visualizations
 
+### Predefined matrix visualization
+
 <img src="/docs/images/python-based-visualizations2.png"
   alt="Confusion matrix visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
@@ -58,25 +60,25 @@ arguments.
 6. Click **Generate Visualization**.
 7. View generated visualization by scrolling down.
 
-## Using TFX visualizations
+### Predefined TFX visualization
 
 <video width="960" height="540" controls>
   <source src="/docs/videos/tfdv_example_with_taxi_pipeline.webm" type="video/webm">
 </video>
 
-1. On Pipelines page, click **[Sample] Unified DSL - Taxi Tip Prediction Model Trainer** to open Pipeline Details page.
-2. On Pipeline Details page, click **Create run**.
-3. On Create run page,
+1. On the Pipelines page, click **[Sample] Unified DSL - Taxi Tip Prediction Model Trainer** to open the Pipeline Details page.
+2. On the Pipeline Details page, click **Create run**.
+3. On the Create run page,
     * Use a run name and an experiment name of your choice.
-    * Note that in **pipeline-root** field, use a bucket you have permission to write to.
+    * In the **pipeline-root** field, specify a storage bucket that you have permission to write to. For example, enter the path to a Google Cloud Storage bucket or an Amazon S3 bucket.
     * Click **Start** to create the run.
-4. After the run is complete, on Run Details page, click any step, e.g., click the first step **csvexamplegen** as shown in the video above.
+4. After the run is complete, on the Run Details page, click any step. For example, click the first step **csvexamplegen** as shown in the video above.
 5. In the side panel of the selected step,
-    * Click **Artifacts** tab.
-    * In **Visualization Creator** section, choose **TFDV** from the drop down menu.
-    * In **Source** field, use **gs://ml-pipeline-playground/tfx_taxi_simple/data/data.csv**, which is the input data used for this run.
+    * Click the **Artifacts** tab.
+    * In the **Visualization Creator** section, choose **TFDV** from the drop down menu.
+    * In the **Source** field, use **gs://ml-pipeline-playground/tfx_taxi_simple/data/data.csv**, which is the input data used for this run.
     * Click **Generate Visualization** and wait.
-6. Move to the bottom of **Artifacts** tab to find the generated visualization.
+6. Move to the bottom of the **Artifacts** tab to find the generated visualization.
 
 ## Using custom visualizations
 
