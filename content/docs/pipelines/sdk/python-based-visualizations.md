@@ -7,7 +7,7 @@ weight = 80
 This page describes Python based visualizations, how to create them, and how to
 use them to visualize results within the Kubeflow Pipelines UI. Python based
 visualizations are available in Kubeflow Pipelines version
-[0.1.29](https://github.com/kubeflow/pipelines/releases/tag/0.1.29) and later, and 
+[0.1.29](https://github.com/kubeflow/pipelines/releases/tag/0.1.29) and later, and
 in Kubeflow version 0.7.0 and later.
 
 While Python based visualizations are intended to be the main method of
@@ -35,13 +35,15 @@ customers to provided Python visualization code to be used to generate
 visualizations. These visualizations allow for rapid development,
 experimentation, and customization when visualizing results.
 
-<img src="/docs/images/python-based-visualizations1.png" 
+<img src="/docs/images/python-based-visualizations1.png"
   alt="Confusion matrix visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
 
 ## Using predefined visualizations
 
-<img src="/docs/images/python-based-visualizations2.png" 
+### Predefined matrix visualization
+
+<img src="/docs/images/python-based-visualizations2.png"
   alt="Confusion matrix visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -58,9 +60,29 @@ arguments.
 6. Click **Generate Visualization**.
 7. View generated visualization by scrolling down.
 
+### Predefined TFX visualization
+
+<video width="960" height="540" controls>
+  <source src="/docs/videos/tfdv_example_with_taxi_pipeline.webm" type="video/webm">
+</video>
+
+1. On the Pipelines page, click **[Sample] Unified DSL - Taxi Tip Prediction Model Trainer** to open the Pipeline Details page.
+2. On the Pipeline Details page, click **Create run**.
+3. On the Create run page,
+    * Use a run name and an experiment name of your choice.
+    * In the **pipeline-root** field, specify a storage bucket that you have permission to write to. For example, enter the path to a Google Cloud Storage bucket or an Amazon S3 bucket.
+    * Click **Start** to create the run.
+4. After the run is complete, on the Run Details page, click any step. For example, click the first step **csvexamplegen** as shown in the video above.
+5. In the side panel of the selected step,
+    * Click the **Artifacts** tab.
+    * In the **Visualization Creator** section, choose **TFDV** from the drop down menu.
+    * In the **Source** field, use **gs://ml-pipeline-playground/tfx_taxi_simple/data/data.csv**, which is the input data used for this run.
+    * Click **Generate Visualization** and wait.
+6. Move to the bottom of the **Artifacts** tab to find the generated visualization.
+
 ## Using custom visualizations
 
-<img src="/docs/images/python-based-visualizations3.png" 
+<img src="/docs/images/python-based-visualizations3.png"
   alt="Confusion matrix visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
 
