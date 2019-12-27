@@ -72,7 +72,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
         --min-nodes 2 \
         --enable-autoscaling
     ```
-     **WARNING**: this overgrants all GCP permissions to the cluster, so it's convenient to use. For a more secure cluster setup, refer to [Securing the cluster with fine-grained GCP permission control section](#securing-the-cluster-with-fine-grained-gcp-permission-control).
+     **WARNING**: Using `SCOPES="storage-rw,cloud-platform"` overgrants all GCP permissions to the cluster, so it's convenient to use. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](/docs/gke/authentication-pipelines/).
 
     Reference:
 
@@ -219,40 +219,3 @@ Run:
 ```
 kubectl create clusterrolebinding your-binding --clusterrole=cluster-admin --user=[your-user-name]
 ```
-
-### Securing the cluster with fine-grained GCP permission control
-
-#### Workload Identity
-
-> Workload identity is the recommended way for your GKE applications to consume services provided by Google APIs. You accomplish this by configuring a Kubernetes service account to act as a Google service account. Any Pods running as the Kubernetes service account then use the Google service account to authenticate to cloud services.
-
-Referenced from [workload identity documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity). Please read this doc for detailed introduction.
-
-To bind workload identities for kubernetes service accounts (KSAs) provided by pipelines standalone deployment, we provide some helper scripts to set up workload identity bindings for pipelines workloads.
-[This user-friendly bash script](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/gcp-workload-identity-setup.sh) help you create GCP service accounts and bind them to kubernetes service accounts used by pipelines workloads.
-[Another bash script](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/wi-utils.sh) provides minimal utility bash functions that let you customize your setup.
-
-Pipelines use `pipeline-runner` KSA by default, you can configure IAM permissions of the GSA bound to this KSA to allow pipelines use GCP APIs.
-
-Pipelines UI uses `ml-pipeline-ui` KSA. If you need to view visualizations stored in Google Cloud Storage (GCS) from pipelines UI, you should add Storage Object Viewer permission to its bound GSA.
-
-Note: existing pipelines that use [use_gcp_secret kfp sdk operator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret) need to be modified first. `use_gcp_secret` should be removed before the pipeline can run in a cluster with workload identity enabled.
-
-#### Pipelines using use_gcp_secret kfp.sdk method
-
-It is recommended to use workload identity for easier configuration and more flexible control, but you can also use the previous approach of storing GCP service account credentials into a secret and mount it in pipeline pods.
-
-If a pipeline uses [use_gcp_secret kfp sdk operator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret), it requires a "user-gcp-sa" secret, you could create one by:
-
-1. First download the GCE VM service account token [Document](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys):
-
-    ```
-    gcloud iam service-accounts keys create application_default_credentials.json \
-      --iam-account [SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com
-    ```
-
-1. Run:
-    ```
-    kubectl create secret -n [your-namespace] generic user-gcp-sa \
-      --from-file=user-gcp-sa.json=application_default_credentials.json
-    ```
