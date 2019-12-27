@@ -1,7 +1,7 @@
 +++
 title = "Troubleshooting Deployments on GKE"
 description = "Help fixing problems on GKE and GCP"
-weight = 6
+weight = 80
 +++
 
 This guide helps diagnose and fix issues you may encounter with Kubeflow on 

@@ -1,7 +1,7 @@
 +++
 title = "Using Cloud Filestore"
 description = "Using Cloud Filestore with Kubeflow"
-weight = 4
+weight = 60
 +++
 
 This guide describes how to set up and use Cloud Filestore with Kubeflow on 

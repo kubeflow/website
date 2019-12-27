@@ -1,7 +1,7 @@
 +++
 title = "Authenticating Kubeflow to GCP"
 description = "Authentication and authorization to Google Cloud Platform (GCP)"
-weight = 4
+weight = 40
 +++
 
 This page describes in-cluster and local authentication for Kubeflow GCP deployments.
