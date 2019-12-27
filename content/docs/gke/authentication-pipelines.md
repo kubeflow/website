@@ -39,9 +39,10 @@ You can also continue to use `use_gcp_secret` in a cluster with workload identit
 #### Cluster setup to use workload identity for Pipelines Standalone
 
 **After you enabled workload identity**, you need to bind workload identities for KSAs used by [Pipelines Standalone](/docs/pipelines/installation/overview/#kubeflow-pipelines-standalone).
-We provide some helper scripts you can reference to set up workload identity bindings for pipelines workloads.
-[This user-friendly bash script](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/gcp-workload-identity-setup.sh) helps you create GSAs and bind them to KSAs used by pipelines workloads.
-[Another bash script](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/wi-utils.sh) provides minimal utility bash functions that let you customize your setup.
+The following helper bash scripts bind workload identities for KSAs provided by Pipelines Standalone:
+
+* [gcp-workload-identity-setup.sh](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/gcp-workload-identity-setup.sh) helps you create GSAs and bind them to KSAs used by pipelines workloads. This script provides an interactive command line dialog with explanation messages.
+* [wi-utils.sh](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/wi-utils.sh) provides minimal utility bash functions that let you customize your setup. The minimal utilities make it easy to read and use programmatically.
 
 Pipelines use `pipeline-runner` KSA, you can configure IAM permissions of the GSA bound to this KSA to allow pipelines use GCP APIs.
 
