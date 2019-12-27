@@ -81,7 +81,7 @@ gcloud iam service-accounts add-iam-policy-binding \
 
 4. Manually create a profile for user1 and specify the GCP service account to bind in `plugins` field:
 
-```
+```yaml
 apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
