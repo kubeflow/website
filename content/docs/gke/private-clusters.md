@@ -1,7 +1,7 @@
 +++
 title = "Securing Your Clusters"
 description = "How to secure Kubeflow clusters using VPC service controls and private GKE"
-weight = 5
+weight = 70
 +++
 
 This guide describes how to secure Kubeflow using [VPC Service Controls](https://cloud.google.com/vpc-service-controls/docs/) and private GKE.

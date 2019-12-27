@@ -53,7 +53,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
 
     See the GKE guide to [creating a cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster) for Google Cloud Platform (GCP).
 
-    Recommend using the following gcloud command to create a cluster that can run all pipeline samples:
+    Use the following gcloud command to create a cluster that can run all pipeline samples:
 
     ```
     # The following parameters can be customized based on your needs.
@@ -61,7 +61,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     CLUSTER_NAME="kubeflow-pipelines-standalone"
     ZONE="us-central1-a"
     MACHINE_TYPE="n1-standard-2" # A machine with 2 CPUs and 7.50GB memory
-    SCOPES="storage-rw,cloud-platform" # These scopes are needed for running some pipeline samples
+    SCOPES="storage-rw,cloud-platform" # These scopes are needed for running some pipeline samples.
 
     gcloud container clusters create $CLUSTER_NAME \
         --zone $ZONE \
@@ -72,6 +72,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
         --min-nodes 2 \
         --enable-autoscaling
     ```
+     **WARNING**: Using `SCOPES="storage-rw,cloud-platform"` overgrants all GCP permissions to the cluster, so it's convenient to use. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](/docs/gke/authentication-pipelines/).
 
     Reference:
 
@@ -218,20 +219,3 @@ Run:
 ```
 kubectl create clusterrolebinding your-binding --clusterrole=cluster-admin --user=[your-user-name]
 ```
-
-### Pipeline samples that require "user-gcp-sa" secret
-
-If sample pipeline requires a "user-gcp-sa" secret, you could create one by:
-
-1. First download the GCE VM service account token [Document](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys):
-
-    ```
-    gcloud iam service-accounts keys create application_default_credentials.json \
-      --iam-account [SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com
-    ```
-
-1. Run:
-    ```
-    kubectl create secret -n [your-namespace] generic user-gcp-sa \
-      --from-file=user-gcp-sa.json=application_default_credentials.json
-    ```

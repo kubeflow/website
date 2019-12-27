@@ -1,7 +1,7 @@
 +++
 title = "End-to-end Kubeflow on GCP"
 description = "Kubeflow on Google Cloud Platform"
-weight = 10
+weight = 90
 +++
 
 This guide walks you through an end-to-end example of Kubeflow on Google

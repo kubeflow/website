@@ -1,7 +1,7 @@
 +++
 title = "Pipelines End-to-end on GCP"
 description = "An end-to-end tutorial for Kubeflow Pipelines on GCP"
-weight = 15
+weight = 100
 +++
 
 This guide walks you through a Kubeflow Pipelines sample that runs an MNIST
