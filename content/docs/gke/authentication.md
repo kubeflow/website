@@ -86,7 +86,7 @@ apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
   name: profileName   # replace with the name of the profile (the user's namespace name)
-  spec:
+spec:
   owner:
     kind: User
     name: user1@email.com   # replace with the email of the user
