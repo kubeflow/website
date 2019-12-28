@@ -41,13 +41,14 @@ some handy environment variables:
     # value as directory name when creating your configuration directory.
     # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
     export KF_NAME=<your choice of name for the Kubeflow deployment>
-
+    export MD_NAME=<your choice of metadata directory name where the metadata of mysql,minio,metadata & katib will be kept>
     # Set the path to the base directory where you want to store one or more 
     # Kubeflow deployments. For example, /opt/.
     # Then set the Kubeflow application directory for this deployment.
     export BASE_DIR=<path to a base directory>
     export KF_DIR=${BASE_DIR}/${KF_NAME}
-
+    export MD_DIR=${BASE_DIR}/${MD_NAME}
+    
     # Set the configuration file to use when deploying Kubeflow.
     # The following configuration installs Istio by default. Comment out 
     # the Istio components in the config file to skip Istio installation. 
@@ -70,6 +71,11 @@ Notes:
 
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
+* **${MD_NAME}** - The name of your Metadata Directory in case going for a persistent volume.
+
+  When you the Kubeflow for Pipeline development or execution it needs to access the mysql,minio,metadata-db and katib-db repo for getting the pipeline.
+  If the directory and kubernetes volume is not BOUND then it will throw an error Out of Bounds and the pod for minio,mysql,katib & metadata will be in a Pending State and the Pipeline will give an error failing to load the example pipeline.
+
 * **${CONFIG_URI}** - The GitHub address of the configuration YAML file that
   you want to use to deploy Kubeflow. The URI used in this guide is
   {{% config-uri-k8s-istio %}}.
@@ -78,6 +84,94 @@ Notes:
   customize if necessary.
 
 <a id="set-up-and-deploy"></a>
+
+##Manual Setup of the Persistent Volumes as without minio,mysql,metadata-db and katib-db the pipelines won't work as those Pods will be in pending state due Out Of Bounds Exception.
+
+
+##katib-mysql PV:
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: katib-mysql
+  labels:
+    type: local
+    app: katib
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: ***MD_DIR/katib 
+    [Replace Path with MD_DIR path]
+
+kubectl create -f katib_mysql_pv.yaml -n kubeflow
+
+##metadata-mysql PV:
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: metadata-mysql
+  labels:
+    type: local
+    app: metadata
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: ***MD_DIR/metadata 
+    [Replace Path with MD_DIR path]
+
+create -f metadata-mysql_pv.yaml -n kubeflow
+
+##minio-pv-claim PV:
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: minio-pv-claim
+  labels:
+    type: local
+    app: minio
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: ***MD_DIR/minio 
+    [Replace Path with MD_DIR path]
+
+kubectl create -f minio-pv-claim.yaml -n kubeflow
+
+##mysql-pv-claim PV:
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv-claim
+  labels:
+    type: local
+    app: mysql
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: ***MD_DIR/mysql 
+    [Replace Path with MD_DIR path]
+    
+kubectl create -f mysql-pv-claim.yaml -n kubeflow
+
+##Check if all the PVC are bound
+
+kubectl get pvc -n kubeflow
+
 ## Set up and deploy Kubeflow
 
 To set up and deploy Kubeflow using the **default settings**,
