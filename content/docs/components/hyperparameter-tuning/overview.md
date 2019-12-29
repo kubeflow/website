@@ -5,7 +5,7 @@ weight = 10
 +++
 
 Use Katib for automated tuning of your machine learning (ML) model's 
-hyperparameters.
+hyperparameters and architecture.
 
 This page introduces the concepts of hyperparameter tuning, neural
 architecture search, and the Katib system as a component of Kubeflow.
@@ -16,7 +16,7 @@ architecture search, and the Katib system as a component of Kubeflow.
 For example: 
 
 * Learning rate.
-* Number of layers in a deep neural network.
+* Number of layers in a neural network.
 * Number of nodes in each layer.
 
 Hyperparameter values are not *learned*. In other words, in contrast to the 
@@ -53,7 +53,8 @@ the optimized values for the hyperparameters.
 
 ## Neural architecture search
 
-You can use *neural architecture search* (NAS) technology to design 
+In addition to hyperparameter tuning, Katib offers a *neural architecture
+search* (NAS) feature. You can use the NAS to design 
 your artificial neural network, with a goal of maximizing the predictive 
 accuracy and performance of your model.
 
@@ -63,9 +64,9 @@ optimizes the model's hyperparameters, a NAS system optimizes the model's
 structure, node weights, and hyperparameters.
 
 NAS technology in general uses various techniques to find the optimal neural
-network design. The NAS in Katib is based on *reinforcement learning*.
+network design. The NAS in Katib uses the *reinforcement learning* technique.
 
-You can submit Katib NAS jobs from the command line or from the UI. (Read more 
+You can submit Katib jobs from the command line or from the UI. (Read more 
 about the Katib interfaces later on this page.) The following screenshot shows
 part of the form for submitting a NAS job from the Katib UI:
 
@@ -116,8 +117,7 @@ This section describes the terms used in Katib.
 
 ### Experiment
 
-An *experiment* is a single optimization run, or tuning run, over the search 
-space. 
+An *experiment* is a single tuning (optimization) run. 
 
 You specify configuration settings to define the experiment:
 
@@ -151,7 +151,7 @@ set of values.
 
 A *trial* is one iteration of the hyperparameter tuning process. A trial
 corresponds to one worker job instance with a list of parameter assignments
-(corresponding to a suggestion).
+The list of parameter assignments corresponds to a suggestion.
 
 Each experiment runs several trials.
 
@@ -160,13 +160,15 @@ Each experiment runs several trials.
 The *worker job* is the process that runs to evaluate a trial and calculate
 its objective value.
 
-The worker job can be one of the following types, thus supporting multiple 
-frameworks:
+The worker job can be one of the following types:
 
 * [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
  (non-distributed execution). 
 * [Kubeflow TFJob](/docs/guides/components/tftraining/) (distributed execution).
-* [Kubeflow PyTorchJob](/docs/guides/components/pytorch/) (distributed execution).
+* [Kubeflow PyTorchJob](/docs/guides/components/pytorch/) (distributed
+  execution).
+
+By offering the above worker job types, Katib supports multiple ML frameworks.
 
 ## Next steps
 
