@@ -10,7 +10,7 @@ examples using the command line and the Katib user interface (UI).
 
 For an overview of the concepts around Katib and hyperparameter tuning, read the
 [introduction to 
-Katib](/docs/components/hyperparameter-tuning/katib-introduction/).
+Katib](/docs/components/hyperparameter-tuning/overview/).
 
 ## Katib setup
 
