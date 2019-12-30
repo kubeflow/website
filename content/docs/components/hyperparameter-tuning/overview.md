@@ -90,7 +90,7 @@ You can use the following interaces to interact with Katib:
 
 * A web UI that you can use to submit experiments and to monitor your results.
   See the [getting-started 
-  guide](/docs/components/hyperparameter-tuning/hyperparameter/#accessing-the-katib-ui)
+  guide](/docs/components/hyperparameter-tuning/hyperparameter/#katib-ui)
   for information on how to access the UI.
   The Katib home page within Kubeflow looks like this:
 

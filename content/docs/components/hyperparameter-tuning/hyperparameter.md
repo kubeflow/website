@@ -50,10 +50,10 @@ After deploying Katib to your cluster, run the following command to create the
 PV:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha3/pv/pv.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha3/pv/pv.yaml
 ```
 
-The above `kubectl create` command uses a YAML file 
+The above `kubectl apply` command uses a YAML file 
 ([`pv.yaml`](https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha3/pv/pv.yaml))
 that defines the properties of the PV.
 
@@ -109,7 +109,7 @@ Run the following command to launch an experiment using the random algorithm
 example:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/random-example.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/random-example.yaml
 ```
 
 This example embeds the hyperparameters as arguments. You can embed
@@ -244,14 +244,14 @@ View the results of the experiment in the Katib UI:
 
 1. Open the Katib UI as described [above](#katib-ui).
 1. Click **Hyperparameter Tuning** on the Katib home page.
-1. Open the Katib drop-down menu on the left, then open the **HP** section and
+1. Open the Katib menu panel on the left, then open the **HP** section and
   click **Monitor**:
 
     <img src="/docs/images/katib-menu.png" 
-      alt="The Katib drop-down menu"
+      alt="The Katib menu panel"
       class="mt-3 mb-3 border border-info rounded">
 
-1. Click on the right-hand panel to close the drop-down menu. You should see
+1. Click on the right-hand panel to close the menu panel. You should see
   the list of experiments:
 
     <img src="/docs/images/katib-experiments.png" 
@@ -280,7 +280,7 @@ Run the following command to launch an experiment using the Kubeflow's
 TensorFlow training job operator, TFJob:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/tfjob-example.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/tfjob-example.yaml
 ```
 
 You can check the status of the experiment:
@@ -298,7 +298,7 @@ Run the following command to launch an experiment using Kubeflow's PyTorch
 training job operator, PyTorchJob:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/pytorchjob-example.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/pytorchjob-example.yaml
 ```
 
 You can check the status of the experiment:
@@ -324,30 +324,7 @@ If you created a PV for Katib, delete it:
 kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha3/pv/pv.yaml
 ```
 
-## Metrics collector
-
-Katib has a metrics collector to take metrics from each trial. Katib collects
-metrics from stdout of each trial. Metrics should print in the following
-format: `{metrics name}={value}`. For example, when your objective value name 
-is `loss` and the metrics are `recall` and `precision`, your training container
-should print like this:
-
-```
-epoch 1:
-loss=0.3
-recall=0.5
-precision=0.4
-
-epoch 2:
-loss=0.2
-recall=0.55
-precision=0.5
-```
-
-Katib adds metrics collector sidecar container to training Pod to collect metrics
-from training container when training job done.
-
 ## Next steps
 
-For details of how to define your experiment, see the guide to [running an 
-experiment](/docs/components/hyperparameter-tuning/experiment/).
+For details of how to configure and run your experiment, see the guide to 
+[running an experiment](/docs/components/hyperparameter-tuning/experiment/).
