@@ -11,6 +11,7 @@ The experiment can perform hyperparameter tuning or a neural architecture search
 For an overview of the concepts involved, read the [introduction to 
 Katib](/docs/components/hyperparameter-tuning/overview/).
 
+<a id="docker-image"></a>
 ## Packaging your training code in a container image
 
 Katib and Kubeflow are Kubernetes-based systems. To use Katib, you must package
@@ -37,7 +38,7 @@ the experiment from the UI or from the command line.
 
 ### Configuration spec
 
-These are the fields in the configuration spec for an experiment:
+These are the fields in the experiment configuration spec:
 
 * **parameters**: The range of the hyperparameters or other parameters that you 
   want to tune for your ML model. The parameters define the *search space*,
@@ -72,68 +73,161 @@ These are the fields in the configuration spec for an experiment:
   random search, grid search, Bayesian optimization, and more.
   See the [search algorithm details](#search-algorithms) below.
   
-* **trialTemplate**:
-  TODO
-  The template used to define the trial.
-  Your model should be packaged by image, 
-  and your model's hyperparameters must be configurable by arguments (in this case) or environment variable so that Katib can automatically set the values in each trial to verify the hyperparameters performance. You can train your model by including your model image in [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)(in this case), [Kubeflow TFJob](https://www.kubeflow.org/docs/guides/components/tftraining/) or [Kubeflow PyTorchJob](https://www.kubeflow.org/docs/guides/components/pytorch/) (for the latter two job, you should also install corresponding component). You can define the job by raw string way (in this case), but also can refer it in a [configmap](https://cloud.google.com/kubernetes-engine/docs/concepts/configmap). See more about the struct definition as [here](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L165-L179)
-  This example embeds the hyperparameters as arguments. You can embed
-  hyperparameters in another way (for example, using environment variables) 
-  by using the template defined in the `TrialTemplate.GoTemplate.RawTemplate`
-  section of the YAML file. The template uses the 
-  [Go template format](https://golang.org/pkg/text/template/).
+* **trialTemplate**: The template that defines the trial.
+  You must package your ML training code into a Docker image, as described 
+  [above](#docker-image). You must configure the model's
+  hyperparameters either as command-line arguments or as environment variables,
+  so that Katib can automatically set the values in each trial.
 
-* **parallelTrialCount**: 
-  TODO
-  This fields specifies how many sets of hyperparameter to be tested in parallel at most.
+  You can use one of the following job types to train your model:
 
+  * [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
+    (non-distributed execution). 
+  * [Kubeflow TFJob](/docs/guides/components/tftraining/) (distributed
+    execution).
+  * [Kubeflow PyTorchJob](/docs/guides/components/pytorch/) (distributed
+    execution).
+  
+  See the [TrialTemplate 
+  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L165-L179).
+  The template 
+  uses the [Go template format](https://golang.org/pkg/text/template/).
+  
+  You can define the job in raw string format or you can use a 
+  [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/).
 
-* **maxTrialCount**: 
-  TODO
-  It specifies how many sets of hyperparameter can be generated to test the model at most.
+* **parallelTrialCount**: The maximum number of hyperparameter sets that Katib
+  should train in parallel.
 
+* **maxTrialCount**: The maximum number of trials to run.
+  This is equivalent to the number of hyperparameter sets that Kabit should
+  generate to test the model.
 
-* **maxFailedTrialCount**: 
-  TODO
-  Some sets of hyperparameter corresponding jobs maybe fail somehow. If the failed count of hyperparameter set exceeds `maxFailedTrialCount`, the hyperparameter tuning for the model will be stopped with `Failed` status.
+* **maxFailedTrialCount**: The maximum number of failed trials before Katib
+  should stop the experiment.
+  This is equivalent to the number of failed hyperparameter sets that Kabit 
+  should test.
+  If the number of failed trials exceeds `maxFailedTrialCount`, Katib stops the
+  experiment with a status of `Failed`.
 
-* **metricsCollectorSpec**: 
-  TODO
-  Metrics Collection: Definition about how to collect the metrics (e.g. accuracy, loss).
-  When developing a model, developers are likely to print or record the metrics of the model into stdout or files during training. Now Katib can automatically collect the metrics by a sidecar container. The metrics collector for metrics print or record by stdout, file or [tfevent](https://www.tensorflow.org/api_docs/python/tf/Event) (specified by `collector` field, and metrics output specified by `source` field) are now available (more kinds of collectors will be available). See more about the struct definition as [here](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L74-L143)
+* **metricsCollectorSpec**: A specification of how to collect the metrics from
+  each trial, such as the accuracy and loss metrics.
   See the [details of the metrics collector](#metrics-collector) below.
 
-* **nasConfig**:
-  TODO
+* **nasConfig**: The configuration for a neural architecture search (NAS).
+  You can specify the configurations of the neural network design that you want
+  to optimize, including the number of layers in the network, the types of
+  operations, and more.
+  See the [NasConfig type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L205).
+  As an example, see the YAML file for the
+  [nasjob-example-RL](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nasjob-example-RL.yaml).
+  The example aims to show all the possible operations. Due to the large search 
+  space, the example is not likely to generate a good result.
 
-*Background information: In Kubernetes terminology, Katib's
+*Background information about Katib's `Experiment` type:* In Kubernetes 
+terminology, Katib's
 [`Experiment`](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L187)
 type is a [custom resource 
 (CRD)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
+The YAML file that you create for your experiment is the CRD specification.
 
 <a id="search-algorithms"></a>
 ### Search algorithms in detail 
   
-Katib currently supports the following search algorithms:
+Katib currently supports the following search algorithms. The links in this list
+lead to sections lower down on this page:
 
-* Random search
-* Grid search
-* [Hyperband](https://arxiv.org/pdf/1603.06560.pdf)
-* [Bayesian optimization](https://arxiv.org/pdf/1012.2599.pdf)
-* [Hyperopt TPE](http://hyperopt.github.io/hyperopt/) (a [forward and reverse gradient-based]((https://arxiv.org/pdf/1703.01785.pdf))
-  hyperparameter optimization technique
-* [NAS based on reinforcement learning](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/NAS_Reinforcement_Learning)
+* [Grid search](#grid-search)
+* [Random search](#random-search)
+* [Hyperband](#hyperband)
+* [Bayesian optimization](#bayesian)
+* [Hyperopt TPE](#tpe-search)
+* [NAS based on reinforcement learning](#nas)
   
 See the [AlgorithmSpec
 type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L23-L33).
-  
+
 TODO
 More algorithms are under development. 
 You can develop a new algorithm for Katib noninvasively 
 (we will document the guideline about how to develop an algorithm for Katib soon). 
 
+<a id="grid-search"></a>
+#### Grid search
+
+Grid sampling applies when all variables are discrete (as opposed to
+continuous) and the number of possibilities is low. A grid search 
+performs an exhaustive combinatorial search over all possibilities,
+making the search process extremely long even for medium sized problems.
+
+Katib uses the [Chocolate][https://chocolate.readthedocs.io] optimization
+framework for its grid search.
+
+The algorithm name in Katib is `grid`.
+
+<a id="random-search"></a>
+#### Random Search
+
+Random sampling is an alternative to grid search when the number of discrete parameters to optimize and the time required for each evaluation is high. When all parameters are discrete, random search will perform sampling without replacement making it an algorithm of choice when combinatorial exploration is not possible. With continuous parameters, it is preferable to use quasi random sampling.
+
+TODO [Hyperopt](http://hyperopt.github.io/hyperopt/)
+
+Algorithm name in katib is `random`, and there are some algortihm settings that we support:
+
+| Setting Name     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Example  |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| random_state     | [int]: Set random state to something other than None for reproducible results.                                                                                                                                                                                                                                                                                                                                                                                                    | 10       |
+
+<a id="hyperband"></a>
+#### Hyperband
+
+TODO [Hyperband](https://arxiv.org/pdf/1603.06560.pdf)
+
+<a id="bayesian"></a>
+#### Bayesian optimization
+
+TODO [Bayesian optimization](https://arxiv.org/pdf/1012.2599.pdf)
+Bayes search models the search space using gaussian process regression, which allows to have an estimate of the loss function and the uncertainty on that estimate at every point of the search space. Modeling the search space suffers from the curse of dimensionality, which makes this method more suitable when the number of dimensions is low. Moreover, since it models both the expected loss and uncertainty, this search algorithm converges in few steps on superior configurations, making it a good choice when the time to complete the evaluation of a parameter configuration is high.
+
+TODO [scikit-optimize](https://github.com/scikit-optimize/scikit-optimize)
+
+> Scikit-Optimize, or skopt, is a simple and efficient library to minimize (very) expensive and noisy black-box functions. It implements several methods for sequential model-based optimization. skopt aims to be accessible and easy to use in many contexts.
+
+Algorithm name in katib is `skopt-bayesian-optimization`, and there are some algortihm settings that we support:
+
+| Setting Name     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Example  |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| base_estimator   |  ["GP", "RF", "ET", "GBRT" or sklearn regressor, default="GP"]:   Should inherit from `sklearn.base.RegressorMixin`. In addition, the `predict`   method, should have an optional `return_std` argument, which returns   `std(Y | x)` along with `E[Y | x]`. If base_estimator is one of   ["GP", "RF", "ET", "GBRT"], a default surrogate model of the corresponding   type is used corresponding to what is used in the minimize functions. More in [skopt document](https://scikit-optimize.github.io/#skopt.Optimizer) | GP       |
+| n_initial_points |  [int, default=10]: Number of evaluations of `func` with initialization points  before approximating it with `base_estimator`. Points provided as `x0` count  as initialization points. If len(x0) < n_initial_points additional points  are sampled at random. More in [skopt document](https://scikit-optimize.github.io/#skopt.Optimizer)                                                                                                                                                                               | 10       |
+| acq_func         |  [string, default=`"gp_hedge"`]: Function to minimize over the posterior distribution. More in [skopt document](https://scikit-optimize.github.io/#skopt.Optimizer)                                                                                                                                                                                                                                                                                                                                                        | gp_hedge |
+| acq_optimizer    |  [string, "sampling" or "lbfgs", default="auto"]: Method to minimize the acquistion function.    The fit model is updated with the optimal value obtained by optimizing acq_func with acq_optimizer. More in [skopt document](https://scikit-optimize.github.io/#skopt.Optimizer)                                                                                                                                                                                                                                          | auto     |
+| random_state     | [int]: Set random state to something other than None for reproducible results.                                                                                                                                                                                                                                                                                                                                                                                                    | 10       |
+
+<a id="tpe-search"></a>
+#### Hyperopt TPE
+
+TODO [Hyperopt](http://hyperopt.github.io/hyperopt/)
+
+[Hyperopt TPE](http://hyperopt.github.io/hyperopt/) (a [forward and reverse gradient-based]((https://arxiv.org/pdf/1703.01785.pdf))
+  hyperparameter optimization technique
+
+Algorithm name in katib is `tpe`.
+
+<a id="nas"></a>
+#### NAS using reinforcement learning
+
+[NAS based on 
+reinforcement learning](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/NAS_Reinforcement_Learning)
+
 <a id="metrics-collector"></a>
 ### Metrics collector
+
+TODO
+
+Definition about how to collect the metrics (e.g. accuracy, loss).
+When developing a model, developers are likely to print or record the metrics of the model into stdout or files during training. Now Katib can automatically collect the metrics by a sidecar container. The metrics collector for metrics print or record by stdout, file or [tfevent](https://www.tensorflow.org/api_docs/python/tf/Event) (specified by `collector` field, and metrics output specified by `source` field) are now available (more kinds of collectors will be available). 
+See more about the struct definition as [here](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L74-L143)
+ 
 
 Katib has a metrics collector to take metrics from each trial. Katib collects
 metrics from stdout of each trial. Metrics should print in the following
@@ -155,7 +249,6 @@ precision=0.5
 
 Katib adds metrics collector sidecar container to training Pod to collect metrics
 from training container when training job done.
-
 
 ## Running the experiment
 
