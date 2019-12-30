@@ -90,6 +90,7 @@ http://localhost:8080/katib/
 
 This section introduces some examples that you can run to try Katib.
 
+<a id="random-algorithm"></a>
 ### Example using random algorithm
 
 You can create an experiment for Katib by defining the experiment in a YAML 

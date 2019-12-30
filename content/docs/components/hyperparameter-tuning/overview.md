@@ -117,9 +117,10 @@ This section describes the terms used in Katib.
 
 ### Experiment
 
-An *experiment* is a single tuning (optimization) run. 
+An *experiment* is a single tuning run, also called an optimization run. 
 
-You specify configuration settings to define the experiment:
+You specify configuration settings to define the experiment. The following are
+the main configurations:
 
 * **Objective**: What you want to optimize. This is the objective metric, also
   called the target variable. A common metric is the model's accuracy
