@@ -203,7 +203,7 @@ in `${KF_DIR}/gcp_config/cluster-kubeflow.yaml`.
 
 ### Specify a minimum CPU
 
-Certain instructions sets or hardware features are only available on specific CPUs, so to ensure your cluster utilizes the appropriate hardware, you need to set a minimum CPU value. 
+Certain instruction sets or hardware features are only available on specific CPUs, so to ensure your cluster utilizes the appropriate hardware you need to set a minimum CPU value. 
 
 In brief, inside `gcp_config/cluster.jinja` change the `minCpuPlatform` property for the CPU node pool. For example, `Intel Broadwell` becomes `Intel Skylake`. Setting a minimum CPU needs to occur during cluster/node creation; it cannot be applied to an existing cluster/node.
 
