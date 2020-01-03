@@ -58,9 +58,11 @@ Knative Serving (v0.8.0 +) and Istio (v1.1.7+) should be available on your Kuber
 Read more about [installing Knative on a Kubernetes cluster](https://github.com/kubeflow/kfserving/blob/master/docs/DEVELOPER_GUIDE.md#install-knative-on-a-kubernetes-cluster).
 
 ## KFServing installation using kubectl
+The following commands install KFServing 0.2.2, using a yaml file in GitHub repo. See [here](https://github.com/kubeflow/kfserving/tree/master/install) for other available releases. Alternatively, you can clone the GitHub repo and run `kubectl` on top of it. 
 ```
-TAG=v0.2.0
-kubectl apply -f ./install/$TAG/kfserving.yaml
+TAG=0.2.2
+CONFIG_URI=https://raw.githubusercontent.com/kubeflow/kfserving/master/install/$TAG/kfserving.yaml
+kubectl apply -f ${CONFIG_URI}
 ```
 
 ## Use
