@@ -111,12 +111,17 @@ the Kubeflow Pipelines reinstallation capability.
 You can delete a Kubeflow cluster and create a new one, specifying
 your existing storage to retrieve the original data in the new cluster.
 
-**Note:** You must use command line deployment. You cannot reinstall
-Kubeflow Pipelines using the web interface.
+Notes:
 
-The steps are the same as for a standard Kubeflow installation, except that you
-must use the same PV definitions as in your previous deployment to create the
-PV in the new cluster.
+* You must use command-line deployment. 
+  You cannot reinstall Kubeflow Pipelines using the web interface.
+* When you do `kfctl apply` or `kfctl build`, you should use a different 
+  deployment name from your existing deployment name. Using a different name
+  ensures that your data is safe in case of a deployment failure. This guide 
+  defines the deployment name in the ${KF_NAME} environment variable. 
+* The reinstallation steps are the same as for a standard Kubeflow installation, 
+  except that you must use the same PV definitions as in your previous 
+  deployment to create the PV in the new cluster.
 
 To reinstall Kubeflow Pipelines:
 
@@ -127,6 +132,8 @@ To reinstall Kubeflow Pipelines:
 1. Follow the Kubeflow
    [deployment guide](/docs/started/getting-started/),
    but **note the following changes to the standard procedure**.
+
+1. Set a different `${KF_NAME}` name from your existing `${KF_NAME}`.
 
 1. **Before** running the `kfctl apply` command:
 
