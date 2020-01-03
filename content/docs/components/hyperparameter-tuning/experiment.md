@@ -143,7 +143,7 @@ descriptions on this page:
 * [Grid search](#grid-search)
 * [Random search](#random-search)
 * [Bayesian optimization](#bayesian)
-* [Hyperband](#hyperband)
+* [HYPERBAND](#hyperband)
 * [Hyperopt TPE](#tpe-search)
 * [NAS based on reinforcement learning](#nas)
 
