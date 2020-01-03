@@ -10,7 +10,7 @@ supports the following capabilities:
 
 * **Reinstall:** You can delete a cluster and create a new cluster, specifying
   the existing storage volumes to retrieve the original data in the new cluster.
-  This guide tells you how to reinstall Kubeflow Pipelines data as part of a
+  This guide tells you how to reinstall Kubeflow Pipelines as part of a
   full Kubeflow deployment.
 
 * **Upgrade (limited support):**
@@ -24,14 +24,14 @@ supports the following capabilities:
 
 ## Before you start
 
-This guide tells you how to reinstall Kubeflow Pipelines data as part of a
+This guide tells you how to reinstall Kubeflow Pipelines as part of a
 full Kubeflow deployment on Google Kubernetes Engine (GKE). See the
 [Kubeflow deployment guide](/docs/gke/deploy/).
 
 Instead of the full Kubeflow deployment, you can use Kubeflow Pipelines 
 Standalone or GCP Hosted ML Pipelines (Alpha), which support different options
 for upgrading and reinstalling. See the [Kubeflow Pipelines installation
-options](https://www.kubeflow.org/docs/pipelines/installation/overview/).
+options](/docs/pipelines/installation/overview/).
 
 ## Kubeflow Pipelines data storage
 
@@ -46,7 +46,7 @@ machine learning pipeline:
 Kubeflow Pipelines uses the Kubernetes
 [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)
 (PV) subsystem to provision the MySQL database and the Minio server.
-On GCP, Kubeflow Pipelines creates a Compute Engine 
+On GCP, Kubeflow Pipelines creates a Google Compute Engine 
 [Persistent Disk](https://cloud.google.com/persistent-disk/) (PD)
 and mounts it as a PV. 
 
@@ -74,13 +74,14 @@ Notes:
 
 * You must use command-line deployment. 
   You cannot reinstall Kubeflow Pipelines using the web interface.
-* When you do `kfctl apply` or `kfctl build`, you should use a 
-  different `${KF_NAME}` name from your existing `${KF_NAME}`. Otherwise,
-  kfctl will delete your data in the existing PDs.
+* When you do `kfctl apply` or `kfctl build`, you should use a different 
+  deployment name from your existing deployment name. Otherwise, kfctl will
+  delete your data in the existing PDs. This guide defines the deployment name
+  in the ${KF_NAME} environment variable. 
 
 To reinstall Kubeflow Pipelines:
 
-1. Follow the [command line deployment 
+1. Follow the [command-line deployment 
   instructions](/docs/gke/deploy/deploy-cli/), but **note the following
   changes in the procedure**.
 
@@ -121,6 +122,6 @@ To reinstall Kubeflow Pipelines:
     kfctl apply -V -f ${CONFIG_FILE}
     ``` 
 
-You should now have a new Kubeflow deploymentthat uses the same pipelines data 
+You should now have a new Kubeflow deployment that uses the same pipelines data 
 storage as your previous deployment. Follow the steps in the deployment guide
 to [check your deployment](/docs/gke/deploy/deploy-cli/#check-your-deployment).

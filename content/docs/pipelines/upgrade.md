@@ -22,7 +22,7 @@ supports the following capabilities:
 
 ## Before you start
 
-This guide tells you how to reinstall Kubeflow Pipelines data as part of a
+This guide tells you how to reinstall Kubeflow Pipelines as part of a
 full Kubeflow deployment. This guide therefore assumes that you want to use one 
 of the options in the [Kubeflow deployment 
 guide](/docs/started/getting-started/) to deploy Kubeflow Pipelines with 
@@ -31,9 +31,9 @@ Kubeflow.
 Note the following alternatives:
 
 * Instead of the full Kubeflow deployment, you can use Kubeflow Pipelines 
-  Standalone, which does support upgrading. See the
-  [Kubeflow Pipelines installation
-  options](https://www.kubeflow.org/docs/pipelines/installation/overview/).
+  Standalone, which does support upgrading. See how to upgrade the
+  [Kubeflow Pipelines Standalone
+  deployment](/docs/pipelines/installation/standalone-deployment/#upgrade).
 
 * If you're using Kubeflow Pipelines on Google Cloud Platform (GCP), see how to
   [upgrade or reinstall Kubeflow Pipelines on 
@@ -154,7 +154,7 @@ To reinstall Kubeflow Pipelines:
     kfctl apply -V -f ${CONFIG_FILE}
     ``` 
 
-You should now have a new Kubeflow deploymentthat uses the same pipelines data 
+You should now have a new Kubeflow deployment that uses the same pipelines data 
 storage as your previous deployment. Follow any remaining steps in the 
 [Kubeflow deployment guide](/docs/started/getting-started/)
 to check your deployment, depending on the deployment option you chose.
