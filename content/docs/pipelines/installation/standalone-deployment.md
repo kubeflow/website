@@ -1,5 +1,5 @@
 +++
-title = "Pipelines Standalone Deployment in GCP"
+title = "Pipelines Standalone Deployment"
 description = "Instructions to deploy Kubeflow Pipelines standalone to a cluster"
 weight = 20
 +++
