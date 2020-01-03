@@ -240,6 +240,7 @@ Events:              <none>
 When the last value in `Status.Conditions.Type` is `Succeeded`, the experiment
 is complete.
 
+<a id="view-ui"></a>
 View the results of the experiment in the Katib UI:
 
 1. Open the Katib UI as described [above](#katib-ui).
@@ -273,8 +274,7 @@ View the results of the experiment in the Katib UI:
       alt="Trials that ran during the experiment"
       class="mt-3 mb-3 border border-info rounded">
 
-
-### TensorFlow operator example
+### TensorFlow example
 
 Run the following command to launch an experiment using the Kubeflow's 
 TensorFlow training job operator, TFJob:
@@ -289,8 +289,8 @@ You can check the status of the experiment:
 kubectl -n kubeflow describe experiment tfjob-example
 ```
 
-Follow the steps as described for the *random algorithm example* above, 
-to see the results of the experiment in the Katib UI.
+Follow the steps as described for the *random algorithm example* 
+[above](#view-ui), to see the results of the experiment in the Katib UI.
 
 ### PyTorch example
 
@@ -307,8 +307,8 @@ You can check the status of the experiment:
 kubectl -n kubeflow describe experiment pytorchjob-example
 ```
 
-Follow the steps as described for the *random algorithm example* above, 
-to see the results of the experiment in the Katib UI.
+Follow the steps as described for the *random algorithm example*
+[above](#view-ui), to see the results of the experiment in the Katib UI.
 
 ## Cleanup
 

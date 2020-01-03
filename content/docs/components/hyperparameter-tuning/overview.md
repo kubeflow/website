@@ -164,10 +164,11 @@ its objective value.
 The worker job can be one of the following types:
 
 * [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
- (non-distributed execution). 
-* [Kubeflow TFJob](/docs/guides/components/tftraining/) (distributed execution).
-* [Kubeflow PyTorchJob](/docs/guides/components/pytorch/) (distributed
-  execution).
+  (does not support distributed execution). 
+* [Kubeflow TFJob](/docs/guides/components/tftraining/) (supports
+  distributed execution).
+* [Kubeflow PyTorchJob](/docs/guides/components/pytorch/) (supports 
+  distributed execution).
 
 By offering the above worker job types, Katib supports multiple ML frameworks.
 

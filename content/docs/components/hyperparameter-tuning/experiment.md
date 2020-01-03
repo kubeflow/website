@@ -25,7 +25,7 @@ documentation](https://kubernetes.io/docs/concepts/containers/images/).
  
 To create a hyperparameter tuning or NAS experiment in Katib, you define the
 experiment in a YAML configuration file. The YAML file defines the range of 
-potential values (the feasible space) for the paramaters that you want to 
+potential values (the search space) for the paramaters that you want to 
 optimize, the objective metric to use when determining optimal values, the 
 search algorithm to use during optimization, and other configurations.
 
@@ -82,11 +82,11 @@ These are the fields in the experiment configuration spec:
     You can use one of the following job types to train your model:
 
     * [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
-      (non-distributed execution). 
-    * [Kubeflow TFJob](/docs/guides/components/tftraining/) (distributed
-      execution).
-    * [Kubeflow PyTorchJob](/docs/guides/components/pytorch/) (distributed
-      execution).
+      (does not support distributed execution). 
+    * [Kubeflow TFJob](/docs/guides/components/tftraining/) (supports 
+      distributed execution).
+    * [Kubeflow PyTorchJob](/docs/guides/components/pytorch/) (supports 
+      distributed execution).
     
     See the [TrialTemplate 
     type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L165-L179).
@@ -142,8 +142,8 @@ descriptions on this page:
 
 * [Grid search](#grid-search)
 * [Random search](#random-search)
-* [Hyperband](#hyperband)
 * [Bayesian optimization](#bayesian)
+* [Hyperband](#hyperband)
 * [Hyperopt TPE](#tpe-search)
 * [NAS based on reinforcement learning](#nas)
 
@@ -162,7 +162,7 @@ continuous) and the number of possibilities is low. A grid search
 performs an exhaustive combinatorial search over all possibilities,
 making the search process extremely long even for medium sized problems.
 
-Katib uses the [Chocolate][https://chocolate.readthedocs.io] optimization
+Katib uses the [Chocolate](https://chocolate.readthedocs.io) optimization
 framework for its grid search.
 
 <a id="random-search"></a>
@@ -201,14 +201,6 @@ Katib supports the following algorithm settings:
     </tbody>
   </table>
 </div>
-
-<a id="hyperband"></a>
-#### HYPERBAND
-
-The algorithm name in Katib is `hyperband`.
-
-Katib supports the [HYPERBAND](https://arxiv.org/pdf/1603.06560.pdf) 
-optimization framework.
 
 <a id="bayesian"></a>
 #### Bayesian optimization
@@ -294,6 +286,18 @@ Katib supports the following algorithm settings:
   </table>
 </div>
 
+<a id="hyperband"></a>
+#### HYPERBAND
+
+The algorithm name in Katib is `hyperband`.
+
+Katib supports the [HYPERBAND](https://arxiv.org/pdf/1603.06560.pdf) 
+optimization framework.
+Instead of using Bayesian optimization to select configurations, HYPERBAND
+focuses on early stopping as a strategy for optimizing resource allocation and
+thus for maximixing the number of configurations that it can evaluate.
+HYPERBAND also focuses on the speed of the search.
+
 <a id="tpe-search"></a>
 #### Hyperopt TPE
 
@@ -309,7 +313,8 @@ search.
 
 The algorithm name in Katib is `nasrl`.
 
-For more information, see: 
+For more information, see:
+
 * Information in the Katib repository on [NAS with 
 reinforcement learning](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/NAS_Reinforcement_Learning).
 * The description of the `nasConfig` field in the configuration file
