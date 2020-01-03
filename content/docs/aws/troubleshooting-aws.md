@@ -18,7 +18,7 @@ If you see your istio-ingress ADDRESS is empty after 3 mins, it must be somethin
 E1024 09:02:59.934318       1 :0] kubebuilder/controller "msg"="Reconciler error" "error"="failed to build LoadBalancer configuration due to retrieval of subnets failed to resolve 2 qualified subnets. Subnets must contain the kubernetes.io/cluster/\u003ccluster name\u003e tag with a value of shared or owned and the kubernetes.io/role/elb tag signifying it should be used for ALBs Additionally, there must be at least 2 subnets with unique availability zones as required by ALBs. Either tag subnets to meet this requirement or use the subnets annotation on the ingress resource to explicitly call out what subnets to use for ALB creation. The subnets that did resolve were []"  "controller"="alb-ingress-controller" "request"={"Namespace":"istio-system","Name":"istio-ingress"}
 ```
 
-If you see this error, you probably forget to update `cluster_name` during setup. Please go to edit view by `kubectl edit deployment alb-ingress-controller -n kubeflow` and make the change.
+If you see this error, you probably forget to update `cluster_name` during setup. Please go to edit view by `kubectl edit deployment alb-ingress-controller -n kubeflow` and make the change. Another reason could be that you did not tag your subnets  so that Kubernetes knows to use only those subnets for external load balancers. To fix this ensure the public subnets are tagged with the **Key**: ```kubernetes.io/role/elb``` and **Value**: ```1```. See docs [here](https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html) for further details.
 
 ### KF_DIR is not empty
 
