@@ -53,6 +53,13 @@ the optimized values for the hyperparameters.
 
 ## Neural architecture search
 
+{{% alert title="Alpha version" color="warning" %}}
+Neural architecture search is currently in <b>Alpha</b> with limited support. 
+The Kubeflow team is interested in any feedback you may have, in particular with 
+regards to usability of the feature. You can log issues and comments in
+the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
+{{% /alert %}}
+
 In addition to hyperparameter tuning, Katib offers a *neural architecture
 search* (NAS) feature. You can use the NAS to design 
 your artificial neural network, with a goal of maximizing the predictive 
@@ -151,10 +158,11 @@ set of values.
 ### Trial
 
 A *trial* is one iteration of the hyperparameter tuning process. A trial
-corresponds to one worker job instance with a list of parameter assignments
+corresponds to one worker job instance with a list of parameter assignments.
 The list of parameter assignments corresponds to a suggestion.
 
-Each experiment runs several trials.
+Each experiment runs several trials. The experiment runs the trials until it
+reaches either the objective or the configured maximum number of trials.
 
 ### Worker job
 

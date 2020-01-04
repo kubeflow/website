@@ -6,7 +6,7 @@ weight = 30
 
 This page describes in detail how to configure and run a Katib experiment.
 The experiment can perform hyperparameter tuning or a neural architecture search 
-(NAS), depending on the configuration settings.
+(NAS) (**Alpha**), depending on the configuration settings.
 
 For an overview of the concepts involved, read the [introduction to 
 Katib](/docs/components/hyperparameter-tuning/overview/).
@@ -62,10 +62,8 @@ These are the fields in the experiment configuration spec:
   Katib records the value of the best `objectiveMetricName` metric (maximized 
   or minimized based on `type`) and the corresponding hyperparameter set
   in `Experiment.status`. If the `objectiveMetricName` metric for a set of
-  hyperparameters exceeds the `goal`, Katib stops trying more hyperparameter 
-  combinations. See the [EarlyStoppingSetting 
-  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L40)
-  and the [ObjectiveSpec 
+  hyperparameters reaches the `goal`, Katib stops trying more hyperparameter 
+  combinations. See the [ObjectiveSpec 
   type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L47).
 
 * **algorithm**: The search algorithm that you want Katib to use to find the
@@ -100,12 +98,12 @@ These are the fields in the experiment configuration spec:
   should train in parallel.
 
 * **maxTrialCount**: The maximum number of trials to run.
-  This is equivalent to the number of hyperparameter sets that Kabit should
+  This is equivalent to the number of hyperparameter sets that Katib should
   generate to test the model.
 
 * **maxFailedTrialCount**: The maximum number of failed trials before Katib
   should stop the experiment.
-  This is equivalent to the number of failed hyperparameter sets that Kabit 
+  This is equivalent to the number of failed hyperparameter sets that Katib 
   should test.
   If the number of failed trials exceeds `maxFailedTrialCount`, Katib stops the
   experiment with a status of `Failed`.
@@ -115,6 +113,7 @@ These are the fields in the experiment configuration spec:
   See the [details of the metrics collector](#metrics-collector) below.
 
 * **nasConfig**: The configuration for a neural architecture search (NAS).
+  Note: NAS is currently in **Alpha** with limited support.
   You can specify the configurations of the neural network design that you want
   to optimize, including the number of layers in the network, the types of
   operations, and more.
@@ -128,8 +127,8 @@ These are the fields in the experiment configuration spec:
 terminology, Katib's
 [`Experiment`](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L187)
 type is a [custom resource 
-(CRD)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
-The YAML file that you create for your experiment is the CRD specification.
+(CR)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
+The YAML file that you create for your experiment is the CR specification.
 
 <a id="search-algorithms"></a>
 ### Search algorithms in detail 
@@ -310,6 +309,13 @@ search.
 
 <a id="nas"></a>
 #### NAS using reinforcement learning
+
+{{% alert title="Alpha version" color="warning" %}}
+Neural architecture search is currently in <b>Alpha</b> with limited support. 
+The Kubeflow team is interested in any feedback you may have, in particular with 
+regards to usability of the feature. You can log issues and comments in
+the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
+{{% /alert %}}
 
 The algorithm name in Katib is `nasrl`.
 
