@@ -29,30 +29,31 @@ mpijobs.kubeflow.org                       4d
 
 If it is not included you can add it as follows:
 
-```
-cd ${KSONNET_APP}
-ks pkg install kubeflow/mpi-job
-ks generate mpi-operator mpi-operator
-ks apply ${ENVIRONMENT} -c mpi-operator
+```bash
+git clone https://github.com/kubeflow/manifests
+cd manifests/mpi-job/mpi-operator
+kubectl kustomize base | kubectl apply -f -
 ```
 
-Alternatively, you can deploy the operator with default settings without using ksonnet by running the following from the repo:
+Alternatively, you can deploy the operator with default settings without using kustomize by running the following from the repo:
 
 ```shell
-kubectl create -f deploy/
+git clone https://github.com/kubeflow/mpi-operator
+cd mpi-operator
+kubectl create -f deploy/mpi-operator.yaml
 ```
 
 ## Creating an MPI Job
 
-You can create an MPI job by defining an `MPIJob` config file. See [TensorFlow benchmark example](https://github.com/kubeflow/mpi-operator/blob/master/examples/tensorflow-benchmarks.yaml) config file for launching a multi-node TensorFlow benchmark training job. You may change the config file based on your requirements.
+You can create an MPI job by defining an `MPIJob` config file. See [TensorFlow benchmark example](https://github.com/kubeflow/mpi-operator/blob/master/examples/v1alpha1/tensorflow-benchmarks.yaml) config file for launching a multi-node TensorFlow benchmark training job. You may change the config file based on your requirements.
 
 ```
-cat examples/tensorflow-benchmarks.yaml
+cat examples/v1alpha1/tensorflow-benchmarks.yaml
 ```
 Deploy the `MPIJob` resource to start training:
 
 ```
-kubectl create -f examples/tensorflow-benchmarks.yaml
+kubectl create -f examples/v1alpha1/tensorflow-benchmarks.yaml
 ```
 
 ## Monitoring an MPI Job

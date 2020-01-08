@@ -9,23 +9,29 @@ quota, rollout and A/B testing.
 
 ## Install Istio
 We assume Kubeflow is already deployed in the `kubeflow` namespace.
+If istio is not installed by kubeflow, you can follow the below steps to install it in Linux.
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/kubeflow/master/dependencies/istio/install/crds.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/kubeflow/master/dependencies/istio/install/istio-noauth.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/kubeflow/master/dependencies/istio/kf-istio-resources.yaml
-
-kubectl label namespace kubeflow istio-injection=enabled
+$ curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.3 sh -
+$ export PATH=$HOME/istio-1.3.3/bin:$PATH
+$ for i in $HOME/install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl apply -f $i; done
 ```
+Open `$HOME/install/kubernetes/istio-demo.yaml` and change *istio-ingressgateway* service from *LoadBalancer* to *NodePort*. Then run:
 
-The first command installs Istio's CRDs.
+```
+$ kubectl apply -f install/kubernetes/istio-demo.yaml
+$ kubectl label namespace kubeflow istio-injection=enabled
+```
+The first and second command gets all the istio resources and adds the istioctl client to the path variable.
+The second command installs Istio's CRDs.
 
-The second command installs Istio's core components (without mTLS), with some customization:
+The third command installs Istio's core components (without mTLS), with some customization:
+
 1. sidecar injection configmap policy is changed from `enabled` to `disabled`
 
 2. istio-ingressgateway is of type `NodePort` instead of `LoadBalancer`
 
-The third command deploys some resources for Kubeflow.
+<!-- The third command deploys some resources for Kubeflow. -->
 
 The fourth command label the kubeflow namespace for sidecar injector.
 
@@ -35,7 +41,9 @@ the pod has annotation.
 
 ## Kubeflow TF Serving with Istio
 
-After installing Istio, we can deploy the TF Serving component as in 
+_This section has not yet been converted to kustomize, please refer to [kubeflow/manifests/issues/18](https://github.com/kubeflow/manifests/issues/18)._
+
+After installing Istio, we can deploy the TF Serving component as in
 [TensorFlow Serving](/docs/components/tfserving_new/) with
 additional params:
 
@@ -61,13 +69,13 @@ kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=gr
 Visit http://localhost:3000/dashboard/db/istio-mesh-dashboard in your web browser.
 Send some requests to the TF serving service, then there should be some data (QPS, success rate, latency)
 like this:
-<img src="../istio-dashboard.png" 
+<img src="../istio-dashboard.png"
   alt="Istio dashboard"
   class="mt-3 mb-3 border border-info rounded">
 
 
 #### Define and view metrics
-See istio [doc](https://istio.io/docs/tasks/telemetry/metrics-logs.html).
+See istio [doc](https://istio.io/docs/tasks/telemetry/).
 
 #### Expose Grafana dashboard behind ingress/IAP
 
@@ -88,8 +96,8 @@ So do `kubectl edit deploy -n istio-system grafana`, and add env vars
 A typical scenario is that we first deploy a model A. Then we develop another model B, and we want to deploy it
 and gradually move traffic from A to B. This can be achieved using Istio's traffic routing.
 
-1. Deploy the first model as described for 
-  [TensorFlow Serving](/docs/components/tfserving_new/). 
+1. Deploy the first model as described for
+  [TensorFlow Serving](/docs/components/tfserving_new/).
   Then you will have the service (Model) and the deployment (Version).
 
 2. Deploy another version of the model, v2. This time, no need to deploy the service part.
@@ -103,18 +111,18 @@ and gradually move traffic from A to B. This can be achieved using Istio's traff
     ks param set ${MODEL_COMPONENT2} modelBasePath gs://kubeflow-examples-data/mnist
     ks param set ${MODEL_COMPONENT2} gcpCredentialSecretName user-gcp-sa
     ks param set ${MODEL_COMPONENT2} injectIstio true   // This is required
-    
+
     ks apply ${KF_ENV} -c ${MODEL_COMPONENT2}
     ```
 
-    The `KF_ENV` environment variable represents a conceptual deployment environment 
-    such as development, test, staging, or production, as defined by 
+    The `KF_ENV` environment variable represents a conceptual deployment environment
+    such as development, test, staging, or production, as defined by
     ksonnet. For this example, we use the `default` environment.
-    You can read more about Kubeflow's use of ksonnet in the Kubeflow 
+    You can read more about Kubeflow's use of ksonnet in the Kubeflow
     [ksonnet component guide](/docs/components/ksonnet/).
 
 3. Update the traffic weight
-   
+
    ```
    ks param set mnist-service trafficRule v1:90:v2:10   // This routes 90% to v1, and 10% to v2
    ks apply ${KF_ENV} -c mnist-service

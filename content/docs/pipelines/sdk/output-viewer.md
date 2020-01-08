@@ -9,6 +9,10 @@ from a Kubeflow Pipelines component.
 For details about how to build a component, see the guide to 
 [building your own component](/docs/pipelines/sdk/build-component/).
 
+Kubeflow Pipelines provides a new method of generating visualizations. See the
+guide to [Python Based Visualizations](/docs/pipelines/sdk/
+python-based-visualizations).
+
 ## Introduction
 
 The Kubeflow Pipelines UI offers built-in support for several types of 
@@ -437,9 +441,8 @@ You can run the sample by selecting
 Kubeflow Pipelines UI. For help getting started with the UI, follow the 
 [Kubeflow Pipelines quickstart](/docs/pipelines/pipelines-quickstart/).
 
-The sample code is available in the [Kubeflow Pipelines samples 
-repo](https://github.com/kubeflow/pipelines/tree/master/samples/tfx). The
-pipeline uses a number of prebuilt, reusable components, including:
+<!--- TODO: Will replace the tfx cab with tfx oss when it is ready.-->
+The pipeline uses a number of prebuilt, reusable components, including:
 
 * The [Confusion Matrix 
   component](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py)

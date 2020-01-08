@@ -1,7 +1,7 @@
 +++
 title = "Using Your Own Domain"
 description = "Using a custom domain with Kubeflow on GKE"
-weight = 3
+weight = 30
 +++
 
 This guide describes how to use a custom domain with Kubeflow on Google Cloud 
@@ -15,19 +15,19 @@ so, follow the guide to
 
 ## Using your own domain
 
-If you want to use your own domain instead of **${name}.endpoints.${project}.cloud.goog**, follow these instructions:
+If you want to use your own domain instead of **${KF_NAME}.endpoints.${PROJECT}.cloud.goog**, follow these instructions:
 
 1. Remove the `cloud-endpoints` component:
 
     ```
-    cd ${KFAPP}/kustomize
+    cd ${KF_DIR}/kustomize
     kubectl delete -f cloud-endpoints.yaml
     ```
 
 1. Set the domain for your ingress to be the fully qualified domain name:
 
     ```
-    cd ${KFAPP}/kustomize
+    cd ${KF_DIR}/kustomize
     gvim iap-ingress.yaml    # Or basic-auth-ingress.yaml
     ```
 
@@ -47,7 +47,7 @@ If you want to use your own domain instead of **${name}.endpoints.${project}.clo
 1. Get the address of the static IP address created:
 
     ```
-    IPNAME=${DEPLOYMENT_NAME}-ip
+    IPNAME=${KF_NAME}-ip
     gcloud --project=${PROJECT} compute addresses describe --global ${IPNAME}
     ```
 

@@ -19,9 +19,7 @@ Kubeflow Pipelines. If you need a more in-depth guide, see the
 
 Follow these steps to deploy Kubeflow and open the pipelines dashboard:
 
-1. Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
-  including the step to deploy Kubeflow using the 
-  [Kubeflow deployment UI](https://deploy.kubeflow.cloud/).
+1. Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
 
     {{% pipelines-compatibility %}} 
 
@@ -44,7 +42,7 @@ Follow these steps to deploy Kubeflow and open the pipelines dashboard:
 
     1. Run ```kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80``` and go to `http://localhost:8080/`.
 
-1. Click **Pipeline Dashboard** to access the pipelines UI. The pipelines UI looks like
+1. Click **Pipelines** to access the pipelines UI. The pipelines UI looks like
   this:
   <img src="/docs/images/pipelines-ui.png" 
     alt="Pipelines UI"
@@ -57,13 +55,13 @@ pipelines quickly. The steps below show you how to run a basic sample that
 includes some Python operations, but doesn't include a machine learning (ML) 
 workload:
 
-1. Click the name of the sample, **\[Sample\] Basic - Parallel Join**, on the pipelines 
+1. Click the name of the sample, **\[Sample\] Basic - Parallel Execution**, on the pipelines 
   UI:
   <img src="/docs/images/click-pipeline-sample.png" 
     alt="Pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-1. Click **Create an experiment**:
+1. Click **Create experiment**:
   <img src="/docs/images/pipelines-start-experiment.png" 
     alt="Starting an experiment on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
@@ -88,9 +86,8 @@ workload:
     alt="Run results on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-You can find the source code for the basic parallel join sample in the 
-[Kubeflow Pipelines 
-repo](https://github.com/kubeflow/pipelines/blob/master/samples/basic/parallel_join.py).
+You can find [the source code for the basic parallel join sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/parallel_join/parallel_join.py)
+in the Kubeflow Pipelines repo.
 
 ## Run an ML pipeline
 
@@ -124,7 +121,7 @@ Follow these steps to set up the necessary GCP services and run the sample:
     alt="XGBoost sample on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-1. Click **Create an experiment**.
+1. Click **Create experiment**.
 1. Follow the prompts to create an **experiment** and then create a **run**.
   Supply the following **run parameters**:
 
@@ -134,8 +131,8 @@ Follow these steps to set up the necessary GCP services and run the sample:
 
     The sample supplies the values for the other parameters:
 
-  * region: The GCP geographical region in which the training and evaluaton data
-    are stored.
+  * region: The GCP geographical region in which the training and evaluation
+    data is stored.
   * train-data: Cloud Storage path to the training data.
   * eval-data: Cloud Storage path to the evaluation data.
   * schema: Cloud Storage path to a JSON file describing the format of the
@@ -146,8 +143,8 @@ Follow these steps to set up the necessary GCP services and run the sample:
   * true-label: Column to be used for text representation of the label output
     by the model.
 
-    The arrows on the following screenshot indicate the run parameters that you
-    must supply:
+    The following partial screenshot shows the run parameters, including the 
+    two parameters that you must supply:
     <img src="/docs/images/pipelines-start-xgboost-run.png" 
       alt="Starting the XGBoost run on the pipelines UI"
       class="mt-3 mb-3 border border-info rounded">
@@ -163,7 +160,7 @@ Follow these steps to set up the necessary GCP services and run the sample:
 
 You can find the source code for the XGBoost training sample in the 
 [Kubeflow Pipelines 
-repo](https://github.com/kubeflow/pipelines/tree/master/samples/xgboost-spark).
+repo](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm).
 
 ## Clean up your GCP environment
 

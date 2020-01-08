@@ -61,23 +61,6 @@ The following example shows the **accuracy-score** and
   alt="Metrics from a pipeline run"
   class="mt-3 mb-3 border border-info rounded">
 
-The above example comes from the *taxi tip prediction* sample that is
-pre-installed when you deploy Kubeflow. You can run the sample by selecting **[Sample]
-ML - TFX - Taxi Tip Prediction Model Trainer** from the Kubeflow Pipelines UI.
-For help getting started with the UI, follow the 
-[Kubeflow Pipelines quickstart](/docs/pipelines/pipelines-quickstart/).
-
-The sample code is available in the [Kubeflow Pipelines samples 
-repo](https://github.com/kubeflow/pipelines/tree/master/samples/tfx). The
-pipeline uses a number of prebuilt components, including:
-
-* The [Confusion Matrix 
-  component](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py)
-  which writes out the **accuracy-score** metric.
-* The [ROC 
-  component](https://github.com/kubeflow/pipelines/blob/master/components/local/roc/src/roc.py)
-  which writes out the **roc-auc-score** metric.
-
 ## Next step
 
 Visualize the output of your component by [writing out metadata for an output 

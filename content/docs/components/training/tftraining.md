@@ -1,7 +1,7 @@
 +++
 title = "TensorFlow Training (TFJob)"
 linkTitle = "TensorFlow Training (TFJob)"
-description = ""
+description = "Using TFJob to train a model with TensorFlow"
 weight = 60
 +++
 
@@ -211,7 +211,7 @@ kubectl apply -f tfevent-volume
 kubectl apply -f tf_job_mnist.yaml
 ```
 
-Monitor the job (see the [TFJob docs](/docs/components/tftraining/#monitoring-your-job)):
+Monitor the job (see the [detailed guide below](#monitoring-your-job)):
 
 ```
 kubectl -n kubeflow get tfjob mnist -o yaml
@@ -235,32 +235,6 @@ Typically you can change the following values in the TFJob yaml file:
    * For example, you might need to configure various environment variables to talk to datastores like GCS or S3
 
 1. Attach PVs if you want to use PVs for storage.
-
-### Accessing the TFJob dashboard
-
-The TFJob dashboard is available at `<path>/tfjobs/ui/`. Specifically:
-
-* If you're using the central Kubeflow UI, you can access the TFJob dashboard
-  by clicking **TFJOB DASHBOARD**:
-
-    ![Central UI](/docs/images/central-ui.png)
-
-* If you followed the
- guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), you can
- access the TFJob dashboard at the following URL:
-
-    ```
-    https://<deployment-name>.endpoints.<project>.cloud.goog/tfjobs/ui/
-    ```
-
-* If you're using portforwarding, you can access the TFJob dashboard at the
-  following URL:
-
-    ```
-    http://localhost:8080/tfjobs/ui/
-    ```
-
-See more details about [accessing the Kubeflow UIs](/docs/other-guides/accessing-uis).
 
 ## Using GPUs
 
@@ -342,7 +316,7 @@ spec:
           restartPolicy: OnFailure
 ```
 
-Follow TensorFlow's [instructions](https://www.tensorflow.org/tutorials/using_gpu)
+Follow TensorFlow's [instructions](https://www.tensorflow.org/guide/gpu)
 for using GPUs.
 
 ## Monitoring your job
@@ -448,7 +422,6 @@ Success or failure of a job is determined as follows
   * For the restartPolicy ExitCode the behavior is exit code dependent.
   * If the restartPolicy doesn't allow restarts a non-zero exit code is considered
     a permanent failure and the job is marked failed.
-  * For the restartPolicy ExitCode the behavior is exit code dependent.        
 
 ### tfReplicaStatuses
 
@@ -686,4 +659,4 @@ Events:
 ## More information
 
 * Explore the [TFJob reference documentation](/docs/reference#tfjob).
-* See how to [run a job with gang-scheduling](/docs/other-guides/job-scheduling).
+* See how to [run a job with gang-scheduling](/docs/use-cases/job-scheduling).

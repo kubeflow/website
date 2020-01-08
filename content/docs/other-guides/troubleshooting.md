@@ -1,7 +1,7 @@
 +++
 title = "Troubleshooting"
 description = "Finding and fixing problems in your Kubeflow deployment"
-weight = 20
+weight = 100
 +++
 
 
@@ -31,7 +31,7 @@ newer than Haswell.
 On [Minikube](https://github.com/kubernetes/minikube) the Virtualbox/VMware drivers for Minikube are recommended as there is a known
 issue between the KVM/KVM2 driver and TensorFlow Serving. The issue is tracked in [kubernetes/minikube#2377](https://github.com/kubernetes/minikube/issues/2377).
 
-We recommend increasing the amount of resources Minikube allocates
+We recommend increasing the amount of resources Minikube allocates:
 
 ```
 minikube start --cpus 4 --memory 8096 --disk-size=40g
@@ -43,14 +43,14 @@ minikube start --cpus 4 --memory 8096 --disk-size=40g
     are 10s of GBs due to all the extra Python libraries we include.
 
 If you just installed Minikube following instructions from the [quick start guide](https://kubernetes.io/docs/getting-started-guides/minikube/#installation), you most likely
-created a VM with the default resources. You would want to recreate your Minikube with the appropriate resource settings.
+created a VM with the default resources. You would want to recreate your Minikube with the appropriate resource settings:
 ```
 minikube stop
 minikube delete
 minikube start --cpus 4 --memory 8096 --disk-size=40g
 ```
 
-If you encounter a jupyter-xxxx pod in Pending status, described with:
+You might encounter a jupyter-xxxx pod in Pending status, described with the following warning message:
 ```
 Warning  FailedScheduling  8s (x22 over 5m)  default-scheduler  0/1 nodes are available: 1 Insufficient memory.
 ```
@@ -65,7 +65,7 @@ ERROR Error updating roles kubeflow-test-infra.jupyter-role: roles.rbac.authoriz
 ```
 
 This error indicates you do not have sufficient permissions. In many cases you can resolve this just by creating an appropriate
-clusterrole binding like so and then redeploying kubeflow
+clusterrole binding like so and then redeploying kubeflow:
 
 ```commandline
 kubectl create clusterrolebinding default-admin --clusterrole=cluster-admin --user=your-user@acme.com
@@ -78,42 +78,13 @@ how RBAC interacts with IAM on GCP.
 
 ## Problems spawning Jupyter pods
 
-If you're having trouble spawning Jupyter notebooks, check that the pod is getting
-scheduled
+This section has been moved to [Jupyter Notebooks Troubleshooting Guide] (/docs/notebooks/troubleshoot/).
 
-```
-kubectl -n ${NAMESPACE} get pods
-```
-
-  * Look for pods whose name starts with juypter
-  * If you are using username/password auth with Jupyter the pod will be named
-
-  ```
-  jupyter-${USERNAME}
-  ```
-
-  * If you are using IAP on GKE the pod will be named
-
-    ```
-    jupyter-accounts-2egoogle-2ecom-3USER-40DOMAIN-2eEXT
-    ```
-
-    * Where USER@DOMAIN.EXT is the Google account used with IAP
-
-Once you know the name of the pod do
-
-```
-kubectl -n ${NAMESPACE} describe pods ${PODNAME}
-```
-
-  * Look at the events to see if there are any errors trying to schedule the pod
-  * One common error is not being able to schedule the pod because there aren't
-    enough resources in the cluster.
 
 ## Pods stuck in Pending state
 
 There are three pods that have Persistent Volume Claims (PVCs) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and katib-db.
-Check the status of the PVC requests
+Check the status of the PVC requests:
 
 ```
 kubectl -n ${NAMESPACE} get pvc
@@ -124,7 +95,7 @@ kubectl -n ${NAMESPACE} get pvc
 
 If you have not configured [dynamic provisioning] (https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) for your cluster, including a default storage class, then you must create a [persistent volume] (https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for each of the PVCs.
 
-You can use the example below to create local persistent volumes.
+You can use the example below to create local persistent volumes:
 
 ```commandline
 sudo mkdir /mnt/pv{1..3}
@@ -170,10 +141,10 @@ spec:
     path: "/mnt/pv3"
 EOF
 ```
-Once created the scheduler will successfully start the remaining three pods. The PVs may also be created prior to running any of the `kfctl.sh` commands.
+Once created the scheduler will successfully start the remaining three pods. The PVs may also be created prior to running any of the kfctl commands.
 
 ## OpenShift
-If you are deploying Kubeflow in an [OpenShift](https://github.com/openshift/origin) environment which encapsulates Kubernetes, you will need to adjust the security contexts for the ambassador and Jupyter-hub deployments in order to get the pods to run.
+If you are deploying Kubeflow in an [OpenShift](https://github.com/openshift/origin) environment which encapsulates Kubernetes, you will need to adjust the security contexts for the ambassador and Jupyter-hub deployments in order to get the pods to run:
 
 ```commandline
 oc adm policy add-scc-to-user anyuid -z ambassador
@@ -190,7 +161,7 @@ oc adm policy add-role-to-user cluster-admin -z tf-job-operator
 ## 403 API rate limit exceeded error
 
 Because kubectl uses GitHub to pull kubeflow, unless user specifies GitHub API token, it will quickly consume maximum API call quota for anonymous.
-To fix this issue first create GitHub API token using this [guide](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/), and assign this token to GITHUB_TOKEN environment variable.
+To fix this issue first create GitHub API token using this [guide](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/), and assign this token to GITHUB_TOKEN environment variable:
 
 ```commandline
 export GITHUB_TOKEN=<< token >>

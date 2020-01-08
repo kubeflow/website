@@ -16,7 +16,8 @@ Here's a quick guide to updating the docs. It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
 updates:
 
-1. Fork the [kubeflow/website repo][kubeflow-website-repo] on GitHub.
+1. Fork the [kubeflow/website 
+  repository](https://github.com/kubeflow/website) on GitHub.
 1. Make your changes and send a pull request (PR).
 1. If you're not yet ready for a review, add "WIP" to the PR name to indicate 
   it's a work in progress. Alternatively, you can also add `/hold` in a comment
@@ -33,10 +34,11 @@ updates:
   the content.
 1. When you're ready for a review, add a comment to the PR, remove any holds or
   "WIP" markers, and assign a reviewer/approver. See the
-  [Kubeflow contributor guide][kubeflow-contributor-guide].
+  [Kubeflow contributor guide](https://www.kubeflow.org/docs/about/contributing/).
 
-If you need help with the GitHub workflow, take a look at the quick guide near
-the bottom of this page.
+If you need more help with the GitHub workflow, follow this
+[guide to a standard GitHub
+workflow](https://github.com/kubeflow/website/blob/master/quick-github-guide.md). 
 
 ## Previewing your changes on a local website server
 
@@ -45,8 +47,8 @@ and run a local server to host your website. This section shows you how.
 
 ### Install Hugo and other dependencies
 
-The Kubeflow website uses the Docsy theme, which requires that you have 
-**Hugo version 0.45 or later**, and it must be the **extended** version of Hugo.
+The Kubeflow website uses the Docsy theme, which recommends that you have 
+**Hugo version 0.53 or later**, and it must be the **extended** version of Hugo.
 
 To get the extended version of Hugo:
 
@@ -75,14 +77,16 @@ For more details about installing Hugo, See the
 
 If you plan to make changes to the site styling, you need to install some 
 **CSS libraries** as well. Follow the instructions in the 
-[Docsy theme's setup guide](https://testydocsy.netlify.com/docs/getting-started/#installation-and-prerequisites). 
+[Docsy theme's setup guide](https://www.docsy.dev/docs/getting-started/#install-postcss).
 
-### Fork and clone the website repo and run a local website server
+### Fork and clone the website repository and run a local website server
 
-Follow the usual GitHub workflow to fork the repo on GitHub and clone it to your
-local machine, then use your local repo as input to your Hugo web server:
+Follow the usual GitHub workflow to fork the repository on GitHub and clone it 
+to your local machine, then use your local repository as input to your Hugo web 
+server:
 
-1. **Fork** the [kubeflow/website repo][kubeflow-website-repo] in the GitHub UI.
+1. **Fork** the [kubeflow/website 
+  repository](https://github.com/kubeflow/website) in the GitHub UI.
 1. Clone your fork locally. This example uses SSH cloning:
 
     ```
@@ -108,11 +112,11 @@ local machine, then use your local repo as input to your Hugo web server:
 
 1. While making the changes, you can preview them on your local version of the
   website at [http://localhost:1313/](http://localhost:1313/). Note that if you
-  have more than one local git branch, when you switch between git branches the
+  have more than one local Git branch, when you switch between Git branches the
   local website reflects the files in the current branch.
 
 Useful docs:
-- [User guide for the Docsy theme](https://testydocsy.netlify.com/docs/getting-started/)
+- [User guide for the Docsy theme](https://www.docsy.dev/docs/getting-started/)
 - [Hugo installation guide](https://gohugo.io/getting-started/installing/)
 - [Hugo basic usage](https://gohugo.io/getting-started/usage/)
 - [Hugo site directory structure](https://gohugo.io/getting-started/directory-structure/)
@@ -132,13 +136,13 @@ A `weight` property in the _front matter_ of each page determines the position
 of the page relative to the others in the same directory. The lower the weight,
 the earlier the page appears in the section. A weight of 1 appears before a
 a weight of 2, and so on. For example, see the front matter of the
-[requirements](https://github.com/kubeflow/website/blob/master/content/docs/started/requirements.md)
-page in the guides section. The page front matter looks like this:
+[Getting Started with Kubeflow](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/started/getting-started.md)
+page. The page front matter looks like this:
 
 ```
 +++
-title = "Requirements"
-description = "Requirements for Kubeflow"
+title = "Getting Started with Kubeflow"
+description = "Overview"
 weight = 1
 +++
 ```
@@ -198,10 +202,10 @@ The site's [front page](https://www.kubeflow.org/):
 * The CSS styles are in the 
   [project variables file](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
 * The page uses the 
-  [cover block](https://testydocsy.netlify.com/docs/getting-started/#blocks-cover) 
+  [cover block](https://www.docsy.dev/docs/adding-content/shortcodes/#blocks-cover) 
   defined by the theme.
 * The page also uses the 
-  [linkdown block](https://testydocsy.netlify.com/docs/getting-started/#blocks-link-down).
+  [linkdown block](https://www.docsy.dev/docs/adding-content/shortcodes/#blocks-link-down).
 
 ## Using Hugo shortcodes
 
@@ -217,7 +221,7 @@ shortcode file when the page is built.
 
 To create a shortcode:
 
-1. Add an HTML file in  the `/website/themes/kf/layouts/shortcodes/` directory.
+1. Add an HTML file in  the `/website/layouts/shortcodes/` directory.
    The file name must be short and meaningful, as it determines the shortcode
    you and others use in the docs.
 
@@ -254,8 +258,8 @@ Kubernetes:
   ```
 
 Useful Hugo docs:
-- [Shortcode templates][hugo-shortcode-templates]
-- [Shortcodes][hugo-shortcodes]
+- [Shortcode templates](https://gohugo.io/templates/shortcode-templates/)
+- [Shortcodes](https://gohugo.io/content-management/shortcodes/)
 
 ## Versioning of the docs
 
@@ -269,24 +273,9 @@ The versioned sites follow this convention:
 * `master.kubeflow.org` always points to GitHub head
 * `vXXX-YYY.kubeflow.org` points to the release at vXXX.YYY-branch
 
-We also hook up each version to the dropdown on the website menu bar. To update
-the website to a new version, edit `config.toml` as follows: 
-
-1. Add a `params.versions` entry. For example, to add v0.5, add this entry:
-
-    ```
-    [[params.versions]]
-      version = "v0.5"
-      githubbranch = "v0.5-branch"
-      url = "https://v0-5.kubeflow.org"
-    ```
-
-2. Update the version number in the text for the master version on two lines. 
-  For example, to update to v0.5, the text on both lines should be:
-  
-    ```
-    version = "master (v0.5)"
-    ```
+We also hook up each version to the dropdown on the website menu bar. For 
+information on how to update the website to a new version, see the [Kubeflow
+release guide](https://github.com/kubeflow/kubeflow/blob/master/docs_dev/releasing.md#releasing-a-new-version-of-the-website).
 
 Whenever any documents reference any source code, you should use the version
 shortcode in the links, like so:
@@ -295,100 +284,3 @@ shortcode in the links, like so:
 https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
 ```
 This ensures that all the links in a versioned webpage point to the correct branch.
-
-## Quick guide to working with a GitHub repo
-
-Here's a quick guide to a fairly standard GitHub workflow. This section is handy
-for people who don't use git or GitHub often, and just need a quick guide to
-get going:
-
-1. Fork the kubeflow/website repo:
-
-    * Go to the [kubeflow/website repo][kubeflow-website-repo] on GitHub.
-    * Click **Fork** to make your own copy of the repo. GitHub creates a copy
-      at `https://github.com/<your-github-username>/website`.
-
-1. Open a command window on your local machine.
-
-1. Clone your forked repo, to copy the files down to your local machine.
-  This example creates a directory called `kubeflow` and uses SSH cloning to
-  download the files:
-
-    ```
-    mkdir kubeflow
-    cd kubeflow/
-    git clone git@github.com:<your-github-username>/website.git
-    cd website/
-    ```
-
-1. Add the upstream repo as a git remote repo:
-
-    ```
-    git remote add upstream https://github.com/kubeflow/website.git
-    ```
-
-1. Check your remotes:
-
-    ```
-    git remote -vv
-    ```
-
-    You should have 2 remote repos:
-
-      -  `origin` - points to your own fork of the repo on gitHub -
-         that is, the one you cloned my local repo from.
-      -  `upstream` - points to the actual repo on gitHub.
-
-1. Create a branch. In this example, replace `doc-updates` with any branch name
-  you like. Choose a branch name that helps you recognise the updates you plan
-  to make in that branch:
-
-    ```
-    git checkout -b doc-updates
-    ```
-
-1. Add and edit the files as you like. The doc pages are in the
-  `/website/content/docs/` directory.
-
-1. Run `git status` at any time, to check the status of your local files.
-  Git tells you which files need adding or committing to your local repo.
-
-1. Commit your updated files to your local git repo. Example commit:
-
-    ```
-    git commit -a -m "Fixed some doc errors."
-    ```
-
-    Or:
-
-    ```
-    git add add-this-doc.md
-    git commit -a -m "Added a shiny new doc."
-    ```
-
-1. Push from your branch (for example, `doc-updates`) to **the relevant branch
-  on your fork on GitHub:**
-
-    ```
-    git checkout doc-updates
-    git push origin doc-updates
-    ```
-
-1. When you're ready to start the review process, create a pull request (PR)
-  **in the branch** on **your fork** on the GitHub UI, based on the above push.
-  The PR is auto-sent to the upstream repo - that is, the one you forked from.
-
-1. If you need to make changes to the files in your PR, continue making them
-  locally in the same branch, then push them again in the same way. GitHub
-  automatically sends them through to the same PR on the upstream repo!
-
-1. **Hint:** If you're authenticating to GitHub via SSH, use `ssh-add` to add
-  your SSH key passphrase to the managing agent, so that you don't have to
-  keep authenticating to GitHub. You need to do this again after every reboot.
-
-
-[hugo-shortcode-templates]: https://gohugo.io/templates/shortcode-templates/
-[hugo-shortcodes]: https://gohugo.io/content-management/shortcodes/
-
-[kubeflow-contributor-guide]: https://github.com/kubeflow/community/blob/master/CONTRIBUTING.md
-[kubeflow-website-repo]: https://github.com/kubeflow/website

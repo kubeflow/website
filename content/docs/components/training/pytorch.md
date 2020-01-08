@@ -34,8 +34,8 @@ pytorchjobs.kubeflow.org                       4d
 If it is not included you can add it as follows
 
 ```
-export KFAPP=<your Kubeflow installation directory>
-cd ${KFAPP}/kustomize
+export KF_DIR=<your Kubeflow installation directory>
+cd ${KF_DIR}/kustomize
 kubectl apply -f pytorch-job-crds.yaml
 kubectl apply -f pytorch-operator.yaml
 ```

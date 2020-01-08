@@ -17,7 +17,7 @@ block to be executed and exited based on dynamic conditions.
 ### Decorator
 
 Decorate the recursive function with [kfp.dsl.graph_component](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_component.py)
-as illustrated below. And, the decorator does not require any arguments.
+as illustrated below. The decorator does not require any arguments.
 ```python
 import kfp.dsl as dsl
 @dsl.graph_component
@@ -40,7 +40,7 @@ def pipeline():
 ```
 
 ### Function signature
-Define the function signature as a standard python function. The input parameters are [PipelineParams](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py).
+Define the function signature as a standard Python function. The input parameters are [PipelineParams](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py).
 
 ### Function body
 Similar to the pipeline function body, you can instantiate components, create [conditions](https://github.com/kubeflow/pipelines/blob/f8b0f5bf0cc0b5aceb8aedfd21e93156e363ea48/sdk/python/kfp/dsl/_ops_group.py#L110),
@@ -88,4 +88,4 @@ multiple recursive function calls in the function body.
 
 ## Next steps
 
-* See [recursion sample](https://github.com/kubeflow/pipelines/blob/master/samples/basic/recursion.py)
+* See [recursion sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/recursion/recursion.py)

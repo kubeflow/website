@@ -5,12 +5,12 @@ weight = 20
 +++
 
 This guide describes how to customize your deployment of Kubeflow on Amazon EKS.
-Some of the steps can be done before you run the `apply platform` command, and some of them can be done before you run the `apply k8s` command. Please see the following sections for details. If you don't understand the deployment process, please see [deploy](/docs/aws/deploy) for details.
+These steps can be done before you run `apply -V -f ${CONFIG_FILE}` command. Please see the following sections for details. If you don't understand the deployment process, please see [deploy](/docs/aws/deploy) for details.
 
 
 ## Customizing Kubeflow
 
-Here are the optional configuration parameters for `kfctl` on the AWS platform.
+Here are the optional configuration parameters for kfctl on the AWS platform.
 
 | Options  | Description  | Required |
 |---|---|---|
@@ -21,20 +21,20 @@ Here are the optional configuration parameters for `kfctl` on the AWS platform.
 
 ### Customize your Amazon EKS cluster
 
-Before you run `${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform`, you can edit the cluster configuration file to change cluster specification before you create the cluster.
+Before you run `kfctl apply -V -f ${CONFIG_FILE}`, you can edit the cluster configuration file to change cluster specification before you create the cluster.
 
-Cluster configuration is stored in `${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_config.yaml`. Please see [eksctl](https://eksctl.io/) for configuration details.
+Cluster configuration is stored in `${KF_DIR}/aws_config/cluster_config.yaml`. Please see [eksctl](https://eksctl.io/) for configuration details.
 
 For example, the following is a cluster manifest with one node group which has 2 `p2.xlarge` instances. You can easily enable SSH and configure a public key. All worker nodes will be in single Availability Zone.
 
 ```yaml
-apiVersion: eksctl.io/v1alpha4
+apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 metadata:
   # AWS_CLUSTER_NAME and AWS_REGION will override `name` and `region` here.
   name: kubeflow-example
   region: us-west-2
-  version: '1.12'
+  version: '1.13'
 # If your region has multiple availability zones, you can specify 3 of them.
 #availabilityZones: ["us-west-2b", "us-west-2c", "us-west-2d"]
 
@@ -48,8 +48,9 @@ nodeGroups:
     minSize: 0
     maxSize: 2
     volumeSize: 30
-    allowSSH: true
-    sshPublicKeyPath: '~/.ssh/id_rsa.pub'
+    ssh:
+      allow: true
+      sshPublicKeyPath: '~/.ssh/id_rsa.pub'
 
   # Example of GPU node group
   # - name: Tesla-V100

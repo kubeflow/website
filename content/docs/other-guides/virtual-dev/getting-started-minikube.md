@@ -1,0 +1,201 @@
++++
+title = "Minikube for Kubeflow"
+description = "Quickly get Kubeflow running locally"
+weight = 2
++++
+
+This document outlines the steps you can  take to get your local installation
+of Kubeflow running on top of Minikube. Minikube runs a simple, single-node
+Kubernetes cluster inside a virtual machine (VM).
+
+By the end of this document, you'll have a local installation of Minikube kubernetes cluster along with all the default core components of
+Kubeflow deployed as services in the pods. You should be able to access Jupyter notebooks and the Kubeflow Dashboard.
+
+### Prerequisites
+  - Laptop, Desktop or a Workstation
+    - >= 12GB RAM
+    - >= 8 CPU Cores
+    - ~100GB or more Disk Capacity
+    - Optional: GPU card
+  - Mac OS X or Linux (Ubuntu/RedHat/CentOS)
+  - sudo or admin access on the local machine
+  - Access to an Internet connection with reasonable bandwidth
+  - A hypervisor such as VirtualBox, Vmware Fusion, KVM etc.
+
+If you already have a hypervisor on your system, you can follow the [Quick Setup](#quick-setup) to do a guided Minikube setup.
+
+### Install a Hypervisor
+If you do not already have a hypervisor or a virtualizer installed, install a new one. Once the hypervisor is installed, you don't need to start or use it directly. Minikube will automatically invoke the hypervisor to start the VM.
+
+##### Mac OS X
+Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [VMware Fusion](https://www.vmware.com/products/fusion).
+
+##### Ubuntu
+Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [KVM](http://www.linux-kvm.org/).
+
+The KVM2 driver is intended to replace KVM driver. The KVM2 driver is maintained by the minikube team, and is built, tested and released with minikube.
+For installing KVM:
+
+```
+# Install libvirt and qemu-kvm on your system, e.g.
+# Debian/Ubuntu (for older Debian/Ubuntu versions, you may have to use libvirt-bin instead of libvirt-clients and libvirt-daemon-system)
+$ sudo apt install libvirt-clients libvirt-daemon-system qemu-kvm
+
+# Add yourself to the libvirt group so you don't need to sudo
+# NOTE: For older Debian/Ubuntu versions change the group to `libvirtd`
+$ sudo usermod -a -G libvirt $(whoami)
+
+# Update your current session for the group change to take effect
+# NOTE: For older Debian/Ubuntu versions change the group to `libvirtd`
+$ newgrp libvirt
+```
+Then install the driver itself:
+
+```
+curl -Lo docker-machine-driver-kvm2 https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-kvm2 \
+&& chmod +x docker-machine-driver-kvm2 \
+&& sudo cp docker-machine-driver-kvm2 /usr/local/bin/ \
+&& rm docker-machine-driver-kvm2
+```
+
+##### CentOS
+Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [KVM](http://www.linux-kvm.org/).
+
+For installing KVM:
+```
+# Install libvirt and qemu-kvm on your system
+$ sudo yum install libvirt-daemon-kvm qemu-kvm
+
+# Add yourself to the libvirt group so you don't need to sudo
+$ sudo usermod -a -G libvirt $(whoami)
+
+# Update your current session for the group change to take effect
+$ newgrp libvirt
+```
+Then install the driver itself:
+
+```
+curl -Lo docker-machine-driver-kvm2 https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-kvm2 \
+&& chmod +x docker-machine-driver-kvm2 \
+&& sudo cp docker-machine-driver-kvm2 /usr/local/bin/ \
+&& rm docker-machine-driver-kvm2
+```
+### Install Kubectl
+
+##### GCloud SDK
+
+```
+$ gcloud components install kubectl
+```
+
+##### Mac OS X
+
+```
+$ brew install kubectl
+```
+
+##### Ubuntu
+
+```
+$ sudo apt-get update && sudo apt-get install -y apt-transport-https
+$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+$ sudo touch /etc/apt/sources.list.d/kubernetes.list
+$ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+$ sudo apt-get update
+$ sudo apt-get install -y kubectl
+```
+
+##### CentOS
+
+```
+$ cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+$ sudo yum install -y kubectl
+```
+
+#### Verify kubectl installed
+
+Try running
+```
+$ kubectl version
+```
+This should output something like
+```
+Client Version: version.Info{Major:"1", Minor:"10", GitVersion:"v1.10.3", GitCommit:"2bba0127d85d5a46ab4b778548be28623b32d0b0", GitTreeState:"clean", BuildDate:"2018-05-21T09:17:39Z", GoVersion:"go1.9.3", Compiler:"gc", Platform:"darwin/amd64"}
+Server Version: version.Info{Major:"1", Minor:"10+", GitVersion:"v1.10.7-gke.2", GitCommit:"8d9503f982872112eb283f78cefc6944af640427", GitTreeState:"clean", BuildDate:"2018-09-13T22:19:55Z", GoVersion:"go1.9.3b4", Compiler:"gc", Platform:"linux/amd64"}
+```
+
+### Install & Start Minikube
+Please see [detailed instructions](https://minikube.sigs.k8s.io/docs/start/) for Minikube installation.
+For quick setup instructions follow along below.
+
+##### Mac OS X
+
+```
+$ brew install minikube
+```
+
+OR
+
+```
+$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 \
+  && sudo install minikube-darwin-amd64 /usr/local/bin/minikube
+```
+
+##### Ubuntu or CentOS
+
+```
+$ curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.28.0/minikube-linux-amd64
+$ chmod +x minikube
+$ sudo mv minikube /usr/local/bin/
+```
+
+##### Start your minikube cluster
+
+```
+$ minikube start --cpus 4 --memory 8096 --disk-size=40g
+```
+This takes a couple minutes as it will talk to the hypervisor and create a VM with the specified configuration.
+
+Notes:
+
+1. These are the minimum recommended settings on the VM created by minikube for kubeflow deployment. You are free to adjust them **higher** based on your host machine
+capabilities and workload requirements.
+1. Using certain hypervisors might require you to set --vm-driver option [specifying the driver](https://github.com/kubernetes/minikube/blob/master/docs/drivers.md)
+you want to use.
+
+In case, you have the default minikube VM already created (following detailed installation instructions), please use the following to update the VM.
+
+```
+$ minikube stop
+$ minikube delete
+$ minikube start --cpus 4 --memory 8096 --disk-size=40g
+```
+
+### Install Kubeflow on an existing Kubernetes cluster
+
+Now that you have a Kubernetes cluster running - the Minikube cluster - follow the
+[existing Kubernetes cluster](/docs/started/k8s/overview/) instructions for installing
+Kubeflow.
+
+### Where to go next
+
+You can use the following command to set up port forwarding and access the Web UIs:
+
+{{% code-webui-port-forward %}}
+
+Now you can access the Kubeflow dashboard at http://localhost:8080/ and Jupyter
+notebooks at http://localhost:8080/notebooks/.
+
+For Jupyter notebooks, you can use any username and password to log in.
+Follow the guide to [setting up your Jupyter notebooks on Kubeflow](/docs/notebooks/setup/).
+
+For further exploration refer to the [documentation](/docs/).

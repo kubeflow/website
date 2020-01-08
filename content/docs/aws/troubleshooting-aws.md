@@ -4,43 +4,46 @@ description = "Help diagnose and fix issues you may encounter in your Kubeflow d
 weight = 100
 +++
 
-
-### 404 Command Not Found when downloading scripts
-```shell
-➜ https://raw.githubusercontent.com/kubeflow/kubeflow/$\{KUBEFLOW_TAG\}/scripts/download.sh | bash
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    15  100    15    0     0     84      0 --:--:-- --:--:-- --:--:--    84
-bash: line 1: 404:: command not found
-```
-
-Please remove the escape backslashes surrounding `{KUBEFLOW_TAG}`.
-
-
-### Environment File Not Found
+### ALB can not be created
 
 ```shell
-+ source env.sh
-/tmp/kubeflow-aws/scripts/kfctl.sh: line 485: env.sh: No such file or directory
+kubectl get ingress -n istio-system
+NAME            HOSTS   ADDRESS   PORTS   AGE
+istio-ingress   *                 80      3min
 ```
 
-When you run generate/apply platform/k8s, Please make sure you verify the following steps and run your command from within the ${KFAPP} folder.
+If you see your istio-ingress ADDRESS is empty after 3 mins, it must be something wrong in your ALB ingress controller.
 
+```
+E1024 09:02:59.934318       1 :0] kubebuilder/controller "msg"="Reconciler error" "error"="failed to build LoadBalancer configuration due to retrieval of subnets failed to resolve 2 qualified subnets. Subnets must contain the kubernetes.io/cluster/\u003ccluster name\u003e tag with a value of shared or owned and the kubernetes.io/role/elb tag signifying it should be used for ALBs Additionally, there must be at least 2 subnets with unique availability zones as required by ALBs. Either tag subnets to meet this requirement or use the subnets annotation on the ingress resource to explicitly call out what subnets to use for ALB creation. The subnets that did resolve were []"  "controller"="alb-ingress-controller" "request"={"Namespace":"istio-system","Name":"istio-ingress"}
+```
 
-### kfapp already exists
+If you see this error, you probably forget to update `cluster_name` during setup. Please go to edit view by `kubectl edit deployment alb-ingress-controller -n kubeflow` and make the change. Another reason could be that you did not tag your subnets  so that Kubernetes knows to use only those subnets for external load balancers. To fix this ensure the public subnets are tagged with the **Key**: ```kubernetes.io/role/elb``` and **Value**: ```1```. See docs [here](https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html) for further details.
+
+### KF_DIR is not empty
 
 ```shell
-+ echo 'Directory kfapp already exists'
-Directory kfapp already exists
-+ exit 1
+kfctl build -V -f ${CONFIG_URI}
+INFO[0000] Downloading https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_aws.0.7.0.yaml to /var/folders/7z/9cx2bbsd3q3352bd8b01j_nmzx5lm9/T/703750259/tmp.yaml  filename="utils/k8utils.go:169"
+INFO[0001] Downloading https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_aws.0.7.0.yaml to /var/folders/7z/9cx2bbsd3q3352bd8b01j_nmzx5lm9/T/367955766/tmp_app.yaml  filename="configconverters/converters.go:70"
+Error:  (kubeflow.error): Code 400 with message: current directory /kf_base/kf070 not empty, please switch directories
+Usage:
+  kfctl build [flags]
+
+Flags:
+  -f, --file string   Static config file to use. Can be either a local path or a URL.
+  -h, --help          help for build
+  -V, --verbose       verbose output default is false
+
+ (kubeflow.error): Code 400 with message: current directory /kf_base/kf070 not empty, please switch directories
 ```
 
-This happens if you have invalid arguments when you initialize your configuration and you try to rerun command with correct arguments. The `kfapp` folder already exists. Delete `kfapp` and try again.
+This happens if you already initialize your configuration and you try to rerun `kfctl build`. Delete everything `rm -rf *` and try again.
 
 
 ### EKS Cluster Creation Failure
 
-There are several problems that could lead to cluster creation failure. If you see some errors when creating your cluster using `eksctl`, please open the CloudFormation console and check your stacks. To recover from failure, you need to follow the guidance from the `eksctl` output logs. Once you understand the root cause of your failure, you can delete your cluster and rerun `${KUBEFLOW_SRC}/scripts/kfctl.sh apply platform`.
+There are several problems that could lead to cluster creation failure. If you see some errors when creating your cluster using `eksctl`, please open the CloudFormation console and check your stacks. To recover from failure, you need to follow the guidance from the `eksctl` output logs. Once you understand the root cause of your failure, you can delete your cluster and rerun `kfctl apply -V -f ${CONFIG_FILE}`.
 
 Common issues:
 
@@ -138,5 +141,5 @@ If you see this error when you run `apply platform`, it means your eksctl cli ve
 We are working with eksctl team to make sure feature release support backward compatibility at least for one version.
 
 ```
-loading config file "${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_config.yaml": no kind "ClusterConfig" is registered for version "eksctl.io/v1alpha5" in scheme "k8s.io/client-go/kubernetes/scheme/register.go:60"
+loading config file "${KF_DIR}/aws_config/cluster_config.yaml": no kind "ClusterConfig" is registered for version "eksctl.io/v1alpha5" in scheme "k8s.io/client-go/kubernetes/scheme/register.go:60"
 ```

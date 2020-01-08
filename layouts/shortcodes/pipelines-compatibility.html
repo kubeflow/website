@@ -1,6 +1,8 @@
-<p><i>Due to 
-<a href="https://github.com/kubeflow/pipelines/issues/345">kubeflow/pipelines#345</a>
-and 
-<a href="https://github.com/kubeflow/pipelines/issues/337">kubeflow/pipelines#337</a>, 
-some non-critical pieces of functionality are currently available only on GKE clusters.</i>
+<p><i>Due to
+<a href="https://github.com/kubeflow/pipelines/issues/1700">kubeflow/pipelines#1700</a>,
+the container builder in Kubeflow Pipelines currently prepares credentials for
+Google Cloud Platform (GCP) only. As a result, the container builder supports
+only Google Container Registry. However, you can store the container images on
+other registries, provided you set up the credentials correctly to fetch
+the image.</i>
 </p>

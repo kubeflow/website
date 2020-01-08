@@ -1,6 +1,6 @@
 +++
 title = "Kubeflow"
-description = "Quickly get running with your ML Workflow"
+description = "An introduction to Kubeflow"
 weight = 1
 aliases = ["/docs/", "/docs/about/", "/docs/kubeflow/"]
 +++
@@ -13,24 +13,12 @@ you are running Kubernetes, you should be able to run Kubeflow.
 
 ## Getting started with Kubeflow
 
-Follow the [getting-started guide](/docs/started/getting-started) to set up your
-environment.
+Read the [Kubeflow overview](/docs/started/kubeflow-overview/) for an
+introduction to the Kubeflow architecture and to see how you can use Kubeflow
+to manage your ML workflow.
 
-Then read the [documentation](/docs/) to learn about the features of Kubeflow, 
-including the following guides to Kubeflow components:
-
-* Kubeflow includes services for spawning and managing 
-  [Jupyter notebooks](/docs/notebooks/). [Project Jupyter](https://jupyter.org/) 
-  is a non-profit, open source project that supports interactive data science 
-  and scientific computing across many programming languages.
-
-* [Kubeflow Pipelines](/docs/pipelines/pipelines-overview/) is a platform for 
-  building, deploying, and managing multi-step ML workflows based on Docker 
-  containers.
-
-* Kubeflow offers a number of [components](/docs/components/) that you can use
-  to build your ML training, hyperparameter tuning, and serving workloads across
-  multiple platforms.
+Follow the [getting-started guide](/docs/started/getting-started/) to set up
+your environment and install Kubeflow.
 
 ## What is Kubeflow?
 
@@ -40,23 +28,26 @@ To use Kubeflow, the basic workflow is:
 
 * Download and run the Kubeflow deployment binary.
 * Customize the resulting configuration files.
-* Run the specified scripts to deploy your containers to your specific
+* Run the specified script to deploy your containers to your specific
   environment.
 
 You can adapt the configuration to choose the platforms and services that you 
 want to use for each stage of the ML workflow: data preparation, model training,
 prediction serving, and service management.
 
-You can choose to deploy your Kubernetes workloads locally or to a cloud 
-environment.
+You can choose to deploy your Kubernetes workloads locally, on-premises, or to 
+a cloud environment.
+
+Read the [Kubeflow overview](/docs/started/kubeflow-overview/) for more details.
 
 ## The Kubeflow mission
 
 Our goal is to make scaling machine learning (ML) models and deploying them to
 production as simple as possible, by letting Kubernetes do what it's great at:
 
-  * Easy, repeatable, portable deployments on a diverse infrastructure (laptop
-    <-> ML rig <-> training cluster <-> production cluster)
+  * Easy, repeatable, portable deployments on a diverse infrastructure
+    (for example, experimenting on a laptop, then moving to an on-premises
+    cluster or to the cloud)
   * Deploying and managing loosely-coupled microservices
   * Scaling based on demand
 

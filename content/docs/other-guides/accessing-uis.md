@@ -1,58 +1,80 @@
 +++
 title = "Accessing Kubeflow UIs"
 description = "How to access the Kubeflow web UIs"
-weight = 15
+weight = 1
 +++
 
 Kubeflow includes a number of web user interfaces (UIs). This document provides
 instructions on how to connect to them.
 
-## Accessing Kubeflow web UIs
+## Overview of Kubeflow UIs
 
-Kubeflow comes with a number of web UIs, including:
+The Kubeflow UIs include the following:
 
-* Central UI for navigation
-* Jupyter notebooks
-* TFJob Dashboard
-* Katib Dashboard
-* Pipelines Dashboard
-* Artifact Store Dashboard
+* A central **Kubeflow** UI for navigation between the Kubeflow applications.
+* **Pipelines** for a Kubeflow Pipelines dashboard.
+* **Notebook Servers** for Jupyter notebooks.
+* **Katib** for hyperparameter tuning.
+* **Artifact Store** for tracking of artifact metadata.
 
-To make it easy to connect to these UIs Kubeflow provides a left hand navigation
-bar for navigating between the different applications.
+Instructions below indicate how to connect to the Kubeflow central UI. From
+there you can navigate to the different services using the left hand navigation
+bar. 
 
-Instructions below indicate how to connect to the Kubeflow landing page. From
-there you can easily navigate to the different services using the left hand navigation
-bar. The landing page looks like this:
+The central UI dashboard looks like this:
 
 <img src="/docs/images/central-ui.png"
-  alt="Kubeflow UI"
+  alt="Kubeflow central UI"
   class="mt-3 mb-3 border border-info rounded">
 
+## Overview of accessing the Kubeflow UIs
 
-## Google Cloud Platform (Kubernetes Engine)
+To access the Kubeflow UIs, you need to connect to the 
+[Istio gateway](https://istio.io/docs/concepts/traffic-management/#gateways) that 
+provides access to the Kubeflow 
+[service mesh](https://istio.io/docs/concepts/what-is-istio/#what-is-a-service-mesh).
 
-If you followed the guide to [deploying Kubeflow on Google Cloud Platform
-(GCP)](/docs/gke/deploy/), Kubeflow
-is deployed with Cloud Identity-Aware Proxy (Cloud IAP) or basic authentication,
-and the Kubeflow landing page is accessible at a URL of the following pattern:
+How you access the Istio gateway varies depending on how you've configured it.
+
+## URL pattern with Google Cloud Platform (GCP)
+
+If you followed the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/), 
+the Kubeflow central UI is accessible at a URL of the following pattern:
 
 ```
-https://<name>.endpoints.<project>.cloud.goog/
+https://<application-name>.endpoints.<project-id>.cloud.goog/
 ```
 
-This URL brings up the landing page illustrated above.
+The URL brings up the dashboard illustrated above.
 
-When deployed with Cloud IAP, Kubeflow uses the
+If you deploy Kubeflow with Cloud Identity-Aware Proxy (IAP), Kubeflow uses the
 [Let's Encrypt](https://letsencrypt.org/) service to provide an SSL certificate
 for the Kubeflow UI. For troubleshooting issues with your certificate, see the
 guide to
 [monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
 
-## Using Kubectl and port-forwarding
+## Using kubectl and port-forwarding
 
-If you're not using the Cloud IAP option or if you haven't yet set up your
-Kubeflow endpoint, you can access Kubeflow via `kubectl` and port-forwarding.
+If you didn't configure Kubeflow to integrate with an identity provider and perform 
+any authorization then you can port-forward directly to the Istio gateway.
+
+Port-forwarding typically does not work if any of the following are true:
+
+  * You've deployed Kubeflow on GCP using the 
+    [GCP deployment UI](/docs/gke/deploy/deploy-ui/) or the default settings 
+    with the [CLI deployment](/docs/gke/deploy/deploy-cli/). (If you want to
+    use port forwarding, you must deploy Kubeflow on an existing Kubernetes 
+    cluster using the [`kfctl_k8s_istio` 
+    configuration](/docs/started/k8s/kfctl-k8s-istio/).)
+
+  * You've configured the Istio ingress to only accept 
+    HTTPS traffic on a specific domain or IP address.
+
+  * You've configured the Istio ingress to perform an authorization check 
+    (for example, using Cloud IAP or [Dex](https://github.com/dexidp/dex)).
+
+
+You can access Kubeflow via `kubectl` and port-forwarding as follows:
 
 1. Install `kubectl` if you haven't already done so:
 
@@ -62,7 +84,7 @@ Kubeflow endpoint, you can access Kubeflow via `kubectl` and port-forwarding.
     installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 1. Use the following command to set up port forwarding to the
-  [Ambassador](https://www.getambassador.io/) service that provides the reverse proxy.
+  [Istio gateway](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
 
     {{% code-webui-port-forward %}}
 
@@ -72,18 +94,18 @@ Kubeflow endpoint, you can access Kubeflow via `kubectl` and port-forwarding.
     http://localhost:8080/
     ```
 
-  * This will only work if you haven't enabled basic auth or Cloud IAP. If
-    authentication is enabled requests will be rejected
-    because you are not connecting over HTTPS and attaching proper credentials.
+  * Depending on how you've configured Kubeflow, not all UIs work behind 
+    port-forwarding to the reverse proxy.
 
-  * Depending on how you've configured Kubeflow, not all UIs will work behind port-forwarding to the reverse proxy.
-
-    * Some web applications need to be configured to know the base URL they are serving on.
-    * So if you deployed Kubeflow with an ingress serving at `https://acme.mydomain.com` and configured an application
-      to be served at the URL `https://acme.mydomain.com/myapp` then the app may not work when served on
-      `https://localhost:8080/myapp` because the paths do not match.
+        For some web applications, you need to configure the base URL on which
+        the app is serving.
+        
+        For example, if you deployed Kubeflow with an ingress serving at 
+        `https://example.mydomain.com` and configured an application
+        to be served at the URL `https://example.mydomain.com/myapp`, then the 
+        app may not work when served on
+        `https://localhost:8080/myapp` because the paths do not match.
 
 ## Next steps
 
-See how to [set up your Jupyter notebooks](/docs/notebooks/setup/) in
-Kubeflow.
+* [Set up your Jupyter notebooks](/docs/notebooks/setup/) in Kubeflow.

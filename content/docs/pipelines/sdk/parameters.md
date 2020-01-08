@@ -6,30 +6,19 @@ weight = 70
 
 The [`kfp.dsl.PipelineParam` 
 class](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineParam)
-represents a data type that you can pass between pipeline components.
+represents a reference to future data that will be passed to the pipeline or produced by a task.
 
-You can use a `PipelineParam` object as an argument in your pipeline function.
-The object is then a pipeline parameter that shows up in Kubeflow Pipelines UI.
-A `PipelineParam` can also represent an intermediate value that you pass between 
-components.
+You pipeline function should have parameters, so that they can later be configured in the Kubeflow Pipelines UI.
 
-The following code sample shows how to use `PipelineParam` objects as
-arguments in a pipeline function:
+When your pipeline function is called, each function argument will be a `PipelineParam` object.
+You can pass those objects to the components as arguments to instantiate them and create tasks.
+A `PipelineParam` can also represent an intermediate value that you pass between pipeline tasks.
+Each task has outputs and you can get references to them from the `task.outputs[<output_name>]` dictionary.
+The task output references can again be passed to other components as arguments.
 
-```python
-@kfp.dsl.pipeline(
-  name='My pipeline',
-  description='My machine learning pipeline'
-)
-def my_pipeline(
-    my_num = dsl.PipelineParam(name='num-foos', value=1000),
-    my_name = dsl.PipelineParam(name='my-name', value='some text'),
-    my_url = dsl.PipelineParam(name='foo-url', value='http://example.com')):
-  ...
-```
+In most cases you do not need to construct `PipelineParam` objects manually.
 
-The DSL supports auto-conversion from string to `PipelineParam`. You can
-therefore write the same function like this:
+The following code sample shows how to define pipeline with parameters:
 
 ```python
 @kfp.dsl.pipeline(
@@ -37,11 +26,12 @@ therefore write the same function like this:
   description='My machine learning pipeline'
 )
 def my_pipeline(
-    my_num='1000', 
-    my_name='some text', 
-    my_url='http://example.com'):
+    my_num: int = 1000, 
+    my_name: str = 'some text', 
+    my_url: str = 'http://example.com'
+):
   ...
 ```
 
-See more about `PipelineParam` objects in the guide to [building a 
+See more in the guide to [building a 
 component](/docs/pipelines/sdk/build-component/#create-a-python-class-for-your-component).

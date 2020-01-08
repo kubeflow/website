@@ -72,31 +72,51 @@ servers in their primary profile which they have view and modify access to.
 
 ## Onboard new user
 
-An **administrator** needs to create a profile for any user in the kubeflow cluster.
-Here an administrator is a person who has
+Kubeflow v0.6.2 provides automatic profile creation for authenticated users on
+first login. Additionally, an **administrator** can create a profile for any
+user in the kubeflow cluster.  Here an administrator is a person who has
 [*cluster-admin*](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
 role binding in the Kubernetes cluster. This person has permissions to create
 and modify Kubernetes resources in the cluster. For example, the person who
 deployed Kubeflow will have administration privileges in the cluster.
 
-There are 2 steps to onboard a new user:
-
-#### Step 1: Grant user minimal k8s cluster view access
+### Pre-requisite: Grant user minimal Kubernetes cluster view access
 
 User should be given minimal permission scope that allows them to connect to the Kubernetes cluster.
-For example for GCP users, they can be granted IAM role: **Kubernetes Engine Cluster Viewer**
+For example for GCP users, they can be granted IAM roles: **Kubernetes Engine Cluster Viewer** and **IAP-secured Web App User**
 
-#### Step 2: Creating a user profile 
+### Automatic creation of Profiles
+
+Kubeflow v0.6.2 onwards provides automatic profile creations as a convenience
+to the users:
+
+  - Kubeflow deployment process automatically creates a profile for the user
+    performing the deployment. When the user access the Central Dashboard
+    they'll already see their profile in the dropdown list.
+  - When an authenticated user logs into the system and visits the Central
+    Dashboard for the first time, they trigger a profile creation automaticlly.
+      - A brief message introduces profiles <img
+        src="/docs/images/auto-profile1.png" alt="Automatic profile creation
+        step 1" class="mt-3 mb-3 border border-info rounded">
+      - The user can name their profile and click *Finish*.  <img
+        src="/docs/images/auto-profile2.png" alt="Automatic profile creation
+        step 2" class="mt-3 mb-3 border border-info rounded">
+      - This redirects the user to the dashboard where they can view and select
+      thier profile in the dropdown list.
+
+### Manual profile creation
+
+An administrator can manually create profiles for users as described below.
 
 Create a
 `profile.yaml` file with the following contents on your local machine:
 
 ```
 $ cat << EOF > profile.yaml
-apiVersion: kubeflow.org/v1alpha1
+apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
-  name: profileName   # replace with the name of profile you want
+  name: profileName   # replace with the name of profile you want, this will be user's namespace name
 spec:
   owner:
     kind: User
@@ -126,6 +146,11 @@ The following resources are created as part of the profile creation:
   - Namespace-scoped service-accounts editor and viewer to be used by
     user-created pods in above namespace.
 
+
+**Note**: Due to a 1-to-1 correspondence of Profiles with Kubernetes
+Namespaces, Profiles and Namespaces are sometimes used interchangably in the
+documentation.
+
 ### Batch creation of user profiles
 
 Administrators might want to create profiles for multiple users as a batch. This can
@@ -134,7 +159,7 @@ profile descriptions as shown below:
 
 ```
 $ cat << EOF > profile.yaml
-apiVersion: kubeflow.org/v1alpha1
+apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
   name: profileName1   # replace with the name of profile you want
@@ -143,7 +168,7 @@ spec:
     kind: User
     name: userid1@email.com   # replace with the email of the user
 ---
-apiVersion: kubeflow.org/v1alpha1
+apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
   name: profileName2   # replace with the name of profile you want
@@ -161,7 +186,6 @@ kubectl create -f profile.yaml
 
 This will create multiple profiles for each individual listed in the sections
 in `profile.yaml`.
-
 
 ## Listing and describing profiles
 
@@ -186,15 +210,73 @@ resources associated with the profile. The profile's owner or other users with
 access to the profile will no longer have access to the profile and will not see
 it in the dropdown list on the central dashboard.
 
-<!-- Commented until we have UI support for sharing profiles. Current
-     method using CURL on the profiles API server is not recommended.
 
-## Sharing access to a profile with another user
+## Managing Contributors through UI
 
-An owner of a profile can share view only or view and modify access to the profile
-with another user in the system. 
+Kubeflow v0.6.2 onwards allows sharing of profiles with other users in the
+system.  An owner of a profile can share access to their profile using the
+*Manage Contributors* tab available through the dashboard.
 
--->
+<img src="/docs/images/multi-user-contributors.png" 
+  alt="Manage Contributors in Profiles"
+  class="mt-3 mb-3 border border-info rounded">
+
+Here is an example of the Manage Contributors tab view:
+
+<img src="/docs/images/manage-contributors.png" 
+  alt="Manage Contributors in Profiles"
+  class="mt-3 mb-3 border border-info rounded">
+
+Notice that in the above view the account associated with the profile is
+*Cluster Admin* as this account was used to deploy Kubeflow. It lists the
+profiles accessible to the user along with the role associated with that
+profile.
+
+Adding and removing contributors is easily possible by simply adding/removing the 
+email address or the user identifier in the *Contributors to your namespace* field.
+
+<img src="/docs/images/add-contributors.png" 
+  alt="Add Contributors"
+  class="mt-3 mb-3 border border-info rounded">
+
+Once added, the Manage Contributors tab will show the profiles with thier
+corresponding contributors listed. Note that *Cluster Admin* can view all the 
+profiles in the system along with their contributors.
+
+<img src="/docs/images/view-contributors.png" 
+  alt="View Contributors"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+The contributors will have access to all the Kubernetes resources in the
+namespace and will be able to created notebook servers as well as access
+existing notebooks.  The contributor's access can be removed by the owner of a
+profile by visiting the *Manage Contributors* tab and removing the user
+email/id from the list of contributors.
+
+
+
+## Current Integration and Limitations
+
+The Jupyter notebooks service is the first application to be fully integrated with
+multi-user isolation. Access to the notebooks and the creation of notebooks is 
+controlled by the profile access policies set by the Administrator or the owners
+of the profiles. Resources created by the notebooks (eg. Training jobs and
+deployments) will also inherit the same access.
+
+Metadata and Pipelines or any other applications currently don't have full
+fledged integration with isolation, though they will have access to the user
+identity through the headers of the incoming requests. It's upto the individual
+applications to leverage the available identity and create isolation stories
+that make sense for them.
+
+On GCP, the authentication and identify token is generated by GCP IAM and carried
+through the requests as a JWT Token in header. Other cloud providers can have a
+similar header to provide identity information.
+
+For on-premise deployments, Kubeflow leverages Dex as a federated OpenID connection
+provider and can be integrated with LDAP or Active Directory to provide authentication
+and identity services.
 
 
 
