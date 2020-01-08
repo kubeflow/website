@@ -350,18 +350,25 @@ To define the metrics collector for your experiment:
       containing a 
       [tf.Event](https://www.tensorflow.org/api_docs/python/tf/Event). You
       should specify the path in the `source` field.
+    * `Custom`: Specify this value if you need to use custom way to collect
+      metrics. You must define your custom metrics collector container
+      in the `collector.customCollector` field.
     * `None`: Specify this value if you don't need to use Katib's metrics
       collector. For example, your training code may handle the persistent
       storage of its own metrics.
 
 1. Specify the metrics output location in the `source` field. See the 
   [MetricsCollectorSpec type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L74-L143) for default values.
-1. Write code in your training container to print metrics in the following 
-  format: `{metrics name}={value}`. 
+1. Write code in your training container to print metrics in the format
+   specified in the `metricsCollectorSpec.source.filter.metricsFormat`
+   field. The default format is `([\w|-]+)\s*=\s*((-?\d+)(\.\d+)?)`.
+   Each element is a regular expression with two subexpressions. The first
+   matched expression is taken as the metric name. The second matched
+   expression is taken as the metric value.
 
-    For example, if the name of your objective metric is `loss` and the metrics
-    are `recall` and `precision`, your training code should print the following
-    output:
+    For example, using the default metrics format, if the name of your objective metric
+    is `loss` and the metrics are `recall` and `precision`, your training code should
+    print the following output:
 
     ```
     epoch 1:
