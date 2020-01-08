@@ -94,11 +94,11 @@ arguments.
     file to include the following YAML that specifies that custom visualizations
     are allowed via environment variables.
 
-    ```YAML
-    - env:
-      - name: ALLOW_CUSTOM_VISUALIZATIONS
-        value: true
-    ```
+      ```YAML
+      - env:
+        - name: ALLOW_CUSTOM_VISUALIZATIONS
+          value: true
+      ```
     * If you already have Kubeflow Pipelines deployed within a cluster, you can
     edit the frontend deployment YAML to specify that custom visualizations are
     allowed in the same way described above. Details about updating
@@ -148,11 +148,13 @@ optional for custom visualizations).
     master/manifests/kustomize/base/pipeline/
     ml-pipeline-visualization-deployment.yaml)
     file or within the visualization service deployment itself.
-    ```YAML
-    - env:
-          - name: KERNEL_TIMEOUT
-            value: 100
-    ```
+      
+      ```YAML
+      - env:
+        - name: KERNEL_TIMEOUT
+          value: 100
+      ```
+
 * The HTML content of the generated visualizations cannot be larger than 4MB.
     * gRPC by default imposes a limit of 4MB as the maximum size that can be
     sent and received by a server. To allow for visualizations that are larger
@@ -161,17 +163,18 @@ optional for custom visualizations).
     options given to the gRPC server within [main.go](https://github.com/
     kubeflow/pipelines/blob/master/backend/src/apiserver/main.go#L128)
     to
-    ```golang
-    var maxCallRecvMsgSize = 4 * 1024 * 1024
-    if serviceName == "Visualization" {
-          // Only change the maxCallRecvMesSize if it is for visualizations
-          maxCallRecvMsgSize = 50 * 1024 * 1024
-    }
-    opts := []grpc.DialOption{
-          grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(maxCallRecvMsgSize)),
-          grpc.WithInsecure(),
-    }
-    ```
+
+      ```golang
+      var maxCallRecvMsgSize = 4 * 1024 * 1024
+      if serviceName == "Visualization" {
+            // Only change the maxCallRecvMesSize if it is for visualizations
+            maxCallRecvMsgSize = 50 * 1024 * 1024
+      }
+      opts := []grpc.DialOption{
+            grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(maxCallRecvMsgSize)),
+            grpc.WithInsecure(),
+      }
+      ```
 
 ## Next steps
 If you'd like to add a predefined visualization to Kubeflow, take a look at the
