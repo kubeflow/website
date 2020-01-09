@@ -5,4 +5,4 @@ weight = 4
 toc = true
 +++
 
-[Chainer](https://github.com/kubeflow/chainer-operator) is not supported in kubeflow > 0.7
+[Chainer](https://github.com/kubeflow/chainer-operator) is not supported in kubeflow > 0.6
