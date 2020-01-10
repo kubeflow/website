@@ -10,10 +10,9 @@ weight = 10
 | ml-pipeline/persistenceagent      | <https://github.com/kubeflow/pipelines/tree/master/backend> |
 | ml-pipeline/scheduledworkflow | <https://github.com/kubeflow/pipelines/tree/master/backend> |
 | ml-pipeline/frontend | <https://github.com/kubeflow/pipelines/blob/master/frontend/Dockerfile> |
-| metrics-collector |    <https://github.com/kubeflow/katib/tree/master/cmd/metricscollector>
 | katib/katib-controller    | <https://github.com/kubeflow/katib/tree/master/cmd/katib-controller/v1alpha3/Dockerfile> |
 | katib/katib-ui    | <https://github.com/kubeflow/katib/tree/master/cmd/ui/v1alpha3/Dockerfile> |
-| katib/katib-manager |     <https://github.com/kubeflow/katib/tree/master/cmd/manager/v1alpha3/Dockerfile> |
+| katib/katib-db-manager |     <https://github.com/kubeflow/katib/tree/master/cmd/db-manager/v1alpha3/Dockerfile> |
 | katib/suggestion-skopt | <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/skopt/v1alpha3/Dockerfile> |
 | katib/suggestion-chocolate |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/chocolate/v1alpha3/Dockerfile> |
 | katib/suggestion-hyperopt |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/hyperopt/v1alpha3/Dockerfile> |
