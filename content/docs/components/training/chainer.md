@@ -1,6 +1,6 @@
 +++
 title = "Chainer Training"
-description = "See Kubeflow [v0.6 docs](https://v0-6.kubeflow.org) for instructions on using Chainer for training"
+description = "See Kubeflow [v0.6 docs](https://v0-6.kubeflow.org/docs/components/training/chainer/) for instructions on using Chainer for training"
 weight = 4
 toc = true
 +++
