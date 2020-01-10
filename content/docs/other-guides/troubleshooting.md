@@ -83,7 +83,7 @@ This section has been moved to [Jupyter Notebooks Troubleshooting Guide] (/docs/
 
 ## Pods stuck in Pending state
 
-There are three pods that have Persistent Volume Claims (PVCs) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and katib-db.
+There are three pods that have Persistent Volume Claims (PVCs) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and katib-mysql.
 Check the status of the PVC requests:
 
 ```
