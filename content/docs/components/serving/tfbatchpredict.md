@@ -1,8 +1,14 @@
 +++
 title = "TensorFlow Batch Predict"
-description = "Batch prediction for TensorFlow models"
+description = "See Kubeflow [v0.6 docs](https://v0-6.kubeflow.org/docs/components/serving/tfbatchpredict/) for Batch Prediction with TensorFlow models"
 weight = 60
 +++
+
+[Batch Predict](https://github.com/kubeflow/batch-predict) is not supported in Kubeflow versions greater than 0.6.
+
+{{% alert title="Alpha version" color="warning" %}}
+These docs are for an <b>alpha</b> release of Batch prediction and the batch predict code hasn't been updated in over a year. It's not clear what the path forward is on this feature. If you are using this it, the development team is interested in any feedback you have.
+{{% /alert %}}
 
 ## Kubeflow Batch Predict
 
