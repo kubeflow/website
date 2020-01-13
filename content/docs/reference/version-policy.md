@@ -235,4 +235,4 @@ one of the following Kubeflow SDKs and command-line interfaces
 
 The expectations for supportability and the types of support available depend
 on the stable status of each application or other component.
-For more information, see the support details page.
+For more information, see the [support page](/docs/other-guides/support/).
