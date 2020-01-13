@@ -4,4 +4,4 @@ description = "See Kubeflow [v0.6 docs](https://v0-6.kubeflow.org/docs/component
 weight = 60
 +++
 
-[Batch Predict](https://github.com/kubeflow/batch-predict) is not supported in Kubeflow versions greater than 0.6.
+[Batch predict](https://github.com/kubeflow/batch-predict) is not supported in Kubeflow versions greater than 0.6.
