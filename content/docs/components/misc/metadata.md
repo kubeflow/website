@@ -37,8 +37,8 @@ steps:
 2. Run the following commands to deploy the services of the Metadata component:
 
     ```
-    cd manifests/metadata/base
-    kustomize build . | kubectl apply -n kubeflow -f -
+    cd manifests/metadata
+    kustomize build overlays/db | kubectl apply -n kubeflow -f -
     ```
 
 ## Using the Metadata SDK to record metadata
