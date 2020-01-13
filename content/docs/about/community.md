@@ -44,7 +44,7 @@ Agenda, notes, and a reminder of the next call are sent to the kubeflow-discuss
 mailing list.
 
 <a id="slack"></a>
-### Slack online chat and messaging
+### Slack community and channels
 
 The Kubeflow Slack workspace is 
 [kubeflow.slack.com](https://kubeflow.slack.com/). To join, click this
