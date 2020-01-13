@@ -62,7 +62,7 @@ arguments.
 
 ### Predefined TFX visualization
 
-<video width="960" height="540" controls>
+<video width="100%" max-width="100%" height="auto" max-height="100%" controls>
   <source src="/docs/videos/tfdv_example_with_taxi_pipeline.webm" type="video/webm">
 </video>
 
