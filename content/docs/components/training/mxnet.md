@@ -40,6 +40,16 @@ ks generate mxnet-operator mxnet-operator
 ks apply default -c mxnet-operator
 ```
 
+As an alternative solution, you can deploy mxnet-operator bypass ksonnect
+
+```
+# git clone https://github.com/kubeflow/mxnet-operator.git
+# cd mxnet-operator
+kubectl create -f manifests/crd-v1beta1.yaml 
+kubectl create -f manifests/rbac.yaml 
+kubectl create -f manifests/deployment.yaml
+```
+
 ## Creating a MXNet training job
 
 
