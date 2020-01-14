@@ -50,6 +50,13 @@ You create a training job by defining a MXJob with MXTrain mode and then creatin
 kubectl create -f examples/v1beta1/train/mx_job_dist_gpu.yaml
 ```
 
+As an alternative solution, you can deploy mxnet-operator bypass ksonnect
+
+```
+kubectl create -f manifests/crd-v1beta1.yaml 
+kubectl create -f manifests/rbac.yaml 
+kubectl create -f manifests/deployment.yaml
+```
 
 ## Creating a TVM tuning job (AutoTVM)
 
