@@ -156,7 +156,7 @@ KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
       </tr>
 
       <tr>
-        <td>istio</td>
+        <td>Istio</td>
         <td></td>
         <td><b>&check;</b></td>
         <td><b>&check;</b></td>
@@ -191,10 +191,8 @@ Further information:
 
 ## TensorFlow Serving
 
-For TensorFlow models you can use TensorFlow Serving for both 
-[real-time](/docs/components/serving/tfserving_new) and 
-[batch](/docs/components/serving/tfbatchpredict) prediction. Kubeflow also
-supports [TensorFlow serving via Istio](/docs/components/serving/istio). 
+For TensorFlow models you can use TensorFlow Serving for 
+[real-time prediction](/docs/components/serving/tfserving_new).
 However, if you plan to use multiple frameworks, you should consider KFServing
 or Seldon Core as described above.
 
