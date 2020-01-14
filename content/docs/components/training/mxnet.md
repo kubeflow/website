@@ -53,6 +53,8 @@ kubectl create -f examples/v1beta1/train/mx_job_dist_gpu.yaml
 As an alternative solution, you can deploy mxnet-operator bypass ksonnect
 
 ```
+# git clone https://github.com/kubeflow/mxnet-operator.git
+# cd mxnet-operator
 kubectl create -f manifests/crd-v1beta1.yaml 
 kubectl create -f manifests/rbac.yaml 
 kubectl create -f manifests/deployment.yaml
