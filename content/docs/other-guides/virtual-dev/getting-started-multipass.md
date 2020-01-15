@@ -21,33 +21,35 @@ Here's a summary of the steps involved:
 
 ### 1. Install and set up Microk8s
 
+Run the following commands to install and setup MicroK8s:
+
 ```
-$ snap install microk8s --classic --channel=1.17/stable
-$ microk8s.status --wait-ready
-# enable common services
-$ microk8s.enable dns dashboard storage
+snap install microk8s --classic
+microk8s.status --wait-ready
+# Enable common services:
+microk8s.enable dns dashboard storage
 # If you have a GPU, run: `microk8s.enable gpu`
 ```
 
 ### 2. Enable Kubeflow
 
-$ microk8s.enable kubeflow
+Run the following command to enable Kubeflow:
 
 ```
+microk8s.enable kubeflow
+```
+
 This script will print out the port number for Ambassador and for Jupyter notebook 
 servers.
-(Note: you can access your Jupyter notebook server through Ambassador).
-```
+
 
 ## Access Kubeflow
 
 If you installed Microk8s on your local host, then you can use localhost as the IP address in your browser. Otherwise, if you used Multipass, you can get the IP address of the VM with either `multipass list` or `multipass info kubeflow`.
 
-```
 Point browser to either:
-- http://<kubeflow VM IP>:<Ambassador PORT>
-- http://localhost:<Ambassador PORT>
-```
+- http://" Your kubeflow VM IP":"Ambassador PORT"
+- http://localhost:" Ambassador PORT"
 
 ## Next steps
 
