@@ -34,24 +34,23 @@ the status of an application:
     <tbody>
       <tr>
         <td>Stable</td>
-        <td>TODO What are the expectations here? Some examples:
-          <ul>
-            <li><a href="https://github.com/kubeflow/community/blob/master/proposals/issue_triage.md>">Issue
-              triage</a> within 48 hours.</li>
-            <li>Response to question on Slack or the kubeflow-discuss mailing
-              list within 24 hours.</li>
-          </ul>
+        <td>The Kubeflow community offers <i>best-effort support</i> for stable
+          applications. See the section on 
+          <a href="#community-support">community support</a> below for a
+          definition of best-effort support and the community channels where you 
+          can report and discuss the problem. You can also consider requesting 
+          support from a 
+          <a href="#provider-support">Kubeflow community provider</a> or from 
+          your <a href="#cloud-support">cloud provider</a>.
         </td>
       </tr>
       <tr>
         <td>Beta</td>
-        <td>TODO What are the expectations here? Some examples:
-          <ul>
-            <li><a href="https://github.com/kubeflow/community/blob/master/proposals/issue_triage.md>">Issue
-              triage</a> within 48 hours.</li>
-            <li>Response to question on Slack or the kubeflow-discuss mailing
-              list within 72 hours.</li>
-          </ul>
+        <td>The Kubeflow community offers <i>best-effort support</i> for beta
+          applications. See the section on 
+          <a href="#community-support">community support</a> below for a
+          definition of best-effort support and the community channels where you 
+          can report and discuss the problem. 
         </td>
       </tr>
       <tr>
@@ -64,22 +63,26 @@ the status of an application:
   </table>
 </div>
 
-## Support from a cloud provider
-
-If you're using the services of a cloud provider to host Kubeflow, the cloud
-provider may be able to help you diagnose and solve a problem.
-
-Consult the support page for the cloud service that you're using:
-
-* [Amazon Web Services (AWS)](https://aws.amazon.com/contact-us/)
-* [Google Cloud Platform (GCP)](https://cloud.google.com/support-hub/)
-* [IBM Cloud Private](https://www.ibm.com/cloud/support)
-* [Microsoft Azure](https://azure.microsoft.com/en-au/support/options/)
-
+<a id="community-support">
 ## Support from the Kubeflow community
 
-Kubeflow has an active and helpful community of users and contributors. You
-can ask questions and make suggestions in the following places:
+Kubeflow has an active and helpful community of users and contributors. 
+
+The Kubeflow community offers support on a best-effort basis for stable and beta
+applications.
+**Best-effort support** means that there's no formal agreement or
+commitment to solve a problem but the community appreciates the
+importance of addressing the problem as soon as possible. The community commits
+to helping you diagnose and address the problem if all the following are true:
+
+* The cause falls within the technical framework that Kubeflow controls. For
+  example, the Kubeflow community may not be able to help if the problem is 
+  caused by a specific network configuration within your organization.
+* Community members can reproduce the problem.
+* The reporter of the problem can help with further diagnosis and 
+  troubleshooting.
+
+You can ask questions and make suggestions in the following places:
 
 * **Slack** for online chat and messaging. See details of Kubeflow's 
   [Slack workspace and channels](/docs/about/community/#slack).
@@ -117,9 +120,8 @@ can ask questions and make suggestions in the following places:
   * [Examples](https://github.com/kubeflow/examples/issues)
   * [Documentation](https://github.com/kubeflow/website/issues)
 
-## Support from partners
-
-TODO Shall we include a partners section like this?
+<a id="provider-support"></a>
+## Support from providers in the Kubeflow ecosystem
 
 The following organizations offer advice and support for Kubeflow deployments:
 
@@ -127,7 +129,20 @@ The following organizations offer advice and support for Kubeflow deployments:
   Should we list some or all of the contacts that 
   are currently in the [org list](https://github.com/kubeflow/community/blob/master/member_organizations.yaml#L42)?
 
-* TODO Are there any other partners we should add?
+* TODO Are there any other organizations we should add?
+
+<a id="cloud-support"></a>
+## Support from a cloud provider
+
+If you're using the services of a cloud provider to host Kubeflow, the cloud
+provider may be able to help you diagnose and solve a problem.
+
+Consult the support page for the cloud service that you're using:
+
+* [Amazon Web Services (AWS)](https://aws.amazon.com/contact-us/)
+* [Google Cloud Platform (GCP)](https://cloud.google.com/support-hub/)
+* [IBM Cloud Private](https://www.ibm.com/cloud/support)
+* [Microsoft Azure](https://azure.microsoft.com/en-au/support/options/)
 
 ## Other places to ask questions
 
