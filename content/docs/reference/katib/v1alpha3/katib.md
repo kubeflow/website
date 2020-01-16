@@ -68,7 +68,7 @@ weight = 100
 <p align="right"><a href="#top">Top</a></p>
 
 ## api.proto
-Katib API
+Katib API v1alpha3
 
 
 <a name="api.v1.alpha3.AlgorithmSetting"></a>
@@ -132,7 +132,7 @@ Katib API
 <a name="api.v1.alpha3.EarlyStoppingSpec"></a>
 
 ### EarlyStoppingSpec
-TODO
+TODO: This feature is not yet fully implemented.
 
 
 
@@ -661,7 +661,7 @@ Types of value for HyperParameter.
 <a name="api.v1.alpha3.EarlyStopping"></a>
 
 ### EarlyStopping
-TODO
+TODO: This feature is not yet fully implemented.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
