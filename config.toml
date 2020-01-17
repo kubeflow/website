@@ -123,7 +123,7 @@ version = "v0.7"
 # Examples of archived snapshots for Kubeflow: 
 # https://v0-6.kubeflow.org/, https://v0-5.kubeflow.org/, and so on.
 # archive_url_pattern = "v\\d+-\\d+\\.kubeflow\\.org"
-archive_url_pattern = "deploy-preview-\\d+--competent-brattain-de2d6d\\.netlify\\.com"
+archive_url_pattern = "netlify"
 
 # A variable used in various docs to determine URLs for config files etc.
 # To find occurrences, search the repo for 'params "githubbranch"'.
