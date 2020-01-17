@@ -1,7 +1,9 @@
 <!-- Match the page URL against the regex pattern for archived doc sets.
   If the pattern matches, display a banner. -->
 {{ $pageurl := urls.Parse .Permalink }}
-{{ $pageurl }}
+{{ .Permalink }} <br>
+{{ $pageurl }} <br>
+{{ .Page.URL }}
 {{ $ismatch := findRE .Site.Params.archive_url_pattern $pageurl }}
 {{ if $ismatch }}
   {{ $color := "primary" }}
