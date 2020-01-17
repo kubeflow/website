@@ -1,11 +1,6 @@
-<!-- Match the page URL against the regex pattern for archived doc sets.
-  If the pattern matches, display a banner. -->
-{{ $pageurl := urls.Parse .Permalink }}
-{{ .Permalink }} <br>
-{{ $pageurl.Host }} <br>
-{{ .URL }}
-
-{{ $ismatch := findRE .Site.Params.archive_url_pattern $pageurl }}
+<!-- Match the page URL (permalink) against the regex pattern for archived doc
+  sets. If the pattern matches, display a banner. -->
+{{ $ismatch := findRE .Site.Params.archive_url_pattern .Permalink }}
 {{ if $ismatch }}
   {{ $color := "primary" }}
   <div class="pageinfo pageinfo-{{ $color }}">
