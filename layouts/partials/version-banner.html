@@ -1,12 +1,14 @@
-<div class="">
-  <!-- Match the page URL against the pattern for archived doc sets.
-    If the pattern matches, display a banner. -->
-  {{ $pageurl := urls.Parse .Permalink }}
-  {{ if eq $pageurl.Host "localhost:1313" }}
+<!-- Match the page URL against the regex pattern for archived doc sets.
+  If the pattern matches, display a banner. -->
+{{ $pageurl := urls.Parse .Permalink }}
+{{ $ismatch := findRE .Site.Params.archive_url_pattern $pageurl }}
+{{ if $ismatch }}
+  {{ $color := "primary" }}
+  <div class="pageinfo pageinfo-{{ $color }}">
     {{ with .Site.Params.version }}<p>Version {{ . | markdownify }} of the
-      documentation is no longer actively maintained. The version you are
-      currently viewing is a static snapshot. For up-to-date documentation, see
-      the <a href="https://kubeflow.org/docs/">latest version</a>.</p>
+      documentation is no longer actively maintained. The site that you are
+      currently viewing is an archived snapshot. For up-to-date documentation,
+      see the <a href="https://kubeflow.org/docs/">latest version</a>.</p>
     {{ end }}
-  {{ end }}
-</div>
+  </div>
+{{ end }}
