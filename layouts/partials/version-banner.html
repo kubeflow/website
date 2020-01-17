@@ -2,8 +2,9 @@
   If the pattern matches, display a banner. -->
 {{ $pageurl := urls.Parse .Permalink }}
 {{ .Permalink }} <br>
-{{ $pageurl }} <br>
-{{ .Page.URL }}
+{{ $pageurl.Host }} <br>
+{{ .URL }}
+
 {{ $ismatch := findRE .Site.Params.archive_url_pattern $pageurl }}
 {{ if $ismatch }}
   {{ $color := "primary" }}
