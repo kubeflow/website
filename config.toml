@@ -112,7 +112,7 @@ version_menu = "v0.7"
 # doc sets.
 version = "v0.7"
 
-# Regex pattern for URLs of archived doc sets. 
+# Regex pattern for the URL of archived doc sets. 
 # Used in the "version-banner" partial to decide whether to display a banner
 # on every page.
 # Example pattern: "v\\d+-\\d+\\.kubeflow\\.org" - this pattern matches
@@ -123,7 +123,7 @@ version = "v0.7"
 # Examples of archived snapshots for Kubeflow: 
 # https://v0-6.kubeflow.org/, https://v0-5.kubeflow.org/, and so on.
 # archive_url_pattern = "v\\d+-\\d+\\.kubeflow\\.org"
-archive_url_pattern = "https://deploy-preview-\\d+--competent-brattain-de2d6d.netlify.com/"
+archive_url_pattern = "deploy-preview-\\d+--competent-brattain-de2d6d\\.netlify\\.com"
 
 # A variable used in various docs to determine URLs for config files etc.
 # To find occurrences, search the repo for 'params "githubbranch"'.
