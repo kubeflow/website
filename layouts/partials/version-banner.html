@@ -1,7 +1,12 @@
 <div class="">
-  {{ with .Site.Params.version }}<p>Kubeflow {{ . | markdownify }} documentation
-    is no longer actively maintained. The version you are currently viewing is a
-    static snapshot. For up-to-date documentation, see the
-    <a href="https://kubeflow.org/docs/">latest version</a>.</p>
+  <!-- Match the page URL against the pattern for archived doc sets.
+    If the pattern matches, display a banner. -->
+  {{ $pageurl := urls.Parse .Permalink }}
+  {{ if eq $pageurl.Host "localhost:1313" }}
+    {{ with .Site.Params.version }}<p>Version {{ . | markdownify }} of the
+      documentation is no longer actively maintained. The version you are
+      currently viewing is a static snapshot. For up-to-date documentation, see
+      the <a href="https://kubeflow.org/docs/">latest version</a>.</p>
+    {{ end }}
   {{ end }}
 </div>
