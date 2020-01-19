@@ -108,21 +108,18 @@ gcs_engine_id = "007239566369470735695:624rglujm-w"
 # Text label for the version menu in the top bar of the website.
 version_menu = "v0.7"
 
-# The major.minor version tag for this doc set. Used in the banner for archived
-# doc sets.
+# The major.minor version tag for the version of the docs represented in this
+# branch of the repository. Used in the "version-banner" partial to display a
+# version number for this doc set.
 version = "v0.7"
 
-# Regex pattern for the URL of archived doc sets. 
-# Used in the "version-banner" partial to decide whether to display a banner
-# on every page.
-# Example pattern: "v\\d+-\\d+\\.kubeflow\\.org" - this pattern matches
-# "v0-6.kubeflow.org" and "v10-11.kubeflow.org", 
-# but does not match "kubeflow.org" or "www.kubeflow.org".
-# Docsy's default value for the regex pattern is "no banner", 
-# which results in no banner on the doc pages.
-# Examples of archived snapshots for Kubeflow: 
-# https://v0-6.kubeflow.org/, https://v0-5.kubeflow.org/, and so on.
-archive_url_pattern = "v\\d+-\\d+\\.kubeflow\\.org"
+# Flag used in the "version-banner" partial to decide whether to display a 
+# banner on every page indicating that this is an archived version of the docs.
+archived_version = false
+
+# A link to latest version of the docs. Used in the "version-banner" partial to
+# point people to the main doc site.
+url_latest_version = "https://kubeflow.org/docs/"
 
 # A variable used in various docs to determine URLs for config files etc.
 # To find occurrences, search the repo for 'params "githubbranch"'.
