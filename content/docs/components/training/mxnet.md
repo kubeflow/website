@@ -8,8 +8,6 @@ This guide walks you through using MXNet with Kubeflow.
 
 ## Installing MXNet Operator
 
-_This section has not yet been converted to kustomize, please refer to [kubeflow/manifests/issues/228](https://github.com/kubeflow/manifests/issues/228)._
-
 If you haven't already done so please follow the [Getting Started Guide](https://www.kubeflow.org/docs/started/getting-started/) to deploy Kubeflow.
 
 A version of MXNet support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow newer than 0.2.0.
@@ -34,10 +32,19 @@ mxjobs.kubeflow.org                            4d
 If it is not included you can add it as follows
 
 ```
-cd ${KSONNET_APP}
-ks pkg install kubeflow/mxnet-job
-ks generate mxnet-operator mxnet-operator
-ks apply default -c mxnet-operator
+git clone https://github.com/kubeflow/manifests
+cd manifests/mxnet-job/mxnet-operator
+kubectl kustomize base | kubectl apply -f -
+```
+
+Alternatively, you can deploy the operator with default settings without using kustomize by running the following from the repo:
+
+```
+git clone https://github.com/kubeflow/mxnet-operator.git
+cd mxnet-operator
+kubectl create -f manifests/crd-v1beta1.yaml 
+kubectl create -f manifests/rbac.yaml 
+kubectl create -f manifests/deployment.yaml
 ```
 
 ## Creating a MXNet training job
