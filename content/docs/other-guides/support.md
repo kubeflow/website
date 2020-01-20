@@ -125,14 +125,31 @@ You can ask questions and make suggestions in the following places:
 
 The following organizations offer advice and support for Kubeflow deployments:
 
-* [Arrikto](https://www.arrikto.com). Contacts: TODO We need a point of contact.
-  Should we list some or all of the contacts that 
-  are currently in the [org list](https://github.com/kubeflow/community/blob/master/member_organizations.yaml#L42)?
-
-* TODO Are there any other organizations we should add?
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Organization</th>
+        <th>Points of contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://www.arrikto.com">Arrikto</a></td>
+        <td></td>
+      </tr>
+            <tr>
+        <td><a href="https://www.seldon.io/">Seldon</a></td>
+        <td> 
+        <a href="https://github.com/SeldonIO/seldon-core/issues">Issue 
+        tracker</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <a id="cloud-support"></a>
-## Support from a cloud provider
+## Support from a cloud or platform provider
 
 If you're using the services of a cloud provider to host Kubeflow, the cloud
 provider may be able to help you diagnose and solve a problem.
@@ -143,6 +160,7 @@ Consult the support page for the cloud service that you're using:
 * [Google Cloud Platform (GCP)](https://cloud.google.com/support-hub/)
 * [IBM Cloud Private](https://www.ibm.com/cloud/support)
 * [Microsoft Azure](https://azure.microsoft.com/en-au/support/options/)
+* [Red Hat OpenShift](https://help.openshift.com/)
 
 ## Other places to ask questions
 
