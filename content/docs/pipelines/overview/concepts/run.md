@@ -1,5 +1,5 @@
 +++
-title = "Run and Recurring Run (also known as a Job) "
+title = "Run and Recurring Run"
 description = "Conceptual overview of runs in Kubeflow Pipelines"
 weight = 50
 +++
@@ -11,7 +11,7 @@ details page on the Kubeflow Pipelines UI, where you can see the runtime graph,
 output artifacts, and logs for each step in the run.
 
 <a id=recurring-run> 
-A *recurring run* (also refered to as a job in the API) is a repeatable run of
+A *recurring run* , or job in the Kubeflow Pipelines [backend APIs](https://github.com/kubeflow/pipelines/tree/06e4dc660498ce10793d566ca50b8d0425b39981/backend/api/go_http_client/job_client), is a repeatable run of
 a pipeline. The configuration for a recurring run includes a copy of a pipeline
 with all parameter values specified and a 
 [run trigger](/docs/pipelines/concepts/run-trigger/).
