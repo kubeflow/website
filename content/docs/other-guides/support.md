@@ -100,7 +100,7 @@ You can ask questions and make suggestions in the following places:
 
 * **Kubeflow issue trackers** for known issues, questions, and feature requests.
   Search the open issues to see if someone else has already logged the problem 
-  that you're encountering and learn about any workarounds to date. If no-one
+  that you're encountering and learn about any workarounds to date. If no one
   has logged your problem, create a new issue to describe the problem.
 
     Each Kubeflow application has its own issue tracker within the [Kubeflow
