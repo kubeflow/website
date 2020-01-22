@@ -38,9 +38,9 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
 
     ```
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
-    kubectl apply -f https://storage.googleapis.com/ml-pipeline/pipeline-lite/$PIPELINE_VERSION/crd.yaml
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-    kubectl apply -f https://storage.googleapis.com/ml-pipeline/pipeline-lite/$PIPELINE_VERSION/namespaced-install.yaml
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
     **Note**: The above approach is introduced in Kubeflow Pipelines version 0.2.0. For older versions please run the following instead:
     ```
@@ -93,9 +93,9 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
 
     ```
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
-    kubectl apply -f https://storage.googleapis.com/ml-pipeline/pipeline-lite/$PIPELINE_VERSION/crd.yaml
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-    kubectl apply -f https://storage.googleapis.com/ml-pipeline/pipeline-lite/$PIPELINE_VERSION/namespaced-install.yaml
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
     Kubeflow Pipelines applications take a while (~3 minutes) to start.
