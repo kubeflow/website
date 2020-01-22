@@ -44,7 +44,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     ```
    **Note**: the above approach is introduced since KFP version 0.2.0. For an older
    version please follow the following commands instead:
-   ```shell script
+   ```
    export PIPELINE_VERSION={{% pipelines/latest-version %}}
    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
    ```
@@ -103,7 +103,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     
     **Note**: the above approach is introduced since KFP version 0.2.0. For an older
    version please follow the following commands instead:
-   ```shell script
+   ```
    export PIPELINE_VERSION={{% pipelines/latest-version %}}
    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
    ```
