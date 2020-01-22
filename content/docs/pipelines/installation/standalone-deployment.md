@@ -42,12 +42,12 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
     kubectl apply -f https://storage.googleapis.com/ml-pipeline/pipeline-lite/$PIPELINE_VERSION/namespaced-install.yaml
     ```
-   **Note**: the above approach is introduced since KFP version 0.2.0. For an older
-   version please follow the following commands instead:
-   ```
-   export PIPELINE_VERSION={{% pipelines/latest-version %}}
-   kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
-   ```
+    **Note**: the above approach is introduced since KFP version 0.2.0. For an older
+    version please follow the following commands instead:
+    ```
+    export PIPELINE_VERSION={{% pipelines/latest-version %}}
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    ```
 
 1. Get the URL for the Kubeflow Pipelines UI :
 
@@ -102,11 +102,11 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     Kubeflow Pipelines applications take a while (~3 minutes) to start.
     
     **Note**: the above approach is introduced since KFP version 0.2.0. For an older
-   version please follow the following commands instead:
-   ```
-   export PIPELINE_VERSION={{% pipelines/latest-version %}}
-   kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
-   ```
+    version please follow the following commands instead:
+    ```
+    export PIPELINE_VERSION={{% pipelines/latest-version %}}
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    ```
 
 1. Get public URL of Pipelines UI and use it to access Kubeflow Pipelines:
     ```
