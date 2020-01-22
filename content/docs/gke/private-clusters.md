@@ -4,6 +4,18 @@ description = "How to secure Kubeflow clusters using VPC service controls and pr
 weight = 70
 +++
 
+{{% alert title="Alpha version" color="warning" %}}
+This feature is currently in **alpha** release status with limited support. The
+Kubeflow team is interested in any feedback you may have, in particular with 
+regards to usability of the feature. Note the following issues already reported:
+
+* [Documentation on how to use Kubeflow with shared VPC](https://github.com/kubeflow/kubeflow/issues/3082)
+* [Replicating Docker images to private Container Registry](https://github.com/kubeflow/kubeflow/issues/3210)
+* [Installing Istio for Kubeflow on private GKE](https://github.com/kubeflow/kubeflow/issues/3650)
+* [Profile-controller crashes on GKE private cluster](https://github.com/kubeflow/kubeflow/issues/4661)
+* [kfctl should work with private GKE without public endpoint](https://github.com/kubeflow/kfctl/issues/158)
+{{% /alert %}}
+
 This guide describes how to secure Kubeflow using [VPC Service Controls](https://cloud.google.com/vpc-service-controls/docs/) and private GKE.
 
 Together these two features signficantly increase security
