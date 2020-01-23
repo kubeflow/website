@@ -20,18 +20,17 @@ Summary of steps:
 
 1. Follow the [Kubeflow getting-started guide](/docs/started/getting-started/) 
   to set up your Kubeflow deployment and open the Kubeflow UI.
-1. If the registration flow view shows up (because the conditions above are satisfied):
-   - Then the view will walk you through creating the first workgroup binding for your user or cluster (depending on `isolation-mode`)
+1. If the registration flow view shows up (because the conditions above are satisfied), follow the guide below, else your network should be good to use as is
+
+## Steps
+- On page load the Registration View opens up
+  - This view will walk you through creating the first workgroup binding for your user or cluster (depending on `isolation-mode`)
+- Since you don't have an owned namespace, we will create one
+  - IE. the user does not have `admin` profile/workgroup binding for a namespace
+- A default name for your new namespace is auto-filled in the input box (the default name is your LDAP)
+  - LDAP for an email like `kubeflow-user@google.com` would be `kubeflow-user`
+  - If there are errors on this step, like invalid name or namespace already exists, you will see an error and the input box will turn red, you can then try again
+- Once you successfully create the namespace, you should be greeted the Kubeflow Dashboard overview page
 
 ## Visual
 ![Kubeflow registration flow](/docs/images/registration-flow.gif)
-
-#### Transcription
-
-- The page is reloaded
-- Registration View opens up, since the user `kubeflow-user@kubeflow.org` does not have an owned namespace
-  - IE. the user does not have `admin` profile/workgroup binding for a namespace
-- `kubeflow-user` is auto-filled in the namespace input box (which will create a new namespace for this user)
-  - This namespace seems to exist and an error is presented
-- Types in `kubeflow-user-test` and presses `enter` which works and navigates the user to the central-dashboard main view
-- A toast shows on the bottom left that says `"Welcome, kubeflow-user!"`
