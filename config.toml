@@ -105,8 +105,6 @@ privacy_policy = "https://policies.google.com/privacy"
 # Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
 gcs_engine_id = "007239566369470735695:624rglujm-w"
 
-githubbranch = "master"
-
 # Add new release versions here
 # Text label for the version menu in the top bar of the website.
 version_menu = "v0.6"
