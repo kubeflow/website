@@ -73,7 +73,17 @@ up Python using [Miniconda](https://conda.io/miniconda.html):
 Run the following command to install the Kubeflow Pipelines SDK:
 
 ```bash
-pip install https://storage.googleapis.com/ml-pipeline/release/latest/kfp.tar.gz --upgrade
+pip3 install kfp --upgrade
+```
+*Note that if you are not using a virutal envirometn such as conda in step 1, you may recieve a error during installation as follows: 
+```bash
+ERROR: Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lib/python3.5/dist-packages/kfp-0.2.0.dist-info'
+Consider using the `--user` option or check the permissions.
+```
+you can bypass this erro by using --user which installs the binaries under ~/.local/bin note that in Ubuntu this is not part of $PATH. You can correct that by adding the following to the end of your.bashrc 
+
+```bash
+export $PATH=$PATH:~/.local/bin
 ```
 
 After successful installation, the command `dsl-compile` should be available.
