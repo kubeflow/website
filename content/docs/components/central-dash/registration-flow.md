@@ -23,14 +23,15 @@ Summary of steps:
 1. If the registration flow view shows up (because the conditions above are satisfied), follow the guide below, else your network should be good to use as is
 
 ## Steps
-- On page load the Registration View opens up
-  - This view will walk you through creating the first workgroup binding for your user or cluster (depending on `isolation-mode`)
-- Since you don't have an owned namespace, we will create one
-  - IE. the user does not have `admin` profile/workgroup binding for a namespace
-- A default name for your new namespace is auto-filled in the input box (the default name is your LDAP)
-  - LDAP for an email like `kubeflow-user@google.com` would be `kubeflow-user`
-  - If there are errors on this step, like invalid name or namespace already exists, you will see an error and the input box will turn red, you can then try again
-- Once you successfully create the namespace, you should be greeted the Kubeflow Dashboard overview page
+
+1. On page load the Registration View opens up
+   - This view will walk you through creating the first workgroup binding for your user or cluster (depending on `isolation-mode`)
+1. Since you don't have an owned namespace, we will create one
+   - IE. the user does not have `admin` profile/workgroup binding for a namespace
+1. A default name for your new namespace is auto-filled in the input box (the default name is your LDAP)
+   - LDAP for an email like `kubeflow-user@google.com` would be `kubeflow-user`
+   - If there are errors on this step, like invalid name or namespace already exists, you will see an error and the input box will turn red, you can then try again
+1. Once you successfully create the namespace, you should be greeted the Kubeflow Dashboard overview page
 
 ## Visual
 ![Kubeflow registration flow](/docs/images/registration-flow.gif)
