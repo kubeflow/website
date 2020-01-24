@@ -38,6 +38,13 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
 
     ```
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
+    kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    ```
+    **Note**: The above approach is introduced in Kubeflow Pipelines version 0.2.0. For older versions please run the following instead:
+    ```
+    export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
@@ -86,10 +93,18 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
 
     ```
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
+    kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
     kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
     Kubeflow Pipelines applications take a while (~3 minutes) to start.
+    
+    **Note**: The above approach is introduced in Kubeflow Pipelines version 0.2.0. For older versions please run the following instead:
+    ```
+    export PIPELINE_VERSION={{% pipelines/latest-version %}}
+    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    ```
 
 1. Get public URL of Pipelines UI and use it to access Kubeflow Pipelines:
     ```
