@@ -11,6 +11,7 @@
   <section id="pageContent">
     <div>
       <h1 id="anchor1"> {{ .Title}} </h1>
+      {{ partial "version-banner.html" . }}
       <p>
            {{  if .Params.bref }}
              {{ .Params.bref | safeHTML }}
