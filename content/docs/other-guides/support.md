@@ -136,9 +136,9 @@ The following organizations offer advice and support for Kubeflow deployments:
     <tbody>
       <tr>
         <td><a href="https://www.arrikto.com">Arrikto</a></td>
-        <td></td>
+        <td><a href="mailto:sales@arrikto.com">sales@arrikto.com</a></td>
       </tr>
-            <tr>
+      <tr>
         <td><a href="https://www.seldon.io/">Seldon</a></td>
         <td> 
         <a href="https://github.com/SeldonIO/seldon-core/issues">Issue 
@@ -154,7 +154,7 @@ The following organizations offer advice and support for Kubeflow deployments:
 If you're using the services of a cloud provider to host Kubeflow, the cloud
 provider may be able to help you diagnose and solve a problem.
 
-Consult the support page for the cloud service that you're using:
+Consult the support page for the cloud service or platform that you're using:
 
 * [Amazon Web Services (AWS)](https://aws.amazon.com/contact-us/)
 * [Google Cloud Platform (GCP)](https://cloud.google.com/support-hub/)
