@@ -11,8 +11,25 @@ Paginate = 20
   twitter = "" # add your twitter profile
   email = "myemail@myaddress.xxx"
 
-  version = "master"
-  githubbranch = "master"
+# Text label for the version menu in the top bar of the website.
+version_menu = "v0.3"
+
+# The major.minor version tag for the version of the docs represented in this
+# branch of the repository. Used in the "version-banner" partial to display a
+# version number for this doc set.
+version = "v0.3"
+
+# Flag used in the "version-banner" partial to decide whether to display a 
+# banner on every page indicating that this is an archived version of the docs.
+archived_version = true
+
+# A link to latest version of the docs. Used in the "version-banner" partial to
+# point people to the main doc site.
+url_latest_version = "https://kubeflow.org/docs/"
+
+# A variable used in various docs to determine URLs for config files etc.
+# To find occurrences, search the repo for 'params "githubbranch"'.
+githubbranch = "v0.3-branch"
 
 # Add new release versions here
 [[Params.versions]]
