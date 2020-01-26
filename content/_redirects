@@ -80,8 +80,11 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/trtinferenceserver            /docs/components/serving/trtinferenceserver
 /docs/components/tfbatchpredict                /docs/components/serving/tfbatchpredict
 /docs/components/tftraining                    /docs/components/training/tftraining
-/docs/components/pytorchserving                /docs/components/serving/pytorchserving
 /docs/components/tfserving_new                 /docs/components/serving/tfserving_new
+
+# Deleted the PyTorch serving page
+/docs/components/pytorchserving/               /docs/components/serving/overview/
+/docs/components/serving/pytorchserving/       /docs/components/serving/overview/
 
 # Restructured the getting-started and other-guides sections.
 /docs/started/getting-started-k8s/             /docs/started/k8s/
