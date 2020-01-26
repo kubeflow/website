@@ -8,10 +8,6 @@ This page describes the Kubeflow resources and support options that you can
 explore when you encounter a problem, have a question, or want to make a
 suggestion about Kubeflow.
 
-TODO: This page currently mentions an "alpha" status whereas the version policy
-uses "experimental". I'm proposing a change to "alpha". If we decide to keep
-"experimental", I'll change this page.
-
 ## Levels of support
 
 Kubeflow applications offer various levels of support, based on the application
