@@ -48,6 +48,7 @@ from the nodes. Google services (such as BigQuery and Cloud Storage) are still a
 Importantly this means you can continue to use your [Google Container Registry (GCR)](https://cloud.google.com/container-registry/docs/) to host your Docker images. Other Docker registries (for example, DockerHub) will not be accessible. If you need to use Docker images
 hosted outside GCR you can use the scripts provided by Kubeflow to mirror them to your GCR registry.
 
+There is however still a way to pull images directly from DockerHub, or other repositories, and not having the hassle of re-writing deployment files. Activating Google NAT service to the subnet you are using, will give your pods egress access
 
 ## Before you start
 
