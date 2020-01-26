@@ -49,7 +49,7 @@ major or minor release of Kubeflow.
 <a id="application-matrix"></a>
 ## Kubeflow application matrix
 
-The following table shows the **status** (stable, beta, or experimental) of the 
+The following table shows the **status** (stable, beta, or alpha) of the 
 applications that you can deploy to your Kubernetes cluster when you deploy 
 Kubeflow. The applications are specified in the 
 [manifest](https://github.com/kubeflow/manifests/tree/master/kfdef) that you 
@@ -69,7 +69,7 @@ Application status indicators for Kubeflow:
 * **Beta** means that the application is working towards a version 1.0 release
   and its maintainers have communicated a timeline for satisfying the criteria
   for the stable status.
-* **Experimental** means that the application is in the early phases of 
+* **Alpha** means that the application is in the early phases of 
   development and/or integration into Kubeflow.
 
 The **application version** in the table reflects the application version in
@@ -99,7 +99,7 @@ documentation for that application.
       <tr>
         <td><a href="https://github.com/kubeflow/chainer-operator">Chainer 
         operator</a> (<a href="/docs/components/training/chainer/">docs</a>)</td>
-        <td>Experimental</td>
+        <td>Alpha</td>
         <td></td>
       </tr>
       <tr>
@@ -124,13 +124,13 @@ documentation for that application.
       <tr>
         <td><a href="https://github.com/kubeflow/mpi-operator">MPI training: MPI operator</a>
           (<a href="/docs/components/training/mpi/">docs</a>)</td>
-        <td>Experimental</td>
+        <td>Alpha</td>
         <td></td>
       </tr>
       <tr>
         <td><a href="https://github.com/kubeflow/mxnet-operator">MXNet training: MXNet operator</a>
           (<a href="/docs/components/training/mxnet/">docs</a>)</td>
-        <td>Experimental</td>
+        <td>Alpha</td>
         <td></td>
       </tr>
       <tr>
@@ -160,7 +160,7 @@ documentation for that application.
       <tr>
         <td>PyTorch serving 
           (<a href="/docs/components/serving/pytorchserving/">docs</a>)</td>
-        <td>Experimental</td>
+        <td>Alpha</td>
         <td></td>
       </tr>
       <tr>
@@ -172,7 +172,7 @@ documentation for that application.
         <td><a href="https://github.com/kubeflow/batch-predict">TensorFlow 
           batch prediction</a>
           (<a href="/docs/components/serving/tfbatchpredict/">docs</a>)</td>
-        <td>Experimental</td>
+        <td>Alpha</td>
         <td></td>
       </tr>
       <tr>
@@ -188,7 +188,7 @@ documentation for that application.
       </tr>
       <tr>
         <td><a href="https://github.com/kubeflow/xgboost-operator">XGBoost training: XGBoost operator</a></td>
-        <td>Experimental</td>
+        <td>Alpha</td>
         <td></td>
       </tr>
     </tbody>
