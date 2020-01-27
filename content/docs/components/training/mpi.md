@@ -4,6 +4,9 @@ description = "Instructions for using MPI for training"
 weight = 25
 +++
 
+{{% alpha-status 
+  feedbacklink="https://github.com/kubeflow/mpi-operator/issues" %}}
+
 This guide walks you through using MPI for training.
 
 ## Installation

@@ -4,6 +4,9 @@ description = "Overview of Katib for hyperparameter tuning and neural architectu
 weight = 10
 +++
 
+{{% beta-status 
+  feedbacklink="https://github.com/kubeflow/katib/issues" %}}
+
 Use Katib for automated tuning of your machine learning (ML) model's 
 hyperparameters and architecture.
 

@@ -4,6 +4,9 @@ description = "Getting started with Kubeflow Pipelines"
 weight = 10
 +++
 
+{{% beta-status 
+  feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
+
 Use this guide if you want to get a simple pipeline running quickly in
 Kubeflow Pipelines. If you need a more in-depth guide, see the
 [end-to-end tutorial](/docs/gke/pipelines-tutorial/).

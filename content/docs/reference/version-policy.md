@@ -91,103 +91,121 @@ documentation for that application.
     </thead>
     <tbody>
       <tr>
-        <td><a href="https://github.com/kubeflow/kubeflow/tree/master/components/centraldashboard">Central 
-        dashboard: Kubeflow UI</a> (<a href="/docs/other-guides/accessing-uis/">docs</a>)</td>
+        <td><a href="/docs/components/central-dash/overview/">Central 
+          dashboard: Kubeflow UI</a>
+          (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/centraldashboard">GitHub</a>)
+        </td>
         <td>Stable</td>
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/chainer-operator">Chainer 
-        operator</a> (<a href="/docs/components/training/chainer/">docs</a>)</td>
+        <td><a href="/docs/components/training/chainer/">Chainer operator</a>
+        (<a href="https://github.com/kubeflow/chainer-operator">GitHub</a>)
+        </td>
         <td>Alpha</td>
         <td></td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/katib">Hyperparameter tuning:
-        Katib</a> 
-          (<a href="/docs/components/hyperparameter-tuning/hyperparameter/">docs</a>)</td>
+        <td><a href="/docs/components/hyperparameter-tuning/overview/">Hyperparameter
+          tuning: Katib</a>
+          (<a href="https://github.com/kubeflow/katib">GitHub</a>)
+          </td>
         <td>Beta</td>
         <td>v1alpha3</td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/kfserving">KFServing</a>
-          (<a href="/docs/components/serving/kfserving/">docs</a>)</td>
+        <td><a href="/docs/components/serving/kfserving/">KFServing</a>
+          (<a href="https://github.com/kubeflow/kfserving">GitHub</a>)
+        </td>
         <td>Beta</td>
         <td>v0.2.2</td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/metadata">Metadata</a>
-          (<a href="/docs/components/misc/metadata//">docs</a>)</td>
+        <td><a href="/docs/components/misc/metadata/">Metadata</a>
+          (<a href="https://github.com/kubeflow/metadata">GitHub</a>)
+        </td>
         <td>Beta</td>
         <td></td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/mpi-operator">MPI training: MPI operator</a>
-          (<a href="/docs/components/training/mpi/">docs</a>)</td>
+        <td><a href="/docs/components/training/mpi/">MPI training: MPI 
+          operator</a>
+          (<a href="https://github.com/kubeflow/mpi-operator">GitHub</a>)
+        </td>
         <td>Alpha</td>
         <td></td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/mxnet-operator">MXNet training: MXNet operator</a>
-          (<a href="/docs/components/training/mxnet/">docs</a>)</td>
+        <td><a href="/docs/components/training/mxnet/">MXNet training: MXNet 
+          operator</a>
+          (<a href="https://github.com/kubeflow/mxnet-operator">GitHub</a>)
+        </td>
         <td>Alpha</td>
         <td></td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/kubeflow/tree/master/components/jupyter-web-app">Notebook 
-        web app</a> (<a href="/docs/notebooks/">docs</a>)</td>
+        <td><a href="/docs/notebooks/why-use-jupyter-notebook/">Notebook web
+          app</a>
+          (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/jupyter-web-app">GitHub</a>)
         <td>Stable</td>
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller">Notebook
-        controller</a> (<a href="/docs/notebooks/">docs</a>)</td>
+        <td><a href="/docs/notebooks/why-use-jupyter-notebook/">Notebook 
+          controller</a> 
+          (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller">GitHub</a>)
+        </td>
         <td>Stable</td>
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/pipelines">Pipelines</a>
-          (<a href="/docs/pipelines/pipelines-quickstart/">docs</a>)</td>
+        <td><a href="/docs/pipelines/overview/pipelines-overview/">Pipelines</a>
+          (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
+        </td>
         <td>Beta</td>
         <td>0.1.40</td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller">Profile 
-        Controller for multi-user isolation</a> (<a href="/docs/other-guides/multi-user-overview/">docs</a>)</td>
+        <td><a href="/docs/other-guides/multi-user-overview/">Profile 
+          Controller for multi-user isolation</a> 
+          (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller">GitHub</a>)
+        </td>
         <td>Stable</td>
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td>PyTorch serving 
-          (<a href="/docs/components/serving/pytorchserving/">docs</a>)</td>
-        <td>Alpha</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a href="https://github.com/kubeflow/pytorch-operator">PyTorch training: PyTorch operator</a> (<a href="/docs/components/training/pytorch/">docs</a>)</td>
+        <td><a href="/docs/components/training/pytorch/">PyTorch training: PyTorch operator</a> 
+          (<a href="https://github.com/kubeflow/pytorch-operator">GitHub</a>)
+        </td>
         <td>Stable</td>
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/batch-predict">TensorFlow 
+        <td><a href="/docs/components/serving/tfbatchpredict/">TensorFlow 
           batch prediction</a>
-          (<a href="/docs/components/serving/tfbatchpredict/">docs</a>)</td>
+          (<a href="https://github.com/kubeflow/batch-predict">GitHub</a>)
+        </td>
         <td>Alpha</td>
         <td></td>
       </tr>
       <tr>
-        <td>TensorFlow serving (<a href="/docs/components/serving/tfserving_new/">docs</a>)</td>
+        <td><a href="/docs/components/serving/tfserving_new/">TensorFlow
+          serving</a></td>
         <td>Stable</td>
         <td></td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/tf-operator">TensorFlow training: TFJob operator</a>
-          (<a href="/docs/components/training/tftraining/">docs</a>)</td>
+        <td><a href="/docs/components/training/tftraining/">TensorFlow training:
+          TFJob operator</a>
+          (<a href="https://github.com/kubeflow/tf-operator">GitHub</a>)
+        </td>
         <td>Stable</td>
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/xgboost-operator">XGBoost training: XGBoost operator</a></td>
+        <td>XGBoost training: XGBoost operator
+        (<a href="https://github.com/kubeflow/xgboost-operator">GitHub</a>)
+        </td>
         <td>Alpha</td>
         <td></td>
       </tr>
@@ -213,17 +231,23 @@ one of the following Kubeflow SDKs and command-line interfaces
     </thead>
     <tbody>
       <tr>
-        <td><a href="https://github.com/kubeflow/fairing">Fairing</a> (<a href="/docs/fairing/fairing-overview/">docs</a>)</td>
+        <td><a href="/docs/fairing/fairing-overview/">Fairing</a> 
+          (<a href="https://github.com/kubeflow/fairing">GitHub</a>)
+        </td>
         <td>Beta</td>
         <td></td>
       </tr>
       <tr>
-        <td><a href="https://github.com/kubeflow/kfctl">kfctl</a> (<a href="/docs/other-guides/kustomize/">docs</a>)</td>
+        <td><a href="/docs/other-guides/kustomize/">kfctl</a> 
+          (<a href="https://github.com/kubeflow/kfctl">GitHub</a> )
+        </td>
         <td>Stable</td>
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="https://kubeflow-pipelines.readthedocs.io/en/latest/">Kubeflow Pipelines SDK</a> (<a href="/docs/pipelines/sdk/">docs</a>)</td>
+        <td><a href="/docs/pipelines/sdk/sdk-overview/">Kubeflow Pipelines SDK</a> 
+          (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
+        </td>
         <td>Beta</td>
         <td>0.1.40</td>
       </tr>

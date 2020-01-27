@@ -4,6 +4,8 @@ description = "An overview of the Kubeflow user interface (UI)"
 weight = 10
 +++
 
+{{% stable-status %}}
+
 Your Kubeflow deployment includes Central Dashboard as a key component to provide quick access to all components deployed in your cluster. Some features include:
 
 - Quick action, pipelines cards, metrics, and high level kubernetes events for an overview of your jobs and cluster in one view

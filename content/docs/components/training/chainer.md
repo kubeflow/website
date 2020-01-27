@@ -9,4 +9,6 @@ toc = true
   feedbacklink="https://github.com/kubeflow/chainer-operator/issues" %}}
 
 [Chainer](https://github.com/kubeflow/chainer-operator) is not supported in 
-Kubeflow versions greater than v0.6.
+Kubeflow versions greater than v0.6. See the [Kubeflow v0.6 
+documentation](https://v0-6.kubeflow.org/docs/components/training/chainer/)
+for earlier support for Chainer training.
