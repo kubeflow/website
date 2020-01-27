@@ -123,7 +123,7 @@ The Kubeflow Pipelines SDK includes the following packages:
   * `kfp.cli.diagnose_me.kubernetes_cluster` reports on diagnostic data from your Kubernetes cluster, such as Kubernetes secrets.
   * `kfp.cli.diagnose_me.gcp` reports on diagnostic data related to your GCP environment.
  
-## KFP CLI Tool 
+## KFP CLI tool 
 The KFP CLI tool enables you to use a subset of the Kubeflow Pipelines SDK directly from the command line. The KFP CLI tool provides the following commands:
 
 * `kfp diagnose_me` runs environment diagnostic with specified parameters.
