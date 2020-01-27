@@ -21,7 +21,7 @@ them with the requirements of your visualizations.
 
 Python based visualizations are a new method to visualize results within the
 Kubeflow Pipelines UI. This new method of visualizing results is done through
-the usage of [nbcovert](https://github.com/jupyter/nbconvert). Alongside the
+the usage of [nbconvert](https://github.com/jupyter/nbconvert). Alongside the
 usage of nbconvert, results of a pipeline can now be visualized without a
 component being included within the pipeline itself because the process of
 visualizing results is now decoupled from a pipeline.
