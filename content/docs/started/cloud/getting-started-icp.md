@@ -4,17 +4,19 @@ description = "Get Kubeflow running on IBM Cloud Private"
 weight = 2
 +++
 
-This guide is a quick start to deploy Kubeflow on [IBM Cloud Private](https://www.ibm.com/cloud/private) 3.1.0 or later.  IBM Cloud Private is an enterprise PaaS layer for developing and managing on-premises, containerized applications. It is an integrated environment for managing containers that includes the container orchestrator Kubernetes, a private image registry, a management console, and monitoring frameworks.
+This guide is a quick start to deploying Kubeflow on [IBM Cloud Private](https://www.ibm.com/cloud/private) 3.1.0 or later.  IBM Cloud Private is an enterprise platform as a service (PaaS) layer for developing and managing on-premises, containerized applications. It is an integrated environment for managing containers that includes the container orchestrator Kubernetes, a private image registry, a management console, and monitoring frameworks.
 
-### Prerequisites
+## Prerequisites
 
 - Get the system requirements from [IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/supported_system_config/hardware_reqs.html) for IBM Cloud Private.
   
-- Setup NFS Server and export one or more path for persistent volume.
+- Set up NFS Server and export one or more paths for persistent volume(s).
 
-### Installing IBM Cloud Private
+## Installing IBM Cloud Private
 
-Following [installation steps in IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/installing/install.html) to install IBM Cloud Private 3.1.0 or later with master, proxy, worker, and optional management and vulnerability advisory nodes in your cluster in standard or high availability configurations.
+Follow the [installation steps in IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/installing/install.html) to install IBM Cloud Private 3.1.0 or later with master, proxy, worker, and optional management and vulnerability advisory nodes in your cluster in standard or high availability configurations.
+
+Please note IBM Cloud Private 3.2.0 is a prerequisite for installing Kubeflow v0.7.
 
 The guide takes IBM Cloud Private 3.1.0 as example below. You can check the IBM Cloud Private after installation.
 
@@ -28,7 +30,9 @@ NAME         STATUS    ROLES                      AGE       VERSION
 10.43.0.46   Ready     worker                     11d       v1.11.1+icp-ee
 10.43.0.49   Ready     worker                     11d       v1.11.1+icp-ee
 ```
-### Creating image policy and persistent volume
+## Creating image policy and persistent volume
+
+Follow these steps to create an image policy for your Kubernetes namespace and a persistent volume (PV) for your Kubeflow components:
 
 1. Create Kubernetes namespace.
 
@@ -123,7 +127,7 @@ NAME         STATUS    ROLES                      AGE       VERSION
     kubectl create -f pv.yaml
     ```
 
-### Installing Kubeflow
+## Installing Kubeflow
 
 Follow these steps to deploy Kubeflow:
 
@@ -239,7 +243,23 @@ kubectl -n kube-system scale deploy secret-watcher --replicas=0
 ```
 
 ### Deployed Service's EXTERNAL-IP field stuck in PENDING state
-If you have deployed a service of `LoadBalancer` type, but the EXTERNAL-IP field stucks in `<pending>` state, this is because IBM Cloud Private doesn't provide a built-in support for the `LoadBalancer` service. To enable the `LoadBalancer` service on IBM Cloud Private, please see options desribed [here](https://medium.com/ibm-cloud/working-with-loadbalancer-services-on-ibm-cloud-private-26b7f0d22b44).
+If you have deployed a service of `LoadBalancer` type, but the EXTERNAL-IP field stucks in `<pending>` state, this is because IBM Cloud Private doesn't provide a built-in support for the `LoadBalancer` service. To enable the `LoadBalancer` service on IBM Cloud Private, please see options described [here](https://medium.com/ibm-cloud/working-with-loadbalancer-services-on-ibm-cloud-private-26b7f0d22b44).
+
+
+### CustomResourceDefinition.apiextensions.k8s.io "profiles.kubeflow.org" is invalid during v0.7 installation
+If you install Kubeflow v0.7 in IBM Cloud Private 3.1.0, you may encounter the following error:
+```
+failed to apply:  (kubeflow.error): Code 500 with message: kfApp Apply failed for kustomize:  (kubeflow.error): Code 500 with message: Apply.Run  Error error when creating "/tmp/kout904105401": CustomResourceDefinition.apiextensions.k8s.io "profiles.kubeflow.org" is invalid: spec.validation.openAPIV3Schema: Invalid value:...
+must only have "properties", "required" or "description" at the root if the status subresource is enabled
+```
+The default Kubernetes version in IBM Cloud Private 3.1.0 is 1.11 which is incompatilbe with Kubeflow v0.7. Please upgrade IBM Cloud Private with a Kubernetes version that is compatible with the Kubeflow version as described in [Minimum system requirements](https://www.kubeflow.org/docs/started/k8s/overview/).
+
+### v.07 Kubeflow pods stuck in CreateContainerConfigError state
+If you install Kubeflow v0.7 in IBM Cloud Private 3.2.0, you may find pods stuck in CreateContainerConfigError state and describe pod show the following error: 
+``` 
+Error: container has runAsNonRoot and image will run as root
+```
+If you install IBM Cloud Private version 3.2.0 or later as a new installation, the default pod security policy setting is the [ibm-restricted-psp policy](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.2.0/manage_cluster/security.html), which is applied to all of the existing and newly created namespaces. You can bypass this by deploying Kubeflow using a non-root user id. You can also use [IBM Cloud private CLI cm commands](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/manage_cluster/cli_cm_commands.html) to change the default setting.  See [Pod isolation](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/user_management/iso_pod.html) for other options.
 
 
 

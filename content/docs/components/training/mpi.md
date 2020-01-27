@@ -8,8 +8,6 @@ This guide walks you through using MPI for training.
 
 ## Installation
 
-_This section has not yet been converted to kustomize, please refer to [kubeflow/manifests/issues/227](https://github.com/kubeflow/manifests/issues/227)._
-
 If you haven’t already done so please follow the [Getting Started Guide](https://www.kubeflow.org/docs/started/getting-started/) to deploy Kubeflow.
 
 An alpha version of MPI support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow newer than 0.2.0.
@@ -31,17 +29,18 @@ mpijobs.kubeflow.org                       4d
 
 If it is not included you can add it as follows:
 
-```
-cd ${KSONNET_APP}
-ks pkg install kubeflow/mpi-job
-ks generate mpi-operator mpi-operator
-ks apply ${ENVIRONMENT} -c mpi-operator
+```bash
+git clone https://github.com/kubeflow/manifests
+cd manifests/mpi-job/mpi-operator
+kubectl kustomize base | kubectl apply -f -
 ```
 
-Alternatively, you can deploy the operator with default settings without using ksonnet by running the following from the repo:
+Alternatively, you can deploy the operator with default settings without using kustomize by running the following from the repo:
 
 ```shell
-kubectl create -f deploy/
+git clone https://github.com/kubeflow/mpi-operator
+cd mpi-operator
+kubectl create -f deploy/mpi-operator.yaml
 ```
 
 ## Creating an MPI Job

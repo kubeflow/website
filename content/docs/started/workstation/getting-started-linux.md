@@ -4,15 +4,10 @@ description = "Install Kubeflow on Linux"
 weight = 2
 +++
 
-<!--
-  TODO: Create a table that summarizes the options below, helping the user choose
-  more quickly
--->
-
 For Linux systems you have options for servers (physical or virtual) and desktops.
 The server options apply to the desktop as well.
 
-## Linux Server
+## Linux server
 
 For linux servers you can install Kubeflow natively. This is perfect for
 linux hosts and virtual machines, such as VMs in OpenStack, VMware or public clouds like
@@ -24,13 +19,13 @@ GCP, AWS and Azure.
 [snapd](https://snapcraft.io/docs/getting-started), which is pre-installed on Ubuntu
 and Ubuntu derivative operating systems.
 
-1. Install MicroK8s - `snap install microk8s --classic`
+1. Install MicroK8s - `snap install microk8s --classic --channel=1.14/stable`
 2. Follow the getting started guide for Kubeflow on an
 [existing Kubernetes cluster](/docs/started/k8s/overview/).
 
-## Linux Desktop
+## Linux desktop
 
-### Kubeflow Appliance
+### Kubeflow appliance
 
 A Kubeflow appliance is a virtual machine that has Kubeflow already installed. Once the
 necessary supporting software is installed no further installation steps are required.
@@ -46,7 +41,7 @@ The only following applications are required to use MiniKF:
 The full set of instructions are available on the
 [MiniKF getting started](/docs/other-guides/virtual-dev/getting-started-minikf/) page.
 
-### Linux Appliance
+### Linux appliance
 
 A Linux appliance is a virtual machine that holds the linux operating system. From there
 you have complete choice over Kubernetes and Kubeflow, which offers the greatest degree
@@ -57,7 +52,7 @@ of flexibility. You only need to install a single application to follow this pat
 The instructions on [Multipass and MicroK8s getting started](/docs/other-guides/virtual-dev/getting-started-multipass/)
 page will complete this path.
 
-### Kubernetes Appliance
+### Kubernetes appliance
 
 Similar to the Kubeflow appliance, the Kubernetes appliance is a virtual machine has a
 Kubernetes cluster already installed. After starting the virtual machine you will need

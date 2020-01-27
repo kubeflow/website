@@ -8,11 +8,12 @@ aliases = ["/docs/events/"]
 This is a nonexhaustive list of events (in reverse chronological order) with talks and workshops about Kubeflow.
 Please edit this page and send a pull request, or raise a [GitHub issue](https://github.com/kubeflow/website/issues/new), if something is missing or incorrect.
 
-* [Kubeflow Doc Sprint - Kirkland and online](https://github.com/kubeflow/website/wiki/Kubeflow-Doc-Sprint),
-  10-12 July 2019
-  - *Wednesday 10 July:* Welcome; docs/code development; learning sessions.
-  - *Thursday 11 July:* Sprint updates; docs/code development; learning sessions.
-  - *Friday 12 July:* Docs/code development; sprint demos.
+* [Kubeflow Doc Sprint - Sunnyvale and online](https://github.com/kubeflow/website/wiki/Kubeflow-Doc-Sprint),
+  10-12 February 2020
+  - *Monday 10 February:* Welcome; docs/code development; learning sessions.
+  - *Tuesday 11 February:* Sprint updates; docs/code development; learning sessions.
+  - *Wednesday 12 February:* Docs/code development; sprint demos.
+* Kubeflow Doc Sprint, 10-12 July 2019. See the [results of the July 2019 doc sprint](https://medium.com/kubeflow/kubeflow-doc-sprint-its-a-wrap-2683bfd4078d).
 * [Google Cloud Next, San Francisco](https://cloud.withgoogle.com/next/sf), 9-11 April, 2019
   - [Undoing Human Bias at Scale With Kubeflow](https://cloud.withgoogle.com/next/sf/sessions?session=MLAI206): John Bohannon, Michelle Casbon
 * [Kubeflow Contributor Summit 2019](https://docs.google.com/document/d/14Jr79aWVjsJg8xq38CLVE4rKRwM1_-gHLuxhGAhrGTI/edit?usp=sharing), Sunnyvale, CA, 12-13 March, 2019

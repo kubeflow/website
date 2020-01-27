@@ -48,7 +48,7 @@ directories:
 
 If you experience any issues running these scripts, see the [troubleshooting guidance](/docs/azure/troubleshooting-azure) for more information.
 
-## Azure Setup
+## Azure setup
 
 ### Login to Azure
     az login
@@ -70,13 +70,13 @@ Create a specifically defined cluster:
 Example variables: 
 
 - NAME=KubeTestCluster
-- AGENT_SIZE=Standard_D2_v2
-- AGENT_COUNT=3
+- AGENT_SIZE=Standard_D4_v3
+- AGENT_COUNT=2
 - Use the same resource group and name from the previous step
 
 **NOTE:  If you are using a GPU based AKS cluster (For example: AGENT_SIZE=Standard_NC6), you also need to [install the NVidia drivers](https://docs.microsoft.com/azure/aks/gpu-cluster#install-nvidia-drivers) on the cluster nodes before you can use GPUs with Kubeflow.**
 
-## Kubeflow Installation
+## Kubeflow installation
 Run the following commands to set up and deploy Kubeflow.
 
 1. Create user credentials. You only need to run this command once.
@@ -151,6 +151,6 @@ While the change is being applied, you can watch the service until below command
 
 The external IP should be accessible by visiting http://<EXTERNAL-IP>. Note that above installation instructions do not create any protection for the external endpoint so it will be accessible to anyone without any authentication. You can read more about authentication from [Access Control for Azure Deployment](/docs/azure/authentication).
 
-## Additional Information
+## Additional information
 
 You can find general information about Kubeflow configuration in the guide to [configuring Kubeflow with kfctl and kustomize](/docs/other-guides/kustomize/).
