@@ -117,33 +117,31 @@ The Kubeflow Pipelines SDK includes the following packages:
   Kubeflow Pipelines. Examples include utility functions for on premises,
   Google Cloud Platform (GCP), Amazon Web Services (AWS), and Microsoft Azure.
 
-* [KFP diagnose_me modules](https://github.com/kubeflow/pipelines/tree/master/sdk/python/kfp/cli/diagnose_me)
-  These modules are part of the KFP CLI tool that are designed to help with environment diagnostic tasks such as 
-  ensuring required kubernetes secrets are set properly. 
+* [KFP diagnose_me modules](https://github.com/kubeflow/pipelines/tree/master/sdk/python/kfp/cli/diagnose_me)include classes and functions that help with environment diagnostic tasks. 
  
-  * `kfp.cli.diagnose_me.dev_env` collects developer env related environment configurations such as python version.
-  * `kfp.cli.diagnose_me.kubernetes_cluster` collects Kubernetes cluster related configurations such as secrets.
-  * `kfp.cli.diagnose_me.gcp` collects Google Cloud Platform related environment configurations.
+  * `kfp.cli.diagnose_me.dev_env` reports on diagnostic metadata from your development environment, such as your python library version.
+  * `kfp.cli.diagnose_me.kubernetes_cluster` reports on diagnostic data from your Kubernetes cluster, such as Kubernetes secrets.
+  * `kfp.cli.diagnose_me.gcp` reports on diagnostic data related to your GCP environment.
  
 ## KFP CLI Tool 
-Kubeflow pipelines has a CLI tool that enables a subset of the sdk functionality directly from a command line in addition to environment diagnostic features. In particular the CLI tool provides the following features: 
+The KFP CLI tool enables you to use a subset of the Kubeflow Pipelines SDK directly from the command line. The KFP CLI tool provides the following commands:
 
 * `kfp diagnose_me` runs environment diagnostic with specified parameters.
-  * `--json` output in Json format, human readable format is set by default.
-  * `--project-id TEXT` target project id. It will use environment default if not specified.
-  * `--namespace TEXT`   Namespace to use for Kubernetes cluster.all-namespaces is.
+  * `--json` - Indicates that this command must return its results as JSON. Otherwise, results are returned in human readable format.
+  * `--namespace TEXT` - Specifies the Kubernetes namespace to use. all-namespaces is the default value.
+  * `--project-id TEXT` - For GCP deployments, this value specifies the GCP project to use. If this value is not specified, the environment default is used.
   
-* `kfp pipeline Command` manages pipeline resources.
-  * `get` get detailed information about an uploaded KFP pipeline.
-  * `list` list uploaded KFP pipelines.
-  * `upload` upload a KFP pipeline.
+* `kfp pipeline <COMMAND>` provides the following commands to help you manage pipelines.
+  * `get`  - Gets detailed information about a Kubeflow pipeline from your Kubeflow Pipelines cluster.
+  * `list` - Lists the pipelines that have been uploaded to your Kubeflow Pipelines cluster.
+  * `upload` - Uploads a pipeline to your Kubeflow Pipelines cluster.
   
-* `kfp run Command` manages run resources.
-  * `get` display the details of a KFP run.
-  * `list` list recent KFP runs.
-  * `submit` submit a KFP run.
+* `kfp run <COMMAND>` provides the following commands to help you manage pipeline runs.
+  * `get` - Displays the details of a pipeline run.
+  * `list` - Lists recent pipeline runs.
+  * `submit` - Submits a pipeline run.
   
-* `kfp --endpoint TEXT` sets the endpoint of the KFP API service to connect.
+* `kfp --endpoint <ENDPOINT>` - Specifies the endpoint that the KFP CLI should connect to.
 
 ## Installing the SDK
 
