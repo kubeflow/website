@@ -5,4 +5,8 @@ weight = 4
 toc = true
 +++
 
-[Chainer](https://github.com/kubeflow/chainer-operator) is not supported in Kubeflow versions greater than 0.6.
+{{% alpha-status 
+  feedbacklink="https://github.com/kubeflow/chainer-operator/issues" %}}
+
+[Chainer](https://github.com/kubeflow/chainer-operator) is not supported in 
+Kubeflow versions greater than v0.6.

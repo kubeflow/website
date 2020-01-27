@@ -1,6 +1,13 @@
-<div class="alert alert-primary" role="alert">
-  This Kubeflow features has <b>alpha</b> status with limited support. See the
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">Alpha</h4>
+  This Kubeflow component has <b>alpha</b> status with limited support. See the
   <a href="/docs/reference/version-policy/">Kubeflow versioning policies</a>.
   The Kubeflow team is interested in any feedback you may have, in particular 
   about the usability of the feature.
+  {{ if .Get "feedbacklink"}}
+    You can log feature requests and bugs in the
+    {{ with .Get "feedbacklink" }} 
+      <a href="{{ . | safeURL }}">issue tracker</a></h4>
+    {{ end }}
+  {{ end }}
 </div>
