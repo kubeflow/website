@@ -20,30 +20,41 @@ If you plan to deploy Kubeflow on an existing Kubernetes cluster, review these
 ## Installing Kubeflow
 
 There are various ways to install Kubeflow. Choose one of the following options
-to suit your environment (desktop or server, existing Kubernetes cluster, or public cloud):
+to suit your environment (public cloud, existing Kubernetes cluster, or
+desktop or server).
 
-* Installing Kubeflow on a **desktop** or **server**:
+### Installing Kubeflow on a public cloud
 
-  * To use Kubeflow on Windows,
-  follow the [Windows deployment guide](/docs/started/workstation/getting-started-windows/).
-  * To use Kubeflow on MacOS,
-  follow the [MacOS deployment guide](/docs/started/workstation/getting-started-macos/).
-  * To use Kubeflow on Linux,
-  follow the [Linux deployment guide](/docs/started/workstation/getting-started-linux/).
-
-* Installing Kubeflow on a **existing Kubernetes cluster** or a **public cloud**:
-
-  * To install Kubeflow on a Kubernetes cluster, follow the
-  [guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
   * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
-  follow the [GCP deployment guide](/docs/gke/deploy/). To use MiniKF (mini
-  Kubeflow) on GCP, follow the [MiniKF on GCP guide](/docs/started/workstation/minikf-gcp/).
+    follow the [GCP deployment guide](/docs/gke/deploy/).
+  * To use MiniKF (mini Kubeflow) on GCP, follow the guide to
+    [MiniKF on GCP](/docs/started/workstation/minikf-gcp/).
   * To use Kubeflow on Amazon Web Services (AWS),
-  follow the [AWS deployment guide](/docs/aws/deploy/).
+    follow the [AWS deployment guide](/docs/aws/deploy/).
   * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
-  follow the [AKS deployment guide](/docs/azure/deploy/).
+    follow the [AKS deployment guide](/docs/azure/deploy/).
   * To use Kubeflow on IBM Cloud Private (ICP),
-	follow the [ICP deployment guide](/docs/started/cloud/getting-started-icp/).
+	  follow the [ICP deployment guide](/docs/started/cloud/getting-started-icp/).
+
+### Installing Kubeflow on an existing Kubernetes cluster
+
+To install Kubeflow on an **existing Kubernetes cluster**, follow the
+[guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
+
+### Installing Kubeflow on a desktop or server
+
+{{% alert title="<b>Not</b> recommended for getting started with Kubeflow" color="info" %}}
+The procedures for installing Kubeflow on a desktop or server can be complex and
+highly dependent on your environment. The current recommendation is to choose
+a cloud installation if you're just getting started with Kubeflow.
+{{% /alert %}}
+
+  * To use Kubeflow on Linux, follow the
+    [Linux deployment guide](/docs/started/workstation/getting-started-linux/).
+  * To use Kubeflow on MacOS, follow the
+    [MacOS deployment guide](/docs/started/workstation/getting-started-macos/).
+  * To use Kubeflow on Windows, follow the
+    [Windows deployment guide](/docs/started/workstation/getting-started-windows/).
 
 ## Configuration quick reference
 
