@@ -9,9 +9,10 @@ Note for authors: The source of the diagrams is held in Google Slides decks,
 in the "Doc diagrams" folder in the public Kubeflow shared drive.
 -->
 
-## Before you begin
+This document provides information about setting up Kubeflow in various
+environments.
 
-This document provides information about setting up Kubeflow in various environments.
+## Before you begin
 
 It's important that you have some knowledge of the following systems and tools:
 
