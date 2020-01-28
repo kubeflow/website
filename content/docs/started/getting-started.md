@@ -4,6 +4,11 @@ description = "Overview of installation choices for various environments"
 weight = 20
 +++
 
+<!--
+Note for authors: The source of the diagrams is held in Google Slides decks,
+in the "Doc diagrams" folder in the public Kubeflow shared drive.
+-->
+
 ## Before you begin
 
 This document provides information about setting up Kubeflow in various environments.
@@ -16,6 +21,17 @@ It's important that you have some knowledge of the following systems and tools:
 If you plan to deploy Kubeflow on an existing Kubernetes cluster, review these
 [Kubernetes system requirements](/docs/started/k8s/overview#minimum-system-requirements).
 
+## Overview of installation options
+
+The following diagram gives an overview of the options for deploying Kubeflow:
+
+<img src="/docs/images/kubeflow-getting-started-diagram.svg" 
+  alt="A diagrammatic overview of Kubeflow deployment options"
+  class="mt-3 mb-3 border border-info rounded">
+
+The following section describes the options in more detail and links to the
+relevant instructions.
+
 <a id="installation-guides"></a>
 ## Installing Kubeflow
 
@@ -24,6 +40,8 @@ to suit your environment (public cloud, existing Kubernetes cluster, or
 desktop or server).
 
 ### Installing Kubeflow on a public cloud
+
+Choose the Kubeflow deployment guide for your chosen cloud:
 
   * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
     follow the [GCP deployment guide](/docs/gke/deploy/).
@@ -36,7 +54,7 @@ desktop or server).
 
 ### Installing Kubeflow on an existing Kubernetes cluster
 
-To install Kubeflow on an **existing Kubernetes cluster**, follow the
+Follow the
 [guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
 
 ### Installing Kubeflow on a desktop or server
@@ -47,6 +65,8 @@ The procedures for installing Kubeflow on a desktop or server can be complex and
 highly dependent on your environment. The current recommendation is to choose
 a cloud installation if you're just getting started with Kubeflow.
 {{% /alert %}}
+
+Choose the desktop/server guide for your operating system or environment:
 
   * To use Kubeflow on Linux, follow the
     [Linux deployment guide](/docs/started/workstation/getting-started-linux/).
