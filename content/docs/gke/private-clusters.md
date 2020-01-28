@@ -50,7 +50,7 @@ hosted outside GCR you can use the scripts provided by Kubeflow to mirror them t
 
 There is however still a way to pull images directly from DockerHub, or other repositories, and not having the hassle of re-writing deployment files. Activating Google's [Cloud NAT](https://cloud.google.com/nat/docs/overview/)(Network Address Translation) service to the subnet you are using, will give your pods egress access.
 One use-case where this is very helpful is when you are using command tools that install several components and rely on publicly available images.
-[Istio](https://istio.io/docs/setup/install/istioctl/) with its istioctl is a good example: _istioctl manifest apply_ 
+[Istio](https://istio.io/docs/setup/install/istioctl/) with its istioctl is a good example: _istioctl manifest apply_
 Generating and editing the manifest file is timeconsuming and error-prone.
 
 ## Before you start
@@ -84,7 +84,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
                            dns.googleapis.com  --project=${PROJECT}
     ```
 
-1. Check if you have an access policy object already created:
+2. Check if you have an access policy object already created:
 
     ```
     gcloud beta access-context-manager policies list \
@@ -94,19 +94,19 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
     * An [access policy](https://cloud.google.com/vpc-service-controls/docs/overview#terminology) is a GCP resource object that defines service perimeters. There can be only one access policy object in an organization, and it is a child of the Organization resource.
 
 
-1. If you don't have an access policy object, create one:
+3. If you don't have an access policy object, create one:
 
     ```
     gcloud beta access-context-manager policies create \
     --title "default" --organization=${ORGANIZATION}
     ```
 
-1. Save the Access Policy Object ID as an environment variable so that it can be used in subsequent commands:
+4. Save the Access Policy Object ID as an environment variable so that it can be used in subsequent commands:
 
     ```
     export POLICYID=$(gcloud beta access-context-manager policies list --organization=${ORGANIZATION} --limit=1 --format='value(name)')
     ```
-1. Create a service perimeter:
+5. Create a service perimeter:
 
     ```
     gcloud beta access-context-manager perimeters create KubeflowZone \
@@ -125,7 +125,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 
     * More than one project can be added to the same perimeter
 
-1. Create an access level to allow Google Container Builder to access resources inside the perimiter:
+6. Create an access level to allow Google Container Builder to access resources inside the perimiter:
 
     * Create a members.yaml file with the following contents
 
@@ -144,7 +144,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 
     * For more information refer to the [docs](https://cloud.google.com/access-context-manager/docs/create-access-level#members-example).
 
-1. Create the access level:
+7. Create the access level:
 
     ```
     gcloud beta access-context-manager levels create kubeflow \
@@ -155,16 +155,16 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 
      * The name for the level can't have any hyphens
 
-1. Bind Access Level to a Service Perimeter:
+8. Bind Access Level to a Service Perimeter:
 
     ```
     gcloud beta access-context-manager perimeters update KubeflowZone \
      --add-access-levels=kubeflow \
      --policy=${POLICYID}
     ```
-1. Set up container registry for GKE private clusters (for more info see [instructions](https://cloud.google.com/vpc-service-controls/docs/set-up-gke)):
+9. Set up container registry for GKE private clusters (for more info see [instructions](https://cloud.google.com/vpc-service-controls/docs/set-up-gke)):
 
-    1. Create a managed private zone
+    i. Create a managed private zone
 
         ```
         export ZONE_NAME=kubeflow
@@ -177,7 +177,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
          --project=${PROJECT}
         ```
 
-    1. Start a transaction
+    ii. Start a transaction
 
         ```
         gcloud dns record-sets transaction start \
@@ -185,7 +185,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
          --project=${PROJECT}
         ```
 
-    1. Add a CNAME record for \*.gcr.io
+    iii. Add a CNAME record for \*.gcr.io
 
         ```
         gcloud dns record-sets transaction add \
@@ -196,7 +196,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
          --project=${PROJECT}
        ```
 
-    1. Add an A record for the restricted VIP
+    iv. Add an A record for the restricted VIP
 
         ```      
          gcloud dns record-sets transaction add \
@@ -207,7 +207,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
            --project=${PROJECT}
         ```
 
-    1. Commit the transaction
+    v. Commit the transaction
 
         ```
          gcloud dns record-sets transaction execute \
@@ -222,14 +222,14 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
     ```
     gcloud auth application-default login
     ```
-1. Copy non-GCR hosted images to your GCR registry:
+2. Copy non-GCR hosted images to your GCR registry:
 
-    1. Clone the Kubeflow source 
+    i. Clone the Kubeflow source 
 
         ```
         git clone https://github.com/kubeflow/kubeflow.git git_kubeflow      
         ```
-    1. Use [Google Cloud Builder(GCB)](https://cloud.google.com/cloud-build/docs/) to replicate the images
+    ii. Use [Google Cloud Builder(GCB)](https://cloud.google.com/cloud-build/docs/) to replicate the images
 
         ```
         cd git_kubeflow/scripts/gke
@@ -246,7 +246,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 
       * You can use the Cloud console to monitor your GCB job.
 
-1. Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/).
+3. Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/).
   When you reach the 
   [setup and deploy step](/docs/gke/deploy/deploy-cli/#set-up-and-deploy), 
   **skip the `kfctl apply` command** and run the **`kfctl build`** command 
@@ -254,19 +254,19 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
   before deploying Kubeflow. Retain the environment variables that you set
   during the setup, including `${KF_NAME}`, `${KF_DIR}`, and `${CONFIG_FILE}`.
 
-1. Enable private clusters by editing `${KF_DIR}/gcp_config/cluster-kubeflow.yaml` and updating the following two parameters:
+4. Enable private clusters by editing `${KF_DIR}/gcp_config/cluster-kubeflow.yaml` and updating the following two parameters:
 
     ```
     privatecluster: true
     gkeApiVersion: v1beta1
     ```
-1. Remove components which are not useful in private clusters:
+5. Remove components which are not useful in private clusters:
 
     ```
     cd ${KF_DIR}/kustomize
     kubectl delete -f cert-manager.yaml
     ```
-1. Create the deployment:
+6. Create the deployment:
 
     ```
     cd ${KF_DIR}
@@ -299,7 +299,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 
           * The name will contain the value ${KF_NAME}
 
-1. Update iap-ingress component parameters:
+7. Update iap-ingress component parameters:
 
     ```
     cd ${KF_DIR}/kustomize
@@ -318,7 +318,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
         kubectl apply -f basic-auth-ingress.yaml
         ```
 
-1. Obtain an HTTPS certificate for your ${FQDN} and create a Kubernetes secret with it. 
+8. Obtain an HTTPS certificate for your ${FQDN} and create a Kubernetes secret with it. 
 
       * You can create a self signed cert using [kube-rsa](https://github.com/kelseyhightower/kube-rsa)
 
@@ -345,15 +345,15 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 
         * See [kubeflow/kubeflow#3079](https://github.com/kubeflow/kubeflow/issues/3079)
 
-1. Update the various kustomize manifests to use `gcr.io` images instead of Docker Hub images.
+9. Update the various kustomize manifests to use `gcr.io` images instead of Docker Hub images.
 
-1. Apply all the Kubernetes resources:
+10. Apply all the Kubernetes resources:
 
     ```
     cd ${KF_DIR}
     kfctl apply -V -f ${CONFIG_FILE}
     ```
-1. Wait for Kubeflow to become accessible and then access it at this URL:
+11. Wait for Kubeflow to become accessible and then access it at this URL:
 
     ```
     https://${FQDN}/
