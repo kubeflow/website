@@ -125,7 +125,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/metadata">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td></td>
+        <td>0.2.1</td>
       </tr>
       <tr>
         <td><a href="/docs/components/training/mpi/">MPI training: MPI 
@@ -235,7 +235,7 @@ one of the following Kubeflow SDKs and command-line interfaces
           (<a href="https://github.com/kubeflow/fairing">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td></td>
+        <td>0.7.1</td>
       </tr>
       <tr>
         <td><a href="/docs/other-guides/kustomize/">kfctl</a> 
