@@ -27,8 +27,6 @@ desktop or server).
 
   * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
     follow the [GCP deployment guide](/docs/gke/deploy/).
-  * To use MiniKF (mini Kubeflow) on GCP, follow the guide to
-    [MiniKF on GCP](/docs/started/workstation/minikf-gcp/).
   * To use Kubeflow on Amazon Web Services (AWS),
     follow the [AWS deployment guide](/docs/aws/deploy/).
   * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
@@ -43,7 +41,8 @@ To install Kubeflow on an **existing Kubernetes cluster**, follow the
 
 ### Installing Kubeflow on a desktop or server
 
-{{% alert title="<b>Not</b> recommended for getting started with Kubeflow" color="info" %}}
+{{% alert title="<b>Not</b> recommended for getting started with Kubeflow" 
+  color="info" %}}
 The procedures for installing Kubeflow on a desktop or server can be complex and
 highly dependent on your environment. The current recommendation is to choose
 a cloud installation if you're just getting started with Kubeflow.
@@ -55,6 +54,8 @@ a cloud installation if you're just getting started with Kubeflow.
     [MacOS deployment guide](/docs/started/workstation/getting-started-macos/).
   * To use Kubeflow on Windows, follow the
     [Windows deployment guide](/docs/started/workstation/getting-started-windows/).
+  * To use MiniKF (mini Kubeflow) on Google Cloud Platform, follow the guide to
+    [MiniKF on GCP](/docs/started/workstation/minikf-gcp/).
 
 ## Configuration quick reference
 

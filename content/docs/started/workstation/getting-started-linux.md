@@ -1,7 +1,7 @@
 +++
 title = "Kubeflow on Linux"
 description = "Install Kubeflow on Linux"
-weight = 2
+weight = 10
 +++
 
 For Linux systems you have options for servers (physical or virtual) and desktops.
@@ -9,8 +9,8 @@ The server options apply to the desktop as well.
 
 ## Linux server
 
-For linux servers you can install Kubeflow natively. This is perfect for
-linux hosts and virtual machines, such as VMs in OpenStack, VMware or public clouds like
+For Linux servers you can install Kubeflow natively. This is perfect for
+Linux hosts and virtual machines, such as VMs in OpenStack, VMware or public clouds like
 GCP, AWS and Azure.
 
 ### MicroK8s

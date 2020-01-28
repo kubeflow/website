@@ -1,7 +1,7 @@
 +++
 title = "Kubeflow on Windows"
 description = "Install Kubeflow on Windows"
-weight = 2
+weight = 30
 +++
 
 <!--
