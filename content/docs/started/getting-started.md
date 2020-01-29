@@ -40,6 +40,7 @@ There are various ways to install Kubeflow. Choose one of the following options
 to suit your environment (public cloud, existing Kubernetes cluster, or
 desktop or server).
 
+<a id="cloud"></a>
 ### Installing Kubeflow on a public cloud
 
 Choose the Kubeflow deployment guide for your chosen cloud:
@@ -53,11 +54,13 @@ Choose the Kubeflow deployment guide for your chosen cloud:
   * To use Kubeflow on IBM Cloud Private (ICP),
 	  follow the [ICP deployment guide](/docs/started/cloud/getting-started-icp/).
 
+<a id="kubernetes"></a>
 ### Installing Kubeflow on an existing Kubernetes cluster
 
 Follow the
 [guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
 
+<a id="desktop"></a>
 ### Installing Kubeflow on a desktop or server
 
 {{% alert title="<b>Not</b> recommended for getting started with Kubeflow" 
