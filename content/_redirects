@@ -106,3 +106,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 
 # Move the kustomize guide to the config section
 /docs/components/misc/kustomize/              /docs/other-guides/kustomize/
+
+# Merged the UIs page with the new central dashboard page
+/docs/other-guides/accessing-uis/             /docs/components/central-dash/overview/
