@@ -82,11 +82,9 @@ You can ask questions and make suggestions in the following places:
 
 * **Slack** for online chat and messaging. See details of Kubeflow's 
   [Slack workspace and channels](/docs/about/community/#slack).
-
 * **Kubeflow discuss** for email-based group discussion. Join the
   [kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss) 
   group.
-
 * **Kubeflow documentation** for overviews and how-to guides. In particular,
   refer to the following documents when troubleshooting a problem:
 
