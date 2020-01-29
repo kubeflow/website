@@ -4,6 +4,12 @@ description = "Quickly get Kubeflow running locally on native hypervisors"
 weight = 2
 +++
 
+{{% alert title="Alpha version" color="warning" %}}
+This feature is currently in <b>Alpha</b> with limited support. The Kubeflow
+team is interested in any feedback you may have, in particular with regards to
+usability of the feature.
+{{% /alert %}}
+
 This document outlines the steps that you can take to get your local installation of Kubeflow running on top of Microk8s, a small enterprise Kubernetes cluster. Microk8s requires Linux; if you are not on a Linux system, you can use Multipass to create a Linux VM (virtual machine) on your native hypervisor.
 
 ## Introduction
