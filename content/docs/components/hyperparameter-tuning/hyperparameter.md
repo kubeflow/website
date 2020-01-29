@@ -71,7 +71,7 @@ If you installed Katib as part of Kubeflow, you can access the
 Katib UI from the Kubeflow UI:
 
 1. Open the Kubeflow UI. See the guide to 
-  [accessing the Kubeflow UI](/docs/other-guides/accessing-uis/).
+  [accessing the central dashboard](/docs/components/central-dash/overview/).
 1. Click **Katib** in the left-hand menu.
 
 Alternatively, you can set port-forwarding for the Katib UI service:
