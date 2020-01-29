@@ -128,12 +128,6 @@ The matrix is therefore an alternative way of accessing the information in the
         <td><a href="/docs/azure/deploy/install-kubeflow/">Docs</a></td>
       </tr>
       <tr>
-        <td><b>Google Cloud Platform (GCP)</b> with basic authentication</td>
-        <td><a href="{{% config-uri-gcp-basic-auth %}}">{{% config-file-gcp-basic-auth %}}</a>  
-        </td>
-        <td><a href="/docs/gke/deploy/">Docs</a></td>
-      </tr>
-      <tr>
         <td><b>Google Cloud Platform (GCP)</b> with Cloud Identity-Aware Proxy 
           (Cloud IAP)</td>
         <td><a href="{{% config-uri-gcp-iap %}}">{{% config-file-gcp-iap %}}</a>  
