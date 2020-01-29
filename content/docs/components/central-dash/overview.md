@@ -102,17 +102,17 @@ You can access Kubeflow via `kubectl` and port-forwarding as follows:
     http://localhost:8080/
     ```
 
-  * Depending on how you've configured Kubeflow, not all UIs work behind 
+    Depending on how you've configured Kubeflow, not all UIs work behind 
     port-forwarding to the reverse proxy.
 
-        For some web applications, you need to configure the base URL on which
-        the app is serving.
-        
-        For example, if you deployed Kubeflow with an ingress serving at 
-        `https://example.mydomain.com` and configured an application
-        to be served at the URL `https://example.mydomain.com/myapp`, then the 
-        app may not work when served on
-        `https://localhost:8080/myapp` because the paths do not match.
+    For some web applications, you need to configure the base URL on which
+    the app is serving.
+    
+    For example, if you deployed Kubeflow with an ingress serving at 
+    `https://example.mydomain.com` and configured an application
+    to be served at the URL `https://example.mydomain.com/myapp`, then the 
+    app may not work when served on
+    `https://localhost:8080/myapp` because the paths do not match.
 
 ## Next steps
 
