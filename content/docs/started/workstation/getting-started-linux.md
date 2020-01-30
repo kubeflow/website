@@ -19,9 +19,7 @@ GCP, AWS and Azure.
 [snapd](https://snapcraft.io/docs/getting-started), which is pre-installed on Ubuntu
 and Ubuntu derivative operating systems.
 
-1. Install MicroK8s - `snap install microk8s --classic --channel=1.14/stable`
-2. Follow the getting started guide for Kubeflow on an
-[existing Kubernetes cluster](/docs/started/k8s/overview/).
+Follow the installation guide for [Kubeflow with MicroK8s](/docs/other-guides/virtual-dev/getting-started-multipass/) to set up MicroK8s and enable Kubeflow.
 
 ## Linux desktop
 
