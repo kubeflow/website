@@ -6,9 +6,19 @@ weight = 25
 
 This guide walks you through using MPI for training.
 
+The MPI Operator makes it easy to run allreduce-style distributed training on Kubernetes. Please check out the list of adopters [here](https://github.com/kubeflow/mpi-operator/blob/master/ADOPTERS.md).
+
 ## Installation
 
-If you haven’t already done so please follow the [Getting Started Guide](https://www.kubeflow.org/docs/started/getting-started/) to deploy Kubeflow.
+You can deploy the operator with default settings without using `kustomize` by running the following commands:
+
+```shell
+git clone https://github.com/kubeflow/mpi-operator
+cd mpi-operator
+kubectl create -f deploy/mpi-operator.yaml
+```
+
+Alternatively, if you haven’t already done so please follow the [Getting Started Guide](https://www.kubeflow.org/docs/started/getting-started/) to deploy Kubeflow.
 
 An alpha version of MPI support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow newer than 0.2.0.
 
@@ -32,28 +42,20 @@ If it is not included you can add it as follows:
 ```bash
 git clone https://github.com/kubeflow/manifests
 cd manifests/mpi-job/mpi-operator
-kubectl kustomize base | kubectl apply -f -
-```
-
-Alternatively, you can deploy the operator with default settings without using kustomize by running the following from the repo:
-
-```shell
-git clone https://github.com/kubeflow/mpi-operator
-cd mpi-operator
-kubectl create -f deploy/mpi-operator.yaml
+kustomize build base | kubectl apply -f -
 ```
 
 ## Creating an MPI Job
 
-You can create an MPI job by defining an `MPIJob` config file. See [TensorFlow benchmark example](https://github.com/kubeflow/mpi-operator/blob/master/examples/v1alpha1/tensorflow-benchmarks.yaml) config file for launching a multi-node TensorFlow benchmark training job. You may change the config file based on your requirements.
+You can create an MPI job by defining an `MPIJob` config file. See [Tensorflow benchmark example](https://github.com/kubeflow/mpi-operator/blob/master/examples/v1alpha2/tensorflow-benchmarks.yaml) config file for launching a multi-node TensorFlow benchmark training job. You may change the config file based on your requirements.
 
 ```
-cat examples/v1alpha1/tensorflow-benchmarks.yaml
+cat examples/v1alpha2/tensorflow-benchmarks.yaml
 ```
 Deploy the `MPIJob` resource to start training:
 
 ```
-kubectl create -f examples/v1alpha1/tensorflow-benchmarks.yaml
+kubectl create -f examples/v1alpha2/tensorflow-benchmarks.yaml
 ```
 
 ## Monitoring an MPI Job
@@ -61,45 +63,105 @@ kubectl create -f examples/v1alpha1/tensorflow-benchmarks.yaml
 Once the `MPIJob` resource is created, you should now be able to see the created pods matching the specified number of GPUs. You can also monitor the job status from the status section. Here is sample output when the job is successfully completed.
 
 ```
-kubectl get -o yaml mpijobs tensorflow-benchmarks-16
+kubectl get -o yaml mpijobs tensorflow-benchmarks
 ```
 
 ```
-apiVersion: kubeflow.org/v1alpha1
+apiVersion: kubeflow.org/v1alpha2
 kind: MPIJob
 metadata:
-  clusterName: ""
-  creationTimestamp: 2019-01-07T20:32:12Z
+  creationTimestamp: "2019-07-09T22:15:51Z"
   generation: 1
-  name: tensorflow-benchmarks-16
+  name: tensorflow-benchmarks
   namespace: default
-  resourceVersion: "185051397"
-  selfLink: /apis/kubeflow.org/v1alpha1/namespaces/default/mpijobs/tensorflow-benchmarks-16
-  uid: 8dc8c044-127d-11e9-a419-02420bbe29f3
+  resourceVersion: "5645868"
+  selfLink: /apis/kubeflow.org/v1alpha2/namespaces/default/mpijobs/tensorflow-benchmarks
+  uid: 1c5b470f-a297-11e9-964d-88d7f67c6e6d
 spec:
-  gpus: 16
-  template:
-    metadata:
-      creationTimestamp: null
-    spec:
-      containers:
-      - image: mpioperator/tensorflow-benchmarks:latest
-        name: tensorflow-benchmarks
-        resources: {}
+  cleanPodPolicy: Running
+  mpiReplicaSpecs:
+    Launcher:
+      replicas: 1
+      template:
+        spec:
+          containers:
+          - command:
+            - mpirun
+            - --allow-run-as-root
+            - -np
+            - "2"
+            - -bind-to
+            - none
+            - -map-by
+            - slot
+            - -x
+            - NCCL_DEBUG=INFO
+            - -x
+            - LD_LIBRARY_PATH
+            - -x
+            - PATH
+            - -mca
+            - pml
+            - ob1
+            - -mca
+            - btl
+            - ^openib
+            - python
+            - scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py
+            - --model=resnet101
+            - --batch_size=64
+            - --variable_update=horovod
+            image: mpioperator/tensorflow-benchmarks:latest
+            name: tensorflow-benchmarks
+    Worker:
+      replicas: 1
+      template:
+        spec:
+          containers:
+          - image: mpioperator/tensorflow-benchmarks:latest
+            name: tensorflow-benchmarks
+            resources:
+              limits:
+                nvidia.com/gpu: 2
+  slotsPerWorker: 2
 status:
-  launcherStatus: Succeeded
+  completionTime: "2019-07-09T22:17:06Z"
+  conditions:
+  - lastTransitionTime: "2019-07-09T22:15:51Z"
+    lastUpdateTime: "2019-07-09T22:15:51Z"
+    message: MPIJob default/tensorflow-benchmarks is created.
+    reason: MPIJobCreated
+    status: "True"
+    type: Created
+  - lastTransitionTime: "2019-07-09T22:15:54Z"
+    lastUpdateTime: "2019-07-09T22:15:54Z"
+    message: MPIJob default/tensorflow-benchmarks is running.
+    reason: MPIJobRunning
+    status: "False"
+    type: Running
+  - lastTransitionTime: "2019-07-09T22:17:06Z"
+    lastUpdateTime: "2019-07-09T22:17:06Z"
+    message: MPIJob default/tensorflow-benchmarks successfully completed.
+    reason: MPIJobSucceeded
+    status: "True"
+    type: Succeeded
+  replicaStatuses:
+    Launcher:
+      succeeded: 1
+    Worker: {}
+  startTime: "2019-07-09T22:15:51Z"
 ```
 
 
 Training should run for 100 steps and takes a few minutes on a GPU cluster. You can inspect the logs to see the training progress. When the job starts, access the logs from the `launcher` pod:
 
 ```
-PODNAME=$(kubectl get pods -l mpi_job_name=tensorflow-benchmarks-16,mpi_role_type=launcher -o name)
+PODNAME=$(kubectl get pods -l mpi_job_name=tensorflow-benchmarks,mpi_role_type=launcher -o name)
 kubectl logs -f ${PODNAME}
 ```
 
 ```
-TensorFlow:  1.10
+TensorFlow:  1.14
 Model:       resnet101
 Dataset:     imagenet (synthetic)
 Mode:        training
@@ -109,32 +171,29 @@ Batch size:  128 global
 Num batches: 100
 Num epochs:  0.01
 Devices:     ['horovod/gpu:0', 'horovod/gpu:1']
+NUMA bind:   False
 Data format: NCHW
 Optimizer:   sgd
 Variables:   horovod
 
 ...
 
-40	images/sec: 132.1 +/- 0.0 (jitter = 0.2)	9.146
-40	images/sec: 132.1 +/- 0.0 (jitter = 0.1)	9.182
-50	images/sec: 132.1 +/- 0.0 (jitter = 0.2)	9.071
-50	images/sec: 132.1 +/- 0.0 (jitter = 0.2)	9.210
-60	images/sec: 132.2 +/- 0.0 (jitter = 0.2)	9.180
-60	images/sec: 132.2 +/- 0.0 (jitter = 0.2)	9.055
-70	images/sec: 132.1 +/- 0.0 (jitter = 0.2)	9.005
-70	images/sec: 132.1 +/- 0.0 (jitter = 0.2)	9.096
-80	images/sec: 132.1 +/- 0.0 (jitter = 0.2)	9.231
-80	images/sec: 132.1 +/- 0.0 (jitter = 0.2)	9.197
-90	images/sec: 132.1 +/- 0.0 (jitter = 0.2)	9.201
-90	images/sec: 132.1 +/- 0.0 (jitter = 0.2)	9.089
-100	images/sec: 132.1 +/- 0.0 (jitter = 0.2)	9.183
+40	images/sec: 154.4 +/- 0.7 (jitter = 4.0)	8.280
+40	images/sec: 154.4 +/- 0.7 (jitter = 4.1)	8.482
+50	images/sec: 154.8 +/- 0.6 (jitter = 4.0)	8.397
+50	images/sec: 154.8 +/- 0.6 (jitter = 4.2)	8.450
+60	images/sec: 154.5 +/- 0.5 (jitter = 4.1)	8.321
+60	images/sec: 154.5 +/- 0.5 (jitter = 4.4)	8.349
+70	images/sec: 154.5 +/- 0.5 (jitter = 4.0)	8.433
+70	images/sec: 154.5 +/- 0.5 (jitter = 4.4)	8.430
+80	images/sec: 154.8 +/- 0.4 (jitter = 3.6)	8.199
+80	images/sec: 154.8 +/- 0.4 (jitter = 3.8)	8.404
+90	images/sec: 154.6 +/- 0.4 (jitter = 3.7)	8.418
+90	images/sec: 154.6 +/- 0.4 (jitter = 3.6)	8.459
+100	images/sec: 154.2 +/- 0.4 (jitter = 4.0)	8.372
+100	images/sec: 154.2 +/- 0.4 (jitter = 4.0)	8.542
 ----------------------------------------------------------------
-total images/sec: 264.26
-----------------------------------------------------------------
-100	images/sec: 132.1 +/- 0.0 (jitter = 0.2)	9.044
-----------------------------------------------------------------
-total images/sec: 264.26
-----------------------------------------------------------------
+total images/sec: 308.27
 ```
 
 # Docker Images
