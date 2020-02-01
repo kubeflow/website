@@ -63,13 +63,6 @@ Follow the
 <a id="desktop"></a>
 ### Installing Kubeflow on a desktop or server
 
-{{% alert title="<b>Not</b> recommended for getting started with Kubeflow" 
-  color="info" %}}
-The procedures for installing Kubeflow on a desktop or server can be complex and
-highly dependent on your environment. The current recommendation is to choose
-a cloud installation if you're just getting started with Kubeflow.
-{{% /alert %}}
-
 Choose the desktop/server guide for your operating system or environment:
 
   * To use Kubeflow on Linux, follow the
