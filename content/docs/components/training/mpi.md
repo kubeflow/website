@@ -6,7 +6,7 @@ weight = 25
 
 This guide walks you through using MPI for training.
 
-The MPI Operator makes it easy to run allreduce-style distributed training on Kubernetes. Please check out the list of adopters [here](https://github.com/kubeflow/mpi-operator/blob/master/ADOPTERS.md).
+The MPI Operator makes it easy to run allreduce-style distributed training on Kubernetes. Please check out the list of adopters in [the MPI Operator repository on GitHub](https://github.com/kubeflow/mpi-operator/blob/master/ADOPTERS.md).
 
 ## Installation
 
@@ -18,7 +18,7 @@ cd mpi-operator
 kubectl create -f deploy/mpi-operator.yaml
 ```
 
-Alternatively, if you haven’t already done so please follow the [Getting Started Guide](https://www.kubeflow.org/docs/started/getting-started/) to deploy Kubeflow.
+Alternatively, follow the [getting started guide](docs/started/getting-started/) to deploy Kubeflow.
 
 An alpha version of MPI support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow newer than 0.2.0.
 
