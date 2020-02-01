@@ -15,9 +15,7 @@ GCP, AWS and Azure.
 
 ### MicroK8s
 
-[MicroK8s](https://microk8s.io) runs natively on most Linux distributions. It requires
-[snapd](https://snapcraft.io/docs/getting-started), which is pre-installed on Ubuntu
-and Ubuntu derivative operating systems.
+[MicroK8s](https://microk8s.io) runs natively on most Linux distributions. 
 
 Follow the installation guide for [Kubeflow with MicroK8s](/docs/other-guides/virtual-dev/getting-started-multipass/) to set up MicroK8s and enable Kubeflow.
 
