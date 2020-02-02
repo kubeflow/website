@@ -18,11 +18,11 @@ deploy Kubeflow on IBM Cloud.
     https://console.bluemix.net/docs/cli/index.html#overview
 
 1.  Install the `cs` (container-service) plugin:
-    ```bash
+    ```
     ibmcloud plugin install container-service -r Bluemix
     ```
 1.  Authorize `ibmcloud`:
-    ```bash
+    ```
     ibmcloud login
     ```
 
@@ -154,8 +154,9 @@ Run the following commands to set up and deploy Kubeflow.
   page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
 
 1. Unpack the tar ball
-
-        tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
+      ```
+      tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
+      ```
 
 1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
 
@@ -197,23 +198,29 @@ Run the following commands to set up and deploy Kubeflow.
 
 1. Check the resources deployed correctly in namespace `kubeflow`
 
-        kubectl get all -n kubeflow
+     ```
+     kubectl get all -n kubeflow
+     ```
 
-1. Open Kubeflow Dashboard
+1. Open Kubeflow Dashboard. The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster. Run the following command and visit http://localhost:8080.
 
-The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster. Run the following command and visit http://localhost:8080.
-
-    kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
+     ```
+     kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
+     ```
 
 In case you want to expose the Kubeflow Dashboard over an external IP, you can change the type of the ingress gateway. To do that, you can edit the service:
 
-        kubectl edit -n istio-system svc/istio-ingressgateway
+     ```
+     kubectl edit -n istio-system svc/istio-ingressgateway
+     ```
 
 From that file, replace `type: NodePort` with `type: LoadBalancer` and save.
 
 While the change is being applied, you can watch the service until below command prints a value under the `EXTERNAL-IP` column:
 
-        kubectl get -w -n istio-system svc/istio-ingressgateway
+     ```
+     kubectl get -w -n istio-system svc/istio-ingressgateway
+     ```
 
 The external IP should be accessible by visiting http://<EXTERNAL-IP>. Note that above installation instructions do not create any protection for the external endpoint so it will be accessible to anyone without any authentication. 
 
