@@ -33,7 +33,7 @@ environment variables.
 
 1.  Set `CLUSTER_NAME`, `CLUSTER_REGION`, and `CLUSTER_ZONE` variables:
 
-    ```bash
+    ```
     export CLUSTER_NAME=knative
     export CLUSTER_REGION=us-south
     export CLUSTER_ZONE=dal13
@@ -61,13 +61,13 @@ components, the recommended configuration for a cluster is:
 
 1.  Set `ibmcloud` to the appropriate region:
 
-    ```bash
+    ```
     ibmcloud cs region-set $CLUSTER_REGION
     ```
 
 1.  Create a Kubernetes cluster on IKS with the required specifications:
 
-    ```bash
+    ```
     ibmcloud cs cluster-create --name=$CLUSTER_NAME \
       --zone=$CLUSTER_ZONE \
       --machine-type=b2c.4x16 \
@@ -79,7 +79,7 @@ components, the recommended configuration for a cluster is:
     your account, get them via `ibmcloud cs vlans --zone $CLUSTER_ZONE` and
     include the public/private VLAN in the `cluster-create` command:
 
-    ```bash
+    ```
     ibmcloud cs cluster-create --name=$CLUSTER_NAME \
       --zone=$CLUSTER_ZONE \
       --machine-type=b2c.4x16 \
@@ -90,21 +90,23 @@ components, the recommended configuration for a cluster is:
 
 1.  Wait until your Kubernetes cluster is deployed:
 
-    ```bash
+    ```
     ibmcloud cs clusters | grep $CLUSTER_NAME
     ```
 
     It can take a while for your cluster to be deployed. Repeat the above
     command until the state of your cluster is "normal".
 
+
 1.  Point `kubectl` to the cluster:
 
-    ```bash
+    ```
     ibmcloud cs cluster-config $CLUSTER_NAME
     ```
 
     Follow the instructions on the screen to `EXPORT` the correct `KUBECONFIG`
     value to point to the created cluster.
+
 
 1.  Make sure all nodes are up:
 
