@@ -210,17 +210,13 @@ Run the following commands to set up and deploy Kubeflow.
 
 In case you want to expose the Kubeflow Dashboard over an external IP, you can change the type of the ingress gateway. To do that, you can edit the service:
 
-     ```
      kubectl edit -n istio-system svc/istio-ingressgateway
-     ```
 
 From that file, replace `type: NodePort` with `type: LoadBalancer` and save.
 
 While the change is being applied, you can watch the service until below command prints a value under the `EXTERNAL-IP` column:
 
-     ```
      kubectl get -w -n istio-system svc/istio-ingressgateway
-     ```
 
 The external IP should be accessible by visiting http://<EXTERNAL-IP>. Note that above installation instructions do not create any protection for the external endpoint so it will be accessible to anyone without any authentication. 
 
