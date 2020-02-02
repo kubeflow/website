@@ -6,12 +6,6 @@ weight = 30
 
 ## Upgrading from Kubeflow v0.7.0 or later
 
-{{% alert title="Alpha version" color="warning" %}}
-This feature is currently in <b>Alpha</b> with limited support. The Kubeflow
-team is interested in any feedback you may have, in particular with regards to
-usability of the feature.
-{{% /alert %}}
-
 Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or later.
 
 ### Prerequisites
@@ -121,7 +115,7 @@ Alternatively you can follow these steps to change the configuration before appl
 
 ## Upgrades from earlier versions of Kubeflow
 
-For earlier versions, Kubeflow makes no promises of backwards compatibility or 
+For versions earlier than v0.7.0, Kubeflow makes no promises of backwards compatibility or 
 upgradeability. Nonetheless, here are some instructions for updating your deployment:
 
 1. Check your Kubeflow configuration directory (`${KF_DIR}`) into source control
