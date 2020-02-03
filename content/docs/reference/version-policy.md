@@ -163,7 +163,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td>0.1.40</td>
+        <td>0.2.0</td>
       </tr>
       <tr>
         <td><a href="/docs/other-guides/multi-user-overview/">Profile 
@@ -179,20 +179,6 @@ documentation for that application.
         </td>
         <td>Stable</td>
         <td>1.0.0</td>
-      </tr>
-      <tr>
-        <td><a href="/docs/components/serving/tfbatchpredict/">TensorFlow 
-          batch prediction</a>
-          (<a href="https://github.com/kubeflow/batch-predict">GitHub</a>)
-        </td>
-        <td>Alpha</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a href="/docs/components/serving/tfserving_new/">TensorFlow
-          serving</a></td>
-        <td>Stable</td>
-        <td></td>
       </tr>
       <tr>
         <td><a href="/docs/components/training/tftraining/">TensorFlow training:
@@ -249,7 +235,7 @@ one of the following Kubeflow SDKs and command-line interfaces
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td>0.1.40</td>
+        <td>0.2.0</td>
       </tr>
     </tbody>
   </table>
