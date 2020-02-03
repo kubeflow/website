@@ -120,6 +120,32 @@ The Kubeflow Pipelines SDK includes the following packages:
   Kubeflow Pipelines. Examples include utility functions for on premises,
   Google Cloud Platform (GCP), Amazon Web Services (AWS), and Microsoft Azure.
 
+* [KFP diagnose_me modules](https://github.com/kubeflow/pipelines/tree/master/sdk/python/kfp/cli/diagnose_me)include classes and functions that help with environment diagnostic tasks. 
+ 
+  * `kfp.cli.diagnose_me.dev_env` reports on diagnostic metadata from your development environment, such as your python library version.
+  * `kfp.cli.diagnose_me.kubernetes_cluster` reports on diagnostic data from your Kubernetes cluster, such as Kubernetes secrets.
+  * `kfp.cli.diagnose_me.gcp` reports on diagnostic data related to your GCP environment.
+ 
+## KFP CLI tool 
+The KFP CLI tool enables you to use a subset of the Kubeflow Pipelines SDK directly from the command line. The KFP CLI tool provides the following commands:
+
+* `kfp diagnose_me` runs environment diagnostic with specified parameters.
+  * `--json` - Indicates that this command must return its results as JSON. Otherwise, results are returned in human readable format.
+  * `--namespace TEXT` - Specifies the Kubernetes namespace to use. all-namespaces is the default value.
+  * `--project-id TEXT` - For GCP deployments, this value specifies the GCP project to use. If this value is not specified, the environment default is used.
+  
+* `kfp pipeline <COMMAND>` provides the following commands to help you manage pipelines.
+  * `get`  - Gets detailed information about a Kubeflow pipeline from your Kubeflow Pipelines cluster.
+  * `list` - Lists the pipelines that have been uploaded to your Kubeflow Pipelines cluster.
+  * `upload` - Uploads a pipeline to your Kubeflow Pipelines cluster.
+  
+* `kfp run <COMMAND>` provides the following commands to help you manage pipeline runs.
+  * `get` - Displays the details of a pipeline run.
+  * `list` - Lists recent pipeline runs.
+  * `submit` - Submits a pipeline run.
+  
+* `kfp --endpoint <ENDPOINT>` - Specifies the endpoint that the KFP CLI should connect to.
+
 ## Installing the SDK
 
 Follow the guide to 

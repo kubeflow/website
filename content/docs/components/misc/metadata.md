@@ -113,7 +113,7 @@ artifact in the **Artifact Store** on the Kubeflow UI.
 
 1. Go to Kubeflow in your browser. (If you haven't yet opened the 
   Kubeflow UI, find out how to [access the
-  Kubeflow UIs](https://www.kubeflow.org/docs/other-guides/accessing-uis/).)
+  central dashboard](/docs/components/central-dash/overview/).)
 1. Click **Artifact Store** in the left-hand navigation panel:
   <img src="/docs/images/metadata-ui-option.png" 
     alt="Metadata UI"
