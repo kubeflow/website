@@ -4,6 +4,9 @@ description = "Instructions for using MXNet"
 weight = 25
 +++
 
+{{% alpha-status 
+  feedbacklink="https://github.com/kubeflow/mxnet-operator/issues" %}}
+
 This guide walks you through using MXNet with Kubeflow.
 
 ## Installing MXNet Operator

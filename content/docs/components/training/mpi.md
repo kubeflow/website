@@ -4,6 +4,9 @@ description = "Instructions for using MPI for training"
 weight = 25
 +++
 
+{{% alpha-status 
+  feedbacklink="https://github.com/kubeflow/mpi-operator/issues" %}}
+
 This guide walks you through using MPI for training.
 
 The MPI Operator makes it easy to run allreduce-style distributed training on Kubernetes. Please check out the list of adopters in [the MPI Operator repository on GitHub](https://github.com/kubeflow/mpi-operator/blob/master/ADOPTERS.md).

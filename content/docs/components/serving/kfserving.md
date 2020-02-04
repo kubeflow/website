@@ -4,6 +4,9 @@ description = "Model serving using KFServing"
 weight = 2
 +++
 
+{{% beta-status 
+  feedbacklink="https://github.com/kubeflow/kfserving/issues" %}}
+
 KFServing enables serverless inferencing on Kubernetes and provides performant, high abstraction interfaces for common machine learning (ML) frameworks like TensorFlow, XGBoost, scikit-learn, PyTorch, and ONNX to solve production model serving use cases.
 
 You can use KFServing to do the following:
