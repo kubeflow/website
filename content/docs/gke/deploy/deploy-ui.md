@@ -65,7 +65,7 @@ Follow these steps to open the deployment UI and deploy Kubeflow on GCP:
       to create your deployment. The default is `us-central-1a`.
     * **Kubeflow version:** Choose one of the available versions of Kubeflow.
       You can see all the versions on the 
-      [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
+      [Kubeflow releases page](https://github.com/kubeflow/kfctl/releases/).
       If you need a version that does not show on the deployment UI, you need to
       [deploy Kubeflow using the CLI](/docs/gke/deploy/deploy-cli).
     * **Share Anonymous Usage Report:** Check this option to allow Kubeflow to

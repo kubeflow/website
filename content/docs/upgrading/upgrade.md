@@ -17,7 +17,7 @@ Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or 
 ### Prerequisites
 
 * Download the latest kfctl binary from the
-  [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
+  [Kubeflow releases page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
 
 * Ensure that your Kubeflow namespace is annotated with the
   `control-plane: kubeflow` label. You can verify this by doing:
@@ -137,7 +137,7 @@ upgradeability. Nonetheless, here are some instructions for updating your deploy
 
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 
-  page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
+  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
 
 1. Unpack the tar ball:
 
