@@ -123,7 +123,7 @@ The following information is useful if you need or prefer to use command line
 tools for deploying and managing Kubeflow:
 
 * Download the kfctl binary from the
-  [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
+  [Kubeflow releases page](https://github.com/kubeflow/kfctl/releases/).
 
 * Follow the kubectl installation and setup instructions from the [Kubernetes
   documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).

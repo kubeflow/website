@@ -133,7 +133,7 @@ Follow these steps to deploy Kubeflow:
 
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 
-  page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
+  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
 
 1. Unpack the tar ball:
 
