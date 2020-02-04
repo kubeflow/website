@@ -5,6 +5,8 @@ description = "Using TFJob to train a model with TensorFlow"
 weight = 60
 +++
 
+{{% stable-status %}}
+
 This page describes TFJob for training a machine learning model with TensorFlow.
 
 ## What is TFJob?

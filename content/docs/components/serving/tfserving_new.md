@@ -4,6 +4,8 @@ description = "Serving TensorFlow models"
 weight = 51
 +++
 
+{{% stable-status %}}
+
 ## Serving a model
 
 To deploy a model we create following resources as illustrated below

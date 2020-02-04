@@ -4,6 +4,9 @@ description = "Tracking and managing metadata of machine learning workflows in K
 weight = 5
 +++
 
+{{% beta-status 
+  feedbacklink="https://github.com/kubeflow/metadata/issues" %}}
+
 The goal of the [Metadata](https://github.com/kubeflow/metadata) project is to 
 help Kubeflow users understand and manage their machine learning (ML) workflows
 by tracking and managing the metadata that the workflows produce. 
@@ -11,13 +14,6 @@ by tracking and managing the metadata that the workflows produce.
 In this context, _metadata_ means information about executions (runs), models, 
 datasets, and other artifacts. _Artifacts_ are the files and objects that form 
 the inputs and outputs of the components in your ML workflow.
-
-{{% alert title="Alpha version" color="warning" %}}
-This is an <b>alpha</b> release of the Metadata API. The next version of Kubeflow
-may introduce breaking changes. The development team is interested in any
-feedback you have while using the Metadata component, and in particular your
-feedback on any gaps in the functionality that the component offers.
-{{% /alert %}}
 
 ## Installing the Metadata component
 

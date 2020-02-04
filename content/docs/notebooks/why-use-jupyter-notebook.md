@@ -4,6 +4,7 @@ description = "Why use Jupyter notebooks in Kubeflow"
 weight = 5
 +++
 
+{{% stable-status %}}
 
 There are multiple benefits of integrating Jupyter notebooks in Kubeflow for enterprise environments. These benefits include:
 
