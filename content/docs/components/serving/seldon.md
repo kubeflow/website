@@ -14,7 +14,40 @@ Seldon also provides [language specific model wrappers](https://docs.seldon.io/p
 
 ### Kubeflow Specifics
 
-  * By default Seldon is configured to use the istio Gateway `kubeflow-gateway` and will add Virtual Services for the Seldon resources you create which [expose Seldon paths to the Kubeflow istio gateway](https://docs.seldon.io/projects/seldon-core/en/latest/workflow/serving.html#istio).
+You need to ensure the namespace where your models will be served has:
+
+ 1. A Istio gateway named kubeflow-gateway
+ 2. The namespace is labeled with `serving.kubeflow.org/inferenceservice=enabled`
+
+Examples:
+
+Label the namespace for serving:
+
+```
+kubectl label namespace my-namespace serving.kubeflow.org/inferenceservice=enabled
+```
+
+Create a gateway call kubeflow-gateway in namespace `my-namespace`:
+
+```
+kind: Gateway
+metadata:
+  name: kubeflow-gateway
+  namespace: my-namespace
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - '*'
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
+```
+
+Save the above resource and apply it with `kubectl`.
+ 
 
 ### Examples
 
