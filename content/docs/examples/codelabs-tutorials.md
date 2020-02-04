@@ -9,7 +9,7 @@ weight = 20
 Run Kubeflow Pipelines tutorials on AWS, GCP, or on-prem hardware using [Agile Stacks](https://www.agilestacks.com/).
 Pipeline templates provide step-by-step examples for working with object storage filesystem, Kaniko, Keras, and Seldon.
 
-* [ML Pipeline Templates: End-to-end Tutorial](https://www.agilestacks.com/tutorials/ml-pipelines).
+* [ML Pipeline Templates: End-to-end Tutorial](https://docs.agilestacks.com/article/gkyq26pzmr-creating-an-ml-pipeline).
 
 ## Google codelabs
 
