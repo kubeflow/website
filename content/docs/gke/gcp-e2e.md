@@ -585,10 +585,23 @@ kustomize edit add configmap mnist-map-training --from-literal=GOOGLE_APPLICATIO
 Now you are ready to run the TensorFlow training job on your cluster on
 GKE.
 
-Apply the container to the cluster:
+Build a yaml file for the `TFJob` specification based on your kustomize config:
 
 ```
-kustomize build . |kubectl apply -f -
+kustomize build . > mnist-training.yaml
+```
+
+Then, in `mnist-training.yaml`, search for this line: `namespace: kubeflow`.
+Edit it to **replace `kubeflow` with the name of your user profile namespace**,
+which will have the form `kubeflow-<username>`.  (If you're not sure what this
+namespace is called, you can find it in the top menubar of the Kubeflow Central
+Dashboard.)
+
+After you've updated the namespace, apply the `TFJob` specification to the
+Kubeflow cluster:
+
+```
+kubectl apply -f mnist-training.yaml
 ```
 
 When the command finishes running, there should be a new workload on the
