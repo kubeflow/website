@@ -6,9 +6,9 @@ weight = 50
 
 {{% stable-status %}}
 
-As of v0.6, Kubeflow supports for multi-user isolation of user-created
+As of v0.6, Kubeflow added multi-user support which apply access control over namespaces / user-created
 resources in a Kubeflow deployment. The primary purpose of this functionality
-is to enable multiple users to operate on a shared Kubeflow deployment without
+is to enable multiple users to operate on a shared Kubeflow cluster without
 stepping on each others' jobs and resources. It provides the users with the
 convenience of clutter free browsing of notebooks, training jobs, serving
 deployments and other resources. The isolation mechanisms also prevent
@@ -17,12 +17,66 @@ Note that the isolation support in Kubeflow doesn't provide any hard security
 guarantees against malicious attempts by users to infiltrate other user's
 profiles.
 
+## Design overview
+
+Kubeflow multi-tenancy implementation currently follows:
+- Define user workspace as namespace and build access control around it
+  * Manage user access to namespace through k8s rbac policy.
+- Leverage Istio to control in-cluster traffic
+  * By default requests to user workspaces are denied unless allowed by Istio Rbac
+- Leverage Identity-Aware Proxy and Istio to control traffic through ingress
+  * Identity user request through Identity-Aware Proxy.
+  * Istio then do rbac check on request target workspace and identity
+- Enable workspace access sharing & revoke
+  * Workspace owners can share/revoke workspace access with other users through kubeflow UI
+  * Invited users will have k8s edit permission plus permission to operate kubeflow CRs
+- Self-serve
+  * New user can self-register to create and own their workspace through kubeflow UI
+- Kubeflow Profile CR to control all policies, roles and bindings involved and guarantee consistency.
+  * Offer plugin interface to manage external resource/policy outside k8s, eg. access control of public cloud APIs
+
+Kubeflow multi-tenancy cluster:
+
+<img src="/docs/images/multi-tenancy-cluster.png"
+  alt="multi tenancy cluster "
+  class="mt-3 mb-3 border border-info rounded">
+
+### Prerequisite and supported platforms
+
+#### Prerequisite
+- Kubeflow use [Istio](https://istio.io/) to apply access control over in-cluster traffics.
+- Kubeflow profile controller need `Cluster admin` permission.
+- Kubeflow UI need to be served behind an identity aware proxy, the identity aware proxy and k8s
+master should share the same identity management.
+  * On GCP we use [GKE](https://cloud.google.com/kubernetes-engine) + [IAP](https://cloud.google.com/iap/docs/concepts-overview)
+  * An alternative is [Dex](https://github.com/dexidp/dex) + LDAP / Active Directory
+
+#### supproted platform
+* kubeflow multi-tenancy is enabled by default if you [deploy kuebflow on GCP with IAP](/docs/gke/deploy)
+* Not on GCP? [deploy to your existing cluster](/docs/started/k8s/kfctl-existing-arrikto/)
+
+### Extend profile to integrate with your platform
+Kubeflow profile CR defines the user namespace along with default services /
+resources setup for each user. However we might want to setup more default
+resources / permissions based on specific use case.
+In kubeflow profile we introduced [profile plugin interface](https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller#plugins):
+```$xslt
+type Plugin interface {
+	// Called when profile CR is created / updated
+	ApplyPlugin(*ProfileReconciler, *profilev1beta1.Profile) error
+	// Called when profile CR is deleted, to cleanup any non-k8s resources created via ApplyPlugin
+	RevokePlugin(*ProfileReconciler, *profilev1beta1.Profile) error
+}
+```
+To add resources of your own platform (auth grant/revoke, external storage update,
+endpoint setup etc.), extend profile by implementing your own plugin.
+
 ## Usage overview
 
 An administrator needs to deploy Kubeflow and configure the authentication.
 service for the deployment.  A user can log into the system and will by default
-be accessing their *primary profile*. A *profile* is a collection of Kubernetes
-resources along with a Kubernetes namespace of the same name. Users have view
+be accessing their *primary profile*. A *profile* owns a Kubernetes namespace of
+the same name along with a collection of Kubernetes resources . Users have view
 and modify access to their primary profile. The owner of a profile can share
 access to the profile with another user in the system. When sharing the access
 to a profile, the owner can choose to share it as a view access only or view
