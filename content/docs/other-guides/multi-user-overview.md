@@ -6,7 +6,7 @@ weight = 50
 
 {{% stable-status %}}
 
-As of v0.6, Kubeflow added multi-user support which apply access control over namespaces / user-created
+As of v0.6, Kubeflow added multi-user support which apply access control over namespaces and user-created
 resources in a Kubeflow deployment. The primary purpose of this functionality
 is to enable multiple users to operate on a shared Kubeflow cluster without
 stepping on each others' jobs and resources. It provides the users with the
@@ -20,6 +20,7 @@ profiles.
 ## Design overview
 
 Kubeflow multi-tenancy implementation currently follows:
+
 - Define user workspace as namespace and build access control around it
   * Manage user access to namespace through k8s rbac policy.
 - Leverage Istio to control in-cluster traffic
@@ -51,25 +52,9 @@ master should share the same identity management.
   * On GCP we use [GKE](https://cloud.google.com/kubernetes-engine) + [IAP](https://cloud.google.com/iap/docs/concepts-overview)
   * An alternative is [Dex](https://github.com/dexidp/dex) + LDAP / Active Directory
 
-#### supproted platform
+#### supported platform
 * kubeflow multi-tenancy is enabled by default if you [deploy kuebflow on GCP with IAP](/docs/gke/deploy)
 * Not on GCP? [deploy to your existing cluster](/docs/started/k8s/kfctl-existing-arrikto/)
-
-### Extend profile to integrate with your platform
-Kubeflow profile CR defines the user namespace along with default services /
-resources setup for each user. However we might want to setup more default
-resources / permissions based on specific use case.
-In kubeflow profile we introduced [profile plugin interface](https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller#plugins):
-```$xslt
-type Plugin interface {
-	// Called when profile CR is created / updated
-	ApplyPlugin(*ProfileReconciler, *profilev1beta1.Profile) error
-	// Called when profile CR is deleted, to cleanup any non-k8s resources created via ApplyPlugin
-	RevokePlugin(*ProfileReconciler, *profilev1beta1.Profile) error
-}
-```
-To add resources of your own platform (auth grant/revoke, external storage update,
-endpoint setup etc.), extend profile by implementing your own plugin.
 
 ## Usage overview
 
