@@ -12,6 +12,12 @@ Visit the Kubeflow blog to keep up to date with news about the project and to
 learn how to use the latest features.
 {{% /blocks/content-item %}}
 
+{{% blocks/content-item title="Orchestrating ML pipelines at scale with Kubeflow Pipelines"
+  date="February 3, 2020"
+  url="https://www.iguazio.com/blog/orchestrating-ml-pipelines-scale-kubeflow/" %}}
+This article explains how to use Kubeflow Pipelines to overcome long ML training jobs, manual experimentation, reproducibility, and DevOps obstacles.
+{{% /blocks/content-item %}}
+
 {{% blocks/content-item title="Using Kubeflow to train and serve a PyTorch model in Google Cloud Platform"
   date="January 23, 2019"
   url="https://medium.com/kubeflow/end-to-end-kubeflow-tutorial-using-a-pytorch-model-in-google-cloud-platform-10fef557a089" %}}
