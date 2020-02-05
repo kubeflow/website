@@ -47,6 +47,8 @@ Choose the Kubeflow deployment guide for your chosen cloud:
 
   * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
     follow the [GCP deployment guide](/docs/gke/deploy/).
+  * To use MiniKF (mini Kubeflow) on Google Cloud Platform, follow the guide to
+    [MiniKF on GCP](/docs/started/workstation/minikf-gcp/).
   * To use Kubeflow on Amazon Web Services (AWS),
     follow the [AWS deployment guide](/docs/aws/deploy/).
   * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
@@ -71,8 +73,6 @@ Choose the desktop/server guide for your operating system or environment:
     [MacOS deployment guide](/docs/started/workstation/getting-started-macos/).
   * To use Kubeflow on Windows, follow the
     [Windows deployment guide](/docs/started/workstation/getting-started-windows/).
-  * To use MiniKF (mini Kubeflow) on Google Cloud Platform, follow the guide to
-    [MiniKF on GCP](/docs/started/workstation/minikf-gcp/).
 
 ## Configuration quick reference
 
