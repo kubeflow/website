@@ -4,6 +4,8 @@ description = "Overview of the Kubeflow user interfaces (UIs)"
 weight = 10
 +++
 
+{{% stable-status %}}
+
 Your Kubeflow deployment includes a central dashboard that provides quick access
 to the Kubeflow components deployed in your cluster. The dashboard includes the
 following features:
