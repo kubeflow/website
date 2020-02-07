@@ -38,7 +38,7 @@ relevant instructions.
 
 There are various ways to install Kubeflow. Choose one of the following options
 to suit your environment (public cloud, existing Kubernetes cluster, or
-desktop or server).
+a single-node cluster which you can use on a desktop or server or in the cloud).
 
 <a id="cloud"></a>
 ### Installing Kubeflow on a public cloud
@@ -47,8 +47,6 @@ Choose the Kubeflow deployment guide for your chosen cloud:
 
   * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
     follow the [GCP deployment guide](/docs/gke/deploy/).
-  * To use MiniKF (mini Kubeflow) on Google Cloud Platform, follow the guide to
-    [MiniKF on GCP](/docs/started/workstation/minikf-gcp/).
   * To use Kubeflow on Amazon Web Services (AWS),
     follow the [AWS deployment guide](/docs/aws/deploy/).
   * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
@@ -62,10 +60,13 @@ Choose the Kubeflow deployment guide for your chosen cloud:
 Follow the
 [guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
 
-<a id="desktop"></a>
-### Installing Kubeflow on a desktop or server
+<a id="single-node"></a>
+### Installing Kubeflow on a single-node Kubernetes cluster
 
-Choose the desktop/server guide for your operating system or environment:
+You can use the following options to run Kubeflow on a single-node Kubernetes
+cluster, which you can use on a desktop or server or in the cloud.
+
+Choose the guide for your operating system or environment:
 
   * To use Kubeflow on Linux, follow the
     [Linux deployment guide](/docs/started/workstation/getting-started-linux/).
@@ -73,6 +74,8 @@ Choose the desktop/server guide for your operating system or environment:
     [MacOS deployment guide](/docs/started/workstation/getting-started-macos/).
   * To use Kubeflow on Windows, follow the
     [Windows deployment guide](/docs/started/workstation/getting-started-windows/).
+  * To use MiniKF (mini Kubeflow) on Google Cloud Platform, follow the guide to
+    [MiniKF on GCP](/docs/started/workstation/minikf-gcp/).
 
 ## Configuration quick reference
 
