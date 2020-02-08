@@ -26,9 +26,13 @@ If you plan to deploy Kubeflow on an existing Kubernetes cluster, review these
 
 The following diagram gives an overview of the options for deploying Kubeflow:
 
-<img src="/docs/images/kubeflow-getting-started-diagram.svg" 
-  alt="A diagrammatic overview of Kubeflow deployment options"
-  class="mt-3 mb-3 border border-info rounded">
+<div>
+  <object type="image/svg+xml" 
+    data="/docs/images/kubeflow-getting-started-diagram.svg" 
+    alt="A diagrammatic overview of Kubeflow deployment options"
+    class="mt-3 mb-3 border border-info rounded">
+  </object>
+</div>
 
 The following section describes the options in more detail and links to the
 relevant instructions.
