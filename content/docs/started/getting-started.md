@@ -4,6 +4,32 @@ description = "Overview of installation choices for various environments"
 weight = 20
 +++
 
+## TESTING SVG IMAGES WITH LINKS
+
+Try a test SVG image with `img` tag:
+
+<img src="/docs/images/test-svg.svg" 
+  alt="Testing an SVG with links"
+  class="mt-3 mb-3 border border-info rounded">
+
+Try the test image with `object` tag:
+
+<div>
+  <object type="image/svg+xml" data="/docs/images/test-svg.svg" 
+    alt="Testing an SVG with links">
+  </object>
+</div>
+
+Try the getting-started image with `object` tag and just one link:
+
+<div>
+  <object type="image/svg+xml" 
+    data="/docs/images/kubeflow-getting-started-diagram-with-link.svg" 
+    alt="Just one link the getting-started diagram"
+    class="mt-3 mb-3 border border-info rounded">
+  </object>
+</div>
+
 ## Before you begin
 
 This document provides information about setting up Kubeflow in various environments.
