@@ -126,7 +126,7 @@ Useful docs:
 
 The site theme has one Hugo menu (`main`), which defines the top navigation bar. 
 You can find and adjust the definition of the menu in the [site configuration 
-file](https://github.com/kubeflow/website/blob/master/config.toml). 
+file](https://github.com/kubeflow/website/blob/master/config.toml).
 
 The left-hand navigation panel is defined by the directory structure under 
 the 
@@ -183,6 +183,7 @@ You can override the default styles and add new ones:
   You can also use `_variables_project.scss` to specify your own values for any 
   of the default 
   [Bootstrap 4 variables](https://getbootstrap.com/docs/4.0/getting-started/theming/).
+* You can update the Kubeflow example projects variables in the [website configuration file](https://github.com/hefedev/website/blob/7406b6f0b248d4881537cdb957dc5b27ae71c3a5/config.toml).
 
 
 Styling of images:

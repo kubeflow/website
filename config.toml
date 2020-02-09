@@ -210,6 +210,54 @@ no = 'Sorry to hear that. Please <a href="https://github.com/kubeflow/website/is
 	icon = "fa fa-calendar"
         desc = "Discussion and help from your fellow users"
 
+[[params.examples.demo]]
+  title="Financial time series" 
+  kfctl="v0.7"
+  url="https://github.com/kubeflow/examples/tree/master/financial_time_series" 
+  api="https://api.github.com/repos/kubeflow/examples/commits?path=financial_time_series&sha=master"
+  desc="Train and serve a model for financial time series analysis using TensorFlow on GCP."
+
+[[params.examples.demo]]
+  title="GitHub issue summarization" 
+  kfctl="v0.5"
+  url="https://github.com/kubeflow/examples/tree/master/github_issue_summarization" 
+  api="https://api.github.com/repos/kubeflow/examples/commits?path=github_issue_summarization&sha=master"
+  desc="Infer summaries of GitHub issues from the descriptions, using a Sequence to Sequence natural language processing model. You can run the tutorial in a Jupyter notebook or using TFJob. You use Seldon Core to serve the model."
+
+[[params.examples.demo]]
+  title="MNIST image classification" 
+  kfctl="v0.5"
+  url="https://github.com/kubeflow/examples/tree/master/mnist" 
+  api="https://api.github.com/repos/kubeflow/examples/commits?path=mnist&sha=master"
+  desc="Train and serve an image classification model using the MNIST dataset. You can choose to train the model locally, using GCP, or using Amazon S3. Serve the model using TensorFlow."
+
+[[params.examples.demo]]
+  title="Object detection - cats and dogs" 
+  kfctl=""
+  url="https://github.com/kubeflow/examples/tree/master/object_detection" 
+  api="https://api.github.com/repos/kubeflow/examples/commits?path=object_detection&sha=master"
+  desc="Train a distributed model for recognizing breeds of cats and dogs with the TensorFlow Object Detection API. Serve the model using TensorFlow."
+
+[[params.examples.demo]]
+  title="PyTorch MNIST" 
+  kfctl=""
+  url="https://github.com/kubeflow/examples/tree/master/pytorch_mnist" 
+  api="https://api.github.com/repos/kubeflow/examples/commits?path=pytorch_mnist&sha=master"
+  desc="Train a distributed PyTorch model on GCP and serve the model with Seldon Core."
+
+[[params.examples.demo]]
+  title="Ames housing value prediction" 
+  kfctl=""
+  url="https://github.com/kubeflow/examples/tree/master/xgboost_ames_housing" 
+  api="https://api.github.com/repos/kubeflow/examples/commits?path=xgboost_ames_housing&sha=master"
+  desc="Train an XGBoost model using the Kaggle Ames Housing Prices prediction on GCP. Use Seldon Core to serve the model locally, or GCP to serve it in the cloud."
+
+[[params.examples.demo]]
+  title="Semantic code search"
+  kfctl="0.3"
+  url="https://github.com/kubeflow/examples/tree/master/code_search" 
+  api="https://api.github.com/repos/kubeflow/examples/commits?path=code_search&sha=master"
+  desc="Use a Sequence to Sequence natural language processing model to perform a semantic code search. This tutorial runs in a Jupyter notebook and uses Google Cloud Platform (GCP)."
 
 # Docsy: "Developer" links will show on right side of footer and in the community page if you have one.
 #[[params.links.developer]]
