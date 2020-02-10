@@ -50,6 +50,9 @@ Kubeflow uses Istio as a uniform way to secure, connect, and monitor microservic
 
 ## Istio in Kubeflow
 
+<img src="/docs/images/Istio-in-KF.svg" 
+  alt="Select active profile "
+  class="mt-3 mb-3 border border-info rounded">
 
 ## Can Kubeflow be installed without Istio?
 
