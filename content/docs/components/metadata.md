@@ -4,9 +4,6 @@ description = "Tracking and managing metadata of machine learning workflows in K
 weight = 5
 +++
 
-{{% beta-status 
-  feedbacklink="https://github.com/kubeflow/metadata/issues" %}}
-
 The goal of the [Metadata](https://github.com/kubeflow/metadata) project is to 
 help Kubeflow users understand and manage their machine learning (ML) workflows
 by tracking and managing the metadata that the workflows produce. 
@@ -40,8 +37,7 @@ steps:
 ## Using the Metadata SDK to record metadata
 
 The Metadata project publishes a 
-[Python library (SDK)](https://kubeflow-metadata.readthedocs.io/en/latest/)
-that you can use to log (record) your metadata.
+Python SDK([source](https://github.com/kubeflow/metadata/tree/master/sdk/python), [API reference](https://kubeflow-metadata.readthedocs.io/en/latest/)) that you can use to record your metadata.
 
 Run the following command to install the Metadata SDK:
 
@@ -152,29 +148,13 @@ artifact in the **Artifact Store** on the Kubeflow UI.
 
 ## Backend and REST API
 
-The Kubeflow metadata backend uses [ML Metadata
+The Kubeflow metadata deploys [ML Metadata
 (MLMD)](https://github.com/google/ml-metadata/blob/master/g3doc/get_started.md) 
-to manage the metadata and relationships. 
+[gRPC service](https://github.com/google/ml-metadata/blob/master/ml_metadata/proto/metadata_store_service.proto) to manage the metadata and relationships.
 
-The backend exposes a 
-[REST API](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/).
-
-You can add your own metadata types so that you can log metadata for custom
-artifacts. To add a custom type, send a REST API request to the
-[`artifact_types` endpoint](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/#operation--api-v1alpha1-artifact_types-post). 
-
-For example, The following request registers an artifact type with 
-_name_ `myorg/mytype/v1` and three _properties_: 
-
-* `f1` (string)
-* `f2` (integer)
-* `f3` (double)
-
-```
-curl -X POST http://localhost:8080/api/v1alpha1/artifact_types \
-  --header "Content-Type: application/json" -d \
-  '{"name":"myorg/mytype/v1","properties":{"f1":"STRING", "f2":"INT", "f3": "DOUBLE"}}'
-```
+You can define your own metadata types so that you can log metadata for custom
+artifacts. For Python code example, you can check [MLMD Python client](https://pypi.org/project/ml-metadata/) and
+Kubeflow metadata SDK [source code](https://github.com/kubeflow/metadata/blob/master/sdk/python/kubeflow/metadata/metadata.py). For Go example, you can check the Watcher [source code](https://github.com/kubeflow/metadata/blob/master/watcher/handlers/metalogger.go).
 
 ## Next steps
 
