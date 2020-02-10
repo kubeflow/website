@@ -25,13 +25,13 @@ Follow these steps to set up your GCP project:
 1. Go to the following pages on the GCP Console and ensure that the 
   specified APIs are enabled:
 
-  * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
-  * [Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com)
-  * [Identity and Access Management (IAM) API](https://console.cloud.google.com/apis/library/iam.googleapis.com)
-  * [Deployment Manager API](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
-  * [Cloud Resource Manager API](https://console.developers.google.com/apis/library/cloudresourcemanager.googleapis.com)
-  * [Cloud Filestore API](https://console.developers.google.com/apis/library/file.googleapis.com)
-  * [AI Platform Training & Prediction API](https://console.developers.google.com/apis/library/ml.googleapis.com)
+    * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
+    * [Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com)
+    * [Identity and Access Management (IAM) API](https://console.cloud.google.com/apis/library/iam.googleapis.com)
+    * [Deployment Manager API](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
+    * [Cloud Resource Manager API](https://console.developers.google.com/apis/library/cloudresourcemanager.googleapis.com)
+    * [Cloud Filestore API](https://console.developers.google.com/apis/library/file.googleapis.com)
+    * [AI Platform Training & Prediction API](https://console.developers.google.com/apis/library/ml.googleapis.com)
 
 1. If you are using the 
   [GCP Free Tier](https://cloud.google.com/free/docs/gcp-free-tier) or the
@@ -42,10 +42,10 @@ Follow these steps to set up your GCP project:
   
     For more information, see the following issues: 
 
-  * [kubeflow/website #1065](https://github.com/kubeflow/website/issues/1065)
-    reports the problem.
-  * [kubeflow/kubeflow #3936](https://github.com/kubeflow/kubeflow/issues/3936)
-    requests a Kubeflow configuration to work with a free trial project.
+    * [kubeflow/website #1065](https://github.com/kubeflow/website/issues/1065)
+      reports the problem.
+    * [kubeflow/kubeflow #3936](https://github.com/kubeflow/kubeflow/issues/3936)
+      requests a Kubeflow configuration to work with a free trial project.
 
 1. Read the GCP guide to [resource quotas](https://cloud.google.com/compute/quotas)
   to understand the quotas on resource usage that Compute Engine enforces, and 
