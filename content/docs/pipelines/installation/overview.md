@@ -71,7 +71,7 @@ Notes on specific features
   limited support. The Kubeflow team is interested in any feedback you may have,
   in particular on the usability of the feature. To get access to the Alpha
   release, email 
-  <a href="mailto:kfp-mkp-alpha-feedback@googlegroups.com">kfp-mkp-alpha-feedback@googlegroups.com</a>.
+  <a href="mailto:kfp-mkp-alpha-feedback@google.com">kfp-mkp-alpha-feedback@google.com</a>.
   You can raise any issues or discussion items in the
   <a href="https://github.com/kubeflow/pipelines/issues">Kubeflow Pipelines 
   issue tracker</a>.</p>
