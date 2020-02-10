@@ -19,7 +19,6 @@ Train and serve a model for financial time series analysis using TensorFlow on G
   api="https://api.github.com/repos/kubeflow/examples/commits?path=github_issue_summarization&sha=master" %}}
 Infer summaries of GitHub issues from the descriptions, using a Sequence to Sequence natural language processing model.
 You can run the tutorial in a Jupyter notebook or using TFJob. You use Seldon Core to serve the model.
-Train and serve a model for financial time series analysis using TensorFlow on GCP.
 {{% /blocks/sample-section %}}
 
 {{% blocks/sample-section   title="MNIST image classification"
