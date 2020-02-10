@@ -4,6 +4,8 @@ description = "Using a custom domain with Kubeflow on GKE"
 weight = 30
 +++
 
+{{% needs-update %}}
+
 This guide describes how to use a custom domain with Kubeflow on Google Cloud 
 Platform (GCP).
 
