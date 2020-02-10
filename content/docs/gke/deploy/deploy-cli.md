@@ -215,9 +215,9 @@ using [yq](https://github.com/mikefarah/yq/releases):
 
 1. Run the `kfctl apply` command to deploy Kubeflow:
 
-  ```
-  kfctl apply -V -f ${CONFIG_FILE}
-  ```
+    ```
+    kfctl apply -V -f ${CONFIG_FILE}
+    ```
 
 ## Check your deployment
 
