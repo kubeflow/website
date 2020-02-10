@@ -109,7 +109,17 @@ Run the following command to launch an experiment using the random algorithm
 example:
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/random-example.yaml
+curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/random-example.yaml --output random-example.yaml
+```
+
+Open `random-example.yaml` and change the following line to use your Kubeflow user profile namespace:
+```
+Namespace: kubeflow
+```
+
+Then deploy the example:
+```
+kubectl apply -f random-example.yaml
 ```
 
 This example embeds the hyperparameters as arguments. You can embed
@@ -134,7 +144,7 @@ The output of the above command should look similar to this:
 
 ```
 Name:         random-example
-Namespace:    kubeflow
+Namespace:    <your user namespace> 
 Labels:       controller-tools.k8s.io=1.0
 Annotations:  <none>
 API Version:  kubeflow.org/v1alpha3
