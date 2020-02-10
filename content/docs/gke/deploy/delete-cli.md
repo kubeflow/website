@@ -40,14 +40,14 @@ For further background about the above settings, see the guide to
 Run the following commands to delete your deployment and reclaim all GCP
 resources:
 
-```
-# If you want to delete all the resources, including storage:
-kfctl delete -f ${CONFIG_FILE} --delete_storage
+  ```
+  # If you want to delete all the resources, including storage:
+  kfctl delete -f ${CONFIG_FILE} --delete_storage
 
-# If you want to preserve storage, which contains metadata and information
-# from Kubeflow Pipelines:
-kfctl delete -f ${CONFIG_FILE}
-```
+  # If you want to preserve storage, which contains metadata and information
+  # from Kubeflow Pipelines:
+  kfctl delete -f ${CONFIG_FILE}
+  ```
 
 You should consider preserving storage if you may want to relaunch
 Kubeflow in the future and restore the data from your 
