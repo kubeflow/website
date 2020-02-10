@@ -23,7 +23,7 @@ apiVersion: kubeflow.org/v1
 kind: TFJob
 metadata:
   generateName: tfjob
-  namespace: kubeflow
+  namespace: your-user-namespace
 spec:
   tfReplicaSpecs:
     PS:
@@ -63,7 +63,7 @@ apiVersion: kubeflow.org/v1
 kind: TFJob
 metadata:
   generateName: tfjob
-  namespace: kubeflow
+  namespace: your-user-namespace
 spec:
   tfReplicaSpecs:
     PS:
@@ -341,7 +341,7 @@ metadata:
   creationTimestamp: "2019-07-16T02:44:38Z"
   generation: 1
   name: mnist
-  namespace: kubeflow
+  namespace: your-user-namespace
   resourceVersion: "10429537"
   selfLink: /apis/kubeflow.org/v1/namespaces/kubeflow/tfjobs/mnist
   uid: a77b9fb4-a773-11e9-91fe-42010a960094
@@ -585,9 +585,11 @@ gcloud --project=${PROJECT} logging read  \
 Here are some steps to follow to troubleshoot your job
 
 1. Is a status present for your job? Run the command
-    ```yaml
-    kubectl -n ${NAMESPACE} get tfjobs -o yaml ${JOB_NAME}
     ```
+    kubectl -n ${USER_NAMESPACE} get tfjobs -o yaml ${JOB_NAME}
+    ```
+
+   * **USER_NAMESPACE** is the namespace created for your user profile.
 
    * If the resulting output doesn't include a status for your job then this typically
      indicates the job spec is invalid.
@@ -604,7 +606,7 @@ Here are some steps to follow to troubleshoot your job
  	 then you can do
 
  	  ```
- 	  kubectl -n ${NAMESPACE} describe tfjobs -o yaml ${JOB_NAME}
+ 	  kubectl -n ${USER_NAMESPACE} describe tfjobs -o yaml ${JOB_NAME}
  	  ```
 
    * The bottom of the output should include a list of events emitted by the job; e.g.
@@ -635,7 +637,7 @@ Events:
      then you can do
 
  	  ```
- 	  kubectl -n ${NAMESPACE} describe pods ${POD_NAME}
+ 	  kubectl -n ${USER_NAMESPACE} describe pods ${POD_NAME}
  	  ```
 
    * The bottom of the output should contain events like the following
