@@ -4,7 +4,7 @@ description = "Examples that demonstrate machine learning with Kubeflow"
 weight = 10
 +++
 
-This section introduces the examples in the [Kubeflows/examples](https://github.com/kubeflow/example) repository.
+This section introduces the examples in the [kubeflow/examples](https://github.com/kubeflow/examples) repository.
 
 {{% blocks/sample-section title="Financial time series"
   kfctl="v0.7"
