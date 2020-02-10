@@ -105,19 +105,20 @@ The random algorithm example uses an MXNet neural network to train an image
 classification model using the MNIST dataset. The experiment runs three 
 training jobs with various hyperparameters and saves the results.
 
-Run the following command to launch an experiment using the random algorithm
+Run the following commands to launch an experiment using the random algorithm
 example:
 
+1. Download the example:
 ```
 curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/random-example.yaml --output random-example.yaml
 ```
 
-Open `random-example.yaml` and change the following line to use your Kubeflow user profile namespace:
+1. Edit `random-example.yaml` and change the following line to use your Kubeflow user profile namespace:
 ```
 Namespace: kubeflow
 ```
 
-Then deploy the example:
+1. Deploy the example:
 ```
 kubectl apply -f random-example.yaml
 ```
