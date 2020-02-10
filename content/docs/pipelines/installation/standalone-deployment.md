@@ -44,7 +44,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     ```
     **Note**: The above approach is introduced in Kubeflow Pipelines version 0.2.0. For older versions please run the following instead:
     ```
-    export PIPELINE_VERSION={{% pipelines/latest-version %}}
+    export PIPELINE_VERSION=<older_version>
     kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
@@ -68,18 +68,14 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     CLUSTER_NAME="kubeflow-pipelines-standalone"
     ZONE="us-central1-a"
     MACHINE_TYPE="n1-standard-2" # A machine with 2 CPUs and 7.50GB memory
-    SCOPES="storage-rw,cloud-platform" # These scopes are needed for running some pipeline samples.
+    SCOPES="cloud-platform" # These scopes are needed for running some pipeline samples.
 
     gcloud container clusters create $CLUSTER_NAME \
         --zone $ZONE \
         --machine-type $MACHINE_TYPE \
-        --scopes $SCOPES \
-        --num-nodes 2 \
-        --max-nodes 5 \
-        --min-nodes 2 \
-        --enable-autoscaling
+        --scopes $SCOPES
     ```
-     **WARNING**: Using `SCOPES="storage-rw,cloud-platform"` overgrants all GCP permissions to the cluster, so it's convenient to use. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](/docs/gke/authentication-pipelines/).
+     **WARNING**: Using `SCOPES="cloud-platform"` overgrants all GCP permissions to the cluster, so it's convenient to use. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](/docs/gke/authentication-pipelines/).
 
     Reference:
 
