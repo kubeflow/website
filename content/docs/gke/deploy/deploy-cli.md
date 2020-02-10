@@ -28,12 +28,10 @@ Before installing Kubeflow on the command line:
 1. Make sure that your GCP project meets the minimum requirements
   described in the [project setup guide](/docs/gke/deploy/project-setup/).
 
-1. If you want to use [Cloud Identity-Aware Proxy (Cloud 
-  IAP)](https://cloud.google.com/iap/docs/) for access control, follow the guide
-  to [setting up OAuth credentials](/docs/gke/deploy/oauth-setup/). 
-  Cloud IAP is recommended for production deployments or deployments with 
-  access to sensitive data. Alternatively, you can use basic authentication 
-  with a username and password.
+1. Follow the guide
+  [setting up OAuth credentials](/docs/gke/deploy/oauth-setup/). 
+  to create OAuth credentials for [Cloud Identity-Aware Proxy (Cloud 
+  IAP)](https://cloud.google.com/iap/docs/).
 
 <a id="prepare-environment"></a>
 ## Prepare your environment
@@ -62,52 +60,57 @@ some handy environment variables:
     gcloud auth application-default login
     ```
 
-1. Create environment variables to make the deployment process easier:
+1. Configure gcloud default values for zone and project
 
     ```
     # Set your GCP project ID and the zone where you want to create 
     # the Kubeflow deployment:
     export PROJECT=<your GCP project ID>
-    gcloud config set project ${PROJECT}
     export ZONE=<your GCP zone>
+
+    gcloud config set project ${PROJECT}    
     gcloud config set compute/zone ${ZONE}
-
-    # Use the following kfctl configuration file for authentication with 
-    # Cloud IAP (recommended):
-    export CONFIG_URI="{{% config-uri-gcp-iap %}}"
-
-    # If using Cloud IAP for authentication, create environment variables
-    # from the OAuth client ID and secret that you obtained earlier:
-    export CLIENT_ID=<CLIENT_ID from OAuth page>
-    export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
-
-    # Alternatively, use the following kfctl configuration if you want to use 
-    # basic authentication:
-    export CONFIG_URI="{{% config-uri-gcp-basic-auth %}}"
-
-    # If using basic authentication, create environment variables
-    # for username and password:
-    export KUBEFLOW_USERNAME=<your username>
-    export KUBEFLOW_PASSWORD=<your password>
-
-    # Set KF_NAME to the name of your Kubeflow deployment. You also use this
-    # value as directory name when creating your configuration directory. 
-    # See the detailed description in the text below this code snippet.
-    # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
-    export KF_NAME=<your choice of name for the Kubeflow deployment>
-
-    # Set the path to the base directory where you want to store one or more 
-    # Kubeflow deployments. For example, /opt/.
-    # Then set the Kubeflow application directory for this deployment.
-    export BASE_DIR=<path to a base directory>
-    export KF_DIR=${BASE_DIR}/${KF_NAME}
-
-    # The following command is optional. It adds the kfctl binary to your path.
-    # If you don't add kfctl to your path, you must use the full path
-    # each time you run kfctl.
-    export PATH=$PATH:<path to your kfctl file>
     ```
 
+    * `kfctl` by default uses the gcloud defaults for zone and project
+    * You can override this by explicitly setting zone and project in your `KFDef`
+      file
+
+1. Select the KFDef spec to use as the basis for your deployment
+
+    ```
+    export CONFIG_URI="{{% config-uri-gcp-iap %}}"
+    ```
+
+1. Create environment variables containing the OAuth client ID and secret that you created earlier
+
+    ```
+    export CLIENT_ID=<CLIENT_ID from OAuth page>
+    export CLIENT_SECRET=<CLIENT_SECRET from OAuth page>
+    ```
+
+    * The CLIENT_ID and CLIENT_SECRET can be obtained from the Cloud Console by selecting
+      **APIs & Services -> Credentials**
+
+1. Pick a name **KF_NAME** for your Kubeflow deployment and directory for
+   your configuration.
+
+    ```
+    export KF_NAME=<your choice of name for the Kubeflow deployment>
+    export BASE_DIR=<path to a base directory>
+    export KF_DIR=${BASE_DIR}/${KF_NAME}
+    ```
+
+   * For example, your kubeflow deployment name might be 'my-kubeflow' or 'kf-test'.
+   * Set base directory where you want to store one or more Kubeflow deployments. 
+     For example, ${HOME}/kf_deployments.
+    
+1. (Optional) Add the kfctl binary to your path. If you don't add kfctl to your path, you must use the full path
+    each time you run kfctl.
+
+    ```
+    export PATH=$PATH:<path to your kfctl file>
+    ```
 Notes:
 
 * **${PROJECT}** - The project ID of the GCP project where you want Kubeflow 
@@ -143,9 +146,9 @@ Notes:
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
 <a id="set-up-and-deploy"></a>
-## Set up and deploy Kubeflow
+## Deploying Kubeflow
 
-To set up and deploy Kubeflow using the **default settings**,
+To deploy Kubeflow using the **default settings**,
 run the `kfctl apply` command:
 
 ```
@@ -154,13 +157,43 @@ cd ${KF_DIR}
 kfctl apply -V -f ${CONFIG_URI}
 ```
 
-## Alternatively, set up your configuration for later deployment
+kfctl will try to populate the KFDef spec with various defaults automatically
 
-If you want to customize your configuration before deploying Kubeflow, you can 
-set up your configuration files first, then edit the configuration, then
-deploy Kubeflow:
+  * **project** and **zone** will be set based on your gcloud config defaults
+  * the name for the deployment will be inferred from the directory ${KF_DIR}
+  * You can override these values by modifying your KFDef spec before running the `build` and `apply`
+    commands
 
-1. Run the `kfctl build` command to set up your configuration:
+You can follow the instructions in the next section to override these defaults.
+
+## Customizing your Kubeflow deployment
+
+The process outlined in the previous step configures Kubeflow with various defaults. 
+You can follow the instructions below to have greater control.
+
+1. Download the KFDef file to your local directory to allow modifications
+
+    ```
+    cd ${KF_DIR}
+    curl -L -O ${CONFIG_FILE} {{% config-uri-gcp-iap %}}
+    ```
+
+    * **CONFIG_FILE** should be the name you would like to use for your local config file; e.g. "kfdef.yaml"
+
+1. Edit the KFDef spec in the yaml file. The following snippet shows you how to set values in the configuration file
+using [yq](https://github.com/mikefarah/yq/releases):
+
+    ```
+    yq w -i ${CONFIG_FILE} spec.plugins[0].spec.project ${PROJECT}
+    yq w -i ${CONFIG_FILE} spec.plugins[0].spec.zone ${ZONE}
+    yq w -i ${CONFIG_FILE} metadata.name ${KF_NAME}
+    ```
+
+   * **PROJECT:** The GCP project to deploy in
+   * **ZONE:** The zone to deploy in
+   * **KF_NAME**: The name used for your deployment.
+
+1. Run the `kfctl build` command to generate kustomize and GCP Deployment manager configuration files for your deployment:
 
   ```
   mkdir -p ${KF_DIR}
@@ -168,20 +201,17 @@ deploy Kubeflow:
   kfctl build -V -f ${CONFIG_URI}
   ```
 
-1. Edit the configuration files, as described in the guide to
-  [customizing your Kubeflow deployment](/docs/gke/customizing-gke/).
+1. To customize your GKE cluster modify the deployment manager configuration files
+   in the directory `${KF_DIR}/gcp_config`. 
 
-1. Set an environment variable for your local configuration file:
+   * For more information refer to:
+     * [customizing your Kubeflow deployment](/docs/gke/customizing-gke/)
+     * [deployment manager docs](https://cloud.google.com/deployment-manager/docs).
 
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-iap %}}
-  ```
+1. To customize individual Kubeflow applications modify the Kustomize manifests in the directory
+   `${KF_DIR}/kustomize`
 
-    Or:
-
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-basic-auth %}}
-  ```
+   * For more information please refer to the [kustomize docs](https://github.com/kubernetes-sigs/kustomize/tree/master/docs).
 
 1. Run the `kfctl apply` command to deploy Kubeflow:
 
@@ -361,6 +391,30 @@ The service accounts are:
 * `${KF_NAME}-vm` is used only for the virtual machine (VM) service account. This
   account has the minimal permissions needed to send metrics and logs to 
   [Stackdriver](https://cloud.google.com/stackdriver/).
+
+## Basic Auth (Deprecated)
+
+{{% alert title="No Longer Supported" color="warning" %}}
+Basic auth is not supported in Kubeflow V1 and will be removed entirely in the
+next version. We highly recommend switching to deploying Kubeflow with IAP.
+{{% /alert %}}
+
+If you still want to use basic auth follow these instructions.
+
+1. Pick a KFDef for basic auth
+
+    ```    
+    export CONFIG_URI="{{% config-uri-gcp-basic-auth %}}"
+    ```
+
+1. Set environment variables containing username and password
+
+    ```
+    export KUBEFLOW_USERNAME=<your username>
+    export KUBEFLOW_PASSWORD=<your password>
+    ```
+
+1. Follow the instructions above to run `kfctl apply` to deploy Kubeflow.
 
 ## Next steps
 
