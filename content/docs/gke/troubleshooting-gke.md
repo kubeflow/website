@@ -414,6 +414,6 @@ to replace the Kubernetes secret containing the ID and secret.
 ```
 kubectl -n kubeflow delete secret kubeflow-oauth
 kubectl -n kubeflow create secret generic kubeflow-oauth \
-       --from-literal=CLIENT_ID=${CLIENT_ID} \
-       --from-literal=CLIENT_SECRET=${CLIENT_SECRET}
+       --from-literal=client_id=${CLIENT_ID} \
+       --from-literal=client_secret=${CLIENT_SECRET}
 ```
