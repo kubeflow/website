@@ -60,7 +60,7 @@ some handy environment variables:
     gcloud auth application-default login
     ```
 
-1. Configure gcloud default default values for zone and project
+1. Configure gcloud default values for zone and project
 
     ```
     # Set your GCP project ID and the zone where you want to create 
