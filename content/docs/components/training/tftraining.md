@@ -636,9 +636,9 @@ Events:
    * There are a number of ways to get the events; if your pod is less than **1 hour old**
      then you can do
 
- 	  ```
- 	  kubectl -n ${USER_NAMESPACE} describe pods ${POD_NAME}
- 	  ```
+         ```
+         kubectl -n ${USER_NAMESPACE} describe pods ${POD_NAME}
+         ```
 
    * The bottom of the output should contain events like the following
 
