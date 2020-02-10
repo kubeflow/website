@@ -37,7 +37,7 @@ steps:
 ## Using the Metadata SDK to record metadata
 
 The Metadata project publishes a 
-Python SDK([source](https://github.com/kubeflow/metadata/tree/master/sdk/python), [API reference](https://kubeflow-metadata.readthedocs.io/en/latest/)) that you can use to record your metadata.
+Python SDK ([API reference](https://kubeflow-metadata.readthedocs.io/en/latest/), [source](https://github.com/kubeflow/metadata/tree/master/sdk/python)) that you can use to record your metadata.
 
 Run the following command to install the Metadata SDK:
 
@@ -146,13 +146,12 @@ artifact in the **Artifact Store** on the Kubeflow UI.
 
 
 
-## GRPC Backend
+## GRPC backend
 
-The Kubeflow metadata deploys [ML Metadata
-(MLMD)](https://github.com/google/ml-metadata/blob/master/g3doc/get_started.md) 
-[gRPC service](https://github.com/google/ml-metadata/blob/master/ml_metadata/proto/metadata_store_service.proto) to manage the metadata and relationships.
+The Kubeflow metadata deploys the [gRPC service](https://github.com/google/ml-metadata/blob/master/ml_metadata/proto/metadata_store_service.proto) of [ML Metadata
+(MLMD)](https://github.com/google/ml-metadata/blob/master/g3doc/get_started.md) to manage the metadata and relationships.
 
-Kubeflow metadata SDK and UI saves and retrieve data via the gRPC service. Similarly, you can define your own metadata types so that you can log and view metadata for custom artifacts. For Python code example, you can check [MLMD Python client](https://pypi.org/project/ml-metadata/) and Kubeflow metadata SDK [source code](https://github.com/kubeflow/metadata/blob/master/sdk/python/kubeflow/metadata/metadata.py). For Go example, you can check the Watcher [source code](https://github.com/kubeflow/metadata/blob/master/watcher/handlers/metalogger.go).
+Kubeflow metadata SDK saves and UI retrieves data via the gRPC service. Similarly, you can define your own metadata types to log and view metadata for your custom artifacts. For Python examples, you can check [MLMD Python client](https://pypi.org/project/ml-metadata/) and Kubeflow metadata SDK [source code](https://github.com/kubeflow/metadata/blob/master/sdk/python/kubeflow/metadata/metadata.py). For Go examples, you can check the Watcher [source code](https://github.com/kubeflow/metadata/blob/master/watcher/handlers/metalogger.go).
 
 ## Next steps
 
