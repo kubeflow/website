@@ -164,13 +164,34 @@ kfctl apply -V -f ${CONFIG_URI}
   * You can override these values by modifying your KFDef spec before running the `build` and `apply`
     commands
 
-## Alternatively, set up your configuration for later deployment
+## Customizing your Kubeflow deployment
 
-If you want to customize your configuration before deploying Kubeflow, you can 
-set up your configuration files first, then edit the configuration, then
-deploy Kubeflow:
+The process outlined in the previous step configures Kubeflow with various defaults. 
+You can follow the instructions below to have greater control.
 
-1. Run the `kfctl build` command to set up your configuration:
+1. Download the KFDef file to your local directory to allow modifications
+
+    ```
+    cd ${KF_DIR}
+    curl -L -O ${CONFIG_FILE} {{% config-uri-gcp-iap %}}
+    ```
+
+    * **CONFIG_FILE** should be the name you would like to use for your local config file; e.g. "kfdef.yaml"
+
+1. The following snippet shows you how to set values in the configuration file
+using [yq](https://github.com/mikefarah/yq/releases):
+
+    ```
+    yq w -i ${CONFIG_FILE} spec.plugins[0].spec.project ${PROJECT}
+    yq w -i ${CONFIG_FILE} spec.plugins[0].spec.zone ${ZONE}
+    yq w -i ${CONFIG_FILE} metadata.name ${KF_NAME}
+    ```
+
+   * **PROJECT:** The GCP project to deploy in
+   * **ZONE:** The zone to deploy in
+   * **KF_NAME**: The name used for your deployment.
+
+1. Run the `kfctl build` command to generate kustomize and GCP Deployment manager configuration files for your deployment:
 
   ```
   mkdir -p ${KF_DIR}
@@ -185,12 +206,6 @@ deploy Kubeflow:
 
   ```
   export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-iap %}}
-  ```
-
-    Or:
-
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-basic-auth %}}
   ```
 
 1. Run the `kfctl apply` command to deploy Kubeflow:
