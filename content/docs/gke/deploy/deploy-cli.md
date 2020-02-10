@@ -146,9 +146,9 @@ Notes:
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
 <a id="set-up-and-deploy"></a>
-## Set up and deploy Kubeflow
+## Deploying Kubeflow
 
-To set up and deploy Kubeflow using the **default settings**,
+To deploy Kubeflow using the **default settings**,
 run the `kfctl apply` command:
 
 ```
@@ -157,12 +157,14 @@ cd ${KF_DIR}
 kfctl apply -V -f ${CONFIG_URI}
 ```
 
-* kfctl will try to populate the KFDef spec with various defaults automatically
+kfctl will try to populate the KFDef spec with various defaults automatically
 
   * **project** and **zone** will be set based on your gcloud config defaults
   * the name for the deployment will be inferred from the directory ${KF_DIR}
   * You can override these values by modifying your KFDef spec before running the `build` and `apply`
     commands
+
+You can follow the instructions in the next section to override these defaults.
 
 ## Customizing your Kubeflow deployment
 
@@ -178,7 +180,7 @@ You can follow the instructions below to have greater control.
 
     * **CONFIG_FILE** should be the name you would like to use for your local config file; e.g. "kfdef.yaml"
 
-1. The following snippet shows you how to set values in the configuration file
+1. Edit the KFDef spec in the yaml file. The following snippet shows you how to set values in the configuration file
 using [yq](https://github.com/mikefarah/yq/releases):
 
     ```
@@ -199,8 +201,16 @@ using [yq](https://github.com/mikefarah/yq/releases):
   kfctl build -V -f ${CONFIG_URI}
   ```
 
-1. Edit the configuration files, as described in the guide to
-  [customizing your Kubeflow deployment](/docs/gke/customizing-gke/).
+1. To customize your GKE cluster modify the deployment manager configuration files
+   in the directory `${KF_DIR}/gcp_config`. 
+
+   * For more information see [customizing your Kubeflow deployment](/docs/gke/customizing-gke/)
+     and refer to the [deployment manager docs](https://cloud.google.com/deployment-manager/docs).
+
+1. To customize individual Kubeflow applications modify the Kustomize manifests in the directory
+   `${KF_DIR}/kustomize`
+
+   * For more information please refer to the [kustomize docs](https://github.com/kubernetes-sigs/kustomize/tree/master/docs).
 
 1. Set an environment variable for your local configuration file:
 
