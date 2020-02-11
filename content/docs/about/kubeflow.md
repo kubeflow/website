@@ -22,7 +22,7 @@ your environment and install Kubeflow.
 
 ## What is Kubeflow?
 
-Kubeflow is *the machine learning toolkit for Kubernetes*.
+Kubeflow is *the machine learning toolkit for Kubernetes*. Learn about [Kubeflow use cases](/docs/about/use-cases/).
 
 To use Kubeflow, the basic workflow is:
 
