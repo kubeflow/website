@@ -77,7 +77,6 @@ The following components also have roadmaps:
 * [KF Serving](https://github.com/kubeflow/kfserving/blob/master/ROADMAP.md)
 * [Katib](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
 * [MPI Operator](https://github.com/kubeflow/mpi-operator/blob/master/ROADMAP.md)
-* [mxnet-operator](https://github.com/kubeflow/mxnet-operator/blob/master/ROADMAP.md)
 
 ## Getting involved
 
