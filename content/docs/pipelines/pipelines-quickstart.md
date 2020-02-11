@@ -8,8 +8,7 @@ weight = 10
   feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
 
 Use this guide if you want to get a simple pipeline running quickly in
-Kubeflow Pipelines. If you need a more in-depth guide, see the
-[end-to-end tutorial](/docs/gke/pipelines-tutorial/).
+Kubeflow Pipelines.
 
 * This quickstart guide shows you how to use one of the samples that come with 
   the Kubeflow Pipelines installation and are visible on the Kubeflow Pipelines
@@ -181,8 +180,6 @@ finished with them:
 * Learn more about the 
   [important concepts](/docs/pipelines/concepts/) in Kubeflow
   Pipelines.
-* Follow the [end-to-end tutorial](/docs/gke/pipelines-tutorial/) 
-  using an MNIST machine-learning model.
 * This page showed you how to run some of the examples supplied in the Kubeflow
   Pipelines UI. Next, you may want to run a pipeline from a notebook, or compile 
   and run a sample from the code. See the guide to experimenting with
