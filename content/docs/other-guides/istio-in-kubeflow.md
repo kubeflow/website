@@ -6,6 +6,9 @@ weight = 50
 
 {{% stable-status %}}
 
+Kubeflow 0.6 onwards deploys Istio along with configuration to enable
+end-to-end authentication and access control. This setup is the foundation
+of multi-tenancy support in Kubeflow.
 
 ## A gentle introduction to Istio
 
@@ -50,9 +53,9 @@ Kubeflow uses Istio as a uniform way to secure, connect, and monitor microservic
 
 ## Istio in Kubeflow
 
+TODO (abhishek): Elaborate further...
+
 <img src="/docs/images/Istio-in-KF.svg" 
   alt="Select active profile "
   class="mt-3 mb-3 border border-info rounded">
-
-## Can Kubeflow be installed without Istio?
 
