@@ -57,7 +57,7 @@ the optimized values for the hyperparameters.
 ## Neural architecture search
 
 {{% alert title="Alpha version" color="warning" %}}
-Neural architecture search is currently in <b>Alpha</b> with limited support. 
+Neural architecture search is currently in <b>alpha</b> with limited support. 
 The Kubeflow team is interested in any feedback you may have, in particular with 
 regards to usability of the feature. You can log issues and comments in
 the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
