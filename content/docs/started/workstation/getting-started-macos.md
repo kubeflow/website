@@ -43,9 +43,10 @@ page will complete this path.
 
 ## Kubernetes appliance
 
-Similar to the Kubeflow appliance, the Kubernetes appliance is a virtual machine has a
-Kubernetes cluster already installed. After starting the virtual machine you will need
-to install Kubeflow. This option gives you full control over your Kubeflow setup.
+Similar to the Kubeflow appliance, the Kubernetes appliance is a virtual machine that
+has a Kubernetes cluster already installed. After starting the virtual machine you
+will need to install Kubeflow. This option gives you full control over your Kubeflow
+setup.
 
 ### Minikube
 
