@@ -9,5 +9,4 @@ weight = 1
 See the <a href="/docs/about/docs/">guide to the Kubeflow docs</a>.</p>
 {{% /alert %}}
 
-* [Pipelines End-to-end on GCP](/docs/gke/pipelines-tutorial/): An end-to-end tutorial for Kubeflow Pipelines on Google Cloud Platform (GCP).
 * [Pipelines End-to-end on Azure](/docs/azure/azureendtoend/): An end-to-end tutorial for Kubeflow Pipelines on Microsoft Azure.
