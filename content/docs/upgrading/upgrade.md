@@ -7,7 +7,7 @@ weight = 30
 ## Upgrading from Kubeflow v0.7.0 or later
 
 {{% alpha-status 
-  feedbacklink="https://github.com/kubeflow/mpi-operator/issues" %}}
+  feedbacklink="https://github.com/kubeflow/kubeflow/issues" %}}
 
 Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or later.
 

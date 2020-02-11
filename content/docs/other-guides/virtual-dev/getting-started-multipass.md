@@ -5,7 +5,7 @@ weight = 2
 +++
 
 {{% alpha-status 
-  feedbacklink="https://github.com/kubeflow/mpi-operator/issues" %}}
+  feedbacklink="https://github.com/kubeflow/kubeflow/issues" %}}
 
 This document outlines the steps that you can take to get your local installation of Kubeflow running on top of Microk8s, a small enterprise Kubernetes cluster. Microk8s requires Linux; if you are not on a Linux system, you can use Multipass to create a Linux VM (virtual machine) on your native hypervisor.
 
