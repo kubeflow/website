@@ -16,8 +16,8 @@ Before installing Kubeflow on the command line:
 
 1. Ensure you have installed the following tools:
   
-  * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-  * [gcloud](https://cloud.google.com/sdk/). If you already have `gcloud`
+   * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+   * [gcloud](https://cloud.google.com/sdk/). If you already have `gcloud`
     installed, run `gcloud components update` to
      get the latest version of all your installed Cloud SDK components.
 
@@ -195,11 +195,11 @@ using [yq](https://github.com/mikefarah/yq/releases):
 
 1. Run the `kfctl build` command to generate kustomize and GCP Deployment manager configuration files for your deployment:
 
-  ```
-  mkdir -p ${KF_DIR}
-  cd ${KF_DIR}
-  kfctl build -V -f ${CONFIG_URI}
-  ```
+    ```
+    mkdir -p ${KF_DIR}
+    cd ${KF_DIR}
+    kfctl build -V -f ${CONFIG_URI}
+    ```
 
 1. To customize your GKE cluster modify the deployment manager configuration files
    in the directory `${KF_DIR}/gcp_config`. 
@@ -215,9 +215,9 @@ using [yq](https://github.com/mikefarah/yq/releases):
 
 1. Run the `kfctl apply` command to deploy Kubeflow:
 
-  ```
-  kfctl apply -V -f ${CONFIG_FILE}
-  ```
+    ```
+    kfctl apply -V -f ${CONFIG_FILE}
+    ```
 
 ## Check your deployment
 
@@ -253,23 +253,23 @@ Follow these steps to access the Kubeflow central dashboard:
 1. Enter the following URI into your browser address bar. It can take 20
   minutes for the URI to become available:
 
-  ```
-  https://<KF_NAME>.endpoints.<project-id>.cloud.goog/
-  ```
+    ```
+    https://<KF_NAME>.endpoints.<project-id>.cloud.goog/
+    ```
 
     You can run the following command to get the URI for your deployment:
 
-  ```
-  kubectl -n istio-system get ingress
-  NAME            HOSTS                                                      ADDRESS         PORTS   AGE
-  envoy-ingress   your-kubeflow-name.endpoints.your-gcp-project.cloud.goog   34.102.232.34   80      5d13h
-  ```
+    ```
+    kubectl -n istio-system get ingress
+    NAME            HOSTS                                                      ADDRESS         PORTS   AGE
+    envoy-ingress   your-kubeflow-name.endpoints.your-gcp-project.cloud.goog   34.102.232.34   80      5d13h
+    ```
 
     The following command sets an environment variable named `HOST` to the URI:
 
-  ```
-  export HOST=$(kubectl -n istio-system get ingress envoy-ingress -o=jsonpath={.spec.rules[0].host})
-  ```
+    ```
+    export HOST=$(kubectl -n istio-system get ingress envoy-ingress -o=jsonpath={.spec.rules[0].host})
+    ```
 
 1. Follow the instructions on the UI to create a namespace. See the guide to 
   [creation of profiles](/docs/other-guides/multi-user-overview/#automatic-creation-of-profiles).
