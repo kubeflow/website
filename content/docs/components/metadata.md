@@ -4,6 +4,8 @@ description = "Tracking and managing metadata of machine learning workflows in K
 weight = 5
 +++
 
+{{% beta-status feedbacklink="https://github.com/kubeflow/metadata/issues" %}}
+
 The goal of the [Metadata](https://github.com/kubeflow/metadata) project is to 
 help Kubeflow users understand and manage their machine learning (ML) workflows
 by tracking and managing the metadata that the workflows produce. 
