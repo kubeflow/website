@@ -24,7 +24,7 @@ The development of ML models can require hybrid and multi-cloud portability and 
 
 During the model development part hyperparameters are often hard to tune. Tuning hyperparameters is critical for model performance and accuracy. Manually configuring hyperparameters is time consuming. Kubeflow’s hyperparameter tuner (Katib) provides an automated way to match your objectives. This automation can save days of model testing compute time (freeing up valuable infrastructure), and speed the delivery of improved models.
 
-## Continuous integration and delivery (CI/CD) for ML
+## Continuous integration and deployment (CI/CD) for ML
 
 Kubeflow currently doesn’t have a dedicated tool for this purpose. But our users have been using the Pipelines component and it worked really well for them. Kubeflow Pipelines can be used to create reproducible workflows. These workflows automate the steps needed to build a ML workflow, which delivers consistency, saves iteration time, and helps in debugging, auditability and compliance requirements.
 
