@@ -42,10 +42,10 @@ to suit your environment (desktop or server, existing Kubernetes cluster, or pub
   follow the [AWS deployment guide](/docs/aws/deploy/).
   * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
   follow the [AKS deployment guide](/docs/azure/deploy/).
-  * To use Kubeflow on IBM Cloud Private (ICP),
-	follow the [ICP deployment guide](/docs/started/cloud/getting-started-icp/).
-  * To use Kubeflow on OpenShift,
-  follow the [OpenShift deployment guide](/docs/openshift/)
+  * To use Kubeflow on IBM Cloud (IKS),
+	follow the [IKS deployment guide](/docs/ibm/).
+   * To use Kubeflow on OpenShift,
+  follow the [OpenShift deployment guide](/docs/openshift/).
 
 ## Configuration quick reference
 
@@ -110,7 +110,7 @@ The matrix is therefore an alternative way of accessing the information in the
         <td><a href="/docs/gke/deploy/">Docs</a></td>
       </tr>
       <tr>
-        <td><b>IBM Cloud Private</b></td>
+        <td><b>IBM Cloud (IKS)</b></td>
         <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a>  
         </td>
         <td><a href="/docs/started/cloud/getting-started-icp/">Docs</a></td>
