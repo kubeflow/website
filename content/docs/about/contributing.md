@@ -27,7 +27,7 @@ again.
 
 ### Follow the code of conduct
 
-Please make sure to read and observe our [Code of Conduct](https://github.com/kubeflow/community/blob/master/CODE_OF_CONDUCT.md).
+Please make sure to read and observe our [Code of Conduct](https://github.com/kubeflow/community/blob/master/CODE_OF_CONDUCT.md) and [inclusivity document](https://github.com/kubeflow/community/blob/master/INCLUSIVITY.md).
 
 ### Consider participating in Kubeflow user research
 

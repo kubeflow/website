@@ -22,14 +22,14 @@ The Kubernetes cluster must meet the following minimum requirements:
   * The recommended Kubernetes version is {{% kubernetes-tested-version %}}.
     Kubeflow has been validated and tested on Kubernetes
     {{% kubernetes-tested-version %}}.
-    * Your cluster must run at least Kubernetes version 
-    {{% kubernetes-min-version %}}. 
-    * Kubeflow **does not work** on Kubernetes 
+    * Your cluster must run at least Kubernetes version
+    {{% kubernetes-min-version %}}.
+    * Kubeflow **does not work** on Kubernetes
       {{% kubernetes-incompatible-versions %}}.
     * Older versions of Kubernetes may not be compatible with the latest Kubeflow versions.  The following matrix
     provides information about compatibility between Kubeflow and Kubernetes versions.
 
-    
+
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead class="thead-light">
@@ -39,6 +39,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <th>Kubeflow 0.5</th>
         <th>Kubeflow 0.6</th>
         <th>Kubeflow 0.7</th>
+        <th>Kubeflow 1.0</th>
       </tr>
     </thead>
     <tbody>
@@ -48,11 +49,13 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td><b>compatible</b></td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
       <tr>
         <td>1.12</td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
+        <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
       </tr>
@@ -62,9 +65,11 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td><b>compatible</b></td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
       <tr>
         <td>1.14</td>
+        <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
@@ -76,9 +81,11 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
       </tr>
       <tr>
         <td>1.16</td>
+        <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
@@ -87,7 +94,7 @@ The Kubernetes cluster must meet the following minimum requirements:
     </tbody>
   </table>
 </div>
-    
+
 
 ## Kubeflow Deployment Configurations
 

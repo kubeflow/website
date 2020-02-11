@@ -1,7 +1,7 @@
 +++
 title = "Customizing Kubeflow on GKE"
 description = "Tailoring a GKE deployment of Kubeflow"
-weight = 2
+weight = 20
 +++
 
 This guide describes how to customize your deployment of Kubeflow on Google 
@@ -176,18 +176,55 @@ to `false`:
 You must also set 
 [`gpu-pool-initialNodeCount`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L58).
 
+### Add GPU node pool to an existing kubeflow cluster
+
+You can add a GPU node pool to your kubeflow cluster using the following command
+```
+export GPU_POOL_NAME=<name of the new gpu pool>
+
+gcloud container node-pools create ${GPU_POOL_NAME} \
+--accelerator type=nvidia-tesla-k80,count=1 \
+--zone us-central1-a --cluster ${KF_NAME} \
+--num-nodes=1 --machine-type=n1-standard-4 --min-nodes=0 --max-nodes=5 --enable-autoscaling
+```
+
+After adding GPU nodes to your cluster, you need to install NVIDIA's device drivers to the nodes. Google provides a DaemonSet that automatically installs the drivers for you.
+
+To deploy the installation DaemonSet, run the following command:
+```
+kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
+```
+
 ### Add Cloud TPUs to your cluster
 
 Set [`enable_tpu:true`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L80)
 in `${KF_DIR}/gcp_config/cluster-kubeflow.yaml`.
 
+
+### Specify a minimum CPU
+
+Certain instruction sets or hardware features are only available on specific CPUs, so to ensure your cluster utilizes the appropriate hardware you need to set a minimum CPU value. 
+
+In brief, inside `gcp_config/cluster.jinja` change the `minCpuPlatform` property for the CPU node pool. For example, `Intel Broadwell` becomes `Intel Skylake`. Setting a minimum CPU needs to occur during cluster/node creation; it cannot be applied to an existing cluster/node.
+
+More detailed instructions follow.
+
+* Choose a zone you want to deploy in that has your required CPU. Zones are listed in the [Regions and Zones documentation](https://cloud.google.com/compute/docs/regions-zones/).
+
+* Deploy Kubeflow normally as specified in the ["Deploy using CLI" documentation](/docs/gke/deploy/deploy-cli/), but stop at section ["Set up and deploy Kubeflow"](/docs/gke/deploy/deploy-cli/#set-up-and-deploy-kubeflow). Instead, navigate to section ["Alternatively, set up your configuration for later deployment"](/docs/gke/deploy/deploy-cli/#alternatively-set-up-your-configuration-for-later-deployment). Then follow the steps until you are instructed to edit configuration files.
+
+* Navigate to the `gcp_config directory` and open the `cluster.jinja` file. Change the cluster property `minCpuPlatform`. For example, from `Intel Broadwell` to `Intel Skylake`. Note: you may notice there are two minCpuPlatform properties in the file. One of them is for GPU node pools. Not all CPU/GPU combinations are compatible, so leave the GPU minCpuPlatform property untouched.
+
+* Follow the remaining steps of ["Alternatively, set up your configuration for later deployment"](/docs/gke/deploy/deploy-cli/#alternatively-set-up-your-configuration-for-later-deployment).
+
+
 ### Add VMs with more CPUs or RAM
 
   * Change the machineType.
-  * There are two node pools:
-      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L109).
-      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L149).
-  * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment.
+  * There are two node pools defined in the GCP Deployment Manager:
+      * one for CPU only machines, in [`cluster.jinja`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster.jinja#L114).
+      * one for GPU machines, in [`cluster.jinja`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster.jinja#L140).
+  * When making changes to the node pools you also need to bump the `pool-version` in [`cluster-kubeflow.yaml`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L46) before you update the deployment.
 
 ### Add users to Kubeflow
 

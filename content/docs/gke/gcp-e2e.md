@@ -1,7 +1,7 @@
 +++
 title = "End-to-end Kubeflow on GCP"
 description = "Kubeflow on Google Cloud Platform"
-weight = 10
+weight = 90
 +++
 
 This guide walks you through an end-to-end example of Kubeflow on Google
@@ -60,7 +60,14 @@ is a 7.
 
 ### The overall workflow
 
-Here's an overview of what you accomplish by following this guide:
+The following diagram shows what you accomplish by following this guide:
+
+<img src="/docs/images/kubeflow-gcp-e2e-tutorial.svg" 
+  alt="ML workflow for training and serving an MNIST model"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+In summary:
 
 * Setting up [Kubeflow][kubeflow] in a [GKE][kubernetes-engine]
   cluster.
@@ -80,7 +87,7 @@ Here's an overview of what you accomplish by following this guide:
   * Running a simple web app to send a prediction request to the model and
     display the result.
 
-Let's get started!
+It's time to get started!
 
 ## Set up your environment
 
@@ -578,10 +585,23 @@ kustomize edit add configmap mnist-map-training --from-literal=GOOGLE_APPLICATIO
 Now you are ready to run the TensorFlow training job on your cluster on
 GKE.
 
-Apply the container to the cluster:
+Build a yaml file for the `TFJob` specification based on your kustomize config:
 
 ```
-kustomize build . |kubectl apply -f -
+kustomize build . > mnist-training.yaml
+```
+
+Then, in `mnist-training.yaml`, search for this line: `namespace: kubeflow`.
+Edit it to **replace `kubeflow` with the name of your user profile namespace**,
+which will have the form `kubeflow-<username>`.  (If you're not sure what this
+namespace is called, you can find it in the top menubar of the Kubeflow Central
+Dashboard.)
+
+After you've updated the namespace, apply the `TFJob` specification to the
+Kubeflow cluster:
+
+```
+kubectl apply -f mnist-training.yaml
 ```
 
 When the command finishes running, there should be a new workload on the

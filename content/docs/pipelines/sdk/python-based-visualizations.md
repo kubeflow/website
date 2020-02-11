@@ -7,7 +7,7 @@ weight = 80
 This page describes Python based visualizations, how to create them, and how to
 use them to visualize results within the Kubeflow Pipelines UI. Python based
 visualizations are available in Kubeflow Pipelines version
-[0.1.29](https://github.com/kubeflow/pipelines/releases/tag/0.1.29) and later, and 
+[0.1.29](https://github.com/kubeflow/pipelines/releases/tag/0.1.29) and later, and
 in Kubeflow version 0.7.0 and later.
 
 While Python based visualizations are intended to be the main method of
@@ -21,7 +21,7 @@ them with the requirements of your visualizations.
 
 Python based visualizations are a new method to visualize results within the
 Kubeflow Pipelines UI. This new method of visualizing results is done through
-the usage of [nbcovert](https://github.com/jupyter/nbconvert). Alongside the
+the usage of [nbconvert](https://github.com/jupyter/nbconvert). Alongside the
 usage of nbconvert, results of a pipeline can now be visualized without a
 component being included within the pipeline itself because the process of
 visualizing results is now decoupled from a pipeline.
@@ -35,13 +35,15 @@ customers to provided Python visualization code to be used to generate
 visualizations. These visualizations allow for rapid development,
 experimentation, and customization when visualizing results.
 
-<img src="/docs/images/python-based-visualizations1.png" 
+<img src="/docs/images/python-based-visualizations1.png"
   alt="Confusion matrix visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
 
 ## Using predefined visualizations
 
-<img src="/docs/images/python-based-visualizations2.png" 
+### Predefined matrix visualization
+
+<img src="/docs/images/python-based-visualizations2.png"
   alt="Confusion matrix visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -58,9 +60,29 @@ arguments.
 6. Click **Generate Visualization**.
 7. View generated visualization by scrolling down.
 
+### Predefined TFX visualization
+
+<video width="100%" max-width="100%" height="auto" max-height="100%" controls>
+  <source src="/docs/videos/tfdv_example_with_taxi_pipeline.webm" type="video/webm">
+</video>
+
+1. On the Pipelines page, click **[Sample] Unified DSL - Taxi Tip Prediction Model Trainer** to open the Pipeline Details page.
+2. On the Pipeline Details page, click **Create run**.
+3. On the Create run page,
+    * Use a run name and an experiment name of your choice.
+    * In the **pipeline-root** field, specify a storage bucket that you have permission to write to. For example, enter the path to a Google Cloud Storage bucket or an Amazon S3 bucket.
+    * Click **Start** to create the run.
+4. After the run is complete, on the Run Details page, click any step. For example, click the first step **csvexamplegen** as shown in the video above.
+5. In the side panel of the selected step,
+    * Click the **Artifacts** tab.
+    * In the **Visualization Creator** section, choose **TFDV** from the drop down menu.
+    * In the **Source** field, use **gs://ml-pipeline-playground/tfx_taxi_simple/data/data.csv**, which is the input data used for this run.
+    * Click **Generate Visualization** and wait.
+6. Move to the bottom of the **Artifacts** tab to find the generated visualization.
+
 ## Using custom visualizations
 
-<img src="/docs/images/python-based-visualizations3.png" 
+<img src="/docs/images/python-based-visualizations3.png"
   alt="Confusion matrix visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -72,11 +94,11 @@ arguments.
     file to include the following YAML that specifies that custom visualizations
     are allowed via environment variables.
 
-    ```YAML
-    - env:
-      - name: ALLOW_CUSTOM_VISUALIZATIONS
-        value: true
-    ```
+        ```
+        - env:
+          - name: ALLOW_CUSTOM_VISUALIZATIONS
+            value: true
+        ```
     * If you already have Kubeflow Pipelines deployed within a cluster, you can
     edit the frontend deployment YAML to specify that custom visualizations are
     allowed in the same way described above. Details about updating
@@ -96,6 +118,32 @@ optional for custom visualizations).
 7. Provide the custom visualization code.
 8. Click **Generate Visualization**.
 9. View generated visualization by scrolling down.
+
+A demo of the above instructions is as follows.
+
+<video width="100%" max-width="100%" height="auto" max-height="100%" controls>
+  <source src="/docs/videos/taxi_custom_visualization.webm" type="video/webm">
+</video>
+
+1. On the Pipelines page, click **[Sample] Unified DSL - Taxi Tip Prediction Model Trainer** to open the Pipeline Details page.
+2. On the Pipeline Details page, click **Create run**.
+3. On the Create run page,
+    * Use a run name and an experiment name of your choice or simply use the default names choosen for you.
+    * In the **pipeline-root** field, specify a storage bucket that you have permission to write to. For example, enter the path to a Google Cloud Storage bucket or an Amazon S3 bucket.
+    * Click **Start** to create the run.
+4. After the run is complete, on the Run Details page, click the step of **statisticsgen**. This step's output is statistics data generated by Tensorflow Data Validation.
+5. In the side panel of the selected step,
+    * Click the **Input/Output** tab to find out the **mlpipeline-ui-metadata** item and click the minio link there. This will open a new browser tab with information on output file path. Copy the output file path as shown in the demo video.
+    * Get back to the Run Details page, and click the **Artifacts** tab.
+    * At the top of the tab you should see a card named **Visualization Creator**, choose **Custom** from the drop down menu.
+    * In the **Custom Visualization Code** field, fill in the following code snippet and replace [output file path] with the output file path you just copied from **mlpipeline-ui-metadata**.
+    <pre style="overflow-x:scroll;overflow-y:hidden;white-space:pre;">
+      import tensorflow_data_validation as tfdv
+      stats = tfdv.load_statistics('[output file path]/stats_tfrecord')
+      tfdv.visualize_statistics(stats)
+    </pre>
+    * Click **Generate Visualization** and wait.
+6. Move to the bottom of the **Artifacts** tab to find the generated visualization.
 
 ## Known limitations
 * Multiple visualizations cannot be generated concurrently.
@@ -126,11 +174,13 @@ optional for custom visualizations).
     master/manifests/kustomize/base/pipeline/
     ml-pipeline-visualization-deployment.yaml)
     file or within the visualization service deployment itself.
-    ```YAML
-    - env:
+
+        ```
+        - env:
           - name: KERNEL_TIMEOUT
             value: 100
-    ```
+        ```
+
 * The HTML content of the generated visualizations cannot be larger than 4MB.
     * gRPC by default imposes a limit of 4MB as the maximum size that can be
     sent and received by a server. To allow for visualizations that are larger
@@ -139,17 +189,18 @@ optional for custom visualizations).
     options given to the gRPC server within [main.go](https://github.com/
     kubeflow/pipelines/blob/master/backend/src/apiserver/main.go#L128)
     to
-    ```golang
-    var maxCallRecvMsgSize = 4 * 1024 * 1024
-    if serviceName == "Visualization" {
-          // Only change the maxCallRecvMesSize if it is for visualizations
-          maxCallRecvMsgSize = 50 * 1024 * 1024
-    }
-    opts := []grpc.DialOption{
-          grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(maxCallRecvMsgSize)),
-          grpc.WithInsecure(),
-    }
-    ```
+
+        ```golang
+        var maxCallRecvMsgSize = 4 * 1024 * 1024
+        if serviceName == "Visualization" {
+              // Only change the maxCallRecvMesSize if it is for visualizations
+              maxCallRecvMsgSize = 50 * 1024 * 1024
+        }
+        opts := []grpc.DialOption{
+              grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(maxCallRecvMsgSize)),
+              grpc.WithInsecure(),
+        }
+        ```
 
 ## Next steps
 If you'd like to add a predefined visualization to Kubeflow, take a look at the

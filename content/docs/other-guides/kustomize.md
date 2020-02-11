@@ -4,6 +4,8 @@ description = "The basics of Kubeflow configuration with kfctl and kustomize"
 weight = 10
 +++
 
+{{% stable-status %}}
+
 Kfctl is the Kubeflow command-line interface (CLI) that you can use to
 install and configure Kubeflow.
 

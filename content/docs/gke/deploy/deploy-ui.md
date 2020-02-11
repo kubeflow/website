@@ -56,16 +56,16 @@ Follow these steps to open the deployment UI and deploy Kubeflow on GCP:
         IAP)](https://cloud.google.com/iap/docs/) for access control.
         Cloud IAP is the best option for production deployments or deployments 
         with access to sensitive data. See more details [below](#cloud-iap).
-      * **Login with Username Password:** Choose this option if you want to
-        allow users to access Kubeflow with a username and password, that is,
-        with basic authentication. See more details [below](#basic-auth).
+      * **Login with Username Password:** **Warning: This option is deprecated in Kubeflow 1.0 and
+        will be removed in the next version. We recommend switching to IAP.**
+        See more details [below](#basic-auth).
 
     * **GKE zone:** Enter the 
       [GCP zone](https://cloud.google.com/compute/docs/regions-zones/) in which 
       to create your deployment. The default is `us-central-1a`.
     * **Kubeflow version:** Choose one of the available versions of Kubeflow.
       You can see all the versions on the 
-      [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
+      [Kubeflow releases page](https://github.com/kubeflow/kfctl/releases/).
       If you need a version that does not show on the deployment UI, you need to
       [deploy Kubeflow using the CLI](/docs/gke/deploy/deploy-cli).
     * **Share Anonymous Usage Report:** Check this option to allow Kubeflow to
@@ -108,6 +108,11 @@ accessing your Kubeflow URI.
 
 <a id="basic-auth"></a>
 ## Authenticating with username and password
+
+{{% alert title="No Longer Supported" color="warning" %}}
+Basic auth is not supported in Kubeflow V1 and will be removed entirely in the
+next version. We highly recommend switching to deploying Kubeflow with IAP.
+{{% /alert %}}
 
 This section contains details about using basic authentication (username and
 password) to control access to Kubeflow. 

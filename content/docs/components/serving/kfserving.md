@@ -4,6 +4,9 @@ description = "Model serving using KFServing"
 weight = 2
 +++
 
+{{% beta-status 
+  feedbacklink="https://github.com/kubeflow/kfserving/issues" %}}
+
 KFServing enables serverless inferencing on Kubernetes and provides performant, high abstraction interfaces for common machine learning (ML) frameworks like TensorFlow, XGBoost, scikit-learn, PyTorch, and ONNX to solve production model serving use cases.
 
 You can use KFServing to do the following:
@@ -33,6 +36,10 @@ KFServing works with Kubeflow 0.7. Kustomize installation files are [located in 
 * [Autoscaling](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling)
 * [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
 * [Explainability](https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi)
+* [Azure](https://github.com/kubeflow/kfserving/tree/master/docs/samples/azure)
+* [Kafka](https://github.com/kubeflow/kfserving/tree/master/docs/samples/kafka)
+* [S3](https://github.com/kubeflow/kfserving/tree/master/docs/samples/s3)
+* [On-prem cluster](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pvc)
 
 ## Sample notebooks
 * [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb)
@@ -54,9 +61,11 @@ Knative Serving (v0.8.0 +) and Istio (v1.1.7+) should be available on your Kuber
 Read more about [installing Knative on a Kubernetes cluster](https://github.com/kubeflow/kfserving/blob/master/docs/DEVELOPER_GUIDE.md#install-knative-on-a-kubernetes-cluster).
 
 ## KFServing installation using kubectl
+The following commands install KFServing 0.2.2, using a yaml file in GitHub repo. See [here](https://github.com/kubeflow/kfserving/tree/master/install) for other available releases. Alternatively, you can clone the GitHub repo and run `kubectl` on top of it. 
 ```
-TAG=v0.2.0
-kubectl apply -f ./install/$TAG/kfserving.yaml
+TAG=0.2.2
+CONFIG_URI=https://raw.githubusercontent.com/kubeflow/kfserving/master/install/$TAG/kfserving.yaml
+kubectl apply -f ${CONFIG_URI}
 ```
 
 ## Use

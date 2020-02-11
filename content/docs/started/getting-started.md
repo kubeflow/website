@@ -1,7 +1,7 @@
 +++
-title = "Getting Started with Kubeflow"
-description = "Overview"
-weight = 1
+title = "Installing Kubeflow"
+description = "Overview of installation choices for various environments"
+weight = 20
 +++
 
 ## Before you begin
@@ -16,12 +16,11 @@ It's important that you have some knowledge of the following systems and tools:
 If you plan to deploy Kubeflow on an existing Kubernetes cluster, review these
 [Kubernetes system requirements](/docs/started/k8s/overview#minimum-system-requirements).
 
-
+<a id="installation-guides"></a>
 ## Installing Kubeflow
 
 There are various ways to install Kubeflow. Choose one of the following options
-to suit your environment (desktop or server, existing Kubernetes cluster or public cloud):
-
+to suit your environment (desktop or server, existing Kubernetes cluster, or public cloud):
 
 * Installing Kubeflow on a **desktop** or **server**:
 
@@ -37,14 +36,86 @@ to suit your environment (desktop or server, existing Kubernetes cluster or publ
   * To install Kubeflow on a Kubernetes cluster, follow the
   [guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
   * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
-  follow the [GCP deployment guide](/docs/gke/deploy/).
+  follow the [GCP deployment guide](/docs/gke/deploy/). To use MiniKF (mini
+  Kubeflow) on GCP, follow the [MiniKF on GCP guide](/docs/started/workstation/minikf-gcp/).
   * To use Kubeflow on Amazon Web Services (AWS),
   follow the [AWS deployment guide](/docs/aws/deploy/).
   * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
   follow the [AKS deployment guide](/docs/azure/deploy/).
-  * To use Kubeflow on IBM Cloud Private (ICP),
-	follow the [ICP deployment guide](/docs/started/cloud/getting-started-icp/).
+  * To use Kubeflow on IBM Cloud (IKS),
+	follow the [IKS deployment guide](/docs/ibm/).
 
+## Configuration quick reference
+
+Below is a matrix of the platforms where you can deploy Kubeflow and the 
+corresponding manifest files that specify the default configuration for each
+platform. The matrix shows the same manifests as the installation guides.
+The matrix is therefore an alternative way of accessing the information in the
+[installation section above](#installation-guides).
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Deployment platform</th>
+        <th>Manifest</th>
+        <th>Deployment guide</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Existing Kubernetes cluster</b> using a standard Kubeflow 
+          installation</td>
+        <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a> 
+        </td>
+        <td><a href="/docs/started/k8s/kfctl-k8s-istio/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Existing Kubernetes cluster</b> using Dex for authentication</td>
+        <td><a href="{{% config-uri-existing-arrikto %}}">{{% config-file-existing-arrikto %}}</a> 
+        </td>
+        <td><a href="/docs/started/k8s/kfctl-existing-arrikto/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Amazon Web Services (AWS)</b> using the standard setup</td>
+        <td><a href="{{% config-uri-aws-standard %}}">{{% config-file-aws-standard %}}</a> 
+        </td>
+        <td><a href="/docs/aws/deploy/install-kubeflow/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Amazon Web Services (AWS)</b> with authentication</td>
+        <td><a href="{{% config-uri-aws-cognito %}}">{{% config-file-aws-cognito %}}</a> 
+        </td>
+        <td><a href="/docs/aws/deploy/install-kubeflow/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Microsoft Azure</b></td>
+        <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a>  
+        </td>
+        <td><a href="/docs/azure/deploy/install-kubeflow/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Google Cloud Platform (GCP)</b> with basic authentication</td>
+        <td><a href="{{% config-uri-gcp-basic-auth %}}">{{% config-file-gcp-basic-auth %}}</a>  
+        </td>
+        <td><a href="/docs/gke/deploy/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>Google Cloud Platform (GCP)</b> with Cloud Identity-Aware Proxy 
+          (Cloud IAP)</td>
+        <td><a href="{{% config-uri-gcp-iap %}}">{{% config-file-gcp-iap %}}</a>  
+        </td>
+        <td><a href="/docs/gke/deploy/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>IBM Cloud (IKS)</b></td>
+        <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a>  
+        </td>
+        <td><a href="/docs/started/cloud/getting-started-icp/">Docs</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Installing command line tools
 
@@ -52,7 +123,7 @@ The following information is useful if you need or prefer to use command line
 tools for deploying and managing Kubeflow:
 
 * Download the kfctl binary from the
-  [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
+  [Kubeflow releases page](https://github.com/kubeflow/kfctl/releases/).
 
 * Follow the kubectl installation and setup instructions from the [Kubernetes
   documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
@@ -62,6 +133,17 @@ tools for deploying and managing Kubeflow:
 
 * Follow the kustomize installation and setup instructions from the guide to
   [kustomize in Kubeflow](/docs/other-guides/kustomize/).
+
+## Understanding the Kubeflow versioning policies
+
+With the launch of Kubeflow v1.0, the Kubeflow community attributes 
+*stable status* to those applications and other components that 
+meet the required level of stability, supportability, and upgradability.
+
+Read about the 
+[Kubeflow versioning policies](/docs/reference/version-policy/),
+including the stable status of Kubeflow applications and deployment 
+platforms.
 
 ## Troubleshooting
 

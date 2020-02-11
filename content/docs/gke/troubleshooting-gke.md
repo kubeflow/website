@@ -1,7 +1,7 @@
 +++
 title = "Troubleshooting Deployments on GKE"
 description = "Help fixing problems on GKE and GCP"
-weight = 6
+weight = 80
 +++
 
 This guide helps diagnose and fix issues you may encounter with Kubeflow on 
@@ -414,6 +414,6 @@ to replace the Kubernetes secret containing the ID and secret.
 ```
 kubectl -n kubeflow delete secret kubeflow-oauth
 kubectl -n kubeflow create secret generic kubeflow-oauth \
-       --from-literal=CLIENT_ID=${CLIENT_ID} \
-       --from-literal=CLIENT_SECRET=${CLIENT_SECRET}
+       --from-literal=client_id=${CLIENT_ID} \
+       --from-literal=client_secret=${CLIENT_SECRET}
 ```

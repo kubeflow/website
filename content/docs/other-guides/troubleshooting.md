@@ -4,6 +4,8 @@ description = "Finding and fixing problems in your Kubeflow deployment"
 weight = 100
 +++
 
+This page presents some hints for troubleshooting specific problems that you
+may encounter.
 
 ## TensorFlow and AVX
 There are some instances where you may encounter a TensorFlow-related Python installation or a pod launch issue that results in a SIGILL (illegal instruction core dump). Kubeflow uses the pre-built binaries from the TensorFlow project which, beginning with version 1.6, are compiled to make use of the [AVX](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) CPU instruction. This is a recent feature and your CPU might not support it. Check the host environment for your node to determine whether it has this support.
@@ -83,7 +85,7 @@ This section has been moved to [Jupyter Notebooks Troubleshooting Guide] (/docs/
 
 ## Pods stuck in Pending state
 
-There are three pods that have Persistent Volume Claims (PVCs) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and katib-db.
+There are three pods that have Persistent Volume Claims (PVCs) that will get stuck in pending state if they are unable to bind their PVC. The three pods are minio, mysql, and katib-mysql.
 Check the status of the PVC requests:
 
 ```
@@ -166,3 +168,8 @@ To fix this issue first create GitHub API token using this [guide](https://help.
 ```commandline
 export GITHUB_TOKEN=<< token >>
 ```
+
+## Next steps
+
+Visit the [Kubeflow support page](/docs/other-guides/support/) to find resources
+and community forums where you can ask for help.

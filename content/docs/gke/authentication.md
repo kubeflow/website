@@ -1,7 +1,7 @@
 +++
 title = "Authenticating Kubeflow to GCP"
 description = "Authentication and authorization to Google Cloud Platform (GCP)"
-weight = 4
+weight = 40
 +++
 
 This page describes in-cluster and local authentication for Kubeflow GCP deployments.
@@ -81,7 +81,7 @@ gcloud iam service-accounts add-iam-policy-binding \
 
 4. Manually create a profile for user1 and specify the GCP service account to bind in `plugins` field:
 
-```
+```yaml
 apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
@@ -220,12 +220,8 @@ spec:
 ```
 
 ### Authentication from Kubeflow Pipelines
-In [Kubeflow Pipelines](https://www.kubeflow.org/docs/pipelines/), each step describes a 
-container that is run independently. If you want to grant access for a single step to use
- one of your service accounts, you can use 
-[`kfp.gcp.use_gcp_secret()`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret).
-Examples for how to use this function can be found in the 
-[Kubeflow examples repo](https://github.com/kubeflow/examples/blob/871895c54402f68685c8e227c954d86a81c0575f/pipelines/mnist-pipelines/mnist_pipeline.py#L97).
+
+Refer to [Authenticating Pipelines to GCP](/docs/gke/authentication-pipelines/).
 
 ---
 

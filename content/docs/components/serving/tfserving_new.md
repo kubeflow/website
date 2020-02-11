@@ -4,6 +4,8 @@ description = "Serving TensorFlow models"
 weight = 51
 +++
 
+{{% stable-status %}}
+
 ## Serving a model
 
 To deploy a model we create following resources as illustrated below
@@ -41,6 +43,9 @@ metadata:
   name: mnist-v1
   namespace: kubeflow
 spec:
+  selector:
+    matchLabels:
+      app: mnist
   template:
     metadata:
       annotations:
@@ -160,6 +165,9 @@ Change the deployment spec as follows:
 
 ```yaml
 spec:
+  selector:
+    matchLabels:
+      app: mnist
   template:
     metadata:
       annotations:
@@ -253,6 +261,9 @@ metadata:
   name: s3
   namespace: kubeflow
 spec:
+  selector:
+    matchLabels:
+      app: mnist
   template:
     metadata:
       annotations:

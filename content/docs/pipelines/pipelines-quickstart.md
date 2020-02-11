@@ -4,9 +4,11 @@ description = "Getting started with Kubeflow Pipelines"
 weight = 10
 +++
 
+{{% beta-status 
+  feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
+
 Use this guide if you want to get a simple pipeline running quickly in
-Kubeflow Pipelines. If you need a more in-depth guide, see the
-[end-to-end tutorial](/docs/gke/pipelines-tutorial/).
+Kubeflow Pipelines.
 
 * This quickstart guide shows you how to use one of the samples that come with 
   the Kubeflow Pipelines installation and are visible on the Kubeflow Pipelines
@@ -131,8 +133,8 @@ Follow these steps to set up the necessary GCP services and run the sample:
 
     The sample supplies the values for the other parameters:
 
-  * region: The GCP geographical region in which the training and evaluaton data
-    are stored.
+  * region: The GCP geographical region in which the training and evaluation
+    data is stored.
   * train-data: Cloud Storage path to the training data.
   * eval-data: Cloud Storage path to the evaluation data.
   * schema: Cloud Storage path to a JSON file describing the format of the
@@ -143,8 +145,8 @@ Follow these steps to set up the necessary GCP services and run the sample:
   * true-label: Column to be used for text representation of the label output
     by the model.
 
-    The arrows on the following screenshot indicate the run parameters that you
-    must supply:
+    The following partial screenshot shows the run parameters, including the 
+    two parameters that you must supply:
     <img src="/docs/images/pipelines-start-xgboost-run.png" 
       alt="Starting the XGBoost run on the pipelines UI"
       class="mt-3 mb-3 border border-info rounded">
@@ -178,8 +180,6 @@ finished with them:
 * Learn more about the 
   [important concepts](/docs/pipelines/concepts/) in Kubeflow
   Pipelines.
-* Follow the [end-to-end tutorial](/docs/gke/pipelines-tutorial/) 
-  using an MNIST machine-learning model.
 * This page showed you how to run some of the examples supplied in the Kubeflow
   Pipelines UI. Next, you may want to run a pipeline from a notebook, or compile 
   and run a sample from the code. See the guide to experimenting with
