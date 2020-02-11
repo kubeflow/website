@@ -38,3 +38,40 @@ at the root of the repo, and that your GOPATH is set properly. For example:
 1. Run `git diff` to verify the changes.
 
 1. Create a PR to merge your changes.
+
+# Generating the Pipelines API Reference Page
+
+These are instructions for generating a copy of the [Pipelines API Reference](https://www.kubeflow.org/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/) page from the swagger file. 
+
+## Prerequisites
+* Download the [pipelines](https://github.com/kubeflow/pipelines) repository.
+* Install [npm](https://www.npmjs.com/get-npm).
+
+## Installation
+
+1. Extract the pipelines repository to a local directory.
+
+1. Install [bootprint](https://github.com/bootprint/bootprint-openapi) from the command line.
+
+	```
+	npm install -g bootprint
+	npm install -g bootprint-openapi
+	```
+1. Install [html-inline](https://github.com/substack/html-inline) from the command line.
+
+	```
+	npm -g install html-inline
+	```
+## Usage
+
+1. Run `bootprint openapi <swagger file> <target directory>`.
+
+	```
+	bootprint openapi C:\path\to\pipelines\backend\api\swagger\kfp_api_single_file.swagger.json C:\path\to\target\directory
+	```
+1. Navigate to the target directory and run `html-inline -i <input file> -o <output file>`.
+	
+	```
+	html-inline -i index.html -o kubeflow-pipeline-api-spec.html
+	```
+1. This will generate `kubeflow-pipeline-api-spec` as a standalone html file that contains any changes and updates derived from the swagger file.
