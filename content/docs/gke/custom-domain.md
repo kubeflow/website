@@ -4,54 +4,67 @@ description = "Using a custom domain with Kubeflow on GKE"
 weight = 30
 +++
 
-{{% needs-update %}}
-
-This guide describes how to use a custom domain with Kubeflow on Google Cloud 
+This guide describes how to use a custom domain with Kubeflow on Google Cloud
 Platform (GCP).
 
 ## Before you start
 
 This guide assumes you have already set up Kubeflow on GCP. If you haven't done
-so, follow the guide to 
+so, follow the guide to
 [getting started with Kubeflow on GCP](/docs/gke/deploy/).
 
 ## Using your own domain
 
-If you want to use your own domain instead of **${KF_NAME}.endpoints.${PROJECT}.cloud.goog**, follow these instructions:
+If you want to use your own domain instead of **${KF_NAME}.endpoints.${PROJECT}.cloud.goog**, follow these instructions after running `kfctl build`:
 
-1. Remove the `cloud-endpoints` component:
+1. Replace `hostname` in `kustomize/iap-ingress/base/params.env` with your own domain.
 
-    ```
-    cd ${KF_DIR}/kustomize
-    kubectl delete -f cloud-endpoints.yaml
-    ```
+   ```
+   ...
+   hostname=<enter your domain here>
+   ingressName=envoy-ingress
+   ipName=kf-test-ip
+   oauthSecretName=kubeflow-oauth
+   ...
+   ```
 
-1. Set the domain for your ingress to be the fully qualified domain name:
+2. Apply the changes.
 
-    ```
-    cd ${KF_DIR}/kustomize
-    gvim iap-ingress.yaml    # Or basic-auth-ingress.yaml
-    ```
+   Using `kfctl`.
 
-   * Find and replace the value for the hostname:
+   ```
+   kfctl apply -V -f ${CONFIG_FILE}
+   ```
 
-     ```
-     data:
-       hostname: <enter your endpoint here>
-     ```
+   Or using `kubectl`.
 
-   * Apply the changes:
+   ```
+   kubectl apply -k kustomize/iap-ingress
+   ```
 
-     ```
-     kubectl apply -f iap-ingress.yaml
-     ```
+3. Remove the `cloud-endpoints` component.
 
-1. Get the address of the static IP address created:
+   ```
+   kubectl delete -k kustomize/cloud-endpoints
+   ```
 
-    ```
-    IPNAME=${KF_NAME}-ip
-    gcloud --project=${PROJECT} compute addresses describe --global ${IPNAME}
-    ```
+   Delete the endpoint created by the `cloud-endpoints-controller`, if any.
 
-1. Use your DNS provider to map the fully qualified domain specified in the first step to the IP address reserved:
-   in GCP.
+   ```
+   gcloud endpoints services delete ${KF_NAME}.endpoints.${PROJECT}.cloud.goog
+   ```
+
+4. Check Ingress to verify that your domain was properly configured.
+
+   ```
+   kubectl -n istio-system describe ingresses
+   ```
+
+5. Get the address of the static IP address created.
+
+   ```
+   IPNAME=${KF_NAME}-ip
+   gcloud compute addresses describe ${IPNAME} --global --format="value(address)"
+   ```
+
+6. Use your DNS provider to map the fully qualified domain specified in the first step to the IP address reserved in GCP.
