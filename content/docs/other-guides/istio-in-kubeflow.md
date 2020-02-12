@@ -30,7 +30,7 @@ and end-to-end authentication.
 implementation of service mesh by Google. For further details, you can read the
 [conceptual overview](https://istio.io/docs/concepts/what-is-istio/) of Istio.
 
-## Kubeflow needs Istio
+## Why Kubeflow needs Istio
 
 Kubeflow is a collection of tools, frameworks and services that are deployed
 together into a single Kubernetes cluster to enable end-to-end ML workflows.
