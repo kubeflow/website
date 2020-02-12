@@ -164,6 +164,7 @@ In the `App client settings` select `Authorization code grant` flow and `email`,
 In the `Domain name` choose `Use your domain`, type `auth.platform.domain.com` and select the `*.platform.domain.com` AWS managed certificate you've created in N.Virginia. When it's created, it will return the `Alias target` cloudfront address for which you need to create a CNAME `auth.platform.domain.com` in the hosted zone.
 
 Take note of the following 5 values:
+
 * The ARN of the certificate from the Certificate Manager of N.Virginia (<certArn>).
 * The Pool ARN (<cognitoUserPoolArn>) of the user pool found in Cognito general settings.
 * The App client id (<cognitoAppClientId>), found in Cognito App clients.
