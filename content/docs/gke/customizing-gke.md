@@ -221,10 +221,10 @@ More detailed instructions follow.
 ### Add VMs with more CPUs or RAM
 
   * Change the machineType.
-  * There are two node pools:
-      * one for CPU only machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L109).
-      * one for GPU machines [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster.jinja#L149).
-  * When making changes to the node pools you also need to bump the pool-version [here](https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L37) before you update the deployment.
+  * There are two node pools defined in the GCP Deployment Manager:
+      * one for CPU only machines, in [`cluster.jinja`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster.jinja#L114).
+      * one for GPU machines, in [`cluster.jinja`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster.jinja#L140).
+  * When making changes to the node pools you also need to bump the `pool-version` in [`cluster-kubeflow.yaml`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L46) before you update the deployment.
 
 ### Add users to Kubeflow
 

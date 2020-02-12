@@ -4,6 +4,9 @@ description = "Understanding the goals and main concepts of Kubeflow Pipelines"
 weight = 10
 +++
 
+{{% beta-status 
+  feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
+
 Kubeflow Pipelines is a platform for building and deploying portable, 
 scalable machine learning (ML) workflows based on Docker containers.
 

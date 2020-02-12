@@ -4,6 +4,9 @@ description = "Build, train, and deploy your ML training jobs remotely"
 weight = 5
 +++
 
+{{% beta-status 
+  feedbacklink="https://github.com/kubeflow/fairing/issues" %}}
+
 Kubeflow Fairing streamlines the process of building, training, and deploying
 machine learning (ML) training jobs in a hybrid cloud environment. By using
 Kubeflow Fairing and adding a few lines of code, you can run your ML training

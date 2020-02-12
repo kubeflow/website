@@ -42,10 +42,10 @@ Follow these steps to set up your GCP project:
   
     For more information, see the following issues: 
 
-  * [kubeflow/website #1065](https://github.com/kubeflow/website/issues/1065)
-    reports the problem.
-  * [kubeflow/kubeflow #3936](https://github.com/kubeflow/kubeflow/issues/3936)
-    requests a Kubeflow configuration to work with a free trial project.
+    * [kubeflow/website #1065](https://github.com/kubeflow/website/issues/1065)
+      reports the problem.
+    * [kubeflow/kubeflow #3936](https://github.com/kubeflow/kubeflow/issues/3936)
+      requests a Kubeflow configuration to work with a free trial project.
 
 1. Read the GCP guide to [resource quotas](https://cloud.google.com/compute/quotas)
   to understand the quotas on resource usage that Compute Engine enforces, and 

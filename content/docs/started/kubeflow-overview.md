@@ -128,7 +128,7 @@ The Kubeflow UI looks like this:
 
 The UI offers a central dashboard that you can use to access the components
 of your Kubeflow deployment. Read 
-[how to access the UI](/docs/other-guides/accessing-uis/).
+[how to access the central dashboard](/docs/components/central-dash/overview/).
 
 ### Kubeflow command line interface (CLI)
 

@@ -34,16 +34,10 @@ The following applications are required to use MiniKF:
 The full set of instructions are available on the
 [MiniKF getting started](/docs/other-guides/virtual-dev/getting-started-minikf/) page.
 
-## Linux appliance
+## Multipass Ubuntu
 
-A Linux appliance is a virtual machine that holds the linux operating system. From there
-you have complete choice over Kubernetes and Kubeflow, which offers the greatest degree
-of flexibility. You only need to install a single application to follow this path:
-
-- Install [Multipass](https://multipass.run/#install)
-
-The instructions on [Multipass and MicroK8s getting started](/docs/other-guides/virtual-dev/getting-started-multipass/)
-page will complete this path.
+Windows users can get Kubeflow with [Multipass](https://multipass.run/#install) by following the instructions on the [Multipass and MicroK8s getting started](/docs/other-guides/virtual-dev/getting-started-multipass/)
+page.
 
 ## Kubernetes appliance
 

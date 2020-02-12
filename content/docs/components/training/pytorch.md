@@ -4,6 +4,8 @@ description = "Instructions for using PyTorch"
 weight = 35
 +++
 
+{{% stable-status %}}
+
 This guide walks you through using PyTorch with Kubeflow.
 
 ## Installing PyTorch Operator

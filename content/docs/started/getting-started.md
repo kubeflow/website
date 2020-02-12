@@ -55,8 +55,10 @@ Choose the Kubeflow deployment guide for your chosen cloud:
     follow the [AWS deployment guide](/docs/aws/deploy/).
   * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
     follow the [AKS deployment guide](/docs/azure/deploy/).
-  * To use Kubeflow on IBM Cloud Private (ICP),
-	  follow the [ICP deployment guide](/docs/started/cloud/getting-started-icp/).
+  * To use Kubeflow on IBM Cloud (IKS),
+	  follow the [IKS deployment guide](/docs/ibm/).
+  * To use Kubeflow on OpenShift,
+    follow the [OpenShift deployment guide](/docs/openshift/).
 
 <a id="kubernetes"></a>
 ### Installing Kubeflow on an existing Kubernetes cluster
@@ -138,10 +140,16 @@ The matrix is therefore an alternative way of accessing the information in the
         <td><a href="/docs/gke/deploy/">Docs</a></td>
       </tr>
       <tr>
-        <td><b>IBM Cloud Private</b></td>
+        <td><b>IBM Cloud (IKS)</b></td>
         <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a>  
         </td>
         <td><a href="/docs/started/cloud/getting-started-icp/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><b>OpenShift</b></td>
+        <td><a href="{{% config-uri-openshift %}}">{{% config-file-openshift %}}</a>  
+        </td>
+        <td><a href="/docs/openshift/">Docs</a></td>
       </tr>
     </tbody>
   </table>
@@ -153,7 +161,7 @@ The following information is useful if you need or prefer to use command line
 tools for deploying and managing Kubeflow:
 
 * Download the kfctl binary from the
-  [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
+  [Kubeflow releases page](https://github.com/kubeflow/kfctl/releases/).
 
 * Follow the kubectl installation and setup instructions from the [Kubernetes
   documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
@@ -163,6 +171,17 @@ tools for deploying and managing Kubeflow:
 
 * Follow the kustomize installation and setup instructions from the guide to
   [kustomize in Kubeflow](/docs/other-guides/kustomize/).
+
+## Understanding the Kubeflow versioning policies
+
+With the launch of Kubeflow v1.0, the Kubeflow community attributes 
+*stable status* to those applications and other components that 
+meet the required level of stability, supportability, and upgradability.
+
+Read about the 
+[Kubeflow versioning policies](/docs/reference/version-policy/),
+including the stable status of Kubeflow applications and deployment 
+platforms.
 
 ## Troubleshooting
 
