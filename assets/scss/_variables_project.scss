@@ -4,9 +4,14 @@ Add styles or override the theme's variables here.
 
 */
 
+html {
+  scroll-behavior: smooth;
+}
+
 // Theme colors
 
 $primary: #4279f4;
+
 $secondary: #fff;
 $dark: #213d7a;
 $info: #adb5bd;
@@ -20,6 +25,27 @@ $navbar-dark-hover-color: rgba($white, 0.75);
 $navbar-dark-active-color: $navbar-dark-color;
 
 // Front page styling
+
+.card-img-top {
+  object-fit: scale-down;
+}
+
+.text-white {
+  font-weight: 400;
+}
+
+a.text-white {
+  text-decoration: underline dotted paleturquoise;
+  font-weight: 600;
+}
+
+.bg-primary-dark {
+  background-color: $dark;
+}
+
+.border-primary-dark {
+  border-color: $info !important;
+}
 
 .section-head {
   font-size: 1.25em;
