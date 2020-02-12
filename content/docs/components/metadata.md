@@ -154,7 +154,7 @@ artifact in the **Artifact Store** on the Kubeflow UI.
 The Kubeflow metadata deploys the [gRPC service](https://github.com/google/ml-metadata/blob/master/ml_metadata/proto/metadata_store_service.proto) of [ML Metadata
 (MLMD)](https://github.com/google/ml-metadata/blob/master/g3doc/get_started.md) to manage the metadata and relationships.
 
-Kubeflow Metadata SDK saves and retrieves data via the gRPC service. Similarly, you can define your own metadata types to log and view metadata for your custom artifacts. For Python examples, you can check [MLMD Python client](https://pypi.org/project/ml-metadata/) and Kubeflow Metadata SDK [source code](https://github.com/kubeflow/metadata/blob/master/sdk/python/kubeflow/metadata/metadata.py). For Go examples, you can check [source code](https://github.com/kubeflow/metadata/blob/master/watcher/handlers/metalogger.go) of the resource [watcher](#metadata-watcher).
+Kubeflow Metadata SDK saves and retrieves data via the gRPC service. Similarly, you can define your own metadata types to log and view metadata for your custom artifacts. For Python examples, you can check [MLMD Python client](https://pypi.org/project/ml-metadata/) and Kubeflow Metadata SDK [source code](https://github.com/kubeflow/metadata/blob/master/sdk/python/kubeflow/metadata/metadata.py). For Go examples, you can check the [source code](https://github.com/kubeflow/metadata/blob/master/watcher/handlers/metalogger.go) of the [resource watcher](#metadata-watcher).
 
 ## Next steps
 
