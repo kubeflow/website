@@ -38,19 +38,14 @@ Add styles or override the theme's variables here.
   float: right;
   margin: 0 0 1.5em 1.5em; }
 
-#overview, #community {
+#overview {
+  border-bottom: 2px solid #b6d0ff;
   padding: 6em 1.5em 3em 1.5em;
   text-align: center;
   margin: 0; }
 
-#overview p, #community p {
+#overview p {
   font-size: 1.125em; }
-
-#overview {
-  border-bottom: 2px solid #b6d0ff; }
-
-#community {
-  border-top: 2px solid #b6d0ff; }
 
 #pageContent .lead {
   margin: 0 1.5em 3em 1.5em; }
@@ -64,7 +59,7 @@ Add styles or override the theme's variables here.
   font-size: 1em; }
 
 @media screen and (min-width: 480px) {
-  #overview, #community {
+  #overview {
     font-size: 1.125em; }
   #pageContent .lead > .image {
     max-width: 35%;
