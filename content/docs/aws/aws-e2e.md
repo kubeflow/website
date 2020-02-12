@@ -141,11 +141,15 @@ In this section you will prepare the ecosystem required by kubeflow, and you wil
 
 #### Route53
 
-Register or delegate a domain in a Route53 hosted zone, in our example we have delegated the subdomain platform.domain.com.
+It is handy to have a domain managed by Route53 to deal with all the DNS records you will have to add (wildcard for istio-ingressgateway, validation for the certificate manager, etc).
+
+In case your `domain.com` zone is not managed by Route53, you need to delegate a subdomain management in a Route53 hosted zone, in our example we have delegated the subdomain platform.domain.com. To do that, create a new hosted zone `platform.domain.com`, copy the NS entries that will be created and in turn create these NS records in the `domain.com` zone.
+
+The records in the hosted zone will be created in the next section of this guide.
 
 #### Certificate Manager
 
-Create two certificates in Certificate Manager for `*.platform.domain.com`, one in N.Virginia and one in the region of your choice. That is because Cognito [requires](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html) a certificate in N.Virginia in order to have a custom domain for a user pool. The second is required by the ingress-gateway in case the platform does not run in N.Virginia, in our example Dublin.
+Create two certificates in Certificate Manager for `*.platform.domain.com`, one in N.Virginia and one in the region of your choice. That is because Cognito [requires](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html) a certificate in N.Virginia in order to have a custom domain for a user pool. The second is required by the ingress-gateway in case the platform does not run in N.Virginia, in our example Dublin. For the validation of both certificates, you will be asked to create one record in the hosted zone we created above.
 
 #### Cognito
 
