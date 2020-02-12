@@ -366,11 +366,16 @@ Below shows how to programmatically authenticate a service account to access IAP
    ```
 5. Export the environment variable `GOOGLE_APPLICATION_CREDENTIALS` to point to the key file of the service account.
 
-Finally, you can send the request with this python
+Finally, you can send the request with an input file with this python
 [script](https://github.com/kubeflow/kubeflow/blob/master/docs/gke/iap_request.py)
 
 ```
 python iap_request.py https://YOUR_HOST/tfserving/models/mnist IAP_CLIENT_ID --input=YOUR_INPUT_FILE
+```
+
+To send a GET request:
+```
+python iap_request.py https://YOUR_HOST/models/MODEL_NAME/ IAP_CLIENT_ID
 ```
 
 ## Telemetry and Rolling out model using Istio
