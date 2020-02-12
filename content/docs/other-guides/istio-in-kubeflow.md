@@ -37,8 +37,8 @@ together into a single Kubernetes cluster to enable end-to-end ML workflows.
 Most of these components or services are developed independently and help with
 different parts of the workflow. Developing a complete ML workflow or an ML
 development environment requires combining multiple services and components.
-Kubeflow provides the underlying infrastructure and middleware setup that makes
-it possible to put such disparate components together.
+Kubeflow provides the underlying infrastructure that makes it possible to put
+such disparate components together.
 
 Kubeflow uses Istio as a uniform way to secure, connect, and monitor microservices. Specifically:
 
@@ -55,7 +55,9 @@ The following diagram illustrates how user requests interact with services in
 Kubeflow. It walks through the process when a user requests to create a new
 notebook server via the Notebooks Servers UI accessible through the Kubeflow Central Dashboard.
 
-
+<!-- Original drawing available from the team drive: 
+https://drive.google.com/corp/drive/folders/1BMnjzP3nn1IRopdlts1LTHNQq9fU97s5?zx=8l1zliy05c11
+-->
 <img src="/docs/images/Istio-in-KF.svg" 
   alt="Select active profile "
   class="mt-3 mb-3 border border-info rounded">
@@ -71,7 +73,8 @@ notebook server via the Notebooks Servers UI accessible through the Kubeflow Cen
      are inaccessible to the user, an error response is sent back. 
   1. If the request is validated, it is forwarded to the appropriate controller
      (Notebooks Controller in this case).
-  1. Notebooks Controller will create the notebook pod in the namespace user requested.
+  1. Notebooks Controller validate authorization with Kubernetes RBAC and create the
+     notebook pod in the namespace user requested.
 
 Further actions by the user with the notebook to create training jobs or other
 resources in the namespace go through a similar process. Profiles Controller
@@ -82,14 +85,6 @@ overview](/docs/other-guides/multi-user-overview/).
 
 ## Deploying Kubeflow without Istio
 
-It is not possible to deploy Kubeflow without Istio. Kubeflow needs the Istio
-Custom Resource Definitions(CRDs) to express the new route to access the
-created Notebook from the Gateway.  In the future, if there is a universal way
-to express that (e.g. the Service Mesh Interface effort), Kubeflow may use
-that. Until then, Istio CRDs are being used.  If you want to use a different
-Service Mesh, you could make a controller that:
-
-  1. Watches Istio CRDs (VirtualServices, ServiceRoles, ServiceRoleBindings)
-     and extracts the necessary information from them.
-  1. Translates those into configuration for the Service Mesh of your choice.
-  1. Applies that configuration.
+Currently it is not possible to deploy Kubeflow without Istio. Kubeflow needs the Istio
+Custom Resource Definitions (CRDs) to express the new route to access the
+created Notebook from the Gateway. 
