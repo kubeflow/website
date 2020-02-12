@@ -1,7 +1,7 @@
 +++
 title = "Kubeflow on macOS"
 description = "Install Kubeflow on macOS"
-weight = 2
+weight = 20
 +++
 
 <!--

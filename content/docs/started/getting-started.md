@@ -4,9 +4,10 @@ description = "Overview of installation choices for various environments"
 weight = 20
 +++
 
-## Before you begin
+This document provides information about setting up Kubeflow in various
+environments.
 
-This document provides information about setting up Kubeflow in various environments.
+## Before you begin
 
 It's important that you have some knowledge of the following systems and tools:
 
@@ -16,37 +17,71 @@ It's important that you have some knowledge of the following systems and tools:
 If you plan to deploy Kubeflow on an existing Kubernetes cluster, review these
 [Kubernetes system requirements](/docs/started/k8s/overview#minimum-system-requirements).
 
+## Overview of installation options
+
+<!--
+Note for authors: The source of the diagram is
+in the "Doc diagrams" folder in the Kubeflow team drive.
+-->
+
+The following diagram gives an overview of the options for deploying Kubeflow:
+
+<div>
+  <object type="image/svg+xml" 
+    data="/docs/images/kubeflow-getting-started-diagram.svg" 
+    alt="A diagrammatic overview of Kubeflow deployment options"
+    class="mt-3 mb-3 border border-info rounded">
+  </object>
+</div>
+
+The following section describes the options in more detail and links to the
+relevant instructions.
+
 <a id="installation-guides"></a>
 ## Installing Kubeflow
 
 There are various ways to install Kubeflow. Choose one of the following options
-to suit your environment (desktop or server, existing Kubernetes cluster, or public cloud):
+to suit your environment (public cloud, existing Kubernetes cluster, or
+a single-node cluster which you can use on a desktop or server or in the cloud).
 
-* Installing Kubeflow on a **desktop** or **server**:
+<a id="cloud"></a>
+### Installing Kubeflow on a public cloud
 
-  * To use Kubeflow on Windows,
-  follow the [Windows deployment guide](/docs/started/workstation/getting-started-windows/).
-  * To use Kubeflow on MacOS,
-  follow the [MacOS deployment guide](/docs/started/workstation/getting-started-macos/).
-  * To use Kubeflow on Linux,
-  follow the [Linux deployment guide](/docs/started/workstation/getting-started-linux/).
+Choose the Kubeflow deployment guide for your chosen cloud:
 
-* Installing Kubeflow on a **existing Kubernetes cluster** or a **public cloud**:
-
-  * To install Kubeflow on a Kubernetes cluster, follow the
-  [guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
   * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
-  follow the [GCP deployment guide](/docs/gke/deploy/). To use MiniKF (mini
-  Kubeflow) on GCP, follow the [MiniKF on GCP guide](/docs/started/workstation/minikf-gcp/).
+    follow the [GCP deployment guide](/docs/gke/deploy/).
   * To use Kubeflow on Amazon Web Services (AWS),
-  follow the [AWS deployment guide](/docs/aws/deploy/).
+    follow the [AWS deployment guide](/docs/aws/deploy/).
   * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
-  follow the [AKS deployment guide](/docs/azure/deploy/).
+    follow the [AKS deployment guide](/docs/azure/deploy/).
   * To use Kubeflow on IBM Cloud (IKS),
-	follow the [IKS deployment guide](/docs/ibm/).
+	  follow the [IKS deployment guide](/docs/ibm/).
   * To use Kubeflow on OpenShift,
-  follow the [OpenShift deployment guide](/docs/openshift/)
+    follow the [OpenShift deployment guide](/docs/openshift/).
 
+<a id="kubernetes"></a>
+### Installing Kubeflow on an existing Kubernetes cluster
+
+Follow the
+[guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
+
+<a id="single-node"></a>
+### Installing Kubeflow on desktop, server, or cloud in a single-node Kubernetes cluster
+
+You can use the following options to run Kubeflow on a single-node Kubernetes
+cluster, which you can use on a desktop or server or in the cloud.
+
+Choose the guide for your operating system or environment:
+
+  * To use Kubeflow on Linux, follow the
+    [Linux deployment guide](/docs/started/workstation/getting-started-linux/).
+  * To use Kubeflow on MacOS, follow the
+    [MacOS deployment guide](/docs/started/workstation/getting-started-macos/).
+  * To use Kubeflow on Windows, follow the
+    [Windows deployment guide](/docs/started/workstation/getting-started-windows/).
+  * To use MiniKF (mini Kubeflow) on Google Cloud Platform, follow the guide to
+    [MiniKF on GCP](/docs/started/workstation/minikf-gcp/).
 
 ## Configuration quick reference
 
@@ -96,12 +131,6 @@ The matrix is therefore an alternative way of accessing the information in the
         <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a>  
         </td>
         <td><a href="/docs/azure/deploy/install-kubeflow/">Docs</a></td>
-      </tr>
-      <tr>
-        <td><b>Google Cloud Platform (GCP)</b> with basic authentication</td>
-        <td><a href="{{% config-uri-gcp-basic-auth %}}">{{% config-file-gcp-basic-auth %}}</a>  
-        </td>
-        <td><a href="/docs/gke/deploy/">Docs</a></td>
       </tr>
       <tr>
         <td><b>Google Cloud Platform (GCP)</b> with Cloud Identity-Aware Proxy 
