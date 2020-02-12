@@ -28,35 +28,6 @@ In that case, please choose another region, or change the config to other
 [platform](https://en.wikipedia.org/wiki/List_of_Intel_CPU_microarchitectures)
 newer than Haswell.
 
-## Minikube
-
-On [Minikube](https://github.com/kubernetes/minikube) the Virtualbox/VMware drivers for Minikube are recommended as there is a known
-issue between the KVM/KVM2 driver and TensorFlow Serving. The issue is tracked in [kubernetes/minikube#2377](https://github.com/kubernetes/minikube/issues/2377).
-
-We recommend increasing the amount of resources Minikube allocates:
-
-```
-minikube start --cpus 4 --memory 8096 --disk-size=40g
-```
-
-  * Minikube by default allocates 2048Mb of RAM for its VM which is not enough
-    for JupyterHub.
-  * The larger disk is needed to accommodate Kubeflow's Jupyter images which
-    are 10s of GBs due to all the extra Python libraries we include.
-
-If you just installed Minikube following instructions from the [quick start guide](https://kubernetes.io/docs/getting-started-guides/minikube/#installation), you most likely
-created a VM with the default resources. You would want to recreate your Minikube with the appropriate resource settings:
-```
-minikube stop
-minikube delete
-minikube start --cpus 4 --memory 8096 --disk-size=40g
-```
-
-You might encounter a jupyter-xxxx pod in Pending status, described with the following warning message:
-```
-Warning  FailedScheduling  8s (x22 over 5m)  default-scheduler  0/1 nodes are available: 1 Insufficient memory.
-```
-  * Then try recreating your Minikube cluster (and re-apply Kubeflow using kustomize) with more resources (as your environment allows):
 
 ## RBAC clusters
 
