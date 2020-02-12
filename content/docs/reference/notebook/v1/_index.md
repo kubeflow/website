@@ -1,5 +1,5 @@
 +++
-title = "Notebook CRD V1"
+title = "Notebook CRD V1 Reference"
 description = "Reference documentation for version v1 of the Notebook custom resource."
 weight = 10
 +++
