@@ -55,8 +55,9 @@ The following diagram illustrates how user requests interact with services in
 Kubeflow. It walks through the process when a user requests to create a new
 notebook server via the Notebooks Servers UI accessible through the Kubeflow Central Dashboard.
 
-<!-- Original drawing available from the team drive: 
-https://drive.google.com/corp/drive/folders/1BMnjzP3nn1IRopdlts1LTHNQq9fU97s5?zx=8l1zliy05c11
+<!--
+Note for authors: The source of the diagram is
+in the "Doc diagrams" folder in the public Kubeflow shared drive.
 -->
 <img src="/docs/images/Istio-in-KF.svg" 
   alt="Select active profile "
