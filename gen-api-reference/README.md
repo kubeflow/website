@@ -41,37 +41,44 @@ at the root of the repo, and that your GOPATH is set properly. For example:
 
 # Generating the Pipelines API Reference Page
 
-These are instructions for generating a copy of the [Pipelines API Reference](https://www.kubeflow.org/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/) page from the swagger file. 
+Use these instructions to generate an updated copy of the [Pipelines API Reference](https://www.kubeflow.org/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/). 
 
 ## Prerequisites
-* Download the [pipelines](https://github.com/kubeflow/pipelines) repository.
+* Clone the [kubeflow/pipelines](https://github.com/kubeflow/pipelines) repository.
 * Install [npm](https://www.npmjs.com/get-npm).
 
 ## Installation
 
-1. Extract the pipelines repository to a local directory.
+1. From the kubeflow/pipelines repository, extract or download `pipelines\backend\api\swagger\kfp_api_single_file.swagger.json` to a local directory.
 
-1. Install [bootprint](https://github.com/bootprint/bootprint-openapi) from the command line.
+1. Install [bootprint](https://github.com/bootprint/bootprint-openapi) and [html-inline](https://github.com/substack/html-inline) using the following command.
 
 	```
 	npm install -g bootprint
 	npm install -g bootprint-openapi
+ 	npm -g install html-inline
 	```
-1. Install [html-inline](https://github.com/substack/html-inline) from the command line.
 
-	```
-	npm -g install html-inline
-	```
 ## Usage
 
-1. Run `bootprint openapi <swagger file> <target directory>`.
+1. Run the following command to generate the updated documentation.
 
+  	```
+  	bootprint openapi <swagger file> <target directory>
+  	```
+  	For example:
+  
 	```
-	bootprint openapi C:\path\to\pipelines\backend\api\swagger\kfp_api_single_file.swagger.json C:\path\to\target\directory
+	bootprint openapi C:\path\to\kfp_api_single_file.swagger.json C:\path\to\target\directory
 	```
-1. Navigate to the target directory and run `html-inline -i <input file> -o <output file>`.
-	
+1. From the target directory, run the following command to combine the html and css files, naming the output file `kubeflow-pipeline-api-spec`.
+
+  	```
+  	html-inline -i <input file> -o <output file>
+  	```
+	For example: 
+
 	```
 	html-inline -i index.html -o kubeflow-pipeline-api-spec.html
 	```
-1. This will generate `kubeflow-pipeline-api-spec` as a standalone html file that contains any changes and updates derived from the swagger file.
+1. Overwrite the `kubeflow-pipeline-api-spec` file in your kubeflow/website fork with the new copy and submit a pull request to update the page.
