@@ -32,7 +32,7 @@ API references:
   * [v1beta2](/docs/reference/pytorchjob/v1beta2/pytorch/)
 
 <a id="notebook-crd">
-## 
+## Notebook
 
 Notebook CRD is a Kubernetes
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
