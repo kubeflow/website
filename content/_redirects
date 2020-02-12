@@ -90,7 +90,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Restructured the getting-started and other-guides sections.
 /docs/started/getting-started-k8s/             /docs/started/k8s/
 /docs/started/getting-started-minikf/          /docs/other-guides/virtual-dev/getting-started-minikf/
-/docs/started/getting-started-minikube/        /docs/other-guides/virtual-dev/getting-started-minikube/
 /docs/started/getting-started-multipass/       /docs/other-guides/virtual-dev/getting-started-multipass/
 /docs/started/getting-started-aws/             /docs/started/cloud/getting-started-aws/
 /docs/started/getting-started-azure/           /docs/started/cloud/getting-started-azure/

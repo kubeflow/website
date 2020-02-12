@@ -7,7 +7,7 @@ weight = 4
 This guide describes how to launch a MiniKF virtual machine (VM) on GCP. MiniKF
 is a single VM solution on the Google Cloud Marketplace, and installs:
 
-- Kubernetes (using Minikube)
+- Kubernetes
 - Kubeflow
 - Kale, a tool to convert general purpose Jupyter Notebooks to Kubeflow
   Pipelines workflows ([GitHub](https://github.com/kubeflow-kale))
@@ -71,7 +71,7 @@ Google Cloud Marketplace.
       class="mt-3 mb-3 p-3 border border-info rounded">
 
 5. When the VM is up, **ensure that MiniKF is up and running**. Before visiting
-   the MiniKF dashboard, ensure that Minikube, Kubeflow, and Rok (Snapshot
+   the MiniKF dashboard, ensure that Kubeflow, and Rok (Snapshot
    Store) are up and running. To do so, click on the **SSH** button to connect
    to the MiniKF VM and follow the on-screen instructions.
 
@@ -79,7 +79,7 @@ Google Cloud Marketplace.
       alt="Connect to the MiniKF VM"
       class="mt-3 mb-3 p-3 border border-info rounded">
 
-6. **MiniKF dashboard, username, and password**. Now that Minikube, Kubeflow,
+6. **MiniKF dashboard, username, and password**. Now that Kubeflow 
    and Rok are up-and-running, close the SSH browser window, as you will not
    need it anymore. On your current view, please find the **MiniKF dashboard**
    URL, **MiniKF username**, and **MiniKF password**. You will need them to log
