@@ -41,4 +41,4 @@ using notebooks with Kubeflow, see the [user guide](/docs/components/notebooks/)
 
 API references:
 
-  * [v1](/docs/reference/notebook/v1/notebook/)
+  * [v1](/docs/reference/notebook/v1/)
