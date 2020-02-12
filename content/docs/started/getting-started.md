@@ -4,11 +4,6 @@ description = "Overview of installation choices for various environments"
 weight = 20
 +++
 
-<!--
-Note for authors: The source of the diagrams is held in Google Slides decks,
-in the "Doc diagrams" folder in the public Kubeflow shared drive.
--->
-
 This document provides information about setting up Kubeflow in various
 environments.
 
@@ -23,6 +18,11 @@ If you plan to deploy Kubeflow on an existing Kubernetes cluster, review these
 [Kubernetes system requirements](/docs/started/k8s/overview#minimum-system-requirements).
 
 ## Overview of installation options
+
+<!--
+Note for authors: The source of the diagram is
+in the "Doc diagrams" folder in the Kubeflow team drive.
+-->
 
 The following diagram gives an overview of the options for deploying Kubeflow:
 
@@ -67,7 +67,7 @@ Follow the
 [guide to deploying Kubeflow on Kubernetes](/docs/started/k8s/overview/).
 
 <a id="single-node"></a>
-### Installing Kubeflow on a single-node Kubernetes cluster
+### Installing Kubeflow on desktop, server, or cloud in a single-node Kubernetes cluster
 
 You can use the following options to run Kubeflow on a single-node Kubernetes
 cluster, which you can use on a desktop or server or in the cloud.
