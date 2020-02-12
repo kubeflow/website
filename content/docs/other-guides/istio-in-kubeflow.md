@@ -14,7 +14,7 @@ not possible.
 Most modern applications are built using a distributed microservices
 architecture. This ensures that each individual service is simple and has a
 well defined responsibility. Complex systems and platforms are generally
-built by combinging many such microservices. Each microservice defines its own
+built by combining many such microservices. Each microservice defines its own
 APIs and the services interact with each other using these APIs in order to
 serve end-user requests.
 
@@ -74,12 +74,12 @@ in the "Doc diagrams" folder in the public Kubeflow shared drive.
      are inaccessible to the user, an error response is sent back. 
   1. If the request is validated, it is forwarded to the appropriate controller
      (Notebooks Controller in this case).
-  1. Notebooks Controller validate authorization with Kubernetes RBAC and create the
-     notebook pod in the namespace user requested.
+  1. Notebooks Controller validates authorization with Kubernetes RBAC and creates the
+     notebook pod in the namespace that the user requested.
 
 Further actions by the user with the notebook to create training jobs or other
 resources in the namespace go through a similar process. Profiles Controller
-manages the creation of profiles, creates and applies appropriate Istio
+manages the creation of profiles, and creates and applies appropriate Istio
 policies. For more details, please see [multi-user
 overview](/docs/other-guides/multi-user-overview/).
 
