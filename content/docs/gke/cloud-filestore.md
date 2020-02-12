@@ -75,7 +75,7 @@ Copy the Cloud Filestore deployment manager configs to the `gcp_config` director
 
 ```
 cd ${KF_DIR}
-cp .cache/${VERSION}/deployment/gke/deployment_manager_configs/gcfs.yaml \
+cp .cache/manifests/manifests-${VERSION}/deployment/gke/deployment_manager_configs/gcfs.yaml \
    ./gcp_config/
 ```
 
