@@ -11,10 +11,10 @@ configuration includes the definition of the inputs (parameters) required to run
 the pipeline and the inputs and outputs of each component.
 
 When you run a pipeline, the system launches one or more Kubernetes Pods
-corresponding to the [steps (components)](/docs/pipelines/overview/concepts/step/) in your workflow (pipeline). The Pods
+corresponding to the [steps](/docs/pipelines/overview/concepts/step/) (components) in your workflow (pipeline). The Pods
 start Docker containers, and the containers in turn start your programs.
 
-After developing your pipeline, you can upload using the Kubeflow Pipelines UI or the Kubeflow Pipelines SDK.
+After developing your pipeline, you can upload your pipeline using the Kubeflow Pipelines UI or the Kubeflow Pipelines SDK.
 
 ## Next steps
 
