@@ -31,9 +31,10 @@
 /docs/pipelines/install-sdk/                   /docs/pipelines/sdk/install-sdk/
 /docs/pipelines/lightweight-python-components/ /docs/pipelines/sdk/lightweight-python-components/
 /docs/pipelines/build-pipeline/                /docs/pipelines/tutorials/build-pipeline/
-/docs/pipelines/pipelines-tutorial/            /docs/gke/pipelines/pipelines-tutorial/
-/docs/pipelines/tutorials/pipelines-tutorial/  /docs/gke/pipelines/pipelines-tutorial/
-/docs/gke/pipelines-tutorial/                  /docs/gke/pipelines/pipelines-tutorial/
+/docs/pipelines/pipelines-tutorial/            /docs/pipelines/tutorials/cloud-tutorials/
+/docs/pipelines/tutorials/pipelines-tutorial/  /docs/pipelines/tutorials/cloud-tutorials/
+/docs/gke/pipelines-tutorial/                  /docs/pipelines/tutorials/cloud-tutorials/
+/docs/gke/pipelines/pipelines-tutorial/        /docs/pipelines/tutorials/cloud-tutorials/
 /docs/gke/authentication-pipelines/            /docs/gke/pipelines/authentication-pipelines/
 
 /docs/pipelines/metrics/                       /docs/pipelines/sdk/pipelines-metrics/

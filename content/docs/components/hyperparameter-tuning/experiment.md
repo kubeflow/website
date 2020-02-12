@@ -6,7 +6,7 @@ weight = 30
 
 This page describes in detail how to configure and run a Katib experiment.
 The experiment can perform hyperparameter tuning or a neural architecture search 
-(NAS) (**Alpha**), depending on the configuration settings.
+(NAS) (**alpha**), depending on the configuration settings.
 
 For an overview of the concepts involved, read the [introduction to 
 Katib](/docs/components/hyperparameter-tuning/overview/).
@@ -113,7 +113,7 @@ These are the fields in the experiment configuration spec:
   See the [details of the metrics collector](#metrics-collector) below.
 
 * **nasConfig**: The configuration for a neural architecture search (NAS).
-  Note: NAS is currently in **Alpha** with limited support.
+  Note: NAS is currently in **alpha** with limited support.
   You can specify the configurations of the neural network design that you want
   to optimize, including the number of layers in the network, the types of
   operations, and more.
@@ -311,7 +311,7 @@ search.
 #### NAS using reinforcement learning
 
 {{% alert title="Alpha version" color="warning" %}}
-Neural architecture search is currently in <b>Alpha</b> with limited support. 
+Neural architecture search is currently in <b>alpha</b> with limited support. 
 The Kubeflow team is interested in any feedback you may have, in particular with 
 regards to usability of the feature. You can log issues and comments in
 the [Katib issue tracker](https://github.com/kubeflow/katib/issues).

@@ -22,7 +22,7 @@ your environment and install Kubeflow.
 
 ## What is Kubeflow?
 
-Kubeflow is *the machine learning toolkit for Kubernetes*.
+Kubeflow is *the machine learning toolkit for Kubernetes*. Learn about [Kubeflow use cases](/docs/about/use-cases/).
 
 To use Kubeflow, the basic workflow is:
 
@@ -64,6 +64,19 @@ configure based on the cluster it deploys into.
 ## History
 
 Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/). It began as just a simpler way to run TensorFlow jobs on Kubernetes, but has since expanded to be a multi-architecture, multi-cloud framework for running entire machine learning pipelines.
+
+## Roadmaps
+
+To see what's coming up in future versions of Kubeflow, refer to the [Kubeflow roadmap](https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md).
+
+The following components also have roadmaps:
+
+* [Arena](https://github.com/kubeflow/arena/blob/master/ROADMAP.md)
+* [Fairing](https://github.com/kubeflow/fairing/blob/master/roadmap.md)
+* [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
+* [KF Serving](https://github.com/kubeflow/kfserving/blob/master/ROADMAP.md)
+* [Katib](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
+* [MPI Operator](https://github.com/kubeflow/mpi-operator/blob/master/ROADMAP.md)
 
 ## Getting involved
 
