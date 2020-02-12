@@ -79,7 +79,7 @@ Google Cloud Marketplace.
       alt="Connect to the MiniKF VM"
       class="mt-3 mb-3 p-3 border border-info rounded">
 
-6. **MiniKF dashboard, username, and password**. Now that Minikube, Kubeflow, 
+6. **MiniKF dashboard, username, and password**. Now that Minikube, Kubeflow,
    and Rok are up-and-running, close the SSH browser window, as you will not
    need it anymore. On your current view, please find the **MiniKF dashboard**
    URL, **MiniKF username**, and **MiniKF password**. You will need them to log
