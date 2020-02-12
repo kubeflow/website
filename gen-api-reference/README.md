@@ -46,17 +46,12 @@ Use these instructions to generate an updated copy of the [Pipelines API Referen
 ## Prerequisites
 * Clone the [kubeflow/pipelines](https://github.com/kubeflow/pipelines) repository.
 * Install [npm](https://www.npmjs.com/get-npm).
-
-## Installation
-
-1. From the kubeflow/pipelines repository, extract or download `pipelines\backend\api\swagger\kfp_api_single_file.swagger.json` to a local directory.
-
-1. Install [bootprint](https://github.com/bootprint/bootprint-openapi) and [html-inline](https://github.com/substack/html-inline) using the following command.
+* Install [bootprint](https://github.com/bootprint/bootprint-openapi) and [html-inline](https://github.com/substack/html-inline) using the following command.
 
 	```
 	npm install -g bootprint
 	npm install -g bootprint-openapi
- 	npm -g install html-inline
+ 	npm install -g html-inline
 	```
 
 ## Usage
@@ -69,9 +64,9 @@ Use these instructions to generate an updated copy of the [Pipelines API Referen
   	For example:
   
 	```
-	bootprint openapi C:\path\to\kfp_api_single_file.swagger.json C:\path\to\target\directory
+	bootprint openapi C:\path\to\pipelines\backend\api\swagger\kfp_api_single_file.swagger.json C:\path\to\target\directory
 	```
-1. From the target directory, run the following command to combine the html and css files, naming the output file `kubeflow-pipeline-api-spec`.
+1. From the target directory, run the following command to combine the html and css files, naming the output file `kubeflow-pipeline-api-spec.html`.
 
   	```
   	html-inline -i <input file> -o <output file>
@@ -81,4 +76,4 @@ Use these instructions to generate an updated copy of the [Pipelines API Referen
 	```
 	html-inline -i index.html -o kubeflow-pipeline-api-spec.html
 	```
-1. Overwrite the `kubeflow-pipeline-api-spec` file in your kubeflow/website fork with the new copy and submit a pull request to update the page.
+1. Overwrite the `kubeflow-pipeline-api-spec.html` file in your kubeflow/website fork with the new copy and submit a pull request to update the page.
