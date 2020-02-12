@@ -25,8 +25,8 @@ Kubeflow multi-tenancy implementation currently follows:
   * Manage user access to namespace through k8s rbac policy.
 - Leverage Istio to control in-cluster traffic
   * By default requests to user workspaces are denied unless allowed by Istio Rbac
-- Leverage Identity-Aware Proxy and Istio to control traffic through ingress
-  * Identity user request through Identity-Aware Proxy.
+- Leverage Identity Provider and Istio to control traffic through ingress
+  * Identity user request through Identity Provider.
   * Istio then do rbac check on request target workspace and identity
 - Enable workspace access sharing & revoke
   * Workspace owners can share/revoke workspace access with other users through kubeflow UI
@@ -50,7 +50,7 @@ Kubeflow multi-tenancy cluster:
 - Kubeflow UI need to be served behind an identity aware proxy, the identity aware proxy and k8s
 master should share the same identity management.
   * On GCP we use [GKE](https://cloud.google.com/kubernetes-engine) + [IAP](https://cloud.google.com/iap/docs/concepts-overview)
-  * An alternative is [Dex](https://github.com/dexidp/dex) + LDAP / Active Directory
+  * For on-prem installations, we make use of [Dex](https://github.com/dexidp/dex), a flexible OIDC provider.
 
 #### supported platform
 * kubeflow multi-tenancy is enabled by default if you [deploy kuebflow on GCP with IAP](/docs/gke/deploy)
