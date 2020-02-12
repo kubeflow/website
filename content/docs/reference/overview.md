@@ -30,3 +30,15 @@ API references:
 
   * [v1](/docs/reference/pytorchjob/v1/pytorch/)
   * [v1beta2](/docs/reference/pytorchjob/v1beta2/pytorch/)
+
+<a id="notebook-crd">
+## 
+
+Notebook CRD is a Kubernetes
+[custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+that you can use to manage Jupyter Notebook servers on Kubernetes. For help with
+using notebooks with Kubeflow, see the [user guide](/docs/components/notebooks/).
+
+API references:
+
+  * [v1](/docs/reference/notebook/v1/notebook/)
