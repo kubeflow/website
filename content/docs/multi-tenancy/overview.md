@@ -1,6 +1,6 @@
 +++
 title = "Introduction to Multi-user Isolation"
-description = "Isolation of user-created resources for convenience and organization"
+description = "What does multi-user isolation mean?"
 weight = 10
 +++
 
