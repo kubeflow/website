@@ -1,11 +1,11 @@
 # This script finds .md files under a directory and its subdirectories, extracts
 # http/https URLs from .md files and validates them.
 #
-# This script can be run peoriodically on kubeflow/website source repository
+# This script can be run periodically on kubeflow/website source repository
 # to find outdated URLs, which indicate possible outdated document sections.
 #
-# To run this script, type
-#   $ python3.8 validate-urls.py -d /path/to/kubeflow/website/content/docs
+# To run this script, type the following on the command line:
+#   python3.8 validate-urls.py -d /path/to/kubeflow/website/content/docs
 #
 # Input:
 #   The path of a directory that contains .md files as `-d` command line flag.
@@ -15,8 +15,8 @@
 #   invalid URLs at the end.
 #
 # Dependency:
-#   You may need to install the `requests` Python package via
-#   $ python3.8 -m pip install requests
+#   You may need to install the `requests` Python package via command line:
+#   python3.8 -m pip install requests
 
 import argparse
 import os
