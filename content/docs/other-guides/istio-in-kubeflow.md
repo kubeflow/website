@@ -81,7 +81,7 @@ Further actions by the user with the notebook to create training jobs or other
 resources in the namespace go through a similar process. Profiles Controller
 manages the creation of profiles, and creates and applies appropriate Istio
 policies. For more details, please see [multi-user
-overview](/docs/other-guides/multi-user-overview/).
+isolation](docs/components/multi-tenancy/).
 
 
 ## Deploying Kubeflow without Istio

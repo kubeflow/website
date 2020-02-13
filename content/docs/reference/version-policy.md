@@ -166,7 +166,7 @@ documentation for that application.
         <td>0.2.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/other-guides/multi-user-overview/">Profile 
+        <td><a href="/docs/components/multi-tenancy/">Profile 
           Controller for multi-user isolation</a> 
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller">GitHub</a>)
         </td>
