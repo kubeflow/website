@@ -1,7 +1,7 @@
 +++
 title = "Deploy using MiniKF on GCP"
 description = "Instructions for using the Google Cloud Marketplace to deploy MiniKF (mini Kubeflow) on Google Cloud Platform (GCP)."
-weight = 4
+weight = 40
 +++
 
 This guide describes how to launch a MiniKF virtual machine (VM) on GCP. MiniKF
