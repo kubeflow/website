@@ -1,7 +1,7 @@
 +++
-title = "Multi-user Isolation"
+title = "Introduction to Multi-user Isolation"
 description = "Isolation of user-created resources for convenience and organization"
-weight = 50
+weight = 10
 +++
 
 {{% stable-status %}}
@@ -18,15 +18,15 @@ convenience of clutter-free browsing of notebooks, training jobs, serving
 deployments and other resources. The isolation mechanisms also prevent
 accidental deletion/modification of resources of other users in the deployment.
 
-## Key Words
+### Key Words
 
-**administrator**: An **administrator** is someone who creates and maintains the Kubeflow cluster.
+**administrator**: An administrator is someone who creates and maintains the Kubeflow cluster.
 This person has the permission to grant access permissions to others.
 
-**user**: A **user** is someone who has access to some set of resources in the cluster. A **user**
-needs to be granted access permissions by the **administrator**.
+**user**: A user is someone who has access to some set of resources in the cluster. A user
+needs to be granted access permissions by the administrator.
 
-**profile**: A **profile** is a grouping of all Kubernetes clusters owned by a **user**.
+**profile**: A profile is a grouping of all Kubernetes clusters owned by a user.
 
 Note that the isolation support in Kubeflow doesn't provide any hard security
 guarantees against malicious attempts by users to infiltrate other user's

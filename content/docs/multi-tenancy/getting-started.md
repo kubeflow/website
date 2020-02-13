@@ -1,7 +1,7 @@
 +++
 title = "Getting Started with Multi-user Isolation"
 description = "How to use Multi-User Isolation with Profiles"
-weight = 50
+weight = 30
 +++
 
 {{% stable-status %}}
