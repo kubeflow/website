@@ -81,7 +81,7 @@ def main():
             try:
                 r = requests.head(url)
                 print(f" , Status {r.status_code}")
-                if r.status_code >= 303 and r.status_code < 500:
+                if r.status_code >= 400 and r.status_code < 500:
                     problematic_urls.append((file, url, r.status_code))
             except Exception as e:
                 print(e)
