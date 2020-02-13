@@ -1,4 +1,22 @@
-# This script extract http/https URLs from .md files and validate them.
+# This script finds .md files under a directory and its subdirectories, extracts
+# http/https URLs from .md files and validates them.
+#
+# This script can be run peoriodically on kubeflow/website source repository
+# to find outdated URLs, which indicate possible outdated document sections.
+#
+# To run this script, type
+#   $ python3.8 validate-urls.py -d /path/to/kubeflow/website/content/docs
+#
+# Input:
+#   The path of a directory that contains .md files as `-d` command line flag.
+#
+# Output:
+#   STDOUT logs in the format of `<file>: <URL> , <status>` and a summary of all
+#   invalid URLs at the end.
+#
+# Dependency:
+#   You may need to install the `requests` Python package via
+#   $ python3.8 -m pip install requests
 
 import argparse
 import os
@@ -16,7 +34,7 @@ parser.add_argument(
     nargs='?',
     default='kubeflow/website/content',
     help=
-    'Path to the doc conetnt folder. (default: %(default)s)',
+    'Path to the doc content folder. (Default: %(default)s)',
 )
 
 # http/https URLs
@@ -39,7 +57,7 @@ def should_skip(url):
 
 def main():
     args = parser.parse_args()
-    # find all md file under INPUT_DIR.
+    # find all md files under INPUT_DIR.
     files = []
     for (dirpath, dirname, filenames) in os.walk(args.input_dir):
         for f in filenames:
