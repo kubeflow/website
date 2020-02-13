@@ -1,12 +1,16 @@
 +++
-title = "Frequently asked questions"
+title = "Frequently Asked Questions"
 description = ""
 weight = 110
 +++
 
 
-### Does Kubeflow Support Helm?
+### Is deploying Kubeflow with Helm supported?
 
-Yes Kubeflow support Helm. You don't need to use ksonnet to use TFServing, TFJob and others. You can define those resources using whatever K8s tooling you want; raw YAML, Helm, Kustomize, Ksonnet.
+No, Kubeflow only provides kustomize packages for Kubeflow applications. So deploying Kubeflow isn't supported except via kustomize.
 
-We provide Kustomize mostly as convenient syntax sugar. The arena CLI might have Helm Charts (https://github.com/helm/charts) if that's the route you prefer.
+Kubeflow makes use of [kustomize](https://kustomize.io/) to help customize YAML
+configurations. With kustomize, you can traverse a Kubernetes manifest to add,
+remove, or update configuration options without forking the manifest.
+
+However, once you deploy Kubeflow you can express Kubernetes resources using Helm.
