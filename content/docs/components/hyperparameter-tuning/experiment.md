@@ -49,7 +49,7 @@ These are the fields in the experiment configuration spec:
   of allowed values for each hyperparameter.
   Katib generates hyperparameter combinations in the range based on the
   hyperparameter tuning algorithm that you specify. See the [`ParameterSpec` 
-  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L142-L163).
+  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L157-L178).
 
 
 * **objective**: The metric that you want to optimize. 
@@ -87,7 +87,7 @@ These are the fields in the experiment configuration spec:
       distributed execution).
     
     See the [TrialTemplate 
-    type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L165-L179).
+    type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L180-L194).
     The template 
     uses the [Go template format](https://golang.org/pkg/text/template/).
     
@@ -125,7 +125,7 @@ These are the fields in the experiment configuration spec:
 
 *Background information about Katib's `Experiment` type:* In Kubernetes 
 terminology, Katib's
-[`Experiment`](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L187)
+[`Experiment`](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L202)
 type is a [custom resource 
 (CR)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 The YAML file that you create for your experiment is the CR specification.
@@ -358,7 +358,7 @@ To define the metrics collector for your experiment:
       storage of its own metrics.
 
 1. Specify the metrics output location in the `source` field. See the 
-  [MetricsCollectorSpec type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L74-L143) for default values.
+  [MetricsCollectorSpec type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L81-L150) for default values.
 1. Write code in your training container to print metrics in the format
    specified in the `metricsCollectorSpec.source.filter.metricsFormat`
    field. The default format is `([\w|-]+)\s*=\s*((-?\d+)(\.\d+)?)`.
