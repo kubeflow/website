@@ -76,4 +76,4 @@ Use these instructions to generate an updated copy of the [Pipelines API Referen
 	```
 	html-inline -i index.html -o kubeflow-pipeline-api-spec.html
 	```
-1. Overwrite the `kubeflow-pipeline-api-spec.html` file in your kubeflow/website fork with the new copy and submit a pull request to update the page.
+1. In a fork of the kubeflow/website repository, overwrite `content/docs/pipelines/reference/api/kubeflow-pipeline-api-spec.html` with the new copy and submit a pull request. Refer to the [kubeflow/website readme](https://github.com/kubeflow/website/blob/master/README.md) for more detailed instructions.
