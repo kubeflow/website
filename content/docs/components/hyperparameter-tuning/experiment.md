@@ -117,9 +117,9 @@ These are the fields in the experiment configuration spec:
   You can specify the configurations of the neural network design that you want
   to optimize, including the number of layers in the network, the types of
   operations, and more.
-  See the [NasConfig type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L205).
+  See the [NasConfig type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L220).
   As an example, see the YAML file for the
-  [nasjob-example-RL](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nasjob-example-RL.yaml).
+  [nasjob-example-RL-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nasjob-example-RL-gpu.yaml).
   The example aims to show all the possible operations. Due to the large search 
   space, the example is not likely to generate a good result.
 
