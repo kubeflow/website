@@ -1,6 +1,6 @@
 +++
 title = "Frequently Asked Questions"
-description = "Collection of most asked questions."
+description = "Collection of most asked questions"
 weight = 105
 +++
 
