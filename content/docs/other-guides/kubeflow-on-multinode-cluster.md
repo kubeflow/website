@@ -100,7 +100,7 @@ specify one is associated to it.
 You can install NFS Client Provisioner with Helm:
 
 ```shell
-helm install 
+helm install \
   --name nfs-client-provisioner \
   --set nfs.server=<NFS Server IP> \
   --set nfs.path=/exported/path \
