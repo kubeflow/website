@@ -14,6 +14,7 @@ Before starting with this tutorial the following things have to be in place:
 - [Kubeflow set up on GKE](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/)
 - Jupyter nooteboks set up on you kubeflow deployment
 
+
 ## Using enviroment variables 
 
 Below is a example python lightweight component where we read a enviroment
