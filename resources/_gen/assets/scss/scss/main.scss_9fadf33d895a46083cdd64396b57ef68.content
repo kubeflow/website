@@ -3,7 +3,31 @@
 Add styles or override the theme's variables here.
 
 */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap");
+html {
+  scroll-behavior: smooth; }
+
+.card-img-top {
+  object-fit: scale-down; }
+
+.text-white {
+  font-weight: 400; }
+
+.bg-primary-dark {
+  background-color: #213d7a; }
+  .bg-primary-dark a {
+    border-bottom: 1px dotted paleturquoise;
+    color: paleturquoise !important;
+    font-weight: 600;
+    padding: 0 2px 1px 2px;
+    text-decoration: none; }
+    .bg-primary-dark a:hover {
+      border-bottom: 1px dotted #fff;
+      color: #fff !important; }
+
+.border-primary-dark {
+  border-color: #adb5bd !important; }
+
 .section-head {
   font-size: 1.25em;
   color: #4279f4;
@@ -38,14 +62,19 @@ Add styles or override the theme's variables here.
   float: right;
   margin: 0 0 1.5em 1.5em; }
 
-#overview {
-  border-bottom: 2px solid #b6d0ff;
+#overview, #community {
   padding: 6em 1.5em 3em 1.5em;
   text-align: center;
   margin: 0; }
 
-#overview p {
+#overview p, #community p {
   font-size: 1.125em; }
+
+#overview {
+  border-bottom: 2px solid #b6d0ff; }
+
+#community {
+  border-top: 2px solid #b6d0ff; }
 
 #pageContent .lead {
   margin: 0 1.5em 3em 1.5em; }
@@ -59,7 +88,7 @@ Add styles or override the theme's variables here.
   font-size: 1em; }
 
 @media screen and (min-width: 480px) {
-  #overview {
+  #overview, #community {
     font-size: 1.125em; }
   #pageContent .lead > .image {
     max-width: 35%;

@@ -31,9 +31,10 @@
 /docs/pipelines/install-sdk/                   /docs/pipelines/sdk/install-sdk/
 /docs/pipelines/lightweight-python-components/ /docs/pipelines/sdk/lightweight-python-components/
 /docs/pipelines/build-pipeline/                /docs/pipelines/tutorials/build-pipeline/
-/docs/pipelines/pipelines-tutorial/            /docs/gke/pipelines/pipelines-tutorial/
-/docs/pipelines/tutorials/pipelines-tutorial/  /docs/gke/pipelines/pipelines-tutorial/
-/docs/gke/pipelines-tutorial/                  /docs/gke/pipelines/pipelines-tutorial/
+/docs/pipelines/pipelines-tutorial/            /docs/pipelines/tutorials/cloud-tutorials/
+/docs/pipelines/tutorials/pipelines-tutorial/  /docs/pipelines/tutorials/cloud-tutorials/
+/docs/gke/pipelines-tutorial/                  /docs/pipelines/tutorials/cloud-tutorials/
+/docs/gke/pipelines/pipelines-tutorial/        /docs/pipelines/tutorials/cloud-tutorials/
 /docs/gke/authentication-pipelines/            /docs/gke/pipelines/authentication-pipelines/
 
 /docs/pipelines/metrics/                       /docs/pipelines/sdk/pipelines-metrics/
@@ -89,7 +90,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Restructured the getting-started and other-guides sections.
 /docs/started/getting-started-k8s/             /docs/started/k8s/
 /docs/started/getting-started-minikf/          /docs/other-guides/virtual-dev/getting-started-minikf/
-/docs/started/getting-started-minikube/        /docs/other-guides/virtual-dev/getting-started-minikube/
 /docs/started/getting-started-multipass/       /docs/other-guides/virtual-dev/getting-started-multipass/
 /docs/started/getting-started-aws/             /docs/started/cloud/getting-started-aws/
 /docs/started/getting-started-azure/           /docs/started/cloud/getting-started-azure/

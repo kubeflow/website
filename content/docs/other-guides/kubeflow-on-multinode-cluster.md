@@ -24,7 +24,7 @@ The best practice is to decouple storage needs ([Persistent Volume Claims](https
 
 Cloud providers define mechanisms to allocate PVs based on existing PVCs using their storage infrastructure; on-prem clusters must provision their PVs according the existing capability of the system.
 
-In development clusters (For example, Minikube) or single node clusters, you can bind PVCs to HostPath PVs, which are a particular kind of volumes that maps the Pod's Volume to a directory of the filesystem.
+In development clusters or single node clusters, you can bind PVCs to HostPath PVs, which are a particular kind of volumes that maps the Pod's Volume to a directory of the filesystem.
 
 This approach, however, is not a feasible solution in multi-node clusters. A Pod can be on different nodes during its lifecycle: Kubernetes can kill and restart it on another node at any time based on the resources available in the cluster. In this scenario, the migrated Pod will not find its old data after restarting on a new node.
 
@@ -100,7 +100,7 @@ specify one is associated to it.
 You can install NFS Client Provisioner with Helm:
 
 ```shell
-helm install 
+helm install \
   --name nfs-client-provisioner \
   --set nfs.server=<NFS Server IP> \
   --set nfs.path=/exported/path \

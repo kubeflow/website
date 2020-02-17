@@ -6,7 +6,7 @@ weight = 30
 
 This page describes in detail how to configure and run a Katib experiment.
 The experiment can perform hyperparameter tuning or a neural architecture search 
-(NAS) (**Alpha**), depending on the configuration settings.
+(NAS) (**alpha**), depending on the configuration settings.
 
 For an overview of the concepts involved, read the [introduction to 
 Katib](/docs/components/hyperparameter-tuning/overview/).
@@ -49,7 +49,7 @@ These are the fields in the experiment configuration spec:
   of allowed values for each hyperparameter.
   Katib generates hyperparameter combinations in the range based on the
   hyperparameter tuning algorithm that you specify. See the [`ParameterSpec` 
-  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L142-L163).
+  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L157-L178).
 
 
 * **objective**: The metric that you want to optimize. 
@@ -87,7 +87,7 @@ These are the fields in the experiment configuration spec:
       distributed execution).
     
     See the [TrialTemplate 
-    type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L165-L179).
+    type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L180-L194).
     The template 
     uses the [Go template format](https://golang.org/pkg/text/template/).
     
@@ -113,19 +113,19 @@ These are the fields in the experiment configuration spec:
   See the [details of the metrics collector](#metrics-collector) below.
 
 * **nasConfig**: The configuration for a neural architecture search (NAS).
-  Note: NAS is currently in **Alpha** with limited support.
+  Note: NAS is currently in **alpha** with limited support.
   You can specify the configurations of the neural network design that you want
   to optimize, including the number of layers in the network, the types of
   operations, and more.
-  See the [NasConfig type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L205).
+  See the [NasConfig type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L220).
   As an example, see the YAML file for the
-  [nasjob-example-RL](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nasjob-example-RL.yaml).
+  [nasjob-example-RL-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nasjob-example-RL-gpu.yaml).
   The example aims to show all the possible operations. Due to the large search 
   space, the example is not likely to generate a good result.
 
 *Background information about Katib's `Experiment` type:* In Kubernetes 
 terminology, Katib's
-[`Experiment`](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L187)
+[`Experiment`](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L202)
 type is a [custom resource 
 (CR)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 The YAML file that you create for your experiment is the CR specification.
@@ -311,7 +311,7 @@ search.
 #### NAS using reinforcement learning
 
 {{% alert title="Alpha version" color="warning" %}}
-Neural architecture search is currently in <b>Alpha</b> with limited support. 
+Neural architecture search is currently in <b>alpha</b> with limited support. 
 The Kubeflow team is interested in any feedback you may have, in particular with 
 regards to usability of the feature. You can log issues and comments in
 the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
@@ -358,7 +358,7 @@ To define the metrics collector for your experiment:
       storage of its own metrics.
 
 1. Specify the metrics output location in the `source` field. See the 
-  [MetricsCollectorSpec type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L74-L143) for default values.
+  [MetricsCollectorSpec type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L81-L150) for default values.
 1. Write code in your training container to print metrics in the format
    specified in the `metricsCollectorSpec.source.filter.metricsFormat`
    field. The default format is `([\w|-]+)\s*=\s*((-?\d+)(\.\d+)?)`.

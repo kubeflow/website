@@ -13,7 +13,7 @@ supports the following capabilities:
 
 * **Upgrade (limited support):**
 
-    The full Kubeflow deployment currently supports upgrading in **Alpha**
+    The full Kubeflow deployment currently supports upgrading in **alpha**
     status with limited support. Check the following sources for progress
     updates:
 

@@ -31,11 +31,14 @@ API references:
   * [v1](/docs/reference/pytorchjob/v1/pytorch/)
   * [v1beta2](/docs/reference/pytorchjob/v1beta2/pytorch/)
 
-<a id="metadata">
-## Metadata
+<a id="notebook-crd">
+## Notebook
 
-The goal of the [Metadata](https://github.com/kubeflow/metadata) project is to help Kubeflow users understand and manage their machine learning workflows by tracking and managing the metadata of workflows.
+Notebook CRD is a Kubernetes
+[custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+that you can use to manage Jupyter Notebook servers on Kubernetes. For help with
+using notebooks with Kubeflow, see the [user guide](/docs/components/notebooks/).
 
 API references:
 
-  * [v1alpha1](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/)
+  * [v1](/docs/reference/notebook/v1/)

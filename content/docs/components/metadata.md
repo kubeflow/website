@@ -4,8 +4,7 @@ description = "Tracking and managing metadata of machine learning workflows in K
 weight = 5
 +++
 
-{{% beta-status 
-  feedbacklink="https://github.com/kubeflow/metadata/issues" %}}
+{{% beta-status feedbacklink="https://github.com/kubeflow/metadata/issues" %}}
 
 The goal of the [Metadata](https://github.com/kubeflow/metadata) project is to 
 help Kubeflow users understand and manage their machine learning (ML) workflows
@@ -40,8 +39,7 @@ steps:
 ## Using the Metadata SDK to record metadata
 
 The Metadata project publishes a 
-[Python library (SDK)](https://kubeflow-metadata.readthedocs.io/en/latest/)
-that you can use to log (record) your metadata.
+Python SDK ([API reference](https://kubeflow-metadata.readthedocs.io/en/latest/), [source](https://github.com/kubeflow/metadata/tree/master/sdk/python)) that you can use to record your metadata.
 
 Run the following command to install the Metadata SDK:
 
@@ -100,12 +98,13 @@ that you can use to describe your ML workflows:
 * [`Model`](https://kubeflow-metadata.readthedocs.io/en/latest/source/md.html#kubeflow.metadata.metadata.Model)
   to capture metadata for an ML model that your workflow produces.
 
-<a id="metadata-ui"></a>
 
+<a id="metadata-watcher"></a>
 ## Using metadata watcher to record metadata
 
 Besides using the Python SDK to log metadata directly, you can add your own [metadata watcher](https://github.com/kubeflow/metadata/blob/master/watcher/README.md) to watch Kubernetes resource changes and save the metadata into the metadata service.
 
+<a id="metadata-ui"></a>
 ## Tracking artifacts on the Metadata UI
 
 You can view a list of logged artifacts and the details of each individual 
@@ -150,31 +149,12 @@ artifact in the **Artifact Store** on the Kubeflow UI.
 
 
 
-## Backend and REST API
+## GRPC backend
 
-The Kubeflow metadata backend uses [ML Metadata
-(MLMD)](https://github.com/google/ml-metadata/blob/master/g3doc/get_started.md) 
-to manage the metadata and relationships. 
+The Kubeflow metadata deploys the [gRPC service](https://github.com/google/ml-metadata/blob/master/ml_metadata/proto/metadata_store_service.proto) of [ML Metadata
+(MLMD)](https://github.com/google/ml-metadata/blob/master/g3doc/get_started.md) to manage the metadata and relationships.
 
-The backend exposes a 
-[REST API](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/).
-
-You can add your own metadata types so that you can log metadata for custom
-artifacts. To add a custom type, send a REST API request to the
-[`artifact_types` endpoint](/docs/reference/metadata/v1alpha1/kubeflow-metadata-api-spec/#operation--api-v1alpha1-artifact_types-post). 
-
-For example, The following request registers an artifact type with 
-_name_ `myorg/mytype/v1` and three _properties_: 
-
-* `f1` (string)
-* `f2` (integer)
-* `f3` (double)
-
-```
-curl -X POST http://localhost:8080/api/v1alpha1/artifact_types \
-  --header "Content-Type: application/json" -d \
-  '{"name":"myorg/mytype/v1","properties":{"f1":"STRING", "f2":"INT", "f3": "DOUBLE"}}'
-```
+Kubeflow Metadata SDK saves and retrieves data via the gRPC service. Similarly, you can define your own metadata types to log and view metadata for your custom artifacts. For Python examples, you can check [MLMD Python client](https://pypi.org/project/ml-metadata/) and Kubeflow Metadata SDK [source code](https://github.com/kubeflow/metadata/blob/master/sdk/python/kubeflow/metadata/metadata.py). For Go examples, you can check the [source code](https://github.com/kubeflow/metadata/blob/master/watcher/handlers/metalogger.go) of the [metadata watcher](#metadata-watcher).
 
 ## Next steps
 

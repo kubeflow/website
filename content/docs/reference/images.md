@@ -20,8 +20,7 @@ weight = 10
 | katib/suggestion-nasrl |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/nasrl/v1alpha3/Dockerfile> |
 | katib/file-metricscollector |    <https://github.com/kubeflow/katib/blob/master/cmd/metricscollector/v1alpha3/file-metricscollector/Dockerfile> |
 | katib/tfevent-metricscollector |    <https://github.com/kubeflow/katib/blob/master/cmd/metricscollector/v1alpha3/tfevent-metricscollector/Dockerfile> |
-| jupyterhub-k8s |    <https://github.com/kubeflow/kubeflow/blob/master/components/jupyterhub/docker/Dockerfile> |
-| datawire/ambassador    | <https://github.com/datawire/ambassador/blob/master/Dockerfile> |
+| datawire/ambassador    | <https://github.com/datawire/ambassador/blob/master/builder/Dockerfile> |
 | tensorflow-1.13.1-notebook-cpu |    <https://github.com/kubeflow/kubeflow/blob/master/components/tensorflow-notebook-image/Dockerfile> |
 |jupyter-web-app |    <https://github.com/kubeflow/kubeflow/blob/master/components/jupyter-web-app/Dockerfile> |
 | profile-controller    | <https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller> |

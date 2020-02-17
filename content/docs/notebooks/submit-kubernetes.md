@@ -4,8 +4,8 @@ description = "Submitting Kubernetes resources from a Jupyter notebook"
 weight = 40
 +++
 
-Kubeflow assigns the `jupyter-notebook` service account to the Jupyter notebook
-Pods. This service account is bound to the `jupyter-notebook` role, which has namespace-scoped permissions to the following Kubernetes resources:
+Kubeflow assigns the `default-editor` service account to the Jupyter notebook
+Pods. This service account is bound to the `kubeflow-edit` ClusterRole, which has namespace-scoped permissions to the many Kubernetes resources including:
 
 * Pods
 * Deployments
@@ -13,6 +13,11 @@ Pods. This service account is bound to the `jupyter-notebook` role, which has na
 * Jobs
 * TFJobs
 * PyTorchJobs
+
+You can get a full list of these permissions using:
+```
+kubectl describe clusterrole kubeflow-edit
+```
 
 You can therefore create the above Kubernetes resources directly from your
 Jupyter notebook in Kubeflow. The Kubernetes
