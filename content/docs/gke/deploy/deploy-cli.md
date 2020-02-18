@@ -198,7 +198,7 @@ using [yq](https://github.com/mikefarah/yq/releases):
     ```
     mkdir -p ${KF_DIR}
     cd ${KF_DIR}
-    kfctl build -V -f ${CONFIG_URI}
+    kfctl build -V -f ${CONFIG_FILE}
     ```
 
 1. To customize your GKE cluster modify the deployment manager configuration files
