@@ -184,9 +184,9 @@ You can follow the instructions below to have greater control.
 using [yq](https://github.com/mikefarah/yq/releases):
 
     ```
-    yq w -i ${CONFIG_FILE} spec.plugins[0].spec.project ${PROJECT}
-    yq w -i ${CONFIG_FILE} spec.plugins[0].spec.zone ${ZONE}
-    yq w -i ${CONFIG_FILE} metadata.name ${KF_NAME}
+    yq w -i ${CONFIG_FILE} 'spec.plugins[0].spec.project' ${PROJECT}
+    yq w -i ${CONFIG_FILE} 'spec.plugins[0].spec.zone' ${ZONE}
+    yq w -i ${CONFIG_FILE} 'metadata.name' ${KF_NAME}
     ```
 
    * **PROJECT:** The GCP project to deploy in
@@ -335,9 +335,9 @@ The following snippet shows you how to set values in the configuration file
 using [yq](https://github.com/mikefarah/yq/releases):
 
 ```
-yq w -i ${CONFIG_FILE} spec.plugins[0].spec.project ${PROJECT}
-yq w -i ${CONFIG_FILE} spec.plugins[0].spec.zone ${ZONE}
-yq w -i ${CONFIG_FILE} metadata.name ${KF_NAME}
+yq w -i ${CONFIG_FILE} 'spec.plugins[0].spec.project' ${PROJECT}
+yq w -i ${CONFIG_FILE} 'spec.plugins[0].spec.zone' ${ZONE}
+yq w -i ${CONFIG_FILE} 'metadata.name' ${KF_NAME}
 ```
 
 ### Application layout
