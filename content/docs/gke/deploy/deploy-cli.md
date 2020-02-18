@@ -175,7 +175,7 @@ You can follow the instructions below to have greater control.
 
     ```
     cd ${KF_DIR}
-    curl -L -O ${CONFIG_FILE} {{% config-uri-gcp-iap %}}
+    curl -L -o ${CONFIG_FILE} {{% config-uri-gcp-iap %}}
     ```
 
     * **CONFIG_FILE** should be the name you would like to use for your local config file; e.g. "kfdef.yaml"
