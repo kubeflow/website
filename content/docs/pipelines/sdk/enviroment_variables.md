@@ -1,17 +1,16 @@
 +++
 title = "Using enviroment varibales in piplines"
-description = "How set and use enviroment variables in kubeflow piplines"
+description = "How to set and use enviroment variables in kubeflow piplines"
 +++
 
 This page describes how to create a enviroment varaibale for Kubeflow Pipelines 
-and how to combine enviroment variable into a pipeline. 
+and how they work in a pipline. 
 
 ## Before you start
 
 ### Initial setup
 Before starting with this tutorial the following things have to be in place: 
-- A GCP account.
-- [Kubeflow set up on GKE](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/)
+- [Kubeflow set up on kubernetes](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/)
 - Jupyter nooteboks set up on you kubeflow deployment
 
 
@@ -61,8 +60,8 @@ using python lightweight components or prebuild container.
         container_op = logg_env_function_op().add_env_variable(V1EnvVar(name='Test_env', value='env_variable')) 
 ```
 
-If more varaiblaes is wanted you would simply add one more .add_env_varaible()
-statment after the first one. We then execute the pipline in the notebok. 
+To use more then one env variables you simply add on more .add_env_varaible()
+after the first one. Then execute the pipline in the notebok. 
 
 ```python
     #Specify pipeline argument values
