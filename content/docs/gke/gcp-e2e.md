@@ -89,28 +89,28 @@ In summary:
 
 It's time to get started!
 
-### Run the MNIST tutorial on GCP
+## Run the MNIST tutorial on GCP
 
-1. Follow the [GCP instructions](https://www.kubeflow.org/docs/gke/deploy/) to deploy Kubeflow with IAP
+1. Follow the [GCP instructions](/docs/gke/deploy/) to deploy Kubeflow with IAP.
 
-1. Launch a Jupyter notebook
+1. Launch a Jupyter notebook.
 
    * The tutorial has been tested using the Jupyter Tensorflow 1.15 image
 
-1. Launch a terminal in Jupyter and clone the kubeflow examples repo
+1. Launch a terminal in Jupyter and clone the Kubeflow examples repo.
 
    ```
    git clone https://github.com/kubeflow/examples.git git_kubeflow-examples
    ```
 
-   * **Tip** When you start a terminal in Jupyter, run the command `bash` to start
-      a bash terminal which is much more friendly then the default shell
+   * **Tip**: When you start a terminal in Jupyter, run the command `bash` to start
+      a bash terminal which is much more friendly than the default shell.
 
-   * **Tip** You can change the URL for your notebook from '/tree' to '/lab' to switch to using Jupyterlab
+   * **Tip**: You can change the URL for your notebook from '/tree' to '/lab' to switch to using Jupyterlab.
 
-1. Open the notebook `mnist/mnist_gcp.ipynb`
+1. Open the notebook `mnist/mnist_gcp.ipynb`.
 
-1. Follow the notebook to train and deploy MNIST on Kubeflow
+1. Follow the notebook to train and deploy MNIST on Kubeflow.
 
 
 [mnist-data]: http://yann.lecun.com/exdb/mnist/index.html
