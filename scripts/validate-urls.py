@@ -39,7 +39,7 @@ parser.add_argument(
 
 # http/https URLs
 HTTP_PATTERN = re.compile(
-    'http[s]?://[a-zA-Z\-_?/*\.#\$][a-zA-Z0-9\-_?/*\.#\$]+')
+    'http[s]?://[a-zA-Z\-_?/*\.#\$][a-zA-Z0-9\-_?/*\.#%=\$]+')
 
 # Patterns in this white list are considered valid.
 WHITE_LIST = [
