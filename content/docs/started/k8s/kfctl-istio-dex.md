@@ -82,6 +82,10 @@ Notes:
   a local version of the configuration YAML file which you can further
   customize if necessary.
 
+* **Disabling Istio Installation** - In the configuration file {{% config-file-istio-dex %}} you may choose to not install Istio by removing the applications `istio-crds` and `istio-install`, if your Kubernetes cluster has an existing Istio installation.
+
+* **Default Static File Password** - The configuration file {{% config-file-istio-dex %}} contains a default [staticPasswords](https://github.com/dexidp/dex/blob/0f8c4db9f61476a8f80e60f5950992149a1cc0cb/examples/config-dev.yaml#L91-L95) user with email set to `admin@kubeflow.org` and password `12341234`. It is encouraged to change this configuration or replace it with a [Dex connector](https://github.com/dexidp/dex#connectors).
+
 <a id="set-up-and-deploy"></a>
 ## Set up and deploy Kubeflow
 

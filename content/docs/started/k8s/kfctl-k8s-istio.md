@@ -77,6 +77,8 @@ Notes:
   a local version of the configuration YAML file which you can further
   customize if necessary.
 
+* **Disabling Istio Installation** - In the configuration file {{% config-file-istio-dex %}} you may choose to not install Istio by removing the applications `istio-crds` and `istio-install`, if your Kubernetes cluster has an existing Istio installation.
+
 <a id="set-up-and-deploy"></a>
 ## Set up and deploy Kubeflow
 
