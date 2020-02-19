@@ -420,8 +420,8 @@ If you still want to use basic auth follow these instructions.
 
 * Run a full ML workflow on Kubeflow, using the
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
-  [GitHub issue summarization 
-  example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
+  [GitHub issue summarization Pipelines
+  example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization/pipelines).
 * See how to [delete](/docs/gke/deploy/delete-cli/) your Kubeflow deployment 
   using the CLI.
 * See how to [customize](/docs/gke/customizing-gke/) your Kubeflow 
