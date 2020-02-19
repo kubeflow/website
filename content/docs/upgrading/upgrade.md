@@ -150,7 +150,7 @@ upgradeability. Nonetheless, here are some instructions for updating your deploy
   ```
     The `${CONFIG_FILE}` environment variable must contain the path to the 
     Kubeflow configuration file in your `${KF_DIR}` directory. For example,
-    `${KF_DIR}/{{% config-file-k8s-istio %}}` or `${KF_DIR}/kfctl_existing_arrikto.yaml`
+    `${KF_DIR}/{{% config-file-k8s-istio %}}` or `${KF_DIR}/kfctl_istio_dex.yaml`
   
 1. Re-apply any customizations that you need.
 

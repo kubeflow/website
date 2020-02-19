@@ -1,13 +1,12 @@
 +++
-title = "Multi-user, auth-enabled Kubeflow with kfctl_existing_arrikto"
-description = "Instructions for installing Kubeflow with kfctl_existing_arrikto.yaml config"
+title = "Multi-user, auth-enabled Kubeflow with kfctl_istio_dex"
+description = "Instructions for installing Kubeflow with kfctl_istio_dex.yaml config"
 weight = 4
 +++
 
 Follow these instructions if you want to install Kubeflow on an existing Kubernetes cluster.
 
-This installation of Kubeflow is maintained by
-[Arrikto](https://www.arrikto.com/), it is geared towards existing Kubernetes
+This installation of Kubeflow is geared towards existing Kubernetes
 clusters and does not depend on any cloud-specific feature.
 
 In this reference architecture, we use [Dex](https://github.com/dexidp/dex) and
@@ -15,7 +14,7 @@ In this reference architecture, we use [Dex](https://github.com/dexidp/dex) and
 
 This deployment works well for on-prem installations, where companies/organizations need LDAP/AD integration for multi-user authentication, and they don't want to depend on any cloud-specific feature.
 
-![kfctl_existing_arrikto_architecture](../../kfctl_existing_arrikto-architecture.svg)
+![kfctl_istio_dex_architecture](../../kfctl_istio_dex-architecture.svg)
 
 Read the relevant [article](https://journal.arrikto.com/kubeflow-authentication-with-istio-dex-5eafdfac4782) for more info about this architecture.
 
@@ -48,7 +47,7 @@ some handy environment variables:
 export PATH=$PATH:"<path-to-kfctl>"
 
 # Set the following kfctl configuration file:
-export CONFIG_URI="{{% config-uri-existing-arrikto %}}"
+export CONFIG_URI="{{% config-uri-istio-dex %}}"
 
 # Set KF_NAME to the name of your Kubeflow deployment. You also use this
 # value as directory name when creating your configuration directory.
@@ -78,7 +77,7 @@ Notes:
 
 * **${CONFIG_URI}** - The GitHub address of the configuration YAML file that
   you want to use to deploy Kubeflow. The URI used in this guide is
-  {{% config-uri-existing-arrikto %}}.
+  {{% config-uri-istio-dex %}}.
   When you run `kfctl apply` or `kfctl build` (see the next step), kfctl creates
   a local version of the configuration YAML file which you can further
   customize if necessary.
@@ -94,8 +93,8 @@ mkdir -p ${KF_DIR}
 cd ${KF_DIR}
 
 # Download the config file and change the default login credentials.
-wget -O kfctl_existing_arrikto.yaml $CONFIG_URI
-export CONFIG_FILE=${KF_DIR}/kfctl_existing_arrikto.yaml
+wget -O kfctl_istio_dex.yaml $CONFIG_URI
+export CONFIG_FILE=${KF_DIR}/kfctl_istio_dex.yaml
 
 # Credentials for the default user are admin@kubeflow.org:12341234
 # To change them, please edit the dex-auth application parameters
@@ -125,7 +124,7 @@ deploy Kubeflow:
 1. Set an environment variable pointing to your local configuration file:
 
   ```
-  export CONFIG_FILE=${KF_DIR}/kfctl_existing_arrikto.yaml
+  export CONFIG_FILE=${KF_DIR}/kfctl_istio_dex.yaml
   ```
 
 1. Run the `kfctl apply` command to deploy Kubeflow:
@@ -809,7 +808,7 @@ directories:
   Kubeflow deployment.
 
   * This file is a copy of the GitHub-based configuration YAML file that
-    you used when deploying Kubeflow: {{% config-uri-existing-arrikto %}}
+    you used when deploying Kubeflow: {{% config-uri-istio-dex %}}
   * When you run `kfctl apply` or `kfctl build`, kfctl creates
     a local version of the configuration file, `${CONFIG_FILE}`,
     which you can further customize if necessary.
