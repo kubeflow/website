@@ -21,7 +21,7 @@ You no longer have to download GCP service account key. Instead, you can configu
 If you deployed Kubeflow following the GCP instructions, then the profiler controller automatically binds the "default-editor" service account for every profile namespace to a default GCP service account created during kubeflow deployment. 
 The Kubeflow deployment process also creates a default profile for the cluster admin.
 
-For more info about profiles see the [Multi-user isolation](https://www.kubeflow.org/docs/other-guides/multi-user-overview/) page.
+For more info about profiles see the [Multi-user isolation](/docs/components/multi-tenancy/) page.
 
 Here is an example profile spec:
 

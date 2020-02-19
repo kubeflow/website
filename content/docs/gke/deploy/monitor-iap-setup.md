@@ -148,5 +148,5 @@ problems:
 
 ## Next steps
 * The [GCP troubleshooting guide](/docs/gke/troubleshooting-gke/) for Kubeflow.
-* Guide to [sharing cluster access](/docs/other-guides/multi-user-overview/#onboard-new-user).
+* Guide to [sharing cluster access](/docs/components/multi-tenancy/getting-started).
 * GCP guide to [Cloud IAP](https://cloud.google.com/iap/docs/).

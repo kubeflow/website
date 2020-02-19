@@ -17,7 +17,7 @@ following features:
 - A [registration flow](/docs/components/central-dash/registration-flow/) for
   managing users and namespaces. You can set up a single namespace (workgroup)
   for a shared deployment, or configure
-  [multi-user isolation](/docs/other-guides/multi-user-overview/).
+  [multi-user isolation](/docs/components/multi-tenancy/).
 
 ## Overview of Kubeflow UIs
 

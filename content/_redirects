@@ -109,3 +109,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 
 # Merged the UIs page with the new central dashboard page
 /docs/other-guides/accessing-uis/             /docs/components/central-dash/overview/
+
+# Refactored multi-user docs
+/docs/other-guides/multi-user-overview/       /docs/components/multi-tenancy/
