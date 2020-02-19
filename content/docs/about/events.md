@@ -155,7 +155,7 @@ Please edit this page and send a pull request, or raise a [GitHub issue](https:/
       - [Codelab](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-e2e-gis/index.html)
 * [O'Reilly Open Source Convention, Portland](https://conferences.oreilly.com/oscon/oscon-or-2018), 16-19 July, 2018
   - [TensorFlow Day: Hassle-free, scalable machine learning with Kubeflow](https://conferences.oreilly.com/oscon/oscon-or/public/schedule/detail/70899): Barbara Fusinska
-* [SciPy, Austin](https://scipy2018.scipy.org/ehome/index.php?eventid=299527), 09-15 July, 2018
+* [SciPy, Austin](https://scipy2018.scipy.org/ehome/index26ac.html?eventid=299527&tabid=712461&cid=2233540&sessionid=21618893&sessionchoice=1&%26), 09-15 July, 2018
   - Kubeflow: Pythonic Machine Learning at Scale on Kubernetes: David Aronchick, Paige Bailey
       - [Video](https://www.youtube.com/watch?v=b_CvqzmB51M)
 * [Container Day, Paris](https://paris-container-day.fr/en/), 26 June, 2018
