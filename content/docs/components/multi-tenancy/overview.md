@@ -32,7 +32,7 @@ needs to be granted access permissions by the administrator.
 
 **profile**: A profile is a grouping of all Kubernetes clusters owned by a user.
 
-## Current Integration and Limitations
+## Current integration and limitations
 
 The Jupyter notebooks service is the first application to be fully integrated with
 multi-user isolation. Access to the notebooks and the creation of notebooks is 

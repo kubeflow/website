@@ -60,7 +60,7 @@ notebook servers and access the existing jupyter notebooks but cannot create
 new notebook servers in that profile. You can create notebook
 servers in your primary profile which they have view and modify access to.
 
-## Onboard new user
+## Onboarding a new user
 
 Kubeflow {{% kf-latest-version %}} provides automatic profile creation for authenticated users on
 first login. Additionally, an **administrator** can create a profile for any
@@ -77,7 +77,7 @@ For example for GCP users, they can be granted IAM roles: **Kubernetes Engine Cl
 
 ### Automatic creation of profiles
 
-Kubeflow {{% kf-latest-version %}} onwards provides automatic profile creations as a convenience
+Kubeflow {{% kf-latest-version %}} provides automatic profile creations as a convenience
 to the users:
 
   - Kubeflow deployment process automatically creates a profile for the user
@@ -201,7 +201,7 @@ access to the profile will no longer have access to the profile and will not see
 it in the dropdown list on the central dashboard.
 
 
-## Managing Contributors through UI
+## Managing contributors through UI
 
 Kubeflow {{% kf-latest-version %}} allows sharing of profiles with other users in the
 system.  An owner of a profile can share access to their profile using the

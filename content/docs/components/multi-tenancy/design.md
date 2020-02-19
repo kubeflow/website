@@ -9,8 +9,8 @@ weight = 20
 ## Design overview
 
 Kubeflow multi-tenancy is currently built around *user namespaces*.
-Specifically, we define user-specific namespaces and utilize Kubernetes
-[RBAC policies](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
+Specifically, Kubeflow defines user-specific namespaces and uses Kubernetes
+[role-based access control (RBAC) policies](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 to manage user access.
 
 This feature enables users to share access to their workspaces.
@@ -21,14 +21,14 @@ resources.
 Kubeflow multi-tenancy is self-served - new user can self-register to create and own
 their workspace through the UI.
 
-We leverage Istio to control in-cluster traffic. By default, requests to user
+Kubeflow uses Istio to control in-cluster traffic. By default, requests to user
 workspaces are denied unless allowed by Istio RBAC. In-bound user requests are
 identified using an identity provider (for example, Identity Aware Proxy (IAP) on
 Google Cloud or Dex for on-premises deployments), and then validated by Istio RBAC rules.
 
-Internall, we use the *Profile* custom resource to control all policies, roles, and bindings involved,
-and to guarantee consistency. We also offer a plugin interface to manage external resource/policy outside Kubernetes,
-for example accessing control of public cloud APIs.
+Internally, Kubeflow uses the *Profile* custom resource to control all policies, roles, and bindings involved,
+and to guarantee consistency. Kubeflow also offers a plugin interface to manage external resource/policy outside Kubernetes,
+for example interfacing with Amazon Web Services APIs for identity management.
 
 The following diagram illustrates a Kubeflow multi-tenancy cluster with two user-access routes:
 via the Kubeflow central dashboard and via the kubectl command-line interface (CLI).
@@ -37,17 +37,17 @@ via the Kubeflow central dashboard and via the kubectl command-line interface (C
   alt="multi tenancy cluster "
   class="mt-3 mb-3 border border-info rounded">
 
-## Feature Requirements
+## Feature requirements
 - Kubeflow uses [Istio](https://istio.io/) to apply access control over in-cluster traffic.
-- Kubeflow profile controller needs `Cluster admin` permission.
-- Kubeflow UI needs to be served behind an identity aware proxy, the identity aware proxy and k8s
+- Kubeflow profile controller needs `cluster admin` permission.
+- Kubeflow UI needs to be served behind an identity aware proxy. The identity aware proxy and Kubernetes
 master should share the same identity management.
 - The Kubeflow installation on Google Cloud uses [GKE](https://cloud.google.com/kubernetes-engine) and [IAP](https://cloud.google.com/iap/docs/concepts-overview).
-- On-prem installations of Kubeflow make use of [Dex](https://github.com/dexidp/dex), a flexible OIDC provider.
+- On-premises installations of Kubeflow make use of [Dex](https://github.com/dexidp/dex), a flexible OpenID Connect (OIDC) provider.
 
-## Supported Platforms
-* Kubeflow multi-tenancy is enabled by default if you deploy Kubeflow on GCP with [IAP](/docs/gke/deploy)
-* If you are not on GCP, you can deploy multi-tenancy to [your existing cluster](/docs/started/k8s/kfctl-existing-arrikto/)
+## Supported platforms
+* Kubeflow multi-tenancy is enabled by default if you deploy Kubeflow on GCP with [IAP](/docs/gke/deploy).
+* If you are not on GCP, you can deploy multi-tenancy to [your existing cluster](/docs/started/k8s/kfctl-existing-arrikto/).
 
 ## Next steps
 
