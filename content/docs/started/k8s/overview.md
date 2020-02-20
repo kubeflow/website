@@ -98,12 +98,9 @@ The Kubernetes cluster must meet the following minimum requirements:
 
 ## Kubeflow Deployment Configurations
 
-The following tables list the options for installing Kubeflow on an existing Kubernetes
-cluster and links to detailed instructions.
-
-### Community maintained
-
-This section includes vendor-neutral solutions governed by community consensus. Below deployment configs are maintained and supported by the community.
+The following table lists the options for installing Kubeflow on an existing Kubernetes
+cluster and links to detailed instructions. These solutions are vendor neutral and are 
+governed by consensus within the Kubeflow community.
 
 <div class="table-responsive">
   <table class="table table-bordered">
