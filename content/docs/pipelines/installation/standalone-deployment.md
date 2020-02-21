@@ -38,15 +38,16 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
 
     ```
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
-    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
+    kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
     **Note**: The above approach is introduced in Kubeflow Pipelines version 0.2.0. For older versions please run the following instead:
     ```
     export PIPELINE_VERSION=<older_version>
-    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
+    **Note**: the URLs after `apply -k` are not real. They are [hashicorp/go-getter URL format supported by kustomize](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format).
 
 1. Get the URL for the Kubeflow Pipelines UI :
 
@@ -89,9 +90,9 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
 
     ```
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
-    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
+    kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
     Kubeflow Pipelines applications take a while (~3 minutes) to start.
@@ -99,7 +100,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     **Note**: The above approach is introduced in Kubeflow Pipelines version 0.2.0. For older versions please run the following instead:
     ```
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
-    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
 1. Get public URL of Pipelines UI and use it to access Kubeflow Pipelines:
@@ -112,7 +113,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
 1. Upgrade to a version of Kubeflow Pipelines standalone you choose:
     ```
     export PIPELINE_VERSION=<version-you-want-to-upgrade-to>
-    kubectl apply -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
     Check [Kubeflow Pipelines github repo](https://github.com/kubeflow/pipelines/releases) for available releases.
 
@@ -176,7 +177,7 @@ You can uninstall Kubeflow Pipelines by:
 1. Uninstall Pipelines:
     ```
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
-    kubectl delete -k github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+    kubectl delete -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
 
     Or if you deployed through kustomize:
@@ -202,7 +203,7 @@ namespace: kubeflow
 # You can add other customizations here using kustomize.
 # Edit ref in the following link to deploy a different version of Kubeflow Pipelines.
 bases:
-- github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref={{% pipelines/latest-version %}}
+- github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref={{% pipelines/latest-version %}}
 ```
 
 ### How to deploy, upgrade and uninstall using the repo
