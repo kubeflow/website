@@ -169,7 +169,7 @@ configuration before deploying Kubeflow:
 
     *Important!!!* By default, these scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
 
-    To secure your installation, Follow the [instructions](/docs/aws/authentication) to add authentication.
+    To secure your installation, Follow the [instructions](/docs/aws/authentication) to add authentication and authorization.
 
 
 1. Wait for all the resources to become ready in the `kubeflow` namespace.
