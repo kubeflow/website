@@ -186,7 +186,7 @@ configuration before deploying Kubeflow:
     istio-system   istio-ingress   *       a743484b-istiosystem-istio-2af2-xxxxxx.us-west-2.elb.amazonaws.com   80      1h
     ```
 
-    This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser. You can also run `kubectl delete istio-ingress -n istio-system` to remove the load balancer entirely.
+    This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser. You can also run `kubectl delete ingress istio-ingress -n istio-system` to remove the load balancer entirely.
 
 ## Post Installation
 
