@@ -159,12 +159,8 @@ It's time to get started!
 [flask]: http://flask.pocoo.org/
 
 [kubeflow]: https://www.kubeflow.org/
-[kubeflow-core]: https://github.com/kubeflow/kubeflow/tree/master/kubeflow/core
-[tf-job-prototype]: https://github.com/kubeflow/kubeflow/blob/master/kubeflow/examples/prototypes/tf-job-simple.jsonnet
-[tf-serving-prototype]: https://github.com/kubeflow/kubeflow/tree/master/kubeflow/tf-serving
-[tf-training]: /docs/components/tftraining/
 
-[deploy-script]: https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deploy.sh
+[tf-training]: /docs/components/tftraining/
 
 [jupyter-notebook]: https://jupyter-notebook.readthedocs.io
 [kubeflow-jupyter]: /docs/notebooks/
