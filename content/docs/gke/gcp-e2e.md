@@ -5,7 +5,9 @@ weight = 90
 +++
 
 This guide walks you through an end-to-end example of Kubeflow on Google
-Cloud Platform (GCP). By working through the guide, you learn
+Cloud Platform (GCP) using a Jupyter notebook, 
+[mnist_gcp.ipynb](https://github.com/kubeflow/examples/blob/master/mnist/mnist_gcp.ipynb). 
+By working through the notebook, you learn
 how to deploy Kubeflow on Kubernetes Engine (GKE), train an MNIST machine
 learning model for image classification, and use the model for online inference
 (also known as online prediction).
@@ -89,7 +91,7 @@ In summary:
 
 It's time to get started!
 
-## Run the MNIST tutorial on GCP
+## Set up and run the MNIST tutorial on GCP
 
 1. Follow the [GCP instructions](/docs/gke/deploy/) to deploy Kubeflow with 
   Cloud Identity-Aware Proxy (IAP).
