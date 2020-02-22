@@ -4,8 +4,6 @@ description = "Instructions for installing Kubeflow with kfctl_istio_dex.yaml co
 weight = 4
 +++
 
-**Note:** The configuration `kfctl_existing_arrikto` that was used in Kubeflow v0.7 and earlier is no longer supported.
-
 Follow these instructions if you want to install Kubeflow on an existing Kubernetes cluster.
 
 This installation of Kubeflow is geared towards existing Kubernetes
