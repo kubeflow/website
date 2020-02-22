@@ -77,11 +77,14 @@ nodeGroups:
 
 ```
 
+### Customize Authentication
+Please see [this section](/docs/aws/authentication)
+
+### Customize IAM Role for Pods
+Please see [this section](/docs/aws/iam-for-sa)
+
 ### Customize Private Access
 Please see [this section](/docs/aws/private-access)
 
 ### Customize Logging
 Please see [this section](/docs/aws/logging)
-
-### Customize Authentication
-Please see [this section](/docs/aws/authentication)
