@@ -145,10 +145,11 @@ central dashboard](/docs/components/central-dash/overview/).
   * Alternatively, you can point the notebook server at an existing volume by 
     specifying the name of the existing volume.
 
-1. *(Optional)* Specify one or more **data volumes** if you want to store and
-  access data from the notebooks on this notebook server. You can add new
-  volumes or specify existing volumes. Kubeflow provisions a 
-  [Kubernetes persistent volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for each of your data volumes.
+1. *(Optional)* Specify one or more **data volumes** by providing the name of 
+  a [Kubernetes persistent volume claim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims), if you want to access and store data from any
+  notebook on this notebook server. You can add new volumes or specify
+  existing volumes. Kubeflow provisions a [Kubernetes persistent volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for each
+  of your data volumes.
 
 1. *(Optional)* Specify one or more additional **configurations** as a list of
   PodDefault labels. To make use of this option, you must create a
