@@ -65,12 +65,8 @@ using python lightweight components or prebuild container.
 ```
 
 To pass more environment variables into a component, add more instances of 
-[add_env_variable()](). Use the following command to run this pipeline using the 
+[add_env_variable()](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp.container). Use the following command to run this pipeline using the 
 Kubeflow Pipelines SDK.
-
-
-To use more then one env variables you simply add on more .add_env_varaible()
-after the first one. Then execute the pipline in the notebok. 
 
 ```python
     #Specify pipeline argument values
