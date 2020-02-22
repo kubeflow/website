@@ -7,6 +7,21 @@ weight = 100
 This page presents some hints for troubleshooting specific problems that you
 may encounter.
 
+## macOS: kfctl cannot be opened because the developer cannot be verified
+
+The kfctl binary is currently not signed. That is, kfctl is not registered
+with Apple. When you run kfctl from the command
+line on the latest versions of macOS, you may see a message like this:
+
+> **"kfctl" cannot be opened because the developer cannot be verified.** macOS
+cannot verify that this app is free from malware.
+
+To run kfctl, go to the kfctl binary file in *Finder*, right-click, then select
+**Open**. Then click **Open** again to confirm that you want to open the app.
+
+For more information, see the [macOS user 
+guide](https://support.apple.com/en-au/guide/mac-help/mh40616/10.15/mac/10.15).
+
 ## TensorFlow and AVX
 There are some instances where you may encounter a TensorFlow-related Python installation or a pod launch issue that results in a SIGILL (illegal instruction core dump). Kubeflow uses the pre-built binaries from the TensorFlow project which, beginning with version 1.6, are compiled to make use of the [AVX](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) CPU instruction. This is a recent feature and your CPU might not support it. Check the host environment for your node to determine whether it has this support.
 
