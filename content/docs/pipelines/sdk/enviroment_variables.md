@@ -1,64 +1,73 @@
 +++
-title = "Using enviroment varibales in piplines"
-description = "How to set and use enviroment variables in kubeflow piplines"
+title = "Using environment variables in pipelines"
+description = "How to set and use environment variables in Kubeflow pipelines"
+weight = 115
 +++
 
-This page describes how to create a enviroment varaibale for Kubeflow Pipelines 
-and how they work in a pipline. 
+This page describes how to pass environment variables to Kubeflow pipeline 
+components.
 
 ## Before you start
 
-### Initial setup
-Before starting with this tutorial the following things have to be in place: 
-- [Kubeflow set up on kubernetes](https://www.kubeflow.org/docs/gke/deploy/deploy-cli/)
-- Jupyter nooteboks set up on you kubeflow deployment
+Set up your environment: 
+
+- [Install Kubeflow](https://www.kubeflow.org/docs/started/getting-started/)
+- [Install the Kubeflow Pipelines SDK](https://www.kubeflow.org/docs/pipelines/sdk/install-sdk/)
+- [Kubeflow set up on kubernetes](https://www.Kubeflow.org/docs/gke/deploy/deploy-cli/)
+- Jupyter nooteboks set up on you Kubeflow deployment
 
 
-## Using enviroment variables 
+## Using environment variables 
 
-Below is a example python lightweight component where we read a enviroment
-variable and the logging it out as a string. 
+In this example, you pass an environment variable to a lightweight Python 
+component, which writes the variable's value to the log.
 
-We are going to use jupyter ligthweight componetes you can find more about them 
-[here](https://www.kubeflow.org/docs/pipelines/sdk/lightweight-python-components/).
+[Learn more about](https://www.Kubeflow.org/docs/pipelines/sdk/lightweight-python-components/).
 
 To build a component, define a stand-alone Python function and then call 
-`kfp.components.func_to_container_op(func)` to convert the function to a 
-component that can be used in a pipeline. Below is one small function logging 
-out the enviroment variable.
+[kfp.components.func_to_container_op(func)](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.func_to_container_op) to convert the function to a 
+component that can be used in a pipeline. The following function gets an 
+environment variable and writes it to the log.
 
 ```python
     def logg_env_function():
         import os
         import logging
         logging.basicConfig(level=logging.INFO)
-        env_variable = os.getenv('Test_env')
-        #logging out the enviroment variable
-        logging.info('The enviroment variable is: {}'.format(env_variable))
+        env_variable = os.getenv('example_env')
+        #logging out the environment variable
+        logging.info('The environment variable is: {}'.format(env_variable))
 ```
 
-Then we transform the function to a container using the 
-`kfp.components.func_to_container_op(func)`.  
+Transform the function into a component using 
+[kfp.components.func_to_container_op(func)](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.func_to_container_op).  
 ```python
     logg_env_function_op = comp.func_to_container_op(logg_env_function, base_image='tensorflow/tensorflow:1.11.0-py3')
 ```
 
-Then the functions is put into a pipline and  it is here that we mount the 
-enviroment variable to the container. This code is the same no matter if your
+Add this component to a pipeline. Use [add_env_variable](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp.container) to pass an 
+environment variable into the component. This code is the same no matter if your
 using python lightweight components or prebuild container. 
+
+
 ```python
     import kfp.dsl as dsl
     from kubernetes.client.models import V1EnvVar
 
     @dsl.pipeline(
     name='Logging',
-    description='A pipline showing how to use enviroment variables'
+    description='A pipline showing how to use environment variables'
     )
-    def enviroment_pipline():
+    def environment_pipline():
 
         #Returns a dsl.ContainerOp class instance. 
-        container_op = logg_env_function_op().add_env_variable(V1EnvVar(name='Test_env', value='env_variable')) 
+        container_op = logg_env_function_op().add_env_variable(V1EnvVar(name='example_env', value='env_variable')) 
 ```
+
+To pass more environment variables into a component, add more instances of 
+[add_env_variable()](). Use the following command to run this pipeline using the 
+Kubeflow Pipelines SDK.
+
 
 To use more then one env variables you simply add on more .add_env_varaible()
 after the first one. Then execute the pipline in the notebok. 
@@ -68,5 +77,5 @@ after the first one. Then execute the pipline in the notebok.
     arguments = {}
 
     #Submit a pipeline run
-    kfp.Client().create_run_from_pipeline_func(enviroment_pipline, arguments=arguments)
+    kfp.Client().create_run_from_pipeline_func(environment_pipline, arguments=arguments)
 ```
