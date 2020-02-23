@@ -41,13 +41,13 @@ some handy environment variables:
 
 1. Unpack the tar ball:
 
-    ```bash
+    ```
     tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
     ```
 
 1. Create environment variables to make the deployment process easier:
 
-    ```bash
+    ```
     # Add kfctl to PATH, to make the kfctl binary easier to use.
     export PATH=$PATH:"<path to kfctl>"
 
@@ -96,41 +96,39 @@ Notes:
 
 ## Set up your Kubeflow configuration
 
-Run kfctl to build your configuration files, so that you can edit the
+Download your configuration files, so that you can customize the
 configuration before deploying Kubeflow:
 
-1. Download manifest file
-
-  ```bash
+  ```
   mkdir -p ${KF_DIR}
   cd ${KF_DIR}
 
   wget -O kfctl_aws.yaml $CONFIG_URI
   export CONFIG_FILE=${KF_DIR}/kfctl_aws.yaml
   ```
-## Configure kubeflow
+## Configure Kubeflow
 
 1. Replace the AWS cluster name in your `${CONFIG_FILE}` file, by changing
   the value `kubeflow-aws` to `${AWS_CLUSTER_NAME}` in multiple locations in
   the file. For example, use this `sed` command:
 
-  ```
-  sed -i'.bak' -e 's/kubeflow-aws/'"$AWS_CLUSTER_NAME"'/' ${CONFIG_FILE}
-  ```
+    ```
+    sed -i'.bak' -e 's/kubeflow-aws/'"$AWS_CLUSTER_NAME"'/' ${CONFIG_FILE}
+    ```
 
 1. Retrieve the AWS Region and IAM role name for your worker nodes.
   To get the IAM role name for your Amazon EKS worker node, run the following
   command:
 
-  ```bash
-  aws iam list-roles \
-      | jq -r ".Roles[] \
-      | select(.RoleName \
-      | startswith(\"eksctl-$AWS_CLUSTER_NAME\") and contains(\"NodeInstanceRole\")) \
-      .RoleName"
+    ```
+    aws iam list-roles \
+        | jq -r ".Roles[] \
+        | select(.RoleName \
+        | startswith(\"eksctl-$AWS_CLUSTER_NAME\") and contains(\"NodeInstanceRole\")) \
+        .RoleName"
 
-  eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
-  ```
+    eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
+    ```
 
     Note: The above command assumes that you used `eksctl` to create your
     cluster. If you use other provisioning tools to create your worker node
@@ -139,11 +137,11 @@ configuration before deploying Kubeflow:
 
 1. Change cluster region and worker role names in your `${CONFIG_FILE}` file:
 
-  ```yaml
-  region: us-west-2
-  roles:
-    - eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
-  ```
+    ```yaml
+    region: us-west-2
+    roles:
+      - eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
+    ```
 
   If you have multiple node groups, you will see corresponding number of node group roles. In that case, please provide the role names as an array.
 
@@ -151,7 +149,7 @@ configuration before deploying Kubeflow:
 
 1. Run the following commands to initialize the Kubeflow cluster:
 
-    ```bash
+    ```
     cd ${KF_DIR}
     kfctl apply -V -f ${CONFIG_FILE}
     ```
@@ -162,13 +160,13 @@ configuration before deploying Kubeflow:
 
 
 1. Wait for all the resources to become ready in the `kubeflow` namespace.
-    ```bash
+    ```
     kubectl -n kubeflow get all
     ```
 
 1. Get Kubeflow service endpoint and copy link in browser.
 
-    ```bash
+    ```
     kubectl get ingress -n istio-system
 
     NAMESPACE      NAME            HOSTS   ADDRESS                                                             PORTS   AGE
@@ -179,7 +177,7 @@ configuration before deploying Kubeflow:
 
 ## Post Installation
 
-Kubeflow 0.6 release brings multi-tenancy support and user are not able to create notebooks in `kubeflow`, `default` namespace.
+Kubeflow provides multi-tenancy support and user are not able to create notebooks in `kubeflow`, `default` namespace.
 
 The first time you visit the cluster, you can ceate a namespace `anonymous` to use. If you want to create different users, you can create `Profile` and then `kubectl apply -f profile.yaml`. Profile controller will create new namespace and service account which is allowed to create notebook in that namespace.
 
@@ -193,6 +191,8 @@ spec:
     kind: User
     name: aws-sample-user
 ```
+
+Check [Multi-Tenancy in Kubeflow](/docs/components/multi-tenancy) for more details.
 
 ## Understanding the deployment process
 
