@@ -238,7 +238,7 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
         * Check that health checks are properly configured
           * Click on the health check associated with the backend service for envoy
           * Check that the path is /healthz and corresponds to the path of the readiness probe on the envoy pods
-          * See [K8s docs](https://github.com/kubernetes/contrib/blob/{{< params "githubbranch" >}}/ingress/controllers/gce/examples/health_checks/README.md#limitations) for important information about how health checks are determined from readiness probes.
+          * See [K8s docs](https://github.com/kubernetes-retired/contrib/tree/master/ingress/controllers/gce/examples/health_checks) for important information about how health checks are determined from readiness probes.
 
         * Check firewall rules to ensure traffic isn't blocked from the GCP loadbalancer
             * The firewall rule should be added automatically by the ingress but its possible it got deleted if you have some automatic firewall policy enforcement. You can recreate the firewall rule if needed with a rule like this
@@ -401,8 +401,8 @@ See [troubleshooting](/docs/other-guides/troubleshooting/) for more details.
 
 If you encounter this `CPU platform unavailable` error (might manifest as
 `Cluster is currently being created, deleted, updated or repaired and cannot be updated.`),
-you can change the [zone](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster-kubeflow.yaml#L31)
-or change the [minCpuPlatform](https://github.com/kubeflow/kubeflow/blob/master/scripts/gke/deployment_manager_configs/cluster.jinja#L105).
+you can change the [zone](https://github.com/kubeflow/manifests/blob/master/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L31)
+or change the [minCpuPlatform](https://github.com/kubeflow/manifests/blob/master/gcp/deployment_manager_configs/cluster.jinja#L131).
 See [here](https://cloud.google.com/compute/docs/regions-zones/#available)
 for available zones and cpu platforms.
 
