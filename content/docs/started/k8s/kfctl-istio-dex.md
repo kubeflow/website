@@ -33,6 +33,11 @@ Configuring your installation with {{% config-file-istio-dex %}} has a few optio
   the applications `istio-crds` and `istio-install` in the configuration file
   {{% config-file-istio-dex %}}.
 
+* **Istio configuration for trustworthy JWTs** - This configuration uses Istio version
+  1.3.1 with SDS enabled, which requires you to use Kubernetes 1.13 or later. You may need
+  to add extra configurations to your Kubernetes as mentioned in
+  [Istio's blog](https://istio.io/blog/2019/trustworthy-jwt-sds/).
+
 * **Default password in static file configuration for Dex** - The configuration file 
   {{% config-file-istio-dex %}} contains a default 
   [staticPasswords](https://github.com/dexidp/dex/blob/0f8c4db9f61476a8f80e60f5950992149a1cc0cb/examples/config-dev.yaml#L91-L95)
