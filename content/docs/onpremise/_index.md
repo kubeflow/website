@@ -1,5 +1,5 @@
 +++
-title = "Kubeflow on GCP"
-description = "Running Kubeflow on Kubernetes Engine and Google Cloud Platform"
+title = "Kubeflow on-premise"
+description = "Running Kubeflow on on-premise Kubernetes cluster"
 weight = 50
 +++
