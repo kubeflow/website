@@ -47,7 +47,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     export PIPELINE_VERSION=<older_version>
     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
     ```
-    **Note**: the URLs after `apply -k` are not real. They are [hashicorp/go-getter URL format supported by kustomize](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format).
+    **Note**: `kubectl apply -k` accepts local paths and paths above that are formatted as [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, the paths are not valid URLs.
 
 1. Get the URL for the Kubeflow Pipelines UI :
 
