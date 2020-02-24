@@ -110,9 +110,9 @@ The matrix is therefore an alternative way of accessing the information in the
       </tr>
       <tr>
         <td><b>Existing Kubernetes cluster</b> using Dex for authentication</td>
-        <td><a href="{{% config-uri-existing-arrikto %}}">{{% config-file-existing-arrikto %}}</a> 
+        <td><a href="{{% config-uri-istio-dex %}}">{{% config-file-istio-dex %}}</a>
         </td>
-        <td><a href="/docs/started/k8s/kfctl-existing-arrikto/">Docs</a></td>
+        <td><a href="/docs/started/k8s/kfctl-istio-dex/">Docs</a></td>
       </tr>
       <tr>
         <td><b>Amazon Web Services (AWS)</b> using the standard setup</td>
