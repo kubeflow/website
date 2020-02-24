@@ -137,11 +137,11 @@ configuration before deploying Kubeflow:
 
 1. Change cluster region and worker role names in your `${CONFIG_FILE}` file:
 
-    ```yaml
-    region: us-west-2
-    roles:
-      - eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
-    ```
+  ```
+  region: us-west-2
+  roles:
+  - eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
+  ```
 
   If you have multiple node groups, you will see corresponding number of node group roles. In that case, please provide the role names as an array.
 
