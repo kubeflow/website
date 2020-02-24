@@ -73,9 +73,6 @@ In summary:
 * Setting up [Kubeflow][kubeflow] in a [GKE][kubernetes-engine]
   cluster.
 
-* Testing the code locally using a 
-  [Jupyter notebook][https://jupyter-notebook.readthedocs.io].
-
 * Training the model:
 
   * Packaging a TensorFlow program in a [Kubernetes][kubernetes] container.
