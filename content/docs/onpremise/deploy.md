@@ -8,9 +8,9 @@ This guide is here to help you to deploy Kubeflow on vanilla kubernetes cluster
 
 ## Before you start
 
-* *Verify that Istio is supported in the current Kubernetes environment*.
-
+1. Verify that Istio is supported in the current Kubernetes environment.
 You can do that by checking that following flags are set:
+
 ```bash
   --service-account-issuer
   --service-account-signing-key-file
@@ -19,13 +19,13 @@ You can do that by checking that following flags are set:
 
 If the verification has failed you will need to set up APIServer flags for Istio Secure Gateways (SDS). Follow istio KinD Kubefadm configs [here](https://github.com/istio/istio/blob/master/prow/config/trustworthy-jwt-13-14.yaml). To read more about Istio Secure Gateways follow the [link](https://istio.io/blog/2019/trustworthy-jwt-sds/).
 
-* *Set up `kfctl` command on your cluster*:
+2. Set up `kfctl` command on your cluster:
 
 ```bash
 wget -O kfctl.tar.gz https://github.com/kubeflow/kfctl/releases/download/v1.0-rc.3/kfctl_v1.0-rc.2-13-g521fcfe_linux.tar.gz tar -zvf kfctl.tar.gz rm kfctl.tar.gz chmod +x ./kfctl export PATH=$(pwd)/kfctl:${PATH}
 ```
 
-* *Verify kfctl with the following command*
+3. Verify kfctl with the following command:
 
 ```bash
 kfctl version
