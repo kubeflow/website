@@ -1,6 +1,6 @@
 +++
 title = "Deployment On-premises"
-description = "Instructions to deploy Kubeflow on-premise cluster"
+description = "Instructions to deploy Kubeflow on-premises cluster"
 weight = 1
 +++
 
@@ -9,7 +9,7 @@ This guide is here to help you to deploy Kubeflow on vanilla kubernetes cluster
 ## Before you start
 
 1. Verify that Istio is supported in the current Kubernetes environment.
-You can do that by checking that following API server flags are set:
+You can do that by checking following API server flags are set:
 
 ```bash
   --service-account-issuer
