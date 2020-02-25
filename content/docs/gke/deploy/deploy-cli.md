@@ -174,6 +174,7 @@ You can follow the instructions below to have greater control.
 1. Download the KFDef file to your local directory to allow modifications
 
     ```
+    mkdir -p ${KF_DIR}
     cd ${KF_DIR}
     curl -L -o ${CONFIG_FILE} {{% config-uri-gcp-iap %}}
     ```
