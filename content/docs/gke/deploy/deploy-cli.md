@@ -197,7 +197,6 @@ using [yq](https://github.com/mikefarah/yq/releases):
 1. Run the `kfctl build` command to generate kustomize and GCP Deployment manager configuration files for your deployment:
 
     ```
-    mkdir -p ${KF_DIR}
     cd ${KF_DIR}
     kfctl build -V -f ${CONFIG_FILE}
     ```
