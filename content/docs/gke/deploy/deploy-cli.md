@@ -174,6 +174,7 @@ You can follow the instructions below to have greater control.
 1. Download the KFDef file to your local directory to allow modifications
 
     ```
+    mkdir -p ${KF_DIR}
     cd ${KF_DIR}
     curl -L -o ${CONFIG_FILE} {{% config-uri-gcp-iap %}}
     ```
@@ -196,7 +197,6 @@ using [yq](https://github.com/mikefarah/yq/releases):
 1. Run the `kfctl build` command to generate kustomize and GCP Deployment manager configuration files for your deployment:
 
     ```
-    mkdir -p ${KF_DIR}
     cd ${KF_DIR}
     kfctl build -V -f ${CONFIG_FILE}
     ```
