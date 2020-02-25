@@ -9,7 +9,7 @@ This guide is here to help you to deploy Kubeflow on vanilla kubernetes cluster
 ## Before you start
 
 1. Verify that Istio is supported in the current Kubernetes environment.
-You can do that by checking that following flags are set:
+You can do that by checking that following API server flags are set:
 
 ```bash
   --service-account-issuer
@@ -53,7 +53,7 @@ kfctl apply -V -f kfctl_k8s.yaml
 *Multi-tenant installation:*
 
 ```bash
-export KFAPP=kf-k8s
+export KFAPP=kf-dex
 mkdir -p ${KFAPP}
 cd ${KFAPP}
 wget -O kfctl_dex.yaml https://raw.githubusercontent.com/kubeflow/manifests/v1.0-branch/kfdef/kfctl_istio_dex.yaml
