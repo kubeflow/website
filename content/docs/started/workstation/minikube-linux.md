@@ -10,6 +10,7 @@ The following topics will be covered:
 
 - installation of docker-community edition (docker-ce), kubectl, and minikube
 - installation of Kubeflow
+- launch of Kubeflow central dashboard
 - compilation of a pipeline example
 - upload of compilated application to Pipeline UI
 - execution of the uploaded application
@@ -143,5 +144,96 @@ tensorboard-6544748d94-8ctk8                                   1/1     Running  
 tf-job-operator-7d7c8fb8bb-xz5pw                               1/1     Running     1          10m
 workflow-controller-945c84565-57c72                            1/1     Running     0          10m
 ``` 
+
+## Launch of Kubeflow central dashboard
+Kubeflow Dashboard can be accessed via istio-ingressgateway service. To see your setting of istio-ingressgateway service, execute the following:
+```
+export INGRESS_HOST=$(minikube ip)
+export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+```
+Then you can access Kubeflow dashboard in a web browser: 
+```
+http://<INGRESS_HOST>:<INGRESS_PORT>
+```
+
+## Compilation of a sample pipeline application
+This tutorial covers the required steps to compile a sample pipeline application. Full instruction to set up development environment can be found in the [offical Kubeflow site](https://www.kubeflow.org/docs/pipelines/sdk/install-sdk/).
+
+### Step 1: Set up Python environment
+Python 3.5 or later is required. 
+```
+apt-get update; apt-get install -y wget bzip2
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh 
+```
+Re-open your current shell.
+Create a Python 3.7 environment name of mlpipeline(or any name you preferred):
+```
+conda create --name mlpipeline python=3.7
+conda init
+conda activate mlpipeline 
+```
+
+### Step 2: Install the Kubeflow SDK
+```
+pip install https://storage.googleapis.com/ml-pipeline/release/latest/kfp.tar.gz --upgrade
+```
+
+### Step 3: Compile sample source (sequential.py)
+```
+cd /root/kubeflow
+git clone https://github.com/kubeflow/pipelines.git
+cd /root/kubeflow/pipelines/samples/core/sequential
+conda activate mlpipeline
+dsl-compile --py ./sequential.py --output ./sequential.tar.gz
+```
+For a successful compilateion, a file called `sequential.tar.gz` will be created in `/root/kubeflow/pipelines/samples/core/sequential` directory.
+
+
+## Upload of compilated application to Pipeline UI
+1. Launch [Kubeflow central dashboard](/docs/started/workstation/minikube-linux/#launch-of-kubeflow-central-dashboard) (see instruction above).
+   
+2. Under **Quick shortcuts**, click **Upload a pipeline**.
+   <img src="/docs/started/workstation/images/Kubeflow_frontpage.png"
+    alt="Launch Kubeflow central dashboard"
+    class="mt-3 mb-3 p-3 border border-info rounded">
+
+3. In **Pipelines GUI**, click **Upload pipeline**.
+    <img src="/docs/started/workstation/images/upload_front.png"
+    alt="Upload a pipeline application"
+    class="mt-3 mb-3 p-3 border border-info rounded">
+
+4. In **Upload Pipeline or Pipeline Version** GUI, select **Create a new pipeline** and **Uploaded a file**. Drag/choose the compiled pipeline application. Under **Pipeline Description**, enter a description you like. Click **Create** button.
+    <img src="/docs/started/workstation/images/choosefile.png"
+    alt="Upload a pipeline application"
+    class="mt-3 mb-3 p-3 border border-info rounded">
+ 
+
+## Execution of the uploaded application
+1.  To execute the uploaded application, click **Create run** button.
+   <img src="/docs/started/workstation/images/createRun.png"
+    alt="Create a run"
+    class="mt-3 mb-3 p-3 border border-info rounded">
+
+2. In the **Experiments** GUI, click **Start** button at the bottom. Optionally, you can associate the run with an experiment.
+   <img src="/docs/started/workstation/images/run_start.png"
+    alt="start a run"
+    class="mt-3 mb-3 p-3 border border-info rounded">
+
+3. To check the status of the run, click **Experiments** on the left, then the run name (Run of sequential(b1a3f) under **Default** experiment.    
+
+<img src="/docs/started/workstation/images/checkRun.png"
+    alt="check run status"
+    class="mt-3 mb-3 p-3 border border-info rounded">
+
+Expected output will be something like this. There should be 2 rectangles which corresponding to 2 containers/steps in the pipeline. The two green check signs mean the jobs are run successfully. You can check the logs under **Logs** tab.
+
+   <img src="/docs/started/workstation/images/run_result.png"
+    alt="check result of a pipeline application run"
+    class="mt-3 mb-3 p-3 border border-info rounded">
+
+ 
+
+
 
 
