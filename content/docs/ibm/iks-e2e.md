@@ -9,6 +9,10 @@ IBM Cloud Kubernetes Service (IKS) enables the deployment of containerized appli
 
 The [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started) can be used for creating, developing, and deploying cloud applications.
 
+Here's a list of IBM Cloud services you will use:
+* [IKS](iks)
+* [IBM Cloud Object Storage](ibm-cos)
+
 ### The model and the data
 
 This tutorial trains a [TensorFlow][tensorflow] model on the
@@ -38,12 +42,13 @@ In summary:
 
 * Setting up [Kubeflow](kubeflow) on [IKS](iks)
 * Training the model:
-  * Packaging a Tensorflow program in a [Docker](docker) container
+  * Packaging a Tensorflow program in a container
   * Submitting a Tensorflow training ([tf.train](tf-train)) job
 * Using the model for prediction (inference):
-  * Saving the trained model to your Docker Registry
+  * Saving the trained model to [IBM Cloud Object Storage](ibm-cos)
   * Using [Tensorflow Serving](tf-serving) to serve the model
   * Running the simple web app to send prediction request to the model and display the result
+
 It's time to get started!
 
 ## Run the MNIST Tutorial on IKS
@@ -61,10 +66,10 @@ It's time to get started!
 5. Follow the notebook to train and deploy MNIST on Kubeflow.
   
 
-[docker]: https://www.docker.com/
 [kubernetes]: https://kubernetes.io/
 [kubeflow]: https://www.kubeflow.org/
 [iks]: https://www.ibm.com/cloud/container-service/
+[ibm-cos]: https://www.ibm.com/cloud/object-storage
 [mnist-data]: http://yann.lecun.com/exdb/mnist/index.html
 [tensorflow]: https://www.tensorflow.org/
 [tf-train]: https://www.tensorflow.org/api_guides/python/train
