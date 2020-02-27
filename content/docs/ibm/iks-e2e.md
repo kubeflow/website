@@ -1,4 +1,8 @@
-+++ title = "End-to-end Kubeflow on IKS" description = "Running Kubeflow using IBM Cloud Kubernetes Service (IKS)" weight = 250 +++
++++
+title = "End-to-end Kubeflow on IKS"
+description = "Running Kubeflow using IBM Cloud Kubernetes Service (IKS)"
+weight = 250
++++
 
 This is a guide for an end-to-end example of Kubeflow on IBM Cloud Kubernetes Service (IKS). The core steps will be to take a Tensorflow model and modify it for distributed training, serve the resulting model with TFServing, and deploy a web-app that uses the trained model.
 
@@ -10,8 +14,8 @@ IBM Cloud Kubernetes Service (IKS) enables the deployment of containerized appli
 The [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started) can be used for creating, developing, and deploying cloud applications.
 
 Here's a list of IBM Cloud services you will use:
-* [IKS](iks)
-* [IBM Cloud Object Storage](ibm-cos)
+* [IKS][iks]
+* [IBM Cloud Object Storage][ibm-cos]
 
 ### The model and the data
 
@@ -40,13 +44,13 @@ is a 7.
 
 In summary:
 
-* Setting up [Kubeflow](kubeflow) on [IKS](iks)
+* Setting up [Kubeflow][kubeflow] on [IKS][iks]
 * Training the model:
   * Packaging a Tensorflow program in a container
-  * Submitting a Tensorflow training ([tf.train](tf-train)) job
+  * Submitting a Tensorflow training ([tf.train][tf-train]) job
 * Using the model for prediction (inference):
-  * Saving the trained model to [IBM Cloud Object Storage](ibm-cos)
-  * Using [Tensorflow Serving](tf-serving) to serve the model
+  * Saving the trained model to [IBM Cloud Object Storage][ibm-cos)]
+  * Using [Tensorflow Serving][tf-serving] to serve the model
   * Running the simple web app to send prediction request to the model and display the result
 
 It's time to get started!
@@ -55,6 +59,9 @@ It's time to get started!
 
 1. Follow the [IKS instructions](/docs/ibm/install-kubeflow) to deploy Kubeflow
 2. Launch a Jupyter notebook
+    * For IBM Cloud, the default NFS storage does not support some of the Python package installation. Therefore, we need to create the notebook with Don't use Persistent Storage for User's home.
+    * Due to the Notebook user permission issue, we need to use custom images that were working in the previous version.
+        * The tutorial has been tested on image: gcr.io/kubeflow-images-public/tensorflow-1.13.1-notebook-cpu:v0.5.0
 3. Launch a terminal in Jupyter and clone the Kubeflow examples repo.
    ```
    git clone https://github.com/kubeflow/examples.git git_kubeflow-examples
