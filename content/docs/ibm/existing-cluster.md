@@ -8,6 +8,6 @@ weight = 5
 
 Get the Kubeconfig file:
 
-	ibmcloud cs cluster-config $CLUSTER_NAME
+	ibmcloud cs cluster config $CLUSTER_NAME
 
 From here on, please see [Install Kubeflow](/docs/ibm/deploy/install-kubeflow).
