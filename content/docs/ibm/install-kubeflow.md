@@ -101,7 +101,7 @@ components, the recommended configuration for a cluster is:
 1.  Point `kubectl` to the cluster:
 
     ```
-    ibmcloud cs cluster-config $CLUSTER_NAME
+    ibmcloud cs cluster config $CLUSTER_NAME
     ```
 
     Follow the instructions on the screen to `EXPORT` the correct `KUBECONFIG`
