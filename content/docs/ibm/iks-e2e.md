@@ -42,6 +42,12 @@ is a 7.
 
 ### The overall workflow
 
+The following diagram shows what you accomplish by following this guide:
+
+<img src="/docs/images/ibm-e2e-kubeflow.png" 
+  alt="ML workflow for training and serving an MNIST model"
+  class="mt-3 mb-3 border border-info rounded">
+
 In summary:
 
 * Setting up [Kubeflow][kubeflow] on [IKS][iks]
