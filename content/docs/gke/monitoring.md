@@ -131,7 +131,7 @@ See for more [detail](https://cloud.google.com/monitoring/kubernetes-engine/prom
 ## Prometheus
 
 ### Kubeflow Prometheus component
-Kubeflow provides a Prometheus [component](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/gcp/prometheus.libsonnet).
+Kubeflow provides a Prometheus [component](https://github.com/kubeflow/manifests/tree/master/gcp/prometheus).
 To deploy the Prometheus component:
 
 ```
@@ -140,13 +140,13 @@ ks apply YOUR_ENV -c prom
 ```
 
 The prometheus server will scrape the services with annotation `prometheus.io/scrape=true`.
-See for more [detail](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/gcp/prometheus.yml#L75) 
-and an [example](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/gcp/metric-collector.libsonnet#L83).
+See for more [detail](https://github.com/kubeflow/manifests/blob/master/gcp/prometheus/base/prometheus.yaml#L72) 
+and an [example](https://github.com/kubeflow/kubeflow/blob/master/metric-collector/service-readiness/kubeflow-readiness.py).
 
 #### Export metrics to Stackdriver
 The Prometheus server will export metrics to Stackdriver, as
-[configured](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/gcp/prometheus.yml#L127).
-We are using an [image](https://github.com/kubeflow/kubeflow/blob/master/kubeflow/gcp/prometheus.libsonnet#L170)
+[configured](https://github.com/kubeflow/manifests/blob/master/gcp/prometheus/base/prometheus.yaml#L128).
+We are using an [image](https://github.com/kubeflow/manifests/blob/master/gcp/prometheus/base/prometheus.yaml#L253)
 provided by Stackdriver. See Stackdriver [doc](https://cloud.google.com/monitoring/kubernetes-engine/prometheus)
 for more detail, but you don't need to change anything here.
 
