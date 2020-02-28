@@ -174,8 +174,9 @@ You can follow the instructions below to have greater control.
 1. Download the KFDef file to your local directory to allow modifications
 
     ```
+    mkdir -p ${KF_DIR}
     cd ${KF_DIR}
-    curl -L -O ${CONFIG_FILE} {{% config-uri-gcp-iap %}}
+    curl -L -o ${CONFIG_FILE} {{% config-uri-gcp-iap %}}
     ```
 
     * **CONFIG_FILE** should be the name you would like to use for your local config file; e.g. "kfdef.yaml"
@@ -184,9 +185,9 @@ You can follow the instructions below to have greater control.
 using [yq](https://github.com/mikefarah/yq/releases):
 
     ```
-    yq w -i ${CONFIG_FILE} spec.plugins[0].spec.project ${PROJECT}
-    yq w -i ${CONFIG_FILE} spec.plugins[0].spec.zone ${ZONE}
-    yq w -i ${CONFIG_FILE} metadata.name ${KF_NAME}
+    yq w -i ${CONFIG_FILE} 'spec.plugins[0].spec.project' ${PROJECT}
+    yq w -i ${CONFIG_FILE} 'spec.plugins[0].spec.zone' ${ZONE}
+    yq w -i ${CONFIG_FILE} 'metadata.name' ${KF_NAME}
     ```
 
    * **PROJECT:** The GCP project to deploy in
@@ -196,9 +197,8 @@ using [yq](https://github.com/mikefarah/yq/releases):
 1. Run the `kfctl build` command to generate kustomize and GCP Deployment manager configuration files for your deployment:
 
     ```
-    mkdir -p ${KF_DIR}
     cd ${KF_DIR}
-    kfctl build -V -f ${CONFIG_URI}
+    kfctl build -V -f ${CONFIG_FILE}
     ```
 
 1. To customize your GKE cluster modify the deployment manager configuration files
@@ -272,7 +272,7 @@ Follow these steps to access the Kubeflow central dashboard:
     ```
 
 1. Follow the instructions on the UI to create a namespace. See the guide to 
-  [creation of profiles](/docs/other-guides/multi-user-overview/#automatic-creation-of-profiles).
+  [creation of profiles](/docs/components/multi-tenancy/getting-started/#automatic-creation-of-profiles).
 
 Notes:
 
@@ -335,9 +335,9 @@ The following snippet shows you how to set values in the configuration file
 using [yq](https://github.com/mikefarah/yq/releases):
 
 ```
-yq w -i ${CONFIG_FILE} spec.plugins[0].spec.project ${PROJECT}
-yq w -i ${CONFIG_FILE} spec.plugins[0].spec.zone ${ZONE}
-yq w -i ${CONFIG_FILE} metadata.name ${KF_NAME}
+yq w -i ${CONFIG_FILE} 'spec.plugins[0].spec.project' ${PROJECT}
+yq w -i ${CONFIG_FILE} 'spec.plugins[0].spec.zone' ${ZONE}
+yq w -i ${CONFIG_FILE} 'metadata.name' ${KF_NAME}
 ```
 
 ### Application layout
@@ -420,8 +420,8 @@ If you still want to use basic auth follow these instructions.
 
 * Run a full ML workflow on Kubeflow, using the
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
-  [GitHub issue summarization 
-  example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
+  [GitHub issue summarization Pipelines
+  example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization/pipelines).
 * See how to [delete](/docs/gke/deploy/delete-cli/) your Kubeflow deployment 
   using the CLI.
 * See how to [customize](/docs/gke/customizing-gke/) your Kubeflow 

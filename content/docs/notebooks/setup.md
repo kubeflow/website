@@ -59,7 +59,7 @@ central dashboard](/docs/components/central-dash/overview/).
 1. Select a namespace:
    * Click the namespace dropdown to see the list of available namespaces.
    * Choose the namespace that corresponds to your Kubeflow profile. (See
-     the page on [multi-user isolation](/docs/other-guides/multi-user-overview/) 
+     the page on [multi-user isolation](/docs/components/multi-tenancy/) 
      for more information about namespaces.)
 
     <img src="/docs/images/notebooks-namespace.png" 
@@ -306,7 +306,7 @@ exposed to the internet and is an unsecured endpoint by default.
   SDK](/docs/pipelines/sdk/sdk-overview/).
 * Explore [Kubeflow Fairing](/docs/fairing/) for a complete solution to 
   building, training, and deploying an ML model from a notebook.
-* See how to configure [multi-user isolation](/docs/other-guides/multi-user-overview/) in Kubeflow, to separate the notebooks for each user in a shared Kubeflow deployment.
+* See how to configure [multi-user isolation](/docs/components/multi-tenancy/) in Kubeflow, to separate the notebooks for each user in a shared Kubeflow deployment.
 * Learn the advanced features available from a Kubeflow notebook, such as
   [submitting Kubernetes resources](/docs/notebooks/submit-kubernetes/) or
   [building Docker images](/docs/notebooks/submit-docker-image/). 

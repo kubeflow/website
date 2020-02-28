@@ -96,52 +96,39 @@ Notes:
 
 ## Set up your Kubeflow configuration
 
-Run kfctl to build your configuration files, so that you can edit the
+Download your configuration files, so that you can customize the
 configuration before deploying Kubeflow:
-
-1. Run the `kfctl build` command to set up your configuration:
 
   ```
   mkdir -p ${KF_DIR}
   cd ${KF_DIR}
-  kfctl build -V -f ${CONFIG_URI}
-  ```
 
-1. Set an environment variable pointing to your local configuration file:
-
+  wget -O kfctl_aws.yaml $CONFIG_URI
+  export CONFIG_FILE=${KF_DIR}/kfctl_aws.yaml
   ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-aws-standard %}}
-  ```
-
-    Or:
-
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-aws-cognito %}}
-  ```
-
-## Customize your configuration
+## Configure Kubeflow
 
 1. Replace the AWS cluster name in your `${CONFIG_FILE}` file, by changing
   the value `kubeflow-aws` to `${AWS_CLUSTER_NAME}` in multiple locations in
   the file. For example, use this `sed` command:
 
-  ```
-  sed -i'.bak' -e 's/kubeflow-aws/'"$AWS_CLUSTER_NAME"'/' ${CONFIG_FILE}
-  ```
+    ```
+    sed -i'.bak' -e 's/kubeflow-aws/'"$AWS_CLUSTER_NAME"'/' ${CONFIG_FILE}
+    ```
 
 1. Retrieve the AWS Region and IAM role name for your worker nodes.
   To get the IAM role name for your Amazon EKS worker node, run the following
   command:
 
-  ```
-  aws iam list-roles \
-      | jq -r ".Roles[] \
-      | select(.RoleName \
-      | startswith(\"eksctl-$AWS_CLUSTER_NAME\") and contains(\"NodeInstanceRole\")) \
-      .RoleName"
+    ```
+    aws iam list-roles \
+        | jq -r ".Roles[] \
+        | select(.RoleName \
+        | startswith(\"eksctl-$AWS_CLUSTER_NAME\") and contains(\"NodeInstanceRole\")) \
+        .RoleName"
 
-  eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
-  ```
+    eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
+    ```
 
     Note: The above command assumes that you used `eksctl` to create your
     cluster. If you use other provisioning tools to create your worker node
@@ -151,11 +138,12 @@ configuration before deploying Kubeflow:
 1. Change cluster region and worker role names in your `${CONFIG_FILE}` file:
 
   ```
-    region: us-west-2
-    roles:
-      - eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
+  region: us-west-2
+  roles:
+  - eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
   ```
-    If you have multiple node groups, you will see corresponding number of node group roles. In that case, please provide the role names as an array.
+
+  If you have multiple node groups, you will see corresponding number of node group roles. In that case, please provide the role names as an array.
 
 ## Deploy Kubeflow
 
@@ -163,13 +151,12 @@ configuration before deploying Kubeflow:
 
     ```
     cd ${KF_DIR}
-    rm -rf kustomize/  # Remove kustomize folder and regenerate files after customization
     kfctl apply -V -f ${CONFIG_FILE}
     ```
 
     *Important!!!* By default, these scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
 
-    To secure your installation, Follow the [instructions](/docs/aws/authentication) to add authentication.
+    To secure your installation, Follow the [instructions](/docs/aws/authentication) to add authentication and authorization.
 
 
 1. Wait for all the resources to become ready in the `kubeflow` namespace.
@@ -186,11 +173,13 @@ configuration before deploying Kubeflow:
     istio-system   istio-ingress   *       a743484b-istiosystem-istio-2af2-xxxxxx.us-west-2.elb.amazonaws.com   80      1h
     ```
 
-    This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser. You can also run `kubectl delete istio-ingress -n istio-system` to remove the load balancer entirely.
+    This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser. You can also run `kubectl delete ingress istio-ingress -n istio-system` to remove the load balancer entirely.
 
 ## Post Installation
 
-Kubeflow 0.6 release brings multi-tenancy support and user are not able to create notebooks in `kubeflow`, `default` namespace. Instead, please create a `Profile` using `kubectl apply -f profile.yaml` and profile controller will create new namespace and service account which is allowed to create notebook in that namespace.
+Kubeflow provides multi-tenancy support and user are not able to create notebooks in `kubeflow`, `default` namespace.
+
+The first time you visit the cluster, you can ceate a namespace `anonymous` to use. If you want to create different users, you can create `Profile` and then `kubectl apply -f profile.yaml`. Profile controller will create new namespace and service account which is allowed to create notebook in that namespace.
 
 ```yaml
 apiVersion: kubeflow.org/v1beta1
@@ -202,6 +191,8 @@ spec:
     kind: User
     name: aws-sample-user
 ```
+
+Check [Multi-Tenancy in Kubeflow](/docs/components/multi-tenancy) for more details.
 
 ## Understanding the deployment process
 

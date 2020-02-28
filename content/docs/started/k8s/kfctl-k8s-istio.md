@@ -6,12 +6,17 @@ weight = 2
 
 This configuration creates a vanilla deployment of Kubeflow with all its core components without any external dependencies. The deployment can be customized based on your environment needs.
 
-**Maintainer and supporter: Kubeflow community**
-
 ## Before you start
 
 This Kubeflow deployment requires a default StorageClass with a [dynamic volume provisioner](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/). Verify the `provisioner` field of your default StorageClass definition.
 If you don't have a provisioner, ensure that you have configured volume provisioning in your Kubernetes cluster appropriately as mentioned [below](#provisioning-of-persistent-volumes-in-kubernetes).
+
+Configuring your installation with {{% config-file-k8s-istio %}} has an option you should consider:
+
+* **Disabling istio installation** - If your Kubernetes cluster
+  has an existing Istio installation you may choose to not install Istio by removing
+  the applications `istio-crds` and `istio-install` in the configuration file
+  {{% config-file-k8s-istio %}}
 
 <a id="prepare-environment"></a>
 ## Prepare your environment

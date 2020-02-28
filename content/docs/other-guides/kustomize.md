@@ -153,7 +153,7 @@ Below are some examples of configuration files:
 
 * [kfctl_k8s_istio.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_k8s_istio.yaml) 
   to install Kubeflow on an existing Kubernetes cluster.
-* [kfctl_existing_arrikto.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_existing_arrikto.yaml) 
+* [kfctl_istio_dex.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_istio_dex.yaml)
   to install Kubeflow on an existing Kubernetes cluster with Dex and Istio for
   authentication.
 * [kfctl_gcp_iap.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_gcp_iap.yaml)

@@ -11,7 +11,7 @@ toc = true
 and automate the development, operation, and scaling of code (written in 8 supported languages).
 Nuclio is focused on data analytics and ML workloads, it provides extreme performance and parallelism, supports stateful and data intensive 
 workloads, GPU resource optimization, check-pointing, and 14 native triggers/streaming protocols out of the box including HTTP, Cron, batch, Kafka, Kinesis, 
-Google pub/sub, Azure event-hub, MQTT, etc. additional triggers can be added dynamically (e.g. [Twitter feed](https://github.com/v3io/tutorials/blob/master/demos/stocks/read-tweets.ipynb)).
+Google pub/sub, Azure event-hub, MQTT, etc. additional triggers can be added dynamically (e.g. [Twitter feed](https://github.com/v3io/tutorials/blob/master/demos/stocks/04-read-tweets.ipynb)).
   
 nuclio can run in the cloud as a [managed offering](https://www.iguazio.com/), or on any Kubernetes cluster (cloud, on-prem, or edge)<br>
 [read more about nuclio ...](https://github.com/nuclio/nuclio)
@@ -190,8 +190,8 @@ Notebook, e.g. we can create `Go` functions if we need performance/concurrency f
 
 Some useful function example Notebooks:
 
-- [TensorFlow Serving function](https://github.com/v3io/tutorials/blob/master/demos/image-classification/02-infer.ipynb)
-- [Predictive Infrastructure Monitoring (Scikit Learn)](https://github.com/v3io/tutorials/blob/master/demos/netops/04-infer.ipynb)
+- [Analyze Real-Time Data Using Spark Streaming, SQL, and ML](https://github.com/v3io/tutorials/blob/master/demos/stocks/02-explore.ipynb)
+- [Real-Time Location-Based Recommendations](https://github.com/v3io/tutorials/blob/master/demos/location-based-recommendations/01-generate-stores-and-customers.ipynb)
 - [Twitter Feed NLP](https://github.com/v3io/tutorials/blob/master/demos/stocks/04-read-tweets.ipynb)
 - [Real-time Stock data reader](https://github.com/v3io/tutorials/blob/master/demos/stocks/03-read-stocks.ipynb)
 

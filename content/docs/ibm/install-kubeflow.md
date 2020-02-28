@@ -34,7 +34,7 @@ environment variables.
 1.  Set `CLUSTER_NAME`, `CLUSTER_REGION`, and `CLUSTER_ZONE` variables:
 
     ```
-    export CLUSTER_NAME=knative
+    export CLUSTER_NAME=Kubeflow
     export CLUSTER_REGION=us-south
     export CLUSTER_ZONE=dal13
     ```
@@ -46,7 +46,7 @@ environment variables.
       [IBM Cloud documentation](https://console.bluemix.net/docs/containers/cs_regions.html#regions-and-zones)
       or via `ibmcloud cs regions`.
     - `CLUSTER_ZONE` can be any zone that is available in the specified region
-      above. You can get a list of all avaible locations from the
+      above. You can get a list of all available locations from the
       [IBM Cloud documentation](https://console.bluemix.net/docs/containers/cs_regions.html#zones)
       or by using `ibmcloud cs zones` after you set the region by using
       `ibmcloud cs region-set $CLUSTER_REGION`.
@@ -101,7 +101,7 @@ components, the recommended configuration for a cluster is:
 1.  Point `kubectl` to the cluster:
 
     ```
-    ibmcloud cs cluster-config $CLUSTER_NAME
+    ibmcloud cs cluster config $CLUSTER_NAME
     ```
 
     Follow the instructions on the screen to `EXPORT` the correct `KUBECONFIG`
@@ -151,7 +151,7 @@ Run the following commands to set up and deploy Kubeflow.
 
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 
-  page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
+  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
 
 1. Unpack the tar ball
       ```

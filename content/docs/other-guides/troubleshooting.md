@@ -7,6 +7,21 @@ weight = 100
 This page presents some hints for troubleshooting specific problems that you
 may encounter.
 
+## macOS: kfctl cannot be opened because the developer cannot be verified
+
+The kfctl binary is currently not signed. That is, kfctl is not registered
+with Apple. When you run kfctl from the command
+line on the latest versions of macOS, you may see a message like this:
+
+> **"kfctl" cannot be opened because the developer cannot be verified.** macOS
+cannot verify that this app is free from malware.
+
+To run kfctl, go to the kfctl binary file in *Finder*, right-click, then select
+**Open**. Then click **Open** again to confirm that you want to open the app.
+
+For more information, see the [macOS user 
+guide](https://support.apple.com/en-au/guide/mac-help/mh40616/10.15/mac/10.15).
+
 ## TensorFlow and AVX
 There are some instances where you may encounter a TensorFlow-related Python installation or a pod launch issue that results in a SIGILL (illegal instruction core dump). Kubeflow uses the pre-built binaries from the TensorFlow project which, beginning with version 1.6, are compiled to make use of the [AVX](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) CPU instruction. This is a recent feature and your CPU might not support it. Check the host environment for your node to determine whether it has this support.
 
@@ -28,35 +43,6 @@ In that case, please choose another region, or change the config to other
 [platform](https://en.wikipedia.org/wiki/List_of_Intel_CPU_microarchitectures)
 newer than Haswell.
 
-## Minikube
-
-On [Minikube](https://github.com/kubernetes/minikube) the Virtualbox/VMware drivers for Minikube are recommended as there is a known
-issue between the KVM/KVM2 driver and TensorFlow Serving. The issue is tracked in [kubernetes/minikube#2377](https://github.com/kubernetes/minikube/issues/2377).
-
-We recommend increasing the amount of resources Minikube allocates:
-
-```
-minikube start --cpus 4 --memory 8096 --disk-size=40g
-```
-
-  * Minikube by default allocates 2048Mb of RAM for its VM which is not enough
-    for JupyterHub.
-  * The larger disk is needed to accommodate Kubeflow's Jupyter images which
-    are 10s of GBs due to all the extra Python libraries we include.
-
-If you just installed Minikube following instructions from the [quick start guide](https://kubernetes.io/docs/getting-started-guides/minikube/#installation), you most likely
-created a VM with the default resources. You would want to recreate your Minikube with the appropriate resource settings:
-```
-minikube stop
-minikube delete
-minikube start --cpus 4 --memory 8096 --disk-size=40g
-```
-
-You might encounter a jupyter-xxxx pod in Pending status, described with the following warning message:
-```
-Warning  FailedScheduling  8s (x22 over 5m)  default-scheduler  0/1 nodes are available: 1 Insufficient memory.
-```
-  * Then try recreating your Minikube cluster (and re-apply Kubeflow using kustomize) with more resources (as your environment allows):
 
 ## RBAC clusters
 

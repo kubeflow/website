@@ -34,7 +34,7 @@ metadata:
   # AWS_CLUSTER_NAME and AWS_REGION will override `name` and `region` here.
   name: kubeflow-example
   region: us-west-2
-  version: '1.13'
+  version: '1.14'
 # If your region has multiple availability zones, you can specify 3 of them.
 #availabilityZones: ["us-west-2b", "us-west-2c", "us-west-2d"]
 
@@ -77,11 +77,14 @@ nodeGroups:
 
 ```
 
+### Customize Authentication
+Please see [this section](/docs/aws/authentication)
+
+### Customize IAM Role for Pods
+Please see [this section](/docs/aws/iam-for-sa)
+
 ### Customize Private Access
 Please see [this section](/docs/aws/private-access)
 
 ### Customize Logging
 Please see [this section](/docs/aws/logging)
-
-### Customize Authentication
-Please see [this section](/docs/aws/authentication)
