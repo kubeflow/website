@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ .Site.Language.Lang }}" class="no-js">
+<html lang="{{ .Site.Language.Lang }}" class="no-js {{ if .IsHome }}smooth-scroll{{ end }}">
   <head>
     {{ partial "head.html" . }}
   </head>
