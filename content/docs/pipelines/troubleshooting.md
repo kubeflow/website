@@ -22,13 +22,15 @@ Use this command to help resolve issues like:
 
 To use the `kfp diagnose_me` CLI:
 
-1.  [Install the Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/)
+1.  Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
 1.  Follow the [guide to configuring access to Kubernetes clusters][kubeconfig],
     to update your kubeconfig with appropriate credentials and endpoint
     information to access your Kubeflow cluster.
     If your Kubeflow Pipelines cluster is hosted on a cloud provider like
     Google Cloud, use your cloud provider's instructions for configuring
     access to your Kubernetes cluster. 
+1.  Run the following command `kfp diagnose_me`.
+1.  Analyze the results to troubleshoot your environment.
 
 [kubeconfig]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/
 
