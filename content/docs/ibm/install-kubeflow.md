@@ -160,8 +160,8 @@ get the best experience from Kubeflow.
 
 1. Set the Block Storage as the default storageclass.
     ```shell
-    kubectl patch storageclass ibmc-file-bronze -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
     kubectl patch storageclass ibmc-block-gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+    kubectl patch storageclass ibmc-file-bronze -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
     
     # Check the default storageclass is block storage
     kubectl get storageclass | grep \(default\)
