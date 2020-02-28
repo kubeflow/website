@@ -117,10 +117,10 @@ components, the recommended configuration for a cluster is:
     Make sure all the nodes are in `Ready` state. You are now ready to install
     Istio into your cluster.
     
-## Setup IBM Cloud Block Storage
-[IBM Cloud Block Storage](https://www.ibm.com/cloud/block-storage) provides fast way to store data and
-satisfy many of the Kubeflow persistent volume requirement such as `fsGroup` out of the box. Therefore,
-we strongly recommend to setup IBM Cloud Block Storage as the default storageclass so that you can
+## IBM Cloud Block Storage Setup
+[IBM Cloud Block Storage](https://www.ibm.com/cloud/block-storage) provides a fast way to store data and
+satisfy many of the Kubeflow persistent volume requirements such as `fsGroup` out of the box. Therefore,
+we strongly recommend to set up IBM Cloud Block Storage as the default storageclass so that you can
 get the best experience from Kubeflow.
 
 1. [Follow the instructions](https://helm.sh/docs/intro/install/) to install the Helm version 3 client on your local machine.
