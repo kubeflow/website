@@ -48,11 +48,20 @@ Use the following steps to install Kubeflow 0.7 on OpenShift 4.2.
 
 1. Build the deployment configuration using the OpenShift KFDef file and local downloaded manifests.
 
-    > At the time this document was written, [Kubeflow issue #4678](https://github.com/kubeflow/kubeflow/issues/4678) prevents downloading the manifests during a build process.
+    > At the time this document was written, [Kubeflow issue #4678](https://github.com/kubeflow/kubeflow/issues/4678) prevents downloading the manifests during a build process. Update the manifest repo URI. Copy the KFDef file to the Kubeflow application directory. And finally build the configuration.
 
     ```
+    # update the manifest repo URI
     sed -i 's#uri: .*#uri: '$PWD'#' ./kfdef/kfctl_openshift.yaml
-    kfctl build --file=kfdef/kfctl_openshift.yaml
+
+    # set the Kubeflow application diretory for this deployment, for example /opt/openshift-kfdef
+    export KF_DIR=<path-to-kfdef>
+    mkdir -p ${KF_DIR}
+    cp ./kfdef/kfctl_openshift.yaml ${KF_DIR}
+    
+    # build deployment configuration
+    cd ${KF_DIR}
+    kfctl build --file=kfctl_openshift.yaml
     ```
 
 1. Apply the generated deployment configuration.
