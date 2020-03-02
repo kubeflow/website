@@ -86,34 +86,38 @@ central dashboard](/docs/components/central-dash/overview/).
   ensures that the new notebook server is in a namespace that you can access.
 
 1. <a id="docker-image"></a> Select a Docker **image** for the baseline 
-  deployment of your notebook server. You can choose from a range of *standard* 
-  images or specify a *custom* image:
+  deployment of your notebook server. You can specify a custom image or
+  choose from a range of standard images:
 
-  * **Standard**: The standard Docker images include typical machine learning 
+  * **Custom image**: If you select the custom option, you must specify a Docker
+    image in  the form `registry/image:tag`. For guidelines on creating a Docker
+    image for your notebook, see the guide to 
+    [creating a custom Jupyter image](/docs/notebooks/custom-notebook/).
+
+  * **Standard image**: Click the **Image** dropdown menu to see the list of
+    available images. The standard Docker images include typical machine learning 
     (ML) packages that you can use within your Jupyter notebooks on 
-    this notebook server. Select an image from the **Image** dropdown menu.
+    this notebook server. Click one of the images to select it.
+    
     The image names indicate the following choices:
 
-      * A TensorFlow version (for example, `tensorflow-1.13.1`). Kubeflow offers
-        a CPU and a GPU image for each minor version of TensorFlow.
+      * A TensorFlow version (for example, `tensorflow-1.15.2`).
       * `cpu` or `gpu`, depending on whether you want to train your model on a CPU 
         or a GPU. 
         
           * If you choose a GPU image, make sure that you have GPUs 
             available in your Kubeflow cluster. Run the following command to check 
             if there are any GPUs available:
-            `kubectl get nodes "-o=custom-columns=NAME:.metadata.name,GPU:.status.allocatable.nvidia\.com/gpu"`
+            ```
+            kubectl get nodes "-o=custom-columns=NAME:.metadata.name,GPU:.status.allocatable.nvidia\.com/gpu"
+            ```
           * If you have GPUs available, you can schedule your server on a GPU node 
-            in the **Extra Resources** section at the bottom of the form. For 
-            example, to reserve two GPUs, enter the following JSON code: 
-          `{"nvidia.com/gpu": 2}`
-      * Kubeflow version (for example, `v0.5.0`).
-    
+            in the **GPUs** section at the bottom of the form.
+      * Kubeflow version (for example, `1.0.0`).
 
-  * **Custom**: If you select the custom option, you must specify a Docker image 
-    in  the form `registry/image:tag`. For guidelines on creating a Docker
-    image for your notebook, see the guide to 
-    [creating a custom Jupyter image](/docs/notebooks/custom-notebook/).
+    *Hint:* If you're not sure which image you need, choose a *standard* image
+    running TensorFlow on a CPU. You need a TensorFlow image to run the example 
+    code in the [experiment section](#experiment) below.
 
 1. Specify the total amount of **CPU** that your notebook server should reserve. 
   The default is `0.5`. For CPU-intensive jobs, you can choose more than one CPU 
@@ -169,31 +173,17 @@ central dashboard](/docs/components/central-dash/overview/).
     For indepth information on PodDefault usage, see the [admission-webhook
     README](https://github.com/kubeflow/kubeflow/blob/master/components/admission-webhook/README.md).
 
+1. *(Optional)* Schedule one or more **GPUs** for your notebook server, as 
+   discussed in the section on [specifying your Docker image](#docker-image).
+
+    You can find more details about scheduling GPUs in the [Kubernetes 
+    documentation](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
+
 1. *(Optional)* Change the setting for **enable shared memory**. The default is
   that shared memory is enabled. Some libraries like PyTorch use shared memory
   for multiprocessing. Currently there is no implementation in Kubernetes to 
   activate shared memory. As a workaround, Kubeflow creates an empty directory 
-  at `/dev/shm`. 
-
-1. *(Optional)* Specify one or more **extra resources** as a JSON string. The
-   JSON string must specify the value for one or more of the
-   `spec.containers[].resources.limits` options described in the [Kubernetes 
-   documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container).
-
-    In addition to the `spec.containers[].resources.limits` options shown in the
-    above Kubernetes document, you can also use the **Extra Resources** section
-    to schedule GPUs for your notebook server, as discussed earlier in the
-    section on [specifying your Docker image](#docker-image).
-    
-    For example, you can reserve two GPUs by entering the following JSON code in 
-    the **Extra Resources** section:
-
-    ```
-    {"nvidia.com/gpu": 2}
-    ```
-
-    You can find more details about scheduling GPUs in the [Kubernetes 
-    documentation](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).
+  at `/dev/shm`.
 
 1. Click **LAUNCH**. You should see an entry for your new
   notebook server on the **Notebook Servers** page, with a spinning indicator in 
@@ -244,16 +234,21 @@ central dashboard](/docs/components/central-dash/overview/).
   create an empty notebook. You can read about using notebooks in the
   [Jupyter documentation](https://jupyter-notebook.readthedocs.io/en/latest/notebook.html#notebook-user-interface).
 
+<a id="experiment"></a>
 ## Experiment with your notebook
 
-The default notebook image includes all the plugins that you need to train a 
+The standard notebook images include all the plugins that you need to train a 
 TensorFlow model with Jupyter, including
 [Tensorboard](https://www.tensorflow.org/get_started/summaries_and_tensorboard) 
 for rich visualizations and insights into your model.
 
-To test your Jupyter installation, you can run a basic 'hello world' program
+To test your Jupyter installation, run the following basic 'hello world' program
 (adapted from
 [mnist_softmax.py](https://github.com/tensorflow/tensorflow/blob/r1.4/tensorflow/examples/tutorials/mnist/mnist_softmax.py)) as follows:
+
+1. When adding the notebook server, make sure that the base image for your 
+  notebook server includes TensorFlow. To ensure this, you can select one of the
+  standard images from the **Image** dropdown menu.
 
 1. Use the Jupyter dashboard to create a new **Python 3** notebook.
 
