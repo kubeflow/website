@@ -12,7 +12,7 @@ may encounter.
 For help diagnosing environment issues that affect Kubeflow Pipelines, run
 the [`kfp diagnose_me` command-line tool](/docs/pipelines/sdk/sdk-overview/#kfp-cli-tool).
 
-The `kfp diagnose_me` CLI can report on the configuration of your local
+The `kfp diagnose_me` CLI reports on the configuration of your local
 development environment, Kubernetes cluster, or Google Cloud environment.
 Use this command to help resolve issues like:
 
