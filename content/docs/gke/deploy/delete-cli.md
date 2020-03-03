@@ -26,12 +26,6 @@ This guide assumes the following settings:
   export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-iap %}}
   ```
 
-    Or:
-
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-basic-auth %}}
-  ```
-
 For further background about the above settings, see the guide to
 [deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
 

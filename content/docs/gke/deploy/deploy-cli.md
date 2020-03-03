@@ -122,11 +122,12 @@ Notes:
   type you want. See the guide to 
   [customizing your Kubeflow deployment](/docs/gke/customizing-gke/#gpu-config).
 * **${CONFIG_URI}** - The GitHub address of the configuration YAML file that
-  you want to use to deploy Kubeflow. For GCP deployments, the following
-  configurations are available:
+  you want to use to deploy Kubeflow. For GCP deployments, the recommended
+  configuration is:
 
-  * `{{% config-uri-gcp-iap %}}` 
-  * `{{% config-uri-gcp-basic-auth %}}`
+  ```
+  {{% config-uri-gcp-iap %}}
+  ```
 
     When you run `kfctl apply` or `kfctl build` (see the next step), kfctl creates
     a local version of the configuration YAML file which you can further
@@ -350,8 +351,7 @@ directories:
 
   * This file is a copy of the GitHub-based configuration YAML file that
     you used when deploying Kubeflow: 
-      * either `{{% config-uri-gcp-iap %}}`
-      * or `{{% config-uri-gcp-basic-auth %}}`.
+    [kfctl_gcp_iap.v1.0.0.yaml]({{% config-uri-gcp-iap %}}).
   * When you run `kfctl apply` or `kfctl build`, kfctl creates
     a local version of the configuration file, **${CONFIG_FILE}**,
     which you can further customize if necessary.
@@ -392,29 +392,12 @@ The service accounts are:
   account has the minimal permissions needed to send metrics and logs to 
   [Stackdriver](https://cloud.google.com/stackdriver/).
 
-## Basic Auth (Deprecated)
+## Basic authentication (deprecated)
 
-{{% alert title="No Longer Supported" color="warning" %}}
-Basic auth is not supported in Kubeflow V1 and will be removed entirely in the
+{{% alert title="No longer supported" color="warning" %}}
+Basic authentication is not supported in Kubeflow v1.0.0 and will be removed entirely in the
 next version. We highly recommend switching to deploying Kubeflow with IAP.
 {{% /alert %}}
-
-If you still want to use basic auth follow these instructions.
-
-1. Pick a KFDef for basic auth
-
-    ```    
-    export CONFIG_URI="{{% config-uri-gcp-basic-auth %}}"
-    ```
-
-1. Set environment variables containing username and password
-
-    ```
-    export KUBEFLOW_USERNAME=<your username>
-    export KUBEFLOW_PASSWORD=<your password>
-    ```
-
-1. Follow the instructions above to run `kfctl apply` to deploy Kubeflow.
 
 ## Next steps
 

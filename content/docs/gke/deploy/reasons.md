@@ -19,12 +19,6 @@ Running Kubeflow on GCP brings you the following features:
   * [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/) 
     makes it easy to securely connect to Jupyter and other
     web apps running as part of Kubeflow.
-  * Kubeflow's basic authentication service supports simple username/password
-    access to your Kubeflow resources. Basic auth is an alternative to Cloud
-    IAP:
-    * We recommend Cloud IAP for production and enterprise workloads.
-    * Consider basic auth only when you want to test Kubeflow and use it 
-      without sensitive data.
   * [Stackdriver](https://cloud.google.com/logging/docs/) provides 
     persistent logs to aid in debugging and troubleshooting.
   * You can use GPUs and [Cloud TPU](https://cloud.google.com/tpu/) to 

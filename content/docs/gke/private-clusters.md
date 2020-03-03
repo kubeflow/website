@@ -299,7 +299,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 
     ```
     cd ${KF_DIR}/kustomize
-    gvim basic-auth-ingress.yaml  # Or iap-ingress.yaml if you are using IAP
+    gvim iap-ingress.yaml
     ```
 
       * Find and set the `privateGKECluster` parameter to true:
@@ -311,7 +311,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
       * Then apply your changes:
 
         ```
-        kubectl apply -f basic-auth-ingress.yaml
+        kubectl apply -f iap-ingress.yaml
         ```
 
 1. Obtain an HTTPS certificate for your ${FQDN} and create a Kubernetes secret with it. 
@@ -327,7 +327,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 
             ```
             cd ${KF_DIR}/kustomize
-            grep hostname: basic-auth-ingress.yaml
+            grep hostname: iap-ingress.yaml
             ```
 
         * Then create your Kubernetes secret
