@@ -147,14 +147,21 @@ viewers later on the page.
           which case the Kubeflow Pipelines UI concatenates the data from the 
           matching source files.</p>
           
-          <p>For some viewers, this field can contain inlined string 
-          data instead of a path.</p>
+          <p><code>source</code> can also contain inlined string data instead of
+          a path when <code>storage='inline'</code>.</p>
           </td>
       </tr>
       <tr>
         <td><code>storage</code></td>
-        <td>Applies only to outputs of type <code>markdown</code>. See 
-        <a href="#type-markdown">below</a>.</td>
+        <td><p>Optional. When <code>storage</code> is 'inline', value of
+        <code>source</code> is parsed as inline data instead of a path. Applies
+        to all types of outputs except <code>tensorboard</code>. See 
+        <a href="#markdown">markdown type</a> or <a href="#web-app">webapp type</a>
+        below as examples.</p>
+        <p><b>Be aware</b>, support for inline visualization other than markdown
+        was introduced in KFP 0.2.5, please make sure your KFP installation is
+        upgraded.</p>
+        </td>
       </tr>
       <tr>
         <td><code>target_col</code></td>
@@ -186,9 +193,16 @@ metadata fields for each type.
 - `schema`
 - `source`
 
+**Optional metadata fields:**
+
+- `storage`
+
 The `confusion_matrix` viewer plots a confusion matrix visualization of the data
 from the given `source` path, using the `schema` to parse the data. The `labels`
 provide the names of the classes to be plotted on the x and y axes.
+
+You can optionally specify `'storage': 'inline'` to embed raw content of cm_file
+as a string in `source` field directly.
 
 **Example:**
 
@@ -225,6 +239,9 @@ provide the names of the classes to be plotted on the x and y axes.
 **Required metadata fields:**
 
 - `source`
+
+**Optional metadata fields:**
+
 - `storage`
 
 The `markdown` viewer renders Markdown strings on the Kubeflow Pipelines UI. 
@@ -233,7 +250,7 @@ The viewer can read the Markdown data from the following locations:
 * A Markdown-formatted string embedded in the `source` field. The value of the
  `storage` field must be `inline`.
 * Markdown code in a remote file, at a path specified in the `source` field.
-  The `storage` field can contain any value except `inline`.
+  The `storage` field can be empty or contain any value except `inline`.
 
 **Example:**
 ```Python
@@ -280,8 +297,15 @@ assumes that the schema includes three columns with the following names:
 * `tpr` (true positive rate)
 * `thresholds`
 
+**Optional metadata fields:**
+
+- `storage`
+
 When viewing the ROC curve, you can hover your cursor over the ROC curve to see 
 the threshold value used for the cursor's closest `fpr` and `tpr` values.
+
+You can optionally specify `'storage': 'inline'` to embed raw content of roc_file
+as a string in `source` field directly.
 
 **Example:**
 
@@ -323,9 +347,16 @@ the threshold value used for the cursor's closest `fpr` and `tpr` values.
 - `header`
 - `source`
 
+**Optional metadata fields:**
+
+- `storage`
+
 The `table` viewer builds an HTML table out of the data at the given `source`
 path, where the `header` field specifies the values to be shown in the first row
 of the table. The table supports pagination.
+
+You can optionally specify `'storage': 'inline'` to embed csv table content string
+in `source` field directly.
 
 **Example:**
 
@@ -366,6 +397,7 @@ When viewing the output page, you can:
   in your Kubeflow cluster. The button text switches to **Open Tensorboard**. 
 * Click **Open Tensorboard** to open the TensorBoard interface in a new tab, 
   pointing to the logdir data specified in the `source` field.
+* Click **Delete Tensorboard** to shutdown the Tensorboard instance.
 
 **Note:** The Kubeflow Pipelines UI doesn't fully manage your TensorBoard 
 instances. The "Start Tensorboard" button is a convenience feature so that
@@ -400,12 +432,19 @@ management tools.
 
 - `source`
 
+**Optional metadata fields:**
+
+- `storage`
+
 The `web-app` viewer provides flexibility for rendering custom output. You can
 specify an HTML file that your component creates, and the Kubeflow Pipelines UI
 renders that HTML in the output page. The HTML file must be self-contained, with
 no references to other files in the filesystem. The HTML file can contain
 absolute references to files on the web. Content running inside the web app is
-isolated in an iframe and cannot communicate with the Kubeflow Pipelines UI.
+sandboxed in an iframe and cannot communicate with the Kubeflow Pipelines UI.
+
+You can optionally specify `'storage': 'inline'` to embed raw html in `source`
+field directly.
 
 **Example:**
 
@@ -418,6 +457,10 @@ isolated in an iframe and cannot communicate with the Kubeflow Pipelines UI.
       'type': 'web-app',
       'storage': 'gcs',
       'source': static_html_path,
+    }, {
+      'type': 'web-app',
+      'storage': 'inline',
+      'source': '<h1>Hello, World!</h1>',
     }]
   }
   with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
