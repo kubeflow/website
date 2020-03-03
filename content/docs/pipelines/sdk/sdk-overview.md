@@ -384,7 +384,7 @@ You can also choose to share your pipeline as follows:
 
 {{% alert title="More about the above workflow" color="info" %}}
 For an example of the above workflow, see the
-Jupyter notebook titled [KubeFlow Pipelines basic component build](https://github.com/kubeflow/pipelines/blob/master/samples/core/component_build/component_build.ipynb) on GitHub.
+Jupyter notebook titled [KubeFlow Pipelines basic component build](https://github.com/kubeflow/pipelines/blob/master/samples/core/container_build/container_build.ipynb) on GitHub.
 {{% /alert %}}
 
 <a id="lightweight-component"></a>
@@ -560,7 +560,7 @@ Below is a more detailed explanation of the above diagram:
     ```
 {{% alert title="More about the above workflow" color="info" %}}
 For an example, see the
-[`xgboost-training-cm.py`](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost-spark/xgboost-training-cm.py)
+[`xgboost-training-cm.py`](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost_training_cm/xgboost_training_cm.py)
 pipeline sample on GitHub. The pipeline creates an XGBoost model using 
 structured data in CSV format.
 {{% /alert %}}
