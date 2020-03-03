@@ -26,10 +26,10 @@ This guide assumes the following settings:
   export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-iap %}}
   ```
 
-    Or:	
+    Or:
 
-  ```	
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-basic-auth %}}	
+  ```
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-basic-auth %}}
   ```
 
 For further background about the above settings, see the guide to
