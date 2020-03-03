@@ -46,12 +46,6 @@ This guide assumes the following settings:
   export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-iap %}}
   ```
 
-    Or:
-
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-basic-auth %}}
-  ```
-
 * The `${KF_NAME}` environment variable contains the name of your Kubeflow 
   deployment. You can find the name in your
   `${CONFIG_FILE}` configuration file, as the value for the `metadata.name` key.
