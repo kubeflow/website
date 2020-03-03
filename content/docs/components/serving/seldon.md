@@ -28,6 +28,7 @@ kubectl label namespace my-namespace serving.kubeflow.org/inferenceservice=enabl
 Create a gateway called `kubeflow-gateway` in namespace `my-namespace`:
 
 ```
+apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: kubeflow-gateway
