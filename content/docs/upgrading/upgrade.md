@@ -43,7 +43,8 @@ deployment. We'll call this `${KF_DIR}`.
       1. Follow the instructions for [environment preparations](/docs/gke/deploy/deploy-cli/#prepare-your-environment).
           * Make sure that the `${PROJECT}`, `${ZONE}`, and `${KF_NAME}`
             variables match exactly with your deployment.
-          * For `${CONFIG_URI}`, use the `{{% config-file-gcp-iap %}}` file.
+          * For `${CONFIG_URI}`, use the appropriate [YAML configuration 
+            file](/docs/started/getting-started/#configuration-quick-reference).
       1. Create your local deployment files:
           ```
           mkdir -p ${KF_DIR}
