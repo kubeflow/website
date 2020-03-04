@@ -67,7 +67,7 @@ Use the following steps to install Kubeflow 0.7 on OpenShift 4.2.
 1. Apply the generated deployment configuration.
 
     ```
-    kfctl apply --file=./kfdef/kfctl_openshift.yaml
+    kfctl apply --file=kfctl_openshift.yaml
     ```
 
 1. Wait until all the pods are running.
