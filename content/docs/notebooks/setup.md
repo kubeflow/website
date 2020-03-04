@@ -111,8 +111,9 @@ central dashboard](/docs/components/central-dash/overview/).
             ```
             kubectl get nodes "-o=custom-columns=NAME:.metadata.name,GPU:.status.allocatable.nvidia\.com/gpu"
             ```
-          * If you have GPUs available, you can schedule your server on a GPU node 
-            in the **GPUs** section at the bottom of the form.
+          * If you have GPUs available, you can schedule your server on a GPU 
+            node by specifying a number of GPUs to be attached to the server 
+            under the **GPUs** section at the bottom of the form.
       * Kubeflow version (for example, `1.0.0`).
 
     *Hint:* If you're not sure which image you need, choose a *standard* image
