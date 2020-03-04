@@ -153,14 +153,15 @@ viewers later on the page.
       </tr>
       <tr>
         <td><code>storage</code></td>
-        <td><p>Optional. When <code>storage</code> is 'inline', value of
-        <code>source</code> is parsed as inline data instead of a path. Applies
+        <td><p>(Optional) When <code>storage</code> is <code>inline</code>, the value of
+        <code>source</code> is parsed as inline data instead of a path. This applies
         to all types of outputs except <code>tensorboard</code>. See 
-        <a href="#markdown">markdown type</a> or <a href="#web-app">webapp type</a>
+        <a href="#markdown">Markdown</a> or <a href="#web-app">Web app</a>
         below as examples.</p>
-        <p><b>Be aware</b>, support for inline visualization other than markdown
-        was introduced in KFP 0.2.5, please make sure your KFP installation is
-        upgraded.</p>
+        <p><b>Be aware</b>, support for inline visualizations, other than
+        markdown, was introduced in Kubeflow Pipelines 0.2.5. Before using these
+        visualizations, [upgrade  your Kubeflow Pipelines cluster](/docs/pipelines/upgrade/)
+        to version 0.2.5 or higher.</p>
         </td>
       </tr>
       <tr>
@@ -201,8 +202,8 @@ The `confusion_matrix` viewer plots a confusion matrix visualization of the data
 from the given `source` path, using the `schema` to parse the data. The `labels`
 provide the names of the classes to be plotted on the x and y axes.
 
-You can optionally specify `'storage': 'inline'` to embed raw content of cm_file
-as a string in `source` field directly.
+Specify `'storage': 'inline'` to embed raw content of the
+confusion matrix csv file as a string in `source` field directly.
 
 **Example:**
 
@@ -216,7 +217,7 @@ as a string in `source` field directly.
         {'name': 'predicted', 'type': 'CATEGORY'},
         {'name': 'count', 'type': 'NUMBER'},
       ],
-      'source': cm_file,
+      'source': <CONFUSION_MATRIX_CSV_FILE>,
       # Convert vocab to string because for bealean values we want "True|False" to match csv data.
       'labels': list(map(str, vocab)),
     }]
@@ -304,8 +305,8 @@ assumes that the schema includes three columns with the following names:
 When viewing the ROC curve, you can hover your cursor over the ROC curve to see 
 the threshold value used for the cursor's closest `fpr` and `tpr` values.
 
-You can optionally specify `'storage': 'inline'` to embed raw content of roc_file
-as a string in `source` field directly.
+Specify `'storage': 'inline'` to embed raw content of the roc
+curve csv file as a string in `source` field directly.
 
 **Example:**
 
@@ -355,7 +356,7 @@ The `table` viewer builds an HTML table out of the data at the given `source`
 path, where the `header` field specifies the values to be shown in the first row
 of the table. The table supports pagination.
 
-You can optionally specify `'storage': 'inline'` to embed csv table content string
+Specify `'storage': 'inline'` to embed csv table content string
 in `source` field directly.
 
 **Example:**
@@ -443,8 +444,7 @@ no references to other files in the filesystem. The HTML file can contain
 absolute references to files on the web. Content running inside the web app is
 sandboxed in an iframe and cannot communicate with the Kubeflow Pipelines UI.
 
-You can optionally specify `'storage': 'inline'` to embed raw html in `source`
-field directly.
+Specify `'storage': 'inline'` to embed raw html in `source` field directly.
 
 **Example:**
 
