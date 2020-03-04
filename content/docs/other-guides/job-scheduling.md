@@ -16,7 +16,7 @@ To use gang-scheduling, you have to install volcano scheduler in your cluster fi
 * Follow the [instructions in the volcano repository](https://github.com/volcano-sh/volcano) to install Volcano.
 * Take tf-operator for example, enable gang-scheduling in tf-operator by setting true to `--enable-gang-scheduling` flag.
 
-**Note:** Volcano scheduler and operator in Kubeflow achieve gang-scheduling by using [PodGroup](https://github.com/volcano-sh/volcano/blob/master/pkg/apis/scheduling/v1alpha2/types.go). operator will create the PodGroup of the job automatically.
+**Note:** Volcano scheduler and operator in Kubeflow achieve gang-scheduling by using [PodGroup](https://github.com/volcano-sh/volcano/blob/master/pkg/apis/scheduling/types.go). operator will create the PodGroup of the job automatically.
 
 The yaml to use volcano scheduler to schedule your job as a gang is the same as non-gang-scheduler, for example.
 
