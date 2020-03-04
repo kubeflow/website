@@ -503,6 +503,12 @@ The pipeline uses a number of prebuilt, reusable components, including:
   component](https://github.com/kubeflow/pipelines/blob/master/components/dataflow/predict/src/predict.py)
   which writes out the data for the `table` viewer.
 
+## Usage in lightweight python components
+
+For lightweight components, the syntax is slightly different. You can refer to
+[lightweight python component notebook example](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb) for how
+to declare output visualizations.
+
 ## Next step
 
 See how to [export metrics from your 
