@@ -384,7 +384,7 @@ You can also choose to share your pipeline as follows:
 
 {{% alert title="More about the above workflow" color="info" %}}
 For an example of the above workflow, see the
-Jupyter notebook titled [KubeFlow Pipelines basic component build](https://github.com/kubeflow/pipelines/blob/master/samples/core/container_build/container_build.ipynb) on GitHub.
+Jupyter notebook titled [KubeFlow Pipelines container building](https://github.com/kubeflow/pipelines/blob/master/samples/core/container_build/container_build.ipynb) on GitHub.
 {{% /alert %}}
 
 <a id="lightweight-component"></a>
