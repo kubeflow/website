@@ -50,23 +50,23 @@ The following diagram shows what you accomplish by following this guide:
 
 In summary:
 
-* Setting up [Kubeflow][kubeflow] on [IKS][iks]
+* Setting up [Kubeflow][kubeflow] on [IKS][iks].
 * Training the model:
-  * Packaging a Tensorflow program in a container
-  * Submitting a Tensorflow training ([tf.train][tf-train]) job
+  * Packaging a Tensorflow program in a container.
+  * Submitting a Tensorflow training ([tf.train][tf-train]) job.
 * Using the model for prediction (inference):
-  * Saving the trained model to [IBM Cloud Object Storage][ibm-cos)]
-  * Using [Tensorflow Serving][tf-serving] to serve the model
-  * Running the simple web app to send prediction request to the model and display the result
+  * Saving the trained model to [IBM Cloud Object Storage][ibm-cos)].
+  * Using [Tensorflow Serving][tf-serving] to serve the model.
+  * Running the simple web app to send prediction request to the model and display the result.
 
 It's time to get started!
 
 ## Run the MNIST Tutorial on IKS
 
-1. Follow the [IKS instructions](/docs/ibm/install-kubeflow) to deploy Kubeflow
-2. Launch a Jupyter notebook
-    * For IBM Cloud, the default NFS storage does not support some of the Python package installation. Therefore, we need to create the notebook with Don't use Persistent Storage for User's home.
-    * Due to the Notebook user permission issue, we need to use custom images that were working in the previous version.
+1. Follow the [IKS instructions](/docs/ibm/install-kubeflow) to deploy Kubeflow.
+2. Launch a Jupyter notebook.
+    * For IBM Cloud, the default NFS storage does not support some of the Python package installation. Therefore, you need to create the notebook with the setting `Don't use Persistent Storage for User's home` enabled.
+    * Due to the Notebook user permission issue, you need to use custom images that were working in the previous version.
         * The tutorial has been tested on image: gcr.io/kubeflow-images-public/tensorflow-1.13.1-notebook-cpu:v0.5.0
 3. Launch a terminal in Jupyter and clone the Kubeflow examples repo.
    ```
@@ -75,7 +75,7 @@ It's time to get started!
    * **Tip**: When you start a terminal in Jupyter, run the command `bash` to start
       a bash terminal which is much more friendly than the default shell.
    * **Tip**: You can change the URL for your notebook from '/tree' to '/lab' to switch to using Jupyterlab.
-4. Open the notebook `mnist/mnist_ibm.ipynb`
+4. Open the notebook `mnist/mnist_ibm.ipynb`.
 5. Follow the notebook to train and deploy MNIST on Kubeflow.
   
 
