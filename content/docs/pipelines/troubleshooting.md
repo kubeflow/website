@@ -14,22 +14,22 @@ the [`kfp diagnose_me` command-line tool](/docs/pipelines/sdk/sdk-overview/#kfp-
 
 The `kfp diagnose_me` CLI reports on the configuration of your local
 development environment, Kubernetes cluster, or Google Cloud environment.
-Use this command to help resolve issues like:
+Use this command to help resolve issues like the following:
 
 *  Python library dependencies
 *  Trouble accessing resources or APIs using Kubernetes secrets
 *  Trouble accessing Persistent Volume Claims
 
-To use the `kfp diagnose_me` CLI:
+To use the `kfp diagnose_me` CLI, follow these steps:
 
 1.  Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
 1.  Follow the [guide to configuring access to Kubernetes clusters][kubeconfig],
-    to update your kubeconfig with appropriate credentials and endpoint
+    to update your kubeconfig file with appropriate credentials and endpoint
     information to access your Kubeflow cluster.
     If your Kubeflow Pipelines cluster is hosted on a cloud provider like
     Google Cloud, use your cloud provider's instructions for configuring
     access to your Kubernetes cluster. 
-1.  Run the following command `kfp diagnose_me`.
+1.  Run the `kfp diagnose_me` command.
 1.  Analyze the results to troubleshoot your environment.
 
 [kubeconfig]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/
@@ -53,13 +53,13 @@ Python 3.5 or higher:
 python3 -V
 ```
 
-The response should be something like:
+The response should be something like the following:
 
 ```
 Python 3.7.3
 ```
 
-If you do not have Python 3.6 or later, you can
+If you do not have Python 3.5 or higher, you can
 [download Python](https://www.python.org/downloads/) from the Python
 Software Foundation.
 
