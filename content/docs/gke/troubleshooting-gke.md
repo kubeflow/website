@@ -445,6 +445,7 @@ Make sure the certificate status is either `Active` or `Provisioning` which mean
   ```
 
 Make sure of the following:
+
  * `networking.gke.io/managed-certificates` annotation value points to the name of the Kubernetes managed certificate resource and is `gke-certificate`;
  *  public IP address that is displayed in the status is assigned. See the example of IP address below:
 
