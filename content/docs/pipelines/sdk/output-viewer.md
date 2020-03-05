@@ -305,8 +305,8 @@ assumes that the schema includes three columns with the following names:
 When viewing the ROC curve, you can hover your cursor over the ROC curve to see 
 the threshold value used for the cursor's closest `fpr` and `tpr` values.
 
-Specify `'storage': 'inline'` to embed raw content of the roc
-curve csv file as a string in `source` field directly.
+Specify `'storage': 'inline'` to embed raw content of the ROC
+curve CSV file as a string in `source` field directly.
 
 **Example:**
 
@@ -506,8 +506,7 @@ The pipeline uses a number of prebuilt, reusable components, including:
 ## Usage in lightweight python components
 
 For lightweight components, the syntax is slightly different. You can refer to
-[lightweight python component notebook example](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb) for how
-to declare output visualizations.
+[the lightweight python component notebook example](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb) to learn more about declaring output visualizations.
 
 ## Next step
 
