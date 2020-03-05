@@ -203,7 +203,7 @@ from the given `source` path, using the `schema` to parse the data. The `labels`
 provide the names of the classes to be plotted on the x and y axes.
 
 Specify `'storage': 'inline'` to embed raw content of the
-confusion matrix csv file as a string in `source` field directly.
+confusion matrix CSV file as a string in `source` field directly.
 
 **Example:**
 
@@ -356,7 +356,7 @@ The `table` viewer builds an HTML table out of the data at the given `source`
 path, where the `header` field specifies the values to be shown in the first row
 of the table. The table supports pagination.
 
-Specify `'storage': 'inline'` to embed csv table content string
+Specify `'storage': 'inline'` to embed CSV table content string
 in `source` field directly.
 
 **Example:**
