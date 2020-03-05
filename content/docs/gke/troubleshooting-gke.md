@@ -4,28 +4,28 @@ description = "Help fixing problems on GKE and GCP"
 weight = 80
 +++
 
-This guide helps diagnose and fix issues you may encounter with Kubeflow on 
+This guide helps diagnose and fix issues you may encounter with Kubeflow on
 Google Kubernetes Engine (GKE) and Google Cloud Platform (GCP).
 
 ## Before you start
 
-This guide covers troubleshooting specifically for 
+This guide covers troubleshooting specifically for
 [Kubeflow deployments on GCP](/docs/gke/deploy/).
 
-For more help, try the 
+For more help, try the
 [general Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting).
 
-This guide assumes the following settings: 
+This guide assumes the following settings:
 
 * The `${KF_DIR}` environment variable contains the path to
-  your Kubeflow application directory, which holds your Kubeflow configuration 
+  your Kubeflow application directory, which holds your Kubeflow configuration
   files. For example, `/opt/my-kubeflow/`.
 
   ```
   export KF_DIR=<path to your Kubeflow application directory>
-  ``` 
+  ```
 
-* The `${CONFIG_FILE}` environment variable contains the path to your 
+* The `${CONFIG_FILE}` environment variable contains the path to your
   Kubeflow configuration file.
 
   ```
@@ -38,16 +38,16 @@ This guide assumes the following settings:
   export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-basic-auth %}}
   ```
 
-* The `${KF_NAME}` environment variable contains the name of your Kubeflow 
-  deployment. You can find the name in your `${CONFIG_FILE}` 
+* The `${KF_NAME}` environment variable contains the name of your Kubeflow
+  deployment. You can find the name in your `${CONFIG_FILE}`
   configuration file, as the value for the `metadata.name` key.
 
   ```
   export KF_NAME=<the name of your Kubeflow deployment>
   ```
 
-* The `${PROJECT}` environment variable contains the ID of your GCP project. 
-  You can find the project ID in 
+* The `${PROJECT}` environment variable contains the ID of your GCP project.
+  You can find the project ID in
   your `${CONFIG_FILE}` configuration file, as the value for the `project` key.
 
   ```
@@ -79,7 +79,7 @@ Here are some tips for troubleshooting GCP.
   * If endpoint entry doesn't exist, check `kubectl describe cloudendpoint -n istio-system`
 * If using IAP: make sure you [added](/docs/gke/deploy/oauth-setup/) `https://<deployment>.endpoints.<project>.cloud.goog/_gcp_gatekeeper/authenticate`
 as an authorized redirect URI for the OAUTH credentials used to create the deployment.
-* If using IAP: see the guide to 
+* If using IAP: see the guide to
   [monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
 * See the sections below for troubleshooting specific problems.
 * Please [report a bug](https://github.com/kubeflow/kubeflow/issues/new?template=bug_report.md) if you can't resolve the problem by following the above steps.
@@ -296,16 +296,16 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
 
 ### Problems with SSL certificate from Let's Encrypt
 
-See the guide to 
+See the guide to
 [monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
 
 ## Envoy pods crash-looping: root cause is backend quota exceeded
 
-If your logs show the 
-[Envoy](https://istio.io/docs/concepts/what-is-istio/#envoy) pods crash-looping, 
-the root cause may be that you have exceeded your quota for some 
-backend services such as loadbalancers. 
-This is particularly likely if you have multiple, differently named deployments 
+If your logs show the
+[Envoy](https://istio.io/docs/concepts/what-is-istio/#envoy) pods crash-looping,
+the root cause may be that you have exceeded your quota for some
+backend services such as loadbalancers.
+This is particularly likely if you have multiple, differently named deployments
 in the same GCP project using [Cloud IAP](https://cloud.google.com/iap/).
 
 ### The error
@@ -348,7 +348,7 @@ the [Deployment Manager](https://cloud.google.com/deployment-manager/docs/).
 
 Alternatively, you can request more backend services quota on the GCP Console.
 
-1. Go to the [quota settings for backend services on the GCP 
+1. Go to the [quota settings for backend services on the GCP
   Console](https://console.cloud.google.com/iam-admin/quotas?metric=Backend%20services).
 1. Click **EDIT QUOTAS**. A quota editing form opens on the right of the
   screen.
@@ -418,52 +418,53 @@ kubectl -n kubeflow create secret generic kubeflow-oauth \
        --from-literal=client_secret=${CLIENT_SECRET}
 ```
 
-## Managed certificates can fail if service management API not enabled
+## Troubleshooting SSL certificate errors
 
 This section describes how to enable service management API to avoid managed certificates failure.
 
-To check your certificate: 
+To check your certificate:
+
 1. Run the following command:
 
-```
-kubectl -n istio-system describe managedcertificate gke-certificate
-```
+  ```
+  kubectl -n istio-system describe managedcertificate gke-certificate
+  ```
 
 Make sure the certificate status is either `Active` or `Provisioning` which means it is not ready. For more details on certificate status, refer to the [certificate statuses descriptions](https://cloud.google.com/load-balancing/docs/ssl-certificates?hl=en_US&_ga=2.164380342.-821786221.1568995229#certificate-resource-status) section. Also, make sure the domain name is correct.
 
-2. Run the following command using the certificate name from the previous step:
+1. Run the following command to look for the errors using the certificate name from the previous step:
 
-```
-gcloud beta --project=${PROJECT} compute ssl-certificates describe --global ${CERTIFICATE_NAME}
-```
+  ```
+  gcloud beta --project=${PROJECT} compute ssl-certificates describe --global ${CERTIFICATE_NAME}
+  ```
 
-3. Run the following command:
+1. Run the following command:
 
-```
-kubectl -n istio-system get ingress envoy-ingress -o yaml
-``` 
+  ```
+  kubectl -n istio-system get ingress envoy-ingress -o yaml
+  ```
 
-Make sure of the following: 
-** `networking.gke.io/managed-certificates` annotation value points to the name of the Kubernetes managed certificate resource and is `gke-certificate`;
-** public IP address that is displayed in the status is assigned. See the example of IP address below: 
+Make sure of the following:
+ * `networking.gke.io/managed-certificates` annotation value points to the name of the Kubernetes managed certificate resource and is `gke-certificate`;
+ *  public IP address that is displayed in the status is assigned. See the example of IP address below:
 
-```
-status:
-  loadBalancer:
-    ingress:
-     - ip: 35.186.212.202
-```
+  ```
+  status:
+    loadBalancer:
+      ingress:
+       - ip: 35.186.212.202
+  ```
 
-** DNS entry for the domain has propogated. To verify this, use the following `nslookup` command example:
+ * DNS entry for the domain has propogated. To verify this, use the following `nslookup` command example:
 
-```
-`nslookup ${DOMAIN}`
-```
+  ```
+  `nslookup ${DOMAIN}`
+  ```
 
-** domain name is the fully qualified domain name which be the host value in the [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). See the example below:
+ * domain name is the fully qualified domain name which be the host value in the [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). See the example below:
 
-```
-${KF_APP_NAME}.endpoints.${PROJECT}.cloud.goog
-```
+  ```
+  ${KF_APP_NAME}.endpoints.${PROJECT}.cloud.goog
+  ```
 
 Note that managed certificates cannot provision the certificate if the DNS lookup does not work properly.
