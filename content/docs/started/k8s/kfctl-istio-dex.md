@@ -37,6 +37,11 @@ Configuring your installation with {{% config-file-istio-dex %}} has a few optio
   1.3.1 with SDS enabled, which requires you to use Kubernetes 1.13 or later. You may need
   to add extra configurations to your Kubernetes as mentioned in
   [Istio's blog](https://istio.io/blog/2019/trustworthy-jwt-sds/).
+  The Istio community runs their test-infrastructure with the following API Server flags:
+  ```
+  "service-account-issuer": "kubernetes.default.svc"
+  "service-account-signing-key-file": "/etc/kubernetes/pki/sa.key"
+  ```
 
 * **Default password in static file configuration for Dex** - The configuration file 
   {{% config-file-istio-dex %}} contains a default 
