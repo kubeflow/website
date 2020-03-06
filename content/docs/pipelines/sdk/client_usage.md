@@ -1,5 +1,5 @@
 +++
-title = "Use KFP SDK Client To Create Pipelines, Pipeline Versions, Experiments and Runs"
+title = "Use Kubeflow Pipelines SDK Client"
 description = "KFP SDK version >= 0.2.5 is required"
 weight = 30
 +++
