@@ -118,12 +118,12 @@ components, the recommended configuration for a cluster is:
     Istio into your cluster.
     
 ## IBM Cloud Block Storage Setup
-By default, IBM Cloud Kubernetes cluster uses [IBM Cloud File Storage](https://www.ibm.com/cloud/file-storage) as the default storageclass. File Storage is designed to run RWX (read-write multiple nodes) workloads with proper security build around it. Therefore, File Storage [does not allow `fsGroup` securityContext](https://cloud.ibm.com/docs/containers?topic=containers-security#container) which is needed for DEX and Jupyter Server.
+By default, IBM Cloud Kubernetes cluster uses [IBM Cloud File Storage](https://www.ibm.com/cloud/file-storage) based on NFS as the default storage class. File Storage is designed to run RWX (read-write multiple nodes) workloads with proper security built around it. Therefore, File Storage [does not allow `fsGroup` securityContext](https://cloud.ibm.com/docs/containers?topic=containers-security#container) which is needed for DEX and Kubeflow Jupyter Server.
 
 [IBM Cloud Block Storage](https://www.ibm.com/cloud/block-storage) provides a fast way to store data and
 satisfy many of the Kubeflow persistent volume requirements such as `fsGroup` out of the box and optimized RWO (read-write single node) which is used on all Kubeflow's persistent volume claim. 
 
-Therefore, we strongly recommend to set up IBM Cloud Block Storage as the default storageclass so that you can
+Therefore, we strongly recommend to set up [IBM Cloud Block Storage](https://cloud.ibm.com/docs/containers?topic=containers-block_storage#add_block) as the default storage class so that you can
 get the best experience from Kubeflow.
 
 1. [Follow the instructions](https://helm.sh/docs/intro/install/) to install the Helm version 3 client on your local machine.
