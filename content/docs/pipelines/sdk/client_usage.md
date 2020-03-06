@@ -11,7 +11,7 @@ This page includes a quick example on how to create a pipeline and a pipeline ve
 
 * Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/). It is recommended to always use the latest KFP SDK.
 
-## Example: create a pipeline and then create a new version under it
+## Example 1: create a pipeline and then create a new version under it
 
 * First, we use KFP SDK client to create a pipeline from a local file.
 * When the pipeline is created, a default pipeline version is created under it automatically.
