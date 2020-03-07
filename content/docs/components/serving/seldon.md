@@ -1,16 +1,16 @@
 +++
-title = "Seldon Serving"
+title = "Seldon Core Serving"
 description = "Model serving using Seldon"
 weight = 40
 +++
 
 {{% stable-status %}}
 
-Seldon comes installed with Kubeflow. The [Seldon documentation site](https://docs.seldon.io/projects/seldon-core/en/latest/) provides full documentation for running Seldon inference.
+Seldon Core comes installed with Kubeflow. The [Seldon Core documentation site](https://docs.seldon.io/projects/seldon-core/en/latest/) provides full documentation for running Seldon Core inference.
 
-If you have a saved model in a PersistentVolume (PV), Google Cloud Storage bucket or Amazon S3 Storage you can use one of the [prepackaged model servers provided by Seldon](https://docs.seldon.io/projects/seldon-core/en/latest/servers/overview.html).
+If you have a saved model in a PersistentVolume (PV), Google Cloud Storage bucket or Amazon S3 Storage you can use one of the [prepackaged model servers provided by Seldon Core](https://docs.seldon.io/projects/seldon-core/en/latest/servers/overview.html).
 
-Seldon also provides [language specific model wrappers](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html) to wrap your inference code for it to run in Seldon.
+Seldon Core also provides [language specific model wrappers](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html) to wrap your inference code for it to run in Seldon Core.
 
 ## Kubeflow specifics
 
@@ -48,7 +48,5 @@ spec:
 Save the above resource and apply it with `kubectl`.
 
 ## Examples
-
-The [Kubeflow Seldon E2E Pipeline](https://docs.seldon.io/projects/seldon-core/en/latest/examples/kubeflow_seldon_e2e_pipeline.html) shows how to build re-usable components for an ML pipeline.
 
 Seldon provides a [large set of example notebooks](https://docs.seldon.io/projects/seldon-core/en/latest/examples/notebooks.html) showing how to run inference code for a wide range of machine learning toolkits.
