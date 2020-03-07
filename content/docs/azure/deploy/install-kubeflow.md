@@ -111,7 +111,7 @@ Run the following commands to set up and deploy Kubeflow.
     # Set the configuration file to use, such as the file specified below:
     export CONFIG_URI="{{% config-uri-k8s-istio %}}"
 
-    # Set Azure CLI and kubctl to point to the new cluster
+    # Set Azure CLI and kubctl to point and set cerdentials to the new cluster
     az aks get-credentials -n  ${NAME} -g ${RESOURCE_GROUP_NAME} 
     
     # Generate and deploy Kubeflow:
