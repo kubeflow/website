@@ -9,7 +9,10 @@ This page includes a quick example on how to create a pipeline and a pipeline ve
 
 ## Before you start
 
-* Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/). It is recommended to always use the latest KFP SDK.
+* Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/). The following requires KFP SDK version equal to or greater than 0.2.5. You can test your installed version using
+```
+pip list | grep kfp
+```
 
 ## Example 1: create a pipeline and then create a new version under it
 
