@@ -4,6 +4,10 @@ description = "Instructions for using the Google Cloud Marketplace to deploy Min
 weight = 40
 +++
 
+![MiniKF latest
+version](https://www.arrikto.com/wp-content/uploads/2020/02/minikf-latest-version-gcp.svg
+"MiniKF latest version")
+
 This guide describes how to launch a MiniKF virtual machine (VM) on GCP. MiniKF
 is a single VM solution on the Google Cloud Marketplace, and installs:
 
@@ -14,7 +18,7 @@ is a single VM solution on the Google Cloud Marketplace, and installs:
 - Arrikto's Rok, a data management software for data versioning and
   reproducibility
 
-MiniKF installs Kubeflow 0.7.0 and supports NVIDIA GPUs.
+MiniKF supports NVIDIA GPUs.
 ### Before you start
 
 Before installing MiniKF, make sure that your GCP project meets the minimum
@@ -40,7 +44,7 @@ To install MiniKF on GCP, follow the steps below:
 1. Go to the [MiniKF page](https://console.cloud.google.com/marketplace/details/arrikto-public/minikf?q=minikf&id=1f5eac28-1808-4969-b6fa-2cc231a23f45) on
 Google Cloud Marketplace.
 
-2. Click on the **Launch on Compute Engine** button
+2. Click on the **LAUNCH** button
 
      <img src="/docs/images/minikf-launch.png"
        alt="Launch MiniKF on GCP"
@@ -48,15 +52,17 @@ Google Cloud Marketplace.
   
 3. In the **Configure & Deploy** window, choose:
 
-  - **name**: a name for your MiniKF instance
-  - **zone**: the GCP zone that you will deploy MiniKF
-  - **machine type**: a machine type with at least 2 vCPUs and 16 GB of RAM. If
+  - **Deployment name**: a name for your MiniKF instance
+  - **Zone**: the GCP zone that you will deploy MiniKF
+  - **Machine type**: a machine type with at least 2 vCPUs and 16 GB of RAM. If
     in doubt, use the default machine type, n1–standard-8, which has 8 vCPUs and
     30 GB of RAM.
-  - **boot disk**: A boot disk. This is the disk that holds the images that MiniKF
+  - **Boot Disk**: a boot disk. This is the disk that holds the images that MiniKF
     needs. Use the default value of 200 GB SSD Persistent Disk.
-  - **data disk**: A data disk. This is the disk that holds your snapshots. Use
+  - **Data Disk**: a data disk. This is the disk that holds your snapshots. Use
     an SSD Persistent Disk of at least 500 GB capacity.
+  - **GPUs**: add one or more GPUs if you are running computationally intensive
+    ML workloads.
 
      Then click **Deploy**:
 
