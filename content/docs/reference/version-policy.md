@@ -181,6 +181,13 @@ documentation for that application.
         <td>1.0.0</td>
       </tr>
       <tr>
+        <td><a href="/docs/components/serving/seldon">Seldon Core Serving</a> 
+          (<a href="https://github.com/SeldonIO/seldon-core">GitHub</a>)
+        </td>
+        <td>Stable</td>
+        <td>1.0.1</td>
+      </tr>
+      <tr>
         <td><a href="/docs/components/training/tftraining/">TensorFlow training:
           TFJob operator</a>
           (<a href="https://github.com/kubeflow/tf-operator">GitHub</a>)
