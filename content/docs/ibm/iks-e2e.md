@@ -1,15 +1,15 @@
 +++
-title = "End-to-end Kubeflow on IKS"
+title = "End-to-end Kubeflow on IBM Cloud"
 description = "Running Kubeflow using IBM Cloud Kubernetes Service (IKS)"
 weight = 250
 +++
 
-This is a guide for an end-to-end example of Kubeflow on IBM Cloud Kubernetes Service (IKS). The core steps will be to take a Tensorflow model and modify it for distributed training, serve the resulting model with TFServing, and deploy a web-app that uses the trained model.
+This is a guide for an end-to-end example of Kubeflow on [IBM Cloud Kubernetes Service (IKS)](https://cloud.ibm.com/docs/containers?topic=containers-getting-started). The core steps will be to take a base Tensorflow model, modify it for distributed training, serve the resulting model with TFServing, and deploy a web application that uses the trained model.
 
 ## Introduction
 ### Overview of IKS
 
-IBM Cloud Kubernetes Service (IKS) enables the deployment of containerized applications in Kubernetes clusters with specialized tools for management of the systems. By creating a scalable, highly available infrastructure IKS enables developers to automate, manage, and monitor workloads. 
+[IBM Cloud Kubernetes Service (IKS)] (https://cloud.ibm.com/docs/containers?topic=containers-getting-started) enables the deployment of containerized applications in Kubernetes clusters with specialized tools for management of the systems.
 
 The [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started) can be used for creating, developing, and deploying cloud applications.
 
