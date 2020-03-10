@@ -33,9 +33,10 @@ The following are the goals of Kubeflow Pipelines:
 * Easy re-use: enabling you to re-use components and pipelines to quickly 
   create end-to-end solutions without having to rebuild each time.
 
-In 
-[Kubeflow v0.1.3 and later](https://github.com/kubeflow/pipelines/releases/tag/0.1.3),
-Kubeflow Pipelines is one of the Kubeflow core components. It's automatically deployed during Kubeflow deployment.
+Kubeflow Pipelines is available as a core component of Kubeflow or as a standalone installation.
+
+* [Learn more about installing Kubeflow](/docs/started/getting-started/).
+* [Learn more about installing Kubeflow Pipelines standalone](/docs/pipelines/installation/overview/).
 
 {{% pipelines-compatibility %}}
 
@@ -234,32 +235,30 @@ At a high level, the execution of a pipeline proceeds as follows:
   transforms your pipeline's Python code into a static configuration (YAML).
 * **Pipeline Service**: You call the Pipeline Service to create a
   pipeline run from the static configuration. 
-* **Kubernetes resources**: The Pipeline Service calls the Kubernetes API
-  server to create the necessary Kubernetes resources
+* **Kubernetes resources**: The Pipeline Service calls the Kubernetes API server to create
+  the necessary Kubernetes resources
   ([CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/))
-  to run the pipeline.   
+  to run the pipeline.
 * **Orchestration controllers**: A set of orchestration controllers
-  execute the containers needed to complete the pipeline execution specified
-  by the Kubernetes resources
-  ([CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)).
-  The containers execute within Kubernetes Pods on virtual machines. An
-  example controller is the **[Argo Workflow](https://github.com/argoproj/argo)** controller, which
-  orchestrates task-driven workflows. 
+  execute the containers needed to complete the pipeline.
+  The containers execute within Kubernetes Pods on virtual machines.
+  An example controller is the
+  **[Argo Workflow](https://github.com/argoproj/argo)** controller,
+  which orchestrates task-driven workflows.
 * **Artifact storage**: The Pods store two kinds of data: 
 
-  * **Metadata:** Experiments, jobs, runs, etc. Also single scalar metrics, 
-    generally aggregated for the purposes of sorting and filtering. 
+  * **Metadata:** Experiments, jobs, pipeline runs, and single scalar metrics.
+    Metric data is aggregated for the purpose of sorting and filtering.
     Kubeflow Pipelines stores the metadata in a MySQL database.
-  * **Artifacts:** Pipeline packages, views, etc. Also
-    large-scale metrics like time series, usually used for investigating an 
-    individual run's performance and for debugging. Kubeflow Pipelines 
-    stores the artifacts in an artifact store like
-    [Minio server](https://docs.minio.io/) or 
+  * **Artifacts:** Pipeline packages, views, and large-scale metrics (time series).
+    Use large-scale metrics to debug a pipeline run or investigate an individual run’s performance.
+    Kubeflow Pipelines stores the artifacts in an artifact store like
+    [Minio server](https://docs.minio.io/) or
     [Cloud Storage](https://cloud.google.com/storage/docs/).
 
     The MySQL database and the Minio server are both backed by the Kubernetes
     [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)
-    (PV) subsystem. 
+    subsystem.
 
 * **Persistence agent and ML metadata**: The Pipeline Persistence Agent
   watches the Kubernetes resources created by the Pipeline Service and
@@ -283,4 +282,3 @@ At a high level, the execution of a pipeline proceeds as follows:
   SDK](/docs/pipelines/sdk/sdk-overview/).
 * Follow the full guide to experimenting with
   [the Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).
-  
