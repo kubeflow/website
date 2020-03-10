@@ -141,7 +141,7 @@ The matrix is therefore an alternative way of accessing the information in the
       </tr>
       <tr>
         <td><b>IBM Cloud (IKS)</b></td>
-        <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a>  
+        <td><a href="{{% config-uri-ibm %}}">{{% config-file-ibm %}}</a>  
         </td>
         <td><a href="/docs/started/cloud/getting-started-icp/">Docs</a></td>
       </tr>
