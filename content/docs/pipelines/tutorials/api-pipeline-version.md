@@ -1,5 +1,5 @@
 +++
-title = "Experiment with the Kubeflow Pipelines API"
+title = "Creating Pipeline Versions with the Kubeflow Pipelines API"
 description = "How to use the Kubeflow Pipelines API to upload a local file to create a new pipeline version"
 weight = 1
 +++
@@ -21,7 +21,7 @@ kfp                      0.2.5
 kfp-server-api           0.2.5
 ```
 
-## Example: create a pipeline and then create a new version under it
+## Example
 
 In this example, we first use KFP API client to create a pipeline from a local file. When the pipeline is created, a default pipeline version is created under it automatically. Then, we again use KFP API client to create a new pipeline version from a local file, and the new version will be under the pipeline that just get created.
 
