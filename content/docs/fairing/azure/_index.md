@@ -34,24 +34,43 @@ information, see the documentation for [ACR][az-container-reg] and
 [Storage][az-storage].
 
 After you have created your ACR and Storage resources, you must configure a
-service principal with access to these resources. If you want to use the same
-service principal as your AKS cluster, you can get the service principal ID
-with the following command:
+service principal with access to these resources.
+
+You can create a new service principal with the following command:
 
 ```
-az aks show -g <resource-group-name> -n <name>
+az ad sp create-for-rbac --name <name>
 ```
 
 The above command has output like this:
 
 ```
-  "servicePrincipalProfile": {
-    "clientId": "<id>"
-  },
+{
+  "appId": "<id>",
+  "displayName": "<name>",
+  "name": "http://<name>",
+  "password": "<password>",
+  "tenant": "<tenant-id>"
+}
 ```
 
 The role you grant must have at least read and write permissions to ACR and
-Storage.
+Storage. We recommend using the `AcrPush` role and the `Storage Account Contributor` role scoped to a resource group.
+
+You can perform the role assignment for ACR like this:
+
+```
+az role assignment create --assignee <id> \
+  --scope /subscriptions/<azure-subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.ContainerRegistry/registries/<acr-name> \
+  --role "AcrPush"
+```
+
+You can grant full storage rights at a resource group level like this:
+```
+az role assignment create --assignee <id> \
+  --scope /subscriptions/<azure-subscription-id>/resourceGroups/<resource-group-name> \
+  --role "Storage Account Contributor"
+```
 
 To learn more about how to grant the service principal access, follow the
 [Azure role-based authentication documentation][az-roles].
