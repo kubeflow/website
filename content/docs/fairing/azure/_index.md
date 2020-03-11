@@ -46,10 +46,10 @@ The above command has output like this:
 
 ```
 {
-  "appId": "<id>",
+  "appId": "<client-id>",
   "displayName": "<name>",
   "name": "http://<name>",
-  "password": "<password>",
+  "password": "<client-secret>",
   "tenant": "<tenant-id>"
 }
 ```
@@ -96,8 +96,7 @@ Run the following commands to set up your credentials as a Kubernetes secret.
 
     * **AZ_CLIENT_ID:** The service principal client ID. You can get the
       `client_id` property from ~/.azure/aksServicePrincipal.json.
-    * **AZ_CLIENT_SECRET:** The service principal secret. You can get the
-      `client_secret` property from ~/.azure/aksServicePrincipal.json.
+    * **AZ_CLIENT_SECRET:** The service principal secret.
     * **AZ_TENANT_ID:** The Azure Tenant ID of your account. You can get the
       Tenant ID from the `tenantId` field in the output of `az account show`.
     * **AZ_SUBSCRIPTION:** The Azure Subscription ID of your account. You can
