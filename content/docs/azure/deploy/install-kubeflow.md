@@ -70,7 +70,7 @@ Create a specifically defined cluster:
 Example variables: 
 
 - NAME=KubeTestCluster
-- AGENT_SIZE=Standard_D4_v3
+- AGENT_SIZE=Standard_D4s_v3
 - AGENT_COUNT=2
 - Use the same resource group and name from the previous step
 
