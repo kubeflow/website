@@ -164,10 +164,6 @@ Each docker image will be built and uploaded to the cloud using the Container Re
 	docker build . -t ${REGISTRY_PATH}/register:${VERSION_TAG}
 	docker push ${REGISTRY_PATH}/register:${VERSION_TAG}
 
-	cd ../profile
-	docker build . -t ${REGISTRY_PATH}/profile:${VERSION_TAG}
-	docker push ${REGISTRY_PATH}/profile:${VERSION_TAG}
-
 	cd ../deploy
 	docker build . -t ${REGISTRY_PATH}/deploy:${VERSION_TAG}
 	docker push ${REGISTRY_PATH}/deploy:${VERSION_TAG}
