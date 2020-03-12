@@ -1,10 +1,10 @@
 +++
-title = "Creating Pipeline Versions with the Kubeflow Pipelines API"
+title = "Using the Kubeflow Pipelines SDK"
 description = "How to use the Kubeflow Pipelines API to upload a local file to create a new pipeline version"
 weight = 1
 +++
 
-The following example demonstrates how to use the Kubeflow Pipelines SDK to create a pipeline and a pipeline version.
+This guide provides examples that demonstrate how to use the Kubeflow Pipelines SDK.
 
 ## Before you start
 
@@ -21,9 +21,15 @@ kfp                      0.2.5
 kfp-server-api           0.2.5
 ```
 
-## Example
+## Examples
 
-In this example, we first use KFP API client to create a pipeline from a local file. When the pipeline is created, a default pipeline version is created under it automatically. Then, we again use KFP API client to create a new pipeline version from a local file, and the new version will be under the pipeline that just get created.
+Use the following examples to learn more about the Kubeflow Pipelines SDK.
+
+### Using the SDK to create a pipeline and a pipeline version
+
+The following example demonstrates how to use the Kubeflow Pipelines SDK to create a pipeline and a pipeline version.
+
+In the example, we first use KFP API client to create a pipeline from a local file. When the pipeline is created, a default pipeline version is created under it automatically. Then, we again use KFP API client to create a new pipeline version from a local file, and the new version will be under the pipeline that just get created.
 
 ```python
 import kfp
@@ -51,3 +57,11 @@ if __name__ == '__main__':
 * **pipeline version name**: Your pipeline version's file name.
 
 Note that the pipeline names need to be unique across your KFP instance; while pipeline version names need to be unique under each pipeline.
+
+### Using the SDK to create a pipeline version under an existing pipeline
+
+If you want to create a new pipeline version under an existing pipeline, you only need to find out the pipeline id of the existing pipeline and use it with the method upload_pipeline_version. To find out the pipeline id, you can go to KFP Pipeline Details page of the selected pipeline. On that page, the pipeline id is listed in the summary card, as shown below.
+
+<img src="/docs/images/sdk-examples-snapshot-1.png"
+alt="Pipeline ID in Summary Card"
+class="mt-3 mb-3 border border-info rounded">
