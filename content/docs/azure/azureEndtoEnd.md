@@ -196,7 +196,7 @@ Upload the pipeline.tar.gz file to the pipelines dashboard on your Kubeflow depl
     alt="Pipelines input example"
     class="mt-3 mb-3 p-3 border border-info rounded">
 
- The finished pipeline should have five completed steps.
+ The finished pipeline should have four completed steps.
 
  <img src="/docs/azure/images/finishedRunning.PNG"
     alt="Finished Pipeline"
