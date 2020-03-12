@@ -108,6 +108,33 @@ configuration before deploying Kubeflow:
   ```
 ## Configure Kubeflow
 
+In v1.0.1, Kubeflow supports to use [AWS IAM Roles for Service Account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) to fine grain control AWS service access.
+kfctl will create two roles `kf-admin-${cluster_name}` and `kf-user-${cluster_name}` and Kubernetes service account `kf-admin` and `kf-user` under kubeflow namespace. `kf-admin-${cluster_name}` will be assumed by components like `alb-ingress-controller`, `profile-controller` or any Kubeflow control plane components which need to talk to AWS services. `kf-user-${cluster_name}` can be used by user's application.
+
+This is only available on EKS, for DIY Kubernetes on AWS, check out [aws/amazon-eks-pod-identity-webhook](https://github.com/aws/amazon-eks-pod-identity-webhook/) to setup webhook.
+
+Traditional way to attach IAM policies to node group role is still working, feel free choose the way you like to use.
+
+### Option 1: Use IAM For Service Account
+
+  `kfctl` will help create or reuse IAM OIDC Identity Provider, create role and handle trust relationship binding with Kubernetes Service Accounts.
+
+  > Note: By default, we don't attach any policies to `kf-user-${cluster_name}`, you can attach policies based on your need.
+
+  Add `enablePodIamPolicy: true` in your `${CONFIG_FILE}` file:
+  ```
+  region: us-west-2
+  enablePodIamPolicy: true
+
+  # you can delete following roles settings.
+  #roles:
+  #- eksctl-kubeflow-example-nodegroup-ng-185-NodeInstanceRole-1DDJJXQBG9EM6
+  ```
+
+  Check [IAM Role For Service Account](/docs/aws/iam-for-sa) for more usage.
+
+### Option 2: Use Node Group Role
+
 1. Replace the AWS cluster name in your `${CONFIG_FILE}` file, by changing
   the value `kubeflow-aws` to `${AWS_CLUSTER_NAME}` in multiple locations in
   the file. For example, use this `sed` command:
