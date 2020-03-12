@@ -48,7 +48,7 @@ If you don't already have one, create an Azure account. If you have not used Azu
 
 First, install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest), then follow the instructions in the [guide to deploying Kubeflow on Azure](https://www.kubeflow.org/docs/azure/deploy/install-kubeflow/).
 
-> Ensure that the agent size you use has the proper memory and storage requirements. For the Azure Pipelines example, **56 GiB** of memory are needed and **premium storage** must be available. Use [this guide](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes) to choose the right agent size for your deployment. (We chose an agent size of Standard_DS13_v2.)
+> Ensure that the agent size you use has the proper memory and storage requirements. For the Azure Pipelines example, most machine sizes will work, but **premium storage** is required. Use [this guide](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes) to choose the right agent size for your deployment. (We chose an agent size of Standard_D4s_v3.)
 
 ## Configuring Azure resources
 ### Create an ML workspace in Azure
@@ -77,6 +77,15 @@ To create a container registry:
 <img src="/docs/azure/images/createContainerReg.PNG"
     alt="Creating a Container Registry"
     class="mt-3 mb-3 p-3 border border-info rounded">
+
+### Allow your AKS Cluster access to your Azure Container Registry
+In order for the AKS cluster to have be able to pull images created for execution of the pipeline, you will need to update your cluster so that it is able to pull the images from the container registry we just created. More references can be found [here](https://docs.microsoft.com/en-us/azure/aks/cluster-container-registry-integration), on the Microsoft web site.
+
+Using a bash shell, use the following commands to attach the container registry created above to your AKS cluster, using the proper AKS cluster name and resource group:
+```
+az aks update -n <myAKSCluster> -g <MyResourceGroup> --attach-acr <REGISTRY_NAME>
+```
+The execution of the command will take a few minutes.
 
 ### Create a persistent volume claim (PVC)
 A persistent volume claim is a dynamically provisioned storage resource attached to a Kubernetes cluster. It is used in the pipeline to store data and files across pipeline steps.
