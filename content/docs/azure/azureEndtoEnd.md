@@ -79,7 +79,7 @@ To create a container registry:
     class="mt-3 mb-3 p-3 border border-info rounded">
 
 ### Allow your AKS Cluster access to your Azure Container Registry
-In order for the AKS cluster to have be able to pull images created for execution of the pipeline, you will need to update your cluster so that it is able to pull the images from the container registry we just created. More references can be found [here](https://docs.microsoft.com/en-us/azure/aks/cluster-container-registry-integration), on the Microsoft web site.
+In order for the AKS cluster to have access to pulling images created for execution of the pipeline, you will need to update your cluster so that it is able to pull the images from the container registry we just created. More references can be found [here](https://docs.microsoft.com/en-us/azure/aks/cluster-container-registry-integration), on the Microsoft web site.
 
 Using a bash shell, use the following commands to attach the container registry created above to your AKS cluster, using the proper AKS cluster name and resource group:
 ```
