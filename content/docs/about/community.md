@@ -49,7 +49,7 @@ mailing list.
 The Kubeflow Slack workspace is 
 [kubeflow.slack.com](https://kubeflow.slack.com/). To join, click this
 [**invitation to our Slack 
-workspace**](https://join.slack.com/t/kubeflow/shared_invite/enQtNDg5MTM4NTQyNjczLTdkNTVhMjg1ZTExOWI0N2QyYTQ2MTIzNTJjMWRiOTFjOGRlZWEzODc1NzMwNTMwM2EzNjY1MTFhODczNjk4MTk).
+workspace**](https://join.slack.com/t/kubeflow/shared_invite/zt-cpr020z4-PfcAue_2nw67~iIDy7maAQ).
 
 The Kubeflow Slack workspace offers several channels. Here are a few examples:
 
