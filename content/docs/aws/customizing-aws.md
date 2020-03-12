@@ -8,22 +8,11 @@ This guide describes how to customize your deployment of Kubeflow on Amazon EKS.
 These steps can be done before you run `apply -V -f ${CONFIG_FILE}` command. Please see the following sections for details. If you don't understand the deployment process, please see [deploy](/docs/aws/deploy) for details.
 
 
-## Customizing Kubeflow
-
-Here are the optional configuration parameters for kfctl on the AWS platform.
-
-| Options  | Description  | Required |
-|---|---|---|
-| `awsClusterName` | Name of your new or existing Amazon EKS cluster  |  YES |
-| `awsRegion`  |  The AWS Region to launch in |  YES |
-| `awsNodegroupRoleNames`  |  The IAM role names for your worker nodes | YES for existing clusters / No for new clusters |
-
-
 ### Customize your Amazon EKS cluster
 
-Before you run `kfctl apply -V -f ${CONFIG_FILE}`, you can edit the cluster configuration file to change cluster specification before you create the cluster.
+> Note: This is only working for user who like `kfctl` to create a new EKS cluster. If you already have the cluster, you can skip this section.
 
-Cluster configuration is stored in `${KF_DIR}/aws_config/cluster_config.yaml`. Please see [eksctl](https://eksctl.io/) for configuration details.
+Before you run `kfctl apply -V -f ${CONFIG_FILE}`, you can edit the cluster configuration file to change cluster specification before you create the cluster.
 
 For example, the following is a cluster manifest with one node group which has 2 `p2.xlarge` instances. You can easily enable SSH and configure a public key. All worker nodes will be in single Availability Zone.
 
@@ -50,7 +39,7 @@ nodeGroups:
     volumeSize: 30
     ssh:
       allow: true
-      sshPublicKeyPath: '~/.ssh/id_rsa.pub'
+      publicKeyPath: '~/.ssh/id_rsa.pub'
 
   # Example of GPU node group
   # - name: Tesla-V100
@@ -66,7 +55,7 @@ nodeGroups:
   #   volumeSize: 50
   # Enable SSH out side your VPC.
   #   allowSSH: true
-  #   sshPublicKeyPath: '~/.ssh/id_rsa.pub'
+  #   publicKeyPath: '~/.ssh/id_rsa.pub'
   # Customize Labels
   #   labels:
   #     'k8s.amazonaws.com/accelerator': 'nvidia-tesla-k80'
