@@ -284,10 +284,10 @@ Final version of `component.yaml`:
 name: Do dummy work
 description: Performs some dummy work.
 inputs:
-- {name: Input 1, type: GCSPath, description='Data for Input 1'}
-- {name: Parameter 1, type: Integer, default='100', description='Parameter 1 description'} # The default values must be specified as YAML strings.
+- {name: Input 1, type: GCSPath, description: 'Data for Input 1'}
+- {name: Parameter 1, type: Integer, default: '100', description: 'Parameter 1 description'} # The default values must be specified as YAML strings.
 outputs:
-- {name: Output 1, description='Output 1 data'}
+- {name: Output 1, description: 'Output 1 data'}
 implementation:
   container:
     image: gcr.io/my-org/my-image@sha256:a172..752f
