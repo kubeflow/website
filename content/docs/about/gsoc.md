@@ -23,9 +23,10 @@ in a GSoc project with us. To get started:
   [#gsoc](https://kubeflow.slack.com/messages/CUF1GCJ4Q) channel.
 * See the [community page](/docs/about/community/) for mailing lists, meetings,
   and other ways to connect with the Kubeflow community.
-* Email [gsoc@kubeflow.org](mailto:gsoc@kubeflow.org) to share your project
-  ideas before submitting a detailed project proposal.
-* When you're ready, submit your *draft* project proposal on the GSoC site.
+* Email
+  [kubeflow-gsoc-mentors@kubeflow.org](mailto:kubeflow-gsoc-mentors@kubeflow.org)
+  to share your project ideas before submitting a detailed project proposal.
+* When you're ready, submit your *draft* project proposal **on the GSoC site**.
   Then be sure to submit your *final* project proposal before the deadline.
   See the 
   [GSoC guide](https://google.github.io/gsocguides/student/writing-a-proposal)
@@ -39,11 +40,14 @@ For more information, see the
 ## Information for mentors
 
 Thanks to all mentors who're interested in helping a GSoC student with their
-Kubeflow project. To get started:
+Kubeflow project. 
 
-* Email [gsoc@kubeflow.org](mailto:gsoc@kubeflow.org) to indicate your interest
-  in mentoring a student during GSoC.
-* If you receive an invitation, follow the link in the email to register on the
+To get started:
+
+* Email
+  [kubeflow-gsoc-admin@kubeflow.org](mailto:kubeflow-gsoc-admin@kubeflow.org) 
+  to indicate your interest in mentoring a student during GSoC.
+* When you receive an invitation, follow the link in the email to register on the
   GSoC program site.
 * Read the [Google Summer of Code mentor 
   guide](https://google.github.io/gsocguides/mentor/) and the [roles and 
@@ -60,11 +64,38 @@ Kubeflow project. To get started:
 * Read the [Kubeflow GSoC project
   ideas](https://docs.google.com/document/d/1AQDD9s8VpCf3y8OLKTBSMgDzHSjdsV_DOyL5dc-XCOQ/)
   and add your name next to the project that you want to mentor.
+
+Start chatting to students:
+
 * Join the 
   [#gsoc](https://kubeflow.slack.com/messages/CUF1GCJ4Q) channel on Kubeflow
   Slack and connect with the interested students. Answer their questions and
   help them feel welcome.
+* When you receive an invitation to join the Kubeflow mentors mailing list
+  (`kubeflow-gsoc-mentors@kubeflow.org`),
+  follow the link to join the group and help students create their project
+  proposals.
 
 For more information, see the 
 [GSoC docs](https://developers.google.com/open-source/gsoc/faq) and
 [guides](https://developers.google.com/open-source/gsoc/resources/guide).
+
+## Mailing lists
+
+These are the Kubeflow mailing lists related to GSoC:
+
+* [kubeflow-gsoc-mentors@kubeflow.org](mailto:kubeflow-gsoc-mentors@kubeflow.org):
+  The mentor mailing list for Kubeflow GSoC projects.
+  Students can email this group to receive feedback on project proposals. 
+  Mentors and org administrators can use this group to discuss Kubeflow GSoC 
+  matters. Group members are Kubeflow GSoC mentors and org administrators. 
+  Messages are visible to sender, CCs, and group members.
+* [kubeflow-gsoc-admin@kubeflow.org](mailto:kubeflow-gsoc-admin@kubeflow.org):
+  The organization administrator mailing list for Kubeflow's participation in
+  GSoC.
+  Students and mentors can email this group to raise Kubeflow GSoC matters with
+  the administrators. Group members are Kubeflow GSoC org administrators only. 
+  Messages are visible to sender, CCs, and group members.
+* [kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss):
+  Kubeflow's primarily mailing list and discussion group. See the 
+  [community page](/docs/about/community/) for more information.
