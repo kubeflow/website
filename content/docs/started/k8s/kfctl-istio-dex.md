@@ -774,7 +774,7 @@ If the Kubeflow dashboard is not available at `https://<kubeflow address>` ensur
     < server: istio-envoy
     ```
     
-Please join the [Kubeflow Slack](https://kubeflow.slack.com/join/shared_invite/enQtNDg5MTM4NTQyNjczLWUyZGI1ZmExZWExYWY4YzlkOWI4NjljNjJhZjhjMjEwNGFjNmVkNjg2NTg4M2I0ZTM5NDExZWI5YTIyMzVmNzM) to report any issues, request help, and give us feedback on this config.
+Please join the [Kubeflow Slack](https://kubeflow.slack.com/join/shared_invite/zt-cpr020z4-PfcAue_2nw67~iIDy7maAQ) to report any issues, request help, and give us feedback on this config.
 
 Some additional debugging information:
 
