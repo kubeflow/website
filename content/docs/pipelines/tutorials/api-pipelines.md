@@ -136,4 +136,4 @@ The response should be similar to the following one:
 }
 ```
 
-Read [Kubeflow Pipelines API Reference](docs/pipelines/reference/api/kubeflow-pipeline-api-spec/) to learn more about how to use the API.
+Read [Kubeflow Pipelines API Reference](/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/) to learn more about how to use the API.
