@@ -287,7 +287,7 @@ View the results of the experiment in the Katib UI:
 
 ### TensorFlow example
 
-Run the following command to launch an experiment using the Kubeflow's 
+Run the following commands to launch an experiment using the Kubeflow's 
 TensorFlow training job operator, TFJob:
 
 1. Download the tfjob-example.yaml file
@@ -315,7 +315,7 @@ Follow the steps as described for the *random algorithm example*
 
 ### PyTorch example
 
-Run the following command to launch an experiment using Kubeflow's PyTorch 
+Run the following commands to launch an experiment using Kubeflow's PyTorch 
 training job operator, PyTorchJob:
 
 1. Download the pytorchjob-example.yaml file
