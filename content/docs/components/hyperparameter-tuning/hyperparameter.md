@@ -138,7 +138,7 @@ This example randomly generates the following hyperparameters:
 Check the experiment status:
 
 ```
-kubectl -n kubeflow describe experiment random-example
+kubectl -n <your user profile namespace> describe experiment random-example
 ```
 
 The output of the above command should look similar to this:
@@ -307,7 +307,7 @@ kubectl apply -f tfjob-example.yaml
 
 1. You can check the status of the experiment:
 ```
-kubectl -n kubeflow describe experiment tfjob-example
+kubectl -n <your user profile namespace> describe experiment tfjob-example
 ```
 
 Follow the steps as described for the *random algorithm example* 
@@ -335,7 +335,7 @@ kubectl apply -f pytorchjob-example.yaml
 
 1. You can check the status of the experiment:
 ```
-kubectl -n kubeflow describe experiment pytorchjob-example
+kubectl -n <your user profile namespace> describe experiment pytorchjob-example
 ```
 
 Follow the steps as described for the *random algorithm example*
