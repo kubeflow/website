@@ -4,9 +4,22 @@ description = "Welcome to all Kubeflow GSoC students and mentors"
 weight = 5
 +++
 
+<div>
+  <img src="/docs/images/gsoc-icon-192.png" 
+    alt="The Google Summer of Code icon"
+    class="mt-1 mb-3 float-right img-fluid">
+</div>
+
 The Kubeflow community is delighted to be part of 
 [Google Summer of Code (GSoC) 2020](https://summerofcode.withgoogle.com/). Community
 mentors look forward to working with students on their GSoC projects.
+
+**Top links:**
+
+* [Kubeflow GSoC project
+  ideas](https://docs.google.com/document/d/1AQDD9s8VpCf3y8OLKTBSMgDzHSjdsV_DOyL5dc-XCOQ/)
+* [Kubeflow template for project
+  proposals](https://docs.google.com/document/d/1dnhvxFLV1odqpqdWdujUNNUhVPSykflLy2nLJCz-Yws/edit?usp=sharing)
 
 ## Information for students
 
@@ -26,6 +39,8 @@ in a GSoc project with us. To get started:
 * Email
   [kubeflow-gsoc-mentors@kubeflow.org](mailto:kubeflow-gsoc-mentors@kubeflow.org)
   to share your project ideas before submitting a detailed project proposal.
+* Prepare your project proposal based on the [Kubeflow-specific
+  template](https://docs.google.com/document/d/1dnhvxFLV1odqpqdWdujUNNUhVPSykflLy2nLJCz-Yws/edit?usp=sharing).
 * When you're ready, submit your *draft* project proposal **on the GSoC site**.
   Then be sure to submit your *final* project proposal before the deadline.
   See the 
