@@ -124,7 +124,7 @@ KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
         <td>Custom</td>
         <td>Container</td>
         <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/custom">sample</a></td>
-        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html">docs</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/language_wrappers.html">docs</a></td>
       </tr>
 
       <tr>
