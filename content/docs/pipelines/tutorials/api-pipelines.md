@@ -1,7 +1,7 @@
 +++
 title = "Experiment with the Kubeflow Pipelines API"
 description = "Get started with the Kubeflow Pipelines API"
-weight = 1
+weight = 20
 +++
 
 This tutorial demonstrates how to use the Kubeflow Pipelines API to build, run, and manage pipelines. This guide is recommended for users who would like to learn how to manage Kubeflow Pipelines using the REST API.
