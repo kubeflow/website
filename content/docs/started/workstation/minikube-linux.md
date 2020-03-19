@@ -52,21 +52,19 @@ This message shows that your installation appears to be working correctly.
 ```
 
 ### Install kubectl
-`kubectl` is a Kubernetes command-line tool that allows you to run commands against Kubernetes clusters. Following instruction will install the latest version of `kubectl`, if you are looking for a specific version, see [official instruction](https://kubernetes.io/docs/tasks/tools/install-kubectl/). 
+`kubectl` is a Kubernetes command-line tool that allows you to run commands against Kubernetes clusters. Following instruction will install the version 1.15 of `kubectl`, if you are looking for a specific version, see [official instruction](https://kubernetes.io/docs/tasks/tools/install-kubectl/). 
 ```
-apt-get update
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
-apt-get update
-apt-get install -y kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+mv ./kubectl /usr/local/bin/kubectl
 ```
 
 
 ### Install minikube
 
-Following instruction will install v1.0.0, if you are looking for a specific version, see [minikube official site](https://github.com/kubernetes/minikube/releases).
+Following instruction will install minikube v1.2.0, if you are looking for a specific version, see [minikube official site](https://github.com/kubernetes/minikube/releases).
 ```
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.0.0/minikube-linux-amd64
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.2.0/minikube-linux-amd64
 ```
 Move to /usr/local/bin directory
 ```
@@ -83,17 +81,17 @@ minikube start --vm-driver=none --cpus 6 --memory 12288 --disk-size=120g --extra
 
 ## Installation of Kubeflow
 
-The following instruction is for installing Kubeflow v1.0-rc.4 under /root/kubeflow directory. 
+The following instruction is for installing Kubeflow v1.0 under /root/kubeflow/v1.0 directory. 
 ```
-mkdir /root/kubeflow 
-cd /root/kubeflow
-wget https://github.com/kubeflow/kfctl/releases/download/v1.0-rc.4/kfctl_v1.0-rc.3-1-g24b60e8_linux.tar.gz
+mkdir -p /root/kubeflow/v1.0
+cd /root/kubeflow/v1.0
+wget https://github.com/kubeflow/kfctl/releases/download/v1.0/kfctl_v1.0-0-g94c35cf_linux.tar.gz
 
-tar -xvf kfctl_v1.0-rc.3-1-g24b60e8_linux.tar.gz			
-export PATH=$PATH:/root/kubeflow
+tar -xvf kfctl_v1.0-0-g94c35cf_linux.tar.gz			
+export PATH=$PATH:/root/kubeflow/v1.0
 export KF_NAME=my-kubeflow
 mkdir v1rc4
-export BASE_DIR=/root/kubeflow/v1rc4
+export BASE_DIR=/root/kubeflow/v1.0
 export KF_DIR=${BASE_DIR}/${KF_NAME}
 export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.0-branch/kfdef/kfctl_k8s_istio.v1.0.0.yaml" 
 
@@ -231,8 +229,8 @@ Expected output will be something like this. There should be 2 rectangles which 
    <img src="/docs/started/workstation/images/run_result.png"
     alt="check result of a pipeline application run"
     class="mt-3 mb-3 p-3 border border-info rounded">
-
  
+
 
 
 
