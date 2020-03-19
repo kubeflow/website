@@ -1,6 +1,6 @@
 +++
 title = "Using the Kubeflow Pipelines SDK"
-description = "Examples that demonstrate how to use the Kubeflow Pipelines SDK"
+description = "How to use the Kubeflow Pipelines SDK"
 weight = 10
 +++
 
@@ -34,9 +34,8 @@ create a pipeline and a pipeline version.
 
 In this example, you:
 
-* Use `kfp.Client` to create a pipeline from a local file using the Kubeflow
-  Pipelines API. When the pipeline is created, a default pipeline version is
-  automatically created.
+* Use `kfp.Client` to create a pipeline from a local file. When the pipeline
+  is created, a default pipeline version is automatically created.
 * Use `kfp.Client` to add a pipeline version to the pipeline that was created
   in the previous step.
 
@@ -73,12 +72,12 @@ cluster. Pipeline version names need to be unique within each pipeline.
 #### Adding a version to an existing pipeline using the SDK
 
 To add a pipeline version for an existing pipeline, you must find the
-pipeline's id and use it with the `upload_pipeline_version` method. To
-find a pipeline's id:
+pipeline's ID and use it with the `upload_pipeline_version` method. To
+find a pipeline's ID:
 
 1. Open the Kubeflow Pipelines UI. A list of your pipelines appears.
 1. Click the **name of your pipeline**. The pipeline details page appears.
-1. The pipeline id is listed in the summary card, as shown below.
+1. The pipeline ID is listed in the summary card, as shown below.
 
 <img src="/docs/images/sdk-examples-snapshot-1.png"
 alt="Pipeline ID in Summary Card"
