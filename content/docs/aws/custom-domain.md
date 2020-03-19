@@ -10,7 +10,7 @@ Before you configure custom domain, you must have read [this section](/docs/aws/
 
 ## Using Custom Domain
 
-In the Cognito App client setting page, use `https://{YOUR_DOMAIN_NAME}/oauth2/idresponse` in the callback URLs. The rest steps are exact same as the steps in [this section](/docs/aws/authentication)
+In the Cognito App client setting page, use `https://{YOUR_DOMAIN_NAME}/oauth2/idpresponse` in the callback URLs. The rest steps are exact same as the steps in [this section](/docs/aws/authentication)
 
 <img src="/docs/images/aws/cognito-appclient.png"
   alt="Cognito Application Client Setting"
