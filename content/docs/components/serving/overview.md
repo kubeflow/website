@@ -187,7 +187,7 @@ Further information:
    * [Kubeflow documentation](/docs/components/serving/seldon/)
    * [Seldon Core documentation](https://docs.seldon.io/projects/seldon-core/en/latest/)
    * [GitHub repository](https://github.com/SeldonIO/seldon-core)
-   * [Community](https://github.com/SeldonIO/seldon-core#community)
+   * [Community](https://docs.seldon.io/projects/seldon-core/en/latest/developer/community.html)   
 
 ## TensorFlow Serving
 
