@@ -34,10 +34,16 @@ Configuring your installation with {{% config-file-istio-dex %}} has a few optio
   {{% config-file-istio-dex %}}.
 
 * **Istio configuration for trustworthy JWTs** - This configuration uses Istio version
-  1.3.1 with SDS enabled, which requires you to use Kubernetes 1.13 or later. You may need
-  to add extra configurations to your Kubernetes as mentioned in
-  [Istio's blog](https://istio.io/blog/2019/trustworthy-jwt-sds/).
-
+  1.3.1 with SDS enabled, which requires Kubernetes 1.13 or later.
+  Follow [Istio's blog](https://istio.io/blog/2019/trustworthy-jwt-sds/) to add API server configurations to your Kubernetes cluster.
+  Ensure that the `TokenRequest` feature flag is set to `true` in the cluster.
+  For `kubeadm` created clusters, set the API server flags in the pod manifest at `/etc/kubernetes/manifests/kube-api-server.yaml`.
+  For example, the Istio community runs their test-infrastructure with the following API server flags:
+  ```
+  "service-account-issuer": "kubernetes.default.svc"
+  "service-account-signing-key-file": "/etc/kubernetes/pki/sa.key"
+  ```
+  
 * **Default password in static file configuration for Dex** - The configuration file 
   {{% config-file-istio-dex %}} contains a default 
   [staticPasswords](https://github.com/dexidp/dex/blob/0f8c4db9f61476a8f80e60f5950992149a1cc0cb/examples/config-dev.yaml#L91-L95)
@@ -768,7 +774,7 @@ If the Kubeflow dashboard is not available at `https://<kubeflow address>` ensur
     < server: istio-envoy
     ```
     
-Please join the [Kubeflow Slack](https://kubeflow.slack.com/join/shared_invite/enQtNDg5MTM4NTQyNjczLWUyZGI1ZmExZWExYWY4YzlkOWI4NjljNjJhZjhjMjEwNGFjNmVkNjg2NTg4M2I0ZTM5NDExZWI5YTIyMzVmNzM) to report any issues, request help, and give us feedback on this config.
+Please join the [Kubeflow Slack](https://kubeflow.slack.com/join/shared_invite/zt-cpr020z4-PfcAue_2nw67~iIDy7maAQ) to report any issues, request help, and give us feedback on this config.
 
 Some additional debugging information:
 

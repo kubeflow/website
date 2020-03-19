@@ -35,7 +35,7 @@ To get TLS support from the ALB Ingress Controller, you need to follow [this tut
 
 [AWS Cognito](https://aws.amazon.com/cognito/) lets you add user sign-up, sign-in, and access control to your web and mobile apps quickly and easily. Amazon Cognito scales to millions of users and supports sign-in with social identity providers, such as Facebook, Google, and Amazon, and enterprise identity providers via SAML 2.0.
 
-In order to authenticate and manage users for Kubeflow, let's create a user pool. You can follow instructions below.
+In order to authenticate and manage users for Kubeflow, let's create a user pool. The authorization code grant is the preferred method for authorizing end users. Instead of directly providing user pool tokens to an end user upon authentication, an authorization code is provided. This code is then sent to a custom application that can exchange it for the desired tokens. Because the tokens are never exposed directly to an end user, they are less likely to become compromised. You can follow instructions below.
 
 <img src="/docs/images/aws/cognito-alb-domain.png"
   alt="Cognito Application Client Setting"

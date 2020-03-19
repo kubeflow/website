@@ -138,7 +138,7 @@ This example randomly generates the following hyperparameters:
 Check the experiment status:
 
 ```
-kubectl -n kubeflow describe experiment random-example
+kubectl -n <your user profile namespace> describe experiment random-example
 ```
 
 The output of the above command should look similar to this:
@@ -287,17 +287,27 @@ View the results of the experiment in the Katib UI:
 
 ### TensorFlow example
 
-Run the following command to launch an experiment using the Kubeflow's 
+Run the following commands to launch an experiment using the Kubeflow's 
 TensorFlow training job operator, TFJob:
 
+1. Download the tfjob-example.yaml file
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/tfjob-example.yaml
+curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/tfjob-example.yaml --output tfjob-example.yaml
 ```
 
-You can check the status of the experiment:
-
+1. Edit `tfjob-example.yaml` and change the following line to use your Kubeflow user profile namespace:
 ```
-kubectl -n kubeflow describe experiment tfjob-example
+Namespace: kubeflow
+```
+
+1. Deploy the example:
+```
+kubectl apply -f tfjob-example.yaml
+```
+
+1. You can check the status of the experiment:
+```
+kubectl -n <your user profile namespace> describe experiment tfjob-example
 ```
 
 Follow the steps as described for the *random algorithm example* 
@@ -305,17 +315,27 @@ Follow the steps as described for the *random algorithm example*
 
 ### PyTorch example
 
-Run the following command to launch an experiment using Kubeflow's PyTorch 
+Run the following commands to launch an experiment using Kubeflow's PyTorch 
 training job operator, PyTorchJob:
 
+1. Download the pytorchjob-example.yaml file
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/pytorchjob-example.yaml
+curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/pytorchjob-example.yaml --output pytorchjob-example.yaml
 ```
 
-You can check the status of the experiment:
-
+1. Edit `pytorchjob-example.yaml` and change the following line to use your Kubeflow user profile namespace:
 ```
-kubectl -n kubeflow describe experiment pytorchjob-example
+Namespace: kubeflow
+```
+
+1. Deploy the example:
+```
+kubectl apply -f pytorchjob-example.yaml
+```
+
+1. You can check the status of the experiment:
+```
+kubectl -n <your user profile namespace> describe experiment pytorchjob-example
 ```
 
 Follow the steps as described for the *random algorithm example*

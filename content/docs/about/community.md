@@ -18,6 +18,15 @@ which we encourage everybody to read before participating. We hold our leaders
 accountable for the guidelines in
 [this document](https://github.com/kubeflow/community/blob/master/INCLUSIVITY.md).
 
+## Welcome to all Google Summer of Code (GSoC) participants
+
+The Kubeflow community is delighted to be part of 
+**Google Summer of Code 2020**. Community
+mentors look forward to working with students on their GSoC projects.
+
+[Visit the Kubeflow GSoC page](/docs/about/gsoc/) to find handy information and
+links for GSoC students and mentors.
+
 ## Community discussions
 
 There are many ways to contribute! Join one of our communication channels, 
@@ -38,7 +47,8 @@ If your group has a regular meeting, talk to
 The project team holds a weekly community call on Tuesdays. This call alternates
 weekly between US East/EMEA and US West/APAC friendly times. Joining the
 [kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss)
-mailing list will automatically send you calendar invitations for the meetings, or you can subscribe to the community meeting calendar above.
+mailing list will automatically send you calendar invitations for the meetings, 
+or you can subscribe to the community meeting calendar above.
 
 Agenda, notes, and a reminder of the next call are sent to the kubeflow-discuss
 mailing list.
@@ -49,7 +59,7 @@ mailing list.
 The Kubeflow Slack workspace is 
 [kubeflow.slack.com](https://kubeflow.slack.com/). To join, click this
 [**invitation to our Slack 
-workspace**](https://join.slack.com/t/kubeflow/shared_invite/enQtNDg5MTM4NTQyNjczLTdkNTVhMjg1ZTExOWI0N2QyYTQ2MTIzNTJjMWRiOTFjOGRlZWEzODc1NzMwNTMwM2EzNjY1MTFhODczNjk4MTk).
+workspace**](https://join.slack.com/t/kubeflow/shared_invite/zt-cpr020z4-PfcAue_2nw67~iIDy7maAQ).
 
 The Kubeflow Slack workspace offers several channels. Here are a few examples:
 
@@ -63,6 +73,7 @@ The Kubeflow Slack workspace offers several channels. Here are a few examples:
 | Examples ([GitHub](https://github.com/kubeflow/examples))          | [#kubeflow-examples](https://kubeflow.slack.com/messages/CA30Q9A4U)  |
 | Documentation ([GitHub](https://github.com/kubeflow/website))      | [#website](https://kubeflow.slack.com/messages/CA4M298LD)            |
 | Product management                                                 | [#product-management](https://kubeflow.slack.com/messages/CGP3DKT5E) |
+| Google Summer of Code (GSoC)                                       | [#gsoc](https://kubeflow.slack.com/messages/CUF1GCJ4Q) |
 
 ### Mailing lists
 

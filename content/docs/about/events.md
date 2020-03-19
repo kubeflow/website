@@ -1,7 +1,7 @@
 +++
 title = "Events Calendar"
 description = "Events related to Kubeflow"
-weight = 5
+weight = 10
 aliases = ["/docs/events/"]
 +++
 

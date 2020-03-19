@@ -72,8 +72,10 @@ This is trust relationships of role `${AWS_IAM_ROLE}`
       "Condition": {
         "StringEquals": {
           "oidc.eks.us-west-2.amazonaws.com/id/${OIDC_WEB_IDENTITY_PROVIDER}:aud": "sts.amazonaws.com",
-          "oidc.eks.us-west-2.amazonaws.com/id/${OIDC_WEB_IDENTITY_PROVIDER}:sub": "system:serviceaccount:userA:defult-viewer",
-          "oidc.eks.us-west-2.amazonaws.com/id/${OIDC_WEB_IDENTITY_PROVIDER}:sub": "system:serviceaccount:userB:defult-viewer",
+          "oidc.eks.us-west-2.amazonaws.com/id/${OIDC_WEB_IDENTITY_PROVIDER}:sub": [
+            "system:serviceaccount:userA:defult-viewer",
+            "system:serviceaccount:userB:defult-viewer",
+          ]
         }
       }
     }

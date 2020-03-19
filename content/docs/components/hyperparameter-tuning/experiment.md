@@ -348,7 +348,7 @@ To define the metrics collector for your experiment:
       you specify in the `source` field.
     * `TensorFlowEvent`: Katib collects the metrics from a directory path
       containing a 
-      [tf.Event](https://www.tensorflow.org/api_docs/python/tf/Event). You
+      [tf.Event](https://www.tensorflow.org/api_docs/python/tf/compat/v1/Event). You
       should specify the path in the `source` field.
     * `Custom`: Specify this value if you need to use custom way to collect
       metrics. You must define your custom metrics collector container

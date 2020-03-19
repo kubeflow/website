@@ -258,10 +258,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
     ```
 1. Remove components which are not useful in private clusters:
 
-    ```
-    cd ${KF_DIR}/kustomize
-    kubectl delete -f cert-manager.yaml
-    ```
+   Open `${KF_DIR}/kfctl_gcp_iap.v1.0.0.yaml` and remove kustomizeConfig `cert-manager`, `cert-manager-crds`, and `cert-manager-kube-system-resources`.
 1. Create the deployment:
 
     ```
