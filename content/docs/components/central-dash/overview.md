@@ -14,10 +14,8 @@ following features:
   metrics, giving you an overview of your jobs and cluster in one view.
 - A housing for the UIs of the components running in the cluster, including
   **Pipelines**, **Katib**, **Notebooks**, and more.
-- A [registration flow](/docs/components/central-dash/registration-flow/) for
-  managing users and namespaces. You can set up a single namespace (workgroup)
-  for a shared deployment, or configure
-  [multi-user isolation](/docs/components/multi-tenancy/).
+- A [registration flow](/docs/components/central-dash/registration-flow/) that
+  prompts new users to set up their namespace if necessary. 
 
 ## Overview of Kubeflow UIs
 
@@ -118,4 +116,8 @@ You can access Kubeflow via `kubectl` and port-forwarding as follows:
 
 ## Next steps
 
-[Set up your Jupyter notebooks](/docs/notebooks/setup/) in Kubeflow.
+* Explore the [contributor management 
+  option](/docs/components/multi-tenancy/) where you
+  can set up a single namespace for a shared deployment or configure 
+  multi-tenancy for your Kubeflow deployment.
+* [Set up your Jupyter notebooks](/docs/notebooks/setup/) in Kubeflow.
