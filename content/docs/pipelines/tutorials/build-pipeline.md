@@ -1,7 +1,7 @@
 +++
 title = "Experiment with the Pipelines Samples"
 description = "Get started with the Kubeflow Pipelines notebooks and samples"
-weight = 1
+weight = 30
 +++
 
 You can learn how to build and deploy pipelines by running the samples

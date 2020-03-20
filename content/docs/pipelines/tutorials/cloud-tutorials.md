@@ -1,7 +1,7 @@
 +++
 title = "Run a Cloud-specific Pipelines Tutorial"
 description = "Choose the Kubeflow Pipelines tutorial to suit your deployment"
-weight = 1
+weight = 40
 +++
 
 {{% alert title="Opportunity to add cloud tutorials" color="info" %}}
