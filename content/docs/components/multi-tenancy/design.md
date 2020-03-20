@@ -14,11 +14,12 @@ Specifically, Kubeflow defines user-specific namespaces and uses Kubernetes
 to manage user access.
 
 This feature enables users to share access to their workspaces.
-Workspace owners can share/revoke workspace access with other users through Kubeflow UI.
-Once invited, users will have permissions to edit the workspace and operate kubeflow custom
-resources.
+Workspace owners can share/revoke workspace access with other users through the 
+Kubeflow UI.
+After being invited, users have permissions to edit the workspace and operate 
+Kubeflow custom resources.
 
-Kubeflow multi-tenancy is self-served - new user can self-register to create and own
+Kubeflow multi-tenancy is self-served - a new user can self-register to create and own
 their workspace through the UI.
 
 Kubeflow uses Istio to control in-cluster traffic. By default, requests to user
@@ -47,7 +48,7 @@ master should share the same identity management.
 
 ## Supported platforms
 * Kubeflow multi-tenancy is enabled by default if you deploy Kubeflow on GCP with [IAP](/docs/gke/deploy).
-* If you are not on GCP, you can deploy multi-tenancy to [your existing cluster](/docs/started/k8s/kfctl-existing-arrikto/).
+* If you are not on GCP, you can deploy multi-tenancy to [your existing cluster](/docs/started/k8s/kfctl-istio-dex/).
 
 ## Next steps
 
