@@ -338,7 +338,7 @@ def my_pipeline():
     # ! The output names are converted to pythonic ("snake_case") names.
 
 # This pipeline can be compiled, uploaded and submitted for execution.
-kfp.Client().create_run_from_pipeline_func(my_pipeline, arguuments={})
+kfp.Client().create_run_from_pipeline_func(my_pipeline, arguments={})
 ```
 
 ## Organizing the component files
