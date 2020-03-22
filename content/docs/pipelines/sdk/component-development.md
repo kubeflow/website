@@ -79,8 +79,7 @@ from pathlib import Path
 
 # Function doing the actual work (Outputs first N lines from a text file)
 def do_work(input1_file, output1_file, param1):
-  for x in range(param1):
-    line = next(input1_file)
+  for line in input1_file.readlines()[:param1]:
     if not line:
       break
     _ = output1_file.write(line)
