@@ -9,18 +9,39 @@ This page describes authentication for Kubeflow Pipelines to GCP.
 ## Before you begin
 [Installation Options for Kubeflow Pipelines](/docs/pipelines/installation/overview/) introduces options to install Pipelines. Be aware that authentication support and cluster setup instructions will vary depending on the option you installed Kubeflow Pipelines with.
 
+The following sections list options to authenticate pipelines to GCP. You should choose the one that fits your requirements the most.
+
+A quick recommendation comparing these options:
+
+* [Compute engine default service account](#compute-engine-default-service-account) is easy to set up, but not secure for sharing project.
+* [Workload Identity](#workload-identity) is harder to set up, but has good security.
+* [Google service account keys stored as Kubernetes secrets](#google-service-account-keys-stored-as-kubernetes-secrets) is the legacy approach that we no longer recommend.
+
 ## Compute Engine default service account
 
 This is good for trying out Kubeflow Pipelines, because it is easy to set up, but not secure.
 
-By default, your GKE nodes use [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account). If you allowed all scopes when creating the cluster,
-Kubeflow Pipelines can authenticate to GCP with editor permission in your project without further setup.
+### Cluster setup to use Compute Engine default service account
+
+By default, your GKE nodes use [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account). If you allowed cloud-platform scope when creating the cluster,
+Kubeflow Pipelines can authenticate to GCP and manage resources in your project without further setup.
+
+Here are ways to enable it when creating the cluster:
+
+* In Google Cloud Console UI, you can enable it in `Create a Kubernetes cluster -> default-pool -> Security -> Accesss Scopes -> Allow full access to all Cloud APIs` like the following:
+<img src="/docs/images/pipelines/gke-allow-full-access.png">
+* Using `gcloud` CLI, you can enable it with `--scopes cloud-platform` like the following:
+```bash
+gcloud container clusters create cluster-name \
+  --scopes cloud-platform
+```
+Please refer to [gcloud container clusters create command documentation](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create#--scopes) for other available options.
 
 ### Authoring pipelines to use default service account
 
-Pipelines don't need any specific changes to authenticate to GCP, it will use the node's GSA transparently.
+Pipelines don't need any specific changes to authenticate to GCP, it will use the default service account transparently.
 
-However, existing pipelines that use [use_gcp_secret kfp sdk operator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret) need to remove the `use_gcp_secret` usage to use nodes' default GSA.
+However, existing pipelines that use [use_gcp_secret kfp sdk operator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret) need to remove the `use_gcp_secret` usage to use the default service account.
 
 ## Securing the cluster with fine-grained GCP permission control
 
@@ -45,24 +66,12 @@ Pipelines don't need any specific changes to authenticate to GCP, it will use th
 However, existing pipelines that use [use_gcp_secret kfp sdk operator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret) need to remove the `use_gcp_secret` usage to use the bound GSA.
 You can also continue to use `use_gcp_secret` in a cluster with Workload Identity enabled, but pipeline steps with `use_gcp_secret` will use the GSA corresponding to the secret provided.
 
-#### Cluster setup to use Workload Identity for Pipelines Standalone
-
-**After you enabled Workload Identity**, you need to bind workload identities for KSAs used by [Pipelines Standalone](/docs/pipelines/installation/overview/#kubeflow-pipelines-standalone).
-The following helper bash scripts bind workload identities for KSAs provided by Pipelines Standalone:
-
-* [gcp-workload-identity-setup.sh](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/gcp-workload-identity-setup.sh) helps you create GSAs and bind them to KSAs used by pipelines workloads. This script provides an interactive command line dialog with explanation messages.
-* [wi-utils.sh](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/wi-utils.sh) provides minimal utility bash functions that let you customize your setup. The minimal utilities make it easy to read and use programmatically.
-
-Pipelines use `pipeline-runner` KSA, you can configure IAM permissions of the GSA bound to this KSA to allow pipelines use GCP APIs.
-
-Pipelines UI uses `ml-pipeline-ui` KSA. If you need to view visualizations stored in Google Cloud Storage (GCS) from pipelines UI, you should add Storage Object Viewer permission to its bound GSA.
-
 #### Cluster setup to use Workload Identity for Pipelines Standalone or GCP Hosted ML pipelines
 
 ##### 1. Create your cluster with Workload Identity enabled
 
 * In Google Cloud Console UI, you can enable it in `Create a Kubernetes cluster -> Security -> Enable Workload Identity` like the following:
-<img src="/docs/images/pipelines-auth-gke-enable-workload-identity.png">
+<img src="/docs/images/pipelines/gke-enable-workload-identity.png">
 
 * Using `gcloud` CLI, you can enable it with:
 ```bash
