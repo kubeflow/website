@@ -15,7 +15,7 @@ clusters and does not depend on any cloud-specific feature.
 In this reference architecture, we use [Dex](https://github.com/dexidp/dex) and
 [Istio](https://istio.io/) for vendor-neutral authentication.
 
-This deployment works well for on-prem installations, where companies/organizations need LDAP/AD integration for multi-user authentication, and they don't want to depend on any cloud-specific feature.
+This deployment works well for on-premises installations, where companies/organizations need LDAP/AD integration for multi-user authentication, and they don't want to depend on any cloud-specific feature.
 
 ![kfctl_istio_dex_architecture](../../kfctl_istio_dex-architecture.svg)
 
@@ -25,6 +25,13 @@ Read the relevant [article](https://journal.arrikto.com/kubeflow-authentication-
 ## Before you start
 
 The instructions below assume that you have an existing Kubernetes cluster.
+
+### Default StorageClass for on-premises deployments
+
+This Kubeflow deployment requires a default StorageClass with a [dynamic volume provisioner](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/). Verify the `provisioner` field of your default StorageClass definition.
+If you don't have a provisioner, ensure that you have configured volume provisioning in your Kubernetes cluster appropriately as mentioned [below](#provisioning-of-persistent-volumes-in-kubernetes).
+
+### Notes on the configuration file
 
 Configuring your installation with {{% config-file-istio-dex %}} has a few options you should consider:
 
@@ -746,68 +753,6 @@ The istio-ingressgateway-certs secret is mounted on the istio-ingressgateway dep
 
 Navigate to `https://<LoadBalancer Address>/` and start using Kubeflow.
 
-### Troubleshooting
-
-If the Kubeflow dashboard is not available at `https://<kubeflow address>` ensure that:
-
-1. the virtual services have been created:
-
-    ```
-    kubectl get virtualservices -n kubeflow
-    kubectl get virtualservices -n kubeflow centraldashboard -o yaml
-    ```
-    
-    If not, then kfctl has aborted for some reason, and not completed successfully.
-
-1. OIDC auth service redirects you to Dex:
-
-    ```
-    curl -k https://<kubeflow address>/ -v
-    ...
-    < HTTP/2 302
-    < content-type: text/html; charset=utf-8
-    < location:
-    /dex/auth?client_id=kubeflow-authservice-oidc&redirect_uri=%2Flogin%2Foidc&response_type=code&scope=openid+profile+email+groups&state=vSCMnJ2D
-    < date: Fri, 09 Aug 2019 14:33:21 GMT
-    < content-length: 181
-    < x-envoy-upstream-service-time: 0
-    < server: istio-envoy
-    ```
-    
-Please join the [Kubeflow Slack](https://kubeflow.slack.com/join/shared_invite/zt-cpr020z4-PfcAue_2nw67~iIDy7maAQ) to report any issues, request help, and give us feedback on this config.
-
-Some additional debugging information:
-
-OIDC AuthService logs:
-```bash
-kubectl logs -n istio-system -l app=authservice
-```
-Dex logs:
-```bash
-kubectl logs -n auth -l app=dex
-```
-Istio ingress-gateway logs:
-```bash
-kubectl logs -n istio-system -l istio=ingressgateway
-```
-
-Istio ingressgateway service:
-```bash
-kubectl get service -n istio-system istio-ingressgateway -o yaml
-```
-
-MetalLB logs:
-```bash
-kubectl logs -n metallb-system -l component=speaker
-...
-{"caller":"arp.go:102","interface":"br100","ip":"10.0.0.100","msg":"got ARP request for service IP, sending response","responseMAC":"62:41:bd:5f:cc:0d","senderIP":"10.0.0.204","senderMAC":"9a:1f:7c:95:ca:dc","ts":"2019-07-31T13:19:19.7082836Z"}
-```
-```bash
-kubectl logs -n metallb-system  -l component=controller
-...
-{"caller":"service.go:98","event":"ipAllocated","ip":"10.0.0.100","msg":"IP address assigned by controller","service":"istio-system/istio-ingressgateway","ts":"2019-07-31T12:17:46.234638607Z"}
-```
-
 ## Delete Kubeflow
 
 Run the following commands to delete your deployment and reclaim all resources:
@@ -852,6 +797,89 @@ directories:
 
 We recommend that you check in the contents of your `${KF_DIR}` directory
 into source control.
+
+## Provisioning of Persistent Volumes in Kubernetes
+
+Note that you can skip this step if you have a dynamic volume provisioner already installed in your cluster.
+
+If you don't have one:
+
+* You can choose to create PVs manually after deployment of Kubeflow.
+* Or install a dynamic volume provisioner like [Local Path Provisioner](https://github.com/rancher/local-path-provisioner#deployment). Ensure that the StorageClass used by this provisioner is the default StorageClass.
+
+## Troubleshooting
+
+### Persistent Volume Claims are in Pending State
+
+Check if PersistentVolumeClaims get `Bound` to PersistentVolumes.
+   ```
+   kubectl -n kubeflow get pvc
+
+   ```
+
+If the PersistentVolumeClaims (PVCs) are in `Pending` state after deployment and they are not bound to PersistentVolumes (PVs), you may have to either manually create PVs for each PVC in your Kubernetes Cluster or an alternative is to set up [dynamic volume provisioning](#provisioning-of-persistent-volumes-in-kubernetes) to create PVs on demand and redeploy Kubeflow after deleting existing PVCs.
+
+### Kubeflow dashboard is not available
+
+If the Kubeflow dashboard is not available at `https://<kubeflow address>` ensure that:
+
+1. the virtual services have been created:
+
+    ```
+    kubectl get virtualservices -n kubeflow
+    kubectl get virtualservices -n kubeflow centraldashboard -o yaml
+    ```
+    
+    If not, then kfctl has aborted for some reason, and not completed successfully.
+
+1. OIDC auth service redirects you to Dex:
+
+    ```
+    curl -k https://<kubeflow address>/ -v
+    ...
+    < HTTP/2 302
+    < content-type: text/html; charset=utf-8
+    < location:
+    /dex/auth?client_id=kubeflow-authservice-oidc&redirect_uri=%2Flogin%2Foidc&response_type=code&scope=openid+profile+email+groups&state=vSCMnJ2D
+    < date: Fri, 09 Aug 2019 14:33:21 GMT
+    < content-length: 181
+    < x-envoy-upstream-service-time: 0
+    < server: istio-envoy
+    ```
+    
+Some additional debugging information:
+
+OIDC AuthService logs:
+```bash
+kubectl logs -n istio-system -l app=authservice
+```
+Dex logs:
+```bash
+kubectl logs -n auth -l app=dex
+```
+Istio ingress-gateway logs:
+```bash
+kubectl logs -n istio-system -l istio=ingressgateway
+```
+
+Istio ingressgateway service:
+```bash
+kubectl get service -n istio-system istio-ingressgateway -o yaml
+```
+
+MetalLB logs:
+```bash
+kubectl logs -n metallb-system -l component=speaker
+...
+{"caller":"arp.go:102","interface":"br100","ip":"10.0.0.100","msg":"got ARP request for service IP, sending response","responseMAC":"62:41:bd:5f:cc:0d","senderIP":"10.0.0.204","senderMAC":"9a:1f:7c:95:ca:dc","ts":"2019-07-31T13:19:19.7082836Z"}
+```
+```bash
+kubectl logs -n metallb-system  -l component=controller
+...
+{"caller":"service.go:98","event":"ipAllocated","ip":"10.0.0.100","msg":"IP address assigned by controller","service":"istio-system/istio-ingressgateway","ts":"2019-07-31T12:17:46.234638607Z"}
+```
+
+Please join the [Kubeflow Slack](https://kubeflow.slack.com/join/shared_invite/zt-cpr020z4-PfcAue_2nw67~iIDy7maAQ) to report any issues, request help, and give us feedback on this config.
 
 ## Next steps
 
