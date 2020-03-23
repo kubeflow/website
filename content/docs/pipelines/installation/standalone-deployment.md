@@ -54,6 +54,8 @@ gcloud container clusters create $CLUSTER_NAME \
 
 **Warning**: Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](/docs/gke/authentication/#authentication-from-kubeflow-pipelines).
 
+Note, some legacy pipeline examples may need minor code change to run on clusters with `SCOPES="cloud-platform"`, refer to [Authoring Pipelines to use default service account](/docs/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-default-service-account).
+
 **References**:
 
   * [GCP regions and zones documentation](https://cloud.google.com/compute/docs/regions-zones/#available)
@@ -250,13 +252,22 @@ kubectl delete -k $KFP_MANIFESTS_REPO_LINK
 
 ### Further reading
 
-To learn about kustomize workflows with off-the-shelf configurations, see the
+* To learn about kustomize workflows with off-the-shelf configurations, see the
 [kustomize configuration workflows guide](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration).
+
+* Read [Authenticating Pipelines to GCP](/docs/gke/authentication/#authentication-from-kubeflow-pipelines#authoring-pipelines-to-use-workload-identity) if you want to use GCP services in Kubeflow Pipelines.
 
 ## Troubleshooting
 
-If you encounter a permission error when installing Kubeflow Pipelines standalone, run:
+* If you encounter a permission error when installing Kubeflow Pipelines standalone, run:
 
 ```
 kubectl create clusterrolebinding your-binding --clusterrole=cluster-admin --user=<your-user-name>
 ```
+
+* If your pipelines are stuck in ContainerCreating state and it has pod events like
+```
+MountVolume.SetUp failed for volume "gcp-credentials-user-gcp-sa" : secret "user-gcp-sa" not found
+```
+
+You should remove `use_gcp_secret` usages as documented in [Authenticating Pipelines to GCP](/docs/gke/authentication/#authentication-from-kubeflow-pipelines#authoring-pipelines-to-use-workload-identity).
