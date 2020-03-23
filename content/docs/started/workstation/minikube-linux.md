@@ -79,7 +79,53 @@ minikube start --vm-driver=none --cpus 6 --memory 12288 --disk-size=120g --extra
 
 ## Installation of Kubeflow
 
-The following instruction is for installing Kubeflow v1.0 under /root/kubeflow/v1.0 directory. 
+1. Download the kfctl {{% kf-latest-version %}} release from the
+  [Kubeflow releases 
+  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
+
+1. Unpack the tar ball
+      ```
+      tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
+      ```
+1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+
+    ```
+    # The following command is optional, to make kfctl binary easier to use.
+    export PATH=$PATH:<path to where kfctl was unpacked>
+
+    # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
+    # name of the directory containing your configuration.
+    # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
+    export KF_NAME=<your choice of name for the Kubeflow deployment>
+
+    # Set the path to the base directory where you want to store one or more 
+    # Kubeflow deployments. For example, /opt/.
+    # Then set the Kubeflow application directory for this deployment.
+    export BASE_DIR=<path to a base directory>
+    export KF_DIR=${BASE_DIR}/${KF_NAME}
+
+    # Set the configuration file to use, such as the file specified below:
+    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm.yaml"
+
+    # Generate and deploy Kubeflow:
+    mkdir -p ${KF_DIR}
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_URI}
+    ```
+
+    * **${KF_NAME}** - The name of your Kubeflow deployment.
+      If you want a custom deployment name, specify that name here.
+      For example,  `my-kubeflow` or `kf-test`.
+      The value of KF_NAME must consist of lower case alphanumeric characters or
+      '-', and must start and end with an alphanumeric character.
+      The value of this variable cannot be greater than 25 characters. It must
+      contain just a name, not a directory path.
+      This value also becomes the name of the directory where your Kubeflow 
+      configurations are stored, that is, the Kubeflow application directory. 
+
+    * **${KF_DIR}** - The full path to your Kubeflow application directory.
+  
+The following is an example for installing Kubeflow v1.0 under /root/kubeflow/v1.0 directory. 
 ```
 mkdir -p /root/kubeflow/v1.0
 cd /root/kubeflow/v1.0
@@ -88,10 +134,9 @@ wget https://github.com/kubeflow/kfctl/releases/download/v1.0/kfctl_v1.0-0-g94c3
 tar -xvf kfctl_v1.0-0-g94c35cf_linux.tar.gz			
 export PATH=$PATH:/root/kubeflow/v1.0
 export KF_NAME=my-kubeflow
-mkdir v1rc4
 export BASE_DIR=/root/kubeflow/v1.0
 export KF_DIR=${BASE_DIR}/${KF_NAME}
-export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.0-branch/kfdef/kfctl_k8s_istio.v1.0.0.yaml" 
+export CONFIG_URI="{{% config-uri-k8s-istio %}}" 
 
 mkdir -p ${KF_DIR}
 cd ${KF_DIR}
