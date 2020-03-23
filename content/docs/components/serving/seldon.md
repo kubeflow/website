@@ -10,7 +10,7 @@ Seldon Core comes installed with Kubeflow. The [Seldon Core documentation site](
 
 If you have a saved model in a PersistentVolume (PV), Google Cloud Storage bucket or Amazon S3 Storage you can use one of the [prepackaged model servers provided by Seldon Core](https://docs.seldon.io/projects/seldon-core/en/latest/servers/overview.html).
 
-Seldon Core also provides [language specific model wrappers](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/README.html) to wrap your inference code for it to run in Seldon Core.
+Seldon Core also provides [language specific model wrappers](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/language_wrappers.html) to wrap your inference code for it to run in Seldon Core.
 
 ## Kubeflow specifics
 
@@ -47,7 +47,7 @@ spec:
 
 Save the above resource and apply it with `kubectl`.
 
-## Simple Example
+## Simple example
 
 
 Create a new namespace:
@@ -56,7 +56,7 @@ Create a new namespace:
 kubectl create ns testseldon
 ```
 
-Label that namespace so we can run inference tasks in it:
+Label that namespace so you can run inference tasks in it:
 
 ```
 kubectl label namespace testseldon serving.kubeflow.org/inferenceservice=enabled
@@ -153,7 +153,7 @@ You should see a response:
 ```
 
 
-## Further Documentation
+## Further documentation
 
    * [Seldon Core documentation](https://docs.seldon.io/projects/seldon-core/en/latest/)
    * [Example notebooks](https://docs.seldon.io/projects/seldon-core/en/latest/examples/notebooks.html)
