@@ -62,7 +62,7 @@ Label that namespace so you can run inference tasks in it:
 kubectl label namespace testseldon serving.kubeflow.org/inferenceservice=enabled
 ```
 
-Create an istio gateway in that namespace named `kubeflow-gateway`:
+Create an Istio gateway in that namespace named `kubeflow-gateway`:
 
 ```
 cat <<EOF | kubectl create -f -
