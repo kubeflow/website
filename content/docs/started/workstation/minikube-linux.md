@@ -11,9 +11,7 @@ The following topics will be covered:
 - installation of docker-community edition (docker-ce), kubectl, and minikube
 - installation of Kubeflow
 - launch of Kubeflow central dashboard
-- compilation of a pipeline example
-- upload of compilated application to Pipeline UI
-- execution of the uploaded application
+- execution of a MNIST on-prem notebook
 
 ## Prerequistes
 
@@ -154,10 +152,13 @@ Then you can access Kubeflow dashboard in a web browser:
 http://<INGRESS_HOST>:<INGRESS_PORT>
 ```
 
-## Compilation of a sample pipeline application
-This tutorial covers the required steps to compile a sample pipeline application. Full instruction to set up development environment can be found in the [offical Kubeflow site](https://www.kubeflow.org/docs/pipelines/sdk/install-sdk/).
+## Execution of a MNIST on-prem notebook
 
-### Step 1: Set up Python environment
+[The MNIST on-prem notebook](https://github.com/kubeflow/fairing/blob/master/examples/mnist/mnist_e2e_on_prem.ipynb) builds a docker image, launches a TFJob to train model, and creates a InferenceService (KFServing) to deploy the trained model.
+
+### Prerequistes
+
+#### Step 1: Set up Python environment
 Python 3.5 or later is required. 
 ```
 apt-get update; apt-get install -y wget bzip2
@@ -165,73 +166,94 @@ wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh 
 ```
 Re-open your current shell.
-Create a Python 3.7 environment name of mlpipeline(or any name you preferred):
+Create a Python 3.7 environment name of `mlpipeline` (or any name you preferred):
 ```
 conda create --name mlpipeline python=3.7
 conda init
 conda activate mlpipeline 
+``` 
+#### Step 2: Install Jupyter Notebook
+Full instruction can be found in [Jupter Documentation](https://jupyter.readthedocs.io/en/latest/install.html)
+```
+pip install --upgrade pip
+pip install jupyter
 ```
 
-### Step 2: Install the Kubeflow SDK
-```
-pip install https://storage.googleapis.com/ml-pipeline/release/latest/kfp.tar.gz --upgrade
-```
+#### Step 3: Create a Docker ID
+In order to build docker images from your notebook, a docker registry is needed where the images will be stored.
+If you don't have a Docker ID, please follow [Docker Docuementation] (https://docs.docker.com/docker-id/) to create one.
 
-### Step 3: Compile sample source (sequential.py)
+
+#### Step 4: Create a namespace to run the MNIST on-prem notebook 
+The following will create a namespace called `mnist`. You can use any name you like.
+```
+kubectl create ns mnist
+kubectl label namespace mnist serving.kubeflow.org/inferenceservice=enabled 
+```
+#### Step 5:  Download the MNIST on-prem notebook
+
 ```
 cd /root/kubeflow
-git clone https://github.com/kubeflow/pipelines.git
-cd /root/kubeflow/pipelines/samples/core/sequential
-conda activate mlpipeline
-dsl-compile --py ./sequential.py --output ./sequential.tar.gz
+git clone https://github.com/kubeflow/fairing.git
 ```
-For a successful compilateion, a file called `sequential.tar.gz` will be created in `/root/kubeflow/pipelines/samples/core/sequential` directory.
 
+### Launch Jupyter Notebook
+```
+cd /root/kubeflow/fairing/examples/mnist
+conda activate mlpipeline
+docker login
+jupyter notebook --allow-root
+```
 
-## Upload of compilated application to Pipeline UI
-1. Launch [Kubeflow central dashboard](/docs/started/workstation/minikube-linux/#launch-of-kubeflow-central-dashboard) (see instruction above).
-   
-2. Under **Quick shortcuts**, click **Upload a pipeline**.
-   <img src="/docs/started/workstation/images/Kubeflow_frontpage.png"
-    alt="Launch Kubeflow central dashboard"
-    class="mt-3 mb-3 p-3 border border-info rounded">
+You will see output like this:
+```
+[I 21:17:37.473 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
+[I 21:17:37.784 NotebookApp] Serving notebooks from local directory: /root/kubeflow/fairing/examples/mnist
+[I 21:17:37.784 NotebookApp] The Jupyter Notebook is running at:
+[I 21:17:37.784 NotebookApp] http://localhost:8888/?token=06cd43860cb7cb214bba30028d4b93f9f1acb08e3121ee13
+[I 21:17:37.784 NotebookApp]  or http://127.0.0.1:8888/?token=06cd43860cb7cb214bba30028d4b93f9f1acb08e3121ee13
+[I 21:17:37.784 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[W 21:17:37.789 NotebookApp] No web browser found: could not locate runnable browser.
+[C 21:17:37.789 NotebookApp]
 
-3. In **Pipelines GUI**, click **Upload pipeline**.
-    <img src="/docs/started/workstation/images/upload_front.png"
-    alt="Upload a pipeline application"
-    class="mt-3 mb-3 p-3 border border-info rounded">
+    To access the notebook, open this file in a browser:
+        file:///root/.local/share/jupyter/runtime/nbserver-16796-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/?token=06cd43860cb7cb214bba30028d4b93f9f1acb08e3121ee13
+     or http://127.0.0.1:8888/?token=06cd43860cb7cb214bba30028d4b93f9f1acb08e3121ee13
+```
 
-4. In **Upload Pipeline or Pipeline Version** GUI, select **Create a new pipeline** and **Uploaded a file**. Drag/choose the compiled pipeline application. Under **Pipeline Description**, enter a description you like. Click **Create** button.
-    <img src="/docs/started/workstation/images/choosefile.png"
-    alt="Upload a pipeline application"
-    class="mt-3 mb-3 p-3 border border-info rounded">
- 
+### Execute MNIST on-prem notebook
+After launching Jupyter Notebook, click `mnist_e2e_on_prem.ipynb` to open this notebook.
+Read the following before execution of the notebook.
 
-## Execution of the uploaded application
-1.  To execute the uploaded application, click **Create run** button.
-   <img src="/docs/started/workstation/images/createRun.png"
-    alt="Create a run"
-    class="mt-3 mb-3 p-3 border border-info rounded">
+1. Under `Configure The Docker Registry For Kubeflow Fairing`, modify the cell to use your Docker ID and namespace created above.
+   ```
+      DOCKER_REGISTRY = 'index.docker.io/<your Docker ID>'
+      my_namespace = 'mnist'
+   ```
 
-2. In the **Experiments** GUI, click **Start** button at the bottom. Optionally, you can associate the run with an experiment.
-   <img src="/docs/started/workstation/images/run_start.png"
-    alt="start a run"
-    class="mt-3 mb-3 p-3 border border-info rounded">
+2. Current MNIST on-prem notebook assume a NFS server is available or an existing persistent volume(PV) and persistent volume claim(PVC) is created. NFS server is not installed with Minikube. If you don't have a NFS server and don't have any existing PV and PVC, you can still let the notebook to create a PV and PVC by making the following change.
 
-3. To check the status of the run, click **Experiments** on the left, then the run name (Run of sequential(b1a3f) under **Default** experiment.    
+    Under `Create PV/PVC to Store The Exported Model`
 
-<img src="/docs/started/workstation/images/checkRun.png"
-    alt="check run status"
-    class="mt-3 mb-3 p-3 border border-info rounded">
+    1. In the first cell, comment out `nfs_server` and `nfs_path`
+    ```
+    # nfs_server = '172.16.189.69'
+    # nfs_path = '/opt/kubeflow/data/mnist'
+    pv_name = 'mnist-e2e-pv'
+    pvc_name = 'mnist-e2e-pvc'
+    ```
+    2. In the second cell, change the `nfs` section to `hostPath`
+  
+        ```
+        nfs:
+          path: {nfs_path}
+          server: {nfs_server}
+        ```
+        to
 
-Expected output will be something like this. There should be 2 rectangles which corresponding to 2 containers/steps in the pipeline. The two green check signs mean the jobs are run successfully. You can check the logs under **Logs** tab.
-
-   <img src="/docs/started/workstation/images/run_result.png"
-    alt="check result of a pipeline application run"
-    class="mt-3 mb-3 p-3 border border-info rounded">
- 
-
-
-
-
-
+        ```
+        hostPath:
+          path: /mnt/data
+        ```
