@@ -15,7 +15,7 @@ clusters and does not depend on any cloud-specific feature.
 In this reference architecture, we use [Dex](https://github.com/dexidp/dex) and
 [Istio](https://istio.io/) for vendor-neutral authentication.
 
-This deployment works well for on-prem installations, where companies/organizations need LDAP/AD integration for multi-user authentication, and they don't want to depend on any cloud-specific feature.
+This deployment works well for on-premises installations, where companies/organizations need LDAP/AD integration for multi-user authentication, and they don't want to depend on any cloud-specific feature.
 
 ![kfctl_istio_dex_architecture](../../kfctl_istio_dex-architecture.svg)
 
@@ -26,7 +26,7 @@ Read the relevant [article](https://journal.arrikto.com/kubeflow-authentication-
 
 The instructions below assume that you have an existing Kubernetes cluster.
 
-### Default StorageClass for on-premise deployments
+### Default StorageClass for on-premises deployments
 
 This Kubeflow deployment requires a default StorageClass with a [dynamic volume provisioner](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/). Verify the `provisioner` field of your default StorageClass definition.
 If you don't have a provisioner, ensure that you have configured volume provisioning in your Kubernetes cluster appropriately as mentioned [below](#provisioning-of-persistent-volumes-in-kubernetes).
