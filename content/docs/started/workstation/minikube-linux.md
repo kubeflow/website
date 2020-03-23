@@ -105,7 +105,7 @@ minikube start --vm-driver=none --cpus 6 --memory 12288 --disk-size=120g --extra
     export KF_DIR=${BASE_DIR}/${KF_NAME}
 
     # Set the configuration file to use, such as the file specified below:
-    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm.yaml"
+    export CONFIG_URI="{{% config-uri-k8s-istio %}}"
 
     # Generate and deploy Kubeflow:
     mkdir -p ${KF_DIR}
