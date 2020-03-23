@@ -21,6 +21,10 @@ A quick recommendation comparing these options:
 
 This is good for trying out Kubeflow Pipelines, because it is easy to set up, but not secure.
 
+{{% alert color="warning" %}}
+<p>NOTE: Using pipelines with Compute Engine default service account is not supported in Full Kubeflow deployment.</p>
+{{% /alert %}}
+
 ### Cluster setup to use Compute Engine default service account
 
 By default, your GKE nodes use [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account). If you allowed cloud-platform scope when creating the cluster,
