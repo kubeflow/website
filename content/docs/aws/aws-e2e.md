@@ -145,7 +145,31 @@ It is handy to have a domain managed by Route53 to deal with all the DNS records
 
 In case your `domain.com` zone is not managed by Route53, you need to delegate a subdomain management in a Route53 hosted zone, in our example we have delegated the subdomain `platform.domain.com`. To do that, create a new hosted zone `platform.domain.com`, copy the NS entries that will be created and in turn create these NS records in the `domain.com` zone.
 
-The records in the hosted zone will be created in the next section of this guide.
+In the following case, we have `domain.com` hosted in Godaddy and we don't have a subdomain there. We'd like to create a subdomain that uses Amazon route53 as the DNS Service. For more details, please check [document](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html). If you already have a subdomain in your domain service, you can use Route 53 as well, check [document](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/MigratingSubdomain.html).
+
+<img src="/docs/images/aws/route53-hosted-zone.png"
+  alt="Route53 Hosted Zone"
+  class="mt-3 mb-3 border border-info rounded">
+
+As you can see, there're four nameservers created and we need to configure them in your domain service.
+Add namespace record, key should be the subdomain name `platform`, value is your NS server from Route53.
+
+> Note: different domain provider has different settings, you need to check guidance from your domain providers.
+
+<img src="/docs/images/aws/godaddy-ns-for-subdomain.png"
+  alt="Route53 Hosted Zone"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+In order to make Coginito to use custom domain name, A record is required to resolve `platform.domain.com` as root domain, which can be a Route53 Alias to the ALB as well. We can use abitrary ip here now, once we have ALB created, we will update the value later.
+
+If you're not using Route53, you can point that A record anywhere.
+
+<img src="/docs/images/aws/route53-a-record.png"
+  alt="Route53 A Record"
+  class="mt-3 mb-3 border border-info rounded">
+
+The rest records sets in the hosted zone will be created in the next section of this guide.
 
 #### Certificate Manager
 
@@ -161,7 +185,25 @@ Add an `App client` with any name and the default options.
 
 In the `App client settings` select `Authorization code grant` flow and `email`, `openid`, `aws.cognito.signin.user.admin` and `profile` scopes.
 
-In the `Domain name` choose `Use your domain`, type `auth.platform.domain.com` and select the `*.platform.domain.com` AWS managed certificate you've created in N.Virginia. When it's created, it will return the `Alias target` cloudfront address for which you need to create a CNAME `auth.platform.domain.com` in the hosted zone.
+Use `https://kubeflow.platform.domain.com/oauth2/idpresponse` in the Callback URL(s).
+
+<img src="/docs/images/aws/cognito-custom-domain-callback.png"
+  alt="Cognito Custom Domain Callback URL"
+  class="mt-3 mb-3 border border-info rounded">
+
+In the `Domain name` choose `Use your domain`, type `auth.platform.domain.com` and select the `*.platform.domain.com` AWS managed certificate you've created in N.Virginia. Creating domain takes up to 15 mins.
+
+<img src="/docs/images/aws/cognito-custom-domain.png"
+  alt="Cognito Custom Domain"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+When it's created, it will return the `Alias target` cloudfront address for which you need to create a `A Record` `auth.platform.domain.com` in the hosted zone.
+
+<img src="/docs/images/aws/route53-a-record-auth.png"
+  alt="Route53 auth A Record"
+  class="mt-3 mb-3 border border-info rounded">
+
 
 Take note of the following 5 values:
 
@@ -213,7 +255,19 @@ At this point you will also have an ALB, it takes around 3 minutes to be ready. 
 * `*.platform.domain.com`
 * `*.default.platform.domain.com`
 
-And one A record for the root domain `platform.domain.com` to make it valid, which can be a Route53 Alias to the ALB as well. If you're not using Route53, you can point that A record anywhere.
+Also remember to update A record for `platform.domain.com` using ALB DNS name.
+
+<img src="/docs/images/aws/route53-a-record-platform.png"
+  alt="Route53 platform A Record"
+  class="mt-3 mb-3 border border-info rounded">
+
+Here's the full snapshot of record sets in your hosted zone.
+
+<img src="/docs/images/aws/route53-record-sets.png"
+  alt="Route53 Record Sets"
+  class="mt-3 mb-3 border border-info rounded">
+
+>>>>>>> Add more screenshots and clear steps for e2e doc
 
 The central dashboard should now be available at https://kubeflow.platform.domain.com the first time will redirect to Cognito for login.
 
@@ -366,3 +420,13 @@ kubectl apply -f tensorflow.yaml
 Overview of the installed components, endpoints and the tools used:
 
 <img src="../reference_architecture.svg" alt="KFServing">
+
+## Debug
+
+### Custom domain is not a valid subdomain
+
+Route53 needs a `A record` to resolve root domain, we need to add this record in hosted zone. If you miss this step, check Route53 section.
+
+<img src="/docs/images/aws/cognito-invalid-subdomain.png"
+  alt="Coginito Invalid Subdomain"
+  class="mt-3 mb-3 border border-info rounded">
