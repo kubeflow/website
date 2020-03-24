@@ -56,6 +56,8 @@ Point browser to either:
 
 ## Next steps
 
+* Refer to the [microk8s common issues](https://microk8s.io/docs/troubleshooting)
+* Refer to the [multipass docs](https://multipass.run/docs)
 * Refer to the [user guide](/docs/)
 * Refer to the [components](/docs/components/)
 * Refer to the guide to [Jupyter notebooks in Kubeflow](/docs/notebooks/)
