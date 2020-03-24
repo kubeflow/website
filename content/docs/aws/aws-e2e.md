@@ -20,7 +20,7 @@ The target audience is a member of a SRE team that builds this platform and prov
 ## Prerequisites
 Access to an AWS account via command line is required, make sure you're able to execute aws cli commands.
 Install the following programs in the system from which you provision the infra (laptop or conf.management tool):
- 
+
 * eksctl
 * kubectl
 * istioctl
@@ -66,7 +66,7 @@ ip-192-168-68-104.eu-west-1.compute.internal   Ready    <none>   18d   v1.14.7-e
 ip-192-168-77-56.eu-west-1.compute.internal    Ready    <none>   18d   v1.14.7-eks-1861c5
 ```
 
-If you'd like to change the nodegroup scaling there are two options, either via the EC2 auto-scaling group or using `eksctl`: 
+If you'd like to change the nodegroup scaling there are two options, either via the EC2 auto-scaling group or using `eksctl`:
 ```shell script
 eksctl scale nodegroup --cluster=aiplatform --nodes=4 ng
 ```
@@ -143,7 +143,7 @@ In this section you will prepare the ecosystem required by kubeflow, and you wil
 
 It is handy to have a domain managed by Route53 to deal with all the DNS records you will have to add (wildcard for istio-ingressgateway, validation for the certificate manager, etc).
 
-In case your `domain.com` zone is not managed by Route53, you need to delegate a subdomain management in a Route53 hosted zone, in our example we have delegated the subdomain platform.domain.com. To do that, create a new hosted zone `platform.domain.com`, copy the NS entries that will be created and in turn create these NS records in the `domain.com` zone.
+In case your `domain.com` zone is not managed by Route53, you need to delegate a subdomain management in a Route53 hosted zone, in our example we have delegated the subdomain `platform.domain.com`. To do that, create a new hosted zone `platform.domain.com`, copy the NS entries that will be created and in turn create these NS records in the `domain.com` zone.
 
 The records in the hosted zone will be created in the next section of this guide.
 
@@ -180,9 +180,9 @@ Take note of the following 5 values:
 
 Download and edit the kfctl manifest file:
 ```shell script
-wget https://raw.githubusercontent.com/kubeflow/manifests/v1.0-branch/kfdef/kfctl_aws_cognito.v1.0.0.yaml
+wget https://raw.githubusercontent.com/kubeflow/manifests/v1.0-branch/kfdef/kfctl_aws_cognito.v1.0.1.yaml
 ```
-At the end of the file we can see the `KfAwsPlugin` plugin section. In the spec about the cognito, you need to replace the 4 values you recorded above and the nodegroups names in the roles.  
+At the end of the file we can see the `KfAwsPlugin` plugin section. In the spec about the cognito, you need to replace the 4 values you recorded above and the nodegroups names in the roles.
 
 ```yaml
   - kind: KfAwsPlugin
@@ -202,8 +202,8 @@ At the end of the file we can see the `KfAwsPlugin` plugin section. In the spec 
 
 Now you can build the manifests and then deploy them:
 ```shell script
-kfctl build -f kfctl_aws_cognito.v1.0.0.yaml -V
-kfctl apply -f kfctl_aws_cognito.v1.0.0.yaml -V
+kfctl build -f kfctl_aws_cognito.v1.0.1.yaml -V
+kfctl apply -f kfctl_aws_cognito.v1.0.1.yaml -V
 ```
 
 That shouldn't take a long time. There shouldn't by any errors, and when ready you can validate that you can see the kubeflow namespace.
@@ -280,9 +280,9 @@ kn service list
 ```
 ```
 NAME                                   URL                                                                       LATEST                                       AGE     CONDITIONS   READY     REASON
-pytorch-cifar10-predictor-default      http://pytorch-cifar10-predictor-default.default.platform.domain.com      pytorch-cifar10-predictor-default-vfz8r      18d     3 OK / 3     True      
-sklearn-iris-predictor-default         http://sklearn-iris-predictor-default.default.platform.domain.com         sklearn-iris-predictor-default-pbx2x         6d22h   3 OK / 3     True      
-tensorflow-flowers-predictor-default   http://tensorflow-flowers-predictor-default.default.platform.domain.com   tensorflow-flowers-predictor-default-6zp4q   18d     3 OK / 3     True  
+pytorch-cifar10-predictor-default      http://pytorch-cifar10-predictor-default.default.platform.domain.com      pytorch-cifar10-predictor-default-vfz8r      18d     3 OK / 3     True
+sklearn-iris-predictor-default         http://sklearn-iris-predictor-default.default.platform.domain.com         sklearn-iris-predictor-default-pbx2x         6d22h   3 OK / 3     True
+tensorflow-flowers-predictor-default   http://tensorflow-flowers-predictor-default.default.platform.domain.com   tensorflow-flowers-predictor-default-6zp4q   18d     3 OK / 3     True
 ```
 
 That simple action will load a model from google storage and serve it through the same istio ingress-gateway. It is possible to test an inference request by posting to any endpoint one of its example datapoints, by using the cookie from the browser that visited the central dashboard:

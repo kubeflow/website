@@ -60,10 +60,12 @@ plugins:
           cognito:
             cognitoUserPoolArn: arn:aws:cognito-idp:us-west-2:xxxxx:userpool/us-west-2_xxxxxx
             cognitoAppClientId: xxxxxbxxxxxx
-            cognitoUserPoolDomain: your-user-pool
+            cognitoUserPoolDomain: your-amazon-cognito-domain
             certArn: arn:aws:acm:us-west-2:xxxxx:certificate/xxxxxxxxxxxxx-xxxx
       ....
 ```
+
+> Note: You can use your own domain for `cognitoUserPoolDomain`. In this case, we just use Amazon Coginito domain `kubeflow-testing`. If you use your own domain, please check [aws-e2e](/docs/aws/aws-e2e) for more details.
 
 After you finish the TLS and Authentication configuration, then you can run `kfctl apply -V -f ${CONFIG_FILE}`.
 
