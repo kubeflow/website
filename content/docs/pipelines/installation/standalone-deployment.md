@@ -20,7 +20,7 @@ platforms. This guide needs updating. See [Issue 1253](https://github.com/kubefl
 
 ## Before you get started
 
-Working with Kubeflow Pipelines requires a Kubernetes cluster as well as an installation of kubectl.
+Working with Kubeflow Pipelines Standalone requires a Kubernetes cluster as well as an installation of kubectl.
 
 ### Download and install kubectl
 
@@ -32,19 +32,16 @@ You need kubectl version 1.14 or later for native support of kustomize.
 
 If you have an existing Kubernetes cluster, continue with the instructions for [configuring kubectl to talk to your cluster](#configure-kubectl).
 
-To create a new Kubernetes cluster, run the following:
-
 See the GKE guide to [creating a cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster) for Google Cloud Platform (GCP).
 
 Use the [gcloud container clusters create command](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create) to create a cluster that can run all Kubeflow Pipelines samples:
-
 ```
 # The following parameters can be customized based on your needs.
 
 CLUSTER_NAME="kubeflow-pipelines-standalone"
 ZONE="us-central1-a"
 MACHINE_TYPE="n1-standard-2" # A machine with 2 CPUs and 7.50GB memory
-SCOPES="cloud-platform" # These scopes are needed for running some pipeline samples
+SCOPES="cloud-platform" # This scope is needed for running some pipeline samples. Read the warning below for its security implication
 
 gcloud container clusters create $CLUSTER_NAME \
      --zone $ZONE \
