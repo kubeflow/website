@@ -208,11 +208,12 @@ kfctl apply -f kfctl_aws_cognito.v1.0.0.yaml -V
 
 That shouldn't take a long time. There shouldn't by any errors, and when ready you can validate that you can see the kubeflow namespace.
 
-At this point you will also have an ALB, it takes around 3 minutes to be ready. When ready, copy the DNS name of that load balancer and create 3 CNAME entries to it in Route53:
+At this point you will also have an ALB, it takes around 3 minutes to be ready. When ready, copy the DNS name of that load balancer and create 2 CNAME entries to it in Route53:
 
-* `platform.domain.com`
 * `*.platform.domain.com`
 * `*.default.platform.domain.com`
+
+And one A record for the root domain `platform.domain.com` to make it valid, which can be a Route53 Alias to the ALB as well. If you're not using Route53, you can point that A record anywhere.
 
 The central dashboard should now be available at https://kubeflow.platform.domain.com the first time will redirect to Cognito for login.
 
