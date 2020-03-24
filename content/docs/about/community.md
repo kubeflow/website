@@ -69,7 +69,7 @@ The Kubeflow Slack workspace offers several channels. Here are a few examples:
 | Community meeting chat                                             | [#community](https://kubeflow.slack.com/messages/C8Q0QJYNB)          |
 | TF Operator ([GitHub](https://github.com/kubeflow/tf-operator))    | [#tf-operator](https://kubeflow.slack.com/messages/C985VJN9F)        |
 | KFServing ([GitHub](https://github.com/kubeflow/kfserving))        | [#kfserving](https://kubeflow.slack.com/messages/CH6E58LNP)          |
-| Pipelines ([GitHub](https://github.com/kubeflow/pipelines))        | [#kfserving](https://kubeflow.slack.com/messages/CE10KS9M4)          |
+| Pipelines ([GitHub](https://github.com/kubeflow/pipelines))        | [#kubeflow-pipelines](https://kubeflow.slack.com/messages/CE10KS9M4)          |
 | Examples ([GitHub](https://github.com/kubeflow/examples))          | [#kubeflow-examples](https://kubeflow.slack.com/messages/CA30Q9A4U)  |
 | Documentation ([GitHub](https://github.com/kubeflow/website))      | [#website](https://kubeflow.slack.com/messages/CA4M298LD)            |
 | Product management                                                 | [#product-management](https://kubeflow.slack.com/messages/CGP3DKT5E) |
