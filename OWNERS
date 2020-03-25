@@ -1,28 +1,8 @@
 approvers:
   - abhi-g
-  - aronchick
-  - dansanche
-  - ewilderj
-  - jinchihe
   - jlewi
-  - kunmingg
-  - lluunn
-  - nickchase
-  - pdmack
   - richardsliu
   - sarahmaddox
-  - texasmichelle
-  - willingc
-  - dsdinter
-  - Ark-kun
-  - gaoning777
-  - hongye-sun
-  - IronPan
-  - neuromage 
-  - paveldournov
-  - qimingj
-  - rileyjbauer
-  - vicaire
   - joeliedtke
   - animeshsingh
   - rmgogogo
@@ -31,7 +11,7 @@ reviewers:
   - aronchick
   - carmine
   - dansanche
-  - inc0
+  - Jeffwan
   - jinchihe
   - jlewi
   - kunmingg
@@ -40,7 +20,6 @@ reviewers:
   - pdmack
   - richardsliu
   - sarahmaddox
-  - texasmichelle
   - willingc
   - dsdinter
   - Ark-kun
@@ -51,7 +30,6 @@ reviewers:
   - paveldournov
   - qimingj
   - rileyjbauer
-  - thedriftofwords
   - vicaire
   - animeshsingh
   - rmgogogo
