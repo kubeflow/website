@@ -7,19 +7,15 @@ approvers:
   - animeshsingh
   - rmgogogo
 reviewers:
-  - abhi-g
   - aronchick
   - carmine
   - dansanche
   - Jeffwan
   - jinchihe
-  - jlewi
   - kunmingg
   - lluunn
   - nickchase
   - pdmack
-  - richardsliu
-  - sarahmaddox
   - terrytangyuan
   - willingc
   - dsdinter
@@ -32,6 +28,4 @@ reviewers:
   - qimingj
   - rileyjbauer
   - vicaire
-  - animeshsingh
-  - rmgogogo
   - janeman98
