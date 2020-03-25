@@ -20,7 +20,7 @@ The target audience is a member of a SRE team that builds this platform and prov
 ## Prerequisites
 Access to an AWS account via command line is required, make sure you're able to execute aws cli commands.
 Install the following programs in the system from which you provision the infra (laptop or conf.management tool):
- 
+
 * eksctl
 * kubectl
 * istioctl
@@ -66,7 +66,7 @@ ip-192-168-68-104.eu-west-1.compute.internal   Ready    <none>   18d   v1.14.7-e
 ip-192-168-77-56.eu-west-1.compute.internal    Ready    <none>   18d   v1.14.7-eks-1861c5
 ```
 
-If you'd like to change the nodegroup scaling there are two options, either via the EC2 auto-scaling group or using `eksctl`: 
+If you'd like to change the nodegroup scaling there are two options, either via the EC2 auto-scaling group or using `eksctl`:
 ```shell script
 eksctl scale nodegroup --cluster=aiplatform --nodes=4 ng
 ```
@@ -143,9 +143,33 @@ In this section you will prepare the ecosystem required by kubeflow, and you wil
 
 It is handy to have a domain managed by Route53 to deal with all the DNS records you will have to add (wildcard for istio-ingressgateway, validation for the certificate manager, etc).
 
-In case your `domain.com` zone is not managed by Route53, you need to delegate a subdomain management in a Route53 hosted zone, in our example we have delegated the subdomain platform.domain.com. To do that, create a new hosted zone `platform.domain.com`, copy the NS entries that will be created and in turn create these NS records in the `domain.com` zone.
+In case your `domain.com` zone is not managed by Route53, you need to delegate a subdomain management in a Route53 hosted zone, in our example we have delegated the subdomain `platform.domain.com`. To do that, create a new hosted zone `platform.domain.com`, copy the NS entries that will be created and in turn create these NS records in the `domain.com` zone.
 
-The records in the hosted zone will be created in the next section of this guide.
+In the following case, we have `domain.com` hosted in Godaddy and we don't have a subdomain there. We'd like to create a subdomain that uses Amazon route53 as the DNS Service. For more details, please check [document](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html). If you already have a subdomain in your domain service, you can use Route 53 as well, check [document](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/MigratingSubdomain.html).
+
+<img src="/docs/images/aws/route53-hosted-zone.png"
+  alt="Route53 Hosted Zone"
+  class="mt-3 mb-3 border border-info rounded">
+
+As you can see, there're four nameservers created and we need to configure them in your domain service.
+Add namespace record, key should be the subdomain name `platform`, value is your NS server from Route53.
+
+> Note: different domain provider has different settings, you need to check guidance from your domain providers.
+
+<img src="/docs/images/aws/godaddy-ns-for-subdomain.png"
+  alt="Route53 Hosted Zone"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+In order to make Coginito to use custom domain name, A record is required to resolve `platform.domain.com` as root domain, which can be a Route53 Alias to the ALB as well. We can use abitrary ip here now, once we have ALB created, we will update the value later.
+
+If you're not using Route53, you can point that A record anywhere.
+
+<img src="/docs/images/aws/route53-a-record.png"
+  alt="Route53 A Record"
+  class="mt-3 mb-3 border border-info rounded">
+
+The rest records sets in the hosted zone will be created in the next section of this guide.
 
 #### Certificate Manager
 
@@ -161,7 +185,25 @@ Add an `App client` with any name and the default options.
 
 In the `App client settings` select `Authorization code grant` flow and `email`, `openid`, `aws.cognito.signin.user.admin` and `profile` scopes.
 
-In the `Domain name` choose `Use your domain`, type `auth.platform.domain.com` and select the `*.platform.domain.com` AWS managed certificate you've created in N.Virginia. When it's created, it will return the `Alias target` cloudfront address for which you need to create a CNAME `auth.platform.domain.com` in the hosted zone.
+Use `https://kubeflow.platform.domain.com/oauth2/idpresponse` in the Callback URL(s).
+
+<img src="/docs/images/aws/cognito-custom-domain-callback.png"
+  alt="Cognito Custom Domain Callback URL"
+  class="mt-3 mb-3 border border-info rounded">
+
+In the `Domain name` choose `Use your domain`, type `auth.platform.domain.com` and select the `*.platform.domain.com` AWS managed certificate you've created in N.Virginia. Creating domain takes up to 15 mins.
+
+<img src="/docs/images/aws/cognito-custom-domain.png"
+  alt="Cognito Custom Domain"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+When it's created, it will return the `Alias target` cloudfront address for which you need to create a `A Record` `auth.platform.domain.com` in the hosted zone.
+
+<img src="/docs/images/aws/route53-a-record-auth.png"
+  alt="Route53 auth A Record"
+  class="mt-3 mb-3 border border-info rounded">
+
 
 Take note of the following 5 values:
 
@@ -180,9 +222,9 @@ Take note of the following 5 values:
 
 Download and edit the kfctl manifest file:
 ```shell script
-wget https://raw.githubusercontent.com/kubeflow/manifests/v1.0-branch/kfdef/kfctl_aws_cognito.v1.0.0.yaml
+wget https://raw.githubusercontent.com/kubeflow/manifests/v1.0-branch/kfdef/kfctl_aws_cognito.v1.0.1.yaml
 ```
-At the end of the file we can see the `KfAwsPlugin` plugin section. In the spec about the cognito, you need to replace the 4 values you recorded above and the nodegroups names in the roles.  
+At the end of the file we can see the `KfAwsPlugin` plugin section. In the spec about the cognito, you need to replace the 4 values you recorded above and the nodegroups names in the roles.
 
 ```yaml
   - kind: KfAwsPlugin
@@ -202,8 +244,8 @@ At the end of the file we can see the `KfAwsPlugin` plugin section. In the spec 
 
 Now you can build the manifests and then deploy them:
 ```shell script
-kfctl build -f kfctl_aws_cognito.v1.0.0.yaml -V
-kfctl apply -f kfctl_aws_cognito.v1.0.0.yaml -V
+kfctl build -f kfctl_aws_cognito.v1.0.1.yaml -V
+kfctl apply -f kfctl_aws_cognito.v1.0.1.yaml -V
 ```
 
 That shouldn't take a long time. There shouldn't by any errors, and when ready you can validate that you can see the kubeflow namespace.
@@ -213,7 +255,19 @@ At this point you will also have an ALB, it takes around 3 minutes to be ready. 
 * `*.platform.domain.com`
 * `*.default.platform.domain.com`
 
-And one A record for the root domain `platform.domain.com` to make it valid, which can be a Route53 Alias to the ALB as well. If you're not using Route53, you can point that A record anywhere.
+Also remember to update A record for `platform.domain.com` using ALB DNS name.
+
+<img src="/docs/images/aws/route53-a-record-platform.png"
+  alt="Route53 platform A Record"
+  class="mt-3 mb-3 border border-info rounded">
+
+Here's the full snapshot of record sets in your hosted zone.
+
+<img src="/docs/images/aws/route53-record-sets.png"
+  alt="Route53 Record Sets"
+  class="mt-3 mb-3 border border-info rounded">
+
+>>>>>>> Add more screenshots and clear steps for e2e doc
 
 The central dashboard should now be available at https://kubeflow.platform.domain.com the first time will redirect to Cognito for login.
 
@@ -280,9 +334,9 @@ kn service list
 ```
 ```
 NAME                                   URL                                                                       LATEST                                       AGE     CONDITIONS   READY     REASON
-pytorch-cifar10-predictor-default      http://pytorch-cifar10-predictor-default.default.platform.domain.com      pytorch-cifar10-predictor-default-vfz8r      18d     3 OK / 3     True      
-sklearn-iris-predictor-default         http://sklearn-iris-predictor-default.default.platform.domain.com         sklearn-iris-predictor-default-pbx2x         6d22h   3 OK / 3     True      
-tensorflow-flowers-predictor-default   http://tensorflow-flowers-predictor-default.default.platform.domain.com   tensorflow-flowers-predictor-default-6zp4q   18d     3 OK / 3     True  
+pytorch-cifar10-predictor-default      http://pytorch-cifar10-predictor-default.default.platform.domain.com      pytorch-cifar10-predictor-default-vfz8r      18d     3 OK / 3     True
+sklearn-iris-predictor-default         http://sklearn-iris-predictor-default.default.platform.domain.com         sklearn-iris-predictor-default-pbx2x         6d22h   3 OK / 3     True
+tensorflow-flowers-predictor-default   http://tensorflow-flowers-predictor-default.default.platform.domain.com   tensorflow-flowers-predictor-default-6zp4q   18d     3 OK / 3     True
 ```
 
 That simple action will load a model from google storage and serve it through the same istio ingress-gateway. It is possible to test an inference request by posting to any endpoint one of its example datapoints, by using the cookie from the browser that visited the central dashboard:
@@ -366,3 +420,13 @@ kubectl apply -f tensorflow.yaml
 Overview of the installed components, endpoints and the tools used:
 
 <img src="../reference_architecture.svg" alt="KFServing">
+
+## Debug
+
+### Custom domain is not a valid subdomain
+
+Route53 needs a `A record` to resolve root domain, we need to add this record in hosted zone. If you miss this step, check Route53 section.
+
+<img src="/docs/images/aws/cognito-invalid-subdomain.png"
+  alt="Coginito Invalid Subdomain"
+  class="mt-3 mb-3 border border-info rounded">
