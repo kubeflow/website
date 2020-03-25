@@ -9,7 +9,7 @@ weight = 25
 
 This guide walks you through using MPI for training.
 
-The MPI Operator makes it easy to run allreduce-style distributed training on Kubernetes. Please check out the list of adopters in [the MPI Operator repository on GitHub](https://github.com/kubeflow/mpi-operator/blob/master/ADOPTERS.md).
+The MPI Operator makes it easy to run allreduce-style distributed training on Kubernetes. Please check out [this blog post](https://medium.com/kubeflow/introduction-to-kubeflow-mpi-operator-and-industry-adoption-296d5f2e6edc) for an introduction to MPI Operator and its industry adoption.
 
 ## Installation
 
