@@ -17,6 +17,7 @@ Katib](/docs/components/hyperparameter-tuning/overview/).
 This section describes some configurations that you may need to add to your
 Kubernetes cluster, depending on the way you're using Kubeflow and Katib.
 
+<a id="katib-install"></a>
 ### Installing Katib
 
 You can skip this step if you have already installed Kubeflow. Your Kubeflow
@@ -35,6 +36,8 @@ bash ./katib/scripts/v1alpha3/deploy.sh
 ```
 
 ### Setting up persistent volumes
+
+If you used [above script](#katib-install) to deploy Katib, you can skip this step. This script deploys PVC and PV on your cluster.
 
 You can skip this step if you're using Kubeflow on Google Kubernetes Engine 
 (GKE) or if your Kubernetes cluster includes a StorageClass for dynamic volume 
@@ -102,8 +105,7 @@ This example uses the [YAML file for the
 random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/random-example.yaml).
 
 The random algorithm example uses an MXNet neural network to train an image
-classification model using the MNIST dataset. The experiment runs three 
-training jobs with various hyperparameters and saves the results.
+classification model using the MNIST dataset. You can check training container source code [here](https://github.com/kubeflow/katib/tree/master/examples/v1alpha3/mxnet-mnist). The experiment runs three training jobs with various hyperparameters and saves the results.
 
 Run the following commands to launch an experiment using the random algorithm
 example:
@@ -349,13 +351,12 @@ Delete the installed components:
 bash ./scripts/v1alpha3/undeploy.sh
 ```
 
-If you created a PV for Katib, delete it:
-
-```
-kubectl delete -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1alpha3/pv/pv.yaml
-```
-
 ## Next steps
 
-For details of how to configure and run your experiment, see the guide to 
-[running an experiment](/docs/components/hyperparameter-tuning/experiment/).
+* For details of how to configure and run your experiment, see the guide to 
+  [running an experiment](/docs/components/hyperparameter-tuning/experiment/).
+
+* For a detailed instruction of the Katib Configuration file, 
+  read the [Katib config page](/docs/components/hyperparameter-tuning/katib-config/).
+
+* See how you can change installation of Katib component in the [environment variables guide](/docs/components/hyperparameter-tuning/env-variables/).
