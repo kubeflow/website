@@ -1,5 +1,5 @@
 +++
-title = "Katib components environment variables"
+title = "Environment Variables for Katib Components"
 description = "How to set up environment variables for each Katib component"
 weight = 50
 +++
@@ -166,4 +166,4 @@ Check [here](https://github.com/docker-library/docs/tree/master/mysql#environmen
 Katib MySQL environment variables must be matched with the Katib DB Manager environment variables, it means:
 
 1. `MYSQL_ROOT_PASSWORD` = `DB_PASSWORD`
-2. `MYSQL_DATABASE` = `KATIB_MYSQL_DB_DATABASE`
+1. `MYSQL_DATABASE` = `KATIB_MYSQL_DB_DATABASE`
