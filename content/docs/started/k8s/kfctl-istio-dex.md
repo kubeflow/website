@@ -44,7 +44,7 @@ Configuring your installation with {{% config-file-istio-dex %}} has a few optio
   1.3.1 with SDS enabled, which requires Kubernetes 1.13 or later.
   Follow [Istio's blog](https://istio.io/blog/2019/trustworthy-jwt-sds/) to add API server configurations to your Kubernetes cluster.
   Ensure that the `TokenRequest` feature flag is set to `true` in the cluster.
-  For `kubeadm` created clusters, set the API server flags in the pod manifest at `/etc/kubernetes/manifests/kube-api-server.yaml`.
+  For `kubeadm` created clusters, set the API server flags in the pod manifest at `/etc/kubernetes/manifests/kube-apiserver.yaml`.
   For example, the Istio community runs their test-infrastructure with the following API server flags:
   ```
   "service-account-issuer": "kubernetes.default.svc"
