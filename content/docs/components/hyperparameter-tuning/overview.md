@@ -96,7 +96,7 @@ is a good starting point for developers who want to contribute to the project.
 
 ## Katib interfaces
 
-You can use the following interaces to interact with Katib:
+You can use the following interfaces to interact with Katib:
 
 * A web UI that you can use to submit experiments and to monitor your results.
   See the [getting-started 
