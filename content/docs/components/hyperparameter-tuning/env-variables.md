@@ -131,13 +131,13 @@ This is the table of environment variables for the [Katib DB Manager](https://gi
       <tr>
         <td><code>DB_NAME</code></td>
         <td>Katib DB Name</td>
-        <td>No default value</td>
+        <td>mysql</td>
         <td>Yes</td>
       </tr>
       <tr>
         <td><code>DB_PASSWORD</code></td>
         <td>Katib DB Password</td>
-        <td>No default value</td>
+        <td>test</td>
         <td>Yes</td>
       </tr>
       <tr>
@@ -170,7 +170,7 @@ This is the table of environment variables for the [Katib DB Manager](https://gi
 
 Currently, Katib DB Manager supports only **MySQL** database. You can use your own DB Manager and Database to report metrics.
 
-To run Katib DB Manager `DB_NAME` **must be equal to `mysql`** and `DB_PASSWORD` **must be set up**. For the [Katib DB Manager](https://github.com/andreyvelich/katib/blob/doc-katib-config/manifests/v1alpha3/db-manager/deployment.yaml#L29) we set `DB_PASSWORD` to a value from [katib-mysql-secrets](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/mysql-db/secret.yaml).
+For the [Katib DB Manager](https://github.com/andreyvelich/katib/blob/doc-katib-config/manifests/v1alpha3/db-manager/deployment.yaml#L29) you can change `DB_PASSWORD` to a your own MySQL DB password.
 
 Katib DB Manager creates connection to the DB, using `mysql` driver and this data source name:
 
@@ -180,7 +180,7 @@ Katib DB Manager creates connection to the DB, using `mysql` driver and this dat
 
 For the [Katib MySQL](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/mysql-db/deployment.yaml) we set these environment variables:
 
-- `MYSQL_ROOT_PASSWORD` to a value from [katib-mysql-secrets](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/mysql-db/secret.yaml).
+- `MYSQL_ROOT_PASSWORD` to a value from [katib-mysql-secrets](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/mysql-db/secret.yaml), which is equal to "test".
 - `MYSQL_ALLOW_EMPTY_PASSWORD` as `true`
 - `MYSQL_DATABASE` as `katib`.
 
