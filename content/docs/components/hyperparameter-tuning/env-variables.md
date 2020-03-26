@@ -170,7 +170,7 @@ This is the table of environment variables for the [Katib DB Manager](https://gi
 
 Currently, Katib DB Manager supports only **MySQL** database. You can use your own DB Manager and Database to report metrics.
 
-For the [Katib DB Manager](https://github.com/andreyvelich/katib/blob/doc-katib-config/manifests/v1alpha3/db-manager/deployment.yaml#L29) you can change `DB_PASSWORD` to a your own MySQL DB password.
+For the [Katib DB Manager](https://github.com/andreyvelich/katib/blob/doc-katib-config/manifests/v1alpha3/db-manager/deployment.yaml#L29) you can change `DB_PASSWORD` to your own MySQL DB password.
 
 Katib DB Manager creates connection to the DB, using `mysql` driver and this data source name:
 
