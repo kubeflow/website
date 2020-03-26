@@ -201,7 +201,7 @@ or Seldon Core as described above.
 NVIDIA Triton Inference Server is a REST and GRPC service for deep-learning
 inferencing of TensorRT, TensorFlow, Pytorch, ONNX and Caffe2 models. The server is
 optimized to deploy machine learning algorithms on both GPUs and
-CPUs at scale.
+CPUs at scale. Triton Inference Server was previously known as TensorRT Inference Server.
 
 You can use NVIDIA Triton Inference Server as a 
 [standalone system](/docs/components/serving/tritoninferenceserver),
