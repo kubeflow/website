@@ -78,7 +78,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pytorch                       /docs/components/training/pytorch
 /docs/components/nuclio                        /docs/components/misc/nuclio
 /docs/components/seldon                        /docs/components/serving/seldon
-/docs/components/trtinferenceserver            /docs/components/serving/trtinferenceserver
+/docs/components/trtinferenceserver            /docs/components/serving/tritoninferenceserver
 /docs/components/tfbatchpredict                /docs/components/serving/tfbatchpredict
 /docs/components/tftraining                    /docs/components/training/tftraining
 /docs/components/tfserving_new                 /docs/components/serving/tfserving_new
@@ -112,3 +112,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 
 # Refactored multi-user docs
 /docs/other-guides/multi-user-overview/       /docs/components/multi-tenancy/
+
+# Rename TensorRT Inference Server to Triton Inference Server
+/docs/components/serving/trtinferenceserver   /docs/components/serving/tritoninferenceserver

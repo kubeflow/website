@@ -95,7 +95,7 @@
     <a
        id="a4034"
        target="_blank"
-       xlink:href="https://developer.nvidia.com/tensorrt">
+       xlink:href="https://developer.nvidia.com/nvidia-triton-inference-server">
       <image
          width="62.05962"
          height="26.846273"

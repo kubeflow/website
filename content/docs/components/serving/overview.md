@@ -52,8 +52,8 @@ KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
 
       <tr>
         <td></td>
-        <td>NVIDIA TensorRT Inference Server</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorrt">sample</a></td>
+        <td>NVIDIA Triton Inference Server</td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/triton">sample</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/nvidia_mnist.html">docs</a></td>
       </tr>
 
@@ -196,14 +196,14 @@ For TensorFlow models you can use TensorFlow Serving for
 However, if you plan to use multiple frameworks, you should consider KFServing
 or Seldon Core as described above.
 
-## NVIDIA TensorRT Inference Server
+## NVIDIA Triton Inference Server
 
-NVIDIA TensorRT Inference Server is a REST and GRPC service for deep-learning
-inferencing of TensorRT, TensorFlow and Caffe2 models. The server is
+NVIDIA Triton Inference Server is a REST and GRPC service for deep-learning
+inferencing of TensorRT, TensorFlow, Pytorch, ONNX and Caffe2 models. The server is
 optimized to deploy machine learning algorithms on both GPUs and
-CPUs at scale.
+CPUs at scale. Triton Inference Server was previously known as TensorRT Inference Server.
 
-You can use NVIDIA TensorRT Inference Server as a 
-[standalone system](/docs/components/serving/trtinferenceserver),
+You can use NVIDIA Triton Inference Server as a 
+[standalone system](/docs/components/serving/tritoninferenceserver),
 but you should consider KFServing as described above. KFServing includes support 
-for NVIDIA TensorRT Inference Server.
+for NVIDIA Triton Inference Server.

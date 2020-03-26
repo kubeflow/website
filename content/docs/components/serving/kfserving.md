@@ -31,7 +31,7 @@ KFServing works with Kubeflow 0.7. Kustomize installation files are [located in 
 * [scikit-learn](https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn)
 * [ONNX](https://github.com/kubeflow/kfserving/tree/master/docs/samples/onnx)
 * [Custom](https://github.com/kubeflow/kfserving/tree/master/docs/samples/custom)
-* [TensorRT](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorrt)
+* [Triton](https://github.com/kubeflow/kfserving/tree/master/docs/samples/triton)
 * [GPU](https://github.com/kubeflow/kfserving/tree/master/docs/samples/accelerators)
 * [Autoscaling](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling)
 * [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
