@@ -6,7 +6,7 @@ weight = 50
 
 This page describes information about environment variables for each Katib component. If you want to change Katib installation, you can modify some of these variables.
 
-If the tables below you can see description, default values and mandatory property for all environment variables in each Katib component.
+In the tables below you can see description, default values and mandatory property for all environment variables in each Katib component.
 If variable has mandatory property, appropriate Katib component's manifest must have this environment variable.
 
 ## Katib Controller
