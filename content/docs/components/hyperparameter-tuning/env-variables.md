@@ -6,9 +6,12 @@ weight = 50
 
 This page describes information about environment variables for each Katib component. If you want to change Katib installation, you can modify some of these variables.
 
+If the tables below you can see description, default values and mandatory property for all environment variables in each Katib component.
+If variable has mandatory property, you must add this environment variable to the appropriate Katib component's manifest.
+
 ## Katib Controller
 
-This is the table of environment variables for the [Katib Controller](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/katib-controller/katib-controller.yaml) deployment with default values.
+This is the table of environment variables for the [Katib Controller](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/katib-controller/katib-controller.yaml) deployment.
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -17,33 +20,39 @@ This is the table of environment variables for the [Katib Controller](https://gi
         <th>Variable</th>
         <th>Description</th>
         <th>Default Value</th>
+        <th>Mandatory</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>KATIB_CORE_NAMESPACE</code></td>
         <td>Base Namespace for all Katib components and default Experiment</td>
-        <td>kubeflow</td>
+        <td><code>metadata.namespace</code></td>
+        <td>Yes</td>
       </tr>
       <tr>
         <td><code>KATIB_SUGGESTION_COMPOSER</code></td>
         <td>Composer for the Katib Suggestions. You can use your own Composer</td>
         <td>general</td>
+        <td>No</td>
       </tr>
       <tr>
         <td><code>KATIB_DB_MANAGER_SERVICE_NAMESPACE</code></td>
         <td>Katib DB Manager Namespace</td>
         <td><code>KATIB_CORE_NAMESPACE</code> env variable</td>
+        <td>No</td>
       </tr>
       <tr>
         <td><code>KATIB_DB_MANAGER_SERVICE_IP</code></td>
         <td>Katib DB Manager IP</td>
         <td>katib-db-manager</td>
+        <td>No</td>
       </tr>
        <tr>
         <td><code>KATIB_DB_MANAGER_SERVICE_PORT</code></td>
         <td>Katib DB Manager Port</td>
         <td>6789</td>
+        <td>No</td>
       </tr>
     </tbody>
   </table>
@@ -61,7 +70,7 @@ If you want to use your own DB Manager to report Katib metrics, you can change `
 
 ## Katib UI
 
-This is the table of environment variables for the [Katib UI](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/ui/deployment.yaml) deployment with default values.
+This is the table of environment variables for the [Katib UI](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/ui/deployment.yaml) deployment.
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -70,28 +79,33 @@ This is the table of environment variables for the [Katib UI](https://github.com
         <th>Variable</th>
         <th>Description</th>
         <th>Default Value</th>
+        <th>Mandatory</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>KATIB_CORE_NAMESPACE</code></td>
         <td>Base Namespace for all Katib components and default Experiment</td>
-        <td>kubeflow</td>
+        <td><code>metadata.namespace</code></td>
+        <td>Yes</td>
       </tr>
       <tr>
         <td><code>KATIB_DB_MANAGER_SERVICE_NAMESPACE</code></td>
         <td>Katib DB Manager Namespace</td>
         <td><code>KATIB_CORE_NAMESPACE</code> env variable</td>
+        <td>No</td>
       </tr>
       <tr>
         <td><code>KATIB_DB_MANAGER_SERVICE_IP</code></td>
         <td>Katib DB Manager IP</td>
         <td>katib-db-manager</td>
+        <td>No</td>
       </tr>
        <tr>
         <td><code>KATIB_DB_MANAGER_SERVICE_PORT</code></td>
         <td>Katib DB Manager Port</td>
         <td>6789</td>
+        <td>No</td>
       </tr>
     </tbody>
   </table>
@@ -101,7 +115,7 @@ Katib UI calls Katib DB Manager with the same address expression as Katib Contro
 
 ## Katib DB Manager
 
-This is the table of environment variables for the [Katib DB Manager](https://github.com/andreyvelich/katib/blob/doc-katib-config/manifests/v1alpha3/db-manager/deployment.yaml) deployment with default values.
+This is the table of environment variables for the [Katib DB Manager](https://github.com/andreyvelich/katib/blob/doc-katib-config/manifests/v1alpha3/db-manager/deployment.yaml) deployment.
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -110,6 +124,7 @@ This is the table of environment variables for the [Katib DB Manager](https://gi
         <th>Variable</th>
         <th>Description</th>
         <th>Default Value</th>
+        <th>Mandatory</th>
       </tr>
     </thead>
     <tbody>
@@ -117,35 +132,43 @@ This is the table of environment variables for the [Katib DB Manager](https://gi
         <td><code>DB_NAME</code></td>
         <td>Katib DB Name</td>
         <td>No default value</td>
+        <td>Yes</td>
       </tr>
       <tr>
         <td><code>DB_PASSWORD</code></td>
         <td>Katib DB Password</td>
         <td>No default value</td>
+        <td>Yes</td>
       </tr>
       <tr>
         <td><code>DB_USER</code></td>
         <td>Katib DB User</td>
         <td>root</td>
+        <td>No</td>
       </tr>
        <tr>
         <td><code>KATIB_MYSQL_DB_HOST</code></td>
         <td>Katib MySQL Host</td>
         <td>katib-mysql</td>
+        <td>No</td>
       </tr>
       <tr>
         <td><code>KATIB_MYSQL_DB_PORT</code></td>
         <td>Katib MySQL Port</td>
         <td>3306</td>
+        <td>No</td>
       </tr>
       <tr>
         <td><code>KATIB_MYSQL_DB_DATABASE</code></td>
         <td>Katib MySQL Database name</td>
         <td>katib</td>
+        <td>No</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+Currently, Katib DB Manager supports only **MySQL** database. You can use your own DB Manager and Database to report metrics.
 
 To run Katib DB Manager `DB_NAME` **must be equal to `mysql`** and `DB_PASSWORD` **must be set up**. For the [Katib DB Manager](https://github.com/andreyvelich/katib/blob/doc-katib-config/manifests/v1alpha3/db-manager/deployment.yaml#L29) we set `DB_PASSWORD` to a value from [katib-mysql-secrets](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/mysql-db/secret.yaml).
 
