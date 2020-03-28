@@ -30,7 +30,7 @@ plugins:
 
 - `kf-admin-${AWS_CLUSTER_NAME}` - kfctl attach alb, optional fsx, cloud-watch required policies to the role and role will be used by kubeflow control plane components like `alb-ingress-controller`, `pipeline`, `fluend-cloud-watch` and `fsx for lustre CSI driver`, etc.
 
-- `kf-user-${AWS_CLUSTER_NAME}` - This is designed to be used by end user. Cluster admin can use this role in profile and every user's service account `default-viewer` will have this role attached. By default, no policies is attached to this role, user can attach policies by their own.
+- `kf-user-${AWS_CLUSTER_NAME}` - This is designed to be used by end user. Cluster admin can use this role in profile and every user's service account `default-editor` will have this role attached. By default, no policies is attached to this role, user can attach policies by their own.
 
 Here is an example of profile:
 
@@ -44,19 +44,19 @@ spec:
       awsIamRole: arn:aws:iam::${AWS_ACCOUNT_ID}:role/${AWS_IAM_ROLE}
 ```
 
-Profile controller will add annotation `eks.amazonaws.com/role-arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/kf-user-${AWS_CLUSTER_NAME}` to user's `default-viewer` service account.
+Profile controller will add annotation `eks.amazonaws.com/role-arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/kf-user-${AWS_CLUSTER_NAME}` to user's `default-editor` service account.
 
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: default-viewer
+  name: default-editor
   namespace: userA
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/${AWS_IAM_ROLE}
 ```
 
-At the same time, profile controller add `"oidc.eks.us-west-2.amazonaws.com/id/${OIDC_WEB_IDENTITY_PROVIDER}:sub": "system:serviceaccount:${user_namespace}:defult-viewer"` to trust relationship of IAM role `${AWS_CLUSTER_NAME}`.
+At the same time, profile controller add `"oidc.eks.us-west-2.amazonaws.com/id/${OIDC_WEB_IDENTITY_PROVIDER}:sub": "system:serviceaccount:${user_namespace}:default-editor"` to trust relationship of IAM role `${AWS_CLUSTER_NAME}`.
 
 This is trust relationships of role `${AWS_IAM_ROLE}`
 ```json
@@ -73,8 +73,8 @@ This is trust relationships of role `${AWS_IAM_ROLE}`
         "StringEquals": {
           "oidc.eks.us-west-2.amazonaws.com/id/${OIDC_WEB_IDENTITY_PROVIDER}:aud": "sts.amazonaws.com",
           "oidc.eks.us-west-2.amazonaws.com/id/${OIDC_WEB_IDENTITY_PROVIDER}:sub": [
-            "system:serviceaccount:userA:defult-viewer",
-            "system:serviceaccount:userB:defult-viewer",
+            "system:serviceaccount:userA:default-editor",
+            "system:serviceaccount:userB:default-editor",
           ]
         }
       }
