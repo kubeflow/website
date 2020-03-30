@@ -70,12 +70,38 @@ role binding in the Kubernetes cluster. This person has permissions to create
 and modify Kubernetes resources in the cluster. For example, the person who
 deployed Kubeflow will have administration privileges in the cluster.
 
-### Pre-requisites: grant user minimal Kubernetes cluster view access
+### Pre-requisites: grant user minimal Kubernetes cluster access
 
 You must grant each user the minimal permission scope that allows them to 
 connect to the Kubernetes cluster.
-For example for GCP users, you should grant the following IAM roles: 
-**Kubernetes Engine Cluster Viewer** and **IAP-secured Web App User**.
+
+For example, for Google Cloud Platform (GCP) users, you should grant the 
+following Cloud Identity and Access Management (IAM) roles. In the following
+commands, replace `[PROJECT]` with your GCP project and replace `[EMAIL]` with 
+the user's email address:
+
+* To access the Kubernetes cluster, the user needs the [Kubernetes Engine 
+  Cluster Viewer](https://cloud.google.com/kubernetes-engine/docs/how-to/iam)
+  role:
+
+    ```
+    gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/container.clusterViewer
+    ```
+
+* To access the Kubeflow UI through IAP, the user needs the
+  [IAP-secured Web App User](https://cloud.google.com/iap/docs/managing-access)
+  role:
+
+    ```
+    gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/iap.httpsResourceAccessor
+    ```
+
+* To be able to run `gcloud get credentials` and see logs in Cloud Logging
+  (formerly Stackdriver), the user needs viewer access on the project:
+
+    ```
+    gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/viewer
+    ```
 
 ### Automatic creation of profiles
 
