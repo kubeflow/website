@@ -80,7 +80,7 @@ following Cloud Identity and Access Management (IAM) roles. In the following
 commands, replace `[PROJECT]` with your GCP project and replace `[EMAIL]` with 
 the user's email address:
 
-* To access the Kubernentes cluster, the user needs the [Kubernetes Engine 
+* To access the Kubernetes cluster, the user needs the [Kubernetes Engine 
   Cluster Viewer](https://cloud.google.com/kubernetes-engine/docs/how-to/iam)
   role:
 
