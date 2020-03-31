@@ -69,7 +69,7 @@ Pipelines don't need any specific changes to authenticate to Google Cloud. With 
 However, existing pipelines that use [use_gcp_secret kfp sdk operator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret) need to remove the `use_gcp_secret` usage to use the bound GSA.
 You can also continue to use `use_gcp_secret` in a cluster with Workload Identity enabled, but pipeline steps with `use_gcp_secret` will use the GSA corresponding to the secret provided.
 
-#### Cluster setup to use Workload Identity for Pipelines Standalone or GCP Hosted ML pipelines
+#### Cluster setup to use Workload Identity for Pipelines Standalone or AI Platform Pipelines
 
 ##### 1. Create your cluster with Workload Identity enabled
 
@@ -90,9 +90,9 @@ References:
 * [Enable Workload Identity on an existing cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#enable_workload_identity_on_an_existing_cluster)
 
 ##### 2. Deploy Kubeflow Pipelines
-Deploy via [Pipelines Standalone](/docs/pipelines/installation/overview/#kubeflow-pipelines-standalone) or [GCP hosted ML pipelines](/docs/pipelines/installation/overview#gcp-hosted-ml-pipelines) as usual.
+Deploy via [Pipelines Standalone](/docs/pipelines/installation/overview/#kubeflow-pipelines-standalone) or [AI Platform Pipelines](/docs/pipelines/installation/overview#gcp-hosted-ml-pipelines) as usual.
 
-Note, for GCP hosted ML pipelines additionally, you need to patch `proxy-agent` to work with workload identity:
+Note, for AI Platform Pipelines additionally, you need to patch `proxy-agent` to work with workload identity:
 ```
 kubectl patch deployment proxy-agent --patch '{"spec": {"template": {"spec": {"hostNetwork": true}}}}'
 ```
@@ -123,9 +123,17 @@ $ ./gcp-workload-identity-setup.sh
 
 #### Cluster setup to use Workload Identity for Full Kubeflow
 
-Since Kubeflow 1.0, if you deployed Kubeflow following the GCP instructions Workload Identity has already been set up correctly for Kubeflow Pipelines.
+Public Kubeflow v1.0.1 release hasn't been configured out of box. [The fix](https://github.com/kubeflow/manifests/pull/969) has been merged, but not yet released publically.
+After the fix is released, if you deployed Kubeflow following the GCP instructions Workload Identity will have already been configured properly for Kubeflow Pipelines.
 
-Pipelines use `kf-user` KSA by default which is different from Kubeflow Standalone. You can also choose to use a different default KSA by overriding deployment like [this overlay](https://github.com/kubeflow/manifests/blob/a8d473a2431bd7afb88834f62751b021c4269817/pipeline/api-service/overlays/use-kf-user/deployment.yaml#L12).
+If you want to use Workload Identity with pipelines on Kubeflow v1.0.1 or before, I recommend running the following commands to patch your deployment:
+```
+export NAMESPACE=kubeflow # Replace with your kubeflow's namespace if it's been customized.
+kubectl patch deployment -n ${NAMESPACE} ml-pipeline --patch '{"spec": {"template": {"spec": {"containers": [{"name": "ml-pipeline-api-server", "env": [{"name": "DEFAULTPIPELINERUNNERSERVICEACCOUNT", "value": "kf-user"}]}]}}}}'
+kubectl patch clusterrolebinding -n ${NAMESPACE} pipeline-runner --patch '{"subjects": [{"kind": "ServiceAccount", "name": "kf-user", "namespace": "'$NAMESPACE'"}]}'
+```
+
+Pipelines use `kf-user` KSA by default which is different from Kubeflow Standalone.
 
 ### Google service account keys stored as Kubernetes secrets
 
@@ -144,9 +152,9 @@ Examples for how to use this function can be found in the
 
 You don't need to do anything. Full Kubeflow deployment has already deployed the `user-gcp-sa` secret for you.
 
-#### Cluster setup to use use_gcp_secret for Pipelines Standalone and Hosted GCP ML Pipelines
+#### Cluster setup to use use_gcp_secret for Pipelines Standalone and AI Platform Pipelines
 
-Pipelines Standalone and Hosted GCP ML Pipelines require you to manually set up the `user-gcp-sa` secret used by `use_gcp_secret`. 
+Pipelines Standalone and AI Platform Pipelines require your manual setup for the `user-gcp-sa` secret used by `use_gcp_secret`.
 
 Instructions to set up the secret:
 
