@@ -268,6 +268,8 @@ You will see output like this:
      or http://127.0.0.1:8888/?token=06cd43860cb7cb214bba30028d4b93f9f1acb08e3121ee13
 ```
 
+See [Hints and Tips section](#hints-and-tips) to learn how to access the notebook GUI remotely.
+
 ### Execute MNIST on-prem notebook
 After launching Jupyter Notebook, click `mnist_e2e_on_prem.ipynb` to open this notebook.
 Read the following before execution of the notebook.
@@ -302,3 +304,26 @@ Read the following before execution of the notebook.
         hostPath:
           path: /mnt/data
         ```
+
+## Hints and tips
+### Access a Jupyter Notebook GUI remotely
+If your Jupyter Notebook server is hosted in a Linux machine and you want to access a notebook GUI from your Windows/Mac, you can use the following port forwarding technique.
+
+   General syntax for port forwarding from XXXX to YYYY
+   ```
+   ssh -N -f -L localhost:YYYY:localhost:XXXX remoteuser@remotehost
+   ```
+
+Below is an example of accessing a Jupyter notebook hosted in a Linux machine remotehost.com (port 8888) in a Windows machine using port 8889. 
+
+1. In the Windows machine, issue
+    ```
+    ssh -N -f -L localhost:8889:localhost:8888 root@remotehost.com
+    ```
+    You will be promoted for the password to access remotehost.com
+   
+2. In the Windows machine, open a web browser and enter the following url
+   ```
+   localhost:8889
+   ```
+   
