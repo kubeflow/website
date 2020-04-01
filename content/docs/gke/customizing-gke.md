@@ -96,7 +96,12 @@ kfctl apply -V -f ${CONFIG_FILE}
 
 ## Customizing Kubernetes resources
 
-You can use [kustomize](https://kustomize.io/) to customize Kubeflow.
+You can use [kustomize](https://kustomize.io/) to customize Kubeflow. 
+Make sure that you have the minimum required version of kustomize:
+<b>{{% kustomize-min-version %}}</b> or later. For more information about
+kustomize in Kubeflow, see
+[how Kubeflow uses kustomize](/docs/other-guides/kustomize/).
+
 To customize the Kubernetes resources running within the cluster, you can modify 
 the kustomize manifests in `${KF_DIR}/kustomize`.
 
