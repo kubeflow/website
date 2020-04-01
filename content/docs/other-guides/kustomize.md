@@ -19,6 +19,7 @@ want to include in your Kubeflow deployment.
 
 This section describes how kfctl works with kustomize to set up your 
 Kubeflow deployment.
+You need kustomize {{% kustomize-min-version %}} or later.
 
 ### The Kubeflow deployment process
 

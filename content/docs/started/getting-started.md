@@ -171,6 +171,8 @@ tools for deploying and managing Kubeflow:
 
 * Follow the kustomize installation and setup instructions from the guide to
   [kustomize in Kubeflow](/docs/other-guides/kustomize/).
+  Make sure that you have the minimum required version of kustomize:
+  <b>{{% kustomize-min-version %}}</b> or later.
 
 ## Understanding the Kubeflow versioning policies
 
