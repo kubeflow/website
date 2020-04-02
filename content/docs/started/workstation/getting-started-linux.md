@@ -17,7 +17,7 @@ GCP, AWS and Azure.
 
 [MicroK8s](https://microk8s.io) runs natively on most Linux distributions. 
 
-Follow the installation guide for [Kubeflow with MicroK8s](/docs/other-guides/virtual-dev/getting-started-multipass/) to set up MicroK8s and enable Kubeflow.
+Follow the installation guide for [Kubeflow with MicroK8s](/docs/started/workstation/getting-started-multipass/) to set up MicroK8s and enable Kubeflow.
 
 ## Linux desktop
 
@@ -35,7 +35,7 @@ The only following applications are required to use MiniKF:
 - Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 
 The full set of instructions are available on the
-[MiniKF getting started](/docs/other-guides/virtual-dev/getting-started-minikf/) page.
+[MiniKF getting started](/docs/started-workstation/getting-started-minikf/) page.
 
 ### Linux appliance
 
@@ -45,7 +45,7 @@ of flexibility. You only need to install a single application to follow this pat
 
 - Install [Multipass](https://multipass.run/#install)
 
-The instructions on [Multipass and MicroK8s getting started](/docs/other-guides/virtual-dev/getting-started-multipass/)
+The instructions on [Multipass and MicroK8s getting started](/docs/started-workstation/getting-started-multipass/)
 page will complete this path.
 
 ### Kubernetes appliance

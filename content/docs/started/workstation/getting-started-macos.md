@@ -4,13 +4,6 @@ description = "Install Kubeflow on macOS"
 weight = 20
 +++
 
-<!--
-  TODO: Create a table that summarizes the options below, helping the user choose
-        more quickly
-  TODO: Surface the mac specific instructions here .. for instance, installing
-        vagrant and virtualbox through brew / brew cask
--->
-
 For macOS systems you have multiple options for getting started. The options range
 from fully-assembled Kubeflow stacks, to stacks that require some assembly.
 
@@ -28,7 +21,7 @@ The only following applications are required to use MiniKF:
 - Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 
 The full set of instructions are available on the
-[MiniKF getting started](/docs/other-guides/virtual-dev/getting-started-minikf/) page.
+[MiniKF getting started](/docs/started-workstation/getting-started-minikf/) page.
 
 ## Linux appliance
 
@@ -38,7 +31,7 @@ of flexibility. You only need to install a single application to follow this pat
 
 - Install [Multipass](https://multipass.run/#install)
 
-The instructions on [Multipass and MicroK8s getting started](/docs/other-guides/virtual-dev/getting-started-multipass/)
+The instructions on [Multipass and MicroK8s getting started](/docs/started-workstation/getting-started-multipass/)
 page will complete this path.
 
 ## Kubernetes appliance
