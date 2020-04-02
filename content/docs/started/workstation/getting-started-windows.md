@@ -25,13 +25,13 @@ The following applications are required to use MiniKF:
 - Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 
 The full set of instructions are available on the
-[MiniKF getting started](/docs/started-workstation/getting-started-minikf/) page.
+[MiniKF getting started](/docs/started/workstation/getting-started-minikf/) page.
 
 ## Multipass Ubuntu
 
 Windows users can get Kubeflow with [Multipass](https://multipass.run/#install) 
 by following the instructions on the 
-[Multipass and MicroK8s getting started](/docs/started-workstation/getting-started-multipass/)
+[Multipass and MicroK8s getting started](/docs/started/workstation/getting-started-multipass/)
 page.
 
 ## Kubernetes appliance
