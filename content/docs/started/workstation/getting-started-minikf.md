@@ -1,7 +1,7 @@
 +++
 title = "MiniKF"
 description = "A fast and easy way to deploy Kubeflow on your laptop"
-weight = 2
+weight = 35
 +++
 
 ![MiniKF latest
