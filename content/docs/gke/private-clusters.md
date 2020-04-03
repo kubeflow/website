@@ -102,7 +102,7 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
     ```
     export POLICYID=$(gcloud beta access-context-manager policies list --organization=${ORGANIZATION} --limit=1 --format='value(name)')
     ```
-1. Create a service perimeter:
+1. Create a service perimeter (needs accesscontextmanager.policies.create permission on the Organisation level):
 
     ```
     gcloud beta access-context-manager perimeters create KubeflowZone \
