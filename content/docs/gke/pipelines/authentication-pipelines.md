@@ -16,7 +16,7 @@ Available options listed below have different tradeoffs. You should choose the o
 
 ## Compute Engine default service account
 
-This is good for trying out Kubeflow Pipelines, because it is easy to set up, but not secure.
+This is good for trying out Kubeflow Pipelines, because it is easy to set up, but does not support permission separation for workloads in the cluster.
 
 {{% alert color="warning" %}}
 <p>NOTE: Using pipelines with Compute Engine default service account is not supported in Full Kubeflow deployment.</p>
