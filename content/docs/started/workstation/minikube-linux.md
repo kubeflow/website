@@ -329,13 +329,13 @@ Below is an example of accessing a Jupyter notebook hosted in a Linux machine re
    
 ## TroubleShooting
 ### AttributeError when create namespace object
-During execution of `Use Kubeflow fairing to build the docker image and launch a TFJob for training`, you may see the following error:
+When using Kubeflow Fairing to build a Docker image and launch a training job (part of the [notebook](https://github.com/kubeflow/fairing/blob/master/examples/mnist/mnist_e2e_on_prem.ipynb)), you may see the following error:
 ```
 AttributeError: 'V1TFJob' object has no attribute 'openapi_types'
 ```
 This is caused by an [existing issue in Kubernetes client API](https://github.com/kubernetes-client/python/issues/1112).
 
-To bypass this issue, please install kubernetes 10.0.1
+To bypass this issue, please install kubernetes Client API version 10.0.1
 ```
 pip install kubernetes==10.0.1
 ```
