@@ -7,9 +7,9 @@ weight = 50
 This page describes authentication for Kubeflow Pipelines to GCP.
 Available options listed below have different tradeoffs. You should choose the one that fits your use-case.
 
-* [Compute engine default service account](#compute-engine-default-service-account) is easy to set up, but overgrants permission. Therefore, it is not suitable for a shared GCP project.
+* [Compute engine default service account](#compute-engine-default-service-account) is easy to set up, but overgrants permission if enabled access to "cloud-platform" scope. Therefore, it is not suitable for a shared GCP project.
 * [Workload Identity](#workload-identity) takes more efforts to set up, but allows fine-grained permission control. It is recommended for production use-cases.
-* [Google service account keys stored as Kubernetes secrets](#google-service-account-keys-stored-as-kubernetes-secrets) is the legacy approach and no longer recommended.
+* [Google service account keys stored as Kubernetes secrets](#google-service-account-keys-stored-as-kubernetes-secrets) is the legacy approach and no longer recommended in GKE. However, it's the only option to use GCP APIs when your cluster is an [anthos](https://cloud.google.com/anthos) or on-prem cluster.
 
 ## Before you begin
 [Installation Options for Kubeflow Pipelines](/docs/pipelines/installation/overview/) introduces options to install Pipelines. Be aware that authentication support and cluster setup instructions will vary depending on the option you installed Kubeflow Pipelines with.
