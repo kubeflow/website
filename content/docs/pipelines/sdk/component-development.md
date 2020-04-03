@@ -80,7 +80,7 @@ from pathlib import Path
 # Function doing the actual work (Outputs first N lines from a text file)
 def do_work(input1_file, output1_file, param1):
   for x, line in enumerate(input1_file):
-    if x >= param1:                                                                                                      
+    if x >= param1:
       break
     _ = output1_file.write(line)
   
