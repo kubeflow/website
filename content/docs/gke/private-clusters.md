@@ -74,7 +74,6 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 1. Enable VPC service controls:
 
     ```
-    export PROJECT=<Your project>
     gcloud services enable accesscontextmanager.googleapis.com \
                            cloudresourcemanager.googleapis.com \
                            dns.googleapis.com  --project=${PROJECT}
