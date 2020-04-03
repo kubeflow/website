@@ -1,7 +1,7 @@
 +++
 title = "Microk8s for Kubeflow"
 description = "Quickly get Kubeflow running locally on native hypervisors"
-weight = 2
+weight = 60
 +++
 
 {{% alpha-status 
