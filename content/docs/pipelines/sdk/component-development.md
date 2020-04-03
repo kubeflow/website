@@ -79,11 +79,10 @@ from pathlib import Path
 
 # Function doing the actual work (Outputs first N lines from a text file)
 def do_work(input1_file, output1_file, param1):
-  for line in input1_file.readlines()[:param1]:
-    if not line:
-      break
+  for x, line in enumerate(input1_file):
+    if x >= param1:                                                                                                      break
     _ = output1_file.write(line)
-
+  
 # Defining and parsing the command-line arguments
 parser = argparse.ArgumentParser(description='My program description')
 parser.add_argument('--input1-path', type=str, help='Path of the local file containing the Input 1 data.') # Paths should be passed in, not hardcoded
