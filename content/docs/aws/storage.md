@@ -79,6 +79,39 @@ spec:
       storage: 5Gi
 ```
 
+By default, new Amazon EFS file systems are owned by `root:root`, and only the root user (UID 0) has read-write-execute permissions. If your containers are not running as root, you must change the Amazon EFS file system permissions to allow other users to modify the file system.
+
+In order to share EFS between notebooks, we need to create a sample pod like below to change permission for the storage. If you use EFS for other purpose like sharing data cross pipelines, you don't need following step.
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: set-permission
+  namespace: <your_namespace>
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: app
+        image: centos
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - "chmod 2775 /data && chown root:users /data"
+        volumeMounts:
+        - name: persistent-storage
+          mountPath: /data
+      volumes:
+      - name: persistent-storage
+        persistentVolumeClaim:
+          claimName: efs-claim
+```
+
 Use Amazon EFS as a notebook volume when you create Jupyter notebooks.
 <img src="/docs/images/aws/efs-volume.png"
   alt="Amazon EFS JupyterNotebook Volume"
