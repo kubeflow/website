@@ -16,7 +16,7 @@ By default, the Amazon EFS CSI driver is not enabled and you need to follow step
 
 ```shell
 git clone https://github.com/kubeflow/manifests
-cd manifest/aws
+cd manifests/aws
 kubectl apply -k aws-efs-csi-driver/base
 ```
 
@@ -32,7 +32,7 @@ For EKS user using eksctl, you can choose `ClusterSharedNodeSecurityGroup`.
   class="mt-3 mb-3 border border-info rounded">
 
 
-You will need to create storage class for the first time.
+You will need to create storage class for the first time, save as `efs-sc.yaml` and run `kubectl apply -f efs-sc.yaml`.
 ```yaml
 apiVersion: storage.k8s.io/v1
 metadata:
@@ -40,7 +40,7 @@ metadata:
 provisioner: efs.csi.aws.com
 ```
 
-Replace `<your_efs_id>` with your efs id.
+Replace `<your_efs_id>` with your efs id, save as `efs-pv.yaml` and run `kubectl apply -f efs-pv.yaml`.
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -59,7 +59,7 @@ spec:
     volumeHandle: <your_efs_id>
 ```
 
-Replace `<your_namespace>` with your namespace.
+Replace `<your_namespace>` with your namespace, save as `efs-claim.yaml` and run `kubectl apply -f efs-claim.yaml`.
 
 ```yaml
 apiVersion: v1
@@ -78,9 +78,9 @@ spec:
 
 By default, new Amazon EFS file systems are owned by `root:root`, and only the root user (UID 0) has read-write-execute permissions. If your containers are not running as root, you must change the Amazon EFS file system permissions to allow other users to modify the file system.
 
-In order to share EFS between notebooks, we need to create a sample pod like below to change permission for the storage. If you use EFS for other purpose like sharing data cross pipelines, you don't need following step.
+In order to share EFS between notebooks, we need to create a sample pod like below to change permission for the storage. If you use EFS for other purpose like sharing data across pipelines, you don't need following step.
 
-Replace `<your_namespace>` with your namespace.
+Replace `<your_namespace>` with your namespace, save as `job.yaml` and run `kubectl apply -f job.yaml`.
 
 ```yaml
 apiVersion: batch/v1
@@ -125,11 +125,11 @@ Lustre is another file system that supports `ReadWriteMany`. Once difference bet
 
 ### Deploy the Amazon FSx CSI Plugin
 
-Make sure you node group instance has right permission. Check details [here](https://github.com/kubernetes-sigs/aws-fsx-csi-driver#set-up-driver-permission)
+Make sure your node group instance has right permission. Check details [here](https://github.com/kubernetes-sigs/aws-fsx-csi-driver#set-up-driver-permission).
 
 ```shell
 git clone https://github.com/kubeflow/manifests
-cd manifest/aws
+cd manifests/aws
 kubectl apply -k aws-fsx-csi-driver/base
 ```
 
@@ -149,13 +149,15 @@ FSX only supports single availability zone. Choose the right subnet based on you
   alt="Amazon FSX Network Settings"
   class="mt-3 mb-3 border border-info rounded">
 
-After you finish creating a FSX for Lustre file syste, you will have everything you need to create Persistent Volumes and Persistent Volume Claim. `File System ID`, `DNS Name` and `Mount Name` will be used later.
+After you finish creating a FSX for Lustre file system, you will have everything you need to create Persistent Volumes and Persistent Volume Claim. `File System ID`, `DNS Name` and `Mount Name` will be used later.
 
 <img src="/docs/images/aws/fsx-assets.png"
   alt="Amazon FSX Network Settings"
   class="mt-3 mb-3 border border-info rounded">
 
-```yaml
+Save following manifest as yaml files and run `kubectl apply -f <file_name>.yaml`
+
+```
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -213,5 +215,5 @@ You can dynamically provision Amazon FSx for Lustre filesystems for your high pe
 
 If you already have a training dataset in Amazon S3, you can pass your bucket name optionally and this will be used by Amazon FSx for Lustre as a data repository and your file system will be ready with the training dataset.
 
-Check dynamic provisioning example [here](https://github.com/kubernetes-sigs/aws-fsx-csi-driver/tree/master/examples/kubernetes/dynamic_provisioning)
+Check dynamic provisioning example [here](https://github.com/kubernetes-sigs/aws-fsx-csi-driver/tree/master/examples/kubernetes/dynamic_provisioning).
 
