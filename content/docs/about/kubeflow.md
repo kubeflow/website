@@ -20,6 +20,10 @@ to manage your ML workflow.
 Follow the [getting-started guide](/docs/started/getting-started/) to set up
 your environment and install Kubeflow.
 
+Watch the following video which provides an introduction to Kubeflow.
+
+{{< youtube cTZArDgbIWw >}}
+
 ## What is Kubeflow?
 
 Kubeflow is *the machine learning toolkit for Kubernetes*. Learn about [Kubeflow use cases](/docs/about/use-cases/).
