@@ -52,9 +52,6 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
-  mountOptions:
-    - uid=1000
-    - gid=100
   persistentVolumeReclaimPolicy: Retain
   storageClassName: efs-sc
   csi:
@@ -64,7 +61,7 @@ spec:
 
 Replace `<your_namespace>` with your namespace.
 
-```
+```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -82,6 +79,8 @@ spec:
 By default, new Amazon EFS file systems are owned by `root:root`, and only the root user (UID 0) has read-write-execute permissions. If your containers are not running as root, you must change the Amazon EFS file system permissions to allow other users to modify the file system.
 
 In order to share EFS between notebooks, we need to create a sample pod like below to change permission for the storage. If you use EFS for other purpose like sharing data cross pipelines, you don't need following step.
+
+Replace `<your_namespace>` with your namespace.
 
 ```yaml
 apiVersion: batch/v1
@@ -140,7 +139,7 @@ You can statically provision Amazon FSx for Lustre and then pass the file system
 
 You can choose deployment type based on your needs. Check more details [here](https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-fsx-lustre.html).
 
-<img src="/docs/images/aws/fsx-crete.png"
+<img src="/docs/images/aws/fsx-create.png"
   alt="Amazon FSX Create Volume"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -197,7 +196,7 @@ spec:
 Once your persistent volume claim is ready, you can claim in your workloads like this:
 
 ```yaml
-...pods
+...pod template ...
     volumeMounts:
     - name: persistent-storage
       mountPath: /data
