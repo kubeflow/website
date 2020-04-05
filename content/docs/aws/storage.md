@@ -15,10 +15,9 @@ By default, the Amazon EFS CSI driver is not enabled and you need to follow step
 ### Deploy the Amazon EFS CSI Plugin
 
 ```shell
-cd ${KF_DIR}/ks_app
-export COMPONENT=aws-efs-csi-driver
-ks generate aws-efs-csi-driver ${COMPONENT}
-ks apply default -c ${COMPONENT}
+git clone https://github.com/kubeflow/manifests
+cd manifest/aws
+kubectl apply -k aws-efs-csi-driver/base
 ```
 
 ### Static Provisioning
@@ -27,11 +26,57 @@ You can go to the [Amazon EFS console](https://us-west-2.console.aws.amazon.com/
 Please pay special attention to the Security Groups, and make sure that traffic to NFS port 2049 is allowed.
 Then you will get a file system ID and you can use it to create persistent volumes and persistent volume claims.
 
-```shell
-cd ${KF_DIR}/ks_app
-export COMPONENT=efs-storage
-ks generate aws-efs-pv ${COMPONENT} --efsId=${your_file_system_id}
-ks apply default -c ${COMPONENT}
+For EKS user using eksctl, you can choose `ClusterSharedNodeSecurityGroup`.
+<img src="/docs/images/aws/efs-create.png"
+  alt="Amazon EFS Create"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+You will need to create storage class for the first time.
+```yaml
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: efs-sc
+provisioner: efs.csi.aws.com
+```
+
+Replace `<your_efs_id>` with your efs id.
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: efs-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  mountOptions:
+    - uid=1000
+    - gid=100
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: efs-sc
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: <your_efs_id>
+```
+
+Replace `<your_namespace>` with your namespace.
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-claim
+  namespace: <your_namespace>
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: efs-sc
+  resources:
+    requests:
+      storage: 5Gi
 ```
 
 Use Amazon EFS as a notebook volume when you create Jupyter notebooks.
@@ -48,34 +93,85 @@ Lustre is another file system that supports `ReadWriteMany`. Once difference bet
 
 ### Deploy the Amazon FSx CSI Plugin
 
+Make sure you node group instance has right permission. Check details [here](https://github.com/kubernetes-sigs/aws-fsx-csi-driver#set-up-driver-permission)
+
 ```shell
-cd ${KF_DIR}/ks_app
-export COMPONENT=aws-fsx-csi-driver
-ks generate aws-fsx-csi-driver ${COMPONENT}
-ks apply default -c ${COMPONENT}
+git clone https://github.com/kubeflow/manifests
+cd manifest/aws
+kubectl apply -k aws-fsx-csi-driver/base
 ```
 
 ### Static Provisioning
 
-You can statically provision Amazon FSx for Lustre and then pass the file system ID and DNS name to generate persistent volumes and persistent volume claims. It will create default storage class `fsx-default`.
+You can statically provision Amazon FSx for Lustre and then pass the file system ID, DNS name and mount name, to generate persistent volumes and persistent volume claims.
 
-```shell
-cd ${KF_DIR}/ks_app
-export COMPONENT=fsx-static-storage
+You can choose deployment type based on your needs. Check more details [here](https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-fsx-lustre.html).
 
-ks generate aws-fsx-pv-static ${COMPONENT} --fsxId=fs-048xxxx7c25 --dnsName=fs-048xxxx7c25.fsx.us-west-2.amazonaws.com
+<img src="/docs/images/aws/fsx-crete.png"
+  alt="Amazon FSX Create Volume"
+  class="mt-3 mb-3 border border-info rounded">
 
-ks apply default -c ${COMPONENT}
+FSX only supports single availability zone. Choose the right subnet based on your node group setting.
+
+<img src="/docs/images/aws/fsx-network.png"
+  alt="Amazon FSX Network Settings"
+  class="mt-3 mb-3 border border-info rounded">
+
+After you finish creating a FSX for Lustre file syste, you will have everything you need to create Persistent Volumes and Persistent Volume Claim. `File System ID`, `DNS Name` and `Mount Name` will be used later.
+
+<img src="/docs/images/aws/fsx-assets.png"
+  alt="Amazon FSX Network Settings"
+  class="mt-3 mb-3 border border-info rounded">
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: fsx-pv
+spec:
+  capacity:
+    storage: 1200Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  mountOptions:
+    - flock
+  persistentVolumeReclaimPolicy: Recycle
+  csi:
+    driver: fsx.csi.aws.com
+    volumeHandle: <your_fsx_volume_handle>
+    volumeAttributes:
+      dnsname: <your_fsx_dnsname>
+      mountname: <your_fsx_mountname>
 ```
 
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: fsx-claim
+  namespace: <your_namespace>
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 1200Gi
+  volumeName: fsx-pv
+```
 
 Once your persistent volume claim is ready, you can claim in your workloads like this:
 
-```shell
-volumes:
-- name: persistent-storage
-  persistentVolumeClaim:
-    claimName: fsx-static-storage
+```yaml
+...pods
+    volumeMounts:
+    - name: persistent-storage
+      mountPath: /data
+  volumes:
+  - name: persistent-storage
+    persistentVolumeClaim:
+      claimName: fsx-claim
 ```
 
 
@@ -85,17 +181,5 @@ You can dynamically provision Amazon FSx for Lustre filesystems for your high pe
 
 If you already have a training dataset in Amazon S3, you can pass your bucket name optionally and this will be used by Amazon FSx for Lustre as a data repository and your file system will be ready with the training dataset.
 
-It will create Storage Class, Persistent Volume, and PersistentVolumeClaim Kubernetes resources for you.
-
-```shell
-cd ${KF_DIR}/ks_app
-export COMPONENT=fsx-dynamic-storage
-
-ks generate aws-fsx-pv-dynamic ${COMPONENT} --securityGroupIds=sg-0c380xxxxxxxx --subnetId=subnet-007f9cxxxxxxx
-ks param set ${COMPONENT} s3ImportPath s3://your_dataset_bucket
-
-ks apply default -c ${COMPONENT}
-```
-
-In your workloads, you just need to mount the volume and use `${COMPONENT}` as your persistent volume claim name. It takes roughly 5-7 minutes to get storage ready.
+Check dynamic provisioning example [here](https://github.com/kubernetes-sigs/aws-fsx-csi-driver/tree/master/examples/kubernetes/dynamic_provisioning)
 
