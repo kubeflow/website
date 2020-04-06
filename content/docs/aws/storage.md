@@ -4,7 +4,7 @@ description = "Using EFS and FSx for Lustre with Kubeflow"
 weight = 95
 +++
 
-This guide describes how to use Amazon EKS and Amazon FSx for Lustre with Kubeflow.
+This guide describes how to use Amazon EFS and Amazon FSx for Lustre with Kubeflow.
 
 
 ## Amazon EFS
