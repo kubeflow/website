@@ -191,7 +191,6 @@ Notebook, e.g. we can create `Go` functions if we need performance/concurrency f
 Some useful function example Notebooks:
 
 - [Analyze Real-Time Data Using Spark Streaming, SQL, and ML](https://github.com/v3io/tutorials/blob/master/demos/stocks/02-explore.ipynb)
-- [Real-Time Location-Based Recommendations](https://github.com/v3io/tutorials/blob/master/demos/location-based-recommendations/01-generate-stores-and-customers.ipynb)
 - [Twitter Feed NLP](https://github.com/v3io/tutorials/blob/master/demos/stocks/04-read-tweets.ipynb)
 - [Real-time Stock data reader](https://github.com/v3io/tutorials/blob/master/demos/stocks/03-read-stocks.ipynb)
 
