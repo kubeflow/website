@@ -55,12 +55,20 @@ pygmentsStyle = "tango"
 #[permalinks]
 #blog = "/:section/:year/:month/:day/:slug/"
 
-## Docsy: Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
+# Docsy: Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
 [blackfriday]
 plainIDAnchors = true
 hrefTargetBlank = true
 angledQuotes = false
 latexDashes = true
+
+# Docsy: Configuration for Goldmark markdown parser, from Hugo 0.60 onwards.
+# https://github.com/yuin/goldmark/
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+# Allow Goldmark to render raw HTML:
+      unsafe = true
 
 # Docsy: Image processing configuration.
 [imaging]
