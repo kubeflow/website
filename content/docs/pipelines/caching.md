@@ -4,7 +4,7 @@ description = "Getting start with Kubeflow Pipelines step caching"
 weight = 50
 +++
 
-Starting from Kubeflow Pipelines v0.4, Kubeflow Pipelines supports the step caching capabilities in both standalone deployment and marketplace deployment.
+Starting from Kubeflow Pipelines 0.4, Kubeflow Pipelines supports the step caching capabilities in both standalone deployment and marketplace deployment.
 
 ## Before you start
 
@@ -13,7 +13,7 @@ guide](/docs/pipelines/installation/) to deploy Kubeflow Pipelines.
 
 ## What is step caching?
 
-Kubeflow Pipelines step caching provides step-level output caching. For a single pipeline, a step output will be taken from cache if this step template and input does not change. With step caching, the output of a certain step can be shareable and already existing step can prevent re-executing.  
+Kubeflow Pipelines step caching provides step-level output caching. A step output will be taken from cache if this step template and input does not change. With step caching, the output of a certain step can be re-used and we can save the efforts of re-executing previous steps.   
 
 ## Installation
 
@@ -30,7 +30,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
 1. Make sure mutatingwebhookconfiguration exists in your cluster:
 
     ```
-    export NAMESPACE=namespace_kfp_installed
+    export NAMESPACE=<Namespace where KFP is installed>
     kubectl get mutatingwebhookconfiguration cache-webhook -n ${NAMESPACE}
     ```
 2. Change mutatingwebhookconfiguration rules:
@@ -44,7 +44,7 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
 1. Make sure mutatingwebhookconfiguration exists in your cluster:
 
     ```
-    export NAMESPACE=namespace_kfp_installed
+    export NAMESPACE=<Namespace where KFP is installed>
     kubectl get mutatingwebhookconfiguration cache-webhook -n ${NAMESPACE}
     ```
 2. Change back mutatingwebhookconfiguration rules:
@@ -53,11 +53,11 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     kubectl patch mutatingwebhookconfiguration cache-webhook -n ${NAMESPACE} --type='json' -p='[{"op":"replace", "path": "/webhooks/0/rules/0/operations/0", "value": "CREATE"}]'
     ```
 
-### Per step control: max_cache_staleness
+### Per step control: `max_cache_staleness`
 
-For a given step, you can set step's max_cache_staleness to control the staleness of a target step. The max_cache_staleness is in [RFC3339 Duration](https://www.ietf.org/rfc/rfc3339.txt) format. Eg. 30 days = P30D.
+For a given step, you can set step's max_cache_staleness to control the staleness of a target step. The max_cache_staleness is in [RFC3339 Duration](https://www.ietf.org/rfc/rfc3339.txt) format(Eg. 30 days = P30D). By default the `max_cache_staleness` will be set to infinity and never gets expired.
 
-Set max_cache_staleness to 30 days for a step:
+Set `max_cache_staleness` to 30 days for a step:
 
 ```
 def some_pipeline():
@@ -66,7 +66,7 @@ def some_pipeline():
       task.execution_options.caching_strategy.max_cache_staleness = "P30D"
 ```
 
-Setting max_cache_staleness to 0 for a step means this step output will never be taken from cache:
+Setting `max_cache_staleness` to 0 for a step means this step output will never be taken from cache:
 
 ```
 def some_pipeline():
