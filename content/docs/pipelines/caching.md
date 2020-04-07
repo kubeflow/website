@@ -52,3 +52,25 @@ See the Google Kubernetes Engine (GKE) guide to [configuring cluster access for 
     ```
     kubectl patch mutatingwebhookconfiguration cache-webhook -n ${NAMESPACE} --type='json' -p='[{"op":"replace", "path": "/webhooks/0/rules/0/operations/0", "value": "CREATE"}]'
     ```
+
+### Per step control: max_cache_staleness
+
+For a given step, you can set step's max_cache_staleness to control the staleness of a target step. The max_cache_staleness is in [RFC3339 Duration](https://www.ietf.org/rfc/rfc3339.txt) format. Eg. 30 days = P30D.
+
+Set max_cache_staleness to 30 days for a step:
+
+```
+def some_pipeline():
+      # task is a target step in a pipeline
+      task = some_op()
+      task.execution_options.caching_strategy.max_cache_staleness = "P30D"
+```
+
+Setting max_cache_staleness to 0 for a step means this step output will never be taken from cache:
+
+```
+def some_pipeline():
+      # task is a target step in a pipeline
+      task_never_use_cache = some_op()
+      task_never_use_cache.execution_options.caching_strategy.max_cache_staleness = "P0D"
+```
