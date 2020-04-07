@@ -51,11 +51,11 @@ some handy environment variables:
     # Add kfctl to PATH, to make the kfctl binary easier to use.
     export PATH=$PATH:"<path to kfctl>"
 
-    # Use the following kfctl configuration file for the standard AWS setup:
+    # Use the following kfctl configuration file for the AWS setup without authentication:
     export CONFIG_URI="{{% config-uri-aws-standard %}}"
 
     # Alternatively, use the following kfctl configuration if you want to enable
-    # authentication:
+    # authentication, authorization and multi-user:
     export CONFIG_URI="{{% config-uri-aws-cognito %}}"
 
     # Set an environment variable for your AWS cluster name, and set the name
@@ -191,16 +191,43 @@ Traditional way to attach IAM policies to node group role is still working, feel
     kubectl -n kubeflow get all
     ```
 
-1. Get Kubeflow service endpoint and copy link in browser.
+## Access Kubeflow central dashboard
 
-    ```
-    kubectl get ingress -n istio-system
+If you are using {{% config-uri-aws-cognito %}}, run following command to get Kubeflow service endpoint host name and copy link in browser.
 
-    NAMESPACE      NAME            HOSTS   ADDRESS                                                             PORTS   AGE
-    istio-system   istio-ingress   *       a743484b-istiosystem-istio-2af2-xxxxxx.us-west-2.elb.amazonaws.com   80      1h
-    ```
+```
+kubectl get ingress -n istio-system
 
-    This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser. You can also run `kubectl delete ingress istio-ingress -n istio-system` to remove the load balancer entirely.
+NAMESPACE      NAME            HOSTS   ADDRESS                                                             PORTS   AGE
+istio-system   istio-ingress   *       a743484b-istiosystem-istio-2af2-xxxxxx.us-west-2.elb.amazonaws.com   80      1h
+```
+
+This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser.
+
+
+If you are using {{% config-uri-aws-standard %}}, the Kubeflow Dashboard can be accessed via istio-ingressgateway service.
+
+You can run following command to port forward to local, then open `http://localhost:8080` in browser.
+
+{{< highlight bash >}}
+kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
+{{< /highlight >}}
+
+Check more details [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/)
+
+To expose Kubeflow with a LoadBalancer Service, just change the type of the `istio-ingressgateway` Service to `LoadBalancer`.
+
+{{< highlight bash >}}
+kubectl patch service -n istio-system istio-ingressgateway -p '{"spec": {"type": "LoadBalancer"}}'
+{{< /highlight >}}
+
+While the change is being applied, you can watch the service until below command prints a value under the `EXTERNAL-IP` column:
+
+{{< highlight bash >}}
+kubectl get -w -n istio-system svc/istio-ingressgateway
+{{< /highlight >}}
+
+The external IP should be accessible by visiting http://<EXTERNAL-IP>. Note that above installation instructions do not create any protection for the external endpoint so it will be accessible to anyone without any authentication. To secure your installation, use {{% config-uri-aws-cognito %}} and follow the [instructions](/docs/aws/authentication) to add authentication and authorization.
 
 ## Post Installation
 
