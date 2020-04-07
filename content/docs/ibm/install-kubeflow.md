@@ -157,7 +157,7 @@ get the best experience from Kubeflow.
     ```
     
 1. Verify that the storage classes for Block Storage were added to your cluster.
-    ```shell
+    ```
     kubectl get storageclasses | grep block
     ```
 
