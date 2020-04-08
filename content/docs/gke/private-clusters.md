@@ -227,43 +227,43 @@ Since private GKE can only access gcr.io, we need to mirror all images outside g
 
 1. Inside your `${KFAPP}` directory create a local configuration file `mirror.yaml`  based on this [template](https://github.com/kubeflow/manifests/blob/master/experimental/mirror-images/gcp_template.yaml)
 
-   * Change destination to your project gcr registry.
+    1. Change destination to your project gcr registry.
 
-1.  Generate pipeline files to mirror images by running
-
-   ```
-   cd ${KFAPP}
-   ./kfctl alpha mirror build mirror.yaml -V -o pipeline.yaml --gcb
-   ```
+1. Generate pipeline files to mirror images by running
+    
+    ```
+    cd ${KFAPP}
+    ./kfctl alpha mirror build mirror.yaml -V -o pipeline.yaml --gcb
+    ```
 
 1. Edit the couldbuild.yaml file
 
-   i. in the `images` section add
+    1. in the `images` section add
 
-      ```
-      - <registry domain>/<project_id>/docker.io/istio/proxy_init:1.1.6
-      ```
+        1. More 
+        ```
+        - <registry domain>/<project_id>/docker.io/istio/proxy_init:1.1.6
+        ```
 
-      * Replace `<registry domain>/<project_id>` with your registry
+        * Replace `<registry domain>/<project_id>` with your registry
 
-   i. Under `steps` section addd
+    1. Under `steps` section add
 
-      ```
-       - args:
-        - build
-        - -t
-        - <registry domain>/<project id>/docker.io/istio/proxy_init:1.1.6
-        - --build-arg=INPUT_IMAGE=docker.io/istio/proxy_init:1.1.6
-        - .
-        name: gcr.io/cloud-builders/docker
-        waitFor:
-        - '-'  
-      ```
-   i. Remove the mirroring of cos-nvidia-installer:fixed image. You don’t need it to be replicated because this image is privately available through GKE internal repo.
+        ```
+          - args:
+          - build
+          - -t
+          - <registry domain>/<project id>/docker.io/istio/proxy_init:1.1.6
+          - --build-arg=INPUT_IMAGE=docker.io/istio/proxy_init:1.1.6
+          - .
+          name: gcr.io/cloud-builders/docker
+          waitFor:
+          - '-'  
+        ```
+    1. Remove the mirroring of cos-nvidia-installer:fixed image. You don’t need it to be replicated because this image is privately available through GKE internal repo.
 
-      1. Remove the images from the `images` section
-      1. Remove it from the steps section
-
+        1. Remove the images from the `images` section
+        1. Remove it from the steps section
 
 1. Create a cloud build job to do the mirroring
 
