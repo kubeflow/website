@@ -237,8 +237,8 @@ Since private GKE can only access gcr.io, we need to mirror all images outside g
 
 1. Edit the couldbuild.yaml file
 
-    1. in the `images` section add
-
+    1. In the `images` section add
+    
          ```
           - <registry domain>/<project_id>/docker.io/istio/proxy_init:1.1.6
          ```
@@ -285,7 +285,7 @@ Since private GKE can only access gcr.io, we need to mirror all images outside g
 
 {{% alert title="Coming Soon" color="warning" %}}
 You can follow the issue: [Documentation on how to use Kubeflow with private GKE and VPC service controls](https://github.com/kubeflow/website/issues/1705)
-
+{{% /alert %}}
 
 ## Next steps
 
