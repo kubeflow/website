@@ -237,6 +237,9 @@ Since private GKE can only access gcr.io, we need to mirror all images outside g
     ./kfctl alpha mirror build mirror.yaml -V -o pipeline.yaml --gcb
     ```
 
+    * If you want to use Tekton rather than Google Cloud Build(GCB) drop `--gcb` to emit a Tekton pipeline
+    * The instructions below assume you are using GCB
+
 1. Edit the couldbuild.yaml file
 
     1. In the `images` section add
