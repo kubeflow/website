@@ -159,8 +159,10 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
      --policy=${POLICYID}
     ```
 
-## Set up container registry for GKE private clusters (for more info see [instructions](https://cloud.google.com/vpc-service-controls/docs/set-up-gke)):
+## Set up container registry for GKE private clusters:
 
+Follow the step belows to configure your GCR registry to be accessible from your secured clusters.
+For more info see [instructions](https://cloud.google.com/vpc-service-controls/docs/set-up-gke).
 
 1. Create a managed private zone
 
@@ -183,34 +185,34 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
      --project=${PROJECT}
     ```
 
-  1. Add a CNAME record for \*.gcr.io
+1. Add a CNAME record for \*.gcr.io
 
-      ```
-      gcloud dns record-sets transaction add \
-       --name=*.gcr.io. \
-       --type=CNAME gcr.io. \
+    ```
+    gcloud dns record-sets transaction add \
+     --name=*.gcr.io. \
+     --type=CNAME gcr.io. \
+     --zone=${ZONE_NAME} \
+     --ttl=300 \
+     --project=${PROJECT}
+   ```
+
+1. Add an A record for the restricted VIP
+
+    ```      
+     gcloud dns record-sets transaction add \
+       --name=gcr.io. \
+       --type=A 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 \
        --zone=${ZONE_NAME} \
        --ttl=300 \
        --project=${PROJECT}
-     ```
+    ```
 
-  1. Add an A record for the restricted VIP
+1. Commit the transaction
 
-      ```      
-       gcloud dns record-sets transaction add \
-         --name=gcr.io. \
-         --type=A 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 \
-         --zone=${ZONE_NAME} \
-         --ttl=300 \
-         --project=${PROJECT}
-      ```
-
-  1. Commit the transaction
-
-      ```
-       gcloud dns record-sets transaction execute \
-        --zone=${ZONE_NAME} \
-        --project=${PROJECT}
+    ```
+     gcloud dns record-sets transaction execute \
+      --zone=${ZONE_NAME} \
+      --project=${PROJECT}
       ```
 
 ## Mirror Kubeflow Application Images
@@ -238,7 +240,7 @@ Since private GKE can only access gcr.io, we need to mirror all images outside g
 1. Edit the couldbuild.yaml file
 
     1. In the `images` section add
-    
+
          ```
           - <registry domain>/<project_id>/docker.io/istio/proxy_init:1.1.6
          ```
@@ -262,7 +264,7 @@ Since private GKE can only access gcr.io, we need to mirror all images outside g
     1. Remove the mirroring of cos-nvidia-installer:fixed image. You don’t need it to be replicated because this image is privately available through GKE internal repo.
 
           1. Remove the images from the `images` section
-          1. Remove it from the steps section
+          1. Remove it from the `steps` section
 
 1. Create a cloud build job to do the mirroring
 
@@ -278,8 +280,8 @@ Since private GKE can only access gcr.io, we need to mirror all images outside g
 
 1. Edit file “kustomize/istio-install/base/istio-noauth.yaml”: 
 
-   1. Replace “docker.io/istio/proxy_init:1.16” to gcr.io/<project_id>/docker.io/istio/proxy_init:1.16
-   1. Replace "docker.io/istio/proxyv2:1.1.6" to "gcr.io/<project_id>/docker.io/istio/proxyv2:1.1.6”
+   1. Replace `docker.io/istio/proxy_init:1.16` to `gcr.io/<project_id>/docker.io/istio/proxy_init:1.16`
+   1. Replace `docker.io/istio/proxyv2:1.1.6` to `gcr.io/<project_id>/docker.io/istio/proxyv2:1.1.6`
 
 ## Deploy Kubeflow with Private GKE
 
