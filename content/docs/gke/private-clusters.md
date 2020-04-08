@@ -215,7 +215,6 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
 
 ## Mirror Kubeflow Application Images
 
-
 Since private GKE can only access gcr.io, we need to mirror all images outside gcr.io for Kubeflow applications. We will use the `kfctl` tool to accomplish this.
 
 
@@ -240,30 +239,30 @@ Since private GKE can only access gcr.io, we need to mirror all images outside g
 
     1. in the `images` section add
 
-        1. More 
-        ```
-        - <registry domain>/<project_id>/docker.io/istio/proxy_init:1.1.6
-        ```
-
-        * Replace `<registry domain>/<project_id>` with your registry
+         ```
+          - <registry domain>/<project_id>/docker.io/istio/proxy_init:1.1.6
+         ```
+     
+        * Replace `<registry domain>/<project_id>` with your registry      
 
     1. Under `steps` section add
 
-        ```
-          - args:
-          - build
-          - -t
-          - <registry domain>/<project id>/docker.io/istio/proxy_init:1.1.6
-          - --build-arg=INPUT_IMAGE=docker.io/istio/proxy_init:1.1.6
-          - .
-          name: gcr.io/cloud-builders/docker
-          waitFor:
-          - '-'  
-        ```
+          ```
+            - args:
+            - build
+            - -t
+            - <registry domain>/<project id>/docker.io/istio/proxy_init:1.1.6
+            - --build-arg=INPUT_IMAGE=docker.io/istio/proxy_init:1.1.6
+            - .
+            name: gcr.io/cloud-builders/docker
+            waitFor:
+            - '-'  
+          ```
+
     1. Remove the mirroring of cos-nvidia-installer:fixed image. You don’t need it to be replicated because this image is privately available through GKE internal repo.
 
-        1. Remove the images from the `images` section
-        1. Remove it from the steps section
+          1. Remove the images from the `images` section
+          1. Remove it from the steps section
 
 1. Create a cloud build job to do the mirroring
 
