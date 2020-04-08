@@ -69,23 +69,30 @@ See the Google Kubernetes Engine (GKE) guide to
 
 ## Deploying Kubeflow Pipelines
 
-1. Deploy the latest version of Kubeflow Pipelines:
-
-     **Note**: The following commands apply to Kubeflow Pipelines version 0.2.0 and later.
+1. Deploy the Kubeflow Pipelines:
 
      ```
      export PIPELINE_VERSION={{% pipelines/latest-version %}}
-     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
+     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION
      kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
      kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
      ```
 
      The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
 
-     **Note**: To deploy versions of Kubeflow Pipelines prior to version 0.2.0, run:
+     **Note**: The above commands apply to Kubeflow Pipelines version 0.4.0 and later.
 
+     For KFP version 0.2.0 ~ 0.3.0, use:
      ```
-     export PIPELINE_VERSION=<kfp-version>
+     export PIPELINE_VERSION=<kfp-version-between-0.2.0-and-0.3.0>
+     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
+     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
+     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+     ```
+
+     For KFP version < 0.2.0, use:
+     ```
+     export PIPELINE_VERSION=<kfp-version-0.1.x>
      kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
      ```
 
@@ -101,11 +108,35 @@ See the Google Kubernetes Engine (GKE) guide to
 
 1. Check the [Kubeflow Pipelines GitHub repository](https://github.com/kubeflow/pipelines/releases) for available releases.
 
-1. Upgrade to a version of Kubeflow Pipelines standalone:
+1. Upgrade to a version of Kubeflow Pipelines standalone is the same as deploying that version:
 
      ```
      export PIPELINE_VERSION=<version-you-want-to-upgrade-to>
+     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION
+     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
      kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+     ```
+
+     This is for 0.4.0 and above, commands for older versions can be found at [Deploying Kubeflow Pipelines](#deploying-kubeflow-pipelines)
+
+1. Delete removed resources manually
+
+     This depends on which version you are upgrading from and to.
+
+     If you are upgrading from KFP < 0.4.0 to 0.4.0 or above. You can remove the
+     following no longer used resources after the upgrade:
+     `metadata-deployment`, `metadata-service`.
+
+     You can verify if they exist by:
+     ```
+     kubectl -n <KFP_NAMESPACE> get deployments | grep metadata-deployment
+     kubectl -n <KFP_NAMESPACE> get service | grep metadata-service
+     ```
+
+     If they exist, you can delete them by running the following commands:
+     ```
+     kubectl -n <KFP_NAMESPACE> delete deployment metadata-deployment
+     kubectl -n <KFP_NAMESPACE> delete service metadata-service
      ```
 
 ## Customizing Kubeflow Pipelines
@@ -175,18 +206,21 @@ For example, to uninstall KFP using manifests from a GitHub repository, run:
 ```
 export PIPELINE_VERSION={{% pipelines/latest-version %}}
 kubectl delete -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+kubectl delete -k github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION
 ```
 
 To uninstall KFP using manifests from your local repository or file system, run:
 
 ```
 kubectl delete -k manifests/kustomize/env/dev
+kubectl delete -k manifests/kustomize/cluster-scoped-resources
 ```
 
 **Note**: If you are using GCP Cloud SQL and Google Cloud Storage, run:
 
 ```
 kubectl delete -k manifests/kustomize/env/gcp
+kubectl delete -k manifests/kustomize/cluster-scoped-resources
 ```
 
 ## Best practices for maintaining manifests
@@ -214,49 +248,7 @@ bases:
 - github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref={{% pipelines/latest-version %}}
 ```
 
-### Use a repository to deploy, upgrade, and uninstall Kubeflow Pipelines
-
-**Note**: The following commands reference an existing repository.
-
-**Caution**: For upgrades, it is recommended to back up your data storage for Kubeflow Pipelines.
-
-To deploy Kubeflow Pipelines using a repository, run:
-
-```
-export PIPELINE_VERSION=<kfp-version>
-export KFP_MANIFESTS_REPO_LINK=github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
-kubectl apply -k $KFP_MANIFESTS_REPO_LINK
-```
-
-To upgrade your Kubeflow Pipelines deployment from a repository, follow these steps:
-
-1. Check [Kubeflow Pipelines GitHub repository](https://github.com/kubeflow/pipelines/releases) for available releases.
-1. Set the `PIPELINE_VERSION` environment variable to a version you want to upgrade to.
-1. Upgrade Kubeflow Pipelines by running:
-
-     ```
-     export PIPELINE_VERSION=<version-you-want-to-upgrade-to>
-     export KFP_MANIFESTS_REPO_LINK=github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
-     kubectl apply -k $KFP_MANIFESTS_REPO_LINK
-     ```
-
-To uninstall Kubeflow Pipelines using a repository, run:
-
-```
-export PIPELINE_VERSION=<kfp-version>
-export KFP_MANIFESTS_REPO_LINK=github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
-kubectl delete -k $KFP_MANIFESTS_REPO_LINK
-```
-
 ### Further reading
 
 To learn about kustomize workflows with off-the-shelf configurations, see the
 [kustomize configuration workflows guide](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration).
-
-## Troubleshooting
-
-If you encounter a permission error when installing Kubeflow Pipelines standalone, run:
-
-```
-kubectl create clusterrolebinding your-binding --clusterrole=cluster-admin --user=<your-user-name>
-```
