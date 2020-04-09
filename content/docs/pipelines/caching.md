@@ -78,9 +78,13 @@ Kubeflow cluster.
     kubectl patch mutatingwebhookconfiguration cache-webhook -n ${NAMESPACE} --type='json' -p='[{"op":"replace", "path": "/webhooks/0/rules/0/operations/0", "value": "CREATE"}]'
     ```
 
-## Managing the caching staleness
+## Managing caching staleness
 
-For a given step, you can set step's `max_cache_staleness` to control the staleness of a target step. The `max_cache_staleness` is in [RFC3339 Duration](https://www.ietf.org/rfc/rfc3339.txt) format(Eg. 30 days = P30D). By default the `max_cache_staleness` will be set to infinity and never gets expired.
+The cache is enabled by default and if you ever executed same component with the same arguments, any new execution of the component will be skipped and the outputs will be taken from the cache.
+For some scenarios, the cached output data of some components might become too stale for use after some time.
+To control the maximum staleness of the reused cached data, you can set the step's `max_cache_staleness` parameter.
+The `max_cache_staleness` is in [RFC3339 Duration](https://www.ietf.org/rfc/rfc3339.txt) format (so 30 days = "P30D"). 
+By default the `max_cache_staleness` is set to infinity so any old cached data will be reused.
 
 Set `max_cache_staleness` to 30 days for a step:
 
@@ -91,7 +95,8 @@ def some_pipeline():
       task.execution_options.caching_strategy.max_cache_staleness = "P30D"
 ```
 
-Setting `max_cache_staleness` to 0 for a step means this step output will never be taken from cache:
+Ideally, the component code should be pure and deterministic in the sense that it produces same outputs given same inputs.
+If your component is not deterministic (for example, it returns a different random number on every invocation) you might want to disable caching for the tasks created from this component by setting `max_cache_staleness` to 0:
 
 ```
 def some_pipeline():
@@ -99,6 +104,7 @@ def some_pipeline():
       task_never_use_cache = some_op()
       task_never_use_cache.execution_options.caching_strategy.max_cache_staleness = "P0D"
 ```
+A better solution would be to make the component deterministic. If the component uses random number generation, you can expose the RNG seed as a component input. If the component fetches some changing data you can add a timestamp or date input.
 
 [kubectl-access]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/
 [kubectl-install]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
