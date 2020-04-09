@@ -8,16 +8,24 @@ Starting from Kubeflow Pipelines 0.4, Kubeflow Pipelines supports step caching c
 
 ## Before you start
 
-This guide tells you the basic concepts of Kubeflow Pipelines step caching and how to use it. This guide assumes that you already have Kubeflow Pipelines installed or want to use standalone or GCP hosted deployment options in the [Kubeflow Pipelines deployment 
+This guide tells you the basic concepts of Kubeflow Pipelines step caching and how to use it. 
+This guide assumes that you already have Kubeflow Pipelines installed or want to use standalone or GCP hosted deployment options in the [Kubeflow Pipelines deployment 
 guide](/docs/pipelines/installation/) to deploy Kubeflow Pipelines.
 
 ## What is step caching?
 
-Kubeflow Pipelines caching provides step-level output caching on [Kubeflow Pipelines SDK](/docs/pipelines/sdk) only. A step output will be taken from cache if this step template and input does not change. The change includes step name, input artifacts, parameters and underlying logic change. Step output passed in a GCS bucket has not been included in this cache support yet. A cached entry is managed by Kubeflow Pipelines database and will never expire by default. To control caching behavior and change cache entry staleness, please see sections below. With step caching, the output of a certain step can be re-used and we can save the efforts of re-executing previous steps.  
+Kubeflow Pipelines caching provides step-level output caching. 
+And caching is enabled by default for all pipelines submitted through the KFP backend and UI. 
+The exception is pipelines authored using TFX SDK which has its own caching mechanism. 
+The cache key calculation is based on the component (base image, command-line, code), arguments passed to the component (values or artifacts) and any additional customizations. 
+If the component is exactly the same and the arguments are exactly the same as in some previous execution, then the task can be skipped and the outputs of the old step can be used. 
+The cache reuse behavior can be controlled and the pipeline author can specify the maximum staleness of the cached data considered for reuse. 
+With caching enabled, the system can skip a step that has already been executed which saves time and money. 
 
 ## Disabling/enabling caching
 
-Cache is enabled by default after Kubeflow Pipelines 0.4. These are instructions on disabling and enabling cache service:
+Cache is enabled by default after Kubeflow Pipelines 0.4. 
+These are instructions on disabling and enabling cache service:
 
 ### Configure access to your Kubeflow cluster
 
@@ -70,7 +78,7 @@ Kubeflow cluster.
     kubectl patch mutatingwebhookconfiguration cache-webhook -n ${NAMESPACE} --type='json' -p='[{"op":"replace", "path": "/webhooks/0/rules/0/operations/0", "value": "CREATE"}]'
     ```
 
-## Managing the `max_cache_staleness`
+## Managing the caching staleness
 
 For a given step, you can set step's `max_cache_staleness` to control the staleness of a target step. The `max_cache_staleness` is in [RFC3339 Duration](https://www.ietf.org/rfc/rfc3339.txt) format(Eg. 30 days = P30D). By default the `max_cache_staleness` will be set to infinity and never gets expired.
 
