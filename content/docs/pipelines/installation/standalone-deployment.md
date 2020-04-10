@@ -20,7 +20,7 @@ platforms. This guide needs updating. See [Issue 1253](https://github.com/kubefl
 
 ## Before you get started
 
-Working with Kubeflow Pipelines requires a Kubernetes cluster as well as an installation of kubectl.
+Working with Kubeflow Pipelines Standalone requires a Kubernetes cluster as well as an installation of kubectl.
 
 ### Download and install kubectl
 
@@ -32,19 +32,16 @@ You need kubectl version 1.14 or later for native support of kustomize.
 
 If you have an existing Kubernetes cluster, continue with the instructions for [configuring kubectl to talk to your cluster](#configure-kubectl).
 
-To create a new Kubernetes cluster, run the following:
-
 See the GKE guide to [creating a cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster) for Google Cloud Platform (GCP).
 
 Use the [gcloud container clusters create command](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create) to create a cluster that can run all Kubeflow Pipelines samples:
-
 ```
 # The following parameters can be customized based on your needs.
 
 CLUSTER_NAME="kubeflow-pipelines-standalone"
 ZONE="us-central1-a"
 MACHINE_TYPE="n1-standard-2" # A machine with 2 CPUs and 7.50GB memory
-SCOPES="cloud-platform" # These scopes are needed for running some pipeline samples
+SCOPES="cloud-platform" # This scope is needed for running some pipeline samples. Read the warning below for its security implication
 
 gcloud container clusters create $CLUSTER_NAME \
      --zone $ZONE \
@@ -53,6 +50,8 @@ gcloud container clusters create $CLUSTER_NAME \
 ```
 
 **Warning**: Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](/docs/gke/authentication/#authentication-from-kubeflow-pipelines).
+
+Note, some legacy pipeline examples may need minor code change to run on clusters with `SCOPES="cloud-platform"`, refer to [Authoring Pipelines to use default service account](/docs/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-default-service-account).
 
 **References**:
 
@@ -250,13 +249,22 @@ kubectl delete -k $KFP_MANIFESTS_REPO_LINK
 
 ### Further reading
 
-To learn about kustomize workflows with off-the-shelf configurations, see the
+* To learn about kustomize workflows with off-the-shelf configurations, see the
 [kustomize configuration workflows guide](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration).
+
+* Read [Authenticating Pipelines to GCP](/docs/gke/authentication/#authentication-from-kubeflow-pipelines#authoring-pipelines-to-use-workload-identity) if you want to use GCP services in Kubeflow Pipelines.
 
 ## Troubleshooting
 
-If you encounter a permission error when installing Kubeflow Pipelines standalone, run:
+* If you encounter a permission error when installing Kubeflow Pipelines standalone, run:
 
 ```
 kubectl create clusterrolebinding your-binding --clusterrole=cluster-admin --user=<your-user-name>
 ```
+
+* If your pipelines are stuck in ContainerCreating state and it has pod events like
+```
+MountVolume.SetUp failed for volume "gcp-credentials-user-gcp-sa" : secret "user-gcp-sa" not found
+```
+
+You should remove `use_gcp_secret` usages as documented in [Authenticating Pipelines to GCP](/docs/gke/authentication/#authentication-from-kubeflow-pipelines#authoring-pipelines-to-use-workload-identity).
