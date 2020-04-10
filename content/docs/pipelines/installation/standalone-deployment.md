@@ -26,7 +26,7 @@ Working with Kubeflow Pipelines requires a Kubernetes cluster as well as an inst
 
 Download and install kubectl by following the [kubectl installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-You need kubectl version 1.14 or later for native support of kustomize.
+You need kubectl version 1.14 or higher for native support of kustomize.
 
 ### Set up your cluster
 
@@ -80,9 +80,9 @@ See the Google Kubernetes Engine (GKE) guide to
 
      The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
 
-     **Note**: The above commands apply to Kubeflow Pipelines version 0.4.0 and later.
+     **Note**: The above commands apply to Kubeflow Pipelines version 0.4.0 and higher.
 
-     For KFP version 0.2.0 ~ 0.3.0, use:
+     For Kubeflow Pipelines version 0.2.0 ~ 0.3.0, use:
      ```
      export PIPELINE_VERSION=<kfp-version-between-0.2.0-and-0.3.0>
      kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
@@ -90,7 +90,7 @@ See the Google Kubernetes Engine (GKE) guide to
      kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
      ```
 
-     For KFP version < 0.2.0, use:
+     For Kubeflow Pipelines version < 0.2.0, use:
      ```
      export PIPELINE_VERSION=<kfp-version-0.1.x>
      kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
@@ -119,25 +119,27 @@ See the Google Kubernetes Engine (GKE) guide to
 
      This is for 0.4.0 and above, commands for older versions can be found at [Deploying Kubeflow Pipelines](#deploying-kubeflow-pipelines)
 
-1. Delete removed resources manually
+1. Delete obsolete resources manually.
 
      This depends on which version you are upgrading from and to.
 
-     If you are upgrading from KFP < 0.4.0 to 0.4.0 or above. You can remove the
-     following no longer used resources after the upgrade:
+     If you are upgrading from Kubeflow Pipelines < 0.4.0 to 0.4.0 or above, you can remove the
+     following obsolete resources after the upgrade:
      `metadata-deployment`, `metadata-service`.
 
-     You can verify if they exist by:
+     Run the following command to check if these resources exist on your cluster:
      ```
      kubectl -n <KFP_NAMESPACE> get deployments | grep metadata-deployment
      kubectl -n <KFP_NAMESPACE> get service | grep metadata-service
      ```
 
-     If they exist, you can delete them by running the following commands:
+     If these resources exist on your cluster, run the following commands to delete them:
      ```
      kubectl -n <KFP_NAMESPACE> delete deployment metadata-deployment
      kubectl -n <KFP_NAMESPACE> delete service metadata-service
      ```
+
+     For other versions, you don't need to do anything.
 
 ## Customizing Kubeflow Pipelines
 
