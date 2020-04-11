@@ -117,7 +117,7 @@ KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
         <td></td>
         <td>HPA</td>
         <td><b>&check;</b></td>
-        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/graph/autoscaling.html">docs</a></td>
+        <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/graph/scaling.html#autoscaling-seldon-deployments">docs</a></td>
       </tr>
 
       <tr>
