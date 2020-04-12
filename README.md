@@ -47,16 +47,15 @@ and run a local server to host your website. This section shows you how.
 
 ### Install Hugo and other dependencies
 
-The Kubeflow website uses the Docsy theme, which recommends that you have 
-Hugo version 0.53 or later, and it must be the **extended** version of Hugo.
+You need Hugo version 0.60 or later, and it must be the **extended** version of 
+Hugo. Hugo version 0.60 and later support thenGoldmark renderer for Markdown. 
+Goldmark offers improved rendering of some text formatting such as lists. 
 
 **Note:** From April 2020 onwards, Kubeflow recommends that you use 
-**Hugo version 0.68.3** or later. Hugo version 0.60 and later support the
-Goldmark renderer for Markdown. Goldmark offers improved rendering of some
-text formatting such as lists. The Kubeflow website now uses Hugo 0.68.3 via
+**Hugo version 0.68.3** or later. The Kubeflow website now uses Hugo 0.68.3 via
 Netlify. 
 
-To get the extended version of Hugo:
+To get the latest extended version of Hugo:
 
 1.  Go to the [Hugo releases](https://github.com/gohugoio/hugo/releases) page.
 1.  In the most recent release, scroll down until you find a list of
@@ -83,7 +82,8 @@ For more details about installing Hugo, See the
 
 If you plan to make changes to the site styling, you need to install some 
 **CSS libraries** as well. Follow the instructions in the 
-[Docsy theme's setup guide](https://www.docsy.dev/docs/getting-started/#install-postcss).
+[Docsy theme's setup 
+guide](https://www.docsy.dev/docs/getting-started/#install-postcss).
 
 ### Fork and clone the website repository and run a local website server
 
