@@ -4,12 +4,12 @@ description = "How to secure Kubeflow clusters using VPC service controls and pr
 weight = 70
 +++
 
-{{% alert title="Alpha version" color="warning" %}}
+{{% alert title="Alpha" color="warning" %}}
 This feature is currently in **alpha** release status with limited support. The
 Kubeflow team is interested in any feedback you may have, in particular with 
 regards to usability of the feature. Note the following issues already reported:
 
-* [Documentation on how to use Kubeflow with shared VPC](https://github.com/kubeflow/kubeflow/issues/3082)
+* [Documentation on how to use Kubeflow with private GKE and VPC service controls](https://github.com/kubeflow/website/issues/1705)
 * [Replicating Docker images to private Container Registry](https://github.com/kubeflow/kubeflow/issues/3210)
 * [Installing Istio for Kubeflow on private GKE](https://github.com/kubeflow/kubeflow/issues/3650)
 * [Profile-controller crashes on GKE private cluster](https://github.com/kubeflow/kubeflow/issues/4661)
@@ -158,207 +158,139 @@ export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(proj
      --add-access-levels=kubeflow \
      --policy=${POLICYID}
     ```
-1. Set up container registry for GKE private clusters (for more info see [instructions](https://cloud.google.com/vpc-service-controls/docs/set-up-gke)):
 
-    1. Create a managed private zone
+## Set up container registry for GKE private clusters:
 
-        ```
-        export ZONE_NAME=kubeflow
-        export NETWORK=<Network you are using for your cluster>
-        gcloud beta dns managed-zones create ${ZONE_NAME} \
-         --visibility=private \
-         --networks=https://www.googleapis.com/compute/v1/projects/${PROJECT}/global/networks/${NETWORK} \
-         --description="Kubeflow DNS" \
-         --dns-name=gcr.io \
-         --project=${PROJECT}
-        ```
+Follow the step belows to configure your GCR registry to be accessible from your secured clusters.
+For more info see [instructions](https://cloud.google.com/vpc-service-controls/docs/set-up-gke).
 
-    1. Start a transaction
+1. Create a managed private zone
 
-        ```
-        gcloud dns record-sets transaction start \
-         --zone=${ZONE_NAME} \
-         --project=${PROJECT}
-        ```
+    ```
+    export ZONE_NAME=kubeflow
+    export NETWORK=<Network you are using for your cluster>
+    gcloud beta dns managed-zones create ${ZONE_NAME} \
+     --visibility=private \
+     --networks=https://www.googleapis.com/compute/v1/projects/${PROJECT}/global/networks/${NETWORK} \
+     --description="Kubeflow DNS" \
+     --dns-name=gcr.io \
+     --project=${PROJECT}
+    ```
 
-    1. Add a CNAME record for \*.gcr.io
+1. Start a transaction
 
-        ```
-        gcloud dns record-sets transaction add \
-         --name=*.gcr.io. \
-         --type=CNAME gcr.io. \
-         --zone=${ZONE_NAME} \
-         --ttl=300 \
-         --project=${PROJECT}
-       ```
+    ```
+    gcloud dns record-sets transaction start \
+     --zone=${ZONE_NAME} \
+     --project=${PROJECT}
+    ```
 
-    1. Add an A record for the restricted VIP
+1. Add a CNAME record for \*.gcr.io
 
-        ```      
-         gcloud dns record-sets transaction add \
-           --name=gcr.io. \
-           --type=A 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 \
-           --zone=${ZONE_NAME} \
-           --ttl=300 \
-           --project=${PROJECT}
-        ```
+    ```
+    gcloud dns record-sets transaction add \
+     --name=*.gcr.io. \
+     --type=CNAME gcr.io. \
+     --zone=${ZONE_NAME} \
+     --ttl=300 \
+     --project=${PROJECT}
+   ```
 
-    1. Commit the transaction
+1. Add an A record for the restricted VIP
 
-        ```
-         gcloud dns record-sets transaction execute \
-          --zone=${ZONE_NAME} \
-          --project=${PROJECT}
-        ```
+    ```      
+     gcloud dns record-sets transaction add \
+       --name=gcr.io. \
+       --type=A 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 \
+       --zone=${ZONE_NAME} \
+       --ttl=300 \
+       --project=${PROJECT}
+    ```
 
-## Deploy Kubeflow with Private GKE
+1. Commit the transaction
 
-1. Set user credentials. You only need to run this command once:
+    ```
+     gcloud dns record-sets transaction execute \
+      --zone=${ZONE_NAME} \
+      --project=${PROJECT}
+      ```
+
+## Mirror Kubeflow Application Images
+
+Since private GKE can only access gcr.io, we need to mirror all images outside gcr.io for Kubeflow applications. We will use the `kfctl` tool to accomplish this.
+
+
+1. Set your user credentials. You only need to run this command once:
    
     ```
     gcloud auth application-default login
     ```
-1. Copy non-GCR hosted images to your GCR registry:
 
-    1. Clone the Kubeflow source 
+1. Inside your `${KFAPP}` directory create a local configuration file `mirror.yaml`  based on this [template](https://github.com/kubeflow/manifests/blob/master/experimental/mirror-images/gcp_template.yaml)
 
-        ```
-        git clone https://github.com/kubeflow/kubeflow.git git_kubeflow      
-        ```
-    1. Use [Google Cloud Builder(GCB)](https://cloud.google.com/cloud-build/docs/) to replicate the images
+    1. Change destination to your project gcr registry.
 
-        ```
-        cd git_kubeflow/scripts/gke
-        PROJECT=<PROJECT> make copy-gcb
-        ```
-
-      * This is needed because your GKE nodes won't be able to pull images from non GCR
-        registries because they don't have public internet addresses
-
-
-      * gcloud may return an error even though the job is
-        submited successfully and will run successfully
-        see [kubeflow/kubeflow#3105](https://github.com/kubeflow/kubeflow/issues/3105)
-
-      * You can use the Cloud console to monitor your GCB job.
-
-1. Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/).
-  When you reach the 
-  [setup and deploy step](/docs/gke/deploy/deploy-cli/#set-up-and-deploy), 
-  **skip the `kfctl apply` command** and run the **`kfctl build`** command 
-  instead, as described in that step. Now you can edit the configuration files
-  before deploying Kubeflow. Retain the environment variables that you set
-  during the setup, including `${KF_NAME}`, `${KF_DIR}`, and `${CONFIG_FILE}`.
-
-1. Enable private clusters by editing `${KF_DIR}/gcp_config/cluster-kubeflow.yaml` and updating the following two parameters:
-
+1. Generate pipeline files to mirror images by running
+    
     ```
-    privatecluster: true
-    gkeApiVersion: v1beta1
-    ```
-1. Remove components which are not useful in private clusters:
-
-   Open `${KF_DIR}/kfctl_gcp_iap.v1.0.0.yaml` and remove kustomizeConfig `cert-manager`, `cert-manager-crds`, and `cert-manager-kube-system-resources`.
-1. Create the deployment:
-
-    ```
-    cd ${KF_DIR}
-    kfctl apply -V -f ${CONFIG_FILE}
+    cd ${KFAPP}
+    ./kfctl alpha mirror build mirror.yaml -V -o pipeline.yaml --gcb
     ```
 
-      * If you get an error **legacy networks not supported**, follow the 
-        [troubleshooting guide]( /docs/gke/troubleshooting-gke/#legacy-networks-are-not-supported) to create a new network.
+    * If you want to use Tekton rather than Google Cloud Build(GCB) drop `--gcb` to emit a Tekton pipeline
+    * The instructions below assume you are using GCB
 
-        * You will need to manually create the network as a work around for [kubeflow/kubeflow#3071](https://github.com/kubeflow/kubeflow/issues/3071)
+1. Edit the couldbuild.yaml file
 
-            ```
-            cd ${KF_DIR}/gcp_config
-            gcloud --project=${PROJECT} deployment-manager deployments create ${KF_NAME}-network --config=network.yaml
-            ```
+    1. In the `images` section add
 
-        * Then edit `${KF_DIR}/gcp_config/cluster.jinja` to add a field **network** in your cluster
-        
-            ```
-            cluster:
-              name: {{ CLUSTER_NAME }}
-              network: <name of the new network>
-            ```
-      
-        * To get the name of the new network run
-          
-            ```
-            gcloud --project=${PROJECT} compute networks list
-            ``` 
+         ```
+          - <registry domain>/<project_id>/docker.io/istio/proxy_init:1.1.6
+         ```
+     
+        * Replace `<registry domain>/<project_id>` with your registry      
 
-          * The name will contain the value ${KF_NAME}
-
-1. Update iap-ingress component parameters:
-
-    ```
-    cd ${KF_DIR}/kustomize
-    gvim iap-ingress.yaml
-    ```
-
-      * Find and set the `privateGKECluster` parameter to true:
-
-        ```
-        privateGKECluster: "true"
-        ```
-
-      * Then apply your changes:
-
-        ```
-        kubectl apply -f iap-ingress.yaml
-        ```
-
-1. Obtain an HTTPS certificate for your ${FQDN} and create a Kubernetes secret with it. 
-
-      * You can create a self signed cert using [kube-rsa](https://github.com/kelseyhightower/kube-rsa)
+    1. Under `steps` section add
 
           ```
-          go get github.com/kelseyhightower/kube-rsa
-          kube-rsa ${FQDN}
+            - args:
+            - build
+            - -t
+            - <registry domain>/<project id>/docker.io/istio/proxy_init:1.1.6
+            - --build-arg=INPUT_IMAGE=docker.io/istio/proxy_init:1.1.6
+            - .
+            name: gcr.io/cloud-builders/docker
+            waitFor:
+            - '-'  
           ```
-          * The fully qualified domain is the host field specified for your ingress; 
-            you can get it by running
 
-            ```
-            cd ${KF_DIR}/kustomize
-            grep hostname: iap-ingress.yaml
-            ```
+    1. Remove the mirroring of cos-nvidia-installer:fixed image. You don’t need it to be replicated because this image is privately available through GKE internal repo.
 
-        * Then create your Kubernetes secret
+          1. Remove the images from the `images` section
+          1. Remove it from the `steps` section
 
-          ```
-          kubectl create secret tls --namespace=kubeflow envoy-ingress-tls --cert=ca.pem --key=ca-key.pem
-        ```
+1. Create a cloud build job to do the mirroring
 
-      * An alternative option is to upgrade to GKE 1.12 or later and use 
-        [managed certificates](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs#migrating_to_google-managed_certificates_from_self-managed_certificates)
+   ```
+    gcloud builds submit --async gs://kubeflow-examples/image-replicate/replicate-context.tar.gz --project <project_id> --config cloudbuild.yaml
+   ```
 
-        * See [kubeflow/kubeflow#3079](https://github.com/kubeflow/kubeflow/issues/3079)
+1. Update your manifests to use the mirror'd images
 
-1. Update the various kustomize manifests to use `gcr.io` images instead of Docker Hub images.
+   ```
+   kfctl alpha mirror overwrite -i pipeline.yaml
+   ```
 
-1. Apply all the Kubernetes resources:
+1. Edit file “kustomize/istio-install/base/istio-noauth.yaml”: 
 
-    ```
-    cd ${KF_DIR}
-    kfctl apply -V -f ${CONFIG_FILE}
-    ```
-1. Wait for Kubeflow to become accessible and then access it at this URL:
+   1. Replace `docker.io/istio/proxy_init:1.16` to `gcr.io/<project_id>/docker.io/istio/proxy_init:1.16`
+   1. Replace `docker.io/istio/proxyv2:1.1.6` to `gcr.io/<project_id>/docker.io/istio/proxyv2:1.1.6`
 
-    ```
-    https://${FQDN}/
-    ```
-      * ${FQDN} is the host associated with your ingress
+## Deploy Kubeflow with Private GKE
 
-        * You can get it by running `kubectl get ingress`
-
-      * Follow the [instructions](/docs/gke/deploy/monitor-iap-setup/) to monitor the 
-        deployment
-  
-      * It can take 10-20 minutes for the endpoint to become fully available
+{{% alert title="Coming Soon" color="warning" %}}
+You can follow the issue: [Documentation on how to use Kubeflow with private GKE and VPC service controls](https://github.com/kubeflow/website/issues/1705)
+{{% /alert %}}
 
 ## Next steps
 
