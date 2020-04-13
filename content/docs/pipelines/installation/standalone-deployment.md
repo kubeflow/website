@@ -108,8 +108,7 @@ See the Google Kubernetes Engine (GKE) guide to
 
 1. Check the [Kubeflow Pipelines GitHub repository](https://github.com/kubeflow/pipelines/releases) for available releases.
 
-1. Upgrade to a version of Kubeflow Pipelines standalone is the same as deploying that version:
-
+1. To upgrade to Kubeflow Pipelines 0.4.0 and higher, use the following commands:
      ```
      export PIPELINE_VERSION=<version-you-want-to-upgrade-to>
      kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION
@@ -117,11 +116,12 @@ See the Google Kubernetes Engine (GKE) guide to
      kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
      ```
 
-     This is for 0.4.0 and above, commands for older versions can be found at [Deploying Kubeflow Pipelines](#deploying-kubeflow-pipelines)
+     To upgrade to Kubeflow Pipelines 0.3.0 and lower, use the [deployment instructions](#deploying-kubeflow-pipelines) to upgrade your Kubeflow Pipelines cluster.
 
 1. Delete obsolete resources manually.
 
-     This depends on which version you are upgrading from and to.
+     Depending on the version you are upgrading from and the version you are upgrading to,
+     some Kubeflow Pipelines resources may have become obsolete.
 
      If you are upgrading from Kubeflow Pipelines < 0.4.0 to 0.4.0 or above, you can remove the
      following obsolete resources after the upgrade:
