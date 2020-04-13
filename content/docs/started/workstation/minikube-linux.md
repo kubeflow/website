@@ -226,7 +226,7 @@ pip install jupyter
 
 #### Step 3: Create a Docker ID
 In order to build docker images from your notebook, a docker registry is needed where the images will be stored.
-If you don't have a Docker ID, please follow [Docker Documentation] (https://docs.docker.com/docker-id/) to create one.
+If you don't have a Docker ID, please follow [Docker Documentation](https://docs.docker.com/docker-id/) to create one.
 
 
 #### Step 4: Create a namespace to run the MNIST on-prem notebook 
