@@ -218,7 +218,7 @@ conda init
 conda activate mlpipeline 
 ``` 
 #### Step 2: Install Jupyter Notebook
-Full instruction can be found in [Jupter Documentation](https://jupyter.readthedocs.io/en/latest/install.html)
+Full instruction can be found in [Jupyter Documentation](https://jupyter.readthedocs.io/en/latest/install.html)
 ```
 pip install --upgrade pip
 pip install jupyter
@@ -226,7 +226,7 @@ pip install jupyter
 
 #### Step 3: Create a Docker ID
 In order to build docker images from your notebook, a docker registry is needed where the images will be stored.
-If you don't have a Docker ID, please follow [Docker Docuementation] (https://docs.docker.com/docker-id/) to create one.
+If you don't have a Docker ID, please follow [Docker Documentation] (https://docs.docker.com/docker-id/) to create one.
 
 
 #### Step 4: Create a namespace to run the MNIST on-prem notebook 
