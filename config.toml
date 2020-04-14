@@ -93,7 +93,12 @@ time_format_blog = "02.01.2006"
 # Site params
 
 [params]
+
+# GitHub repository for in-page links to editing a page and opening and issues.
 github_repo = "https://github.com/kubeflow/website"
+# An optional link to a related project repo. For example, the sibling repository where your product code lives.
+github_project_repo = "https://github.com/kubeflow/kubeflow"
+
 RSSLink = "/index.xml"
 author = "kubeflow.org" # add your company name
 github = "kubeflow" # add your github profile name
