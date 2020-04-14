@@ -81,7 +81,7 @@ kubectl -n ${NAMESPACE} get pvc
   * Look for the status of "Bound"
   * PVC requests in "Pending" state indicate that the scheduler was unable to bind the required PVC. 
 
-If you have not configured [dynamic provisioning] (https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) for your cluster, including a default storage class, then you must create a [persistent volume] (https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for each of the PVCs.
+If you have not configured [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) for your cluster, including a default storage class, then you must create a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for each of the PVCs.
 
 You can use the example below to create local persistent volumes:
 
