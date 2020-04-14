@@ -221,7 +221,7 @@ spec:
 
 ### Authentication from Kubeflow Pipelines
 
-Refer to [Authenticating Pipelines to GCP](/docs/gke/authentication-pipelines/).
+Refer to [Authenticating Pipelines to GCP](/docs/gke/pipelines/authentication-pipelines/).
 
 ---
 
