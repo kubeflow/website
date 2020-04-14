@@ -22,6 +22,8 @@ Here's a summary of the steps involved:
 1. Set up Microk8s
 2. Enable Kubeflow
 
+**Note:** the minimum version of Microk8s needed to enable Kubeflow is 1.18
+
 ### 1. Install and set up Microk8s
 
 Run the following commands to install and setup MicroK8s:
