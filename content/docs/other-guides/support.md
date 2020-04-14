@@ -59,7 +59,7 @@ the status of an application:
   </table>
 </div>
 
-<a id="community-support">
+<a id="community-support"></a>
 ## Support from the Kubeflow community
 
 Kubeflow has an active and helpful community of users and contributors. 

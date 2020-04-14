@@ -1,15 +1,26 @@
 {{ if .Path }}
+{{ $pathFormatted := replace .Path "\\" "/" }}
 {{ $gh_repo := ($.Param "github_repo") }}
+{{ $gh_subdir := ($.Param "github_subdir") }}
+{{ $gh_project_repo := ($.Param "github_project_repo") }}
+{{ $gh_branch := (default "master" ($.Param "github_branch")) }}
 {{ if $gh_repo }}
 <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+{{/* Kubeflow customization to fix the editURL in single-language site. */}}
 {{ $editURL := printf "%s/edit/master/content/%s" $gh_repo .Path }}
 {{ if .Site.IsMultiLingual }}
 {{ $editURL = printf "%s/edit/master/content/%s/%s" $gh_repo ($.Site.Language.Lang) .Path }}
 {{ end }}
+
+{{/* Kubeflow customization to add the page URL to the issue body. */}}
 {{$doc_url := printf "https://www.kubeflow.org%s" .URL }}
 {{ $issuesURL := printf "%s/issues/new?title=%s&body=%s" $gh_repo (htmlEscape $.Title) (htmlEscape $doc_url) }}
 <a href="{{ $editURL }}" target="_blank"><i class="fa fa-edit fa-fw"></i> {{ T "post_edit_this" }}</a>
 <a href="{{ $issuesURL }}" target="_blank"><i class="fab fa-github fa-fw"></i> {{ T "post_create_issue" }}</a>
+{{ if $gh_project_repo }}
+{{ $project_issueURL := printf "%s/issues/new" $gh_project_repo }}
+<a href="{{ $project_issueURL }}" target="_blank"><i class="fas fa-tasks fa-fw"></i> {{ T "post_create_project_issue" }}</a>
+{{ end }}
 </div>
 {{ end }}
 {{ end }}

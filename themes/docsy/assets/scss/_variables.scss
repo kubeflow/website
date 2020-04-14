@@ -52,7 +52,7 @@ $td-sidebar-border-color: $border-color !default;
 // Background colors for the sections on home page etc. It is a paint by number system, starting at 0, where the number is taken from the shortcode's ordinal
 // if not provided by the user.
 // These colors are all part of the theme palette, but the mix is fairly random to create variation. This can be overridden by the project if needed.
-$td-box-colors: $dark, $primary, $secondary, $info, $primary-light, $gray-600, $success, $warning, $dark, $danger, $primary, $secondary, $primary-light, $info;
+$td-box-colors: $dark, $primary, $secondary, $info, $primary-light, $gray-600, $success, $warning, $dark, $danger, $primary, $secondary, $primary-light, $info !default;
 
 $link-color: darken($blue, 15%) !default;
 $link-decoration: none !default;
@@ -62,7 +62,7 @@ $link-hover-decoration: none !default;
 // Fonts
 
 $google_font_name: "Open Sans" !default;
-$google_font_family: "Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" !default;
+$google_font_family: "Open+Sans:300,300i,400,400i,700,700i" !default;
 $web-font-path: "https://fonts.googleapis.com/css?family=#{$google_font_family}";
 
 $td-fonts-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -110,8 +110,8 @@ $display4-size: 1.75rem !default;
 // Space
 
 $spacer: 1rem;
-$td-block-space-top-base: 4 * $spacer;
-$td-block-space-bottom-base: 4 * $spacer;
+$td-block-space-top-base: 4 * $spacer !default;
+$td-block-space-bottom-base: 4 * $spacer !default;
 
 // Pagination
 

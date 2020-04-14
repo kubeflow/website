@@ -94,15 +94,15 @@ Follow these steps to apply the configurations to your Kubeflow cluster:
   configuration. If you chose a different configuration in the previous step, 
   you must change the file name to reflect your configuration:
 
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-k8s-istio %}}
-  ```
+    ```
+    export CONFIG_FILE=${KF_DIR}/{{% config-file-k8s-istio %}}
+    ```
 
 1. Apply the configurations:
 
-  ```
-  kfctl apply -V -f ${CONFIG_FILE}
-  ```
+    ```
+    kfctl apply -V -f ${CONFIG_FILE}
+    ```
 
 <a id="kubeflow-directory"><a/>
 ### Your Kubeflow directory layout

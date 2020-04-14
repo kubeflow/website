@@ -11,7 +11,7 @@ you're new to pipelines, see the conceptual guides to
 [pipelines](/docs/pipelines/concepts/pipeline/)
 and [components](/docs/pipelines/concepts/component/).
 
-<a id="general">
+<a id="general"></a>
 ### General component design rules
 
 *   Design your components with composability in mind. Think about

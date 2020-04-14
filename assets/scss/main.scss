@@ -28,7 +28,7 @@
 @import "pageinfo";
 
 @if $td-enable-google-fonts {
-    @import url($web-font-path);
+    @import url('#{$web-font-path}');
 }
 
 footer {

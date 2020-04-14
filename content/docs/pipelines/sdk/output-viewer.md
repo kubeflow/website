@@ -142,11 +142,9 @@ viewers later on the page.
           <a href="https://docs.minio.io/">Minio</a>, and 
           <a href="https://cloud.google.com/storage/docs/">Google Cloud 
           Storage</a>.</p>
-        
           <p>The path can contain wildcards ‘*’, in 
           which case the Kubeflow Pipelines UI concatenates the data from the 
           matching source files.</p>
-          
           <p><code>source</code> can also contain inlined string data instead of
           a path when <code>storage='inline'</code>.</p>
           </td>
