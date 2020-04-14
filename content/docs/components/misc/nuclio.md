@@ -36,12 +36,12 @@ e.g. if we want to deploy/update Inference functions right after we update an ML
 Nuclio [Git repo](https://github.com/nuclio/nuclio) contain detailed documentation on the installation and usage.
 can also follow this [interactive tutorial](https://www.katacoda.com/javajon/courses/kubernetes-serverless/nuclio).
 
-The simplest way to install is using `Helm`, assuming you deployed Helm on your cluster, type the following commands:
+The simplest way to install is using [`Helm`](https://helm.sh/docs/intro/install/), assuming you deployed Helm on your cluster, type the following commands:
 
 ```
 helm repo add nuclio https://nuclio.github.io/nuclio/charts
 kubectl create ns nuclio
-helm install nuclio/nuclio --name=nuclio --namespace=nuclio --set dashboard.nodePort=31000
+helm install nuclio nuclio/nuclio --set dashboard.nodePort=31000
 
 kubectl -n nuclio get all
 ```
@@ -125,9 +125,13 @@ handler(context, event)
 Finally we deploy our function using the magic commands, SDK, or KubeFlow Pipeline. 
 we can simply write and run the following command a cell:
 
-`%nuclio deploy -n nlp -p ai -d <nuclio-dashboard-url>` 
+```python
+%nuclio deploy -n nlp -p ai -d <nuclio-dashboard-url>
+```
 
-if we want more control we can use the SDK:
+The dashboard URL is `http://cluster-ip:node-port`, which you can see with `kubectl get service nuclio-dashboard`.
+
+If you want more control, you can use the SDK:
 
 ```python
 # nuclio: ignore

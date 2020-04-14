@@ -8,3 +8,6 @@ resources/
 
 # MacOS temporary files
 .DS_Store
+
+# IntelliJ
+.idea/
