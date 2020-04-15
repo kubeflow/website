@@ -70,9 +70,9 @@ kubectl apply -f ${CONFIG_URI}
 
 ## Use
 1. Install the SDK.
-```
-pip install kfserving
-```
+    ```
+    pip install kfserving
+    ```
 1. [Follow the example](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb) to use the KFServing SDK to create, patch, roll out, and delete a KFServing instance.
 
 ## Contribute

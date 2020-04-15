@@ -137,23 +137,23 @@ To reinstall Kubeflow Pipelines:
 
 1. **Before** running the `kfctl apply` command:
 
-  * Edit `${KF_DIR}/kustomize/minio/overlays/minioPd/params.env` and specify
+    * Edit `${KF_DIR}/kustomize/minio/overlays/minioPd/params.env` and specify
     the PV for the Minio server:
       
-    ```
-    ...
-    minioPd=[YOUR-PRE-CREATED-MINIO-PV-NAME]
-    ...
-    ```
+      ```
+      ...
+      minioPd=[YOUR-PRE-CREATED-MINIO-PV-NAME]
+      ...
+      ```
 
-  * Edit `${KF_DIR}/kustomize/mysql/overlays/mysqlPd/params.env`and specify
+    * Edit `${KF_DIR}/kustomize/mysql/overlays/mysqlPd/params.env`and specify
     the PV for the MySQL database:
 
-    ```
-    ...
-    mysqlPd=[YOUR-PRE-CREATED-MYSQL-PV-NAME]
-    ...
-    ```
+      ```
+      ...
+      mysqlPd=[YOUR-PRE-CREATED-MYSQL-PV-NAME]
+      ...
+      ```
 
 1. Run the `kfctl apply` command to deploy Kubeflow as usual:
 

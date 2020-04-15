@@ -109,35 +109,35 @@ For example, to modify settings for the Jupyter web app:
 
 1. Open `${KF_DIR}/kustomize/jupyter-web-app.yaml` in a text editor.
 1. Find and replace the parameter values:
-```
-apiVersion: v1
-data:
-  ROK_SECRET_NAME: secret-rok-{username}
-  UI: default
-  clusterDomain: cluster.local
-  policy: Always
-  prefix: jupyter
-kind: ConfigMap
-metadata:
-  labels:
-    app: jupyter-web-app
-    kustomize.component: jupyter-web-app
-  name: jupyter-web-app-parameters
-  namespace: kubeflow
-  ```
+    ```
+    apiVersion: v1
+    data:
+      ROK_SECRET_NAME: secret-rok-{username}
+      UI: default
+      clusterDomain: cluster.local
+      policy: Always
+      prefix: jupyter
+    kind: ConfigMap
+    metadata:
+      labels:
+        app: jupyter-web-app
+        kustomize.component: jupyter-web-app
+      name: jupyter-web-app-parameters
+      namespace: kubeflow
+    ```
 
 1. Redeploy Kubeflow using kfctl:
 
-  ```
-  cd ${KF_DIR}
-  kfctl apply -V -f ${CONFIG_FILE}
-  ```
+    ```
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_FILE}
+    ```
 
     Or use kubectl directly:
-  ```
-  cd ${KF_DIR}/kustomize
-  kubectl apply -f jupyter-web-app.yaml
-  ```
+    ```
+    cd ${KF_DIR}/kustomize
+    kubectl apply -f jupyter-web-app.yaml
+    ```
 
 ## Common customizations
 

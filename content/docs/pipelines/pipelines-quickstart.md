@@ -111,8 +111,8 @@ Follow these steps to set up the necessary GCP services and run the sample:
   [Cloud Storage bucket](https://console.cloud.google.com/storage/create-bucket) 
   to hold the results of the pipeline run.
 
-  * Your *bucket name* must be unique across all of Cloud Storage.
-  * Each time you create a new run for this pipeline, Kubeflow creates a unique
+    * Your *bucket name* must be unique across all of Cloud Storage.
+    * Each time you create a new run for this pipeline, Kubeflow creates a unique
     directory within the output bucket, so the output of each run does not
     override the output of the previous run.
 
@@ -127,22 +127,22 @@ Follow these steps to set up the necessary GCP services and run the sample:
 1. Follow the prompts to create an **experiment** and then create a **run**.
   Supply the following **run parameters**:
 
-  * **output:** The Cloud Storage bucket that you created earlier to hold the
+    * **output:** The Cloud Storage bucket that you created earlier to hold the
     results of the pipeline run.
-  * **project:** Your GCP project ID.
+    * **project:** Your GCP project ID.
 
     The sample supplies the values for the other parameters:
 
-  * region: The GCP geographical region in which the training and evaluation
+    * region: The GCP geographical region in which the training and evaluation
     data is stored.
-  * train-data: Cloud Storage path to the training data.
-  * eval-data: Cloud Storage path to the evaluation data.
-  * schema: Cloud Storage path to a JSON file describing the format of the
+    * train-data: Cloud Storage path to the training data.
+    * eval-data: Cloud Storage path to the evaluation data.
+    * schema: Cloud Storage path to a JSON file describing the format of the
     CSV files that contain the training and evaluation data.
-  * target: Column name of the target variable.
-  * rounds: The number of rounds for XGBoost training.
-  * workers: Number of workers used for distributed training.
-  * true-label: Column to be used for text representation of the label output
+    * target: Column name of the target variable.
+    * rounds: The number of rounds for XGBoost training.
+    * workers: Number of workers used for distributed training.
+    * true-label: Column to be used for text representation of the label output
     by the model.
 
     The following partial screenshot shows the run parameters, including the 
