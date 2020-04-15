@@ -25,14 +25,14 @@ Follow these steps to set up your GCP project:
 1. Go to the following pages on the GCP Console and ensure that the 
   specified APIs are enabled:
 
-  * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
-  * [Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com)
-  * [Identity and Access Management (IAM) API](https://console.cloud.google.com/apis/library/iam.googleapis.com)
-  * [Deployment Manager API](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
-  * [Cloud Resource Manager API](https://console.developers.google.com/apis/library/cloudresourcemanager.googleapis.com)
-  * [Cloud Filestore API](https://console.developers.google.com/apis/library/file.googleapis.com)
-  * [AI Platform Training & Prediction API](https://console.developers.google.com/apis/library/ml.googleapis.com)
-  * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/fairing/) in your Kubeflow cluster)
+    * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
+    * [Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com)
+    * [Identity and Access Management (IAM) API](https://console.cloud.google.com/apis/library/iam.googleapis.com)
+    * [Deployment Manager API](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
+    * [Cloud Resource Manager API](https://console.developers.google.com/apis/library/cloudresourcemanager.googleapis.com)
+    * [Cloud Filestore API](https://console.developers.google.com/apis/library/file.googleapis.com)
+    * [AI Platform Training & Prediction API](https://console.developers.google.com/apis/library/ml.googleapis.com)
+    * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/fairing/) in your Kubeflow cluster)
 
 1. If you are using the 
   [GCP Free Tier](https://cloud.google.com/free/docs/gcp-free-tier) or the
