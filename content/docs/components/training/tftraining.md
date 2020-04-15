@@ -605,21 +605,21 @@ Here are some steps to follow to troubleshoot your job
    * There are a number of ways to get the events; if your job is less than **1 hour old**
  	 then you can do
 
-    ```
- 	  kubectl -n ${USER_NAMESPACE} describe tfjobs -o yaml ${JOB_NAME}
-    ```
+     ```
+ 	   kubectl -n ${USER_NAMESPACE} describe tfjobs -o yaml ${JOB_NAME}
+     ```
 
    * The bottom of the output should include a list of events emitted by the job; e.g.
-    ```
-    Events:
-    Type     Reason                          Age                From         Message
-    ----     ------                          ----               ----         -------
-    Warning  SettedPodTemplateRestartPolicy  19s (x2 over 19s)  tf-operator  Restart policy in pod template will be overwritten by restart policy in replica spec
-    Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-worker-0
-    Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-worker-0
-    Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-ps-0
-    Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-ps-0
-    ```
+     ```
+     Events:
+     Type     Reason                          Age                From         Message
+     ----     ------                          ----               ----         -------
+     Warning  SettedPodTemplateRestartPolicy  19s (x2 over 19s)  tf-operator  Restart policy in pod template will be overwritten by restart policy in replica spec
+     Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-worker-0
+     Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-worker-0
+     Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-ps-0
+     Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-ps-0
+     ```
 	
 	* Kubernetes only preserves events for **1 hour** (see [kubernetes/kubernetes#52521](https://github.com/kubernetes/kubernetes/issues/52521))
 
