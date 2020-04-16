@@ -108,26 +108,26 @@ deploy Kubeflow:
 
 1. Run the `kfctl build` command to set up your configuration:
 
-  ```
-  mkdir -p ${KF_DIR}
-  cd ${KF_DIR}
-  kfctl build -V -f ${CONFIG_URI}
-  ```
+    ```
+    mkdir -p ${KF_DIR}
+    cd ${KF_DIR}
+    kfctl build -V -f ${CONFIG_URI}
+    ```
 
 1. Edit the configuration files, as described in the guide to
   [customizing your Kubeflow deployment](/docs/other-guides/kustomize/).
 
 1. Set an environment variable pointing to your local configuration file:
 
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-k8s-istio %}}
-  ```
+    ```
+    export CONFIG_FILE=${KF_DIR}/{{% config-file-k8s-istio %}}
+    ```
 
 1. Run the `kfctl apply` command to deploy Kubeflow:
 
-  ```
-  kfctl apply -V -f ${CONFIG_FILE}
-  ```
+    ```
+    kfctl apply -V -f ${CONFIG_FILE}
+    ```
 
 ## Access the Kubeflow user interface (UI)
 
