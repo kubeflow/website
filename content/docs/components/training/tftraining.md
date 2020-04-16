@@ -605,22 +605,21 @@ Here are some steps to follow to troubleshoot your job
    * There are a number of ways to get the events; if your job is less than **1 hour old**
  	 then you can do
 
- 	  ```
- 	  kubectl -n ${USER_NAMESPACE} describe tfjobs -o yaml ${JOB_NAME}
- 	  ```
+     ```
+ 	   kubectl -n ${USER_NAMESPACE} describe tfjobs -o yaml ${JOB_NAME}
+     ```
 
    * The bottom of the output should include a list of events emitted by the job; e.g.
-
- 	  ```yaml
-Events:
-  Type     Reason                          Age                From         Message
-  ----     ------                          ----               ----         -------
-  Warning  SettedPodTemplateRestartPolicy  19s (x2 over 19s)  tf-operator  Restart policy in pod template will be overwritten by restart policy in replica spec
-  Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-worker-0
-  Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-worker-0
-  Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-ps-0
-  Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-ps-0
-      ```
+     ```
+     Events:
+     Type     Reason                          Age                From         Message
+     ----     ------                          ----               ----         -------
+     Warning  SettedPodTemplateRestartPolicy  19s (x2 over 19s)  tf-operator  Restart policy in pod template will be overwritten by restart policy in replica spec
+     Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-worker-0
+     Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-worker-0
+     Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-ps-0
+     Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-ps-0
+     ```
 	
 	* Kubernetes only preserves events for **1 hour** (see [kubernetes/kubernetes#52521](https://github.com/kubernetes/kubernetes/issues/52521))
 
@@ -636,24 +635,23 @@ Events:
    * There are a number of ways to get the events; if your pod is less than **1 hour old**
      then you can do
 
-         ```
+        ```
          kubectl -n ${USER_NAMESPACE} describe pods ${POD_NAME}
-         ```
+        ```
 
    * The bottom of the output should contain events like the following
 
- 	  ```yaml
-Events:
-  Type    Reason                 Age   From                                                  Message
-  ----    ------                 ----  ----                                                  -------
-  Normal  Scheduled              18s   default-scheduler                                     Successfully assigned tfjob2-ps-0 to gke-jl-kf-v0-2-2-default-pool-347936c1-1qkt
-  Normal  SuccessfulMountVolume  17s   kubelet, gke-jl-kf-v0-2-2-default-pool-347936c1-1qkt  MountVolume.SetUp succeeded for volume "default-token-h8rnv"
-  Normal  Pulled                 17s   kubelet, gke-jl-kf-v0-2-2-default-pool-347936c1-1qkt  Container image "gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3" already present on machine
-  Normal  Created                17s   kubelet, gke-jl-kf-v0-2-2-default-pool-347936c1-1qkt  Created container
-  Normal  Started                16s   kubelet, gke-jl-kf-v0-2-2-default-pool-347936c1-1qkt  Started container
- 	  ```
-
- 	 * Some common problems that can prevent a container from starting are
+ 	    ```
+      Events:
+      Type    Reason                 Age   From                                                  Message
+      ----    ------                 ----  ----                                                  -------
+      Normal  Scheduled              18s   default-scheduler                                     Successfully assigned tfjob2-ps-0 to gke-jl-kf-v0-2-2-default-pool-347936c1-1qkt
+      Normal  SuccessfulMountVolume  17s   kubelet, gke-jl-kf-v0-2-2-default-pool-347936c1-1qkt  MountVolume.SetUp succeeded for volume "default-token-h8rnv"
+      Normal  Pulled                 17s   kubelet, gke-jl-kf-v0-2-2-default-pool-347936c1-1qkt  Container image "gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3" already present on machine
+      Normal  Created                17s   kubelet, gke-jl-kf-v0-2-2-default-pool-347936c1-1qkt  Created container
+      Normal  Started                16s   kubelet, gke-jl-kf-v0-2-2-default-pool-347936c1-1qkt  Started container
+ 	    ```       
+   * Some common problems that can prevent a container from starting are
  	   * Insufficient resources to schedule the pod
  	   * The pod tries to mount a volume (or secret) that doesn't exist or is unavailable
  	   * The docker image doesn't exist or can't be accessed (e.g due to permission issues)

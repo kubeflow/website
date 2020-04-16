@@ -86,15 +86,15 @@ You can access Kubeflow via `kubectl` and port-forwarding as follows:
 
 1. Install `kubectl` if you haven't already done so:
 
-  * If you're using Kubeflow on GCP, run the following command on the command
+    * If you're using Kubeflow on GCP, run the following command on the command
     line: `gcloud components install kubectl`.
-  * Alternatively, follow the [`kubectl`
+    * Alternatively, follow the [`kubectl`
     installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 1. Use the following command to set up port forwarding to the
   [Istio gateway](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
 
-    {{% code-webui-port-forward %}}
+    {{% code-webui-port-forward %}} 
 
 1. Access the central navigation dashboard at:
 

@@ -276,20 +276,19 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
 
   * Verify that requests are being properly routed within the cluster
   * Connect to one of the envoy proxies
-
-        ```
-        kubectl exec -ti `kubectl get pods --selector=service=envoy -o jsonpath='{.items[0].metadata.name}'` /bin/bash
-        ```
+    ```
+    kubectl exec -ti `kubectl get pods --selector=service=envoy -o jsonpath='{.items[0].metadata.name}'` /bin/bash
+    ```
 
   * Install curl in the pod
-  ```
-  apt-get update && apt-get install -y curl
-  ```
+    ```
+    apt-get update && apt-get install -y curl
+    ```
 
   * Verify access to the whoami app
-  ```
-  curl -L -s -i http://envoy:8080/noiap/whoami
-  ```
+    ```
+    curl -L -s -i http://envoy:8080/noiap/whoami
+    ```
   * If this doesn't return a 200 OK response; then there is a problem with the K8s resources
       * Check the pods are running
       * Check services are pointing at the points (look at the endpoints for the various services)
@@ -426,46 +425,46 @@ To check your certificate:
 
 1. Run the following command:
 
-  ```
-  kubectl -n istio-system describe managedcertificate gke-certificate
-  ```
+   ```
+   kubectl -n istio-system describe managedcertificate gke-certificate
+   ```
 
-Make sure the certificate status is either `Active` or `Provisioning` which means it is not ready. For more details on certificate status, refer to the [certificate statuses descriptions](https://cloud.google.com/load-balancing/docs/ssl-certificates?hl=en_US&_ga=2.164380342.-821786221.1568995229#certificate-resource-status) section. Also, make sure the domain name is correct.
+   Make sure the certificate status is either `Active` or `Provisioning` which means it is not ready. For more details on certificate status, refer to the [certificate statuses descriptions](https://cloud.google.com/load-balancing/docs/ssl-certificates?hl=en_US&_ga=2.164380342.-821786221.1568995229#certificate-resource-status) section. Also, make sure the domain name is correct.
 
 1. Run the following command to look for the errors using the certificate name from the previous step:
 
-  ```
-  gcloud beta --project=${PROJECT} compute ssl-certificates describe --global ${CERTIFICATE_NAME}
-  ```
+   ```
+   gcloud beta --project=${PROJECT} compute ssl-certificates describe --global ${CERTIFICATE_NAME}
+   ```
 
 1. Run the following command:
 
-  ```
-  kubectl -n istio-system get ingress envoy-ingress -o yaml
-  ```
+   ```
+   kubectl -n istio-system get ingress envoy-ingress -o yaml
+   ```
 
-Make sure of the following:
+   Make sure of the following:
 
- * `networking.gke.io/managed-certificates` annotation value points to the name of the Kubernetes managed certificate resource and is `gke-certificate`;
- *  public IP address that is displayed in the status is assigned. See the example of IP address below:
+   * `networking.gke.io/managed-certificates` annotation value points to the name of the Kubernetes managed certificate resource and is `gke-certificate`;
+   * public IP address that is displayed in the status is assigned. See the example of IP address below:
 
-  ```
-  status:
-    loadBalancer:
-      ingress:
-       - ip: 35.186.212.202
-  ```
+     ```
+     status:
+       loadBalancer:
+         ingress:
+          - ip: 35.186.212.202
+     ```
 
- * DNS entry for the domain has propogated. To verify this, use the following `nslookup` command example:
+   * DNS entry for the domain has propogated. To verify this, use the following `nslookup` command example:
 
-  ```
-  `nslookup ${DOMAIN}`
-  ```
+     ```
+     `nslookup ${DOMAIN}`
+     ```
 
- * domain name is the fully qualified domain name which be the host value in the [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). See the example below:
+   * domain name is the fully qualified domain name which be the host value in the [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). See the example below:
 
-  ```
-  ${KF_APP_NAME}.endpoints.${PROJECT}.cloud.goog
-  ```
+     ```
+     ${KF_APP_NAME}.endpoints.${PROJECT}.cloud.goog
+     ```
 
-Note that managed certificates cannot provision the certificate if the DNS lookup does not work properly.
+    Note that managed certificates cannot provision the certificate if the DNS lookup does not work properly.

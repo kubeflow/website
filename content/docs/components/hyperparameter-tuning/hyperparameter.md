@@ -111,19 +111,19 @@ Run the following commands to launch an experiment using the random algorithm
 example:
 
 1. Download the example:
-```
-curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/random-example.yaml --output random-example.yaml
-```
+    ```
+    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/random-example.yaml --output random-example.yaml
+    ```
 
 1. Edit `random-example.yaml` and change the following line to use your Kubeflow user profile namespace:
-```
-Namespace: kubeflow
-```
+    ```
+    Namespace: kubeflow
+    ```
 
 1. Deploy the example:
-```
-kubectl apply -f random-example.yaml
-```
+    ```
+    kubectl apply -f random-example.yaml
+    ```
 
 This example embeds the hyperparameters as arguments. You can embed
 hyperparameters in another way (for example, using environment variables) 
@@ -293,24 +293,24 @@ Run the following commands to launch an experiment using the Kubeflow's
 TensorFlow training job operator, TFJob:
 
 1. Download the tfjob-example.yaml file
-```
-curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/tfjob-example.yaml --output tfjob-example.yaml
-```
+    ```
+    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/tfjob-example.yaml --output tfjob-example.yaml
+    ```
 
 1. Edit `tfjob-example.yaml` and change the following line to use your Kubeflow user profile namespace:
-```
-Namespace: kubeflow
-```
+   ```
+   Namespace: kubeflow
+   ```
 
 1. Deploy the example:
-```
-kubectl apply -f tfjob-example.yaml
-```
+   ```
+   kubectl apply -f tfjob-example.yaml
+   ```
 
 1. You can check the status of the experiment:
-```
-kubectl -n <your user profile namespace> describe experiment tfjob-example
-```
+   ```
+   kubectl -n <your user profile namespace> describe experiment tfjob-example
+   ```
 
 Follow the steps as described for the *random algorithm example* 
 [above](#view-ui), to see the results of the experiment in the Katib UI.
@@ -321,24 +321,24 @@ Run the following commands to launch an experiment using Kubeflow's PyTorch
 training job operator, PyTorchJob:
 
 1. Download the pytorchjob-example.yaml file
-```
-curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/pytorchjob-example.yaml --output pytorchjob-example.yaml
-```
+    ```
+    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/pytorchjob-example.yaml --output pytorchjob-example.yaml
+    ```
 
 1. Edit `pytorchjob-example.yaml` and change the following line to use your Kubeflow user profile namespace:
-```
-Namespace: kubeflow
-```
+    ```
+    Namespace: kubeflow
+    ```
 
 1. Deploy the example:
-```
-kubectl apply -f pytorchjob-example.yaml
-```
+    ```
+    kubectl apply -f pytorchjob-example.yaml
+    ```
 
 1. You can check the status of the experiment:
-```
-kubectl -n <your user profile namespace> describe experiment pytorchjob-example
-```
+    ```
+    kubectl -n <your user profile namespace> describe experiment pytorchjob-example
+    ```
 
 Follow the steps as described for the *random algorithm example*
 [above](#view-ui), to see the results of the experiment in the Katib UI.

@@ -126,9 +126,9 @@ upgradeability. Nonetheless, here are some instructions for updating your deploy
 
 1. Delete your existing Kubeflow cluster:
 
-  ```  
-  kfctl delete -V 
-  ```
+   ```  
+   kfctl delete -V 
+   ```
 
     
 
@@ -138,16 +138,16 @@ upgradeability. Nonetheless, here are some instructions for updating your deploy
 
 1. Unpack the tar ball:
 
-  ```
-  tar -xvf kfctl_<release tag>_<platform>.tar.gz
-  ```
+   ```
+   tar -xvf kfctl_<release tag>_<platform>.tar.gz
+   ```
 
 1. Update your kustomize manifests:
 
-  ```
-  export CONFIG_FILE=<the path to your Kubeflow config file>
-  kfctl build -V -f ${CONFIG_FILE}
-  ```
+   ```
+   export CONFIG_FILE=<the path to your Kubeflow config file>
+   kfctl build -V -f ${CONFIG_FILE}
+   ```
     The `${CONFIG_FILE}` environment variable must contain the path to the 
     Kubeflow configuration file in your `${KF_DIR}` directory. For example,
     `${KF_DIR}/{{% config-file-k8s-istio %}}` or `${KF_DIR}/kfctl_istio_dex.yaml`

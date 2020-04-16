@@ -27,7 +27,7 @@ up Python using [Miniconda](https://conda.io/miniconda.html):
 1. Choose one of the following methods to install Miniconda, depending on your
   environment:
 
-  * Debian/Ubuntu/[Cloud Shell](https://console.cloud.google.com/cloudshell):   
+    * Debian/Ubuntu/[Cloud Shell](https://console.cloud.google.com/cloudshell):   
 
         ```bash
         apt-get update; apt-get install -y wget bzip2
@@ -35,12 +35,12 @@ up Python using [Miniconda](https://conda.io/miniconda.html):
         bash Miniconda3-latest-Linux-x86_64.sh
         ```
 
-  * Windows: Download the 
+    * Windows: Download the 
     [installer](https://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86_64.exe)
     and make sure you select the option to
     **Add Miniconda to my PATH environment variable** during the installation.
 
-  * MacOS: Download the 
+    * MacOS: Download the 
     [installer](https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh)
     and run the following command:
 

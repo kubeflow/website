@@ -89,12 +89,12 @@ central dashboard](/docs/components/central-dash/overview/).
   deployment of your notebook server. You can specify a custom image or
   choose from a range of standard images:
 
-  * **Custom image**: If you select the custom option, you must specify a Docker
+    * **Custom image**: If you select the custom option, you must specify a Docker
     image in  the form `registry/image:tag`. For guidelines on creating a Docker
     image for your notebook, see the guide to 
     [creating a custom Jupyter image](/docs/notebooks/custom-notebook/).
 
-  * **Standard image**: Click the **Image** dropdown menu to see the list of
+    * **Standard image**: Click the **Image** dropdown menu to see the list of
     available images. The standard Docker images include typical machine learning 
     (ML) packages that you can use within your Jupyter notebooks on 
     this notebook server. Click one of the images to select it.
@@ -132,7 +132,7 @@ central dashboard](/docs/components/central-dash/overview/).
   [Kubernetes persistent volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for your workspace volume. The PV ensures that you can
   retain data even if you destroy your notebook server.
 
-  * The default is to create a new volume for your workspace with the
+    * The default is to create a new volume for your workspace with the
     following configuration:
   
       * Name: The volume name is synced with the name of the notebook server,
@@ -147,7 +147,7 @@ central dashboard](/docs/components/central-dash/overview/).
         [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for more details about access modes.
       * Mount point: `/home/jovyan`
 
-  * Alternatively, you can point the notebook server at an existing volume by 
+    * Alternatively, you can point the notebook server at an existing volume by 
     specifying the name of the existing volume.
 
 1. *(Optional)* Specify one or more **data volumes** if you want to store and
