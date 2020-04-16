@@ -366,6 +366,7 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
         <details>
         
         <summary>LDAP Seed Users and Groups</summary>
+        
         ```ldif
         # If you used the OpenLDAP Server deployment in step 1,
         # then this object already exists.
