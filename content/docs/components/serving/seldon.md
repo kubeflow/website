@@ -14,63 +14,29 @@ Seldon Core also provides [language specific model wrappers](https://docs.seldon
 
 ## Kubeflow specifics
 
-You need to ensure the namespace where your models will be served has:
+ * A namespace label set as `serving.kubeflow.org/inferenceservice=enabled`
 
-* An Istio gateway named kubeflow-gateway
-* A label set as `serving.kubeflow.org/inferenceservice=enabled`
-
-The following example applies the label `my-namespace` to the namespace for serving:
+The following example applies the label `seldon` to the namespace for serving:
 
 ```
-kubectl label namespace my-namespace serving.kubeflow.org/inferenceservice=enabled
+kubectl create namespace seldon
+kubectl label namespace seldon serving.kubeflow.org/inferenceservice=enabled
 ```
 
-Create a gateway called `kubeflow-gateway` in namespace `my-namespace`:
+### Istio Gateway
+
+By default Seldon will use the `kubeflow-gateway` in the kubeflow namespace. If you wish to change to a separate Gateway you would need to update the Kubeflow Seldon kustomize. Update the `istio_gateway_patch.yaml` to set the value to what you wish and create your own Istio Gateway.
+
+#### Kubeflow 1.0.0, 1.0.1, 1.0.2
+
+For the above versions you would need to create an Istio Gateway in the namespace you want to run inference called kubeflow-gateway. For example, for a namespace `seldon`:
 
 ```
+cat <<EOF | kubectl create -n seldon -f -
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: kubeflow-gateway
-  namespace: my-namespace
-spec:
-  selector:
-    istio: ingressgateway
-  servers:
-  - hosts:
-    - '*'
-    port:
-      name: http
-      number: 80
-      protocol: HTTP
-```
-
-Save the above resource and apply it with `kubectl`.
-
-## Simple example
-
-
-Create a new namespace:
-
-```
-kubectl create ns testseldon
-```
-
-Label that namespace so you can run inference tasks in it:
-
-```
-kubectl label namespace testseldon serving.kubeflow.org/inferenceservice=enabled
-```
-
-Create an Istio gateway in that namespace named `kubeflow-gateway`:
-
-```
-cat <<EOF | kubectl create -f -
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: kubeflow-gateway
-  namespace: testseldon
 spec:
   selector:
     istio: ingressgateway
@@ -84,11 +50,28 @@ spec:
 EOF
 ```
 
+## Simple example
+
+
+Create a new namespace:
+
+```
+kubectl create ns seldon
+```
+
+Label that namespace so you can run inference tasks in it:
+
+```
+kubectl label namespace seldon serving.kubeflow.org/inferenceservice=enabled
+```
+
+For Kubeflow version 1.0.0, 1.0.1 and 1.0.2 create an Istio Gateway as shown above.
+
 Create an example `SeldonDeployment` with a dummy model:
 
 
 ```
-cat <<EOF | kubectl create -n testseldon -f -
+cat <<EOF | kubectl create -n seldon -f -
 apiVersion: machinelearning.seldon.io/v1
 kind: SeldonDeployment
 metadata:
@@ -115,7 +98,7 @@ EOF
 Wait for state to become available:
 
 ```
-kubectl get sdep seldon-model -n testseldon -o jsonpath='{.status.state}\n'
+kubectl get sdep seldon-model -n seldon -o jsonpath='{.status.state}\n'
 ```
 
 Port forward to the Istio gateway:
@@ -127,7 +110,7 @@ kubectl port-forward $(kubectl get pods -l istio=ingressgateway -n istio-system 
 Send a prediction request:
 
 ```
-curl -s -d '{"data": {"ndarray":[[1.0, 2.0, 5.0]]}}'    -X POST http://localhost:8004/seldon/testseldon/seldon-model/api/v1.0/predictions    -H "Content-Type: application/json"
+curl -s -d '{"data": {"ndarray":[[1.0, 2.0, 5.0]]}}'    -X POST http://localhost:8004/seldon/seldon/seldon-model/api/v1.0/predictions    -H "Content-Type: application/json"
 ```
 
 You should see a response:
