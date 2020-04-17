@@ -9,7 +9,7 @@ This is a guide for an end-to-end example of Kubeflow on [IBM Cloud Kubernetes S
 ## Introduction
 ### Overview of IKS
 
-[IBM Cloud Kubernetes Service (IKS)] (https://cloud.ibm.com/docs/containers?topic=containers-getting-started) enables the deployment of containerized applications in Kubernetes clusters with specialized tools for management of the systems.
+[IBM Cloud Kubernetes Service (IKS)](https://cloud.ibm.com/docs/containers?topic=containers-getting-started) enables the deployment of containerized applications in Kubernetes clusters with specialized tools for management of the systems.
 
 The [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started) can be used for creating, developing, and deploying cloud applications.
 
