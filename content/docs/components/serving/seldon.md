@@ -25,7 +25,7 @@ kubectl label namespace seldon serving.kubeflow.org/inferenceservice=enabled
 
 ### Istio Gateway
 
-By default Seldon will use the `kubeflow-gateway` in the kubeflow namespace. If you wish to change to a separate Gateway you would need to update the Kubeflow Seldon kustomize. Update the `istio_gateway_patch.yaml` to set the value to what you wish and create your own Istio Gateway.
+By default Seldon will use the `kubeflow-gateway` in the kubeflow namespace. If you wish to change to a separate Gateway you would need to update the Kubeflow Seldon kustomize by changing the environment variable ISTIO_GATEWAY in the seldon-manager Deployment.
 
 #### Kubeflow 1.0.0, 1.0.1, 1.0.2
 
