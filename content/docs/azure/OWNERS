@@ -1,4 +1,5 @@
-# Reviewers for Azure Docs
+# Azure Docs Owners File
+approvers:  # No new approvers
 reviewers:
   - berndverst
   - aronchick
