@@ -131,7 +131,7 @@ deploy Kubeflow:
 
 ## Access the Kubeflow user interface (UI)
 
-After Kubeflow is deployed, the Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard.Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
+After Kubeflow is deployed, the Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard. Refer to  [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
 
 ## Delete Kubeflow
 
