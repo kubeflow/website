@@ -34,7 +34,7 @@ environment variables.
 1.  Set `CLUSTER_NAME`, `CLUSTER_REGION`, and `CLUSTER_ZONE` variables:
 
     ```
-    export CLUSTER_NAME=Kubeflow
+    export CLUSTER_NAME=kubeflow
     export CLUSTER_REGION=us-south
     export CLUSTER_ZONE=dal13
     ```
