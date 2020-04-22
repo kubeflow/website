@@ -206,7 +206,7 @@ Make sure that you have the minimum required version of kustomize:
         chmod u+x ${HOME}/bin/kustomize
         ```
 
-2. Include the `kustomize` command in your path:
+1. Include the `kustomize` command in your path:
 
       ```
       export PATH=$PATH:${HOME}/bin
