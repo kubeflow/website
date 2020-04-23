@@ -6,7 +6,7 @@ weight = 50
 
 This guide covers the installation of Minikube and Kubeflow in a single node Ubuntu system. Minikube provides a single node Kubernetes cluster that is good for development and testing purposes.
 
-The guide covers th following topics:
+The guide covers the following topics:
 
 - installation of docker-community edition (docker-ce), kubectl, and Minikube
 - installation of Kubeflow
@@ -79,7 +79,7 @@ rm minikube
 
 ### Start Minikube
 
-The following command starts Minikube with 6 CPUs, 12288 memory, 120G disk size. 
+The following command starts Minikube with 6 CPUs, 12288 memory, 120G disk size: 
 ```
 minikube start --vm-driver=none --cpus 6 --memory 12288 --disk-size=120g --extra-config=apiserver.authorization-mode=RBAC --extra-config=kubelet.resolv-conf=/run/systemd/resolve/resolv.conf --extra-config kubeadm.ignore-preflight-errors=SystemVerification
 ```
@@ -153,7 +153,7 @@ cd ${KF_DIR}
 kfctl apply -V -f ${CONFIG_URI}
 ```
 
-When the installation finishes, run the following command to see whether all the pods are in running status. Depend on your machine’s capability, it may take a few minutes to reach full running status:
+When the installation finishes, run the following command to see whether all the pods are in running status. Depending on your machine’s capability, it may take a few minutes to reach full running status:
 ```
 kubectl get pod -n kubeflow
 ```
@@ -200,7 +200,7 @@ workflow-controller-945c84565-57c72                            1/1     Running  
 
 ## Launch of Kubeflow central dashboard
 
-You can access the Kubeflow dashboard using the istio-ingressgateway service. To see your setting of for the istio-ingressgateway service, execute the following commands:
+You can access the Kubeflow dashboard using the istio-ingressgateway service. To see your settings for the istio-ingressgateway service, execute the following commands:
 ```
 export INGRESS_HOST=$(minikube ip)
 export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
@@ -299,7 +299,7 @@ See the [hints and tips section](#hints-and-tips) to learn how to access the not
 
 ### Execute MNIST on-prem notebook
 
-After launching Jupyter Notebooks, click `mnist_e2e_on_prem.ipynb` to open the notebook.
+After launching Jupyter Notebooks, click **mnist_e2e_on_prem.ipynb** to open the notebook.
 Take the following steps before running the notebook:
 
 1. Under `Configure The Docker Registry For Kubeflow Fairing`, modify the cell to use your Docker ID and namespace created above.
