@@ -57,4 +57,4 @@ to install Kubeflow. This option gives you full control over your Kubeflow setup
 - Install [Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/)
 
 Follow the instructions on [deploying with MiniKube on 
-Linux](/docs/started/workstation/minikube/linux/) to complete this path.
+Linux](/docs/started/workstation/minikube-linux/) to complete this path.
