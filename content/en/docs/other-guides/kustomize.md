@@ -193,18 +193,23 @@ Make sure that you have the minimum required version of kustomize:
         xargs curl -O -L
         ```
 
+    * Unzip the compressed file
+        ```
+        tar xzf ./kustomize_v*_${opsys}_amd64.tar.gz
+        ```
+
     * Move the binary:
 
         ```
         mkdir -p ${HOME}/bin
-        mv kustomize_*_${opsys}_amd64 ${HOME}/bin/kustomize
+        mv kustomize ${HOME}/bin/kustomize
         chmod u+x ${HOME}/bin/kustomize
         ```
 
 1. Include the `kustomize` command in your path:
 
       ```
-      export PATH=$PATH:${HOME}/bin/kustomize
+      export PATH=$PATH:${HOME}/bin
       ```
 
 ## Modifying configuration before deployment
