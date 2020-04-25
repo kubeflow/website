@@ -14,7 +14,7 @@ With [IAM Roles for Service Account](https://docs.aws.amazon.com/eks/latest/user
 
 > Note: This feature requires you use an EKS cluster. For self-managed AWS Kubernetes cluster, To start benefiting from IRSA, follow the instructions in the [Amazon EKS Pod Identity Webhook Github repo](https://github.com/aws/amazon-eks-pod-identity-webhook) to set up the webhook.
 
-In order to use IAM roles for service account feature, please set `enablePodIamPolicy` to `true` in aws plugin in manifest [kfctl_aws.yaml](kfctl_aws.yaml) or [kfctl_aws_cognito.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_aws_cognito.yaml)
+In order to use IAM roles for service account feature, please set `enablePodIamPolicy` to `true` in aws plugin in manifest {{% config-uri-aws-standard %}} or {{% config-uri-aws-cognito %}} 
 
 ```yaml
 plugins:
