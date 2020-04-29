@@ -82,3 +82,7 @@ find a pipeline's ID:
 <img src="/docs/images/sdk-examples-snapshot-1.png"
 alt="Pipeline ID in Summary Card"
 class="mt-3 mb-3 border border-info rounded">
+
+## Creating a run from a pipeline version using the SDK
+
+An example of creating a run from a pipeline version is at [Kubeflow Pipelines Github repository](https://github.com/kubeflow/pipelines/blob/master/tools/benchmarks/run_service_api.ipynb).
