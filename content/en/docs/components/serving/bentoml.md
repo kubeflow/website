@@ -22,6 +22,8 @@ end-to-end model serving workflow, with DevOps best practices baked in.
 
 ## Prerequisites
 
+Before starting this tutorial, make sure you have the following:
+
 * a Kubernetes cluster and `kubectl` installed on your local machine.
     * `kubectl` install instruction: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 * Docker and Docker Hub installed and configured in your local machine.
@@ -195,6 +197,8 @@ curl -i \
 ## Monitor metrics with Prometheus
 
 ### Prerequisites
+
+Before starting this section, make sure you have the following:
 
 - Prometheus installed in the cluster
   - [Prometheus documentation](https://prometheus.io/docs/introduction/overview/)
