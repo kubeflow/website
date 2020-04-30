@@ -1,15 +1,12 @@
 +++
 title = "BentoML"
 description = "Model serving with BentoML"
-weight = 40
+weight = 45
 +++
 
-{{% stable-status %}}
 
-## Model serving with BentoML
-
-In this guide, we will demo serving a scikit-learn based iris classifier model with
-BentoML on a Kubernetes cluster. The same deployment steps is also applicable for models
+This guide demonstrates how to serve a scikit-learn based iris classifier model with
+BentoML on a Kubernetes cluster. The same deployment steps are also applicable for models
 trained with other machine learning frameworks, see more BentoML examples
 [here](https://docs.bentoml.org/en/latest/examples.html).
 
@@ -23,19 +20,19 @@ support, which achieves the advantage of batch processing in online serving. It 
 provides model management and model deployment functionality, giving ML teams an
 end-to-end model serving workflow, with DevOps best practices baked in.
 
-### Prerequisites
+## Prerequisites
 
-1. a Kubernetes cluster and `kubectl` installed on your local machine.
+* a Kubernetes cluster and `kubectl` installed on your local machine.
     * `kubectl` install instruction: https://kubernetes.io/docs/tasks/tools/install-kubectl/
-2. Docker and Docker Hub installed and configured in your local machine.
+* Docker and Docker Hub installed and configured in your local machine.
     * Docker install instruction: https://docs.docker.com/get-docker/
-3. Python 3.6 or above and required PyPi packages: `bentoml`, `scikit-learn`
+* Python 3.6 or above and required PyPi packages: `bentoml`, `scikit-learn`
     * ```pip install bentoml scikit-learn```
 
-### Build an iris classifier model server with BentoML
+## Build an iris classifier model server with BentoML
 
 The following code defines a BentoML prediction service that requires a `scikit-learn` model, and
-asks BentoML to figure out the required PyPI packages automatically. It also defined an
+asks BentoML to figure out the required PyPI packages automatically. It also defines an
 API, which is the entry point for accessing this prediction service. And the API is
 expecting a `pandas.DataFrame` object as its input data.
 
@@ -54,7 +51,7 @@ class IrisClassifier(BentoService):
         return self.artifacts.model.predict(df)
 ```
 
-The following code trains a classifier model and serve it with the IrisClassifier
+The following code trains a classifier model and serves it with the IrisClassifier
 defined above:
 
 ```python
@@ -111,22 +108,23 @@ curl -i \
 BentoML provides a convenient way of containerizing the model API server with Docker. To
 create a docker container image for the sample model above:
 
-Find the file directory of the SavedBundle with `bentoml get` command, which is
-directory structured as a docker build context. Running docker build with this
-directory produces a docker image containing the model API server. Replace
-`{docker_username}` with your Docker Hub username and run the following code:
+1. Find the file directory of the SavedBundle with `bentoml get` command, which is
+directory structured as a docker build context.
+2. Running docker build with this directory produces a docker image containing the model
+API server
 
 ```shell
 saved_path=$(bentoml get IrisClassifier:latest -q | jq -r ".uri.uri")
 
+# Replace `{docker_username} with your Docker Hub username
 docker build -t {docker_username}/iris-classifier $saved_path
 docker push {docker_username}/iris-classifier
 ```
 
-### Deploy model server to Kubernetes
+## Deploy model server to Kubernetes
 
 The following is an example YAML file for specifying the resources required to run and
-expose a BentoML model server in a Kubernetes cluster. Replacing `{docker_username}`
+expose a BentoML model server in a Kubernetes cluster. Replace `{docker_username}`
 with your Docker Hub username and save it to `iris-classifier.yaml`:
 
 ```yaml
@@ -170,13 +168,13 @@ spec:
         - containerPort: 5000
 ```
 
-Use `kubectl` CLI to deploy the model API server to the kubernetes cluster
+Use `kubectl` CLI to deploy the model API server to the Kubernetes cluster
 
 ```shell
 kubectl apply -f iris-classifier.yaml
 ```
 
-### Send prediction request
+## Send prediction request
 
 Use `kubectl describe` command to get the `NODE_PORT`
 
@@ -194,9 +192,9 @@ curl -i \
   http://EXTERNAL_IP:NODE_PORT/predict
 ```
 
-### Monitor metrics with Prometheus
+## Monitor metrics with Prometheus
 
-#### Perquisites
+### Prerequisites
 
 - Prometheus installed in the cluster
   - [Prometheus documentation](https://prometheus.io/docs/introduction/overview/)
@@ -244,7 +242,7 @@ Apply the change with `kubectl` CLI.
 kubectl apply -f iris-classifier.yaml
 ```
 
-### Remove deployment
+## Remove deployment
 
 ```shell
 kubectl delete -f iris-classifier.yaml

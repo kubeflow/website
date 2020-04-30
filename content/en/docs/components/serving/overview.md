@@ -201,7 +201,8 @@ support, which achieves the advantage of batch processing in online serving. It 
 provides model management and model deployment functionality, giving ML teams an
 end-to-end model serving workflow, with DevOps best practices baked in.
 
-   * [GitHub repository](https://github.com/bentoml/BentoML)
+   * [BentoML guide for Kubeflow](/docs/components/serving/bentoml)
+   * [BentoML GitHub repository](https://github.com/bentoml/BentoML)
    * [BentoML documentation](https://docs.bentoml.org)
    * [Quick start guide](https://docs.bentoml.org/en/latest/quickstart.html)
    * [Community](https://join.slack.com/t/bentoml/shared_invite/enQtNjcyMTY3MjE4NTgzLTU3ZDc1MWM5MzQxMWQxMzJiNTc1MTJmMzYzMTYwMjQ0OGEwNDFmZDkzYWQxNzgxYWNhNjAxZjk4MzI4OGY1Yjg)
