@@ -119,7 +119,7 @@ Use Amazon EFS as a notebook volume when you create Jupyter notebooks.
 
 ## Amazon FSx for Lustre
 
-Amazon FSx for Lustre provides a high-performance file system optimized for fast processing of workloads such as machine learning and high performance computing (HPC) workloads. [AWS FSx for Lustre CSI Driver] (https://github.com/kubernetes-sigs/aws-fsx-csi-driver) can help Kubernetes users easily leverage this service.
+Amazon FSx for Lustre provides a high-performance file system optimized for fast processing of workloads such as machine learning and high performance computing (HPC) workloads. [AWS FSx for Lustre CSI Driver](https://github.com/kubernetes-sigs/aws-fsx-csi-driver) can help Kubernetes users easily leverage this service.
 
 Lustre is another file system that supports `ReadWriteMany`. Once difference between Amazon EFS and Lustre is that Lustre could be used as training data caching layer using S3 as backend storage. You don't need to transfer data before using the volume. By default, the Amazon FSx CSI driver is not enabled and you need to follow steps to install it.
 
