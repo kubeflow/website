@@ -302,7 +302,7 @@ image show up nicely on the page:
 To see some examples of styled images, take a look at the
 [OAuth setup page](/docs/gke/deploy/oauth-setup/).
 To see the markup, search for `.png` in the [page 
-source](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/gke/deploy/oauth-setup.md).
+source](https://raw.githubusercontent.com/kubeflow/website/master/content/en/docs/gke/deploy/oauth-setup.md).
 
 For more help, see the guide to
 [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/)
