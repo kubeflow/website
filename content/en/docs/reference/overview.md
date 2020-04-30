@@ -31,7 +31,21 @@ API references:
   * [v1](/docs/reference/pytorchjob/v1/pytorch/)
   * [v1beta2](/docs/reference/pytorchjob/v1beta2/pytorch/)
 
-<a id="notebook-crd"></a>
+<a id="mpijob">
+
+## MPIJob
+
+MPIJob is a Kubernetes
+[custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+that you can use to run allreduce-style distributed training jobs on Kubernetes. For help with
+using MPIJob with Kubeflow, see the [user guide](/docs/components/mpi/).
+
+API references:
+
+  * [v1alpha2](/docs/reference/mpijob/v1alpha2/mpi/)
+
+<a id="notebook-crd">
+
 ## Notebook
 
 Notebook CRD is a Kubernetes
