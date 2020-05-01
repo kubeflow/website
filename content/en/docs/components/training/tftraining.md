@@ -195,7 +195,7 @@ consists of 3 fields
 ## Quick start
 ### Submitting a TensorFlow training job
 
-**Note:** Before submitting a training job, you should have [deployed kubeflow to your cluster](#deploy-kubeflow). Doing so ensures that
+**Note:** Before submitting a training job, you should have [deployed kubeflow to your cluster](https://www.kubeflow.org/docs/started/getting-started/#installing-kubeflow). Doing so ensures that
 the [`TFJob` custom resource](https://github.com/kubeflow/tf-operator) is available when you submit the training job.
 
 ### Running the MNist example
