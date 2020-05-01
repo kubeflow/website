@@ -660,5 +660,5 @@ Here are some steps to follow to troubleshoot your job
 
 ## More information
 
-* Explore the [TFJob reference documentation](/docs/reference#tfjob).
-* See how to [run a job with gang-scheduling](/docs/use-cases/job-scheduling).
+* Explore the [TFJob reference documentation](/docs/reference/tfjob).
+* See how to [run a job with gang-scheduling](/docs/use-cases/job-scheduling#running-jobs-with-gang-scheduling).
