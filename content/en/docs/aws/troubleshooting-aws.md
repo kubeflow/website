@@ -132,6 +132,49 @@ ks delete default -c ${COMPONENT}
 ks param set ${COMPONENT} dnsName fs-0xxxxx2a216cf.fsx.us-west-2.amazonaws.com
 ks apply default -c ${COMPONENT}
 ```
+### Amazon RDS Connectivity Issues
+
+If you run into CloudFormation deployment errors, you can use [troubleshooting guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html) to find a resolution.
+
+If you have connectivity issues with Amazon RDS, try launching mysql-client container and connecting to your RDS endpoint. This will let you know if you have network connectivity with the db and also if db is created properly
+
+```
+# Remember to change your RDS endpoint, DB username and DB Password
+$ kubectl run -it --rm --image=mysql:5.7 --restart=Never mysql-client -- mysql -h <YOUR RDS ENDPOINT> -u admin -pKubefl0w                                                              
+If you don't see a command prompt, try pressing enter.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| kubeflow           |
+| mlpipeline         |
+| mysql              |
+| performance_schema |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use mlpipeline; show tables;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
++----------------------+
+| Tables_in_mlpipeline |
++----------------------+
+| db_statuses          |
+| default_experiments  |
+| experiments          |
+| jobs                 |
+| pipeline_versions    |
+| pipelines            |
+| resource_references  |
+| run_details          |
+| run_metrics          |
++----------------------+
+9 rows in set (0.00 sec)
+```
 
 ### Incompatible eksctl version
 

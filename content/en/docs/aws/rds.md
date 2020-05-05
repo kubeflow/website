@@ -1,5 +1,5 @@
 +++
-title = "Amazon RDS"
+title = "Configure External Database Using Amazon RDS"
 date = 2020-04-29T12:54:30-04:00
 description = "Using Amazon RDS for storing pipelines and metadata"
 weight = 98
@@ -17,6 +17,7 @@ Before deploying MySQL database using Amazon RDS, let's get configuration parame
 
 ```shell
 # Use these commands to find VpcId, SubnetId and SecurityGroupId if you deployed your EKS cluster using eksctl
+# For DIY Kubernetes on AWS, modify tag name or values to get desired results
 export AWS_CLUSTER_NAME=<YOUR EKS CLUSTER NAME>
 
 # Below command will retrieve your VpcId
@@ -44,7 +45,9 @@ We highly recommend deploying Multi-AZ database for Production. Please review RD
 
 [{{<figure src="/docs/images/aws/cloudformation-launch-stack.png">}}](https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=kubeflow-db&templateURL=https://cloudformation-kubeflow.s3-us-west-2.amazonaws.com/rds.yaml)
 
-Remember to select correct **region** for your cluster and click Next. We recommend you to change the **DBPassword**, if not it will dafault to `Kubefl0w`. Select VpcId, Subnets and SecurityGroupId before clicking Next. Take rest all defaults and click **Create Stack**. Once the CloudFormation is completed, click on Outputs tab to get RDS endpoint. We will use it in next step while installing Kubeflow   
+Remember to select correct **AWS Region** for your cluster and click Next. We recommend you to change the **DBPassword**, if not it will dafault to `Kubefl0w`. Select VpcId, Subnets and SecurityGroupId before clicking Next. Take rest all defaults and click **Create Stack**.
+
+Once the CloudFormation is completed, click on Outputs tab to get RDS endpoint. If you didn't use CloudFormation, you can retrieve RDS endpoint through AWS management console for RDS on the Connectivity & security tab under Endpoint & port section. We will use it in next step while installing Kubeflow   
 
 ![dashboard](/docs/images/aws/cloudformation-rds-output.png)
 
@@ -89,4 +92,4 @@ Modify `${CONFIG_FILE}` file to add `external-mysql` in both pipeline and metada
     cd ${KF_DIR}
     kfctl apply -V -f ${CONFIG_FILE}
     ```
-Your pipeline and metadata is now using Amazon RDS.
+Your pipeline and metadata is now using Amazon RDS. Review [troubleshooting section](../troubleshooting-aws/#amazon-rds-connectivity-issues) if you run into any issues. 
