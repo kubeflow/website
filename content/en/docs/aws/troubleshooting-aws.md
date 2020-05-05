@@ -136,7 +136,7 @@ ks apply default -c ${COMPONENT}
 
 If you run into CloudFormation deployment errors, you can use [troubleshooting guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html) to find a resolution.
 
-If you have connectivity issues with Amazon RDS, try launching mysql-client container and connecting to your RDS endpoint. This will let you know if you have network connectivity with the db and also if db is created properly
+If you have connectivity issues with Amazon RDS, try launching mysql-client container and connecting to your RDS endpoint. This will let you know if you have network connectivity with the db and also if db is created properly.
 
 ```
 # Remember to change your RDS endpoint, DB username and DB Password

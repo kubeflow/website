@@ -13,7 +13,7 @@ Amazon RDS is a managed service that makes it easier to set up, operate, and sca
 
 ### Deploy Amazon RDS MySQL in your environment
 
-Before deploying MySQL database using Amazon RDS, let's get configuration parameters that are needed such as VpcId, SubnetIds and SecurityGroupId
+Before deploying MySQL database using Amazon RDS, let's get configuration parameters that are needed such as VpcId, SubnetIds and SecurityGroupId.
 
 ```shell
 # Use these commands to find VpcId, SubnetId and SecurityGroupId if you deployed your EKS cluster using eksctl
@@ -36,7 +36,7 @@ do
 aws ec2 describe-instances --instance-ids $i | jq -r '.Reservations[].Instances[].SecurityGroups[].GroupId'
 done  
 ```
-You can either use console or use attached CloudFormation template to deploy Amazon RDS database
+You can either use console or use attached CloudFormation template to deploy Amazon RDS database.
 
 {{% alert title="Warning" color="warning" %}}
 The CloudFormation template deploys Amazon RDS for MySQL that is intended for Dev/Test environment.
@@ -45,9 +45,9 @@ We highly recommend deploying Multi-AZ database for Production. Please review RD
 
 [{{<figure src="/docs/images/aws/cloudformation-launch-stack.png">}}](https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=kubeflow-db&templateURL=https://cloudformation-kubeflow.s3-us-west-2.amazonaws.com/rds.yaml)
 
-Remember to select correct **AWS Region** for your cluster and click Next. We recommend you to change the **DBPassword**, if not it will dafault to `Kubefl0w`. Select VpcId, Subnets and SecurityGroupId before clicking Next. Take rest all defaults and click **Create Stack**.
+Remember to select correct **Region** in CloudFormation management console before clicking Next. We recommend you to change the **DBPassword**, if not it will dafault to `Kubefl0w`. Select VpcId, Subnets and SecurityGroupId before clicking Next. Take rest all defaults and click **Create Stack**.
 
-Once the CloudFormation is completed, click on Outputs tab to get RDS endpoint. If you didn't use CloudFormation, you can retrieve RDS endpoint through AWS management console for RDS on the Connectivity & security tab under Endpoint & port section. We will use it in next step while installing Kubeflow   
+Once the CloudFormation is completed, click on Outputs tab to get RDS endpoint. If you didn't use CloudFormation, you can retrieve RDS endpoint through AWS management console for RDS on the Connectivity & security tab under Endpoint & port section. We will use it in the next step while installing Kubeflow.   
 
 ![dashboard](/docs/images/aws/cloudformation-rds-output.png)
 
@@ -64,14 +64,14 @@ Modify `${CONFIG_FILE}` file to add `external-mysql` in both pipeline and metada
     cd ${KF_DIR}
     kfctl build -V -f ${CONFIG_FILE}
     ```
-    This will create two folders `aws_config` and `kustomize` in your environment. Edit `params.env` file for the external-mysql pipeline service (`kustomize/api-service/overlays/external-mysql/params.env`) and update values based on your configuration
+    This will create two folders `aws_config` and `kustomize` in your environment. Edit `params.env` file for the external-mysql pipeline service (`kustomize/api-service/overlays/external-mysql/params.env`) and update values based on your configuration:
 
     ```
     mysqlHost=<$RDSEndpoint>
     mysqlUser=<$DBUsername>
     mysqlPassword=<$DBPassword>
     ```
-    Edit `params.env` file for the external-mysql metedata service (`kustomize/metadata/overlays/external-mysql/params.env`) and update values based on your configuration
+    Edit `params.env` file for the external-mysql metedata service (`kustomize/metadata/overlays/external-mysql/params.env`) and update values based on your configuration:
 
     ```
     MYSQL_HOST=external_host
@@ -79,17 +79,17 @@ Modify `${CONFIG_FILE}` file to add `external-mysql` in both pipeline and metada
     MYSQL_PORT=3306
     MYSQL_ALLOW_EMPTY_PASSWORD=true
     ```
-    Edit `secrets.env` file for the external-mysql metedata service (`kustomize/metadata/overlays/external-mysql/secrets.env`) and update values based on your configuration
+    Edit `secrets.env` file for the external-mysql metedata service (`kustomize/metadata/overlays/external-mysql/secrets.env`) and update values based on your configuration:
 
     ```
     MYSQL_USERNAME=<$DBUsername>
     MYSQ_PASSWORD=<$DBPassword>
     ```
 
-3. Run Kubeflow installation
+3. Run Kubeflow installation:
 
     ```
     cd ${KF_DIR}
     kfctl apply -V -f ${CONFIG_FILE}
     ```
-Your pipeline and metadata is now using Amazon RDS. Review [troubleshooting section](../troubleshooting-aws/#amazon-rds-connectivity-issues) if you run into any issues. 
+Your pipeline and metadata is now using Amazon RDS. Review [troubleshooting section](../troubleshooting-aws/#amazon-rds-connectivity-issues) if you run into any issues.
