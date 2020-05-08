@@ -8,6 +8,8 @@ weight = 40
 
 Seldon Core comes installed with Kubeflow. The [Seldon Core documentation site](https://docs.seldon.io/projects/seldon-core/en/latest/) provides full documentation for running Seldon Core inference.
 
+Seldon presently requires a Kubernetes cluster version >= 1.12 and <= 1.17.
+
 If you have a saved model in a PersistentVolume (PV), Google Cloud Storage bucket or Amazon S3 Storage you can use one of the [prepackaged model servers provided by Seldon Core](https://docs.seldon.io/projects/seldon-core/en/latest/servers/overview.html).
 
 Seldon Core also provides [language specific model wrappers](https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/language_wrappers.html) to wrap your inference code for it to run in Seldon Core.
