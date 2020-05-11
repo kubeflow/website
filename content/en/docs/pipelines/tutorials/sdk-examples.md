@@ -82,3 +82,7 @@ find a pipeline's ID:
 <img src="/docs/images/sdk-examples-snapshot-1.png"
 alt="Pipeline ID in Summary Card"
 class="mt-3 mb-3 border border-info rounded">
+
+## Creating a run using a pipeline version
+
+Examine the run_service_api.ipynb notebook to [learn more about creating a run using a pipeline version](https://github.com/kubeflow/pipelines/blob/master/tools/benchmarks/run_service_api.ipynb).
