@@ -47,7 +47,7 @@ environment variables.
 To make sure the cluster is large enough to host all the Knative and Istio
 components, the recommended configuration for a cluster is:
 
-- Kubernetes version 1.16 (or later)
+- Kubernetes version 1.15
 - 4 vCPU nodes with 16GB memory (`b2c.4x16`)
 
 1.  Create a Kubernetes cluster on IKS with the required specifications:
