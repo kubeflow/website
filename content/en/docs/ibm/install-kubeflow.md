@@ -11,15 +11,15 @@ deploy Kubeflow on IBM Cloud.
 
 ### Installing the IBM Cloud developer tools
 
-> If you already have `ibmcloud` installed with the `ibmcloud cs` plugin, you
+> If you already have `ibmcloud` installed with the latest `ibmcloud ks` (Kubernetes Service) plug-in, you
 > can skip these steps.
 
 1.  Download and install the `ibmcloud` command line tool:
-    https://console.bluemix.net/docs/cli/index.html#overview
+    https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started#overview
 
-1.  Install the `cs` (container-service) plugin:
+1.  Install the [Kubernetes Service plug-in](https://cloud.ibm.com/docs/cli?topic=containers-cli-plugin-kubernetes-service-cli):
     ```
-    ibmcloud plugin install container-service -r Bluemix
+    ibmcloud plugin install container-service
     ```
 1.  Authorize `ibmcloud`:
     ```
@@ -31,67 +31,54 @@ deploy Kubeflow on IBM Cloud.
 To simplify the command lines for this walkthrough, you need to define a few
 environment variables.
 
-1.  Set `CLUSTER_NAME`, `CLUSTER_REGION`, and `CLUSTER_ZONE` variables:
+1.  Set `CLUSTER_NAME` and `CLUSTER_ZONE` variables:
 
     ```
     export CLUSTER_NAME=kubeflow
-    export CLUSTER_REGION=us-south
     export CLUSTER_ZONE=dal13
     ```
 
     - `CLUSTER_NAME` must be lowercase and unique among any other Kubernetes
-      clusters in this IBM Cloud region.
-    - `CLUSTER_REGION` can be any region where IKS is available. You can get a
-      list of all available regions via the
-      [IBM Cloud documentation](https://console.bluemix.net/docs/containers/cs_regions.html#regions-and-zones)
-      or via `ibmcloud cs regions`.
-    - `CLUSTER_ZONE` can be any zone that is available in the specified region
-      above. You can get a list of all available locations from the
-      [IBM Cloud documentation](https://console.bluemix.net/docs/containers/cs_regions.html#zones)
-      or by using `ibmcloud cs zones` after you set the region by using
-      `ibmcloud cs region-set $CLUSTER_REGION`.
+      clusters in the specified CLUSTER_ZONE.
+    - `CLUSTER_ZONE` identifies the location where CLUSTER_NAME will be created. Run `ibmcloud ks locations` to list supported IBM Cloud Kubernetes Service locations. For example, choose `dal13` to create CLUSTER_NAME in the Dallas (US) data center. 
 
 ### Creating a IBM Cloud Kubernetes cluster
 
 To make sure the cluster is large enough to host all the Knative and Istio
 components, the recommended configuration for a cluster is:
 
-- Kubernetes version 1.15 
+- Kubernetes version 1.15
 - 4 vCPU nodes with 16GB memory (`b2c.4x16`)
-
-1.  Set `ibmcloud` to the appropriate region:
-
-    ```
-    ibmcloud cs region-set $CLUSTER_REGION
-    ```
 
 1.  Create a Kubernetes cluster on IKS with the required specifications:
 
     ```
-    ibmcloud cs cluster-create --name=$CLUSTER_NAME \
+    ibmcloud ks cluster create classic \
+      --flavor b2c.4x16 \
+      --name $CLUSTER_NAME \
       --zone=$CLUSTER_ZONE \
-      --machine-type=b2c.4x16 \
       --workers=3
     ```
 
     If you're starting in a fresh account with no public and private VLANs, they
     are created automatically for you. If you already have VLANs configured in
-    your account, get them via `ibmcloud cs vlans --zone $CLUSTER_ZONE` and
-    include the public/private VLAN in the `cluster-create` command:
+    your account, get them via `ibmcloud ks vlans --zone $CLUSTER_ZONE` and
+    include the public/private VLAN id in the `cluster create` command:
 
     ```
-    ibmcloud cs cluster-create --name=$CLUSTER_NAME \
-      --zone=$CLUSTER_ZONE \
+    ibmcloud ks cluster create classic \
       --machine-type=b2c.4x16 \
+      --name=$CLUSTER_NAME \
+      --zone=$CLUSTER_ZONE \
       --workers=3 \
       --private-vlan $PRIVATE_VLAN_ID \
-      --public-vlan $PUBLIC_VLAN_ID
+      --public-vlan $PUBLIC_VLAN_ID 
     ```
 
 1.  Wait until your Kubernetes cluster is deployed:
 
     ```
-    ibmcloud cs clusters | grep $CLUSTER_NAME
+    ibmcloud ks clusters | grep $CLUSTER_NAME
     ```
 
     It can take a while for your cluster to be deployed. Repeat the above
@@ -101,12 +88,8 @@ components, the recommended configuration for a cluster is:
 1.  Point `kubectl` to the cluster:
 
     ```
-    ibmcloud cs cluster config $CLUSTER_NAME
+    ibmcloud ks cluster config --cluster $CLUSTER_NAME
     ```
-
-    Follow the instructions on the screen to `EXPORT` the correct `KUBECONFIG`
-    value to point to the created cluster.
-
 
 1.  Make sure all nodes are up:
 
