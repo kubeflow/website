@@ -58,7 +58,7 @@ To create an ML workspace:
 
 1. Go to [the Azure portal](https://portal.azure.com) and click on your resource group.
 2. Select the **add a new resource** option.
-3. Search for **Machine Learning Studio Workspace** and use the default options, taking note of the name you decide for it.
+3. Search for **Machine Learning** and use the default options, taking note of the name you decide for it.
 
 <img src="/docs/azure/images/creatingWS.PNG"
     alt="Creating a Workspace"
@@ -116,6 +116,13 @@ To create an app registration:
 7. Select **New client secret**. Give the client secret a description and select how long you would like it to remain active for. Once you click the **Add** button, make sure you take note of the client secret value and save it in a secure place. This is your service principal password. <img src="/docs/azure/images/password.PNG"
     alt="Client secret location"
     class="mt-3 mb-3 p-3 border border-info rounded">
+
+### Add "reader" permission for subscription first
+
+1. search for and select **Subscriptions**, or select **Subscriptions** on the **Home** page.
+2. Select **Access control (IAM)** from the sidebar. Select Add a role assignment.
+3. Set the role to **reader** and search for the name you gave your app registration in the Select dropdown.
+4. Click **Save**.
 
 ### Add a role assignment
 To add a role assignment for your service principal:
