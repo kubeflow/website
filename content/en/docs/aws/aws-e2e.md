@@ -222,7 +222,7 @@ Take note of the following 5 values:
 
 Download and edit the kfctl manifest file:
 ```shell script
-wget https://raw.githubusercontent.com/kubeflow/manifests/v1.0-branch/kfdef/kfctl_aws_cognito.v1.0.1.yaml
+wget {{% config-uri-aws-cognito %}}
 ```
 At the end of the file we can see the `KfAwsPlugin` plugin section. In the spec about the cognito, you need to replace the 4 values you recorded above and the nodegroups names in the roles.
 
@@ -244,8 +244,8 @@ At the end of the file we can see the `KfAwsPlugin` plugin section. In the spec 
 
 Now you can build the manifests and then deploy them:
 ```shell script
-kfctl build -f kfctl_aws_cognito.v1.0.1.yaml -V
-kfctl apply -f kfctl_aws_cognito.v1.0.1.yaml -V
+kfctl build -f {{% config-file-aws-cognito %}} -V
+kfctl apply -f {{% config-file-aws-cognito %}} -V
 ```
 
 That shouldn't take a long time. There shouldn't by any errors, and when ready you can validate that you can see the kubeflow namespace.
