@@ -40,7 +40,9 @@ See the
 The metrics file has the following requirements:
 
 * The file path must be `/mlpipeline-metrics.json`.
-* `name` must follow the pattern `^[a-zA-Z]([-_a-zA-Z0-9]{0,62}[a-zA-Z0-9])?$`. (Until 0.5.2, `^[a-z]([-a-z0-9]{0,62}[a-z0-9])?$` must be followed).
+* `name` must follow the pattern `^[a-zA-Z]([-_a-zA-Z0-9]{0,62}[a-zA-Z0-9])?$`.
+
+    For Kubeflow Pipelines version 0.5.1 or earlier, name must match the following pattern `^[a-z]([-a-z0-9]{0,62}[a-z0-9])?$`
 * `numberValue` must be a numeric value.
 * `format` can only be `PERCENTAGE`, `RAW`, or not set.
 
