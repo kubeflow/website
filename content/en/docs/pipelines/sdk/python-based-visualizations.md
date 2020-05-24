@@ -88,9 +88,7 @@ arguments.
 
 1. Enable custom visualizations within Kubeflow Pipelines.
     * If you have not yet deployed Kubeflow Pipelines to your cluster,
-    you can edit the [frontend deployment YAML](https://github.com/kubeflow/
-    pipelines/blob/master/manifests/kustomize/base/pipeline/
-    ml-pipeline-ui-deployment.yaml)
+    you can edit the [frontend deployment YAML](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/base/pipeline/ml-pipeline-ui-deployment.yaml)
     file to include the following YAML that specifies that custom visualizations
     are allowed via environment variables.
 
