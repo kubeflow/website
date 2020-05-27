@@ -72,9 +72,9 @@ See the Google Kubernetes Engine (GKE) guide to
 
      ```
      export PIPELINE_VERSION={{% pipelines/latest-version %}}
-     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION
+     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
      kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION"
      ```
 
      The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
@@ -84,15 +84,15 @@ See the Google Kubernetes Engine (GKE) guide to
      For Kubeflow Pipelines version 0.2.0 ~ 0.3.0, use:
      ```
      export PIPELINE_VERSION=<kfp-version-between-0.2.0-and-0.3.0>
-     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/base/crds?ref=$PIPELINE_VERSION
+     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/base/crds?ref=$PIPELINE_VERSION"
      kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION"
      ```
 
      For Kubeflow Pipelines version < 0.2.0, use:
      ```
      export PIPELINE_VERSION=<kfp-version-0.1.x>
-     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION"
      ```
 
      **Note**: `kubectl apply -k` accepts local paths and paths that are formatted as [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, the paths are not valid URLs.
@@ -110,9 +110,9 @@ See the Google Kubernetes Engine (GKE) guide to
 1. To upgrade to Kubeflow Pipelines 0.4.0 and higher, use the following commands:
      ```
      export PIPELINE_VERSION=<version-you-want-to-upgrade-to>
-     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION
+     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
      kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-     kubectl apply -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
+     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION"
      ```
 
      To upgrade to Kubeflow Pipelines 0.3.0 and lower, use the [deployment instructions](#deploying-kubeflow-pipelines) to upgrade your Kubeflow Pipelines cluster.
@@ -206,8 +206,8 @@ For example, to uninstall KFP using manifests from a GitHub repository, run:
 
 ```
 export PIPELINE_VERSION={{% pipelines/latest-version %}}
-kubectl delete -k github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION
-kubectl delete -k github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION
+kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION"
+kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
 ```
 
 To uninstall KFP using manifests from your local repository or file system, run:
