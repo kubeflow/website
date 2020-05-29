@@ -79,20 +79,22 @@ Moreover, in this example, the benchmark script [run_service_api.ipynb](https://
 and the public accessible pipeline manifest file [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml)
 will be used.
 
-1. Follow the [instructions](https://www.kubeflow.org/docs/pipelines/installation/standalone-deployment/)
+* Follow the [instructions](https://www.kubeflow.org/docs/pipelines/installation/standalone-deployment/)
 to create a new Kubernetes cluster with a cloud service, e.g., Google Cloud, and
 then deploy a Kubeflow Pipelines instance to that cluster.
-1. Add a node pool to the cluster created in the previous step. The new node
+* Add a node pool to the cluster created in the previous step. The new node
 pool needs to have a different name than the default node pool in the cluster.
 The node configuration in this new node pool can be the same as that of the
 default node pool. In this example, please use 'pool-1' as the name of the new
 node pool in order to use the prepared pipeline manifest file [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml).
-1. Forward local port 3001 from the local machine to the frontend server of the
+* Forward local port 3001 from the local machine to the frontend server of the
 Kubreflow Pipelines deployment created in the first step. It is also OK to
 forward directly to the API server.
-> kubectl port-forward deployment/ml-pipeline-ui 3001:3000 -n kubeflow
-1. [Start a local Jupyter notebook instance](https://jupyter.org/install.html).
-1. Open [run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
+```
+kubectl port-forward deployment/ml-pipeline-ui 3001:3000 -n kubeflow
+```
+* [Start a local Jupyter notebook instance](https://jupyter.org/install.html).
+* Open [run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
 in the local Jupyter notebook. This benchmark script (a) creates a new pipeline;
 (b) uses the default pipeline version of this pipeline to create multiple runs;
 (c) records the number of successful runs; (d) records the duration of each of
