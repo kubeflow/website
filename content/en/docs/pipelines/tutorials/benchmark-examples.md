@@ -8,7 +8,7 @@ This guide explains the Kubeflow Pipelines [benchmark scripts](https://github.co
 and demonstrates how to use them to collect basic performance data of a given
 Kubeflow Pipelines deployemnt.
 
-## Overview
+## Background and Overview
 
 The Kubeflow Pipelines benchmark scripts simulate typical workloads, apply them
 to the Kubeflow Pipelines deployment, and record the server latencies and
@@ -90,9 +90,7 @@ node pool in order to use the prepared pipeline manifest file [taxi_updated_pool
 1. Forward local port 3001 from the local machine to the frontend server of the
 Kubreflow Pipelines deployment created in the first step. It is also OK to
 forward directly to the API server.
-```
-kubectl port-forward deployment/ml-pipeline-ui 3001:3000 -n kubeflow
-```
+> kubectl port-forward deployment/ml-pipeline-ui 3001:3000 -n kubeflow
 1. [Start a local Jupyter notebook instance](https://jupyter.org/install.html).
 1. Open [run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
 in the local Jupyter notebook. This benchmark script (a) creates a new pipeline;
