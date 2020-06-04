@@ -72,9 +72,9 @@ After you finish the TLS and Authentication configuration, then you can run `kfc
 After a while, your ALB will be ready, you can get ALB hostname by running follow command.
 
 ```
-kubectl get ingress istio-ingress -n istio-system
-NAME            HOSTS   ADDRESS                                                                  PORTS   AGE
-istio-ingress   *       a743484b-istiosystem-istio-2af2-1092604728.us-west-2.elb.amazonaws.com   80      4h9m
+kubectl get -w -n istio-system svc/istio-ingressgateway
+NAME                   TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)                                                                                                                                      AGE
+istio-ingressgateway   LoadBalancer   10.100.174.156   a64f0ed5a0acf48e998caf150d4d9f4c-818544177.us-west-2.elb.amazonaws.com   15020:31356/TCP,80:31380/TCP,443:31390/TCP,31400:31400/TCP,15029:31242/TCP,15030:30222/TCP,15031:30731/TCP,15032:31446/TCP,15443:30075/TCP   3h41m
 ```
 
 Update your callback URLs.
