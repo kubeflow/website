@@ -6,31 +6,30 @@ weight = 10
 
 This guide explains the Kubeflow Pipelines [benchmark scripts](https://github.com/kubeflow/pipelines/tree/master/tools/benchmarks)
 and demonstrates how to use them to collect basic performance data of a given
-Kubeflow Pipelines deployemnt.
+Kubeflow Pipelines instance.
 
 ## Background and Overview
 
-The Kubeflow Pipelines benchmark scripts simulate typical workloads, apply them
-to the Kubeflow Pipelines deployment, and record the server latencies and
-pipeline run durations under the workloads.
+The Kubeflow Pipelines benchmark scripts simulate typical workloads and record
+performance metrics, such as server latencies and pipeline run durations.
 
-To simulate a typical workload, the benchmark script will use a pipeline
-manifest file, upload it to the Kubeflow Pipelines deployment as a pipeline or
-a pipeline version, and then run the uploaded pipeline or pipeline version
-multiple times simulatenuously. Users can specify the pipelines manifest used in
-the benchmark script. E.g., the preloaded samples in Kubeflow pipelines can be
-used. Moreover, it is also a good practice to use a representative pipeline
-manifest in light of the particular Kubeflow Pipelines use case. E.g., if a
-Kubeflow Piplines deployment is mainly used for pipelines of image recognition
-tasks, then it would be desirable to use an image recognition pipeline in the
-benchmark scripts.
+To simulate a typical workload, the benchmark script uploads a pipeline
+manifest file to a Kubeflow Pipelines instance as a pipeline or
+a pipeline version, and creates multiple runs simultaneously.
+Users can specify the pipeline manifest used in
+the benchmark script. For example, the preloaded samples in Kubeflow pipelines
+can be used. Moreover, it is also a good practice to use a representative
+pipeline manifest in light of the particular Kubeflow Pipelines use case. For
+example, if a Kubeflow Pipelines instance is mainly used for pipelines of
+image recognition tasks, then it would be desirable to use an image recognition
+pipeline in the benchmark scripts.
 
 When a proper pipeline is chosen, the benchmark scripts will run it multiple
-times simultaneously on a given Kubeflow Pipelines deployment, and collects the
+times simultaneously on a given Kubeflow Pipelines instance, and collects the
 server latencies and run durations. Among all the operations that the Kubeflow
 Pipelines can perform, running a pipeline is arguably the most unpredictable and
-costly one. Other operations, e.g., creating a pipeline (version) or creating an
-experiment, usually induce a predicatable and moderate cost. E.g., creating a
+costly one. Other operations, for example, creating a pipeline (version) or creating an
+experiment, usually induce a predictable and moderate cost. For example, creating a
 pipeline version will introduce a new row in the pipeline versions table, a new
 file in minio server. The new file's size depends on the pipeline version's
 manifest. If we exclude the rare case of an extremely large manifest and assume
@@ -39,40 +38,40 @@ creating a pipeline version grows linearly with the number of pipeline versions.
 However, on the other hand, the cost of running a pipeline or a pipeline version
 involves much more uncertainty and sometimes quite high a cost. A pipeline or a
 pipeline version can have arbitrary components and hence running a pipeline or a
-pipeline version can incur arbitrary time and space complexities. E.g., the step
-in a pipeline can use a customized container imange which performs a super
-expensive training task. In addition, the runs in a Kubeflow Pipelines deployment
+pipeline version can incur arbitrary time and space complexities. For example, the step
+in a pipeline can use a customized container image which performs a super
+expensive training task. In addition, the runs in a Kubeflow Pipelines instance
 also consume more DB space than pipelines, pipeline versions, experiments, etc.
 
-Therefore, when the performance and scalibility of Kubeflow Pipelines are in
+Therefore, when the performance and scalability of Kubeflow Pipelines are in
 question, the simulated benchmark workloads are intended to focus on the
-operation of running a pipeline or a pipeline version in order to targe the pain
-point of Kubeflow Pipelines and reveal more useful information.
+operation of running a pipeline or a pipeline version in order to target the
+pain point of Kubeflow Pipelines and reveal more useful information.
 
 ## Prerequisites for Running Benchmark Scripts
 
 To use the provided benchmark scripts, you will need:
 
 1. A Jupyter notebook instance
-1. A Kubeflow Pipelines deployment
+1. A Kubeflow Pipelines instance
 1. A benchmark script
 1. A pipeline manifest
 
-The Jupyter notebook instance and the Kubeflow Pipelines deployment needed for
+The Jupyter notebook instance and the Kubeflow Pipelines instance needed for
 running a benchmark can be hosted either on cloud or on a local machine, as long
 as the Jupyter notebook instance has proper accesses to the Kubeflow Pipelines
-deployment, e.g., be able to CREAT, GET, DELETE and LIST the pipeline, pipeline
-version, run, job and experiment in the Kubeflow Pipelines deployment.
+instance, for example, be able to CREATE, GET, DELETE and LIST the pipeline, pipeline
+version, run, job and experiment in the Kubeflow Pipelines instance.
 
-One way of setting up everything and runnning a benchmark script is shown below
+One way of setting up everything and running a benchmark script is shown below
 as an example.
 
 ## An Example of Running Benchmark Scripts
 
-In this example, a Kubeflow Pipelines deployment is hosted on cloud and a
+In this example, a Kubeflow Pipelines instance is hosted on cloud and a
 Jupyter notebook instance is hosted on a local machine. The cloud cluster where
-the Kubeflow Pipelines deployment resides have two node pools: one is for
-running the Kubeflow Pipelines servers, e.g., ml-pipeline and ml-pipeline-ui,
+the Kubeflow Pipelines instance resides have two node pools: one is for
+running the Kubeflow Pipelines servers, for example, ml-pipeline and ml-pipeline-ui,
 and the other is for running the pipelines.
 
 Moreover, in this example, the benchmark script [run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
@@ -80,7 +79,7 @@ and the public accessible pipeline manifest file [taxi_updated_pool.yaml](https:
 will be used.
 
 * Follow the [instructions](https://www.kubeflow.org/docs/pipelines/installation/standalone-deployment/)
-to create a new Kubernetes cluster with a cloud service, e.g., Google Cloud, and
+to create a new Kubernetes cluster with a cloud service, for example, Google Cloud, and
 then deploy a Kubeflow Pipelines instance to that cluster.
 * Add a node pool to the cluster created in the previous step. The new node
 pool needs to have a different name than the default node pool in the cluster.
@@ -88,7 +87,7 @@ The node configuration in this new node pool can be the same as that of the
 default node pool. In this example, please use 'pool-1' as the name of the new
 node pool in order to use the prepared pipeline manifest file [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml).
 * Forward local port 3001 from the local machine to the frontend server of the
-Kubreflow Pipelines deployment created in the first step. It is also OK to
+Kubeflow Pipelines instance created in the first step. It is also OK to
 forward directly to the API server.
 ```
 kubectl port-forward deployment/ml-pipeline-ui 3001:3000 -n kubeflow
@@ -98,12 +97,12 @@ kubectl port-forward deployment/ml-pipeline-ui 3001:3000 -n kubeflow
 in the local Jupyter notebook. This benchmark script (a) creates a new pipeline;
 (b) uses the default pipeline version of this pipeline to create multiple runs;
 (c) records the number of successful runs; (d) records the duration of each of
-the successful runs; (e) records the latency of CREAT, GET, DELETE; (f) cleans
+the successful runs; (e) records the latency of CREATE, GET, DELETE; (f) cleans
 up the pipeline and its default pipeline version, the experiment and the runs.
 You'll need to fill in proper values for host, pipeline_file_url, num_runs,
 run_status_polling_interval_sec in the benchmark script.
 > **host** is the url address of the API server in the Kubeflow Pipelines
-deployment. In this example, due to the port forwarding mentioned in the
+instance. In this example, due to the port forwarding mentioned in the
 previous local port forwarding, the host can be set to 'http://127.0.0.1:3001'.
 >
 > **pipeline_file_url** is the url address of a pipeline manifest file. As
@@ -114,7 +113,7 @@ To use this example pipeline in the benchmark script, please set
 **pipeline_file_url** to 'https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml'.
 > - **NOTE**: please do not use the value 'https://storage.cloud.google.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml',
 although it points to the same file. That is because the address starting with
-'storage.cloud.google.com' will incure a redirect and doesn't work well with
+'storage.cloud.google.com' will incur a redirect and doesn't work well with
 Kubeflow Pipelines.
 >
 > **num_runs** specifies how many runs will be created in the benchmark script,
@@ -141,44 +140,44 @@ class="mt-3 mb-3 border border-info rounded">
 
 In the above example output, there are two types of plots. One is the
 distribution plot, for latency and duration measurement; the other is the count
-plot, for couting succeeded and failed runs. The reading of those plots is in
-general straightfoward.
+plot, for counting succeeded and failed runs. The reading of those plots is in
+general straightforward.
 
-In a count plot, the x-axis repsresents the possible run status: success or fail;
+In a count plot, the x-axis represents the possible run status: success or fail;
 and the y-axis shows how many runs fall into certain status respectively.
 
-In a distribution plot, both histogram plot and rug plot are shown. In addtion,
+In a distribution plot, both histogram plot and rug plot are shown. In addition,
 it is also possible to show KDE (Kernel Density Estimate) plot. If a KDE plot is
 desirable, please use 'kde=True' in the distplot() method.
 
 ## Limitations And Future Work
 
-When the benchmark script is tuned to generate a moderate workload, e.g., 50
+When the benchmark script is tuned to generate a moderate workload, for example, 50
 runs in the above example, the latency and run duration measurements can be
 made properly. However, it is also interesting to see how the Kubeflow Pipelines
-deployment will behave or break under some extremely heavy workloads, or in
-other words, to probe the Kubeflow Pipelines deployment. The example benchmark
+instance will behave or break under some extremely heavy workloads, or in
+other words, to probe the Kubeflow Pipelines instance. The example benchmark
 script can be used for that purpose as well. In that case, the measurement plots
 of the benchmark script are no longer the expected output, but instead, the
 potential errors and error logs are expected to provide information on the
-performance and scalibity of the Kubeflow Pipelines deployment. With them, bugs
+performance and scalability of the Kubeflow Pipelines instance. With them, bugs
 and pain points can be discovered and then fixed. Moreover, when probing the
-Kubeflow Pipelines deployment with extreme workloads, it will be really helpful
-to add internal monitoring to the server code to track server performance. E.g.,
+Kubeflow Pipelines instance with extreme workloads, it will be really helpful
+to add internal monitoring to the server code to track server performance. For example,
 in the future, it would be desirable to use [Prometheus](https://prometheus.io/)
 to the Kubeflow Pipelines servers.
 
-The internal peformance monitoring inside the servers is complementary to the
+The internal performance monitoring inside the servers is complementary to the
 performance measurement from the client side. When the example benchmark script
 measures the latencies from the client side, the resulting measurements depend
-on both the Kubeflow Pipelines deployment and the network transmission. On the
+on both the Kubeflow Pipelines instance and the network transmission. On the
 other hand, the internal monitoring focuses on the actual processing cost inside
 the server given certain requests. Therefore, having both the client side
 measurements and server side monitoring are useful in profiling accurately the
-peformance and scalibility of Kubeflow Pipelines.
+performance and scalability of Kubeflow Pipelines.
 
 ## Contact
 
 If you run into any issues with the benchmark script and have any suggestions in
-profiling the peformance and scalibility of Kubeflow Pipelines, please [open an
+profiling the performance and scalability of Kubeflow Pipelines, please [open an
 issue](https://github.com/kubeflow/pipelines/issues/new) with us.
