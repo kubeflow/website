@@ -74,7 +74,7 @@ optimizes the model's hyperparameters, a NAS system optimizes the model's
 structure, node weights, and hyperparameters.
 
 NAS technology in general uses various techniques to find the optimal neural
-network design. The NAS in Katib uses the *reinforcement learning* technique.
+network design.
 
 You can submit Katib jobs from the command line or from the UI. (Read more 
 about the Katib interfaces later on this page.) The following screenshot shows
