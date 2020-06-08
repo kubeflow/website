@@ -57,13 +57,20 @@ These are the fields in the experiment configuration spec:
   A common metric is the model's accuracy in the validation pass of the training
   job (*validation-accuracy*). You also specify whether you want Katib to 
   maximize or minimize the metric.
-  Katib uses the `objectiveMetricName` and `additionalMetricNames` to monitor
-  how the hyperparameters work with the model. 
-  Katib records the value of the best `objectiveMetricName` metric (maximized 
-  or minimized based on `type`) and the corresponding hyperparameter set
-  in `Experiment.status`. If the `objectiveMetricName` metric for a set of
-  hyperparameters reaches the `goal`, Katib stops trying more hyperparameter 
-  combinations. See the [`ObjectiveSpec` 
+
+    Katib uses the `objectiveMetricName` and `additionalMetricNames` to monitor
+    how the hyperparameters work with the model.
+    Katib records the value of the best `objectiveMetricName` metric (maximized
+    or minimized based on `type`) and the corresponding hyperparameter set
+    in `Experiment.status`. If the `objectiveMetricName` metric for a set of
+    hyperparameters reaches the `goal`, Katib stops trying more hyperparameter
+    combinations.
+
+    You can run experiment without specifying the `goal`. In that case, Katib
+    runs experiment until corresponding succeeded trials reaches `maxTrialCount`.
+    `maxTrialCount` parameter is described bellow.
+
+    See the [`ObjectiveSpec`
   type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L47).
 
 * **algorithm**: The search algorithm that you want Katib to use to find the
