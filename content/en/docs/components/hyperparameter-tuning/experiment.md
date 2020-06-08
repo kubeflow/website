@@ -397,7 +397,7 @@ Katib supports the following algorithm settings:
         <td>controller_log_every_steps</td>
         <td>int</td>
         <td>10</td>
-        <td>Number RL controller training steps before logging it. Value must be >= 1.</td>
+        <td>Number of RL controller training steps before logging it. Value must be >= 1.</td>
       </tr>
     </tbody>
   </table>
