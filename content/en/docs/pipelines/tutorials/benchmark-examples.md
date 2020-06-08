@@ -33,7 +33,7 @@ creating a pipeline version grows linearly with the number of pipeline versions.
 However, on the other hand, the cost of running a pipeline or a pipeline version
 involves much more uncertainty and sometimes quite a high cost. A pipeline or a
 pipeline version can have arbitrary components and hence running a pipeline or a
-pipeline version can incur arbitrary time and space complexities. For example, the step
+pipeline version can incur arbitrary time and space complexities. For example, a step
 in a pipeline can use a customized container image which performs a super
 expensive training task. In addition, the runs in a Kubeflow Pipelines instance
 also consume more DB space than pipelines, pipeline versions, experiments, etc.
