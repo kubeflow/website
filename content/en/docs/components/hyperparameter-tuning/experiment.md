@@ -327,8 +327,9 @@ regards to usability of the feature. You can log issues and comments in
 the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
 {{% /alert %}}
 
-The algorithm name in Katib is `enas`. This NAS algorithm ENAS-based.
-Currently, it doesn't support parameter sharing.
+The algorithm name in Katib is `enas`.
+
+This NAS algorithm ENAS-based. Currently, it doesn't support parameter sharing.
 
 Katib supports the following algorithm settings:
 
