@@ -57,13 +57,20 @@ These are the fields in the experiment configuration spec:
   A common metric is the model's accuracy in the validation pass of the training
   job (*validation-accuracy*). You also specify whether you want Katib to 
   maximize or minimize the metric.
-  Katib uses the `objectiveMetricName` and `additionalMetricNames` to monitor
-  how the hyperparameters work with the model. 
-  Katib records the value of the best `objectiveMetricName` metric (maximized 
-  or minimized based on `type`) and the corresponding hyperparameter set
-  in `Experiment.status`. If the `objectiveMetricName` metric for a set of
-  hyperparameters reaches the `goal`, Katib stops trying more hyperparameter 
-  combinations. See the [`ObjectiveSpec` 
+
+    Katib uses the `objectiveMetricName` and `additionalMetricNames` to monitor
+    how the hyperparameters work with the model.
+    Katib records the value of the best `objectiveMetricName` metric (maximized
+    or minimized based on `type`) and the corresponding hyperparameter set
+    in `Experiment.status`. If the `objectiveMetricName` metric for a set of
+    hyperparameters reaches the `goal`, Katib stops trying more hyperparameter
+    combinations.
+
+    You can run experiment without specifying the `goal`. In that case, Katib
+    runs experiment until corresponding succeeded trials reaches `maxTrialCount`.
+    `maxTrialCount` parameter is described bellow.
+
+    See the [`ObjectiveSpec`
   type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L47).
 
 * **algorithm**: The search algorithm that you want Katib to use to find the
@@ -145,8 +152,8 @@ descriptions on this page:
 * [Random search](#random-search)
 * [Bayesian optimization](#bayesian)
 * [HYPERBAND](#hyperband)
-* [Hyperopt TPE](#tpe-search)
-* [Efficient Neural Architecture Search (ENAS)](#enas)
+* [Tree of Parzen Estimators (TPE)](#tpe-search)
+* [Neural Architecture Search based on ENAS](#enas)
 
 More algorithms are under development. You can add an algorithm to Katib
 yourself. See the guide to [adding a new
@@ -178,7 +185,8 @@ sampling without replacement. Random search is therefore the best algorithm to
 use when combinatorial exploration is not possible. If the number of continuous
 variables is high, you should use quasi random sampling instead.
 
-Katib uses the [hyperopt](http://hyperopt.github.io/hyperopt/) optimization
+Katib uses the [hyperopt](http://hyperopt.github.io/hyperopt/) or
+[Goptuna](https://github.com/c-bata/goptuna) optimization
 framework for its random search.
 
 Katib supports the following algorithm settings:
@@ -300,17 +308,17 @@ thus for maximizing the number of configurations that it can evaluate.
 HYPERBAND also focuses on the speed of the search.
 
 <a id="tpe-search"></a>
-#### Hyperopt TPE
+#### Tree of Parzen Estimators (TPE)
 
 The algorithm name in Katib is `tpe`.
 
 Katib uses the Tree of Parzen Estimators (TPE) algorithm in
-[hyperopt](http://hyperopt.github.io/hyperopt/). This method provides a 
-[forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
+[hyperopt](http://hyperopt.github.io/hyperopt/) or [goptuna](https://github.com/c-bata/goptuna).
+This method provides a [forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
 search.
 
 <a id="enas"></a>
-#### Efficient Neural Architecture Search 
+#### Neural Architecture Search based on ENAS
 
 {{% alert title="Alpha version" color="warning" %}}
 Neural architecture search is currently in <b>alpha</b> with limited support. 
@@ -319,7 +327,8 @@ regards to usability of the feature. You can log issues and comments in
 the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
 {{% /alert %}}
 
-The algorithm name in Katib is `enas`.
+The algorithm name in Katib is `enas`. This NAS algorithm ENAS-based.
+Currently, it doesn't support parameter sharing.
 
 Katib supports the following algorithm settings:
 

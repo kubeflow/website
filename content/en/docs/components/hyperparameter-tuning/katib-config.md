@@ -114,7 +114,13 @@ All of these settings except **`image`** can be omitted. If you don't specify an
 
 1. `image` - Docker image name for the `random` suggestion.
 
-    **Must be specified**.
+    **Must be specified**. You can specify one of the following images:
+
+    - `suggestion-chocolate`: [chocolate](https://github.com/AIworx-Labs/chocolate) based suggestion service which supports `grid`, `chocolate-random`, `chocolate-quasirandom`, `chocolate-bayesian-optimization` and `chocolate-mocmaes`.
+    - `suggestion-goptuna`: [Goptuna](https://github.com/c-bata/goptuna) based suggestion service which supports `cmaes`, `tpe` and `random`.
+    - `suggestion-hyperband`: [HpBandSter](https://github.com/automl/HpBandSter) based suggestion service which supports `hyperband`.
+    - `suggestion-hyperopt`: [hyperopt](https://github.com/hyperopt/hyperopt) based suggestion service which supports `tpe` and `random`.
+    - `suggestion-skopt`: [scikit-optimize](https://github.com/scikit-optimize/scikit-optimize) based suggestion service which supports `bayesianoptimization`.
 
 1. `imagePullPolicy` - `Random` suggestion container [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images).
 
