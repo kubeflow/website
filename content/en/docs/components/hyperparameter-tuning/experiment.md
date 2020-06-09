@@ -157,6 +157,7 @@ descriptions on this page:
 * [HYPERBAND](#hyperband)
 * [Tree of Parzen Estimators (TPE)](#tpe-search)
 * [NAS based on reinforcement learning](#nas)
+* [Differentiable Architecture Search (DARTS)](#darts)
 
 More algorithms are under development. You can add an algorithm to Katib
 yourself. See the guide to [adding a new
@@ -338,6 +339,58 @@ For more information, see:
 reinforcement learning](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/NAS_Reinforcement_Learning).
 * The description of the `nasConfig` field in the configuration file
   earlier on this page.
+
+<a id="darts"></a>
+#### Differentiable Architecture Search (DARTS)
+
+{{% alert title="Alpha version" color="warning" %}}
+Neural architecture search is currently in <b>alpha</b> with limited support.
+The Kubeflow team is interested in any feedback you may have, in particular with
+regards to usability of the feature. You can log issues and comments in
+the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
+{{% /alert %}}
+
+The algorithm name in Katib is `darts`.
+
+Currently, you can't view results of this algorithm in the Katib UI and
+you can run experiment only on single GPU.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>num_epochs</td>
+        <td>int</td>
+        <td>50</td>
+        <td>Number of epochs to train model</td>
+      </tr>
+      <tr>
+        <td>w_lr</td>
+        <td>float</td>
+        <td>0.025</td>
+        <td>Initial learning rate for the training model.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+For more information, see:
+
+* Information in the Katib repository on [Efficient Neural Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/nas/enas).
+* As a ENAS example, see the YAML file for the 
+[enas-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nas/enas-example-gpu.yaml).
+The example aims to show all the possible operations. Due to the large search 
+space, the example is not likely to generate a good result.
 
 <a id="metrics-collector"></a>
 ### Metrics collector
