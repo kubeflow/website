@@ -155,7 +155,7 @@ descriptions on this page:
 * [Random search](#random-search)
 * [Bayesian optimization](#bayesian)
 * [HYPERBAND](#hyperband)
-* [Hyperopt TPE](#tpe-search)
+* [Tree of Parzen Estimators (TPE)](#tpe-search)
 * [NAS based on reinforcement learning](#nas)
 
 More algorithms are under development. You can add an algorithm to Katib
@@ -188,7 +188,8 @@ sampling without replacement. Random search is therefore the best algorithm to
 use when combinatorial exploration is not possible. If the number of continuous
 variables is high, you should use quasi random sampling instead.
 
-Katib uses the [hyperopt](http://hyperopt.github.io/hyperopt/) optimization
+Katib uses the [hyperopt](http://hyperopt.github.io/hyperopt/) or
+[Goptuna](https://github.com/c-bata/goptuna) optimization
 framework for its random search.
 
 Katib supports the following algorithm settings:
@@ -310,13 +311,13 @@ thus for maximizing the number of configurations that it can evaluate.
 HYPERBAND also focuses on the speed of the search.
 
 <a id="tpe-search"></a>
-#### Hyperopt TPE
+#### Tree of Parzen Estimators (TPE)
 
 The algorithm name in Katib is `tpe`.
 
 Katib uses the Tree of Parzen Estimators (TPE) algorithm in
-[hyperopt](http://hyperopt.github.io/hyperopt/). This method provides a 
-[forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
+[hyperopt](http://hyperopt.github.io/hyperopt/) or [goptuna](https://github.com/c-bata/goptuna).
+This method provides a [forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
 search.
 
 <a id="nas"></a>
