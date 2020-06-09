@@ -129,6 +129,11 @@ Notes:
   {{% config-uri-gcp-iap %}}
   ```
 
+    For this configuration, you need to choose a zone that supports NVIDIA Tesla K80 Accelerators (`nvidia-tesla-k80`). 
+    To  see which accelerators are available in each zone, run the following command:
+    ```
+    gcloud compute accelerator-types list
+    ```
     When you run `kfctl apply` or `kfctl build` (see the next step), kfctl creates
     a local version of the configuration YAML file which you can further
     customize if necessary.
