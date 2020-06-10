@@ -151,8 +151,9 @@ descriptions on this page:
 * [Grid search](#grid-search)
 * [Random search](#random-search)
 * [Bayesian optimization](#bayesian)
-* [HYPERBAND](#hyperband)
+* [Hyperband](#hyperband)
 * [Tree of Parzen Estimators (TPE)](#tpe-search)
+* [Covariance Matrix Adaptation Evolution Strategy (CMA-ES)](#cmaes)
 * [Neural Architecture Search based on ENAS](#enas)
 
 More algorithms are under development. You can add an algorithm to Katib
@@ -185,8 +186,8 @@ sampling without replacement. Random search is therefore the best algorithm to
 use when combinatorial exploration is not possible. If the number of continuous
 variables is high, you should use quasi random sampling instead.
 
-Katib uses the [hyperopt](http://hyperopt.github.io/hyperopt/) or
-[Goptuna](https://github.com/c-bata/goptuna) optimization
+Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/),
+[Goptuna](https://github.com/c-bata/goptuna) or [Chocolate](https://chocolate.readthedocs.io) optimization
 framework for its random search.
 
 Katib supports the following algorithm settings:
@@ -226,7 +227,8 @@ steps, making it a good choice when the time to
 complete the evaluation of a parameter configuration is long.
 
 Katib uses the 
-[Scikit-Optimize](https://github.com/scikit-optimize/scikit-optimize) library
+[Scikit-Optimize](https://github.com/scikit-optimize/scikit-optimize) or
+[Chocolate](https://chocolate.readthedocs.io) optimization framework
 for its Bayesian search. Scikit-Optimize is also known as `skopt`.
 
 Katib supports the following algorithm settings:
@@ -296,26 +298,67 @@ Katib supports the following algorithm settings:
 </div>
 
 <a id="hyperband"></a>
-#### HYPERBAND
+#### Hyperband
 
 The algorithm name in Katib is `hyperband`.
 
-Katib supports the [HYPERBAND](https://arxiv.org/pdf/1603.06560.pdf) 
+Katib supports the [Hyperband](https://arxiv.org/pdf/1603.06560.pdf)
 optimization framework.
-Instead of using Bayesian optimization to select configurations, HYPERBAND
+Instead of using Bayesian optimization to select configurations, Hyperband
 focuses on early stopping as a strategy for optimizing resource allocation and
 thus for maximizing the number of configurations that it can evaluate.
-HYPERBAND also focuses on the speed of the search.
+Hyperband also focuses on the speed of the search.
 
 <a id="tpe-search"></a>
 #### Tree of Parzen Estimators (TPE)
 
 The algorithm name in Katib is `tpe`.
 
-Katib uses the Tree of Parzen Estimators (TPE) algorithm in
-[hyperopt](http://hyperopt.github.io/hyperopt/) or [goptuna](https://github.com/c-bata/goptuna).
+Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/) or
+[Goptuna](https://github.com/c-bata/goptuna) optimization
+framework for its TPE search.
+
 This method provides a [forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
 search.
+
+<a id="cmaes"></a>
+#### Covariance Matrix Adaptation Evolution Strategy (CMA-ES)
+
+The algorithm name in Katib is `cmaes`.
+
+Katib uses the [Goptuna](https://github.com/c-bata/goptuna) optimization
+framework for its CMA-ES search.
+
+The [Covariance Matrix Adaptation Evolution Strategy](https://en.wikipedia.org/wiki/CMA-ES)
+is a stochastic derivative-free numerical optimization algorithm for optimization
+problems in continuous search spaces.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>random_state</td>
+        <td>[int]: Set <code>random_state</code> to something other than None
+          for reproducible results.</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>sigma</td>
+        <td>[float]: Initial standard deviation of CMA-ES.</td>
+        <td>0.001</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <a id="enas"></a>
 #### Neural Architecture Search based on ENAS
