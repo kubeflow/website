@@ -92,7 +92,7 @@ you can specify a filter as an input parameter to list pipelines with a
 particular name. Given that Kubeflow Pipelines requires pipeline names to be
 unique, listing pipelines with a particular name returns at most one pipeline.
 
-```
+```python
 import kfp
 import json
 
