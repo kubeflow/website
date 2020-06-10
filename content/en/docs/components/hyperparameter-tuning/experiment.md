@@ -49,7 +49,7 @@ These are the fields in the experiment configuration spec:
   of allowed values for each hyperparameter.
   Katib generates hyperparameter combinations in the range based on the
   hyperparameter tuning algorithm that you specify. See the [`ParameterSpec` 
-  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L157-L178).
+  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L166-L187).
 
 
 * **objective**: The metric that you want to optimize. 
@@ -94,7 +94,7 @@ These are the fields in the experiment configuration spec:
       distributed execution).
     
     See the [`TrialTemplate` 
-    type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L180-L194).
+    type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L189-L203).
     The template 
     uses the [Go template format](https://golang.org/pkg/text/template/).
     
@@ -125,20 +125,17 @@ These are the fields in the experiment configuration spec:
   You can specify the configurations of the neural network design that you want
   to optimize, including the number of layers in the network, the types of
   operations, and more.
-  See the [`NasConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L220).
+  See the [`NasConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L229).
 
 * **operations**: The range of operations that you want to tune for your ML model. 
   For each neural network layer NAS algorithm selects one of the operation to build neural network. 
-  Each operation has sets of **parameters** which described above. See the [`Operation` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L232-L236).
+  Each operation has sets of **parameters** which described above. See the [`Operation` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L241-L245).
 
-    As a NAS example, see the YAML file for the
-    [nasjob-example-RL-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nasjob-example-RL-gpu.yaml).
-    The example aims to show all the possible operations. Due to the large search 
-    space, the example is not likely to generate a good result.
+    You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1alpha3/nas).
 
 *Background information about Katib's `Experiment` type:* In Kubernetes 
 terminology, Katib's
-[`Experiment` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L202) is a [custom resource 
+[`Experiment` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L211) is a [custom resource 
 (CR)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 The YAML file that you create for your experiment is the CR specification.
 
@@ -156,7 +153,7 @@ descriptions on this page:
 * [Bayesian optimization](#bayesian)
 * [HYPERBAND](#hyperband)
 * [Tree of Parzen Estimators (TPE)](#tpe-search)
-* [NAS based on reinforcement learning](#nas)
+* [Neural Architecture Search based on ENAS](#enas)
 * [Differentiable Architecture Search (DARTS)](#darts)
 
 More algorithms are under development. You can add an algorithm to Katib
@@ -321,8 +318,8 @@ Katib uses the Tree of Parzen Estimators (TPE) algorithm in
 This method provides a [forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
 search.
 
-<a id="nas"></a>
-#### NAS using reinforcement learning
+<a id="enas"></a>
+#### Neural Architecture Search based on ENAS
 
 {{% alert title="Alpha version" color="warning" %}}
 Neural architecture search is currently in <b>alpha</b> with limited support. 
@@ -331,14 +328,99 @@ regards to usability of the feature. You can log issues and comments in
 the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
 {{% /alert %}}
 
-The algorithm name in Katib is `nasrl`.
+The algorithm name in Katib is `enas`.
+
+This NAS algorithm ENAS-based. Currently, it doesn't support parameter sharing.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>controller_hidden_size</td>
+        <td>int</td>
+        <td>64</td>
+        <td>RL controller lstm hidden size. Value must be >= 1.</td>
+      </tr>
+      <tr>
+        <td>controller_temperature</td>
+        <td>float</td>
+        <td>5.0</td>
+        <td>RL controller temperature for the sampling logits. Value must be > 0. Set value to "None"
+          to disable it in controller.</td>
+      </tr>
+      <tr>
+        <td>controller_tanh_const</td>
+        <td>float</td>
+        <td>2.25</td>
+        <td>RL controller tanh constant to prevent premature convergence. Value must be > 0.
+          Set value to "None" to disable it in controller.</td>
+      </tr>
+      <tr>
+        <td>controller_entropy_weight</td>
+        <td>float</td>
+        <td>1e-5</td>
+        <td>RL controller weight for entropy applying to reward. Value must be > 0.
+          Set value to "None" to disable it in controller.</td>
+      </tr>
+      <tr>
+        <td>controller_baseline_decay</td>
+        <td>float</td>
+        <td>0.999</td>
+        <td>RL controller baseline factor. Value must be > 0 and <= 1.</td>
+      </tr>
+      <tr>
+        <td>controller_learning_rate</td>
+        <td>float</td>
+        <td>5e-5</td>
+        <td>RL controller learning rate for Adam optimizer. Value must be > 0 and <= 1.</td>
+      </tr>
+      <tr>
+        <td>controller_skip_target</td>
+        <td>float</td>
+        <td>0.4</td>
+        <td>RL controller probability, which represents the prior belief of a skip connection 
+          being formed. Value must be > 0 and <= 1.</td>
+      </tr>
+      <tr>
+        <td>controller_skip_weight</td>
+        <td>float</td>
+        <td>0.8</td>
+        <td>RL controller weight of skip penalty loss. Value must be > 0.
+          Set value to "None" to disable it in controller.</td>
+      </tr>
+      <tr>
+        <td>controller_train_steps</td>
+        <td>int</td>
+        <td>50</td>
+        <td>Number of RL controller training steps after each candidate run. Value must be >= 1.</td>
+      </tr>
+      <tr>
+        <td>controller_log_every_steps</td>
+        <td>int</td>
+        <td>10</td>
+        <td>Number of RL controller training steps before logging it. Value must be >= 1.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 For more information, see:
 
-* Information in the Katib repository on [NAS with 
-reinforcement learning](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/NAS_Reinforcement_Learning).
-* The description of the `nasConfig` field in the configuration file
-  earlier on this page.
+* Information in the Katib repository on [Efficient Neural Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/nas/enas).
+* As a ENAS example, see the YAML file for the 
+[enas-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nas/enas-example-gpu.yaml).
+The example aims to show all the possible operations. Due to the large search 
+space, the example is not likely to generate a good result.
 
 <a id="darts"></a>
 #### Differentiable Architecture Search (DARTS)
