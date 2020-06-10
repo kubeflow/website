@@ -127,11 +127,22 @@ These are the fields in the experiment configuration spec:
   operations, and more.
   See the [`NasConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L229).
 
-* **operations**: The range of operations that you want to tune for your ML model. 
-  For each neural network layer NAS algorithm selects one of the operation to build neural network. 
-  Each operation has sets of **parameters** which described above. See the [`Operation` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L241-L245).
+    * **graphConfig**: The graph config that defines structure for a
+      directed acyclic graph of the neural network. You can specify number of layers,
+      `input_sizes` for input layer and `output_sizes` for output layer.
+      See the [`GraphConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L234-L239).
 
-    You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1alpha3/nas).
+    * **operations**: The range of operations that you want to tune for your ML model.
+      For each neural network layer NAS algorithm selects one of the operation to build neural network.
+      Each operation has sets of **parameters** which described above. See the [`Operation` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L241-L245).
+
+      You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1alpha3/nas).
+
+* **resumePolicy**: Experiment resume policy. If experiment was succeeded because `maxTrialCount`
+  was reached, you can resume it by increasing `maxTrialCount`. Specify `resumePolicy: LongRunning`, if
+  you want to use this feature. If you don't need to resume experiment, specify `resumePolicy: Never`. In that case,
+  suggestion resources will be deleted and experiment can't be resumed. By default all experiments have
+  `resumePolicy: LongRunning` parameter. See the [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L159-L164).
 
 *Background information about Katib's `Experiment` type:* In Kubernetes 
 terminology, Katib's

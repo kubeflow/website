@@ -194,6 +194,7 @@ Spec:
         ftrl
     Name:            --optimizer
     Parameter Type:  categorical
+  Resume Policy:     LongRunning
   Trial Template:
     Go Template:
       Raw Template:  apiVersion: batch/v1
