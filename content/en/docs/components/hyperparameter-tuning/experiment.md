@@ -142,7 +142,7 @@ These are the fields in the experiment configuration spec:
   was reached, you can resume it by increasing `maxTrialCount`. Specify `resumePolicy: LongRunning`, if
   you want to use this feature. If you don't need to resume experiment, specify `resumePolicy: Never`. In that case,
   suggestion resources will be deleted and experiment can't be resumed. By default all experiments have
-  `resumePolicy: LongRunning` parameter. See the [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L159-L164).
+  `resumePolicy: LongRunning` parameter. See the [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L53).
 
 *Background information about Katib's `Experiment` type:* In Kubernetes 
 terminology, Katib's
