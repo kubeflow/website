@@ -166,6 +166,7 @@ descriptions on this page:
 * [Tree of Parzen Estimators (TPE)](#tpe-search)
 * [Covariance Matrix Adaptation Evolution Strategy (CMA-ES)](#cmaes)
 * [Neural Architecture Search based on ENAS](#enas)
+* [Differentiable Architecture Search (DARTS)](#darts)
 
 More algorithms are under development. You can add an algorithm to Katib
 yourself. See the guide to [adding a new
@@ -474,6 +475,130 @@ For more information, see:
 [enas-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nas/enas-example-gpu.yaml).
 The example aims to show all the possible operations. Due to the large search 
 space, the example is not likely to generate a good result.
+
+<a id="darts"></a>
+#### Differentiable Architecture Search (DARTS)
+
+{{% alert title="Alpha version" color="warning" %}}
+Neural architecture search is currently in <b>alpha</b> with limited support.
+The Kubeflow team is interested in any feedback you may have, in particular with
+regards to usability of the feature. You can log issues and comments in
+the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
+{{% /alert %}}
+
+The algorithm name in Katib is `darts`.
+
+Currently, you can't view results of this algorithm in the Katib UI and
+you can run experiment only on single GPU.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>num_epochs</td>
+        <td>int</td>
+        <td>50</td>
+        <td>Number of epochs to train model</td>
+      </tr>
+      <tr>
+        <td>w_lr</td>
+        <td>float</td>
+        <td>0.025</td>
+        <td>Initial learning rate for training model weights.
+          This learning rate annealed down to <code>w_lr_min</code>
+          following a cosine schedule without restart.</td>
+      </tr>
+      <tr>
+        <td>w_lr_min</td>
+        <td>float</td>
+        <td>0.001</td>
+        <td>Minimum learning rate for training model weights.</td>
+      </tr>
+      <tr>
+        <td>w_momentum</td>
+        <td>float</td>
+        <td>0.9</td>
+        <td>Momentum for training training model weights.</td>
+      </tr>
+      <tr>
+        <td>w_weight_decay</td>
+        <td>float</td>
+        <td>3e-4</td>
+        <td>Training model weight decay.</td>
+      </tr>
+      <tr>
+        <td>w_grad_clip</td>
+        <td>float</td>
+        <td>5.0</td>
+        <td>Max norm value for clipping gradient norm of training model weights.</td>
+      </tr>
+      <tr>
+        <td>alpha_lr</td>
+        <td>float</td>
+        <td>3e-4</td>
+        <td>Initial learning rate for alphas weights.</td>
+      </tr>
+      <tr>
+        <td>alpha_weight_decay</td>
+        <td>float</td>
+        <td>1e-3</td>
+        <td>Alphas weight decay.</td>
+      </tr>
+      <tr>
+        <td>batch_size</td>
+        <td>int</td>
+        <td>128</td>
+        <td>Batch size for dataset.</td>
+      </tr>
+      <tr>
+        <td>num_workers</td>
+        <td>int</td>
+        <td>4</td>
+        <td>Number of subprocesses to download dataset.</td>
+      </tr>
+      <tr>
+        <td>init_channels</td>
+        <td>int</td>
+        <td>16</td>
+        <td>Initial number of channels.</td>
+      </tr>
+      <tr>
+        <td>print_step</td>
+        <td>int</td>
+        <td>50</td>
+        <td>Number of training or validation steps before logging it.</td>
+      </tr>
+      <tr>
+        <td>num_nodes</td>
+        <td>int</td>
+        <td>4</td>
+        <td>Number of DARTS nodes.</td>
+      </tr>
+      <tr>
+        <td>stem_multiplier</td>
+        <td>int</td>
+        <td>3</td>
+        <td>Multiplier for initial channels. It is used in first stem cell.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+For more information, see:
+
+* Information in the Katib repository on [Differentiable Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/nas/darts).
+* As a DARTS example, see the YAML file for the
+[darts-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nas/darts-example-gpu.yaml).
 
 <a id="metrics-collector"></a>
 ### Metrics collector
