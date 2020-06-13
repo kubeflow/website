@@ -20,28 +20,48 @@ You can use KFServing to do the following:
 Our strong community contributions help KFServing to grow. We have a Technical Steering Committee driven by Google, IBM, Microsoft, Seldon, and Bloomberg. [Browse the KFServing GitHub repo](https://github.com/kubeflow/kfserving) to give us feedback!
 
 ## Install with Kubeflow
-KFServing works with Kubeflow 0.7. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
+KFServing works with Kubeflow 1.1. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
+See examples running KFServing on [Istio/Dex](https://github.com/kubeflow/kfserving/tree/master/docs/samples/istio-dex) and [GCP](https://github.com/kubeflow/kfserving/tree/master/docs/samples/gcp-iap)
 
 <img src="../kfserving.png" alt="KFServing">
 
 ## Examples
+
+### Deploy models with out-of-the-box model servers
 * [TensorFlow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow)
 * [PyTorch](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pytorch)
 * [XGBoost](https://github.com/kubeflow/kfserving/tree/master/docs/samples/xgboost)
-* [scikit-learn](https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn)
-* [ONNX](https://github.com/kubeflow/kfserving/tree/master/docs/samples/onnx)
+* [Scikit-Learn](https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn)
+* [ONNXRuntime](https://github.com/kubeflow/kfserving/tree/master/docs/samples/onnx)
+
+### Deploy models with custom model servers
 * [Custom](https://github.com/kubeflow/kfserving/tree/master/docs/samples/custom)
-* [Triton](https://github.com/kubeflow/kfserving/tree/master/docs/samples/triton)
+* [BentoML](https://github.com/kubeflow/kfserving/tree/master/docs/samples/bentoml)
+
+### Deploy models on GPU
 * [GPU](https://github.com/kubeflow/kfserving/tree/master/docs/samples/accelerators)
+* [Triton Inference Server](https://github.com/kubeflow/kfserving/tree/master/docs/samples/triton)
+
+### Autoscaling and Rollouts
 * [Autoscaling](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling)
-* [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
+* [Canary Rollout](https://github.com/kubeflow/kfserving/tree/master/docs/samples/rollouts)
+
+### Model explainability and outlier detection
 * [Explainability](https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi)
-* [Azure](https://github.com/kubeflow/kfserving/tree/master/docs/samples/azure)
+* [OutlierDetect](https://github.com/kubeflow/kfserving/tree/master/docs/samples/outlier-detection/alibi-detect/cifar10)
+
+### Integrations
+* [Transformer](https://github.com/kubeflow/kfserving/tree/master/docs/samples/transformer/image_transformer)
 * [Kafka](https://github.com/kubeflow/kfserving/tree/master/docs/samples/kafka)
+* [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
+* [Request logging](https://github.com/kubeflow/kfserving/tree/master/docs/samples/logger)
+
+### Model Storages
+* [Azure](https://github.com/kubeflow/kfserving/tree/master/docs/samples/azure)
 * [S3](https://github.com/kubeflow/kfserving/tree/master/docs/samples/s3)
 * [On-prem cluster](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pvc)
 
-## Sample notebooks
+### Sample notebooks
 * [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb)
 * [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
 * [ONNX](https://github.com/kubeflow/kfserving/blob/master/docs/samples/onnx/mosaic-onnx.ipynb)
@@ -52,23 +72,36 @@ We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfse
 * Join our [working group](https://groups.google.com/forum/#!forum/kfserving) for meeting invitations and discussion.
 * [Read the docs](https://github.com/kubeflow/kfserving/tree/master/docs).
 * [API docs](https://github.com/kubeflow/kfserving/tree/master/docs/apis/README.md).
+* [Debugging guide](https://github.com/kubeflow/kfserving/blob/master/docs/KFSERVING_DEBUG_GUIDE.md)
 * [Roadmap](https://github.com/kubeflow/kfserving/tree/master/ROADMAP.md).
 * [KFServing 101 slides](https://drive.google.com/file/d/16oqz6dhY5BR0u74pi9mDThU97Np__AFb/view).
 
-## Prerequisites
-Knative Serving (v0.8.0 +) and Istio (v1.1.7+) should be available on your Kubernetes cluster.
+## Standalone KFServing
+### Install Knative/Istio
+Knative Serving (v0.11.2 +) and Istio (v1.1.7+), Cert Manager(v0.12.0+) should be available on your Kubernetes cluster.
 
-Read more about [installing Knative on a Kubernetes cluster](https://github.com/kubeflow/kfserving/blob/master/docs/DEVELOPER_GUIDE.md#install-knative-on-a-kubernetes-cluster).
+* [installing Knative on a Kubernetes cluster](https://knative.dev/docs/install/).
+* [installing Istio for Knative](https://knative.dev/docs/install/installing-istio/).
+* [installing Cert Manager](https://cert-manager.io/docs/installation/kubernetes/)
+* [Configure secure HTTPS](https://knative.dev/docs/serving/using-a-tls-cert/)
+* [Setup custom domain](https://knative.dev/docs/serving/using-a-custom-domain/)
 
-## KFServing installation using kubectl
-The following commands install KFServing 0.2.2, using a yaml file in GitHub repo. See [here](https://github.com/kubeflow/kfserving/tree/master/install) for other available releases. Alternatively, you can clone the GitHub repo and run `kubectl` on top of it. 
+### KFServing installation using kubectl
+The following commands install KFServing 0.3.0, using a yaml file in GitHub repo. See [here](https://github.com/kubeflow/kfserving/tree/master/install) for other available releases. Alternatively, you can clone the GitHub repo and run `kubectl` on top of it. 
 ```
-TAG=0.2.2
+TAG=0.3.0
 CONFIG_URI=https://raw.githubusercontent.com/kubeflow/kfserving/master/install/$TAG/kfserving.yaml
 kubectl apply -f ${CONFIG_URI}
 ```
 
-## Use
+### Monitoring
+* [Install Metrics, Logging and Tracing](https://knative.dev/docs/serving/installing-logging-metrics-traces/)
+* [Accessing metrics](https://knative.dev/docs/serving/accessing-metrics/)
+* [Accessing logs](https://knative.dev/docs/serving/accessing-logs/)
+* [Accessing traces](https://knative.dev/docs/serving/accessing-traces/)
+* [Debugging performance issue](https://knative.dev/docs/serving/debugging-performance-issues/)
+
+## Use SDK
 1. Install the SDK.
     ```
     pip install kfserving
