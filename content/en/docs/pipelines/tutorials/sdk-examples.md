@@ -27,7 +27,7 @@ the Kubeflow Pipelines SDK and check the SDK version.
 
 Use the following examples to learn more about the Kubeflow Pipelines SDK.
 
-### Creating a pipeline and a pipeline version using the SDK
+### Example 1: Creating a pipeline and a pipeline version using the SDK
 
 The following example demonstrates how to use the Kubeflow Pipelines SDK to
 create a pipeline and a pipeline version.
@@ -83,6 +83,42 @@ find a pipeline's ID:
 alt="Pipeline ID in Summary Card"
 class="mt-3 mb-3 border border-info rounded">
 
-## Creating a run using a pipeline version
+### Example 2: Listing pipelines with a filter
+
+The following example demonstrates how to use the Kubeflow Pipelines SDK to
+list pipelines with a particular pipeline name. If list_pipelines method is
+called without any input parameters, it will list all the pipelines. However,
+you can specify a filter as an input parameter to list pipelines with a
+particular name. Given that Kubeflow Pipelines requires pipeline names to be
+unique, listing pipelines with a particular name returns at most one pipeline.
+
+```python
+import kfp
+import json
+
+# 'host' is your Kubeflow Pipelines API server's host address.
+host = <host>
+# 'pipeline_name' is the name of the pipeline you want to list.
+pipeline_name = <pipeline name>
+
+client = kfp.Client(host)
+# To filter on pipeline name, you can use a predicate indicating that the pipeline
+# name is equal to the given name.
+# A predicate includes 'key', 'op' and 'string_value' fields.
+# The 'key' specifies the property you want to apply the filter to. For example,
+# if you want to filter on the pipeline name, then 'key' is set to 'name' as
+# shown below.
+# The 'op' specifies the operator used in a predicate. The operator can be
+# EQUALS, NOT_EQUALS, GREATER_THAN, etc. The complete list is at [filter.proto](https://github.com/kubeflow/pipelines/blob/master/backend/api/filter.proto#L32)
+# When using the operator in a string-typed predicate, you need to use the
+# corresponding integer value of the enum. For Example, you can use the integer
+# value 1 to indicate EQUALS as shown below.
+# The 'string_value' specifies the value you want to filter with.
+filter = json.dumps({'predicates': [{'key': 'name', 'op': 1, 'string_value': '{}'.format(pipeline_name)}]})
+pipelines = client.pipelines.list_pipelines(filter=filter)
+# The pipeline with the given pipeline_name, if exists, is in pipelines.pipelines[0].
+```
+
+### Example 3: Creating a run using a pipeline version
 
 Examine the run_service_api.ipynb notebook to [learn more about creating a run using a pipeline version](https://github.com/kubeflow/pipelines/blob/master/tools/benchmarks/run_service_api.ipynb).
