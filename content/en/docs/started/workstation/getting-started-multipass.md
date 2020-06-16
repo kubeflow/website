@@ -24,19 +24,27 @@ Here's a summary of the steps involved:
 
 **Note:** the minimum version of Microk8s needed to enable Kubeflow is 1.18
 
-### 1. Install and set up Microk8s
+### 1. Install Microk8s
 
-Run the following commands to install and setup MicroK8s:
+Single-command install MicroK8s snap:
 
 ```
-snap install microk8s --classic
+sudo snap install microk8s --classic
+```
+Confirm install:
+```
 microk8s.status --wait-ready
-# Enable common services:
-microk8s.enable dns dashboard storage
-# If you have a GPU, run: `microk8s.enable gpu`
 ```
 
-### 2. Enable Kubeflow
+### 2. Enable Microk8s services:
+
+Enable common services:
+```
+microk8s.enable dns dashboard storage
+```
+If you would like to enable GPU passthrough (optional), run: `microk8s.enable gpu`
+
+### 3. Enable Kubeflow:
 
 Run the following command to enable Kubeflow:
 
@@ -44,17 +52,33 @@ Run the following command to enable Kubeflow:
 microk8s.enable kubeflow
 ```
 
-This script will print out the port number for Ambassador and for Jupyter notebook 
-servers.
+The deployment process may take a few minutes. Once completed, the script will print out the port number and credentials to access the Kubeflow Dashboard.
 
 
-## Access Kubeflow
+## Access Kubeflow Dashboard
 
-If you installed Microk8s on your local host, then you can use localhost as the IP address in your browser. Otherwise, if you used Multipass, you can get the IP address of the VM with either `multipass list` or `multipass info kubeflow`.
+### On you local host
+If you installed Microk8s on your local host, you simply need to open a web browser window and access the link given in the previous step. 
 
-Point browser to either:
-- http://" Your kubeflow VM IP":"Ambassador PORT"
-- http://localhost:" Ambassador PORT"
+### On Multipass or a Virtual Machine
+If running Microk8s on Multipass or a Virtual Machine, we need to create a SOCKS proxy. This can be done as follows:
+
+* Logout from the current session
+* Re-establish connection to the machine using ssh, enabling SOCKS proxy with the -D9999 parameter.
+Examples:
+
+```
+ssh -D9999 ubuntu@<machine_public_ip>
+```
+or find multipass IP with `multipass list` and connect with:
+```
+ssh -D9999 multipass@<machine_public_ip>
+```
+
+On your computer, go to `Settings > Network > Network Proxy`, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
+
+On a new browser window, access the link given in the previous step (e.g. http://10.64.140.43.xip.io )
+
 
 ## Next steps
 
