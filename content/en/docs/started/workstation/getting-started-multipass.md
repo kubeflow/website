@@ -26,33 +26,40 @@ Here's a summary of the steps involved:
 
 ### 1. Install Microk8s
 
-Single-command install MicroK8s snap:
+- Install MicroK8s with Snap by running the following command:
 
 ```
 sudo snap install microk8s --classic
 ```
-Verify installation:
+
+- Verify that MicroK8s is running with the command:
+
 ```
 microk8s.status --wait-ready
 ```
 
 ### 2. Enable Microk8s services:
 
-Enable common services:
+- Enable common services on your Microk8s deployment:
+
 ```
 microk8s.enable dns dashboard storage
 ```
-If you would like to enable GPU passthrough (optional), run: `microk8s.enable gpu`
+
+- Enable GPU passthrough (optional, if you have a GPU), by running the command:
+```
+microk8s.enable gpu
+```
 
 ### 3. Enable Kubeflow:
 
-Run the following command to enable Kubeflow:
+- Deploy Kubeflow with the command:
 
 ```
 microk8s.enable kubeflow
 ```
 
-The deployment process may take a few minutes. Once completed, the script will print out the port number and credentials to access the Kubeflow Dashboard.
+- The deployment process may take a few minutes. Once completed, the script will print out the port number and credentials to access the Kubeflow Dashboard.
 
 
 ## Access Kubeflow Dashboard
