@@ -31,7 +31,7 @@ Single-command install MicroK8s snap:
 ```
 sudo snap install microk8s --classic
 ```
-Confirm install:
+Verify installation:
 ```
 microk8s.status --wait-ready
 ```
