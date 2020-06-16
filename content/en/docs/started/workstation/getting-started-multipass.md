@@ -64,10 +64,10 @@ microk8s.enable kubeflow
 ## Access Kubeflow dashboard
 
 ### On your Linux machine
-If you installed Microk8s directly on your Linux machine, (1) open a web browser window and (2) access the link provided after you enable Kubeflow (see previous step).
+If you installed Microk8s directly on your Linux machine, (1) open a web browser window and (2) access the link provided after you enable Kubeflow, e.g. `10.64.140.43.xip.io` (see previous step).
 
-### On multipass or a virtual machine
-If you are running Microk8s on Multipass or a Virtual Machine, we need to create a SOCKS proxy. This can be done as follows:
+### On Multipass or a virtual machine
+When running Microk8s on Multipass or a virtual machine, create a SOCKS proxy to access the Kubeflow dashboard, as follows:
 
 * Logout from the current session
 * Re-establish connection to the machine using `SSH`, enabling SOCKS proxy with the `-D9999` parameter. Examples:
@@ -75,14 +75,16 @@ If you are running Microk8s on Multipass or a Virtual Machine, we need to create
 ```
 ssh -D9999 ubuntu@<machine_public_ip>
 ```
+
 or find multipass IP with `multipass list` and connect with:
+
 ```
 ssh -D9999 multipass@<machine_public_ip>
 ```
 
 * On your computer, go to `Settings > Network > Network Proxy`, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
 
-* In a new browser window, access the link given in the previous step (e.g. `http://10.64.140.43.xip.io`).
+* Finally, (1) open a new web browser window and (2) access the link provided after you enable Kubeflow, e.g. `10.64.140.43.xip.io` (see previous step).
 
 
 ## Next steps
