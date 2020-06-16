@@ -38,7 +38,7 @@ sudo snap install microk8s --classic
 microk8s.status --wait-ready
 ```
 
-### 2. Enable Microk8s services:
+### 2. Enable Microk8s services
 
 - Enable common services on your Microk8s deployment:
 
@@ -51,7 +51,7 @@ microk8s.enable dns dashboard storage
 microk8s.enable gpu
 ```
 
-### 3. Enable Kubeflow:
+### 3. Enable Kubeflow
 
 - Deploy Kubeflow with the command:
 
