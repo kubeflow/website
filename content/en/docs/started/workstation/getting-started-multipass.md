@@ -46,10 +46,7 @@ microk8s.status --wait-ready
 microk8s.enable dns dashboard storage
 ```
 
-- Enable GPU passthrough (optional, if you have a GPU), by running the command:
-```
-microk8s.enable gpu
-```
+- Optional: to enable GPU support (available only for NVIDIA GPU hardware), run: `microk8s.enable gpu`
 
 ### 3. Enable Kubeflow
 
