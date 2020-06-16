@@ -56,14 +56,14 @@ microk8s.enable dns dashboard storage
 microk8s.enable kubeflow
 ```
 
-- The deployment process may take a few minutes. Once completed, the script will print out the port number and credentials to access the Kubeflow Dashboard.
+- The deployment process may take a few minutes. Once completed, the script will print out the port number and credentials to access the Kubeflow dashboard.
 
-## Access Kubeflow Dashboard
+## Access Kubeflow dashboard
 
 ### On you local host
 If you installed Microk8s on your local host, you simply need to open a web browser window and access the link given in the previous step. 
 
-### On Multipass or a Virtual Machine
+### On multipass or a virtual machine
 If running Microk8s on Multipass or a Virtual Machine, we need to create a SOCKS proxy. This can be done as follows:
 
 * Logout from the current session
