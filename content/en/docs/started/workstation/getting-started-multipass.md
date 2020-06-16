@@ -24,7 +24,7 @@ Here's a summary of the steps involved:
 1. Set up Microk8s
 2. Enable Kubeflow
 
-**Note:** the minimum version of Microk8s needed to enable Kubeflow is 1.18
+**Note:** the minimum version of Microk8s needed to enable Kubeflow is 1.18.
 
 ### 1. Install Microk8s
 
@@ -69,7 +69,7 @@ If you installed Microk8s directly on your Linux machine, (1) open a web browser
 ### On Multipass or a virtual machine
 When running Microk8s on Multipass or a virtual machine, create a SOCKS proxy to access the Kubeflow dashboard, as follows:
 
-* Logout from the current session
+* Logout from the current session using the `exit` command.
 * Re-establish connection to the machine using `SSH`, enabling SOCKS proxy with the `-D9999` parameter. Examples:
 
 ```
