@@ -58,7 +58,6 @@ microk8s.enable kubeflow
 
 - The deployment process may take a few minutes. Once completed, the script will print out the port number and credentials to access the Kubeflow Dashboard.
 
-
 ## Access Kubeflow Dashboard
 
 ### On you local host
@@ -68,8 +67,7 @@ If you installed Microk8s on your local host, you simply need to open a web brow
 If running Microk8s on Multipass or a Virtual Machine, we need to create a SOCKS proxy. This can be done as follows:
 
 * Logout from the current session
-* Re-establish connection to the machine using ssh, enabling SOCKS proxy with the -D9999 parameter.
-Examples:
+* Re-establish connection to the machine using `SSH`, enabling SOCKS proxy with the `-D9999` parameter. Examples:
 
 ```
 ssh -D9999 ubuntu@<machine_public_ip>
@@ -79,10 +77,9 @@ or find multipass IP with `multipass list` and connect with:
 ssh -D9999 multipass@<machine_public_ip>
 ```
 
-On your computer, go to `Settings > Network > Network Proxy`, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
+* On your computer, go to `Settings > Network > Network Proxy`, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
 
-On a new browser window, access the link given in the previous step (e.g. http://10.64.140.43.xip.io )
-
+* In a new browser window, access the link given in the previous step (e.g. `http://10.64.140.43.xip.io`).
 
 ## Next steps
 
