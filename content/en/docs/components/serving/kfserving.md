@@ -54,7 +54,7 @@ See examples running KFServing on [Istio/Dex](https://github.com/kubeflow/kfserv
 * [Transformer](https://github.com/kubeflow/kfserving/tree/master/docs/samples/transformer/image_transformer)
 * [Kafka](https://github.com/kubeflow/kfserving/tree/master/docs/samples/kafka)
 * [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
-* [Request logging](https://github.com/kubeflow/kfserving/tree/master/docs/samples/logger)
+* [Request/Response logging](https://github.com/kubeflow/kfserving/tree/master/docs/samples/logger)
 
 ### Model Storages
 * [Azure](https://github.com/kubeflow/kfserving/tree/master/docs/samples/azure)
