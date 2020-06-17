@@ -40,7 +40,7 @@ See examples running KFServing on [Istio/Dex](https://github.com/kubeflow/kfserv
 
 ### Deploy models on GPU
 * [GPU](https://github.com/kubeflow/kfserving/tree/master/docs/samples/accelerators)
-* [Triton Inference Server](https://github.com/kubeflow/kfserving/tree/master/docs/samples/triton)
+* [Nvidia Triton Inference Server](https://github.com/kubeflow/kfserving/tree/master/docs/samples/triton)
 
 ### Autoscaling and Rollouts
 * [Autoscaling](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling)
