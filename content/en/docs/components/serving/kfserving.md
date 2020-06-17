@@ -48,7 +48,7 @@ See examples running KFServing on [Istio/Dex](https://github.com/kubeflow/kfserv
 
 ### Model explainability and outlier detection
 * [Explainability](https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi)
-* [OutlierDetect](https://github.com/kubeflow/kfserving/tree/master/docs/samples/outlier-detection/alibi-detect/cifar10)
+* [OutlierDetection](https://github.com/kubeflow/kfserving/tree/master/docs/samples/outlier-detection/alibi-detect/cifar10)
 
 ### Integrations
 * [Transformer](https://github.com/kubeflow/kfserving/tree/master/docs/samples/transformer/image_transformer)
