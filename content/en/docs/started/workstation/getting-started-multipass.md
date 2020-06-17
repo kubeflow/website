@@ -22,39 +22,66 @@ Here's a summary of the steps involved:
 1. Set up Microk8s
 2. Enable Kubeflow
 
-**Note:** the minimum version of Microk8s needed to enable Kubeflow is 1.18
+**Note:** the minimum version of Microk8s needed to enable Kubeflow is 1.18.
 
-### 1. Install and set up Microk8s
+### 1. Install Microk8s
 
-Run the following commands to install and setup MicroK8s:
+- Install MicroK8s with Snap by running the following command:
 
-```
-snap install microk8s --classic
-microk8s.status --wait-ready
-# Enable common services:
-microk8s.enable dns dashboard storage
-# If you have a GPU, run: `microk8s.enable gpu`
-```
+    ```
+    sudo snap install microk8s --classic
+    ```
 
-### 2. Enable Kubeflow
+- Verify that MicroK8s is running with the command:
 
-Run the following command to enable Kubeflow:
+    ```
+    microk8s.status --wait-ready
+    ```
 
-```
-microk8s.enable kubeflow
-```
+### 2. Enable Microk8s services
 
-This script will print out the port number for Ambassador and for Jupyter notebook 
-servers.
+- Enable common services on your Microk8s deployment:
 
+    ```
+    microk8s.enable dns dashboard storage
+    ```
 
-## Access Kubeflow
+- Optional: to enable GPU support (available only for NVIDIA GPU hardware), run: `microk8s.enable gpu`
 
-If you installed Microk8s on your local host, then you can use localhost as the IP address in your browser. Otherwise, if you used Multipass, you can get the IP address of the VM with either `multipass list` or `multipass info kubeflow`.
+### 3. Enable Kubeflow
 
-Point browser to either:
-- http://" Your kubeflow VM IP":"Ambassador PORT"
-- http://localhost:" Ambassador PORT"
+- Deploy Kubeflow with the command:
+
+    ```
+    microk8s.enable kubeflow
+    ```
+
+- The deployment process may take a few minutes. Once completed, the script will print out the port number and credentials to access the Kubeflow dashboard.
+
+## Access Kubeflow dashboard
+
+### On your Linux machine
+If you installed Microk8s directly on your Linux machine, (1) open a web browser window and (2) access the link provided after you enable Kubeflow, e.g. `10.64.140.43.xip.io` (see previous step).
+
+### On Multipass or a virtual machine
+When running Microk8s on Multipass or a virtual machine, create a SOCKS proxy to access the Kubeflow dashboard, as follows:
+
+* Logout from the current session using the `exit` command.
+* Re-establish connection to the machine using `SSH`, enabling SOCKS proxy with the `-D9999` parameter. Examples:
+
+    ```
+    ssh -D9999 ubuntu@<machine_public_ip>
+    ```
+
+    or find multipass IP with `multipass list` and connect with:
+
+    ```
+    ssh -D9999 multipass@<multipass_public_ip>
+    ```
+
+* On your computer, go to `Settings > Network > Network Proxy`, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
+
+* Finally, (1) open a new web browser window and (2) access the link provided after you enable Kubeflow, e.g. `10.64.140.43.xip.io` (see previous step).
 
 ## Next steps
 
