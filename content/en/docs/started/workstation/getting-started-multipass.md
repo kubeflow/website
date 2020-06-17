@@ -73,10 +73,10 @@ When running Microk8s on Multipass or a virtual machine, create a SOCKS proxy to
     ssh -D9999 ubuntu@<machine_public_ip>
     ```
 
-or find multipass IP with `multipass list` and connect with:
+    or find multipass IP with `multipass list` and connect with:
 
     ```
-    ssh -D9999 multipass@<machine_public_ip>
+    ssh -D9999 multipass@<multipass_public_ip>
     ```
 
 * On your computer, go to `Settings > Network > Network Proxy`, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
