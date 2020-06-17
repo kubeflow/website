@@ -28,23 +28,23 @@ Here's a summary of the steps involved:
 
 - Install MicroK8s with Snap by running the following command:
 
-```
-sudo snap install microk8s --classic
-```
+    ```
+    sudo snap install microk8s --classic
+    ```
 
 - Verify that MicroK8s is running with the command:
 
-```
-microk8s.status --wait-ready
-```
+    ```
+    microk8s.status --wait-ready
+    ```
 
 ### 2. Enable Microk8s services
 
 - Enable common services on your Microk8s deployment:
 
-```
-microk8s.enable dns dashboard storage
-```
+    ```
+    microk8s.enable dns dashboard storage
+    ```
 
 - Optional: to enable GPU support (available only for NVIDIA GPU hardware), run: `microk8s.enable gpu`
 
@@ -52,9 +52,9 @@ microk8s.enable dns dashboard storage
 
 - Deploy Kubeflow with the command:
 
-```
-microk8s.enable kubeflow
-```
+    ```
+    microk8s.enable kubeflow
+    ```
 
 - The deployment process may take a few minutes. Once completed, the script will print out the port number and credentials to access the Kubeflow dashboard.
 
@@ -69,15 +69,15 @@ When running Microk8s on Multipass or a virtual machine, create a SOCKS proxy to
 * Logout from the current session using the `exit` command.
 * Re-establish connection to the machine using `SSH`, enabling SOCKS proxy with the `-D9999` parameter. Examples:
 
-```
-ssh -D9999 ubuntu@<machine_public_ip>
-```
+    ```
+    ssh -D9999 ubuntu@<machine_public_ip>
+    ```
 
 or find multipass IP with `multipass list` and connect with:
 
-```
-ssh -D9999 multipass@<machine_public_ip>
-```
+    ```
+    ssh -D9999 multipass@<machine_public_ip>
+    ```
 
 * On your computer, go to `Settings > Network > Network Proxy`, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
 
