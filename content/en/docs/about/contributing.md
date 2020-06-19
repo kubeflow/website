@@ -258,6 +258,7 @@ is the state of today.
     their [PR dashboard](https://k8s-gubernator.appspot.com/pr)
   - An **author** can work around this by manually reading the relevant OWNERS files,
     `/unassign`'ing unresponsive individuals, and `/assign`'ing others
+  - It is ultimately the PR creator's responsibility to see that the PR gets assigned to appropriate           **reviewers** and ping **reviewers** as needed
   - This is a sign that our OWNERS files are stale; pruning the **reviewers** and **approvers** lists
     would help with this
 - **Authors** are unresponsive
