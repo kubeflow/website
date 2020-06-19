@@ -40,7 +40,7 @@ See examples running KFServing on [Istio/Dex](https://github.com/kubeflow/kfserv
 
 ### Deploy models on GPU
 * [GPU](https://github.com/kubeflow/kfserving/tree/master/docs/samples/accelerators)
-* [Triton Inference Server](https://github.com/kubeflow/kfserving/tree/master/docs/samples/triton)
+* [Nvidia Triton Inference Server](https://github.com/kubeflow/kfserving/tree/master/docs/samples/triton)
 
 ### Autoscaling and Rollouts
 * [Autoscaling](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling)
@@ -48,13 +48,13 @@ See examples running KFServing on [Istio/Dex](https://github.com/kubeflow/kfserv
 
 ### Model explainability and outlier detection
 * [Explainability](https://github.com/kubeflow/kfserving/tree/master/docs/samples/explanation/alibi)
-* [OutlierDetect](https://github.com/kubeflow/kfserving/tree/master/docs/samples/outlier-detection/alibi-detect/cifar10)
+* [OutlierDetection](https://github.com/kubeflow/kfserving/tree/master/docs/samples/outlier-detection/alibi-detect/cifar10)
 
 ### Integrations
 * [Transformer](https://github.com/kubeflow/kfserving/tree/master/docs/samples/transformer/image_transformer)
 * [Kafka](https://github.com/kubeflow/kfserving/tree/master/docs/samples/kafka)
 * [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
-* [Request logging](https://github.com/kubeflow/kfserving/tree/master/docs/samples/logger)
+* [Request/Response logging](https://github.com/kubeflow/kfserving/tree/master/docs/samples/logger)
 
 ### Model Storages
 * [Azure](https://github.com/kubeflow/kfserving/tree/master/docs/samples/azure)
