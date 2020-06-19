@@ -75,24 +75,17 @@ We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfse
 * [Debugging guide](https://github.com/kubeflow/kfserving/blob/master/docs/KFSERVING_DEBUG_GUIDE.md)
 * [Roadmap](https://github.com/kubeflow/kfserving/tree/master/ROADMAP.md).
 * [KFServing 101 slides](https://drive.google.com/file/d/16oqz6dhY5BR0u74pi9mDThU97Np__AFb/view).
+* [Kubecon Introducing KFServing](https://kccncna19.sched.com/event/UaZo/introducing-kfserving-serverless-model-serving-on-kubernetes-ellis-bigelow-google-dan-sun-bloomberg)
+* [Kubecon Advanced KFServing](https://kccncna19.sched.com/event/UaVw/advanced-model-inferencing-leveraging-knative-istio-and-kubeflow-serving-animesh-singh-ibm-clive-cox-seldon)
+* [Nvidia GTC Accelerate and Autoscale Deep Learning Inference on GPUs](https://developer.nvidia.com/gtc/2020/video/s22459-vid)
 
 ## Standalone KFServing
 ### Install Knative/Istio
 Knative Serving (v0.11.2 +) and Istio (v1.1.7+), Cert Manager(v0.12.0+) should be available on your Kubernetes cluster.
+Please see more details for installing the prerequisites [here](https://github.com/kubeflow/kfserving#prerequisites)
 
-* [installing Knative on a Kubernetes cluster](https://knative.dev/docs/install/).
-* [installing Istio for Knative](https://knative.dev/docs/install/installing-istio/).
-* [installing Cert Manager](https://cert-manager.io/docs/installation/kubernetes/)
-* [Configure secure HTTPS](https://knative.dev/docs/serving/using-a-tls-cert/)
-* [Setup custom domain](https://knative.dev/docs/serving/using-a-custom-domain/)
-
-### KFServing installation using kubectl
-The following commands install KFServing 0.3.0, using a yaml file in GitHub repo. See [here](https://github.com/kubeflow/kfserving/tree/master/install) for other available releases. Alternatively, you can clone the GitHub repo and run `kubectl` on top of it. 
-```
-TAG=0.3.0
-CONFIG_URI=https://raw.githubusercontent.com/kubeflow/kfserving/master/install/$TAG/kfserving.yaml
-kubectl apply -f ${CONFIG_URI}
-```
+### KFServing installation
+Once you meet the above prerequsites KFServing can be [installed standalone](https://github.com/kubeflow/kfserving#standalone-kfserving-installation). See [here](https://github.com/kubeflow/kfserving/tree/master/install) for other available releases.
 
 ### Monitoring
 * [Install Metrics, Logging and Tracing](https://knative.dev/docs/serving/installing-logging-metrics-traces/)
