@@ -47,8 +47,7 @@ Feast provides the following functionality:
 
 ## Next steps
 
-Follow the [Getting Started with Feast](/docs/components/feature-store/getting-started/) guide to set up
-Feast and run walk through our tutorials.
+Follow the [Getting Started with Feast](/docs/components/feature-store/getting-started/) guide to set up Feast and run walk through our tutorials.
 
 ## Resources
 
