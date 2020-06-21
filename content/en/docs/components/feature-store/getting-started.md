@@ -8,14 +8,12 @@ This guide provides the necessary resources to install [Feast](http://feast.dev/
 
 For an overview of Feast, please read [Introduction to Feast](/docs/components/feature-store/overview/).
 
-## Install Kubeflow
+## Installing Feast with Kubeflow
 
 This guide assumes that you have a running Kubeflow cluster already. If you don't have Kubeflow installed, then head on over to the 
 [Kubeflow installation guide](/docs/started/getting-started/).
 
-## Installing Feast with Kubeflow
-
-Feast can be installed into a running Kubeflow deployment. The process of installing Feast into Kubernetes is documented in the [Deploying Feast into Kubernetes](https://docs.feast.dev/getting-started/deploying-feast/kubernetes) guide.
+Feast can be installed into a running Kubeflow deployment. The process of installing Feast into Kubernetes is documented in the [Deploying Feast into Kubernetes](https://docs.feast.dev/getting-started/deploying-feast/kubernetes) guide. Please follow this guide to install Feast into the same Kubernetes cluster as Kubeflow.
 
 ## Accessing Feast from Kubeflow
 
