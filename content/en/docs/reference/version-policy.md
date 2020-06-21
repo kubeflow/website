@@ -97,10 +97,17 @@ documentation for that application.
         </td>
         <td>Stable</td>
         <td>1.0.0</td>
-      </tr>
+      </tr>      
       <tr>
         <td><a href="/docs/components/training/chainer/">Chainer operator</a>
         (<a href="https://github.com/kubeflow/chainer-operator">GitHub</a>)
+        </td>
+        <td>Alpha</td>
+        <td></td>
+      </tr>      
+      <tr>
+        <td><a href="/docs/components/feature-store/overview">Feature store: Feast</a>
+        (<a href="https://github.com/feast-dev/feast">GitHub</a>)
         </td>
         <td>Alpha</td>
         <td></td>
