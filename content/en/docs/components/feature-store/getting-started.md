@@ -4,7 +4,7 @@ description = "How to set up Feast and walk through examples"
 weight = 20
 +++
 
-This page gets you started with Feast. This guide provides the necessary resources to install Feast alongside Kubeflow, describes its usage with Kubeflow components, and provides examples that users can follow to test their setup.
+This guide provides the necessary resources to install [Feast](http://feast.dev/) alongside Kubeflow, describes the usage of Feast with Kubeflow components, and provides examples that users can follow to test their setup.
 
 For an overview of Feast, please read [Introduction to Feast](/docs/components/feature-store/overview/).
 
