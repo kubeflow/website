@@ -51,6 +51,7 @@ Please follow the [Getting Started with Feast](/docs/components/feature-store/ge
 
 ## Resources
 
+* [Feast: Documentation](http://docs.feast.dev/)
 * [Feast: Source Code](https://github.com/feast-dev/feast)
 * [Google Cloud - Introducing Feast: An open source feature store for machine learning](https://cloud.google.com/blog/products/ai-machine-learning/introducing-feast-an-open-source-feature-store-for-machine-learning)
 * [Medium - Feast: Bridging ML Models and Data](https://blog.gojekengineering.com/feast-bridging-ml-models-and-data-efd06b7d1644)
