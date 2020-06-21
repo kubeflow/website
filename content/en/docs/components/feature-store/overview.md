@@ -17,7 +17,7 @@ Feature stores are systems that help to address some of the key challenges that 
 
 * __Feature sharing and reuse__: Engineering features is one of the most time consuming activities in building an end-to-end ML system, yet many teams continue to develop features in silos. This leads to a high amount of redevelopment and duplication of work across teams and projects.
 
-* __Serving features at scale__: Models need data that can come from a variety of sources, including event streams, data lakes, warehouses, or notebooks. ML teams need to be able to store and serve all these data sources to their models in a performant, and reliable way. The challenge is scalably producing massive datasets of features for model training and providing access to real-time feature data at low latency and high throughput in serving.
+* __Serving features at scale__: Models need data that can come from a variety of sources, including event streams, data lakes, warehouses, or notebooks. ML teams need to be able to store and serve all these data sources to their models in a performant and reliable way. The challenge is scalably producing massive datasets of features for model training and providing access to real-time feature data at low latency and high throughput in serving.
 
 * __Consistency between training and serving__: The separation between data scientists and engineering teams often lead to the redevelopment of feature transformations when moving from training to online serving. Inconsistencies that arise due to discrepancies between training and serving systems often leads to a drop in model performance in production.
 
@@ -35,7 +35,7 @@ Feast provides the following functionality:
 
 * __Standardized definitions__: Feast becomes the single source of truth for all feature data for all models within an organization. Teams are able to capture documentation, metadata, and metrics about features. This allows teams to communicate clearly about features, test features data, and determine if a feature is both safe and important to their use case. 
 
-* __Historical serving__: Features that are persisted in Feast can be retrieved through its feature serving APIs to produce training datasets. These datasets are build from any amount of sources in a point-in-time correct way, thus ensuring the quality and consistency of data reaching models.
+* __Historical serving__: Features that are persisted in Feast can be retrieved through its feature serving APIs to produce training datasets. These datasets are built from any amount of sources in a point-in-time correct way, thus ensuring the quality and consistency of data reaching models.
 
 * __Online serving__: Feast also exposes low latency serving APIs for all data that has been ingested into the system. This allows all production ML systems to use Feast as the source of data when doing inference at scale.
 
