@@ -48,7 +48,7 @@ and run a local server to host your website. This section shows you how.
 ### Install Hugo and other dependencies
 
 You need Hugo version 0.60 or later, and it must be the **extended** version of 
-Hugo. Hugo version 0.60 and later support thenGoldmark renderer for Markdown. 
+Hugo. Hugo version 0.60 and later support the Goldmark renderer for Markdown.
 Goldmark offers improved rendering of some text formatting such as lists. 
 
 **Note:** From April 2020 onwards, Kubeflow recommends that you use 
@@ -136,13 +136,13 @@ file](https://github.com/kubeflow/website/blob/master/config.toml).
 
 The left-hand navigation panel is defined by the directory structure under 
 the 
-[`docs` directory](https://github.com/kubeflow/website/tree/master/content/docs). 
+[`docs` directory](https://github.com/kubeflow/website/tree/master/content/en/docs).
 
 A `weight` property in the _front matter_ of each page determines the position 
 of the page relative to the others in the same directory. The lower the weight,
 the earlier the page appears in the section. A weight of 1 appears before a
 a weight of 2, and so on. For example, see the front matter of the
-[Getting Started with Kubeflow](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/started/getting-started.md)
+[Getting Started with Kubeflow](https://raw.githubusercontent.com/kubeflow/website/master/content/en/docs/started/getting-started.md)
 page. The page front matter looks like this:
 
 ```
@@ -196,7 +196,7 @@ Styling of images:
 * To see some examples of styled images, take a look at the
   [OAuth setup page](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) 
   in the Kubeflow docs. Search for `.png` in the
-  [page source](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/gke/deploy/oauth-setup.md).
+  [page source](https://raw.githubusercontent.com/kubeflow/website/master/content/en/docs/gke/deploy/oauth-setup.md).
 * For more help, see the guide to
   [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/).
 * Also see the Bootstrap utilities, such as 
@@ -204,7 +204,7 @@ Styling of images:
 
 The site's [front page](https://www.kubeflow.org/):
 
-* See the [page source](https://github.com/kubeflow/website/blob/master/content/_index.html).
+* See the [page source](https://github.com/kubeflow/website/blob/master/content/en/_index.html).
 * The CSS styles are in the 
   [project variables file](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
 * The page uses the 
