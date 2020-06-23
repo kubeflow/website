@@ -4,6 +4,29 @@ description = "Customize Kubeflow Pipelines to use AWS Services"
 weight = 90
 +++
 
+## Multi-user Kubeflow Pipelines
+For multi-user kubeflow pipelines, we provide a work-around when user want to connect to pipeline from kubeflow notebook:
+
+First, fetch public endpoint from command `kubectl get ingress -n istio-system` with prefix `https://`, then replace it with below `publicEndpoint`:
+```
+kfp.Client(host=publicEndpoint)
+```
+
+An example we provide:
+
+```
+$ kubectl get ingress -n istio-system
+
+NAME            HOSTS   ADDRESS                                                                 PORTS   AGE
+istio-ingress   *       XXXXXXX-istiosystem-istio-2af2-359769209.us-west-2.elb.amazonaws.com   80      3h24m
+```
+
+Then using the public endpoint with `http` prefix:
+
+```
+kfp.Client(host=http://XXXXXXX-istiosystem-istio-2af2-359769209.us-west-2.elb.amazonaws.com)
+```
+
 ## S3 Access from Kubeflow Pipelines
 
 Currently, it's still recommended to use aws credentials or [kube2iam](https://github.com/jtblin/kube2iam) to managed S3 access from Kubeflow Pipelines. [IAM Role for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) requires applications to use latest AWS SDK to support `assume-web-identity-role`, we are still working on it. Track progress in issue [#3405](https://github.com/kubeflow/pipelines/issues/3405)
