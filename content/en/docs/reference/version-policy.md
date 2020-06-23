@@ -249,7 +249,7 @@ one of the following Kubeflow SDKs and command-line interfaces
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td>0.2.0</td>
+        <td>{{% pipelines/latest-version %}}</td>
       </tr>
     </tbody>
   </table>
