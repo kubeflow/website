@@ -16,6 +16,8 @@ TFJob is a Kubernetes
 implementation of TFJob is in
 [`tf-operator`](https://github.com/kubeflow/tf-operator).
 
+**Note**: TFJob doesn't work in a user namespace by default because of Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection). In order to get TFJob running, it needs annotation `sidecar.istio.io/inject: "false"` to disable it for TFJob pods.
+
 A TFJob is a resource with a YAML representation like the one below (edit to use the container image and command for your own training code):
 
 ```yaml
@@ -30,6 +32,9 @@ spec:
       replicas: 1
       restartPolicy: OnFailure
       template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
         spec:
           containers:
           - name: tensorflow
@@ -44,6 +49,9 @@ spec:
       replicas: 3
       restartPolicy: OnFailure
       template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
         spec:
           containers:
           - name: tensorflow
@@ -70,6 +78,9 @@ spec:
       replicas: 1
       restartPolicy: OnFailure
       template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
         spec:
           containers:
           - name: tensorflow
@@ -95,6 +106,9 @@ spec:
       replicas: 1
       restartPolicy: OnFailure
       template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
         spec:
           containers:
           - name: tensorflow
