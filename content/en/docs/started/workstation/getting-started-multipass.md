@@ -7,20 +7,14 @@ weight = 60
 {{% alpha-status 
   feedbacklink="https://github.com/kubeflow/kubeflow/issues" %}}
 
-This document outlines the steps that you can take to get your local installation of Kubeflow running on top of Microk8s, a small enterprise Kubernetes cluster. Microk8s requires Linux; if you are not on a Linux system, you can use Multipass to create a Linux VM (virtual machine) on your native hypervisor.
 
 ## Introduction
 
-If you already have Ubuntu or Linux that supports [snaps](https://snapcraft.io/), you can easily install Kubernetes using [Microk8s](https://microk8s.io/). You can jump to the **Install Kubeflow using Microk8s** section below.
+This document outlines the steps that you can take to get your local installation of Kubeflow running on top of [Microk8s](https://microk8s.io/), a small enterprise Kubernetes cluster. Microk8s is now available on Windows, MacOs and any Linux distribution that supports `snaps`. You can download it on the [Microk8s](https://microk8s.io/) website. 
 
-If you don't have a Linux system already, or you would like to confine your Kubeflow to a disposable machine, then [Create a VM with Multipass](https://multipass.run/) first and then follow the instructions below. That will get you an Ubuntu machine that can be used to install Kubernetes and Kubeflow.
+Alternatively, you can install Microk8s on a Linux appliance using [Multipass](https://multipass.run/), if you would like to confine your Kubeflow to a disposable Linux virtual machine on your Windows or MacOS host.
 
 ## Install Kubeflow using Microk8s
-
-Here's a summary of the steps involved:
-
-1. Set up Microk8s
-2. Enable Kubeflow
 
 **Note:** the minimum version of Microk8s needed to enable Kubeflow is 1.18.
 
