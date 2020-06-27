@@ -1,6 +1,6 @@
 +++
-title = "Deploy using CLI"
-description = "Instructions for using the CLI to deploy Kubeflow on Google Cloud Platform (GCP)"
+title = "Deploy using kubectl and kpt"
+description = "Instructions for using kubectl and kpt to deploy Kubeflow on Google Cloud Platform (GCP)"
 weight = 4
 +++
 
@@ -35,7 +35,7 @@ one if you haven't already.
 
 ### Install the required tools
 
-1. Install[gcloud](https://cloud.google.com/sdk/).
+1. Install [gcloud](https://cloud.google.com/sdk/).
 
 1. Install gcloud components
 
@@ -121,6 +121,8 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 
 * Location can be a zone or a region depending on whether you want a regional cluster
   
+  * Kubeflow pipelines currently doesn't work with regional deployments see [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6)
+
 * The **Makefile** contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
   of the parameters
 
@@ -159,7 +161,9 @@ To deploy kubeflow just run
    ```
 
    * If resources can't be created because `webhook.cert-manager.io` is unavailable wait and
-     then rerun `make apply`; certmanager can take some time to get up and running.
+     then rerun `make apply`
+
+     * This issue is being tracked in [kubeflow/manifests#1234](https://github.com/kubeflow/manifests/issues/1234)
     
 
 ## Check your deployment
