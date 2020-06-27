@@ -14,10 +14,10 @@ Before installing Kubeflow on the command line:
 
 1. You must have created a management cluster and installed Config Connector. 
 
-   * If you don't have a management cluster follow the [instructions](management-setup.md)
+   * If you don't have a management cluster follow the [instructions](../management-setup/)
 
    * Your management cluster must have a namespace setup to administer the GCP project where
-Kubeflow will be deployed. Follow the [instructions](management-setup.md) to create
+Kubeflow will be deployed. Follow the [instructions](../management-setup/) to create
 one if you haven't already.
 
 1. If you're using
@@ -141,8 +141,8 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 *  Set environment variables with OAuth Client ID and Secret for IAP
 
    ```
-   export CLIENT_ID=
-   export CLIENT_SECRET=
+   export CLIENT_ID=<Your CLIENT_ID>
+   export CLIENT_SECRET=<Your CLIENT_SECRET>
    ```
 
 * Invoke the make rule to set the kpt setters
