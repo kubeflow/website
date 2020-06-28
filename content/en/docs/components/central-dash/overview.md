@@ -66,7 +66,7 @@ guide to
 If you didn't configure Kubeflow to integrate with an identity provider 
 then you can port-forward directly to the Istio gateway.
 
-Port-forwarding typically does not work if any of the following are true:
+Port-forwarding typically does not work if any of the following is true:
 
   * You've deployed Kubeflow on GCP using the 
     [GCP deployment UI](/docs/gke/deploy/deploy-ui/) or the default settings 
