@@ -88,9 +88,7 @@ arguments.
 
 1. Enable custom visualizations within Kubeflow Pipelines.
     * If you have not yet deployed Kubeflow Pipelines to your cluster,
-    you can edit the [frontend deployment YAML](https://github.com/kubeflow/
-    pipelines/blob/master/manifests/kustomize/base/pipeline/
-    ml-pipeline-ui-deployment.yaml)
+    you can edit the [frontend deployment YAML](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/base/pipeline/ml-pipeline-ui-deployment.yaml)
     file to include the following YAML that specifies that custom visualizations
     are allowed via environment variables.
 
@@ -103,8 +101,7 @@ arguments.
     edit the frontend deployment YAML to specify that custom visualizations are
     allowed in the same way described above. Details about updating
     deployments can be found in the Kubernetes documentation about
-    [updating a deployment](https://kubernetes.io/docs/concepts/workloads/
-    controllers/deployment/#updating-a-deployment).
+    [updating a deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#updating-a-deployment).
 2. Open the details of a run.
 3. Select a component.
     * The component that is selected does not matter. But, if you want to
@@ -150,9 +147,7 @@ A demo of the above instructions is as follows.
     * This is because a single Python kernel is used to generate visualizations.
     * If visualizations are a major part of your workflow, it is recommended to
     increase the number of replicas within the
-    [visualization deployment YAML](https://github.com/kubeflow/pipelines/tree/
-    master/manifests/kustomize/base/pipeline/
-    ml-pipeline-visualization-deployment.yaml)
+    [visualization deployment YAML](https://github.com/kubeflow/pipelines/tree/master/manifests/kustomize/base/pipeline/ml-pipeline-visualization-deployment.yaml)
     file or within the visualization service deployment itself.
         * _Please note that this does not directly solve the issue, instead it
         decreases the likelihood of experiencing delays when generating
@@ -162,17 +157,14 @@ A demo of the above instructions is as follows.
     **TimeoutValue** header to the request made by the frontend, specifying a
     _positive integer as ASCII string of at most 8 digits_ for the length of
     time required to generate a visualization as specified by the
-    [grpc documentation](https://github.com/grpc/grpc/blob/master/doc/
-    PROTOCOL-HTTP2.md#requests).
+    [grpc documentation](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md#requests).
     * For visualizations that take longer than 100 seconds, you will have to
     specify a **TimeoutValue** within the request headers **AND** change the
     default kernel timeout of the visualization service. To change the default
     kernel timeout of the visualization service, set the **KERNEL_TIMEOUT**
     environment variable of the visualization service deployment to be the new
     timeout length in seconds within the
-    [visualization deployment YAML](https://github.com/kubeflow/pipelines/tree/
-    master/manifests/kustomize/base/pipeline/
-    ml-pipeline-visualization-deployment.yaml)
+    [visualization deployment YAML](https://github.com/kubeflow/pipelines/tree/master/manifests/kustomize/base/pipeline/ml-pipeline-visualization-deployment.yaml)
     file or within the visualization service deployment itself.
 
         ```
@@ -186,8 +178,7 @@ A demo of the above instructions is as follows.
     sent and received by a server. To allow for visualizations that are larger
     than 4MB in size to be generated, you must manually set
     **MaxCallRecvMsgSize** for gRPC. This can be done by editing the provided
-    options given to the gRPC server within [main.go](https://github.com/
-    kubeflow/pipelines/blob/master/backend/src/apiserver/main.go#L128)
+    options given to the gRPC server within [main.go](https://github.com/kubeflow/pipelines/blob/master/backend/src/apiserver/main.go#L128)
     to
 
         ```golang
@@ -204,5 +195,4 @@ A demo of the above instructions is as follows.
 
 ## Next steps
 If you'd like to add a predefined visualization to Kubeflow, take a look at the
-[developer docs](https://github.com/kubeflow/pipelines/blob/master/backend/src/
-apiserver/visualization/README.md).
+[developer docs](https://github.com/kubeflow/pipelines/blob/master/backend/src/apiserver/visualization/README.md).

@@ -112,9 +112,63 @@ suggestion: |-
 
 All of these settings except **`image`** can be omitted. If you don't specify any other settings, default value is be set.
 
-1. `image` - Docker image name for the `random` suggestion.
+1. `image` - Docker image name for the `random` suggestion. **Must be specified**
 
-    **Must be specified**.
+    Image name example: `gcr.io/kubeflow-images-public/katib/v1alpha3/<suggestion-name>`
+
+    For each algorithm (suggestion) you can specify one of the following suggestion names in Docker image:
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>Suggestion name</th>
+            <th>List of supported algorithms</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>suggestion-hyperopt</code></td>
+            <td><code>random</code>, <code>tpe</code></td>
+            <td><a href="https://github.com/hyperopt/hyperopt">Hyperopt</a> optimization framework</td>
+          </tr>
+          <tr>
+            <td><code>suggestion-chocolate</code></td>
+            <td><code>grid</code>, <code>random</code>, <code>quasirandom</code>, <code>bayesianoptimization</code>, <code>mocmaes</code></td>
+            <td><a href="https://github.com/AIworx-Labs/chocolate">Chocolate</a> optimization framework</td>
+          </tr>
+          <tr>
+            <td><code>suggestion-skopt</code></td>
+            <td><code>bayesianoptimization</code></td>
+            <td><a href="https://github.com/scikit-optimize/scikit-optimize">Scikit-optimize</a> optimization framework</td>
+          </tr>
+          <tr>
+            <td><code>suggestion-goptuna</code></td>
+            <td><code>cmaes</code>, <code>random</code>, <code>tpe</code></td>
+            <td><a href="https://github.com/c-bata/goptuna">Goptuna</a> optimization framework</td>
+          </tr>
+          <tr>
+            <td><code>suggestion-hyperband</code></td>
+            <td><code>hyperband</code></td>
+            <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/hyperband">Katib
+              Hyperband</a> implementation</td>
+          </tr>
+          <tr>
+            <td><code>suggestion-enas</code></td>
+            <td><code>enas</code></td>
+            <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/nas/enas">Katib
+              ENAS</a> implementation</td>
+          </tr>
+          <tr>
+            <td><code>suggestion-darts</code></td>
+            <td><code>darts</code></td>
+            <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/nas/darts">Katib
+              DARTS</a> implementation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
 1. `imagePullPolicy` - `Random` suggestion container [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images).
 

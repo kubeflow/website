@@ -293,7 +293,78 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
       * Check the pods are running
       * Check services are pointing at the points (look at the endpoints for the various services)
 
+### GKE Certificate Fails To Be Provisioned
+
+A common symptom of your certificate failing to be provisioned is SSL errors like `ERR_SSL_VERSION_OR_CIPHER_MISMATCH` when
+you try to access the Kubeflow https endpoint.
+
+To troubleshoot check the status of your GKE managed certificate
+
+```
+kubectl -n istio-system describe managedcertificate
+```
+
+If the certificate is in status `FailedNotVisible` then it means GCP failed to provision the certificate
+because it could not verify that you owned the domain by doing an ACME challenge. In order for GCP to provision your certificate
+
+1. Your ingress must be created in order to associated a Google Cloud Load Balancer(GCLB) with the IP address for your endpoint
+1. There must be a DNS entry mapping your domain name to the IP.
+
+If there is a problem preventing either of the above then GCP will be unable to provision your certificate
+and eventually enter the permanent failure state `FailedNotVisible` indicating your endpoint isn't accessible. The most common 
+cause is the ingress can't be created becuase the K8s secret containing OAuth credentials doesn't
+exist.
+
+To fix this you must first resolve the underlying problems preventing your ingress or DNS entry from being created.
+Once the underlying problem has been fixed you can follow the steps below to force a new certificate to be
+generated.
+
+You can fix the certificate by performing the following steps to delete the existing certificate and create a new one.
+
+1. Get the name of the GCP certificate
+
+   ```
+   kubectl -n istio-system describe managedcertificate gke-certificate
+   ```
+
+   * The status will contain `Certificate Name` which will start with `mcrt` make a note of this.
+
+
+1. Delete the ingress
+
+   ```
+   kubectl -n istio-system delete ingress envoy-ingress
+   ```
+
+1. Ensure the certificate was deleted
+
+   ```
+   gcloud --project=${PROJECT} compute ssl-certificates list
+   ```
+
+   * Make sure the certificate obtained in the first step no longer exists
+
+1. Reapply kubeflow in order to recreate the ingress and certificate
+
+   * If you deployed with `kfctl` rerun `kfctl apply`
+   * If you deployed using the GCP blueprint rerun `make apply-kubeflow`
+
+1. Monitor the certificate to make sure it can be provisioned
+
+   ```
+   kubectl --context=gcp-private-0527 -n istio-system describe managedcertificate gke-certificate
+   ```
+
+1. Since the ingress has been recreated we need to restart the pods that configure it
+
+   ```
+   kubectl -n istio-system delete pods -l service=backend-updater
+   kubectl -n istio-system delete pods -l service=iap-enabler
+   ```
+
 ### Problems with SSL certificate from Let's Encrypt
+
+As of Kubeflow 1.0, Kubeflow should be using GKE Managed Certificates and no longer using Let's Encrypt.
 
 See the guide to
 [monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).

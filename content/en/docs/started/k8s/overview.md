@@ -13,22 +13,20 @@ existing Kubernetes cluster is from one of those, consider following those instr
 
 The Kubernetes cluster must meet the following minimum requirements:
 
-  * Your cluster must include at least one worker node with a minimum of:
-    * 4 CPU
-    * 50 GB storage
-    * 12 GB memory
+- Your cluster must include at least one worker node with a minimum of:
+  - 4 CPU
+  - 50 GB storage
+  - 12 GB memory
 
-
-  * The recommended Kubernetes version is {{% kubernetes-tested-version %}}.
-    Kubeflow has been validated and tested on Kubernetes
-    {{% kubernetes-tested-version %}}.
-    * Your cluster must run at least Kubernetes version
+* The recommended Kubernetes version is {{% kubernetes-tested-version %}}.
+  Kubeflow has been validated and tested on Kubernetes
+  {{% kubernetes-tested-version %}}.
+  - Your cluster must run at least Kubernetes version
     {{% kubernetes-min-version %}}.
-    * Kubeflow **does not work** on Kubernetes
-      {{% kubernetes-incompatible-versions %}}.
-    * Older versions of Kubernetes may not be compatible with the latest Kubeflow versions.  The following matrix
+  - Kubeflow **does not work** on Kubernetes
+    {{% kubernetes-incompatible-versions %}}.
+  - Older versions of Kubernetes may not be compatible with the latest Kubeflow versions. The following matrix
     provides information about compatibility between Kubeflow and Kubernetes versions.
-
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -89,17 +87,38 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td><b>no known issues</b></td>
+      </tr>
+      <tr>
+        <td>1.17</td>
         <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td><b>no known issues</b></td>
+      </tr>
+      <tr>
+        <td>1.18</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td><b>no known issues</b></td>
       </tr>
     </tbody>
   </table>
 </div>
 
+- **incompatible**: the combination does not work at all
+- **compatible**: all Kubeflow features have been tested and verified for the
+  Kubernetes version
+- **no known issues**: the combination has not been fully tested but there are
+  no repoted issues
 
 ## Kubeflow Deployment Configurations
 
 The following table lists the options for installing Kubeflow on an existing Kubernetes
-cluster and links to detailed instructions. These solutions are vendor neutral and are 
+cluster and links to detailed instructions. These solutions are vendor neutral and are
 governed by consensus within the Kubeflow community.
 
 <div class="table-responsive">

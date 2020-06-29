@@ -66,7 +66,7 @@ that defines the properties of the PV.
 You can use the Katib user interface (UI) to submit experiments and to monitor 
 your results. The Katib home page within Kubeflow looks like this:
 
-<img src="/docs/images/katib-home.png" 
+<img src="/docs/images/katib/katib-home.png"
   alt="The Katib home page within the Kubeflow UI"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -158,7 +158,7 @@ Metadata:
     update-prometheus-metrics
   Generation:        2
   Resource Version:  720692
-  Self Link:         /apis/kubeflow.org/v1alpha3/namespaces/kubeflow/experiments/random-example
+  Self Link:         /apis/kubeflow.org/v1alpha3/namespaces/<your user namespace>/experiments/random-example
   UID:               dc6bc15a-250d-11ea-8cae-42010a80010f
 Spec:
   Algorithm:
@@ -194,6 +194,7 @@ Spec:
         ftrl
     Name:            --optimizer
     Parameter Type:  categorical
+  Resume Policy:     LongRunning
   Trial Template:
     Go Template:
       Raw Template:  apiVersion: batch/v1
@@ -261,29 +262,34 @@ View the results of the experiment in the Katib UI:
 1. Open the Katib menu panel on the left, then open the **HP** section and
   click **Monitor**:
 
-    <img src="/docs/images/katib-menu.png" 
+    <img src="/docs/images/katib/katib-menu.png"
       alt="The Katib menu panel"
       class="mt-3 mb-3 border border-info rounded">
 
-1. Click on the right-hand panel to close the menu panel. You should see
-  the list of experiments:
+1. You should see the list of experiments:
 
-    <img src="/docs/images/katib-experiments.png" 
+    <img src="/docs/images/katib/katib-experiments.png"
       alt="The random example in the list of Katib experiments"
       class="mt-3 mb-3 border border-info rounded">
 
 1. Click the name of the experiment, **random-example**.
-1. You should see a graph showing the level of accuracy for various 
+1. You should see a graph showing the level of validation and train accuracy for various
   combinations of the hyperparameter values (learning rate, number of layers, 
   and optimizer):
 
-    <img src="/docs/images/katib-random-example-graph.png" 
+    <img src="/docs/images/katib/katib-random-example-graph.png"
       alt="Graph produced by the random example"
       class="mt-3 mb-3 border border-info rounded">
 
 1. Below the graph is a list of trials that ran within the experiment:
 
-    <img src="/docs/images/katib-random-example-trials.png" 
+    <img src="/docs/images/katib/katib-random-example-trials.png"
+      alt="Trials that ran during the experiment"
+      class="mt-3 mb-3 border border-info rounded">
+
+1. You can click on trial name to see metrics for the particular trial:
+
+    <img src="/docs/images/katib/katib-random-example-trial-info.png"
       alt="Trials that ran during the experiment"
       class="mt-3 mb-3 border border-info rounded">
 

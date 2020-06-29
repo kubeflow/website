@@ -38,11 +38,11 @@ in the validation pass of the training job (*validation-accuracy*). You also
 specify whether you want the hyperparameter tuning job to *maximize* or 
 *minimize* the metric.
 
-For example, the following graph from Katib shows the level of accuracy
+For example, the following graph from Katib shows the level of validation accuracy
 for various combinations of hyperparameter values (learning rate, number of 
 layers, and optimizer):
 
-<img src="/docs/images/katib-random-example-graph.png" 
+<img src="/docs/images/katib/katib-random-example-graph.png"
   alt="Graph produced by the random example"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -74,13 +74,13 @@ optimizes the model's hyperparameters, a NAS system optimizes the model's
 structure, node weights, and hyperparameters.
 
 NAS technology in general uses various techniques to find the optimal neural
-network design. The NAS in Katib uses the *reinforcement learning* technique.
+network design.
 
 You can submit Katib jobs from the command line or from the UI. (Read more 
 about the Katib interfaces later on this page.) The following screenshot shows
 part of the form for submitting a NAS job from the Katib UI:
 
-<img src="/docs/images/katib-neural-architecture-search-ui.png" 
+<img src="/docs/images/katib/katib-neural-architecture-search-ui.png"
   alt="Submitting a neural architecture search from the Katib UI"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -104,7 +104,7 @@ You can use the following interfaces to interact with Katib:
   for information on how to access the UI.
   The Katib home page within Kubeflow looks like this:
 
-    <img src="/docs/images/katib-home.png" 
+    <img src="/docs/images/katib/katib-home.png"
       alt="The Katib home page within the Kubeflow UI"
       class="mt-3 mb-3 border border-info rounded">
 
@@ -120,6 +120,8 @@ You can use the following interfaces to interact with Katib:
   * The Kubernetes CLI, **kubectl**, is useful for running commands against your
     Kubeflow cluster. Read about kubectl in the [Kubernetes 
     documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+* Katib SDK. See the [Katib SDK documentation on GitHub](https://github.com/kubeflow/katib/tree/master/sdk/python).
 
 ## Katib concepts
 

@@ -29,14 +29,14 @@ aws ec2 describe-subnets --filters Name=tag:alpha.eksctl.io/cluster-name,Values=
 
 # Below command will retrieve SecurityGroupId for your Worker nodes
 # This assumes all your Worker nodes share same SecurityGroups
-INSTANCE_ID=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].InstanceId' --filters "Name=tag-key,Values=eks:cluster-name" "Name=tag-value,Values=$AWS_CLUSTER_NAME" --output text)
+INSTANCE_IDS=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].InstanceId' --filters "Name=tag-key,Values=eks:cluster-name" "Name=tag-value,Values=$AWS_CLUSTER_NAME" --output text)
 for i in "${INSTANCE_IDS[@]}"
 do
   echo "SecurityGroup for EC2 instance $i ..."
 aws ec2 describe-instances --instance-ids $i | jq -r '.Reservations[].Instances[].SecurityGroups[].GroupId'
 done  
 ```
-You can either use console or use attached CloudFormation template to deploy Amazon RDS database.
+You can either use console or use attached [CloudFormation template](/docs/aws/rds.yaml) to deploy Amazon RDS database.
 
 {{% alert title="Warning" color="warning" %}}
 The CloudFormation template deploys Amazon RDS for MySQL that is intended for Dev/Test environment.

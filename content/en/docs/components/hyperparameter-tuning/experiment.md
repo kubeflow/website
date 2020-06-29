@@ -49,7 +49,7 @@ These are the fields in the experiment configuration spec:
   of allowed values for each hyperparameter.
   Katib generates hyperparameter combinations in the range based on the
   hyperparameter tuning algorithm that you specify. See the [`ParameterSpec` 
-  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L157-L178).
+  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L166-L187).
 
 
 * **objective**: The metric that you want to optimize. 
@@ -57,13 +57,20 @@ These are the fields in the experiment configuration spec:
   A common metric is the model's accuracy in the validation pass of the training
   job (*validation-accuracy*). You also specify whether you want Katib to 
   maximize or minimize the metric.
-  Katib uses the `objectiveMetricName` and `additionalMetricNames` to monitor
-  how the hyperparameters work with the model. 
-  Katib records the value of the best `objectiveMetricName` metric (maximized 
-  or minimized based on `type`) and the corresponding hyperparameter set
-  in `Experiment.status`. If the `objectiveMetricName` metric for a set of
-  hyperparameters reaches the `goal`, Katib stops trying more hyperparameter 
-  combinations. See the [`ObjectiveSpec` 
+
+    Katib uses the `objectiveMetricName` and `additionalMetricNames` to monitor
+    how the hyperparameters work with the model.
+    Katib records the value of the best `objectiveMetricName` metric (maximized
+    or minimized based on `type`) and the corresponding hyperparameter set
+    in `Experiment.status`. If the `objectiveMetricName` metric for a set of
+    hyperparameters reaches the `goal`, Katib stops trying more hyperparameter
+    combinations.
+
+    You can run experiment without specifying the `goal`. In that case, Katib
+    runs experiment until corresponding succeeded trials reaches `maxTrialCount`.
+    `maxTrialCount` parameter is described bellow.
+
+    See the [`ObjectiveSpec`
   type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L47).
 
 * **algorithm**: The search algorithm that you want Katib to use to find the
@@ -87,7 +94,7 @@ These are the fields in the experiment configuration spec:
       distributed execution).
     
     See the [`TrialTemplate` 
-    type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L180-L194).
+    type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L189-L203).
     The template 
     uses the [Go template format](https://golang.org/pkg/text/template/).
     
@@ -118,20 +125,28 @@ These are the fields in the experiment configuration spec:
   You can specify the configurations of the neural network design that you want
   to optimize, including the number of layers in the network, the types of
   operations, and more.
-  See the [`NasConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L220).
+  See the [`NasConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L229).
 
-* **operations**: The range of operations that you want to tune for your ML model. 
-  For each neural network layer NAS algorithm selects one of the operation to build neural network. 
-  Each operation has sets of **parameters** which described above. See the [`Operation` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L232-L236).
+    * **graphConfig**: The graph config that defines structure for a
+      directed acyclic graph of the neural network. You can specify number of layers,
+      `input_sizes` for input layer and `output_sizes` for output layer.
+      See the [`GraphConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L234-L239).
 
-    As a NAS example, see the YAML file for the
-    [nasjob-example-RL-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nasjob-example-RL-gpu.yaml).
-    The example aims to show all the possible operations. Due to the large search 
-    space, the example is not likely to generate a good result.
+    * **operations**: The range of operations that you want to tune for your ML model.
+      For each neural network layer NAS algorithm selects one of the operation to build neural network.
+      Each operation has sets of **parameters** which described above. See the [`Operation` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L241-L245).
+
+      You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1alpha3/nas).
+
+* **resumePolicy**: Experiment resume policy. If experiment was succeeded because `maxTrialCount`
+  was reached, you can resume it by increasing `maxTrialCount`. Specify `resumePolicy: LongRunning`, if
+  you want to use this feature. If you don't need to resume experiment, specify `resumePolicy: Never`. In that case,
+  suggestion resources will be deleted and experiment can't be resumed. By default all experiments have
+  `resumePolicy: LongRunning` parameter. See the [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L53).
 
 *Background information about Katib's `Experiment` type:* In Kubernetes 
 terminology, Katib's
-[`Experiment` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L202) is a [custom resource 
+[`Experiment` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L211) is a [custom resource 
 (CR)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 The YAML file that you create for your experiment is the CR specification.
 
@@ -147,9 +162,11 @@ descriptions on this page:
 * [Grid search](#grid-search)
 * [Random search](#random-search)
 * [Bayesian optimization](#bayesian)
-* [HYPERBAND](#hyperband)
-* [Hyperopt TPE](#tpe-search)
-* [NAS based on reinforcement learning](#nas)
+* [Hyperband](#hyperband)
+* [Tree of Parzen Estimators (TPE)](#tpe-search)
+* [Covariance Matrix Adaptation Evolution Strategy (CMA-ES)](#cmaes)
+* [Neural Architecture Search based on ENAS](#enas)
+* [Differentiable Architecture Search (DARTS)](#darts)
 
 More algorithms are under development. You can add an algorithm to Katib
 yourself. See the guide to [adding a new
@@ -181,7 +198,8 @@ sampling without replacement. Random search is therefore the best algorithm to
 use when combinatorial exploration is not possible. If the number of continuous
 variables is high, you should use quasi random sampling instead.
 
-Katib uses the [hyperopt](http://hyperopt.github.io/hyperopt/) optimization
+Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/),
+[Goptuna](https://github.com/c-bata/goptuna) or [Chocolate](https://chocolate.readthedocs.io) optimization
 framework for its random search.
 
 Katib supports the following algorithm settings:
@@ -221,7 +239,8 @@ steps, making it a good choice when the time to
 complete the evaluation of a parameter configuration is long.
 
 Katib uses the 
-[Scikit-Optimize](https://github.com/scikit-optimize/scikit-optimize) library
+[Scikit-Optimize](https://github.com/scikit-optimize/scikit-optimize) or
+[Chocolate](https://chocolate.readthedocs.io) optimization framework
 for its Bayesian search. Scikit-Optimize is also known as `skopt`.
 
 Katib supports the following algorithm settings:
@@ -291,29 +310,70 @@ Katib supports the following algorithm settings:
 </div>
 
 <a id="hyperband"></a>
-#### HYPERBAND
+#### Hyperband
 
 The algorithm name in Katib is `hyperband`.
 
-Katib supports the [HYPERBAND](https://arxiv.org/pdf/1603.06560.pdf) 
+Katib supports the [Hyperband](https://arxiv.org/pdf/1603.06560.pdf)
 optimization framework.
-Instead of using Bayesian optimization to select configurations, HYPERBAND
+Instead of using Bayesian optimization to select configurations, Hyperband
 focuses on early stopping as a strategy for optimizing resource allocation and
 thus for maximizing the number of configurations that it can evaluate.
-HYPERBAND also focuses on the speed of the search.
+Hyperband also focuses on the speed of the search.
 
 <a id="tpe-search"></a>
-#### Hyperopt TPE
+#### Tree of Parzen Estimators (TPE)
 
 The algorithm name in Katib is `tpe`.
 
-Katib uses the Tree of Parzen Estimators (TPE) algorithm in
-[hyperopt](http://hyperopt.github.io/hyperopt/). This method provides a 
-[forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
+Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/) or
+[Goptuna](https://github.com/c-bata/goptuna) optimization
+framework for its TPE search.
+
+This method provides a [forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
 search.
 
-<a id="nas"></a>
-#### NAS using reinforcement learning
+<a id="cmaes"></a>
+#### Covariance Matrix Adaptation Evolution Strategy (CMA-ES)
+
+The algorithm name in Katib is `cmaes`.
+
+Katib uses the [Goptuna](https://github.com/c-bata/goptuna) optimization
+framework for its CMA-ES search.
+
+The [Covariance Matrix Adaptation Evolution Strategy](https://en.wikipedia.org/wiki/CMA-ES)
+is a stochastic derivative-free numerical optimization algorithm for optimization
+problems in continuous search spaces.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>random_state</td>
+        <td>[int]: Set <code>random_state</code> to something other than None
+          for reproducible results.</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>sigma</td>
+        <td>[float]: Initial standard deviation of CMA-ES.</td>
+        <td>0.001</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<a id="enas"></a>
+#### Neural Architecture Search based on ENAS
 
 {{% alert title="Alpha version" color="warning" %}}
 Neural architecture search is currently in <b>alpha</b> with limited support. 
@@ -322,14 +382,223 @@ regards to usability of the feature. You can log issues and comments in
 the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
 {{% /alert %}}
 
-The algorithm name in Katib is `nasrl`.
+The algorithm name in Katib is `enas`.
+
+This NAS algorithm ENAS-based. Currently, it doesn't support parameter sharing.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>controller_hidden_size</td>
+        <td>int</td>
+        <td>64</td>
+        <td>RL controller lstm hidden size. Value must be >= 1.</td>
+      </tr>
+      <tr>
+        <td>controller_temperature</td>
+        <td>float</td>
+        <td>5.0</td>
+        <td>RL controller temperature for the sampling logits. Value must be > 0. Set value to "None"
+          to disable it in controller.</td>
+      </tr>
+      <tr>
+        <td>controller_tanh_const</td>
+        <td>float</td>
+        <td>2.25</td>
+        <td>RL controller tanh constant to prevent premature convergence. Value must be > 0.
+          Set value to "None" to disable it in controller.</td>
+      </tr>
+      <tr>
+        <td>controller_entropy_weight</td>
+        <td>float</td>
+        <td>1e-5</td>
+        <td>RL controller weight for entropy applying to reward. Value must be > 0.
+          Set value to "None" to disable it in controller.</td>
+      </tr>
+      <tr>
+        <td>controller_baseline_decay</td>
+        <td>float</td>
+        <td>0.999</td>
+        <td>RL controller baseline factor. Value must be > 0 and <= 1.</td>
+      </tr>
+      <tr>
+        <td>controller_learning_rate</td>
+        <td>float</td>
+        <td>5e-5</td>
+        <td>RL controller learning rate for Adam optimizer. Value must be > 0 and <= 1.</td>
+      </tr>
+      <tr>
+        <td>controller_skip_target</td>
+        <td>float</td>
+        <td>0.4</td>
+        <td>RL controller probability, which represents the prior belief of a skip connection 
+          being formed. Value must be > 0 and <= 1.</td>
+      </tr>
+      <tr>
+        <td>controller_skip_weight</td>
+        <td>float</td>
+        <td>0.8</td>
+        <td>RL controller weight of skip penalty loss. Value must be > 0.
+          Set value to "None" to disable it in controller.</td>
+      </tr>
+      <tr>
+        <td>controller_train_steps</td>
+        <td>int</td>
+        <td>50</td>
+        <td>Number of RL controller training steps after each candidate run. Value must be >= 1.</td>
+      </tr>
+      <tr>
+        <td>controller_log_every_steps</td>
+        <td>int</td>
+        <td>10</td>
+        <td>Number of RL controller training steps before logging it. Value must be >= 1.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 For more information, see:
 
-* Information in the Katib repository on [NAS with 
-reinforcement learning](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/NAS_Reinforcement_Learning).
-* The description of the `nasConfig` field in the configuration file
-  earlier on this page.
+* Information in the Katib repository on [Efficient Neural Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/nas/enas).
+* As a ENAS example, see the YAML file for the 
+[enas-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nas/enas-example-gpu.yaml).
+The example aims to show all the possible operations. Due to the large search 
+space, the example is not likely to generate a good result.
+
+<a id="darts"></a>
+#### Differentiable Architecture Search (DARTS)
+
+{{% alert title="Alpha version" color="warning" %}}
+Neural architecture search is currently in <b>alpha</b> with limited support.
+The Kubeflow team is interested in any feedback you may have, in particular with
+regards to usability of the feature. You can log issues and comments in
+the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
+{{% /alert %}}
+
+The algorithm name in Katib is `darts`.
+
+Currently, you can't view results of this algorithm in the Katib UI and
+you can run experiment only on single GPU.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>num_epochs</td>
+        <td>int</td>
+        <td>50</td>
+        <td>Number of epochs to train model</td>
+      </tr>
+      <tr>
+        <td>w_lr</td>
+        <td>float</td>
+        <td>0.025</td>
+        <td>Initial learning rate for training model weights.
+          This learning rate annealed down to <code>w_lr_min</code>
+          following a cosine schedule without restart.</td>
+      </tr>
+      <tr>
+        <td>w_lr_min</td>
+        <td>float</td>
+        <td>0.001</td>
+        <td>Minimum learning rate for training model weights.</td>
+      </tr>
+      <tr>
+        <td>w_momentum</td>
+        <td>float</td>
+        <td>0.9</td>
+        <td>Momentum for training training model weights.</td>
+      </tr>
+      <tr>
+        <td>w_weight_decay</td>
+        <td>float</td>
+        <td>3e-4</td>
+        <td>Training model weight decay.</td>
+      </tr>
+      <tr>
+        <td>w_grad_clip</td>
+        <td>float</td>
+        <td>5.0</td>
+        <td>Max norm value for clipping gradient norm of training model weights.</td>
+      </tr>
+      <tr>
+        <td>alpha_lr</td>
+        <td>float</td>
+        <td>3e-4</td>
+        <td>Initial learning rate for alphas weights.</td>
+      </tr>
+      <tr>
+        <td>alpha_weight_decay</td>
+        <td>float</td>
+        <td>1e-3</td>
+        <td>Alphas weight decay.</td>
+      </tr>
+      <tr>
+        <td>batch_size</td>
+        <td>int</td>
+        <td>128</td>
+        <td>Batch size for dataset.</td>
+      </tr>
+      <tr>
+        <td>num_workers</td>
+        <td>int</td>
+        <td>4</td>
+        <td>Number of subprocesses to download dataset.</td>
+      </tr>
+      <tr>
+        <td>init_channels</td>
+        <td>int</td>
+        <td>16</td>
+        <td>Initial number of channels.</td>
+      </tr>
+      <tr>
+        <td>print_step</td>
+        <td>int</td>
+        <td>50</td>
+        <td>Number of training or validation steps before logging it.</td>
+      </tr>
+      <tr>
+        <td>num_nodes</td>
+        <td>int</td>
+        <td>4</td>
+        <td>Number of DARTS nodes.</td>
+      </tr>
+      <tr>
+        <td>stem_multiplier</td>
+        <td>int</td>
+        <td>3</td>
+        <td>Multiplier for initial channels. It is used in first stem cell.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+For more information, see:
+
+* Information in the Katib repository on [Differentiable Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/nas/darts).
+* As a DARTS example, see the YAML file for the
+[darts-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nas/darts-example-gpu.yaml).
 
 <a id="metrics-collector"></a>
 ### Metrics collector
@@ -435,49 +704,47 @@ To run a hyperparameter tuning experiment from the Katib UI:
 1. Open the Katib menu panel on the left, then open the **HP** section and
   click **Submit**:
 
-    <img src="/docs/images/katib-menu.png" 
+    <img src="/docs/images/katib/katib-menu.png"
       alt="The Katib menu panel"
       class="mt-3 mb-3 border border-info rounded">
 
-1. Click on the right-hand panel to close the menu panel. You should see
-  tabs offering you the following options:
+1. You should see tabs offering you the following options:
   
-  * **YAML file:** Choose this option to supply an entire YAML file containing
+    * **YAML file:** Choose this option to supply an entire YAML file containing
     the configuration for the experiment.
 
-        <img src="/docs/images/katib-deploy-yaml.png" 
-          alt="UI tab to paste a YAML configuration file"
-          class="mt-3 mb-3 border border-info rounded">
+      <img src="/docs/images/katib/katib-deploy-yaml.png"
+        alt="UI tab to paste a YAML configuration file"
+        class="mt-3 mb-3 border border-info rounded">
 
-  * **Parameters:** Choose this option to enter the configuration values
+    * **Parameters:** Choose this option to enter the configuration values
     into a form.
 
-        <img src="/docs/images/katib-deploy-form.png" 
-          alt="UI form to deploy a Katib experiment"
-          class="mt-3 mb-3 border border-info rounded">
+      <img src="/docs/images/katib/katib-deploy-form.png"
+        alt="UI form to deploy a Katib experiment"
+        class="mt-3 mb-3 border border-info rounded">
 
 View the results of the experiment in the Katib UI:
 
 1. Open the Katib menu panel on the left, then open the **HP** section and
   click **Monitor**:
 
-    <img src="/docs/images/katib-menu.png" 
+    <img src="/docs/images/katib/katib-menu.png"
       alt="The Katib menu panel"
       class="mt-3 mb-3 border border-info rounded">
 
-1. Click on the right-hand panel to close the menu panel. You should see
-  the list of experiments:
+1. You should see the list of experiments:
 
-    <img src="/docs/images/katib-experiments.png" 
+    <img src="/docs/images/katib/katib-experiments.png"
       alt="The random example in the list of Katib experiments"
       class="mt-3 mb-3 border border-info rounded">
 
 1. Click the name of your experiment. For example, click **random-example**.
-1. You should see a graph showing the level of accuracy for various 
+1. You should see a graph showing the level of validation and train accuracy for various
   combinations of the hyperparameter values. For example, the graph below
   shows learning rate, number of layers, and optimizer:
 
-    <img src="/docs/images/katib-random-example-graph.png" 
+    <img src="/docs/images/katib/katib-random-example-graph.png"
       alt="Graph produced by the random example"
       class="mt-3 mb-3 border border-info rounded">
 
