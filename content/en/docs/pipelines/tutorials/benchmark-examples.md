@@ -43,81 +43,75 @@ in workloads.
 
 ## Prerequisites for running benchmark scripts
 
-To use the provided benchmark scripts, you need the following:
+To run the provided benchmark scripts, you need the following:
 
-1. A Jupyter notebook environment
-1. A Kubeflow Pipelines instance
-1. A pipeline manifest
-
-To run the benchmark script, your Jupyter notebook environment must have access to the Kubeflow Pipelines API on your Kubeflow Pipelines cluster. For example, you must be able to call the CREATE, GET, DELETE, and LIST methods of the pipeline, pipeline version, run, job, and experiment services from your Jupyter notebook environment.
+*  A Jupyter notebook environment with access to the Kubeflow Pipelines API on
+   your Kubeflow Pipelines cluster. For example, you must be able to call the
+   CREATE, GET, DELETE, and LIST methods of the pipeline, pipeline version,
+   run, job, and experiment services from your Jupyter notebook environment.
+*  A Kubeflow Pipelines cluster. If you do not have a Kubeflow Pipelines
+   cluster, learn more about your [options for installing Kubeflow
+   Pipelines](/docs/pipelines/installation/overview/).
+*  A pipeline manifest. For example, this guide uses the
+   [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml)
+   pipeline manifest file.
 
 One way of setting up everything and running a benchmark script is shown below
 as an example.
 
 ## Running the benchmark scripts
 
-In this example, a Kubeflow Pipelines instance is hosted on cloud and a
-Jupyter notebook instance is hosted on a local machine. The cloud cluster where
-the Kubeflow Pipelines instance resides has two node pools: one is for
-running the Kubeflow Pipelines servers, such as ml-pipeline and ml-pipeline-ui,
-and the other is for running the pipelines.
+Use the following instructions to run the benchmark script on your Kubeflow
+Pipelines cluster.
 
-This example uses the [run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb) benchmark script
-and the pipeline manifest file [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml).
+1. Download the the [run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
+   benchmark script in your Jupyter notebook environment.
+1. Open [run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
+   in the local Jupyter notebook. This benchmark script:
 
-* Follow the [instructions](https://www.kubeflow.org/docs/pipelines/installation/standalone-deployment/)
-to create a new Kubernetes cluster with a cloud service, for example, Google Cloud, and
-then deploy a Kubeflow Pipelines instance to that cluster.
-* Add a node pool to the cluster created in the previous step. The new node
-pool needs to have a different name than the default node pool in the cluster.
-The node configuration in this new node pool can be the same as that of the
-default node pool. In this example, please use 'pool-1' as the name of the new
-node pool in order to use the prepared pipeline manifest file [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml).
-* Forward local port 3001 from the local machine to the frontend server of the
-Kubeflow Pipelines instance created in the first step. It is also OK to
-forward directly to the API server.
-```
-kubectl port-forward deployment/ml-pipeline-ui 3001:3000 -n kubeflow
-```
-* [Start a local Jupyter notebook instance](https://jupyter.org/install.html).
-* Open [run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
-in the local Jupyter notebook. This benchmark script (a) creates a new pipeline;
-(b) uses the default pipeline version of this pipeline to create multiple runs;
-(c) records the number of successful runs; (d) records the duration of each of
-the successful runs; (e) records the latency of CREATE, GET, DELETE; (f) cleans
-up the pipeline and its default pipeline version, the experiment and the runs.
-You'll need to fill in proper values for host, pipeline_file_url, num_runs,
-run_status_polling_interval_sec in the benchmark script.
-> **host** is the url address of the API server in the Kubeflow Pipelines
-instance. In this example, due to the port forwarding mentioned in the
-previous local port forwarding, the host can be set to 'http://127.0.0.1:3001'.
->
-> **pipeline_file_url** is the url address of a pipeline manifest file. As
-mentioned before, [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml)
-is used. This example pipeline makes use of [nodeSelector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
-to explicitly schedule the runs of this pipeline onto the node pool 'pool-1'.
-To use this example pipeline in the benchmark script, please set
-**pipeline_file_url** to 'https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml'.
-> - **NOTE**: please do not use the value 'https://storage.cloud.google.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml',
-although it points to the same file. That is because the address starting with
-'storage.cloud.google.com' will incur a redirect and doesn't work well with
-Kubeflow Pipelines.
->
-> **num_runs** specifies how many runs will be created in the benchmark script,
-and is a direct indicator of the simulated workload.
-> - **NOTE**: please be aware that running the benchmark script on a cloud
-service will incur possible charges due to the consumption of cloud resources.
-Therefore, please stay within your cloud resource budget if any.
->
-> **run_status_polling_interval_sec** sets the time interval between two
-adjacent pollings of the run status. When a run reaches the success status, the
-run duration is recorded. Only the durations of succeeded runs are recorded.
+   1. Creates a new pipeline.
+   1. Uses the default pipeline version of this pipeline to create multiple runs.
+   1. Records the number of successful runs.
+   1. Records the duration of each of the successful runs.
+   1. Records the latency of CREATE, GET, DELETE.
+   1. Cleans up the pipeline and its default pipeline version, the experiment and the runs.
 
-After the values of the above parameters are properly set, you can run the
-benchmark script in the notebook. The following snapshot shows the
-results of running the benchmark script [run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
-with **num_runs** being 50 on a Kubernetes cluster with two node pools, while
-each node pool has three nodes of machine type 'n1-standard-8'.
+1. In the benchmark script, enter the correct values for host,
+   pipeline_file_url, num_runs, run_status_polling_interval_sec in the
+   benchmark script.
+
+   * **host**: The URL of the API server in your Kubeflow Pipelines cluster.
+
+   * **pipeline_file_url**: The URL of the pipeline manifest file to use in
+     your benchmark.
+     [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml)
+     is used in this example. This example pipeline makes use of
+     [nodeSelector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
+     to explicitly schedule the runs of this pipeline onto the node pool named `pool-1`. If you use the taxi_updated_pool.yaml pipeline manifest in your benchmarks, ensure that a node pool named `pool-1` exists in your cluster.
+
+     **NOTE**: Do not use the value 'https://storage.cloud.google.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml'
+     when running your benchmarks. Addresses that start with
+     'storage.cloud.google.com' incur a redirect that doesn't work well with
+     Kubeflow Pipelines.
+
+   * **num_runs**: Specifies how many runs will be created in the benchmark script,
+     and is a direct indicator of the simulated workload.
+
+     **NOTE**: Running the benchmark script on a cloud
+     service incurs charges due to the consumption of cloud resources.
+
+   * **run_status_polling_interval_sec**: Sets the time interval between two
+     adjacent pollings of the run status. When a run reaches the success status, the
+     run duration is recorded. Only the durations of successful runs are recorded.
+
+1. After the parameters are properly set, you can run the
+   benchmark script in the notebook.
+
+The following snapshot shows the results of running the benchmark script
+[run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
+using the [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml)
+pipeline manifest for 50 runs on a Kubernetes cluster with two node pools.
+Each node pool has three nodes of machine type 'n1-standard-8'.
 
 <img src="/docs/images/benchmark-snapshot-1.png"
 alt="Benchmark Sample Output Plots"
@@ -136,6 +130,10 @@ and the y-axis shows how many runs fall into certain status respectively.
 In a distribution plot, both histogram plot and rug plot are shown. In addition,
 it is also possible to show KDE (Kernel Density Estimate) plot. If a KDE plot is
 desirable, use 'kde=True' in the distplot() method.
+
+## Tuning and different configurations
+
+
 
 ## Limitations and future work
 
