@@ -133,7 +133,24 @@ desirable, use 'kde=True' in the distplot() method.
 
 ## Tuning and different configurations
 
+The above example shows one performance report via running the benchmark script.
+In fact, there are multiple ways of tuning the pipeline and/or the Kubernetes
+clusters to acquire performance reports. The common ways are trying with
 
+- Different cluster sizes/zones, different numbers of pools in a cluster,
+different numbers of nodes in each pool, different node configurations (for
+example, RAM and disk configuration for each node, CPU or GPU configuration for
+each node)
+
+- Different number of runs
+
+- Different sizes/complexities of a pipeline, for example, the number of steps
+in a pipeline
+
+- Different running configurations, for example, specifying the node pools for
+running components or pipelines
+
+- Etc.
 
 ## Limitations and future work
 
