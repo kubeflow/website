@@ -131,7 +131,7 @@ In a distribution plot, both histogram plot and rug plot are shown. In addition,
 it is also possible to show KDE (Kernel Density Estimate) plot. If a KDE plot is
 desirable, use 'kde=True' in the distplot() method.
 
-## Tuning and different configurations
+## Tuning with different configurations
 
 The above example shows one performance report via running the benchmark script.
 In fact, there are multiple ways of tuning the pipeline and/or the Kubernetes
