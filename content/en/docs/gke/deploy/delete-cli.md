@@ -4,6 +4,12 @@ description = "Deleting Kubeflow from GCP using the command line interface (CLI)
 weight = 6
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This page shows you how to use the CLI to delete a Kubeflow deployment on
 Google Cloud Platform (GCP).
 

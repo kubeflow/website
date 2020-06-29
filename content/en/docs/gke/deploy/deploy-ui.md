@@ -4,6 +4,11 @@ description = "Instructions for using the UI to deploy Kubeflow on Google Cloud 
 weight = 3
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
 This page provides instructions for using the Kubeflow deployment web app to
 deploy Kubeflow on GCP. The deployment web app currently supports
 **Kubeflow {{% kf-deployment-ui-version %}}**.

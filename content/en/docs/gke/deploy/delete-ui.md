@@ -4,6 +4,11 @@ description = "Deleting Kubeflow using the Google Cloud Platform (GCP) Console"
 weight = 7
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
 This page shows you how to delete your Kubeflow deployment using Deployment 
 Manager in the GCP Console.
 
