@@ -36,24 +36,32 @@ environment variables.
     ```
     export CLUSTER_NAME=kubeflow
     export CLUSTER_ZONE=dal13
+    export WORKER_PROVIDER=classic
     ```
 
     - `CLUSTER_NAME` must be lowercase and unique among any other Kubernetes
       clusters in the specified CLUSTER_ZONE.
-    - `CLUSTER_ZONE` identifies the location where CLUSTER_NAME will be created. Run `ibmcloud ks locations` to list supported IBM Cloud Kubernetes Service locations. For example, choose `dal13` to create CLUSTER_NAME in the Dallas (US) data center. 
+    - `CLUSTER_ZONE` identifies the location where CLUSTER_NAME will be created. Run `ibmcloud ks locations` to list supported IBM Cloud Kubernetes Service locations. For example, choose `dal13` to create CLUSTER_NAME in the Dallas (US) data center.
+    - `WORKDER_PROVIDER` represents the IBM cloud Kubernetes cluster with worker nodes on classic infrastructure.
+
+**Notices**:
+* It uses the worker node provider `classic` in this guide because it's the only one that supports worker nodes with GPUs.
+* There're other worker nodes providers including `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Please use `ibmcloud ks zones --provider <provider-name>` to list zone names if using other providers.
 
 ### Creating a IBM Cloud Kubernetes cluster
+
+The worker nodes flavor name varies from zones and providers. Please run `ibmcloud ks flavors --zone $CLUSTER_ZONE --provider $WORKER_PROVIDER` to list available flavors.
 
 To make sure the cluster is large enough to host all the Knative and Istio
 components, the recommended configuration for a cluster is:
 
-- Kubernetes version 1.15
-- 4 vCPU nodes with 16GB memory (`b2c.4x16`)
+- Kubernetes version 1.16
+- 4 vCPU cores with 16GB memory (`b2c.4x16`)
 
 1.  Create a Kubernetes cluster on IKS with the required specifications:
 
     ```
-    ibmcloud ks cluster create classic \
+    ibmcloud ks cluster create $WORKER_PROVIDER \
       --flavor b2c.4x16 \
       --name $CLUSTER_NAME \
       --zone=$CLUSTER_ZONE \
@@ -61,12 +69,13 @@ components, the recommended configuration for a cluster is:
     ```
 
     If you're starting in a fresh account with no public and private VLANs, they
-    are created automatically for you. If you already have VLANs configured in
+    are created automatically for you when creating a kubernetes cluster with 
+    worker nodes provider `classic` for the first time. If you already have VLANs configured in
     your account, get them via `ibmcloud ks vlans --zone $CLUSTER_ZONE` and
     include the public/private VLAN id in the `cluster create` command:
 
     ```
-    ibmcloud ks cluster create classic \
+    ibmcloud ks cluster create $WORKER_PROVIDER \
       --machine-type=b2c.4x16 \
       --name=$CLUSTER_NAME \
       --zone=$CLUSTER_ZONE \
@@ -99,9 +108,12 @@ components, the recommended configuration for a cluster is:
 
     Make sure all the nodes are in `Ready` state. You are now ready to install
     Istio into your cluster.
-    
+
 ## IBM Cloud Block Storage Setup
-By default, IBM Cloud Kubernetes cluster uses [IBM Cloud File Storage](https://www.ibm.com/cloud/file-storage) based on NFS as the default storage class. File Storage is designed to run RWX (read-write multiple nodes) workloads with proper security built around it. Therefore, File Storage [does not allow `fsGroup` securityContext](https://cloud.ibm.com/docs/containers?topic=containers-security#container) which is needed for DEX and Kubeflow Jupyter Server.
+
+**Note**: Skip this section when choosing either `vpc-classic` or `vpc-gen2` instead of `classic` as kubernetes worker nodes provider where block storage is default storage class.
+
+When using the `classic` worker nodes provider of IBM Cloud Kubernetes cluster, by default, it uses [IBM Cloud File Storage](https://www.ibm.com/cloud/file-storage) based on NFS as the default storage class. File Storage is designed to run RWX (read-write multiple nodes) workloads with proper security built around it. Therefore, File Storage [does not allow `fsGroup` securityContext](https://cloud.ibm.com/docs/containers?topic=containers-security#container) which is needed for DEX and Kubeflow Jupyter Server.
 
 [IBM Cloud Block Storage](https://www.ibm.com/cloud/block-storage) provides a fast way to store data and
 satisfy many of the Kubeflow persistent volume requirements such as `fsGroup` out of the box and optimized RWO (read-write single node) which is used on all Kubeflow's persistent volume claim. 
@@ -198,44 +210,100 @@ Run the following commands to set up and deploy Kubeflow.
       ```
       tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
       ```
+1. (Optional) make kfctl binary easier to use. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+      ```
+      export PATH=$PATH:<path to where kfctl was unpacked>
+      ```
+    
 
-1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+Choose either **single user** or **multi-tenant** section based on your usage.
 
+### Single user
+Run the following commands to set up and deploy Kubeflow for a single user without any authentication.
+```
+# Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
+# name of the directory containing your configuration.
+# For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
+export KF_NAME=<your choice of name for the Kubeflow deployment>
+
+# Set the path to the base directory where you want to store one or more 
+# Kubeflow deployments. For example, /opt/.
+# Then set the Kubeflow application directory for this deployment.
+export BASE_DIR=<path to a base directory>
+export KF_DIR=${BASE_DIR}/${KF_NAME}
+
+# Set the configuration file to use, such as the file specified below:
+export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm.yaml"
+
+# Generate and deploy Kubeflow:
+mkdir -p ${KF_DIR}
+cd ${KF_DIR}
+kfctl apply -V -f ${CONFIG_URI}
+```
+
+* **${KF_NAME}** - The name of your Kubeflow deployment.
+  If you want a custom deployment name, specify that name here.
+  For example,  `my-kubeflow` or `kf-test`.
+  The value of KF_NAME must consist of lower case alphanumeric characters or
+  '-', and must start and end with an alphanumeric character.
+  The value of this variable cannot be greater than 25 characters. It must
+  contain just a name, not a directory path.
+  This value also becomes the name of the directory where your Kubeflow 
+  configurations are stored, that is, the Kubeflow application directory. 
+
+* **${KF_DIR}** - The full path to your Kubeflow application directory.
+
+### Multi-user, auth-enabled
+Run the following commands to deploy kubeflow with GitHub OAuth application as authentication provider by dex. Please use
+the guide [Creating an OAuth App](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/) for how to create an OAuth app for GitHub and [Approving OAuth Apps for your organization](https://help.github.com/en/github/setting-up-and-managing-organizations-and-teams/approving-oauth-apps-for-your-organization) if you're a GitHub organization owner.
+
+The scenario is a GitHub organization owner can authorize its organization members to access a deployed kubeflow. A member of this GitHub organization will be redirected to a page to allow kubeflow accessing its GitHub profile.
+
+You will need to install [docker](https://www.docker.com/) and [kpt](https://googlecontainertools.github.io/kpt/) to update 2 configuration files.
+
+1. Create a new OAuth app in GitHub. Please keep the generated `client_id` and `client_secret`. Before exposing your kubeflow to internete, you can use following local URLs work via port-forward only:
+    * Homepage URL: `http://localhost:8080/`
+    * Authorization callback URL: `http://localhost:8080/dex/callback`
+1. Setup environment variables:
     ```
-    # The following command is optional, to make kfctl binary easier to use.
-    export PATH=$PATH:<path to where kfctl was unpacked>
-
-    # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
-    # name of the directory containing your configuration.
-    # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
     export KF_NAME=<your choice of name for the Kubeflow deployment>
 
     # Set the path to the base directory where you want to store one or more 
     # Kubeflow deployments. For example, /opt/.
-    # Then set the Kubeflow application directory for this deployment.
     export BASE_DIR=<path to a base directory>
+
+    # Then set the Kubeflow application directory for this deployment.
     export KF_DIR=${BASE_DIR}/${KF_NAME}
-
-    # Set the configuration file to use, such as the file specified below:
-    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm.yaml"
-
+    ```
+1. Setup configuration files:
+    ```
+    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm_dex.yaml"
     # Generate and deploy Kubeflow:
     mkdir -p ${KF_DIR}
     cd ${KF_DIR}
+    kfctl build -V -f ${CONFIG_URI}
+    ```
+1. Fill in an application secret for OIDC auth service in downloaded YAML file `${KF_DIR}/kustomize/oidc-authservice/oidc-authservice-cm.yaml`. Notice this application secret can be a random string but must match that in `${KF_DIR}/kustomize/dex-auth/dex-auth-cm.yaml`.
+    ```
+    curl -L -o kustomize/oidc-authservice/oidc-authservice-cm.yaml https://raw.githubusercontent.com/kubeflow/manifests/master/stacks/ibm/fns/oidc-authservice-cm.yaml
+    # update the configurations in the oidc-authservice-cm.yaml
+    ```
+1. Fill in saved GitHub OAuth app configurations like `client_id`,  `client_secret` and `application_secret` in downloaded YAML file `${KF_DIR}/kustomize/dex-auth/dex-auth-cm.yaml`:
+    ```
+    curl -L -o kustomize/dex-auth/dex-auth-cm.yaml https://raw.githubusercontent.com/kubeflow/manifests/master/stacks/ibm/fns/dex-auth-cm.yaml
+    # update the configurations in the dex-auth-cm.yaml
+    ```
+1. Transform configuration files by `kpt`:
+    ```
+    kpt fn run kustomize/oidc-authservice
+    kpt fn run kustomize/dex-auth
+    ```
+1. Deploy kubeflow:
+    ```
     kfctl apply -V -f ${CONFIG_URI}
     ```
 
-    * **${KF_NAME}** - The name of your Kubeflow deployment.
-      If you want a custom deployment name, specify that name here.
-      For example,  `my-kubeflow` or `kf-test`.
-      The value of KF_NAME must consist of lower case alphanumeric characters or
-      '-', and must start and end with an alphanumeric character.
-      The value of this variable cannot be greater than 25 characters. It must
-      contain just a name, not a directory path.
-      This value also becomes the name of the directory where your Kubeflow 
-      configurations are stored, that is, the Kubeflow application directory. 
-
-    * **${KF_DIR}** - The full path to your Kubeflow application directory.
+## Verify installation
 
 1. Check the resources deployed correctly in namespace `kubeflow`
 
