@@ -41,12 +41,12 @@ environment variables.
 
     - `CLUSTER_NAME` must be lowercase and unique among any other Kubernetes
       clusters in the specified CLUSTER_ZONE.
-    - `CLUSTER_ZONE` identifies the location where CLUSTER_NAME will be created. Run `ibmcloud ks locations` to list supported IBM Cloud Kubernetes Service locations. For example, choose `dal13` to create CLUSTER_NAME in the Dallas (US) data center.
+    - `CLUSTER_ZONE` identifies the regions or location where CLUSTER_NAME will be created. Run `ibmcloud ks locations` to list supported IBM Cloud Kubernetes Service locations. For example, choose `dal13` to create CLUSTER_NAME in the Dallas (US) data center.
     - `WORKDER_PROVIDER` represents the IBM cloud Kubernetes cluster with worker nodes on classic infrastructure.
 
 **Notices**:
-* It uses the worker node provider `classic` in this guide because it's the only one that supports worker nodes with GPUs.
-* There're other worker nodes providers including `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Please use `ibmcloud ks zones --provider <provider-name>` to list zone names if using other providers.
+* It uses the worker nodes provider `classic` in this guide because it's the only one that supports worker nodes with GPUs.
+* There are other worker nodes providers including `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Please use `ibmcloud ks zones --provider <provider-name>` to list zone names if using other providers.
 
 ### Creating a IBM Cloud Kubernetes cluster
 
@@ -210,7 +210,7 @@ Run the following commands to set up and deploy Kubeflow.
       ```
       tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
       ```
-1. (Optional) make kfctl binary easier to use. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+1. Make kfctl binary easier to use (optional). If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
       ```
       export PATH=$PATH:<path to where kfctl was unpacked>
       ```
