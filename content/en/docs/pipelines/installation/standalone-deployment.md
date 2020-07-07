@@ -4,6 +4,12 @@ description = "Instructions to deploy Kubeflow Pipelines standalone to a cluster
 weight = 20
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 As an alternative to deploying Kubeflow Pipelines (KFP) as part of the
 [Kubeflow deployment](/docs/started/getting-started/#installing-kubeflow), you also have a choice
 to deploy only Kubeflow Pipelines. Follow the instructions below to deploy

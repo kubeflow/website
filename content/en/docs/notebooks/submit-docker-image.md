@@ -4,6 +4,12 @@ description = "Building Docker images from a Jupyter notebook and submitting the
 weight = 50
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 If you're using a Jupyter notebook in Kubeflow on Google Cloud Platform 
 (GCP), you can submit Docker image builds to 
 [Cloud Build](https://cloud.google.com/cloud-build/docs/). Cloud Build builds 

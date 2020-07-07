@@ -4,6 +4,12 @@ description = "Managing access to Kubeflow applications and resources via Istio"
 weight = 50
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 Kubeflow v0.6 onwards deploys Istio along with configuration to enable
 end-to-end authentication and access control. This setup is the foundation
 of multi-tenancy support in Kubeflow. A Kubeflow deployment without Istio is

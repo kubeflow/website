@@ -4,6 +4,12 @@ description = "How to install Kubeflow on-prem using dynamic volume provisioning
 weight = 30
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This guide describes how to set up Kubeflow on premises (on-prem) in a multi-node cluster using [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
 ## Vanilla on-prem Kubeflow installation

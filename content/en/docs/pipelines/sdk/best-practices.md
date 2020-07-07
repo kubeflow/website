@@ -4,6 +4,12 @@ description = "Designing and writing components for Kubeflow Pipelines"
 weight = 60
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This page describes some recommended practices for designing
 components. For an application of these best practices, see the
 [component development guide](/docs/pipelines/sdk/component-development). If 

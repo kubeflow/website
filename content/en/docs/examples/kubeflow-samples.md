@@ -4,6 +4,12 @@ description = "Examples that demonstrate machine learning with Kubeflow"
 weight = 10
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This section introduces the examples in the 
 [kubeflow/examples](https://github.com/kubeflow/examples) repository.
 Before using a sample, check the sample's README file for known issues.

@@ -4,6 +4,12 @@ description = "Conceptual overview of runs in Kubeflow Pipelines"
 weight = 50
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 A *run* is a single execution of a pipeline. Runs comprise an immutable log of
 all experiments that you attempt, and are designed to be self-contained to allow
 for reproducibility. You can track the progress of a run by looking at its

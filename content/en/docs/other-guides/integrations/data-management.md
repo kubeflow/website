@@ -4,6 +4,12 @@ description = "Integrating Kubeflow with Rok for data versioning, packaging, and
 weight = 10
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 Since a data scientist can build hundreds of different variants of their models,
 the ability to quickly create new models and save the code and data of each
 version is critical for faster iterations and better models. Automating

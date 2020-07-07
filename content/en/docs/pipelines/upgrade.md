@@ -4,6 +4,12 @@ description = "How to upgrade or reinstall your Kubeflow Pipelines deployment"
 weight = 50
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 Starting from Kubeflow v0.5, Kubeflow Pipelines persists the
 pipeline data in permanent storage volumes. Kubeflow Pipelines therefore
 supports the following capabilities:

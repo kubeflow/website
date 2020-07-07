@@ -4,6 +4,12 @@ description = "Conceptual overview of pipelines in Kubeflow Pipelines"
 weight = 10
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 A *pipeline* is a description of a machine learning (ML) workflow, including all
 of the [components](/docs/pipelines/overview/concepts/component/) in the workflow and how the components relate to each other in
 the form of a [graph](/docs/pipelines/concepts/graph/). The pipeline

@@ -4,6 +4,12 @@ description = "Building your own component and adding it to a pipeline"
 weight = 30
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This page describes how to create a component for Kubeflow Pipelines and how
 to combine components into a pipeline. For an easier start, experiment with 
 [the Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).

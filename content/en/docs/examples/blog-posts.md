@@ -4,6 +4,12 @@ description = "Blog posts and articles about Kubeflow"
 weight = 30
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 The following blog posts provide detailed examples and use cases. Be aware that a blog post describes the interfaces at the time of publication of the post. Some interfaces are under rapid development and therefore may change frequently.
 
 {{% blocks/content-item title="The Kubeflow blog"

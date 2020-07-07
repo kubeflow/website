@@ -4,6 +4,12 @@ description = "Instructions for setting up a management cluster on (GCP)"
 weight = 3
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This guide describes how to setup a management cluster which you will use to deploy one or more instances of Kubeflow.
 
 While the management cluster can be deployed in the same project as your Kubeflow cluster, typically you will want to deploy

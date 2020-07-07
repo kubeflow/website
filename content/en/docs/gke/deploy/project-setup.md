@@ -4,6 +4,12 @@ description = "Creating a Google Cloud Platform (GCP) project for your Kubeflow 
 weight = 1
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 Follow these steps to set up your GCP project:
 
 1. Select or create a project on the 

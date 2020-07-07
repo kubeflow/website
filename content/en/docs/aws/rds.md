@@ -5,6 +5,12 @@ description = "Using Amazon RDS for storing pipelines and metadata"
 weight = 98
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This guide describes how to use Amazon RDS as your pipelines and metadata store.
 
 ## Amazon Relational Database Service (Amazon RDS)

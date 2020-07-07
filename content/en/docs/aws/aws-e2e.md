@@ -4,6 +4,12 @@ description = "Running Kubeflow using AWS services"
 weight = 250
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This guide describes how to deploy Kubeflow using AWS services such as EKS and Cognito. It consists of 3 parts, the deployment of the kubernetes infra, the deployment of the kubeflow and finally the deployment of models using KFserving.
 
 The target audience is a member of a SRE team that builds this platform and provides a dashboard to data scientists. In turn, they can run their workflow for training in their dedicated namespace, and serve their models via a public endpoint.

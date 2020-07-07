@@ -4,6 +4,12 @@ description = "Install Kubeflow on Minikube on Linux"
 weight = 50
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This guide covers the installation of Minikube and Kubeflow in a single node Ubuntu system. Minikube provides a single node Kubernetes cluster that is good for development and testing purposes.
 
 The guide covers the following topics:

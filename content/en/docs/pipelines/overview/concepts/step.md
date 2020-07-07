@@ -4,6 +4,12 @@ description = "Conceptual overview of steps in Kubeflow Pipelines"
 weight = 70
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 A *step* is an execution of one of the components in the pipeline. The
 relationship between a step and its component is one of instantiation, much like
 the relationship between a run and its pipeline. In a complex pipeline,

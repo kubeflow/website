@@ -4,6 +4,12 @@ description = "Authentication and authorization support through OIDC for Kubeflo
 weight = 90
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This section shows the how to setup Kubeflow with authentication and authorization support through OIDC in Amazon Web Services (AWS). Similar to [Cognito tutorial](/docs/aws/authentication/).
 
 ## Enable TLS and Authentication

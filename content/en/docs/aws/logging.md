@@ -4,6 +4,12 @@ description = "Add logging support for kubeflow"
 weight = 70
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 Amazon EKS control plane logging provides audit and diagnostic logs directly from the Amazon EKS control plane to [CloudWatch](https://aws.amazon.com/cloudwatch/) Logs in your account. These logs make it easy for you to secure and run your clusters. You can select the exact log types you need, and logs are sent as log streams to a group for each Amazon EKS cluster in [CloudWatch](https://aws.amazon.com/cloudwatch/).
 
 By default, cluster control plane logs and worker node group logs aren't sent to CloudWatch Logs. You must enable each log type individually to send logs for your cluster.

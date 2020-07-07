@@ -5,6 +5,12 @@ weight = 40
 toc = true
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 ## Nuclio Overview
 
 [nuclio](https://github.com/nuclio/nuclio) is a high performance serverless platform which runs over docker or kubernetes 
