@@ -97,10 +97,17 @@ documentation for that application.
         </td>
         <td>Stable</td>
         <td>1.0.0</td>
-      </tr>
+      </tr>      
       <tr>
         <td><a href="/docs/components/training/chainer/">Chainer operator</a>
         (<a href="https://github.com/kubeflow/chainer-operator">GitHub</a>)
+        </td>
+        <td>Alpha</td>
+        <td></td>
+      </tr>      
+      <tr>
+        <td><a href="/docs/components/feature-store/overview">Feature store: Feast</a>
+        (<a href="https://github.com/feast-dev/feast">GitHub</a>)
         </td>
         <td>Alpha</td>
         <td></td>
@@ -163,7 +170,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td>0.2.0</td>
+        <td>0.2.5</td>
       </tr>
       <tr>
         <td><a href="/docs/components/multi-tenancy/">Profile 
@@ -242,7 +249,7 @@ one of the following Kubeflow SDKs and command-line interfaces
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td>0.2.0</td>
+        <td>0.2.5</td>
       </tr>
     </tbody>
   </table>
