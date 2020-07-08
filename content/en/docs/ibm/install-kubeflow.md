@@ -259,8 +259,6 @@ the guide [Creating an OAuth App](https://developer.github.com/apps/building-oau
 
 The scenario is a GitHub organization owner can authorize its organization members to access a deployed kubeflow. A member of this GitHub organization will be redirected to a page to allow kubeflow accessing its GitHub profile.
 
-You will need to install [docker](https://www.docker.com/) and [kpt](https://googlecontainertools.github.io/kpt/) to update 2 configuration files.
-
 1. Create a new OAuth app in GitHub. Please keep the generated `client_id` and `client_secret`. Before exposing your kubeflow to internete, you can use following local URLs work via port-forward only:
     * Homepage URL: `http://localhost:8080/`
     * Authorization callback URL: `http://localhost:8080/dex/callback`
@@ -283,25 +281,25 @@ You will need to install [docker](https://www.docker.com/) and [kpt](https://goo
     cd ${KF_DIR}
     kfctl build -V -f ${CONFIG_URI}
     ```
-1. Fill in an application secret for OIDC auth service in downloaded YAML file `${KF_DIR}/kustomize/oidc-authservice/oidc-authservice-cm.yaml`. Notice this application secret can be a random string but must match that in `${KF_DIR}/kustomize/dex-auth/dex-auth-cm.yaml`.
-    ```
-    curl -L -o kustomize/oidc-authservice/oidc-authservice-cm.yaml https://raw.githubusercontent.com/kubeflow/manifests/master/stacks/ibm/fns/oidc-authservice-cm.yaml
-    # update the configurations in the oidc-authservice-cm.yaml
-    ```
-1. Fill in saved GitHub OAuth app configurations like `client_id`,  `client_secret` and `application_secret` in downloaded YAML file `${KF_DIR}/kustomize/dex-auth/dex-auth-cm.yaml`:
-    ```
-    curl -L -o kustomize/dex-auth/dex-auth-cm.yaml https://raw.githubusercontent.com/kubeflow/manifests/master/stacks/ibm/fns/dex-auth-cm.yaml
-    # update the configurations in the dex-auth-cm.yaml
-    ```
-1. Transform configuration files by `kpt`:
-    ```
-    kpt fn run kustomize/oidc-authservice
-    kpt fn run kustomize/dex-auth
-    ```
 1. Deploy kubeflow:
     ```
     kfctl apply -V -f ${CONFIG_URI}
     ```
+1. Updates the configmap `dex` in namespace `auth` with credentials from the first step:
+    ```
+    kubectl get configmap dex -n auth -o yaml > dex-cm.yaml
+
+    # Update the data entry config.yaml in the file dex-cm.yaml by
+    # filling clientID, clientSecret, organization name, etc.
+
+    kubectl apply -f dex-cm.yaml -n auth
+    ```
+1. Apply configuration changes:
+    ```
+    kubectl rollout restart deploy/dex -n auth
+    ```
+
+**Notice**: it contains sensitive info in the configmap `dex` in namespace `auth`, please avoid committing updated configmap file `dex-cm.yaml` into a revision control system like a git repository.
 
 ## Verify installation
 
