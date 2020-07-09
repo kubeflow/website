@@ -36,46 +36,46 @@ environment variables.
     ```
     export CLUSTER_NAME=kubeflow
     export CLUSTER_ZONE=dal13
-    export WORKER_PROVIDER=classic
+    export WORKER_NODE_PROVIDER=classic
     ```
 
     - `CLUSTER_NAME` must be lowercase and unique among any other Kubernetes
       clusters in the specified CLUSTER_ZONE.
     - `CLUSTER_ZONE` identifies the regions or location where CLUSTER_NAME will be created. Run `ibmcloud ks locations` to list supported IBM Cloud Kubernetes Service locations. For example, choose `dal13` to create CLUSTER_NAME in the Dallas (US) data center.
-    - `WORKDER_PROVIDER` represents the IBM cloud Kubernetes cluster with worker nodes on classic infrastructure.
+    - `WORKER_NODE_PROVIDER` specifies the kind of IBM Cloud infrastructure on which the Kubernetes worker nodes will be created. 
 
 **Notices**:
 * It uses the worker nodes provider `classic` in this guide because it's the only one that supports worker nodes with GPUs.
-* There are other worker nodes providers including `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Please use `ibmcloud ks zones --provider <provider-name>` to list zone names if using other providers.
+* There are other worker nodes providers including `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Please use `ibmcloud ks zones --provider <provider-name>` to list zone names if using other providers and set the `CLUSTER_ZONE` accordingly.
 
 ### Creating a IBM Cloud Kubernetes cluster
 
-The worker nodes flavor name varies from zones and providers. Please run `ibmcloud ks flavors --zone $CLUSTER_ZONE --provider $WORKER_PROVIDER` to list available flavors.
+The worker nodes flavor name varies from zones and providers. Please run `ibmcloud ks flavors --zone $CLUSTER_ZONE --provider $WORKER_NODE_PROVIDER` to list available flavors.
 
 To make sure the cluster is large enough to host all the Knative and Istio
 components, the recommended configuration for a cluster is:
 
 - Kubernetes version 1.16
-- 4 vCPU cores with 16GB memory (`b2c.4x16`)
+- at least 4 vCPU cores with 16GB memory (e.g., uses the flavor `b3c.4x16` if choosing Ubuntu 18 or the flavor `b2c.4x16` if choosing Ubuntu 16)
 
-1.  Create a Kubernetes cluster on IKS with the required specifications:
+1.  Create a Kubernetes cluster with the required specifications:
 
     ```
-    ibmcloud ks cluster create $WORKER_PROVIDER \
-      --flavor b2c.4x16 \
+    ibmcloud ks cluster create $WORKER_NODE_PROVIDER \
+      --flavor b3c.4x16 \
       --name $CLUSTER_NAME \
       --zone=$CLUSTER_ZONE \
-      --workers=3
+      --workers=2
     ```
 
     If you're starting in a fresh account with no public and private VLANs, they
-    are created automatically for you when creating a kubernetes cluster with 
+    are created automatically for you when creating a Kubernetes cluster with 
     worker nodes provider `classic` for the first time. If you already have VLANs configured in
     your account, get them via `ibmcloud ks vlans --zone $CLUSTER_ZONE` and
     include the public/private VLAN id in the `cluster create` command:
 
     ```
-    ibmcloud ks cluster create $WORKER_PROVIDER \
+    ibmcloud ks cluster create $WORKER_NODE_PROVIDER \
       --machine-type=b2c.4x16 \
       --name=$CLUSTER_NAME \
       --zone=$CLUSTER_ZONE \
@@ -109,9 +109,11 @@ components, the recommended configuration for a cluster is:
     Make sure all the nodes are in `Ready` state. You are now ready to install
     Istio into your cluster.
 
+**Notice**: If choosing other Kubernetes worker nodes providers, please refer to the IBM Cloud official document [Creating clusters](https://cloud.ibm.com/docs/containers?topic=containers-clusters) for detailed steps.
+
 ## IBM Cloud Block Storage Setup
 
-**Note**: Skip this section when choosing either `vpc-classic` or `vpc-gen2` instead of `classic` as kubernetes worker nodes provider where block storage is default storage class.
+**Note**: This section is only required when the worker nodes provider `WORKER_NODE_PROVIDER` is set to `classic`. For other infrastructures, IBM Cloud Block Storage is already set up as the cluster's default storage class.
 
 When using the `classic` worker nodes provider of IBM Cloud Kubernetes cluster, by default, it uses [IBM Cloud File Storage](https://www.ibm.com/cloud/file-storage) based on NFS as the default storage class. File Storage is designed to run RWX (read-write multiple nodes) workloads with proper security built around it. Therefore, File Storage [does not allow `fsGroup` securityContext](https://cloud.ibm.com/docs/containers?topic=containers-security#container) which is needed for DEX and Kubeflow Jupyter Server.
 
@@ -254,14 +256,15 @@ kfctl apply -V -f ${CONFIG_URI}
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
 ### Multi-user, auth-enabled
-Run the following commands to deploy kubeflow with GitHub OAuth application as authentication provider by dex. Please use
+Run the following commands to deploy Kubeflow with GitHub OAuth application as authentication provider by dex. Please use
 the guide [Creating an OAuth App](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/) for how to create an OAuth app for GitHub and [Approving OAuth Apps for your organization](https://help.github.com/en/github/setting-up-and-managing-organizations-and-teams/approving-oauth-apps-for-your-organization) if you're a GitHub organization owner.
 
 The scenario is a GitHub organization owner can authorize its organization members to access a deployed kubeflow. A member of this GitHub organization will be redirected to a page to allow kubeflow accessing its GitHub profile.
 
-1. Create a new OAuth app in GitHub. Please keep the generated `client_id` and `client_secret`. Before exposing your kubeflow to internete, you can use following local URLs work via port-forward only:
+1. Create a new OAuth app in GitHub. Use following setting to register the application:
     * Homepage URL: `http://localhost:8080/`
     * Authorization callback URL: `http://localhost:8080/dex/callback`
+1. Once the application is registered, copy and save the `Client ID` and `Client Secret` for use later.
 1. Setup environment variables:
     ```
     export KF_NAME=<your choice of name for the Kubeflow deployment>
@@ -281,25 +284,76 @@ The scenario is a GitHub organization owner can authorize its organization membe
     cd ${KF_DIR}
     kfctl build -V -f ${CONFIG_URI}
     ```
-1. Deploy kubeflow:
+1. Deploy Kubeflow:
     ```
     kfctl apply -V -f ${CONFIG_URI}
     ```
-1. Updates the configmap `dex` in namespace `auth` with credentials from the first step:
+1. Wait until the deployment finishes successfully. e.g., all pods are in `Running` state when running `kubectl get pod -n kubeflow`.
+1. Update the configmap `dex` in namespace `auth` with credentials from the first step.
+    - Run `kubectl get configmap dex -n auth -o yaml > dex-cm.yaml` Or take below configmap `dex` for example:
+    ```YAML
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: dex
+      namespace: auth
+    data:
+      config.yaml: |
+        issuer: http://dex.auth.svc.cluster.local:5556/dex
+        storage:
+          type: kubernetes
+          config:
+            inCluster: true
+        web:
+          http: 0.0.0.0:5556
+        logger:
+          level: "debug"
+          format: text
+        connectors:
+          - type: github
+            # Required field for connector id.
+            id: github
+            # Required field for connector name.
+            name: GitHub
+            config:
+              # Fill in client ID, client Secret as string literal.
+              clientID:
+              clientSecret: 
+              redirectURI: http://dex.auth.svc.cluster.local:5556/dex/callback
+              # Optional organizations and teams, communicated through the "groups" scope.
+              #
+              # NOTE: This is an EXPERIMENTAL config option and will likely change.
+              #
+              orgs:
+              # Fill in your GitHub organization name
+              - name:
+              # Required ONLY for GitHub Enterprise. Leave it empty when using github.com.
+              # This is the Hostname of the GitHub Enterprise account listed on the
+              # management console. Ensure this domain is routable on your network.
+              hostName:
+              # Flag which indicates that all user groups and teams should be loaded.
+              loadAllGroups: false
+              # flag which will switch from using the internal GitHub id to the users handle (@mention) as the user id.
+              # It is possible for a user to change their own user name but it is very rare for them to do so
+              useLoginAsID: false
+        staticClients:
+        - id: kubeflow-oidc-authservice
+          redirectURIs: ["/login/oidc"]
+          name: 'Dex Login Application'
+          secret: pUCnCOY80SnXgjibTYM0ZWNzY3xreNGQok
     ```
-    kubectl get configmap dex -n auth -o yaml > dex-cm.yaml
-
-    # Update the data entry config.yaml in the file dex-cm.yaml by
-    # filling clientID, clientSecret, organization name, etc.
-
+    - Edit the data entry config.yaml in the file dex-cm.yaml by filling the client ID, client Secret and your GitHub organization name then update this change to the Kubernetes cluster:
+    ```
     kubectl apply -f dex-cm.yaml -n auth
+
+    # Remove this file with sensitive information.
+    rm dex-cm.yaml
     ```
+    
 1. Apply configuration changes:
     ```
     kubectl rollout restart deploy/dex -n auth
     ```
-
-**Notice**: it contains sensitive info in the configmap `dex` in namespace `auth`, please avoid committing updated configmap file `dex-cm.yaml` into a revision control system like a git repository.
 
 ## Verify installation
 
