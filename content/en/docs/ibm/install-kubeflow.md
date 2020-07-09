@@ -44,7 +44,7 @@ environment variables.
 
 ### Creating a IBM Cloud Kubernetes cluster
 
-To make sure the cluster is large enough to host all the Knative and Istio
+To make sure the cluster is large enough to host all the Kubeflow
 components, the recommended configuration for a cluster is:
 
 - Kubernetes version 1.15
