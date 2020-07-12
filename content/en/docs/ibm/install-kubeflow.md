@@ -256,10 +256,9 @@ kfctl apply -V -f ${CONFIG_URI}
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
 ### Multi-user, auth-enabled
-Run the following commands to deploy Kubeflow with GitHub OAuth application as authentication provider by dex. Please use
-the guide [Creating an OAuth App](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/) for how to create an OAuth app for GitHub and [Approving OAuth Apps for your organization](https://help.github.com/en/github/setting-up-and-managing-organizations-and-teams/approving-oauth-apps-for-your-organization) if you're a GitHub organization owner.
+Run the following commands to deploy Kubeflow with GitHub OAuth application as authentication provider by dex. To support multi-users with authentication enabled, this guide uses [dex](https://github.com/dexidp/dex) with [GitHub OAuth](https://developer.github.com/apps/building-oauth-apps/). Before continue, refer to the guide [Creating an OAuth App](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/) for steps to create an OAuth app on GitHub.com.
 
-The scenario is a GitHub organization owner can authorize its organization members to access a deployed kubeflow. A member of this GitHub organization will be redirected to a page to allow kubeflow accessing its GitHub profile.
+The scenario is a GitHub organization owner can authorize its organization members to access a deployed kubeflow. A member of this GitHub organization will be redirected to a page to grant access to the GitHub profile by Kubeflow.
 
 1. Create a new OAuth app in GitHub. Use following setting to register the application:
     * Homepage URL: `http://localhost:8080/`
@@ -290,7 +289,9 @@ The scenario is a GitHub organization owner can authorize its organization membe
     ```
 1. Wait until the deployment finishes successfully. e.g., all pods are in `Running` state when running `kubectl get pod -n kubeflow`.
 1. Update the configmap `dex` in namespace `auth` with credentials from the first step.
-    - Run `kubectl get configmap dex -n auth -o yaml > dex-cm.yaml` Or take below configmap `dex` for example:
+    - Get current resource file of current configmap `dex`:
+    `kubectl get configmap dex -n auth -o yaml > dex-cm.yaml`
+    The `dex-cm.yaml` file looks like following:
     ```YAML
     apiVersion: v1
     kind: ConfigMap
@@ -342,7 +343,13 @@ The scenario is a GitHub organization owner can authorize its organization membe
           name: 'Dex Login Application'
           secret: pUCnCOY80SnXgjibTYM0ZWNzY3xreNGQok
     ```
-    - Edit the data entry config.yaml in the file dex-cm.yaml by filling the client ID, client Secret and your GitHub organization name then update this change to the Kubernetes cluster:
+    - Replace `clientID` and `clientSecret` in the `config.yaml` field with the `Client ID` and `Client Secret` created above for the GitHub OAuth application. Add your organization name to the `orgs` field, e.g.
+    ```YAML
+    orgs:
+    - name: kubeflow-test
+    ```
+    Save the `dex-cm.yaml` file.
+    - Update this change to the Kubernetes cluster:
     ```
     kubectl apply -f dex-cm.yaml -n auth
 
