@@ -105,6 +105,9 @@ See the Google Kubernetes Engine (GKE) guide to
 
 ## Upgrading Kubeflow Pipelines
 
+**Important Note**: By default, the process below installs Pipelines into the `kubeflow` Kubernetes namespace.  Before you upgrade an existing Kubeflow Pipelines installation, determine the namespace into which it was installed.  For example, by default, [Cloud AI Platform Pipelines](https://console.cloud.google.com/ai-platform/pipelines/)
+installs into the `default` namespace.  **You must configure your upgrade to use the same namespace as the initial installation**. See the [Change Deployment Namespace](#change-deployment-namespace) section below for information about how to do that.
+
 1. Check the [Kubeflow Pipelines GitHub repository](https://github.com/kubeflow/pipelines/releases) for available releases.
 
 1. To upgrade to Kubeflow Pipelines 0.4.0 and higher, use the following commands:
