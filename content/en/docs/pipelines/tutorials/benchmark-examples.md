@@ -8,7 +8,7 @@ This guide explains the Kubeflow Pipelines [benchmark scripts](https://github.co
 and demonstrates how to use them to collect basic performance data of a given
 Kubeflow Pipelines instance.
 
-## Overview
+## About the Kubeflow Pipelines benchmark script
 
 The Kubeflow Pipelines benchmark scripts simulate typical workloads and record
 performance metrics, such as server latencies and pipeline run durations. To simulate a typical workload, the benchmark script uploads a pipeline
@@ -53,7 +53,7 @@ To run the provided benchmark scripts, you need the following:
    cluster, learn more about your [options for installing Kubeflow
    Pipelines](/docs/pipelines/installation/overview/).
 *  A pipeline manifest. For example, this guide uses the
-   [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml)
+   [taxi_updated_pool.yaml](https://storage.googleapis.com/ml-pipeline/sample-benchmark/taxi_updated_pool.yaml)
    pipeline manifest file.
 
 One way of setting up everything and running a benchmark script is shown below
@@ -64,9 +64,9 @@ as an example.
 Use the following instructions to run the benchmark script on your Kubeflow
 Pipelines cluster.
 
-1. Download the the [run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
+1. Download the the [run_service_api.ipynb](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
    benchmark script in your Jupyter notebook environment.
-1. Open [run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
+1. Open [run_service_api.ipynb](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
    in the local Jupyter notebook. This benchmark script:
 
    1. Creates a new pipeline.
@@ -84,12 +84,12 @@ Pipelines cluster.
 
    * **pipeline_file_url**: The URL of the pipeline manifest file to use in
      your benchmark.
-     [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml)
+     [taxi_updated_pool.yaml](https://storage.googleapis.com/ml-pipeline/sample-benchmark/taxi_updated_pool.yaml)
      is used in this example. This example pipeline makes use of
      [nodeSelector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
      to explicitly schedule the runs of this pipeline onto the node pool named `pool-1`. If you use the taxi_updated_pool.yaml pipeline manifest in your benchmarks, ensure that a node pool named `pool-1` exists in your cluster.
 
-     **NOTE**: Do not use the value 'https://storage.cloud.google.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml'
+     **NOTE**: Do not use the value 'https://storage.cloud.google.com/ml-pipeline/sample-benchmark/taxi_updated_pool.yaml'
      when running your benchmarks. Addresses that start with
      'storage.cloud.google.com' incur a redirect that doesn't work well with
      Kubeflow Pipelines.
@@ -108,8 +108,8 @@ Pipelines cluster.
    benchmark script in the notebook.
 
 The following snapshot shows the results of running the benchmark script
-[run_service_api.ipynb](https://github.com/jingzhang36/pipelines/blob/different_tools/tools/benchmarks/run_service_api.ipynb)
-using the [taxi_updated_pool.yaml](https://storage.googleapis.com/jingzhangjz-project-pipelines/benchmarks/taxi_updated_pool.yaml)
+[run_service_api.ipynb](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
+using the [taxi_updated_pool.yaml](https://storage.googleapis.com/ml-pipeline/sample-benchmark/taxi_updated_pool.yaml)
 pipeline manifest for 50 runs on a Kubernetes cluster with two node pools.
 Each node pool has three nodes of machine type 'n1-standard-8'.
 
