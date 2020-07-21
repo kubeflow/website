@@ -193,7 +193,7 @@ Traditional way to attach IAM policies to node group role is still working, feel
 
 ## Access Kubeflow central dashboard
 
-If you are using {{% config-uri-aws-cognito %}}, run following command to get Kubeflow service endpoint host name and copy link in browser.
+If you are using {{% config-uri-aws-cognito %}} , run following command to get Kubeflow service endpoint host name and copy link in browser.
 
 ```
 kubectl get ingress -n istio-system
