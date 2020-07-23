@@ -205,7 +205,7 @@ istio-system   istio-ingress   *       a743484b-istiosystem-istio-2af2-xxxxxx.us
 This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser.
 
 
-If you are using {{% config-uri-aws-standard %}}, the Kubeflow Dashboard can be accessed via istio-ingressgateway service.
+If you are using {{% config-uri-aws-standard %}} , the Kubeflow Dashboard can be accessed via istio-ingressgateway service.
 
 You can run following command to port forward to local, then open `http://localhost:8080` in browser.
 
@@ -268,7 +268,7 @@ Your Kubeflow app directory **${KF_DIR}** contains the following files and direc
   * This file is a copy of the GitHub-based configuration YAML file that
     you used when deploying Kubeflow.
   * When you run `kfctl apply` or `kfctl build`, kfctl creates
-    a local version of the configuration file, `${CONFIG_FILE},`
+    a local version of the configuration file, `${CONFIG_FILE}`,
     which you can further customize if necessary.
 
 * **aws_config** is a directory that contains a sample `eksctl` cluster configuration file that defines the AWS cluster and policy files to attach to your node group roles.
