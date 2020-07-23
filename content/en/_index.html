@@ -1,0 +1,186 @@
++++
+title = "Kubeflow"
++++
+
+<!-- Hero section -->
+{{<blocks/cover title="Kubeflow" image_anchor="center" height="full" color="dark">}}
+<div class="mx-auto">
+  <p class="lead mt-5">The Machine Learning Toolkit for Kubernetes</p>
+  <a
+    class="btn btn-lg btn-primary mr-3 mb-4"
+    href="/docs/started/getting-started/"
+  >
+    Get Started <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+  </a>
+  <a
+    class="btn btn-lg btn-secondary mr-3 mb-4"
+    href="/docs/about/contributing/"
+  >
+    Contribute <i class="fas fa-pencil-alt ml-2"></i>
+  </a>
+  <div class="mx-auto mt-5">
+    {{<blocks/link-down color="light">}}
+  </div>
+</div>
+{{</blocks/cover>}}
+
+<div id="overview">
+  <div class="contain">
+    <h4 class="section-head">What is Kubeflow?</h4>
+    <p>
+      The Kubeflow project is dedicated to making deployments of machine
+      learning (ML) workflows on Kubernetes simple, portable and scalable. Our
+      goal is not to recreate other services, but to provide a straightforward
+      way to deploy best-of-breed open-source systems for ML to diverse
+      infrastructures. Anywhere you are running Kubernetes, you should be able
+      to run Kubeflow.
+    </p>
+  </div>
+</div>
+
+<section id="pageContent">
+  <div class="container">
+    <div class="card-deck">
+      <div class="card border-primary-dark">
+        <img
+          src="/docs/images/logos/Jupyter.png"
+		  class="card-img-top"
+		  draggable="false"
+          style="padding: 2rem;"
+          alt="Jupyter Logo"
+        />
+        <div class="card-body bg-primary-dark">
+          <h5 class="card-title text-white section-head">Notebooks</h5>
+          <p class="card-text text-white">
+            Kubeflow includes services to create and manage interactive <a target="_blank" rel="noopener" href="/docs/notebooks/">Jupyter
+            notebooks</a>.  You can customize your notebook deployment and your compute resources to
+            suit your data science needs. Experiment with your workflows locally, then
+            deploy them to a cloud when you're ready.
+          </p>
+        </div>
+      </div>
+      <div class="card border-primary-dark">
+        <img
+          src="/docs/images/logos/TensorFlow.png"
+		  class="card-img-top"
+		  draggable="false"
+          style="padding: 2rem;"
+          alt="TensorFlow"
+        />
+        <div class="card-body bg-primary-dark">
+          <h5 class="card-title text-white section-head">
+            TensorFlow model training
+          </h5>
+          <p class="card-text text-white">
+            Kubeflow provides a custom <a target="_blank" rel="noopener" href="/docs/components/training/tftraining/">TensorFlow training job operator</a>
+            that you can use to train your ML model. In particular, Kubeflow's job operator can handle distributed TensorFlow training jobs. 
+            Configure the training controller to use CPUs or GPUs and to suit various cluster sizes.
+          </p>
+        </div>
+      </div>
+      <div class="card border-primary-dark">
+        <img
+          src="/docs/images/logos/Models.png"
+		  class="card-img-top"
+		  draggable="false"
+          style="padding: 2rem;"
+          alt="Model serving image"
+        />
+        <div class="card-body bg-primary-dark">
+          <h5 class="card-title text-white section-head">Model serving</h5>
+          <p class="card-text text-white">
+            Kubeflow supports a <a target="_blank" rel="noopener" href="/docs/components/serving/tfserving_new/">TensorFlow Serving</a> container to export trained
+            TensorFlow models to Kubernetes. Kubeflow is also integrated with
+            <a target="_blank" rel="noopener" href="/docs/components/serving/seldon/">Seldon Core</a>, an open source platform for deploying machine learning
+            models on Kubernetes, and <a target="_blank" rel="noopener" href="/docs/components/serving/tritoninferenceserver/">NVIDIA Triton Inference Server</a> for
+            maximized GPU utilization when deploying ML/DL models at scale.
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="card-deck">
+      <div class="card border-primary-dark">
+        <img
+          src="/docs/images/logos/Pipeline.png"
+		  class="card-img-top"
+		  draggable="false"
+          style="padding: 2rem;"
+          alt="Pipelines Logo"
+        />
+        <div class="card-body bg-primary-dark">
+          <h5 class="card-title text-white section-head">Pipelines</h5>
+          <p class="card-text text-white">
+			<a target="_blank" rel="noopener" href="/docs/pipelines/overview/pipelines-overview/" >Kubeflow Pipelines</a> is a comprehensive solution for deploying
+            and managing end-to-end ML workflows. Use Kubeflow Pipelines for rapid and reliable experimentation.
+            You can schedule and compare runs, and examine detailed reports on each run.
+          </p>
+        </div>
+      </div>
+      <div class="card border-primary-dark">
+        <img
+          src="/docs/images/logos/MultiPlatform.png"
+		  class="card-img-top"
+		  draggable="false"
+          style="padding: 2rem;"
+          alt="Multiple Framework Logos"
+        />
+        <div class="card-body bg-primary-dark">
+          <h5 class="card-title text-white section-head">Multi-framework</h5>
+          <p class="card-text text-white">
+            Our development plans extend beyond TensorFlow. We're working
+			hard to extend the support of 
+			<a target="_blank" rel="noopener" href="/docs/components/training/pytorch/">PyTorch</a>, 
+			<a target="_blank" rel="noopener" href="/docs/components/training/mxnet/"> Apache MXNet</a>, 
+		  	<a target="_blank" rel="noopener" href="/docs/components/training/mpi/"> MPI</a>,
+		  	<a target="_blank" rel="noopener" href="https://github.com/kubeflow/xgboost-operator"> XGBoost</a>,
+			<a target="_blank" rel="noopener" href="/docs/components/training/chainer/"> Chainer</a>, and more. We
+			also integrate with 
+			<a target="_blank" rel="noopener" href="https://istio.io/">Istio</a> and 
+			<a target="_blank" rel="noopener" href="https://www.getambassador.io/">Ambassador</a> for ingress, 
+			<a target="_blank" rel="noopener" href="/docs/components/misc/nuclio/">Nuclio</a> as a
+            fast multi-purpose serverless framework, and <a target="_blank" rel="noopener" href="https://www.pachyderm.io/">Pachyderm</a> for managing
+            your data science pipelines.
+          </p>
+        </div>
+      </div>
+      <div class="card border-primary-dark">
+        <img
+          src="/docs/images/logos/Community.png"
+		  class="card-img-top"
+		  draggable="false"
+          style="padding: 2rem;"
+          alt="People Icon"
+        />
+        <div class=" card-body bg-primary-dark">
+          <h5 class="card-title text-white section-head">Community</h5>
+          <p class="card-text text-white">
+            We are an open and welcoming community of software developers, data
+            scientists, and organizations! Join our <a target="_blank" rel="noopener"
+		    href="https://kubeflow.slack.com/join/shared_invite/zt-cpr020z4-PfcAue_2nw67~iIDy7maAQ">Slack workspace</a> 
+            for help with any issues you may face, and read <a target="_blank" rel="noopener" href="/docs/about/community/">more about the community</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <!-- For future editors: If you are adding cards not in multiples of 3, wrap them in a 'card-columns' div 
+						instead of card-deck. It will look more pleasing to the eye. -->
+  </div>
+</section>
+
+<div id="community">
+  <div class="contain">
+    <h4 class="section-head">Join our community</h4>
+    <p>
+      Want to contribute to Kubeflow? <a href="/docs/about/community/">Join our community</a>! Check out upcoming meetings, get involved in discussions on our mailing list or on Slack, and suggest exciting new integrations.
+    </p>
+
+    <a
+      class="btn btn-lg btn-primary mr-3 mb-4"
+      href="/docs/about/community/"
+    >
+      Join the community <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+    </a>
+  </div>
+</div>

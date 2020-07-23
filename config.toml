@@ -12,8 +12,9 @@ enableRobotsTXT = true
 enableGitInfo = true
 
 # Docsy: Language settings
-contentDir = "content"
+contentDir = "content/en"
 defaultContentLanguage = "en"
+# Tell Hugo not to include the /en/ element in the URL path for English docs:
 defaultContentLanguageInSubdir = false
 # Docsy: Useful when translating.
 enableMissingTranslationPlaceholders = true
@@ -80,8 +81,10 @@ id = "UA-135379910-1"
 title = "Kubeflow"
 description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 languageName ="English"
+# Weight used for sorting in the language menu:
 weight = 1
-# Example of another language: Norwegian
+
+# Below is an example of another language (Norwegian):
 #[languages.no]
 #title = "Docsy"
 #description = "Docsy er operativsystem for skyen"

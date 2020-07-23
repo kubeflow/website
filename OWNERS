@@ -1,19 +1,14 @@
 approvers:
-  - abhi-g
   - jlewi
-  - richardsliu
-  - sarahmaddox
   - joeliedtke
   - animeshsingh
   - rmgogogo
-  - janeman98
 reviewers:
   - aronchick
   - carmine
   - dansanche
   - Jeffwan
   - jinchihe
-  - kunmingg
   - lluunn
   - nickchase
   - pdmack
@@ -28,5 +23,5 @@ reviewers:
   - paveldournov
   - qimingj
   - rileyjbauer
-  - vicaire
+  - berndverst
 
