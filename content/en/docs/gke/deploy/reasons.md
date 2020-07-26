@@ -7,10 +7,9 @@ weight = 10
 Running Kubeflow on GCP brings you the following features:
 
   * You use
-    [Deployment Manager](https://cloud.google.com/deployment-manager/docs/) to
+    [Cloud Native Resource Manager](https://cloud.google.com/config-connector/docs) to
     declaratively manage all non-Kubernetes resources (including the GKE 
-    cluster). Deployment Manager is easy to customize for your particular use
-    case.
+    cluster).
   * You can take advantage of 
     [GKE](https://cloud.google.com/kubernetes-engine/docs) autoscaling to scale 
     your cluster horizontally 
