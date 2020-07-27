@@ -4,17 +4,15 @@ description = "Reasons to use Kubeflow on Google Cloud Platform (GCP)"
 weight = 10
 +++
 
-Running Kubeflow on GCP brings you the following features:
+Running Kubeflow on GCP has the following benefits:
 
-  * You use
+  * The
     [Cloud Native Resource Manager](https://cloud.google.com/config-connector/docs) to
     declaratively manage all non-Kubernetes resources (including the GKE 
     cluster).
-  * You can take advantage of 
-    [GKE](https://cloud.google.com/kubernetes-engine/docs) autoscaling to scale 
-    your cluster horizontally 
-    and vertically to meet the demands of machine learning (ML) workloads with 
-    large resource requirements.
+  * You can take advantage of GKE's
+    [Cluster Autoscaler](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler) 
+    to automatically resize the number of nodes in a node pool in your cluster depending on the workload demands.
   * [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/) 
     makes it easy to securely connect to Jupyter and other
     web apps running as part of Kubeflow.

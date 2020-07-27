@@ -63,4 +63,5 @@ cluster for you.
   Cloud IAP is recommended for production deployments or deployments with access 
   to sensitive data. You can skip this step if you want to test Kubeflow
   in a non-production environment.
-* Follow the [instructions](/docs/gke/deploy/deploy-cli) to deploy Kubeflow
+
+* Follow the [instructions](/docs/gke/deploy/deploy-cli) to deploy Kubeflow using kubectl, kustomize and kpt.

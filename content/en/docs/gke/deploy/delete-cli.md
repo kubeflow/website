@@ -4,8 +4,7 @@ description = "Deleting Kubeflow from GCP using the command line interface (CLI)
 weight = 6
 +++
 
-
-This page shows you how to delete a Kubeflow deployment on
+This page explains how to delete a Kubeflow deployment on
 Google Cloud Platform (GCP) using `kubectl`.
 
 ## Before you start
@@ -23,16 +22,18 @@ This guide assumes the following settings:
 ## Deleting your deployment
 
 
-1. To just delete the applications running in the Kubeflow namespace just delete that namespace
+1. To delete the applications running in the Kubeflow namespace, remove that namespace
 
    ```
    kubectl delete namespace kubeflow
    ```
 
-1. To delete the cluster and all GCP resources
+1. To delete the cluster and all GCP resources, run the following commands
 
 ```
 cd ${KF_DIR}
 make delete-gcp
 ```
 
+   * **Warning** This will delete the persistent disks storing metadata. If you want to preserve the disk don't run this command;
+     instead selectively delete only those resources you want to delete.
