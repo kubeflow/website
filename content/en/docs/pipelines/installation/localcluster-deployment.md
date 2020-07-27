@@ -37,39 +37,39 @@ First download and move kind executable somewhere in your path directory:
 On Linux:
 
 ```
-curl -Lo ./kind https://kind.sigs.k8s.io/dl/<KIND-VERSION>/kind-linux-amd64
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/<KIND-VERSION>/kind-linux-amd64 
 chmod +x ./kind
 mv ./kind /some-dir-in-your-PATH/kind
 ```
+
 On Mac:
 
-```
- brew install kind
-```
+` brew install kind`
+
 On Windows from within and administrative PowerShell console:
 
 ```
 curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/<KIND-VERSION>/kind-windows-amd64
 Move-Item .\kind-windows-amd64.exe c:\some-dir-in-your-PATH\kind.exe
 ```
+
 On Windows via Chocolatey [https://chocolatey.org/packages/kind](https://chocolatey.org/packages/kind):
 
-```
-choco install kind
-```
+`choco install kind`
+
 Note, kind use containerd as default container-runtime hence you cannot use the standard kubeflow pipeline manifests.
 
 **References**:
 
-  * [Kind - Quick Start Guide](https://kind.sigs.k8s.io/docs/user/quick-start/)
+* [Kind - Quick Start Guide](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
-  * [Kind - Known Issues](https://kind.sigs.k8s.io/docs/user/known-issues/)
+* [Kind - Known Issues](https://kind.sigs.k8s.io/docs/user/known-issues/)
 
-  * [Kind - Working Offline](https://kind.sigs.k8s.io/docs/user/working-offline/)
+* [Kind - Working Offline](https://kind.sigs.k8s.io/docs/user/working-offline/)
 
 ### Create your cluster on Kind
 
-Creating a Kubernetes cluster is as simple as ```kind create cluster```.
+Creating a Kubernetes cluster is as simple as `kind create cluster`.
 
 This will bootstrap a Kubernetes cluster using a pre-built node image - you can find it on docker hub kindest/node. If you desire to build the node image yourself see the building image section. To specify another image use the --image flag.
 
@@ -86,45 +86,42 @@ K3s is a fully compliant Kubernetes distribution with the following enhancements
 * Simple but powerful “batteries-included” features have been added, such as: a local storage provider, a service load balancer, a Helm controller, and the Traefik ingress controller.
 * Operation of all Kubernetes control plane components is encapsulated in a single binary and process. This allows K3s to automate and manage complex cluster operations like distributing certificates.
 * External dependencies have been minimized (just a modern kernel and cgroup mounts needed). K3s packages required dependencies, including:
-     * containerd
-     * Flannel
-     * CoreDNS
-     * CNI
-     * Host utilities (iptables, socat, etc)
-     * Ingress controller (traefik)
-     * Embedded service loadbalancer
-     * Embedded network policy controller
+
+  * containerd
+  * Flannel
+  * CoreDNS
+  * CNI
+  * Host utilities (iptables, socat, etc)
+  * Ingress controller (traefik)
+  * Embedded service loadbalancer
+  * Embedded network policy controller
 
 K3s provides an installation script that is a convenient way to install it as a service on systemd or openrc based systems. This script is available at https://get.k3s.io. To install K3s using this method, just run:
 
-```
-curl -sfL https://get.k3s.io | sh -
-```
+`curl -sfL https://get.k3s.io | sh -`
+
 Note, kind use containerd as default container-runtime hence you cannot use the standard kubeflow pipeline manifests.
 
 **References**:
 
-  * [K3S - Quick Start Guide](https://rancher.com/docs/k3s/latest/en/quick-start/)
+* [K3S - Quick Start Guide](https://rancher.com/docs/k3s/latest/en/quick-start/)
 
-  * [K3S - Known Issues](https://rancher.com/docs/k3s/latest/en/known-issues/)
+* [K3S - Known Issues](https://rancher.com/docs/k3s/latest/en/known-issues/)
 
-  * [K3S - FAQ](https://rancher.com/docs/k3s/latest/en/faq/)
+* [K3S - FAQ](https://rancher.com/docs/k3s/latest/en/faq/)
 
 ### Create your cluster on K3S
 
-Creating a Kubernetes cluster is as simple as ```sudo k3s server &```.
+Creating a Kubernetes cluster is as simple as `sudo k3s server &`.
 
 This will bootstrap a Kubernetes cluster kubeconfig is written to /etc/rancher/k3s/k3s.yaml
 
-```
-sudo k3s kubectl get node
-```
+`sudo k3s kubectl get node`
 
 On a different node run the below. NODE_TOKEN comes from /var/lib/rancher/k3s/server/node-token on your server
 
-``` 
-sudo k3s agent --server https://myserver:6443 --token ${NODE_TOKEN}
-```
+`sudo k3s agent --server https://myserver:6443 --token ${NODE_TOKEN}`
+
 ### Set up your cluster on K3S on WSL2
 
 K3s is a fully compliant Kubernetes distribution with the following enhancements:
@@ -136,15 +133,14 @@ K3s is a fully compliant Kubernetes distribution with the following enhancements
 * Simple but powerful “batteries-included” features have been added, such as: a local storage provider, a service load balancer, a Helm controller, and the Traefik ingress controller.
 * Operation of all Kubernetes control plane components is encapsulated in a single binary and process. This allows K3s to automate and manage complex cluster operations like distributing certificates.
 * External dependencies have been minimized (just a modern kernel and cgroup mounts needed). K3s packages required dependencies, including:
-     * containerd
-     * Flannel
-     * CoreDNS
-     * CNI
-     * Host utilities (iptables, socat, etc)
-     * Ingress controller (traefik)
-     * Embedded service loadbalancer
-     * Embedded network policy controller
-
+  * containerd
+  * Flannel
+  * CoreDNS
+  * CNI
+  * Host utilities (iptables, socat, etc)
+  * Ingress controller (traefik)
+  * Embedded service loadbalancer
+  * Embedded network policy controller
 
 The Windows Subsystem for Linux lets developers run a GNU/Linux environment -- including most command-line tools, utilities, and applications -- directly on Windows, unmodified, without the overhead of a traditional virtual machine or dualboot setup.
 
@@ -158,12 +154,11 @@ The Windows Subsystem for Linux lets developers run a GNU/Linux environment -- i
 
 **References**:
 
-  * [K3S on WSL2 - Quick Start Guide](https://gist.github.com/ibuildthecloud/1b7d6940552ada6d37f54c71a89f7d00)
-
+* [K3S on WSL2 - Quick Start Guide](https://gist.github.com/ibuildthecloud/1b7d6940552ada6d37f54c71a89f7d00)
 
 ### Create your cluster on K3S on WSL2
 
-Creating a Kubernetes cluster is as simple as ```sudo ./k3s server```.
+Creating a Kubernetes cluster is as simple as `sudo ./k3s server`.
 
 This will bootstrap a Kubernetes cluster but you will cannot yet access from your windows 10 machine to the cluster itself.
 
@@ -171,14 +166,16 @@ This will bootstrap a Kubernetes cluster but you will cannot yet access from you
 
 * Download k3s binary from https://github.com/rancher/k3s/releases/latest
 
-     ```chmod +x k3s```
-* Run k3s 
-     ```sudo ./k3s server```
+`chmod +x k3s`
+
+* Run k3s
+
+`sudo ./k3s server`
 
 ### Setup access to your WSL2 instance
-    
- * Copy ```/etc/rancher/k3s/k3s.yaml``` from WSL to your home in Windows to ```%HOME%.kube\config```. Edit the copied file and change the server URL from ```https://localhost:6443``` to the IP of the your WSL2 instance (```ip addr show dev eth0```). So something like ```https://192.168.170.170:6443```.
- * Run kubectl from windows, if you don't have it yet you may obtain it from [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows)
+
+* Copy `/etc/rancher/k3s/k3s.yaml` from WSL to your home in Windows to `%HOME%.kube\config`. Edit the copied file and change the server URL from `https://localhost:6443` to the IP of the your WSL2 instance (`ip addr show dev eth0`). So something like `https://192.168.170.170:6443`.
+* Run kubectl from windows, if you don't have it yet you may obtain it from [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows)
 
 ## Deploying Kubeflow Pipelines
 
@@ -186,19 +183,18 @@ The installation process for Kubeflow pipelines is the same for all the environm
 
 1. Deploy the Kubeflow Pipelines:
 
-     ```
-     export PIPELINE_VERSION={{% pipelines/latest-version %}}
-     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
-     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns-executor?ref=$PIPELINE_VERSION"
-     ```
+```
+export PIPELINE_VERSION={{% pipelines/latest-version %}}
+kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
+kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
+kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns-executor?ref=$PIPELINE_VERSION"
+```
 
-     The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
+The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
 
-     **Note**: The above commands apply to Kubeflow Pipelines version 0.4.0 and higher.
+**Note**: The above commands apply to Kubeflow Pipelines version 0.4.0 and higher.
 
-     **Note**: `kubectl apply -k` accepts local paths and paths that are formatted as [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, the paths are not valid URLs.
-
+**Note**: `kubectl apply -k` accepts local paths and paths that are formatted as [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, the paths are not valid URLs.
 
 ## Uninstalling Kubeflow Pipelines
 
