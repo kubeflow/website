@@ -22,13 +22,13 @@ This guide assumes the following settings:
 ## Deleting your deployment
 
 
-1. To delete the applications running in the Kubeflow namespace, remove that namespace
+1. To delete the applications running in the Kubeflow namespace, remove that namespace:
 
    ```
    kubectl delete namespace kubeflow
    ```
 
-1. To delete the cluster and all GCP resources, run the following commands
+1. To delete the cluster and all GCP resources, run the following commands:
 
 ```
 cd ${KF_DIR}
