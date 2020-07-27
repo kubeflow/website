@@ -199,14 +199,6 @@ The installation process for Kubeflow pipelines is the same for all the environm
 
      **Note**: `kubectl apply -k` accepts local paths and paths that are formatted as [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, the paths are not valid URLs.
 
-     **Note**: Beside the
-
-1. Get the public URL for the Kubeflow Pipelines UI and use it to access the Kubeflow Pipelines UI:
-
-     ```
-     kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercontent.com
-     ```
-
 
 ## Uninstalling Kubeflow Pipelines
 
