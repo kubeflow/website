@@ -5,6 +5,12 @@ weight = 4
 aliases = ["/docs/community/"]
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 In the interest of fostering an open and welcoming environment, we as
 contributors and maintainers pledge to make participation in our project and
 our community a harassment-free experience for everyone, regardless of age, body

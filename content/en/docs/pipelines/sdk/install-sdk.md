@@ -4,6 +4,12 @@ description = "Setting up your Kubeflow Pipelines development environment"
 weight = 20
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This guide tells you how to install the 
 [Kubeflow Pipelines SDK](https://github.com/kubeflow/pipelines/tree/master/sdk)
 which you can use to build machine learning pipelines. You can use the SDK

@@ -4,6 +4,12 @@ description = "Get started with the Kubeflow Pipelines API"
 weight = 20
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This tutorial demonstrates how to use the Kubeflow Pipelines API to build, run, and manage pipelines. This guide is recommended for users who would like to learn how to manage Kubeflow Pipelines using the REST API.
 
 ## Before you start

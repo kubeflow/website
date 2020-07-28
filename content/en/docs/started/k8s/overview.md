@@ -4,6 +4,12 @@ description = "Instructions for installing Kubeflow on your existing Kubernetes 
 weight = 1
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 Follow these instructions if you want to install Kubeflow on an existing Kubernetes
 cluster. Some [clouds](/docs/started/cloud) and Kubernetes distributions provide
 Kubeflow specific instructions for getting the most out of their Kubernetes. If your

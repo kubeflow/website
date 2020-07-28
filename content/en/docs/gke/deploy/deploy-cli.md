@@ -4,6 +4,12 @@ description = "Instructions for using kubectl and kpt to deploy Kubeflow on Goog
 weight = 4
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This guide describes how to use `kubectl` and [kpt](https://googlecontainertools.github.io/kpt/) to
 deploy Kubeflow on GCP.
 

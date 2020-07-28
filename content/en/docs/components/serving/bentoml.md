@@ -4,6 +4,12 @@ description = "Model serving with BentoML"
 weight = 45
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 
 This guide demonstrates how to serve a scikit-learn based iris classifier model with
 BentoML on a Kubernetes cluster. The same deployment steps are also applicable for models

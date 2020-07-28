@@ -4,6 +4,12 @@ description = "Using Google Cloud Marketplace to deploy MiniKF (mini Kubeflow) o
 weight = 40
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 ![MiniKF latest
 version](https://www.arrikto.com/wp-content/uploads/2020/02/minikf-latest-version-gcp.svg
 "MiniKF latest version")

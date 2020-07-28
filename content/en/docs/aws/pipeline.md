@@ -4,6 +4,12 @@ description = "Customize Kubeflow Pipelines to use AWS Services"
 weight = 90
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 ## S3 Access from Kubeflow Pipelines
 
 Currently, it's still recommended to use aws credentials or [kube2iam](https://github.com/jtblin/kube2iam) to managed S3 access from Kubeflow Pipelines. [IAM Role for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) requires applications to use latest AWS SDK to support `assume-web-identity-role`, we are still working on it. Track progress in issue [#3405](https://github.com/kubeflow/pipelines/issues/3405)

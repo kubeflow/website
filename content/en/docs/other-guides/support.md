@@ -4,6 +4,12 @@ description = "Where to go with questions and suggestions"
 weight = 110
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This page describes the Kubeflow resources and support options that you can
 explore when you encounter a problem, have a question, or want to make a
 suggestion about Kubeflow.

@@ -4,6 +4,12 @@ description = "The ways you can interact with the Kubeflow Pipelines system"
 weight = 20
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This page introduces the interfaces that you can use to build and run
 machine learning (ML) workflows with Kubeflow Pipelines.
 

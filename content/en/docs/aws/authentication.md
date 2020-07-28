@@ -4,6 +4,12 @@ description = "Authentication and authorization support for Kubeflow in AWS"
 weight = 90
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This section shows the how to setup Kubeflow with authentication and authorization support in Amazon Web Services (AWS).
 
 

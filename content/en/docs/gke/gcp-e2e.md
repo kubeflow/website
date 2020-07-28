@@ -4,6 +4,12 @@ description = "Training an MNIST model with Kubeflow on Google Cloud Platform"
 weight = 90
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This guide walks you through an end-to-end example of Kubeflow on Google
 Cloud Platform (GCP) using a Jupyter notebook, 
 [mnist_gcp.ipynb](https://github.com/kubeflow/examples/blob/master/mnist/mnist_gcp.ipynb). 

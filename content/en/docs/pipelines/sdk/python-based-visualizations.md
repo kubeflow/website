@@ -4,6 +4,12 @@ description = "Predefined and custom visualizations of pipeline outputs"
 weight = 80
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This page describes Python based visualizations, how to create them, and how to
 use them to visualize results within the Kubeflow Pipelines UI. Python based
 visualizations are available in Kubeflow Pipelines version

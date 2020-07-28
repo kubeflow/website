@@ -4,6 +4,12 @@ description = "Tailoring a AWS deployment of Kubeflow"
 weight = 20
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This guide describes how to customize your deployment of Kubeflow on Amazon EKS.
 These steps can be done before you run `apply -V -f ${CONFIG_FILE}` command. Please see the following sections for details. If you don't understand the deployment process, please see [deploy](/docs/aws/deploy) for details.
 

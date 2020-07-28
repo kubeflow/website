@@ -5,6 +5,12 @@ weight = 10
 aliases = ["/docs/events/"]
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
+
 This is a nonexhaustive list of events (in reverse chronological order) with talks and workshops about Kubeflow.
 Please edit this page and send a pull request, or raise a [GitHub issue](https://github.com/kubeflow/website/issues/new), if something is missing or incorrect.
 

@@ -1,9 +1,21 @@
 
 +++
+
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
 title =  "Style Guide for the Kubeflow Docs"
 description = "Guidelines on effective writing"
 weight = 6
 +++
+
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
+
 
 This style guide is for the 
 [Kubeflow documentation](https://www.kubeflow.org/docs/).
