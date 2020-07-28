@@ -10,11 +10,11 @@ weight = 15
 * Install the CLI plug-in for the IBM Cloud Container Registry by running the command `ibmcloud plugin install container-registry`.
 * Create a namespace in ICR with the command `ibmcloud cr namespace-add <my_namespace>`, replace `<my_namespace>` with your preferred name.
 
-**Note**: the [ICR namespace](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started#gs_registry_namespace_add) is different from the Kubeflow Profile namespace. The ICR namespace is a group container images stored in ICR while a [Kubeflow Profile](/docs/components/multi-tenancy/overview/) namespace is a group of all Kubernetes clusters owned by a user.
+**Note**: The [ICR namespace](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started#gs_registry_namespace_add) is different from the Kubeflow Profile namespace. The ICR namespace is used to group container images stored in ICR, while a [Kubeflow Profile](/docs/components/multi-tenancy/overview/) namespace is a group of all Kubernetes clusters owned by a user.
 
 ## Image pull secret
 
-It needs an image pull secret to pull container images from IBM Cloud Container Registry. You can use the default image pull secret set up by the cluster or your account's IAM API key.
+As a Kubernetes cluster uses the Secret of `docker-registry` type to authenticate with a container registry to pull a private image, it needs an image pull secret to pull container images from IBM Cloud Container Registry. You can use the default image pull secret set up by the cluster or your account's IAM API key.
 
 ### Using a default image pull secret
 
@@ -26,7 +26,7 @@ kubectl get secret all-icr-io -n default -o yaml \
 | kubectl -n anonymous create -f -
 ```
 
-Once this secret is ready in your Kubeflow profile, a data scientist can use this secret to pull container images from ICR.
+Once this secret is ready in your Kubeflow profile, a data scientist can use it to pull container images from ICR.
 
 See details and FAQs from the official guide [Setting up an image registry](https://cloud.ibm.com/docs/containers?topic=containers-registry).
 
@@ -34,12 +34,12 @@ See details and FAQs from the official guide [Setting up an image registry](http
 
 You will need an IBM Cloud IAM API Key to work with ICR if you:
 1. Have no access to the default image pull secret `all-icr-io` from the `default` namespace.
-1. Need to access container images in other IBM Cloud accounts.
-1. Need customized IAM policy by using a separate IAM sevice ID.
+2. Need to access container images in other IBM Cloud accounts.
+3. Need customized IAM policy by using a separate IAM sevice ID.
 
 If you don't have an IBM Cloud IAM API Key, follow the official guide [Create an API Key](https://cloud.ibm.com/docs/account?topic=account-userapikey#create_user_key).
 
-Once you get your IBM Cloud IAM API Key, run following command:
+Once you get your IBM Cloud IAM API Key, run the following command:
 
 ```
 kubectl -n <my_namespace> create secret docker-registry <secret_name> \
@@ -73,7 +73,7 @@ kubectl patch serviceaccount default-editor \
 -n <my_namespace>
 ```
 
-The service account should be updated. Then, when you create the Notebook Server through Kubeflow dashboard, you should be able to choose a Custom Image. Then, set the notebook image path from the ICR as follows:
+The service account should be updated. Then, when you create the Notebook Server through Kubeflow dashboard, you should be able to choose a Custom Image. Afterwards, set the notebook image path from the ICR as follows:
 
 <img src="/docs/images/ibm/notebook-custom-image.png" 
     alt="Notebook Custom Image"
