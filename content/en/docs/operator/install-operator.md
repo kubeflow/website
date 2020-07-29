@@ -27,7 +27,7 @@ kubeflow-operator-55876578df-25mq5   1/1     Running   0          17h
 
 ## 2. Installing the Kubeflow Operator through the [operatorhub.io](https://operatorhub.io/operator/kubeflow)
 
-If your cluster does not have OLM installed, navigate to the [operatorhub.io](https://operatorhub.io/operator/kubeflow), click on the `Install` and follow the instructios there to install the operator. 
+If your cluster does not have OLM installed, navigate to the [operatorhub.io](https://operatorhub.io/operator/kubeflow), click on the `Install` and follow the instructions there to install the operator. 
 
 <img src="/docs/images/operator-operatorhubio-kubeflow.png" 
     alt="Kubeflow Operator in OperatorHub"
