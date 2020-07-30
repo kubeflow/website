@@ -4,6 +4,53 @@ description = "Customize Kubeflow Pipelines to use AWS Services"
 weight = 90
 +++
 
+## Authenticate Kubeflow Pipeline using SDK inside cluster
+
+In v1.1.0, in-cluster communitation from notebook to Kubeflow Pipeline is not supported in this phase. In order to use `kfp` as previous, user needs to pass a cookie to KFP for communication as a walkaround.
+You can follow following steps to get cookie from your browser after you login Kubeflow. Following examples uses Chrome browser.
+
+<img src="/docs/images/aws/kfp-sdk-browser-cookie.png"
+  alt="KFP SDK Browser Cookie"
+  class="mt-3 mb-3 border border-info rounded">
+
+<img src="/docs/images/aws/kfp-sdk-browser-cookie-detail.png"
+  alt="KFP SDK Browser Cookie Detail"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+Once you get cookie, you can easily authenticate `kfp` by passing the `cookies`. Please look at code snippets based on the manifest you use.
+
+ - dex {{% config-uri-aws-standard %}}
+
+```
+import kfp
+authservice_session='authservice_session=<cookie>'
+client = kfp.Client(host='http://istio-ingressgateway.istio-system.svc/pipeline', cookies=authservice_session)
+client.list_experiments(namespace="<your_namespace>")
+```
+
+ - coginito {{% config-uri-aws-cognito %}}
+
+```
+import kfp
+alb_cookie='AWSELBAuthSessionCookie-0=<cookie>'
+client = kfp.Client(host='http://istio-ingressgateway.istio-system.svc/pipeline', cookies=alb_cookie)
+client.list_experiments(namespace="<your_namespace>")
+```
+
+
+## Authenticate Kubeflow Pipeline using SDK outside cluster
+
+- dex {{% config-uri-aws-standard %}}
+
+Please look at this [PR](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) to do programmatic authentication with Dex.
+
+
+- coginito {{% config-uri-aws-cognito %}}
+
+This is working in progress. Once [feat(sdk): Enable AWS ALB authentication in KFP SDK Client](https://github.com/kubeflow/pipelines/pull/4182) PR is merged,
+user can pass Coginito user username and password to authenticate KFP via AWS Application Load Balancer.
+
 ## S3 Access from Kubeflow Pipelines
 
 Currently, it's still recommended to use aws credentials or [kube2iam](https://github.com/jtblin/kube2iam) to managed S3 access from Kubeflow Pipelines. [IAM Role for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) requires applications to use latest AWS SDK to support `assume-web-identity-role`, we are still working on it. Track progress in issue [#3405](https://github.com/kubeflow/pipelines/issues/3405)
