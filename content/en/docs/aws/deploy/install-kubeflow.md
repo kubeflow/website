@@ -48,26 +48,24 @@ some handy environment variables:
 1. Create environment variables to make the deployment process easier:
 
     ```
-    # Add kfctl to PATH, to make the kfctl binary easier to use.
+    # 1. Add kfctl to PATH, to make the kfctl binary easier to use.
     export PATH=$PATH:"<path to kfctl>"
 
-    # Use the following kfctl configuration file for the AWS setup without authentication:
+    # 2. Use the following kfctl configuration file for the AWS setup without authentication:
     export CONFIG_URI="{{% config-uri-aws-standard %}}"
 
     # Alternatively, use the following kfctl configuration if you want to enable
     # authentication, authorization and multi-user:
     export CONFIG_URI="{{% config-uri-aws-cognito %}}"
 
-    # Set an environment variable for your AWS cluster name, and set the name
-    # of the Kubeflow deployment to the same as the cluster name.
+    # 3. Set an environment variable for your AWS cluster name.
     export AWS_CLUSTER_NAME=<YOUR EKS CLUSTER NAME>
-    export KF_NAME=${AWS_CLUSTER_NAME}
 
-    # Set the path to the base directory where you want to store one or more
-    # Kubeflow deployments. For example, /opt/.
-    # Then set the Kubeflow application directory for this deployment.
-    export BASE_DIR=<path to a base directory>
-    export KF_DIR=${BASE_DIR}/${KF_NAME}
+    # 4. Create the directory you want to store deployment, this has to be ${AWS_CLUSTER_NAME}
+    mkdir ${AWS_CLUSTER_NAME} && cd ${AWS_CLUSTER_NAME}
+
+    # 5. Download your configuration files, so that you can customize the configuration before deploying Kubeflow.
+    wget -O kfctl_aws.yaml $CONFIG_URI
     ```
 
 Notes:
@@ -83,29 +81,12 @@ Notes:
     a local version of the configuration YAML file which you can further
     customize if necessary.
 
-* **${KF_NAME}** - The name of your Kubeflow deployment.
-  You should set this value to be the same as your AWS cluster name.
-  The value of KF_NAME must consist of lower case alphanumeric characters or
-  '-', and must start and end with an alphanumeric character.
-  The value of this variable cannot be greater than 25 characters. It must
-  contain just a name, not a directory path.
-  This value also becomes the name of the directory where your Kubeflow
-  configurations are stored, that is, the Kubeflow application directory.
+* **${AWS_CLUSTER_NAME}** - The name of your eks cluster.
+  This will be picked by `kfctl` and set value to `metadata.name`.
+  `alb-ingress-controller` requires correct value to provision application load balanders. 
+  Alb will be only created with correct cluster name.
 
-* **${KF_DIR}** - The full path to your Kubeflow application directory.
 
-## Set up your Kubeflow configuration
-
-Download your configuration files, so that you can customize the
-configuration before deploying Kubeflow:
-
-  ```
-  mkdir -p ${KF_DIR}
-  cd ${KF_DIR}
-
-  wget -O kfctl_aws.yaml $CONFIG_URI
-  export CONFIG_FILE=${KF_DIR}/kfctl_aws.yaml
-  ```
 ## Configure Kubeflow
 
 Since v1.0.1, Kubeflow supports to use [AWS IAM Roles for Service Account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) to fine grain control AWS service access.
@@ -121,7 +102,7 @@ Traditional way to attach IAM policies to node group role is still working, feel
 
   > Note: By default, we don't attach any policies to `kf-user-${region}-${cluster_name}`, you can attach policies based on your need.
 
-  Add `enablePodIamPolicy: true` in your `${CONFIG_FILE}` file:
+  Add `enablePodIamPolicy: true` in your `${CONFIG_URI}` file:
   ```
   region: us-west-2
   enablePodIamPolicy: true
@@ -154,7 +135,7 @@ Traditional way to attach IAM policies to node group role is still working, feel
     groups, find the role that is associated with your worker nodes in the
     Amazon EC2 console.
 
-1. Change cluster region and worker role names in your `${CONFIG_FILE}` file:
+1. Change cluster region and worker role names in your `kfctl_aws.yaml` file:
 
   ```
   region: us-west-2
@@ -172,14 +153,8 @@ By default, the username is set to `admin@kubeflow.org` and the password is `123
 1. Run the following commands to initialize the Kubeflow cluster:
 
     ```
-    cd ${KF_DIR}
-    kfctl apply -V -f ${CONFIG_FILE}
+    kfctl apply -V -f kfctl_aws.yaml
     ```
-
-    *Important!!!* By default, these scripts create an AWS Application Load Balancer for Kubeflow that is open to public. This is good for development testing and for short term use, but we do not recommend that you use this configuration for production workloads.
-
-    To secure your installation, Follow the [instructions](/docs/aws/authentication) to add authentication and authorization.
-
 
 1. Wait for all the resources to become ready in the `kubeflow` namespace.
     ```
@@ -188,7 +163,7 @@ By default, the username is set to `admin@kubeflow.org` and the password is `123
 
 ## Access Kubeflow central dashboard
 
-If you are using the {{% kf-latest-version %}} config file, run the following command to get your Kubeflow service's endpoint host name and copy link in browser.
+Run the following command to get your Kubeflow service's endpoint host name and copy link in browser.
 
 ```
 kubectl get ingress -n istio-system
@@ -247,12 +222,14 @@ The first time you visit the cluster, you can ceate a namespace `anonymous` to u
 apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
-  name: aws-sample-user
+  name: test
 spec:
   owner:
     kind: User
-    name: aws-sample-user
+    name: test@amazon.com
 ```
+
+> Note: `spec.owner.name` has to match your IDP user's email.
 
 Check [Multi-Tenancy in Kubeflow](/docs/components/multi-tenancy) for more details.
 
@@ -270,13 +247,13 @@ The kfctl deployment process is controlled by the following commands:
 
 Your Kubeflow app directory **${KF_DIR}** contains the following files and directories:
 
-* **${CONFIG_FILE}** is a YAML file that defines configurations related to your
+* **${CONFIG_URI}** is a YAML file that defines configurations related to your
   Kubeflow deployment.
 
   * This file is a copy of the GitHub-based configuration YAML file that
     you used when deploying Kubeflow.
   * When you run `kfctl apply` or `kfctl build`, kfctl creates
-    a local version of the configuration file, `${CONFIG_FILE}`,
+    a local version of the configuration file, `${CONFIG_URI}`,
     which you can further customize if necessary.
 
 * **aws_config** is a directory that contains a sample `eksctl` cluster configuration file that defines the AWS cluster and policy files to attach to your node group roles.

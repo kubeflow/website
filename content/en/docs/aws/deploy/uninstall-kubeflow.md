@@ -8,8 +8,7 @@ weight = 10
 ## Uninstall Kubeflow
 
 ```
-cd ${KF_DIR}
-kfctl delete -f ${CONFIG_FILE}
+kfctl delete -f kfctl_aws.yaml
 ```
 This will delete the kubeflow and istio-system namespaces which have been created via kfctl.
 
