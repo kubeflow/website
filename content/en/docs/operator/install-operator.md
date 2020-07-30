@@ -10,7 +10,7 @@ There are different ways to install the Kubeflow Operator, choose one of the fol
 
 ## 1. Installing the Kubeflow Operator through the OLM console
 
-If the [Operator Lifecycle Manager](https://github.com/operator-framework/operator-lifecycle-manager) (OLM) and the OLM [console](https://github.com/openshift/console) are installed on your cluster, you can find the Kubeflow Operator from the OperatorHub catalog under the Operators as shown on the console.
+If the [Operator Lifecycle Manager](https://github.com/operator-framework/operator-lifecycle-manager) (OLM) and the OLM [console](https://github.com/openshift/console) are installed on your cluster, you can find the Kubeflow Operator from the OperatorHub catalog under the Operators as shown on the console. OLM is officially supported on OpenShift.
 
 <img src="/docs/images/operator-catalog-kubeflow.png" 
     alt="Kubeflow Operator in OLM console"
