@@ -2,7 +2,12 @@
 title = "Installation Options for Kubeflow Pipelines"
 description = "Overview of the ways to deploy Kubeflow Pipelines"
 weight = 10
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 Kubeflow Pipelines offers a few installation options.
 This page describes the options and the features available

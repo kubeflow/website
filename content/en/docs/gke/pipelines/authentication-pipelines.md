@@ -2,7 +2,12 @@
 title = "Authenticating Pipelines to GCP"
 description = "Authentication and authorization to Google Cloud Platform (GCP) in Pipelines"
 weight = 50
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This page describes authentication for Kubeflow Pipelines to GCP.
 Available options listed below have different tradeoffs. You should choose the one that fits your use-case.

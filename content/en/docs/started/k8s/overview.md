@@ -2,7 +2,12 @@
 title = "Overview of Deployment on Existing Clusters"
 description = "Instructions for installing Kubeflow on your existing Kubernetes cluster with list of supported options"
 weight = 1
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 Follow these instructions if you want to install Kubeflow on an existing Kubernetes
 cluster. Some [clouds](/docs/started/cloud) and Kubernetes distributions provide

@@ -2,7 +2,12 @@
 title = "Getting Started with Multi-user Isolation"
 description = "How to use multi-user isolation with profiles"
 weight = 30
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 {{% stable-status %}}
 

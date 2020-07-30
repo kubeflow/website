@@ -2,7 +2,12 @@
 title = "Kubeflow on Windows"
 description = "Install Kubeflow on Windows"
 weight = 30
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 For Windows systems you have multiple options for getting started. The options range
 from fully-assembled Kubeflow stacks, to stacks that require some assembly.

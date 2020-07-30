@@ -2,7 +2,12 @@
 title = "Upgrading a Kubeflow Deployment"
 description = "Upgrading your deployment to a later version of Kubeflow"
 weight = 30
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 ## Upgrading from Kubeflow v0.7.0 or later
 
