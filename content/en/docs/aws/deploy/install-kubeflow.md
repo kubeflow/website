@@ -135,14 +135,6 @@ Traditional way to attach IAM policies to node group role is still working, feel
 
 ### Option 2: Use Node Group Role
 
-1. Replace the AWS cluster name in your `${CONFIG_FILE}` file, by changing
-  the value `kubeflow-aws` to `${AWS_CLUSTER_NAME}` in multiple locations in
-  the file. For example, use this `sed` command:
-
-    ```
-    sed -i'.bak' -e 's/kubeflow-aws/'"$AWS_CLUSTER_NAME"'/' ${CONFIG_FILE}
-    ```
-
 1. Retrieve the AWS Region and IAM role name for your worker nodes.
   To get the IAM role name for your Amazon EKS worker node, run the following
   command:
@@ -172,16 +164,6 @@ Traditional way to attach IAM policies to node group role is still working, feel
 
   If you have multiple node groups, you will see corresponding number of node group roles. In that case, please provide the role names as an array.
 
-## Before you login
-If you use basic authentication, change the default password in the [configuration file]({{% config-uri-aws-standard %}}). The configuration file contains:
-
-```
-spec:
-  auth:
-  basicAuth:
-    password: 12341234
-    username: admin@kubeflow.org
-```
 
 By default, the username is set to `admin@kubeflow.org` and the password is `12341234`. To secure your Kubeflow deployment, change this configuration.
 
