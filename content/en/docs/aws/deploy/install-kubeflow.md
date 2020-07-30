@@ -199,9 +199,11 @@ istio-system   istio-ingress   *       a743484b-istiosystem-istio-2af2-xxxxxx.us
 
 This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser.
 
-If you're using basic authentication, the credentials are the ones you specified in the KfDef file, or the default (`admin@kubeflow.org`:`12341234`). It is highly recommended to change the default credentials. To add static users or change the existing one, [add static users for basic auth](/docs/aws/deploy/install-kubeflow/#add-static-users-for-basic-auth).
+- **Dex**
+  If you're using basic authentication, the credentials are the ones you specified in the KfDef file, or the default (`admin@kubeflow.org`:`12341234`). It is highly recommended to change the default credentials. To add static users or change the existing one, [add static users for basic auth](/docs/aws/deploy/install-kubeflow/#add-static-users-for-basic-auth).
 
-To secure an enterprise-level installation, use the {{% config-uri-aws-cognito %}} configuration file and [configure authentication and authorization](/docs/aws/authentication) for your cluster.
+- **Coginito**
+  To secure an enterprise-level installation, use the {{% config-uri-aws-cognito %}} configuration file and [configure authentication and authorization](/docs/aws/authentication) for your cluster.
 
 ### Add static users for basic authentication 
 To add users to basic auth, you just have to edit the Dex ConfigMap under the key staticPasswords.
@@ -228,7 +230,7 @@ staticPasswords:
   userID: 08a8684b-db88-4b73-90a9-3cd1661f5466
 - email: test@kubeflow.org
   hash: $2b$10$ow6fWbPojHUg56hInYmYXe.B7u3frcSR.kuUkQp2EzXs5t0xfMRtS
-  username: admin
+  username: test
   userID: 08a8684b-db88-4b73-90a9-3cd1661f5466
 
 # After editing the config, restart Dex to pick up the changes in the ConfigMap

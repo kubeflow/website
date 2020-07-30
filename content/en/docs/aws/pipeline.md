@@ -9,6 +9,8 @@ weight = 90
 In v1.1.0, in-cluster communitation from notebook to Kubeflow Pipeline is not supported in this phase. In order to use `kfp` as previous, user needs to pass a cookie to KFP for communication as a walkaround.
 You can follow following steps to get cookie from your browser after you login Kubeflow. Following examples uses Chrome browser.
 
+> Note: You have to use images in [AWS Jupyter Notebook](/docs/aws/notebook-server) because it includes a critical SDK fix [here](https://github.com/kubeflow/pipelines/pull/4285).
+
 <img src="/docs/images/aws/kfp-sdk-browser-cookie.png"
   alt="KFP SDK Browser Cookie"
   class="mt-3 mb-3 border border-info rounded">
@@ -22,7 +24,7 @@ Once you get cookie, you can easily authenticate `kfp` by passing the `cookies`.
 
  - dex {{% config-uri-aws-standard %}}
 
-```
+```bash
 import kfp
 authservice_session='authservice_session=<cookie>'
 client = kfp.Client(host='http://istio-ingressgateway.istio-system.svc/pipeline', cookies=authservice_session)
@@ -31,7 +33,7 @@ client.list_experiments(namespace="<your_namespace>")
 
  - coginito {{% config-uri-aws-cognito %}}
 
-```
+```bash
 import kfp
 alb_cookie='AWSELBAuthSessionCookie-0=<cookie>'
 client = kfp.Client(host='http://istio-ingressgateway.istio-system.svc/pipeline', cookies=alb_cookie)
