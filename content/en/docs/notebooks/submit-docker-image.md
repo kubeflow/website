@@ -2,7 +2,12 @@
 title = "Build a Docker Image on GCP"
 description = "Building Docker images from a Jupyter notebook and submitting them to Container Registry"
 weight = 50
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 If you're using a Jupyter notebook in Kubeflow on Google Cloud Platform 
 (GCP), you can submit Docker image builds to 

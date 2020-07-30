@@ -2,7 +2,12 @@
 title = "Build Lightweight Python Components"
 description = "Building your own lightweight pipelines components from Python"
 weight = 50
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 Lightweight Python components do not require you to build a new container image
 for every code change. They're intended for fast iteration in a notebook 

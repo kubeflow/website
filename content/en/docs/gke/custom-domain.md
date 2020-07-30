@@ -2,7 +2,12 @@
 title = "Using Your Own Domain"
 description = "Using a custom domain with Kubeflow on GKE"
 weight = 30
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This guide describes how to use a custom domain with Kubeflow on Google Cloud
 Platform (GCP).
