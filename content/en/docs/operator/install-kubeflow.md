@@ -8,7 +8,7 @@ This guide describes how to use the Kubeflow Operator to deploy Kubeflow.
 
 ## Prerequisites
 
-* Follow the [`Install the Kubeflow Operator`](/docs/operator/install-operator) guide to install the Kubeflow Operator
+* Kubeflow Operator needs to be deployed on your cluster for rest of steps to work. Please follow the [`Install the Kubeflow Operator`](/docs/operator/install-operator) guide to install the Kubeflow Operator
 
 ## Deployment Instructions
 
