@@ -25,18 +25,16 @@ UI for installing and using Kubeflow Pipelines on Google Cloud.
     If yes, wait for the feature to be released in [Kubeflow](#full-kubeflow) 1.1.
 1. Do you deploy on Google Cloud?
 
-    If yes,
-    1. Do you want to deploy using UI?
-
-        If yes and you don't need to do complex configurations, choose the [Google Cloud AI Platform Pipelines](#marketplace).
-    1. Choose the [Kubeflow Pipelines Standalone](#standalone).
+    If yes, deploy [Kubeflow Pipelines Standalone](#standalone). You can also use [AI Platform Pipelines](#marketplace) to deploy Kubeflow Pipelines Standalone using a user interface.
 1. You deploy on other platforms.
 
     Please compare your platform specific [full Kubeflow](#full-kubeflow) with the
     [Kubeflow Pipelines Standalone](#standalone) before making your decision.
 
 **Warning:** Choose your installation option with caution, there's no current
-supported path to migrate data between different installation options.
+supported path to migrate data between different installation options. Please
+create [a GitHub issue](https://github.com/kubeflow/pipelines/issues/new/choose)
+if that's important for you.
 
 <a id="standalone"></a>
 ## Kubeflow Pipelines Standalone
