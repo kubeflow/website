@@ -22,12 +22,14 @@ You can follow following steps to get cookie from your browser after you login K
 
 Once you get cookie, you can easily authenticate `kfp` by passing the `cookies`. Please look at code snippets based on the manifest you use.
 
+To get `<aws_alb_host>`, please run `kubectl get ingress -n istio-system` and get value from `ADDRESS` field.
+
  - dex {{% config-uri-aws-standard %}}
 
 ```bash
 import kfp
 authservice_session='authservice_session=<cookie>'
-client = kfp.Client(host='http://istio-ingressgateway.istio-system.svc/pipeline', cookies=authservice_session)
+client = kfp.Client(host='http://<aws_alb_host>/pipeline', cookies=authservice_session)
 client.list_experiments(namespace="<your_namespace>")
 ```
 
@@ -35,11 +37,10 @@ client.list_experiments(namespace="<your_namespace>")
 
 ```bash
 import kfp
-alb_cookie='AWSELBAuthSessionCookie-0=<cookie>'
-client = kfp.Client(host='http://istio-ingressgateway.istio-system.svc/pipeline', cookies=alb_cookie)
+alb_session_cookie='AWSELBAuthSessionCookie-0=<cookie>'
+client = kfp.Client(host='https://<aws_alb_host>/pipeline', cookies=alb_session_cookie)
 client.list_experiments(namespace="<your_namespace>")
 ```
-
 
 ## Authenticate Kubeflow Pipeline using SDK outside cluster
 
@@ -50,7 +51,10 @@ Please look at this [PR](https://github.com/kubeflow/kfctl/issues/140#issuecomme
 
 - coginito {{% config-uri-aws-cognito %}}
 
-This is working in progress. Once [feat(sdk): Enable AWS ALB authentication in KFP SDK Client](https://github.com/kubeflow/pipelines/pull/4182) PR is merged,
+You can still retrieve session cookie and pass to backend like we do [here]
+(#authenticate-kubeflow-pipeline-using-sdk-inside-cluster)
+
+If you are looking for end to end experience, this is working in progress. Once [feat(sdk): Enable AWS ALB authentication in KFP SDK Client](https://github.com/kubeflow/pipelines/pull/4182) PR is merged,
 user can pass Coginito user username and password to authenticate KFP via AWS Application Load Balancer.
 
 ## S3 Access from Kubeflow Pipelines
