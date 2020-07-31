@@ -35,14 +35,14 @@ In order to deploy Kubeflow on your existing Amazon EKS cluster, you need to pro
 Follow these steps to download the kfctl binary for the Kubeflow CLI and set
 some handy environment variables:
 
-1. Download the kfctl {{% kf-latest-version %}} release from the
+1. Download the kfctl {{% kfctl-aws %}} release from the
   [Kubeflow releases
-  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
+  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kfctl-aws %}}).
 
 1. Unpack the tar ball:
 
     ```
-    tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
+    tar -xvf kfctl_{{% kfctl-aws %}}_<platform>.tar.gz
     ```
 
 1. Create environment variables to make the deployment process easier:
