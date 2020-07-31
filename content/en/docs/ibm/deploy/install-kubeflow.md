@@ -8,7 +8,7 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
 ## Prerequisites
 
-* Logging in to IBM Cloud
+* Authenticating with IBM Cloud
 
   ```shell
   ibmcloud login

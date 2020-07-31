@@ -28,7 +28,7 @@ You can use your existing clusters to install Kubeflow as far as it meets the mi
 
     Refer to this [link](https://cloud.ibm.com/docs/cli?topic=containers-cli-plugin-kubernetes-service-cli) for more info on IBM Cloud Kubernetes Service CLI.
 
-4. Logging in to IBM Cloud
+4. Authenticating with IBM Cloud
 
     ```shell
     ibmcloud login
