@@ -115,12 +115,12 @@ privacy_policy = "https://policies.google.com/privacy"
 gcs_engine_id = "007239566369470735695:624rglujm-w"
 
 # Text label for the version menu in the top bar of the website.
-version_menu = "v1.0"
+version_menu = "v1.1"
 
 # The major.minor version tag for the version of the docs represented in this
 # branch of the repository. Used in the "version-banner" partial to display a
 # version number for this doc set.
-version = "v1.0"
+version = "v1.1"
 
 # Flag used in the "version-banner" partial to decide whether to display a 
 # banner on every page indicating that this is an archived version of the docs.
@@ -132,7 +132,7 @@ url_latest_version = "https://kubeflow.org/docs/"
 
 # A variable used in various docs to determine URLs for config files etc.
 # To find occurrences, search the repo for 'params "githubbranch"'.
-githubbranch = "v1.0-branch"
+githubbranch = "v1.1-branch"
 
 # Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
