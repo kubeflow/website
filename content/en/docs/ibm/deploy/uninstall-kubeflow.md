@@ -2,6 +2,7 @@
 title = "Uninstall Kubeflow"
 description = "Instructions for uninstalling Kubeflow"
 weight = 10
+                    
 +++
 
 Uninstall Kubeflow on your IBM Cloud IKS cluster.

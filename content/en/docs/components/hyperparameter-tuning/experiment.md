@@ -2,7 +2,12 @@
 title = "Running an experiment"
 description = "How to configure and run a hyperparameter tuning or neural architecture search experiment in Katib"
 weight = 30
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This page describes in detail how to configure and run a Katib experiment.
 The experiment can perform hyperparameter tuning or a neural architecture search 

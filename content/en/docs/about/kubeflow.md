@@ -3,7 +3,12 @@ title = "Kubeflow"
 description = "An introduction to Kubeflow"
 weight = 1
 aliases = ["/docs/", "/docs/about/", "/docs/kubeflow/"]
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 The Kubeflow project is dedicated to making deployments of machine learning (ML) 
 workflows on Kubernetes simple, portable and scalable. Our goal is not to 

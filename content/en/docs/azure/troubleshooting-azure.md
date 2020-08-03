@@ -2,7 +2,12 @@
 title = "Troubleshooting Deployments on Azure AKS"
 description = "Help diagnose and fix issues you may encounter in your Kubeflow deployment"
 weight = 100
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 ### Jupyter Notebook ‘is not a valid page’ when accessing notebook
 Restarting the ambassador pods will often fix this issue:
