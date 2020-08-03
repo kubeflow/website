@@ -260,7 +260,8 @@ The scenario is a GitHub organization owner can authorize its organization membe
         - id: kubeflow-oidc-authservice
           redirectURIs: ["/login/oidc"]
           name: 'Dex Login Application'
-          secret: pUCnCOY80SnXgjibTYM0ZWNzY3xreNGQok
+          # Update the secret below to match with the oidc authservice.
+          secret: pUBnBOY80SnXgjibTYM9ZWNzY2xreNGQok
     ```
     - Replace `clientID` and `clientSecret` in the `config.yaml` field with the `Client ID` and `Client Secret` created above for the GitHub OAuth application. Add your organization name to the `orgs` field, e.g.
     ```YAML
