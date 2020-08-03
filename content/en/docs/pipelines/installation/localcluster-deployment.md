@@ -181,13 +181,15 @@ This will bootstrap a Kubernetes cluster but you will cannot yet access from you
 
 The installation process for Kubeflow pipelines is the same for all the environments: kind, k3s, k3s on WSL2.
 
+**Note**: Process Namespace Sharing (PNS) is not mature in Argo, see [Argo Executors](https://argoproj.github.io/argo/workflow-executors/) for more informations.Please reference "pns executors" in any issue that may arise using it.
+
 1. Deploy the Kubeflow Pipelines:
 
 ```
 export PIPELINE_VERSION={{% pipelines/latest-version %}}
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
 kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns-executor?ref=$PIPELINE_VERSION"
+kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
 ```
 
 The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
@@ -204,13 +206,13 @@ For example, to uninstall KFP using manifests from a GitHub repository, run:
 
 ```
 export PIPELINE_VERSION={{% pipelines/latest-version %}}
-kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns-executor?ref=$PIPELINE_VERSION"
+kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
 kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
 ```
 
 To uninstall KFP using manifests from your local repository or file system, run:
 
 ```
-kubectl delete -k manifests/kustomize/env/platform-agnostic-pns-executor
+kubectl delete -k manifests/kustomize/env/platform-agnostic-pns
 kubectl delete -k manifests/kustomize/cluster-scoped-resources
 ```
