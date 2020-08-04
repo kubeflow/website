@@ -2,7 +2,12 @@
 title = "Videos"
 description = "Tutorials and overviews published in video format"
 weight = 40
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 The following tutorials and overviews published in video format. Be aware that a video describes the interfaces at the time of publication of the video. Some interfaces are under rapid development and therefore may change frequently.
 

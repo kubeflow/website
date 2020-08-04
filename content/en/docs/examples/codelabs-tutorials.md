@@ -2,7 +2,12 @@
 title = "Codelabs, Workshops, and Tutorials"
 description = "Recommended end-to-end tutorials, workshops, walk throughs, and codelabs"
 weight = 20
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 ## Agile Stacks tutorials for Kubeflow Pipelines
 

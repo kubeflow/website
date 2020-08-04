@@ -2,7 +2,12 @@
 title = "DSL Recursion"
 description = "Author a recursive function in DSL"
 weight = 110
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This page describes how to write recursive functions in the domain specific language (DSL) provided by the Kubeflow Pipelines SDK.
 

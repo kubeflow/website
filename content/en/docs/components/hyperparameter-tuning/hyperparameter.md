@@ -2,7 +2,12 @@
 title = "Getting started with Katib"
 description = "How to set up Katib and run some hyperparameter tuning examples"
 weight = 20
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This page gets you started with Katib. Follow this guide to perform any
 additional setup you may need, depending on your environment, and to run a few
