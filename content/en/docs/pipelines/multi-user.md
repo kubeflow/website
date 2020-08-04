@@ -25,12 +25,22 @@ Also be aware that the isolation support in Kubeflow doesn’t provide any hard
 security guarantees against malicious attempts by users to infiltrate other
 user’s profiles.
  
-## How are KFP resources separated?
+## How are resources separated?
 
-when you visit UI, namespace selector determines which resources are shown.
-except pipelines
+### When using the UI
 
-when using sdk, 
+When you visit the Kubeflow Pipelines UI from the Kubeflow dashboard, it only shows
+experiments, runs and recurring runs in your chosen namespace. Similarly, when
+you create resources from the UI, they also belong to the namespace you have
+chosen.
+
+You can select a different namespace to view resources in other namespaces.
+
+Others without permission cannot see your namespace. They will be rejected by
+authorization in Kubeflow Pipelines API server.
+
+### When using the SDK
+
 * <!-- this should be in GCP pipelines - auth doc --> how to authenticate to the public endpoint
 * add namespace resource reference/namespace argument to api endpoints.
 
