@@ -2,12 +2,7 @@
 title = "Storage Options"
 description = "Using EFS and FSx for Lustre with Kubeflow"
 weight = 95
-                    
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 This guide describes how to use Amazon EFS and Amazon FSx for Lustre with Kubeflow.
 
