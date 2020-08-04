@@ -172,6 +172,19 @@ Traditional way to attach IAM policies to node group role is still working, feel
 
   If you have multiple node groups, you will see corresponding number of node group roles. In that case, please provide the role names as an array.
 
+## Before you login
+If you use basic authentication, change the default password in the [configuration file]({{% config-uri-aws-standard %}}). The configuration file contains:
+
+```
+spec:
+  auth:
+  basicAuth:
+    password: 12341234
+    username: admin@kubeflow.org
+```
+
+By default, the username is set to `admin@kubeflow.org` and the password is `12341234`. To secure your Kubeflow deployment, change this configuration.
+
 ## Deploy Kubeflow
 
 1. Run the following commands to initialize the Kubeflow cluster:
@@ -193,7 +206,7 @@ Traditional way to attach IAM policies to node group role is still working, feel
 
 ## Access Kubeflow central dashboard
 
-If you are using {{% config-uri-aws-cognito %}} , run following command to get Kubeflow service endpoint host name and copy link in browser.
+If you are using the {{% kf-latest-version %}} config file, run the following command to get your Kubeflow service's endpoint host name and copy link in browser.
 
 ```
 kubectl get ingress -n istio-system
@@ -204,30 +217,41 @@ istio-system   istio-ingress   *       a743484b-istiosystem-istio-2af2-xxxxxx.us
 
 This deployment may take 3-5 minutes to become ready. Verify that the address works by opening it in your preferred Internet browser.
 
+If you're using basic authentication, the credentials are the ones you specified in the KfDef file, or the default (`admin@kubeflow.org`:`12341234`). It is highly recommended to change the default credentials. To add static users or change the existing one, [add static users for basic auth](/docs/aws/deploy/install-kubeflow/#add-static-users-for-basic-auth).
 
-If you are using {{% config-uri-aws-standard %}}, the Kubeflow Dashboard can be accessed via istio-ingressgateway service.
+To secure an enterprise-level installation, use the {{% config-uri-aws-cognito %}} configuration file and [configure authentication and authorization](/docs/aws/authentication) for your cluster.
 
-You can run following command to port forward to local, then open `http://localhost:8080` in browser.
+### Add static users for basic authentication 
+To add users to basic auth, you just have to edit the Dex ConfigMap under the key staticPasswords.
 
-{{< highlight bash >}}
-kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
-{{< /highlight >}}
+```
+# Edit the dex config with extra users.
+kubectl edit configmap dex -n auth
 
-Check more details [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/)
+# The original example of configmap as below
+staticPasswords:
+- email: admin@kubeflow.org
+  hash: JDJhJDEwJEU4SGhqTnpBRzc2eWJJM1RHSDk5Ly4xcWxIckx6UGlJbzMzdW9BWHZ4VU5hTWxjZXAzVTBp
+  username: admin
+  userID: 08a8684b-db88-4b73-90a9-3cd1661f5466
 
-To expose Kubeflow with a LoadBalancer Service, just change the type of the `istio-ingressgateway` Service to `LoadBalancer`.
+# If you want to add a static user (test@kubeflow.org: 123456789)
+# The password (123456789) must be hashed with bcrypt with an at least 10 difficulty level.
+# You can use an online tool like: https://passwordhashing.com/BCrypt
+# After change, the example of configmap:
+staticPasswords:
+- email: admin@kubeflow.org
+  hash: JDJhJDEwJEU4SGhqTnpBRzc2eWJJM1RHSDk5Ly4xcWxIckx6UGlJbzMzdW9BWHZ4VU5hTWxjZXAzVTBp
+  username: admin
+  userID: 08a8684b-db88-4b73-90a9-3cd1661f5466
+- email: test@kubeflow.org
+  hash: $2b$10$ow6fWbPojHUg56hInYmYXe.B7u3frcSR.kuUkQp2EzXs5t0xfMRtS
+  username: admin
+  userID: 08a8684b-db88-4b73-90a9-3cd1661f5466
 
-{{< highlight bash >}}
-kubectl patch service -n istio-system istio-ingressgateway -p '{"spec": {"type": "LoadBalancer"}}'
-{{< /highlight >}}
-
-While the change is being applied, you can watch the service until below command prints a value under the `EXTERNAL-IP` column:
-
-{{< highlight bash >}}
-kubectl get -w -n istio-system svc/istio-ingressgateway
-{{< /highlight >}}
-
-The external IP should be accessible by visiting http://<EXTERNAL-IP>. Note that above installation instructions do not create any protection for the external endpoint so it will be accessible to anyone without any authentication. To secure your installation, use {{% config-uri-aws-cognito %}} and follow the [instructions](/docs/aws/authentication) to add authentication and authorization.
+# After editing the config, restart Dex to pick up the changes in the ConfigMap
+kubectl rollout restart deployment dex -n auth
+```
 
 ## Post Installation
 
@@ -268,7 +292,7 @@ Your Kubeflow app directory **${KF_DIR}** contains the following files and direc
   * This file is a copy of the GitHub-based configuration YAML file that
     you used when deploying Kubeflow.
   * When you run `kfctl apply` or `kfctl build`, kfctl creates
-    a local version of the configuration file, `${CONFIG_FILE},`
+    a local version of the configuration file, `${CONFIG_FILE}`,
     which you can further customize if necessary.
 
 * **aws_config** is a directory that contains a sample `eksctl` cluster configuration file that defines the AWS cluster and policy files to attach to your node group roles.

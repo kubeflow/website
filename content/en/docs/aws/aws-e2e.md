@@ -419,7 +419,7 @@ kubectl apply -f tensorflow.yaml
 
 Overview of the installed components, endpoints and the tools used:
 
-<img src="../reference_architecture.svg" alt="KFServing">
+<img src="/docs/images/aws/reference_architecture.svg" alt="KFServing">
 
 ## Debug
 

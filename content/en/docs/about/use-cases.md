@@ -3,7 +3,12 @@ title = "Use Cases"
 description = "Reasons for using Kubeflow"
 weight = 1
 aliases = ["/docs/", "/docs//", "/docs/usecases/"]
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 
 The end goal of every organization is to have their machine learning (ML) model successfully running in production  and generating value to the business. But what does it take to reach that point? Before a model ends up in production, there are potentially many steps required to build and deploy an ML model: data loading, verification, splitting, processing, feature engineering, model training and verification, hyperparameter tuning, and model serving. In addition, ML models can require more observation than traditional applications, because your data inputs can drift over time. Manually rebuilding models and data sets is time consuming and error prone. To simplify these requirements and challenges, we introduce Kubeflow.

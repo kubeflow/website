@@ -2,7 +2,12 @@
 title = "Customizing Kubeflow on GKE"
 description = "Tailoring a GKE deployment of Kubeflow"
 weight = 20
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This guide describes how to customize your deployment of Kubeflow on Google 
 Kubernetes Engine (GKE) in Google Cloud Platform (GCP).

@@ -138,6 +138,11 @@ The following organizations offer advice and support for Kubeflow deployments:
         <a href="https://github.com/SeldonIO/seldon-core/issues">Issue 
         tracker</a></td>
       </tr>
+      <tr>
+        <td><a href="https://www.pattersonconsultingtn.com/">Patterson Consulting</a></td>
+        <td> 
+        <a href="http://www.pattersonconsultingtn.com/offerings/managed_kubeflow.html">Managed Kubeflow</a></td>
+      </tr>      
     </tbody>
   </table>
 </div>

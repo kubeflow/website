@@ -2,7 +2,12 @@
 title = "Configure Kubeflow Fairing"
 description = "Configuring your Kubeflow Fairing development environment with access to Kubeflow"
 weight = 20
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 In order to use Kubeflow Fairing to train or deploy a machine learning
 model on Kubeflow, you must configure your development environment with access

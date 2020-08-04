@@ -2,7 +2,12 @@
 title = "Install Kubeflow Fairing"
 description = "Setting up your Kubeflow Fairing development environment"
 weight = 10
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 You can use Kubeflow Fairing to build, train, and deploy machine learning (ML)
 models in a hybrid cloud environment directly from Python code or a Jupyter
