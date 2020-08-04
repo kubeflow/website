@@ -163,9 +163,26 @@ runs=client.runs.list_runs(
 print(runs)
 ```
 
-## What are current limitations?
+## Current Limitations
 
-* pipelines
-* mlmd
-* minio artifact storage
-* in-cluster auth based on service account token or istio mTLS
+### Resources without Isolation
+
+The following resources do not support isolation right now:
+
+* Pipelines (Pipeline definitions)
+* Machine Learning Metadata Database (MLMD)
+* Minio artifact storage
+
+### In-cluster authentication
+
+Clients can only access the Kubeflow Pipelines API from the public endpoint
+that enforces authentication.
+
+In-cluster direct access to the API endpoint is denied by istio authorization
+policies, because there's no secure way to authenticate in-cluster requests to
+Kubeflow Pipelines API server yet.
+
+If you need to access API endpoint from in-cluster workload like jupyter
+notebooks, current suggested workaround is to connect through public endpoint and
+follow platform specific documentation to authenticate programmatically using
+user credentials.
