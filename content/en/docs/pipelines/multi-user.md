@@ -4,17 +4,19 @@ description = "Getting started with Kubeflow Pipelines multi-user isolation"
 weight = 35
 +++
 
-Starting from to be released Kubeflow 1.1, Kubeflow Pipelines in full Kubeflow deployment supports multi-user isolation.
+Multi-user isolation for Kubeflow Pipelines is an integration to [Kubeflow multi-user isolation](/docs/components/multi-tenancy/).
+You should read [Kubeflow multi-user isolation documentation](/docs/components/multi-tenancy/) first.
 
-We are working on more documentation here.
+Note, Kubeflow Pipelines multi-user isolation is only supported in
+[the full Kubeflow deployment](/docs/pipelines/installation/overview/#full-kubeflow-deployment)
+starting from Kubeflow v1.1 and **only** in the following platforms:
 
-## How to get Kubeflow Pipelines with multi-user support?
+* Google Cloud
+* Amazon Web Services
+* IBM Cloud
 
-install Kubeflow 1.1 with supported platforms, right now GCP, AWS, IBM.
-
-
-disclaimer: this is not meant for security separation.
-> Note that the isolation support in Kubeflow doesn’t provide any hard security guarantees against malicious attempts by users to infiltrate other user’s profiles
+Also note that the isolation support in Kubeflow doesn’t provide any hard security
+guarantees against malicious attempts by users to infiltrate other user’s profiles.
 
 ## How tos
 
