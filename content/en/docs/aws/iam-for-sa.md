@@ -2,12 +2,7 @@
 title = "AWS IAM Role for Service Account"
 description = "Setup up IAM Role for Service Account to get fine-grained access control to AWS services"
 weight = 50
-                    
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 ## Fine grain control AWS access at pod level
 
