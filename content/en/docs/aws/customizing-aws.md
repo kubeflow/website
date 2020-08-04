@@ -72,7 +72,18 @@ nodeGroups:
 ```
 
 ### Customize Authentication
-Please see [this section](/docs/aws/authentication)
+
+If you use {{% config-uri-aws-standard %}}, you can consider to change the default password in the [configuration file]({{% config-uri-aws-standard %}}). The configuration file contains:
+
+```
+spec:
+  auth:
+  basicAuth:
+    password: 12341234
+    username: admin@kubeflow.org
+```
+
+If you use {{% config-uri-aws-cognito %}}, please see [this section](/docs/aws/authentication)
 
 ### Customize IAM Role for Pods
 Please see [this section](/docs/aws/iam-for-sa)
