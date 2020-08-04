@@ -66,8 +66,8 @@ account as pipeline runs.
 
 When calling SDK methods for experiments, you need to provide the additional
 namespace argument. Runs, recurring runs are owned by an experiment. They are
-in the same namespace as the parent experiment, so you can call their SDK
-methods as before.
+in the same namespace as the parent experiment, so you can just call their SDK
+methods same as before.
 
 For example:
 
@@ -77,7 +77,10 @@ client = kfp.Client(...)
 
 client.create_experiment(name='<Your experiment name>', namespace='<Your namespace>')
 print(client.list_experiments(namespace='<Your namespace>'))
-client.run_pipeline(experiment_id='<Your experiment ID>', job_name='<Your job ID>', pipeline_id='<Your pipeline ID>')
+client.run_pipeline(
+    experiment_id='<Your experiment ID>', # Experiment determines namespace.
+    job_name='<Your job ID>',
+    pipeline_id='<Your pipeline ID>')
 print(client.list_runs(experiment_id='<Your experiment ID>'))
 print(client.list_runs(namespace='<Your namespace>'))
 ```
@@ -99,7 +102,10 @@ print(client.get_user_namespace())
 
 client.create_experiment(name='<Your experiment name>')
 print(client.list_experiments())
-client.run_pipeline(experiment_id='<Your experiment ID>', job_name='<Your job ID>', pipeline_id='<Your pipeline ID>')
+client.run_pipeline(
+    experiment_id='<Your experiment ID>', # Experiment determines namespace.
+    job_name='<Your job ID>',
+    pipeline_id='<Your pipeline ID>')
 print(client.list_runs())
 
 # Specifying a different namespace will override the default context.
@@ -109,20 +115,53 @@ print(client.list_runs(namespace='<Your other namespace>'))
 Detailed documentation for KFP SDK can be found on
 [Pipelines SDK Reference](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html).
 
-### When using rest API or generated API client
+### When using rest API or generated python API client
 
-* add namespace resource reference/namespace argument to api endpoints.
+Similarly, when calling rest API endpoints or using generated API client, namespace
+argument is required for experiment APIs. Note that namespace is referred to
+using a resource reference. The resource reference type should be `NAMESPACE`
+and resource reference key id should be namespace name.
 
-All features are supported.
+For example, we can use the generated python API client (kfp-server-api) like the following:
+```python
+from kfp_server_api import ApiRun, ApiPipelineSpec, \
+    ApiExperiment, ApiResourceType, ApiRelationship, \
+    ApiResourceReference, ApiResourceKey
+# or you can also do the following instead
+# from kfp_server_api import *
 
-Mention which resources are separated:
-* experiments
-* runs
-* jobs
-* external artifacts e.g. links in mlpipeline-ui-metadata.json
-* tensorboard
-
-Others not separated mentioned below
+experiment=client.experiments.create_experiment(body=ApiExperiment(
+    name='test-experiment-1234',
+    resource_references=[ApiResourceReference(
+        key=ApiResourceKey(
+            id='<namespace>', # Replace with your own namespace.
+            type=ApiResourceType.NAMESPACE,
+        ),
+        relationship=ApiRelationship.OWNER,
+    )],
+))
+print(experiment)
+pipeline = client.pipelines.list_pipelines().pipelines[0]
+print(pipeline)
+client.runs.create_run(body=ApiRun(
+    name='test-run-1234',
+    pipeline_spec=ApiPipelineSpec(
+        pipeline_id=pipeline.id,
+    ),
+    resource_references=[ApiResourceReference(
+        key=ApiResourceKey(
+            id=experiment.id,
+            type=ApiResourceType.EXPERIMENT,
+        ),
+        relationship=ApiRelationship.OWNER,
+    )],
+))
+runs=client.runs.list_runs(
+    resource_reference_key_type=ApiResourceType.EXPERIMENT,
+    resource_reference_key_id=experiment.id,
+)
+print(runs)
+```
 
 ## What are current limitations?
 
