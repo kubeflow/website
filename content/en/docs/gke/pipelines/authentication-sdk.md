@@ -11,6 +11,31 @@ This guide describes how to connect to your Kubeflow Pipelines on Google CLoud u
 * You need a Kubeflow Pipelines deployment on Google Cloud using one of the [installation options](/docs/pipelines/installation/overview/).
 * You need to [install Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
 
+## How SDK connects to Kubeflow Pipelines
+
+Kubeflow Pipelines has an API service named `ml-pipeline-ui` in the Kubernetes
+namespace you deployed it to.
+The Kubeflow Pipelines SDK can send REST api requests to this api service, but
+the SDK needs to know the hostname to connect to the API service.
+
+If the hostname can be accessed without authentication, it's very simple to
+connect to it. For example, you can use `kubectl port-forward` to access it via
+localhost:
+```python
+import kfp
+# If we run `kubectl port-forward svc/ml-pipeline-ui 3000:80 -n $KFP_NAMESPACE`,
+# the Kubeflow Pipelines API service is available at http://localhost:3000
+# without authentication check.
+client = kfp.Client(host='http://localhost:3000')
+```
+
+When deploying Kubeflow Pipelines on Google Cloud, a public endpoint for this
+API service is auto-configured for you, but this public endpoint has security
+checks to protect your cluster from unauthorized access.
+
+The following sections introduce how to authenticate your SDK requests to connect
+to Kubeflow Pipelines via the public endpoint.
+
 ## Connecting to Kubeflow Pipelines standalone or AI Platform Pipelines
 
 You can refer to [Connecting to AI Platform Pipelines using the Kubeflow Pipelines SDK](https://cloud.google.com/ai-platform/pipelines/docs/connecting-with-sdk) for
@@ -31,9 +56,9 @@ authentication through IAP.
     You or your cluster admin followed [Set up OAuth for Cloud IAP](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/)
     to deploy your full Kubeflow deployment on GCP. You need the OAuth client
     ID created in that step.
-    
+
     You can browse all of your existing OAuth client IDs [in the Credentials page of Google Cloud Console](https://console.cloud.google.com/apis/credentials).
-    
+
 1. Create another SDK OAuth Client ID for authenticating Kubeflow Pipelines SDK users.
 Follow [the steps to set up a client ID to authenticate from a desktop app](https://cloud.google.com/iap/docs/authentication-howto#authenticating_from_a_desktop_app). Take
 a note of the **client ID** and **client secret**. This client ID and secret can
@@ -42,9 +67,9 @@ be shared among all SDK users, because a separate login step is still needed bel
 1. To connect to Kubeflow Pipelines public endpoint, initiate SDK client like the following:
     ```python
     import kfp
-    client = kfp.Client(host='https://<KF_NAME>.endpoints.<PROJECT>.cloud.goog/pipeline', 
-        client_id='<AAAAAAAAAAAAAAAAAAAAAA>.apps.googleusercontent.com', 
-        other_client_id='<BBBBBBBBBBBBBBBBBBB>.apps.googleusercontent.com', 
+    client = kfp.Client(host='https://<KF_NAME>.endpoints.<PROJECT>.cloud.goog/pipeline',
+        client_id='<AAAAAAAAAAAAAAAAAAAAAA>.apps.googleusercontent.com',
+        other_client_id='<BBBBBBBBBBBBBBBBBBB>.apps.googleusercontent.com',
         other_client_secret='<CCCCCCCCCCCCCCCCCCCC>')
     ```
 

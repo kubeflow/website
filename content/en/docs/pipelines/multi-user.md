@@ -52,7 +52,9 @@ chosen.
 You can select a different namespace to view resources in other namespaces.
 
 ### When using the SDK
-<!-- TODO: this should be in GCP pipelines - auth doc -  how to authenticate to the public endpoint -->
+
+First, you need to connnect to Kubeflow Pipelines using the SDK following 
+[these instructions](/docs/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-in-a-full-kubeflow-deployment).
 
 When calling SDK methods for experiments, you need to provide the additional
 namespace argument. Runs, recurring runs are owned by an experiment. They are
@@ -63,7 +65,7 @@ For example:
 
 ```python
 import kfp
-client = kfp.Client(...)
+client = kfp.Client(...) # Refer to documentation above for detailed arguments.
 
 client.create_experiment(name='<Your experiment name>', namespace='<Your namespace>')
 print(client.list_experiments(namespace='<Your namespace>'))
@@ -82,9 +84,6 @@ method. This method stores your user namespace in a configuration file at
 methods default to use this namespace if no namespace argument is provided.
 
 ```python
-import kfp
-client = kfp.Client(...)
-
 # Note, this saves the namespace in `$HOME/.config/kfp/context.json`. Therefore,
 # You only need to call this once. The saved namespace context will be picked up
 # by other clients you use later.
@@ -169,7 +168,7 @@ without access control:
 
 ### In-cluster request authentication
 
-Clients can only access the Kubeflow Pipelines API from the public endpoint
+Clients can only access the Kubeflow Pipelines API from the public IAP endpoint
 that enforces authentication.
 
 In-cluster direct access to the API endpoint is denied by Istio authorization
