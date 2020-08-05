@@ -81,11 +81,6 @@ method. This method stores your user namespace in a configuration file at
 `$HOME/.config/kfp/context.json`. After setting a default namespace, the SDK
 methods default to use this namespace if no namespace argument is provided.
 
-We also provide a helper method that saves a user namespace as default context
-in config file `$HOME/.config/kfp/context.json`. After setting a default
-namespace, the SDK methods default to use this namespace if no `namespace`
-argument provided.
-
 ```python
 import kfp
 client = kfp.Client(...)
