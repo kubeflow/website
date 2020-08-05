@@ -174,7 +174,7 @@ that enforces authentication.
 
 In-cluster direct access to the API endpoint is denied by Istio authorization
 policies, because there's no secure way to authenticate in-cluster requests to
-Kubeflow Pipelines API server yet.
+the Kubeflow Pipelines API server yet.
 
 If you need to access the API endpoint from in-cluster workload like Jupyter
 notebooks, current suggested workaround is to connect through public endpoint and
