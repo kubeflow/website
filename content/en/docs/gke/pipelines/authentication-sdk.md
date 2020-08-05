@@ -11,7 +11,7 @@ This guide describes how to connect to your Kubeflow Pipelines on Google CLoud u
 * You need a Kubeflow Pipelines deployment on Google Cloud using one of the [installation options](/docs/pipelines/installation/overview/).
 * You need to [install Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
 
-## How SDK connects to Kubeflow Pipelines
+## How SDK connects to Kubeflow Pipelines API
 
 Kubeflow Pipelines has an API service named `ml-pipeline-ui` in the Kubernetes
 namespace you deployed it to.
@@ -88,3 +88,15 @@ The Kubeflow Pipelines SDK stores obtained credentials in `$HOME/.config/kfp/cre
     ```python
     print(client.list_pipelines())
     ```
+
+## Troubleshooting
+
+* Error "Failed to authorize with API resource references: there is no user identity header" when using SDK methods.
+
+    Direct access to the API service without authentication works for Kubeflow
+    Pipelines standalone, AI Platform Pipelines, and Kubeflow 1.0 or earlier.
+    
+    However, it fails authorization checks for Kubeflow Pipelines with multi-user
+    isolation in the full Kubeflow deployment starting from Kubeflow 1.1.
+    Multi-user isolation requires all API access to authenticate as a user. Refer to [Kubeflow Pipelines Multi-user isolation documentation](/docs/pipelines/multi-user/#in-cluster-request-authentication)
+    for more details.

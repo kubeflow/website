@@ -53,8 +53,8 @@ You can select a different namespace to view resources in other namespaces.
 
 ### When using the SDK
 
-First, you need to connnect to Kubeflow Pipelines using the SDK following 
-[these instructions](/docs/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-in-a-full-kubeflow-deployment).
+First, you need to connnect to the Kubeflow Pipelines public endpoint using the
+SDK. For Google Cloud, follow [these instructions](/docs/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-in-a-full-kubeflow-deployment).
 
 When calling SDK methods for experiments, you need to provide the additional
 namespace argument. Runs, recurring runs are owned by an experiment. They are
@@ -101,6 +101,10 @@ print(client.list_runs())
 # Specifying a different namespace will override the default context.
 print(client.list_runs(namespace='<Your other namespace>'))
 ```
+
+Note, it is no longer possible to access the Kubeflow Pipelines API service from
+in-cluster workload directly, read [Current Limitations section](#current-limitations)
+for more details.
 
 Detailed documentation for the Kubeflow Pipelines SDK can be found in the
 [Kubeflow Pipelines SDK Reference](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html).
@@ -166,9 +170,9 @@ without access control:
 * Artifacts, Executions, and other metadata entities in [Machine Learning Metadata (MLMD)](https://www.tensorflow.org/tfx/guide/mlmd)
 * [Minio artifact storage](https://min.io/)
 
-### In-cluster request authentication
+### In-cluster API request authentication
 
-Clients can only access the Kubeflow Pipelines API from the public IAP endpoint
+Clients can only access the Kubeflow Pipelines API from the public endpoint
 that enforces authentication.
 
 In-cluster direct access to the API endpoint is denied by Istio authorization
@@ -176,6 +180,7 @@ policies, because there's no secure way to authenticate in-cluster requests to
 the Kubeflow Pipelines API server yet.
 
 If you need to access the API endpoint from in-cluster workload like Jupyter
-notebooks, current suggested workaround is to connect through public endpoint and
-follow platform specific documentation to authenticate programmatically using
-user credentials.
+notebooks or cron tasks, current suggested workaround is to connect through
+public endpoint and follow platform specific documentation to authenticate
+programmatically using user credentials. For Google Cloud, you can refer to
+[Connecting to Kubeflow Pipelines in a full Kubeflow deployment on Google Cloud](/docs/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-in-a-full-kubeflow-deployment).
