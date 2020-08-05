@@ -169,8 +169,8 @@ The following resources do not currently support isolation and are shared
 without access control:
 
 * Pipelines (Pipeline definitions)
-* Machine Learning Metadata Database (MLMD)
-* Minio artifact storage
+* Artifacts, Executions, and other metadata entities in [Machine Learning Metadata (MLMD)](https://www.tensorflow.org/tfx/guide/mlmd)
+* [Minio artifact storage](https://min.io/)
 
 ### In-cluster request authentication
 
