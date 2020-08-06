@@ -173,10 +173,8 @@ Upgrade Support (**Alpha**)
 
 To upgrade your AI Platform Pipelines instance while keeping existing data:
 
-For instances **without** managed storage:
-
-1. [Delete your AI Platform Pipelines instance](https://cloud.google.com/ai-platform/pipelines/docs/getting-started#clean_up) **without** selecting **Delete cluster**.
-1. Reinstall Kubeflow Pipelines from the Google Cloud Marketplace using the same application name, namespace, and Google Kubernetes Engine cluster. Persisted artifacts and database data are stored in persistent disks and will be automatically picked up during reinstallation.
+For instances **without** managed storage: we will add documentation later. Note it's recommended to use managed storage if you want to keep your data safe when
+upgrading.
 
 For instances with managed storage:
 
