@@ -1,19 +1,19 @@
 +++
-title = "Pipelines on IBM Cloud Kubernetes"
-description = "Instructions for using Kubeflow Pipelines on IBM Cloud Kubernetes"
+title = "Pipelines on IBM Cloud Kubernetes Service (IKS)"
+description = "Instructions for using Kubeflow Pipelines on IBM Cloud Kubernetes Servuce (IKS)"
 weight = 50
 +++
 
-## Authenticating Pipelines with the SDK
+## Authenticating Kubeflow Pipelines with the SDK
 
 **Notes**:
 * Python package `kfp` v1.0.0 is required.
 * This feature is available with multi-user, auth-enabled Kubeflow installation deployed from the manifest [https://raw.githubusercontent.com/kubeflow/manifests/v1.1-branch/kfdef/kfctl_ibm_dex_multi_user.v1.1.0.yaml](https://raw.githubusercontent.com/kubeflow/manifests/v1.1-branch/kfdef/kfctl_ibm_dex_multi_user.v1.1.0.yaml).
-* Since it transports sensitive info like session cookie value over edge network, it highly recommends enabling HTTPS for the public endpoint of Kubeflow.
+* Since it transports sensitive information like session cookie value over edge network, we highly recommend enabling HTTPS for the public endpoint of Kubeflow.
 
-It requires authentication via the public endpoint of Kubeflow deployment when using the Kubeflow Pipelines multi-user feature with Pipelines SDK. It will need to provide below variables no matter from an in-cluster Jupyter notebook or remote machine:
+It requires authentication via the public endpoint of Kubeflow deployment when using the Kubeflow Pipelines multi-user feature with Pipelines SDK. Below variables need to be provided, no matter coming from an in-cluster Jupyter notebook or a remote machine:
 1. `KUBEFLOW_PUBLIC_ENDPOINT_URL` - Kubeflow public endpoint URL. You can obtain it from command `ibmcloud ks nlb-dns ls --cluster <your-cluster-name>`.
-1. `SESSION_COOKIE` - A session cookie starts with `authservice_session=`. You can obtain it from your browser after authenticated from Kubeflow UI.
+1. `SESSION_COOKIE` - A session cookie starts with `authservice_session=`. You can obtain it from your browser after authenticated from Kubeflow UI. Notice that this session cookie expires in 24 hours, so you need to obtain it again after cookie expired.
 1. `KUBEFLOW_PROFILE_NAME` - Your Kubeflow profile name
 
 Once you obtain above information, it can use the following Python code to list all your Piplines experiments:
@@ -33,4 +33,4 @@ client = kfp.Client(
 experiments = client.list_experiments(namespace=KUBEFLOW_PROFILE_NAME)
 ```
 
-Piplines components like experiments and runs are isolated by Kubeflow profiles. A kubeflow user can only see Pipelines experiments and runs belongs to this user's Kubeflow profile.
+Pipelines components like experiments and runs are isolated by Kubeflow profiles. A Kubeflow user can only see Pipelines experiments and runs belonging to this user's Kubeflow profile.
