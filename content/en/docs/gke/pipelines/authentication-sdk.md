@@ -18,18 +18,23 @@ Kubeflow Pipelines includes an API service named `ml-pipeline-ui`. The
 `ml-pipeline-ui` API service is deployed in the same Kubernetes namespace you
 deployed Kubeflow Pipielines in.
 
-The Kubeflow Pipelines SDK can send REST api requests to this api service, but
+The Kubeflow Pipelines SDK can send REST API requests to this API service, but
 the SDK needs to know the hostname to connect to the API service.
 
 If the hostname can be accessed without authentication, it's very simple to
 connect to it. For example, you can use `kubectl port-forward` to access it via
 localhost:
 
+```bash
+# The Kubeflow Pipelines API service and the UI is available at
+# http://localhost:3000 without authentication check.
+$ kubectl port-forward svc/ml-pipeline-ui 3000:80 --namespace kubeflow
+# Change the namespace if you deployed Kubeflow Pipelines in a different
+# namespace.
+```
+
 ```python
 import kfp
-# If we run `kubectl port-forward svc/ml-pipeline-ui 3000:80 -n $KFP_NAMESPACE`,
-# the Kubeflow Pipelines API service is available at http://localhost:3000
-# without authentication check.
 client = kfp.Client(host='http://localhost:3000')
 ```
 
@@ -42,7 +47,7 @@ to Kubeflow Pipelines via the public endpoint.
 
 ## Connecting to Kubeflow Pipelines standalone or AI Platform Pipelines
 
-You can refer to [Connecting to AI Platform Pipelines using the Kubeflow Pipelines SDK](https://cloud.google.com/ai-platform/pipelines/docs/connecting-with-sdk) for
+Refer to [Connecting to AI Platform Pipelines using the Kubeflow Pipelines SDK](https://cloud.google.com/ai-platform/pipelines/docs/connecting-with-sdk) for
 both Kubeflow Pipelines standalone and AI Platform Pipelines.
 
 Kubeflow Pipelines standalone deployments also show up in [AI Platform Pipelines](https://console.cloud.google.com/ai-platform/pipelines/clusters). They have the
