@@ -166,7 +166,7 @@ without access control:
 
 * Pipelines (Pipeline definitions).
 * Artifacts, Executions, and other metadata entities in [Machine Learning Metadata (MLMD)](https://www.tensorflow.org/tfx/guide/mlmd).
-* [Minio artifact storage](https://min.io/): pipeline run input/output artifacts.
+* [Minio artifact storage](https://min.io/) which contains pipeline runs' input/output artifacts.
 
 ### In-cluster request authentication
 
