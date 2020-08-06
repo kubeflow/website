@@ -1,20 +1,23 @@
 +++
 title = "Connecting to Kubeflow Pipelines on Google Cloud using the SDK"
-description = "How to connect to different Kubeflow Pipelines installations on Google Cloud with Kubeflow Pipelines SDK?"
+description = "How to connect to different Kubeflow Pipelines installations on Google Cloud using the Kubeflow Pipelines SDK"
 weight = 20
 +++
 
-This guide describes how to connect to your Kubeflow Pipelines on Google CLoud using [the Kubeflow Pipelines SDK](/docs/pipelines/sdk/sdk-overview/).
+This guide describes how to connect to your Kubeflow Pipelines cluster on Google
+Cloud using [the Kubeflow Pipelines SDK](/docs/pipelines/sdk/sdk-overview/).
 
 ## Before you begin
 
 * You need a Kubeflow Pipelines deployment on Google Cloud using one of the [installation options](/docs/pipelines/installation/overview/).
-* You need to [install Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
+* [Install the Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
 
 ## How SDK connects to Kubeflow Pipelines API
 
-Kubeflow Pipelines has an API service named `ml-pipeline-ui` in the Kubernetes
-namespace you deployed it to.
+Kubeflow Pipelines includes an API service named `ml-pipeline-ui`. The
+`ml-pipeline-ui` API service is deployed in the same Kubernetes namespace you
+deployed Kubeflow Pipielines in.
+
 The Kubeflow Pipelines SDK can send REST api requests to this api service, but
 the SDK needs to know the hostname to connect to the API service.
 
