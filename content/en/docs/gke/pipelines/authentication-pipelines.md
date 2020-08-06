@@ -131,17 +131,14 @@ If you configured bindings by yourself, here are GCP permission requirements for
 
 #### Cluster setup to use Workload Identity for Full Kubeflow
 
-Public Kubeflow v1.0.1 release hasn't been configured out of box. [The fix](https://github.com/kubeflow/manifests/pull/969) has been merged, but not yet released publically.
-After the fix is released, if you deployed Kubeflow following the GCP instructions Workload Identity will have already been configured properly for Kubeflow Pipelines.
+Starting from Kubeflow 1.1, Kubeflow Pipelines [supports multi-user isolation](/docs/pipelines/multi-user/). Therefore, pipeline runs are executed in user namespaces using the `default-editor` KSA. The `default-editor` KSA is auto-bound to the GSA specified in user profile.
 
-If you want to use Workload Identity with pipelines on Kubeflow v1.0.1 or before, I recommend running the following commands to patch your deployment:
-```
-export NAMESPACE=kubeflow # Replace with your kubeflow's namespace if it's been customized.
-kubectl patch deployment -n ${NAMESPACE} ml-pipeline --patch '{"spec": {"template": {"spec": {"containers": [{"name": "ml-pipeline-api-server", "env": [{"name": "DEFAULTPIPELINERUNNERSERVICEACCOUNT", "value": "kf-user"}]}]}}}}'
-kubectl patch clusterrolebinding -n ${NAMESPACE} pipeline-runner --patch '{"subjects": [{"kind": "ServiceAccount", "name": "kf-user", "namespace": "'$NAMESPACE'"}]}'
-```
+You don't need to do any setup if you just want pipelines in your namespace
+to use the default GSA in your profile.
 
-Pipelines use `kf-user` KSA by default which is different from Kubeflow Standalone.
+If you want use a customized GSA for a namespace, refer to [In-cluster authentication to Google Cloud](/docs/gke/authentication/#in-cluster-authentication).
+
+Additionally, the Kubeflow Pipelines UI / visualization / tensorboard servers also deploy instances in your user namespace using the `default-editor` KSA. Therefore, to [visualize results in the Pipelines UI](/docs/pipelines/sdk/output-viewer/), they can fetch artifacts in Google Cloud Storage using permissions of the same GSA you configured to this namespace.
 
 ### Google service account keys stored as Kubernetes secrets
 
