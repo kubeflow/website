@@ -4,22 +4,25 @@ description = "Instructions to deploy Kubeflow Pipelines standalone to a local c
 weight = 20
 +++
 
-As an alternative to deploying Kubeflow Pipelines (KFP) as part of the
-[Kubeflow deployment](/docs/started/getting-started/#installing-kubeflow), you also have a choice
-to deploy only Kubeflow Pipelines. Follow the instructions below to deploy
-Kubeflow Pipelines as part of your local environment for test purposes using the supplied kustomize manifests.
 
-You should be familiar with [Kubernetes](https://kubernetes.io/docs/home/),
-[kubectl](https://kubernetes.io/docs/reference/kubectl/overview/), and [kustomize](https://kustomize.io/).
+This guide shows how to deploy only Kubeflow Pipelines—Kubeflow Pipelines Standalone using:
 
-{{% alert title="Installation options for Kubeflow Pipelines standalone" color="info" %}}
-This guide currently describes how to install Kubeflow Pipelines standalone
-on Kind,K3s and K3s on WSL2 other configurations will be added here covering minikube(TBD) and others.
-{{% /alert %}}
+- kind
+- k3s
+- k3s on WSL
+
+It can be part of your local environment using the supplied kustomize manifests for test 
+purposes. The guide is an alternative to [deploying Kubeflow Pipelines (KFP)](/docs/started/getting-started/#installing-kubeflow).
 
 ## Before you get started
 
-Working with Kubeflow Pipelines Standalone requires a Kubernetes cluster as well as an installation of kubectl.
+- You should be familiar with [Kubernetes](https://kubernetes.io/docs/home/),
+  [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/), and [kustomize](https://kustomize.io/).
+ 
+- You should have a Kubernetes cluster and install kubectl to work with Kubeflow Pipelines Standalone. If you don't have kubectl installed, follow the 
+  [kubectl installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+ 
+- For native support of kustomize, you will need kubectl v1.14 or higher.
 
 ### Download and install kubectl
 
@@ -27,65 +30,98 @@ Download and install kubectl by following the [kubectl installation guide](https
 
 You need kubectl version 1.14 or higher for native support of kustomize.
 
-### Set up your cluster on Kind
+## Installing kind
 
-kind is a tool for running local Kubernetes clusters using Docker container “nodes”.
-kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
-See the guide [to install and configure kind](https://kind.sigs.k8s.io/docs/user/quick-start/).
-For simplicity we report below the basic steps here.
-First download and move kind executable somewhere in your path directory:
-On Linux:
+[kind](https://kind.sigs.k8s.io) is a tool for running local Kubernetes clusters using Docker 
+container nodes. `kind` was primarily designed for testing Kubernetes itself, but may be 
+used for local development or CI.
 
-```
-curl -Lo ./kind https://kind.sigs.k8s.io/dl/<KIND-VERSION>/kind-linux-amd64 
-chmod +x ./kind
-mv ./kind /some-dir-in-your-PATH/kind
-```
+You can install and configure kind by following the [official quick start](https://kind.sigs.k8s.io/docs/user/quick-start/).
 
-On Mac:
+Below are basic installation steps to get you started.
 
-` brew install kind`
+**On Linux:**
 
-On Windows from within and administrative PowerShell console:
+Download and move the `kind` executable to your directory in your PATH by running the 
+following commands:
 
-```
-curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/<KIND-VERSION>/kind-windows-amd64
-Move-Item .\kind-windows-amd64.exe c:\some-dir-in-your-PATH\kind.exe
-```
+`curl -Lo ./kind https://kind.sigs.k8s.io/dl/{KIND_VERSION}/kind-linux-amd64 && \
+ chmod +x ./kind && \
+ mv ./kind /{YOUR_KIND_DIRECTORY}/kind`
 
-On Windows via Chocolatey [https://chocolatey.org/packages/kind](https://chocolatey.org/packages/kind):
+
+where:
+
+* `{KIND_VERSION}`: the kind version; for example, `v0.8.1` as of the date this guide was written
+* `{YOUR_KIND_DIRECTORY}`: your directory in PATH
+
+**On macOS:**
+
+Use [Homebrew](https://brew.sh) by running the following command:
+
+`brew install kind`
+
+**On Windows:**
+
+- You can use the administrative PowerShell console to run the following commands to 
+download and move the `kind` executable to a directory in your PATH:
+
+`curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/{KIND_VERSION}/kind-windows-amd64
+Move-Item .\kind-windows-amd64.exe c:\{YOUR_KIND_DIRECTORY}\kind.exe`
+
+where:
+
+* `{KIND_VERSION}`: the kind version; for example, `v0.8.1` as of the date this guide was 
+written
+* `{YOUR_KIND_DIRECTORY}`: your directory in PATH
+
+- Alternatively, you can use Chocolatey [https://chocolatey.org/packages/kind](https://chocolatey.org/packages/kind):
 
 `choco install kind`
 
-Note, kind use containerd as default container-runtime hence you cannot use the standard kubeflow pipeline manifests.
+**Note:** kind use containerd as default container-runtime hence you cannot use the 
+standard kubeflow pipeline manifests.
 
 **References**:
 
-* [Kind - Quick Start Guide](https://kind.sigs.k8s.io/docs/user/quick-start/)
+* [kind Quick Start Guide](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
-* [Kind - Known Issues](https://kind.sigs.k8s.io/docs/user/known-issues/)
+* [kind: Known Issues](https://kind.sigs.k8s.io/docs/user/known-issues/)
 
-* [Kind - Working Offline](https://kind.sigs.k8s.io/docs/user/working-offline/)
+* [kind: Working Offline](https://kind.sigs.k8s.io/docs/user/working-offline/)
 
-### Create your cluster on Kind
+## Creating a cluster on kind
 
-Creating a Kubernetes cluster is as simple as `kind create cluster`.
+Having installed kind, you can create a Kubernetes cluster on kind by running a simple 
+command:
 
-This will bootstrap a Kubernetes cluster using a pre-built node image - you can find it on docker hub kindest/node. If you desire to build the node image yourself see the building image section. To specify another image use the --image flag.
+`kind create cluster`
 
-By default, the cluster will be given the name kind. Use the --name flag to assign the cluster a different context name.
+This will bootstrap a Kubernetes cluster using a pre-built node image. You can find that 
+image on the Docker Hub `kindest/node` [here](https://hub.docker.com/r/kindest/node). 
+If you wish to build the node image yourself, you can use the `kind build node-image` 
+command—see the official [building image](https://kind.sigs.k8s.io/docs/user/quick-start/#building-images) 
+section for more details. And, to specify another image use the `--image` flag.
 
-### Set up your cluster on K3S
+By default, the cluster will be given the name kind. Use the `--name` flag to assign the 
+cluster a different context name.
 
-K3s is a fully compliant Kubernetes distribution with the following enhancements:
+## Setting up a cluster on k3s
+
+k3s is a fully compliant Kubernetes distribution with the following enhancements:
 
 * Packaged as a single binary.
-* Lightweight storage backend based on sqlite3 as the default storage mechanism. etcd3, MySQL, Postgres also still available.
+* Lightweight storage backend based on sqlite3 as the default storage mechanism. etcd3, 
+MySQL, Postgres also still available.
 * Wrapped in simple launcher that handles a lot of the complexity of TLS and options.
 * Secure by default with reasonable defaults for lightweight environments.
-* Simple but powerful “batteries-included” features have been added, such as: a local storage provider, a service load balancer, a Helm controller, and the Traefik ingress controller.
-* Operation of all Kubernetes control plane components is encapsulated in a single binary and process. This allows K3s to automate and manage complex cluster operations like distributing certificates.
-* External dependencies have been minimized (just a modern kernel and cgroup mounts needed). K3s packages required dependencies, including:
+* Simple but powerful “batteries-included” features have been added, such as: a local storage 
+provider, a service load balancer, a Helm controller, and the Traefik ingress controller.
+* Operation of all Kubernetes control plane components is encapsulated in a single binary and 
+process. This allows k3s to automate and manage complex cluster operations like distributing 
+certificates.
+* External dependencies have been minimized (just a modern kernel and cgroup mounts needed). 
+k3s packages required dependencies, including:
 
   * containerd
   * Flannel
@@ -96,57 +132,63 @@ K3s is a fully compliant Kubernetes distribution with the following enhancements
   * Embedded service loadbalancer
   * Embedded network policy controller
 
-K3s provides an installation script that is a convenient way to install it as a service on systemd or openrc based systems. This script is available at https://get.k3s.io. To install K3s using this method, just run:
+You can find the the official k3s installation script to install it as a service on systemd- or openrc-based 
+systems on the official [k3s website](https://get.k3s.io). 
 
-`curl -sfL https://get.k3s.io | sh -`
+To install K3s using that method, run the following command:
+
+```curl -sfL https://get.k3s.io | sh -```
 
 Note, kind use containerd as default container-runtime hence you cannot use the standard kubeflow pipeline manifests.
 
+**Note:** You cannot use the standard Kubeflow Pipeline manifests as kind uses 
+[containerd](https://github.com/containerd/containerd) as a default container-runtime.
+
 **References**:
 
-* [K3S - Quick Start Guide](https://rancher.com/docs/k3s/latest/en/quick-start/)
+* [K3S: Quick Start Guide](https://rancher.com/docs/k3s/latest/en/quick-start/)
 
-* [K3S - Known Issues](https://rancher.com/docs/k3s/latest/en/known-issues/)
+* [k3s: Known Issues](https://rancher.com/docs/k3s/latest/en/known-issues/)
 
-* [K3S - FAQ](https://rancher.com/docs/k3s/latest/en/faq/)
+* [k3s: FAQ](https://rancher.com/docs/k3s/latest/en/faq/)
 
-### Create your cluster on K3S
+### Creating a cluster on k3s
 
-Creating a Kubernetes cluster is as simple as `sudo k3s server &`.
+1. To create a Kubernetes cluster on K3s, use the following command:
+ 
+`sudo k3s server &`
 
 This will bootstrap a Kubernetes cluster kubeconfig is written to /etc/rancher/k3s/k3s.yaml
 
 `sudo k3s kubectl get node`
 
-On a different node run the below. NODE_TOKEN comes from /var/lib/rancher/k3s/server/node-token on your server
+2. (Optional) Check your cluster
+
+`sudo k3s kubectl get node`
+
+K3s embed the popular kubectl command directly in the binaries so you may immediately interact with the cluster through it.
+
+3. (Optional) Run the below command on a different node. `NODE_TOKEN` comes from `/var/lib/rancher/k3s/server/node-token` 
+on your server
 
 `sudo k3s agent --server https://myserver:6443 --token ${NODE_TOKEN}`
 
-### Set up your cluster on K3S on WSL2
+### Setting up a cluster on k3s on Windows Subsystem for Linux (WSL)
 
-K3s is a fully compliant Kubernetes distribution with the following enhancements:
+The Windows Subsystem for Linux (WSL) lets developers run a GNU/Linux environment—
+including most command-line tools, utilities, and applications—directly on Windows, unmodified, 
+without the overhead of a traditional virtual machine or dualboot setup.
 
-* Packaged as a single binary.
-* Lightweight storage backend based on sqlite3 as the default storage mechanism. etcd3, MySQL, Postgres also still available.
-* Wrapped in simple launcher that handles a lot of the complexity of TLS and options.
-* Secure by default with reasonable defaults for lightweight environments.
-* Simple but powerful “batteries-included” features have been added, such as: a local storage provider, a service load balancer, a Helm controller, and the Traefik ingress controller.
-* Operation of all Kubernetes control plane components is encapsulated in a single binary and process. This allows K3s to automate and manage complex cluster operations like distributing certificates.
-* External dependencies have been minimized (just a modern kernel and cgroup mounts needed). K3s packages required dependencies, including:
-  * containerd
-  * Flannel
-  * CoreDNS
-  * CNI
-  * Host utilities (iptables, socat, etc)
-  * Ingress controller (traefik)
-  * Embedded service loadbalancer
-  * Embedded network policy controller
+The full instructions for installing WSL can be found on the [official Windows site](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
-The Windows Subsystem for Linux lets developers run a GNU/Linux environment -- including most command-line tools, utilities, and applications -- directly on Windows, unmodified, without the overhead of a traditional virtual machine or dualboot setup.
+1. Install WSL
 
-1. Install WSL2 as per official Microsoft Documentation [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+The following steps summarize what you'll need to set up WSL first, and then K3s on WSL.
 
-2. Update to WSL2 and download your favorite distibution:
+  1. Install [WSL] by following the official [docs](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+
+  2. As per the official instructions, update WSL and download your favorite distibution:
+
      * [SUSE Linux Enterprise Server 15 SP1](https://www.microsoft.com/store/apps/9PN498VPMF3Z)
      * [openSUSE Leap 15.2](https://www.microsoft.com/store/apps/9MZD0N9Z4M4H)
      * [Ubuntu 18.04 LTS](https://www.microsoft.com/store/apps/9N9TNGVNDL3Q)
@@ -154,32 +196,49 @@ The Windows Subsystem for Linux lets developers run a GNU/Linux environment -- i
 
 **References**:
 
-* [K3S on WSL2 - Quick Start Guide](https://gist.github.com/ibuildthecloud/1b7d6940552ada6d37f54c71a89f7d00)
+* [K3s on WSL: Quick Start Guide](https://gist.github.com/ibuildthecloud/1b7d6940552ada6d37f54c71a89f7d00)
 
-### Create your cluster on K3S on WSL2
+1. Install WSL as per official Microsoft Documentation [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
-Creating a Kubernetes cluster is as simple as `sudo ./k3s server`.
+2. Update to WSL and download your favorite distribution:
+     * [SUSE Linux Enterprise Server 15 SP1](https://www.microsoft.com/store/apps/9PN498VPMF3Z)
+     * [openSUSE Leap 15.2](https://www.microsoft.com/store/apps/9MZD0N9Z4M4H)
+     * [Ubuntu 18.04 LTS](https://www.microsoft.com/store/apps/9N9TNGVNDL3Q)
+     * [Debian GNU/Linux](https://www.microsoft.com/store/apps/9MSVKQC78PK6)
 
-This will bootstrap a Kubernetes cluster but you will cannot yet access from your windows 10 machine to the cluster itself.
+**References**:
 
-**Note:** You can't install k3s using the curl script because there is no supervisor (systemd or openrc) in WSL2.
+* [K3S on WSL - Quick Start Guide](https://gist.github.com/ibuildthecloud/1b7d6940552ada6d37f54c71a89f7d00)
 
-* Download k3s binary from https://github.com/rancher/k3s/releases/latest
+## Creating a cluster on k3s on WSL
+
+1. To create a Kubernetes cluster, use `sudo ./k3s server`.
+
+This will bootstrap a Kubernetes cluster but you will cannot yet access from your Windows machine to the cluster itself.
+
+**Note:** You can't install k3s using the curl script because there is no supervisor (systemd or openrc) in WSL.
+
+2. Download k3s binary from https://github.com/rancher/k3s/releases/latest. Then run this command in the directory where you download the k3s binary to:
 
 `chmod +x k3s`
 
-* Run k3s
+3. Run k3s
 
 `sudo ./k3s server`
 
-### Setup access to your WSL2 instance
+### Setup access to your WSL instance
 
-* Copy `/etc/rancher/k3s/k3s.yaml` from WSL to your home in Windows to `%HOME%.kube\config`. Edit the copied file and change the server URL from `https://localhost:6443` to the IP of the your WSL2 instance (`ip addr show dev eth0`). So something like `https://192.168.170.170:6443`.
-* Run kubectl from windows, if you don't have it yet you may obtain it from [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows)
+* Copy `/etc/rancher/k3s/k3s.yaml` from WSL to your home in Windows to 
+`%HOME%.kube\config`. Edit the copied file and change the server URL from 
+`https://localhost:6443` to the IP of the your WSL instance (`ip addr show dev eth0`) (For 
+example, `https://192.168.170.170:6443`.)
+
+* Run kubectl from windows, if you don't have it yet you may obtain it from 
+[here](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows)
 
 ## Deploying Kubeflow Pipelines
 
-The installation process for Kubeflow pipelines is the same for all the environments: kind, k3s, k3s on WSL2.
+The installation process for Kubeflow pipelines is the same for all the environments: kind, k3s, k3s on WSL.
 
 **Note**: Process Namespace Sharing (PNS) is not mature in Argo, see [Argo Executors](https://argoproj.github.io/argo/workflow-executors/) for more informations.Please reference "pns executors" in any issue that may arise using it.
 
