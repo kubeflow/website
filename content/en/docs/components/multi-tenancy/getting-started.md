@@ -181,7 +181,7 @@ The following resources are created as part of the profile creation:
   - Istio namespace-scoped ServiceRoleBinding: *owner-binding-istio*. This binds
     the ServiceRole *ns-access-istio* to the profile owner. The profile owner can
     therefore access services in the namespace.
-  - Namespace-scoped service-accounts *editor* and *viewer* to be used by
+  - Namespace-scoped service-accounts *default-editor* and *default-viewer* to be used by
     user-created pods in the namespace.
   - Namespace scoped resource quota limits will be placed.
 

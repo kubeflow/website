@@ -11,6 +11,7 @@ for the common Kubeflow multi-user operations including the following:
 
 * [Grant user minimal Kubernetes cluster access](/docs/components/multi-tenancy/getting-started/#pre-requisites-grant-user-minimal-kubernetes-cluster-access)
 * [Managing contributors through the Kubeflow UI](/docs/components/multi-tenancy/getting-started/#managing-contributors-through-the-kubeflow-ui)
+* For Google Cloud: [In-cluster authentication to Google Cloud from Kubeflow](/docs/gke/authentication/#in-cluster-authentication)
 
 Note, Kubeflow Pipelines multi-user isolation is only supported in
 [the full Kubeflow deployment](/docs/pipelines/installation/overview/#full-kubeflow-deployment)
@@ -166,9 +167,9 @@ print(runs)
 The following resources do not currently support isolation and are shared
 without access control:
 
-* Pipelines (Pipeline definitions)
-* Artifacts, Executions, and other metadata entities in [Machine Learning Metadata (MLMD)](https://www.tensorflow.org/tfx/guide/mlmd)
-* [Minio artifact storage](https://min.io/)
+* Pipelines (Pipeline definitions).
+* Artifacts, Executions, and other metadata entities in [Machine Learning Metadata (MLMD)](https://www.tensorflow.org/tfx/guide/mlmd).
+* [Minio artifact storage](https://min.io/) which contains pipeline runs' input/output artifacts.
 
 ### In-cluster API request authentication
 
