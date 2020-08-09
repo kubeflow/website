@@ -18,8 +18,8 @@ data management systems and processes.
 
 As a leading contributor to Kubeflow, Arrikto incorporates its standards-based,
 scale-out storage and data management solution (Rok) with Kubeflow. Arrikto's
-Rok presents a Kubernetes storage class to Kubeflow and natively integrates with
-the critical Kubeflow components. Rok’s native integration simplifies
+Rok presents a Kubernetes storage class to Kubeflow and integrates with
+the critical Kubeflow components. Rok’s built-in integration simplifies
 operations, boosts performance, and enables best practices for efficient data
 versioning, packaging, and secure sharing across teams and cloud boundaries.
 
