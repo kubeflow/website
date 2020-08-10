@@ -4,10 +4,12 @@ description = "How to upgrade or reinstall your Pipelines deployment on Google C
 weight = 50
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
+
+1. introduce installation options here
+1. introduce kubeflow 1.1 upgrade from 1.0 not supported, see https://github.com/kubeflow/pipelines/issues/4346 issue.
+1. point to kfp standalone upgrade doc
+1. point to kfp ai platform pipelines upgrade doc
+1. point to kubeflow 1.1 upgrade doc
 
 Starting from Kubeflow v0.5, Kubeflow Pipelines persists the
 pipeline data in permanent storage volumes. Kubeflow Pipelines therefore
