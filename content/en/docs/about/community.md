@@ -72,7 +72,7 @@ The Kubeflow Slack workspace offers several channels. Here are a few examples:
 | :----                                                              | :------------                                                        |
 | General discussion                                                 | [#general](https://kubeflow.slack.com/messages/C7REE0EHK)            |
 | Community meeting chat                                             | [#community](https://kubeflow.slack.com/messages/C8Q0QJYNB)          |
-| TF Operator ([GitHub](https://github.com/kubeflow/tf-operator))    | [#tf-operator](https://kubeflow.slack.com/messages/C985VJN9F)        |
+| WG Training ([GitHub](https://github.com/kubeflow/community/tree/master/wgs/wg-training))    | [#wg-training](https://app.slack.com/client/T7QLHSH6U/C018N3M6QKB)        |
 | KFServing ([GitHub](https://github.com/kubeflow/kfserving))        | [#kfserving](https://kubeflow.slack.com/messages/CH6E58LNP)          |
 | Pipelines ([GitHub](https://github.com/kubeflow/pipelines))        | [#kubeflow-pipelines](https://kubeflow.slack.com/messages/CE10KS9M4)          |
 | Examples ([GitHub](https://github.com/kubeflow/examples))          | [#kubeflow-examples](https://kubeflow.slack.com/messages/CA30Q9A4U)  |
@@ -90,7 +90,6 @@ More detail about the Kubeflow mailing lists:
 | Topic                                                           | Mailing list                                                                      |
 | :----                                                           | :------------                                                                     |
 | General discussion                                              | [kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss)      |
-| TF Operator ([GitHub](https://github.com/kubeflow/tf-operator)) | [tf-operator](https://groups.google.com/a/kubeflow.org/forum/#!forum/tf-operator) |
 
 ## Who should consider contributing to Kubeflow?
 
