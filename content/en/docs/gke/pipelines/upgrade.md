@@ -1,6 +1,6 @@
 +++
-title = "Upgrading and Reinstalling"
-description = "How to upgrade or reinstall your Kubeflow Pipelines deployment on Google Cloud"
+title = "Upgrading"
+description = "How to upgrade your Kubeflow Pipelines deployment on Google Cloud"
 weight = 50
                     
 +++
