@@ -171,17 +171,7 @@ Pipelines Standalone.
 Upgrade Support (**Alpha**)
 : An in-place upgrade is not supported.
 
-To upgrade your AI Platform Pipelines instance while keeping existing data:
-
-For instances **without** managed storage:
-
-1. [Delete your AI Platform Pipelines instance](https://cloud.google.com/ai-platform/pipelines/docs/getting-started#clean_up) **without** selecting **Delete cluster**.
-1. Reinstall Kubeflow Pipelines from the Google Cloud Marketplace using the same application name, namespace, and Google Kubernetes Engine cluster. Persisted artifacts and database data are stored in persistent disks and will be automatically picked up during reinstallation.
-
-For instances with managed storage:
-
-1. [Delete your AI Platform Pipelines instance](https://cloud.google.com/ai-platform/pipelines/docs/getting-started#clean_up).
-1. Reinstall Kubeflow Pipelines from the Google Cloud Marketplace using the same application name and managed storage options as before. You can freely install it in any cluster and namespace (not necessarily the same as before), because persisted artifacts and database data are stored in managed storages (Google Cloud Storage and Cloud SQL), and will be automatically picked up during reinstallation.
+For upgrade via reinstallation (with existing data) instructions, refer to [Upgrading AI Platform Pipelines](/docs/gke/pipelines/upgrade/#ai-platform-pipelines).
 
 Notes on specific features
 :

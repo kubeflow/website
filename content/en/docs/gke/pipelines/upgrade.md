@@ -1,134 +1,55 @@
 +++
 title = "Upgrading and Reinstalling"
-description = "How to upgrade or reinstall your Pipelines deployment on Google Cloud Platform (GCP)"
+description = "How to upgrade or reinstall your Kubeflow Pipelines deployment on Google Cloud"
 weight = 50
                     
 +++
 
-1. introduce installation options here
-1. introduce kubeflow 1.1 upgrade from 1.0 not supported, see https://github.com/kubeflow/pipelines/issues/4346 issue.
-1. point to kfp standalone upgrade doc
-1. point to kfp ai platform pipelines upgrade doc
-1. point to kubeflow 1.1 upgrade doc
+## Before you begin
 
-Starting from Kubeflow v0.5, Kubeflow Pipelines persists the
-pipeline data in permanent storage volumes. Kubeflow Pipelines therefore
-supports the following capabilities:
+[Installation Options for Kubeflow Pipelines](/docs/pipelines/installation/overview/) introduces options to install Kubeflow Pipelines. Be aware that upgrade support and instructions will vary depending on the option you installed Kubeflow Pipelines with.
 
-* **Reinstall:** You can delete a cluster and create a new cluster, specifying
-  the existing storage volumes to retrieve the original data in the new cluster.
-  This guide tells you how to reinstall Kubeflow Pipelines as part of a
-  full Kubeflow deployment.
+### Upgrade related Feature Matrix
 
-* **Upgrade (limited support):**
-
-    The full Kubeflow deployment currently supports upgrading in **Alpha**
-    status with limited support. Check the following sources for progress
-    updates:
-
-    * [Issue kubeflow/kubeflow #3727](https://github.com/kubeflow/kubeflow/issues/3727).
-    * [Kubeflow upgrade guide](/docs/upgrading/upgrade/).
-
-## Before you start
-
-This guide tells you how to reinstall Kubeflow Pipelines as part of a
-full Kubeflow deployment on Google Kubernetes Engine (GKE). See the
-[Kubeflow deployment guide](/docs/gke/deploy/).
-
-Instead of the full Kubeflow deployment, you can use Kubeflow Pipelines 
-Standalone or GCP Hosted ML Pipelines (Alpha), which support different options
-for upgrading and reinstalling. See the [Kubeflow Pipelines installation
-options](/docs/pipelines/installation/overview/).
-
-## Kubeflow Pipelines data storage
-
-Kubeflow Pipelines creates and manages the following data related to your 
-machine learning pipeline: 
-
-* **Metadata:** Experiments, jobs, runs, etc. Kubeflow Pipelines 
-  stores the pipeline metadata in a MySQL database.
-* **Artifacts:** Pipeline packages, metrics, views, etc. Kubeflow Pipelines 
-  stores the artifacts in a [Minio server](https://docs.minio.io/).
-
-Kubeflow Pipelines uses the Kubernetes
-[PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)
-(PV) subsystem to provision the MySQL database and the Minio server.
-On GCP, Kubeflow Pipelines creates a Google Compute Engine 
-[Persistent Disk](https://cloud.google.com/persistent-disk/) (PD)
-and mounts it as a PV. 
-
-After [deploying Kubeflow on GCP](/docs/gke/deploy/), you can see two entries in
-the [GCP Deployment Manager](https://console.cloud.google.com/dm/deployments),
-one for the cluster deployment and one for the storage deployment:
-
-<img src="/docs/images/pipelines-deployment-storage1.png" 
-  alt="Deployment Manager showing the storage deployment entry"
-  class="mt-3 mb-3 border border-info rounded">
-
-The entry with the suffix `-storage` creates one PD for the metadata store and
-one for the artifact store:
-
-<img src="/docs/images/pipelines-deployment-storage2.png" 
-  alt="Deployment Manager showing details of the storage deployment entry"
-  class="mt-3 mb-3 border border-info rounded">
-
-## Reinstalling Kubeflow Pipelines
-
-You can delete a Kubeflow cluster and create a new one, specifying
-your existing storage to retrieve the original data in the new cluster.
+| Installation \ Features                 | In-place Upgrade | Reinstallation on the same cluster | Reinstallation on a different cluster | User Customizations across Upgrades (via [Kustomize](https://kustomize.io/)) |
+|-----------------------------------------|------------------|------------------------------------|---------------------------------------|------------------------------------------------------------------------------------|
+| Standalone                              | ✅                | ⚠️ Data is deleted by default.      |                                       | ✅                                                                                  |
+| [Standalone (managed storage)](https://github.com/kubeflow/pipelines/tree/master/manifests/kustomize/env/gcp)            | ✅                | ✅                                  | ✅                                     | ✅                                                                                  |
+| full Kubeflow (>=1.1)                   | ✅                | ✅                                  | Needs documentation                   | ✅                                                                                  |
+| full Kubeflow (<1.1)                    |                  | ✅                                  | ✅                                     |                                                                                    |
+| AI Platform Pipelines                   |                  | ✅                                  |                                       |                                                                                    |
+| AI Platform Pipelines (managed storage) |                  | ✅                                  | ✅                                     |                                                                                    |
 
 Notes:
+* Managed storage means storing all the data in managed storage services on Google Cloud. A Google Cloud Storage (GCS) bucket and a Cloud SQL instance is required. Using managed storages make it easy to manage, back up, and restore Kubeflow Pipelines data.
 
-* You must use command-line deployment. 
-  You cannot reinstall Kubeflow Pipelines using the web interface.
-* When you do `kfctl apply` or `kfctl build`, you should use a different 
-  deployment name from your existing deployment name. Otherwise, kfctl will
-  delete your data in the existing PDs. This guide defines the deployment name
-  in the ${KF_NAME} environment variable. 
+## Kubeflow Pipelines Standalone
 
-To reinstall Kubeflow Pipelines:
+Upgrade Support for Kubeflow Pipelines standalone is **Beta**.
 
-1. Follow the [command-line deployment 
-  instructions](/docs/gke/deploy/deploy-cli/), but **note the following
-  changes in the procedure**.
+[Upgrading Kubeflow Pipelines Standalone](/docs/pipelines/installation/standalone-deployment/#upgrading-kubeflow-pipelines) introduces how to upgrade in place.
 
-1. Set a different `${KF_NAME}` name from your existing `${KF_NAME}`.
+## Full Kubeflow
 
-1. **Before** running the `kfctl apply` command:
+On Google Cloud, the full Kubeflow follows [the blueprint pattern](https://googlecontainertools.github.io/kpt/guides/producer/blueprint/) starting from Kubeflow 1.1.
 
-    * Edit `${KF_DIR}/gcp_config/storage-kubeflow.yaml` and set the following
-      flag to skip creating new storage:
+The blueprint pattern makes it easy to upgrade the full Kubeflow in-place, refer to [Update Kubeflow on Google Cloud](docs/gke/deploy/deploy-cli/#update-kubeflow) documentation for instructions.
 
-      ```
-      ...
-      createPipelinePersistentStorage: false
-      ...
-      ```
+However, there's no current support to upgrade from Kubeflow 1.0 or earlier to Kubeflow 1.1 whiling keeping Kubeflow Pipelines data. Provide your feedback in [kubeflow/pipelines#4346](https://github.com/kubeflow/pipelines/issues/4346) if it's important to you.
 
-    * Edit `${KF_DIR}/kustomize/minio/overlays/minioPd/params.env` and specify 
-      the PD that your existing deployment uses for the Minio server:
+## AI Platform Pipelines
 
-        ```
-        ...
-        minioPd=[NAME-OF-ARTIFACT-STORAGE-DISK]
-        ...
-        ```
+Upgrade Support for AI Platform Pipelines is **Alpha**.
 
-    * Edit `${KF_DIR}/kustomize/mysql/overlays/mysqlPd/params.env` and specify 
-      the PD that your existing deployment uses for the MySQL database:
+To upgrade your AI Platform Pipelines instance while keeping existing data:
 
-        ```
-        ...
-        mysqlPd=[NAME-OF-METADATA-STORAGE-DISK]
-        ...
-        ```
+### For instances **without** managed storage:
 
-1. Run the `kfctl apply` command to deploy Kubeflow as usual:
+1. [Delete your AI Platform Pipelines instance](https://cloud.google.com/ai-platform/pipelines/docs/getting-started#clean_up) **without** selecting **Delete cluster**. The persisted artifacts and database data are stored in persistent volumes in the cluster. They are kept by default when you do not delete the cluster.
+1. [Reinstall Kubeflow Pipelines from the Google Cloud Marketplace](https://console.cloud.google.com/marketplace/details/google-cloud-ai-platform/kubeflow-pipelines) using the same **Google Kubernetes Engine cluster**, **namespace**, and **application name**. Persisted data will be automatically picked up during reinstallation.
 
-    ```
-    kfctl apply -V -f ${CONFIG_FILE}
-    ``` 
+### For instances with managed storage:
 
-You should now have a new Kubeflow deployment that uses the same pipelines data 
-storage as your previous deployment. Follow the steps in the deployment guide
-to [check your deployment](/docs/gke/deploy/deploy-cli/#check-your-deployment).
+1. [Delete your AI Platform Pipelines instance](https://cloud.google.com/ai-platform/pipelines/docs/getting-started#clean_up).
+1. If upgrading from 0.5.1, note the Google Cloud Storage (GCS) bucket is a required starting from 1.0.0. Previously deployed instances should be using a bucket named like "<cloudsql instance connection name>-<database prefix or instance name>". Browse [your GCS buckets](https://console.cloud.google.com/storage/browser) to find your existing bucket name and provide it in the next step.
+1. [Reinstall Kubeflow Pipelines from the Google Cloud Marketplace](https://console.cloud.google.com/marketplace/details/google-cloud-ai-platform/kubeflow-pipelines) using the same application name and managed storage options as before. You can freely install it in any cluster and namespace (not necessarily the same as before), because persisted artifacts and database data are stored in managed storages (Google Cloud Storage and Cloud SQL), and will be automatically picked up during reinstallation.
