@@ -13,7 +13,8 @@ Available options listed below have different tradeoffs. You should choose the o
 * [Google service account keys stored as Kubernetes secrets](#google-service-account-keys-stored-as-kubernetes-secrets) is the legacy approach and no longer recommended in GKE. However, it's the only option to use GCP APIs when your cluster is an [anthos](https://cloud.google.com/anthos) or on-prem cluster.
 
 ## Before you begin
-[Installation Options for Kubeflow Pipelines](/docs/pipelines/installation/overview/) introduces options to install Pipelines. Be aware that authentication support and cluster setup instructions will vary depending on the option you installed Kubeflow Pipelines with.
+There are various options on how to install Kubeflow Pipelines in the [Installation Options for Kubeflow Pipelines](/docs/pipelines/installation/overview/) guide.
+Be aware that authentication support and cluster setup instructions will vary depending on the method you used to install Kubeflow Pipelines.
 
 * For Kubeflow Pipelines standalone, you can compare and choose from all 3 options.
 * For full Kubeflow starting from Kubeflow 1.1, [Workload Identity](#workload-identity) is the recommended and default option.
