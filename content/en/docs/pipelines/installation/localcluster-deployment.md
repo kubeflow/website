@@ -44,12 +44,11 @@ Below are basic installation steps to get you started.
 
 Download and move the `kind` executable to your directory in your PATH by running the 
 following commands:
-
-`curl -Lo ./kind https://kind.sigs.k8s.io/dl/{KIND_VERSION}/kind-linux-amd64 && \
+```SHELL
+ curl -Lo ./kind https://kind.sigs.k8s.io/dl/{KIND_VERSION}/kind-linux-amd64 && \
  chmod +x ./kind && \
- mv ./kind /{YOUR_KIND_DIRECTORY}/kind`
-
-
+ mv ./kind /{YOUR_KIND_DIRECTORY}/kind
+```
 where:
 
 * `{KIND_VERSION}`: the kind version; for example, `v0.8.1` as of the date this guide was written
@@ -58,17 +57,17 @@ where:
 **On macOS:**
 
 Use [Homebrew](https://brew.sh) by running the following command:
-
-`brew install kind`
-
+```SHELL
+brew install kind`
+```
 **On Windows:**
 
 - You can use the administrative PowerShell console to run the following commands to 
 download and move the `kind` executable to a directory in your PATH:
-
-`curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/{KIND_VERSION}/kind-windows-amd64
-Move-Item .\kind-windows-amd64.exe c:\{YOUR_KIND_DIRECTORY}\kind.exe`
-
+```SHELL
+curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/{KIND_VERSION}/kind-windows-amd64
+Move-Item .\kind-windows-amd64.exe c:\{YOUR_KIND_DIRECTORY}\kind.exe
+```
 where:
 
 * `{KIND_VERSION}`: the kind version; for example, `v0.8.1` as of the date this guide was 
@@ -76,9 +75,10 @@ written
 * `{YOUR_KIND_DIRECTORY}`: your directory in PATH
 
 - Alternatively, you can use Chocolatey [https://chocolatey.org/packages/kind](https://chocolatey.org/packages/kind):
-
-`choco install kind`
-
+- 
+```SHELL
+choco install kind
+```
 **Note:** kind use containerd as default container-runtime hence you cannot use the 
 standard kubeflow pipeline manifests.
 
@@ -92,11 +92,10 @@ standard kubeflow pipeline manifests.
 
 ## Creating a cluster on kind
 
-Having installed kind, you can create a Kubernetes cluster on kind by running a simple 
-command:
-
-`kind create cluster`
-
+Having installed kind, you can create a Kubernetes cluster on kind by running:
+```SHELL
+kind create cluster
+```
 This will bootstrap a Kubernetes cluster using a pre-built node image. You can find that 
 image on the Docker Hub `kindest/node` [here](https://hub.docker.com/r/kindest/node). 
 If you wish to build the node image yourself, you can use the `kind build node-image` 
@@ -136,9 +135,9 @@ You can find the the official k3s installation script to install it as a service
 systems on the official [k3s website](https://get.k3s.io). 
 
 To install K3s using that method, run the following command:
-
-```curl -sfL https://get.k3s.io | sh -```
-
+```SHELL
+curl -sfL https://get.k3s.io | sh -
+```
 Note, kind use containerd as default container-runtime hence you cannot use the standard kubeflow pipeline manifests.
 
 **Note:** You cannot use the standard Kubeflow Pipeline manifests as kind uses 
@@ -155,24 +154,24 @@ Note, kind use containerd as default container-runtime hence you cannot use the 
 ### Creating a cluster on k3s
 
 1. To create a Kubernetes cluster on K3s, use the following command:
- 
-`sudo k3s server &`
-
+```SHELL
+sudo k3s server &
+```
 This will bootstrap a Kubernetes cluster kubeconfig is written to /etc/rancher/k3s/k3s.yaml
-
-`sudo k3s kubectl get node`
-
+```SHELL
+sudo k3s kubectl get node
+```
 2. (Optional) Check your cluster
-
-`sudo k3s kubectl get node`
-
+```SHELL
+sudo k3s kubectl get node
+```
 K3s embed the popular kubectl command directly in the binaries so you may immediately interact with the cluster through it.
 
 3. (Optional) Run the below command on a different node. `NODE_TOKEN` comes from `/var/lib/rancher/k3s/server/node-token` 
 on your server
-
-`sudo k3s agent --server https://myserver:6443 --token ${NODE_TOKEN}`
-
+```SHELL
+sudo k3s agent --server https://myserver:6443 --token ${NODE_TOKEN}
+```
 ### Setting up a cluster on k3s on Windows Subsystem for Linux (WSL)
 
 The Windows Subsystem for Linux (WSL) lets developers run a GNU/Linux environment—
@@ -219,21 +218,20 @@ This will bootstrap a Kubernetes cluster but you will cannot yet access from you
 **Note:** You can't install k3s using the curl script because there is no supervisor (systemd or openrc) in WSL.
 
 2. Download k3s binary from https://github.com/rancher/k3s/releases/latest. Then run this command in the directory where you download the k3s binary to:
-
-`chmod +x k3s`
-
-3. Run k3s
-
-`sudo ./k3s server`
-
+   ```SHELL
+   chmod +x k3s
+   ```
+3. Run k3s:
+   ```SHELL
+   sudo ./k3s server
+   ```
 ### Setup access to your WSL instance
 
-* Copy `/etc/rancher/k3s/k3s.yaml` from WSL to your home in Windows to 
-`%HOME%.kube\config`. Edit the copied file and change the server URL from 
-`https://localhost:6443` to the IP of the your WSL instance (`ip addr show dev eth0`) (For 
+* Copy `/etc/rancher/k3s/k3s.yaml` from WSL to `%HOME%.kube\config`.
+Edit the copied file by changing the server URL from `https://localhost:6443` to the IP of the your WSL instance (`ip addr show dev eth0`) (For 
 example, `https://192.168.170.170:6443`.)
 
-* Run kubectl from windows, if you don't have it yet you may obtain it from 
+* Run kubectl within your favorite terminal in Windows, if you don't have it yet you may obtain it from 
 [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows)
 
 ## Deploying Kubeflow Pipelines
@@ -243,14 +241,12 @@ The installation process for Kubeflow pipelines is the same for all the environm
 **Note**: Process Namespace Sharing (PNS) is not mature in Argo, see [Argo Executors](https://argoproj.github.io/argo/workflow-executors/) for more informations.Please reference "pns executors" in any issue that may arise using it.
 
 1. Deploy the Kubeflow Pipelines:
-
-```
+```SHELL
 export PIPELINE_VERSION={{% pipelines/latest-version %}}
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
 kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
 ```
-
 The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
 
 **Note**: The above commands apply to Kubeflow Pipelines version 0.4.0 and higher.
@@ -263,7 +259,7 @@ To uninstall Kubeflow Pipelines, run `kubectl delete -k <manifest-file>`.
 
 For example, to uninstall KFP using manifests from a GitHub repository, run:
 
-```
+```SHELL
 export PIPELINE_VERSION={{% pipelines/latest-version %}}
 kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
 kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
@@ -271,7 +267,7 @@ kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-sco
 
 To uninstall KFP using manifests from your local repository or file system, run:
 
-```
+```SHELL
 kubectl delete -k manifests/kustomize/env/platform-agnostic-pns
 kubectl delete -k manifests/kustomize/cluster-scoped-resources
 ```
