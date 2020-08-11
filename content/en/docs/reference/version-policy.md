@@ -130,7 +130,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/kfserving">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td>v0.2.2</td>
+        <td>v0.3.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/misc/metadata/">Metadata</a>
@@ -247,7 +247,7 @@ one of the following Kubeflow SDKs and command-line interfaces
           (<a href="https://github.com/kubeflow/kfctl">GitHub</a> )
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>1.1.0</td>
       </tr>
       <tr>
         <td><a href="/docs/pipelines/sdk/sdk-overview/">Kubeflow Pipelines SDK</a> 

@@ -157,7 +157,7 @@ Consult the support page for the cloud service or platform that you're using:
 
 * [Amazon Web Services (AWS)](https://aws.amazon.com/contact-us/)
 * [Google Cloud Platform (GCP)](https://cloud.google.com/support-hub/)
-* [IBM Cloud Private](https://www.ibm.com/cloud/support)
+* [IBM Cloud](https://www.ibm.com/cloud/support)
 * [Microsoft Azure](https://azure.microsoft.com/en-au/support/options/)
 * [Red Hat OpenShift](https://help.openshift.com/)
 
