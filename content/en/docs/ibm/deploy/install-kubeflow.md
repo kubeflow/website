@@ -111,7 +111,7 @@ directories:
   Kubeflow deployment.
 
   * This file is a copy of the GitHub-based configuration YAML file that
-    you used when deploying Kubeflow. For example, {{% config-uri-k8s-istio %}}.
+    you used when deploying Kubeflow. For example, {{% config-uri-ibm %}}.
   * When you run `kfctl apply` or `kfctl build`, kfctl creates
     a local version of the configuration file, `${CONFIG_FILE}`,
     which you can further customize if necessary.
@@ -154,7 +154,7 @@ export BASE_DIR=<path to a base directory>
 export KF_DIR=${BASE_DIR}/${KF_NAME}
 
 # Set the configuration file to use, such as the file specified below:
-export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm.v1.1.0.yaml"
+export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.1-branch/kfdef/kfctl_ibm.v1.1.0.yaml"
 
 # Generate and deploy Kubeflow:
 mkdir -p ${KF_DIR}
@@ -196,7 +196,7 @@ The scenario is a GitHub organization owner can authorize its organization membe
     ```
 1. Setup configuration files:
     ```
-    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm_dex_multi_user.v1.1.0.yaml"
+    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.1-branch/kfdef/kfctl_ibm_dex_multi_user.v1.1.0.yaml"
     # Generate and deploy Kubeflow:
     mkdir -p ${KF_DIR}
     cd ${KF_DIR}

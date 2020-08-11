@@ -4,10 +4,6 @@ description = "The basics of Kubeflow configuration with kfctl and kustomize"
 weight = 10
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 {{% stable-status %}}
 
@@ -49,10 +45,53 @@ YAML configuration files to bootstrap the configuration. You can see all the
 [configuration files on 
 GitHub](https://github.com/kubeflow/manifests/tree/master/kfdef).
 
+You can also compose your own configuration file with components and applications of your choice. Starting with Kubeflow 1.1 release, the _KfDef_ manifest also supports using _stack_ to declare a specific stack of applications. To use this new feature, the manifest should contain one application with `kubeflow-apps` name. 
+
+```yaml
+apiVersion: kfdef.apps.kubeflow.org/v1
+kind: KfDef
+metadata:
+  namespace: kubeflow
+spec:
+  applications:
+  # Install istio in a different namespace: istio-system
+  # Remove this application if istio is already installed
+  - kustomizeConfig:
+      repoRef:
+        name: manifests
+        path: istio/istio/base
+    name: kubeflow-istio
+...
+  # Install Kubeflow applications. In the stacks/generic path, a set of core
+  # Kubeflow components (pipelines, central dashboard, profiles, etc) are included
+  # in the one kustomization.yaml.
+  - kustomizeConfig:
+      repoRef:
+        name: manifests
+        path: stacks/generic
+    name: kubeflow-apps
+...
+  # Spartakus is a separate applications so that kfctl can remove it
+  # to disable usage reporting
+  - kustomizeConfig:
+      repoRef:
+        name: manifests
+        path: common/spartakus/overlays/application
+    name: spartakus
+...
+  repos:
+  - name: manifests
+    uri: https://github.com/kubeflow/manifests/archive/v1.1-branch.tar.gz
+  version: v1.1-branch
+  ```
+
+Note that with the above manifests, the `kfctl` CLI expects all applications to have a `kustomization.yaml` file in the `kustomizeConfig.repoRef.path` directory. The `kustomization.yaml` file will be used by the `kustomize` to build and apply all Kubernetes resources for that stack of applications. The `parameters` and `overlays` fields under `kustomizeConfig` for each application will be ignored.
+
+You can continue to compose the _KfDef_ manifest in the old format prior to Kubeflow 1.1 without naming any application as `kubeflow-apps`.
+
 As an example, this guide uses the 
-[kfctl_k8s_istio.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_k8s_istio.yaml)
-configuration. For more details about this configuration, see the
-[kfctl_k8s_istio deployment guide](/docs/started/k8s/kfctl-k8s-istio/).
+[kfctl_ibm.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_ibm.yaml)
+configuration. This configuration is written using the _stack_ option.
 
 Typically, you specify the configuration file with a `-f <config-file>` 
 parameter when you run `kfctl build` or `kfctl apply`. The following example
@@ -72,7 +111,7 @@ export KF_DIR=${BASE_DIR}/${KF_NAME}
 
 # Set the URI of the configuration file to use when deploying Kubeflow. 
 # For example:
-export CONFIG_URI="{{% config-uri-k8s-istio %}}"
+export CONFIG_URI="{{% config-uri-ibm %}}"
 
 # Create your Kubeflow configurations:
 mkdir -p ${KF_DIR}
@@ -95,12 +134,12 @@ which you can further customize if necessary.
 Follow these steps to apply the configurations to your Kubeflow cluster:
 
 1. Set an environment variable pointing to your local configuration file.
-  For example, this guide uses the `{{% config-file-k8s-istio %}}` 
+  For example, this guide uses the `{{% config-file-ibm %}}` 
   configuration. If you chose a different configuration in the previous step, 
   you must change the file name to reflect your configuration:
 
     ```
-    export CONFIG_FILE=${KF_DIR}/{{% config-file-k8s-istio %}}
+    export CONFIG_FILE=${KF_DIR}/{{% config-file-ibm %}}
     ```
 
 1. Apply the configurations:
@@ -110,6 +149,7 @@ Follow these steps to apply the configurations to your Kubeflow cluster:
     ```
 
 <a id="kubeflow-directory"><a/>
+
 ### Your Kubeflow directory layout
 
 Your Kubeflow application directory is the directory where you choose to store 
@@ -162,9 +202,8 @@ Below are some examples of configuration files:
 * [kfctl_istio_dex.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_istio_dex.yaml)
   to install Kubeflow on an existing Kubernetes cluster with Dex and Istio for
   authentication.
-* [kfctl_gcp_iap.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_gcp_iap.yaml)
-  to create a Google Kubernetes Engine (GKE) cluster with Kubeflow using
-  Cloud Identity-Aware Proxy (Cloud IAP) for access control.
+* [kfctl_ibm.yaml](https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_ibm.yaml)
+  to create a IBM Cloud Kubernetes Service (IKS) cluster with Kubeflow.
 
 The kustomize package manager in kfctl uses the information in your
 `${CONFIG_FILE}` to traverse the directories under the 
@@ -266,19 +305,13 @@ your Kubeflow deployment:
     kfctl apply -V -f ${CONFIG_FILE}
     ```
 
-
-### More examples
-
-For examples of customizing your deployment, see the guide to [customizing 
-Kubeflow on GKE](/docs/gke/customizing-gke/).
-
 For information about how Kubeflow uses Spartakus, see the guide to
 [usage reporting](/docs/other-guides/usage-reporting/).
 
 ## More about kustomize
 
 Below are some useful kustomize terms, from the 
-[kustomize glossary](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md):
+[kustomize glossary](https://kubernetes-sigs.github.io/kustomize/api-reference/glossary/):
 
 * **base:** A combination of a kustomization and resource(s). Bases can be
   referred to by other kustomizations.

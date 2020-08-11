@@ -148,7 +148,7 @@ The matrix is therefore an alternative way of accessing the information in the
         <td><b>IBM Cloud (IKS)</b></td>
         <td><a href="{{% config-uri-ibm %}}">{{% config-file-ibm %}}</a>  
         </td>
-        <td><a href="/docs/started/cloud/getting-started-icp/">Docs</a></td>
+        <td><a href="/docs/started/cloud/getting-started-iks/">Docs</a></td>
       </tr>
       <tr>
         <td><b>OpenShift</b></td>
@@ -181,7 +181,7 @@ tools for deploying and managing Kubeflow:
 
 ## Understanding the Kubeflow versioning policies
 
-With the launch of Kubeflow v1.0, the Kubeflow community attributes 
+With the launch of Kubeflow {{% kf-latest-version %}}, the Kubeflow community attributes 
 *stable status* to those applications and other components that 
 meet the required level of stability, supportability, and upgradability.
 
