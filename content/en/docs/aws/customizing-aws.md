@@ -23,7 +23,7 @@ metadata:
   # AWS_CLUSTER_NAME and AWS_REGION will override `name` and `region` here.
   name: kubeflow-example
   region: us-west-2
-  version: '1.14'
+  version: '1.17'
 # If your region has multiple availability zones, you can specify 3 of them.
 #availabilityZones: ["us-west-2b", "us-west-2c", "us-west-2d"]
 
@@ -67,7 +67,18 @@ nodeGroups:
 ```
 
 ### Customize Authentication
-Please see [this section](/docs/aws/authentication)
+
+If you use {{% config-uri-aws-standard %}}, you can consider to change the default password in the [configuration file]({{% config-uri-aws-standard %}}). The configuration file contains:
+
+```
+spec:
+  auth:
+  basicAuth:
+    password: 12341234
+    username: admin@kubeflow.org
+```
+
+If you use {{% config-uri-aws-cognito %}}, please see [this section](/docs/aws/authentication)
 
 ### Customize IAM Role for Pods
 Please see [this section](/docs/aws/iam-for-sa)

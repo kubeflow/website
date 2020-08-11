@@ -52,6 +52,16 @@ Follow these steps to set up your GCP project:
 1. Read the GCP guide to [resource quotas](https://cloud.google.com/compute/quotas)
   to understand the quotas on resource usage that Compute Engine enforces, and 
   to learn how to check your quota and how to request an increase in quota.
+  
+1. Initialize your project to ready it for Anthos Service Mesh installation.
+  ```
+	curl --request POST \
+    --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+    --data '' \
+    https://meshconfig.googleapis.com/v1alpha1/projects/${PROJECT_ID}:initialize
+  ```
+  
+  Refer to [Anthos Service Mesh documentation](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#setting_credentials_and_permissions) for details.
 
 You do not need a running GKE cluster. The deployment process creates a
 cluster for you.

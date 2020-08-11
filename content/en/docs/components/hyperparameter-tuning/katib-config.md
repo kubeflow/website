@@ -2,6 +2,7 @@
 title = "Katib Configuration Overview"
 description = "How to make changes in Katib configuration"
 weight = 40
+                    
 +++
 
 This page describes information about [Katib config](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/katib-controller/katib-config.yaml).

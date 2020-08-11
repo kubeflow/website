@@ -2,7 +2,12 @@
 title = "Experiment"
 description = "Conceptual overview of experiments in Kubeflow Pipelines"
 weight = 40
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 An *experiment* is a workspace where you can try different configurations of
 your pipelines. You can use experiments to organize your runs into logical

@@ -1,114 +1,30 @@
 +++
 title = "Install Kubeflow"
 description = "Instructions for deploying Kubeflow with the shell"
-weight = 4
+weight = 5
 +++
 
 This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud Kubernetes Service (IKS).
 
 ## Prerequisites
 
-### Installing the IBM Cloud developer tools
+* Authenticating with IBM Cloud
 
-> If you already have `ibmcloud` installed with the latest `ibmcloud ks` (Kubernetes Service) plug-in, you
-> can skip these steps.
+  ```shell
+  ibmcloud login
+  ```
 
-1.  Download and install the `ibmcloud` command line tool:
-    https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started#overview
+* Accessing the IBM Cloud cluster
 
-1.  Install the [Kubernetes Service plug-in](https://cloud.ibm.com/docs/cli?topic=containers-cli-plugin-kubernetes-service-cli):
-    ```
-    ibmcloud plugin install container-service
-    ```
-1.  Authorize `ibmcloud`:
-    ```
-    ibmcloud login
-    ```
+  If you do not have access to a cluster created with IBM Cloud Kubernetes Service, follow the [Create an IBM Cloud cluster](/docs/ibm/create-cluster) guide to create a cluster.
 
-### Setting environment variables
+  Run following command to switch the Kubernetes context and access the cluster.
 
-To simplify the command lines for this walkthrough, you need to define a few
-environment variables.
+  ```shell
+  ibmcloud ks cluster config --cluster <cluster_name>
+  ```
 
-1.  Set `CLUSTER_NAME` and `CLUSTER_ZONE` variables:
-
-    ```
-    export CLUSTER_NAME=kubeflow
-    export CLUSTER_ZONE=dal13
-    export WORKER_NODE_PROVIDER=classic
-    ```
-
-    - `CLUSTER_NAME` must be lowercase and unique among any other Kubernetes
-      clusters in the specified CLUSTER_ZONE.
-    - `CLUSTER_ZONE` identifies the regions or location where CLUSTER_NAME will be created. Run `ibmcloud ks locations` to list supported IBM Cloud Kubernetes Service locations. For example, choose `dal13` to create CLUSTER_NAME in the Dallas (US) data center.
-    - `WORKER_NODE_PROVIDER` specifies the kind of IBM Cloud infrastructure on which the Kubernetes worker nodes will be created. 
-
-**Notices**:
-* It uses the worker nodes provider `classic` in this guide because it's the only one that supports worker nodes with GPUs.
-* There are other worker nodes providers including `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Please use `ibmcloud ks zones --provider <provider-name>` to list zone names if using other providers and set the `CLUSTER_ZONE` accordingly.
-
-### Creating a IBM Cloud Kubernetes cluster
-
-The worker nodes flavor name varies from zones and providers. Please run `ibmcloud ks flavors --zone $CLUSTER_ZONE --provider $WORKER_NODE_PROVIDER` to list available flavors.
-
-To make sure the cluster is large enough to host all the Knative and Istio
-components, the recommended configuration for a cluster is:
-
-- Kubernetes version 1.16
-- at least 4 vCPU cores with 16GB memory (e.g., uses the flavor `b3c.4x16` if choosing Ubuntu 18 or the flavor `b2c.4x16` if choosing Ubuntu 16)
-
-1.  Create a Kubernetes cluster with the required specifications:
-
-    ```
-    ibmcloud ks cluster create $WORKER_NODE_PROVIDER \
-      --flavor b3c.4x16 \
-      --name $CLUSTER_NAME \
-      --zone=$CLUSTER_ZONE \
-      --workers=2
-    ```
-
-    If you're starting in a fresh account with no public and private VLANs, they
-    are created automatically for you when creating a Kubernetes cluster with 
-    worker nodes provider `classic` for the first time. If you already have VLANs configured in
-    your account, get them via `ibmcloud ks vlans --zone $CLUSTER_ZONE` and
-    include the public/private VLAN id in the `cluster create` command:
-
-    ```
-    ibmcloud ks cluster create $WORKER_NODE_PROVIDER \
-      --machine-type=b2c.4x16 \
-      --name=$CLUSTER_NAME \
-      --zone=$CLUSTER_ZONE \
-      --workers=3 \
-      --private-vlan $PRIVATE_VLAN_ID \
-      --public-vlan $PUBLIC_VLAN_ID 
-    ```
-
-1.  Wait until your Kubernetes cluster is deployed:
-
-    ```
-    ibmcloud ks clusters | grep $CLUSTER_NAME
-    ```
-
-    It can take a while for your cluster to be deployed. Repeat the above
-    command until the state of your cluster is "normal".
-
-
-1.  Point `kubectl` to the cluster:
-
-    ```
-    ibmcloud ks cluster config --cluster $CLUSTER_NAME
-    ```
-
-1.  Make sure all nodes are up:
-
-    ```
-    kubectl get nodes
-    ```
-
-    Make sure all the nodes are in `Ready` state. You are now ready to install
-    Istio into your cluster.
-
-**Notice**: If choosing other Kubernetes worker nodes providers, please refer to the IBM Cloud official document [Creating clusters](https://cloud.ibm.com/docs/containers?topic=containers-clusters) for detailed steps.
+  Replace `<cluster_name>` with your cluster name.
 
 ## IBM Cloud Block Storage Setup
 
@@ -124,13 +40,13 @@ get the best experience from Kubeflow.
 
 1. [Follow the instructions](https://helm.sh/docs/intro/install/) to install the Helm version 3 client on your local machine.
 
-1. Add the IBM Cloud Helm chart repository to the cluster where you want to use the IBM Cloud Block Storage plug-in.
+2. Add the IBM Cloud Helm chart repository to the cluster where you want to use the IBM Cloud Block Storage plug-in.
     ```shell
     helm repo add iks-charts https://icr.io/helm/iks-charts
     helm repo update
     ```
 
-1. Install the IBM Cloud Block Storage plug-in. When you install the plug-in, pre-defined block storage classes are added to your cluster.
+3. Install the IBM Cloud Block Storage plug-in. When you install the plug-in, pre-defined block storage classes are added to your cluster.
     ```shell
     helm install 1.6.0 iks-charts/ibmcloud-block-storage-plugin -n kube-system
     ```
@@ -147,28 +63,33 @@ get the best experience from Kubeflow.
     ...
     ```
 
-1. Verify that the installation was successful.
+4. Verify that the installation was successful.
     ```shell
     kubectl get pod -n kube-system | grep block
     ```
     
-1. Verify that the storage classes for Block Storage were added to your cluster.
+5. Verify that the storage classes for Block Storage were added to your cluster.
     ```
     kubectl get storageclasses | grep block
     ```
 
-1. Set the Block Storage as the default storageclass.
+6. Set the Block Storage as the default storageclass.
     ```shell
     kubectl patch storageclass ibmc-block-gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-    kubectl patch storageclass ibmc-file-bronze -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
-    
+
     # Check the default storageclass is block storage
     kubectl get storageclass | grep \(default\)
     ```
-    
+
     Example output:
     ```
     ibmc-block-gold (default)   ibm.io/ibmc-block   65s
+    ```
+
+    Make sure `ibmc-block-gold` is the only `default` storageclass. If there are two or more rows in the above output, there is other `default` storageclass. Unset it with the below command, for example, will make the `ibmc-file-bronze` storage no longer the `default` storageclass for the cluster.
+
+    ```shell
+    kubectl patch storageclass ibmc-file-bronze -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
     ```
 
 ## Understanding the Kubeflow deployment process
@@ -216,7 +137,6 @@ Run the following commands to set up and deploy Kubeflow.
       export PATH=$PATH:<path to where kfctl was unpacked>
       ```
     
-
 Choose either **single user** or **multi-tenant** section based on your usage.
 
 ### Single user
@@ -234,7 +154,7 @@ export BASE_DIR=<path to a base directory>
 export KF_DIR=${BASE_DIR}/${KF_NAME}
 
 # Set the configuration file to use, such as the file specified below:
-export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm.yaml"
+export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm.v1.1.0.yaml"
 
 # Generate and deploy Kubeflow:
 mkdir -p ${KF_DIR}
@@ -276,7 +196,7 @@ The scenario is a GitHub organization owner can authorize its organization membe
     ```
 1. Setup configuration files:
     ```
-    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm_dex.yaml"
+    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm_dex_multi_user.v1.1.0.yaml"
     # Generate and deploy Kubeflow:
     mkdir -p ${KF_DIR}
     cd ${KF_DIR}
@@ -298,7 +218,7 @@ The scenario is a GitHub organization owner can authorize its organization membe
       name: dex
       namespace: auth
     data:
-      config.yaml: |
+      config.yaml: |-
         issuer: http://dex.auth.svc.cluster.local:5556/dex
         storage:
           type: kubernetes
@@ -340,7 +260,8 @@ The scenario is a GitHub organization owner can authorize its organization membe
         - id: kubeflow-oidc-authservice
           redirectURIs: ["/login/oidc"]
           name: 'Dex Login Application'
-          secret: pUCnCOY80SnXgjibTYM0ZWNzY3xreNGQok
+          # Update the secret below to match with the oidc authservice.
+          secret: pUBnBOY80SnXgjibTYM9ZWNzY2xreNGQok
     ```
     - Replace `clientID` and `clientSecret` in the `config.yaml` field with the `Client ID` and `Client Secret` created above for the GitHub OAuth application. Add your organization name to the `orgs` field, e.g.
     ```YAML

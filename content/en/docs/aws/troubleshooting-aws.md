@@ -18,27 +18,28 @@ If you see your istio-ingress ADDRESS is empty after 3 mins, it must be somethin
 E1024 09:02:59.934318       1 :0] kubebuilder/controller "msg"="Reconciler error" "error"="failed to build LoadBalancer configuration due to retrieval of subnets failed to resolve 2 qualified subnets. Subnets must contain the kubernetes.io/cluster/\u003ccluster name\u003e tag with a value of shared or owned and the kubernetes.io/role/elb tag signifying it should be used for ALBs Additionally, there must be at least 2 subnets with unique availability zones as required by ALBs. Either tag subnets to meet this requirement or use the subnets annotation on the ingress resource to explicitly call out what subnets to use for ALB creation. The subnets that did resolve were []"  "controller"="alb-ingress-controller" "request"={"Namespace":"istio-system","Name":"istio-ingress"}
 ```
 
-If you see this error, you probably forget to update `cluster_name` during setup. Please go to edit view by `kubectl edit deployment alb-ingress-controller -n kubeflow` and make the change. Another reason could be that you did not tag your subnets  so that Kubernetes knows to use only those subnets for external load balancers. To fix this ensure the public subnets are tagged with the **Key**: ```kubernetes.io/role/elb``` and **Value**: ```1```. See docs [here](https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html) for further details.
+If you see this error, you probably didn't use `cluster_name` as folder name during setup. Please go to check your cluster setting by `kubectl get configmaps aws-alb-ingress-controller-config -n kubeflow -o yaml` and make the change. Another reason could be that you did not tag your subnets  so that Kubernetes knows to use only those subnets for external load balancers. To fix this ensure the public subnets are tagged with the **Key**: ```kubernetes.io/role/elb``` and **Value**: ```1```. See docs [here](https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html) for further details.
 
-### KF_DIR is not empty
+### Kubeflow Uninstallation Failure
 
-```shell
-kfctl build -V -f ${CONFIG_URI}
-INFO[0000] Downloading https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_aws.0.7.0.yaml to /var/folders/7z/9cx2bbsd3q3352bd8b01j_nmzx5lm9/T/703750259/tmp.yaml  filename="utils/k8utils.go:169"
-INFO[0001] Downloading https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_aws.0.7.0.yaml to /var/folders/7z/9cx2bbsd3q3352bd8b01j_nmzx5lm9/T/367955766/tmp_app.yaml  filename="configconverters/converters.go:70"
-Error:  (kubeflow.error): Code 400 with message: current directory /kf_base/kf070 not empty, please switch directories
+
+```
+Error: couldn't delete KfApp:  (kubeflow.error): Code 500 with message: kfApp Delete failed for kustomize:  (kubeflow.error): Code 500 with message: error deleting kustomize manifests: [error evaluating kustomization manifest for knative: Timed out waiting for resource /knative-serving to be deleted. Error deleted resource is not cleaned up yet, error evaluating kustomization manifest for cert-manager: Timed out waiting for resource /cert-manager to be deleted. Error deleted resource is not cleaned up yet]
 Usage:
-  kfctl build [flags]
+  kfctl delete [flags]
 
 Flags:
-  -f, --file string   Static config file to use. Can be either a local path or a URL.
-  -h, --help          help for build
-  -V, --verbose       verbose output default is false
+      --delete_storage   Set if you want to delete app's storage cluster used for mlpipeline.
+  -f, --file string      The local config file of KfDef.
+      --force-deletion   force-deletion output default is false
+  -h, --help             help for delete
+  -V, --verbose          verbose output default is false
 
- (kubeflow.error): Code 400 with message: current directory /kf_base/kf070 not empty, please switch directories
+kfctl exited with error: couldn't delete KfApp:  (kubeflow.error): Code 500 with message: kfApp Delete failed for kustomize:  (kubeflow.error): Code 500 with message: error deleting kustomize manifests: [error evaluating kustomization manifest for knative: Timed out waiting for resource /knative-serving to be deleted. Error deleted resource is not cleaned up yet, error evaluating kustomization manifest for cert-manager: Timed out waiting for resource /cert-manager to be delete
+
 ```
 
-This happens if you already initialize your configuration and you try to rerun `kfctl build`. Delete everything `rm -rf *` and try again.
+Due to a kustomize [issue](https://github.com/kubeflow/kfctl/issues/385), deletion will take up to 10 mins and it may show above errors. Don't worry about it, all resources have been deleted. You can build your kfctl with [change](https://github.com/kubeflow/kfctl/pull/386) to mitigate this issue.
 
 
 ### EKS Cluster Creation Failure

@@ -2,8 +2,8 @@
 title = "Troubleshooting Deployments on Azure AKS"
 description = "Help diagnose and fix issues you may encounter in your Kubeflow deployment"
 weight = 100
+                    
 +++
-
 ### Jupyter Notebook ‘is not a valid page’ when accessing notebook
 Restarting the ambassador pods will often fix this issue:
 `kubectl delete pods -l service=ambassador`
