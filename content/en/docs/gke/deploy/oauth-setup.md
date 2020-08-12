@@ -4,10 +4,6 @@ description = "Creating an OAuth client for Cloud IAP on Google Cloud Platform (
 weight = 2
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 If you want to use 
 [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/) 
@@ -15,8 +11,6 @@ when deploying Kubeflow on GCP,
 then you must follow these instructions to create an OAuth client for use
 with Kubeflow.
 
-You can skip the instructions on this page if you want to use basic 
-authentication (username and password) with Kubeflow instead of Cloud IAP.
 Cloud IAP is recommended for production deployments or deployments with access 
 to sensitive data.
 
