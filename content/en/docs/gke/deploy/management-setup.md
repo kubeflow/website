@@ -65,6 +65,12 @@ to manage GCP infrastructure using GitOps.
 
    * Where **NAME**, **LOCATION**, **PROJECT** should be the actual values for your deployment
 
+1. Set the values
+
+   ```
+   make set-values
+   ```
+
 1. Hydrate and apply the manifests to create the cluster
 
    ```
