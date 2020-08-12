@@ -39,7 +39,7 @@ to manage GCP infrastructure using GitOps.
    make get-pkg
    ```
 
-  * This generates an error like the one below but you can ignore it;
+   * This generates an error like the one below but you can ignore it;
 
     ```  
     kpt pkg get https://github.com/jlewi/manifests.git@blueprints ./upstream
@@ -49,21 +49,11 @@ to manage GCP infrastructure using GitOps.
   
     * This is being tracked in [GoogleContainerTools/kpt#539](https://github.com/GoogleContainerTools/kpt/issues/539) 
 
-1. Open up the **Makefile** and edit the `set-values` rule to set values for the name, project, and location of your management; when you are done the section should look like
+1. Set the values **NAME**, **LOCATION**, **PROJECT** for the cluster
 
    ```  
-    set-values: 
-    kpt cfg set ./instance name NAME
-    kpt cfg set ./instance location LOCATION
-    kpt cfg set ./instance gcloud.core.project PROJECT
-  
-    kpt cfg set ./upstream/management name NAME
-    kpt cfg set ./upstream/management location LOCATION
-    kpt cfg set ./upstream/management gcloud.core.project PROJECT
-
+    NAME=<NAME> LOCATION=<ZONE_OR_REGION> PROJECT=<PROJECT> make set-values
    ```
-
-   * Where **NAME**, **LOCATION**, **PROJECT** should be the actual values for your deployment
 
 1. Hydrate and apply the manifests to create the cluster
 
