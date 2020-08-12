@@ -100,9 +100,4 @@ address to verify the user's identity.
 
 ## Next steps
 
-Choose one of the following ways to deploy Kubeflow:
-
-* [Using the UI](/docs/gke/deploy/deploy-ui). This option provides a simple
-  way to deploy Kubeflow.
-* [Using the CLI](/docs/gke/deploy/deploy-cli). This option provides more
-  control over the deployment process.
+* [Set up your management cluster](/docs/gke/deploy/management-setup/).
