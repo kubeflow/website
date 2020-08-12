@@ -55,7 +55,7 @@ one if you haven't already.
    * If you don't have go installed you can download
      a binary from [yq's GitHub releases](https://github.com/mikefarah/yq/releases).
 
-1. Follow these [instructions](https://cloud.google.com/service-mesh/docs/gke-install-new-cluster#download_the_installation_file) to
+1. Follow these [instructions](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#preparing_to_install_anthos_service_mesh) to
    install istioctl
 
 
