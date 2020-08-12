@@ -100,4 +100,4 @@ address to verify the user's identity.
 
 ## Next steps
 
-* [Deploy Kubeflow using kubectl and kpt](/docs/gke/deploy/deploy-cli).
+* [Set up your management cluster](/docs/gke/deploy/management-setup/).
