@@ -68,12 +68,6 @@ one if you haven't already.
     gcloud auth login
     ```
 
-1. Create user credentials. You only need to run this command once:
-   
-    ```
-    gcloud auth application-default login
-    ```
-
 ## Fetch packages using kpt
 
 1. Fetch the blueprint
