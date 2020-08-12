@@ -171,6 +171,11 @@ githubbranch = "v1.1-branch"
   githubbranch = "v0.7-branch"
   url = "https://v0-7.kubeflow.org"
 
+[[params.versions]]
+  version = "v1.0"
+  githubbranch = "v1.0-branch"
+  url = "https://v1-0-branch.kubeflow.org"
+
 # Docsy: User interface configuration
 [params.ui]
 # Docsy: Enable to show the side bar menu in its compact state.
