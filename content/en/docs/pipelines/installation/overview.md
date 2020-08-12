@@ -119,8 +119,9 @@ Kubeflow Pipelines updates.
 | 1.0.2                  | 0.2.5                      |                                         |
 | 1.1.0                  | 1.0.0                      | Some platforms may still have Kubeflow Pipelines 0.2.5 |
 
-Upgrade Support (**Alpha**)
-: Reinstallation supported with [instructions](/docs/gke/pipelines/upgrade). Upgrade support is limited.
+Upgrade Support
+:
+Refer to [the full Kubeflow section of upgrading Kubeflow Pipelines on Google Cloud](/docs/gke/pipelines/upgrade/#full-kubeflow) guide.
 
 Google Cloud Integrations
 :
