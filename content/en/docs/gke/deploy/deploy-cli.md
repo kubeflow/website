@@ -131,6 +131,23 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
    * Note there are multiple invocations of `kpt cfg set` on different directories to
      work around [GoogleContainerTools/kpt#541](https://github.com/GoogleContainerTools/kpt/issues/541)      
 
+* You need to configure the kubectl context provided in `mgmt-ctxt`.
+
+  * Choose the management cluster context
+    ```bash
+    kubectl config use-context ${mgmt-ctxt}
+    ```
+
+  * Create a namespace in your management cluster for the managed project if you haven't done so.
+    ```bash
+    kubectl create namespace ${PROJECT}
+    ```
+
+  * Make the managed project's namespace default of the context:
+    ```bash
+    kubectl config set-context --current --namespace ${PROJECT}
+    ```
+
 * If you haven't previously created an OAuth client for IAP then follow
   the [directions](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) to setup
   your consent screen and oauth client. 
