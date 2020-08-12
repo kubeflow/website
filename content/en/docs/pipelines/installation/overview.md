@@ -11,7 +11,7 @@ with each option:
 * A [standalone](#standalone) Kubeflow Pipelines deployment.
 * Kubeflow Pipelines as [part of a full Kubeflow deployment](#full-kubeflow).
 * **Alpha**: [GCP Hosted ML Pipelines](#marketplace).
-* A [local](#localcluster) Kubeflow Pipelines deployment for testing purposes.
+* A [local](/docs/pipelines/installation/localcluster-deployment) Kubeflow Pipelines deployment for testing purposes.
 
 <a id="standalone"></a>
 ## Kubeflow Pipelines Standalone

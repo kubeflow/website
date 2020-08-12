@@ -21,8 +21,7 @@ kustomize manifests for test purposes. This guide is an alternative to
   [kustomize](https://kustomize.io/).
  
 - You should have a Kubernetes cluster and install kubectl on it to work with 
-  Kubeflow Pipelines Standalone. If you don't have kubectl installed, follow the 
-  [kubectl installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+  Kubeflow Pipelines Standalone. 
  
 - For native support of kustomize, you will need kubectl v1.14 or higher. You 
   can download and install kubectl by following the 
