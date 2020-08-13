@@ -54,8 +54,10 @@ These instructions are using Kubeflow dashboard as an example, however, they app
 5. Create a secret named `istio-ingressgateway-certs` for the `istio-ingressgateway` pods in namespace `istio-system`:
     ```SHELL
     kubectl get secret $INGRESS_GATEWAY_SECRET --namespace istio-system -o yaml > istio-ingressgateway-certs.yaml
-    # In the istio-ingressgateway-certs.yaml file, you must change the value of 
-    # metadata.name to "istio-ingressgateway-certs" and save the file.
+    ```
+
+    Update the `istio-ingressgateway-certs.yaml` file, change the value of `metadata.name` to `istio-ingressgateway-certs` followed by:
+    ```SHELL
     kubectl apply -f istio-ingressgateway-certs.yaml -n istio-system
     kubectl rollout restart deploy istio-ingressgateway -n istio-system
     rm istio-ingressgateway-certs.yaml
