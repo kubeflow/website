@@ -19,15 +19,15 @@ all Kubeflow components and more integration with each platform.
 
 1. Do you want to use other Kubeflow components in addition to Pipelines?
 
-    If yes, choose the [full Kubeflow](#full-kubeflow-deployment).
+    If yes, choose the [full Kubeflow deployment](#full-kubeflow-deployment).
 1. Do you want to use Kubeflow Pipelines with [multi-user support](https://github.com/kubeflow/pipelines/issues/1223)?
 
-    If yes, choose the [full Kubeflow](#full-kubeflow-deployment) with version >= v1.1.
+    If yes, choose the [full Kubeflow deployment](#full-kubeflow-deployment) with version >= v1.1.
 1. Do you deploy on Google Cloud?
 
     If yes, deploy [Kubeflow Pipelines Standalone](#kubeflow-pipelines-standalone). You can also
     use [Google Cloud AI Platform Pipelines](#google-cloud-ai-platform-pipelines) to deploy Kubeflow Pipelines
-    Standalone using a user interface, but there are limitations in
+    using a user interface, but there are limitations in
     customizability and upgradability. For details, please read corresponding
     sections.
 1. You deploy on other platforms.
@@ -76,7 +76,7 @@ Google Cloud Integrations
 :
   * A Kubeflow Pipelines public endpoint with auth support is **auto-configured** for you.
   * Open the Kubeflow Pipelines UI via the **Open Pipelines Dashboard** link in [the AI Platform Pipelines dashboard of Cloud Console](https://console.cloud.google.com/ai-platform/pipelines/clusters).
-  * (Optional) You can choose to persist your data in Google Cloud managed storages (Cloud SQL and Cloud Storage).
+  * (Optional) You can choose to persist your data in Google Cloud managed storage (Cloud SQL and Cloud Storage).
   * [All options to authenticate to Google Cloud](/docs/gke/pipelines/authentication-pipelines/) are supported.
 
 Notes on specific features
@@ -127,7 +127,7 @@ Refer to [the full Kubeflow section of upgrading Kubeflow Pipelines on Google Cl
 Google Cloud Integrations
 :
   * A Kubeflow Pipelines public endpoint with auth support is **auto-configured** for you using [Cloud Identity-Aware Proxy](https://cloud.google.com/iap).
-  * There's no current support for persisting your data in Google Cloud managed storages (Cloud SQL and Cloud Storage). Refer to [this GitHub issue](https://github.com/kubeflow/pipelines/issues/4356) for the latest status.
+  * There's no current support for persisting your data in Google Cloud managed storage (Cloud SQL and Cloud Storage). Refer to [this GitHub issue](https://github.com/kubeflow/pipelines/issues/4356) for the latest status.
   * You can [authenticate to Google Cloud with Workload Identity](/docs/gke/pipelines/authentication-pipelines/#workload-identity).
 
 Notes on specific features
@@ -186,7 +186,7 @@ Google Cloud Integrations
 :
   * You can deploy AI Platform Pipelines on [Cloud Console UI](https://console.cloud.google.com/marketplace/details/google-cloud-ai-platform/kubeflow-pipelines).
   * A Kubeflow Pipelines public endpoint with auth support is **auto-configured** for you.
-  * (Optional) You can choose to persist your data in Google Cloud managed storages (Cloud SQL and Cloud Storage).
+  * (Optional) You can choose to persist your data in Google Cloud managed storage services (Cloud SQL and Cloud Storage).
   * You can [authenticate to Google Cloud with the Compute Engine default service account](/docs/gke/pipelines/authentication-pipelines/#compute-engine-default-service-account). However, this method may not be suitable if you need workload permission separation.
 
 Notes on specific features
