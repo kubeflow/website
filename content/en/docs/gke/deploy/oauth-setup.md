@@ -2,7 +2,12 @@
 title = "Set up OAuth for Cloud IAP"
 description = "Creating an OAuth client for Cloud IAP on Google Cloud Platform (GCP)"
 weight = 2
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 If you want to use 
 [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/) 
@@ -95,9 +100,4 @@ address to verify the user's identity.
 
 ## Next steps
 
-Choose one of the following ways to deploy Kubeflow:
-
-* [Using the UI](/docs/gke/deploy/deploy-ui). This option provides a simple
-  way to deploy Kubeflow.
-* [Using the CLI](/docs/gke/deploy/deploy-cli). This option provides more
-  control over the deployment process.
+* [Set up your management cluster](/docs/gke/deploy/management-setup/).

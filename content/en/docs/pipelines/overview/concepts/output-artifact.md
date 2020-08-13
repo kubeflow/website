@@ -2,7 +2,12 @@
 title = "Output Artifact"
 description = "Conceptual overview of output artifacts in Kubeflow Pipelines"
 weight = 80
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 An *output artifact* is an output emitted by a pipeline component, which the
 Kubeflow Pipelines UI understands and can render as rich visualizations. It’s

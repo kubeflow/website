@@ -2,6 +2,7 @@
 title = "End-to-End Pipeline Example on Azure"
 description = "An end-to-end guide to creating a pipeline in Azure that can train, register, and deploy an ML model that can recognize the difference between tacos and burritos"
 weight = 50
+                    
 +++
 ## Introductions
 ### Overview of Azure and AKS

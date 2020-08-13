@@ -79,7 +79,7 @@ one if you haven't already.
 1. Fetch the blueprint
 
    ```
-   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@master ./${KFDIR}
+   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.1-branch ./${KFDIR}
    ```
 
    * You can choose any name you would like for the directory ${KFDIR}
