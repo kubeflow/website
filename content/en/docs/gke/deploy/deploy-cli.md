@@ -45,6 +45,10 @@ one if you haven't already.
    ```
 
 1. Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+1. Install [Kustomize v3.2.1](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv3.2.1).
+
+    Note, Kubeflow is not compatible with later versions of Kustomize. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
    
 1. Install [yq](https://github.com/mikefarah/yq)
 
@@ -55,9 +59,9 @@ one if you haven't already.
    * If you don't have go installed you can download
      a binary from [yq's GitHub releases](https://github.com/mikefarah/yq/releases).
 
-1. Follow these [instructions](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#preparing_to_install_anthos_service_mesh) to
-   install istioctl
+1.  Follow the instructions from [Preparing to install Anthos Service Mesh](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#preparing_to_install_anthos_service_mesh) to install `istioctl`.
 
+    Note, the `istioctl` downloaded from above instructions is specific to Anthos Service Mesh. It is different from the `istioctl` you can download on https://istio.io/.
 
 <a id="prepare-environment"></a>
 ## Prepare your environment
