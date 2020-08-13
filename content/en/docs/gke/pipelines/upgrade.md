@@ -42,6 +42,11 @@ However, there's no current support to upgrade from Kubeflow 1.0 or earlier to K
 
 Upgrade Support for AI Platform Pipelines is in **Alpha**.
 
+{{% alert title="Warning" color="warning" %}}
+Kubeflow Pipelines Standalone deployments also show up in the AI Platform Pipelines dashboard, DO NOT follow instructions below if you deployed Kubeflow Pipelines using standalone deployment.
+Because data is deleted by default when a Kubeflow Pipelines Standalone deployment is deleted.
+{{% /alert %}}
+
 Below are the steps that describe how to upgrade your AI Platform Pipelines instance while keeping existing data:
 
 ### For instances _without_ managed storage:
