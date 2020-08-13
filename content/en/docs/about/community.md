@@ -5,10 +5,6 @@ weight = 4
 aliases = ["/docs/community/"]
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 In the interest of fostering an open and welcoming environment, we as
 contributors and maintainers pledge to make participation in our project and
@@ -95,7 +91,7 @@ More detail about the Kubeflow mailing lists:
 
 * Folks who want to add support for other ML frameworks (e.g. PyTorch, XGBoost, scikit-learn)
 * Folks who want to bring more Kubernetes magic to ML (e.g. ISTIO integration for prediction)
-* Folks who want to make Kubeflow a richer ML platform (e.g. support for ML pipelines, hyperparameter tuning)
+* Folks who want to make Kubeflow a richer ML platform (e.g. support for ML pipelines, hyperparameter tuning, neural architecture search)
 * Folks who want to tune Kubeflow for their particular Kubernetes distribution or Cloud
 * Folks who want to write tutorials or blog posts showing how to use Kubeflow to solve ML problems
 

@@ -5,11 +5,6 @@ weight = 1
 aliases = ["/docs/", "/docs//", "/docs/usecases/"]
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
-
 
 The end goal of every organization is to have their machine learning (ML) model successfully running in production  and generating value to the business. But what does it take to reach that point? Before a model ends up in production, there are potentially many steps required to build and deploy an ML model: data loading, verification, splitting, processing, feature engineering, model training and verification, hyperparameter tuning, and model serving. In addition, ML models can require more observation than traditional applications, because your data inputs can drift over time. Manually rebuilding models and data sets is time consuming and error prone. To simplify these requirements and challenges, we introduce Kubeflow.
 
@@ -19,7 +14,7 @@ Kubeflow is a scalable, portable, distributed ML platform that runs on Kubernete
 
 ## Experimentation with training an ML model
 
-Rapid experimentation is critical to building high quality machine learning models quickly. Kubeflow offers a user-friendly interface (UI) that allows you to track and compare experiments. You can decide later on which experiment was the best and use it as a main source for your future steps. On top of that Kubeflow 1.0 provides stable software sub-systems for model training including Jupyter notebooks, popular ML training operators such as Tensorflow and Pytorch that run efficiently and securely in Kubernetes isolated namespaces. The ML training operators simplify configuration and operations of scaling ML training tasks. In addition, Kubeflow has delivered Critical User Journeys(CUJs), such as the build, train and deploy, which provide end-to-end workflows that speed development. You can read more about the CUJs in the Kubeflow roadmap.
+Rapid experimentation is critical to building high quality machine learning models quickly. Kubeflow offers a user-friendly interface (UI) that allows you to track and compare experiments. You can decide later on which experiment was the best and use it as a main source for your future steps. On top of that Kubeflow 1.1 provides stable software sub-systems for model training including Jupyter notebooks, popular ML training operators such as Tensorflow and Pytorch that run efficiently and securely in Kubernetes isolated namespaces. The ML training operators simplify configuration and operations of scaling ML training tasks. In addition, Kubeflow has delivered Critical User Journeys(CUJs), such as the build, train and deploy, which provide end-to-end workflows that speed development. You can read more about the CUJs in the Kubeflow roadmap.
 
 ## End to end hybrid and multi-cloud ML workloads
 

@@ -5,10 +5,6 @@ weight = 3
 aliases = ["/docs/contributing/"]
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 Welcome to the Kubeflow project!
 
@@ -296,17 +292,17 @@ pieces of prow are used to implement the code review process above.
 - [plugin: assign](https://git.k8s.io/test-infra/prow/plugins/assign)
   - assigns GitHub users in response to `/assign` comments on a PR
   - unassigns GitHub users in response to `/unassign` comments on a PR
-- [plugin: approve](https://git.k8s.io/test-infra/prow/plugins/assign)
+- [plugin: approve](https://git.k8s.io/test-infra/prow/plugins/approve)
   - per-repo configuration:
     - `issue_required`: defaults to `false`; when `true`, require that the PR description link to
-      an issue, or that at least one **approver** issues a `/approve no-isse`
+      an issue, or that at least one **approver** issues a `/approve no-issue`
     - `implicit_self_approve`: defaults to `false`; when `true`, if the PR author is in relevant
       OWNERS files, act as if they have implicitly `/approve`'d
   - adds the  `approved` label once an **approver** for each of the required
     OWNERS files has `/approve`'d
   - comments as required OWNERS files are satisfied
   - removes outdated approval status comments
-- [plugin: blunderbuss](https://git.k8s.io/test-infra/prow/plugins/assign)
+- [plugin: blunderbuss](https://git.k8s.io/test-infra/prow/plugins/blunderbuss)
   - determines **reviewers** and requests their reviews on PR's
 - [plugin: lgtm](https://git.k8s.io/test-infra/prow/plugins/lgtm)
   - adds the `lgtm` label when a **reviewer** comments `/lgtm` on a PR
