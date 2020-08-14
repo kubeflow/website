@@ -203,6 +203,16 @@ Follow these steps to verify the deployment:
 
 Follow these steps to access the Kubeflow central dashboard:
 
+1. You need the
+  [IAP-secured Web App User](https://cloud.google.com/iap/docs/managing-access)
+  role:
+
+    ```
+    gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/iap.httpsResourceAccessor
+    ```
+
+    Note, you need the `IAP-secured Web App User` role even if you are already an owner or editor of the project. `IAP-secured Web App User` role is not implied by just `Project Owner` or `Project Editor` roles.
+
 1. Enter the following URI into your browser address bar. It can take 20
   minutes for the URI to become available:
 
@@ -327,10 +337,8 @@ The service accounts are:
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization/pipelines).
 * See how to [delete](/docs/gke/deploy/delete-cli/) your Kubeflow deployment 
   using the CLI.
+* See how to [add users to Kubeflow](/docs/gke/customizing-gke/#add-users-to-kubeflow).
 * See how to [customize](/docs/gke/customizing-gke/) your Kubeflow 
   deployment.
-* See how to [upgrade Kubeflow](/docs/upgrading/upgrade/) and how to 
-  [upgrade or reinstall a Kubeflow Pipelines 
-  deployment](/docs/pipelines/upgrade/).
 * [Troubleshoot](/docs/gke/troubleshooting-gke/) any issues you may
   find.

@@ -146,6 +146,42 @@ For example, to modify settings for the Jupyter web app:
 
 ## Common customizations
 
+### Add users to Kubeflow
+
+You must grant each user the minimal permission scope that allows them to 
+connect to the Kubernetes cluster.
+
+For Google Cloud, you should grant the following Cloud Identity and Access Management (IAM) roles.
+
+In the following commands, replace `[PROJECT]` with your Google Cloud project and replace `[EMAIL]` with the user's email address:
+
+* To access the Kubernetes cluster, the user needs the [Kubernetes Engine 
+  Cluster Viewer](https://cloud.google.com/kubernetes-engine/docs/how-to/iam)
+  role:
+
+    ```
+    gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/container.clusterViewer
+    ```
+
+* To access the Kubeflow UI through IAP, the user needs the
+  [IAP-secured Web App User](https://cloud.google.com/iap/docs/managing-access)
+  role:
+
+    ```
+    gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/iap.httpsResourceAccessor
+    ```
+
+    Note, you need to grant the user `IAP-secured Web App User` role even if the user is already an owner or editor of the project. `IAP-secured Web App User` role is not implied by just `Project Owner` or `Project Editor` roles.
+
+* To be able to run `gcloud get credentials` and see logs in Cloud Logging
+  (formerly Stackdriver), the user needs viewer access on the project:
+
+    ```
+    gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/viewer
+    ```
+
+Alternatively, you can also grant these roles on the [IAM page in the Cloud Console](https://console.cloud.google.com/iam-admin/iam). Make sure you are in the same project as your Kubeflow deployment.
+
 <a id="gpu-config"></a>
 ### Add GPU nodes to your cluster
 
@@ -229,16 +265,6 @@ More detailed instructions follow.
       * one for CPU only machines, in [`cluster.jinja`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster.jinja#L114).
       * one for GPU machines, in [`cluster.jinja`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster.jinja#L140).
   * When making changes to the node pools you also need to bump the `pool-version` in [`cluster-kubeflow.yaml`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L46) before you update the deployment.
-
-### Add users to Kubeflow
-
-  * To grant users access to Kubeflow, add the “IAP-secured Web App User” role on the [IAM page in the GCP console](https://console.cloud.google.com/iam-admin/iam). Make sure you are in the same project as your Kubeflow deployment.
-
-  * You can confirm the update by inspecting the IAM policy for your project:
-```
-gcloud projects get-iam-policy ${PROJECT}
-```
-  * In the output from the above command, users able to access Kubeflow have the following role: `roles/iap.httpsResourceAccessor`.
 
 ## More customizations
 
