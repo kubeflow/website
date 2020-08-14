@@ -7,7 +7,7 @@ aliases = ["/docs/", "/docs//", "/docs/usecases/"]
 +++
 
 The end goal of every organization that utilizes machine learning (ML) is to have
-their ML model successfully running in production and generating value to the
+their ML models successfully run in production and generate value to the
 business. But what does it take to reach that point?
 
 Before a model ends up in production, there are potentially many steps required
