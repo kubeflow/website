@@ -49,7 +49,7 @@ to manage GCP infrastructure using GitOps.
   
     * This is being tracked in [GoogleContainerTools/kpt#539](https://github.com/GoogleContainerTools/kpt/issues/539) 
 
-1. Set the values **NAME**, **LOCATION**, **PROJECT** for the cluster
+1. Set the cluster **NAME**, **ZONE_OR_REGION**, **PROJECT_TO_DEPLOY_IN**
 
    ```  
     kpt cfg set ./instance name <NAME>
