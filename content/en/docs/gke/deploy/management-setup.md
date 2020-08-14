@@ -52,7 +52,9 @@ to manage GCP infrastructure using GitOps.
 1. Set the values **NAME**, **LOCATION**, **PROJECT** for the cluster
 
    ```  
-    NAME=<NAME> LOCATION=<ZONE_OR_REGION> PROJECT=<PROJECT> make set-values
+    kpt cfg set ./instance name <NAME>
+    kpt cfg set ./instance location <ZONE_OR_REGION>
+    kpt cfg set ./instance gcloud.core.project <PROJECT_TO_DEPLOY_IN>
    ```
 
 1. Hydrate and apply the manifests to create the cluster
