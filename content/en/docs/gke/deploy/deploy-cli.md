@@ -45,6 +45,10 @@ one if you haven't already.
    ```
 
 1. Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+1. Install [Kustomize v3.2.1](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv3.2.1).
+
+    Note, Kubeflow is not compatible with later versions of Kustomize. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
    
 1. Install [yq](https://github.com/mikefarah/yq)
 
@@ -55,9 +59,9 @@ one if you haven't already.
    * If you don't have go installed you can download
      a binary from [yq's GitHub releases](https://github.com/mikefarah/yq/releases).
 
-1. Follow these [instructions](https://cloud.google.com/service-mesh/docs/gke-install-new-cluster#download_the_installation_file) to
-   install istioctl
+1.  Follow the instructions from [Preparing to install Anthos Service Mesh](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#preparing_to_install_anthos_service_mesh) to install `istioctl`.
 
+    Note, the `istioctl` downloaded from above instructions is specific to Anthos Service Mesh. It is different from the `istioctl` you can download on https://istio.io/.
 
 <a id="prepare-environment"></a>
 ## Prepare your environment
@@ -66,12 +70,6 @@ one if you haven't already.
 
     ```
     gcloud auth login
-    ```
-
-1. Create user credentials. You only need to run this command once:
-   
-    ```
-    gcloud auth application-default login
     ```
 
 ## Fetch packages using kpt
@@ -130,6 +128,23 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 
    * Note there are multiple invocations of `kpt cfg set` on different directories to
      work around [GoogleContainerTools/kpt#541](https://github.com/GoogleContainerTools/kpt/issues/541)      
+
+* You need to configure the kubectl context provided in `mgmt-ctxt`.
+
+  * Choose the management cluster context
+    ```bash
+    kubectl config use-context ${mgmt-ctxt}
+    ```
+
+  * Create a namespace in your management cluster for the managed project if you haven't done so.
+    ```bash
+    kubectl create namespace ${PROJECT}
+    ```
+
+  * Make the managed project's namespace default of the context:
+    ```bash
+    kubectl config set-context --current --namespace ${PROJECT}
+    ```
 
 * If you haven't previously created an OAuth client for IAP then follow
   the [directions](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) to setup

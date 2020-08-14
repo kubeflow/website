@@ -60,7 +60,6 @@ Follow these steps to set up your GCP project:
     --data '' \
     https://meshconfig.googleapis.com/v1alpha1/projects/${PROJECT_ID}:initialize
   ```
-  
   Refer to [Anthos Service Mesh documentation](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#setting_credentials_and_permissions) for details.
 
 You do not need a running GKE cluster. The deployment process creates a
