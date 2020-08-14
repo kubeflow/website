@@ -16,7 +16,7 @@ just a few small guidelines you need to follow.
 
 ### Sign the CLA
 
-Contributions to this project must be accompanied by a Contributor License Agreement (CLA). 
+Contributions to this project must be accompanied by a Contributor License Agreement (CLA).
 You (or your employer) retain the copyright to your contribution.
 This gives us permission to use and redistribute your contributions as
 part of the project. Head over to <https://cla.developers.google.com/> to see
@@ -32,38 +32,45 @@ Please make sure to read and observe our [Code of Conduct](https://github.com/ku
 
 ### Consider participating in Kubeflow user research
 
-Maggie Lynn, a user experience researcher, is conducting user studies to inform future developments for Kubeflow. These typically involve a one hour study session conducted online with a thank you gift for providing your feedback. As a member of the Kubeflow community, your feedback and expertise are extremely valuable to us, so if you have time in the next month, please consider participating. To gather your interest, availability, and some basic information about you, please fill out this form where you’ll find out more details about this research opportunity: [https://goo.gl/forms/sv5sRo3UfsgeUEjK2](https://goo.gl/forms/sv5sRo3UfsgeUEjK2)
+Maggie Lynn, a user experience researcher, is conducting user studies to
+inform future developments for Kubeflow. These typically involve a one hour
+study session conducted online with a thank you gift for providing your feedback.
+As a member of the Kubeflow community, your feedback and expertise are
+extremely valuable to us, so if you have time in the next month, please consider
+participating. To gather your interest, availability, and some basic information
+about you, please fill out this form where you’ll find out more details about
+this research opportunity: [https://goo.gl/forms/sv5sRo3UfsgeUEjK2](https://goo.gl/forms/sv5sRo3UfsgeUEjK2)
 
 ## Joining the community
 
 Follow these instructions if you want to
 
-* Become a member of the Kubeflow GitHub org (see below)
-* Become part of the Kubeflow build cop or release teams
-* Be recognized as an individual or organization contributing to Kubeflow
+- Become a member of the Kubeflow GitHub org (see below)
+- Become part of the Kubeflow build cop or release teams
+- Be recognized as an individual or organization contributing to Kubeflow
 
 ### Joining the Kubeflow GitHub Org
 
 Before asking to join the community, we ask that you first make a small number of contributions
-to demonstrate your intent to continue contributing to Kubeflow. 
+to demonstrate your intent to continue contributing to Kubeflow.
 
 There are are a number of ways to contribute to Kubeflow
 
-  * Submit PRs
-  * File issues reporting bugs or providing feedback
-  * Answer questions on Slack or GitHub issues
+- Submit PRs
+- File issues reporting bugs or providing feedback
+- Answer questions on Slack or GitHub issues
 
 You can use this [table](http://devstats.kubeflow.org/d/9/developers-summary) to see how many contributions
 you've made
 
-  * **Note**: This only counts GitHub related ways of contributing
+- **Note**: This only counts GitHub related ways of contributing
 
 When you are ready to join
 
-  * Send a PR adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml#L19)  
-  * After the PR is merged an admin will send you an invitation
-    * This is a manual process that's generally run a couple times a week
-    * If a week passes without receiving an invitation reach out on [kubeflow#community](https://kubeflow.slack.com/messages/C8Q0QJYNB/convo/CABQ2BWHW-1544147308.002500/)
+- Send a PR adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml#L19)
+- After the PR is merged an admin will send you an invitation
+  - This is a manual process that's generally run a couple times a week
+  - If a week passes without receiving an invitation reach out on [kubeflow#community](https://kubeflow.slack.com/messages/C8Q0QJYNB/convo/CABQ2BWHW-1544147308.002500/)
 
 ### Companies/organizations
 
@@ -77,7 +84,7 @@ the company field in their GitHub profile.
 
 ### Community discussions
 
-There are many ways to contribute! Join one of our communication channels, 
+There are many ways to contribute! Join one of our communication channels,
 attend a community meeting, get to know the community. Read the details in
 our [community guide](/docs/about/community).
 
@@ -95,17 +102,17 @@ should be fixed, you should own it. Here is how you get started.
 
 To find Kubeflow issues that make good entry points:
 
-* Start with issues labeled **good first issue**. For example, see the good
-  first issues in the [kubeflow/website 
+- Start with issues labeled **good first issue**. For example, see the good
+  first issues in the [kubeflow/website
   repository](https://github.com/kubeflow/website/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-  for doc updates, and in the [kubeflow/kubeflow 
+  for doc updates, and in the [kubeflow/kubeflow
   repository](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
   for updates to the core Kubeflow code.
-* For issues that require deeper knowledge of one or more technical aspects, 
+- For issues that require deeper knowledge of one or more technical aspects,
   look at issues labeled **help wanted**. For example, see these issues in the
   [kubeflow/kubeflow
   repository](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-* Examine the issues in any of the 
+- Examine the issues in any of the
   [Kubeflow repositories](https://github.com/kubeflow).
 
 ## Owners files and PR workflow
@@ -128,7 +135,7 @@ reviewing code. The quality of a person's code review is limited by their famili
 under review. Our goal is to address both of these concerns through the prudent use and maintenance
 of OWNERS files
 
-### OWNERS  <a name="owners-1"></a>
+### OWNERS <a name="owners-1"></a>
 
 Each directory that contains a unit of independent code or content may also contain an OWNERS file.
 This file applies to everything within the directory, including the OWNERS file itself, sibling
@@ -218,21 +225,21 @@ GitHub usernames and aliases listed in OWNERS files are case-insensitive.
 
   - If all of the following are true:
 
-      - All required labels are present (eg: `lgtm`, `approved`)
-      - Any blocking labels are missing (eg: there is no `do-not-merge/hold`, `needs-rebase`)
+    - All required labels are present (eg: `lgtm`, `approved`)
+    - Any blocking labels are missing (eg: there is no `do-not-merge/hold`, `needs-rebase`)
 
   - And if any of the following are true:
 
-      - there are no presubmit prow jobs configured for this repo
-      - there are presubmit prow jobs configured for this repo, and they all pass after automatically
-        being re-run one last time
+    - there are no presubmit prow jobs configured for this repo
+    - there are presubmit prow jobs configured for this repo, and they all pass after automatically
+      being re-run one last time
 
   - Then the PR will automatically be merged
 
 ### Quirks of the process
 
 There are a number of behaviors we've observed that while _possible_ are discouraged, as they go
-against the intent of this review process.  Some of these could be prevented in the future, but this
+against the intent of this review process. Some of these could be prevented in the future, but this
 is the state of today.
 
 - An **approver**'s `/lgtm` is simultaneously interpreted as an `/approve`
@@ -261,9 +268,9 @@ is the state of today.
     `/unassign`'ing unresponsive individuals, and `/assign`'ing others
   - This is a sign that our OWNERS files are stale; pruning the **reviewers** and **approvers** lists
     would help with this
-  - It is the PR **authors** responsibility to drive a PR to resolution. This means if the PR **reviewers**   are unresponsive they should escalate as noted below 
-      - e.g ping **reviewers** in a timely manner to get it reviewed
-      - If the **reviewers** don't respond look at the OWNERs file in root and ping **approvers** listed there
+  - It is the PR **authors** responsibility to drive a PR to resolution. This means if the PR **reviewers** are unresponsive they should escalate as noted below
+    - e.g ping **reviewers** in a timely manner to get it reviewed
+    - If the **reviewers** don't respond look at the OWNERs file in root and ping **approvers** listed there
 - **Authors** are unresponsive
   - This costs a tremendous amount of attention as context for an individual PR is lost over time
   - This hurts the project in general as its general noise level increases over time
@@ -298,7 +305,7 @@ pieces of prow are used to implement the code review process above.
       an issue, or that at least one **approver** issues a `/approve no-issue`
     - `implicit_self_approve`: defaults to `false`; when `true`, if the PR author is in relevant
       OWNERS files, act as if they have implicitly `/approve`'d
-  - adds the  `approved` label once an **approver** for each of the required
+  - adds the `approved` label once an **approver** for each of the required
     OWNERS files has `/approve`'d
   - comments as required OWNERS files are satisfied
   - removes outdated approval status comments
