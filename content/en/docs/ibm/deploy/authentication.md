@@ -137,7 +137,7 @@ of the column `Hostname` in step 4:
         serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
     ```
 
-7. Verify that the traffic is routed via HTTPS by using the value of 
+8. Verify that the traffic is routed via HTTPS by using the value of 
 above-mentioned `Hostname` in your browser. It should redirect traffic from an 
 HTTP address to HTTPS address automatically.
 
@@ -152,7 +152,7 @@ commands in step 6.
 When installing the multi-user, auth-enabled Kubeflow, Kubeflow uses an GitHub 
 OAuth application as the authentication provider. After enabling Expose the 
 Istio ingress gateway with DNS and TLS, you should update this GitHub OAuth app 
-settings by replacing `{HOSTNAME}` with the hostname of created SSL certificate 
+settings by replacing `{HOSTNAME}` with the hostname of created TLS certificate 
 as follows:
 
 * Homepage URL: `https://{HOSTNAME}/`
