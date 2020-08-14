@@ -14,6 +14,7 @@ portable installation that only includes Kubeflow Pipelines.
 * Kubeflow Pipelines as [part of a full Kubeflow deployment](#full-kubeflow-deployment) provides
 all Kubeflow components and more integration with each platform.
 * **Beta**: [Google Cloud AI Platform Pipelines](#google-cloud-ai-platform-pipelines) makes it easier to install and use Kubeflow Pipelines on Google Cloud by providing a management UI on [Google Cloud Console](https://console.cloud.google.com/ai-platform/pipelines/clusters).
+* A [local](/docs/pipelines/installation/localcluster-deployment) Kubeflow Pipelines deployment for testing purposes.
 
 ## Choosing an installation option
 
@@ -39,6 +40,7 @@ all Kubeflow components and more integration with each platform.
 supported path to migrate data between different installation options. Please
 create [a GitHub issue](https://github.com/kubeflow/pipelines/issues/new/choose)
 if that's important for you.
+
 
 <a id="standalone"></a>
 ## Kubeflow Pipelines Standalone
