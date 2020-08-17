@@ -97,7 +97,7 @@ the user's email address:
     gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/iap.httpsResourceAccessor
     ```
 
-    Note, you need to grant the user `IAP-secured Web App User` role even if the user is already an owner or editor of the project. `IAP-secured Web App User` role is not implied by just `Project Owner` or `Project Editor` roles.
+    **Note:** you need to grant the user `IAP-secured Web App User` role even if the user is already an owner or editor of the project. `IAP-secured Web App User` role is not implied by just `Project Owner` or `Project Editor` roles.
 
 * To be able to run `gcloud get credentials` and see logs in Cloud Logging
   (formerly Stackdriver), the user needs viewer access on the project:
@@ -115,12 +115,14 @@ Kubeflow {{% kf-latest-version %}} provides automatic profile creation:
     they see their profile in the dropdown list.
   - The automatic profile creation can be disabled as part of the deployment by setting the registration-flow env variable to false. And an admin can manually create profiles per user or per project and add collaborators through YAML files.
    Modify the kustomize/centraldashboard/base/parama.env to set the registration variable to false
+
    ```
    clusterDomain=cluster.local
    userid-header=kubeflow-userid
    userid-prefix=
    registration-flow=false
    ```
+
   - When an authenticated user logs into the system and visits the central
     dashboard for the first time, they trigger a profile creation automatically.
       - A brief message introduces profiles: <img
@@ -171,7 +173,8 @@ The following resources are created as part of the profile creation:
 
   - A Kubernetes namespace that shares the same name with the corresponding
     profile.
-  - Kubernetes RBAC role binding for the namespace: *Admin*. This makes the
+  - Kubernetes RBAC ([Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/))
+    role binding role binding for the namespace: *Admin*. This makes the
     profile owner the namespace administrator, thus giving them access to the
     namespace using kubectl (via the Kubernetes API).
   - Istio namespace-scoped ServiceRole: *ns-access-istio*. This allows access to
@@ -344,7 +347,6 @@ Run the following command to create the corresponding contributor resources:
 
 ```
 kubectl create -f rolebinding.yaml
-
 kubectl create -f servicerolebinding.yaml
 ```
 
