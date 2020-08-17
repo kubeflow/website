@@ -55,8 +55,8 @@ If you installed Microk8s directly on your Linux machine, (1) open a web browser
 ### On Multipass or a virtual machine
 When running Microk8s on Multipass or a virtual machine, create a SOCKS proxy to access the Kubeflow dashboard, as follows:
 
-* Logout from the current session using the `exit` command.
-* Re-establish connection to the machine using `SSH`, enabling SOCKS proxy with the `-D9999` parameter. Examples:
+1. Logout from the current session using the `exit` command.
+2. Re-establish connection to the machine using `SSH`, enabling SOCKS proxy with the `-D9999` parameter. Examples:
 
     ```
     ssh -D9999 ubuntu@<machine_public_ip>
@@ -68,9 +68,9 @@ When running Microk8s on Multipass or a virtual machine, create a SOCKS proxy to
     ssh -D9999 multipass@<multipass_public_ip>
     ```
 
-* On your computer, go to `Settings > Network > Network Proxy`, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
+3. On your computer, go to `Settings > Network > Network Proxy`, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
 
-* Finally, (1) open a new web browser window and (2) access the link provided after you enable Kubeflow, e.g. `10.64.140.43.xip.io` (see previous step).
+4. Finally, (1) open a new web browser window and (2) access the link provided after you enable Kubeflow, e.g. `10.64.140.43.xip.io` (see previous step).
 
 ## Next steps
 
