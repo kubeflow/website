@@ -19,8 +19,6 @@ If you don't have a Linux system already, or you would like to confine your Kube
 
 **Note:** the minimum version of Microk8s needed to enable Kubeflow is 1.18.
 
-### 1. Install Microk8s
-
 1. Install MicroK8s with Snap by running the following command:
 
     ```
@@ -33,25 +31,21 @@ If you don't have a Linux system already, or you would like to confine your Kube
     microk8s.status --wait-ready
     ```
 
-### 2. Enable Microk8s services
-
-- Enable common services on your Microk8s deployment:
+3. Enable common services on your Microk8s deployment:
 
     ```
     microk8s.enable dns dashboard storage
     ```
 
-- Optional: to enable GPU support (available only for NVIDIA GPU hardware), run: `microk8s.enable gpu`
+4. Optional, to enable GPU support (available only for NVIDIA GPU hardware), run: `microk8s.enable gpu`
 
-### 3. Enable Kubeflow
-
-- Deploy Kubeflow with the command:
+5. Deploy Kubeflow with the command:
 
     ```
     microk8s.enable kubeflow
     ```
 
-- The deployment process may take a few minutes. Once completed, the script will print out the port number and credentials to access the Kubeflow dashboard.
+    The deployment process may take a few minutes. Once completed, the script will print out the port number and credentials to access the Kubeflow dashboard.
 
 ## Access Kubeflow dashboard
 
