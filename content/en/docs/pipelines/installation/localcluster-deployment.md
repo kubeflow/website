@@ -1,7 +1,7 @@
 +++
 title = "Deploying Kubeflow Pipelines Standalone on a local cluster with kind, k3s, and k3s on WSL"
 description = "Instructions to deploy Kubeflow Pipelines Standalone to a local cluster for testing purposes"
-weight = 20
+weight = 30
 +++
 
 This guide shows how to deploy Kubeflow Pipelines Standalone using:
