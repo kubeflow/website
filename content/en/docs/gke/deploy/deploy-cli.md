@@ -56,7 +56,7 @@ one if you haven't already.
    GO111MODULE=on go get github.com/mikefarah/yq/v3
    ```
 
-   * If you don't have go installed you can download
+   * If you don't have [Go](https://golang.org) installed you can download
      a binary from [yq's GitHub releases](https://github.com/mikefarah/yq/releases).
 
 1.  Follow the instructions from [Preparing to install Anthos Service Mesh](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#preparing_to_install_anthos_service_mesh) to install `istioctl`.
