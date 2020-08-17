@@ -10,7 +10,7 @@ weight = 60
 
 ## Introduction
 
-This document outlines the steps that you can take to get your local installation of Kubeflow running on top of [Microk8s](https://microk8s.io/), a small enterprise Kubernetes cluster. Microk8s is now available on Windows, macOS and any Linux distribution that supports `snaps`. You can download it on the [Microk8s](https://microk8s.io/) website. 
+This guide will show you how to deploy Kubeflow using [Microk8s](https://microk8s.io/) - a small enterprise Kubernetes cluster. Microk8s is now available on Windows, macOS and any Linux distribution that supports `snaps`. You can download it on the [Microk8s](https://microk8s.io/) website. 
 
 Alternatively, to deploy Kubeflow within a displosable Linux virtual machine, you can install Microk8s on a Linux appliance using [Multipass](https://multipass.run/) on Windows or macOS.
 
