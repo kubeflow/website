@@ -17,22 +17,17 @@ If you don't have a Linux system already, or you would like to confine your Kube
 
 ## Install Kubeflow using Microk8s
 
-Here's a summary of the steps involved:
-
-1. Set up Microk8s
-2. Enable Kubeflow
-
 **Note:** the minimum version of Microk8s needed to enable Kubeflow is 1.18.
 
 ### 1. Install Microk8s
 
-- Install MicroK8s with Snap by running the following command:
+1. Install MicroK8s with Snap by running the following command:
 
     ```
     sudo snap install microk8s --classic
     ```
 
-- Verify that MicroK8s is running with the command:
+2. Verify that MicroK8s is running with the command:
 
     ```
     microk8s.status --wait-ready
