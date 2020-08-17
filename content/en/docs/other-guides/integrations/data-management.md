@@ -2,7 +2,12 @@
 title = "Data Management"
 description = "Integrating Kubeflow with Rok for data versioning, packaging, and secure sharing"
 weight = 10
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 Since a data scientist can build hundreds of different variants of their models,
 the ability to quickly create new models and save the code and data of each
@@ -13,8 +18,8 @@ data management systems and processes.
 
 As a leading contributor to Kubeflow, Arrikto incorporates its standards-based,
 scale-out storage and data management solution (Rok) with Kubeflow. Arrikto's
-Rok presents a Kubernetes storage class to Kubeflow and natively integrates with
-the critical Kubeflow components. Rok’s native integration simplifies
+Rok presents a Kubernetes storage class to Kubeflow and integrates with
+the critical Kubeflow components. Rok’s built-in integration simplifies
 operations, boosts performance, and enables best practices for efficient data
 versioning, packaging, and secure sharing across teams and cloud boundaries.
 

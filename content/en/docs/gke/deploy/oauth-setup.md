@@ -2,6 +2,7 @@
 title = "Set up OAuth for Cloud IAP"
 description = "Creating an OAuth client for Cloud IAP on Google Cloud Platform (GCP)"
 weight = 2
+                    
 +++
 
 If you want to use 
@@ -10,8 +11,6 @@ when deploying Kubeflow on GCP,
 then you must follow these instructions to create an OAuth client for use
 with Kubeflow.
 
-You can skip the instructions on this page if you want to use basic 
-authentication (username and password) with Kubeflow instead of Cloud IAP.
 Cloud IAP is recommended for production deployments or deployments with access 
 to sensitive data.
 
@@ -95,9 +94,4 @@ address to verify the user's identity.
 
 ## Next steps
 
-Choose one of the following ways to deploy Kubeflow:
-
-* [Using the UI](/docs/gke/deploy/deploy-ui). This option provides a simple
-  way to deploy Kubeflow.
-* [Using the CLI](/docs/gke/deploy/deploy-cli). This option provides more
-  control over the deployment process.
+* [Set up your management cluster](/docs/gke/deploy/management-setup/).

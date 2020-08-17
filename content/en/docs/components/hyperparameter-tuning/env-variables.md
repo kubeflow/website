@@ -2,6 +2,7 @@
 title = "Environment Variables for Katib Components"
 description = "How to set up environment variables for each Katib component"
 weight = 50
+                    
 +++
 
 This page describes information about environment variables for each Katib component. If you want to change Katib installation, you can modify some of these variables.

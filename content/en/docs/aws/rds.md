@@ -36,7 +36,7 @@ do
 aws ec2 describe-instances --instance-ids $i | jq -r '.Reservations[].Instances[].SecurityGroups[].GroupId'
 done  
 ```
-You can either use console or use attached [CloudFormation template](/docs/aws/rds.yaml) to deploy Amazon RDS database.
+You can either use console or use attached [CloudFormation template](/docs/aws/files/rds.yaml) to deploy Amazon RDS database.
 
 {{% alert title="Warning" color="warning" %}}
 The CloudFormation template deploys Amazon RDS for MySQL that is intended for Dev/Test environment.

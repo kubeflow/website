@@ -2,6 +2,7 @@
 title = "Getting started with Katib"
 description = "How to set up Katib and run some hyperparameter tuning examples"
 weight = 20
+                    
 +++
 
 This page gets you started with Katib. Follow this guide to perform any

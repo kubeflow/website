@@ -2,11 +2,11 @@
 title = "Katib"
 description = "Reference documentation for Katib"
 weight = 100
+                    
 +++
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [api.proto](#apiproto)
   - [AlgorithmSetting](#algorithmsetting)
   - [AlgorithmSpec](#algorithmspec)
