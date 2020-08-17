@@ -107,7 +107,7 @@ Use the following steps to install Kubeflow 1.0 on OpenShift 4.x.
 
 ## Next steps
 
-* Learn about the [changes made](https://developers.redhat.com/blog/2020/02/10/installing-kubeflow-v0-7-on-openshift-4-2/) to Kubeflow manifests to enable deployment on OpenShift
+* Learn about the [changes made](https://developers.redhat.com/blog/2020/08/13/open-data-hub-0-7-adds-support-for-kubeflow-1-0//) to Kubeflow manifests to enable deployment on OpenShift
 * See how to [upgrade Kubeflow](/docs/upgrading/upgrade/) and how to 
   [upgrade or reinstall a Kubeflow Pipelines deployment](/docs/pipelines/upgrade/).
 * See how to [uninstall](/docs/openshift/uninstall-kubeflow) your Kubeflow deployment 
