@@ -28,7 +28,6 @@ Follow these steps to set up your GCP project:
     * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
     * [Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com)
     * [Identity and Access Management (IAM) API](https://console.cloud.google.com/apis/library/iam.googleapis.com)
-    * [Deployment Manager API](https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com)
     * [Service Management API](https://console.cloud.google.com/apis/api/servicemanagement.googleapis.com)
     * [Cloud Resource Manager API](https://console.developers.google.com/apis/library/cloudresourcemanager.googleapis.com)
     * [Cloud Filestore API](https://console.developers.google.com/apis/library/file.googleapis.com)
