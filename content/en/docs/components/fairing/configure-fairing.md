@@ -81,7 +81,7 @@ Kubeflow cluster.
 [kubeflow-install]: /docs/started/getting-started/
 [kubectl-access]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/
 [kubectl-install]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
-[conf-gcp]: /docs/fairing/gcp/configure-gcp/
+[conf-gcp]: /docs/components/fairing/gcp/configure-gcp/
 [docker-login]: https://docs.docker.com/engine/reference/commandline/login/
-[fairing-install]: /docs/fairing/install-fairing/
-[tutorials]: /docs/fairing/tutorials/other-tutorials/
+[fairing-install]: /docs/components/fairing/install-fairing/
+[tutorials]: /docs/components/fairing/tutorials/other-tutorials/
