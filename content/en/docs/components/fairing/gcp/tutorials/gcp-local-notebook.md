@@ -229,5 +229,5 @@ development environments for training and prediction from Kubeflow Fairing.
 [kubeflow-install-gke]: https://www.kubeflow.org/docs/gke/deploy/
 [kubeflow-install]: https://www.kubeflow.org/docs/gke/deploy/deploy-cli/
 [kubeflow-deploy]: https://deploy.kubeflow.cloud
-[gcp]: /docs/fairing/configure-gcp.md
+[gcp]: /docs/components/fairing/configure-gcp.md
 [container-registry]: https://cloud.google.com/container-registry/
