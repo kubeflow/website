@@ -122,7 +122,7 @@ You can use the following interfaces to interact with Katib:
     Kubeflow cluster. Read about kubectl in the [Kubernetes 
     documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-* Katib SDK. See the [Katib SDK documentation on GitHub](https://github.com/kubeflow/katib/tree/master/sdk/python).
+* Katib SDK. See the [Katib SDK documentation on GitHub](https://github.com/kubeflow/katib/tree/master/sdk/python/v1alpha3).
 
 ## Katib concepts
 
