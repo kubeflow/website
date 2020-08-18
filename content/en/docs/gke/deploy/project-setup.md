@@ -54,23 +54,23 @@ Follow these steps to set up your GCP project:
   to learn how to check your quota and how to request an increase in quota.
   
 1. Initialize your project to ready it for Anthos Service Mesh installation.
-  ```
-	curl --request POST \
-    --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-    --data '' \
-    https://meshconfig.googleapis.com/v1alpha1/projects/${PROJECT_ID}:initialize
-  ```
-  Refer to [Anthos Service Mesh documentation](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#setting_credentials_and_permissions) for details.
+
+    ```
+    curl --request POST \
+      --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+      --data '' \
+      https://meshconfig.googleapis.com/v1alpha1/projects/${PROJECT_ID}:initialize
+    ```
+
+    Refer to [Anthos Service Mesh documentation](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#setting_credentials_and_permissions) for details.
 
 You do not need a running GKE cluster. The deployment process creates a
 cluster for you.
 
 ## Next steps
 
-* [Set up an OAuth credential](/docs/gke/deploy/oauth-setup) if you want to use 
+* [Set up an OAuth credential](/docs/gke/deploy/oauth-setup) to use 
   [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/).
   Cloud IAP is recommended for production deployments or deployments with access 
-  to sensitive data. You can skip this step if you want to test Kubeflow
-  in a non-production environment.
-
+  to sensitive data.
 * Follow the [instructions](/docs/gke/deploy/deploy-cli) to deploy Kubeflow using kubectl, kustomize and kpt.
