@@ -36,9 +36,9 @@ Follow these steps to set up your GCP project:
     You can also enable these APIs by running the following command in Cloud Shell:
     ```
     gcloud services enable \
+      compute.googleapis.com \
       container.googleapis.com \
       iam.googleapis.com \
-      deploymentmanager.googleapis.com \
       servicemanagement.googleapis.com \
       cloudresourcemanager.googleapis.com \
       ml.googleapis.com
