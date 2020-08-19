@@ -1,5 +1,5 @@
 +++
-title = "Set up a GCP Project"
+title = "Set up a Google Cloud Project"
 description = "Creating a Google Cloud Platform (GCP) project for your Kubeflow deployment"
 weight = 1
 +++
@@ -12,13 +12,13 @@ Follow these steps to set up your GCP project:
 
 1. Make sure that you have the 
   [owner role](https://cloud.google.com/iam/docs/understanding-roles#primitive_role_definitions)
-  for the project.
+  for the project in Cloud IAM (Identity and Access Management).
   The deployment process creates various service accounts with
   appropriate roles in order to enable seamless integration with
   GCP services. This process requires that you have the 
   owner role for the project in order to deploy Kubeflow.
 
-1. Make sure that billing is enabled for your project. See the guide to
+1. Make sure that billing is enabled for your project. Refer to the guide to
   [modifying a project's billing 
   settings](https://cloud.google.com/billing/docs/how-to/modify-project).
 
@@ -32,6 +32,20 @@ Follow these steps to set up your GCP project:
     * [Cloud Resource Manager API](https://console.developers.google.com/apis/library/cloudresourcemanager.googleapis.com)
     * [AI Platform Training & Prediction API](https://console.developers.google.com/apis/library/ml.googleapis.com)
     * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/fairing/) in your Kubeflow cluster)
+
+    You can also enable these APIs by running the following command in Cloud Shell:
+    ```
+    gcloud services enable \
+      container.googleapis.com \
+      iam.googleapis.com \
+      deploymentmanager.googleapis.com \
+      servicemanagement.googleapis.com \
+      cloudresourcemanager.googleapis.com \
+      ml.googleapis.com
+
+    # Cloud Build API is optional, you need it if using Fairing.
+    # gcloud services enable cloudbuild.googleapis.com
+    ```
 
 1. If you are using the 
   [GCP Free Tier](https://cloud.google.com/free/docs/gcp-free-tier) or the
