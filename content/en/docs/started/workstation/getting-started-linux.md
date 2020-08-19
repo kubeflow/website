@@ -42,14 +42,6 @@ The only following applications are required to use MiniKF:
 The full set of instructions are available on the
 [MiniKF getting started](/docs/started/workstation/getting-started-minikf/) page.
 
-#### Kind
-
-[kind](https://kind.sigs.k8s.io/) is a tool for running local Kubernetes clusters using Docker container "nodes".
-kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
-
-The full set of instructions are available on the
-[kind getting started](/docs/other-guides/virtual-dev/getting-started-kind/) page.
-
 ### Linux appliance
 
 A Linux appliance is a virtual machine that holds the linux operating system. From there
