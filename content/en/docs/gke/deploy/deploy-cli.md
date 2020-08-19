@@ -28,7 +28,7 @@ one if you haven't already.
   described in the [project setup guide](/docs/gke/deploy/project-setup/).
 
 1. Follow the guide
-  [setting up OAuth credentials](/docs/gke/deploy/oauth-setup/).
+  [setting up OAuth credentials](/docs/gke/deploy/oauth-setup/)
   to create OAuth credentials for [Cloud Identity-Aware Proxy (Cloud
   IAP)](https://cloud.google.com/iap/docs/).
 
