@@ -45,12 +45,6 @@ kubectl create -f ${KFDEF} -n ${KUBEFLOW_NAMESPACE}
 
 Note: in the example above, ${KFDEF} points to a local KfDef configuration file, however, it can also points to a remote URL containing a valid KfDef configuration.
 
-Alternately if the Kubeflow Operator is installed through OLM console as outlined in [Installing Kubeflow Operator](/docs/operator/install-kubeflow) guide, you can also start the Kubeflow deployment within the console. Navigate to the namespace `kubeflow` where the Kubeflow will be deployed. From the `Installed Operator` page find the Kubeflow Operator and click on `Create Instance` to open the page where you can provide the KfDef configuration. Then click on the `Create` to start the Kubeflow deployment.
-
-<img src="/docs/images/operator-install-kubeflow.png" 
-    alt="Kubeflow deployment in OLM console"
-    class="mt-3 mb-3 border border-info rounded">
-
 ### Watch the deployment progress
 
 The Kubeflow deployment is carried on by the operator, you can watch the progress with this command

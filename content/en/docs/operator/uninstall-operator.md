@@ -6,13 +6,7 @@ weight = 20
 
 This guide describes how to uninstall the Kubeflow Operator.
 
-If the Kubeflow Operator is installed through the OLM console, it can be uninstalled through the console. Navigate to the `Installed Operators` page and find the Kubeflow Operator. Choose the `Uninstall Operator` option to uninstall the operator.
-
-<img src="/docs/images/operator-uninstall-kubeflow.png" 
-    alt="Uninstall Kubeflow Operator in OLM console"
-    class="mt-3 mb-3 border border-info rounded">
-
-Alternately you can always uninstall the operator with following commands
+You can always uninstall the operator with following commands
 
 ```shell
 # switch to the cloned kfctl directory
