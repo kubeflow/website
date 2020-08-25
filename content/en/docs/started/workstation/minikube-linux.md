@@ -70,23 +70,17 @@ mv ./kubectl /usr/local/bin/kubectl
 
 ### Install Minikube
 
-The following command installs Minikube v1.2.0. If you are looking for a specific version, see the [Minikube releases](https://github.com/kubernetes/minikube/releases).
+The following command installs Minikube latest version. If you are looking for a specific version, see the [Minikube releases](https://github.com/kubernetes/minikube/releases).
 ```
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.2.0/minikube-linux-amd64
-```
-
-Move to the `/usr/local/bin` directory:
-```
-chmod +x minikube
-cp minikube /usr/local/bin/
-rm minikube
+ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 ```
 
 ### Start Minikube
 
 The following command starts Minikube with 6 CPUs, 12288 memory, 120G disk size: 
 ```
-minikube start --vm-driver=none --cpus 6 --memory 12288 --disk-size=120g --extra-config=apiserver.authorization-mode=RBAC --extra-config=kubelet.resolv-conf=/run/systemd/resolve/resolv.conf --extra-config kubeadm.ignore-preflight-errors=SystemVerification
+minikube start --vm-driver=hyperv --cpus 6 --memory 12288 --disk-size=120g --extra-config=apiserver.service-account-issuer=api --extra-config=apiserver.service-account-signing-key-file=/var/lib/minikube/certs/apiserver.key --extra-config=apiserver.service-account-api-audiences=api
 ```
 
 ## Installation of Kubeflow
