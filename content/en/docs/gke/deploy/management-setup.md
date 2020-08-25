@@ -97,7 +97,7 @@ to manage GCP infrastructure using GitOps.
 In the last step we created the GCP service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
 this is the service account that CNRM will use to create any GCP resources. Consequently
 you need to grant this GCP service account sufficient privileges to create the desired
-resources in one or more projects. 
+resources in one or more projects (called managed projects, read [more](https://github.com/kubeflow/gcp-blueprints/tree/master/management/instance/managed-project)). 
 
 The easiest way to do this is to grant the GCP service account owner permissions on one or more projects
 
