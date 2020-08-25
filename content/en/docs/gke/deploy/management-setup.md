@@ -23,13 +23,17 @@ to manage GCP infrastructure using GitOps.
    gcloud components update
    ```
 
+1. Install [Kustomize v3.2.1](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv3.2.1).
+
+    Note, Kubeflow is not compatible with later versions of Kustomize. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
+
 ## Setting up the management cluster
 
 
 1. Fetch the management blueprint
 
    ```
-   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/management@master ./
+   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/management@v1.1.0 ./
    ```
 
 1. Fetch the upstream manifests

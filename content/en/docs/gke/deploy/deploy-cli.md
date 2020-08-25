@@ -77,7 +77,7 @@ one if you haven't already.
 1. Fetch the blueprint
 
    ```
-   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.1-branch ./${KFDIR}
+   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.1.0 ./${KFDIR}
    ```
 
    * You can choose any name you would like for the directory ${KFDIR}
@@ -179,6 +179,13 @@ To deploy kubeflow, run the following command:
      then rerun `make apply`
 
      * This issue is being tracked in [kubeflow/manifests#1234](https://github.com/kubeflow/manifests/issues/1234)
+
+   * If resources can't be created with error message like:
+    ```
+    error: unable to recognize ".build/application/app.k8s.io_v1beta1_application_application-controller-kubeflow.yaml": no matches for kind "Application" in version "app.k8s.io/v1beta1”
+    ```
+
+    This is expected race condition and you can try rerun `make apply` again, because Kubernetes API server hasn't been ready for CRDs when their instances were applied. This can happen multiple times for different resource kinds.
 
 
 ## Check your deployment
