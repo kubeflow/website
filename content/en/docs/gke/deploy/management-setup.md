@@ -6,6 +6,14 @@ weight = 3
 
 This guide describes how to setup a management cluster which you will use to deploy one or more instances of Kubeflow.
 
+For understanding questions like:
+
+* Where is kfctl?
+* Why do we need an extra management cluster?
+
+There are some early explanations in [this GitHub issue](https://github.com/kubeflow/gcp-blueprints/issues/123).
+
+
 While the management cluster can be deployed in the same project as your Kubeflow cluster, typically you will want to deploy
 it in a separate project used for administering one or more Kubeflow instances.
 
@@ -53,7 +61,7 @@ to manage GCP infrastructure using GitOps.
   
     * This is being tracked in [GoogleContainerTools/kpt#539](https://github.com/GoogleContainerTools/kpt/issues/539) 
 
-1. Open up the **Makefile** and edit the `set-values` rule to set values for the name, project, and location of your management; when you are done the section should look like
+1. Open up the **Makefile** at `./management/Makefile` and edit the `set-values` rule to set values for the name, project, and location of your management; when you are done the section should look like
 
    ```  
     set-values: 

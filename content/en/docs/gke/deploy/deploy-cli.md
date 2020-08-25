@@ -121,10 +121,10 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 
   * Kubeflow pipelines currently doesn't work with regional deployments see [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6)
 
-* The **Makefile** contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
+* The **Makefile** at `./kubeflow/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
   of the parameters
 
-* You need to edit the makefile to set the parameters to the desired values.
+* You need to edit the makefile at `./kubeflow/Makefile` to set the parameters to the desired values.
 
    * Note there are multiple invocations of `kpt cfg set` on different directories to
      work around [GoogleContainerTools/kpt#541](https://github.com/GoogleContainerTools/kpt/issues/541)
@@ -257,7 +257,7 @@ Notes:
 
 To update Kubeflow
 
-1. Edit the Makefile and change `MANIFESTS_URL` to point at the version of Kubeflow manifests you
+1. Edit the Makefile at `./kubeflow/Makefile` and change `MANIFESTS_URL` to point at the version of Kubeflow manifests you
    want to use
 
    * Refer to the [kpt docs](https://googlecontainertools.github.io/kpt/reference/pkg/) for
