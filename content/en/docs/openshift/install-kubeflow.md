@@ -2,9 +2,14 @@
 title = "Install Kubeflow"
 description = "Instructions for deploying Kubeflow from the command line"
 weight = 4
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
-This guide describes how to use the `kfctl` CLI to deploy Kubeflow 0.7 on an existing OpenShift 4.2 cluster.
+This guide describes how to use the `kfctl` CLI to deploy Kubeflow 1.0 on an existing OpenShift 4.x cluster.
 
 ## Prerequisites
 
@@ -36,10 +41,10 @@ Minimal:
 
 ## Installing Kubeflow
 
-Use the following steps to install Kubeflow 0.7 on OpenShift 4.2.
+Use the following steps to install Kubeflow 1.0 on OpenShift 4.x.
 
 1. Clone the [opendatahub/manifests]
-(https://github.com/opendatahub-io/manifests) repository. This repository defaults to the `v0.7.0-branch-openshift` branch.
+(https://github.com/opendatahub-io/manifests) repository. This repository defaults to the `v1.0-branch-openshift` branch.
 
     ```
     git clone https://github.com/opendatahub-io/manifests.git
@@ -48,7 +53,7 @@ Use the following steps to install Kubeflow 0.7 on OpenShift 4.2.
 
 1. Build the deployment configuration using the OpenShift KFDef file and local downloaded manifests.
 
-    > At the time this document was written, [Kubeflow issue #4678](https://github.com/kubeflow/kubeflow/issues/4678) prevents downloading the manifests during a build process. Update the manifest repo URI. Copy the KFDef file to the Kubeflow application directory. And finally build the configuration.
+    > Update the manifest repo URI. Copy the KFDef file to the Kubeflow application directory. And finally build the configuration.
 
     ```
     # update the manifest repo URI
@@ -102,7 +107,7 @@ Use the following steps to install Kubeflow 0.7 on OpenShift 4.2.
 
 ## Next steps
 
-* Learn about the [changes made](https://developers.redhat.com/blog/2020/02/10/installing-kubeflow-v0-7-on-openshift-4-2/) to Kubeflow manifests to enable deployment on OpenShift
+* Learn about the [changes made](https://developers.redhat.com/blog/2020/08/13/open-data-hub-0-7-adds-support-for-kubeflow-1-0//) to Kubeflow manifests to enable deployment on OpenShift
 * See how to [upgrade Kubeflow](/docs/upgrading/upgrade/) and how to 
   [upgrade or reinstall a Kubeflow Pipelines deployment](/docs/pipelines/upgrade/).
 * See how to [uninstall](/docs/openshift/uninstall-kubeflow) your Kubeflow deployment 

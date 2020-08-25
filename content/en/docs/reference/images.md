@@ -2,7 +2,12 @@
 title = "Dockerfile Locations"
 description = "Where to find the Dockerfiles for all of Kubeflow's images"
 weight = 10
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 | Image Name        | Dockerfile Location |
 | ------------- |---------------|
@@ -17,7 +22,9 @@ weight = 10
 | katib/suggestion-chocolate |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/chocolate/v1alpha3/Dockerfile> |
 | katib/suggestion-hyperopt |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/hyperopt/v1alpha3/Dockerfile> |
 | katib/suggestion-hyperband |     <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/hyperband/v1alpha3/Dockerfile> |
-| katib/suggestion-nasrl |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/nas/enas/v1alpha3/Dockerfile> |
+| katib/suggestion-enas |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/nas/enas/v1alpha3/Dockerfile> |
+| katib/suggestion-darts |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/nas/darts/v1alpha3/Dockerfile> |
+| katib/suggestion-goptuna |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/goptuna/v1alpha3/Dockerfile> |
 | katib/file-metricscollector |    <https://github.com/kubeflow/katib/blob/master/cmd/metricscollector/v1alpha3/file-metricscollector/Dockerfile> |
 | katib/tfevent-metricscollector |    <https://github.com/kubeflow/katib/blob/master/cmd/metricscollector/v1alpha3/tfevent-metricscollector/Dockerfile> |
 | datawire/ambassador    | <https://github.com/datawire/ambassador/blob/master/builder/Dockerfile> |

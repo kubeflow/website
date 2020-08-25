@@ -2,6 +2,7 @@
 title = "Getting Started with Multi-user Isolation"
 description = "How to use multi-user isolation with profiles"
 weight = 30
+
 +++
 
 {{% stable-status %}}
@@ -24,13 +25,13 @@ You can select your active profile from the top bar on the Kubeflow central
 dashboard.  Note that you can only see the profiles
 to which you have view or modify access.
 
-<img src="/docs/images/select-profile.png" 
+<img src="/docs/images/select-profile.png"
   alt="Select active profile "
   class="mt-3 mb-3 border border-info rounded">
 
 This guide illustrates the user isolation functionality using the Jupyter
 notebooks service which is the first service in the system to have full
-integration with the multi-user isolation functionality.  
+integration with the multi-user isolation functionality.
 
 After you select an active profile, the Notebooks Servers UI
 displays only the active notebook servers in the currently selected
@@ -42,14 +43,14 @@ view and modify the existing Jupyter notebooks available in the server.
 For example, the following image shows the list of notebook servers available
 in a user's primary profile:
 
-<img src="/docs/images/notebooks-in-profile.png" 
+<img src="/docs/images/notebooks-in-profile.png"
   alt="List of notebooks in active profile "
   class="mt-3 mb-3 border border-info rounded">
 
-When an unauthorized user accesses the notebooks in this profile, they see an 
+When an unauthorized user accesses the notebooks in this profile, they see an
 error:
 
-<img src="/docs/images/notebook-access-error.png" 
+<img src="/docs/images/notebook-access-error.png"
   alt="Error listing notebooks in inacessible profile"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -72,15 +73,15 @@ deployed Kubeflow will have administration privileges in the cluster.
 
 ### Pre-requisites: grant user minimal Kubernetes cluster access
 
-You must grant each user the minimal permission scope that allows them to 
+You must grant each user the minimal permission scope that allows them to
 connect to the Kubernetes cluster.
 
-For example, for Google Cloud Platform (GCP) users, you should grant the 
+For example, for Google Cloud users, you should grant the
 following Cloud Identity and Access Management (IAM) roles. In the following
-commands, replace `[PROJECT]` with your GCP project and replace `[EMAIL]` with 
+commands, replace `[PROJECT]` with your Google Cloud project and replace `[EMAIL]` with
 the user's email address:
 
-* To access the Kubernetes cluster, the user needs the [Kubernetes Engine 
+* To access the Kubernetes cluster, the user needs the [Kubernetes Engine
   Cluster Viewer](https://cloud.google.com/kubernetes-engine/docs/how-to/iam)
   role:
 
@@ -96,6 +97,8 @@ the user's email address:
     gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/iap.httpsResourceAccessor
     ```
 
+    **Note:** you need to grant the user `IAP-secured Web App User` role even if the user is already an owner or editor of the project. `IAP-secured Web App User` role is not implied by just `Project Owner` or `Project Editor` roles.
+
 * To be able to run `gcloud get credentials` and see logs in Cloud Logging
   (formerly Stackdriver), the user needs viewer access on the project:
 
@@ -110,6 +113,16 @@ Kubeflow {{% kf-latest-version %}} provides automatic profile creation:
   - The Kubeflow deployment process automatically creates a profile for the user
     performing the deployment. When the user access the Kubeflow central dashboard
     they see their profile in the dropdown list.
+  - The automatic profile creation can be disabled as part of the deployment by setting the registration-flow env variable to false. And an admin can manually create profiles per user or per project and add collaborators through YAML files.
+   Modify the kustomize/centraldashboard/base/parama.env to set the registration variable to false
+
+   ```
+   clusterDomain=cluster.local
+   userid-header=kubeflow-userid
+   userid-prefix=
+   registration-flow=false
+   ```
+
   - When an authenticated user logs into the system and visits the central
     dashboard for the first time, they trigger a profile creation automatically.
       - A brief message introduces profiles: <img
@@ -137,11 +150,21 @@ spec:
   owner:
     kind: User
     name: userid@email.com   # replace with the email of the user
+
+  resourceQuotaSpec:    # resource quota can be set optionally
+   hard:
+     cpu: "2"
+     memory: 2Gi
+     nvidia.com/gpu: "1"
+     persistentvolumeclaims: "1"
+     requests.storage: "5Gi"
 ```
 Run the following command to create the corresponding profile resource:
 
 ```
 kubectl create -f profile.yaml
+
+kubectl apply -f profile.yaml  #if you are modifying the profile
 ```
 
 The above command creates a profile named *profileName*. The profile owner is
@@ -150,17 +173,18 @@ The following resources are created as part of the profile creation:
 
   - A Kubernetes namespace that shares the same name with the corresponding
     profile.
-  - Kubernetes RBAC role binding for the namespace: *Admin*. This makes the
-    profile owner the namespace administrator, thus giving them access to the 
+  - Kubernetes RBAC ([Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/))
+    role binding role binding for the namespace: *Admin*. This makes the
+    profile owner the namespace administrator, thus giving them access to the
     namespace using kubectl (via the Kubernetes API).
   - Istio namespace-scoped ServiceRole: *ns-access-istio*. This allows access to
     all services in the target namespace via Istio routing.
   - Istio namespace-scoped ServiceRoleBinding: *owner-binding-istio*. This binds
     the ServiceRole *ns-access-istio* to the profile owner. The profile owner can
     therefore access services in the namespace.
-  - Namespace-scoped service-accounts *editor* and *viewer* to be used by
+  - Namespace-scoped service-accounts *default-editor* and *default-viewer* to be used by
     user-created pods in the namespace.
-
+  - Namespace scoped resource quota limits will be placed.
 
 **Note**: Due to a one-to-one correspondence of profiles with Kubernetes
 namespaces, the terms *profile* and *namespace* are sometimes used interchangably in the
@@ -195,6 +219,8 @@ spec:
 Run the following command to apply the namespaces to the Kubernetes cluster:
 ```
 kubectl create -f profile.yaml
+
+kubectl apply -f profile.yaml  #if you are modifying the profiles
 ```
 
 This will create multiple profiles, one for each individual listed in the sections
@@ -230,13 +256,13 @@ Kubeflow {{% kf-latest-version %}} allows sharing of profiles with other users i
 system.  An owner of a profile can share access to their profile using the
 **Manage Contributors** tab available through the dashboard.
 
-<img src="/docs/images/multi-user-contributors.png" 
+<img src="/docs/images/multi-user-contributors.png"
   alt="Manage Contributors in Profiles"
   class="mt-3 mb-3 border border-info rounded">
 
 Here is an example of the Manage Contributors tab view:
 
-<img src="/docs/images/manage-contributors.png" 
+<img src="/docs/images/manage-contributors.png"
   alt="Manage Contributors in Profiles"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -246,18 +272,18 @@ as this account was used to deploy Kubeflow. The view lists the
 profiles accessible to the user along with the role associated with that
 profile.
 
-To add or remove a contributor, add/remove the 
+To add or remove a contributor, add/remove the
 email address or the user identifier in the **Contributors to your namespace** field.
 
-<img src="/docs/images/add-contributors.png" 
+<img src="/docs/images/add-contributors.png"
   alt="Add Contributors"
   class="mt-3 mb-3 border border-info rounded">
 
 The Manage Contributors tab shows the contributors that the namespace owner has
-added. Note that the cluster administrator can view all the 
+added. Note that the cluster administrator can view all the
 profiles in the system along with their contributors.
 
-<img src="/docs/images/view-contributors.png" 
+<img src="/docs/images/view-contributors.png"
   alt="View Contributors"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -265,3 +291,64 @@ profiles in the system along with their contributors.
 The contributors have access to all the Kubernetes resources in the
 namespace and can create notebook servers as well as access
 existing notebooks.
+
+## Managing contributors manually
+
+An administrator can manually add contributors to an existing profile as described below.
+
+Create a rolebinding.yaml file with the following content on your local machine:
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    role: edit
+    user: userid@email.com   # replace with the email of the user from your Active Directory case sensitive
+  name: user-userid-email-com-clusterrole-edit
+  # Ex: if the user email is lalith.vaka@kp.org the name should be user-lalith-vaka-kp-org-clusterrole-edit
+  # Note: if the user email is Lalith.Vaka@kp.org from your Active Directory, the name should be user-lalith-vaka-kp-org-clusterrole-edit
+  namespace: profileName # replace with the namespace/profile name that you are adding contribbitors to
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubeflow-edit
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: userid@email.com   # replace with the email of the user from your Active Directory case sensitive
+```
+
+Create a servicerolebinding.yaml file with the following content on your local machine:
+
+```
+apiVersion: rbac.istio.io/v1alpha1
+kind: ServiceRoleBinding
+metadata:
+  annotations:
+    role: edit
+    user: userid@email.com   # replace with the email of the user from your Active Directory case sensitive
+  generation: 1
+  name: user-userid-email-com-clusterrole-edit
+  # Ex: if the user email is lalith.vaka@kp.org the name should be user-lalith-vaka-kp-org-clusterrole-edit
+  # Note: if the user email is Lalith.Vaka@kp.org from your Active Directory, the name should be user-lalith-vaka-kp-org-clusterrole-edit
+  namespace: profileName # replace with the namespace/profile name that you are adding contribbitors to
+spec:
+  roleRef:
+    kind: ServiceRole
+    name: ns-access-istio
+  subjects:
+  - properties:
+      request.headers[kubeflow-userid]: userid@email.com   # replace with the email of the user from your Active Directory case sensitive
+status: {}
+```
+
+Run the following command to create the corresponding contributor resources:
+
+```
+kubectl create -f rolebinding.yaml
+kubectl create -f servicerolebinding.yaml
+```
+
+The above command adds a contributor *userid@email.com* to the profile named *profileName*. The contributor
+*userid@email.com* has view and modify access to that profile.

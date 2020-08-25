@@ -2,7 +2,12 @@
 title = "Install Kubeflow Fairing"
 description = "Setting up your Kubeflow Fairing development environment"
 weight = 10
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 You can use Kubeflow Fairing to build, train, and deploy machine learning (ML)
 models in a hybrid cloud environment directly from Python code or a Jupyter
@@ -228,8 +233,8 @@ use for training and deployment, follow the instructions in the guide to
 [docker-attack]: https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface
 [docker-start]: https://docs.docker.com/config/daemon/#start-the-daemon-manually
 [kubectl-install]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
-[conf]: /docs/fairing/configure-fairing/
-[conf-gcp]: /docs/fairing/gcp/configure-gcp/
-[tutorials]: /docs/fairing/tutorials/other-tutorials/
+[conf]: /docs/components/fairing/configure-fairing/
+[conf-gcp]: /docs/components/fairing/gcp/configure-gcp/
+[tutorials]: /docs/components/fairing/tutorials/other-tutorials/
 [local]: #set-up-kubeflow-fairing-for-local-development
 [hosted]: #set-up-kubeflow-fairing-in-a-hosted-jupyter-notebook

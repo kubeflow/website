@@ -4,14 +4,8 @@ description = "Deleting Kubeflow from GCP using the command line interface (CLI)
 weight = 6
 +++
 
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
-
-
-This page shows you how to use the CLI to delete a Kubeflow deployment on
-Google Cloud Platform (GCP).
+This page explains how to delete a Kubeflow deployment on
+Google Cloud Platform (GCP) using `kubectl`.
 
 ## Before you start
 
@@ -25,36 +19,21 @@ This guide assumes the following settings:
   export KF_DIR=<path to your Kubeflow application directory>
   ``` 
 
-* The `${CONFIG_FILE}` environment variable contains the path to your 
-  Kubeflow configuration file.
-
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-iap %}}
-  ```
-
-    Or:
-
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-basic-auth %}}
-  ```
-
-For further background about the above settings, see the guide to
-[deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
-
 ## Deleting your deployment
 
-Run the following commands to delete your deployment and reclaim all GCP
-resources:
+
+1. To delete the applications running in the Kubeflow namespace, remove that namespace:
+
+   ```
+   kubectl delete namespace kubeflow
+   ```
+
+1. To delete the cluster and all GCP resources, run the following commands:
 
 ```
-# If you want to delete all the resources, including storage:
-kfctl delete -f ${CONFIG_FILE} --delete_storage
-
-# If you want to preserve storage, which contains metadata and information
-# from Kubeflow Pipelines:
-kfctl delete -f ${CONFIG_FILE}
+cd ${KF_DIR}
+make delete-gcp
 ```
 
-You should consider preserving storage if you may want to relaunch
-Kubeflow in the future and restore the data from your 
-[pipelines](/docs/pipelines/pipelines-overview/).
+   * **Warning** This will delete the persistent disks storing metadata. If you want to preserve the disk don't run this command;
+     instead selectively delete only those resources you want to delete.

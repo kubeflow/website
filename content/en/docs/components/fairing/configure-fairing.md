@@ -2,7 +2,12 @@
 title = "Configure Kubeflow Fairing"
 description = "Configuring your Kubeflow Fairing development environment with access to Kubeflow"
 weight = 20
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 In order to use Kubeflow Fairing to train or deploy a machine learning
 model on Kubeflow, you must configure your development environment with access
@@ -76,7 +81,7 @@ Kubeflow cluster.
 [kubeflow-install]: /docs/started/getting-started/
 [kubectl-access]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/
 [kubectl-install]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
-[conf-gcp]: /docs/fairing/gcp/configure-gcp/
+[conf-gcp]: /docs/components/fairing/gcp/configure-gcp/
 [docker-login]: https://docs.docker.com/engine/reference/commandline/login/
-[fairing-install]: /docs/fairing/install-fairing/
-[tutorials]: /docs/fairing/tutorials/other-tutorials/
+[fairing-install]: /docs/components/fairing/install-fairing/
+[tutorials]: /docs/components/fairing/tutorials/other-tutorials/

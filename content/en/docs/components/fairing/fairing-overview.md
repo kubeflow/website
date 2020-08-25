@@ -2,7 +2,12 @@
 title = "Overview of Kubeflow Fairing"
 description = "Build, train, and deploy your ML training jobs remotely"
 weight = 5
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 {{% beta-status 
   feedbacklink="https://github.com/kubeflow/fairing/issues" %}}
@@ -54,6 +59,6 @@ The following are the goals of the [Kubeflow Fairing project][fairing-repo]:
 [fairing-repo]: https://github.com/kubeflow/fairing
 [kubeflow]: /docs/about/kubeflow/
 
-[conf]: /docs/fairing/configure-fairing/
-[install]: /docs/fairing/install-fairing/
-[tutorials]: /docs/fairing/tutorials/other-tutorials/
+[conf]: /docs/components/fairing/configure-fairing/
+[install]: /docs/components/fairing/install-fairing/
+[tutorials]: /docs/components/fairing/tutorials/other-tutorials/

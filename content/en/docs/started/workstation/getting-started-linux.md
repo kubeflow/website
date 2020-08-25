@@ -2,7 +2,12 @@
 title = "Kubeflow on Linux"
 description = "Install Kubeflow on Linux"
 weight = 10
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 For Linux systems you have options for servers (physical or virtual) and desktops.
 The server options apply to the desktop as well.
@@ -36,6 +41,14 @@ The only following applications are required to use MiniKF:
 
 The full set of instructions are available on the
 [MiniKF getting started](/docs/started/workstation/getting-started-minikf/) page.
+
+#### Kind
+
+[kind](https://kind.sigs.k8s.io/) is a tool for running local Kubernetes clusters using Docker container "nodes".
+kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+
+The full set of instructions are available on the
+[kind getting started](/docs/other-guides/virtual-dev/getting-started-kind/) page.
 
 ### Linux appliance
 

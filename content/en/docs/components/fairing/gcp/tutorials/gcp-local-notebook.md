@@ -2,7 +2,12 @@
 title = "Train and Deploy on GCP from a Local Notebook"
 description = "Use Kubeflow Fairing to train and deploy a model on Google Cloud Platform (GCP) from a local notebook."
 weight = 30
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This guide introduces you to using Kubeflow Fairing to train and deploy a
 model to Kubeflow on Google Kubernetes Engine (GKE), and Google Cloud ML Engine.
@@ -224,5 +229,5 @@ development environments for training and prediction from Kubeflow Fairing.
 [kubeflow-install-gke]: https://www.kubeflow.org/docs/gke/deploy/
 [kubeflow-install]: https://www.kubeflow.org/docs/gke/deploy/deploy-cli/
 [kubeflow-deploy]: https://deploy.kubeflow.cloud
-[gcp]: /docs/fairing/configure-gcp.md
+[gcp]: /docs/components/fairing/configure-gcp.md
 [container-registry]: https://cloud.google.com/container-registry/

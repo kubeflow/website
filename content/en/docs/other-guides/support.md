@@ -138,6 +138,11 @@ The following organizations offer advice and support for Kubeflow deployments:
         <a href="https://github.com/SeldonIO/seldon-core/issues">Issue 
         tracker</a></td>
       </tr>
+      <tr>
+        <td><a href="https://www.pattersonconsultingtn.com/">Patterson Consulting</a></td>
+        <td> 
+        <a href="http://www.pattersonconsultingtn.com/offerings/managed_kubeflow.html">Managed Kubeflow</a></td>
+      </tr>      
     </tbody>
   </table>
 </div>
@@ -152,7 +157,7 @@ Consult the support page for the cloud service or platform that you're using:
 
 * [Amazon Web Services (AWS)](https://aws.amazon.com/contact-us/)
 * [Google Cloud Platform (GCP)](https://cloud.google.com/support-hub/)
-* [IBM Cloud Private](https://www.ibm.com/cloud/support)
+* [IBM Cloud](https://www.ibm.com/cloud/support)
 * [Microsoft Azure](https://azure.microsoft.com/en-au/support/options/)
 * [Red Hat OpenShift](https://help.openshift.com/)
 

@@ -2,7 +2,12 @@
 title = "Configure Kubeflow Fairing with Access to GCP"
 description = "Configuring your Kubeflow Fairing development environment to access Kubeflow on GKE"
 weight = 20
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This guide describes how to configure your development environment with access
 to Google Cloud Platform (GCP), so you can use Kubeflow Fairing to train or
@@ -129,5 +134,5 @@ GKE][kubeflow-gcp-install] to set one up.
 [gcloud-install]: https://cloud.google.com/sdk/docs/ 
 [kubeflow-gcp-install]: /docs/gke/deploy/
 [container-registry]: https://cloud.google.com/container-registry/
-[fairing-install]: /docs/fairing/install-fairing/
-[tutorials]: /docs/fairing/gcp/tutorials/
+[fairing-install]: /docs/components/fairing/install-fairing/
+[tutorials]: /docs/components/fairing/gcp/tutorials/

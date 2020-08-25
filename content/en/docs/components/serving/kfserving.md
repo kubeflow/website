@@ -2,6 +2,7 @@
 title = "KFServing"
 description = "Model serving using KFServing"
 weight = 2
+                    
 +++
 
 {{% beta-status 
@@ -21,7 +22,9 @@ Our strong community contributions help KFServing to grow. We have a Technical S
 
 ## Install with Kubeflow
 KFServing works with Kubeflow 1.1. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
-See examples running KFServing on [Istio/Dex](https://github.com/kubeflow/kfserving/tree/master/docs/samples/istio-dex) and [GCP](https://github.com/kubeflow/kfserving/tree/master/docs/samples/gcp-iap)
+See examples running KFServing on [Istio/Dex](https://github.com/kubeflow/kfserving/tree/master/docs/samples/istio-dex). For installation on major cloud providers with Kubeflow, please follow their installation docs. 
+
+Kubeflow 1.1 includes KFServing v0.3, where the focus has been on providing more stability by doing a major move to KNative v1 APIs. Additionally, we added GPU support for PyTorch model servers, and pickled model format support for SKLearn. There were other enhancements to routing, payload logging, including bug fixes etc., details of which can be found [here](https://github.com/kubeflow/kfserving/releases/tag/v0.3.0).
 
 <img src="../kfserving.png" alt="KFServing">
 

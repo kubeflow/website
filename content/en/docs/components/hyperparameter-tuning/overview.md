@@ -2,6 +2,7 @@
 title = "Introduction to Katib"
 description = "Overview of Katib for hyperparameter tuning and neural architecture search"
 weight = 10
+                    
 +++
 
 {{% beta-status 
@@ -28,7 +29,7 @@ not adjust the hyperparameter values.
 
 *Hyperparameter tuning* is the process of optimizing the hyperparameter values
 to maximize the predictive accuracy of the model. If you don't use Katib or a 
-similar system for hyperparameter tuning, you need run many training jobs 
+similar system for hyperparameter tuning, you need to run many training jobs 
 yourself, manually adjusting the hyperparameters to find the optimal values.
 
 Automated hyperparameter tuning works by optimizing a target variable, 
@@ -121,7 +122,7 @@ You can use the following interfaces to interact with Katib:
     Kubeflow cluster. Read about kubectl in the [Kubernetes 
     documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-* Katib SDK. See the [Katib SDK documentation on GitHub](https://github.com/kubeflow/katib/tree/master/sdk/python).
+* Katib SDK. See the [Katib SDK documentation on GitHub](https://github.com/kubeflow/katib/tree/master/sdk/python/v1alpha3).
 
 ## Katib concepts
 

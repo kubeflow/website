@@ -2,10 +2,15 @@
 title = "Customizing Kubeflow on GKE"
 description = "Tailoring a GKE deployment of Kubeflow"
 weight = 20
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This guide describes how to customize your deployment of Kubeflow on Google 
-Kubernetes Engine (GKE) in Google Cloud Platform (GCP).
+Kubernetes Engine (GKE) on Google Cloud.
 
 ## Customizing Kubeflow before deployment
 
@@ -13,7 +18,7 @@ The Kubeflow deployment process is divided into two steps, **build** and
 **apply**, so that you can modify your configuration before deploying your 
 Kubeflow cluster.
 
-Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/).
+Follow the guide to [deploying Kubeflow on Google Cloud](/docs/gke/deploy/deploy-cli/).
 When you reach the 
 [setup and deploy step](/docs/gke/deploy/deploy-cli/#set-up-and-deploy),
 **skip the `kfctl apply` command** and run the **`kfctl build`** command 
@@ -24,7 +29,7 @@ before deploying Kubeflow.
 
 You can also customize an existing Kubeflow deployment. In that case, this 
 guide assumes that you have already followed the guide to 
-[deploying Kubeflow on GCP](/docs/gke/deploy/deploy-cli/) and have deployed
+[deploying Kubeflow on Google Cloud](/docs/gke/deploy/deploy-cli/) and have deployed
 Kubeflow to a GKE cluster.
 
 ## Before you start
@@ -54,20 +59,20 @@ This guide assumes the following settings:
   export KF_NAME=<the name of your Kubeflow deployment>
   ```
 
-* The `${PROJECT}` environment variable contains the ID of your GCP project. 
+* The `${PROJECT}` environment variable contains the ID of your Google Cloud project. 
   You can find the project ID in your
   `${CONFIG_FILE}` configuration file, as the value for the `project` key.
 
   ```
-  export PROJECT=<your GCP project ID>
+  export PROJECT=<your Google Cloud project ID>
   ```
 
 * For further background about the above settings, see the guide to
   [deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
 
-## Customizing GCP resources
+## Customizing Google Cloud resources
 
-To customize GCP resources, such as your Kubernetes Engine cluster, you can 
+To customize Google Cloud resources, such as your Kubernetes Engine cluster, you can 
 modify the Deployment Manager configuration settings in `${KF_DIR}/gcp_config`.
 
 After modifying your existing configuration, run the following command to apply
@@ -141,13 +146,49 @@ For example, to modify settings for the Jupyter web app:
 
 ## Common customizations
 
+### Add users to Kubeflow
+
+You must grant each user the minimal permission scope that allows them to 
+connect to the Kubernetes cluster.
+
+For Google Cloud, you should grant the following Cloud Identity and Access Management (IAM) roles.
+
+In the following commands, replace `[PROJECT]` with your Google Cloud project and replace `[EMAIL]` with the user's email address:
+
+* To access the Kubernetes cluster, the user needs the [Kubernetes Engine 
+  Cluster Viewer](https://cloud.google.com/kubernetes-engine/docs/how-to/iam)
+  role:
+
+    ```
+    gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/container.clusterViewer
+    ```
+
+* To access the Kubeflow UI through IAP, the user needs the
+  [IAP-secured Web App User](https://cloud.google.com/iap/docs/managing-access)
+  role:
+
+    ```
+    gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/iap.httpsResourceAccessor
+    ```
+
+    Note, you need to grant the user `IAP-secured Web App User` role even if the user is already an owner or editor of the project. `IAP-secured Web App User` role is not implied by the `Project Owner` or `Project Editor` roles.
+
+* To be able to run `gcloud container clusters get-credentials` and see logs in Cloud Logging
+  (formerly Stackdriver), the user needs viewer access on the project:
+
+    ```
+    gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/viewer
+    ```
+
+Alternatively, you can also grant these roles on the [IAM page in the Cloud Console](https://console.cloud.google.com/iam-admin/iam). Make sure you are in the same project as your Kubeflow deployment.
+
 <a id="gpu-config"></a>
 ### Add GPU nodes to your cluster
 
 To add GPU accelerators to your Kubeflow cluster, you have the following
 options:
 
-* Pick a GCP zone that provides NVIDIA Tesla K80 Accelerators 
+* Pick a Google Cloud zone that provides NVIDIA Tesla K80 Accelerators 
   (`nvidia-tesla-k80`).
 * Or disable node-autoprovisioning in your Kubeflow cluster.
 * Or change your node-autoprovisioning configuration.
@@ -220,20 +261,10 @@ More detailed instructions follow.
 ### Add VMs with more CPUs or RAM
 
   * Change the machineType.
-  * There are two node pools defined in the GCP Deployment Manager:
+  * There are two node pools defined in the Google Cloud Deployment Manager:
       * one for CPU only machines, in [`cluster.jinja`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster.jinja#L114).
       * one for GPU machines, in [`cluster.jinja`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster.jinja#L140).
   * When making changes to the node pools you also need to bump the `pool-version` in [`cluster-kubeflow.yaml`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L46) before you update the deployment.
-
-### Add users to Kubeflow
-
-  * To grant users access to Kubeflow, add the “IAP-secured Web App User” role on the [IAM page in the GCP console](https://console.cloud.google.com/iam-admin/iam). Make sure you are in the same project as your Kubeflow deployment.
-
-  * You can confirm the update by inspecting the IAM policy for your project:
-```
-gcloud projects get-iam-policy ${PROJECT}
-```
-  * In the output from the above command, users able to access Kubeflow have the following role: `roles/iap.httpsResourceAccessor`.
 
 ## More customizations
 

@@ -2,7 +2,12 @@
 title = "Component"
 description = "Conceptual overview of components in Kubeflow Pipelines"
 weight = 20
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 A *pipeline component* is self-contained set of code that performs one step in
 the ML workflow (pipeline), such as data preprocessing, data transformation,
