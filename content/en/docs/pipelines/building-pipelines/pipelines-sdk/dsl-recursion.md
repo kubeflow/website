@@ -84,7 +84,7 @@ def pipeline():
 
 ## Limitations
 
-* [Type checking](/docs/pipelines/sdk/pipelines-sdk/static-type-checking) does not work for the recursive functions. In other words, The type information that is annotated to the recursive 
+* [Type checking](/docs/pipelines/building-pipelines/pipelines-sdk/static-type-checking) does not work for the recursive functions. In other words, The type information that is annotated to the recursive 
 function signature will not be checked.
 * Since the output of the recursive functions cannot be dynamically resolved, the downstream ContainerOps cannot
 access the output from the recursive functions.

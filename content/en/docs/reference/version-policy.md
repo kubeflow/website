@@ -250,7 +250,7 @@ one of the following Kubeflow SDKs and command-line interfaces
         <td>1.1.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/pipelines/sdk/pipelines-sdk/sdk-overview/">Kubeflow Pipelines SDK</a> 
+        <td><a href="/docs/pipelines/building-pipelines/pipelines-sdk/sdk-overview/">Kubeflow Pipelines SDK</a> 
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Beta</td>

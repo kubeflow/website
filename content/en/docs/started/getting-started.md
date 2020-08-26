@@ -200,4 +200,4 @@ See the [Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting/).
 * Explore the [tutorials and
   codelabs](/docs/examples/codelabs-tutorials/) for learning and trying out Kubeflow.
 * Build machine-learning pipelines with the [Kubeflow Pipelines
-  SDK](/docs/pipelines/sdk/pipelines-sdk/sdk-overview/).
+  SDK](/docs/pipelines/building-pipelines/pipelines-sdk/sdk-overview/).

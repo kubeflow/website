@@ -35,7 +35,7 @@ and [components](/docs/pipelines/concepts/component/).
 Set up your environment:
 
 * Install [Docker](https://www.docker.com/get-docker).
-* Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/pipelines-sdk/install-sdk/).
+* Install the [Kubeflow Pipelines SDK](/docs/pipelines/building-pipelines/pipelines-sdk/install-sdk/).
 
 The examples on this page come from the
 [XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm)
@@ -199,10 +199,10 @@ guide to [getting started with the UI](/docs/pipelines/pipelines-quickstart).
 
 ## Next steps
 
-* Build a [reusable component](/docs/pipelines/sdk/pipelines-sdk/component-development/) for
+* Build a [reusable component](/docs/pipelines/building-pipelines/pipelines-sdk/component-development/) for
   sharing in multiple pipelines.
 * Learn more about the 
-  [Kubeflow Pipelines domain-specific language (DSL)](/docs/pipelines/sdk/pipelines-sdk/dsl-overview/),
+  [Kubeflow Pipelines domain-specific language (DSL)](/docs/pipelines/building-pipelines/pipelines-sdk/dsl-overview/),
   a set of Python libraries that you can use to specify ML pipelines.
 * See how to [export metrics from your 
   pipeline](/docs/pipelines/metrics/pipelines-metrics/).
@@ -210,5 +210,5 @@ guide to [getting started with the UI](/docs/pipelines/pipelines-quickstart).
   [adding metadata for an output 
   viewer](/docs/pipelines/metrics/output-viewer/).
 * For quick iteration, 
-  [build lightweight components](/docs/pipelines/sdk/pipelines-sdk/lightweight-python-components/)
+  [build lightweight components](/docs/pipelines/building-pipelines/pipelines-sdk/lightweight-python-components/)
   directly from Python functions.

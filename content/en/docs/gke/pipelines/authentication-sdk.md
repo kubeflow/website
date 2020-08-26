@@ -5,12 +5,12 @@ weight = 20
 +++
 
 This guide describes how to connect to your Kubeflow Pipelines cluster on Google
-Cloud using [the Kubeflow Pipelines SDK](/docs/pipelines/sdk/pipelines-sdk/sdk-overview/).
+Cloud using [the Kubeflow Pipelines SDK](/docs/pipelines/building-pipelines/pipelines-sdk/sdk-overview/).
 
 ## Before you begin
 
 - You need a Kubeflow Pipelines deployment on Google Cloud using one of the [installation options](/docs/pipelines/installation/overview/).
-- [Install the Kubeflow Pipelines SDK](/docs/pipelines/sdk/pipelines-sdk/install-sdk/).
+- [Install the Kubeflow Pipelines SDK](/docs/pipelines/building-pipelines/pipelines-sdk/install-sdk/).
 
 ## How SDK connects to Kubeflow Pipelines API
 

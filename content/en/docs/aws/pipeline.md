@@ -181,7 +181,7 @@ Here's an example.
 
 ## Support TensorBoard in Kubeflow Pipelines
 
- [TensorBoard](/docs/pipelines/sdk/pipelines-sdk/output-viewer/#tensorboard) needs some extra settings on AWS like below:
+ [TensorBoard](/docs/pipelines/building-pipelines/pipelines-sdk/output-viewer/#tensorboard) needs some extra settings on AWS like below:
 
 1. Create a Kubernetes secret `aws-secret` in the `kubeflow` namespace. Follow instructions [here](#s3-access-from-kubeflow-pipelines).
 
