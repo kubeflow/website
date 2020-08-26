@@ -38,10 +38,8 @@ Use the Kubeflow Pipelines SDK, if:
 
 [Learn more about getting started with the Kubeflow Pipelines SDK](#building-pipelines-with-the-kubeflow-pipelines-sdk). 
 
-Use TFX, if:
-
-*  You are orchestrating a process that trains a TensorFlow model, consider
-   using TFX to gain the following benefits:
+Use TFX, if you are orchestrating a process that trains a TensorFlow model.
+By using TFX, you can gain the following benefits:
 
    *  TFX standard components implement a proven ML workflow. By using these
       components, you can focus on implementing your model within a proven
