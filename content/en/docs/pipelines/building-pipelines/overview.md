@@ -25,6 +25,17 @@ to defining pipelines. In both cases:
 *  The custom logic in a component is defined in a Python function or in a
    container image.
 
+Use TFX, if you are orchestrating a process that trains a TensorFlow model.
+By using TFX, you can gain the following benefits:
+
+   *  TFX standard components implement a proven ML workflow. By using these
+      components, you can focus on implementing your model within a proven
+      process.
+   *  TFX templates let you start from an example workflow and then customize
+      the process to meet your needs.
+
+[Learn more about getting started with TFX](#building-tfx-pipelines). 
+
 Use the Kubeflow Pipelines SDK, if:
 
 *  You rely on recursion, loops, graph components (pipelines that are executed
@@ -37,17 +48,6 @@ Use the Kubeflow Pipelines SDK, if:
 *  Your model or pipeline is not a good match for TFX pipelines.
 
 [Learn more about getting started with the Kubeflow Pipelines SDK](#building-pipelines-with-the-kubeflow-pipelines-sdk). 
-
-Use TFX, if you are orchestrating a process that trains a TensorFlow model.
-By using TFX, you can gain the following benefits:
-
-   *  TFX standard components implement a proven ML workflow. By using these
-      components, you can focus on implementing your model within a proven
-      process.
-   *  TFX templates let you start from an example workflow and then customize
-      the process to meet your needs.
-
-[Learn more about getting started with TFX](#building-tfx-pipelines). 
 
 ## Building pipelines with the Kubeflow Pipelines SDK
 
@@ -66,7 +66,9 @@ To get started building pipelines with the Kubeflow Pipelines SDK:
 
 ## Building TFX pipelines
 
-Use the following resources to get started with TFX pipelines:
+TFX pipelines are portable and scalable workflows that run on orchestrators,
+such as Kubeflow Pipelines. Use the following resources to get started with
+TFX pipelines:
 
 *  [Follow a TFX pipelines tutorial](https://www.tensorflow.org/tfx/tutorials).
 *  Learn more about the [concepts required to understand TFX
