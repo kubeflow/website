@@ -118,7 +118,7 @@ The Kubernetes cluster must meet the following minimum requirements:
 - **compatible**: all Kubeflow features have been tested and verified for the
   Kubernetes version
 - **no known issues**: the combination has not been fully tested but there are
-  no repoted issues
+  no reported issues
 
 ## Kubeflow Deployment Configurations
 
