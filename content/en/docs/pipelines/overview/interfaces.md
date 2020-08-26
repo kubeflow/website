@@ -25,7 +25,7 @@ From the Kubeflow Pipelines UI you can perform the following tasks:
 * Run one or more of the preloaded samples to try out pipelines quickly.
 * Upload a pipeline as a compressed file. The pipeline can be one that you
   have built (see how to [build a 
-  pipeline](/docs/pipelines/sdk/build-component/#compile-the-pipeline)) or one 
+  pipeline](/docs/pipelines/sdk/pipelines-sdk/build-component/#compile-the-pipeline)) or one 
   that someone has shared with you.
 * Create an *experiment* to group one or more of your pipeline runs.
   See the [definition of an
@@ -42,8 +42,8 @@ information about accessing the Kubeflow Pipelines UI and running the samples.
 
 When building a pipeline component, you can write out information for display
 in the UI. See the guides to [exporting 
-metrics](/docs/pipelines/sdk/pipelines-metrics/) and [visualizing results in 
-the UI](/docs/pipelines/sdk/output-viewer/).
+metrics](/docs/pipelines/sdk/pipelines-sdk/pipelines-metrics/) and [visualizing results in 
+the UI](/docs/pipelines/sdk/pipelines-sdk/output-viewer/).
 
 ## Python SDK
 
@@ -51,7 +51,7 @@ The Kubeflow Pipelines SDK provides a set of Python packages that you can use to
 specify and run your ML workflows.
 
 See the [introduction to the Kubeflow Pipelines 
-SDK](/docs/pipelines/sdk/sdk-overview/) for an overview of the ways you can
+SDK](/docs/pipelines/sdk/pipelines-sdk/sdk-overview/) for an overview of the ways you can
 use the SDK to build pipeline components and pipelines.
 
 ## REST API

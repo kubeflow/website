@@ -11,7 +11,7 @@ needs to be updated for Kubeflow 1.1.
 
 This page shows you how to export metrics from a Kubeflow Pipelines component. 
 For details about how to build a component, see the guide to 
-[building your own component](/docs/pipelines/sdk/build-component/).
+[building your own component](/docs/pipelines/sdk/pipelines-sdk/build-component/).
  
 ## Overview of metrics
 

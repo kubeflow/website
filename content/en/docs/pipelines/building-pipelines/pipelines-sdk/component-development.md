@@ -17,7 +17,7 @@ pipelines, see the conceptual guides to [pipelines](/docs/pipelines/concepts/pip
 and [components](/docs/pipelines/concepts/component/).
 
 This tutorial describes the manual way of writing a full component program (in any language) and a component definition for it.
-For quickly building component from a python function see [Build component from Python function](/docs/pipelines/sdk/lightweight-python-components/) and [Data Passing in Python components](https://github.com/kubeflow/pipelines/blob/master/samples/tutorials/Data%20passing%20in%20python%20components.ipynb).
+For quickly building component from a python function see [Build component from Python function](/docs/pipelines/sdk/pipelines-sdk/lightweight-python-components/) and [Data Passing in Python components](https://github.com/kubeflow/pipelines/blob/master/samples/tutorials/Data%20passing%20in%20python%20components.ipynb).
 
 ## Summary
 
@@ -372,10 +372,10 @@ components/<component group>/<component name>/
 ## Next steps
 
 * Consolidate what you've learned by reading the 
-  [best practices](/docs/pipelines/sdk/best-practices) for designing and 
+  [best practices](/docs/pipelines/sdk/pipelines-sdk/best-practices) for designing and 
   writing components.
 * For quick iteration, 
-  [build lightweight components](/docs/pipelines/sdk/lightweight-python-components/)
+  [build lightweight components](/docs/pipelines/sdk/pipelines-sdk/lightweight-python-components/)
   directly from Python functions.
 * See how to [export metrics from your 
   pipeline](/docs/pipelines/metrics/pipelines-metrics/).

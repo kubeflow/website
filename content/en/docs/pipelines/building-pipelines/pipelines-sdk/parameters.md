@@ -39,4 +39,4 @@ def my_pipeline(
 ```
 
 See more in the guide to [building a 
-component](/docs/pipelines/sdk/build-component/#create-a-python-class-for-your-component).
+component](/docs/pipelines/sdk/pipelines-sdk/build-component/#create-a-python-class-for-your-component).

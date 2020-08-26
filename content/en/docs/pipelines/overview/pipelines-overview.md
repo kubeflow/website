@@ -284,6 +284,6 @@ At a high level, the execution of a pipeline proceeds as follows:
   deploy Kubeflow and run a sample pipeline directly from the 
   Kubeflow Pipelines UI.
 * Build machine-learning pipelines with the [Kubeflow Pipelines 
-  SDK](/docs/pipelines/sdk/sdk-overview/).
+  SDK](/docs/pipelines/sdk/pipelines-sdk/sdk-overview/).
 * Follow the full guide to experimenting with
   [the Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).

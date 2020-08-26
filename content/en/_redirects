@@ -25,11 +25,11 @@
 /docs/pipelines/pipelines-ui/	         /docs/pipelines/pipelines-quickstart/
 
 # Restructured the pipelines docs.
-/docs/pipelines/output-viewer/                 /docs/pipelines/sdk/output-viewer/
-/docs/pipelines/pipelines-metrics/             /docs/pipelines/sdk/pipelines-metrics/
-/docs/pipelines/build-component/               /docs/pipelines/sdk/build-component/
-/docs/pipelines/install-sdk/                   /docs/pipelines/sdk/install-sdk/
-/docs/pipelines/lightweight-python-components/ /docs/pipelines/sdk/lightweight-python-components/
+/docs/pipelines/output-viewer/                 /docs/pipelines/building-pipelines/sdk/output-viewer/
+/docs/pipelines/pipelines-metrics/             /docs/pipelines/building-pipelines/sdk/pipelines-metrics/
+/docs/pipelines/build-component/               /docs/pipelines/building-pipelines/sdk/build-component/
+/docs/pipelines/install-sdk/                   /docs/pipelines/building-pipelines/sdk/install-sdk/
+/docs/pipelines/lightweight-python-components/ /docs/pipelines/building-pipelines/sdk/lightweight-python-components/
 /docs/pipelines/build-pipeline/                /docs/pipelines/tutorials/build-pipeline/
 /docs/pipelines/pipelines-tutorial/            /docs/pipelines/tutorials/cloud-tutorials/
 /docs/pipelines/tutorials/pipelines-tutorial/  /docs/pipelines/tutorials/cloud-tutorials/
@@ -37,9 +37,9 @@
 /docs/gke/pipelines/pipelines-tutorial/        /docs/pipelines/tutorials/cloud-tutorials/
 /docs/gke/authentication-pipelines/            /docs/gke/pipelines/authentication-pipelines/
 
-/docs/pipelines/metrics/                       /docs/pipelines/sdk/pipelines-metrics/
-/docs/pipelines/metrics/pipelines-metrics/     /docs/pipelines/sdk/pipelines-metrics/
-/docs/pipelines/metrics/output-viewer/         /docs/pipelines/sdk/output-viewer/
+/docs/pipelines/metrics/                       /docs/pipelines/building-pipelines/sdk/pipelines-metrics/
+/docs/pipelines/metrics/pipelines-metrics/     /docs/pipelines/building-pipelines/sdk/pipelines-metrics/
+/docs/pipelines/metrics/output-viewer/         /docs/pipelines/building-pipelines/sdk/output-viewer/
 /docs/pipelines/concepts/*                     /docs/pipelines/overview/concepts/:splat
 /docs/pipelines/pipelines-overview/            /docs/pipelines/overview/pipelines-overview/
 /docs/pipelines/enable-gpu-and-tpu/            /docs/gke/pipelines/enable-gpu-and-tpu/
@@ -50,9 +50,6 @@
 /docs/pipelines/reusable-components/           /docs/examples/shared-resources/
 /docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
 
-# Moved the guide to monitoring GKE deployments.
-/docs/other-guides/monitoring/                 /docs/gke/monitoring/
-
 # Created a new section for pipeline concepts.
 /docs/pipelines/pipelines-concepts/            /docs/pipelines/concepts/
 
@@ -61,6 +58,12 @@
 
 # Created a new section for pipelines installation.
 /docs/pipelines/standalone-deployment-gcp/    /docs/pipelines/installation/standalone-deployment/
+
+# Moved KFP SDK docs 
+/docs/pipelines/sdk/*  /docs/pipelines/building-pipelines/sdk/:splat
+
+# Moved the guide to monitoring GKE deployments.
+/docs/other-guides/monitoring/                 /docs/gke/monitoring/
 
 # Removed the downloads page from Reference to Getting Started with Kubeflow
 /docs/reference/downloads/                     /docs/started/getting-started/
@@ -119,3 +122,4 @@ docs/started/requirements/                    /docs/started/getting-started/
 
 # Rename TensorRT Inference Server to Triton Inference Server
 /docs/components/serving/trtinferenceserver   /docs/components/serving/tritoninferenceserver
+

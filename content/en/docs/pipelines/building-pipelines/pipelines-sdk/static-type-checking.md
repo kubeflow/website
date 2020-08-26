@@ -14,7 +14,7 @@ static type checking for fast development iterations.
 
 ## Motivation
 
-A pipeline is a workflow consisting of [components](/docs/pipelines/sdk/build-component#overview-of-pipelines-and-components) and each
+A pipeline is a workflow consisting of [components](/docs/pipelines/sdk/pipelines-sdk/build-component#overview-of-pipelines-and-components) and each
 component contains inputs and outputs. The DSL compiler supports static type checking to ensure the type consistency among the component
 I/Os within the same pipeline. Static type checking helps you to identify component I/O inconsistencies without running the pipeline. 
 It also shortens the development cycles by catching the errors early. 

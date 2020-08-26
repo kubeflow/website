@@ -90,7 +90,7 @@ Below is an example of the command:
 After configuring a node pool with preemptible VMs, you must configure your
 pipelines to run on the preemptible VMs. 
 
-In the [DSL code](/docs/pipelines/sdk/sdk-overview/) for
+In the [DSL code](/docs/pipelines/sdk/pipelines-sdk/sdk-overview/) for
 your pipeline, add the following to the `ContainerOp` instance:
 
     .apply(gcp.use_preemptible_nodepool())
@@ -213,7 +213,7 @@ Below is an example of the command:
 
 ### 3. Schedule your pipeline to run on the preemptible VMs with preemptible GPUs
 
-In the [DSL code](/docs/pipelines/sdk/sdk-overview/) for
+In the [DSL code](/docs/pipelines/sdk/pipelines-sdk/sdk-overview/) for
 your pipeline, add the following to the `ContainerOp` instance:
 
     .apply(gcp.use_preemptible_nodepool()
@@ -324,4 +324,4 @@ running preemptible VMs or GPUs:
 ## Next steps
 
 * Explore further options for [customizing Kubeflow on GCP](/docs/gke/).
-* See how to [build pipelines with the SDK](/docs/pipelines/sdk/).
+* See how to [build pipelines with the SDK](/docs/pipelines/sdk/pipelines-sdk/).

@@ -12,10 +12,10 @@ needs to be updated for Kubeflow 1.1.
 This page shows you how to use the Kubeflow Pipelines UI to visualize output 
 from a Kubeflow Pipelines component. 
 For details about how to build a component, see the guide to 
-[building your own component](/docs/pipelines/sdk/build-component/).
+[building your own component](/docs/pipelines/sdk/pipelines-sdk/build-component/).
 
 Kubeflow Pipelines provides a new method of generating visualizations. See the
-guide to [Python Based Visualizations](/docs/pipelines/sdk/python-based-visualizations/).
+guide to [Python Based Visualizations](/docs/pipelines/sdk/pipelines-sdk/python-based-visualizations/).
 
 ## Introduction
 

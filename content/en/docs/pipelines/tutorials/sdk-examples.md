@@ -17,7 +17,7 @@ To follow the examples in this guide, you must have Kubeflow Pipelines SDK
 version 0.2.5 or higher installed. Use the following instructions to install
 the Kubeflow Pipelines SDK and check the SDK version.
 
-1. Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/)
+1. Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/pipelines-sdk/install-sdk/)
 1. Run the following command to check the version of the SDK
    ```
    pip list | grep kfp

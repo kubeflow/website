@@ -25,7 +25,7 @@ Set up your environment:
 
 1. Clone or download the
   [Kubeflow Pipelines samples](https://github.com/kubeflow/pipelines/tree/master/samples).
-1. Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
+1. Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/pipelines-sdk/install-sdk/).
 1. Activate your Python 3 environment if you haven't done so already:
 
     ```
@@ -131,8 +131,8 @@ The following notebooks are available:
 ## Next steps
 
 * Learn the various ways to use the [Kubeflow Pipelines 
-  SDK](/docs/pipelines/sdk/sdk-overview/).
+  SDK](/docs/pipelines/sdk/pipelines-sdk/sdk-overview/).
 * See how to 
-  [build your own pipeline components](/docs/pipelines/sdk/build-component/).
+  [build your own pipeline components](/docs/pipelines/sdk/pipelines-sdk/build-component/).
 * Read more about 
-  [building lightweight components](/docs/pipelines/sdk/lightweight-python-components/).
+  [building lightweight components](/docs/pipelines/sdk/pipelines-sdk/lightweight-python-components/).
