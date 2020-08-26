@@ -13,8 +13,8 @@ pipeline, and provides resources for getting started.
 
 ## Selecting a pipelines SDK
 
-At a high level, the Kubeflow Pipelines SDK and TFX take a similar approaches
-to defining a pipeline. In both cases:
+At a high level, the Kubeflow Pipelines SDK and TFX take a similar approach
+to defining pipelines. In both cases:
 
 *  A pipeline is a set of components and input parameters. 
 *  Component outputs are called artifacts. Components can accept either
@@ -69,7 +69,7 @@ To get started building pipelines with the Kubeflow Pipelines SDK:
 Use the following resources to get started with TFX pipelines:
 
 *  [Follow a TFX pipelines tutorial](https://www.tensorflow.org/tfx/tutorials).
-*  Learn more about the [concepts concepts required to understand TFX
+*  Learn more about the [concepts required to understand TFX
    pipelines](https://www.tensorflow.org/tfx/guide/understanding_tfx_pipelines).
 *  Learn how to [build a TFX pipeline](https://www.tensorflow.org/tfx/guide/build_tfx_pipeline).
 *  Learn more about [TFX standard components](https://www.tensorflow.org/tfx/guide#tfx_standard_components)
