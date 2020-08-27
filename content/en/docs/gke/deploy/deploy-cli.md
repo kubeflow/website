@@ -121,10 +121,10 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 
   * Kubeflow pipelines currently doesn't work with regional deployments see [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6)
 
-* The **Makefile** at `./kubeflow/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
+* The **Makefile** at `${KFDIR}/kubeflow/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
   of the parameters
 
-* You need to edit the makefile at `./kubeflow/Makefile` to set the parameters to the desired values.
+* You need to edit the makefile at `${KFDIR}/kubeflow/Makefile` to set the parameters to the desired values.
 
    * Note there are multiple invocations of `kpt cfg set` on different directories to
      work around [GoogleContainerTools/kpt#541](https://github.com/GoogleContainerTools/kpt/issues/541)
@@ -171,21 +171,22 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 
 To deploy kubeflow, run the following command:
 
-   ```
-   make apply
-   ```
+```
+make apply
+```
 
-   * If resources can't be created because `webhook.cert-manager.io` is unavailable wait and
-     then rerun `make apply`
+* If resources can't be created because `webhook.cert-manager.io` is unavailable wait and
+  then rerun `make apply`
 
-     * This issue is being tracked in [kubeflow/manifests#1234](https://github.com/kubeflow/manifests/issues/1234)
+  * This issue is being tracked in [kubeflow/manifests#1234](https://github.com/kubeflow/manifests/issues/1234)
 
-   * If resources can't be created with error message like:
-    ```
-    error: unable to recognize ".build/application/app.k8s.io_v1beta1_application_application-controller-kubeflow.yaml": no matches for kind "Application" in version "app.k8s.io/v1beta1”
-    ```
+* If resources can't be created with an error message like:
 
-    This is expected race condition and you can try rerun `make apply` again, because Kubernetes API server hasn't been ready for CRDs when their instances were applied. This can happen multiple times for different resource kinds.
+  ```
+  error: unable to recognize ".build/application/app.k8s.io_v1beta1_application_application-controller-kubeflow.yaml": no matches for kind "Application" in version "app.k8s.io/v1beta1”
+  ```
+
+  This issue occurs when the CRD endpoint hadn't been established in Kubernetes API server when the CRD's custom object was applied. This issue can happen multiple times for different kinds of resource. To resolve this issue, try running `make apply` again.
 
 
 ## Check your deployment
@@ -257,7 +258,7 @@ Notes:
 
 To update Kubeflow
 
-1. Edit the Makefile at `./kubeflow/Makefile` and change `MANIFESTS_URL` to point at the version of Kubeflow manifests you
+1. Edit the Makefile at `${KFDIR}/kubeflow/Makefile` and change `MANIFESTS_URL` to point at the version of Kubeflow manifests you
    want to use
 
    * Refer to the [kpt docs](https://googlecontainertools.github.io/kpt/reference/pkg/) for

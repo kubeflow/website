@@ -6,21 +6,25 @@ weight = 3
 
 This guide describes how to setup a management cluster which you will use to deploy one or more instances of Kubeflow.
 
-For understanding questions like:
-
-* Where is kfctl?
-* Why do we need an extra management cluster?
-
-There are some early explanations in [this GitHub issue](https://github.com/kubeflow/gcp-blueprints/issues/123).
-
+The management cluster is used to run [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview). Cloud Config Connector is a Kubernetes addon that allows you to manage Google Cloud resources through Kubernetes.
 
 While the management cluster can be deployed in the same project as your Kubeflow cluster, typically you will want to deploy
 it in a separate project used for administering one or more Kubeflow instances.
 
-The management cluster is used to run [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview).
-
 Optionally, the cluster can be configured with [Anthos Config Managmenet](https://cloud.google.com/anthos-config-management/docs) 
 to manage GCP infrastructure using GitOps.
+
+## FAQs
+
+* Where is `kfctl`?
+
+    `kfctl` is deprecated for Google Cloud, because its functionality has been replaced by generic tools including [Make](https://www.gnu.org/software/make/), [Kustomize](https://kustomize.io), [kpt](https://googlecontainertools.github.io/kpt/), and [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview).
+
+* Why do we use an extra management cluster to manage Google Cloud resources?
+
+      The management cluster is very lightweight by default. It is used only to run [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview) which works better with other tools comparing to [Deployment Manager](https://cloud.google.com/deployment-manager).
+
+There are some early, yet more detailed explanations about the rationale behind Kubeflow 1.1 changes on Google Cloud in [this GitHub issue](https://github.com/kubeflow/gcp-blueprints/issues/123).
 
 ## Install the required tools
 
