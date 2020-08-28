@@ -48,18 +48,18 @@ get the best experience from Kubeflow.
 
 3. Install the IBM Cloud Block Storage plug-in. When you install the plug-in, pre-defined block storage classes are added to your cluster.
     ```shell
-    helm install 1.6.0 iks-charts/ibmcloud-block-storage-plugin -n kube-system
+    helm install 1.7.0 iks-charts/ibmcloud-block-storage-plugin -n kube-system
     ```
     
     Example output:
     ```
-    NAME: 1.6.0
-    LAST DEPLOYED: Thu Feb 27 11:41:35 2020
+    NAME: 1.7.0
+    LAST DEPLOYED: Fri Aug 28 11:23:56 2020
     NAMESPACE: kube-system
     STATUS: deployed
     REVISION: 1
     NOTES:
-    Thank you for installing: ibmcloud-block-storage-plugin.   Your release is named: 1.6.0
+    Thank you for installing: ibmcloud-block-storage-plugin.   Your release is named: 1.7.0
     ...
     ```
 
@@ -75,10 +75,12 @@ get the best experience from Kubeflow.
 
 6. Set the Block Storage as the default storageclass.
     ```shell
-    kubectl patch storageclass ibmc-block-gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+    NEW_STORAGE_CLASS=ibmc-block-gold
+    OLD_STORAGE_CLASS=$(kubectl get sc | grep "(default)" | grep -v ${NEW_STORAGE_CLASS} | awk '{ print $1;exit }')
+    kubectl patch storageclass ${NEW_STORAGE_CLASS} -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
     # Check the default storageclass is block storage
-    kubectl get storageclass | grep \(default\)
+    kubectl get storageclass | grep "(default)"
     ```
 
     Example output:
@@ -86,10 +88,10 @@ get the best experience from Kubeflow.
     ibmc-block-gold (default)   ibm.io/ibmc-block   65s
     ```
 
-    Make sure `ibmc-block-gold` is the only `default` storageclass. If there are two or more rows in the above output, there is other `default` storageclass. Unset it with the below command, for example, will make the `ibmc-file-bronze` storage no longer the `default` storageclass for the cluster.
+    Make sure `ibmc-block-gold` is the only `default` storageclass. If there are two or more rows in the above output, there is other `default` storageclass. Unset it with the below command, for example, to remove the previous `default` storageclass for the cluster.
 
     ```shell
-    kubectl patch storageclass ibmc-file-bronze -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+    kubectl patch storageclass ${OLD_STORAGE_CLASS} -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
     ```
 
 ## Understanding the Kubeflow deployment process
