@@ -1,6 +1,6 @@
 +++
 title = "Deploy using kubectl and kpt"
-description = "Instructions for using kubectl and kpt to deploy Kubeflow on Google Cloud Platform (GCP)"
+description = "Instructions for using kubectl and kpt to deploy Kubeflow on Google Cloud"
 weight = 4
 +++
 
@@ -82,7 +82,7 @@ one if you haven't already.
 
    * You can choose any name you would like for the directory ${KFDIR}
 
-1. Change to the kubeflow directory
+1. Change to the Kubeflow directory
 
    ```
    cd ${KFDIR}
@@ -119,7 +119,7 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 
 * Location can be a zone or a region depending on whether you want a regional cluster
 
-  * Kubeflow pipelines currently doesn't work with regional deployments see [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6)
+  * Currently, Kubeflow Pipelines doesn't work with regional deployments. For more, go to [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6).
 
 * The **Makefile** at `${KFDIR}/kubeflow/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
   of the parameters
@@ -169,7 +169,7 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 <a id="set-up-and-deploy"></a>
 ## Deploy Kubeflow
 
-To deploy kubeflow, run the following command:
+To deploy Kubeflow, run the following command:
 
 ```
 make apply
@@ -186,7 +186,8 @@ make apply
   error: unable to recognize ".build/application/app.k8s.io_v1beta1_application_application-controller-kubeflow.yaml": no matches for kind "Application" in version "app.k8s.io/v1beta1”
   ```
 
-  This issue occurs when the CRD endpoint hadn't been established in Kubernetes API server when the CRD's custom object was applied. This issue can happen multiple times for different kinds of resource. To resolve this issue, try running `make apply` again.
+  This issue occurs when the CRD endpoint isn't established in the Kubernetes API server when the CRD's custom object is applied.
+  This issue is expected and can happen multiple times for different kinds of resource. To resolve this issue, try running `make apply` again.
 
 
 ## Check your deployment
@@ -209,7 +210,7 @@ Follow these steps to verify the deployment:
 
 ## Access the Kubeflow user interface (UI)
 
-Follow these steps to access the Kubeflow central dashboard:
+To access the Kubeflow central dashboard, follow these steps:
 
 1. Use the following command to grant yourself the [IAP-secured Web App User](https://cloud.google.com/iap/docs/managing-access) role:
 
@@ -240,7 +241,7 @@ Follow these steps to access the Kubeflow central dashboard:
     export HOST=$(kubectl -n istio-system get ingress envoy-ingress -o=jsonpath={.spec.rules[0].host})
     ```
 
-1. Follow the instructions on the UI to create a namespace. See the guide to
+1. Follow the instructions on the UI to create a namespace. Refer to this guide on
   [creation of profiles](/docs/components/multi-tenancy/getting-started/#automatic-creation-of-profiles).
 
 Notes:

@@ -1,6 +1,6 @@
 +++
 title = "Management cluster setup"
-description = "Instructions for setting up a management cluster on (GCP)"
+description = "Instructions for setting up a management cluster on Google Cloud"
 weight = 3
 +++
 
@@ -12,17 +12,17 @@ While the management cluster can be deployed in the same project as your Kubeflo
 it in a separate project used for administering one or more Kubeflow instances.
 
 Optionally, the cluster can be configured with [Anthos Config Managmenet](https://cloud.google.com/anthos-config-management/docs) 
-to manage GCP infrastructure using GitOps.
+to manage Google Cloud infrastructure using GitOps.
 
 ## FAQs
 
 * Where is `kfctl`?
 
-    `kfctl` is deprecated for Google Cloud, because its functionality has been replaced by generic tools including [Make](https://www.gnu.org/software/make/), [Kustomize](https://kustomize.io), [kpt](https://googlecontainertools.github.io/kpt/), and [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview).
+    `kfctl` is no longer being used to apply resources for Google Cloud, because required functionalities are now supported by generic tools including [Make](https://www.gnu.org/software/make/), [Kustomize](https://kustomize.io), [kpt](https://googlecontainertools.github.io/kpt/), and [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview).
 
 * Why do we use an extra management cluster to manage Google Cloud resources?
 
-      The management cluster is very lightweight by default. It is used only to run [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview) which works better with other tools comparing to [Deployment Manager](https://cloud.google.com/deployment-manager).
+    The management cluster is very lightweight cluster that runs [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview). Cloud Config Connector makes it easier to configure Google Cloud resources using YAML and Kustomize.
 
 There are some early, yet more detailed explanations about the rationale behind Kubeflow 1.1 changes on Google Cloud in [this GitHub issue](https://github.com/kubeflow/gcp-blueprints/issues/123).
 
@@ -106,16 +106,16 @@ There are some early, yet more detailed explanations about the rationale behind 
    ```
 
    * This will install CNRM in your cluster
-   * It will create the GCP service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
+   * It will create the Google Cloud service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
 
 ### Authorize CNRM for each project
 
-In the last step we created the GCP service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
-this is the service account that CNRM will use to create any GCP resources. Consequently
-you need to grant this GCP service account sufficient privileges to create the desired
+In the last step we created the Google Cloud service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
+this is the service account that CNRM will use to create any Google Cloud resources. Consequently
+you need to grant this Google Cloud service account sufficient privileges to create the desired
 resources in one or more projects. 
 
-The easiest way to do this is to grant the GCP service account owner permissions on one or more projects
+The easiest way to do this is to grant the Google Cloud service account owner permissions on one or more projects
 
 1. Set the managed project
 
