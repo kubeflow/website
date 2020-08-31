@@ -126,7 +126,8 @@ The Kubeflow Pipelines SDK includes the following packages:
   * `kfp.Client.upload_pipeline` uploads a local file to create a new pipeline in KFP.
   * `kfp.Client.upload_pipeline_version` uploads a local file to create a pipeline version. [Follow an example to learn more about creating a pipeline version](/docs/pipelines/tutorials/sdk-examples)
 
-* [`kfp.notebook`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.notebook.html)
+* [`kfp.notebook`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.notebook.html) contains magic to help working with Kubeflow Pipelines in a Python 
+  notebook environment.
 
 * [KFP extension modules](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html)
   include classes and functions for specific platforms on which you can use
