@@ -98,6 +98,11 @@ The Kubeflow Pipelines SDK includes the following packages:
     represents a volume used to pass data between pipeline steps. `ContainerOp`s 
     can mount a `PipelineVolume` either via the constructor's argument 
     `pvolumes` or `add_pvolumes()` method.
+  * [`kfp.dsl.ParallelFor`]()
+  
+  * [`kfp.dsl.ExitHandler`]()
+  
+  * [`kfp.dsl.Condition`]()
 
 * [`kfp.Client`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html)
   contains the Python client libraries for the [Kubeflow Pipelines 
