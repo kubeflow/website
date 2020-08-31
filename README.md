@@ -47,12 +47,17 @@ and run a local server to host your website. This section shows you how.
 
 ### Install Hugo and other dependencies
 
-The Kubeflow website uses the Docsy theme, which recommends that you have 
-**Hugo version 0.53 or later**, and it must be the **extended** version of Hugo.
+You need Hugo version 0.60 or later, and it must be the **extended** version of 
+Hugo. Hugo version 0.60 and later support the Goldmark renderer for Markdown.
+Goldmark offers improved rendering of some text formatting such as lists. 
 
-To get the extended version of Hugo:
+**Note:** From April 2020 onwards, Kubeflow recommends that you use 
+**Hugo version 0.68.3** or later. The Kubeflow website now uses Hugo 0.68.3 via
+Netlify. 
 
-1.  Go to the [Hugo releases](https://github.com/gohugoio/hugo/releases).
+To get the latest extended version of Hugo:
+
+1.  Go to the [Hugo releases](https://github.com/gohugoio/hugo/releases) page.
 1.  In the most recent release, scroll down until you find a list of
     **extended** versions.
 1. Download the relevant file for your operating system.
@@ -60,9 +65,9 @@ To get the extended version of Hugo:
 
 For example, to install Hugo on Linux:
 
-1.  Download
-    [hugo_extended_0.53_Linux-64bit.tar.gz](https://github.com/gohugoio/hugo/releases/download/v0.53/hugo_extended_0.53_Linux-64bit.tar.gz)
-    (or the latest version).
+1.  Download `hugo_extended_0.68.3_Linux-64bit.tar.gz`
+    (or the latest version) from the
+    [Hugo releases](https://github.com/gohugoio/hugo/releases/tag/v0.68.3) page.
 
 1.  Create a new directory:
 
@@ -70,14 +75,15 @@ For example, to install Hugo on Linux:
 
 1.  Extract the file you downloaded to `$HOME/hugo`.
 
-        tar -zxvf hugo_extended_0.53_Linux-64bit.tar.gz
+        tar -zxvf hugo_extended_0.68.3_Linux-64bit.tar.gz
 
 For more details about installing Hugo, See the 
 [Hugo installation guide](https://gohugo.io/getting-started/installing/). 
 
 If you plan to make changes to the site styling, you need to install some 
 **CSS libraries** as well. Follow the instructions in the 
-[Docsy theme's setup guide](https://www.docsy.dev/docs/getting-started/#install-postcss).
+[Docsy theme's setup 
+guide](https://www.docsy.dev/docs/getting-started/#install-postcss).
 
 ### Fork and clone the website repository and run a local website server
 
@@ -130,13 +136,13 @@ file](https://github.com/kubeflow/website/blob/master/config.toml).
 
 The left-hand navigation panel is defined by the directory structure under 
 the 
-[`docs` directory](https://github.com/kubeflow/website/tree/master/content/docs). 
+[`docs` directory](https://github.com/kubeflow/website/tree/master/content/en/docs).
 
 A `weight` property in the _front matter_ of each page determines the position 
 of the page relative to the others in the same directory. The lower the weight,
 the earlier the page appears in the section. A weight of 1 appears before a
 a weight of 2, and so on. For example, see the front matter of the
-[Getting Started with Kubeflow](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/started/getting-started.md)
+[Getting Started with Kubeflow](https://raw.githubusercontent.com/kubeflow/website/master/content/en/docs/started/getting-started.md)
 page. The page front matter looks like this:
 
 ```
@@ -190,7 +196,7 @@ Styling of images:
 * To see some examples of styled images, take a look at the
   [OAuth setup page](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) 
   in the Kubeflow docs. Search for `.png` in the
-  [page source](https://raw.githubusercontent.com/kubeflow/website/master/content/docs/gke/deploy/oauth-setup.md).
+  [page source](https://raw.githubusercontent.com/kubeflow/website/master/content/en/docs/gke/deploy/oauth-setup.md).
 * For more help, see the guide to
   [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/).
 * Also see the Bootstrap utilities, such as 
@@ -198,7 +204,7 @@ Styling of images:
 
 The site's [front page](https://www.kubeflow.org/):
 
-* See the [page source](https://github.com/kubeflow/website/blob/master/content/_index.html).
+* See the [page source](https://github.com/kubeflow/website/blob/master/content/en/_index.html).
 * The CSS styles are in the 
   [project variables file](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
 * The page uses the 

@@ -1,0 +1,11 @@
++++
+title = "Deploy using UI"
+description = "Instructions for using the UI to deploy Kubeflow on Google Cloud Platform (GCP)"
+weight = 100
++++
+
+{{% alert title="No longer supported" color="warning" %}}
+Starting with Kubeflow 1.1.0 deploying Kubeflow via the click to deploy web application
+is no longer supported. Please [use kustomize and kpt](/docs/gke/deploy/deploy-cli/) to deploy Kubeflow.
+{{% /alert %}}
+

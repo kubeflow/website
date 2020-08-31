@@ -1,0 +1,121 @@
+# Redirects from what the browser requests to what we serve
+# Info: https://www.netlify.com/docs/redirects/
+
+/version/stable/gke/scripts/deploy.sh  https://raw.githubusercontent.com/kubeflow/kubeflow/v0.2.2/scripts/gke/deploy.sh
+/version/stable/scripts/deploy.sh      https://raw.githubusercontent.com/kubeflow/kubeflow/v0.2.2/scripts/deploy.sh
+/version/stable/source.tar.gz          https://github.com/kubeflow/kubeflow/archive/v0.2.2.tar.gz
+/blog/                                 https://medium.com/kubeflow
+/blog/why_kubeflow/                    https://medium.com/kubeflow/why-kubeflow-in-your-infrastructure-56b8fabf1f3e
+/blog/announcing_kubeflow_0.3/         https://medium.com/kubeflow/kubeflow-0-3-simplifies-setup-improves-ml-development-98b8ca10bd69
+/blog/blog_posts/                      https://medium.com/kubeflow/blog-posts-about-kubeflow-7068688359f3
+/blog/nvidia_tensorrt/                 https://medium.com/kubeflow/gpu-accelerated-inference-for-kubernetes-with-the-nvidia-tensorrt-inference-server-and-kubeflow-63061305fff2
+/blog/kaggle_on_kubeflow/              https://medium.com/kubeflow/kaggle-on-kubeflow-185a29e27c53
+/blog/announcing_kubeflow_0.2/         https://medium.com/kubeflow/kubeflow-0-2-offers-new-components-and-simplified-setup-735e4c56988d
+
+/docs/guides/components/components     /docs/components/
+/docs/guides/pipelines/deploy-pipelines-service/  /docs/pipelines/pipelines-quickstart/
+
+# Removed the "guides" section from the doc URLs.
+/docs/guides/*  /docs/:splat
+
+# Merged duplicate page pipelines-samples.md into build-pipeline.md
+/docs/pipelines/pipelines-samples/	   /docs/pipelines/build-pipeline/
+
+# Removed redundant UI guide. Quickstart is a better destination.
+/docs/pipelines/pipelines-ui/	         /docs/pipelines/pipelines-quickstart/
+
+# Restructured the pipelines docs.
+/docs/pipelines/output-viewer/                 /docs/pipelines/sdk/output-viewer/
+/docs/pipelines/pipelines-metrics/             /docs/pipelines/sdk/pipelines-metrics/
+/docs/pipelines/build-component/               /docs/pipelines/sdk/build-component/
+/docs/pipelines/install-sdk/                   /docs/pipelines/sdk/install-sdk/
+/docs/pipelines/lightweight-python-components/ /docs/pipelines/sdk/lightweight-python-components/
+/docs/pipelines/build-pipeline/                /docs/pipelines/tutorials/build-pipeline/
+/docs/pipelines/pipelines-tutorial/            /docs/pipelines/tutorials/cloud-tutorials/
+/docs/pipelines/tutorials/pipelines-tutorial/  /docs/pipelines/tutorials/cloud-tutorials/
+/docs/gke/pipelines-tutorial/                  /docs/pipelines/tutorials/cloud-tutorials/
+/docs/gke/pipelines/pipelines-tutorial/        /docs/pipelines/tutorials/cloud-tutorials/
+/docs/gke/authentication-pipelines/            /docs/gke/pipelines/authentication-pipelines/
+
+/docs/pipelines/metrics/                       /docs/pipelines/sdk/pipelines-metrics/
+/docs/pipelines/metrics/pipelines-metrics/     /docs/pipelines/sdk/pipelines-metrics/
+/docs/pipelines/metrics/output-viewer/         /docs/pipelines/sdk/output-viewer/
+/docs/pipelines/concepts/*                     /docs/pipelines/overview/concepts/:splat
+/docs/pipelines/pipelines-overview/            /docs/pipelines/overview/pipelines-overview/
+/docs/pipelines/enable-gpu-and-tpu/            /docs/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/gcp/enable-gpu-and-tpu/    /docs/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/preemptible/                   /docs/gke/pipelines/preemptible/
+/docs/pipelines/sdk/gcp/preemptible/           /docs/gke/pipelines/preemptible/
+/docs/pipelines/reusable-components/           /docs/examples/shared-resources/
+/docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
+
+# Moved the guide to monitoring GKE deployments.
+/docs/other-guides/monitoring/                 /docs/gke/monitoring/
+
+# Created a new section for pipeline concepts.
+/docs/pipelines/pipelines-concepts/            /docs/pipelines/concepts/
+
+# Replaces Pipelines DSL overview with SDK overview
+/docs/pipelines/sdk/dsl-overview/              /docs/pipelines/sdk/sdk-overview/
+
+# Created a new section for pipelines installation.
+/docs/pipelines/standalone-deployment-gcp/    /docs/pipelines/installation/standalone-deployment/
+
+# Removed the downloads page from Reference to Getting Started with Kubeflow
+/docs/reference/downloads/                     /docs/started/getting-started/
+
+# Adding the content of Requirements to Getting Started and removing Requirements
+docs/started/requirements/                    /docs/started/getting-started/
+
+# Created a new components layout
+/docs/components/hyperparameter                /docs/components/hyperparameter-tuning/hyperparameter
+/docs/components/chainer                       /docs/components/training/chainer
+/docs/components/modeldb                       /docs/components/misc/modeldb
+/docs/components/mpi                           /docs/components/training/mpi
+/docs/components/mxnet                         /docs/components/training/mxnet
+/docs/components/pipelines                     /docs/components/pipelines/pipelines
+/docs/components/pytorch                       /docs/components/training/pytorch
+/docs/components/nuclio                        /docs/components/misc/nuclio
+/docs/components/seldon                        /docs/components/serving/seldon
+/docs/components/trtinferenceserver            /docs/components/serving/tritoninferenceserver
+/docs/components/tfbatchpredict                /docs/components/serving/tfbatchpredict
+/docs/components/tftraining                    /docs/components/training/tftraining
+/docs/components/tfserving_new                 /docs/components/serving/tfserving_new
+
+# Deleted the PyTorch serving page
+/docs/components/pytorchserving/               /docs/components/serving/overview/
+/docs/components/serving/pytorchserving/       /docs/components/serving/overview/
+
+# Restructured the getting-started and other-guides sections.
+/docs/started/getting-started-k8s/             /docs/started/k8s/
+/docs/started/getting-started-minikf/                      /docs/started/workstation/getting-started-minikf/
+/docs/started/getting-started-minikube/                    /docs/started/workstation/minikube-linux/
+/docs/other-guides/virtual-dev/getting-started-minikf/     /docs/started/workstation/getting-started-minikf/
+/docs/started/getting-started-multipass/                   /docs/started/workstation/getting-started-multipass/
+/docs/other-guides/virtual-dev/getting-started-multipass/  /docs/started/workstation/getting-started-multipass/
+/docs/other-guides/virtual-dev/                            /docs/started/workstation/
+/docs/started/getting-started-aws/             /docs/started/cloud/getting-started-aws/
+/docs/started/getting-started-azure/           /docs/started/cloud/getting-started-azure/
+/docs/started/getting-started-gke/             /docs/started/cloud/getting-started-gke/
+/docs/started/getting-started-iks/             /docs/started/cloud/getting-started-iks/
+
+/docs/other-guides/upgrade/                    /docs/upgrading/upgrade/
+
+/docs/use-cases/kubeflow-on-multinode-cluster/ /docs/other-guides/kubeflow-on-multinode-cluster/
+/docs/use-cases/job-scheduling/                /docs/other-guides/job-scheduling/
+
+# Remove Kubeflow installation on existing EKS cluster
+/docs/aws/deploy/existing-cluster/             /docs/aws/deploy/install-kubeflow/
+
+# Move the kustomize guide to the config section
+/docs/components/misc/kustomize/              /docs/other-guides/kustomize/
+
+# Merged the UIs page with the new central dashboard page
+/docs/other-guides/accessing-uis/             /docs/components/central-dash/overview/
+
+# Refactored multi-user docs
+/docs/other-guides/multi-user-overview/       /docs/components/multi-tenancy/
+
+# Rename TensorRT Inference Server to Triton Inference Server
+/docs/components/serving/trtinferenceserver   /docs/components/serving/tritoninferenceserver
