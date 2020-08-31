@@ -115,6 +115,8 @@ some
 
 *   Use the `{inputValue: Input name}` command-line placeholder for small
     values that should be directly inserted into the command-line.
+*   Use the `{inputPath: Input name}` command-line placeholder for input file
+    locations.
 *   Use the `{outputPath: Output name}` command-line placeholder for output file
     locations.
 *   Specify the full command line in ‘command:' instead of just arguments to the

@@ -16,7 +16,8 @@ Here's a quick guide to updating the docs. It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
 updates:
 
-1. Fork the [kubeflow/website repo][kubeflow-website-repo] on GitHub.
+1. Fork the [kubeflow/website 
+  repository](https://github.com/kubeflow/website) on GitHub.
 1. Make your changes and send a pull request (PR).
 1. If you're not yet ready for a review, add "WIP" to the PR name to indicate 
   it's a work in progress. Alternatively, you can also add `/hold` in a comment
@@ -33,10 +34,11 @@ updates:
   the content.
 1. When you're ready for a review, add a comment to the PR, remove any holds or
   "WIP" markers, and assign a reviewer/approver. See the
-  [Kubeflow contributor guide][kubeflow-contributor-guide].
+  [Kubeflow contributor guide](https://www.kubeflow.org/docs/about/contributing/).
 
-If you need help with the GitHub workflow, take a look at the quick guide near
-the bottom of this page.
+If you need more help with the GitHub workflow, follow this
+[guide to a standard GitHub
+workflow](https://github.com/kubeflow/website/blob/master/quick-github-guide.md). 
 
 ## Previewing your changes on a local website server
 
@@ -77,12 +79,14 @@ If you plan to make changes to the site styling, you need to install some
 **CSS libraries** as well. Follow the instructions in the 
 [Docsy theme's setup guide](https://www.docsy.dev/docs/getting-started/#install-postcss).
 
-### Fork and clone the website repo and run a local website server
+### Fork and clone the website repository and run a local website server
 
-Follow the usual GitHub workflow to fork the repo on GitHub and clone it to your
-local machine, then use your local repo as input to your Hugo web server:
+Follow the usual GitHub workflow to fork the repository on GitHub and clone it 
+to your local machine, then use your local repository as input to your Hugo web 
+server:
 
-1. **Fork** the [kubeflow/website repo][kubeflow-website-repo] in the GitHub UI.
+1. **Fork** the [kubeflow/website 
+  repository](https://github.com/kubeflow/website) in the GitHub UI.
 1. Clone your fork locally. This example uses SSH cloning:
 
     ```
@@ -108,7 +112,7 @@ local machine, then use your local repo as input to your Hugo web server:
 
 1. While making the changes, you can preview them on your local version of the
   website at [http://localhost:1313/](http://localhost:1313/). Note that if you
-  have more than one local git branch, when you switch between git branches the
+  have more than one local Git branch, when you switch between Git branches the
   local website reflects the files in the current branch.
 
 Useful docs:
@@ -217,7 +221,7 @@ shortcode file when the page is built.
 
 To create a shortcode:
 
-1. Add an HTML file in  the `/website/themes/kf/layouts/shortcodes/` directory.
+1. Add an HTML file in  the `/website/layouts/shortcodes/` directory.
    The file name must be short and meaningful, as it determines the shortcode
    you and others use in the docs.
 
@@ -254,8 +258,8 @@ Kubernetes:
   ```
 
 Useful Hugo docs:
-- [Shortcode templates][hugo-shortcode-templates]
-- [Shortcodes][hugo-shortcodes]
+- [Shortcode templates](https://gohugo.io/templates/shortcode-templates/)
+- [Shortcodes](https://gohugo.io/content-management/shortcodes/)
 
 ## Versioning of the docs
 
@@ -280,100 +284,3 @@ shortcode in the links, like so:
 https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
 ```
 This ensures that all the links in a versioned webpage point to the correct branch.
-
-## Quick guide to working with a GitHub repo
-
-Here's a quick guide to a fairly standard GitHub workflow. This section is handy
-for people who don't use git or GitHub often, and just need a quick guide to
-get going:
-
-1. Fork the kubeflow/website repo:
-
-    * Go to the [kubeflow/website repo][kubeflow-website-repo] on GitHub.
-    * Click **Fork** to make your own copy of the repo. GitHub creates a copy
-      at `https://github.com/<your-github-username>/website`.
-
-1. Open a command window on your local machine.
-
-1. Clone your forked repo, to copy the files down to your local machine.
-  This example creates a directory called `kubeflow` and uses SSH cloning to
-  download the files:
-
-    ```
-    mkdir kubeflow
-    cd kubeflow/
-    git clone git@github.com:<your-github-username>/website.git
-    cd website/
-    ```
-
-1. Add the upstream repo as a git remote repo:
-
-    ```
-    git remote add upstream https://github.com/kubeflow/website.git
-    ```
-
-1. Check your remotes:
-
-    ```
-    git remote -vv
-    ```
-
-    You should have 2 remote repos:
-
-      -  `origin` - points to your own fork of the repo on gitHub -
-         that is, the one you cloned my local repo from.
-      -  `upstream` - points to the actual repo on gitHub.
-
-1. Create a branch. In this example, replace `doc-updates` with any branch name
-  you like. Choose a branch name that helps you recognise the updates you plan
-  to make in that branch:
-
-    ```
-    git checkout -b doc-updates
-    ```
-
-1. Add and edit the files as you like. The doc pages are in the
-  `/website/content/docs/` directory.
-
-1. Run `git status` at any time, to check the status of your local files.
-  Git tells you which files need adding or committing to your local repo.
-
-1. Commit your updated files to your local git repo. Example commit:
-
-    ```
-    git commit -a -m "Fixed some doc errors."
-    ```
-
-    Or:
-
-    ```
-    git add add-this-doc.md
-    git commit -a -m "Added a shiny new doc."
-    ```
-
-1. Push from your branch (for example, `doc-updates`) to **the relevant branch
-  on your fork on GitHub:**
-
-    ```
-    git checkout doc-updates
-    git push origin doc-updates
-    ```
-
-1. When you're ready to start the review process, create a pull request (PR)
-  **in the branch** on **your fork** on the GitHub UI, based on the above push.
-  The PR is auto-sent to the upstream repo - that is, the one you forked from.
-
-1. If you need to make changes to the files in your PR, continue making them
-  locally in the same branch, then push them again in the same way. GitHub
-  automatically sends them through to the same PR on the upstream repo!
-
-1. **Hint:** If you're authenticating to GitHub via SSH, use `ssh-add` to add
-  your SSH key passphrase to the managing agent, so that you don't have to
-  keep authenticating to GitHub. You need to do this again after every reboot.
-
-
-[hugo-shortcode-templates]: https://gohugo.io/templates/shortcode-templates/
-[hugo-shortcodes]: https://gohugo.io/content-management/shortcodes/
-
-[kubeflow-contributor-guide]: https://github.com/kubeflow/community/blob/master/CONTRIBUTING.md
-[kubeflow-website-repo]: https://github.com/kubeflow/website

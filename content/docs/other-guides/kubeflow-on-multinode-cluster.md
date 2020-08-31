@@ -24,7 +24,7 @@ The best practice is to decouple storage needs ([Persistent Volume Claims](https
 
 Cloud providers define mechanisms to allocate PVs based on existing PVCs using their storage infrastructure; on-prem clusters must provision their PVs according the existing capability of the system.
 
-In development clusters (e.g. Minikube) or single node clusters, you can bind PVCs to HostPath PVs, which are a particular kind of volumes that maps the Pod's Volume to a directory of the filesystem.
+In development clusters (For example, Minikube) or single node clusters, you can bind PVCs to HostPath PVs, which are a particular kind of volumes that maps the Pod's Volume to a directory of the filesystem.
 
 This approach, however, is not a feasible solution in multi-node clusters. A Pod can be on different nodes during its lifecycle: Kubernetes can kill and restart it on another node at any time based on the resources available in the cluster. In this scenario, the migrated Pod will not find its old data after restarting on a new node.
 
@@ -79,7 +79,7 @@ In order to successfully complete the Kubeflow installation, your cluster must h
 
 Since creating NFS PVs can be tedious, you can set up [Dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) to automatically create PVs based on existing PVCs.
 
-Follow the instructions in this section to instal a Dynamic Provisioner for NFS volumes in your cluster.
+Follow the instructions in this section to install a Dynamic Provisioner for NFS volumes in your cluster.
 
 ### Install Helm
 
@@ -92,7 +92,7 @@ Next, install [NFS client provisioner](https://github.com/helm/charts/tree/maste
 
 A storage class is a label associated to volumes to specify a class of storage: 
 storage class definitions make it possible to query and provision volumes with different performances or capabilities
- (e.g SSD or slower disks).
+ (For example, SSD or slower disks).
 
 A special storage class is *default*: any PV or PVC that doesn't
 specify one is associated to it.
@@ -141,15 +141,22 @@ To perform this task you need to:
 2. Change their storage class.
 3. Delete and recreate them in the cluster.
 
-Download the three PVCs:
+For downloading the existing PVCs, first get list of all PVCs:
 
 ```shell
-kubectl get pvc/mysql-pv-claim -n kubeflow -o yaml > mysql-pv-claim.yaml
-kubectl get pvc/minio-pv-claim -n kubeflow -o yaml > minio-pvc.yaml
-kubectl get pvc/katib-mysql -n kubeflow -o yaml > katib.yaml
+kubectl get pvc --all-namespaces
 ```
 
-And then modify files to add the right `storageClassName` under the `spec` section:
+This will show the list of PVCs with details including `NAMESPACE`, `STATUS`, `STORAGECLASS`.
+(For example, `mysql-pv-claim` in `kubeflow` namespace and `authservice-pvc` in `istio-systems` namespace).
+
+Download the PVCs:
+
+```shell
+kubectl get pvc/<PVC-NAME> -n <NAMESPACE> -o yaml > <PVC-NAME>.yaml
+```
+
+And then modify the YAML files to add the right `storageClassName` under the `spec` section. For example:
 
 ```yaml
 # mysql-pv-claim.yaml
@@ -164,46 +171,16 @@ spec:
   ...
 ```
 
-```yaml
-# minio-pvc.yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: minio-pv-claim
-  namespace: kubeflow
-  ...
-spec:
-  storageClassName: nfs
-  ...
-```
-
-```yaml
-# katib.yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: katib-mysql
-  namespace: kubeflow
-  ...
-spec:
-  storageClassName: nfs
-  ...
-```
-
-Next, remove the old PVCs:
+After modifying all downloaded PVCs, remove the old PVCs. Note that the field `<PVC-NAME>` below stands for the downloaded YAML file name.
 
 ```shell
-kubectl delete -f mysql-pv-claim.yaml
-kubectl delete -f minio-pvc.yaml
-kubectl delete -f katib.yaml
+kubectl delete -f <PVC-NAME>.yaml
 ```
 
 Finally, add the modified PVCs:
 
 ```shell
-kubectl apply -f mysql-pv-claim.yaml
-kubectl apply -f minio-pvc.yaml
-kubectl apply -f katib.yaml
+kubectl apply -f <PVC-NAME>.yaml
 ```
 
 The PVCs are now bound to your NFS storage.

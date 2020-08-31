@@ -37,14 +37,14 @@ steps:
 2. Run the following commands to deploy the services of the Metadata component:
 
     ```
-    cd manifests/metadata/base
-    kustomize build . | kubectl apply -n kubeflow -f -
+    cd manifests/metadata
+    kustomize build overlays/db | kubectl apply -n kubeflow -f -
     ```
 
 ## Using the Metadata SDK to record metadata
 
 The Metadata project publishes a 
-[Python library (SDK)](https://github.com/kubeflow/metadata/tree/master/sdk/python#python-client)
+[Python library (SDK)](https://kubeflow-metadata.readthedocs.io/en/latest/)
 that you can use to log (record) your metadata.
 
 Run the following command to install the Metadata SDK:
@@ -91,21 +91,25 @@ you can view the resulting metadata on the Kubeflow UI:
 
 ### Learn more about the Metadata SDK
 
-The Metadata SDK includes the following
-[predefined types](https://github.com/kubeflow/metadata/tree/master/schema)
+The Metadata SDK includes the following predefined types
 that you can use to describe your ML workflows:
 
-* [`data_set.json`](https://github.com/kubeflow/metadata/blob/master/schema/alpha/artifacts/data_set.json)
+* [`DataSet`](https://kubeflow-metadata.readthedocs.io/en/latest/source/md.html#kubeflow.metadata.metadata.DataSet)
   to capture metadata for a dataset that forms the input into or the output of
   a component in your workflow.
-* [`execution.json`](https://github.com/kubeflow/metadata/blob/master/schema/alpha/execution.json)
+* [`Execution`](https://kubeflow-metadata.readthedocs.io/en/latest/source/md.html#kubeflow.metadata.metadata.Execution)
   to capture metadata for an execution (run) of your ML workflow.
-* [`metrics.json`](https://github.com/kubeflow/metadata/blob/master/schema/alpha/artifacts/metrics.json)
+* [`Metrics`](https://kubeflow-metadata.readthedocs.io/en/latest/source/md.html#kubeflow.metadata.metadata.Metrics)
   to capture metadata for the metrics used to evaluate an ML model.
-* [`model.json`](https://github.com/kubeflow/metadata/blob/master/schema/alpha/artifacts/model.json)
+* [`Model`](https://kubeflow-metadata.readthedocs.io/en/latest/source/md.html#kubeflow.metadata.metadata.Model)
   to capture metadata for an ML model that your workflow produces.
 
 <a id="metadata-ui"></a>
+
+## Using metadata watcher to record metadata
+
+Besides using the Python SDK to log metadata directly, you can add your own [metadata watcher](https://github.com/kubeflow/metadata/blob/master/watcher/README.md) to watch Kubernetes resource changes and save the metadata into the metadata service.
+
 ## Tracking artifacts on the Metadata UI
 
 You can view a list of logged artifacts and the details of each individual 

@@ -10,7 +10,7 @@ This section helps you to enable private access for your Amazon EKS cluster's Ku
 
 You can enable private access to the Kubernetes API server so that all communication between your worker nodes and the API server stays within your VPC. You can also completely disable public access to your API server so that it's not accessible from the internet.
 
-You can enable private access in `${KUBEFLOW_SRC}/${KFAPP}/aws_config/cluster_features.sh`.
+You can enable private access in `${KF_DIR}/aws_config/cluster_features.sh`.
 
 ```shell
 PRIVATE_LINK=false

@@ -28,20 +28,24 @@
 /docs/pipelines/output-viewer/                 /docs/pipelines/sdk/output-viewer/
 /docs/pipelines/pipelines-metrics/             /docs/pipelines/sdk/pipelines-metrics/
 /docs/pipelines/build-component/               /docs/pipelines/sdk/build-component/
-/docs/pipelines/enable-gpu-and-tpu/            /docs/pipelines/sdk/gcp/enable-gpu-and-tpu/
 /docs/pipelines/install-sdk/                   /docs/pipelines/sdk/install-sdk/
 /docs/pipelines/lightweight-python-components/ /docs/pipelines/sdk/lightweight-python-components/
 /docs/pipelines/build-pipeline/                /docs/pipelines/tutorials/build-pipeline/
-/docs/pipelines/pipelines-tutorial/            /docs/gke/pipelines-tutorial/
-/docs/pipelines/tutorials/pipelines-tutorial/  /docs/gke/pipelines-tutorial/
+/docs/pipelines/pipelines-tutorial/            /docs/gke/pipelines/pipelines-tutorial/
+/docs/pipelines/tutorials/pipelines-tutorial/  /docs/gke/pipelines/pipelines-tutorial/
+/docs/gke/pipelines-tutorial/                  /docs/gke/pipelines/pipelines-tutorial/
+/docs/gke/authentication-pipelines/            /docs/gke/pipelines/authentication-pipelines/
 
 /docs/pipelines/metrics/                       /docs/pipelines/sdk/pipelines-metrics/
 /docs/pipelines/metrics/pipelines-metrics/     /docs/pipelines/sdk/pipelines-metrics/
 /docs/pipelines/metrics/output-viewer/         /docs/pipelines/sdk/output-viewer/
 /docs/pipelines/concepts/*                     /docs/pipelines/overview/concepts/:splat
 /docs/pipelines/pipelines-overview/            /docs/pipelines/overview/pipelines-overview/
-/docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/pipelines/sdk/gcp/enable-gpu-and-tpu/
-/docs/pipelines/preemptible/                   /docs/pipelines/sdk/gcp/preemptible/
+/docs/pipelines/enable-gpu-and-tpu/            /docs/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/gcp/enable-gpu-and-tpu/    /docs/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/preemptible/                   /docs/gke/pipelines/preemptible/
+/docs/pipelines/sdk/gcp/preemptible/           /docs/gke/pipelines/preemptible/
 /docs/pipelines/reusable-components/           /docs/examples/shared-resources/
 /docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
 
@@ -54,6 +58,9 @@
 # Replaces Pipelines DSL overview with SDK overview
 /docs/pipelines/sdk/dsl-overview/              /docs/pipelines/sdk/sdk-overview/
 
+# Created a new section for pipelines installation.
+/docs/pipelines/standalone-deployment-gcp/    /docs/pipelines/installation/standalone-deployment/
+
 # Removed the downloads page from Reference to Getting Started with Kubeflow
 /docs/reference/downloads/                     /docs/started/getting-started/
 
@@ -63,7 +70,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Created a new components layout
 /docs/components/hyperparameter                /docs/components/hyperparameter-tuning/hyperparameter
 /docs/components/chainer                       /docs/components/training/chainer
-/docs/components/istio                         /docs/components/serving/istio
 /docs/components/modeldb                       /docs/components/misc/modeldb
 /docs/components/mpi                           /docs/components/training/mpi
 /docs/components/mxnet                         /docs/components/training/mxnet
@@ -87,10 +93,10 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/started/getting-started-gke/             /docs/started/cloud/getting-started-gke/
 /docs/started/getting-started-icp/             /docs/started/cloud/getting-started-icp/
 
-/docs/other-guides/job-scheduling/             /docs/use-cases/job-scheduling/
 /docs/other-guides/upgrade/                    /docs/upgrading/upgrade/
 
 /docs/use-cases/kubeflow-on-multinode-cluster/ /docs/other-guides/kubeflow-on-multinode-cluster/
+/docs/use-cases/job-scheduling/                /docs/other-guides/job-scheduling/
 
 # Remove Kubeflow installation on existing EKS cluster
 /docs/aws/deploy/existing-cluster/             /docs/aws/deploy/install-kubeflow/

@@ -4,17 +4,19 @@ description = "Get Kubeflow running on IBM Cloud Private"
 weight = 2
 +++
 
-This guide is a quick start to deploy Kubeflow on [IBM Cloud Private](https://www.ibm.com/cloud/private) 3.1.0 or later.  IBM Cloud Private is an enterprise PaaS layer for developing and managing on-premises, containerized applications. It is an integrated environment for managing containers that includes the container orchestrator Kubernetes, a private image registry, a management console, and monitoring frameworks.
+This guide is a quick start to deploying Kubeflow on [IBM Cloud Private](https://www.ibm.com/cloud/private) 3.1.0 or later.  IBM Cloud Private is an enterprise platform as a service (PaaS) layer for developing and managing on-premises, containerized applications. It is an integrated environment for managing containers that includes the container orchestrator Kubernetes, a private image registry, a management console, and monitoring frameworks.
 
-### Prerequisites
+## Prerequisites
 
 - Get the system requirements from [IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/supported_system_config/hardware_reqs.html) for IBM Cloud Private.
   
-- Setup NFS Server and export one or more path for persistent volume.
+- Set up NFS Server and export one or more paths for persistent volume(s).
 
-### Installing IBM Cloud Private
+## Installing IBM Cloud Private
 
-Following [installation steps in IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/installing/install.html) to install IBM Cloud Private 3.1.0 or later with master, proxy, worker, and optional management and vulnerability advisory nodes in your cluster in standard or high availability configurations.
+Follow the [installation steps in IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/installing/install.html) to install IBM Cloud Private 3.1.0 or later with master, proxy, worker, and optional management and vulnerability advisory nodes in your cluster in standard or high availability configurations.
+
+Please note IBM Cloud Private 3.2.0 is a prerequisite for installing Kubeflow v0.7.
 
 The guide takes IBM Cloud Private 3.1.0 as example below. You can check the IBM Cloud Private after installation.
 
@@ -28,17 +30,20 @@ NAME         STATUS    ROLES                      AGE       VERSION
 10.43.0.46   Ready     worker                     11d       v1.11.1+icp-ee
 10.43.0.49   Ready     worker                     11d       v1.11.1+icp-ee
 ```
-### Creating image policy and persistent volume
+## Creating image policy and persistent volume
+
+Follow these steps to create an image policy for your Kubernetes namespace and a persistent volume (PV) for your Kubeflow components:
 
 1. Create Kubernetes namespace.
 
-    ```bash
+    ```
     export K8S_NAMESPACE=kubeflow
     kubectl create namespace $K8S_NAMESPACE
     ```
+
     * **K8S_NAMESPACE** is namespace name that the Kubeflow will be installed in. By default should be "kubeflow".
 
-2. Create image policy for the namespace.
+1. Create image policy for the namespace.
 
     The image policy definition file (`image-policy.yaml`) is as following:
 
@@ -65,7 +70,7 @@ NAME         STATUS    ROLES                      AGE       VERSION
     kubectl create -n $K8S_NAMESPACE -f image-policy.yaml 
     ```
 
-3. Create persistent volume (PV) for Kubeflow components.
+1. Create persistent volume (PV) for Kubeflow components.
    
     Some Kubeflow components need PVs to storage data, such as minio, mysql katib. We need to create PVs for those pods in advance. 
     The PVs defination file (`pv.yaml`) is as following:
@@ -122,53 +127,65 @@ NAME         STATUS    ROLES                      AGE       VERSION
     kubectl create -f pv.yaml
     ```
 
-### Installing Kubeflow
+## Installing Kubeflow
 
 Follow these steps to deploy Kubeflow:
 
-1. Download a `kfctl` v0.5.0 or later release from the [Kubeflow releases page](https://github.com/kubeflow/kubeflow/releases/).
+1. Download the kfctl {{% kf-latest-version %}} release from the
+  [Kubeflow releases 
+  page](https://github.com/kubeflow/kubeflow/releases/tag/{{% kf-latest-version %}}).
 
-2. Unpack the tar ball:
+1. Unpack the tar ball:
 
-    ```bash
-    tar -xvf kfctl_<release tag>_<platform>.tar.gz
+    ```
+    tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
     ```
 
-3. Run the following commands to set up and deploy Kubeflow. The code below
-  includes an optional command to add the binary `kfctl` to your path. If you don't add the binary to your path, you must use the full path to the `kfctl` 
+1. Run the following commands to set up and deploy Kubeflow. The code below
+  includes an optional command to add the kfctl binary to your path. If you don't add the binary to your path, you must use the full path to the kfctl 
   binary each time you run it.
 
-    ```bash
+    ```
     # The following command is optional, to make kfctl binary easier to use.
     export PATH=$PATH:<path to kfctl in your Kubeflow installation>
-    export KFAPP=<your choice of application directory name>
+
+    # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
+    # name of the directory containing your configuration.
+    # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
+    export KF_NAME=<your choice of name for the Kubeflow deployment>
+
+    # Set the path to the base directory where you want to store one or more 
+    # Kubeflow deployments. For example, /opt/.
+    # Then set the Kubeflow application directory for this deployment.
+    export BASE_DIR=<path to a base directory>
+    export KF_DIR=${BASE_DIR}/${KF_NAME}
+
     # Installs Istio by default. Comment out Istio components in the config file to skip Istio installation.
-    export CONFIG="https://raw.githubusercontent.com/kubeflow/kubeflow/v0.6-branch/bootstrap/config/kfctl_k8s_istio.0.6.2.yaml"
+    export CONFIG_URI="{{% config-uri-k8s-istio %}}"
 
-    kfctl init ${KFAPP} --config=${CONFIG} -V
-    cd ${KFAPP}
-    kfctl generate all -V
-    kfctl apply all -V
+    mkdir ${KF_DIR}
+    cd ${KF_DIR}
+    kfctl apply -V -f ${CONFIG_URI}
     ```
-   * **${KFAPP}** - the _name_ of a directory where you want Kubeflow 
-     configurations to be stored. This directory is created when you run
-     `kfctl init`. If you want a custom deployment name, specify that name here.
-     The value of this variable becomes the name of your deployment.
-     The value of this variable cannot be greater than 25 characters. It must
-     contain just the directory name, not the full path to the directory.
-     The content of this directory is described in the next section.
+      * **${KF_NAME}** - the name of your Kubeflow deployment. This value also
+        becomes the name of the directory where your Kubeflow configurations are 
+        stored. 
+        If you want a custom deployment name, specify that name here.
+        For example,  `my-kubeflow` or `kf-test`.
+        The value of this variable cannot be greater than 25 characters. It must
+        contain just the deployment name, not the full path to the directory.
 
-4. Check the resources deployed in namespace `kubeflow`:
+1. Check the resources deployed in namespace `kubeflow`:
 
-    ```bash
+    ```
     kubectl -n kubeflow get  all
     ```
 
 ## Access Kubeflow dashboard
 
-From Kubeflow 0.6, the Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard. Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
+From Kubeflow v0.6, the Kubeflow Dashboard can be accessed via `istio-ingressgateway` service. If loadbalancer is not available in your environment, NodePort or Port forwarding can be used to access the Kubeflow Dashboard. Refer [Ingress Gateway guide](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
 
-For Kubeflow version lower than 0.6, access the Kubeflow Dashboard via Ambassador service. Change the Ambassador service type to NodePort, then access the Kubeflow dashboard through Ambassador.
+For Kubeflow version lower than v0.6, access the Kubeflow Dashboard via Ambassador service. Change the Ambassador service type to NodePort, then access the Kubeflow dashboard through Ambassador.
 ```bash
 kubectl -n kubeflow patch service ambassador -p '{"spec":{"type": "NodePort"}}'
 AMBASSADOR_PORT=$(kubectl -n kubeflow get service ambassador -ojsonpath='{.spec.ports[?(@.name=="ambassador")].nodePort}')
@@ -183,15 +200,22 @@ http://${MANAGEMENT_IP}:$AMBASSADOR_PORT/
 
 ## Delete Kubeflow
 
+Set the `${CONFIG_FILE}` environment variable to the path for your 
+Kubeflow configuration file:
+
+  ```
+  export CONFIG_FILE=${KF_DIR}/{{% config-file-k8s-istio %}}
+  ```
+
 Run the following commands to delete your deployment and reclaim all resources:
 
 ```bash
-cd ${KFAPP}
+cd ${KF_DIR}
 # If you want to delete all the resources, including storage.
-kfctl delete all --delete_storage
+kfctl delete -f ${CONFIG_FILE} --delete_storage
 # If you want to preserve storage, which contains metadata and information
-# from mlpipeline.
-kfctl delete all
+# from Kubeflow Pipelines.
+kfctl delete -f ${CONFIG_FILE}
 ```
 ## TroubleShooting
 ### Insufficient Pods 
@@ -219,7 +243,23 @@ kubectl -n kube-system scale deploy secret-watcher --replicas=0
 ```
 
 ### Deployed Service's EXTERNAL-IP field stuck in PENDING state
-If you have deployed a service of `LoadBalancer` type, but the EXTERNAL-IP field stucks in `<pending>` state, this is because IBM Cloud Private doesn't provide a built-in support for the `LoadBalancer` service. To enable the `LoadBalancer` service on IBM Cloud Private, please see options desribed [here](https://medium.com/ibm-cloud/working-with-loadbalancer-services-on-ibm-cloud-private-26b7f0d22b44).
+If you have deployed a service of `LoadBalancer` type, but the EXTERNAL-IP field stucks in `<pending>` state, this is because IBM Cloud Private doesn't provide a built-in support for the `LoadBalancer` service. To enable the `LoadBalancer` service on IBM Cloud Private, please see options described [here](https://medium.com/ibm-cloud/working-with-loadbalancer-services-on-ibm-cloud-private-26b7f0d22b44).
+
+
+### CustomResourceDefinition.apiextensions.k8s.io "profiles.kubeflow.org" is invalid during v0.7 installation
+If you install Kubeflow v0.7 in IBM Cloud Private 3.1.0, you may encounter the following error:
+```
+failed to apply:  (kubeflow.error): Code 500 with message: kfApp Apply failed for kustomize:  (kubeflow.error): Code 500 with message: Apply.Run  Error error when creating "/tmp/kout904105401": CustomResourceDefinition.apiextensions.k8s.io "profiles.kubeflow.org" is invalid: spec.validation.openAPIV3Schema: Invalid value:...
+must only have "properties", "required" or "description" at the root if the status subresource is enabled
+```
+The default Kubernetes version in IBM Cloud Private 3.1.0 is 1.11 which is incompatilbe with Kubeflow v0.7. Please upgrade IBM Cloud Private with a Kubernetes version that is compatible with the Kubeflow version as described in [Minimum system requirements](https://www.kubeflow.org/docs/started/k8s/overview/).
+
+### v.07 Kubeflow pods stuck in CreateContainerConfigError state
+If you install Kubeflow v0.7 in IBM Cloud Private 3.2.0, you may find pods stuck in CreateContainerConfigError state and describe pod show the following error: 
+``` 
+Error: container has runAsNonRoot and image will run as root
+```
+If you install IBM Cloud Private version 3.2.0 or later as a new installation, the default pod security policy setting is the [ibm-restricted-psp policy](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.2.0/manage_cluster/security.html), which is applied to all of the existing and newly created namespaces. You can bypass this by deploying Kubeflow using a non-root user id. You can also use [IBM Cloud private CLI cm commands](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/manage_cluster/cli_cm_commands.html) to change the default setting.  See [Pod isolation](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/user_management/iso_pod.html) for other options.
 
 
 

@@ -22,6 +22,8 @@ Google Developers Codelabs provide a guided, tutorial, hands-on coding experienc
 * [Kubeflow Pipelines - GitHub Issue
   Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-pipelines-gis/index.html): Run GitHub Issue Summarization with Kubeflow Pipelines on GKE.
 
+* [From Notebook to Kubeflow Pipelines with MiniKF and Kale](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-minikf-kale/index.html): Run an end-to-end ML workflow all the way from a Notebook to a reproducible multi-step pipeline with Kale on MiniKF.
+
 ## Katacoda scenarios
 
 Follow the [Katacoda tutorials](https://www.katacoda.com/kubeflow) to deploy Kubeflow and run a machine learning model.

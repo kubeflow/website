@@ -27,7 +27,7 @@ Join the discussion on the
 ask questions, request features, and get support for MiniKF.
 
 To join the Kubeflow Slack workspace, please [request an
-invite](https://kubeflow.slack.com/join/shared_invite/enQtNDg5MTM4NTQyNjczLWUyZGI1ZmExZWExYWY4YzlkOWI4NjljNjJhZjhjMjEwNGFjNmVkNjg2NTg4M2I0ZTM5NDExZWI5YTIyMzVmNzM).
+invite](https://kubeflow.slack.com/join/shared_invite/enQtNDg5MTM4NTQyNjczLTdkNTVhMjg1ZTExOWI0N2QyYTQ2MTIzNTJjMWRiOTFjOGRlZWEzODc1NzMwNTMwM2EzNjY1MTFhODczNjk4MTk).
 
 ### System requirements
 For a smooth experience we recommend that your system meets the
@@ -91,6 +91,13 @@ vagrant destroy
 ```
 vagrant up
 ```
+
+### End-to-end example on MiniKF
+
+Notebooks & Kubeflow Pipelines on the new MiniKF. Run an e2e ML pipeline
+following this
+[tutorial](https://medium.com/kubeflow/an-end-to-end-ml-pipeline-on-prem-notebooks-kubeflow-pipelines-on-the-new-minikf-33b7d8e9a836).
+
 
 ### Installation video
 Here is a demo of installing MiniKF from scratch:

@@ -1,7 +1,7 @@
 +++
 title = "Logging and monitoring"
 description = "Logging and monitoring for Kubeflow"
-weight = 100
+weight = 110
 +++
 
 This guide has information about how to set up logging and monitoring for your
