@@ -98,11 +98,18 @@ The Kubeflow Pipelines SDK includes the following packages:
     represents a volume used to pass data between pipeline steps. `ContainerOp`s 
     can mount a `PipelineVolume` either via the constructor's argument 
     `pvolumes` or `add_pvolumes()` method.
-  * [`kfp.dsl.ParallelFor`]()
+  * [`kfp.dsl.ParallelFor`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ParallelFor)
+    represents a parallel for loop over a static or dynamic set of items in a pipeline.
+    Each iteration of the for loop will be executed in parallel.
   
-  * [`kfp.dsl.ExitHandler`]()
+  * [`kfp.dsl.ExitHandler`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ExitHandler)
+    represents an exit handler that is invoked upon exiting a group of ops. A typical
+    usage of `ExitHandler` is garbage collection. Currently, one pipeline can
+    only include at most one `ExitHandler`.
   
-  * [`kfp.dsl.Condition`]()
+  * [`kfp.dsl.Condition`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ResourceOp)
+    represents a group of ops, that will only be executed when a certain condition is met.
+    The condition specified can be either determined at compile time or at runtime.
 
 * [`kfp.Client`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html)
   contains the Python client libraries for the [Kubeflow Pipelines 
