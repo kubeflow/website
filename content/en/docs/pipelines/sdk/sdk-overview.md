@@ -24,25 +24,14 @@ workflow and how the components interact with each other.
 The Kubeflow Pipelines SDK includes the following packages:
 
 * [`kfp.compiler`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html)
-  includes classes and methods for building Docker container images for your
-  pipeline components. Methods in this package include, but are not limited
+  includes classes and methods for compiling pipeline Python DSL into workflow yaml spec
+    Methods in this package include, but are not limited
   to, the following:
 
   * `kfp.compiler.Compiler.compile` compiles your Python DSL code into a single 
     static configuration (in YAML format) that the Kubeflow Pipelines service
     can process. The Kubeflow Pipelines service converts the static 
     configuration into a set of Kubernetes resources for execution.
-
-  * `kfp.compiler.build_docker_image` builds a container image based on a 
-    Dockerfile and pushes the image to a URI. In the parameters, you provide the 
-    path to a Dockerfile containing the image specification, and the URI for the 
-    target image (for example, a container registry).
-
-  * `kfp.compiler.build_python_component` builds a container image for a
-    pipeline component based on a Python function, and pushes the image to a 
-    URI. In the parameters, you provide the Python function that does the work 
-    of the pipeline component, a Docker image to use as a base image, 
-    and the URI for the target image (for example, a container registry).
 
 * [`kfp.components`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html)
   includes classes and methods for interacting with pipeline components. 
@@ -76,7 +65,9 @@ The Kubeflow Pipelines SDK includes the following packages:
   the following:
 
   * `kfp.dsl.ContainerOp` represents a pipeline task (op) implemented by a 
-    container image.
+    container image. **Note**: re-usable component is the recommended way to author 
+    container-based component instead of directly working with `ContainerOp`.
+    Please refer to [`kfp.components`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html).
   * `kfp.dsl.PipelineParam` represents a pipeline parameter that you can pass
     from one pipeline component to another. See the guide to 
     [pipeline parameters](/docs/pipelines/sdk/parameters/).
