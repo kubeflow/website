@@ -120,7 +120,11 @@ The Kubeflow Pipelines SDK includes the following packages:
     [experiment](/docs/pipelines/concepts/experiment/) and returns an
     experiment object.
   * `kfp.Client.run_pipeline` runs a pipeline and returns a run object.
-  * `kfp.Client.pipeline_uploads.upload_pipeline_version` uploads a local file to create a pipeline version. [Follow an example to learn more about creating a pipeline version](/docs/pipelines/tutorials/sdk-examples)
+  * `kfp.Client.create_run_from_pipeline_func` compiles a pipeline function and submits it
+    for execution on KFP.
+  * `kfp.Client.create_run_from_pipeline_package` runs a local pipeline package on KFP.
+  * `kfp.Client.upload_pipeline` uploads a local file to create a new pipeline in KFP.
+  * `kfp.Client.upload_pipeline_version` uploads a local file to create a pipeline version. [Follow an example to learn more about creating a pipeline version](/docs/pipelines/tutorials/sdk-examples)
 
 * [`kfp.notebook`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.notebook.html)
 
