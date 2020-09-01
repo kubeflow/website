@@ -4,10 +4,6 @@ description = "Setting up your Kubeflow Pipelines development environment"
 weight = 20
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 This guide tells you how to install the 
 [Kubeflow Pipelines SDK](https://github.com/kubeflow/pipelines/tree/master/sdk)
@@ -82,7 +78,7 @@ pip3 install kfp --upgrade
 ```
 **Note:** If you are not using a virtual environment, such as `conda`, when installing the Kubeflow Pipelines SDK, you may receive the following error:
 ```bash
-ERROR: Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lib/python3.5/dist-packages/kfp-0.2.0.dist-info'
+ERROR: Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lib/python3.5/dist-packages/kfp-<version>>.dist-info'
 Consider using the `--user` option or check the permissions.
 ```
 
