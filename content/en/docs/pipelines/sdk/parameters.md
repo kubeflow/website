@@ -4,10 +4,6 @@ description = "Passing data between pipeline components"
 weight = 70
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 The [`kfp.dsl.PipelineParam` 
 class](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineParam)
@@ -36,6 +32,8 @@ def my_pipeline(
     my_url: str = 'http://example.com'
 ):
   ...
+  # In the pipeline function body one can use `my_num`, `my_name`, `my_url`
+  # as pipeline parameter.
 ```
 
 See more in the guide to [building a 
