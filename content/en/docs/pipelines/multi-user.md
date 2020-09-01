@@ -1,5 +1,5 @@
 +++
-title = "Multi-user Isolation"
+title = "Multi-user Isolation for Pipelines"
 description = "Getting started with Kubeflow Pipelines multi-user isolation"
 weight = 35
 +++
