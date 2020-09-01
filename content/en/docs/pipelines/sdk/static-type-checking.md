@@ -63,50 +63,72 @@ Similarly, when you write a component with the decorator, you can annotate I/O w
 ```python
 from kfp.dsl import component
 from kfp.dsl.types import Integer, GCRPath
+
+
 @component
-def task_factory_a(field_l: Integer()) -> {'field_m': {'GCSPath': {'openapi_schema_validator': '{"type": "string", "pattern": "^gs://.*$"}'}}, 
-                                           'field_n': 'customized_type',
-                                           'field_o': GCRPath()
-                                          }:
-    return ContainerOp(
-        name = 'operator a',
-        image = 'gcr.io/ml-pipeline/component-a',
-        command = [
-          'python3', '/pipelines/component/src/train.py'
-        ],
-        arguments = [
-            '--field-l', field_l,
-        ],
-        file_outputs = {
-            'field_m': '/schema.txt',
-            'field_n': '/feature.txt',
-            'field_o': '/output.txt'
+def task_factory_a(field_l: Integer()) -> {
+    'field_m': {
+        'GCSPath': {
+            'openapi_schema_validator':
+                '{"type": "string", "pattern": "^gs://.*$"}'
         }
-    )
+    },
+    'field_n': 'customized_type',
+    'field_o': GCRPath()
+}:
+  return ContainerOp(
+      name='operator a',
+      image='gcr.io/ml-pipeline/component-a',
+      command=['python3', '/pipelines/component/src/train.py'],
+      arguments=[
+          '--field-l',
+          field_l,
+      ],
+      file_outputs={
+          'field_m': '/schema.txt',
+          'field_n': '/feature.txt',
+          'field_o': '/output.txt'
+      })
 ```
 You can also annotate pipeline inputs with types and the input are checked against the component I/O types as well. For example,
 ```python
 @component
-def task_factory_a(field_m: {'GCSPath': {'openapi_schema_validator': '{"type": "string", "pattern": "^gs://.*$"}'}}, field_o: 'Integer'):
-    return ContainerOp(
-        name = 'operator a',
-        image = 'gcr.io/ml-pipeline/component-a',
-        arguments = [
-            '--field-l', field_m,
-            '--field-o', field_o,
-        ],
-    )
+def task_factory_a(
+    field_m: {
+        'GCSPath': {
+            'openapi_schema_validator':
+                '{"type": "string", "pattern": "^gs://.*$"}'
+        }
+    }, field_o: 'Integer'):
+  return ContainerOp(
+      name='operator a',
+      image='gcr.io/ml-pipeline/component-a',
+      arguments=[
+          '--field-l',
+          field_m,
+          '--field-o',
+          field_o,
+      ],
+  )
+
 
 # Pipeline input types are also checked against the component I/O types.
-@dsl.pipeline(name='type_check',
-    description='')
-def pipeline(a: {'GCSPath': {'openapi_schema_validator': '{"type": "string", "pattern": "^gs://.*$"}'}}='good', b: Integer()=12):
-    task_factory_a(field_m=a, field_o=b)
+@dsl.pipeline(name='type_check', description='')
+def pipeline(
+    a: {
+        'GCSPath': {
+            'openapi_schema_validator':
+                '{"type": "string", "pattern": "^gs://.*$"}'
+        }
+    } = 'good',
+    b: Integer() = 12):
+  task_factory_a(field_m=a, field_o=b)
+
 
 try:
-    compiler.Compiler().compile(pipeline, 'pipeline.tar.gz', type_check=True)
+  compiler.Compiler().compile(pipeline, 'pipeline.tar.gz', type_check=True)
 except InconsistentTypeException as e:
-    print(e)
+  print(e)
 ```
 
 ## How does the type checking work?
@@ -141,12 +163,16 @@ when the upstream component generates an output with type "*Float*" and the down
 "*Float*" or "*Integer*", it might fail if you define the type as "*Float_or_Integer*". 
 Disabling the type checking per-argument is also supported as shown below.
 ```python
-@dsl.pipeline(name='type_check_a',
-    description='')
+@dsl.pipeline(name='type_check_a', description='')
 def pipeline():
-    a = task_factory_a(field_l=12)
-    # For each of the arguments, you can also ignore the types by calling ignore_type function.
-    b = task_factory_b(field_x=a.outputs['field_n'], field_y=a.outputs['field_o'], field_z=a.outputs['field_m'].ignore_type())
+  a = task_factory_a(field_l=12)
+  # For each of the arguments, you can also ignore the types by calling
+  # ignore_type function.
+  b = task_factory_b(
+      field_x=a.outputs['field_n'],
+      field_y=a.outputs['field_o'],
+      field_z=a.outputs['field_m'].ignore_type())
+
 compiler.Compiler().compile(pipeline, 'pipeline.tar.gz', type_check=True)
 ```
 
