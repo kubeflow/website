@@ -21,13 +21,18 @@ pipeline agent uploads the local file as your run-time metrics. You can view the
 uploaded metrics as a visualization in the **Runs** page for a particular
 experiment in the Kubeflow Pipelines UI.
  
-## Export the metrics file
+## Export the metrics dictionary
 
-To enable metrics, your program must write out a file named 
-`/mlpipeline-metrics.json`. For example:
+To enable metrics, your component must have an output called "MLPipeline Metrics".
+JSON-serialized metrics dictionary should be returned from that output.
 
 ```Python
-  accuracy = accuracy_score(df['target'], df['predicted'])
+from kfp.components import InputPath, OutputPath, create_component_from_func
+
+def produce_metrics(mlpipeline_metrics_path: OutputPath('Metrics')):
+  import json
+  
+  accuracy = 0.9
   metrics = {
     'metrics': [{
       'name': 'accuracy-score', # The name of the metric. Visualized as the column name in the runs table.
@@ -35,8 +40,15 @@ To enable metrics, your program must write out a file named
       'format': "PERCENTAGE",   # The optional format of the metric. Supported values are "RAW" (displayed in raw format) and "PERCENTAGE" (displayed in percentage format).
     }]
   }
-  with file_io.FileIO('/mlpipeline-metrics.json', 'w') as f:
+  with open(mlpipeline_metrics_path, 'w') as f:
     json.dump(metrics, f)
+
+produce_metrics_op = create_component_from_func(
+    produce_metrics,
+    base_image='python:3.7',
+    packages_to_install=[],
+    output_component_file='component.yaml',
+)
 ```
 
 See the 
@@ -44,7 +56,7 @@ See the
 
 The metrics file has the following requirements:
 
-* The file path must be `/mlpipeline-metrics.json`.
+* The file path must be "MLPipeline Metrics" or "MLPipeline_Metrics" (case does not matter).
 * `name` must follow the pattern `^[a-zA-Z]([-_a-zA-Z0-9]{0,62}[a-zA-Z0-9])?$`.
 
     For Kubeflow Pipelines version 0.5.1 or earlier, name must match the following pattern `^[a-z]([-a-z0-9]{0,62}[a-z0-9])?$`
