@@ -33,6 +33,9 @@ one if you haven't already.
   IAP)](https://cloud.google.com/iap/docs/).
 
 
+Refer to [Understanding the deployment process 
+](#understanding-the-deployment-process) for a description about the deployment steps and artifacts.
+
 ### Install the required tools
 
 1. Install [gcloud](https://cloud.google.com/sdk/).
