@@ -76,7 +76,7 @@ get the best experience from Kubeflow.
 6. Set the Block Storage as the default storageclass.
     ```shell
     NEW_STORAGE_CLASS=ibmc-block-gold
-    OLD_STORAGE_CLASS=$(kubectl get sc | grep "(default)" | grep -v ${NEW_STORAGE_CLASS} | awk '{ print $1;exit }')
+    OLD_STORAGE_CLASS=$(kubectl get sc -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io\/is-default-class=="true")].metadata.name}')
     kubectl patch storageclass ${NEW_STORAGE_CLASS} -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
     # Check the default storageclass is block storage
