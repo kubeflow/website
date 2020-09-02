@@ -78,7 +78,7 @@ pip3 install kfp --upgrade
 ```
 **Note:** If you are not using a virtual environment, such as `conda`, when installing the Kubeflow Pipelines SDK, you may receive the following error:
 ```bash
-ERROR: Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lib/python3.5/dist-packages/kfp-<version>>.dist-info'
+ERROR: Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lib/python3.5/dist-packages/kfp-<version>.dist-info'
 Consider using the `--user` option or check the permissions.
 ```
 
