@@ -1,79 +1,118 @@
 +++
-title = "Microk8s for Kubeflow"
-description = "Quickly get Kubeflow running locally on built-in hypervisors"
-weight = 60
+title = "MicroK8s for Kubeflow"
+description = "Run Kubeflow locally on built-in hypervisors with MicroK8s" weight = 60
 +++
 
-{{% alpha-status 
-  feedbacklink="https://github.com/kubeflow/kubeflow/issues" %}}
+{{% alpha-status feedbacklink="https://github.com/kubeflow/kubeflow/issues" %}}
 
 ## Introduction
 
-This guide describes how to deploy Kubeflow using [Microk8s](https://microk8s.io/) - a small enterprise Kubernetes cluster. Microk8s is now available on Windows, macOS and any Linux distribution that supports `snaps`. You can download it on the [Microk8s](https://microk8s.io/) website.
+This guide describes how to deploy and run Kubeflow using
+[MicroK8s](https://microk8s.io/) - a small enterprise Kubernetes cluster —
+locally on built-in hypervisors.
 
-Alternatively, to deploy Kubeflow within a displosable Linux virtual machine, you can install Microk8s on a Linux appliance using [Multipass](https://multipass.run/) on Windows or macOS.
+MicroK8s is available on Windows, macOS and any Linux distribution that supports
+[Snaps](https://snapcraft.io/). You can download and install MicroK8s by
+following the installation steps on the [official
+website](https://microk8s.io/).
 
-## Install Kubeflow using Microk8s
+Alternatively, you can install MicroK8s on a Linux appliance with
+[Multipass](https://multipass.run/), which gives you an Ubuntu command line on
+Windows, macOS or Linux. Refer to the [official
+documentation](https://multipass.run/docs) for more details.
 
-**Note:** the minimum version of Microk8s needed to enable Kubeflow is 1.18.
 
-1. Install MicroK8s with Snap by running the following command:
+## Installing and enabling Kubeflow using MicroK8s
+
+To get Kubeflow running using MicroK8s, you'll need to install MicroK8s, enable
+it, and then set up Kubeflow.
+
+**Note:** You need MicroK8s version 1.18 and above to enable and run Kubeflow.
+
+1. Install MicroK8s with [Snap](https://snapcraft.io/) by running the following
+   command:
 
     ```
     sudo snap install microk8s --classic
     ```
 
-2. Verify that MicroK8s is running with the command:
+2. Verify that MicroK8s is running:
 
     ```
     microk8s.status --wait-ready
     ```
 
-3. Enable common services on your Microk8s deployment:
+3. Having installed MicroK8s, you can now enable common services on your
+   MicroK8s deployment. To do that, run the following command:
 
     ```
     microk8s.enable dns dashboard storage
     ```
 
-4. Optional, to enable GPU support (available only for NVIDIA GPU hardware), run: `microk8s.enable gpu`
+    **Optional:** To enable NVIDIA GPU hardware support, also run
+    `MicroK8s.enable gpu`.
 
-5. Deploy Kubeflow with the command:
+4. Deploy Kubeflow by running this command:
 
     ```
     microk8s.enable kubeflow
     ```
 
-    The deployment process may take a few minutes. Once completed, the script will print out the port number and credentials to access the Kubeflow dashboard.
+    The deployment process may take a few minutes. Once it is complete, the
+    script will print out the port number and credentials to access the Kubeflow
+    dashboard.
 
-## Access Kubeflow dashboard
+## Accessing the Kubeflow dashboard
 
 ### On your Linux machine
-If you installed Microk8s directly on your Linux machine, (1) open a web browser window and (2) access the link provided after you enable Kubeflow, e.g. `10.64.140.43.xip.io` (see previous step).
+
+If you installed MicroK8s directly on your Linux machine, you can view the
+Kubeflow dashboard as follows:
+
+1. Open a web browser window.
+2. Access the link provided after you have enabled Kubeflow (for example,
+   `10.64.140.43.xip.io`).
 
 ### On Multipass or a virtual machine
-When running Microk8s on Multipass or a virtual machine, create a SOCKS proxy to access the Kubeflow dashboard, as follows:
 
-1. Logout from the current session using the `exit` command.
-2. Re-establish connection to the machine using `SSH`, enabling SOCKS proxy with the `-D9999` parameter. Examples:
+When running MicroK8s on Multipass or a virtual machine, you should create a
+SOCKS proxy to access the Kubeflow dashboard as follows:
+
+1. Logout from the current session in your terminal using the `exit` command.
+
+2. Re-establish connection to the machine using `SSH`, enabling SOCKS proxy with
+   the `-D9999` parameter.
+
+    Run the following command, where `<machine_public_ip>` is your machine's
+    public IP:
 
     ```
     ssh -D9999 ubuntu@<machine_public_ip>
     ```
 
-    or find multipass IP with `multipass list` and connect with:
+    Or, you can check for the Multipass IP first with:
 
+    ```
+    multipass list`
+    ```
+
+    and then, run this command, replacing `<multipass_public_ip>` with that IP:
     ```
     ssh -D9999 multipass@<multipass_public_ip>
     ```
 
-3. On your computer, go to `Settings > Network > Network Proxy`, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
+3. In your Linux operating system, go to **Settings** > **Network** > **Network
+   Proxy**, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
 
-4. Finally, (1) open a new web browser window and (2) access the link provided after you enable Kubeflow, e.g. `10.64.140.43.xip.io` (see previous step).
+4. Finally, access the Kubeflow dashboard by:
+    1. Opening a new web browser window.
+    2. Access the link provided after you have enabled Kubeflow (for example,
+       `10.64.140.43.xip.io`).
 
-## Next steps
+## Additional guides
 
-* Refer to the [microk8s common issues](https://microk8s.io/docs/troubleshooting)
-* Refer to the [multipass docs](https://multipass.run/docs)
-* Refer to the [user guide](/docs/)
-* Refer to the [components](/docs/components/)
-* Refer to the guide to [Jupyter notebooks in Kubeflow](/docs/notebooks/)
+* MicroK8s: [troubleshooting](https://MicroK8s.io/docs/troubleshooting)
+* Multipass: [documentation](https://multipass.run/docs)
+* Kubeflow: [documentation](/docs/)
+* Kubeflow components: [documentation](/docs/components/)
+* Jupyter notebooks in Kubeflow: [documentation](/docs/notebooks/)
