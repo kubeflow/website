@@ -3,8 +3,6 @@ title = "MicroK8s for Kubeflow"
 description = "Run Kubeflow locally on built-in hypervisors with MicroK8s" weight = 60
 +++
 
-{{% alpha-status 
-feedbacklink="https://github.com/kubeflow/kubeflow/issues" %}}
 
 ## Introduction
 
