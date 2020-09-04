@@ -15,7 +15,7 @@ for the common Kubeflow multi-user operations including the following:
 
 Note, Kubeflow Pipelines multi-user isolation is only supported in
 [the full Kubeflow deployment](/docs/pipelines/installation/overview/#full-kubeflow-deployment)
-starting from Kubeflow v1.1 and **currently** on all platforms except OpenShift. For latest status about platform support, read [kubeflow/manifests#1364](https://github.com/kubeflow/manifests/issues/1364#issuecomment-668415871).
+starting from Kubeflow v1.1 and **currently** on all platforms except OpenShift. For the latest status about platform support, refer to [kubeflow/manifests#1364](https://github.com/kubeflow/manifests/issues/1364#issuecomment-668415871).
 
 Also be aware that the isolation support in Kubeflow doesn’t provide any hard
 security guarantees against malicious attempts by users to infiltrate other
