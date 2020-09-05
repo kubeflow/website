@@ -38,7 +38,7 @@ To get Kubeflow running using MicroK8s, you'll need to install MicroK8s, enable 
     microk8s.enable dns dashboard storage
     ```
 
-    **Optional:** To enable NVIDIA GPU hardware support, also run `MicroK8s.enable gpu`.
+    **Optional:** To enable NVIDIA GPU hardware support, also run `microk8s.enable gpu`.
 
 4. Deploy Kubeflow by running this command:
 
@@ -73,7 +73,7 @@ When running MicroK8s on Windows, macOS, Multipass or a virtual machine, you nee
     ssh -D9999 ubuntu@<machine_public_ip>
     ```
 
-    On Windows, macOS or multipass, you can check for the IP first with:
+    On Windows, macOS or Multipass, you can check for the IP first with:
 
     ```
     multipass list`
