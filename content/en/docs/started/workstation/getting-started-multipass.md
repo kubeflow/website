@@ -88,7 +88,7 @@ When running MicroK8s on Windows, macOS, Multipass or a virtual machine, you nee
 
 4. Finally, access the Kubeflow dashboard by:
     1. Opening a new web browser window.
-    2. Access the link provided after you have enabled Kubeflow (for example, `10.64.140.43.xip.io`).
+    2. Accessing the link provided after you have enabled Kubeflow (for example, `10.64.140.43.xip.io`).
 
 ## Additional guides
 
