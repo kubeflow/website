@@ -54,6 +54,10 @@ To output any piece of data, the component program must write the output data to
 about that location so that the system can pass the data between steps.
 The program should accept the paths for the output data as command-line arguments. That is, you should not hardcode the paths.
 
+In practical terms this means that the program should receive local paths for every output the component produces and write data to those paths.
+Usually an output is a single piece of data. In this case the program should treat the given output path as a file path, open it for writing and write the data there.
+In some cases there is a need to output a directory of files. In this case the program should treat the given output path as a directory path, create a directory at that location and then add files to that directory. In both cases it might be necessary to create parent directories if they do not exist.
+
 #### Advanced: Producing data in an external system
 
 In some scenarios, the goal of the component is to create some data object in an external service (for example a BigQuery table).
