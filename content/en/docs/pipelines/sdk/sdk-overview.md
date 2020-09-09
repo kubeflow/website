@@ -20,7 +20,7 @@ workflow and how the components interact with each other.
 The Kubeflow Pipelines SDK includes the following packages:
 
 * [`kfp.compiler`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html)
-  includes classes and methods for compiling pipeline Python DSL into workflow yaml spec
+  includes classes and methods for compiling pipeline Python DSL into a workflow yaml spec
     Methods in this package include, but are not limited
   to, the following:
 
@@ -60,10 +60,6 @@ The Kubeflow Pipelines SDK includes the following packages:
   Methods, classes, and modules in this package include, but are not limited to, 
   the following:
 
-  * `kfp.dsl.ContainerOp` represents a pipeline task (op) implemented by a 
-    container image. **Note**: re-usable component is the recommended way to author 
-    container-based component instead of directly working with `ContainerOp`.
-    Please refer to [`kfp.components`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html).
   * `kfp.dsl.PipelineParam` represents a pipeline parameter that you can pass
     from one pipeline component to another. See the guide to 
     [pipeline parameters](/docs/pipelines/sdk/parameters/).
@@ -96,16 +92,16 @@ The Kubeflow Pipelines SDK includes the following packages:
     `pvolumes` or `add_pvolumes()` method.
   * [`kfp.dsl.ParallelFor`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ParallelFor)
     represents a parallel for loop over a static or dynamic set of items in a pipeline.
-    Each iteration of the for loop will be executed in parallel.
+    Each iteration of the for loop is executed in parallel.
   
   * [`kfp.dsl.ExitHandler`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ExitHandler)
-    represents an exit handler that is invoked upon exiting a group of ops. A typical
-    usage of `ExitHandler` is garbage collection. Currently, one pipeline can
-    only include at most one `ExitHandler`.
+    represents an exit handler that is invoked upon exiting a pipeline. A typical
+    usage of `ExitHandler` is garbage collection.
   
-  * [`kfp.dsl.Condition`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ResourceOp)
+  * [`kfp.dsl.Condition`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.Condition)
     represents a group of ops, that will only be executed when a certain condition is met.
-    The condition specified can be either determined at compile time or at runtime.
+    The condition specified need to be determined at runtime, by incorporating at least one task output, 
+    or PipelineParam in the boolean expression.
 
 * [`kfp.Client`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html)
   contains the Python client libraries for the [Kubeflow Pipelines 
@@ -117,24 +113,24 @@ The Kubeflow Pipelines SDK includes the following packages:
     experiment object.
   * `kfp.Client.run_pipeline` runs a pipeline and returns a run object.
   * `kfp.Client.create_run_from_pipeline_func` compiles a pipeline function and submits it
-    for execution on KFP.
-  * `kfp.Client.create_run_from_pipeline_package` runs a local pipeline package on KFP.
-  * `kfp.Client.upload_pipeline` uploads a local file to create a new pipeline in KFP.
+    for execution on Kubeflow Pipelines.
+  * `kfp.Client.create_run_from_pipeline_package` runs a local pipeline package on Kubeflow Pipelines.
+  * `kfp.Client.upload_pipeline` uploads a local file to create a new pipeline in Kubeflow Pipelines.
   * `kfp.Client.upload_pipeline_version` uploads a local file to create a pipeline version. [Follow an example to learn more about creating a pipeline version](/docs/pipelines/tutorials/sdk-examples)
 
-* [KFP extension modules](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html)
+* [Kubeflow Pipelines extension modules](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html)
   include classes and functions for specific platforms on which you can use
   Kubeflow Pipelines. Examples include utility functions for on premises,
   Google Cloud Platform (GCP), Amazon Web Services (AWS), and Microsoft Azure.
 
-* [KFP diagnose_me modules](https://github.com/kubeflow/pipelines/tree/master/sdk/python/kfp/cli/diagnose_me)include classes and functions that help with environment diagnostic tasks. 
+* [Kubeflow Pipelines diagnose_me modules](https://github.com/kubeflow/pipelines/tree/master/sdk/python/kfp/cli/diagnose_me)include classes and functions that help with environment diagnostic tasks. 
  
   * `kfp.cli.diagnose_me.dev_env` reports on diagnostic metadata from your development environment, such as your python library version.
   * `kfp.cli.diagnose_me.kubernetes_cluster` reports on diagnostic data from your Kubernetes cluster, such as Kubernetes secrets.
   * `kfp.cli.diagnose_me.gcp` reports on diagnostic data related to your GCP environment.
  
-## KFP CLI tool 
-The KFP CLI tool enables you to use a subset of the Kubeflow Pipelines SDK directly from the command line. The KFP CLI tool provides the following commands:
+## Kubeflow Pipelines CLI tool 
+The Kubeflow Pipelines CLI tool enables you to use a subset of the Kubeflow Pipelines SDK directly from the command line. The Kubeflow Pipelines CLI tool provides the following commands:
 
 * `kfp diagnose_me` runs environment diagnostic with specified parameters.
   * `--json` - Indicates that this command must return its results as JSON. Otherwise, results are returned in human readable format.
@@ -151,7 +147,7 @@ The KFP CLI tool enables you to use a subset of the Kubeflow Pipelines SDK direc
   * `list` - Lists recent pipeline runs.
   * `submit` - Submits a pipeline run.
   
-* `kfp --endpoint <ENDPOINT>` - Specifies the endpoint that the KFP CLI should connect to.
+* `kfp --endpoint <ENDPOINT>` - Specifies the endpoint that the Kubeflow Pipelines CLI should connect to.
 
 ## Installing the SDK
 
