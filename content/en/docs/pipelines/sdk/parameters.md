@@ -19,7 +19,7 @@ The task output references can again be passed to other components as arguments.
 
 In most cases you do not need to construct `PipelineParam` objects manually.
 
-The following code sample shows how to define pipeline with parameters:
+The following code sample shows how to define a pipeline with parameters:
 
 ```python
 @kfp.dsl.pipeline(
@@ -32,9 +32,9 @@ def my_pipeline(
     my_url: str = 'http://example.com'
 ):
   ...
-  # In the pipeline function body one can use `my_num`, `my_name`, `my_url`
-  # as pipeline parameter.
+  # In the pipeline function body you can use the `my_num`, `my_name`, 
+  # `my_url` arguments as PipelineParam objects.
 ```
 
-See more in the guide to [building a 
-component](/docs/pipelines/sdk/build-component/#create-a-python-class-for-your-component).
+For more information, you can refer to the guide on
+[building components and pipelines](/docs/pipelines/sdk/build-component/#create-a-python-class-for-your-component).

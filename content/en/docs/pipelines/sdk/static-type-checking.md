@@ -33,6 +33,7 @@ In the component YAML, types are specified as a string or a dictionary with the 
 "*component a*" expects an input with Integer type and emits three outputs with the type GCSPath, customized_type and GCRPath. 
 Among these types, Integer, GCSPath, and GCRPath are core types that are predefined in the SDK while customized_type is a user-defined
 type.  
+
 ```yaml
 name: component a
 description: component desc
@@ -54,6 +55,7 @@ implementation:
       field_n: /feature.txt
       field_o: /output.txt
 ```
+
 Similarly, when you write a component with the decorator, you can annotate I/O with types in the function signature, as shown below.
 
 ```python
@@ -86,7 +88,9 @@ def task_factory_a(field_l: Integer()) -> {
           'field_o': '/output.txt'
       })
 ```
+
 You can also annotate pipeline inputs with types and the input are checked against the component I/O types as well. For example,
+
 ```python
 @component
 def task_factory_a(
@@ -145,19 +149,24 @@ If inconsistent types are detected, it throws an [InconsistentTypeException](htt
 Type checking is enabled by default and it can be disabled in two ways:
 
 If you compile the pipeline programmably:
+
 ```python
 compiler.Compiler().compile(pipeline_a, 'pipeline_a.tar.gz', type_check=False)
 ```
+
 If you compile the pipeline using the dsl-compiler tool:
+
 ```bash
 dsl-compiler --py pipeline.py --output pipeline.zip --disable-type-check
 ```
+
 ### Fine-grained configuration
 
 Sometimes, you might want to enable the type checking but disable certain arguments. For example, 
 when the upstream component generates an output with type "*Float*" and the downstream can ingest either 
 "*Float*" or "*Integer*", it might fail if you define the type as "*Float_or_Integer*". 
 Disabling the type checking per-argument is also supported as shown below.
+
 ```python
 @dsl.pipeline(name='type_check_a', description='')
 def pipeline():
@@ -180,4 +189,6 @@ type checking would still fail if some I/Os lack the type information and some I
 
 ## Next steps
 
-* See [type checking sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/dsl_static_type_checking/dsl_static_type_checking.ipynb).
+Learn how to define a KubeFlow pipeline with Python DSL and compile the
+pipeline with type checking: a 
+[Jupyter notebook demo](https://github.com/kubeflow/pipelines/blob/master/samples/core/dsl_static_type_checking/dsl_static_type_checking.ipynb).
