@@ -92,7 +92,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
-        <td><b>no known issues</b></td>
+        <td><b>compatible</b></td>
       </tr>
       <tr>
         <td>1.17</td>
