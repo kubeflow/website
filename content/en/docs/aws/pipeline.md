@@ -80,7 +80,6 @@ data:
 
 > Note: To get base64 string, run `echo -n $AWS_ACCESS_KEY_ID | base64`
 
-
 ## Configure containers to use AWS credentails
 
 If you write any files to S3 in your application, use `use_aws_secret` to attach aws secret to access S3.
@@ -173,6 +172,7 @@ In order for `ml-pipeline-ui` to read these artifacts:
            image: gcr.io/ml-pipeline/frontend:0.2.0
            name: ml-pipeline-ui
    ```
+1. Ensure that the role attached to the nodegroup running the `ml-pipeline-ui` pod has read access policy to s3
 
 Here's an example.
 <img src="/docs/images/aws/kfp-viewer-tensorboard.png"
