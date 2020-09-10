@@ -172,7 +172,7 @@ In order for `ml-pipeline-ui` to read these artifacts:
            image: gcr.io/ml-pipeline/frontend:0.2.0
            name: ml-pipeline-ui
    ```
-1. Ensure that the role attached to the nodegroup running the `ml-pipeline-ui` pod has read access policy to s3
+1. By default, NodeInstanceRole has S3 permissions. If users are using customized worker node AMI, ensure that the role attached to the nodegroup running the ml-pipeline-ui pod has read access policy to s3.
 
 Here's an example.
 <img src="/docs/images/aws/kfp-viewer-tensorboard.png"
