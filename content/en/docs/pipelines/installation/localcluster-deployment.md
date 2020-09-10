@@ -283,15 +283,14 @@ arise using it.
 1. To deploy the Kubeflow Pipelines, run the following commands:
 
     ```SHELL
-    export PIPELINE_VERSION={{% pipelines/latest-version %}}
+    # env/platform-agnostic-pns hasn't been publically released, so we install from master temporarily
+    export PIPELINE_VERSION=master
     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
     ```
 
     The Kubeflow Pipelines deployment may take several minutes to complete.
-
-    **Note**: The above commands apply to Kubeflow Pipelines version 0.4.0 and higher.
 
     **Note**: `kubectl apply -k` accepts local paths and paths that are formatted as 
 [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, they are not valid 
@@ -311,7 +310,7 @@ Below are the steps to remove Kubeflow Pipelines on kind, k3s, or k3s on WSL:
 GitHub repository, run these commands:
 
   ```SHELL
-  export PIPELINE_VERSION={{% pipelines/latest-version %}}
+  export PIPELINE_VERSION=master
   kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
   kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
   ```
