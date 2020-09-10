@@ -64,16 +64,6 @@ For a more detailed explanation of the changes affecting Kubeflow 1.1 on Google 
    make get-pkg
    ```
 
-  * This generates an error like the one below but you can ignore it;
-
-    ```  
-    kpt pkg get https://github.com/jlewi/manifests.git@blueprints ./upstream
-    fetching package / from https://github.com/jlewi/manifests to upstream/manifests
-    Error: resources must be annotated with config.kubernetes.io/index to be written to files    
-    ```
-  
-    * This is being tracked in [GoogleContainerTools/kpt#539](https://github.com/GoogleContainerTools/kpt/issues/539) 
-
 1. Open up the **Makefile** at `./management/Makefile` and edit the `set-values` rule to set values for the name, project, and location of your management; when you are done the section should look like
 
    ```  
