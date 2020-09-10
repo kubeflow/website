@@ -39,6 +39,15 @@ For a more detailed explanation of the changes affecting Kubeflow 1.1 on Google 
 
     Note, Kubeflow is not compatible with later versions of Kustomize. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
 
+1. Install [yq](https://github.com/mikefarah/yq)
+
+   ```
+   GO111MODULE=on go get github.com/mikefarah/yq/v3
+   ```
+
+   * If you don't have [Go](https://golang.org) installed you can download
+     a binary from [yq's GitHub releases](https://github.com/mikefarah/yq/releases).
+ 
 ## Setting up the management cluster
 
 
