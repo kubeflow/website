@@ -97,12 +97,12 @@ column):
 `istio-ingressgateway` pods in namespace `istio-system`:
 
     ```shell
-    kubectl get secret $INGRESS_GATEWAY_SECRET --namespace istio-system -o yaml > istio-ingressgateway-certs.yaml
+    kubectl get secret $INGRESS_GATEWAY_SECRET -o yaml > istio-ingressgateway-certs.yaml
     ```
 
 6. Update the `istio-ingressgateway-certs.yaml` file by changing the value of 
-`metadata.name` to `istio-ingressgateway-certs`. Then, run the following 
-commands:
+`metadata.name` to `istio-ingressgateway-certs` and the value of
+`metadata.namespace` to `istio-system`. Then, run the following commands:
 
     ```shell
     kubectl apply -f istio-ingressgateway-certs.yaml -n istio-system
@@ -142,10 +142,10 @@ above-mentioned `Hostname` in your browser. It should redirect traffic from an
 HTTP address to HTTPS address automatically.
 
 **Note**: The certificates for the NLB DNS host secret expire every **90** days. 
-The secret in the `istio-system` namespace is automatically renewed by IBM Cloud 
+The secret in the `default` namespace is automatically renewed by IBM Cloud
 Kubernetes Service 37 days before it expires. After this secret is updated, you 
 must manually copy it to the `istio-ingressgateway-certs` secret by repeating 
-commands in step 6.
+commands in step 5 and 6.
 
 ## Updating configuration of the authentication provider
 
