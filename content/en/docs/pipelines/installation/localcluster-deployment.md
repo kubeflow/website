@@ -286,7 +286,7 @@ arise using it.
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-    kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
+    kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic?ref=$PIPELINE_VERSION"
     ```
 
     The Kubeflow Pipelines deployment may take several minutes to complete.
@@ -312,7 +312,7 @@ GitHub repository, run these commands:
 
   ```SHELL
   export PIPELINE_VERSION={{% pipelines/latest-version %}}
-  kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
+  kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic?ref=$PIPELINE_VERSION"
   kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
   ```
 
@@ -320,6 +320,6 @@ GitHub repository, run these commands:
 file system, run the following commands:
 
   ```SHELL
-  kubectl delete -k manifests/kustomize/env/platform-agnostic-pns
+  kubectl delete -k manifests/kustomize/env/platform-agnostic
   kubectl delete -k manifests/kustomize/cluster-scoped-resources
   ```
