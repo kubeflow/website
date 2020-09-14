@@ -1,301 +1,235 @@
 +++
 title = "Securing Your Clusters"
-description = "How to secure Kubeflow clusters using VPC service controls and private GKE"
+description = "How to secure Kubeflow clusters using private GKE"
 weight = 70
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
-{{% alert title="Alpha" color="warning" %}}
-This feature is currently in **alpha** release status with limited support. The
-Kubeflow team is interested in any feedback you may have, in particular with 
-regards to usability of the feature. Note the following issues already reported:
+These instructions explain how to deploy Kubeflow using private GKE.
 
-* [Documentation on how to use Kubeflow with private GKE and VPC service controls](https://github.com/kubeflow/website/issues/1705)
-* [Replicating Docker images to private Container Registry](https://github.com/kubeflow/kubeflow/issues/3210)
-* [Installing Istio for Kubeflow on private GKE](https://github.com/kubeflow/kubeflow/issues/3650)
-* [Profile-controller crashes on GKE private cluster](https://github.com/kubeflow/kubeflow/issues/4661)
-* [kfctl should work with private GKE without public endpoint](https://github.com/kubeflow/kfctl/issues/158)
-{{% /alert %}}
+1. Follow the blueprint instructions to setup a management cluster
 
-This guide describes how to secure Kubeflow using [VPC Service Controls](https://cloud.google.com/vpc-service-controls/docs/) and private GKE.
+1. As a work around for (kubeflow/gcp-blueprints#32)[https://github.com/kubeflow/gcp-blueprints/issues/32]
+   modify the containercluster CRD schema in your management cluster to include missing fields
 
-Together these two features signficantly increase security
-and mitigate the risk of data exfiltration.
+   * See directions in that issue.
 
-  * VPC Service Controls allow you to define a perimeter around
-    Google Cloud Platform (GCP) services.
-    
-    Kubeflow uses VPC Service Controls to prevent applications
-    running on GKE from writing data to GCP resources outside
-    the perimeter.
+1. Fetch the blueprint
 
-  * Private GKE removes public IP addresses from GKE nodes making
-    them inaccessible from the public internet.
-
-    Kubeflow uses IAP to make Kubeflow web apps accessible
-    from your browser.
-
-VPC Service Controls allow you to restrict which Google services are accessible from your
-GKE/Kubeflow clusters. This is an important part of security and in particular
-mitigating the risks of data exfiltration.
-
-For more information refer to the [VPC Service Control Docs](https://cloud.google.com/vpc-service-controls/docs/overview).
-
-Creating a [private Kubernetes Engine cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters)
-means the Kubernetes Engine nodes won't have public IP addresses. This can improve security by blocking unwanted outbound/inbound
-access to nodes. Removing IP addresses means external services (such as GitHub, PyPi, and DockerHub) won't be accessible
-from the nodes. Google services (such as BigQuery and Cloud Storage) are still accessible.
-
-Importantly this means you can continue to use your [Google Container Registry (GCR)](https://cloud.google.com/container-registry/docs/) to host your Docker images. Other Docker registries (for example, DockerHub) will not be accessible. If you need to use Docker images
-hosted outside GCR you can use the scripts provided by Kubeflow to mirror them to your GCR registry.
-
-
-## Before you start
-
-Before installing Kubeflow ensure you have installed the following tools:
-    
-  * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-  * [gcloud](https://cloud.google.com/sdk/)
-
-
-You will need to know your gcloud organization ID and project number; you can get them via gcloud.
-
-```
-export PROJECT=<your GCP project id>
-export ORGANIZATION_NAME=<name of your organization>
-export ORGANIZATION=$(gcloud organizations list --filter=DISPLAY_NAME=${ORGANIZATION_NAME} --format='value(name)')
-export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT} --format='value(projectNumber)')
-```
-
-  * Projects are identified by names, IDs, and numbers. For more info, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects).
-
-## Enable VPC Service Controls In Your Project
-
-
-1. Enable VPC service controls:
-
-    ```
-    export PROJECT=<Your project>
-    gcloud services enable accesscontextmanager.googleapis.com \
-                           cloudresourcemanager.googleapis.com \
-                           dns.googleapis.com  --project=${PROJECT}
-    ```
-
-1. Check if you have an access policy object already created:
-
-    ```
-    gcloud beta access-context-manager policies list \
-        --organization=${ORGANIZATION}
-    ```
-
-    * An [access policy](https://cloud.google.com/vpc-service-controls/docs/overview#terminology) is a GCP resource object that defines service perimeters. There can be only one access policy object in an organization, and it is a child of the Organization resource.
-
-
-1. If you don't have an access policy object, create one:
-
-    ```
-    gcloud beta access-context-manager policies create \
-    --title "default" --organization=${ORGANIZATION}
-    ```
-
-1. Save the Access Policy Object ID as an environment variable so that it can be used in subsequent commands:
-
-    ```
-    export POLICYID=$(gcloud beta access-context-manager policies list --organization=${ORGANIZATION} --limit=1 --format='value(name)')
-    ```
-1. Create a service perimeter:
-
-    ```
-    gcloud beta access-context-manager perimeters create KubeflowZone \
-        --title="Kubeflow Zone" --resources=projects/${PROJECT_NUMBER} \
-        --restricted-services=bigquery.googleapis.com,containerregistry.googleapis.com,storage.googleapis.com \
-        --project=${PROJECT} --policy=${POLICYID}
-    ```  
-
-    * Here we have created a service perimeter with the name KubeflowZone.
-
-    * The perimeter is created in PROJECT_NUMBER and restricts access to GCS (storage.googleapis.com), BigQuery (bigquery.googleapis.com), and GCR (containerregistry.googleapis.com).
-
-    * Placing GCS (Google Cloud Storage) and BigQuery in the perimeter means that access to GCS and BigQuery
-      resources owned by this project is now restricted. By default, access from outside
-      the perimeter will be blocked
-
-    * More than one project can be added to the same perimeter
-
-1. Create an access level to allow Google Container Builder to access resources inside the perimiter:
-
-    * Create a members.yaml file with the following contents
-
-       ```
-       - members:      
-         - serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
-         - user:<your email>
-       ```
-
-    * Google Container Builder is used to mirror Kubeflow images into the perimeter
-    * Adding your email allows you to access the GCP services
-      inside the perimeter from outside the cluster
-
-       * This is convenient for building and pushing images and data
-         from your local machine.
-
-    * For more information refer to the [docs](https://cloud.google.com/access-context-manager/docs/create-access-level#members-example).
-
-1. Create the access level:
-
-    ```
-    gcloud beta access-context-manager levels create kubeflow \
-       --basic-level-spec=members.yaml \
-       --policy=${POLICYID} \
-       --title="Kubeflow ${PROJECT}"
-    ```
-
-     * The name for the level can't have any hyphens
-
-1. Bind Access Level to a Service Perimeter:
-
-    ```
-    gcloud beta access-context-manager perimeters update KubeflowZone \
-     --add-access-levels=kubeflow \
-     --policy=${POLICYID}
-    ```
-
-## Set up container registry for GKE private clusters:
-
-Follow the step belows to configure your GCR registry to be accessible from your secured clusters.
-For more info see [instructions](https://cloud.google.com/vpc-service-controls/docs/set-up-gke).
-
-1. Create a managed private zone
-
-    ```
-    export ZONE_NAME=kubeflow
-    export NETWORK=<Network you are using for your cluster>
-    gcloud beta dns managed-zones create ${ZONE_NAME} \
-     --visibility=private \
-     --networks=https://www.googleapis.com/compute/v1/projects/${PROJECT}/global/networks/${NETWORK} \
-     --description="Kubeflow DNS" \
-     --dns-name=gcr.io \
-     --project=${PROJECT}
-    ```
-
-1. Start a transaction
-
-    ```
-    gcloud dns record-sets transaction start \
-     --zone=${ZONE_NAME} \
-     --project=${PROJECT}
-    ```
-
-1. Add a CNAME record for \*.gcr.io
-
-    ```
-    gcloud dns record-sets transaction add \
-     --name=*.gcr.io. \
-     --type=CNAME gcr.io. \
-     --zone=${ZONE_NAME} \
-     --ttl=300 \
-     --project=${PROJECT}
+   ```
+   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@master ./${PKGDIR}
    ```
 
-1. Add an A record for the restricted VIP
+1. Change to the kubeflow directory
 
-    ```      
-     gcloud dns record-sets transaction add \
-       --name=gcr.io. \
-       --type=A 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 \
-       --zone=${ZONE_NAME} \
-       --ttl=300 \
-       --project=${PROJECT}
-    ```
+   ```
+   cd ${PKGDIR}
+   ```
 
-1. Commit the transaction
+1. Fetch Kubeflow manifests
 
-    ```
-     gcloud dns record-sets transaction execute \
-      --zone=${ZONE_NAME} \
-      --project=${PROJECT}
+   ```
+   make get-pkg
+   ```
+
+1. Add the private GKE patches to your kustomization
+
+   1. Open `instance/gcp_config`
+   1. In patchesStrategicMerge add 
+
+      ```
+      - ../../upstream/manifests/gcp/v2/privateGKE/cluster-private-patch.yaml
       ```
 
-## Mirror Kubeflow Application Images
+   1. In resources add
 
-Since private GKE can only access gcr.io, we need to mirror all images outside gcr.io for Kubeflow applications. We will use the `kfctl` tool to accomplish this.
+      ```
+      - ../../upstream/manifests/gcp/v2/privateGKE/
+      ```
 
 
-1. Set your user credentials. You only need to run this command once:
-   
-    ```
-    gcloud auth application-default login
-    ```
+   * Do not use `kustomize edit` to perform the above actions until [kubernetes-sigs/kustomize#2310](https://github.com/kubernetes-sigs/kustomize/issues/2310) is fixed
 
-1. Inside your `${KFAPP}` directory create a local configuration file `mirror.yaml`  based on this [template](https://github.com/kubeflow/manifests/blob/master/experimental/mirror-images/gcp_template.yaml)
+1. Open the `Makefile` and edit the `set-values` rule to invoke `kpt cfg set` with the desired values for
+   your deployment
 
-    1. Change destination to your project gcr registry.
+   * Change `kpt cfg set ./instance gke.private false` to `kpt cfg set ./instance gke.private true`
+   * You need to set region, location and zone because the deployment is a mix of zonal and regional resources and some which could be either
 
-1. Generate pipeline files to mirror images by running
+### Deploy Kubeflow
+
+
+1. Configure the setters
+
+   ```
+   make set-values
+   ```
+
+1. Set environment variables with OAuth Client ID and Secret for IAP
+
+   ```
+   export CLIENT_ID=<client id>
+   export CLIENT_SECRET=<client secret>
+   ```
+
+1. Deploy Kubeflow
+
+   ```
+   make apply
+   ```
+
+   * If this times out waiting for the cluster to be ready check if the reason the update failed is
+     because of [kubeflow/gcp-blueprints#34](https://github.com/kubeflow/gcp-blueprints/issues/35)
+
+   * In this case you can simply edit the Makefile and comment out the line
+
+      ```     
+      kubectl --context=$(MGMTCTXT) wait --for=condition=Ready --timeout=600s  containercluster $(NAME)
+      ```
+
+   * Then rerun `make apply`
+
+1. The cloud endpoints controller doesn't work with private GKE ([kubeflow/gcp-blueprints#36](https://github.com/kubeflow/gcp-blueprints/issues/36)) as a work around
+   you can run `kfctl` locally to create the endpoitn
+
+   ```
+   kfctl apply -f .build/iap-ingress/ctl.isla.solutions_v1_cloudendpoint_${KFNAME}.yaml
+   ```
+
+## Architectural notes
+
+* The reference architecture uses [Cloud Nat](https://cloud.google.com/nat/docs/overview) to allow outbound
+  internet access from node even though they don't have public IPs.
+
+  * Outbound traffic can be restricted using firewall rules
+
+  * Outbound internet access is needed to download the JWKs keys used to verify JWTs attached by IAP
+
+  * If you want to completely disable all outbound internet access you will have to find some alternative solution
+    to keep the JWKs in sync with your ISTIO policy
+
+
+## Troubleshooting
+
+* Cluster is stuck in provisioning state
+
+  * Use the UI or gcloud to figure out what state the cluster is stuck in
+  * If you use gcloud you need to look at the operation e.g.
+
     
-    ```
-    cd ${KFAPP}
-    ./kfctl alpha mirror build mirror.yaml -V -o pipeline.yaml --gcb
-    ```
+    1. Find the operations
+    
+       ```
+       gcloud --project=${PROJECT} container operations list
+       ```
 
-    * If you want to use Tekton rather than Google Cloud Build(GCB) drop `--gcb` to emit a Tekton pipeline
-    * The instructions below assume you are using GCB
+    1. Get operation details
 
-1. Edit the couldbuild.yaml file
+       ```
+       gcloud --project=${PROJECT} container operations describe --region=${REGION} ${OPERATION}
+       ```
 
-    1. In the `images` section add
+* Cluster health checks are failing.
+
+   * This is usually because the firewall rules allowing the GKE health checks are not configured correctly
+
+   * A good place to start is verifying they were created correctly
+
+     ```
+     kubectl --context=${MGMTCTXT} describe computefirewall
+     ```
+
+   * Turn on firewall rule logging to see what traffic is being blocked
+
+     ```
+     kpt cfg set ./upstream/manifests/gcp/v2/privateGKE/ log-firewalls true
+     make apply
+     ```
+
+   * To look for traffic blocked by firewall rules in stackdriver use a filter like the following
+
+      ```
+      logName: "projects/${PROJECT}/logs/compute.googleapis.com%2Ffirewall" 
+      jsonPayload.disposition = "DENIED"
+      ```
+
+      * **Logging must be enabled** on your firewall rules. You can enable it by using a kpt setter
+
+        ```
+        kpt cfg set ./upstream/manifests/gcp/v2/privateGKE/ log-firewalls true 
+        ```
+
+      * Change project to your project
+
+      * Then look at the fields `jsonPayload.connection` this will tell you source and destination ips
+      * Based on the IPs try to figure out where the traffic is coming from (e.g. node to master) and
+        then match to appropriate firewall rules
+
+      * For example
 
          ```
-          - <registry domain>/<project_id>/docker.io/istio/proxy_init:1.1.6
+         connection: {
+          dest_ip: "172.16.0.34"    
+          dest_port: 443    
+          protocol: 6    
+          src_ip: "10.10.10.31"    
+          src_port: 60556    
+         }
+         disposition: "DENIED" 
          ```
-     
-        * Replace `<registry domain>/<project_id>` with your registry      
 
-    1. Under `steps` section add
+         * The destination IP in this case is for a GKE master so the firewall rules are not configured to correctly allow
+           traffic to the master.
 
-          ```
-            - args:
-            - build
-            - -t
-            - <registry domain>/<project id>/docker.io/istio/proxy_init:1.1.6
-            - --build-arg=INPUT_IMAGE=docker.io/istio/proxy_init:1.1.6
-            - .
-            name: gcr.io/cloud-builders/docker
-            waitFor:
-            - '-'  
-          ```
 
-    1. Remove the mirroring of cos-nvidia-installer:fixed image. You don’t need it to be replicated because this image is privately available through GKE internal repo.
+* Common cause for networking related issue is is that some of the network resources (e.g. the Network, Routes, Firewall Rules, etc... ) don't get created
 
-          1. Remove the images from the `images` section
-          1. Remove it from the `steps` section
+     * This could be because a reference is incorrect (e.g. firewall rules reference the wrong network)
 
-1. Create a cloud build job to do the mirroring
+     * You can sanity check resources by doing kubectl describe and looking for errors.
 
-   ```
-    gcloud builds submit --async gs://kubeflow-examples/image-replicate/replicate-context.tar.gz --project <project_id> --config cloudbuild.yaml
-   ```
+       * [kubeflow/gcp-blueprints#38](https://github.com/kubeflow/gcp-blueprints/issues/38) is tracking
+          tools to automate this
 
-1. Update your manifests to use the mirror'd images
+* GCR images can't be pulled
 
-   ```
-   kfctl alpha mirror overwrite -i pipeline.yaml
-   ```
+  * This likely indicates an issue with access to private GCR; this could be an issue with
 
-1. Edit file “kustomize/istio-install/base/istio-noauth.yaml”: 
+    * DNS configurations - Check that the `DNSRecordSet` and `DNSManagedZone` CNRM resources are in a ready state
+    * Routes - Ensure any default route to the internet has a larger value for the priority 
+        then any routes to private GCP APIs so that the private routes match first.
 
-   1. Replace `docker.io/istio/proxy_init:1.16` to `gcr.io/<project_id>/docker.io/istio/proxy_init:1.16`
-   1. Replace `docker.io/istio/proxyv2:1.1.6` to `gcr.io/<project_id>/docker.io/istio/proxyv2:1.1.6`
+        * If image pull errors show IP addresses not the restricted.googleapis.com VIP then you have
+          an issue with networking
 
-## Deploy Kubeflow with Private GKE
+    * Firewall rules
 
-{{% alert title="Coming Soon" color="warning" %}}
-You can follow the issue: [Documentation on how to use Kubeflow with private GKE and VPC service controls](https://github.com/kubeflow/website/issues/1705)
-{{% /alert %}}
+* Access to whitelisted (non Google) sites is blocked
+
+  * The configuration uses CloudNat to allow selective access to sites
+
+    * In addition to allowing IAP, this allows sites like GitHub to be whitelisted.
+
+  * In order for CloudNat to work you need
+
+    * A default route to the internet
+    * Firewall rules to allow egress traffic to whitelisted sites
+
+      * These rules need to be higher priority then the deny all firewall egress rules.
+
+### Kubernetes Webhooks are blocked by firewall rules
+
+A common failure mode is that webhooks for custom resources are blocked by default firewall rules.
+As explained in the [GKE Docs](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#add_firewall_rules) only connections from master to ports 443 and 10250
+are allowed by default. If you have a webhook serving on a different port
+you will need to add an explict ingress firewall rule to allow that port to be accessed.
+
+These errors usually manifest as failures to create custom resources that depend on webhooks. An example
+error is
+
+```
+Error from server (InternalError): error when creating ".build/kubeflow-apps/cert-manager.io_v1alpha2_certificate_admission-webhook-cert.yaml": Internal error occurred: failed calling webhook "webhook.cert-manager.io": the server is currently unable to handle the request
+```
 
 ## Next steps
 
