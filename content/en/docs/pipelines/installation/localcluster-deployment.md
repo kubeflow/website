@@ -284,7 +284,7 @@ arise using it.
 
     ```SHELL
     # env/platform-agnostic-pns hasn't been publically released, so we install from master temporarily
-    export PIPELINE_VERSION=master
+    export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
@@ -310,7 +310,7 @@ Below are the steps to remove Kubeflow Pipelines on kind, k3s, or k3s on WSL:
 GitHub repository, run these commands:
 
   ```SHELL
-  export PIPELINE_VERSION=master
+  export PIPELINE_VERSION={{% pipelines/latest-version %}}
   kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
   kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
   ```
