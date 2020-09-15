@@ -134,5 +134,5 @@ GKE][kubeflow-gcp-install] to set one up.
 [gcloud-install]: https://cloud.google.com/sdk/docs/ 
 [kubeflow-gcp-install]: /docs/gke/deploy/
 [container-registry]: https://cloud.google.com/container-registry/
-[fairing-install]: /docs/fairing/install-fairing/
-[tutorials]: /docs/fairing/gcp/tutorials/
+[fairing-install]: /docs/components/fairing/install-fairing/
+[tutorials]: /docs/components/fairing/gcp/tutorials/

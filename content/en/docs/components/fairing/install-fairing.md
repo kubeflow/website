@@ -233,8 +233,8 @@ use for training and deployment, follow the instructions in the guide to
 [docker-attack]: https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface
 [docker-start]: https://docs.docker.com/config/daemon/#start-the-daemon-manually
 [kubectl-install]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
-[conf]: /docs/fairing/configure-fairing/
-[conf-gcp]: /docs/fairing/gcp/configure-gcp/
-[tutorials]: /docs/fairing/tutorials/other-tutorials/
+[conf]: /docs/components/fairing/configure-fairing/
+[conf-gcp]: /docs/components/fairing/gcp/configure-gcp/
+[tutorials]: /docs/components/fairing/tutorials/other-tutorials/
 [local]: #set-up-kubeflow-fairing-for-local-development
 [hosted]: #set-up-kubeflow-fairing-in-a-hosted-jupyter-notebook

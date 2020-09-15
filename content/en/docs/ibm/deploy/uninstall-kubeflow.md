@@ -1,7 +1,7 @@
 +++
 title = "Uninstall Kubeflow"
 description = "Instructions for uninstalling Kubeflow"
-weight = 10
+weight = 20
                     
 +++
 
