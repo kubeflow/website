@@ -1,6 +1,6 @@
 +++
 title = "Install Kubeflow"
-description = "Instructions for deploying Kubeflow with the shell"
+description = "Instructions for deploying Kubeflow on IBM Cloud"
 weight = 5
 +++
 
@@ -8,18 +8,20 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
 ## Prerequisites
 
-* Authenticating with IBM Cloud
+* Authenticate with IBM Cloud
+
+  Log into IBM Cloud using the [IBM Cloud Command Line Interface (CLI)](https://www.ibm.com/cloud/cli) as follows:
 
   ```shell
   ibmcloud login
   ```
 
-* Accessing the IBM Cloud cluster
+* Create and access to a Kubernetes cluster on IKS
 
-  If you do not have access to a cluster created with IBM Cloud Kubernetes Service, follow the [Create an IBM Cloud cluster](/docs/ibm/create-cluster) guide to create a cluster.
+  To deploy Kubeflow on IBM Cloud, you need a cluster running on IKS. If you don't have a cluster running, follow the [Create an IBM Cloud cluster](/docs/ibm/create-cluster) guide.
 
-  Run following command to switch the Kubernetes context and access the cluster.
-
+  Run the following command to switch the Kubernetes context and access the cluster:
+  
   ```shell
   ibmcloud ks cluster config --cluster <cluster_name>
   ```
@@ -35,7 +37,7 @@ When using the `classic` worker nodes provider of IBM Cloud Kubernetes cluster, 
 [IBM Cloud Block Storage](https://www.ibm.com/cloud/block-storage) provides a fast way to store data and
 satisfy many of the Kubeflow persistent volume requirements such as `fsGroup` out of the box and optimized RWO (read-write single node) which is used on all Kubeflow's persistent volume claim. 
 
-Therefore, we strongly recommend to set up [IBM Cloud Block Storage](https://cloud.ibm.com/docs/containers?topic=containers-block_storage#add_block) as the default storage class so that you can
+Therefore, you're recommended to set up [IBM Cloud Block Storage](https://cloud.ibm.com/docs/containers?topic=containers-block_storage#add_block) as the default storage class so that you can
 get the best experience from Kubeflow.
 
 1. [Follow the instructions](https://helm.sh/docs/intro/install/) to install the Helm version 3 client on your local machine.
