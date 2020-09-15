@@ -16,7 +16,7 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
   ibmcloud login
   ```
 
-* Create and access to a Kubernetes cluster on IKS
+* Create and access a Kubernetes cluster on IKS
 
   To deploy Kubeflow on IBM Cloud, you need a cluster running on IKS. If you don't have a cluster running, follow the [Create an IBM Cloud cluster](/docs/ibm/create-cluster) guide.
 
@@ -43,12 +43,14 @@ get the best experience from Kubeflow.
 1. [Follow the instructions](https://helm.sh/docs/intro/install/) to install the Helm version 3 client on your local machine.
 
 2. Add the IBM Cloud Helm chart repository to the cluster where you want to use the IBM Cloud Block Storage plug-in.
+
     ```shell
     helm repo add iks-charts https://icr.io/helm/iks-charts
     helm repo update
     ```
 
 3. Install the IBM Cloud Block Storage plug-in. When you install the plug-in, pre-defined block storage classes are added to your cluster.
+
     ```shell
     helm install 1.7.0 iks-charts/ibmcloud-block-storage-plugin -n kube-system
     ```
@@ -66,16 +68,19 @@ get the best experience from Kubeflow.
     ```
 
 4. Verify that the installation was successful.
+
     ```shell
     kubectl get pod -n kube-system | grep block
     ```
     
 5. Verify that the storage classes for Block Storage were added to your cluster.
+
     ```
     kubectl get storageclasses | grep block
     ```
 
 6. Set the Block Storage as the default storage class.
+
     ```shell
     NEW_STORAGE_CLASS=ibmc-block-gold
     OLD_STORAGE_CLASS=$(kubectl get sc -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io\/is-default-class=="true")].metadata.name}')
