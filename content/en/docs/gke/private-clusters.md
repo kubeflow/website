@@ -20,7 +20,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@master ./${PKGDIR}
    ```
 
-1. Change to the kubeflow directory
+1. Change to the Kubeflow directory:
 
    ```
    cd ${PKGDIR}
