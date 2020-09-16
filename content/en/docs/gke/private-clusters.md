@@ -17,13 +17,17 @@ These instructions explain how to deploy Kubeflow using private GKE.
    a private GKE cluster), modify the container cluster CRD schema in your
    management cluster to include the missing fields.
 
-   * See directions in that issue.
+   * See [kubeflow/gcp-blueprints#32](https://github.com/kubeflow/gcp-blueprints/issues/32)
+     to know whether this issue has been resolved in later versions of CNRM and if not
+     directions for how to work around it.
 
 1. Fetch the blueprint
 
    ```
    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@master ./${PKGDIR}
    ```
+
+   * This will create the directory ${PKGDIR} with the blueprint.
 
 1. Change to the Kubeflow directory:
 
@@ -40,20 +44,20 @@ These instructions explain how to deploy Kubeflow using private GKE.
 1. Add the private GKE patches to your kustomization
 
    1. Open `instance/gcp_config`
-   1. In patchesStrategicMerge add 
+   1. In `patchesStrategicMerge` add 
 
       ```
       - ../../upstream/manifests/gcp/v2/privateGKE/cluster-private-patch.yaml
       ```
 
-   1. In resources add
+   1. In `resources` add
 
       ```
       - ../../upstream/manifests/gcp/v2/privateGKE/
       ```
 
 
-   * Do not use `kustomize edit` to perform the above actions until [kubernetes-sigs/kustomize#2310](https://github.com/kubernetes-sigs/kustomize/issues/2310) is fixed
+   * **Note**: Do not use `kustomize edit` to perform the above actions until [kubernetes-sigs/kustomize#2310](https://github.com/kubernetes-sigs/kustomize/issues/2310) is fixed
 
 1. Open the `Makefile` and edit the `set-values` rule to invoke `kpt cfg set` with the desired values for
    your deployment
@@ -83,9 +87,6 @@ These instructions explain how to deploy Kubeflow using private GKE.
    make apply
    ```
 
-   * If this times out waiting for the cluster to be ready check if the reason the update failed is
-     because of [kubeflow/gcp-blueprints#34](https://github.com/kubeflow/gcp-blueprints/issues/35)
-
    * In this case you can simply edit the Makefile and comment out the line
 
       ```     
@@ -94,7 +95,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
 
    * Then rerun `make apply`
 
-1. The cloud endpoints controller doesn't work with private GKE ([kubeflow/gcp-blueprints#36](https://github.com/kubeflow/gcp-blueprints/issues/36)) as a work around
+1. The cloud endpoints controller doesn't work with private GKE ([kubeflow/gcp-blueprints#36](https://github.com/kubeflow/gcp-blueprints/issues/36)) as a workaround
    you can run `kfctl` locally to create the endpoitn
 
    ```
@@ -191,16 +192,16 @@ These instructions explain how to deploy Kubeflow using private GKE.
 
      * This could be because a reference is incorrect (e.g. firewall rules reference the wrong network)
 
-     * You can sanity check resources by doing kubectl describe and looking for errors.
+     * You can double check resources by doing kubectl describe and looking for errors.
 
        * [kubeflow/gcp-blueprints#38](https://github.com/kubeflow/gcp-blueprints/issues/38) is tracking
           tools to automate this
 
-* GCR images can't be pulled
+* Google Container Registry(GCR) images can't be pulled
 
   * This likely indicates an issue with access to private GCR; this could be an issue with
 
-    * DNS configurations - Check that the `DNSRecordSet` and `DNSManagedZone` CNRM resources are in a ready state
+    * DNS configurations: Check that the `DNSRecordSet` and `DNSManagedZone` CNRM resources are in a ready state
     * Routes - Ensure any default route to the internet has a larger value for the priority 
         then any routes to private GCP APIs so that the private routes match first.
 
@@ -209,16 +210,16 @@ These instructions explain how to deploy Kubeflow using private GKE.
 
     * Firewall rules
 
-* Access to whitelisted (non Google) sites is blocked
+* Access to allowed (non-Google) sites is blocked
 
-  * The configuration uses CloudNat to allow selective access to sites
+  * The configuration uses CloudNat to allow selective access to sites/
 
-    * In addition to allowing IAP, this allows sites like GitHub to be whitelisted.
+    * In addition to allowing IAP, this allows sites like GitHub to be accessed.
 
   * In order for CloudNat to work you need
 
     * A default route to the internet
-    * Firewall rules to allow egress traffic to whitelisted sites
+    * Firewall rules to allow egress traffic to allowed sites
 
       * These rules need to be higher priority then the deny all firewall egress rules.
 
@@ -230,7 +231,7 @@ are allowed by default. If you have a webhook serving on a different port
 you will need to add an explict ingress firewall rule to allow that port to be accessed.
 
 These errors usually manifest as failures to create custom resources that depend on webhooks. An example
-error is
+error is:
 
 ```
 Error from server (InternalError): error when creating ".build/kubeflow-apps/cert-manager.io_v1alpha2_certificate_admission-webhook-cert.yaml": Internal error occurred: failed calling webhook "webhook.cert-manager.io": the server is currently unable to handle the request
@@ -242,5 +243,5 @@ Error from server (InternalError): error when creating ".build/kubeflow-apps/cer
 *  Learn more about [VPC Service Controls](https://cloud.google.com/vpc-service-controls/docs/)
 * See how to [delete](/docs/gke/deploy/delete-cli) your Kubeflow deployment 
   using the CLI.
-* [Troubleshoot](/docs/gke/troubleshooting-gke) any issues you may
+* [Troubleshoot](/docs/gke/troubleshooting-gke) any GKE issues you may
   find.
