@@ -225,7 +225,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
 ### Kubernetes Webhooks are blocked by firewall rules
 
 A common failure mode is that webhooks for custom resources are blocked by default firewall rules.
-As explained in the [GKE Docs](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#add_firewall_rules) only connections from master to ports 443 and 10250
+As explained in the [GKE docs](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#add_firewall_rules), only connections from master to ports 443 and 10250
 are allowed by default. If you have a webhook serving on a different port
 you will need to add an explict ingress firewall rule to allow that port to be accessed.
 
