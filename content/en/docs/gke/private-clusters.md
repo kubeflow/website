@@ -9,8 +9,13 @@ These instructions explain how to deploy Kubeflow using private GKE.
 
 1. Follow the blueprint instructions to setup a management cluster
 
-1. As a work around for (kubeflow/gcp-blueprints#32)[https://github.com/kubeflow/gcp-blueprints/issues/32]
-   modify the containercluster CRD schema in your management cluster to include missing fields
+1. As a workaround for Issue
+   [kubeflow/gcp-blueprints#32](https://github.com/kubeflow/gcp-blueprints/issues/32)
+   (in CNRM 1.9.1, the [CustomResourceDefinition
+   (CRD)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions)
+   for container cluster is missing `ipAllocationPolicy` fields needed to create
+   a private GKE cluster), modify the container cluster CRD schema in your
+   management cluster to include the missing fields.
 
    * See directions in that issue.
 
