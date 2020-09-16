@@ -9,12 +9,12 @@ deploy Kubeflow on Azure.
 
 ## Prerequisites
 
--   Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux)
--   Install and configure the [Azure Command Line Interface (Az)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-	-  Log in with ```az login```
--   (Optional) Install Docker
-	-   For Windows and WSL: [Guide](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly)
-	-   For other OS: [Docker Desktop](https://hub.docker.com/?overlay=onboarding)
+- Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux)
+- Install and configure the [Azure Command Line Interface (Az)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+  - Log in with ```az login```
+- (Optional) Install Docker
+  - For Windows and WSL: [Guide](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly)
+  - For other OS: [Docker Desktop](https://hub.docker.com/?overlay=onboarding)
 
 You do not need to have an existing Azure Resource Group or Cluster for AKS (Azure Kubernetes Service). You can create a cluster in the deployment process.
 
@@ -30,28 +30,31 @@ The deployment process is controlled by the following commands:
 
 ### App layout
 
-Your Kubeflow application directory **${KF_DIR}** contains the following files and 
+Your Kubeflow application directory **${KF_DIR}** contains the following files and
 directories:
 
-* **${CONFIG_FILE}** is a YAML file that defines configurations related to your 
+* **${CONFIG_FILE}** is a YAML file that defines configurations related to your
   Kubeflow deployment.
 
   * This file is a copy of the GitHub-based configuration YAML file that
-    you used when deploying Kubeflow. For example, {{% config-uri-k8s-istio %}}.
+    you used when deploying Kubeflow. For example, {{% config-uri-azure %}}.
   * When you run `kfctl apply` or `kfctl build`, kfctl creates
     a local version of the configuration file, `${CONFIG_FILE}`,
     which you can further customize if necessary.
 
 * **kustomize** is a directory that contains the kustomize packages for Kubeflow applications.
-    * The directory is created when you run `kfctl build` or `kfctl apply`.
-    * You can customize the Kubernetes resources (modify the manifests and run `kfctl apply` again).
+  * The directory is created when you run `kfctl build` or `kfctl apply`.
+  * You can customize the Kubernetes resources (modify the manifests and run `kfctl apply` again).
 
 If you experience any issues running these scripts, see the [troubleshooting guidance](/docs/azure/troubleshooting-azure) for more information.
 
 ## Azure setup
 
 ### Login to Azure
+
     az login
+    az account set --subscription <NAME OR ID OF SUBSCRIPTION>
+
 ### Initial cluster setup for new cluster
 
 Create a resource group:
@@ -67,7 +70,7 @@ Create a specifically defined cluster:
 
     az aks create -g <RESOURCE_GROUP_NAME> -n <NAME> -s <AGENT_SIZE> -c <AGENT_COUNT> -l <LOCATION> --generate-ssh-keys
 
-Example variables: 
+Example variables:
 
 - NAME=KubeTestCluster
 - AGENT_SIZE=Standard_D4s_v3
@@ -77,15 +80,18 @@ Example variables:
 **NOTE:  If you are using a GPU based AKS cluster (For example: AGENT_SIZE=Standard_NC6), you also need to [install the NVidia drivers](https://docs.microsoft.com/azure/aks/gpu-cluster#install-nvidia-drivers) on the cluster nodes before you can use GPUs with Kubeflow.**
 
 ## Kubeflow installation
+
 Run the following commands to set up and deploy Kubeflow.
 
 1. Create user credentials. You only need to run this command once.
 
         az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
 
+1. [Install Istio in Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install?pivots=client-operating-system-linux)
+
 1. Download the kfctl {{% kf-latest-version %}} release from the
-  [Kubeflow releases 
-  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
+  [Kubeflow releases
+  page](<https://github.com/kubeflow/kfctl/releases/tag/>{{% kf-latest-version %}}).
 
 1. Unpack the tar ball
 
@@ -102,14 +108,14 @@ Run the following commands to set up and deploy Kubeflow.
     # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
     export KF_NAME=<your choice of name for the Kubeflow deployment>
 
-    # Set the path to the base directory where you want to store one or more 
+    # Set the path to the base directory where you want to store one or more
     # Kubeflow deployments. For example, /opt/.
     # Then set the Kubeflow application directory for this deployment.
     export BASE_DIR=<path to a base directory>
     export KF_DIR=${BASE_DIR}/${KF_NAME}
 
     # Set the configuration file to use, such as the file specified below:
-    export CONFIG_URI="{{% config-uri-k8s-istio %}}"
+    export CONFIG_URI="{{% config-uri-azure %}}"
 
     # Generate and deploy Kubeflow:
     mkdir -p ${KF_DIR}
@@ -124,8 +130,8 @@ Run the following commands to set up and deploy Kubeflow.
       '-', and must start and end with an alphanumeric character.
       The value of this variable cannot be greater than 25 characters. It must
       contain just a name, not a directory path.
-      This value also becomes the name of the directory where your Kubeflow 
-      configurations are stored, that is, the Kubeflow application directory. 
+      This value also becomes the name of the directory where your Kubeflow
+      configurations are stored, that is, the Kubeflow application directory.
 
     * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
@@ -135,7 +141,7 @@ Run the following commands to set up and deploy Kubeflow.
 
 1. Open Kubeflow Dashboard
 
-The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster. Run the following command and visit http://localhost:8080.
+The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster. Run the following command and visit <http://localhost:8080>.
 
     kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
 
