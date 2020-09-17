@@ -148,7 +148,9 @@ Run the following commands to set up and deploy Kubeflow.
 
 2. Check the resources deployed correctly in namespace `kubeflow`
 
-        kubectl get all -n kubeflow
+      ```
+      kubectl get all -n kubeflow
+      ```  
 
 3. Open the Kubeflow Dashboard
 
