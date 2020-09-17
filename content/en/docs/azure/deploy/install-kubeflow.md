@@ -146,7 +146,7 @@ Run the following commands to set up and deploy Kubeflow.
 
     * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
-2. Check the resources deployed correctly in namespace `kubeflow`
+2. Run this command to check that the resources have been deployed correctly in namespace `kubeflow`:
 
       ```
       kubectl get all -n kubeflow
