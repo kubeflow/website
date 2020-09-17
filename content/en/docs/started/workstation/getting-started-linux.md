@@ -5,8 +5,7 @@ weight = 10
 
 +++
 
-For Linux systems you have options for servers (physical or virtual) and desktops.
-The server options apply to the desktop as well.
+For Linux systems there are options for servers (physical or virtual) and desktops.
 
 ## Linux server
 
