@@ -50,16 +50,17 @@ one if you haven't already.
 
     Note, Kubeflow is not compatible with later versions of Kustomize. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
     
-    To deploy Kustomize v3.2.1 on a Linux box, run the following commands:
+    To deploy Kustomize v3.2.1 on a Linux machine, run the following commands:
 
     ```
+    # These steps are optional
     curl -LO https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.2.1/kustomize_kustomize.v3.2.1_linux_amd64
     mv kustomize_kustomize.v3.2.1_linux_amd64 kustomize
     chmod +x ./kustomize
     sudo mv ./kustomize /usr/local/bin/kustomize
     ```
 
-    Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/v3.2.1` in the output if you've successfully deployed it.
+    Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/v3.2.1` in the output if you've successfully deployed Kustomize.
 
 1. Install [yq](https://github.com/mikefarah/yq)
 
