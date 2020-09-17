@@ -13,8 +13,8 @@ deploy Kubeflow on Azure.
 - Install and configure the [Azure Command Line Interface (Az)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
   - Log in with ```az login```
 - (Optional) Install Docker
-  - For Windows and WSL: [Guide](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly)
-  - For other OS: [Docker Desktop](https://hub.docker.com/?overlay=onboarding)
+  - For Windows and WSL: [Guide](https://docs.docker.com/docker-for-windows/wsl/)
+  - For other OS: [Docker Desktop](https://docs.docker.com/docker-hub/)
 
 You do not need to have an existing Azure Resource Group or Cluster for AKS (Azure Kubernetes Service). You can create a cluster in the deployment process.
 
@@ -50,34 +50,40 @@ If you experience any issues running these scripts, see the [troubleshooting gui
 
 ## Azure setup
 
-### Login to Azure
+### To log into Azure from the command line interface, run the following commands
 
-    az login
-    az account set --subscription <NAME OR ID OF SUBSCRIPTION>
+  ```
+  az login
+  az account set --subscription <NAME OR ID OF SUBSCRIPTION>
+  ```
 
 ### Initial cluster setup for new cluster
 
 Create a resource group:
 
-    az group create -n <RESOURCE_GROUP_NAME> -l <LOCATION>
+  ```
+  az group create -n <RESOURCE_GROUP_NAME> -l <LOCATION>
+  ```
 
 Example variables:
 
-- RESOURCE_GROUP_NAME=KubeTest
-- LOCATION=westus
+- `RESOURCE_GROUP_NAME=KubeTest`
+- `LOCATION=westus`
 
 Create a specifically defined cluster:
-
-    az aks create -g <RESOURCE_GROUP_NAME> -n <NAME> -s <AGENT_SIZE> -c <AGENT_COUNT> -l <LOCATION> --generate-ssh-keys
+  
+  ```
+  az aks create -g <RESOURCE_GROUP_NAME> -n <NAME> -s <AGENT_SIZE> -c <AGENT_COUNT> -l <LOCATION> --generate-ssh-keys
+  ```
 
 Example variables:
 
-- NAME=KubeTestCluster
-- AGENT_SIZE=Standard_D4s_v3
-- AGENT_COUNT=2
-- Use the same resource group and name from the previous step
+- `NAME=KubeTestCluster`
+- `AGENT_SIZE=Standard_D4s_v3`
+- `AGENT_COUNT=2`
+- `RESOURCE_GROUP_NAME=KubeTest`
 
-**NOTE:  If you are using a GPU based AKS cluster (For example: AGENT_SIZE=Standard_NC6), you also need to [install the NVidia drivers](https://docs.microsoft.com/azure/aks/gpu-cluster#install-nvidia-drivers) on the cluster nodes before you can use GPUs with Kubeflow.**
+**NOTE**:  If you are using a GPU based AKS cluster (For example: AGENT_SIZE=Standard_NC6), you also need to [install the NVidia drivers](https://docs.microsoft.com/azure/aks/gpu-cluster#install-nvidia-drivers) on the cluster nodes before you can use GPUs with Kubeflow.
 
 ## Kubeflow installation
 
@@ -85,9 +91,9 @@ Run the following commands to set up and deploy Kubeflow.
 
 1. Create user credentials. You only need to run this command once.
 
-     ```
-     az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
-     ```
+    ```
+    az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
+    ```
 
 1. [Install Istio in Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install?pivots=client-operating-system-linux)
 
@@ -143,14 +149,18 @@ Run the following commands to set up and deploy Kubeflow.
 
         kubectl get all -n kubeflow
 
-1. Open Kubeflow Dashboard
+1. Open the Kubeflow Dashboard
 
-The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster. Run the following command and visit <http://localhost:8080>.
+    The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster.
+    Run the following command and visit 'http://localhost:8080'.
 
-    kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
+     ```
+     kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
+     ```
 
-To open the dashboard to a public IP address, you should first implement a solution to prevent unauthorized access. You can read more about Azure authentication options from [Access Control for Azure Deployment](/docs/azure/authentication).
+    To open the dashboard to a public IP address, you should first implement a solution to prevent unauthorized access.
+    You can read more about Azure authentication options from [Access Control for Azure Deployment](/docs/azure/authentication).
 
 ## Additional information
 
-You can find general information about Kubeflow configuration in the guide to [configuring Kubeflow with kfctl and kustomize](/docs/other-guides/kustomize/).
+  You can find general information about Kubeflow configuration in the guide to [configuring Kubeflow with kfctl and kustomize](/docs/other-guides/kustomize/).
