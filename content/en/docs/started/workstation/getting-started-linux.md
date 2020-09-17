@@ -15,7 +15,8 @@ GCP, AWS and Azure.
 
 ### MicroK8s
 
-[MicroK8s](https://microk8s.io) runs natively on most Linux distributions.
+[MicroK8s](https://microk8s.io) MicroK8s is a lightweight, fast,
+fully-conformant Kubernetes which runs natively on most Linux distributions.
 
 Follow the installation guide for [Kubeflow with MicroK8s](/docs/started/workstation/getting-started-multipass/) to set up MicroK8s and enable Kubeflow.
 
