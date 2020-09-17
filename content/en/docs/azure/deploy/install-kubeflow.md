@@ -101,13 +101,14 @@ Run the following commands to set up and deploy Kubeflow.
   [Kubeflow releases
   page](<https://github.com/kubeflow/kfctl/releases/tag/>{{% kf-latest-version %}}).
 
-1. Unpack the tar ball
+1. Unpack the tar ball:
 
     ```
     tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
     ```
 
-1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the
+   binary   kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
 
     ```
     # The following command is optional, to make kfctl binary easier to use.
@@ -145,11 +146,11 @@ Run the following commands to set up and deploy Kubeflow.
 
     * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
-1. Check the resources deployed correctly in namespace `kubeflow`
+2. Check the resources deployed correctly in namespace `kubeflow`
 
         kubectl get all -n kubeflow
 
-1. Open the Kubeflow Dashboard
+3. Open the Kubeflow Dashboard
 
     The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster.
     Run the following command and visit 'http://localhost:8080'.
