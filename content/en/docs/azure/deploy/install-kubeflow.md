@@ -85,7 +85,9 @@ Run the following commands to set up and deploy Kubeflow.
 
 1. Create user credentials. You only need to run this command once.
 
-        az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
+     ```
+     az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
+     ```
 
 1. [Install Istio in Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install?pivots=client-operating-system-linux)
 
