@@ -46,15 +46,16 @@ kind was primarily designed for testing Kubernetes itself, but may be used for l
 The full set of instructions are available on the
 [kind getting started](/docs/other-guides/virtual-dev/getting-started-kind/) page.
 
-### Linux appliance
+### Multipass
 
-A Linux appliance is a virtual machine that holds the linux operating system. From there
-you have complete choice over Kubernetes and Kubeflow, which offers the greatest degree
-of flexibility. You only need to install a single application to follow this path:
+[Multipass](https://multipass.run/) creates a fast Linux virtual machine on
+Windows, Mac or Linux systems. The VM contains a complete Ubuntu operating
+system which can then be used to deploy Kubernetes and Kubeflow. This option
+offers the greatest degree of flexibility.
 
 - Install [Multipass](https://multipass.run/#install)
 
-The instructions on [Multipass and MicroK8s getting started](/docs/started/workstation/getting-started-multipass/)
+The instructions on the [Multipass and MicroK8s getting started](/docs/started/workstation/getting-started-multipass/)
 page will complete this path.
 
 ### Kubernetes appliance
