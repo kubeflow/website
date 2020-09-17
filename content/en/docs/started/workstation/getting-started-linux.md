@@ -22,6 +22,13 @@ Follow the installation guide for [Kubeflow with MicroK8s](/docs/started/worksta
 
 ## Linux desktop
 
+### MicroK8s
+
+[MicroK8s](https://microk8s.io) MicroK8s is a lightweight, fast,
+fully-conformant Kubernetes which runs natively on most Linux distributions.
+
+Follow the installation guide for [Kubeflow with MicroK8s](/docs/started/workstation/getting-started-multipass/) to set up MicroK8s and enable Kubeflow.
+
 ### Kubeflow appliance
 
 A Kubeflow appliance is a virtual machine that has Kubeflow already installed. Once the
