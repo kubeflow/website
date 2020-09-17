@@ -1,6 +1,6 @@
 +++
 title = "Install Kubeflow"
-description = "Instructions for deploying Kubeflow with the shell"
+description = "Instructions for deploying Kubeflow"
 weight = 4
                     
 +++
@@ -155,11 +155,13 @@ Run the following commands to set up and deploy Kubeflow.
 3. Open the Kubeflow Dashboard
 
     The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster.
-    Run the following command and visit 'http://localhost:8080'.
+    Run the following command:
 
      ```
      kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
      ```
+
+     Next, open `http://localhost:8080` in your browser.
 
     To open the dashboard to a public IP address, you should first implement a solution to prevent unauthorized access.
     You can read more about Azure authentication options from [Access Control for Azure Deployment](/docs/azure/authentication).
