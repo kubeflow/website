@@ -108,7 +108,7 @@ Run the following commands to set up and deploy Kubeflow.
     ```
 
 1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the
-   binary   kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+   binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
 
     ```
     # The following command is optional, to make kfctl binary easier to use.
