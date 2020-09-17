@@ -2,12 +2,8 @@
 title = "Kubeflow on Linux"
 description = "Install Kubeflow on Linux"
 weight = 10
-                    
+
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 For Linux systems you have options for servers (physical or virtual) and desktops.
 The server options apply to the desktop as well.
@@ -20,7 +16,7 @@ GCP, AWS and Azure.
 
 ### MicroK8s
 
-[MicroK8s](https://microk8s.io) runs natively on most Linux distributions. 
+[MicroK8s](https://microk8s.io) runs natively on most Linux distributions.
 
 Follow the installation guide for [Kubeflow with MicroK8s](/docs/started/workstation/getting-started-multipass/) to set up MicroK8s and enable Kubeflow.
 
@@ -69,5 +65,5 @@ to install Kubeflow. This option gives you full control over your Kubeflow setup
 
 - Install [Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/)
 
-Follow the instructions on [deploying with MiniKube on 
+Follow the instructions on [deploying with MiniKube on
 Linux](/docs/started/workstation/minikube-linux/) to complete this path.
