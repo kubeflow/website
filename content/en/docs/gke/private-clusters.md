@@ -60,7 +60,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
    * **Note**: Do not use `kustomize edit` to perform the above actions until [kubernetes-sigs/kustomize#2310](https://github.com/kubernetes-sigs/kustomize/issues/2310) is fixed
 
 1. Open the `Makefile` and edit the `set-values` rule to invoke `kpt cfg set` with the desired values for
-   your deployment
+   your deployment.
 
    * Change `kpt cfg set ./instance gke.private false` to `kpt cfg set ./instance gke.private true`
    * You need to set region, location and zone because the deployment is a mix of zonal and regional resources and some which could be either
@@ -74,7 +74,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
    make set-values
    ```
 
-1. Set environment variables with OAuth Client ID and Secret for IAP
+1. Set environment variables with OAuth Client ID and Secret for IAP.
 
    ```
    export CLIENT_ID=<client id>
@@ -117,7 +117,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
 
 ## Troubleshooting
 
-* Cluster is stuck in provisioning state
+* Cluster is stuck in provisioning state.
 
   * Use the UI or gcloud to figure out what state the cluster is stuck in
   * If you use gcloud you need to look at the operation e.g.
@@ -145,7 +145,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
      kubectl --context=${MGMTCTXT} describe computefirewall
      ```
 
-   * Turn on firewall rule logging to see what traffic is being blocked
+   * Turn on firewall rule logging to see what traffic is being blocked.
 
      ```
      kpt cfg set ./upstream/manifests/gcp/v2/privateGKE/ log-firewalls true
