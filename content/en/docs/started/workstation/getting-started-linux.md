@@ -29,12 +29,7 @@ fully-conformant Kubernetes which runs natively on most Linux distributions.
 
 Follow the installation guide for [Kubeflow with MicroK8s](/docs/started/workstation/getting-started-multipass/) to set up MicroK8s and enable Kubeflow.
 
-### Kubeflow appliance
-
-A Kubeflow appliance is a virtual machine that has Kubeflow already installed. Once the
-necessary supporting software is installed no further installation steps are required.
-
-#### MiniKF
+### MiniKF
 
 MiniKF is a predefined virtual machine that installs onto VirtualBox through Vagrant.
 The only following applications are required to use MiniKF:
@@ -45,7 +40,7 @@ The only following applications are required to use MiniKF:
 The full set of instructions are available on the
 [MiniKF getting started](/docs/started/workstation/getting-started-minikf/) page.
 
-#### Kind
+### Kind
 
 [kind](https://kind.sigs.k8s.io/) is a tool for running local Kubernetes clusters using Docker container "nodes".
 kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
