@@ -65,13 +65,13 @@ offers the greatest degree of flexibility.
 The instructions on the [Multipass and MicroK8s getting started](/docs/started/workstation/getting-started-multipass/)
 page will complete this path.
 
-### Kubernetes appliance
+### Minikube
 
-A Kubernetes appliance is a virtual machine that has a
-Kubernetes cluster already installed. After starting the virtual machine, you need
-to install Kubeflow. This option gives you full control over your Kubeflow setup.
+Minikube is a tool for installing a single node Kubernetes in a virtual
+machine. After starting the virtual machine, you need
+to install Kubeflow. This option gives you full control over your
+Kubeflow setup.
 
 - Install [Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/)
 
-Follow the instructions on [deploying with MiniKube on
-Linux](/docs/started/workstation/minikube-linux/) to complete this path.
+Follow the instructions on [deploying with MiniKube on Linux](/docs/started/workstation/minikube-linux/) to complete this path.
