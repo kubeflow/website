@@ -112,19 +112,25 @@ kubeflow is defined. These are described in the table below.
 kpt setter | Description |
 -----------|-------------|
 mgmt-ctxt | This is the name of the KUBECONFIG context for the management cluster; this kubecontext will be used to create CNRM resources for your Kubeflow deployment. **The context must set the namespace to the namespace in your CNRM cluster where you are creating CNRM resources for the managed project.**|
-gcloud.core.project| The project you want to deploy in |
+name| This is the name of the Kubeflow deployment |
 location | The zone or region you want to deploy in |
-gcloud.compute.region | The region you are deploying in |
 gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.compute.region |
+gcloud.core.project| The project you want to deploy in |
+email| The email adderss of the admin |
 
 * Location can be a zone or a region depending on whether you want a regional cluster
 
   * Currently, Kubeflow Pipelines doesn't work with regional deployments. For more, go to [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6).
 
-* The **Makefile** at `${KFDIR}/kubeflow/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
-  of the parameters
-
-* You need to edit the makefile at `${KFDIR}/kubeflow/Makefile` to set the parameters to the desired values.
+* Set the parameters
+  ```
+  kpt cfg set ./instance mgmt-ctxt <YOUR_MANAGEMENT_CTXT>
+  kpt cfg set ./instance name <YOUR_KF_NAME>
+  kpt cfg set ./instance location <YOUR_REGION or ZONE>
+  kpt cfg set ./instance gcloud.compute.zone <ZONE>
+  kpt cfg set ./instance gcloud.core.project <YOUR PROJECT>
+  kpt cfg set ./instance email <YOUR_EMAIL_ADDRESS>
+  ```
 
    * Note there are multiple invocations of `kpt cfg set` on different directories to
      work around [GoogleContainerTools/kpt#541](https://github.com/GoogleContainerTools/kpt/issues/541)
@@ -160,11 +166,6 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
    export CLIENT_SECRET=<Your CLIENT_SECRET>
    ```
 
-* Invoke the make rule to set the kpt setters
-
-  ```
-  make set-values
-  ```
 
 <a id="set-up-and-deploy"></a>
 ## Deploy Kubeflow
