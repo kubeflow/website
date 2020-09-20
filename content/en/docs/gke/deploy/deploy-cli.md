@@ -122,7 +122,7 @@ email| The email adderss of the admin |
 
   * Currently, Kubeflow Pipelines doesn't work with regional deployments. For more, go to [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6).
 
-* Set the parameters
+* Set the values of the parameters
   ```
   kpt cfg set ./instance mgmt-ctxt <YOUR_MANAGEMENT_CTXT>
   kpt cfg set ./instance name <YOUR_KF_NAME>
