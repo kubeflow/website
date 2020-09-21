@@ -34,7 +34,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
    cd ${PKGDIR}
    ```
 
-1. Fetch Kubeflow manifests
+1. Fetch Kubeflow manifests:
 
    ```
    make get-pkg
