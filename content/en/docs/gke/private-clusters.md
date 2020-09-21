@@ -204,8 +204,8 @@ These instructions explain how to deploy Kubeflow using private GKE.
     * Routes - Ensure any default route to the internet has a larger value for the priority 
         then any routes to private GCP APIs so that the private routes match first.
 
-        * If image pull errors show IP addresses not the restricted.googleapis.com VIP then you have
-          an issue with networking
+        * If image pull errors show IP addresses and not the `restricted.googleapis.com` VIP, then you have
+          an issue with networking.
 
     * Firewall rules
 
