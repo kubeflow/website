@@ -53,10 +53,11 @@ one if you haven't already.
     To deploy Kustomize v3.2.1 on a Linux machine, run the following commands:
 
     ```
-    # These steps are optional
     curl -LO https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.2.1/kustomize_kustomize.v3.2.1_linux_amd64
     mv kustomize_kustomize.v3.2.1_linux_amd64 kustomize
     chmod +x ./kustomize
+    
+    # We need to add the kustomize package to your $PATH env variable
     sudo mv ./kustomize /usr/local/bin/kustomize
     ```
 
