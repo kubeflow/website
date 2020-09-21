@@ -197,7 +197,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
        * [kubeflow/gcp-blueprints#38](https://github.com/kubeflow/gcp-blueprints/issues/38) is tracking
           tools to automate this
 
-* Google Container Registry(GCR) images can't be pulled
+* Google Container Registry (GCR) images can't be pulled.
 
   * This likely indicates an issue with access to private GCR; this could be an issue with
 
