@@ -17,9 +17,8 @@ These instructions explain how to deploy Kubeflow using private GKE.
    a private GKE cluster), modify the container cluster CRD schema in your
    management cluster to include the missing fields.
 
-   * See [kubeflow/gcp-blueprints#32](https://github.com/kubeflow/gcp-blueprints/issues/32)
-     to know whether this issue has been resolved in later versions of CNRM and if not
-     directions for how to work around it.
+   * Check Issue [kubeflow/gcp-blueprints#32](https://github.com/kubeflow/gcp-blueprints/issues/32)
+     to find out if it has been resolved in later versions of CNRM. If the issue hasn't been resolved, there should be directions for a workaround.
 
 1. Fetch the blueprint
 
