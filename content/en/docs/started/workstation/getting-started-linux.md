@@ -5,14 +5,18 @@ weight = 10
 
 +++
 
-There are a few installation options for Kubeflow on Linux.
+For Linux servers you can install Kubeflow natively using MicroK8s. This is perfect for Linux hosts and virtual machines, such as VMs in OpenStack, VMware or public clouds like GCP, AWS and Azure. 
+
+For Linux desktop, you can install Kubeflow with any of the options listed below.
 
 ### MicroK8s
 
-MicroK8s is a lightweight zero-ops Kubernetes which runs natively on every Linux distribution that supports snaps.
+MicroK8s is a lightweight zero-ops Kubernetes which runs natively on every Linux distribution that supports snaps. MicroK8s is highly available from 3+ nodes and includes a single-command install of Kubeflow.
 
-- Install MicroK8s
-- Install Kubeflow by running: `microk8s enable kubeflow`
+To get Kubeflow:
+
+1. Install [MicroK8s](https://microk8s.io/)
+2. Install Kubeflow by running: `microk8s enable kubeflow`
 
 The full set of instructions are available on the [Kubeflow on MicroK8s](https://www.kubeflow.org/docs/started/workstation/getting-started-multipass/) page.
 
@@ -22,8 +26,8 @@ MiniKF is a Kubeflow appliance, a predefined virtual machine that has Kubeflow a
 
 The only following applications are required to use MiniKF:
 
-- Install [Vagrant](https://www.vagrantup.com/downloads.html)
-- Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+1. Install [Vagrant](https://www.vagrantup.com/downloads.html)
+2. Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 
 Follow the instructions on [MiniKF getting started](/docs/started/workstation/getting-started-minikf/) to complete this path.
 
