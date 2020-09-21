@@ -31,7 +31,7 @@ some handy environment variables:
 
 1. Unpack the tar ball:    
     ```
-    tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
+    tar -xvf kfctl\_{{% kf-latest-version %}}\_<platform>.tar.gz
     ```
 
 1. Create environment variables to make the deployment process easier:
