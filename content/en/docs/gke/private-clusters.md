@@ -198,7 +198,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
 
 * Google Container Registry (GCR) images can't be pulled.
 
-  * This likely indicates an issue with access to private GCR; this could be an issue with
+  * This likely indicates an issue with access to private GCR. This could be because of:
 
     * DNS configurations: Check that the `DNSRecordSet` and `DNSManagedZone` CNRM resources are in a ready state.
     * Routes - Ensure any default route to the internet has a larger value for the priority 
