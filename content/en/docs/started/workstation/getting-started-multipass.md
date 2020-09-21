@@ -1,5 +1,5 @@
 +++
-title = "MicroK8s for Kubeflow"
+title = "Kubeflow on MicroK8s"
 description = "Run Kubeflow locally on built-in hypervisors with MicroK8s" 
 weight = 60
 +++
@@ -84,7 +84,7 @@ When running MicroK8s on Windows, macOS, Multipass or a virtual machine, you nee
     ssh -D9999 multipass@<multipass_public_ip>
     ```
 
-3. In your Linux operating system, go to **Settings** > **Network** > **Network Proxy**, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
+3. In your host operating system, go to **Settings** > **Network** > **Network Proxy**, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
 
 4. Finally, access the Kubeflow dashboard by:
     1. Opening a new web browser window.
