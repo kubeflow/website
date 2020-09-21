@@ -7,7 +7,7 @@ weight = 70
 
 These instructions explain how to deploy Kubeflow using private GKE.
 
-1. Follow the blueprint instructions to setup a management cluster
+1. Follow the [blueprint instructions](../deploy/management-setup/) to setup a management cluster
 
 1. As a workaround for Issue
    [kubeflow/gcp-blueprints#32](https://github.com/kubeflow/gcp-blueprints/issues/32)
@@ -18,9 +18,10 @@ These instructions explain how to deploy Kubeflow using private GKE.
    management cluster to include the missing fields.
 
    * Check Issue [kubeflow/gcp-blueprints#32](https://github.com/kubeflow/gcp-blueprints/issues/32)
-     to find out if it has been resolved in later versions of CNRM. If the issue hasn't been resolved, there should be directions for a workaround.
+     to find out if it has been resolved in later versions of CNRM. If the issue hasn't been resolved,
+     you can follow the instructions in the issue to work around the problem.
 
-1. Fetch the blueprint
+1. Fetch the blueprint by running this command:
 
    ```
    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@master ./${PKGDIR}
