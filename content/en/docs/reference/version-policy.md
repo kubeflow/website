@@ -171,7 +171,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>{{% pipelines/latest-version %}}</td>
+        <td>1.0.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/multi-tenancy/">Profile 
@@ -250,7 +250,7 @@ one of the following Kubeflow SDKs and command-line interfaces
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>{{% pipelines/latest-version %}}</td>
+        <td>1.0.0</td>
       </tr>
     </tbody>
   </table>
