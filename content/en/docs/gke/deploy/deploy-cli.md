@@ -116,14 +116,15 @@ name| This is the name of the Kubeflow deployment |
 location | The zone or region you want to deploy in |
 gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.compute.region |
 gcloud.core.project| The project you want to deploy in |
-email| The email adderss of the admin |
+email| The email address of the admin |
 
 * Location can be a zone or a region depending on whether you want a regional cluster
 
   * Currently, Kubeflow Pipelines doesn't work with regional deployments. For more, go to [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6).
 
 * Set the values of the parameters
-  ```
+
+  ```bash
   kpt cfg set ./instance mgmt-ctxt <YOUR_MANAGEMENT_CTXT>
   kpt cfg set ./instance name <YOUR_KF_NAME>
   kpt cfg set ./instance location <YOUR_REGION or ZONE>
@@ -138,16 +139,19 @@ email| The email adderss of the admin |
 * You need to configure the kubectl context provided in `mgmt-ctxt`.
 
   * Choose the management cluster context
+
     ```bash
     kubectl config use-context ${mgmt-ctxt}
     ```
 
   * Create a namespace in your management cluster for the managed project if you haven't done so.
+
     ```bash
     kubectl create namespace ${PROJECT}
     ```
 
   * Make the managed project's namespace default of the context:
+
     ```bash
     kubectl config set-context --current --namespace ${PROJECT}
     ```
