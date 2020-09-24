@@ -1,6 +1,6 @@
 +++
 title = "Management cluster setup"
-description = "Instructions for setting up a management cluster on Google Cloud"
+description = "Setting up a management cluster on Google Cloud"
 weight = 3
 +++
 
@@ -109,7 +109,7 @@ For a more detailed explanation of the changes affecting Kubeflow 1.1 on Google 
 
 ### Authorize CNRM for each project
 
-In the last step we created the Google Cloud service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
+In the last step you created the Google Cloud service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
 this is the service account that CNRM will use to create any Google Cloud resources. Consequently
 you need to grant this Google Cloud service account sufficient privileges to create the desired
 resources in one or more projects. 
