@@ -37,7 +37,7 @@ For a more detailed explanation of the changes affecting Kubeflow 1.1 on Google 
 
 1. Install [Kustomize v3.2.1](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv3.2.1).
 
-    Note, Kubeflow is not compatible with later versions of Kustomize. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
+    **Note:** Kubeflow is not compatible with Kustomize versions above 3.2.1. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
 
 1. Next, you'll be installing [yq](https://github.com/mikefarah/yq):
 
