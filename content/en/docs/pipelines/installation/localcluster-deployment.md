@@ -266,7 +266,14 @@ To set up access to your WSL instance:
 to the IP of the your WSL instance (`ip addr show dev eth0`) (For example, 
 `https://192.168.170.170:6443`.)
 
-3. Run kubectl in a Windows terminal. If you don't kubectl 
+**Note:**:An alternative method to the above points is to execute the following in a Powershell Terminal
+     
+     ```SHELL
+     $env:KUBECONFIG='//wsl$/saio-wsl/etc/rancher/k3s/k3s.yaml'
+     sc //wsl$/saio-wsl/etc/rancher/k3s/k3s.yaml ((gc -raw //wsl$/saio-wsl/etc/rancher/k3s/k3s.yaml) -replace '127.0.0.1','localhost')
+     ```
+     
+3. Run kubectl in a Windows terminal. If you don't have kubectl 
 installed, follow the official 
 [Kubernetes on Windows instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows).
 
@@ -291,6 +298,12 @@ arise using it.
     ```
 
     The Kubeflow Pipelines deployment may take several minutes to complete.
+2. Verify that the Kubeflow Pipelines UI is accessible by port-forwarding:
+
+   ```SHELL
+   kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
+   ```
+Open the Kubeflow Pipelines UI at http://localhost:8080/ or if you are using Kind or K3s within a VM http://{VM IP ADDRESS}:8080/
 
     **Note**: `kubectl apply -k` accepts local paths and paths that are formatted as 
 [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, they are not valid 
