@@ -266,14 +266,15 @@ To set up access to your WSL instance:
 to the IP of the your WSL instance (`ip addr show dev eth0`) (For example, 
 `https://192.168.170.170:6443`.)
 
-**Note:**:An alternative method to the above points is to execute the following in a Powershell Terminal
-     
-     ```SHELL
-     $env:KUBECONFIG='//wsl$/saio-wsl/etc/rancher/k3s/k3s.yaml'
-     sc //wsl$/saio-wsl/etc/rancher/k3s/k3s.yaml ((gc -raw //wsl$/saio-wsl/etc/rancher/k3s/k3s.yaml) -replace '127.0.0.1','localhost')
-     ```
-     
-3. Run kubectl in a Windows terminal. If you don't have kubectl 
+    **Note:** Alternatively, you can run the following commands in the PowerShell
+console:
+  
+    ```powershell
+    $env:KUBECONFIG='//wsl$/saio-wsl/etc/rancher/k3s/k3s.yaml'
+    sc //wsl$/saio-wsl/etc/rancher/k3s/k3s.yaml ((gc -raw //wsl$/saio-wsl/etc/rancher/k3s/k3s.yaml) -replace '127.0.0.1','localhost')
+    ```
+
+3. Run kubectl in Windows Terminal. If you don't have kubectl 
 installed, follow the official 
 [Kubernetes on Windows instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows).
 
