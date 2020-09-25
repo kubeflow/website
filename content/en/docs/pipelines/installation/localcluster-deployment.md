@@ -300,10 +300,20 @@ arise using it.
     The Kubeflow Pipelines deployment may take several minutes to complete.
 2. Verify that the Kubeflow Pipelines UI is accessible by port-forwarding:
 
-   ```SHELL
-   kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
-   ```
-Open the Kubeflow Pipelines UI at http://localhost:8080/ or if you are using Kind or K3s within a VM http://{VM IP ADDRESS}:8080/
+    ```SHELL
+    kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
+    ```
+
+    Then, open the Kubeflow Pipelines UI at `http://localhost:8080/`. If you are
+    using kind or K3s in a virtual machine (VM), you can access the web UI at
+    `http://{VM_IP_ADDRESS}:8080/` (replace `VM_IP_ADDRESS` with your VM's IP
+    address.)
+
+    **Note**: `kubectl apply -k` accepts local paths and paths that are
+    formatted as [hashicorp/go-getter
+    URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format).
+    While the paths in the preceding commands look like URLs, they are not
+    valid URLs.
 
     **Note**: `kubectl apply -k` accepts local paths and paths that are formatted as 
 [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, they are not valid 
