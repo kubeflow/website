@@ -39,16 +39,20 @@ For a more detailed explanation of the changes affecting Kubeflow 1.1 on Google 
 
     **Note:** Kubeflow is not compatible with Kustomize versions above 3.2.1. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
 
-1. Next, you'll be installing [yq](https://github.com/mikefarah/yq):
+1. Next, you'll be installing `yq`. Here are some options:
 
-    1. Check that you have [Go](https://golang.org) installed by running the `go version`
-       command. If you don't, you can download a binary from
-       [yq's GitHub releases](https://github.com/mikefarah/yq/releases).
-    2. Install yq by running the following command line:
+    * Follow the [official instructions](https://github.com/mikefarah/yq#install).
+    
+    * Use Go:
 
-       ```
-       GO111MODULE=on go get github.com/mikefarah/yq/v3
-       ```
+       1. Check that you have [Go](https://golang.org) installed by running the `go version`
+          command. If you don't, you can download a binary from
+          [yq's GitHub releases](https://github.com/mikefarah/yq/releases).
+       2. Install yq by running the following command line:
+
+          ```
+          GO111MODULE=on go get github.com/mikefarah/yq/v3
+          ```
  
 ## Setting up the management cluster
 
