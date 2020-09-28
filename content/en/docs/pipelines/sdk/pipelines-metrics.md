@@ -23,13 +23,14 @@ experiment in the Kubeflow Pipelines UI.
  
 ## Export the metrics file
 
-To enable metrics, your component must write a JSON file specifying metrics to render.
-The pipeline component must also export a file output artifact with an artifact name of `mlpipeline-metrics`,
-or else the Kubeflow Pipelines UI will not render the visualization. In other words,
-the `.outputs.artifacts` setting for the generated pipeline component should show:
+To enable metrics, your component must write a JSON file specifying metrics to
+render. The pipeline component must also export a file output artifact with an
+artifact name of `mlpipeline-metrics`, or else the Kubeflow Pipelines UI will
+not render the visualization. In other words, the `.outputs.artifacts` setting
+for the generated pipeline component should show:
 `- {name: mlpipeline-metrics, path: /mlpipeline-metrics.json}`.
-The JSON filepath does not matter, although `/mlpipeline-metrics.json`
-is used for consistency in the examples below.
+The JSON filepath does not matter, although `/mlpipeline-metrics.json` is used
+for consistency in the examples below.
 
 Example JSON content:
 
