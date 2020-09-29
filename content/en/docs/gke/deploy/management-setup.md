@@ -102,10 +102,10 @@ For a more detailed explanation of the changes affecting Kubeflow 1.1 on Google 
 
 ### Authorize CNRM for each project
 
-In the last step you created the Google Cloud service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
-this is the service account that CNRM will use to create any Google Cloud resources. Consequently
-you need to grant this Google Cloud service account sufficient privileges to create the desired
-resources in one or more projects. 
+In the last step we created the GCP service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
+this is the service account that CNRM will use to create any GCP resources. Consequently
+you need to grant this GCP service account sufficient privileges to create the desired
+resources in one or more projects (called managed projects, read [more](https://github.com/kubeflow/gcp-blueprints/tree/master/management/instance/managed-project)). 
 
 The easiest way to do this is to grant the Google Cloud service account owner permissions on one or more projects
 
