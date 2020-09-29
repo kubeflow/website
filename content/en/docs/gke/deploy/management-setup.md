@@ -1,18 +1,30 @@
 +++
 title = "Management cluster setup"
-description = "Instructions for setting up a management cluster on (GCP)"
+description = "Setting up a management cluster on Google Cloud"
 weight = 3
 +++
 
 This guide describes how to setup a management cluster which you will use to deploy one or more instances of Kubeflow.
 
+The management cluster is used to run [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview). Cloud Config Connector is a Kubernetes addon that allows you to manage Google Cloud resources through Kubernetes.
+
 While the management cluster can be deployed in the same project as your Kubeflow cluster, typically you will want to deploy
 it in a separate project used for administering one or more Kubeflow instances.
 
-The management cluster is used to run [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview).
-
 Optionally, the cluster can be configured with [Anthos Config Managmenet](https://cloud.google.com/anthos-config-management/docs) 
-to manage GCP infrastructure using GitOps.
+to manage Google Cloud infrastructure using GitOps.
+
+## FAQs
+
+* Where is `kfctl`?
+
+   `kfctl` is no longer being used to apply resources for Google Cloud, because required functionalities are now supported by generic tools including [Make](https://www.gnu.org/software/make/), [Kustomize](https://kustomize.io), [kpt](https://googlecontainertools.github.io/kpt/), and [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview).
+
+* Why do we use an extra management cluster to manage Google Cloud resources?
+
+   The management cluster is very lightweight cluster that runs [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview). Cloud Config Connector makes it easier to configure Google Cloud resources using YAML and Kustomize.
+
+For a more detailed explanation of the changes affecting Kubeflow 1.1 on Google Cloud, read [kubeflow/gcp-blueprints #123](https://github.com/kubeflow/gcp-blueprints/issues/123).
 
 ## Install the required tools
 
@@ -23,13 +35,19 @@ to manage GCP infrastructure using GitOps.
    gcloud components update
    ```
 
+1. Install [Kustomize v3.2.1](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv3.2.1).
+
+    **Note:** Kubeflow is not compatible with Kustomize versions above 3.2.1. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
+
+1. Install [yq](https://github.com/mikefarah/yq#install).
+ 
 ## Setting up the management cluster
 
 
 1. Fetch the management blueprint
 
    ```
-   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/management@master ./
+   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/management@v1.1.0 ./
    ```
 
 1. Fetch the upstream manifests
@@ -39,17 +57,7 @@ to manage GCP infrastructure using GitOps.
    make get-pkg
    ```
 
-  * This generates an error like the one below but you can ignore it;
-
-    ```  
-    kpt pkg get https://github.com/jlewi/manifests.git@blueprints ./upstream
-    fetching package / from https://github.com/jlewi/manifests to upstream/manifests
-    Error: resources must be annotated with config.kubernetes.io/index to be written to files    
-    ```
-  
-    * This is being tracked in [GoogleContainerTools/kpt#539](https://github.com/GoogleContainerTools/kpt/issues/539) 
-
-1. Open up the **Makefile** and edit the `set-values` rule to set values for the name, project, and location of your management; when you are done the section should look like
+1. Open up the **Makefile** at `./management/Makefile` and edit the `set-values` rule to set values for the name, project, and location of your management; when you are done the section should look like
 
    ```  
     set-values: 
@@ -90,7 +98,7 @@ to manage GCP infrastructure using GitOps.
    ```
 
    * This will install CNRM in your cluster
-   * It will create the GCP service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
+   * It will create the Google Cloud service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
 
 ### Authorize CNRM for each project
 
@@ -99,7 +107,7 @@ this is the service account that CNRM will use to create any GCP resources. Cons
 you need to grant this GCP service account sufficient privileges to create the desired
 resources in one or more projects (called managed projects, read [more](https://github.com/kubeflow/gcp-blueprints/tree/master/management/instance/managed-project)). 
 
-The easiest way to do this is to grant the GCP service account owner permissions on one or more projects
+The easiest way to do this is to grant the Google Cloud service account owner permissions on one or more projects
 
 1. Set the managed project
 

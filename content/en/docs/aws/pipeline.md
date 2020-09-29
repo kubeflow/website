@@ -33,7 +33,7 @@ client = kfp.Client(host='http://<aws_alb_host>/pipeline', cookies=authservice_s
 client.list_experiments(namespace="<your_namespace>")
 ```
 
- - coginito {{% config-uri-aws-cognito %}}
+ - cognito {{% config-uri-aws-cognito %}}
 
 ```bash
 import kfp
@@ -49,13 +49,13 @@ client.list_experiments(namespace="<your_namespace>")
 Please look at this [PR](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) to do programmatic authentication with Dex.
 
 
-- coginito {{% config-uri-aws-cognito %}}
+- cognito {{% config-uri-aws-cognito %}}
 
 You can still retrieve session cookie and pass to backend like we do [here]
 (#authenticate-kubeflow-pipeline-using-sdk-inside-cluster)
 
 If you are looking for end to end experience, this is working in progress. Once [feat(sdk): Enable AWS ALB authentication in KFP SDK Client](https://github.com/kubeflow/pipelines/pull/4182) PR is merged,
-user can pass Coginito user username and password to authenticate KFP via AWS Application Load Balancer.
+user can pass Cognito user username and password to authenticate KFP via AWS Application Load Balancer.
 
 ## S3 Access from Kubeflow Pipelines
 

@@ -283,6 +283,7 @@ arise using it.
 1. To deploy the Kubeflow Pipelines, run the following commands:
 
     ```SHELL
+    # env/platform-agnostic-pns hasn't been publically released, so we install from master temporarily
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
@@ -290,8 +291,6 @@ arise using it.
     ```
 
     The Kubeflow Pipelines deployment may take several minutes to complete.
-
-    **Note**: The above commands apply to Kubeflow Pipelines version 0.4.0 and higher.
 
     **Note**: `kubectl apply -k` accepts local paths and paths that are formatted as 
 [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, they are not valid 
