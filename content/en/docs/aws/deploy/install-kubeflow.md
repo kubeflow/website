@@ -177,7 +177,7 @@ This deployment may take 3-5 minutes to become ready. Verify that the address wo
 - **Dex**
   If you're using basic authentication, the credentials are the ones you specified in the KfDef file, or the default (`admin@kubeflow.org`:`12341234`). It is highly recommended to change the default credentials. To add static users or change the existing one, [add static users for basic auth](/docs/aws/deploy/install-kubeflow/#add-static-users-for-basic-auth).
 
-- **Coginito**
+- **Cognito**
   To secure an enterprise-level installation, use the {{% config-uri-aws-cognito %}} configuration file and [configure authentication and authorization](/docs/aws/authentication) for your cluster.
 
 ### Add static users for basic authentication 

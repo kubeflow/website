@@ -16,9 +16,8 @@ open source technologies, including Kubernetes, Istio, and Knative.
 Using Anthos, you can create a consistent setup across your on-premises and 
 cloud environments, helping you to automate policy and security at scale.
 
-If you're interested in running Kubeflow on Anthos GKE, email the Kubeflow team
-at 
-[google-kubeflow-support@google.com](mailto:google-kubeflow-support@google.com).
+Kubeflow on GKE On Prem is a work in progress. To track progess you can subscribe
+to the GitHub issue [kubeflow/gcp-blueprints#138](https://github.com/kubeflow/gcp-blueprints/issues/138).
 
 ## Next steps
 

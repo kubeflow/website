@@ -1,10 +1,7 @@
 approvers:
-  - Bobgy
-  - IronPan
   - neuromage
   - Ark-kun
   - numerology
 reviewers:
-  - joeliedtke
-  - alfsuse
   - 8bitmp3
+  - RFMVasconcelos

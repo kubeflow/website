@@ -28,8 +28,6 @@ The Kubernetes cluster must meet the following minimum requirements:
   {{% kubernetes-tested-version %}}.
   - Your cluster must run at least Kubernetes version
     {{% kubernetes-min-version %}}.
-  - Kubeflow **does not work** on Kubernetes
-    {{% kubernetes-incompatible-versions %}}.
   - Older versions of Kubernetes may not be compatible with the latest Kubeflow versions. The following matrix
     provides information about compatibility between Kubeflow and Kubernetes versions.
 
@@ -92,7 +90,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
-        <td><b>no known issues</b></td>
+        <td><b>compatible</b></td>
       </tr>
       <tr>
         <td>1.17</td>
@@ -118,7 +116,7 @@ The Kubernetes cluster must meet the following minimum requirements:
 - **compatible**: all Kubeflow features have been tested and verified for the
   Kubernetes version
 - **no known issues**: the combination has not been fully tested but there are
-  no repoted issues
+  no reported issues
 
 ## Kubeflow Deployment Configurations
 
