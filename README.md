@@ -8,11 +8,11 @@ We use [Hugo](https://gohugo.io/) to format and generate our website, the
 and [Netlify](https://www.netlify.com/) to manage the deployment of the site. 
 Hugo is an open-source static site generator that provides us with templates, 
 content organization in a standard directory structure, and a website generation 
-engine. You write the pages in Markdown, and Hugo wraps them up into a website.
+engine. Write your pages in Markdown and Hugo wraps them up into a website.
 
 ## Quickstart
 
-Here's a quick guide to updating the docs. It assumes you're familiar with the
+Here is a quick guide for updating the docs. We assume you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
 updates:
 
@@ -27,27 +27,27 @@ updates:
   [Prow guide](https://prow.k8s.io/command-help) for help with the commands that
   you can use in a PR comment.
 1. Wait for the automated PR workflow to do some checks. When it's ready,
-  you should see a comment like this: **deploy/netlify — Deploy preview ready!**
-1. Click **Details** to the right of "Deploy preview ready" to see a preview
+  you shall see a comment like this: **deploy/netlify — Deploy preview ready!**
+1. Click **Details** to the right of "Deploy preview ready" to view a preview
   of your updates.
 1. Continue updating your doc and pushing your changes until you're happy with 
   the content.
-1. When you're ready for a review, add a comment to the PR, remove any holds or
+1. When you're ready for a review just add a comment to the PR, remove any holds or
   "WIP" markers, and assign a reviewer/approver. See the
   [Kubeflow contributor guide](https://www.kubeflow.org/docs/about/contributing/).
 
-If you need more help with the GitHub workflow, follow this
+If you need more help with the GitHub workflow, follow this link
 [guide to a standard GitHub
 workflow](https://github.com/kubeflow/website/blob/master/quick-github-guide.md). 
 
 ## Previewing your changes on a local website server
 
-If you'd like to preview your doc updates as you work, you can install Hugo
+If you like to preview your doc updates as you work, you may install Hugo
 and run a local server to host your website. This section shows you how.
 
 ### Install Hugo and other dependencies
 
-You need Hugo version 0.60 or later, and it must be the **extended** version of 
+You need Hugo version 0.60 or later and it must be the **extended** version of 
 Hugo. Hugo version 0.60 and later support the Goldmark renderer for Markdown.
 Goldmark offers improved rendering of some text formatting such as lists. 
 
