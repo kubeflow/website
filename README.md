@@ -147,7 +147,7 @@ page. The page front matter looks like this:
 
 ```
 +++
-title = "Getting Started with Kubeflow"
+title = "Get Started with Kubeflow"
 description = "Overview"
 weight = 1
 +++
