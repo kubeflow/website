@@ -3,10 +3,10 @@
 Welcome to the GitHub repository for Kubeflow's public website. The docs are
 hosted at https://www.kubeflow.org.
 
-We use [Hugo](https://gohugo.io/) to format and generate our website, the
+We use [Hugo](https://gohugo.io/) for formatting and to genrate our websites, the
 [Docsy](https://github.com/google/docsy) theme for styling and site structure, 
 and [Netlify](https://www.netlify.com/) to manage the deployment of the site. 
-Hugo is an open-source static site generator that provides us with templates, 
+Hugo is an open-source static site generator that provides us with multiple templates, 
 content organization in a standard directory structure, and a website generation 
 engine. You write the pages in Markdown, and Hugo wraps them up into a website.
 
