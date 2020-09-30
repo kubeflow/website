@@ -4,10 +4,6 @@ description = "What does multi-user isolation mean?"
 weight = 10
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 {{% stable-status %}}
 
@@ -45,7 +41,10 @@ controlled by the profile access policies set by the administrator or the owners
 of the profiles. Resources created by the notebooks (for example, training jobs and
 deployments) also inherit the same access.
 
-Metadata and Pipelines or any other applications currently don't have full
+Pipelines is partially integrated with multi-user isolation starting from Kubeflow v1.1. You
+can find more information on [Multi-user Isolation for Pipelines](https://www.kubeflow.org/docs/pipelines/multi-user/).
+
+Metadata or any other applications currently don't have full
 fledged integration with isolation, though they do have access to the user
 identity through the headers of the incoming requests. It's up to the individual
 applications to use the available identity and isolation features
