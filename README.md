@@ -12,7 +12,7 @@ engine. You write the pages in Markdown, and Hugo wraps them up into a website.
 
 ## Quickstart
 
-Here's a quick guide to updating the docs. It assumes you're familiar with the
+Here's a quick guide to updating the docs. It assumes that you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
 updates:
 
@@ -66,7 +66,7 @@ To get the latest extended version of Hugo:
 For example, to install Hugo on Linux:
 
 1.  Download `hugo_extended_0.68.3_Linux-64bit.tar.gz`
-    (or the latest version) from the
+    (or the latest version) from this link
     [Hugo releases](https://github.com/gohugoio/hugo/releases/tag/v0.68.3) page.
 
 1.  Create a new directory:
