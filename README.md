@@ -18,21 +18,21 @@ updates:
 
 1. Fork the [kubeflow/website 
   repository](https://github.com/kubeflow/website) on GitHub.
-1. Make your changes and send a pull request (PR).
-1. If you're not yet ready for a review, add "WIP" to the PR name to indicate 
+2. Make your changes and send a pull request (PR).
+3. If you're not yet ready for a review, add "WIP" to the PR name to indicate 
   it's a work in progress. Alternatively, you can also add `/hold` in a comment
   to mark the PR as not ready for merge. (**Don't** add the Hugo property 
   "draft = true" to the page front matter, because that prevents the 
   auto-deployment of the content preview described in the next point.) See the 
   [Prow guide](https://prow.k8s.io/command-help) for help with the commands that
   you can use in a PR comment.
-1. Wait for the automated PR workflow to do some checks. When it's ready,
+5. Wait for the automated PR workflow to do some checks. When it's ready,
   you should see a comment like this: **deploy/netlify — Deploy preview ready!**
-1. Click **Details** to the right of "Deploy preview ready" to see a preview
+6. Click **Details** to the right of "Deploy preview ready" to see a preview
   of your updates.
-1. Continue updating your doc and pushing your changes until you're happy with 
+7. Continue updating your doc and pushing your changes until you're happy with 
   the content.
-1. When you're ready for a review, add a comment to the PR, remove any holds or
+8. When you're ready for a review, add a comment to the PR, remove any holds or
   "WIP" markers, and assign a reviewer/approver. See the
   [Kubeflow contributor guide](https://www.kubeflow.org/docs/about/contributing/).
 
@@ -58,10 +58,10 @@ Netlify.
 To get the latest extended version of Hugo:
 
 1.  Go to the [Hugo releases](https://github.com/gohugoio/hugo/releases) page.
-1.  In the most recent release, scroll down until you find a list of
+2.  In the most recent release, scroll down until you find a list of
     **extended** versions.
-1. Download the relevant file for your operating system.
-1. Unzip the downloaded file into a location of your choice.
+3. Download the relevant file for your operating system.
+4. Unzip the downloaded file into a location of your choice.
 
 For example, to install Hugo on Linux:
 
@@ -69,11 +69,11 @@ For example, to install Hugo on Linux:
     (or the latest version) from the
     [Hugo releases](https://github.com/gohugoio/hugo/releases/tag/v0.68.3) page.
 
-1.  Create a new directory:
+2.  Create a new directory:
 
         mkdir $HOME/hugo
 
-1.  Extract the file you downloaded to `$HOME/hugo`.
+3.  Extract the file you downloaded to `$HOME/hugo`.
 
         tar -zxvf hugo_extended_0.68.3_Linux-64bit.tar.gz
 
@@ -93,7 +93,7 @@ server:
 
 1. **Fork** the [kubeflow/website 
   repository](https://github.com/kubeflow/website) in the GitHub UI.
-1. Clone your fork locally. This example uses SSH cloning:
+2. Clone your fork locally. This example uses SSH cloning:
 
     ```
     mkdir kubeflow
@@ -109,14 +109,14 @@ server:
     hugo server -D
     ```
 
-1. You can access your website at 
+2. You can access your website at 
   [http://localhost:1313/](http://localhost:1313/).
 
-1. Continue with the usual GitHub workflow to edit files, commit them, push the
+3. Continue with the usual GitHub workflow to edit files, commit them, push the
   changes up to your fork, and create a pull request. (There's some help with
   the GitHub workflow near the bottom of this page.)
 
-1. While making the changes, you can preview them on your local version of the
+4. While making the changes, you can preview them on your local version of the
   website at [http://localhost:1313/](http://localhost:1313/). Note that if you
   have more than one local Git branch, when you switch between Git branches the
   local website reflects the files in the current branch.
@@ -231,7 +231,7 @@ To create a shortcode:
    The file name must be short and meaningful, as it determines the shortcode
    you and others use in the docs.
 
-1. For the file content, add the text and HTML markup that should replace the
+2. For the file content, add the text and HTML markup that should replace the
    shortcode markup when the web page is built.
 
 To use a shortcode in a document, wrap the name of the shortcode in braces and
