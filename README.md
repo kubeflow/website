@@ -243,7 +243,7 @@ percent signs like this:
 
 The shortcode name is the file name minus the `.html` file extension.
 
-**Example:** The following shortcode defines the minimum required version of
+**Examples:** The following shortcode defines the minimum required version of
 Kubernetes:
 
 - File name of the shortcode:
