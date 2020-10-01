@@ -10,7 +10,7 @@ Hugo is an open-source static site generator that provides us with templates,
 content organization in a standard directory structure, and a website generation 
 engine. You write the pages in Markdown, and Hugo wraps them up into a website.
 
-## Quickstart
+## Quick Start
 
 Here's a quick guide to updating the docs. It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
