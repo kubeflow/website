@@ -1,4 +1,4 @@
-# Creating and updating the Kubeflow docs
+# Creating and Updating the Kubeflow Docs
 
 Welcome to the GitHub repository for Kubeflow's public website. The docs are
 hosted at https://www.kubeflow.org.
