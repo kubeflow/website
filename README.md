@@ -1,4 +1,4 @@
-# Creating and updating the Kubeflow docs
+# Creating and updating the Kubeflow docs ~
 
 Welcome to the GitHub repository for Kubeflow's public website. The docs are
 hosted at https://www.kubeflow.org.
@@ -10,7 +10,7 @@ Hugo is an open-source static site generator that provides us with templates,
 content organization in a standard directory structure, and a website generation 
 engine. You write the pages in Markdown, and Hugo wraps them up into a website.
 
-## Quickstart
+## Quickstart ~
 
 Here's a quick guide to updating the docs. It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
@@ -40,12 +40,12 @@ If you need more help with the GitHub workflow, follow this
 [guide to a standard GitHub
 workflow](https://github.com/kubeflow/website/blob/master/quick-github-guide.md). 
 
-## Previewing your changes on a local website server
+## Previewing your changes on a local website server ~
 
 If you'd like to preview your doc updates as you work, you can install Hugo
 and run a local server to host your website. This section shows you how.
 
-### Install Hugo and other dependencies
+### Install Hugo and other dependencies ~
 
 You need Hugo version 0.60 or later, and it must be the **extended** version of 
 Hugo. Hugo version 0.60 and later support the Goldmark renderer for Markdown.
@@ -85,7 +85,7 @@ If you plan to make changes to the site styling, you need to install some
 [Docsy theme's setup 
 guide](https://www.docsy.dev/docs/getting-started/#install-postcss).
 
-### Fork and clone the website repository and run a local website server
+### Fork and clone the website repository and run a local website server ~
 
 Follow the usual GitHub workflow to fork the repository on GitHub and clone it 
 to your local machine, then use your local repository as input to your Hugo web 
@@ -128,7 +128,7 @@ Useful docs:
 - [Hugo site directory structure](https://gohugo.io/getting-started/directory-structure/)
 - [hugo server reference](https://gohugo.io/commands/hugo_server/)
 
-## Menu structure
+## Menu structure ~
 
 The site theme has one Hugo menu (`main`), which defines the top navigation bar. 
 You can find and adjust the definition of the menu in the [site configuration 
@@ -153,19 +153,19 @@ weight = 1
 +++
 ```
 
-## Working with the theme
+## Working with the theme ~
 
 The theme files are in the 
 [`themes/docsy` directory](https://github.com/kubeflow/website/tree/master/themes/docsy).
 **Do not change these files**, because they are overwritten each time we update
 the website to a  later version of the theme, and your changes will be lost.
 
-## Documentation style guide
+## Documentation style guide ~
 
 For guidance on writing effective documentation, see the [style guide for the
 Kubeflow docs](https://kubeflow.org/docs/about/style-guide/).
 
-## Styling your content
+## Styling your content ~
 
 The theme holds its styles in the 
 [`assets/scss` directory](https://github.com/kubeflow/website/tree/master/themes/docsy/assets/scss).
@@ -213,7 +213,7 @@ The site's [front page](https://www.kubeflow.org/):
 * The page also uses the 
   [linkdown block](https://www.docsy.dev/docs/adding-content/shortcodes/#blocks-link-down).
 
-## Using Hugo shortcodes
+## Using Hugo shortcodes ~
 
 Sometimes it's useful to define a snippet of information in one place and reuse
 it wherever we need it. For example, we want to be able to refer to the minimum
@@ -267,7 +267,7 @@ Useful Hugo docs:
 - [Shortcode templates](https://gohugo.io/templates/shortcode-templates/)
 - [Shortcodes](https://gohugo.io/content-management/shortcodes/)
 
-## Versioning of the docs
+## Versioning of the docs ~
 
 For each stable release, we create a new branch for the relevant documentation. For
 example, the documentation for the v0.2 stable release is maintained in the
