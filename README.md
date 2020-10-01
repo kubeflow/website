@@ -1,6 +1,6 @@
 # Creating and updating the Kubeflow docs
 
-Welcome to the GitHub repository for Kubeflow's public website. The docs are
+Welcome to the GitHub repository for Kubeflow's public website. We would like to inform you that the docs are
 hosted at https://www.kubeflow.org.
 
 We use [Hugo](https://gohugo.io/) to format and generate our website, the
@@ -14,7 +14,7 @@ engine. You write the pages in Markdown, and Hugo wraps them up into a website.
 
 Here's a quick guide to updating the docs. It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
-updates:
+updates Hope that works fine for you:
 
 1. Fork the [kubeflow/website 
   repository](https://github.com/kubeflow/website) on GitHub.
@@ -289,4 +289,4 @@ shortcode in the links, like so:
 ```
 https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
 ```
-This ensures that all the links in a versioned webpage point to the correct branch.
+This ensures that all the links in a versioned webpage point to the correct branch.Hopefully You loved our work and understand the instructions.
