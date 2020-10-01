@@ -1,4 +1,4 @@
-# Creating and updating the Kubeflow docs
+# Creating and Updating the Kubeflow docs
 
 Welcome to the GitHub repository for Kubeflow's public website. The docs are
 hosted at https://www.kubeflow.org.
@@ -10,7 +10,7 @@ Hugo is an open-source static site generator that provides us with templates,
 content organization in a standard directory structure, and a website generation 
 engine. You write the pages in Markdown, and Hugo wraps them up into a website.
 
-## Quickstart
+## Quicktart
 
 Here's a quick guide to updating the docs. It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
@@ -45,7 +45,7 @@ workflow](https://github.com/kubeflow/website/blob/master/quick-github-guide.md)
 If you'd like to preview your doc updates as you work, you can install Hugo
 and run a local server to host your website. This section shows you how.
 
-### Install Hugo and other dependencies
+### Install Hugo and other Dependencies
 
 You need Hugo version 0.60 or later, and it must be the **extended** version of 
 Hugo. Hugo version 0.60 and later support the Goldmark renderer for Markdown.
