@@ -12,7 +12,7 @@ engine. You write the pages in Markdown, and Hugo wraps them up into a website.
 
 ## Quickstart
 
-Here's a quick guide to updating the docs. It assumes you're familiar with the
+Here's a quick guide to updating the documents . It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
 updates:
 
