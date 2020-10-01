@@ -290,3 +290,8 @@ shortcode in the links, like so:
 https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
 ```
 This ensures that all the links in a versioned webpage point to the correct branch.
+Includes modules that expand official website modules and include:
+
+More functionality for the website builder.
+More building blocks with pre-configured data (snippets).
+Tools for the website environment.
