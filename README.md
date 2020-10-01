@@ -1,7 +1,9 @@
-# Creating and updating the Kubeflow docs
 
-Welcome to the GitHub repository for Kubeflow's public website. The docs are
-hosted at https://www.kubeflow.org.
+### Creating and updating the Kubeflow docs:-
+# ============================================= 
+
+Welcome to the GitHub repository for Kubeflow's public website.
+The docs are hosted at https://www.kubeflow.org.
 
 We use [Hugo](https://gohugo.io/) to format and generate our website, the
 [Docsy](https://github.com/google/docsy) theme for styling and site structure, 
@@ -10,7 +12,7 @@ Hugo is an open-source static site generator that provides us with templates,
 content organization in a standard directory structure, and a website generation 
 engine. You write the pages in Markdown, and Hugo wraps them up into a website.
 
-## Quickstart
+## Quickstart :-
 
 Here's a quick guide to updating the docs. It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
@@ -40,12 +42,12 @@ If you need more help with the GitHub workflow, follow this
 [guide to a standard GitHub
 workflow](https://github.com/kubeflow/website/blob/master/quick-github-guide.md). 
 
-## Previewing your changes on a local website server
+## Previewing your changes on a local website server -
 
 If you'd like to preview your doc updates as you work, you can install Hugo
 and run a local server to host your website. This section shows you how.
 
-### Install Hugo and other dependencies
+### Install Hugo and other dependencies -
 
 You need Hugo version 0.60 or later, and it must be the **extended** version of 
 Hugo. Hugo version 0.60 and later support the Goldmark renderer for Markdown.
@@ -55,7 +57,7 @@ Goldmark offers improved rendering of some text formatting such as lists.
 **Hugo version 0.68.3** or later. The Kubeflow website now uses Hugo 0.68.3 via
 Netlify. 
 
-To get the latest extended version of Hugo:
+# To get the latest extended version of Hugo:
 
 1.  Go to the [Hugo releases](https://github.com/gohugoio/hugo/releases) page.
 1.  In the most recent release, scroll down until you find a list of
@@ -128,7 +130,7 @@ Useful docs:
 - [Hugo site directory structure](https://gohugo.io/getting-started/directory-structure/)
 - [hugo server reference](https://gohugo.io/commands/hugo_server/)
 
-## Menu structure
+## Menu structure -
 
 The site theme has one Hugo menu (`main`), which defines the top navigation bar. 
 You can find and adjust the definition of the menu in the [site configuration 
@@ -153,14 +155,14 @@ weight = 1
 +++
 ```
 
-## Working with the theme
+## Working with the theme -
 
 The theme files are in the 
 [`themes/docsy` directory](https://github.com/kubeflow/website/tree/master/themes/docsy).
 **Do not change these files**, because they are overwritten each time we update
 the website to a  later version of the theme, and your changes will be lost.
 
-## Documentation style guide
+## Documentation style guide -
 
 For guidance on writing effective documentation, see the [style guide for the
 Kubeflow docs](https://kubeflow.org/docs/about/style-guide/).
@@ -191,7 +193,7 @@ You can override the default styles and add new ones:
   [Bootstrap 4 variables](https://getbootstrap.com/docs/4.0/getting-started/theming/).
 
 
-Styling of images:
+# Styling of images:
 
 * To see some examples of styled images, take a look at the
   [OAuth setup page](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) 
@@ -225,7 +227,7 @@ variables. You define a shortcode in a file, then use a specific markup to
 invoke the shortcode in the docs. That markup is replaced by the content of the
 shortcode file when the page is built.
 
-To create a shortcode:
+# To create a shortcode:
 
 1. Add an HTML file in  the `/website/layouts/shortcodes/` directory.
    The file name must be short and meaningful, as it determines the shortcode
@@ -262,7 +264,7 @@ Kubernetes:
   ```
   You need Kubernetes version {{% kubernetes-min-version %}} or later.
   ```
-
+# Note: 
 Useful Hugo docs:
 - [Shortcode templates](https://gohugo.io/templates/shortcode-templates/)
 - [Shortcodes](https://gohugo.io/content-management/shortcodes/)
@@ -289,4 +291,4 @@ shortcode in the links, like so:
 ```
 https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
 ```
-This ensures that all the links in a versioned webpage point to the correct branch.
+#### This ensures that all the links in a versioned webpage point to the correct branch.
