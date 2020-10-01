@@ -1,4 +1,4 @@
-# Creating and updating the Kubeflow docs
+# Kuberflow Tutorial - An open-source machine learning platform
 
 Welcome to the GitHub repository for Kubeflow's public website. The docs are
 hosted at https://www.kubeflow.org.
