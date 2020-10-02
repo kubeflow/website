@@ -16,7 +16,7 @@ Azure Kubernetes Service (AKS) on Azure allows you to deploy containerized appli
 ### The overall workflow
 This guide takes you through using your Kubeflow deployment to build a machine learning (ML) pipeline on Azure. This guide uses a sample pipeline to detail the process of creating an ML workflow from scratch. You will learn how to create and run a pipeline that processes data, trains a model, and then registers and deploys that model as a webservice.
 
-To build your pipeline, you must create and build containers using Docker images. Containers are used to abstract the dependencies for each step of the pipeline. You can manage your containers using [Azure's portal](https://ms.portal.azure.com/#home), specifically using the Container Registry to store the containers in the cloud. Kubeflow pulls the containers from this registry as they are needed in each step of the pipeline.
+To build your pipeline, you must create and build containers using Docker images. Containers are used to abstract the dependencies for each step of the pipeline. You can manage your containers using [Azure's portal](https://ms.portal.azure.com/#home), specifically using the Container Registry to store the containers in the cloud. Kubelfow pulls the containers from this registry as they are needed in each step of the pipeline.
 
 By following this guide, you will learn how to:
 
@@ -43,7 +43,7 @@ cd examples/pipelines/azurepipeline
 ```
 As an alternative to cloning, you can download the [Kubeflow examples repository zip file](https://github.com/kubeflow/examples/archive/master.zip).
 ## Deploy Kubeflow
-If you don't already have one, create an Azure account. If you have not used Azure services before, you can receive up to [1 year of free services and free credits.](https://azure.microsoft.com/en-ca/free/)
+If you don't already have one, create an Azure account. If you have not used Azure services before, you can recieve up to [1 year of free services and free credits.](https://azure.microsoft.com/en-ca/free/)
 
 > Note: that some of the services used in this guide may not be included in the free services, but can be covered by free credits.
 

@@ -11,8 +11,8 @@ needs to be updated for Kubeflow 1.1.
 
 ## Persistent Volumes and Persistent Volumes Claims
 
-First, make sure that PVCs are bounded when using Jupyter notebooks. This should
-not be a problem when using managed Kubernetes. But if you are using Kubernetes
+First, make sure that PVCs are bounded when using Jupter notebooks. This should
+not be a problem when using managed Kuberenetes. But if you are using Kubernetes
 on-prem, check out the guide to [Kubeflow on-prem in a multi-node Kubernetes cluster](/docs/other-guides/kubeflow-on-multinode-cluster/) if you are running Kubeflow in multi-node on-prem environment. Otherwise, look at the [Pods stuck in Pending State](/docs/other-guides/troubleshooting/#pods-stuck-in-pending-state) guide to troubleshoot this problem.
 
 ## Check the status of notebooks

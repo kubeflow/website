@@ -64,7 +64,7 @@ as an example.
 Use the following instructions to run the benchmark script on your Kubeflow
 Pipelines cluster.
 
-1. Download the [run_service_api.ipynb](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
+1. Download the the [run_service_api.ipynb](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
    benchmark script in your Jupyter notebook environment.
 1. Open [run_service_api.ipynb](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
    in the local Jupyter notebook. This benchmark script:

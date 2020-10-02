@@ -88,7 +88,7 @@ Knative Serving (v0.11.2 +) and Istio (v1.1.7+), Cert Manager(v0.12.0+) should b
 Please see more details for installing the prerequisites [here](https://github.com/kubeflow/kfserving#prerequisites)
 
 ### KFServing installation
-Once you meet the above prerequisites KFServing can be [installed standalone](https://github.com/kubeflow/kfserving#standalone-kfserving-installation). See [here](https://github.com/kubeflow/kfserving/tree/master/install) for other available releases.
+Once you meet the above prerequsites KFServing can be [installed standalone](https://github.com/kubeflow/kfserving#standalone-kfserving-installation). See [here](https://github.com/kubeflow/kfserving/tree/master/install) for other available releases.
 
 ### Monitoring
 * [Install Metrics, Logging and Tracing](https://knative.dev/docs/serving/installing-logging-metrics-traces/)

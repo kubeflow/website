@@ -35,7 +35,7 @@ See details and FAQs from the official guide [Setting up an image registry](http
 You will need an IBM Cloud IAM API Key to work with ICR if you:
 1. Have no access to the default image pull secret `all-icr-io` from the `default` namespace.
 2. Need to access container images in other IBM Cloud accounts.
-3. Need customized IAM policy by using a separate IAM service ID.
+3. Need customized IAM policy by using a separate IAM sevice ID.
 
 If you don't have an IBM Cloud IAM API Key, follow the official guide [Create an API Key](https://cloud.ibm.com/docs/account?topic=account-userapikey#create_user_key).
 

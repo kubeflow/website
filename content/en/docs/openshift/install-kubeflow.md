@@ -95,7 +95,7 @@ Use the following steps to install Kubeflow 1.0 on OpenShift 4.x.
     ...
     ```
 
-1. The command below looks up the URL of Kubeflow user interface assigned by the OpenShift cluster. You can open the printed URL in your browser to access the Kubeflow user interface.
+1. The command below looks up the URL of Kubeflow user interface assigned by the OpenShift cluster. You can open the printed URL in your broser to access the Kubeflow user interface.
 
     ```
     oc get routes -n istio-system istio-ingressgateway -o jsonpath='http://{.spec.host}/'

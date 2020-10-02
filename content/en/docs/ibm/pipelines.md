@@ -1,6 +1,6 @@
 +++
 title = "Pipelines on IBM Cloud Kubernetes Service (IKS)"
-description = "Instructions for using Kubeflow Pipelines on IBM Cloud Kubernetes Service (IKS)"
+description = "Instructions for using Kubeflow Pipelines on IBM Cloud Kubernetes Servuce (IKS)"
 weight = 50
 +++
 
@@ -16,7 +16,7 @@ It requires authentication via the public endpoint of Kubeflow deployment when u
 1. `SESSION_COOKIE` - A session cookie starts with `authservice_session=`. You can obtain it from your browser after authenticated from Kubeflow UI. Notice that this session cookie expires in 24 hours, so you need to obtain it again after cookie expired.
 1. `KUBEFLOW_PROFILE_NAME` - Your Kubeflow profile name
 
-Once you obtain above information, it can use the following Python code to list all your Pipelines experiments:
+Once you obtain above information, it can use the following Python code to list all your Piplines experiments:
 ```Python
 import kfp
 

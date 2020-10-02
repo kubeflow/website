@@ -102,7 +102,7 @@ https://${KF_NAME}.endpoints.${PROJECT}.cloud.goog
 
 Symptoms:
 
-  * When you access the URL in Chrome you get the error: **server IP address could not be found**
+  * When you access the the URL in Chrome you get the error: **server IP address could not be found**
   * nslookup for the domain name doesn't return the IP address associated with the ingress
 
     ```
@@ -317,7 +317,7 @@ because it could not verify that you owned the domain by doing an ACME challenge
 
 If there is a problem preventing either of the above then GCP will be unable to provision your certificate
 and eventually enter the permanent failure state `FailedNotVisible` indicating your endpoint isn't accessible. The most common 
-cause is the ingress can't be created because the K8s secret containing OAuth credentials doesn't
+cause is the ingress can't be created becuase the K8s secret containing OAuth credentials doesn't
 exist.
 
 To fix this you must first resolve the underlying problems preventing your ingress or DNS entry from being created.
@@ -531,7 +531,7 @@ To check your certificate:
           - ip: 35.186.212.202
      ```
 
-   * DNS entry for the domain has propagated. To verify this, use the following `nslookup` command example:
+   * DNS entry for the domain has propogated. To verify this, use the following `nslookup` command example:
 
      ```
      `nslookup ${DOMAIN}`

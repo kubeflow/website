@@ -11,7 +11,7 @@ The management cluster is used to run [Cloud Config Connector](https://cloud.goo
 While the management cluster can be deployed in the same project as your Kubeflow cluster, typically you will want to deploy
 it in a separate project used for administering one or more Kubeflow instances.
 
-Optionally, the cluster can be configured with [Anthos Config Management](https://cloud.google.com/anthos-config-management/docs) 
+Optionally, the cluster can be configured with [Anthos Config Managmenet](https://cloud.google.com/anthos-config-management/docs) 
 to manage Google Cloud infrastructure using GitOps.
 
 ## FAQs

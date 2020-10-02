@@ -190,7 +190,7 @@ def nuc_pipeline(
 ```
 the code above assumes nuclio was deployed into the `nuclio` namespace on the same cluster, when using a remote cluster or a different namespace you just need to change the `dashboard` URL.
 
-See [nuclio pipeline components](https://github.com/kubeflow/pipelines/tree/master/components/nuclio) (allowing to deploy, delete, or invoke functions) 
+See [nuclio pipline components](https://github.com/kubeflow/pipelines/tree/master/components/nuclio) (allowing to deploy, delete, or invoke functions) 
 
 > Note: Nuclio is not limited to Python, [see this example](https://github.com/nuclio/nuclio-jupyter/blob/master/docs/nuclio_bash.ipynb) showing how we create a simple `Bash` function from a 
 Notebook, e.g. we can create `Go` functions if we need performance/concurrency for our inference. 
