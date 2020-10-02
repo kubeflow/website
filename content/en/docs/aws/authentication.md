@@ -117,4 +117,4 @@ After the ALB load balancer authenticates the user successfully, it sends the us
 
 Header `x-amzn-oidc-data` stores user claims, in JSON web tokens (JWT) format. In order to create a `kubeflow-userid` header, we create [aws-istio-authz-adaptor](https://github.com/kubeflow/manifests/tree/master/aws/aws-istio-authz-adaptor) which is an isito [route directive adapter](https://istio.io/docs/tasks/policy-enforcement/control-headers/). It modifies traffic metadata using operation templates on the request and response headers. In this case, we decode JWT token `x-amzn-oidc-data` and retrieve user claim, then append a new header to user's requests.
 
-Check [Enable multi-user authorization for AWS](https://github.com/kubeflow/kubeflow/issues/4761) for more technical details.
+For more information, refer to [Enable multi-user authorization for AWS](https://github.com/kubeflow/kubeflow/issues/4761) issue on GitHub.
