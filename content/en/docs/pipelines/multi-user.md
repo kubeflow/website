@@ -50,7 +50,7 @@ You can select a different namespace to view resources in other namespaces.
 
 ### When using the SDK
 
-First, you need to connnect to the Kubeflow Pipelines public endpoint using the
+First, you need to connect to the Kubeflow Pipelines public endpoint using the
 SDK. For Google Cloud, follow [these instructions](/docs/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-in-a-full-kubeflow-deployment).
 
 When calling SDK methods for experiments, you need to provide the additional
