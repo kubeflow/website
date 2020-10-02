@@ -49,7 +49,7 @@ This guide assumes the following settings:
 
 * The `${PROJECT}` environment variable contains the ID of your GCP project. 
   You can find the project ID in 
-  your `${CONFIG_FILE}` configuraiton file, as the value for the `project` key.
+  your `${CONFIG_FILE}` configuration file, as the value for the `project` key.
 
   ```
   export PROJECT=<your GCP project ID>

@@ -96,7 +96,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
    * Then rerun `make apply`
 
 1. The cloud endpoints controller doesn't work with private GKE ([kubeflow/gcp-blueprints#36](https://github.com/kubeflow/gcp-blueprints/issues/36)) as a workaround
-   you can run `kfctl` locally to create the endpoitn
+   you can run `kfctl` locally to create the endpoint
 
    ```
    kfctl apply -f .build/iap-ingress/ctl.isla.solutions_v1_cloudendpoint_${KFNAME}.yaml
