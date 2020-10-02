@@ -67,7 +67,7 @@ plugins:
 
 > Note: You can use your own domain for `cognitoUserPoolDomain`. In this case, we just use Amazon Cognito domain `kubeflow-testing`. If you use your own domain, please check [aws-e2e](/docs/aws/aws-e2e) for more details.
 
-After you finish the TLS and Authentication configuration, then you can run `kfctl apply -V -f ${CONFIG_FILE}`.
+After you finish the TLS and Authentication configuration, run this command: `kfctl apply -V -f ${CONFIG_FILE}`.
 
 After a while, your ALB will be ready, you can get ALB hostname by running follow command.
 
