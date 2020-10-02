@@ -17,7 +17,7 @@ External Traffic → [ Ingress → Istio ingress gateway → Istio virtual servi
 
 When you generate and apply kubernetes resources, an ingress is created to manage external traffic to Kubernetes services. The AWS Appliction Load Balancer(ALB) Ingress Controller will provision an Application Load balancer for that ingress. By default, TLS and authentication are not enabled at creation time.
 
-Kubeflow uses [Istio](https://istio.io/) to manage internal traffic. In AWS solution, TLS, authentication can be done at the ALB and and authorization can be done at Istio layer.
+Kubeflow uses [Istio](https://istio.io/) to manage internal traffic. In AWS solution, TLS, authentication can be done at the ALB and authorization can be done at Istio layer.
 
 ## Enable TLS and Authentication
 
@@ -65,7 +65,7 @@ plugins:
       ....
 ```
 
-> Note: You can use your own domain for `cognitoUserPoolDomain`. In this case, we just use Amazon Coginito domain `kubeflow-testing`. If you use your own domain, please check [aws-e2e](/docs/aws/aws-e2e) for more details.
+> Note: You can use your own domain for `cognitoUserPoolDomain`. In this case, we just use Amazon Cognito domain `kubeflow-testing`. If you use your own domain, please check [aws-e2e](/docs/aws/aws-e2e) for more details.
 
 After you finish the TLS and Authentication configuration, then you can run `kfctl apply -V -f ${CONFIG_FILE}`.
 
@@ -83,7 +83,7 @@ Update your callback URLs.
   class="mt-3 mb-3 border border-info rounded">
 
 
-Then you can visit kubeflow dahsboard using your ALB hostname.
+Then you can visit kubeflow dashboard using your ALB hostname.
 
 <img src="/docs/images/aws/authentication.png"
   alt="Cognito Authentication pop-up"
@@ -105,7 +105,7 @@ spec:
     name: kubeflow-user@amazon.com
 ```
 
-The `ServiceRole` `ns-access-istio` is created and it allows user to access all the services in that namespace. `ServiceRoleBinding` `owner-binding-istio` define subject like beflow. Only request with header `kubeflow-userid: kubeflow@amazon.com` can have pass istio RBAC and visit the service
+The `ServiceRole` `ns-access-istio` is created and it allows user to access all the services in that namespace. `ServiceRoleBinding` `owner-binding-istio` define subject like below. Only request with header `kubeflow-userid: kubeflow@amazon.com` can have pass istio RBAC and visit the service
 
 ```yaml
 subjects:
@@ -115,6 +115,6 @@ subjects:
 
 After ALB load balancer authenticates a user successfully, it sends the user claims received from the IdP to the target. The load balancer signs the user claim so that applications can verify the signature and verify that the claims were sent by the load balancer. Applications that require the full user claims can use any standard JWT library to verify the JWT tokens.
 
-Header `x-amzn-oidc-data` stores user claims, in JSON web tokens (JWT) format. In order to create a `kubeflow-userid` header, we create [aws-istio-authz-adaptor](https://github.com/kubeflow/manifests/tree/master/aws/aws-istio-authz-adaptor) which is an isito [route directive adpater](https://istio.io/docs/tasks/policy-enforcement/control-headers/). It modifies traffic metadata using operation templates on the request and response headers. In this case, we decode JWT token `x-amzn-oidc-data` and retrieve user claim, then append a new header to user's requests.
+Header `x-amzn-oidc-data` stores user claims, in JSON web tokens (JWT) format. In order to create a `kubeflow-userid` header, we create [aws-istio-authz-adaptor](https://github.com/kubeflow/manifests/tree/master/aws/aws-istio-authz-adaptor) which is an isito [route directive adapter](https://istio.io/docs/tasks/policy-enforcement/control-headers/). It modifies traffic metadata using operation templates on the request and response headers. In this case, we decode JWT token `x-amzn-oidc-data` and retrieve user claim, then append a new header to user's requests.
 
 Check [Enable multi-user authorization for AWS](https://github.com/kubeflow/kubeflow/issues/4761) for more technical details.

@@ -6,7 +6,7 @@ weight = 90
 
 ## Authenticate Kubeflow Pipeline using SDK inside cluster
 
-In v1.1.0, in-cluster communitation from notebook to Kubeflow Pipeline is not supported in this phase. In order to use `kfp` as previous, user needs to pass a cookie to KFP for communication as a walkaround.
+In v1.1.0, in-cluster communication from notebook to Kubeflow Pipeline is not supported in this phase. In order to use `kfp` as previous, user needs to pass a cookie to KFP for communication as a walkaround.
 You can follow following steps to get cookie from your browser after you login Kubeflow. Following examples uses Chrome browser.
 
 > Note: You have to use images in [AWS Jupyter Notebook](/docs/aws/notebook-server) because it includes a critical SDK fix [here](https://github.com/kubeflow/pipelines/pull/4285).
@@ -81,7 +81,7 @@ data:
 > Note: To get base64 string, run `echo -n $AWS_ACCESS_KEY_ID | base64`
 
 
-## Configure containers to use AWS credentails
+## Configure containers to use AWS credentials
 
 If you write any files to S3 in your application, use `use_aws_secret` to attach aws secret to access S3.
 
@@ -108,7 +108,7 @@ def iris_pipeline():
 
 ## Support S3 Artifact Store
 
-Kubeflow Pipelines supports different artifact viewers. You can create files in S3 and reference them in output artifacts in your application like beflow.
+Kubeflow Pipelines supports different artifact viewers. You can create files in S3 and reference them in output artifacts in your application like below.
 
 ```python
 metadata = {
@@ -145,7 +145,7 @@ In order for `ml-pipeline-ui` to read these artifacts:
 
 1. Create a Kubernetes secret `aws-secret` in `kubeflow` namespace. Follow instructions [here](#s3-access-from-kubeflow-pipelines).
 
-1. Update deployment `ml-pipeline-ui` to use AWS credential environment viariables by running `kubectl edit deployment ml-pipeline-ui -n kubeflow`.
+1. Update deployment `ml-pipeline-ui` to use AWS credential environment variables by running `kubectl edit deployment ml-pipeline-ui -n kubeflow`.
 
    ```
    apiVersion: extensions/v1beta1
