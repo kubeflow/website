@@ -15,7 +15,7 @@ In order to simply your setups, we highly recommend you to use this manifest.
 ## Traffic Flow
 External Traffic → [ Ingress → Istio ingress gateway → Istio virtual services ]
 
-When you generate and apply kubernetes resources, an ingress is created to manage external traffic to Kubernetes services. The AWS Appliction Load Balancer(ALB) Ingress Controller will provision an Application Load balancer for that ingress. By default, TLS and authentication are not enabled at creation time.
+When you generate and apply Kubernetes resources, an ingress is created to manage external traffic to Kubernetes services. The AWS Appliction Load Balancer(ALB) Ingress Controller will provision an Application Load balancer for that ingress. By default, TLS and authentication are not enabled at creation time.
 
 Kubeflow uses [Istio](https://istio.io/) to manage internal traffic. In AWS solution, TLS, authentication can be done at the ALB and authorization can be done at Istio layer.
 
