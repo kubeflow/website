@@ -137,7 +137,7 @@ Alternatively you can follow these steps to change the configuration before appl
 ## Upgrades from earlier versions of Kubeflow
 
 For earlier versions, Kubeflow makes no promises of backwards compatibility or 
-upgradeability. Nonetheless, here are some instructions for updating your deployment:
+upgradability. Nonetheless, here are some instructions for updating your deployment:
 
 1. Check your Kubeflow configuration directory (`${KF_DIR}`) into source control
   as a backup.
