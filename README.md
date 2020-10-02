@@ -1,6 +1,6 @@
 # Creating and updating the Kubeflow docs
 
-Welcome to the GitHub repository for Kubeflow's public website. The docs are
+Welcome to the GitHub repository of Kubeflow's public website!! The docs are
 hosted at https://www.kubeflow.org.
 
 We use [Hugo](https://gohugo.io/) to format and generate our website, the
@@ -289,4 +289,4 @@ shortcode in the links, like so:
 ```
 https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
 ```
-This ensures that all the links in a versioned webpage point to the correct branch.
+This ensures that all the links in a versioned webpage point to the correct branch. 
