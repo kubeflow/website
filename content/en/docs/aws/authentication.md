@@ -113,7 +113,7 @@ subjects:
       request.headers[kubeflow-userid]: kubeflow-user@amazon.com
 ```
 
-After ALB load balancer authenticates a user successfully, it sends the user claims received from the IdP to the target. The load balancer signs the user claim so that applications can verify the signature and verify that the claims were sent by the load balancer. Applications that require the full user claims can use any standard JWT library to verify the JWT tokens.
+After the ALB load balancer authenticates the user successfully, it sends the user claims received from the IdP to the target. The load balancer signs the user claim so that applications can verify the signature and verify that the claims were sent by the load balancer. Applications that require the full user claims can use any standard JWT library to verify the JWT tokens.
 
 Header `x-amzn-oidc-data` stores user claims, in JSON web tokens (JWT) format. In order to create a `kubeflow-userid` header, we create [aws-istio-authz-adaptor](https://github.com/kubeflow/manifests/tree/master/aws/aws-istio-authz-adaptor) which is an isito [route directive adapter](https://istio.io/docs/tasks/policy-enforcement/control-headers/). It modifies traffic metadata using operation templates on the request and response headers. In this case, we decode JWT token `x-amzn-oidc-data` and retrieve user claim, then append a new header to user's requests.
 
