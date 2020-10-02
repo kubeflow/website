@@ -108,7 +108,7 @@ def iris_pipeline():
 
 ## Support S3 Artifact Store
 
-Kubeflow Pipelines supports different artifact viewers. You can create files in S3 and reference them in output artifacts in your application like below.
+Kubeflow Pipelines supports different artifact viewers. You can create files in S3 and reference them in output artifacts in your application as follows:
 
 ```python
 metadata = {
