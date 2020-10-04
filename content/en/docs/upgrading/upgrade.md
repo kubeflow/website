@@ -21,13 +21,13 @@ Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or 
 * Download the latest kfctl binary from the
   [Kubeflow releases page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
 
-* Ensure that your Kubeflow namespace is annotated with the
+* Make sure that your Kubeflow namespace is annotated with the
   `control-plane: kubeflow` label. You can verify this by doing:
   ```
   kubectl get namespace $NAMESPACE -o yaml
   ```
 
-    You should see something like:
+    Your output should be similar to this:
     ```
     metadata:
       labels:
@@ -180,4 +180,4 @@ upgradability. Nonetheless, here are some instructions for updating your deploym
 
 ## Upgrading Kubeflow Pipelines
 
-See the [Kubeflow Pipelines upgrade guide](/docs/pipelines/upgrade/).
+Refer to the [Kubeflow Pipelines upgrade guide](/docs/pipelines/upgrade/).
