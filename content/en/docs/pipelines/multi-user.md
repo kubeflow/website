@@ -114,8 +114,8 @@ namespace argument is required for experiment APIs. Note that namespace is
 referred to using a resource reference. The resource reference **type** is
 `NAMESPACE` and resource reference **key id** is the namespace name.
 
-The following example demonstrates how to use [the generated Python API client (kf-server-api)](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.server_api.html)
-in a multi-user environment.
+The following example demonstrates how to use [the generated Python API client (kf-server-api)](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.server_api.html) in a multi-user environment.
+
 ```python
 from kfp_server_api import ApiRun, ApiPipelineSpec, \
     ApiExperiment, ApiResourceType, ApiRelationship, \
@@ -156,9 +156,9 @@ runs=client.runs.list_runs(
 print(runs)
 ```
 
-## Current Limitations
+## Current limitations
 
-### Resources without Isolation
+### Resources without isolation
 
 The following resources do not currently support isolation and are shared
 without access control:

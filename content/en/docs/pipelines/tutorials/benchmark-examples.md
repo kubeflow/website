@@ -128,7 +128,7 @@ In a count plot, the x-axis represents the possible run status: success or fail;
 and the y-axis shows how many runs fall into certain status respectively.
 
 In a distribution plot, both histogram plot and rug plot are shown. In addition,
-it is also possible to show KDE (Kernel Density Estimate) plot. If a KDE plot is
+it is also possible to show a KDE (Kernel Density Estimate) plot. If the KDE plot is
 desirable, use 'kde=True' in the distplot() method.
 
 ## Tuning with different configurations
