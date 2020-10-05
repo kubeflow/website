@@ -83,7 +83,7 @@ Notes:
 
 * **${AWS_CLUSTER_NAME}** - The name of your eks cluster.
   This will be picked by `kfctl` and set value to `metadata.name`.
-  `alb-ingress-controller` requires correct value to provision application load balanders. 
+  `alb-ingress-controller` requires correct value to provision application load balancers. 
   Alb will be only created with correct cluster name.
 
 
@@ -216,7 +216,7 @@ kubectl rollout restart deployment dex -n auth
 
 Kubeflow provides multi-tenancy support and user are not able to create notebooks in `kubeflow`, `default` namespace.
 
-The first time you visit the cluster, you can ceate a namespace `anonymous` to use. If you want to create different users, you can create `Profile` and then `kubectl apply -f profile.yaml`. Profile controller will create new namespace and service account which is allowed to create notebook in that namespace.
+The first time you visit the cluster, you can create a namespace `anonymous` to use. If you want to create different users, you can create `Profile` and then `kubectl apply -f profile.yaml`. Profile controller will create new namespace and service account which is allowed to create notebook in that namespace.
 
 ```yaml
 apiVersion: kubeflow.org/v1beta1
