@@ -6,7 +6,8 @@ weight = 90
 
 ## Authenticate Kubeflow Pipeline using SDK inside cluster
 
-In v1.1.0, in-cluster communication from notebook to Kubeflow Pipeline is not supported in this phase. In order to use `kfp` as previous, user needs to pass a cookie to KFP for communication as a walkaround.
+In v1.1.0, in-cluster communication from notebook to Kubeflow Pipeline is not supported in this phase. In order to use `kfp` as previous, user needs to pass a cookie to KFP for communication as a workaround.
+
 You can follow following steps to get cookie from your browser after you login Kubeflow. Following examples uses Chrome browser.
 
 > Note: You have to use images in [AWS Jupyter Notebook](/docs/aws/notebook-server) because it includes a critical SDK fix [here](https://github.com/kubeflow/pipelines/pull/4285).
