@@ -5,7 +5,7 @@ weight = 5
                     
 +++
 
-## Initial Setup for Existing Cluster
+## Initial setup for your existing cluster
 
 Get the Kubeconfig file:
 
