@@ -66,7 +66,7 @@ Pipelines cluster.
 
 1. Download the [run_service_api.ipynb](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
    benchmark script in your Jupyter notebook environment.
-1. Open [run_service_api.ipynb](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
+1. Open [`run_service_api.ipynb`](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
    in the local Jupyter notebook. This benchmark script:
 
    1. Creates a new pipeline.
