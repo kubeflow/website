@@ -161,7 +161,7 @@ Add namespace record, key should be the subdomain name `platform`, value is your
   class="mt-3 mb-3 border border-info rounded">
 
 
-In order to make Coginito to use custom domain name, A record is required to resolve `platform.domain.com` as root domain, which can be a Route53 Alias to the ALB as well. We can use abitrary ip here now, once we have ALB created, we will update the value later.
+In order to make Cognito to use custom domain name, A record is required to resolve `platform.domain.com` as root domain, which can be a Route53 Alias to the ALB as well. We can use arbitrary ip here now, once we have ALB created, we will update the value later.
 
 If you're not using Route53, you can point that A record anywhere.
 

@@ -4,11 +4,6 @@ description = "Running Kubeflow using IBM Cloud Kubernetes Service (IKS)"
 weight = 250
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
-
 This is a guide for an end-to-end example of Kubeflow on [IBM Cloud Kubernetes Service (IKS)](https://cloud.ibm.com/docs/containers?topic=containers-getting-started). The core steps will be to take a base Tensorflow model, modify it for distributed training, serve the resulting model with TFServing, and deploy a web application that uses the trained model.
 
 ## Introduction
@@ -60,7 +55,7 @@ In summary:
   * Packaging a Tensorflow program in a container.
   * Submitting a Tensorflow training ([tf.train][tf-train]) job.
 * Using the model for prediction (inference):
-  * Saving the trained model to [IBM Cloud Object Storage][ibm-cos)].
+  * Saving the trained model to [IBM Cloud Object Storage][ibm-cos].
   * Using [Tensorflow Serving][tf-serving] to serve the model.
   * Running the simple web app to send prediction request to the model and display the result.
 
@@ -68,7 +63,7 @@ It's time to get started!
 
 ## Run the MNIST Tutorial on IKS
 
-1. Follow the [IKS instructions](/docs/ibm/install-kubeflow) to deploy Kubeflow.
+1. Follow the [IKS instructions](/docs/ibm/deploy/install-kubeflow) to deploy Kubeflow.
 2. Launch a Jupyter notebook.
     * For IBM Cloud, the default NFS storage does not support some of the Python package installation. Therefore, you need to create the notebook with the setting `Don't use Persistent Storage for User's home` enabled.
     * Due to the Notebook user permission issue, you need to use custom images that were working in the previous version.
