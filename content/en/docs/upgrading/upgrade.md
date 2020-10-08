@@ -21,13 +21,13 @@ Upgrading your Kubeflow deployment is supported if your deployment is v0.7.0 or 
 * Download the latest kfctl binary from the
   [Kubeflow releases page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
 
-* Ensure that your Kubeflow namespace is annotated with the
+* Make sure that your Kubeflow namespace is annotated with the
   `control-plane: kubeflow` label. You can verify this by doing:
   ```
   kubectl get namespace $NAMESPACE -o yaml
   ```
 
-    You should see something like:
+    Your output should be similar to this:
     ```
     metadata:
       labels:
@@ -137,7 +137,7 @@ Alternatively you can follow these steps to change the configuration before appl
 ## Upgrades from earlier versions of Kubeflow
 
 For earlier versions, Kubeflow makes no promises of backwards compatibility or 
-upgradeability. Nonetheless, here are some instructions for updating your deployment:
+upgradability. Nonetheless, here are some instructions for updating your deployment:
 
 1. Check your Kubeflow configuration directory (`${KF_DIR}`) into source control
   as a backup.
@@ -180,4 +180,4 @@ upgradeability. Nonetheless, here are some instructions for updating your deploy
 
 ## Upgrading Kubeflow Pipelines
 
-See the [Kubeflow Pipelines upgrade guide](/docs/pipelines/upgrade/).
+Refer to the [Kubeflow Pipelines upgrade guide](/docs/pipelines/upgrade/).
