@@ -47,7 +47,7 @@ To run the provided benchmark scripts, you need the following:
 
 *  A Jupyter notebook environment with access to the Kubeflow Pipelines API on
    your Kubeflow Pipelines cluster. For example, you must be able to call the
-   CREATE, GET, DELETE, and LIST methods of the pipeline, pipeline version,
+   `CREATE`, `GET`, `DELETE`, and `LIST` methods of the pipeline, pipeline version,
    run, job, and experiment services from your Jupyter notebook environment.
 *  A Kubeflow Pipelines cluster. If you do not have a Kubeflow Pipelines
    cluster, learn more about your [options for installing Kubeflow
@@ -64,34 +64,34 @@ as an example.
 Use the following instructions to run the benchmark script on your Kubeflow
 Pipelines cluster.
 
-1. Download the [run_service_api.ipynb](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
+1. Download the [`run_service_api.ipynb`](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
    benchmark script in your Jupyter notebook environment.
-1. Open [run_service_api.ipynb](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
+1. Open [`run_service_api.ipynb`](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
    in the local Jupyter notebook. This benchmark script:
 
    1. Creates a new pipeline.
    1. Uses the default pipeline version of this pipeline to create multiple runs.
    1. Records the number of successful runs.
    1. Records the duration of each of the successful runs.
-   1. Records the latency of CREATE, GET, DELETE.
+   1. Records the latency of `CREATE`, `GET`, `DELETE`.
    1. Cleans up the pipeline and its default pipeline version, the experiment and the runs.
 
 1. In the benchmark script, enter the correct values for host,
-   pipeline_file_url, num_runs, run_status_polling_interval_sec in the
+   `pipeline_file_url`, `num_runs`, `run_status_polling_interval_sec` in the
    benchmark script.
 
    * **host**: The URL of the API server in your Kubeflow Pipelines cluster.
 
    * **pipeline_file_url**: The URL of the pipeline manifest file to use in
      your benchmark.
-     [taxi_updated_pool.yaml](https://storage.googleapis.com/ml-pipeline/sample-benchmark/taxi_updated_pool.yaml)
+     [`taxi_updated_pool.yaml`](https://storage.googleapis.com/ml-pipeline/sample-benchmark/taxi_updated_pool.yaml)
      is used in this example. This example pipeline makes use of
      [nodeSelector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
      to explicitly schedule the runs of this pipeline onto the node pool named `pool-1`. If you use the taxi_updated_pool.yaml pipeline manifest in your benchmarks, ensure that a node pool named `pool-1` exists in your cluster.
 
-     **NOTE**: Do not use the value 'https://storage.cloud.google.com/ml-pipeline/sample-benchmark/taxi_updated_pool.yaml'
+     **NOTE**: Do not use the value `https://storage.cloud.google.com/ml-pipeline/sample-benchmark/taxi_updated_pool.yaml`
      when running your benchmarks. Addresses that start with
-     'storage.cloud.google.com' incur a redirect that doesn't work well with
+     `storage.cloud.google.com` incur a redirect that doesn't work well with
      Kubeflow Pipelines.
 
    * **num_runs**: Specifies how many runs will be created in the benchmark script,
@@ -108,10 +108,10 @@ Pipelines cluster.
    benchmark script in the notebook.
 
 The following snapshot shows the results of running the benchmark script
-[run_service_api.ipynb](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
-using the [taxi_updated_pool.yaml](https://storage.googleapis.com/ml-pipeline/sample-benchmark/taxi_updated_pool.yaml)
+[`run_service_api.ipynb`](https://storage.googleapis.com/ml-pipeline/sample-benchmark/run_service_api.ipynb)
+using the [`taxi_updated_pool.yaml`](https://storage.googleapis.com/ml-pipeline/sample-benchmark/taxi_updated_pool.yaml)
 pipeline manifest for 50 runs on a Kubernetes cluster with two node pools.
-Each node pool has three nodes of machine type 'n1-standard-8'.
+Each node pool has three nodes of machine type `n1-standard-8`.
 
 <img src="/docs/images/benchmark-snapshot-1.png"
 alt="Benchmark Sample Output Plots"
@@ -129,7 +129,7 @@ and the y-axis shows how many runs fall into certain status respectively.
 
 In a distribution plot, both histogram plot and rug plot are shown. In addition,
 it is also possible to show a KDE (Kernel Density Estimate) plot. If the KDE plot is
-desirable, use 'kde=True' in the distplot() method.
+desirable, use `kde=True` in the `distplot()` method.
 
 ## Tuning with different configurations
 
