@@ -24,13 +24,13 @@ guide.
 
 ## Setting up an NLB
 
-To set up an NLB for your Kuberetes cluster, follow the official 
+To set up an NLB for your Kubernetes cluster, follow the official 
 [Classic: Setting up basic load balancing with an NLB 1.0](https://cloud.ibm.com/docs/containers?topic=containers-loadbalancer) 
 guide. Notice that the setup process for a multi-zone cluster differs from that 
 of a single-zone cluster. For details, go to 
 [Setting up an NLB 1.0 in a multi-zone cluster](https://cloud.ibm.com/docs/containers?topic=containers-loadbalancer#multi_zone_config).
 
-1. To use the exisitng Istio ingress gateway (instead of creating a new 
+1. To use the existing Istio ingress gateway (instead of creating a new 
 service), you need to update the service type of `istio-ingressgateway` to 
 `LoadBalancer` from `NodePort`. Run the following command:
 
