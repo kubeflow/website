@@ -1,5 +1,5 @@
 +++
-title = "Deploying Kubeflow Pipelines Standalone on a local cluster with kind, k3s, and k3s on WSL"
+title = "Deploying Kubeflow Pipelines Standalone on a local cluster environment"
 description = "Instructions to deploy Kubeflow Pipelines Standalone to a local cluster for testing purposes"
 weight = 30
 +++
@@ -9,6 +9,7 @@ This guide shows how to deploy Kubeflow Pipelines Standalone using:
 - kind
 - k3s
 - k3s on Windows Subsystem for Linux (WSL)
+- k3ai [*alpha*]
 
 Such deployment methods can be part of your local environment using the supplied 
 kustomize manifests for test purposes. This guide is an alternative to 
@@ -269,6 +270,25 @@ to the IP of the your WSL instance (`ip addr show dev eth0`) (For example,
 3. Run kubectl in a Windows terminal. If you don't kubectl 
 installed, follow the official 
 [Kubernetes on Windows instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows).
+
+## k3ai [*Alhpa*]
+
+K3ai is a lightweight infrastructure in a box specifically built to install and configure AI tools and platforms to quickly experiment over laptops and edge devices.
+
+Is main goal is to provide the most simple way to install Kubeflow pipelines without having to worry about setting up requirements and dependencies.
+To install Kubeflow pipelines with k3ai all is needed is to run the following command:
+
+```SHELL
+curl -sfL https://github.com/kf5i/k3ai/releases/latest/download/install | bash -
+```
+
+### GPU support
+
+To install the same environment but with the GPU support the command is:
+
+```SHELL
+curl -sfL https://github.com/kf5i/k3ai/releases/latest/download/install | bash -s -- --gpu
+```
 
 ## Deploying Kubeflow Pipelines
 
