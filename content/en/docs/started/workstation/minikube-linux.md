@@ -68,7 +68,7 @@ chmod +x ./kubectl
 mv ./kubectl /usr/local/bin/kubectl
 ```
 
-### Install Minikube
+### Install minikube
 
 Run the command lines below to install the latest version of Minikube.
 If you are looking for a specific version, refer to the [Kubernetes: Minikube
