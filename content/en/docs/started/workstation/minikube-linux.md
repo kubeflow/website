@@ -165,7 +165,6 @@ kfctl apply -V -f ${CONFIG_URI}
 ```
 
 After the installation, run the following command to check whether all the pods are in running status:
-Depending on your machine’s capability, it may take a few minutes to reach full running status:
 
 ```SHELL
 kubectl get pod -n kubeflow
