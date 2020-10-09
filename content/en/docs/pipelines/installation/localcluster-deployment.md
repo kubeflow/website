@@ -271,7 +271,7 @@ to the IP of the your WSL instance (`ip addr show dev eth0`) (For example,
 installed, follow the official 
 [Kubernetes on Windows instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows).
 
-## k3ai [*Alhpa*]
+## k3ai [*alpha*]
 
 K3ai is a lightweight infrastructure in a box specifically built to install and configure AI tools and platforms to quickly experiment over laptops and edge devices.
 
