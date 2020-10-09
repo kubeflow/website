@@ -12,10 +12,17 @@ In addition, with the recent announcement of
 some of the [linux installation options](/docs/started/workstation/getting-started-linux)
 for Kubeflow will be available on Windows, once WSL2 is formally released.
 
-## Kubeflow appliance
 
-A Kubeflow appliance is a virtual machine that has Kubeflow already installed. Once the
-necessary supporting software is installed no further installation steps are required.
+### MicroK8s
+
+MicroK8s is a lightweight zero-ops Kubernetes which has a native installer for Windows. MicroK8s is highly available from 3+ nodes and includes a single-command install of Kubeflow.
+
+To get Kubeflow:
+
+1. Install [MicroK8s](https://microk8s.io/)
+2. Install Kubeflow by running: `microk8s enable kubeflow`
+
+The full set of instructions are available on the [Kubeflow on MicroK8s](https://www.kubeflow.org/docs/started/workstation/getting-started-multipass/) page.
 
 ### MiniKF
 
@@ -28,7 +35,7 @@ The following applications are required to use MiniKF:
 The full set of instructions are available on the
 [MiniKF getting started](/docs/started/workstation/getting-started-minikf/) page.
 
-## Multipass Ubuntu
+### Multipass Ubuntu
 
 Windows users can get Kubeflow with [Multipass](https://multipass.run/#install) 
 by following the instructions on the 
