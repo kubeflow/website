@@ -110,7 +110,7 @@ Follow these steps to install Kubeflow:
    to the kfctl binary each time you run it.
 
     ```
-    # The following command is optional, to make kfctl binary easier to use.
+    # The following command is optional making the kfctl binary easier to use.
     export PATH=$PATH:<path to where kfctl was unpacked>
 
     # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
