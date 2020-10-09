@@ -281,7 +281,8 @@ To install Kubeflow pipelines with k3ai all is needed is to run the following co
 ```SHELL
 curl -sfL https://github.com/kf5i/k3ai/releases/latest/download/install | bash -
 ```
- For more installation options please read the guide at: [https://kf5ai.gitbook.io/k3ai/](https://kf5ai.gitbook.io/k3ai/)
+
+For more information about K3ai, refer to the [official documentation](https://kf5ai.gitbook.io/k3ai/).
 
 ## Deploying Kubeflow Pipelines
 
