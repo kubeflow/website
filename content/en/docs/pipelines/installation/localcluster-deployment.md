@@ -1,5 +1,5 @@
 +++
-title = "Deploying Kubeflow Pipelines Standalone on a local cluster environment"
+title = "How to deploy Kubeflow Pipelines locally with kind, K3s, and K3ai"
 description = "Instructions to deploy Kubeflow Pipelines Standalone to a local cluster for testing purposes"
 weight = 30
 +++
@@ -118,11 +118,11 @@ section for more details. And, to specify another image, use the `--image` flag.
 By default, the cluster will be given the name kind. Use the `--name` flag to 
 assign the cluster a different context name.
 
-## k3s
+## K3s
 
-### 1. Setting up a cluster on k3s
+### 1. Setting up a cluster on K3s
 
-k3s is a fully compliant Kubernetes distribution with the following 
+K3s is a fully compliant Kubernetes distribution with the following 
 enhancements:
 
 * Packaged as a single binary.
@@ -135,10 +135,10 @@ options.
 local storage provider, a service load balancer, a Helm controller, and the 
 Traefik ingress controller.
 * Operation of all Kubernetes control plane components is encapsulated in a 
-single binary and process. This allows k3s to automate and manage complex 
+single binary and process. This allows K3s to automate and manage complex 
 cluster operations like distributing certificates.
 * External dependencies have been minimized (just a modern kernel and cgroup 
-mounts needed). k3s packages required dependencies, including:
+mounts needed). K3s packages required dependencies, including:
 
   * containerd
   * Flannel
@@ -149,11 +149,11 @@ mounts needed). k3s packages required dependencies, including:
   * Embedded service loadbalancer
   * Embedded network policy controller
 
-You can find the the official k3s installation script to install it as a service 
+You can find the the official K3s installation script to install it as a service 
 on systemd- or openrc-based systems on the official 
-[k3s website](https://get.k3s.io). 
+[K3s website](https://get.k3s.io). 
 
-To install k3s using that method, run the following command:
+To install K3s using that method, run the following command:
 
 ```SHELL
 curl -sfL https://get.k3s.io | sh -
@@ -161,13 +161,13 @@ curl -sfL https://get.k3s.io | sh -
 
 **References**:
 
-* [k3s: Quick Start Guide](https://rancher.com/docs/k3s/latest/en/quick-start/)
+* [K3s: Quick Start Guide](https://rancher.com/docs/k3s/latest/en/quick-start/)
 
-* [k3s: Known Issues](https://rancher.com/docs/k3s/latest/en/known-issues/)
+* [K3s: Known Issues](https://rancher.com/docs/k3s/latest/en/known-issues/)
 
-* [k3s: FAQ](https://rancher.com/docs/k3s/latest/en/faq/)
+* [K3s: FAQ](https://rancher.com/docs/k3s/latest/en/faq/)
 
-### 2. Creating a cluster on k3s
+### 2. Creating a cluster on K3s
 
 1. To create a Kubernetes cluster on K3s, use the following command:
  
@@ -188,7 +188,7 @@ curl -sfL https://get.k3s.io | sh -
     sudo k3s kubectl get node
     ```
 
-    k3s embeds the popular kubectl command directly in the binaries, so you may 
+    K3s embeds the popular kubectl command directly in the binaries, so you may 
   immediately interact with the cluster through it.
 
 3. (Optional) Run the below command on a different node. `NODE_TOKEN` comes from 
@@ -198,9 +198,9 @@ curl -sfL https://get.k3s.io | sh -
     sudo k3s agent --server https://myserver:6443 --token ${NODE_TOKEN}
     ```
 
-## k3s on Windows Subsystem for Linux (WSL)
+## K3s on Windows Subsystem for Linux (WSL)
 
-### 1. Setting up a cluster on k3s on Windows Subsystem for Linux (WSL)
+### 1. Setting up a cluster on K3s on Windows Subsystem for Linux (WSL)
 
 The Windows Subsystem for Linux (WSL) lets developers run a GNU/Linux 
 environment—including most command-line tools, utilities, and applications—
@@ -210,7 +210,7 @@ machine or dualboot setup.
 The full instructions for installing WSL can be found on the 
 [official Windows site](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
-The following steps summarize what you'll need to set up WSL and then k3s on 
+The following steps summarize what you'll need to set up WSL and then K3s on 
 WSL.
 
 1. Install [WSL] by following the official [docs](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
@@ -225,13 +225,13 @@ distibution:
 
     **References**:
 
-    * [k3s on WSL: Quick Start Guide](https://gist.github.com/ibuildthecloud/1b7d6940552ada6d37f54c71a89f7d00)
+    * [K3s on WSL: Quick Start Guide](https://gist.github.com/ibuildthecloud/1b7d6940552ada6d37f54c71a89f7d00)
 
-### 2. Creating a cluster on k3s on WSL
+### 2. Creating a cluster on K3s on WSL
 
-Below are the steps to create a cluster on k3s in WSL
+Below are the steps to create a cluster on K3s in WSL
 
-1. To create a Kubernetes cluster on k3s on WSL, run the following command:
+1. To create a Kubernetes cluster on K3s on WSL, run the following command:
 
     ```SHELL
     sudo ./k3s server
@@ -240,12 +240,12 @@ Below are the steps to create a cluster on k3s in WSL
     This will bootstrap a Kubernetes cluster but you will cannot yet access from 
     your Windows machine to the cluster itself.
 
-    **Note:** You can't install k3s using the curl script because there is no 
+    **Note:** You can't install K3s using the curl script because there is no 
     supervisor (systemd or openrc) in WSL.
 
-2. Download the k3s binary from https://github.com/rancher/k3s/releases/latest. 
-Then, inside the directory where you download the k3s binary to, run this 
-command to add execute permission to the k3s binary:
+2. Download the K3s binary from https://github.com/rancher/k3s/releases/latest. 
+Then, inside the directory where you download the K3s binary to, run this 
+command to add execute permission to the K3s binary:
 
     ```SHELL
     chmod +x k3s
@@ -287,7 +287,7 @@ For more information about K3ai, refer to the [official documentation](https://k
 ## Deploying Kubeflow Pipelines
 
 The installation process for Kubeflow Pipelines is the same for all three 
-environments covered in this guide: kind, k3s, and k3s on WSL.
+environments covered in this guide: kind, K3s, and K3ai.
 
 **Note**: Process Namespace Sharing (PNS) is not mature in Argo. 
 Go to [Argo Executors](https://argoproj.github.io/argo/workflow-executors/) 
@@ -312,7 +312,7 @@ URLs.
 
 ## Uninstalling Kubeflow Pipelines
 
-Below are the steps to remove Kubeflow Pipelines on kind, k3s, or k3s on WSL:
+Below are the steps to remove Kubeflow Pipelines on kind, K3s, or K3ai:
 
 - To uninstall Kubeflow Pipelines using your manifest file, run this command:
 
