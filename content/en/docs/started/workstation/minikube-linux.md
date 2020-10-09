@@ -98,9 +98,12 @@ Follow these steps to install Kubeflow:
 
 1. Extract the zipped TAR file:
    
-   ```SHELL
-   tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
-   ```
+    ```SHELL
+    tar -xvf {KFCTL_TAR_GZ_FILE}
+    ```
+
+    where `{KFCTL_TAR_GZ_FILE}` should be replaced with the name of the kfctl
+    release file you have just downloaded.
 1. Run the commands below to set up and deploy Kubeflow. One of them
    includes an optional command to add the binary kfctl to your
    path. If you don’t add the binary to your path, you must use the full path
