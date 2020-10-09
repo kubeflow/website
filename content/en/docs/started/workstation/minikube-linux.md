@@ -212,7 +212,7 @@ workflow-controller-945c84565-57c72                            1/1     Running  
 
 ## Launch of Kubeflow central dashboard
 
-You can access the Kubeflow dashboard using the istio-ingressgateway service.
+You can access the Kubeflow dashboard using the `istio-ingressgateway` service.
 To see your settings for the istio-ingressgateway service, execute the following commands:
 
 ```SHELL
