@@ -9,7 +9,7 @@ This guide shows how to deploy Kubeflow Pipelines Standalone using:
 - kind
 - k3s
 - k3s on Windows Subsystem for Linux (WSL)
-- k3ai [*alpha*]
+- K3ai [*alpha*]
 
 Such deployment methods can be part of your local environment using the supplied 
 kustomize manifests for test purposes. This guide is an alternative to 
