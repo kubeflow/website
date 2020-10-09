@@ -4,7 +4,7 @@ description = "How to deploy Kubeflow with MiniKube on a single node on Linux"
 weight = 50
                     
 +++
-This guide covers the installation of Minikube and Kubeflow in a single-node Ubuntu system.
+This guide covers the installation of minikube and Kubeflow in a single-node Ubuntu system.
 minikube provides a single-node Kubernetes cluster, making it easy to learn and
 and develop for Kubernetes.
 
