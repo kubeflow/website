@@ -156,25 +156,6 @@ The matrix is therefore an alternative way of accessing the information in the
   </table>
 </div>
 
-## Installing command line tools
-
-The following information is useful if you need or prefer to use command line
-tools for deploying and managing Kubeflow:
-
-* Download the kfctl binary from the
-  [Kubeflow releases page](https://github.com/kubeflow/kfctl/releases/).
-
-* Follow the kubectl installation and setup instructions from the [Kubernetes
-  documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-  As described in the Kubernetes documentation, your kubectl
-  version must be within one minor version of the Kubernetes version that you
-  use in your Kubeflow cluster.
-
-* Follow the kustomize installation and setup instructions from the guide to
-  [kustomize in Kubeflow](/docs/other-guides/kustomize/).
-  Make sure that you have the minimum required version of kustomize:
-  <b>{{% kustomize-min-version %}}</b> or later.
-
 ## Understanding the Kubeflow versioning policies
 
 With the launch of Kubeflow {{% kf-latest-version %}}, the Kubeflow community attributes 
