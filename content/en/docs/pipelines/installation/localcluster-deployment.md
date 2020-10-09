@@ -7,8 +7,8 @@ weight = 30
 This guide shows how to deploy Kubeflow Pipelines Standalone using:
 
 - kind
-- k3s
-- k3s on Windows Subsystem for Linux (WSL)
+- K3s
+- K3s on Windows Subsystem for Linux (WSL)
 - K3ai [*alpha*]
 
 Such deployment methods can be part of your local environment using the supplied 
