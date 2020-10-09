@@ -1,15 +1,12 @@
 +++
-title = "Deploy using MiniKube on Linux"
-description = "Install Kubeflow on Minikube on Linux"
+title = "Deploying with minikube on a single node"
+description = "How to deploy Kubeflow with minikube on a single node on Linux"
 weight = 50
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
-
-This guide covers the installation of Minikube and Kubeflow in a single node Ubuntu system. Minikube provides a single node Kubernetes cluster that is good for development and testing purposes.
+This guide covers the installation of minikube and Kubeflow in a single-node Ubuntu system.
+minikube provides a single-node Kubernetes cluster, making it easy to learn and
+and develop for Kubernetes.
 
 The guide covers the following topics:
 
@@ -61,32 +58,34 @@ This message shows that your installation appears to be working correctly.
 
 ### Install kubectl
 
-`kubectl` is a Kubernetes command-line tool that allows you to run commands against Kubernetes clusters. The following instructions install version 1.15 of kubectl. If you are looking for a specific version, see the [kubectl installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/). 
-```
+`kubectl` is a Kubernetes command-line tool that allows you to run commands against Kubernetes clusters.
+The following instructions install version 1.15 of kubectl. If you are looking for a specific version,
+see the [kubectl installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+```SHELL
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kubectl
 chmod +x ./kubectl
 mv ./kubectl /usr/local/bin/kubectl
 ```
 
-### Install Minikube
+### Install minikube
 
-The following command installs Minikube v1.2.0. If you are looking for a specific version, see the [Minikube releases](https://github.com/kubernetes/minikube/releases).
-```
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.2.0/minikube-linux-amd64
-```
+Run the command lines below to install the latest version of minikube.
+If you are looking for a specific version, refer to the [Kubernetes: minikube
+releases](https://github.com/kubernetes/minikube/releases) page.
 
-Move to the `/usr/local/bin` directory:
-```
-chmod +x minikube
-cp minikube /usr/local/bin/
-rm minikube
+```SHELL
+ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 ```
 
-### Start Minikube
+### Start minikube
 
-The following command starts Minikube with 6 CPUs, 12288 memory, 120G disk size: 
-```
-minikube start --vm-driver=none --cpus 6 --memory 12288 --disk-size=120g --extra-config=apiserver.authorization-mode=RBAC --extra-config=kubelet.resolv-conf=/run/systemd/resolve/resolv.conf --extra-config kubeadm.ignore-preflight-errors=SystemVerification
+You can launch minikune with the `minikube start` command. For example, if you
+want to specify 6 CPUs, 12288 memory, 120G disk size:
+
+```SHELL
+minikube start --cpus 6 --memory 12288 --disk-size=120g --extra-config=apiserver.service-account-issuer=api --extra-config=apiserver.service-account-signing-key-file=/var/lib/minikube/certs/apiserver.key --extra-config=apiserver.service-account-api-audiences=api
 ```
 
 ## Installation of Kubeflow
@@ -95,16 +94,23 @@ Follow these steps to install Kubeflow:
 
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 
-  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
+  page](https://github.com/kubeflow/kfctl/releases/).
 
-1. Unpack the tar ball:
-      ```
-      tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
-      ```
-1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+1. Extract the zipped TAR file:
+   
+    ```SHELL
+    tar -xvf {KFCTL_TAR_GZ_FILE}
+    ```
+
+    where `{KFCTL_TAR_GZ_FILE}` should be replaced with the name of the kfctl
+    release file you have just downloaded.
+1. Run the commands below to set up and deploy Kubeflow. One of them
+   includes an optional command to add the binary kfctl to your
+   path. If you don’t add the binary to your path, you must use the full path
+   to the kfctl binary each time you run it.
 
     ```
-    # The following command is optional, to make kfctl binary easier to use.
+    # The following command is optional making the kfctl binary easier to use.
     export PATH=$PATH:<path to where kfctl was unpacked>
 
     # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
@@ -158,12 +164,16 @@ cd ${KF_DIR}
 kfctl apply -V -f ${CONFIG_URI}
 ```
 
-When the installation finishes, run the following command to see whether all the pods are in running status. Depending on your machine’s capability, it may take a few minutes to reach full running status:
-```
+After the installation, run the following command to check whether all the pods are in running status:
+
+```SHELL
 kubectl get pod -n kubeflow
 ```
 
+It may take a few minutes to reach full running status.
+
 Expected output:
+
 ```
 NAME                                                           READY   STATUS      RESTARTS   AGE
 admission-webhook-bootstrap-stateful-set-0                     1/1     Running     0          10m
@@ -205,27 +215,32 @@ workflow-controller-945c84565-57c72                            1/1     Running  
 
 ## Launch of Kubeflow central dashboard
 
-You can access the Kubeflow dashboard using the istio-ingressgateway service. To see your settings for the istio-ingressgateway service, execute the following commands:
-```
+You can access the Kubeflow dashboard using the `istio-ingressgateway` service.
+To check your settings for `istio-ingressgateway`, execute the following commands:
+
+```SHELL
 export INGRESS_HOST=$(minikube ip)
 export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
 ```
 
 Then you can access the Kubeflow dashboard in a web browser: 
-```
+
+```SHELL
 http://<INGRESS_HOST>:<INGRESS_PORT>
 ```
 
-## Execution of an MNIST on-prem notebook
+## Running the MNIST on-prem Jupyter notebook
 
-The [MNIST on-prem notebook](https://github.com/kubeflow/fairing/blob/master/examples/mnist/mnist_e2e_on_prem.ipynb) builds a Docker image, launches a TFJob to train a model, and creates an InferenceService (KFServing) to deploy the trained model.
+The [MNIST on-prem notebook](https://github.com/kubeflow/fairing/blob/master/examples/mnist/mnist_e2e_on_prem.ipynb) builds a Docker image,
+launches a TFJob to train a model, and creates an InferenceService (KFServing) to deploy the trained model.
 
 ### Prerequisites
 
 #### Step 1: Set up Python environment
 
 You need Python 3.5 or later: 
-```
+
+```SHELL
 apt-get update; apt-get install -y wget bzip2
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh 
@@ -234,7 +249,8 @@ bash Miniconda3-latest-Linux-x86_64.sh
 Re-open your current shell.
 
 Create a Python 3.7 environment named `mlpipeline` (or any name that you prefer):
-```
+
+```SHELL
 conda create --name mlpipeline python=3.7
 conda init
 conda activate mlpipeline 
@@ -243,7 +259,8 @@ conda activate mlpipeline
 #### Step 2: Install Jupyter Notebooks
 
 Run the following command to install Jupyter Notebooks:
-```
+
+```SHELL
 pip install --upgrade pip
 pip install jupyter
 ```
@@ -259,7 +276,8 @@ If you don't have a Docker ID, follow the [Docker documentation](https://docs.do
 #### Step 4: Create a namespace to run the MNIST on-prem notebook 
 
 The following commands create a namespace called `mnist`. You can use any name you like:
-```
+
+```SHELL
 kubectl create ns mnist
 kubectl label namespace mnist serving.kubeflow.org/inferenceservice=enabled 
 ```
@@ -267,7 +285,8 @@ kubectl label namespace mnist serving.kubeflow.org/inferenceservice=enabled
 #### Step 5:  Download the MNIST on-prem notebook
 
 Run the following commands to download the notebook:
-```
+
+```SHELL
 cd /root/kubeflow
 git clone https://github.com/kubeflow/fairing.git
 ```
@@ -275,15 +294,17 @@ git clone https://github.com/kubeflow/fairing.git
 ### Launch Jupyter Notebook
 
 Run the following commands to launch a Jupyter Notebooks server:
-```
+
+```SHELL
 cd /root/kubeflow/fairing/examples/mnist
 conda activate mlpipeline
 docker login
 jupyter notebook --allow-root
 ```
 
-You should see output like this:
-```
+Your output should be similar to this:
+
+```SHELL
 [I 21:17:37.473 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
 [I 21:17:37.784 NotebookApp] Serving notebooks from local directory: /root/kubeflow/fairing/examples/mnist
 [I 21:17:37.784 NotebookApp] The Jupyter Notebook is running at:
