@@ -170,7 +170,10 @@ After the installation, run the following command to check whether all the pods 
 kubectl get pod -n kubeflow
 ```
 
+It may take a few minutes to reach full running status.
+
 Expected output:
+
 ```
 NAME                                                           READY   STATUS      RESTARTS   AGE
 admission-webhook-bootstrap-stateful-set-0                     1/1     Running     0          10m
