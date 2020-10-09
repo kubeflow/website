@@ -81,7 +81,7 @@ releases](https://github.com/kubernetes/minikube/releases) page.
 
 ### Start Minikube
 
-You can launch Minikune with the `minikube start` command. For example, if you
+You can launch minikune with the `minikube start` command. For example, if you
 want to specify 6 CPUs, 12288 memory, 120G disk size:
 
 ```SHELL
