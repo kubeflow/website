@@ -164,7 +164,7 @@ cd ${KF_DIR}
 kfctl apply -V -f ${CONFIG_URI}
 ```
 
-When the installation finishes, run the following command to see whether all the pods are in running status.
+After the installation, run the following command to check whether all the pods are in running status:
 Depending on your machine’s capability, it may take a few minutes to reach full running status:
 
 ```SHELL
