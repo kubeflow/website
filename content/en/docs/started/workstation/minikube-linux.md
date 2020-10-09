@@ -226,7 +226,7 @@ Then you can access the Kubeflow dashboard in a web browser:
 http://<INGRESS_HOST>:<INGRESS_PORT>
 ```
 
-## Execution of an MNIST on-prem notebook
+## Running the MNIST on-prem Jupyter notebook
 
 The [MNIST on-prem notebook](https://github.com/kubeflow/fairing/blob/master/examples/mnist/mnist_e2e_on_prem.ipynb) builds a Docker image,
 launches a TFJob to train a model, and creates an InferenceService (KFServing) to deploy the trained model.
