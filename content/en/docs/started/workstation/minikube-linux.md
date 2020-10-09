@@ -1,6 +1,6 @@
 +++
-title = "Deploying with miniKube on a single node"
-description = "How to deploy Kubeflow with miniKube on a single node on Linux"
+title = "Deploying with minikube on a single node"
+description = "How to deploy Kubeflow with minikube on a single node on Linux"
 weight = 50
                     
 +++
