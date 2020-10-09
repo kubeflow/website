@@ -2,7 +2,7 @@
 title = "Installing Kubeflow"
 description = "Overview of installation choices for various environments"
 weight = 20
-                    
+
 +++
 
 This document provides information about setting up Kubeflow in various
@@ -28,8 +28,8 @@ in the "Doc diagrams" folder in the Kubeflow team drive.
 The following diagram gives an overview of the options for deploying Kubeflow:
 
 <div>
-  <object type="image/svg+xml" 
-    data="/docs/images/kubeflow-getting-started-diagram.svg" 
+  <object type="image/svg+xml"
+    data="/docs/images/kubeflow-getting-started-diagram.svg"
     alt="A diagrammatic overview of Kubeflow deployment options"
     class="mt-3 mb-3 border border-info rounded">
   </object>
@@ -84,9 +84,9 @@ Choose the guide for your operating system or environment:
   * To use MiniKF (mini Kubeflow) on Google Cloud Platform, follow the guide to
     [MiniKF on GCP](/docs/started/workstation/minikf-gcp/).
 
-## Configuration quick reference
+## Deployment quick reference
 
-Below is a matrix of the platforms where you can deploy Kubeflow and the 
+Below is a matrix of the platforms where you can deploy Kubeflow and the
 corresponding manifest files that specify the default configuration for each
 platform. The matrix shows the same manifests as the installation guides.
 The matrix is therefore an alternative way of accessing the information in the
@@ -97,59 +97,42 @@ The matrix is therefore an alternative way of accessing the information in the
     <thead class="thead-light">
       <tr>
         <th>Deployment platform</th>
-        <th>Manifest</th>
         <th>Deployment guide</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><b>Existing Kubernetes cluster</b> using a standard Kubeflow 
+        <td><b>Existing Kubernetes cluster</b> using a standard Kubeflow
           installation</td>
-        <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a> 
-        </td>
         <td><a href="/docs/started/k8s/kfctl-k8s-istio/">Docs</a></td>
       </tr>
       <tr>
         <td><b>Existing Kubernetes cluster</b> using Dex for authentication</td>
-        <td><a href="{{% config-uri-istio-dex %}}">{{% config-file-istio-dex %}}</a>
-        </td>
         <td><a href="/docs/started/k8s/kfctl-istio-dex/">Docs</a></td>
       </tr>
       <tr>
         <td><b>Amazon Web Services (AWS)</b> using the standard setup</td>
-        <td><a href="{{% config-uri-aws-standard %}}">{{% config-file-aws-standard %}}</a> 
-        </td>
         <td><a href="/docs/aws/deploy/install-kubeflow/">Docs</a></td>
       </tr>
       <tr>
         <td><b>Amazon Web Services (AWS)</b> with authentication</td>
-        <td><a href="{{% config-uri-aws-cognito %}}">{{% config-file-aws-cognito %}}</a> 
-        </td>
         <td><a href="/docs/aws/deploy/install-kubeflow/">Docs</a></td>
       </tr>
       <tr>
         <td><b>Microsoft Azure</b></td>
-        <td><a href="{{% config-uri-k8s-istio %}}">{{% config-file-k8s-istio %}}</a>  
-        </td>
         <td><a href="/docs/azure/deploy/install-kubeflow/">Docs</a></td>
       </tr>
       <tr>
-        <td><b>Google Cloud Platform (GCP)</b> with Cloud Identity-Aware Proxy 
+        <td><b>Google Cloud Platform (GCP)</b> with Cloud Identity-Aware Proxy
           (Cloud IAP)</td>
-        <td><a href="{{% config-uri-gcp-iap %}}">{{% config-file-gcp-iap %}}</a>  
-        </td>
         <td><a href="/docs/gke/deploy/">Docs</a></td>
       </tr>
       <tr>
         <td><b>IBM Cloud (IKS)</b></td>
-        <td><a href="{{% config-uri-ibm %}}">{{% config-file-ibm %}}</a>  
-        </td>
         <td><a href="/docs/started/cloud/getting-started-iks/">Docs</a></td>
       </tr>
       <tr>
         <td><b>OpenShift</b></td>
-        <td><a href="{{% config-uri-openshift %}}">{{% config-file-openshift %}}</a>  
-        </td>
         <td><a href="/docs/openshift/">Docs</a></td>
       </tr>
     </tbody>
@@ -158,13 +141,13 @@ The matrix is therefore an alternative way of accessing the information in the
 
 ## Understanding the Kubeflow versioning policies
 
-With the launch of Kubeflow {{% kf-latest-version %}}, the Kubeflow community attributes 
-*stable status* to those applications and other components that 
+With the launch of Kubeflow {{% kf-latest-version %}}, the Kubeflow community attributes
+*stable status* to those applications and other components that
 meet the required level of stability, supportability, and upgradability.
 
-Read about the 
+Read about the
 [Kubeflow versioning policies](/docs/reference/version-policy/),
-including the stable status of Kubeflow applications and deployment 
+including the stable status of Kubeflow applications and deployment
 platforms.
 
 ## Troubleshooting
