@@ -8,10 +8,17 @@ weight = 20
 For macOS systems you have multiple options for getting started. The options range
 from fully-assembled Kubeflow stacks, to stacks that require some assembly.
 
-## Kubeflow appliance
 
-A Kubeflow appliance is a virtual machine that has Kubeflow already installed. Once the
-necessary supporting software is installed no further installation steps are required.
+### MicroK8s
+
+MicroK8s is a lightweight zero-ops Kubernetes which has a native installer for macOS. MicroK8s is highly available from 3+ nodes and includes a single-command install of Kubeflow.
+
+To get Kubeflow:
+
+1. Install [MicroK8s](https://microk8s.io/)
+2. Install Kubeflow by running: `microk8s enable kubeflow`
+
+The full set of instructions are available on the [Kubeflow on MicroK8s](https://www.kubeflow.org/docs/started/workstation/getting-started-multipass/) page.
 
 ### MiniKF
 
@@ -24,20 +31,11 @@ The only following applications are required to use MiniKF:
 The full set of instructions are available on the
 [MiniKF getting started](/docs/started/workstation/getting-started-minikf/) page.
 
-## Linux appliance
+### Multipass
 
-A Linux appliance is a virtual machine that holds the linux operating system. From there
-you have complete choice over Kubernetes and Kubeflow, which offers the greatest degree
-of flexibility. You only need to install a single application to follow this path:
+[Multipass](https://multipass.run/) creates a Linux virtual machine on Windows, Mac or Linux systems. The VM contains a complete Ubuntu operating
+system which can then be used to deploy Kubernetes and Kubeflow.
 
 - Install [Multipass](https://multipass.run/#install)
 
-The instructions on [Multipass and MicroK8s getting started](/docs/started/workstation/getting-started-multipass/)
-page will complete this path.
-
-## Kubernetes appliance
-
-Similar to the Kubeflow appliance, the Kubernetes appliance is a virtual machine that
-has a Kubernetes cluster already installed. After starting the virtual machine you
-will need to install Kubeflow. This option gives you full control over your Kubeflow
-setup.
+Follow instructions on [Kubeflow on Multipass](https://ubuntu.com/tutorials/deploy-kubeflow-ubuntu-windows-mac#1-overview) to complete this path.
