@@ -78,7 +78,8 @@ The following command installs Minikube latest version. If you are looking for a
 
 ### Start Minikube
 
-The following command starts Minikube with 6 CPUs, 12288 memory, 120G disk size: 
+You can launch Minikune with the `minikube start` command. For example, if you
+want to specify 6 CPUs, 12288 memory, 120G disk size:
 ```
 minikube start --vm-driver=hyperv --cpus 6 --memory 12288 --disk-size=120g --extra-config=apiserver.service-account-issuer=api --extra-config=apiserver.service-account-signing-key-file=/var/lib/minikube/certs/apiserver.key --extra-config=apiserver.service-account-api-audiences=api
 ```
