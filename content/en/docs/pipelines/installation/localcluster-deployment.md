@@ -275,7 +275,7 @@ installed, follow the official
 
 K3ai is a lightweight "infrastructure in a box" designed specifically to install and configure AI tools and platforms on portable hardware, such as laptops and edge devices. This enables users to perform quick experimentations with Kubeflow on a local cluster.
 
-Is main goal is to provide the most simple way to install Kubeflow pipelines without having to worry about setting up requirements and dependencies.
+K3ai's main goal is to provide a quick way to install Kubernetes (K3s-based) and Kubeflow Pipelines with NVIDIA GPU support and TensorFlow Serving with just one line. (For Kubeflow and other component support, check [K3ai's website](https://kf5ai.gitbook.io/k3ai/#components-of-k-3-ai) for updates.)
 To install Kubeflow Pipelines using K3ai, run the following command:
 
 ```SHELL
