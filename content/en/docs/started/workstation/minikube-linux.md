@@ -70,7 +70,7 @@ mv ./kubectl /usr/local/bin/kubectl
 
 ### Install minikube
 
-Run the command lines below to install the latest version of Minikube.
+Run the command lines below to install the latest version of minikube.
 If you are looking for a specific version, refer to the [Kubernetes: Minikube
 releases](https://github.com/kubernetes/minikube/releases) page.
 
