@@ -299,7 +299,7 @@ docker login
 jupyter notebook --allow-root
 ```
 
-You should see output like this:
+Your output should be similar to this:
 
 ```SHELL
 [I 21:17:37.473 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
