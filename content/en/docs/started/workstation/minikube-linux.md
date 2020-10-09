@@ -96,7 +96,7 @@ Follow these steps to install Kubeflow:
   [Kubeflow releases 
   page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
 
-1. Unpack the tar ball:
+1. Extract the zipped TAR file:
    
    ```SHELL
    tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
