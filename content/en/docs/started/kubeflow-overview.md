@@ -131,17 +131,6 @@ The UI offers a central dashboard that you can use to access the components
 of your Kubeflow deployment. Read 
 [how to access the central dashboard](/docs/components/central-dash/overview/).
 
-### Kubeflow command line interface (CLI)
-
-**Kfctl** is the Kubeflow CLI that you can use to install and configure 
-Kubeflow. Read about kfctl in the guide to 
-[configuring Kubeflow](/docs/other-guides/kustomize/).
-
-The Kubernetes CLI, **kubectl**, is useful for running commands against your
-Kubeflow cluster. You can use kubectl to deploy applications, inspect and manage
-cluster resources, and view logs. Read about kubectl in the [Kubernetes 
-documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-
 ## Kubeflow APIs and SDKs
 
 Various components of Kubeflow offer APIs and Python SDKs. See the following
