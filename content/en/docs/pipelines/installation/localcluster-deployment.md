@@ -295,10 +295,10 @@ For more information about K3ai, refer to the
 The installation process for Kubeflow Pipelines is the same for all three
 environments covered in this guide: kind, K3s, and K3ai.
 
-**Note**: Process Namespace Sharing (PNS) is not mature in Argo. Go to [Argo
-Executors](https://argoproj.github.io/argo/workflow-executors/) for more
-informations. Please reference "pns executors" in any issue that may arise using
-it.
+**Note**: Process Namespace Sharing (PNS) is not mature in Argo yet - for more
+information go to [Argo
+Executors](https://argoproj.github.io/argo/workflow-executors/) and reference
+"pns executors" in any issue you may across when using PNS.
 
 1. To deploy the Kubeflow Pipelines, run the following commands:
 
