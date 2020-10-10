@@ -283,12 +283,20 @@ line. (For Kubeflow and other component support, check [K3ai's
 website](https://kf5ai.gitbook.io/k3ai/#components-of-k-3-ai) for updates.) To
 install Kubeflow Pipelines using K3ai, run the following command:
 
+CPU Support:
+
 ```SHELL
-curl -sfL https://github.com/kf5i/k3ai/releases/latest/download/install | bash -
+curl -sfL https://get.k3ai.in | bash -s -- --cpu --plugin_kfpipelines
+```
+
+GPU Support:
+
+```SHELL
+curl -sfL https://get.k3ai.in | bash -s -- --gpu --plugin_kfpipelines
 ```
 
 For more information about K3ai, refer to the
-[official documentation](https://kf5ai.gitbook.io/k3ai/).
+[official documentation](https://docs.k3ai.in).
 
 ## Deploying Kubeflow Pipelines
 
