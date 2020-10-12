@@ -2,7 +2,8 @@
 title = "Pipelines Quickstart"
 description = "Getting started with Kubeflow Pipelines"
 weight = 10
-                    
++++
+
 {{% beta-status 
   feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
 
