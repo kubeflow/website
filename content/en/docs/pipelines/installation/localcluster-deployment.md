@@ -289,7 +289,7 @@ install Kubeflow Pipelines using K3ai, run the following commands:
 curl -sfL https://get.k3ai.in | bash -s -- --cpu --plugin_kfpipelines
 ```
 
-GPU Support:
+- With GPU support:
 
 ```SHELL
 curl -sfL https://get.k3ai.in | bash -s -- --gpu --plugin_kfpipelines
