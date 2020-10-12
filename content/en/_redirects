@@ -100,8 +100,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/started/getting-started-gke/             /docs/started/cloud/getting-started-gke/
 /docs/started/getting-started-iks/             /docs/started/cloud/getting-started-iks/
 
-/docs/other-guides/upgrade/                    /docs/upgrading/upgrade/
-
 /docs/use-cases/kubeflow-on-multinode-cluster/ /docs/other-guides/kubeflow-on-multinode-cluster/
 /docs/use-cases/job-scheduling/                /docs/other-guides/job-scheduling/
 
