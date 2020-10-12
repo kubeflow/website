@@ -41,8 +41,9 @@ controlled by the profile access policies set by the administrator or the owners
 of the profiles. Resources created by the notebooks (for example, training jobs and
 deployments) also inherit the same access.
 
-Pipelines is partially integrated with multi-user isolation starting from Kubeflow v1.1. You
-can find more information on [Multi-user Isolation for Pipelines](https://www.kubeflow.org/docs/pipelines/multi-user/).
+Kubeflow Pipelines is partially integrated with multi-user isolation starting
+from Kubeflow v1.1. You can find more information on [Multi-user Isolation for
+Pipelines](https://www.kubeflow.org/docs/pipelines/multi-user/).
 
 Metadata or any other applications currently don't have full
 fledged integration with isolation, though they do have access to the user
