@@ -1,6 +1,6 @@
 +++
 title = "Install Kubeflow"
-description = "Instructions for deploying Kubeflow with the shell"
+description = "Instructions for deploying Kubeflow on IBM Cloud"
 weight = 5
 +++
 
@@ -8,18 +8,20 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
 ## Prerequisites
 
-* Authenticating with IBM Cloud
+* Authenticate with IBM Cloud
+
+  Log into IBM Cloud using the [IBM Cloud Command Line Interface (CLI)](https://www.ibm.com/cloud/cli) as follows:
 
   ```shell
   ibmcloud login
   ```
 
-* Accessing the IBM Cloud cluster
+* Create and access a Kubernetes cluster on IKS
 
-  If you do not have access to a cluster created with IBM Cloud Kubernetes Service, follow the [Create an IBM Cloud cluster](/docs/ibm/create-cluster) guide to create a cluster.
+  To deploy Kubeflow on IBM Cloud, you need a cluster running on IKS. If you don't have a cluster running, follow the [Create an IBM Cloud cluster](/docs/ibm/create-cluster) guide.
 
-  Run following command to switch the Kubernetes context and access the cluster.
-
+  Run the following command to switch the Kubernetes context and access the cluster:
+  
   ```shell
   ibmcloud ks cluster config --cluster <cluster_name>
   ```
@@ -35,50 +37,57 @@ When using the `classic` worker nodes provider of IBM Cloud Kubernetes cluster, 
 [IBM Cloud Block Storage](https://www.ibm.com/cloud/block-storage) provides a fast way to store data and
 satisfy many of the Kubeflow persistent volume requirements such as `fsGroup` out of the box and optimized RWO (read-write single node) which is used on all Kubeflow's persistent volume claim. 
 
-Therefore, we strongly recommend to set up [IBM Cloud Block Storage](https://cloud.ibm.com/docs/containers?topic=containers-block_storage#add_block) as the default storage class so that you can
+Therefore, you're recommended to set up [IBM Cloud Block Storage](https://cloud.ibm.com/docs/containers?topic=containers-block_storage#add_block) as the default storage class so that you can
 get the best experience from Kubeflow.
 
 1. [Follow the instructions](https://helm.sh/docs/intro/install/) to install the Helm version 3 client on your local machine.
 
 2. Add the IBM Cloud Helm chart repository to the cluster where you want to use the IBM Cloud Block Storage plug-in.
+
     ```shell
     helm repo add iks-charts https://icr.io/helm/iks-charts
     helm repo update
     ```
 
 3. Install the IBM Cloud Block Storage plug-in. When you install the plug-in, pre-defined block storage classes are added to your cluster.
+
     ```shell
-    helm install 1.6.0 iks-charts/ibmcloud-block-storage-plugin -n kube-system
+    helm install 1.7.0 iks-charts/ibmcloud-block-storage-plugin -n kube-system
     ```
     
     Example output:
     ```
-    NAME: 1.6.0
-    LAST DEPLOYED: Thu Feb 27 11:41:35 2020
+    NAME: 1.7.0
+    LAST DEPLOYED: Fri Aug 28 11:23:56 2020
     NAMESPACE: kube-system
     STATUS: deployed
     REVISION: 1
     NOTES:
-    Thank you for installing: ibmcloud-block-storage-plugin.   Your release is named: 1.6.0
+    Thank you for installing: ibmcloud-block-storage-plugin.   Your release is named: 1.7.0
     ...
     ```
 
 4. Verify that the installation was successful.
+
     ```shell
     kubectl get pod -n kube-system | grep block
     ```
     
 5. Verify that the storage classes for Block Storage were added to your cluster.
+
     ```
     kubectl get storageclasses | grep block
     ```
 
-6. Set the Block Storage as the default storageclass.
-    ```shell
-    kubectl patch storageclass ibmc-block-gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+6. Set the Block Storage as the default storage class.
 
-    # Check the default storageclass is block storage
-    kubectl get storageclass | grep \(default\)
+    ```shell
+    NEW_STORAGE_CLASS=ibmc-block-gold
+    OLD_STORAGE_CLASS=$(kubectl get sc -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io\/is-default-class=="true")].metadata.name}')
+    kubectl patch storageclass ${NEW_STORAGE_CLASS} -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
+    # List all the (default) storage classes
+    kubectl get storageclass | grep "(default)"
     ```
 
     Example output:
@@ -86,10 +95,9 @@ get the best experience from Kubeflow.
     ibmc-block-gold (default)   ibm.io/ibmc-block   65s
     ```
 
-    Make sure `ibmc-block-gold` is the only `default` storageclass. If there are two or more rows in the above output, there is other `default` storageclass. Unset it with the below command, for example, will make the `ibmc-file-bronze` storage no longer the `default` storageclass for the cluster.
-
+    Make sure `ibmc-block-gold` is the only `(default)` storage class. If there are two or more rows in the above output, unset the previous `(default)` storage classes with the command below:
     ```shell
-    kubectl patch storageclass ibmc-file-bronze -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+    kubectl patch storageclass ${OLD_STORAGE_CLASS} -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
     ```
 
 ## Understanding the Kubeflow deployment process
