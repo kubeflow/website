@@ -83,6 +83,16 @@ If the error still persisted, check for the errors in the logs of containers.
 kubectl logs ${NOTEBOOK}-0
 ```
 
+## Delete notebooks manually
+
+It is possible to delete notebooks manually with the following command:
+
+```
+kubectl delete notebook ${NOTEBOOK}
+```
+
+Note that deleting the `statefulset` is not enough, it's necessary to delete the `notebook` resource.
+
 ## Note for GCP Users
 
 You may encounter error below:
