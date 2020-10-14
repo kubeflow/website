@@ -4,10 +4,6 @@ description = "Instructions for installing Kubeflow on your existing Kubernetes 
 weight = 1
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 Follow these instructions if you want to install Kubeflow on an existing Kubernetes
 cluster. Some [clouds](/docs/started/cloud) and Kubernetes distributions provide
@@ -41,6 +37,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <th>Kubeflow 0.6</th>
         <th>Kubeflow 0.7</th>
         <th>Kubeflow 1.0</th>
+        <th>Kubeflow 1.1</th>        
       </tr>
     </thead>
     <tbody>
@@ -48,6 +45,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>1.11</td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
+        <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
@@ -59,6 +57,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
       <tr>
         <td>1.13</td>
@@ -67,9 +66,11 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
       <tr>
         <td>1.14</td>
+        <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
@@ -83,6 +84,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
       </tr>
       <tr>
         <td>1.16</td>
@@ -90,6 +92,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td><b>compatible</b></td>
         <td><b>compatible</b></td>
       </tr>
       <tr>
@@ -99,6 +102,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td><b>no known issues</b></td>
+        <td><b>no known issues</b></td>
       </tr>
       <tr>
         <td>1.18</td>
@@ -106,6 +110,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td><b>no known issues</b></td>
         <td><b>no known issues</b></td>
       </tr>
     </tbody>
