@@ -4,7 +4,8 @@ description = "How to deploy Kubeflow Pipelines locally with kind, K3s, and K3ai
 weight = 30
 +++
 
-This guide shows how to deploy Kubeflow Pipelines Standalone using:
+This guide shows how to deploy Kubeflow Pipelines standalone on a local
+Kubernetes cluster using:
 
 - kind
 - K3s
@@ -13,6 +14,7 @@ This guide shows how to deploy Kubeflow Pipelines Standalone using:
 
 Such deployment methods can be part of your local environment using the supplied
 kustomize manifests for test purposes. This guide is an alternative to
+
 [Deploying Kubeflow Pipelines
 (KFP)](/docs/started/getting-started/#installing-kubeflow).
 
@@ -44,13 +46,13 @@ To get started with kind:
 Download and move the `kind` executable to your directory in your PATH by
 running the following commands:
 
-  ```SHELL
-   curl -Lo ./kind https://kind.sigs.k8s.io/dl/{KIND_VERSION}/kind-linux-amd64 && \
-   chmod +x ./kind && \
-   mv ./kind /{YOUR_KIND_DIRECTORY}/kind
-  ```
+```shell
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/{KIND_VERSION}/kind-linux-amd64 && \
+chmod +x ./kind && \
+mv ./kind /{YOUR_KIND_DIRECTORY}/kind
+```
 
-where:
+Replace the following:
 
 * `{KIND_VERSION}`: the kind version; for example, `v0.8.1` as of the date this
   guide was written
@@ -58,11 +60,11 @@ where:
 
 **On macOS:**
 
-Use [Homebrew](https://brew.sh) by running the following command:
+You can use [Homebrew](https://brew.sh) to install kind:
 
-  ```SHELL
-  brew install kind`
-  ```
+```shell
+brew install kind`
+```
 
 **On Windows:**
 
@@ -70,12 +72,20 @@ Use [Homebrew](https://brew.sh) by running the following command:
   commands to download and move the `kind` executable to a directory in your
   PATH:
 
-  ```SHELL
+- **PowerShell:** Run these commands to download and move the `kind` executable
+  to a directory in your PATH:
+
+  ```powershell
   curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/{KIND_VERSION}/kind-windows-amd64
   Move-Item .\kind-windows-amd64.exe c:\{YOUR_KIND_DIRECTORY}\kind.exe
   ```
 
-where:
+  Replace the following:
+
+  - `{KIND_VERSION}`: the kind version - for example, `v0.9` (check the latest
+  stable binary versions on the [kind releases
+  pages](https://github.com/kubernetes-sigs/kind/releases))
+  - `{YOUR_KIND_DIRECTORY}`: your directory for kind in PATH
 
 * `{KIND_VERSION}`: the kind version; for example, `v0.8.1` as of the date this
   guide was written
@@ -92,18 +102,18 @@ use the standard kubeflow pipeline manifests.
 
 **References**:
 
-* [kind: Quick Start Guide](https://kind.sigs.k8s.io/docs/user/quick-start/)
+**References:**
 
-* [kind: Known Issues](https://kind.sigs.k8s.io/docs/user/known-issues/)
-
-* [kind: Working Offline](https://kind.sigs.k8s.io/docs/user/working-offline/)
+- [kind: Quick Start Guide](https://kind.sigs.k8s.io/docs/user/quick-start/)
+- [kind: Known Issues](https://kind.sigs.k8s.io/docs/user/known-issues/)
+- [kind: Working Offline](https://kind.sigs.k8s.io/docs/user/working-offline/)
 
 ### 2. Creating a cluster on kind
 
-Having installed kind, you can create a Kubernetes cluster on kind by running
-the following command:
+Having installed kind, you can create a Kubernetes cluster on kind with this
+command:
 
-```SHELL
+```shell
 kind create cluster
 ```
 
@@ -170,21 +180,21 @@ curl -sfL https://get.k3s.io | sh -
 ### 2. Creating a cluster on K3s
 
 1. To create a Kubernetes cluster on K3s, use the following command:
- 
-    ```SHELL
+
+    ```shell
     sudo k3s server &
     ```
 
     This will bootstrap a Kubernetes cluster kubeconfig is written to
     `/etc/rancher/k3s/k3s.yaml`.
 
-    ```SHELL
+    ```shell
     sudo k3s kubectl get node
     ```
 
 2. (Optional) Check your cluster:
 
-    ```SHELL
+    ```shell
     sudo k3s kubectl get node
     ```
 
@@ -194,8 +204,8 @@ curl -sfL https://get.k3s.io | sh -
 3. (Optional) Run the below command on a different node. `NODE_TOKEN` comes from
    `/var/lib/rancher/k3s/server/node-token` on your server:
 
-    ```SHELL
-    sudo k3s agent --server https://myserver:6443 --token ${NODE_TOKEN}
+    ```shell
+    sudo k3s agent --server https://myserver:6443 --token {YOUR_NODE_TOKEN}
     ```
 
 ## K3s on Windows Subsystem for Linux (WSL)
@@ -218,10 +228,11 @@ WSL.
 2. As per the official instructions, update WSL and download your preferred
    distibution:
 
-    * [SUSE Linux Enterprise Server 15 SP1](https://www.microsoft.com/store/apps/9PN498VPMF3Z)
-    * [openSUSE Leap 15.2](https://www.microsoft.com/store/apps/9MZD0N9Z4M4H)
-    * [Ubuntu 18.04 LTS](https://www.microsoft.com/store/apps/9N9TNGVNDL3Q)
-    * [Debian GNU/Linux](https://www.microsoft.com/store/apps/9MSVKQC78PK6)
+- [SUSE Linux Enterprise Server 15
+  SP1](https://www.microsoft.com/store/apps/9PN498VPMF3Z)
+- [openSUSE Leap 15.2](https://www.microsoft.com/store/apps/9MZD0N9Z4M4H)
+- [Ubuntu 18.04 LTS](https://www.microsoft.com/store/apps/9N9TNGVNDL3Q)
+- [Debian GNU/Linux](https://www.microsoft.com/store/apps/9MSVKQC78PK6)
 
 **References**:
 
@@ -233,7 +244,7 @@ Below are the steps to create a cluster on K3s in WSL
 
 1. To create a Kubernetes cluster on K3s on WSL, run the following command:
 
-    ```SHELL
+    ```shell
     sudo ./k3s server
     ```
 
@@ -247,13 +258,13 @@ Below are the steps to create a cluster on K3s in WSL
    Then, inside the directory where you download the K3s binary to, run this
    command to add execute permission to the K3s binary:
 
-    ```SHELL
+    ```shell
     chmod +x k3s
     ```
 
-3. Start k3s:
+3. Start K3s:
 
-    ```SHELL
+    ```shell
     sudo ./k3s server
     ```
 
@@ -261,7 +272,7 @@ Below are the steps to create a cluster on K3s in WSL
 
 To set up access to your WSL instance:
 
-1. Copy `/etc/rancher/k3s/k3s.yaml` from WSL to `%HOME%.kube\config`.
+1. Copy `/etc/rancher/k3s/k3s.yaml` from WSL to `$HOME/.kube/config`.
 
 2. Edit the copied file by changing the server URL from `https://localhost:6443`
    to the IP of the your WSL instance (`ip addr show dev eth0`) (For example,
@@ -310,8 +321,8 @@ Executors](https://argoproj.github.io/argo/workflow-executors/) and reference
 
 1. To deploy the Kubeflow Pipelines, run the following commands:
 
-    ```SHELL
-    # env/platform-agnostic-pns hasn't been publically released, so we install from master temporarily
+    ```shell
+    # env/platform-agnostic-pns hasn't been publically released, so you will install it from master
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
@@ -319,6 +330,7 @@ Executors](https://argoproj.github.io/argo/workflow-executors/) and reference
     ```
 
     The Kubeflow Pipelines deployment may take several minutes to complete.
+
 
     **Note**: `kubectl apply -k` accepts local paths and paths that are
     formatted as
@@ -330,16 +342,17 @@ Executors](https://argoproj.github.io/argo/workflow-executors/) and reference
 
 Below are the steps to remove Kubeflow Pipelines on kind, K3s, or K3ai:
 
-- To uninstall Kubeflow Pipelines using your manifest file, run this command:
+- To uninstall Kubeflow Pipelines using your manifest file, run the following command,
+  replacing `{YOUR_MANIFEST_FILE}` with the name of your manifest file:
 
-  ```SHELL
+  ```shell
   kubectl delete -k {YOUR_MANIFEST_FILE}`
   ```
 
 - To uninstall Kubeflow Pipelines using manifests from Kubeflow Pipelines's
   GitHub repository, run these commands:
 
-  ```SHELL
+  ```shell
   export PIPELINE_VERSION={{% pipelines/latest-version %}}
   kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
   kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
@@ -348,7 +361,7 @@ Below are the steps to remove Kubeflow Pipelines on kind, K3s, or K3ai:
 - To uninstall Kubeflow Pipelines using manifests from your local repository or
   file system, run the following commands:
 
-  ```SHELL
+  ```shell
   kubectl delete -k manifests/kustomize/env/platform-agnostic-pns
   kubectl delete -k manifests/kustomize/cluster-scoped-resources
   ```
