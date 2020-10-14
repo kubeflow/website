@@ -77,11 +77,11 @@ print(client.list_runs(namespace='<Your namespace>'))
 To store your user namespace as the default context, use the
 [`set_user_namespace`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client.set_user_namespace)
 method. This method stores your user namespace in a configuration file at
-`$HOME/.config/kfp/context.json`. After setting a default namespace, the SDK
+`$HOME/.config/kfp/credentials.json`. After setting a default namespace, the SDK
 methods default to use this namespace if no namespace argument is provided.
 
 ```python
-# Note, this saves the namespace in `$HOME/.config/kfp/context.json`. Therefore,
+# Note, this saves the namespace in `$HOME/.config/kfp/credentials.json`. Therefore,
 # You only need to call this once. The saved namespace context will be picked up
 # by other clients you use later.
 client.set_user_namespace(namespace='<Your namespace>')
