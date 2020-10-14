@@ -28,7 +28,7 @@ updates:
   you can use in a PR comment.
 1. Wait for the automated PR workflow to do some checks. When it's ready,
   you should see a comment like this: **deploy/netlify — Deploy preview ready!**
-1. Click **Details** to the right of "Deploy preview ready" to see a preview
+1. Click **Details** to right of the "Deploy preview ready" to see a preview
   of your updates.
 1. Continue updating your doc and pushing your changes until you're happy with 
   the content.
