@@ -4,10 +4,6 @@ description = "How Kubeflow helps you organize your ML workflow"
 weight = 10
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 <!--
 Note for authors: The source of the diagrams is held in Google Slides decks,
@@ -134,17 +130,6 @@ The Kubeflow UI looks like this:
 The UI offers a central dashboard that you can use to access the components
 of your Kubeflow deployment. Read 
 [how to access the central dashboard](/docs/components/central-dash/overview/).
-
-### Kubeflow command line interface (CLI)
-
-**Kfctl** is the Kubeflow CLI that you can use to install and configure 
-Kubeflow. Read about kfctl in the guide to 
-[configuring Kubeflow](/docs/other-guides/kustomize/).
-
-The Kubernetes CLI, **kubectl**, is useful for running commands against your
-Kubeflow cluster. You can use kubectl to deploy applications, inspect and manage
-cluster resources, and view logs. Read about kubectl in the [Kubernetes 
-documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 ## Kubeflow APIs and SDKs
 

@@ -61,9 +61,9 @@ from kubernetes.client.models import V1EnvVar
 
 @dsl.pipeline(
   name='Env example',
-  description='A pipline showing how to use environment variables'
+  description='A pipeline showing how to use environment variables'
 )
-def environment_pipline():
+def environment_pipeline():
   env_var = V1EnvVar(name='example_env', value='env_variable')
   #Returns a dsl.ContainerOp class instance. 
   container_op = logg_env_function_op().add_env_variable(env_var) 
@@ -78,6 +78,6 @@ Kubeflow Pipelines SDK.
 arguments = {}
 
 #Submit a pipeline run
-kfp.Client().create_run_from_pipeline_func(environment_pipline,
+kfp.Client().create_run_from_pipeline_func(environment_pipeline,
                                            arguments=arguments)
 ```

@@ -23,8 +23,16 @@ experiment in the Kubeflow Pipelines UI.
  
 ## Export the metrics file
 
-To enable metrics, your program must write out a file named 
-`/mlpipeline-metrics.json`. For example:
+To enable metrics, your component must write a JSON file specifying metrics to
+render. The pipeline component must also export a file output artifact with an
+artifact name of `mlpipeline-metrics`, or else the Kubeflow Pipelines UI will
+not render the visualization. In other words, the `.outputs.artifacts` setting
+for the generated pipeline component should show:
+`- {name: mlpipeline-metrics, path: /mlpipeline-metrics.json}`.
+The JSON filepath does not matter, although `/mlpipeline-metrics.json` is used
+for consistency in the examples below.
+
+Example JSON content:
 
 ```Python
   accuracy = accuracy_score(df['target'], df['predicted'])
@@ -44,7 +52,6 @@ See the
 
 The metrics file has the following requirements:
 
-* The file path must be `/mlpipeline-metrics.json`.
 * `name` must follow the pattern `^[a-zA-Z]([-_a-zA-Z0-9]{0,62}[a-zA-Z0-9])?$`.
 
     For Kubeflow Pipelines version 0.5.1 or earlier, name must match the following pattern `^[a-z]([-a-z0-9]{0,62}[a-z0-9])?$`

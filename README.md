@@ -110,7 +110,7 @@ server:
     ```
 
 1. You can access your website at 
-  [http://localhost:1313/](http://localhost:1313/).
+  [http://localhost:1313/](http://localhost:1313/) (bind address 127.0.0.1)
 
 1. Continue with the usual GitHub workflow to edit files, commit them, push the
   changes up to your fork, and create a pull request. (There's some help with
