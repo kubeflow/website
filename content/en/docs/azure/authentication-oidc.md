@@ -24,7 +24,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
     tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
     ```
 
-1. Run the below commands to build configuration files before deploying Kubeflow. The code below includes an optional command to add the binary kfctl to your path - If you don’t add it, you must use the full path to the kfctl binary each time you run it.
+1. Run the below commands to build configuration files before deploying Kubeflow. The code below includes an optional command to add the binary kfctl to your path - if you don’t add it, you must use the full path to the kfctl binary each time you run it.
 
     ```
     # The following command is optional, to make kfctl binary easier to use.
