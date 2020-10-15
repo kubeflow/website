@@ -4,7 +4,7 @@ description = "Authentication and authorization support through OIDC for Kubeflo
 weight = 6
 +++
 
-This section shows the how to setup Kubeflow with authentication and authorization support through OIDC in Azure using [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/).
+This section shows the how to set up Kubeflow with authentication and authorization support through OIDC in Azure using [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/).
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ This section shows the how to setup Kubeflow with authentication and authorizati
 - [Register an application with the Microsoft Identity Platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#register-an-application)
 - [Add a client secret](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-client-secret)
 
-  **Note:**  Save your client Id, client secret, and tenant Id in a secure place to be used in the next steps to configure OIDC Auth Service.
+  **Note:**  Save your client ID, client secret, and tenant ID in a secure place to be used in the next steps to configure OIDC Auth Service.
 
 ## Kubeflow configuration
 
@@ -24,7 +24,7 @@ This section shows the how to setup Kubeflow with authentication and authorizati
     tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
     ```
 
-1. Run the below commands to build configuration files before deploying Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+1. Run the below commands to build configuration files before deploying Kubeflow. The code below includes an optional command to add the binary kfctl to your path - If you don’t add it, you must use the full path to the kfctl binary each time you run it.
 
     ```
     # The following command is optional, to make kfctl binary easier to use.
@@ -142,13 +142,13 @@ This section shows the how to setup Kubeflow with authentication and authorizati
 
 1. Expose Kubeflow with a load balancer service:
 
-    To expose Kubeflow with a LoadBalancer service, change the type of the `istio-ingressgateway` service to `LoadBalancer`.
+    To expose Kubeflow with a load balancer service, change the type of the `istio-ingressgateway` service to `LoadBalancer`.
 
     ```
     kubectl patch service -n istio-system istio-ingressgateway -p '{"spec": {"type": "LoadBalancer"}}'
     ```
 
-   After that, obtain the LoadBalancer's IP or Hostname from its status and create the necessary certificate.
+   After that, obtain the `LoadBalancer` IP or Hostname from its status and create the necessary certificate.
 
     ```
     kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0]}'
