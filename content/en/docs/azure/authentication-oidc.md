@@ -1,5 +1,5 @@
 +++
-title = "Authentication using OIDC"
+title = "Authentication using OIDC in Azure"
 description = "Authentication and authorization support through OIDC for Kubeflow in Azure"
 weight = 6
 +++
@@ -8,15 +8,15 @@ This section shows the how to setup Kubeflow with authentication and authorizati
 
 ## Prerequisites
 
-- Get all prerequisite described in [Install Kubeflow](/docs/azure/deploy/install-kubeflow)
+- Install the [prerequisites for Kubeflow in Azure](/docs/azure/deploy/install-kubeflow)
 - [Register an application with the Microsoft Identity Platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#register-an-application)
 - [Add a client secret](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-client-secret)
 
-  **Note:**  Save client id, client secret, and tenant id in a secure place to be used in the next steps to configure OIDC Auth Service.
+  **Note:**  Save your client Id, client secret, and tenant Id in a secure place to be used in the next steps to configure OIDC Auth Service.
 
 ## Kubeflow configuration
 
-1. Download the kfctl {{% kf-latest-version %}} release from the [Kubeflow releases page](<https://github.com/kubeflow/kfctl/releases/tag/>{{% kf-latest-version %}}).
+1. Download the latest kfctl {{% kf-latest-version %}} release from the [Kubeflow releases page](<https://github.com/kubeflow/kfctl/releases/tag/>{{% kf-latest-version %}}).
 
 1. Unpack the tar ball:
 
@@ -24,7 +24,7 @@ This section shows the how to setup Kubeflow with authentication and authorizati
     tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
     ```
 
-1. Run the following commands to build configuration files before deploying Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+1. Run the below commands to build configuration files before deploying Kubeflow. The code below includes an optional command to add the binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
 
     ```
     # The following command is optional, to make kfctl binary easier to use.
@@ -36,7 +36,7 @@ This section shows the how to setup Kubeflow with authentication and authorizati
     export KF_NAME=<your choice of name for the Kubeflow deployment>
 
     # Set the path to the base directory where you want to store one or more
-    # Kubeflow deployments. For example, /opt/.
+    # Kubeflow deployments. For example, '/opt/'.
     # Then set the Kubeflow application directory for this deployment.
     export BASE_DIR=<path to a base directory>
     export KF_DIR=${BASE_DIR}/${KF_NAME}
@@ -53,7 +53,7 @@ This section shows the how to setup Kubeflow with authentication and authorizati
     * **${KF_NAME}** - The name of your Kubeflow deployment.
       If you want a custom deployment name, specify that name here.
       For example,  `my-kubeflow` or `kf-test`.
-      The value of KF_NAME must consist of lower case alphanumeric characters or
+      The value of `KF_NAME` must consist of lower case alphanumeric characters or
       '-', and must start and end with an alphanumeric character.
       The value of this variable cannot be greater than 25 characters. It must
       contain just a name, not a directory path.
@@ -62,9 +62,9 @@ This section shows the how to setup Kubeflow with authentication and authorizati
 
     * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
-1. Confiure OIDC Auth service settings:
+1. Configure OIDC Auth service settings:
 
-   In `/manifests/stacks/azure/application/oidc-authservice/kustomization.yaml` update settings with values corresponding your app registration.
+   In `/manifests/stacks/azure/application/oidc-authservice/kustomization.yaml` update the settings with values corresponding your app registration as follows:
 
     ```
     - client_id=<client_id>
@@ -93,7 +93,7 @@ This section shows the how to setup Kubeflow with authentication and authorizati
     kfctl apply -V -f ${CONFIG_URI}
     ```
 
-4. Check the resources deployed correctly in namespace `kubeflow`
+4. Check that the resources were deployed correctly in namespace `kubeflow`:
 
     ```
     kubectl get all -n kubeflow
@@ -140,23 +140,23 @@ This section shows the how to setup Kubeflow with authentication and authorizati
         serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
     {{< /highlight >}}
 
-1. Expose Kubeflow with a loadBalancer service:
+1. Expose Kubeflow with a load balancer service:
 
-    To expose Kubeflow with a LoadBalancer service, just change the type of the `istio-ingressgateway` service to `LoadBalancer`.
+    To expose Kubeflow with a LoadBalancer service, change the type of the `istio-ingressgateway` service to `LoadBalancer`.
 
     ```
     kubectl patch service -n istio-system istio-ingressgateway -p '{"spec": {"type": "LoadBalancer"}}'
     ```
 
-   After that, get the LoadBalancer's IP or Hostname from its status and create the necessary certificate.
+   After that, obtain the LoadBalancer's IP or Hostname from its status and create the necessary certificate.
 
     ```
     kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0]}'
     ```
 
-1. Create the Certificate with cert-manager:
+1. Create a self-signed Certificate with cert-manager:
 
-    Create a new `certficate.yaml` with below yaml to create a self-signed Certificate with the cert-manager. For production environment please use appropriate trusted CA Certificate.
+   Create a new file `certficate.yaml` with the YAML below to create a self-signed Certificate with cert-manager. For production environments, you should use appropriate trusted CA Certificate.
 
     {{< highlight yaml >}}
     apiVersion: cert-manager.io/v1alpha2
@@ -187,23 +187,26 @@ This section shows the how to setup Kubeflow with authentication and authorizati
 
     After applying the above Certificate, cert-manager will generate the TLS certificate inside the istio-ingressgateway-certs secrets. The istio-ingressgateway-certs secret is mounted on the istio-ingressgateway deployment and used to serve HTTPS.
 
-1. [Configure Redirect URI for App](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri)
+1. [Configure Redirect URI for your registered App](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri)
 
-   Add below redirect uri to the app registered with Microsoft Identity:
+   Add the redirect URI below to the app registered with Microsoft Identity:
+  
+   `https://<YOUR_LOADBALANCER_IP_ADDRESS_OR_DNS_NAME>/login/oidc`
 
-   `https://<LoadBalancer IP or DNS Name>/login/oidc`
+   **Note:** Make sure the app's redirect uri matches the `oidc_redirect_uri` value in OIDC auth service settings.
 
-   **Note:** Make sure the redirect uri for the app matches the `oidc_redirect_uri` value in OIDC auth service settings.
+   Navigate to `https://<YOUR_LOADBALANCER_IP_ADDRESS_OR_DNS_NAME>/` and start using Kubeflow.
 
-   Navigate to `https://<LoadBalancer IP or DNS Name>/` and start using Kubeflow.
+## Authenticate Kubeflow pipelines using [Kubeflow Pipelines SDK](https://www.kubeflow.org/docs/pipelines/sdk/sdk-overview/)
 
-## Autheniticate Kubeflow pipelines using [Kubeflow Pipelines SDK](https://www.kubeflow.org/docs/pipelines/sdk/sdk-overview/)
+Perform interactive login from browser by visitng `https://<YOUR_LOADBALANCER_IP_ADDRESS_OR_DNS_NAME>/` and copy the value of cookie `authservice_session` to authenticate using SDK with below code:
 
-    {{< highlight python >}}
-    import kfp
-    authservice_session_cookie='authservice_session=<cookie>'
-    client = kfp.Client(host='https://<LoadBalancer Address or DNS Name>/pipeline', cookies=authservice_session_cookie)
-    client.list_experiments(namespace="<your_namespace>")
-    {{< /highlight >}}
+```bash
+import kfp
+authservice_session_cookie='authservice_session=<cookie>'
+client = kfp.Client(host='https://<YOUR_LOADBALANCER_IP_ADDRESS_OR_DNS_NAME>/pipeline',
+                    cookies=authservice_session_cookie)
+client.list_experiments(namespace='<your_namespace>')
+```
 
-   **Limitation:** The current OIDC auth service in Kubeflow system supports only Authorization Code Flow. We are working on enabling more auth flows to support id-token and access-token based authentication and authorization.
+   **Limitation:** The current OIDC auth service in Kubeflow system supports only [Authorization Code Flow](https://openid.net/specs/openid-connect-basic-1_0.html#CodeFlow).
