@@ -193,7 +193,7 @@ This section shows the how to setup Kubeflow with authentication and authorizati
   
    `https://<YOUR_LOADBALANCER_IP_ADDRESS_OR_DNS_NAME>/login/oidc`
 
-   **Note:** Make sure the app's redirect uri matches the `oidc_redirect_uri` value in OIDC auth service settings.
+   **Note:** Make sure the app's redirect URI matches the `oidc_redirect_uri` value in OIDC auth service settings.
 
    Navigate to `https://<YOUR_LOADBALANCER_IP_ADDRESS_OR_DNS_NAME>/` and start using Kubeflow.
 
