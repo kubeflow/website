@@ -1,3 +1,4 @@
+## Getting Started
 # Creating and updating the Kubeflow docs
 
 Welcome to the GitHub repository for Kubeflow's public website. The docs are
