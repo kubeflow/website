@@ -76,6 +76,10 @@ Follow these steps to set up your GCP project:
 
     Refer to [Anthos Service Mesh documentation](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#setting_credentials_and_permissions) for details.
 
+    For more information, see the following issues:
+
+    * [kubeflow/website #2121](https://github.com/kubeflow/website/issues/2121) Projects which have never had a k8s cluster before might need to create and delete a temp cluster to activate this.
+
 You do not need a running GKE cluster. The deployment process creates a
 cluster for you.
 
