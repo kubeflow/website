@@ -5,7 +5,7 @@ weight = 50
                     
 +++
 
-<a href="">Run in Google Colab</a> <a href="">View source on GitHub</a>
+<a href="https://colab.research.google.com/github/joeliedtke/website/blob/joeliedtke-python-comp/content/en/docs/pipelines/sdk/python-function-component.ipynb">Run in Google Colab</a><br /><a href="https://github.com/joeliedtke/website/blob/joeliedtke-python-comp/content/en/docs/pipelines/sdk/python-function-component.ipynb">View source on GitHub</a>
 
 A Kubeflow Pipelines component is a self-contained set of code that performs one step in your
 ML workflow. A pipeline component is composed of:
