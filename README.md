@@ -225,7 +225,7 @@ variables. You define a shortcode in a file, then use a specific markup to
 invoke the shortcode in the docs. That markup is replaced by the content of the
 shortcode file when the page is built.
 
-To create a shortcode:
+To create a shortcode is:
 
 1. Add an HTML file in  the `/website/layouts/shortcodes/` directory.
    The file name must be short and meaningful, as it determines the shortcode
@@ -246,13 +246,13 @@ The shortcode name is the file name minus the `.html` file extension.
 **Example:** The following shortcode defines the minimum required version of
 Kubernetes:
 
-- File name of the shortcode:
+- File name of the shortcode is:
 
   ```
   kubernetes-min-version.html
   ```
 
-- Content of the shortcode:
+- Content of the shortcode is:
 
   ```
   1.8
@@ -290,3 +290,5 @@ shortcode in the links, like so:
 https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
 ```
 This ensures that all the links in a versioned webpage point to the correct branch.
+
+Thankyou :)
