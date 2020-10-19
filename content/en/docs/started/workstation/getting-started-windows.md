@@ -12,6 +12,7 @@ In addition, with the recent announcement of
 some of the [linux installation options](/docs/started/workstation/getting-started-linux)
 for Kubeflow will be available on Windows, once WSL2 is formally released.
 
+*Note:* It is recommended that you have at least 12GB of RAM and 50GB of storage available.
 
 ### MicroK8s
 
