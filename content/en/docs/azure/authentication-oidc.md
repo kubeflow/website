@@ -42,7 +42,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
     export KF_DIR=${BASE_DIR}/${KF_NAME}
 
     # Set the configuration file to use, such as the file specified below:
-    export CONFIG_URI="{{% config-uri-azure-oidc %}}"
+    export CONFIG_URI="{{% azure/config-uri-azure-oidc %}}"
 
     # Generate and deploy Kubeflow:
     mkdir -p ${KF_DIR}
