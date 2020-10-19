@@ -8,6 +8,7 @@ weight = 20
 For macOS systems you have multiple options for getting started. The options range
 from fully-assembled Kubeflow stacks, to stacks that require some assembly.
 
+*Note:* It is recommended that you have at least 12GB of RAM and 50GB of storage available.
 
 ### MicroK8s
 
