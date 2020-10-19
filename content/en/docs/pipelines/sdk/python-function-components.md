@@ -11,9 +11,13 @@ A Kubeflow Pipelines component is a self-contained set of code that performs one
 ML workflow. A pipeline component is composed of:
 
 *   The component code, which implements the logic needed to perform a step in your ML workflow.
-*   A component specification, which defines the component's metadata (it's name and description),
-    interface (the component's inputs and outputs), and implementation (the Docker container image
-    to run, how to pass inputs to your component code, and how to get the component's outputs).
+*   A component specification, which defines the following:
+    
+    *   The component's metadata, its name and description.
+    *   The component's interface, the component's inputs and outputs.
+    *   The component's implementation, the Docker container image
+        to run, how to pass inputs to your component code, and how
+        to get the component's outputs.
 
 Python function-based components make it easier to iterate quickly by letting you build your
 component code as a Python function and generating the [component specification][component-spec] for you.
@@ -58,7 +62,8 @@ For more information about the Kubeflow Pipelines SDK, see the [SDK reference gu
 This section demonstrates how to get started building Python function-based components by walking
 through the process of creating a simple component.
 
-Define your component's code as a [stand-alone python function](#stand-alone).
+1.  Define your component's code as a [standalone python function](#standalone). In this example,
+    the function adds two floats and returns the sum of the two arguments.
 
 
 ```python
@@ -67,11 +72,9 @@ def add(a: float, b: float) -> float:
   return a + b
 ```
 
-In this example the function adds two floats and returns the sum of the two arguments.
-
-Next, use `kfp.components.create_component_from_func` to generate the component specification YAML and return a
-factory function that you can use to create [`kfp.dsl.ContainerOp`][container-op] class instances for your pipeline.
-The component specification YAML is a reusable and shareable definition of your component.
+2.  Use `kfp.components.create_component_from_func` to generate the component specification YAML and return a
+    factory function that you can use to create [`kfp.dsl.ContainerOp`][container-op] class instances for your pipeline.
+    The component specification YAML is a reusable and shareable definition of your component.
 
 [container-op]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp
 
@@ -80,7 +83,9 @@ The component specification YAML is a reusable and shareable definition of your 
 add_op = comp.create_component_from_func(add, output_component_file='add_component.yaml')
 ```
 
-Finally, create and run your pipeline.
+3.  Create and run your pipeline. [Learn more about creating and running pipelines][build-pipelines].
+
+[build-pipelines]: https://www.kubeflow.org/docs/pipelines/sdk/build-component/
 
 
 ```python
@@ -107,15 +112,11 @@ def add_pipeline(
   client.create_run_from_pipeline_func(calc_pipeline, arguments=arguments)
 ```
 
-[Learn more about creating and running pipelines][build-pipelines].
-
-[build-pipelines]: https://www.kubeflow.org/docs/pipelines/sdk/build-component/
-
 ## Building Python function-based components
 
 Use the following instructions to build a Python function-based component:
 
-<a name="stand-alone"></a>
+<a name="standalone"></a>
 
 1.  Define a stand-alone Python function. This function must meet the following requirements:
 
@@ -133,7 +134,7 @@ Use the following instructions to build a Python function-based component:
         
         *  Metadata helps you visualize pipeline results.
            [Learn more about visualizing pipeline metadata][kfp-visualize].
-        *  Metrics help you compare compare pipeline runs.
+        *  Metrics help you compare pipeline runs.
            [Learn more about using pipeline metrics][kfp-metrics].
         
 [named-tuple-hint]: https://docs.python.org/3/library/typing.html#typing.NamedTuple
@@ -192,7 +193,7 @@ def multiple_return_values_example(a: float, b:float) -> NamedTuple(
     *   **func**: The Python function to convert.
     *   **base_image**: (Optional.) Specify the Docker container image to run this function in.
         [Learn more about selecting or building a container image](#containers).  
-    *   **output_component_file**: (Optional.) Writes your component defintion to a file. You can
+    *   **output_component_file**: (Optional.) Writes your component definition to a file. You can
         use this file to share the component with colleagues or reuse it in different pipelines.
     *   **packages_to_install**: (Optional.) A list of versioned Python packages to install before
         running your function. 
@@ -241,7 +242,9 @@ image must use Python 3.5 or later.
 This section demonstrates how to build a Python function-based component that uses imports,
 helper functions, and produces multiple outputs.
 
-First, define your function.  
+1.  Define your function. This example function uses the `numpy` package to calcuate the quotient
+    and remainder for a given dividend and divisor in a helper function. In addition to the quotient
+    and remainder, the function also returns metadata for visualization and two metrics.
 
 
 ```python
@@ -294,22 +297,22 @@ def my_divmod(
     return divmod_output(quotient, remainder, json.dumps(metadata), json.dumps(metrics))
 ```
 
-Test your function by running it directly, or by building unit tests.
+2.  Test your function by running it directly, or with unit tests.
 
 
 ```python
 my_divmod(100, 7)
 ```
 
-This should return a result like the following:
+3.  This should return a result like the following:
 
-```
-MyDivmodOutput(quotient=14, remainder=2, mlpipeline_ui_metadata='{"outputs": [{"type": "tensorboard", "source": "gs://ml-pipeline-dataset/tensorboard-train"}]}', mlpipeline_metrics='{"metrics": [{"name": "quotient", "numberValue": 14.0}, {"name": "remainder", "numberValue": 2.0}]}')
-```
+    ```
+    MyDivmodOutput(quotient=14, remainder=2, mlpipeline_ui_metadata='{"outputs": [{"type": "tensorboard", "source": "gs://ml-pipeline-dataset/tensorboard-train"}]}', mlpipeline_metrics='{"metrics": [{"name": "quotient", "numberValue": 14.0}, {"name": "remainder", "numberValue": 2.0}]}')
+    ```
 
-Next, use `kfp.components.create_component_from_func` to return a factory function that you can use to create
-[`kfp.dsl.ContainerOp`][container-op] class instances for your pipeline. This example also specifies the base container
-image to run this function in.
+4.  Use `kfp.components.create_component_from_func` to return a factory function that you can use to create
+    [`kfp.dsl.ContainerOp`][container-op] class instances for your pipeline. This example also specifies the base container
+    image to run this function in.
 
 [container-op]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp
 
@@ -318,8 +321,8 @@ image to run this function in.
 divmod_op = comp.func_to_container_op(my_divmod, base_image='tensorflow/tensorflow:1.11.0-py3')
 ```
 
-Then define your pipeline. This example uses the `divmod_op` factory function and the `add_op`
-factory function from and earlier example.
+4.  Define your pipeline. This example uses the `divmod_op` factory function and the `add_op`
+    factory function from an earlier example.
 
 
 ```python
@@ -340,11 +343,13 @@ def calc_pipeline(
     # For an operation with a single return value, the output reference are accessed using `task.output` or `task.outputs['output_name']`.
     divmod_task = divmod_op(add_task.output, b)
 
-    # For an operation with a multiple return values, output references are accessed as `task.outputs['output_name']`.
+    # For an operation with multiple return values, output references are accessed as `task.outputs['output_name']`.
     result_task = add_op(divmod_task.outputs['quotient'], c)
 ```
 
-Finally, create and run your pipeline.
+5.  Create and run your pipeline. [Learn more about creating and running pipelines][build-pipelines].
+
+[build-pipelines]: https://www.kubeflow.org/docs/pipelines/sdk/build-component/
 
 
 ```python
@@ -354,7 +359,3 @@ arguments = {'a': '7', 'b': '8'}
 # Submit a pipeline run
 client.create_run_from_pipeline_func(calc_pipeline, arguments=arguments)
 ```
-
-[Learn more about creating and running pipelines][build-pipelines].
-
-[build-pipelines]: https://www.kubeflow.org/docs/pipelines/sdk/build-component/
