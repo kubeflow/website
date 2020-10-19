@@ -15,21 +15,19 @@ MicroK8s is a lightweight zero-ops Kubernetes which has a native installer for m
 
 To get Kubeflow:
 
-1. Install [MicroK8s](https://microk8s.io/)
+1. Install [MicroK8s](https://microk8s.io/) - see the "Alternative Install" page for links to the latest macOS installer.
 2. Install Kubeflow by running: `microk8s enable kubeflow`
 
 The full set of instructions are available on the [Kubeflow on MicroK8s](https://www.kubeflow.org/docs/started/workstation/getting-started-multipass/) page.
 
-### MiniKF
+### Minikube
 
-MiniKF is a predefined virtual machine that installs onto VirtualBox through Vagrant.
-The only following applications are required to use MiniKF:
+Minikube is a tool for installing a single node Kubernetes in a virtual machine. After starting the virtual machine, you need
+to install Kubeflow.
 
-- Install [Vagrant](https://www.vagrantup.com/downloads.html)
-- Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+- Install [Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/)
 
-The full set of instructions are available on the
-[MiniKF getting started](/docs/started/workstation/getting-started-minikf/) page.
+Follow the instructions on [Kubeflow on MiniKube](/docs/started/workstation/minikube-linux/) to complete this path.
 
 ### Multipass
 
