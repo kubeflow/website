@@ -37,7 +37,7 @@ directories:
   Kubeflow deployment.
 
   * This file is a copy of the GitHub-based configuration YAML file that
-    you used when deploying Kubeflow. For example, {{% config-uri-azure %}}.
+    you used when deploying Kubeflow. For example, {{% azure/config-uri-azure %}}.
   * When you run `kfctl apply` or `kfctl build`, kfctl creates
     a local version of the configuration file, `${CONFIG_FILE}`,
     which you can further customize if necessary.
@@ -99,7 +99,7 @@ Run the following commands to set up and deploy Kubeflow.
 
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases
-  page](<https://github.com/kubeflow/kfctl/releases/tag/>{{% kf-latest-version %}}).
+  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
 
 1. Unpack the tar ball:
 
@@ -126,7 +126,7 @@ Run the following commands to set up and deploy Kubeflow.
     export KF_DIR=${BASE_DIR}/${KF_NAME}
 
     # Set the configuration file to use, such as the file specified below:
-    export CONFIG_URI="{{% config-uri-azure %}}"
+    export CONFIG_URI="{{% azure/config-uri-azure %}}"
 
     # Generate and deploy Kubeflow:
     mkdir -p ${KF_DIR}

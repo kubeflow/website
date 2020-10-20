@@ -16,7 +16,9 @@ This section shows the how to set up Kubeflow with authentication and authorizat
 
 ## Kubeflow configuration
 
-1. Download the latest kfctl {{% kf-latest-version %}} release from the [Kubeflow releases page](<https://github.com/kubeflow/kfctl/releases/tag/>{{% kf-latest-version %}}).
+1. Download the kfctl {{% kf-latest-version %}} release from the
+  [Kubeflow releases
+  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
 
 1. Unpack the tar ball:
 
