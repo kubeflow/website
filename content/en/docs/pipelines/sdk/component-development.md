@@ -128,7 +128,7 @@ of your choice to create the Docker containers.
 
 Your [Dockerfile](https://docs.docker.com/engine/reference/builder/) must
 contain all program code, including the wrapper, and the dependencies (operating
-system packages, external packages, etc).
+system packages, external libraries, etc).
 
 Ensure you have write access to a container registry where you can push
 the container image. Examples include 
