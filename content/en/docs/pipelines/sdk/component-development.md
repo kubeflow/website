@@ -76,8 +76,8 @@ There are two main ways a command-line program usually consumes data:
 ## Writing the program code
 
 This section describes an example program that has two inputs (for small and 
-large pieces of data) and one output. The programming language in this example
-is Python 3.
+large pieces of data) and one output. Although the programming language in this example
+is Python 3, you can build your component in any language.
 
 ### program.py
 
@@ -128,7 +128,7 @@ of your choice to create the Docker containers.
 
 Your [Dockerfile](https://docs.docker.com/engine/reference/builder/) must
 contain all program code, including the wrapper, and the dependencies (operating
-system packages, Python packages etc).  
+system packages, external packages, etc).
 
 Ensure you have write access to a container registry where you can push
 the container image. Examples include 
