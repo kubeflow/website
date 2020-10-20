@@ -5,8 +5,7 @@ weight = 20
                     
 +++
 
-For macOS systems you have multiple options for getting started. The options range
-from fully-assembled Kubeflow stacks, to stacks that require some assembly.
+To install Kubeflow locally on a macOS system you have a few options (listed below).
 
 *Note:* It is recommended that you have at least 12GB of RAM and 50GB of storage available.
 
@@ -21,6 +20,17 @@ To get Kubeflow:
 
 The full set of instructions are available on the [Kubeflow on MicroK8s](https://www.kubeflow.org/docs/started/workstation/getting-started-multipass/) page.
 
+### MiniKF
+
+MiniKF is a Kubeflow appliance, a predefined virtual machine that has Kubeflow already installed. It installs onto VirtualBox through Vagrant. Once the necessary supporting software is installed no further installation steps are required.
+
+The only following applications are required to use MiniKF:
+
+1. Install [Vagrant](https://www.vagrantup.com/downloads.html)
+2. Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+
+Follow the instructions on [MiniKF getting started](/docs/started/workstation/getting-started-minikf/) to complete this path.
+
 ### Minikube
 
 Minikube is a tool for installing a single node Kubernetes in a virtual machine. After starting the virtual machine, you need
@@ -32,7 +42,7 @@ Follow the instructions on [Kubeflow on MiniKube](/docs/started/workstation/mini
 
 ### Multipass
 
-[Multipass](https://multipass.run/) creates a Linux virtual machine on Windows, Mac or Linux systems. The VM contains a complete Ubuntu operating
+[Multipass](https://multipass.run/) creates a Linux virtual machine on Windows, macOS or Linux systems. The VM contains a complete Ubuntu operating
 system which can then be used to deploy Kubernetes and Kubeflow.
 
 - Install [Multipass](https://multipass.run/#install)
