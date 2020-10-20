@@ -15,7 +15,7 @@ MicroK8s is a lightweight zero-ops Kubernetes which has a native installer for m
 
 To get Kubeflow:
 
-1. Install [MicroK8s](https://microk8s.io/) - see the "Alternative Install" page for links to the latest macOS installer.
+1. Install [MicroK8s](https://microk8s.io/)
 2. Install Kubeflow by running: `microk8s enable kubeflow`
 
 The full set of instructions are available on the [Kubeflow on MicroK8s](https://www.kubeflow.org/docs/started/workstation/getting-started-multipass/) page.
