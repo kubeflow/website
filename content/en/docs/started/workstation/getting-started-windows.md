@@ -5,12 +5,7 @@ weight = 30
                     
 +++
 
-For Windows systems you have multiple options for getting started. The options range
-from fully-assembled Kubeflow stacks, to stacks that require some assembly.
-In addition, with the recent announcement of
-[Windows WSL 2](https://devblogs.microsoft.com/commandline/announcing-wsl-2/),
-some of the [linux installation options](/docs/started/workstation/getting-started-linux)
-for Kubeflow will be available on Windows, once WSL2 is formally released.
+To install Kubeflow locally on a Windows system you have a few options (listed below).
 
 *Note:* It is recommended that you have at least 12GB of RAM and 50GB of storage available.
 
