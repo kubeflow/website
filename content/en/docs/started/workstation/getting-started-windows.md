@@ -42,7 +42,7 @@ Follow the instructions on [Kubeflow on MiniKube](/docs/started/workstation/mini
 
 ### Multipass
 
-[Multipass](https://multipass.run/) creates a Linux virtual machine on Windows, Mac or Linux systems. The VM contains a complete Ubuntu operating
+[Multipass](https://multipass.run/) creates a Linux virtual machine on Windows, macOS or Linux systems. The VM contains a complete Ubuntu operating
 system which can then be used to deploy Kubernetes and Kubeflow.
 
 - Install [Multipass](https://multipass.run/#install)
