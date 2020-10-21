@@ -72,7 +72,8 @@ import kfp.components as comp
 
 
 ```python
-# If you run this command on a Jupyter notebook running on Kubeflow, you can exclude the host parameter.
+# If you run this command on a Jupyter notebook running on Kubeflow, you can
+# exclude the host parameter.
 # client = kfp.Client()
 client = kfp.Client(host='<your-kubeflow-pipelines-host-name>')
 ```
@@ -104,7 +105,8 @@ def add(a: float, b: float) -> float:
 
 
 ```python
-add_op = comp.create_component_from_func(add, output_component_file='add_component.yaml')
+add_op = comp.create_component_from_func(
+    add, output_component_file='add_component.yaml')
 ```
 
 3.  Create and run your pipeline. [Learn more about creating and running pipelines][build-pipelines].
@@ -122,11 +124,13 @@ def add_pipeline(
   a='a',
   b='7',
 ):
-  # Passes a pipeline parameter and a constant value to the `add_op` factory function.
+  # Passes a pipeline parameter and a constant value to the `add_op` factory
+  # function.
   first_add_task = add_op(a, 4)
-  # Passes an output reference from `first_add_task` and a pipeline parameter to the
-  # `add_op` factory function. For operations with a single return value, the output
-  # reference can be accessed as `task.output` or `task.outputs['output_name']`.
+  # Passes an output reference from `first_add_task` and a pipeline parameter
+  # to the `add_op` factory function. For operations with a single return
+  # value, the output reference can be accessed as `task.output` or
+  # `task.outputs['output_name']`.
   second_add_task = add_op(add_task.output, b)
     
   # Specify argument values for your pipeline run.
@@ -203,7 +207,9 @@ def multiple_return_values_example(a: float, b:float) -> NamedTuple(
   }
   
   from collections import namedtuple
-  example_output = namedtuple('ExampleOutputs', ['sum', 'product', 'mlpipeline_ui_metadata', 'mlpipeline_metrics'])
+  example_output = namedtuple(
+      'ExampleOutputs',
+      ['sum', 'product', 'mlpipeline_ui_metadata', 'mlpipeline_metrics'])
   return example_output(sum_value, product_value, metadata, metrics)
 ```
 
@@ -317,7 +323,10 @@ def my_divmod(
         }]}
 
     from collections import namedtuple
-    divmod_output = namedtuple('MyDivmodOutput', ['quotient', 'remainder', 'mlpipeline_ui_metadata', 'mlpipeline_metrics'])
+    divmod_output = namedtuple(
+        'MyDivmodOutput',
+        ['quotient', 'remainder', 'mlpipeline_ui_metadata',
+         'mlpipeline_metrics'])
     return divmod_output(quotient, remainder, json.dumps(metadata), json.dumps(metrics))
 ```
 
@@ -342,7 +351,8 @@ my_divmod(100, 7)
 
 
 ```python
-divmod_op = comp.func_to_container_op(my_divmod, base_image='tensorflow/tensorflow:1.11.0-py3')
+divmod_op = comp.func_to_container_op(
+    my_divmod, base_image='tensorflow/tensorflow:1.11.0-py3')
 ```
 
 4.  Define your pipeline. This example uses the `divmod_op` factory function and the `add_op`
@@ -361,13 +371,17 @@ def calc_pipeline(
    c='17',
 ):
     # Passes a pipeline parameter and a constant value as operation arguments.
-    add_task = add_op(a, 4) # The add_op factory function returns a dsl.ContainerOp class instance. 
+    add_task = add_op(a, 4) # The add_op factory function returns
+                            # a dsl.ContainerOp class instance. 
     
-    # Passes the output of the add_task and a pipeline parameter as operation arguments.
-    # For an operation with a single return value, the output reference are accessed using `task.output` or `task.outputs['output_name']`.
+    # Passes the output of the add_task and a pipeline parameter as operation
+    # arguments. For an operation with a single return value, the output
+    # reference are accessed using `task.output` or
+    # `task.outputs['output_name']`.
     divmod_task = divmod_op(add_task.output, b)
 
-    # For an operation with multiple return values, output references are accessed as `task.outputs['output_name']`.
+    # For an operation with multiple return values, output references are
+    # accessed as `task.outputs['output_name']`.
     result_task = add_op(divmod_task.outputs['quotient'], c)
 ```
 
