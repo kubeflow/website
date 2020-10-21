@@ -1,7 +1,7 @@
 +++
 title = "Building Python function-based components"
 description = "Building your own lightweight pipelines components using Python"
-weight = 900
+weight = 50
 +++
 
 <!--
