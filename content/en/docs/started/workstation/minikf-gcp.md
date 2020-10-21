@@ -2,16 +2,6 @@
 title = "Deploy using MiniKF on GCP"
 description = "Using Google Cloud Marketplace to deploy MiniKF (mini Kubeflow) on Google Cloud Platform (GCP)"
 weight = 40
-                    
-+++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
-
-![MiniKF latest
-version](https://www.arrikto.com/wp-content/uploads/2020/02/minikf-latest-version-gcp.svg
-"MiniKF latest version")
 
 This guide describes how to launch a MiniKF virtual machine (VM) on GCP. MiniKF
 is a single VM solution on the Google Cloud Marketplace, and installs:
