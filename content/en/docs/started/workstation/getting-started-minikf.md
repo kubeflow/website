@@ -3,17 +3,8 @@ title = "MiniKF"
 description = "A fast and easy way to deploy Kubeflow on your laptop"
 weight = 35
                     
-+++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
-![MiniKF latest
-version](https://www.arrikto.com/wp-content/uploads/2019/06/minikf-latest-version.svg
-"MiniKF latest version")
-
-A production-ready, full-fledged, local Kubeflow deployment that
+MiniKF is a production-ready, full-fledged, local Kubeflow deployment that
 installs in minutes.
 
 MiniKF is a fast and easy way to get started with Kubeflow. With just a
