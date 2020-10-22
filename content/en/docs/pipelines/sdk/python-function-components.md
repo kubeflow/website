@@ -131,13 +131,13 @@ def add_pipeline(
   # to the `add_op` factory function. For operations with a single return
   # value, the output reference can be accessed as `task.output` or
   # `task.outputs['output_name']`.
-  second_add_task = add_op(add_task.output, b)
+  second_add_task = add_op(first_add_task.output, b)
     
-  # Specify argument values for your pipeline run.
-  arguments = {'a': '7', 'b': '8'}
+# Specify argument values for your pipeline run.
+arguments = {'a': '7', 'b': '8'}
     
-  # Create a pipeline run, using the client you initialized in a prior step.
-  client.create_run_from_pipeline_func(calc_pipeline, arguments=arguments)
+# Create a pipeline run, using the client you initialized in a prior step.
+client.create_run_from_pipeline_func(calc_pipeline, arguments=arguments)
 ```
 
 ## Building Python function-based components
@@ -173,7 +173,7 @@ Use the following instructions to build a Python function-based component:
 
 ```python
 from typing import NamedTuple
-def multiple_return_values_example(a: float, b:float) -> NamedTuple(
+def multiple_return_values_example(a: float, b: float) -> NamedTuple(
   'ExampleOutputs',
   [
     ('sum', float),
@@ -280,9 +280,7 @@ helper functions, and produces multiple outputs.
 ```python
 from typing import NamedTuple
 
-def my_divmod(
-  dividend: float,
-  divisor:float) -> NamedTuple(
+def my_divmod(dividend: float, divisor: float) -> NamedTuple(
     'MyDivmodOutput',
     [
       ('quotient', float),
@@ -325,8 +323,7 @@ def my_divmod(
     from collections import namedtuple
     divmod_output = namedtuple(
         'MyDivmodOutput',
-        ['quotient', 'remainder', 'mlpipeline_ui_metadata',
-         'mlpipeline_metrics'])
+        ['quotient', 'remainder', 'mlpipeline_ui_metadata', 'mlpipeline_metrics'])
     return divmod_output(quotient, remainder, json.dumps(metadata), json.dumps(metrics))
 ```
 
