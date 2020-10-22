@@ -133,11 +133,11 @@ def add_pipeline(
   # `task.outputs['output_name']`.
   second_add_task = add_op(first_add_task.output, b)
     
-  # Specify argument values for your pipeline run.
-  arguments = {'a': '7', 'b': '8'}
+# Specify argument values for your pipeline run.
+arguments = {'a': '7', 'b': '8'}
     
-  # Create a pipeline run, using the client you initialized in a prior step.
-  client.create_run_from_pipeline_func(calc_pipeline, arguments=arguments)
+# Create a pipeline run, using the client you initialized in a prior step.
+client.create_run_from_pipeline_func(calc_pipeline, arguments=arguments)
 ```
 
 ## Building Python function-based components
