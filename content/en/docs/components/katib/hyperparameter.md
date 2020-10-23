@@ -160,23 +160,22 @@ The output of the above command should look similar to this:
 
 ```
 Name:         random-example
-Namespace:    <your user namespace>
+Namespace:    <your user profile namespace>
 Labels:       controller-tools.k8s.io=1.0
 Annotations:  <none>
-API Version:  kubeflow.org/v1alpha3
+API Version:  kubeflow.org/v1beta1
 Kind:         Experiment
 Metadata:
-  Creation Timestamp:  2019-12-22T22:53:25Z
+  Creation Timestamp:  2020-10-23T21:27:53Z
   Finalizers:
     update-prometheus-metrics
-  Generation:        2
-  Resource Version:  720692
-  Self Link:         /apis/kubeflow.org/v1alpha3/namespaces/<your user namespace>/experiments/random-example
-  UID:               dc6bc15a-250d-11ea-8cae-42010a80010f
+  Generation:        1
+  Resource Version:  147081981
+  Self Link:         /apis/kubeflow.org/v1beta1/namespaces/<your user profile namespace>/experiments/random-example
+  UID:               fb3776e8-0f83-4783-88b6-80d06867ca0b
 Spec:
   Algorithm:
     Algorithm Name:        random
-    Algorithm Settings:    <nil>
   Max Failed Trial Count:  3
   Max Trial Count:         12
   Metrics Collector Spec:
@@ -184,8 +183,13 @@ Spec:
       Kind:  StdOut
   Objective:
     Additional Metric Names:
-      accuracy
-    Goal:                   0.99
+      Train-accuracy
+    Goal:  0.99
+    Metric Strategies:
+      Name:                 Validation-accuracy
+      Value:                max
+      Name:                 Train-accuracy
+      Value:                max
     Objective Metric Name:  Validation-accuracy
     Type:                   maximize
   Parallel Trial Count:     3
@@ -193,74 +197,95 @@ Spec:
     Feasible Space:
       Max:           0.03
       Min:           0.01
-    Name:            --lr
+    Name:            lr
     Parameter Type:  double
     Feasible Space:
       Max:           5
       Min:           2
-    Name:            --num-layers
+    Name:            num-layers
     Parameter Type:  int
     Feasible Space:
       List:
         sgd
         adam
         ftrl
-    Name:            --optimizer
+    Name:            optimizer
     Parameter Type:  categorical
   Resume Policy:     LongRunning
   Trial Template:
-    Go Template:
-      Raw Template:  apiVersion: batch/v1
-kind: Job
-metadata:
-  name: {{.Trial}}
-  namespace: {{.NameSpace}}
-spec:
-  template:
-    spec:
-      containers:
-      - name: {{.Trial}}
-        image: docker.io/kubeflowkatib/mxnet-mnist-example
-        command:
-        - "python"
-        - "/mxnet/example/image-classification/train_mnist.py"
-        - "--batch-size=64"
-        {{- with .HyperParameters}}
-        {{- range .}}
-        - "{{.Name}}={{.Value}}"
-        {{- end}}
-        {{- end}}
-      restartPolicy: Never
+    Trial Parameters:
+      Description:  Learning rate for the training model
+      Name:         learningRate
+      Reference:    lr
+      Description:  Number of training model layers
+      Name:         numberLayers
+      Reference:    num-layers
+      Description:  Training model optimizer (sdg, adam or ftrl)
+      Name:         optimizer
+      Reference:    optimizer
+    Trial Spec:
+      API Version:  batch/v1
+      Kind:         Job
+      Spec:
+        Template:
+          Spec:
+            Containers:
+              Command:
+                python3
+                /opt/mxnet-mnist/mnist.py
+                --batch-size=64
+                --lr=${trialParameters.learningRate}
+                --num-layers=${trialParameters.numberLayers}
+                --optimizer=${trialParameters.optimizer}
+              Image:         docker.io/kubeflowkatib/mxnet-mnist
+              Name:          training-container
+            Restart Policy:  Never
 Status:
   Conditions:
-    Last Transition Time:  2019-12-22T22:53:25Z
-    Last Update Time:      2019-12-22T22:53:25Z
+    Last Transition Time:  2020-10-23T21:27:53Z
+    Last Update Time:      2020-10-23T21:27:53Z
     Message:               Experiment is created
     Reason:                ExperimentCreated
     Status:                True
     Type:                  Created
-    Last Transition Time:  2019-12-22T22:55:10Z
-    Last Update Time:      2019-12-22T22:55:10Z
+    Last Transition Time:  2020-10-23T21:28:13Z
+    Last Update Time:      2020-10-23T21:28:13Z
     Message:               Experiment is running
     Reason:                ExperimentRunning
     Status:                True
     Type:                  Running
   Current Optimal Trial:
+    Best Trial Name:  random-example-smpc6ws2
     Observation:
       Metrics:
-        Name:   Validation-accuracy
-        Value:  0.981091
+        Latest:  0.978006
+        Max:     0.978603
+        Min:     0.959295
+        Name:    Validation-accuracy
+        Latest:  0.993170
+        Max:     0.993170
+        Min:     0.920293
+        Name:    Train-accuracy
     Parameter Assignments:
-      Name:          --lr
-      Value:         0.025139701133432946
-      Name:          --num-layers
-      Value:         4
-      Name:          --optimizer
-      Value:         sgd
-  Start Time:        2019-12-22T22:53:25Z
-  Trials:            12
-  Trials Running:    2
-  Trials Succeeded:  10
+      Name:   lr
+      Value:  0.02889324678979306
+      Name:   num-layers
+      Value:  5
+      Name:   optimizer
+      Value:  sgd
+  Running Trial List:
+    random-example-26d5wzn2
+    random-example-98fpd29m
+    random-example-x2vjlzzv
+  Start Time:  2020-10-23T21:27:53Z
+  Succeeded Trial List:
+    random-example-n9c4j4cv
+    random-example-qfb68jpb
+    random-example-s96tq48v
+    random-example-smpc6ws2
+  Trials:            7
+  Trials Running:    3
+  Trials Succeeded:  4
 Events:              <none>
 ```
 
@@ -308,13 +333,14 @@ View the results of the experiment in the Katib UI:
 
 ### TensorFlow example
 
+If you installed Katib as part of Kubeflow, you can’t run experiments in Kubeflow namespace.
 Run the following commands to launch an experiment using the Kubeflow's
 TensorFlow training job operator, TFJob:
 
 1. Download the tfjob-example.yaml file
 
    ```
-   curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/tfjob-example.yaml --output tfjob-example.yaml
+   curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/tfjob-example.yaml --output tfjob-example.yaml
    ```
 
 1. Edit `tfjob-example.yaml` and change the following line to use your Kubeflow user profile namespace:
@@ -339,13 +365,14 @@ Follow the steps as described for the _random algorithm example_
 
 ### PyTorch example
 
+If you installed Katib as part of Kubeflow, you can’t run experiments in Kubeflow namespace.
 Run the following commands to launch an experiment using Kubeflow's PyTorch
 training job operator, PyTorchJob:
 
 1. Download the pytorchjob-example.yaml file
 
    ```
-   curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/pytorchjob-example.yaml --output pytorchjob-example.yaml
+   curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/pytorchjob-example.yaml --output pytorchjob-example.yaml
    ```
 
 1. Edit `pytorchjob-example.yaml` and change the following line to use your Kubeflow user profile namespace:
@@ -370,10 +397,10 @@ Follow the steps as described for the _random algorithm example_
 
 ## Cleanup
 
-Delete the installed components:
+To delete Katib from Kubernetes cluster run::
 
 ```
-bash ./scripts/v1alpha3/undeploy.sh
+make undeploy
 ```
 
 ## Next steps
