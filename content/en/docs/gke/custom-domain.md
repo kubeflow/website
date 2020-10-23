@@ -4,13 +4,6 @@ description = "Using a custom domain with Kubeflow on GKE"
 weight = 30
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
-
-This guide describes how to use a custom domain with Kubeflow on Google Cloud
-Platform (GCP).
 
 ## Before you start
 
@@ -22,38 +15,24 @@ so, follow the guide to
 
 If you want to use your own domain instead of **${KF_NAME}.endpoints.${PROJECT}.cloud.goog**, follow these instructions after running `kfctl build`:
 
-1. Replace `hostname` in `kustomize/iap-ingress/base/params.env` with your own domain.
+1. Remove the substitution `hostname` in kptfile.
     ```
-    ...
-    hostname=<enter your domain here>
-    ingressName=envoy-ingress
-    ipName=kf-test-ip
-    oauthSecretName=kubeflow-oauth
-    ...
+    kpt cfg delete-subst instance hostname
+    ```
+
+1. Create a new setter `hostname` in kptfile.
+    ```
+    kpt cfg create-setter instance/ hostname --field "data.hostname" --value ""
+    ```
+
+1. Configure new setter with your own domain.
+    ```
+    kpt cfg set ./instance hostname <enter your domain here>
     ```
 
 1. Apply the changes.
-
-    Using `kfctl`.
-
     ```
-    kfctl apply -V -f ${CONFIG_FILE}
-    ```
-
-    Or using `kubectl`.
-
-    ```
-    kubectl apply -k kustomize/iap-ingress
-    ```
-
-1. Remove the `cloud-endpoints` component.
-    ```
-    kubectl delete -k kustomize/cloud-endpoints
-    ```
-
-    Delete the endpoint created by the `cloud-endpoints-controller`, if any.
-    ```
-    gcloud endpoints services delete ${KF_NAME}.endpoints.${PROJECT}.cloud.goog
+    make apply-kubeflow
     ```
 
 1. Check Ingress to verify that your domain was properly configured.
@@ -64,7 +43,7 @@ If you want to use your own domain instead of **${KF_NAME}.endpoints.${PROJECT}.
 1. Get the address of the static IP address created.
     ```
     IPNAME=${KF_NAME}-ip
-    gcloud compute addresses describe ${IPNAME} --global --format="value(address)"
+    gcloud compute addresses describe ${IPNAME} --global
     ```
 
-1. Use your DNS provider to map the fully qualified domain specified in the first step to the above IP address.
+1. Use your DNS provider to map the fully qualified domain specified in the third step to the above IP address.
