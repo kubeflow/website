@@ -28,7 +28,7 @@ The updated Kustomization.yaml in ```stacks/azure``` should something similar to
   # Metadata
   # - ../../metadata/v3
   # Uncomment the line below if you want to use Azure MySQL
-  - metadata
+  - ./metadata
 ```
 
 Edit ```params.env``` to provide parameters to config map as follows (change the ```[db_name]``` to the server name you used):
