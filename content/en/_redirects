@@ -70,7 +70,7 @@
 docs/started/requirements/                    /docs/started/getting-started/
 
 # Created a new components layout
-/docs/components/hyperparameter                /docs/components/hyperparameter-tuning/hyperparameter
+/docs/components/hyperparameter                /docs/components/katib/overview
 /docs/components/chainer                       /docs/components/training/chainer
 /docs/components/modeldb                       /docs/components/misc/modeldb
 /docs/components/mpi                           /docs/components/training/mpi
