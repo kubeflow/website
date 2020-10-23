@@ -121,7 +121,7 @@ import kfp.dsl as dsl
   description='An example pipeline that performs addition calculations.'
 )
 def add_pipeline(
-  a='a',
+  a='3',
   b='7',
 ):
   # Passes a pipeline parameter and a constant value to the `add_op` factory
@@ -137,7 +137,7 @@ def add_pipeline(
 arguments = {'a': '7', 'b': '8'}
     
 # Create a pipeline run, using the client you initialized in a prior step.
-client.create_run_from_pipeline_func(calc_pipeline, arguments=arguments)
+client.create_run_from_pipeline_func(add_pipeline, arguments=arguments)
 ```
 
 ## Building Python function-based components
@@ -363,7 +363,7 @@ import kfp.dsl as dsl
    description='An example pipeline that performs arithmetic calculations.'
 )
 def calc_pipeline(
-   a='a',
+   a='1',
    b='7',
    c='17',
 ):
