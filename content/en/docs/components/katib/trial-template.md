@@ -306,4 +306,5 @@ is a good starting point to know how to contribute to the project.
 
 - About the [Katib configuration file (Katib config)](/docs/components/katib/katib-config/).
 
-- How to [set up environment variables](/docs/components/katib/env-variables/) for each Katib component.
+- How to [set up environment variables](/docs/components/katib/env-variables/)
+  for each Katib component.

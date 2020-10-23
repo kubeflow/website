@@ -8,7 +8,7 @@ weight = 10
 {{% beta-status
   feedbacklink="https://github.com/kubeflow/katib/issues" %}}
 
-Katib is Kubernetes native project for automated machine learning (AutoML).
+Katib is Kubernetes-native project for automated machine learning (AutoML).
 Use Katib for automated tuning of your machine learning (ML) model's hyperparameters and architecture.
 
 This page introduces the concepts of hyperparameter tuning, neural
