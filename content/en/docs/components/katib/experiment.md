@@ -53,7 +53,7 @@ These are the fields in the experiment configuration spec:
   hyperparameter tuning algorithm that you specify. See the [`ParameterSpec`
   type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L177-L198).
 
-* **objective**: The metric that you want to optimize.
+- **objective**: The metric that you want to optimize.
   The objective metric is also called the _target variable_.
   A common metric is the model's accuracy in the validation pass of the training
   job (_validation-accuracy_). You also specify whether you want Katib to
@@ -72,27 +72,28 @@ These are the fields in the experiment configuration spec:
   `maxTrialCount` parameter is described bellow.
 
   See the [`ObjectiveSpec`
-  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L47).
+  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L47).
 
-* **parallelTrialCount**: The maximum number of hyperparameter sets that Katib
-  should train in parallel.
+- **algorithm**: The search algorithm that you want Katib to use to find the
+  best hyperparameters or neural architecture configuration. Examples include
+  random search, grid search, Bayesian optimization, and more.
+  See the [search algorithm details](#search-algorithms) below.
 
-* **maxTrialCount**: The maximum number of trials to run.
+- **parallelTrialCount**: The maximum number of parallel trials to run.
+  This is equivalent to the number of hyperparameter sets that Katib should train in parallel.
+
+- **maxTrialCount**: The maximum number of trials to run.
   This is equivalent to the number of hyperparameter sets that Katib should
   generate to test the model.
 
-* **maxFailedTrialCount**: The maximum number of failed trials before Katib
+- **maxFailedTrialCount**: The maximum number of failed trials before Katib
   should stop the experiment.
   This is equivalent to the number of failed hyperparameter sets that Katib
   should test.
   If the number of failed trials exceeds `maxFailedTrialCount`, Katib stops the
   experiment with a status of `Failed`.
-* **algorithm**: The search algorithm that you want Katib to use to find the
-  best hyperparameters or neural architecture configuration. Examples include
-  random search, grid search, Bayesian optimization, and more.
-  See the [search algorithm details](#search-algorithms) below.
 
-* **trialTemplate**: The template that defines the trial.
+- **trialTemplate**: The template that defines the trial.
   You must package your ML training code into a Docker image, as described
   [above](#docker-image). You must configure the model's
   hyperparameters either as command-line arguments or as environment variables,
@@ -102,51 +103,56 @@ These are the fields in the experiment configuration spec:
 
   - [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
     (does not support distributed execution).
-  - [Kubeflow TFJob](/docs/guides/components/tftraining/) (supports
+  - [Kubeflow TFJob](/docs/components/training/tftraining/) (supports
     distributed execution).
-  - [Kubeflow PyTorchJob](/docs/guides/components/pytorch/) (supports
+  - [Kubeflow PyTorchJob](/docs/components/training/pytorch/) (supports
     distributed execution).
 
   See the [`TrialTemplate`
-  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L189-L203).
+  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L201-L261).
   The template
-  uses the [Go template format](https://golang.org/pkg/text/template/).
+  uses the [unstructured format](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1/unstructured).
 
-  You can define the job in raw string format or you can use a
+  You can define the job in YAML format or you can use a
   [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/).
-  [Here](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/katib-controller/trialTemplateConfigmapLabeled.yaml) is an example how to create ConfigMap with trial templates.
+  [Here](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/trial-template-configmap.yaml)
+  is an ConfigMap example with trial templates.
 
-* **metricsCollectorSpec**: A specification of how to collect the metrics from
+- **metricsCollectorSpec**: A specification of how to collect the metrics from
   each trial, such as the accuracy and loss metrics.
   See the [details of the metrics collector](#metrics-collector) below.
 
-* **nasConfig**: The configuration for a neural architecture search (NAS).
+- **nasConfig**: The configuration for a neural architecture search (NAS).
   Note: NAS is currently in **alpha** with limited support.
   You can specify the configurations of the neural network design that you want
   to optimize, including the number of layers in the network, the types of
   operations, and more.
-  See the [`NasConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L229).
+  See the [`NasConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L287).
 
   - **graphConfig**: The graph config that defines structure for a
     directed acyclic graph of the neural network. You can specify number of layers,
     `input_sizes` for input layer and `output_sizes` for output layer.
-    See the [`GraphConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L234-L239).
+    See the [`GraphConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L292-L297).
 
   - **operations**: The range of operations that you want to tune for your ML model.
     For each neural network layer NAS algorithm selects one of the operation to build neural network.
-    Each operation has sets of **parameters** which described above. See the [`Operation` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L241-L245).
+    Each operation has sets of **parameters** which described above.
+    See the [`Operation` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L299-L303).
 
-    You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1alpha3/nas).
+    You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/nas).
 
-* **resumePolicy**: Experiment resume policy. If experiment was succeeded because `maxTrialCount`
+- **resumePolicy**: Experiment resume policy. If experiment was succeeded because `maxTrialCount`
   was reached, you can resume it by increasing `maxTrialCount`. Specify `resumePolicy: LongRunning`, if
   you want to use this feature. If you don't need to resume experiment, specify `resumePolicy: Never`. In that case,
   suggestion resources will be deleted and experiment can't be resumed. By default all experiments have
-  `resumePolicy: LongRunning` parameter. See the [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L53).
+  `resumePolicy: LongRunning` parameter.
+  See the [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L54).
 
-_Background information about Katib's `Experiment` type:_ In Kubernetes
+_Background information about Katib's `Experiment`, `Suggestion` and `Trial` type:_ In Kubernetes
 terminology, Katib's
-[`Experiment` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L211) is a [custom resource
+[`Experiment` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L269),
+[`Suggestion` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/suggestions/v1beta1/suggestion_types.go#L117) and
+[`Trial` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/trials/v1beta1/trial_types.go#L122) is a [custom resource
 (CR)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 The YAML file that you create for your experiment is the CR specification.
 
@@ -155,7 +161,7 @@ The YAML file that you create for your experiment is the CR specification.
 ### Search algorithms in detail
 
 Katib currently supports several search algorithms. See the [`AlgorithmSpec`
-type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L23-L33).
+type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L23-L33).
 
 Here's a list of the search algorithms available in Katib. The links lead to
 descriptions on this page:
@@ -269,7 +275,7 @@ Katib supports the following algorithm settings:
           <code>base_estimator</code> is one of 
           [“GP”, “RF”, “ET”, “GBRT”], the system uses a default surrogate model
           of the corresponding type. See more information in the
-          <a href="https://scikit-optimize.github.io/#skopt.Optimizer">skopt
+          <a href="https://scikit-optimize.github.io/stable/modules/generated/skopt.Optimizer.html#skopt.Optimizer">skopt
           documentation</a>.</td>
         <td>GP</td>
       </tr>
@@ -281,7 +287,7 @@ Katib supports the following algorithm settings:
           as initialization points. 
           If <code>len(x0) &lt; n_initial_points</code>, the
           system samples additional points at random. See more information in the
-          <a href="https://scikit-optimize.github.io/#skopt.Optimizer">skopt
+          <a href="https://scikit-optimize.github.io/stable/modules/generated/skopt.Optimizer.html#skopt.Optimizer">skopt
           documentation</a>.</td>
         <td>10</td>
       </tr>
@@ -289,7 +295,7 @@ Katib supports the following algorithm settings:
         <td>acq_func</td>
         <td>[string, default=<code>&quot;gp_hedge&quot;</code>]: The function to
           minimize over the posterior distribution. See more information in the
-          <a href="https://scikit-optimize.github.io/#skopt.Optimizer">skopt
+          <a href="https://scikit-optimize.github.io/stable/modules/generated/skopt.Optimizer.html#skopt.Optimizer">skopt
           documentation</a>.</td>
         <td>gp_hedge</td>
       </tr>
@@ -299,7 +305,7 @@ Katib supports the following algorithm settings:
           minimize the acquisition function. The system updates the fit model
           with the optimal value obtained by optimizing <code>acq_func</code>
           with <code>acq_optimizer</code>. See more information in the
-          <a href="https://scikit-optimize.github.io/#skopt.Optimizer">skopt
+          <a href="https://scikit-optimize.github.io/stable/modules/generated/skopt.Optimizer.html#skopt.Optimizer">skopt
           documentation</a>.</td>
         <td>auto</td>
       </tr>
@@ -478,9 +484,9 @@ Katib supports the following algorithm settings:
 
 For more information, see:
 
-- Information in the Katib repository on [Efficient Neural Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/nas/enas).
+- Information in the Katib repository on [Efficient Neural Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/enas).
 - As a ENAS example, see the YAML file for the
-  [enas-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nas/enas-example-gpu.yaml).
+  [enas-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/enas-example-gpu.yaml).
   The example aims to show all the possible operations. Due to the large search
   space, the example is not likely to generate a good result.
 
@@ -605,9 +611,9 @@ Katib supports the following algorithm settings:
 
 For more information, see:
 
-- Information in the Katib repository on [Differentiable Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1alpha3/nas/darts).
+- Information in the Katib repository on [Differentiable Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/darts).
 - As a DARTS example, see the YAML file for the
-  [darts-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1alpha3/nas/darts-example-gpu.yaml).
+  [darts-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/darts-example-gpu.yaml).
 
 <a id="metrics-collector"></a>
 
@@ -615,7 +621,7 @@ For more information, see:
 
 In the `metricsCollectorSpec` section of the YAML configuration file, you can
 define how Katib should collect the metrics from each trial, such as the
-accuracy and loss metrics. See the [`MetricsCollectorSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L81-L150)
+accuracy and loss metrics. See the [`MetricsCollectorSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L99-L168)
 
 Your training code can record the metrics into `stdout` or into arbitrary output
 files. Katib collects the metrics using a _sidecar_ container. A sidecar is
@@ -623,36 +629,40 @@ a utility container that supports the main container in the Kubernetes Pod.
 
 To define the metrics collector for your experiment:
 
-1. Specify the collector type in the `collector` field.
+1. Specify the collector type in the `.collector.kind` field.
    Katib's metrics collector supports the following collector types:
 
    - `StdOut`: Katib collects the metrics from the operating system's default
-     output location (_standard output_).
+     output location (_standard output_). This is the default metrics collector.
    - `File`: Katib collects the metrics from an arbitrary file, which
-     you specify in the `source` field.
+     you specify in the `.source.fileSystemPath.path` field. Training container should log metrics to this file.
+     See the [file metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/file-metricscollector-example.yaml#L15-L24).
    - `TensorFlowEvent`: Katib collects the metrics from a directory path
      containing a
      [tf.Event](https://www.tensorflow.org/api_docs/python/tf/compat/v1/Event). You
-     should specify the path in the `source` field.
+     should specify the path in the `.source.fileSystemPath.path` field.
+     See the [TFJob example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/tfjob-example.yaml#L16-L22).
    - `Custom`: Specify this value if you need to use custom way to collect
      metrics. You must define your custom metrics collector container
-     in the `collector.customCollector` field.
+     in the `.collector.customCollector` field.
+     See the [custom metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/custom-metricscollector-example.yaml#L15-L37).
    - `None`: Specify this value if you don't need to use Katib's metrics
      collector. For example, your training code may handle the persistent
      storage of its own metrics.
 
-1. Specify the metrics output location in the `source` field. See [const](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L123-L143) for default values.
+1. For `File` and `TensorFlowEvent` metrics collectors specify the metrics output location
+   in the `.source` field. See [const](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L141-L161) for default values.
 
-1. Write code in your training container to print metrics in the format
-   specified in the `metricsCollectorSpec.source.filter.metricsFormat`
+1. Write code in your training container to print or save to the file metrics in the format
+   specified in the `.source.filter.metricsFormat`
    field. The default format is `([\w|-]+)\s*=\s*((-?\d+)(\.\d+)?)`.
    Each element is a regular expression with two subexpressions. The first
    matched expression is taken as the metric name. The second matched
    expression is taken as the metric value.
 
-   For example, using the default metrics format, if the name of your objective metric
-   is `loss` and the metrics are `recall` and `precision`, your training code should
-   print the following output:
+   For example, using the default metrics format and `StdOut` metrics collector,
+   if the name of your objective metric is `loss` and the additional metrics are
+   `recall` and `precision`, your training code should print the following output:
 
    ```
    epoch 1:
@@ -679,11 +689,12 @@ to launch an experiment from the command line:
 kubectl apply -f <your-path/your-experiment-config.yaml>
 ```
 
-For example, run the following command to launch an experiment using the
-random algorithm example:
+Note that if you deployed Katib as part of Kubeflow, you need to
+change Kubeflow namespace to your profile namespace.
+Run the following command to launch an experiment using the random algorithm example:
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1alpha3/random-example.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/random-example.yaml
 ```
 
 Check the experiment status:
@@ -698,7 +709,7 @@ For example, to check the status of the random algorithm example:
 kubectl -n kubeflow describe experiment random-example
 ```
 
-### Running the experiment from the Katib UI
+### Running the experiment from the Katib UI TODO (andreyvelich): Change images
 
 Instead of using the command line, you can submit an experiment from the Katib
 UI. The following steps assume you want to run a hyperparameter tuning
