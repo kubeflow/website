@@ -57,3 +57,14 @@ using notebooks with Kubeflow, see the [user guide](/docs/components/notebooks/)
 API references:
 
   * [v1](/docs/reference/notebook/v1/)
+
+<a id="katib">
+
+## Katib
+
+Katib is an AutoML system that you can use to run hyperparameter tuning and neural architecture search 
+experiments on Kubernetes. For help with using Katib with Kubeflow, see the [user guide](/docs/components/katib/).
+
+gRPC REST API references:
+
+  * [v1beta1](/docs/reference/katib/v1beta1/katib/)

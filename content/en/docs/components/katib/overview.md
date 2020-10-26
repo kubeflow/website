@@ -108,8 +108,7 @@ You can use the following interfaces to interact with Katib:
       alt="The Katib home page within the Kubeflow UI"
       class="mt-3 mb-3 border border-info rounded">
 
-- A REST API. See the [API reference on
-  GitHub](https://github.com/kubeflow/katib/blob/master/pkg/apis/manager/v1beta1/gen-doc/api.md).
+- A REST API. See the [API reference](/docs/reference/katib/v1beta1/katib).
 
 - Command-line interfaces (CLIs):
 
