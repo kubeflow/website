@@ -29,13 +29,13 @@ To get Kubeflow running using MicroK8s, you'll need to install MicroK8s, enable 
 2. Verify that MicroK8s is running:
 
     ```
-    microk8s.status --wait-ready
+    microk8s status --wait-ready
     ```
 
 3. Having installed MicroK8s, you can now enable common services on your MicroK8s deployment. To do that, run the following command:
 
     ```
-    microk8s.enable dns dashboard storage
+    microk8s enable dns dashboard storage
     ```
 
     **Optional:** To enable NVIDIA GPU hardware support, also run `microk8s.enable gpu`.
@@ -43,7 +43,7 @@ To get Kubeflow running using MicroK8s, you'll need to install MicroK8s, enable 
 4. Deploy Kubeflow by running this command:
 
     ```
-    microk8s.enable kubeflow
+    microk8s enable kubeflow
     ```
 
     The deployment process may take a few minutes. Once it is complete, the script will print out the port number and credentials to access the Kubeflow dashboard.
