@@ -72,6 +72,38 @@ These are the fields in the experiment configuration spec:
   runs the experiment until the corresponding successful trials reach `maxTrialCount`.
   `maxTrialCount` parameter is described below.
 
+  The default way to calculate the experiment's objective is:
+
+  - When the objective `type` is `maximize`, Katib compares all maximum
+    metric values.
+
+  - When the objective `type` is `minimize`, Katib compares all minimum
+    metric values.
+
+  You are able to change this default mechanism. For that, define
+  `metricStrategies` with various rules (`min`, `max` or `latest`) to extract
+  values for each metric from `objectiveMetricName` and `additionalMetricNames`.
+  Experiment's objective value is calculated in accordance with the
+  selected strategy.
+
+  For example, if you set below parameters in Experiment:
+
+  ```yaml
+  . . .
+  objectiveMetricName: accuracy
+  type: maximize
+  metricStrategies:
+    - name: accuracy
+      value: latest
+  . . .
+  ```
+
+  Katib controller is searching for the best maximum from the all latest
+  reported `accuracy` metrics for the each trial.
+  Check the
+  [metrics strategies example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metric-strategy-example.yaml).
+  The default strategy type for each metric are equal to objective `type`.
+
   Refer to the
   [`ObjectiveSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L93).
 
