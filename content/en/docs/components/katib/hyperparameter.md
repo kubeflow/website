@@ -289,8 +289,17 @@ Status:
 Events:              <none>
 ```
 
-When the last value in `Status.Conditions.Type` is `Succeeded`, the experiment
-is complete.
+When the last value in `status.conditions.type` is `Succeeded`, the experiment
+is complete. You can see information about the best trial in `status.currentOptimalTrial`.
+
+- `.currentOptimalTrial.bestTrialName` is the trial name.
+
+- `.currentOptimalTrial.observation.metrics` is the `max`, `min` and `latest` recorded values for objective
+  and additional metrics.
+
+- `.currentOptimalTrial.parameterAssignments` is the corresponding hyperparameter set.
+
+As well, `status` shows experiment's trials with the current statuses.
 
 <a id="view-ui"></a>
 View the results of the experiment in the Katib UI:
