@@ -51,7 +51,8 @@ This document describes how to build Python function-based components and use th
 
 ## Before you begin
 
-1. Run the following command to install the Kubeflow Pipelines SDK.
+1. Run the following command to install the Kubeflow Pipelines SDK. If you run this command in a Jupyter
+   notebook, restart the kernel after installing the SDK. 
 
 
 ```python
@@ -63,10 +64,15 @@ $ pip3 install kfp --upgrade
 
 ```python
 import kfp
-import kfp.components as comp
+from kfp.components import create_run_from_pipeline_func, InputPath, OutputPath
 ```
 
-3. Create an instance of the [`kfp.Client` class][kfp-client].
+3. Create an instance of the [`kfp.Client` class][kfp-client]. To find your
+   Kubeflow Pipelines cluster's host name, open the Kubeflow Pipelines user
+   interface in your browser. The URL of the Kubeflow Pipelines user
+   interface is something like 
+   `https://my-cluster.my-organization.com/#/pipelines`. In this case, the
+   host name is `my-cluster.my-organization.com`. 
 
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
 
@@ -105,7 +111,7 @@ def add(a: float, b: float) -> float:
 
 
 ```python
-add_op = comp.create_component_from_func(
+add_op = create_component_from_func(
     add, output_component_file='add_component.yaml')
 ```
 
@@ -121,7 +127,7 @@ import kfp.dsl as dsl
   description='An example pipeline that performs addition calculations.'
 )
 def add_pipeline(
-  a='3',
+  a='1',
   b='7',
 ):
   # Passes a pipeline parameter and a constant value to the `add_op` factory
@@ -133,11 +139,11 @@ def add_pipeline(
   # `task.outputs['output_name']`.
   second_add_task = add_op(first_add_task.output, b)
     
-# Specify argument values for your pipeline run.
-arguments = {'a': '7', 'b': '8'}
+  # Specify argument values for your pipeline run.
+  arguments = {'a': '7', 'b': '8'}
     
-# Create a pipeline run, using the client you initialized in a prior step.
-client.create_run_from_pipeline_func(add_pipeline, arguments=arguments)
+  # Create a pipeline run, using the client you initialized in a prior step.
+  client.create_run_from_pipeline_func(calc_pipeline, arguments=arguments)
 ```
 
 ## Building Python function-based components
@@ -146,25 +152,141 @@ Use the following instructions to build a Python function-based component:
 
 <a name="standalone"></a>
 
-1.  Define a stand-alone Python function. This function must meet the following requirements:
+1.  Define a standalone Python function. This function must meet the following
+    requirements:
 
     *   It should not use any code declared outside of the function definition.
-    *   Import statements must be added inside the function. [Learn more about using and installing
-        Python packages in your component](#packages).
+    *   Import statements must be added inside the function. [Learn more about
+        using and installing Python packages in your component](#packages).
     *   Helper functions must be defined inside this function.
-    *   If the function accepts numeric values as parameters, the parameters must have type hints.
-        Supported types are `int`, `float`, and `bool`. Otherwise, parameters are passed as strings.
-    *   If your component returns multiple outputs, annotate your function with the
-        [`typing.NamedTuple`][named-tuple-hint] type hint and use the [`collections.namedtuple`][named-tuple]
-        function return your function's outputs as a new subclass of tuple.
-        
-        You can also return metadata and metrics from your function. 
-        
-        *  Metadata helps you visualize pipeline results.
-           [Learn more about visualizing pipeline metadata][kfp-visualize].
-        *  Metrics help you compare pipeline runs.
-           [Learn more about using pipeline metrics][kfp-metrics].
-        
+
+1.  Kubeflow Pipelines uses your function's inputs and outputs to define your
+    component's interface. [Learn more about passing data between
+    components](#pass-data). Your function's inputs and outputs must meet the
+    following requirements:
+    
+    *   If the function accepts or returns large amounts of data or complex
+        data types, you must pass that data as a file. [Learn more about using
+        large amounts of data as inputs or outputs](#pass-by-file).
+    *   If the function accepts numeric values as parameters, the parameters
+        must have type hints. Supported types are `int` and `float`. Otherwise,
+        parameters are passed as strings.
+    *   If your component returns multiple small outputs (short strings,
+        numbers, or booleans), annotate your function with the
+        [`typing.NamedTuple`][named-tuple-hint] type hint and use the
+        [`collections.namedtuple`][named-tuple] function return your function's
+        outputs as a new subclass of tuple. For an example, read
+        [Passing parameters by value](#pass-by-value).
+
+1.  (Optional.) If your function has complex dependencies, choose or build a
+    container image for your Python function to run in. [Learn more about
+    selecting or building your component's container image](#containers).
+    
+1.  Call [`kfp.components.create_component_from_func(func)`][create-component-from-func]
+    to convert your function into a pipeline component.
+    
+    *   **func**: The Python function to convert.
+    *   **base_image**: (Optional.) Specify the Docker container image to run
+        this function in. [Learn more about selecting or building a container
+        image](#containers).  
+    *   **output_component_file**: (Optional.) Writes your component definition
+        to a file. You can use this file to share the component with colleagues
+        or reuse it in different pipelines.
+    *   **packages_to_install**: (Optional.) A list of versioned Python
+        packages to install before running your function. 
+
+<a name="packages"></a>
+### Using and installing Python packages
+
+When Kubeflow Pipelines runs your pipeline, each component runs within a Docker
+container image on a Kubernetes Pod. To load the packages that your Python
+function depends on, one of the following must be true:
+
+*   The package must be installed on the container image.
+*   The package must be defined using the `packages_to_install` parameter of the
+    [`kfp.components.create_component_from_func(func)`][create-component-from-func]
+    function.
+*   Your function must install the package. For example, your function can use
+    the [`subprocess` module][subprocess] to run a command like `pip install`
+    that installs a package.
+
+<a name="containers"></a>
+### Selecting or building a container image
+
+Currently, if you do not specify a container image, your Python-function based
+component uses the [`python:3.7` container image][python37]. If your function
+has complex dependencies, you may benefit from using a container image that has
+your dependencies preinstalled, or building a custom container image.
+Preinstalling your dependencies reduces the amount of time that your component
+runs in, since your component does not need to download and install packages
+each time it runs.
+
+Many frameworks, such as [TensorFlow][tf-docker] and [PyTorch][pytorch-docker],
+and cloud service providers offer prebuilt container images that have common
+dependencies installed.
+
+If a prebuilt container is not available, you can build a custom container
+image with your Python function's dependencies. For more information about
+building a custom container, read the [Dockerfile reference guide in the Docker
+documentation][dockerfile].
+
+If you build or select a container image, instead of using the default
+container image, the container image must use Python 3.5 or later.
+
+<a name="pass-data"></a>
+### Understanding how data is passed between components
+
+When Kubeflow Pipelines runs your component, a container image is started in a
+Kubernetes Pod and your component's inputs are passed in as command-line
+arguments. When your component has finished, the component’s outputs are
+returned as files.
+
+Python function-based components make it easier to build pipeline components by
+building the component specification for you. Python function-based components
+also handle the complexity of passing inputs into your component and passing
+your function's outputs back to your pipeline.  
+
+The following sections describe how to pass parameters by value and by file. 
+
+*   Parameters that are passed by value include numbers, booleans, and short
+    strings. Kubeflow Pipelines passes parameters to your component by value,
+    by passing the values as command-line arguments.
+*   Parameters that are passed by file include CSV, images, and complex types.
+    These files are stored in a location that is accessible to your component
+    running on Kubernetes, such as a persistent volume claim or a cloud
+    storage service. Kubeflow Pipelines passes parameters to your component by
+    file, by passing their paths as a command-line argument.
+
+<a name="pass-by-value"></a>
+#### Passing parameters by value
+
+Python function-based components make it easier to pass parameters between
+components by value (such as numbers, booleans, and short strings), by letting
+you define your component’s interface by annotating your Python function. The
+supported types are `int`, `float`, `bool`, and `string`. If you do not
+annotate your function, these input parameters are passed as strings.
+
+If your component returns multiple outputs by value, annotate your function
+with the [`typing.NamedTuple`][named-tuple-hint] type hint and use the
+[`collections.namedtuple`][named-tuple] function to return your function's
+outputs as a new subclass of `tuple`.
+
+You can also return metadata and metrics from your function.
+
+*   Metadata helps you visualize pipeline results.
+    [Learn more about visualizing pipeline metadata][kfp-visualize].
+*   Metrics help you compare pipeline runs.
+    [Learn more about using pipeline metrics][kfp-metrics].
+    
+The following example demonstrates how to return multiple outputs by value,
+including component metadata and metrics. 
+
+[python37]: https://hub.docker.com/layers/python/library/python/3.7/images/sha256-7eef781ed825f3b95c99f03f4189a8e30e718726e8490651fa1b941c6c815ad1?context=explore
+[create-component-from-func]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.create_component_from_func
+[subprocess]: https://docs.python.org/3/library/subprocess.html
+[tf-docker]: https://www.tensorflow.org/install/docker
+[pytorch-docker]: https://hub.docker.com/r/pytorch/pytorch/tags
+[dockerfile]: https://docs.docker.com/engine/reference/builder/
 [named-tuple-hint]: https://docs.python.org/3/library/typing.html#typing.NamedTuple
 [named-tuple]: https://docs.python.org/3/library/collections.html#collections.namedtuple
 [kfp-visualize]: https://www.kubeflow.org/docs/pipelines/sdk/output-viewer/
@@ -213,66 +335,84 @@ def multiple_return_values_example(a: float, b: float) -> NamedTuple(
   return example_output(sum_value, product_value, metadata, metrics)
 ```
 
-2.  (Optional.) If your function has complex dependencies, choose or build a container image for your
-    Python function to run in. [Learn more about selecting or building your component's container
-    image](#containers).
+<a name="pass-by-file"></a>
+#### Passing parameters by file
+
+Python function-based components make it easier to pass files to your
+component, or to return files from your component, by letting you annotate
+your Python function's parameters to specify which parameters refer to a file. 
+Your Python function's parameters can refer to either input or output files.
+If your parameter is an output file, Kubeflow Pipelines passes your function a
+path or stream that you can use to store your output file.
+
+The following example accepts a file as an input and returns two files as outputs.
+
+
+```python
+def split_text_lines(
+    source_path: InputPath(str),
+    odd_lines_path: OutputPath(str),
+    even_lines_path: OutputPath(str)):
+    """Splits a text file into two files, with even lines going to one file
+    and odd lines to the other."""
     
-3.  Call [`kfp.components.create_component_from_func(func)`][create-component-from-func] to convert
-    your function into a pipeline component.
-    
-    *   **func**: The Python function to convert.
-    *   **base_image**: (Optional.) Specify the Docker container image to run this function in.
-        [Learn more about selecting or building a container image](#containers).  
-    *   **output_component_file**: (Optional.) Writes your component definition to a file. You can
-        use this file to share the component with colleagues or reuse it in different pipelines.
-    *   **packages_to_install**: (Optional.) A list of versioned Python packages to install before
-        running your function. 
-    
-<a name="packages"></a>
-### Using and installing Python packages
+    with open(source_path, 'r') as reader:
+        with open(odd_lines_path, 'w') as odd_writer:
+            with open(even_lines_path, 'w') as even_writer:
+                while True:
+                    line = reader.readline()
+                    if line == "":
+                        break
+                    odd_writer.write(line)
+                    line = reader.readline()
+                    if line == "":
+                        break
+                    even_writer.write(line)
+```
 
-When Kubeflow Pipelines runs your pipeline, each component runs within a Docker container image on a
-Kubernetes Pod. To load the packages that your Python function depends on, one of the following must
-be true:
+In this example, the inputs and outputs are defined as parameters of the
+`split_text_lines` function. This lets Kubeflow Pipelines pass the path to the
+source data file and the paths to the output data files into the function.
 
-*   The package must be installed on the container image.
-*   The package must be defined using the `packages_to_install` parameter of the
-    [`kfp.components.create_component_from_func(func)`][create-component-from-func] function.
-*   Your function must install the package. For example, your function can use the
-    [`subprocess` module][subprocess] to run a command like `pip install` that installs a package.
+To accept a file as an input parameter, use one of the following type annotations:
 
-<a name="containers"></a>
-### Selecting or building a container image
+*   [kfp.components.InputBinaryFile][input-binary]: Use this annotation to
+    specify that your function expects a parameter to be an
+    [`io.BytesIO`][bytesio] instance that this function can read.
+*   [kfp.components.InputPath][input-path]: Use this annotation to specify that
+    your function expects a parameter to be the path to the input file as
+    a `string`.
+*   [kfp.components.InputTextFile][input-text]: Use this annotation to specify
+    that your function expects a parameter to be an
+    [`io.TextIOWrapper`][textiowrapper] instance that this function can read.
 
-Currently, if you do not specify a container image, your Python-function based component uses the
-[`python:3.7` container image][python37]. If your function has complex dependencies, you may benefit
-from using a container image that has your dependencies preinstalled, or building a custom container
-image. Preinstalling your dependencies reduces the amount of time that your component runs in, since
-your component does not need to download and install packages each time it runs.
+To return a file as an output, use one of the following type annotations:
 
-Many frameworks, such as [TensorFlow][tf-docker] and [PyTorch][pytorch-docker], and cloud service
-providers offer prebuilt container images that have common dependencies installed.
+*   [kfp.components.OutputBinaryFile][output-binary]: Use this annotation to
+    specify that your function expects a parameter to be an
+    [`io.BytesIO`][bytesio] instance that this function can write to.
+*   [kfp.components.OutputPath][output-path]: Use this annotation to specify that
+    your function expects a parameter to be the path to store the output file at
+    as a `string`.
+*   [kfp.components.OutputTextFile][output-text]: Use this annotation to specify
+    that your function expects a parameter to be an
+    [`io.TextIOWrapper`][textiowrapper] that this function can write to.
 
-If a prebuilt container is not available, you can build a custom container image with your Python
-function's dependencies. For more information about building a custom container, read the
-[Dockerfile reference guide in the Docker documentation][dockerfile].
-
-If you build or select a container image, instead of using the default container image, the container
-image must use Python 3.5 or later.
-
-[python37]: https://hub.docker.com/layers/python/library/python/3.7/images/sha256-7eef781ed825f3b95c99f03f4189a8e30e718726e8490651fa1b941c6c815ad1?context=explore
-[create-component-from-func]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.create_component_from_func
-[subprocess]: https://docs.python.org/3/library/subprocess.html
-[tf-docker]: https://www.tensorflow.org/install/docker
-[pytorch-docker]: https://hub.docker.com/r/pytorch/pytorch/tags
-[dockerfile]: https://docs.docker.com/engine/reference/builder/
+[input-binary]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.InputBinaryFile
+[input-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.InputPath
+[input-text]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.InputTextFile
+[output-binary]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.OutputBinaryFile
+[output-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.OutputPath
+[output-text]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.OutputTextFile
+[bytesio]: https://docs.python.org/3/library/io.html#io.BytesIO
+[textiowrapper]: https://docs.python.org/3/library/io.html#io.TextIOWrapper
 
 ## Example Python function-based component
 
 This section demonstrates how to build a Python function-based component that uses imports,
 helper functions, and produces multiple outputs.
 
-1.  Define your function. This example function uses the `numpy` package to calcuate the quotient
+1.  Define your function. This example function uses the `numpy` package to calculate the quotient
     and remainder for a given dividend and divisor in a helper function. In addition to the quotient
     and remainder, the function also returns metadata for visualization and two metrics.
 
@@ -280,7 +420,9 @@ helper functions, and produces multiple outputs.
 ```python
 from typing import NamedTuple
 
-def my_divmod(dividend: float, divisor: float) -> NamedTuple(
+def my_divmod(
+  dividend: float,
+  divisor:float) -> NamedTuple(
     'MyDivmodOutput',
     [
       ('quotient', float),
@@ -321,10 +463,11 @@ def my_divmod(dividend: float, divisor: float) -> NamedTuple(
         }]}
 
     from collections import namedtuple
-    divmod_output = namedtuple(
-        'MyDivmodOutput',
-        ['quotient', 'remainder', 'mlpipeline_ui_metadata', 'mlpipeline_metrics'])
-    return divmod_output(quotient, remainder, json.dumps(metadata), json.dumps(metrics))
+    divmod_output = namedtuple('MyDivmodOutput',
+        ['quotient', 'remainder', 'mlpipeline_ui_metadata',
+         'mlpipeline_metrics'])
+    return divmod_output(quotient, remainder, json.dumps(metadata),
+                         json.dumps(metrics))
 ```
 
 2.  Test your function by running it directly, or with unit tests.
@@ -348,7 +491,7 @@ my_divmod(100, 7)
 
 
 ```python
-divmod_op = comp.func_to_container_op(
+divmod_op = func_to_container_op(
     my_divmod, base_image='tensorflow/tensorflow:1.11.0-py3')
 ```
 
@@ -373,7 +516,7 @@ def calc_pipeline(
     
     # Passes the output of the add_task and a pipeline parameter as operation
     # arguments. For an operation with a single return value, the output
-    # reference are accessed using `task.output` or
+    # reference is accessed using `task.output` or
     # `task.outputs['output_name']`.
     divmod_task = divmod_op(add_task.output, b)
 
