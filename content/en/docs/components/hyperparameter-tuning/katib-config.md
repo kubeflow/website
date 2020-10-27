@@ -76,6 +76,19 @@ All of these settings except **`image`** can be omitted. If you don't specify an
     - `cpu = 500m`.
     - `ephemeral-storage = 5Gi`.
 
+    It is possible to not request `ephemeral-storage` resource for the metrics collector's container,
+    for example to use [GKE nodepool autoscalers](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#limitations).
+    To do that, set negative values for `ephemeral-storage` requests and limits in Katib config:
+
+    ```json
+    "requests": {
+      "ephemeral-storage": "-1"
+    },
+    "limits": {
+      "ephemeral-storage": "-1"
+    }
+    ```
+
 ## Suggestion settings
 
 These settings are related to Katib suggestions, where:
@@ -188,6 +201,19 @@ All of these settings except **`image`** can be omitted. If you don't specify an
     - `memory = 100Mi`.
     - `cpu = 500m`.
     - `ephemeral-storage = 5Gi`.
+
+    It is possible to not request `ephemeral-storage` resource for the suggestion's container,
+    for example to use [GKE nodepool autoscalers](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#limitations).
+    To do that, set negative values for `ephemeral-storage` requests and limits in Katib config:
+
+    ```json
+    "requests": {
+      "ephemeral-storage": "-1"
+    },
+    "limits": {
+      "ephemeral-storage": "-1"
+    }
+    ```
 
 1. `serviceAccountName` - `Random` suggestion container [service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/). In the above example, `suggestion-serviceaccount` service account is used for each Experiment with `random` algorithm, until you change or delete this service account from the Katib config.
 
