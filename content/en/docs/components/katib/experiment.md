@@ -709,7 +709,7 @@ For example, to check the status of the random algorithm example:
 kubectl -n kubeflow describe experiment random-example
 ```
 
-### Running the experiment from the Katib UI TODO (andreyvelich): Change images
+### Running the experiment from the Katib UI
 
 Instead of using the command line, you can submit an experiment from the Katib
 UI. The following steps assume you want to run a hyperparameter tuning

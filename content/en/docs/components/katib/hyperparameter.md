@@ -142,7 +142,7 @@ hyperparameters in another way (for example, using environment variables)
 by using the template defined in the `trialTemplate.trialSpec`
 section of the YAML file. The template uses the
 [unstructured format](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1/unstructured) and substitutes parameters from
-`trialTemplate.trialParameters`. TODO (andreyvelich): Add link to Trial resources doc.
+`trialTemplate.trialParameters`.
 
 This example randomly generates the following hyperparameters:
 
