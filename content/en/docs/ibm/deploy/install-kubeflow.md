@@ -314,7 +314,7 @@ While the change is being applied, you can watch the service until below command
 
      kubectl get -w -n istio-system svc/istio-ingressgateway
 
-The external IP should be accessible by visiting http://<EXTERNAL-IP>. Note that above installation instructions do not create any protection for the external endpoint so it will be accessible to anyone without any authentication. 
+The external IP should be accessible by visiting `http://<EXTERNAL-IP>:31380`. Note that the above installation instructions do not create any protection for the external endpoint, so it will be accessible to anyone without any authentication. 
 
 ## Additional information
 
