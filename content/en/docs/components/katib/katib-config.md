@@ -11,8 +11,8 @@ This page describes information about
 Katib config is the Kubernetes
 [Config Map](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) that contains information about:
 
-1. Current [Metrics Collectors](/docs/components/katib/experiment/#metrics-collector) (`key = metrics-collector-sidecar`)
-1. Current [Algorithms](/docs/components/katib/experiment/#search-algorithms-in-detail) (Suggestions) (`key = suggestion`).
+1. Current [metrics collectors](/docs/components/katib/experiment/#metrics-collector) (`key = metrics-collector-sidecar`)
+1. Current [algorithms](/docs/components/katib/experiment/#search-algorithms-in-detail) (suggestions) (`key = suggestion`).
 
 Katib Config Map must be deployed in
 [`KATIB_CORE_NAMESPACE`](/docs/components/katib/env-variables/#katib-controller)
@@ -26,12 +26,12 @@ If you deploy Katib in Kubeflow namespace, to edit Katib config run this:
 
 ## Metrics Collector Sidecar settings
 
-These settings are related to Katib Metrics Collectors, where:
+These settings are related to Katib metrics collectors, where:
 
 - key = `metrics-collector-sidecar`
-- value = corresponding JSON settings for each Metrics Collector kind.
+- value = corresponding JSON settings for each metrics collector kind.
 
-Example for the `File` Metrics Collector with all settings:
+Example for the `File` metrics collector with all settings:
 
 ```json
 metrics-collector-sidecar: |-
@@ -58,16 +58,16 @@ metrics-collector-sidecar: |-
 
 All of these settings except **`image`** can be omitted. If you don't specify any other settings, default value is set.
 
-1. `image` - Docker image for the `File` Metrics Collector's container.
+1. `image` - Docker image for the `File` metrics collector's container.
 
    **Must be specified**.
 
-1. `imagePullPolicy` - [Image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images) for the `File` Metrics Collector's container.
+1. `imagePullPolicy` - [Image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images) for the `File` metrics collector's container.
 
    Default value is `IfNotPresent`.
 
 1. `resources` - [Resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
-   for the `File` Metrics Collector's container. In the above example you can see how to specify
+   for the `File` metrics collector's container. In the above example you can see how to specify
    `limits` and `requests`. Currently, you can specify only `memory`, `cpu` and `ephemeral-storage` resource.
 
    Default values for the `requests` are:
