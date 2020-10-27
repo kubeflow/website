@@ -71,6 +71,27 @@ These are the fields in the experiment configuration spec:
     runs experiment until corresponding succeeded trials reaches `maxTrialCount`.
     `maxTrialCount` parameter is described bellow.
 
+    You can use not standard mechanism of searching objective (for `maximize` - compare
+    all maximum metric values, for `minimize` - compare all minimum metric values).
+    For that, define `metricStrategies` with various rules (`min`, `max` or `latest`)
+    to extract values for each metric from `objectiveMetricName` and `additionalMetricNames`.
+    Experiment's objective value is calculated in accordance with selected strategy.
+    For example, if you set these parameters in Experiment:
+
+    ```yaml
+    . . .
+    objectiveMetricName: accuracy
+    type: maximize
+    metricStrategies:
+      - name: accuracy
+        value: latest
+    . . .
+    ```
+
+    Controller is searching for the best maximum from the latest reported `accuracy` metric for each trial.
+    See the [metrics strategies example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metric-strategy-example.yaml).
+    Default strategy values for each metric are equal to objective `type`.
+
     See the [`ObjectiveSpec`
   type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1alpha3/common_types.go#L47).
 
