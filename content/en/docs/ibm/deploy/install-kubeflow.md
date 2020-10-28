@@ -304,7 +304,7 @@ The scenario is a GitHub organization owner can authorize its organization membe
      kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
      ```
 
-In case you want to expose the Kubeflow Dashboard over an external IP, you can change the type of the ingress gateway. To do that, you can edit the service:
+Alternatively, in case you want to expose the Kubeflow Dashboard over an external IP, you can change the type of the ingress gateway. To do that, you can edit the service:
 
      kubectl edit -n istio-system svc/istio-ingressgateway
 
