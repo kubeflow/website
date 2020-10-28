@@ -153,140 +153,143 @@ This example randomly generates the following hyperparameters:
 Check the experiment status:
 
 ```
-kubectl -n <your user profile namespace> describe experiment random-example
+kubectl -n <your user profile namespace> get experiment random-example -o yaml
 ```
 
 The output of the above command should look similar to this:
 
-```
-Name:         random-example
-Namespace:    <your user profile namespace>
-Labels:       controller-tools.k8s.io=1.0
-Annotations:  <none>
-API Version:  kubeflow.org/v1beta1
-Kind:         Experiment
-Metadata:
-  Creation Timestamp:  2020-10-23T21:27:53Z
-  Finalizers:
-    update-prometheus-metrics
-  Generation:        1
-  Resource Version:  147081981
-  Self Link:         /apis/kubeflow.org/v1beta1/namespaces/<your user profile namespace>/experiments/random-example
-  UID:               fb3776e8-0f83-4783-88b6-80d06867ca0b
-Spec:
-  Algorithm:
-    Algorithm Name:        random
-  Max Failed Trial Count:  3
-  Max Trial Count:         12
-  Metrics Collector Spec:
-    Collector:
-      Kind:  StdOut
-  Objective:
-    Additional Metric Names:
-      Train-accuracy
-    Goal:  0.99
-    Metric Strategies:
-      Name:                 Validation-accuracy
-      Value:                max
-      Name:                 Train-accuracy
-      Value:                max
-    Objective Metric Name:  Validation-accuracy
-    Type:                   maximize
-  Parallel Trial Count:     3
-  Parameters:
-    Feasible Space:
-      Max:           0.03
-      Min:           0.01
-    Name:            lr
-    Parameter Type:  double
-    Feasible Space:
-      Max:           5
-      Min:           2
-    Name:            num-layers
-    Parameter Type:  int
-    Feasible Space:
-      List:
-        sgd
-        adam
-        ftrl
-    Name:            optimizer
-    Parameter Type:  categorical
-  Resume Policy:     LongRunning
-  Trial Template:
-    Trial Parameters:
-      Description:  Learning rate for the training model
-      Name:         learningRate
-      Reference:    lr
-      Description:  Number of training model layers
-      Name:         numberLayers
-      Reference:    num-layers
-      Description:  Training model optimizer (sdg, adam or ftrl)
-      Name:         optimizer
-      Reference:    optimizer
-    Trial Spec:
-      API Version:  batch/v1
-      Kind:         Job
-      Spec:
-        Template:
-          Spec:
-            Containers:
-              Command:
-                python3
-                /opt/mxnet-mnist/mnist.py
-                --batch-size=64
-                --lr=${trialParameters.learningRate}
-                --num-layers=${trialParameters.numberLayers}
-                --optimizer=${trialParameters.optimizer}
-              Image:         docker.io/kubeflowkatib/mxnet-mnist
-              Name:          training-container
-            Restart Policy:  Never
-Status:
-  Conditions:
-    Last Transition Time:  2020-10-23T21:27:53Z
-    Last Update Time:      2020-10-23T21:27:53Z
-    Message:               Experiment is created
-    Reason:                ExperimentCreated
-    Status:                True
-    Type:                  Created
-    Last Transition Time:  2020-10-23T21:28:13Z
-    Last Update Time:      2020-10-23T21:28:13Z
-    Message:               Experiment is running
-    Reason:                ExperimentRunning
-    Status:                True
-    Type:                  Running
-  Current Optimal Trial:
-    Best Trial Name:  random-example-smpc6ws2
-    Observation:
-      Metrics:
-        Latest:  0.978006
-        Max:     0.978603
-        Min:     0.959295
-        Name:    Validation-accuracy
-        Latest:  0.993170
-        Max:     0.993170
-        Min:     0.920293
-        Name:    Train-accuracy
-    Parameter Assignments:
-      Name:   lr
-      Value:  0.02889324678979306
-      Name:   num-layers
-      Value:  5
-      Name:   optimizer
-      Value:  sgd
-  Running Trial List:
-    random-example-26d5wzn2
-    random-example-98fpd29m
-    random-example-x2vjlzzv
-  Start Time:  2020-10-23T21:27:53Z
-  Succeeded Trial List:
-    random-example-n9c4j4cv
-    random-example-qfb68jpb
-    random-example-s96tq48v
-    random-example-smpc6ws2
-  Trials:            7
-  Trials Running:    3
-  Trials Succeeded:  4
-Events:              <none>
+```yaml
+apiVersion: kubeflow.org/v1beta1
+kind: Experiment
+metadata:
+  creationTimestamp: "2020-10-23T21:27:53Z"
+  finalizers:
+    - update-prometheus-metrics
+  generation: 1
+  name: random-example
+  namespace: "<your user profile namespace>"
+  resourceVersion: "147081981"
+  selfLink: /apis/kubeflow.org/v1beta1/namespaces/<your user profile namespace>/experiments/random-example
+  uid: fb3776e8-0f83-4783-88b6-80d06867ca0b
+spec:
+  algorithm:
+    algorithmName: random
+  maxFailedTrialCount: 3
+  maxTrialCount: 12
+  metricsCollectorSpec:
+    collector:
+      kind: StdOut
+  objective:
+    additionalMetricNames:
+      - Train-accuracy
+    goal: 0.99
+    metricStrategies:
+      - name: Validation-accuracy
+        value: max
+      - name: Train-accuracy
+        value: max
+    objectiveMetricName: Validation-accuracy
+    type: maximize
+  parallelTrialCount: 3
+  parameters:
+    - feasibleSpace:
+        max: "0.03"
+        min: "0.01"
+      name: lr
+      parameterType: double
+    - feasibleSpace:
+        max: "5"
+        min: "2"
+      name: num-layers
+      parameterType: int
+    - feasibleSpace:
+        list:
+          - sgd
+          - adam
+          - ftrl
+      name: optimizer
+      parameterType: categorical
+  resumePolicy: LongRunning
+  trialTemplate:
+    failureCondition: status.conditions.#(type=="Failed")#|#(status=="True")#
+    primaryContainerName: training-container
+    successCondition: status.conditions.#(type=="Complete")#|#(status=="True")#
+    trialParameters:
+      - description: Learning rate for the training model
+        name: learningRate
+        reference: lr
+      - description: Number of training model layers
+        name: numberLayers
+        reference: num-layers
+      - description: Training model optimizer (sdg, adam or ftrl)
+        name: optimizer
+        reference: optimizer
+    trialSpec:
+      apiVersion: batch/v1
+      kind: Job
+      spec:
+        template:
+          metadata:
+            annotations:
+              sidecar.istio.io/inject: "false"
+          spec:
+            containers:
+              - command:
+                  - python3
+                  - /opt/mxnet-mnist/mnist.py
+                  - --batch-size=64
+                  - --lr=${trialParameters.learningRate}
+                  - --num-layers=${trialParameters.numberLayers}
+                  - --optimizer=${trialParameters.optimizer}
+                image: docker.io/kubeflowkatib/mxnet-mnist
+                name: training-container
+            restartPolicy: Never
+status:
+  conditions:
+    - lastTransitionTime: "2020-10-23T21:27:53Z"
+      lastUpdateTime: "2020-10-23T21:27:53Z"
+      message: Experiment is created
+      reason: ExperimentCreated
+      status: "True"
+      type: Created
+    - lastTransitionTime: "2020-10-23T21:28:13Z"
+      lastUpdateTime: "2020-10-23T21:28:13Z"
+      message: Experiment is running
+      reason: ExperimentRunning
+      status: "True"
+      type: Running
+  currentOptimalTrial:
+    bestTrialName: random-example-smpc6ws2
+    observation:
+      metrics:
+        - latest: "0.993170"
+          max: "0.993170"
+          min: "0.920293"
+          name: Train-accuracy
+        - latest: "0.978006"
+          max: "0.978603"
+          min: "0.959295"
+          name: Validation-accuracy
+    parameterAssignments:
+      - name: lr
+        value: "0.02889324678979306"
+      - name: num-layers
+        value: "5"
+      - name: optimizer
+        value: sgd
+  runningTrialList:
+    - random-example-26d5wzn2
+    - random-example-98fpd29m
+    - random-example-x2vjlzzv
+  startTime: "2020-10-23T21:27:53Z"
+  succeededTrialList:
+    - random-example-n9c4j4cv
+    - random-example-qfb68jpb
+    - random-example-s96tq48v
+    - random-example-smpc6ws2
+  trials: 7
+  trialsRunning: 3
+  trialsSucceeded: 4
 ```
 
 When the last value in `status.conditions.type` is `Succeeded`, the experiment
