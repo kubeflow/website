@@ -75,12 +75,42 @@ These are the fields in the experiment configuration spec:
   Refer to the
   [`ObjectiveSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L93).
 
-- **parallelTrialCount**: The maximum number of hyperparameter sets that Katib
-  should train in parallel.
+* **algorithm**: The search algorithm that you want Katib to use to find the
+  best hyperparameters or neural architecture configuration. Examples include
+  random search, grid search, Bayesian optimization, and more.
+  See the [search algorithm details](#search-algorithms) below.
+
+* **trialTemplate**: The template that defines the trial.
+  You must package your ML training code into a Docker image, as described
+  [above](#docker-image). You must configure the model's
+  hyperparameters either as command-line arguments or as environment variables,
+  so that Katib can automatically set the values in each trial.
+
+  You can use one of the following job types to train your model:
+
+  - [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
+    (does not support distributed execution).
+  - [Kubeflow TFJob](/docs/guides/components/tftraining/) (supports
+    distributed execution).
+  - [Kubeflow PyTorchJob](/docs/guides/components/pytorch/) (supports
+    distributed execution).
+
+  See the [`TrialTemplate`
+  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L189-L203).
+  The template
+  uses the [Go template format](https://golang.org/pkg/text/template/).
+
+  You can define the job in raw string format or you can use a
+  [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/).
+  [Here](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/katib-controller/trialTemplateConfigmapLabeled.yaml) is an example how to create ConfigMap with trial templates.
+
+* **parallelTrialCount**: The maximum number of hyperparameter sets that Katib
+  should train in parallel. Default value is 3.
 
 - **maxTrialCount**: The maximum number of trials to run.
   This is equivalent to the number of hyperparameter sets that Katib should
-  generate to test the model.
+  generate to test the model. If value is omitted, experiment is running until
+  objective goal is reached or experiment reaches maximum number of failed trials.
 
 - **maxFailedTrialCount**: The maximum number of failed trials before Katib
   should stop the experiment.
