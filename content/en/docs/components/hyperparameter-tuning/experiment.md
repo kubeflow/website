@@ -104,11 +104,12 @@ These are the fields in the experiment configuration spec:
     [Here](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/katib-controller/trialTemplateConfigmapLabeled.yaml) is an example how to create ConfigMap with trial templates.
 
 * **parallelTrialCount**: The maximum number of hyperparameter sets that Katib
-  should train in parallel.
+  should train in parallel. Default value is 3.
 
 * **maxTrialCount**: The maximum number of trials to run.
   This is equivalent to the number of hyperparameter sets that Katib should
-  generate to test the model.
+  generate to test the model. If value is omitted, experiment is running until
+  objective goal is reached or experiment reaches maximum number of failed trials.
 
 * **maxFailedTrialCount**: The maximum number of failed trials before Katib
   should stop the experiment.
