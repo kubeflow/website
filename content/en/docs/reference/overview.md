@@ -65,6 +65,8 @@ API references:
 Katib is an AutoML system that you can use to run hyperparameter tuning and neural architecture search 
 experiments on Kubernetes. For help with using Katib with Kubeflow, see the [user guide](/docs/components/katib/).
 
-gRPC REST API references:
+gRPC API references:
 
-  * [v1beta1](/docs/reference/katib/v1beta1/katib/)
+  - [v1beta1](/docs/reference/katib/v1beta1/katib/)
+
+  - [v1alpha3](/docs/reference/katib/v1alpha3/katib/)
