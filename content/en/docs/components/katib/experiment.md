@@ -716,9 +716,23 @@ to launch an experiment from the command line:
 kubectl apply -f <your-path/your-experiment-config.yaml>
 ```
 
-**Note:** If you deployed Katib as part of Kubeflow (your Kubeflow deployment
-should include Katib), you need to change Kubeflow namespace to your
-profile namespace. Run the following command to launch an experiment
+**Note:**
+
+- If you deployed Katib as part of Kubeflow (your Kubeflow deployment
+  should include Katib), you need to change Kubeflow namespace to your
+  profile namespace.
+
+- (Optional) Katib's experiments don't work with
+  [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
+  If you install Kubeflow using
+  [Istio config](https://www.kubeflow.org/docs/started/k8s/kfctl-k8s-istio/),
+  you have to disable sidecar injection. To do that, specify this annotation:
+  `sidecar.istio.io/inject: "false"` in your experiment's trial template.
+  For examples on how to do it for `Job`, `TFJob` (TensorFlow) or
+  `PyTorchJob` (PyTorch), refer to the
+  [getting-started guide](http://localhost:1313/docs/components/hyperparameter-tuning/hyperparameter/#examples).
+
+Run the following command to launch an experiment
 using the random algorithm example:
 
 ```shell
