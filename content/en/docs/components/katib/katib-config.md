@@ -1,7 +1,7 @@
 +++
 title = "Katib Configuration Overview"
 description = "How to make changes in Katib configuration"
-weight = 70
+weight = 60
                     
 +++
 
@@ -260,22 +260,22 @@ any other settings, a default value is set automatically.
    [default](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server)
    service account.
 
-   **Note:** If you want to run your experiments with
-   [early stopping](/docs/components/katib/early-stopping/),
-   the suggestion's deployment must have permission to update the experiment's
-   trial status. If you don't specify a service account in the Katib config,
-   Katib controller creates required
-   [Kubernetes Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac)
-   for the suggestion.
+**Note:** If you want to run your experiments with
+[early stopping](/docs/components/katib/early-stopping/),
+the suggestion's deployment must have permission to update the experiment's
+trial status. If you don't specify a service account in the Katib config,
+Katib controller creates required
+[Kubernetes Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac)
+for the suggestion.
 
-   If you need your own service account for the experiment's
-   suggestion with early stopping, you have to follow the rules:
+If you need your own service account for the experiment's
+suggestion with early stopping, you have to follow the rules:
 
-   - The service account name can't be equal to
-     `<experiment-name>-<experiment-algorithm>`
+- The service account name can't be equal to
+  `<experiment-name>-<experiment-algorithm>`
 
-   - The service account must have sufficient permissions to update
-     the experiment's trial status.
+- The service account must have sufficient permissions to update
+  the experiment's trial status.
 
 ## Early stopping settings
 
@@ -298,40 +298,3 @@ early-stopping: |-
   ...
 }
 ```
-
-All of these settings except **`image`** can be omitted. If you don't specify
-any other settings, a default value is set automatically.
-
-1. `image` - a Docker image for the early stopping's container with a
-   `medianstop` algorithm (**must be specified**).
-
-   Image example: `docker.io/kubeflowkatib/<early-stopping-name>`
-
-   For each early stopping algorithm you can specify one of the following
-   early stopping names in the Docker image:
-
-   <div class="table-responsive">
-     <table class="table table-bordered">
-       <thead class="thead-light">
-         <tr>
-           <th>Early stopping name</th>
-           <th>Early stopping algorithm</th>
-           <th>Description</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <td><code>earlystopping-medianstop</code></td>
-           <td><code>medianstop</code></td>
-           <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/earlystopping/v1beta1/medianstop">Katib
-             Median Stopping</a> implementation</td>
-         </tr>
-       </tbody>
-     </table>
-   </div>
-
-1. `imagePullPolicy` - an
-   [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
-   for the early stopping's container with a `medianstop` algorithm.
-
-   The default value is `IfNotPresent`

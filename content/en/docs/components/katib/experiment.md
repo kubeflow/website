@@ -183,15 +183,13 @@ These are the fields in the experiment configuration spec:
 
     You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/nas).
 
-- **resumePolicy**: Experiment resume policy. If the experiment was successful
-  because `maxTrialCount` was reached, you can resume it by increasing
-  `maxTrialCount`. Specify `resumePolicy: LongRunning`, if you want to use this
-  feature. If you don't need to resume the experiment, specify
-  `resumePolicy: Never` - in this case, suggestion resources will be deleted and
-  the experiment can't be resumed. By default all experiments have
-  `resumePolicy: LongRunning` parameter.
+* **resumePolicy**: Experiment resume policy. Can be one of
+  `LongRunning`, `Never` or `FromVolume`. The default value is `LongRunning`.
   Refer to the
-  [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L168-L183).
+  [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L54).
+  To find out how to modify a running experiment and use various
+  restart policies follow the
+  [resume experiment guide](/docs/components/katib/resume-experiment/).
 
 _Background information about Katib's `Experiment`, `Suggestion` and `Trial`
 type:_ In Kubernetes terminology, Katib's
@@ -861,11 +859,22 @@ View the results of the experiment in the Katib UI:
   neural architecture search, check the
   [introduction to Katib](/docs/components/katib/overview/).
 
+<<<<<<< HEAD
 - Boost your hyperparameter tuning experiment with
   the [early stopping guide](/docs/components/katib/early-stopping/)
+=======
+<<<<<<< HEAD:content/en/docs/components/katib/experiment.md
+>>>>>>> Add resume policy instructions
 
 - Check the
   [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
+  =======
+- See how to modify running experiment and use various restart policies in the
+  [resume experiment guide](/docs/components/hyperparameter-tuning/resume-experiment/).
+
+* For a detailed instruction of the Katib Configuration file,
+  read the [Katib config page](/docs/components/hyperparameter-tuning/katib-config/).
+  > > > > > > > Add resume policy instructions:content/en/docs/components/hyperparameter-tuning/experiment.md
 
 - How to [set up environment variables](/docs/components/katib/env-variables/)
   for each Katib component.

@@ -1,7 +1,7 @@
 +++
 title = "Overview of Trial Templates"
 description = "How to specify trial template parameters and support a custom resource (CRD) in Katib"
-weight = 40
+weight = 50
                     
 +++
 
