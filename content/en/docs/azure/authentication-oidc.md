@@ -122,22 +122,22 @@ This section shows the how to set up Kubeflow with authentication and authorizat
     - hosts:
         - '*'
         port:
-        name: http
-        number: 80
-        protocol: HTTP
-              # Upgrade HTTP to HTTPS
+            name: http
+            number: 80
+            protocol: HTTP
+        # Upgrade HTTP to HTTPS
         tls:
-        httpsRedirect: true
+            httpsRedirect: true
     - hosts:
         - '*'
         port:
-        name: https
-        number: 443
-        protocol: HTTPS
+            name: https
+            number: 443
+            protocol: HTTPS
         tls:
-        mode: SIMPLE
-        privateKey: /etc/istio/ingressgateway-certs/tls.key
-        serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
+            mode: SIMPLE
+            privateKey: /etc/istio/ingressgateway-certs/tls.key
+            serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
     {{< /highlight >}}
 
 1. Expose Kubeflow with a load balancer service:
@@ -148,11 +148,23 @@ This section shows the how to set up Kubeflow with authentication and authorizat
     kubectl patch service -n istio-system istio-ingressgateway -p '{"spec": {"type": "LoadBalancer"}}'
     ```
 
-   After that, obtain the `LoadBalancer` IP or Hostname from its status and create the necessary certificate.
+    After that, obtain the `LoadBalancer` IP or Hostname from its status and create the necessary certificate.
 
     ```
     kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0]}'
     ```
+
+    {{% alert title="Warning" color="warning" %}}
+    If you are exposing Ingress gateway through public IP please ensure its matches IP address of OIDC ```REDIRECT_URL```, by running:
+    ```
+    kubectl get statefulset authservice -n istio-system -o yaml
+    ```
+    If it doesn't match, update ```REDIRECT_URL``` in the statefulset to be the public IP address you got in the last step, by running:
+        ```
+    kubectl edit statefulset authservice -n istio-system
+    ```
+    {{% /alert %}}
+
 
 1. Create a self-signed Certificate with cert-manager:
 
@@ -166,10 +178,10 @@ This section shows the how to set up Kubeflow with authentication and authorizat
     namespace: istio-system
     spec:
     commonName: istio-ingressgateway.istio-system.svc
-        # Use ipAddresses if your LoadBalancer issues an IP
+    # Use ipAddresses if your LoadBalancer issues an IP
     ipAddresses:
     - <LoadBalancer IP>
-        # Use dnsNames if your LoadBalancer issues a hostname
+    # Use dnsNames if your LoadBalancer issues a hostname
     dnsNames:
     - <LoadBalancer HostName>
     isCA: true
