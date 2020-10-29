@@ -120,7 +120,7 @@ These are the fields in the experiment configuration spec:
 
 - **metricsCollectorSpec**: A specification of how to collect the metrics from
   each trial, such as the accuracy and loss metrics.
-  See the [details of the metrics collector](#metrics-collector) below.
+  See the [details of the metrics collector](#metrics-collector) below. Default metrics collector is `StdOut`.
 
 - **nasConfig**: The configuration for a neural architecture search (NAS).
   Note: NAS is currently in **alpha** with limited support.
@@ -636,22 +636,20 @@ To define the metrics collector for your experiment:
      output location (_standard output_). This is the default metrics collector.
    - `File`: Katib collects the metrics from an arbitrary file, which
      you specify in the `.source.fileSystemPath.path` field. Training container should log metrics to this file.
-     See the [file metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/file-metricscollector-example.yaml#L15-L24).
+     See the [file metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/file-metricscollector-example.yaml#L15-L22).
+     Default file path is `/var/log/katib/metrics.log`.
    - `TensorFlowEvent`: Katib collects the metrics from a directory path
-     containing a
-     [tf.Event](https://www.tensorflow.org/api_docs/python/tf/compat/v1/Event). You
-     should specify the path in the `.source.fileSystemPath.path` field.
+     containing a [tf.Event](https://www.tensorflow.org/api_docs/python/tf/compat/v1/Event).
+     You should specify the path in the `.source.fileSystemPath.path` field.
      See the [TFJob example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/tfjob-example.yaml#L16-L22).
+     Default directory path is `/var/log/katib/tfevent/`.
    - `Custom`: Specify this value if you need to use custom way to collect
      metrics. You must define your custom metrics collector container
      in the `.collector.customCollector` field.
-     See the [custom metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/custom-metricscollector-example.yaml#L15-L37).
+     See the [custom metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/custom-metricscollector-example.yaml#L15-L35).
    - `None`: Specify this value if you don't need to use Katib's metrics
      collector. For example, your training code may handle the persistent
      storage of its own metrics.
-
-1. For `File` and `TensorFlowEvent` metrics collectors specify the metrics output location
-   in the `.source` field. See [const](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L141-L161) for default values.
 
 1. Write code in your training container to print or save to the file metrics in the format
    specified in the `.source.filter.metricsFormat`
