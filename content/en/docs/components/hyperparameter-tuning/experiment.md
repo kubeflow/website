@@ -139,11 +139,11 @@ These are the fields in the experiment configuration spec:
 
       You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1alpha3/nas).
 
-* **resumePolicy**: Experiment resume policy. If experiment was succeeded because `maxTrialCount`
-  was reached, you can resume it by increasing `maxTrialCount`. Specify `resumePolicy: LongRunning`, if
-  you want to use this feature. If you don't need to resume experiment, specify `resumePolicy: Never`. In that case,
-  suggestion resources will be deleted and experiment can't be resumed. By default all experiments have
-  `resumePolicy: LongRunning` parameter. See the [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L53).
+* **resumePolicy**: Experiment resume policy. Can be one of `LongRunning`, `Never` or `FromVolume`.
+  Default value is `LongRunning`.
+  See the [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L54).
+  To find out how to modify running experiment and use various restart policies follow the
+  [resume experiment guide](/docs/components/hyperparameter-tuning/resume-experiment/).
 
 *Background information about Katib's `Experiment` type:* In Kubernetes 
 terminology, Katib's
@@ -761,6 +761,9 @@ View the results of the experiment in the Katib UI:
 * For an overview of the concepts involved in hyperparameter tuning and
   neural architecture search, read the [introduction to 
   Katib](/docs/components/hyperparameter-tuning/overview/).
+
+- See how to modify running experiment and use various restart policies in the
+  [resume experiment guide](/docs/components/hyperparameter-tuning/resume-experiment/).
 
 * For a detailed instruction of the Katib Configuration file, 
   read the [Katib config page](/docs/components/hyperparameter-tuning/katib-config/).
