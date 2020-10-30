@@ -38,7 +38,7 @@ To get Kubeflow running using MicroK8s, you'll need to install MicroK8s, enable 
     microk8s enable dns dashboard storage
     ```
 
-    **Optional:** To enable NVIDIA GPU hardware support, also run `microk8s.enable gpu`.
+    **Optional:** To enable NVIDIA GPU hardware support, also run `microk8s enable gpu`.
 
 4. Deploy Kubeflow by running this command:
 
