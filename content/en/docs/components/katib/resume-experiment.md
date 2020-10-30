@@ -69,7 +69,9 @@ See the [never resume policy example](https://github.com/kubeflow/katib/blob/mas
 
 Use this policy if you intend to restart the experiment.
 After experiment is succeeded, suggestion's deployment and service stay running.
-Modify experiment's trial count parameters to restart it.
+Modify experiment's trial count parameters to restart the experiment.
+
+When you delete the experiment, suggestion's deployment and service are deleted.
 
 This is the default policy for all Katib experiments. You can omit `.spec.resumePolicy` parameter for that functionality.
 
@@ -88,15 +90,16 @@ in Katib configuration settings for the PVC differently from `katib-suggestion`,
 Follow the [Katib configuration guide](/docs/components/hyperparameter-tuning/katib-config/#suggestion-volume-settings)
 to set up suggestion's volume settings.
 
-- PV is deployed with the name: `<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>`
-
 - PVC is deployed with the name: `<suggestion-name>-<suggestion-algorithm>` in suggestion namespace.
+
+- PV is deployed with the name: `<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>`
 
 After experiment is succeeded, suggestion's deployment and service are deleted.
 Suggestion data can be retained in the volume.
-
-When you restart the experiment, suggestion's deployment and service is created and
+When you restart the experiment, suggestion's deployment and service are created and
 suggestion statistics can be recovered from the volume.
+
+When you delete the experiment, suggestion's deployment, service, PVC and PV are deleted automatically.
 
 See the [from volume policy example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/resume-experiment/from-volume-resume.yaml#L18).
 
