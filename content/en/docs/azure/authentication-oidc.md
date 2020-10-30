@@ -155,7 +155,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
     ```
 
     {{% alert title="Warning" color="warning" %}}
-    If you are exposing [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) gateway through public IP, make sure it matches the IP address of OIDC `REDIRECT_URL`, by running:
+    If you are exposing [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) gateway through public IP, make sure it matches the IP address of the OIDC `REDIRECT_URL` by running:
     
     ```shell
     kubectl get statefulset authservice -n istio-system -o yaml
