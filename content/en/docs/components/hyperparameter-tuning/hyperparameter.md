@@ -366,4 +366,4 @@ bash ./scripts/v1alpha3/undeploy.sh
 * For a detailed instruction of the Katib Configuration file, 
   read the [Katib config page](/docs/components/hyperparameter-tuning/katib-config/).
 
-* See how you can change installation of Katib component in the [environment variables guide](/docs/components/hyperparameter-tuning/env-variables/).
+* See how you can change installation of Katib components in the [environment variables guide](/docs/components/hyperparameter-tuning/env-variables/).

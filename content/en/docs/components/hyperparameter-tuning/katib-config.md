@@ -284,14 +284,14 @@ suggestion: |-
 
    - `persistentVolumeSpec.capacity.storage` defaults to 1 Gi.
 
-   - `persistentVolumeSpec.hostPath.path` defaults to `/tmp/katib/suggestions/<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>`.
+   - `persistentVolumeSpec.hostPath.path` defaults to `/tmp/katib/suggestions/<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>`
 
      For the default PV source Katib uses [`hostPath`](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath).
      If `.hostPath.path` in config settings is equal to `/tmp/katib/suggestions/`, controller adds
-     `<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>` to the path. This makes host paths unique across suggestions.
+     `<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>` to the path. That makes host paths unique across suggestions.
 
      **Note that** PV `storageClassName` is always equal to **`katib-suggestion`**.
 
 ## Next steps
 
-- See how you can change installation of Katib component in the [environment variables guide](/docs/components/hyperparameter-tuning/env-variables/).
+- See how you can change installation of Katib components in the [environment variables guide](/docs/components/hyperparameter-tuning/env-variables/).
