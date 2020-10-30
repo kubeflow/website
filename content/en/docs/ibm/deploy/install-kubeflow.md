@@ -183,15 +183,47 @@ kfctl apply -V -f ${CONFIG_URI}
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
 ### Multi-user, auth-enabled
-Run the following commands to deploy Kubeflow with GitHub OAuth application as authentication provider by dex. To support multi-users with authentication enabled, this guide uses [dex](https://github.com/dexidp/dex) with [GitHub OAuth](https://developer.github.com/apps/building-oauth-apps/). Before continue, refer to the guide [Creating an OAuth App](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/) for steps to create an OAuth app on GitHub.com.
 
-The scenario is a GitHub organization owner can authorize its organization members to access a deployed kubeflow. A member of this GitHub organization will be redirected to a page to grant access to the GitHub profile by Kubeflow.
+Run the following steps to deploy Kubeflow with [IBM Cloud AppID](https://cloud.ibm.com/catalog/services/app-id)
+as authentication provider. 
 
-1. Create a new OAuth app in GitHub. Use following setting to register the application:
-    * Homepage URL: `http://localhost:8080/`
-    * Authorization callback URL: `http://localhost:8080/dex/callback`
-1. Once the application is registered, copy and save the `Client ID` and `Client Secret` for use later.
-1. Setup environment variables:
+The scenario is a Kubeflow cluster admin configures Kubeflow as an web
+application in AppID and manages user authentication with builtin
+identity providers (Cloud Directory, SAML, etc) or custom providers.
+
+1. Follow the guide [Getting started with App ID](https://cloud.ibm.com/docs/appid?topic=appid-getting-started)
+to create an AppID service instance.
+2. Follow the step [Registering your app](https://cloud.ibm.com/docs/appid?topic=appid-app#app-register)
+to create an application with type _reguarwebapp_ under the provioned AppID
+instance. Make sure the _scope_ contains _email_. Then retrieve the following 
+configuration parameters from your AppID:
+    * `clientId`
+    * `secret`
+    * `oAuthServerUrl`
+3. Follow the step [Adding redirect URIs](https://cloud.ibm.com/docs/appid?topic=appid-managing-idp)
+to fill a URL for AppID to redirect to Kubeflow. the URL should look like `https://<kubeflow-FQDN>/login/oidc`. Notice that you could follow the guide [Securing the Kubeflow authentication with HTTPS](../authentication/) for the value of `<kubeflow-FQDN>`.
+4. Create the namespace `istio-system` if not exist:
+    ```
+    kubectl create namespace istio-system
+    ```
+5. Create a secret prior to kubeflow deployment by filling parameters from the
+step 2 accordingly:
+    ```SHELL
+    kubectl create secret generic appid-application-configuration -n istio-system \
+      --from-literal=clientId=<clientId> \
+      --from-literal=secret=<secret> \
+      --from-literal=oAuthServerUrl=<oAuthServerUrl> \
+      --from-literal=oidcRedirectUrl=https://<kubeflow-FQDN>/login/oidc
+    ```
+    * `<oAuthServerUrl>` - fill in the value of oAuthServerUrl
+    * `<clientId>` - fill in the value of clientId
+    * `<secret>` - fill in the value of secret
+    * `<kubeflow-FQDN>` - fill in the FQDN of Kubeflow
+    
+    **Notice**: If any of the parameters changed after Kubeflow deployment, it 
+    will need to manually update these parameters in the secret `appid-application-configuration`
+    then restart authservice by running the command `kubectl rollout restart sts authservice -n istio-system`.
+6. Setup environment variables:
     ```
     export KF_NAME=<your choice of name for the Kubeflow deployment>
 
@@ -202,119 +234,29 @@ The scenario is a GitHub organization owner can authorize its organization membe
     # Then set the Kubeflow application directory for this deployment.
     export KF_DIR=${BASE_DIR}/${KF_NAME}
     ```
-1. Setup configuration files:
+7. Setup configuration files:
     ```
-    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.1-branch/kfdef/kfctl_ibm_dex_multi_user.v1.1.0.yaml"
+    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm_multi_user.yaml"
     # Generate and deploy Kubeflow:
     mkdir -p ${KF_DIR}
     cd ${KF_DIR}
     kfctl build -V -f ${CONFIG_URI}
     ```
-1. Deploy Kubeflow:
+8. Deploy Kubeflow:
     ```
     kfctl apply -V -f ${CONFIG_URI}
     ```
-1. Wait until the deployment finishes successfully. e.g., all pods are in `Running` state when running `kubectl get pod -n kubeflow`.
-1. Update the configmap `dex` in namespace `auth` with credentials from the first step.
-    - Get current resource file of current configmap `dex`:
-    `kubectl get configmap dex -n auth -o yaml > dex-cm.yaml`
-    The `dex-cm.yaml` file looks like following:
-    ```YAML
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: dex
-      namespace: auth
-    data:
-      config.yaml: |-
-        issuer: http://dex.auth.svc.cluster.local:5556/dex
-        storage:
-          type: kubernetes
-          config:
-            inCluster: true
-        web:
-          http: 0.0.0.0:5556
-        logger:
-          level: "debug"
-          format: text
-        connectors:
-          - type: github
-            # Required field for connector id.
-            id: github
-            # Required field for connector name.
-            name: GitHub
-            config:
-              # Fill in client ID, client Secret as string literal.
-              clientID:
-              clientSecret: 
-              redirectURI: http://dex.auth.svc.cluster.local:5556/dex/callback
-              # Optional organizations and teams, communicated through the "groups" scope.
-              #
-              # NOTE: This is an EXPERIMENTAL config option and will likely change.
-              #
-              orgs:
-              # Fill in your GitHub organization name
-              - name:
-              # Required ONLY for GitHub Enterprise. Leave it empty when using github.com.
-              # This is the Hostname of the GitHub Enterprise account listed on the
-              # management console. Ensure this domain is routable on your network.
-              hostName:
-              # Flag which indicates that all user groups and teams should be loaded.
-              loadAllGroups: false
-              # flag which will switch from using the internal GitHub id to the users handle (@mention) as the user id.
-              # It is possible for a user to change their own user name but it is very rare for them to do so
-              useLoginAsID: false
-        staticClients:
-        - id: kubeflow-oidc-authservice
-          redirectURIs: ["/login/oidc"]
-          name: 'Dex Login Application'
-          # Update the secret below to match with the oidc authservice.
-          secret: pUBnBOY80SnXgjibTYM9ZWNzY2xreNGQok
-    ```
-    - Replace `clientID` and `clientSecret` in the `config.yaml` field with the `Client ID` and `Client Secret` created above for the GitHub OAuth application. Add your organization name to the `orgs` field, e.g.
-    ```YAML
-    orgs:
-    - name: kubeflow-test
-    ```
-    Save the `dex-cm.yaml` file.
-    - Update this change to the Kubernetes cluster:
-    ```
-    kubectl apply -f dex-cm.yaml -n auth
-
-    # Remove this file with sensitive information.
-    rm dex-cm.yaml
-    ```
-    
-1. Apply configuration changes:
-    ```
-    kubectl rollout restart deploy/dex -n auth
-    ```
+9. Wait until the deployment finishes successfully. e.g., all pods are in `Running` state when running `kubectl get pod -n kubeflow`.
 
 ## Verify installation
 
-1. Check the resources deployed correctly in namespace `kubeflow`
+Check the pod `authservice-0` is in running state in namespace `istio-system`:
+```SHELL
+kubectl get pod authservice-0 -n istio-system
+```
 
-     ```
-     kubectl get all -n kubeflow
-     ```
-
-1. Open Kubeflow Dashboard. The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster. Run the following command and visit http://localhost:8080.
-
-     ```
-     kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
-     ```
-
-Alternatively, in case you want to expose the Kubeflow Dashboard over an external IP, you can change the type of the ingress gateway. To do that, you can edit the service:
-
-     kubectl edit -n istio-system svc/istio-ingressgateway
-
-From that file, replace `type: NodePort` with `type: LoadBalancer` and save.
-
-While the change is being applied, you can watch the service until below command prints a value under the `EXTERNAL-IP` column:
-
-     kubectl get -w -n istio-system svc/istio-ingressgateway
-
-The Kubeflow Dashboard should now be accessible at `http://<EXTERNAL-IP>:31380`. Note that the above installation instructions do not create any protection for the external endpoint, so it will be accessible to anyone without any authentication.
+Please follow the steps in [Exposing the Kubeflow dashboard with DNS and TLS termination](../authentication/#exposing-the-kubeflow-dashboard-with-dns-and-tls-termination) to secure the Kubeflow dashboard with HTTPS, then you should be
+redirected to AppID for authentication when visiting `https://<kubeflow-FQDN>/`.
 
 ## Additional information
 
