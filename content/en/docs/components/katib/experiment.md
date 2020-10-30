@@ -876,5 +876,9 @@ View the results of the experiment in the Katib UI:
   read the [Katib config page](/docs/components/hyperparameter-tuning/katib-config/).
   > > > > > > > Add resume policy instructions:content/en/docs/components/hyperparameter-tuning/experiment.md
 
+<<<<<<< HEAD:content/en/docs/components/katib/experiment.md
 - How to [set up environment variables](/docs/components/katib/env-variables/)
   for each Katib component.
+=======
+* See how you can change installation of Katib components in the [environment variables guide](/docs/components/hyperparameter-tuning/env-variables/).
+>>>>>>> Change order:content/en/docs/components/hyperparameter-tuning/experiment.md
