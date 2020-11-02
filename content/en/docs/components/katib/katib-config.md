@@ -37,7 +37,7 @@ Example for the `File` metrics collector with all settings:
 metrics-collector-sidecar: |-
 {
   "File": {
-    "image": "gcr.io/kubeflow-images-public/katib/v1beta1/file-metrics-collector",
+    "image": "docker.io/kubeflowkatib/file-metrics-collector",
     "imagePullPolicy": "Always",
     "resources": {
       "requests": {
@@ -97,7 +97,7 @@ Example for the `random` algorithm with all settings:
 suggestion: |-
 {
   "random": {
-    "image": "gcr.io/kubeflow-images-public/katib/v1beta1/suggestion-hyperopt",
+    "image": "docker.io/kubeflowkatib/suggestion-hyperopt",
     "imagePullPolicy": "Always",
     "resources": {
       "requests": {
@@ -124,7 +124,7 @@ If you don't specify any other settings, default value is set.
 
    **Must be specified**.
 
-   Image example: `gcr.io/kubeflow-images-public/katib/v1beta1/<suggestion-name>`
+   Image example: `docker.io/kubeflowkatib/<suggestion-name>`
 
    For each algorithm (suggestion) you can specify one of the following suggestion names in Docker image:
 
