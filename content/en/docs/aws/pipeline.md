@@ -84,7 +84,7 @@ data:
 
 ## Configure containers to use AWS credentials
 
-If you write any files to S3 in your application, use `use_aws_secret` to attach aws secret to access S3.
+If you write any files to S3 in your application, use `use_aws_secret` to attach an AWS secret to access S3.
 
 ```python
 import kfp
