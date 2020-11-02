@@ -120,7 +120,7 @@ suggestion: |-
 All of these settings except **`image`** can be omitted. If you don't specify any other settings,
 a default value is set automatically.
 
-1. `image` - a Docker image for the suggestion's container with `random` algorithm (**must be specified**).
+1. `image` - a Docker image for the suggestion's container with a `random` algorithm (**must be specified**).
 
    Image example: `docker.io/kubeflowkatib/<suggestion-name>`
 
@@ -178,12 +178,12 @@ a default value is set automatically.
      </table>
    </div>
 
-1) `imagePullPolicy` - [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
+1. `imagePullPolicy` - [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
    for the suggestion's container with `random` algorithm.
 
    The default value is `IfNotPresent`.
 
-1) `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
+1. `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
    for the suggestion's container with `random` algorithm. In the above example you can see how to specify
    `limits` and `requests`. Currently, you can specify only `memory`, `cpu` and `ephemeral-storage` resource.
 
@@ -199,7 +199,7 @@ a default value is set automatically.
    - `cpu = 500m`.
    - `ephemeral-storage = 5Gi`.
 
-1) `serviceAccountName` - [service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
+1. `serviceAccountName` - [service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
    for the suggestion's container with `random` algorithm.
 
    In the above example, `random-sa` service account is attached for each experiment's
