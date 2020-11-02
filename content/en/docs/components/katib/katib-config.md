@@ -10,7 +10,7 @@ This page describes
 the Kubernetes
 [Config Map](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) that contains information about:
 
-1. Current [metrics collectors](/docs/components/katib/experiment/#metrics-collector) (`key = metrics-collector-sidecar`)
+1. Current [metrics collectors](/docs/components/katib/experiment/#metrics-collector) (`key = metrics-collector-sidecar`).
 1. Current [algorithms](/docs/components/katib/experiment/#search-algorithms-in-detail) (suggestions) (`key = suggestion`).
 
 The Katib Config Map must be deployed in the
@@ -65,7 +65,7 @@ a default value is set automatically.
 
 1. `imagePullPolicy` - [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images) for the `File` metrics collector's container.
 
-   The default value is `IfNotPresent`.
+   The default value is `IfNotPresent`
 
 1. `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
    for the `File` metrics collector's container. In the above example you can see how to specify
@@ -73,15 +73,15 @@ a default value is set automatically.
 
    The default values for the `requests` are:
 
-   - `memory = 10Mi`.
-   - `cpu = 50m`.
-   - `ephemeral-storage = 500Mi`.
+   - `memory = 10Mi`
+   - `cpu = 50m`
+   - `ephemeral-storage = 500Mi`
 
    The default values for the `limits` are:
 
-   - `memory = 100Mi`.
-   - `cpu = 500m`.
-   - `ephemeral-storage = 5Gi`.
+   - `memory = 100Mi`
+   - `cpu = 500m`
+   - `ephemeral-storage = 5Gi`
 
 ## Suggestion settings
 
@@ -181,7 +181,7 @@ a default value is set automatically.
 1. `imagePullPolicy` - [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
    for the suggestion's container with `random` algorithm.
 
-   The default value is `IfNotPresent`.
+   The default value is `IfNotPresent`
 
 1. `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
    for the suggestion's container with `random` algorithm. In the above example you can see how to specify
@@ -189,15 +189,15 @@ a default value is set automatically.
 
    The default values for the `requests` are:
 
-   - `memory = 10Mi`.
-   - `cpu = 50m`.
-   - `ephemeral-storage = 500Mi`.
+   - `memory = 10Mi`
+   - `cpu = 50m`
+   - `ephemeral-storage = 500Mi`
 
    The default values for the `limits` are:
 
-   - `memory = 100Mi`.
-   - `cpu = 500m`.
-   - `ephemeral-storage = 5Gi`.
+   - `memory = 100Mi`
+   - `cpu = 500m`
+   - `ephemeral-storage = 5Gi`
 
 1. `serviceAccountName` - [service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
    for the suggestion's container with `random` algorithm.
