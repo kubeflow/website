@@ -47,7 +47,7 @@ client.list_experiments(namespace="<your_namespace>")
 
 - dex {{% config-uri-aws-standard %}}
 
-Please look at [this comment](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) and [this comment](https://github.com/kubeflow/kfctl/issues/140#issuecomment-719894529) to do programmatic authentication with Dex.
+To do programmatic authentication with Dex, refer to the following comments under the [#140](https://github.com/kubeflow/kfctl/issues/140) issue in the `kfctl` repository: [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) and [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-719894529).
 
 
 - cognito {{% config-uri-aws-cognito %}}
