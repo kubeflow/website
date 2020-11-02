@@ -47,7 +47,7 @@ client.list_experiments(namespace="<your_namespace>")
 
 - dex {{% config-uri-aws-standard %}}
 
-Please look at this [PR](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) to do programmatic authentication with Dex.
+To do programmatic authentication with Dex, refer to the following comments under the [#140](https://github.com/kubeflow/kfctl/issues/140) issue in the `kfctl` repository: [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) and [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-719894529).
 
 
 - cognito {{% config-uri-aws-cognito %}}
@@ -84,7 +84,7 @@ data:
 
 ## Configure containers to use AWS credentials
 
-If you write any files to S3 in your application, use `use_aws_secret` to attach aws secret to access S3.
+If you write any files to S3 in your application, use `use_aws_secret` to attach an AWS secret to access S3.
 
 ```python
 import kfp
