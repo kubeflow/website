@@ -8,8 +8,21 @@ weight = 10
 {{% beta-status
   feedbacklink="https://github.com/kubeflow/katib/issues" %}}
 
-Katib is Kubernetes-native project for automated machine learning (AutoML).
-Use Katib for automated tuning of your machine learning (ML) model's hyperparameters and architecture.
+Katib is a Kubernetes-native project for automated machine learning (AutoML).
+For example, to run hyperparameter tuning or neural architecture search.
+Learn more about AutoML at [fast.ai](https://www.fast.ai/2018/07/16/auto-ml2/),
+[Google Cloud](https://cloud.google.com/automl),
+[Microsoft Azure](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml#automl-in-azure-machine-learning) or
+[Amazon SageMaker](https://aws.amazon.com/blogs/aws/amazon-sagemaker-autopilot-fully-managed-automatic-machine-learning/).
+
+Katib is the framework agnostic to machine learning frameworks.
+It can tune hyperparameters of applications written in any language
+of the users' choice and natively supports many machine learning frameworks,
+such as TensorFlow, MXNet, PyTorch, XGBoost, and others.
+
+The [Katib project](https://github.com/kubeflow/katib) is open source.
+The [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)
+is a good starting point for developers who want to contribute to the project.
 
 This page introduces the concepts of hyperparameter tuning, neural
 architecture search, and the Katib system as a component of Kubeflow.
@@ -17,11 +30,11 @@ architecture search, and the Katib system as a component of Kubeflow.
 ## Hyperparameters and hyperparameter tuning
 
 _Hyperparameters_ are the variables that control the model training process.
-For example:
+They include:
 
-- Learning rate.
-- Number of layers in a neural network.
-- Number of nodes in each layer.
+- The learning rate.
+- The number of layers in a neural network.
+- The number of nodes in each layer.
 
 Hyperparameter values are not _learned_. In other words, in contrast to the
 node weights and other training _parameters_, the model training process does
@@ -40,8 +53,8 @@ specify whether you want the hyperparameter tuning job to _maximize_ or
 _minimize_ the metric.
 
 For example, the following graph from Katib shows the level of validation accuracy
-for various combinations of hyperparameter values (learning rate, number of
-layers, and optimizer):
+for various combinations of hyperparameter values (the learning rate, the number of
+layers, and the optimizer):
 
 <img src="/docs/images/katib/katib-random-example-graph.png"
   alt="Graph produced by the random example"
@@ -84,16 +97,6 @@ part of the form for submitting a NAS job from the Katib UI:
   alt="Submitting a neural architecture search from the Katib UI"
   class="mt-3 mb-3 border border-info rounded">
 
-## The Katib project
-
-Katib is a Kubernetes-based system for hyperparameter tuning and neural
-architecture search. Katib supports a number of ML frameworks, including
-TensorFlow, MXNet, PyTorch, XGBoost, and others.
-
-The [Katib project](https://github.com/kubeflow/katib) is open source.
-The [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)
-is a good starting point for developers who want to contribute to the project.
-
 ## Katib interfaces
 
 You can use the following interfaces to interact with Katib:
@@ -112,7 +115,7 @@ You can use the following interfaces to interact with Katib:
 
 - Command-line interfaces (CLIs):
 
-  - **Kfctl** is the Kubeflow CLI that you can use to install and configure
+  - **kfctl** is the Kubeflow CLI that you can use to install and configure
     Kubeflow. Read about kfctl in the guide to
     [configuring Kubeflow](/docs/other-guides/kustomize/).
 

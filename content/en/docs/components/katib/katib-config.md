@@ -5,31 +5,33 @@ weight = 40
                     
 +++
 
-This page describes information about
-[Katib config](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/katib-config.yaml).
-
-Katib config is the Kubernetes
+This page describes
+[Katib config](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/katib-config.yaml) —
+the Kubernetes
 [Config Map](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) that contains information about:
 
 1. Current [metrics collectors](/docs/components/katib/experiment/#metrics-collector) (`key = metrics-collector-sidecar`)
 1. Current [algorithms](/docs/components/katib/experiment/#search-algorithms-in-detail) (suggestions) (`key = suggestion`).
 
-Katib Config Map must be deployed in
+The Katib Config Map must be deployed in the
 [`KATIB_CORE_NAMESPACE`](/docs/components/katib/env-variables/#katib-controller)
-namespace with `katib-config` name. Katib controller parses Katib config when you submit Experiment.
+namespace with the `katib-config` name. The Katib controller parses the Katib config when
+you submit your experiment.
 
 You can edit this Config Map even after deploying Katib.
 
-If you deploy Katib in Kubeflow namespace, to edit Katib config run this:
+If you are deploying Katib in the Kubeflow namespace, run this command to edit your Katib config:
 
-`kubectl edit configMap katib-config -n kubeflow`
+```shell
+kubectl edit configMap katib-config -n kubeflow
+```
 
 ## Metrics Collector Sidecar settings
 
 These settings are related to Katib metrics collectors, where:
 
-- key = `metrics-collector-sidecar`
-- value = corresponding JSON settings for each metrics collector kind.
+- key: `metrics-collector-sidecar`
+- value: corresponding JSON settings for each metrics collector kind
 
 Example for the `File` metrics collector with all settings:
 
@@ -56,27 +58,26 @@ metrics-collector-sidecar: |-
 }
 ```
 
-All of these settings except **`image`** can be omitted. If you don't specify any other settings, default value is set.
+All of these settings except **`image`** can be omitted. If you don't specify any other settings,
+a default value is set automatically.
 
-1. `image` - Docker image for the `File` metrics collector's container.
+1. `image` - a Docker image for the `File` metrics collector's container (**must be specified**).
 
-   **Must be specified**.
+1. `imagePullPolicy` - [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images) for the `File` metrics collector's container.
 
-1. `imagePullPolicy` - [Image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images) for the `File` metrics collector's container.
+   The default value is `IfNotPresent`.
 
-   Default value is `IfNotPresent`.
-
-1. `resources` - [Resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
+1. `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
    for the `File` metrics collector's container. In the above example you can see how to specify
    `limits` and `requests`. Currently, you can specify only `memory`, `cpu` and `ephemeral-storage` resource.
 
-   Default values for the `requests` are:
+   The default values for the `requests` are:
 
    - `memory = 10Mi`.
    - `cpu = 50m`.
    - `ephemeral-storage = 500Mi`.
 
-   Default values for the `limits` are:
+   The default values for the `limits` are:
 
    - `memory = 100Mi`.
    - `cpu = 500m`.
@@ -86,12 +87,11 @@ All of these settings except **`image`** can be omitted. If you don't specify an
 
 These settings are related to Katib suggestions, where:
 
-- key = `suggestion`
-- value = corresponding JSON settings for each algorithm name.
+- key: `suggestion`
+- value: corresponding JSON settings for each algorithm name
 
-If you want to use new algorithm, you must update Katib config with the new suggestion.
-
-Example for the `random` algorithm with all settings:
+If you want to use a new algorithm, you need to update the Katib config. For example,
+using a `random` algorithm with all settings looks as follows:
 
 ```json
 suggestion: |-
@@ -117,12 +117,10 @@ suggestion: |-
 }
 ```
 
-All of these settings except **`image`** can be omitted.
-If you don't specify any other settings, default value is set.
+All of these settings except **`image`** can be omitted. If you don't specify any other settings,
+a default value is set automatically.
 
-1. `image` - Docker image for the suggestion's container with `random` algorithm.
-
-   **Must be specified**.
+1. `image` - a Docker image for the suggestion's container with `random` algorithm (**must be specified**).
 
    Image example: `docker.io/kubeflowkatib/<suggestion-name>`
 
@@ -180,32 +178,34 @@ If you don't specify any other settings, default value is set.
      </table>
    </div>
 
-1. `imagePullPolicy` - [Image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
+1) `imagePullPolicy` - [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
    for the suggestion's container with `random` algorithm.
 
-   Default value is `IfNotPresent`.
+   The default value is `IfNotPresent`.
 
-1. `resources` - [Resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
+1) `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
    for the suggestion's container with `random` algorithm. In the above example you can see how to specify
    `limits` and `requests`. Currently, you can specify only `memory`, `cpu` and `ephemeral-storage` resource.
 
-   Default values for the `requests` are:
+   The default values for the `requests` are:
 
    - `memory = 10Mi`.
    - `cpu = 50m`.
    - `ephemeral-storage = 500Mi`.
 
-   Default values for the `limits` are:
+   The default values for the `limits` are:
 
    - `memory = 100Mi`.
    - `cpu = 500m`.
    - `ephemeral-storage = 5Gi`.
 
-1. `serviceAccountName` - [Service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
+1) `serviceAccountName` - [service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
    for the suggestion's container with `random` algorithm.
 
-   In the above example, `random-sa` service account is attached for each Experiment's
+   In the above example, `random-sa` service account is attached for each experiment's
    suggestion with `random` algorithm until you change or delete this service account from the Katib config.
 
-   By default suggestion pod doesn't have any specific service account.
-   In that case, suggestion's pod uses [default](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server) service account.
+   By default, the suggestion pod doesn't have any specific service account,
+   in which case, the pod uses the
+   [default](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server)
+   service account.
