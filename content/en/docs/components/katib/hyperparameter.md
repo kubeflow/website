@@ -241,7 +241,7 @@ spec:
                   - --lr=${trialParameters.learningRate}
                   - --num-layers=${trialParameters.numberLayers}
                   - --optimizer=${trialParameters.optimizer}
-                image: docker.io/kubeflowkatib/mxnet-mnist
+                image: docker.io/kubeflowkatib/mxnet-mnist:v1beta1-e294a90
                 name: training-container
             restartPolicy: Never
 status:
