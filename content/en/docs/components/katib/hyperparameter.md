@@ -32,7 +32,7 @@ If you want to install Katib separately from Kubeflow, or to get a later version
 of Katib, run the following commands to install Katib directly from its
 repository on GitHub and deploy Katib to your cluster:
 
-```
+```shell
 git clone https://github.com/kubeflow/katib
 make deploy
 ```
@@ -54,7 +54,7 @@ volume (PV) to bind to the persistent volume claim (PVC) required by Katib.
 After deploying Katib to your cluster, run the following command to create the
 PV:
 
-```
+```shell
 kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/pv/pv.yaml
 ```
 
@@ -82,13 +82,13 @@ Katib UI from the Kubeflow UI:
 
 Alternatively, you can set port-forwarding for the Katib UI service:
 
-```
+```shell
 kubectl port-forward svc/katib-ui -n kubeflow 8080:80
 ```
 
 Then you can access the Katib UI at this URL:
 
-```
+```shell
 http://localhost:8080/katib/
 ```
 
@@ -122,18 +122,19 @@ example:
 
 1. Download the example:
 
-   ```
+   ```shell
    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/random-example.yaml --output random-example.yaml
    ```
 
 1. Edit `random-example.yaml` and change the following line to use your Kubeflow user profile namespace:
 
-   ```
+   ```shell
    Namespace: kubeflow
    ```
 
 1. Deploy the example:
-   ```
+
+   ```shell
    kubectl apply -f random-example.yaml
    ```
 
@@ -152,7 +153,7 @@ This example randomly generates the following hyperparameters:
 
 Check the experiment status:
 
-```
+```shell
 kubectl -n <your user profile namespace> get experiment random-example -o yaml
 ```
 
@@ -349,27 +350,28 @@ If you installed Katib as part of Kubeflow, you can’t run experiments in Kubef
 Run the following commands to launch an experiment using the Kubeflow's
 TensorFlow training job operator, TFJob:
 
-1. Download the tfjob-example.yaml file
+1. Download the tfjob-example.yaml file:
 
-   ```
+   ```shell
    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/tfjob-example.yaml --output tfjob-example.yaml
    ```
 
 1. Edit `tfjob-example.yaml` and change the following line to use your Kubeflow user profile namespace:
 
-   ```
+   ```shell
    Namespace: kubeflow
    ```
 
 1. Deploy the example:
 
-   ```
+   ```shell
    kubectl apply -f tfjob-example.yaml
    ```
 
 1. You can check the status of the experiment:
-   ```
-   kubectl -n <your user profile namespace> describe experiment tfjob-example
+
+   ```shell
+   kubectl -n <your user profile namespace> get experiment tfjob-example -o yaml
    ```
 
 Follow the steps as described for the _random algorithm example_
@@ -383,24 +385,25 @@ training job operator, PyTorchJob:
 
 1. Download the pytorchjob-example.yaml file
 
-   ```
+   ```shell
    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/pytorchjob-example.yaml --output pytorchjob-example.yaml
    ```
 
 1. Edit `pytorchjob-example.yaml` and change the following line to use your Kubeflow user profile namespace:
 
-   ```
+   ```shell
    Namespace: kubeflow
    ```
 
 1. Deploy the example:
 
-   ```
+   ```shell
    kubectl apply -f pytorchjob-example.yaml
    ```
 
 1. You can check the status of the experiment:
-   ```
+
+   ```shell
    kubectl -n <your user profile namespace> describe experiment pytorchjob-example
    ```
 
@@ -411,7 +414,7 @@ Follow the steps as described for the _random algorithm example_
 
 To delete Katib from Kubernetes cluster run::
 
-```
+```shell
 make undeploy
 ```
 
