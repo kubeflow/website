@@ -154,7 +154,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
     kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0]}'
     ```
 
-    {{% alert title="Warning" color="warning" %}}
+    **Note:**
     If you are exposing [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) gateway through public IP, make sure it matches the IP address of the OIDC `REDIRECT_URL` by running:
     
     ```shell
@@ -165,9 +165,8 @@ This section shows the how to set up Kubeflow with authentication and authorizat
     
     ```shell
     kubectl edit statefulset authservice -n istio-system
+    kubectl rollout restart statefulset authservice -n istio-system
     ```
-
-    {{% /alert %}}
 
 
 1. Create a self-signed Certificate with cert-manager:
