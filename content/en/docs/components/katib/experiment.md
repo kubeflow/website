@@ -705,7 +705,7 @@ To define the metrics collector for your experiment:
    if the name of your objective metric is `loss` and the additional metrics are
    `recall` and `precision`, your training code should print the following output:
 
-   ```
+   ```shell
    epoch 1:
    loss=0.3
    recall=0.5
@@ -726,7 +726,7 @@ You can run a Katib experiment from the command line or from the Katib UI.
 You can use [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
 to launch an experiment from the command line:
 
-```
+```shell
 kubectl apply -f <your-path/your-experiment-config.yaml>
 ```
 
@@ -734,19 +734,19 @@ Note that if you deployed Katib as part of Kubeflow, you need to
 change Kubeflow namespace to your profile namespace.
 Run the following command to launch an experiment using the random algorithm example:
 
-```
+```shell
 kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/random-example.yaml
 ```
 
 Check the experiment status:
 
-```
+```shell
 kubectl -n kubeflow describe experiment <your-experiment-name>
 ```
 
 For example, to check the status of the random algorithm example:
 
-```
+```shell
 kubectl -n kubeflow describe experiment random-example
 ```
 
