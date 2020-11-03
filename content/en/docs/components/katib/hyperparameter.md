@@ -306,6 +306,7 @@ is complete. You can see information about the best trial in `status.currentOpti
 As well, `status` shows experiment's trials with the current statuses.
 
 <a id="view-ui"></a>
+
 View the results of the experiment in the Katib UI:
 
 1. Open the Katib UI as described [above](#katib-ui).
@@ -383,7 +384,7 @@ If you installed Katib as part of Kubeflow, you can’t run experiments in Kubef
 Run the following commands to launch an experiment using Kubeflow's PyTorch
 training job operator, PyTorchJob:
 
-1. Download the pytorchjob-example.yaml file
+1. Download the pytorchjob-example.yaml file:
 
    ```shell
    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/pytorchjob-example.yaml --output pytorchjob-example.yaml
@@ -412,7 +413,7 @@ Follow the steps as described for the _random algorithm example_
 
 ## Cleanup
 
-To delete Katib from Kubernetes cluster run::
+To delete Katib from Kubernetes cluster run:
 
 ```shell
 make undeploy
