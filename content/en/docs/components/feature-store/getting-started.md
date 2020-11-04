@@ -4,10 +4,6 @@ description = "How to set up Feast and walk through examples"
 weight = 20
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 This guide provides the necessary resources to install [Feast](http://feast.dev/) alongside Kubeflow, describes the usage of Feast with Kubeflow components, and provides examples that users can follow to test their setup.
 
