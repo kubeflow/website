@@ -353,7 +353,7 @@ If you installed Katib as part of Kubeflow, you can’t run experiments in Kubef
 Run the following commands to launch an experiment using the Kubeflow's
 TensorFlow training job operator, TFJob:
 
-1. Download the tfjob-example.yaml file:
+1. Download `tfjob-example.yaml`:
 
    ```shell
    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/tfjob-example.yaml --output tfjob-example.yaml
@@ -386,7 +386,7 @@ If you installed Katib as part of Kubeflow, you can’t run experiments in Kubef
 Run the following commands to launch an experiment using Kubeflow's PyTorch
 training job operator, PyTorchJob:
 
-1. Download the pytorchjob-example.yaml file:
+1. Download `pytorchjob-example.yaml`:
 
    ```shell
    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/pytorchjob-example.yaml --output pytorchjob-example.yaml
