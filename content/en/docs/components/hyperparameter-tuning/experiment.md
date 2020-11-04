@@ -86,27 +86,27 @@ These are the fields in the experiment configuration spec:
   template with model parameters, which are substituted from `trialTemplate.trialParameters`.
   For example, your training container can receive hyperparameters as command-line
   arguments or as environment variables. You have to set the name of your training
-  container in `trialTemplate.primaryContainerName`
+  container in `trialTemplate.primaryContainerName`.
 
     Katib dynamically supports any kind of
     [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
     By default you can use one of the following job types to train your model:
 
-    * [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/).
+    * [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 
-    * [Kubeflow TFJob](/docs/components/training/tftraining/).
+    * [Kubeflow `TFJob`](/docs/components/training/tftraining/)
 
-    * [Kubeflow PyTorchJob](/docs/components/training/pytorch/).
+    * [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
 
-    * [Kubeflow MPIJob](/docs/components/training/mpi).
+    * [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
-    * [Tekton Pipeline](https://github.com/tektoncd/pipeline).
+    * [Tekton `Pipeline`](https://github.com/tektoncd/pipeline)
 
     See the [`TrialTemplate` 
     type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
     Follow the [trial template guide](/docs/components/hyperparameter-tuning/trial-template/)
     to understand how to specify `trialTemplate` parameters, save templates in `ConfigMaps` and
-    support your own CRD in Katib.
+    support custom Kubernetes resource in Katib.
 
 * **parallelTrialCount**: The maximum number of hyperparameter sets that Katib
   should train in parallel.

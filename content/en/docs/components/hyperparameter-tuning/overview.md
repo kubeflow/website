@@ -175,14 +175,21 @@ reaches either the objective or the configured maximum number of trials.
 The *worker job* is the process that runs to evaluate a trial and calculate
 its objective value.
 
-The worker job can be one of the following types:
+The worker job can be any type of Kubernetes resource or
+[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
+Follow the [trial template guide](/docs/components/hyperparameter-tuning/trial-template/) TODO: add link
+to see how to support your own Kubernetes resource in Katib.
+Katib has these CRD examples in upstream:
 
-* [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
-  (does not support distributed execution). 
-* [Kubeflow TFJob](/docs/guides/components/tftraining/) (supports
-  distributed execution).
-* [Kubeflow PyTorchJob](/docs/guides/components/pytorch/) (supports 
-  distributed execution).
+* [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
+
+* [Kubeflow `TFJob`](/docs/components/training/tftraining/)
+
+* [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
+
+* [Kubeflow `MPIJob`](/docs/components/training/mpi)
+
+* [Tekton `Pipeline`](https://github.com/tektoncd/pipeline)
 
 By offering the above worker job types, Katib supports multiple ML frameworks.
 
