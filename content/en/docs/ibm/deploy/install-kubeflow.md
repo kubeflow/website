@@ -195,8 +195,8 @@ custom providers.
 1. Follow the guide [Getting started with App ID](https://cloud.ibm.com/docs/appid?topic=appid-getting-started)
 to create an AppID service instance.
 2. Follow the step [Registering your app](https://cloud.ibm.com/docs/appid?topic=appid-app#app-register)
-to create an application with type _regularwebapp_ under the provisoned AppID
-instance. Make sure the _scope_ contains _email_. Then retrieve the following 
+to create an application with type _regularwebapp_ under the provisioned AppID
+instance. Make sure the _scope_ contains _email_. Then retrieve the following
 configuration parameters from your AppID:
     * `clientId`
     * `secret`
