@@ -185,23 +185,22 @@ kfctl apply -V -f ${CONFIG_URI}
 ### Multi-user, auth-enabled
 
 Run the following steps to deploy Kubeflow with [IBM Cloud AppID](https://cloud.ibm.com/catalog/services/app-id)
-as authentication provider. 
+as an authentication provider. 
 
-The scenario is a Kubeflow cluster admin configures Kubeflow as an web
-application in AppID and manages user authentication with builtin
-identity providers (Cloud Directory, SAML, etc) or custom providers.
+The scenario is a Kubeflow cluster admin configures Kubeflow as a web
+application in AppID and manages user authentication with builtin identity
+providers (Cloud Directory, SAML, social log-in with Google or Facebook etc.) or
+custom providers.
 
 1. Follow the guide [Getting started with App ID](https://cloud.ibm.com/docs/appid?topic=appid-getting-started)
 to create an AppID service instance.
 2. Follow the step [Registering your app](https://cloud.ibm.com/docs/appid?topic=appid-app#app-register)
-to create an application with type _reguarwebapp_ under the provioned AppID
+to create an application with type _regularwebapp_ under the provisoned AppID
 instance. Make sure the _scope_ contains _email_. Then retrieve the following 
 configuration parameters from your AppID:
     * `clientId`
     * `secret`
     * `oAuthServerUrl`
-3. Follow the step [Adding redirect URIs](https://cloud.ibm.com/docs/appid?topic=appid-managing-idp)
-to fill a URL for AppID to redirect to Kubeflow. the URL should look like `https://<kubeflow-FQDN>/login/oidc`. Notice that you could follow the guide [Securing the Kubeflow authentication with HTTPS](../authentication/) for the value of `<kubeflow-FQDN>`.
 4. Create the namespace `istio-system` if not exist:
     ```
     kubectl create namespace istio-system
@@ -218,7 +217,7 @@ step 2 accordingly:
     * `<oAuthServerUrl>` - fill in the value of oAuthServerUrl
     * `<clientId>` - fill in the value of clientId
     * `<secret>` - fill in the value of secret
-    * `<kubeflow-FQDN>` - fill in the FQDN of Kubeflow
+    * `<kubeflow-FQDN>` - fill in the FQDN of Kubeflow, if you don't know yet, just give a dummy one like `localhost`. Then change it after you got one.
     
     **Notice**: If any of the parameters changed after Kubeflow deployment, it 
     will need to manually update these parameters in the secret `appid-application-configuration`
@@ -248,15 +247,31 @@ step 2 accordingly:
     ```
 9. Wait until the deployment finishes successfully. e.g., all pods are in `Running` state when running `kubectl get pod -n kubeflow`.
 
-## Verify installation
+### Verify mutli-user installation
 
 Check the pod `authservice-0` is in running state in namespace `istio-system`:
 ```SHELL
 kubectl get pod authservice-0 -n istio-system
 ```
 
-Please follow the steps in [Exposing the Kubeflow dashboard with DNS and TLS termination](../authentication/#exposing-the-kubeflow-dashboard-with-dns-and-tls-termination) to secure the Kubeflow dashboard with HTTPS, then you should be
-redirected to AppID for authentication when visiting `https://<kubeflow-FQDN>/`.
+## Next steps
+
+Please follow the steps in [Exposing the Kubeflow dashboard with DNS and TLS termination](../authentication/#exposing-the-kubeflow-dashboard-with-dns-and-tls-termination) to secure the Kubeflow dashboard with HTTPS, then you will have the required DNS name as Kubeflow FQDN to enable the OIDC flow for AppID:
+
+1. Follow the step [Adding redirect URIs](https://cloud.ibm.com/docs/appid?topic=appid-managing-idp#add-redirect-uri)
+to fill a URL for AppID to redirect to Kubeflow. The URL should look like `https://<kubeflow-FQDN>/login/oidc`.
+2. Update the secret `appid-application-configuration` with the updated Kubeflow FQDN to replace `<kubeflow-FQDN>` in below command:
+```SHELL
+redirect_url=$(printf https://<kubeflow-FQDN>/login/oidc | base64 -w0) \
+ kubectl patch secret appid-application-configuration -n istio-system \
+ -p $(printf '{"data":{"oidcRedirectUrl": "%s"}}' $redirect_url)
+```
+3. restart the pod `authservice-0`:
+```SHELL
+kubectl rollout restart statefulset authservice -n istio-system
+```
+
+Then visit `https://<kubeflow-FQDN>/`, it should redirect you to AppID for authentication.
 
 ## Additional information
 
