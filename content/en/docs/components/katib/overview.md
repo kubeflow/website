@@ -8,17 +8,20 @@ weight = 10
 {{% beta-status
   feedbacklink="https://github.com/kubeflow/katib/issues" %}}
 
-Katib is a Kubernetes-native project for automated machine learning (AutoML).
-For example, to run hyperparameter tuning or neural architecture search.
+Katib is a Kubernetes-native project for automated machine learning (AutoML) —
+it's a system for hyperparameter tuning and neural architecture search.
+Katib supports a number of machine learning frameworks, including
+TensorFlow, MXNet, PyTorch, XGBoost, and others.
 Learn more about AutoML at [fast.ai](https://www.fast.ai/2018/07/16/auto-ml2/),
 [Google Cloud](https://cloud.google.com/automl),
 [Microsoft Azure](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml#automl-in-azure-machine-learning) or
 [Amazon SageMaker](https://aws.amazon.com/blogs/aws/amazon-sagemaker-autopilot-fully-managed-automatic-machine-learning/).
 
-Katib is the framework agnostic to machine learning frameworks.
-It can tune hyperparameters of applications written in any language
-of the users' choice and natively supports many machine learning frameworks,
-such as TensorFlow, MXNet, PyTorch, XGBoost, and others.
+Katib supports a lot of various AutoML algorithms, such as
+Bayesian optimization, Tree of Parzen Estimators, Random Search,
+Covariance Matrix Adaptation Evolution Strategy, Hyperband,
+Neural Architecture Search based on ENAS, Differentiable Architecture Search and
+many more. Further algorithms are under developing.
 
 The [Katib project](https://github.com/kubeflow/katib) is open source.
 The [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)

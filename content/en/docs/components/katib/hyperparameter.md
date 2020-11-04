@@ -351,7 +351,7 @@ If you installed Katib as part of Kubeflow, you can’t run experiments in Kubef
 Run the following commands to launch an experiment using the Kubeflow's
 TensorFlow training job operator, TFJob:
 
-1. Download the tfjob-example.yaml file:
+1. Download `tfjob-example.yaml`:
 
    ```shell
    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/tfjob-example.yaml --output tfjob-example.yaml
@@ -384,7 +384,7 @@ If you installed Katib as part of Kubeflow, you can’t run experiments in Kubef
 Run the following commands to launch an experiment using Kubeflow's PyTorch
 training job operator, PyTorchJob:
 
-1. Download the pytorchjob-example.yaml file:
+1. Download `pytorchjob-example.yaml`:
 
    ```shell
    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/pytorchjob-example.yaml --output pytorchjob-example.yaml
@@ -421,10 +421,9 @@ make undeploy
 
 ## Next steps
 
-- For details of how to configure and run your experiment, see the guide to
-  [running an experiment](/docs/components/katib/experiment/).
+- Learn to configure and run your experiment with Katib in the
+  [running an experiment](/docs/components/katib/experiment/) guide.
 
-- For a detailed instruction of the Katib Configuration file,
-  read the [Katib config page](/docs/components/katib/katib-config/).
+- About the [Katib configuration file (Katib config)](/docs/components/katib/katib-config/).
 
-- See how you can change installation of Katib component in the [environment variables guide](/docs/components/katib/env-variables/).
+- How to [set up environment variables](/docs/components/katib/env-variables/) for each Katib component.

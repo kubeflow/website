@@ -31,8 +31,8 @@ potential values (the search space) for the parameters that you want to
 optimize, the objective metric to use when determining optimal values, the
 search algorithm to use during optimization, and other configurations.
 
-See the [YAML file for the random algorithm
-example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/random-example.yaml).
+As a reference, you can use the YAML file of the
+[random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/random-example.yaml).
 
 The list below describes the fields in the YAML file for an experiment. The
 Katib UI offers the corresponding fields. You can choose to configure and run
@@ -43,7 +43,7 @@ the experiment from the UI or from the command line.
 These are the fields in the experiment configuration spec:
 
 - **parameters**: The range of the hyperparameters or other parameters that you
-  want to tune for your ML model. The parameters define the _search space_,
+  want to tune for your machine learning (ML) model. The parameters define the _search space_,
   also known as the _feasible set_ or the _solution space_.
   In this section of the spec, you define the name and the distribution
   (discrete or continuous) of every hyperparameter that you need to search.
@@ -67,8 +67,8 @@ These are the fields in the experiment configuration spec:
   If the `objectiveMetricName` metric for a set of hyperparameters reaches the `goal`,
   Katib stops trying more hyperparameter combinations.
 
-  You can run experiment without specifying the `goal`. In that case, Katib
-  runs experiment until corresponding succeeded trials reaches `maxTrialCount`.
+  You can run the experiment without specifying the `goal`. In that case, Katib
+  runs the experiment until the corresponding successful trials reach `maxTrialCount`.
   `maxTrialCount` parameter is described bellow.
 
   See the [`ObjectiveSpec`
@@ -94,7 +94,7 @@ These are the fields in the experiment configuration spec:
   experiment with a status of `Failed`.
 
 - **trialTemplate**: The template that defines the trial.
-  You must package your ML training code into a Docker image, as described
+  You need to package your ML training code into a Docker image, as described
   [above](#docker-image). You must configure the model's
   hyperparameters either as command-line arguments or as environment variables,
   so that Katib can automatically set the values in each trial.
@@ -123,7 +123,7 @@ These are the fields in the experiment configuration spec:
   See the [details of the metrics collector](#metrics-collector) below. Default metrics collector is `StdOut`.
 
 - **nasConfig**: The configuration for a neural architecture search (NAS).
-  Note: NAS is currently in **alpha** with limited support.
+  **Note**: NAS is currently in **alpha** with limited support.
   You can specify the configurations of the neural network design that you want
   to optimize, including the number of layers in the network, the types of
   operations, and more.
@@ -687,7 +687,7 @@ to launch an experiment from the command line:
 kubectl apply -f <your-path/your-experiment-config.yaml>
 ```
 
-Note that if you deployed Katib as part of Kubeflow, you need to
+**Note that** if you deployed Katib as part of Kubeflow, you need to
 change Kubeflow namespace to your profile namespace.
 Run the following command to launch an experiment using the random algorithm example:
 
@@ -772,15 +772,11 @@ View the results of the experiment in the Katib UI:
 
 ## Next steps
 
-- See how to run the random algorithm and other [Katib
-  examples](/docs/components/katib/hyperparameter/#random-algorithm)
-  in the getting-started guide.
+- Learn how to run the [random algorithm and other Katib examples](/docs/components/katib/hyperparameter/#random-algorithm).
 
 - For an overview of the concepts involved in hyperparameter tuning and
-  neural architecture search, read the [introduction to
-  Katib](/docs/components/katib/overview/).
+  neural architecture search, read the [introduction to Katib](/docs/components/katib/overview/).
 
-- For a detailed instruction of the Katib Configuration file,
-  read the [Katib config page](/docs/components/katib/katib-config/).
+- Read about [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
 
-- See how you can change installation of Katib component in the [environment variables guide](/docs/components/katib/env-variables/).
+- How to [set up environment variables](/docs/components/katib/env-variables/) for each Katib component.
