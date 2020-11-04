@@ -90,7 +90,7 @@ These are the fields in the experiment configuration spec:
 
     Katib dynamically supports any kind of
     [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
-    By default you can use one of the following job types to train your model:
+    By default, you can use one of the following job types to train your model:
 
     * [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 
@@ -102,8 +102,8 @@ These are the fields in the experiment configuration spec:
 
     * [Tekton `Pipeline`](https://github.com/tektoncd/pipeline)
 
-    See the [`TrialTemplate` 
-    type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
+    See the
+    [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
     Follow the [trial template guide](/docs/components/hyperparameter-tuning/trial-template/)
     to understand how to specify `trialTemplate` parameters, save templates in `ConfigMaps` and
     support custom Kubernetes resource in Katib.

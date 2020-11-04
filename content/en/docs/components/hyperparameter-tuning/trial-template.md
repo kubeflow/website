@@ -41,7 +41,7 @@ Trial template specification is located under `.spec.trialTemplate` of your expe
 For the API overview see the
 [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
 
-To define experiment's trial, you should specify these parameters in `.spec.TrialTemplate`:
+To define experiment's trial, you should specify these parameters in `.spec.trialTemplate`:
 
 - `trialParameters` - list of the parameters which are used in trial template
   during experiment execution. **Note:** Your trial template must contain
@@ -67,8 +67,9 @@ To define experiment's trial, you should specify these parameters in `.spec.Tria
     [`reference`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L39-L48).
 
 - You have to define your experiment's trial template in **one** of the `trialSpec`
-  or `configMap` sources. To set parameters in your template from the
-  `trialParameters`, you need to use expression:
+  or `configMap` sources. **Note:** Your template must omit `.metadata.name` and
+  `.metadata.namespace`. To set parameters in your template from the
+  `trialParameters`, you need to use this expression:
   `${trialParameters.<parameter-name>}` in your template. Katib automatically
   replaces it with the appropriate values from the experiment's suggestion.
   For example,
@@ -112,7 +113,7 @@ If parameter has default value, it can be **omitted** in experiment YAML.
 - `primaryPodLabels` - labels that determines if
   the [trial worker's](/docs/components/hyperparameter-tuning/overview/#worker-job)
   pod or pods need to be injected by Katib metrics collector. **Note:** If
-  `primaryPodLabels` is omitted, metrics collector wraps all worker pods.
+  `primaryPodLabels` is omitted, metrics collector wraps all worker's pods.
   Read more about Katib metrics collector in
   [running an experiment guide](http://localhost:1313/docs/components/hyperparameter-tuning/experiment/#metrics-collector).
   See the example with
@@ -164,7 +165,7 @@ If parameter has default value, it can be **omitted** in experiment YAML.
 
 ### Use trial metadata in template
 
-You can't specify `.metadata.name` and `.metadata.namespace` for your
+You can't specify `.metadata.name` and `.metadata.namespace` in your
 trial template, but you can get this data during experiment run.
 For example, if you want to append trial name to your model storage.
 
@@ -271,8 +272,9 @@ Follow these two simple steps to integrate your custom CRD in Katib:
    ```
 
 After these changes, deploy Katib as described in
-[getting started guide](/docs/components/hyperparameter-tuning/hyperparameter/#installing-katib).
-You can check logs from the Katib controller:
+[getting started guide](/docs/components/hyperparameter-tuning/hyperparameter/#installing-katib)
+and wait until `katib-controller` pod is created.
+You can check logs from the Katib controller to see your resource integration:
 
 ```shell
 kubectl logs $(kubectl get pods -n kubeflow -o name | grep katib-controller) -n kubeflow
@@ -289,7 +291,7 @@ If above steps are successful, you are able to use your custom object YAML
 as experiment's trial template source spec.
 
 We appreciate if you share your experience with us and contribute in Katib with
-using various CRDs in Katib.
+your examples of using various CRDs in Katib.
 The [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)
 is a good starting point to know how to contribute to the project.
 

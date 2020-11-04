@@ -130,9 +130,9 @@ This example embeds the hyperparameters as arguments. You can embed
 hyperparameters in another way (for example, using environment variables) 
 by using the template defined in the `trialTemplate.trialSpec` section of the YAML file.
 The template uses the [unstructured](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1/unstructured)
-format and substitutes parameters from `trialTemplate.trialParameters`.
+format and substitutes parameters from the `trialTemplate.trialParameters`.
 Follow the [trial template guide](/docs/components/hyperparameter-tuning/trial-template/)
-to know more about using it.
+to know more about it.
 
 This example randomly generates the following hyperparameters:
 
