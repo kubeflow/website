@@ -42,7 +42,30 @@ For the API overview see the
 
 To define experiment's trial, you should specify these parameters in `.spec.TrialTemplate`:
 
-- You have to define your trial template in **one** of the `trialSpec` or `configMap` sources.
+- `trialParameters` - list of the parameters which are used in trial template during experiment execution.
+  **Note that** your trial template must contain each parameter from the `trialParameters`. You can set these
+  parameters in any field of your template, except `.metadata.name` and `.metadata.namespace`.
+  See [bellow](#template-metadata) how you can use trial `metadata` parameters in your template.
+  For example, your training container can receive hyperparameters as command-line or
+  arguments or as environment variables.
+
+  Your experiment's suggestion produces `trialParameters` before running the trial.
+  Each `TrialParameter` has these structure:
+
+  - `name` - is the parameter name that is replaced in your template.
+
+  - `description` (optional) - description of the parameter.
+
+  - `reference` - is the parameter name that experiment's suggestion is produced.
+    Usually, for the hyperparameter tunning parameter names are equal to the experiment search space.
+    For example, in grid example search space has
+    [three parameters](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L19-L36)
+    (`lr`, `num-layers` and `optimizer`) and `trialParameters` contains each of these parameter
+    in [`reference`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L39-L48).
+
+- You have to define experiment's trial template in **one** of the `trialSpec` or `configMap` sources.
+  To set parameters from `trialParameters`, you need to use expression: `${trialParameters.<parameter-name>}`
+  in your template. Katib automatically replaced it with appropriate values from the experiment's suggestion.
 
   - `trialSpec` - experiment's trial template in [unstructured](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1/unstructured)
     format. Should be a valid YAML. See the [grid example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L49-L65).
@@ -60,26 +83,8 @@ To define experiment's trial, you should specify these parameters in `.spec.Tria
 
     1. `templatePath` - path to the template in ConfigMap's data.
 
-    See the [config map source](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/trial-configmap-source.yaml#L50-L53) example.
-
-- `trialParameters` - list of the parameters which are used in trial template during experiment execution.
-  **Note that** your trial template must contain each parameter from the `trialParameters`. You can set these
-  parameters in any field of your template, except `.metadata.name` and `.metadata.namespace`.
-  See [bellow](#template-metadata) how you can use trial `metadata` parameters in your template.
-
-  Your experiment's suggestion produces `trialParameters` before running the trial.
-  Each `TrialParameter` has these structure:
-
-  - `name` - is the parameter name that is replaced in your template.
-
-  - `description` (optional) - description of the parameter.
-
-  - `reference` - is the parameter name that experiment's suggestion is produced.
-    Usually, for the hyperparameter tunning parameter names are equal to the experiment search space.
-    For example, in grid example search space has
-    [three parameters](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L19-L36)
-    (`lr`, `num-layers` and `optimizer`) and `trialParameters` contains each of these parameter
-    in [`reference`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L39-L48).
+    See the example with [ConfigMap source](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/trial-configmap-source.yaml#L50-L53)
+    for the trial template.
 
 `.spec.TrialTemplate` parameters bellow is used to control trial behavior.
 If parameter has default value, it can be **omitted** in experiment YAML.
@@ -91,7 +96,7 @@ If parameter has default value, it can be **omitted** in experiment YAML.
   The default value is `false`
 
 - `primaryPodLabels` - labels that determines if
-  the [trial worker job's](/docs/components/hyperparameter-tuning/overview/#worker-job)
+  the [trial worker's](/docs/components/hyperparameter-tuning/overview/#worker-job)
   pods needs to be injected by Katib metrics collector. If `primaryPodLabels` is omitted,
   metrics collector wraps all worker pods. Read more about Katib metrics collector in
   [running an experiment guide](http://localhost:1313/docs/components/hyperparameter-tuning/experiment/#metrics-collector).
@@ -133,5 +138,52 @@ If parameter has default value, it can be **omitted** in experiment YAML.
 <a id="template-metadata"></a>
 
 ### Use trial metadata in template
+
+You can't specify `.metadata.name` and `.metadata.namespace` for your trial template,
+but you can get this data during experiment run.
+For example, if you want to append trial name to your model storage.
+
+To do this, point `.trialParameters[x].reference` to the
+appropriate metadata parameter and use `.trialParameters[x].name` in your trial template.
+
+The table bellow show connection between
+`.trialParameters[x].reference` value and trial worker's metadata.
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Reference</th>
+        <th>Worker metadata</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>${trialSpec.Name}</code></td>
+        <td>Trial name</td>
+      </tr>
+      <tr>
+        <td><code>${trialSpec.Namespace}</code></td>
+        <td>Trial namespace</td>
+      </tr>
+      <tr>
+        <td><code>${trialSpec.Kind}</code></td>
+        <td>Kubernetes resource kind for the trial's worker</td>
+      </tr>
+      <tr>
+        <td><code>${trialSpec.APIVersion}</code></td>
+        <td>Kubernetes resource APIVersion for the trial's worker</td>
+      </tr>
+      <tr>
+        <td><code>${trialSpec.Labels[custom-key]}</code></td>
+        <td>Trial's worker label with `custom-key` key </td>
+      </tr>
+      <tr>
+        <td><code>${trialSpec.Annotations[custom-key]}</code></td>
+        <td>Trial's worker annotation with `custom-key` key </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <a id="custom-resource"></a>
