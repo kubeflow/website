@@ -767,6 +767,9 @@ View the results of the experiment in the Katib UI:
   neural architecture search, read the [introduction to 
   Katib](/docs/components/hyperparameter-tuning/overview/).
 
+* Learn to configure your 
+  [trial templates](/docs/components/hyperparameter-tuning/trial-template/).
+
 * For a detailed instruction of the Katib Configuration file, 
   read the [Katib config page](/docs/components/hyperparameter-tuning/katib-config/).
 

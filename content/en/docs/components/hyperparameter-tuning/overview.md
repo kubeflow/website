@@ -177,8 +177,10 @@ its objective value.
 
 The worker job can be any type of Kubernetes resource or
 [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
-Follow the [trial template guide](/docs/components/hyperparameter-tuning/trial-template/) TODO: add link
+Follow the
+[trial template guide](/docs/components/hyperparameter-tuning/trial-template/#custom-resource)
 to see how to support your own Kubernetes resource in Katib.
+
 Katib has these CRD examples in upstream:
 
 * [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
