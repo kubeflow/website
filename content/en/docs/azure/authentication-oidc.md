@@ -154,8 +154,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
     kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0]}'
     ```
 
-    **Note:**
-    If you are exposing [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) gateway through public IP, make sure it matches the IP address of the OIDC `REDIRECT_URL` by running:
+    **Note**: If you are exposing [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) gateway through public IP, make sure it matches the IP address of the OIDC `REDIRECT_URL` by running:
     
     ```shell
     kubectl get statefulset authservice -n istio-system -o yaml
