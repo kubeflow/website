@@ -106,7 +106,7 @@ These are the fields in the experiment configuration spec:
     [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
     Follow the [trial template guide](/docs/components/hyperparameter-tuning/trial-template/)
     to understand how to specify `trialTemplate` parameters, save templates in `ConfigMaps` and
-    support custom Kubernetes resource in Katib.
+    support custom Kubernetes resources in Katib.
 
 * **parallelTrialCount**: The maximum number of hyperparameter sets that Katib
   should train in parallel.
