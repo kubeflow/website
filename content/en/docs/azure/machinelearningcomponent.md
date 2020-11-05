@@ -41,7 +41,7 @@ See more for [Model Register on Azure Machine Learning Page](https://docs.micros
 
 Trained machine learning models are deployed as web services in the cloud. You could use the model by accessing the model endpoint. When using the model as a web service, following items are included in the component: an entry script and Azure Machine Learning environment configurations.
 
-Please navigate to [AML-deploy-model pipeline component](https://github.com/kubeflow/pipelines/tree/master/components/azure/azureml/aml-register-model) for usage details and more information.
+Please navigate to [AML-deploy-model pipeline component](https://github.com/kubeflow/pipelines/tree/master/components/azure/azureml/aml-deploy-model) for usage details and more information.
 
 See more for [Model Deploy on Azure Machine Learning Page](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
 
