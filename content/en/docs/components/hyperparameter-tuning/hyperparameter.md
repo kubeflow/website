@@ -328,18 +328,21 @@ TensorFlow training job operator, TFJob:
    Namespace: kubeflow
    ```
 
+1. (Optional) **Note:** Katib's experiments don't work with
+   [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
+   If you installed Kubeflow using
+   [Istio config](https://www.kubeflow.org/docs/started/k8s/kfctl-k8s-istio/),
+   you have to disable sidecar injection. To do that, specify annotation
+   `sidecar.istio.io/inject: "false"` in your experiment's trial template.
+   For the provided `TFJob` example check
+   [here](https://www.kubeflow.org/docs/components/training/tftraining/#what-is-tfjob)
+   how to set annotation.
+
 1. Deploy the example:
 
    ```
    kubectl apply -f tfjob-example.yaml
    ```
-
-1. (Optional) **Note that** Katib's experiments don't work with
-   [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
-   If you installed Kubeflow using [Istio config](https://www.kubeflow.org/docs/started/k8s/kfctl-k8s-istio/),
-   you have to disable sidecar injection. To do that, specify annotation `sidecar.istio.io/inject: "false"`
-   in your experiment's trial template. For the provided `TFJob` example check
-   [here](https://www.kubeflow.org/docs/components/training/tftraining/#what-is-tfjob) how to set annotation.
 
 1. You can check the status of the experiment:
    ```
@@ -366,18 +369,20 @@ training job operator, PyTorchJob:
    Namespace: kubeflow
    ```
 
+1. (Optional) **Note:** Katib's experiments don't work with
+   [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
+   If you installed Kubeflow using
+   [Istio config](https://www.kubeflow.org/docs/started/k8s/kfctl-k8s-istio/),
+   you have to disable sidecar injection. To do that, specify annotation
+   `sidecar.istio.io/inject: "false"` in your experiment's trial template.
+   For the provided `PyTorchJob` example setting the annotation should be similar to
+   [`TFJob`](https://www.kubeflow.org/docs/components/training/tftraining/#what-is-tfjob).
+
 1. Deploy the example:
 
    ```
    kubectl apply -f pytorchjob-example.yaml
    ```
-
-1. (Optional) **Note that** Katib's experiments don't work with
-   [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
-   If you installed Kubeflow using [Istio config](https://www.kubeflow.org/docs/started/k8s/kfctl-k8s-istio/),
-   you have to disable sidecar injection. To do that, specify annotation `sidecar.istio.io/inject: "false"`
-   in your experiment's trial template. For the provided `PyTorchJob` example setting the annotation should be similar to
-   [`TFJob`](https://www.kubeflow.org/docs/components/training/tftraining/#what-is-tfjob).
 
 1. You can check the status of the experiment:
    ```
