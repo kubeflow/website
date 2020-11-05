@@ -129,4 +129,5 @@ See the
 
 - Read about [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
 
-- How to [set up environment variables](/docs/components/katib/env-variables/) for each Katib component.
+- How to [set up environment variables](/docs/components/katib/env-variables/)
+  for each Katib component.
