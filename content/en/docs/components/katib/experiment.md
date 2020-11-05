@@ -86,7 +86,7 @@ These are the fields in the experiment configuration spec:
   Experiment's objective value is calculated in accordance with the
   selected strategy.
 
-  For example, if you set below parameters in Experiment:
+  For example, if you set the below parameters in Experiment:
 
   ```yaml
   . . .
