@@ -7,7 +7,7 @@ weight = 10
 
 ## Install Kubeflow behind a proxy server
 
-This guide demonstrates how to to install and configure Kubeflow behind a proxy server.
+This guide demonstrates how to install and configure Kubeflow behind a proxy server.
 
 **Note**: These instructions assume that your Docker setup has a [configured
 proxy service](https://docs.docker.com/network/proxy/) on each Kubernetes node.
@@ -47,7 +47,7 @@ https wget https://github.com/kubeflow/manifests/archive/v1.1-branch.tar.gz
 5. Open the YAML configuration (zipped) file and under `- name: manifests`
    change the old URI (such as
    `https://github.com/kubeflow/manifests/archive/v1.1-branch.tar.gz`) to the
-   location of the new one: as follows:
+   location of the new one, as follows:
 
 ```
 - name: manifests
