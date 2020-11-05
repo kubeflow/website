@@ -130,7 +130,7 @@ If parameter has the default value, it can be **omitted** in the experiment YAML
   to collect required metrics for the single experiment optimization step.
 
 - `successCondition` - [condition](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/#object-spec-and-status)
-  of the trial worker Kubernetes resource status in which trial's job is succeeded.
+  of the trial worker Kubernetes resource status in which trial's job has succeeded.
   This condition must be in [GJSON format](https://github.com/tidwall/gjson).
   See the example with
   [`successCondition`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/tekton/pipeline-run.yaml#L36).
