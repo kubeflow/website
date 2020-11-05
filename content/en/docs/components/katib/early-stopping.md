@@ -8,22 +8,25 @@ weight = 60
 This page shows how you can use
 [early stopping](https://en.wikipedia.org/wiki/Early_stopping) to improve your
 Katib experiments.
-Early stopping allows you avoid overfitting when you train your model
+Early stopping allows you to avoid overfitting when you train your model
 during Katib experiments.
 It helps you to save computing resources and experiment execution time by
-stopping experiment's trials before training process is complete.
+stopping the experiment's trials before the training process is complete.
 
-The major advantage to use early stopping in Katib, that you don't need to modify
-your [training container package](/docs/components/hyperparameter-tuning/experiment/#packaging-your-training-code-in-a-container-image).
+The major advantage of using early stopping in Katib, is that you don't
+need to modify your
+[training container package](/docs/components/hyperparameter-tuning/experiment/#packaging-your-training-code-in-a-container-image).
 All you have to do is to change your experiment YAML file.
 
 Early stopping works in the same way as Katib's
 [metrics collector](http://localhost:1313/docs/components/hyperparameter-tuning/experiment/#metrics-collector).
-It analyses required metrics from `stdout` or from arbitrary output file and
-early stopping algorithm makes decision if trial needs to be stopped. Currently, early stopping
-works only with `StdOut` or `File` metrics collectors. **Note**: Your
-training container must print training logs with the timestamp, because early
-stopping algorithm needs to know sequence of reported metrics. See the
+It analyses required metrics from `stdout` or from the arbitrary output file and
+an early stopping algorithm makes the decision if the trial needs to be stopped.
+Currently, early stopping works only with `StdOut` or `File` metrics collectors.
+
+**Note**: Your training container must print training logs with the timestamp,
+because early stopping algorithms need to know the sequence of reported metrics.
+See the
 [example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/mxnet-mnist/mnist.py#L36)
 how to add date format to your logs.
 
@@ -42,14 +45,14 @@ parameter, similar to `.spec.algorithm`. See the
 
 - `.earlyStopping.algorithmSettings`- is the settings for the early stopping algorithm.
 
-Experiment's suggestion produces new trials. After that, early stopping
+Experiment's suggestion produces new trials. After that, the early stopping
 algorithm generates early stopping rules for the created trials.
-Once trial reaches all the rules, it is stopped and trial status is
+Once the trial reaches all the rules, it is stopped and the trial status is
 transferred to `EarlyStopped`.
 After that, Katib calls the suggestion again to ask for the new trials.
 
-Read more about Katib concepts
-in [overview guide](/docs/components/hyperparameter-tuning/overview/#katib-concepts).
+Read more about Katib concepts in the
+[overview guide](/docs/components/hyperparameter-tuning/overview/#katib-concepts).
 
 Follow the
 [Katib configuration guide](/docs/components/hyperparameter-tuning/katib-config/#early-stopping-settings)
@@ -105,12 +108,12 @@ Katib supports the following early stopping settings:
   </table>
 </div>
 
-### Submit early stopping experiment from the UI
+### Submit an early stopping experiment from the UI
 
-You can use Katib UI to submit early stopping experiment.
+You can use Katib UI to submit an early stopping experiment.
 Follow
 [these steps](/docs/components/hyperparameter-tuning/experiment/#running-the-experiment-from-the-katib-ui)
-to create experiment from the UI.
+to create the experiment from the UI.
 
 Once you reach early stopping section, select the appropriate values:
 
@@ -118,10 +121,10 @@ Once you reach early stopping section, select the appropriate values:
   alt="UI form to deploy an early stopping Katib experiment"
   class="mt-3 mb-3 border border-info rounded">
 
-### View the early stopping experiment results
+## View the early stopping experiment results
 
 You have to install [jq](https://stedolan.github.io/jq/download/),
-to run bellow commands.
+to run below commands.
 
 Check early stopped trials in your experiment:
 
