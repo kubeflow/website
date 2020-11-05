@@ -13,7 +13,7 @@ so, follow the guide to
 
 ## Using your own domain
 
-If you want to use your own domain instead of **${KF_NAME}.endpoints.${PROJECT}.cloud.goog**, follow these instructions after running `kfctl build`:
+If you want to use your own domain instead of **${KF_NAME}.endpoints.${PROJECT}.cloud.goog**, follow these instructions after building your cluster:
 
 1. Remove the substitution `hostname` in the Kptfile.
 
