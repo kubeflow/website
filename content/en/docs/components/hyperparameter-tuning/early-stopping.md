@@ -46,7 +46,7 @@ Experiment's suggestion produces new trials. After that, early stopping
 algorithm generates early stopping rules for the created trials.
 Once trial reaches all the rules, it is stopped and trial status is
 transferred to `EarlyStopped`.
-After that, Katib calls suggestion again to ask for the new trials.
+After that, Katib calls the suggestion again to ask for the new trials.
 
 Read more about Katib concepts
 in [overview guide](/docs/components/hyperparameter-tuning/overview/#katib-concepts).
@@ -120,7 +120,8 @@ Once you reach early stopping section, select the appropriate values:
 
 ### View the early stopping experiment results
 
-To run bellow commands you have to install [jq](https://stedolan.github.io/jq/download/).
+You have to install [jq](https://stedolan.github.io/jq/download/),
+to run bellow commands.
 
 Check early stopped trials in your experiment:
 
@@ -178,7 +179,7 @@ Check trial statuses on the experiment monitor page:
   alt="UI form to view trials"
   class="mt-3 mb-3 border border-info rounded">
 
-If you click on early stopped trial name, you see reported metrics before it
+If you click on the early stopped trial name, you see reported metrics before trial
 is early stopped:
 
 <img src="/docs/images/katib/katib-early-stopping-trial-info.png"
