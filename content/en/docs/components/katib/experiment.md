@@ -815,8 +815,16 @@ View the results of the experiment in the Katib UI:
   neural architecture search, check the
   [introduction to Katib](/docs/components/katib/overview/).
 
+<<<<<<< HEAD:content/en/docs/components/katib/experiment.md
 - Check the
   [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
+=======
+* Follow the [early stopping guide](/docs/components/hyperparameter-tuning/early-stopping/)
+  to see how you can boost your hyperparameter tunning experiments.
+
+* For a detailed instruction of the Katib Configuration file, 
+  read the [Katib config page](/docs/components/hyperparameter-tuning/katib-config/).
+>>>>>>> Add early stopping doc:content/en/docs/components/hyperparameter-tuning/experiment.md
 
 - How to [set up environment variables](/docs/components/katib/env-variables/)
   for each Katib component.
