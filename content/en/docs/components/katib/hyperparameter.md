@@ -39,7 +39,8 @@ make deploy
 
 ### Setting up persistent volumes
 
-If you used [above script](#katib-install) to deploy Katib, you can skip this step. This script deploys PVC and PV on your cluster.
+If you used the [above script](#katib-install) to deploy Katib,
+you can skip this step. This script deploys PVC and PV on your cluster.
 
 You can skip this step if you're using Kubeflow on Google Kubernetes Engine
 (GKE) or if your Kubernetes cluster includes a StorageClass for dynamic volume
@@ -305,7 +306,7 @@ is complete. You can see information about the best trial in `status.currentOpti
 
 - `.currentOptimalTrial.parameterAssignments` is the corresponding hyperparameter set.
 
-As well, `status` shows experiment's trials with the current statuses.
+As well, `status` shows the experiment's trials with the current statuses.
 
 <a id="view-ui"></a>
 

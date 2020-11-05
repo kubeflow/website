@@ -5,7 +5,7 @@ weight = 100
                     
 +++
 
-This is legacy gRPC API reference for Katib v1alpha3 version.
+This is the legacy gRPC API reference for Katib v1alpha3 version.
 Corresponding Katib documentation can be found in
 [1.0 Kubeflow documentation.](https://v1-0-branch.kubeflow.org/docs/components/hyperparameter-tuning/)
 

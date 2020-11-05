@@ -63,13 +63,15 @@ a default value is set automatically.
 
 1. `image` - a Docker image for the `File` metrics collector's container (**must be specified**).
 
-1. `imagePullPolicy` - [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images) for the `File` metrics collector's container.
+1. `imagePullPolicy` - [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
+   for the `File` metrics collector's container.
 
    The default value is `IfNotPresent`
 
 1. `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
-   for the `File` metrics collector's container. In the above example you can see how to specify
-   `limits` and `requests`. Currently, you can specify only `memory`, `cpu` and `ephemeral-storage` resource.
+   for the `File` metrics collector's container. In the above example you
+   can see how to specify `limits` and `requests`. Currently, you can specify
+   only `memory`, `cpu` and `ephemeral-storage` resources.
 
    The default values for the `requests` are:
 
@@ -120,11 +122,13 @@ suggestion: |-
 All of these settings except **`image`** can be omitted. If you don't specify any other settings,
 a default value is set automatically.
 
-1. `image` - a Docker image for the suggestion's container with a `random` algorithm (**must be specified**).
+1. `image` - a Docker image for the suggestion's container with a `random`
+   algorithm (**must be specified**).
 
    Image example: `docker.io/kubeflowkatib/<suggestion-name>`
 
-   For each algorithm (suggestion) you can specify one of the following suggestion names in Docker image:
+   For each algorithm (suggestion) you can specify one of the following
+   suggestion names in Docker image:
 
    <div class="table-responsive">
      <table class="table table-bordered">
@@ -179,13 +183,15 @@ a default value is set automatically.
    </div>
 
 1. `imagePullPolicy` - [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
-   for the suggestion's container with `random` algorithm.
+   for the suggestion's container with a `random` algorithm.
 
    The default value is `IfNotPresent`
 
 1. `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
-   for the suggestion's container with `random` algorithm. In the above example you can see how to specify
-   `limits` and `requests`. Currently, you can specify only `memory`, `cpu` and `ephemeral-storage` resource.
+   for the suggestion's container with a `random` algorithm.
+   In the above example you can see how to specify `limits` and `requests`.
+   Currently, you can specify only `memory`, `cpu` and
+   `ephemeral-storage` resources.
 
    The default values for the `requests` are:
 
@@ -200,10 +206,11 @@ a default value is set automatically.
    - `ephemeral-storage = 5Gi`
 
 1. `serviceAccountName` - [service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
-   for the suggestion's container with `random` algorithm.
+   for the suggestion's container with a `random` algorithm.
 
-   In the above example, `random-sa` service account is attached for each experiment's
-   suggestion with `random` algorithm until you change or delete this service account from the Katib config.
+   In the above example, the `random-sa` service account is attached for each
+   experiment's suggestion with a `random` algorithm until you change or delete
+   this service account from the Katib config.
 
    By default, the suggestion pod doesn't have any specific service account,
    in which case, the pod uses the

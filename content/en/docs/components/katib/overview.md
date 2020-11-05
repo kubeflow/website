@@ -21,7 +21,7 @@ Katib supports a lot of various AutoML algorithms, such as
 Bayesian optimization, Tree of Parzen Estimators, Random Search,
 Covariance Matrix Adaptation Evolution Strategy, Hyperband,
 Neural Architecture Search based on ENAS, Differentiable Architecture Search and
-many more. Further algorithms are under developing.
+many more. Further algorithms are under development.
 
 The [Katib project](https://github.com/kubeflow/katib) is open source.
 The [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)

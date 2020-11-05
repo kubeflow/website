@@ -69,7 +69,7 @@ These are the fields in the experiment configuration spec:
 
   You can run the experiment without specifying the `goal`. In that case, Katib
   runs the experiment until the corresponding successful trials reach `maxTrialCount`.
-  `maxTrialCount` parameter is described bellow.
+  `maxTrialCount` parameter is described below.
 
   See the [`ObjectiveSpec`
   type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L47).
@@ -158,12 +158,13 @@ These are the fields in the experiment configuration spec:
   You can define the job in YAML format or you can use a
   [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/).
   [Here](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/trial-template-configmap.yaml)
-  is an ConfigMap example with trial templates.
+  is a ConfigMap example with trial templates.
 
 >>>>>>> Modify docs for v1beta1
 - **metricsCollectorSpec**: A specification of how to collect the metrics from
   each trial, such as the accuracy and loss metrics.
-  See the [details of the metrics collector](#metrics-collector) below. Default metrics collector is `StdOut`.
+  See the [details of the metrics collector](#metrics-collector) below.
+  Default metrics collector is `StdOut`.
 
 - **nasConfig**: The configuration for a neural architecture search (NAS).
   **Note**: NAS is currently in **alpha** with limited support.
@@ -173,21 +174,24 @@ These are the fields in the experiment configuration spec:
   See the [`NasConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L287).
 
   - **graphConfig**: The graph config that defines structure for a
-    directed acyclic graph of the neural network. You can specify number of layers,
-    `input_sizes` for input layer and `output_sizes` for output layer.
+    directed acyclic graph of the neural network. You can specify the number of layers,
+    `input_sizes` for the input layer and `output_sizes` for the output layer.
     See the [`GraphConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L292-L297).
 
   - **operations**: The range of operations that you want to tune for your ML model.
-    For each neural network layer NAS algorithm selects one of the operation to build neural network.
-    Each operation has sets of **parameters** which described above.
+    For each neural network layer the NAS algorithm selects one of the operations
+    to build a neural network. Each operation contains sets of **parameters** which
+    are described above.
     See the [`Operation` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L299-L303).
 
     You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/nas).
 
-- **resumePolicy**: Experiment resume policy. If experiment was succeeded because `maxTrialCount`
-  was reached, you can resume it by increasing `maxTrialCount`. Specify `resumePolicy: LongRunning`, if
-  you want to use this feature. If you don't need to resume experiment, specify `resumePolicy: Never`. In that case,
-  suggestion resources will be deleted and experiment can't be resumed. By default all experiments have
+- **resumePolicy**: Experiment resume policy. If the experiment was successful
+  because `maxTrialCount` was reached, you can resume it by increasing
+  `maxTrialCount`. Specify `resumePolicy: LongRunning`, if you want to use this
+  feature. If you don't need to resume the experiment, specify
+  `resumePolicy: Never`. In that case, suggestion resources will be deleted and
+  the experiment can't be resumed. By default all experiments have
   `resumePolicy: LongRunning` parameter.
   See the [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L54).
 
@@ -441,7 +445,7 @@ the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
 
 The algorithm name in Katib is `enas`.
 
-This NAS algorithm ENAS-based. Currently, it doesn't support parameter sharing.
+This NAS algorithm is ENAS-based. Currently, it doesn't support parameter sharing.
 
 Katib supports the following algorithm settings:
 
@@ -466,22 +470,22 @@ Katib supports the following algorithm settings:
         <td>controller_temperature</td>
         <td>float</td>
         <td>5.0</td>
-        <td>RL controller temperature for the sampling logits. Value must be > 0. Set value to "None"
-          to disable it in controller.</td>
+        <td>RL controller temperature for the sampling logits. Value must be > 0.
+          Set value to "None" to disable it in the controller.</td>
       </tr>
       <tr>
         <td>controller_tanh_const</td>
         <td>float</td>
         <td>2.25</td>
-        <td>RL controller tanh constant to prevent premature convergence. Value must be > 0.
-          Set value to "None" to disable it in controller.</td>
+        <td>RL controller tanh constant to prevent premature convergence.
+          Value must be > 0. Set value to "None" to disable it in the controller.</td>
       </tr>
       <tr>
         <td>controller_entropy_weight</td>
         <td>float</td>
         <td>1e-5</td>
         <td>RL controller weight for entropy applying to reward. Value must be > 0.
-          Set value to "None" to disable it in controller.</td>
+          Set value to "None" to disable it in the controller.</td>
       </tr>
       <tr>
         <td>controller_baseline_decay</td>
@@ -499,21 +503,22 @@ Katib supports the following algorithm settings:
         <td>controller_skip_target</td>
         <td>float</td>
         <td>0.4</td>
-        <td>RL controller probability, which represents the prior belief of a skip connection 
-          being formed. Value must be > 0 and <= 1.</td>
+        <td>RL controller probability, which represents the prior belief of a
+          skip connection being formed. Value must be > 0 and <= 1.</td>
       </tr>
       <tr>
         <td>controller_skip_weight</td>
         <td>float</td>
         <td>0.8</td>
         <td>RL controller weight of skip penalty loss. Value must be > 0.
-          Set value to "None" to disable it in controller.</td>
+          Set value to "None" to disable it in the controller.</td>
       </tr>
       <tr>
         <td>controller_train_steps</td>
         <td>int</td>
         <td>50</td>
-        <td>Number of RL controller training steps after each candidate run. Value must be >= 1.</td>
+        <td>Number of RL controller training steps after each candidate runs.
+          Value must be >= 1.</td>
       </tr>
       <tr>
         <td>controller_log_every_steps</td>
@@ -528,7 +533,7 @@ Katib supports the following algorithm settings:
 For more information, see:
 
 - Information in the Katib repository on [Efficient Neural Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/enas).
-- As a ENAS example, see the YAML file for the
+- As an ENAS example, see the YAML file for the
   [enas-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/enas-example-gpu.yaml).
   The example aims to show all the possible operations. Due to the large search
   space, the example is not likely to generate a good result.
@@ -547,7 +552,7 @@ the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
 The algorithm name in Katib is `darts`.
 
 Currently, you can't view results of this algorithm in the Katib UI and
-you can run experiment only on single GPU.
+you can run experiments only on a single GPU.
 
 Katib supports the following algorithm settings:
 
@@ -622,7 +627,7 @@ Katib supports the following algorithm settings:
         <td>num_workers</td>
         <td>int</td>
         <td>4</td>
-        <td>Number of subprocesses to download dataset.</td>
+        <td>Number of subprocesses to download the dataset.</td>
       </tr>
       <tr>
         <td>init_channels</td>
@@ -646,7 +651,7 @@ Katib supports the following algorithm settings:
         <td>stem_multiplier</td>
         <td>int</td>
         <td>3</td>
-        <td>Multiplier for initial channels. It is used in first stem cell.</td>
+        <td>Multiplier for initial channels. It is used in the first stem cell.</td>
       </tr>
     </tbody>
   </table>
@@ -686,7 +691,7 @@ To define the metrics collector for your experiment:
      You should specify the path in the `.source.fileSystemPath.path` field.
      See the [TFJob example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/tfjob-example.yaml#L16-L22).
      Default directory path is `/var/log/katib/tfevent/`.
-   - `Custom`: Specify this value if you need to use custom way to collect
+   - `Custom`: Specify this value if you need to use a custom way to collect
      metrics. You must define your custom metrics collector container
      in the `.collector.customCollector` field.
      See the [custom metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/custom-metricscollector-example.yaml#L15-L35).
