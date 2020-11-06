@@ -6,7 +6,7 @@ weight = 6
 
 A pipeline component is a self-contained set of code that performs one step in the ML workflow. A component is analogous to a function, in that it has a name, parameters, return value and a body. Azure Machine Learning Components are the pipeline components that would integrate with [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/) to manage the life cycle of your models to improve the quality and consistency of your machine learning solution.
 
-The Azure Machine Learning components are used to increase the efficiency if your workflow with Azure Machine Learning. For example, continuous integration, delivery, and deployment. The Azure Machine Learning Components provides the capabilities for: faster experimentation and development of models, faster deployment of models into production, and quality assurance.
+The Azure Machine Learning components are used to increase the efficiency of your workflow with Azure Machine Learning. For example, continuous integration, delivery, and deployment. The Azure Machine Learning Components provides the capabilities for: faster experimentation and development of models, faster deployment of models into production, and quality assurance.
 
 ## Prerequisites
 
@@ -45,4 +45,5 @@ Please navigate to [AML-deploy-model pipeline component](https://github.com/kube
 
 See more for [Model Deploy on Azure Machine Learning Page](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
 
+## Other Azure Machine Learning Capabilities
 Navigate to [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/) page to see more capabilities to imporve your machine learning workflow.
