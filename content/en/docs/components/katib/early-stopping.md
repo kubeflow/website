@@ -39,7 +39,7 @@ First of all, follow the [guide](/docs/components/hyperparameter-tuning/experime
 to configure your Katib experiment.
 To apply early stopping on your experiment, specify `.spec.earlyStopping`
 parameter, similar to `.spec.algorithm`. See the
-[`EarlyStoppingSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L43-L58)
+[`EarlyStoppingSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L41-L58)
 
 - `.earlyStopping.algorithmName` - is the name of the early stopping algorithm.
 
