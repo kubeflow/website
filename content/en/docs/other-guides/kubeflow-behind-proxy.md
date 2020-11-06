@@ -14,7 +14,7 @@ proxy service](https://docs.docker.com/network/proxy/) on each Kubernetes node.
 
 1. Create an alias for the proxy:
 
-```
+```shell
 alias https='https_proxy=https://{SERVER}:{PORT}'
 ```
 
@@ -26,7 +26,7 @@ where `{SERVER}` is the IP address of your proxy server and `{PORT}` is the port
    the command below to download the zipped kfctl TAR file for Kubeflow v1.1 and
    extract it to `/usr/local/bin`:
 
-```
+```shell
 https wget https://github.com/kubeflow/kfctl/releases/download/v1.1.0/kfctl_v1.1.0-0-g9a3621e_linux.tar.gz extract to /usr/local/bin
 ```
 
@@ -40,16 +40,16 @@ https wget https://raw.githubusercontent.com/kubeflow/manifests/v1.1-branch/kfde
 4. Download the KfDef manifest zipped TAR file. For example, for Kubeflow v1.1
    you should run the following command:
 
-```
+```shell
 https wget https://github.com/kubeflow/manifests/archive/v1.1-branch.tar.gz
 ```
 
 5. Open the YAML configuration (zipped) file and under `- name: manifests`
    change the old URI (such as
    `https://github.com/kubeflow/manifests/archive/v1.1-branch.tar.gz`) to the
-   location of the new one, as follows:
+   location of the new one as follows:
 
-```
+```shell
 - name: manifests
   uri: {ABSOLUTE_PATH}/v1.1-branch.tar.gz
 ```
