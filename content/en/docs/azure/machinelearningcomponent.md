@@ -29,7 +29,7 @@ kubectl create secret generic azcreds --from-literal=AZ_SUBSCRIPTION_ID=$AZ_SUBS
                                       -n $KUBEFLOW_NAMESPACE
 ```
 
-## Azure ML Register Model
+## Azure ML Register Model Component
 
 Model registration allows you to store and version your models in the Azure Machine Learning, in your workspace. The model registry makes it easy to organize and keep track of your trained models. After you register the model, you can then download or deploy it and receive all the files that you registered.
 
@@ -37,7 +37,7 @@ Please navigate to [AML-register-model pipeline component](https://github.com/ku
 
 See more for [Model Register on Azure Machine Learning Page](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
 
-## Azure ML Deploy Model
+## Azure ML Deploy Model Component
 
 Trained machine learning models are deployed as web services in the cloud. You could use the model by accessing the model endpoint. When using the model as a web service, following items are included in the component: an entry script and Azure Machine Learning environment configurations.
 
@@ -46,4 +46,4 @@ Please navigate to [AML-deploy-model pipeline component](https://github.com/kube
 See more for [Model Deploy on Azure Machine Learning Page](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
 
 ## Other Azure Machine Learning Capabilities
-Navigate to [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/) page to see more capabilities to imporve your machine learning workflow.
+Navigate to [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/) page to see more capabilities to improve your machine learning workflow.
