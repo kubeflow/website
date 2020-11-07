@@ -237,8 +237,9 @@ the [sidecar container](https://kubernetes.io/docs/concepts/workloads/pods/) on
 these pods and has succeeded and failed status, you can use it in Katib.
 
 To do that, you need to modify Katib components before installing Katib on your
-Kubernetes cluster. For that, you have to know your CRD API group, API version,
-object kind, plural name of the object. Check the
+Kubernetes cluster. For that, you have to know your CRD API group and version,
+the CRD object's kind. Also, you need to know which resources your custom object
+is created. Check the
 [Kubernetes guide](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/)
 to know more about CRDs.
 
@@ -246,16 +247,20 @@ Follow these two simple steps to integrate your custom CRD in Katib:
 
 1. Modify Katib controller
    [ClusterRole's rules](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/rbac.yaml#L5)
-   with the new rule for your custom object. To know more about ClusterRole, check
+   with the new rule to get access for all resources that are created
+   by trial. To know more about ClusterRole, check
    [Kubernetes guide](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole).
 
-   For example, to support Tekton `Pipeline`:
+   In the case of Tekton `Pipeline`, trial creates Tekton `PipelineRun`, then
+   Tekton `PipelineRun` creates Tekton `TaskRun`. Therefore, Katib controller
+   ClusterRole should have access to the `pipelineruns` and `taskruns`:
 
    ```yaml
    - apiGroups:
        - tekton.dev
      resources:
        - pipelineruns
+       - taskruns
      verbs:
        - "*"
    ```
@@ -263,7 +268,7 @@ Follow these two simple steps to integrate your custom CRD in Katib:
 1. Modify Katib controller
    [Deployment's `args`](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/katib-controller.yaml#L26)
    with the new
-   `--trial-resources=<object-kind>.<object-version>.<object-API group>` flag.
+   `--trial-resources=<object-kind>.<object-API-version>.<object-API-group>` flag.
 
    For example, to support Tekton `Pipeline`:
 
