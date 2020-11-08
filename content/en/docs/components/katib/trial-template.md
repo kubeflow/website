@@ -1,7 +1,7 @@
 +++
 title = "Trial Template Overview"
 description = "How to specify trial template parameters and support custom CRD in Katib"
-weight = 50
+weight = 40
                     
 +++
 
@@ -27,13 +27,13 @@ Katib has these CRD examples in upstream:
 To use your own Kubernetes resource follow the steps [below](#custom-resource).
 
 For the details of how to configure and run your experiment, see the
-[running an experiment guide](/docs/components/hyperparameter-tuning/experiment/).
+[running an experiment guide](/docs/components/katib/experiment/).
 
 ## Use trial template to submit experiment
 
 To run the Katib experiment you have to specify a trial template for your
 worker job where actual training is running. Read more about Katib concepts
-in the [overview guide](/docs/components/hyperparameter-tuning/overview/#trial).
+in the [overview guide](/docs/components/katib/overview/#trial).
 
 ### Configure trial template specification
 
@@ -111,11 +111,11 @@ If parameter has the default value, it can be **omitted** in the experiment YAML
   The default value is `false`
 
 - `primaryPodLabels` - labels that determine if
-  the [trial worker's](/docs/components/hyperparameter-tuning/overview/#worker-job)
+  the [trial worker's](/docs/components/katib/overview/#worker-job)
   pod or pods need to be injected by Katib metrics collector. **Note:** If
   `primaryPodLabels` is omitted, the metrics collector wraps all worker's pods.
   Read more about Katib metrics collector in
-  [running an experiment guide](http://localhost:1313/docs/components/hyperparameter-tuning/experiment/#metrics-collector).
+  [running an experiment guide](/docs/components/katib/experiment/#metrics-collector).
   See the example with
   [`primaryPodLabels`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/mpijob-horovod.yaml#L29-L30).
 
@@ -277,7 +277,7 @@ Follow these two simple steps to integrate your custom CRD in Katib:
    ```
 
 After these changes, deploy Katib as described in the
-[getting started guide](/docs/components/hyperparameter-tuning/hyperparameter/#installing-katib)
+[getting started guide](/docs/components/katib/hyperparameter/#installing-katib)
 and wait until the `katib-controller` pod is created.
 You can check logs from the Katib controller to see your resource integration:
 
@@ -302,9 +302,11 @@ is a good starting point to know how to contribute to the project.
 
 ## Next steps
 
-- Learn how to [configure and run your Katib experiments](/docs/components/katib/experiment/).
+- Learn how to
+  [configure and run your Katib experiments](/docs/components/katib/experiment/).
 
-- About the [Katib configuration file (Katib config)](/docs/components/katib/katib-config/).
+- Read about
+  [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
 
 - How to [set up environment variables](/docs/components/katib/env-variables/)
   for each Katib component.

@@ -424,12 +424,14 @@ make undeploy
 
 ## Next steps
 
-- Learn how to [configure and run your Katib experiments](/docs/components/katib/experiment/).
+- Learn how to
+  [configure and run your Katib experiments](/docs/components/katib/experiment/).
 
 - Learn to configure your
-  [trial templates](/docs/components/hyperparameter-tuning/trial-template/).
+  [trial templates](/docs/components/katib/trial-template/).
 
-- About the [Katib configuration file (Katib config)](/docs/components/katib/katib-config/).
+- Read about
+  [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
 
 - How to [set up environment variables](/docs/components/katib/env-variables/)
   for each Katib component.

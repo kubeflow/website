@@ -75,18 +75,8 @@ These are the fields in the experiment configuration spec:
   See the [`ObjectiveSpec`
   type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L93).
 
-<<<<<<< HEAD
 - **parallelTrialCount**: The maximum number of hyperparameter sets that Katib
   should train in parallel.
-=======
-- **algorithm**: The search algorithm that you want Katib to use to find the
-  best hyperparameters or neural architecture configuration. Examples include
-  random search, grid search, Bayesian optimization, and more.
-  See the [search algorithm details](#search-algorithms) below.
-
-- **parallelTrialCount**: The maximum number of parallel trials to run.
-  This is equivalent to the number of hyperparameter sets that Katib should train in parallel.
->>>>>>> Modify docs for v1beta1
 
 - **maxTrialCount**: The maximum number of trials to run.
   This is equivalent to the number of hyperparameter sets that Katib should
@@ -98,7 +88,6 @@ These are the fields in the experiment configuration spec:
   should test.
   If the number of failed trials exceeds `maxFailedTrialCount`, Katib stops the
   experiment with a status of `Failed`.
-<<<<<<< HEAD
 
 - **algorithm**: The search algorithm that you want Katib to use to find the
   best hyperparameters or neural architecture configuration. Examples include
@@ -119,18 +108,9 @@ These are the fields in the experiment configuration spec:
   By default, you can use one of the following job types to train your model:
 
   - [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
-=======
-
-- **trialTemplate**: The template that defines the trial.
-  You need to package your ML training code into a Docker image, as described
-  [above](#docker-image). You must configure the model's
-  hyperparameters either as command-line arguments or as environment variables,
-  so that Katib can automatically set the values in each trial.
->>>>>>> Modify docs for v1beta1
 
   - [Kubeflow `TFJob`](/docs/components/training/tftraining/)
 
-<<<<<<< HEAD
   - [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
 
   - [Kubeflow `MPIJob`](/docs/components/training/mpi)
@@ -139,29 +119,10 @@ These are the fields in the experiment configuration spec:
 
   See the
   [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
-  Follow the [trial template guide](/docs/components/hyperparameter-tuning/trial-template/)
-  to understand how to specify `trialTemplate` parameters, save templates in `ConfigMaps` and
-  support custom Kubernetes resources in Katib.
+  Follow the [trial template guide](/docs/components/katib/trial-template/)
+  to understand how to specify `trialTemplate` parameters, save templates in
+  `ConfigMaps` and support custom Kubernetes resources in Katib.
 
-=======
-  - [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
-    (does not support distributed execution).
-  - [Kubeflow TFJob](/docs/components/training/tftraining/) (supports
-    distributed execution).
-  - [Kubeflow PyTorchJob](/docs/components/training/pytorch/) (supports
-    distributed execution).
-
-  See the [`TrialTemplate`
-  type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
-  The template
-  uses the [unstructured format](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1/unstructured).
-
-  You can define the job in YAML format or you can use a
-  [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/).
-  [Here](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/trial-template-configmap.yaml)
-  is a ConfigMap example with trial templates.
-
->>>>>>> Modify docs for v1beta1
 - **metricsCollectorSpec**: A specification of how to collect the metrics from
   each trial, such as the accuracy and loss metrics.
   See the [details of the metrics collector](#metrics-collector) below.
@@ -196,8 +157,8 @@ These are the fields in the experiment configuration spec:
   `resumePolicy: LongRunning` parameter.
   See the [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L168-L183).
 
-_Background information about Katib's `Experiment`, `Suggestion` and `Trial` type:_ In Kubernetes
-terminology, Katib's
+_Background information about Katib's `Experiment`, `Suggestion` and `Trial`
+type:_ In Kubernetes terminology, Katib's
 [`Experiment` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L278),
 [`Suggestion` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/suggestions/v1beta1/suggestion_types.go#L128) and
 [`Trial` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/trials/v1beta1/trial_types.go#L129)
@@ -822,27 +783,18 @@ View the results of the experiment in the Katib UI:
 
 ## Next steps
 
-<<<<<<< HEAD
 - Learn how to run the
   [random algorithm and other Katib examples](/docs/components/katib/hyperparameter/#random-algorithm).
 
-- For an overview of the concepts involved in hyperparameter tuning and
-  neural architecture search, read the [introduction to Katib](/docs/components/katib/overview/).
-
 - Learn to configure your
-  [trial templates](/docs/components/hyperparameter-tuning/trial-template/).
+  [trial templates](/docs/components/katib/trial-template/).
 
-- Read about [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
+- For an overview of the concepts involved in hyperparameter tuning and
+  neural architecture search, read the
+  [introduction to Katib](/docs/components/katib/overview/).
+
+- Read about
+  [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
 
 - How to [set up environment variables](/docs/components/katib/env-variables/)
   for each Katib component.
-=======
-- Learn how to run the [random algorithm and other Katib examples](/docs/components/katib/hyperparameter/#random-algorithm).
-
-- For an overview of the concepts involved in hyperparameter tuning and
-  neural architecture search, read the [introduction to Katib](/docs/components/katib/overview/).
-
-- Read about [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
-
-- How to [set up environment variables](/docs/components/katib/env-variables/) for each Katib component.
->>>>>>> Address second review comments
