@@ -68,12 +68,15 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
 
 - You have to define your experiment's trial template in **one** of the `trialSpec`
   or `configMap` sources. **Note:** Your template must omit `.metadata.name` and
-  `.metadata.namespace`. To set parameters in your template from the
+  `.metadata.namespace`.
+
+  To set the parameters in your template from the
   `trialParameters`, you need to use this expression:
   `${trialParameters.<parameter-name>}` in your template. Katib automatically
   replaces it with the appropriate values from the experiment's suggestion.
+
   For example,
-  [`"--lr=${trialParameters.learningRate}"`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L62)
+  [`--lr=${trialParameters.learningRate}`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L62)
   is the [`learningRate`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L40)
   parameter.
 
@@ -82,7 +85,7 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
     format. The template should be a valid YAML. See the
     [grid example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L49-L65).
 
-  - `configMap` - Kubernetes ConfigMap specification where experiment's
+  - `configMap` - Kubernetes ConfigMap specification where an experiment's
     trial template is located. This ConfigMap must have a label
     `app: katib-trial-templates` and contains key-value pairs where
     `key: <template-name>, value: <template-yaml>`. See the example of
@@ -90,9 +93,9 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
 
     The `configMap` specification should have:
 
-    1. `configMapName` - name of the ConfigMap with trial templates.
+    1. `configMapName` - name of the ConfigMap with the trial templates.
 
-    1. `configMapNamespace` - namespace of the ConfigMap with trial templates.
+    1. `configMapNamespace` - namespace of the ConfigMap with the trial templates.
 
     1. `templatePath` - path to the template in ConfigMap's data.
 
@@ -218,7 +221,7 @@ See the example of
 
 <a id="custom-resource"></a>
 
-## Use custom Kubernetes resource as trial template
+## Use custom Kubernetes resource as a trial template
 
 By default, you can define your trial worker as Kubernetes `Job`,
 Kubeflow `TFJob`, Kubeflow `PyTorchJob`, Kubeflow `MPIJob` or Tekton `Pipeline`.
@@ -236,7 +239,7 @@ the new image. As long as your CRD creates Kubernetes pods, allows to inject
 the [sidecar container](https://kubernetes.io/docs/concepts/workloads/pods/) on
 these pods and has succeeded and failed status, you can use it in Katib.
 
-To do that, you need to modify Katib components before installing Katib on your
+To do that, you need to modify Katib components before installing it on your
 Kubernetes cluster. For that, you have to know your CRD API group and version,
 the CRD object's kind. Also, you need to know which resources your custom object
 is created. Check the

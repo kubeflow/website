@@ -698,7 +698,7 @@ to launch an experiment from the command line:
 kubectl apply -f <your-path/your-experiment-config.yaml>
 ```
 
-**Note that** if you deployed Katib as part of Kubeflow, you need to
+**Note:** If you deployed Katib as part of Kubeflow, you need to
 change Kubeflow namespace to your profile namespace.
 Run the following command to launch an experiment using the random algorithm example:
 
