@@ -31,7 +31,7 @@ Follow these steps to set up your GCP project:
     * [Service Management API](https://console.cloud.google.com/apis/api/servicemanagement.googleapis.com)
     * [Cloud Resource Manager API](https://console.developers.google.com/apis/library/cloudresourcemanager.googleapis.com)
     * [AI Platform Training & Prediction API](https://console.developers.google.com/apis/library/ml.googleapis.com)
-    * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/fairing/) in your Kubeflow cluster)
+    * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/components/fairing/) in your Kubeflow cluster)
 
     You can also enable these APIs by running the following command in Cloud Shell:
     ```
