@@ -80,28 +80,33 @@ These are the fields in the experiment configuration spec:
   See the [search algorithm details](#search-algorithms) below.
   
 * **trialTemplate**: The template that defines the trial.
-  You must package your ML training code into a Docker image, as described 
-  [above](#docker-image). You must configure the model's
-  hyperparameters either as command-line arguments or as environment variables,
-  so that Katib can automatically set the values in each trial.
+  You have to package your ML training code into a Docker image, as described
+  [above](#docker-image). `trialTemplate.trialSpec` is your
+  [unstructured](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1/unstructured)
+  template with model parameters, which are substituted from `trialTemplate.trialParameters`.
+  For example, your training container can receive hyperparameters as command-line
+  arguments or as environment variables. You have to set the name of your training
+  container in `trialTemplate.primaryContainerName`.
 
-    You can use one of the following job types to train your model:
+    Katib dynamically supports any kind of
+    [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
+    By default, you can use one of the following job types to train your model:
 
-    * [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
-      (does not support distributed execution). 
-    * [Kubeflow TFJob](/docs/guides/components/tftraining/) (supports 
-      distributed execution).
-    * [Kubeflow PyTorchJob](/docs/guides/components/pytorch/) (supports 
-      distributed execution).
-    
-    See the [`TrialTemplate` 
-    type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1alpha3/experiment_types.go#L189-L203).
-    The template 
-    uses the [Go template format](https://golang.org/pkg/text/template/).
-    
-    You can define the job in raw string format or you can use a 
-    [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/). 
-    [Here](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/katib-controller/trialTemplateConfigmapLabeled.yaml) is an example how to create ConfigMap with trial templates.
+    * [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
+
+    * [Kubeflow `TFJob`](/docs/components/training/tftraining/)
+
+    * [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
+
+    * [Kubeflow `MPIJob`](/docs/components/training/mpi)
+
+    * [Tekton `Pipeline`](https://github.com/tektoncd/pipeline)
+
+    See the
+    [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
+    Follow the [trial template guide](/docs/components/hyperparameter-tuning/trial-template/)
+    to understand how to specify `trialTemplate` parameters, save templates in `ConfigMaps` and
+    support custom Kubernetes resources in Katib.
 
 * **parallelTrialCount**: The maximum number of hyperparameter sets that Katib
   should train in parallel.
@@ -761,6 +766,9 @@ View the results of the experiment in the Katib UI:
 * For an overview of the concepts involved in hyperparameter tuning and
   neural architecture search, read the [introduction to 
   Katib](/docs/components/hyperparameter-tuning/overview/).
+
+* Learn to configure your 
+  [trial templates](/docs/components/hyperparameter-tuning/trial-template/).
 
 * For a detailed instruction of the Katib Configuration file, 
   read the [Katib config page](/docs/components/hyperparameter-tuning/katib-config/).
