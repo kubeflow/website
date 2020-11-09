@@ -15,6 +15,10 @@ machine learning (ML) workflows. A *pipeline* is a description of an ML
 workflow, including all of the *components* that make up the steps in the 
 workflow and how the components interact with each other. 
 
+**Note**: Kubeflow Pipelines uses [Argo](https://argoproj.github.io/projects/argo) as the
+default workflow engine. If you wan to run your pipelines on a [Tekton](https://tekton.dev/)
+backend follow the instructions for [Kubeflow Pipelines SDK for Tekton](/docs/pipelines/sdk/pipelines-with-tekton).
+
 ## SDK packages
 
 The Kubeflow Pipelines SDK includes the following packages:
