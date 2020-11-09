@@ -26,19 +26,19 @@ Katib has these CRD examples in upstream:
 
 To use your own Kubernetes resource follow the steps [below](#custom-resource).
 
-For the details of how to configure and run your experiment, see the
+For the details on how to configure and run your experiment, follow the
 [running an experiment guide](/docs/components/katib/experiment/).
 
 ## Use trial template to submit experiment
 
 To run the Katib experiment you have to specify a trial template for your
-worker job where actual training is running. Read more about Katib concepts
+worker job where actual training is running. Learn more about Katib concepts
 in the [overview guide](/docs/components/katib/overview/#trial).
 
 ### Configure trial template specification
 
 Trial template specification is located under `.spec.trialTemplate` of your experiment.
-For the API overview see the
+For the API overview refer to the
 [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
 
 To define experiment's trial, you should specify these parameters in `.spec.trialTemplate`:
@@ -47,7 +47,7 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
   during experiment execution. **Note:** Your trial template must contain
   each parameter from the `trialParameters`. You can set these parameters in any
   field of your template, except `.metadata.name` and `.metadata.namespace`.
-  See [below](#template-metadata) how you can use trial `metadata` parameters
+  Check [below](#template-metadata) how you can use trial `metadata` parameters
   in your template. For example, your training container can receive
   hyperparameters as command-line or arguments or as environment variables.
 
@@ -82,13 +82,13 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
 
   - `trialSpec` - experiment's trial template in
     [unstructured](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1/unstructured)
-    format. The template should be a valid YAML. See the
+    format. The template should be a valid YAML. Check the
     [grid example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L49-L65).
 
   - `configMap` - Kubernetes ConfigMap specification where an experiment's
     trial template is located. This ConfigMap must have a label
     `app: katib-trial-templates` and contains key-value pairs where
-    `key: <template-name>, value: <template-yaml>`. See the example of
+    `key: <template-name>, value: <template-yaml>`. Check the example of
     [ConfigMap with trial templates](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/trial-template-configmap.yaml).
 
     The `configMap` specification should have:
@@ -99,7 +99,7 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
 
     1. `templatePath` - path to the template in ConfigMap's data.
 
-    See the example with
+    Check the example with
     [ConfigMap source](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/trial-configmap-source.yaml#L50-L53)
     for the trial template.
 
@@ -107,7 +107,7 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
 If parameter has the default value, it can be **omitted** in the experiment YAML.
 
 - `retain` - indicates that trial's resources are not clean-up after the trial
-  is complete. See the example with
+  is complete. Check the example with
   [`retain: true`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/tekton/pipeline-run.yaml#L32)
   parameter.
 
@@ -117,9 +117,9 @@ If parameter has the default value, it can be **omitted** in the experiment YAML
   the [trial worker's](/docs/components/katib/overview/#worker-job)
   pod or pods need to be injected by Katib metrics collector. **Note:** If
   `primaryPodLabels` is omitted, the metrics collector wraps all worker's pods.
-  Read more about Katib metrics collector in
+  Learn more about Katib metrics collector in
   [running an experiment guide](/docs/components/katib/experiment/#metrics-collector).
-  See the example with
+  Check the example with
   [`primaryPodLabels`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/mpijob-horovod.yaml#L29-L30).
 
   The default value for Kubeflow `TFJob` and `PyTorchJob` is `job-role: master`
@@ -135,7 +135,7 @@ If parameter has the default value, it can be **omitted** in the experiment YAML
 - `successCondition` - [condition](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/#object-spec-and-status)
   of the trial worker Kubernetes resource status in which trial's job has succeeded.
   This condition must be in [GJSON format](https://github.com/tidwall/gjson).
-  See the example with
+  Check the example with
   [`successCondition`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/tekton/pipeline-run.yaml#L36).
 
   The default value for Kubernetes `Job` is
@@ -151,7 +151,7 @@ If parameter has the default value, it can be **omitted** in the experiment YAML
 - `failureCondition` - [condition](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/#object-spec-and-status)
   of the trial worker Kubernetes resource status in which trial's job is failed.
   This condition must be in [GJSON format](https://github.com/tidwall/gjson).
-  See the example with
+  Check the example with
   [`failureCondition`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/tekton/pipeline-run.yaml#L37).
 
   The default value for Kubernetes `Job` is
@@ -216,7 +216,7 @@ The table below shows the connection between
   </table>
 </div>
 
-See the example of
+Check the example of
 [using trial metadata](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/trial-metadata-substitution.yaml).
 
 <a id="custom-resource"></a>
@@ -282,7 +282,7 @@ Follow these two simple steps to integrate your custom CRD in Katib:
 After these changes, deploy Katib as described in the
 [getting started guide](/docs/components/katib/hyperparameter/#installing-katib)
 and wait until the `katib-controller` pod is created.
-You can check logs from the Katib controller to see your resource integration:
+You can check logs from the Katib controller to check your resource integration:
 
 ```shell
 kubectl logs $(kubectl get pods -n kubeflow -o name | grep katib-controller) -n kubeflow
@@ -308,7 +308,7 @@ is a good starting point to know how to contribute to the project.
 - Learn how to
   [configure and run your Katib experiments](/docs/components/katib/experiment/).
 
-- Read about
+- Check the
   [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
 
 - How to [set up environment variables](/docs/components/katib/env-variables/)

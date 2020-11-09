@@ -9,9 +9,8 @@ This page gets you started with Katib. Follow this guide to perform any
 additional setup you may need, depending on your environment, and to run a few
 examples using the command line and the Katib user interface (UI).
 
-For an overview of the concepts around Katib and hyperparameter tuning, read the
-[introduction to
-Katib](/docs/components/katib/overview/).
+For an overview of the concepts around Katib and hyperparameter tuning, check the
+[introduction to Katib](/docs/components/katib/overview/).
 
 ## Katib setup
 
@@ -44,7 +43,7 @@ you can skip this step. This script deploys PVC and PV on your cluster.
 
 You can skip this step if you're using Kubeflow on Google Kubernetes Engine
 (GKE) or if your Kubernetes cluster includes a StorageClass for dynamic volume
-provisioning. For more information, see the Kubernetes documentation on
+provisioning. For more information, check the Kubernetes documentation on
 [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
 and [persistent volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
 
@@ -77,7 +76,7 @@ your results. The Katib home page within Kubeflow looks like this:
 If you installed Katib as part of Kubeflow, you can access the
 Katib UI from the Kubeflow UI:
 
-1. Open the Kubeflow UI. See the guide to
+1. Open the Kubeflow UI. Check the guide to
    [accessing the central dashboard](/docs/components/central-dash/overview/).
 1. Click **Katib** in the left-hand menu.
 
@@ -297,7 +296,7 @@ status:
 ```
 
 When the last value in `status.conditions.type` is `Succeeded`, the experiment
-is complete. You can see information about the best trial in `status.currentOptimalTrial`.
+is complete. You can check information about the best trial in `status.currentOptimalTrial`.
 
 - `.currentOptimalTrial.bestTrialName` is the trial name.
 
@@ -430,7 +429,7 @@ make undeploy
 - Learn to configure your
   [trial templates](/docs/components/katib/trial-template/).
 
-- Read about
+- Check the
   [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
 
 - How to [set up environment variables](/docs/components/katib/env-variables/)

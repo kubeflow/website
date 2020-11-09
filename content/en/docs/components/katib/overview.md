@@ -92,7 +92,7 @@ optimizes the model's structure, node weights and hyperparameters.
 NAS technology in general uses various techniques to find the optimal neural
 network design.
 
-You can submit Katib jobs from the command line or from the UI. (Read more
+You can submit Katib jobs from the command line or from the UI. (Learn more
 about the Katib interfaces later on this page.) The following screenshot shows
 part of the form for submitting a NAS job from the Katib UI:
 
@@ -105,7 +105,7 @@ part of the form for submitting a NAS job from the Katib UI:
 You can use the following interfaces to interact with Katib:
 
 - A web UI that you can use to submit experiments and to monitor your results.
-  See the [getting-started
+  Check the [getting-started
   guide](/docs/components/katib/hyperparameter/#katib-ui)
   for information on how to access the UI.
   The Katib home page within Kubeflow looks like this:
@@ -114,19 +114,19 @@ You can use the following interfaces to interact with Katib:
       alt="The Katib home page within the Kubeflow UI"
       class="mt-3 mb-3 border border-info rounded">
 
-- A gRPC API. See the [API reference](/docs/reference/katib/v1beta1/katib).
+- A gRPC API. Check the [API reference](/docs/reference/katib/v1beta1/katib).
 
 - Command-line interfaces (CLIs):
 
   - **kfctl** is the Kubeflow CLI that you can use to install and configure
-    Kubeflow. Read about kfctl in the guide to
+    Kubeflow. Learn about kfctl in the guide to
     [configuring Kubeflow](/docs/other-guides/kustomize/).
 
   - The Kubernetes CLI, **kubectl**, is useful for running commands against your
-    Kubeflow cluster. Read about kubectl in the [Kubernetes
+    Kubeflow cluster. Learn about kubectl in the [Kubernetes
     documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-- Katib Python SDK. See the [Katib Python SDK documentation on GitHub](https://github.com/kubeflow/katib/tree/master/sdk/python/v1beta1).
+- Katib Python SDK. Check the [Katib Python SDK documentation on GitHub](https://github.com/kubeflow/katib/tree/master/sdk/python/v1beta1).
 
 ## Katib concepts
 
@@ -156,7 +156,7 @@ the main configurations:
 - **Search algorithm**: The algorithm to use when searching for the optimal
   hyperparameter values.
 
-For details of how to define your experiment, see the guide to [running an
+For details of how to define your experiment, follow the guide to [running an
 experiment](/docs/components/katib/experiment/).
 
 ### Suggestion
@@ -183,7 +183,7 @@ The worker job can be any type of Kubernetes resource or
 [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 Follow the
 [trial template guide](/docs/components/katib/trial-template/#custom-resource)
-to see how to support your own Kubernetes resource in Katib.
+to check how to support your own Kubernetes resource in Katib.
 
 Katib has these CRD examples in upstream:
 

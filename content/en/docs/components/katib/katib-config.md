@@ -70,7 +70,7 @@ a default value is set automatically.
 
 1. `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
    for the `File` metrics collector's container. In the above example you
-   can see how to specify `limits` and `requests`. Currently, you can specify
+   can check how to specify `limits` and `requests`. Currently, you can specify
    only `memory`, `cpu` and `ephemeral-storage` resources.
 
    The default values for the `requests` are:
@@ -189,7 +189,7 @@ a default value is set automatically.
 
 1. `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
    for the suggestion's container with a `random` algorithm.
-   In the above example you can see how to specify `limits` and `requests`.
+   In the above example you can check how to specify `limits` and `requests`.
    Currently, you can specify only `memory`, `cpu` and
    `ephemeral-storage` resources.
 
