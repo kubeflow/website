@@ -5,31 +5,39 @@ weight = 140
                     
 +++
 
-By default Kubeflow Pipelines get compiled into [Argo Workflow Templates](https://github.com/argoproj/argo/blob/master/docs/workflow-concepts.md)
-in order to be run on by the Argo Workflow Engine on a Kubernetes cluster.
-If you wan to run your pipelines on a [Tekton](https://tekton.dev/) backend instead, you can use the [KFP-Tekton SDK](https://github.com/kubeflow/kfp-tekton/sdk)
-to compile your Kubeflow Pipeline DSL Python scripts into a
-[Tekton `PipelineRun`](https://tekton.dev/docs/pipelines/pipelineruns/).
+You can use the [KFP-Tekton SDK](https://github.com/kubeflow/kfp-tekton/sdk)
+to compile, upload and run your Kubeflow Pipeline DSL Python scripts on a
+[Kubeflow Pipelines with Tekton backend](https://github.com/kubeflow/kfp-tekton/tree/master/tekton_kfp_guide.md).
 
-## Extensions to the Kubeflow Pipelines SDK
+## SDK packages
 
-In addition to the functionality provided by the Kubeflow Pipelines
-[SDK](/docs/pipelines/sdk/sdk-overview/) the `kfp-tekton`
-SDK provides a `TektonCompiler` and a `TektonClient`:
+The `kfp-tekton` SDK is an extension to the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/sdk-overview/)
+adding the `TektonCompiler` and the `TektonClient`:
 
-* `TektonCompiler`:
+* `kfp_tekton.compiler` includes classes and methods for compiling pipeline 
+  Python DSL into a Tekton PipelineRun YAML spec. The methods in this package
+  include, but are not limited to, the following:
 
-  * `kfp_tekton.compiler.TektonCompiler.compile` compiles Python DSL code into a 
-    YAML file containing a Tekton `PipelineRun` which can be deployed directly to
-    a Tekton enabled Kubernetes cluster or uploaded to the Kubeflow Pipelines
-    dashboard with the Tekton backend.
-   
-* `TektonClient`:
+  * `kfp_tekton.compiler.TektonCompiler.compile` compiles your Python DSL code
+    into a single static configuration (in YAML format) that the Kubeflow Pipelines service
+    can process. The Kubeflow Pipelines service converts the static 
+    configuration into a set of Kubernetes resources for execution.
 
-  * `kfp_tekton.TektonClient.create_run_from_pipeline_func` compiles DSL pipeline
-    function and runs the pipeline on a Kubernetes cluster with KFP and Tekton
+* `kfp_tekton.TektonClient` contains the Python client libraries for the [Kubeflow Pipelines API](/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/).
+  Methods in this package include, but are not limited to, the following:
 
-## Set up the Python environment
+  * `kfp_tekton.TektonClient.upload_pipeline` uploads a local file to create a new pipeline in Kubeflow Pipelines.
+  * `kfp_tekton.TektonClient.create_experiment` creates a pipeline
+    [experiment](/docs/pipelines/concepts/experiment/) and returns an
+    experiment object.
+  * `kfp_tekton.TektonClient.run_pipeline` runs a pipeline and returns a run object.
+  * `kfp_tekton.TektonClient.create_run_from_pipeline_func` compiles a pipeline
+    function and submits it for execution on Kubeflow Pipelines.
+  * `kfp_tekton.TektonClient.create_run_from_pipeline_package` runs a local 
+    pipeline package on Kubeflow Pipelines.
+
+
+## Installing the KFP-Tekton SDK
 
 You need **Python 3.5** or later to use the Kubeflow Pipelines SDK for Tekton.
 We recommend to create a Python virtual environment first using
@@ -39,20 +47,10 @@ manager such as `virtualenv` or the Python 3 `venv` module:
     python3 -m venv .venv-kfp-tekton
     source .venv-kfp-tekton/bin/activate
 
-## Install the KFP-Tekton SDK
-    
 You can install the latest release of the `kfp-tekton` compiler from
 [PyPi](https://pypi.org/project/kfp-tekton/):
     
     pip3 install kfp-tekton --upgrade
-
-## Additional requirements
-
-In order to run the compiled pipelines on a Kubernetes cluster you need to install the
-[Kubeflow Pipelines with Tekton backend](https://github.com/kubeflow/kfp-tekton/tree/master/tekton_kfp_guide.md).
-Alternatively you can install Tekton [`v0.14.0`](https://github.com/tektoncd/pipeline/releases/tag/v0.14.0)
-or [later](https://github.com/tektoncd/pipeline/releases/latest) along with the
-Tekton CLI [`0.11.0`](https://github.com/tektoncd/cli/releases/tag/v0.11.0).
 
 ## Compiling Kubeflow Pipelines DSL Scripts
 
@@ -82,42 +80,6 @@ directly from the command line, producing a Tekton YAML file `pipeline.yaml`
 in the same directory:
 
     python3 pipeline.py
-
-## Tekton workspace configuration for big data passing
-
-When [big data files](https://github.com/kubeflow/kfp-tekton/blob/master/samples/big_data_passing/big_data_passing_description.ipynb)
-are defined in a pipeline, Tekton will create a workspace to share these big data
-files among tasks that run in the same pipeline. By default, the workspace is a
-Read Write Many PVC with 2Gi storage, but you can change these configuration
-using the environment variables below:
-
-    export DEFAULT_ACCESSMODES=ReadWriteMany
-    export DEFAULT_STORAGE_SIZE=2Gi
-
-## Running the Compiled Pipeline on a Tekton Cluster
-
-After compiling the `sdk/python/tests/compiler/testdata/parallel_join.py` DSL script
-in the step above, the generated Tekton YAML needs to be deployed to a Kubernetes
-cluster with `kubectl`. The Tekton server will automatically start a pipeline run.
-
-    kubectl apply -f pipeline.yaml
-
-Follow the logs using the `tkn` CLI.
-    
-    tkn pipelinerun logs --last --follow
-
-Once the Tekton Pipeline is running, the logs should start streaming:
-      
-    Waiting for logs to be available...
-    
-    [gcs-download : main] With which he yoketh your rebellious necks Razeth your cities and subverts your towns And in a moment makes them desolate
-
-    [gcs-download-2 : main] I find thou art no less than fame hath bruited And more than may be gatherd by thy shape Let my presumption not provoke thy wrath
-
-    [echo : main] Text 1: With which he yoketh your rebellious necks Razeth your cities and subverts your towns And in a moment makes them desolate
-    [echo : main]
-    [echo : main] Text 2: I find thou art no less than fame hath bruited And more than may be gatherd by thy shape Let my presumption not provoke thy wrath
-    [echo : main]
 
 ## Next steps
 
