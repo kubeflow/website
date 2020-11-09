@@ -13,6 +13,10 @@ the Kubeflow Pipelines UI for execution.
 
 All of the SDK's classes and methods are described in the auto-generated [SDK reference docs](https://kubeflow-pipelines.readthedocs.io/en/latest/).
 
+**Note:** If you are running [Kubeflow Pipelines with Tekton](https://github.com/kubeflow/kfp-tekton),
+instead of the default [Kubeflow Pipelines with Argo](https://github.com/kubeflow/pipelines), you should use the
+[Kubeflow Pipelines SDK for Tekton](/docs/pipelines/sdk/pipelines-with-tekton).
+
 ## Set up Python
 
 You need **Python 3.5** or later to use the Kubeflow Pipelines SDK. This
