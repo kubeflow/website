@@ -52,7 +52,7 @@ You can install the latest release of the `kfp-tekton` compiler from
     
     pip3 install kfp-tekton --upgrade
 
-## Compiling Kubeflow Pipelines DSL Scripts
+## Compiling Kubeflow Pipelines DSL scripts
 
 The `kfp-tekton` Python package comes with the `dsl-compile-tekton` command line
 executable, which should be available in your terminal shell environment after
