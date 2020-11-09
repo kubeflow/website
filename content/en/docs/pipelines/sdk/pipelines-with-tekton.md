@@ -59,7 +59,7 @@ executable, which should be available in your terminal shell environment after
 installing the `kfp-tekton` Python package.
 
 If you cloned the `kfp-tekton` project, you can find example pipelines in the
-`samples` folder or under `sdk/python/tests/compiler/testdata` folder.
+`samples` folder or in the `sdk/python/tests/compiler/testdata` folder.
 
     dsl-compile-tekton \
         --py sdk/python/tests/compiler/testdata/parallel_join.py \
