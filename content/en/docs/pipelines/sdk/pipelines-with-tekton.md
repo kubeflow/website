@@ -81,7 +81,7 @@ in the same directory:
 
     python3 pipeline.py
 
-## Next steps
+## Additional documentation
 
 * [Installing Kubeflow Pipelines with Tekton Backend](https://github.com/kubeflow/kfp-tekton/blob/master/guides/kfp_tekton_install.md)
 * [KFP-Tekton Compiler Features](https://github.com/kubeflow/kfp-tekton/blob/master/sdk/FEATURES.md)
