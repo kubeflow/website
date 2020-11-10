@@ -11,7 +11,7 @@ The Azure Machine Learning components are used to increase the efficiency of you
 ## Prerequisites
 
 - Follow the [instruction](https://www.kubeflow.org/docs/azure/) to install Kubeflow on AKS cluster.
-- To interact with Azure resourses, you might need to configure them before using the component. See the `readme.md` file for each component to see what Azure resources are required.
+- To interact with Azure resources, you may need to configure them before using a particular pipeline component. Check the README for each component to learn about what Azure resources are required.
 - `kfp.azure` extention could be used to create secret to interact with Azure resourses. To create Azure credentials, run:
 
 ```shell
