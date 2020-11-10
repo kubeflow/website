@@ -32,7 +32,7 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
 **Note**: This section is only required when the worker nodes provider `WORKER_NODE_PROVIDER` is set to `classic`. For other infrastructures, IBM Cloud Block Storage is already set up as the cluster's default storage class.
 
-When using the `classic` worker nodes provider of IBM Cloud Kubernetes cluster, by default, it uses [IBM Cloud File Storage](https://www.ibm.com/cloud/file-storage) based on NFS as the default storage class. File Storage is designed to run RWX (read-write multiple nodes) workloads with proper security built around it. Therefore, File Storage [does not allow `fsGroup` securityContext](https://cloud.ibm.com/docs/containers?topic=containers-security#container) which is needed for OIDC authservice and Kubeflow Jupyter Server.
+When you use the `classic` worker node provider of an IBM Cloud Kubernetes cluster, it uses [IBM Cloud File Storage](https://www.ibm.com/cloud/file-storage) based on NFS as the default storage class. File Storage is designed to run RWX (read-write multiple nodes) workloads with proper security built around it. Therefore, File Storage [does not allow `fsGroup` securityContext](https://cloud.ibm.com/docs/containers?topic=containers-security#container), which is needed for the [OIDC authentication service](https://github.com/arrikto/oidc-authservice) and Kubeflow Jupyter server.
 
 [IBM Cloud Block Storage](https://www.ibm.com/cloud/block-storage) provides a fast way to store data and
 satisfy many of the Kubeflow persistent volume requirements such as `fsGroup` out of the box and optimized RWO (read-write single node) which is used on all Kubeflow's persistent volume claim. 
@@ -150,8 +150,8 @@ Choose either **single user** or **multi-tenant** section based on your usage.
 ### Single user
 Run the following commands to set up and deploy Kubeflow for a single user without any authentication.
 
-**Note**: By default, Kubeflow deployment on IBM Cloud uses [Kubeflow pipeline with Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
-If you want to use Kubeflow pipeline with Argo backend, please modify and uncomment the `argo` and `kfp-argo` applications
+**Note**: By default, Kubeflow deployment on IBM Cloud uses the [Kubeflow pipeline with the Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
+If you want to use the Kubeflow pipeline with the Argo backend, modify and uncomment the `argo` and `kfp-argo` applications
 inside the `kfctl_ibm.yaml` below and remove the `kfp-tekton`, `tektoncd-install`, and `tektoncd-dashboard` applications. 
 
 ```shell
@@ -224,8 +224,8 @@ custom providers.
     curl -L ${CONFIG_URI} > ${CONFIG_FILE}
     ```
     
-**Notice**: By default, the IBM configuration is using [Kubeflow pipeline with Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
-    If you want to use Kubeflow pipeline with Argo backend, please modify and uncomment the `argo` and `kfp-argo-multi-user` applications
+**Note**: By default, the IBM configuration is using the [Kubeflow pipeline with the Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
+    If you want to use the Kubeflow pipeline with the Argo backend, modify and uncomment the `argo` and `kfp-argo-multi-user` applications
     inside the `kfctl_ibm_multi_user.yaml` and remove the `kfp-tekton-multi-user`, `tektoncd-install`, and `tektoncd-dashboard` applications. 
     
 3. Deploy Kubeflow:
