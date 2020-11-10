@@ -1,6 +1,6 @@
 +++
 title = "Azure Machine Learning Components"
-description = "Azure Machine Learning Pipeline Component that performs on step in ML workflow"
+description = "Overview of Azure Machine Learning pipeline components for workflow improvements"
 weight = 6
 +++
 
