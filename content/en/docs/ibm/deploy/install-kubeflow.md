@@ -149,6 +149,11 @@ Choose either **single user** or **multi-tenant** section based on your usage.
 
 ### Single user
 Run the following commands to set up and deploy Kubeflow for a single user without any authentication.
+
+By default, the IBM configuration is using [Kubeflow pipeline with Tekton Backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
+If you want to use Kubeflow pipeline with Argo Backend, please modify and uncomment the `argo` and `kfp-argo` applications
+inside the `kfctl_ibm.yaml` below and remove the `kfp-tekton`, `tektoncd-install`, and `tektoncd-dashboard` applications. 
+
 ```
 # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
 # name of the directory containing your configuration.
@@ -162,12 +167,16 @@ export BASE_DIR=<path to a base directory>
 export KF_DIR=${BASE_DIR}/${KF_NAME}
 
 # Set the configuration file to use, such as the file specified below:
+export CONFIG_FILE=kfctl_ibm.yaml
 export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm.yaml"
 
-# Generate and deploy Kubeflow:
+# Generate Kubeflow:
 mkdir -p ${KF_DIR}
 cd ${KF_DIR}
-kfctl apply -V -f ${CONFIG_URI}
+curl -L ${CONFIG_URI} > ${CONFIG_FILE}
+
+# Deploy Kubeflow. You can customize the CONFIG_FILE if needed.
+kfctl apply -V -f ${CONFIG_FILE}
 ```
 
 * **${KF_NAME}** - The name of your Kubeflow deployment.
@@ -205,15 +214,21 @@ custom providers.
     ```
 2. Setup configuration files:
     ```
+    export CONFIG_FILE=kfctl_ibm_multi_user.yaml
     export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm_multi_user.yaml"
     # Generate and deploy Kubeflow:
     mkdir -p ${KF_DIR}
     cd ${KF_DIR}
-    kfctl build -V -f ${CONFIG_URI}
+    curl -L ${CONFIG_URI} > ${CONFIG_FILE}
     ```
+    
+    By default, the IBM configuration is using [Kubeflow pipeline with Tekton Backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
+    If you want to use Kubeflow pipeline with Argo Backend, please modify and uncomment the `argo` and `kfp-argo-multi-user` applications
+    inside the `kfctl_ibm_multi_user.yaml` and remove the `kfp-tekton-multi-user`, `tektoncd-install`, and `tektoncd-dashboard` applications. 
+    
 3. Deploy Kubeflow:
     ```
-    kfctl apply -V -f ${CONFIG_URI}
+    kfctl apply -V -f ${CONFIG_FILE}
     ```
 4. Wait until the deployment finishes successfully. e.g., all pods are in `Running` state when running `kubectl get pod -n kubeflow`.
 
@@ -233,7 +248,7 @@ configuration parameters from your AppID:
 
   Then, you need to place the Kubeflow OIDC redirect URL under **Manage Authentication** > **Authentication settings** > **Add web redirect URLs**.
   
-<img src="/docs/images/appid-redirect-settings.png" 
+<img src="/docs/images/ibm/appid-redirect-settings.png" 
   alt="APP ID Redirect Settings"
   class="mt-3 mb-3 border border-info rounded">
 
