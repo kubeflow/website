@@ -25,7 +25,7 @@ Our strong community contributions help KFServing to grow. We have a Technical S
 KFServing works with Kubeflow 1.2. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
 See examples running KFServing on [Istio/Dex](https://github.com/kubeflow/kfserving/tree/master/docs/samples/istio-dex). For installation on major cloud providers with Kubeflow, please follow their installation docs. 
 
-Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFServing on OpenShift, and additionally providing more features like adding batcher module as sidecar, adding default LivenessProbe to Tensorflow Predictor, Triton inference server renaming and integrations, Alibi explainer upgrade to 0.4.0, allowing customized url paths on data plane un, updating logger to CloudEvents V1 protocol etc. Additionally minimum Istio version has been moved to Istio v1.3.1. More details can be found [here](https://github.com/kubeflow/kfserving/releases/tag/v0.4.0) and [here](https://github.com/kubeflow/kfserving/releases/tag/v0.4.1)
+Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFServing on OpenShift, and additionally providing more features like adding batcher module as sidecar, Triton inference server renaming and integrations, upgrading Alibi explainer to 0.4.0, allowing customized url paths on data plane, updating logger to CloudEvents V1 protocol etc. Additionally minimum Istio version has been moved to Istio v1.3.1. More details can be found [here](https://github.com/kubeflow/kfserving/releases/tag/v0.4.0) and [here](https://github.com/kubeflow/kfserving/releases/tag/v0.4.1)
 
 <img src="../kfserving.png" alt="KFServing">
 
