@@ -35,7 +35,7 @@ Model registration allows you to store and version your models in the Azure Mach
 
 Please navigate to [AML-register-model pipeline component](https://github.com/kubeflow/pipelines/tree/master/components/azure/azureml/aml-register-model) for usage details and more information.
 
-See more for [Model Register on Azure Machine Learning Page](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
+To learn more about using Azure ML to manage the lifecycle of your models, go to [Model management, deployment, and monitoring](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
 
 ## Azure ML Deploy Model Component
 
