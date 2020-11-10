@@ -150,8 +150,8 @@ Choose either **single user** or **multi-tenant** section based on your usage.
 ### Single user
 Run the following commands to set up and deploy Kubeflow for a single user without any authentication.
 
-By default, the IBM configuration is using [Kubeflow pipeline with Tekton Backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
-If you want to use Kubeflow pipeline with Argo Backend, please modify and uncomment the `argo` and `kfp-argo` applications
+**Notice**: By default, Kubeflow deployment on IBM Cloud uses [Kubeflow pipeline with Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
+If you want to use Kubeflow pipeline with Argo backend, please modify and uncomment the `argo` and `kfp-argo` applications
 inside the `kfctl_ibm.yaml` below and remove the `kfp-tekton`, `tektoncd-install`, and `tektoncd-dashboard` applications. 
 
 ```
@@ -222,8 +222,8 @@ custom providers.
     curl -L ${CONFIG_URI} > ${CONFIG_FILE}
     ```
     
-    By default, the IBM configuration is using [Kubeflow pipeline with Tekton Backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
-    If you want to use Kubeflow pipeline with Argo Backend, please modify and uncomment the `argo` and `kfp-argo-multi-user` applications
+**Notice**: By default, the IBM configuration is using [Kubeflow pipeline with Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
+    If you want to use Kubeflow pipeline with Argo backend, please modify and uncomment the `argo` and `kfp-argo-multi-user` applications
     inside the `kfctl_ibm_multi_user.yaml` and remove the `kfp-tekton-multi-user`, `tektoncd-install`, and `tektoncd-dashboard` applications. 
     
 3. Deploy Kubeflow:
@@ -252,11 +252,11 @@ configuration parameters from your AppID:
   alt="APP ID Redirect Settings"
   class="mt-3 mb-3 border border-info rounded">
 
-8. Create the namespace `istio-system` if not exist:
+8. Create the namespace `istio-system` if it does not exist:
     ```
     kubectl create namespace istio-system
     ```
-9. Create a secret prior to kubeflow deployment by filling parameters from the
+9. Create a secret prior to Kubeflow deployment by filling parameters from the
 step 2 accordingly:
     ```SHELL
     kubectl create secret generic appid-application-configuration -n istio-system \
@@ -270,7 +270,7 @@ step 2 accordingly:
     * `<secret>` - fill in the value of secret
     * `<kubeflow-FQDN>` - fill in the FQDN of Kubeflow, if you don't know yet, just give a dummy one like `localhost`. Then change it after you got one.
     
-    **Notice**: If any of the parameters changed after the initial Kubeflow deployment, it 
+    **Notice**: If any of the parameters changed after the initial Kubeflow deployment, we 
     will need to manually update these parameters in the secret `appid-application-configuration`
     then restart authservice by running the command `kubectl rollout restart sts authservice -n istio-system`.
 
