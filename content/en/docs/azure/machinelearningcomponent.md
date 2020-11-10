@@ -29,7 +29,8 @@ kubectl create secret generic azcreds --from-literal=AZ_SUBSCRIPTION_ID=$AZ_SUBS
                                       -n $KUBEFLOW_NAMESPACE
 ```
 
-## Azure ML Register Model Component
+## Azure ML Register Model component
+
 
 Model registration allows you to store and version your models in the Azure Machine Learning, in your workspace. The model registry makes it easy to organize and keep track of your trained models. After you register the model, you can then download or deploy it and receive all the files that you registered.
 
