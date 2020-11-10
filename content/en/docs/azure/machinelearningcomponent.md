@@ -45,7 +45,7 @@ Trained machine learning models are deployed as web services in the cloud. You c
 
 Please navigate to [AML-deploy-model pipeline component](https://github.com/kubeflow/pipelines/tree/master/components/azure/azureml/aml-deploy-model) for usage details and more information.
 
-See more for [Model Deploy on Azure Machine Learning Page](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
+To learn more about using Azure ML to manage the lifecycle of your models, go to [Model management, deployment, and monitoring](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
 
 ## Other Azure Machine Learning Capabilities
 Navigate to [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/) page to see more capabilities to improve your machine learning workflow.
