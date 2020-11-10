@@ -16,7 +16,7 @@ environment variable in an appropriate Katib component's manifest.
 
 ## Katib Controller
 
-These are environment variables for the
+Bellow are the environment variables for the
 [Katib Controller](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/katib-controller.yaml)
 deployment:
 
@@ -78,9 +78,9 @@ If you want to use your own DB Manager to report Katib metrics, you can change `
 
 ## Katib UI
 
-These are environment variables for the
+Below are the environment variables for the
 [Katib UI](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/ui/deployment.yaml)
-deployment.
+deployment:
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -125,9 +125,9 @@ Katib UI calls Katib DB Manager with the same address expression as Katib Contro
 
 ## Katib DB Manager
 
-These are environment variables for the
+Bellow are the environment variables for the
 [Katib DB Manager](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/db-manager/deployment.yaml)
-deployment.
+deployment:
 
 <div class="table-responsive">
   <table class="table table-bordered">

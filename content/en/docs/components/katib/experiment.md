@@ -5,7 +5,7 @@ weight = 30
                     
 +++
 
-This page describes in detail how to configure and run a Katib experiment.
+This guide describes how to configure and run a Katib experiment.
 The experiment can perform hyperparameter tuning or a neural architecture search
 (NAS) (**alpha**), depending on the configuration settings.
 
@@ -117,7 +117,7 @@ These are the fields in the experiment configuration spec:
 
   - [Tekton `Pipeline`](https://github.com/tektoncd/pipeline)
 
-  Refer to the the
+  Refer to the
   [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
   Follow the [trial template guide](/docs/components/katib/trial-template/)
   to understand how to specify `trialTemplate` parameters, save templates in
@@ -126,7 +126,7 @@ These are the fields in the experiment configuration spec:
 - **metricsCollectorSpec**: A specification of how to collect the metrics from
   each trial, such as the accuracy and loss metrics.
   Learn the [details of the metrics collector](#metrics-collector) below.
-  Default metrics collector is `StdOut`.
+  The default metrics collector is `StdOut`.
 
 - **nasConfig**: The configuration for a neural architecture search (NAS).
   **Note**: NAS is currently in **alpha** with limited support.
@@ -155,7 +155,7 @@ These are the fields in the experiment configuration spec:
   because `maxTrialCount` was reached, you can resume it by increasing
   `maxTrialCount`. Specify `resumePolicy: LongRunning`, if you want to use this
   feature. If you don't need to resume the experiment, specify
-  `resumePolicy: Never`. In that case, suggestion resources will be deleted and
+  `resumePolicy: Never` - in this case, suggestion resources will be deleted and
   the experiment can't be resumed. By default all experiments have
   `resumePolicy: LongRunning` parameter.
   Refer to the
@@ -215,7 +215,7 @@ framework for its grid search.
 
 The algorithm name in Katib is `random`.
 
-Random sampling is an alternative to grid search, useful when the number of
+Random sampling is an alternative to grid search and is used when the number of
 discrete variables to optimize is large and the time required for each
 evaluation is long. When all parameters are discrete, random search performs
 sampling without replacement. Random search is therefore the best algorithm to
@@ -255,7 +255,7 @@ Katib supports the following algorithm settings:
 The algorithm name in Katib is `bayesianoptimization`.
 
 The [Bayesian optimization](https://arxiv.org/pdf/1012.2599.pdf) method uses
-gaussian process regression to model the search space. This technique calculates
+Gaussian process regression to model the search space. This technique calculates
 an estimate of the loss function and the uncertainty of that estimate at every
 point in the search space. The method is suitable when the number of
 dimensions in the search space is low. Since the method models both
@@ -404,14 +404,14 @@ Katib supports the following algorithm settings:
 
 #### Neural Architecture Search based on ENAS
 
+The algorithm name in Katib is `enas`.
+
 {{% alert title="Alpha version" color="warning" %}}
 Neural architecture search is currently in <b>alpha</b> with limited support.
 The Kubeflow team is interested in any feedback you may have, in particular with
 regards to usability of the feature. You can log issues and comments in
 the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
 {{% /alert %}}
-
-The algorithm name in Katib is `enas`.
 
 This NAS algorithm is ENAS-based. Currently, it doesn't support parameter sharing.
 
@@ -501,16 +501,18 @@ Katib supports the following algorithm settings:
 For more information, check:
 
 - Documentation in the Katib repository on the
-  [Efficient Neural Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/enas).
+  [Efficient Neural Architecture Search (ENAS)](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/enas).
 
-- As an ENAS example, see the YAML file for the
-  [enas-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/enas-example-gpu.yaml).
-  The example aims to show all the possible operations. Due to the large search
+- The ENAS example —
+  [`enas-example-gpu.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/enas-example-gpu.yaml) —
+  which attempts to show all possible operations. Due to the large search
   space, the example is not likely to generate a good result.
 
 <a id="darts"></a>
 
 #### Differentiable Architecture Search (DARTS)
+
+The algorithm name in Katib is `darts`.
 
 {{% alert title="Alpha version" color="warning" %}}
 Neural architecture search is currently in <b>alpha</b> with limited support.
@@ -518,8 +520,6 @@ The Kubeflow team is interested in any feedback you may have, in particular with
 regards to usability of the feature. You can log issues and comments in
 the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
 {{% /alert %}}
-
-The algorithm name in Katib is `darts`.
 
 Currently, you can't view results of this algorithm in the Katib UI and
 you can run experiments only on a single GPU.
@@ -632,8 +632,8 @@ For more information, check:
 - Documentation in the Katib repository on the
   [Differentiable Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/darts).
 
-- As a DARTS example, check the YAML file for the
-  [darts-example-gpu](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/darts-example-gpu.yaml).
+- The DARTS example —
+  [`darts-example-gpu.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/darts-example-gpu.yaml).
 
 <a id="metrics-collector"></a>
 
@@ -661,14 +661,14 @@ To define the metrics collector for your experiment:
      you specify in the `.source.fileSystemPath.path` field. Training container should log metrics to this file.
      Check the
      [file metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/file-metricscollector-example.yaml#L15-L22).
-     Default file path is `/var/log/katib/metrics.log`.
+     The default file path is `/var/log/katib/metrics.log`.
 
    - `TensorFlowEvent`: Katib collects the metrics from a directory path
      containing a [tf.Event](https://www.tensorflow.org/api_docs/python/tf/compat/v1/Event).
      You should specify the path in the `.source.fileSystemPath.path` field.
      Check the
      [TFJob example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/tfjob-example.yaml#L16-L22).
-     Default directory path is `/var/log/katib/tfevent/`.
+     The default directory path is `/var/log/katib/tfevent/`.
 
    - `Custom`: Specify this value if you need to use a custom way to collect
      metrics. You must define your custom metrics collector container
@@ -716,9 +716,10 @@ to launch an experiment from the command line:
 kubectl apply -f <your-path/your-experiment-config.yaml>
 ```
 
-**Note:** If you deployed Katib as part of Kubeflow, you need to
-change Kubeflow namespace to your profile namespace.
-Run the following command to launch an experiment using the random algorithm example:
+**Note:** If you deployed Katib as part of Kubeflow (your Kubeflow deployment
+should include Katib), you need to change Kubeflow namespace to your
+profile namespace. Run the following command to launch an experiment
+using the random algorithm example:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/random-example.yaml

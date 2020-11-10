@@ -8,8 +8,11 @@ weight = 10
 {{% beta-status
   feedbacklink="https://github.com/kubeflow/katib/issues" %}}
 
+This guide introduces the concepts of hyperparameter tuning, neural
+architecture search, and the Katib system as a component of Kubeflow.
+
 Katib is a Kubernetes-native project for automated machine learning (AutoML) —
-it's a system for hyperparameter tuning and neural architecture search.
+it's a system for hyperparameter tuning and neural architecture search (NAS).
 Katib supports a number of machine learning frameworks, including
 TensorFlow, MXNet, PyTorch, XGBoost, and others.
 Learn more about AutoML at [fast.ai](https://www.fast.ai/2018/07/16/auto-ml2/),
@@ -18,17 +21,18 @@ Learn more about AutoML at [fast.ai](https://www.fast.ai/2018/07/16/auto-ml2/),
 [Amazon SageMaker](https://aws.amazon.com/blogs/aws/amazon-sagemaker-autopilot-fully-managed-automatic-machine-learning/).
 
 Katib supports a lot of various AutoML algorithms, such as
-Bayesian optimization, Tree of Parzen Estimators, Random Search,
-Covariance Matrix Adaptation Evolution Strategy, Hyperband,
-Neural Architecture Search based on ENAS, Differentiable Architecture Search and
-many more. Further algorithms are under development.
+[Bayesian optimization](https://arxiv.org/pdf/1012.2599.pdf),
+[Tree of Parzen Estimators](https://papers.nips.cc/paper/2011/file/86e8f7ab32cfd12577bc2619bc635690-Paper.pdf),
+[Random Search](https://en.wikipedia.org/wiki/Hyperparameter_optimization#Random_search),
+[Covariance Matrix Adaptation Evolution Strategy](https://en.wikipedia.org/wiki/CMA-ES),
+[Hyperband](https://arxiv.org/pdf/1603.06560.pdf),
+[Efficient Neural Architecture Search](https://arxiv.org/abs/1802.03268),
+[Differentiable Architecture Search](https://arxiv.org/abs/1806.09055)
+and many more. Additional algorithm support is coming soon.
 
 The [Katib project](https://github.com/kubeflow/katib) is open source.
 The [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)
 is a good starting point for developers who want to contribute to the project.
-
-This page introduces the concepts of hyperparameter tuning, neural
-architecture search, and the Katib system as a component of Kubeflow.
 
 ## Hyperparameters and hyperparameter tuning
 
@@ -74,14 +78,14 @@ the optimized values for the hyperparameters.
 ## Neural architecture search
 
 {{% alert title="Alpha version" color="warning" %}}
-Neural architecture search is currently in <b>alpha</b> with limited support.
-The Kubeflow team is interested in any feedback you may have, in particular with
-regards to usability of the feature. You can log issues and comments in
+NAS is currently in <b>alpha</b> with limited support. The Kubeflow team is
+interested in any feedback you may have, in particular with regards to usability
+of the feature. You can log issues and comments in
 the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
 {{% /alert %}}
 
 In addition to hyperparameter tuning, Katib offers a _neural architecture
-search_ (NAS) feature. You can use the NAS to design
+search_ feature. You can use the NAS to design
 your artificial neural network, with a goal of maximizing the predictive
 accuracy and performance of your model.
 

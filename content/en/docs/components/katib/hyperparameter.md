@@ -1,21 +1,19 @@
 +++
 title = "Getting started with Katib"
-description = "How to set up Katib and run some hyperparameter tuning examples"
+description = "How to set up Katib and perform hyperparameter tuning"
 weight = 20
                     
 +++
 
-This page gets you started with Katib. Follow this guide to perform any
-additional setup you may need, depending on your environment, and to run a few
-examples using the command line and the Katib user interface (UI).
+This guide shows how to get started with Katib and run a few examples using the
+command line and the Katib user interface (UI) to perform hyperparameter tuning.
 
 For an overview of the concepts around Katib and hyperparameter tuning, check the
 [introduction to Katib](/docs/components/katib/overview/).
 
 ## Katib setup
 
-This section describes some configurations that you may need to add to your
-Kubernetes cluster, depending on the way you're using Kubeflow and Katib.
+Let's set up and configure Katib on your Kubernetes cluster with Kubeflow.
 
 <a id="katib-install"></a>
 
@@ -38,18 +36,22 @@ make deploy
 
 ### Setting up persistent volumes
 
-If you used the [above script](#katib-install) to deploy Katib,
-you can skip this step. This script deploys PVC and PV on your cluster.
+If you used the [above-mentioned script](#katib-install) to deploy Katib,
+you can skip this step. This script deploys
+[PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
+and
+[PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
+on your cluster.
 
 You can skip this step if you're using Kubeflow on Google Kubernetes Engine
 (GKE) or if your Kubernetes cluster includes a StorageClass for dynamic volume
 provisioning. For more information, check the Kubernetes documentation on
 [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
-and [persistent volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
+and PV.
 
 If you're using Katib outside GKE and your cluster doesn't include a
-StorageClass for dynamic volume provisioning, you must create a persistent
-volume (PV) to bind to the persistent volume claim (PVC) required by Katib.
+StorageClass for dynamic volume provisioning, you must create a PV to bind to
+the PVC required by Katib.
 
 After deploying Katib to your cluster, run the following command to create the
 PV:
@@ -58,8 +60,8 @@ PV:
 kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/pv/pv.yaml
 ```
 
-The above `kubectl apply` command uses a YAML file
-([`pv.yaml`](https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/pv/pv.yaml))
+The above `kubectl apply` command uses a YAML file -
+[`pv.yaml`](https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/pv/pv.yaml) -
 that defines the properties of the PV.
 
 <a id="katib-ui"></a>
@@ -116,9 +118,9 @@ classification model using the MNIST dataset. You can check training container s
 [here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/mxnet-mnist).
 The experiment runs twelve training jobs with various hyperparameters and saves the results.
 
-If you installed Katib as part of Kubeflow, you can't run experiments in Kubeflow namespace.
-Run the following commands to change namespace and launch an experiment using the random algorithm
-example:
+If you installed Katib as part of Kubeflow, you can't run experiments in the
+Kubeflow namespace. Run the following commands to change namespace and launch
+an experiment using the random algorithm example:
 
 1. Download the example:
 
@@ -126,7 +128,8 @@ example:
    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/random-example.yaml --output random-example.yaml
    ```
 
-1. Edit `random-example.yaml` and change the following line to use your Kubeflow user profile namespace:
+1. Edit `random-example.yaml` and change the following line to use your Kubeflow
+   user profile namespace:
 
    ```shell
    Namespace: kubeflow
@@ -151,12 +154,13 @@ This example randomly generates the following hyperparameters:
 
 - `--lr`: Learning rate. Type: double.
 - `--num-layers`: Number of layers in the neural network. Type: integer.
-- `--optimizer`: Optimizer. Type: categorical.
+- `--optimizer`: Optimization method to change the neural network attributes.
+  Type: categorical.
 
 Check the experiment status:
 
 ```shell
-kubectl -n <your user profile namespace> get experiment random-example -o yaml
+kubectl -n <YOUR_USER_PROFILE_NAMESPACE> get experiment random-example -o yaml
 ```
 
 The output of the above command should look similar to this:
@@ -170,9 +174,9 @@ metadata:
     - update-prometheus-metrics
   generation: 1
   name: random-example
-  namespace: "<your user profile namespace>"
+  namespace: "<YOUR_USER_PROFILE_NAMESPACE>"
   resourceVersion: "147081981"
-  selfLink: /apis/kubeflow.org/v1beta1/namespaces/<your user profile namespace>/experiments/random-example
+  selfLink: /apis/kubeflow.org/v1beta1/namespaces/<YOUR_USER_PROFILE_NAMESPACE>/experiments/random-example
   uid: fb3776e8-0f83-4783-88b6-80d06867ca0b
 spec:
   algorithm:
@@ -305,14 +309,16 @@ is complete. You can check information about the best trial in `status.currentOp
 
 - `.currentOptimalTrial.parameterAssignments` is the corresponding hyperparameter set.
 
-As well, `status` shows the experiment's trials with the current statuses.
+In addition, `status` shows the experiment's trials with their current status.
 
 <a id="view-ui"></a>
 
 View the results of the experiment in the Katib UI:
 
 1. Open the Katib UI as described [above](#katib-ui).
+
 1. Click **Hyperparameter Tuning** on the Katib home page.
+
 1. Open the Katib menu panel on the left, then open the **HP** section and
    click **Monitor**:
 
@@ -320,16 +326,17 @@ View the results of the experiment in the Katib UI:
        alt="The Katib menu panel"
        class="mt-3 mb-3 border border-info rounded">
 
-1. You should see the list of experiments:
+1. You should be able to view the list of experiments:
 
    <img src="/docs/images/katib/katib-experiments.png"
      alt="The random example in the list of Katib experiments"
      class="mt-3 mb-3 border border-info rounded">
 
 1. Click the name of the experiment, **random-example**.
-1. You should see a graph showing the level of validation and train accuracy for various
-   combinations of the hyperparameter values (learning rate, number of layers,
-   and optimizer):
+
+1. There should be a graph showing the level of validation and train accuracy
+   for various combinations of the hyperparameter values
+   (learning rate, number of layers, and optimizer):
 
    <img src="/docs/images/katib/katib-random-example-graph.png"
        alt="Graph produced by the random example"
@@ -341,7 +348,7 @@ View the results of the experiment in the Katib UI:
      alt="Trials that ran during the experiment"
      class="mt-3 mb-3 border border-info rounded">
 
-1. You can click on trial name to see metrics for the particular trial:
+1. You can click on trial name to get metrics for the particular trial:
 
    <img src="/docs/images/katib/katib-random-example-trial-info.png"
      alt="Trials that ran during the experiment"
@@ -349,9 +356,9 @@ View the results of the experiment in the Katib UI:
 
 ### TensorFlow example
 
-If you installed Katib as part of Kubeflow, you can’t run experiments in Kubeflow namespace.
-Run the following commands to launch an experiment using the Kubeflow's
-TensorFlow training job operator, TFJob:
+If you installed Katib as part of Kubeflow, you can’t run experiments in the
+Kubeflow namespace. Run the following commands to launch an experiment using
+the Kubeflow's TensorFlow training job operator, TFJob:
 
 1. Download `tfjob-example.yaml`:
 
@@ -359,7 +366,8 @@ TensorFlow training job operator, TFJob:
    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/tfjob-example.yaml --output tfjob-example.yaml
    ```
 
-1. Edit `tfjob-example.yaml` and change the following line to use your Kubeflow user profile namespace:
+1. Edit `tfjob-example.yaml` and change the following line to use your Kubeflow
+   user profile namespace:
 
    ```shell
    Namespace: kubeflow
@@ -374,17 +382,17 @@ TensorFlow training job operator, TFJob:
 1. You can check the status of the experiment:
 
    ```shell
-   kubectl -n <your user profile namespace> get experiment tfjob-example -o yaml
+   kubectl -n <YOUR_USER_PROFILE_NAMESPACE> get experiment tfjob-example -o yaml
    ```
 
 Follow the steps as described for the _random algorithm example_
-[above](#view-ui), to see the results of the experiment in the Katib UI.
+[above](#view-ui) to obtain the results of the experiment in the Katib UI.
 
 ### PyTorch example
 
-If you installed Katib as part of Kubeflow, you can’t run experiments in Kubeflow namespace.
-Run the following commands to launch an experiment using Kubeflow's PyTorch
-training job operator, PyTorchJob:
+If you installed Katib as part of Kubeflow, you can’t run experiments in the
+Kubeflow namespace. Run the following commands to launch an experiment
+using Kubeflow's PyTorch training job operator, PyTorchJob:
 
 1. Download `pytorchjob-example.yaml`:
 
@@ -392,7 +400,8 @@ training job operator, PyTorchJob:
    curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/pytorchjob-example.yaml --output pytorchjob-example.yaml
    ```
 
-1. Edit `pytorchjob-example.yaml` and change the following line to use your Kubeflow user profile namespace:
+1. Edit `pytorchjob-example.yaml` and change the following line to use your
+   Kubeflow user profile namespace:
 
    ```shell
    Namespace: kubeflow
@@ -407,15 +416,15 @@ training job operator, PyTorchJob:
 1. You can check the status of the experiment:
 
    ```shell
-   kubectl -n <your user profile namespace> describe experiment pytorchjob-example
+   kubectl -n <YOUR_USER_PROFILE_NAMESPACE> describe experiment pytorchjob-example
    ```
 
 Follow the steps as described for the _random algorithm example_
-[above](#view-ui), to see the results of the experiment in the Katib UI.
+[above](#view-ui) to get the results of the experiment in the Katib UI.
 
-## Cleanup
+## Cleaning up
 
-To delete Katib from Kubernetes cluster run:
+To remove Katib from your Kubernetes cluster run:
 
 ```shell
 make undeploy
