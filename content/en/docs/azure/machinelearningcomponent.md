@@ -40,7 +40,7 @@ To learn more about the Azure ML Register Model pipeline component, refer to the
 
 To learn more about using Azure ML to manage the lifecycle of your models, go to [Model management, deployment, and monitoring](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
 
-## Azure ML Deploy Model Component
+## Azure ML Deploy Model component
 
 Trained machine learning models are deployed as web services in the cloud and you can use your model by accessing its endpoint. When using the model as a web service, the following items are included in the Azure ML Deploy Model component: 
 
