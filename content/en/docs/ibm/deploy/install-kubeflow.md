@@ -150,11 +150,11 @@ Choose either **single user** or **multi-tenant** section based on your usage.
 ### Single user
 Run the following commands to set up and deploy Kubeflow for a single user without any authentication.
 
-**Notice**: By default, Kubeflow deployment on IBM Cloud uses [Kubeflow pipeline with Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
+**Note**: By default, Kubeflow deployment on IBM Cloud uses [Kubeflow pipeline with Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
 If you want to use Kubeflow pipeline with Argo backend, please modify and uncomment the `argo` and `kfp-argo` applications
 inside the `kfctl_ibm.yaml` below and remove the `kfp-tekton`, `tektoncd-install`, and `tektoncd-dashboard` applications. 
 
-```
+```shell
 # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
 # name of the directory containing your configuration.
 # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
@@ -166,7 +166,7 @@ export KF_NAME=<your choice of name for the Kubeflow deployment>
 export BASE_DIR=<path to a base directory>
 export KF_DIR=${BASE_DIR}/${KF_NAME}
 
-# Set the configuration file to use, such as the file specified below:
+# Set the configuration file to use, such as:
 export CONFIG_FILE=kfctl_ibm.yaml
 export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm.yaml"
 
@@ -202,18 +202,20 @@ providers (Cloud Directory, SAML, social log-in with Google or Facebook etc.) or
 custom providers.
 
 1. Setup environment variables:
-    ```
+    ```shell
     export KF_NAME=<your choice of name for the Kubeflow deployment>
 
     # Set the path to the base directory where you want to store one or more 
-    # Kubeflow deployments. For example, /opt/.
+    # Kubeflow deployments. For example, use `/opt/`.
     export BASE_DIR=<path to a base directory>
 
     # Then set the Kubeflow application directory for this deployment.
     export KF_DIR=${BASE_DIR}/${KF_NAME}
     ```
+
 2. Setup configuration files:
-    ```
+
+    ```shell
     export CONFIG_FILE=kfctl_ibm_multi_user.yaml
     export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm_multi_user.yaml"
     # Generate and deploy Kubeflow:
@@ -227,15 +229,21 @@ custom providers.
     inside the `kfctl_ibm_multi_user.yaml` and remove the `kfp-tekton-multi-user`, `tektoncd-install`, and `tektoncd-dashboard` applications. 
     
 3. Deploy Kubeflow:
-    ```
+
+    ```shell
     kfctl apply -V -f ${CONFIG_FILE}
     ```
-4. Wait until the deployment finishes successfully. e.g., all pods are in `Running` state when running `kubectl get pod -n kubeflow`.
 
-5. Follow the guide to create an [AppID service instance](https://cloud.ibm.com/catalog/services/app-id) for Kubeflow authentication. 
-You can also learn [how to use APP ID](https://cloud.ibm.com/docs/appid?topic=appid-getting-started) with different authentication methods.
+4. Wait until the deployment finishes successfully — for example, all pods should be in the `Running` state when you run the command:
 
-6. Follow the step [Registering your app](https://cloud.ibm.com/docs/appid?topic=appid-app#app-register)
+    ```shell
+    kubectl get pod -n kubeflow
+    ```
+
+5. Follow the [Creating an App ID service instance on IBM Cloud](https://cloud.ibm.com/catalog/services/app-id) guide for Kubeflow authentication. 
+You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=appid-getting-started) with different authentication methods.
+
+6. Follow the [Registering your app](https://cloud.ibm.com/docs/appid?topic=appid-app#app-register) section of the App ID guide
 to create an application with type _regularwebapp_ under the provisioned AppID
 instance. Make sure the _scope_ contains _email_. Then retrieve the following
 configuration parameters from your AppID:
@@ -253,24 +261,28 @@ configuration parameters from your AppID:
   class="mt-3 mb-3 border border-info rounded">
 
 8. Create the namespace `istio-system` if it does not exist:
-    ```
+
+    ```shell
     kubectl create namespace istio-system
     ```
+
 9. Create a secret prior to Kubeflow deployment by filling parameters from the
 step 2 accordingly:
-    ```SHELL
+
+    ```shell
     kubectl create secret generic appid-application-configuration -n istio-system \
       --from-literal=clientId=<clientId> \
       --from-literal=secret=<secret> \
       --from-literal=oAuthServerUrl=<oAuthServerUrl> \
       --from-literal=oidcRedirectUrl=http://<kubeflow-FQDN>/login/oidc
     ```
+
     * `<oAuthServerUrl>` - fill in the value of oAuthServerUrl
     * `<clientId>` - fill in the value of clientId
     * `<secret>` - fill in the value of secret
     * `<kubeflow-FQDN>` - fill in the FQDN of Kubeflow, if you don't know yet, just give a dummy one like `localhost`. Then change it after you got one.
     
-    **Notice**: If any of the parameters changed after the initial Kubeflow deployment, we 
+    **Note**: If any of the parameters changed after the initial Kubeflow deployment, you 
     will need to manually update these parameters in the secret `appid-application-configuration`
     then restart authservice by running the command `kubectl rollout restart sts authservice -n istio-system`.
 
