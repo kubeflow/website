@@ -74,7 +74,7 @@ Kubeflow 1.1 includes KFServing v0.3, where the focus has been on providing more
 
 ### Sample notebooks
 
-* [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client)
+* [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_v1alpha2_sample.ipynb)
 * [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
 * [ONNX](https://github.com/kubeflow/kfserving/blob/master/docs/samples/onnx/mosaic-onnx.ipynb)
 
