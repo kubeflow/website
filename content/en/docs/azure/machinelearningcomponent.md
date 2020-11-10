@@ -43,7 +43,7 @@ To learn more about using Azure ML to manage the lifecycle of your models, go to
 
 Trained machine learning models are deployed as web services in the cloud. You could use the model by accessing the model endpoint. When using the model as a web service, following items are included in the component: an entry script and Azure Machine Learning environment configurations.
 
-Please navigate to [AML-deploy-model pipeline component](https://github.com/kubeflow/pipelines/tree/master/components/azure/azureml/aml-deploy-model) for usage details and more information.
+For more information about the Azure ML Deploy Model pipeline component, check the [official repository](https://github.com/kubeflow/pipelines/tree/master/components/azure/azureml/aml-deploy-model).
 
 To learn more about using Azure ML to manage the lifecycle of your models, go to [Model management, deployment, and monitoring](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
 
