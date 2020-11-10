@@ -16,7 +16,7 @@ The components provide capabilities for:
 
 ## Prerequisites
 
-- Follow the [instruction](https://www.kubeflow.org/docs/azure/) to install Kubeflow on AKS cluster.
+- You should have Kubeflow installed on your AKS cluster. If you don't, follow the [Kubeflow installation (for Azure) guide](https://www.kubeflow.org/docs/azure/deploy/install-kubeflow/).
 - To interact with Azure resources, you may need to configure them before using a particular pipeline component. Check the README for each component to learn about what Azure resources are required.
 - The `kfp.azure` extension can be used to create a secret to interact with Azure resources. To create Azure credentials, run:
 
