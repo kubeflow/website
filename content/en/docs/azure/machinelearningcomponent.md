@@ -51,5 +51,6 @@ For more information about the Azure ML Deploy Model pipeline component, check t
 
 To learn more about using Azure ML to manage the lifecycle of your models, go to [Model management, deployment, and monitoring](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
 
-## Other Azure Machine Learning Capabilities
-Navigate to [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/) page to see more capabilities to improve your machine learning workflow.
+## Other Azure ML capabilities
+
+You can learn more about the capabilities of Azure ML and how to improve your ML workflow by checking the [Azure ML documentation](https://docs.microsoft.com/en-us/azure/machine-learning/) 
