@@ -1,14 +1,12 @@
 +++
-title = "Create an IBM Cloud cluster"
+title = "Create an IBM Cloud cluster or connect to an existing cluster"
 description = "Instructions for creating a Kubernetes cluster on IBM Cloud"
 weight = 5
 +++
 
 This guide describes how to create a Kubernetes cluster with IBM Cloud Kubernetes Service.
 
-[IBM Cloud Kubernetes Service](https://www.ibm.com/cloud/container-service/) provides powerful tools and services to help deploy highly available containerized apps in Kubernetes clusters and to automate, isolate, secure, manage, and monitor your workloads across zones or regions.
-
-You can use your existing clusters to install Kubeflow as far as it meets the minimum system requirement.
+[IBM Cloud Kubernetes Service](https://www.ibm.com/cloud/container-service/) provides powerful tools and services to help deploy highly available containerized apps in Kubernetes clusters and to automate, isolate, secure, manage, and monitor your workloads across zones or regions. 
 
 ## Prerequisites
 
@@ -36,9 +34,24 @@ You can use your existing clusters to install Kubeflow as far as it meets the mi
 
     Use your registered email and password for your `IBMid` to log in to IBM Cloud.
 
-Follow these steps to create a cluster:
+## Connecting to an existing cluster
 
-## Setting environment variables
+If you have an existing cluster, use it to install Kubeflow as far as it meets the minimum system requirement. 
+
+Get the Kubeconfig file:
+
+	```shell
+	ibmcloud ks cluster config --cluster $CLUSTER_NAME
+	```
+
+From here on, please see [Install Kubeflow](/docs/ibm/deploy/install-kubeflow).
+
+
+## Create and setup a new cluster
+
+Follow these steps to create and setup a new [IBM Cloud Kubernetes Service(IKS) cluster:
+
+### Setting environment variables
 
 Choose the region and the worker node provider for your cluster, and set the environment variables.
 
@@ -57,7 +70,7 @@ export CLUSTER_NAME=kubeflow
 
 **Notice**: If choosing other Kubernetes worker nodes providers than `classic`, refer to the IBM Cloud official document [Creating clusters](https://cloud.ibm.com/docs/containers?topic=containers-clusters) for detailed steps.
 
-## Choosing a worker node flavor
+### Choosing a worker node flavor
 
 The worker nodes flavor name varies from zones and providers. Run `ibmcloud ks flavors --zone ${CLUSTER_ZONE} --provider ${WORKER_NODE_PROVIDER}` to list available flavors. For example, following are some flavors supported in the `dal13` zone with `classic` worker node provider.
 
@@ -87,7 +100,7 @@ Now set the environment variable with the flavor you choose.
 export WORKER_NODE_FLAVOR=b3c.4x16
 ```
 
-## Creating a IBM Cloud Kubernetes cluster
+### Creating a IBM Cloud Kubernetes cluster
 
 Run with the following command to create a cluster:
 
