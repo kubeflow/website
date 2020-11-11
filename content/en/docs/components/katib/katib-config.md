@@ -85,11 +85,13 @@ a default value is set automatically.
    - `cpu = 500m`
    - `ephemeral-storage = 5Gi`
 
-   It is possible to not request the `ephemeral-storage` resource for the
-   metrics collector's container. For example to use
-   [GKE nodepool autoscalers](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#limitations).
-   To do that, set the negative values for the `ephemeral-storage` requests and
-   limits in your Katib config:
+   You can run your metrics collector container without requesting
+   the `ephemeral-storage` resource from the Kubernetes cluster.
+   For instance, if you want to use
+   [Google Kubernetes Engine cluster autoscaler](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#limitations)
+   for your Katib experiments. To remove the `ephemeral-storage` resource from
+   the metrics collector container, set the negative values for the
+   `ephemeral-storage` requests and limits in your Katib config:
 
    ```json
    "requests": {
@@ -220,11 +222,13 @@ a default value is set automatically.
    - `cpu = 500m`
    - `ephemeral-storage = 5Gi`
 
-   It is possible to not request the `ephemeral-storage` resource for the
-   suggestion's container. For example to use
-   [GKE nodepool autoscalers](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#limitations).
-   To do that, set the negative values for the `ephemeral-storage` requests and
-   limits in your Katib config:
+   You can run your suggestion container without requesting
+   the `ephemeral-storage` resource from the Kubernetes cluster.
+   For instance, if you want to use
+   [Google Kubernetes Engine cluster autoscaler](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#limitations)
+   for your Katib experiments. To remove the `ephemeral-storage` resource from
+   the suggestion container, set the negative values for the
+   `ephemeral-storage` requests and limits in your Katib config:
 
    ```json
    "requests": {
