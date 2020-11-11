@@ -1,7 +1,7 @@
 +++
 title = "Create or access an IBM Cloud Kubernetes cluster"
 description = "Instructions for creating or connecting to a Kubernetes cluster on IBM Cloud"
-weight = 5
+weight = 3
 +++
 
 This guide describes how to create a Kubernetes cluster with IBM Cloud Kubernetes Service.
