@@ -4,7 +4,9 @@ description = "Instructions for using Kubeflow Pipelines on IBM Cloud Kubernetes
 weight = 50
 +++
 
-By default, Kubeflow Pipelines on IBM Cloud are running with the Tekton backend. In this guide you'll learn how to use the Kubeflow Pipelines with the Tekton backend [(kfp-tekton)](https://github.com/kubeflow/kfp-tekton).
+By default, Kubeflow Pipelines on IBM Cloud are running with the Tekton backend. In this guide you'll learn how to use the Kubeflow Pipelines with the Tekton backend [(kfp-tekton)](https://github.com/kubeflow/kfp-tekton). This assumes you have deployed [Kubeflow on IBM Cloud using the instructions on this website](https://www.kubeflow.org/docs/ibm/deploy/).
+
+You can also do a [standalone installation of Kubeflow Pipelines with Tekton](https://github.com/kubeflow/kfp-tekton/blob/master/guides/kfp_tekton_install.md#standalone-kubeflow-pipelines-with-tekton-backend-deployment) if you don't want whole of Kubeflow. 
 
 In this tutorial, we use the below single step pipeline as our example
 
@@ -31,10 +33,10 @@ def echo_pipeline(
 
 ## 1. Single-user Kubeflow Pipelines deployment with the SDK
 
-* You will be using the Kubeflow Pipelines SDK ([`kfp-tekton`](https://pypi.org/project/kfp-tekton/)) v0.4.0 or above.
-* Using the 
+* You will be using the Kubeflow Pipelines with Tekton SDK ([`kfp-tekton`](https://pypi.org/project/kfp-tekton/)) v0.4.0 or above.
+* If you have deployed Kubeflow on IBM Cloud using the 
 [`kfctl_ibm.v1.2.0.yaml`](https://raw.githubusercontent.com/kubeflow/manifests/v1.2-branch/kfdef/kfctl_ibm.v1.2.0.yaml)
-manifest you can deploy Kubeflow for a single user using the SDK as follows:
+manifest you can configure ([`kfp-tekton`](https://pypi.org/project/kfp-tekton/)) SDK for a single user as follows:
 
 ```python
 from kfp_tekton import TektonClient
@@ -54,7 +56,7 @@ manifest.
 
 It requires authentication via the public endpoint of Kubeflow deployment when using the Kubeflow Pipelines multi-user feature with Pipelines SDK. 
 
-You need to provide the following three variables if you're using an in-cluster Jupyter notebook or a remote machine:
+You need to provide the following three variables if you're using an in-cluster Jupyter notebook or a remote client machine:
 
 1. `KUBEFLOW_PUBLIC_ENDPOINT_URL` - Kubeflow public endpoint URL. You can obtain it from command `ibmcloud ks nlb-dns ls --cluster <your-cluster-name>`.
 1. `SESSION_COOKIE` - A session cookie starts with `authservice_session=`. You can obtain it from your browser after authenticated from Kubeflow UI. Notice that this session cookie expires in 24 hours, so you need to obtain it again after cookie expired.
@@ -113,7 +115,7 @@ The `TektonClient` can run pipelines using one of the below sources:
 
 1. [Python DSL source code](#run-pipelines-from-the-python-dsl-source-code)
 2. [Compiled pipeline file](#run-pipelines-from-the-compiled-pipeline-file)
-3. [List of uploaded pipelines](#run-pipelines-from-the-list-of-uploaded-pipelines)
+3. [Uploaded pipelines on KFP engine](#run-pipelines-from-the-list-of-uploaded-pipelines)
 
 ## Run pipelines from the Python DSL source code
 
