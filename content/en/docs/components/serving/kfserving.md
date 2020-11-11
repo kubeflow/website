@@ -109,10 +109,12 @@ Once you meet the above prerequisites KFServing can be [installed standalone](ht
 
 ## Use SDK
 
-1. Install the SDK.
-    ```
+1. Install the SDK with PiPy.
+
+    ```shell
     pip install kfserving
     ```
+
 1. [Follow the example(s)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client) to use the KFServing SDK to create, patch, roll out, and delete a KFServing instance.
 
 ## Contribute
