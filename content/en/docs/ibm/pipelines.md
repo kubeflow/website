@@ -8,7 +8,7 @@ By default, Kubeflow Pipelines on IBM Cloud are running with the Tekton backend.
 
 You can also do a [standalone installation of Kubeflow Pipelines with Tekton](https://github.com/kubeflow/kfp-tekton/blob/master/guides/kfp_tekton_install.md#standalone-kubeflow-pipelines-with-tekton-backend-deployment) if you don't want whole of Kubeflow. 
 
-<img src="./kfp-tekton.png" alt="KFP-Tekton">
+<img src="/docs/ibm/kfp-tekton.png" alt="KFP-Tekton">
 
 In this tutorial, we use the below single step pipeline as our example
 
