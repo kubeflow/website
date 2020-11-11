@@ -718,30 +718,19 @@ kubectl apply -f <your-path/your-experiment-config.yaml>
 
 **Note:**
 
-<<<<<<< HEAD:content/en/docs/components/katib/experiment.md
 - If you deployed Katib as part of Kubeflow (your Kubeflow deployment
   should include Katib), you need to change Kubeflow namespace to your
   profile namespace.
-=======
-- If you deploy Katib as part of Kubeflow, you have to change the Kubeflow
-  namespace to your profile namespace.
->>>>>>> Annotation step after changing namespace:content/en/docs/components/hyperparameter-tuning/experiment.md
 
 - (Optional) Katib's experiments don't work with
   [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
   If you install Kubeflow using
   [Istio config](https://www.kubeflow.org/docs/started/k8s/kfctl-k8s-istio/),
-<<<<<<< HEAD:content/en/docs/components/katib/experiment.md
   you have to disable sidecar injection. To do that, specify this annotation:
   `sidecar.istio.io/inject: "false"` in your experiment's trial template. For
   examples on how to do it for `Job`, `TFJob` (TensorFlow) or
-=======
-  you have to disable sidecar injection. To do that, specify annotation
-  `sidecar.istio.io/inject: "false"` in your experiment's trial template.
-  For examples on how to do it for `Job`, `TFJob` (TensorFlow) or
->>>>>>> Annotation step after changing namespace:content/en/docs/components/hyperparameter-tuning/experiment.md
   `PyTorchJob` (PyTorch), refer to the
-  [getting-started guide](http://localhost:1313/docs/components/hyperparameter-tuning/hyperparameter/#examples).
+  [getting-started guide](/docs/components/katib/hyperparameter/#examples).
 
 Run the following command to launch an experiment
 using the random algorithm example:
