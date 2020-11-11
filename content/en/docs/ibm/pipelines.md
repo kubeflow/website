@@ -1,12 +1,14 @@
 +++
 title = "Pipelines on IBM Cloud Kubernetes Service (IKS)"
 description = "Instructions for using Kubeflow Pipelines on IBM Cloud Kubernetes Service (IKS)"
-weight = 50
+weight = 5
 +++
 
 By default, Kubeflow Pipelines on IBM Cloud are running with the Tekton backend. In this guide you'll learn how to use the Kubeflow Pipelines with the Tekton backend [(kfp-tekton)](https://github.com/kubeflow/kfp-tekton). This assumes you have deployed [Kubeflow on IBM Cloud using the instructions on this website](https://www.kubeflow.org/docs/ibm/deploy/).
 
 You can also do a [standalone installation of Kubeflow Pipelines with Tekton](https://github.com/kubeflow/kfp-tekton/blob/master/guides/kfp_tekton_install.md#standalone-kubeflow-pipelines-with-tekton-backend-deployment) if you don't want whole of Kubeflow. 
+
+<img src="./kfp-tekton.png" alt="KFP-Tekton">
 
 In this tutorial, we use the below single step pipeline as our example
 

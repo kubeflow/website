@@ -1,7 +1,7 @@
 +++
 title = "End-to-end Kubeflow on IBM Cloud"
 description = "Running Kubeflow using IBM Cloud Kubernetes Service (IKS)"
-weight = 250
+weight = 7
                     
 +++
 This is a guide for an end-to-end example of Kubeflow on [IBM Cloud Kubernetes Service (IKS)](https://cloud.ibm.com/docs/containers?topic=containers-getting-started). The core steps will be to take a base Tensorflow model, modify it for distributed training, serve the resulting model with TFServing, and deploy a web application that uses the trained model.
