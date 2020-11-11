@@ -64,7 +64,7 @@ These are the fields in the experiment configuration spec:
   how the hyperparameters work with the model.
   Katib records the value of the best `objectiveMetricName` metric (maximized
   or minimized based on `type`) and the corresponding hyperparameter set
-  in Experiment's `.status.currentOptimalTrial.parameterAssignments`.
+  in experiment's `.status.currentOptimalTrial.parameterAssignments`.
   If the `objectiveMetricName` metric for a set of hyperparameters reaches the `goal`,
   Katib stops trying more hyperparameter combinations.
 
@@ -80,13 +80,13 @@ These are the fields in the experiment configuration spec:
   - When the objective `type` is `minimize`, Katib compares all minimum
     metric values.
 
-  You are able to change this default mechanism. For that, define
+  You are able to change the default mechanism. For that, define
   `metricStrategies` with various rules (`min`, `max` or `latest`) to extract
-  values for each metric from `objectiveMetricName` and `additionalMetricNames`.
-  Experiment's objective value is calculated in accordance with the
-  selected strategy.
+  values for each metric from the experiment's `objectiveMetricName` and
+  `additionalMetricNames`. The experiment's objective value is calculated in
+  accordance with the selected strategy.
 
-  For example, if you set the below parameters in Experiment:
+  For example, if you set the below parameters in your experiment:
 
   ```yaml
   . . .
@@ -99,10 +99,9 @@ These are the fields in the experiment configuration spec:
   ```
 
   Katib controller is searching for the best maximum from the all latest
-  reported `accuracy` metrics for the each trial.
-  Check the
+  reported `accuracy` metrics for the each trial. Check the
   [metrics strategies example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metric-strategy-example.yaml).
-  The default strategy type for each metric are equal to objective `type`.
+  The default strategy type for each metric is equal to the objective `type`.
 
   Refer to the
   [`ObjectiveSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L93).
