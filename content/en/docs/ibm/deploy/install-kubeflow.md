@@ -168,7 +168,7 @@ export KF_DIR=${BASE_DIR}/${KF_NAME}
 
 # Set the configuration file to use, such as:
 export CONFIG_FILE=kfctl_ibm.yaml
-export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm.yaml"
+export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.2-branch/kfdef/kfctl_ibm.v1.2.0.yaml"
 
 # Generate Kubeflow:
 mkdir -p ${KF_DIR}
@@ -217,7 +217,7 @@ custom providers.
 
     ```shell
     export CONFIG_FILE=kfctl_ibm_multi_user.yaml
-    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_ibm_multi_user.yaml"
+    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.2-branch/kfdef/kfctl_ibm_multi_user.v1.2.0.yaml"
     # Generate and deploy Kubeflow:
     mkdir -p ${KF_DIR}
     cd ${KF_DIR}
