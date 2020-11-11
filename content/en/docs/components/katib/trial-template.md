@@ -1,14 +1,14 @@
 +++
-title = "Trial Template Overview"
-description = "How to specify trial template parameters and support custom CRD in Katib"
+title = "Overview of trial templates"
+description = "How to specify trial template parameters and support a custom resource (CRD) in Katib"
 weight = 40
                     
 +++
 
 This guide describes how to configure trial template parameters and use custom
 [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
-in Katib. Follow this page to know more about changing trial template specification,
-how to use [Kubernetes ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/)
+in Katib. You will learn about changing trial template specification, how to use
+[Kubernetes ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/)
 to store templates and how to modify Katib controller to support your
 Kubernetes CRD in Katib experiments.
 
@@ -250,8 +250,8 @@ Follow these two simple steps to integrate your custom CRD in Katib:
 
 1. Modify Katib controller
    [ClusterRole's rules](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/rbac.yaml#L5)
-   with the new rule to give Katib access for the all resources that are created
-   by trial. To know more about ClusterRole, check
+   with the new rule to give Katib access to all resources that are created
+   by the trial. To know more about ClusterRole, check
    [Kubernetes guide](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole).
 
    In case of Tekton `Pipeline`, trial creates Tekton `PipelineRun`, then
@@ -295,8 +295,8 @@ Expected output for the Tekton `Pipeline`:
 {"level":"info","ts":1604325430.9763885,"logger":"trial-controller","msg":"Job watch added successfully","CRD Group":"tekton.dev","CRD Version":"v1beta1","CRD Kind":"PipelineRun"}
 ```
 
-If the above steps are successful, you are able to use your custom object YAML
-in the experiment's trial template source spec.
+If you ran the above steps successfully, you should be able to use your custom
+object YAML in the experiment's trial template source spec.
 
 We appreciate your feedback on using various CRDs in Katib.
 It would be great, if you let us know about your experiments.
