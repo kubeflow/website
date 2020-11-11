@@ -64,9 +64,9 @@ These are the fields in the experiment configuration spec:
   how the hyperparameters work with the model.
   Katib records the value of the best `objectiveMetricName` metric (maximized
   or minimized based on `type`) and the corresponding hyperparameter set
-  in experiment's `.status.currentOptimalTrial.parameterAssignments`.
-  If the `objectiveMetricName` metric for a set of hyperparameters reaches the `goal`,
-  Katib stops trying more hyperparameter combinations.
+  in the experiment's `.status.currentOptimalTrial.parameterAssignments`.
+  If the `objectiveMetricName` metric for a set of hyperparameters reaches the
+  `goal`, Katib stops trying more hyperparameter combinations.
 
   You can run the experiment without specifying the `goal`. In that case, Katib
   runs the experiment until the corresponding successful trials reach `maxTrialCount`.
@@ -80,13 +80,13 @@ These are the fields in the experiment configuration spec:
   - When the objective `type` is `minimize`, Katib compares all minimum
     metric values.
 
-  You are able to change the default mechanism. For that, define
-  `metricStrategies` with various rules (`min`, `max` or `latest`) to extract
-  values for each metric from the experiment's `objectiveMetricName` and
-  `additionalMetricNames`. The experiment's objective value is calculated in
+  To change the default settings, define `metricStrategies` with various rules
+  (`min`, `max` or `latest`) to extract values for each metric from the
+  experiment's `objectiveMetricName` and `additionalMetricNames`.
+  The experiment's objective value is calculated in
   accordance with the selected strategy.
 
-  For example, if you set the below parameters in your experiment:
+  For example, you can set the parameters in your experiment as follows:
 
   ```yaml
   . . .
@@ -98,8 +98,8 @@ These are the fields in the experiment configuration spec:
   . . .
   ```
 
-  Katib controller is searching for the best maximum from the all latest
-  reported `accuracy` metrics for each trial. Check the
+  where the Katib controller is searching for the best maximum from the all
+  latest reported `accuracy` metrics for each trial. Check the
   [metrics strategies example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metric-strategy-example.yaml).
   The default strategy type for each metric is equal to the objective `type`.
 
