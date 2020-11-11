@@ -1,6 +1,6 @@
 +++
 title = "Resuming an experiment"
-description = "How to restart and modify running experiment"
+description = "How to restart and modify running experiments"
 weight = 40
                     
 +++
