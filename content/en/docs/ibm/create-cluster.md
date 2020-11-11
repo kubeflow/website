@@ -1,6 +1,6 @@
 +++
-title = "Create an IBM Cloud cluster or connect to an existing cluster"
-description = "Instructions for creating a Kubernetes cluster on IBM Cloud"
+title = "Create or access an IBM Cloud cluster"
+description = "Instructions for creating or connecting to a Kubernetes cluster on IBM Cloud"
 weight = 5
 +++
 
