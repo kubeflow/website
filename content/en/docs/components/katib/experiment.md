@@ -99,7 +99,7 @@ These are the fields in the experiment configuration spec:
   ```
 
   Katib controller is searching for the best maximum from the all latest
-  reported `accuracy` metrics for the each trial. Check the
+  reported `accuracy` metrics for each trial. Check the
   [metrics strategies example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metric-strategy-example.yaml).
   The default strategy type for each metric is equal to the objective `type`.
 
