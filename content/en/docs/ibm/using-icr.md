@@ -1,7 +1,7 @@
 +++
 title = "Using IBM Cloud Container Registry (ICR)"
 description = "This guide covers certain scenarios involving using private container images with the IBM Cloud Container Registry (ICR)."
-weight = 15
+weight = 6
 +++
 
 ## Prerequisites
