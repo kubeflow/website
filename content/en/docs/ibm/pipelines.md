@@ -31,7 +31,6 @@ def echo_pipeline(
 
 ## 1. Single-user Kubeflow Pipelines deployment with the SDK
 
-**Notes**:
 * You will be using the Kubeflow Pipelines SDK ([`kfp-tekton`](https://pypi.org/project/kfp-tekton/)) v0.4.0 or above.
 * Using the 
 [`kfctl_ibm.v1.2.0.yaml`](https://raw.githubusercontent.com/kubeflow/manifests/v1.2-branch/kfdef/kfctl_ibm.v1.2.0.yaml)
