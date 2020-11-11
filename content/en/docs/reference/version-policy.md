@@ -114,7 +114,7 @@ documentation for that application.
         <td></td>
       </tr>
       <tr>
-        <td><a href="/docs/components/hyperparameter-tuning/overview/">Hyperparameter
+        <td><a href="/docs/components/katib/overview/">Hyperparameter
           tuning: Katib</a>
           (<a href="https://github.com/kubeflow/katib">GitHub</a>)
           </td>
