@@ -65,9 +65,6 @@ It's time to get started!
 
 1. Follow the [IKS instructions](/docs/ibm/deploy/install-kubeflow) to deploy Kubeflow.
 2. Launch a Jupyter notebook.
-    * For IBM Cloud, the default NFS storage does not support some of the Python package installation. Therefore, you need to create the notebook with the setting `Don't use Persistent Storage for User's home` enabled.
-    * Due to the Notebook user permission issue, you need to use custom images that were working in the previous version.
-        * The tutorial has been tested on image: gcr.io/kubeflow-images-public/tensorflow-1.13.1-notebook-cpu:v0.5.0
 3. Launch a terminal in Jupyter and clone the Kubeflow examples repo.
    ```
    git clone https://github.com/kubeflow/examples.git git_kubeflow-examples
