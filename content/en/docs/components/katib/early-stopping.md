@@ -1,6 +1,6 @@
 +++
 title = "Using Early Stopping"
-description = "How to use an early stopping in Katib experiments"
+description = "How to use early stopping in Katib experiments"
 weight = 60
                     
 +++
@@ -8,14 +8,15 @@ weight = 60
 This guide shows how you can use
 [early stopping](https://en.wikipedia.org/wiki/Early_stopping) to improve your
 Katib experiments. Early stopping allows you to avoid overfitting when you
-train your model during Katib experiments. It helps you to save computing
-resources and experiment execution time by stopping the experiment's trials
-before the training process is complete.
+train your model during Katib experiments. It also helps by saving computing
+resources and reducing experiment execution time by stopping the experiment's
+trials when the target metric(s) no longer improves before the training process
+is complete.
 
-The major advantage of using early stopping in Katib, is that you don't
+The major advantage of using early stopping in Katib is that you don't
 need to modify your
 [training container package](/docs/components/katib/experiment/#packaging-your-training-code-in-a-container-image).
-All you have to do is to change your experiment YAML file.
+All you have to do is make necessary changes in your experiment's YAML file.
 
 Early stopping works in the same way as Katib's
 [metrics collector](/docs/components/katib/experiment/#metrics-collector).
@@ -28,28 +29,30 @@ stopped. Currently, early stopping works only with
 because early stopping algorithms need to know the sequence of reported metrics.
 Check the
 [`MXNet` example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/mxnet-mnist/mnist.py#L36)
-how to add date format to your logs.
+to learn how to add a date format to your logs.
 
 ## Configure the experiment with early stopping
 
 As a reference, you can use the YAML file of the
 [early stopping example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/early-stopping/median-stop.yaml).
 
-First of all, follow the
-[guide](/docs/components/katib/experiment/#configuring-the-experiment)
-to configure your Katib experiment.
-To apply early stopping for your experiment, specify the `.spec.earlyStopping`
-parameter, similar to the `.spec.algorithm`. Refer to the
-[`EarlyStoppingSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L41-L58)
+1. Follow the
+   [guide](/docs/components/katib/experiment/#configuring-the-experiment)
+   to configure your Katib experiment.
 
-- `.earlyStopping.algorithmName` - the name of the early stopping algorithm.
+2. Next, to apply early stopping for your experiment, specify the `.spec.earlyStopping`
+   parameter, similar to the `.spec.algorithm`. Refer to the
+   [`EarlyStoppingSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L41-L58)
+   for more information.
 
-- `.earlyStopping.algorithmSettings`- the settings for the early stopping algorithm.
+   - `.earlyStopping.algorithmName` - the name of the early stopping algorithm.
 
-Experiment's suggestion produces new trials. After that, the early stopping
-algorithm generates early stopping rules for the created trials.
-Once the trial reaches all the rules, it is stopped and the trial status is
-changed to the `EarlyStopped`. Then, Katib calls the suggestion again to
+   - `.earlyStopping.algorithmSettings`- the settings for the early stopping algorithm.
+
+What happens is your experiment's suggestion produces new trials. After that,
+the early stopping algorithm generates early stopping rules for the created
+trials. Once the trial reaches all the rules, it is stopped and the trial status
+is changed to the `EarlyStopped`. Then, Katib calls the suggestion again to
 ask for the new trials.
 
 Learn more about Katib concepts
@@ -61,13 +64,13 @@ to specify your own image for the early stopping algorithm.
 
 ### Early stopping algorithms in detail
 
-Here’s a list of the early stopping algorithms available in Katib.
-The links lead to descriptions on this page:
+Here’s a list of the early stopping algorithms available in Katib:
 
 - [Median Stopping Rule](#median-stopping-rule)
 
-More algorithms are under development. You can add an early stopping algorithm
-to Katib yourself. Check the
+More algorithms are under development.
+
+You can add an early stopping algorithm to Katib yourself. Check the
 [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)
 to contribute.
 
@@ -81,7 +84,8 @@ The median stopping rule stops a pending trial `X` at step `S` if the trial's
 best objective value by step `S` is worse than the median value of the running
 averages of all completed trials' objectives reported up to step `S`.
 
-To learn more about it, check [this paper](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/46180.pdf).
+To learn more about it, check
+[Google Vizier: A Service for Black-Box Optimization](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/46180.pdf).
 
 Katib supports the following early stopping settings:
 
@@ -123,8 +127,8 @@ Once you reach the early stopping section, select the appropriate values:
 
 ## View the early stopping experiment results
 
-You have to install [jq](https://stedolan.github.io/jq/download/),
-to run below commands.
+First, make sure you have [jq](https://stedolan.github.io/jq/download/)
+installed.
 
 Check the early stopped trials in your experiment:
 
@@ -162,28 +166,28 @@ The last part of the above command output looks similar to this:
 }
 ```
 
-If you check status for the early stopped trial:
+Check the status of the early stopped trial by running this command:
 
 ```shell
 kubectl get trial median-stop-2ml8h96d -n <experiment-namespace>
 ```
 
-You should be able to view `EarlyStopped` status for the trial:
+and you should be able to view `EarlyStopped` status for the trial:
 
 ```shell
 NAME                   TYPE           STATUS   AGE
 median-stop-2ml8h96d   EarlyStopped   True     15m
 ```
 
-As well, you can check the results on the Katib UI.
-The trial statuses on the experiment monitor page looks as follows:
+In addition, you can check your results on the Katib UI.
+The trial statuses on the experiment monitor page should look as follows:
 
 <img src="/docs/images/katib/katib-early-stopping-trials.png"
   alt="UI form to view trials"
   class="mt-3 mb-3 border border-info rounded">
 
-You can click on the early stopped trial name to get reported metrics before this
-trial is early stopped:
+You can click on the early stopped trial name to get reported metrics before
+this trial is early stopped:
 
 <img src="/docs/images/katib/katib-early-stopping-trial-info.png"
   alt="UI form to view trial info"

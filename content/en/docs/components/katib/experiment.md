@@ -177,8 +177,7 @@ Katib currently supports several search algorithms.
 Refer to the
 [`AlgorithmSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L22-L39).
 
-Here's a list of the search algorithms available in Katib. The links lead to
-descriptions on this page:
+Here's a list of the search algorithms available in Katib:
 
 - [Grid search](#grid-search)
 - [Random search](#random-search)
@@ -189,8 +188,9 @@ descriptions on this page:
 - [Neural Architecture Search based on ENAS](#enas)
 - [Differentiable Architecture Search (DARTS)](#darts)
 
-More algorithms are under development. You can add an algorithm to Katib
-yourself. Check the guide to
+More algorithms are under development.
+
+You can add an algorithm to Katib yourself. Check the guide to
 [adding a new algorithm](https://github.com/kubeflow/katib/blob/master/docs/new-algorithm-service.md)
 and the
 [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md).
