@@ -346,3 +346,5 @@ To uninstall Kubeflow and clean up all the local cache, run the following comman
 kfctl delete -f ${CONFIG_FILE}
 rm -rf kustomize .cache
 ```
+
+where `${CONFIG_FILE}` is the [kfdef](https://www.kubeflow.org/docs/other-guides/kustomize/#specifying-a-configuration-file-when-initializing-your-deployment) for deploying Kubeflow.
