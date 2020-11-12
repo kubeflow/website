@@ -18,14 +18,14 @@ You can use KFServing to do the following:
 
 * Enable a simple, pluggable, and complete story for your production ML inference server by providing prediction, pre-processing, post-processing and explainability out of the box.
 
-Our strong community contributions help KFServing to grow. We have a Technical Steering Committee driven by Google, IBM, Microsoft, Seldon, and Bloomberg. [Browse the KFServing GitHub repo](https://github.com/kubeflow/kfserving) to give us feedback!
+Our strong community contributions help KFServing to grow. We have a Technical Steering Committee driven by Bloomberg, IBM Cloud, Seldon, Amazon Web Services (AWS) and NVIDIA. [Browse the KFServing GitHub repo](https://github.com/kubeflow/kfserving) to give us feedback!
 
 ## Install with Kubeflow
 
-KFServing works with Kubeflow 1.1. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
+KFServing works with Kubeflow 1.2. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
 See examples running KFServing on [Istio/Dex](https://github.com/kubeflow/kfserving/tree/master/docs/samples/istio-dex). For installation on major cloud providers with Kubeflow, please follow their installation docs. 
 
-Kubeflow 1.1 includes KFServing v0.3, where the focus has been on providing more stability by doing a major move to KNative v1 APIs. Additionally, we added GPU support for PyTorch model servers, and pickled model format support for SKLearn. There were other enhancements to routing, payload logging, including bug fixes etc., details of which can be found [here](https://github.com/kubeflow/kfserving/releases/tag/v0.3.0).
+Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFServing on OpenShift and additionally providing more features, such as adding batcher module as sidecar, Triton inference server renaming and integrations, upgrading Alibi explainer to 0.4.0, updating logger to CloudEvents V1 protocol and allowing customized URL paths on data plane. Additionally, the minimum Istio version is now v1.3.1. More details can be found [here](https://github.com/kubeflow/kfserving/releases/tag/v0.4.0) and [here](https://github.com/kubeflow/kfserving/releases/tag/v0.4.1)
 
 <img src="../kfserving.png" alt="KFServing">
 
@@ -96,7 +96,7 @@ We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfse
 
 ### Install Knative/Istio
 
-Knative Serving (v0.11.2 +), Istio (v1.1.7+), and Cert Manager(v0.12.0+) should be available on your Kubernetes cluster.
+Knative Serving (v0.11.2 +), Istio (v1.3.1+), and Cert Manager(v0.12.0+) should be available on your Kubernetes cluster.
 For installing KFServing prerequisites, refer to the [README section](https://github.com/kubeflow/kfserving#prerequisites).
 
 ### KFServing installation

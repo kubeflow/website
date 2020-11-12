@@ -1,7 +1,7 @@
 +++
 title = "End-to-end Kubeflow on IBM Cloud"
 description = "Running Kubeflow using IBM Cloud Kubernetes Service (IKS)"
-weight = 250
+weight = 7
                     
 +++
 This is a guide for an end-to-end example of Kubeflow on [IBM Cloud Kubernetes Service (IKS)](https://cloud.ibm.com/docs/containers?topic=containers-getting-started). The core steps will be to take a base Tensorflow model, modify it for distributed training, serve the resulting model with TFServing, and deploy a web application that uses the trained model.
@@ -65,9 +65,6 @@ It's time to get started!
 
 1. Follow the [IKS instructions](/docs/ibm/deploy/install-kubeflow) to deploy Kubeflow.
 2. Launch a Jupyter notebook.
-    * For IBM Cloud, the default NFS storage does not support some of the Python package installation. Therefore, you need to create the notebook with the setting `Don't use Persistent Storage for User's home` enabled.
-    * Due to the Notebook user permission issue, you need to use custom images that were working in the previous version.
-        * The tutorial has been tested on image: gcr.io/kubeflow-images-public/tensorflow-1.13.1-notebook-cpu:v0.5.0
 3. Launch a terminal in Jupyter and clone the Kubeflow examples repo.
    ```
    git clone https://github.com/kubeflow/examples.git git_kubeflow-examples

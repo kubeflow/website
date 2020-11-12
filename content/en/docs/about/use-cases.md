@@ -89,7 +89,7 @@ auditability and compliance requirements.
 
 See these docs for more information on the topics covered above:
 
-- [Hyperparameter tuning with Katib](/docs/components/hyperparameter-tuning/)
+- [Hyperparameter tuning with Katib](/docs/components/katib/)
 - [Training models with operators](/docs/components/training/)
 - [Get started with Pipelines](https://www.kubeflow.org/docs/pipelines/)
 - [Jupyter notebooks](/docs/notebooks/)
