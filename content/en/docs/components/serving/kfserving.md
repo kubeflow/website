@@ -2,10 +2,10 @@
 title = "KFServing"
 description = "Model serving using KFServing"
 weight = 2
-                    
+
 +++
 
-{{% beta-status 
+{{% beta-status
   feedbacklink="https://github.com/kubeflow/kfserving/issues" %}}
 
 KFServing enables serverless inferencing on Kubernetes and provides performant, high abstraction interfaces for common machine learning (ML) frameworks like TensorFlow, XGBoost, scikit-learn, PyTorch, and ONNX to solve production model serving use cases.
@@ -23,7 +23,7 @@ Our strong community contributions help KFServing to grow. We have a Technical S
 ## Install with Kubeflow
 
 KFServing works with Kubeflow 1.2. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
-See examples running KFServing on [Istio/Dex](https://github.com/kubeflow/kfserving/tree/master/docs/samples/istio-dex). For installation on major cloud providers with Kubeflow, please follow their installation docs. 
+Check the examples running KFServing on Istio/Dex in the [`kubeflow/kfserving`](https://github.com/kubeflow/kfserving/tree/master/docs/samples/istio-dex) repository. For installation on major cloud providers with Kubeflow, follow their installation docs.
 
 Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFServing on OpenShift and additionally providing more features, such as adding batcher module as sidecar, Triton inference server renaming and integrations, upgrading Alibi explainer to 0.4.0, updating logger to CloudEvents V1 protocol and allowing customized URL paths on data plane. Additionally, the minimum Istio version is now v1.3.1. More details can be found [here](https://github.com/kubeflow/kfserving/releases/tag/v0.4.0) and [here](https://github.com/kubeflow/kfserving/releases/tag/v0.4.1)
 
@@ -74,7 +74,7 @@ Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFS
 
 ### Sample notebooks
 
-* [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb)
+* [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_v1alpha2_sample.ipynb)
 * [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
 * [ONNX](https://github.com/kubeflow/kfserving/blob/master/docs/samples/onnx/mosaic-onnx.ipynb)
 
@@ -105,19 +105,17 @@ Once you meet the above prerequisites KFServing can be [installed standalone](ht
 
 ### Monitoring
 
-* [Install Metrics, Logging and Tracing](https://knative.dev/docs/serving/installing-logging-metrics-traces/)
-* [Accessing metrics](https://knative.dev/docs/serving/accessing-metrics/)
-* [Accessing logs](https://knative.dev/docs/serving/accessing-logs/)
-* [Accessing traces](https://knative.dev/docs/serving/accessing-traces/)
-* [Debugging performance issue](https://knative.dev/docs/serving/debugging-performance-issues/)
+* [Setup Monitoring](https://github.com/kubeflow/kfserving#setup-monitoring)
 
 ## Use SDK
 
-1. Install the SDK.
-    ```
+1. Install the SDK with PiPy.
+
+    ```shell
     pip install kfserving
     ```
-1. [Follow the example](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_sample.ipynb) to use the KFServing SDK to create, patch, roll out, and delete a KFServing instance.
+
+1. [Follow the example(s)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client) to use the KFServing SDK to create, patch, roll out, and delete a KFServing instance.
 
 ## Contribute
 
