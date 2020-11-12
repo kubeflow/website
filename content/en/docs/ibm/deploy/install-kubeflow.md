@@ -132,11 +132,11 @@ directories:
 ## Kubeflow installation
 Run the following commands to set up and deploy Kubeflow.
 
-> We strongly recommend to install kfctl v1.2 or above because kfctl v1.2 addresses several critical bugs that can break the Kubeflow deployment.
-
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 
   page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
+  
+  **Note**: You're strongly recommended to install **kfctl v1.2** or above because kfctl v1.2 addresses several critical bugs that can break the Kubeflow deployment.
 
 1. Unpack the tar ball
       ```
@@ -149,7 +149,7 @@ Run the following commands to set up and deploy Kubeflow.
     
 Choose either **single user** or **multi-tenant** section based on your usage.
 
-If you make any mistake that creates conflicts on your Kubeflow deployment, you can [uninstall Kubeflow](#uninstall-kubeflow) and start over again.
+If you're experiencing issues during the installation because of conflicts on your Kubeflow deployment, you can [uninstall Kubeflow](#uninstall-kubeflow) and install it again.
 
 ### Single user
 Run the following commands to set up and deploy Kubeflow for a single user without any authentication.
@@ -332,7 +332,7 @@ By default, the Kubeflow deployment on IBM Cloud only exposes the endpoint as [N
 kubectl patch svc istio-ingressgateway -n istio-system -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-Then, the LoadBalancer is located at the **EXTERNAL_IP** column when you run the below command:
+Then, you can locate the LoadBalancer in the **EXTERNAL_IP** column when you run the following command:
 
 ```shell
 kubectl get svc istio-ingressgateway -n istio-system
@@ -340,7 +340,7 @@ kubectl get svc istio-ingressgateway -n istio-system
 
 ### Uninstall Kubeflow
 
-Run the below commands to uninstall Kubeflow and clean up all the local cache. Note that `${CONFIG_FILE}` is the [kfdef](https://www.kubeflow.org/docs/other-guides/kustomize/#specifying-a-configuration-file-when-initializing-your-deployment) for deploying Kubeflow.
+To uninstall Kubeflow and clean up all the local cache, run the following command:
 
 ```shell
 kfctl delete -f ${CONFIG_FILE}
