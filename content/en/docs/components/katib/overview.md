@@ -11,14 +11,18 @@ weight = 10
 This guide introduces the concepts of hyperparameter tuning, neural
 architecture search, and the Katib system as a component of Kubeflow.
 
-Katib is a Kubernetes-native project for automated machine learning (AutoML) —
-it's a system for hyperparameter tuning and neural architecture search (NAS).
-Katib supports a number of machine learning frameworks, including
-TensorFlow, MXNet, PyTorch, XGBoost, and others.
+Katib is a Kubernetes-native project for automated machine learning (AutoML).
+Katib supports hyperparameter tuning, early stopping and
+neural architecture search (NAS).
 Learn more about AutoML at [fast.ai](https://www.fast.ai/2018/07/16/auto-ml2/),
 [Google Cloud](https://cloud.google.com/automl),
 [Microsoft Azure](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml#automl-in-azure-machine-learning) or
 [Amazon SageMaker](https://aws.amazon.com/blogs/aws/amazon-sagemaker-autopilot-fully-managed-automatic-machine-learning/).
+
+Katib is the project which is agnostic to machine learning (ML) frameworks.
+It can tune hyperparameters of applications written in any language
+of the users' choice and natively supports many ML frameworks,
+such as TensorFlow, MXNet, PyTorch, XGBoost, and others.
 
 Katib supports a lot of various AutoML algorithms, such as
 [Bayesian optimization](https://arxiv.org/pdf/1012.2599.pdf),
@@ -74,6 +78,11 @@ Katib runs several training jobs (known as _trials_) within each
 hyperparameter tuning job (_experiment_). Each trial tests a different set of
 hyperparameter configurations. At the end of the experiment, Katib outputs
 the optimized values for the hyperparameters.
+
+You can improve you hyperparameter tunning experiments by using
+[early stopping](https://en.wikipedia.org/wiki/Early_stopping) techniques.
+Follow the [early stopping guide](/docs/components/katib/early-stopping/)
+for the details.
 
 ## Neural architecture search
 
