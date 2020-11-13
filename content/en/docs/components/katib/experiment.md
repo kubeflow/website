@@ -107,16 +107,17 @@ These are the fields in the experiment configuration spec:
   [`ObjectiveSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/common/v1beta1/common_types.go#L93).
 
 - **parallelTrialCount**: The maximum number of hyperparameter sets that Katib
-  should train in parallel.
+  should train in parallel. The default value is 3.
 
 - **maxTrialCount**: The maximum number of trials to run.
   This is equivalent to the number of hyperparameter sets that Katib should
-  generate to test the model.
+  generate to test the model. If the `maxTrialCount` value is **omitted**, your
+  experiment will be running until the objective goal is reached or the experiment
+  reaches a maximum number of failed trials.
 
 - **maxFailedTrialCount**: The maximum number of failed trials before Katib
-  should stop the experiment.
-  This is equivalent to the number of failed hyperparameter sets that Katib
-  should test.
+  should stop the experiment. This is equivalent to the number of failed
+  hyperparameter sets that Katib should test.
   If the number of failed trials exceeds `maxFailedTrialCount`, Katib stops the
   experiment with a status of `Failed`.
 
