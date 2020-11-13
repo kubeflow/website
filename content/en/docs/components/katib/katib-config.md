@@ -85,6 +85,23 @@ a default value is set automatically.
    - `cpu = 500m`
    - `ephemeral-storage = 5Gi`
 
+   You can run your metrics collector's container without requesting
+   the `ephemeral-storage` resource from the Kubernetes cluster.
+   For instance, when using the
+   [Google Kubernetes Engine cluster autoscaler](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#limitations)
+   for your Katib experiments, you can remove the `ephemeral-storage` resource
+   from the metrics collector's container by setting the negative values for the
+   `ephemeral-storage` requests and limits in your Katib config as follows:
+
+   ```json
+   "requests": {
+     "ephemeral-storage": "-1"
+   },
+   "limits": {
+     "ephemeral-storage": "-1"
+   }
+   ```
+
 ## Suggestion settings
 
 These settings are related to Katib suggestions, where:
@@ -204,6 +221,23 @@ a default value is set automatically.
    - `memory = 100Mi`
    - `cpu = 500m`
    - `ephemeral-storage = 5Gi`
+
+   You can run your suggestion's container without requesting
+   the `ephemeral-storage` resource from the Kubernetes cluster.
+   For instance, when using the
+   [Google Kubernetes Engine cluster autoscaler](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#limitations)
+   for your Katib experiments, you can remove the `ephemeral-storage` resource
+   from the suggestion's container by setting the negative values for the
+   `ephemeral-storage` requests and limits in your Katib config as follows:
+
+   ```json
+   "requests": {
+     "ephemeral-storage": "-1"
+   },
+   "limits": {
+     "ephemeral-storage": "-1"
+   }
+   ```
 
 1. `serviceAccountName` - [service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
    for the suggestion's container with a `random` algorithm.
