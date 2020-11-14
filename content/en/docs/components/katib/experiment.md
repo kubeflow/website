@@ -799,38 +799,38 @@ To run a hyperparameter tuning experiment from the Katib UI:
 1. Open the Katib menu panel on the left, then open the **HP** section and
    click **Submit**:
 
-   <img src="/docs/images/katib/katib-menu.png"
-       alt="The Katib menu panel"
-       class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/components/katib/images/menu.png"
+     alt="The Katib menu panel"
+     class="mt-3 mb-3 border border-info rounded">
 
 1. You should see tabs offering you the following options:
 
    - **YAML file:** Choose this option to supply an entire YAML file containing
      the configuration for the experiment.
 
-     <img src="/docs/images/katib/katib-deploy-yaml.png"
-         alt="UI tab to paste a YAML configuration file"
-         class="mt-3 mb-3 border border-info rounded">
+     <img src="/docs/components/katib/images/deploy-yaml.png"
+       alt="UI tab to paste a YAML configuration file"
+       class="mt-3 mb-3 border border-info rounded">
 
    - **Parameters:** Choose this option to enter the configuration values
      into a form.
 
-     <img src="/docs/images/katib/katib-deploy-form.png"
-         alt="UI form to deploy a Katib experiment"
-         class="mt-3 mb-3 border border-info rounded">
+     <img src="/docs/components/katib/images/deploy-parameters.png"
+       alt="UI form to deploy a Katib experiment"
+       class="mt-3 mb-3 border border-info rounded">
 
 View the results of the experiment in the Katib UI:
 
 1. Open the Katib menu panel on the left, then open the **HP** section and
    click **Monitor**:
 
-   <img src="/docs/images/katib/katib-menu.png"
-       alt="The Katib menu panel"
-       class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/components/katib/images/menu.png"
+     alt="The Katib menu panel"
+     class="mt-3 mb-3 border border-info rounded">
 
 1. You should see the list of experiments:
 
-   <img src="/docs/images/katib/katib-experiments.png"
+   <img src="/docs/components/katib/images/experiment-list.png"
      alt="The random example in the list of Katib experiments"
      class="mt-3 mb-3 border border-info rounded">
 
@@ -840,9 +840,9 @@ View the results of the experiment in the Katib UI:
    combinations of the hyperparameter values. For example, the graph below
    shows learning rate, number of layers, and optimizer:
 
-   <img src="/docs/images/katib/katib-random-example-graph.png"
-       alt="Graph produced by the random example"
-       class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/components/katib/images/random-example-graph.png"
+     alt="Graph produced by the random example"
+     class="mt-3 mb-3 border border-info rounded">
 
 1. Below the graph is a list of trials that ran within the experiment.
    Click a trial name to see the trial data.

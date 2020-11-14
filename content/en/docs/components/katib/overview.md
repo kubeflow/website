@@ -67,7 +67,7 @@ For example, the following graph from Katib shows the level of validation accura
 for various combinations of hyperparameter values (the learning rate, the number of
 layers, and the optimizer):
 
-<img src="/docs/images/katib/katib-random-example-graph.png"
+<img src="/docs/components/katib/images/random-example-graph.png"
   alt="Graph produced by the random example"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -109,7 +109,7 @@ You can submit Katib jobs from the command line or from the UI. (Learn more
 about the Katib interfaces later on this page.) The following screenshot shows
 part of the form for submitting a NAS job from the Katib UI:
 
-<img src="/docs/images/katib/katib-neural-architecture-search-ui.png"
+<img src="/docs/components/katib/images/nas-parameters.png"
   alt="Submitting a neural architecture search from the Katib UI"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -123,9 +123,9 @@ You can use the following interfaces to interact with Katib:
   for information on how to access the UI.
   The Katib home page within Kubeflow looks like this:
 
-  <img src="/docs/images/katib/katib-home.png"
-      alt="The Katib home page within the Kubeflow UI"
-      class="mt-3 mb-3 border border-info rounded">
+  <img src="/docs/components/katib/images/home-page.png"
+    alt="The Katib home page within the Kubeflow UI"
+    class="mt-3 mb-3 border border-info rounded">
 
 - A gRPC API. Check the [API reference](/docs/reference/katib/v1beta1/katib).
 
