@@ -859,19 +859,11 @@ View the results of the experiment in the Katib UI:
   [trial templates](/docs/components/katib/trial-template/).
 
 - For an overview of the concepts involved in hyperparameter tuning and
-<<<<<<< HEAD
   neural architecture search, check the
   [introduction to Katib](/docs/components/katib/overview/).
 
-<<<<<<< HEAD
 - Boost your hyperparameter tuning experiment with
   the [early stopping guide](/docs/components/katib/early-stopping/)
-=======
-<<<<<<< HEAD:content/en/docs/components/katib/experiment.md
->>>>>>> Add resume policy instructions
-=======
-  NAS, check the [introduction to Katib](/docs/components/katib/overview/).
->>>>>>> Modify resume experiment doc
 
 - Check the
   [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
