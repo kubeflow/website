@@ -72,7 +72,7 @@ a default value is set automatically.
 
 1. `image` - a Docker image for the `File` metrics collector's container (**must be specified**).
 
-1. `imagePullPolicy` - [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
+1. `imagePullPolicy` - an [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
    for the `File` metrics collector's container.
 
    The default value is `IfNotPresent`
@@ -208,7 +208,7 @@ any other settings, a default value is set automatically.
      </table>
    </div>
 
-1. `imagePullPolicy` - [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
+1. `imagePullPolicy` - an [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
    for the suggestion's container with a `random` algorithm.
 
    The default value is `IfNotPresent`
@@ -248,7 +248,7 @@ any other settings, a default value is set automatically.
    }
    ```
 
-1. `serviceAccountName` - [service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
+1. `serviceAccountName` - a [service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
    for the suggestion's container with a `random` algorithm.
 
    In the above example, the `random-sa` service account is attached for each
@@ -276,6 +276,100 @@ any other settings, a default value is set automatically.
 
    - The service account must have sufficient permissions to update
      the experiment's trial status.
+
+### Suggestion volume settings
+
+When you create an experiment with
+[`FromVolume` resume policy](/docs/components/katib/resume-experiment#resume-policy-fromvolume),
+you are able to specify
+[PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
+and
+[PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
+settings for the experiment's suggestion. Learn more about Katib concepts
+in the [overview guide](/docs/components/katib/overview/#trial).
+If you want to use the default volume specification, you can omit these settings.
+
+Follow the example for the `random` algorithm:
+
+```json
+suggestion: |-
+{
+  "random": {
+    "image": "docker.io/kubeflowkatib/suggestion-hyperopt",
+    "volumeMountPath": "/opt/suggestion/data",
+    "persistentVolumeClaimSpec": {
+      "accessModes": [
+        "ReadWriteMany"
+      ],
+      "resources": {
+        "requests": {
+          "storage": "3Gi"
+        }
+      },
+      "storageClassName": "katib-suggestion"
+    },
+    "persistentVolumeSpec": {
+      "accessModes": [
+        "ReadWriteMany"
+      ],
+      "capacity": {
+        "storage": "3Gi"
+      },
+      "hostPath": {
+        "path": "/tmp/suggestion/unique/path"
+      }
+    }
+  },
+  ...
+}
+```
+
+1. `volumeMountPath` - a [mount path](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/#configure-a-volume-for-a-pod)
+   for the suggestion's container with `random` algorithm.
+
+   The default value is `/opt/katib/data`
+
+1. `persistentVolumeClaimSpec` - a [PVC specification](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#persistentvolumeclaimspec-v1-core)
+   for the suggestion's PVC.
+
+   The default value is set, if you don't specify any of these settings:
+
+   - `persistentVolumeClaimSpec.accessModes[0]` - the default value is
+     [`ReadWriteOnce`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
+
+   - `persistentVolumeClaimSpec.resources.requests.storage` - the default value
+     is `1Gi`
+
+   - `persistentVolumeClaimSpec.storageClassName` - the default is
+     `katib-suggestion`
+
+     **Note:** If your Kubernetes cluster doesn't have
+     [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
+     to automatically provision storage for the PVC, `storageClassName`
+     must be equal to **`katib-suggestion`**. Then, Katib creates PV and PVC
+     for the suggestion. Otherwise, Katib creates only PVC.
+
+1. `persistentVolumeSpec` - a [PV specification](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#persistentvolumespec-v1-core)
+   for the suggestion's PV.
+
+   The default value is set, if you don't specify any of these parameters:
+
+- `persistentVolumeSpec.accessModes[0]` - the default values is
+  `ReadWriteOnce`
+
+- `persistentVolumeSpec.capacity.storage` - the default value is `1Gi`
+
+- `persistentVolumeSpec.hostPath.path` - the default value is
+  `/tmp/katib/suggestions/<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>`
+
+  For the default PV source Katib uses
+  [`hostPath`](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath).
+  If `.hostPath.path` in the config settings is equal to
+  `/tmp/katib/suggestions/`, Katib controller adds
+  `<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>`
+  to the path. That makes host paths unique across suggestions.
+
+  **Note:** PV `storageClassName` is always equal to **`katib-suggestion`**.
 
 ## Early stopping settings
 
@@ -335,3 +429,14 @@ any other settings, a default value is set automatically.
    for the early stopping's container with a `medianstop` algorithm.
 
    The default value is `IfNotPresent`
+
+## Next steps
+
+- Learn how to
+  [configure and run your Katib experiments](/docs/components/katib/experiment/).
+
+- How to
+  [restart your experiment and use the resume policies](/docs/components/katib/resume-experiment/).
+
+- How to [set up environment variables](/docs/components/katib/env-variables/)
+  for each Katib component.

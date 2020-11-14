@@ -183,15 +183,13 @@ These are the fields in the experiment configuration spec:
 
     You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/nas).
 
-- **resumePolicy**: Experiment resume policy. If the experiment was successful
-  because `maxTrialCount` was reached, you can resume it by increasing
-  `maxTrialCount`. Specify `resumePolicy: LongRunning`, if you want to use this
-  feature. If you don't need to resume the experiment, specify
-  `resumePolicy: Never` - in this case, suggestion resources will be deleted and
-  the experiment can't be resumed. By default all experiments have
-  `resumePolicy: LongRunning` parameter.
+- **resumePolicy**: The experiment resume policy. Can be one of
+  `LongRunning`, `Never` or `FromVolume`. The default value is `LongRunning`.
   Refer to the
-  [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L168-L183).
+  [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L58).
+  To find out how to modify a running experiment and use various
+  restart policies follow the
+  [resume an experiment guide](/docs/components/katib/resume-experiment/).
 
 _Background information about Katib's `Experiment`, `Suggestion` and `Trial`
 type:_ In Kubernetes terminology, Katib's
@@ -853,6 +851,9 @@ View the results of the experiment in the Katib UI:
 
 - Learn how to run the
   [random algorithm and other Katib examples](/docs/components/katib/hyperparameter/#random-algorithm).
+
+- How to
+  [restart your experiment and use the resume policies](/docs/components/katib/resume-experiment/).
 
 - Learn to configure your
   [trial templates](/docs/components/katib/trial-template/).
