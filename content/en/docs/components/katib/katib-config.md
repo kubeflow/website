@@ -1,7 +1,7 @@
 +++
 title = "Katib Configuration Overview"
 description = "How to make changes in Katib configuration"
-weight = 60
+weight = 70
                     
 +++
 
@@ -260,36 +260,39 @@ any other settings, a default value is set automatically.
    [default](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server)
    service account.
 
-**Note:** If you want to run your experiments with
-[early stopping](/docs/components/katib/early-stopping/),
-the suggestion's deployment must have permission to update the experiment's
-trial status. If you don't specify a service account in the Katib config,
-Katib controller creates required
-[Kubernetes Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac)
-for the suggestion.
+   **Note:** If you want to run your experiments with
+   [early stopping](/docs/components/katib/early-stopping/),
+   the suggestion's deployment must have permission to update the experiment's
+   trial status. If you don't specify a service account in the Katib config,
+   Katib controller creates required
+   [Kubernetes Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac)
+   for the suggestion.
 
-If you need your own service account for the experiment's
-suggestion with early stopping, you have to follow the rules:
+   If you need your own service account for the experiment's
+   suggestion with early stopping, you have to follow the rules:
 
-- The service account name can't be equal to
-  `<experiment-name>-<experiment-algorithm>`
+   - The service account name can't be equal to
+     `<experiment-name>-<experiment-algorithm>`
 
-- The service account must have sufficient permissions to update
-  the experiment's trial status.
+   - The service account must have sufficient permissions to update
+     the experiment's trial status.
 
-## Early stopping settings
+### Suggestion volume settings
 
-These settings are related to Katib early stopping, where:
+When you create an experiment with
+[`FromVolume` resume policy](/docs/components/katib/resume-experiment#resume-policy-fromvolume),
+you are able to specify
+[PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
+and
+[PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
+settings for the experiment's suggestion. Learn more about Katib concepts
+in the [overview guide](/docs/components/katib/overview/#trial).
+If you want to use the default volume specification, you can omit these settings.
 
-- key: `early-stopping`
-- value: corresponding JSON settings for each early stopping algorithm name
-
-If you want to use a new early stopping algorithm, you need to update the
-Katib config. For example, using a `medianstop` early stopping algorithm with
-all settings looks as follows:
+Follow the example for the `random` algorithm:
 
 ```json
-early-stopping: |-
+suggestion: |-
 {
   "random": {
     "image": "docker.io/kubeflowkatib/suggestion-hyperopt",
@@ -320,8 +323,6 @@ early-stopping: |-
   ...
 }
 ```
-
-# <<<<<<< HEAD
 
 1. `volumeMountPath` - a [mount path](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/#configure-a-volume-for-a-pod)
    for the suggestion's container with `random` algorithm.
@@ -370,6 +371,65 @@ early-stopping: |-
 
   **Note:** PV `storageClassName` is always equal to **`katib-suggestion`**.
 
+## Early stopping settings
+
+These settings are related to Katib early stopping, where:
+
+- key: `early-stopping`
+- value: corresponding JSON settings for each early stopping algorithm name
+
+If you want to use a new early stopping algorithm, you need to update the
+Katib config. For example, using a `medianstop` early stopping algorithm with
+all settings looks as follows:
+
+```json
+early-stopping: |-
+{
+  "medianstop": {
+    "image": "docker.io/kubeflowkatib/earlystopping-medianstop",
+    "imagePullPolicy": "Always"
+  },
+  ...
+}
+```
+
+All of these settings except **`image`** can be omitted. If you don't specify
+any other settings, a default value is set automatically.
+
+1. `image` - a Docker image for the early stopping's container with a
+   `medianstop` algorithm (**must be specified**).
+
+   Image example: `docker.io/kubeflowkatib/<early-stopping-name>`
+
+   For each early stopping algorithm you can specify one of the following
+   early stopping names in the Docker image:
+
+   <div class="table-responsive">
+     <table class="table table-bordered">
+       <thead class="thead-light">
+         <tr>
+           <th>Early stopping name</th>
+           <th>Early stopping algorithm</th>
+           <th>Description</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td><code>earlystopping-medianstop</code></td>
+           <td><code>medianstop</code></td>
+           <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/earlystopping/v1beta1/medianstop">Katib
+             Median Stopping</a> implementation</td>
+         </tr>
+       </tbody>
+     </table>
+   </div>
+
+1. `imagePullPolicy` - an
+   [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
+   for the early stopping's container with a `medianstop` algorithm.
+
+   The default value is `IfNotPresent`
+
 ## Next steps
 
 - Learn how to
@@ -380,4 +440,3 @@ early-stopping: |-
 
 - How to [set up environment variables](/docs/components/katib/env-variables/)
   for each Katib component.
-  > > > > > > > Modify resume experiment doc

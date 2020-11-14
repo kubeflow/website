@@ -1,7 +1,7 @@
 +++
 title = "Environment Variables for Katib Components"
 description = "How to set up environment variables for each Katib component"
-weight = 70
+weight = 80
                     
 +++
 
