@@ -16,8 +16,6 @@ Pipeline templates provide step-by-step examples for working with object storage
 
 Google Developers Codelabs provide a guided, tutorial, hands-on coding experience.
 
-* [Introduction to Kubeflow on GKE](https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html): Run MNIST with Kubeflow on Google Kubernetes Engine (GKE).
-
 * [Kubeflow Pipelines - GitHub Issue
   Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-pipelines-gis/index.html): Run GitHub Issue Summarization with Kubeflow Pipelines on GKE.
 
