@@ -71,7 +71,7 @@ that defines the properties of the PV.
 You can use the Katib user interface (UI) to submit experiments and to monitor
 your results. The Katib home page within Kubeflow looks like this:
 
-<img src="/docs/images/katib/katib-home.png"
+<img src="/docs/components/katib/images/home-page.png"
   alt="The Katib home page within the Kubeflow UI"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -337,13 +337,13 @@ View the results of the experiment in the Katib UI:
 1. Open the Katib menu panel on the left, then open the **HP** section and
    click **Monitor**:
 
-   <img src="/docs/images/katib/katib-menu.png"
-       alt="The Katib menu panel"
-       class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/components/katib/images/menu.png"
+     alt="The Katib menu panel"
+     class="mt-3 mb-3 border border-info rounded">
 
 1. You should be able to view the list of experiments:
 
-   <img src="/docs/images/katib/katib-experiments.png"
+   <img src="/docs/components/katib/images/experiment-list.png"
      alt="The random example in the list of Katib experiments"
      class="mt-3 mb-3 border border-info rounded">
 
@@ -353,19 +353,19 @@ View the results of the experiment in the Katib UI:
    for various combinations of the hyperparameter values
    (learning rate, number of layers, and optimizer):
 
-   <img src="/docs/images/katib/katib-random-example-graph.png"
-       alt="Graph produced by the random example"
-       class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/components/katib/images/random-example-graph.png"
+     alt="Graph produced by the random example"
+     class="mt-3 mb-3 border border-info rounded">
 
 1. Below the graph is a list of trials that ran within the experiment:
 
-   <img src="/docs/images/katib/katib-random-example-trials.png"
+   <img src="/docs/components/katib/images/random-example-trials.png"
      alt="Trials that ran during the experiment"
      class="mt-3 mb-3 border border-info rounded">
 
 1. You can click on trial name to get metrics for the particular trial:
 
-   <img src="/docs/images/katib/katib-random-example-trial-info.png"
+   <img src="/docs/components/katib/images/random-example-trial-info.png"
      alt="Trials that ran during the experiment"
      class="mt-3 mb-3 border border-info rounded">
 

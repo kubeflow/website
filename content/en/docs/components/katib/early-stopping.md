@@ -121,7 +121,7 @@ to create an experiment from the UI.
 
 Once you reach the early stopping section, select the appropriate values:
 
-<img src="/docs/images/katib/katib-early-stopping-parameter.png"
+<img src="/docs/components/katib/images/early-stopping-parameter.png"
   alt="UI form to deploy an early stopping Katib experiment"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -182,14 +182,14 @@ median-stop-2ml8h96d   EarlyStopped   True     15m
 In addition, you can check your results on the Katib UI.
 The trial statuses on the experiment monitor page should look as follows:
 
-<img src="/docs/images/katib/katib-early-stopping-trials.png"
+<img src="/docs/components/katib/images/early-stopping-trials.png"
   alt="UI form to view trials"
   class="mt-3 mb-3 border border-info rounded">
 
 You can click on the early stopped trial name to get reported metrics before
 this trial is early stopped:
 
-<img src="/docs/images/katib/katib-early-stopping-trial-info.png"
+<img src="/docs/components/katib/images/early-stopping-trial-info.png"
   alt="UI form to view trial info"
   class="mt-3 mb-3 border border-info rounded">
 
