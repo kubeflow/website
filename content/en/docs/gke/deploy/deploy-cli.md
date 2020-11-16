@@ -32,9 +32,8 @@ one if you haven't already.
   to create OAuth credentials for [Cloud Identity-Aware Proxy (Cloud
   IAP)](https://cloud.google.com/iap/docs/).
 
-
-Refer to [Understanding the deployment process 
-](#understanding-the-deployment-process) for a description about the deployment steps and artifacts.
+Refer to 
+[Understanding the deployment process](#understanding-the-deployment-process) for more information on the kfctl configuration and deployment process.
 
 ### Install the required tools
 
