@@ -1,6 +1,6 @@
 +++
 title = "Deploying Kubeflow behind a proxy server"
-description = "Instructions to install and configure Kubeflow behind a proxy server"
+description = "Instructions for installing and configuring Kubeflow behind a proxy server"
 weight = 10
 
 +++
