@@ -4,14 +4,10 @@ description = "Export and visualize pipeline metrics"
 weight = 90
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 This page shows you how to export metrics from a Kubeflow Pipelines component. 
 For details about how to build a component, see the guide to 
-[building your own component](/docs/pipelines/sdk/build-component/).
+[building your own component](/docs/pipelines/sdk/component-development/).
  
 ## Overview of metrics
 
@@ -23,15 +19,19 @@ experiment in the Kubeflow Pipelines UI.
  
 ## Export the metrics dictionary
 
-To enable metrics, your component must have an output called "MLPipeline Metrics".
-JSON-serialized metrics dictionary should be returned from that output.
+To enable metrics, your component must have an output called "MLPipeline Metrics" and return a JSON-serialized metrics dictionary.
+
+An example Lightweight python component that outputs metrics dictionary by writing it to an output file:
 
 ```Python
 from kfp.components import InputPath, OutputPath, create_component_from_func
 
-def produce_metrics(mlpipeline_metrics_path: OutputPath('Metrics')):
+def produce_metrics(
+  # Note when the `create_component_from_func` method converts the function to a component, the function parameter "mlpipeline_metrics_path" becomes an output with name "mlpipeline_metrics" which is the correct name for metrics output.
+  mlpipeline_metrics_path: OutputPath('Metrics'),
+):
   import json
-  
+
   accuracy = 0.9
   metrics = {
     'metrics': [{
@@ -54,10 +54,10 @@ produce_metrics_op = create_component_from_func(
 See the 
 [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py).
 
-The metrics file has the following requirements:
+Refer to the [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py) of a component that generates confusion matrix data from prediction results.
 
-* The file path must be "MLPipeline Metrics" or "MLPipeline_Metrics" (case does not matter).
-* `name` must follow the pattern `^[a-zA-Z]([-_a-zA-Z0-9]{0,62}[a-zA-Z0-9])?$`.
+* The output name must be "MLPipeline Metrics" or "MLPipeline_Metrics" (case does not matter).
+* The `name` of each metric must match the following pattern: `^[a-zA-Z]([-_a-zA-Z0-9]{0,62}[a-zA-Z0-9])?$`.
 
     For Kubeflow Pipelines version 0.5.1 or earlier, name must match the following pattern `^[a-z]([-a-z0-9]{0,62}[a-z0-9])?$`
 * `numberValue` must be a numeric value.
