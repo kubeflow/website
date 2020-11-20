@@ -80,6 +80,31 @@ produce_metrics_op = create_component_from_func(
 )
 ```
 
+An example script-based `component.yaml` component:
+
+```yaml
+name: Produce metrics
+outputs:
+- {name: MLPipeline Metrics, type: Metrics}
+implementation:
+  container:
+    image: alpine
+    command:
+    - sh
+    - -exc
+    - |
+      output_metrics_path=$0
+      mkdir -p "$(dirname "$output_metrics_path")"
+      echo '{
+        "metrics": [{
+          "name": "accuracy-score",
+          "numberValue": 0.8,
+          "format": "PERCENTAGE"
+        }]
+      }' > "$output_metrics_path"
+    - {outputPath: MLPipeline Metrics}
+```
+
 Refer to the [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py) of a component that generates confusion matrix data from prediction results.
 
 * The output name must be "MLPipeline Metrics" or "MLPipeline_Metrics" (case does not matter).
