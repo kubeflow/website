@@ -1,6 +1,6 @@
 +++
 title = "Install Kubeflow"
-description = "Instructions for deploying Kubeflow with the shell"
+description = "Instructions for deploying Kubeflow on IBM Cloud"
 weight = 5
 +++
 
@@ -8,18 +8,20 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
 ## Prerequisites
 
-* Authenticating with IBM Cloud
+* Authenticate with IBM Cloud
+
+  Log into IBM Cloud using the [IBM Cloud Command Line Interface (CLI)](https://www.ibm.com/cloud/cli) as follows:
 
   ```shell
   ibmcloud login
   ```
 
-* Accessing the IBM Cloud cluster
+* Create and access a Kubernetes cluster on IKS
 
-  If you do not have access to a cluster created with IBM Cloud Kubernetes Service, follow the [Create an IBM Cloud cluster](/docs/ibm/create-cluster) guide to create a cluster.
+  To deploy Kubeflow on IBM Cloud, you need a cluster running on IKS. If you don't have a cluster running, follow the [Create an IBM Cloud cluster](/docs/ibm/create-cluster) guide.
 
-  Run following command to switch the Kubernetes context and access the cluster.
-
+  Run the following command to switch the Kubernetes context and access the cluster:
+  
   ```shell
   ibmcloud ks cluster config --cluster <cluster_name>
   ```
@@ -30,55 +32,62 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
 **Note**: This section is only required when the worker nodes provider `WORKER_NODE_PROVIDER` is set to `classic`. For other infrastructures, IBM Cloud Block Storage is already set up as the cluster's default storage class.
 
-When using the `classic` worker nodes provider of IBM Cloud Kubernetes cluster, by default, it uses [IBM Cloud File Storage](https://www.ibm.com/cloud/file-storage) based on NFS as the default storage class. File Storage is designed to run RWX (read-write multiple nodes) workloads with proper security built around it. Therefore, File Storage [does not allow `fsGroup` securityContext](https://cloud.ibm.com/docs/containers?topic=containers-security#container) which is needed for DEX and Kubeflow Jupyter Server.
+When you use the `classic` worker node provider of an IBM Cloud Kubernetes cluster, it uses [IBM Cloud File Storage](https://www.ibm.com/cloud/file-storage) based on NFS as the default storage class. File Storage is designed to run RWX (read-write multiple nodes) workloads with proper security built around it. Therefore, File Storage [does not allow `fsGroup` securityContext](https://cloud.ibm.com/docs/containers?topic=containers-security#container), which is needed for the [OIDC authentication service](https://github.com/arrikto/oidc-authservice) and Kubeflow Jupyter server.
 
 [IBM Cloud Block Storage](https://www.ibm.com/cloud/block-storage) provides a fast way to store data and
 satisfy many of the Kubeflow persistent volume requirements such as `fsGroup` out of the box and optimized RWO (read-write single node) which is used on all Kubeflow's persistent volume claim. 
 
-Therefore, we strongly recommend to set up [IBM Cloud Block Storage](https://cloud.ibm.com/docs/containers?topic=containers-block_storage#add_block) as the default storage class so that you can
+Therefore, you're recommended to set up [IBM Cloud Block Storage](https://cloud.ibm.com/docs/containers?topic=containers-block_storage#add_block) as the default storage class so that you can
 get the best experience from Kubeflow.
 
 1. [Follow the instructions](https://helm.sh/docs/intro/install/) to install the Helm version 3 client on your local machine.
 
 2. Add the IBM Cloud Helm chart repository to the cluster where you want to use the IBM Cloud Block Storage plug-in.
+
     ```shell
     helm repo add iks-charts https://icr.io/helm/iks-charts
     helm repo update
     ```
 
 3. Install the IBM Cloud Block Storage plug-in. When you install the plug-in, pre-defined block storage classes are added to your cluster.
+
     ```shell
-    helm install 1.6.0 iks-charts/ibmcloud-block-storage-plugin -n kube-system
+    helm install 1.7.0 iks-charts/ibmcloud-block-storage-plugin -n kube-system
     ```
     
     Example output:
     ```
-    NAME: 1.6.0
-    LAST DEPLOYED: Thu Feb 27 11:41:35 2020
+    NAME: 1.7.0
+    LAST DEPLOYED: Fri Aug 28 11:23:56 2020
     NAMESPACE: kube-system
     STATUS: deployed
     REVISION: 1
     NOTES:
-    Thank you for installing: ibmcloud-block-storage-plugin.   Your release is named: 1.6.0
+    Thank you for installing: ibmcloud-block-storage-plugin.   Your release is named: 1.7.0
     ...
     ```
 
 4. Verify that the installation was successful.
+
     ```shell
     kubectl get pod -n kube-system | grep block
     ```
     
 5. Verify that the storage classes for Block Storage were added to your cluster.
+
     ```
     kubectl get storageclasses | grep block
     ```
 
-6. Set the Block Storage as the default storageclass.
-    ```shell
-    kubectl patch storageclass ibmc-block-gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+6. Set the Block Storage as the default storage class.
 
-    # Check the default storageclass is block storage
-    kubectl get storageclass | grep \(default\)
+    ```shell
+    NEW_STORAGE_CLASS=ibmc-block-gold
+    OLD_STORAGE_CLASS=$(kubectl get sc -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io\/is-default-class=="true")].metadata.name}')
+    kubectl patch storageclass ${NEW_STORAGE_CLASS} -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
+    # List all the (default) storage classes
+    kubectl get storageclass | grep "(default)"
     ```
 
     Example output:
@@ -86,10 +95,9 @@ get the best experience from Kubeflow.
     ibmc-block-gold (default)   ibm.io/ibmc-block   65s
     ```
 
-    Make sure `ibmc-block-gold` is the only `default` storageclass. If there are two or more rows in the above output, there is other `default` storageclass. Unset it with the below command, for example, will make the `ibmc-file-bronze` storage no longer the `default` storageclass for the cluster.
-
+    Make sure `ibmc-block-gold` is the only `(default)` storage class. If there are two or more rows in the above output, unset the previous `(default)` storage classes with the command below:
     ```shell
-    kubectl patch storageclass ibmc-file-bronze -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+    kubectl patch storageclass ${OLD_STORAGE_CLASS} -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
     ```
 
 ## Understanding the Kubeflow deployment process
@@ -141,7 +149,12 @@ Choose either **single user** or **multi-tenant** section based on your usage.
 
 ### Single user
 Run the following commands to set up and deploy Kubeflow for a single user without any authentication.
-```
+
+**Note**: By default, Kubeflow deployment on IBM Cloud uses the [Kubeflow pipeline with the Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
+If you want to use the Kubeflow pipeline with the Argo backend, modify and uncomment the `argo` and `kfp-argo` applications
+inside the `kfctl_ibm.yaml` below and remove the `kfp-tekton`, `tektoncd-install`, and `tektoncd-dashboard` applications. 
+
+```shell
 # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
 # name of the directory containing your configuration.
 # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
@@ -153,13 +166,17 @@ export KF_NAME=<your choice of name for the Kubeflow deployment>
 export BASE_DIR=<path to a base directory>
 export KF_DIR=${BASE_DIR}/${KF_NAME}
 
-# Set the configuration file to use, such as the file specified below:
-export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.1-branch/kfdef/kfctl_ibm.v1.1.0.yaml"
+# Set the configuration file to use, such as:
+export CONFIG_FILE=kfctl_ibm.yaml
+export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.2-branch/kfdef/kfctl_ibm.v1.2.0.yaml"
 
-# Generate and deploy Kubeflow:
+# Generate Kubeflow:
 mkdir -p ${KF_DIR}
 cd ${KF_DIR}
-kfctl apply -V -f ${CONFIG_URI}
+curl -L ${CONFIG_URI} > ${CONFIG_FILE}
+
+# Deploy Kubeflow. You can customize the CONFIG_FILE if needed.
+kfctl apply -V -f ${CONFIG_FILE}
 ```
 
 * **${KF_NAME}** - The name of your Kubeflow deployment.
@@ -175,138 +192,125 @@ kfctl apply -V -f ${CONFIG_URI}
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
 ### Multi-user, auth-enabled
-Run the following commands to deploy Kubeflow with GitHub OAuth application as authentication provider by dex. To support multi-users with authentication enabled, this guide uses [dex](https://github.com/dexidp/dex) with [GitHub OAuth](https://developer.github.com/apps/building-oauth-apps/). Before continue, refer to the guide [Creating an OAuth App](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/) for steps to create an OAuth app on GitHub.com.
 
-The scenario is a GitHub organization owner can authorize its organization members to access a deployed kubeflow. A member of this GitHub organization will be redirected to a page to grant access to the GitHub profile by Kubeflow.
+Run the following steps to deploy Kubeflow with [IBM Cloud AppID](https://cloud.ibm.com/catalog/services/app-id)
+as an authentication provider. 
 
-1. Create a new OAuth app in GitHub. Use following setting to register the application:
-    * Homepage URL: `http://localhost:8080/`
-    * Authorization callback URL: `http://localhost:8080/dex/callback`
-1. Once the application is registered, copy and save the `Client ID` and `Client Secret` for use later.
+The scenario is a Kubeflow cluster admin configures Kubeflow as a web
+application in AppID and manages user authentication with builtin identity
+providers (Cloud Directory, SAML, social log-in with Google or Facebook etc.) or
+custom providers.
+
 1. Setup environment variables:
-    ```
+    ```shell
     export KF_NAME=<your choice of name for the Kubeflow deployment>
 
     # Set the path to the base directory where you want to store one or more 
-    # Kubeflow deployments. For example, /opt/.
+    # Kubeflow deployments. For example, use `/opt/`.
     export BASE_DIR=<path to a base directory>
 
     # Then set the Kubeflow application directory for this deployment.
     export KF_DIR=${BASE_DIR}/${KF_NAME}
     ```
-1. Setup configuration files:
-    ```
-    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.1-branch/kfdef/kfctl_ibm_dex_multi_user.v1.1.0.yaml"
+
+2. Setup configuration files:
+
+    ```shell
+    export CONFIG_FILE=kfctl_ibm_multi_user.yaml
+    export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.2-branch/kfdef/kfctl_ibm_multi_user.v1.2.0.yaml"
     # Generate and deploy Kubeflow:
     mkdir -p ${KF_DIR}
     cd ${KF_DIR}
-    kfctl build -V -f ${CONFIG_URI}
-    ```
-1. Deploy Kubeflow:
-    ```
-    kfctl apply -V -f ${CONFIG_URI}
-    ```
-1. Wait until the deployment finishes successfully. e.g., all pods are in `Running` state when running `kubectl get pod -n kubeflow`.
-1. Update the configmap `dex` in namespace `auth` with credentials from the first step.
-    - Get current resource file of current configmap `dex`:
-    `kubectl get configmap dex -n auth -o yaml > dex-cm.yaml`
-    The `dex-cm.yaml` file looks like following:
-    ```YAML
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: dex
-      namespace: auth
-    data:
-      config.yaml: |-
-        issuer: http://dex.auth.svc.cluster.local:5556/dex
-        storage:
-          type: kubernetes
-          config:
-            inCluster: true
-        web:
-          http: 0.0.0.0:5556
-        logger:
-          level: "debug"
-          format: text
-        connectors:
-          - type: github
-            # Required field for connector id.
-            id: github
-            # Required field for connector name.
-            name: GitHub
-            config:
-              # Fill in client ID, client Secret as string literal.
-              clientID:
-              clientSecret: 
-              redirectURI: http://dex.auth.svc.cluster.local:5556/dex/callback
-              # Optional organizations and teams, communicated through the "groups" scope.
-              #
-              # NOTE: This is an EXPERIMENTAL config option and will likely change.
-              #
-              orgs:
-              # Fill in your GitHub organization name
-              - name:
-              # Required ONLY for GitHub Enterprise. Leave it empty when using github.com.
-              # This is the Hostname of the GitHub Enterprise account listed on the
-              # management console. Ensure this domain is routable on your network.
-              hostName:
-              # Flag which indicates that all user groups and teams should be loaded.
-              loadAllGroups: false
-              # flag which will switch from using the internal GitHub id to the users handle (@mention) as the user id.
-              # It is possible for a user to change their own user name but it is very rare for them to do so
-              useLoginAsID: false
-        staticClients:
-        - id: kubeflow-oidc-authservice
-          redirectURIs: ["/login/oidc"]
-          name: 'Dex Login Application'
-          # Update the secret below to match with the oidc authservice.
-          secret: pUBnBOY80SnXgjibTYM9ZWNzY2xreNGQok
-    ```
-    - Replace `clientID` and `clientSecret` in the `config.yaml` field with the `Client ID` and `Client Secret` created above for the GitHub OAuth application. Add your organization name to the `orgs` field, e.g.
-    ```YAML
-    orgs:
-    - name: kubeflow-test
-    ```
-    Save the `dex-cm.yaml` file.
-    - Update this change to the Kubernetes cluster:
-    ```
-    kubectl apply -f dex-cm.yaml -n auth
-
-    # Remove this file with sensitive information.
-    rm dex-cm.yaml
+    curl -L ${CONFIG_URI} > ${CONFIG_FILE}
     ```
     
-1. Apply configuration changes:
+**Note**: By default, the IBM configuration is using the [Kubeflow pipeline with the Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
+    If you want to use the Kubeflow pipeline with the Argo backend, modify and uncomment the `argo` and `kfp-argo-multi-user` applications
+    inside the `kfctl_ibm_multi_user.yaml` and remove the `kfp-tekton-multi-user`, `tektoncd-install`, and `tektoncd-dashboard` applications. 
+    
+3. Deploy Kubeflow:
+
+    ```shell
+    kfctl apply -V -f ${CONFIG_FILE}
     ```
-    kubectl rollout restart deploy/dex -n auth
+
+4. Wait until the deployment finishes successfully — for example, all pods should be in the `Running` state when you run the command:
+
+    ```shell
+    kubectl get pod -n kubeflow
     ```
 
-## Verify installation
+5. Follow the [Creating an App ID service instance on IBM Cloud](https://cloud.ibm.com/catalog/services/app-id) guide for Kubeflow authentication. 
+You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=appid-getting-started) with different authentication methods.
 
-1. Check the resources deployed correctly in namespace `kubeflow`
+6. Follow the [Registering your app](https://cloud.ibm.com/docs/appid?topic=appid-app#app-register) section of the App ID guide
+to create an application with type _regularwebapp_ under the provisioned AppID
+instance. Make sure the _scope_ contains _email_. Then retrieve the following
+configuration parameters from your AppID:
+    * `clientId`
+    * `secret`
+    * `oAuthServerUrl`
+    
+7. Register the Kubeflow OIDC redirect page. The Kubeflow OIDC redirect URL is `http://<kubeflow-FQDN>/login/oidc`. 
+`<kubeflow-FQDN>` is the endpoint for accessing Kubeflow. By default, the `<kubeflow-FQDN>` on IBM Cloud is `<worker_node_external_ip>:31380`.
 
-     ```
-     kubectl get all -n kubeflow
-     ```
+  Then, you need to place the Kubeflow OIDC redirect URL under **Manage Authentication** > **Authentication settings** > **Add web redirect URLs**.
+  
+<img src="/docs/images/ibm/appid-redirect-settings.png" 
+  alt="APP ID Redirect Settings"
+  class="mt-3 mb-3 border border-info rounded">
 
-1. Open Kubeflow Dashboard. The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster. Run the following command and visit http://localhost:8080.
+8. Create the namespace `istio-system` if it does not exist:
 
-     ```
-     kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
-     ```
+    ```shell
+    kubectl create namespace istio-system
+    ```
 
-In case you want to expose the Kubeflow Dashboard over an external IP, you can change the type of the ingress gateway. To do that, you can edit the service:
+9. Create a secret prior to Kubeflow deployment by filling parameters from the
+step 2 accordingly:
 
-     kubectl edit -n istio-system svc/istio-ingressgateway
+    ```shell
+    kubectl create secret generic appid-application-configuration -n istio-system \
+      --from-literal=clientId=<clientId> \
+      --from-literal=secret=<secret> \
+      --from-literal=oAuthServerUrl=<oAuthServerUrl> \
+      --from-literal=oidcRedirectUrl=http://<kubeflow-FQDN>/login/oidc
+    ```
 
-From that file, replace `type: NodePort` with `type: LoadBalancer` and save.
+    * `<oAuthServerUrl>` - fill in the value of oAuthServerUrl
+    * `<clientId>` - fill in the value of clientId
+    * `<secret>` - fill in the value of secret
+    * `<kubeflow-FQDN>` - fill in the FQDN of Kubeflow, if you don't know yet, just give a dummy one like `localhost`. Then change it after you got one.
+    
+    **Note**: If any of the parameters changed after the initial Kubeflow deployment, you 
+    will need to manually update these parameters in the secret `appid-application-configuration`
+    then restart authservice by running the command `kubectl rollout restart sts authservice -n istio-system`.
 
-While the change is being applied, you can watch the service until below command prints a value under the `EXTERNAL-IP` column:
+### Verify mutli-user installation
 
-     kubectl get -w -n istio-system svc/istio-ingressgateway
+Check the pod `authservice-0` is in running state in namespace `istio-system`:
+```SHELL
+kubectl get pod authservice-0 -n istio-system
+```
 
-The external IP should be accessible by visiting http://<EXTERNAL-IP>. Note that above installation instructions do not create any protection for the external endpoint so it will be accessible to anyone without any authentication. 
+## Next steps
+
+Please follow the steps in [Exposing the Kubeflow dashboard with DNS and TLS termination](../authentication/#exposing-the-kubeflow-dashboard-with-dns-and-tls-termination) to secure the Kubeflow dashboard with HTTPS, then you will have the required DNS name as Kubeflow FQDN to enable the OIDC flow for AppID:
+
+1. Follow the step [Adding redirect URIs](https://cloud.ibm.com/docs/appid?topic=appid-managing-idp#add-redirect-uri)
+to fill a URL for AppID to redirect to Kubeflow. The URL should look like `https://<kubeflow-FQDN>/login/oidc`.
+2. Update the secret `appid-application-configuration` with the updated Kubeflow FQDN to replace `<kubeflow-FQDN>` in below command:
+```SHELL
+redirect_url=$(printf https://<kubeflow-FQDN>/login/oidc | base64 -w0) \
+ kubectl patch secret appid-application-configuration -n istio-system \
+ -p $(printf '{"data":{"oidcRedirectUrl": "%s"}}' $redirect_url)
+```
+3. restart the pod `authservice-0`:
+```SHELL
+kubectl rollout restart statefulset authservice -n istio-system
+```
+
+Then visit `https://<kubeflow-FQDN>/`, it should redirect you to AppID for authentication.
 
 ## Additional information
 

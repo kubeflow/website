@@ -4,10 +4,6 @@ description = "Recommended end-to-end tutorials, workshops, walk throughs, and c
 weight = 20
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 ## Agile Stacks tutorials for Kubeflow Pipelines
 
@@ -19,8 +15,6 @@ Pipeline templates provide step-by-step examples for working with object storage
 ## Google codelabs
 
 Google Developers Codelabs provide a guided, tutorial, hands-on coding experience.
-
-* [Introduction to Kubeflow on GKE](https://codelabs.developers.google.com/codelabs/kubeflow-introduction/index.html): Run MNIST with Kubeflow on Google Kubernetes Engine (GKE).
 
 * [Kubeflow Pipelines - GitHub Issue
   Summarization](https://codelabs.developers.google.com/codelabs/cloud-kubeflow-pipelines-gis/index.html): Run GitHub Issue Summarization with Kubeflow Pipelines on GKE.

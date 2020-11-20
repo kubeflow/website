@@ -4,10 +4,6 @@ description = "Setting up your Kubeflow Pipelines development environment"
 weight = 20
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 This guide tells you how to install the 
 [Kubeflow Pipelines SDK](https://github.com/kubeflow/pipelines/tree/master/sdk)
@@ -16,6 +12,10 @@ to execute your pipeline, or alternatively you can upload the pipeline to
 the Kubeflow Pipelines UI for execution.
 
 All of the SDK's classes and methods are described in the auto-generated [SDK reference docs](https://kubeflow-pipelines.readthedocs.io/en/latest/).
+
+**Note:** If you are running [Kubeflow Pipelines with Tekton](https://github.com/kubeflow/kfp-tekton),
+instead of the default [Kubeflow Pipelines with Argo](https://github.com/kubeflow/pipelines), you should use the
+[Kubeflow Pipelines SDK for Tekton](/docs/pipelines/sdk/pipelines-with-tekton).
 
 ## Set up Python
 
@@ -80,16 +80,20 @@ Run the following command to install the Kubeflow Pipelines SDK:
 ```bash
 pip3 install kfp --upgrade
 ```
+
 **Note:** If you are not using a virtual environment, such as `conda`, when installing the Kubeflow Pipelines SDK, you may receive the following error:
+
 ```bash
-ERROR: Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lib/python3.5/dist-packages/kfp-0.2.0.dist-info'
+ERROR: Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lib/python3.5/dist-packages/kfp-<version>.dist-info'
 Consider using the `--user` option or check the permissions.
 ```
 
 If you get this error, install `kfp` with the `--user` option:
+
 ```bash
 pip3 install kfp --upgrade --user
 ```
+
 This command installs the `dsl-compile` and `kfp` binaries under `~/.local/bin`, which is not part of the PATH in some Linux distributions, such as Ubuntu. You can add `~/.local/bin` to your PATH by appending the following to a new line at the end of your `.bashrc` file:
 
 ```bash

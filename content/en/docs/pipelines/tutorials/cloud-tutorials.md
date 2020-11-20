@@ -4,10 +4,6 @@ description = "Choose the Kubeflow Pipelines tutorial to suit your deployment"
 weight = 40
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 {{% alert title="Opportunity to add cloud tutorials" color="info" %}}
 <p><b>Invitation:</b> Create a cloud-specific tutorial and link it here.

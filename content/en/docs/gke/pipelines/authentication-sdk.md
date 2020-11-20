@@ -16,7 +16,7 @@ Cloud using [the Kubeflow Pipelines SDK](/docs/pipelines/sdk/sdk-overview/).
 
 Kubeflow Pipelines includes an API service named `ml-pipeline-ui`. The
 `ml-pipeline-ui` API service is deployed in the same Kubernetes namespace you
-deployed Kubeflow Pipielines in.
+deployed Kubeflow Pipelines in.
 
 The Kubeflow Pipelines SDK can send REST API requests to this API service, but
 the SDK needs to know the hostname to connect to the API service.

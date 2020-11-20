@@ -69,8 +69,8 @@ The Kubeflow Slack workspace offers several channels. Here are a few examples:
 | :---------------------------------------------------------------------------------------- | :------------------------------------------------------------------- |
 | General discussion                                                                        | [#general](https://kubeflow.slack.com/messages/C7REE0EHK)            |
 | Community meeting chat                                                                    | [#community](https://kubeflow.slack.com/messages/C8Q0QJYNB)          |
-| WG AutoML ([GitHub](https://github.com/kubeflow/community/tree/master/wgs/wg-automl))     | [#wg-automl](https://kubeflow.slack.com/archives/C018PMV53NW)        |
-| WG Training ([GitHub](https://github.com/kubeflow/community/tree/master/wgs/wg-training)) | [#wg-training](https://app.slack.com/client/T7QLHSH6U/C018N3M6QKB)   |
+| WG AutoML ([GitHub](https://github.com/kubeflow/community/tree/master/wg-automl))         | [#wg-automl](https://kubeflow.slack.com/messages/C018PMV53NW)        |
+| WG Training ([GitHub](https://github.com/kubeflow/community/tree/master/wg-training))     | [#wg-training](https://kubeflow.slack.com/messages/C018N3M6QKB)      |
 | KFServing ([GitHub](https://github.com/kubeflow/kfserving))                               | [#kfserving](https://kubeflow.slack.com/messages/CH6E58LNP)          |
 | Pipelines ([GitHub](https://github.com/kubeflow/pipelines))                               | [#kubeflow-pipelines](https://kubeflow.slack.com/messages/CE10KS9M4) |
 | Examples ([GitHub](https://github.com/kubeflow/examples))                                 | [#kubeflow-examples](https://kubeflow.slack.com/messages/CA30Q9A4U)  |

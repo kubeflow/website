@@ -4,10 +4,6 @@ description = "Get started with the Kubeflow Pipelines notebooks and samples"
 weight = 30
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 You can learn how to build and deploy pipelines by running the samples
 provided in the Kubeflow Pipelines repository or by walking through a

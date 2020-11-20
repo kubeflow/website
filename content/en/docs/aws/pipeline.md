@@ -6,7 +6,8 @@ weight = 90
 
 ## Authenticate Kubeflow Pipeline using SDK inside cluster
 
-In v1.1.0, in-cluster communitation from notebook to Kubeflow Pipeline is not supported in this phase. In order to use `kfp` as previous, user needs to pass a cookie to KFP for communication as a walkaround.
+In v1.1.0, in-cluster communication from notebook to Kubeflow Pipeline is not supported in this phase. In order to use `kfp` as previous, user needs to pass a cookie to KFP for communication as a workaround.
+
 You can follow following steps to get cookie from your browser after you login Kubeflow. Following examples uses Chrome browser.
 
 > Note: You have to use images in [AWS Jupyter Notebook](/docs/aws/notebook-server) because it includes a critical SDK fix [here](https://github.com/kubeflow/pipelines/pull/4285).
@@ -46,7 +47,7 @@ client.list_experiments(namespace="<your_namespace>")
 
 - dex {{% config-uri-aws-standard %}}
 
-Please look at this [PR](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) to do programmatic authentication with Dex.
+To do programmatic authentication with Dex, refer to the following comments under the [#140](https://github.com/kubeflow/kfctl/issues/140) issue in the `kfctl` repository: [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) and [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-719894529).
 
 
 - cognito {{% config-uri-aws-cognito %}}
@@ -81,9 +82,9 @@ data:
 > Note: To get base64 string, run `echo -n $AWS_ACCESS_KEY_ID | base64`
 
 
-## Configure containers to use AWS credentails
+## Configure containers to use AWS credentials
 
-If you write any files to S3 in your application, use `use_aws_secret` to attach aws secret to access S3.
+If you write any files to S3 in your application, use `use_aws_secret` to attach an AWS secret to access S3.
 
 ```python
 import kfp
@@ -108,7 +109,7 @@ def iris_pipeline():
 
 ## Support S3 Artifact Store
 
-Kubeflow Pipelines supports different artifact viewers. You can create files in S3 and reference them in output artifacts in your application like beflow.
+Kubeflow Pipelines supports different artifact viewers. You can create files in S3 and reference them in output artifacts in your application as follows:
 
 ```python
 metadata = {
@@ -145,7 +146,7 @@ In order for `ml-pipeline-ui` to read these artifacts:
 
 1. Create a Kubernetes secret `aws-secret` in `kubeflow` namespace. Follow instructions [here](#s3-access-from-kubeflow-pipelines).
 
-1. Update deployment `ml-pipeline-ui` to use AWS credential environment viariables by running `kubectl edit deployment ml-pipeline-ui -n kubeflow`.
+1. Update deployment `ml-pipeline-ui` to use AWS credential environment variables by running `kubectl edit deployment ml-pipeline-ui -n kubeflow`.
 
    ```
    apiVersion: extensions/v1beta1

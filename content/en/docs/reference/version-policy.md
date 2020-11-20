@@ -4,10 +4,6 @@ description = "Versioning policies and status of Kubeflow applications and other
 weight = 05
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 This page describes the Kubeflow versioning policies and provides a version 
 matrix for Kubeflow applications and other components.
@@ -118,7 +114,7 @@ documentation for that application.
         <td></td>
       </tr>
       <tr>
-        <td><a href="/docs/components/hyperparameter-tuning/overview/">Hyperparameter
+        <td><a href="/docs/components/katib/overview/">Hyperparameter
           tuning: Katib</a>
           (<a href="https://github.com/kubeflow/katib">GitHub</a>)
           </td>
@@ -174,8 +170,8 @@ documentation for that application.
         <td><a href="/docs/pipelines/overview/pipelines-overview/">Pipelines</a>
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
-        <td>Beta</td>
-        <td>0.2.5</td>
+        <td>Stable</td>
+        <td>1.0.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/multi-tenancy/">Profile 
@@ -236,7 +232,7 @@ one of the following Kubeflow SDKs and command-line interfaces
     </thead>
     <tbody>
       <tr>
-        <td><a href="/docs/fairing/fairing-overview/">Fairing</a> 
+        <td><a href="/docs/components/fairing/fairing-overview/">Fairing</a> 
           (<a href="https://github.com/kubeflow/fairing">GitHub</a>)
         </td>
         <td>Beta</td>
@@ -253,8 +249,8 @@ one of the following Kubeflow SDKs and command-line interfaces
         <td><a href="/docs/pipelines/sdk/sdk-overview/">Kubeflow Pipelines SDK</a> 
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
-        <td>Beta</td>
-        <td>0.2.5</td>
+        <td>Stable</td>
+        <td>1.0.0</td>
       </tr>
     </tbody>
   </table>

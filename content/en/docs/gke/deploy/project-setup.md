@@ -31,7 +31,7 @@ Follow these steps to set up your GCP project:
     * [Service Management API](https://console.cloud.google.com/apis/api/servicemanagement.googleapis.com)
     * [Cloud Resource Manager API](https://console.developers.google.com/apis/library/cloudresourcemanager.googleapis.com)
     * [AI Platform Training & Prediction API](https://console.developers.google.com/apis/library/ml.googleapis.com)
-    * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/fairing/) in your Kubeflow cluster)
+    * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/components/fairing/) in your Kubeflow cluster)
 
     You can also enable these APIs by running the following command in Cloud Shell:
     ```
@@ -75,6 +75,12 @@ Follow these steps to set up your GCP project:
     ```
 
     Refer to [Anthos Service Mesh documentation](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#setting_credentials_and_permissions) for details.
+
+    If you encounter a `Workload Identity Pool does not exist` error, refer to the following issue:
+
+    * [kubeflow/website #2121](https://github.com/kubeflow/website/issues/2121)
+    describes that creating and then removing a temporary Kubernetes cluster may
+    be needed for projects that haven't had a cluster set up beforehand.
 
 You do not need a running GKE cluster. The deployment process creates a
 cluster for you.

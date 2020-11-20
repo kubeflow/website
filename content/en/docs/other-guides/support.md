@@ -133,16 +133,20 @@ The following organizations offer advice and support for Kubeflow deployments:
         <td><a href="mailto:sales@arrikto.com">sales@arrikto.com</a></td>
       </tr>
       <tr>
-        <td><a href="https://www.seldon.io/">Seldon</a></td>
-        <td> 
-        <a href="https://github.com/SeldonIO/seldon-core/issues">Issue 
-        tracker</a></td>
+        <td><a href="https://www.ubuntu.com">Canonical</a></td>
+        <td><a href="https://ubuntu.com/kubeflow#get-in-touch">Get in touch</a></td>
       </tr>
       <tr>
         <td><a href="https://www.pattersonconsultingtn.com/">Patterson Consulting</a></td>
         <td> 
         <a href="http://www.pattersonconsultingtn.com/offerings/managed_kubeflow.html">Managed Kubeflow</a></td>
-      </tr>      
+      </tr>
+      <tr>
+        <td><a href="https://www.seldon.io/">Seldon</a></td>
+        <td> 
+        <a href="https://github.com/SeldonIO/seldon-core/issues">Issue 
+        tracker</a></td>
+      </tr>    
     </tbody>
   </table>
 </div>
@@ -156,6 +160,7 @@ provider may be able to help you diagnose and solve a problem.
 Consult the support page for the cloud service or platform that you're using:
 
 * [Amazon Web Services (AWS)](https://aws.amazon.com/contact-us/)
+* [Canonical Ubuntu](https://ubuntu.com/kubeflow#get-in-touch)
 * [Google Cloud Platform (GCP)](https://cloud.google.com/support-hub/)
 * [IBM Cloud](https://www.ibm.com/cloud/support)
 * [Microsoft Azure](https://azure.microsoft.com/en-au/support/options/)

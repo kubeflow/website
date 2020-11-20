@@ -54,6 +54,10 @@ To output any piece of data, the component program must write the output data to
 about that location so that the system can pass the data between steps.
 The program should accept the paths for the output data as command-line arguments. That is, you should not hardcode the paths.
 
+In practical terms this means that the program should receive local paths for every output the component produces and write data to those paths.
+Usually an output is a single piece of data. In this case the program should treat the given output path as a file path, open it for writing and write the data there.
+In some cases there is a need to output a directory of files. In this case the program should treat the given output path as a directory path, create a directory at that location and then add files to that directory. In both cases it might be necessary to create parent directories if they do not exist.
+
 #### Advanced: Producing data in an external system
 
 In some scenarios, the goal of the component is to create some data object in an external service (for example a BigQuery table).
@@ -72,8 +76,8 @@ There are two main ways a command-line program usually consumes data:
 ## Writing the program code
 
 This section describes an example program that has two inputs (for small and 
-large pieces of data) and one output. The programming language in this example
-is Python 3.
+large pieces of data) and one output. Although the programming language in this example
+is Python 3, you can build your component in any language.
 
 ### program.py
 
@@ -124,7 +128,7 @@ of your choice to create the Docker containers.
 
 Your [Dockerfile](https://docs.docker.com/engine/reference/builder/) must
 contain all program code, including the wrapper, and the dependencies (operating
-system packages, Python packages etc).  
+system packages, external libraries, etc).
 
 Ensure you have write access to a container registry where you can push
 the container image. Examples include 

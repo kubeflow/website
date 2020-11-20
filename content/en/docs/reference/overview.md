@@ -5,10 +5,6 @@ weight = 1
 
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 <a id="tfjob"></a>
 ## TFJob
@@ -61,3 +57,16 @@ using notebooks with Kubeflow, see the [user guide](/docs/components/notebooks/)
 API references:
 
   * [v1](/docs/reference/notebook/v1/)
+
+<a id="katib">
+
+## Katib
+
+Katib is an AutoML system that you can use to run hyperparameter tuning and neural architecture search 
+experiments on Kubernetes. For help with using Katib with Kubeflow, see the [user guide](/docs/components/katib/).
+
+gRPC API references:
+
+  - [v1beta1](/docs/reference/katib/v1beta1/katib/)
+
+  - [v1alpha3](/docs/reference/katib/v1alpha3/katib/)

@@ -1,6 +1,6 @@
 +++
 title = "Management cluster setup"
-description = "Instructions for setting up a management cluster on Google Cloud"
+description = "Setting up a management cluster on Google Cloud"
 weight = 3
 +++
 
@@ -11,7 +11,7 @@ The management cluster is used to run [Cloud Config Connector](https://cloud.goo
 While the management cluster can be deployed in the same project as your Kubeflow cluster, typically you will want to deploy
 it in a separate project used for administering one or more Kubeflow instances.
 
-Optionally, the cluster can be configured with [Anthos Config Managmenet](https://cloud.google.com/anthos-config-management/docs) 
+Optionally, the cluster can be configured with [Anthos Config Management](https://cloud.google.com/anthos-config-management/docs) 
 to manage Google Cloud infrastructure using GitOps.
 
 ## FAQs
@@ -37,8 +37,10 @@ For a more detailed explanation of the changes affecting Kubeflow 1.1 on Google 
 
 1. Install [Kustomize v3.2.1](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv3.2.1).
 
-    Note, Kubeflow is not compatible with later versions of Kustomize. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
+    **Note:** Kubeflow is not compatible with Kustomize versions above 3.2.1. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
 
+1. Install [yq](https://github.com/mikefarah/yq#install).
+ 
 ## Setting up the management cluster
 
 
@@ -54,16 +56,6 @@ For a more detailed explanation of the changes affecting Kubeflow 1.1 on Google 
    cd ./management
    make get-pkg
    ```
-
-  * This generates an error like the one below but you can ignore it;
-
-    ```  
-    kpt pkg get https://github.com/jlewi/manifests.git@blueprints ./upstream
-    fetching package / from https://github.com/jlewi/manifests to upstream/manifests
-    Error: resources must be annotated with config.kubernetes.io/index to be written to files    
-    ```
-  
-    * This is being tracked in [GoogleContainerTools/kpt#539](https://github.com/GoogleContainerTools/kpt/issues/539) 
 
 1. Open up the **Makefile** at `./management/Makefile` and edit the `set-values` rule to set values for the name, project, and location of your management; when you are done the section should look like
 
@@ -110,10 +102,10 @@ For a more detailed explanation of the changes affecting Kubeflow 1.1 on Google 
 
 ### Authorize CNRM for each project
 
-In the last step we created the Google Cloud service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
-this is the service account that CNRM will use to create any Google Cloud resources. Consequently
-you need to grant this Google Cloud service account sufficient privileges to create the desired
-resources in one or more projects. 
+In the last step we created the GCP service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
+this is the service account that CNRM will use to create any GCP resources. Consequently
+you need to grant this GCP service account sufficient privileges to create the desired
+resources in one or more projects (called managed projects, read [more](https://github.com/kubeflow/gcp-blueprints/tree/master/management/instance/managed-project)). 
 
 The easiest way to do this is to grant the Google Cloud service account owner permissions on one or more projects
 

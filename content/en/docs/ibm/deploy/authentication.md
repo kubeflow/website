@@ -24,13 +24,13 @@ guide.
 
 ## Setting up an NLB
 
-To set up an NLB for your Kuberetes cluster, follow the official 
+To set up an NLB for your Kubernetes cluster, follow the official 
 [Classic: Setting up basic load balancing with an NLB 1.0](https://cloud.ibm.com/docs/containers?topic=containers-loadbalancer) 
 guide. Notice that the setup process for a multi-zone cluster differs from that 
 of a single-zone cluster. For details, go to 
 [Setting up an NLB 1.0 in a multi-zone cluster](https://cloud.ibm.com/docs/containers?topic=containers-loadbalancer#multi_zone_config).
 
-1. To use the exisitng Istio ingress gateway (instead of creating a new 
+1. To use the existing Istio ingress gateway (instead of creating a new 
 service), you need to update the service type of `istio-ingressgateway` to 
 `LoadBalancer` from `NodePort`. Run the following command:
 
@@ -97,12 +97,12 @@ column):
 `istio-ingressgateway` pods in namespace `istio-system`:
 
     ```shell
-    kubectl get secret $INGRESS_GATEWAY_SECRET --namespace istio-system -o yaml > istio-ingressgateway-certs.yaml
+    kubectl get secret $INGRESS_GATEWAY_SECRET -o yaml > istio-ingressgateway-certs.yaml
     ```
 
 6. Update the `istio-ingressgateway-certs.yaml` file by changing the value of 
-`metadata.name` to `istio-ingressgateway-certs`. Then, run the following 
-commands:
+`metadata.name` to `istio-ingressgateway-certs` and the value of
+`metadata.namespace` to `istio-system`. Then, run the following commands:
 
     ```shell
     kubectl apply -f istio-ingressgateway-certs.yaml -n istio-system
@@ -131,7 +131,6 @@ of the column `Hostname` in step 4:
         number: 443
         protocol: HTTPS
       tls:
-        httpsRedirect: true # sends 301 redirect for http requests
         mode: SIMPLE
         privateKey: /etc/istio/ingressgateway-certs/tls.key
         serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
@@ -142,18 +141,7 @@ above-mentioned `Hostname` in your browser. It should redirect traffic from an
 HTTP address to HTTPS address automatically.
 
 **Note**: The certificates for the NLB DNS host secret expire every **90** days. 
-The secret in the `istio-system` namespace is automatically renewed by IBM Cloud 
+The secret in the `default` namespace is automatically renewed by IBM Cloud
 Kubernetes Service 37 days before it expires. After this secret is updated, you 
 must manually copy it to the `istio-ingressgateway-certs` secret by repeating 
-commands in step 6.
-
-## Updating configuration of the authentication provider
-
-When installing the multi-user, auth-enabled Kubeflow, Kubeflow uses an GitHub 
-OAuth application as the authentication provider. After enabling Expose the 
-Istio ingress gateway with DNS and TLS, you should update this GitHub OAuth app 
-settings by replacing `{HOSTNAME}` with the hostname of created TLS certificate 
-as follows:
-
-* Homepage URL: `https://{HOSTNAME}/`
-* Authorization callback URL: `https://{HOSTNAME}/dex/callback`
+commands in step 5 and 6.

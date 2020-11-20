@@ -4,10 +4,6 @@ description = "Statically check the component I/O types"
 weight = 100
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 This page describes how to integrate the type information in the pipeline and utilize the 
 static type checking for fast development iterations.
@@ -37,6 +33,7 @@ In the component YAML, types are specified as a string or a dictionary with the 
 "*component a*" expects an input with Integer type and emits three outputs with the type GCSPath, customized_type and GCRPath. 
 Among these types, Integer, GCSPath, and GCRPath are core types that are predefined in the SDK while customized_type is a user-defined
 type.  
+
 ```yaml
 name: component a
 description: component desc
@@ -58,55 +55,80 @@ implementation:
       field_n: /feature.txt
       field_o: /output.txt
 ```
+
 Similarly, when you write a component with the decorator, you can annotate I/O with types in the function signature, as shown below.
 
 ```python
 from kfp.dsl import component
 from kfp.dsl.types import Integer, GCRPath
+
+
 @component
-def task_factory_a(field_l: Integer()) -> {'field_m': {'GCSPath': {'openapi_schema_validator': '{"type": "string", "pattern": "^gs://.*$"}'}}, 
-                                           'field_n': 'customized_type',
-                                           'field_o': GCRPath()
-                                          }:
-    return ContainerOp(
-        name = 'operator a',
-        image = 'gcr.io/ml-pipeline/component-a',
-        command = [
-          'python3', '/pipelines/component/src/train.py'
-        ],
-        arguments = [
-            '--field-l', field_l,
-        ],
-        file_outputs = {
-            'field_m': '/schema.txt',
-            'field_n': '/feature.txt',
-            'field_o': '/output.txt'
+def task_factory_a(field_l: Integer()) -> {
+    'field_m': {
+        'GCSPath': {
+            'openapi_schema_validator':
+                '{"type": "string", "pattern": "^gs://.*$"}'
         }
-    )
+    },
+    'field_n': 'customized_type',
+    'field_o': GCRPath()
+}:
+  return ContainerOp(
+      name='operator a',
+      image='gcr.io/ml-pipeline/component-a',
+      command=['python3', '/pipelines/component/src/train.py'],
+      arguments=[
+          '--field-l',
+          field_l,
+      ],
+      file_outputs={
+          'field_m': '/schema.txt',
+          'field_n': '/feature.txt',
+          'field_o': '/output.txt'
+      })
 ```
+
 You can also annotate pipeline inputs with types and the input are checked against the component I/O types as well. For example,
+
 ```python
 @component
-def task_factory_a(field_m: {'GCSPath': {'openapi_schema_validator': '{"type": "string", "pattern": "^gs://.*$"}'}}, field_o: 'Integer'):
-    return ContainerOp(
-        name = 'operator a',
-        image = 'gcr.io/ml-pipeline/component-a',
-        arguments = [
-            '--field-l', field_m,
-            '--field-o', field_o,
-        ],
-    )
+def task_factory_a(
+    field_m: {
+        'GCSPath': {
+            'openapi_schema_validator':
+                '{"type": "string", "pattern": "^gs://.*$"}'
+        }
+    }, field_o: 'Integer'):
+  return ContainerOp(
+      name='operator a',
+      image='gcr.io/ml-pipeline/component-a',
+      arguments=[
+          '--field-l',
+          field_m,
+          '--field-o',
+          field_o,
+      ],
+  )
+
 
 # Pipeline input types are also checked against the component I/O types.
-@dsl.pipeline(name='type_check',
-    description='')
-def pipeline(a: {'GCSPath': {'openapi_schema_validator': '{"type": "string", "pattern": "^gs://.*$"}'}}='good', b: Integer()=12):
-    task_factory_a(field_m=a, field_o=b)
+@dsl.pipeline(name='type_check', description='')
+def pipeline(
+    a: {
+        'GCSPath': {
+            'openapi_schema_validator':
+                '{"type": "string", "pattern": "^gs://.*$"}'
+        }
+    } = 'good',
+    b: Integer() = 12):
+  task_factory_a(field_m=a, field_o=b)
+
 
 try:
-    compiler.Compiler().compile(pipeline, 'pipeline.tar.gz', type_check=True)
+  compiler.Compiler().compile(pipeline, 'pipeline.tar.gz', type_check=True)
 except InconsistentTypeException as e:
-    print(e)
+  print(e)
 ```
 
 ## How does the type checking work?
@@ -127,26 +149,35 @@ If inconsistent types are detected, it throws an [InconsistentTypeException](htt
 Type checking is enabled by default and it can be disabled in two ways:
 
 If you compile the pipeline programmably:
+
 ```python
 compiler.Compiler().compile(pipeline_a, 'pipeline_a.tar.gz', type_check=False)
 ```
+
 If you compile the pipeline using the dsl-compiler tool:
+
 ```bash
 dsl-compiler --py pipeline.py --output pipeline.zip --disable-type-check
 ```
+
 ### Fine-grained configuration
 
 Sometimes, you might want to enable the type checking but disable certain arguments. For example, 
 when the upstream component generates an output with type "*Float*" and the downstream can ingest either 
 "*Float*" or "*Integer*", it might fail if you define the type as "*Float_or_Integer*". 
 Disabling the type checking per-argument is also supported as shown below.
+
 ```python
-@dsl.pipeline(name='type_check_a',
-    description='')
+@dsl.pipeline(name='type_check_a', description='')
 def pipeline():
-    a = task_factory_a(field_l=12)
-    # For each of the arguments, you can also ignore the types by calling ignore_type function.
-    b = task_factory_b(field_x=a.outputs['field_n'], field_y=a.outputs['field_o'], field_z=a.outputs['field_m'].ignore_type())
+  a = task_factory_a(field_l=12)
+  # For each of the arguments, you can also ignore the types by calling
+  # ignore_type function.
+  b = task_factory_b(
+      field_x=a.outputs['field_n'],
+      field_y=a.outputs['field_o'],
+      field_z=a.outputs['field_m'].ignore_type())
+
 compiler.Compiler().compile(pipeline, 'pipeline.tar.gz', type_check=True)
 ```
 
@@ -158,4 +189,6 @@ type checking would still fail if some I/Os lack the type information and some I
 
 ## Next steps
 
-* See [type checking sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/dsl_static_type_checking/dsl_static_type_checking.ipynb).
+Learn how to define a KubeFlow pipeline with Python DSL and compile the
+pipeline with type checking: a 
+[Jupyter notebook demo](https://github.com/kubeflow/pipelines/blob/master/samples/core/dsl_static_type_checking/dsl_static_type_checking.ipynb).

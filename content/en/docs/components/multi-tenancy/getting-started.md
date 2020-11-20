@@ -339,7 +339,8 @@ spec:
     name: ns-access-istio
   subjects:
   - properties:
-      request.headers[kubeflow-userid]: userid@email.com   # replace with the email of the user from your Active Directory case sensitive
+      request.headers[kubeflow-userid]: accounts.google.com:userid@email.com   # replace with the email of the user from your Active Directory case sensitive
+      # for GCP, use x-goog-authenticated-user-email instead of kubeflow-userid for authentication purpose
 status: {}
 ```
 

@@ -1,5 +1,5 @@
 +++
-title = "Multi-user Isolation"
+title = "Multi-user Isolation for Pipelines"
 description = "Getting started with Kubeflow Pipelines multi-user isolation"
 weight = 35
 +++
@@ -15,11 +15,7 @@ for the common Kubeflow multi-user operations including the following:
 
 Note, Kubeflow Pipelines multi-user isolation is only supported in
 [the full Kubeflow deployment](/docs/pipelines/installation/overview/#full-kubeflow-deployment)
-starting from Kubeflow v1.1 and **currently only** on the following platforms:
-
-* Google Cloud
-* Amazon Web Services
-* IBM Cloud
+starting from Kubeflow v1.1 and **currently** on all platforms except OpenShift. For the latest status about platform support, refer to [kubeflow/manifests#1364](https://github.com/kubeflow/manifests/issues/1364#issuecomment-668415871).
 
 Also be aware that the isolation support in Kubeflow doesn’t provide any hard
 security guarantees against malicious attempts by users to infiltrate other
@@ -54,7 +50,7 @@ You can select a different namespace to view resources in other namespaces.
 
 ### When using the SDK
 
-First, you need to connnect to the Kubeflow Pipelines public endpoint using the
+First, you need to connect to the Kubeflow Pipelines public endpoint using the
 SDK. For Google Cloud, follow [these instructions](/docs/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-in-a-full-kubeflow-deployment).
 
 When calling SDK methods for experiments, you need to provide the additional
@@ -118,8 +114,8 @@ namespace argument is required for experiment APIs. Note that namespace is
 referred to using a resource reference. The resource reference **type** is
 `NAMESPACE` and resource reference **key id** is the namespace name.
 
-The following example demonstrates how to use [the generated Python API client (kf-server-api)](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.server_api.html)
-in a multi-user environment.
+The following example demonstrates how to use [the generated Python API client (kf-server-api)](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.server_api.html) in a multi-user environment.
+
 ```python
 from kfp_server_api import ApiRun, ApiPipelineSpec, \
     ApiExperiment, ApiResourceType, ApiRelationship, \
@@ -160,9 +156,9 @@ runs=client.runs.list_runs(
 print(runs)
 ```
 
-## Current Limitations
+## Current limitations
 
-### Resources without Isolation
+### Resources without isolation
 
 The following resources do not currently support isolation and are shared
 without access control:

@@ -45,7 +45,7 @@ We highly recommend deploying Multi-AZ database for Production. Please review RD
 
 [{{<figure src="/docs/images/aws/cloudformation-launch-stack.png">}}](https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=kubeflow-db&templateURL=https://cloudformation-kubeflow.s3-us-west-2.amazonaws.com/rds.yaml)
 
-Remember to select correct **Region** in CloudFormation management console before clicking Next. We recommend you to change the **DBPassword**, if not it will dafault to `Kubefl0w`. Select VpcId, Subnets and SecurityGroupId before clicking Next. Take rest all defaults and click **Create Stack**.
+Remember to select correct **Region** in CloudFormation management console before clicking Next. We recommend you to change the **DBPassword**, if not it will default to `Kubefl0w`. Select VpcId, Subnets and SecurityGroupId before clicking Next. Take rest all defaults and click **Create Stack**.
 
 Once the CloudFormation is completed, click on Outputs tab to get RDS endpoint. If you didn't use CloudFormation, you can retrieve RDS endpoint through AWS management console for RDS on the Connectivity & security tab under Endpoint & port section. We will use it in the next step while installing Kubeflow.   
 
@@ -71,7 +71,7 @@ Modify `${CONFIG_FILE}` file to add `external-mysql` in both pipeline and metada
     mysqlUser=<$DBUsername>
     mysqlPassword=<$DBPassword>
     ```
-    Edit `params.env` file for the external-mysql metedata service (`kustomize/metadata/overlays/external-mysql/params.env`) and update values based on your configuration:
+    Edit `params.env` file for the external-mysql metadata service (`kustomize/metadata/overlays/external-mysql/params.env`) and update values based on your configuration:
 
     ```
     MYSQL_HOST=external_host
@@ -79,7 +79,7 @@ Modify `${CONFIG_FILE}` file to add `external-mysql` in both pipeline and metada
     MYSQL_PORT=3306
     MYSQL_ALLOW_EMPTY_PASSWORD=true
     ```
-    Edit `secrets.env` file for the external-mysql metedata service (`kustomize/metadata/overlays/external-mysql/secrets.env`) and update values based on your configuration:
+    Edit `secrets.env` file for the external-mysql metadata service (`kustomize/metadata/overlays/external-mysql/secrets.env`) and update values based on your configuration:
 
     ```
     MYSQL_USERNAME=<$DBUsername>

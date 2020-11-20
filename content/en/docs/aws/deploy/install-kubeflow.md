@@ -7,6 +7,45 @@ weight = 4
 This guide describes how to use the kfctl CLI to
 deploy Kubeflow on Amazon Web Services (AWS).
 
+## Compatibility
+
+EKS enabled E2E tests between EKS versions and Kubeflow versions since 1.2.
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>EKS Versions</th>
+        <th>Kubeflow 1.2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1.15</td>
+        <td><b>compatible</b></td>
+      </tr>
+      <tr>
+        <td>1.16</td>
+        <td><b>compatible</b></td>
+      </tr>
+      <tr>
+        <td>1.17</td>
+        <td><b>compatible</b></td>
+      </tr>
+      <tr>
+        <td>1.18</td>
+        <td><b>compatible</b></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+- **incompatible**: the combination does not work at all
+- **compatible**: all Kubeflow features have been tested and verified for the
+  EKS version
+- **no known issues**: the combination has not been fully tested but there are
+  no reported issues
+
 ## Prerequisites
 
 * Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl)
@@ -83,7 +122,7 @@ Notes:
 
 * **${AWS_CLUSTER_NAME}** - The name of your eks cluster.
   This will be picked by `kfctl` and set value to `metadata.name`.
-  `alb-ingress-controller` requires correct value to provision application load balanders. 
+  `alb-ingress-controller` requires correct value to provision application load balancers. 
   Alb will be only created with correct cluster name.
 
 
@@ -177,7 +216,7 @@ This deployment may take 3-5 minutes to become ready. Verify that the address wo
 - **Dex**
   If you're using basic authentication, the credentials are the ones you specified in the KfDef file, or the default (`admin@kubeflow.org`:`12341234`). It is highly recommended to change the default credentials. To add static users or change the existing one, [add static users for basic auth](/docs/aws/deploy/install-kubeflow/#add-static-users-for-basic-auth).
 
-- **Coginito**
+- **Cognito**
   To secure an enterprise-level installation, use the {{% config-uri-aws-cognito %}} configuration file and [configure authentication and authorization](/docs/aws/authentication) for your cluster.
 
 ### Add static users for basic authentication 
@@ -216,7 +255,7 @@ kubectl rollout restart deployment dex -n auth
 
 Kubeflow provides multi-tenancy support and user are not able to create notebooks in `kubeflow`, `default` namespace.
 
-The first time you visit the cluster, you can ceate a namespace `anonymous` to use. If you want to create different users, you can create `Profile` and then `kubectl apply -f profile.yaml`. Profile controller will create new namespace and service account which is allowed to create notebook in that namespace.
+The first time you visit the cluster, you can create a namespace `anonymous` to use. If you want to create different users, you can create `Profile` and then `kubectl apply -f profile.yaml`. Profile controller will create new namespace and service account which is allowed to create notebook in that namespace.
 
 ```yaml
 apiVersion: kubeflow.org/v1beta1

@@ -19,7 +19,13 @@ experiment in the Kubeflow Pipelines UI.
  
 ## Export the metrics dictionary
 
+
 To enable metrics, your component must have an output called "MLPipeline Metrics" and return a JSON-serialized metrics dictionary.
+Otherwise the Kubeflow Pipelines UI will
+not render the visualization. In other words, the `.outputs.artifacts` setting
+for the generated pipeline template should show:
+`- {name: mlpipeline-metrics, path: /tmp/outputs/mlpipeline_metrics/data}`.
+(The file path does not matter.)
 
 An example Lightweight python component that outputs metrics dictionary by writing it to an output file:
 

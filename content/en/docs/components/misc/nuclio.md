@@ -12,18 +12,18 @@ needs to be updated for Kubeflow 1.1.
 
 ## Nuclio Overview
 
-[nuclio](https://github.com/nuclio/nuclio) is a high performance serverless platform which runs over docker or kubernetes 
+[Nuclio](https://github.com/nuclio/nuclio) is a high performance serverless platform which runs over docker or kubernetes 
 and automate the development, operation, and scaling of code (written in 8 supported languages).
 Nuclio is focused on data analytics and ML workloads, it provides extreme performance and parallelism, supports stateful and data intensive 
 workloads, GPU resource optimization, check-pointing, and 14 native triggers/streaming protocols out of the box including HTTP, Cron, batch, Kafka, Kinesis, 
 Google pub/sub, Azure event-hub, MQTT, etc. additional triggers can be added dynamically (e.g. [Twitter feed](https://github.com/v3io/tutorials/blob/master/demos/stocks/04-read-tweets.ipynb)).
   
-nuclio can run in the cloud as a [managed offering](https://www.iguazio.com/), or on any Kubernetes cluster (cloud, on-prem, or edge)<br>
+Nuclio can run in the cloud as a [managed offering](https://www.iguazio.com/), or on any Kubernetes cluster (cloud, on-prem, or edge)<br>
 [read more about nuclio ...](https://github.com/nuclio/nuclio)
 
 ## Using Nuclio In Data Science Pipelines 
 
-Nuclio functions can be used in the following ML pipline tasks:
+Nuclio functions can be used in the following ML pipeline tasks:
 
 - Data collectors, ETL, stream processing
 - Data preparation and analysis
@@ -33,13 +33,13 @@ Nuclio functions can be used in the following ML pipline tasks:
  
 Containerized functions (+ dependent files and spec) can be created directly from a Jupyter Notebook 
 using `%nuclio` magic commands or SDK API calls (see [nuclio-jupyter](https://github.com/nuclio/nuclio-jupyter)), 
-or they can be built/deployed using KubeFlow Pipeline (see: [nuclio pipeline components]()) 
+or they can be built/deployed using Kubeflow Pipeline (see: [nuclio pipeline components]()) 
 e.g. if we want to deploy/update Inference functions right after we update an ML model. 
 
 ## Installing Nuclio over Kubernetes
 
-Nuclio [Git repo](https://github.com/nuclio/nuclio) contain detailed documentation on the installation and usage.
-can also follow this [interactive tutorial](https://www.katacoda.com/javajon/courses/kubernetes-serverless/nuclio).
+The Nuclio [GitHub repo](https://github.com/nuclio/nuclio) contains detailed documentation on the installation and usage.
+You can also follow this [interactive tutorial](https://www.katacoda.com/javajon/courses/kubernetes-serverless/nuclio) by O'Reilly Katacoda.
 
 The simplest way to install is using [`Helm`](https://helm.sh/docs/intro/install/), assuming you deployed Helm on your cluster, type the following commands:
 
@@ -72,7 +72,7 @@ We add some `%nuclio` magic commands to describe additional configurations such 
 CPU/Mem/GPU resources, how the code will get triggered (http, cron, stream), environment variables, 
 additional files we want to bundle (e.g. ML model, libraries), versioning, etc.
 
-First we need to import `nuclio` package (we add an `ignore` comment so this line wont be compiled later):
+First, you need to import `nuclio` package (note that you add an `ignore` comment, so that this line won't be compiled later):
 
 ```python
 # nuclio: ignore
@@ -123,12 +123,12 @@ Now we can test the function using a built-in function context and examine its o
 
 ```python
 # nuclio: ignore
-event = nuclio.Event(body=b'good morninng')
+event = nuclio.Event(body=b'good morning')
 handler(context, event)
 ```
 
-Finally we deploy our function using the magic commands, SDK, or KubeFlow Pipeline. 
-we can simply write and run the following command a cell:
+Finally we deploy our function using the magic commands, SDK, or Kubeflow Pipeline.
+We can simply write and run the following command a cell:
 
 ```python
 %nuclio deploy -n nlp -p ai -d <nuclio-dashboard-url>
@@ -159,9 +159,9 @@ resp = requests.get('http://' + addr)
 print(resp.text)
 ```
 
-## Using Nuclio with KubeFlow Pipelines
+## Using Nuclio with Kubeflow Pipelines
 
-We can deploy and test functions as part of a KubeFlow pipeline step.
+We can deploy and test functions as part of a Kubeflow pipeline step.
 after installing nuclio in your cluster (see instructions above), you can run the following pipeline:
 
 ```python
@@ -177,7 +177,7 @@ nuclio_invoke = kfp.components.load_component(url='https://raw.githubusercontent
     description='Nuclio demo, build/deploy a function from notebook + test the function rest endpoint'
 )
 def nuc_pipeline(
-   txt='good morningf',
+   txt='good morning',
 ):
     nb_path = 'https://raw.githubusercontent.com/nuclio/nuclio-jupyter/master/docs/nlp-example.ipynb'
     dashboard='http://nuclio-dashboard.nuclio.svc:8070'
@@ -188,12 +188,12 @@ def nuc_pipeline(
     # test the function with real data (function URL is taken from the build output)
     test = nuclio_invoke(build.output, txt)
 ```
-the code above assumes nuclio was deployed into the `nuclio` namespace on the same cluster, when using a remote cluster or a different namespace you just need to change the `dashboard` URL.
 
-See [nuclio pipline components](https://github.com/kubeflow/pipelines/tree/master/components/nuclio) (allowing to deploy, delete, or invoke functions) 
+The code above assumes nuclio was deployed into the `nuclio` namespace on the same cluster. When using a remote cluster or a different namespace you just need to change the `dashboard` URL.
 
-> Note: Nuclio is not limited to Python, [see this example](https://github.com/nuclio/nuclio-jupyter/blob/master/docs/nuclio_bash.ipynb) showing how we create a simple `Bash` function from a 
-Notebook, e.g. we can create `Go` functions if we need performance/concurrency for our inference. 
+Refer to [nuclio pipeline components](https://github.com/kubeflow/pipelines/tree/master/components/nuclio) (allowing to deploy, delete, or invoke functions).
+
+> **Note**: Nuclio is not limited to Python - [this Jupyter notebook example](https://github.com/nuclio/nuclio-jupyter/blob/master/docs/nuclio_bash.ipynb) shows how you can create a simple `Bash` function from a Notebook, e.g. we can create `Go` functions if we need performance/concurrency for our inference. 
 
 ## Nuclio function examples
 
