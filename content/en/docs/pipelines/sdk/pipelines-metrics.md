@@ -51,8 +51,34 @@ produce_metrics_op = create_component_from_func(
 )
 ```
 
-See the 
-[full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py).
+An example Lightweight python component that outputs metrics dictionary by returning the metrics dictionary from the function:
+
+```Python
+from typing import NamedTuple
+from kfp.components import InputPath, OutputPath, create_component_from_func
+
+def produce_metrics() -> NamedTuple('Outputs', [
+  ('mlpipeline_metrics', 'Metrics'),
+]):
+  import json
+
+  accuracy = 0.9
+  metrics = {
+    'metrics': [{
+      'name': 'accuracy-score', # The name of the metric. Visualized as the column name in the runs table.
+      'numberValue':  accuracy, # The value of the metric. Must be a numeric value.
+      'format': "PERCENTAGE",   # The optional format of the metric. Supported values are "RAW" (displayed in raw format) and "PERCENTAGE" (displayed in percentage format).
+    }]
+  }
+  return [json.dumps(metrics)]
+
+produce_metrics_op = create_component_from_func(
+    produce_metrics,
+    base_image='python:3.7',
+    packages_to_install=[],
+    output_component_file='component.yaml',
+)
+```
 
 Refer to the [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py) of a component that generates confusion matrix data from prediction results.
 
