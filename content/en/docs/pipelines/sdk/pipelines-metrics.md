@@ -20,7 +20,7 @@ experiment in the Kubeflow Pipelines UI.
 ## Export the metrics dictionary
 
 
-To enable metrics, your component must have an output called "MLPipeline Metrics" and return a JSON-serialized metrics dictionary.
+To enable metrics, your component must have an output called `MLPipeline Metrics` and return a JSON-serialized metrics dictionary.
 Otherwise the Kubeflow Pipelines UI will
 not render the visualization. In other words, the `.outputs.artifacts` setting
 for the generated pipeline template should show:
@@ -57,7 +57,7 @@ produce_metrics_op = create_component_from_func(
 )
 ```
 
-An example Lightweight python component that outputs metrics dictionary by returning the metrics dictionary from the function:
+Here's an example of al lightweight Python component that outputs a metrics dictionary by returning it from the function:
 
 ```Python
 from typing import NamedTuple
@@ -111,9 +111,9 @@ implementation:
     - {outputPath: MLPipeline Metrics}
 ```
 
-Refer to the [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py) of a component that generates confusion matrix data from prediction results.
+Refer to the [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py) of a component that generates a confusion matrix data from prediction results.
 
-* The output name must be "MLPipeline Metrics" or "MLPipeline_Metrics" (case does not matter).
+* The output name must be `MLPipeline Metrics` or `MLPipeline_Metrics` (case does not matter).
 * The `name` of each metric must match the following pattern: `^[a-zA-Z]([-_a-zA-Z0-9]{0,62}[a-zA-Z0-9])?$`.
 
     For Kubeflow Pipelines version 0.5.1 or earlier, name must match the following pattern `^[a-z]([-a-z0-9]{0,62}[a-z0-9])?$`
