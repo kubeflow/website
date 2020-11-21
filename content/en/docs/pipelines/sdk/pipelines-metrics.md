@@ -57,7 +57,7 @@ produce_metrics_op = create_component_from_func(
 )
 ```
 
-Here's an example of al lightweight Python component that outputs a metrics dictionary by returning it from the function:
+Here's an example of a lightweight Python component that outputs a metrics dictionary by returning it from the function:
 
 ```Python
 from typing import NamedTuple
