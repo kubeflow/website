@@ -64,14 +64,14 @@ $ pip3 install kfp --upgrade
 
 ```python
 import kfp
-from kfp.components import create_run_from_pipeline_func, InputPath, OutputPath
+import kfp.components as comp
 ```
 
 3. Create an instance of the [`kfp.Client` class][kfp-client]. To find your
    Kubeflow Pipelines cluster's host name, open the Kubeflow Pipelines user
    interface in your browser. The URL of the Kubeflow Pipelines user
    interface is something like 
-   `https://my-cluster.my-organization.com/#/pipelines`. In this case, the
+   `https://my-cluster.my-organization.com/pipelines`. In this case, the
    host name is `my-cluster.my-organization.com`. 
 
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
@@ -111,7 +111,7 @@ def add(a: float, b: float) -> float:
 
 
 ```python
-add_op = create_component_from_func(
+add_op = comp.create_component_from_func(
     add, output_component_file='add_component.yaml')
 ```
 
@@ -139,11 +139,11 @@ def add_pipeline(
   # `task.outputs['output_name']`.
   second_add_task = add_op(first_add_task.output, b)
     
-  # Specify argument values for your pipeline run.
-  arguments = {'a': '7', 'b': '8'}
+# Specify argument values for your pipeline run.
+arguments = {'a': '7', 'b': '8'}
     
-  # Create a pipeline run, using the client you initialized in a prior step.
-  client.create_run_from_pipeline_func(calc_pipeline, arguments=arguments)
+# Create a pipeline run, using the client you initialized in a prior step.
+client.create_run_from_pipeline_func(add_pipeline, arguments=arguments)
 ```
 
 ## Building Python function-based components
@@ -350,9 +350,9 @@ The following example accepts a file as an input and returns two files as output
 
 ```python
 def split_text_lines(
-    source_path: InputPath(str),
-    odd_lines_path: OutputPath(str),
-    even_lines_path: OutputPath(str)):
+    source_path: comp.InputPath(str),
+    odd_lines_path: comp.OutputPath(str),
+    even_lines_path: comp.OutputPath(str)):
     """Splits a text file into two files, with even lines going to one file
     and odd lines to the other."""
     
@@ -376,25 +376,25 @@ source data file and the paths to the output data files into the function.
 
 To accept a file as an input parameter, use one of the following type annotations:
 
-*   [kfp.components.InputBinaryFile][input-binary]: Use this annotation to
+*   [`kfp.components.InputBinaryFile`][input-binary]: Use this annotation to
     specify that your function expects a parameter to be an
     [`io.BytesIO`][bytesio] instance that this function can read.
-*   [kfp.components.InputPath][input-path]: Use this annotation to specify that
+*   [`kfp.components.InputPath`][input-path]: Use this annotation to specify that
     your function expects a parameter to be the path to the input file as
     a `string`.
-*   [kfp.components.InputTextFile][input-text]: Use this annotation to specify
+*   [`kfp.components.InputTextFile`][input-text]: Use this annotation to specify
     that your function expects a parameter to be an
     [`io.TextIOWrapper`][textiowrapper] instance that this function can read.
 
 To return a file as an output, use one of the following type annotations:
 
-*   [kfp.components.OutputBinaryFile][output-binary]: Use this annotation to
+*   [`kfp.components.OutputBinaryFile`][output-binary]: Use this annotation to
     specify that your function expects a parameter to be an
     [`io.BytesIO`][bytesio] instance that this function can write to.
-*   [kfp.components.OutputPath][output-path]: Use this annotation to specify that
+*   [`kfp.components.OutputPath`][output-path]: Use this annotation to specify that
     your function expects a parameter to be the path to store the output file at
     as a `string`.
-*   [kfp.components.OutputTextFile][output-text]: Use this annotation to specify
+*   [`kfp.components.OutputTextFile`][output-text]: Use this annotation to specify
     that your function expects a parameter to be an
     [`io.TextIOWrapper`][textiowrapper] that this function can write to.
 
@@ -422,7 +422,7 @@ from typing import NamedTuple
 
 def my_divmod(
   dividend: float,
-  divisor:float) -> NamedTuple(
+  divisor: float) -> NamedTuple(
     'MyDivmodOutput',
     [
       ('quotient', float),
@@ -491,7 +491,7 @@ my_divmod(100, 7)
 
 
 ```python
-divmod_op = func_to_container_op(
+divmod_op = comp.create_component_from_func(
     my_divmod, base_image='tensorflow/tensorflow:1.11.0-py3')
 ```
 
