@@ -313,6 +313,8 @@ Here is a sample pipeline that shows how to load a component and use it to
 compose a pipeline.
  
 ```python
+import os
+
 import kfp
 # Load the component by calling load_component_from_file or load_component_from_url
 # To load the component, the pipeline author only needs to have access to the component.yaml file.
