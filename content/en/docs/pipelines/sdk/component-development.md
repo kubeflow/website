@@ -2,7 +2,7 @@
 title = "Create Reusable Components"
 description = "A detailed tutorial on creating components that you can use in various pipelines"
 weight = 40
-                    
+
 +++
 {{% alert title="Out of date" color="warning" %}}
 This guide contains outdated information pertaining to Kubeflow 1.0. This guide
@@ -30,7 +30,7 @@ Below is a summary of the steps involved in creating and using a component:
     component for the Kubeflow Pipelines system.
 1.  Use the Kubeflow Pipelines SDK to load your component, use it in a pipeline and run that pipeline.
 
-The rest of this page gives some explanation about input and output data, 
+The rest of this page gives some explanation about input and output data,
 followed by detailed descriptions of the above steps.
 
 ## Components and data passing
@@ -75,7 +75,7 @@ There are two main ways a command-line program usually consumes data:
 
 ## Writing the program code
 
-This section describes an example program that has two inputs (for small and 
+This section describes an example program that has two inputs (for small and
 large pieces of data) and one output. Although the programming language in this example
 is Python 3, you can build your component in any language.
 
@@ -92,7 +92,7 @@ def do_work(input1_file, output1_file, param1):
     if x >= param1:
       break
     _ = output1_file.write(line)
-  
+
 # Defining and parsing the command-line arguments
 parser = argparse.ArgumentParser(description='My program description')
 parser.add_argument('--input1-path', type=str, help='Path of the local file containing the Input 1 data.') # Paths should be passed in, not hardcoded
@@ -118,7 +118,7 @@ python3 program.py --input1-path <local file path to Input 1 data> \
 
 ## Writing a Dockerfile to containerize your application
 
-You need a [Docker](https://docs.docker.com/get-started/) container image that 
+You need a [Docker](https://docs.docker.com/get-started/) container image that
 packages your program.
 
 The instructions on creating container images are not specific to Kubeflow
@@ -131,8 +131,8 @@ contain all program code, including the wrapper, and the dependencies (operating
 system packages, external libraries, etc).
 
 Ensure you have write access to a container registry where you can push
-the container image. Examples include 
-[Google Container Registry](https://cloud.google.com/container-registry/docs/) 
+the container image. Examples include
+[Google Container Registry](https://cloud.google.com/container-registry/docs/)
 and [Docker Hub](https://hub.docker.com/).
 
 Think of a name for your container image. This guide uses the name
@@ -151,7 +151,7 @@ image based on the Dockerfile and push the container image to some container
 repository.
 
 Run the `build_image.sh` script to build the container image based on the Dockerfile
-and push it to your chosen container repository. 
+and push it to your chosen container repository.
 
 Best practice: After pushing the image, get the strict image name with digest,
 and use the strict image name for reproducibility.
@@ -164,7 +164,7 @@ image_name=gcr.io/my-org/my-image # Specify the image name here
 image_tag=latest
 full_image_name=${image_name}:${image_tag}
 
-cd "$(dirname "$0")" 
+cd "$(dirname "$0")"
 docker build -t "${full_image_name}" .
 docker push "$full_image_name"
 
@@ -185,8 +185,8 @@ component for the Kubeflow Pipelines system.
 
 For the complete definition of a Kubeflow Pipelines component, see the
 [component specification](/docs/pipelines/reference/component-spec/).
-However, for this tutorial you don't need to know the full schema of the 
-component specification. The tutorial provides enough information for the 
+However, for this tutorial you don't need to know the full schema of the
+component specification. The tutorial provides enough information for the
 relevant the components.
 
 Start writing the component definition (`component.yaml`) by specifying your
@@ -198,14 +198,14 @@ implementation:
     image: gcr.io/my-org/my-image@sha256:a172..752f # Name of a container image that you've pushed to a container repo.
 ```
 
-Complete the component's implementation section based on your program:  
- 
+Complete the component's implementation section based on your program:
+
 ```
 implementation:
   container:
     image: gcr.io/my-org/my-image@sha256:a172..752f
-    # command is a list of strings (command-line arguments). 
-    # The YAML language has two syntaxes for lists and you can use either of them. 
+    # command is a list of strings (command-line arguments).
+    # The YAML language has two syntaxes for lists and you can use either of them.
     # Here we use the "flow syntax" - comma-separated strings inside square brackets.
     command: [
       python3, /kfp/component/src/program.py, # Path of the program inside the container
@@ -222,14 +222,14 @@ program is executed. In `component.yaml`, you specify the placeholders using
 YAML's mapping syntax to distinguish them from the verbatim strings. There are
 three placeholders available:
 
-*   `{inputValue: Some input name}`   
+*   `{inputValue: Some input name}`
     This placeholder is replaced with the **value** of the argument to the
     specified input. This is useful for small pieces of input data.
-*   `{inputPath: Some input name}`   
+*   `{inputPath: Some input name}`
     This placeholder is replaced with the auto-generated **local path** where the
     system will put the input data passed to the component during the pipeline run.
     This placeholder instructs the system to write the input argument data to a file and pass the path of that data file to the component program.
-*   `{outputPath: Some output name}`   
+*   `{outputPath: Some output name}`
     This placeholder is replaced with the auto-generated **local path** where the
     program should write its output data. This instructs the system to read the
     content of the file and store it as the value of the specified output.
@@ -240,8 +240,8 @@ sections. The input/output specification contains the input name, type,
 description and default value. Only the name is required. The input and output
 names are free-form strings, but be careful with the YAML syntax and use quotes
 if necessary. The input/output names do not need to be the same as the
-command-line flags which are usually quite short.  
-   
+command-line flags which are usually quite short.
+
 Replace the placeholders as follows:
 
 +   Replace `<local file path for the Input 1 data>` with `{inputPath: Input 1}` and
@@ -284,9 +284,9 @@ metadata to make it more useful. The example below includes the following
 additions:
 
 * Component name and description.
-* For each input and output: description, default value, and type.  
-   
-Final version of `component.yaml`:  
+* For each input and output: description, default value, and type.
+
+Final version of `component.yaml`:
 
 ```
 name: Do dummy work
@@ -311,7 +311,7 @@ implementation:
 
 Here is a sample pipeline that shows how to load a component and use it to
 compose a pipeline.
- 
+
 ```python
 import os
 
@@ -319,7 +319,7 @@ import kfp
 # Load the component by calling load_component_from_file or load_component_from_url
 # To load the component, the pipeline author only needs to have access to the component.yaml file.
 # The Kubernetes cluster executing the pipeline needs access to the container image specified in the component.
-dummy_op = kfp.components.load_component_from_file(os.path.join(component_root, 'component.yaml')) 
+dummy_op = kfp.components.load_component_from_file(os.path.join(component_root, 'component.yaml'))
 # dummy_op = kfp.components.load_component_from_url('http://....../component.yaml')
 
 # Load two more components for importing and exporting the data:
@@ -356,7 +356,7 @@ kfp.Client().create_run_from_pipeline_func(my_pipeline, arguments={})
 This section provides a recommended way to organize the component files. There
 is no requirement that you must organize the files in this way. However, using
 the standard organization makes it possible to reuse the same scripts for
-testing, image building and component versioning.  
+testing, image building and component versioning.
 See this
 [sample component](https://github.com/kubeflow/pipelines/tree/master/components/sample/keras/train_classifier)
 for a real-life component example.
@@ -377,16 +377,16 @@ components/<component group>/<component name>/
 
 ## Next steps
 
-* Consolidate what you've learned by reading the 
-  [best practices](/docs/pipelines/sdk/best-practices) for designing and 
+* Consolidate what you've learned by reading the
+  [best practices](/docs/pipelines/sdk/best-practices) for designing and
   writing components.
-* For quick iteration, 
+* For quick iteration,
   [build lightweight components](/docs/pipelines/sdk/lightweight-python-components/)
   directly from Python functions.
-* See how to [export metrics from your 
+* See how to [export metrics from your
   pipeline](/docs/pipelines/metrics/pipelines-metrics/).
 * Visualize the output of your component by
-  [adding metadata for an output 
+  [adding metadata for an output
   viewer](/docs/pipelines/metrics/output-viewer/).
-* Explore the [reusable components and other shared 
+* Explore the [reusable components and other shared
   resources](/docs/examples/shared-resources/).
