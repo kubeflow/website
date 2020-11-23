@@ -76,7 +76,7 @@ When running MicroK8s on Windows, macOS, Multipass or a virtual machine, you nee
     On Windows, macOS or Multipass, you can check for the IP first with:
 
     ```
-    multipass list`
+    multipass list
     ```
 
     and then, run this command, replacing `<multipass_public_ip>` with that IP:
