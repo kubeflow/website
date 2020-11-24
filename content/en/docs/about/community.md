@@ -69,14 +69,15 @@ The Kubeflow Slack workspace offers several channels. Here are a few examples:
 | :---------------------------------------------------------------------------------------- | :------------------------------------------------------------------- |
 | General discussion                                                                        | [#general](https://kubeflow.slack.com/messages/C7REE0EHK)            |
 | Community meeting chat                                                                    | [#community](https://kubeflow.slack.com/messages/C8Q0QJYNB)          |
+| Documentation ([GitHub](https://github.com/kubeflow/website))                             | [#website](https://kubeflow.slack.com/messages/CA4M298LD)            |
+| Examples ([GitHub](https://github.com/kubeflow/examples))                                 | [#kubeflow-examples](https://kubeflow.slack.com/messages/CA30Q9A4U)  |
+| Google Summer of Code (GSoC)                                                              | [#gsoc](https://kubeflow.slack.com/messages/CUF1GCJ4Q)               |
+| KFServing ([GitHub](https://github.com/kubeflow/kfserving))                               | [#kfserving](https://kubeflow.slack.com/messages/CH6E58LNP)          |
+| On-prem SIG                                                                               | [#sig-onprem](https://kubeflow.slack.com/archives/C01C9NPD15H)       |
+| Pipelines ([GitHub](https://github.com/kubeflow/pipelines))                               | [#kubeflow-pipelines](https://kubeflow.slack.com/messages/CE10KS9M4) |
+| Product management                                                                        | [#product-management](https://kubeflow.slack.com/messages/CGP3DKT5E) |
 | WG AutoML ([GitHub](https://github.com/kubeflow/community/tree/master/wg-automl))         | [#wg-automl](https://kubeflow.slack.com/messages/C018PMV53NW)        |
 | WG Training ([GitHub](https://github.com/kubeflow/community/tree/master/wg-training))     | [#wg-training](https://kubeflow.slack.com/messages/C018N3M6QKB)      |
-| KFServing ([GitHub](https://github.com/kubeflow/kfserving))                               | [#kfserving](https://kubeflow.slack.com/messages/CH6E58LNP)          |
-| Pipelines ([GitHub](https://github.com/kubeflow/pipelines))                               | [#kubeflow-pipelines](https://kubeflow.slack.com/messages/CE10KS9M4) |
-| Examples ([GitHub](https://github.com/kubeflow/examples))                                 | [#kubeflow-examples](https://kubeflow.slack.com/messages/CA30Q9A4U)  |
-| Documentation ([GitHub](https://github.com/kubeflow/website))                             | [#website](https://kubeflow.slack.com/messages/CA4M298LD)            |
-| Product management                                                                        | [#product-management](https://kubeflow.slack.com/messages/CGP3DKT5E) |
-| Google Summer of Code (GSoC)                                                              | [#gsoc](https://kubeflow.slack.com/messages/CUF1GCJ4Q)               |
 
 ### Mailing lists
 
