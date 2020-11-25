@@ -1,7 +1,7 @@
 +++
 title = "Monitor Cloud IAP Setup"
 description = "Instructions for monitoring and troubleshooting Cloud IAP"
-weight = 5
+weight = 6
                     
 +++
 {{% alert title="Out of date" color="warning" %}}
