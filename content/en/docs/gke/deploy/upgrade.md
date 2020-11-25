@@ -88,7 +88,7 @@ However, specific upgrades might need manual actions below.
     Note, you can optionally also run `make apply-cluster`, but it should be the same as your existing management cluster.
 1.  Check your config connector upgrade is successful:
     ```bash
-    # For Kubeflow 1.2, it should be 1.29.0
+    # For Kubeflow v1.2, it should be 1.29.0
     $ kubectl get namespace cnrm-system -ojsonpath='{.metadata.annotations.cnrm\.cloud\.google\.com\/version}'
     1.29.0
     ```
