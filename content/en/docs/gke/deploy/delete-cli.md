@@ -1,7 +1,7 @@
 +++
 title = "Delete using CLI"
 description = "Deleting Kubeflow from GCP using the command line interface (CLI)"
-weight = 6
+weight = 7
 +++
 
 This page explains how to delete a Kubeflow deployment on
