@@ -154,11 +154,75 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
 1. Update the policy
 
    ```bash
-   anthoscli apply -f ./instance/managed-project/iam.yaml
+   gcloud beta anthos apply -f ./instance/managed-project/iam.yaml
    ```
 
    Optionally, to restrict permissions you want to grant to this service account. You can edit `./instance/managed-project/iam.yaml` and specify more granular roles. Refer to [IAMPolicy Config Connector reference](https://cloud.google.com/config-connector/docs/reference/resource-docs/iam/iampolicy) for exact fields you can set.
 
-## References
+## Understanding the deployment process
 
-- [Cloud Config Connector Reference Documentation](https://cloud.google.com/config-connector/docs/reference/resources)
+This section gives you more details about the configuration and
+deployment process, so that you can customize your management cluster if necessary.
+
+### Management cluster folder layout
+
+Your management cluster directory contains the following files and directories:
+
+* **Makefile** is a file that define rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
+
+* **upstream** is a directory containing kustomize packages for deploying your management cluster
+
+  * This directory contains the upstream configurations on which your deployment is based on.
+
+* **instance** is a directory that defines user overlays that are applied to the upstream
+  configurations in order to customize management cluster for your use case.
+
+  * **cluster** is a kustomize package defining all the Google Cloud resources needed using [gcloud beta anthos apply](https://cloud.google.com/sdk/gcloud/reference/beta/anthos/apply). It can apply some Google Cloud resource types using the same resource definition for Config Connector.
+
+    * You can edit this kustomize package in order to customize the Google Cloud resources for
+      your purposes
+
+  * **cnrm-install-*** folders contain kustomize packages for Google Cloud services, iam policies and Kubernetes resources to install Config Connector following [Advanced installation options for Config Connector](https://cloud.google.com/config-connector/docs/how-to/advanced-install).
+
+* **build** is a directory that will contain the hydrated manifests outputted by
+  the `make` rules
+
+## Layout rationale
+
+We explicitly separate **upstream** and **instance** folders, so that in most upgrades, you should be able to just re-fetch **upstream** folder and get all the upgrades without needing to change your customizations in **instance** folder.
+
+## Customizing the installation
+
+Once you understand the folder layout, it's clearer that to declaratively customize any resources declared in `./upstream` folder,
+you can edit [Kustomize](https://kustomize.io/) overlays in `./instance` folder.
+
+The following tips help you customize, verify and re-apply them to your cluster.
+
+Some useful links for Kustomize:
+
+- [patchesStrategicMerge](https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/) let you patch any fields of an existing resource using a partial resource definition.
+- Reference for all Kustomize features: https://kubectl.docs.kubernetes.io/references/kustomize/.
+
+To get detailed reference for Google Cloud resources, refer to
+[Config Connector resources reference](https://cloud.google.com/config-connector/docs/reference/overview).
+
+To verify whether hydrated resources match your expectation:
+
+```bash
+make hydrate-cluster
+# or
+make hydrate-kcc
+```
+
+and refer to hydrated resources in `./build/*`.
+
+To apply your customizations:
+
+```bash
+make apply-cluster
+# or
+make apply-kcc
+```
+
+Note that, some fields in some resources may be immutable. You may need to
+manually delete them before applying again.
