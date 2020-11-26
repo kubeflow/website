@@ -92,15 +92,15 @@ Refer to
 1. Fetch the blueprint
 
    ```
-   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.1.0 ./${KFDIR}
+   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.1.0 ./${KF_DIR}
    ```
 
-   * You can choose any name you would like for the directory ${KFDIR}
+   * You can choose any name you would like for the directory ${KF_DIR}
 
 1. Change to the Kubeflow directory
 
    ```
-   cd ${KFDIR}
+   cd ${KF_DIR}
    ```
 
 1. Fetch Kubeflow manifests
@@ -136,10 +136,10 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 
   * Currently, Kubeflow Pipelines doesn't work with regional deployments. For more, go to [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6).
 
-* The **Makefile** at `${KFDIR}/kubeflow/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
+* The **Makefile** at `${KF_DIR}/kubeflow/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
   of the parameters
 
-* You need to edit the makefile at `${KFDIR}/kubeflow/Makefile` to set the parameters to the desired values.
+* You need to edit the makefile at `${KF_DIR}/kubeflow/Makefile` to set the parameters to the desired values.
 
    * Note there are multiple invocations of `kpt cfg set` on different directories to
      work around [GoogleContainerTools/kpt#541](https://github.com/GoogleContainerTools/kpt/issues/541)
@@ -282,7 +282,7 @@ necessary.
 
 ### Application layout
 
-Your Kubeflow application directory **${KFDIR}** contains the following files and
+Your Kubeflow application directory **${KF_DIR}** contains the following files and
 directories:
 
 * **Makefile** is a file that define rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
@@ -309,7 +309,7 @@ directories:
 
 ### Source Control
 
-It is recommended that you check in your entire **${KFDIR}** into source control.
+It is recommended that you check in your entire **${KF_DIR}** into source control.
 
 Checking in **.build** is recommended so you can easily see differences in manifests before applying them.
 

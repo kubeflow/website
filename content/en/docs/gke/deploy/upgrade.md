@@ -171,7 +171,7 @@ Here are general instructions to upgrade Kubeflow:
 
     If you made any customizations in `./Makefile`, you should merge your changes with the upstream version.
 
-    This step is recommended, because we introduced usability improvements and fixed compatibility for newer Kustomize versions (while still being compatible with Kustomize v3.2.1) to the Makefile, but the deployment process is the same, so you can keep using the old Makefile too.
+    This step is recommended, because we introduced usability improvements and fixed compatibility for newer Kustomize versions (while still being compatible with Kustomize v3.2.1) to the Makefile. However, the deployment process is backward-compatible, so this is recommended, but not required.
 
 3.  Update `./upstream/manifests` package:
     ```bash
