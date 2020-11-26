@@ -270,30 +270,9 @@ Notes:
   See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
 
 
-## Update Kubeflow
+## Upgrade Kubeflow
 
-To update Kubeflow
-
-1. Edit the Makefile at `${KFDIR}/kubeflow/Makefile` and change `MANIFESTS_URL` to point at the version of Kubeflow manifests you
-   want to use
-
-   * Refer to the [kpt docs](https://googlecontainertools.github.io/kpt/reference/pkg/) for
-     more info about supported dependencies
-
-1. Update the local copies
-
-   ```
-   make update
-   ```
-
-1. Redeploy
-
-   ```
-   make apply
-   ```
-
-To evaluate the changes before deploying them you can run `make hydrate` and then compare the contents
-of `.build` to what is currently deployed.
+Refer to [Upgrading Kubeflow cluster](/docs/gke/deploy/upgrade#upgrading-kubeflow-cluster).
 
 ## Understanding the deployment process
 
@@ -305,6 +284,8 @@ necessary.
 
 Your Kubeflow application directory **${KFDIR}** contains the following files and
 directories:
+
+* **Makefile** is a file that define rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
 
 * **upstream** is a directory containing kustomize packages for deploying Kubeflow
 
