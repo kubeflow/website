@@ -46,24 +46,24 @@ Refer to
    gcloud components update
    ```
 
-1. Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+   You need [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/), but kubectl should already get installed together with `gcloud`.
 
-1. Install [Kustomize v3.2.1](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv3.2.1).
+1.  Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
-    Note, Kubeflow is not compatible with later versions of Kustomize. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
-    
-    To deploy Kustomize v3.2.1 on a Linux machine, run the following commands:
+    **Note:** Starting from Kubeflow v1.2, we fixed the compatibility problem with Kustomize `v3.2.1+`, so you can now install any Kustomize `v3+`, including the latest Kustomize versions.
+
+    To deploy Kustomize on a Linux or Mac machine, run the following commands:
 
     ```
-    curl -LO https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.2.1/kustomize_kustomize.v3.2.1_linux_amd64
-    mv kustomize_kustomize.v3.2.1_linux_amd64 kustomize
-    chmod +x ./kustomize
-    
+    # Refer to https://kubectl.docs.kubernetes.io/installation/kustomize/binaries/
+    curl -s "https://raw.githubusercontent.com/\
+kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+
     # We need to add the kustomize package to your $PATH env variable
     sudo mv ./kustomize /usr/local/bin/kustomize
     ```
 
-    Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/v3.2.1` in the output if you've successfully deployed Kustomize.
+    Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/vX.Y.Z` in the output if you've successfully deployed Kustomize.
 
 1. Install [yq](https://github.com/mikefarah/yq)
 

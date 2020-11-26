@@ -39,6 +39,19 @@ For a more detailed explanation of the drastic changes happened in vKubeflow 1.1
 
     **Note:** Starting from Kubeflow v1.2, we fixed the compatibility problem with Kustomize `v3.2.1+`, so you can now install any Kustomize `v3+`, including the latest Kustomize versions.
 
+    To deploy Kustomize on a Linux or Mac machine, run the following commands:
+
+    ```
+    # Refer to https://kubectl.docs.kubernetes.io/installation/kustomize/binaries/
+    curl -s "https://raw.githubusercontent.com/\
+kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+
+    # We need to add the kustomize package to your $PATH env variable
+    sudo mv ./kustomize /usr/local/bin/kustomize
+    ```
+
+    Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/vX.Y.Z` in the output if you've successfully deployed Kustomize.
+
 1.  Install [yq](https://github.com/mikefarah/yq#install).
 
 ## Setting up the management cluster
