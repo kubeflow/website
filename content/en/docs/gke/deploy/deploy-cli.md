@@ -289,7 +289,7 @@ necessary.
 Your Kubeflow application directory **${KF_DIR}** contains the following files and
 directories:
 
-* **Makefile** is a file that define rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
+* **Makefile** is a file that defines rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
 
 * **upstream** is a directory containing kustomize packages for deploying Kubeflow
 

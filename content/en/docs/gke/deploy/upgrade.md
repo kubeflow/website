@@ -92,7 +92,7 @@ However, specific upgrades might need manual actions below.
    kpt cfg set -R . gcloud.core.project ${PROJECT}
    kpt cfg set -R . location ${LOCATION}
    ```
-   Note, you can find out which setters exist and which values were previously set by:
+   Note, you can find out which setters exist in a package and what there current values are by:
    ```bash
    kpt cfg list-setters .
    ```

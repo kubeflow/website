@@ -122,7 +122,7 @@ To deploy a management cluster:
 
     You can learn more about `kpt cfg set` in [kpt documentation](https://googlecontainertools.github.io/kpt/reference/cfg/set/), or by running `kpt cfg set --help`.
 
-    Note, you can find out which setters exist in a package and which values were previously set by:
+    Note, you can find out which setters exist in a package and what there current values are by:
 
     ```bash
     kpt cfg list-setters .
@@ -199,7 +199,7 @@ deployment process, so that you can customize your management cluster if necessa
 
 Your management cluster directory contains the following files and directories:
 
-- **Makefile** is a file that define rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
+- **Makefile** is a file that defines rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
 
 - **upstream** is a directory containing kustomize packages for deploying your management cluster
 
