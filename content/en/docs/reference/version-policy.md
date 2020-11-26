@@ -2,6 +2,7 @@
 title = "Kubeflow Versioning Policies"
 description = "Versioning policies and status of Kubeflow applications and other components"
 weight = 05
+                    
 +++
 
 This page describes the Kubeflow versioning policies and provides a version 
@@ -97,16 +98,23 @@ documentation for that application.
         </td>
         <td>Stable</td>
         <td>1.0.0</td>
-      </tr>
+      </tr>      
       <tr>
         <td><a href="/docs/components/training/chainer/">Chainer operator</a>
         (<a href="https://github.com/kubeflow/chainer-operator">GitHub</a>)
         </td>
         <td>Alpha</td>
         <td></td>
+      </tr>      
+      <tr>
+        <td><a href="/docs/components/feature-store/overview">Feature store: Feast</a>
+        (<a href="https://github.com/feast-dev/feast">GitHub</a>)
+        </td>
+        <td>Alpha</td>
+        <td></td>
       </tr>
       <tr>
-        <td><a href="/docs/components/hyperparameter-tuning/overview/">Hyperparameter
+        <td><a href="/docs/components/katib/overview/">Hyperparameter
           tuning: Katib</a>
           (<a href="https://github.com/kubeflow/katib">GitHub</a>)
           </td>
@@ -118,7 +126,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/kfserving">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td>v0.2.2</td>
+        <td>v0.3.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/misc/metadata/">Metadata</a>
@@ -162,8 +170,8 @@ documentation for that application.
         <td><a href="/docs/pipelines/overview/pipelines-overview/">Pipelines</a>
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
-        <td>Beta</td>
-        <td>0.2.0</td>
+        <td>Stable</td>
+        <td>1.0.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/multi-tenancy/">Profile 
@@ -224,7 +232,7 @@ one of the following Kubeflow SDKs and command-line interfaces
     </thead>
     <tbody>
       <tr>
-        <td><a href="/docs/fairing/fairing-overview/">Fairing</a> 
+        <td><a href="/docs/components/fairing/fairing-overview/">Fairing</a> 
           (<a href="https://github.com/kubeflow/fairing">GitHub</a>)
         </td>
         <td>Beta</td>
@@ -235,14 +243,14 @@ one of the following Kubeflow SDKs and command-line interfaces
           (<a href="https://github.com/kubeflow/kfctl">GitHub</a> )
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>1.1.0</td>
       </tr>
       <tr>
         <td><a href="/docs/pipelines/sdk/sdk-overview/">Kubeflow Pipelines SDK</a> 
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
-        <td>Beta</td>
-        <td>0.2.0</td>
+        <td>Stable</td>
+        <td>1.0.0</td>
       </tr>
     </tbody>
   </table>

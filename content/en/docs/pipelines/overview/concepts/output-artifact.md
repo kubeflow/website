@@ -2,6 +2,7 @@
 title = "Output Artifact"
 description = "Conceptual overview of output artifacts in Kubeflow Pipelines"
 weight = 80
+                    
 +++
 
 An *output artifact* is an output emitted by a pipeline component, which the

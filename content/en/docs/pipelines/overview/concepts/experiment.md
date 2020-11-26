@@ -2,6 +2,7 @@
 title = "Experiment"
 description = "Conceptual overview of experiments in Kubeflow Pipelines"
 weight = 40
+                    
 +++
 
 An *experiment* is a workspace where you can try different configurations of

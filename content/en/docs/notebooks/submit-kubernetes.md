@@ -2,7 +2,12 @@
 title = "Submit Kubernetes Resources"
 description = "Submitting Kubernetes resources from a Jupyter notebook"
 weight = 40
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 Kubeflow assigns the `default-editor` service account to the Jupyter notebook
 Pods. This service account is bound to the `kubeflow-edit` ClusterRole, which has namespace-scoped permissions to the many Kubernetes resources including:

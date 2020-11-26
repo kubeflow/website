@@ -2,6 +2,7 @@
 title = "Google Cloud for Kubeflow"
 description = "Get Kubeflow running on Google Cloud Platform (GCP)"
 weight = 2
+                    
 +++
 
 For details on setting up your GCP

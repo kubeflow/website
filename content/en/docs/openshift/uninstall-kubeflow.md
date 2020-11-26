@@ -2,6 +2,7 @@
 title = "Uninstall Kubeflow"
 description = "Instructions for uninstalling Kubeflow from your OpenShift cluster"
 weight = 10
+                    
 +++
 
 ## Uninstall a Kubeflow Instance

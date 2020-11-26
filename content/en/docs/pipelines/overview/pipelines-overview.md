@@ -2,6 +2,7 @@
 title = "Overview of Kubeflow Pipelines"
 description = "Understanding the goals and main concepts of Kubeflow Pipelines"
 weight = 10
+                    
 +++
 
 {{% beta-status 

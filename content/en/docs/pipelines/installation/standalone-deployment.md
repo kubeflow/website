@@ -264,3 +264,8 @@ MountVolume.SetUp failed for volume "gcp-credentials-user-gcp-sa" : secret "user
 ```
 
 You should remove `use_gcp_secret` usages as documented in [Authenticating Pipelines to GCP](/docs/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity).
+
+
+## What's next
+
+* [Connecting to Kubeflow Pipelines standalone on Google Cloud using the SDK](/docs/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-standalone-or-ai-platform-pipelines)

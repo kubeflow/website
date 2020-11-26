@@ -2,6 +2,7 @@
 title = "Step"
 description = "Conceptual overview of steps in Kubeflow Pipelines"
 weight = 70
+                    
 +++
 
 A *step* is an execution of one of the components in the pipeline. The

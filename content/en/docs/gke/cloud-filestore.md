@@ -2,7 +2,12 @@
 title = "Using Cloud Filestore"
 description = "Using Cloud Filestore with Kubeflow"
 weight = 60
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This guide describes how to set up and use Cloud Filestore with Kubeflow on 
 Google Cloud Platform (GCP).
@@ -44,7 +49,7 @@ This guide assumes the following settings:
 
 * The `${PROJECT}` environment variable contains the ID of your GCP project. 
   You can find the project ID in 
-  your `${CONFIG_FILE}` configuraiton file, as the value for the `project` key.
+  your `${CONFIG_FILE}` configuration file, as the value for the `project` key.
 
   ```
   export PROJECT=<your GCP project ID>

@@ -2,7 +2,12 @@
 title = "Visualize Results in the Pipelines UI"
 description = "Visualizing the results of your pipelines component"
 weight = 80
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This page shows you how to use the Kubeflow Pipelines UI to visualize output 
 from a Kubeflow Pipelines component. 
@@ -56,9 +61,14 @@ See the [sample description and links below](#example-source).
 ## Writing out metadata for the output viewers
 
 The pipeline component must write a JSON file specifying metadata for the
-output viewer(s) that you want to use for visualizing the results. The file name 
-must be `/mlpipeline-ui-metadata.json`, and the component must write the file
-to the root level of the container filesystem.
+output viewer(s) that you want to use for visualizing the results. The
+component must also export a file output artifact with an artifact name of
+`mlpipeline-ui-metadata`, or else the Kubeflow Pipelines UI will not render
+the visualization. In other words, the `.outputs.artifacts` setting for the
+generated pipeline component should show:
+`- {name: mlpipeline-ui-metadata, path: /mlpipeline-ui-metadata.json}`.
+The JSON filepath does not matter, although `/mlpipeline-ui-metadata.json`
+is used for consistency in the examples below.
 
 The JSON specifies an array of `outputs`. Each `outputs` entry describes the
 metadata for an output viewer. The JSON structure looks like this:

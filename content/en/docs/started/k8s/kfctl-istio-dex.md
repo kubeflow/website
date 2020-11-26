@@ -2,6 +2,7 @@
 title = "Multi-user, auth-enabled Kubeflow with kfctl_istio_dex"
 description = "Instructions for installing Kubeflow with kfctl_istio_dex.yaml config"
 weight = 4
+                    
 +++
 
 Follow these instructions if you want to install Kubeflow on an existing Kubernetes cluster.

@@ -2,7 +2,12 @@
 title = "Manipulate Kubernetes Resources as Part of a Pipeline"
 description = "Overview of using the SDK to manipulate Kubernetes resources dynamically as steps of the pipeline"
 weight = 1350
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 This page describes how to manipulate Kubernetes resources through individual
 Kubeflow Pipelines components during a pipeline.

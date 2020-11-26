@@ -1,8 +1,13 @@
 +++
 title = "Monitor Cloud IAP Setup"
 description = "Instructions for monitoring and troubleshooting Cloud IAP"
-weight = 5
+weight = 6
+                    
 +++
+{{% alert title="Out of date" color="warning" %}}
+This guide contains outdated information pertaining to Kubeflow 1.0. This guide
+needs to be updated for Kubeflow 1.1.
+{{% /alert %}}
 
 [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/) is 
 the recommended solution for accessing your Kubeflow 

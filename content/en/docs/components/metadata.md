@@ -131,21 +131,21 @@ artifact in the **Artifact Store** on the Kubeflow UI.
 
   * Example of **model** metadata with the name "MNIST":
 
-        <img src="/docs/images/metadata-model.png" 
-          alt="Model metadata for an example MNIST model"
-          class="mt-3 mb-3 border border-info rounded">
+    <img src="/docs/images/metadata-model.png" 
+      alt="Model metadata for an example MNIST model"
+      class="mt-3 mb-3 border border-info rounded">
 
   * Example of **metrics** metadata with the name "MNIST-evaluation":
 
-        <img src="/docs/images/metadata-metrics.png" 
-          alt="Metrics metadata for an evaluation of an MNIST model"
-          class="mt-3 mb-3 border border-info rounded">
+    <img src="/docs/images/metadata-metrics.png" 
+      alt="Metrics metadata for an evaluation of an MNIST model"
+      class="mt-3 mb-3 border border-info rounded">
 
   * Example of **dataset** metadata with the name "mytable-dump":
 
-        <img src="/docs/images/metadata-dataset.png" 
-          alt="Dataset metadata"
-          class="mt-3 mb-3 border border-info rounded">
+    <img src="/docs/images/metadata-dataset.png" 
+      alt="Dataset metadata"
+      class="mt-3 mb-3 border border-info rounded">
 
 
 

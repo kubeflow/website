@@ -2,6 +2,7 @@
 title = "Kubeflow Deployment with kfctl_k8s_istio"
 description = "Instructions for installing Kubeflow on your existing Kubernetes cluster using kfctl_k8s_istio config"
 weight = 2
+                    
 +++
 
 This configuration creates a vanilla deployment of Kubeflow with all its core components without any external dependencies. The deployment can be customized based on your environment needs.

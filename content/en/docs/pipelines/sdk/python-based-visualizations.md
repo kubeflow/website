@@ -2,7 +2,12 @@
 title = "Python Based Visualizations"
 description = "Predefined and custom visualizations of pipeline outputs"
 weight = 80
+                    
 +++
+{{% alert title="Deprecated" color="warning" %}}
+Python based visualization is deprecated. We recommend fetching data via
+Kubeflow Pipelines SDK and visualizing from your own notebook instead.
+{{% /alert %}}
 
 This page describes Python based visualizations, how to create them, and how to
 use them to visualize results within the Kubeflow Pipelines UI. Python based
@@ -192,7 +197,3 @@ A demo of the above instructions is as follows.
               grpc.WithInsecure(),
         }
         ```
-
-## Next steps
-If you'd like to add a predefined visualization to Kubeflow, take a look at the
-[developer docs](https://github.com/kubeflow/pipelines/blob/master/backend/src/apiserver/visualization/README.md).

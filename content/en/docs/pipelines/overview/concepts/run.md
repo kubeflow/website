@@ -2,6 +2,7 @@
 title = "Run and Recurring Run"
 description = "Conceptual overview of runs in Kubeflow Pipelines"
 weight = 50
+                    
 +++
 
 A *run* is a single execution of a pipeline. Runs comprise an immutable log of

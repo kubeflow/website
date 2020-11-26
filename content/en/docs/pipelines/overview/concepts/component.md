@@ -2,6 +2,7 @@
 title = "Component"
 description = "Conceptual overview of components in Kubeflow Pipelines"
 weight = 20
+                    
 +++
 
 A *pipeline component* is self-contained set of code that performs one step in

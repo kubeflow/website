@@ -2,8 +2,8 @@
 title = "Uninstall Kubeflow"
 description = "Instructions for uninstalling Kubeflow"
 weight = 10
+                    
 +++
-
 Uninstall Kubeflow on your Azure AKS cluster.
 
 ```

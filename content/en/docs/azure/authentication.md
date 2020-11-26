@@ -2,8 +2,8 @@
 title = "Access Control for Azure Deployment"
 description = "Restrict access of your deployment to specified IP addresses"
 weight = 100
+                    
 +++
-
 This section shows how to restrict access to only certain IP addresses for your LoadBalancer Service on Azure. At a later date, it will also include formal authentication through Azure. This method is not the most ideal way to secure your Kubernetes cluster, as it requires that you access the service from the same IP address every time. This process was adapted from [the Kubernetes guide to configuring a firewall](https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service).
 
 

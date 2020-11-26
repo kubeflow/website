@@ -2,6 +2,7 @@
 title = "Introduction to the Pipelines Interfaces"
 description = "The ways you can interact with the Kubeflow Pipelines system"
 weight = 20
+                    
 +++
 
 This page introduces the interfaces that you can use to build and run

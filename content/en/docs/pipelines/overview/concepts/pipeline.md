@@ -2,6 +2,7 @@
 title = "Pipeline"
 description = "Conceptual overview of pipelines in Kubeflow Pipelines"
 weight = 10
+                    
 +++
 
 A *pipeline* is a description of a machine learning (ML) workflow, including all

@@ -2,6 +2,7 @@
 title = "Shared Resources and Components"
 description = "Hubs where you can find reusable components, shared Jupyter notebooks, and other ML resources"
 weight = 50
+                    
 +++
 
 This page links to websites where you can find machine learning 

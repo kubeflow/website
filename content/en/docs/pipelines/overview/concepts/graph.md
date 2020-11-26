@@ -2,6 +2,7 @@
 title = "Graph"
 description = "Conceptual overview of graphs in Kubeflow Pipelines"
 weight = 30
+                    
 +++
 
 A *graph* is a pictorial representation in the Kubeflow Pipelines UI of the

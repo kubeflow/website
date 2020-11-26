@@ -26,11 +26,11 @@ plugins:
       enablePodIamPolicy: true
 ```
 
-`kfctl` will setup OIDC Identity Provider for your EKS cluster and create two IAM roles, `kf-admin-${AWS_CLUSTER_NAME}` and `kf-user-${AWS_CLUSTER_NAME}`.
+`kfctl` will setup OIDC Identity Provider for your EKS cluster and create two IAM roles, `kf-admin-${AWS_REGION}-${AWS_CLUSTER_NAME}` and `kf-user-${AWS_REGION}-${AWS_CLUSTER_NAME}`.
 
-- `kf-admin-${AWS_CLUSTER_NAME}` - kfctl attach alb, optional fsx, cloud-watch required policies to the role and role will be used by kubeflow control plane components like `alb-ingress-controller`, `pipeline`, `fluend-cloud-watch` and `fsx for lustre CSI driver`, etc.
+- `kf-admin-${AWS_REGION}-${AWS_CLUSTER_NAME}` - kfctl attach alb, optional fsx, cloud-watch required policies to the role and role will be used by kubeflow control plane components like `alb-ingress-controller`, `pipeline`, `fluend-cloud-watch` and `fsx for lustre CSI driver`, etc.
 
-- `kf-user-${AWS_CLUSTER_NAME}` - This is designed to be used by end user. Cluster admin can use this role in profile and every user's service account `default-editor` will have this role attached. By default, no policies is attached to this role, user can attach policies by their own.
+- `kf-user-${AWS_REGION}-${AWS_CLUSTER_NAME}` - This is designed to be used by end user. Cluster admin can use this role in profile and every user's service account `default-editor` will have this role attached. By default, no policies is attached to this role, user can attach policies by their own.
 
 Here is an example of profile:
 
@@ -44,7 +44,7 @@ spec:
       awsIamRole: arn:aws:iam::${AWS_ACCOUNT_ID}:role/${AWS_IAM_ROLE}
 ```
 
-Profile controller will add annotation `eks.amazonaws.com/role-arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/kf-user-${AWS_CLUSTER_NAME}` to user's `default-editor` service account.
+Profile controller will add annotation `eks.amazonaws.com/role-arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/kf-user-${AWS_REGION}-${AWS_CLUSTER_NAME}` to user's `default-editor` service account.
 
 ```yaml
 apiVersion: v1

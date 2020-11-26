@@ -1,32 +1,38 @@
 +++
-title = "Overview of Deployment on Existing Clusters"
-description = "Instructions for installing Kubeflow on your existing Kubernetes cluster with list of supported options"
+title = "Overview of Deployment on an Existing Kubernetes Cluster"
+description = "Instructions for installing Kubeflow on your existing Kubernetes cluster with a list of supported options"
 weight = 1
+                    
 +++
 
-Follow these instructions if you want to install Kubeflow on an existing Kubernetes
-cluster. Some [clouds](/docs/started/cloud) and Kubernetes distributions provide
+Instructions for installing Kubeflow on an existing Kubernetes cluster.
+Some [cloud providers](/docs/started/cloud) and Kubernetes distributions have
 Kubeflow specific instructions for getting the most out of their Kubernetes. If your
-existing Kubernetes cluster is from one of those, consider following those instructions.
+existing Kubernetes cluster is from one of them, consider following those instructions.
 
 ## Minimum system requirements
 
-The Kubernetes cluster must meet the following minimum requirements:
+Your Kubernetes cluster must meet the following minimum requirements:
 
 - Your cluster must include at least one worker node with a minimum of:
   - 4 CPU
   - 50 GB storage
   - 12 GB memory
 
-* The recommended Kubernetes version is {{% kubernetes-tested-version %}}.
+- The recommended Kubernetes version is {{% kubernetes-tested-version %}}.
   Kubeflow has been validated and tested on Kubernetes
   {{% kubernetes-tested-version %}}.
   - Your cluster must run at least Kubernetes version
     {{% kubernetes-min-version %}}.
-  - Kubeflow **does not work** on Kubernetes
-    {{% kubernetes-incompatible-versions %}}.
   - Older versions of Kubernetes may not be compatible with the latest Kubeflow versions. The following matrix
     provides information about compatibility between Kubeflow and Kubernetes versions.
+
+- You need a default
+  [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/)
+  with a [dynamic volume
+  provisioner](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
+  For more information, refer to [this
+  guide](https://www.kubeflow.org/docs/started/k8s/kfctl-k8s-istio/#before-you-start).
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -38,6 +44,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <th>Kubeflow 0.6</th>
         <th>Kubeflow 0.7</th>
         <th>Kubeflow 1.0</th>
+        <th>Kubeflow 1.1</th>        
       </tr>
     </thead>
     <tbody>
@@ -45,6 +52,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>1.11</td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
+        <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
@@ -56,6 +64,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
       <tr>
         <td>1.13</td>
@@ -64,9 +73,11 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
       <tr>
         <td>1.14</td>
+        <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
@@ -80,6 +91,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
       </tr>
       <tr>
         <td>1.16</td>
@@ -87,7 +99,8 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
-        <td><b>no known issues</b></td>
+        <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
       </tr>
       <tr>
         <td>1.17</td>
@@ -96,6 +109,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td><b>no known issues</b></td>
+        <td><b>no known issues</b></td>
       </tr>
       <tr>
         <td>1.18</td>
@@ -103,6 +117,7 @@ The Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td><b>no known issues</b></td>
         <td><b>no known issues</b></td>
       </tr>
     </tbody>
@@ -113,12 +128,12 @@ The Kubernetes cluster must meet the following minimum requirements:
 - **compatible**: all Kubeflow features have been tested and verified for the
   Kubernetes version
 - **no known issues**: the combination has not been fully tested but there are
-  no repoted issues
+  no reported issues
 
-## Kubeflow Deployment Configurations
+## Kubeflow deployment configuration
 
 The following table lists the options for installing Kubeflow on an existing Kubernetes
-cluster and links to detailed instructions. These solutions are vendor neutral and are
+cluster and links to detailed instructions. These solutions are vendor-neutral and are
 governed by consensus within the Kubeflow community.
 
 <div class="table-responsive">

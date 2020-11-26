@@ -2,6 +2,7 @@
 title = "Run Trigger"
 description = "Conceptual overview of run triggers in Kubeflow Pipelines"
 weight = 60
+                    
 +++
 
 A *run trigger* is a flag that tells the system when a recurring run
