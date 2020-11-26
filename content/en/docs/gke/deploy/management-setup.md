@@ -24,7 +24,7 @@ to manage Google Cloud infrastructure using GitOps.
 
   The management cluster is very lightweight cluster that runs [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview). Cloud Config Connector makes it easier to configure Google Cloud resources using YAML and Kustomize.
 
-For a more detailed explanation of the drastic changes happened in vKubeflow 1.1 on Google Cloud, read [kubeflow/gcp-blueprints #123](https://github.com/kubeflow/gcp-blueprints/issues/123).
+For a more detailed explanation of the drastic changes happened in Kubeflow v1.1 on Google Cloud, read [kubeflow/gcp-blueprints #123](https://github.com/kubeflow/gcp-blueprints/issues/123).
 
 ## Install the required tools
 
@@ -41,10 +41,9 @@ For a more detailed explanation of the drastic changes happened in vKubeflow 1.1
 
     To deploy the latest version of Kustomize on a Linux or Mac machine, run the following commands:
 
-    ```
+    ```bash
     # Detect your OS and download corresponding latest Kustomize binary
-    curl -s "https://raw.githubusercontent.com/\
-kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+    curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
     # We need to add the kustomize package to your $PATH env variable
     sudo mv ./kustomize /usr/local/bin/kustomize

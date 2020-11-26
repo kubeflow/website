@@ -54,10 +54,9 @@ Refer to
 
     To deploy the latest version of Kustomize on a Linux or Mac machine, run the following commands:
 
-    ```
+    ```bash
     # Detect your OS and download the corresponding latest Kustomize binary
-    curl -s "https://raw.githubusercontent.com/\
-kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+    curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
     # We need to add the kustomize package to your $PATH env variable
     sudo mv ./kustomize /usr/local/bin/kustomize
