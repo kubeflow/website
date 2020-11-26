@@ -150,11 +150,11 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 
   * Currently, Kubeflow Pipelines doesn't work with regional deployments. For more, go to [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6).
   
-  For this configuration, you need to choose a zone that supports NVIDIA Tesla K80 Accelerators (`nvidia-tesla-k80`). 
-  To  see which accelerators are available in each zone, run the following command:
-  ```
-  gcloud compute accelerator-types list
-  ```
+  * For the default configuration, you need to choose a location that supports NVIDIA Tesla K80 Accelerators (`nvidia-tesla-k80`). 
+    To see which accelerators are available in each zone, run the following command:
+    ```
+    gcloud compute accelerator-types list
+    ```
 
 * The **Makefile** at `${KFDIR}/kubeflow/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
   of the parameters
