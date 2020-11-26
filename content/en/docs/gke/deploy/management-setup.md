@@ -77,7 +77,7 @@ To deploy a management cluster:
 
 1.  Change to the Kubeflow directory
 
-    ```
+    ```bash
     cd "${MGMT_DIR}"
     ```
 
