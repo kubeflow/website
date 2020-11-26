@@ -32,7 +32,7 @@ one if you haven't already.
   to create OAuth credentials for [Cloud Identity-Aware Proxy (Cloud
   IAP)](https://cloud.google.com/iap/docs/).
 
-Refer to 
+Refer to
 [Understanding the deployment process](#understanding-the-deployment-process) for more information on the kfctl configuration and deployment process.
 
 ### Install the required tools
@@ -55,7 +55,7 @@ Refer to
     To deploy the latest version of Kustomize on a Linux or Mac machine, run the following commands:
 
     ```
-    # Detect your OS and download corresponding latest Kustomize binary
+    # Detect your OS and download the corresponding latest Kustomize binary
     curl -s "https://raw.githubusercontent.com/\
 kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
@@ -89,10 +89,10 @@ kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
 ## Fetch packages using kpt
 
-1. Fetch the blueprint
+1. Fetch the Kubeflow package
 
    ```
-   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.1.0 ./${KF_DIR}
+   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.1.0 "${KF_DIR}"
    ```
 
    * You can choose any name you would like for the directory ${KF_DIR}
@@ -100,8 +100,9 @@ kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 1. Change to the Kubeflow directory
 
    ```
-   cd ${KF_DIR}
+   cd "${KF_DIR}"
    ```
+   Note, all the instructions below assume your current working directory is `${KF_DIR}`.
 
 1. Fetch Kubeflow manifests
 
@@ -136,10 +137,12 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 
   * Currently, Kubeflow Pipelines doesn't work with regional deployments. For more, go to [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6).
 
-* The **Makefile** at `${KF_DIR}/kubeflow/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
+* The **Makefile** at `${KF_DIR}/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
   of the parameters
 
-* You need to edit the makefile at `${KF_DIR}/kubeflow/Makefile` to set the parameters to the desired values.
+* You need to edit the makefile at `${KF_DIR}/Makefile` to set the parameters to the desired values.
+
+   * The management cluster deployment instructions creates a kubectl context called `${MGMT_NAME}` for you. You can use it for `mgmt-ctxt`.
 
    * Note there are multiple invocations of `kpt cfg set` on different directories to
      work around [GoogleContainerTools/kpt#541](https://github.com/GoogleContainerTools/kpt/issues/541)
@@ -148,17 +151,19 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 
   * Choose the management cluster context
     ```bash
-    kubectl config use-context ${mgmt-ctxt}
+    kubectl config use-context "${MGMT_NAME}"
     ```
 
   * Create a namespace in your management cluster for the managed project if you haven't done so.
     ```bash
-    kubectl create namespace ${PROJECT}
+    kubectl create namespace "${PROJECT}"
     ```
+    `${PROJECT}` here should be the `${MANAGED_PROJECT}` mentioned in step [Authorize Cloud Config Connector for each managed project
+](http://localhost:1313/docs/gke/deploy/management-setup/#authorize-cloud-config-connector-for-each-managed-project).
 
   * Make the managed project's namespace default of the context:
     ```bash
-    kubectl config set-context --current --namespace ${PROJECT}
+    kubectl config set-context --current --namespace "${PROJECT}"
     ```
 
 * If you haven't previously created an OAuth client for IAP then follow
@@ -214,7 +219,7 @@ Follow these steps to verify the deployment:
    your `kubectl` credentials to point to the new cluster:
 
     ```
-    gcloud container clusters get-credentials ${KF_NAME} --zone ${ZONE} --project ${PROJECT}
+    gcloud container clusters get-credentials "${KF_NAME}" --zone "${ZONE}" --project "${PROJECT}"
     ```
 
     Then see what's installed in the `kubeflow` namespace of your GKE cluster:

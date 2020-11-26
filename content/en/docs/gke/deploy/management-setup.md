@@ -54,37 +54,56 @@ kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
 1.  Install [yq](https://github.com/mikefarah/yq#install).
 
-## Setting up the management cluster
+## Setting up a management cluster
+
+This guide assumes the following convention:
+
+- The `${MGMT_DIR}` environment variable contains the path to
+  your management directory, which holds your management cluster configuration
+  files. For example, `~/kf-deployments/management/`. You can choose any path you would like for the directory `${MGMT_DIR}`.
+
+  Recommend checking the management directory in source control.
+
+- The `${MGMT_NAME}` environment variable contains the name of your management cluster.
+
+However, the environment variables are used purely for command illustration purpose. No tools will assume they actually exists in your terminal environment.
+
+To deploy a management cluster:
 
 1.  Fetch the management blueprint to current directory
 
     ```bash
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/management@v1.2.0 ./
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/management@v1.2.0 "${MGMT_DIR}"
     ```
+
+1.  Change to the Kubeflow directory
+
+    ```
+    cd "${MGMT_DIR}"
+    ```
+
+    Note, all the instructions below assume your current working directory is `${MGMT_DIR}`.
 
 1.  Fetch the upstream management package
 
     ```bash
-    cd ./management
     make get-pkg
     ```
-
-    Note, all the instructions below assume your current working directory is `./management`.
 
 1.  Use kpt to set values for the name, project, and location of your management cluster:
 
     ```bash
-    kpt cfg set -R . name ${NAME}
-    kpt cfg set -R . gcloud.core.project ${PROJECT}
-    kpt cfg set -R . location ${LOCATION}
+    kpt cfg set -R . name "${MGMT_NAME}"
+    kpt cfg set -R . gcloud.core.project "${PROJECT}"
+    kpt cfg set -R . location "${LOCATION}"
     ```
 
     For the values you need to set for management cluster:
 
-    - NAME is the cluster name of your management cluster. Management cluster
+    - MGMT_NAME is the cluster name of your management cluster and prefix for other Google Cloud resources created in the deployment process. Management cluster
       should be a different cluster from your Kubeflow cluster.
 
-      Note, NAME should
+      Note, MGMT_NAME should
 
       - start with a lowercase letter
       - only contain lowercase letters, numbers and `-`
@@ -124,7 +143,7 @@ kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
     and look into `./build/cluster` folder.
 
-1.  Create a kubectl context for the management cluster, it will be called `${NAME}`:
+1.  Create a kubectl context for the management cluster, it will be called `${MGMT_NAME}`:
 
     ```bash
     make create-context
@@ -139,7 +158,7 @@ kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
     This step
 
     - installs Config Connector in your cluster
-    - creates the Google Cloud service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
+    - creates the Google Cloud service account **${MGMT_NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
 
     Optionally, you can verify the Config Connector installation before applying it by:
 
@@ -151,7 +170,7 @@ kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
 ### Authorize Cloud Config Connector for each managed project
 
-In the last step we created the Google Cloud service account **${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
+In the last step we created the Google Cloud service account **${MGMT_NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
 this is the service account that Config Connector will use to create any Google Cloud resources. Consequently
 you need to grant this Google Cloud service account sufficient privileges to create the desired
 resources in one or more projects (called managed projects, read [more](https://github.com/kubeflow/gcp-blueprints/tree/master/management/instance/managed-project)).
@@ -161,7 +180,7 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
 1. Set the managed project
 
    ```bash
-   kpt cfg set ./instance managed-project ${MANAGED-PROJECT}
+   kpt cfg set ./instance managed-project "${MANAGED_PROJECT}"
    ```
 
 1. Update the policy

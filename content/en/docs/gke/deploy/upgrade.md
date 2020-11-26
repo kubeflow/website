@@ -19,10 +19,16 @@ This guide assumes the following settings:
   files. For example, `/opt/my-kubeflow/`.
 
   ```bash
-  export KF_DIR=<path to your Kubeflow application directory>
+  KF_DIR=<path to your Kubeflow application directory>
   ```
 
 - The `${KF_NAME}` environment variable contains the name of your Kubeflow deployment.
+
+- The `${MGMT_DIR}` environment variable contains the path to
+  your management directory, which holds your management cluster configuration
+  files. For example, `~/kf-deployments/management/`.
+
+- The `${MGMT_NAME}` environment variable contains the name of your management cluster. It is also the name of your kubectl context for this cluster.
 
 ## General upgrade instructions
 
@@ -37,7 +43,7 @@ However, specific upgrades might need manual actions below.
 1. The instructions below assume your current working directory is
 
    ```bash
-   cd ${KF_DIR}/management
+   cd "${MGMT_DIR}"
    ```
 
 1. Use your management cluster's kubectl context:
@@ -46,7 +52,7 @@ However, specific upgrades might need manual actions below.
    # Look at all your contexts
    kubectl config get-contexts
    # Select your management cluster's context
-   kubectl config use-context ${MGMTCTXT}
+   kubectl config use-context "${MGMT_NAME}"
    # Verify the context connects to the cluster properly
    kubectl get namespace
    ```
@@ -119,7 +125,7 @@ Here are general instructions to upgrade Kubeflow:
     - your current working directory is
 
       ```bash
-      cd ${KF_DIR}/kubeflow
+      cd ${KF_DIR}
       ```
 
     - your kubectl uses a context that connects to your Kubeflow cluster
@@ -156,7 +162,7 @@ Here are general instructions to upgrade Kubeflow:
     - your current working directory is
 
       ```bash
-      cd ${KF_DIR}/kubeflow
+      cd ${KF_DIR}
       ```
 
     - your kubectl uses a context that connects to your Kubeflow cluster

@@ -63,12 +63,12 @@ If you need fine-grained control, refer to
 [Config Connector: Keeping resources after deletion](https://cloud.google.com/config-connector/docs/how-to/managing-deleting-resources#keeping_resources_after_deletion)
 for more details.
 
-After deleting cnrm resources for a managed project, you can revoke IAM perssion
+After deleting cnrm resources for a managed project, you can revoke IAM permission
 that let the management cluster manage the project:
 
 ```bash
 gcloud projects remove-iam-policy-binding ${MANAGED_PROJECT} \
-    --member=serviceAccount:${NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com \
+    --member=serviceAccount:${MGMT_NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com \
     --role=roles/owner
 ```
 
