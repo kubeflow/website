@@ -19,6 +19,10 @@ This guide assumes the following settings:
   export KF_DIR=<path to your Kubeflow application directory>
   ```
 
+- The `${MGMT_DIR}` environment variable contains the path to
+  your management directory, which holds your management cluster configuration
+  files. For example, `~/kf-deployments/management/`.
+
 ## Deleting your Kubeflow cluster
 
 1.  To delete the applications running in the Kubeflow namespace, remove that namespace:
@@ -30,7 +34,7 @@ This guide assumes the following settings:
 1.  To delete the cluster and all GCP resources, run the following commands:
 
     ```bash
-    cd ${KF_DIR}/kubeflow
+    cd ${KF_DIR}
     make delete-gcp
     ```
 
@@ -77,7 +81,7 @@ gcloud projects remove-iam-policy-binding ${MANAGED_PROJECT} \
 To delete the Google service account, and the management cluster:
 
 ```bash
-cd ${KF_DIR}/management
+cd ${MGMT_DIR}
 make delete-cluster
 ```
 
