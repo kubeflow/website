@@ -52,10 +52,10 @@ Refer to
 
     **Note:** Starting from Kubeflow v1.2, we fixed the compatibility problem with Kustomize `v3.2.1+`, so you can now install any Kustomize `v3+`, including the latest Kustomize versions.
 
-    To deploy Kustomize on a Linux or Mac machine, run the following commands:
+    To deploy the latest version of Kustomize on a Linux or Mac machine, run the following commands:
 
     ```
-    # Refer to https://kubectl.docs.kubernetes.io/installation/kustomize/binaries/
+    # Detect your OS and download corresponding latest Kustomize binary
     curl -s "https://raw.githubusercontent.com/\
 kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
