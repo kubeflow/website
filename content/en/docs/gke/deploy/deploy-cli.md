@@ -91,7 +91,7 @@ Refer to
 1. Fetch the Kubeflow package
 
    ```
-   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.1.0 "${KF_DIR}"
+   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.2.0 "${KF_DIR}"
    ```
 
    * You can choose any name you would like for the directory ${KF_DIR}
