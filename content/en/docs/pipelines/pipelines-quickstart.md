@@ -9,8 +9,7 @@ This guide contains outdated information pertaining to Kubeflow 1.0. This guide
 needs to be updated for Kubeflow 1.1.
 {{% /alert %}}
 
-{{% beta-status 
-  feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
+{{% stable-status %}}
 
 Use this guide if you want to get a simple pipeline running quickly in
 Kubeflow Pipelines.
