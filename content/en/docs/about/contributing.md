@@ -51,6 +51,8 @@ Follow these instructions if you want to
 
 ### Joining the Kubeflow GitHub Org
 
+- **Note**: Anyone can contribute to Kubeflow, adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml#L19) is not a mandatory step.
+
 Before asking to join the community, we ask that you first make a small number of contributions
 to demonstrate your intent to continue contributing to Kubeflow.
 
@@ -71,8 +73,6 @@ When you are ready to join
 - After the PR is merged an admin will send you an invitation
   - This is a manual process that's generally run a couple times a week
   - If a week passes without receiving an invitation reach out on [kubeflow#community](https://kubeflow.slack.com/messages/C8Q0QJYNB/convo/CABQ2BWHW-1544147308.002500/)
-
-- **Note**: Anyone can contribute, adding to org.yaml makes contribution experience better, but it's not the requirement.
 
 ### Companies/organizations
 
