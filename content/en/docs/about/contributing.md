@@ -72,6 +72,8 @@ When you are ready to join
   - This is a manual process that's generally run a couple times a week
   - If a week passes without receiving an invitation reach out on [kubeflow#community](https://kubeflow.slack.com/messages/C8Q0QJYNB/convo/CABQ2BWHW-1544147308.002500/)
 
+- **Note**: Anyone can contribute, adding to org.yaml makes contribution experience better, but it's not the requirement.
+
 ### Companies/organizations
 
 If you would like your company or organization to be acknowledged for contributing to
