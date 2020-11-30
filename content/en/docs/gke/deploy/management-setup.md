@@ -61,7 +61,7 @@ This guide assumes the following convention:
   your management directory, which holds your management cluster configuration
   files. For example, `~/kf-deployments/management/`. You can choose any path you would like for the directory `${MGMT_DIR}`.
 
-  Recommend checking the management directory in source control.
+  You are recommended to check the management directory in source control.
 
 - The `${MGMT_NAME}` environment variable contains the name of your management cluster.
 
@@ -142,7 +142,7 @@ To deploy a management cluster:
 
     and look into `./build/cluster` folder.
 
-1.  Create a kubectl context for the management cluster, it will be called `${MGMT_NAME}`:
+1.  Create a kubectl context for the management cluster, it will be named `${MGMT_NAME}`:
 
     ```bash
     make create-context
@@ -154,10 +154,10 @@ To deploy a management cluster:
     make apply-kcc
     ```
 
-    This step
+    This step:
 
-    - installs Config Connector in your cluster
-    - creates the Google Cloud service account **${MGMT_NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
+    - Installs Config Connector in your cluster; and
+    - Creates the Google Cloud service account **${MGMT_NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**.
 
     Optionally, you can verify the Config Connector installation before applying it by:
 
@@ -165,7 +165,7 @@ To deploy a management cluster:
     make hydrate-kcc
     ```
 
-    and look into `./build/cnrm-install-*` folders.
+    and check `./build/cnrm-install-*` folders.
 
 ### Authorize Cloud Config Connector for each managed project
 
@@ -176,13 +176,13 @@ resources in one or more projects (called managed projects, read [more](https://
 
 The easiest way to do this is to grant the Google Cloud service account owner permissions on one or more projects.
 
-1. Set the managed project
+1. Set the managed project:
 
    ```bash
    kpt cfg set ./instance managed-project "${MANAGED_PROJECT}"
    ```
 
-1. Update the policy
+1. Update the policy:
 
    ```bash
    gcloud beta anthos apply -f ./instance/managed-project/iam.yaml

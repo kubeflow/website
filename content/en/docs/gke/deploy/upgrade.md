@@ -6,7 +6,7 @@ weight = 5
 
 ## Before you start
 
-To better understand upgrade process, recommend reading the following sections first:
+To better understand upgrade process, you should read the following sections first:
 
 - [Understanding the deployment process for management cluster](../management-setup#understanding-the-deployment-process)
 - [Understanding the deployment process for Kubeflow cluster](../deploy-cli#understanding-the-deployment-process)
@@ -40,7 +40,7 @@ However, specific upgrades might need manual actions below.
 
 ### Upgrade management cluster from v1.1 to v1.2
 
-1. The instructions below assume your current working directory is
+1. The instructions below assume that your current working directory is
 
    ```bash
    cd "${MGMT_DIR}"
@@ -70,6 +70,7 @@ However, specific upgrades might need manual actions below.
    $ kubectl get namespace cnrm-system -ojsonpath='{.metadata.annotations.cnrm\.cloud\.google\.com\/version}'
    1.15.1
    ```
+
 1. Uninstall the old config connector in the management cluster:
    ```bash
    kubectl delete sts,deploy,po,svc,roles,clusterroles,clusterrolebindings --all-namespaces -l cnrm.cloud.google.com/system=true --wait=true
@@ -78,6 +79,7 @@ However, specific upgrades might need manual actions below.
    kubectl delete mutatingwebhookconfiguration mutating-webhook.cnrm.cloud.google.com --ignore-not-found --wait=true
    ```
    These commands uninstall the config connector without removing your resources.
+
 1. Replace your `./Makefile` with the version in Kubeflow `v1.2.0`: https://github.com/kubeflow/gcp-blueprints/blob/v1.2.0/management/Makefile.
 
    If you made any customizations in `./Makefile`, you should merge your changes with the upstream version. We've refactored the Makefile to move substantial commands into the upstream package, so hopefully future upgrades won't require a manual merge of the Makefile.
@@ -86,6 +88,7 @@ However, specific upgrades might need manual actions below.
    ```bash
    make update
    ```
+
 1. Use kpt to set user values:
    ```bash
    kpt cfg set -R . name ${NAME}
@@ -96,12 +99,14 @@ However, specific upgrades might need manual actions below.
    ```bash
    kpt cfg list-setters .
    ```
+
 1. Apply upgraded config connector:
    ```bash
    make apply-kcc
    ```
    Note, you can optionally also run `make apply-cluster`, but it should be the same as your existing management cluster.
-1. Check your config connector upgrade is successful:
+
+1. Check that your config connector upgrade is successful:
    ```bash
    # For Kubeflow v1.2, it should be 1.29.0
    $ kubectl get namespace cnrm-system -ojsonpath='{.metadata.annotations.cnrm\.cloud\.google\.com\/version}'
@@ -113,22 +118,22 @@ However, specific upgrades might need manual actions below.
 **DISCLAIMERS**:
 
 - The upgrade process depends on each Kubeflow application to handle the upgrade properly. There's no guarantee on data completeness unless the application provides such a guarantee.
-- Always recommend backing up your data before an upgrade.
+- You are recommended to back up your data before an upgrade.
 - Upgrading Kubeflow cluster can be a disruptive process, please schedule some downtime and communicate with your users.
 
-For upgrading from specific versions, there can be manual actions needed, so recommend referring to the specific sections below.
+To upgrade from specific versions of Kubeflow, you may need to take certain manual actions — refer to specific sections in the guidelines below.
 
-Here are general instructions to upgrade Kubeflow:
+General instructions for upgrading Kubeflow:
 
-1.  The instructions below assume
+1.  The instructions below assume that:
 
-    - your current working directory is
+    - Your current working directory is:
 
       ```bash
       cd ${KF_DIR}
       ```
 
-    - your kubectl uses a context that connects to your Kubeflow cluster
+    - Your kubectl uses a context that connects to your Kubeflow cluster
       ```bash
       # List your existing contexts
       kubectl config get-contexts
@@ -159,13 +164,13 @@ Here are general instructions to upgrade Kubeflow:
 
 1.  The instructions below assume
 
-    - your current working directory is
+    - Your current working directory is:
 
       ```bash
       cd ${KF_DIR}
       ```
 
-    - your kubectl uses a context that connects to your Kubeflow cluster
+    - Your kubectl uses a context that connects to your Kubeflow cluster:
       ```bash
       # List your existing contexts
       kubectl config get-contexts
@@ -173,32 +178,36 @@ Here are general instructions to upgrade Kubeflow:
       kubectl config use-context ${KF_NAME}
       ```
 
-2.  (Recommended) Replace your `./Makefile` with the version in Kubeflow `v1.2.0`: https://github.com/kubeflow/gcp-blueprints/blob/v1.2.0/kubeflow/Makefile.
+1.  (Recommended) Replace your `./Makefile` with the version in Kubeflow `v1.2.0`: https://github.com/kubeflow/gcp-blueprints/blob/v1.2.0/kubeflow/Makefile.
 
     If you made any customizations in `./Makefile`, you should merge your changes with the upstream version.
 
     This step is recommended, because we introduced usability improvements and fixed compatibility for newer Kustomize versions (while still being compatible with Kustomize v3.2.1) to the Makefile. However, the deployment process is backward-compatible, so this is recommended, but not required.
 
-3.  Update `./upstream/manifests` package:
+1.  Update `./upstream/manifests` package:
     ```bash
     make update
     ```
-4.  Before applying new resources, you need to delete some immutable resources that were updated in this release:
+
+1.  Before applying new resources, you need to delete some immutable resources that were updated in this release:
 
     ```bash
     kubectl delete statefulset kfserving-controller-manager -n kubeflow --wait
     kubectl delete crds experiments.kubeflow.org suggestions.kubeflow.org trials.kubeflow.org
     ```
 
-    **WARNING**: this deletes all Katib running resources.
+    **WARNING**: This step **deletes** all Katib running resources.
 
     Refer to [a github comment in the v1.2 release issue](https://github.com/kubeflow/kubeflow/issues/5371#issuecomment-731359384) for more details.
 
-5.  Redeploy:
+1.  Redeploy:
 
     ```bash
     make apply
     ```
 
-    To evaluate the changes before deploying them you can run `make hydrate` and then compare the contents
-    of `.build` to what is currently deployed.
+    To evaluate the changes before deploying them you can:
+    
+    1. Run `make hydrate`.
+    1. Compare the contents
+    of `.build` with a historic version with tools like `git diff`.

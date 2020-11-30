@@ -41,7 +41,7 @@ Refer to
 
 1. Install gcloud components
 
-   ```
+   ```bash
    gcloud components install kpt anthoscli beta
    gcloud components update
    ```
@@ -66,7 +66,7 @@ Refer to
 
 1. Install [yq](https://github.com/mikefarah/yq)
 
-   ```
+   ```bash
    GO111MODULE=on go get github.com/mikefarah/yq/v3
    ```
 
@@ -82,7 +82,7 @@ Refer to
 
 1. Log in. You only need to run this command once:
 
-    ```
+    ```bash
     gcloud auth login
     ```
 
@@ -90,7 +90,7 @@ Refer to
 
 1. Fetch the Kubeflow package
 
-   ```
+   ```bash
    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.2.0 "${KF_DIR}"
    ```
 
@@ -98,20 +98,20 @@ Refer to
 
 1. Change to the Kubeflow directory
 
-   ```
+   ```bash
    cd "${KF_DIR}"
    ```
    Note, all the instructions below assume your current working directory is `${KF_DIR}`.
 
 1. Fetch Kubeflow manifests
 
-   ```
+   ```bash
    make get-pkg
    ```
 
   * This generates an error like the one below but you can ignore it;
 
-    ```
+    ```bash
     kpt pkg get https://github.com/jlewi/manifests.git@blueprints ./upstream
     fetching package / from https://github.com/jlewi/manifests to upstream/manifests
     Error: resources must be annotated with config.kubernetes.io/index to be written to files
@@ -157,8 +157,8 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
     ```bash
     kubectl create namespace "${PROJECT}"
     ```
-    `${PROJECT}` here should be the `${MANAGED_PROJECT}` mentioned in step [Authorize Cloud Config Connector for each managed project
-](http://localhost:1313/docs/gke/deploy/management-setup/#authorize-cloud-config-connector-for-each-managed-project).
+    where `${PROJECT}` is your `${MANAGED_PROJECT}` mentioned in the [Authorize Cloud Config Connector for each managed project
+](http://localhost:1313/docs/gke/deploy/management-setup/#authorize-cloud-config-connector-for-each-managed-project) step.
 
   * Make the managed project's namespace default of the context:
     ```bash
@@ -172,16 +172,16 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
   * Unfortunately [GKE's BackendConfig](https://cloud.google.com/kubernetes-engine/docs/concepts/backendconfig)
     currently doesn't support creating [IAP OAuth clients programmatically](https://cloud.google.com/iap/docs/programmatic-oauth-clients).
 
-*  Set environment variables with OAuth Client ID and Secret for IAP
+*  Set environment variables with OAuth Client ID and Secret for IAP:
 
-   ```
+   ```bash
    export CLIENT_ID=<Your CLIENT_ID>
    export CLIENT_SECRET=<Your CLIENT_SECRET>
    ```
 
-* Invoke the make rule to set the kpt setters
+* Invoke the make rule to set the kpt setters:
 
-  ```
+  ```bash
   make set-values
   ```
 
@@ -190,7 +190,7 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 
 To deploy Kubeflow, run the following command:
 
-```
+```bash
 make apply
 ```
 
@@ -201,7 +201,7 @@ make apply
 
 * If resources can't be created with an error message like:
 
-  ```
+  ```bash
   error: unable to recognize ".build/application/app.k8s.io_v1beta1_application_application-controller-kubeflow.yaml": no matches for kind "Application" in version "app.k8s.io/v1beta1”
   ```
 
@@ -217,13 +217,13 @@ Follow these steps to verify the deployment:
    `kubeflow` in your new cluster.  To do this from the command line, first set
    your `kubectl` credentials to point to the new cluster:
 
-    ```
+    ```bash
     gcloud container clusters get-credentials "${KF_NAME}" --zone "${ZONE}" --project "${PROJECT}"
     ```
 
-    Then see what's installed in the `kubeflow` namespace of your GKE cluster:
+    Then, check what's installed in the `kubeflow` namespace of your GKE cluster:
 
-    ```
+    ```bash
     kubectl -n kubeflow get all
     ```
 
@@ -233,7 +233,7 @@ To access the Kubeflow central dashboard, follow these steps:
 
 1. Use the following command to grant yourself the [IAP-secured Web App User](https://cloud.google.com/iap/docs/managing-access) role:
 
-    ```
+    ```bash
     gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/iap.httpsResourceAccessor
     ```
 
@@ -248,7 +248,7 @@ To access the Kubeflow central dashboard, follow these steps:
 
     You can run the following command to get the URI for your deployment:
 
-    ```
+    ```bash
     kubectl -n istio-system get ingress
     NAME            HOSTS                                                      ADDRESS         PORTS   AGE
     envoy-ingress   your-kubeflow-name.endpoints.your-gcp-project.cloud.goog   34.102.232.34   80      5d13h
@@ -256,7 +256,7 @@ To access the Kubeflow central dashboard, follow these steps:
 
     The following command sets an environment variable named `HOST` to the URI:
 
-    ```
+    ```bash
     export HOST=$(kubectl -n istio-system get ingress envoy-ingress -o=jsonpath={.spec.rules[0].host})
     ```
 
@@ -271,7 +271,7 @@ Notes:
 * If you own or manage the domain or a subdomain with
   [Cloud DNS](https://cloud.google.com/dns/docs/)
   then you can configure this process to be much faster.
-  See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
+  Check [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
 
 
 ## Upgrade Kubeflow
