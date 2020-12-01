@@ -16,11 +16,11 @@ to manage Google Cloud infrastructure using GitOps.
 
 ## FAQs
 
-- Where is `kfctl`?
+* Where is `kfctl`?
 
   `kfctl` is no longer being used to apply resources for Google Cloud, because required functionalities are now supported by generic tools including [Make](https://www.gnu.org/software/make/), [Kustomize](https://kustomize.io), [kpt](https://googlecontainertools.github.io/kpt/), and [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview).
 
-- Why do we use an extra management cluster to manage Google Cloud resources?
+* Why do we use an extra management cluster to manage Google Cloud resources?
 
   The management cluster is very lightweight cluster that runs [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview). Cloud Config Connector makes it easier to configure Google Cloud resources using YAML and Kustomize.
 
@@ -28,14 +28,14 @@ For a more detailed explanation of the drastic changes happened in Kubeflow v1.1
 
 ## Install the required tools
 
-1.  Install gcloud components
+1. Install gcloud components
 
     ```bash
     gcloud components install kpt anthoscli beta
     gcloud components update
     ```
 
-1.  Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
+1. Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
     **Note:** Starting from Kubeflow v1.2, we fixed the compatibility problem with Kustomize `v3.2.1+`, so you can now install any Kustomize `v3+`, including the latest Kustomize versions.
 
@@ -45,37 +45,51 @@ For a more detailed explanation of the drastic changes happened in Kubeflow v1.1
     # Detect your OS and download corresponding latest Kustomize binary
     curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
-    # We need to add the kustomize package to your $PATH env variable
+    # Add the kustomize package to your $PATH env variable
     sudo mv ./kustomize /usr/local/bin/kustomize
     ```
 
     Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/vX.Y.Z` in the output if you've successfully deployed Kustomize.
 
-1.  Install [yq](https://github.com/mikefarah/yq#install).
+1. Install [yq](https://github.com/mikefarah/yq#install).
 
-## Setting up a management cluster
+## Environmental Variables
 
 This guide assumes the following convention:
 
-- The `${MGMT_DIR}` environment variable contains the path to
+* The `${MGMT_PROJECT}` environment variable contains the Google Cloud project
+  ID where management cluster is deployed to.
+* The `${MGMT_DIR}` environment variable contains the path to
   your management directory, which holds your management cluster configuration
-  files. For example, `~/kf-deployments/management/`. You can choose any path you would like for the directory `${MGMT_DIR}`.
+  files. For example, `~/kf-deployments/management/`. You can choose any path
+  you would like for the directory `${MGMT_DIR}`.
 
-  You are recommended to check the management directory in source control.
+  To continously manage the management cluster, you are recommended to check
+  the management configuration directory into source control.
+* The `${MGMT_NAME}` environment variable contains the name of your management cluster.
 
-- The `${MGMT_NAME}` environment variable contains the name of your management cluster.
+Set these environment variables in your shell:
 
-However, the environment variables are used purely for command illustration purpose. No tools will assume they actually exists in your terminal environment.
+```bash
+MGMT_PROJECT=<the project where you deploy your management cluster>
+MGMT_DIR=<path to your management cluster configuration directory>
+MGMT_NAME=<name of your management cluster>
+```
+
+However, the environment variables are used purely for command illustration
+purpose. No tools will assume they actually exists in your terminal environment.
+
+## Setting up a management cluster
 
 To deploy a management cluster:
 
-1.  Fetch the management blueprint to current directory
+1. Fetch the management blueprint to current directory
 
     ```bash
     kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/management@v1.2.0 "${MGMT_DIR}"
     ```
 
-1.  Change to the Kubeflow directory
+2. Change to the Kubeflow directory
 
     ```bash
     cd "${MGMT_DIR}"
@@ -83,13 +97,13 @@ To deploy a management cluster:
 
     Note, all the instructions below assume your current working directory is `${MGMT_DIR}`.
 
-1.  Fetch the upstream management package
+3. Fetch the upstream management package
 
     ```bash
     make get-pkg
     ```
 
-1.  Use kpt to set values for the name, project, and location of your management cluster:
+4. Use kpt to set values for the name, project, and location of your management cluster:
 
     ```bash
     kpt cfg set -R . name "${MGMT_NAME}"
@@ -99,18 +113,18 @@ To deploy a management cluster:
 
     For the values you need to set for management cluster:
 
-    - MGMT_NAME is the cluster name of your management cluster and prefix for other Google Cloud resources created in the deployment process. Management cluster
+    * MGMT_NAME is the cluster name of your management cluster and prefix for other Google Cloud resources created in the deployment process. Management cluster
       should be a different cluster from your Kubeflow cluster.
 
       Note, MGMT_NAME should
 
-      - start with a lowercase letter
-      - only contain lowercase letters, numbers and `-`
-      - end with a number or a letter
-      - contain no more than 18 characters
+      * start with a lowercase letter
+      * only contain lowercase letters, numbers and `-`
+      * end with a number or a letter
+      * contain no more than 18 characters
 
-    - LOCATION is the management cluster's location, you can choose between regional or zonal.
-    - PROJECT is the Google Cloud project where you will create this management cluster.
+    * LOCATION is the management cluster's location, you can choose between regional or zonal.
+    * PROJECT is the Google Cloud project where you will create this management cluster.
 
     Running `kpt cfg set` stores values you set in `./instance/Kptfile` and
     `./upstream/management/Kptfile`. Commit the changes to source control to
@@ -128,7 +142,7 @@ To deploy a management cluster:
     kpt cfg list-setters .
     ```
 
-1.  Create or apply the management cluster:
+5. Create or apply the management cluster:
 
     ```bash
     make apply-cluster
@@ -142,13 +156,13 @@ To deploy a management cluster:
 
     and look into `./build/cluster` folder.
 
-1.  Create a kubectl context for the management cluster, it will be named `${MGMT_NAME}`:
+6. Create a kubectl context for the management cluster, it will be named `${MGMT_NAME}`:
 
     ```bash
     make create-context
     ```
 
-1.  Install the Cloud Config Connector:
+7. Install the Cloud Config Connector:
 
     ```bash
     make apply-kcc
@@ -156,8 +170,8 @@ To deploy a management cluster:
 
     This step:
 
-    - Installs Config Connector in your cluster; and
-    - Creates the Google Cloud service account **${MGMT_NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**.
+    * Installs Config Connector in your cluster; and
+    * Creates the Google Cloud service account **${MGMT_NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**.
 
     Optionally, you can verify the Config Connector installation before applying it by:
 
@@ -199,23 +213,23 @@ deployment process, so that you can customize your management cluster if necessa
 
 Your management cluster directory contains the following files and directories:
 
-- **Makefile** is a file that defines rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
+* **Makefile** is a file that defines rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
 
-- **upstream** is a directory containing kustomize packages for deploying your management cluster
+* **upstream** is a directory containing kustomize packages for deploying your management cluster
 
-  - This directory contains the upstream configurations on which your deployment is based on.
+  * This directory contains the upstream configurations on which your deployment is based on.
 
-- **instance** is a directory that defines user overlays that are applied to the upstream
+* **instance** is a directory that defines user overlays that are applied to the upstream
   configurations in order to customize management cluster for your use case.
 
-  - **cluster** is a kustomize package defining all the Google Cloud resources needed using [gcloud beta anthos apply](https://cloud.google.com/sdk/gcloud/reference/beta/anthos/apply). It can apply some Google Cloud resource types using the same resource definition for Config Connector.
+  * **cluster** is a kustomize package defining all the Google Cloud resources needed using [gcloud beta anthos apply](https://cloud.google.com/sdk/gcloud/reference/beta/anthos/apply). It can apply some Google Cloud resource types using the same resource definition for Config Connector.
 
-      - You can edit this kustomize package in order to customize the Google Cloud resources for
-      your purposes
+    * You can edit this kustomize package in order to customize the Google Cloud resources for
+    your purposes
 
-  - **cnrm-install-\*** folders contain kustomize packages for Google Cloud services, iam policies and Kubernetes resources to install Config Connector following [Advanced installation options for Config Connector](https://cloud.google.com/config-connector/docs/how-to/advanced-install).
+  * **cnrm-install-\*** folders contain kustomize packages for Google Cloud services, iam policies and Kubernetes resources to install Config Connector following [Advanced installation options for Config Connector](https://cloud.google.com/config-connector/docs/how-to/advanced-install).
 
-- **build** is a directory that will contain the hydrated manifests outputted by
+* **build** is a directory that will contain the hydrated manifests outputted by
   the `make` rules
 
 ## Layout rationale
@@ -231,8 +245,8 @@ The following tips help you customize, verify and re-apply them to your cluster.
 
 Some useful links for Kustomize:
 
-- [patchesStrategicMerge](https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/) let you patch any fields of an existing resource using a partial resource definition.
-- Reference for all Kustomize features: https://kubectl.docs.kubernetes.io/references/kustomize/.
+* [patchesStrategicMerge](https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/) let you patch any fields of an existing resource using a partial resource definition.
+* Reference for all Kustomize features: https://kubectl.docs.kubernetes.io/references/kustomize/.
 
 To get detailed reference for Google Cloud resources, refer to
 [Config Connector resources reference](https://cloud.google.com/config-connector/docs/reference/overview).

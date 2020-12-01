@@ -11,30 +11,43 @@ Google Cloud.
 
 This guide assumes the following settings:
 
+- The `${MGMT_PROJECT}`, `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
+  are the same as in [Management cluster setup](./management-setup#environmental-variables).
+
 - The `${KF_DIR}` environment variable contains the path to
   your Kubeflow application directory, which holds your Kubeflow configuration
-  files. For example, `/opt/my-kubeflow/`.
+  files. For example, `~/kf-deployments/my-kubeflow/`.
 
   ```bash
-  export KF_DIR=<path to your Kubeflow application directory>
+  KF_DIR=<path to your Kubeflow application directory>
   ```
 
-- The `${MGMT_DIR}` environment variable contains the path to
-  your management directory, which holds your management cluster configuration
-  files. For example, `~/kf-deployments/management/`.
+- The `${KF_PROJECT}` environment variable contains the Google Cloud project ID where Kubeflow cluster is deployed to.
+
+  ```bash
+  KF_PROJECT=<project where your Kubeflow cluster is deployed>
+  ```
+
+- The `${MGMTCTXT}` environment variable contains a kubectl context that connects
+  to the `${KF_PROJECT}` namespace of the management cluster. By default, [Management
+  cluster setup](./management-setup) creates a context named `${MGMT_NAME}` for you.
+
+  ```bash
+  MGMTCTXT="${MGMT_NAME}"
+  ```
 
 ## Deleting your Kubeflow cluster
 
-1.  To delete the applications running in the Kubeflow namespace, remove that namespace:
+1. To delete the applications running in the Kubeflow namespace, remove that namespace:
 
     ```bash
     kubectl delete namespace kubeflow
     ```
 
-1.  To delete the cluster and all GCP resources, run the following commands:
+1. To delete the cluster and all GCP resources, run the following commands:
 
     ```bash
-    cd ${KF_DIR}
+    cd "${KF_DIR}"
     make delete-gcp
     ```
 
@@ -56,8 +69,8 @@ cluster.
 To delete all the managed Google Cloud resources, delete the managed project namespace:
 
 ```bash
-kubectl use-context ${MGMTCTXT}
-kubectl delete namespace --wait ${MANAGED_PROJECT}
+kubectl use-context "${MGMTCTXT}"
+kubectl delete namespace --wait "${KF_PROJECT}"
 ```
 
 To keep all the managed Google Cloud resources, you can delete the management
@@ -71,17 +84,17 @@ After deleting cnrm resources for a managed project, you can revoke IAM permissi
 that let the management cluster manage the project:
 
 ```bash
-gcloud projects remove-iam-policy-binding ${MANAGED_PROJECT} \
-    --member=serviceAccount:${MGMT_NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com \
+gcloud projects remove-iam-policy-binding "${KF_PROJECT}" \
+    "--member=serviceAccount:${MGMT_NAME}-cnrm-system@${MGMT_PROJECT}.iam.gserviceaccount.com" \
     --role=roles/owner
 ```
 
 ### Delete management cluster
 
-To delete the Google service account, and the management cluster:
+To delete the Google service account and the management cluster:
 
 ```bash
-cd ${MGMT_DIR}
+cd "${MGMT_DIR}"
 make delete-cluster
 ```
 
