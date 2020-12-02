@@ -171,7 +171,7 @@ To deploy a management cluster:
 
     This step:
 
-    * Installs Config Connector in your cluster; and
+    * Installs Config Connector in your cluster, and
     * Creates the Google Cloud service account **${MGMT_NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**.
 
     Optionally, you can verify the Config Connector installation before applying it by:
@@ -216,17 +216,13 @@ Your management cluster directory contains the following files and directories:
 
 * **Makefile** is a file that defines rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
 
-* **upstream** is a directory containing kustomize packages for deploying your management cluster
-
-  * This directory contains the upstream configurations on which your deployment is based on.
+* **upstream** is a directory containing kustomize packages for deploying your management cluster.
+  This directory contains the upstream configurations on which your deployment is based on.
 
 * **instance** is a directory that defines user overlays that are applied to the upstream
   configurations in order to customize management cluster for your use case.
 
-  * **cluster** is a kustomize package defining all the Google Cloud resources needed using [gcloud beta anthos apply](https://cloud.google.com/sdk/gcloud/reference/beta/anthos/apply). It can apply some Google Cloud resource types using the same resource definition for Config Connector.
-
-    * You can edit this kustomize package in order to customize the Google Cloud resources for
-    your purposes
+  * **cluster** is a kustomize package defining all the Google Cloud resources needed using [gcloud beta anthos apply](https://cloud.google.com/sdk/gcloud/reference/beta/anthos/apply). It can apply some Google Cloud resource types using the same resource definition for Config Connector. You can edit this kustomize package in order to customize the Google Cloud resources for your purposes.
 
   * **cnrm-install-\*** folders contain kustomize packages for Google Cloud services, iam policies and Kubernetes resources to install Config Connector following [Advanced installation options for Config Connector](https://cloud.google.com/config-connector/docs/how-to/advanced-install).
 

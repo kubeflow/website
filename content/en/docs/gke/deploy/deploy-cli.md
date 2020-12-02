@@ -41,7 +41,7 @@ This guide assumes the following settings:
 * The `${MGMT_NAME}` environment variable contains the name of your management cluster created in [Management cluster setup](../management-setup).
 * The `${MGMTCTXT}` environment variable contains a kubectl context that connects
   to the `${KF_PROJECT}` namespace of the management cluster. By default, [Management
-  cluster setup](./management-setup) creates a context named `${MGMT_NAME}` for you.
+  cluster setup](../management-setup) creates a context named `${MGMT_NAME}` for you.
 * The `${KF_NAME}` environment variable contains the name of your Kubeflow cluster.
 * The `${KF_PROJECT}` environment variable contains the Google Cloud project ID where Kubeflow cluster will be deployed to.
 * The `${KF_DIR}` environment variable contains the path where you want to
@@ -193,7 +193,7 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
     ```
 
     where `${KF_PROJECT}` is your `${MANAGED_PROJECT}` mentioned in the [Authorize Cloud Config Connector for each managed project
-](./management-setup/#authorize-cloud-config-connector-for-each-managed-project) step.
+](../management-setup/#authorize-cloud-config-connector-for-each-managed-project) step.
 
   * Make the Kubeflow project's namespace default of the `${MGMTCTXT}` context:
 
