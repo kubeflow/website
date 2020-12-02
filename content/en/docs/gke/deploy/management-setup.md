@@ -53,7 +53,7 @@ For a more detailed explanation of the drastic changes happened in Kubeflow v1.1
 
 1. Install [yq](https://github.com/mikefarah/yq#install).
 
-## Environmental Variables
+## Environment Variables
 
 This guide assumes the following convention:
 
@@ -89,7 +89,7 @@ To deploy a management cluster:
     kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/management@v1.2.0 "${MGMT_DIR}"
     ```
 
-2. Change to the Kubeflow directory
+1. Change to the Kubeflow directory
 
     ```bash
     cd "${MGMT_DIR}"
@@ -97,13 +97,13 @@ To deploy a management cluster:
 
     Note, all the instructions below assume your current working directory is `${MGMT_DIR}`.
 
-3. Fetch the upstream management package
+1. Fetch the upstream management package
 
     ```bash
     make get-pkg
     ```
 
-4. Use kpt to set values for the name, project, and location of your management cluster:
+1. Use kpt to set values for the name, project, and location of your management cluster:
 
     ```bash
     kpt cfg set -R . name "${MGMT_NAME}"
@@ -136,13 +136,14 @@ To deploy a management cluster:
 
     You can learn more about `kpt cfg set` in [kpt documentation](https://googlecontainertools.github.io/kpt/reference/cfg/set/), or by running `kpt cfg set --help`.
 
-    Note, you can find out which setters exist in a package and what there current values are by:
+    Note, you can find out which setters exist in a package and what their
+    current values are by running the following command:
 
     ```bash
     kpt cfg list-setters .
     ```
 
-5. Create or apply the management cluster:
+1. Create or apply the management cluster:
 
     ```bash
     make apply-cluster
@@ -156,13 +157,13 @@ To deploy a management cluster:
 
     and look into `./build/cluster` folder.
 
-6. Create a kubectl context for the management cluster, it will be named `${MGMT_NAME}`:
+1. Create a kubectl context for the management cluster, it will be named `${MGMT_NAME}`:
 
     ```bash
     make create-context
     ```
 
-7. Install the Cloud Config Connector:
+1. Install the Cloud Config Connector:
 
     ```bash
     make apply-kcc

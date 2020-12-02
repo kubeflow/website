@@ -34,13 +34,36 @@ one if you haven't already.
 Refer to
 [Understanding the deployment process](#understanding-the-deployment-process) for more information on the kfctl configuration and deployment process.
 
+### Environment Variables
+
 This guide assumes the following settings:
 
-* The `${KF_PROJECT}` environment variable contains the Google Cloud project ID where Kubeflow cluster will be deployed to.
-* The `${MGMT_NAME}` environment variable contains the name of your management cluster created in [Management cluster setup](./management-setup).
+* The `${MGMT_NAME}` environment variable contains the name of your management cluster created in [Management cluster setup](../management-setup).
 * The `${MGMTCTXT}` environment variable contains a kubectl context that connects
   to the `${KF_PROJECT}` namespace of the management cluster. By default, [Management
   cluster setup](./management-setup) creates a context named `${MGMT_NAME}` for you.
+* The `${KF_NAME}` environment variable contains the name of your Kubeflow cluster.
+* The `${KF_PROJECT}` environment variable contains the Google Cloud project ID where Kubeflow cluster will be deployed to.
+* The `${KF_DIR}` environment variable contains the path where you want to
+put your Kubeflow application directory, which holds your Kubeflow configuration
+files. For example, `~/kf-deployments/my-kubeflow/`. You can choose any path you
+would like for the directory `${KF_DIR}`.
+
+  To continously manage the Kubeflow cluster, you are recommended to check
+  the Kubeflow configuration directory into source control.
+
+Set these environment variables in your shell:
+
+```bash
+KF_NAME=<name of your Kubeflow cluster>
+KF_PROJECT=<the project where you deploy your Kubeflow cluster>
+KF_DIR=<path to your management cluster configuration directory>
+MGMT_NAME=<name of your management cluster>
+MGMTCTXT="${MGMT_NAME}"
+```
+
+However, the environment variables are used purely for command illustration
+purpose. No tools will assume they actually exists in your terminal environment.
 
 ### Install the required tools
 
@@ -94,16 +117,6 @@ This guide assumes the following settings:
 
 ## Fetch packages using kpt
 
-The `${KF_DIR}` environment variable contains the path where you want to
-put your Kubeflow application directory, which holds your Kubeflow configuration
-files. For example, `~/kf-deployments/my-kubeflow/`.
-
-You can choose anywhere you would like for the directory ${KF_DIR}.
-
-```bash
-KF_DIR=<path where you want to put your Kubeflow configuration files>
-```
-
 1. Fetch the Kubeflow package
 
    ```bash
@@ -136,6 +149,15 @@ gcloud.core.project| The project you want to deploy in |
 location | The zone or region you want to deploy in |
 gcloud.compute.region | The region you are deploying in |
 gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.compute.region |
+
+* `${KF_NAME}` is the cluster name of your Kubeflow cluster and prefix for other Google Cloud resources created in the deployment process. Kubeflow cluster
+  should be a different cluster from your management cluster.
+
+  Note, `${KF_NAME}` should
+  * start with a lowercase letter
+  * only contain lowercase letters, numbers and `-`
+  * end with a number or a letter
+  * contain no more than 24 characters
 
 * Location can be a zone or a region depending on whether you want a regional cluster
 

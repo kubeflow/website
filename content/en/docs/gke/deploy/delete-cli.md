@@ -11,30 +11,11 @@ Google Cloud.
 
 This guide assumes the following settings:
 
-- The `${MGMT_PROJECT}`, `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
-  are the same as in [Management cluster setup](./management-setup#environmental-variables).
+* The `${MGMT_PROJECT}`, `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
+  are the same as in [Management cluster setup](../management-setup#environment-variables).
 
-- The `${KF_DIR}` environment variable contains the path to
-  your Kubeflow application directory, which holds your Kubeflow configuration
-  files. For example, `~/kf-deployments/my-kubeflow/`.
-
-  ```bash
-  KF_DIR=<path to your Kubeflow application directory>
-  ```
-
-- The `${KF_PROJECT}` environment variable contains the Google Cloud project ID where Kubeflow cluster is deployed to.
-
-  ```bash
-  KF_PROJECT=<project where your Kubeflow cluster is deployed>
-  ```
-
-- The `${MGMTCTXT}` environment variable contains a kubectl context that connects
-  to the `${KF_PROJECT}` namespace of the management cluster. By default, [Management
-  cluster setup](./management-setup) creates a context named `${MGMT_NAME}` for you.
-
-  ```bash
-  MGMTCTXT="${MGMT_NAME}"
-  ```
+* The `${KF_PROJECT}`, `${KF_DIR}`, `${KF_NAME}` and `${MGMTCTXT}` environment variables
+  are the same as in [Deploy using kubectl and kpt](../deploy-cli#environment-variables).
 
 ## Deleting your Kubeflow cluster
 
