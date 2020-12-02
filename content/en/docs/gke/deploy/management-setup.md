@@ -154,7 +154,7 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
 1. Update the policy
 
    ```bash
-   gcloud beta anthos apply -f ./instance/managed-project/iam.yaml
+   gcloud beta anthos apply ./instance/managed-project/iam.yaml
    ```
 
    Optionally, to restrict permissions you want to grant to this service account. You can edit `./instance/managed-project/iam.yaml` and specify more granular roles. Refer to [IAMPolicy Config Connector reference](https://cloud.google.com/config-connector/docs/reference/resource-docs/iam/iampolicy) for exact fields you can set.
