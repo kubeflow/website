@@ -5,8 +5,7 @@ weight = 10
                     
 +++
 
-{{% beta-status 
-  feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
+{{% stable-status %}}
 
 The [Kubeflow Pipelines 
 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.html)

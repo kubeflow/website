@@ -81,8 +81,10 @@ Choose the guide for your operating system or environment:
     [MacOS deployment guide](/docs/started/workstation/getting-started-macos/).
   * To use Kubeflow on Windows, follow the
     [Windows deployment guide](/docs/started/workstation/getting-started-windows/).
-  * To use MiniKF (mini Kubeflow) on Google Cloud Platform, follow the guide to
-    [MiniKF on GCP](/docs/started/workstation/minikf-gcp/).
+  * To use MiniKF (mini Kubeflow) on Google Cloud Platform, follow the 
+    [MiniKF on GCP guide](/docs/started/workstation/minikf-gcp/).
+  * To use MiniKF (mini Kubeflow) on AWS, follow the 
+    [MiniKF on AWS guide](/docs/started/workstation/minikf-aws/).
 
 ## Deployment quick reference
 
