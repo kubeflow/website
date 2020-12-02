@@ -23,7 +23,7 @@ all Kubeflow components and more integration with each platform.
     If yes, choose the [full Kubeflow deployment](#full-kubeflow-deployment).
 1. Can you use a cloud/on-prem Kubernetes cluster?
 
-    If no, you can try Kubeflow Pipelines on a local Kubernetes cluster following [Deploying Kubeflow Pipelines on a local cluster](/docs/pipelines/installation/localcluster-deployment) for learning and testing purposes.
+    If you can't, you should try using Kubeflow Pipelines on a local Kubernetes cluster for learning and testing purposes by following the steps in [Deploying Kubeflow Pipelines on a local cluster](/docs/pipelines/installation/localcluster-deployment).
 1. Do you want to use Kubeflow Pipelines with [multi-user support](https://github.com/kubeflow/pipelines/issues/1223)?
 
     If yes, choose the [full Kubeflow deployment](#full-kubeflow-deployment) with version >= v1.1.
