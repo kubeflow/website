@@ -31,7 +31,7 @@ For a more detailed explanation of the drastic changes happened in vKubeflow 1.1
 1.  Install gcloud components
 
     ```bash
-    gcloud components install kpt anthoscli beta
+    gcloud components install kubectl kpt anthoscli beta
     gcloud components update
     ```
 
