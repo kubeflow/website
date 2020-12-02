@@ -72,11 +72,9 @@ purpose. No tools will assume they actually exists in your terminal environment.
 1. Install gcloud components
 
     ```bash
-    gcloud components install kpt anthoscli beta
+    gcloud components install kubectl kpt anthoscli beta
     gcloud components update
     ```
-
-  You also need [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/), which is installed with `gcloud`.
 
 1. Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
