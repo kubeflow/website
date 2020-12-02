@@ -38,8 +38,9 @@ client.list_experiments(namespace="<your_namespace>")
 
 ```bash
 import kfp
-alb_session_cookie='AWSELBAuthSessionCookie-0=<cookie>'
-client = kfp.Client(host='https://<aws_alb_host>/pipeline', cookies=alb_session_cookie)
+alb_session_cookie0='AWSELBAuthSessionCookie-0=<cookie0>'
+alb_session_cookie1='AWSELBAuthSessionCookie-1=<cookie1>'
+client = kfp.Client(host='https://<aws_alb_host>/pipeline', cookies=f"{alb_session_cookie0};{alb_session_cookie1}")
 client.list_experiments(namespace="<your_namespace>")
 ```
 
