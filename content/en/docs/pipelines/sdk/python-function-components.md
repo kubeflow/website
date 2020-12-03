@@ -138,10 +138,10 @@ def add_pipeline(
   # value, the output reference can be accessed as `task.output` or
   # `task.outputs['output_name']`.
   second_add_task = add_op(first_add_task.output, b)
-    
+
 # Specify argument values for your pipeline run.
 arguments = {'a': '7', 'b': '8'}
-    
+
 # Create a pipeline run, using the client you initialized in a prior step.
 client.create_run_from_pipeline_func(add_pipeline, arguments=arguments)
 ```
@@ -327,7 +327,7 @@ def multiple_return_values_example(a: float, b: float) -> NamedTuple(
       }
     ]  
   }
-  
+
   from collections import namedtuple
   example_output = namedtuple(
       'ExampleOutputs',
@@ -355,7 +355,7 @@ def split_text_lines(
     even_lines_path: comp.OutputPath(str)):
     """Splits a text file into two files, with even lines going to one file
     and odd lines to the other."""
-    
+
     with open(source_path, 'r') as reader:
         with open(odd_lines_path, 'w') as odd_writer:
             with open(even_lines_path, 'w') as even_writer:
@@ -431,7 +431,7 @@ def my_divmod(
       ('mlpipeline_metrics', 'Metrics')
     ]):
     '''Divides two numbers and calculate  the quotient and remainder'''
-    
+
     # Import the numpy package inside the component function
     import numpy as np
 
@@ -443,7 +443,7 @@ def my_divmod(
 
     from tensorflow.python.lib.io import file_io
     import json
-    
+
     # Export a sample tensorboard
     metadata = {
       'outputs' : [{
@@ -513,7 +513,7 @@ def calc_pipeline(
     # Passes a pipeline parameter and a constant value as operation arguments.
     add_task = add_op(a, 4) # The add_op factory function returns
                             # a dsl.ContainerOp class instance. 
-    
+
     # Passes the output of the add_task and a pipeline parameter as operation
     # arguments. For an operation with a single return value, the output
     # reference is accessed using `task.output` or
