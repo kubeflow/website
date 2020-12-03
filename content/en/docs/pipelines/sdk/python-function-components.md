@@ -68,7 +68,7 @@ import kfp.components as comp
 
 3. Create an instance of the [`kfp.Client` class][kfp-client].
 
-[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client
 
 
 ```python
@@ -80,7 +80,7 @@ client = kfp.Client(host='<your-kubeflow-pipelines-host-name>')
 
 For more information about the Kubeflow Pipelines SDK, see the [SDK reference guide][sdk-ref].
 
-[sdk-ref]: https://kubeflow-pipelines.readthedocs.io/en/latest/index.html
+[sdk-ref]: https://kubeflow-pipelines.readthedocs.io/en/stable/index.html
 
 ## Getting started with Python function-based components
 
@@ -101,7 +101,7 @@ def add(a: float, b: float) -> float:
     factory function that you can use to create [`kfp.dsl.ContainerOp`][container-op] class instances for your pipeline.
     The component specification YAML is a reusable and shareable definition of your component.
 
-[container-op]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp
+[container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp
 
 
 ```python
@@ -261,7 +261,7 @@ If you build or select a container image, instead of using the default container
 image must use Python 3.5 or later.
 
 [python37]: https://hub.docker.com/layers/python/library/python/3.7/images/sha256-7eef781ed825f3b95c99f03f4189a8e30e718726e8490651fa1b941c6c815ad1?context=explore
-[create-component-from-func]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.create_component_from_func
+[create-component-from-func]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.create_component_from_func
 [subprocess]: https://docs.python.org/3/library/subprocess.html
 [tf-docker]: https://www.tensorflow.org/install/docker
 [pytorch-docker]: https://hub.docker.com/r/pytorch/pytorch/tags
@@ -344,7 +344,7 @@ my_divmod(100, 7)
     [`kfp.dsl.ContainerOp`][container-op] class instances for your pipeline. This example also specifies the base container
     image to run this function in.
 
-[container-op]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp
+[container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp
 
 
 ```python

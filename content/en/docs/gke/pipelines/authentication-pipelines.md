@@ -52,7 +52,7 @@ Please refer to [gcloud container clusters create command documentation](https:/
 
 Pipelines don't need any specific changes to authenticate to GCP, it will use the default service account transparently.
 
-However, you must update existing pipelines that use the [use_gcp_secret kfp sdk operator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret). Remove the `use_gcp_secret` usage to let your pipeline authenticate to Google Cloud using the default service account.
+However, you must update existing pipelines that use the [use_gcp_secret kfp sdk operator](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.extensions.html#kfp.gcp.use_gcp_secret). Remove the `use_gcp_secret` usage to let your pipeline authenticate to Google Cloud using the default service account.
 
 ## Securing the cluster with fine-grained GCP permission control
 
@@ -74,7 +74,7 @@ This document distinguishes between [Kubernetes service accounts](https://kubern
 
 Pipelines don't need any specific changes to authenticate to Google Cloud. With Workload Identity, pipelines run as the Google service account that is bound to the KSA.
 
-However, existing pipelines that use [use_gcp_secret kfp sdk operator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret) need to remove the `use_gcp_secret` usage to use the bound GSA.
+However, existing pipelines that use [use_gcp_secret kfp sdk operator](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.extensions.html#kfp.gcp.use_gcp_secret) need to remove the `use_gcp_secret` usage to use the bound GSA.
 You can also continue to use `use_gcp_secret` in a cluster with Workload Identity enabled and `use_gcp_secret` will take precedence for those workloads.
 
 #### Cluster setup to use Workload Identity for Full Kubeflow
@@ -145,7 +145,7 @@ It is recommended to use Workload Identity for easier and secure management, but
 Each pipeline step describes a 
 container that is run independently. If you want to grant access for a single step to use
  one of your service accounts, you can use 
-[`kfp.gcp.use_gcp_secret()`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret).
+[`kfp.gcp.use_gcp_secret()`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.extensions.html#kfp.gcp.use_gcp_secret).
 Examples for how to use this function can be found in the 
 [Kubeflow examples repo](https://github.com/kubeflow/examples/blob/871895c54402f68685c8e227c954d86a81c0575f/pipelines/mnist-pipelines/mnist_pipeline.py#L97).
 

@@ -8,7 +8,7 @@ weight = 10
 {{% stable-status %}}
 
 The [Kubeflow Pipelines 
-SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.html)
+SDK](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.html)
 provides a set of Python packages that you can use to specify and run your 
 machine learning (ML) workflows. A *pipeline* is a description of an ML 
 workflow, including all of the *components* that make up the steps in the 
@@ -22,7 +22,7 @@ please follow the [Kubeflow Pipelines SDK for Tekton](/docs/pipelines/sdk/pipeli
 
 The Kubeflow Pipelines SDK includes the following packages:
 
-* [`kfp.compiler`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html)
+* [`kfp.compiler`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.compiler.html)
   includes classes and methods for compiling pipeline Python DSL into a workflow yaml spec
     Methods in this package include, but are not limited
   to, the following:
@@ -32,7 +32,7 @@ The Kubeflow Pipelines SDK includes the following packages:
     can process. The Kubeflow Pipelines service converts the static 
     configuration into a set of Kubernetes resources for execution.
 
-* [`kfp.components`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html)
+* [`kfp.components`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html)
   includes classes and methods for interacting with pipeline components. 
   Methods in this package include, but are not limited to, the following:
 
@@ -40,24 +40,24 @@ The Kubeflow Pipelines SDK includes the following packages:
     pipeline component and returns a factory function.
     You can then call the factory function to construct an instance of a 
     pipeline task
-    ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp)) 
+    ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp)) 
     that runs the original function in a container.
 
   * `kfp.components.load_component_from_file` loads a pipeline component from
     a file and returns a factory function.
     You can then call the factory function to construct an instance of a 
     pipeline task 
-    ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp)) 
+    ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp)) 
     that runs the component container image.
 
   * `kfp.components.load_component_from_url` loads a pipeline component from
     a URL and returns a factory function.
     You can then call the factory function to construct an instance of a 
     pipeline task 
-    ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp)) 
+    ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp)) 
     that runs the component container image.
 
-* [`kfp.dsl`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html)
+* [`kfp.dsl`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html)
   contains the domain-specific language (DSL) that you can use to define and
   interact with pipelines and components. 
   Methods, classes, and modules in this package include, but are not limited to, 
@@ -68,45 +68,45 @@ The Kubeflow Pipelines SDK includes the following packages:
     [pipeline parameters](/docs/pipelines/sdk/parameters/).
   * `kfp.dsl.component` is a decorator for DSL functions that returns a
     pipeline component.
-    ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp)).
+    ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp)).
   * `kfp.dsl.pipeline` is a decorator for Python functions that returns a
     pipeline.
   * `kfp.dsl.python_component` is a decorator for Python functions that adds
     pipeline component metadata to the function object.
-  * [`kfp.dsl.types`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.types.html) 
+  * [`kfp.dsl.types`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.types.html) 
     contains a list of types defined by the Kubeflow Pipelines SDK. Types
     include basic types like `String`, `Integer`, `Float`, and `Bool`, as well
     as domain-specific types like `GCPProjectID` and `GCRPath`.
     See the guide to 
     [DSL static type checking](/docs/pipelines/sdk/static-type-checking).
-  * [`kfp.dsl.ResourceOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ResourceOp)
+  * [`kfp.dsl.ResourceOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ResourceOp)
     represents a pipeline task (op) which lets you directly manipulate 
     Kubernetes resources (`create`, `get`, `apply`, ...).
-  * [`kfp.dsl.VolumeOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.VolumeOp)
+  * [`kfp.dsl.VolumeOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.VolumeOp)
     represents a pipeline task (op) which creates a new `PersistentVolumeClaim` 
     (PVC). It aims to make the common case of creating a `PersistentVolumeClaim` 
     fast.
-  * [`kfp.dsl.VolumeSnapshotOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.VolumeSnapshotOp)
+  * [`kfp.dsl.VolumeSnapshotOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.VolumeSnapshotOp)
     represents a pipeline task (op) which creates a new `VolumeSnapshot`. It 
     aims to make the common case of creating a `VolumeSnapshot` fast.
-  * [`kfp.dsl.PipelineVolume`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineVolume)
+  * [`kfp.dsl.PipelineVolume`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.PipelineVolume)
     represents a volume used to pass data between pipeline steps. `ContainerOp`s 
     can mount a `PipelineVolume` either via the constructor's argument 
     `pvolumes` or `add_pvolumes()` method.
-  * [`kfp.dsl.ParallelFor`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ParallelFor)
+  * [`kfp.dsl.ParallelFor`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ParallelFor)
     represents a parallel for loop over a static or dynamic set of items in a pipeline.
     Each iteration of the for loop is executed in parallel.
   
-  * [`kfp.dsl.ExitHandler`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ExitHandler)
+  * [`kfp.dsl.ExitHandler`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ExitHandler)
     represents an exit handler that is invoked upon exiting a pipeline. A typical
     usage of `ExitHandler` is garbage collection.
   
-  * [`kfp.dsl.Condition`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.Condition)
+  * [`kfp.dsl.Condition`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.Condition)
     represents a group of ops, that will only be executed when a certain condition is met.
     The condition specified need to be determined at runtime, by incorporating at least one task output, 
     or PipelineParam in the boolean expression.
 
-* [`kfp.Client`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html)
+* [`kfp.Client`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html)
   contains the Python client libraries for the [Kubeflow Pipelines 
   API](/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/).
   Methods in this package include, but are not limited to, the following:
@@ -121,7 +121,7 @@ The Kubeflow Pipelines SDK includes the following packages:
   * `kfp.Client.upload_pipeline` uploads a local file to create a new pipeline in Kubeflow Pipelines.
   * `kfp.Client.upload_pipeline_version` uploads a local file to create a pipeline version. [Follow an example to learn more about creating a pipeline version](/docs/pipelines/tutorials/sdk-examples)
 
-* [Kubeflow Pipelines extension modules](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html)
+* [Kubeflow Pipelines extension modules](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.extensions.html)
   include classes and functions for specific platforms on which you can use
   Kubeflow Pipelines. Examples include utility functions for on premises,
   Google Cloud Platform (GCP), Amazon Web Services (AWS), and Microsoft Azure.
@@ -200,15 +200,15 @@ Below is a more detailed explanation of the above diagram:
   the [Docker command-line 
   interface](https://docs.docker.com/engine/reference/commandline/cli/)
   or the 
-  [`kfp.compiler.build_docker_image` method](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.build_docker_image) from the Kubeflow Pipelines 
+  [`kfp.compiler.build_docker_image` method](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.compiler.html#kfp.compiler.build_docker_image) from the Kubeflow Pipelines 
   SDK.
 
 1. Write a component function using the Kubeflow Pipelines DSL to define your
   pipeline's interactions with the component’s Docker container. Your
   component function must return a
-  [`kfp.dsl.ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp).
+  [`kfp.dsl.ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp).
   Optionally, you can use the [`kfp.dsl.component` 
-  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.component)
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.component)
   to enable [static type checking](/docs/pipelines/sdk/static-type-checking) in 
   the DSL compiler. To use the decorator, you can add the `@kfp.dsl.component` 
   annotation to your component function:
@@ -225,7 +225,7 @@ Below is a more detailed explanation of the above diagram:
 
 1. Write a pipeline function using the Kubeflow Pipelines DSL to define the 
   pipeline and include all the pipeline components. Use the [`kfp.dsl.pipeline`
-  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.pipeline)
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.pipeline)
   to build a pipeline from your pipeline function. To use the decorator, you can
   add the `@kfp.dsl.pipeline` annotation to your pipeline function:
 
@@ -246,7 +246,7 @@ Below is a more detailed explanation of the above diagram:
     options:
 
     * Use the 
-      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.Compiler) 
+      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.compiler.html#kfp.compiler.Compiler) 
       method:
 
         ```python
@@ -309,7 +309,7 @@ Below is a more detailed explanation of the above diagram:
     ```
 
 1. Use the [`kfp.dsl.python_component`
-  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.python_component)
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.python_component)
   to convert your Python function into 
   a pipeline component. To use the decorator, you can add the 
   `@kfp.dsl.python_component` annotation to your function:
@@ -324,7 +324,7 @@ Below is a more detailed explanation of the above diagram:
     ```
 
 1. Use 
-  [`kfp.compiler.build_python_component`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.build_python_component)
+  [`kfp.compiler.build_python_component`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.compiler.html#kfp.compiler.build_python_component)
   to create a container image for the component.
 
     ```python
@@ -336,7 +336,7 @@ Below is a more detailed explanation of the above diagram:
 
 1. Write a pipeline function using the Kubeflow Pipelines DSL to define the 
   pipeline and include all the pipeline components. Use the [`kfp.dsl.pipeline`
-  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.pipeline)
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.pipeline)
   to build a pipeline from your pipeline function, by adding 
   the `@kfp.dsl.pipeline` annotation to your pipeline function:
 
@@ -357,7 +357,7 @@ Below is a more detailed explanation of the above diagram:
     options:
 
     * Use the 
-      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.Compiler) 
+      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.compiler.html#kfp.compiler.Compiler) 
       method:
 
         ```python
@@ -415,7 +415,7 @@ Below is a more detailed explanation of the above diagram:
     ```
 
 1. Use 
-  [`kfp.components.func_to_container_op`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.func_to_container_op)
+  [`kfp.components.func_to_container_op`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.func_to_container_op)
   to convert your Python function into a pipeline component:
 
     ```python
@@ -432,7 +432,7 @@ Below is a more detailed explanation of the above diagram:
 
 1. If you stored your lightweight component in a file as described in the 
   previous step, use 
-  [`kfp.components.load_component_from_file`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.load_component_from_file)
+  [`kfp.components.load_component_from_file`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.load_component_from_file)
   to load the component:
 
     ```python
@@ -441,7 +441,7 @@ Below is a more detailed explanation of the above diagram:
 
 1. Write a pipeline function using the Kubeflow Pipelines DSL to define the 
   pipeline and include all the pipeline components. Use the [`kfp.dsl.pipeline`
-  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.pipeline)
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.pipeline)
   to build a pipeline from your pipeline function, by adding 
   the `@kfp.dsl.pipeline` annotation to your pipeline function:
 
@@ -462,7 +462,7 @@ Below is a more detailed explanation of the above diagram:
     options:
 
     * Use the 
-      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.Compiler) 
+      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.compiler.html#kfp.compiler.Compiler) 
       method:
 
         ```python
@@ -512,7 +512,7 @@ Below is a more detailed explanation of the above diagram:
   resources](/docs/examples/shared-resources/).
 
 1. Use 
-  [`kfp.components.load_component_from_url`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.load_component_from_url)
+  [`kfp.components.load_component_from_url`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.load_component_from_url)
   to load the component:
 
     ```python
@@ -521,7 +521,7 @@ Below is a more detailed explanation of the above diagram:
 
 1. Write a pipeline function using the Kubeflow Pipelines DSL to define the 
   pipeline and include all the pipeline components. Use the [`kfp.dsl.pipeline`
-  decorator](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.pipeline)
+  decorator](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.pipeline)
   to build a pipeline from your pipeline function, by adding 
   the `@kfp.dsl.pipeline` annotation to your pipeline function:
 
@@ -542,7 +542,7 @@ Below is a more detailed explanation of the above diagram:
     options:
 
     * Use the 
-      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.compiler.html#kfp.compiler.Compiler) 
+      [`kfp.compiler.Compiler.compile`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.compiler.html#kfp.compiler.Compiler) 
       method:
 
         ```python

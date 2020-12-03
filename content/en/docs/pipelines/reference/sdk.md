@@ -10,5 +10,5 @@ needs to be updated for Kubeflow 1.1.
 {{% /alert %}}
 
 See the [generated reference docs for the Python 
-SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/) (hosted on 
+SDK](https://kubeflow-pipelines.readthedocs.io/en/stable/) (hosted on 
 *Read the Docs*).
