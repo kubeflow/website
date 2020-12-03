@@ -30,7 +30,7 @@ This feature allows users to perform some action (`get`, `create`, `apply`,
 Users are able to set conditions that denote the success or failure of the
 step undertaking that action.
 
-[Link](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ResourceOp)
+[Link](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ResourceOp)
 to the corresponding Python library.
 
 #### Arguments
@@ -48,7 +48,7 @@ For more information, please refer to the aforementioned link to the library.
 * `failure_condition`: Condition to denote failure of the step once it is true.
   (_optional_)
 * `attribute_outputs`: Similar to `file_outputs` of
-  [`kfp.dsl.ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp).
+  [`kfp.dsl.ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp).
   Maps output parameter names to JSON paths in the Kubernetes object.
   More on that in the following section.
   (_optional_)
@@ -88,7 +88,7 @@ Request the creation of PVC instances simple and fast.
 
 A ResourceOp specialized in PVC creation.
 
-[Link](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.VolumeOp)
+[Link](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.VolumeOp)
 to the corresponding Python library.
 
 #### Arguments
@@ -176,7 +176,7 @@ Those dependencies can then be parsed properly by a `ContainerOp`, when consumed
 in `pvolumes` argument or `add_pvolumes()` method, to extend the dependencies
 of that step.
 
-[Link](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineVolume)
+[Link](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.PipelineVolume)
 to the corresponding Python library.
 
 _(*) Inherits from V1Volume class of Kubernetes Python client._
@@ -212,7 +212,7 @@ Request the creation of Volume Snapshot instances simple and fast.
 
 A ResourceOp specialized in Volume Snapshot creation.
 
-[Link](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.VolumeSnapshotOp)
+[Link](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.VolumeSnapshotOp)
 to the corresponding Python library.
 
 **NOTE:** You should check if your Kubernetes cluster admin has Volume Snapshots

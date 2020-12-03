@@ -68,7 +68,7 @@ nodeGroups:
 
 ### Customize Authentication
 
-If you use {{% config-uri-aws-standard %}}, you can consider to change the default password in the [configuration file]({{% config-uri-aws-standard %}}). The configuration file contains:
+If you use the [configuration file]({{% config-uri-aws-standard %}}), you can consider to change the default password in the [configuration file]({{% config-uri-aws-standard %}}). The configuration file contains:
 
 ```
 spec:
@@ -78,13 +78,16 @@ spec:
     username: admin@kubeflow.org
 ```
 
-If you use {{% config-uri-aws-cognito %}}, please see [this section](/docs/aws/authentication)
+If you use the [configuration file with cognito]({{% config-uri-aws-cognito %}}), please see [this section](/docs/aws/authentication)
 
 ### Customize IAM Role for Pods
-Please see [this section](/docs/aws/iam-for-sa)
+
+Refer to the [Setting up AWS IAM role for Service Account](/docs/aws/iam-for-sa) guide.
 
 ### Customize Private Access
-Please see [this section](/docs/aws/private-access)
+
+Check the [How to create private EKS clusters](/docs/aws/private-access) guide.
 
 ### Customize Logging
-Please see [this section](/docs/aws/logging)
+
+Go to the [Add logging support for Kubeflow](/docs/aws/logging) guide for more information.

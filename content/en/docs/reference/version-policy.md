@@ -114,7 +114,7 @@ documentation for that application.
         <td></td>
       </tr>
       <tr>
-        <td><a href="/docs/components/hyperparameter-tuning/overview/">Hyperparameter
+        <td><a href="/docs/components/katib/overview/">Hyperparameter
           tuning: Katib</a>
           (<a href="https://github.com/kubeflow/katib">GitHub</a>)
           </td>
@@ -232,7 +232,7 @@ one of the following Kubeflow SDKs and command-line interfaces
     </thead>
     <tbody>
       <tr>
-        <td><a href="/docs/fairing/fairing-overview/">Fairing</a> 
+        <td><a href="/docs/components/fairing/fairing-overview/">Fairing</a> 
           (<a href="https://github.com/kubeflow/fairing">GitHub</a>)
         </td>
         <td>Beta</td>

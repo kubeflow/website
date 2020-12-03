@@ -91,13 +91,13 @@ This section shows the how to set up Kubeflow with authentication and authorizat
 
 3. Deploy Kubeflow:
 
-    ```
+    ```shell
     kfctl apply -V -f ${CONFIG_URI}
     ```
 
 4. Check that the resources were deployed correctly in namespace `kubeflow`:
 
-    ```
+    ```shell
     kubectl get all -n kubeflow
     ```
 
@@ -105,7 +105,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
 
 1. Update Istio Gateway to expose port 443 with HTTPS and make port 80 redirect to 443:
 
-    ```
+    ```shell
     kubectl edit -n kubeflow gateways.networking.istio.io kubeflow-gateway
     ```
 
@@ -124,37 +124,51 @@ This section shows the how to set up Kubeflow with authentication and authorizat
     - hosts:
         - '*'
         port:
-        name: http
-        number: 80
-        protocol: HTTP
-              # Upgrade HTTP to HTTPS
+            name: http
+            number: 80
+            protocol: HTTP
+        # Upgrade HTTP to HTTPS
         tls:
-        httpsRedirect: true
+            httpsRedirect: true
     - hosts:
         - '*'
         port:
-        name: https
-        number: 443
-        protocol: HTTPS
+            name: https
+            number: 443
+            protocol: HTTPS
         tls:
-        mode: SIMPLE
-        privateKey: /etc/istio/ingressgateway-certs/tls.key
-        serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
+            mode: SIMPLE
+            privateKey: /etc/istio/ingressgateway-certs/tls.key
+            serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
     {{< /highlight >}}
 
 1. Expose Kubeflow with a load balancer service:
 
     To expose Kubeflow with a load balancer service, change the type of the `istio-ingressgateway` service to `LoadBalancer`.
 
-    ```
+    ```shell
     kubectl patch service -n istio-system istio-ingressgateway -p '{"spec": {"type": "LoadBalancer"}}'
     ```
 
-   After that, obtain the `LoadBalancer` IP or Hostname from its status and create the necessary certificate.
+    After that, obtain the `LoadBalancer` IP address or Hostname from its status and create the necessary certificate.
 
-    ```
+    ```shell
     kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0]}'
     ```
+
+    **Note**: If you are exposing [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) gateway through public IP, make sure it matches the IP address of the OIDC `REDIRECT_URL` by running:
+    
+    ```shell
+    kubectl get statefulset authservice -n istio-system -o yaml
+    ```
+
+    If it doesn't match, update `REDIRECT_URL` in the StatefulSet to be the public IP address from the last step, by running:
+    
+    ```shell
+    kubectl edit statefulset authservice -n istio-system
+    kubectl rollout restart statefulset authservice -n istio-system
+    ```
+
 
 1. Create a self-signed Certificate with cert-manager:
 
@@ -168,10 +182,10 @@ This section shows the how to set up Kubeflow with authentication and authorizat
     namespace: istio-system
     spec:
     commonName: istio-ingressgateway.istio-system.svc
-        # Use ipAddresses if your LoadBalancer issues an IP
+    # Use ipAddresses if your LoadBalancer issues an IP address
     ipAddresses:
     - <LoadBalancer IP>
-        # Use dnsNames if your LoadBalancer issues a hostname
+    # Use dnsNames if your LoadBalancer issues a hostname
     dnsNames:
     - <LoadBalancer HostName>
     isCA: true
@@ -183,7 +197,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
 
     Apply `certificate.yaml` in `istio-system` namespace
 
-    ```
+    ```shell
     kubectl apply -f certificate.yaml -n istio-system
     ```
 

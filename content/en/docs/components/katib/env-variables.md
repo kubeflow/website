@@ -1,18 +1,24 @@
 +++
 title = "Environment Variables for Katib Components"
 description = "How to set up environment variables for each Katib component"
-weight = 50
+weight = 80
                     
 +++
 
-This page describes information about environment variables for each Katib component. If you want to change Katib installation, you can modify some of these variables.
+This guide describes environment variables for each Katib component.
+If you want to change your Katib installation,
+you can modify some of these variables.
 
-In the tables below you can see description, default values and mandatory property for all environment variables in each Katib component.
-If variable has mandatory property, appropriate Katib component's manifest must have this environment variable.
+In the tables below you can find descriptions, default values and mandatory
+properties for all environment variables in each Katib component.
+If a variable has a mandatory property, you need to set the relevant
+environment variable in an appropriate Katib component's manifest.
 
 ## Katib Controller
 
-This is the table of environment variables for the [Katib Controller](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/katib-controller/katib-controller.yaml) deployment.
+Bellow are the environment variables for the
+[Katib Controller](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/katib-controller.yaml)
+deployment:
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -33,7 +39,8 @@ This is the table of environment variables for the [Katib Controller](https://gi
       </tr>
       <tr>
         <td><code>KATIB_SUGGESTION_COMPOSER</code></td>
-        <td>Composer for the Katib Suggestions. You can use your own Composer</td>
+        <td> <a href="https://github.com/kubeflow/katib/blob/master/pkg/controller.v1beta1/suggestion/composer/composer.go">Composer</a>
+          for the Katib Suggestions. You can use your own Composer</td>
         <td>general</td>
         <td>No</td>
       </tr>
@@ -71,7 +78,9 @@ If you want to use your own DB Manager to report Katib metrics, you can change `
 
 ## Katib UI
 
-This is the table of environment variables for the [Katib UI](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/ui/deployment.yaml) deployment.
+Below are the environment variables for the
+[Katib UI](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/ui/deployment.yaml)
+deployment:
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -116,7 +125,9 @@ Katib UI calls Katib DB Manager with the same address expression as Katib Contro
 
 ## Katib DB Manager
 
-This is the table of environment variables for the [Katib DB Manager](https://github.com/andreyvelich/katib/blob/doc-katib-config/manifests/v1alpha3/db-manager/deployment.yaml) deployment.
+Bellow are the environment variables for the
+[Katib DB Manager](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/db-manager/deployment.yaml)
+deployment:
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -171,7 +182,8 @@ This is the table of environment variables for the [Katib DB Manager](https://gi
 
 Currently, Katib DB Manager supports only **MySQL** database. You can use your own DB Manager and Database to report metrics.
 
-For the [Katib DB Manager](https://github.com/andreyvelich/katib/blob/doc-katib-config/manifests/v1alpha3/db-manager/deployment.yaml#L29) you can change `DB_PASSWORD` to your own MySQL DB password.
+For the [Katib DB Manager](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/db-manager/deployment.yaml#L29)
+you can change `DB_PASSWORD` to your own MySQL DB password.
 
 Katib DB Manager creates connection to the DB, using `mysql` driver and this data source name:
 
@@ -179,13 +191,17 @@ Katib DB Manager creates connection to the DB, using `mysql` driver and this dat
 
 ## Katib MySQL DB
 
-For the [Katib MySQL](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/mysql-db/deployment.yaml) we set these environment variables:
+For the [Katib MySQL](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/mysql-db/deployment.yaml)
+you need to set these environment variables:
 
-- `MYSQL_ROOT_PASSWORD` to a value from [katib-mysql-secrets](https://github.com/kubeflow/katib/blob/master/manifests/v1alpha3/mysql-db/secret.yaml), which is equal to "test".
+- `MYSQL_ROOT_PASSWORD` to a value from [katib-mysql-secrets](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/mysql-db/secret.yaml),
+  which is equal to "test".
 - `MYSQL_ALLOW_EMPTY_PASSWORD` as `true`
 - `MYSQL_DATABASE` as `katib`.
 
-Check [here](https://github.com/docker-library/docs/tree/master/mysql#environment-variables) about all environment variables for the MySQL Docker image.
+You can refer to the list of
+[all environment variables](https://github.com/docker-library/docs/tree/master/mysql#environment-variables)
+for the MySQL Docker image.
 
 Katib MySQL environment variables must be matched with the Katib DB Manager environment variables, it means:
 

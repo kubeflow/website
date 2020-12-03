@@ -7,6 +7,45 @@ weight = 4
 This guide describes how to use the kfctl CLI to
 deploy Kubeflow on Amazon Web Services (AWS).
 
+## Compatibility
+
+EKS enabled E2E tests between EKS versions and Kubeflow versions since 1.2.
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>EKS Versions</th>
+        <th>Kubeflow 1.2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1.15</td>
+        <td><b>compatible</b></td>
+      </tr>
+      <tr>
+        <td>1.16</td>
+        <td><b>compatible</b></td>
+      </tr>
+      <tr>
+        <td>1.17</td>
+        <td><b>compatible</b></td>
+      </tr>
+      <tr>
+        <td>1.18</td>
+        <td><b>compatible</b></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+- **incompatible**: the combination does not work at all
+- **compatible**: all Kubeflow features have been tested and verified for the
+  EKS version
+- **no known issues**: the combination has not been fully tested but there are
+  no reported issues
+
 ## Prerequisites
 
 * Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl)

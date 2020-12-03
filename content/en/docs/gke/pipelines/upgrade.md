@@ -32,9 +32,9 @@ Upgrade Support for Kubeflow Pipelines Standalone is in **Beta**.
 
 ## Full Kubeflow
 
-On Google Cloud, the full Kubeflow deployment follows [the blueprint pattern](https://googlecontainertools.github.io/kpt/guides/producer/blueprint/) starting from Kubeflow 1.1.
+On Google Cloud, the full Kubeflow deployment follows [the package pattern](https://googlecontainertools.github.io/kpt/guides/producer/packages/) starting from Kubeflow 1.1.
 
-The blueprint pattern enables you to upgrade the full Kubeflow in-place while keeping user customizations — refer to the [Update Kubeflow on Google Cloud](docs/gke/deploy/deploy-cli/#update-kubeflow) documentation for instructions.
+The package pattern enables you to upgrade the full Kubeflow in-place while keeping user customizations — refer to the [Update Kubeflow on Google Cloud](docs/gke/deploy/deploy-cli/#update-kubeflow) documentation for instructions.
 
 However, there's no current support to upgrade from Kubeflow 1.0 or earlier to Kubeflow 1.1 while keeping Kubeflow Pipelines data. This may change in the future, so provide your feedback in [kubeflow/pipelines#4346](https://github.com/kubeflow/pipelines/issues/4346) on GitHub.
 

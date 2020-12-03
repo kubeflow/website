@@ -21,6 +21,9 @@ all Kubeflow components and more integration with each platform.
 1. Do you want to use other Kubeflow components in addition to Pipelines?
 
     If yes, choose the [full Kubeflow deployment](#full-kubeflow-deployment).
+1. Can you use a cloud/on-prem Kubernetes cluster?
+
+    If you can't, you should try using Kubeflow Pipelines on a local Kubernetes cluster for learning and testing purposes by following the steps in [Deploying Kubeflow Pipelines on a local cluster](/docs/pipelines/installation/localcluster-deployment).
 1. Do you want to use Kubeflow Pipelines with [multi-user support](https://github.com/kubeflow/pipelines/issues/1223)?
 
     If yes, choose the [full Kubeflow deployment](#full-kubeflow-deployment) with version >= v1.1.
@@ -118,7 +121,8 @@ Kubeflow Pipelines updates.
 | 0.7.0                  | 0.1.31                     |
 | 1.0.0                  | 0.2.0                      |
 | 1.0.2                  | 0.2.5                      |
-| 1.1.0                  | 1.0.0* (see note below)    |
+| 1.1.0                  | 1.0.0                      |
+| 1.2.0                  | 1.0.4                      |
 
 Note: Google Cloud, AWS, and IBM Cloud have supported Kubeflow Pipelines 1.0.0 with multi-user separation. Other platforms might not be up-to-date for now, refer to [this GitHub issue](https://github.com/kubeflow/manifests/issues/1364#issuecomment-668415871) for status.
 

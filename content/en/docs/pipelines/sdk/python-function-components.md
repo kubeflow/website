@@ -74,7 +74,7 @@ import kfp.components as comp
    `https://my-cluster.my-organization.com/pipelines`. In this case, the
    host name is `my-cluster.my-organization.com`. 
 
-[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client
 
 
 ```python
@@ -86,7 +86,7 @@ client = kfp.Client(host='<your-kubeflow-pipelines-host-name>')
 
 For more information about the Kubeflow Pipelines SDK, see the [SDK reference guide][sdk-ref].
 
-[sdk-ref]: https://kubeflow-pipelines.readthedocs.io/en/latest/index.html
+[sdk-ref]: https://kubeflow-pipelines.readthedocs.io/en/stable/index.html
 
 ## Getting started with Python function-based components
 
@@ -107,7 +107,7 @@ def add(a: float, b: float) -> float:
     factory function that you can use to create [`kfp.dsl.ContainerOp`][container-op] class instances for your pipeline.
     The component specification YAML is a reusable and shareable definition of your component.
 
-[container-op]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp
+[container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp
 
 
 ```python
@@ -487,7 +487,7 @@ my_divmod(100, 7)
     [`kfp.dsl.ContainerOp`][container-op] class instances for your pipeline. This example also specifies the base container
     image to run this function in.
 
-[container-op]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp
+[container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp
 
 
 ```python

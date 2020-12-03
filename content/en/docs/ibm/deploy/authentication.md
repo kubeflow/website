@@ -131,7 +131,6 @@ of the column `Hostname` in step 4:
         number: 443
         protocol: HTTPS
       tls:
-        httpsRedirect: true # sends 301 redirect for http requests
         mode: SIMPLE
         privateKey: /etc/istio/ingressgateway-certs/tls.key
         serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
@@ -146,14 +145,3 @@ The secret in the `default` namespace is automatically renewed by IBM Cloud
 Kubernetes Service 37 days before it expires. After this secret is updated, you 
 must manually copy it to the `istio-ingressgateway-certs` secret by repeating 
 commands in step 5 and 6.
-
-## Updating configuration of the authentication provider
-
-When installing the multi-user, auth-enabled Kubeflow, Kubeflow uses an GitHub 
-OAuth application as the authentication provider. After enabling Expose the 
-Istio ingress gateway with DNS and TLS, you should update this GitHub OAuth app 
-settings by replacing `{HOSTNAME}` with the hostname of created TLS certificate 
-as follows:
-
-* Homepage URL: `https://{HOSTNAME}/`
-* Authorization callback URL: `https://{HOSTNAME}/dex/callback`
