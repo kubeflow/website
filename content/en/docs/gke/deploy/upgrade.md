@@ -15,7 +15,7 @@ This guide assumes the following settings:
 
 * The `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
   are the same as in [Management cluster setup](../management-setup#environment-variables).
-* The `${KF_DIR` and `${KF_NAME}` environment variables
+* The `${KF_DIR}` and `${KF_NAME}` environment variables
   are the same as in [Deploy using kubectl and kpt](../deploy-cli#environment-variables).
 
 ## General upgrade instructions
