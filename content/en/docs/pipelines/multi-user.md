@@ -75,7 +75,7 @@ print(client.list_runs(namespace='<Your namespace>'))
 ```
 
 To store your user namespace as the default context, use the
-[`set_user_namespace`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client.set_user_namespace)
+[`set_user_namespace`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client.set_user_namespace)
 method. This method stores your user namespace in a configuration file at
 `$HOME/.config/kfp/context.json`. After setting a default namespace, the SDK
 methods default to use this namespace if no namespace argument is provided.
@@ -104,17 +104,17 @@ in-cluster workload directly, read [Current Limitations section](#current-limita
 for more details.
 
 Detailed documentation for the Kubeflow Pipelines SDK can be found in the
-[Kubeflow Pipelines SDK Reference](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html).
+[Kubeflow Pipelines SDK Reference](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html).
 
 ### When using REST API or generated python API client
 
 Similarly, when calling [REST API endpoints](/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/)
-or using [the generated python API client](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.server_api.html),
+or using [the generated python API client](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.server_api.html),
 namespace argument is required for experiment APIs. Note that namespace is
 referred to using a resource reference. The resource reference **type** is
 `NAMESPACE` and resource reference **key id** is the namespace name.
 
-The following example demonstrates how to use [the generated Python API client (kf-server-api)](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.server_api.html) in a multi-user environment.
+The following example demonstrates how to use [the generated Python API client (kf-server-api)](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.server_api.html) in a multi-user environment.
 
 ```python
 from kfp_server_api import ApiRun, ApiPipelineSpec, \

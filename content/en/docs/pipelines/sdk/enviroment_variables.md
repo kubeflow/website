@@ -29,7 +29,7 @@ component, which writes the variable's value to the log.
 [Learn more about lightweight Python components](/docs/pipelines/sdk/lightweight-python-components/)
 
 To build a component, define a stand-alone Python function and then call 
-[kfp.components.func_to_container_op(func)](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.func_to_container_op) to convert the 
+[kfp.components.func_to_container_op(func)](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.func_to_container_op) to convert the 
 function to a component that can be used in a pipeline. The following function gets an 
 environment variable and writes it to the log.
 
@@ -43,16 +43,16 @@ def logg_env_function():
 ```
 
 Transform the function into a component using 
-[kfp.components.func_to_container_op(func)](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.func_to_container_op).  
+[kfp.components.func_to_container_op(func)](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.func_to_container_op).  
 ```python
 image_name = 'tensorflow/tensorflow:1.11.0-py3'
 logg_env_function_op = comp.func_to_container_op(logg_env_function,
                                                  base_image=image_name)
 ```
 
-Add this component to a pipeline. Use [add_env_variable](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp.container) to pass an 
+Add this component to a pipeline. Use [add_env_variable](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp.container) to pass an 
 environment variable into the component. This code is the same no matter if your
-using python lightweight components or a [container operation](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp). 
+using python lightweight components or a [container operation](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp). 
 
 
 ```python
@@ -70,7 +70,7 @@ def environment_pipeline():
 ```
 
 To pass more environment variables into a component, add more instances of 
-[add_env_variable()](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp.container). Use the following command to run this pipeline using the 
+[add_env_variable()](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp.container). Use the following command to run this pipeline using the 
 Kubeflow Pipelines SDK.
 
 ```python

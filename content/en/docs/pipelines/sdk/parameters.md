@@ -6,7 +6,7 @@ weight = 70
 +++
 
 The [`kfp.dsl.PipelineParam` 
-class](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineParam)
+class](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.PipelineParam)
 represents a reference to future data that will be passed to the pipeline or produced by a task.
 
 Your pipeline function should have parameters, so that they can later be configured in the Kubeflow Pipelines UI.

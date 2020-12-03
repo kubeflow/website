@@ -60,7 +60,7 @@ kubectl -n <my_namespace> create secret docker-registry <secret_name> \
 
 ### Using container images from ICR in Kubeflow Pipelines
 
-The pull image secret may be set in Kubeflow Pipelines SDK's [`PipelineConf`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineConf). Refer to this [`imagepullsecrets.py`](https://github.com/kubeflow/pipelines/blob/ef381aafccf916482d16774cac3b8568d06dff9e/samples/core/imagepullsecrets/imagepullsecrets.py#L55) sample in Kubeflow Pipelines project for usage.
+The pull image secret may be set in Kubeflow Pipelines SDK's [`PipelineConf`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.PipelineConf). Refer to this [`imagepullsecrets.py`](https://github.com/kubeflow/pipelines/blob/ef381aafccf916482d16774cac3b8568d06dff9e/samples/core/imagepullsecrets/imagepullsecrets.py#L55) sample in Kubeflow Pipelines project for usage.
 
 ### Using notebook images from ICR in a Jupyter Notebook
 

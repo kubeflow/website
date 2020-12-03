@@ -11,7 +11,7 @@ which you can use to build machine learning pipelines. You can use the SDK
 to execute your pipeline, or alternatively you can upload the pipeline to
 the Kubeflow Pipelines UI for execution.
 
-All of the SDK's classes and methods are described in the auto-generated [SDK reference docs](https://kubeflow-pipelines.readthedocs.io/en/latest/).
+All of the SDK's classes and methods are described in the auto-generated [SDK reference docs](https://kubeflow-pipelines.readthedocs.io/en/stable/).
 
 **Note:** If you are running [Kubeflow Pipelines with Tekton](https://github.com/kubeflow/kfp-tekton),
 instead of the default [Kubeflow Pipelines with Argo](https://github.com/kubeflow/pipelines), you should use the
