@@ -68,11 +68,11 @@ import kfp.components as comp
 ```
 
 3. Create an instance of the [`kfp.Client` class][kfp-client]. To find your
-   Kubeflow Pipelines cluster's host name, open the Kubeflow Pipelines user
+   Kubeflow Pipelines cluster's hostname, open the Kubeflow Pipelines user
    interface in your browser. The URL of the Kubeflow Pipelines user
    interface is something like 
    `https://my-cluster.my-organization.com/pipelines`. In this case, the
-   host name is `my-cluster.my-organization.com`. 
+   hostname is `my-cluster.my-organization.com`. 
 
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client
 
