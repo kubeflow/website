@@ -20,7 +20,7 @@ Kubeflow cluster.
 
 Follow the guide to [deploying Kubeflow on Google Cloud](/docs/gke/deploy/deploy-cli/).
 When you reach the 
-[setup and deploy step](/docs/gke/deploy/deploy-cli/#set-up-and-deploy),
+[setup and deploy step](/docs/gke/deploy/deploy-cli/#deploy-kubeflow),
 **skip the `kfctl apply` command** and run the **`kfctl build`** command 
 instead, as  described in that step. Now you can edit the configuration files 
 before deploying Kubeflow.
@@ -251,7 +251,7 @@ More detailed instructions follow.
 
 * Choose a zone you want to deploy in that has your required CPU. Zones are listed in the [Regions and Zones documentation](https://cloud.google.com/compute/docs/regions-zones/).
 
-* Deploy Kubeflow normally as specified in the ["Deploy using CLI" documentation](/docs/gke/deploy/deploy-cli/), but stop at section ["Set up and deploy Kubeflow"](/docs/gke/deploy/deploy-cli/#set-up-and-deploy-kubeflow). Instead, navigate to section ["Alternatively, set up your configuration for later deployment"](/docs/gke/deploy/deploy-cli/#alternatively-set-up-your-configuration-for-later-deployment). Then follow the steps until you are instructed to edit configuration files.
+* Deploy Kubeflow normally as specified in the ["Deploy using CLI" documentation](/docs/gke/deploy/deploy-cli/), but stop at section ["Set up and deploy Kubeflow"](/docs/gke/deploy/deploy-cli/#deploy-kubeflow). Instead, navigate to section ["Alternatively, set up your configuration for later deployment"](/docs/gke/deploy/deploy-cli/#alternatively-set-up-your-configuration-for-later-deployment). Then follow the steps until you are instructed to edit configuration files.
 
 * Navigate to the `gcp_config directory` and open the `cluster.jinja` file. Change the cluster property `minCpuPlatform`. For example, from `Intel Broadwell` to `Intel Skylake`. Note: you may notice there are two minCpuPlatform properties in the file. One of them is for GPU node pools. Not all CPU/GPU combinations are compatible, so leave the GPU minCpuPlatform property untouched.
 

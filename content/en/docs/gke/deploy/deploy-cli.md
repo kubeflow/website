@@ -11,7 +11,6 @@ deploy Kubeflow on Google Cloud.
 
 Before installing Kubeflow on the command line:
 
-
 1. You must have created a management cluster and installed Config Connector.
 
    * If you don't have a management cluster follow the [instructions](../management-setup/)
@@ -32,8 +31,39 @@ one if you haven't already.
   to create OAuth credentials for [Cloud Identity-Aware Proxy (Cloud
   IAP)](https://cloud.google.com/iap/docs/).
 
-Refer to 
+Refer to
 [Understanding the deployment process](#understanding-the-deployment-process) for more information on the kfctl configuration and deployment process.
+
+### Environment Variables
+
+This guide assumes the following settings:
+
+* The `${MGMT_NAME}` environment variable contains the name of your management cluster created in [Management cluster setup](../management-setup).
+* The `${MGMTCTXT}` environment variable contains a kubectl context that connects
+  to the `${KF_PROJECT}` namespace of the management cluster. By default, [Management
+  cluster setup](../management-setup) creates a context named `${MGMT_NAME}` for you.
+* The `${KF_NAME}` environment variable contains the name of your Kubeflow cluster.
+* The `${KF_PROJECT}` environment variable contains the Google Cloud project ID where Kubeflow cluster will be deployed to.
+* The `${KF_DIR}` environment variable contains the path where you want to
+put your Kubeflow application directory, which holds your Kubeflow configuration
+files. For example, `~/kf-deployments/my-kubeflow/`. You can choose any path you
+would like for the directory `${KF_DIR}`.
+
+  To continously manage the Kubeflow cluster, you are recommended to check
+  the Kubeflow configuration directory into source control.
+
+Set these environment variables in your shell:
+
+```bash
+KF_NAME=<name of your Kubeflow cluster>
+KF_PROJECT=<the project where you deploy your Kubeflow cluster>
+KF_DIR=<path to your management cluster configuration directory>
+MGMT_NAME=<name of your management cluster>
+MGMTCTXT="${MGMT_NAME}"
+```
+
+However, the environment variables are used purely for command illustration
+purpose. No tools will assume they actually exists in your terminal environment.
 
 ### Install the required tools
 
@@ -41,83 +71,69 @@ Refer to
 
 1. Install gcloud components
 
-   ```
-   gcloud components install kpt anthoscli beta
-   gcloud components update
-   ```
-
-1. Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-
-1. Install [Kustomize v3.2.1](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv3.2.1).
-
-    Note, Kubeflow is not compatible with later versions of Kustomize. Read [this GitHub issue](https://github.com/kubeflow/manifests/issues/538) for the latest status.
-    
-    To deploy Kustomize v3.2.1 on a Linux machine, run the following commands:
-
+    ```bash
+    gcloud components install kubectl kpt anthoscli beta
+    gcloud components update
     ```
-    curl -LO https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.2.1/kustomize_kustomize.v3.2.1_linux_amd64
-    mv kustomize_kustomize.v3.2.1_linux_amd64 kustomize
-    chmod +x ./kustomize
-    
-    # We need to add the kustomize package to your $PATH env variable
+
+1. Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
+
+    **Note:** Prior to Kubeflow v1.2, Kubeflow was compatible only with Kustomize `v3.2.1`. Starting from Kubeflow v1.2, you can now use the latest Kustomize versions to install Kubeflow.
+
+    To deploy the latest version of Kustomize on a Linux or Mac machine, run the following commands:
+
+    ```bash
+    # Detect your OS and download the corresponding latest Kustomize binary
+    curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+
+    # Add the kustomize package to your $PATH env variable
     sudo mv ./kustomize /usr/local/bin/kustomize
     ```
 
-    Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/v3.2.1` in the output if you've successfully deployed Kustomize.
+    Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/vX.Y.Z` in the output if you've successfully deployed Kustomize.
 
 1. Install [yq](https://github.com/mikefarah/yq)
 
-   ```
+   ```bash
    GO111MODULE=on go get github.com/mikefarah/yq/v3
    ```
 
    * If you don't have [Go](https://golang.org) installed you can download
      a binary from [yq's GitHub releases](https://github.com/mikefarah/yq/releases).
 
-1.  Follow the instructions from [Preparing to install Anthos Service Mesh](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#preparing_to_install_anthos_service_mesh) to install `istioctl`.
+1. Follow the instructions from [Preparing to install Anthos Service Mesh](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#preparing_to_install_anthos_service_mesh) to install `istioctl`.
 
-    Note, the `istioctl` downloaded from above instructions is specific to Anthos Service Mesh. It is different from the `istioctl` you can download on https://istio.io/.
+    Note, the `istioctl` downloaded from above instructions is specific to Anthos Service Mesh. It is different from the `istioctl` you can download on <https://istio.io/>.
 
-<a id="prepare-environment"></a>
 ## Prepare your environment
 
 1. Log in. You only need to run this command once:
 
-    ```
+    ```bash
     gcloud auth login
     ```
 
 ## Fetch packages using kpt
 
-1. Fetch the blueprint
+1. Fetch the Kubeflow package
 
+   ```bash
+   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.2.0 "${KF_DIR}"
    ```
-   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.1.0 ./${KFDIR}
-   ```
-
-   * You can choose any name you would like for the directory ${KFDIR}
 
 1. Change to the Kubeflow directory
 
+   ```bash
+   cd "${KF_DIR}"
    ```
-   cd ${KFDIR}
-   ```
+
+   Note, all the instructions below assume your current working directory is `${KF_DIR}`.
 
 1. Fetch Kubeflow manifests
 
-   ```
+   ```bash
    make get-pkg
    ```
-
-  * This generates an error like the one below but you can ignore it;
-
-    ```
-    kpt pkg get https://github.com/jlewi/manifests.git@blueprints ./upstream
-    fetching package / from https://github.com/jlewi/manifests to upstream/manifests
-    Error: resources must be annotated with config.kubernetes.io/index to be written to files
-    ```
-
-    * This is being tracked in [GoogleContainerTools/kpt#539](https://github.com/GoogleContainerTools/kpt/issues/539)
 
 ## Configure Kubeflow
 
@@ -132,33 +148,55 @@ location | The zone or region you want to deploy in |
 gcloud.compute.region | The region you are deploying in |
 gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.compute.region |
 
+* `${KF_NAME}` is the cluster name of your Kubeflow cluster and prefix for other Google Cloud resources created in the deployment process. Kubeflow cluster
+  should be a different cluster from your management cluster.
+
+  Note, `${KF_NAME}` should
+  * start with a lowercase letter
+  * only contain lowercase letters, numbers and `-`
+  * end with a number or a letter
+  * contain no more than 24 characters
+
 * Location can be a zone or a region depending on whether you want a regional cluster
 
   * Currently, Kubeflow Pipelines doesn't work with regional deployments. For more, go to [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6).
 
-* The **Makefile** at `${KFDIR}/kubeflow/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
+* The **Makefile** at `${KF_DIR}/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
   of the parameters
 
-* You need to edit the makefile at `${KFDIR}/kubeflow/Makefile` to set the parameters to the desired values.
+* You need to edit the makefile at `${KF_DIR}/Makefile` to set the parameters to the desired values.
 
-   * Note there are multiple invocations of `kpt cfg set` on different directories to
+  * The management cluster deployment instructions creates a kubectl context
+    named `${MGMT_NAME}` for you. You can use it as `${MGMTCTXT}`:
+
+    ```bash
+    kpt cfg set ./instance mgmt-ctxt <YOUR_MANAGEMENT_CTXT>
+    ```
+
+  * Note there are multiple invocations of `kpt cfg set` on different directories to
      work around [GoogleContainerTools/kpt#541](https://github.com/GoogleContainerTools/kpt/issues/541)
 
-* You need to configure the kubectl context provided in `mgmt-ctxt`.
+* You need to configure the kubectl context `${MGMTCTXT}`.
 
   * Choose the management cluster context
+
     ```bash
-    kubectl config use-context ${mgmt-ctxt}
+    kubectl config use-context "${MGMTCTXT}"
     ```
 
   * Create a namespace in your management cluster for the managed project if you haven't done so.
+
     ```bash
-    kubectl create namespace ${PROJECT}
+    kubectl create namespace "${KF_PROJECT}"
     ```
 
-  * Make the managed project's namespace default of the context:
+    where `${KF_PROJECT}` is your `${MANAGED_PROJECT}` mentioned in the [Authorize Cloud Config Connector for each managed project
+](../management-setup/#authorize-cloud-config-connector-for-each-managed-project) step.
+
+  * Make the Kubeflow project's namespace default of the `${MGMTCTXT}` context:
+
     ```bash
-    kubectl config set-context --current --namespace ${PROJECT}
+    kubectl config set-context --current --namespace "${KF_PROJECT}"
     ```
 
 * If you haven't previously created an OAuth client for IAP then follow
@@ -168,25 +206,27 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
   * Unfortunately [GKE's BackendConfig](https://cloud.google.com/kubernetes-engine/docs/concepts/backendconfig)
     currently doesn't support creating [IAP OAuth clients programmatically](https://cloud.google.com/iap/docs/programmatic-oauth-clients).
 
-*  Set environment variables with OAuth Client ID and Secret for IAP
+* Set environment variables with OAuth Client ID and Secret for IAP:
 
-   ```
+   ```bash
    export CLIENT_ID=<Your CLIENT_ID>
    export CLIENT_SECRET=<Your CLIENT_SECRET>
    ```
 
-* Invoke the make rule to set the kpt setters
+   Note, do not omit the `export` because scripts triggered by `make` need these
+   environment variables.
 
-  ```
+* Invoke the make rule to set the kpt setters:
+
+  ```bash
   make set-values
   ```
 
-<a id="set-up-and-deploy"></a>
 ## Deploy Kubeflow
 
 To deploy Kubeflow, run the following command:
 
-```
+```bash
 make apply
 ```
 
@@ -197,13 +237,12 @@ make apply
 
 * If resources can't be created with an error message like:
 
-  ```
+  ```bash
   error: unable to recognize ".build/application/app.k8s.io_v1beta1_application_application-controller-kubeflow.yaml": no matches for kind "Application" in version "app.k8s.io/v1beta1”
   ```
 
   This issue occurs when the CRD endpoint isn't established in the Kubernetes API server when the CRD's custom object is applied.
   This issue is expected and can happen multiple times for different kinds of resource. To resolve this issue, try running `make apply` again.
-
 
 ## Check your deployment
 
@@ -213,13 +252,13 @@ Follow these steps to verify the deployment:
    `kubeflow` in your new cluster.  To do this from the command line, first set
    your `kubectl` credentials to point to the new cluster:
 
-    ```
-    gcloud container clusters get-credentials ${KF_NAME} --zone ${ZONE} --project ${PROJECT}
+    ```bash
+    gcloud container clusters get-credentials "${KF_NAME}" --zone "${ZONE}" --project "${KF_PROJECT}"
     ```
 
-    Then see what's installed in the `kubeflow` namespace of your GKE cluster:
+    Then, check what's installed in the `kubeflow` namespace of your GKE cluster:
 
-    ```
+    ```bash
     kubectl -n kubeflow get all
     ```
 
@@ -229,22 +268,18 @@ To access the Kubeflow central dashboard, follow these steps:
 
 1. Use the following command to grant yourself the [IAP-secured Web App User](https://cloud.google.com/iap/docs/managing-access) role:
 
-    ```
-    gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/iap.httpsResourceAccessor
+    ```bash
+    gcloud projects add-iam-policy-binding "${KF_PROJECT}" --member=user:<EMAIL> --role=roles/iap.httpsResourceAccessor
     ```
 
     Note, you need the `IAP-secured Web App User` role even if you are already an owner or editor of the project. `IAP-secured Web App User` role is not implied by the `Project Owner` or `Project Editor` roles.
 
 1. Enter the following URI into your browser address bar. It can take 20
-  minutes for the URI to become available:
-
-    ```
-    https://<KF_NAME>.endpoints.<project-id>.cloud.goog/
-    ```
+  minutes for the URI to become available: `https://${KF_NAME}.endpoints.${KF_PROJECT}.cloud.goog/`
 
     You can run the following command to get the URI for your deployment:
 
-    ```
+    ```bash
     kubectl -n istio-system get ingress
     NAME            HOSTS                                                      ADDRESS         PORTS   AGE
     envoy-ingress   your-kubeflow-name.endpoints.your-gcp-project.cloud.goog   34.102.232.34   80      5d13h
@@ -252,7 +287,7 @@ To access the Kubeflow central dashboard, follow these steps:
 
     The following command sets an environment variable named `HOST` to the URI:
 
-    ```
+    ```bash
     export HOST=$(kubectl -n istio-system get ingress envoy-ingress -o=jsonpath={.spec.rules[0].host})
     ```
 
@@ -267,33 +302,11 @@ Notes:
 * If you own or manage the domain or a subdomain with
   [Cloud DNS](https://cloud.google.com/dns/docs/)
   then you can configure this process to be much faster.
-  See [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
+  Check [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
 
+## Upgrade Kubeflow
 
-## Update Kubeflow
-
-To update Kubeflow
-
-1. Edit the Makefile at `${KFDIR}/kubeflow/Makefile` and change `MANIFESTS_URL` to point at the version of Kubeflow manifests you
-   want to use
-
-   * Refer to the [kpt docs](https://googlecontainertools.github.io/kpt/reference/pkg/) for
-     more info about supported dependencies
-
-1. Update the local copies
-
-   ```
-   make update
-   ```
-
-1. Redeploy
-
-   ```
-   make apply
-   ```
-
-To evaluate the changes before deploying them you can run `make hydrate` and then compare the contents
-of `.build` to what is currently deployed.
+Refer to [Upgrading Kubeflow cluster](/docs/gke/deploy/upgrade#upgrading-kubeflow-cluster).
 
 ## Understanding the deployment process
 
@@ -303,8 +316,10 @@ necessary.
 
 ### Application layout
 
-Your Kubeflow application directory **${KFDIR}** contains the following files and
+Your Kubeflow application directory **${KF_DIR}** contains the following files and
 directories:
+
+* **Makefile** is a file that defines rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
 
 * **upstream** is a directory containing kustomize packages for deploying Kubeflow
 
@@ -328,10 +343,9 @@ directories:
 
 ### Source Control
 
-It is recommended that you check in your entire **${KFDIR}** into source control.
+It is recommended that you check in your entire **${KF_DIR}** into source control.
 
 Checking in **.build** is recommended so you can easily see differences in manifests before applying them.
-
 
 ### Google Cloud service accounts
 
@@ -349,7 +363,6 @@ The service accounts are:
 * `${KF_NAME}-vm` is used only for the virtual machine (VM) service account. This
   account has the minimal permissions needed to send metrics and logs to
   [Stackdriver](https://cloud.google.com/stackdriver/).
-
 
 ## Next steps
 
