@@ -25,7 +25,7 @@ Once you get cookie, you can easily authenticate `kfp` by passing the `cookies`.
 
 To get `<aws_alb_host>`, please run `kubectl get ingress -n istio-system` and get value from `ADDRESS` field.
 
- - dex {{% config-uri-aws-standard %}}
+ - dex {{% aws/config-uri-aws-standard %}}
 
 ```bash
 import kfp
@@ -34,7 +34,7 @@ client = kfp.Client(host='http://<aws_alb_host>/pipeline', cookies=authservice_s
 client.list_experiments(namespace="<your_namespace>")
 ```
 
- - cognito {{% config-uri-aws-cognito %}}
+ - cognito {{% aws/config-uri-aws-cognito %}}
 
 ```bash
 import kfp
@@ -46,12 +46,12 @@ client.list_experiments(namespace="<your_namespace>")
 
 ## Authenticate Kubeflow Pipeline using SDK outside cluster
 
-- dex {{% config-uri-aws-standard %}}
+- dex {{% aws/config-uri-aws-standard %}}
 
 To do programmatic authentication with Dex, refer to the following comments under the [#140](https://github.com/kubeflow/kfctl/issues/140) issue in the `kfctl` repository: [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) and [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-719894529).
 
 
-- cognito {{% config-uri-aws-cognito %}}
+- cognito {{% aws/config-uri-aws-cognito %}}
 
 You can still retrieve session cookie and pass to backend like we do [here]
 (#authenticate-kubeflow-pipeline-using-sdk-inside-cluster)
