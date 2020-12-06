@@ -131,11 +131,11 @@ directories:
 
 ## Kubeflow installation
 
-**NOTE**: kfctl is currently available for Linux and macOS users only. If you are on windows then [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) on windows can be used to install kfctl.
+**Note**: kfctl is currently available for Linux and macOS users only. If you use Windows, you can install kfctl on Windows Subsystem for Linux (WSL). Refer to the official [instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for setting up WSL.
 
-Run the following commands to set up and deploy Kubeflow.
+Run the following commands to set up and deploy Kubeflow:
 
-1. Download the kfctl {{% kf-latest-version %}} release from the
+1. Download the latest kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 
   page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
 
