@@ -207,7 +207,7 @@ application in AppID and manages user authentication with builtin identity
 providers (Cloud Directory, SAML, social log-in with Google or Facebook etc.) or
 custom providers.
 
-1. Setup environment variables:
+1. Set up environment variables:
 
     ```shell
     export KF_NAME=<your choice of name for the Kubeflow deployment>
@@ -220,7 +220,7 @@ custom providers.
     export KF_DIR=${BASE_DIR}/${KF_NAME}
     ```
 
-2. Setup configuration files:
+2. Set up configuration files:
 
     ```shell
     export CONFIG_FILE=kfctl_ibm_multi_user.yaml
