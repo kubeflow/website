@@ -142,7 +142,7 @@ kubeflow is defined. These are described in the table below.
 
 kpt setter | Description |
 -----------|-------------|
-mgmt-ctxt | This is the name of the KUBECONFIG context for the management cluster; this kubecontext will be used to create CNRM resources for your Kubeflow deployment. **The context must set the namespace to the namespace in your CNRM cluster where you are creating CNRM resources for the managed project.**|
+mgmt-ctxt | This is the name of the KUBECONFIG context for the management cluster; this kubecontext will be used to create Config Connector resources for your Kubeflow deployment. **The context must set the namespace to the namespace in your management cluster where you are creating Config Connector resources for the managed project.**|
 gcloud.core.project| The project you want to deploy in |
 location | The zone or region you want to deploy in |
 gcloud.compute.region | The region you are deploying in |

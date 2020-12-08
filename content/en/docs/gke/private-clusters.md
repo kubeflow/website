@@ -11,14 +11,14 @@ These instructions explain how to deploy Kubeflow using private GKE.
 
 1. As a workaround for Issue
    [kubeflow/gcp-blueprints#32](https://github.com/kubeflow/gcp-blueprints/issues/32)
-   (in CNRM 1.9.1, the [CustomResourceDefinition
+   (in Config Connector 1.9.1, the [CustomResourceDefinition
    (CRD)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions)
    for container cluster is missing `ipAllocationPolicy` fields needed to create
    a private GKE cluster), modify the container cluster CRD schema in your
    management cluster to include the missing fields.
 
    * Check Issue [kubeflow/gcp-blueprints#32](https://github.com/kubeflow/gcp-blueprints/issues/32)
-     to find out if it has been resolved in later versions of CNRM. If the issue hasn't been resolved,
+     to find out if it has been resolved in later versions of Config Connector. If the issue hasn't been resolved,
      you can follow the instructions in the issue to work around the problem.
 
 1. Fetch the blueprint by running this command:
@@ -201,7 +201,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
 
   * This likely indicates an issue with access to private GCR. This could be because of:
 
-    * DNS configurations: Check that the `DNSRecordSet` and `DNSManagedZone` CNRM resources are in a ready state.
+    * DNS configurations: Check that the `DNSRecordSet` and `DNSManagedZone` Config Connector resources are in a ready state.
     * Routes: Make sure any default route to the internet has a larger value for the priority 
         then any routes to private GCP APIs so that the private routes match first.
 
