@@ -78,7 +78,7 @@ Then click **SAVE** button and go to the [Auth0 Dashboard](https://manage.auth0.
 
 ### 5. Deploy Kubeflow
 
-Download [{{% config-file-aws-cognito %}}]({{% config-uri-aws-cognito %}}). Before you `kfctl apply -V -f {{% config-file-aws-cognito %}}`, please update **spec** and **repos** fields in your Kubeflow configuration file at `{{% config-file-aws-cognito %}}`, so that it looks like this:
+Download [{{% aws/config-file-aws-cognito %}}]({{% aws/config-uri-aws-cognito %}}). Before you `kfctl apply -V -f {{% aws/config-file-aws-cognito %}}`, please update **spec** and **repos** fields in your Kubeflow configuration file at `{{% aws/config-file-aws-cognito %}}`, so that it looks like this:
 ```
 plugins:
 - kind: KfAwsPlugin
@@ -101,7 +101,7 @@ plugins:
     uri: https://github.com/kubeflow/manifests/archive/v1.0-branch.tar.gz
 ```
 
-After you finish the TLS and Authentication configuration, then you can run `kfctl apply -V -f {{% config-file-aws-cognito %}}`.
+After you finish the TLS and Authentication configuration, then you can run `kfctl apply -V -f {{% aws/config-file-aws-cognito %}}`.
 
 After a while, your ALB will be ready, you can get ALB hostname by running follow command.
 

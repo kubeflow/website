@@ -74,14 +74,14 @@ In order to deploy Kubeflow on your existing Amazon EKS cluster, you need to pro
 Follow these steps to download the kfctl binary for the Kubeflow CLI and set
 some handy environment variables:
 
-1. Download the kfctl {{% kfctl-aws %}} release from the
+1. Download the kfctl {{% aws/kfctl-aws %}} release from the
   [Kubeflow releases
-  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kfctl-aws %}}).
+  page](https://github.com/kubeflow/kfctl/releases/tag/{{% aws/kfctl-aws %}}).
 
 1. Unpack the tar ball:
 
     ```
-    tar -xvf kfctl_{{% kfctl-aws %}}_<platform>.tar.gz
+    tar -xvf kfctl_{{% aws/kfctl-aws %}}_<platform>.tar.gz
     ```
 
 1. Create environment variables to make the deployment process easier:
@@ -91,11 +91,11 @@ some handy environment variables:
     export PATH=$PATH:"<path to kfctl>"
 
     # 2. Use the following kfctl configuration file for the AWS setup without authentication:
-    export CONFIG_URI="{{% config-uri-aws-standard %}}"
+    export CONFIG_URI="{{% aws/config-uri-aws-standard %}}"
 
     # Alternatively, use the following kfctl configuration if you want to enable
     # authentication, authorization and multi-user:
-    export CONFIG_URI="{{% config-uri-aws-cognito %}}"
+    export CONFIG_URI="{{% aws/config-uri-aws-cognito %}}"
 
     # 3. Set an environment variable for your AWS cluster name.
     export AWS_CLUSTER_NAME=<YOUR EKS CLUSTER NAME>
@@ -113,8 +113,8 @@ Notes:
   you want to use to deploy Kubeflow. For AWS deployments, the following
   configurations are available:
 
-  * `{{% config-uri-aws-standard %}}`
-  * `{{% config-uri-aws-cognito %}}`
+  * `{{% aws/config-uri-aws-standard %}}`
+  * `{{% aws/config-uri-aws-cognito %}}`
 
     When you run `kfctl apply` or `kfctl build` (see the next step), kfctl creates
     a local version of the configuration YAML file which you can further
@@ -217,7 +217,7 @@ This deployment may take 3-5 minutes to become ready. Verify that the address wo
   If you're using basic authentication, the credentials are the ones you specified in the KfDef file, or the default (`admin@kubeflow.org`:`12341234`). It is highly recommended to change the default credentials. To add static users or change the existing one, [add static users for basic auth](/docs/aws/deploy/install-kubeflow/#add-static-users-for-basic-auth).
 
 - **Cognito**
-  To secure an enterprise-level installation, use the {{% config-uri-aws-cognito %}} configuration file and [configure authentication and authorization](/docs/aws/authentication) for your cluster.
+  To secure an enterprise-level installation, use the {{% aws/config-uri-aws-cognito %}} configuration file and [configure authentication and authorization](/docs/aws/authentication) for your cluster.
 
 ### Add static users for basic authentication 
 To add users to basic auth, you just have to edit the Dex ConfigMap under the key staticPasswords.

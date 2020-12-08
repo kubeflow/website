@@ -10,7 +10,7 @@ This section shows the how to setup Kubeflow with authentication and authorizati
 ## Manifest
 
 In order to simply your setups, we highly recommend you to use this manifest.
-{{% config-uri-aws-cognito %}}
+{{% aws/config-uri-aws-cognito %}}
 
 ## Traffic Flow
 External Traffic → [ Ingress → Istio ingress gateway → Istio virtual services ]
