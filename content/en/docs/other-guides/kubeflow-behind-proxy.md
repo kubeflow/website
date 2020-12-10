@@ -67,3 +67,48 @@ kfctl build -V -f kfctl_k8s_istio.yaml
 ```shell
 kfctl apply -V -f kfctl_k8s_istio.yaml
 ```
+
+# To Use a ConfigMap to Configure Kubeflow Proxy
+An alternative to changing the manifests would be to use `PodDefault` to inject the proxy configuration via a (ConfigMap)[https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/] 
+
+A sample config map may look like the following:
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: proxies
+data:
+  HTTP_PROXY: http://my-proxy.exemple.com:3128
+  HTTPS_PROXY: http://my-proxy.exemple.com:3128
+  NO_PROXY: exemple.com,localhost,cluster.local,192.168.0.0/16,172.16.0.0/12,10.247.0.0/16
+```
+
+Then, create a `PodDefault`:
+```
+apiVersion: kubeflow.org/v1alpha1
+kind: PodDefault
+metadata:
+  name: my-proxies
+spec:
+  desc: Inject proxies environment variables to get access to Internet
+  selector:
+    matchLabels:
+      my-proxies: "true"
+  envFrom:
+  - configMapRef:
+    name: proxies
+```
+
+Now, any pod with the label `my-proxies` will automatically have these environment variables available to them.
+
+To do so after deployment, you can use `kubectl` 
+
+```
+# # Assign label 'my-proxies=true' to a single pod
+# kubectl label pods my-pod my-proxies=true     
+
+# # Assign label 'my-proxies=true' to a group of pods with the label 'group-of-pods'
+# kubectl label pods -l group-of-pods my-proxies=true     
+```
+
+Though, this is not recommended - it's better to add the label during initial deployment. 
