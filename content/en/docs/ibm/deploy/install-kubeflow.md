@@ -135,6 +135,8 @@ Run the following commands to set up and deploy Kubeflow.
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 
   page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
+  
+  **Note**: You're strongly recommended to install **kfctl v1.2** or above because kfctl v1.2 addresses several critical bugs that can break the Kubeflow deployment.
 
 1. Unpack the tar ball
       ```
@@ -146,6 +148,8 @@ Run the following commands to set up and deploy Kubeflow.
       ```
     
 Choose either **single user** or **multi-tenant** section based on your usage.
+
+If you're experiencing issues during the installation because of conflicts on your Kubeflow deployment, you can [uninstall Kubeflow](#uninstall-kubeflow) and install it again.
 
 ### Single user
 Run the following commands to set up and deploy Kubeflow for a single user without any authentication.
@@ -190,6 +194,8 @@ kfctl apply -V -f ${CONFIG_FILE}
   configurations are stored, that is, the Kubeflow application directory. 
 
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
+
+The Kubeflow endpoint is exposed with [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) 31380. If you don't have any experience on Kubernetes, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer) and access the **EXTERNAL_IP**.
 
 ### Multi-user, auth-enabled
 
@@ -252,7 +258,7 @@ configuration parameters from your AppID:
     * `oAuthServerUrl`
     
 7. Register the Kubeflow OIDC redirect page. The Kubeflow OIDC redirect URL is `http://<kubeflow-FQDN>/login/oidc`. 
-`<kubeflow-FQDN>` is the endpoint for accessing Kubeflow. By default, the `<kubeflow-FQDN>` on IBM Cloud is `<worker_node_external_ip>:31380`.
+`<kubeflow-FQDN>` is the endpoint for accessing Kubeflow. By default, the `<kubeflow-FQDN>` on IBM Cloud is `<worker_node_external_ip>:31380`. If you don't have any experience on Kubernetes, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer) and use the **EXTERNAL_IP** for your `<kubeflow-FQDN>`.
 
   Then, you need to place the Kubeflow OIDC redirect URL under **Manage Authentication** > **Authentication settings** > **Add web redirect URLs**.
   
@@ -315,3 +321,30 @@ Then visit `https://<kubeflow-FQDN>/`, it should redirect you to AppID for authe
 ## Additional information
 
 You can find general information about Kubeflow configuration in the guide to [configuring Kubeflow with kfctl and kustomize](/docs/other-guides/kustomize/).
+
+## Troubleshooting
+
+### Expose the Kubeflow endpoint as a LoadBalancer
+
+By default, the Kubeflow deployment on IBM Cloud only exposes the endpoint as [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) 31380. If you want to expose the endpoint as a [LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer), run:
+
+```shell
+kubectl patch svc istio-ingressgateway -n istio-system -p '{"spec": {"type": "LoadBalancer"}}'
+```
+
+Then, you can locate the LoadBalancer in the **EXTERNAL_IP** column when you run the following command:
+
+```shell
+kubectl get svc istio-ingressgateway -n istio-system
+```
+
+### Uninstall Kubeflow
+
+To uninstall Kubeflow and clean up all the local cache, run the following command:
+
+```shell
+kfctl delete -f ${CONFIG_FILE}
+rm -rf kustomize .cache
+```
+
+where `${CONFIG_FILE}` is the [kfdef](https://www.kubeflow.org/docs/other-guides/kustomize/#specifying-a-configuration-file-when-initializing-your-deployment) for deploying Kubeflow.
