@@ -87,6 +87,8 @@ Example variables:
 
 ## Kubeflow installation
 
+**Note**: kfctl is currently available for Linux and macOS users only. If you use Windows, you can install kfctl on Windows Subsystem for Linux (WSL). Refer to the official [instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for setting up WSL.
+
 Run the following commands to set up and deploy Kubeflow.
 
 1. Create user credentials. You only need to run this command once.

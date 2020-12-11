@@ -69,7 +69,9 @@ If you need to switch role, use the `aws sts assume-role` commands. See the AWS 
 <a id="prepare-environment"></a>
 ## Prepare your environment
 
-In order to deploy Kubeflow on your existing Amazon EKS cluster, you need to provide `AWS_CLUSTER_NAME`, `cluster region` and `worker roles`.
+**Note**: kfctl is currently available for Linux and macOS users only. If you use Windows, you can install kfctl on Windows Subsystem for Linux (WSL). Refer to the official [instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for setting up WSL.
+
+To deploy Kubeflow on your existing Amazon EKS cluster, you need to provide `AWS_CLUSTER_NAME`, `cluster region` and `worker roles`.
 
 Follow these steps to download the kfctl binary for the Kubeflow CLI and set
 some handy environment variables:

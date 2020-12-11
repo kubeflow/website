@@ -75,7 +75,7 @@ get the best experience from Kubeflow.
     
 5. Verify that the storage classes for Block Storage were added to your cluster.
 
-    ```
+    ```shell
     kubectl get storageclasses | grep block
     ```
 
@@ -130,20 +130,25 @@ directories:
 
 
 ## Kubeflow installation
-Run the following commands to set up and deploy Kubeflow.
 
-1. Download the kfctl {{% kf-latest-version %}} release from the
+**Note**: kfctl is currently available for Linux and macOS users only. If you use Windows, you can install kfctl on Windows Subsystem for Linux (WSL). Refer to the official [instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for setting up WSL.
+
+Run the following commands to set up and deploy Kubeflow:
+
+1. Download the latest kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases 
   page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
   
   **Note**: You're strongly recommended to install **kfctl v1.2** or above because kfctl v1.2 addresses several critical bugs that can break the Kubeflow deployment.
 
-1. Unpack the tar ball
-      ```
+2. Extract the archived TAR file:
+
+      ```shell
       tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
       ```
-1. Make kfctl binary easier to use (optional). If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
-      ```
+3. Make kfctl binary easier to use (optional). If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+
+      ```shell
       export PATH=$PATH:<path to where kfctl was unpacked>
       ```
     
@@ -152,6 +157,7 @@ Choose either **single user** or **multi-tenant** section based on your usage.
 If you're experiencing issues during the installation because of conflicts on your Kubeflow deployment, you can [uninstall Kubeflow](#uninstall-kubeflow) and install it again.
 
 ### Single user
+
 Run the following commands to set up and deploy Kubeflow for a single user without any authentication.
 
 **Note**: By default, Kubeflow deployment on IBM Cloud uses the [Kubeflow pipeline with the Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
@@ -207,7 +213,8 @@ application in AppID and manages user authentication with builtin identity
 providers (Cloud Directory, SAML, social log-in with Google or Facebook etc.) or
 custom providers.
 
-1. Setup environment variables:
+1. Set up environment variables:
+
     ```shell
     export KF_NAME=<your choice of name for the Kubeflow deployment>
 
@@ -219,7 +226,7 @@ custom providers.
     export KF_DIR=${BASE_DIR}/${KF_NAME}
     ```
 
-2. Setup configuration files:
+2. Set up configuration files:
 
     ```shell
     export CONFIG_FILE=kfctl_ibm_multi_user.yaml
@@ -289,34 +296,40 @@ step 2 accordingly:
     * `<kubeflow-FQDN>` - fill in the FQDN of Kubeflow, if you don't know yet, just give a dummy one like `localhost`. Then change it after you got one.
     
     **Note**: If any of the parameters changed after the initial Kubeflow deployment, you 
-    will need to manually update these parameters in the secret `appid-application-configuration`
-    then restart authservice by running the command `kubectl rollout restart sts authservice -n istio-system`.
+    will need to manually update these parameters in the secret `appid-application-configuration`.
+    Then, restart authservice by running the command `kubectl rollout restart sts authservice -n istio-system`.
 
 ### Verify mutli-user installation
 
 Check the pod `authservice-0` is in running state in namespace `istio-system`:
+
 ```SHELL
 kubectl get pod authservice-0 -n istio-system
 ```
 
 ## Next steps
 
-Please follow the steps in [Exposing the Kubeflow dashboard with DNS and TLS termination](../authentication/#exposing-the-kubeflow-dashboard-with-dns-and-tls-termination) to secure the Kubeflow dashboard with HTTPS, then you will have the required DNS name as Kubeflow FQDN to enable the OIDC flow for AppID:
+To secure the Kubeflow dashboard with HTTPS, follow the steps in [Exposing the Kubeflow dashboard with DNS and TLS termination](../authentication/#exposing-the-kubeflow-dashboard-with-dns-and-tls-termination).
+Then, you will have the required DNS name as Kubeflow FQDN to enable the OIDC flow for AppID:
+
 
 1. Follow the step [Adding redirect URIs](https://cloud.ibm.com/docs/appid?topic=appid-managing-idp#add-redirect-uri)
 to fill a URL for AppID to redirect to Kubeflow. The URL should look like `https://<kubeflow-FQDN>/login/oidc`.
+
 2. Update the secret `appid-application-configuration` with the updated Kubeflow FQDN to replace `<kubeflow-FQDN>` in below command:
+
 ```SHELL
 redirect_url=$(printf https://<kubeflow-FQDN>/login/oidc | base64 -w0) \
  kubectl patch secret appid-application-configuration -n istio-system \
  -p $(printf '{"data":{"oidcRedirectUrl": "%s"}}' $redirect_url)
 ```
-3. restart the pod `authservice-0`:
+3. Restart the pod `authservice-0`:
+
 ```SHELL
 kubectl rollout restart statefulset authservice -n istio-system
 ```
 
-Then visit `https://<kubeflow-FQDN>/`, it should redirect you to AppID for authentication.
+Then, visit `https://<kubeflow-FQDN>/`. The page should redirect you to AppID for authentication.
 
 ## Additional information
 
