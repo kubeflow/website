@@ -137,6 +137,20 @@ purpose. No tools will assume they actually exists in your terminal environment.
 
 ## Configure Kubeflow
 
+* **${KF_NAME}** - The name of your Kubeflow deployment.
+  If you want a custom deployment name, specify that name here.
+  For example,  `my-kubeflow` or `kf-test`.
+  The value of KF_NAME must consist of lower case alphanumeric characters or
+  '-', and must start and end with an alphanumeric character.
+  The value of this variable cannot be greater than 25 characters. It must
+  contain just a name, not a directory path.
+  You also use this value as directory name when creating the directory where 
+  your Kubeflow  configurations are stored, that is, the Kubeflow application 
+  directory. 
+  
+* **${KF_DIR}** - The full path to your Kubeflow application directory.
+
+
 There are certain parameters that you must define in order to configure how and where
 kubeflow is defined. These are described in the table below.
 
@@ -160,6 +174,12 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
 * Location can be a zone or a region depending on whether you want a regional cluster
 
   * Currently, Kubeflow Pipelines doesn't work with regional deployments. For more, go to [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6).
+  
+  * For the default configuration, you need to choose a location that supports NVIDIA Tesla K80 Accelerators (`nvidia-tesla-k80`). 
+    To see which accelerators are available in each zone, run the following command:
+    ```
+    gcloud compute accelerator-types list
+    ```
 
 * The **Makefile** at `${KF_DIR}/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
   of the parameters
