@@ -145,3 +145,130 @@ The secret in the `default` namespace is automatically renewed by IBM Cloud
 Kubernetes Service 37 days before it expires. After this secret is updated, you
 must manually copy it to the `istio-ingressgateway-certs` secret by repeating
 commands in step 5 and 6.
+
+## Optional - KFServing configuration
+
+With this HTTPS setup, you need to make additional changes to get KFServing to work.
+
+1. First, update the Knative domain that is used for the KFServing routes to the
+hostname that you used when updating `kubeflow-gateway`.
+
+    ```shell
+    kubectl edit configmap config-domain -n knative-serving
+    ```
+
+    This will open your default text editor, and you will see something like:
+
+    ```YAML
+    apiVersion: v1
+    data:
+      _example: |
+        ################################
+        #                              #
+        #    EXAMPLE CONFIGURATION     #
+        #                              #
+        ################################
+        # ...
+        example.com: |
+    kind: ConfigMap
+    ...
+    ```
+
+    Add a line above the `_example` key with your hostname as the key and an empty string value.
+    Be sure to update `<hostname>`:
+
+    ```YAML
+    apiVersion: v1
+    data:
+      <hostname>: ""
+      _example: |
+       ...
+    kind: ConfigMap
+    ...
+    ```
+
+    Then, save and exit. The routes for your InferenceServices will start using this new domain.
+
+2. Since the certificates provided by IBM Cloud only allow for a single level of domain name added
+to the base domain, the domain template for Knative needs to be adjusted so that the certificates
+will be valid for the InferenceService routes.
+
+    ```shell
+    kubectl edit configmap config-network -n knative-serving
+    ```
+
+    This will open your default text editor, and you will again see something like:
+
+    ```YAML
+    apiVersion: v1
+    data:
+      _example: |
+        ################################
+        #                              #
+        #    EXAMPLE CONFIGURATION     #
+        #                              #
+        ################################
+        # ...
+    kind: ConfigMap
+    ...
+    ```
+
+    Add a line above the `_example` key with the `domainTemplate` key like the following:
+
+    ```YAML
+    apiVersion: v1
+    data:
+      domainTemplate: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
+      _example: |
+       ...
+    kind: ConfigMap
+    ...
+    ```
+
+    Save and exit. The default template uses a two-level subdomain (i.e. `{{.Name}}.{{.Namespace}}.{{.Domain}}`),
+    so this just adjusts it to use one.
+
+
+3. Adjust `kubeflow-gateway` one more time, adding a wildcard host in the HTTPS `hosts` section.
+
+    ```shell
+    kubectl edit gateway kubeflow-gateway -n kubeflow
+    ```
+
+    This will open your default text editor, but you can also optionally edit `kubeflow-gateway.yaml` file
+    you created previously. Here, just add another entry to the HTTPS `hosts` list containing your hostname prepended
+    with a `*.` so that the Knative subdomains are properly routed.
+
+    ```YAML
+    apiVersion: networking.istio.io/v1alpha3
+    kind: Gateway
+    metadata:
+      name: kubeflow-gateway
+      namespace: kubeflow
+    spec:
+      selector:
+        istio: ingressgateway
+      servers:
+      - hosts:
+        - '<hostname>'
+        - '*.<hostname>'
+        port:
+          name: https
+          number: 443
+          protocol: HTTPS
+        tls:
+          mode: SIMPLE
+          privateKey: /etc/istio/ingressgateway-certs/tls.key
+          serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
+    ```
+
+    Save and exit.
+
+After these adjustments, InferenceServices should now be reachable via HTTPS. To test out an external
+prediction, you can use the `authservice_session` cookie for the Kubeflow dashboard site from the browser. Once
+the content of the cookie is retrieved from the browser, it can be added as a header in your request
+(e.g. `"Cookie: authservice_session=MTYwNz..."`). For example:
+
+```shell
+curl -v https://sklearn-iris-kfserving-test.kf-dev-442dbba0442be6c8c50f31ed96b00532-0001.sjc03.containers.appdomain.cloud/v1/models/sklearn-iris:predict -d '{"instances": [[6.8,  2.8,  4.8,  1.4],[6.0,  3.4,  4.5,  1.6]]}' -H "Cookie: authservice_session=MTYwODMyODk5M3xOd3dBTkVzeU5VSlJRazlQVnpWT1dGUldWa0ZXVDBRMVFsY3pVVFZHVVVGV01rWkRORmd6VmxCVVNsQkVSa2xaUlZVMFRUVldVMEU9fJBHfRCAvs6nSh_J04VlBEq_yqhkUvc5Z1Mqahe9klOd"
+```
