@@ -160,15 +160,19 @@ To deploy Kubeflow Pipelines standalone in namespace `<my-namespace>`:
    [dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml) or
    [gcp/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/gcp/kustomization.yaml).
 
+1. Set the `namespace` field to `<my-namespace>` in [cluster-scoped-resources/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/cluster-scoped-resources/kustomization.yaml)
+
 1. Apply the changes to update the Kubeflow Pipelines deployment:
 
      ```
+     kubectl apply -k manifests/kustomize/cluster-scoped-resources
      kubectl apply -k manifests/kustomize/env/dev
      ```
 
      **Note**: If using GCP Cloud SQL and Google Cloud Storage, apply with this command:
 
      ```
+     kubectl apply -k manifests/kustomize/cluster-scoped-resources
      kubectl apply -k manifests/kustomize/env/gcp
      ```
 
