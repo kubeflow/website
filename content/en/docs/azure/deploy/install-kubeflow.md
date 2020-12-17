@@ -97,7 +97,7 @@ Run the following commands to set up and deploy Kubeflow.
     az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
     ```
 
-1. [Install Istio in Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install?pivots=client-operating-system-linux)
+1. [Install Istio 1.6.X in Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install?pivots=client-operating-system-linux). You must currently install Istio 1.6.X such as 1.6.14 to install Kubeflow.
 
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases

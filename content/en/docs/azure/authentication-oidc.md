@@ -13,6 +13,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
 - [Add a client secret](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-client-secret)
 
   **Note:**  Save your client ID, client secret, and tenant ID in a secure place to be used in the next steps to configure OIDC Auth Service.
+  **Note:** The following installation steps automatically install a specific Istio version that must be used.
 
 ## Kubeflow configuration
 
@@ -66,7 +67,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
 
 1. Configure OIDC Auth service settings:
 
-   In `/manifests/stacks/azure/application/oidc-authservice/kustomization.yaml` update the settings with values corresponding your app registration as follows:
+   In `.cache/manifests/manifests-{kubeflow version}-branch/stacks/azure/application/oidc-authservice/kustomization.yaml` update the settings with values corresponding your app registration as follows:
 
     ```
     - client_id=<client_id>
@@ -82,7 +83,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
 
 1. Configure OIDC scopes:
 
-    In `/manifests/istio/oidc-authservice/base/statefulset.yaml` update [OIDC scopes](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes) to remove groups and keep profile and email.
+    In `.cache/manifests/manifests-{kkubeflow version}-branch/istio/oidc-authservice/base/statefulset.yaml` update [OIDC scopes](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes) to remove groups and keep profile and email.
 
     ```
     - name: OIDC_SCOPES
