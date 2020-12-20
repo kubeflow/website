@@ -23,16 +23,16 @@ Below are the main parts of the component definition:
 A component specification takes the form of a YAML file, `component.yaml`. Below
 is an example:
 
-```
+```yaml
 name: xgboost4j - Train classifier
 description: Trains a boosted tree ensemble classifier using xgboost4j
 
 inputs:
 - {name: Training data}
-- {name: Rounds, type: Integer, default: '30', help: Number of training rounds}
+- {name: Rounds, type: Integer, default: '30', description: 'Number of training rounds'}
 
 outputs:
-- {name: Trained model, type: XGBoost model, help: Trained XGBoost model}
+- {name: Trained model, type: XGBoost model, description: 'Trained XGBoost model'}
 
 implementation:
   container:
@@ -74,14 +74,16 @@ This section describes the
         unique inside the inputs or outputs section, but an output may have the
         same name as an input.
     * `description`: Human-readable description of the input/output.
-    * `default`: Specifies the default value for an input. Only
-        valid for inputs.
+    * `default`: Specifies the default value for an input. **Only
+        valid for inputs.**
     * `type`: Specifies the type of input/output. The types are used
         as hints for pipeline authors and can be used by the pipeline system/UI
         to validate arguments and connections between components. Basic types
         are **String**, **Integer**, **Float**, and **Bool**. See the full list
         of [types](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/types.py)
         defined by the Kubeflow Pipelines SDK.
+    * `optional`: Specifies if input is optional or not. This is of type
+        **Bool**, and defaults to **true**. **Only valid for inputs.**
 
 ### Implementation
 
