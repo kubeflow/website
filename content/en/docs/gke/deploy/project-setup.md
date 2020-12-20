@@ -41,7 +41,8 @@ Follow these steps to set up your GCP project:
       iam.googleapis.com \
       servicemanagement.googleapis.com \
       cloudresourcemanager.googleapis.com \
-      ml.googleapis.com
+      ml.googleapis.com \
+      meshconfig.googleapis.com
 
     # Cloud Build API is optional, you need it if using Fairing.
     # gcloud services enable cloudbuild.googleapis.com
@@ -66,6 +67,9 @@ Follow these steps to set up your GCP project:
   to learn how to check your quota and how to request an increase in quota.
   
 1. Initialize your project to ready it for Anthos Service Mesh installation.
+    ```
+    export PROJECT_ID=YOUR_PROJECT_ID
+    ```
 
     ```
     curl --request POST \
