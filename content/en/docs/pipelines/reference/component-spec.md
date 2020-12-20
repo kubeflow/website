@@ -83,7 +83,7 @@ This section describes the
         of [types](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/types.py)
         defined by the Kubeflow Pipelines SDK.
     * `optional`: Specifies if input is optional or not. This is of type
-        **Bool**, and defaults to **true**. **Only valid for inputs.**
+        **Bool**, and defaults to **False**. **Only valid for inputs.**
 
 ### Implementation
 
