@@ -66,7 +66,7 @@ This guide assumes the following convention:
 
   To continously manage the management cluster, you are recommended to check
   the management configuration directory into source control.
- * `${MGMT_NAME}` is the cluster name of your management cluster and prefix for other Google Cloud resources created in the deployment process. Management cluster
+ * `${MGMT_NAME}` is the cluster name of your management cluster and the prefix for other Google Cloud resources created in the deployment process. Management cluster
    should be a different cluster from your Kubeflow cluster.
 
    Note, `${MGMT_NAME}` should
