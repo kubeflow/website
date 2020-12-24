@@ -66,7 +66,17 @@ This guide assumes the following convention:
 
   To continously manage the management cluster, you are recommended to check
   the management configuration directory into source control.
-* The `${MGMT_NAME}` environment variable contains the name of your management cluster.
+ * `${MGMT_NAME}` is the cluster name of your management cluster and the prefix for other Google Cloud resources created in the deployment process. Management cluster
+   should be a different cluster from your Kubeflow cluster.
+
+   Note, `${MGMT_NAME}` should
+   * start with a lowercase letter
+   * only contain lowercase letters, numbers and `-`
+   * end with a number or a letter
+   * contain no more than 18 characters
+   
+* The `${LOCATION}` environment variable contains the location of your management cluster.
+  you can choose between regional or zonal.
 
 Set these environment variables in your shell:
 
@@ -74,6 +84,7 @@ Set these environment variables in your shell:
 MGMT_PROJECT=<the project where you deploy your management cluster>
 MGMT_DIR=<path to your management cluster configuration directory>
 MGMT_NAME=<name of your management cluster>
+LOCATION=<location of your management cluster>
 ```
 
 However, the environment variables are used purely for command illustration
@@ -107,25 +118,10 @@ To deploy a management cluster:
 
     ```bash
     kpt cfg set -R . name "${MGMT_NAME}"
-    kpt cfg set -R . gcloud.core.project "${PROJECT}"
+    kpt cfg set -R . gcloud.core.project "${MGMT_PROJECT}"
     kpt cfg set -R . location "${LOCATION}"
     ```
-
-    For the values you need to set for management cluster:
-
-    * MGMT_NAME is the cluster name of your management cluster and prefix for other Google Cloud resources created in the deployment process. Management cluster
-      should be a different cluster from your Kubeflow cluster.
-
-      Note, MGMT_NAME should
-
-      * start with a lowercase letter
-      * only contain lowercase letters, numbers and `-`
-      * end with a number or a letter
-      * contain no more than 18 characters
-
-    * LOCATION is the management cluster's location, you can choose between regional or zonal.
-    * PROJECT is the Google Cloud project where you will create this management cluster.
-
+    
     Running `kpt cfg set` stores values you set in `./instance/Kptfile` and
     `./upstream/management/Kptfile`. Commit the changes to source control to
     preserve your configuration.
@@ -172,7 +168,7 @@ To deploy a management cluster:
     This step:
 
     * Installs Config Connector in your cluster, and
-    * Creates the Google Cloud service account **${MGMT_NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**.
+    * Creates the Google Cloud service account **${MGMT_NAME}-cnrm-system@${MGMT_PROJECT}.iam.gserviceaccount.com**.
 
     Optionally, you can verify the Config Connector installation before applying it by:
 
@@ -184,7 +180,7 @@ To deploy a management cluster:
 
 ### Authorize Cloud Config Connector for each managed project
 
-In the last step we created the Google Cloud service account **${MGMT_NAME}-cnrm-system@${PROJECT}.iam.gserviceaccount.com**
+In the last step we created the Google Cloud service account **${MGMT_NAME}-cnrm-system@${MGMT_PROJECT}.iam.gserviceaccount.com**
 this is the service account that Config Connector will use to create any Google Cloud resources. Consequently
 you need to grant this Google Cloud service account sufficient privileges to create the desired
 resources in one or more projects (called managed projects, read [more](https://github.com/kubeflow/gcp-blueprints/tree/master/management/instance/managed-project)).
