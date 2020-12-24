@@ -34,7 +34,7 @@ Follow these steps to set up your GCP project:
     * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/components/fairing/) in your Kubeflow cluster)
 
     You can also enable these APIs by running the following command in Cloud Shell:
-    ```
+    ```bash
     gcloud services enable \
       compute.googleapis.com \
       container.googleapis.com \
