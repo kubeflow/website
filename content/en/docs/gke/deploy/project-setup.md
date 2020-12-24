@@ -34,14 +34,15 @@ Follow these steps to set up your GCP project:
     * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/components/fairing/) in your Kubeflow cluster)
 
     You can also enable these APIs by running the following command in Cloud Shell:
-    ```
+    ```bash
     gcloud services enable \
       compute.googleapis.com \
       container.googleapis.com \
       iam.googleapis.com \
       servicemanagement.googleapis.com \
       cloudresourcemanager.googleapis.com \
-      ml.googleapis.com
+      ml.googleapis.com \
+      meshconfig.googleapis.com
 
     # Cloud Build API is optional, you need it if using Fairing.
     # gcloud services enable cloudbuild.googleapis.com
@@ -65,9 +66,13 @@ Follow these steps to set up your GCP project:
   to understand the quotas on resource usage that Compute Engine enforces, and 
   to learn how to check your quota and how to request an increase in quota.
   
-1. Initialize your project to ready it for Anthos Service Mesh installation.
+1. Initialize your project to prepare it for Anthos Service Mesh installation:
 
+    ```bash
+    PROJECT_ID=<YOUR_PROJECT_ID>
     ```
+
+    ```bash
     curl --request POST \
       --header "Authorization: Bearer $(gcloud auth print-access-token)" \
       --data '' \
