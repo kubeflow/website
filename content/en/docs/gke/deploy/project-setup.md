@@ -66,12 +66,13 @@ Follow these steps to set up your GCP project:
   to understand the quotas on resource usage that Compute Engine enforces, and 
   to learn how to check your quota and how to request an increase in quota.
   
-1. Initialize your project to ready it for Anthos Service Mesh installation.
-    ```
-    export PROJECT_ID=YOUR_PROJECT_ID
+1. Initialize your project to prepare it for Anthos Service Mesh installation:
+
+    ```bash
+    PROJECT_ID=<YOUR_PROJECT_ID>
     ```
 
-    ```
+    ```bash
     curl --request POST \
       --header "Authorization: Bearer $(gcloud auth print-access-token)" \
       --data '' \
