@@ -46,7 +46,7 @@ pygmentsStyle = "tango"
 [[menu.main]]
     name = "Blog"
     weight = -100
-    url = "https://medium.com/kubeflow"
+    url = "https://blog.kubeflow.org/"
 [[menu.main]]
     name = "GitHub"
     weight = -99
