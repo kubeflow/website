@@ -255,7 +255,7 @@ kubectl rollout restart deployment dex -n auth
 
 ## Post Installation
 
-Kubeflow provides multi-tenancy support and user are not able to create notebooks in `kubeflow`, `default` namespace.
+Kubeflow provides multi-tenancy support and users are not able to create notebooks in `kubeflow`, `default` namespace.
 
 The first time you visit the cluster, you can create a namespace `anonymous` to use. If you want to create different users, you can create `Profile` and then `kubectl apply -f profile.yaml`. Profile controller will create new namespace and service account which is allowed to create notebook in that namespace.
 
