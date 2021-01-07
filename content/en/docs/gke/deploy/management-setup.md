@@ -51,7 +51,7 @@ For a more detailed explanation of the drastic changes happened in Kubeflow v1.1
 
     Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/vX.Y.Z` in the output if you've successfully deployed Kustomize.
 
-1. Install [yq](https://github.com/mikefarah/yq#install).
+1. Install [yq](https://github.com/mikefarah/yq#install), following the repository instructions. [Version 3.3.0](https://github.com/mikefarah/yq/releases/tag/3.3.0) is confirmed to work.
 
 ## Environment Variables
 

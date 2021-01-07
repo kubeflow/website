@@ -94,12 +94,13 @@ purpose. No tools will assume they actually exists in your terminal environment.
 
 1. Install [yq](https://github.com/mikefarah/yq)
 
+
    ```bash
    GO111MODULE=on go get github.com/mikefarah/yq/v3
    ```
 
    * If you don't have [Go](https://golang.org) installed you can download
-     a binary from [yq's GitHub releases](https://github.com/mikefarah/yq/releases).
+     a binary from [yq's GitHub releases](https://github.com/mikefarah/yq/releases), following the repository instructions. [Version 3.3.0](https://github.com/mikefarah/yq/releases/tag/3.3.0) is confirmed to work.
 
 1. Follow the instructions from [Preparing to install Anthos Service Mesh](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#preparing_to_install_anthos_service_mesh) to install `istioctl`.
 
