@@ -435,7 +435,7 @@ Success or failure of a job is determined as follows
 * If a job has a **chief**, success or failure is determined by the status
   of the chief.
 * If a job has no chief, success or failure is determined by the workers.
-* In both the cases, the TFJob succeeds if the process being monitored exits
+* In both cases, the TFJob succeeds if the process being monitored exits
   with exit code 0.
 * In the case of non-zero exit code, the behavior is determined by the restartPolicy
   for the replica.
