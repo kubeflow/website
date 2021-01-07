@@ -57,7 +57,7 @@ Set these environment variables in your shell:
 ```bash
 KF_NAME=<name of your Kubeflow cluster>
 KF_PROJECT=<the project where you deploy your Kubeflow cluster>
-KF_DIR=<path to your management cluster configuration directory>
+KF_DIR=<path to your Kubeflow cluster configuration directory>
 MGMT_NAME=<name of your management cluster>
 MGMTCTXT="${MGMT_NAME}"
 ```
