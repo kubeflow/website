@@ -15,7 +15,7 @@ This guide assumes the following settings:
 
 * The `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
   are the same as in [Management cluster setup](../management-setup#environment-variables).
-* The `${KF_DIR}` and `${KF_NAME}` environment variables
+* The `${KF_DIR}`, `${KF_NAME}`, `${CLIENT_ID}` and `${CLIENT_SECRET}` environment variables
   are the same as in [Deploy using kubectl and kpt](../deploy-cli#environment-variables).
 
 ## General upgrade instructions
@@ -84,8 +84,8 @@ However, specific upgrades might need manual actions below.
 1. Use kpt to set user values:
 
    ```bash
-   kpt cfg set -R . name ${NAME}
-   kpt cfg set -R . gcloud.core.project ${PROJECT}
+   kpt cfg set -R . name ${MGMT_NAME}
+   kpt cfg set -R . gcloud.core.project ${MGMT_PROJECT}
    kpt cfg set -R . location ${LOCATION}
    ```
 
