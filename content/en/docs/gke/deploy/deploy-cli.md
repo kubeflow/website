@@ -99,7 +99,8 @@ purpose. No tools will assume they actually exists in your terminal environment.
    ```
 
    * If you don't have [Go](https://golang.org) installed you can download
-     a binary from [yq's GitHub releases](https://github.com/mikefarah/yq/releases), and follow the official installation steps. [Version 3.3.0](https://github.com/mikefarah/yq/releases/tag/3.3.0) is confirmed to work.
+     a binary from [yq's GitHub releases](https://github.com/mikefarah/yq/releases), and follow the official installation steps.
+   * Note: due to changes from [yq v3 to v4](https://mikefarah.gitbook.io/yq/upgrading-from-v3#navigating), Versions 4.x of yq will not work with Kubeflow. [Version 3.3.0](https://github.com/mikefarah/yq/releases/tag/3.3.0) is confirmed to work.
 
 1. Follow the instructions from [Preparing to install Anthos Service Mesh](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#preparing_to_install_anthos_service_mesh) to install `istioctl`.
 
