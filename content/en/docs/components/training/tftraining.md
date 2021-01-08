@@ -432,12 +432,12 @@ A TFJob has a TFJobStatus, which has an array of TFJobConditions through which t
 
 Success or failure of a job is determined as follows
 
-* If a job has a **chief** success or failure is determined by the status
+* If a job has a **chief**, success or failure is determined by the status
   of the chief.
-* If a job has no chief success or failure is determined by the workers.
-* In both cases the TFJob succeeds if the process being monitored exits
+* If a job has no chief, success or failure is determined by the workers.
+* In both cases, the TFJob succeeds if the process being monitored exits
   with exit code 0.
-* In the case of non-zero exit code the behavior is determined by the restartPolicy
+* In the case of non-zero exit code, the behavior is determined by the restartPolicy
   for the replica.
 * If the restartPolicy allows for restarts then the process will just be restarted and the TFJob will continue to execute.
   * For the restartPolicy ExitCode the behavior is exit code dependent.
