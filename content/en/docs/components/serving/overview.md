@@ -62,7 +62,7 @@ KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
       <tr>
         <td></td>
         <td>PyTorch</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/pytorch">sample</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/python/pytorchserver">sample</a></td>
         <td><b>&check;</b></td>
       </tr>
       <tr>
