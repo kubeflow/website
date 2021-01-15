@@ -91,7 +91,7 @@ address to verify the user's identity.
 1. Make note that you can find your OAuth client credentials in the credentials
   section of the GCP Console. You need to retrieve the **client ID** and 
   **client secret** later when you're ready to enable Cloud IAP.
-
+  
 ## Next steps
-
 * [Set up your management cluster](/docs/gke/deploy/management-setup/).
+* [Grant your users the IAP-secured Web App User IAM role](https://cloud.google.com/iam/docs/granting-changing-revoking-access#granting-console) so they can access the Kubeflow console through IAP.
