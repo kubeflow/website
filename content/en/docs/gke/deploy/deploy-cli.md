@@ -179,7 +179,7 @@ gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.com
   * For the default configuration, you need to choose a location that supports NVIDIA Tesla K80 Accelerators (`nvidia-tesla-k80`). 
     To see which accelerators are available in each zone, run the following command:
     ```
-    gcloud compute accelerator-types list
+    gcloud compute accelerator-types list --filter=name:nvidia-tesla-k80
     ```
 
 * The **Makefile** at `${KF_DIR}/Makefile` contains a rule `set-values` with appropriate `kpt cfg` commands to set the values
