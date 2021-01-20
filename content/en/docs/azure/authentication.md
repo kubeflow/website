@@ -4,7 +4,7 @@ description = "Restrict access of your deployment to specified IP addresses"
 weight = 100
                     
 +++
-This section shows how to restrict access to only certain IP addresses for your LoadBalancer Service on Azure. At a later date, it will also include formal authentication through Azure. This method is not the most ideal way to secure your Kubernetes cluster, as it requires that you access the service from the same IP address every time. This process was adapted from [the Kubernetes guide to configuring a firewall](https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service).
+This section shows how to restrict access to only certain IP addresses for your LoadBalancer Service on Azure. At a later date, it will also include formal authentication through Azure. This method is not the most ideal way to secure your Kubernetes cluster, as it requires that you access the service from the same IP address every time. This process was adapted from [the Kubernetes guide to configuring a firewall](https://v1-17.docs.kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/).
 
 
 When using a service with `spec.type: LoadBalancer`, you can specify the IP ranges that are allowed to access the load balancer by using `spec.loadBalancerSourceRanges`. This is currently supported on all major cloud providers. 
