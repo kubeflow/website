@@ -48,8 +48,7 @@ a single-node cluster which you can use on a desktop or server or in the cloud).
 <a id="cloud"></a>
 ### Installing Kubeflow on a public cloud
 
-Follow the
-[guide to deploying Kubeflow on Cloud](/docs/started/cloud/).
+Follow the [guide to deploying Kubeflow on Cloud](/docs/started/cloud/).
 
 <a id="kubernetes"></a>
 ### Installing Kubeflow on an existing Kubernetes cluster
