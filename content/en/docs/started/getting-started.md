@@ -48,18 +48,8 @@ a single-node cluster which you can use on a desktop or server or in the cloud).
 <a id="cloud"></a>
 ### Installing Kubeflow on a public cloud
 
-Choose the Kubeflow deployment guide for your chosen cloud:
-
-  * To use Kubeflow on Google Cloud Platform (GCP) and Kubernetes Engine (GKE),
-    follow the [GCP deployment guide](/docs/gke/deploy/).
-  * To use Kubeflow on Amazon Web Services (AWS),
-    follow the [AWS deployment guide](/docs/aws/deploy/).
-  * To use Kubeflow on Microsoft Azure Kubernetes Service (AKS),
-    follow the [AKS deployment guide](/docs/azure/deploy/).
-  * To use Kubeflow on IBM Cloud (IKS),
-	  follow the [IKS deployment guide](/docs/ibm/).
-  * To use Kubeflow on OpenShift,
-    follow the [OpenShift deployment guide](/docs/openshift/).
+Follow the
+[guide to deploying Kubeflow on Cloud](/docs/started/cloud/).
 
 <a id="kubernetes"></a>
 ### Installing Kubeflow on an existing Kubernetes cluster
