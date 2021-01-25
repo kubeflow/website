@@ -1,0 +1,170 @@
+updates:
+- assignees:
+  - animeshsingh
+  - Bobgy
+  - joeliedtke
+  directory: .
+  open-pull-requests-limit: 10
+  package-ecosystem: npm
+  reviewers:
+  - 8bitmp3
+  - aronchick
+  - berndverst
+  - dansanche
+  - dsdinter
+  - Jeffwan
+  - jinchihe
+  - nickchase
+  - pdmack
+  - RFMVasconcelos
+  - terrytangyuan
+  schedule:
+    interval: daily
+- assignees:
+  - animeshsingh
+  - Bobgy
+  - joeliedtke
+  directory: themes/docsy/assets/vendor/bootstrap
+  open-pull-requests-limit: 10
+  package-ecosystem: npm
+  reviewers:
+  - 8bitmp3
+  - aronchick
+  - berndverst
+  - dansanche
+  - dsdinter
+  - Jeffwan
+  - jinchihe
+  - nickchase
+  - pdmack
+  - RFMVasconcelos
+  - terrytangyuan
+  schedule:
+    interval: daily
+- assignees:
+  - animeshsingh
+  - Bobgy
+  - joeliedtke
+  directory: themes/docsy/assets/vendor/Font-Awesome/js-packages/@fortawesome/fontawesome-free
+  open-pull-requests-limit: 10
+  package-ecosystem: npm
+  reviewers:
+  - 8bitmp3
+  - aronchick
+  - berndverst
+  - dansanche
+  - dsdinter
+  - Jeffwan
+  - jinchihe
+  - nickchase
+  - pdmack
+  - RFMVasconcelos
+  - terrytangyuan
+  schedule:
+    interval: daily
+- assignees:
+  - animeshsingh
+  - Bobgy
+  - joeliedtke
+  directory: themes/docsy/assets/vendor/Font-Awesome/js-packages/@fortawesome/free-brands-svg-icons
+  open-pull-requests-limit: 10
+  package-ecosystem: npm
+  reviewers:
+  - 8bitmp3
+  - aronchick
+  - berndverst
+  - dansanche
+  - dsdinter
+  - Jeffwan
+  - jinchihe
+  - nickchase
+  - pdmack
+  - RFMVasconcelos
+  - terrytangyuan
+  schedule:
+    interval: daily
+- assignees:
+  - animeshsingh
+  - Bobgy
+  - joeliedtke
+  directory: themes/docsy/assets/vendor/Font-Awesome/js-packages/@fortawesome/free-regular-svg-icons
+  open-pull-requests-limit: 10
+  package-ecosystem: npm
+  reviewers:
+  - 8bitmp3
+  - aronchick
+  - berndverst
+  - dansanche
+  - dsdinter
+  - Jeffwan
+  - jinchihe
+  - nickchase
+  - pdmack
+  - RFMVasconcelos
+  - terrytangyuan
+  schedule:
+    interval: daily
+- assignees:
+  - animeshsingh
+  - Bobgy
+  - joeliedtke
+  directory: themes/docsy/assets/vendor/Font-Awesome/js-packages/@fortawesome/fontawesome-svg-core
+  open-pull-requests-limit: 10
+  package-ecosystem: npm
+  reviewers:
+  - 8bitmp3
+  - aronchick
+  - berndverst
+  - dansanche
+  - dsdinter
+  - Jeffwan
+  - jinchihe
+  - nickchase
+  - pdmack
+  - RFMVasconcelos
+  - terrytangyuan
+  schedule:
+    interval: daily
+- assignees:
+  - animeshsingh
+  - Bobgy
+  - joeliedtke
+  directory: themes/docsy/assets/vendor/Font-Awesome/js-packages/@fortawesome/free-solid-svg-icons
+  open-pull-requests-limit: 10
+  package-ecosystem: npm
+  reviewers:
+  - 8bitmp3
+  - aronchick
+  - berndverst
+  - dansanche
+  - dsdinter
+  - Jeffwan
+  - jinchihe
+  - nickchase
+  - pdmack
+  - RFMVasconcelos
+  - terrytangyuan
+  schedule:
+    interval: daily
+- assignees:
+  - animeshsingh
+  - Bobgy
+  - joeliedtke
+  directory: themes/docsy/assets/vendor/Font-Awesome/js-packages/@fortawesome/fontawesome-common-types
+  open-pull-requests-limit: 10
+  package-ecosystem: npm
+  reviewers:
+  - 8bitmp3
+  - aronchick
+  - berndverst
+  - dansanche
+  - dsdinter
+  - Jeffwan
+  - jinchihe
+  - nickchase
+  - pdmack
+  - RFMVasconcelos
+  - terrytangyuan
+  schedule:
+    interval: daily
+version: 2
