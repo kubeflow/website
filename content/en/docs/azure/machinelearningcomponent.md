@@ -4,7 +4,9 @@ description = "Overview of Azure Machine Learning pipeline components for workfl
 weight = 6
 +++
 
-Azure Machine Learning (Azure ML) components are pipeline components that integrate with [Azure ML](https://docs.microsoft.com/en-us/azure/machine-learning/) to manage the lifecycle of your machine learning (ML) models to improve the quality and consistency of your machine learning solution. A pipeline component is a self-contained set of code that performs one step in the ML workflow. A component is analogous to a function, in that it has a name, parameters, return value and a body. 
+Azure Machine Learning (Azure ML) components are pipeline components that integrate with [Azure ML](https://docs.microsoft.com/en-us/azure/machine-learning/) to manage the lifecycle of your machine learning (ML) models to improve the quality and consistency of your machine learning solution. Azure ML is an enterprise-grade machine learning service to build and deploy models faster. By adding Azure ML components to Kubeflow pipeline, robust MLOps capabilities are integrated with the existing process to help managing the complete machine learning lifecyle.
+
+A pipeline component is a self-contained set of code that performs one step in the ML workflow. A component is analogous to a function, in that it has a name, parameters, return value and a body. Azure ML components are pluggable pipeline operations could link Azure ML functionalities seamlessly with Kubeflow pipelines. In essence, they are abstracted services that Azure ML provides to accelerate ML lifecyle that could easily fit into a Kubeflow pipeline.
 
 You can use Azure Machine Learning components to increase the efficiency of your workflow with Azure Machine Learning, such as continuous integration, delivery, and deployment. 
 
@@ -38,7 +40,7 @@ kubectl create secret generic azcreds --from-literal=AZ_SUBSCRIPTION_ID=$AZ_SUBS
 ## Azure ML Register Model component
 
 
-Model registration allows you to store and version your models in Azure Machine Learning in your workspace. The model registry makes it easy to organize and keep track of your trained models. After you register the model, you can then download or deploy it and receive all the registered files.
+Model registration allows you to store and version your models in Azure Machine Learning in your workspace. The model registry makes it easy to organize and keep track of your trained models. After you register the model, you can then download or deploy it and receive all the registered files. Apply Azure ML register model compoment in the workflow to use the central registry managed by Azure to store and track models, and metadata.
 
 
 To learn more about the Azure ML Register Model pipeline component, refer to the [official repository](https://github.com/kubeflow/pipelines/tree/master/components/azure/azureml/aml-register-model).
@@ -48,7 +50,7 @@ To learn more about using Azure ML to manage the lifecycle of your models, go to
 
 ## Azure ML Deploy Model component
 
-Trained machine learning models are deployed as web services in the cloud and you can use your model by accessing its endpoint. When using the model as a web service, the following items are included in the Azure ML Deploy Model component: 
+Trained machine learning models are deployed as web services in the cloud and you can use your model by accessing its endpoint. You can use your model in web services for inferencing with improved quality. Use auto managed compute cluster on Azure to distribute inference tasks and automatically scale to meet your machine learning needs. When using the model as a web service, the following items are included in the Azure ML Deploy Model component: 
 
 - An entry script
 - Azure ML environment configurations
