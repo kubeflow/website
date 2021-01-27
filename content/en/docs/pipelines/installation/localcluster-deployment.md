@@ -63,7 +63,7 @@ Replace the following:
 You can use [Homebrew](https://brew.sh) to install kind:
 
 ```shell
-brew install kind`
+brew install kind
 ```
 
 **On Windows:**
