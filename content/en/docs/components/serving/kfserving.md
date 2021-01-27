@@ -33,26 +33,26 @@ Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFS
 
 ### Deploy models with out-of-the-box model servers
 
-* [TensorFlow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow)
-* [PyTorch](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pytorch)
-* [XGBoost](https://github.com/kubeflow/kfserving/tree/master/docs/samples/xgboost)
-* [Scikit-Learn](https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn)
-* [ONNXRuntime](https://github.com/kubeflow/kfserving/tree/master/docs/samples/onnx)
+* [TensorFlow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/tensorflow)
+* [PyTorch](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/pytorch)
+* [XGBoost](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/xgboost)
+* [Scikit-Learn](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/sklearn)
+* [ONNXRuntime](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/onnx)
 
 ### Deploy models with custom model servers
 
-* [Custom](https://github.com/kubeflow/kfserving/tree/master/docs/samples/custom)
+* [Custom](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/custom)
 * [BentoML](https://github.com/kubeflow/kfserving/tree/master/docs/samples/bentoml)
 
 ### Deploy models on GPU
 
 * [GPU](https://github.com/kubeflow/kfserving/tree/master/docs/samples/accelerators)
-* [Nvidia Triton Inference Server](https://github.com/kubeflow/kfserving/tree/master/docs/samples/triton)
+* [Nvidia Triton Inference Server](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/triton)
 
 ### Autoscaling and Rollouts
 
 * [Autoscaling](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling)
-* [Canary Rollout](https://github.com/kubeflow/kfserving/tree/master/docs/samples/rollouts)
+* [Canary Rollout](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/rollouts)
 
 ### Model explainability and outlier detection
 
@@ -61,22 +61,22 @@ Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFS
 
 ### Integrations
 
-* [Transformer](https://github.com/kubeflow/kfserving/tree/master/docs/samples/transformer/image_transformer)
+* [Transformer](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/transformer/image_transformer)
 * [Kafka](https://github.com/kubeflow/kfserving/tree/master/docs/samples/kafka)
 * [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
 * [Request/Response logging](https://github.com/kubeflow/kfserving/tree/master/docs/samples/logger)
 
 ### Model Storages
 
-* [Azure](https://github.com/kubeflow/kfserving/tree/master/docs/samples/azure)
-* [S3](https://github.com/kubeflow/kfserving/tree/master/docs/samples/s3)
-* [On-prem cluster](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pvc)
+* [Azure](https://github.com/kubeflow/kfserving/tree/master/docs/samples/storage/azure)
+* [S3](https://github.com/kubeflow/kfserving/tree/master/docs/samples/storage/s3)
+* [On-prem cluster](https://github.com/kubeflow/kfserving/tree/master/docs/samples/storage/pvc)
 
 ### Sample notebooks
 
 * [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_v1alpha2_sample.ipynb)
-* [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
-* [ONNX](https://github.com/kubeflow/kfserving/blob/master/docs/samples/onnx/mosaic-onnx.ipynb)
+* [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1alpha2/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
+* [ONNX](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1alpha2/onnx/mosaic-onnx.ipynb)
 
 We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfserving/tree/master/docs/samples/).
 
@@ -84,7 +84,7 @@ We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfse
 
 * Join our [working group](https://groups.google.com/forum/#!forum/kfserving) for meeting invitations and discussion.
 * [Read the docs](https://github.com/kubeflow/kfserving/tree/master/docs).
-* [API docs](https://github.com/kubeflow/kfserving/tree/master/docs/apis/README.md).
+* [API docs](https://github.com/kubeflow/kfserving/tree/master/docs/apis/v1alpha2/README.md).
 * [Debugging guide](https://github.com/kubeflow/kfserving/blob/master/docs/KFSERVING_DEBUG_GUIDE.md).
 * [Roadmap](https://github.com/kubeflow/kfserving/tree/master/ROADMAP.md).
 * [KFServing 101 slides](https://drive.google.com/file/d/16oqz6dhY5BR0u74pi9mDThU97Np__AFb/view).
