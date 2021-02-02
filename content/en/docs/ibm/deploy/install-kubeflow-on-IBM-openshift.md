@@ -1,6 +1,6 @@
 +++
-title = "Install Kubeflow on Openshift"
-description = "Instructions for deploying Kubeflow on IBM Cloud Openshift"
+title = "Install Kubeflow on OpenShift"
+description = "Instructions for deploying Kubeflow on IBM Cloud OpenShift"
 weight = 7
 +++
 
@@ -78,10 +78,13 @@ kfctl apply -V -f ${CONFIG_FILE}
 The Kubeflow deployment is exposed with a Route. To find the Route you can use 
 
 ```
-oc get route -n istio-system
+oc get route -n istio-system istio-ingressgateway -o=jsonpath='{.spec.host}'
 ```
+
+## Next steps
+
+To secure the Kubeflow dashboard with HTTPS, follow the steps in [Exposing the Kubeflow dashboard with DNS and TLS termination](/docs/ibm/deploy/authentication/#setting-up-an-nlb).
 
 ## Additional information
 
 You can find general information about Kubeflow configuration in the guide to [configuring Kubeflow with kfctl and kustomize](/docs/other-guides/kustomize/).
-

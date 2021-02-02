@@ -55,3 +55,7 @@ Run the following commands to set up and deploy Kubeflow:
       export PATH=$PATH:<path to where kfctl was unpacked>
       ```
  
+ ## Next Steps
+
+ 1. Go here for installing [Kubeflow on IKS](/docs/ibm/deploy/install-kubeflow-on-iks)
+ 2. Go here for installing [Kubeflow on IBM OpenShift](/docs/ibm/deploy/install-kubeflow-on-ibm-openshift)
