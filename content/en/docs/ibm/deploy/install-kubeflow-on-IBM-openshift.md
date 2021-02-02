@@ -25,7 +25,7 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
 ## Installation 
 
-If you're experiencing issues during the installation because of conflicts on your Kubeflow deployment, you can [uninstall Kubeflow](../uninstall-kubeflow) and install it again.
+If you're experiencing issues during the installation because of conflicts on your Kubeflow deployment, you can [uninstall Kubeflow](/docs/ibm/deploy/uninstall-kubeflow) and install it again.
 
 ### Single user
 

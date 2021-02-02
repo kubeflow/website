@@ -104,7 +104,7 @@ get the best experience from Kubeflow.
 
 Choose either **single user** or **multi-tenant** section based on your usage.
 
-If you're experiencing issues during the installation because of conflicts on your Kubeflow deployment, you can [uninstall Kubeflow](../uninstall-kubeflow) and install it again.
+If you're experiencing issues during the installation because of conflicts on your Kubeflow deployment, you can [uninstall Kubeflow](/docs/ibm/deploy/uninstall-kubeflow) and install it again.
 
 ### Single user
 
