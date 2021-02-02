@@ -51,6 +51,7 @@ Configuring your installation with {{% config-file-istio-dex %}} has a few optio
   "service-account-issuer": "kubernetes.default.svc"
   "service-account-signing-key-file": "/etc/kubernetes/pki/sa.key"
   ```
+  For `kops` managed clusters, you can reference their cluster configurations in the [platform setup instructions](https://istio.io/v1.6/docs/setup/platform-setup/kops/) for running SDS.
   
 * **Default password in static file configuration for Dex** - The configuration file 
   {{% config-file-istio-dex %}} contains a default 
