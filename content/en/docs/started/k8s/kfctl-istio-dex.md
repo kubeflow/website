@@ -238,7 +238,7 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
           type: ClusterIP
           clusterIP: None
           ports:
-            - port: 389
+            - port: 636
           selector:
             app: ldap
         ---
@@ -264,11 +264,16 @@ This section focuses on setting up Dex to authenticate with an existing LDAP dat
               containers:
                 - name: ldap
                   image: osixia/openldap:1.2.4
+                  lifecycle:
+                    postStart:
+                      exec:
+                         command:
+                         - /bin/bash
+                         - -c
+                         - mkdir -p /pvc/etc/ldap/slapd.d /pvc/var/lib/ldap && rm -rf /etc/ldap/slapd.d /var/lib/ldap && ln -s /pvc/etc/ldap/slapd.d /etc/ldap && ln -s /pvc/var/lib/ldap /var/lib
                   volumeMounts:
                     - name: ldap-data
-                      mountPath: /var/lib/ldap
-                    - name: ldap-config
-                      mountPath: /etc/ldap/slapd.d
+                      mountPath: /pvc
                   ports:
                     - containerPort: 389
                       name: openldap
