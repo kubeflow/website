@@ -18,7 +18,7 @@ To get Kubeflow:
 1. Install [MicroK8s](https://microk8s.io/) 
 2. Install Kubeflow by running: `microk8s enable kubeflow`
 
-The full set of instructions are available on the [Kubeflow on MicroK8s](https://www.kubeflow.org/docs/started/workstation/getting-started-multipass/) page.
+The full set of instructions are available on the [Kubeflow on MicroK8s](https://www.kubeflow.org/docs/started/workstation/kubeflow-on-microk8s/) page.
 
 ### MiniKF
 
