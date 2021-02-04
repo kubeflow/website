@@ -15,7 +15,7 @@ with a number of machine learning (ML) libraries.
 
 ## Set up Kubeflow and access the Kubeflow notebook environment
 
-Follow the [Kubeflow notebook setup guide](/docs/notebooks/setup/)
+Follow the [Kubeflow notebook setup guide](/docs/components/notebooks/setup/)
 to install Kubeflow, access your Kubeflow hosted notebook environment, and 
 create a new notebook server.
 

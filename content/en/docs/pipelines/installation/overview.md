@@ -141,7 +141,7 @@ Notes on specific features
   * After deployment, your Kubernetes cluster includes all the
   [Kubeflow components](/docs/components/).
   For example, you can use the Jupyter notebook services
-  [deployed with Kubeflow](/docs/notebooks/) to create one or more notebook
+  [deployed with Kubeflow](/docs/components/notebooks/) to create one or more notebook
   servers in your Kubeflow cluster.
   * Kubeflow Pipelines multi-user support is **only available** in full Kubeflow. It supports
   using a single Kubeflow Pipelines control plane to orchestrate user pipeline

@@ -54,7 +54,7 @@ The following are the goals of the [Kubeflow Fairing project][fairing-repo]:
 *  Learn how to [set up a Jupyter notebooks instance on your Kubeflow
    cluster][kubeflow-notebooks].
 
-[kubeflow-notebooks]: /docs/notebooks/setup/
+[kubeflow-notebooks]: /docs/components/notebooks/setup/
 [ai-platform]: https://cloud.google.com/ml-engine/docs/
 [fairing-repo]: https://github.com/kubeflow/fairing
 [kubeflow]: /docs/about/kubeflow/
