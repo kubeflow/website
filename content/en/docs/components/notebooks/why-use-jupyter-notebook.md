@@ -22,4 +22,4 @@ Overall, Kubeflow-hosted notebooks are better integrated with other components w
 
 ## Next steps
 
-* Learn more about [setting up notebooks](/docs/notebooks/setup/).
+* Learn more about [setting up notebooks](/docs/components/notebooks/setup/).

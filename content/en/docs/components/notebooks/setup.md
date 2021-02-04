@@ -97,7 +97,7 @@ central dashboard](/docs/components/central-dash/overview/).
     * **Custom image**: If you select the custom option, you must specify a Docker
     image in  the form `registry/image:tag`. For guidelines on creating a Docker
     image for your notebook, see the guide to 
-    [creating a custom Jupyter image](/docs/notebooks/custom-notebook/).
+    [creating a custom Jupyter image](/docs/components/notebooks/custom-notebook/).
 
     * **Standard image**: Click the **Image** dropdown menu to see the list of
     available images. The standard Docker images include typical machine learning 
@@ -309,8 +309,8 @@ exposed to the internet and is an unsecured endpoint by default.
   building, training, and deploying an ML model from a notebook.
 * See how to configure [multi-user isolation](/docs/components/multi-tenancy/) in Kubeflow, to separate the notebooks for each user in a shared Kubeflow deployment.
 * Learn the advanced features available from a Kubeflow notebook, such as
-  [submitting Kubernetes resources](/docs/notebooks/submit-kubernetes/) or
-  [building Docker images](/docs/notebooks/submit-docker-image/). 
-* Visit the [troubleshooting guide](/docs/notebooks/troubleshoot) for fixing common
+  [submitting Kubernetes resources](/docs/components/notebooks/submit-kubernetes/) or
+  [building Docker images](/docs/components/notebooks/submit-docker-image/). 
+* Visit the [troubleshooting guide](/docs/components/notebooks/troubleshoot) for fixing common
   errors in creating Jupyter notebooks in Kubeflow
 
