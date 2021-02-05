@@ -129,7 +129,7 @@ documentation for that application.
         <td>v0.3.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/components/misc/metadata/">Metadata</a>
+        <td><a href="/docs/components/metadata/">Metadata</a>
           (<a href="https://github.com/kubeflow/metadata">GitHub</a>)
         </td>
         <td>Beta</td>
