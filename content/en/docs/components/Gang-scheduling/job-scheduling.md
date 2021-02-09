@@ -1,7 +1,7 @@
 +++
 title = "Job Scheduling"
 description = "How to schedule a job with gang-scheduling"
-weight = 70
+weight = 10
                     
 +++
 {{% alert title="Out of date" color="warning" %}}
