@@ -56,7 +56,7 @@ You can find an example of how to use the Metadata SDK in this
 To run the notebook in your Kubeflow cluster:
 
 1. Follow the guide to 
-  [setting up your Jupyter notebooks in Kubeflow](/docs/notebooks/setup/).
+  [setting up your Jupyter notebooks in Kubeflow](/docs/components/notebooks/setup/).
 1. Go to the [`demo` notebook on GitHub](https://github.com/kubeflow/metadata/blob/master/sdk/python/sample/demo.ipynb).
 1. Download the notebook code by opening the **Raw** view of the file, then
   right-clicking on the content and saving the file locally as `demo.ipynb`.

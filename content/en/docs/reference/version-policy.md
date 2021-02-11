@@ -152,14 +152,14 @@ documentation for that application.
         <td></td>
       </tr>
       <tr>
-        <td><a href="/docs/notebooks/why-use-jupyter-notebook/">Notebook web
+        <td><a href="/docs/components/notebooks/why-use-jupyter-notebook/">Notebook web
           app</a>
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/jupyter-web-app">GitHub</a>)
         <td>Stable</td>
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/notebooks/why-use-jupyter-notebook/">Notebook 
+        <td><a href="/docs/components/notebooks/why-use-jupyter-notebook/">Notebook 
           controller</a> 
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller">GitHub</a>)
         </td>

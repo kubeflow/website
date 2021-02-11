@@ -100,7 +100,7 @@ It's time to get started!
 
 1. Launch a Jupyter notebook in your Kubeflow cluster. See the guide to
   [setting up your 
-  notebooks](/docs/notebooks/setup/#create-a-jupyter-notebook-server-and-add-a-notebook).
+  notebooks](/docs/components/notebooks/setup/#create-a-jupyter-notebook-server-and-add-a-notebook).
   *Note:* This tutorial has been tested with the *Tensorflow 1.15 CPU* image
   as the baseline image for the notebook.
 

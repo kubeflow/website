@@ -90,7 +90,7 @@ Follow these steps to start a notebook:
     * When Kubeflow is running, access the Kubeflow UI at a URL of the form
       `https://<deployment-name>.endpoints.<project>.cloud.goog/`.
 
-1. Follow the [Kubeflow notebooks setup guide](/docs/notebooks/setup/) to
+1. Follow the [Kubeflow notebooks setup guide](/docs/components/notebooks/setup/) to
   create a Jupyter notebook server and open the Jupyter UI.
 
 1. Download the sample notebooks from

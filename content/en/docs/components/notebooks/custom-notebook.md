@@ -87,4 +87,4 @@ CMD ["sh","-c", "jupyter notebook --notebook-dir=/home/jovyan --ip=0.0.0.0 --no-
 
 When starting a Jupyter notebook server from the
 Kubeflow UI, specify your custom Docker image. See the guide to [setting up
-your Jupyter notebooks](/docs/notebooks/setup/).
+your Jupyter notebooks](/docs/components/notebooks/setup/).

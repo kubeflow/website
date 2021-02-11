@@ -125,4 +125,4 @@ You can access Kubeflow via `kubectl` and port-forwarding as follows:
   option](/docs/components/multi-tenancy/) where you
   can set up a single namespace for a shared deployment or configure 
   multi-tenancy for your Kubeflow deployment.
-* [Set up your Jupyter notebooks](/docs/notebooks/setup/) in Kubeflow.
+* [Set up your Jupyter notebooks](/docs/components/notebooks/setup/) in Kubeflow.
