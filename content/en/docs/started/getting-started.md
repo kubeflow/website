@@ -110,7 +110,7 @@ The matrix is therefore an alternative way of accessing the information in the
       </tr>
       <tr>
         <td><b>Existing Kubernetes cluster</b> using Dex for authentication</td>
-        <td><a href="/docs/started/k8s/kfctl-istio-dex/">Docs</a></td>
+        <td><a href="/docs/methods/kfctl/multi-user/">Docs</a></td>
       </tr>
       <tr>
         <td><b>Amazon Web Services (AWS)</b> using the standard setup</td>

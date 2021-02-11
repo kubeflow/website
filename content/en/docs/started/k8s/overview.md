@@ -182,7 +182,7 @@ governed by consensus within the Kubeflow community.
     <tbody>
       <tr>
         <td>kfctl_istio_dex.yaml</td>
-        <td> This config creates a Kubeflow deployment with all its core components, and uses Dex and Istio for vendor-neutral authentication. <br />Follow instructions: <a href="/docs/started/k8s/kfctl-istio-dex/">Multi-user, auth-enabled Kubeflow with kfctl_istio_dex</a></td>
+        <td> This config creates a Kubeflow deployment with all its core components, and uses Dex and Istio for vendor-neutral authentication. <br />Follow instructions: <a href="/docs/methods/kfctl/multi-user/">Multi-user, auth-enabled Kubeflow with kfctl_istio_dex</a></td>
       </tr>
     </tbody>
   </table>
