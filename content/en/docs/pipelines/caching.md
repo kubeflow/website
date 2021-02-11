@@ -61,12 +61,12 @@ Kubeflow cluster.
 
     ```
     export NAMESPACE=<Namespace where KFP is installed>
-    kubectl get mutatingwebhookconfiguration cache-webhook -n ${NAMESPACE}
+    kubectl get mutatingwebhookconfiguration cache-webhook-{namespace} -n ${NAMESPACE}
     ```
 2. Change `mutatingwebhookconfiguration` rules:
 
     ```
-    kubectl patch mutatingwebhookconfiguration cache-webhook -n ${NAMESPACE} --type='json' -p='[{"op":"replace", "path": "/webhooks/0/rules/0/operations/0", "value": "DELETE"}]'
+    kubectl patch mutatingwebhookconfiguration cache-webhook-{namespace} -n ${NAMESPACE} --type='json' -p='[{"op":"replace", "path": "/webhooks/0/rules/0/operations/0", "value": "DELETE"}]'
     ```
 
 ### Enabling caching
@@ -75,12 +75,12 @@ Kubeflow cluster.
 
     ```
     export NAMESPACE=<Namespace where KFP is installed>
-    kubectl get mutatingwebhookconfiguration cache-webhook -n ${NAMESPACE}
+    kubectl get mutatingwebhookconfiguration cache-webhook-{namespace} -n ${NAMESPACE}
     ```
 2. Change back `mutatingwebhookconfiguration` rules:
 
     ```
-    kubectl patch mutatingwebhookconfiguration cache-webhook -n ${NAMESPACE} --type='json' -p='[{"op":"replace", "path": "/webhooks/0/rules/0/operations/0", "value": "CREATE"}]'
+    kubectl patch mutatingwebhookconfiguration cache-webhook-{namespace} -n ${NAMESPACE} --type='json' -p='[{"op":"replace", "path": "/webhooks/0/rules/0/operations/0", "value": "CREATE"}]'
     ```
 
 ## Managing caching staleness
