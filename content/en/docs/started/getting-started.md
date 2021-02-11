@@ -106,7 +106,7 @@ The matrix is therefore an alternative way of accessing the information in the
       <tr>
         <td><b>Existing Kubernetes cluster</b> using a standard Kubeflow
           installation</td>
-        <td><a href="/docs/started/k8s/kfctl-k8s-istio/">Docs</a></td>
+        <td><a href="/docs/methods/kfctl/deployment">Docs</a></td>
       </tr>
       <tr>
         <td><b>Existing Kubernetes cluster</b> using Dex for authentication</td>

@@ -32,7 +32,7 @@ Your Kubernetes cluster must meet the following minimum requirements:
   with a [dynamic volume
   provisioner](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
   For more information, refer to [this
-  guide](https://www.kubeflow.org/docs/started/k8s/kfctl-k8s-istio/#before-you-start).
+  guide](https://www.kubeflow.org/docs/methods/kfctl/deployment/#before-you-start).
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -176,7 +176,7 @@ governed by consensus within the Kubeflow community.
     <tbody>
       <tr>
         <td>kfctl_k8s_istio.yaml</td>
-        <td> This config creates a vanilla deployment of Kubeflow with all its core components without any external dependencies. The deployment can be customized based on your environment needs. <br />Follow instructions: <a href="/docs/started/k8s/kfctl-k8s-istio/">Kubeflow Deployment with kfctl_k8s_istio</a></td>
+        <td> This config creates a vanilla deployment of Kubeflow with all its core components without any external dependencies. The deployment can be customized based on your environment needs. <br />Follow instructions: <a href="/docs/methods/kfctl/deployment/">Kubeflow Deployment with kfctl_k8s_istio</a></td>
       </tr>
     </tbody>
     <tbody>
