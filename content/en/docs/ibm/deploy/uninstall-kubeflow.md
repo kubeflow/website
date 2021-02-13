@@ -13,4 +13,5 @@ cd ${KF_DIR}
 
 # Remove Kubeflow
 kfctl delete -f ${CONFIG_FILE}
+rm -rf kustomize .cache
 ```

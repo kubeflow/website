@@ -40,9 +40,9 @@ If you have an existing cluster, use it to install Kubeflow as far as it meets t
 
 Get the Kubeconfig file:
 
-	```shell
-	ibmcloud ks cluster config --cluster $CLUSTER_NAME
-	```
+```shell
+ibmcloud ks cluster config --cluster $CLUSTER_NAME
+```
 
 From here on, please see [Install Kubeflow](/docs/ibm/deploy/install-kubeflow).
 

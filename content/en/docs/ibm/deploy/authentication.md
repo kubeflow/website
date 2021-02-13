@@ -97,7 +97,7 @@ column):
 `istio-ingressgateway` pods in namespace `istio-system`:
 
     ```shell
-    kubectl get secret $INGRESS_GATEWAY_SECRET -o yaml > istio-ingressgateway-certs.yaml
+    kubectl get secret $INGRESS_GATEWAY_SECRET -n istio-system -o yaml > istio-ingressgateway-certs.yaml
     ```
 
 6. Update the `istio-ingressgateway-certs.yaml` file by changing the value of
