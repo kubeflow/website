@@ -18,11 +18,11 @@ kubectl port-forward -n kubeflow svc/ml-pipeline ${SVC_PORT}:8888
 
 This tutorial assumes that the service is accessible on localhost.
 
-You also need to install [jq](https://stedolan.github.io/jq/download/), and the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
+You also need to install [jq](https://stedolan.github.io/jq/download/), and the [Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/).
 
 ## Building and running a pipeline
 
-Follow this guide to download, compile, and run the [`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/sequential/sequential.py). To learn how to compile and run pipelines using the Kubeflow Pipelines SDK or a Jupyter notebook, follow the [experimenting with Kubeflow Pipelines samples tutorial](/docs/pipelines/tutorials/build-pipeline/).
+Follow this guide to download, compile, and run the [`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/sequential/sequential.py). To learn how to compile and run pipelines using the Kubeflow Pipelines SDK or a Jupyter notebook, follow the [experimenting with Kubeflow Pipelines samples tutorial](/docs/components/pipelines/tutorials/build-pipeline/).
 
 ```
 PIPELINE_URL=https://raw.githubusercontent.com/kubeflow/pipelines/master/samples/core/sequential/sequential.py
@@ -33,7 +33,7 @@ wget -O ${PIPELINE_FILE} ${PIPELINE_URL}
 dsl-compile --py ${PIPELINE_FILE} --output ${PIPELINE_NAME}.tar.gz
 ```
 
-After running the commands above, you should get two files in your current directory: `sequential.py` and `sequential.tar.gz`. Run the following command to deploy the generated `.tar.gz` file as you would do using the [Kubeflow Pipelines UI](/docs/pipelines/sdk/build-component/#deploy-the-pipeline), but this time using the REST API.
+After running the commands above, you should get two files in your current directory: `sequential.py` and `sequential.tar.gz`. Run the following command to deploy the generated `.tar.gz` file as you would do using the [Kubeflow Pipelines UI](/docs/components/pipelines/sdk/build-component/#deploy-the-pipeline), but this time using the REST API.
 
 ```
 SVC=localhost:8888
@@ -137,4 +137,4 @@ The response should be similar to the following one:
 }
 ```
 
-Read [Kubeflow Pipelines API Reference](/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/) to learn more about how to use the API.
+Read [Kubeflow Pipelines API Reference](/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/) to learn more about how to use the API.

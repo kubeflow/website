@@ -7,7 +7,7 @@ weight = 90
 
 This page shows you how to export metrics from a Kubeflow Pipelines component. 
 For details about how to build a component, see the guide to 
-[building your own component](/docs/pipelines/sdk/component-development/).
+[building your own component](/docs/components/pipelines/sdk/component-development/).
  
 ## Overview of metrics
 
@@ -140,4 +140,4 @@ The following example shows the **accuracy-score** and
 ## Next step
 
 Visualize the output of your component by [writing out metadata for an output 
-viewer](/docs/pipelines/metrics/output-viewer/).
+viewer](/docs/components/pipelines/metrics/output-viewer/).

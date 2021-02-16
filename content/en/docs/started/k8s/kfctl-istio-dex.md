@@ -886,4 +886,4 @@ Please join the [Kubeflow Slack](https://kubeflow.slack.com/join/shared_invite/z
 ## Next steps
 
 * Run a [sample machine learning workflow](/docs/examples/kubeflow-samples/).
-* Get started with [Kubeflow Pipelines](/docs/pipelines/pipelines-quickstart/).
+* Get started with [Kubeflow Pipelines](/docs/components/pipelines/pipelines-quickstart/).

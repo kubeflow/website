@@ -37,4 +37,4 @@ def my_pipeline(
 ```
 
 For more information, you can refer to the guide on
-[building components and pipelines](/docs/pipelines/sdk/build-component/#create-a-python-class-for-your-component).
+[building components and pipelines](/docs/components/pipelines/sdk/build-component/#create-a-python-class-for-your-component).

@@ -8,11 +8,11 @@ weight = 40
 An *experiment* is a workspace where you can try different configurations of
 your pipelines. You can use experiments to organize your runs into logical
 groups. Experiments can contain arbitrary runs, including 
-[recurring runs](/docs/pipelines/concepts/run#recurring-run).
+[recurring runs](/docs/components/pipelines/concepts/run#recurring-run).
 
 ## Next steps
 
-* Read an [overview of Kubeflow Pipelines](/docs/pipelines/pipelines-overview/).
-* Follow the [pipelines quickstart guide](/docs/pipelines/pipelines-quickstart/) 
+* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/pipelines-overview/).
+* Follow the [pipelines quickstart guide](/docs/components/pipelines/pipelines-quickstart/) 
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.

@@ -13,11 +13,11 @@ This page describes how to author a reusable component that you can
 load and use as part of a pipeline.
 
 If you're new to
-pipelines, see the conceptual guides to [pipelines](/docs/pipelines/concepts/pipeline/)
-and [components](/docs/pipelines/concepts/component/).
+pipelines, see the conceptual guides to [pipelines](/docs/components/pipelines/concepts/pipeline/)
+and [components](/docs/components/pipelines/concepts/component/).
 
 This tutorial describes the manual way of writing a full component program (in any language) and a component definition for it.
-For quickly building component from a python function see [Build component from Python function](/docs/pipelines/sdk/lightweight-python-components/) and [Data Passing in Python components](https://github.com/kubeflow/pipelines/blob/master/samples/tutorials/Data%20passing%20in%20python%20components.ipynb).
+For quickly building component from a python function see [Build component from Python function](/docs/components/pipelines/sdk/lightweight-python-components/) and [Data Passing in Python components](https://github.com/kubeflow/pipelines/blob/master/samples/tutorials/Data%20passing%20in%20python%20components.ipynb).
 
 ## Summary
 
@@ -184,7 +184,7 @@ To create a component from your containerized program you need to write componen
 component for the Kubeflow Pipelines system.
 
 For the complete definition of a Kubeflow Pipelines component, see the
-[component specification](/docs/pipelines/reference/component-spec/).
+[component specification](/docs/components/pipelines/reference/component-spec/).
 However, for this tutorial you don't need to know the full schema of the
 component specification. The tutorial provides enough information for the
 relevant the components.
@@ -378,15 +378,15 @@ components/<component group>/<component name>/
 ## Next steps
 
 * Consolidate what you've learned by reading the
-  [best practices](/docs/pipelines/sdk/best-practices) for designing and
+  [best practices](/docs/components/pipelines/sdk/best-practices) for designing and
   writing components.
 * For quick iteration,
-  [build lightweight components](/docs/pipelines/sdk/lightweight-python-components/)
+  [build lightweight components](/docs/components/pipelines/sdk/lightweight-python-components/)
   directly from Python functions.
 * See how to [export metrics from your
-  pipeline](/docs/pipelines/metrics/pipelines-metrics/).
+  pipeline](/docs/components/pipelines/metrics/pipelines-metrics/).
 * Visualize the output of your component by
   [adding metadata for an output
-  viewer](/docs/pipelines/metrics/output-viewer/).
+  viewer](/docs/components/pipelines/metrics/output-viewer/).
 * Explore the [reusable components and other shared
   resources](/docs/examples/shared-resources/).

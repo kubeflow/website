@@ -11,7 +11,7 @@ to compile, upload and run your Kubeflow Pipeline DSL Python scripts on a
 
 ## SDK packages
 
-The `kfp-tekton` SDK is an extension to the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/sdk-overview/)
+The `kfp-tekton` SDK is an extension to the [Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/sdk-overview/)
 adding the `TektonCompiler` and the `TektonClient`:
 
 * `kfp_tekton.compiler` includes classes and methods for compiling pipeline 
@@ -23,12 +23,12 @@ adding the `TektonCompiler` and the `TektonClient`:
     can process. The Kubeflow Pipelines service converts the static 
     configuration into a set of Kubernetes resources for execution.
 
-* `kfp_tekton.TektonClient` contains the Python client libraries for the [Kubeflow Pipelines API](/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/).
+* `kfp_tekton.TektonClient` contains the Python client libraries for the [Kubeflow Pipelines API](/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/).
   Methods in this package include, but are not limited to, the following:
 
   * `kfp_tekton.TektonClient.upload_pipeline` uploads a local file to create a new pipeline in Kubeflow Pipelines.
   * `kfp_tekton.TektonClient.create_experiment` creates a pipeline
-    [experiment](/docs/pipelines/concepts/experiment/) and returns an
+    [experiment](/docs/components/pipelines/concepts/experiment/) and returns an
     experiment object.
   * `kfp_tekton.TektonClient.run_pipeline` runs a pipeline and returns a run object.
   * `kfp_tekton.TektonClient.create_run_from_pipeline_func` compiles a pipeline

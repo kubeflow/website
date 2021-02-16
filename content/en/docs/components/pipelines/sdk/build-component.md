@@ -11,7 +11,7 @@ needs to be updated for Kubeflow 1.1.
 
 This page describes how to create a component for Kubeflow Pipelines and how
 to combine components into a pipeline. For an easier start, experiment with 
-[the Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).
+[the Kubeflow Pipelines samples](/docs/components/pipelines/tutorials/build-pipeline/).
 
 ## Overview of pipelines and components
 
@@ -27,15 +27,15 @@ may produce one or more outputs. A component consists of an interface
 arguments) and metadata (name, description).
 
 For more information, see the conceptual guides to 
-[pipelines](/docs/pipelines/concepts/pipeline/)
-and [components](/docs/pipelines/concepts/component/).
+[pipelines](/docs/components/pipelines/concepts/pipeline/)
+and [components](/docs/components/pipelines/concepts/component/).
 
 ## Before you start
 
 Set up your environment:
 
 * Install [Docker](https://www.docker.com/get-docker).
-* Install the [Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
+* Install the [Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/).
 
 The examples on this page come from the
 [XGBoost Spark pipeline sample](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm)
@@ -195,20 +195,20 @@ dsl-compile --py [path/to/python/file] --output [path/to/output/tar.gz]
 ## Deploy the pipeline
 
 Upload the generated `.tar.gz` file through the Kubeflow Pipelines UI. See the
-guide to [getting started with the UI](/docs/pipelines/pipelines-quickstart).
+guide to [getting started with the UI](/docs/components/pipelines/pipelines-quickstart).
 
 ## Next steps
 
-* Build a [reusable component](/docs/pipelines/sdk/component-development/) for
+* Build a [reusable component](/docs/components/pipelines/sdk/component-development/) for
   sharing in multiple pipelines.
 * Learn more about the 
-  [Kubeflow Pipelines domain-specific language (DSL)](/docs/pipelines/sdk/dsl-overview/),
+  [Kubeflow Pipelines domain-specific language (DSL)](/docs/components/pipelines/sdk/dsl-overview/),
   a set of Python libraries that you can use to specify ML pipelines.
 * See how to [export metrics from your 
-  pipeline](/docs/pipelines/metrics/pipelines-metrics/).
+  pipeline](/docs/components/pipelines/metrics/pipelines-metrics/).
 * Visualize the output of your component by
   [adding metadata for an output 
-  viewer](/docs/pipelines/metrics/output-viewer/).
+  viewer](/docs/components/pipelines/metrics/output-viewer/).
 * For quick iteration, 
-  [build lightweight components](/docs/pipelines/sdk/lightweight-python-components/)
+  [build lightweight components](/docs/components/pipelines/sdk/lightweight-python-components/)
   directly from Python functions.

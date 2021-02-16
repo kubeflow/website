@@ -41,7 +41,7 @@ Kubeflow Pipelines system. A component definition has the following parts:
   component has finished running.
 
 For the complete definition of a component, see the
-[component specification](/docs/pipelines/reference/component-spec/).
+[component specification](/docs/components/pipelines/reference/component-spec/).
 
 ## Containerizing components
 
@@ -57,11 +57,11 @@ deserialize the data for use in the downstream component.
 
 ## Next steps
 
-* Read an [overview of Kubeflow Pipelines](/docs/pipelines/pipelines-overview/).
-* Follow the [pipelines quickstart guide](/docs/pipelines/pipelines-quickstart/) 
+* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/pipelines-overview/).
+* Follow the [pipelines quickstart guide](/docs/components/pipelines/pipelines-quickstart/) 
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.
 * Build your own 
-  [component and pipeline](/docs/pipelines/sdk/build-component/).
-* Build a [reusable component](/docs/pipelines/sdk/component-development/) for
+  [component and pipeline](/docs/components/pipelines/sdk/build-component/).
+* Build a [reusable component](/docs/components/pipelines/sdk/component-development/) for
   sharing in multiple pipelines.

@@ -16,7 +16,7 @@ workflow and how the components interact with each other.
 
 **Note**: The SDK documentation here refers to [Kubeflow Pipelines with Argo](https://github.com/kubeflow/pipelines) which is the default.
 If you are running [Kubeflow Pipelines with Tekton](https://github.com/kubeflow/kfp-tekton) instead,
-please follow the [Kubeflow Pipelines SDK for Tekton](/docs/pipelines/sdk/pipelines-with-tekton) documentation.
+please follow the [Kubeflow Pipelines SDK for Tekton](/docs/components/pipelines/sdk/pipelines-with-tekton) documentation.
 
 ## SDK packages
 
@@ -65,7 +65,7 @@ The Kubeflow Pipelines SDK includes the following packages:
 
   * `kfp.dsl.PipelineParam` represents a pipeline parameter that you can pass
     from one pipeline component to another. See the guide to 
-    [pipeline parameters](/docs/pipelines/sdk/parameters/).
+    [pipeline parameters](/docs/components/pipelines/sdk/parameters/).
   * `kfp.dsl.component` is a decorator for DSL functions that returns a
     pipeline component.
     ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp)).
@@ -78,7 +78,7 @@ The Kubeflow Pipelines SDK includes the following packages:
     include basic types like `String`, `Integer`, `Float`, and `Bool`, as well
     as domain-specific types like `GCPProjectID` and `GCRPath`.
     See the guide to 
-    [DSL static type checking](/docs/pipelines/sdk/static-type-checking).
+    [DSL static type checking](/docs/components/pipelines/sdk/static-type-checking).
   * [`kfp.dsl.ResourceOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ResourceOp)
     represents a pipeline task (op) which lets you directly manipulate 
     Kubernetes resources (`create`, `get`, `apply`, ...).
@@ -108,18 +108,18 @@ The Kubeflow Pipelines SDK includes the following packages:
 
 * [`kfp.Client`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html)
   contains the Python client libraries for the [Kubeflow Pipelines 
-  API](/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/).
+  API](/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/).
   Methods in this package include, but are not limited to, the following:
 
   * `kfp.Client.create_experiment` creates a pipeline 
-    [experiment](/docs/pipelines/concepts/experiment/) and returns an
+    [experiment](/docs/components/pipelines/concepts/experiment/) and returns an
     experiment object.
   * `kfp.Client.run_pipeline` runs a pipeline and returns a run object.
   * `kfp.Client.create_run_from_pipeline_func` compiles a pipeline function and submits it
     for execution on Kubeflow Pipelines.
   * `kfp.Client.create_run_from_pipeline_package` runs a local pipeline package on Kubeflow Pipelines.
   * `kfp.Client.upload_pipeline` uploads a local file to create a new pipeline in Kubeflow Pipelines.
-  * `kfp.Client.upload_pipeline_version` uploads a local file to create a pipeline version. [Follow an example to learn more about creating a pipeline version](/docs/pipelines/tutorials/sdk-examples)
+  * `kfp.Client.upload_pipeline_version` uploads a local file to create a pipeline version. [Follow an example to learn more about creating a pipeline version](/docs/components/pipelines/tutorials/sdk-examples)
 
 * [Kubeflow Pipelines extension modules](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.extensions.html)
   include classes and functions for specific platforms on which you can use
@@ -155,7 +155,7 @@ The Kubeflow Pipelines CLI tool enables you to use a subset of the Kubeflow Pipe
 ## Installing the SDK
 
 Follow the guide to 
-[installing the Kubeflow Pipelines SDK](/docs/pipelines/sdk/install-sdk/).
+[installing the Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/).
 
 ## Building pipelines and components
 
@@ -209,7 +209,7 @@ Below is a more detailed explanation of the above diagram:
   [`kfp.dsl.ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp).
   Optionally, you can use the [`kfp.dsl.component` 
   decorator](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.component)
-  to enable [static type checking](/docs/pipelines/sdk/static-type-checking) in 
+  to enable [static type checking](/docs/components/pipelines/sdk/static-type-checking) in 
   the DSL compiler. To use the decorator, you can add the `@kfp.dsl.component` 
   annotation to your component function:
 
@@ -273,13 +273,13 @@ You can also choose to share your pipeline as follows:
 
 * Upload the pipeline zip file to the Kubeflow Pipelines UI. For more 
   information about the UI, see the [Kubeflow Pipelines quickstart 
-  guide](/docs/pipelines/pipelines-quickstart/).
+  guide](/docs/components/pipelines/pipelines-quickstart/).
 * Upload the pipeline zip file to a shared repository. See the 
   [reusable components and other shared resources](/docs/examples/shared-resources/).
 
 {{% alert title="More about the above workflow" color="info" %}}
 For more detailed instructions, see the guide to [building components and 
-pipelines](/docs/pipelines/sdk/build-component/).
+pipelines](/docs/components/pipelines/sdk/build-component/).
 
 For an example, see the
 [`xgboost-training-cm.py`](https://github.com/kubeflow/pipelines/blob/master/samples/core/xgboost_training_cm/xgboost_training_cm.py)
@@ -384,7 +384,7 @@ You can also choose to share your pipeline as follows:
 
 * Upload the pipeline zip file to the Kubeflow Pipelines UI. For more 
   information about the UI, see the [Kubeflow Pipelines quickstart 
-  guide](/docs/pipelines/pipelines-quickstart/).
+  guide](/docs/components/pipelines/pipelines-quickstart/).
 * Upload the pipeline zip file to a shared repository. See the 
   [reusable components and other shared resources](/docs/examples/shared-resources/).
 
@@ -487,7 +487,7 @@ Below is a more detailed explanation of the above diagram:
 
 {{% alert title="More about the above workflow" color="info" %}}
 For more detailed instructions, see the guide to [building lightweight 
-components](/docs/pipelines/sdk/lightweight-python-components/).
+components](/docs/components/pipelines/sdk/lightweight-python-components/).
 
 For an example, see the [Lightweight Python components - 
 basics](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb)
@@ -573,10 +573,10 @@ structured data in CSV format.
 
 ## Next steps
 
-* [Use pipeline parameters](/docs/pipelines/sdk/parameters/) to pass data between components.
+* [Use pipeline parameters](/docs/components/pipelines/sdk/parameters/) to pass data between components.
 * Learn how to [write recursive functions in the 
-  DSL](/docs/pipelines/sdk/dsl-recursion).
-* Build a [reusable component](/docs/pipelines/sdk/component-development/) for
+  DSL](/docs/components/pipelines/sdk/dsl-recursion).
+* Build a [reusable component](/docs/components/pipelines/sdk/component-development/) for
   sharing in multiple pipelines.
 * Find out how to use the DSL to [manipulate Kubernetes resources dynamically 
-  as steps of your pipeline](/docs/pipelines/sdk/manipulate-resources/).
+  as steps of your pipeline](/docs/components/pipelines/sdk/manipulate-resources/).

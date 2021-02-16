@@ -13,7 +13,7 @@ scalable machine learning (ML) workflows based on Docker containers.
 ## Quickstart
 
 Run your first pipeline by following the 
-[pipelines quickstart guide](/docs/pipelines/pipelines-quickstart).
+[pipelines quickstart guide](/docs/components/pipelines/pipelines-quickstart).
 
 ## What is Kubeflow Pipelines?
 
@@ -36,7 +36,7 @@ The following are the goals of Kubeflow Pipelines:
 Kubeflow Pipelines is available as a core component of Kubeflow or as a standalone installation.
 
 * [Learn more about installing Kubeflow](/docs/started/getting-started/).
-* [Learn more about installing Kubeflow Pipelines standalone](/docs/pipelines/installation/overview/).
+* [Learn more about installing Kubeflow Pipelines standalone](/docs/components/pipelines/installation/overview/).
 
 {{% pipelines-compatibility %}}
 
@@ -56,8 +56,8 @@ A _pipeline component_ is a self-contained set of user code, packaged as a
 performs one step in the pipeline. For example, a component can be responsible
 for data preprocessing, data transformation, model training, and so on.
 
-See the conceptual guides to [pipelines](/docs/pipelines/concepts/pipeline/)
-and [components](/docs/pipelines/concepts/component/).
+See the conceptual guides to [pipelines](/docs/components/pipelines/concepts/pipeline/)
+and [components](/docs/components/pipelines/concepts/component/).
 
 ## Example of a pipeline
 
@@ -275,10 +275,10 @@ At a high level, the execution of a pipeline proceeds as follows:
 ## Next steps
 
 * Follow the 
-  [pipelines quickstart guide](/docs/pipelines/pipelines-quickstart) to 
+  [pipelines quickstart guide](/docs/components/pipelines/pipelines-quickstart) to 
   deploy Kubeflow and run a sample pipeline directly from the 
   Kubeflow Pipelines UI.
 * Build machine-learning pipelines with the [Kubeflow Pipelines 
-  SDK](/docs/pipelines/sdk/sdk-overview/).
+  SDK](/docs/components/pipelines/sdk/sdk-overview/).
 * Follow the full guide to experimenting with
-  [the Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).
+  [the Kubeflow Pipelines samples](/docs/components/pipelines/tutorials/build-pipeline/).

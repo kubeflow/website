@@ -15,7 +15,7 @@ All of the SDK's classes and methods are described in the auto-generated [SDK re
 
 **Note:** If you are running [Kubeflow Pipelines with Tekton](https://github.com/kubeflow/kfp-tekton),
 instead of the default [Kubeflow Pipelines with Argo](https://github.com/kubeflow/pipelines), you should use the
-[Kubeflow Pipelines SDK for Tekton](/docs/pipelines/sdk/pipelines-with-tekton).
+[Kubeflow Pipelines SDK for Tekton](/docs/components/pipelines/sdk/pipelines-with-tekton).
 
 ## Set up Python
 
@@ -115,7 +115,7 @@ The response should be something like this:
 
 ## Next steps
 
-* [See how to use the SDK](/docs/pipelines/sdk/sdk-overview/).
-* [Build a component and a pipeline](/docs/pipelines/sdk/build-component/).
-* [Get started with the UI](/docs/pipelines/pipelines-quickstart).
-* [Understand pipeline concepts](/docs/pipelines/concepts/).
+* [See how to use the SDK](/docs/components/pipelines/sdk/sdk-overview/).
+* [Build a component and a pipeline](/docs/components/pipelines/sdk/build-component/).
+* [Get started with the UI](/docs/components/pipelines/pipelines-quickstart).
+* [Understand pipeline concepts](/docs/components/pipelines/concepts/).

@@ -12,10 +12,10 @@ needs to be updated for Kubeflow 1.1.
 This page shows you how to use the Kubeflow Pipelines UI to visualize output 
 from a Kubeflow Pipelines component. 
 For details about how to build a component, see the guide to 
-[building your own component](/docs/pipelines/sdk/build-component/).
+[building your own component](/docs/components/pipelines/sdk/build-component/).
 
 Kubeflow Pipelines provides a new method of generating visualizations. See the
-guide to [Python Based Visualizations](/docs/pipelines/sdk/python-based-visualizations/).
+guide to [Python Based Visualizations](/docs/components/pipelines/sdk/python-based-visualizations/).
 
 ## Introduction
 
@@ -167,7 +167,7 @@ viewers later on the page.
         below as examples.</p>
         <p><b>Be aware</b>, support for inline visualizations, other than
         markdown, was introduced in Kubeflow Pipelines 0.2.5. Before using these
-        visualizations, [upgrade  your Kubeflow Pipelines cluster](/docs/pipelines/upgrade/)
+        visualizations, [upgrade  your Kubeflow Pipelines cluster](/docs/components/pipelines/upgrade/)
         to version 0.2.5 or higher.</p>
         </td>
       </tr>
@@ -489,7 +489,7 @@ pre-installed when you deploy Kubeflow.
 You can run the sample by selecting 
 **[Sample] ML - TFX - Taxi Tip Prediction Model Trainer** from the 
 Kubeflow Pipelines UI. For help getting started with the UI, follow the 
-[Kubeflow Pipelines quickstart](/docs/pipelines/pipelines-quickstart/).
+[Kubeflow Pipelines quickstart](/docs/components/pipelines/pipelines-quickstart/).
 
 <!--- TODO: Will replace the tfx cab with tfx oss when it is ready.-->
 The pipeline uses a number of prebuilt, reusable components, including:
@@ -518,4 +518,4 @@ For lightweight components, the syntax is slightly different. You can refer to
 ## Next step
 
 See how to [export metrics from your 
-pipeline](/docs/pipelines/metrics/pipelines-metrics/).
+pipeline](/docs/components/pipelines/metrics/pipelines-metrics/).

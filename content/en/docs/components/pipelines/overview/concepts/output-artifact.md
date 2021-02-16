@@ -15,11 +15,11 @@ data to rich interactive visualizations.
 
 ## Next steps
 
-* Read an [overview of Kubeflow Pipelines](/docs/pipelines/pipelines-overview/).
-* Follow the [pipelines quickstart guide](/docs/pipelines/pipelines-quickstart/) 
+* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/pipelines-overview/).
+* Follow the [pipelines quickstart guide](/docs/components/pipelines/pipelines-quickstart/) 
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.
 * Read more about the available 
-  [output viewers](/docs/pipelines/metrics/output-viewer/) 
+  [output viewers](/docs/components/pipelines/metrics/output-viewer/) 
   and how to provide the metadata to make use of the visualizations
   that the output viewers provide.

@@ -14,7 +14,7 @@ for the common Kubeflow multi-user operations including the following:
 * For Google Cloud: [In-cluster authentication to Google Cloud from Kubeflow](/docs/gke/authentication/#in-cluster-authentication)
 
 Note, Kubeflow Pipelines multi-user isolation is only supported in
-[the full Kubeflow deployment](/docs/pipelines/installation/overview/#full-kubeflow-deployment)
+[the full Kubeflow deployment](/docs/components/pipelines/installation/overview/#full-kubeflow-deployment)
 starting from Kubeflow v1.1 and **currently** on all platforms except OpenShift. For the latest status about platform support, refer to [kubeflow/manifests#1364](https://github.com/kubeflow/manifests/issues/1364#issuecomment-668415871).
 
 Also be aware that the isolation support in Kubeflow doesn’t provide any hard
@@ -108,7 +108,7 @@ Detailed documentation for the Kubeflow Pipelines SDK can be found in the
 
 ### When using REST API or generated python API client
 
-Similarly, when calling [REST API endpoints](/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/)
+Similarly, when calling [REST API endpoints](/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/)
 or using [the generated python API client](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.server_api.html),
 namespace argument is required for experiment APIs. Note that namespace is
 referred to using a resource reference. The resource reference **type** is
