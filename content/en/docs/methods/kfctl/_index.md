@@ -1,5 +1,5 @@
 +++
 title = "kfctl"
-description = "Documentation of how to use the kfctl method for Kubeflow"
+description = "How to use the kfctl method for Kubeflow"
 weight = 60
 +++

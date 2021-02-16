@@ -1,5 +1,5 @@
 +++
 title = "Methods & Distributions"
-description = "A list available methods for Kubeflow deployment and operations"
+description = "A list of available methods for Kubeflow deployment and operations"
 weight = 60
 +++
