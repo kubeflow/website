@@ -309,7 +309,7 @@ webhook-5846486ff4-4ltjq            1/1     Running   0          18d
 #### Deploy kfserving
 Install KFserving using the manifest file:
 ```shell script
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/kfserving/master/install/0.2.2/kfserving.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/kfserving/master/install/v0.4.1/kfserving.yaml
 ```
 That will create a `kfserving-system` namespace with one pod running.
 
@@ -318,9 +318,9 @@ That will create a `kfserving-system` namespace with one pod running.
 Deploy a Tensorflow, a PyTorch and a Scikit-learn model using KFserving:
 
 ```shell script
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/kfserving/master/docs/samples/tensorflow/tensorflow.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/kfserving/master/docs/samples/pytorch/pytorch.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/kfserving/master/docs/samples/sklearn/sklearn.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/kfserving/master/docs/samples/v1alpha2/tensorflow/tensorflow.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/kfserving/master/docs/samples/v1alpha2/pytorch/pytorch.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/kfserving/master/docs/samples/v1alpha2/sklearn/sklearn.yaml
 ```
 
 Validate that all three inference services are available:
