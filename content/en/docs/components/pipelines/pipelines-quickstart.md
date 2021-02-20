@@ -2,13 +2,14 @@
 title = "Pipelines Quickstart"
 description = "Getting started with Kubeflow Pipelines"
 weight = 10
-                    
+
++++                 
 {{% stable-status %}}
 
 Use this guide if you want to get a simple pipeline running quickly in
 Kubeflow Pipelines.
 
-* This quickstart guide shows you how to use one of the samples that come with 
+* This quickstart guide shows you how to use two of the samples that come with 
   the Kubeflow Pipelines installation and are visible on the Kubeflow Pipelines
   user interface (UI). You can use this guide as an introduction to the 
   Kubeflow Pipelines UI.
@@ -34,15 +35,14 @@ pipelines quickly. The steps below show you how to run a basic sample that
 includes some Python operations, but doesn't include a machine learning (ML) 
 workload:
 
-1. Click the name of the sample, **\[Sample\] [Tutorial] Data passing in python components**, on the pipelines 
-  UI:
+1. Click the name of the sample, **\[Sample\] [Tutorial] Data passing in python components**, on the pipelines UI:
   <img src="/docs/images/click-pipeline-sample.png" 
     alt="Pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
 1. Click **Create experiment**:
   <img src="/docs/images/pipelines-start-experiment.png" 
-    alt="Starting an experiment on the pipelines UI"
+    alt="Creating an experiment on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
 1. Follow the prompts to create an **experiment** and then create a **run**. 
@@ -65,7 +65,7 @@ workload:
     alt="Run results on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-You can find [the source code for the data passing in python components sample](https://github.com/kubeflow/pipelines/blob/2b95c002b741fadb6ddd2aa364c6a5b55ea78edd/samples/tutorials/Data%20passing%20in%20python%20components/Data%20passing%20in%20python%20components%20-%20Files.py)
+You can find [the source code for the data passing in python components sample](https://github.com/kubeflow/pipelines/tree/master/samples/tutorials/Data%20passing%20in%20python%20components)
 in the Kubeflow Pipelines repo.
 
 ## Run an ML pipeline
@@ -74,7 +74,7 @@ This section shows you how to run the XGBoost sample available
 from the pipelines UI. Unlike the basic sample described above, the
 XGBoost sample does include ML components. 
 
-Follow these steps to set up the necessary GCP services and run the sample:
+Follow these steps to run the sample:
 
 1. Click the name of the sample, 
   **\[Sample\] [Demo] XGBoost - Iterative model training**, on the pipelines 
@@ -85,28 +85,8 @@ Follow these steps to set up the necessary GCP services and run the sample:
 
 1. Click **Create experiment**.
 1. Follow the prompts to create an **experiment** and then create a **run**.
-  Supply the following **run parameters**:
 
-    * **output:** The Cloud Storage bucket that you created earlier to hold the
-    results of the pipeline run.
-    * **project:** Your GCP project ID.
-
-    The sample supplies the values for the other parameters:
-
-    * region: The GCP geographical region in which the training and evaluation
-    data is stored.
-    * train-data: Cloud Storage path to the training data.
-    * eval-data: Cloud Storage path to the evaluation data.
-    * schema: Cloud Storage path to a JSON file describing the format of the
-    CSV files that contain the training and evaluation data.
-    * target: Column name of the target variable.
-    * rounds: The number of rounds for XGBoost training.
-    * workers: Number of workers used for distributed training.
-    * true-label: Column to be used for text representation of the label output
-    by the model.
-
-    The following partial screenshot shows the run parameters, including the 
-    two parameters that you must supply:
+    The following partial screenshot shows the run parameters:
     <img src="/docs/images/pipelines-start-xgboost-run.png" 
       alt="Starting the XGBoost run on the pipelines UI"
       class="mt-3 mb-3 border border-info rounded">
@@ -115,7 +95,7 @@ Follow these steps to set up the necessary GCP services and run the sample:
 1. Click the name of the run on the experiments dashboard.
 1. Explore the graph and other aspects of your run by clicking on the 
   components of the graph and the other UI elements. The following screenshot
-  shows the graph when the pipeline has finished running:
+  shows part of the graph when the pipeline has finished running:
     <img src="/docs/images/pipelines-xgboost-graph.png" 
       alt="XGBoost results on the pipelines UI"
       class="mt-3 mb-3 border border-info rounded">
