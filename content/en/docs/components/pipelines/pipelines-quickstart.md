@@ -3,12 +3,6 @@ title = "Pipelines Quickstart"
 description = "Getting started with Kubeflow Pipelines"
 weight = 10
                     
-+++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
-
 {{% stable-status %}}
 
 Use this guide if you want to get a simple pipeline running quickly in
@@ -23,32 +17,11 @@ Kubeflow Pipelines.
 
 ## Deploy Kubeflow and open the pipelines UI
 
-Follow these steps to deploy Kubeflow and open the pipelines dashboard:
+There are several options to [deploy Kubeflow pipelines](/docs/installation/), follow the option that best suits your needs. If you are uncertain and just want to try out kubeflow pipelines it is recommended to start with the [standalone deployment](/docs/installation/standalone-deployment.md).
 
-1. Follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
+Once you have deployed kubeflow pipelines make sure you can access the UI, this step depends on the method of deployment. 
 
-    {{% pipelines-compatibility %}} 
-
-1. When Kubeflow is running, access the Kubeflow UI at a URL of the form
-  `https://<deployment-name>.endpoints.<project>.cloud.goog/`, as described in the setup
-  guide. The Kubeflow UI looks like this:
-  <img src="/docs/images/central-ui.png" 
-    alt="Kubeflow UI"
-    class="mt-3 mb-3 border border-info rounded">
-
-    If you skipped the Cloud IAP option when deploying Kubeflow, or if you 
-    haven't yet set up your Kubeflow endpoint, you can access Kubeflow via 
-    `kubectl` and port-forwarding:
-    
-    1. Install `kubectl` if you haven't already done so, by running the 
-      following command on the command line: 
-      `gcloud components install kubectl`. For more information, see the 
-      [`kubectl` 
-      documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-
-    1. Run ```kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80``` and go to `http://localhost:8080/`.
-
-1. Click **Pipelines** to access the pipelines UI. The pipelines UI looks like
+Kubeflow pipelines UI
   this:
   <img src="/docs/images/pipelines-ui.png" 
     alt="Pipelines UI"
@@ -56,12 +29,12 @@ Follow these steps to deploy Kubeflow and open the pipelines dashboard:
 
 ## Run a basic pipeline
 
-The pipelines UI offers a few samples that you can use to try out
+Kubeflow pipelines offers a few default samples that you can use to try out
 pipelines quickly. The steps below show you how to run a basic sample that
 includes some Python operations, but doesn't include a machine learning (ML) 
 workload:
 
-1. Click the name of the sample, **\[Sample\] Basic - Parallel Execution**, on the pipelines 
+1. Click the name of the sample, **\[Sample\] [Tutorial] Data passing in python components**, on the pipelines 
   UI:
   <img src="/docs/images/click-pipeline-sample.png" 
     alt="Pipelines UI"
@@ -92,36 +65,19 @@ workload:
     alt="Run results on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-You can find [the source code for the basic parallel join sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/parallel_join/parallel_join.py)
+You can find [the source code for the data passing in python components sample](https://github.com/kubeflow/pipelines/blob/2b95c002b741fadb6ddd2aa364c6a5b55ea78edd/samples/tutorials/Data%20passing%20in%20python%20components/Data%20passing%20in%20python%20components%20-%20Files.py)
 in the Kubeflow Pipelines repo.
 
 ## Run an ML pipeline
 
 This section shows you how to run the XGBoost sample available
 from the pipelines UI. Unlike the basic sample described above, the
-XGBoost sample does include ML components. Before running this sample, 
-you need to set up some GCP services for use by the sample.
+XGBoost sample does include ML components. 
 
 Follow these steps to set up the necessary GCP services and run the sample:
 
-1. In addition to the standard GCP APIs that you need for Kubeflow (see the
-  [GCP setup guide](/docs/gke/deploy/project-setup)), ensure that the 
-  following APIs are enabled:
-
-    * [Cloud Storage](https://console.cloud.google.com/apis/library/storage-component.googleapis.com)
-    * [Dataproc](https://console.cloud.google.com/apis/library/dataproc.googleapis.com)
-
-1. Create a 
-  [Cloud Storage bucket](https://console.cloud.google.com/storage/create-bucket) 
-  to hold the results of the pipeline run.
-
-    * Your *bucket name* must be unique across all of Cloud Storage.
-    * Each time you create a new run for this pipeline, Kubeflow creates a unique
-    directory within the output bucket, so the output of each run does not
-    override the output of the previous run.
-
 1. Click the name of the sample, 
-  **\[Sample\] ML - XGBoost - Training with Confusion Matrix**, on the pipelines 
+  **\[Sample\] [Demo] XGBoost - Iterative model training**, on the pipelines 
   UI:
   <img src="/docs/images/click-xgboost-sample.png" 
     alt="XGBoost sample on the pipelines UI"
@@ -168,16 +124,6 @@ You can find the source code for the XGBoost training sample in the
 [Kubeflow Pipelines 
 repo](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm).
 
-## Clean up your GCP environment
-
-As you work through this guide, your project uses billable components of
-GCP. To minimise costs, follow these steps to clean up resources when you've 
-finished with them:
-
-1. Visit [Deployment Manager](https://console.cloud.google.com/dm) to delete 
-  your deployment and related resources.
-1. Delete your [Cloud Storage bucket](https://console.cloud.google.com/storage) 
-  when you've finished examining the output of the pipeline.
 
 ## Next steps
 
