@@ -155,7 +155,7 @@ spec:
    hard:
      cpu: "2"
      memory: 2Gi
-     nvidia.com/gpu: "1"
+     requests.nvidia.com/gpu: "1"
      persistentvolumeclaims: "1"
      requests.storage: "5Gi"
 ```
