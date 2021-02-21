@@ -18,15 +18,9 @@ Kubeflow Pipelines.
 
 ## Deploy Kubeflow and open the pipelines UI
 
-There are several options to [deploy Kubeflow pipelines](/docs/installation/), follow the option that best suits your needs. If you are uncertain and just want to try out kubeflow pipelines it is recommended to start with the [standalone deployment](/docs/installation/standalone-deployment.md).
+There are several options to [deploy Kubeflow pipelines](/docs/pipelines/installation/), follow the option that best suits your needs. If you are uncertain and just want to try out kubeflow pipelines it is recommended to start with the [standalone deployment](/docs/pipelines/installation/standalone-deployment).
 
 Once you have deployed kubeflow pipelines make sure you can access the UI, this step depends on the method of deployment. 
-
-Kubeflow pipelines UI
-  this:
-  <img src="/docs/images/pipelines-ui.png" 
-    alt="Pipelines UI"
-    class="mt-3 mb-3 border border-info rounded">
 
 ## Run a basic pipeline
 
@@ -77,8 +71,7 @@ XGBoost sample does include ML components.
 Follow these steps to run the sample:
 
 1. Click the name of the sample, 
-  **\[Sample\] [Demo] XGBoost - Iterative model training**, on the pipelines 
-  UI:
+  **[Demo] XGBoost - Iterative model training**, on the pipelines UI:
   <img src="/docs/images/click-xgboost-sample.png" 
     alt="XGBoost sample on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
@@ -86,7 +79,7 @@ Follow these steps to run the sample:
 1. Click **Create experiment**.
 1. Follow the prompts to create an **experiment** and then create a **run**.
 
-    The following partial screenshot shows the run parameters:
+    The following screenshot shows the run details:
     <img src="/docs/images/pipelines-start-xgboost-run.png" 
       alt="Starting the XGBoost run on the pipelines UI"
       class="mt-3 mb-3 border border-info rounded">
@@ -108,7 +101,7 @@ repo](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_tra
 ## Next steps
 
 * Learn more about the 
-  [important concepts](/docs/components/pipelines/concepts/) in Kubeflow
+  [important concepts](/docs/pipelines/overview/concepts/) in Kubeflow
   Pipelines.
 * This page showed you how to run some of the examples supplied in the Kubeflow
   Pipelines UI. Next, you may want to run a pipeline from a notebook, or compile 
