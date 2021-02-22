@@ -125,6 +125,12 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/operator/uninstall-operator   /docs/methods/operator/uninstall-operator
 /docs/operator/troubleshooting      /docs/methods/operator/troubleshooting
 
+# kfctl move to under methods
+/docs/started/workstation/minikube-linux        /docs/methods/kfctl/minikube
+/docs/other-guides/kustomize                    /docs/methods/kfctl/kustomize
+/docs/started/k8s/kfctl-istio-dex               /docs/methods/kfctl/multi-user
+/docs/started/k8s/kfctl-k8s-istio               /docs/methods/kfctl/deployment
+
 # ===============
 # IMPORTANT NOTE: 
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
