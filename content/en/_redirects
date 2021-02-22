@@ -25,31 +25,32 @@
 /docs/components/pipelines/pipelines-ui/	         /docs/components/pipelines/pipelines-quickstart/
 
 # Restructured the pipelines docs.
-/docs/components/pipelines/output-viewer/                      /docs/components/pipelines/sdk/output-viewer/
-/docs/components/pipelines/pipelines-metrics/                  /docs/components/pipelines/sdk/pipelines-metrics/
-/docs/components/pipelines/build-component/                    /docs/components/pipelines/sdk/build-component/
-/docs/components/pipelines/install-sdk/                        /docs/components/pipelines/sdk/install-sdk/
-/docs/components/pipelines/lightweight-python-components/      /docs/components/pipelines/sdk/python-function-components/
-/docs/components/pipelines/sdk/lightweight-python-components/  /docs/components/pipelines/sdk/python-function-components/
-/docs/components/pipelines/build-pipeline/                     /docs/components/pipelines/tutorials/build-pipeline/
-/docs/components/pipelines/pipelines-tutorial/                 /docs/components/pipelines/tutorials/cloud-tutorials/
-/docs/components/pipelines/tutorials/pipelines-tutorial/       /docs/components/pipelines/tutorials/cloud-tutorials/
+/docs/pipelines/                                    /docs/components/pipelines
+/docs/pipelines/output-viewer/                      /docs/components/pipelines/sdk/output-viewer/
+/docs/pipelines/pipelines-metrics/                  /docs/components/pipelines/sdk/pipelines-metrics/
+/docs/pipelines/build-component/                    /docs/components/pipelines/sdk/build-component/
+/docs/pipelines/install-sdk/                        /docs/components/pipelines/sdk/install-sdk/
+/docs/pipelines/lightweight-python-components/      /docs/components/pipelines/sdk/python-function-components/
+/docs/pipelines/sdk/lightweight-python-components/  /docs/components/pipelines/sdk/python-function-components/
+/docs/pipelines/build-pipeline/                     /docs/components/pipelines/tutorials/build-pipeline/
+/docs/pipelines/pipelines-tutorial/                 /docs/components/pipelines/tutorials/cloud-tutorials/
+/docs/pipelines/tutorials/pipelines-tutorial/       /docs/components/pipelines/tutorials/cloud-tutorials/
 /docs/gke/pipelines-tutorial/                       /docs/components/pipelines/tutorials/cloud-tutorials/
 /docs/gke/pipelines/pipelines-tutorial/             /docs/components/pipelines/tutorials/cloud-tutorials/
 /docs/gke/authentication-pipelines/                 /docs/gke/pipelines/authentication-pipelines/
 
-/docs/components/pipelines/metrics/                       /docs/components/pipelines/sdk/pipelines-metrics/
-/docs/components/pipelines/metrics/pipelines-metrics/     /docs/components/pipelines/sdk/pipelines-metrics/
-/docs/components/pipelines/metrics/output-viewer/         /docs/components/pipelines/sdk/output-viewer/
-/docs/components/pipelines/concepts/*                     /docs/components/pipelines/overview/concepts/:splat
-/docs/components/pipelines/pipelines-overview/            /docs/components/pipelines/overview/pipelines-overview/
-/docs/components/pipelines/enable-gpu-and-tpu/            /docs/gke/pipelines/enable-gpu-and-tpu/
-/docs/components/pipelines/sdk/enable-gpu-and-tpu/        /docs/gke/pipelines/enable-gpu-and-tpu/
-/docs/components/pipelines/sdk/gcp/enable-gpu-and-tpu/    /docs/gke/pipelines/enable-gpu-and-tpu/
-/docs/components/pipelines/preemptible/                   /docs/gke/pipelines/preemptible/
-/docs/components/pipelines/sdk/gcp/preemptible/           /docs/gke/pipelines/preemptible/
-/docs/components/pipelines/reusable-components/           /docs/examples/shared-resources/
-/docs/components/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
+/docs/pipelines/metrics/                       /docs/components/pipelines/sdk/pipelines-metrics/
+/docs/pipelines/metrics/pipelines-metrics/     /docs/components/pipelines/sdk/pipelines-metrics/
+/docs/pipelines/metrics/output-viewer/         /docs/components/pipelines/sdk/output-viewer/
+/docs/pipelines/concepts/*                     /docs/components/pipelines/overview/concepts/:splat
+/docs/pipelines/pipelines-overview/            /docs/components/pipelines/overview/pipelines-overview/
+/docs/pipelines/enable-gpu-and-tpu/            /docs/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/gcp/enable-gpu-and-tpu/    /docs/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/preemptible/                   /docs/gke/pipelines/preemptible/
+/docs/pipelines/sdk/gcp/preemptible/           /docs/gke/pipelines/preemptible/
+/docs/pipelines/reusable-components/           /docs/examples/shared-resources/
+/docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
 
 # Moved the guide to monitoring GKE deployments.
 /docs/other-guides/monitoring/                 /docs/gke/monitoring/
