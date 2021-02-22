@@ -138,7 +138,6 @@ of the column `Hostname` in step 4:
     
     ```shell
     kubectl apply -f kubeflow-gateway.yaml -n kubeflow
-    kubectl rollout restart deploy kubeflow-gateway -n kubeflow
     ```
 
 8. Verify that the traffic is routed via HTTPS by using the value of
