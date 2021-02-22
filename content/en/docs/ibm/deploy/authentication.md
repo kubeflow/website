@@ -135,6 +135,11 @@ of the column `Hostname` in step 4:
           privateKey: /etc/istio/ingressgateway-certs/tls.key
           serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
     ```
+    
+    ```shell
+    kubectl apply -f kubeflow-gateway.yaml -n kubeflow
+    kubectl rollout restart deploy kubeflow-gateway -n kubeflow
+    ```
 
 8. Verify that the traffic is routed via HTTPS by using the value of
 above-mentioned `Hostname` in your browser. It should redirect traffic from an
