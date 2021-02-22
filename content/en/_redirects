@@ -116,6 +116,15 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Rename TensorRT Inference Server to Triton Inference Server
 /docs/components/serving/trtinferenceserver   /docs/components/serving/tritoninferenceserver
 
+# Kubeflow Operator move to under methods
+/docs/operator                      /docs/methods/operator
+/docs/operator/introduction         /docs/methods/operator/introduction
+/docs/operator/install-operator     /docs/methods/operator/install-operator
+/docs/operator/install-kubeflow     /docs/methods/operator/install-kubeflow
+/docs/operator/uninstall-kubeflow   /docs/methods/operator/uninstall-kubeflow
+/docs/operator/uninstall-operator   /docs/methods/operator/uninstall-operator
+/docs/operator/troubleshooting      /docs/methods/operator/troubleshooting
+
 # ===============
 # IMPORTANT NOTE: 
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
@@ -123,3 +132,4 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/guides/*                      /docs/:splat
 /docs/pipelines/concepts/*          /docs/components/pipelines/overview/concepts/:splat
 /docs/pipelines/*                   /docs/components/pipelines/:splat
+
