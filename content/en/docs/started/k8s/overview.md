@@ -87,7 +87,7 @@ Your Kubernetes cluster must meet the following minimum requirements:
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
-        <td><b>compatible*</b></td>
+        <td><b>compatible</b></td>
       </tr>
       <tr>
         <td>1.15</td>
@@ -97,7 +97,7 @@ Your Kubernetes cluster must meet the following minimum requirements:
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
-        <td><b>compatible*</b></td>
+        <td><b>compatible</b></td>
       </tr>
       <tr>
         <td>1.16</td>
@@ -155,7 +155,7 @@ Your Kubernetes cluster must meet the following minimum requirements:
 
 - **incompatible**: the combination does not work at all
 - **compatible**: all Kubeflow features have been tested and verified for the
-  Kubernetes version (*bundled version of cert-manager is incompatible)
+  Kubernetes version
 - **no known issues**: the combination has not been fully tested but there are
   no reported issues
 
