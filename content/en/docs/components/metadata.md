@@ -1,7 +1,7 @@
 +++
 title = "Metadata"
 description = "Tracking and managing metadata of machine learning workflows in Kubeflow"
-weight = 5
+weight = 15
 +++
 
 {{% beta-status feedbacklink="https://github.com/kubeflow/metadata/issues" %}}

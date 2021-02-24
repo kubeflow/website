@@ -1,5 +1,5 @@
 +++
 title = "Notebook Servers"
 description = "Using Jupyter notebooks in Kubeflow"
-weight = 35
+weight = 10
 +++
