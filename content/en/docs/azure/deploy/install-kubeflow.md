@@ -85,90 +85,16 @@ Example variables:
 
 **NOTE**:  If you are using a GPU based AKS cluster (For example: AGENT_SIZE=Standard_NC6), you also need to [install the NVidia drivers](https://docs.microsoft.com/azure/aks/gpu-cluster#install-nvidia-drivers) on the cluster nodes before you can use GPUs with Kubeflow.
 
-## Kubeflow installation
-
-**Important**: To deploy Kubeflow on Azure with multi-user authentication and namespace separation, use the instructions for [Authentication using OICD in Azure](/docs/azure/authentication-oidc). The instructions in this guide apply only to a single-user Kubeflow deployment. Such a deployment cannot be upgraded to a multi-user deployment at this time.
-
-**Note**: kfctl is currently available for Linux and macOS users only. If you use Windows, you can install kfctl on Windows Subsystem for Linux (WSL). Refer to the official [instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for setting up WSL.
-
-Run the following commands to set up and deploy Kubeflow.
-
-1. Create user credentials. You only need to run this command once.
-
+Obtain the `kubeconfig` user credentials:
     ```
     az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
     ```
 
-1. [Install Istio 1.6.X in Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install?pivots=client-operating-system-linux). You must currently install Istio 1.6.X such as 1.6.14 to install Kubeflow.
+## Kubeflow installation
 
-1. Download the kfctl {{% kf-latest-version %}} release from the
-  [Kubeflow releases
-  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
+**Important**: To deploy Kubeflow on Azure with multi-user authentication and namespace separation, use the instructions for [Authentication using OICD in Azure](/docs/azure/authentication-oidc). The instructions in this guide apply only to a single-user Kubeflow deployment. Such a deployment cannot be upgraded to a multi-user deployment at this time.
 
-1. Unpack the tar ball:
-
-    ```
-    tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
-    ```
-
-1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the
-   binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
-
-    ```
-    # The following command is optional, to make kfctl binary easier to use.
-    export PATH=$PATH:<path to where kfctl was unpacked>
-
-    # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
-    # name of the directory containing your configuration.
-    # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
-    export KF_NAME=<your choice of name for the Kubeflow deployment>
-
-    # Set the path to the base directory where you want to store one or more
-    # Kubeflow deployments. For example, /opt/.
-    # Then set the Kubeflow application directory for this deployment.
-    export BASE_DIR=<path to a base directory>
-    export KF_DIR=${BASE_DIR}/${KF_NAME}
-
-    # Set the configuration file to use, such as the file specified below:
-    export CONFIG_URI="{{% azure/config-uri-azure %}}"
-
-    # Generate and deploy Kubeflow:
-    mkdir -p ${KF_DIR}
-    cd ${KF_DIR}
-    kfctl apply -V -f ${CONFIG_URI}
-    ```
-
-    * **${KF_NAME}** - The name of your Kubeflow deployment.
-      If you want a custom deployment name, specify that name here.
-      For example,  `my-kubeflow` or `kf-test`.
-      The value of KF_NAME must consist of lower case alphanumeric characters or
-      '-', and must start and end with an alphanumeric character.
-      The value of this variable cannot be greater than 25 characters. It must
-      contain just a name, not a directory path.
-      This value also becomes the name of the directory where your Kubeflow
-      configurations are stored, that is, the Kubeflow application directory.
-
-    * **${KF_DIR}** - The full path to your Kubeflow application directory.
-
-2. Run this command to check that the resources have been deployed correctly in namespace `kubeflow`:
-
-      ```
-      kubectl get all -n kubeflow
-      ```  
-
-3. Open the Kubeflow Dashboard
-
-    The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster.
-    Run the following command:
-
-     ```
-     kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
-     ```
-
-     Next, open `http://localhost:8080` in your browser.
-
-    To open the dashboard to a public IP address, you should first implement a solution to prevent unauthorized access.
-    You can read more about Azure authentication options from [Access Control for Azure Deployment](/docs/azure/authentication).
+For a standard single-user installation of Kubeflow on Azure Kubernetes Service please continue with the general instructions for installing Kubeflow on any existing Kubernetes cluster. These instructions can be found at [Instructions for installing Kubeflow on your existing Kubernetes cluster using kfctl_k8s_istio config](/docs/started/k8s/kfctl-k8s-istio/).
 
 ## Additional information
 
