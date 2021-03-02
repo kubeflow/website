@@ -12,7 +12,7 @@ deploy Kubeflow on Azure.
 - Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux)
 - Install and configure the [Azure Command Line Interface (Az)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
   - Log in with ```az login```
-- (Optional) Install Docker
+- Install Docker
   - For Windows and WSL: [Guide](https://docs.docker.com/docker-for-windows/wsl/)
   - For other OS: [Docker Desktop](https://docs.docker.com/docker-hub/)
 
@@ -99,8 +99,6 @@ Run the following commands to set up and deploy Kubeflow.
     az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
     ```
 
-1. [Install Istio 1.6.X in Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install?pivots=client-operating-system-linux). You must currently install Istio 1.6.X such as 1.6.14 to install Kubeflow.
-
 1. Download the kfctl {{% kf-latest-version %}} release from the
   [Kubeflow releases
   page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
@@ -115,27 +113,33 @@ Run the following commands to set up and deploy Kubeflow.
    binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
 
     ```
-    # The following command is optional, to make kfctl binary easier to use.
-    export PATH=$PATH:<path to where kfctl was unpacked>
+    # The following command is optional. It adds the kfctl binary to your path.
+    # If you don't add kfctl to your path, you must use the full path
+    # each time you run kfctl.
+    # Use only alphanumeric characters or - in the directory name.
+    export PATH=$PATH:"<path-to-kfctl>"
 
-    # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
-    # name of the directory containing your configuration.
+    # Set KF_NAME to the name of your Kubeflow deployment. You also use this
+    # value as directory name when creating your configuration directory.
     # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
     export KF_NAME=<your choice of name for the Kubeflow deployment>
 
-    # Set the path to the base directory where you want to store one or more
+    # Set the path to the base directory where you want to store one or more 
     # Kubeflow deployments. For example, /opt/.
     # Then set the Kubeflow application directory for this deployment.
     export BASE_DIR=<path to a base directory>
     export KF_DIR=${BASE_DIR}/${KF_NAME}
 
-    # Set the configuration file to use, such as the file specified below:
-    export CONFIG_URI="{{% azure/config-uri-azure %}}"
-
-    # Generate and deploy Kubeflow:
+    # Set the configuration file to use when deploying Kubeflow.
+    # The following configuration installs Istio by default. Comment out 
+    # the Istio components in the config file to skip Istio installation. 
+    # See https://github.com/kubeflow/kubeflow/pull/3663
+    export CONFIG_URI="{{% config-uri-k8s-istio %}}"
+    
     mkdir -p ${KF_DIR}
     cd ${KF_DIR}
     kfctl apply -V -f ${CONFIG_URI}
+
     ```
 
     * **${KF_NAME}** - The name of your Kubeflow deployment.
@@ -145,10 +149,18 @@ Run the following commands to set up and deploy Kubeflow.
       '-', and must start and end with an alphanumeric character.
       The value of this variable cannot be greater than 25 characters. It must
       contain just a name, not a directory path.
-      This value also becomes the name of the directory where your Kubeflow
-      configurations are stored, that is, the Kubeflow application directory.
+      You also use this value as directory name when creating the directory where 
+      your Kubeflow  configurations are stored, that is, the Kubeflow application 
+      directory. 
 
     * **${KF_DIR}** - The full path to your Kubeflow application directory.
+
+    * **${CONFIG_URI}** - The GitHub address of the configuration YAML file that
+      you want to use to deploy Kubeflow. The URI used in this guide is
+      {{% config-uri-k8s-istio %}}.
+      When you run `kfctl apply` or `kfctl build` (see the next step), kfctl creates
+      a local version of the configuration YAML file which you can further
+      customize if necessary.
 
 2. Run this command to check that the resources have been deployed correctly in namespace `kubeflow`:
 
