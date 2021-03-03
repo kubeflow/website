@@ -15,9 +15,6 @@
 /docs/guides/components/components     /docs/components/
 /docs/guides/pipelines/deploy-pipelines-service/  /docs/components/pipelines/pipelines-quickstart/
 
-# Removed the "guides" section from the doc URLs.
-/docs/guides/*  /docs/:splat
-
 # Merged duplicate page pipelines-samples.md into build-pipeline.md
 /docs/pipelines/pipelines-samples/	   /docs/components/pipelines/build-pipeline/
 
@@ -25,7 +22,6 @@
 /docs/pipelines/pipelines-ui/	         /docs/components/pipelines/pipelines-quickstart/
 
 # Restructured the pipelines docs.
-/docs/pipelines/*                                   /docs/components/pipelines/:splat
 /docs/pipelines/                                    /docs/components/pipelines
 /docs/pipelines/output-viewer/                      /docs/components/pipelines/sdk/output-viewer/
 /docs/pipelines/pipelines-metrics/                  /docs/components/pipelines/sdk/pipelines-metrics/
@@ -43,7 +39,6 @@
 /docs/pipelines/metrics/                       /docs/components/pipelines/sdk/pipelines-metrics/
 /docs/pipelines/metrics/pipelines-metrics/     /docs/components/pipelines/sdk/pipelines-metrics/
 /docs/pipelines/metrics/output-viewer/         /docs/components/pipelines/sdk/output-viewer/
-/docs/pipelines/concepts/*                     /docs/components/pipelines/overview/concepts/:splat
 /docs/pipelines/pipelines-overview/            /docs/components/pipelines/overview/pipelines-overview/
 /docs/pipelines/enable-gpu-and-tpu/            /docs/gke/pipelines/enable-gpu-and-tpu/
 /docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/gke/pipelines/enable-gpu-and-tpu/
@@ -120,3 +115,11 @@ docs/started/requirements/                    /docs/started/getting-started/
 
 # Rename TensorRT Inference Server to Triton Inference Server
 /docs/components/serving/trtinferenceserver   /docs/components/serving/tritoninferenceserver
+
+# ===============
+# IMPORTANT NOTE: 
+# Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
+# ===============
+/docs/guides/*  /docs/:splat
+/docs/pipelines/*                                   /docs/components/pipelines/:splat
+/docs/pipelines/concepts/*                     /docs/components/pipelines/overview/concepts/:splat
