@@ -43,7 +43,7 @@ deployments) also inherit the same access.
 
 Kubeflow Pipelines is partially integrated with multi-user isolation starting
 from Kubeflow v1.1. You can find more information on [Multi-user Isolation for
-Pipelines](https://www.kubeflow.org/docs/pipelines/multi-user/).
+Pipelines](https://www.kubeflow.org/docs/components/pipelines/multi-user/).
 
 Metadata or any other applications currently don't have full
 fledged integration with isolation, though they do have access to the user

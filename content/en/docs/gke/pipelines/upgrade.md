@@ -7,7 +7,7 @@ weight = 50
 
 ## Before you begin
 
-There are various options on how to install Kubeflow Pipelines in the [Installation Options for Kubeflow Pipelines](/docs/pipelines/installation/overview/) guide. Be aware that upgrade support and instructions will vary depending on the method you used to install Kubeflow Pipelines.
+There are various options on how to install Kubeflow Pipelines in the [Installation Options for Kubeflow Pipelines](/docs/components/pipelines/installation/overview/) guide. Be aware that upgrade support and instructions will vary depending on the method you used to install Kubeflow Pipelines.
 
 ### Upgrade-related feature matrix
 
@@ -28,7 +28,7 @@ Notes:
 
 Upgrade Support for Kubeflow Pipelines Standalone is in **Beta**.
 
-[Upgrading Kubeflow Pipelines Standalone](/docs/pipelines/installation/standalone-deployment/#upgrading-kubeflow-pipelines) introduces how to upgrade in-place.
+[Upgrading Kubeflow Pipelines Standalone](/docs/components/pipelines/installation/standalone-deployment/#upgrading-kubeflow-pipelines) introduces how to upgrade in-place.
 
 ## Full Kubeflow
 
