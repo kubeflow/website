@@ -81,6 +81,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/tftraining                    /docs/components/training/tftraining
 /docs/components/tfserving_new                 /docs/components/serving/tfserving_new
 
+# Notebooks redirects
+/docs/notebooks/submit-docker-image            /docs/gke/submit-docker-image
+
 # Deleted the PyTorch serving page
 /docs/components/pytorchserving/               /docs/components/serving/overview/
 /docs/components/serving/pytorchserving/       /docs/components/serving/overview/
