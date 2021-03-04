@@ -120,6 +120,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 # IMPORTANT NOTE: 
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
 # ===============
-/docs/guides/*  /docs/:splat
-/docs/pipelines/*                                   /docs/components/pipelines/:splat
-/docs/pipelines/concepts/*                     /docs/components/pipelines/overview/concepts/:splat
+/docs/guides/*                      /docs/:splat
+/docs/pipelines/concepts/*          /docs/components/pipelines/overview/concepts/:splat
+/docs/pipelines/*                   /docs/components/pipelines/:splat
