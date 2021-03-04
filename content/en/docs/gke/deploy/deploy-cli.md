@@ -92,15 +92,21 @@ purpose. No tools will assume they actually exists in your terminal environment.
 
     Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/vX.Y.Z` in the output if you've successfully deployed Kustomize.
 
-1. Install [yq](https://github.com/mikefarah/yq)
+1. Use one of the following options to install
+   [yq v3](https://github.com/mikefarah/yq).
 
-   ```bash
-   GO111MODULE=on go get github.com/mikefarah/yq/v3
-   ```
+   * If you have [Go](https://golang.org) installed, use the following command
+     to install yq v3.
 
-   * If you don't have [Go](https://golang.org) installed you can download
-     a binary from [yq's GitHub releases](https://github.com/mikefarah/yq/releases), and follow the official installation steps.
-   * Note: due to changes from [yq v3 to v4](https://mikefarah.gitbook.io/yq/upgrading-from-v3#navigating), Versions 4.x of yq will not work with Kubeflow. [Version 3.3.0](https://github.com/mikefarah/yq/releases/tag/3.3.0) is confirmed to work.
+     ```bash
+     GO111MODULE=on go get github.com/mikefarah/yq/v3
+     ```
+
+   * If you don't have [Go](https://golang.org) installed,  follow the
+     instructions in the yq repository to
+     [install yq v3](https://github.com/mikefarah/yq#install).
+   
+   **Note:** The Kubeflow deployment process is not compatible with yq v4 or later.
 
 1. Follow the instructions from [Preparing to install Anthos Service Mesh](https://cloud.google.com/service-mesh/docs/archive/1.4/docs/gke-install-new-cluster#preparing_to_install_anthos_service_mesh) to install `istioctl`.
 
