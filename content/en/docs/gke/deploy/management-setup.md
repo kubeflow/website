@@ -54,7 +54,7 @@ For a more detailed explanation of the drastic changes happened in Kubeflow v1.1
 1. Follow the instructions in the yq repository to
    [install yq v3](https://github.com/mikefarah/yq#install). 
    
-   **Note:** The Kubeflow deployment process is not compatible with yq v4 or later.
+   **Note:** The Kubeflow deployment process is not compatible with yq v4 or later. Learn more about the [changes from yq v3 to v4](https://mikefarah.gitbook.io/yq/upgrading-from-v3#navigating).
 
 ## Environment Variables
 
