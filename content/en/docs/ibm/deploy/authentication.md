@@ -137,6 +137,7 @@ of the column `Hostname` in step 4:
     ```
 
 8. Execute the following command to apply the changes to the gateway `kubeflow-gateway`:
+
     ```shell
     kubectl apply -f kubeflow-gateway.yaml -n kubeflow
     ```
