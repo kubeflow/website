@@ -15,7 +15,7 @@ Kubeflow Pipelines UI.
 
 ## Deploy Kubeflow and open the Kubeflow Pipelines UI
 
-There are several options to [deploy Kubeflow Pipelines](/docs/pipelines/installation/), follow the option that best suits your needs. If you are uncertain and just want to try out kubeflow pipelines it is recommended to start with the [standalone deployment](/docs/pipelines/installation/standalone-deployment).
+There are several options to [deploy Kubeflow Pipelines](/docs/components/pipelines/installation/), follow the option that best suits your needs. If you are uncertain and just want to try out kubeflow pipelines it is recommended to start with the [standalone deployment](/docs/components/pipelines/installation/standalone-deployment/).
 
 Once you have deployed Kubeflow Pipelines make sure you can access the UI, this step depends on the method of deployment. 
 
@@ -57,7 +57,7 @@ workload:
     class="mt-3 mb-3 border border-info rounded">
 
 You can find the source code for the **Data passing in python components** tutorial
-in the [Kubeflow Pipelines repo]((https://github.com/kubeflow/pipelines/tree/master/samples/tutorials/Data%20passing%20in%20python%20components)).
+in the [Kubeflow Pipelines repo](https://github.com/kubeflow/pipelines/tree/master/samples/tutorials/Data%20passing%20in%20python%20components).
 
 ## Run an ML pipeline
 
