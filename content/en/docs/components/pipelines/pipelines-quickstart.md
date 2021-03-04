@@ -6,30 +6,27 @@ weight = 10
 +++                 
 {{% stable-status %}}
 
-Use this guide if you want to get a simple pipeline running quickly in
-Kubeflow Pipelines.
+Use this guide if you want to get an introduction to the Kubeflow Piplines user interface (UI) and get a simple pipeline running quickly. 
 
-* This quickstart guide shows you how to use two of the samples that come with 
-  the Kubeflow Pipelines installation and are visible on the Kubeflow Pipelines
-  user interface (UI). You can use this guide as an introduction to the 
-  Kubeflow Pipelines UI.
-* The end-to-end tutorial shows you how to prepare and compile a pipeline, 
-  upload it to Kubeflow Pipelines, then run it.
+The goal with this quickstart guide is to shows how to use two of the samples that come with 
+the Kubeflow Pipelines installation and are visible on the Kubeflow Pipelines
+UI. You can use this guide as an introduction to the 
+Kubeflow Pipelines UI.
 
-## Deploy Kubeflow and open the pipelines UI
+## Deploy Kubeflow and open the Kubeflow Pipelines UI
 
-There are several options to [deploy Kubeflow pipelines](/docs/pipelines/installation/), follow the option that best suits your needs. If you are uncertain and just want to try out kubeflow pipelines it is recommended to start with the [standalone deployment](/docs/pipelines/installation/standalone-deployment).
+There are several options to [deploy Kubeflow Pipelines](/docs/pipelines/installation/), follow the option that best suits your needs. If you are uncertain and just want to try out kubeflow pipelines it is recommended to start with the [standalone deployment](/docs/pipelines/installation/standalone-deployment).
 
-Once you have deployed kubeflow pipelines make sure you can access the UI, this step depends on the method of deployment. 
+Once you have deployed Kubeflow Pipelines make sure you can access the UI, this step depends on the method of deployment. 
 
 ## Run a basic pipeline
 
-Kubeflow pipelines offers a few default samples that you can use to try out
-pipelines quickly. The steps below show you how to run a basic sample that
+Kubeflow Pipelines offers a few default samples that you can use to try out
+Kubeflow Pipelines quickly. The steps below show you how to run a basic sample that
 includes some Python operations, but doesn't include a machine learning (ML) 
 workload:
 
-1. Click the name of the sample, **\[Sample\] [Tutorial] Data passing in python components**, on the pipelines UI:
+1. Click the name of the sample, **[Tutorial] Data passing in python components**, on the pipelines UI:
   <img src="/docs/images/click-pipeline-sample.png" 
     alt="Pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
@@ -47,7 +44,7 @@ workload:
     alt="Creating a run on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-1. Click **Start** to create the run.
+1. Click **Start** to run the pipeline.
 1. Click the name of the run on the experiments dashboard:
   <img src="/docs/images/pipelines-experiments-dashboard.png" 
     alt="Experiments dashboard on the pipelines UI"
@@ -59,8 +56,8 @@ workload:
     alt="Run results on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-You can find [the source code for the data passing in python components sample](https://github.com/kubeflow/pipelines/tree/master/samples/tutorials/Data%20passing%20in%20python%20components)
-in the Kubeflow Pipelines repo.
+You can find the source code for the **Data passing in python components** tutorial
+in the [Kubeflow Pipelines repo]((https://github.com/kubeflow/pipelines/tree/master/samples/tutorials/Data%20passing%20in%20python%20components)).
 
 ## Run an ML pipeline
 
@@ -93,7 +90,7 @@ Follow these steps to run the sample:
       alt="XGBoost results on the pipelines UI"
       class="mt-3 mb-3 border border-info rounded">
 
-You can find the source code for the XGBoost training sample in the 
+You can find the source code for the **XGBoost - Iterative model training** demo in the 
 [Kubeflow Pipelines 
 repo](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm).
 
