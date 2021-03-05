@@ -64,15 +64,17 @@ export CLUSTER_NAME=kubeflow
 
 - `KUBERNETES_VERSION` specifies the Kubernetes version for the cluster. Run `ibmcloud ks versions` to see the supported Kubernetes versions. If this environment variable is not set, the cluster will be created with the default version set by IBM Cloud Kubernetes Service. Refer to the [Minimum system requirements](https://www.kubeflow.org/docs/started/k8s/overview/#minimum-system-requirements) and choose a Kubernetes version compatible with the Kubeflow release to be deployed.
 - `CLUSTER_ZONE` identifies the regions or location where CLUSTER_NAME will be created. Run `ibmcloud ks locations` to list supported IBM Cloud Kubernetes Service locations. For example, choose `dal13` to create CLUSTER_NAME in the Dallas (US) data center.
-- `WORKER_NODE_PROVIDER` specifies the kind of IBM Cloud infrastructure on which the Kubernetes worker nodes will be created. The `classic` type supports worker nodes with GPUs. There are other worker nodes providers including `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Please use `ibmcloud ks zones --provider ${WORKER_NODE_PROVIDER}` to list zone names if using other providers and set the `CLUSTER_ZONE` accordingly.
+- `WORKER_NODE_PROVIDER` specifies the kind of IBM Cloud infrastructure on which the Kubernetes worker nodes will be created. The `classic` type supports worker nodes with GPUs. There are other worker nodes providers including `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Please use `ibmcloud ks zones --provider ${WORKER_NODE_PROVIDER}` to list zone names for all the providers and set the `CLUSTER_ZONE` w.r.t chosen provider.
 - `CLUSTER_NAME` must be lowercase and unique among any other Kubernetes
   clusters in the specified `${CLUSTER_ZONE}`.
 
-**Notice**: If choosing other Kubernetes worker nodes providers than `classic`, refer to the IBM Cloud official document [Creating clusters](https://cloud.ibm.com/docs/containers?topic=containers-clusters) for detailed steps.
+**Notice**: Refer to the IBM Cloud official document [Creating clusters](https://cloud.ibm.com/docs/containers?topic=containers-clusters) for detailed steps across other providers and zones.
 
-### Choosing a worker node flavor
+### Choosing a worker node flavor for either a classic or vpc-gen2 provider.
 
-The worker nodes flavor name varies from zones and providers. Run `ibmcloud ks flavors --zone ${CLUSTER_ZONE} --provider ${WORKER_NODE_PROVIDER}` to list available flavors. For example, following are some flavors supported in the `dal13` zone with `classic` worker node provider.
+The worker nodes flavor name varies from zones and providers. Run `ibmcloud ks flavors --zone ${CLUSTER_ZONE} --provider ${WORKER_NODE_PROVIDER}` to list available flavors.
+
+For example, following are some flavors supported in the `dal13` zone with `classic` worker node provider.
 
 ```text
 $ ibmcloud ks flavors --zone dal13 --provider classic
@@ -92,6 +94,20 @@ b3c.8x32                  8       32GB     1000Mbps        UBUNTU_18_64   virtua
 ...
 ```
 
+Following are some flavors supported in the `us-south-3` zone with `vpc-gen2` worker node provider.
+
+```text
+$ ibmcloud ks flavors --zone us-south-3 --provider vpc-gen2
+OK
+For more information about these flavors, see 'https://ibm.biz/flavors'
+Name         Cores   Memory   Network Speed   OS             Server Type   Storage   Secondary Storage   Provider   
+bx2.16x64    16      64GB     16Gbps          UBUNTU_18_64   virtual       100GB     0B                  vpc-gen2   
+bx2.2x8†     2       8GB      4Gbps           UBUNTU_18_64   virtual       100GB     0B                  vpc-gen2   
+bx2.32x128   32      128GB    16Gbps          UBUNTU_18_64   virtual       100GB     0B                  vpc-gen2   
+bx2.48x192   48      192GB    16Gbps          UBUNTU_18_64   virtual       100GB     0B                  vpc-gen2   
+bx2.4x16     4       16GB     8Gbps           UBUNTU_18_64   virtual       100GB     0B                  vpc-gen2   
+...
+```
 Choose a flavor that will work for your applications. For the purpose of the Kubeflow deployment, the recommended configuration for a cluster is at least 8 vCPU cores with 16GB memory. Hence you can either choose the `b3c.8x32` flavor to create a one-worker-node cluster or choose the `b3c.4x16` flavor to create a two-worker-node cluster. Keep in mind that you can always scale the cluster by adding more worker nodes should your application scales up.
 
 Now set the environment variable with the flavor you choose.
@@ -100,7 +116,17 @@ Now set the environment variable with the flavor you choose.
 export WORKER_NODE_FLAVOR=b3c.4x16
 ```
 
-### Creating a IBM Cloud Kubernetes cluster
+If the chosen cluster is in vpc-gen2, then selected environment variables will look like:
+
+```shell
+export KUBERNERTES_VERSION=1.18
+export CLUSTER_ZONE=us-south-3
+export WORKER_NODE_PROVIDER=vpc-gen2
+export CLUSTER_NAME=kubeflow-test-vpc-gen2
+export WORKER_NODE_FLAVOR=bx2.4x16
+```
+
+### Creating a IBM Cloud Kubernetes cluster for classic provider.
 
 Run with the following command to create a cluster:
 
@@ -133,6 +159,106 @@ Wait until the cluster is deployed and configured. It can take a while for the c
 ```shell
 ibmcloud ks clusters --provider ${WORKER_NODE_PROVIDER} |grep ${CLUSTER_NAME}|awk '{print "Name:"$1"\tState:"$3}'
 ```
+## For VPC infrastructure.
+
+Step 1. Install a vpc-infrastructure plugin.
+
+`$ ibmcloud plugin install vpc-infrastructure`
+
+Step 2. Target the gen 2 to access gen 2 resources.
+
+`$ ibmcloud is target --gen 2`
+
+```$ ibmcloud is target
+Target Generation: 2
+```
+
+```$ ibmcloud is vpc-create my-vpc
+Creating vpc my-vpc in resource group kubeflow under account IBM as user prashsh1@in.ibm.com...
+                                                  
+ID                                             r006-hidden-68cc-4d40-xxxx-4319fa3fxxxx   
+Name                                           my-vpc   
+...  
+```
+
+From the above output save the ID in a variable `VPC_ID` as follows, so that we can use it later.
+
+`$ export VPC_ID=r006-hidden-68cc-4d40-xxxx-4319fa3fxxxx`
+
+Step 3. Create a subnet.
+
+List address prefixes and note the CIDR block corresponding to a Zone, e.g. in below example, for Zone: us-south-3 CIDR block is :
+
+"10.240.128.0/18"
+`$ ibmcloud is vpc-address-prefixes $VPC_ID`
+
+```shell
+Listing address prefixes of vpc r006-hidden-68cc-4d40-xxxx-4319fa3fxxxx under account IBM as user new@user-email.com...
+ID                                          Name                                CIDR block        Zone         Has subnets   Is default   Created   
+r006-xxxxxxxx-4002-46d2-8a4f-f69e7ba3xxxx   rising-rectified-much-brew          10.240.0.0/18     us-south-1   false         true         2021-03-05T14:58:39+05:30   
+r006-xxxxxxxx-dca9-4321-bb6c-960c4424xxxx   retrial-reversal-pelican-cavalier   10.240.64.0/18    us-south-2   false         true         2021-03-05T14:58:39+05:30   
+r006-xxxxxxxx-7352-4a46-bfb1-fcbac6cbxxxx   subfloor-certainly-herbal-ajar      10.240.128.0/18   us-south-3   false         true         2021-03-05T14:58:39+05:30  
+```
+
+Now create a subnet as follows.
+
+`$ ibmcloud is subnet-create my-subnet $VPC_ID us-south-3 --ipv4-cidr-block "10.240.128.0/18"`
+
+```shell
+Creating subnet my-subnet in resource group kubeflow under account IBM as user new@user-email.com...
+                       
+ID                  0737-27299d09-1d95-4a9d-a491-a6949axxxxxx   
+Name                my-subnet
+```
+
+Record the subnet id as,
+`$ export SUBNET_ID=0737-27299d09-1d95-4a9d-a491-a6949axxxxxx`
+
+Step 4. Create a VPC based cluster.
+```shell
+$ ibmcloud ks cluster create ${WORKER_NODE_PROVIDER}   --name ${CLUSTER_NAME}   --zone=${CLUSTER_ZONE}   --version=${KUBERNETES_VERSION}   --flavor ${WORKER_NODE_FLAVOR} --vpc-id $VPC_ID --subnet-id $SUBNET_ID --workers=2
+Creating cluster...
+OK
+Cluster created with ID cxxxxxxd00kq9mnxxxxx
+```
+
+### Access cluster network
+By default, a cluster or instance created in Virtual private cloud does is not accessible through public internet ip. Based on the user's requirements and available resource, following options exist to access cluster resources.
+
+### 1. Attach a public gateway
+This method is applicable, when a public internet access to the cluster services is required. e.g. accessing kubeflow dashboard or accessing `kfserving` service on the public internet.
+It is the easiest to set up and use, but it should be used with caution as it is the least secure method. It exposes computing resources to public, which entails greater responsibility if the authentication/entry point is not secure enough.
+
+
+```shell
+$ ibmcloud is public-gateway-create my-gateway $VPC_ID us-south-3
+ID: r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx
+
+$ export GATEWAY_ID="r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx"
+
+$ ibmcloud is subnet-update $SUBNET_ID --public-gateway-id $GATEWAY_ID
+Updating subnet 0737-27299d09-1d95-4a9d-a491-a6949axxxxxx under account IBM as user new@user-email.com...
+                       
+ID                  0737-27299d09-1d95-4a9d-a491-a6949axxxxxx   
+Name                my-subnet   
+...
+
+$ ibmcloud is pubgws
+Listing public gateways for generation 2 compute in ...
+ID                                          Name                                       Status      Floating IP      VPC                 Zone         Resource group   
+r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx   my-gateway                                 available   52.117.4.xxx     my-vpc              us-south-3   default
+  
+```
+
+Note the public cluster ip: 52.117.4.xxx
+
+### 2. Access using a Kube proxy.
+
+### 3. Attach a VPN gateway
+This method is applicable, when a secure access to cluster is required, via a VPN.
+
+### 4. SSH socks-proxy access through another instance in the same VPC.
+
 
 ### Verifying the cluster
 
