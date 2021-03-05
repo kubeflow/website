@@ -56,7 +56,7 @@ Follow these steps to create and setup a new [IBM Cloud Kubernetes Service(IKS) 
 Choose the region and the worker node provider for your cluster, and set the environment variables.
 
 ```shell
-export KUBERNERTES_VERSION=1.16
+export KUBERNERTES_VERSION=1.17
 export CLUSTER_ZONE=dal13
 export WORKER_NODE_PROVIDER=classic
 export CLUSTER_NAME=kubeflow
