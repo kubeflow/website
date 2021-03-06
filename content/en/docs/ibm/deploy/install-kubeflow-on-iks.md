@@ -28,7 +28,7 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
   Replace `<cluster_name>` with your cluster name.
 
-## IBM Cloud Group ID Storage Setup
+### IBM Cloud Group ID Storage Setup for *classic* IBM CLoud Kubernetes cluster.
 
 **Note**: This section is only required when the worker nodes provider `WORKER_NODE_PROVIDER` is set to `classic`. For other infrastructures, IBM Cloud Storage with Group ID support is already set up as the cluster's default storage class.
 
@@ -56,6 +56,17 @@ Therefore, you're recommended to set up the default storage class with Group ID 
     ```shell
     kubectl patch storageclass ${OLD_STORAGE_CLASS} -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
     ```
+### For VPC-Gen2 clusters
+
+Currently, there is no option available for setting up RWX (read-write multiple nodes) type of storage.
+RWX (read-write multiple nodes) is not a mandatory requirement to run kubeflow and most pipelines.
+It is required by certain sample jobs/pipelines where multiple pods write results to a common storage.
+A job or pipeline can also write to a common object storage like `minio`, so the absence of this feature is 
+not a blocker for working with kubeflow.
+
+If you are on VPC-gen2 and still need RWX, you may try [portworx enterprise product](https://portworx.com/products/features/).
+Documentation link for setting it up for IBM Cloud, [portworx install with IBM Cloud](https://docs.portworx.com/portworx-install-with-kubernetes/cloud/ibm/). 
+
 
 ## Installation 
 
@@ -109,6 +120,24 @@ kfctl apply -V -f ${CONFIG_FILE}
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
 The Kubeflow endpoint is exposed with [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) 31380. If you don't have any experience on Kubernetes, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer) and access the **EXTERNAL_IP**.
+
+### Extra network setup requirement for VPC-Gen2 Clusters only.
+
+**NOTE** These steps are not required for Classic clusters, i.e. where `WORKER_NODE_PROVIDER` is set to `classic`.
+
+A VPC gen2 cluster does not assign a public ip address to the kubernetes master node by default.
+It provides access via a Load balancer, which is configured to allow only a set of ports over public internet.
+So to access the cluster's resources in VPC gen2 cluster, following steps are required.
+
+* Option 1: Configure via Load balancer. Follow: [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer)
+
+* Option 2: If you need access to nodes or NodePort in the VPC, this can be achieved by starting another instance in the 
+same VPC and assigning it a public ip(i.e. floating ip). Now either by ssh login to the instance or by creating a ssh socks proxy.
+
+for example:
+`ssh -D9999 root@new-instance-public-ip `
+
+And then configure socks proxy at `localhost:9999` and access cluster services.
 
 ### Multi-user, auth-enabled
 
@@ -257,4 +286,3 @@ Then, you can locate the LoadBalancer in the **EXTERNAL_IP** column when you run
 ```shell
 kubectl get svc istio-ingressgateway -n istio-system
 ```
-

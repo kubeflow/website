@@ -49,7 +49,7 @@ From here on, please see [Install Kubeflow](/docs/ibm/deploy/install-kubeflow).
 
 ## Create and setup a new cluster
 
-Follow these steps to create and setup a new [IBM Cloud Kubernetes Service(IKS) cluster:
+Follow these steps to create and setup a new IBM Cloud Kubernetes Service(IKS) cluster:
 
 ### Setting environment variables
 
@@ -222,13 +222,9 @@ OK
 Cluster created with ID cxxxxxxd00kq9mnxxxxx
 ```
 
-### Access cluster network
-By default, a cluster or instance created in Virtual private cloud does is not accessible through public internet ip. Based on the user's requirements and available resource, following options exist to access cluster resources.
+Step 5. Attach a public gateway
 
-### 1. Attach a public gateway
-This method is applicable, when a public internet access to the cluster services is required. e.g. accessing kubeflow dashboard or accessing `kfserving` service on the public internet.
-It is the easiest to set up and use, but it should be used with caution as it is the least secure method. It exposes computing resources to public, which entails greater responsibility if the authentication/entry point is not secure enough.
-
+This step is mandatory for kubeflow deployment to succeed, because it needs public internet access to download images.
 
 ```shell
 $ ibmcloud is public-gateway-create my-gateway $VPC_ID us-south-3
@@ -243,22 +239,7 @@ ID                  0737-27299d09-1d95-4a9d-a491-a6949axxxxxx
 Name                my-subnet   
 ...
 
-$ ibmcloud is pubgws
-Listing public gateways for generation 2 compute in ...
-ID                                          Name                                       Status      Floating IP      VPC                 Zone         Resource group   
-r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx   my-gateway                                 available   52.117.4.xxx     my-vpc              us-south-3   default
-  
 ```
-
-Note the public cluster ip: 52.117.4.xxx
-
-### 2. Access using a Kube proxy.
-
-### 3. Attach a VPN gateway
-This method is applicable, when a secure access to cluster is required, via a VPN.
-
-### 4. SSH socks-proxy access through another instance in the same VPC.
-
 
 ### Verifying the cluster
 
