@@ -14,6 +14,7 @@ weight = 10
 | kubeflowkatib/katib-controller    | <https://github.com/kubeflow/katib/tree/master/cmd/katib-controller/v1beta1/Dockerfile> |
 | kubeflowkatib/katib-ui    | <https://github.com/kubeflow/katib/tree/master/cmd/ui/v1beta1/Dockerfile> |
 | kubeflowkatib/katib-db-manager |     <https://github.com/kubeflow/katib/tree/master/cmd/db-manager/v1beta1/Dockerfile> |
+| kubeflowkatib/katib-cert-generator |     <https://github.com/kubeflow/katib/blob/master/cmd/cert-generator/v1beta1/Dockerfile> |
 | kubeflowkatib/suggestion-skopt | <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/skopt/v1beta1/Dockerfile> |
 | kubeflowkatib/suggestion-chocolate |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/chocolate/v1beta1/Dockerfile> |
 | kubeflowkatib/suggestion-hyperopt |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/hyperopt/v1beta1/Dockerfile> |
@@ -25,13 +26,13 @@ weight = 10
 | kubeflowkatib/file-metrics-collector |    <https://github.com/kubeflow/katib/blob/master/cmd/metricscollector/v1beta1/file-metricscollector/Dockerfile> |
 | kubeflowkatib/tfevent-metrics-collector |    <https://github.com/kubeflow/katib/blob/master/cmd/metricscollector/v1beta1/tfevent-metricscollector/Dockerfile> |
 | kubeflowkatib/mxnet-mnist |    <https://github.com/kubeflow/katib/blob/master/examples/v1beta1/mxnet-mnist/Dockerfile> |
-| kubeflowkatib/pytorch-mnist |    <https://github.com/kubeflow/katib/blob/master/examples/v1beta1/file-metrics-collector/Dockerfile> |
+| kubeflowkatib/pytorch-mnist |    <https://github.com/kubeflow/katib/blob/master/examples/v1beta1/pytorch-mnist/Dockerfile> |
 | kubeflowkatib/enas-cnn-cifar10-gpu |    <https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/enas-cnn-cifar10/Dockerfile.gpu> |
 | kubeflowkatib/enas-cnn-cifar10-cpu |    <https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/enas-cnn-cifar10/Dockerfile.cpu> |
 | kubeflowkatib/darts-cnn-cifar10 |    <https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/darts-cnn-cifar10/Dockerfile> |
 | kubeflow/mpi-horovod-mnist |    <https://github.com/kubeflow/mpi-operator/blob/master/examples/horovod/Dockerfile.cpu> |
 | datawire/ambassador    | <https://github.com/datawire/ambassador/blob/master/builder/Dockerfile> |
 | tensorflow-1.13.1-notebook-cpu |    <https://github.com/kubeflow/kubeflow/blob/master/components/tensorflow-notebook-image/Dockerfile> |
-|jupyter-web-app |    <https://github.com/kubeflow/kubeflow/blob/master/components/jupyter-web-app/Dockerfile> |
+| jupyter-web-app |    <https://github.com/kubeflow/kubeflow/blob/master/components/jupyter-web-app/Dockerfile> |
 | profile-controller    | <https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller> |
 | notebook-controller |    <https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller> |
