@@ -64,7 +64,7 @@ export CLUSTER_NAME=kubeflow
 
 - `KUBERNETES_VERSION` specifies the Kubernetes version for the cluster. Run `ibmcloud ks versions` to see the supported Kubernetes versions. If this environment variable is not set, the cluster will be created with the default version set by IBM Cloud Kubernetes Service. Refer to the [Minimum system requirements](https://www.kubeflow.org/docs/started/k8s/overview/#minimum-system-requirements) and choose a Kubernetes version compatible with the Kubeflow release to be deployed.
 - `CLUSTER_ZONE` identifies the regions or location where CLUSTER_NAME will be created. Run `ibmcloud ks locations` to list supported IBM Cloud Kubernetes Service locations. For example, choose `dal13` to create CLUSTER_NAME in the Dallas (US) data center.
-- `WORKER_NODE_PROVIDER` specifies the kind of IBM Cloud infrastructure on which the Kubernetes worker nodes will be created. The `classic` type supports worker nodes with GPUs. There are other worker nodes providers including `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Please use `ibmcloud ks zones --provider ${WORKER_NODE_PROVIDER}` to list zone names for all the providers and set the `CLUSTER_ZONE` w.r.t chosen provider.
+- `WORKER_NODE_PROVIDER` specifies the kind of IBM Cloud infrastructure on which the Kubernetes worker nodes will be created. The `classic` type supports worker nodes with GPUs. There are other worker nodes providers including `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Please use `ibmcloud ks zones --provider ${WORKER_NODE_PROVIDER}` to list zone names for all the providers and set the `CLUSTER_ZONE` with respect to your chosen provider.
 - `CLUSTER_NAME` must be lowercase and unique among any other Kubernetes
   clusters in the specified `${CLUSTER_ZONE}`.
 
@@ -94,7 +94,7 @@ b3c.8x32                  8       32GB     1000Mbps        UBUNTU_18_64   virtua
 ...
 ```
 
-Following are some flavors supported in the `us-south-3` zone with `vpc-gen2` worker node provider.
+Below are some examples of flavors supported in the `us-south-3` zone with `vpc-gen2` worker node provider:
 
 ```text
 $ ibmcloud ks flavors --zone us-south-3 --provider vpc-gen2
@@ -116,7 +116,7 @@ Now set the environment variable with the flavor you choose.
 export WORKER_NODE_FLAVOR=b3c.4x16
 ```
 
-If the chosen cluster is in vpc-gen2, then selected environment variables will look like:
+If the chosen cluster is in vpc-gen2, then the selected environment variables will look as follows:
 
 ```shell
 export KUBERNERTES_VERSION=1.18
@@ -159,13 +159,12 @@ Wait until the cluster is deployed and configured. It can take a while for the c
 ```shell
 ibmcloud ks clusters --provider ${WORKER_NODE_PROVIDER} |grep ${CLUSTER_NAME}|awk '{print "Name:"$1"\tState:"$3}'
 ```
-## For VPC infrastructure.
 
-Here we are assuming, that a user starts from scratch and creates a new vpc instance,
-but realistically a user may have an existing VPC with a public gateway already attached and also a subnet to create a cluster.
-Please feel free to directly proceed to `Step 5` and substitute appropriate values. 
+## For VPC infrastructure
 
-* Step 1. Install a vpc-infrastructure plugin.
+In this section the assumption is that that a user starts cluster configuration from scratch and creates a new VPC instance. However, a user may already have an existing VPC with a public gateway attached, as well as a subnet to create a cluster—in this case feel free to proceed to step 5 and substitute appropriate values.
+
+1. Begin with installing a vpc-infrastructure plugin:
 
 `$ ibmcloud plugin install vpc-infrastructure`
 
@@ -248,7 +247,7 @@ Cluster created with ID cxxxxxxd00kq9mnxxxxx
 
 * Step 6. Attach a public gateway
 
-This step is mandatory for kubeflow deployment to succeed, because it needs public internet access to download images.
+This step is mandatory for Kubeflow deployment to succeed, because it needs public internet access to download images.
 
 First check, if your cluster is already assigned a public gateway:
 
