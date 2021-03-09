@@ -68,9 +68,9 @@ export CLUSTER_NAME=kubeflow
 - `CLUSTER_NAME` must be lowercase and unique among any other Kubernetes
   clusters in the specified `${CLUSTER_ZONE}`.
 
-**Notice**: Refer to the IBM Cloud official document [Creating clusters](https://cloud.ibm.com/docs/containers?topic=containers-clusters) for detailed steps across other providers and zones.
+**Notice**: Refer to [Creating clusters](https://cloud.ibm.com/docs/containers?topic=containers-clusters) in the IBM Cloud documentation for additional information on how to set up other providers and zones in your cluster.
 
-### Choosing a worker node flavor for either a classic or vpc-gen2 provider.
+### Choosing a worker node flavor for a classic or VPC-gen2 provider.
 
 The worker nodes flavor name varies from zones and providers. Run `ibmcloud ks flavors --zone ${CLUSTER_ZONE} --provider ${WORKER_NODE_PROVIDER}` to list available flavors.
 
@@ -108,6 +108,7 @@ bx2.48x192   48      192GB    16Gbps          UBUNTU_18_64   virtual       100GB
 bx2.4x16     4       16GB     8Gbps           UBUNTU_18_64   virtual       100GB     0B                  vpc-gen2   
 ...
 ```
+
 Choose a flavor that will work for your applications. For the purpose of the Kubeflow deployment, the recommended configuration for a cluster is at least 8 vCPU cores with 16GB memory. Hence you can either choose the `b3c.8x32` flavor to create a one-worker-node cluster or choose the `b3c.4x16` flavor to create a two-worker-node cluster. Keep in mind that you can always scale the cluster by adding more worker nodes should your application scales up.
 
 Now set the environment variable with the flavor you choose.
@@ -126,7 +127,7 @@ export CLUSTER_NAME=kubeflow-test-vpc-gen2
 export WORKER_NODE_FLAVOR=bx2.4x16
 ```
 
-### Creating a IBM Cloud Kubernetes cluster for classic provider.
+### Creating an IBM Cloud Kubernetes cluster for a classic provider
 
 Run with the following command to create a cluster:
 
