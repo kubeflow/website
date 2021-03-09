@@ -161,11 +161,11 @@ ibmcloud ks clusters --provider ${WORKER_NODE_PROVIDER} |grep ${CLUSTER_NAME}|aw
 ```
 ## For VPC infrastructure.
 
-Step 1. Install a vpc-infrastructure plugin.
+* Step 1. Install a vpc-infrastructure plugin.
 
 `$ ibmcloud plugin install vpc-infrastructure`
 
-Step 2. Target the gen 2 to access gen 2 resources.
+* Step 2. Target the gen 2 to access gen 2 resources.
 
 `$ ibmcloud is target --gen 2`
 
@@ -185,7 +185,7 @@ From the above output save the ID in a variable `VPC_ID` as follows, so that we 
 
 `$ export VPC_ID=r006-hidden-68cc-4d40-xxxx-4319fa3fxxxx`
 
-Step 3. Create a subnet.
+* Step 3. Create a subnet.
 
 List address prefixes and note the CIDR block corresponding to a Zone, e.g. in below example, for Zone: us-south-3 CIDR block is :
 
@@ -214,7 +214,7 @@ Name                my-subnet
 Record the subnet id as,
 `$ export SUBNET_ID=0737-27299d09-1d95-4a9d-a491-a6949axxxxxx`
 
-Step 4. Create a VPC based cluster.
+* Step 4. Create a VPC based cluster.
 ```shell
 $ ibmcloud ks cluster create ${WORKER_NODE_PROVIDER}   --name ${CLUSTER_NAME}   --zone=${CLUSTER_ZONE}   --version=${KUBERNETES_VERSION}   --flavor ${WORKER_NODE_FLAVOR} --vpc-id $VPC_ID --subnet-id $SUBNET_ID --workers=2
 Creating cluster...
@@ -222,7 +222,7 @@ OK
 Cluster created with ID cxxxxxxd00kq9mnxxxxx
 ```
 
-Step 5. Attach a public gateway
+* Step 5. Attach a public gateway
 
 This step is mandatory for kubeflow deployment to succeed, because it needs public internet access to download images.
 
