@@ -15,6 +15,11 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
   ```shell
   ibmcloud login
   ```
+  Or if you have federated credentials,
+  
+  ```shell
+  ibmcloud login --sso  
+  ```
 
 * Create and access a Kubernetes cluster on IKS
 
@@ -63,6 +68,8 @@ RWX is not a mandatory requirement to run Kubeflow and most pipelines.
 It is required by certain sample jobs/pipelines where multiple pods write results to a common storage.
 A job or a pipeline can also write to a common object storage like `minio`, so the absence of this feature is 
 not a blocker for working with Kubeflow.
+Examples of jobs/pipelines that will not work, are: 
+[Distributed training with tf-operator](https://github.com/kubeflow/tf-operator/tree/master/examples/v1/mnist_with_summaries)
 
 If you are on `vpc-gen2` and still need RWX, you may try [portworx enterprise product](https://portworx.com/products/features/).
 To set it up on IBM Cloud use the [portworx install with IBM Cloud](https://docs.portworx.com/portworx-install-with-kubernetes/cloud/ibm/) guide. 
@@ -213,7 +220,7 @@ step 2 accordingly:
     * `<secret>` - fill in the value of secret
     * `<kubeflow-FQDN>` - fill in the FQDN of Kubeflow, if you don't know yet, just give a dummy one like `localhost`. Then change it after you got one.
     
-    **Note**: If any of the parameters changed after the initial Kubeflow deployment, you 
+    **Note**: If any of the parameters are changed after the initial Kubeflow deployment, you 
     will need to manually update these parameters in the secret `appid-application-configuration`.
     Then, restart authservice by running the command `kubectl rollout restart sts authservice -n istio-system`.
 
@@ -231,18 +238,33 @@ kubectl get pod authservice-0 -n istio-system
 
 A `vpc-gen2` cluster does not assign a public IP address to the Kubernetes master node by default.
 It provides access via a Load Balancer, which is configured to allow only a set of ports over public internet.
-To access the cluster's resources in a `vpc-gen2` cluster, the following options exist.
+Access the cluster's resources in a `vpc-gen2` cluster, using one of the following options,
 
-* Configure via Load Balancer—go to [Expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer)
+* Load Balancer method: Configure via Load Balancer—go to [Expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer).
+    This method is recommended when [Multi-user, auth-enabled](#multi-user-auth-enabled) is setup, otherwise it will expose
+  cluster resources to the public.
 
-* If you need access to nodes or NodePort in the VPC, this can be achieved by starting another instance in the 
-same VPC and assigning it a public IP (i.e. the floating IP). Next, use SSH to log into the instance or create an SSH socks proxy, such as `ssh -D9999 root@new-instance-public-ip`.
+* Socks proxy method: If you need access to nodes or NodePort in the `vpc-gen2` cluster, this can be achieved by starting another instance in the 
+same `vpc-gen2` cluster and assigning it a public IP (i.e. the floating IP). Next, use SSH to log into the instance or create an SSH socks proxy,
+  such as `ssh -D9999 root@new-instance-public-ip`.
 
 Then, configure the socks proxy at `localhost:9999` and access cluster services.
 
-## Next steps
+* `kubectl port-forward` method: To access Kubeflow dashboard. Run `kubectl -n istio-system port-forward service/istio-ingressgateway 7080:http2`.
+    Then in a browser, visit the url [http://127.0.0.1:7080/](http://127.0.0.1:7080/)
 
-To secure the Kubeflow dashboard with HTTPS, follow the steps in [Exposing the Kubeflow dashboard with DNS and TLS termination](../authentication/#exposing-the-kubeflow-dashboard-with-dns-and-tls-termination).
+_Important Notice: Exposing cluster/compute resources publicly - without setting up a proper user authentication mechanism,
+is very insecure and can have very serious consequences(even legal). If there is no need to expose cluster services publicly,
+Socks proxy method or `kubectl port-forward` method are recommended._
+
+## Next steps: secure the Kubeflow dashboard with HTTPS
+
+### Prerequisite:
+For both `classic` and `vpc-gen2` cluster providers, [Multi-user, auth-enabled](#multi-user-auth-enabled) should be setup.
+
+### Setup
+
+Follow the steps in [Exposing the Kubeflow dashboard with DNS and TLS termination](../authentication/#exposing-the-kubeflow-dashboard-with-dns-and-tls-termination).
 Then, you will have the required DNS name as Kubeflow FQDN to enable the OIDC flow for AppID:
 
 
@@ -256,6 +278,7 @@ redirect_url=$(printf https://<kubeflow-FQDN>/login/oidc | base64 -w0) \
  kubectl patch secret appid-application-configuration -n istio-system \
  -p $(printf '{"data":{"oidcRedirectUrl": "%s"}}' $redirect_url)
 ```
+
 3. Restart the pod `authservice-0`:
 
 ```SHELL
@@ -283,3 +306,5 @@ Then, you can locate the LoadBalancer in the **EXTERNAL_IP** column when you run
 ```shell
 kubectl get svc istio-ingressgateway -n istio-system
 ```
+
+There is a small delay, usually ~5 mins, for above commands to take effect.

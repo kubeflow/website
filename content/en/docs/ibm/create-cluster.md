@@ -163,26 +163,26 @@ ibmcloud ks clusters --provider ${WORKER_NODE_PROVIDER} |grep ${CLUSTER_NAME}|aw
 
 ## Create an IBM Cloud Kubernetes cluster for `vpc-gen2` infrastructure
 
-If you want to create a cluster in an existing VPC, 
-
 1. Begin with installing a vpc-infrastructure plugin:
 
-`$ ibmcloud plugin install vpc-infrastructure`
+   `$ ibmcloud plugin install vpc-infrastructure`
+   
+   Refer to this [link](https://cloud.ibm.com/docs/containers?topic=containers-vpc_ks_tutorial), for more information.
 
 2. Target the gen 2 to access gen 2 resources:
 
-`$ ibmcloud is target --gen 2`
+   `$ ibmcloud is target --gen 2`
+   
+   Verify, the target is correctly setup
 
-Verify, the target is correctly setup
-
-```shell
-$ ibmcloud is target
-Target Generation: 2
-```
+   ```shell
+   $ ibmcloud is target
+   Target Generation: 2
+   ```
 
 3. Create or use an existing VPC:
-
-    a) Use an existing VPC: 
+   
+   a) Use an existing VPC: 
    
     ```shell
     
@@ -192,10 +192,9 @@ Target Generation: 2
     r006-hidden-68cc-4d40-xxxx-4319fa3gxxxx   my-vpc1              available   false            husker-sloping-bee-resize                              blimp-hasty-unaware-overflow                           kubeflow   
     
     ```
-        
     If the above list contains the VPC that can be used to deploy your cluster - note it's ID.
-
-    b) To create a new VPC, proceed as follows:
+   
+   b) To create a new VPC, proceed as follows:
 
     ```shell
     $ ibmcloud is vpc-create my-vpc
@@ -206,13 +205,13 @@ Target Generation: 2
     ...  
     ```
 
-From the above output save the ID in a variable `VPC_ID` as follows, so that we can use it later.
-
-`export VPC_ID=r006-hidden-68cc-4d40-xxxx-4319fa3fxxxx`
+   Save the ID in a variable `VPC_ID` as follows, so that we can use it later.
+   
+   `export VPC_ID=r006-hidden-68cc-4d40-xxxx-4319fa3fxxxx`
 
 4. Create or use an existing subnet:
 
-    a) List all the existing subnets:
+    a) To use an existing subnet:
     
     ```$ ibmcloud is subnets
     Listing subnets for generation 2 compute in all resource groups and region ...
@@ -221,76 +220,73 @@ From the above output save the ID in a variable `VPC_ID` as follows, so that we 
     ```
    If the above list contains the subnet corresponding to your VPC, that can be used to deploy your cluster - note it's ID.
    
-    b) Create new subnet
+    b) To create a new subnet
+      * List address prefixes and note the CIDR block corresponding to a Zone,
+   in below example, for Zone: `us-south-3` CIDR block is : `10.240.128.0/18`
+         ```shell
+          $ ibmcloud is vpc-address-prefixes $VPC_ID
+          
+          Listing address prefixes of vpc r006-hidden-68cc-4d40-xxxx-4319fa3fxxxx under account IBM as user new@user-email.com...
+          ID                                          Name                                CIDR block        Zone         Has subnets   Is default   Created   
+          r006-xxxxxxxx-4002-46d2-8a4f-f69e7ba3xxxx   rising-rectified-much-brew          10.240.0.0/18     us-south-1   false         true         2021-03-05T14:58:39+05:30   
+          r006-xxxxxxxx-dca9-4321-bb6c-960c4424xxxx   retrial-reversal-pelican-cavalier   10.240.64.0/18    us-south-2   false         true         2021-03-05T14:58:39+05:30   
+          r006-xxxxxxxx-7352-4a46-bfb1-fcbac6cbxxxx   subfloor-certainly-herbal-ajar      10.240.128.0/18   us-south-3   false         true         2021-03-05T14:58:39+05:30  
+         ```
+   * Now create a subnet as follows.
    
-    * List address prefixes and note the CIDR block corresponding to a Zone,
-in below example, for Zone: `us-south-3` CIDR block is : `10.240.128.0/18`
+       ```shell
+       $ ibmcloud is subnet-create my-subnet $VPC_ID us-south-3 --ipv4-cidr-block "10.240.128.0/18"
+       Creating subnet my-subnet in resource group kubeflow under account IBM as user new@user-email.com...
+                              
+       ID                  0737-27299d09-1d95-4a9d-a491-a6949axxxxxx   
+       Name                my-subnet
+       ```
+
+   Export the subnet id as,
    
-    ```shell
-    $ ibmcloud is vpc-address-prefixes $VPC_ID
-    
-    Listing address prefixes of vpc r006-hidden-68cc-4d40-xxxx-4319fa3fxxxx under account IBM as user new@user-email.com...
-    ID                                          Name                                CIDR block        Zone         Has subnets   Is default   Created   
-    r006-xxxxxxxx-4002-46d2-8a4f-f69e7ba3xxxx   rising-rectified-much-brew          10.240.0.0/18     us-south-1   false         true         2021-03-05T14:58:39+05:30   
-    r006-xxxxxxxx-dca9-4321-bb6c-960c4424xxxx   retrial-reversal-pelican-cavalier   10.240.64.0/18    us-south-2   false         true         2021-03-05T14:58:39+05:30   
-    r006-xxxxxxxx-7352-4a46-bfb1-fcbac6cbxxxx   subfloor-certainly-herbal-ajar      10.240.128.0/18   us-south-3   false         true         2021-03-05T14:58:39+05:30  
-    ```
-
-    * Now create a subnet as follows.
-
-    ```shell
-    $ ibmcloud is subnet-create my-subnet $VPC_ID us-south-3 --ipv4-cidr-block "10.240.128.0/18"
-    Creating subnet my-subnet in resource group kubeflow under account IBM as user new@user-email.com...
-                           
-    ID                  0737-27299d09-1d95-4a9d-a491-a6949axxxxxx   
-    Name                my-subnet
-    ```
-
-Export the subnet id as,
-
-` export SUBNET_ID=0737-27299d09-1d95-4a9d-a491-a6949axxxxxx`
+   `export SUBNET_ID=0737-27299d09-1d95-4a9d-a491-a6949axxxxxx`
 
 5. Create a `vpc-gen2` based Kubernetes cluster
-
-```shell
-$ ibmcloud ks cluster create ${WORKER_NODE_PROVIDER}   --name ${CLUSTER_NAME}   --zone=${CLUSTER_ZONE}   --version=${KUBERNETES_VERSION}   --flavor ${WORKER_NODE_FLAVOR} --vpc-id $VPC_ID --subnet-id $SUBNET_ID --workers=2
-Creating cluster...
-OK
-Cluster created with ID cxxxxxxd00kq9mnxxxxx
-```
+   
+   ```shell
+   $ ibmcloud ks cluster create ${WORKER_NODE_PROVIDER}   --name ${CLUSTER_NAME}   --zone=${CLUSTER_ZONE}   --version=${KUBERNETES_VERSION}   --flavor ${WORKER_NODE_FLAVOR} --vpc-id $VPC_ID --subnet-id $SUBNET_ID --workers=2
+   Creating cluster...
+   OK
+   Cluster created with ID cxxxxxxd00kq9mnxxxxx
+   ```
 
 6. Attach a public gateway
 
-This step is mandatory for Kubeflow deployment to succeed, because pods need public internet access to download images.
-
-First check, if your cluster is already assigned a public gateway:
-
-```shell
-$ ibmcloud is pubgws
-Listing public gateways for generation 2 compute in all resource groups and region ...
-ID                                          Name                                       Status      Floating IP      VPC                 Zone         Resource group   
-r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx   my-gateway                                 available   xxx.xxx.xxx.xxx       my-vpc              us-south-3   default   
-
-```
-
-In the above run, gateway is already attached for the vpc: `my-vpc`. In case no gateway is attached, proceed with rest of the setup.
-
-Attach a public gateway:
-
-```shell
-$ ibmcloud is public-gateway-create my-gateway $VPC_ID us-south-3
-ID: r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx
-
-$ export GATEWAY_ID="r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx"
-
-$ ibmcloud is subnet-update $SUBNET_ID --public-gateway-id $GATEWAY_ID
-Updating subnet 0737-27299d09-1d95-4a9d-a491-a6949axxxxxx under account IBM as user new@user-email.com...
-                       
-ID                  0737-27299d09-1d95-4a9d-a491-a6949axxxxxx   
-Name                my-subnet   
-...
-
-```
+   This step is mandatory for Kubeflow deployment to succeed, because pods need public internet access to download images.
+   
+   First check, if your cluster is already assigned a public gateway:
+   
+   ```shell
+   $ ibmcloud is pubgws
+   Listing public gateways for generation 2 compute in all resource groups and region ...
+   ID                                          Name                                       Status      Floating IP      VPC                 Zone         Resource group   
+   r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx   my-gateway                                 available   xxx.xxx.xxx.xxx       my-vpc              us-south-3   default   
+   
+   ```
+   
+   In the above run, gateway is already attached for the vpc: `my-vpc`. In case no gateway is attached, proceed with rest of the setup.
+   
+   Attach a public gateway:
+   
+   ```shell
+   $ ibmcloud is public-gateway-create my-gateway $VPC_ID us-south-3
+   ID: r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx
+   
+   $ export GATEWAY_ID="r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx"
+   
+   $ ibmcloud is subnet-update $SUBNET_ID --public-gateway-id $GATEWAY_ID
+   Updating subnet 0737-27299d09-1d95-4a9d-a491-a6949axxxxxx under account IBM as user new@user-email.com...
+                          
+   ID                  0737-27299d09-1d95-4a9d-a491-a6949axxxxxx   
+   Name                my-subnet   
+   ...
+   
+   ```
 
 ### Verifying the cluster
 
