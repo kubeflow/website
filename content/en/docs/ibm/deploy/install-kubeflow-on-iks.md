@@ -63,6 +63,8 @@ Therefore, you're recommended to set up the default storage class with Group ID 
     ```
 ### Storage setup for `vpc-gen2` IBM Cloud Kubernetes cluster
 
+**Note:To deploy Kubeflow, you don't need to change the storage setup for `vpc-gen2` Kubernetes cluster.** 
+
 Currently, there is no option available for setting up RWX (read-write multiple nodes) type of storages.
 RWX is not a mandatory requirement to run Kubeflow and most pipelines.
 It is required by certain sample jobs/pipelines where multiple pods write results to a common storage.

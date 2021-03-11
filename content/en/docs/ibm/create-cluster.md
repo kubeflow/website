@@ -54,9 +54,9 @@ Follow these steps to create and setup a new IBM Cloud Kubernetes Service(IKS) c
 ### Choose between a `classic` or `vpc-gen2` provider.
 A `vpc-gen2` cluster does not expose each node to the public internet directly and thus has more secure
 and more complex network setup. A `classic` provider, does expose each cluster node to the public internet, and thus has
-simpler networking setup.
+simpler networking setup - it might be a good option for trial run of Kubeflow.
 
-In the case of `classic` provider set-up is easier, but, the onus to secure each service that is exposed through
+However, in the case of `classic` provider set-up is easier, the onus to secure each service that is exposed through
 Kubernetes (e.g. NodePort/Load Balancer) is on the user. To secure the cluster access, one can either configure
 authentication for each service exposed or setup firewall rules for each open port. Configuring firewalls for `classic`
 provider is covered in this doc
