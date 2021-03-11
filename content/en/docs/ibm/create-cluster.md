@@ -198,6 +198,9 @@ ibmcloud ks clusters --provider ${WORKER_NODE_PROVIDER} |grep ${CLUSTER_NAME}|aw
 
 ## Create an IBM Cloud Kubernetes cluster for `vpc-gen2` infrastructure
 
+Creating a `vpc-gen2` based cluster needs a VPC, a subnet and a public gateway attached to it. Fortunately, this is a one
+time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attached public-gateway). 
+
 1. Begin with installing a vpc-infrastructure plugin:
 
    `$ ibmcloud plugin install vpc-infrastructure`
@@ -221,7 +224,7 @@ ibmcloud ks clusters --provider ${WORKER_NODE_PROVIDER} |grep ${CLUSTER_NAME}|aw
    
     ```shell
     
-     ibmcloud is vpcs
+    $ ibmcloud is vpcs
     Listing vpcs for generation 2 compute in all resource groups and region ...
     ID                                          Name                Status      Classic access   Default network ACL                                    Default security group                                 Resource group   
     r006-hidden-68cc-4d40-xxxx-4319fa3gxxxx   my-vpc1              available   false            husker-sloping-bee-resize                              blimp-hasty-unaware-overflow                           kubeflow   
@@ -240,7 +243,7 @@ ibmcloud ks clusters --provider ${WORKER_NODE_PROVIDER} |grep ${CLUSTER_NAME}|aw
     ...  
     ```
 
-   Save the ID in a variable `VPC_ID` as follows, so that we can use it later.
+   **Save the ID in a variable `VPC_ID` as follows, so that we can use it later.**
    
    `export VPC_ID=r006-hidden-68cc-4d40-xxxx-4319fa3fxxxx`
 
@@ -248,7 +251,8 @@ ibmcloud ks clusters --provider ${WORKER_NODE_PROVIDER} |grep ${CLUSTER_NAME}|aw
 
     a) To use an existing subnet:
     
-    ```$ ibmcloud is subnets
+    ```shell
+    $ ibmcloud is subnets
     Listing subnets for generation 2 compute in all resource groups and region ...
     ID                                          Name                      Status      Subnet CIDR       Addresses     ACL                                                    Public Gateway                             VPC                 Zone         Resource group   
     0737-27299d09-1d95-4a9d-a491-a6949axxxxxx   my-subnet                 available   10.240.128.0/18   16373/16384   husker-sloping-bee-resize                              my-gateway                                 my-vpc              us-south-3   kubeflow   
@@ -278,18 +282,22 @@ ibmcloud ks clusters --provider ${WORKER_NODE_PROVIDER} |grep ${CLUSTER_NAME}|aw
        Name                my-subnet
        ```
 
-   Export the subnet id as,
+   **Export the subnet id as,**
    
    `export SUBNET_ID=0737-27299d09-1d95-4a9d-a491-a6949axxxxxx`
 
 5. Create a `vpc-gen2` based Kubernetes cluster
-   
-   ```shell
-   $ ibmcloud ks cluster create ${WORKER_NODE_PROVIDER}   --name ${CLUSTER_NAME}   --zone=${CLUSTER_ZONE}   --version=${KUBERNETES_VERSION}   --flavor ${WORKER_NODE_FLAVOR} --vpc-id $VPC_ID --subnet-id $SUBNET_ID --workers=2
-   Creating cluster...
-   OK
-   Cluster created with ID cxxxxxxd00kq9mnxxxxx
-   ```
+    
+    ```shell
+    $ ibmcloud ks cluster create ${WORKER_NODE_PROVIDER} \
+    --name=$CLUSTER_NAME \
+    --zone=$CLUSTER_ZONE \
+    --version=${KUBERNETES_VERSION} \
+    --flavor ${WORKER_NODE_FLAVOR} \
+    --vpc-id ${VPC_ID} \
+    --subnet-id ${SUBNET_ID} \
+    --workers=2
+    ```
 
 6. Attach a public gateway
 
@@ -340,3 +348,11 @@ kubectl get nodes
 ```
 
 and make sure all the nodes are in `Ready` state.
+
+### Delete the cluster
+
+Delete the cluster including it's storage
+
+```shell
+ibmcloud ks cluster rm --force-delete-storage -c ${CLUSTER_NAME}
+```
