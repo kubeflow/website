@@ -15,7 +15,8 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
   ```shell
   ibmcloud login
   ```
-  Or if you have federated credentials,
+
+  Or, if you have federated credentials, run the following command:
   
   ```shell
   ibmcloud login --sso  
@@ -61,9 +62,10 @@ Therefore, you're recommended to set up the default storage class with Group ID 
     ```shell
     kubectl patch storageclass ${OLD_STORAGE_CLASS} -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
     ```
+
 ### Storage setup for `vpc-gen2` IBM Cloud Kubernetes cluster
 
-**Note:To deploy Kubeflow, you don't need to change the storage setup for `vpc-gen2` Kubernetes cluster.** 
+**Note**: To deploy Kubeflow, you don't need to change the storage setup for `vpc-gen2` Kubernetes cluster.
 
 Currently, there is no option available for setting up RWX (read-write multiple nodes) type of storages.
 RWX is not a mandatory requirement to run Kubeflow and most pipelines.
@@ -236,7 +238,7 @@ kubectl get pod authservice-0 -n istio-system
 
 ### Extra network setup requirement for `vpc-gen2` clusters only
 
-**NOTE** These steps are not required for Classic clusters, i.e. where `WORKER_NODE_PROVIDER` is set to `classic`.
+**Note**: These steps are not required for Classic clusters, i.e. where `WORKER_NODE_PROVIDER` is set to `classic`.
 
 A `vpc-gen2` cluster does not assign a public IP address to the Kubernetes master node by default.
 It provides access via a Load Balancer, which is configured to allow only a set of ports over public internet.
@@ -252,16 +254,17 @@ same `vpc-gen2` cluster and assigning it a public IP (i.e. the floating IP). Nex
 
 Then, configure the socks proxy at `localhost:9999` and access cluster services.
 
-* `kubectl port-forward` method: To access Kubeflow dashboard. Run `kubectl -n istio-system port-forward service/istio-ingressgateway 7080:http2`.
-    Then in a browser, visit the url [http://127.0.0.1:7080/](http://127.0.0.1:7080/)
+* `kubectl port-forward` method: To access Kubeflow dashboard, run `kubectl -n istio-system port-forward service/istio-ingressgateway 7080:http2`.
+    Then in a browser, go to[http://127.0.0.1:7080/](http://127.0.0.1:7080/)
 
-_Important Notice: Exposing cluster/compute resources publicly - without setting up a proper user authentication mechanism,
+_**Important notice**: Exposing cluster/compute resources publicly without setting up a proper user authentication mechanism
 is very insecure and can have very serious consequences(even legal). If there is no need to expose cluster services publicly,
 Socks proxy method or `kubectl port-forward` method are recommended._
 
 ## Next steps: secure the Kubeflow dashboard with HTTPS
 
-### Prerequisite:
+### Prerequisites
+
 For both `classic` and `vpc-gen2` cluster providers, [Multi-user, auth-enabled](#multi-user-auth-enabled) should be setup.
 
 ### Setup
