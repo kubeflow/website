@@ -18,22 +18,15 @@ Choose the region and the worker node provider for your cluster, and set the env
 ```shell
 export KUBERNERTES_VERSION=1.18
 export CLUSTER_ZONE=us-south-3
-export WORKER_NODE_PROVIDER=vpc-gen2
 export CLUSTER_NAME=kubeflow-vpc
 ```
 
 where:
 
-- `KUBERNETES_VERSION` specifies the Kubernetes version for the cluster. Run `ibmcloud ks versions` to see the supported
-  Kubernetes versions. If this environment variable is not set, the cluster will be created with the default version set
-  by IBM Cloud Kubernetes Service. Refer to
-  [Minimum system requirements](https://www.kubeflow.org/docs/started/k8s/overview/#minimum-system-requirements)
-  and choose a Kubernetes version compatible with the Kubeflow release to be deployed.
-- `CLUSTER_ZONE` identifies the regions or location where cluster will be created. Run `ibmcloud ks locations` to
-  list supported IBM Cloud Kubernetes Service locations. For example, choose `us-south-3` to create your cluster in the
-  Dallas (US) data center.
-- `WORKER_NODE_PROVIDER` Please use `ibmcloud ks zones --provider ${WORKER_NODE_PROVIDER}` to list zone names for
-  all the providers and set the `CLUSTER_ZONE` accordingly.
+- `KUBERNETES_VERSION` Run `ibmcloud ks versions` to see the supported Kubernetes versions. Refer to
+  [Supported version matrix](https://www.kubeflow.org/docs/started/k8s/overview/#minimum-system-requirements).
+- `CLUSTER_ZONE` Run `ibmcloud ks locations` to list supported zones. For example, choose `us-south-3` to create your
+  cluster in the Dallas (US) data center.
 - `CLUSTER_NAME` must be lowercase and unique among any other Kubernetes
   clusters in the specified `${CLUSTER_ZONE}`.
 
@@ -43,7 +36,7 @@ Cloud documentation for additional information on how to set up other providers 
 ### Choosing a worker node flavor
 
 The worker nodes flavor name varies from zones and providers. Run 
-`ibmcloud ks flavors --zone ${CLUSTER_ZONE} --provider ${WORKER_NODE_PROVIDER}` to list available flavors.
+`ibmcloud ks flavors --zone ${CLUSTER_ZONE} --provider vpc-gen2` to list available flavors.
 
 Below are some examples of flavors supported in the `us-south-3` zone with `vpc-gen2` node provider:
 
@@ -62,7 +55,7 @@ bx2.4x16     4       16GB     8Gbps           UBUNTU_18_64   virtual       100GB
 ```
 
 The recommended configuration for a cluster is at least 8 vCPU cores with 16GB memory. Hence, we recommend
-`bx2.4x16` flavor to create a two-worker-node cluster. Keep in mind  that you can always scale the cluster
+`bx2.4x16` flavor to create a two-worker-node cluster. Keep in mind that you can always scale the cluster
 by adding more worker nodes should your application scales up.
 
 Now set the environment variable with the flavor you choose.
@@ -156,8 +149,8 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
     0737-27299d09-1d95-4a9d-a491-a6949axxxxxx   my-subnet                 available   10.240.128.0/18   16373/16384   husker-sloping-bee-resize                              my-gateway                                 my-vpc              us-south-3   kubeflow   
     ```
 
-    If the above list contains the subnet corresponding to your VPC, that can be used to deploy your cluster - make sure you note it's
-   ID.
+    If the above list contains the subnet corresponding to your VPC, that can be used to deploy your cluster - make sure
+   you note it's ID.
    
     b) To create a new subnet:
         - List address prefixes and note the CIDR block corresponding to a Zone;
@@ -201,7 +194,7 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
 5. Create a `vpc-gen2` based Kubernetes cluster:
     
     ```shell
-    ibmcloud ks cluster create ${WORKER_NODE_PROVIDER} \
+    ibmcloud ks cluster create vpc-gen2 \
     --name=$CLUSTER_NAME \
     --zone=$CLUSTER_ZONE \
     --version=${KUBERNETES_VERSION} \

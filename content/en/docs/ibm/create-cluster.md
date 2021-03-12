@@ -53,7 +53,7 @@ From here on, please see [Install Kubeflow](/docs/ibm/deploy/install-kubeflow-on
 * Use `vpc-gen2` provider if you are familiar with Cloud networking and want to deploy Kubeflow on a secure environment.
 
 For `vpc-gen2` provider follow instructions here: 
-[Create cluster on BM Cloud Kubernetes Service(IKS) with `vpc-gen2` provider](create-cluster-vpc).
+[Create cluster on BM Cloud Kubernetes Service(IKS) with `vpc-gen2` provider](/docs/ibm/create-cluster-vpc).
 
 Follow these steps to create and setup a new IBM Cloud Kubernetes Service(IKS) cluster on `classic` provider.
 
