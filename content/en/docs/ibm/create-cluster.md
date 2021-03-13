@@ -49,17 +49,18 @@ From here on, please see [Install Kubeflow](/docs/ibm/deploy/install-kubeflow-on
 
 ## Create and setup a new cluster
 
-* Use `classic` provider if you want to try out Kubeflow
-* Use `vpc-gen2` provider if you are familiar with Cloud networking and want to deploy Kubeflow on a secure environment.
-
-For `vpc-gen2` provider follow instructions here: 
-[Create cluster on IBM Cloud Kubernetes Service(IKS) with `vpc-gen2` provider](/docs/ibm/create-cluster-vpc).
-
-Follow these steps to create and setup a new IBM Cloud Kubernetes Service(IKS) cluster on `classic` provider.
+* Use a `classic` provider if you want to try out Kubeflow.
+* Use a `vpc-gen2` provider if you are familiar with Cloud networking and want to deploy Kubeflow on a secure environment.
 
 A `classic` provider exposes each cluster node to the public internet and therefore has
 a relatively simpler networking setup. Services exposed using Kubernetes `NodePort` need to be secured using 
 authentication mechanism.
+
+To create a cluster with `vpc-gen2` provider, follow the
+[Create a cluster on IKS with a `vpc-gen2` provider](/docs/ibm/create-cluster-vpc)
+guide.
+
+The next section will explain how to create and set up a new IBM Cloud Kubernetes Service (IKS)
 
 ### Setting environment variables
 
@@ -102,6 +103,11 @@ For example, the following are some flavors supported in the `dal13` zone with `
 
 ```shell
 ibmcloud ks flavors --zone dal13 --provider classic
+```
+
+Example output:
+
+```
 OK
 For more information about these flavors, see 'https://ibm.biz/flavors'
 Name                      Cores   Memory   Network Speed   OS             Server Type   Storage      Secondary Storage   Provider

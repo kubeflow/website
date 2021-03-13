@@ -42,8 +42,11 @@ Below are some examples of flavors supported in the `us-south-3` zone with `vpc-
 
 ```shell
 ibmcloud ks flavors --zone us-south-3 --provider vpc-gen2
+```
 
 Example output:
+
+```
 For more information about these flavors, see 'https://ibm.biz/flavors'
 Name         Cores   Memory   Network Speed   OS             Server Type   Storage   Secondary Storage   Provider   
 bx2.16x64    16      64GB     16Gbps          UBUNTU_18_64   virtual       100GB     0B                  vpc-gen2   
@@ -233,7 +236,6 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
    ```shell
    ibmcloud is public-gateway-create my-gateway $VPC_ID us-south-3
    ```
-   
 
    Example output:
    ```
@@ -241,11 +243,11 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
    ```
 
    Save the above generated gateway ID as follows:
-   
+
    ```shell
    export GATEWAY_ID="r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx"
    ```
-   
+
    Finally, attach the public gateway to the subnet:
    
    ```shell
