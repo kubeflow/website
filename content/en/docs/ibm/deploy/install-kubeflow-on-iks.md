@@ -34,7 +34,7 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
   Replace `<cluster_name>` with your cluster name.
 
-### Storage Setup for `classic` IBM Cloud Kubernetes cluster
+### Storage setup for `classic` IBM Cloud Kubernetes cluster
 
 **Note**: This section is only required when the worker nodes provider `WORKER_NODE_PROVIDER` is set to `classic`. For other infrastructures, IBM Cloud Storage with Group ID support is already set up as the cluster's default storage class.
 

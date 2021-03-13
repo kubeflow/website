@@ -98,7 +98,7 @@ Cloud documentation for additional information on how to set up other providers 
 The worker nodes flavor name varies from zones and providers. Run 
 `ibmcloud ks flavors --zone ${CLUSTER_ZONE} --provider ${WORKER_NODE_PROVIDER}` to list available flavors.
 
-For example, following are some flavors supported in the `dal13` zone with `classic` node provider.
+For example, the following are some flavors supported in the `dal13` zone with `classic` node provider.
 
 ```shell
 ibmcloud ks flavors --zone dal13 --provider classic

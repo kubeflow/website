@@ -83,13 +83,13 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
     ibmcloud is target --gen 2
     ```
    
-   Verify, the target is correctly setup
+   Verify that the target is correctly set up:
 
-   ```shell
+    ```shell
     ibmcloud is target
     ```
 
-    Example output
+    Example output:
     
     ```
     Target Generation: 2
@@ -109,7 +109,8 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
     ID                                          Name                Status      Classic access   Default network ACL                                    Default security group                                 Resource group   
     r006-hidden-68cc-4d40-xxxx-4319fa3gxxxx   my-vpc1              available   false            husker-sloping-bee-resize                              blimp-hasty-unaware-overflow                           kubeflow   
     ```
-    If the above list contains the VPC that can be used to deploy your cluster - note it's ID.
+
+    If the above list contains the VPC that can be used to deploy your cluster - make a note of its ID.
    
    b) To create a new VPC, proceed as follows:
 
@@ -233,23 +234,22 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
    ibmcloud is public-gateway-create my-gateway $VPC_ID us-south-3
    ```
    
+
    Example output:
    ```
    ID: r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx
    ```
+
    Save the above generated gateway ID as follows:
    
    ```shell
    export GATEWAY_ID="r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx"
    ```
    
-   Finally, attach the public gateway to the subnet.
+   Finally, attach the public gateway to the subnet:
    
    ```shell
    ibmcloud is subnet-update $SUBNET_ID --public-gateway-id $GATEWAY_ID
-   ```
-   Example output:
-   ```
    Updating subnet 0737-27299d09-1d95-4a9d-a491-a6949axxxxxx under account IBM as user new@user-email.com...
                           
    ID                  0737-27299d09-1d95-4a9d-a491-a6949axxxxxx   
@@ -265,7 +265,7 @@ To use the created cluster, switch the Kubernetes context to point to the cluste
 ibmcloud ks cluster config --cluster ${CLUSTER_NAME}
 ```
 
-Make sure all worker nodes are up with the command below
+Make sure all worker nodes are up with the command below:
 
 ```shell
 kubectl get nodes
