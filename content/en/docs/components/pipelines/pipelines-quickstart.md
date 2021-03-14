@@ -15,13 +15,13 @@ Kubeflow Pipelines UI.
 
 ## Deploy Kubeflow and open the Kubeflow Pipelines UI
 
-There are several options to [deploy Kubeflow Pipelines](/docs/components/pipelines/installation/), follow the option that best suits your needs. If you are uncertain and just want to try out kubeflow pipelines it is recommended to start with the [standalone deployment](/docs/components/pipelines/installation/standalone-deployment/).
+There are several options to [deploy Kubeflow Pipelines](/docs/components/pipelines/installation/overview/), follow the option that best suits your needs. If you are uncertain and just want to try out kubeflow pipelines it is recommended to start with the [standalone deployment](/docs/components/pipelines/installation/standalone-deployment/).
 
-Once you have deployed Kubeflow Pipelines make sure you can access the UI, this step depends on the method of deployment. 
+Once you have deployed Kubeflow Pipelines, make sure you can access the UI. The steps to access the UI vary based on the method you used to deploy Kubeflow Pipelines.
 
 ## Run a basic pipeline
 
-Kubeflow Pipelines offers a few default samples that you can use to try out
+Kubeflow Pipelines offers a few samples that you can use to try out
 Kubeflow Pipelines quickly. The steps below show you how to run a basic sample that
 includes some Python operations, but doesn't include a machine learning (ML) 
 workload:
@@ -56,8 +56,7 @@ workload:
     alt="Run results on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-You can find the source code for the **Data passing in python components** tutorial
-in the [Kubeflow Pipelines repo](https://github.com/kubeflow/pipelines/tree/master/samples/tutorials/Data%20passing%20in%20python%20components).
+You can find the [source code for the **Data passing in python components** tutorial](https://github.com/kubeflow/pipelines/tree/master/samples/tutorials/Data%20passing%20in%20python%20components) in the Kubeflow Pipelines repo.
 
 ## Run an ML pipeline
 
@@ -90,10 +89,7 @@ Follow these steps to run the sample:
       alt="XGBoost results on the pipelines UI"
       class="mt-3 mb-3 border border-info rounded">
 
-You can find the source code for the **XGBoost - Iterative model training** demo in the 
-[Kubeflow Pipelines 
-repo](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm).
-
+You can find the [source code for the **XGBoost - Iterative model training** demo](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm) in the Kubeflow Pipelines repo.
 
 ## Next steps
 
