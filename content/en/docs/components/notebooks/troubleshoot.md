@@ -4,11 +4,6 @@ description = "Fixing common problems of Jupyter notebook deployments on Kubeflo
 weight = 50
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
-
 ## Persistent Volumes and Persistent Volumes Claims
 
 First, make sure that [Persistent Volumes Claims (PVCs)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) are bounded when using Jupyter notebooks. This should

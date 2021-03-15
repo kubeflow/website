@@ -167,7 +167,7 @@ documentation for that application.
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/pipelines/overview/pipelines-overview/">Pipelines</a>
+        <td><a href="/docs/components/pipelines/overview/pipelines-overview/">Pipelines</a>
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Stable</td>
@@ -246,7 +246,7 @@ one of the following Kubeflow SDKs and command-line interfaces
         <td>1.1.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/pipelines/sdk/sdk-overview/">Kubeflow Pipelines SDK</a> 
+        <td><a href="/docs/components/pipelines/sdk/sdk-overview/">Kubeflow Pipelines SDK</a> 
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Stable</td>

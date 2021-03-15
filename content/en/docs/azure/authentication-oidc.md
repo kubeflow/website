@@ -214,7 +214,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
 
    Navigate to `https://<YOUR_LOADBALANCER_IP_ADDRESS_OR_DNS_NAME>/` and start using Kubeflow.
 
-## Authenticate Kubeflow pipelines using [Kubeflow Pipelines SDK](https://www.kubeflow.org/docs/pipelines/sdk/sdk-overview/)
+## Authenticate Kubeflow pipelines using [Kubeflow Pipelines SDK](https://www.kubeflow.org/docs/components/pipelines/sdk/sdk-overview/)
 
 Perform interactive login from browser by visitng `https://<YOUR_LOADBALANCER_IP_ADDRESS_OR_DNS_NAME>/` and copy the value of cookie `authservice_session` to authenticate using SDK with below code:
 

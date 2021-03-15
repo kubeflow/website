@@ -28,61 +28,18 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
   Replace `<cluster_name>` with your cluster name.
 
-## IBM Cloud Block Storage Setup
+## IBM Cloud Group ID Storage Setup
 
-**Note**: This section is only required when the worker nodes provider `WORKER_NODE_PROVIDER` is set to `classic`. For other infrastructures, IBM Cloud Block Storage is already set up as the cluster's default storage class.
+**Note**: This section is only required when the worker nodes provider `WORKER_NODE_PROVIDER` is set to `classic`. For other infrastructures, IBM Cloud Storage with Group ID support is already set up as the cluster's default storage class.
 
-When you use the `classic` worker node provider of an IBM Cloud Kubernetes cluster, it uses [IBM Cloud File Storage](https://www.ibm.com/cloud/file-storage) based on NFS as the default storage class. File Storage is designed to run RWX (read-write multiple nodes) workloads with proper security built around it. Therefore, File Storage [does not allow `fsGroup` securityContext](https://cloud.ibm.com/docs/containers?topic=containers-security#container), which is needed for the [OIDC authentication service](https://github.com/arrikto/oidc-authservice) and Kubeflow Jupyter server.
+When you use the `classic` worker node provider of an IBM Cloud Kubernetes cluster, it uses the regular [IBM Cloud File Storage](https://www.ibm.com/cloud/file-storage) based on NFS as the default storage class. File Storage is designed to run RWX (read-write multiple nodes) workloads with proper security built around it. Therefore, File Storage [does not allow `fsGroup` securityContext](https://cloud.ibm.com/docs/containers?topic=containers-security#container) unless it's configured with Group ID, which is needed for the [OIDC authentication service](https://github.com/arrikto/oidc-authservice) and Kubeflow Jupyter server.
 
-[IBM Cloud Block Storage](https://www.ibm.com/cloud/block-storage) provides a fast way to store data and
-satisfy many of the Kubeflow persistent volume requirements such as `fsGroup` out of the box and optimized RWO (read-write single node) which is used on all Kubeflow's persistent volume claim. 
+Therefore, you're recommended to set up the default storage class with Group ID support so that you can get the best experience from Kubeflow.
 
-Therefore, you're recommended to set up [IBM Cloud Block Storage](https://cloud.ibm.com/docs/containers?topic=containers-block_storage#add_block) as the default storage class so that you can
-get the best experience from Kubeflow.
-
-1. [Follow the instructions](https://helm.sh/docs/intro/install/) to install the Helm version 3 client on your local machine.
-
-2. Add the IBM Cloud Helm chart repository to the cluster where you want to use the IBM Cloud Block Storage plug-in.
+1. Set the File Storage with Group ID support as the default storage class.
 
     ```shell
-    helm repo add iks-charts https://icr.io/helm/iks-charts
-    helm repo update
-    ```
-
-3. Install the IBM Cloud Block Storage plug-in. When you install the plug-in, pre-defined block storage classes are added to your cluster.
-
-    ```shell
-    helm install 1.7.0 iks-charts/ibmcloud-block-storage-plugin -n kube-system
-    ```
-    
-    Example output:
-    ```
-    NAME: 1.7.0
-    LAST DEPLOYED: Fri Aug 28 11:23:56 2020
-    NAMESPACE: kube-system
-    STATUS: deployed
-    REVISION: 1
-    NOTES:
-    Thank you for installing: ibmcloud-block-storage-plugin.   Your release is named: 1.7.0
-    ...
-    ```
-
-4. Verify that the installation was successful.
-
-    ```shell
-    kubectl get pod -n kube-system | grep block
-    ```
-    
-5. Verify that the storage classes for Block Storage were added to your cluster.
-
-    ```shell
-    kubectl get storageclasses | grep block
-    ```
-
-6. Set the Block Storage as the default storage class.
-
-    ```shell
-    NEW_STORAGE_CLASS=ibmc-block-gold
+    NEW_STORAGE_CLASS=ibmc-file-gold-gid
     OLD_STORAGE_CLASS=$(kubectl get sc -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io\/is-default-class=="true")].metadata.name}')
     kubectl patch storageclass ${NEW_STORAGE_CLASS} -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
@@ -92,10 +49,10 @@ get the best experience from Kubeflow.
 
     Example output:
     ```
-    ibmc-block-gold (default)   ibm.io/ibmc-block   65s
+    ibmc-file-gold-gid (default)   ibm.io/ibmc-file    Delete          Immediate           false                  14h
     ```
 
-    Make sure `ibmc-block-gold` is the only `(default)` storage class. If there are two or more rows in the above output, unset the previous `(default)` storage classes with the command below:
+2. Make sure `ibmc-file-gold-gid` is the only `(default)` storage class. If there are two or more rows in the above output, unset the previous `(default)` storage classes with the command below:
     ```shell
     kubectl patch storageclass ${OLD_STORAGE_CLASS} -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
     ```

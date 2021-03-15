@@ -89,7 +89,7 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
     trial template is located. This ConfigMap must have the label
     `app: katib-trial-templates` and contains key-value pairs, where
     `key: <template-name>, value: <template-yaml>`. Check the example of the
-    [ConfigMap with trial templates](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/trial-template-configmap.yaml).
+    [ConfigMap with trial templates](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/controller/trial-templates.yaml).
 
     The `configMap` specification should have:
 
@@ -249,7 +249,7 @@ to know more about CRDs.
 Follow these two simple steps to integrate your custom CRD in Katib:
 
 1. Modify Katib controller
-   [ClusterRole's rules](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/rbac.yaml#L5)
+   [ClusterRole's rules](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/controller/rbac.yaml#L5)
    with the new rule to give Katib access to all resources that are created
    by the trial. To know more about ClusterRole, check
    [Kubernetes guide](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole).
@@ -269,9 +269,9 @@ Follow these two simple steps to integrate your custom CRD in Katib:
    ```
 
 1. Modify Katib controller
-   [Deployment's `args`](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/katib-controller.yaml#L26)
-   with the new
-   `--trial-resources=<object-kind>.<object-API-version>.<object-API-group>` flag.
+   [Deployment's `args`](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/controller/controller.yaml#L26)
+   with the new flag:
+   `--trial-resources=<object-kind>.<object-API-version>.<object-API-group>`.
 
    For example, to support Tekton `Pipeline`:
 

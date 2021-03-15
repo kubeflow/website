@@ -44,7 +44,8 @@ Your Kubernetes cluster must meet the following minimum requirements:
         <th>Kubeflow 0.6</th>
         <th>Kubeflow 0.7</th>
         <th>Kubeflow 1.0</th>
-        <th>Kubeflow 1.1</th>        
+        <th>Kubeflow 1.1</th>
+        <th>Kubeflow 1.2</th>         
       </tr>
     </thead>
     <tbody>
@@ -52,6 +53,7 @@ Your Kubernetes cluster must meet the following minimum requirements:
         <td>1.11</td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
+        <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
@@ -65,6 +67,7 @@ Your Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
       <tr>
         <td>1.13</td>
@@ -74,9 +77,11 @@ Your Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td>incompatible</td>
       </tr>
       <tr>
         <td>1.14</td>
+        <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
@@ -92,6 +97,7 @@ Your Kubernetes cluster must meet the following minimum requirements:
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
+        <td><b>compatible</b></td>
       </tr>
       <tr>
         <td>1.16</td>
@@ -99,6 +105,7 @@ Your Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td><b>compatible</b></td>
         <td><b>compatible</b></td>
         <td><b>compatible</b></td>
       </tr>
@@ -110,6 +117,7 @@ Your Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td><b>no known issues</b></td>
         <td><b>no known issues</b></td>
+        <td><b>no known issues</b></td>
       </tr>
       <tr>
         <td>1.18</td>
@@ -117,6 +125,27 @@ Your Kubernetes cluster must meet the following minimum requirements:
         <td>incompatible</td>
         <td>incompatible</td>
         <td>incompatible</td>
+        <td><b>no known issues</b></td>
+        <td><b>no known issues</b></td>
+        <td><b>no known issues</b></td>
+      </tr>
+      <tr>
+        <td>1.19</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td><b>no known issues</b></td>
+        <td><b>no known issues</b></td>
+        <td><b>no known issues</b></td>
+      </tr>
+      <tr>
+        <td>1.20</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td>incompatible</td>
+        <td><b>no known issues</b></td>
         <td><b>no known issues</b></td>
         <td><b>no known issues</b></td>
       </tr>

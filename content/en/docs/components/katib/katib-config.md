@@ -6,7 +6,7 @@ weight = 70
 +++
 
 This guide describes
-[Katib config](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/katib-controller/katib-config.yaml) —
+[Katib config](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/controller/katib-config.yaml) —
 the Kubernetes
 [Config Map](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) that contains information about:
 
@@ -61,7 +61,8 @@ metrics-collector-sidecar: |-
         "cpu": "500m",
         "ephemeral-storage": "2Gi"
       }
-    }
+    },
+    "waitAllProcesses": false
   },
   ...
 }
@@ -110,6 +111,12 @@ a default value is set automatically.
      "ephemeral-storage": "-1"
    }
    ```
+
+1. `waitAllProcesses` - a flag to define whether the metrics collector should
+   wait until all processes in the training container are finished before start
+   to collect metrics.
+
+   The default value is `true`
 
 ## Suggestion settings
 

@@ -13,36 +13,33 @@
 /blog/announcing_kubeflow_0.2/         https://medium.com/kubeflow/kubeflow-0-2-offers-new-components-and-simplified-setup-735e4c56988d
 
 /docs/guides/components/components     /docs/components/
-/docs/guides/pipelines/deploy-pipelines-service/  /docs/pipelines/pipelines-quickstart/
-
-# Removed the "guides" section from the doc URLs.
-/docs/guides/*  /docs/:splat
+/docs/guides/pipelines/deploy-pipelines-service/  /docs/components/pipelines/pipelines-quickstart/
 
 # Merged duplicate page pipelines-samples.md into build-pipeline.md
-/docs/pipelines/pipelines-samples/	   /docs/pipelines/build-pipeline/
+/docs/pipelines/pipelines-samples/	   /docs/components/pipelines/build-pipeline/
 
 # Removed redundant UI guide. Quickstart is a better destination.
-/docs/pipelines/pipelines-ui/	         /docs/pipelines/pipelines-quickstart/
+/docs/pipelines/pipelines-ui/	         /docs/components/pipelines/pipelines-quickstart/
 
 # Restructured the pipelines docs.
-/docs/pipelines/output-viewer/                      /docs/pipelines/sdk/output-viewer/
-/docs/pipelines/pipelines-metrics/                  /docs/pipelines/sdk/pipelines-metrics/
-/docs/pipelines/build-component/                    /docs/pipelines/sdk/build-component/
-/docs/pipelines/install-sdk/                        /docs/pipelines/sdk/install-sdk/
-/docs/pipelines/lightweight-python-components/      /docs/pipelines/sdk/python-function-components/
-/docs/pipelines/sdk/lightweight-python-components/  /docs/pipelines/sdk/python-function-components/
-/docs/pipelines/build-pipeline/                     /docs/pipelines/tutorials/build-pipeline/
-/docs/pipelines/pipelines-tutorial/                 /docs/pipelines/tutorials/cloud-tutorials/
-/docs/pipelines/tutorials/pipelines-tutorial/       /docs/pipelines/tutorials/cloud-tutorials/
-/docs/gke/pipelines-tutorial/                       /docs/pipelines/tutorials/cloud-tutorials/
-/docs/gke/pipelines/pipelines-tutorial/             /docs/pipelines/tutorials/cloud-tutorials/
+/docs/pipelines/                                    /docs/components/pipelines
+/docs/pipelines/output-viewer/                      /docs/components/pipelines/sdk/output-viewer/
+/docs/pipelines/pipelines-metrics/                  /docs/components/pipelines/sdk/pipelines-metrics/
+/docs/pipelines/build-component/                    /docs/components/pipelines/sdk/build-component/
+/docs/pipelines/install-sdk/                        /docs/components/pipelines/sdk/install-sdk/
+/docs/pipelines/lightweight-python-components/      /docs/components/pipelines/sdk/python-function-components/
+/docs/pipelines/sdk/lightweight-python-components/  /docs/components/pipelines/sdk/python-function-components/
+/docs/pipelines/build-pipeline/                     /docs/components/pipelines/tutorials/build-pipeline/
+/docs/pipelines/pipelines-tutorial/                 /docs/components/pipelines/tutorials/cloud-tutorials/
+/docs/pipelines/tutorials/pipelines-tutorial/       /docs/components/pipelines/tutorials/cloud-tutorials/
+/docs/gke/pipelines-tutorial/                       /docs/components/pipelines/tutorials/cloud-tutorials/
+/docs/gke/pipelines/pipelines-tutorial/             /docs/components/pipelines/tutorials/cloud-tutorials/
 /docs/gke/authentication-pipelines/                 /docs/gke/pipelines/authentication-pipelines/
 
-/docs/pipelines/metrics/                       /docs/pipelines/sdk/pipelines-metrics/
-/docs/pipelines/metrics/pipelines-metrics/     /docs/pipelines/sdk/pipelines-metrics/
-/docs/pipelines/metrics/output-viewer/         /docs/pipelines/sdk/output-viewer/
-/docs/pipelines/concepts/*                     /docs/pipelines/overview/concepts/:splat
-/docs/pipelines/pipelines-overview/            /docs/pipelines/overview/pipelines-overview/
+/docs/pipelines/metrics/                       /docs/components/pipelines/sdk/pipelines-metrics/
+/docs/pipelines/metrics/pipelines-metrics/     /docs/components/pipelines/sdk/pipelines-metrics/
+/docs/pipelines/metrics/output-viewer/         /docs/components/pipelines/sdk/output-viewer/
+/docs/pipelines/pipelines-overview/            /docs/components/pipelines/overview/pipelines-overview/
 /docs/pipelines/enable-gpu-and-tpu/            /docs/gke/pipelines/enable-gpu-and-tpu/
 /docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/gke/pipelines/enable-gpu-and-tpu/
 /docs/pipelines/sdk/gcp/enable-gpu-and-tpu/    /docs/gke/pipelines/enable-gpu-and-tpu/
@@ -55,13 +52,13 @@
 /docs/other-guides/monitoring/                 /docs/gke/monitoring/
 
 # Created a new section for pipeline concepts.
-/docs/pipelines/pipelines-concepts/            /docs/pipelines/concepts/
+/docs/pipelines/pipelines-concepts/            /docs/components/pipelines/concepts/
 
 # Replaces Pipelines DSL overview with SDK overview
-/docs/pipelines/sdk/dsl-overview/              /docs/pipelines/sdk/sdk-overview/
+/docs/pipelines/sdk/dsl-overview/              /docs/components/pipelines/sdk/sdk-overview/
 
 # Created a new section for pipelines installation.
-/docs/pipelines/standalone-deployment-gcp/    /docs/pipelines/installation/standalone-deployment/
+/docs/pipelines/standalone-deployment-gcp/    /docs/components/pipelines/installation/standalone-deployment/
 
 # Removed the downloads page from Reference to Getting Started with Kubeflow
 /docs/reference/downloads/                     /docs/started/getting-started/
@@ -121,3 +118,11 @@ docs/started/requirements/                    /docs/started/getting-started/
 
 # Moved Job scheduling under Training
 /docs/other-guides/job-scheduling/    /docs/components/training/job-scheduling/
+
+# ===============
+# IMPORTANT NOTE: 
+# Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
+# ===============
+/docs/guides/*                      /docs/:splat
+/docs/pipelines/concepts/*          /docs/components/pipelines/overview/concepts/:splat
+/docs/pipelines/*                   /docs/components/pipelines/:splat
