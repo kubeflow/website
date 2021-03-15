@@ -116,6 +116,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Rename TensorRT Inference Server to Triton Inference Server
 /docs/components/serving/trtinferenceserver   /docs/components/serving/tritoninferenceserver
 
+# Moved Job scheduling under Training
+/docs/other-guides/job-scheduling/    /docs/components/training/job-scheduling/
+
 # ===============
 # IMPORTANT NOTE: 
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
