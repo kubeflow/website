@@ -177,7 +177,7 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
     - Now create a subnet as follows:
 
     ```shell
-    ibmcloud is subnet-create my-subnet $VPC_ID us-south-3 --ipv4-cidr-block "10.240.128.0/18"
+    ibmcloud is subnet-create my-subnet $VPC_ID $CLUSTER_ZONE --ipv4-cidr-block "10.240.128.0/18"
     ```
 
     Example output:
@@ -199,13 +199,13 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
     
     ```shell
     ibmcloud ks cluster create vpc-gen2 \
-    --name=$CLUSTER_NAME \
-    --zone=$CLUSTER_ZONE \
-    --version=${KUBERNETES_VERSION} \
+    --name $CLUSTER_NAME \
+    --zone $CLUSTER_ZONE \
+    --version ${KUBERNETES_VERSION} \
     --flavor ${WORKER_NODE_FLAVOR} \
     --vpc-id ${VPC_ID} \
     --subnet-id ${SUBNET_ID} \
-    --workers=2
+    --workers 2
     ```
 
 6. Attach a public gateway
@@ -234,7 +234,7 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
    Attach a public gateway:
    
    ```shell
-   ibmcloud is public-gateway-create my-gateway $VPC_ID us-south-3
+   ibmcloud is public-gateway-create my-gateway $VPC_ID $CLUSTER_ZONE
    ```
 
    Example output:
@@ -250,7 +250,7 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
 
    Finally, attach the public gateway to the subnet:
    
-   ```shell
+   ```
    ibmcloud is subnet-update $SUBNET_ID --public-gateway-id $GATEWAY_ID
    Updating subnet 0737-27299d09-1d95-4a9d-a491-a6949axxxxxx under account IBM as user new@user-email.com...
                           
