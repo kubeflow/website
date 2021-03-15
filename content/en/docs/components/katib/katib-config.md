@@ -376,7 +376,14 @@ suggestion: |-
   `<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>`
   to the path. That makes host paths unique across suggestions.
 
-  **Note:** PV `storageClassName` is always equal to **`katib-suggestion`**.
+  **Note:**
+
+  - PV `storageClassName` is always equal to **`katib-suggestion`**.
+
+  - PV `persistentVolumeReclaimPolicy` is always equal to **`Delete`** to properly
+    remove all resources once Katib experiment is deleted. To know more about
+    PV reclaim policies check the
+    [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming).
 
 ## Early stopping settings
 
