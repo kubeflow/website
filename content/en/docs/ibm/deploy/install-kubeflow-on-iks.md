@@ -34,7 +34,7 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
   Replace `<cluster_name>` with your cluster name.
 
-### Storage setup for `classic` IBM Cloud Kubernetes cluster
+### Storage setup for a `classic` IBM Cloud Kubernetes cluster
 
 **Note**: This section is only required when the worker nodes provider `WORKER_NODE_PROVIDER` is set to `classic`. For other infrastructures, IBM Cloud Storage with Group ID support is already set up as the cluster's default storage class.
 
@@ -238,13 +238,13 @@ kubectl get pod authservice-0 -n istio-system
 
 ### Extra network setup requirement for `vpc-gen2` clusters only
 
-**Note**: These steps are not required for Classic clusters, i.e. where `WORKER_NODE_PROVIDER` is set to `classic`.
+**Note**: These steps are not required for `classic` clusters, i.e. where `WORKER_NODE_PROVIDER` is set to `classic`.
 
 A `vpc-gen2` cluster does not assign a public IP address to the Kubernetes master node by default.
 It provides access via a Load Balancer, which is configured to allow only a set of ports over public internet.
 Access the cluster's resources in a `vpc-gen2` cluster, using one of the following options,
 
-* Load Balancer method: Configure via Load Balancer—go to [Expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer).
+* Load Balancer method: To configure via a Load Balancer, go to [Expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer).
     This method is recommended when [Multi-user, auth-enabled](#multi-user-auth-enabled) is setup, otherwise it will expose
   cluster resources to the public.
 

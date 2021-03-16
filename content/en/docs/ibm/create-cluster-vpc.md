@@ -25,7 +25,7 @@ where:
 
 - `KUBERNETES_VERSION` Run `ibmcloud ks versions` to see the supported Kubernetes versions. Refer to
   [Supported version matrix](https://www.kubeflow.org/docs/started/k8s/overview/#minimum-system-requirements).
-- `CLUSTER_ZONE` Run `ibmcloud ks locations` to list supported zones. For example, choose `us-south-3` to create your
+- `CLUSTER_ZONE`: Run `ibmcloud ks locations` to list supported zones. For example, choose `us-south-3` to create your
   cluster in the Dallas (US) data center.
 - `CLUSTER_NAME` must be lowercase and unique among any other Kubernetes
   clusters in the specified `${CLUSTER_ZONE}`.
@@ -72,7 +72,7 @@ export WORKER_NODE_FLAVOR=bx2.4x16
 Creating a `vpc-gen2` based cluster needs a VPC, a subnet and a public gateway attached to it. Fortunately, this is a one
 time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attached public-gateway).
 
-1. Begin with installing a vpc-infrastructure plugin:
+1. Begin with installing a `vpc-infrastructure` plugin:
 
     ```shell
     ibmcloud plugin install vpc-infrastructure
@@ -80,7 +80,7 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
    
    Refer to this [link](https://cloud.ibm.com/docs/containers?topic=containers-vpc_ks_tutorial), for more information.
 
-2. Target the gen 2 to access gen 2 resources:
+2. Target `vpc-gen 2` to access gen 2 VPC resources:
 
     ```shell
     ibmcloud is target --gen 2
@@ -277,7 +277,7 @@ and make sure all the nodes are in `Ready` state.
 
 ### Delete the cluster
 
-Delete the cluster including it's storage
+Delete the cluster including it's storage:
 
 ```shell
 ibmcloud ks cluster rm --force-delete-storage -c ${CLUSTER_NAME}

@@ -170,7 +170,7 @@ Wait until the cluster is deployed and configured. It can take a while for the c
 command to periodically check the state of your cluster. Your cluster is ready when the state is `normal`.
 
 ```shell
-ibmcloud ks clusters --provider ${WORKER_NODE_PROVIDER} |grep ${CLUSTER_NAME}|awk '{print "Name:"$1"\tState:"$3}'
+ibmcloud ks clusters --provider ${WORKER_NODE_PROVIDER} |grep ${CLUSTER_NAME} |awk '{print "Name:"$1"\tState:"$3}'
 ```
 
 ### Verifying the cluster
@@ -191,7 +191,7 @@ and make sure all the nodes are in `Ready` state.
 
 ### Delete the cluster
 
-Delete the cluster including it's storage
+Delete the cluster including it's storage:
 
 ```shell
 ibmcloud ks cluster rm --force-delete-storage -c ${CLUSTER_NAME}
