@@ -245,7 +245,7 @@ It provides access via a Load Balancer, which is configured to allow only a set 
 Access the cluster's resources in a `vpc-gen2` cluster, using one of the following options,
 
 * Load Balancer method: To configure via a Load Balancer, go to [Expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer).
-    This method is recommended when [Multi-user, auth-enabled](#multi-user-auth-enabled) is setup, otherwise it will expose
+    This method is recommended when you have Kubeflow deployed with [Multi-user, auth-enabled](#multi-user-auth-enabled) support — otherwise it will expose
   cluster resources to the public.
 
 * Socks proxy method: If you need access to nodes or NodePort in the `vpc-gen2` cluster, this can be achieved by starting another instance in the 
@@ -265,7 +265,7 @@ Socks proxy method or `kubectl port-forward` method are recommended._
 
 ### Prerequisites
 
-For both `classic` and `vpc-gen2` cluster providers, [Multi-user, auth-enabled](#multi-user-auth-enabled) should be setup.
+For both `classic` and `vpc-gen2` cluster providers, make sure you have [Multi-user, auth-enabled](#multi-user-auth-enabled) Kubeflow set up.
 
 ### Setup
 
@@ -286,7 +286,7 @@ redirect_url=$(printf https://<kubeflow-FQDN>/login/oidc | base64 -w0) \
 
 3. Restart the pod `authservice-0`:
 
-```SHELL
+```shell
 kubectl rollout restart statefulset authservice -n istio-system
 ```
 

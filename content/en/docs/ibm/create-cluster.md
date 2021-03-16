@@ -44,7 +44,7 @@ Get the Kubeconfig file:
 ibmcloud ks cluster config --cluster $CLUSTER_NAME
 ```
 
-From here on, please see [Install Kubeflow](/docs/ibm/deploy/install-kubeflow-on-iks).
+From here on, go to [Install Kubeflow on IKS](/docs/ibm/deploy/install-kubeflow-on-iks) for more information.
 
 
 ## Create and setup a new cluster
@@ -85,7 +85,7 @@ where:
   Dallas (US) data center.
 - `WORKER_NODE_PROVIDER` specifies the kind of IBM Cloud infrastructure on which the Kubernetes worker nodes will be
   created. The `classic` type supports worker nodes with GPUs. There are other worker nodes providers including
-  `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Please use
+  `vpc-classic` and `vpc-gen2` where zone names and worker flavors will be different. Run
   `ibmcloud ks zones --provider classic` to list zone names for `classic` provider and set the `CLUSTER_ZONE`
   accordingly.
 - `CLUSTER_NAME` must be lowercase and unique among any other Kubernetes
@@ -96,10 +96,10 @@ Cloud documentation for additional information on how to set up other providers 
 
 ### Choosing a worker node flavor
 
-The worker nodes flavor name varies from zones and providers. Run 
+The worker node flavor name varies from zones and providers. Run 
 `ibmcloud ks flavors --zone ${CLUSTER_ZONE} --provider ${WORKER_NODE_PROVIDER}` to list available flavors.
 
-For example, the following are some flavors supported in the `dal13` zone with `classic` node provider.
+For example, the following are some worker node flavors supported in the `dal13` zone with a `classic` node provider.
 
 ```shell
 ibmcloud ks flavors --zone dal13 --provider classic
@@ -129,7 +129,7 @@ configuration for a cluster is at least 8 vCPU cores with 16GB memory. Hence you
 to create a one-worker-node cluster or choose the `b3c.4x16` flavor to create a two-worker-node cluster. Keep in mind
 that you can always scale the cluster by adding more worker nodes should your application scales up.
 
-Now set the environment variable with the flavor you choose.
+Now, set the environment variable with the worker node flavor of your choice:
 
 ```shell
 export WORKER_NODE_FLAVOR=b3c.4x16
@@ -150,7 +150,8 @@ ibmcloud ks cluster create ${WORKER_NODE_PROVIDER} \
 
 Replace the `workers` parameter above with the desired number of worker nodes.
 
-Note: If you're starting in a fresh account with no public and private VLANs, they are created automatically for you
+
+**Note**: If you're starting in a fresh account with no public and private VLANs, they are created automatically for you
 when creating a Kubernetes cluster with worker nodes provider `classic` for the first time. If you already have VLANs
 configured in your account, retrieve them via `ibmcloud ks vlans --zone ${CLUSTER_ZONE}` and include the public and 
 private VLAN ids (set in the `PUBLIC_VLAN_ID` and `PRIVATE_VLAN_ID` environment variables) in the command, for example:

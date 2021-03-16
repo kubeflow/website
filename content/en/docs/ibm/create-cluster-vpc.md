@@ -23,7 +23,7 @@ export CLUSTER_NAME=kubeflow-vpc
 
 where:
 
-- `KUBERNETES_VERSION` Run `ibmcloud ks versions` to see the supported Kubernetes versions. Refer to
+- `KUBERNETES_VERSION`: Run `ibmcloud ks versions` to see the supported Kubernetes versions. Refer to
   [Supported version matrix](https://www.kubeflow.org/docs/started/k8s/overview/#minimum-system-requirements).
 - `CLUSTER_ZONE`: Run `ibmcloud ks locations` to list supported zones. For example, choose `us-south-3` to create your
   cluster in the Dallas (US) data center.
@@ -106,6 +106,7 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
     ibmcloud is vpcs
     ```
 
+
     Example output:
     ```
     Listing vpcs for generation 2 compute in all resource groups and region ...
@@ -157,7 +158,7 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
    you note it's ID.
    
     b) To create a new subnet:
-        - List address prefixes and note the CIDR block corresponding to a Zone;
+      - List address prefixes and note the CIDR block corresponding to a Zone;
    in the below example, for Zone: `us-south-3` the CIDR block is : `10.240.128.0/18`.
    
     ```shell
@@ -189,7 +190,7 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
     Name                my-subnet
     ```
 
-   - Make sure you export the subnet IDs follows:
+    - Make sure you export the subnet IDs follows:
 
     ```shell
     export SUBNET_ID=0737-27299d09-1d95-4a9d-a491-a6949axxxxxx
@@ -212,7 +213,7 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
 
    This step is mandatory for Kubeflow deployment to succeed, because pods need public internet access to download images.
    
-   First check, if your cluster is already assigned a public gateway:
+    - First, check if your cluster is already assigned a public gateway:
    
     ```shell
     ibmcloud is pubgws
@@ -227,41 +228,45 @@ time setup. Future `vpc-gen2` clusters can reuse the same VPC/subnet(with attach
    
     ```
    
-   In the above run, gateway is already attached for the vpc: `my-vpc`. In case no gateway is attached, proceed with
-   rest of the setup.
+    In the above run, the gateway is already attached for the vpc: `my-vpc`. In case no gateway is attached, proceed with
+    the rest of the setup.
 
+    - Next, attach a public gateway by running the following command:
    
-   Attach a public gateway:
-   
-   ```shell
-   ibmcloud is public-gateway-create my-gateway $VPC_ID $CLUSTER_ZONE
-   ```
+    ```shell
+    ibmcloud is public-gateway-create my-gateway $VPC_ID $CLUSTER_ZONE
+    ```
 
    Example output:
-   ```
-   ID: r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx
-   ```
+    ```
+    ID: r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx
+    ```
 
    Save the above generated gateway ID as follows:
 
-   ```shell
-   export GATEWAY_ID="r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx"
-   ```
+    ```shell
+    export GATEWAY_ID="r006-xxxxxxxx-5731-4ffe-bc51-1d9e5fxxxxxx"
+    ```
 
-   Finally, attach the public gateway to the subnet:
+    - Finally, attach the public gateway to the subnet:
    
-   ```
-   ibmcloud is subnet-update $SUBNET_ID --public-gateway-id $GATEWAY_ID
-   Updating subnet 0737-27299d09-1d95-4a9d-a491-a6949axxxxxx under account IBM as user new@user-email.com...
+    ```shell
+    ibmcloud is subnet-update $SUBNET_ID --public-gateway-id $GATEWAY_ID
+    ```
+
+    Example output:
+
+    ```
+    Updating subnet 0737-27299d09-1d95-4a9d-a491-a6949axxxxxx under account IBM as user new@user-email.com...
                           
-   ID                  0737-27299d09-1d95-4a9d-a491-a6949axxxxxx   
-   Name                my-subnet   
-   ...
-   ```
+    ID                  0737-27299d09-1d95-4a9d-a491-a6949axxxxxx   
+    Name                my-subnet   
+    ...
+    ```
 
 ### Verifying the cluster
 
-To use the created cluster, switch the Kubernetes context to point to the cluster with the command
+To use the created cluster, switch the Kubernetes context to point to the cluster:
 
 ```shell
 ibmcloud ks cluster config --cluster ${CLUSTER_NAME}
@@ -273,7 +278,7 @@ Make sure all worker nodes are up with the command below:
 kubectl get nodes
 ```
 
-and make sure all the nodes are in `Ready` state.
+and verify that all the nodes are in `Ready` state.
 
 ### Delete the cluster
 
