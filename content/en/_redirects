@@ -131,6 +131,12 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/started/k8s/kfctl-istio-dex               /docs/distributions/kfctl/multi-user
 /docs/started/k8s/kfctl-k8s-istio               /docs/distributions/kfctl/deployment
 
+# Moved Job scheduling under Training
+/docs/other-guides/job-scheduling/    /docs/components/training/job-scheduling/
+
+# Moved KFServing
+/docs/components/serving/kfserving/         /docs/components/kfserving
+
 # ===============
 # IMPORTANT NOTE: 
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom

@@ -34,6 +34,9 @@ git clone https://github.com/kubeflow/katib
 make deploy
 ```
 
+**Note:** You should have [kustomize](https://kustomize.io/) version >= 3.2 to
+install Katib.
+
 ### Setting up persistent volumes
 
 If you used the [above-mentioned script](#katib-install) to deploy Katib,
@@ -57,11 +60,11 @@ After deploying Katib to your cluster, run the following command to create the
 PV:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/pv/pv.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/components/mysql/pv.yaml
 ```
 
 The above `kubectl apply` command uses a YAML file -
-[`pv.yaml`](https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/pv/pv.yaml) -
+[`pv.yaml`](https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/components/mysql/pv.yaml) -
 that defines the properties of the PV.
 
 <a id="katib-ui"></a>
