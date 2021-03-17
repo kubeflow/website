@@ -102,7 +102,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/use-cases/job-scheduling/                /docs/other-guides/job-scheduling/
 
 # Remove Kubeflow installation on existing EKS cluster
-/docs/aws/deploy/existing-cluster/             /docs/aws/deploy/install-kubeflow/
+/docs/aws/deploy/existing-cluster/             /docs/distributions/aws/deploy/install-kubeflow/
 
 # Move the kustomize guide to the config section
 /docs/components/misc/kustomize/              /docs/distributions/kfctl/kustomize/
@@ -144,4 +144,4 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/guides/*                      /docs/:splat
 /docs/pipelines/concepts/*          /docs/components/pipelines/overview/concepts/:splat
 /docs/pipelines/*                   /docs/components/pipelines/:splat
-
+/docs/aws/*                         /docs/distributions/aws/:splat
