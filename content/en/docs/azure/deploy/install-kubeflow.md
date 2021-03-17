@@ -184,4 +184,4 @@ Run the following commands to set up and deploy Kubeflow.
 
 ## Additional information
 
-  You can find general information about Kubeflow configuration in the guide to [configuring Kubeflow with kfctl and kustomize](/docs/other-guides/kustomize/).
+  You can find general information about Kubeflow configuration in the guide to [configuring Kubeflow with kfctl and kustomize](/docs/methods/kfctl/kustomize/).

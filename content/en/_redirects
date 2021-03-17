@@ -88,7 +88,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Restructured the getting-started and other-guides sections.
 /docs/started/getting-started-k8s/             /docs/started/k8s/
 /docs/started/getting-started-minikf/                      /docs/started/workstation/getting-started-minikf/
-/docs/started/getting-started-minikube/                    /docs/started/workstation/minikube-linux/
+/docs/started/getting-started-minikube/                    /docs/started/distributions/kfctl/minikube/
 /docs/other-guides/virtual-dev/getting-started-minikf/     /docs/started/workstation/getting-started-minikf/
 /docs/started/getting-started-multipass/                   /docs/started/workstation/getting-started-multipass/
 /docs/other-guides/virtual-dev/getting-started-multipass/  /docs/started/workstation/getting-started-multipass/
@@ -105,7 +105,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/aws/deploy/existing-cluster/             /docs/aws/deploy/install-kubeflow/
 
 # Move the kustomize guide to the config section
-/docs/components/misc/kustomize/              /docs/other-guides/kustomize/
+/docs/components/misc/kustomize/              /docs/distributions/kfctl/kustomize/
 
 # Merged the UIs page with the new central dashboard page
 /docs/other-guides/accessing-uis/             /docs/components/central-dash/overview/
@@ -115,6 +115,21 @@ docs/started/requirements/                    /docs/started/getting-started/
 
 # Rename TensorRT Inference Server to Triton Inference Server
 /docs/components/serving/trtinferenceserver   /docs/components/serving/tritoninferenceserver
+
+# Kubeflow Operator move to under distributions
+/docs/operator                      /docs/distributions/operator
+/docs/operator/introduction         /docs/distributions/operator/introduction
+/docs/operator/install-operator     /docs/distributions/operator/install-operator
+/docs/operator/install-kubeflow     /docs/distributions/operator/install-kubeflow
+/docs/operator/uninstall-kubeflow   /docs/distributions/operator/uninstall-kubeflow
+/docs/operator/uninstall-operator   /docs/distributions/operator/uninstall-operator
+/docs/operator/troubleshooting      /docs/distributions/operator/troubleshooting
+
+# kfctl move to under distributions
+/docs/started/workstation/minikube-linux        /docs/distributions/kfctl/minikube
+/docs/other-guides/kustomize                    /docs/distributions/kfctl/kustomize
+/docs/started/k8s/kfctl-istio-dex               /docs/distributions/kfctl/multi-user
+/docs/started/k8s/kfctl-k8s-istio               /docs/distributions/kfctl/deployment
 
 # Moved Job scheduling under Training
 /docs/other-guides/job-scheduling/    /docs/components/training/job-scheduling/
@@ -129,3 +144,4 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/guides/*                      /docs/:splat
 /docs/pipelines/concepts/*          /docs/components/pipelines/overview/concepts/:splat
 /docs/pipelines/*                   /docs/components/pipelines/:splat
+

@@ -239,7 +239,7 @@ one of the following Kubeflow SDKs and command-line interfaces
         <td>0.7.1</td>
       </tr>
       <tr>
-        <td><a href="/docs/other-guides/kustomize/">kfctl</a> 
+        <td><a href="/docs/methods/kfctl/kustomize/">kfctl</a> 
           (<a href="https://github.com/kubeflow/kfctl">GitHub</a> )
         </td>
         <td>Stable</td>

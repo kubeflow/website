@@ -76,7 +76,7 @@ The operator responds to following events:
 
 * When any resource deployed as part of a _KfDef_ instance is deleted, the operator's _reconciler_ will be notified of the event and invoke the `Apply` functions provided by the [`kfctl` package](https://github.com/kubeflow/kfctl/tree/master/pkg) to re-deploy the Kubeflow. The deleted resource will be recreated with the same manifest as specified when the _KfDef_ instance is created.
 
-Deploying Kubeflow with the Kubeflow Operator includes two steps: [installing the Kubeflow Operator](/docs/operator/install-operator) followed by [deploying](/docs/operator/deploy/operator) the KfDef custom resource.
+Deploying Kubeflow with the Kubeflow Operator includes two steps: [installing the Kubeflow Operator](/docs/methods/operator/install-operator) followed by [deploying](/docs/methods/operator/deploy/operator) the KfDef custom resource.
 
 ## Current Tested Operators and Pre-built Images
 
