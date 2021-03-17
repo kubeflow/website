@@ -116,7 +116,7 @@ deploy Kubeflow:
     ```
 
 1. Edit the configuration files, as described in the guide to
-  [customizing your Kubeflow deployment](/docs/other-guides/kustomize/).
+  [customizing your Kubeflow deployment](/docs/methods/kfctl/kustomize/).
 
 1. Set an environment variable pointing to your local configuration file:
 
@@ -169,7 +169,7 @@ and directories:
     which you can further customize if necessary.
 * **kustomize** is a directory that contains the kustomize packages for Kubeflow
   applications. See 
-  [how Kubeflow uses kustomize](/docs/other-guides/kustomize/).
+  [how Kubeflow uses kustomize](/docs/methods/kfctl/kustomize/).
 
   * The directory is created when you run `kfctl build` or `kfctl apply`.
   * You can customize the Kubernetes resources by modifying the manifests and

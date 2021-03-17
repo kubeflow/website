@@ -12,4 +12,4 @@ To delete the Kubeflow deployment, simply delete the KfDef custom resource from 
 kubectl delete kfdef ${KUBEFLOW_DEPLOYMENT_NAME} -n ${KUBEFLOW_NAMESPACE}
 ```
 
-Note: ${KUBEFLOW_DEPLOYMENT_NAME} and ${KUBEFLOW_NAMESPACE} are defined in the [Installing Kubeflow](/docs/operator/install-kubeflow) guide.
+Note: ${KUBEFLOW_DEPLOYMENT_NAME} and ${KUBEFLOW_NAMESPACE} are defined in the [Installing Kubeflow](/docs/methods/operator/install-kubeflow) guide.

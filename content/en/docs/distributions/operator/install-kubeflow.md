@@ -4,11 +4,11 @@ description = "Instructions for Kubeflow deployment with Kubeflow Operator"
 weight = 10
 +++
 
-This guide describes how to use the Kubeflow Operator to deploy Kubeflow. As mentioned in the Operator [introduction](/docs/operator/introduction.md), the Operator also allows you to monitor and manage the Kubeflow installation beyond the initial installation.
+This guide describes how to use the Kubeflow Operator to deploy Kubeflow. As mentioned in the Operator [introduction](/docs/methods/operator/introduction.md), the Operator also allows you to monitor and manage the Kubeflow installation beyond the initial installation.
 
 ## Prerequisites
 
-* Kubeflow Operator needs to be deployed on your cluster for rest of steps to work. Please follow the [`Install the Kubeflow Operator`](/docs/operator/install-operator) guide to install the Kubeflow Operator
+* Kubeflow Operator needs to be deployed on your cluster for rest of steps to work. Please follow the [`Install the Kubeflow Operator`](/docs/methods/operator/install-operator) guide to install the Kubeflow Operator
 
 ## Deployment Instructions
 
