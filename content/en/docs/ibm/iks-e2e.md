@@ -83,4 +83,4 @@ It's time to get started!
 [mnist-data]: http://yann.lecun.com/exdb/mnist/index.html
 [tensorflow]: https://www.tensorflow.org/
 [tf-train]: https://www.tensorflow.org/api_guides/python/train
-[tf-serving]: https://www.tensorflow.org/serving/
+[tf-serving]: https://www.tensorflow.org/tfx/guide/serving
