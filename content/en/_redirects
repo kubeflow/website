@@ -34,22 +34,22 @@
 /docs/pipelines/tutorials/pipelines-tutorial/       /docs/components/pipelines/tutorials/cloud-tutorials/
 /docs/gke/pipelines-tutorial/                       /docs/components/pipelines/tutorials/cloud-tutorials/
 /docs/gke/pipelines/pipelines-tutorial/             /docs/components/pipelines/tutorials/cloud-tutorials/
-/docs/gke/authentication-pipelines/                 /docs/gke/pipelines/authentication-pipelines/
+/docs/gke/authentication-pipelines/                 /docs/distributions/gke/pipelines/authentication-pipelines/
 
 /docs/pipelines/metrics/                       /docs/components/pipelines/sdk/pipelines-metrics/
 /docs/pipelines/metrics/pipelines-metrics/     /docs/components/pipelines/sdk/pipelines-metrics/
 /docs/pipelines/metrics/output-viewer/         /docs/components/pipelines/sdk/output-viewer/
 /docs/pipelines/pipelines-overview/            /docs/components/pipelines/overview/pipelines-overview/
-/docs/pipelines/enable-gpu-and-tpu/            /docs/gke/pipelines/enable-gpu-and-tpu/
-/docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/gke/pipelines/enable-gpu-and-tpu/
-/docs/pipelines/sdk/gcp/enable-gpu-and-tpu/    /docs/gke/pipelines/enable-gpu-and-tpu/
-/docs/pipelines/preemptible/                   /docs/gke/pipelines/preemptible/
-/docs/pipelines/sdk/gcp/preemptible/           /docs/gke/pipelines/preemptible/
+/docs/pipelines/enable-gpu-and-tpu/            /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/gcp/enable-gpu-and-tpu/    /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/preemptible/                   /docs/distributions/gke/pipelines/preemptible/
+/docs/pipelines/sdk/gcp/preemptible/           /docs/distributions/gke/pipelines/preemptible/
 /docs/pipelines/reusable-components/           /docs/examples/shared-resources/
 /docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
 
 # Moved the guide to monitoring GKE deployments.
-/docs/other-guides/monitoring/                 /docs/gke/monitoring/
+/docs/other-guides/monitoring/                 /docs/distributions/gke/monitoring/
 
 # Created a new section for pipeline concepts.
 /docs/pipelines/pipelines-concepts/            /docs/components/pipelines/concepts/
@@ -142,4 +142,4 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/pipelines/*                   /docs/components/pipelines/:splat
 /docs/aws/*                         /docs/distributions/aws/:splat
 /docs/azure/*                       /docs/distributions/azure/:splat
-
+/docs/gke/*                         /docs/distributions/gke/:splat
