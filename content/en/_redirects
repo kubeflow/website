@@ -141,4 +141,5 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/pipelines/concepts/*          /docs/components/pipelines/overview/concepts/:splat
 /docs/pipelines/*                   /docs/components/pipelines/:splat
 /docs/aws/*                         /docs/distributions/aws/:splat
+/docs/azure/*                       /docs/distributions/azure/:splat
 /docs/gke/*                         /docs/distributions/gke/:splat
