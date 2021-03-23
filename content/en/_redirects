@@ -143,3 +143,4 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/aws/*                         /docs/distributions/aws/:splat
 /docs/azure/*                       /docs/distributions/azure/:splat
 /docs/gke/*                         /docs/distributions/gke/:splat
+/docs/openshift/*                   /docs/distributions/openshift/:splat
