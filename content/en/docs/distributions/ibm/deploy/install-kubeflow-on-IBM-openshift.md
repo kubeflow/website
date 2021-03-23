@@ -35,7 +35,7 @@ Run the following commands to set up and deploy Kubeflow for a single user witho
 If you want to use the Kubeflow pipeline with the Argo backend, you can change `CONFIG_URI` to this kfdef instead
 
 ```
-https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_openshift.v1.2.0.yaml
+https://raw.githubusercontent.com/kubeflow/manifests/v1.2-branch/kfdef/kfctl_openshift.v1.2.0.yaml
 ```
 
 ```shell
@@ -52,12 +52,19 @@ export KF_DIR=${BASE_DIR}/${KF_NAME}
 
 # Set the configuration file to use, such as:
 export CONFIG_FILE=kfctl_ibm.yaml
-export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_openshift.master.kfptekton.yaml"
+export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/distributions/kfdef/kfctl_openshift.master.kfptekton.yaml"
 
 # Generate Kubeflow:
 mkdir -p ${KF_DIR}
 cd ${KF_DIR}
-curl -L ${CONFIG_URI} > ${CONFIG_FILE}
+
+wget ${CONFIG_URI} -O ${CONFIG_FILE}
+
+# On MacOS
+sed -i '' -e 's#https://github.com/kubeflow/manifests/archive/master.tar.gz#https://github.com/kubeflow/manifests/archive/552a4ba84567ed8c0f9abca12f15b8eed000426c.tar.gz#g' ${CONFIG_FILE}
+
+# On Linux
+sed -i -e 's#https://github.com/kubeflow/manifests/archive/master.tar.gz#https://github.com/kubeflow/manifests/archive/552a4ba84567ed8c0f9abca12f15b8eed000426c.tar.gz#g' ${CONFIG_FILE}
 
 # Deploy Kubeflow. You can customize the CONFIG_FILE if needed.
 kfctl apply -V -f ${CONFIG_FILE}
