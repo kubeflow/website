@@ -4,7 +4,7 @@ description = "Instructions for Kubeflow deployment with Charmed Kubeflow"
 weight = 10
 +++
 
-This guide lists the steps necessary to install Kubeflow on any conformant Kubernetes, including AKS, EKS, GKE, Openshift and any kubeadm-deployed cluster,  provided that you have access to it via `kubectl`.
+This guide lists the steps necessary to install Kubeflow on any conformant Kubernetes, including AKS, EKS, GKE, Openshift and any kubeadm-deployed cluster,  provided that you have access to it via `kubectl`. 
 
 #### 1. Install the Juju client
 
@@ -99,6 +99,10 @@ juju config oidc-gatekeeper public-url=http://<URL>
 ```
 
 Where `<URL>` is the hostname that the Kubeflow dashboard responds to. 
+
+#### More documentation
+
+For more documentation visit [Charmed Kubeflow docs](https://charmed-kubeflow.io/docs)
 
 #### Having issues?
 If you face any difficulties following these instructions, please create an issue [here](https://github.com/juju-solutions/bundle-kubeflow/issues).
