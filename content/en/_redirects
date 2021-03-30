@@ -133,6 +133,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Moved KFServing
 /docs/components/serving/kfserving/         /docs/components/kfserving
 
+# Moved MicroK8s to distributions
+/docs/started/workstation/kubeflow-on-microk8s    /docs/distributions/microk8s/kubeflow-on-microk8s
+
 # Moved K8s deployment overview to under kfctl
 /docs/started/k8s/overview              /docs/distributions/kfctl/overview
 
