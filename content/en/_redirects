@@ -136,6 +136,11 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Moved K8s deployment overview to under kfctl
 /docs/started/k8s/overview              /docs/distributions/kfctl/overview
 
+# Moved MiniKF to distributions
+/docs/started/workstation/getting-started-minikf        /docs/distributions/getting-started-minikf
+/docs/started/workstation/minikf-aws                    /docs/distributions/minikf-aws
+/docs/started/workstation/minikf-gcp                    /docs/distributions/minikf-gcp
+
 # ===============
 # IMPORTANT NOTE: 
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
