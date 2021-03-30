@@ -20,7 +20,7 @@ If you use macOS, you can use [Homebrew](https://brew.sh) and type `brew install
 
 To operate workloads in your Kubernetes cluster with Juju, you have to add the cluster to the list of *clouds* in Juju via the `add-k8s` command.
 
-If your Kubernetes config file is in the standard location (`~/.kube/config` on Linux), and you only have one cluster, you can simply run:
+If your Kubernetes config file is in the default location (such as `~/.kube/config` on Linux) and you only have one cluster, you can simply run:
 
 ```bash
 juju add-k8s myk8s
