@@ -14,7 +14,7 @@ On Linux, install `juju` via [snap](https://snapcraft.io/docs/installing-snapd) 
 snap install juju --classic
 ```
 
-Alternatively,  `brew install juju` on macOS or [download the Windows installer](https://launchpad.net/juju/2.8/2.8.5/+download/juju-setup-2.8.5-signed.exe). 
+If you use macOS, you can use [Homebrew](https://brew.sh) and type `brew install juju` in the command line. For Windows, download the Windows [installer for Juju](https://launchpad.net/juju/2.8/2.8.5/+download/juju-setup-2.8.5-signed.exe).
 
 #### 2. Connect Juju to your Kubernetes cluster
 
