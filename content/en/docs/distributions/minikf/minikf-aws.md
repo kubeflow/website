@@ -1,5 +1,5 @@
 +++
-title = "Deploy Kubeflow using MiniKF on AWS"
+title = "MiniKF on AWS Marketplace"
 description = "Deploy Kubeflow with MiniKF (mini Kubeflow) via AWS"
 weight = 40
 +++
