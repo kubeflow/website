@@ -83,7 +83,7 @@ watch -c juju status --color
 
 #### 6. Add an RBAC role for istio
 
-Currently, in order to setup Kubeflow with Istio correctly, you need to provide the `istio-ingressgateway` operator access to Kubernetes resources. The following command will create the appropriate role:
+At the time of writing this guide, to set up Kubeflow with [Istio](https://istio.io) correctly, you need to provide the `istio-ingressgateway` operator access to Kubernetes resources. Use the  following command to create the appropriate role:
 
 ```bash
 kubectl patch role -n kubeflow istio-ingressgateway-operator -p '{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"istio-ingressgateway-operator"},"rules":[{"apiGroups":["*"],"resources":["*"],"verbs":["*"]}]}'
