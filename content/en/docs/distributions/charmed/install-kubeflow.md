@@ -98,7 +98,7 @@ juju config dex-auth public-url=http://<URL>
 juju config oidc-gatekeeper public-url=http://<URL>
 ```
 
-Where `<URL>` is the hostname that the Kubeflow dashboard responds to. 
+where in place of `<URL>` you should use the hostname that the Kubeflow dashboard responds to.
 
 #### More documentation
 
