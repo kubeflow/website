@@ -4,7 +4,7 @@ description = "Instructions for Kubeflow deployment with Kubeflow Charmed Operat
 weight = 10
 +++
 
-This guide lists the steps necessary to install Kubeflow on any conformant Kubernetes, including AKS, EKS, GKE, Openshift and any kubeadm-deployed cluster,  provided that you have access to it via `kubectl`. 
+This guide outlines the steps you need to install and deploy Kubeflow with [Charmed Operators](https://juju.is/tutorials/get-started-charmed-kubernetes#1-overview) and [Juju](https://juju.is/docs/kubernetes) on any conformant Kubernetes, including [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/), [Amazon Elastic Kubernetes Service (EKS)](https://docs.aws.amazon.com/eks/index.html), [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/), [OpenShift](https://docs.openshift.com), and any [kubeadm](https://kubernetes.io/docs/reference/setup-tools/kubeadm/)-deployed cluster (provided that you have access to it via `kubectl`). 
 
 #### 1. Install the Juju client
 
