@@ -91,7 +91,7 @@ kubectl patch role -n kubeflow istio-ingressgateway-operator -p '{"apiVersion":"
 
 #### 7. Set URL in authentication methods 
 
-A final step to enable your Kubeflow dashboard access is to provide your dashboard public URL to dex-auth and oidc-gatekeeper via the following commands:
+Finally, you need to enable your Kubeflow dashboard access. Provide the dashboard's public URL to dex-auth and oidc-gatekeeper as follows:
 
 ```bash
 juju config dex-auth public-url=http://<URL>
