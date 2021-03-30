@@ -35,7 +35,8 @@ Finally, to use a different config file, you can set the `KUBECONFIG` environmen
 ```bash
 KUBECONFIG=path/to/file juju add-k8s myk8s
 ```
-For more details, see the [Juju documentation](https://juju.is/docs/clouds).
+
+For more details, go to the [official Juju documentation](https://juju.is/docs/clouds).
 
 #### 3. Create a controller
 
