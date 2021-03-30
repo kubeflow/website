@@ -105,4 +105,5 @@ Where `<URL>` is the hostname that the Kubeflow dashboard responds to.
 For more documentation visit [Charmed Kubeflow docs](https://charmed-kubeflow.io/docs)
 
 #### Having issues?
-If you face any difficulties following these instructions, please create an issue [here](https://github.com/juju-solutions/bundle-kubeflow/issues).
+
+If you have any issues or questions, feel free to create a GitHub issue [here](https://github.com/juju-solutions/bundle-kubeflow/issues).
