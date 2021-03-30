@@ -1,7 +1,7 @@
 +++
 title = "Kubeflow on MicroK8s"
-description = "Run Kubeflow locally on built-in hypervisors with MicroK8s" 
-weight = 60
+description = "Run Kubeflow on MicroK8s with built-in Kubeflow add-on" 
+weight = 10
 +++
 
 
