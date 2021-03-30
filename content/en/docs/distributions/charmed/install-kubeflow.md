@@ -81,7 +81,7 @@ You can observe your Kubeflow deployment getting spun-up with the command:
 watch -c juju status --color
 ```
 
-#### 6. Add an RBAC role for istio
+#### 6. Add an RBAC role for Istio
 
 At the time of writing this guide, to set up Kubeflow with [Istio](https://istio.io) correctly, you need to provide the `istio-ingressgateway` operator access to Kubernetes resources. Use the  following command to create the appropriate role:
 
