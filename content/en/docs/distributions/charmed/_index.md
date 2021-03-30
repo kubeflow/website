@@ -1,5 +1,5 @@
 +++
-title = "Charmed Kubeflow"
-description = "Running Kubeflow on Kubernetes Engine and Microsoft Azure"
+title = "Kubeflow Charmed Operators"
+description = "Charmed Operators for Kubeflow deployment and day-2 operations"
 weight = 50
 +++
