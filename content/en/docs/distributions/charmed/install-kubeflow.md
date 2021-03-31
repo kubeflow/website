@@ -107,4 +107,4 @@ For more documentation, visit the [Charmed Kubeflow website](https://charmed-kub
 
 #### Having issues?
 
-If you have any issues or questions, feel free to create a GitHub issue [here](https://github.com/juju-solutions/bundle-kubeflow/issues).
+If you have any issues or questions, feel free to create a GitHub issue [here](https://github.com/canonical/bundle-kubeflow/issues).
