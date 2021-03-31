@@ -103,7 +103,7 @@ where in place of `<URL>` you should use the hostname that the Kubeflow dashboar
 
 #### More documentation
 
-For more documentation visit [Charmed Kubeflow docs](https://charmed-kubeflow.io/docs)
+For more documentation, visit the [Charmed Kubeflow website](https://charmed-kubeflow.io/docs).
 
 #### Having issues?
 
