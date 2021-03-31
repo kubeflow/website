@@ -64,13 +64,13 @@ When you design your component's code, consider the following:
     can pass by value include numbers, booleans, and short strings. All other
     inputs must be stored as files, with the paths passed into your function.
 *   Your component's outputs must be stored as files. Kubeflow Pipelines passes
-    paths as inputs to your component paths you can use to store your
+    paths as inputs to your component paths that you can use to store your
     component's outputs.
 *   Your component's goal may be to create a dataset in an external service,
     such as a BigQuery table. In this case, it may make sense for the component
     to output an identifier for the produced data, such as a table name,
     instead of the data itself. We recommend that you limit this pattern to
-    cases where the data must be put into external system instead of keeping it
+    cases where the data must be put into an external system instead of keeping it
     inside the Kubeflow Pipelines system.
 *   Since your inputs and output paths are passed in as command-line
     arguments, your component's code must be able to read inputs from the
@@ -209,7 +209,7 @@ section provides some guidelines on standard container creation.
     necessary, revise your application and Dockerfile until your application
     works as expected in the container.
 
-[python37]: https://hub.docker.com/layers/python/library/python/3.7/images/sha256-b007078db11636d951871b9652ae27008cf258d7bee7719b192441c88acf3027?context=explore
+[python37]: https://hub.docker.com/_/python
 [docker]: https://docs.docker.com/get-started/
 [dockerfile]: https://docs.docker.com/engine/reference/builder/
 [google-container-registry]: https://cloud.google.com/container-registry/docs/
@@ -286,7 +286,7 @@ component's implementation.
 
     *   `{inputPath: <input-name>}`:
         This placeholder is replaced with the path to this input as a file.
-        Your component can read the content's of that input at that path during
+        Your component can read the contents of that input at that path during
         the pipeline run.
 
     *   `{outputPath: <output-name>}`:
@@ -328,7 +328,7 @@ The following examples demonstrate how to specify your component's interface.
     ```
 
     Note: `Input 1` and `Parameter 1` do not specify any details about how they
-    are stored or how much data they contain. The Kubeflow Pipelines system  Consider using naming conventions
+    are stored or how much data they contain. Consider using naming conventions
     to indicate if inputs are expected to be small enough to pass by value. 
 
 1.  After your component finishes its task, the component's outputs are passed
@@ -555,7 +555,7 @@ See this [sample component][org-sample] for a real-life component example.
   [build lightweight Python function-based components](/docs/components/pipelines/sdk/python-function-components/)
   directly from Python functions.
 * See how to [export metrics from your
-  pipeline](/docs/components/pipelines/metrics/pipelines-metrics/).
+  pipeline](/docs/components/pipelines/sdk/pipelines-metrics/).
 * Visualize the output of your component by
   [adding metadata for an output
   viewer](/docs/components/pipelines/metrics/output-viewer/).
