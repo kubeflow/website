@@ -38,15 +38,18 @@ def echo_pipeline(
 * You will be using the Kubeflow Pipelines with Tekton SDK ([`kfp-tekton`](https://pypi.org/project/kfp-tekton/)) v0.4.0 or above.
 * If you have deployed Kubeflow on IBM Cloud using the 
 [`kfctl_ibm.v1.2.0.yaml`](https://raw.githubusercontent.com/kubeflow/manifests/v1.2-branch/kfdef/kfctl_ibm.v1.2.0.yaml)
-manifest you can configure ([`kfp-tekton`](https://pypi.org/project/kfp-tekton/)) SDK for a single user as follows:
+manifest you can configure ([`kfp-tekton`](https://pypi.org/project/kfp-tekton/)) SDK to list all your Kubeflow Pipelines experiments as follows:
 
 ```python
 from kfp_tekton import TektonClient
 
-KUBEFLOW_PUBLIC_ENDPOINT_URL = 'http://<Kubeflow_public_endpoint_URL>'
+KUBEFLOW_PUBLIC_ENDPOINT_URL = 'http://<YOUR_KF_PUBLIC_ENDPOINT_URL>'
 KUBEFLOW_PROFILE_NAME = None
-client = TektonClient(host=KUBEFLOW_PUBLIC_ENDPOINT_URL)
+client = TektonClient(host=f'{KUBEFLOW_PUBLIC_ENDPOINT_URL}/pipeline')
+
+experiments = client.list_experiments(namespace=KUBEFLOW_PROFILE_NAME)
 ```
+**Note**: `<YOUR_KF_PUBLIC_ENDPOINT_URL>` is the EXTERNAL_IP you exposed as a LoadBalancer following [`this instruction`](https://www.kubeflow.org/docs/ibm/deploy/install-kubeflow-on-iks/#expose-the-kubeflow-endpoint-as-a-loadbalancer). If you have not done that step during Kubeflow setup, please include port 31380 because the Kubeflow endpoint is exposed with NodePort 31380.
 
 ## 2. Authenticating multi-user Kubeflow Pipelines with the SDK
 
