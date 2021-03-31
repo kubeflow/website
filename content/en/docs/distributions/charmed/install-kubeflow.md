@@ -74,7 +74,7 @@ Once you have a model, you can simply `juju deploy` any of the provided [Kubeflo
 juju deploy kubeflow-lite
 ```
 
-**Congratulations, Kubeflow is now installing !**
+and your Kubeflow installation should begin!
 
 You can observe your Kubeflow deployment getting spun-up with the command:
 
