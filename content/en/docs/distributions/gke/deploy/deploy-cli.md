@@ -125,7 +125,7 @@ purpose. No tools will assume they actually exists in your terminal environment.
 1. Fetch the Kubeflow package
 
    ```bash
-   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.2.0 "${KF_DIR}"
+   kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/kubeflow@v1.2.1 "${KF_DIR}"
    ```
 
 1. Change to the Kubeflow directory
