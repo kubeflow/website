@@ -100,7 +100,7 @@ To deploy a management cluster:
 1. Fetch the management blueprint to current directory
 
     ```bash
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/management@v1.2.0 "${MGMT_DIR}"
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/management@v1.2.1 "${MGMT_DIR}"
     ```
 
 1. Change to the Kubeflow directory
