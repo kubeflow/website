@@ -32,7 +32,7 @@ weight = 10
 | kubeflowkatib/darts-cnn-cifar10 |    <https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/darts-cnn-cifar10/Dockerfile> |
 | kubeflow/mpi-horovod-mnist |    <https://github.com/kubeflow/mpi-operator/blob/master/examples/horovod/Dockerfile.cpu> |
 | datawire/ambassador    | <https://github.com/datawire/ambassador/blob/master/builder/Dockerfile> |
-| tensorflow-1.13.1-notebook-cpu |    <https://github.com/kubeflow/kubeflow/blob/master/components/tensorflow-notebook-image/Dockerfile> |
-| jupyter-web-app |    <https://github.com/kubeflow/kubeflow/blob/master/components/jupyter-web-app/Dockerfile> |
+| jupyter-tensorflow-full |    <https://github.com/kubeflow/kubeflow/blob/master/components/example-notebook-servers/jupyter-tensorflow-full/cpu.Dockerfile> |
+| jupyter |    <https://github.com/kubeflow/kubeflow/blob/master/components/example-notebook-servers/jupyter/Dockerfile> |
 | profile-controller    | <https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller> |
 | notebook-controller |    <https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller> |
