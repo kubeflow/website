@@ -1,6 +1,6 @@
 +++
 title = "MiniKF on GCP Marketplace"
-description = "Deploy Kubeflow with MiniKF (mini Kubeflow) via Google Cloud Marketplace"
+description = "Deploy Kubeflow with MiniKF via GCP Marketplace"
 weight = 40
 +++
 

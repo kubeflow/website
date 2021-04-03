@@ -1,6 +1,6 @@
 +++
 title = "MiniKF on AWS Marketplace"
-description = "Deploy Kubeflow with MiniKF (mini Kubeflow) via AWS"
+description = "Deploy Kubeflow with MiniKF via AWS Marketplace"
 weight = 40
 +++
 
