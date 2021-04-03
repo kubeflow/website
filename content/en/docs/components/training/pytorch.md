@@ -1,7 +1,7 @@
 +++
 title = "PyTorch Training"
 description = "Instructions for using PyTorch"
-weight = 35
+weight = 15
                     
 +++
 

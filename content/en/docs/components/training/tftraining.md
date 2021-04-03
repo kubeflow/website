@@ -2,7 +2,7 @@
 title = "TensorFlow Training (TFJob)"
 linkTitle = "TensorFlow Training (TFJob)"
 description = "Using TFJob to train a model with TensorFlow"
-weight = 60
+weight = 10
                     
 +++
 
