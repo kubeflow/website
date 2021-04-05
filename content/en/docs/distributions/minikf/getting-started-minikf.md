@@ -1,5 +1,5 @@
 +++
-title = "MiniKF"
+title = "MiniKF on laptop/desktop"
 description = "A fast and easy way to deploy Kubeflow on your laptop"
 weight = 35
                     
