@@ -78,14 +78,14 @@ purpose. No tools will assume they actually exists in your terminal environment.
 
 1. Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
-    **Note:** Prior to Kubeflow v1.2, Kubeflow was compatible only with Kustomize `v3.2.1`. Starting from Kubeflow v1.2, you can now use the latest Kustomize versions to install Kubeflow.
+    **Note:** Prior to Kubeflow v1.2, Kubeflow was compatible only with Kustomize `v3.2.1`. Starting from Kubeflow v1.2, you can now use any `v3` Kustomize version to install Kubeflow. Kustomize `v4` is not supported out of the box yet. [Official Version](https://github.com/kubeflow/manifests/tree/master#prerequisites)
 
     To deploy the latest version of Kustomize on a Linux or Mac machine, run the following commands:
 
     ```bash
     # Detect your OS and download the corresponding latest Kustomize binary
-    curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
-
+    curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  > install_kustomize.sh
+    bash ./install_kustomize.sh 3.2.0
     # Add the kustomize package to your $PATH env variable
     sudo mv ./kustomize /usr/local/bin/kustomize
     ```
