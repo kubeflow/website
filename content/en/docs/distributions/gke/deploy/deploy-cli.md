@@ -85,7 +85,7 @@ purpose. No tools will assume they actually exists in your terminal environment.
     ```bash
     # Detect your OS and download the corresponding latest Kustomize binary
     curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  > install_kustomize.sh
-    bash ./install_kustomize.sh 3.10.0
+    bash ./install_kustomize.sh 3.2.0
     # Add the kustomize package to your $PATH env variable
     sudo mv ./kustomize /usr/local/bin/kustomize
     ```
