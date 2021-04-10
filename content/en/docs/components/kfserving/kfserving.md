@@ -62,7 +62,7 @@ More details can be found [here](https://github.com/kubeflow/kfserving/releases/
 
 ### Integrations
 
-* [Transformer](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/transformer/image_transformer)
+* [Transformer](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/transformer/torchserve_image_transformer)
 * [Kafka](https://github.com/kubeflow/kfserving/tree/master/docs/samples/kafka)
 * [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
 * [Request/Response logging](https://github.com/kubeflow/kfserving/tree/master/docs/samples/logger)
@@ -76,7 +76,7 @@ More details can be found [here](https://github.com/kubeflow/kfserving/releases/
 ### Sample notebooks
 
 * [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_v1beta1_sample.ipynb)
-* [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1beta1/transformer/torchserve_image_transformer)
+* [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1alpha2/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
 * [ONNX](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1alpha2/onnx/mosaic-onnx.ipynb)
 
 We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfserving/tree/master/docs/samples/).
@@ -92,6 +92,7 @@ We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfse
 * [Kubecon Introducing KFServing](https://kccncna19.sched.com/event/UaZo/introducing-kfserving-serverless-model-serving-on-kubernetes-ellis-bigelow-google-dan-sun-bloomberg).
 * [Kubecon Advanced KFServing](https://kccncna19.sched.com/event/UaVw/advanced-model-inferencing-leveraging-knative-istio-and-kubeflow-serving-animesh-singh-ibm-clive-cox-seldon).
 * [Nvidia GTC Accelerate and Autoscale Deep Learning Inference on GPUs](https://developer.nvidia.com/gtc/2020/video/s22459-vid).
+* [Hands-on serving models using KFserving](https://www.bing.com/videos/search?q=theo+hands+on+kfserving&view=detail&mid=47588B7181E550180E6947588B7181E550180E69&FORM=VIRE&adlt=strict)
 
 ## Standalone KFServing
 
