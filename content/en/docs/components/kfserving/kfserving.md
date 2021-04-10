@@ -22,10 +22,11 @@ Our strong community contributions help KFServing to grow. We have a Technical S
 
 ## Install with Kubeflow
 
-KFServing works with Kubeflow 1.2. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
+KFServing works with Kubeflow 1.3. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
 Check the examples running KFServing on Istio/Dex in the [`kubeflow/kfserving`](https://github.com/kubeflow/kfserving/tree/master/docs/samples/istio-dex) repository. For installation on major cloud providers with Kubeflow, follow their installation docs.
 
-Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFServing on OpenShift and additionally providing more features, such as adding batcher module as sidecar, Triton inference server renaming and integrations, upgrading Alibi explainer to 0.4.0, updating logger to CloudEvents V1 protocol and allowing customized URL paths on data plane. Additionally, the minimum Istio version is now v1.3.1. More details can be found [here](https://github.com/kubeflow/kfserving/releases/tag/v0.4.0) and [here](https://github.com/kubeflow/kfserving/releases/tag/v0.4.1)
+Kubeflow 1.3 includes KFServing v0.5.1 which promoted the API from v1alpha2 to v1beta1 stable and added v1alpha1 version of Multi-Model Serving.
+More details can be found [here](https://github.com/kubeflow/kfserving/releases/tag/v0.5.0)
 
 <img src="../kfserving.png" alt="KFServing">
 
@@ -33,10 +34,10 @@ Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFS
 
 ### Deploy models with out-of-the-box model servers
 
-* [TensorFlow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/tensorflow)
-* [PyTorch](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/pytorch)
-* [XGBoost](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/xgboost)
-* [Scikit-Learn](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/sklearn)
+* [TensorFlow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/tensorflow)
+* [PyTorch](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/pytorch)
+* [XGBoost](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/xgboost)
+* [Scikit-Learn](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/sklearn/v2)
 * [ONNXRuntime](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/onnx)
 
 ### Deploy models with custom model servers
@@ -52,7 +53,7 @@ Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFS
 ### Autoscaling and Rollouts
 
 * [Autoscaling](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling)
-* [Canary Rollout](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/rollouts)
+* [Canary Rollout](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/rollouts)
 
 ### Model explainability and outlier detection
 
@@ -61,7 +62,7 @@ Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFS
 
 ### Integrations
 
-* [Transformer](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/transformer/image_transformer)
+* [Transformer](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/transformer/image_transformer)
 * [Kafka](https://github.com/kubeflow/kfserving/tree/master/docs/samples/kafka)
 * [Pipelines](https://github.com/kubeflow/kfserving/tree/master/docs/samples/pipelines)
 * [Request/Response logging](https://github.com/kubeflow/kfserving/tree/master/docs/samples/logger)
@@ -74,8 +75,8 @@ Kubeflow 1.2 includes KFServing v0.4.1, where the focus has been on enabling KFS
 
 ### Sample notebooks
 
-* [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_v1alpha2_sample.ipynb)
-* [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1alpha2/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
+* [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_v1beta1_sample.ipynb)
+* [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1beta1/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
 * [ONNX](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1alpha2/onnx/mosaic-onnx.ipynb)
 
 We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfserving/tree/master/docs/samples/).
@@ -96,7 +97,7 @@ We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfse
 
 ### Install Knative/Istio
 
-Knative Serving (v0.11.2 +), Istio (v1.3.1+), and Cert Manager(v0.12.0+) should be available on your Kubernetes cluster.
+Knative Serving (v0.17.4 +), Istio (v1.9+), and Cert Manager(v1.0.0+) should be available on your Kubernetes cluster.
 For installing KFServing prerequisites, refer to the [README section](https://github.com/kubeflow/kfserving#prerequisites).
 
 ### KFServing installation
