@@ -25,8 +25,8 @@ Our strong community contributions help KFServing to grow. We have a Technical S
 KFServing works with Kubeflow 1.3. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/kfserving).
 Check the examples running KFServing on Istio/Dex in the [`kubeflow/kfserving`](https://github.com/kubeflow/kfserving/tree/master/docs/samples/istio-dex) repository. For installation on major cloud providers with Kubeflow, follow their installation docs.
 
-Kubeflow 1.3 includes KFServing v0.5.1 which promoted the API from v1alpha2 to v1beta1 stable and added v1alpha1 version of Multi-Model Serving.
-More details can be found [here](https://github.com/kubeflow/kfserving/releases/tag/v0.5.0)
+Kubeflow 1.3 includes KFServing v0.5.1 which promoted the core InferenceService API from v1alpha2 to v1beta1 stable and added v1alpha1 version of Multi-Model Serving.
+More details can be found [here](https://github.com/kubeflow/kfserving/releases/tag/v0.5.0).
 
 <img src="../kfserving.png" alt="KFServing">
 
@@ -35,7 +35,7 @@ More details can be found [here](https://github.com/kubeflow/kfserving/releases/
 ### Deploy models with out-of-the-box model servers
 
 * [TensorFlow](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/tensorflow)
-* [PyTorch](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/pytorch)
+* [PyTorch](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/torchserve)
 * [XGBoost](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/xgboost)
 * [Scikit-Learn](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/sklearn/v2)
 * [ONNXRuntime](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/onnx)
@@ -76,7 +76,7 @@ More details can be found [here](https://github.com/kubeflow/kfserving/releases/
 ### Sample notebooks
 
 * [SDK client](https://github.com/kubeflow/kfserving/blob/master/docs/samples/client/kfserving_sdk_v1beta1_sample.ipynb)
-* [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1beta1/transformer/image_transformer/kfserving_sdk_transformer.ipynb)
+* [Transformer (pre/post processing)](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1beta1/transformer/torchserve_image_transformer)
 * [ONNX](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1alpha2/onnx/mosaic-onnx.ipynb)
 
 We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfserving/tree/master/docs/samples/).
@@ -85,7 +85,7 @@ We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfse
 
 * Join our [working group](https://groups.google.com/forum/#!forum/kfserving) for meeting invitations and discussion.
 * [Read the docs](https://github.com/kubeflow/kfserving/tree/master/docs).
-* [API docs](https://github.com/kubeflow/kfserving/tree/master/docs/apis/v1alpha2/README.md).
+* [API docs](https://github.com/kubeflow/kfserving/tree/master/docs/apis/v1beta1/README.md).
 * [Debugging guide](https://github.com/kubeflow/kfserving/blob/master/docs/KFSERVING_DEBUG_GUIDE.md).
 * [Roadmap](https://github.com/kubeflow/kfserving/tree/master/ROADMAP.md).
 * [KFServing 101 slides](https://drive.google.com/file/d/16oqz6dhY5BR0u74pi9mDThU97Np__AFb/view).
@@ -102,7 +102,8 @@ For installing KFServing prerequisites, refer to the [README section](https://gi
 
 ### KFServing installation
 
-Once you meet the above prerequisites KFServing can be [installed standalone](https://github.com/kubeflow/kfserving#standalone-kfserving-installation). Check the [KFServing `install` directory](https://github.com/kubeflow/kfserving/tree/master/install) for other available releases.
+Once you meet the above prerequisites KFServing can be [installed standalone](https://github.com/kubeflow/kfserving#standalone-kfserving-installation). 
+Check the [KFServing `install` directory](https://github.com/kubeflow/kfserving/tree/master/install) for other available releases.
 
 ### Monitoring
 
