@@ -104,7 +104,7 @@ KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
       <tr>
         <td></td>
         <td>HPA</td>
-        <td><b>&check;</b></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/blob/master/test/benchmark/README.md">HPA vs KPA</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/graph/scaling.html#autoscaling-seldon-deployments">docs</a></td>
       </tr>
       <tr>
@@ -128,7 +128,7 @@ KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
       <tr>
         <td>Rollout</td>
         <td>Canary</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/rollouts">sample</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/rollout">sample</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/istio_canary.html">docs</a></td>
       </tr>
       <tr>
