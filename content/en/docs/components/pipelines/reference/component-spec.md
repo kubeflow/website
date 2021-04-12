@@ -194,3 +194,41 @@ program must handle both cases without error.
   ```shell
   program.py --out-model /outputs/trained_model/data
   ```
+
+
+### Component Operations
+
+A list of operations defined [here](https://kubeflow-pipelines.readthedocs.io/en/stable/_modules/kfp/components/_structures.html?highlight=concat#)
+can be used within the component specification file
+to operate on input and output placeholders. These operations
+stay within the component definition as opposed to definitions
+from a [Kubeflow pipeline](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html).
+Upon compilation, operations (and output placeholders) in
+the component specification file are
+evaluated. Hence when a Kubeflow pipeline is run, the only
+ variables are the input placeholders.
+
+Here are two examples of component operations used in component
+specification files:
+
+* The [if condition](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/v2/compiler_cli_tests/test_data/component_yaml/if_placeholder_component.yaml)
+ operation:
+```yaml
+- if:
+    cond:
+      isPresent: optional_input_2
+    then:
+      - --arg2
+      - {inputValue: optional_input_2}
+    else:
+      - --arg3
+      - 'default value'
+ ```
+
+* The [concat](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/v2/compiler_cli_tests/test_data/component_yaml/concat_placeholder_component.yaml)
+operation:
+```yaml
+args:
+  - --arg0
+  - concat: [{inputValue: input_prefix}, 'some value']
+```
