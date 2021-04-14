@@ -56,7 +56,7 @@ A _pipeline component_ is a self-contained set of user code, packaged as a
 performs one step in the pipeline. For example, a component can be responsible
 for data preprocessing, data transformation, model training, and so on.
 
-See the conceptual guides to [pipelines](/docs/components/pipelines/concepts/pipeline/)
+See the conceptual guides to [pipelines](/docs/components/pipelines/overview/concepts/pipeline/)
 and [components](/docs/components/pipelines/concepts/component/).
 
 ## Example of a pipeline
