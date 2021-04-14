@@ -53,7 +53,6 @@ master should share the same identity management.
 
 ## Supported platforms
 * Kubeflow multi-tenancy is enabled by default if you deploy Kubeflow on GCP with [IAP](/docs/gke/deploy).
-* If you are not on GCP, you can deploy multi-tenancy to [your existing cluster](/docs/methods/kfctl/multi-user).
 
 ## Next steps
 

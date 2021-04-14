@@ -754,11 +754,7 @@ kubectl apply -f <your-path/your-experiment-config.yaml>
 
 - (Optional) Katib's experiments don't work with
   [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
-  If you install Kubeflow using
-  [Istio config](https://www.kubeflow.org/docs/methods/kfctl/deployment),
-  you have to disable sidecar injection. To do that, specify this annotation:
-  `sidecar.istio.io/inject: "false"` in your experiment's trial template. For
-  examples on how to do it for `Job`, `TFJob` (TensorFlow) or
+  For examples on how to do it for `Job`, `TFJob` (TensorFlow) or
   `PyTorchJob` (PyTorch), refer to the
   [getting-started guide](/docs/components/katib/hyperparameter/#examples).
 

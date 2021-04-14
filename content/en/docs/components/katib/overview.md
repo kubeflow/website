@@ -131,10 +131,6 @@ You can use the following interfaces to interact with Katib:
 
 - Command-line interfaces (CLIs):
 
-  - **kfctl** is the Kubeflow CLI that you can use to install and configure
-    Kubeflow. Learn about kfctl in the guide to
-    [configuring Kubeflow](/docs/methods/kfctl/kustomize/).
-
   - The Kubernetes CLI, **kubectl**, is useful for running commands against your
     Kubeflow cluster. Learn about kubectl in the [Kubernetes
     documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
