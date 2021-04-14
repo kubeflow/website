@@ -43,7 +43,7 @@ The kfctl deployment process includes the following commands:
 When you install Kubeflow, the deployment process uses one of a few possible
 YAML configuration files to bootstrap the configuration. You can see all the
 [configuration files on 
-GitHub](https://github.com/kubeflow/manifests/tree/master/kfdef).
+GitHub](https://github.com/kubeflow/manifests/tree/master/distributions/kfdef).
 
 You can also compose your own configuration file with components and applications of your choice. Starting with Kubeflow 1.1 release, the _KfDef_ manifest also supports using _stack_ to declare a specific stack of applications. To use this new feature, the manifest should contain one application with `kubeflow-apps` name. 
 
