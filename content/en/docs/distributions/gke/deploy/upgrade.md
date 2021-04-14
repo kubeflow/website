@@ -28,6 +28,9 @@ However, specific upgrades might need manual actions below.
 
 ### Upgrade management cluster from v1.1 to v1.2
 
+Note, there is no change for management cluster from v1.2.0 to v1.2.1.
+So there is no need to upgrade if you are already on v1.2.0.
+
 1. The instructions below assume that your current working directory is
 
    ```bash
@@ -160,6 +163,9 @@ General instructions for upgrading Kubeflow:
     of `.build` to what is currently deployed.
 
 ### Upgrade Kubeflow cluster from v1.1 to v1.2
+
+Note, v1.2.1 pins Kubernetes Cluster version to 1.16 to resolve [#198](https://github.com/kubeflow/gcp-blueprints/issues/198). There is no need to upgrade from
+v1.2.0 to v1.2.1 if your Kubeflow cluster is working properly.
 
 1. The instructions below assume
 
