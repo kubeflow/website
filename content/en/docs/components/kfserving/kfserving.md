@@ -26,7 +26,6 @@ KFServing works with Kubeflow 1.3. Kustomize installation files are [located in 
 Check the examples running KFServing on Istio/Dex in the [`kubeflow/kfserving`](https://github.com/kubeflow/kfserving/tree/master/docs/samples/istio-dex) repository. For installation on major cloud providers with Kubeflow, follow their installation docs.
 
 Kubeflow 1.3 includes KFServing v0.5.1 which promoted the core InferenceService API from v1alpha2 to v1beta1 stable and added v1alpha1 version of Multi-Model Serving. Additionally, LFAI Trusted AI Projects on AI Fairness, AI Explainability and Adversarial Robustness have been integrated in KFServing, and we have made KFServing available on OpenShift as well. To know more, please read the [release blog](https://blog.kubeflow.org/release/official/2021/03/08/kfserving-0.5.html) and follow the [release notes](https://github.com/kubeflow/kfserving/releases/tag/v0.5.0)
-More details can be found [here](https://github.com/kubeflow/kfserving/releases/tag/v0.5.0).
 
 <img src="../kfserving.png" alt="KFServing">
 
