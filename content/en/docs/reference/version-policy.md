@@ -53,7 +53,7 @@ major or minor release of Kubeflow.
 The following table shows the **status** (stable, beta, or alpha) of the 
 applications that you can deploy to your Kubernetes cluster when you deploy 
 Kubeflow. The applications are specified in the 
-[manifest](https://github.com/kubeflow/manifests/tree/master/kfdef) that you 
+[manifest](https://github.com/kubeflow/manifests/tree/master/distributions/kfdef) that you 
 use to deploy Kubeflow. The kfctl deployment tool deploys the applications 
 strictly according to the manifest. kfctl does not decide whether to deploy or
 not deploy an application based on the application status.
