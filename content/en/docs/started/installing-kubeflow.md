@@ -63,11 +63,19 @@ Pre-packaged Kubeflow distributions are available on a number of platforms. See 
         <td>Any K8S cluster with Juju</td>
       </tr>
       <tr>
-        <td><a href="/docs/distributions/minikf/">MiniKF</a></td>
+        <td><a href="/docs/distributions/minikf/">Arrikto MiniKF</a></td>
         <td>Arrikto</td>
         <td>AWS Marketplace, 
             GCP Marketplace, 
             Vagrant
+        </td>
+      </tr>
+      <tr>
+        <td><a href="/docs/distributions/ekf/">Arrikto Enterprise Kubeflow</a></td>
+        <td>Arrikto</td>
+        <td>EKS clusters, 
+            AKS clusters,
+            GKE clusters 
         </td>
       </tr>
     </tbody>
