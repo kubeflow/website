@@ -12,10 +12,10 @@ Kubeflow is a platform and set of components for Machine Learning (ML) built on 
 There are two options for getting up and running with Kubeflow. You may either install Kubeflow on your own or use one of many Kubeflow distributions.
 
 ## Install Kubeflow on Your Own
-The Kubeflow Manifests working group maintains up-to-date manifests for each official Kubeflow component and enables you to install all components or customize an installation to include just the components you need. To install Kubeflow, see the Kubeflow Manifists Working Group's [installation instructions](https://github.com/kubeflow/manifests#installation).
+The Kubeflow Manifests Working Group maintains up-to-date manifests for each official Kubeflow component and enables you to install all components or customize an installation to include just the components you need. To install Kubeflow on your own, see the Kubeflow Manifests Working Group's [installation instructions](https://github.com/kubeflow/manifests#installation).
 
 ## Use a Kubeflow Distribution 
-Pre-packaged Kubeflow distributions are available on a number of platforms. See the table below for a list of options and links to documentation.
+Kubeflow distributions are available on a number of platforms. See the table below for a list of options and links to documentation.
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -45,12 +45,12 @@ Pre-packaged Kubeflow distributions are available on a number of platforms. See 
       <tr>
         <td><a href="/docs/distributions/ibm/">Kubeflow on IBM Cloud</a></td>
         <td>IBM Cloud</td>
-        <td>Cloud IKS clusters</td>
+        <td>IKS clusters</td>
       </tr>
       <tr>
-        <td><a href="/docs/distributions/openshift/">Kubeflow on Openshift</a></td>
-        <td>IBM Cloud</td>
-        <td>Openshift clusters</td>
+        <td><a href="/docs/distributions/openshift/">Kubeflow on OpenShift</a></td>
+        <td>RedHat</td>
+        <td>OpenShift clusters</td>
       </tr>
       <tr>
         <td><a href="/docs/distributions/microk8s/">MicroK8S Kubeflow add-on</a></td>
@@ -60,7 +60,7 @@ Pre-packaged Kubeflow distributions are available on a number of platforms. See 
       <tr>
         <td><a href="/docs/distributions/charmed/">Kubeflow Charmed Operators</a></td>
         <td>Canonical</td>
-        <td>Any K8S cluster with Juju</td>
+        <td>Any Kubernetes cluster with Juju</td>
       </tr>
       <tr>
         <td><a href="/docs/distributions/minikf/">Arrikto MiniKF</a></td>
@@ -85,5 +85,4 @@ Pre-packaged Kubeflow distributions are available on a number of platforms. See 
 <a id="next-steps"></a>
 ## Next steps
 
-* Review the [Kubeflow component documentation](/docs/components/)
-* Explore the [Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/)
+* Review the [Kubeflow components documentation](/docs/components/)
