@@ -17,7 +17,6 @@ The Kubeflow Manifests working group maintains up-to-date manifests for each off
 ## Use a Kubeflow Distribution 
 Pre-packaged Kubeflow distributions are available on a number of platforms. See the table below for a list of options and links to documentation.
 
-The follow
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead class="thead-light">
