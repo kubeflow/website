@@ -1,5 +1,5 @@
 +++
-title = "Fairing"
-description = "Documentation for Kubeflow Fairing."
+title = "Fairing (Unsupported)"
+description = "Documentation for Kubeflow Fairing. Note that Fairing is unsupported."
 weight = 45
 +++
