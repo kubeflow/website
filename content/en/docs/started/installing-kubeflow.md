@@ -15,7 +15,7 @@ There are two options for getting up and running with Kubeflow. You may either i
 The Kubeflow Manifests working group maintains up-to-date manifests for each official Kubeflow component and enables you to install all components or customize an installation to include just the components you need. To install Kubeflow, see the Kubeflow Manifists Working Group's [installation instructions](https://github.com/kubeflow/manifests#installation).
 
 ## Use a Kubeflow Distribution 
-Pre-packaged Kubeflow distributions are available on a number of platforms. See the table below for a list of options.
+Pre-packaged Kubeflow distributions are available on a number of platforms. See the table below for a list of options and links to documentation.
 
 The follow
 <div class="table-responsive">
