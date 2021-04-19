@@ -53,9 +53,9 @@ Kubeflow distributions are available on a number of platforms. See the table bel
         <td>OpenShift</td>
       </tr>
       <tr>
-        <td><a href="/docs/distributions/microk8s/">MicroK8S Kubeflow add-on</a></td>
+        <td><a href="/docs/distributions/microk8s/">MicroK8s Kubeflow add-on</a></td>
         <td>Canonical</td>
-        <td>MicroK8S clusters</td>
+        <td>MicroK8s</td>
       </tr>
       <tr>
         <td><a href="/docs/distributions/charmed/">Kubeflow Charmed Operators</a></td>
