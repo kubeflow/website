@@ -140,7 +140,9 @@ an experiment using the random algorithm example:
 
 1. (Optional) **Note:** Katib's experiments don't work with
    [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
-   If you installed Kubeflow using
+   If you are using Kubeflow with
+   Istio, you have to disable sidecar injection. To do that, specify this annotation:
+   `sidecar.istio.io/inject: "false"` in your experiment's trial template.
 
    For the provided random example with Kubernetes
    [`Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
@@ -390,6 +392,9 @@ the Kubeflow's TensorFlow training job operator, TFJob:
 
 1. (Optional) **Note:** Katib's experiments don't work with
    [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
+   If you are using Kubeflow with
+   Istio, you have to disable sidecar injection. To do that, specify this annotation:
+   `sidecar.istio.io/inject: "false"` in your experiment's trial template.
    For the provided `TFJob` example check
    [here](/docs/components/training/tftraining/#what-is-tfjob)
    how to set the annotation.
@@ -430,6 +435,9 @@ using Kubeflow's PyTorch training job operator, PyTorchJob:
 
 1. (Optional) **Note:** Katib's experiments don't work with
    [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
+   If you are using Kubeflow with
+   Istio, you have to disable sidecar injection. To do that, specify this annotation:
+   `sidecar.istio.io/inject: "false"` in your experiment's trial template.
    For the provided `PyTorchJob` example setting the annotation should be similar to
    [`TFJob`](/docs/components/training/tftraining/#what-is-tfjob)
 
