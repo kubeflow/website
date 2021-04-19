@@ -29,28 +29,28 @@ Kubeflow distributions are available on a number of platforms. See the table bel
     <tbody>
       <tr>
         <td><a href="/docs/distributions/aws/">Kubeflow on AWS</a></td>
-        <td>AWS</td>
-        <td>EKS clusters</td>
+        <td>Amazon Web Services (AWS)</td>
+        <td>Elastic Kubernetes Service (EKS)</td>
       </tr>
       <tr>
         <td><a href="/docs/distributions/azure/">Kubeflow on Azure</a></td>
-        <td>Azure</td>
-        <td>AKS clusters</td>
+        <td>Microsoft Azure</td>
+        <td>Azure Kubernetes Service (AKS)</td>
       </tr>
       <tr>
         <td><a href="/docs/distributions/gke/">Kubeflow on GCP</a></td>
-        <td>GCP</td>
-        <td>GKE clusters</td>
+        <td>Google Cloud Platform</td>
+        <td>Google Kubernetes Engine (GKE)</td>
       </tr>
       <tr>
         <td><a href="/docs/distributions/ibm/">Kubeflow on IBM Cloud</a></td>
         <td>IBM Cloud</td>
-        <td>IKS clusters</td>
+        <td>IBM Cloud Kubernetes Service</td>
       </tr>
       <tr>
         <td><a href="/docs/distributions/openshift/">Kubeflow on OpenShift</a></td>
         <td>RedHat</td>
-        <td>OpenShift clusters</td>
+        <td>OpenShift</td>
       </tr>
       <tr>
         <td><a href="/docs/distributions/microk8s/">MicroK8S Kubeflow add-on</a></td>
@@ -73,9 +73,9 @@ Kubeflow distributions are available on a number of platforms. See the table bel
       <tr>
         <td><a href="/docs/distributions/ekf/">Arrikto Enterprise Kubeflow</a></td>
         <td>Arrikto</td>
-        <td>EKS clusters, 
-            AKS clusters,
-            GKE clusters 
+        <td>EKS, 
+            AKS,
+            GKE 
         </td>
       </tr>
     </tbody>
