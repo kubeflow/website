@@ -76,7 +76,7 @@ Pre-packaged Kubeflow distributions are available on a number of platforms. See 
         </td>
       </tr>
       <tr>
-        <td><a href="/docs/distributions/minikf/">Enterprise Kubeflow</a></td>
+        <td><a href="https://docs.arrikto.com/">Enterprise Kubeflow</a></td>
         <td>Arrikto</td>
         <td>AWS EKS clusters, 
             GCP GKE clusters,
