@@ -45,7 +45,7 @@ Pre-packaged Kubeflow distributions are available on a number of platforms. See 
       <tr>
         <td><a href="/docs/distributions/ibm/">Kubeflow on IBM Cloud</a></td>
         <td>IBM Cloud</td>
-        <td>IKS clusters</td>
+        <td>Cloud IKS clusters</td>
       </tr>
       <tr>
         <td><a href="/docs/distributions/openshift/">Kubeflow on Openshift</a></td>
@@ -58,11 +58,6 @@ Pre-packaged Kubeflow distributions are available on a number of platforms. See 
         <td>MicroK8S clusters</td>
       </tr>
       <tr>
-        <td><a href="https://github.com/argoflow/argoflow">Argoflow</a></td>
-        <td>Argoflow Committers</td>
-        <td>Any K8S cluster with Argo CD</td>
-      </tr>
-      <tr>
         <td><a href="/docs/distributions/charmed/">Kubeflow Charmed Operators</a></td>
         <td>Canonical</td>
         <td>Any K8S cluster with Juju</td>
@@ -73,14 +68,6 @@ Pre-packaged Kubeflow distributions are available on a number of platforms. See 
         <td>AWS Marketplace, 
             GCP Marketplace, 
             Vagrant
-        </td>
-      </tr>
-      <tr>
-        <td><a href="https://docs.arrikto.com/">Enterprise Kubeflow</a></td>
-        <td>Arrikto</td>
-        <td>AWS EKS clusters, 
-            GCP GKE clusters,
-            Azure AKS clusters
         </td>
       </tr>
     </tbody>
