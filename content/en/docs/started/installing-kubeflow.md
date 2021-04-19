@@ -39,7 +39,7 @@ Kubeflow distributions are available on a number of platforms. See the table bel
       </tr>
       <tr>
         <td><a href="/docs/distributions/gke/">Kubeflow on GCP</a></td>
-        <td>Google Cloud Platform</td>
+        <td>Google Cloud Platform (GCP)</td>
         <td>Google Kubernetes Engine (GKE)</td>
       </tr>
       <tr>
