@@ -100,8 +100,8 @@ weight = 20
   </table>
 </div>
 
-<a id="build-your-own"></a>
-## Build your own 
+<a id="directly-use-the-manifests"></a>
+## Directly use the manifests
 
 > TEXT TO WRITE:
 > 
@@ -111,7 +111,6 @@ weight = 20
 > link to kubeflow/manifests readme containing the "roll your own" instructions
 
 Please review the documentation on the [kubeflow/manifests](https://github.com/kubeflow/manifests) repo.
-
 
 <a id="next-steps"></a>
 ## Next steps
