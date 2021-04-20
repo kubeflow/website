@@ -8,87 +8,110 @@ weight = 20
 <a id="introduction"></a>
 ## Introduction
 
-... short discussion about Kubeflow being a "Kubernetes" platform, with multiple components (not an "app"), 
-... link to kubeflow-overview for more details
-... (TODO) add a link to "Reference"/"Kubeflow Versioning Policies" in overview docs
+> TEXT TO WRITE:
+> 
+> * talk about Kubeflow being a "Kubernetes" platform, with multiple components (not an "app")
+>    * link to kubeflow-overview for more details
+>    * (TODO) add a link to "Reference"/"Kubeflow Versioning Policies" in overview docs
+> * short discussion about how Kubeflow is versioned, 
+>    * components in Kubeflow can maintain their own versions, independent of the project-wide versions (like 1.2, 1.3)
+> 
+> * short discussion about the two "paths" for installing kubeflow "XXXXX" and "YYYYY"
 
-... short discussion about how Kubeflow is versioned, 
-... that is, components in Kubeflow can maintain their own versions, independent of the project-wide versions (like 1.2, 1.3)
+<a id="packaged-distributions"></a>
+## Packaged distributions
 
-<a id="roll-your-own"></a>
-## Path 1: roll your own
-
-... disclaimer that any environment-specific issues are not supported by the Kubeflow community (use a distribution if you want support)
-
-... small discussion of the purpose/function of the kubeflow/manifests repo, 
-... that is, to mirror upstream manifests, and act as a central repository containing the "authoritative" manifests for each kubeflow release, to be used by distributions
-
-... link to kubeflow/manifests readme containing the "roll your own" instructions
-
-<a id="use-a-distribution"></a>
-## Path 2: use a distribution
+> TEXT TO WRITE:
+> 
+> * distributions are separate from the kubeflow community
+>    * none are currently endorsed or certified
+>    * please reach out to the maintainers to get support
+> * the method for installing can vary from distribution to distribution, please consult the docs for your chosen distribution    
 
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
-        <th>Distribution</th>
-        <th>Maintainers</th>
-        <th>Deployment Target</th>
+        <th>Name</th>
+        <th>Maintainers</th></th>
+        <th>Platforms</th>
+        <th>Links</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a href="/docs/distributions/aws/">Kubeflow on AWS</a></td>
-        <td><a href="https://aws.amazon.com/">AWS</a></td>
-        <td><a href="https://aws.amazon.com/eks/">EKS</a> clusters</td>
+        <td>Kubeflow on AWS</td>
+        <td>AWS</td>
+        <td><a href="https://aws.amazon.com/eks/">Amazon Elastic Kubernetes Service (EKS)</a></td>
+        <td><a href="/docs/distributions/aws/">Docs</a></td>
       </tr>
       <tr>
-        <td><a href="/docs/distributions/azure/">Kubeflow on Azure</a></td>
-        <td><a href="https://azure.microsoft.com/">Azure</a></td>
-        <td><a href="https://docs.microsoft.com/azure/aks/">AKS</a> clusters</td>
+        <td>Kubeflow on Azure</td>
+        <td>Azure</td>
+        <td><a href="https://docs.microsoft.com/azure/aks/">Azure Kubernetes Service (AKS)</a></td>
+        <td><a href="/docs/distributions/azure/">Docs</a></td>
       </tr>
       <tr>
-        <td><a href="/docs/distributions/gke/">Kubeflow on GCP</a></td>
-        <td><a href="https://cloud.google.com/">GCP</a></td>
-        <td><a href="https://cloud.google.com/kubernetes-engine">GKE</a> clusters</td>
+        <td>Kubeflow on GCP</td>
+        <td>Google Cloud</td>
+        <td><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a></td>
+        <td><a href="/docs/distributions/gke/">Docs</a></td>
       </tr>
       <tr>
-        <td><a href="/docs/distributions/ibm/">Kubeflow on IBM Cloud</a></td>
-        <td><a href="https://www.ibm.com/cloud/">IBM Cloud</a></td>
-        <td><a href="https://www.ibm.com/cloud/kubernetes-service">IKS</a> clusters</td>
+        <td>Kubeflow on IBM Cloud</td>
+        <td>IBM Cloud</td>
+        <td><a href="https://www.ibm.com/cloud/kubernetes-service">IBM Cloud Kubernetes Service</a></td>
+        <td><a href="/docs/distributions/ibm/">Docs</a></td>
       </tr>
       <tr>
-        <td><a href="/docs/distributions/openshift/">Kubeflow on Openshift</a></td>
-        <td><a href="https://www.ibm.com/cloud/">IBM Cloud</a></td>
-        <td><a href="https://www.openshift.com/">Openshift</a> clusters</td>
+        <td>Kubeflow on Openshift</td>
+        <td>IBM Cloud</td>
+        <td><a href="https://www.openshift.com/">Openshift</a></td>
+        <td><a href="/docs/distributions/openshift/">Docs</a></td>
       </tr>
       <tr>
-        <td><a href="/docs/distributions/microk8s/">Kubeflow on MicroK8S</a></td>
-        <td><a href="https://canonical.com/">Canonical</a></td>
-        <td><a href="https://microk8s.io/">MicroK8S</a> clusters</td>
+        <td>Argoflow</td>
+        <td>Argoflow Community</td>
+        <td>Conformant Kubernetes</td>
+        <td><a href="https://github.com/argoflow/argoflow">Docs</a></td>
       </tr>
       <tr>
-        <td><a href="https://github.com/argoflow/argoflow">Argoflow</a></td>
-        <td>Argoflow Committers</td>
-        <td>Any K8S cluster with <a href="https://github.com/argoproj/argo-cd/">Argo CD</a></td>
+        <td>Charmed Kubeflow</td>
+        <td>Canonical</td>
+        <td>Conformant Kubernetes</td>
+        <td><a href="https://charmed-kubeflow.io/docs">Docs</a></td>
       </tr>
       <tr>
-        <td><a href="/docs/distributions/charmed/">Charmed Operators</a></td>
-        <td><a href="https://canonical.com/">Canonical</a></td>
-        <td>Any K8S cluster with <a href="https://juju.is/docs/kubernetes">Juju</a></td>
+        <td>MicroK8s Kubeflow add-on</td>
+        <td>Canonical</td>
+        <td><a href="https://microk8s.io/">MicroK8S</a></td>
+        <td><a href="https://microk8s.io/docs/addon-kubeflow">Docs</a></td>
       </tr>
       <tr>
-        <td><a href="/docs/distributions/minikf/">MiniKF</a></td>
-        <td><a href="https://www.arrikto.com/">Arrikto</a></td>
+        <td>MiniKF</td>
+        <td>Arrikto</td>
         <td><a href="https://aws.amazon.com/marketplace/pp/B08MBGH311">AWS Marketplace</a>, 
             <a href="https://console.cloud.google.com/marketplace/product/arrikto-public/minikf">GCP Marketplace</a>, 
             <a href="https://www.vagrantup.com/">Vagrant</a>
         </td>
+        <td><a href="/docs/distributions/minikf/">Docs</a></td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<a id=""></a>
+## Build your own 
+
+> TEXT TO WRITE:
+> 
+> * disclaimer that any environment-specific issues are not supported by the Kubeflow community (use a distribution if you want support)
+> * discuss purpose/function of the kubeflow/manifests repo
+>   * that is, to mirror upstream manifests, and act as a central repository containing the "authoritative" manifests for each kubeflow release, to be used by distributions
+> link to kubeflow/manifests readme containing the "roll your own" instructions
+
+Please review the documentation on the [kubeflow/manifests](https://github.com/kubeflow/manifests) repo.
+
 
 <a id="next-steps"></a>
 ## Next steps
