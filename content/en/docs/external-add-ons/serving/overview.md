@@ -162,11 +162,11 @@ Notes:
 Further information:
 
  * KFServing:
-   * [Kubeflow documentation](/docs/components/serving/kfserving/)
+   * [Kubeflow documentation](/docs/components/kfserving/)
    * [GitHub repository](https://github.com/kubeflow/kfserving)
    * [Community](/docs/about/community/)
  * Seldon Core
-   * [Kubeflow documentation](/docs/components/serving/seldon/)
+   * [Kubeflow documentation](/docs/external-add-ons/serving/seldon/)
    * [Seldon Core documentation](https://docs.seldon.io/projects/seldon-core/en/latest/)
    * [GitHub repository](https://github.com/SeldonIO/seldon-core)
    * [Community](https://docs.seldon.io/projects/seldon-core/en/latest/developer/community.html)   
@@ -174,7 +174,7 @@ Further information:
 ## TensorFlow Serving
 
 For TensorFlow models you can use TensorFlow Serving for 
-[real-time prediction](/docs/components/serving/tfserving_new).
+[real-time prediction](/docs/external-add-ons/serving/tfserving_new).
 However, if you plan to use multiple frameworks, you should consider KFServing
 or Seldon Core as described above.
 
@@ -186,7 +186,7 @@ optimized to deploy machine learning algorithms on both GPUs and
 CPUs at scale. Triton Inference Server was previously known as TensorRT Inference Server.
 
 You can use NVIDIA Triton Inference Server as a 
-[standalone system](/docs/components/serving/tritoninferenceserver),
+[standalone system](/docs/external-add-ons/serving/tritoninferenceserver),
 but you should consider KFServing as described above. KFServing includes support 
 for NVIDIA Triton Inference Server.
 
@@ -202,7 +202,7 @@ support, which achieves the advantage of batch processing in online serving. It 
 provides model management and model deployment functionality, giving ML teams an
 end-to-end model serving workflow, with DevOps best practices baked in.
 
-   * [BentoML guide for Kubeflow](/docs/components/serving/bentoml)
+   * [BentoML guide for Kubeflow](/docs/external-add-ons/serving/bentoml)
    * [BentoML GitHub repository](https://github.com/bentoml/BentoML)
    * [BentoML documentation](https://docs.bentoml.org)
    * [Quick start guide](https://docs.bentoml.org/en/latest/quickstart.html)
