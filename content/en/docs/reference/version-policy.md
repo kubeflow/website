@@ -122,7 +122,7 @@ documentation for that application.
         <td>v1alpha3</td>
       </tr>
       <tr>
-        <td><a href="/docs/components/serving/kfserving/">KFServing</a>
+        <td><a href="/docs/components/kfserving/">KFServing</a>
           (<a href="https://github.com/kubeflow/kfserving">GitHub</a>)
         </td>
         <td>Beta</td>
@@ -189,7 +189,7 @@ documentation for that application.
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/components/serving/seldon">Seldon Core Serving</a> 
+        <td><a href="/docs/external-add-ons/serving/seldon">Seldon Core Serving</a> 
           (<a href="https://github.com/SeldonIO/seldon-core">GitHub</a>)
         </td>
         <td>Stable</td>

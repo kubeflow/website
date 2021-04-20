@@ -75,7 +75,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines                     /docs/components/pipelines/pipelines
 /docs/components/pytorch                       /docs/components/training/pytorch
 /docs/components/nuclio                        /docs/components/misc/nuclio
-/docs/components/seldon                        /docs/components/serving/seldon
+/docs/components/seldon                        /docs/external-add-ons/serving/seldon
 /docs/components/trtinferenceserver            /docs/components/serving/tritoninferenceserver
 /docs/components/tfbatchpredict                /docs/components/serving/tfbatchpredict
 /docs/components/tftraining                    /docs/components/training/tftraining
