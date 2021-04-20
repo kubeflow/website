@@ -107,7 +107,7 @@ documentation for that application.
         <td></td>
       </tr>      
       <tr>
-        <td><a href="/docs/components/feature-store/overview">Feature store: Feast</a>
+        <td><a href="/docs/external-add-ons/feature-store/overview">Feature store: Feast</a>
         (<a href="https://github.com/feast-dev/feast">GitHub</a>)
         </td>
         <td>Alpha</td>
