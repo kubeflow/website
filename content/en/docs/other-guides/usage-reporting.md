@@ -54,9 +54,9 @@ To prevent Spartakus from being deployed:
 
 1. Follow your chosen guide to deploying Kubeflow, but stop before you deploy
   Kubeflow. For example, see the guide to 
-  [deploying Kubeflow with kfctl_k8s_istio](/docs/started/k8s/kfctl-k8s-istio/).
+  [deploying Kubeflow with kfctl_k8s_istio](/docs/methods/kfctl/deployment).
 1. When you reach the 
-  [setup and deploy step](/docs/started/k8s/kfctl-k8s-istio/#alt-set-up-and-deploy),
+  [setup and deploy step](/docs/methods/kfctl/deployment#alt-set-up-and-deploy),
   **skip the `kfctl apply` command** and run the **`kfctl build`** command 
   instead, as  described in the above guide. Now you can edit the configuration
   files before deploying Kubeflow.

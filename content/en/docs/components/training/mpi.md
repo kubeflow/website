@@ -4,10 +4,6 @@ description = "Instructions for using MPI for training"
 weight = 25
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 {{% alpha-status 
   feedbacklink="https://github.com/kubeflow/mpi-operator/issues" %}}
@@ -26,7 +22,7 @@ cd mpi-operator
 kubectl create -f deploy/v1alpha2/mpi-operator.yaml
 ```
 
-Alternatively, follow the [getting started guide](/docs/started/getting-started/) to deploy Kubeflow.
+Alternatively, follow the [getting started guide](https://www.kubeflow.org/docs/started/getting-started/) to deploy Kubeflow.
 
 An alpha version of MPI support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow newer than 0.2.0.
 
@@ -48,9 +44,9 @@ mpijobs.kubeflow.org                       4d
 If it is not included you can add it as follows using [kustomize](https://github.com/kubernetes-sigs/kustomize):
 
 ```bash
-git clone https://github.com/kubeflow/manifests
-cd manifests/mpi-job/mpi-operator
-kustomize build base | kubectl apply -f -
+git clone https://github.com/kubeflow/mpi-operator
+cd mpi-operator/manifests
+kustomize build overlays/kubeflow | kubectl apply -f -
 ```
 
 Note that since Kubernetes v1.14, `kustomize` became a subcommand in `kubectl` so you can also run the following command instead:
@@ -66,6 +62,7 @@ You can create an MPI job by defining an `MPIJob` config file. See [TensorFlow b
 ```
 cat examples/v1alpha2/tensorflow-benchmarks.yaml
 ```
+
 Deploy the `MPIJob` resource to start training:
 
 ```
@@ -166,7 +163,6 @@ status:
   startTime: "2019-07-09T22:15:51Z"
 ```
 
-
 Training should run for 100 steps and takes a few minutes on a GPU cluster. You can inspect the logs to see the training progress. When the job starts, access the logs from the `launcher` pod:
 
 ```
@@ -192,20 +188,20 @@ Variables:   horovod
 
 ...
 
-40	images/sec: 154.4 +/- 0.7 (jitter = 4.0)	8.280
-40	images/sec: 154.4 +/- 0.7 (jitter = 4.1)	8.482
-50	images/sec: 154.8 +/- 0.6 (jitter = 4.0)	8.397
-50	images/sec: 154.8 +/- 0.6 (jitter = 4.2)	8.450
-60	images/sec: 154.5 +/- 0.5 (jitter = 4.1)	8.321
-60	images/sec: 154.5 +/- 0.5 (jitter = 4.4)	8.349
-70	images/sec: 154.5 +/- 0.5 (jitter = 4.0)	8.433
-70	images/sec: 154.5 +/- 0.5 (jitter = 4.4)	8.430
-80	images/sec: 154.8 +/- 0.4 (jitter = 3.6)	8.199
-80	images/sec: 154.8 +/- 0.4 (jitter = 3.8)	8.404
-90	images/sec: 154.6 +/- 0.4 (jitter = 3.7)	8.418
-90	images/sec: 154.6 +/- 0.4 (jitter = 3.6)	8.459
-100	images/sec: 154.2 +/- 0.4 (jitter = 4.0)	8.372
-100	images/sec: 154.2 +/- 0.4 (jitter = 4.0)	8.542
+40  images/sec: 154.4 +/- 0.7 (jitter = 4.0)  8.280
+40  images/sec: 154.4 +/- 0.7 (jitter = 4.1)  8.482
+50  images/sec: 154.8 +/- 0.6 (jitter = 4.0)  8.397
+50  images/sec: 154.8 +/- 0.6 (jitter = 4.2)  8.450
+60  images/sec: 154.5 +/- 0.5 (jitter = 4.1)  8.321
+60  images/sec: 154.5 +/- 0.5 (jitter = 4.4)  8.349
+70  images/sec: 154.5 +/- 0.5 (jitter = 4.0)  8.433
+70  images/sec: 154.5 +/- 0.5 (jitter = 4.4)  8.430
+80  images/sec: 154.8 +/- 0.4 (jitter = 3.6)  8.199
+80  images/sec: 154.8 +/- 0.4 (jitter = 3.8)  8.404
+90  images/sec: 154.6 +/- 0.4 (jitter = 3.7)  8.418
+90  images/sec: 154.6 +/- 0.4 (jitter = 3.6)  8.459
+100 images/sec: 154.2 +/- 0.4 (jitter = 4.0)  8.372
+100 images/sec: 154.2 +/- 0.4 (jitter = 4.0)  8.542
 ----------------------------------------------------------------
 total images/sec: 308.27
 ```
@@ -214,5 +210,5 @@ total images/sec: 308.27
 
 Docker images are built and pushed automatically to [mpioperator on Dockerhub](https://hub.docker.com/u/mpioperator). You can use the following Dockerfiles to build the images yourself:
 
-* [mpi-operator](https://github.com/kubeflow/mpi-operator/blob/master/Dockerfile)
-* [kubectl-delivery](https://github.com/kubeflow/mpi-operator/blob/master/cmd/kubectl-delivery/Dockerfile)
+- [mpi-operator](https://github.com/kubeflow/mpi-operator/blob/master/Dockerfile)
+- [kubectl-delivery](https://github.com/kubeflow/mpi-operator/blob/master/cmd/kubectl-delivery/Dockerfile)

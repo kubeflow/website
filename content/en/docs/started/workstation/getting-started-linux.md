@@ -38,7 +38,7 @@ to install Kubeflow.
 
 - Install [Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/)
 
-Follow the instructions on [Kubeflow on MiniKube](/docs/started/workstation/minikube-linux/) to complete this path.
+Follow the instructions on [Kubeflow on MiniKube](/docs/started/methods/kfctl/minikube/) to complete this path.
 
 ### Multipass
 
