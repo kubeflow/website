@@ -49,7 +49,7 @@ Kubeflow distributions are available on a number of platforms. See the table bel
       </tr>
       <tr>
         <td><a href="/docs/distributions/openshift/">Kubeflow on OpenShift</a></td>
-        <td>RedHat</td>
+        <td>Red Hat</td>
         <td>OpenShift</td>
       </tr>
       <tr>
