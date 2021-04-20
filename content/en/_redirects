@@ -81,6 +81,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/tftraining                    /docs/components/training/tftraining
 /docs/components/tfserving_new                 /docs/components/serving/tfserving_new
 
+
 # Deleted the PyTorch serving page
 /docs/components/pytorchserving/               /docs/components/serving/overview/
 /docs/components/serving/pytorchserving/       /docs/components/serving/overview/
@@ -144,6 +145,13 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/started/workstation/minikf-aws                    /docs/distributions/minikf-aws
 /docs/started/workstation/minikf-gcp                    /docs/distributions/minikf-gcp
 
+# Distinguish components from external add-ons 
+/docs/components/fairing                       /docs/external-add-ons/fairing
+/docs/components/istio                         /docs/external-add-ons/istio
+/docs/components/feature-store                 /docs/external-add-ons/feature-store
+/docs/components/serving                       /docs/external-add-ons/serving
+
+
 # ===============
 # IMPORTANT NOTE: 
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
@@ -156,3 +164,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/gke/*                         /docs/distributions/gke/:splat
 /docs/ibm/*                         /docs/distributions/ibm/:splat
 /docs/openshift/*                   /docs/distributions/openshift/:splat
+/docs/components/fairing/*          /docs/external-add-ons/fairing/:splat
+/docs/components/istio/*            /docs/external-add-ons/istio/:splat
+/docs/components/feature-store/*    /docs/external-add-ons/feature-store/:splat
+/docs/components/serving/*          /docs/external-add-ons/serving/:splat
