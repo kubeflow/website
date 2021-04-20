@@ -385,7 +385,7 @@ python iap_request.py https://YOUR_HOST/models/MODEL_NAME/ IAP_CLIENT_ID
 
 ## Telemetry and Rolling out model using Istio
 
-Please look at the [Istio guide](/docs/components/istio/).
+Please look at the [Istio guide](/docs/external-add-ons/istio/).
 
 ## Logs and metrics with Stackdriver
 See the guide to [logging and monitoring](/docs/gke/monitoring/) 
