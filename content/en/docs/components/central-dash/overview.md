@@ -71,10 +71,7 @@ Port-forwarding typically does not work if any of the following are true:
 
   * You've deployed Kubeflow on GCP using the 
     [GCP deployment UI](/docs/gke/deploy/deploy-ui/) or the default settings 
-    with the [CLI deployment](/docs/gke/deploy/deploy-cli/). (If you want to
-    use port forwarding, you must deploy Kubeflow on an existing Kubernetes 
-    cluster using the [`kfctl_k8s_istio` 
-    configuration](/docs/methods/kfctl/deployment).)
+    with the [CLI deployment](/docs/gke/deploy/deploy-cli/).
 
   * You've configured the Istio ingress to only accept 
     HTTPS traffic on a specific domain or IP address.
