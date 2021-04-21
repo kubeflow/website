@@ -75,15 +75,15 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines                     /docs/components/pipelines/pipelines
 /docs/components/pytorch                       /docs/components/training/pytorch
 /docs/components/nuclio                        /docs/components/misc/nuclio
-/docs/components/seldon                        /docs/components/serving/seldon
-/docs/components/trtinferenceserver            /docs/components/serving/tritoninferenceserver
-/docs/components/tfbatchpredict                /docs/components/serving/tfbatchpredict
+/docs/components/seldon                        /docs/external-add-ons/serving/seldon
+/docs/components/trtinferenceserver            /docs/external-add-ons/serving/tritoninferenceserver
+/docs/components/tfbatchpredict                /docs/external-add-ons/serving/tfbatchpredict
 /docs/components/tftraining                    /docs/components/training/tftraining
-/docs/components/tfserving_new                 /docs/components/serving/tfserving_new
+/docs/components/tfserving_new                 /docs/external-add-ons/serving/tfserving_new
 
 # Deleted the PyTorch serving page
-/docs/components/pytorchserving/               /docs/components/serving/overview/
-/docs/components/serving/pytorchserving/       /docs/components/serving/overview/
+/docs/components/pytorchserving/               /docs/external-add-ons/serving/overview/
+/docs/components/serving/pytorchserving/       /docs/external-add-ons/serving/overview/
 
 # Restructured the getting-started and other-guides sections.
 /docs/started/getting-started-k8s/             /docs/started/k8s/
@@ -110,7 +110,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/other-guides/multi-user-overview/       /docs/components/multi-tenancy/
 
 # Rename TensorRT Inference Server to Triton Inference Server
-/docs/components/serving/trtinferenceserver   /docs/components/serving/tritoninferenceserver
+/docs/components/serving/trtinferenceserver   /docs/external-add-ons/serving/tritoninferenceserver
 
 # Kubeflow Operator move to under distributions
 /docs/operator                      /docs/distributions/operator
@@ -144,6 +144,12 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/started/workstation/minikf-aws                    /docs/distributions/minikf-aws
 /docs/started/workstation/minikf-gcp                    /docs/distributions/minikf-gcp
 
+# Distinguish components from external add-ons 
+/docs/components/fairing                       /docs/external-add-ons/fairing
+/docs/components/istio                         /docs/external-add-ons/istio
+/docs/components/feature-store                 /docs/external-add-ons/feature-store
+/docs/components/serving                       /docs/external-add-ons/serving
+
 # ===============
 # IMPORTANT NOTE: 
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
@@ -156,3 +162,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/gke/*                         /docs/distributions/gke/:splat
 /docs/ibm/*                         /docs/distributions/ibm/:splat
 /docs/openshift/*                   /docs/distributions/openshift/:splat
+/docs/components/fairing/*          /docs/external-add-ons/fairing/:splat
+/docs/components/istio/*            /docs/external-add-ons/istio/:splat
+/docs/components/feature-store/*    /docs/external-add-ons/feature-store/:splat
+/docs/components/serving/*          /docs/external-add-ons/serving/:splat
