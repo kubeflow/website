@@ -32,43 +32,43 @@ KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
       <tr>
         <td>Framework</td>
         <td>TensorFlow</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/tensorflow">sample</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/tensorflow">sample</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/servers/tensorflow.html">docs</a></td>
       </tr>
       <tr>
         <td></td>
         <td>XGBoost</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/xgboost">sample</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/xgboost">sample</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/servers/xgboost.html">docs</a></td>
       </tr>
       <tr>
         <td></td>
         <td>scikit-learn</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/sklearn">sample</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/sklearn/v2">sample</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/servers/sklearn.html">docs</a></td>
       </tr>
       <tr>
         <td></td>
         <td>NVIDIA Triton Inference Server</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/triton">sample</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/triton">sample</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/nvidia_mnist.html">docs</a></td>
       </tr>
       <tr>
         <td></td>
         <td>ONNX</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/onnx">sample</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/onnx">sample</a></td>
         <td></td>
       </tr>
       <tr>
         <td></td>
         <td>PyTorch</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/pytorch">sample</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/torchserve">sample</a></td>
         <td><b>&check;</b></td>
       </tr>
       <tr>
         <td>Graph</td>
         <td>Transformers</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/blob/master/docs/samples/transformer/image_transformer/kfserving_sdk_transformer.ipynb">sample</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1beta1/transformer/torchserve_image_transformer">sample</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/transformer_spam_model.html">docs</a></td>
       </tr>
       <tr>
@@ -104,13 +104,13 @@ KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
       <tr>
         <td></td>
         <td>HPA</td>
-        <td><b>&check;</b></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/blob/master/test/benchmark/README.md">HPA vs KPA</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/graph/scaling.html#autoscaling-seldon-deployments">docs</a></td>
       </tr>
       <tr>
         <td>Custom</td>
         <td>Container</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/custom">sample</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1alpha2/custom">sample</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/language_wrappers.html">docs</a></td>
       </tr>
       <tr>
@@ -128,7 +128,7 @@ KFServing and Seldon Core. A check mark (**&check;**) indicates that the system
       <tr>
         <td>Rollout</td>
         <td>Canary</td>
-        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/rollouts">sample</a></td>
+        <td><b>&check;</b> <a href="https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/rollout">sample</a></td>
         <td><b>&check;</b> <a href="https://docs.seldon.io/projects/seldon-core/en/latest/examples/istio_canary.html">docs</a></td>
       </tr>
       <tr>
