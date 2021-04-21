@@ -42,38 +42,38 @@ weight = 20
       <tr>
         <td>Kubeflow on AWS</td>
         <td>AWS</td>
-        <td><a href="https://aws.amazon.com/eks/">Amazon Elastic Kubernetes Service (EKS)</a></td>
+        <td>Amazon Elastic Kubernetes Service (EKS)</td>
         <td><a href="/docs/distributions/aws/">Docs</a></td>
       </tr>
       <tr>
         <td>Kubeflow on Azure</td>
         <td>Azure</td>
-        <td><a href="https://docs.microsoft.com/azure/aks/">Azure Kubernetes Service (AKS)</a></td>
+        <td>Azure Kubernetes Service (AKS)</td>
         <td><a href="/docs/distributions/azure/">Docs</a></td>
       </tr>
       <tr>
         <td>Kubeflow on GCP</td>
         <td>Google Cloud</td>
-        <td><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a></td>
+        <td>Google Kubernetes Engine (GKE)</td>
         <td><a href="/docs/distributions/gke/">Docs</a></td>
       </tr>
       <tr>
         <td>Kubeflow on IBM Cloud</td>
         <td>IBM Cloud</td>
-        <td><a href="https://www.ibm.com/cloud/kubernetes-service">IBM Cloud Kubernetes Service</a></td>
+        <td>IBM Cloud Kubernetes Service</td>
         <td><a href="/docs/distributions/ibm/">Docs</a></td>
       </tr>
       <tr>
         <td>Kubeflow on Openshift</td>
         <td>IBM Cloud</td>
-        <td><a href="https://www.openshift.com/">Openshift</a></td>
+        <td>Openshift</td>
         <td><a href="/docs/distributions/openshift/">Docs</a></td>
       </tr>
       <tr>
         <td>Argoflow</td>
         <td>Argoflow Community</td>
         <td>Conformant Kubernetes</td>
-        <td><a href="https://github.com/argoflow/argoflow">Docs</a></td>
+        <td><a href="https://github.com/argoflow/argoflow">GitHub Repo</a></td>
       </tr>
       <tr>
         <td>Charmed Kubeflow</td>
@@ -84,17 +84,17 @@ weight = 20
       <tr>
         <td>MicroK8s Kubeflow add-on</td>
         <td>Canonical</td>
-        <td><a href="https://microk8s.io/">MicroK8S</a></td>
+        <td>MicroK8S</td>
         <td><a href="https://microk8s.io/docs/addon-kubeflow">Docs</a></td>
       </tr>
       <tr>
         <td>MiniKF</td>
         <td>Arrikto</td>
-        <td><a href="https://aws.amazon.com/marketplace/pp/B08MBGH311">AWS Marketplace</a>, 
-            <a href="https://console.cloud.google.com/marketplace/product/arrikto-public/minikf">GCP Marketplace</a>, 
-            <a href="https://www.vagrantup.com/">Vagrant</a>
+        <td>Cloud Marketplaces, Vagrant</td>
+        <td><a href="/docs/distributions/minikf/">Docs</a>, 
+            <a href="https://aws.amazon.com/marketplace/pp/B08MBGH311">AWS Marketplace</a>, 
+            <a href="https://console.cloud.google.com/marketplace/product/arrikto-public/minikf">GCP Marketplace</a>
         </td>
-        <td><a href="/docs/distributions/minikf/">Docs</a></td>
       </tr>
     </tbody>
   </table>
