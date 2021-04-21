@@ -232,7 +232,7 @@ one of the following Kubeflow SDKs and command-line interfaces
     </thead>
     <tbody>
       <tr>
-        <td><a href="/docs/components/fairing/fairing-overview/">Fairing</a> 
+        <td><a href="/docs/external-add-ons/fairing/fairing-overview/">Fairing</a> 
           (<a href="https://github.com/kubeflow/fairing">GitHub</a>)
         </td>
         <td>Beta</td>

@@ -59,6 +59,6 @@ The following are the goals of the [Kubeflow Fairing project][fairing-repo]:
 [fairing-repo]: https://github.com/kubeflow/fairing
 [kubeflow]: /docs/about/kubeflow/
 
-[conf]: /docs/components/fairing/configure-fairing/
-[install]: /docs/components/fairing/install-fairing/
-[tutorials]: /docs/components/fairing/tutorials/other-tutorials/
+[conf]: /docs/external-add-ons/fairing/configure-fairing/
+[install]: /docs/external-add-ons/fairing/install-fairing/
+[tutorials]: /docs/external-add-ons/fairing/tutorials/other-tutorials/
