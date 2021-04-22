@@ -84,7 +84,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td></td>
       </tr>
       <tr>
-        <td>Charmed Kubeflow</td>
+        <td>Kubeflow Charmed Operators</td>
         <td>Canonical</td>
         <td>Conformant Kubernetes</td>
         <td><a href="/docs/distributions/charmed/">Docs</a></td>
