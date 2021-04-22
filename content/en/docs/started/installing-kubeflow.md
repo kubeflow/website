@@ -12,7 +12,7 @@ Kubeflow is an end-to-end MLOps platform for Kubernetes.
 Kubeflow provides components for each stage in the Machine Learning (ML) lifecycle from exploration through to training and deployment.
 Kubeflow is modular, allowing operators to choose what is best for their users, there is no requirement to deploy every component.
 
-To read more about each of the core component please see the <a href="/docs/started/kubeflow-overview/">Kubeflow Overview</a> page.
+To read more about each of the core components and architecture of Kubeflow, please see the <a href="/docs/started/kubeflow-overview/">Kubeflow Overview</a> page.
 
 There are two options for getting up and running with Kubeflow. 
 You may either use a packaged distribution, or install directly from the open-source Kubernetes manifests.
@@ -110,12 +110,12 @@ The open-source Kubeflow community does not currently endorse or certify any pac
 ## Directly use the manifests
 
 {{% alert title="Warning" color="warning" %}}
-Installing kubeflow from the manifests is intended for advanced users, and Kubeflow community will not support environment specific issues.
+Installing kubeflow from the manifests is intended for advanced users, and Kubeflow community will not support environment-specific issues.
 If you need support, please consider using a packaged distribution of Kubeflow.
 {{% /alert %}}
 
 The <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests Working Group</a> is responsible for aggregating the authoritative manifests of each official Kubeflow component.
-While these manifests are intended to be the base of packaged distributions, advanced users may chose to install them directly by following <a href="https://github.com/kubeflow/manifests">these instructions</a>. 
+While these manifests are intended to be the base of packaged distributions, advanced users may choose to install them directly by following <a href="https://github.com/kubeflow/manifests">these instructions</a>. 
 
 <a id="next-steps"></a>
 ## Next steps
