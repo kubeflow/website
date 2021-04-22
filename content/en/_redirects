@@ -143,6 +143,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/istio                         /docs/external-add-ons/istio
 /docs/components/feature-store                 /docs/external-add-ons/feature-store
 /docs/components/serving                       /docs/external-add-ons/serving
+/docs/components/metadata                      /docs
 
 # ===============
 # IMPORTANT NOTE: 
