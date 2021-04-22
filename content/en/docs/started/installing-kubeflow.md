@@ -16,7 +16,7 @@ There are two pathways to get up and running with Kubeflow, you may either:
 ## Packaged distributions
 
 {{% alert color="warning" %}}
-These distributions are developed and supported by their respective maintainers, the Kubeflow community does not currently endorse or certify any distribution.
+Packaged distributions are developed and supported by their respective maintainers, the Kubeflow community does not currently endorse or certify any distribution.
 {{% /alert %}}
 
 <b>See the table below for a list of options and links to documentation:</b>
@@ -104,9 +104,7 @@ These distributions are developed and supported by their respective maintainers,
 ## Manifests
 
 {{% alert color="warning" %}}
-This method is for advanced users, the Kubeflow community will not support environment-specific issues.
-
-If you need support, please consider using a packaged distribution of Kubeflow.
+This method is for advanced users, the Kubeflow community will not support environment-specific issues. If you need support, please consider using a [packaged distribution](#packaged-distributions) of Kubeflow.
 {{% /alert %}}
 
 The <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests Working Group</a> is responsible for aggregating the authoritative manifests of each official Kubeflow component.
