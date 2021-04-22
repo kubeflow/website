@@ -6,7 +6,8 @@ weight = 20
 +++
 
 Kubeflow is an end-to-end Machine Learning (ML) platform for Kubernetes, it provides components for each stage in the ML lifecycle, from exploration through to training and deployment.
-Operators can choose what is best for their users, there is no requirement to deploy every component, to read more about the components and architecture of Kubeflow, please see the <a href="/docs/started/kubeflow-overview/">Kubeflow Overview</a> page.
+Operators can choose what is best for their users, there is no requirement to deploy every component.
+To read more about the components and architecture of Kubeflow, please see the <a href="/docs/started/kubeflow-overview/">Kubeflow Overview</a> page.
 
 There are two pathways to get up and running with Kubeflow, you may either:
 1. Use a [packaged distribution](#packaged-distributions)
