@@ -8,32 +8,31 @@ weight = 20
 <a id="introduction"></a>
 ## Introduction
 
-> TEXT TO WRITE:
-> 
-> * talk about Kubeflow being a "Kubernetes" platform, with multiple components (not an "app")
->    * link to kubeflow-overview for more details
->    * (TODO) add a link to "Reference"/"Kubeflow Versioning Policies" in overview docs
-> * short discussion about how Kubeflow is versioned, 
->    * components in Kubeflow can maintain their own versions, independent of the project-wide versions (like 1.2, 1.3)
-> 
-> * short discussion about the two "paths" for installing kubeflow "XXXXX" and "YYYYY"
+Kubeflow is an end-to-end MLOps platform for Kubernetes.
+Kubeflow provides components for each stage in the Machine Learning (ML) lifecycle from exploration through to training and deployment.
+Kubeflow is modular, allowing operators to choose what is best for their users, there is no requirement to deploy every component.
+
+To read more about each of the core component please see the <a href="/docs/started/kubeflow-overview/">Kubeflow Overview</a> page.
+
+There are two options for getting up and running with Kubeflow. 
+You may either use a packaged distribution, or install directly from the open-source Kubernetes manifests.
 
 <a id="packaged-distributions"></a>
 ## Packaged distributions
 
-> TEXT TO WRITE:
-> 
-> * distributions are separate from the kubeflow community
->    * none are currently endorsed or certified
->    * please reach out to the maintainers to get support
-> * the method for installing can vary from distribution to distribution, please consult the docs for your chosen distribution    
+{{% alert title="Info" color="success" %}}
+Packaged distributions of Kubeflow are developed and supported by their respective maintainers.
+The open-source Kubeflow community does not currently endorse or certify any packaged distribution.
+{{% /alert %}}
+
+<b>See the table below for a list of options and links to documentation:</b>
 
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
         <th>Name</th>
-        <th>Maintainer</th></th>
+        <th>Maintainer</th>
         <th>Platform</th>
         <th>Link - Docs</th>
         <th>Link - External Website</th>
@@ -110,17 +109,16 @@ weight = 20
 <a id="directly-use-the-manifests"></a>
 ## Directly use the manifests
 
-> TEXT TO WRITE:
-> 
-> * disclaimer that any environment-specific issues are not supported by the Kubeflow community (use a distribution if you want support)
-> * discuss purpose/function of the kubeflow/manifests repo
->   * that is, to mirror upstream manifests, and act as a central repository containing the "authoritative" manifests for each kubeflow release, to be used by distributions
-> link to kubeflow/manifests readme containing the "roll your own" instructions
+{{% alert title="Warning" color="warning" %}}
+Installing kubeflow from the manifests is intended for advanced users, and Kubeflow community will not support environment specific issues.
+If you need support, please consider using a packaged distribution of Kubeflow.
+{{% /alert %}}
 
-Please review the documentation on the [kubeflow/manifests](https://github.com/kubeflow/manifests) repo.
+The <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests Working Group</a> is responsible for aggregating the authoritative manifests of each official Kubeflow component.
+While these manifests are intended to be the base of packaged distributions, advanced users may chose to install them directly by following <a href="https://github.com/kubeflow/manifests">these instructions</a>. 
 
 <a id="next-steps"></a>
 ## Next steps
 
-* Review the [Kubeflow component documentation](/docs/components/)
-* Explore the [Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/)
+* Review the <a href="/docs/components/">Kubeflow component documentation</a>
+* Explore the <a href="/docs/components/pipelines/sdk/">Kubeflow Pipelines SDK</a>
