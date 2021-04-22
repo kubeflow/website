@@ -63,9 +63,9 @@ Packaged distributions are developed and supported by their respective maintaine
         <td></td>
       </tr>
       <tr>
-        <td>Kubeflow on Openshift</td>
+        <td>Kubeflow on OpenShift</td>
         <td>IBM Cloud</td>
-        <td>Openshift</td>
+        <td>OpenShift</td>
         <td><a href="/docs/distributions/openshift/">Docs</a></td>
         <td></td>
       </tr>
@@ -93,7 +93,7 @@ Packaged distributions are developed and supported by their respective maintaine
       <tr>
         <td>MiniKF</td>
         <td>Arrikto</td>
-        <td>Cloud Marketplaces, Vagrant</td>
+        <td>AWS Marketplace, GCP Marketplace, Vagrant</td>
         <td><a href="/docs/distributions/minikf/">Docs</a></td>
         <td></td>
       </tr>
@@ -105,7 +105,7 @@ Packaged distributions are developed and supported by their respective maintaine
 ## Manifests
 
 {{% alert color="warning" %}}
-This method is for advanced users, the Kubeflow community will not support environment-specific issues. If you need support, please consider using a [packaged distribution](#packaged-distributions) of Kubeflow.
+This method is for advanced users. The Kubeflow community will not support environment-specific issues. If you need support, please consider using a [packaged distribution](#packaged-distributions) of Kubeflow.
 {{% /alert %}}
 
 The <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests Working Group</a> is responsible for aggregating the authoritative manifests of each official Kubeflow component.
