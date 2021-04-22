@@ -77,6 +77,13 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="https://github.com/argoflow/argoflow">External Website</a></td>
       </tr>
       <tr>
+        <td>Arrikto MiniKF</td>
+        <td>Arrikto</td>
+        <td>AWS Marketplace, GCP Marketplace, Vagrant</td>
+        <td><a href="/docs/distributions/minikf/">Docs</a></td>
+        <td></td>
+      </tr>
+      <tr>
         <td>Charmed Kubeflow</td>
         <td>Canonical</td>
         <td>Conformant Kubernetes</td>
@@ -89,13 +96,6 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>MicroK8s</td>
         <td><a href="/docs/distributions/microk8s/">Docs</a></td>
         <td><a href="https://microk8s.io/docs/addon-kubeflow">External Website</a></td>
-      </tr>
-      <tr>
-        <td>MiniKF</td>
-        <td>Arrikto</td>
-        <td>AWS Marketplace, GCP Marketplace, Vagrant</td>
-        <td><a href="/docs/distributions/minikf/">Docs</a></td>
-        <td></td>
       </tr>
     </tbody>
   </table>
