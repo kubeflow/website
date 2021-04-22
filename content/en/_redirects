@@ -145,6 +145,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/serving                       /docs/external-add-ons/serving
 /docs/components/metadata                      /docs
 
+# Rename Getting Started to Installing Kubeflow
+/docs/started/getting-started           /docs/started/installing-kubeflow
+
 # ===============
 # IMPORTANT NOTE: 
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
