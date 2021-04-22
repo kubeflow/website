@@ -8,14 +8,13 @@ weight = 20
 <a id="introduction"></a>
 ## Introduction
 
-Kubeflow is an end-to-end MLOps platform for Kubernetes.
-Kubeflow provides components for each stage in the Machine Learning (ML) lifecycle from exploration through to training and deployment.
+Kubeflow is an end-to-end Machine Learning (ML) platform for Kubernetes, it provides components for each stage in the ML lifecycle, from exploration through to training and deployment.
 Kubeflow is modular, allowing operators to choose what is best for their users, there is no requirement to deploy every component.
+To read more about the components and architecture of Kubeflow, please see the <a href="/docs/started/kubeflow-overview/">Kubeflow Overview</a> page.
 
-To read more about each of the core components and architecture of Kubeflow, please see the <a href="/docs/started/kubeflow-overview/">Kubeflow Overview</a> page.
-
-There are two options for getting up and running with Kubeflow. 
-You may either use a packaged distribution, or install directly from the open-source Kubernetes manifests.
+There are two options for getting up and running with Kubeflow, you may either:
+1. Use a [packaged distribution](#packaged-distributions)
+1. Use the [manifests](#manifests) (advanced)
 
 <a id="packaged-distributions"></a>
 ## Packaged distributions
@@ -106,11 +105,12 @@ The open-source Kubeflow community does not currently endorse or certify any pac
   </table>
 </div>
 
-<a id="directly-use-the-manifests"></a>
-## Directly use the manifests
+<a id="manifests"></a>
+## Manifests
 
 {{% alert title="Warning" color="warning" %}}
-Installing kubeflow from the manifests is intended for advanced users, and Kubeflow community will not support environment-specific issues.
+Installing kubeflow from the manifests is intended for advanced users, the Kubeflow community will not support environment-specific issues.
+
 If you need support, please consider using a packaged distribution of Kubeflow.
 {{% /alert %}}
 
