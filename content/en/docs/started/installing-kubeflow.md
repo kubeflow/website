@@ -5,24 +5,16 @@ weight = 20
 
 +++
 
-<a id="introduction"></a>
-## Introduction
-
 Kubeflow is an end-to-end Machine Learning (ML) platform for Kubernetes, it provides components for each stage in the ML lifecycle, from exploration through to training and deployment.
 Kubeflow is modular, allowing operators to choose what is best for their users, there is no requirement to deploy every component.
 To read more about the components and architecture of Kubeflow, please see the <a href="/docs/started/kubeflow-overview/">Kubeflow Overview</a> page.
 
-There are two options for getting up and running with Kubeflow, you may either:
+There are two pathways to get up and running with Kubeflow, you may either:
 1. Use a [packaged distribution](#packaged-distributions)
 1. Use the [manifests](#manifests) (advanced)
 
 <a id="packaged-distributions"></a>
 ## Packaged distributions
-
-{{% alert title="Info" color="success" %}}
-Packaged distributions of Kubeflow are developed and supported by their respective maintainers.
-The open-source Kubeflow community does not currently endorse or certify any packaged distribution.
-{{% /alert %}}
 
 <b>See the table below for a list of options and links to documentation:</b>
 
@@ -105,17 +97,23 @@ The open-source Kubeflow community does not currently endorse or certify any pac
   </table>
 </div>
 
+{{% alert title="Warning" color="warning" %}}
+Packaged distributions of are developed and supported by their respective maintainers.
+
+The open-source Kubeflow community does not currently endorse or certify any distribution.
+{{% /alert %}}
+
 <a id="manifests"></a>
 ## Manifests
+
+The <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests Working Group</a> is responsible for aggregating the authoritative manifests of each official Kubeflow component.
+While these manifests are intended to be the base of packaged distributions, advanced users may choose to install them directly by following <a href="https://github.com/kubeflow/manifests">these instructions</a>. 
 
 {{% alert title="Warning" color="warning" %}}
 Installing kubeflow from the manifests is intended for advanced users, the Kubeflow community will not support environment-specific issues.
 
 If you need support, please consider using a packaged distribution of Kubeflow.
 {{% /alert %}}
-
-The <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests Working Group</a> is responsible for aggregating the authoritative manifests of each official Kubeflow component.
-While these manifests are intended to be the base of packaged distributions, advanced users may choose to install them directly by following <a href="https://github.com/kubeflow/manifests">these instructions</a>. 
 
 <a id="next-steps"></a>
 ## Next steps
