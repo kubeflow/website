@@ -36,14 +36,14 @@ Packaged distributions are developed and supported by their respective maintaine
     <tbody>
       <tr>
         <td>Kubeflow on AWS</td>
-        <td>AWS</td>
+        <td>Amazon Web Services</td>
         <td>Amazon Elastic Kubernetes Service (EKS)</td>
         <td><a href="/docs/distributions/aws/">Docs</a></td>
         <td></td>
       </tr>
       <tr>
         <td>Kubeflow on Azure</td>
-        <td>Azure</td>
+        <td>Microsoft Azure</td>
         <td>Azure Kubernetes Service (AKS)</td>
         <td><a href="/docs/distributions/azure/">Docs</a></td>
         <td></td>
@@ -84,9 +84,9 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="https://charmed-kubeflow.io/docs">External Website</a></td>
       </tr>
       <tr>
-        <td>MicroK8s Kubeflow add-on</td>
+        <td>MicroK8s Kubeflow Add-on</td>
         <td>Canonical</td>
-        <td>MicroK8S</td>
+        <td>MicroK8s</td>
         <td><a href="/docs/distributions/microk8s/">Docs</a></td>
         <td><a href="https://microk8s.io/docs/addon-kubeflow">External Website</a></td>
       </tr>
