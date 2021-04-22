@@ -402,6 +402,7 @@ framework for its CMA-ES search.
 The [Covariance Matrix Adaptation Evolution Strategy](https://en.wikipedia.org/wiki/CMA-ES)
 is a stochastic derivative-free numerical optimization algorithm for optimization
 problems in continuous search spaces.
+You can also use [IPOP-CMA-ES](https://sci2s.ugr.es/sites/default/files/files/TematicWebSites/EAMHCO/contributionsCEC05/auger05ARCMA.pdf) and [BIPOP-CMA-ES](https://hal.inria.fr/inria-00382093/document), variant algorithms for restarting optimization when converges to local minimum.
 
 Katib supports the following algorithm settings:
 
@@ -425,6 +426,11 @@ Katib supports the following algorithm settings:
         <td>sigma</td>
         <td>[float]: Initial standard deviation of CMA-ES.</td>
         <td>0.001</td>
+      </tr>
+      <tr>
+        <td>restart_strategy</td>
+        <td>[string, "none", "ipop", or "bipop", default="none"]: Strategy for restarting CMA-ES optimization when converges to a local minimum.</td>
+        <td>"ipop"</td>
       </tr>
     </tbody>
   </table>
