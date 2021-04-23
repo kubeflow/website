@@ -36,7 +36,7 @@ Packaged distributions are developed and supported by their respective maintaine
     <tbody>
       <tr>
         <td>Kubeflow on AWS</td>
-        <td>Amazon Web Services</td>
+        <td>Amazon Web Services (AWS)</td>
         <td>Amazon Elastic Kubernetes Service (EKS)</td>
         <td><a href="/docs/distributions/aws/">Docs</a></td>
         <td></td>
@@ -82,6 +82,20 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>AWS Marketplace, GCP Marketplace, Vagrant</td>
         <td><a href="/docs/distributions/minikf/">Docs</a></td>
         <td></td>
+      </tr>
+      <tr>
+        <td>Arrikto Enterprise Kubeflow</td>
+        <td>Arrikto</td>
+        <td>EKS, 
+            AKS,
+            GKE 
+        </td>
+        <td>
+          <a href="/docs/distributions/ekf/">Docs</a>
+        </td>
+        <td>
+          <a href="https://www.arrikto.com/enterprise-kubeflow/">External Website</a>
+        </td>
       </tr>
       <tr>
         <td>Kubeflow Charmed Operators</td>
