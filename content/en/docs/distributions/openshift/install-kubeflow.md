@@ -5,7 +5,7 @@ weight = 4
                     
 +++
 
-This guide describes how to use the `kfctl` CLI to deploy Kubeflow 1.0 on an existing OpenShift 4.x cluster.
+This guide describes how to use the `kfctl` CLI to deploy Kubeflow 1.3 on an existing OpenShift 4.x cluster.
 
 ## Prerequisites
 
@@ -39,59 +39,53 @@ Minimal:
 
 Use the following steps to install Kubeflow 1.0 on OpenShift 4.x.
 
-1. Clone the [opendatahub/manifests]
-(https://github.com/opendatahub-io/manifests) repository. This repository defaults to the `v1.0-branch-openshift` branch.
+1. Download the example "kfdef" for Kubeflow 1.3 on Openshift from [kubeflow/manifests/distributions/kfdef]
+(https://raw.githubusercontent.com/kubeflow/manifests/master/distributions/kfdef/kfctl_openshift_v1.3.0.yaml) repository.
+
+
+1. Build the deployment configuration using the example OpenShift KFDef file.
+
+    > Create a directory an copy the KFDef file to it. And finally build the configuration.
 
     ```
-    git clone https://github.com/opendatahub-io/manifests.git
-    cd manifests
-    ```
-
-1. Build the deployment configuration using the OpenShift KFDef file and local downloaded manifests.
-
-    > Update the manifest repo URI. Copy the KFDef file to the Kubeflow application directory. And finally build the configuration.
-
-    ```
-    # update the manifest repo URI
-    sed -i 's#uri: .*#uri: '$PWD'#' ./kfdef/kfctl_openshift.yaml
-
-    # set the Kubeflow application diretory for this deployment, for example /opt/openshift-kfdef
+    # set the Kubeflow application directory for this deployment, for example /opt/openshift-kfdef
     export KF_DIR=<path-to-kfdef>
     mkdir -p ${KF_DIR}
-    cp ./kfdef/kfctl_openshift.yaml ${KF_DIR}
+    cp kfctl_openshift_v1.3.0.yaml ${KF_DIR}
     
     # build deployment configuration
     cd ${KF_DIR}
-    kfctl build --file=kfctl_openshift.yaml
+    kfctl build --file=kfctl_openshift_v1.3.0.yaml
     ```
 
 1. Apply the generated deployment configuration.
 
     ```
-    kfctl apply --file=kfctl_openshift.yaml
+    kfctl apply --file=kfctl_openshift_v1.3.0.yaml
     ```
 
 1. Wait until all the pods are running.
 
     ```
     $ oc get pods -n kubeflow
-    NAME                                                           READY     STATUS             RESTARTS   AGE
-    argo-ui-7c584fc474-k5blx                                       1/1       Running            0          3m46s
-    centraldashboard-678f74d985-rblnm                              1/1       Running            0          3m41s
-    jupyter-web-app-deployment-57977c6965-2qznb                    1/1       Running            0          3m37s
-    katib-controller-fddbb4864-fdzf5                               1/1       Running            1          3m4s
-    katib-db-6b9b5bc446-6pbtp                                      1/1       Running            0          3m3s
-    katib-manager-7797db7f7c-p5ztb                                 1/1       Running            1          3m3s
-    katib-ui-5bdbb97475-585rp                                      1/1       Running            0          3m2s
-    metadata-db-c88c9bf6f-5ddbz                                    1/1       Running            0          3m30s
-    metadata-deployment-969879b6c-swvqf                            1/1       Running            0          3m30s
-    metadata-envoy-deployment-69766744b5-75t5l                     1/1       Running            0          3m29s
-    metadata-grpc-deployment-578956fc6d-msvj5                      1/1       Running            3          3m29s
-    metadata-ui-57f9b8d667-dckm4                                   1/1       Running            0          3m28s
-    minio-784784b9bb-bqslk                                         1/1       Running            0          2m56s
-    ml-pipeline-687969b966-wx6jd                                   1/1       Running            0          2m59s
-    ml-pipeline-ml-pipeline-visualizationserver-57997bdc64-jw6l4   1/1       Running            0          2m37s
-    ml-pipeline-persistenceagent-b74f6455b-z9nzw                   1/1       Running            0          2m51s
+    NAME                                               READY   STATUS              RESTARTS   AGE
+    admission-webhook-deployment-6748884cff-wb7kp      1/1     Running             0          42h
+    cache-deployer-deployment-799f449d59-5zl2l         1/1     Running             0          42h
+    cache-server-67849767c5-7w44j                      1/1     Running             0          42h
+    centraldashboard-78f95899fc-8rt8k                  1/1     Running             0          42h
+    metadata-envoy-deployment-67fd74f564-tsrxm         1/1     Running             0          42h
+    metadata-grpc-deployment-9d547547d-g9cq7           1/1     Running             0          42h
+    metadata-writer-7776fc6f6f-4f4hp                   1/1     Running             0          42h
+    minio-5cb67d5f6d-l9665                             1/1     Running             0          42h
+    ml-pipeline-6d4fbc667b-hhqsw                       1/1     Running             0          42h
+    ml-pipeline-persistenceagent-667c448c65-r9sn5      1/1     Running             0          42h
+    ml-pipeline-scheduledworkflow-5b9769fc8b-s9nt8     1/1     Running             0          42h
+    ml-pipeline-ui-6f9f496b7-9rr4s                     1/1     Running             0          42h
+    ml-pipeline-viewer-crd-77ccffd6d4-n4x55            1/1     Running             0          42h
+    ml-pipeline-visualizationserver-6c7b448b99-5ttn4   1/1     Running             0          42h
+    mysql-7659b8f58c-npr57                             1/1     Running             0          42h
+    profiles-deployment-7c8446984b-nvvh7               2/2     Running             0          42h
+    workflow-controller-7899f6947-gz7km                1/1     Running             0          42h    
     ...
     ```
 
@@ -103,7 +97,5 @@ Use the following steps to install Kubeflow 1.0 on OpenShift 4.x.
 
 ## Next steps
 
-* Learn about the [changes made](https://developers.redhat.com/blog/2020/08/13/open-data-hub-0-7-adds-support-for-kubeflow-1-0//) to Kubeflow manifests to enable deployment on OpenShift
-* See how to [upgrade or reinstall a Kubeflow Pipelines deployment](/docs/pipelines/upgrade/).
 * See how to [uninstall](/docs/openshift/uninstall-kubeflow) your Kubeflow deployment 
   using the CLI.
