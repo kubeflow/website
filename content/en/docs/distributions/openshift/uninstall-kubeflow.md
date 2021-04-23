@@ -10,7 +10,8 @@ To delete a Kubeflow installation please follow these steps:
 
 ```
 kfctl delete --file=./kfdef/kfctl_openshift_v1.3.0.yaml
-rm -rf kfdef/kustomize/
+rm -rf kustomize/
+rm -rf .cache/
 ```
 
 Delete all MutatingWebhookConfiguration and ValidatingWebhookConfiguration created by Kubeflow
