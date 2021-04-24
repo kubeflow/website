@@ -134,9 +134,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/started/k8s/overview              /docs/distributions/kfctl/overview
 
 # Moved MiniKF to distributions
-/docs/started/workstation/getting-started-minikf        /docs/distributions/getting-started-minikf
-/docs/started/workstation/minikf-aws                    /docs/distributions/minikf-aws
-/docs/started/workstation/minikf-gcp                    /docs/distributions/minikf-gcp
+/docs/started/workstation/getting-started-minikf        /docs/distributions/minikf/getting-started-minikf
+/docs/started/workstation/minikf-aws                    /docs/distributions/minikf/minikf-aws
+/docs/started/workstation/minikf-gcp                    /docs/distributions/minikf/minikf-gcp
 
 # Distinguish components from external add-ons 
 /docs/components/fairing                       /docs/external-add-ons/fairing
