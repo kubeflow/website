@@ -60,12 +60,18 @@ component has finished, the component's outputs are returned as files.
 
 When you design your component's code, consider the following:
 
-*   Which inputs are small enough to pass by value? Examples of inputs that you
-    can pass by value include numbers, booleans, and short strings. All other
-    inputs must be stored as files, with the paths passed into your function.
-*   Your component's outputs must be stored as files. Kubeflow Pipelines passes
-    paths as inputs to your component paths that you can use to store your
-    component's outputs.
+*   Which inputs can be passed to your component by value? Examples of inputs that you
+    can pass by value include numbers, booleans, and short strings. Any value that you
+    could reasonably pass as a command-line argument can be passed to your component by
+    value.  All other inputs must be stored as files, with the paths passed into your function.
+*   To return an output from your component, the output's data must be stored as a file.
+    When you define your component, you let Kubeflow Pipelines know what outputs your
+    component produces. When your pipeline runs, Kubeflow Pipelines passes the
+    paths that you use to store your component's outputs as inputs to your component.
+*   Outputs are typically written to a single file. In some cases, you may need to
+    return a directory of files as an output. In this case, create a directory at the
+    output path and write the output files to that location. In both cases, it may be
+    necessary to create parent directories if they do not exist.
 *   Your component's goal may be to create a dataset in an external service,
     such as a BigQuery table. In this case, it may make sense for the component
     to output an identifier for the produced data, such as a table name,
