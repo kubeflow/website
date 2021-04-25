@@ -459,11 +459,6 @@ client.create_run_from_pipeline_package(
 [k8s-resources]: https://www.kubeflow.org/docs/components/pipelines/sdk/manipulate-resources/
 
 
-```python
-
-```
-
-
 <div class="notebook-links">
 <a class="colab-link" href="https://colab.research.google.com/github/kubeflow/website/blob/master/content/en/docs/pipelines/sdk/build-pipeline.ipynb">Run in Google Colab</a>
 <a class="github-link" href="https://github.com/kubeflow/website/blob/master/content/en/docs/pipelines/sdk/build-pipeline.ipynb">View source on GitHub</a>
