@@ -238,10 +238,10 @@ when designing a pipeline.
     into a single file.
 
 [container-op]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp
-[component-spec]: https://www.kubeflow.org/docs/pipelines/reference/component-spec/
-[python-function-component]: https://www.kubeflow.org/docs/pipelines/sdk/python-function-components/
+[component-spec]: https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/
+[python-function-component]: https://www.kubeflow.org/docs/components/pipelines/sdk/python-function-components/
 [component-dev]: https://www.kubeflow.org/docs/components/pipelines/sdk/component-development/
-[python-function-component-data-passing]: https://www.kubeflow.org/docs/pipelines/sdk/python-function-components/#understanding-how-data-is-passed-between-components
+[python-function-component-data-passing]: https://www.kubeflow.org/docs/components/pipelines/sdk/python-function-components/#understanding-how-data-is-passed-between-components
 [prebuilt-components]: https://www.kubeflow.org/docs/examples/shared-resources/
 
 
@@ -336,7 +336,7 @@ $ head merged_data.csv
     The following example shows the updated `merge_csv` function.
 
 [web-download-component]: https://github.com/kubeflow/pipelines/blob/master/components/web/Download/component.yaml
-[python-function-components]: https://www.kubeflow.org/docs/pipelines/sdk/python-function-components/
+[python-function-components]: https://www.kubeflow.org/docs/components/pipelines/sdk/python-function-components/
 [input-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html?highlight=inputpath#kfp.components.InputPath
 [output-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html?highlight=outputpath#kfp.components.OutputPath
 
@@ -434,7 +434,7 @@ kfp.compiler.Compiler().compile(
     your `pipeline.yaml`. See the guide to [getting started with the
     UI][quickstart].
 
-[quickstart]: https://www.kubeflow.org/docs/pipelines/pipelines-quickstart
+[quickstart]: https://www.kubeflow.org/docs/components/pipelines/pipelines-quickstart
 
 
 ```python
@@ -455,8 +455,13 @@ client.create_run_from_pipeline_package(
     pipeline][k8s-resources] (Experimental).
 
 [conditional]: https://github.com/kubeflow/pipelines/blob/master/samples/tutorials/DSL%20-%20Control%20structures/DSL%20-%20Control%20structures.py
-[recursion]: https://www.kubeflow.org/docs/pipelines/sdk/dsl-recursion/
-[k8s-resources]: https://www.kubeflow.org/docs/pipelines/sdk/manipulate-resources/
+[recursion]: https://www.kubeflow.org/docs/components/pipelines/sdk/dsl-recursion/
+[k8s-resources]: https://www.kubeflow.org/docs/components/pipelines/sdk/manipulate-resources/
+
+
+```python
+
+```
 
 
 <div class="notebook-links">
