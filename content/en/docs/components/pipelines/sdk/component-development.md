@@ -63,7 +63,7 @@ When you design your component's code, consider the following:
 *   Which inputs can be passed to your component by value? Examples of inputs that you
     can pass by value include numbers, booleans, and short strings. Any value that you
     could reasonably pass as a command-line argument can be passed to your component by
-    value.  All other inputs must be stored as files, with the paths passed into your function.
+    value.  All other inputs are passed to your component by a reference to the input's path.
 *   To return an output from your component, the output's data must be stored as a file.
     When you define your component, you let Kubeflow Pipelines know what outputs your
     component produces. When your pipeline runs, Kubeflow Pipelines passes the
