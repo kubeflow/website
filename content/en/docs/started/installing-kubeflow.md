@@ -98,6 +98,7 @@ Packaged distributions are developed and supported by their respective maintaine
             AKS,
             GKE 
         </td>
+        <td>1.3</td>
         <td>
           <a href="/docs/distributions/ekf/">Docs</a>
         </td>
