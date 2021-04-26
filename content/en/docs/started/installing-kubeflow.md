@@ -14,7 +14,7 @@ There are two pathways to get up and running with Kubeflow, you may either:
 1. Use the [manifests](#manifests) (advanced)
 
 <a id="packaged-distributions"></a>
-## Packaged distributions
+## Install a packaged Kubeflow distribution
 
 {{% alert color="warning" %}}
 Packaged distributions are developed and supported by their respective maintainers, the Kubeflow community does not currently endorse or certify any distribution.
@@ -116,7 +116,7 @@ Packaged distributions are developed and supported by their respective maintaine
 </div>
 
 <a id="manifests"></a>
-## Manifests
+## Install the Kubeflow Manifests manually 
 
 {{% alert color="warning" %}}
 This method is for advanced users. The Kubeflow community will not support environment-specific issues. If you need support, please consider using a [packaged distribution](#packaged-distributions) of Kubeflow.
