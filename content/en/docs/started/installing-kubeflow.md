@@ -71,7 +71,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on OpenShift</td>
         <td>IBM Cloud</td>
         <td>OpenShift</td>
-        <td>1.2</td>
+        <td>1.3</td>
         <td><a href="/docs/distributions/openshift/">Docs</a></td>
         <td></td>
       </tr>
