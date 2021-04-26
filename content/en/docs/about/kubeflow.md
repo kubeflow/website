@@ -23,7 +23,7 @@ your environment and install Kubeflow.
 
 Watch the following video which provides an introduction to Kubeflow.
 
-{{< youtube cTZArDgbIWw title="Introduction to Kubeflow">}}
+{{< youtube id="cTZArDgbIWw" title="Introduction to Kubeflow">}}
 
 ## What is Kubeflow?
 
