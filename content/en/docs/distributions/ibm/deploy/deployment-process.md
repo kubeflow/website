@@ -34,6 +34,10 @@ directories:
 
 ## Kubeflow installation
 
+As of Kubeflow 1.3 the official installation documentation uses a combination of `kustomize` and `kubectl` to install Kubeflow. Using `kfdef` and `kfctl` will also continue to be a way to install Kubeflow. 
+
+### Install kfctl
+
 **Note**: kfctl is currently available for Linux and macOS users only. If you use Windows, you can install kfctl on Windows Subsystem for Linux (WSL). Refer to the official [instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for setting up WSL.
 
 Run the following commands to set up and deploy Kubeflow:
@@ -54,7 +58,34 @@ Run the following commands to set up and deploy Kubeflow:
       ```shell
       export PATH=$PATH:<path to where kfctl was unpacked>
       ```
- 
+
+### Install kubectl and kustomize
+
+* [Install kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) 
+* [Download kustomize 3.2.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/v3.2.0)
+
+To use the `kustomize` binary you would need make it executable and move it to your path.
+
+To add kustomize in your global path you can do the following
+
+```bash
+wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/<distribution>
+chmod +x <distribution>
+mv <distribution> /usr/local/bin/kustomize
+```
+
+Your machine might already have `kustomize` installed. If you want to just add this version of `kustomize` to your path temporarily you can do it this way
+
+```bash
+wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/<distribution>
+chmod +x <distribution>
+mv <distribution> /some/path/kustomize
+# /some/path should not already be in path. 
+export PATH=/some/path:$PATH
+# order is important here. $PATH needs to be the last thing. We are trying to put our kustomize before the kustomize installtion in system.
+```
+
+
  ## Next Steps
 
  1. Go here for installing [Kubeflow on IKS](/docs/ibm/deploy/install-kubeflow-on-iks)
