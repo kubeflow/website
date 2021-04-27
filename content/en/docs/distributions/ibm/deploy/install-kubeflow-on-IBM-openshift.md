@@ -4,7 +4,7 @@ description = "Instructions for deploying Kubeflow on IBM Cloud OpenShift"
 weight = 7
 +++
 
-**This guide has not yet been update for Kubeflow 1.3**
+**This guide has not yet been updated for Kubeflow 1.3**
 
 This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud Kubernetes Service (IKS).
 

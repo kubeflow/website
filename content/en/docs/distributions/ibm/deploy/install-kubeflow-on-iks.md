@@ -85,12 +85,16 @@ Choose either **single user** or **multi-tenant** section based on your usage.
 
 If you're experiencing issues during the installation because of conflicts on your Kubeflow deployment, you can [uninstall Kubeflow](/docs/ibm/deploy/uninstall-kubeflow) and install it again.
 
-### Single user
+## Single user
+
+For single user installation we can either use `kfctl` or `kustomize` + `kubectl`
+
+### Using kfctl
 
 Run the following commands to set up and deploy Kubeflow for a single user without any authentication.
 
-**Note**: By default, Kubeflow deployment on IBM Cloud uses the [Kubeflow pipeline with the Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
-If you want to use the Kubeflow pipeline with the Argo backend, modify and uncomment the `argo` and `kfp-argo` applications
+> **Note**: By default, Kubeflow deployment on IBM Cloud uses the [Kubeflow pipeline with the Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
+If you want to use the Kubeflow pipeline with the Argo backend, modify and uncomment the `kfp-argo` applications
 inside the `kfctl_ibm.yaml` below and remove the `kfp-tekton` applications. 
 
 ```shell
@@ -107,7 +111,7 @@ export KF_DIR=${BASE_DIR}/${KF_NAME}
 
 # Set the configuration file to use, such as:
 export CONFIG_FILE=kfctl_ibm.yaml
-export CONFIG_URI="https://github.com/IBM/manifests/blob/v1.3/distributions/kfdef/kfctl_ibm.v1.3.0.yaml"
+export CONFIG_URI="https://raw.githubusercontent.com/IBM/manifests/v1.3/distributions/kfdef/kfctl_ibm.v1.3.0.yaml"
 
 # Generate Kubeflow:
 mkdir -p ${KF_DIR}
@@ -130,16 +134,62 @@ kfctl apply -V -f ${CONFIG_FILE}
 
 * **${KF_DIR}** - The full path to your Kubeflow application directory.
 
-The Kubeflow endpoint is exposed with [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) 30380. If you don't have any experience on Kubernetes, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer) and access the **EXTERNAL_IP**.
+<hr/>
 
-For single user Kubeflow we use Dex authentication by default. Access the cluster with the following
+### Using kustomize together with kubectl
+
+1. Clone the manifest repo as follows:
+
+```shell
+git clone git@github.com:kubeflow/manifests.git
+```
+
+2. Checkout `v1.3-branch`:
+
+```shell
+git checkout v1.3-branch
+```
+
+3. Create a folder in the root folder
+
+```shell
+mkdir ibm
+cd ibm
+```
+
+4. Download an example `kustomization.yaml` for single user kubeflow 1.3 on IKS.
+
+```bash
+wget https://raw.githubusercontent.com/ibm/manifests/v1.3/iks-single/kustomization.yaml
+cd ..
+```
+
+> Not all the components are required to run Kubeflow. 
+
+5. You can apply the `kustomize` file from the root of the repository:
+
+```shell
+kustomize build -f ibm/kustomization.yaml | kubectl apply -f -
+```
+
+You may see errors after the first time you run the command. You can run the following while loop until you are successful.
 
 ```
+while ! kustomize build ibm | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
+```
+
+### Accessing your cluster
+
+The Kubeflow endpoint is exposed with [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) `30380`. To get a static ip, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer) and access the **EXTERNAL_IP**.
+
+For single-user Kubeflow, IBM Cloud uses Dex authentication by default. You can access the cluster as follows:
+
+```shell
 username=user@example.com
 password=12341234
 ```
 
-### Multi-user, auth-enabled
+## Multi-user, auth-enabled
 
 Run the following steps to deploy Kubeflow with [IBM Cloud AppID](https://cloud.ibm.com/catalog/services/app-id)
 as an authentication provider. 
@@ -148,6 +198,34 @@ The scenario is a Kubeflow cluster admin configures Kubeflow as a web
 application in AppID and manages user authentication with builtin identity
 providers (Cloud Directory, SAML, social log-in with Google or Facebook etc.) or
 custom providers.
+
+### Prerequisites
+
+For authentication,  IBM Cloud uses [AppID](https://cloud.ibm.com/catalog/services/app-id)
+
+1. Follow the [Creating an App ID service instance on IBM Cloud](https://cloud.ibm.com/catalog/services/app-id) guide to learn about Kubeflow authentication. 
+You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=appid-getting-started) with different authentication methods.
+
+2. Follow the [Registering your app](https://cloud.ibm.com/docs/appid?topic=appid-app#app-register) section of the App ID guide
+to create an application with type _regularwebapp_ under the provisioned AppID
+instance. Make sure the _scope_ contains _email_. Then retrieve the following
+configuration parameters from your AppID:
+    * `clientId`
+    * `secret`
+    * `oAuthServerUrl`
+
+    You will be using these information in the subsequent sections.  
+  
+3. Register the Kubeflow OIDC redirect page. The Kubeflow `REDIRECT_URL` URL is `http://<kubeflow-FQDN>/login/oidc`. 
+`<kubeflow-FQDN>` is the endpoint for accessing Kubeflow. By default, the `<kubeflow-FQDN>` on IBM Cloud is `<worker_node_external_ip>:30380`. If you don't have any experience on Kubernetes, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer) and use the **EXTERNAL_IP** for your `<kubeflow-FQDN>`.
+
+4. Then, you need to place the Kubeflow OIDC `REDIRECT_URL` under **Manage Authentication** > **Authentication settings** > **Add web redirect URLs**.
+  
+<img src="/docs/images/ibm/appid-redirect-settings.png" 
+  alt="APP ID Redirect Settings"
+  class="mt-3 mb-3 border border-info rounded">
+
+### Using kfctl
 
 1. Set up environment variables:
 
@@ -173,54 +251,34 @@ custom providers.
     curl -L ${CONFIG_URI} > ${CONFIG_FILE}
     ```
     
-**Note**: By default, the IBM configuration is using the [Kubeflow pipeline with the Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
+> **Note**: By default, the IBM configuration is using the [Kubeflow pipeline with the Tekton backend](https://github.com/kubeflow/kfp-tekton#kubeflow-pipelines-with-tekton).
     If you want to use the Kubeflow pipeline with the Argo backend, modify and uncomment the `kfp-argo` applications inside the `kfctl_ibm_multi_user.yaml` and remove the `kfp-tekton` applications. 
     
-1. Deploy Kubeflow:
+3. Deploy Kubeflow:
 
     ```shell
     kfctl apply -V -f ${CONFIG_FILE}
     ```
 
-2. Wait until the deployment finishes successfully — for example, all pods should be in the `Running` state when you run the command:
+4. Wait until the deployment finishes successfully — for example, all pods should be in the `Running` state when you run the command:
 
     ```shell
     kubectl get pod -n kubeflow
     ```
 
-3. Follow the [Creating an App ID service instance on IBM Cloud](https://cloud.ibm.com/catalog/services/app-id) guide for Kubeflow authentication. 
-You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=appid-getting-started) with different authentication methods.
+5. Create a configmap `oidc-authservice-parameters` and a secret `oidc-authservice-client` in the `istio-system` namespace that holds the information needed by the `authservice`.
 
-4. Follow the [Registering your app](https://cloud.ibm.com/docs/appid?topic=appid-app#app-register) section of the App ID guide
-to create an application with type _regularwebapp_ under the provisioned AppID
-instance. Make sure the _scope_ contains _email_. Then retrieve the following
-configuration parameters from your AppID:
-    * `clientId`
-    * `secret`
-    * `oAuthServerUrl`
-    
-5. Register the Kubeflow OIDC redirect page. The Kubeflow OIDC redirect URL is `http://<kubeflow-FQDN>/login/oidc`. 
-`<kubeflow-FQDN>` is the endpoint for accessing Kubeflow. By default, the `<kubeflow-FQDN>` on IBM Cloud is `<worker_node_external_ip>:30380`. If you don't have any experience on Kubernetes, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer) and use the **EXTERNAL_IP** for your `<kubeflow-FQDN>`.
+We will be updating these to match our `appid` service created in the [Prereq](#prerequisites-1) step. 
 
-  Then, you need to place the Kubeflow OIDC redirect URL under **Manage Authentication** > **Authentication settings** > **Add web redirect URLs**.
-  
-<img src="/docs/images/ibm/appid-redirect-settings.png" 
-  alt="APP ID Redirect Settings"
-  class="mt-3 mb-3 border border-info rounded">
+You will need the following values:
 
-
-1. We create a configmap `oidc-authservice-parameters` and a secret `oidc-authservice-client` in the `istio-system` namespace that holds the info needed by the `authservice`
-
-We will be updating these to match our `appid` service created in the last step. 
-
-These are the values we will need
 
  * `<oAuthServerUrl>` - fill in the value of oAuthServerUrl
  * `<clientId>` - fill in the value of clientId
  * `<secret>` - fill in the value of secret
  * `<kubeflow-FQDN>` - fill in the FQDN of Kubeflow, if you don't know yet, just give a dummy one like `localhost`. Then change it after you got one.
 
-Patch ConfigMap
+##### Patch ConfigMap
 
 ```bash
 export OIDC_PROVIDER=<oAuthServerUrl>
@@ -232,7 +290,7 @@ export PATCH=$(printf '{"data": {"OIDC_AUTH_URL": "%s", "OIDC_PROVIDER": "%s", "
 kubectl patch cm -n istio-system oidc-authservice-parameters -p=$PATCH
 ```
 
-Patch Secret
+##### Patch Secret
 
 ```bash
 export CLIENT_ID=<clientId>
@@ -246,6 +304,53 @@ kubectl patch secret -n istio-system oidc-authservice-client -p=$PATCH
  **Note**: If any of the parameters are changed after the initial Kubeflow deployment, you 
  will need to manually update these parameters in the configmap `oidc-authservice-parameters` and/or secret `oidc-authservice-client`.
  Then, restart authservice by deleting the existing pod `kubectl delete po -n istio-system authservice-0 `.
+
+
+<hr/>
+
+### Using kustomize together with kubectl
+
+1. Follow steps 1-3 from [Single User using kustomize + kubectl](#using-kustomize-together-with-kubectl)
+
+2. Download the `kustomization.yaml` example
+
+```bash
+wget https://raw.githubusercontent.com/ibm/manifests/v1.3/iks-multi/kustomization.yaml
+cd ..
+```
+
+> If you already have a file downloaded for single user `kustomization.yaml` either delete it or put this file in a new folder with different name.
+
+
+3. Download the `kustomization.yaml` example
+
+
+```bash
+wget https://raw.githubusercontent.com/ibm/manifests/v1.3/iks-multi/kustomization.yaml
+cd ..
+```
+
+4. Update the `distribution/stacks/ibm/application/oidc-authservice-appid/parms.env` and `distribution/stacks/ibm/application/oidc-authservice-appid/secret_params.env` with values collected in [Prereq](#prerequisites-1) section. 
+
+5. You can apply the `kustomize` file from the root of the repository:
+
+```bash
+kustomize build -f ibm/kustomization.yaml | kubectl apply -f -
+```
+
+You may see errors after the first time you run the command. You can run the following while loop until you are successful.
+
+```
+while ! kustomize build ibm | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
+```
+
+6. If at any point the values change and you have to change them, you can either patch the [configmap](#patch-configmap) and [secret](#patch-secret) or change the content in the files and apply the kustomize again. You will need to restart authservice by deleting the pod `kubectl delete po -n istio-system authservice-0` .
+
+    To apply just the `oidc-authservice-appid` you can use this command:
+
+```bash
+kustomize build -f distribution/stacks/ibm/application/oidc-authservice-appid | kubectl apply -f -
+```
 
 ### Verify mutli-user installation
 
@@ -307,7 +412,7 @@ kubectl patch configmap appid-application-configuration -n istio-system -p=$PATC
 3. Restart the pod `authservice-0`:
 
 ```shell
-kubectl rollout restart statefulset authservice -n istio-system
+kubectl delete po authservice -n istio-system
 ```
 
 Then, visit `https://<kubeflow-FQDN>/`. The page should redirect you to AppID for authentication.

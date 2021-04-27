@@ -34,7 +34,7 @@ directories:
 
 ## Kubeflow installation
 
-As of Kubeflow 1.3 the official installation documentation uses a combination of `kustomize` and `kubectl` to install Kubeflow. Using `kfdef` and `kfctl` will also continue to be a way to install Kubeflow. 
+As of Kubeflow 1.3, the official installation documentation uses a combination of `kustomize` and `kubectl` to install Kubeflow. Using `kfdef` and `kfctl` will also continue to be a way to install Kubeflow. 
 
 ### Install kfctl
 
@@ -64,9 +64,9 @@ Run the following commands to set up and deploy Kubeflow:
 * [Install kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) 
 * [Download kustomize 3.2.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/v3.2.0)
 
-To use the `kustomize` binary you would need make it executable and move it to your path.
+To use the `kustomize` binary, you need to make it executable and move it to your path.
 
-To add kustomize in your global path you can do the following
+To add `kustomize` to your global path, run the following commands:
 
 ```bash
 wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/<distribution>
@@ -74,7 +74,7 @@ chmod +x <distribution>
 mv <distribution> /usr/local/bin/kustomize
 ```
 
-Your machine might already have `kustomize` installed. If you want to just add this version of `kustomize` to your path temporarily you can do it this way
+Your machine might already have `kustomize` installed. If you want to temporarily add this version of `kustomize` to your path, run the following commands:
 
 ```bash
 wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/<distribution>
@@ -85,8 +85,7 @@ export PATH=/some/path:$PATH
 # order is important here. $PATH needs to be the last thing. We are trying to put our kustomize before the kustomize installtion in system.
 ```
 
-
  ## Next Steps
 
- 1. Go here for installing [Kubeflow on IKS](/docs/ibm/deploy/install-kubeflow-on-iks)
- 2. Go here for installing [Kubeflow on IBM OpenShift](/docs/ibm/deploy/install-kubeflow-on-ibm-openshift)
+ 1. Go here for installing [Kubeflow on IKS](/docs/distributions/ibm/deploy/install-kubeflow-on-iks)
+ 2. Go here for installing [Kubeflow on IBM OpenShift](/docs/distributions/ibm/deploy/install-kubeflow-on-ibm-openshift)
