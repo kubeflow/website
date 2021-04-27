@@ -298,7 +298,7 @@ $ head merged_data.csv
             to implement the first step.
         *   Each step has a single responsibility, which makes the components
             easier to reuse.
-        *   The the zipped tar file is an artifact of the first pipeline step.
+        *   The zipped tar file is an artifact of the first pipeline step.
             This means that you can examine this artifact when debugging
             pipelines that use this component.
     
@@ -307,7 +307,7 @@ $ head merged_data.csv
 ### Build your pipeline components
 
         
-1.  Build you pipeline components. This example modifies the initial script to
+1.  Build your pipeline components. This example modifies the initial script to
     extract the contents of a zipped tar file, merge the CSV files that were
     contained in the zipped tar file, and return the merged CSV file.
     
@@ -321,7 +321,7 @@ $ head merged_data.csv
     *   The file download logic was removed. The path to the zipped tar file
         is passed as an argument to this function.
     *   The import statements were moved inside of the function. Python
-        function-based component require standalone Python functions. This
+        function-based components require standalone Python functions. This
         means that any required import statements must be defined within the
         function, and any helper functions must be defined within the function.
         Learn more about [building Python function-based
