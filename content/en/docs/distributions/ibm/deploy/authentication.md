@@ -20,7 +20,7 @@ guide.
 * Install and configure the
 [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cli-getting-started).
 * Install
-[multi-user, auth-enabled Kubeflow](../install-kubeflow/#multi-user-auth-enabled).
+[multi-user, auth-enabled Kubeflow](../install-kubeflow-on-iks/#multi-user-auth-enabled).
 
 ## Setting up an NLB
 
