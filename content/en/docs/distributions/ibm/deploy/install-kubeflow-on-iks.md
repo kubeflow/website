@@ -180,7 +180,7 @@ while ! kustomize build ibm | kubectl apply -f -; do echo "Retrying to apply res
 
 ### Accessing your cluster
 
-The Kubeflow endpoint is exposed with [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) `30380`. To get a static ip, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer) and access the **EXTERNAL_IP**.
+The Kubeflow endpoint is exposed with [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) `30380`. To get a static ip, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-a-loadbalancer) and access the **EXTERNAL_IP**.
 
 For single-user Kubeflow, IBM Cloud uses Dex authentication by default. You can access the cluster as follows:
 
@@ -217,7 +217,7 @@ configuration parameters from your AppID:
     You will be using these information in the subsequent sections.  
   
 3. Register the Kubeflow OIDC redirect page. The Kubeflow `REDIRECT_URL` URL is `http://<kubeflow-FQDN>/login/oidc`. 
-`<kubeflow-FQDN>` is the endpoint for accessing Kubeflow. By default, the `<kubeflow-FQDN>` on IBM Cloud is `<worker_node_external_ip>:30380`. To get a static ip, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer) and use the **EXTERNAL_IP** for your `<kubeflow-FQDN>`.
+`<kubeflow-FQDN>` is the endpoint for accessing Kubeflow. By default, the `<kubeflow-FQDN>` on IBM Cloud is `<worker_node_external_ip>:30380`. To get a static ip, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-a-loadbalancer) and use the **EXTERNAL_IP** for your `<kubeflow-FQDN>`.
 
 4. Then, you need to place the Kubeflow OIDC `REDIRECT_URL` under **Manage Authentication** > **Authentication settings** > **Add web redirect URLs**.
   
@@ -368,7 +368,7 @@ A `vpc-gen2` cluster does not assign a public IP address to the Kubernetes maste
 It provides access via a Load Balancer, which is configured to allow only a set of ports over public internet.
 Access the cluster's resources in a `vpc-gen2` cluster, using one of the following options,
 
-* Load Balancer method: To configure via a Load Balancer, go to [Expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer).
+* Load Balancer method: To configure via a Load Balancer, go to [Expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-a-loadbalancer).
     This method is recommended when you have Kubeflow deployed with [Multi-user, auth-enabled](#multi-user-auth-enabled) support — otherwise it will expose
   cluster resources to the public.
 
