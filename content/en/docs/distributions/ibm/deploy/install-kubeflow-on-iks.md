@@ -217,7 +217,7 @@ configuration parameters from your AppID:
     You will be using these information in the subsequent sections.  
   
 3. Register the Kubeflow OIDC redirect page. The Kubeflow `REDIRECT_URL` URL is `http://<kubeflow-FQDN>/login/oidc`. 
-`<kubeflow-FQDN>` is the endpoint for accessing Kubeflow. By default, the `<kubeflow-FQDN>` on IBM Cloud is `<worker_node_external_ip>:30380`. If you don't have any experience on Kubernetes, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer) and use the **EXTERNAL_IP** for your `<kubeflow-FQDN>`.
+`<kubeflow-FQDN>` is the endpoint for accessing Kubeflow. By default, the `<kubeflow-FQDN>` on IBM Cloud is `<worker_node_external_ip>:30380`. To get a static ip, you can [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-loadbalancer) and use the **EXTERNAL_IP** for your `<kubeflow-FQDN>`.
 
 4. Then, you need to place the Kubeflow OIDC `REDIRECT_URL` under **Manage Authentication** > **Authentication settings** > **Add web redirect URLs**.
   
@@ -303,7 +303,7 @@ kubectl patch secret -n istio-system oidc-authservice-client -p=$PATCH
  
  **Note**: If any of the parameters are changed after the initial Kubeflow deployment, you 
  will need to manually update these parameters in the configmap `oidc-authservice-parameters` and/or secret `oidc-authservice-client`.
- Then, restart authservice by deleting the existing pod `kubectl delete po -n istio-system authservice-0 `.
+ Then, restart authservice with `kubectl rollout restart statefulset authservice -n istio-system`. 
 
 
 <hr/>
@@ -344,7 +344,7 @@ You may see errors after the first time you run the command. You can run the fol
 while ! kustomize build ibm | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
 ```
 
-6. If at any point the values change and you have to change them, you can either patch the [configmap](#patch-configmap) and [secret](#patch-secret) or change the content in the files and apply the kustomize again. You will need to restart authservice by deleting the pod `kubectl delete po -n istio-system authservice-0` .
+1. If at any point the values change and you have to change them, you can either patch the [configmap](#patch-configmap) and [secret](#patch-secret) or change the content in the files and apply the kustomize again. You will need to restart authservice with `kubectl rollout restart statefulset authservice -n istio-system` .
 
     To apply just the `oidc-authservice-appid` you can use this command:
 
@@ -412,7 +412,7 @@ kubectl patch configmap appid-application-configuration -n istio-system -p=$PATC
 3. Restart the pod `authservice-0`:
 
 ```shell
-kubectl delete po authservice -n istio-system
+kubectl rollout restart statefulset authservice -n istio-system
 ```
 
 Then, visit `https://<kubeflow-FQDN>/`. The page should redirect you to AppID for authentication.
@@ -438,3 +438,11 @@ kubectl get svc istio-ingressgateway -n istio-system
 ```
 
 There is a small delay, usually ~5 mins, for above commands to take effect.
+
+### Authservice pod taking too long to restart
+
+You might see the `authservice-0` pod taking some time to restart. If that happens you can delete to pod which will kick off restart from kubernetes reconciler.
+
+```bash
+kubectl delete po authservice -n istio-system
+```
