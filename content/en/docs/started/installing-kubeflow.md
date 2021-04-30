@@ -118,7 +118,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>MicroK8s Kubeflow Add-on</td>
         <td>Canonical</td>
         <td>MicroK8s</td>
-        <td>1.2</td>
+        <td>1.3</td>
         <td><a href="/docs/distributions/microk8s/">Docs</a></td>
         <td><a href="https://microk8s.io/docs/addon-kubeflow">External Website</a></td>
       </tr>
