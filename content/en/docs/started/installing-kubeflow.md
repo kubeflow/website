@@ -29,8 +29,9 @@ Packaged distributions are developed and supported by their respective maintaine
         <th>Name</th>
         <th>Maintainer</th>
         <th>Platform</th>
-        <th>Link - Docs</th>
-        <th>Link - External Website</th>
+        <th>Version</th>
+        <th>Docs</th>
+        <th>Website</th>
       </tr>
     </thead>
     <tbody>
@@ -38,6 +39,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on AWS</td>
         <td>Amazon Web Services (AWS)</td>
         <td>Amazon Elastic Kubernetes Service (EKS)</td>
+        <td>1.2</td>
         <td><a href="/docs/distributions/aws/">Docs</a></td>
         <td></td>
       </tr>
@@ -45,6 +47,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on Azure</td>
         <td>Microsoft Azure</td>
         <td>Azure Kubernetes Service (AKS)</td>
+        <td>1.2</td>
         <td><a href="/docs/distributions/azure/">Docs</a></td>
         <td></td>
       </tr>
@@ -52,6 +55,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on GCP</td>
         <td>Google Cloud</td>
         <td>Google Kubernetes Engine (GKE)</td>
+        <td>1.2</td>
         <td><a href="/docs/distributions/gke/">Docs</a></td>
         <td></td>
       </tr>
@@ -59,6 +63,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on IBM Cloud</td>
         <td>IBM Cloud</td>
         <td>IBM Cloud Kubernetes Service (IKS) </td>
+        <td>1.2</td>
         <td><a href="/docs/distributions/ibm/">Docs</a></td>
         <td></td>
       </tr>
@@ -66,6 +71,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on OpenShift</td>
         <td>IBM Cloud</td>
         <td>OpenShift</td>
+        <td>1.3</td>
         <td><a href="/docs/distributions/openshift/">Docs</a></td>
         <td></td>
       </tr>
@@ -73,6 +79,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Argoflow</td>
         <td>Argoflow Community</td>
         <td>Conformant Kubernetes</td>
+        <td>1.3</td>
         <td>N/A</td>
         <td><a href="https://github.com/argoflow/argoflow">External Website</a></td>
       </tr>
@@ -80,8 +87,9 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Arrikto MiniKF</td>
         <td>Arrikto</td>
         <td>AWS Marketplace, GCP Marketplace, Vagrant</td>
+        <td>1.3</td>
         <td><a href="/docs/distributions/minikf/">Docs</a></td>
-        <td></td>
+        <td><a href="https://www.arrikto.com/get-started/">External Website</a></td>
       </tr>
       <tr>
         <td>Arrikto Enterprise Kubeflow</td>
@@ -90,6 +98,7 @@ Packaged distributions are developed and supported by their respective maintaine
             AKS,
             GKE 
         </td>
+        <td>1.3</td>
         <td>
           <a href="/docs/distributions/ekf/">Docs</a>
         </td>
@@ -101,6 +110,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow Charmed Operators</td>
         <td>Canonical</td>
         <td>Conformant Kubernetes</td>
+        <td>1.3</td>
         <td><a href="/docs/distributions/charmed/">Docs</a></td>
         <td><a href="https://charmed-kubeflow.io/docs">External Website</a></td>
       </tr>
@@ -108,6 +118,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>MicroK8s Kubeflow Add-on</td>
         <td>Canonical</td>
         <td>MicroK8s</td>
+        <td>1.2</td>
         <td><a href="/docs/distributions/microk8s/">Docs</a></td>
         <td><a href="https://microk8s.io/docs/addon-kubeflow">External Website</a></td>
       </tr>
