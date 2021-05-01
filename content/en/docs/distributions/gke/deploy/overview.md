@@ -29,7 +29,7 @@ Once you finish deployment, you will be able to:
 
 ### Deployment Structure
 
-As a high level overview, you need to create one management cluster which allows you to manage Google Cloud resources via [Config Connector](https://cloud.google.com/config-connector/docs/overview). Management cluster can create, manage and delete multiple Kubeflow clusters, while being independent from Kubeflow clusters' activities. Below is a simplified view of deployment structure.
+As a high level overview, you need to create one Management cluster which allows you to manage Google Cloud resources via [Config Connector](https://cloud.google.com/config-connector/docs/overview). Management cluster can create, manage and delete multiple Kubeflow clusters, while being independent from Kubeflow clusters' activities. Below is a simplified view of deployment structure. Note that Management cluster can live in a different Google Cloud project from Kubeflow clusters, admin should assign owner permission to Management cluster's service account. It will be explained in detail during Deployment steps.
 
   <img src="/docs/images/gke/full-deployment-structure.png" 
     alt="Full Kubeflow deployment structure"
@@ -50,8 +50,5 @@ and debugging approaches. If this issue is new, file a bug to [kubeflow/gcp-blue
 
 ## Next steps
 
-* [Deploy Kubeflow](/docs/gke/deploy/deploy-ui/) if you haven't already done so.
-* Run a full ML workflow on Kubeflow, using the
-  [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
-  [GitHub issue summarization
-  example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization).
+* [Deploy Kubeflow Cluster](/docs/gke/deploy/deploy-cli/) if you want to deploy multiple clusters.
+* Run a full ML workflow on Kubeflow, using the [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/).
