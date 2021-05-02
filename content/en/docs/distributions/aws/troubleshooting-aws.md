@@ -1,55 +1,44 @@
 +++
-title = "Troubleshooting Deployments on Amazon EKS"
-description = "Help diagnose and fix issues you may encounter in your Kubeflow deployment"
+title = "Troubleshooting Kubeflow on Amazon EKS"
+description = "Diagnose and fix issues you may encounter in your Kubeflow deployment"
 weight = 100
 +++
 
-### ALB can not be created
+For general errors related to Kubernetes and Amazon EKS, please refer to the [Amazon EKS User Guide](https://docs.aws.amazon.com/eks/latest/userguide/troubleshooting.html) troubleshooting section.
 
+### ALB Fails to Provision
+
+If you see your istio-ingress ADDRESS is empty after more than a few mins, it's possible that something is misconfigured in your ALB ingress controller.
 ```shell
 kubectl get ingress -n istio-system
 NAME            HOSTS   ADDRESS   PORTS   AGE
 istio-ingress   *                 80      3min
 ```
 
-If you see your istio-ingress ADDRESS is empty after 3 mins, it must be something wrong in your ALB ingress controller.
+Check the AWS ALB Ingress Controller logs.
+```shell
+kubectl -n kubeflow logs $(kubectl get pods -n kubeflow --selector=app=aws-alb-ingress-controller --output=jsonpath={.items..metadata.name}) 
+```
 
+If you see this error in the ingress logs, see the note below.
 ```
 E1024 09:02:59.934318       1 :0] kubebuilder/controller "msg"="Reconciler error" "error"="failed to build LoadBalancer configuration due to retrieval of subnets failed to resolve 2 qualified subnets. Subnets must contain the kubernetes.io/cluster/\u003ccluster name\u003e tag with a value of shared or owned and the kubernetes.io/role/elb tag signifying it should be used for ALBs Additionally, there must be at least 2 subnets with unique availability zones as required by ALBs. Either tag subnets to meet this requirement or use the subnets annotation on the ingress resource to explicitly call out what subnets to use for ALB creation. The subnets that did resolve were []"  "controller"="alb-ingress-controller" "request"={"Namespace":"istio-system","Name":"istio-ingress"}
 ```
 
-If you see this error, you probably didn't use `cluster_name` as folder name during setup. Please go to check your cluster setting by `kubectl get configmaps aws-alb-ingress-controller-config -n kubeflow -o yaml` and make the change. Another reason could be that you did not tag your subnets  so that Kubernetes knows to use only those subnets for external load balancers. To fix this ensure the public subnets are tagged with the **Key**: ```kubernetes.io/role/elb``` and **Value**: ```1```. See docs [here](https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html) for further details.
+If you see this error, you likely didn't install from a directory named `cluster_name` during setup. Please check `kubectl get configmaps aws-alb-ingress-controller-config -n kubeflow -o yaml` and make any needed change.
 
-### Kubeflow Uninstallation Failure
-
-
-```
-Error: couldn't delete KfApp:  (kubeflow.error): Code 500 with message: kfApp Delete failed for kustomize:  (kubeflow.error): Code 500 with message: error deleting kustomize manifests: [error evaluating kustomization manifest for knative: Timed out waiting for resource /knative-serving to be deleted. Error deleted resource is not cleaned up yet, error evaluating kustomization manifest for cert-manager: Timed out waiting for resource /cert-manager to be deleted. Error deleted resource is not cleaned up yet]
-Usage:
-  kfctl delete [flags]
-
-Flags:
-      --delete_storage   Set if you want to delete app's storage cluster used for mlpipeline.
-  -f, --file string      The local config file of KfDef.
-      --force-deletion   force-deletion output default is false
-  -h, --help             help for delete
-  -V, --verbose          verbose output default is false
-
-kfctl exited with error: couldn't delete KfApp:  (kubeflow.error): Code 500 with message: kfApp Delete failed for kustomize:  (kubeflow.error): Code 500 with message: error deleting kustomize manifests: [error evaluating kustomization manifest for knative: Timed out waiting for resource /knative-serving to be deleted. Error deleted resource is not cleaned up yet, error evaluating kustomization manifest for cert-manager: Timed out waiting for resource /cert-manager to be delete
-
-```
-
-Due to a kustomize [issue](https://github.com/kubeflow/kfctl/issues/385), deletion will take up to 10 mins and it may show above errors. Don't worry about it, all resources have been deleted. You can build your kfctl with [change](https://github.com/kubeflow/kfctl/pull/386) to mitigate this issue.
-
+Another reason could be that your subnets are not tagged so that Kubernetes knows which subnets to use for external load balancers. To fix this, ensure your cluster's public subnets are tagged with the **Key**: ```kubernetes.io/role/elb``` and **Value**: ```1```. See the [Amazon EKS User Guide](https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html) for further details.
 
 ### EKS Cluster Creation Failure
 
-There are several problems that could lead to cluster creation failure. If you see some errors when creating your cluster using `eksctl`, please open the CloudFormation console and check your stacks. To recover from failure, you need to follow the guidance from the `eksctl` output logs. Once you understand the root cause of your failure, you can delete your cluster and rerun `kfctl apply -V -f ${CONFIG_FILE}`.
+There are a few problems that could lead to cluster creation failure. If you see errors when creating your cluster using `eksctl`, open the AWS CloudFormation console and check the stack(s) related to your cluster. To recover from failure, you need to follow the guidance from the `eksctl` output logs. Once you understand the cause of your failure, you can remediate and create a fresh cluster.
 
 Common issues:
 
-1. The default VPC limit is 5 VPCs per region
+1. Resource limits met in the AWS Region where you are creating the cluster (e.g. no available VPC)
 1. Invalid command arguments
+
+`eksctl` will attempt to rollback changes in the event of a failure. See below for an example failed cluster creation where a resource limit was met.
 
 ```shell
 + eksctl create cluster --config-file=/tmp/cluster_config.yaml
@@ -58,7 +47,6 @@ Common issues:
 [ℹ]  subnets for us-west-2c - public:192.168.32.0/19 private:192.168.128.0/19
 [ℹ]  subnets for us-west-2d - public:192.168.64.0/19 private:192.168.160.0/19
 [ℹ]  nodegroup "general" will use "ami-0280ac619ed294a8a" [AmazonLinux2/1.12]
-[ℹ]  importing SSH public key "/Users/ubuntu/.ssh/id_rsa.pub" as "eksctl-test-cluster-nodegroup-general-11:2a:f6:ba:b0:98:da:b4:24:db:18:3d:e3:3f:f5:fb"
 [ℹ]  creating EKS cluster "test-cluster" in "us-west-2" region
 [ℹ]  will create a CloudFormation stack for cluster itself and 1 nodegroup stack(s)
 [ℹ]  if you encounter any issues, check CloudFormation console or try 'eksctl utils describe-stacks --region=us-west-2 --name=test-cluster'
@@ -83,19 +71,6 @@ Common issues:
 [✖]  failed to create cluster "test-cluster"
 ```
 
-### Resource Not Found in `delete all`
-
-```shell
-+ kubectl get ns/kubeflow
-Error from server (NotFound): namespaces "kubeflow" not found
-+ kubectl get ns/kubeflow
-Error from server (NotFound): namespaces "kubeflow" not found
-+ echo 'namespace kubeflow successfully deleted.'
-```
-
-You can ignore any Kubernetes "resource not found" errors that occur during the deletion phase.
-
-
 ### InvalidParameterException in UpdateCluster
 
 ```shell
@@ -107,7 +82,7 @@ An error occurred (InvalidParameterException) when calling the UpdateClusterConf
 
 The Amazon EKS `UpdateCluster` API operation will fail if you have invalid parameters. For example, if you already enabled logs in your EKS cluster, and you choose to create Kubeflow on existing cluster and also enable logs, you will get this error.
 
-### FSX Mount Failure
+### FSx Mount Failure
 
 ```shell
 Mounting command: mount
@@ -125,7 +100,7 @@ usage: mount.lustre [-fhnvV] [-o <mntopt>] <device> <mountpt>
   -f|--fake: fake mount (updates /etc/mtab)
 ```
 
-The Amazon FSx `dnsName` is incorrect, you can delete your pod using this persistent volume claim. The next step is to delete the PV and PVC. Next correct your input and reapply the PV and PVC.
+The Amazon FSx `dnsName` is incorrect, you can delete your Pod using this PersistentVolumeClaim. The next step is to delete the PVC and PersistentVolume. Finally, correct your configuration and recreate the PV and PVC.
 
 ```shell
 kubectl delete pod ${pod_using_pvc}
@@ -133,11 +108,12 @@ ks delete default -c ${COMPONENT}
 ks param set ${COMPONENT} dnsName fs-0xxxxx2a216cf.fsx.us-west-2.amazonaws.com
 ks apply default -c ${COMPONENT}
 ```
+
 ### Amazon RDS Connectivity Issues
 
 If you run into CloudFormation deployment errors, you can use [troubleshooting guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html) to find a resolution.
 
-If you have connectivity issues with Amazon RDS, try launching mysql-client container and connecting to your RDS endpoint. This will let you know if you have network connectivity with the db and also if db is created properly.
+If you have connectivity issues with Amazon RDS, launch a `mysql-client` container and try connecting to your RDS endpoint. This will let you know if you have network connectivity with the database and also if the database was created and is configured properly.
 
 ```
 # Remember to change your RDS endpoint, DB username and DB Password
@@ -175,15 +151,4 @@ Database changed
 | run_metrics          |
 +----------------------+
 9 rows in set (0.00 sec)
-```
-
-### Incompatible eksctl version
-
-If you see this error when you run `apply platform`, it means your eksctl cli version is not compatible with `eksctl.io` version in cluster_config.yaml. Please upgrade your eksctl and try again.
-`v1alpha5` is introduced from 0.1.31.
-
-We are working with eksctl team to make sure feature release support backward compatibility at least for one version.
-
-```
-loading config file "${KF_DIR}/aws_config/cluster_config.yaml": no kind "ClusterConfig" is registered for version "eksctl.io/v1alpha5" in scheme "k8s.io/client-go/kubernetes/scheme/register.go:60"
 ```
