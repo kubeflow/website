@@ -7,9 +7,9 @@ weight = 5
 This guide describes how to use `kubectl` and [kpt](https://googlecontainertools.github.io/kpt/) to
 deploy Kubeflow on Google Cloud.
 
-# Deployment steps
+## Deployment steps
 
-## Prerequisites
+### Prerequisites
 
 Before installing Kubeflow on the command line:
 
@@ -32,7 +32,7 @@ Before installing Kubeflow on the command line:
   currently doesn't support creating [IAP OAuth clients programmatically](https://cloud.google.com/iap/docs/programmatic-oauth-clients).
 
 
-## Install the required tools
+### Install the required tools
 
 1. Install [gcloud](https://cloud.google.com/sdk/).
 
@@ -87,7 +87,7 @@ Before installing Kubeflow on the command line:
     sudo apt install jq
     ```
 
-## Fetch kubeflow/gcp-blueprints and upstream packages
+### Fetch kubeflow/gcp-blueprints and upstream packages
 
 1. If you have already installed Management cluster, you have `kubeflow/gcp-blueprints` locally. You just need to run `cd kubeflow` to access Kubeflow cluster manifests. Otherwise, you can run the following commands:
 
@@ -108,7 +108,7 @@ Before installing Kubeflow on the command line:
     ```
 
 
-## Environment Variables
+### Environment Variables
 
 1. This guide assumes the following environment variables:
 
@@ -177,9 +177,9 @@ Before installing Kubeflow on the command line:
     {{% /alert %}}
    
 
-## Configure Kubeflow
+### Configure Kubeflow
 
-### kpt setter config
+#### kpt setter config
 There are certain parameters that you must define in order to configure how and where
 kubeflow is defined. These are described in the table below.
 
@@ -213,7 +213,7 @@ Alternatively, you can run the following command for the same effect:
 bash ./kpt-set.sh
 ```
 
-### Management cluster config
+#### Management cluster config
 
 You need to configure the kubectl context `${MGMTCTXT}`.
 
@@ -239,7 +239,7 @@ You need to configure the kubectl context `${MGMTCTXT}`.
   ```
 
 
-## Deploy Kubeflow
+### Deploy Kubeflow
 
 Log in to gcloud. You only need to run this command once:
 
@@ -267,7 +267,7 @@ make apply
   This issue occurs when the CRD endpoint isn't established in the Kubernetes API server when the CRD's custom object is applied.
   This issue is expected and can happen multiple times for different kinds of resource. To resolve this issue, try running `make apply` again.
 
-## Check your deployment
+### Check your deployment
 
 Follow these steps to verify the deployment:
 
@@ -285,7 +285,7 @@ Follow these steps to verify the deployment:
     kubectl -n kubeflow get all
     ```
 
-## Access the Kubeflow user interface (UI)
+### Access the Kubeflow user interface (UI)
 
 To access the Kubeflow central dashboard, follow these steps:
 
@@ -327,13 +327,13 @@ Notes:
   then you can configure this process to be much faster.
   Check [kubeflow/kubeflow#731](https://github.com/kubeflow/kubeflow/issues/731).
 
-# Understanding the deployment process
+## Understanding the deployment process
 
 This section gives you more details about the kubectl configuration and
 deployment process, so that you can customize your Kubeflow deployment if
 necessary.
 
-## Application layout
+### Application layout
 
 Your Kubeflow application directory **${KF_DIR}** contains the following files and
 directories:
@@ -349,13 +349,13 @@ directories:
 * **build** is a directory that will contain the hydrated manifests outputted by
   the `make` rules, each component will have its own **build** directory. You can customize the **build** path when calling `make` command.
 
-## Source Control
+### Source Control
 
 It is recommended that you check in your entire local repository into source control.
 
 Checking in **build** is recommended so you can easily see differences in manifests before applying them.
 
-# Google Cloud service accounts
+## Google Cloud service accounts
 
 The kfctl deployment process creates three service accounts in your
 Google Cloud project. These service accounts follow the [principle of least
@@ -372,11 +372,11 @@ The service accounts are:
   account has the minimal permissions needed to send metrics and logs to
   [Stackdriver](https://cloud.google.com/stackdriver/).
 
-# Upgrade Kubeflow
+## Upgrade Kubeflow
 
 Refer to [Upgrading Kubeflow cluster](/docs/gke/deploy/upgrade#upgrading-kubeflow-cluster).
 
-# Next steps
+## Next steps
 
 * Run a full ML workflow on Kubeflow, using the
   [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
