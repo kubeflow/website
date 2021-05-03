@@ -1,7 +1,7 @@
 +++
 title = "Delete using CLI"
 description = "Deleting Kubeflow from Google Cloud using the command line interface (CLI)"
-weight = 7
+weight = 8
 +++
 
 This page explains how to delete your Kubeflow cluster or management cluster on
@@ -29,7 +29,7 @@ This guide assumes the following settings:
 
     ```bash
     cd "${KF_DIR}"
-    make delete-gcp
+    make delete
     ```
 
     **Warning**: this will delete the persistent disks storing metadata. If you want to preserve the disks don't run this command;

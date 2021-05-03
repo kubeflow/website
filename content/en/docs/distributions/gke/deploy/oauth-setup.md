@@ -1,7 +1,7 @@
 +++
-title = "Set up OAuth for Cloud IAP"
+title = "Set up OAuth client"
 description = "Creating an OAuth client for Cloud IAP on Google Cloud Platform (GCP)"
-weight = 2
+weight = 3
                     
 +++
 

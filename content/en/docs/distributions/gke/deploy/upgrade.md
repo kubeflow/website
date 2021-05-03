@@ -1,7 +1,7 @@
 +++
 title = "Upgrade Kubeflow"
 description = "Upgrading your Kubeflow installation on Google Cloud"
-weight = 5
+weight = 6
 +++
 
 ## Before you start

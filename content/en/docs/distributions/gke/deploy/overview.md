@@ -38,7 +38,7 @@ As a high level overview, you need to create one Management cluster which allows
 
 ### Deployment steps
 
-Follow the steps below to set up Kubeflow environment on Google Cloud.
+Follow the steps below to set up Kubeflow environment on Google Cloud. Some of these steps are one-time only, for example: OAuth Client can be shared by multiple Kubeflow clusters in the same Google Cloud project.
 
 1.  [Set up Google Cloud project](/docs/distributions/gke/deploy/project-setup/).
 1.  [Set up OAuth Client](/docs/distributions/gke/deploy/oauth-setup/).
@@ -50,5 +50,5 @@ and debugging approaches. If this issue is new, file a bug to [kubeflow/gcp-blue
 
 ## Next steps
 
-* [Deploy Kubeflow Cluster](/docs/gke/deploy/deploy-cli/) if you want to deploy multiple clusters.
+* Repeat [Deploy Kubeflow Cluster](/docs/gke/deploy/deploy-cli/) if you want to deploy multiple clusters.
 * Run a full ML workflow on Kubeflow, using the [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/).
