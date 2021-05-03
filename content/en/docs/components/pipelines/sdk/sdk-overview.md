@@ -162,7 +162,7 @@ Follow the guide to
 This section summarizes the ways you can use the SDK to build pipelines and 
 components.
 
-A Kubeflow _pipeline_ is a portable and scalable definition of a ML workflow.
+A Kubeflow _pipeline_ is a portable and scalable definition of an ML workflow.
 Each step in your ML workflow, such as preparing data or training a model,
 is an instance of a pipeline component.
 
@@ -185,7 +185,7 @@ Use the following options to create or reuse pipeline components.
 
     [Learn more about building pipeline components](/docs/components/pipelines/sdk/component-development).
 
-*   Lightweight Python function-based components make it easier to built a
+*   Lightweight Python function-based components make it easier to build a
     component by using the Kubeflow Pipelines SDK to generate the component
     specification for a Python function.
 
