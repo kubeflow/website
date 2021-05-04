@@ -1,7 +1,7 @@
 +++
 title = "End-to-end Kubeflow on AWS"
 description = "Running Kubeflow using AWS services"
-weight = 250
+weight = 80
 +++
 
 This guide describes how to deploy Kubeflow using AWS services such as EKS and Cognito. It consists of 3 parts, the deployment of the kubernetes infra, the deployment of the kubeflow and finally the deployment of models using KFserving.
