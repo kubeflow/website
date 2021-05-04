@@ -8,23 +8,95 @@ weight = 6
 
 To better understand upgrade process, you should read the following sections first:
 
-* [Understanding the deployment process for management cluster](../management-setup#understanding-the-deployment-process)
-* [Understanding the deployment process for Kubeflow cluster](../deploy-cli#understanding-the-deployment-process)
+* [Understanding the deployment process for management cluster](/docs/gke/deploy/management-setup#understanding-the-deployment-process)
+* [Understanding the deployment process for Kubeflow cluster](/docs/gke/deploy/deploy-cli#understanding-the-deployment-process)
 
 This guide assumes the following settings:
 
 * The `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
-  are the same as in [Management cluster setup](../management-setup#environment-variables).
+  are the same as in [Management cluster setup](/docs/gke/deploy/management-setup#configure-environment-variables).
 * The `${KF_DIR}`, `${KF_NAME}`, `${CLIENT_ID}` and `${CLIENT_SECRET}` environment variables
-  are the same as in [Deploy using kubectl and kpt](../deploy-cli#environment-variables).
+  are the same as in [Deploy using kubectl and kpt](/docs/gke/deploy/deploy-cli#environment-variables).
 
 ## General upgrade instructions
 
-Both management cluster and Kubeflow cluster follow the same `instance` and `upstream` folder convention. To upgrade, you'll typically need to update packages in `upstream` to the new version and repeat the `make apply-<subcommand>` commands in their respective deployment process.
+Starting from Kubeflow v1.3, we have reworked on the structure of `kubeflow/gcp-blueprints` repository. All resources are located in `gcp-blueprints/management` directory.
+
+Before Kubeflow v1.3, both management cluster and Kubeflow cluster follow the same `instance` and `upstream` folder convention. To upgrade, you'll typically need to update packages in `upstream` to the new version and repeat the `make apply-<subcommand>` commands in their respective deployment process.
 
 However, specific upgrades might need manual actions below.
 
 ## Upgrading management cluster
+
+### General instruction for upgrading management cluster
+
+It is strongly recommended to use source control to keep a copy of your working repository for recording changes at each step.
+
+Due to the refactoring of `kubeflow/manifests` repository, the way we depend on `kubeflow/gcp-blueprints` has changed drastically. This section suits for upgrading from Kubeflow 1.3 to higher.
+
+
+1. The instructions below assume that your current working directory is
+
+   ```bash
+   cd "${MGMT_DIR}"
+   ```
+
+1. Use your management cluster's kubectl context:
+
+   ```bash
+   # Look at all your contexts
+   kubectl config get-contexts
+   # Select your management cluster's context
+   kubectl config use-context "${MGMT_NAME}"
+   # Verify the context connects to the cluster properly
+   kubectl get namespace
+   ```
+
+   If you are using a different enviroment, you can always
+   reconfigure the context by:
+
+   ```bash
+   make create-context
+   ```
+
+1. Check your existing config connector version:
+
+   ```bash
+   # For Kubeflow v1.3, it should be 1.46.0
+   $ kubectl get namespace cnrm-system -ojsonpath='{.metadata.annotations.cnrm\.cloud\.google\.com\/version}'
+   1.46.0
+   ```
+   
+1. Merge the content from new Kubeflow version of `kubeflow/gcp-blueprints`
+
+   ```bash
+   WORKING_BRANCH=<your-github-working-branch>
+   VERSION_TAG=<targeted-kubeflow-version-tag-on-github>
+   git checkout "${WORKING_BRANCH}"
+   git merge "${VERSION_TAG}"
+   ```
+
+1. Make sure your build directory (`./build` by default) is checked in to source control (git).
+
+1. Run the following command to hydrate Config Connector resources:
+
+   ```bash
+   make hydrate-kcc
+   ```
+
+1. Compare the difference on your source control tracking after making hydration change. If they are addition or modification only, proceed to next step. If it includes deletion, you need to use `kubectl delete` to manually clean up the deleted resource for cleanup.
+
+1. After confirmation, run the following command to apply new changes:
+
+   ```bash
+   make apply-kcc
+   ```
+
+1. Check version has been upgraded after applying new Config Connector resource:
+
+   ```bash
+   $ kubectl get namespace cnrm-system -ojsonpath='{.metadata.annotations.cnrm\.cloud\.google\.com\/version}'
+   ```
 
 ### Upgrade management cluster from v1.1 to v1.2
 
@@ -113,15 +185,16 @@ However, specific upgrades might need manual actions below.
 
 ## Upgrading Kubeflow cluster
 
-**DISCLAIMERS**:
+{{% alert title="DISCLAIMERS" color="warning" %}}
+<div>The upgrade process depends on each Kubeflow application to handle the upgrade properly. There's no guarantee on data completeness unless the application provides such a guarantee.</div>
+<div>You are recommended to back up your data before an upgrade.</div>
+<div>Upgrading Kubeflow cluster can be a disruptive process, please schedule some downtime and communicate with your users.</div>
+{{% /alert %}}
 
-* The upgrade process depends on each Kubeflow application to handle the upgrade properly. There's no guarantee on data completeness unless the application provides such a guarantee.
-* You are recommended to back up your data before an upgrade.
-* Upgrading Kubeflow cluster can be a disruptive process, please schedule some downtime and communicate with your users.
 
 To upgrade from specific versions of Kubeflow, you may need to take certain manual actions — refer to specific sections in the guidelines below.
 
-General instructions for upgrading Kubeflow:
+### General instructions for upgrading Kubeflow cluster
 
 1. The instructions below assume that:
 
@@ -140,24 +213,40 @@ General instructions for upgrading Kubeflow:
       kubectl config use-context ${KF_NAME}
       ```
 
-1. Edit the Makefile at `./Makefile` and change `MANIFESTS_URL` to point at the version of Kubeflow manifests you want to use
+1. Merge the new version of `kubeflow/gcp-blueprints` (example: v1.3.0), you don't need to do it again if you have already done so during management cluster upgrade.
 
-    * Refer to the [kpt docs](https://googlecontainertools.github.io/kpt/reference/pkg/) for more info about supported dependencies
+   ```bash
+   WORKING_BRANCH=<your-github-working-branch>
+   VERSION_TAG=<targeted-kubeflow-version-tag-on-github>
+   git checkout "${WORKING_BRANCH}"
+   git merge "${VERSION_TAG}"
+   ```
 
-1. Update the local copies:
+1. Change the `KUBEFLOW_MANIFESTS_VERSION` in `./pull-upstream.sh` with the targeted kubeflow version same as `$VERSION_TAG`. Run the following commands to pull new changes from upstream `kubeflow/manifests`.
+
+   ```bash
+   bash ./pull-upstream.sh
+   ```
+
+1. Make sure you have checked in `build` folders for each component. The following command will change them so you can compare for difference.
 
     ```bash
-    make update
+    make hydrate
     ```
 
-1. Redeploy:
+1. Once you confirm the changes are ready to apply, run the following command to upgrade Kubeflow cluster:
 
     ```bash
     make apply
     ```
 
-    To evaluate the changes before deploying them you can run `make hydrate` and then compare the contents
-    of `.build` to what is currently deployed.
+{{% alert title="Note" %}}
+Kubeflow on Google Cloud doesn't guarantee the upgrade for each Kubeflow component always works with the general upgrade guide here. Please refer to corresponding repository in [Kubeflow org](https://github.com/kubeflow) for upgrade support.
+{{% /alert %}}
+
+### Upgrade Kubeflow cluster to v1.3
+
+Due to the refactoring of `kubeflow/manifests` repository, the way we depend on `kubeflow/gcp-blueprints` has changed drastically. Upgrade to Kubeflow cluster v1.3 is not supported. And individual component upgrade has been deferred to its corresponding repository for support.
 
 ### Upgrade Kubeflow cluster from v1.1 to v1.2
 
@@ -212,3 +301,8 @@ General instructions for upgrading Kubeflow:
     1. Run `make hydrate`.
     1. Compare the contents
     of `.build` with a historic version with tools like `git diff`.
+
+
+### Upgrade ASM (Anthos Service Mesh)
+
+If you want to upgrade ASM instead of the Kubeflow components, refer to https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/Makefile for instruction of upgrading ASM. Detailed instruction will be updated later. 
