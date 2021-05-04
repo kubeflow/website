@@ -1,5 +1,5 @@
 +++
-title = "Delete using CLI"
+title = "Delete Kubeflow"
 description = "Deleting Kubeflow from Google Cloud using the command line interface (CLI)"
 weight = 8
 +++
@@ -11,11 +11,11 @@ Google Cloud.
 
 This guide assumes the following settings:
 
-* The `${MGMT_PROJECT}`, `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
-  are the same as in [Management cluster setup](../management-setup#environment-variables).
+* For Management cluster: The `${MGMT_PROJECT}`, `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
+  are the same as in [Deploy Management cluster](/docs/gke/deploy/management-setup#configure-environment-variables).
 
-* The `${KF_PROJECT}`, `${KF_DIR}`, `${KF_NAME}` and `${MGMTCTXT}` environment variables
-  are the same as in [Deploy using kubectl and kpt](../deploy-cli#environment-variables).
+* For Kubeflow cluster: The `${KF_PROJECT}`, `${KF_DIR}`, `${KF_NAME}` and `${MGMTCTXT}` environment variables
+  are the same as in [Deploy Kubeflow cluster](../deploy-cli#environment-variables).
 
 ## Deleting your Kubeflow cluster
 
@@ -32,14 +32,13 @@ This guide assumes the following settings:
     make delete
     ```
 
-    **Warning**: this will delete the persistent disks storing metadata. If you want to preserve the disks don't run this command;
+    **Warning**: this will delete the persistent disks storing metadata. If you want to preserve the disks, don't run this command;
     instead selectively delete only those resources you want to delete.
 
 ## Clean up your management cluster
 
 The following instructions introduce how to clean up all resources created when
-installing management cluster and using management cluster to manage Google
-Cloud resources in managed projects.
+installing management cluster in management project, and when using management cluster to manage Google Cloud resources in managed Kubeflow projects.
 
 ### Delete or keep managed Google Cloud resources
 
@@ -54,8 +53,8 @@ kubectl use-context "${MGMTCTXT}"
 kubectl delete namespace --wait "${KF_PROJECT}"
 ```
 
-To keep all the managed Google Cloud resources, you can delete the management
-cluster directly.
+To keep all the managed Google Cloud resources, you can [delete the management
+cluster](#delete-management-cluster) directly.
 
 If you need fine-grained control, refer to
 [Config Connector: Keeping resources after deletion](https://cloud.google.com/config-connector/docs/how-to/managing-deleting-resources#keeping_resources_after_deletion)
