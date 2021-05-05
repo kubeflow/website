@@ -1,9 +1,9 @@
 +++
-title = "Customizing Kubeflow on GKE"
+title = "Customize Kubeflow on GKE"
 description = "Tailoring a GKE deployment of Kubeflow"
 weight = 20
-                    
 +++
+
 {{% alert title="Out of date" color="warning" %}}
 This guide contains outdated information pertaining to Kubeflow 1.0. This guide
 needs to be updated for Kubeflow 1.1.
@@ -14,16 +14,12 @@ Kubernetes Engine (GKE) on Google Cloud.
 
 ## Customizing Kubeflow before deployment
 
-The Kubeflow deployment process is divided into two steps, **build** and 
+The Kubeflow deployment process is divided into two steps, **hydrate** and 
 **apply**, so that you can modify your configuration before deploying your 
 Kubeflow cluster.
 
-Follow the guide to [deploying Kubeflow on Google Cloud](/docs/gke/deploy/deploy-cli/).
-When you reach the 
-[setup and deploy step](/docs/gke/deploy/deploy-cli/#deploy-kubeflow),
-**skip the `kfctl apply` command** and run the **`kfctl build`** command 
-instead, as  described in that step. Now you can edit the configuration files 
-before deploying Kubeflow.
+Follow the guide to [deploying Kubeflow on Google Cloud](/docs/gke/deploy/deploy-cli/). You can add your patches in corresponding component folder, and include those patches in `kustomization.yaml` file. Learn more about the usage of [kustomize](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/). You can also find the exisitng kustomization in [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints) as example. After adding the patches, you can run `make hydrate` to validate the resulting resources. Finally, you can run `make apply` to deploy the customized Kubeflow.
+
 
 ## Customizing an existing deployment
 
@@ -38,68 +34,46 @@ This guide assumes the following settings:
 
 * The `${KF_DIR}` environment variable contains the path to
   your Kubeflow application directory, which holds your Kubeflow configuration 
-  files. For example, `/opt/my-kubeflow/`.
+  files. For example, `/opt/gcp-blueprints/kubeflow/`.
 
   ```
   export KF_DIR=<path to your Kubeflow application directory>
+  cd ${KF_DIR}
   ``` 
 
-* The `${CONFIG_FILE}` environment variable contains the path to your 
-  Kubeflow configuration file.
-
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-iap %}}
-  ```
-
-* The `${KF_NAME}` environment variable contains the name of your Kubeflow 
-  deployment. You can find the name in your
-  `${CONFIG_FILE}` configuration file, as the value for the `metadata.name` key.
-
-  ```
-  export KF_NAME=<the name of your Kubeflow deployment>
-  ```
-
-* The `${PROJECT}` environment variable contains the ID of your Google Cloud project. 
-  You can find the project ID in your
-  `${CONFIG_FILE}` configuration file, as the value for the `project` key.
-
-  ```
-  export PROJECT=<your Google Cloud project ID>
-  ```
-
-* For further background about the above settings, see the guide to
+* Make sure your environment variables are set up for the Kubeflow cluster you want to customize. For further background about the settings, see the guide to
   [deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
 
 ## Customizing Google Cloud resources
 
 To customize Google Cloud resources, such as your Kubernetes Engine cluster, you can 
-modify the Deployment Manager configuration settings in `${KF_DIR}/gcp_config`.
+modify the Deployment settings starting in `${KF_DIR}/common/cnrm`.
 
-After modifying your existing configuration, run the following command to apply
-the changes:
+This folder is the folder which contains multiple dependencies on sibling directories for Google Cloud resources. So you can start from here by reviewing `kustomization.yaml`. Depends on the type of Google Cloud resources you want to customize, you can add patches in corresponding directory. 
 
-```
-cd ${KF_DIR}
-kfctl apply -V -f ${CONFIG_FILE}
-```
+1. Make sure you checkin the existing resources in `/build` folder to source control.
 
-Alternatively, you can use Deployment Manager directly:
+1. Add the patches in corresponding directory, and update `kustomization.yaml` to include patches.
 
-```
-cd ${KF_DIR}/gcp_config
-gcloud deployment-manager --project=${PROJECT} deployments update ${KF_NAME} --config=cluster-kubeflow.yaml
-```
+1. Run `make hydrate` to build new resources in `/build` folder.
 
-Some changes (such as the VM service account for Kubernetes Engine) can only be set at creation time; in this case you need
-to tear down your deployment before recreating it:
+1. Carefully examine the result resources in `/build` folder. If the customization is addition only, you can run `make apply` to directly patch the resources.
 
-```
-cd ${KF_DIR}
-kfctl delete -f ${CONFIG_FILE}
-kfctl apply -V -f ${CONFIG_FILE}
-```
+1. It is possible that you are modifying immutable resources. In this case, you will need to delete existing resource and applying new resources. Note that this might mean lost of your service and data, please execute carefully. General approach to delete and deploy Google Cloud resources:
 
-## Customizing Kubernetes resources
+    1. Revert to old resources in `/build` using source control.
+
+    1. Carefully delete the resource you need to delete by using `kubectl delete`.
+
+    1. Rebuild and apply new Google Cloud resources
+
+      ```bash
+      cd common/cnrm
+      NAME=$(NAME) KFCTXT=$(KFCTXT) LOCATION=$(LOCATION) PROJECT=$(PROJECT) make apply
+      ```
+
+
+## Customizing Kubeflow resources
 
 You can use [kustomize](https://kustomize.io/) to customize Kubeflow. 
 Make sure that you have the minimum required version of kustomize:
@@ -108,40 +82,26 @@ kustomize in Kubeflow, see
 [how Kubeflow uses kustomize](/docs/methods/kfctl/kustomize/).
 
 To customize the Kubernetes resources running within the cluster, you can modify 
-the kustomize manifests in `${KF_DIR}/kustomize`.
+the kustomize manifests in corresponding component under `${KF_DIR}`.
 
 For example, to modify settings for the Jupyter web app:
 
-1. Open `${KF_DIR}/kustomize/jupyter-web-app.yaml` in a text editor.
-1. Find and replace the parameter values:
-    ```
-    apiVersion: v1
-    data:
-      ROK_SECRET_NAME: secret-rok-{username}
-      UI: default
-      clusterDomain: cluster.local
-      policy: Always
-      prefix: jupyter
-    kind: ConfigMap
-    metadata:
-      labels:
-        app: jupyter-web-app
-        kustomize.component: jupyter-web-app
-      name: jupyter-web-app-parameters
-      namespace: kubeflow
+1. Open `${KF_DIR}/apps/jupyter/jupyter-web-app/kustomization.yaml` in a text editor.
+
+1. Review the file's inclusion of `deployment-patch.yaml`, and add your modification to `deployment-patch.yaml` based on the original content in `${KF_DIR}/apps/jupyter/jupyter-web-app/upstream/base/deployment.yaml`. For example: change `volumeMounts`'s `mountPath` if you need to customize it.
+
+1. Verify the output resources in `/build` folder using `Makefile`"
+
+    ```bash
+    cd ${KF_DIR}
+    make hydrate
     ```
 
-1. Redeploy Kubeflow using kfctl:
+1. Redeploy Kubeflow using `Makefile`:
 
     ```
     cd ${KF_DIR}
-    kfctl apply -V -f ${CONFIG_FILE}
-    ```
-
-    Or use kubectl directly:
-    ```
-    cd ${KF_DIR}/kustomize
-    kubectl apply -f jupyter-web-app.yaml
+    make apply
     ```
 
 ## Common customizations
@@ -200,17 +160,51 @@ command:
 gcloud compute accelerator-types list
 ```
  
-To disable node-autoprovisioning, run `kfctl build` as described above.
-Then edit `${KF_DIR}/gcp_config/cluster-kubeflow.yaml` and set 
+To disable node-autoprovisioning, edit content for `${KF_DIR}/common/cluster/upstream/cluster.yaml`, set 
 [`enabled`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L73) 
 to `false`:
 
 ```
     ...
-    gpu-type: nvidia-tesla-k80
-    autoprovisioning-config:
+    clusterAutoscaling:
       enabled: false
+      autoProvisioningDefaults:
     ...
+```
+
+Then create the [ContainerNodePool](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containernodepool) resource adopting GPU, for exmaple:
+
+```
+  apiVersion: container.cnrm.cloud.google.com/v1beta1
+  kind: ContainerNodePool
+  metadata:
+    labels:
+      mesh_id: "proj-PROJECT_NUMBER" # {"$kpt-set":"asm-mesh-id"}
+    name: containernodepool-gpu
+  spec:
+    location: LOCATION # {"$kpt-set":"location"}
+    initialNodeCount: 1
+    autoscaling:
+      minNodeCount: 1
+      maxNodeCount: 5
+    nodeConfig:
+      machineType: n1-standard-4
+      diskSizeGb: 100
+      diskType: pd-standard
+      preemptible: false
+      oauthScopes:
+        - "https://www.googleapis.com/auth/logging.write"
+        - "https://www.googleapis.com/auth/monitoring"
+      guestAccelerator:
+        - type: "nvidia-tesla-k80"
+          count: 1
+      metadata:
+        disable-legacy-endpoints: "true"
+    management:
+      autoRepair: true
+      autoUpgrade: true
+    clusterRef:
+      name: "PROJECT/LOCATION/KUBEFLOW-NAME" # {"$kpt-set":"cluster-name"}
 ```
 
 You must also set 
@@ -237,34 +231,14 @@ kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container
 
 ### Add Cloud TPUs to your cluster
 
-Set [`enable_tpu:true`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L80)
-in `${KF_DIR}/gcp_config/cluster-kubeflow.yaml`.
+Set [`enableTpu:true`](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containercluster)
+in `${KF_DIR}/common/cluster/upstream/cluster.yaml`:
 
-
-### Specify a minimum CPU
-
-Certain instruction sets or hardware features are only available on specific CPUs, so to ensure your cluster utilizes the appropriate hardware you need to set a minimum CPU value. 
-
-In brief, inside `gcp_config/cluster.jinja` change the `minCpuPlatform` property for the CPU node pool. For example, `Intel Broadwell` becomes `Intel Skylake`. Setting a minimum CPU needs to occur during cluster/node creation; it cannot be applied to an existing cluster/node.
-
-More detailed instructions follow.
-
-* Choose a zone you want to deploy in that has your required CPU. Zones are listed in the [Regions and Zones documentation](https://cloud.google.com/compute/docs/regions-zones/).
-
-* Deploy Kubeflow normally as specified in the ["Deploy using CLI" documentation](/docs/gke/deploy/deploy-cli/), but stop at section ["Set up and deploy Kubeflow"](/docs/gke/deploy/deploy-cli/#deploy-kubeflow). Instead, navigate to section ["Alternatively, set up your configuration for later deployment"](/docs/gke/deploy/deploy-cli/#alternatively-set-up-your-configuration-for-later-deployment). Then follow the steps until you are instructed to edit configuration files.
-
-* Navigate to the `gcp_config directory` and open the `cluster.jinja` file. Change the cluster property `minCpuPlatform`. For example, from `Intel Broadwell` to `Intel Skylake`. Note: you may notice there are two minCpuPlatform properties in the file. One of them is for GPU node pools. Not all CPU/GPU combinations are compatible, so leave the GPU minCpuPlatform property untouched.
-
-* Follow the remaining steps of ["Alternatively, set up your configuration for later deployment"](/docs/gke/deploy/deploy-cli/#alternatively-set-up-your-configuration-for-later-deployment).
-
-
-### Add VMs with more CPUs or RAM
-
-  * Change the machineType.
-  * There are two node pools defined in the Google Cloud Deployment Manager:
-      * one for CPU only machines, in [`cluster.jinja`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster.jinja#L114).
-      * one for GPU machines, in [`cluster.jinja`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster.jinja#L140).
-  * When making changes to the node pools you also need to bump the `pool-version` in [`cluster-kubeflow.yaml`](https://github.com/kubeflow/manifests/tree/{{< params "githubbranch" >}}/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L46) before you update the deployment.
+```
+  ...
+  enableTpu: true
+  ...
+```
 
 ## More customizations
 
