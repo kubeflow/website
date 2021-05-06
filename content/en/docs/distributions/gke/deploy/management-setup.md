@@ -106,7 +106,7 @@ MGMT_NAME=<name of your management cluster>
 LOCATION=<location of your management cluster>
 ```
 
-Alternatively, you can also fulfill the same content in `gcp-blueprints/management/env.sh`, and run this command for the same effect
+Alternatively, you can also fill in the same content in `gcp-blueprints/management/env.sh`, and run:
 
 ```bash
 source env.sh
@@ -276,4 +276,3 @@ For a more detailed explanation of the drastic changes happened in Kubeflow v1.1
 
 ## Next steps
 * [Deploy Kubeflow](/docs/gke/deploy/deploy-cli) using kubectl, kustomize and kpt.
-
