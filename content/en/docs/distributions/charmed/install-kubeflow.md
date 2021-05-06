@@ -63,10 +63,10 @@ You can list your models with the `juju models` command.
 
 #### 5. Deploy Kubeflow
 
-[note type="caution" status="MIN RESOURCES"]
-To deploy `kubeflow`, you'll need at least 50Gb available of disk, 14Gb of RAM, and 2 CPUs available in your machine/VM.
-If you have fewer resources, deploy `kubeflow-lite` or `kubeflow-edge`.
-[/note]
+{{% alert color="warning" %}}
+To deploy the full Kubeflow bundle, you'll need at least 50Gb available of disk, 14Gb of RAM, and 2 CPUs available in your machine/VM.
+If you have fewer resources, deploy kubeflow-lite or kubeflow-edge.
+{{% /alert %}}
 
 Once you have a model, you can simply `juju deploy` any of the provided [Kubeflow bundles](https://charmed-kubeflow.io/docs/operators-and-bundles) into your cluster. For the _Kubeflow lite_ bundle, run:
 
