@@ -353,7 +353,7 @@ directories:
 
 It is recommended that you check in your entire local repository into source control.
 
-Checking in **build** is recommended so you can easily see differences in manifests before applying them.
+Checking in **build** is recommended so you can easily see differences by `git diff` in manifests before applying them.
 
 ## Google Cloud service accounts
 
