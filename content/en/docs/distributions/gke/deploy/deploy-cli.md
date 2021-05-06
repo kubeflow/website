@@ -173,7 +173,7 @@ Before installing Kubeflow on the command line:
     {{% /alert %}}
 
     {{% alert title="Note" %}}
-    Do not check in these two envrionment variables configuration to source control, it will expose your project secret.
+    Do not check in these two envrionment variables configuration to source control, they are secrets.
     {{% /alert %}}
    
 
