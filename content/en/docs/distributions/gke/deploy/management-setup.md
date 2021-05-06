@@ -26,6 +26,8 @@ to manage Google Cloud infrastructure using GitOps.
     # If the output said the Cloud SDK component manager is disabled for installation, copy the command from output and run it.
     ```
 
+    kubectl `v1.18.19` works best with Kubeflow 1.3, you can install specific version by following instruction, for example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). But kubectl v17~19 works well too.
+
 1. [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
     **Note:** Starting from Kubeflow v1.2, we fixed the compatibility problem with Kustomize `v3.2.1+`, so you can now install any Kustomize `v3+`, including the latest Kustomize versions.

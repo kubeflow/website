@@ -43,6 +43,8 @@ Before installing Kubeflow on the command line:
     gcloud components update
     ```
 
+    kubectl `v1.18.19` works best with Kubeflow 1.3, you can install specific version by following instruction, for example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). But latest patch version of kubectl from `v1.17` to `v1.19` works well too.
+
 1. Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
     **Note:** Prior to Kubeflow v1.2, Kubeflow was compatible only with Kustomize `v3.2.1`. Starting from Kubeflow v1.2, you can now use any `v3` Kustomize version to install Kubeflow. Kustomize `v4` is not supported out of the box yet. [Official Version](https://github.com/kubeflow/manifests/tree/master#prerequisites)
@@ -247,12 +249,6 @@ You need to configure the kubectl context `${MGMTCTXT}`.
 
   ```bash
   kubectl create namespace "${KF_PROJECT}"
-  ```
-
-* Make the Kubeflow project's namespace default of the `${MGMTCTXT}` context:
-
-  ```bash
-  kubectl config set-context --current --namespace "${KF_PROJECT}"
   ```
 
 
