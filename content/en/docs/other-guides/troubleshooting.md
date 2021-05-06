@@ -71,7 +71,7 @@ how RBAC interacts with IAM on GCP.
 
 ## Problems spawning Jupyter pods
 
-This section has been moved to [Jupyter Notebooks Troubleshooting Guide](/docs/notebooks/troubleshoot/).
+This section has been moved to [Jupyter Notebooks Troubleshooting Guide](/docs/components/notebooks/troubleshoot/).
 
 
 ## Pods stuck in Pending state

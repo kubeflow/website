@@ -1,5 +1,5 @@
 +++
-title = "Kubeflow"
+title = "Introduction to Kubeflow"
 description = "An introduction to Kubeflow"
 weight = 1
 aliases = ["/docs/", "/docs/about/", "/docs/kubeflow/"]
@@ -23,7 +23,7 @@ your environment and install Kubeflow.
 
 Watch the following video which provides an introduction to Kubeflow.
 
-{{< youtube cTZArDgbIWw >}}
+{{< youtube id="cTZArDgbIWw" title="Introduction to Kubeflow">}}
 
 ## What is Kubeflow?
 

@@ -41,7 +41,7 @@ at the root of the repo, and that your GOPATH is set properly. For example:
 
 # Generating the Pipelines API Reference Page
 
-Use these instructions to generate an updated copy of the [Pipelines API Reference](https://www.kubeflow.org/docs/pipelines/reference/api/kubeflow-pipeline-api-spec/). 
+Use these instructions to generate an updated copy of the [Pipelines API Reference](https://www.kubeflow.org/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/). 
 
 ## Prerequisites
 * Clone the [kubeflow/pipelines](https://github.com/kubeflow/pipelines) repository.
@@ -76,4 +76,4 @@ Use these instructions to generate an updated copy of the [Pipelines API Referen
 	```
 	html-inline -i index.html -o kubeflow-pipeline-api-spec.html
 	```
-1. In a fork of the kubeflow/website repository, overwrite `content/docs/pipelines/reference/api/kubeflow-pipeline-api-spec.html` with the new copy and submit a pull request. Refer to the [kubeflow/website readme](https://github.com/kubeflow/website/blob/master/README.md) for more detailed instructions.
+1. In a fork of the kubeflow/website repository, overwrite `content/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec.html` with the new copy and submit a pull request. Refer to the [kubeflow/website readme](https://github.com/kubeflow/website/blob/master/README.md) for more detailed instructions.

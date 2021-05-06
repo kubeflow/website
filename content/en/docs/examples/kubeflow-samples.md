@@ -33,4 +33,4 @@ workflow.
 ## Next steps
 
 Work through one of the 
-[Kubeflow Pipelines samples](/docs/pipelines/tutorials/build-pipeline/).
+[Kubeflow Pipelines samples](/docs/components/pipelines/tutorials/build-pipeline/).

@@ -4,10 +4,6 @@ description = "Overview of the Kubeflow user interfaces (UIs)"
 weight = 10
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 {{% stable-status %}}
 
@@ -75,10 +71,7 @@ Port-forwarding typically does not work if any of the following are true:
 
   * You've deployed Kubeflow on GCP using the 
     [GCP deployment UI](/docs/gke/deploy/deploy-ui/) or the default settings 
-    with the [CLI deployment](/docs/gke/deploy/deploy-cli/). (If you want to
-    use port forwarding, you must deploy Kubeflow on an existing Kubernetes 
-    cluster using the [`kfctl_k8s_istio` 
-    configuration](/docs/started/k8s/kfctl-k8s-istio/).)
+    with the [CLI deployment](/docs/gke/deploy/deploy-cli/).
 
   * You've configured the Istio ingress to only accept 
     HTTPS traffic on a specific domain or IP address.
@@ -125,4 +118,4 @@ You can access Kubeflow via `kubectl` and port-forwarding as follows:
   option](/docs/components/multi-tenancy/) where you
   can set up a single namespace for a shared deployment or configure 
   multi-tenancy for your Kubeflow deployment.
-* [Set up your Jupyter notebooks](/docs/notebooks/setup/) in Kubeflow.
+* [Set up your Jupyter notebooks](/docs/components/notebooks/setup/) in Kubeflow.

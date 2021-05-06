@@ -59,13 +59,16 @@ def main(warning_text: str, cutoff: timedelta):
                 )
             )
         # Otherwise, check to see if there's a front matter section delimited by `+++`. If so,
-        # add the out of date warning directly afterwards. A newline is included in the regex
-        # to exclude documents such as `_index.md` that only contain front matter sections.
+        # add the out of date warning directly afterwards.
         else:
-            pluses = list(re.finditer(r"\+\+\+\n", contents))
+            pluses = list(re.finditer(r"\+\+\+", contents))
             if len(pluses) == 2:
                 p = pluses[1]
-                md.write_text(contents[:p.end()] + warning_text + contents[p.end():])
+
+                # If there's only a front matter section and no actual content, don't bother
+                # adding the warning.
+                if contents[p.end():].strip():
+                    md.write_text(contents[:p.end()] + warning_text + contents[p.end():])
 
 
 if __name__ == "__main__":

@@ -53,7 +53,7 @@ major or minor release of Kubeflow.
 The following table shows the **status** (stable, beta, or alpha) of the 
 applications that you can deploy to your Kubernetes cluster when you deploy 
 Kubeflow. The applications are specified in the 
-[manifest](https://github.com/kubeflow/manifests/tree/master/kfdef) that you 
+[manifest](https://github.com/kubeflow/manifests/tree/master/distributions/kfdef) that you 
 use to deploy Kubeflow. The kfctl deployment tool deploys the applications 
 strictly according to the manifest. kfctl does not decide whether to deploy or
 not deploy an application based on the application status.
@@ -107,14 +107,14 @@ documentation for that application.
         <td></td>
       </tr>      
       <tr>
-        <td><a href="/docs/components/feature-store/overview">Feature store: Feast</a>
+        <td><a href="/docs/external-add-ons/feature-store/overview">Feature store: Feast</a>
         (<a href="https://github.com/feast-dev/feast">GitHub</a>)
         </td>
         <td>Alpha</td>
         <td></td>
       </tr>
       <tr>
-        <td><a href="/docs/components/hyperparameter-tuning/overview/">Hyperparameter
+        <td><a href="/docs/components/katib/overview/">Hyperparameter
           tuning: Katib</a>
           (<a href="https://github.com/kubeflow/katib">GitHub</a>)
           </td>
@@ -122,7 +122,7 @@ documentation for that application.
         <td>v1alpha3</td>
       </tr>
       <tr>
-        <td><a href="/docs/components/serving/kfserving/">KFServing</a>
+        <td><a href="/docs/external-add-ons/serving/kfserving/">KFServing</a>
           (<a href="https://github.com/kubeflow/kfserving">GitHub</a>)
         </td>
         <td>Beta</td>
@@ -152,14 +152,14 @@ documentation for that application.
         <td></td>
       </tr>
       <tr>
-        <td><a href="/docs/notebooks/why-use-jupyter-notebook/">Notebook web
+        <td><a href="/docs/components/notebooks/why-use-jupyter-notebook/">Notebook web
           app</a>
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/jupyter-web-app">GitHub</a>)
         <td>Stable</td>
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/notebooks/why-use-jupyter-notebook/">Notebook 
+        <td><a href="/docs/components/notebooks/why-use-jupyter-notebook/">Notebook 
           controller</a> 
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller">GitHub</a>)
         </td>
@@ -167,7 +167,7 @@ documentation for that application.
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/pipelines/overview/pipelines-overview/">Pipelines</a>
+        <td><a href="/docs/components/pipelines/overview/pipelines-overview/">Pipelines</a>
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Stable</td>
@@ -189,7 +189,7 @@ documentation for that application.
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/components/serving/seldon">Seldon Core Serving</a> 
+        <td><a href="/docs/external-add-ons/serving/seldon">Seldon Core Serving</a> 
           (<a href="https://github.com/SeldonIO/seldon-core">GitHub</a>)
         </td>
         <td>Stable</td>
@@ -232,21 +232,21 @@ one of the following Kubeflow SDKs and command-line interfaces
     </thead>
     <tbody>
       <tr>
-        <td><a href="/docs/fairing/fairing-overview/">Fairing</a> 
+        <td><a href="/docs/external-add-ons/fairing/fairing-overview/">Fairing</a> 
           (<a href="https://github.com/kubeflow/fairing">GitHub</a>)
         </td>
         <td>Beta</td>
         <td>0.7.1</td>
       </tr>
       <tr>
-        <td><a href="/docs/other-guides/kustomize/">kfctl</a> 
+        <td><a href="/docs/methods/kfctl/kustomize/">kfctl</a> 
           (<a href="https://github.com/kubeflow/kfctl">GitHub</a> )
         </td>
         <td>Stable</td>
         <td>1.1.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/pipelines/sdk/sdk-overview/">Kubeflow Pipelines SDK</a> 
+        <td><a href="/docs/components/pipelines/sdk/sdk-overview/">Kubeflow Pipelines SDK</a> 
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Stable</td>

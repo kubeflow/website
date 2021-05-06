@@ -62,7 +62,7 @@
      transform="translate(194.55005,-307.89663)">
     <a
        id="a3826"
-       xlink:href="https://www.tensorflow.org/serving/"
+       xlink:href="https://www.tensorflow.org/tfx/guide/serving"
        target="_blank"
        xlink:title="Tensorflow Serving"
        transform="matrix(1.1600221,0,0,1.1479458,66.012361,-64.226551)">

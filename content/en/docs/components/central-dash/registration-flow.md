@@ -61,5 +61,5 @@ with your namespace available in the dropdown list at the top of the screen:
 
 ## Next steps
 
-* [Set up a Jupyter notebook](/docs/notebooks/setup/) in Kubeflow.
+* [Set up a Jupyter notebook](/docs/components/notebooks/setup/) in Kubeflow.
 * Read more about [multi-tenancy in Kubeflow](/docs/components/multi-tenancy/).
