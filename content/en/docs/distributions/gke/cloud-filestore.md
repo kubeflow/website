@@ -2,15 +2,9 @@
 title = "Using Cloud Filestore"
 description = "Using Cloud Filestore with Kubeflow"
 weight = 60
-                    
-+++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 This guide describes how to set up and use Cloud Filestore with Kubeflow on 
-Google Cloud Platform (GCP).
+Google Cloud (GCP).
 
 ## About Cloud Filestore
 
@@ -32,13 +26,6 @@ This guide assumes the following settings:
   export KF_DIR=<path to your Kubeflow application directory>
   ``` 
 
-* The `${CONFIG_FILE}` environment variable contains the path to your 
-  Kubeflow configuration file.
-
-  ```
-  export CONFIG_FILE=${KF_DIR}/{{% config-file-gcp-iap %}}
-  ```
-
 * The `${KF_NAME}` environment variable contains the name of your Kubeflow 
   deployment. You can find the name in your `${CONFIG_FILE}` 
   configuration file, as the value for the `metadata.name` key.
@@ -48,8 +35,6 @@ This guide assumes the following settings:
   ```
 
 * The `${PROJECT}` environment variable contains the ID of your GCP project. 
-  You can find the project ID in 
-  your `${CONFIG_FILE}` configuration file, as the value for the `project` key.
 
   ```
   export PROJECT=<your GCP project ID>
@@ -70,44 +55,49 @@ This guide assumes the following settings:
 Follow these instructions to create a Cloud Filestore instance; if you already have a Cloud Filestore instance you want to
 use you can skip this section.
 
-Copy the Cloud Filestore deployment manager configs to the `gcp_config` directory:
-
-```
-cd ${KF_DIR}
-cp .cache/manifests/manifests-${VERSION}/deployment/gke/deployment_manager_configs/gcfs.yaml \
-   ./gcp_config/
-```
-
-Edit `gcfs.yaml` to match your desired configuration:
-
-  * Set zone
-  * Set name
-  * Set the value of parent to include your project e.g.
+1. Create a file called `gcfs.yaml` under `${KF_DIR}/common/cnrm` or the location you want to store the file.
 
     ```
-    projects/${PROJECT}/locations/${ZONE}
+    # Modify this instance to create a GCFS file store.
+    # 1. Change the zone to the desired zone
+    # 2. Change the instanceId to the desired id
+    # 3. Change network if needed 
+    # 4. Change the capacity if desired.
+    resources:
+    - name: filestore
+      type: gcp-types/file-v1beta1:projects.locations.instances
+      properties:
+        parent: projects/${PROJECT}/locations/${ZONE}
+        # Any name of the instance would do
+        instanceId: ${KF_NAME}
+        tier: STANDARD
+        description: Filestore for Kubeflow
+        networks:
+        - network: default
+        fileShares:
+        - name: kubeflow
+          capacityGb: 1024
+
     ```
 
-Using [yq](https://github.com/kislyuk/yq):
+2. Edit `gcfs.yaml` to match your desired configuration:
 
-```
-cd ${KF_DIR}
-. env.sh
-yq -r ".resources[0].properties.instanceId=\"${KF_NAME}\"" gcp_config/gcfs.yaml > gcp_config/gcfs.yaml.new
-mv gcp_config/gcfs.yaml.new gcp_config/gcfs.yaml
-```
+    * Set zone
+    * Set name
+    * Set the value of parent to include your project e.g.
 
-Apply the changes:
+      ```
+      projects/${PROJECT}/locations/${ZONE}
+      ```
 
-<!-- 
-  TODO(https://github.com/kubeflow/kubeflow/issues/3265): When this is fixed we
-  should be able to just rerun kfctl apply platform rather than running gcloud
--->
+3. Apply the configuration to filestore deployment `${KF_NAME}-nfs`
 
-```
-cd ${KF_DIR}/gcp_config
-gcloud --project=${PROJECT} deployment-manager deployments create ${KF_NAME}-nfs --config=gcfs.yaml
-```
+    ```
+    cd ${KF_DIR}/common/cnrm
+    gcloud --project=${PROJECT} deployment-manager deployments create ${KF_NAME}-nfs --config=gcfs.yaml
+    ```
+
+    You might need to enable Filestore API following the terminal output if you haven't enabled it already.
 
 If you get an error **legacy networks are not supported** follow the instructions
 in the [troubleshooting guide](/docs/other-guides/troubleshooting).
