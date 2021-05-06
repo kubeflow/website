@@ -15,7 +15,7 @@ Follow these steps to set up your Google Cloud project:
   for the project in Cloud IAM (Identity and Access Management).
   The deployment process creates various service accounts with
   appropriate roles in order to enable seamless integration with
-  GCP services. This process requires that you have the 
+  Google Cloud services. This process requires that you have the 
   owner role for the project in order to deploy Kubeflow.
 
 1. Make sure that billing is enabled for your project. Refer to
@@ -92,9 +92,9 @@ cluster for you.
 
 ## Next steps
 
-* [Set up an OAuth credential](/docs/gke/deploy/oauth-setup) to use 
+* [Set up an OAuth credential](/docs/distributions/gke/deploy/oauth-setup) to use 
   [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/).
   Cloud IAP is recommended for production deployments or deployments with access 
   to sensitive data.
-* [Set up Management Cluster](/docs/gke/deploy/management-setup) to deploy and manage Kubeflow clusters.
-* [Deploy Kubeflow](/docs/gke/deploy/deploy-cli) using kubectl, kustomize and kpt.
+* [Set up Management Cluster](/docs/distributions/gke/deploy/management-setup) to deploy and manage Kubeflow clusters.
+* [Deploy Kubeflow](/docs/distributions/gke/deploy/deploy-cli) using kubectl, kustomize and kpt.

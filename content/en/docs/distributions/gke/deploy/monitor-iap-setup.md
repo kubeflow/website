@@ -7,8 +7,7 @@ weight = 7
 
 [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/) is 
 the recommended solution for accessing your Kubeflow 
-deployment from outside the cluster, when running Kubeflow on Google Cloud
-Platform (GCP).
+deployment from outside the cluster, when running Kubeflow on Google Cloud.
 
 This document is a step-by-step guide to ensuring that your IAP-secured endpoint
 is available, and to debugging problems that may cause the endpoint to be
@@ -16,7 +15,7 @@ unavailable.
 
 ## Introduction
 
-When deploying Kubeflow using the [command-line interface](/docs/gke/deploy/deploy-cli/),
+When deploying Kubeflow using the [command-line interface](/docs/distributions/gke/deploy/deploy-cli/),
 you choose the authentication method you want to use. One of the options is
 Cloud IAP. This document assumes that you have already deployed Kubeflow.
 
@@ -25,7 +24,7 @@ to provide an SSL certificate for the Kubeflow Ingress.
 
 Cloud IAP gives you the following benefits:
 
- * Users can log in in using their GCP accounts.
+ * Users can log in in using their Google Cloud accounts.
  * You benefit from Google's security expertise to protect your sensitive 
    workloads.
 
@@ -75,8 +74,8 @@ problems:
      * The `CREATE` event indicates the load balancer was successfully 
        created on the specified IP address.
 
-     * The most common error is running out of GCP quota. To fix this problem,
-       you must either increase the quota for the relevant resource on your GCP 
+     * The most common error is running out of Google Cloud resource quota. To fix this problem,
+       you must either increase the quota for the relevant resource on your Google Cloud 
        project or delete some existing resources.
 
 
@@ -114,7 +113,7 @@ problems:
     * `kubectl get pods -n istio-system`
     * The `istio-ingressgateway-XX` pods should be running
     * Check the logs of pod `backend-updater-0`, `iap-enabler-XX` to see if there is any error
-    * Follow the steps [here](https://www.kubeflow.org/docs/gke/troubleshooting-gke/#502-server-error) to check the load balancer and backend service on GCP.
+    * Follow the steps [here](https://www.kubeflow.org/docs/distributions/gke/troubleshooting-gke/#502-server-error) to check the load balancer and backend service on Google Cloud.
 
 
 1. Try accessing Cloud IAP at the fully qualified domain name in your web 
@@ -144,9 +143,9 @@ problems:
     Follow the link in the error message to find the OAuth credential being used	
     and add the redirect URI listed in the error message to the list of 	
     authorized URIs. For more information, read the guide to 	
-    [setting up OAuth for Cloud IAP](/docs/gke/deploy/oauth-setup/).	
+    [setting up OAuth for Cloud IAP](/docs/distributions/gke/deploy/oauth-setup/).	
 
 ## Next steps
-* The [GCP troubleshooting guide](/docs/gke/troubleshooting-gke/) for Kubeflow.
+* The [GKE troubleshooting guide](/docs/distributions/gke/troubleshooting-gke/) for Kubeflow.
 * Guide to [sharing cluster access](/docs/components/multi-tenancy/getting-started).
-* GCP guide to [Cloud IAP](https://cloud.google.com/iap/docs/).
+* Google Cloud guide to [Cloud IAP](https://cloud.google.com/iap/docs/).

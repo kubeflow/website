@@ -1,13 +1,13 @@
 +++
 title = "Set up OAuth client"
-description = "Creating an OAuth client for Cloud IAP on Google Cloud Platform (GCP)"
+description = "Creating an OAuth client for Cloud IAP on Google Cloud"
 weight = 3
                     
 +++
 
 If you want to use 
 [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/) 
-when deploying Kubeflow on GCP,
+when deploying Kubeflow on Google Cloud,
 then you must follow these instructions to create an OAuth client for use
 with Kubeflow.
 
@@ -29,7 +29,7 @@ address to verify the user's identity.
         ```
         <project>.cloud.goog
         ```
-        * where \<project\> is your Google Cloud Platform (GCP) project ID.
+        * where \<project\> is your Google Cloud project ID.
         * If you are using your own domain, such as **acme.com**, you should add 
           that as well
         * The **Authorized domains** option appears only for certain project 
@@ -89,9 +89,9 @@ address to verify the user's identity.
 1. Click **Save**.
 
 1. Make note that you can find your OAuth client credentials in the credentials
-  section of the GCP Console. You need to retrieve the **client ID** and 
+  section of the Google Cloud Console. You need to retrieve the **client ID** and 
   **client secret** later when you're ready to enable Cloud IAP.
   
 ## Next steps
-* [Set up your management cluster](/docs/gke/deploy/management-setup/).
+* [Set up your management cluster](/docs/distributions/gke/deploy/management-setup/).
 * [Grant your users the IAP-secured Web App User IAM role](https://cloud.google.com/iam/docs/granting-changing-revoking-access#granting-console) so they can access the Kubeflow console through IAP.

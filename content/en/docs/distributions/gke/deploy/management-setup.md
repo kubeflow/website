@@ -66,6 +66,14 @@ The management cluster manifests live in GitHub repository [kubeflow/gcp-bluepri
     git checkout tags/v1.3.0
     ```
 
+    Alternatively, you can get the package by using `kpt`:
+
+    ```bash
+    # Check out Kubeflow v1.3.0 blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/v1.3.0 gcp-blueprints
+    ```
+
+
 1. Go to `management` directory for Management cluster configurations.
 
     ```bash
@@ -111,9 +119,6 @@ Alternatively, you can also fill in the same content in `gcp-blueprints/manageme
 ```bash
 source env.sh
 ```
-
-Note that the environment variables are used purely for command illustration
-purpose. No tools will assume they actually exists in your terminal environment.
 
 ## Configure kpt setter values
 
@@ -183,30 +188,6 @@ current values are by running the following command:
 
     and check `./build/cnrm-install-*` folders.
 
-## Authorize Cloud Config Connector for each Kubeflow project
-
-In the last step we created the Google Cloud service account **${MGMT_NAME}-cnrm-system@${MGMT_PROJECT}.iam.gserviceaccount.com**
-this is the service account that Config Connector will use to create any Google Cloud resources. Management cluster can live in a Google Cloud project which is different from Kubeflow clusters' projects. Consequently
-you need to grant this Google Cloud service account sufficient privileges to create the desired
-resources in one or more Kubeflow projects.
-
-The easiest way to do this is to grant the Google Cloud service account owner permissions on one or more projects.
-
-1. Set the Kubeflow project:
-
-   ```bash
-   KF_PROJECT=<Google-cloud-project-id-for-kubeflow-cluster>
-   kpt cfg set -R . managed-project "${KF_PROJECT}"
-   ```
-
-1. Update the policy:
-
-   ```bash
-   gcloud beta anthos apply ./managed-project/iam.yaml
-   ```
-
-   Optionally, to restrict permissions you want to grant to this service account. You can edit `./managed-project/iam.yaml` and specify more granular roles. Refer to [IAMPolicy Config Connector reference](https://cloud.google.com/config-connector/docs/reference/resource-docs/iam/iampolicy) for exact fields you can set.
-
 # Understanding the deployment process
 
 This section gives you more details about the configuration and
@@ -275,4 +256,5 @@ manually delete them before applying again.
 For a more detailed explanation of the drastic changes happened in Kubeflow v1.1 on Google Cloud, read [kubeflow/gcp-blueprints #123](https://github.com/kubeflow/gcp-blueprints/issues/123).
 
 ## Next steps
-* [Deploy Kubeflow](/docs/gke/deploy/deploy-cli) using kubectl, kustomize and kpt.
+* [Deploy Kubeflow](/docs/distributions/gke/deploy/deploy-cli) using kubectl, kustomize and kpt.
+

@@ -15,17 +15,17 @@ Before installing Kubeflow on the command line:
 
 1. You must have created a management cluster and installed Config Connector.
 
-   * If you don't have a management cluster follow the [instructions](/docs/gke/deploy/management-setup/)
+   * If you don't have a management cluster follow the [instructions](/docs/distributions/gke/deploy/management-setup/)
 
    * Your management cluster will need a namespace setup to administer the Google Cloud project where Kubeflow will be deployed. This step will be included in later step of current page.
 
 1. You need to use Linux or [Cloud Shell](https://cloud.google.com/shell/) for ASM installation. Currently ASM installation doesn't work on macOS because it [comes with an old version of bash](https://cloud.google.com/service-mesh/docs/scripted-install/asm-onboarding#installing_required_tools).
 
 1. Make sure that your Google Cloud project meets the minimum requirements
-  described in the [project setup guide](/docs/gke/deploy/project-setup/).
+  described in the [project setup guide](/docs/distributions/gke/deploy/project-setup/).
 
 1. Follow the guide
-  [setting up OAuth credentials](/docs/gke/deploy/oauth-setup/)
+  [setting up OAuth credentials](/docs/distributions/gke/deploy/oauth-setup/)
   to create OAuth credentials for [Cloud Identity-Aware Proxy (Cloud
   IAP)](https://cloud.google.com/iap/docs/).
     * Unfortunately [GKE's BackendConfig](https://cloud.google.com/kubernetes-engine/docs/concepts/backendconfig)
@@ -81,7 +81,7 @@ Before installing Kubeflow on the command line:
    
    **Note:** The Kubeflow deployment process is not compatible with yq v4 or later.
 
-1. Install jq https://stedolan.github.io/jq/, for example, we can run the following command on Linux: 
+1. Install jq https://stedolan.github.io/jq/, for example, we can run the following command on Ubuntu and Debian: 
 
     ```bash
     sudo apt install jq
@@ -95,20 +95,34 @@ Before installing Kubeflow on the command line:
     # Check out Kubeflow v1.3.0 blueprints
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     git checkout tags/v1.3.0
+    ```
 
-    # Visit Kubeflow cluster related manifests
-    cd gcp-blueprints/kubeflow
+    Alternatively, you can get the package by using `kpt`:
+
+    ```bash
+    # Check out Kubeflow v1.3.0 blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/v1.3.0 gcp-blueprints
     ```
 
 1. Run the following command to pull upstream manifests from `kubeflow/manifests` repository.
 
 
     ```bash
+    # Visit Kubeflow cluster related manifests
+    cd gcp-blueprints/kubeflow
+
     bash ./pull_upstream.sh
     ```
 
 
 ### Environment Variables
+
+Log in to gcloud. You only need to run this command once:
+
+  ```bash
+  gcloud auth login
+  ```
+
 
 1. This guide assumes the following environment variables:
 
@@ -121,7 +135,7 @@ Before installing Kubeflow on the command line:
     * `${KF_PROJECT}` contains the Google Cloud [project ID](https://cloud.google.com/resource-manager/docs/creating-managing-projects) where Kubeflow cluster will be deployed to.
     * `${KF_PROJECT_NUMBER}` contains the Google Cloud [project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects) where Kubeflow cluster will be deployed to.
     * `${KF_DIR}` contains the local kubeflow path where you pull `kubeflow/gcp-blueprints` repo. For example, `~/gcp-blueprints/kubeflow/`. 
-    * `${MGMT_NAME}` contains the name of your management cluster created in [Management cluster setup](/docs/gke/deploy/management-setup/).
+    * `${MGMT_NAME}` contains the name of your management cluster created in [Management cluster setup](/docs/distributions/gke/deploy/management-setup/).
     * `${MGMTCTXT}` contains a kubectl context that connects
       to the `${KF_PROJECT}` namespace of the management cluster. By default, [Management
       cluster setup](../management-setup) creates a context named `${MGMT_NAME}` for you.
@@ -135,17 +149,17 @@ Before installing Kubeflow on the command line:
         gcloud compute accelerator-types list
         ```
     * `${ADMIN_EMAIL}` contains administrator's email address, for example: `xxx@gmail.com`
-    * `${ASM_LABEL}` contains Anthos Service Mesh version, you don't need to change this value unless you want to upgrade this version. Due to current limitation, upgrading ASM requires more manual steps than just changing this variable.
+    * `${ASM_LABEL}` contains Anthos Service Mesh version, you don't need to change this value unless you want to upgrade this version. Note that upgrading ASM requires more manual steps than just changing this variable.
 
     Set these environment variables in your shell:
 
     ```bash
     export KF_NAME=<kubeflow-cluster-name>
     export KF_PROJECT=<gcp-project-id>
-    export KF_PROJECT_NUMBER=$(gcloud projects describe ${KF_PROJECT} --format='value(projectNumber)')
+    export KF_PROJECT_NUMBER=$(gcloud projects describe "${KF_PROJECT}" --format='value(projectNumber)')
     export KF_DIR=<kubeflow-download-path>
     export MGMT_NAME=<management-cluster-name>
-    export MGMTCTXT=${MGMT_NAME}
+    export MGMTCTXT="${MGMT_NAME}"
     export LOCATION=<zone>
     export ADMIN_EMAIL=<administrator-full-email-address>
     export ASM_LABEL=asm-192-1
@@ -156,9 +170,6 @@ Before installing Kubeflow on the command line:
     ```bash
     source env.sh
     ```
-
-    However, the environment variables are used purely for command illustration
-    purpose. No tools will assume they actually exists in your terminal environment.
 
 1. Set environment variables with OAuth Client ID and Secret for IAP:
 
@@ -195,23 +206,32 @@ Run the following commands to configure kpt setter for your Kubeflow cluster:
 
 ```bash
 kpt cfg set -R .  gke.private false
-kpt cfg set -R .  asm-label ${ASM_LABEL}
-kpt cfg set -R .  mgmt-ctxt ${MGMT_NAME}
+kpt cfg set -R .  asm-label "${ASM_LABEL}"
+kpt cfg set -R .  mgmt-ctxt "${MGMT_NAME}"
 
-kpt cfg set -R .  name ${KF_NAME}
-kpt cfg set -R .  gcloud.core.project ${KF_PROJECT}
-kpt cfg set -R .  gcloud.project.projectNumber ${KF_PROJECT_NUMBER}
-kpt cfg set -R .  gcloud.compute.zone ${LOCATION}
-kpt cfg set -R .  location ${LOCATION}
-kpt cfg set -R .  email ${ADMIN_EMAIL}
+kpt cfg set -R .  name "${KF_NAME}"
+kpt cfg set -R .  gcloud.core.project "${KF_PROJECT}"
+kpt cfg set -R .  gcloud.project.projectNumber "${KF_PROJECT_NUMBER}"
+kpt cfg set -R .  gcloud.compute.zone "${LOCATION}"
+kpt cfg set -R .  location "${LOCATION}"
+kpt cfg set -R .  email "${ADMIN_EMAIL}"
 kpt cfg set -R .  log-firewalls false
 ```
 
 Alternatively, you can run the following command for the same effect:
 
-```bash
-bash ./kpt-set.sh
-```
+  ```bash
+  bash ./kpt-set.sh
+  ```
+
+Note, you can find out which setters exist in a package and what their
+current values are by running the following command:
+
+  ```bash
+  kpt cfg list-setters .
+  ```
+
+You can learn more about `kpt cfg set` in [kpt documentation](https://googlecontainertools.github.io/kpt/reference/cfg/set/), or by running `kpt cfg set --help`.
 
 #### Management cluster config
 
@@ -229,9 +249,6 @@ You need to configure the kubectl context `${MGMTCTXT}`.
   kubectl create namespace "${KF_PROJECT}"
   ```
 
-  where `${KF_PROJECT}` is the Kubeflow cluster mentioned in the [Authorize Cloud Config Connector for each Kubeflow project
-/docs/gke/deploy/management-setup/#authorize-cloud-config-connector-for-each-kubeflow-project) step.
-
 * Make the Kubeflow project's namespace default of the `${MGMTCTXT}` context:
 
   ```bash
@@ -239,13 +256,40 @@ You need to configure the kubectl context `${MGMTCTXT}`.
   ```
 
 
+## Authorize Cloud Config Connector for each Kubeflow project
+
+In the [Management cluster deployment](/docs/distributions/gke/deploy/management-setup/) we created the Google Cloud service account **${MGMT_NAME}-cnrm-system@${MGMT_PROJECT}.iam.gserviceaccount.com**
+this is the service account that Config Connector will use to create any Google Cloud resources. If your Management cluster and Kubeflow cluster live in different projects, you need to grant this Google Cloud service account sufficient privileges to create the desired
+resources in Kubeflow project.
+
+The easiest way to do this is to grant the Google Cloud service account owner permissions on one or more projects.
+
+1. Set the Management environment variable if you haven't:
+
+    ```bash
+    MGMT_DIR=<path to your management cluster configuration directory>
+    MGMT_NAME=<name of your management cluster>
+    MGMT_PROJECT=<the project where you deploy your management cluster>
+    ```
+
+1. Redirect to `managment` directory:
+
+   ```bash
+   cd "${MGMT_DIR}"
+   kpt cfg set -R . name "${MGMT_NAME}"
+   kpt cfg set -R . gcloud.core.project "${MGMT_PROJECT}"
+   kpt cfg set -R . managed-project "${KF_PROJECT}"
+   ```
+
+1. Update the policy:
+
+   ```bash
+   gcloud beta anthos apply ./managed-project/iam.yaml
+   ```
+
+   Optionally, to restrict permissions you want to grant to this service account. You can edit `./managed-project/iam.yaml` and specify more granular roles. Refer to [IAMPolicy Config Connector reference](https://cloud.google.com/config-connector/docs/reference/resource-docs/iam/iampolicy) for exact fields you can set.
+
 ### Deploy Kubeflow
-
-Log in to gcloud. You only need to run this command once:
-
-```bash
-gcloud auth login
-```
 
 To deploy Kubeflow, run the following command:
 
@@ -329,9 +373,8 @@ Notes:
 
 ## Understanding the deployment process
 
-This section gives you more details about the kubectl configuration and
-deployment process, so that you can customize your Kubeflow deployment if
-necessary.
+This section gives you more details about the kubectl, kustomize, config connector configuration and
+deployment process, so that you can customize your Kubeflow deployment if necessary.
 
 ### Application layout
 
@@ -342,7 +385,7 @@ directories:
 
 * **apps**, **common**, **contrib** are a series of independent components  directory containing kustomize packages for deploying Kubeflow components. The structure is to align with upstream [kubeflow/manifests](https://github.com/kubeflow/manifests).
 
-  * `kubeflow/gcp-blueprints` only stores `kustomization.yaml` and `patches` for GCP specific resources.
+  * `kubeflow/gcp-blueprints` only stores `kustomization.yaml` and `patches` for Google Cloud specific resources.
 
   * `./pull_upstream.sh` will pull `kubeflow/manifests` and store manifests in `upstream` folder of each component in this guide. `kubeflow/gcp-blueprints` repo doesn't store the copy of upstream manifests.
 
@@ -374,15 +417,15 @@ The service accounts are:
 
 ## Upgrade Kubeflow
 
-Refer to [Upgrading Kubeflow cluster](/docs/gke/deploy/upgrade#upgrading-kubeflow-cluster).
+Refer to [Upgrading Kubeflow cluster](/docs/distributions/gke/deploy/upgrade#upgrading-kubeflow-cluster).
 
 ## Next steps
 
 * Run a full ML workflow on Kubeflow, using the
-  [end-to-end MNIST tutorial](/docs/gke/gcp-e2e/) or the
+  [end-to-end MNIST tutorial](/docs/distributions/gke/gcp-e2e/) or the
   [GitHub issue summarization Pipelines
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization/pipelines).
-* Learn how to [delete your Kubeflow deployment using the CLI](/docs/gke/deploy/delete-cli/).
-* To add users to Kubeflow, go to [a dedicated section in Customizing Kubeflow on GKE](/docs/gke/customizing-gke/#add-users-to-kubeflow).
-* To taylor your Kubeflow deployment on GKE, go to [Customizing Kubeflow on GKE](/docs/gke/customizing-gke/).
-* For troubleshooting Kubeflow deployments on GKE, go to the [Troubleshooting deployments](/docs/gke/troubleshooting-gke/) guide.
+* Learn how to [delete your Kubeflow deployment using the CLI](/docs/distributions/gke/deploy/delete-cli/).
+* To add users to Kubeflow, go to [a dedicated section in Customizing Kubeflow on GKE](/docs/distributions/gke/customizing-gke/#add-users-to-kubeflow).
+* To taylor your Kubeflow deployment on GKE, go to [Customizing Kubeflow on GKE](/docs/distributions/gke/customizing-gke/).
+* For troubleshooting Kubeflow deployments on GKE, go to the [Troubleshooting deployments](/docs/distributions/gke/troubleshooting-gke/) guide.

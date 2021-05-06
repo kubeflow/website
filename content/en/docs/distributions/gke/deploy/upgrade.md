@@ -8,19 +8,19 @@ weight = 6
 
 To better understand upgrade process, you should read the following sections first:
 
-* [Understanding the deployment process for management cluster](/docs/gke/deploy/management-setup#understanding-the-deployment-process)
-* [Understanding the deployment process for Kubeflow cluster](/docs/gke/deploy/deploy-cli#understanding-the-deployment-process)
+* [Understanding the deployment process for management cluster](/docs/distributions/gke/deploy/management-setup#understanding-the-deployment-process)
+* [Understanding the deployment process for Kubeflow cluster](/docs/distributions/gke/deploy/deploy-cli#understanding-the-deployment-process)
 
 This guide assumes the following settings:
 
 * The `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
-  are the same as in [Management cluster setup](/docs/gke/deploy/management-setup#configure-environment-variables).
+  are the same as in [Management cluster setup](/docs/distributions/gke/deploy/management-setup#configure-environment-variables).
 * The `${KF_DIR}`, `${KF_NAME}`, `${CLIENT_ID}` and `${CLIENT_SECRET}` environment variables
-  are the same as in [Deploy using kubectl and kpt](/docs/gke/deploy/deploy-cli#environment-variables).
+  are the same as in [Deploy using kubectl and kpt](/docs/distributions/gke/deploy/deploy-cli#environment-variables).
 
 ## General upgrade instructions
 
-Starting from Kubeflow v1.3, we have reworked on the structure of `kubeflow/gcp-blueprints` repository. All resources are located in `gcp-blueprints/management` directory.
+Starting from Kubeflow v1.3, we have reworked on the structure of `kubeflow/gcp-blueprints` repository. All resources are located in `gcp-blueprints/management` directory. Upgrade to Management cluster v1.3 is not supported.
 
 Before Kubeflow v1.3, both management cluster and Kubeflow cluster follow the same `instance` and `upstream` folder convention. To upgrade, you'll typically need to update packages in `upstream` to the new version and repeat the `make apply-<subcommand>` commands in their respective deployment process.
 
@@ -72,7 +72,9 @@ Due to the refactoring of `kubeflow/manifests` repository, the way we depend on 
    ```bash
    WORKING_BRANCH=<your-github-working-branch>
    VERSION_TAG=<targeted-kubeflow-version-tag-on-github>
-   git checkout "${WORKING_BRANCH}"
+   git checkout -b "${WORKING_BRANCH}"
+   git remote add upstream https://github.com/kubeflow/gcp-blueprints.git # This is one time only.
+   git fetch upstream 
    git merge "${VERSION_TAG}"
    ```
 
@@ -218,7 +220,9 @@ To upgrade from specific versions of Kubeflow, you may need to take certain manu
    ```bash
    WORKING_BRANCH=<your-github-working-branch>
    VERSION_TAG=<targeted-kubeflow-version-tag-on-github>
-   git checkout "${WORKING_BRANCH}"
+   git checkout -b "${WORKING_BRANCH}"
+   git remote add upstream https://github.com/kubeflow/gcp-blueprints.git # This is one time only.
+   git fetch upstream 
    git merge "${VERSION_TAG}"
    ```
 

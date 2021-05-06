@@ -12,7 +12,7 @@ Google Cloud.
 This guide assumes the following settings:
 
 * For Management cluster: The `${MGMT_PROJECT}`, `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
-  are the same as in [Deploy Management cluster](/docs/gke/deploy/management-setup#configure-environment-variables).
+  are the same as in [Deploy Management cluster](/docs/distributions/gke/deploy/management-setup#configure-environment-variables).
 
 * For Kubeflow cluster: The `${KF_PROJECT}`, `${KF_DIR}`, `${KF_NAME}` and `${MGMTCTXT}` environment variables
   are the same as in [Deploy Kubeflow cluster](../deploy-cli#environment-variables).
@@ -25,7 +25,7 @@ This guide assumes the following settings:
     kubectl delete namespace kubeflow
     ```
 
-1. To delete the cluster and all GCP resources, run the following commands:
+1. To delete the cluster and all Google Cloud resources, run the following commands:
 
     ```bash
     cd "${KF_DIR}"
