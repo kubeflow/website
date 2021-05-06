@@ -91,7 +91,7 @@ We frequently add examples to our [GitHub repo](https://github.com/kubeflow/kfse
 * [Kubecon Introducing KFServing](https://kccncna19.sched.com/event/UaZo/introducing-kfserving-serverless-model-serving-on-kubernetes-ellis-bigelow-google-dan-sun-bloomberg).
 * [Kubecon Advanced KFServing](https://kccncna19.sched.com/event/UaVw/advanced-model-inferencing-leveraging-knative-istio-and-kubeflow-serving-animesh-singh-ibm-clive-cox-seldon).
 * [Nvidia GTC Accelerate and Autoscale Deep Learning Inference on GPUs](https://developer.nvidia.com/gtc/2020/video/s22459-vid).
-* [Hands-on serving models using KFserving](https://www.bing.com/videos/search?q=theo+hands+on+kfserving&view=detail&mid=47588B7181E550180E6947588B7181E550180E69&FORM=VIRE&adlt=strict)
+* [Hands-on serving models using KFserving video](https://youtu.be/VtZ9LWyJPdc) and [slides](https://www.slideshare.net/theofpa/serving-models-using-kfserving).
 
 ## Standalone KFServing
 
