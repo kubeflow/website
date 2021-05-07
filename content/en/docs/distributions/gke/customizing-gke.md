@@ -49,7 +49,7 @@ This guide assumes the following settings:
 To customize Google Cloud resources, such as your Kubernetes Engine cluster, you can 
 modify the Deployment settings starting in `${KF_DIR}/common/cnrm`.
 
-This folder is the folder which contains multiple dependencies on sibling directories for Google Cloud resources. So you can start from here by reviewing `kustomization.yaml`. Depends on the type of Google Cloud resources you want to customize, you can add patches in corresponding directory. 
+This folder contains multiple dependencies on sibling directories for Google Cloud resources. So you can start from here by reviewing `kustomization.yaml`. Depends on the type of Google Cloud resources you want to customize, you can add patches in corresponding directory. 
 
 1. Make sure you checkin the existing resources in `/build` folder to source control.
 

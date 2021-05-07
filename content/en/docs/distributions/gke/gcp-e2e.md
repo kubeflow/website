@@ -1,5 +1,5 @@
 +++
-title = "Tutorial: End-to-end Kubeflow on GCP"
+title = "Tutorial: End-to-end Kubeflow on Google Cloud"
 description = "Training an MNIST model with Kubeflow on Google Cloud Platform"
 weight = 90
                     
@@ -10,7 +10,7 @@ needs to be updated for Kubeflow 1.1.
 {{% /alert %}}
 
 This guide walks you through an end-to-end example of Kubeflow on Google
-Cloud Platform (GCP) using a Jupyter notebook, 
+Cloud using a Jupyter notebook, 
 [mnist_gcp.ipynb](https://github.com/kubeflow/examples/blob/master/mnist/mnist_gcp.ipynb). 
 By working through the notebook, you learn
 how to deploy Kubeflow on Kubernetes Engine (GKE), train an MNIST machine
@@ -19,21 +19,21 @@ learning model for image classification, and use the model for online inference
 
 ## Introductions
 
-### Overview of GCP and GKE
+### Overview of Google Cloud and GKE
 
-Google Cloud Platform (GCP) is a suite of cloud computing services running
+Google Cloud is a suite of cloud computing services running
 on Google infrastructure. The services include compute power, data storage,
 data analytics, and machine learning.
 
 The [Cloud SDK][cloud-sdk] is a set of tools that you can use to interact with
-GCP from the command line, including the `gcloud` command and others.
+Google Cloud from the command line, including the `gcloud` command and others.
 
-[Kubernetes Engine][kubernetes-engine] (GKE) is a managed service on GCP where
+[Kubernetes Engine][kubernetes-engine] (GKE) is a managed service on Google Cloud where
 you can deploy containerized applications. You describe the resources that your
 application needs, and GKE provisions and manages the underlying
 cloud resources.
 
-Here's a list of the primary GCP services that you use when following this
+Here's a list of the primary Google Cloud services that you use when following this
 guide:
 
   * [GKE][kubernetes-engine]
@@ -93,9 +93,9 @@ In summary:
 
 It's time to get started!
 
-## Set up and run the MNIST tutorial on GCP
+## Set up and run the MNIST tutorial on Google Cloud
 
-1. Follow the [GCP instructions](/docs/gke/deploy/) to deploy Kubeflow with 
+1. Follow the [Google Cloud instructions](/docs/gke/deploy/) to deploy Kubeflow with 
   Cloud Identity-Aware Proxy (IAP).
 
 1. Launch a Jupyter notebook in your Kubeflow cluster. See the guide to

@@ -203,7 +203,7 @@ These instructions explain how to deploy Kubeflow using private GKE.
 
     * DNS configurations: Check that the `DNSRecordSet` and `DNSManagedZone` Config Connector resources are in a ready state.
     * Routes: Make sure any default route to the internet has a larger value for the priority 
-        then any routes to private GCP APIs so that the private routes match first.
+        then any routes to private Google Cloud APIs so that the private routes match first.
 
         * If image pull errors show IP addresses and not the `restricted.googleapis.com` VIP, then you have
           an issue with networking.

@@ -63,7 +63,7 @@ authentication through IAP.
 1.  Find out your IAP OAuth 2.0 client ID.
 
     You or your cluster admin followed [Set up OAuth for Cloud IAP](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/)
-    to deploy your full Kubeflow deployment on GCP. You need the OAuth client
+    to deploy your full Kubeflow deployment on Google Cloud. You need the OAuth client
     ID created in that step.
 
     You can browse all of your existing OAuth client IDs [in the Credentials page of Google Cloud Console](https://console.cloud.google.com/apis/credentials).

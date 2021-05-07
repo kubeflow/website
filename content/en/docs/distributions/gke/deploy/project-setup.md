@@ -1,13 +1,13 @@
 +++
 title = "Set up a Google Cloud Project"
-description = "Creating a Google Cloud Platform (GCP) project for your Kubeflow deployment"
+description = "Creating a Google Cloud project for your Kubeflow deployment"
 weight = 1
 +++
 
-Follow these steps to set up your GCP project:
+Follow these steps to set up your Google Cloud project:
 
 1. Select or create a project on the 
-  [GCP Console](https://console.cloud.google.com/cloud-resource-manager).
+  [Google Cloud Console](https://console.cloud.google.com/cloud-resource-manager).
 
 
 1. Make sure that you have the 
@@ -15,14 +15,14 @@ Follow these steps to set up your GCP project:
   for the project in Cloud IAM (Identity and Access Management).
   The deployment process creates various service accounts with
   appropriate roles in order to enable seamless integration with
-  GCP services. This process requires that you have the 
+  Google Cloud services. This process requires that you have the 
   owner role for the project in order to deploy Kubeflow.
 
 1. Make sure that billing is enabled for your project. Refer to the guide to
   [modifying a project's billing 
   settings](https://cloud.google.com/billing/docs/how-to/modify-project).
 
-1. Go to the following pages on the GCP Console and ensure that the 
+1. Go to the following pages on the Google Cloud Console and ensure that the 
   specified APIs are enabled:
 
     * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
@@ -49,9 +49,9 @@ Follow these steps to set up your GCP project:
     ```
 
 1. If you are using the 
-  [GCP Free Tier](https://cloud.google.com/free/docs/gcp-free-tier) or the
+  [Google Cloud Free Tier](https://cloud.google.com/free/docs/gcp-free-tier) or the
   12-month trial period with $300 credit, note that you can't run the default
-  GCP installation of Kubeflow, because the free tier does not offer enough
+  Google Cloud installation of Kubeflow, because the free tier does not offer enough
   resources. You need to 
   [upgrade to a paid account](https://cloud.google.com/free/docs/gcp-free-tier#how-to-upgrade).
   
@@ -62,7 +62,7 @@ Follow these steps to set up your GCP project:
     * [kubeflow/kubeflow #3936](https://github.com/kubeflow/kubeflow/issues/3936)
       requests a Kubeflow configuration to work with a free trial project.
 
-1. Read the GCP guide to [resource quotas](https://cloud.google.com/compute/quotas)
+1. Read the Google Cloud guide to [resource quotas](https://cloud.google.com/compute/quotas)
   to understand the quotas on resource usage that Compute Engine enforces, and 
   to learn how to check your quota and how to request an increase in quota.
   

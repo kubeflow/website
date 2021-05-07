@@ -7,9 +7,9 @@ weight = 30
 
 ## Before you start
 
-This guide assumes you have already set up Kubeflow on GCP. If you haven't done
+This guide assumes you have already set up Kubeflow on Google Cloud. If you haven't done
 so, follow the guide to
-[getting started with Kubeflow on GCP](/docs/gke/deploy/).
+[getting started with Kubeflow on Google Cloud](/docs/gke/deploy/).
 
 ## Using your own domain
 
