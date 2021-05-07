@@ -61,7 +61,7 @@ If you installed MicroK8s directly on your Linux machine, you can view the Kubef
 
 1. Open a web browser window.
 2. Access the link provided after you have enabled Kubeflow (for example,
-   `10.64.140.43.xip.io`).
+   `10.64.140.43.nip.io`).
 
 ### On Windows, macOS, Multipass or a virtual machine
 
