@@ -135,7 +135,7 @@ Log in to gcloud. You only need to run this command once:
       The value of this variable cannot be greater than 24 characters. It must
       contain just a name, not a directory path. Kubeflow name should be different from  your management cluster name.
     * `${KF_PROJECT}` contains the Google Cloud [project ID](https://cloud.google.com/resource-manager/docs/creating-managing-projects) where Kubeflow cluster will be deployed to.
-    * `${KF_PROJECT_NUMBER}` contains the Google Cloud [project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects) where Kubeflow cluster will be deployed to.
+    * `${KF_PROJECT_NUMBER}` contains the Google Cloud [project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects) where Kubeflow cluster will be deployed to. You can use command `gcloud projects describe "${KF_PROJECT}" --format='value(projectNumber)'` to gain project number with project ID.
     * `${KF_DIR}` contains the local kubeflow path where you pull `kubeflow/gcp-blueprints` repo. For example, `~/gcp-blueprints/kubeflow/`. 
     * `${MGMT_NAME}` contains the name of your management cluster created in [Management cluster setup](/docs/distributions/gke/deploy/management-setup/).
     * `${MGMTCTXT}` contains a kubectl context that connects
@@ -157,8 +157,8 @@ Log in to gcloud. You only need to run this command once:
 
     ```bash
     export KF_NAME=<kubeflow-cluster-name>
-    export KF_PROJECT=<gcp-project-id>
-    export KF_PROJECT_NUMBER=$(gcloud projects describe "${KF_PROJECT}" --format='value(projectNumber)')
+    export KF_PROJECT=<google-cloud-project-id>
+    export KF_PROJECT_NUMBER=<google-cloud-project-number>
     export KF_DIR=<kubeflow-download-path>
     export MGMT_NAME=<management-cluster-name>
     export MGMTCTXT="${MGMT_NAME}"
