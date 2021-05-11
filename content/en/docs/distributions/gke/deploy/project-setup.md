@@ -7,7 +7,7 @@ weight = 2
 Follow these steps to set up your Google Cloud project:
 
 1. Select or create a project on the 
-  [Google Cloud Console](https://console.cloud.google.com/cloud-resource-manager).
+  [Google Cloud Console](https://console.cloud.google.com/cloud-resource-manager). If you plan to use different Google Cloud projects for __Management Cluster__ and __Kubeflow Clusters__: create __one Management project__ for Management Cluster, and create __one or more Kubeflow projects__ for Kubeflow Clusters.
 
 
 1. Make sure that you have the 
@@ -22,7 +22,7 @@ Follow these steps to set up your Google Cloud project:
   [Enable billing for a project](https://cloud.google.com/billing/docs/how-to/modify-project).
 
 1. Open following pages on the Google Cloud Console and ensure that the 
-  specified APIs are enabled:
+  specified APIs are enabled for Management cluster:
 
     * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
     * [Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com)
