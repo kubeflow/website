@@ -1,7 +1,7 @@
 +++
 title = "Kubeflow On-premises on Anthos"
 description = "Running Kubeflow across on-premises and cloud environments with Anthos"
-weight = 18
+weight = 200
 +++
 
 [Anthos](https://cloud.google.com/anthos) is a hybrid and multi-cloud 
