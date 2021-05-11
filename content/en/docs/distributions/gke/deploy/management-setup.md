@@ -26,7 +26,7 @@ to manage Google Cloud infrastructure using GitOps.
     # If the output said the Cloud SDK component manager is disabled for installation, copy the command from output and run it.
     ```
 
-    kubectl `v1.18.19` works best with Kubeflow 1.3, you can install specific version by following instruction, for example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). But kubectl v17~19 works well too.
+    kubectl `v1.18.19` works best with Kubeflow 1.3, you can install specific version by following instruction, for example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). But latest patch version of kubectl from `v1.17` to `v1.19` works well too.
 
 1. [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
@@ -65,6 +65,7 @@ The management cluster manifests live in GitHub repository [kubeflow/gcp-bluepri
 
     ```bash
     git clone https://github.com/kubeflow/gcp-blueprints.git 
+    cd gcp-blueprints
     git checkout tags/v1.3.0
     ```
 
@@ -73,13 +74,14 @@ The management cluster manifests live in GitHub repository [kubeflow/gcp-bluepri
     ```bash
     # Check out Kubeflow v1.3.0 blueprints
     kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/v1.3.0 gcp-blueprints
+    cd gcp-blueprints
     ```
 
 
-1. Go to `management` directory for Management cluster configurations.
+1. Go to `gcp-blueprints/management` directory for Management cluster configurations.
 
     ```bash
-    cd gcp-blueprints/management
+    cd management
     ```
 
 ## Configure Environment Variables

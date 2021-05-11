@@ -96,6 +96,7 @@ Before installing Kubeflow on the command line:
     ```bash
     # Check out Kubeflow v1.3.0 blueprints
     git clone https://github.com/kubeflow/gcp-blueprints.git 
+    cd gcp-blueprints
     git checkout tags/v1.3.0
     ```
 
@@ -104,6 +105,7 @@ Before installing Kubeflow on the command line:
     ```bash
     # Check out Kubeflow v1.3.0 blueprints
     kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/v1.3.0 gcp-blueprints
+    cd gcp-blueprints
     ```
 
 1. Run the following command to pull upstream manifests from `kubeflow/manifests` repository.
@@ -111,9 +113,9 @@ Before installing Kubeflow on the command line:
 
     ```bash
     # Visit Kubeflow cluster related manifests
-    cd gcp-blueprints/kubeflow
+    cd kubeflow
 
-    bash ./pull_upstream.sh
+    bash ./pull-upstream.sh
     ```
 
 
@@ -180,14 +182,9 @@ Log in to gcloud. You only need to run this command once:
    export CLIENT_SECRET=<Your CLIENT_SECRET>
    ```
 
-    {{% alert title="Note" %}}
-    Do not omit the `export` because scripts triggered by `make` need these
-    environment variables.
-    {{% /alert %}}
+    {{% alert title="Note" %}}Do not omit the `export` because scripts triggered by `make` need these environment variables. {{% /alert %}}
 
-    {{% alert title="Note" %}}
-    Do not check in these two envrionment variables configuration to source control, they are secrets.
-    {{% /alert %}}
+    {{% alert title="Note" %}}Do not check in these two envrionment variables configuration to source control, they are secrets.{{% /alert %}}
    
 
 ### Configure Kubeflow
@@ -271,7 +268,7 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
 1. Redirect to `managment` directory:
 
    ```bash
-   cd "${MGMT_DIR}"
+   pushd "${MGMT_DIR}"
    kpt cfg set -R . name "${MGMT_NAME}"
    kpt cfg set -R . gcloud.core.project "${MGMT_PROJECT}"
    kpt cfg set -R . managed-project "${KF_PROJECT}"
@@ -284,6 +281,12 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
    ```
 
    Optionally, to restrict permissions you want to grant to this service account. You can edit `./managed-project/iam.yaml` and specify more granular roles. Refer to [IAMPolicy Config Connector reference](https://cloud.google.com/config-connector/docs/reference/resource-docs/iam/iampolicy) for exact fields you can set.
+
+1. Return to `gcp-blueprints/kubeflow` directory:
+    
+    ```bash
+    popd
+    ```
 
 ### Deploy Kubeflow
 
