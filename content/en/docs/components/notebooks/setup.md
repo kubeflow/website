@@ -305,7 +305,7 @@ exposed to the internet and is an unsecured endpoint by default.
 * See how to configure [multi-user isolation](/docs/components/multi-tenancy/) in Kubeflow, to separate the notebooks for each user in a shared Kubeflow deployment.
 * Learn the advanced features available from a Kubeflow notebook, such as
   [submitting Kubernetes resources](/docs/components/notebooks/submit-kubernetes/) or
-  [building Docker images](/docs/components/notebooks/submit-docker-image/). 
+  [building Docker images](/docs/components/notebooks/custom-notebook/). 
 * Visit the [troubleshooting guide](/docs/components/notebooks/troubleshoot) for fixing common
   errors in creating Jupyter notebooks in Kubeflow
 
