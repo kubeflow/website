@@ -188,7 +188,7 @@ Then create the [ContainerNodePool](https://cloud.google.com/config-connector/do
       minNodeCount: 1
       maxNodeCount: 5
     nodeConfig:
-      machineType: n1-standard-4
+      machineType: e2-standard-4
       diskSizeGb: 100
       diskType: pd-standard
       preemptible: false
@@ -206,9 +206,6 @@ Then create the [ContainerNodePool](https://cloud.google.com/config-connector/do
     clusterRef:
       name: "PROJECT/LOCATION/KUBEFLOW-NAME" # {"$kpt-set":"cluster-name"}
 ```
-
-You must also set 
-[`gpu-pool-initialNodeCount`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L58).
 
 After adding GPU nodes to your cluster, you need to install NVIDIA's device drivers to the nodes. Google provides a DaemonSet that automatically installs the drivers for you.
 To deploy the installation DaemonSet, run the following command:
