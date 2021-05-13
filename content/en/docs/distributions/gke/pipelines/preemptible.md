@@ -1,6 +1,6 @@
 +++
-title = "Using Preemptible VMs and GPUs on GCP"
-description = "Configuring preemptible VMs and GPUs for Kubeflow Pipelines on GCP"
+title = "Using Preemptible VMs and GPUs on Google Cloud"
+description = "Configuring preemptible VMs and GPUs for Kubeflow Pipelines on Google Cloud"
 weight = 80
                     
 +++
@@ -13,7 +13,7 @@ This document describes how to configure preemptible virtual machines
 ([preemptible VMs](https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms))
 and GPUs on preemptible VM instances
 ([preemptible GPUs](https://cloud.google.com/compute/docs/instances/preemptible#preemptible_with_gpu))
-for your workflows running on Kubeflow Pipelines on Google Cloud Platform (GCP). 
+for your workflows running on Kubeflow Pipelines on Google Cloud. 
 
 ## Introduction
 
@@ -27,12 +27,12 @@ GPUs attached to preemptible instances
 ([preemptible GPUs](https://cloud.google.com/compute/docs/instances/preemptible#preemptible_with_gpu)) 
 work like normal GPUs but persist only for the life of the instance.
 
-Using preemptible VMs and GPUs can reduce costs on GCP.
+Using preemptible VMs and GPUs can reduce costs on Google Cloud.
 In addition to using preemptible VMs, your Google Kubernetes Engine (GKE)
 cluster can autoscale based on current workloads.
 
 This guide assumes that you have already deployed Kubeflow Pipelines. If not,
-follow the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/).
+follow the guide to [deploying Kubeflow on Google Cloud](/docs/gke/deploy/).
 
 ## Using preemptible VMs with Kubeflow Pipelines
 
@@ -74,7 +74,7 @@ Where:
     this name is the value of the `${KF_NAME}` environment variable. If you used
     the [deployment UI](/docs/gke/deploy/deploy-ui/),
     this name is the value you specified as the deployment name.
-+   `PROJECT_NAME` is the name of your GCP project.
++   `PROJECT_NAME` is the name of your Google Cloud project.
 
 Below is an example of the command:
 
@@ -161,11 +161,11 @@ The following sections contain more detail about the above steps.
 
 ### 1. Make sure you have enough GPU quota
 
-Add GPU quota to your GCP project. The [GCP
+Add GPU quota to your Google Cloud project. The [Google Cloud
 documentation](https://cloud.google.com/compute/docs/gpus/#introduction) lists
 the availability of GPUs across regions. To check the available quota for
 resources in your project, go to the
-[Quotas](https://console.cloud.google.com/iam-admin/quotas) page in the GCP
+[Quotas](https://console.cloud.google.com/iam-admin/quotas) page in the Google Cloud
 Console.
 
 ### 2. Create a  node pool of preemptible VMs with preemptible GPUs
@@ -196,7 +196,7 @@ Where:
     this name is the value of the `${KF_NAME}` environment variable. If you used
     the [deployment UI](/docs/gke/deploy/deploy-ui/),
     this name is the value you specified as the deployment name.
-+   `PROJECT_NAME` is the name of your GCP project.
++   `PROJECT_NAME` is the name of your Google Cloud project.
 +   `GPU_TYPE` is the [type of
     GPU](https://cloud.google.com/compute/docs/gpus/).
 +   `GPU_COUNT` is the number of GPUs.
@@ -271,7 +271,7 @@ For example:
 
 ## Comparison with Cloud AI Platform Training service
 
-[Cloud AI Platform Training](https://cloud.google.com/ml-engine/docs/) is a GCP
+[Cloud AI Platform Training](https://cloud.google.com/ml-engine/docs/) is a Google Cloud
 machine learning (ML) training service that supports distributed training and
 hyperparameter tuning, and requires no complex GKE configuration. Cloud AI
 Platform Training charges the Compute Engine costs only for the runtime of the
@@ -323,5 +323,5 @@ running preemptible VMs or GPUs:
 
 ## Next steps
 
-* Explore further options for [customizing Kubeflow on GCP](/docs/gke/).
+* Explore further options for [customizing Kubeflow on Google Cloud](/docs/gke/).
 * See how to [build pipelines with the SDK](/docs/components/pipelines/sdk/).

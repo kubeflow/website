@@ -1,16 +1,16 @@
 +++
-title = "Authenticating Pipelines to GCP"
-description = "Authentication and authorization to Google Cloud Platform (GCP) in Pipelines"
+title = "Authenticating Pipelines to Google Cloud"
+description = "Authentication and authorization to Google Cloud in Pipelines"
 weight = 50
                     
 +++
 
-This page describes authentication for Kubeflow Pipelines to GCP.
+This page describes authentication for Kubeflow Pipelines to Google Cloud.
 Available options listed below have different tradeoffs. You should choose the one that fits your use-case.
 
 * Configuring your cluster to access Google Cloud using [Compute Engine default service account](#compute-engine-default-service-account) with the "cloud-platform" scope is easier to set up than the other options. However, this approach grants excessive permissions. Therefore, it is not suitable if you need workload permission separation.
 * [Workload Identity](#workload-identity) takes more efforts to set up, but allows fine-grained permission control. It is recommended for production use-cases.
-* [Google service account keys stored as Kubernetes secrets](#google-service-account-keys-stored-as-kubernetes-secrets) is the legacy approach and no longer recommended in GKE. However, it's the only option to use GCP APIs when your cluster is an [anthos](https://cloud.google.com/anthos) or on-prem cluster.
+* [Google service account keys stored as Kubernetes secrets](#google-service-account-keys-stored-as-kubernetes-secrets) is the legacy approach and no longer recommended in GKE. However, it's the only option to use Google Cloud APIs when your cluster is an [anthos](https://cloud.google.com/anthos) or on-prem cluster.
 
 ## Before you begin
 There are various options on how to install Kubeflow Pipelines in the [Installation Options for Kubeflow Pipelines](/docs/components/pipelines/installation/overview/) guide.
@@ -33,7 +33,7 @@ However, it does not support permission separation for workloads in the cluster.
 ### Cluster setup to use Compute Engine default service account
 
 By default, your GKE nodes use [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account). If you allowed `cloud-platform` scope when creating the cluster,
-Kubeflow Pipelines can authenticate to GCP and manage resources in your project without further configuration.
+Kubeflow Pipelines can authenticate to Google Cloud and manage resources in your project without further configuration.
 
 Use one of the following options to create a GKE cluster that uses the Compute Engine default service account:
 
@@ -50,11 +50,11 @@ Please refer to [gcloud container clusters create command documentation](https:/
 
 ### Authoring pipelines to use default service account
 
-Pipelines don't need any specific changes to authenticate to GCP, it will use the default service account transparently.
+Pipelines don't need any specific changes to authenticate to Google Cloud, it will use the default service account transparently.
 
 However, you must update existing pipelines that use the [use_gcp_secret kfp sdk operator](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.extensions.html#kfp.gcp.use_gcp_secret). Remove the `use_gcp_secret` usage to let your pipeline authenticate to Google Cloud using the default service account.
 
-## Securing the cluster with fine-grained GCP permission control
+## Securing the cluster with fine-grained Google Cloud permission control
 
 ### Workload Identity
 
@@ -132,8 +132,8 @@ If you used `gcp-workload-identity-setup.sh` to bind Workload Identities for you
 * Give GSA `<cluster-name>-kfp-system@<project-id>.iam.gserviceaccount.com` `Storage Object Viewer` role to let UI load data in GCS in the same project.
 * Give GSA `<cluster-name>-kfp-user@<project-id>.iam.gserviceaccount.com` any permissions your pipelines need. For quick tryouts, you can give it `Project Editor` role for all permissions.
 
-If you configured bindings by yourself, here are GCP permission requirements for KFP KSAs:
-* Pipelines use `pipeline-runner` KSA. Configure IAM permissions of the GSA bound to this KSA to allow pipelines use GCP APIs.
+If you configured bindings by yourself, here are Google Cloud permission requirements for KFP KSAs:
+* Pipelines use `pipeline-runner` KSA. Configure IAM permissions of the GSA bound to this KSA to allow pipelines use Google Cloud APIs.
 * Pipelines UI uses `ml-pipeline-ui` KSA. Pipelines Visualization Server uses `ml-pipeline-visualizationserver` KSA. If you need to view artifacts and visualizations stored in Google Cloud Storage (GCS) from pipelines UI, you should add Storage Object Viewer permission (or the minimal required permission) to their bound GSAs.
 
 ### Google service account keys stored as Kubernetes secrets
@@ -161,7 +161,7 @@ Pipelines Standalone require your manual setup for the `user-gcp-sa` secret used
 
 Instructions to set up the secret:
 
-1. First download the GCE VM service account token (refer to [GCP documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys) for more information):
+1. First download the GCE VM service account token (refer to [Google Cloud documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys) for more information):
 
     ```
     gcloud iam service-accounts keys create application_default_credentials.json \

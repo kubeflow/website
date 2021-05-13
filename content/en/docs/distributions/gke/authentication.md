@@ -1,11 +1,11 @@
 +++
-title = "Authenticating Kubeflow to GCP"
-description = "Authentication and authorization to Google Cloud Platform (GCP)"
+title = "Authenticating Kubeflow to Google Cloud"
+description = "Authentication and authorization to Google Cloud"
 weight = 40
                     
 +++
 
-This page describes in-cluster and local authentication for Kubeflow GCP deployments.
+This page describes in-cluster and local authentication for Kubeflow Google Cloud deployments.
 
 ## In-cluster authentication
 
@@ -16,10 +16,10 @@ run in separate namespaces.
 ### Google Kubernetes Engine (GKE) workload identity
 
 Starting in v0.7, Kubeflow uses the new GKE feature: [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity).
-This is the recommended way to access GCP APIs from your GKE cluster.
-You can configure a Kubernetes service account (KSA) to act as a GCP service account (GSA).
+This is the recommended way to access Google Cloud APIs from your GKE cluster.
+You can configure a Kubernetes service account (KSA) to act as a Google Cloud service account (GSA).
 
-If you deployed Kubeflow following the GCP instructions, then the profiler controller automatically binds the "default-editor" service account for every profile namespace to a default GCP service account created during kubeflow deployment. 
+If you deployed Kubeflow following the Google Cloud instructions, then the profiler controller automatically binds the "default-editor" service account for every profile namespace to a default Google Cloud service account created during kubeflow deployment. 
 The Kubeflow deployment process also creates a default profile for the cluster admin.
 
 For more info about profiles see the [Multi-user isolation](/docs/components/multi-tenancy/) page.
@@ -54,19 +54,19 @@ You can double check that GSA is also properly set up:
 gcloud --project=${PROJECT} iam service-accounts get-iam-policy ${KFNAME}-user@${PROJECT}.iam.gserviceaccount.com
 ```
 
-When a pod uses KSA default-editor, it can access GCP APIs with the role granted to the GSA.
+When a pod uses KSA default-editor, it can access Google Cloud APIs with the role granted to the GSA.
 
 **Provisioning custom Google service accounts in namespaces**:
-When creating a profile, you can specify a custom GCP service account for the namespace to control which GCP resources are accessible.
+When creating a profile, you can specify a custom Google Cloud service account for the namespace to control which Google Cloud resources are accessible.
 
-Prerequisite: you must have permission to edit your GCP project's IAM policy and to create a profile custom resource (CR) in your Kubeflow cluster.
+Prerequisite: you must have permission to edit your Google Cloud project's IAM policy and to create a profile custom resource (CR) in your Kubeflow cluster.
 
-1. if you don't already have a GCP service account you want to use, create a new one. For example: `user1-gcp@<project-id>.iam.gserviceaccount.com`: 
+1. if you don't already have a Google Cloud service account you want to use, create a new one. For example: `user1-gcp@<project-id>.iam.gserviceaccount.com`: 
 ```
 gcloud iam service-accounts create user1-gcp@<project-id>.iam.gserviceaccount.com
 ```
 
-2. You can bind roles to the GCP service account to allow access to the desired GCP resources. For example to run BigQuery job, you can grant access like so:
+2. You can bind roles to the Google Cloud service account to allow access to the desired Google Cloud resources. For example to run BigQuery job, you can grant access like so:
 ```
 gcloud projects add-iam-policy-binding <project-id> \
       --member='serviceAccount:user1-gcp@<project-id>.iam.gserviceaccount.com' \
@@ -80,7 +80,7 @@ gcloud iam service-accounts add-iam-policy-binding \
       --member='serviceAccount:<cluster-name>-admin@<project-id>.iam.gserviceaccount.com' --role='roles/owner'
 ```
 
-4. Manually create a profile for user1 and specify the GCP service account to bind in `plugins` field:
+4. Manually create a profile for user1 and specify the Google Cloud service account to bind in `plugins` field:
 
 ```yaml
 apiVersion: kubeflow.org/v1beta1
@@ -98,7 +98,7 @@ spec:
 ```
 
 **Note:**
-The profile controller currently doesn't perform any access control checks to see whether the user creating the profile should be able to use the GCP service account. 
+The profile controller currently doesn't perform any access control checks to see whether the user creating the profile should be able to use the Google Cloud service account. 
 As a result, any user who can create a profile can get access to any service account for which the admin controller has owner permissions. We will improve this in subsequent releases.
 
 You can find more details on workload identity in the [GKE documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity).
@@ -109,7 +109,7 @@ Starting from Kubeflow v1.1, Kubeflow Pipelines [supports multi-user isolation](
 
 Additionally, the Kubeflow Pipelines UI, visualization, and TensorBoard server instances are deployed in your user namespace using the `default-editor` KSA. Therefore, to [visualize results in the Pipelines UI](/docs/components/pipelines/sdk/output-viewer/), they can fetch artifacts in Google Cloud Storage using permissions of the same GSA you configured for this namespace.
 
-For more details, refer to [Authenticating Pipelines to GCP](/docs/gke/pipelines/authentication-pipelines/).
+For more details, refer to [Authenticating Pipelines to Google Cloud](/docs/gke/pipelines/authentication-pipelines/).
 
 ---
 
@@ -118,7 +118,7 @@ For more details, refer to [Authenticating Pipelines to GCP](/docs/gke/pipelines
 ### gcloud
 
 
-Use the [`gcloud` tool](https://cloud.google.com/sdk/gcloud/) to interact with Google Cloud Platform (GCP) on the command line. 
+Use the [`gcloud` tool](https://cloud.google.com/sdk/gcloud/) to interact with Google Cloud on the command line. 
 You can use the `gcloud` command to [set up Google Kubernetes Engine (GKE) clusters](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create), 
 and interact with other Google services.
 
@@ -130,13 +130,13 @@ You have two options for authenticating the `gcloud` command:
 You can register a user account using [`gcloud auth login`](https://cloud.google.com/sdk/gcloud/reference/auth/login), 
 which brings up a browser window to start the familiar Google authentication flow.
 
-- You can create a **service account** within your GCP project. You can then
+- You can create a **service account** within your Google Cloud project. You can then
 [download a `.json` key file](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) 
 associated with the account, and run the 
 [`gcloud auth activate-service-account`](https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account)
 command to authenticate your `gcloud` session.
 
-You can find more information in the [GCP docs](https://cloud.google.com/sdk/docs/authorizing).
+You can find more information in the [Google Cloud docs](https://cloud.google.com/sdk/docs/authorizing).
 
 ##### Listing active accounts
 
@@ -150,7 +150,7 @@ In the output of the command, an asterisk denotes your active account.
 
 ##### Viewing IAM roles
 
-Permissions are handled in GCP using [IAM Roles](https://cloud.google.com/iam/docs/understanding-roles). 
+Permissions are handled in Google Cloud using [IAM Roles](https://cloud.google.com/iam/docs/understanding-roles). 
 These roles define which resources your account can read or write to. Provided you have the 
 [necessary permissions](https://cloud.google.com/iam/docs/understanding-custom-roles#required_permissions_and_roles_),
 you can check which roles were assigned to your account using the following gcloud command:
@@ -164,19 +164,19 @@ gcloud projects get-iam-policy $PROJECT_ID --flatten="bindings[].members" \
 ```
 
 You can view and modify roles through the 
-[GCP IAM console](https://console.cloud.google.com/iam-admin/).
+[Google Cloud IAM console](https://console.cloud.google.com/iam-admin/).
 
 
 You can find more information about IAM in the 
-[GCP docs](https://cloud.google.com/iam/docs/granting-changing-revoking-access).
+[Google Cloud docs](https://cloud.google.com/iam/docs/granting-changing-revoking-access).
 
 ---
 
 ### kubectl
 The [`kubectl` tool](https://kubernetes.io/docs/reference/kubectl/overview/) is used for interacting with a Kubernetes cluster through the command line.
 
-##### Connecting to a cluster using a GCP account
-If you set up your Kubernetes cluster using GKE, you can authenticate with the cluster using a GCP account. 
+##### Connecting to a cluster using a Google Cloud account
+If you set up your Kubernetes cluster using GKE, you can authenticate with the cluster using a Google Cloud account. 
 The following commands fetch the credentials for your cluster and save them to your local 
 [`kubeconfig` file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/):
 
@@ -188,7 +188,7 @@ gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE
 ```
 
 You can find more information in the 
-[GCP docs](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
+[Google Cloud docs](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
 
 ##### Changing active clusters
 If you work with multiple Kubernetes clusters, you may have multiple contexts saved in your local 
@@ -241,4 +241,4 @@ You can find more information in the
 
 ## Next steps
 
-See the [troubleshooting guide](/docs/gke/troubleshooting-gke/) for help with diagnosing and fixing issues you may encounter with Kubeflow on GCP
+See the [troubleshooting guide](/docs/gke/troubleshooting-gke/) for help with diagnosing and fixing issues you may encounter with Kubeflow on Google Cloud
