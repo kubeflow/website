@@ -1,13 +1,13 @@
 [build]
   publish = "public"
-  command = "hugo"
+  command = "git clone --recurse-submodules --depth 1 https://github.com/google/docsy.git themes/docsy && hugo"
 
 [context.deploy-preview.environment]
-  HUGO_VERSION = "0.68.3"
+  HUGO_VERSION = "0.83.1"
 
 [context.production.environment]
-  HUGO_VERSION = "0.68.3"
+  HUGO_VERSION = "0.83.1"
   HUGO_ENV = "production"
 
 [context.branch-deploy.environment]
-  HUGO_VERSION = "0.68.3"
+  HUGO_VERSION = "0.83.1"
