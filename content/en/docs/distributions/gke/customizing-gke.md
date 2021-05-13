@@ -156,10 +156,64 @@ options:
 To see which accelerators are available in each zone, run the following
 command:
 
-```
+```bash
 gcloud compute accelerator-types list
 ```
  
+Create the [ContainerNodePool](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containernodepool) resource adopting GPU, for exmaple, create a new file `containernodepool-gpu.yaml` file and fulfill the value below:
+
+```
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerNodePool
+metadata:
+  labels:
+    kf-name: KUBEFLOW-NAME # {"$kpt-set":"name"}
+  name: containernodepool-gpu
+  namespace: KF-PROJECT # {"$kpt-set":"project"}
+spec:
+  location: LOCATION # {"$kpt-set":"location"}
+  initialNodeCount: 1
+  autoscaling:
+    minNodeCount: 0
+    maxNodeCount: 5
+  nodeConfig:
+    machineType: n1-standard-4
+    diskSizeGb: 100
+    diskType: pd-standard
+    preemptible: true
+    oauthScopes:
+    - "https://www.googleapis.com/auth/logging.write"
+    - "https://www.googleapis.com/auth/monitoring"
+    - "https://www.googleapis.com/auth/devstorage.read_only"
+    guestAccelerator:
+    - type: "nvidia-tesla-k80"
+      count: 1
+    metadata:
+      disable-legacy-endpoints: "true"
+  management:
+    autoRepair: true
+    autoUpgrade: true
+  clusterRef:
+    name: KUBEFLOW-NAME # {"$kpt-set":"name"}
+    namespace: KF-PROJECT # {"$kpt-set":"project"}
+```
+
+Note that the `metadata:name` should be unique in your Kubeflow project. Because management cluster uses this as ID and your Google Cloud project as namespace to identify a nodepool.
+
+Apply the nodepool patch file above by running:
+
+```bash
+kubectl --context=${MGMTCTXT} --namespace=${KF_PROJECT} apply -f <path-to-gpu-nodepool-file>
+```
+
+After adding GPU nodes to your cluster, you need to install NVIDIA's device drivers to the nodes. Google provides a DaemonSet that automatically installs the drivers for you.
+To deploy the installation DaemonSet, run the following command:
+
+```bash
+kubectl --context=${KF_NAME} apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
+```
+
+
 To disable node-autoprovisioning, edit content for `${KF_DIR}/common/cluster/upstream/cluster.yaml`, set 
 [`enabled`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L73) 
 to `false`:
@@ -172,58 +226,58 @@ to `false`:
     ...
 ```
 
-Then create the [ContainerNodePool](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containernodepool) resource adopting GPU, for exmaple:
-
-```
-  apiVersion: container.cnrm.cloud.google.com/v1beta1
-  kind: ContainerNodePool
-  metadata:
-    labels:
-      mesh_id: "proj-PROJECT_NUMBER" # {"$kpt-set":"asm-mesh-id"}
-    name: containernodepool-gpu
-  spec:
-    location: LOCATION # {"$kpt-set":"location"}
-    initialNodeCount: 1
-    autoscaling:
-      minNodeCount: 1
-      maxNodeCount: 5
-    nodeConfig:
-      machineType: e2-standard-4
-      diskSizeGb: 100
-      diskType: pd-standard
-      preemptible: false
-      oauthScopes:
-        - "https://www.googleapis.com/auth/logging.write"
-        - "https://www.googleapis.com/auth/monitoring"
-      guestAccelerator:
-        - type: "nvidia-tesla-k80"
-          count: 1
-      metadata:
-        disable-legacy-endpoints: "true"
-    management:
-      autoRepair: true
-      autoUpgrade: true
-    clusterRef:
-      name: "PROJECT/LOCATION/KUBEFLOW-NAME" # {"$kpt-set":"cluster-name"}
-```
-
-After adding GPU nodes to your cluster, you need to install NVIDIA's device drivers to the nodes. Google provides a DaemonSet that automatically installs the drivers for you.
-To deploy the installation DaemonSet, run the following command:
-```
-kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
-```
-
 
 ### Add Cloud TPUs to your cluster
 
 Set [`enableTpu:true`](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containercluster)
-in `${KF_DIR}/common/cluster/upstream/cluster.yaml`:
+in `${KF_DIR}/common/cluster/upstream/cluster.yaml` and enable alias IP (VPC-native traffic routing):
 
 ```
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerCluster
+...
+spec:
   ...
   enableTpu: true
+  networkingMode: VPC_NATIVE
+  networkRef:
+    name: containercluster-dep-vpcnative
+  subnetworkRef:
+    name: containercluster-dep-vpcnative
+  ipAllocationPolicy:
+    servicesSecondaryRangeName: servicesrange
+    clusterSecondaryRangeName: clusterrange
   ...
+...
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeNetwork
+metadata:
+  name: containercluster-dep-vpcnative
+spec:
+  routingMode: REGIONAL
+  autoCreateSubnetworks: false
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeSubnetwork
+metadata:
+  name: containercluster-dep-vpcnative
+spec:
+  ipCidrRange: 10.2.0.0/16
+  region: us-west1
+  networkRef:
+    name: containercluster-dep-vpcnative
+  secondaryIpRange:
+  - rangeName: servicesrange
+    ipCidrRange: 10.3.0.0/16
+  - rangeName: clusterrange
+    ipCidrRange: 10.4.0.0/16
+
 ```
+
+You can learn more at [Creating a new cluster with Cloud TPU support](https://cloud.google.com/tpu/docs/kubernetes-engine-setup#new-cluster). And view an example for [Vpc Native Container Cluster](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containercluster) config connector yaml file.
+
+Note that this field is immutable once cluster is created. You need to create new cluster if existing cluster doesn't have TPU enabled.
 
 ## More customizations
 
