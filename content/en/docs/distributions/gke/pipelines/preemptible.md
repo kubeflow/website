@@ -235,6 +235,7 @@ Where:
 +   `LOCATION` is the region of this nodepool, for example: us-west1-b.
 +   `KF_NAME-vm@KF_PROJECT.iam.gserviceaccount.com` is your service account, replace the `KF_NAME` and `KF_PROJECT` using the value above  in this pattern, you can get vm service account you have already created in Kubeflow cluster deployment
 
+
 ### 3. Schedule your pipeline to run on the preemptible VMs with preemptible GPUs
 
 In the [DSL code](/docs/components/pipelines/sdk/sdk-overview/) for
@@ -300,6 +301,7 @@ Run the following command if your nodepool didn't show up or has error during pr
 ```bash
 kubectl --context=${MGMTCTXT} --namespace=${KF_PROJECT} describe containernodepool -l kf-name=${KF_NAME}
 ```
+
 
 ## Next steps
 

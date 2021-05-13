@@ -44,6 +44,7 @@ This guide assumes the following settings:
 * Make sure your environment variables are set up for the Kubeflow cluster you want to customize. For further background about the settings, see the guide to
   [deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
 
+
 ## Customizing Google Cloud resources
 
 To customize Google Cloud resources, such as your Kubernetes Engine cluster, you can 
@@ -278,6 +279,8 @@ spec:
 You can learn more at [Creating a new cluster with Cloud TPU support](https://cloud.google.com/tpu/docs/kubernetes-engine-setup#new-cluster). And view an example for [Vpc Native Container Cluster](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containercluster) config connector yaml file.
 
 Note that this field is immutable once cluster is created. You need to create new cluster if existing cluster doesn't have TPU enabled.
+
+
 
 ## More customizations
 
