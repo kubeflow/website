@@ -383,12 +383,6 @@ In this example, the inputs and outputs are defined as arguments of the
 `split_text_lines` function. This lets Kubeflow Pipelines pass the path to the
 source data file and the paths to the output data files into the function.
 
-To accept a file as an input argument, annotation the argument with
-[`kfp.dsl.Input`][input] generic type hint.
-
-To return a file as an output, annotate the argument with
-[`kfp.dsl.Output`][output] generic type hint.
-
 To accept a file as an input parameter, use one of the following type annotations:
 
 *   [`kfp.dsl.Input`][input]: Use this generic type hint to specify that your

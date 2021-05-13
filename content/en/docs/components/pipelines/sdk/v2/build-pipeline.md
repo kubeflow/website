@@ -67,6 +67,7 @@ import kfp.dsl as dsl
 from kfp.dsl import (
     Input,
     Output,
+    Artifact,
     Dataset,
 )
 from kfp.v2 import compiler

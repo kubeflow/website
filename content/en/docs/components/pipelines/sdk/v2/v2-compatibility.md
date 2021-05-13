@@ -48,9 +48,6 @@ using Pipelines SDK v2 to build pipelines and components.
 If you are familiar with building Kubeflow pipelines, the Pipelines SDK v2 
 introduces the following changes:
 
-*   All pipeline parameters, component inputs, and component outputs must be
-    annotated with their data type.
-
 *   The following changes affect how you build components:
 
     *   All component inputs and outputs must be annotated with their data type.
@@ -67,7 +64,7 @@ introduces the following changes:
             are larger inputs or outputs, such as datasets or models. Input
             artifacts are always passed as a reference to a path. 
 
-            You can also access the artifact's metadata. For input artifacts, you can
+            You can also access an artifact's metadata. For input artifacts, you can
             read the artifact's metadata. For output artifacts, you can write key/value
             pairs to the metadata dictionary.  
 
