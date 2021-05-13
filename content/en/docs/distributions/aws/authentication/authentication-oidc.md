@@ -1,14 +1,14 @@
 +++
 title = "Authentication using OIDC"
-description = "Authentication and authorization support through OIDC for Kubeflow in AWS"
+description = "Authentication with OIDC for Kubeflow in AWS"
 weight = 90
 +++
 
-This section shows the how to setup Kubeflow with authentication and authorization support through OIDC in Amazon Web Services (AWS). Similar to [Cognito tutorial](/docs/aws/authentication/).
+This section shows how to set up Kubeflow with authentication support through OIDC in Amazon Web Services (AWS). This is similar to the [Cognito tutorial](/docs/distributions/aws/authentication/).
 
 ## Enable TLS and Authentication
 
-Right now, certificates for ALB public DNS names are not supported. Instead, you must  prepare a custom domain. You can register your domain in Route53 or any domain provider such as [GoDaddy.com](https://www.godaddy.com/).
+Right now, certificates for ALB public DNS names are not supported. Instead, you must prepare a custom domain. You can register your domain in Route53 or any domain provider such as [GoDaddy.com](https://www.godaddy.com/).
 
 [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/) is a service that lets you easily provision, manage, and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with AWS services and your internal connected resources.
 

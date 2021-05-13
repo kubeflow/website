@@ -1,6 +1,6 @@
 +++
 title = "Troubleshooting Deployments on GKE"
-description = "Help fixing problems on GKE and GCP"
+description = "Help fixing problems on GKE and Google Cloud"
 weight = 80
                     
 +++
@@ -10,12 +10,12 @@ needs to be updated for Kubeflow 1.1.
 {{% /alert %}}
 
 This guide helps diagnose and fix issues you may encounter with Kubeflow on
-Google Kubernetes Engine (GKE) and Google Cloud Platform (GCP).
+Google Kubernetes Engine (GKE) and Google Cloud.
 
 ## Before you start
 
 This guide covers troubleshooting specifically for
-[Kubeflow deployments on GCP](/docs/gke/deploy/).
+[Kubeflow deployments on Google Cloud](/docs/gke/deploy/).
 
 For more help, try the
 [general Kubeflow troubleshooting guide](/docs/other-guides/troubleshooting).
@@ -51,29 +51,29 @@ This guide assumes the following settings:
   export KF_NAME=<the name of your Kubeflow deployment>
   ```
 
-* The `${PROJECT}` environment variable contains the ID of your GCP project.
+* The `${PROJECT}` environment variable contains the ID of your Google Cloud project.
   You can find the project ID in
   your `${CONFIG_FILE}` configuration file, as the value for the `project` key.
 
   ```
-  export PROJECT=<your GCP project ID>
+  export PROJECT=<your Google Cloud project ID>
   ```
 
-* The `${ZONE}` environment variable contains the GCP zone where your
+* The `${ZONE}` environment variable contains the Google Cloud zone where your
   Kubeflow resources are deployed.
 
   ```
-  export ZONE=<your GCP zone>
+  export ZONE=<your Google Cloud zone>
   ```
 
 * For further background about the above settings, see the guide to
   [deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
 
-## Troubleshooting Kubeflow deployment on GCP
+## Troubleshooting Kubeflow deployment on Google Cloud
 
-Here are some tips for troubleshooting GCP.
+Here are some tips for troubleshooting Google Cloud.
 
-* Make sure you are a GCP project owner.
+* Make sure you are a Google Cloud project owner.
 * Make sure you are using HTTPS.
 * Check project [quota page](https://console.cloud.google.com/iam-admin/quotas) to see if any service's current usage reached quota limit, increase them as needed.
 * Check [deployment manager page](https://console.cloud.google.com/deployments) and see if there’s a failed deployment.
@@ -92,7 +92,7 @@ as an authorized redirect URI for the OAUTH credentials used to create the deplo
 ### DNS name not registered
 
 This section provides troubleshooting information for problems creating a DNS entry for your [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). The ingress is a K8s resource
-that creates a GCP loadbalancer to enable http(s) access to Kubeflow web services from outside
+that creates a Google Cloud loadbalancer to enable http(s) access to Kubeflow web services from outside
 the cluster. This section assumes
 you are using [Cloud Endpoints](https://cloud.google.com/endpoints/) and a DNS name of the following pattern
 
@@ -245,7 +245,7 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
           * Check that the path is /healthz and corresponds to the path of the readiness probe on the envoy pods
           * See [K8s docs](https://github.com/kubernetes-retired/contrib/tree/master/ingress/controllers/gce/examples/health_checks) for important information about how health checks are determined from readiness probes.
 
-        * Check firewall rules to ensure traffic isn't blocked from the GCP loadbalancer
+        * Check firewall rules to ensure traffic isn't blocked from the Google Cloud loadbalancer
             * The firewall rule should be added automatically by the ingress but its possible it got deleted if you have some automatic firewall policy enforcement. You can recreate the firewall rule if needed with a rule like this
 
                ```
@@ -268,7 +268,7 @@ usually indicates the loadbalancer doesn't think any backends are healthy.
 
               ```
 
-              For more info [see GCP HTTP health check docs](https://cloud.google.com/compute/docs/load-balancing/health-checks)
+              For more info [see Google Cloud HTTP health check docs](https://cloud.google.com/compute/docs/load-balancing/health-checks)
 
   * In Stackdriver Logging look at the Cloud Http Load Balancer logs
 
@@ -309,13 +309,13 @@ To troubleshoot check the status of your GKE managed certificate
 kubectl -n istio-system describe managedcertificate
 ```
 
-If the certificate is in status `FailedNotVisible` then it means GCP failed to provision the certificate
-because it could not verify that you owned the domain by doing an ACME challenge. In order for GCP to provision your certificate
+If the certificate is in status `FailedNotVisible` then it means Google Cloud failed to provision the certificate
+because it could not verify that you owned the domain by doing an ACME challenge. In order for Google Cloud to provision your certificate
 
 1. Your ingress must be created in order to associated a Google Cloud Load Balancer(GCLB) with the IP address for your endpoint
 1. There must be a DNS entry mapping your domain name to the IP.
 
-If there is a problem preventing either of the above then GCP will be unable to provision your certificate
+If there is a problem preventing either of the above then Google Cloud will be unable to provision your certificate
 and eventually enter the permanent failure state `FailedNotVisible` indicating your endpoint isn't accessible. The most common 
 cause is the ingress can't be created because the K8s secret containing OAuth credentials doesn't
 exist.
@@ -326,7 +326,7 @@ generated.
 
 You can fix the certificate by performing the following steps to delete the existing certificate and create a new one.
 
-1. Get the name of the GCP certificate
+1. Get the name of the Google Cloud certificate
 
    ```
    kubectl -n istio-system describe managedcertificate gke-certificate
@@ -352,7 +352,7 @@ You can fix the certificate by performing the following steps to delete the exis
 1. Reapply kubeflow in order to recreate the ingress and certificate
 
    * If you deployed with `kfctl` rerun `kfctl apply`
-   * If you deployed using the GCP blueprint rerun `make apply-kubeflow`
+   * If you deployed using the Google Cloud blueprint rerun `make apply-kubeflow`
 
 1. Monitor the certificate to make sure it can be provisioned
 
@@ -381,7 +381,7 @@ If your logs show the
 the root cause may be that you have exceeded your quota for some
 backend services such as loadbalancers.
 This is particularly likely if you have multiple, differently named deployments
-in the same GCP project using [Cloud IAP](https://cloud.google.com/iap/).
+in the same Google Cloud project using [Cloud IAP](https://cloud.google.com/iap/).
 
 ### The error
 
@@ -421,9 +421,9 @@ Events:
 If you have any redundant Kubeflow deployments, you can delete them using
 the [Deployment Manager](https://cloud.google.com/deployment-manager/docs/).
 
-Alternatively, you can request more backend services quota on the GCP Console.
+Alternatively, you can request more backend services quota on the Google Cloud Console.
 
-1. Go to the [quota settings for backend services on the GCP
+1. Go to the [quota settings for backend services on the Google Cloud
   Console](https://console.cloud.google.com/iam-admin/quotas?metric=Backend%20services).
 1. Click **EDIT QUOTAS**. A quota editing form opens on the right of the
   screen.

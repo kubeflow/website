@@ -98,14 +98,7 @@ documentation for that application.
         </td>
         <td>Stable</td>
         <td>1.0.0</td>
-      </tr>      
-      <tr>
-        <td><a href="/docs/components/training/chainer/">Chainer operator</a>
-        (<a href="https://github.com/kubeflow/chainer-operator">GitHub</a>)
-        </td>
-        <td>Alpha</td>
-        <td></td>
-      </tr>      
+      </tr>
       <tr>
         <td><a href="/docs/external-add-ons/feature-store/overview">Feature store: Feast</a>
         (<a href="https://github.com/feast-dev/feast">GitHub</a>)
@@ -122,18 +115,11 @@ documentation for that application.
         <td>v1alpha3</td>
       </tr>
       <tr>
-        <td><a href="/docs/external-add-ons/serving/kfserving/">KFServing</a>
+        <td><a href="/docs/components/kfserving/kfserving/">KFServing</a>
           (<a href="https://github.com/kubeflow/kfserving">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td>v0.3.0</td>
-      </tr>
-      <tr>
-        <td><a href="/docs/components/misc/metadata/">Metadata</a>
-          (<a href="https://github.com/kubeflow/metadata">GitHub</a>)
-        </td>
-        <td>Beta</td>
-        <td>0.2.1</td>
+        <td>v0.5.1</td>
       </tr>
       <tr>
         <td><a href="/docs/components/training/mpi/">MPI training: MPI 
@@ -237,13 +223,6 @@ one of the following Kubeflow SDKs and command-line interfaces
         </td>
         <td>Beta</td>
         <td>0.7.1</td>
-      </tr>
-      <tr>
-        <td><a href="/docs/methods/kfctl/kustomize/">kfctl</a> 
-          (<a href="https://github.com/kubeflow/kfctl">GitHub</a> )
-        </td>
-        <td>Stable</td>
-        <td>1.1.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/pipelines/sdk/sdk-overview/">Kubeflow Pipelines SDK</a> 

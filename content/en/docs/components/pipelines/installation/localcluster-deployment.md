@@ -188,10 +188,6 @@ curl -sfL https://get.k3s.io | sh -
     This will bootstrap a Kubernetes cluster kubeconfig is written to
     `/etc/rancher/k3s/k3s.yaml`.
 
-    ```shell
-    sudo k3s kubectl get node
-    ```
-
 2. (Optional) Check your cluster:
 
     ```shell

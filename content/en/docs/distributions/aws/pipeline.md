@@ -1,7 +1,7 @@
 +++
-title = "Configure Kubeflow Pipelines on AWS"
-description = "Customize Kubeflow Pipelines to use AWS Services"
-weight = 90
+title = "Kubeflow Pipelines on AWS"
+description = "Kubeflow Pipelines on Amazon EKS"
+weight = 50
 +++
 
 ## Authenticate Kubeflow Pipeline using SDK inside cluster
@@ -10,7 +10,7 @@ In v1.1.0, in-cluster communication from notebook to Kubeflow Pipeline is not su
 
 You can follow following steps to get cookie from your browser after you login Kubeflow. Following examples uses Chrome browser.
 
-> Note: You have to use images in [AWS Jupyter Notebook](/docs/aws/notebook-server) because it includes a critical SDK fix [here](https://github.com/kubeflow/pipelines/pull/4285).
+> Note: You have to use images in [AWS Jupyter Notebook](/docs/distributions/aws/notebook-server) because it includes a critical SDK fix [here](https://github.com/kubeflow/pipelines/pull/4285).
 
 <img src="/docs/images/aws/kfp-sdk-browser-cookie.png"
   alt="KFP SDK Browser Cookie"

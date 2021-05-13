@@ -63,10 +63,10 @@ You can list your models with the `juju models` command.
 
 #### 5. Deploy Kubeflow
 
-[note type="caution" status="MIN RESOURCES"]
-To deploy `kubeflow`, you'll need at least 50Gb available of disk, 14Gb of RAM, and 2 CPUs available in your machine/VM.
-If you have fewer resources, deploy `kubeflow-lite` or `kubeflow-edge`.
-[/note]
+{{% alert color="warning" %}}
+To deploy the full Kubeflow bundle, you'll need at least 50Gb available of disk, 14Gb of RAM, and 2 CPUs available in your machine/VM.
+If you have fewer resources, deploy kubeflow-lite or kubeflow-edge.
+{{% /alert %}}
 
 Once you have a model, you can simply `juju deploy` any of the provided [Kubeflow bundles](https://charmed-kubeflow.io/docs/operators-and-bundles) into your cluster. For the _Kubeflow lite_ bundle, run:
 
@@ -82,15 +82,7 @@ You can observe your Kubeflow deployment getting spun-up with the command:
 watch -c juju status --color
 ```
 
-#### 6. Add an RBAC role for Istio
-
-At the time of writing this guide, to set up Kubeflow with [Istio](https://istio.io) correctly, you need to provide the `istio-ingressgateway` operator access to Kubernetes resources. Use the  following command to create the appropriate role:
-
-```bash
-kubectl patch role -n kubeflow istio-ingressgateway-operator -p '{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"istio-ingressgateway-operator"},"rules":[{"apiGroups":["*"],"resources":["*"],"verbs":["*"]}]}'
-```
-
-#### 7. Set URL in authentication methods 
+#### 6. Set URL in authentication methods 
 
 Finally, you need to enable your Kubeflow dashboard access. Provide the dashboard's public URL to dex-auth and oidc-gatekeeper as follows:
 

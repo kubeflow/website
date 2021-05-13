@@ -41,7 +41,7 @@ In order to authenticate and manage users for Kubeflow, let's create a user pool
   alt="Cognito Application Client Setting"
   class="mt-3 mb-3 border border-info rounded">
 
-For the callback URLs field, if you don't want to use custom domain, you can use ALB hostname for testing. You will see some `Not Secure` warning in browser because ALB hostname doesn't match with domain name in your ACM certificate. It's still functionally working. We will use ALB and please check [section](/docs/aws/custom-domain) to setup custom domain.
+For the callback URLs field, if you don't want to use custom domain, you can use ALB hostname for testing. You will see some `Not Secure` warning in browser because ALB hostname doesn't match with domain name in your ACM certificate. It's still functionally working. We will use ALB and please check [section](/docs/distributions/aws/customizing-aws/custom-domain) to setup custom domain.
 
 <img src="/docs/images/aws/cognito-domain.png"
   alt="Cognito Domain Name"
@@ -65,7 +65,7 @@ plugins:
       ....
 ```
 
-> Note: You can use your own domain for `cognitoUserPoolDomain`. In this case, we just use Amazon Cognito domain `kubeflow-testing`. If you use your own domain, please check [aws-e2e](/docs/aws/aws-e2e) for more details.
+> Note: You can use your own domain for `cognitoUserPoolDomain`. In this case, we just use Amazon Cognito domain `kubeflow-testing`. If you use your own domain, please check [aws-e2e](/docs/distributions/aws/aws-e2e) for more details.
 
 After you finish the TLS and Authentication configuration, run this command: `kfctl apply -V -f ${CONFIG_FILE}`.
 

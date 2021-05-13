@@ -51,7 +51,7 @@ Follow these steps to set up your Google Cloud project:
     # gcloud services enable cloudbuild.googleapis.com
     ```
 
-1. If you are using the 
+1. If you are using the
   [Google Cloud Free Program](https://cloud.google.com/free/docs/gcp-free-tier) or the
   12-month trial period with $300 credit, note that the free tier does not offer enough
   resources for default full Kubeflow installation. You need to 
@@ -67,6 +67,7 @@ Follow these steps to set up your Google Cloud project:
     Read the Google Cloud [Resource quotas](https://cloud.google.com/compute/quotas)
     to understand quotas on resource usage that Compute Engine enforces, and 
     to learn how to check and increase your quotas.
+
   
 1. Initialize your project to prepare it for Anthos Service Mesh installation:
 
