@@ -186,7 +186,7 @@ To deploy a management cluster:
 In the last step we created the Google Cloud service account **${MGMT_NAME}-cnrm-system@${MGMT_PROJECT}.iam.gserviceaccount.com**
 this is the service account that Config Connector will use to create any Google Cloud resources. Consequently
 you need to grant this Google Cloud service account sufficient privileges to create the desired
-resources in one or more projects (called managed projects, read [more](https://github.com/kubeflow/gcp-blueprints/tree/master/management/instance/managed-project)).
+resources in one or more projects (called managed projects, read [more](https://github.com/kubeflow/gcp-blueprints/tree/master/management/managed-project)).
 
 The easiest way to do this is to grant the Google Cloud service account owner permissions on one or more projects.
 
