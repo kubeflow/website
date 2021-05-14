@@ -74,14 +74,14 @@ $ pip3 install kfp --upgrade
 import kfp
 import kfp.components as comp
 import kfp.dsl as dsl
-from kfp.dsl import (
+from kfp.v2 import compiler
+from kfp.v2.dsl import (
+    component,
     Input,
     Output,
     Dataset,
     Metrics,
 )
-from kfp.v2 import compiler
-from kfp.v2.dsl import component
 ```
 
 3. Create an instance of the [`kfp.Client` class][kfp-client]. To find your

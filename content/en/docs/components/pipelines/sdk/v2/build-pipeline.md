@@ -64,14 +64,14 @@ $ pip install kfp --upgrade
 import kfp
 import kfp.components as comp
 import kfp.dsl as dsl
-from kfp.dsl import (
+from kfp.v2 import compiler
+from kfp.v2.dsl import component
+from kfp.v2.dsl import (
     Input,
     Output,
     Artifact,
     Dataset,
 )
-from kfp.v2 import compiler
-from kfp.v2.dsl import component
 ```
 
 3. Create an instance of the [`kfp.Client` class][kfp-client]. To find your
@@ -463,7 +463,7 @@ web_downloader_op = kfp.components.load_component_from_url(
     pipeline_root='gs://my-pipeline-root/example-pipeline',
     name="example-pipeline",
 )
-def my_pipeline(url: string):
+def my_pipeline(url: str):
   web_downloader_task = web_downloader_op(url=url)
   merge_csv_task = merge_csv(tar_data=web_downloader_task.outputs['data'])
   # The outputs of the merge_csv_task can be referenced using the
