@@ -193,7 +193,7 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
 1. Set the managed project:
 
    ```bash
-   kpt cfg set ./instance managed-project "${MANAGED_PROJECT}"
+   kpt cfg set ./instance managed-project "${MGMT_PROJECT}"
    ```
 
 1. Update the policy:
