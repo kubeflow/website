@@ -131,10 +131,10 @@ purpose. No tools will assume they actually exists in your terminal environment.
 1. Change to the Kubeflow directory
 
    ```bash
-   cd "${KF_DIR}"
+   cd "${KF_DIR}/kubeflow"
    ```
 
-   Note, all the instructions below assume your current working directory is `${KF_DIR}`.
+   Note, all the instructions below assume your current working directory is `${KF_DIR}/kubeflow`.
 
 1. Fetch Kubeflow manifests
 
