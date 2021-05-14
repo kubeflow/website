@@ -106,10 +106,10 @@ To deploy a management cluster:
 1. Change to the Kubeflow directory
 
     ```bash
-    cd "${MGMT_DIR}"
+    cd "${MGMT_DIR}/management"
     ```
 
-    Note, all the instructions below assume your current working directory is `${MGMT_DIR}`.
+    Note, all the instructions below assume your current working directory is `${MGMT_DIR}/management`.
 
 1. Fetch the upstream management package
 
