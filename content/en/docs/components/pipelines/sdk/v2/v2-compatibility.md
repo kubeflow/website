@@ -15,8 +15,8 @@ mode](http://bit.ly/kfp-v2-compatible), or join the Kubeflow Pipelines community
 
 1.  Run the following command to install Kubeflow Pipelines SDK v1.6 or higher. If you run this command in a Jupyter notebook, restart the kernel after installing the SDK.
     
-    ```python
-    $ pip install kfp --upgrade
+    ```bash
+    pip install kfp --upgrade
     ```
 
 1.  Import the kfp and kfp.components packages.
