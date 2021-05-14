@@ -66,14 +66,14 @@ The management cluster manifests live in GitHub repository [kubeflow/gcp-bluepri
     ```bash
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     cd gcp-blueprints
-    git checkout tags/v1.3.0
+    git checkout tags/v1.3.0 -b v1.3.0
     ```
 
     Alternatively, you can get the package by using `kpt`:
 
     ```bash
     # Check out Kubeflow v1.3.0 blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/v1.3.0 gcp-blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.0 gcp-blueprints
     cd gcp-blueprints
     ```
 

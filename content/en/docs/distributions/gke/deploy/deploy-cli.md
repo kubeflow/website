@@ -97,14 +97,14 @@ Before installing Kubeflow on the command line:
     # Check out Kubeflow v1.3.0 blueprints
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     cd gcp-blueprints
-    git checkout tags/v1.3.0
+    git checkout tags/v1.3.0 -b v1.3.0
     ```
 
     Alternatively, you can get the package by using `kpt`:
 
     ```bash
     # Check out Kubeflow v1.3.0 blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git/v1.3.0 gcp-blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.0 gcp-blueprints
     cd gcp-blueprints
     ```
 
@@ -141,7 +141,7 @@ Log in to gcloud. You only need to run this command once:
    export CLIENT_SECRET=<Your CLIENT_SECRET>
    ```
 
-    {{% alert title="Note" %}}Do not omit the `export` because scripts triggered by `make` need these environment variables. {{% /alert %}}
+    {{% alert title="Note" %}}Do not omit the <b>export</b> because scripts triggered by <b>make</b> need these environment variables. {{% /alert %}}
 
     {{% alert title="Note" %}}Do not check in these two envrionment variables configuration to source control, they are secrets.{{% /alert %}}
    
@@ -199,15 +199,13 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
 1. Set the Management environment variable if you haven't:
 
     ```bash
-    MGMT_DIR=<path to your management cluster configuration directory>
-    MGMT_NAME=<name of your management cluster>
     MGMT_PROJECT=<the project where you deploy your management cluster>
     ```
 
 1. Redirect to `managment` directory and configure kpt setter:
 
    ```bash
-   pushd "${MGMT_DIR}"
+   pushd "../management"
    kpt cfg set -R . name "${MGMT_NAME}"
    kpt cfg set -R . gcloud.core.project "${MGMT_PROJECT}"
    kpt cfg set -R . managed-project "${KF_PROJECT}"
