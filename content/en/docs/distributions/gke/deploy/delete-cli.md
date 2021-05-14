@@ -14,8 +14,12 @@ This guide assumes the following settings:
 * For Management cluster: The `${MGMT_PROJECT}`, `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
   are the same as in [Deploy Management cluster](/docs/distributions/gke/deploy/management-setup#configure-environment-variables).
 
-* For Kubeflow cluster: The `${KF_PROJECT}`, `${KF_DIR}`, `${KF_NAME}` and `${MGMTCTXT}` environment variables
+* For Kubeflow cluster: The `${KF_PROJECT}`, `${KF_NAME}` and `${MGMTCTXT}` environment variables
   are the same as in [Deploy Kubeflow cluster](../deploy-cli#environment-variables).
+  
+* The `${KF_DIR}` environment variable contains the path to
+  your Kubeflow application directory, which holds your Kubeflow configuration 
+  files. For example, `/opt/gcp-blueprints/kubeflow/`.
 
 ## Deleting your Kubeflow cluster
 

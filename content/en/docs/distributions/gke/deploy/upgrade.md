@@ -15,8 +15,11 @@ This guide assumes the following settings:
 
 * The `${MGMT_DIR}` and `${MGMT_NAME}` environment variables
   are the same as in [Management cluster setup](/docs/distributions/gke/deploy/management-setup#configure-environment-variables).
-* The `${KF_DIR}`, `${KF_NAME}`, `${CLIENT_ID}` and `${CLIENT_SECRET}` environment variables
+* The `${KF_NAME}`, `${CLIENT_ID}` and `${CLIENT_SECRET}` environment variables
   are the same as in [Deploy using kubectl and kpt](/docs/distributions/gke/deploy/deploy-cli#environment-variables).
+* The `${KF_DIR}` environment variable contains the path to
+  your Kubeflow application directory, which holds your Kubeflow configuration 
+  files. For example, `/opt/gcp-blueprints/kubeflow/`.
 
 ## General upgrade instructions
 

@@ -128,48 +128,7 @@ Log in to gcloud. You only need to run this command once:
   ```
 
 
-1. This guide assumes the following environment variables:
-
-    * `${KF_NAME}` contains the name of your Kubeflow cluster. 
-      For example,  `my-kubeflow` or `kf-test`.
-      The value of KF_NAME must only contain lower case alphanumeric characters, numbers or
-      '-', and must start and end with an alphanumeric character.
-      The value of this variable cannot be greater than 24 characters. It must
-      contain just a name, not a directory path. Kubeflow name should be different from  your management cluster name.
-    * `${KF_PROJECT}` contains the Google Cloud [project ID](https://cloud.google.com/resource-manager/docs/creating-managing-projects) where Kubeflow cluster will be deployed to.
-    * `${KF_PROJECT_NUMBER}` contains the Google Cloud [project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects) where Kubeflow cluster will be deployed to. You can use command `gcloud projects describe "${KF_PROJECT}" --format='value(projectNumber)'` to gain project number with project ID.
-    * `${KF_DIR}` contains the local kubeflow path where you pull `kubeflow/gcp-blueprints` repo. For example, `~/gcp-blueprints/kubeflow/`. 
-    * `${MGMT_NAME}` contains the name of your management cluster created in [Management cluster setup](/docs/distributions/gke/deploy/management-setup/).
-    * `${MGMTCTXT}` contains a kubectl context that connects
-      to the `${KF_PROJECT}` namespace of the management cluster. By default, [Management
-      cluster setup](../management-setup) creates a context named `${MGMT_NAME}` for you.
-
-    * `${LOCATION}` contains the Compute Engine zone of your choice, see [available zones](https://cloud.google.com/compute/docs/regions-zones).
-      * Currently, Kubeflow Pipelines doesn't work with regional deployments. For more, go to [kubeflow/gcp-blueprints#6](https://github.com/kubeflow/gcp-blueprints/issues/6).
-      
-      * For the default configuration, you need to choose a location that supports NVIDIA Tesla K80 Accelerators (`nvidia-tesla-k80`). 
-        To see which accelerators are available in each zone, run the following command:
-        ```
-        gcloud compute accelerator-types list
-        ```
-    * `${ADMIN_EMAIL}` contains administrator's email address, for example: `xxx@gmail.com`
-    * `${ASM_LABEL}` contains Anthos Service Mesh version, you don't need to change this value unless you want to upgrade this version. Note that upgrading ASM requires more manual steps than just changing this variable.
-
-    Set these environment variables in your shell:
-
-    ```bash
-    export KF_NAME=<kubeflow-cluster-name>
-    export KF_PROJECT=<google-cloud-project-id>
-    export KF_PROJECT_NUMBER=<google-cloud-project-number>
-    export KF_DIR=<kubeflow-download-path>
-    export MGMT_NAME=<management-cluster-name>
-    export MGMTCTXT="${MGMT_NAME}"
-    export LOCATION=<zone>
-    export ADMIN_EMAIL=<administrator-full-email-address>
-    export ASM_LABEL=asm-192-1
-    ```
-
-    Alternatively, you can also fill in the same content in `gcp-blueprints/kubeflow/env.sh`, then run:
+1. Review and fill all the environment variables in `gcp-blueprints/kubeflow/env.sh`, they will be used by `kpt setter` later on, and some of them will be used in this deployment guide. Review the comment in `env.sh` for the explanation for each envrionment variable. After defining these environment variables, run:
 
     ```bash
     source env.sh
@@ -190,51 +149,31 @@ Log in to gcloud. You only need to run this command once:
 ### Configure Kubeflow
 
 #### kpt setter config
-There are certain parameters that you must define in order to configure how and where
-kubeflow is defined. These are described in the table below.
-
-kpt setter | Description |
------------|-------------|
-mgmt-ctxt | This is the name of the KUBECONFIG context for the management cluster; this kubecontext will be used to create Config Connector resources for your Kubeflow deployment. **The context must set the namespace to the namespace in your management cluster where you are creating Config Connector resources for the managed project.**|
-gcloud.core.project| The project you want to deploy in |
-location | The zone or region you want to deploy in |
-gcloud.compute.region | The region you are deploying in |
-gcloud.compute.zone | The zone to use for zonal resources; must be in gcloud.compute.region |
 
 Run the following commands to configure kpt setter for your Kubeflow cluster:
-
-```bash
-kpt cfg set -R .  gke.private false
-kpt cfg set -R .  asm-label "${ASM_LABEL}"
-kpt cfg set -R .  mgmt-ctxt "${MGMT_NAME}"
-
-kpt cfg set -R .  name "${KF_NAME}"
-kpt cfg set -R .  gcloud.core.project "${KF_PROJECT}"
-kpt cfg set -R .  gcloud.project.projectNumber "${KF_PROJECT_NUMBER}"
-kpt cfg set -R .  gcloud.compute.zone "${LOCATION}"
-kpt cfg set -R .  location "${LOCATION}"
-kpt cfg set -R .  email "${ADMIN_EMAIL}"
-kpt cfg set -R .  log-firewalls false
-```
-
-Alternatively, you can run the following command for the same effect:
 
   ```bash
   bash ./kpt-set.sh
   ```
 
-Note, you can find out which setters exist in a package and what their
-current values are by running the following command:
+Everytime you change envrionment variables, make sure you run the command above to apply
+kpt setter change to all packages. Otherwise, kustomize build will not be able to pick up 
+new changes.
+
+Note, you can find out which setters exist in a package and their
+current values by running the following commands:
 
   ```bash
   kpt cfg list-setters .
+  kpt cfg list-setters common/managed-storage
+  kpt cfg list-setters apps/pipelines
   ```
 
 You can learn more about `kpt cfg set` in [kpt documentation](https://googlecontainertools.github.io/kpt/reference/cfg/set/), or by running `kpt cfg set --help`.
 
 #### Management cluster config
 
-You need to configure the kubectl context `${MGMTCTXT}`.
+You need to configure the kubectl context `${MGMTCTXT}` to create a namespace same as your Kubeflow project, you only need to do this once for each Kubeflow project.
 
 * Choose the management cluster context
 
@@ -265,7 +204,7 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
     MGMT_PROJECT=<the project where you deploy your management cluster>
     ```
 
-1. Redirect to `managment` directory:
+1. Redirect to `managment` directory and configure kpt setter:
 
    ```bash
    pushd "${MGMT_DIR}"
@@ -377,7 +316,7 @@ deployment process, so that you can customize your Kubeflow deployment if necess
 
 ### Application layout
 
-Your Kubeflow application directory **${KF_DIR}** contains the following files and
+Your Kubeflow application directory `gcp-blueprints/kubeflow` contains the following files and
 directories:
 
 * **Makefile** is a file that defines rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
