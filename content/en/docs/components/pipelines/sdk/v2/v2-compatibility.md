@@ -78,14 +78,13 @@ introduces the following changes:
              component parameters and artifacts. Reusing pipeline names may result in unexpected behaviors. You can override this name when you run the pipeline.
         *   `description`: (Optional.) A user friendly description of this pipeline.
         *   `pipeline_root`: (Optional.) The root path where this pipeline's outputs
-            are stored. This can be a MinIO, Cloud Storage, or Amazon Web Services S3 URI.
-            You can override the pipeline root when you run the pipeline.
+            are stored. This can be a MinIO, Google Cloud Storage, or Amazon Web Services
+            S3 URI. You can override the pipeline root when you run the pipeline.
 
-            If you do not specify the `pipeline_root`, you must specify it when you run
-            the pipeline.
+            If you do not specify the `pipeline_root`, Kubeflow Pipelines stores your
+            artifacts using MinIO.
     
-    *   The Pipelines SDK v2 compiler checks that data types are used correctly in pipelines,
-        and that parameters outputs are not passed to artifact inputs and vice versa.
+    *   The Pipelines SDK v2 compiler checks that data types are used correctly in pipelines.
         
         You might need to modify existing pipelines to run them in v2 compatibility mode.
 
@@ -113,15 +112,15 @@ def add(a: float, b: float) -> float:
 @dsl.pipeline(
   name='addition-pipeline',
   description='An example pipeline that performs addition calculations.',
-  pipeline_root='gs://my-pipeline-root/example-pipeline'
+  # pipeline_root='gs://my-pipeline-root/example-pipeline'
 )
-def add_pipeline(a='1', b='7'):
+def add_pipeline(a: float=1, b: float=7):
   add_task = add(a, b)
 
 # run the pipeline in v2 compatibility mode
-client().create_run_from_pipeline_func(
+client.create_run_from_pipeline_func(
     add_pipeline,
-    arguments={'a': '7', 'b': '8'},
+    arguments={'a': 7, 'b': 8},
     mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE,
 )
 ```

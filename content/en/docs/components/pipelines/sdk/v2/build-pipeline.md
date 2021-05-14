@@ -506,13 +506,11 @@ client.create_run_from_pipeline_package(
 
 ## Next steps
 
-*   Learn about advanced pipeline features, such as [authoring recursive
-    components][recursion] and [using conditional execution in a
+*   Learn about advanced pipeline features, such as [using conditional execution in a
     pipeline][conditional].
 
 
 [conditional]: https://github.com/kubeflow/pipelines/blob/master/samples/tutorials/DSL%20-%20Control%20structures/DSL%20-%20Control%20structures.py
-[recursion]: https://www.kubeflow.org/docs/components/pipelines/sdk/dsl-recursion/
 [k8s-resources]: https://www.kubeflow.org/docs/components/pipelines/sdk/manipulate-resources/
 
 
