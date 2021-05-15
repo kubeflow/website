@@ -1,12 +1,12 @@
 +++
-title = "Introducing Pipelines SDK v2"
-description = "Overview of how to get started with Pipelines SDK v2"
+title = "Introducing Kubeflow Pipelines SDK v2"
+description = "Overview of how to get started with Kubeflow Pipelines SDK v2"
 weight = 10
 +++
 
 The Kubeflow Pipelines SDK provides a set of Python packages that you can use to specify and run your machine learning (ML) workflow as a pipeline. Version 2 of the SDK adds support for tracking pipeline runs and artifacts using ML Metadata. Starting with Kubeflow Pipelines 1.6, you can build and run pipelines in v2 compatibility mode.
 
-Pipelines SDK v2 compatibility mode lets you use the new pipeline semantics and gain the benefits of logging your metadata to ML Metadata. You can use ML Metadata to help answer questions about the lineage of your pipeline’s artifacts.
+Kubeflow Pipelines SDK v2 compatibility mode lets you use the new pipeline semantics and gain the benefits of logging your metadata to ML Metadata. You can use ML Metadata to help answer questions about the lineage of your pipeline’s artifacts.
 
 To learn more about the work towards Kubeflow Pipelines v2, read the design documents for [Kubeflow Pipelines v2](http://bit.ly/kfp-v2) and [Kubeflow Pipelines v2 compatible
 mode](http://bit.ly/kfp-v2-compatible), or join the Kubeflow Pipelines community.
@@ -35,24 +35,24 @@ mode](http://bit.ly/kfp-v2-compatible), or join the Kubeflow Pipelines community
     client = kfp.Client(host='<your-kubeflow-pipelines-host-name>')
     ```
 
-## Building pipelines using the Pipelines SDK v2
+## Building pipelines using the Kubeflow Pipelines SDK v2
 
 If you are new to building pipelines, read the following guides to learn more about
-using Pipelines SDK v2 to build pipelines and components.
+using Kubeflow Pipelines SDK v2 to build pipelines and components.
 
 *  [Get started building pipelines using Pipelines SDK v2][build-pipeline].
 *  [Learn how to build pipeline components using Pipelines SDK v2][build-component].
 *  [Build lightweight Python function-based components using Pipelines SDK
    v2][python-component].
 
-If you are familiar with building Kubeflow pipelines, the Pipelines SDK v2 
+If you are familiar with building Kubeflow pipelines, the Kubeflow Pipelines SDK v2 
 introduces the following changes:
 
 *   The following changes affect how you build components:
 
     *   All component inputs and outputs must be annotated with their data type.
 
-    *   The Pipelines SDK v2 makes a distinction between inputs and outputs that
+    *   The Kubeflow Pipelines SDK v2 makes a distinction between inputs and outputs that
         are _parameters_ and those that are _artifacts_.
 
         *   Parameters are inputs or outputs of type `str`, `int`, `float`, or `double`
@@ -84,8 +84,9 @@ introduces the following changes:
             If you do not specify the `pipeline_root`, Kubeflow Pipelines stores your
             artifacts using MinIO.
     
-    *   The Pipelines SDK v2 compiler checks that data types are used correctly in pipelines.
-        
+    *   The Kubeflow Pipelines SDK v2 compiler checks that data types are used correctly in pipelines,
++        and that parameters outputs are not passed to artifact inputs and vice versa
+
         You might need to modify existing pipelines to run them in v2 compatibility mode.
 
     *   It is not longer supported to pass constants to artifact inputs. 
