@@ -5,15 +5,3 @@ footer {
     min-height: auto;
   }
 }
-
-.td-sidebar-menu .td-sidebar-nav > .td-sidebar-nav__section {
-  @media (min-width: 992px) {
-    padding-top: 3rem;
-  }
-}
-
-.td-sidebar-menu .td-sidebar__search {
-  @media (max-width: 991px) {
-    padding-top: 2rem;
-  }
-}

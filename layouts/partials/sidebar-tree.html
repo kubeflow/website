@@ -10,7 +10,7 @@
   </form>
   {{ else }}
   <div id="content-mobile">
-    <form class="td-sidebar__search d-flex align-items-center">
+    <form class="td-sidebar__search d-flex align-items-center pt-4 pt-lg-">
       {{ partial "search-input.html" . }}
       <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
       </button>
@@ -28,7 +28,7 @@
     {{ $ulNr := 0 }}
     {{ $ulShow := cond (isset .Site.Params.ui "ul_show") .Site.Params.ui.ul_show 1 }}
     {{ $sidebarMenuTruncate := cond (isset .Site.Params.ui "sidebar_menu_truncate") .Site.Params.ui.sidebar_menu_truncate 50 }}
-    <ul class="td-sidebar-nav__section pr-md-3 ul-{{ $ulNr }}">
+    <ul class="td-sidebar-nav__section pr-md-3 pt-lg-5 ul-{{ $ulNr }}">
       {{ template "section-tree-nav-section" (dict "page" . "section" $navRoot "shouldDelayActive" $shouldDelayActive "sidebarMenuTruncate" $sidebarMenuTruncate "ulNr" $ulNr "ulShow" (add $ulShow 1)) }}
     </ul>
   </nav>
