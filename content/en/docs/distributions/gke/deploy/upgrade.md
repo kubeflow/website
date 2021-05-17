@@ -312,4 +312,78 @@ Due to the refactoring of `kubeflow/manifests` repository, the way we depend on 
 
 ### Upgrade ASM (Anthos Service Mesh)
 
-If you want to upgrade ASM instead of the Kubeflow components, refer to https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/Makefile for instruction of upgrading ASM. Detailed instruction will be updated later. 
+If you want to upgrade ASM instead of the Kubeflow components, refer to [kubeflow/common/asm/Makefile](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/Makefile) for the latest instruction on upgrading ASM. Detailed explaination is also listed below. Note: If you are going to upgrade minor version or major version of ASM. It is best to read [official ASM upgrade documentation](https://cloud.google.com/service-mesh/docs/upgrade-path-old-versions-gke) first, before performing the steps below. Patch version upgrade can refer to steps below directly.
+
+#### Install new ASM workload
+
+In order to use the new ASM version, we need to download new ASM configuration package and `install_asm` script. Identify the target ASM package and script by listing the stable versions of such combination:
+
+```bash
+curl https://storage.googleapis.com/csm-artifacts/asm/STABLE_VERSIONS
+```
+
+You will see output similar to
+
+```
+...
+1.9.3-asm.2+config2:install_asm_1.9.3-asm.2-config2
+1.9.3-asm.2+config2:asm_vm_1.9.3-asm.2-config2
+1.9.3-asm.2+config1:install_asm_1.9.3-asm.2-config1
+1.9.3-asm.2+config1:asm_vm_1.9.3-asm.2-config1
+1.9.2-asm.1+config4:install_asm_1.9.2-asm.1-config4
+1.9.2-asm.1+config4:asm_vm_1.9.2-asm.1-config4
+...
+```
+
+Taking the first line as example, you can split this line by `:`, use the first half for ASM configuration package version, and the second half for `install_asm` script version. Therefore, assigning these two values to `${ASM_PACKAGE_VERSION}` and `${INSTALL_ASM_SCRIPT_VERSION}` in [kubeflow/common/asm/Makefile](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/Makefile) like below:
+
+```
+ASM_PACKAGE_VERSION=1.9.3-asm.2+config2
+INSTALL_ASM_SCRIPT_VERSION=install_asm_1.9.3-asm.2-config2
+```
+
+Then run following command under path `kubeflow/common/asm` to install new ASM, the old ASM will not be uninstalled:
+
+```bash
+make apply
+```
+
+Once installed successfully, you can see istiod `Deployment` in your cluster with name in pattern `istiod-asm-VERSION-REVISION`, for example: `istiod-asm-193-2`.
+
+
+#### Upgrade for other Kubeflow components
+
+There are multiple Kubeflow components with ASM namespace label, including user created namespaces. To upgrade them at once, change the following line in `kubeflow/env.sh` with targeted ASM version `asm-VERSION-REVISION`, like `asm-193-2`. 
+
+```
+export ASM_LABEL=asm-193-2
+```
+
+Then run following commands under `kubeflow/` path to configure environment variables:
+
+```bash
+source env.sh
+```
+
+Run the following command to configure kpt setter:
+```bash
+bash kpt-set.sh
+```
+
+Examine the change using source control by running the following command:
+
+```bash
+make hydrate
+```
+
+Refer to [Deploying and redeploying workloads](https://cloud.google.com/service-mesh/docs/scripted-install/gke-upgrade#deploying_and_redeploying_workloads) for the complete steps to adopt new ASM version. As part of the above instruction, you can run following command to update namespaces' labels across the cluster:
+
+```bash
+make apply
+```
+
+
+#### (Optional) Uninstall old ASM workload 
+
+Once you validated that new ASM installation and sidecar-injection for Kubeflow components are working as expected. You can follow the `Complete the transition` at 
+[Deploying and redeploying workloads](https://cloud.google.com/service-mesh/docs/scripted-install/gke-upgrade#deploying_and_redeploying_workloads) to remove the old ASM deployments. 
