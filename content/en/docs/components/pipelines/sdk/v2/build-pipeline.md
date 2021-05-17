@@ -63,7 +63,7 @@ $ pip install kfp==1.6.0rc0
 ```python
 import kfp
 import kfp.components as comp
-import kfp.dsl as dsl
+import kfp.vs.dsl as dsl
 from kfp.v2 import compiler
 from kfp.v2.dsl import component
 from kfp.v2.dsl import (
@@ -401,9 +401,8 @@ The following example shows the updated `merge_csv` function.
 
 ```python
 @component(
-    base_image='python:3.7',
     packages_to_install=['pandas==1.1.4'],
-    output_component_file='component.yaml' # This is optional. It saves the component spec for future use.
+    output_component_file='component.yaml'
 )
 def merge_csv(tar_data: Input[Artifact], output_csv: Output[Dataset]):
   import glob
@@ -460,8 +459,8 @@ web_downloader_op = kfp.components.load_component_from_url(
 ```python
 # Define a pipeline and create a task from a component:
 @dsl.pipeline(
+  
     pipeline_root='gs://my-pipeline-root/example-pipeline',
-    name="example-pipeline",
 )
 def my_pipeline(url: str):
   web_downloader_task = web_downloader_op(url=url)
@@ -481,7 +480,8 @@ After defining the pipeline in Python as described in the preceding section, use
 ```python
 compiler.Compiler().compile(
     pipeline_func=my_pipeline,
-    package_path='pipeline.yaml')
+    package_path='pipeline.yaml',
+    mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE)
 ```
 
 2.  Run the following to submit the compiled workflow specification
@@ -499,8 +499,7 @@ client.create_run_from_pipeline_package(
     pipeline_file='pipeline.yaml',
     arguments={
         'url': 'https://storage.googleapis.com/ml-pipeline-playground/iris-csv-files.tar.gz'
-    },
-    mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE)
+    })
 ```
 
 

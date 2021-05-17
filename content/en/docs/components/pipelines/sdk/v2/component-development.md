@@ -298,11 +298,11 @@ component's implementation.
           # Path of the program inside the container
           /pipelines/component/src/program.py,
           --input1-path,
-          {inputPath: Input 1},
+          {inputPath: input_1},
           --param1, 
-          {inputValue: Parameter 1},
+          {inputValue: parameter_1},
           --output1-path, 
-          {outputPath: Output 1},
+          {outputPath: output_1},
         ]
     ```
 
@@ -353,16 +353,16 @@ The following examples demonstrate how to specify your component's interface.
 
     In this example, the Python program has two inputs: 
 
-    *   `Input 1` contains `String` data.
+    *   `input_1` contains `String` data.
     *   `Parameter 1` contains an `Integer`.
 
     ```yaml
     inputs:
-    - {name: Input 1, type: String, description: 'Data for input 1'}
-    - {name: Parameter 1, type: Integer, default: '100', description: 'Number of lines to copy'}
+    - {name: input_1, type: String, description: 'Data for input_1'}
+    - {name: parameter_1, type: Integer, default: '100', description: 'Number of lines to copy'}
     ```
 
-    Note: `Input 1` and `Parameter 1` do not specify any details about how they
+    Note: `input_1` and `parameter_1` do not specify any details about how they
     are stored or how much data they contain. Consider using naming conventions
     to indicate if inputs are expected to be artifacts or parameters. 
 
@@ -382,11 +382,11 @@ The following examples demonstrate how to specify your component's interface.
         checking works in pipelines and components][dsl-type-checking].
 
     In this example, the Python program returns one output. The output is named
-    `Output 1` and it contains `String` data.
+    `output_1` and it contains `String` data.
 
     ```yaml
     outputs:
-    - {name: Output 1, type: String, description: 'Output 1 data.'}
+    - {name: output_1, type: String, description: 'output_1 data.'}
     ```
 
     Note: Consider using naming conventions to indicate if this output is
@@ -398,11 +398,11 @@ The following examples demonstrate how to specify your component's interface.
 
     ```yaml
     inputs:
-    - {name: Input 1, type: String, description: 'Data for input 1'}
-    - {name: Parameter 1, type: Integer, default: '100', description: 'Number of lines to copy'}
+    - {name: input_1, type: String, description: 'Data for input_1'}
+    - {name: parameter_1, type: Integer, default: '100', description: 'Number of lines to copy'}
     
     outputs:
-    - {name: Output 1, type: String, description: 'Output 1 data.'}
+    - {name: output_1, type: String, description: 'output_1 data.'}
 
     implementation:
       container:
@@ -415,11 +415,11 @@ The following examples demonstrate how to specify your component's interface.
           # Path of the program inside the container
           /pipelines/component/src/program.py,
           --input1-path,
-          {inputPath: Input 1},
+          {inputPath: input_1},
           --param1, 
-          {inputValue: Parameter 1},
+          {inputValue: parameter_1},
           --output1-path, 
-          {outputPath: Output 1},
+          {outputPath: output_1},
         ]
     ```
 
@@ -436,11 +436,11 @@ name: Get Lines
 description: Gets the specified number of lines from the input file.
 
 inputs:
-- {name: Input 1, type: String, description: 'Data for input 1'}
-- {name: Parameter 1, type: Integer, default: '100', description: 'Number of lines to copy'}
+- {name: input_1, type: String, description: 'Data for input_1'}
+- {name: parameter_1, type: Integer, default: '100', description: 'Number of lines to copy'}
 
 outputs:
-- {name: Output 1, type: String, description: 'Output 1 data.'}
+- {name: output_1, type: String, description: 'output_1 data.'}
 
 implementation:
   container:
@@ -453,11 +453,11 @@ implementation:
       # Path of the program inside the container
       /pipelines/component/src/program.py,
       --input1-path,
-      {inputPath: Input 1},
+      {inputPath: input_1},
       --param1, 
-      {inputValue: Parameter 1},
+      {inputValue: parameter_1},
       --output1-path, 
-      {outputPath: Output 1},
+      {outputPath: output_1},
     ]
 ```
 
@@ -501,11 +501,11 @@ name: Get Lines
 description: Gets the specified number of lines from the input file.
 
 inputs:
-- {name: Input 1, type: String, description: 'Data for input 1'}
-- {name: Parameter 1, type: Integer, default: '100', description: 'Number of lines to copy'}
+- {name: input_1, type: String, description: 'Data for input_1'}
+- {name: parameter_1, type: Integer, default: '100', description: 'Number of lines to copy'}
 
 outputs:
-- {name: Output 1, type: String, description: 'Output 1 data.'}
+- {name: output_1, type: String, description: 'output_1 data.'}
 
 implementation:
   container:
@@ -518,11 +518,11 @@ implementation:
       # Path of the program inside the container
       /pipelines/component/src/program.py,
       --input1-path,
-      {inputPath: Input 1},
+      {inputPath: input_1},
       --param1, 
-      {inputValue: Parameter 1},
+      {inputValue: parameter_1},
       --output1-path, 
-      {outputPath: Output 1},
+      {outputPath: output_1},
     ]""")
 
 # create_step_get_lines is a "factory function" that accepts the arguments
