@@ -55,10 +55,10 @@ introduces the following changes:
     *   The Kubeflow Pipelines SDK v2 makes a distinction between inputs and outputs that
         are _parameters_ and those that are _artifacts_.
 
-        *   Parameters are inputs or outputs of type `str`, `int`, `float`, or `double`
+        *   Parameters are inputs or outputs of type `str`, `int`, or `float`
             that typically are used to change the behavior of a pipeline. Input parameters
             are always passed by value, which means that they are inserted into the
-            command used to execute the component.
+            command used to execute the component. Parameters are stored in ML Metadata. 
 
         *   [Artifacts](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/io_types.py)
             are larger inputs or outputs, such as datasets or models. Input
