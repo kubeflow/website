@@ -14,7 +14,7 @@ This guide describes how to set up Kubeflow on premises (on-prem) in a multi-nod
 ## Vanilla on-prem Kubeflow installation
 
 In order to install Kubeflow in an on-prem Kubernetes cluster, follow the guide
-to [installing Kubeflow on existing clusters](/docs/started/k8s), which works 
+to [installing Kubeflow on existing clusters](/docs/started/installing-kubeflow/), which works 
 for single node and multi-node clusters.
 
 At the end of the installation, some Persistent Volume Claims (PVCs) might be unbound. To fix this issue, see the troubleshooting section [Pods stuck in Pending state](/docs/other-guides/troubleshooting/#pods-stuck-in-pending-state).
