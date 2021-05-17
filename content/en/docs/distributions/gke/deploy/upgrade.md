@@ -311,11 +311,11 @@ Due to the refactoring of `kubeflow/manifests` repository, the way we depend on 
     of `.build` with a historic version with tools like `git diff`.
 
 
-### Upgrade ASM (Anthos Service Mesh)
+## Upgrade ASM (Anthos Service Mesh)
 
 If you want to upgrade ASM instead of the Kubeflow components, refer to [kubeflow/common/asm/Makefile](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/Makefile) for the latest instruction on upgrading ASM. Detailed explaination is also listed below. Note: If you are going to upgrade minor version or major version of ASM. It is best to read [official ASM upgrade documentation](https://cloud.google.com/service-mesh/docs/upgrade-path-old-versions-gke) first, before performing the steps below. Patch version upgrade can refer to steps below directly.
 
-#### Install new ASM workload
+### Install new ASM workload
 
 In order to use the new ASM version, we need to download new ASM configuration package and `install_asm` script. Identify the target ASM package and script by listing the stable versions of such combination:
 
@@ -352,7 +352,7 @@ make apply
 Once installed successfully, you can see istiod `Deployment` in your cluster with name in pattern `istiod-asm-VERSION-REVISION`, for example: `istiod-asm-193-2`.
 
 
-#### Upgrade for other Kubeflow components
+### Upgrade for other Kubeflow components
 
 There are multiple Kubeflow components with ASM namespace label, including user created namespaces. To upgrade them at once, change the following line in `kubeflow/env.sh` with targeted ASM version `asm-VERSION-REVISION`, like `asm-193-2`. 
 
@@ -384,7 +384,7 @@ make apply
 ```
 
 
-#### (Optional) Uninstall old ASM workload 
+### (Optional) Uninstall old ASM workload 
 
 Once you validated that new ASM installation and sidecar-injection for Kubeflow components are working as expected. You can follow the `Complete the transition` at 
 [Deploying and redeploying workloads](https://cloud.google.com/service-mesh/docs/scripted-install/gke-upgrade#deploying_and_redeploying_workloads) to remove the old ASM deployments. 
