@@ -8,4 +8,3 @@ weight = 100
 Starting with Kubeflow v1.1.0 deploying Kubeflow via the click to deploy web application
 is no longer supported. Please [use kustomize and kpt](/docs/gke/deploy/deploy-cli/) to deploy Kubeflow.
 {{% /alert %}}
-

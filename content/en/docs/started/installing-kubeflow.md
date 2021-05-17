@@ -52,10 +52,10 @@ Packaged distributions are developed and supported by their respective maintaine
         <td></td>
       </tr>
       <tr>
-        <td>Kubeflow on GCP</td>
+        <td>Kubeflow on Google Cloud</td>
         <td>Google Cloud</td>
         <td>Google Kubernetes Engine (GKE)</td>
-        <td>1.2</td>
+        <td>1.3</td>
         <td><a href="/docs/distributions/gke/">Docs</a></td>
         <td></td>
       </tr>

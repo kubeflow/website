@@ -24,7 +24,7 @@ This guide assumes the following settings:
 
 * The `${KF_DIR}` environment variable contains the path to
   your Kubeflow application directory, which holds your Kubeflow configuration
-  files. For example, `/opt/my-kubeflow/`.
+  files. For example, `/opt/gcp-blueprints/kubeflow/`.
 
   ```
   export KF_DIR=<path to your Kubeflow application directory>
