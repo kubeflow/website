@@ -64,7 +64,7 @@ building and running pipelines that are compatible with the Pipelines SDK v2.
 
 
 ```python
-$ pip3 install kfp --upgrade
+$ pip install kfp==1.6.0rc0
 ```
 
 2. Import the `kfp`, `kfp.components`, `kfp.dsl`, and `kfp.v2.dsl` packages.
