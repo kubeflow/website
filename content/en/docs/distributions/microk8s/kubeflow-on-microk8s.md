@@ -88,20 +88,28 @@ When running MicroK8s on Windows, macOS, Multipass or a virtual machine, you nee
     ssh -D9999 multipass@<multipass_public_ip>
     ```
 
-3. In your host operating system, go to **Settings** > **Network** > **Network Proxy**, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
+3. In your host operating system or browser, go to **Settings** > **Network** > **Network Proxy**, and enable SOCKS proxy pointing to: `127.0.0.1:9999`.
 
 4. Finally, access the Kubeflow dashboard by:
     1. Opening a new web browser window.
     2. Accessing the link provided after you have enabled Kubeflow (for example, `10.64.140.43.nip.io`).
 
+## Troubleshooting
+
+If you are having issues with the MicroK8s Kubeflow add-on, you can try a few alternatives:
+
+1. Install the [Kubeflow Charmed Operators](https://charmed-kubeflow.io/) directly following the respective [documentation](https://charmed-kubeflow.io/docs/install) using MicroK8s as a Kubernetes. 
+2. Re-install the tip version of MicroK8s with via `sudo snap install microk8s --classic --channel=edge`, and re-enable the add-on. This might be useful is a fix has been released in the `edge` channel of the MicroK8s snap and not yet in the default `stable` channel.
+3. Refresh your MicroK8s installation to the tip version via `sudo snap refresh microk8s --classic --channel=edge`
+
+If none of the above fixes your issue, please:
+
+* Start a [new issue](https://github.com/juju-solutions/bundle-kubeflow/issues/new)
+* Reach out via [Slack](https://kubeflow.slack.com/archives/C7REE0EHK)
+
 ## Additional guides
 
+* MicroK8s [troubleshooting docs](https://MicroK8s.io/docs/troubleshooting)
 * MicroK8s [getting started docs](https://MicroK8s.io/docs)
 * MicroK8s Kubeflow [add-on docs](https://microk8s.io/docs/addon-kubeflow)
 * Addittional docs in [Charmed Kubeflow](https://charmed-kubeflow.io/docs)
-
-## Troubleshooting
-
-* MicroK8s [troubleshooting docs](https://MicroK8s.io/docs/troubleshooting)
-* Start a [new issue](https://github.com/juju-solutions/bundle-kubeflow/issues/new)
-* Reach out on [Slack](https://kubeflow.slack.com/archives/C7REE0EHK)
