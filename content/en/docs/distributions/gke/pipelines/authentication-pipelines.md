@@ -42,7 +42,7 @@ Use one of the following options to create a GKE cluster that uses the Compute E
 <img src="/docs/images/pipelines/gke-allow-full-access.png">
 * Using `gcloud` CLI, you can enable it with `--scopes cloud-platform` like the following:
 ```bash
-gcloud container clusters create cluster-name \
+gcloud container clusters create <cluster-name> \
   --scopes cloud-platform
 ```
 
@@ -94,7 +94,7 @@ Additionally, the Kubeflow Pipelines UI, visualization, and TensorBoard server i
 
 * Using `gcloud` CLI, you can enable it with:
 ```bash
-gcloud beta container clusters create cluster-name \
+gcloud beta container clusters create <cluster-name> \
   --release-channel regular \
   --workload-pool=project-id.svc.id.goog
 ```
