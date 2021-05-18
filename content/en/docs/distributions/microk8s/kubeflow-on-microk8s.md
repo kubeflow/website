@@ -99,8 +99,8 @@ When running MicroK8s on Windows, macOS, Multipass or a virtual machine, you nee
 If you are having issues with the MicroK8s Kubeflow add-on, you can try a few alternatives:
 
 1. Install the [Kubeflow Charmed Operators](https://charmed-kubeflow.io/) directly following the respective [documentation](https://charmed-kubeflow.io/docs/install) using MicroK8s as a Kubernetes. 
-2. Re-install the tip version of MicroK8s with `sudo snap install microk8s --classic --channel=edge`, and re-enable the add-on. This might be useful if a fix has been released in the `edge` channel of the MicroK8s snap and not yet in the default `stable` channel.
-3. Refresh your MicroK8s installation to the tip version via `sudo snap refresh microk8s --classic --channel=edge`
+2. Refresh your MicroK8s installation to the tip version via `sudo snap refresh microk8s --classic --channel=edge`. This might be useful if a fix has been released in the `edge` channel of the MicroK8s snap and not yet in the default `stable` channel.
+3. Re-install the tip version of MicroK8s with `sudo snap install microk8s --classic --channel=edge`, and re-enable the Kubeflow add-on.
 
 If none of the above fixes your issue, please:
 
