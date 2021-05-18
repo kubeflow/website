@@ -85,7 +85,7 @@ introduces the following changes:
             artifacts using MinIO.
     
     *   The Kubeflow Pipelines SDK v2 compiler checks that data types are used correctly in pipelines,
-+        and that parameters outputs are not passed to artifact inputs and vice versa
+        and that parameters outputs are not passed to artifact inputs and vice versa
 
         You might need to modify existing pipelines to run them in v2 compatibility mode.
 
