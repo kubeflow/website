@@ -13,17 +13,16 @@ mode](http://bit.ly/kfp-v2-compatible), or join the Kubeflow Pipelines community
 
 ## Before you begin
 
-1.  Run the following command to install Kubeflow Pipelines SDK v1.6 or higher. If you run this command in a Jupyter notebook, restart the kernel after installing the SDK.
+1.  Run the following command to install Kubeflow Pipelines SDK v1.6.2 or higher. If you run this command in a Jupyter notebook, restart the kernel after installing the SDK.
     
     ```bash
-    pip install kfp==1.6.0rc0
+    pip install kfp --upgrade
     ```
 
 1.  Import the kfp and kfp.components packages.
 
     ```python
     import kfp
-    import kfp.components as comp
     ```
 
 1.  Create an instance of the kfp.Client class. To find your Kubeflow Pipelines cluster’s hostname and URL scheme, open the Kubeflow Pipelines user interface in your browser. The URL of the Kubeflow Pipelines user interface is something like https://my-cluster.my-organization.com/pipelines. In this case, the host name and URL scheme are https://my-cluster.my-organization.com.
