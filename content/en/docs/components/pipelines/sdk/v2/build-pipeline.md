@@ -63,7 +63,7 @@ $ pip install kfp==1.6.0rc0
 ```python
 import kfp
 import kfp.components as comp
-import kfp.vs.dsl as dsl
+import kfp.v2.dsl as dsl
 from kfp.v2 import compiler
 from kfp.v2.dsl import component
 from kfp.v2.dsl import (
