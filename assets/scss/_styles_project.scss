@@ -1,0 +1,13 @@
+footer {
+  min-height: auto;
+
+  @media (max-width: 991.98px) {
+    min-height: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .td-sidebar-nav__section > ul {
+    padding-left: .5rem !important;
+  }
+}
