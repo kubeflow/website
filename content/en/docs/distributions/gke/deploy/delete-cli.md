@@ -33,7 +33,7 @@ This guide assumes the following settings:
 
     ```bash
     cd "${KF_DIR}"
-    make delete
+    make delete-gcp
     ```
 
     **Warning**: this will delete the persistent disks storing metadata. If you want to preserve the disks, don't run this command;
@@ -53,7 +53,7 @@ cluster.
 To delete all the managed Google Cloud resources, delete the managed project namespace:
 
 ```bash
-kubectl use-context "${MGMTCTXT}"
+kubectl config use-context "${MGMTCTXT}"
 kubectl delete namespace --wait "${KF_PROJECT}"
 ```
 
