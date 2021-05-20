@@ -1,9 +1,9 @@
 +++
-title = "Python Based Visualizations"
+title = "Python Based Visualizations (Deprecated)"
 description = "Predefined and custom visualizations of pipeline outputs"
-weight = 80
-                    
+weight = 1400
 +++
+
 {{% alert title="Deprecated" color="warning" %}}
 Python based visualization is deprecated. We recommend fetching data via
 Kubeflow Pipelines SDK and visualizing from your own notebook instead.
