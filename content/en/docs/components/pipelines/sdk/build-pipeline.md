@@ -56,23 +56,6 @@ import kfp
 import kfp.components as comp
 ```
 
-3. Create an instance of the [`kfp.Client` class][kfp-client]. To find your
-   Kubeflow Pipelines cluster's hostname and URL scheme, open the Kubeflow
-   Pipelines user interface in your browser. The URL of the Kubeflow
-   Pipelines user interface is something like 
-   `https://my-cluster.my-organization.com/pipelines`. In this case, the
-   host name and URL scheme are `https://my-cluster.my-organization.com`. 
-
-[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
-
-
-```python
-# If you run this command on a Jupyter notebook running on Kubeflow, you can
-# exclude the host parameter.
-# client = kfp.Client()
-client = kfp.Client(host='<your-kubeflow-pipelines-host-name>')
-```
-
 ## Understanding pipelines
 
 A Kubeflow pipeline is a portable and scalable definition of an ML workflow,
@@ -415,7 +398,9 @@ def my_pipeline(url):
 
 ### Compile and run your pipeline
 
-After defining the pipeline in Python as described in the preceding section, use the following instructions to compile the pipeline and submit it to the Kubeflow Pipelines service. 
+After defining the pipeline in Python as described in the preceding section, use one of the following instructions to compile the pipeline and submit it to the Kubeflow Pipelines service.
+
+#### Option 1: Compile and then upload in UI
 
 1.  Run the following to compile your pipeline and save it as `pipeline.yaml`. 
 
@@ -427,19 +412,29 @@ kfp.compiler.Compiler().compile(
     package_path='pipeline.yaml')
 ```
 
-2.  Run the following to submit the compiled workflow specification
-    (`pipeline.yaml`) using the Kubeflow Pipelines SDK. 
-    
-    You can also use the Kubeflow Pipelines user interface to upload and run
-    your `pipeline.yaml`. See the guide to [getting started with the
-    UI][quickstart].
+2.  Upload and run your `pipeline.yaml` using the Kubeflow Pipelines user interface.
+See the guide to [getting started with the UI][quickstart].
 
 [quickstart]: https://www.kubeflow.org/docs/components/pipelines/pipelines-quickstart
 
+#### Option 2: run the pipeline using Kubeflow Pipelines SDK client
+
+1.  Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to API][connect-api].
+
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
+[connect-api]: /docs/components/pipelines/sdk/connect-api.md
+
 
 ```python
-client.create_run_from_pipeline_package(
-    pipeline_file='pipeline.yaml',
+client = kfp.Client() # change arguments accordingly
+```
+
+2.  Run the pipeline using the `kfp.Client` instance:
+
+
+```python
+client.create_run_from_pipeline_func(
+    my_pipeline,
     arguments={
         'url': 'https://storage.googleapis.com/ml-pipeline-playground/iris-csv-files.tar.gz'
     })
