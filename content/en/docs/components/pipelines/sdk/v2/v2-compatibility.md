@@ -4,6 +4,9 @@ description = "Overview of how to get started with Kubeflow Pipelines SDK v2"
 weight = 10
 +++
 
+{{% beta-status
+  feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
+
 The Kubeflow Pipelines SDK provides a set of Python packages that you can use to specify and run your machine learning (ML) workflow as a pipeline. Version 2 of the SDK adds support for tracking pipeline runs and artifacts using ML Metadata. Starting with Kubeflow Pipelines 1.6, you can build and run pipelines in v2 compatibility mode.
 
 Kubeflow Pipelines SDK v2 compatibility mode lets you use the new pipeline semantics and gain the benefits of logging your metadata to ML Metadata. You can use ML Metadata to help answer questions about the lineage of your pipeline’s artifacts.
@@ -12,6 +15,8 @@ To learn more about the work towards Kubeflow Pipelines v2, read the design docu
 mode](http://bit.ly/kfp-v2-compatible), or join the Kubeflow Pipelines community.
 
 ## Before you begin
+
+1.  Install [Kubeflow Pipelines Standalone](/docs/components/pipelines/installation/standalone-deployment) 1.6.0-rc.0 or higher. Note, support for other distributions is under development, see [Current Caveats section](#current-caveats).
 
 1.  Run the following command to install Kubeflow Pipelines SDK v1.6.2 or higher. If you run this command in a Jupyter notebook, restart the kernel after installing the SDK.
     
@@ -125,6 +130,24 @@ client.create_run_from_pipeline_func(
 )
 ```
 
+## Current Caveats
+
+Kubeflow Pipelines v2 compatible mode is currently in Beta stage. It is under active development and some features may not be complete. Here are some the current caveats:
+
+* Pipelines do not run on [the full Kubeflow] distributions with Multi-User Kubeflow Pipelines. [#5680]
+* Pipelines using [v1 mlpipeline-ui-metadata visualization](/docs/components/pipelines/sdk/output-viewer/) do not compile. [#5666]
+* UI integration is work-in-progress, more improvements are planned in [v2 compatible mode github project].
+* Caching is work-in-progress. [#5667]
+* When consuming an input artifact by URI, its file content is still downloaded to the container regardless. [#5671]
+* Pipeline components fail on non-root container images with permission problems. [#5673]
+
 [build-pipeline]: /docs/components/pipelines/sdk/v2/build-pipeline/
 [build-component]: /docs/components/pipelines/sdk/v2/component-development/
 [python-component]: /docs/components/pipelines/sdk/v2/python-function-components/
+[the full Kubeflow]: /docs/components/pipelines/installation/overview/#full-kubeflow
+[v2 compatible mode github project]: https://github.com/kubeflow/pipelines/projects/13
+[#5680]: https://github.com/kubeflow/pipelines/issues/5680
+[#5666]: https://github.com/kubeflow/pipelines/issues/5666
+[#5671]: https://github.com/kubeflow/pipelines/issues/5671
+[#5673]: https://github.com/kubeflow/pipelines/issues/5673
+[#5667]: https://github.com/kubeflow/pipelines/issues/5667
