@@ -132,7 +132,7 @@ client.create_run_from_pipeline_func(
 
 ## Current Caveats
 
-Kubeflow Pipelines v2 compatible mode is currently in Beta stage. It is under active development and some features may not be complete. Here are some the current caveats:
+Kubeflow Pipelines v2 compatible mode is currently in Beta stage. It is under active development and some features may not be complete. Here are some of the current caveats:
 
 * Pipelines do not run on [the full Kubeflow] distributions with Multi-User Kubeflow Pipelines. [#5680]
 * Pipelines using [v1 mlpipeline-ui-metadata visualization](/docs/components/pipelines/sdk/output-viewer/) do not compile. [#5666]
