@@ -33,7 +33,7 @@ This guide assumes the following settings:
 
     ```bash
     cd "${KF_DIR}"
-    make delete-gcp
+    make delete
     ```
 
     **Warning**: this will delete the persistent disks storing metadata. If you want to preserve the disks, don't run this command;
