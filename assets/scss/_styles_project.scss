@@ -11,3 +11,16 @@ footer {
     padding-left: .5rem !important;
   }
 }
+
+.td-navbar {
+  min-height: auto;
+}
+
+.navbar-nav {
+  @media (max-width: 992px) {
+    font-size: .875rem;
+    .dropdown {
+      min-width: inherit;
+    }
+  }
+}
