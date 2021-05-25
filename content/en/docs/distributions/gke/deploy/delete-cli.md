@@ -53,7 +53,7 @@ cluster.
 To delete all the managed Google Cloud resources, delete the managed project namespace:
 
 ```bash
-kubectl use-context "${MGMTCTXT}"
+kubectl config use-context "${MGMTCTXT}"
 kubectl delete namespace --wait "${KF_PROJECT}"
 ```
 
