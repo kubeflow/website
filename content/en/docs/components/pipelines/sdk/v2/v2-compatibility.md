@@ -16,7 +16,7 @@ mode](http://bit.ly/kfp-v2-compatible), or join the Kubeflow Pipelines community
 
 ## Before you begin
 
-1.  Install [Kubeflow Pipelines Standalone](/docs/components/pipelines/installation/standalone-deployment) 1.6.0-rc.0 or higher. Note, support for other distributions is under development, see [Current Caveats section](#current-caveats).
+1.  Install [Kubeflow Pipelines Standalone](/docs/components/pipelines/installation/standalone-deployment) 1.6.0 or higher. Note, support for other distributions is under development, see [Current Caveats section](#current-caveats).
 
 1.  Run the following command to install Kubeflow Pipelines SDK v1.6.2 or higher. If you run this command in a Jupyter notebook, restart the kernel after installing the SDK.
     
