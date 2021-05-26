@@ -92,12 +92,9 @@ introduces the following changes:
 
     *   All pipeline parameters must be annotated with their data type.
 
-## Running pipelines in v2 compatibility mode
+## Compiling and running pipelines in v2 compatibility mode
 
-To run your pipeline in v2 compatibility mode, specify that 
-`mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` when you create a pipeline
-run using `create_run_from_pipeline_func`. The following example demonstrates
-how to run a pipeline using v2 compatibility mode.
+First we define a v2 compatible pipeline:
 
 ```python
 import kfp
@@ -116,7 +113,27 @@ def add(a: float, b: float) -> float:
 )
 def add_pipeline(a: float=1, b: float=7):
   add_task = add(a, b)
+```
 
+To compile your pipeline in v2 compatibility mode, specify that
+`mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` when you initiate the compiler:
+
+```python
+from kfp import compiler
+compiler.Compiler(mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE)
+    .compile(pipeline_func=add_pipeline, package_path='pipeline.yaml')
+```
+
+To run your pipeline in v2 compatibility mode:
+
+1. Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
+2. Specify that `mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` when you create a pipeline
+run using `create_run_from_pipeline_func`.
+
+The following example demonstrates how to run a pipeline using v2 compatibility mode.
+
+```python
+client = kfp.Client()
 # run the pipeline in v2 compatibility mode
 client.create_run_from_pipeline_func(
     add_pipeline,
@@ -128,3 +145,5 @@ client.create_run_from_pipeline_func(
 [build-pipeline]: /docs/components/pipelines/sdk/v2/build-pipeline/
 [build-component]: /docs/components/pipelines/sdk/v2/component-development/
 [python-component]: /docs/components/pipelines/sdk/v2/python-function-components/
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
+[connect-api]: /docs/components/pipelines/sdk/connect-api.md 

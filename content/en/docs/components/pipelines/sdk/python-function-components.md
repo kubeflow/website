@@ -67,23 +67,6 @@ import kfp
 import kfp.components as comp
 ```
 
-3. Create an instance of the [`kfp.Client` class][kfp-client]. To find your
-   Kubeflow Pipelines cluster's hostname, open the Kubeflow Pipelines user
-   interface in your browser. The URL of the Kubeflow Pipelines user
-   interface is something like 
-   `https://my-cluster.my-organization.com/pipelines`. In this case, the
-   hostname is `my-cluster.my-organization.com`. 
-
-[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client
-
-
-```python
-# If you run this command on a Jupyter notebook running on Kubeflow, you can
-# exclude the host parameter.
-# client = kfp.Client()
-client = kfp.Client(host='<your-kubeflow-pipelines-host-name>')
-```
-
 For more information about the Kubeflow Pipelines SDK, see the [SDK reference guide][sdk-ref].
 
 [sdk-ref]: https://kubeflow-pipelines.readthedocs.io/en/stable/index.html
@@ -568,12 +551,21 @@ def calc_pipeline(
     result_task = add_op(divmod_task.outputs['quotient'], c)
 ```
 
-5.  Create and run your pipeline. [Learn more about creating and running pipelines][build-pipelines].
 
-[build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/sdk/build-component/
+```python
+
+```
+
+5.  Compile and run your pipeline. [Learn more about compiling and running pipelines][build-pipelines].
+
+[build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/sdk/build-pipeline/#compile-and-run-your-pipeline
 
 
 ```python
+# Connect to Kubeflow Pipelines using the SDK following
+# "learn more about compiling and running pipelines"
+client = kfp.Client()
+
 # Specify pipeline argument values
 arguments = {'a': '7', 'b': '8'}
 
