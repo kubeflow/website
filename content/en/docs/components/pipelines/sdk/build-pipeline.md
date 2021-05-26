@@ -398,7 +398,7 @@ def my_pipeline(url):
 
 ### Compile and run your pipeline
 
-After defining the pipeline in Python as described in the preceding section, use one of the following instructions to compile the pipeline and submit it to the Kubeflow Pipelines service.
+After defining the pipeline in Python as described in the preceding section, use one of the following options to compile the pipeline and submit it to the Kubeflow Pipelines service.
 
 #### Option 1: Compile and then upload in UI
 
