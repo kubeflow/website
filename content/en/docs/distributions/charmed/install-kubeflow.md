@@ -71,7 +71,7 @@ If you have fewer resources, deploy kubeflow-lite or kubeflow-edge.
 Once you have a model, you can simply `juju deploy` any of the provided [Kubeflow bundles](https://charmed-kubeflow.io/docs/operators-and-bundles) into your cluster. For the _Kubeflow lite_ bundle, run:
 
 ```bash
-juju deploy kubeflow-lite
+juju deploy cs:kubeflow-lite
 ```
 
 and your Kubeflow installation should begin!
