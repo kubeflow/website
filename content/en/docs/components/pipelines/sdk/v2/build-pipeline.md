@@ -492,7 +492,7 @@ client.create_run_from_pipeline_func(
     my_pipeline,
     mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE,
     # You can optionally override your pipeline_root when submitting the run too:
-    # pipeline_root='gs://gongyuan-dev/v2',
+    # pipeline_root='gs://my-pipeline-root/example-pipeline',
     arguments={
         'url': 'https://storage.googleapis.com/ml-pipeline-playground/iris-csv-files.tar.gz'
     })
