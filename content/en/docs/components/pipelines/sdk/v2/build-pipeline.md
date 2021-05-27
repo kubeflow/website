@@ -57,13 +57,12 @@ building and running pipelines that are compatible with the Pipelines SDK v2.
 $ pip install kfp==1.6.0rc0
 ```
 
-2.  Import the `kfp` and `kfp.components` packages.
+2.  Import the `kfp` packages.
 
 
 ```python
 import kfp
-import kfp.components as comp
-import kfp.vs.dsl as dsl
+from kfp.v2 import dsl
 from kfp import compiler
 from kfp.v2.dsl import component
 from kfp.v2.dsl import (
@@ -442,7 +441,6 @@ web_downloader_op = kfp.components.load_component_from_url(
 ```python
 # Define a pipeline and create a task from a component:
 @dsl.pipeline(
-  
     pipeline_root='gs://my-pipeline-root/example-pipeline',
 )
 def my_pipeline(url: str):
