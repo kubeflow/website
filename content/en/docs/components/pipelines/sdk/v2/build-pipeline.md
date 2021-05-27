@@ -48,13 +48,13 @@ building and running pipelines that are compatible with the Pipelines SDK v2.
 
 ## Before you begin
 
-1.  Run the following command to install the Kubeflow Pipelines SDK v1.6 or higher.
+1.  Run the following command to install the Kubeflow Pipelines SDK v1.6.2 or higher.
     If you run this command in a Jupyter notebook, restart the kernel after
     installing the SDK. 
 
 
 ```python
-$ pip install kfp==1.6.0rc0
+$ pip install --upgrade kfp
 ```
 
 2.  Import the `kfp` packages.
@@ -63,7 +63,6 @@ $ pip install kfp==1.6.0rc0
 ```python
 import kfp
 from kfp.v2 import dsl
-from kfp import compiler
 from kfp.v2.dsl import component
 from kfp.v2.dsl import (
     Input,
@@ -441,7 +440,9 @@ web_downloader_op = kfp.components.load_component_from_url(
 ```python
 # Define a pipeline and create a task from a component:
 @dsl.pipeline(
-    pipeline_root='gs://my-pipeline-root/example-pipeline',
+    name='my-pipeline',
+    # You can optionally specify your own pipeline_root
+    # pipeline_root='gs://my-pipeline-root/example-pipeline',
 )
 def my_pipeline(url: str):
   web_downloader_task = web_downloader_op(url=url)
@@ -461,7 +462,7 @@ After defining the pipeline in Python as described in the preceding section, use
 
 
 ```python
-compiler.Compiler(mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE).compile(
+kfp.compiler.Compiler(mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE).compile(
     pipeline_func=my_pipeline,
     package_path='pipeline.yaml')
 ```
@@ -487,9 +488,11 @@ client = kfp.Client() # change arguments accordingly
 
 
 ```python
-client.create_run_from_pipeline_package(
+client.create_run_from_pipeline_func(
     my_pipeline,
     mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE,
+    # You can optionally override your pipeline_root when submitting the run too:
+    # pipeline_root='gs://gongyuan-dev/v2',
     arguments={
         'url': 'https://storage.googleapis.com/ml-pipeline-playground/iris-csv-files.tar.gz'
     })
