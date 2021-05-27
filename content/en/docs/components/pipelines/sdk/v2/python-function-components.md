@@ -59,22 +59,20 @@ building and running pipelines that are compatible with the Pipelines SDK v2.
 
 ## Before you begin
 
-1. Run the following command to install the Kubeflow Pipelines SDK v1.6 or higher. If you run this command in a Jupyter
+1. Run the following command to install the Kubeflow Pipelines SDK v1.6.2 or higher. If you run this command in a Jupyter
    notebook, restart the kernel after installing the SDK. 
 
 
 ```python
-$ pip install kfp==1.6.0rc0
+$ pip install --upgrade kfp
 ```
 
-2. Import the `kfp`, `kfp.components`, `kfp.dsl`, and `kfp.v2.dsl` packages.
+2. Import the `kfp`, `kfp.dsl`, and `kfp.v2.dsl` packages.
 
 
 ```python
 import kfp
-import kfp.components as comp
 import kfp.dsl as dsl
-from kfp.v2 import compiler
 from kfp.v2.dsl import (
     component,
     Input,
@@ -84,21 +82,14 @@ from kfp.v2.dsl import (
 )
 ```
 
-3. Create an instance of the [`kfp.Client` class][kfp-client]. To find your
-   Kubeflow Pipelines cluster's hostname, open the Kubeflow Pipelines user
-   interface in your browser. The URL of the Kubeflow Pipelines user
-   interface is something like 
-   `https://my-cluster.my-organization.com/pipelines`. In this case, the
-   hostname is `my-cluster.my-organization.com`. 
+3. Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
 
-[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
+[connect-api]: https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api
 
 
 ```python
-# If you run this command on a Jupyter notebook running on Kubeflow, you can
-# exclude the host parameter.
-# client = kfp.Client()
-client = kfp.Client(host='<your-kubeflow-pipelines-host-name>')
+client = kfp.Client() # change arguments accordingly
 ```
 
 For more information about the Kubeflow Pipelines SDK, see the [SDK reference guide][sdk-ref].
@@ -128,7 +119,7 @@ def add(a: float, b: float) -> float:
 
 2.  Create and run your pipeline. [Learn more about creating and running pipelines][build-pipelines].
 
-[build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/sdk/v2/build-pipeline/
+[build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline
 
 
 ```python
@@ -151,18 +142,20 @@ def add_pipeline(
   # `task.outputs['output_name']`.
   second_add_task = add(first_add_task.output, b)
 
-# Compile the pipeline using the kfp.v2.compiler.Compiler
-compiler.Compiler().compile(
-    pipeline_func=add_pipeline,
-    package_path='addition-pipeline.json')
-
 # Specify pipeline argument values
 arguments = {'a': 7, 'b': 8}
+```
 
-# Submit a pipeline run
-client.create_run_from_pipeline_package(
-    pipeline_file='addition-pipeline.json',
-    arguments=arguments
+3. Compile and run your pipeline. [Learn more about compiling and running pipelines][build-pipelines].
+
+[build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline
+
+
+```python
+# Submit a pipeline run using the v2 compatible mode
+client.create_run_from_pipeline_func(
+    add_pipeline,
+    arguments=arguments,
     mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE)
 ```
 
@@ -509,24 +502,19 @@ def calc_pipeline(
     result_task = add(divmod_task.outputs['quotient'], c)
 ```
 
-3.  Create and run your pipeline. [Learn more about creating and running pipelines][build-pipelines].
+3.  Compile and run your pipeline. [Learn more about compiling and running pipelines][build-pipelines].
 
-[build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/sdk/v2/build-pipeline/
+[build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline
 
 
 ```python
-# Compile the pipeline using the kfp.v2.compiler.Compiler
-compiler.Compiler().compile(
-    pipeline_func=calc_pipeline,
-    package_path='calc-pipeline.json')
-
 # Specify pipeline argument values
 arguments = {'a': 7, 'b': 8}
 
 # Submit a pipeline run
-client.create_run_from_pipeline_package(
-    pipeline_file='cal-pipeline.json',
-    arguments=arguments
+client.create_run_from_pipeline_func(
+    calc_pipeline,
+    arguments=arguments,
     mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE)
 ```
 

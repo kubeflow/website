@@ -59,29 +59,22 @@ This document describes how to build Python function-based components and use th
 $ pip3 install kfp --upgrade
 ```
 
-2. Import the `kfp` and `kfp.components` packages.
+2. Import the `kfp` package.
 
 
 ```python
 import kfp
-import kfp.components as comp
+from kfp.components import create_component_from_func
 ```
 
-3. Create an instance of the [`kfp.Client` class][kfp-client]. To find your
-   Kubeflow Pipelines cluster's hostname, open the Kubeflow Pipelines user
-   interface in your browser. The URL of the Kubeflow Pipelines user
-   interface is something like 
-   `https://my-cluster.my-organization.com/pipelines`. In this case, the
-   hostname is `my-cluster.my-organization.com`. 
+3. Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
 
-[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
+[connect-api]: https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api
 
 
 ```python
-# If you run this command on a Jupyter notebook running on Kubeflow, you can
-# exclude the host parameter.
-# client = kfp.Client()
-client = kfp.Client(host='<your-kubeflow-pipelines-host-name>')
+client = kfp.Client() # change arguments accordingly
 ```
 
 For more information about the Kubeflow Pipelines SDK, see the [SDK reference guide][sdk-ref].
@@ -111,7 +104,7 @@ def add(a: float, b: float) -> float:
 
 
 ```python
-add_op = comp.create_component_from_func(
+add_op = create_component_from_func(
     add, output_component_file='add_component.yaml')
 ```
 
@@ -568,9 +561,9 @@ def calc_pipeline(
     result_task = add_op(divmod_task.outputs['quotient'], c)
 ```
 
-5.  Create and run your pipeline. [Learn more about creating and running pipelines][build-pipelines].
+5.  Compile and run your pipeline. [Learn more about compiling and running pipelines][build-pipelines].
 
-[build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/sdk/build-component/
+[build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/sdk/build-pipeline/#compile-and-run-your-pipeline
 
 
 ```python

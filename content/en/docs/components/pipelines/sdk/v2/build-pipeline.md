@@ -48,23 +48,21 @@ building and running pipelines that are compatible with the Pipelines SDK v2.
 
 ## Before you begin
 
-1.  Run the following command to install the Kubeflow Pipelines SDK v1.6 or higher.
+1.  Run the following command to install the Kubeflow Pipelines SDK v1.6.2 or higher.
     If you run this command in a Jupyter notebook, restart the kernel after
     installing the SDK. 
 
 
 ```python
-$ pip install kfp==1.6.0rc0
+$ pip install --upgrade kfp
 ```
 
-2.  Import the `kfp` and `kfp.components` packages.
+2.  Import the `kfp` packages.
 
 
 ```python
 import kfp
-import kfp.components as comp
-import kfp.v2.dsl as dsl
-from kfp.v2 import compiler
+from kfp.v2 import dsl
 from kfp.v2.dsl import component
 from kfp.v2.dsl import (
     Input,
@@ -72,23 +70,6 @@ from kfp.v2.dsl import (
     Artifact,
     Dataset,
 )
-```
-
-3. Create an instance of the [`kfp.Client` class][kfp-client]. To find your
-   Kubeflow Pipelines cluster's hostname and URL scheme, open the Kubeflow
-   Pipelines user interface in your browser. The URL of the Kubeflow
-   Pipelines user interface is something like 
-   `https://my-cluster.my-organization.com/pipelines`. In this case, the
-   host name and URL scheme are `https://my-cluster.my-organization.com`. 
-
-[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
-
-
-```python
-# If you run this command on a Jupyter notebook running on Kubeflow, you can
-# exclude the host parameter.
-# client = kfp.Client()
-client = kfp.Client(host='<your-kubeflow-pipelines-host-name>')
 ```
 
 ## Understanding pipelines
@@ -459,8 +440,9 @@ web_downloader_op = kfp.components.load_component_from_url(
 ```python
 # Define a pipeline and create a task from a component:
 @dsl.pipeline(
-  
-    pipeline_root='gs://my-pipeline-root/example-pipeline',
+    name='my-pipeline',
+    # You can optionally specify your own pipeline_root
+    # pipeline_root='gs://my-pipeline-root/example-pipeline',
 )
 def my_pipeline(url: str):
   web_downloader_task = web_downloader_op(url=url)
@@ -471,32 +453,46 @@ def my_pipeline(url: str):
 
 ### Compile and run your pipeline
 
-After defining the pipeline in Python as described in the preceding section, use the following instructions to compile the pipeline and submit it to the Kubeflow Pipelines service. 
+After defining the pipeline in Python as described in the preceding section, use one of the following options to compile the pipeline and submit it to the Kubeflow Pipelines service.
+
+#### Option 1: Compile and then upload in UI
 
 1.  Run the following to compile your pipeline and save it as `pipeline.yaml`. 
 
 
 
 ```python
-compiler.Compiler().compile(
+kfp.compiler.Compiler(mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE).compile(
     pipeline_func=my_pipeline,
-    package_path='pipeline.yaml',
-    mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE)
+    package_path='pipeline.yaml')
 ```
 
-2.  Run the following to submit the compiled workflow specification
-    (`pipeline.yaml`) using the Kubeflow Pipelines SDK. 
-    
-    You can also use the Kubeflow Pipelines user interface to upload and run
-    your `pipeline.yaml`. See the guide to [getting started with the
-    UI][quickstart].
+2.  Upload and run your `pipeline.yaml` using the Kubeflow Pipelines user interface.
+See the guide to [getting started with the UI][quickstart].
 
 [quickstart]: https://www.kubeflow.org/docs/components/pipelines/pipelines-quickstart
 
+#### Option 2: run the pipeline using Kubeflow Pipelines SDK client
+
+1.  Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
+
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
+[connect-api]: https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api
+
 
 ```python
-client.create_run_from_pipeline_package(
-    pipeline_file='pipeline.yaml',
+client = kfp.Client() # change arguments accordingly
+```
+
+2.  Run the pipeline using the `kfp.Client` instance:
+
+
+```python
+client.create_run_from_pipeline_func(
+    my_pipeline,
+    mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE,
+    # You can optionally override your pipeline_root when submitting the run too:
+    # pipeline_root='gs://my-pipeline-root/example-pipeline',
     arguments={
         'url': 'https://storage.googleapis.com/ml-pipeline-playground/iris-csv-files.tar.gz'
     })

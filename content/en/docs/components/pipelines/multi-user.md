@@ -181,3 +181,5 @@ notebooks or cron tasks, current suggested workaround is to connect through
 public endpoint and follow platform specific documentation to authenticate
 programmatically using user credentials. For Google Cloud, you can refer to
 [Connecting to Kubeflow Pipelines in a full Kubeflow deployment on Google Cloud](/docs/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-in-a-full-kubeflow-deployment).
+
+There is work-in-progress to support this use-case, refer to [github issue #5138](https://github.com/kubeflow/pipelines/issues/5138).
