@@ -59,12 +59,22 @@ This document describes how to build Python function-based components and use th
 $ pip3 install kfp --upgrade
 ```
 
-2. Import the `kfp` and `kfp.components` packages.
+2. Import the `kfp` package.
 
 
 ```python
 import kfp
-import kfp.components as comp
+from kfp.components import create_component_from_func
+```
+
+3. Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
+
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
+[connect-api]: https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api
+
+
+```python
+client = kfp.Client() # change arguments accordingly
 ```
 
 For more information about the Kubeflow Pipelines SDK, see the [SDK reference guide][sdk-ref].
@@ -94,7 +104,7 @@ def add(a: float, b: float) -> float:
 
 
 ```python
-add_op = comp.create_component_from_func(
+add_op = create_component_from_func(
     add, output_component_file='add_component.yaml')
 ```
 
@@ -551,21 +561,12 @@ def calc_pipeline(
     result_task = add_op(divmod_task.outputs['quotient'], c)
 ```
 
-
-```python
-
-```
-
 5.  Compile and run your pipeline. [Learn more about compiling and running pipelines][build-pipelines].
 
 [build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/sdk/build-pipeline/#compile-and-run-your-pipeline
 
 
 ```python
-# Connect to Kubeflow Pipelines using the SDK following
-# "learn more about compiling and running pipelines"
-client = kfp.Client()
-
 # Specify pipeline argument values
 arguments = {'a': '7', 'b': '8'}
 
