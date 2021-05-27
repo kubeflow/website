@@ -422,7 +422,7 @@ See the guide to [getting started with the UI][quickstart].
 1.  Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
 
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
-[connect-api]: /docs/components/pipelines/sdk/connect-api.md
+[connect-api]: https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api
 
 
 ```python

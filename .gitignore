@@ -11,3 +11,6 @@ resources/
 
 # IntelliJ
 .idea/
+
+# Notebooks
+.ipynb_checkpoints
