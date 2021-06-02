@@ -131,8 +131,8 @@ Therefore when you install Kubeflow, all PVCs will be labelled with the *nfs* st
 ## Finally: install Kubeflow
 
 Now that you have prepared your on-prem, multi-node Kubernetes cluster to manage 
-volumes using an NFS server, you can install Kubeflow by following the guide to 
-[installing Kubeflow on existing clusters](/docs/started/k8s).
+volumes using an NFS server, you can install Kubeflow by following one of the 
+[available installation methods](/docs/started/installing-kubeflow/), compatible with on-prem setups.
 
 After installing Kubeflow, notice that that Kubernetes binds each PVC created by Kubeflow to an automatically created PV with the *nfs* storage class. Notice also that the provisioner has created a directory for each PVC inside the root NFS directory.
 
