@@ -117,7 +117,7 @@ string
 <td>
 <code>lastProbeTime</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#time-v1-meta">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
 Kubernetes meta/v1.Time
 </a>
 </em>
@@ -231,7 +231,7 @@ int32
 <td>
 <code>containerState</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#containerstate-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#containerstate-v1-core">
 Kubernetes core/v1.ContainerState
 </a>
 </em>
@@ -262,7 +262,7 @@ Kubernetes core/v1.ContainerState
 <td>
 <code>spec</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#podspec-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#podspec-v1-core">
 Kubernetes core/v1.PodSpec
 </a>
 </em>
@@ -275,7 +275,7 @@ Kubernetes core/v1.PodSpec
 <td>
 <code>volumes</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#volume-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#volume-v1-core">
 []Kubernetes core/v1.Volume
 </a>
 </em>
@@ -290,7 +290,7 @@ More info: <a href="https://kubernetes.io/docs/concepts/storage/volumes">https:/
 <td>
 <code>initContainers</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#container-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core">
 []Kubernetes core/v1.Container
 </a>
 </em>
@@ -315,7 +315,7 @@ More info: <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-cont
 <td>
 <code>containers</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#container-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core">
 []Kubernetes core/v1.Container
 </a>
 </em>
@@ -331,7 +331,7 @@ Cannot be updated.</p>
 <td>
 <code>ephemeralContainers</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#ephemeralcontainer-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#ephemeralcontainer-v1-core">
 []Kubernetes core/v1.EphemeralContainer
 </a>
 </em>
@@ -349,9 +349,7 @@ This field is alpha-level and is only honored by servers that enable the Ephemer
 <td>
 <code>restartPolicy</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#restartpolicy-v1-core">
-Kubernetes core/v1.RestartPolicy
-</a>
+string
 </em>
 </td>
 <td>
@@ -398,9 +396,7 @@ Value must be a positive integer.</p>
 <td>
 <code>dnsPolicy</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#dnspolicy-v1-core">
-Kubernetes core/v1.DNSPolicy
-</a>
+string
 </em>
 </td>
 <td>
@@ -539,7 +535,7 @@ Optional: Default to false.</p>
 <td>
 <code>securityContext</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#podsecuritycontext-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#podsecuritycontext-v1-core">
 Kubernetes core/v1.PodSecurityContext
 </a>
 </em>
@@ -554,7 +550,7 @@ Optional: Defaults to empty.  See type description for default values of each fi
 <td>
 <code>imagePullSecrets</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#localobjectreference-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#localobjectreference-v1-core">
 []Kubernetes core/v1.LocalObjectReference
 </a>
 </em>
@@ -597,7 +593,7 @@ If not specified, the pod will not have a domainname at all.</p>
 <td>
 <code>affinity</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#affinity-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#affinity-v1-core">
 Kubernetes core/v1.Affinity
 </a>
 </em>
@@ -624,7 +620,7 @@ If not specified, the pod will be dispatched by default scheduler.</p>
 <td>
 <code>tolerations</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#toleration-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#toleration-v1-core">
 []Kubernetes core/v1.Toleration
 </a>
 </em>
@@ -638,7 +634,7 @@ If not specified, the pod will be dispatched by default scheduler.</p>
 <td>
 <code>hostAliases</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#hostalias-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#hostalias-v1-core">
 []Kubernetes core/v1.HostAlias
 </a>
 </em>
@@ -686,7 +682,7 @@ The higher the value, the higher the priority.</p>
 <td>
 <code>dnsConfig</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#poddnsconfig-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#poddnsconfig-v1-core">
 Kubernetes core/v1.PodDNSConfig
 </a>
 </em>
@@ -702,7 +698,7 @@ configuration based on DNSPolicy.</p>
 <td>
 <code>readinessGates</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#podreadinessgate-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#podreadinessgate-v1-core">
 []Kubernetes core/v1.PodReadinessGate
 </a>
 </em>
@@ -750,9 +746,7 @@ Optional: Defaults to true.</p>
 <td>
 <code>preemptionPolicy</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#preemptionpolicy-v1-core">
-Kubernetes core/v1.PreemptionPolicy
-</a>
+string
 </em>
 </td>
 <td>
@@ -767,9 +761,7 @@ This field is alpha-level and is only honored by servers that enable the NonPree
 <td>
 <code>overhead</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#resourcelist-v1-core">
-Kubernetes core/v1.ResourceList
-</a>
+object
 </em>
 </td>
 <td>
@@ -788,7 +780,7 @@ This field is alpha-level as of Kubernetes v1.16, and is only honored by servers
 <td>
 <code>topologySpreadConstraints</code></br>
 <em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#topologyspreadconstraint-v1-core">
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#topologyspreadconstraint-v1-core">
 []Kubernetes core/v1.TopologySpreadConstraint
 </a>
 </em>
