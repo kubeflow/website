@@ -14,20 +14,20 @@ For an overview of Feast, please read [Introduction to Feast](/docs/external-add
 This guide assumes that you have a running Kubeflow cluster already. If you don't have Kubeflow installed, then head on over to the 
 [Kubeflow installation guide](/docs/started/getting-started/).
 
-Feast can be installed into a running Kubeflow deployment. The process of installing Feast into Kubernetes is documented in the [Deploying Feast into Kubernetes](https://docs.feast.dev/v/v0.6-branch/getting-started/deploying-feast/kubernetes) guide. Please follow this guide to install Feast into the same Kubernetes cluster as Kubeflow.
+Feast can be installed into a running Kubeflow deployment. The process of installing Feast into Kubernetes is documented in the [Deploying Feast into Kubernetes](https://docs.feast.dev/feast-on-kubernetes/getting-started/install-feast) guide. Please follow this guide to install Feast into the same Kubernetes cluster as Kubeflow.
 
 ## Accessing Feast from Kubeflow
 
 Once Feast is installed within the same Kubernetes cluster as Kubeflow, users can access its APIs directly without any additional steps.
 
 Feast APIs can roughly be grouped into the following sections:
-* __Feature definition and management__: Feast provides both a [Python SDK](https://docs.feast.dev/getting-started/connect-to-feast) and [CLI](https://docs.feast.dev/getting-started/connect-to-feast) for interacting with Feast Core. Feast Core allows users to define and register features and entities and their associated metadata and schemas. The Python SDK is typically used from within a Jupyter notebook by end users to administer Feast, but ML teams may opt to version control feature specifications in order to follow a GitOps based approach.
+* __Feature definition and management__: Feast provides both a [Python SDK](https://docs.feast.dev/v/master/quickstart) and [CLI](https://docs.feast.dev/v/master/quickstart) for interacting with Feast Core. Feast Core allows users to define and register features and entities and their associated metadata and schemas. The Python SDK is typically used from within a Jupyter notebook by end users to administer Feast, but ML teams may opt to version control feature specifications in order to follow a GitOps based approach.
 
-* __Model training__: The Feast Python SDK can be used to trigger the [creation of training datasets](https://docs.feast.dev/user-guide/getting-training-features). The most natural place to use this SDK is to create a training dataset as part of a [Kubeflow Pipeline](/docs/components/pipelines/pipelines-overview) prior to model training.
+* __Model training__: The Feast Python SDK can be used to trigger the [creation of training datasets](https://docs.feast.dev/feast-on-kubernetes/user-guide/getting-training-features). The most natural place to use this SDK is to create a training dataset as part of a [Kubeflow Pipeline](/docs/components/pipelines/overview/pipelines-overview) prior to model training.
 
-* __Model serving__: Feast provides three different SDKs for [online feature serving](https://docs.feast.dev/user-guide/getting-online-features), a [Python SDK](https://api.docs.feast.dev/python/), [Java SDK](https://javadoc.io/doc/dev.feast/feast-sdk), and [Go SDK](https://godoc.org/github.com/feast-dev/feast/sdk/go). These clients are used prior to inference with [Model Serving](/docs/components/pipelines/pipelines-overview) systems like KFServing, TFX, or Seldon. 
+* __Model serving__: Feast provides three different SDKs for [online feature serving](https://docs.feast.dev/feast-on-kubernetes/user-guide/getting-online-features), a [Python SDK](https://api.docs.feast.dev/python/), [Java SDK](https://javadoc.io/doc/dev.feast/feast-sdk), and [Go SDK](https://godoc.org/github.com/feast-dev/feast/sdk/go). These clients are used prior to inference with [Model Serving](/docs/components/pipelines/overview/pipelines-overview) systems like KFServing, TFX, or Seldon. 
 
-All of the above clients interact with Feast through gRPC endpoints ([Core](https://api.docs.feast.dev/grpc/feast.core.pb.html), [Serving](https://api.docs.feast.dev/grpc/feast.serving.pb.html)). These APIs allow users to directly interface with Feast services if they do not wish to use an SDK.
+All of the above clients interact with Feast through gRPC endpoints ([Core](https://api.docs.feast.dev/grpc/feast/core/coreservice.pb.html), [Serving](https://api.docs.feast.dev/grpc/feast/serving/servingservice.pb.html)). These APIs allow users to directly interface with Feast services if they do not wish to use an SDK.
 
 ## Examples
 
