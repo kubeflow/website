@@ -21,7 +21,7 @@ Feast can be installed into a running Kubeflow deployment. The process of instal
 Once Feast is installed within the same Kubernetes cluster as Kubeflow, users can access its APIs directly without any additional steps.
 
 Feast APIs can roughly be grouped into the following sections:
-* __Feature definition and management__: Feast provides both a [Python SDK](https://docs.feast.dev/v/master/quickstart) and [CLI](https://docs.feast.dev/v/master/quickstart) for interacting with Feast Core. Feast Core allows users to define and register features and entities and their associated metadata and schemas. The Python SDK is typically used from within a Jupyter notebook by end users to administer Feast, but ML teams may opt to version control feature specifications in order to follow a GitOps based approach.
+* __Feature definition and management__: Feast provides both a [Python SDK](https://docs.feast.dev/quickstart) and [CLI](https://docs.feast.dev/quickstart) for interacting with Feast Core. Feast Core allows users to define and register features and entities and their associated metadata and schemas. The Python SDK is typically used from within a Jupyter notebook by end users to administer Feast, but ML teams may opt to version control feature specifications in order to follow a GitOps based approach.
 
 * __Model training__: The Feast Python SDK can be used to trigger the [creation of training datasets](https://docs.feast.dev/feast-on-kubernetes/user-guide/getting-training-features). The most natural place to use this SDK is to create a training dataset as part of a [Kubeflow Pipeline](/docs/components/pipelines/overview/pipelines-overview) prior to model training.
 
