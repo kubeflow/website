@@ -4,10 +4,7 @@ description = "Visualizing the results of your pipelines component"
 weight = 80
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
+
 
 This page shows you how to use the Kubeflow Pipelines UI to visualize output 
 from a Kubeflow Pipelines component. 
@@ -216,7 +213,7 @@ confusion matrix CSV file as a string in `source` field directly.
 
 ```Python
 
-def confusion_matrix_viz(matrix_csv_file_uri: str, mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+def confusion_matrix_viz(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
   import json
     
   metadata = {
@@ -228,7 +225,7 @@ def confusion_matrix_viz(matrix_csv_file_uri: str, mlpipeline_ui_metadata_path: 
         {'name': 'predicted', 'type': 'CATEGORY'},
         {'name': 'count', 'type': 'NUMBER'},
       ],
-      'source': matrix_csv_file_uri,
+      'source': <CONFUSION_MATRIX_CSV_FILE>,
       # Convert vocab to string because for bealean values we want "True|False" to match csv data.
       'labels': list(map(str, vocab)),
     }]
@@ -327,11 +324,11 @@ curve CSV file as a string in `source` field directly.
 **Example:**
 
 ```Python
-def roc_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+def roc_vis(roc_csv_file_path: str, mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
   import json
 
   df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr, 'thresholds': thresholds})
-  roc_file = os.path.join(args.output, 'roc.csv')
+  roc_file = os.path.join(roc_csv_file_path, 'roc.csv')
   with file_io.FileIO(roc_file, 'w') as f:
     df_roc.to_csv(f, columns=['fpr', 'tpr', 'thresholds'], header=False, index=False)
 
