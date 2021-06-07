@@ -513,6 +513,11 @@ You can run the sample by selecting
 Kubeflow Pipelines UI. For help getting started with the UI, follow the 
 [Kubeflow Pipelines quickstart](/docs/components/pipelines/pipelines-quickstart/).
 
+{{% alert title="Out-of-date Warning" color="warning" %}}
+The examples below are out-of-date because the path to metrics visualiation file destination is
+not specified. Follow the PR https://github.com/kubeflow/pipelines/pull/4495 for a working example.
+{{% /alert %}}
+
 <!--- TODO: Will replace the tfx cab with tfx oss when it is ready.-->
 The pipeline uses a number of prebuilt, reusable components, including:
 
