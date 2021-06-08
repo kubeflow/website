@@ -513,11 +513,6 @@ You can run the sample by selecting
 Kubeflow Pipelines UI. For help getting started with the UI, follow the 
 [Kubeflow Pipelines quickstart](/docs/components/pipelines/pipelines-quickstart/).
 
-{{% alert title="Out-of-date Warning" color="warning" %}}
-The examples below are out-of-date because the path to metrics visualiation file destination is
-not specified. Follow the PR https://github.com/kubeflow/pipelines/pull/4495 for a working example.
-{{% /alert %}}
-
 <!--- TODO: Will replace the tfx cab with tfx oss when it is ready.-->
 The pipeline uses a number of prebuilt, reusable components, including:
 
@@ -533,14 +528,15 @@ The pipeline uses a number of prebuilt, reusable components, including:
 * The [tfma 
   component](https://github.com/kubeflow/pipelines/blob/master/components/dataflow/tfma/src/model_analysis.py)
   which writes out the data for the `web-app` viewer.
-* The [dataflow predict 
-  component](https://github.com/kubeflow/pipelines/blob/master/components/dataflow/predict/src/predict.py)
-  which writes out the data for the `table` viewer.
 
-## Usage in lightweight python components
+## Lightweight Python component Notebook example
 
-For lightweight components, the syntax is slightly different. You can refer to
+For a complete example of lightweigh Python component, cou can refer to
 [the lightweight python component notebook example](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb) to learn more about declaring output visualizations.
+
+## yaml component example
+
+You can also configure visualization in a component.yaml file. See `{name: MLPipeline UI Metadata}` output in [component.yaml](https://github.com/kubeflow/pipelines/blob/f61048b5d2e1fb5a6a61782d570446b0ec940ff7/components/tensorflow/tensorboard/prepare_tensorboard/component.yaml#L12).
 
 ## Next step
 
