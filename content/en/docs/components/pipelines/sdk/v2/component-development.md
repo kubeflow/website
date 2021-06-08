@@ -75,7 +75,7 @@ When you design your component's code, consider the following:
 
     _Parameters_ typically represent settings that affect the behavior of your pipeline.
     Parameters are passed into your component by value, and can be of any of
-    the following types: `int`, `float`, `str`, `bool`, `dict`, `list`. Since parameters are
+    the following types: `int`, `float`, `str`, `bool`, `dict`, or `list`. Since parameters are
     passed by value, the quantity of data passed in a parameter must be appropriate
     to pass as a command-line argument.
 
