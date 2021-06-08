@@ -18,10 +18,10 @@ building and running pipelines that are compatible with the Pipelines SDK v2.
 
 ## Before you begin
 
-Run the following command to install the Kubeflow Pipelines SDK v1.6 or higher.
+Run the following command to install the Kubeflow Pipelines SDK v1.6.1 or higher.
 
 ```bash
-pip install kfp==1.6.0rc0
+pip install kfp --upgrade
 ```
 
 For more information about the Kubeflow Pipelines SDK, see the [SDK reference guide][sdk-ref].
@@ -75,7 +75,7 @@ When you design your component's code, consider the following:
 
     _Parameters_ typically represent settings that affect the behavior of your pipeline.
     Parameters are passed into your component by value, and can be of any of
-    the following types: `int`, `double`, `float`, or `str`. Since parameters are
+    the following types: `int`, `float`, `str`, `bool`, `dict`, or `list`. Since parameters are
     passed by value, the quantity of data passed in a parameter must be appropriate
     to pass as a command-line argument.
 
