@@ -162,7 +162,7 @@ Kubeflow Pipelines v2 compatible mode is currently in Beta stage. It is under ac
 [build-component]: /docs/components/pipelines/sdk/v2/component-development/
 [python-component]: /docs/components/pipelines/sdk/v2/python-function-components/
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
-[connect-api]: /docs/components/pipelines/sdk/connect-api.md 
+[connect-api]: /docs/components/pipelines/sdk/connect-api/ 
 [the full Kubeflow]: /docs/components/pipelines/installation/overview/#full-kubeflow
 [v2 compatible mode github project]: https://github.com/kubeflow/pipelines/projects/13
 [#5680]: https://github.com/kubeflow/pipelines/issues/5680
