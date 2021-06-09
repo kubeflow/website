@@ -4,10 +4,7 @@ description = "Visualizing the results of your pipelines component"
 weight = 80
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
+
 
 This page shows you how to use the Kubeflow Pipelines UI to visualize output 
 from a Kubeflow Pipelines component. 
@@ -40,7 +37,7 @@ Pipelines UI:
       alt="Output visualization from a pipeline run"
       class="mt-3 mb-3 border border-info rounded">
 
-* The **Artifacts** tab shows the visualization for the selected pipeline step.
+* The **Visualizations** tab shows the visualization for the selected pipeline step.
   To open the tab in the Kubeflow Pipelines UI:
 
   1. Click **Experiments** to see your current pipeline experiments.
@@ -48,9 +45,9 @@ Pipelines UI:
   1. Click the *run name* of the run that you want to view.
   1. On the **Graph** tab, click the step representing the pipeline component 
     that you want to view. The step details slide into view, showing the
-    **Artifacts** tab.
+    **Visualizations** tab.
 
-    <img src="/docs/images/taxi-tip-prediction-step-output-table.png" 
+    <img src="/docs/images/pipelines/confusion-matrix-task.png" 
       alt="Table-based visualization from a pipeline component"
       class="mt-3 mb-3 border border-info rounded">
 
@@ -215,6 +212,10 @@ confusion matrix CSV file as a string in `source` field directly.
 **Example:**
 
 ```Python
+
+def confusion_matrix_viz(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+    
   metadata = {
     'outputs' : [{
       'type': 'confusion_matrix',
@@ -229,8 +230,9 @@ confusion matrix CSV file as a string in `source` field directly.
       'labels': list(map(str, vocab)),
     }]
   }
-  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
@@ -262,6 +264,9 @@ The viewer can read the Markdown data from the following locations:
 
 **Example:**
 ```Python
+def markdown_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+    
   metadata = {
     'outputs' : [
     # Markdown that is hardcoded inline
@@ -276,8 +281,9 @@ The viewer can read the Markdown data from the following locations:
       'type': 'markdown',
     }]
   }
-  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
@@ -318,8 +324,11 @@ curve CSV file as a string in `source` field directly.
 **Example:**
 
 ```Python
+def roc_vis(roc_csv_file_path: str, mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+
   df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr, 'thresholds': thresholds})
-  roc_file = os.path.join(args.output, 'roc.csv')
+  roc_file = os.path.join(roc_csv_file_path, 'roc.csv')
   with file_io.FileIO(roc_file, 'w') as f:
     df_roc.to_csv(f, columns=['fpr', 'tpr', 'thresholds'], header=False, index=False)
 
@@ -335,8 +344,9 @@ curve CSV file as a string in `source` field directly.
       'source': roc_file
     }]
   }
-  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
@@ -369,6 +379,9 @@ in `source` field directly.
 **Example:**
 
 ```Python
+def table_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+
   metadata = {
     'outputs' : [{
       'type': 'table',
@@ -378,8 +391,9 @@ in `source` field directly.
       'source': prediction_results
     }]
   }
-  with open('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
@@ -416,14 +430,18 @@ management tools.
 **Example:**
 
 ```Python
+def tensorboard_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+
   metadata = {
     'outputs' : [{
       'type': 'tensorboard',
       'source': args.job_dir,
     }]
   }
-  with open('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
@@ -456,6 +474,9 @@ Specify `'storage': 'inline'` to embed raw html in `source` field directly.
 **Example:**
 
 ```Python
+def tensorboard_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+
   static_html_path = os.path.join(output_dir, _OUTPUT_HTML_FILE)
   file_io.write_string_to_file(static_html_path, rendered_template)
 
@@ -470,8 +491,9 @@ Specify `'storage': 'inline'` to embed raw html in `source` field directly.
       'source': '<h1>Hello, World!</h1>',
     }]
   }
-  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
@@ -506,14 +528,15 @@ The pipeline uses a number of prebuilt, reusable components, including:
 * The [tfma 
   component](https://github.com/kubeflow/pipelines/blob/master/components/dataflow/tfma/src/model_analysis.py)
   which writes out the data for the `web-app` viewer.
-* The [dataflow predict 
-  component](https://github.com/kubeflow/pipelines/blob/master/components/dataflow/predict/src/predict.py)
-  which writes out the data for the `table` viewer.
 
-## Usage in lightweight python components
+## Lightweight Python component Notebook example
 
-For lightweight components, the syntax is slightly different. You can refer to
+For a complete example of lightweigh Python component, you can refer to
 [the lightweight python component notebook example](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb) to learn more about declaring output visualizations.
+
+## YAML component example
+
+You can also configure visualization in a component.yaml file. Refer to `{name: MLPipeline UI Metadata}` output in [Create Tensorboard Visualization component](https://github.com/kubeflow/pipelines/blob/f61048b5d2e1fb5a6a61782d570446b0ec940ff7/components/tensorflow/tensorboard/prepare_tensorboard/component.yaml#L12).
 
 ## Next step
 
