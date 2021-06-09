@@ -531,7 +531,7 @@ The pipeline uses a number of prebuilt, reusable components, including:
 
 ## Lightweight Python component Notebook example
 
-For a complete example of lightweigh Python component, cou can refer to
+For a complete example of lightweigh Python component, you can refer to
 [the lightweight python component notebook example](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb) to learn more about declaring output visualizations.
 
 ## YAML component example
