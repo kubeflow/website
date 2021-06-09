@@ -534,9 +534,9 @@ The pipeline uses a number of prebuilt, reusable components, including:
 For a complete example of lightweigh Python component, cou can refer to
 [the lightweight python component notebook example](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb) to learn more about declaring output visualizations.
 
-## yaml component example
+## YAML component example
 
-You can also configure visualization in a component.yaml file. See `{name: MLPipeline UI Metadata}` output in [component.yaml](https://github.com/kubeflow/pipelines/blob/f61048b5d2e1fb5a6a61782d570446b0ec940ff7/components/tensorflow/tensorboard/prepare_tensorboard/component.yaml#L12).
+You can also configure visualization in a component.yaml file. Refer to `{name: MLPipeline UI Metadata}` output in [Create Tensorboard Visualization component](https://github.com/kubeflow/pipelines/blob/f61048b5d2e1fb5a6a61782d570446b0ec940ff7/components/tensorflow/tensorboard/prepare_tensorboard/component.yaml#L12).
 
 ## Next step
 
