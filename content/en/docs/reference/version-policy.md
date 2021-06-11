@@ -140,7 +140,7 @@ documentation for that application.
       <tr>
         <td><a href="/docs/components/notebooks/why-use-jupyter-notebook/">Notebook web
           app</a>
-          (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/jupyter-web-app">GitHub</a>)
+          (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/deprecated/jupyter-web-app">GitHub</a>)
         <td>Stable</td>
         <td>1.0.0</td>
       </tr>
