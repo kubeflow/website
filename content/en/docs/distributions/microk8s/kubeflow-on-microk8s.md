@@ -46,7 +46,7 @@ To get Kubeflow running using MicroK8s, you'll need to install MicroK8s, enable 
 4. Deploy Kubeflow by running this command:
 
     ```shell
-    microk8s enable kubeflow
+    microk8s enable kubeflow --bundle=cs:kubeflow
     ```
 
     The deployment process may take a few minutes. Once it is complete, the script will print out the port number and credentials to access the Kubeflow dashboard.
