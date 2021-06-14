@@ -83,7 +83,7 @@ Before installing Kubeflow on the command line:
    
    **Note:** The Kubeflow deployment process is not compatible with yq v4 or later.
 
-1. Install jq https://stedolan.github.io/jq/, for example, we can run the following command on Ubuntu and Debian: 
+1. Install jq https://stedolan.github.io/jq/ ,for example, we can run the following command on Ubuntu and Debian: 
 
     ```bash
     sudo apt install jq
@@ -358,7 +358,7 @@ Refer to [Upgrading Kubeflow cluster](/docs/distributions/gke/deploy/upgrade#upg
 ## Next steps
 
 * Run a full ML workflow on Kubeflow, using the
-  [end-to-end MNIST tutorial](/docs/distributions/gke/gcp-e2e/) or the
+  [end-to-end MNIST tutorial](https://github.com/kubeflow/examples/blob/master/mnist/mnist_gcp.ipynb) or the
   [GitHub issue summarization Pipelines
   example](https://github.com/kubeflow/examples/tree/master/github_issue_summarization/pipelines).
 * Learn how to [delete your Kubeflow deployment using the CLI](/docs/distributions/gke/deploy/delete-cli/).
