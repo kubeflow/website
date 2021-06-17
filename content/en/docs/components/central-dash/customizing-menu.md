@@ -15,7 +15,7 @@ In a below example, "My App" is added on the side menubar.
 ## Add shared items
 The way to add items shared by all users is described in this section.
 
-First, the cluster admin deploys an app as a service of the Kubernetes.
+First, the cluster admin should deploy the application as a microservice in Kubernetes.
 The traffic to the app should be set as a VirtualService of Istio.
 
 Deploying with specific prefix and controling the traffic by it is an instant way.
@@ -87,7 +87,7 @@ http(s)://gateway/_/myapp/profile2/
 ```
 
 In this case, you can configure the central dashboard as below.
-`{ns}` is replace by the namespace when the user open the dashboard.
+`{ns}` should be replaced by the namespace when the user open the dashboard.
 
 ```
 apiVersion: v1
@@ -123,5 +123,5 @@ The users can see a new item (in this case, it is MyApp as well) on the menubar.
 They can either jump to `http(s)://gateway/_/myapp/profile1/` or `http(s)://gateway/_/myapp/profile2/` based on the namespace selection.
 The actual inside content of iframe is swiched by the namespace. 
 
-If sidecar injection is enabled, the authrization to the app is done by istio.
-e.g) The uses who don't belong to profile2 can't access to `http(s)://gateway/_/myapp/profile2/`.
+If sidecar injection is enabled, the authorization to the app is done by istio.
+e.g) The users who don't belong to profile2 can't access to `http(s)://gateway/_/myapp/profile2/`.
