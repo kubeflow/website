@@ -319,11 +319,11 @@ subjects:
   name: userid@email.com   # replace with the email of the user from your Active Directory case sensitive
 ```
 
-Create a servicerolebinding.yaml file with the following content on your local machine:
+Create a authorizationpolicy.yaml file with the following content on your local machine:
 
 ```
-apiVersion: rbac.istio.io/v1alpha1
-kind: ServiceRoleBinding
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
 metadata:
   annotations:
     role: edit
@@ -334,13 +334,12 @@ metadata:
   # Note: if the user email is Lalith.Vaka@kp.org from your Active Directory, the name should be user-lalith-vaka-kp-org-clusterrole-edit
   namespace: profileName # replace with the namespace/profile name that you are adding contribbitors to
 spec:
-  roleRef:
-    kind: ServiceRole
-    name: ns-access-istio
-  subjects:
-  - properties:
-      request.headers[kubeflow-userid]: accounts.google.com:userid@email.com   # replace with the email of the user from your Active Directory case sensitive
-      # for GCP, use x-goog-authenticated-user-email instead of kubeflow-userid for authentication purpose
+  action: ALLOW
+  rules:
+  - when:
+    - key: request.headers[kubeflow-userid]
+      values:
+      - accounts.google.com:userid@email.com   # replace with the email of the user from your Active Directory case sensitive
 status: {}
 ```
 
@@ -348,7 +347,7 @@ Run the following command to create the corresponding contributor resources:
 
 ```
 kubectl create -f rolebinding.yaml
-kubectl create -f servicerolebinding.yaml
+kubectl create -f authorizationpolicy.yaml
 ```
 
 The above command adds a contributor *userid@email.com* to the profile named *profileName*. The contributor
