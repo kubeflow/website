@@ -340,6 +340,7 @@ spec:
     - key: request.headers[kubeflow-userid]
       values:
       - accounts.google.com:userid@email.com   # replace with the email of the user from your Active Directory case sensitive
+      # for GCP, use x-goog-authenticated-user-email instead of kubeflow-userid for authentication purpose
 status: {}
 ```
 
