@@ -43,8 +43,8 @@ model, with data pulled from a public BigQuery dataset of Chicago taxi trips.
  A series of articles that walk you through the process of taking an existing
  real-world TensorFlow model and operationalizing the training, evaluation,
  deployment, and retraining of that model using Kubeflow Pipelines.
- [Part 1](https://towardsdatascience.com/how-to-create-and-deploy-a-kubeflow-machine-learning-pipeline-part-1-efea7a4b650f)
+ <a href="https://towardsdatascience.com/how-to-create-and-deploy-a-kubeflow-machine-learning-pipeline-part-1-efea7a4b650f">Part 1</a>
  (creating and deploying a pipeline), and
- [part 2](https://towardsdatascience.com/how-to-deploy-jupyter-notebooks-as-components-of-a-kubeflow-ml-pipeline-part-2-b1df77f4e5b3)
+ <a href="https://towardsdatascience.com/how-to-deploy-jupyter-notebooks-as-components-of-a-kubeflow-ml-pipeline-part-2-b1df77f4e5b3">Part 2</a>
  (using Jupyter notebooks).
 {{% /blocks/content-item %}}
