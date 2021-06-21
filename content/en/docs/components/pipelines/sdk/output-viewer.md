@@ -18,9 +18,8 @@ guide to [Python Based Visualizations](/docs/components/pipelines/sdk/python-bas
 
 The Kubeflow Pipelines UI offers built-in support for several types of 
 visualizations, which you can use to provide rich performance evaluation and 
-comparison data. To make use of this programmable UI, your pipeline component 
-must write a JSON file to the component's local filesystem. You can do this at 
-any point during the pipeline execution.
+comparison data. Follow the instruction below to write visualization output
+data to file system. You can do this at any point during the pipeline execution.
 
 You can view the output visualizations in the following places on the Kubeflow
 Pipelines UI:
@@ -55,10 +54,69 @@ All screenshots and code snippets on this page come from a
 sample pipeline that you can run directly from the Kubeflow Pipelines UI.
 See the [sample description and links below](#example-source).
 
-## Writing out metadata for the output viewers
+## v2 SDK: Use SDK visualization APIs
 
-The pipeline component must write a JSON file specifying metadata for the
-output viewer(s) that you want to use for visualizing the results. The
+For KFP [SDK v2 and v2 compatible mode](docs/components/pipelines/sdk/v2/), you can use 
+convenient SDK APIs and system artifact types for metrics visualization. Currently KFP
+supports ROC Curve, Confusion Matrix and Scalar Metrics formats. Full pipeline example
+of all metrics visualizations can be found in [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py). For a usage guide of each metric visualization output,
+refer to sections below:
+
+### Confusion Matrix
+
+Define `Output[ClassificationMetrics]` parameter in your component function, then
+output Confusion Matrix data using API 
+`log_confusion_matrix(self, categories: List[str], matrix: List[List[int]])`. `categories`
+provides a list of names for each label, `matrix` provides prediction performance for corresponding
+label. There are multiple APIs you can use for logging Confusion Matrix. Refer to 
+[io_types.py](https://github.com/kubeflow/pipelines/blob/b7084f29068a2c46832b3b02e9ffe1a002eb13cb/sdk/python/kfp/dsl/io_types.py#L241) for detail.
+
+Refer to example below for logging Confusion Matrix:
+
+```
+@component(
+    packages_to_install=['sklearn'],
+    base_image='python:3.9'
+)
+def iris_sgdclassifier(test_samples_fraction: float, metrics: Output[ClassificationMetrics]):
+    from sklearn import datasets, model_selection
+    from sklearn.linear_model import SGDClassifier
+    from sklearn.metrics import confusion_matrix
+
+    iris_dataset = datasets.load_iris()
+    train_x, test_x, train_y, test_y = model_selection.train_test_split(
+        iris_dataset['data'], iris_dataset['target'], test_size=test_samples_fraction)
+
+
+    classifier = SGDClassifier()
+    classifier.fit(train_x, train_y)
+    predictions = model_selection.cross_val_predict(classifier, train_x, train_y, cv=3)
+    metrics.log_confusion_matrix(
+        ['Setosa', 'Versicolour', 'Virginica'],
+        confusion_matrix(train_y, predictions).tolist() # .tolist() to convert np array to list.
+    )
+
+@dsl.pipeline(
+    name='metrics-visualization-pipeline')
+def metrics_visualization_pipeline():
+    iris_sgdclassifier_op = iris_sgdclassifier(test_samples_fraction=0.3)
+```
+
+Visualization of Confusion Matrix is as below:
+
+<img src="/docs/images/pipelines/v2/scalar-metrics.png" 
+  alt="V2 Confusion matrix visualization"
+  class="mt-3 mb-3 border border-info rounded">
+
+### ROC Curve 
+
+### Scalar Metrics
+
+
+## v1 SDK: Writing out metadata for the output viewers
+
+For KFP v1, the pipeline component must write a JSON file specifying metadata
+for the output viewer(s) that you want to use for visualizing the results. The
 component must also export a file output artifact with an artifact name of
 `mlpipeline-ui-metadata`, or else the Kubeflow Pipelines UI will not render
 the visualization. In other words, the `.outputs.artifacts` setting for the
@@ -504,6 +562,12 @@ def tensorboard_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
 
 <a id="example-source"></a>
 ## Source of examples on this page
+
+### v2
+
+https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py
+
+### v1
 
 The above examples come from the *tax tip prediction* sample that is
 pre-installed when you deploy Kubeflow. 
