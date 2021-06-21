@@ -321,21 +321,12 @@ cd ..
 
 > If you already have a file downloaded for single user `kustomization.yaml` either delete it or put this file in a new folder with different name.
 
+3. Update the `distribution/stacks/ibm/application/oidc-authservice-appid/parms.env` and `distribution/stacks/ibm/application/oidc-authservice-appid/secret_params.env` with values collected in [Prereq](#prerequisites-1) section. 
 
-3. Download the `kustomization.yaml` example
-
-
-```bash
-wget https://raw.githubusercontent.com/ibm/manifests/v1.3/iks-multi/kustomization.yaml
-cd ..
-```
-
-4. Update the `distribution/stacks/ibm/application/oidc-authservice-appid/parms.env` and `distribution/stacks/ibm/application/oidc-authservice-appid/secret_params.env` with values collected in [Prereq](#prerequisites-1) section. 
-
-5. You can apply the `kustomize` file from the root of the repository:
+4. You can apply the `kustomize` file from the root of the repository:
 
 ```bash
-kustomize build -f ibm/kustomization.yaml | kubectl apply -f -
+kustomize build ibm | kubectl apply -f -
 ```
 
 You may see errors after the first time you run the command. You can run the following while loop until you are successful.
@@ -344,12 +335,12 @@ You may see errors after the first time you run the command. You can run the fol
 while ! kustomize build ibm | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
 ```
 
-1. If at any point the values change and you have to change them, you can either patch the [configmap](#patch-configmap) and [secret](#patch-secret) or change the content in the files and apply the kustomize again. You will need to restart authservice with `kubectl rollout restart statefulset authservice -n istio-system` .
+5. If at any point the values change and you have to change them, you can either patch the [configmap](#patch-configmap) and [secret](#patch-secret) or change the content in the files and apply the kustomize again. You will need to restart authservice with `kubectl rollout restart statefulset authservice -n istio-system` .
 
     To apply just the `oidc-authservice-appid` you can use this command:
 
 ```bash
-kustomize build -f distribution/stacks/ibm/application/oidc-authservice-appid | kubectl apply -f -
+kustomize build distribution/stacks/ibm/application/oidc-authservice-appid | kubectl apply -f -
 ```
 
 ### Verify mutli-user installation
