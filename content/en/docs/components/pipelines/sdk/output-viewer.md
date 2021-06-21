@@ -525,9 +525,6 @@ The pipeline uses a number of prebuilt, reusable components, including:
 * The [dnntrainer 
   component](https://github.com/kubeflow/pipelines/blob/master/components/kubeflow/dnntrainer/src/trainer/task.py)
   which writes out the data for the `tensorboard` viewer.
-* The [tfma 
-  component](https://github.com/kubeflow/pipelines/blob/master/components/dataflow/tfma/src/model_analysis.py)
-  which writes out the data for the `web-app` viewer.
 
 ## Lightweight Python component Notebook example
 
