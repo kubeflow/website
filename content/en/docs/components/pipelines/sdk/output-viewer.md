@@ -60,8 +60,16 @@ See the [sample description and links below](#example-source).
 For KFP [SDK v2 and v2 compatible mode](/docs/components/pipelines/sdk/v2/), you can use 
 convenient SDK APIs and system artifact types for metrics visualization. Currently KFP
 supports ROC Curve, Confusion Matrix and Scalar Metrics formats. Full pipeline example
-of all metrics visualizations can be found in [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py). For a usage guide of each metric visualization output,
-refer to sections below:
+of all metrics visualizations can be found in [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py). 
+
+### Requirements
+
+* Use Kubeflow Pipelines v1.7.0 or above: [upgrade Kubeflow Pipelines](/docs/components/pipelines/installation/standalone-deployment/#upgrading-kubeflow-pipelines).
+* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when [compile and run your pipelines](/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline).
+* Make sure to use the latest environment kustomize manifest [pipelines/manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml).
+
+
+For a usage guide of each metric visualization output, refer to sections below:
 
 ### Confusion Matrix
 
@@ -216,6 +224,14 @@ Visualization of Scalar Metrics is as below:
 <img src="/docs/images/pipelines/v2/scalar-metrics.png" 
   alt="V2 Scalar Metrics visualization"
   class="mt-3 mb-3 border border-info rounded">
+
+## Source of v2 examples
+
+The metric visualization in V2 or V2 compatible mode depends on SDK visualization APIs,
+refer to [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py)
+for a complete pipeline example. Follow instruction
+[Compile and run your pipeline](/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline)
+to compile in V2 compatible mode.
 
 ## v1 SDK: Writing out metadata for the output viewers
 
@@ -665,17 +681,7 @@ def tensorboard_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
   class="mt-3 mb-3 border border-info rounded">
 
 <a id="example-source"></a>
-## Source of examples on this page
-
-### v2 example
-
-The metric visualization in V2 or V2 compatible mode depends on SDK visualization APIs,
-refer to [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py)
-for a complete pipeline example. Follow instruction
-[Compile and run your pipeline](/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline)
-to compile in V2 compatible mode.
-
-### v1 example
+## Source of v1 examples
 
 The v1 examples come from the *tax tip prediction* sample that is
 pre-installed when you deploy Kubeflow. 
