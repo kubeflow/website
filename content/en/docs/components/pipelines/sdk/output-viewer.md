@@ -54,9 +54,10 @@ All screenshots and code snippets on this page come from a
 sample pipeline that you can run directly from the Kubeflow Pipelines UI.
 See the [sample description and links below](#example-source).
 
+<a id="v2-visualization"></a>
 ## v2 SDK: Use SDK visualization APIs
 
-For KFP [SDK v2 and v2 compatible mode](docs/components/pipelines/sdk/v2/), you can use 
+For KFP [SDK v2 and v2 compatible mode](/docs/components/pipelines/sdk/v2/), you can use 
 convenient SDK APIs and system artifact types for metrics visualization. Currently KFP
 supports ROC Curve, Confusion Matrix and Scalar Metrics formats. Full pipeline example
 of all metrics visualizations can be found in [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py). For a usage guide of each metric visualization output,

@@ -596,7 +596,7 @@ See this [sample component][org-sample] for a real-life component example.
   directly from Python functions.
 * Use SDK APIs to visualize pipeline result, follow 
   [Visualize Results in the Pipelines UI](/docs/components/pipelines/sdk/output-viewer/#v2-visualization)
-  depends on the visualization type.
+  for various visualization types.
 * See how to [export metrics from your
   pipeline](/docs/components/pipelines/sdk/pipelines-metrics/).
 * Visualize the output of your component by
