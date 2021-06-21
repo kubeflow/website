@@ -104,11 +104,54 @@ def metrics_visualization_pipeline():
 
 Visualization of Confusion Matrix is as below:
 
-<img src="/docs/images/pipelines/v2/scalar-metrics.png" 
+<img src="/docs/images/pipelines/v2/confusion-matrix.png" 
   alt="V2 Confusion matrix visualization"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border border-info rounded mx-auto d-block">
 
 ### ROC Curve 
+
+Define `Output[ClassificationMetrics]` parameter in your component function, then
+output ROC Curve data using API 
+`log_roc_curve(self, fpr: List[float], tpr: List[float], threshold: List[float])`. 
+`fpr` defines a list of False Positive Rate values, `tpr` defines a list of 
+True Positive Rate values, `threshold` indicates the level of sensitivity and specificity 
+of this probability curve. There are multiple APIs you can use for logging ROC Curve. Refer to 
+[io_types.py](https://github.com/kubeflow/pipelines/blob/b7084f29068a2c46832b3b02e9ffe1a002eb13cb/sdk/python/kfp/dsl/io_types.py#L151) for detail.
+
+```
+@component(
+    packages_to_install=['sklearn'],
+    base_image='python:3.9',
+)
+def wine_classification(metrics: Output[ClassificationMetrics]):
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.metrics import roc_curve
+    from sklearn.datasets import load_wine
+    from sklearn.model_selection import train_test_split, cross_val_predict
+
+    X, y = load_wine(return_X_y=True)
+    # Binary classification problem for label 1.
+    y = y == 1
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
+    rfc = RandomForestClassifier(n_estimators=10, random_state=42)
+    rfc.fit(X_train, y_train)
+    y_scores = cross_val_predict(rfc, X_train, y_train, cv=3, method='predict_proba')
+    y_predict = cross_val_predict(rfc, X_train, y_train, cv=3, method='predict')
+    fpr, tpr, thresholds = roc_curve(y_true=y_train, y_score=y_scores[:,1], pos_label=True)
+    metrics.log_roc_curve(fpr, tpr, thresholds)
+
+@dsl.pipeline(
+    name='metrics-visualization-pipeline')
+def metrics_visualization_pipeline():
+    wine_classification_op = wine_classification()
+```
+
+Visualization of ROC Curve is as below:
+
+<img src="/docs/images/pipelines/v2/roc-curve.png" 
+  alt="V2 ROC Curve visualization"
+  class="mt-3 mb-3 border border-info rounded mx-auto d-block">
 
 ### Scalar Metrics
 
