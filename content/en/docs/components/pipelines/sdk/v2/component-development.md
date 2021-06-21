@@ -594,6 +594,9 @@ See this [sample component][org-sample] for a real-life component example.
 * For quick iteration,
   [build lightweight Python function-based components](/docs/components/pipelines/sdk/v2/python-function-components/)
   directly from Python functions.
+* Use SDK APIs to visualize pipeline result, follow 
+  [Visualize Results in the Pipelines UI](/docs/components/pipelines/sdk/output-viewer/#v2-visualization)
+  depends on the visualization type.
 * See how to [export metrics from your
   pipeline](/docs/components/pipelines/sdk/pipelines-metrics/).
 * Visualize the output of your component by

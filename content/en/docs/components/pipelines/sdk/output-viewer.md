@@ -106,7 +106,7 @@ Visualization of Confusion Matrix is as below:
 
 <img src="/docs/images/pipelines/v2/confusion-matrix.png" 
   alt="V2 Confusion matrix visualization"
-  class="mt-3 mb-3 border border-info rounded mx-auto d-block">
+  class="mt-3 mb-3 border border-info rounded">
 
 ### ROC Curve 
 
@@ -151,10 +151,70 @@ Visualization of ROC Curve is as below:
 
 <img src="/docs/images/pipelines/v2/roc-curve.png" 
   alt="V2 ROC Curve visualization"
-  class="mt-3 mb-3 border border-info rounded mx-auto d-block">
+  class="mt-3 mb-3 border border-info rounded">
 
 ### Scalar Metrics
 
+Define `Output[Metrics]` parameter in your component function, then
+output Scalar data using API `log_metric(self, metric: str, value: float)`. 
+You can define any amount of metric by calling this API multiple times.
+`metric` defines the name of metric, `value` is the value of this metric. Refer to 
+[io_types.py](https://github.com/kubeflow/pipelines/blob/b7084f29068a2c46832b3b02e9ffe1a002eb13cb/sdk/python/kfp/dsl/io_types.py#L112) 
+for detail.
+
+```
+
+@component(
+    packages_to_install=['sklearn'],
+    base_image='python:3.9',
+)
+def digit_classification(metrics: Output[Metrics]):
+    from sklearn import model_selection
+    from sklearn.linear_model import LogisticRegression
+    from sklearn import datasets
+    from sklearn.metrics import accuracy_score
+
+    # Load digits dataset
+    iris = datasets.load_iris()
+
+    # # Create feature matrix
+    X = iris.data
+
+    # Create target vector
+    y = iris.target
+
+    #test size
+    test_size = 0.33
+
+    seed = 7
+    #cross-validation settings
+    kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+
+    #Model instance
+    model = LogisticRegression()
+    scoring = 'accuracy'
+    results = model_selection.cross_val_score(model, X, y, cv=kfold, scoring=scoring)
+
+    #split data
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=test_size, random_state=seed)
+    #fit model
+    model.fit(X_train, y_train)
+
+    #accuracy on test set
+    result = model.score(X_test, y_test)
+    metrics.log_metric('accuracy', (result*100.0))
+
+@dsl.pipeline(
+    name='metrics-visualization-pipeline')
+def metrics_visualization_pipeline():
+    digit_classification_op = digit_classification()
+```
+
+Visualization of Scalar Metrics is as below:
+
+<img src="/docs/images/pipelines/v2/scalar-metrics.png" 
+  alt="V2 Scalar Metrics visualization"
+  class="mt-3 mb-3 border border-info rounded">
 
 ## v1 SDK: Writing out metadata for the output viewers
 
@@ -606,13 +666,17 @@ def tensorboard_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
 <a id="example-source"></a>
 ## Source of examples on this page
 
-### v2
+### v2 example
 
-https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py
+The metric visualization in V2 or V2 compatible mode depends on SDK visualization APIs,
+refer to [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py)
+for a complete pipeline example. Follow instruction
+[Compile and run your pipeline](/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline)
+to compile in V2 compatible mode.
 
-### v1
+### v1 example
 
-The above examples come from the *tax tip prediction* sample that is
+The v1 examples come from the *tax tip prediction* sample that is
 pre-installed when you deploy Kubeflow. 
 
 You can run the sample by selecting 
