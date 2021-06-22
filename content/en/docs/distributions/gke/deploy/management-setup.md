@@ -107,7 +107,7 @@ This guide assumes the following convention:
    * contain no more than 18 characters
    
 * The `${LOCATION}` environment variable contains the location of your management cluster.
-  you can choose between regional or zonal.
+  you can choose between regional or zonal, see [Available regions and zones](https://cloud.google.com/compute/docs/regions-zones#available).
 
 Set these environment variables in your shell:
 
