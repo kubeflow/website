@@ -177,8 +177,8 @@ The following resources are created as part of the profile creation:
     role binding role binding for the namespace: *Admin*. This makes the
     profile owner the namespace administrator, thus giving them access to the
     namespace using kubectl (via the Kubernetes API).
-  - Istio namespace-scoped AuthorizationPolicy: *user-userid-email-com-clusterrole-edit*. This allows the `user`
-    to access data beloging to the namespace the AuthorizationPolicy was created in 
+  - Istio namespace-scoped AuthorizationPolicy: *user-userid-email-com-clusterrole-edit*.
+    This allows the `user` to access data beloging to the namespace the AuthorizationPolicy was created in 
   - Namespace-scoped service-accounts *default-editor* and *default-viewer* to be used by
     user-created pods in the namespace.
   - Namespace scoped resource quota limits will be placed.
