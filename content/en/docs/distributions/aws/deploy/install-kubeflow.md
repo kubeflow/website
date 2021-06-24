@@ -59,7 +59,7 @@ For example:
 export AWS_CLUSTER_NAME=kubeflow-demo
 export AWS_REGION=us-west-2
 export K8S_VERSION=1.18
-export EC2_INSTANCE_TYPE=m5.large
+export EC2_INSTANCE_TYPE=m5.2xlarge
 ```
 
 Now, create a cluster configuration file for use with `eksctl`.
