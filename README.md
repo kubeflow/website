@@ -52,7 +52,7 @@ Hugo. Hugo version 0.80 and later support the Goldmark renderer for Markdown.
 Goldmark offers improved rendering of some text formatting such as lists. 
 
 **Note:** From April 2020 onwards, Kubeflow recommends that you use 
-**Hugo version 0.83.1** or later. The Kubeflow website now uses Hugo 0.83.1 via
+**Hugo version 0.84.1** or later. The Kubeflow website now uses Hugo 0.84.1 via
 Netlify. 
 
 To get the latest extended version of Hugo:
@@ -65,9 +65,9 @@ To get the latest extended version of Hugo:
 
 For example, to install Hugo on Linux:
 
-1.  Download `hugo_extended_0.83.1_Linux-64bit.tar.gz`
+1.  Download `hugo_extended_0.84.1_Linux-64bit.tar.gz`
     (or the latest version) from the
-    [Hugo releases](https://github.com/gohugoio/hugo/releases/tag/v0.83.1) page.
+    [Hugo releases](https://github.com/gohugoio/hugo/releases/tag/v0.84.1) page.
 
 1.  Create a new directory:
 
@@ -75,7 +75,7 @@ For example, to install Hugo on Linux:
 
 1.  Extract the file you downloaded to `$HOME/hugo`.
 
-        tar -zxvf hugo_extended_0.83.1_Linux-64bit.tar.gz
+        tar -zxvf hugo_extended_0.84.1_Linux-64bit.tar.gz
 
 For more details about installing Hugo, See the 
 [Hugo installation guide](https://gohugo.io/getting-started/installing/). 
