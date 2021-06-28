@@ -34,38 +34,18 @@ git clone https://github.com/kubeflow/katib
 make deploy
 ```
 
-**Note:** You should have [kustomize](https://kustomize.io/) version >= 3.2 to
-install Katib.
-
-### Setting up persistent volumes
-
-If you used the [above-mentioned script](#katib-install) to deploy Katib,
-you can skip this step. This script deploys
+Above script deploys
 [PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
-and
-[PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
-on your cluster.
+for the Katib Database (DB) component.
 
-You can skip this step if you're using Kubeflow on Google Kubernetes Engine
-(GKE) or if your Kubernetes cluster includes a StorageClass for dynamic volume
-provisioning. For more information, check the Kubernetes documentation on
-[dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
-and PV.
+Your Kubernetes cluster must have `StorageClass` for dynamic volume provisioning.
+For more information, check the Kubernetes documentation on
+[dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
-If you're using Katib outside GKE and your cluster doesn't include a
-StorageClass for dynamic volume provisioning, you must create a PV to bind to
-the PVC required by Katib.
-
-After deploying Katib to your cluster, run the following command to create the
-PV:
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/components/mysql/pv.yaml
-```
-
-The above `kubectl apply` command uses a YAML file -
-[`pv.yaml`](https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/components/mysql/pv.yaml) -
-that defines the properties of the PV.
+If your cluster doesn't have dynamic volume provisioning, you must manually
+deploy [PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
+to bind [PVC](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/mysql/pvc.yaml)
+for the Katib DB component.
 
 <a id="katib-ui"></a>
 
