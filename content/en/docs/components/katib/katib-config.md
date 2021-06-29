@@ -293,7 +293,9 @@ you are able to specify
 and
 [PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
 settings for the experiment's suggestion. Learn more about Katib concepts
-in the [overview guide](/docs/components/katib/overview/#trial).
+in the [overview guide](/docs/components/katib/overview/#suggestion).
+
+If PV settings are empty, Katib controller creates only PVC.
 If you want to use the default volume specification, you can omit these settings.
 
 Follow the example for the `random` algorithm:
@@ -324,7 +326,11 @@ suggestion: |-
       },
       "hostPath": {
         "path": "/tmp/suggestion/unique/path"
-      }
+      },
+      "storageClassName": "katib-suggestion"
+    },
+    "persistentVolumeLabels": {
+      "type": "local"
     }
   },
   ...
@@ -347,43 +353,16 @@ suggestion: |-
    - `persistentVolumeClaimSpec.resources.requests.storage` - the default value
      is `1Gi`
 
-   - `persistentVolumeClaimSpec.storageClassName` - the default is
-     `katib-suggestion`
-
-     **Note:** If your Kubernetes cluster doesn't have
-     [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
-     to automatically provision storage for the PVC, `storageClassName`
-     must be equal to **`katib-suggestion`**. Then, Katib creates PV and PVC
-     for the suggestion. Otherwise, Katib creates only PVC.
-
 1. `persistentVolumeSpec` - a [PV specification](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#persistentvolumespec-v1-core)
    for the suggestion's PV.
 
-   The default value is set, if you don't specify any of these parameters:
+   PV `persistentVolumeReclaimPolicy` is always equal to **`Delete`** to properly
+   remove all resources once Katib experiment is deleted. To know more about
+   PV reclaim policies check the
+   [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming).
 
-- `persistentVolumeSpec.accessModes[0]` - the default values is
-  `ReadWriteOnce`
-
-- `persistentVolumeSpec.capacity.storage` - the default value is `1Gi`
-
-- `persistentVolumeSpec.hostPath.path` - the default value is
-  `/tmp/katib/suggestions/<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>`
-
-  For the default PV source Katib uses
-  [`hostPath`](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath).
-  If `.hostPath.path` in the config settings is equal to
-  `/tmp/katib/suggestions/`, Katib controller adds
-  `<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>`
-  to the path. That makes host paths unique across suggestions.
-
-  **Note:**
-
-  - PV `storageClassName` is always equal to **`katib-suggestion`**.
-
-  - PV `persistentVolumeReclaimPolicy` is always equal to **`Delete`** to properly
-    remove all resources once Katib experiment is deleted. To know more about
-    PV reclaim policies check the
-    [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming).
+1. `persistentVolumeLabels` - [PV labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+   for the suggestion's PV.
 
 ## Early stopping settings
 
