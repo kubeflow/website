@@ -295,7 +295,7 @@ and
 settings for the experiment's suggestion. Learn more about Katib concepts
 in the [overview guide](/docs/components/katib/overview/#suggestion).
 
-Katib controller creates only PVC if PV settings are omitted.
+If PV settings are empty, Katib controller creates only PVC.
 If you want to use the default volume specification, you can omit these settings.
 
 Follow the example for the `random` algorithm:
@@ -356,12 +356,13 @@ suggestion: |-
 1. `persistentVolumeSpec` - a [PV specification](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#persistentvolumespec-v1-core)
    for the suggestion's PV.
 
-   - PV `persistentVolumeReclaimPolicy` is always equal to **`Delete`** to properly
-     remove all resources once Katib experiment is deleted. To know more about
-     PV reclaim policies check the
-     [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming).
+   PV `persistentVolumeReclaimPolicy` is always equal to **`Delete`** to properly
+   remove all resources once Katib experiment is deleted. To know more about
+   PV reclaim policies check the
+   [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming).
 
-1. `persistentVolumeLabels` - a [PV labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) for the Suggestion's PV.
+1. `persistentVolumeLabels` - [PV labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+   for the suggestion's PV.
 
 ## Early stopping settings
 
