@@ -398,7 +398,7 @@ def table_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
 
 **Visualization on the Kubeflow Pipelines UI:**
 
-<img src="/docs/images/taxi-tip-prediction-step-output-table.png" 
+<img src="/docs/images/pipelines/taxi-tip-prediction-step-output-table.png" 
   alt="Table-based visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
 
