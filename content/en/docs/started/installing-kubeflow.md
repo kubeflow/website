@@ -73,7 +73,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>OpenShift</td>
         <td>1.3</td>
         <td><a href="/docs/distributions/openshift/">Docs</a></td>
-        <td></td>
+        <td><a href="https://opendatahub.io/docs/kubeflow.html">External Website</a></td>
       </tr>
       <tr>
         <td>Argoflow</td>
