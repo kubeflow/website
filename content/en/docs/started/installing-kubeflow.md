@@ -69,7 +69,7 @@ Packaged distributions are developed and supported by their respective maintaine
       </tr>
       <tr>
         <td>Kubeflow on OpenShift</td>
-        <td>IBM Cloud</td>
+        <td>Red Hat</td>
         <td>OpenShift</td>
         <td>1.3</td>
         <td><a href="/docs/distributions/openshift/">Docs</a></td>
