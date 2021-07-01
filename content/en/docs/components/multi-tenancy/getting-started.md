@@ -324,15 +324,15 @@ kind: AuthorizationPolicy
 metadata:
   annotations:
     role: edit
-    user: userid@email.com
+    user: userid@email.com # replace with the email of the user from your Active Directory case sensitive
   name: user-userid-email-com-clusterrole-edit
   namespace: profileName # replace with the namespace/profile name that you are adding contributors to
 spec:
   rules:
   - when:
-    - key: request.headers[kubeflow-userid]
+    - key: request.headers[kubeflow-userid] # for GCP, use x-goog-authenticated-user-email instead of kubeflow-userid for authentication purpose
       values:
-      - userid@email.com
+      - userid@email.com # replace with the email of the user from your Active Directory case sensitive
 ```
 
 Run the following command to create the corresponding contributor resources:
