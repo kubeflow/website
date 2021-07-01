@@ -116,6 +116,6 @@ The response should be something like this:
 ## Next steps
 
 * [See how to use the SDK](/docs/components/pipelines/sdk/sdk-overview/).
-* [Build a component and a pipeline](/docs/components/pipelines/sdk/build-component/).
+* [Build a component and a pipeline](/docs/components/pipelines/sdk/component-development/).
 * [Get started with the UI](/docs/components/pipelines/pipelines-quickstart).
 * [Understand pipeline concepts](/docs/components/pipelines/concepts/).

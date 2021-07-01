@@ -93,7 +93,7 @@ To learn more, read the following guides to the Kubeflow components:
   [Jupyter notebooks](/docs/components/notebooks/). Use notebooks for interactive data 
   science and experimenting with ML workflows.
 
-* [Kubeflow Pipelines](/docs/components/pipelines/pipelines-overview/) is a platform for 
+* [Kubeflow Pipelines](/docs/components/pipelines/overview/pipelines-overview/) is a platform for 
   building, deploying, and managing multi-step ML workflows based on Docker 
   containers.
 
