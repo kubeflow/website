@@ -450,7 +450,6 @@ The [Sobol's quasirandom sequence](https://dl.acm.org/doi/10.1145/641876.641879)
 is a low-discrepancy sequence. And it is known that Sobol's quasirandom sequence can
 provide better uniformity properties.
 
-Currently, Katib does not support no algorithm settings for Sobol.
 
 <a id="enas"></a>
 
