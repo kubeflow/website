@@ -58,7 +58,7 @@ You can use one of the following Katib installations.
 
    This installation uses Cert Manager instead of `katib-cert-generator`
    to provision Katib webhooks certificates. You have to deploy Cert Manager on
-   your Kubernetes cluster before deploying Katib with this installation.
+   your Kubernetes cluster before deploying Katib using this installation.
 
 3. **Katib External DB Installation**
 
@@ -69,11 +69,10 @@ You can use one of the following Katib installations.
    ```
 
    This installation allows to use custom MySQL DB instead of `katib-mysql`.
-   You have to modify appropriate environment variables in the
+   You have to modify appropriate environment variables for `katib-db-manager` in the
    [`secrets.env`](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/installs/katib-external-db/secrets.env)
-   to point `katib-db-manager` on your custom MySQL DB.
-   Learn more about `katib-db-manager` environment variables in
-   [this guide](https://www.kubeflow.org/docs/components/katib/env-variables/#katib-db-manager).
+   to point at your custom MySQL DB. Learn more about `katib-db-manager`
+   environment variables in [this guide](https://www.kubeflow.org/docs/components/katib/env-variables/#katib-db-manager).
 
 4. **Katib on OpenShift**
 
