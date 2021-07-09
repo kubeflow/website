@@ -215,6 +215,7 @@ Here's a list of the search algorithms available in Katib:
 - [Hyperband](#hyperband)
 - [Tree of Parzen Estimators (TPE)](#tpe-search)
 - [Covariance Matrix Adaptation Evolution Strategy (CMA-ES)](#cmaes)
+- [Sobol's Quasirandom Sequence](#sobol)
 - [Neural Architecture Search based on ENAS](#enas)
 - [Differentiable Architecture Search (DARTS)](#darts)
 
@@ -435,6 +436,20 @@ Katib supports the following algorithm settings:
     </tbody>
   </table>
 </div>
+
+<a id="sobol"></a>
+
+#### Sobol's Quasirandom Sequence
+
+The algorithm name in Katib is `sobol`.
+
+Katib uses the [Goptuna](https://github.com/c-bata/goptuna) optimization
+framework for its Sobol's quasirandom search.
+
+The [Sobol's quasirandom sequence](https://dl.acm.org/doi/10.1145/641876.641879)
+is a low-discrepancy sequence. And it is known that Sobol's quasirandom sequence can
+provide better uniformity properties.
+
 
 <a id="enas"></a>
 
