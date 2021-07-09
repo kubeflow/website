@@ -26,17 +26,69 @@ To install Katib as part of Kubeflow, follow the
 [Kubeflow installation guide](/docs/started/getting-started/).
 
 If you want to install Katib separately from Kubeflow, or to get a later version
-of Katib, run the following commands to install Katib directly from its
-repository on GitHub and deploy Katib to your cluster:
+of Katib, you can use various Katib installs. Run the following command to clone
+Katib repository:
 
 ```shell
 git clone https://github.com/kubeflow/katib
-make deploy
+cd katib
 ```
 
-Above script deploys
+You can use one of the following Katib installations.
+
+1. **Katib Standalone Installation**
+
+   Run the following command to deploy Katib with the main components
+   (`katib-controller`, `katib-ui`, `katib-mysql`, `katib-db-manager`, and `katib-cert-generator`):
+
+   ```shell
+   make deploy
+   ```
+
+   This installation doesn't require any additional setup on your Kubernetes cluster.
+
+2. **Katib Cert Manager Installation**
+
+   Run the following command to deploy Katib with
+   [Cert Manager](https://cert-manager.io/docs/installation/kubernetes/) requirement:
+
+   ```shell
+   kustomize build manifests/v1beta1/installs/katib-cert-manager | kubectl apply -f -
+   ```
+
+   This installation uses Cert Manager instead of `katib-cert-generator`
+   to provision Katib webhooks certificates. You have to deploy Cert Manager on
+   your Kubernetes cluster before deploying Katib with this installation.
+
+3. **Katib External DB Installation**
+
+   Run the following command to deploy Katib with custom Database (DB) backend:
+
+   ```shell
+   kustomize build manifests/v1beta1/installs/katib-external-db | kubectl apply -f -
+   ```
+
+   This installation allows to use custom MySQL DB instead of `katib-mysql`.
+   You have to modify appropriate environment variables in the
+   [`secrets.env`](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/installs/katib-external-db/secrets.env)
+   to point `katib-db-manager` on your custom MySQL DB.
+   Learn more about `katib-db-manager` environment variables in
+   [this guide](https://www.kubeflow.org/docs/components/katib/env-variables/#katib-db-manager).
+
+4. **Katib on OpenShift**
+
+   Run the following command to deploy Katib on [OpenShift](https://docs.openshift.com/) v4.4+:
+
+   ```shell
+   kustomize build ./manifests/v1beta1/installs/katib-openshift | oc apply -f - -l type!=local
+   ```
+
+   This installation uses OpenShift service controller instead of `katib-cert-generator`
+   to provision Katib webhooks certificates.
+
+Above installations deploy
 [PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
-for the Katib Database (DB) component.
+for the Katib DB component.
 
 Your Kubernetes cluster must have `StorageClass` for dynamic volume provisioning.
 For more information, check the Kubernetes documentation on
