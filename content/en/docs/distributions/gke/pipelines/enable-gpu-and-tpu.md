@@ -4,10 +4,6 @@ description = "Enable GPU and TPU for Kubeflow Pipelines on Google Kubernetes En
 weight = 70
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 This page describes how to enable GPU or TPU for a pipeline on GKE by using the Pipelines 
 DSL language.
@@ -59,6 +55,8 @@ nodeSelector:
   cloud.google.com/gke-accelerator: nvidia-tesla-p4
 ```
 
+See [GPU tutorial](https://github.com/kubeflow/pipelines/tree/master/samples/tutorials/gpu) for a complete example to build Kubeflow Pipelines using GPU.
+
 Check the [GKE GPU guide](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus) to learn more about GPU settings. 
 
 ## Configure ContainerOp to consume TPUs
@@ -84,5 +82,7 @@ container:
     annotations:
       tf-version.cloud-tpus.google.com: "1.12"
 ```
+
+See [preemptible_tpu_gpu.py](https://github.com/kubeflow/pipelines/blob/master/samples/core/preemptible_tpu_gpu/preemptible_tpu_gpu.py) for a complete example to run on preemptible TPU or GPU.
 
 See the [GKE TPU Guide](https://cloud.google.com/tpu/docs/kubernetes-engine-setup) to learn more about TPU settings.
