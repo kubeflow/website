@@ -4,7 +4,7 @@ description = "Elyra enables data scientists to visually create end-to-end machi
 weight = 30
 +++
 
-Elyra aims to help data scientists, machine learning engineers and AI developer’s
+Elyra aims to help data scientists, machine learning engineers and AI developers
 through the model development life cycle complexities. Elyra integrates with JupyterLab
 providing a Pipeline visual editor that enables low code/no code creation of Pipelines
 that can be executed in a Kubeflow environment.
