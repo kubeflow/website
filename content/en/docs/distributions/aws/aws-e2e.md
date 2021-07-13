@@ -383,8 +383,8 @@ metadata:
 type: Opaque
 data:
   # echo -ne "AKIAxxx" | base64
-  awsAccessKeyID: QUtJQVhxxxVXVjQ=
-  awsSecretAccessKey: QzR0UnxxxVNOd0NQQQ==
+  AWS_ACCESS_KEY_ID: QUtJQVhxxxVXVjQ=
+  AWS_SECRET_ACCESS_KEY: QzR0UnxxxVNOd0NQQQ==
 ---
 apiVersion: v1
 kind: ServiceAccount
