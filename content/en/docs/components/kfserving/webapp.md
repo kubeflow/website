@@ -80,7 +80,7 @@ Central Dashboard, out of the box, in the 1.4 release.
 The web app has a mechanism for performing authentication and authorization
 checks, to ensure that user actions are compliant with the cluster's RBAC,
 which is only enabled in the _kubeflow_ manifests of the app. This mechanism
-can be toggled by levaraging the `APP_DISABLE_AUTH: "True" | "False"` ENV Var.
+can be toggled by leveraging the `APP_DISABLE_AUTH: "True" | "False"` ENV Var.
 
 This mechanism is only enabled in the _kubeflow_ manifests since in a Kubeflow
 installation all requests that end up in the web app's Pod will also contain a custom
@@ -138,7 +138,7 @@ Currently users can do the following workflows via this web app:
 ### Listing
 
 The main page of the app provides a list of all the InferenceServices that are
-deployed in the selected Namespace. The frontend periodiaclly polls the backend
+deployed in the selected Namespace. The frontend periodically polls the backend
 for the latest state of InferenceServices.
 
 <img src="../pics/webapp-list.png" alt="Models web app main page">
@@ -173,7 +173,7 @@ deleted.
 
 Users can click on the name of an InferenceService, from the main page, and
 view a more detailed summary of the CR's state. In this page users can inspect:
-1. The overview of the InerenceService's status (OVERVIEW)
+1. The overview of the InferenceService's status (OVERVIEW)
 2. A user friendly representation of the CR's spec (DETAILS)
 3. Metrics from the underlying resources (METRICS)
 4. Logs from the created Pods (LOGS)
