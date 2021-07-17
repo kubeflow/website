@@ -27,7 +27,7 @@ Right now, certificates for ALB public DNS names are not supported. Instead, you
 
 To get TLS support from the ALB Ingress Controller, you need to follow [this tutorial](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html) to request a certificate in AWS Certificate Manager. After successful validation, you will get a `certificate ARN` to use with the ALB Ingress Controller.
 
-> Note: Even you need to create a `certificate ARN`, we don't necessarily need a custom domain unless you want to use it, you can still use ALB ingress hostname to visit kubeflow central dashboard.
+> Note: Even though you need to create a `certificate ARN`, we don't necessarily need a custom domain unless you want to use it, you can still use ALB ingress hostname to visit kubeflow central dashboard.
 
 <img src="/docs/images/aws/cognito-certarn.png"
   alt="Cognito Certificate ARN"
