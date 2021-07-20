@@ -47,6 +47,8 @@
 /docs/pipelines/sdk/gcp/preemptible/           /docs/distributions/gke/pipelines/preemptible/
 /docs/pipelines/reusable-components/           /docs/examples/shared-resources/
 /docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
+/docs/pipelines/sdk/build-component/           /docs/components/pipelines/sdk/build-pipeline/
+/docs/components/pipelines/sdk/build-component/    /docs/components/pipelines/sdk/build-pipeline/
 
 # Moved the guide to monitoring GKE deployments.
 /docs/other-guides/monitoring/                 /docs/distributions/gke/monitoring/
