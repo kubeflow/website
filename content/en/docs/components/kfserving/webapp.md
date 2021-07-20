@@ -69,7 +69,7 @@ in order to add an entry for this web app:
 ```
 
 {{% alert title="Note" color="info" %}}
-This web app will be part of Kubeflow installation manifests  and exposed via the
+This web app will be part of Kubeflow installation manifests and exposed via the
 Central Dashboard, out of the box, in the 1.4 release.
 {{% /alert %}}
 
