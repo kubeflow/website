@@ -73,7 +73,7 @@ The Kubeflow Slack workspace offers several channels. Here are a few examples:
 | Examples ([GitHub](https://github.com/kubeflow/examples))                                 | [#kubeflow-examples](https://kubeflow.slack.com/messages/CA30Q9A4U)  |
 | Google Summer of Code (GSoC)                                                              | [#gsoc](https://kubeflow.slack.com/messages/CUF1GCJ4Q)               |
 | KFServing ([GitHub](https://github.com/kubeflow/kfserving))                               | [#kfserving](https://kubeflow.slack.com/messages/CH6E58LNP)          |
-| Arrikto MiniKF ([documentation](https://www.kubeflow.org/docs/distributions/minikf/)      | [#minikf](https://kubeflow.slack.com/messages/CGRKM3N0G)             |
+| Arrikto MiniKF ([documentation](https://www.kubeflow.org/docs/distributions/minikf/))     | [#minikf](https://kubeflow.slack.com/messages/CGRKM3N0G)             |
 | On-prem SIG                                                                               | [#sig-onprem](https://kubeflow.slack.com/archives/C01C9NPD15H)       |
 | Pipelines ([GitHub](https://github.com/kubeflow/pipelines))                               | [#kubeflow-pipelines](https://kubeflow.slack.com/messages/CE10KS9M4) |
 | Product management                                                                        | [#product-management](https://kubeflow.slack.com/messages/CGP3DKT5E) |
