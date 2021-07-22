@@ -115,6 +115,14 @@ Send a prediction request:
 curl -s -d '{"data": {"ndarray":[[1.0, 2.0, 5.0]]}}'    -X POST http://localhost:8004/seldon/seldon/seldon-model/api/v1.0/predictions    -H "Content-Type: application/json"
 ```
 
+Port forward to the seldon-model-example service  **(If Istio gateway is not working)**
+
+```
+kubectl -n seldon port-forward svc/seldon-model-example 8004:8000 --address 0.0.0.0
+
+curl -s -d '{"data": {"ndarray":[[1.0, 2.0, 5.0]]}}'    -X POST http://localhost:8004/api/v1.0/predictions    -H "Content-Type: application/json"
+```
+
 You should see a response:
 
 ```
