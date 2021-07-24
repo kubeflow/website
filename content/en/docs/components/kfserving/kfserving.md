@@ -52,7 +52,7 @@ Kubeflow 1.3 includes KFServing v0.5.1 which promoted the core InferenceService 
 ### Autoscaling and Rollouts
 
 * [Autoscaling](https://github.com/kubeflow/kfserving/tree/master/docs/samples/autoscaling)
-* [Canary Rollout](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/rollouts)
+* [Canary Rollout](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/rollout)
 
 ### Model explainability and outlier detection
 
