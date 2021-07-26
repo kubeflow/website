@@ -147,7 +147,7 @@ Kubeflow Pipelines can be configured through kustomize [overlays](https://github
 To begin, first clone the [Kubeflow Pipelines GitHub repository](https://github.com/kubeflow/pipelines),
 and use it as your working directory.
 
-### Deploy on GCP with CloudSQL and Google Cloud Storage
+### Deploy on GCP with Cloud SQL and Google Cloud Storage
 
 **Note**: This is recommended for production environments. For more details about customizing your environment
 for GCP, see the [Kubeflow Pipelines GCP manifests](https://github.com/kubeflow/pipelines/tree/master/manifests/kustomize/env/gcp).
