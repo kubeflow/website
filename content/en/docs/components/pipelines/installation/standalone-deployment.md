@@ -258,7 +258,6 @@ bases:
 * To learn about kustomize workflows with off-the-shelf configurations, see the
 [kustomize configuration workflows guide](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration).
 
-* Read [Authenticating Pipelines to GCP](/docs/gke/authentication/#authentication-from-kubeflow-pipelines#authoring-pipelines-to-use-workload-identity) if you want to use GCP services in Kubeflow Pipelines.
 
 ## Troubleshooting
 
@@ -267,9 +266,10 @@ bases:
 MountVolume.SetUp failed for volume "gcp-credentials-user-gcp-sa" : secret "user-gcp-sa" not found
 ```
 
-You should remove `use_gcp_secret` usages as documented in [Authenticating Pipelines to GCP](/docs/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity).
+You should remove `use_gcp_secret` usages as documented in [Authenticating Pipelines to GCP](/docs/distributions/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity).
 
 
 ## What's next
 
-* [Connecting to Kubeflow Pipelines standalone on Google Cloud using the SDK](/docs/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-standalone-or-ai-platform-pipelines)
+* [Connecting to Kubeflow Pipelines standalone on Google Cloud using the SDK](/docs/distributions/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-standalone-or-ai-platform-pipelines)
+* [Authenticating Pipelines to GCP](/docs/distributions/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity) if you want to use GCP services in Kubeflow Pipelines.
