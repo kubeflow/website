@@ -73,6 +73,13 @@ This web app will be part of Kubeflow installation manifests and exposed via the
 Central Dashboard, out of the box, in the 1.4 release.
 {{% /alert %}}
 
+{{% alert title="Note" color="info" %}}
+If you installed KFServing 0.6
+alongside Kubeflow 1.3, which ships with Knative 0.17, then you will need to
+modify your _inferenceservice-config_ ConfigMap and change __localGateway__ and
+__localGatewayService__ to use the old _cluster-local-gateway_.
+{{% /alert %}}
+
 ## Authorization
 
 ### SubjectAccessReviews
