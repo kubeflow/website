@@ -21,7 +21,7 @@ From the Kubeflow Pipelines UI you can perform the following tasks:
 * Run one or more of the preloaded samples to try out pipelines quickly.
 * Upload a pipeline as a compressed file. The pipeline can be one that you
   have built (see how to [build a 
-  pipeline](/docs/components/pipelines/sdk/build-component/#compile-the-pipeline)) or one 
+  pipeline](/docs/components/pipelines/sdk/build-pipeline/)) or one 
   that someone has shared with you.
 * Create an *experiment* to group one or more of your pipeline runs.
   See the [definition of an
