@@ -76,8 +76,10 @@ Central Dashboard, out of the box, in the 1.4 release.
 {{% alert title="Note" color="info" %}}
 If you installed KFServing 0.6
 alongside Kubeflow 1.3, which ships with Knative 0.17, then you will need to
-modify your _inferenceservice-config_ ConfigMap and change __localGateway__ and
-__localGatewayService__ to use the old _cluster-local-gateway_.
+modify your _inferenceservice-config_ ConfigMap and revert __localGateway__ and
+__localGatewayService__ values to:
+1. __localGateway__: cluster-local-gateway.knative-serving
+2. __localGatewayService__: cluster-local-gateway.istio-system.svc.cluster.local
 {{% /alert %}}
 
 ## Authorization
