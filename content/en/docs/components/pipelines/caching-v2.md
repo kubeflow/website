@@ -3,10 +3,10 @@ title = "Caching v2"
 description = "Getting started with Kubeflow Pipelines caching v2"
 weight = 50
 
++++
 {{% beta-status
 feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
-                    
-+++
+
 Starting from [Kubeflow Pipelines SDK v2](https://www.kubeflow.org/docs/components/pipelines/sdk/v2/) and Kubeflow Pipelines 1.7.0, Kubeflow Pipelines supports step caching capabilities in both standalone deployment and GCP hosted deployment.
 
 ## Before you start
