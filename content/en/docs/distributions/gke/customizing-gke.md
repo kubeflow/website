@@ -172,7 +172,7 @@ to `false`:
     ...
 ```
 
-Then create the [ContainerNodePool](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containernodepool) resource adopting GPU, for exmaple:
+Then create the [ContainerNodePool](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containernodepool) resource adopting GPU, for example:
 
 ```
   apiVersion: container.cnrm.cloud.google.com/v1beta1
