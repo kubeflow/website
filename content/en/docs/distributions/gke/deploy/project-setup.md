@@ -4,6 +4,8 @@ description = "Creating a Google Cloud project for your Kubeflow deployment"
 weight = 2
 +++
 
+## Set up project and API scopes
+
 Follow these steps to set up your Google Cloud project:
 
 1. Select or create a project on the 

@@ -94,17 +94,17 @@ Before installing Kubeflow on the command line:
 1. If you have already installed Management cluster, you have `kubeflow/gcp-blueprints` locally. You just need to run `cd kubeflow` to access Kubeflow cluster manifests. Otherwise, you can run the following commands:
 
     ```bash
-    # Check out Kubeflow v1.3.0 blueprints
+    # Check out Kubeflow v1.3.1 blueprints
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     cd gcp-blueprints
-    git checkout tags/v1.3.0 -b v1.3.0
+    git checkout tags/v1.3.1 -b v1.3.1
     ```
 
     Alternatively, you can get the package by using `kpt`:
 
     ```bash
-    # Check out Kubeflow v1.3.0 blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.0 gcp-blueprints
+    # Check out Kubeflow v1.3.1 blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.1 gcp-blueprints
     cd gcp-blueprints
     ```
 

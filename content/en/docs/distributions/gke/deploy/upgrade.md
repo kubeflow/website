@@ -219,7 +219,7 @@ To upgrade from specific versions of Kubeflow, you may need to take certain manu
       kubectl config use-context ${KF_NAME}
       ```
 
-1. Merge the new version of `kubeflow/gcp-blueprints` (example: v1.3.0), you don't need to do it again if you have already done so during management cluster upgrade.
+1. Merge the new version of `kubeflow/gcp-blueprints` (example: v1.3.1), you don't need to do it again if you have already done so during management cluster upgrade.
 
    ```bash
    WORKING_BRANCH=<your-github-working-branch>

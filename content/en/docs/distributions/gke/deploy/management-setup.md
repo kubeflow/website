@@ -61,19 +61,19 @@ to manage Google Cloud infrastructure using GitOps.
 
 The management cluster manifests live in GitHub repository [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints), use the following commands to pull Kubeflow v1.3 manifests:
 
-1. Clone the GitHub repository and check out the v1.3.0 tag:
+1. Clone the GitHub repository and check out the v1.3.1 tag:
 
     ```bash
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     cd gcp-blueprints
-    git checkout tags/v1.3.0 -b v1.3.0
+    git checkout tags/v1.3.1 -b v1.3.1
     ```
 
     Alternatively, you can get the package by using `kpt`:
 
     ```bash
-    # Check out Kubeflow v1.3.0 blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.0 gcp-blueprints
+    # Check out Kubeflow v1.3.1 blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.1 gcp-blueprints
     cd gcp-blueprints
     ```
 
