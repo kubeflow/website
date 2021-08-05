@@ -17,13 +17,13 @@ guide](/docs/components/pipelines/installation/) to deploy Kubeflow Pipelines.
 
 ## What is step caching?
 
-Kubeflow Pipelines caching provides step-level output caching. 
-And caching is enabled by default for all tasks of pipelines built with [Kubeflow Pipelines SDK v2](https://www.kubeflow.org/docs/components/pipelines/sdk/v2/) using `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode.
+Kubeflow Pipelines caching provides step-level output caching, a process that helps to reduce costs by skipping computations that were completed in a previous pipeline run.
+Caching is enabled by default for all tasks of pipelines built with [Kubeflow Pipelines SDK v2](https://www.kubeflow.org/docs/components/pipelines/sdk/v2/) using `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode.
 When Kubeflow Pipeline runs a pipeline, it checks to see whether 
 an execution exists in Kubeflow Pipeline with the interface of each pipeline task.
-The task's interface is defined as the combination of the pipeline task spec(base image, command, args), the pipeline task's inputs(artifacts and parameters), and the pipeline task's outputs(artifacts and parameters). 
-If there is a matching execution in Kubeflow Pipelines, the outputs of that execution are used, and the task is skipped. 
-This helps to reduce costs by skipping computations that were completed in a previous pipeline run.
+The task's interface is defined as the combination of the pipeline task specification (base image, command, args), the pipeline task's inputs (artifacts and parameters), 
+and the pipeline task's outputs (artifacts and parameters)
+If there is a matching execution in Kubeflow Pipelines, the outputs of that execution are used, and the task is skipped.
 
 ## Disabling/enabling caching
 
