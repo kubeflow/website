@@ -4,6 +4,9 @@ description = "Creating a Google Cloud project for your Kubeflow deployment"
 weight = 2
 +++
 
+In order to create GKE cluster and deploy Kubeflow on it, you need to set up a Google Cloud project
+and enable necessary APIs for the deployment.
+
 ## Set up project and API scopes
 
 Follow these steps to set up your Google Cloud project:

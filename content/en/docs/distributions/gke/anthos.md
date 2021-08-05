@@ -2,10 +2,9 @@
 title = "Kubeflow On-premises on Anthos"
 description = "Running Kubeflow across on-premises and cloud environments with Anthos"
 weight = 200
-
 +++
 
-[Anthos](https://cloud.google.com/anthos) is a hybrid and multi-cloud 
+Introduction: [Anthos](https://cloud.google.com/anthos) is a hybrid and multi-cloud 
 application platform developed and supported by Google. Anthos is built on
 open source technologies, including Kubernetes, Istio, and Knative.
 
