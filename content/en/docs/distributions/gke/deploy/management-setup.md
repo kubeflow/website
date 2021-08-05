@@ -28,6 +28,8 @@ to manage Google Cloud infrastructure using GitOps.
 
     kubectl `v1.18.19` works best with Kubeflow 1.3, you can install specific version by following instruction, for example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). But latest patch version of kubectl from `v1.17` to `v1.19` works well too.
 
+    Note: `kpt v1.0.0-beta.1` or above doesn't work due to a known issue: https://github.com/kubeflow/pipelines/issues/6100. Please downgrade gcloud or install kpt separately https://github.com/GoogleContainerTools/kpt/releases/tag/v0.39.2 for now.
+
 1. [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
     **Note:** Starting from Kubeflow v1.2, we fixed the compatibility problem with Kustomize `v3.2.1+`, so you can now install any Kustomize `v3+`, including the latest Kustomize versions.

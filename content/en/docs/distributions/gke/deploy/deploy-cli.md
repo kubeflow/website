@@ -45,6 +45,8 @@ Before installing Kubeflow on the command line:
 
     kubectl `v1.18.19` works best with Kubeflow 1.3, you can install specific version by following instruction, for example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). But latest patch version of kubectl from `v1.17` to `v1.19` works well too.
 
+    Note: `kpt v1.0.0-beta.1` or above doesn't work due to a known issue: https://github.com/kubeflow/pipelines/issues/6100. Please downgrade gcloud or install kpt separately https://github.com/GoogleContainerTools/kpt/releases/tag/v0.39.2 for now.
+
 1. Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
     **Note:** Prior to Kubeflow v1.2, Kubeflow was compatible only with Kustomize `v3.2.1`. Starting from Kubeflow v1.2, you can now use any `v3` Kustomize version to install Kubeflow. Kustomize `v4` is not supported out of the box yet. [Official Version](https://github.com/kubeflow/manifests/tree/master#prerequisites)
