@@ -137,7 +137,8 @@ These are the fields in the experiment configuration spec:
 
   Katib dynamically supports any kind of
   [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
-  By default, you can use one of the following job types to train your model:
+  In Katib [examples](https://github.com/kubeflow/katib/tree/master/examples/v1beta1),
+  you can find the following job types to train your model:
 
   - [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 
@@ -147,7 +148,11 @@ These are the fields in the experiment configuration spec:
 
   - [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
-  - [Tekton `Pipeline`](https://github.com/tektoncd/pipeline)
+  - [Kubeflow `XGBoostJob`](https://github.com/kubeflow/xgboost-operator)
+
+  - [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
+
+  - [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
 
   Refer to the
   [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
@@ -449,7 +454,6 @@ framework for its Sobol's quasirandom search.
 The [Sobol's quasirandom sequence](https://dl.acm.org/doi/10.1145/641876.641879)
 is a low-discrepancy sequence. And it is known that Sobol's quasirandom sequence can
 provide better uniformity properties.
-
 
 <a id="enas"></a>
 
