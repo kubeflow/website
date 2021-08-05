@@ -96,6 +96,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Remove Kubeflow installation on existing EKS cluster
 /docs/aws/deploy/existing-cluster/             /docs/distributions/aws/deploy/install-kubeflow/
 
+# Remove examples docs
+/docs/examples/*                                /docs/started/kubeflow-examples
+
 # Move the kustomize guide to the config section
 /docs/components/misc/kustomize/              /docs/distributions/kfctl/kustomize/
 
