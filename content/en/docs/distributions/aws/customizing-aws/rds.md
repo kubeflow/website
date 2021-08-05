@@ -23,9 +23,7 @@ export AWS_CLUSTER_NAME=<your_cluster_name>
 # Retrieve your VpcId
 aws ec2 describe-vpcs \
     --filters Name=tag:alpha.eksctl.io/cluster-name,Values=$AWS_CLUSTER_NAME \
-    | jq -r '.Vpcs[].VpcIdaws ec2 describe-vpcs \
-    --filters Name=tag:alpha.eksctl.io/cluster-name,Values=$AWS_CLUSTER_NAME \
-    | jq -r '.Vpcs[].VpcId''
+    | jq -r '.Vpcs[].VpcId'
 
 # Retrieve the list of SubnetId's of your cluster's Private subnets, select at least two
 aws ec2 describe-subnets \
