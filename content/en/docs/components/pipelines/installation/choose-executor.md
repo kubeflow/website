@@ -14,7 +14,10 @@ Kubeflow Pipelines runs on [Argo Workflows](https://argoproj.github.io/workflows
    are running Kubeflow Pipelines in a production cluster or you maintain production
    pipelines that you don't want to break or migrate.
 
-   If yes, use [docker executor](#docker-executor) and configure your Kubernetes nodes to use docker runtime.
+   If yes, for now, use [docker executor](#docker-executor) and configure your Kubernetes nodes to use docker container runtime.
+
+   However, Kubernetes is deprecating docker as a container runtime, so recommend
+   starting to try out emissary and prepare for a migration when it's stable.
 
 1. For everyone else, we recommend trying out the new [emissary executor](#emissary-executor).
 
@@ -195,26 +198,3 @@ executor without modifications.
 * [Argo Workflow Executors documentation](https://argoproj.github.io/argo-workflows/workflow-executors/)
 * KFP docker executor doesn't support Kubernetes 1.19 or above [kubeflow/pipelines#5714](https://github.com/kubeflow/pipelines/issues/5714)
 * feature request - default to emissary executor [kubeflow/pipelines#5718](https://github.com/kubeflow/pipelines/issues/5718)
-
-<!--
-1. TL; DR, recommend emissary, use docker if stable is important
-1. Choosing the workflow executor is an important decision you need to make, because there's no one single executor we can recommend as default.
-1. find out current executor
-1. docker executor
-    * link to GKE configuration for using docker container runtime, required by docker executor
-1. emissary executor
-    * how to migrate to emissary executor
-        * requirements: upgrade to KFP 1.7.0-rc.3+, because emissary is new.
-        * how to configure
-            * in kfp standalone
-            * in ai platform pipelines
-            * after installation
-        * how to migrate components and pipelines to emissary
-    * other known caveats about emissary
-1. refer to argo doc for full details: <https://argoproj.github.io/argo-workflows/workflow-executors/>
-
-Separate doc/issues:
-
-1. instructions for installing KFP emissary in GKE autopilot
-1. Add FAQ pointing to this documentation
--->
