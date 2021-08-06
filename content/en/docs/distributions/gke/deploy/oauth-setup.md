@@ -5,6 +5,8 @@ weight = 3
                     
 +++
 
+## Set up OAuth Consent Screen and Client Credential
+
 If you want to use 
 [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/) 
 when deploying Kubeflow on Google Cloud,

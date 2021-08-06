@@ -4,13 +4,18 @@ description = "Creating a Google Cloud project for your Kubeflow deployment"
 weight = 2
 +++
 
+In order to create GKE cluster and deploy Kubeflow on it, you need to set up a Google Cloud project
+and enable necessary APIs for the deployment.
+
+## Set up project and API scopes
+
 Follow these steps to set up your Google Cloud project:
 
-1. Select or create a project on the 
+*  Select or create a project on the 
   [Google Cloud Console](https://console.cloud.google.com/cloud-resource-manager). If you plan to use different Google Cloud projects for __Management Cluster__ and __Kubeflow Clusters__: create __one Management project__ for Management Cluster, and create __one or more Kubeflow projects__ for Kubeflow Clusters.
 
 
-1. Make sure that you have the 
+*  Make sure that you have the 
   [Owner role](https://cloud.google.com/iam/docs/understanding-roles#primitive_role_definitions)
   for the project in Cloud IAM (Identity and Access Management).
   The deployment process creates various service accounts with
@@ -18,10 +23,10 @@ Follow these steps to set up your Google Cloud project:
   Google Cloud services. This process requires that you have the 
   owner role for the project in order to deploy Kubeflow.
 
-1. Make sure that billing is enabled for your project. Refer to
+*  Make sure that billing is enabled for your project. Refer to
   [Enable billing for a project](https://cloud.google.com/billing/docs/how-to/modify-project).
 
-1. Open following pages on the Google Cloud Console and ensure that the 
+*  Open following pages on the Google Cloud Console and ensure that the 
   specified APIs are enabled for all projects:
 
     * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
@@ -51,7 +56,7 @@ Follow these steps to set up your Google Cloud project:
     # gcloud services enable cloudbuild.googleapis.com
     ```
 
-1. If you are using the
+*  If you are using the
   [Google Cloud Free Program](https://cloud.google.com/free/docs/gcp-free-tier) or the
   12-month trial period with $300 credit, note that the free tier does not offer enough
   resources for default full Kubeflow installation. You need to 
@@ -69,7 +74,7 @@ Follow these steps to set up your Google Cloud project:
     to learn how to check and increase your quotas.
 
   
-1. Initialize your project to prepare it for Anthos Service Mesh installation:
+*  Initialize your project to prepare it for Anthos Service Mesh installation:
 
     ```bash
     PROJECT_ID=<YOUR_PROJECT_ID>

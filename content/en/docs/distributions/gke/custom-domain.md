@@ -2,10 +2,7 @@
 title = "Using Your Own Domain"
 description = "Using a custom domain with Kubeflow on GKE"
 weight = 30
-                    
 +++
-
-## Before you start
 
 This guide assumes you have already set up Kubeflow on Google Cloud. If you haven't done
 so, follow the guide to

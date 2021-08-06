@@ -45,6 +45,8 @@ Before installing Kubeflow on the command line:
 
     kubectl `v1.18.19` works best with Kubeflow 1.3, you can install specific version by following instruction, for example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). But latest patch version of kubectl from `v1.17` to `v1.19` works well too.
 
+    Note: `kpt v1.0.0-beta.1` or above doesn't work due to a known issue: https://github.com/kubeflow/pipelines/issues/6100. Please downgrade gcloud or install kpt separately https://github.com/GoogleContainerTools/kpt/releases/tag/v0.39.2 for now.
+
 1. Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
     **Note:** Prior to Kubeflow v1.2, Kubeflow was compatible only with Kustomize `v3.2.1`. Starting from Kubeflow v1.2, you can now use any `v3` Kustomize version to install Kubeflow. Kustomize `v4` is not supported out of the box yet. [Official Version](https://github.com/kubeflow/manifests/tree/master#prerequisites)
@@ -94,17 +96,17 @@ Before installing Kubeflow on the command line:
 1. If you have already installed Management cluster, you have `kubeflow/gcp-blueprints` locally. You just need to run `cd kubeflow` to access Kubeflow cluster manifests. Otherwise, you can run the following commands:
 
     ```bash
-    # Check out Kubeflow v1.3.0 blueprints
+    # Check out Kubeflow v1.3.1 blueprints
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     cd gcp-blueprints
-    git checkout tags/v1.3.0 -b v1.3.0
+    git checkout tags/v1.3.1 -b v1.3.1
     ```
 
     Alternatively, you can get the package by using `kpt`:
 
     ```bash
-    # Check out Kubeflow v1.3.0 blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.0 gcp-blueprints
+    # Check out Kubeflow v1.3.1 blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.1 gcp-blueprints
     cd gcp-blueprints
     ```
 
