@@ -29,6 +29,10 @@ team only recommend choosing between docker executor and emissary executor.
 
 Docker executor is the **default** workflow executor.
 
+{{% alert title="Warning" color="warning" %}}
+Docker executor depends on docker container runtime, which will be deprecated on Kubernetes 1.20+.
+{{% /alert %}}
+
 * Container Runtime: docker only. However, [Kubernetes is deprecating Docker as a container runtime after v1.20](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/).
   On Google Kubernetes Engine (GKE) 1.19+, container runtime already defaults to containerd.
 * Reliability: most well-tested and most popular argo workflows executor
@@ -142,10 +146,11 @@ When in doubt, you can always deploy your Kubeflow Pipelines cluster first and
 configure workflow executor after installation using the instructions for
 existing clusters.
 
-##### Migrate pipeline components
+##### Migrate pipeline components to run on emissary executor
 
-`command` must be specified in [Kubeflow Pipelines component specification](https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/).
-This is only for component specification YAML.
+Some pipeline components require manual updates to run on emissary executor.
+For [Kubeflow Pipelines component specification](https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/) YAML,
+the `command` field must be specified.
 
 Step by step component migration tutorial:
 
@@ -188,12 +193,12 @@ Step by step component migration tutorial:
         command: ["/hello"]
     ```
 
-1. The updated component can be used on emissary executor now.
+1. The updated component can run on emissary executor now.
 
 Note: Kubeflow Pipelines SDK compiler always specifies a command for
-[Python function based components](https://www.kubeflow.org/docs/components/pipelines/sdk/python-function-components/).
-Therefore, python function based components will continue to work on emissary
-executor without modifications.
+[python function based components](https://www.kubeflow.org/docs/components/pipelines/sdk/python-function-components/).
+Therefore, these components will continue to work on emissary executor without
+modifications.
 
 ## References
 
