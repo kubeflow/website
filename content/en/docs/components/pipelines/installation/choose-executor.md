@@ -4,29 +4,30 @@ description = "How to choose and configure the Argo Workflow Executor?"
 weight = 40
 +++
 
-An Argo workflow executor is a process that conforms to a specific interface that allows Argo to perform certain actions like monitoring pod logs, collecting artifacts, managing container lifecycles, etc..
+An Argo workflow executor is a process that conforms to a specific interface that allows Argo to perform certain actions like monitoring pod logs, collecting artifacts, managing container lifecycles, etc.
 
 Kubeflow Pipelines runs on [Argo Workflows](https://argoproj.github.io/workflows/) as the workflow engine, so Kubeflow Pipelines users need to choose a workflow executor.
 
 ## Choosing the Workflow Executor
 
-1. Do you value stability and backward compatibility a lot? For example, you
+1. Some users may value stability and backward compatibility. For example, if you
    are running Kubeflow Pipelines in a production cluster or you maintain production
    pipelines that you don't want to break or migrate.
 
-   If yes, for now, use [docker executor](#docker-executor) and configure your Kubernetes nodes to use docker container runtime.
+   In this case, we recommend you use [docker executor](#docker-executor) and configure your Kubernetes nodes to use docker container runtime.
 
-   However, Kubernetes is deprecating docker as a container runtime, so recommend
+   However, Kubernetes is deprecating docker as a container runtime, so we recommend
    starting to try out emissary and prepare for a migration when it's stable.
 
-1. For everyone else, we recommend trying out the new [emissary executor](#emissary-executor).
+1. For users less concerned with stability and backwards compatibility, we
+   recommend trying out the new [emissary executor](#emissary-executor).
 
-Note, Argo Workflows support other workflow executors, but the Kubeflow Pipelines
+Note that Argo Workflows support other workflow executors, but the Kubeflow Pipelines
 team only recommend choosing between docker executor and emissary executor.
 
 ### Docker Executor
 
-Docker executor is the **default**.
+Docker executor is the **default** workflow executor.
 
 * Container Runtime: docker only. However, [Kubernetes is deprecating Docker as a container runtime after v1.20](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/).
   On Google Kubernetes Engine (GKE) 1.19+, container runtime already defaults to containerd.
@@ -56,14 +57,14 @@ you will always find error messages like:
 
 {{% alpha-status feedbacklink="https://github.com/kubeflow/pipelines/issues/6249" %}}
 
-Emissary executor is new. It's first released in Argo Workflows v3.1 (June 2021).
-However, the Kubeflow Pipelines team believe that its architectural, portability
+Emissary executor is a new workflow executor. It was first released in Argo Workflows v3.1 (June 2021).
+However, the Kubeflow Pipelines team believe that its architectural and portability
 improvements can make it the default executor that most people should use in the
 future.
 
 Therefore, the team makes a commitment to actively collect feedback and fix bugs
 for the emissary executor, so that we can stablize it faster. So far, Kubeflow
-Pipelines test infra has been running stably with the emissary executor.
+Pipelines test infrastructure has been running stably with the emissary executor.
 
 * Container Runtime: any
 * Reliability: not yet well-tested and not yet popular, but the Kubeflow Pipelines
@@ -79,6 +80,7 @@ Pipelines test infra has been running stably with the emissary executor.
 #### Migrate to Emissary Executor
 
 Prerequisite: emissary executor is only available in Kubeflow Pipelines backend version 1.7+.
+To upgrade, refer to [upgrading Kubeflow Pipelines](/docs/components/pipelines/upgrade/).
 
 ##### Configure an existing Kubeflow Pipelines cluster to use emissary executor
 
@@ -143,11 +145,11 @@ existing clusters.
 ##### Migrate pipeline components
 
 `command` must be specified in [Kubeflow Pipelines component specification](https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/).
-This is only for component spec YAML.
+This is only for component specification YAML.
 
-Example migration:
+Step by step component migration tutorial:
 
-1. I have a hello world component:
+1. There is a hello world component:
 
     ```yaml
     name: hello-world
@@ -156,7 +158,7 @@ Example migration:
         image: hello-world
     ```
 
-1. Normally, I can run the container without command/args:
+1. We can run the container without command/args:
 
     ```bash
     $ docker run hello-world
@@ -188,7 +190,7 @@ Example migration:
 
 1. The updated component can be used on emissary executor now.
 
-Note, Kubeflow Pipelines SDK compiler always specifies a command for
+Note: Kubeflow Pipelines SDK compiler always specifies a command for
 [Python function based components](https://www.kubeflow.org/docs/components/pipelines/sdk/python-function-components/).
 Therefore, python function based components will continue to work on emissary
 executor without modifications.
@@ -197,4 +199,4 @@ executor without modifications.
 
 * [Argo Workflow Executors documentation](https://argoproj.github.io/argo-workflows/workflow-executors/)
 * KFP docker executor doesn't support Kubernetes 1.19 or above [kubeflow/pipelines#5714](https://github.com/kubeflow/pipelines/issues/5714)
-* feature request - default to emissary executor [kubeflow/pipelines#5718](https://github.com/kubeflow/pipelines/issues/5718)
+* Feature request - default to emissary executor [kubeflow/pipelines#5718](https://github.com/kubeflow/pipelines/issues/5718)
