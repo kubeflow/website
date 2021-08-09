@@ -76,6 +76,14 @@ Packaged distributions are developed and supported by their respective maintaine
         <td></td>
       </tr>
       <tr>
+        <td>Kubeflow on Nutanix</td>
+        <td>Nutanix</td>
+        <td>Nutanix Karbon</td>
+        <td>1.3</td>
+        <td><a href="/docs/distributions/nutanix/">Docs</a></td>
+        <td></td>
+      </tr>
+      <tr>
         <td>Argoflow</td>
         <td>Argoflow Community</td>
         <td>Conformant Kubernetes</td>
