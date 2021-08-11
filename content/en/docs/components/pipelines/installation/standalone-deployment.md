@@ -97,6 +97,13 @@ See the Google Kubernetes Engine (GKE) guide to
 
      **Note**: `kubectl apply -k` accepts local paths and paths that are formatted as [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, the paths are not valid URLs.
 
+     {{% alert title="Deprecation Notice" color="warning" %}}
+Kubeflow Pipelines default to the docker executor, but docker executor will be
+deprecated on Kubernetes 1.20+.
+To prepare for the deprecation, refer to [Argo Workflow Executors](/docs/components/pipelines/installation/choose-executor)
+for migration instructions.
+     {{% /alert %}}
+
 1. Get the public URL for the Kubeflow Pipelines UI and use it to access the Kubeflow Pipelines UI:
 
      ```
