@@ -94,7 +94,7 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
 
   - `configMap` - Kubernetes ConfigMap specification where the experiment's
     trial template is located. This ConfigMap must have the label
-    `app: katib-trial-templates` and contains key-value pairs, where
+    `katib.kubeflow.org/component: trial-templates` and contains key-value pairs, where
     `key: <template-name>, value: <template-yaml>`. Check the example of the
     [ConfigMap with trial templates](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/controller/trial-templates.yaml).
 
