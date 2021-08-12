@@ -99,7 +99,7 @@ def kfpipeline():
         outputs=['model', 'test_set'])
 
     # deploy our model as a serverless function, we can pass a list of models to serve 
-    deploy = mlrun.import_function('hub://sklearn_classifier').deploy_step(
+    deploy = mlrun.import_function('hub://v2_model_server').deploy_step(
         models=[{"key": "mymodel:v1", "model_path": train.outputs['model']}])
     
     # test out new model server (via REST API calls)
