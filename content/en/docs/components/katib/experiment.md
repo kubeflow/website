@@ -219,6 +219,7 @@ Here's a list of the search algorithms available in Katib:
 - [Bayesian optimization](#bayesian)
 - [Hyperband](#hyperband)
 - [Tree of Parzen Estimators (TPE)](#tpe-search)
+- [Multivariate TPE](#multivariate-tpe-search)
 - [Covariance Matrix Adaptation Evolution Strategy (CMA-ES)](#cmaes)
 - [Sobol's Quasirandom Sequence](#sobol)
 - [Neural Architecture Search based on ENAS](#enas)
@@ -259,7 +260,9 @@ use when combinatorial exploration is not possible. If the number of continuous
 variables is high, you should use quasi random sampling instead.
 
 Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/),
-[Goptuna](https://github.com/c-bata/goptuna) or [Chocolate](https://chocolate.readthedocs.io) optimization
+[Goptuna](https://github.com/c-bata/goptuna),
+[Chocolate](https://chocolate.readthedocs.io) or
+[Optuna](https://github.com/optuna/optuna) optimization
 framework for its random search.
 
 Katib supports the following algorithm settings:
@@ -389,12 +392,27 @@ Hyperband also focuses on the speed of the search.
 
 The algorithm name in Katib is `tpe`.
 
-Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/) or
-[Goptuna](https://github.com/c-bata/goptuna) optimization
+Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/),
+[Goptuna](https://github.com/c-bata/goptuna) or
+[Optuna](https://github.com/optuna/optuna) optimization
 framework for its TPE search.
 
 This method provides a [forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
 search.
+
+<a id="multivariate-tpe-search"></a>
+
+#### Multivariate TPE
+
+The algorithm name in Katib is `multivariate-tpe`.
+
+Katib uses the [Optuna](http://hyperopt.github.io/hyperopt/) or
+[Goptuna](https://github.com/c-bata/goptuna) optimization
+framework for its Multivariate TPE search.
+
+[Multivariate TPE](https://tech.preferred.jp/en/blog/multivariate-tpe-makes-optuna-even-more-powerful/)
+is improved version of independent (default) version of TPE. This method finds
+dependencies among hyperparameters in search space.
 
 <a id="cmaes"></a>
 
@@ -402,7 +420,8 @@ search.
 
 The algorithm name in Katib is `cmaes`.
 
-Katib uses the [Goptuna](https://github.com/c-bata/goptuna) optimization
+Katib uses the [Goptuna](https://github.com/c-bata/goptuna) or
+[Optuna](https://github.com/optuna/optuna) optimization
 framework for its CMA-ES search.
 
 The [Covariance Matrix Adaptation Evolution Strategy](https://en.wikipedia.org/wiki/CMA-ES)
