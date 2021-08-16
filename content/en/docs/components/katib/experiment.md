@@ -411,7 +411,7 @@ Katib uses the [Optuna](http://hyperopt.github.io/hyperopt/) or
 framework for its Multivariate TPE search.
 
 [Multivariate TPE](https://tech.preferred.jp/en/blog/multivariate-tpe-makes-optuna-even-more-powerful/)
-is improved version of independent (default) version of TPE. This method finds
+is improved version of independent (default) TPE. This method finds
 dependencies among hyperparameters in search space.
 
 <a id="cmaes"></a>
