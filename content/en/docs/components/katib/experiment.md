@@ -480,7 +480,7 @@ Katib supports the following algorithm settings:
         <td>n_startup_trials</td>
         <td>[int]: Number of initial Trials for which the random algorithm generates
         hyperparameters.</td>
-        <td>0.25</td>
+        <td>5</td>
       </tr>
     </tbody>
   </table>
