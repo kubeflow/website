@@ -68,6 +68,14 @@ Packaged distributions are developed and supported by their respective maintaine
         <td></td>
       </tr>
       <tr>
+        <td>Kubeflow on Nutanix</td>
+        <td>Nutanix</td>
+        <td>Nutanix Karbon</td>
+        <td>1.3</td>
+        <td><a href="/docs/distributions/nutanix/">Docs</a></td>
+        <td></td>
+      </tr>
+      <tr>
         <td>Kubeflow on OpenShift</td>
         <td>IBM Cloud</td>
         <td>OpenShift</td>
