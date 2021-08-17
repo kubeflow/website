@@ -194,8 +194,13 @@ any other settings, a default value is set automatically.
          </tr>
          <tr>
            <td><code>suggestion-goptuna</code></td>
-           <td><code>cmaes</code>, <code>random</code>, <code>tpe</code></td>
+           <td><code>cmaes</code>, <code>random</code>, <code>tpe</code>, <code>sobol</code></td>
            <td><a href="https://github.com/c-bata/goptuna">Goptuna</a> optimization framework</td>
+         </tr>
+         <tr>
+           <td><code>suggestion-optuna</code></td>
+           <td><code>multivariate-tpe</code>, <code>tpe</code>, <code>cmaes</code>, <code>random</code></td>
+           <td><a href="https://github.com/optuna/optuna">Optuna</a> optimization framework</td>
          </tr>
          <tr>
            <td><code>suggestion-hyperband</code></td>
