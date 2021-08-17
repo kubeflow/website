@@ -400,19 +400,91 @@ framework for its TPE search.
 This method provides a [forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
 search.
 
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>n_EI_candidates</td>
+        <td>[int]: Number of candidate samples used to calculate the expected improvement.</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>random_state</td>
+        <td>[int]: Set <code>random_state</code> to something other than None
+          for reproducible results.</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>gamma</td>
+        <td>[float]: The threshold to split between l(x) and g(x), check equation 2 in
+        <a href="https://papers.nips.cc/paper/2011/file/86e8f7ab32cfd12577bc2619bc635690-Paper.pdf">
+        this Paper</a>. Value must be in (0, 1) range.</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>prior_weight</td>
+        <td>[float]: Smoothing factor for counts, to avoid having 0 probability.
+        Value must be > 0.</td>
+        <td>1.1</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <a id="multivariate-tpe-search"></a>
 
 #### Multivariate TPE
 
 The algorithm name in Katib is `multivariate-tpe`.
 
-Katib uses the [Optuna](http://hyperopt.github.io/hyperopt/) or
-[Goptuna](https://github.com/c-bata/goptuna) optimization
+Katib uses the [Optuna](http://hyperopt.github.io/hyperopt/) optimization
 framework for its Multivariate TPE search.
 
 [Multivariate TPE](https://tech.preferred.jp/en/blog/multivariate-tpe-makes-optuna-even-more-powerful/)
 is improved version of independent (default) TPE. This method finds
 dependencies among hyperparameters in search space.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>n_ei_candidates</td>
+        <td>[int]: Number of Trials used to calculate the expected improvement.</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>random_state</td>
+        <td>[int]: Set <code>random_state</code> to something other than None
+          for reproducible results.</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>n_startup_trials</td>
+        <td>[int]: Number of initial Trials for which the random algorithm generates
+        hyperparameters.</td>
+        <td>0.25</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <a id="cmaes"></a>
 
