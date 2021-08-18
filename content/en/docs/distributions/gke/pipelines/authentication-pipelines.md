@@ -38,7 +38,7 @@ Kubeflow Pipelines can authenticate to Google Cloud and manage resources in your
 Use one of the following options to create a GKE cluster that uses the Compute Engine default service account:
 
 * If you followed instructions in [Setting up AI Platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs/setting-up) and checked `Allow access to the following Cloud APIs`, your cluster is already using Compute Engine default service account.
-* In Google Cloud Console UI, you can enable it in `Create a Kubernetes cluster -> default-pool -> Security -> Accesss Scopes -> Allow full access to all Cloud APIs` like the following:
+* In Google Cloud Console UI, you can enable it in `Create a Kubernetes cluster -> default-pool -> Security -> Access Scopes -> Allow full access to all Cloud APIs` like the following:
 <img src="/docs/images/pipelines/gke-allow-full-access.png">
 * Using `gcloud` CLI, you can enable it with `--scopes cloud-platform` like the following:
 ```bash

@@ -97,7 +97,7 @@ This guide assumes the following convention:
   files. For example, `~/gcp-blueprints/management/`. You can choose any path
   you would like for the directory `${MGMT_DIR}`.
 
-  To continously manage the management cluster, you are recommended to check
+  To continuously manage the management cluster, you are recommended to check
   the management configuration directory into source control.
  * `${MGMT_NAME}` is the cluster name of your management cluster and the prefix for other Google Cloud resources created in the deployment process. Management cluster
    should be a different cluster from your Kubeflow cluster.

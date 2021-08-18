@@ -245,7 +245,7 @@ and uninstall your components.
 ### Maintain your manifests in source control
 
 After creating or customizing your deployment manifests, save your manifests
-to a local or remote source control respository.
+to a local or remote source control repository.
 For example, save the following `kustomization.yaml`:
 
 ```

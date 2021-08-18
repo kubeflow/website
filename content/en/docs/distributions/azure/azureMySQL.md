@@ -12,7 +12,7 @@ Microsoft [Azure Database for
 MySQL](https://docs.microsoft.com/en-us/azure/mysql) is a relational database
 service based on [MySQL](https://www.mysql.com/products/community/). It provides
 built-in high availability, data protection using automatic backups and
-point-in-time-restore for up to 35 days, and automated maintainance for
+point-in-time-restore for up to 35 days, and automated maintenance for
 underlying hardware, operating system and database engine to keep the service
 secure and up to date. [Learn more about Azure Database for
 MySQL](https://docs.microsoft.com/en-us/azure/mysql/overview).

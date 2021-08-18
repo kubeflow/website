@@ -18,7 +18,7 @@ live logs from the Model server pod.
 
 The web app's manifests are part of the upstream [KFServing
 manifests](https://github.com/kubeflow/kfserving/tree/master/config/web-app).
-This means that the neccessary resources will be deployed when installing
+This means that the necessary resources will be deployed when installing
 KFServing. KFServing manifests for the [0.6 release](https://github.com/kubeflow/kfserving/tree/release-0.6)
 come with two flavors, _standalone_ and _kubeflow_. The web app's
 manifests are part of both installation options.

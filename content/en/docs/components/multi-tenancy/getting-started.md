@@ -184,7 +184,7 @@ The following resources are created as part of the profile creation:
   - Namespace scoped resource quota limits will be placed.
 
 **Note**: Due to a one-to-one correspondence of profiles with Kubernetes
-namespaces, the terms *profile* and *namespace* are sometimes used interchangably in the
+namespaces, the terms *profile* and *namespace* are sometimes used interchangeably in the
 documentation.
 
 ### Batch creation of user profiles
