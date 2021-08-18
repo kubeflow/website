@@ -344,7 +344,7 @@ def merge_csv(file_path: comp.InputPath('Tarball'),
     in, the path to save the component specification to, and a list of PyPI
     packages that need to be installed in the container at runtime.
 
-[create_component_from_func]: (https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.create_component_from_func
+[create_component_from_func]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.create_component_from_func
 [container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp
 
 
