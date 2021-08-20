@@ -18,7 +18,7 @@ The way to add items shared by all users is described in this section.
 First, the cluster admin should deploy the application as a microservice in Kubernetes.
 The traffic to the app should be set as a VirtualService of Istio.
 
-Deploying with specific prefix and controling the traffic by it is an instant way.
+Deploying with specific prefix and controlling the traffic by it is an instant way.
 In this case, the new app can be accessed from the below URL.
 ```
 http(s)://gateway/_/myapp/
@@ -72,12 +72,12 @@ kubectl rollout restart deployment centraldashboard -n kubeflow
 ```
 
 You would see a new item (in this case, it is MyApp) on the menubar.
-By clicking that button, you can jump to `http(s)://gateway/_/myapp/` and access the thrid party app through the kubeflow dashboard.
+By clicking that button, you can jump to `http(s)://gateway/_/myapp/` and access the third party app through the kubeflow dashboard.
 
 ## Add namespaced items
 The way to split the resouce of additional apps is described in this section.
 
-Altough Kubeflow has the functions for multi tenancy, some third party apps can't interact with kubeflow profiles or don't support multi tenancy.
+Although Kubeflow has the functions for multi tenancy, some third party apps can't interact with kubeflow profiles or don't support multi tenancy.
 
 The universal way to handle this problem is deploying the app for each namespace.
 The cluster admin deploy the app for each namespace and URLs would be like below.

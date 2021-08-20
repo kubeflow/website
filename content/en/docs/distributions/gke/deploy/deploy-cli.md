@@ -130,7 +130,7 @@ Log in to gcloud. You only need to run this command once:
   ```
 
 
-1. Review and fill all the environment variables in `gcp-blueprints/kubeflow/env.sh`, they will be used by `kpt setter` later on, and some of them will be used in this deployment guide. Review the comment in `env.sh` for the explanation for each envrionment variable. After defining these environment variables, run:
+1. Review and fill all the environment variables in `gcp-blueprints/kubeflow/env.sh`, they will be used by `kpt setter` later on, and some of them will be used in this deployment guide. Review the comment in `env.sh` for the explanation for each environment variable. After defining these environment variables, run:
 
     ```bash
     source env.sh
@@ -145,7 +145,7 @@ Log in to gcloud. You only need to run this command once:
 
     {{% alert title="Note" %}}Do not omit the <b>export</b> because scripts triggered by <b>make</b> need these environment variables. {{% /alert %}}
 
-    {{% alert title="Note" %}}Do not check in these two envrionment variables configuration to source control, they are secrets.{{% /alert %}}
+    {{% alert title="Note" %}}Do not check in these two environment variables configuration to source control, they are secrets.{{% /alert %}}
    
 
 ### Configure Kubeflow
@@ -158,7 +158,7 @@ Run the following commands to configure kpt setter for your Kubeflow cluster:
   bash ./kpt-set.sh
   ```
 
-Everytime you change envrionment variables, make sure you run the command above to apply
+Everytime you change environment variables, make sure you run the command above to apply
 kpt setter change to all packages. Otherwise, kustomize build will not be able to pick up 
 new changes.
 
@@ -204,7 +204,7 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
     MGMT_PROJECT=<the project where you deploy your management cluster>
     ```
 
-1. Redirect to `managment` directory and configure kpt setter:
+1. Redirect to `management` directory and configure kpt setter:
 
    ```bash
    pushd "../management"

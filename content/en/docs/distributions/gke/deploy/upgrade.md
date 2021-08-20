@@ -56,7 +56,7 @@ Due to the refactoring of `kubeflow/manifests` repository, the way we depend on 
    kubectl get namespace
    ```
 
-   If you are using a different enviroment, you can always
+   If you are using a different environment, you can always
    reconfigure the context by:
 
    ```bash
@@ -123,7 +123,7 @@ Due to the refactoring of `kubeflow/manifests` repository, the way we depend on 
    kubectl get namespace
    ```
 
-   If you are using a different enviroment, you can always
+   If you are using a different environment, you can always
    reconfigure the context by:
 
    ```bash
@@ -313,7 +313,7 @@ Due to the refactoring of `kubeflow/manifests` repository, the way we depend on 
 
 ## Upgrade ASM (Anthos Service Mesh)
 
-If you want to upgrade ASM instead of the Kubeflow components, refer to [kubeflow/common/asm/Makefile](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/Makefile) for the latest instruction on upgrading ASM. Detailed explaination is also listed below. Note: If you are going to upgrade minor version or major version of ASM, it is best to read [official ASM upgrade documentation](https://cloud.google.com/service-mesh/docs/upgrade-path-old-versions-gke) first, before performing the steps below. Patch version upgrade can refer to steps below directly.
+If you want to upgrade ASM instead of the Kubeflow components, refer to [kubeflow/common/asm/Makefile](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/Makefile) for the latest instruction on upgrading ASM. Detailed explanation is also listed below. Note: If you are going to upgrade minor version or major version of ASM, it is best to read [official ASM upgrade documentation](https://cloud.google.com/service-mesh/docs/upgrade-path-old-versions-gke) first, before performing the steps below. Patch version upgrade can refer to steps below directly.
 
 ### Install new ASM workload
 
