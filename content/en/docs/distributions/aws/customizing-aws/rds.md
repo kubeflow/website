@@ -102,4 +102,4 @@ Modify the `${CONFIG_FILE}` file to add `external-mysql` in both pipeline and me
     kfctl apply -V -f ${CONFIG_FILE}
     ```
 
-Your pipeline and metadata will now using Amazon RDS. Review [troubleshooting section](../troubleshooting-aws/#amazon-rds-connectivity-issues) if you run into any issues.
+Your pipeline and metadata will now using Amazon RDS. Review [troubleshooting section](.../troubleshooting-aws/#amazon-rds-connectivity-issues) if you run into any issues.
