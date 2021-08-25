@@ -187,7 +187,7 @@ To deploy Kubeflow Pipelines standalone in namespace `<my-namespace>`:
 
 By default, the KFP standalone deployment installs an [inverting proxy agent](https://github.com/google/inverting-proxy) that exposes a public URL. If you want to skip the installation of the inverting proxy agent, complete the following:
 
-1. Comment out the proxy components in the base [kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/base/kustomization.yaml).
+1. Comment out the proxy components in the base `kustomization.yaml`. For example in [manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml) comment out `inverse-proxy`.
 
 1. Apply the changes to update the Kubeflow Pipelines deployment:
 
