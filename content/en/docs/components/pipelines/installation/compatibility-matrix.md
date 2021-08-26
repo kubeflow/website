@@ -6,14 +6,14 @@ weight = 50
 
 ## Kubeflow Pipelines Backend and TFX compatibility
 
-Pipelines written in any version of TFX will execute on any version of Kubeflow Pipelines backend. However, some UI features may not be functioning properly if the TFX and Kubeflow Pipelines Backend version is not compatible.
+Pipelines written in any version of TFX will execute on any version of KFP (Kubeflow Pipelines) backend. However, some UI features may not be functioning properly if the TFX and Kubeflow Pipelines Backend version is not compatible.
 
-| [TFX](https://github.com/tensorflow/tfx/releases) \ [Kubeflow Pipelines Backend](https://github.com/kubeflow/pipelines/releases) | <= 1.5 | >= 1.7 |
-|  ------  | ----  | ---- |
-| <= 0.28.0 | Fully Compatible  ✅ | Metadata UI not compatible |
-| 0.29.0, 0.30.0 | Visualizations not compatible | Metadata UI not compatible |
-| 1.0.0  | Metadata UI not compatible | Metadata UI not compatible |
-| >= 1.2.0  | Metadata UI not compatible | Fully Compatible  ✅ |
+| [TFX] \ [KFP Backend] | <= 1.5                        | >= 1.7                     |
+|  -------------------- | ----------------------------- | -------------------------- |
+| <= 0.28.0             | Fully Compatible  ✅          | Metadata UI not compatible |
+| 0.29.0, 0.30.0        | Visualizations not compatible | Metadata UI not compatible |
+| 1.0.0                 | Metadata UI not compatible    | Metadata UI not compatible |
+| >= 1.2.0              | Metadata UI not compatible    | Fully Compatible  ✅       |
 
 Detailed explanations:
 
@@ -27,3 +27,6 @@ Issues that caused the incompatibilities:
 	* https://github.com/kubeflow/pipelines/issues/6138#issuecomment-899917056
 * TFX 0.29.0 https://github.com/tensorflow/tfx/issues/3933
 -->
+
+[TFX]: https://github.com/tensorflow/tfx/releases
+[KFP Backend]: https://github.com/kubeflow/pipelines/releases
