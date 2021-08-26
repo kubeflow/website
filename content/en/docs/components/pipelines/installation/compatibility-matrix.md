@@ -6,9 +6,21 @@ weight = 50
 
 ## Kubeflow Pipelines Backend and TFX compatibility
 
-| Kubeflow Pipelines Backend & [TFX](https://www.tensorflow.org/tfx) Version | <=0.30.0 | 1.0.0 | 1.2.0 |
-|  ----  | ----  | ---- | --- |
-| <=1.6  | Compatible | Not fully compatible[1] | Not fully compatible[1]️ |
-| >=1.7  | Not fully compatible[1] | Not fully compatible[1] | Compatible |
+| [TFX](https://github.com/tensorflow/tfx/releases) \ [Kubeflow Pipelines Backend](https://github.com/kubeflow/pipelines/releases) | <= 1.5 | >= 1.7 |
+|  ------  | ----  | ---- |
+| <=0.28.0 | Compatible | Not fully compatible [1][2] |
+| 0.29.0, 0.30.0 | Not fully compatible [2] | Not fully compatible [1][2] |
+| 1.0.0  | Not fully compatible [1][2] | Not fully compatible [1][2] |
+| >=1.2.0  | Not fully compatible [1][2] | Compatible |
 
-[1] Kubeflow Pipelines UI integration with TFDV, TFMA visualizations and ML Metadata does not work properly. Because of [a bug in TFX 1.0.0](https://github.com/kubeflow/pipelines/issues/6138#issuecomment-899917056), TFX 1.0.0 does not work with any Kubeflow Pipelines backend versions. Besides UI integration, any version of TFX runs on Kubeflow Pipelines.
+[1] Kubeflow Pipelines UI and TFX recorded ML Metadata is not compatible. ML Metadata tab in pipeline run details page shows error message "Corresponding ML Metadata not found".
+
+[2] Kubeflow Pipelines UI and TFDV, TFMA visualizations is not compatible. Some visualizations either throw an error or do not show up in Visualizations tab.
+
+<!--
+Issues that caused the incompatibilities:
+* TFX 1.0.0+
+	* https://github.com/kubeflow/pipelines/issues/6138#issuecomment-898190223
+	* https://github.com/kubeflow/pipelines/issues/6138#issuecomment-899917056
+* TFX 0.29.0 https://github.com/tensorflow/tfx/issues/3933
+-->
