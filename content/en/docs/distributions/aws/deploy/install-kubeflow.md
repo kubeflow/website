@@ -187,6 +187,16 @@ The method of attaching required IAM policies to the EKS node instance role is s
 
 ## Deploy Kubeflow
 
+1. (Skip if your EKS nodes are not managed by AWS Fargate). If your EKS cluster is running on AWS Fargate, you will need to create a Fargate profile for your nodes.
+    ```
+    export AWS_FARGATE_POD_EXECUTION_ROLE=$(aws iam list-roles | jq -r '.Roles[] | select(.RoleName|contains("FargatePodExecutionRole")).Arn')
+    aws eks create-fargate-profile \
+            --fargate-profile-name kubeflow \
+            --cluster-name $AWS_CLUSTER_NAME \
+            --pod-execution-role-arn $AWS_FARGATE_POD_EXECUTION_ROLE \
+            --selectors namespace=kubeflow,namespace=istio-system,namespace=cert-manager
+    ```
+
 1. Run the following commands to initialize the Kubeflow cluster:
 
     ```
