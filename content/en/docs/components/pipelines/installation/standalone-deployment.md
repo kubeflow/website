@@ -112,6 +112,8 @@ for migration instructions.
 
 ## Upgrading Kubeflow Pipelines
 
+1. For release notices and breaking changes, refer to [Upgrading Kubeflow Pipelines](/docs/components/pipelines/upgrade).
+
 1. Check the [Kubeflow Pipelines GitHub repository](https://github.com/kubeflow/pipelines/releases) for available releases.
 
 1. To upgrade to Kubeflow Pipelines 0.4.0 and higher, use the following commands:
