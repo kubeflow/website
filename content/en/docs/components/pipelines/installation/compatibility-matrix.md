@@ -10,10 +10,10 @@ Pipelines written in any version of TFX will execute on any version of Kubeflow 
 
 | [TFX](https://github.com/tensorflow/tfx/releases) \ [Kubeflow Pipelines Backend](https://github.com/kubeflow/pipelines/releases) | <= 1.5 | >= 1.7 |
 |  ------  | ----  | ---- |
-| <=0.28.0 | Fully Compatible  ✅ | Metadata UI not compatible |
+| <= 0.28.0 | Fully Compatible  ✅ | Metadata UI not compatible |
 | 0.29.0, 0.30.0 | Visualizations not compatible | Metadata UI not compatible |
 | 1.0.0  | Metadata UI not compatible | Metadata UI not compatible |
-| >=1.2.0  | Metadata UI not compatible | Fully Compatible  ✅ |
+| >= 1.2.0  | Metadata UI not compatible | Fully Compatible  ✅ |
 
 Detailed explanations:
 
