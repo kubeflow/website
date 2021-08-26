@@ -9,7 +9,7 @@ weight = 50
 Pipelines written in any version of TFX will execute on any version of KFP (Kubeflow Pipelines) backend. However, some UI features may not be functioning properly if the TFX and Kubeflow Pipelines Backend version is not compatible.
 
 | [TFX] \ [KFP Backend] | <= 1.5                        | >= 1.7                     |
-|  -------------------- | ----------------------------- | -------------------------- |
+| --------------------- | ----------------------------- | -------------------------- |
 | <= 0.28.0             | Fully Compatible  ✅          | Metadata UI not compatible |
 | 0.29.0, 0.30.0        | Visualizations not compatible | Metadata UI not compatible |
 | 1.0.0                 | Metadata UI not compatible    | Metadata UI not compatible |
