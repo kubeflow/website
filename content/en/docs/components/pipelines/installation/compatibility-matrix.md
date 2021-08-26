@@ -1,6 +1,6 @@
 +++
 title = "Compatibility Matrix"
-description = "Kubeflow Pipelines compatibility matrix with related software"
+description = "Kubeflow Pipelines compatibility matrix with TFX"
 weight = 50
 +++
 
