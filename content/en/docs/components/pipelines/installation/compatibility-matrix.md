@@ -6,16 +6,16 @@ weight = 50
 
 ## Kubeflow Pipelines Backend and TFX compatibility
 
-Pipelines written in any version of TensorFlow Extended (TFX) will execute on any version of Kubeflow Pipelines (KFP) backend. However, some UI features may not be functioning properly if the TFX and Kubeflow Pipelines Backend versions are not compatible.
+Pipelines written in any version of [TensorFlow Extended (TFX)](https://www.tensorflow.org/tfx) will execute on any version of Kubeflow Pipelines (KFP) backend. However, some UI features may not be functioning properly if the TFX and Kubeflow Pipelines Backend versions are not compatible.
 
 The following table shows UI feature compatibility for TFX and Kubeflow Pipelines Backend versions:
 
-| [TFX] \ [KFP Backend] | [KFP Backend] <= 1.5          | [KFP Backend] >= 1.7       |
-| --------------------- | ----------------------------- | -------------------------- |
-| [TFX] <= 0.28.0       | Fully Compatible  ✅          | Metadata UI not compatible<sup>[2](#fn2)</sup> |
+| [TFX] \ [KFP Backend] | [KFP Backend] <= 1.5                              | [KFP Backend] >= 1.7                           |
+| --------------------- | ------------------------------------------------- | ---------------------------------------------- |
+| [TFX] <= 0.28.0       | Fully Compatible  ✅                              | Metadata UI not compatible<sup>[2](#fn2)</sup> |
 | [TFX] 0.29.0, 0.30.0  | Visualizations not compatible<sup>[1](#fn1)</sup> | Metadata UI not compatible<sup>[2](#fn2)</sup> |
 | [TFX] 1.0.0           | Metadata UI not compatible<sup>[2](#fn2)</sup>    | Metadata UI not compatible<sup>[2](#fn2)</sup> |
-| [TFX] >= 1.2.0        | Metadata UI not compatible<sup>[2](#fn2)</sup>    | Fully Compatible  ✅       |
+| [TFX] >= 1.2.0        | Metadata UI not compatible<sup>[2](#fn2)</sup>    | Fully Compatible  ✅                           |
 
 Detailed explanations:
 
