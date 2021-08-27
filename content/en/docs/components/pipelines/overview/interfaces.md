@@ -12,7 +12,7 @@ machine learning (ML) workflows with Kubeflow Pipelines.
 
 You can access the Kubeflow Pipelines UI by clicking **Pipeline Dashboard** on 
 the Kubeflow UI. The Kubeflow Pipelines UI looks like this:
-  <img src="/docs/images/pipelines-ui.png" 
+  <img src="/docs/images/pipelines/pipelines-ui.png" 
     alt="Pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
