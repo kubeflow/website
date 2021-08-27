@@ -16,9 +16,9 @@ mode](http://bit.ly/kfp-v2-compatible), or join the Kubeflow Pipelines community
 
 ## Before you begin
 
-1.  Install [Kubeflow Pipelines Standalone](/docs/components/pipelines/installation/standalone-deployment) 1.7.0-rc.3 or higher. Note, support for other distributions is under development, see [Current Caveats section](#current-caveats).
+1.  Install [Kubeflow Pipelines Standalone](/docs/components/pipelines/installation/standalone-deployment) 1.7.0 or higher. Note, support for other distributions is under development, see [Current Caveats section](#current-caveats).
 
-1.  Run the following command to install Kubeflow Pipelines SDK v1.6.6 or higher. If you run this command in a Jupyter notebook, restart the kernel after installing the SDK.
+1.  Run the following command to install Kubeflow Pipelines SDK v1.7.2 or higher. If you run this command in a Jupyter notebook, restart the kernel after installing the SDK.
     
     ```bash
     pip install kfp --upgrade
@@ -149,24 +149,10 @@ client.create_run_from_pipeline_func(
 
 ## Current Caveats
 
-Kubeflow Pipelines v2 compatible mode is currently in Beta stage. It is under active development and some features may not be complete. Here are some of the current caveats:
-
-* Pipelines do not run on [the full Kubeflow] distributions with Multi-User Kubeflow Pipelines. [#5680]
-* Pipelines using [v1 mlpipeline-ui-metadata visualization](/docs/components/pipelines/sdk/output-viewer/) do not compile. [#5666]
-* UI integration is work-in-progress, more improvements are planned in [v2 compatible mode github project].
-* Caching is work-in-progress. [#5667]
-* When consuming an input artifact by URI, its file content is still downloaded to the container regardless. [#5671]
-* Pipeline components fail on non-root container images with permission problems. [#5673]
+Kubeflow Pipelines v2 compatible mode is currently in Beta stage. It is under active development and some features may not be complete. To find out its current caveats, refer to [v2 compatible mode -- known caveats & breaking changes #6133](https://github.com/kubeflow/pipelines/issues/6133).
 
 [build-pipeline]: /docs/components/pipelines/sdk/v2/build-pipeline/
 [build-component]: /docs/components/pipelines/sdk/v2/component-development/
 [python-component]: /docs/components/pipelines/sdk/v2/python-function-components/
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
 [connect-api]: /docs/components/pipelines/sdk/connect-api/ 
-[the full Kubeflow]: /docs/components/pipelines/installation/overview/#full-kubeflow
-[v2 compatible mode github project]: https://github.com/kubeflow/pipelines/projects/13
-[#5680]: https://github.com/kubeflow/pipelines/issues/5680
-[#5666]: https://github.com/kubeflow/pipelines/issues/5666
-[#5671]: https://github.com/kubeflow/pipelines/issues/5671
-[#5673]: https://github.com/kubeflow/pipelines/issues/5673
-[#5667]: https://github.com/kubeflow/pipelines/issues/5667
