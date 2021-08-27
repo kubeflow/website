@@ -49,6 +49,7 @@
 /docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
 /docs/pipelines/sdk/build-component/           /docs/components/pipelines/sdk/build-pipeline/
 /docs/components/pipelines/sdk/build-component/    /docs/components/pipelines/sdk/build-pipeline/
+/docs/components/pipelines/upgrade/            /docs/components/pipelines/installation/upgrade/
 
 # Moved the guide to monitoring GKE deployments.
 /docs/other-guides/monitoring/                 /docs/distributions/gke/monitoring/
@@ -143,7 +144,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/started/workstation/minikf-aws                    /docs/distributions/minikf/minikf-aws
 /docs/started/workstation/minikf-gcp                    /docs/distributions/minikf/minikf-gcp
 
-# Distinguish components from external add-ons 
+# Distinguish components from external add-ons
 /docs/components/fairing                       /docs/external-add-ons/fairing
 /docs/components/istio                         /docs/external-add-ons/istio
 /docs/components/feature-store                 /docs/external-add-ons/feature-store
@@ -154,7 +155,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/started/getting-started           /docs/started/installing-kubeflow
 
 # ===============
-# IMPORTANT NOTE: 
+# IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
 # ===============
 /docs/guides/*                      /docs/:splat
