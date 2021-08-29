@@ -312,7 +312,7 @@ environments covered in this guide: kind, K3s, and K3ai.
 
 **Note**: Process Namespace Sharing (PNS) is not mature in Argo yet - for more
 information go to [Argo
-Executors](https://argoproj.github.io/argo/workflow-executors/) and reference
+Executors](https://argoproj.github.io/argo-workflows/workflow-executors/) and reference
 "pns executors" in any issue you may come across when using PNS.
 
 1. To deploy the Kubeflow Pipelines, run the following commands:
