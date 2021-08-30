@@ -53,7 +53,51 @@ because it requires authentication. Refer to distribution specific documentation
 
 ### Connect to Kubeflow Pipelines from the same cluster
 
-Note, this is not supported right now for multi-user Kubeflow Pipelines, refer to [Multi-User Isolation for Pipelines -- Current Limitations](/docs/components/pipelines/multi-user/#current-limitations).
+#### Multi-User mode
+
+Authentication uses ServiceAccountToken 
+[projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection) where token with limited lifetime, that can be verified by Kubeflow Pipelines API, is being injected into (e.g. Jupyter notebook's) Pod.
+
+In order to **access Kubeflow Pipeline from Jupyter notebook**, additional per namespace (profile) manifest is required:
+
+```yaml
+apiVersion: kubeflow.org/v1alpha1
+kind: PodDefault
+metadata:
+  name: access-ml-pipeline
+  namespace: "<YOUR_USER_PROFILE_NAMESPACE>"
+spec:
+  desc: Allow access to Kubeflow Pipelines
+  selector:
+    matchLabels:
+      access-ml-pipeline: "true"
+  volumes:
+    - name: volume-kf-pipeline-token
+      projected:
+        sources:
+          - serviceAccountToken:
+              path: token
+              expirationSeconds: 7200
+              audience: pipelines.kubeflow.org      
+  volumeMounts:
+    - mountPath: /var/run/secrets/kubeflow/pipelines
+      name: volume-kf-pipeline-token
+      readOnly: true
+  env:
+    - name: KF_PIPELINES_SA_TOKEN_PATH
+      value: /var/run/secrets/kubeflow/pipelines/token
+```
+
+After the manifest is applied, newly created Jupyter notebook contains additional option in section **configurations**.
+Read more about **configurations** on [Jupyter notebook server](/docs/components/notebooks/setup/#create-a-jupyter-notebook-server-and-add-a-notebook).
+
+Note, Kubeflow `kfp.Client` expects token either in `KF_PIPELINES_SA_TOKEN_PATH` environment variable or mounted to `/var/run/secrets/kubeflow/pipelines/token`. Do not change these values in the manifest. Similarly, `audience` should not be modified as well.
+
+If token is found, `kfp.Client` puts it in the `Authorization: Bearer <token>` header where Kubeflow Pipelines API can read it. No additional setup is required to refresh tokens.
+
+Setup is similar for other cases like e.g. **cron tasks or in-cluster CI/CD**: Configure your Pod with token in either `KF_PIPELINES_SA_TOKEN_PATH` or `/var/run/secrets/kubeflow/pipelines/token` and `kfp.Client` will gain access to Kubeflow Pipelines.
+
+#### Generic
 
 As mentioned above, the Kubeflow Pipelines API Kubernetes service is `ml-pipeline-ui`.
 
