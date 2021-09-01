@@ -27,18 +27,21 @@ You don't need to pass the authentication for MinIO
 #### GCS
 If you want to specify the `pipeline root` to GCS :
 
-#####Set up pipeline root authentication in pipeline level via sdk:
+* Set up pipeline root authentication in pipeline level via sdk:
 `dsl.get_pipeline_conf().add_op_transformer(aws.use_gcp_secret('xxx', ‘xxx’, ‘xxx’))`
-(references: [add-op-transformer](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineConf.add_op_transformer) and [use-gcp-secret](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.gcp.use_gcp_secret))
-#####Set up pipeline root authentication via service account key:
+
+* Set up pipeline root authentication via service account key:
 Check [authentication-pipelines](https://www.kubeflow.org/docs/distributions/gke/pipelines/authentication-pipelines/)
 
 #### S3
 If you want to specify the `pipeline root` to S3:
 
-#####  Set up pipeline root authentication in pipeline level via sdk
+* Set up pipeline root authentication in pipeline level via sdk:
 `dsl.get_pipeline_conf().add_op_transformer(aws.use_aws_secret('xxx', ‘xxx’, ‘xxx’))`
-(references: [add-op-transformer](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineConf.add_op_transformer) and [use-gcp-secret](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.aws.use_aws_secret))
+  
+**references**:
+* [add-op-transformer](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineConf.add_op_transformer)
+* [use-gcp-secret](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.aws.use_aws_secret))
 
 ## How to configure pipeline root
 
