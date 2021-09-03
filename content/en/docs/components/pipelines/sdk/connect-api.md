@@ -88,7 +88,7 @@ spec:
       value: /var/run/secrets/kubeflow/pipelines/token
 ```
 
-After the manifest is applied, newly created Jupyter notebook contains additional option in section **configurations**.
+After the manifest is deployed, newly created Jupyter notebook contains additional option (`Allow access to Kubeflow Pipelines`) in section **configurations**.
 Read more about **configurations** on [Jupyter notebook server](/docs/components/notebooks/setup/#create-a-jupyter-notebook-server-and-add-a-notebook).
 
 Note, Kubeflow `kfp.Client` expects token either in `KF_PIPELINES_SA_TOKEN_PATH` environment variable or mounted to `/var/run/secrets/kubeflow/pipelines/token`. Do not change these values in the manifest. Similarly, `audience` should not be modified as well.
