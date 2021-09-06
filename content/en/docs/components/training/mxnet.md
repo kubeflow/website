@@ -281,10 +281,7 @@ server-76no-0
 server-76no-1
 ```
 
-## Contributing
+## More Information
 
-Please refer to the [this document](./CONTRIBUTING.md) for contributing guidelines.
-
-## Community
-
-Please check out [Kubeflow community page](https://www.kubeflow.org/docs/about/community/) for more information on how to get involved in our community.
+- Check out [Kubeflow community page](https://www.kubeflow.org/docs/about/community/)
+  for more information on how to get involved in our community.
