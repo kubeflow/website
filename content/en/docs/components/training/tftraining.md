@@ -9,7 +9,7 @@ weight = 10
 
 This page describes `TFJob` for training a machine learning model with [TensorFlow](https://www.tensorflow.org/).
 
-## What is `TFJob`?
+## What is TFJob?
 
 `TFJob` is a Kubernetes
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) to run TensorFlow training jobs on Kubernetes. The Kubeflow
@@ -135,7 +135,7 @@ spec:
 If you are not familiar with Kubernetes resources please refer to the page [Understanding Kubernetes Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/).
 
 What makes `TFJob` different from built in [controllers](https://kubernetes.io/docs/concepts/workloads/controllers/) is the `TFJob` spec is designed to manage
-[distributed TensorFlow training jobs](https://www.tensorflow.org/deploy/distributed).
+[distributed TensorFlow training jobs](https://www.tensorflow.org/guide/distributed_training).
 
 A distributed TensorFlow job typically contains 0 or more of the following processes
 
@@ -209,15 +209,13 @@ consists of 3 fields
     of reasons (e.g. node becomes unhealthy) and this will prevent the job from
     recovering.
 
-## Quick start
-
-### Installing TensorFlow Operator
+## Installing TensorFlow Operator
 
 If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
 
 > By default, `TFJob` Operator will be deployed as a controller in training operator.
 
-## Verify that `TFJob` support is included in your Kubeflow deployment
+### Verify that TFJob support is included in your Kubeflow deployment
 
 Check that the TensorFlow custom resource is installed:
 
@@ -247,7 +245,7 @@ NAME                                READY   STATUS    RESTARTS   AGE
 training-operator-d466b46bc-xbqvs   1/1     Running   0          4m37s
 ```
 
-### Running the Mnist example
+## Running the Mnist example
 
 See the manifests for the [distributed MNIST example](https://github.com/kubeflow/tf-operator/blob/master/examples/tensorflow/simple.yaml). You may change the config file based on your requirements.
 
@@ -269,7 +267,7 @@ Delete it
 kubectl -n kubeflow delete tfjob tfjob-simple
 ```
 
-### Customizing the `TFJob`
+## Customizing the TFJob
 
 Typically you can change the following values in the `TFJob` yaml file:
 
