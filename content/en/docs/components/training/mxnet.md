@@ -5,9 +5,6 @@ weight = 25
                     
 +++
 
-{{% alpha-status 
-  feedbacklink="https://github.com/kubeflow/mxnet-operator/issues" %}}
-
 This guide walks you through using [Apache MXNet (incubating)](https://github.com/apache/incubator-mxnet) with Kubeflow.
 
 MXNet Operator provides a Kubernetes custom resource `MXJob` that makes it easy to run distributed or non-distributed
@@ -15,15 +12,14 @@ Apache MXNet jobs (training and tuning) and other extended framework like [ByteP
 jobs on Kubernetes. Using a Custom Resource Definition (CRD) gives users the ability to create
 and manage Apache MXNet jobs just like built-in K8S resources.
 
-## Installing the MXJob CRD and operator on your k8s cluster
+## Installing MXNet Operator
 
-### Deploy MXJob CRD and Apache MXNet Operator
+If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
 
-```
-kustomize build manifests/overlays/v1 | kubectl apply -f -
-```
+> By default, MXNet Operator will be deployed as a controller in training operator.
 
-### Verify that MXJob CRD and Apache MXNet Operator are installed
+
+### Verify that MXJob Support is included in your Kubeflow Deployment
 
 Check that the Apache MXNet custom resource is installed via:
 
@@ -46,11 +42,11 @@ Check that the Apache MXNet operator is running via:
 kubectl get pods
 ```
 
-The output should include `mxnet-operaror-xxx` like the following:
+The output should include `training-operaror-xxx` like the following:
 
 ```
-NAME                             READY   STATUS    RESTARTS   AGE
-mxnet-operator-d466b46bc-xbqvs   1/1     Running   0          4m37s
+NAME                                READY   STATUS    RESTARTS   AGE
+training-operator-d466b46bc-xbqvs   1/1     Running   0          4m37s
 ```
 
 ### Creating a Apache MXNet training job
@@ -106,7 +102,7 @@ should be created for each replica.
 You can create a auto tuning job by define a type of MXTune job and then creating it with
 
 ```
-kubectl create -f examples/tune/mx_job_tune_gpu_v1.yaml
+kubectl create -f examples/mxnet/tune/mx_job_tune_gpu_v1.yaml
 ```
 
 Before you use the auto-tuning example, there is some preparatory work need to be finished in advance.
@@ -154,7 +150,8 @@ metadata:
   selfLink: /apis/kubeflow.org/v1/namespaces/default/mxjobs/mxnet-job
   uid: xx11013b-4a28-11e9-s5a1-704d7bb912f91
 spec:
-  cleanPodPolicy: All
+  runPolicy:
+    cleanPodPolicy: All
   jobMode: MXTrain
   mxReplicaSpecs:
     Scheduler:
