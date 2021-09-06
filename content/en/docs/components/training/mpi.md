@@ -1,11 +1,11 @@
 +++
-title = "MPI Training"
+title = "MPI Training (MPIJob)"
 description = "Instructions for using MPI for training"
-weight = 25
+weight = 30
                     
 +++
 
-{{% alpha-status 
+{{% alpha-status
   feedbacklink="https://github.com/kubeflow/mpi-operator/issues" %}}
 
 This guide walks you through using MPI for training.
