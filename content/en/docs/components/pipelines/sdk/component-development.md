@@ -459,9 +459,13 @@ in the following ways to ensure that it is valid and Pythonic.
     example, an input named `Input 1` is converted to `input_1`. 
 
 The following example demonstrates how to load the text of your component
-specification and run it in a single-step pipeline. Before you run this
+specification and run it in a two-step pipeline. Before you run this
 example, update the component specification to use the component
-specification you defined in the previous sections.
+specification you defined in the previous sections. 
+
+To demonstrate data passing between components, we create another component
+that simply uses bash commands to write some text value to an output file. 
+And the output file can be passed to our previous component as an input.
 
 ```python
 import kfp
@@ -472,11 +476,11 @@ name: Get Lines
 description: Gets the specified number of lines from the input file.
 
 inputs:
-- {name: Input 1, type: String, description: 'Data for input 1'}
+- {name: Input 1, type: Data, description: 'Data for input 1'}
 - {name: Parameter 1, type: Integer, default: '100', description: 'Number of lines to copy'}
 
 outputs:
-- {name: Output 1, type: String, description: 'Output 1 data.'}
+- {name: Output 1, type: Data, description: 'Output 1 data.'}
 
 implementation:
   container:
@@ -505,11 +509,40 @@ implementation:
 # You can also get help by entering `help(get_lines_op)`, `get_lines_op?`,
 # or `get_lines_op??`.
 
+# Create a simple component using only bash commands. The output of this component
+# can be passed to a downstream component that accepts an input with the same type.
+create_step_write_lines = comp.load_component_from_text("""
+name: Write Lines
+description: Writes text to a file.
+
+inputs:
+- {name: text, type: String}
+
+outputs:
+- {name: data, type: Data}
+
+implementation:
+  container:
+    image: busybox
+    command:
+    - sh
+    - -c
+    - |
+      mkdir -p "$(dirname "$1")"
+      echo "$0" > "$1"
+    args:
+    - {inputValue: text}
+    - {outputPath: data}
+""")
+
 # Define your pipeline 
 def my_pipeline():
+    write_lines_step = create_step_write_lines(
+        text='one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten')
+
     get_lines_step = create_step_get_lines(
         # Input name "Input 1" is converted to pythonic parameter name "input_1"
-        input_1='one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten',
+        input_1=write_lines_step.outputs['data'],
         parameter_1='5',
     )
 

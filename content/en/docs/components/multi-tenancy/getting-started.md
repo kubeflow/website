@@ -177,17 +177,14 @@ The following resources are created as part of the profile creation:
     role binding role binding for the namespace: *Admin*. This makes the
     profile owner the namespace administrator, thus giving them access to the
     namespace using kubectl (via the Kubernetes API).
-  - Istio namespace-scoped ServiceRole: *ns-access-istio*. This allows access to
-    all services in the target namespace via Istio routing.
-  - Istio namespace-scoped ServiceRoleBinding: *owner-binding-istio*. This binds
-    the ServiceRole *ns-access-istio* to the profile owner. The profile owner can
-    therefore access services in the namespace.
+  - Istio namespace-scoped AuthorizationPolicy: *user-userid-email-com-clusterrole-edit*.
+    This allows the `user` to access data beloging to the namespace the AuthorizationPolicy was created in 
   - Namespace-scoped service-accounts *default-editor* and *default-viewer* to be used by
     user-created pods in the namespace.
   - Namespace scoped resource quota limits will be placed.
 
 **Note**: Due to a one-to-one correspondence of profiles with Kubernetes
-namespaces, the terms *profile* and *namespace* are sometimes used interchangably in the
+namespaces, the terms *profile* and *namespace* are sometimes used interchangeably in the
 documentation.
 
 ### Batch creation of user profiles
@@ -308,7 +305,7 @@ metadata:
   name: user-userid-email-com-clusterrole-edit
   # Ex: if the user email is lalith.vaka@kp.org the name should be user-lalith-vaka-kp-org-clusterrole-edit
   # Note: if the user email is Lalith.Vaka@kp.org from your Active Directory, the name should be user-lalith-vaka-kp-org-clusterrole-edit
-  namespace: profileName # replace with the namespace/profile name that you are adding contribbitors to
+  namespace: profileName # replace with the namespace/profile name that you are adding contributors to
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -319,7 +316,7 @@ subjects:
   name: userid@email.com   # replace with the email of the user from your Active Directory case sensitive
 ```
 
-Create a authorizationpolicy.yaml file with the following content on your local machine:
+Create an authorizationpolicy.yaml file with the following content on your local machine:
 
 ```
 apiVersion: security.istio.io/v1beta1
@@ -327,21 +324,16 @@ kind: AuthorizationPolicy
 metadata:
   annotations:
     role: edit
-    user: userid@email.com   # replace with the email of the user from your Active Directory case sensitive
-  generation: 1
+    user: userid@email.com # replace with the email of the user from your Active Directory case sensitive
   name: user-userid-email-com-clusterrole-edit
-  # Ex: if the user email is lalith.vaka@kp.org the name should be user-lalith-vaka-kp-org-clusterrole-edit
-  # Note: if the user email is Lalith.Vaka@kp.org from your Active Directory, the name should be user-lalith-vaka-kp-org-clusterrole-edit
-  namespace: profileName # replace with the namespace/profile name that you are adding contribbitors to
+  namespace: profileName # replace with the namespace/profile name that you are adding contributors to
 spec:
   action: ALLOW
   rules:
   - when:
-    - key: request.headers[kubeflow-userid]
+    - key: request.headers[kubeflow-userid] # for GCP, use x-goog-authenticated-user-email instead of kubeflow-userid for authentication purpose
       values:
       - accounts.google.com:userid@email.com   # replace with the email of the user from your Active Directory case sensitive
-      # for GCP, use x-goog-authenticated-user-email instead of kubeflow-userid for authentication purpose
-status: {}
 ```
 
 Run the following command to create the corresponding contributor resources:

@@ -26,46 +26,77 @@ To install Katib as part of Kubeflow, follow the
 [Kubeflow installation guide](/docs/started/getting-started/).
 
 If you want to install Katib separately from Kubeflow, or to get a later version
-of Katib, run the following commands to install Katib directly from its
-repository on GitHub and deploy Katib to your cluster:
+of Katib, you can use various Katib installs. Run the following command to clone
+Katib repository:
 
 ```shell
 git clone https://github.com/kubeflow/katib
-make deploy
+cd katib
 ```
 
-**Note:** You should have [kustomize](https://kustomize.io/) version >= 3.2 to
-install Katib.
+You can use one of the following Katib installations.
 
-### Setting up persistent volumes
+1. **Katib Standalone Installation**
 
-If you used the [above-mentioned script](#katib-install) to deploy Katib,
-you can skip this step. This script deploys
+   Run the following command to deploy Katib with the main components
+   (`katib-controller`, `katib-ui`, `katib-mysql`, `katib-db-manager`, and `katib-cert-generator`):
+
+   ```shell
+   make deploy
+   ```
+
+   This installation doesn't require any additional setup on your Kubernetes cluster.
+
+2. **Katib Cert Manager Installation**
+
+   Run the following command to deploy Katib with
+   [Cert Manager](https://cert-manager.io/docs/installation/kubernetes/) requirement:
+
+   ```shell
+   kustomize build manifests/v1beta1/installs/katib-cert-manager | kubectl apply -f -
+   ```
+
+   This installation uses Cert Manager instead of `katib-cert-generator`
+   to provision Katib webhooks certificates. You have to deploy Cert Manager on
+   your Kubernetes cluster before deploying Katib using this installation.
+
+3. **Katib External DB Installation**
+
+   Run the following command to deploy Katib with custom Database (DB) backend:
+
+   ```shell
+   kustomize build manifests/v1beta1/installs/katib-external-db | kubectl apply -f -
+   ```
+
+   This installation allows to use custom MySQL DB instead of `katib-mysql`.
+   You have to modify appropriate environment variables for `katib-db-manager` in the
+   [`secrets.env`](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/installs/katib-external-db/secrets.env)
+   to point at your custom MySQL DB. Learn more about `katib-db-manager`
+   environment variables in [this guide](https://www.kubeflow.org/docs/components/katib/env-variables/#katib-db-manager).
+
+4. **Katib on OpenShift**
+
+   Run the following command to deploy Katib on [OpenShift](https://docs.openshift.com/) v4.4+:
+
+   ```shell
+   kustomize build ./manifests/v1beta1/installs/katib-openshift | oc apply -f - -l type!=local
+   ```
+
+   This installation uses OpenShift service controller instead of `katib-cert-generator`
+   to provision Katib webhooks certificates.
+
+Above installations deploy
 [PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
-and
-[PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
-on your cluster.
+for the Katib DB component.
 
-You can skip this step if you're using Kubeflow on Google Kubernetes Engine
-(GKE) or if your Kubernetes cluster includes a StorageClass for dynamic volume
-provisioning. For more information, check the Kubernetes documentation on
-[dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
-and PV.
+Your Kubernetes cluster must have `StorageClass` for dynamic volume provisioning.
+For more information, check the Kubernetes documentation on
+[dynamic provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
-If you're using Katib outside GKE and your cluster doesn't include a
-StorageClass for dynamic volume provisioning, you must create a PV to bind to
-the PVC required by Katib.
-
-After deploying Katib to your cluster, run the following command to create the
-PV:
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/components/mysql/pv.yaml
-```
-
-The above `kubectl apply` command uses a YAML file -
-[`pv.yaml`](https://raw.githubusercontent.com/kubeflow/katib/master/manifests/v1beta1/components/mysql/pv.yaml) -
-that defines the properties of the PV.
+If your cluster doesn't have dynamic volume provisioning, you must manually
+deploy [PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
+to bind [PVC](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/mysql/pvc.yaml)
+for the Katib DB component.
 
 <a id="katib-ui"></a>
 

@@ -45,10 +45,12 @@ Before installing Kubeflow on the command line:
 
     kubectl `v1.18.19` works best with Kubeflow 1.3, you can install specific version by following instruction, for example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). But latest patch version of kubectl from `v1.17` to `v1.19` works well too.
 
+    Note: `kpt v1.0.0-beta.1` or above doesn't work due to a known issue: https://github.com/kubeflow/pipelines/issues/6100. Please downgrade gcloud or install kpt separately https://github.com/GoogleContainerTools/kpt/releases/tag/v0.39.2 for now.
+
 1. Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
-
-    **Note:** Prior to Kubeflow v1.2, Kubeflow was compatible only with Kustomize `v3.2.1`. Starting from Kubeflow v1.2, you can now use any `v3` Kustomize version to install Kubeflow. Kustomize `v4` is not supported out of the box yet. [Official Version](https://github.com/kubeflow/manifests/tree/master#prerequisites)
-
+    
+    Kustomize `v4.2.0` works with Kubeflow v1.3.x.
+    
     To deploy the latest version of Kustomize on a Linux or Mac machine, run the following commands:
 
     ```bash
@@ -94,17 +96,17 @@ Before installing Kubeflow on the command line:
 1. If you have already installed Management cluster, you have `kubeflow/gcp-blueprints` locally. You just need to run `cd kubeflow` to access Kubeflow cluster manifests. Otherwise, you can run the following commands:
 
     ```bash
-    # Check out Kubeflow v1.3.0 blueprints
+    # Check out Kubeflow v1.3.1 blueprints
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     cd gcp-blueprints
-    git checkout tags/v1.3.0 -b v1.3.0
+    git checkout tags/v1.3.1 -b v1.3.1
     ```
 
     Alternatively, you can get the package by using `kpt`:
 
     ```bash
-    # Check out Kubeflow v1.3.0 blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.0 gcp-blueprints
+    # Check out Kubeflow v1.3.1 blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.1 gcp-blueprints
     cd gcp-blueprints
     ```
 
@@ -128,7 +130,7 @@ Log in to gcloud. You only need to run this command once:
   ```
 
 
-1. Review and fill all the environment variables in `gcp-blueprints/kubeflow/env.sh`, they will be used by `kpt setter` later on, and some of them will be used in this deployment guide. Review the comment in `env.sh` for the explanation for each envrionment variable. After defining these environment variables, run:
+1. Review and fill all the environment variables in `gcp-blueprints/kubeflow/env.sh`, they will be used by `kpt setter` later on, and some of them will be used in this deployment guide. Review the comment in `env.sh` for the explanation for each environment variable. After defining these environment variables, run:
 
     ```bash
     source env.sh
@@ -143,7 +145,7 @@ Log in to gcloud. You only need to run this command once:
 
     {{% alert title="Note" %}}Do not omit the <b>export</b> because scripts triggered by <b>make</b> need these environment variables. {{% /alert %}}
 
-    {{% alert title="Note" %}}Do not check in these two envrionment variables configuration to source control, they are secrets.{{% /alert %}}
+    {{% alert title="Note" %}}Do not check in these two environment variables configuration to source control, they are secrets.{{% /alert %}}
    
 
 ### Configure Kubeflow
@@ -156,7 +158,7 @@ Run the following commands to configure kpt setter for your Kubeflow cluster:
   bash ./kpt-set.sh
   ```
 
-Everytime you change envrionment variables, make sure you run the command above to apply
+Everytime you change environment variables, make sure you run the command above to apply
 kpt setter change to all packages. Otherwise, kustomize build will not be able to pick up 
 new changes.
 
@@ -202,7 +204,7 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
     MGMT_PROJECT=<the project where you deploy your management cluster>
     ```
 
-1. Redirect to `managment` directory and configure kpt setter:
+1. Redirect to `management` directory and configure kpt setter:
 
    ```bash
    pushd "../management"

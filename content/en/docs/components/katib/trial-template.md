@@ -22,7 +22,11 @@ Katib has these CRD examples in upstream:
 
 - [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
-- [Tekton `Pipeline`](https://github.com/tektoncd/pipeline)
+- [Kubeflow `XGBoostJob`](https://github.com/kubeflow/xgboost-operator)
+
+- [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
+
+- [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
 
 To use your own Kubernetes resource follow the steps [below](#custom-resource).
 
@@ -44,9 +48,11 @@ For the API overview refer to the
 To define experiment's trial, you should specify these parameters in `.spec.trialTemplate`:
 
 - `trialParameters` - list of the parameters which are used in the trial template
-  during experiment execution. **Note:** Your trial template must contain
-  each parameter from the `trialParameters`. You can set these parameters in any
-  field of your template, except `.metadata.name` and `.metadata.namespace`.
+  during experiment execution.
+
+  **Note:** Your trial template must contain each parameter from the
+  `trialParameters`. You can set these parameters in any field of your template,
+  except `.metadata.name` and `.metadata.namespace`.
   Check [below](#template-metadata) how you can use trial `metadata` parameters
   in your template. For example, your training container can receive
   hyperparameters as command-line or arguments or as environment variables.
@@ -67,8 +73,9 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
     [`reference`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L39-L48).
 
 - You have to define your experiment's trial template in **one** of the `trialSpec`
-  or `configMap` sources. **Note:** Your template must omit `.metadata.name` and
-  `.metadata.namespace`.
+  or `configMap` sources.
+
+  **Note:** Your template must omit `.metadata.name` and `.metadata.namespace`.
 
   To set the parameters from the `trialParameters`, you need to use this
   expression: `${trialParameters.<parameter-name>}` in your template.
@@ -87,7 +94,7 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
 
   - `configMap` - Kubernetes ConfigMap specification where the experiment's
     trial template is located. This ConfigMap must have the label
-    `app: katib-trial-templates` and contains key-value pairs, where
+    `katib.kubeflow.org/component: trial-templates` and contains key-value pairs, where
     `key: <template-name>, value: <template-yaml>`. Check the example of the
     [ConfigMap with trial templates](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/controller/trial-templates.yaml).
 
@@ -115,9 +122,10 @@ If parameter has the default value, it can be **omitted** in the experiment YAML
 
 - `primaryPodLabels` - the
   [trial worker's](/docs/components/katib/overview/#worker-job) Pod or Pods
-  labels. These Pods are injected by Katib metrics collector. **Note:** If
-  `primaryPodLabels` is **omitted**, the metrics collector wraps all worker's
-  Pods. Learn more about Katib metrics collector in
+  labels. These Pods are injected by Katib metrics collector.
+
+  **Note:** If `primaryPodLabels` is **omitted**, the metrics collector wraps
+  all worker's Pods. Learn more about Katib metrics collector in
   [running an experiment guide](/docs/components/katib/experiment/#metrics-collector).
   Check the example with
   [`primaryPodLabels`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/mpijob-horovod.yaml#L29-L30).
@@ -223,14 +231,14 @@ Check the example of
 
 ## Use custom Kubernetes resource as a trial template
 
-By default, you can define your trial worker as Kubernetes `Job`,
-Kubeflow `TFJob`, Kubeflow `PyTorchJob`, Kubeflow `MPIJob` or Tekton `Pipeline`.
-
-**Note:** To use Tekton `Pipeline`, you need to modify Tekton installation
-to change [`nop`](https://github.com/tektoncd/pipeline/tree/master/cmd/nop) image.
-Follow the
-[Tekton integration guide](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
-to know more about it.
+In Katib examples you can find the following trial worker types:
+[Kubernetes `Job`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/random-example.yaml),
+[Kubeflow `TFJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/tfjob-example.yaml),
+[Kubeflow `PyTorchJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/pytorchjob-example.yaml),
+[Kubeflow `MPIJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/mpijob-horovod.yaml),
+[Kubeflow `XGBoostJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/xgboost-lightgbm.yaml),
+[Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton),
+and [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
 
 It is possible to use your own Kubernetes CRD or other Kubernetes resource
 (e.g. [Kubernetes `Deployment`](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/))
@@ -254,7 +262,7 @@ Follow these two simple steps to integrate your custom CRD in Katib:
    by the trial. To know more about ClusterRole, check
    [Kubernetes guide](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole).
 
-   In case of Tekton `Pipeline`, trial creates Tekton `PipelineRun`, then
+   In case of Tekton `Pipelines`, trial creates Tekton `PipelineRun`, then
    Tekton `PipelineRun` creates Tekton `TaskRun`. Therefore, Katib controller
    ClusterRole should have access to the `pipelineruns` and `taskruns`:
 
@@ -269,11 +277,11 @@ Follow these two simple steps to integrate your custom CRD in Katib:
    ```
 
 1. Modify Katib controller
-   [Deployment's `args`](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/controller/controller.yaml#L26)
+   [Deployment's `args`](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/controller/controller.yaml#L27)
    with the new flag:
    `--trial-resources=<object-kind>.<object-API-version>.<object-API-group>`.
 
-   For example, to support Tekton `Pipeline`:
+   For example, to support Tekton `Pipelines`:
 
    ```yaml
    - "--trial-resources=PipelineRun.v1beta1.tekton.dev"
@@ -282,17 +290,12 @@ Follow these two simple steps to integrate your custom CRD in Katib:
 After these changes, deploy Katib as described in the
 [getting started guide](/docs/components/katib/hyperparameter/#installing-katib)
 and wait until the `katib-controller` Pod is created.
-You can check logs from the Katib controller to check your resource integration:
+You can check logs from the Katib controller to verify your resource integration:
 
 ```shell
-kubectl logs $(kubectl get pods -n kubeflow -o name | grep katib-controller) -n kubeflow
-```
+$ kubectl logs $(kubectl get pods -n kubeflow -o name | grep katib-controller) -n kubeflow | grep '"CRD Kind":"PipelineRun"'
 
-Expected output for the Tekton `Pipeline`:
-
-```shell
-{"level":"info","ts":1604325430.9762623,"logger":"kubebuilder.controller","msg":"Starting EventSource","controller":"trial-controller","source":"kind source: tekton.dev/v1beta1, Kind=PipelineRun"}
-{"level":"info","ts":1604325430.9763885,"logger":"trial-controller","msg":"Job watch added successfully","CRD Group":"tekton.dev","CRD Version":"v1beta1","CRD Kind":"PipelineRun"}
+{"level":"info","ts":1628032648.6285546,"logger":"trial-controller","msg":"Job watch added successfully","CRD Group":"tekton.dev","CRD Version":"v1beta1","CRD Kind":"PipelineRun"}
 ```
 
 If you ran the above steps successfully, you should be able to use your custom

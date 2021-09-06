@@ -183,7 +183,7 @@ meetings to talk to maintainers about a specific topic. See the
 
 Keep up with Kubeflow news:
 
-* The [Kubeflow blog](https://medium.com/kubeflow) is the primary channel for
+* The [Kubeflow blog](https://blog.kubeflow.org/) is the primary channel for
   announcement of new releases, events, and technical walkthroughs.
 * Follow [Kubeflow on Twitter](https://twitter.com/kubeflow) for shared
   technical tips.
