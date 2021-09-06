@@ -7,15 +7,12 @@ weight = 15
 
 {{% stable-status %}}
 
-This guide walks you through using PyTorch with Kubeflow.
+This page describes PyTorchJob for training a machine learning model with PyTorch.
 
 ## Installing PyTorch Operator
 
 If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
 
-An **alpha** version of PyTorch support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow between 0.2.0 and 0.3.5 to use this version.
-
-More recently, a **beta** version of PyTorch support was introduced with Kubeflow 0.4.0. You must be using a version of Kubeflow newer than 0.4.0 to use this version.
 
 ## Verify that PyTorch support is included in your Kubeflow deployment
 
@@ -34,42 +31,34 @@ pytorchjobs.kubeflow.org                       4d
 ...
 ```
 
-If it is not included you can add it as follows
-
-```
-export KF_DIR=<your Kubeflow installation directory>
-cd ${KF_DIR}/kustomize
-kubectl apply -f pytorch-job-crds.yaml
-kubectl apply -f pytorch-operator.yaml
-```
 
 ## Creating a PyTorch Job
 
-You can create PyTorch Job by defining a PyTorchJob config file. See the manifests for the [distributed MNIST example](https://github.com/kubeflow/pytorch-operator/tree/master/examples/mnist). You may change the config file based on your requirements.
+You can create PyTorch Job by defining a PyTorchJob config file. See the manifests for the [distributed MNIST example](https://github.com/kubeflow/tf-operator/blob/master/examples/pytorch/simple.yaml). You may change the config file based on your requirements.
 
 ```
-cat pytorch_job_mnist.yaml
+cat simple.yaml
 ```
 Deploy the PyTorchJob resource to start training:
 
 ```
-kubectl create -f pytorch_job_mnist.yaml
+kubectl create -f simple.yaml
 ```
 You should now be able to see the created pods matching the specified number of replicas.
 
 ```
-kubectl get pods -l pytorch_job_name=pytorch-tcp-dist-mnist
+kubectl get pods -l job-name=pytorch-simple -n kubeflow
 ```
-Training should run for about 10 epochs and takes 5-10 minutes on a cpu cluster. Logs can be inspected to see its training progress.
+Training takes 5-10 minutes on a cpu cluster. Logs can be inspected to see its training progress.
 
 ```
-PODNAME=$(kubectl get pods -l pytorch_job_name=pytorch-tcp-dist-mnist,pytorch-replica-type=master,pytorch-replica-index=0 -o name)
-kubectl logs -f ${PODNAME}
+PODNAME=$(kubectl get pods -l job-name=pytorch-simple,replica-type=master,replica-index=0 -o name -n kubeflow)
+kubectl logs -f ${PODNAME} -n kubeflow
 ```
 ## Monitoring a PyTorch Job
 
 ```
-kubectl get -o yaml pytorchjobs pytorch-tcp-dist-mnist
+kubectl get -o yaml pytorchjobs pytorch-simple -n kubeflow
 ```
 See the status section to monitor the job status. Here is sample output when the job is successfully completed.
 

@@ -15,7 +15,7 @@ This page describes TFJob for training a machine learning model with TensorFlow.
 TFJob is a Kubernetes 
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) that you can use to run TensorFlow training jobs on Kubernetes. The Kubeflow
 implementation of TFJob is in
-[`tf-operator`](https://github.com/kubeflow/tf-operator).
+[`training-operator`](https://github.com/kubeflow/tf-operator).
 
 **Note**: TFJob doesn't work in a user namespace by default because of Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection). In order to get TFJob running, it needs annotation `sidecar.istio.io/inject: "false"` to disable it for TFJob pods.
 
@@ -213,19 +213,18 @@ consists of 3 fields
 **Note:** Before submitting a training job, you should have [deployed kubeflow to your cluster](https://www.kubeflow.org/docs/started/getting-started/#installing-kubeflow). Doing so ensures that
 the [`TFJob` custom resource](https://github.com/kubeflow/tf-operator) is available when you submit the training job.
 
-### Running the MNist example
+### Running the Mnist example
 
-Kubeflow ships with an [example](https://github.com/kubeflow/tf-operator/tree/master/examples/v1/mnist_with_summaries) suitable for running
-a simple [MNist model](http://yann.lecun.com/exdb/mnist/).
-
+See the manifests for the [distributed MNIST example](https://github.com/kubeflow/tf-operator/blob/master/examples/tensorflow/simple.yaml). You may change the config file based on your requirements.
 
 ```
-git clone https://github.com/kubeflow/tf-operator
-cd tf-operator/examples/v1/mnist_with_summaries
-# Deploy the event volume
-kubectl apply -f tfevent-volume
-# Submit the TFJob
-kubectl apply -f tf_job_mnist.yaml
+cat simple.yaml
+```
+
+Deploy the TFJob resource to start training:
+
+```
+kubectl create -f simple.yaml
 ```
 
 Monitor the job (see the [detailed guide below](#monitoring-your-job)):
@@ -237,7 +236,7 @@ kubectl -n kubeflow get tfjob mnist -o yaml
 Delete it
 
 ```
-kubectl -n kubeflow delete tfjob mnist
+kubectl -n kubeflow delete tfjob tfjob-simple 
 ```
 
 ### Customizing the TFJob
@@ -341,7 +340,7 @@ for using GPUs.
 To get the status of your job
 
 ```bash
-kubectl get -o yaml tfjobs ${JOB}
+kubectl -n kubeflow get -o yaml tfjobs tfjob-simple 
 ```
 
 Here is sample output for an example job
@@ -350,59 +349,51 @@ Here is sample output for an example job
 apiVersion: kubeflow.org/v1
 kind: TFJob
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"kubeflow.org/v1","kind":"TFJob","metadata":{"annotations":{},"name":"mnist","namespace":"kubeflow"},"spec":{"cleanPodPolicy":"None","tfReplicaSpecs":{"Worker":{"replicas":1,"restartPolicy":"Never","template":{"spec":{"containers":[{"command":["python","/var/tf_mnist/mnist_with_summaries.py","--log_dir=/train","--learning_rate=0.01","--batch_size=150"],"image":"gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0","name":"tensorflow","volumeMounts":[{"mountPath":"/train","name":"training"}]}],"volumes":[{"name":"training","persistentVolumeClaim":{"claimName":"tfevent-volume"}}]}}}}}}
-  creationTimestamp: "2019-07-16T02:44:38Z"
+  creationTimestamp: "2021-09-06T11:48:09Z"
   generation: 1
-  name: mnist
-  namespace: your-user-namespace
-  resourceVersion: "10429537"
-  selfLink: /apis/kubeflow.org/v1/namespaces/kubeflow/tfjobs/mnist
-  uid: a77b9fb4-a773-11e9-91fe-42010a960094
+  name: tfjob-simple
+  namespace: kubeflow
+  resourceVersion: "5764004"
+  selfLink: /apis/kubeflow.org/v1/namespaces/kubeflow/tfjobs/tfjob-simple
+  uid: 3a67a9a9-cb89-4c1f-a189-f49f0b581e29
 spec:
-  cleanPodPolicy: None
   tfReplicaSpecs:
     Worker:
-      replicas: 1
-      restartPolicy: Never
+      replicas: 2
+      restartPolicy: OnFailure
       template:
         spec:
           containers:
           - command:
             - python
             - /var/tf_mnist/mnist_with_summaries.py
-            - --log_dir=/train
-            - --learning_rate=0.01
-            - --batch_size=150
             image: gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0
             name: tensorflow
-            volumeMounts:
-            - mountPath: /train
-              name: training
-          volumes:
-          - name: training
-            persistentVolumeClaim:
-              claimName: tfevent-volume
 status:
-  completionTime: "2019-07-16T02:45:23Z"
+  completionTime: "2021-09-06T11:49:30Z"
   conditions:
-  - lastTransitionTime: "2019-07-16T02:44:38Z"
-    lastUpdateTime: "2019-07-16T02:44:38Z"
-    message: TFJob mnist is created.
+  - lastTransitionTime: "2021-09-06T11:48:09Z"
+    lastUpdateTime: "2021-09-06T11:48:09Z"
+    message: TFJob tfjob-simple is created.
     reason: TFJobCreated
     status: "True"
     type: Created
-  - lastTransitionTime: "2019-07-16T02:45:20Z"
-    lastUpdateTime: "2019-07-16T02:45:20Z"
-    message: TFJob mnist is running.
+  - lastTransitionTime: "2021-09-06T11:48:12Z"
+    lastUpdateTime: "2021-09-06T11:48:12Z"
+    message: TFJob kubeflow/tfjob-simple is running.
     reason: TFJobRunning
-    status: "True"
+    status: "False"
     type: Running
+  - lastTransitionTime: "2021-09-06T11:49:30Z"
+    lastUpdateTime: "2021-09-06T11:49:30Z"
+    message: TFJob kubeflow/tfjob-simple successfully completed.
+    reason: TFJobSucceeded
+    status: "True"
+    type: Succeeded
   replicaStatuses:
     Worker:
-      running: 1
-  startTime: "2019-07-16T02:44:38Z"
+      succeeded: 2
+  startTime: "2021-09-06T11:48:10Z"
 
 ```
 
@@ -457,73 +448,117 @@ as the creation/deletion of pods and services. Kubernetes doesn't retain
 events older than 1 hour by default. To see recent events for a job run
 
 ```
-kubectl describe tfjobs ${JOB}
+kubectl -n kubeflow describe tfjobs tfjob-simple
 ```
 
 which will produce output like
 
 ```
-Name:         mnist
+Name:         tfjob-simple
 Namespace:    kubeflow
 Labels:       <none>
-Annotations:  kubectl.kubernetes.io/last-applied-configuration:
-                {"apiVersion":"kubeflow.org/v1","kind":"TFJob","metadata":{"annotations":{},"name":"mnist","namespace":"kubeflow"},"spec":{"cleanPodPolicy...
+Annotations:  <none>
 API Version:  kubeflow.org/v1
 Kind:         TFJob
 Metadata:
-  Creation Timestamp:  2019-07-16T02:44:38Z
+  Creation Timestamp:  2021-09-06T11:48:09Z
   Generation:          1
-  Resource Version:    10429537
-  Self Link:           /apis/kubeflow.org/v1/namespaces/kubeflow/tfjobs/mnist
-  UID:                 a77b9fb4-a773-11e9-91fe-42010a960094
+  Managed Fields:
+    API Version:  kubeflow.org/v1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:spec:
+        .:
+        f:tfReplicaSpecs:
+          .:
+          f:Worker:
+            .:
+            f:replicas:
+            f:restartPolicy:
+            f:template:
+              .:
+              f:spec:
+    Manager:      kubectl-create
+    Operation:    Update
+    Time:         2021-09-06T11:48:09Z
+    API Version:  kubeflow.org/v1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:spec:
+        f:runPolicy:
+          .:
+          f:cleanPodPolicy:
+        f:successPolicy:
+        f:tfReplicaSpecs:
+          f:Worker:
+            f:template:
+              f:metadata:
+              f:spec:
+                f:containers:
+      f:status:
+        .:
+        f:completionTime:
+        f:conditions:
+        f:replicaStatuses:
+          .:
+          f:Worker:
+            .:
+            f:succeeded:
+        f:startTime:
+    Manager:         manager
+    Operation:       Update
+    Time:            2021-09-06T11:49:30Z
+  Resource Version:  5764004
+  Self Link:         /apis/kubeflow.org/v1/namespaces/kubeflow/tfjobs/tfjob-simple
+  UID:               3a67a9a9-cb89-4c1f-a189-f49f0b581e29
 Spec:
-  Clean Pod Policy:  None
   Tf Replica Specs:
     Worker:
-      Replicas:        1
-      Restart Policy:  Never
+      Replicas:        2
+      Restart Policy:  OnFailure
       Template:
         Spec:
           Containers:
             Command:
               python
               /var/tf_mnist/mnist_with_summaries.py
-              --log_dir=/train
-              --learning_rate=0.01
-              --batch_size=150
             Image:  gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0
             Name:   tensorflow
-            Volume Mounts:
-              Mount Path:  /train
-              Name:        training
-          Volumes:
-            Name:  training
-            Persistent Volume Claim:
-              Claim Name:  tfevent-volume
 Status:
-  Completion Time:  2019-07-16T02:45:23Z
+  Completion Time:  2021-09-06T11:49:30Z
   Conditions:
-    Last Transition Time:  2019-07-16T02:44:38Z
-    Last Update Time:      2019-07-16T02:44:38Z
-    Message:               TFJob mnist is created.
+    Last Transition Time:  2021-09-06T11:48:09Z
+    Last Update Time:      2021-09-06T11:48:09Z
+    Message:               TFJob tfjob-simple is created.
     Reason:                TFJobCreated
     Status:                True
     Type:                  Created
-    Last Transition Time:  2019-07-16T02:45:20Z
-    Last Update Time:      2019-07-16T02:45:20Z
-    Message:               TFJob mnist is running.
+    Last Transition Time:  2021-09-06T11:48:12Z
+    Last Update Time:      2021-09-06T11:48:12Z
+    Message:               TFJob kubeflow/tfjob-simple is running.
     Reason:                TFJobRunning
-    Status:                True
+    Status:                False
     Type:                  Running
+    Last Transition Time:  2021-09-06T11:49:30Z
+    Last Update Time:      2021-09-06T11:49:30Z
+    Message:               TFJob kubeflow/tfjob-simple successfully completed.
+    Reason:                TFJobSucceeded
+    Status:                True
+    Type:                  Succeeded
   Replica Statuses:
     Worker:
-      Running:  1
-  Start Time:  2019-07-16T02:44:38Z
+      Succeeded:  2
+  Start Time:     2021-09-06T11:48:10Z
 Events:
-  Type    Reason                   Age    From         Message
-  ----    ------                   ----   ----         -------
-  Normal  SuccessfulCreatePod      8m6s   tf-operator  Created pod: mnist-worker-0
-  Normal  SuccessfulCreateService  8m6s   tf-operator  Created service: mnist-worker-0
+  Type    Reason                   Age                    From              Message
+  ----    ------                   ----                   ----              -------
+  Normal  SuccessfulCreatePod      7m9s                   tfjob-controller  Created pod: tfjob-simple-worker-0
+  Normal  SuccessfulCreatePod      7m8s                   tfjob-controller  Created pod: tfjob-simple-worker-1
+  Normal  SuccessfulCreateService  7m8s                   tfjob-controller  Created service: tfjob-simple-worker-0
+  Normal  SuccessfulCreateService  7m8s                   tfjob-controller  Created service: tfjob-simple-worker-1
+  Normal  ExitedWithCode           5m48s (x3 over 5m48s)  tfjob-controller  Pod: kubeflow.tfjob-simple-worker-1 exited with code 0
+  Normal  ExitedWithCode           5m48s                  tfjob-controller  Pod: kubeflow.tfjob-simple-worker-0 exited with code 0
+  Normal  TFJobSucceeded           5m48s                  tfjob-controller  TFJob kubeflow/tfjob-simple successfully completed.
 ```
 
 Here the events indicate that the pods and services were successfully created.
@@ -576,9 +611,9 @@ Using the Stackdriver UI you can use a query like
 ```
 resource.type="k8s_container"
 resource.labels.cluster_name="${CLUSTER}"
-metadata.userLabels.tf_job_name="${JOB_NAME}"
-metadata.userLabels.tf-replica-type="${TYPE}"
-metadata.userLabels.tf-replica-index="${INDEX}"
+metadata.userLabels.job-name="${JOB_NAME}"
+metadata.userLabels.replica-type="${TYPE}"
+metadata.userLabels.replica-index="${INDEX}"
 ```
 
 Alternatively using gcloud
@@ -586,9 +621,9 @@ Alternatively using gcloud
 ```
 QUERY="resource.type=\"k8s_container\" "
 QUERY="${QUERY} resource.labels.cluster_name=\"${CLUSTER}\" "
-QUERY="${QUERY} metadata.userLabels.tf_job_name=\"${JOB_NAME}\" "
-QUERY="${QUERY} metadata.userLabels.tf-replica-type=\"${TYPE}\" "
-QUERY="${QUERY} metadata.userLabels.tf-replica-index=\"${INDEX}\" "
+QUERY="${QUERY} metadata.userLabels.job-name=\"${JOB_NAME}\" "
+QUERY="${QUERY} metadata.userLabels.replica-type=\"${TYPE}\" "
+QUERY="${QUERY} metadata.userLabels.replica-index=\"${INDEX}\" "
 gcloud --project=${PROJECT} logging read  \
      --freshness=24h \
      --order asc  ${QUERY}        
