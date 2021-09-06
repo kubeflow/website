@@ -9,7 +9,7 @@ weight = 10
 
 This page describes `TFJob` for training a machine learning model with [TensorFlow](https://www.tensorflow.org/).
 
-## What is TFJob?
+## What is `TFJob`?
 
 `TFJob` is a Kubernetes
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) to run TensorFlow training jobs on Kubernetes. The Kubeflow
