@@ -23,26 +23,25 @@ This feature supports MinIO, S3, GCS natively using [Go CDK](https://github.com/
 
 ## How to configure pipeline root authentication 
 #### MinIO
-You don't need to pass the authentication for MinIO
+You don't need to pass the authentication for MinIO.
+Kubeflow Pipelines is configured with the authentication of the MinIO instance deployed with itself.
 
 #### GCS
 If you want to specify the `pipeline root` to GCS :
 
-* Set up pipeline root authentication in pipeline level via sdk:
-`dsl.get_pipeline_conf().add_op_transformer(aws.use_gcp_secret('xxx', ‘xxx’, ‘xxx’))`
-
-* Set up pipeline root authentication via service account key:
 check [authentication-pipelines](https://www.kubeflow.org/docs/distributions/gke/pipelines/authentication-pipelines/)
 
 #### S3
 If you want to specify the `pipeline root` to S3:
 
-* Set up pipeline root authentication in pipeline level via sdk:
+* Via [AWS IRSA][https://aws.amazon.com/blogs/containers/cross-account-iam-roles-for-kubernetes-service-accounts/]:
+
+* Via kfp sdk:
 `dsl.get_pipeline_conf().add_op_transformer(aws.use_aws_secret('xxx', ‘xxx’, ‘xxx’))`
   
 **references**:
 * [add-op-transformer](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.PipelineConf.add_op_transformer)
-* [use-gcp-secret](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.aws.use_aws_secret)
+* [use-aws-secret](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.extensions.html#kfp.aws.use_aws_secret)
 
 ## How to configure pipeline root
 
