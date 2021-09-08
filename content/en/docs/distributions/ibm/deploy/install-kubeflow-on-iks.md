@@ -36,7 +36,8 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
 * kustomize (version 3.2.0) ([download link](https://github.com/kubernetes-sigs/kustomize/releases/tag/v3.2.0))
 
-* [Python 3](https://www.python.org/downloads/) with passlib and bcrypt packages installed
+* [Python 3](https://www.python.org/downloads/) with [passlib](https://pypi.org/project/passlib/)
+  and [bcrypt](https://pypi.org/project/bcrypt/) packages installed
 
 ### Storage setup for a **Classic** IBM Cloud Kubernetes cluster
 
