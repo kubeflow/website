@@ -11,16 +11,23 @@ For an overview of Feast, please read [Introduction to Feast](/docs/external-add
 
 ## Installing Feast with Kubeflow
 
+**Overview**
+
 * This guide assumes that you have a running Kubeflow cluster already. If you don't have Kubeflow installed, then head on over to the [Kubeflow installation guide](/docs/started/getting-started/).
 * The latest version of Feast does not need to be installed into Kubernetes. It is possible to run Feast completely from CI or as a client library (during training or inference)
 * Feast requires a bucket (S3, GCS, Minio, etc) to maintain a feature registry, requires an online feature store for serving feature values, and it requires a scheduler to keep the online store up to date.
-* To use Feast with Kubeflow, please follow the following steps
+
+**Installation**
+
+To use Feast with Kubeflow, please follow the following steps
   * [Install Feast](https://docs.feast.dev/how-to-guides/feast-gcp-aws/install-feast) into your development environment, as well as any environment where you want to register feature views or read features from the feature store.
   * [Create a feature repository](https://docs.feast.dev/how-to-guides/feast-gcp-aws/create-a-feature-repository) to store your feature views and entities. 
   * [Deploy your feature store](https://docs.feast.dev/how-to-guides/feast-gcp-aws/deploy-a-feature-store). 
   * [Build a training dataset](https://docs.feast.dev/how-to-guides/feast-gcp-aws/build-a-training-dataset).
   * [Load features into the online store](https://docs.feast.dev/how-to-guides/feast-gcp-aws/load-data-into-the-online-store). This step can also be executed from a Kubernetes cron job.
   * [Read features from the online store](https://docs.feast.dev/how-to-guides/feast-gcp-aws/read-features-from-the-online-store)
+
+**Advanced**
 * Please see [this guide](https://docs.feast.dev/how-to-guides/running-feast-in-production) which provides best practices for running Feast in a production context.
 * Please see [this guide](https://docs.google.com/document/u/1/d/1AOsr_baczuARjCpmZgVd8mCqTF4AZ49OEyU4Cn-uTT0/edit) for upgrading from Feast 0.9 (Spark-based) to the latest Feast (0.12+).
 
