@@ -20,6 +20,7 @@ Pipeline root represents an artifact repository where Kubeflow Pipelines stores 
 This feature supports MinIO, S3, GCS natively using [Go CDK](https://github.com/google/go-cloud). Artifacts can be more accessible in S3 and GCS when integrating Kubeflow Pipelines with other systems.
 
 **Note:** For MinIO, you can't change the MinIO instance. Kubeflow Pipelines can only use the Minio instance deployed with itself.
+(Please thumb ub this [GitHub Issue](https://github.com/kubeflow/pipelines/issues/6517) if you need to specify the Minio instance)
 
 ## How to configure pipeline root authentication 
 #### MinIO
@@ -32,7 +33,7 @@ If you want to specify the `pipeline root` to GCS :
 check [authentication-pipelines](https://www.kubeflow.org/docs/distributions/gke/pipelines/authentication-pipelines/)
 
 #### S3
-If you want to specify the `pipeline root` to S3:
+If you want to specify the `pipeline root` to S3, please choose one of the following options:
 
 * Via [AWS IRSA](https://aws.amazon.com/blogs/containers/cross-account-iam-roles-for-kubernetes-service-accounts/):
 
@@ -45,14 +46,14 @@ If you want to specify the `pipeline root` to S3:
 
 ## How to configure pipeline root
 
-#### Via ConfigMaps in Kubernetes Cluster
+#### Via ConfigMaps
 
-You can configure default pipeline root for Kubeflow Pipelines via changing the `defaultPipelineRoot` entry of  ConfigMaps `kfp-launcher` in Kubernetes Cluster.
+You can configure default pipeline root for Kubeflow Pipelines via changing the `defaultPipelineRoot` entry of  ConfigMaps `kfp-launcher` in Kubernetes namespace.
 
 ```shell
 kubectl edit configMap kfp-launcher -n ${namespace}
 ```
-This pipeline root will be the default pipeline root for all pipelines running in the Kubernetes Cluster unless you override it through the following methods:
+This pipeline root will be the default pipeline root for all pipelines running in the Kubernetes Cluster unless you override it using one of the following options:
 
 ####  Via Building Pipelines
 You can configure a pipeline root through the `kfp.dsl.pipeline` annotation when [building pipelines](https://www.kubeflow.org/docs/components/pipelines/sdk/v2/build-pipeline/#build-your-pipeline)
