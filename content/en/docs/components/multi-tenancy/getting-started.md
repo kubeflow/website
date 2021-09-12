@@ -69,7 +69,7 @@ user in the Kubeflow cluster.  Here an administrator is a person who has
 [*cluster-admin*](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
 role binding in the Kubernetes cluster. This person has permissions to create
 and modify Kubernetes resources in the cluster. For example, the person who
-deployed Kubeflow will have administration privileges in the cluster.
+deployed Kubeflow will have administrative privileges in the cluster.
 
 ### Pre-requisites: grant user minimal Kubernetes cluster access
 
@@ -173,12 +173,11 @@ The following resources are created as part of the profile creation:
 
   - A Kubernetes namespace that shares the same name with the corresponding
     profile.
-  - Kubernetes RBAC ([Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/))
-    role binding role binding for the namespace: *Admin*. This makes the
+  - Kubernetes RBAC ([Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)) role binding for the namespace: *Admin*. This makes the
     profile owner the namespace administrator, thus giving them access to the
     namespace using kubectl (via the Kubernetes API).
   - Istio namespace-scoped AuthorizationPolicy: *user-userid-email-com-clusterrole-edit*.
-    This allows the `user` to access data beloging to the namespace the AuthorizationPolicy was created in 
+    This allows the `user` to access data belonging to the namespace the AuthorizationPolicy was created in 
   - Namespace-scoped service-accounts *default-editor* and *default-viewer* to be used by
     user-created pods in the namespace.
   - Namespace scoped resource quota limits will be placed.
@@ -316,11 +315,11 @@ subjects:
   name: userid@email.com   # replace with the email of the user from your Active Directory case sensitive
 ```
 
-Create an authorizationpolicy.yaml file with the following content on your local machine:
+Create an authenticationpolicy.yaml file with the following content on your local machine:
 
 ```
 apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
+kind: AuthenticationPolicy
 metadata:
   annotations:
     role: edit
@@ -340,7 +339,7 @@ Run the following command to create the corresponding contributor resources:
 
 ```
 kubectl create -f rolebinding.yaml
-kubectl create -f authorizationpolicy.yaml
+kubectl create -f authenticationpolicy.yaml
 ```
 
 The above command adds a contributor *userid@email.com* to the profile named *profileName*. The contributor
