@@ -24,4 +24,4 @@ For upgrade instructions, refer to distribution specific documentations:
 
     For detailed configuration and migration instructions for both options, refer to [Argo Workflow Executors](https://www.kubeflow.org/docs/components/pipelines/installation/choose-executor/).
 
-* **Notice**: [Kubeflow Pipelines SDK v2 compatibility mode](/docs/components/pipelines/sdk/v2/v2-compatibility/) (Beta) was recently released. The new mode adds support for tracking pipeline runs and artifacts using ML Metadata. In v1.7 backend, complete UI support and caching capabilities for v2 compatibility mode are newly added, [your feedback is welcomed](https://github.com/kubeflow/pipelines/issues/6451).
+* **Notice**: [Kubeflow Pipelines SDK v2 compatibility mode](/docs/components/pipelines/sdk/v2/v2-compatibility/) (Beta) was recently released. The new mode adds support for tracking pipeline runs and artifacts using ML Metadata. In v1.7 backend, complete UI support and caching capabilities for v2 compatibility mode are newly added. We welcome any [feedback](https://github.com/kubeflow/pipelines/issues/6451) on positive experiences or issues you encounter.
