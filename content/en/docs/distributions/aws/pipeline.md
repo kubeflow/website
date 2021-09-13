@@ -34,6 +34,20 @@ client = kfp.Client(host='http://<aws_alb_host>/pipeline', cookies=authservice_s
 client.list_experiments(namespace="<your_namespace>")
 ```
 
+or 
+
+To type `<ingressgateway_svc>`, ingressgateway.istio-system or ingressgateway.istio-system.svc.cluster.local
+
+ - dex {{% aws/config-uri-aws-standard %}}
+
+```bash
+import kfp
+authservice_session='authservice_session=<cookie>'
+client = kfp.Client(host='http://<ingressgateway_svc>/pipeline', cookies=authservice_session)
+client.list_experiments(namespace="<your_namespace>")
+```
+
+
  - cognito {{% aws/config-uri-aws-cognito %}}
 
 ```bash
