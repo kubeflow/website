@@ -171,5 +171,5 @@ without access control:
 
 Refer to [Connect to Kubeflow Pipelines from the same cluster](/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-the-same-cluster) for details.
 
-Alternatively, in-cluster workloads like Jupyter notebooks or cron tasks can be also accessed through public endpoint. This option is platform specific and explained in 
+Alternatively, in-cluster workloads like Jupyter notebooks or cron tasks can also access Kubeflow Pipelines API through the public endpoint. This option is platform specific and explained in 
 [Connect to Kubeflow Pipelines from outside your cluster](/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-outside-your-cluster)

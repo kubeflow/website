@@ -55,10 +55,7 @@ because it requires authentication. Refer to distribution specific documentation
 
 #### Multi-User mode
 
-Authentication uses ServiceAccountToken 
-[projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection) where token with limited lifetime, that can be verified by Kubeflow Pipelines API, is being injected into (e.g. Jupyter notebook's) Pod.
-
-In order to **access Kubeflow Pipeline from Jupyter notebook**, additional per namespace (profile) manifest is required:
+In order to **access Kubeflow Pipelines from Jupyter notebook**, additional per namespace (profile) manifest is required:
 
 ```yaml
 apiVersion: kubeflow.org/v1alpha1
@@ -88,16 +85,61 @@ spec:
       value: /var/run/secrets/kubeflow/pipelines/token
 ```
 
-After the manifest is applied, newly created Jupyter notebook contains additional option in section **configurations**.
+Note, technical details were put in the [How in-cluster authentication works](#how-in-cluster-authentication-works) section below.
+
+After the manifest is applied, newly created Jupyter notebook contains an additional option in section **configurations**.
 Read more about **configurations** on [Jupyter notebook server](/docs/components/notebooks/setup/#create-a-jupyter-notebook-server-and-add-a-notebook).
 
-Note, Kubeflow `kfp.Client` expects token either in `KF_PIPELINES_SA_TOKEN_PATH` environment variable or mounted to `/var/run/secrets/kubeflow/pipelines/token`. Do not change these values in the manifest. Similarly, `audience` should not be modified as well.
-
-If token is found, `kfp.Client` puts it in the `Authorization: Bearer <token>` header where Kubeflow Pipelines API can read it. No additional setup is required to refresh tokens.
+Note, Kubeflow `kfp.Client` expects token either in `KF_PIPELINES_SA_TOKEN_PATH` environment variable or mounted to `/var/run/secrets/kubeflow/pipelines/token`. Do not change these values in the manifest. Similarly, `audience` should not be modified as well. No additional setup is required to refresh tokens.
 
 Setup is similar for other cases like e.g. **cron tasks or in-cluster CI/CD**: Configure your Pod with token in either `KF_PIPELINES_SA_TOKEN_PATH` or `/var/run/secrets/kubeflow/pipelines/token` and `kfp.Client` will gain access to Kubeflow Pipelines.
 
-#### Generic
+##### Managing cross-namespaces access to Kubeflow Pipelines API
+
+The setup can be extended to allow other namespaces to access Kubeflow Pipelines API through your namespace's Juputer notebook server.
+
+Note, examples below assume that `namespace-1` is a namespace (profile) that will  be granted access to Kubeflow Pipelines API 
+through `namespace-2` Jupyter notebook server. `namespace-2` is already configured to access Kubeflow Pipelines API.
+
+The access can be achieved in two ways:
+
+* **With additional RBAC settings.**
+
+  This option requires that only `namespace-2` has to have `PodDefault` manifest configured.
+
+  Access is granted by giving `namespace-1:ServiceAccount/default-editor` the `ClusterRole/kubeflow-edit` in `namespace-2`:
+
+  ```
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    name: kubeflow-edit-namespace-1
+    namespace: namespace-2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: kubeflow-edit
+  subjects:
+  - kind: ServiceAccount
+    name: default-editor
+    namespace: namespace-1
+  ```
+
+* **By sharing access to the other profile.**
+
+  In this scenario, both `namespace-1` and `namespace-2` require `PodDefault` to be properly configured. Access is granted by `namespace-2` adding `namespace-1` as a  
+  [contributor](https://www.kubeflow.org/docs/components/multi-tenancy/getting-started/#managing-contributors-through-the-kubeflow-ui).
+
+##### How in-cluster authentication works
+
+Authentication uses ServiceAccountToken 
+[projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection) where token with limited lifetime, that can be verified by Kubeflow Pipelines API, is being injected into (e.g. Jupyter notebook's) Pod.
+
+More details about PodDefault can be found [here](https://github.com/kubeflow/kubeflow/blob/master/components/admission-webhook/README.md).
+
+It is important to understand that `serviceAccountToken` method respects the Kubeflow Pipelines RBAC, and does not allow access beyond what the ServiceAcount running the notebook Pod has.
+
+#### Non-multi-user mode
 
 As mentioned above, the Kubeflow Pipelines API Kubernetes service is `ml-pipeline-ui`.
 
