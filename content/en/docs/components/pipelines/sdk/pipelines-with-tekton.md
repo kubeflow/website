@@ -7,7 +7,7 @@ weight = 140
 
 You can use the [KFP-Tekton SDK](https://github.com/kubeflow/kfp-tekton/tree/master/sdk)
 to compile, upload and run your Kubeflow Pipeline DSL Python scripts on a
-[Kubeflow Pipelines with Tekton backend](https://github.com/kubeflow/kfp-tekton/tree/master/tekton_kfp_guide.md).
+[Kubeflow Pipelines with Tekton backend](https://github.com/kubeflow/kfp-tekton/blob/master/guides/kfp-user-guide/README.md).
 
 ## SDK packages
 
