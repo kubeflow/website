@@ -14,9 +14,9 @@ it in a separate project used for administering one or more Kubeflow instances, 
 Optionally, the cluster can be configured with [Anthos Config Management](https://cloud.google.com/anthos-config-management/docs)
 to manage Google Cloud infrastructure using GitOps.
 
-# Deployment steps
+## Deployment steps
 
-## Install the required tools
+### Install the required tools
 
 1. [gcloud components](https://cloud.google.com/sdk/docs/components)
 
@@ -27,6 +27,8 @@ to manage Google Cloud infrastructure using GitOps.
     ```
 
     kubectl `v1.18.19` works best with Kubeflow 1.3, you can install specific version by following instruction, for example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). But latest patch version of kubectl from `v1.17` to `v1.19` works well too.
+
+    Note: `kpt v1.0.0-beta.1` or above doesn't work due to a known issue: https://github.com/kubeflow/pipelines/issues/6100. Please downgrade gcloud or install kpt separately https://github.com/GoogleContainerTools/kpt/releases/tag/v0.39.2 for now.
 
 1. [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
@@ -57,23 +59,23 @@ to manage Google Cloud infrastructure using GitOps.
    
    **Note:** The Kubeflow deployment process is not compatible with yq v4 or later. Learn more about the [changes from yq v3 to v4](https://mikefarah.gitbook.io/yq/upgrading-from-v3#navigating).
 
-## Fetch kubeflow/gcp-blueprints package
+### Fetch kubeflow/gcp-blueprints package
 
 The management cluster manifests live in GitHub repository [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints), use the following commands to pull Kubeflow v1.3 manifests:
 
-1. Clone the GitHub repository and check out the v1.3.0 tag:
+1. Clone the GitHub repository and check out the v1.3.1 tag:
 
     ```bash
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     cd gcp-blueprints
-    git checkout tags/v1.3.0 -b v1.3.0
+    git checkout tags/v1.3.1 -b v1.3.1
     ```
 
     Alternatively, you can get the package by using `kpt`:
 
     ```bash
-    # Check out Kubeflow v1.3.0 blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.0 gcp-blueprints
+    # Check out Kubeflow v1.3.1 blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.1 gcp-blueprints
     cd gcp-blueprints
     ```
 
@@ -84,7 +86,7 @@ The management cluster manifests live in GitHub repository [kubeflow/gcp-bluepri
     cd management
     ```
 
-## Configure Environment Variables
+### Configure Environment Variables
 
 This guide assumes the following convention:
 
@@ -95,7 +97,7 @@ This guide assumes the following convention:
   files. For example, `~/gcp-blueprints/management/`. You can choose any path
   you would like for the directory `${MGMT_DIR}`.
 
-  To continously manage the management cluster, you are recommended to check
+  To continuously manage the management cluster, you are recommended to check
   the management configuration directory into source control.
  * `${MGMT_NAME}` is the cluster name of your management cluster and the prefix for other Google Cloud resources created in the deployment process. Management cluster
    should be a different cluster from your Kubeflow cluster.
@@ -124,7 +126,7 @@ Alternatively, you can also fill in the same content in `gcp-blueprints/manageme
 source env.sh
 ```
 
-## Configure kpt setter values
+### Configure kpt setter values
 
 Use kpt to [set values](https://googlecontainertools.github.io/kpt/guides/consumer/set/) for the name, project, and location of your management cluster:
 
@@ -151,7 +153,7 @@ current values are by running the following command:
   kpt cfg list-setters .
   ```
 
-## Deploy Management Cluster
+### Deploy Management Cluster
 
 1. Deploy the management cluster by applying cluster resources:
 
@@ -192,12 +194,12 @@ current values are by running the following command:
 
     and check `./build/cnrm-install-*` folders.
 
-# Understanding the deployment process
+## Understanding the deployment process
 
 This section gives you more details about the configuration and
 deployment process, so that you can customize your management cluster if necessary.
 
-## Management cluster folder layout
+### Management cluster folder layout
 
 Your management cluster directory contains the following files and directories:
 
@@ -211,7 +213,7 @@ Your management cluster directory contains the following files and directories:
   the `make` rules.
 
 
-## Customizing the installation
+### Customizing the installation
 
 Once you understand the folder layout, you can create [Kustomize](https://kustomize.io/) `overlays` folder in corresponding directory, for example `cnrm-install/iam`, so you can define patches in `overlays` folder. Then use overlays in `kustomization.yaml` file.
 
@@ -247,7 +249,7 @@ Note that, some fields in some resources may be immutable. You may need to
 manually delete them before applying again.
 
 
-## FAQs
+### FAQs
 
 * Where is `kfctl`?
 

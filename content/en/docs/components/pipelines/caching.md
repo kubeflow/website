@@ -4,18 +4,15 @@ description = "Getting started with Kubeflow Pipelines step caching"
 weight = 50
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
+{{% alpha-status
+feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
 
-Starting from Kubeflow Pipelines 0.4, Kubeflow Pipelines supports step caching capabilities in both standalone deployment and GCP hosted deployment.
+Starting from Kubeflow Pipelines 0.4, Kubeflow Pipelines supports step caching capabilities in both standalone deployment and AI platform Pipelines.
 
 ## Before you start
 
 This guide tells you the basic concepts of Kubeflow Pipelines step caching and how to use it. 
-This guide assumes that you already have Kubeflow Pipelines installed or want to use standalone or GCP hosted deployment options in the [Kubeflow Pipelines deployment 
-guide](/docs/components/pipelines/installation/) to deploy Kubeflow Pipelines.
+This guide assumes that you already have Kubeflow Pipelines installed or want to use options in the [Kubeflow Pipelines deployment guide](/docs/components/pipelines/installation/) to deploy Kubeflow Pipelines.
 
 ## What is step caching?
 

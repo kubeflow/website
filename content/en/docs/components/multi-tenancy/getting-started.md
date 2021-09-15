@@ -69,7 +69,7 @@ user in the Kubeflow cluster.  Here an administrator is a person who has
 [*cluster-admin*](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
 role binding in the Kubernetes cluster. This person has permissions to create
 and modify Kubernetes resources in the cluster. For example, the person who
-deployed Kubeflow will have administration privileges in the cluster.
+deployed Kubeflow will have administrative privileges in the cluster.
 
 ### Pre-requisites: grant user minimal Kubernetes cluster access
 
@@ -173,21 +173,17 @@ The following resources are created as part of the profile creation:
 
   - A Kubernetes namespace that shares the same name with the corresponding
     profile.
-  - Kubernetes RBAC ([Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/))
-    role binding role binding for the namespace: *Admin*. This makes the
+  - Kubernetes RBAC ([Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)) role binding for the namespace: *Admin*. This makes the
     profile owner the namespace administrator, thus giving them access to the
     namespace using kubectl (via the Kubernetes API).
-  - Istio namespace-scoped ServiceRole: *ns-access-istio*. This allows access to
-    all services in the target namespace via Istio routing.
-  - Istio namespace-scoped ServiceRoleBinding: *owner-binding-istio*. This binds
-    the ServiceRole *ns-access-istio* to the profile owner. The profile owner can
-    therefore access services in the namespace.
+  - Istio namespace-scoped AuthorizationPolicy: *user-userid-email-com-clusterrole-edit*.
+    This allows the `user` to access data belonging to the namespace the AuthorizationPolicy was created in 
   - Namespace-scoped service-accounts *default-editor* and *default-viewer* to be used by
     user-created pods in the namespace.
   - Namespace scoped resource quota limits will be placed.
 
 **Note**: Due to a one-to-one correspondence of profiles with Kubernetes
-namespaces, the terms *profile* and *namespace* are sometimes used interchangably in the
+namespaces, the terms *profile* and *namespace* are sometimes used interchangeably in the
 documentation.
 
 ### Batch creation of user profiles
@@ -308,7 +304,7 @@ metadata:
   name: user-userid-email-com-clusterrole-edit
   # Ex: if the user email is lalith.vaka@kp.org the name should be user-lalith-vaka-kp-org-clusterrole-edit
   # Note: if the user email is Lalith.Vaka@kp.org from your Active Directory, the name should be user-lalith-vaka-kp-org-clusterrole-edit
-  namespace: profileName # replace with the namespace/profile name that you are adding contribbitors to
+  namespace: profileName # replace with the namespace/profile name that you are adding contributors to
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -319,36 +315,31 @@ subjects:
   name: userid@email.com   # replace with the email of the user from your Active Directory case sensitive
 ```
 
-Create a servicerolebinding.yaml file with the following content on your local machine:
+Create an authenticationpolicy.yaml file with the following content on your local machine:
 
 ```
-apiVersion: rbac.istio.io/v1alpha1
-kind: ServiceRoleBinding
+apiVersion: security.istio.io/v1beta1
+kind: AuthenticationPolicy
 metadata:
   annotations:
     role: edit
-    user: userid@email.com   # replace with the email of the user from your Active Directory case sensitive
-  generation: 1
+    user: userid@email.com # replace with the email of the user from your Active Directory case sensitive
   name: user-userid-email-com-clusterrole-edit
-  # Ex: if the user email is lalith.vaka@kp.org the name should be user-lalith-vaka-kp-org-clusterrole-edit
-  # Note: if the user email is Lalith.Vaka@kp.org from your Active Directory, the name should be user-lalith-vaka-kp-org-clusterrole-edit
-  namespace: profileName # replace with the namespace/profile name that you are adding contribbitors to
+  namespace: profileName # replace with the namespace/profile name that you are adding contributors to
 spec:
-  roleRef:
-    kind: ServiceRole
-    name: ns-access-istio
-  subjects:
-  - properties:
-      request.headers[kubeflow-userid]: accounts.google.com:userid@email.com   # replace with the email of the user from your Active Directory case sensitive
-      # for GCP, use x-goog-authenticated-user-email instead of kubeflow-userid for authentication purpose
-status: {}
+  action: ALLOW
+  rules:
+  - when:
+    - key: request.headers[kubeflow-userid] # for GCP, use x-goog-authenticated-user-email instead of kubeflow-userid for authentication purpose
+      values:
+      - accounts.google.com:userid@email.com   # replace with the email of the user from your Active Directory case sensitive
 ```
 
 Run the following command to create the corresponding contributor resources:
 
 ```
 kubectl create -f rolebinding.yaml
-kubectl create -f servicerolebinding.yaml
+kubectl create -f authenticationpolicy.yaml
 ```
 
 The above command adds a contributor *userid@email.com* to the profile named *profileName*. The contributor

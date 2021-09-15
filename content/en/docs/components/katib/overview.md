@@ -204,7 +204,11 @@ Katib has these CRD examples in upstream:
 
 - [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
-- [Tekton `Pipeline`](https://github.com/tektoncd/pipeline)
+- [Kubeflow `XGBoostJob`](https://github.com/kubeflow/xgboost-operator)
+
+- [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
+
+- [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
 
 By offering the above worker job types, Katib supports multiple ML frameworks.
 

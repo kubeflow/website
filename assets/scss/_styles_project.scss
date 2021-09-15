@@ -24,3 +24,34 @@ footer {
     }
   }
 }
+
+.error-page {
+  margin-top: 120px;
+  ul {
+    margin-bottom: 50px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 0;
+  }
+
+  li {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px){
+    margin-top: 100px;
+  }
+  
+  @media (max-width: 767px) {
+    margin-top: 50px;
+  }
+}
