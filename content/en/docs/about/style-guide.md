@@ -33,7 +33,7 @@ Some hints:
 - Capitalize (almost) every word in page titles. (That is, use title case.) The
   little words like "and", "in", etc, don't get a capital letter.
 - In page content, use capitals only for brand names, like Kubeflow, Kubernetes,
-  and so on. See more about brand names [below](#brand-names).
+  and so on. See more about brand names [below](#use-full-correct-brand-names).
 - Don't use capital letters to emphasize words.
 
 ## Spell out abbreviations and acronyms on first use

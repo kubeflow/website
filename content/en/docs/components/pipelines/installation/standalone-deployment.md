@@ -97,6 +97,13 @@ See the Google Kubernetes Engine (GKE) guide to
 
      **Note**: `kubectl apply -k` accepts local paths and paths that are formatted as [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, the paths are not valid URLs.
 
+     {{% alert title="Deprecation Notice" color="warning" %}}
+Kubeflow Pipelines default to the docker executor, but docker executor will be
+deprecated on Kubernetes 1.20+.
+To prepare for the deprecation, refer to [Argo Workflow Executors](/docs/components/pipelines/installation/choose-executor)
+for migration instructions.
+     {{% /alert %}}
+
 1. Get the public URL for the Kubeflow Pipelines UI and use it to access the Kubeflow Pipelines UI:
 
      ```
@@ -104,6 +111,8 @@ See the Google Kubernetes Engine (GKE) guide to
      ```
 
 ## Upgrading Kubeflow Pipelines
+
+1. For release notices and breaking changes, refer to [Upgrading Kubeflow Pipelines](/docs/components/pipelines/upgrade).
 
 1. Check the [Kubeflow Pipelines GitHub repository](https://github.com/kubeflow/pipelines/releases) for available releases.
 
@@ -147,7 +156,7 @@ Kubeflow Pipelines can be configured through kustomize [overlays](https://github
 To begin, first clone the [Kubeflow Pipelines GitHub repository](https://github.com/kubeflow/pipelines),
 and use it as your working directory.
 
-### Deploy on GCP with CloudSQL and Google Cloud Storage
+### Deploy on GCP with Cloud SQL and Google Cloud Storage
 
 **Note**: This is recommended for production environments. For more details about customizing your environment
 for GCP, see the [Kubeflow Pipelines GCP manifests](https://github.com/kubeflow/pipelines/tree/master/manifests/kustomize/env/gcp).
@@ -180,7 +189,7 @@ To deploy Kubeflow Pipelines standalone in namespace `<my-namespace>`:
 
 By default, the KFP standalone deployment installs an [inverting proxy agent](https://github.com/google/inverting-proxy) that exposes a public URL. If you want to skip the installation of the inverting proxy agent, complete the following:
 
-1. Comment out the proxy components in the base [kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/base/kustomization.yaml).
+1. Comment out the proxy components in the base `kustomization.yaml`. For example in [manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml) comment out `inverse-proxy`.
 
 1. Apply the changes to update the Kubeflow Pipelines deployment:
 
@@ -238,7 +247,7 @@ and uninstall your components.
 ### Maintain your manifests in source control
 
 After creating or customizing your deployment manifests, save your manifests
-to a local or remote source control respository.
+to a local or remote source control repository.
 For example, save the following `kustomization.yaml`:
 
 ```
@@ -258,7 +267,6 @@ bases:
 * To learn about kustomize workflows with off-the-shelf configurations, see the
 [kustomize configuration workflows guide](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration).
 
-* Read [Authenticating Pipelines to GCP](/docs/gke/authentication/#authentication-from-kubeflow-pipelines#authoring-pipelines-to-use-workload-identity) if you want to use GCP services in Kubeflow Pipelines.
 
 ## Troubleshooting
 
@@ -267,9 +275,10 @@ bases:
 MountVolume.SetUp failed for volume "gcp-credentials-user-gcp-sa" : secret "user-gcp-sa" not found
 ```
 
-You should remove `use_gcp_secret` usages as documented in [Authenticating Pipelines to GCP](/docs/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity).
+You should remove `use_gcp_secret` usages as documented in [Authenticating Pipelines to GCP](/docs/distributions/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity).
 
 
 ## What's next
 
-* [Connecting to Kubeflow Pipelines standalone on Google Cloud using the SDK](/docs/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-standalone-or-ai-platform-pipelines)
+* [Connecting to Kubeflow Pipelines standalone on Google Cloud using the SDK](/docs/distributions/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-standalone-or-ai-platform-pipelines)
+* [Authenticating Pipelines to GCP](/docs/distributions/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity) if you want to use GCP services in Kubeflow Pipelines.

@@ -1,7 +1,7 @@
 +++
-title = "Kubeflow Samples"
+title = "Examples"
 description = "Examples that demonstrate machine learning with Kubeflow"
-weight = 10
+weight = 30
                     
 +++
 

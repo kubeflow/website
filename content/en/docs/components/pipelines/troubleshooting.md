@@ -4,10 +4,6 @@ description = "Finding and fixing problems in your Kubeflow Pipelines deployment
 weight = 65
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 This page presents some hints for troubleshooting specific problems that you
 may encounter.
@@ -89,3 +85,7 @@ You can resolve this issue by using one of the following options:
    Then restart your terminal session or run `source ~/.bashrc`.
 *  Run the `kfp` and `dsl-compile` commands as `~/.local/bin/kfp` and
    `~/.local/bin/dsl-compile`.
+
+## TFX visualizations do not show up or throw an error
+
+Confirm your Kubeflow Pipelines backend version is compatible with your TFX version, refer to [Kubeflow Pipelines Compatibility Matrix](/docs/components/pipelines/installation/compatibility-matrix/).

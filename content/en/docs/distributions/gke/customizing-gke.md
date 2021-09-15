@@ -18,7 +18,7 @@ The Kubeflow deployment process is divided into two steps, **hydrate** and
 **apply**, so that you can modify your configuration before deploying your 
 Kubeflow cluster.
 
-Follow the guide to [deploying Kubeflow on Google Cloud](/docs/gke/deploy/deploy-cli/). You can add your patches in corresponding component folder, and include those patches in `kustomization.yaml` file. Learn more about the usage of [kustomize](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/). You can also find the exisitng kustomization in [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints) as example. After adding the patches, you can run `make hydrate` to validate the resulting resources. Finally, you can run `make apply` to deploy the customized Kubeflow.
+Follow the guide to [deploying Kubeflow on Google Cloud](/docs/gke/deploy/deploy-cli/). You can add your patches in corresponding component folder, and include those patches in `kustomization.yaml` file. Learn more about the usage of [kustomize](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/). You can also find the existing kustomization in [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints) as example. After adding the patches, you can run `make hydrate` to validate the resulting resources. Finally, you can run `make apply` to deploy the customized Kubeflow.
 
 
 ## Customizing an existing deployment
@@ -172,7 +172,7 @@ to `false`:
     ...
 ```
 
-Then create the [ContainerNodePool](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containernodepool) resource adopting GPU, for exmaple:
+Then create the [ContainerNodePool](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containernodepool) resource adopting GPU, for example:
 
 ```
   apiVersion: container.cnrm.cloud.google.com/v1beta1

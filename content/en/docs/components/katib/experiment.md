@@ -137,7 +137,8 @@ These are the fields in the experiment configuration spec:
 
   Katib dynamically supports any kind of
   [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
-  By default, you can use one of the following job types to train your model:
+  In Katib [examples](https://github.com/kubeflow/katib/tree/master/examples/v1beta1),
+  you can find the following job types to train your model:
 
   - [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 
@@ -147,7 +148,11 @@ These are the fields in the experiment configuration spec:
 
   - [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
-  - [Tekton `Pipeline`](https://github.com/tektoncd/pipeline)
+  - [Kubeflow `XGBoostJob`](https://github.com/kubeflow/xgboost-operator)
+
+  - [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
+
+  - [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
 
   Refer to the
   [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
@@ -214,7 +219,9 @@ Here's a list of the search algorithms available in Katib:
 - [Bayesian optimization](#bayesian)
 - [Hyperband](#hyperband)
 - [Tree of Parzen Estimators (TPE)](#tpe-search)
+- [Multivariate TPE](#multivariate-tpe-search)
 - [Covariance Matrix Adaptation Evolution Strategy (CMA-ES)](#cmaes)
+- [Sobol's Quasirandom Sequence](#sobol)
 - [Neural Architecture Search based on ENAS](#enas)
 - [Differentiable Architecture Search (DARTS)](#darts)
 
@@ -253,7 +260,9 @@ use when combinatorial exploration is not possible. If the number of continuous
 variables is high, you should use quasi random sampling instead.
 
 Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/),
-[Goptuna](https://github.com/c-bata/goptuna) or [Chocolate](https://chocolate.readthedocs.io) optimization
+[Goptuna](https://github.com/c-bata/goptuna),
+[Chocolate](https://chocolate.readthedocs.io) or
+[Optuna](https://github.com/optuna/optuna) optimization
 framework for its random search.
 
 Katib supports the following algorithm settings:
@@ -383,12 +392,99 @@ Hyperband also focuses on the speed of the search.
 
 The algorithm name in Katib is `tpe`.
 
-Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/) or
-[Goptuna](https://github.com/c-bata/goptuna) optimization
+Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/),
+[Goptuna](https://github.com/c-bata/goptuna) or
+[Optuna](https://github.com/optuna/optuna) optimization
 framework for its TPE search.
 
 This method provides a [forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
 search.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>n_EI_candidates</td>
+        <td>[int]: Number of candidate samples used to calculate the expected improvement.</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>random_state</td>
+        <td>[int]: Set <code>random_state</code> to something other than None
+          for reproducible results.</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>gamma</td>
+        <td>[float]: The threshold to split between l(x) and g(x), check equation 2 in
+        <a href="https://papers.nips.cc/paper/2011/file/86e8f7ab32cfd12577bc2619bc635690-Paper.pdf">
+        this Paper</a>. Value must be in (0, 1) range.</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>prior_weight</td>
+        <td>[float]: Smoothing factor for counts, to avoid having 0 probability.
+        Value must be > 0.</td>
+        <td>1.1</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<a id="multivariate-tpe-search"></a>
+
+#### Multivariate TPE
+
+The algorithm name in Katib is `multivariate-tpe`.
+
+Katib uses the [Optuna](http://hyperopt.github.io/hyperopt/) optimization
+framework for its Multivariate TPE search.
+
+[Multivariate TPE](https://tech.preferred.jp/en/blog/multivariate-tpe-makes-optuna-even-more-powerful/)
+is improved version of independent (default) TPE. This method finds
+dependencies among hyperparameters in search space.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>n_ei_candidates</td>
+        <td>[int]: Number of Trials used to calculate the expected improvement.</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>random_state</td>
+        <td>[int]: Set <code>random_state</code> to something other than None
+          for reproducible results.</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>n_startup_trials</td>
+        <td>[int]: Number of initial Trials for which the random algorithm generates
+        hyperparameters.</td>
+        <td>5</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <a id="cmaes"></a>
 
@@ -396,7 +492,8 @@ search.
 
 The algorithm name in Katib is `cmaes`.
 
-Katib uses the [Goptuna](https://github.com/c-bata/goptuna) optimization
+Katib uses the [Goptuna](https://github.com/c-bata/goptuna) or
+[Optuna](https://github.com/optuna/optuna) optimization
 framework for its CMA-ES search.
 
 The [Covariance Matrix Adaptation Evolution Strategy](https://en.wikipedia.org/wiki/CMA-ES)
@@ -435,6 +532,19 @@ Katib supports the following algorithm settings:
     </tbody>
   </table>
 </div>
+
+<a id="sobol"></a>
+
+#### Sobol's Quasirandom Sequence
+
+The algorithm name in Katib is `sobol`.
+
+Katib uses the [Goptuna](https://github.com/c-bata/goptuna) optimization
+framework for its Sobol's quasirandom search.
+
+The [Sobol's quasirandom sequence](https://dl.acm.org/doi/10.1145/641876.641879)
+is a low-discrepancy sequence. And it is known that Sobol's quasirandom sequence can
+provide better uniformity properties.
 
 <a id="enas"></a>
 

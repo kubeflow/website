@@ -93,6 +93,12 @@ juju config oidc-gatekeeper public-url=http://<URL>
 
 where in place of `<URL>` you should use the hostname that the Kubeflow dashboard responds to.
 
+Currently, in order to setup Kubeflow with Istio correctly when RBAC is enabled, you need to provide the `istio-ingressgateway` operator access to Kubernetes resources. The following command will create the appropriate role:
+
+```bash
+kubectl patch role -n kubeflow istio-ingressgateway-operator -p '{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"istio-ingressgateway-operator"},"rules":[{"apiGroups":["*"],"resources":["*"],"verbs":["*"]}]}'
+```
+
 #### More documentation
 
 For more documentation, visit the [Charmed Kubeflow website](https://charmed-kubeflow.io/docs).

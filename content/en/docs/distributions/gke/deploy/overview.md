@@ -8,7 +8,7 @@ This guide describes how to deploy Kubeflow and a series of Kubeflow components 
 If you want to use Kubeflow Pipelines only, refer to [Installation Options for Kubeflow Pipelines](/docs/components/pipelines/installation/overview/)
 for choosing an installation option.
 
-### Deployment Structure
+## Deployment Structure
 
 As a high level overview, you need to create one Management cluster which allows you to manage Google Cloud resources via [Config Connector](https://cloud.google.com/config-connector/docs/overview). Management cluster can create, manage and delete multiple Kubeflow clusters, while being independent from Kubeflow clusters' activities. Below is a simplified view of deployment structure. Note that Management cluster can live in a different Google Cloud project from Kubeflow clusters, admin should assign owner permission to Management cluster's service account. It will be explained in detail during Deployment steps.
 
@@ -17,7 +17,7 @@ As a high level overview, you need to create one Management cluster which allows
     class="mt-3 mb-3 border border-info rounded">
 
 
-### Deployment steps
+## Deployment steps
 
 Follow the steps below to set up Kubeflow environment on Google Cloud. Some of these steps are one-time only, for example: OAuth Client can be shared by multiple Kubeflow clusters in the same Google Cloud project.
 
@@ -29,7 +29,7 @@ Follow the steps below to set up Kubeflow environment on Google Cloud. Some of t
 If you encounter any issue during the deployment steps, refer to [Troubleshooting deployments on GKE](/docs/distributions/gke/troubleshooting-gke/) to find common issues
 and debugging approaches. If this issue is new, file a bug to [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints) for GKE related issue, or file a bug to the corresponding component in [Kubeflow on GitHub](https://github.com/kubeflow/) if the issue is component specific. 
 
-### Features
+## Features
 
 Once you finish deployment, you will be able to:
 

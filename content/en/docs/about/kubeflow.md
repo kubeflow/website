@@ -68,7 +68,7 @@ configure based on the cluster it deploys into.
 
 ## History
 
-Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/). It began as just a simpler way to run TensorFlow jobs on Kubernetes, but has since expanded to be a multi-architecture, multi-cloud framework for running entire machine learning pipelines.
+Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/). It began as just a simpler way to run TensorFlow jobs on Kubernetes, but has since expanded to be a multi-architecture, multi-cloud framework for running end-to-end machine learning workflows.
 
 ## Roadmaps
 
@@ -76,12 +76,11 @@ To see what's coming up in future versions of Kubeflow, refer to the [Kubeflow r
 
 The following components also have roadmaps:
 
-- [Arena](https://github.com/kubeflow/arena/blob/master/ROADMAP.md)
-- [Fairing](https://github.com/kubeflow/fairing/blob/master/roadmap.md)
 - [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
 - [KF Serving](https://github.com/kubeflow/kfserving/blob/master/ROADMAP.md)
 - [Katib](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
-- [MPI Operator](https://github.com/kubeflow/mpi-operator/blob/master/ROADMAP.md)
+- [Training Operator](https://github.com/kubeflow/common/blob/master/ROADMAP.md)
+- [Kubeflow Notebooks](https://github.com/kubeflow/kubeflow/issues/5978)
 
 ## Getting involved
 
