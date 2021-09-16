@@ -78,7 +78,7 @@ output Confusion Matrix data using API
 `log_confusion_matrix(self, categories: List[str], matrix: List[List[int]])`. `categories`
 provides a list of names for each label, `matrix` provides prediction performance for corresponding
 label. There are multiple APIs you can use for logging Confusion Matrix. Refer to 
-[io_types.py](https://github.com/kubeflow/pipelines/blob/b7084f29068a2c46832b3b02e9ffe1a002eb13cb/sdk/python/kfp/dsl/io_types.py#L241) for detail.
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L255-L256) for detail.
 
 Refer to example below for logging Confusion Matrix:
 
@@ -125,7 +125,7 @@ output ROC Curve data using API
 `fpr` defines a list of False Positive Rate values, `tpr` defines a list of 
 True Positive Rate values, `threshold` indicates the level of sensitivity and specificity 
 of this probability curve. There are multiple APIs you can use for logging ROC Curve. Refer to 
-[io_types.py](https://github.com/kubeflow/pipelines/blob/b7084f29068a2c46832b3b02e9ffe1a002eb13cb/sdk/python/kfp/dsl/io_types.py#L151) for detail.
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L163-L164) for detail.
 
 ```
 @component(
@@ -168,11 +168,10 @@ Define `Output[Metrics]` parameter in your component function, then
 output Scalar data using API `log_metric(self, metric: str, value: float)`. 
 You can define any amount of metric by calling this API multiple times.
 `metric` defines the name of metric, `value` is the value of this metric. Refer to 
-[io_types.py](https://github.com/kubeflow/pipelines/blob/b7084f29068a2c46832b3b02e9ffe1a002eb13cb/sdk/python/kfp/dsl/io_types.py#L112) 
+[artifacts_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L124) 
 for detail.
 
 ```
-
 @component(
     packages_to_install=['sklearn'],
     base_image='python:3.9',
@@ -224,6 +223,51 @@ Visualization of Scalar Metrics is as below:
 <img src="/docs/images/pipelines/v2/scalar-metrics.png" 
   alt="V2 Scalar Metrics visualization"
   class="mt-3 mb-3 border border-info rounded">
+
+
+### Markdown
+
+Define `Output[Markdown]` parameter in your component function, then
+output Markdown content as string by writing to path like `<artifact_parameter_name>.path`. 
+Refer to
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L420-L428) 
+for detail.
+
+```
+@component
+def markdown_visualization(markdown_artifact: Output[Markdown]):
+    markdown_content = '## Hello world \n\n Markdown content'
+    with open(markdown_artifact.path, 'w') as f:
+        f.write(markdown_content)
+```
+
+
+<img src="/docs/images/markdown-output.png" 
+  alt="Markdown visualization from a pipeline component"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+
+### Single HTML file
+
+Define `Output[HTML]` parameter in your component function, then
+output HTML content as string by writing to path like `<artifact_parameter_name>.path`. 
+Refer to
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L409-L417) 
+for detail.
+
+```
+@component
+def html_visualization(html_artifact: Output[HTML]):
+    html_content = '<!DOCTYPE html><html><body><h1>Hello world</h1></body></html>'
+    with open(html_artifact.path, 'w') as f:
+        f.write(html_content)
+```
+
+<img src="/docs/images/taxi-tip-analysis-step-output-webapp-popped-out.png" 
+  alt="Web app output from a pipeline component"
+  class="mt-3 mb-3 border border-info rounded">
+
 
 ## Source of v2 examples
 
