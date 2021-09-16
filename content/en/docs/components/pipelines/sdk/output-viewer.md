@@ -241,9 +241,8 @@ def markdown_visualization(markdown_artifact: Output[Markdown]):
         f.write(markdown_content)
 ```
 
-
-<img src="/docs/images/markdown-output.png" 
-  alt="Markdown visualization from a pipeline component"
+<img src="/docs/images/pipelines/v2/markdown-visualization.png" 
+  alt="Markdown visualization in v2 compatible mode"
   class="mt-3 mb-3 border border-info rounded">
 
 
