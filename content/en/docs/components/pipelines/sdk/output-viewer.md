@@ -73,7 +73,7 @@ For a usage guide of each metric visualization output, refer to sections below:
 
 ### Confusion Matrix
 
-Define `Output[ClassificationMetrics]` parameter in your component function, then
+Define `Output[ClassificationMetrics]` argument in your component function, then
 output Confusion Matrix data using API 
 `log_confusion_matrix(self, categories: List[str], matrix: List[List[int]])`. `categories`
 provides a list of names for each label, `matrix` provides prediction performance for corresponding
@@ -119,7 +119,7 @@ Visualization of Confusion Matrix is as below:
 
 ### ROC Curve 
 
-Define `Output[ClassificationMetrics]` parameter in your component function, then
+Define `Output[ClassificationMetrics]` argument in your component function, then
 output ROC Curve data using API 
 `log_roc_curve(self, fpr: List[float], tpr: List[float], threshold: List[float])`. 
 `fpr` defines a list of False Positive Rate values, `tpr` defines a list of 
@@ -164,7 +164,7 @@ Visualization of ROC Curve is as below:
 
 ### Scalar Metrics
 
-Define `Output[Metrics]` parameter in your component function, then
+Define `Output[Metrics]` argument in your component function, then
 output Scalar data using API `log_metric(self, metric: str, value: float)`. 
 You can define any amount of metric by calling this API multiple times.
 `metric` defines the name of metric, `value` is the value of this metric. Refer to 
@@ -227,8 +227,8 @@ Visualization of Scalar Metrics is as below:
 
 ### Markdown
 
-Define `Output[Markdown]` parameter in your component function, then
-output Markdown content as string by writing to path like `<artifact_parameter_name>.path`. 
+Define `Output[Markdown]` argument in your component function, then
+write Markdown file to path `<artifact_argument_name>.path`. 
 Refer to
 [artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L420-L428) 
 for detail.
@@ -249,11 +249,14 @@ def markdown_visualization(markdown_artifact: Output[Markdown]):
 
 ### Single HTML file
 
-Define `Output[HTML]` parameter in your component function, then
-output HTML content as string by writing to path like `<artifact_parameter_name>.path`. 
+You can specify an HTML file that your component creates, and the Kubeflow Pipelines UI renders that HTML in the output page. The HTML file must be self-contained, with no references to other files in the filesystem. The HTML file can contain absolute references to files on the web. Content running inside the HTML file is sandboxed in an iframe and cannot communicate with the Kubeflow Pipelines UI.
+
+Define `Output[HTML]` argument in your component function, then
+write HTML file to path `<artifact_argument_name>.path`. 
 Refer to
 [artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L409-L417) 
 for detail.
+
 
 ```
 @component
