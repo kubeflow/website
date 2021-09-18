@@ -200,18 +200,18 @@ In the `Domain name` choose `Use your domain`, type `auth.platform.domain.com` a
 
 When it's created, it will return the `Alias target` cloudfront address for which you need to create a `A Record` `auth.platform.domain.com` in the hosted zone.
 
-<img src="/docs/images/aws/route53-a-record-auth.png"
+<img src="https://graffity-public-assets.s3.ap-southeast-1.amazonaws.com/route53-a-record-auth.png"
   alt="Route53 auth A Record"
   class="mt-3 mb-3 border border-info rounded">
 
 
 Take note of the following 5 values:
 
-* The ARN of the certificate from the Certificate Manager of N.Virginia (<certArn>).
-* The Pool ARN (<cognitoUserPoolArn>) of the user pool found in Cognito general settings.
-* The App client id (<cognitoAppClientId>), found in Cognito App clients.
-* The `auth.platform.domain.com` as the <cognitoUserPoolDomain>.
-* The name(s) of the created nodegroup(s) using the following command:
+* The ARN (`certArn`) of the certificate from the Certificate Manager of your region, 'eu-west-1' in this case.
+* The Pool ARN (`cognitoUserPoolArn`) of the user pool found in Cognito general settings.
+* The App client id (`cognitoAppClientId`), found in Cognito App clients.
+* The `auth.platform.domain.com` as the `cognitoUserPoolDomain`.
+* The name(s) of the created nodegroup(s) using the following command with aws cli and [jq](https://stedolan.github.io/jq/download/):
     ```shell script
     aws iam list-roles \
       | jq -r ".Roles[] \
@@ -224,7 +224,7 @@ Download and edit the kfctl manifest file:
 ```shell script
 wget {{% aws/config-uri-aws-cognito %}}
 ```
-At the end of the file we can see the `KfAwsPlugin` plugin section. In the spec about the cognito, you need to replace the 4 values you recorded above and the nodegroups names in the roles.
+At the end of the file we can see the `KfAwsPlugin` plugin section. In the spec about the cognito, you need to replace the 5 values you recorded above and the nodegroups names in the roles.
 
 ```yaml
   - kind: KfAwsPlugin
@@ -248,16 +248,28 @@ kfctl build -f {{% aws/config-file-aws-cognito %}} -V
 kfctl apply -f {{% aws/config-file-aws-cognito %}} -V
 ```
 
-That shouldn't take a long time. There shouldn't by any errors, and when ready you can validate that you can see the kubeflow namespace.
+That shouldn't take a long time. There shouldn't by any errors, and when ready you can validate that you can see the kubeflow namespace by following command:
+```
+kubectl -n kubeflow get all
+```
 
-At this point you will also have an ALB, it takes around 3 minutes to be ready. When ready, copy the DNS name of that load balancer and create 2 CNAME entries to it in Route53:
+It takes around 3 minutes to be ready, at this point you can check the ALB DNS address ([ALB Fails to Provision](https://www.kubeflow.org/docs/distributions/aws/troubleshooting-aws/#alb-fails-to-provision)) by:
+```
+kubectl get ingress -n istio-system
+
+NAMESPACE      NAME            HOSTS   ADDRESS                                                       PORTS   AGE
+istio-system   istio-ingress   *       123-istiosystem-istio-2af2-4567.eu-west-1.elb.amazonaws.com   80      1h
+```
+
+When ready, copy the ALB DNS name of that load balancer and create 3 CNAME entries to it in Route53:
 
 * `*.platform.domain.com`
 * `*.default.platform.domain.com`
+* `kubeflow.platform.domain.com`
 
 Also remember to update A record for `platform.domain.com` using ALB DNS name.
 
-<img src="/docs/images/aws/route53-a-record-platform.png"
+<img src="https://graffity-public-assets.s3.ap-southeast-1.amazonaws.com/route53-a-record-platform.png"
   alt="Route53 platform A Record"
   class="mt-3 mb-3 border border-info rounded">
 
