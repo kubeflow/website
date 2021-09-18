@@ -26,9 +26,9 @@ to manage Google Cloud infrastructure using GitOps.
     # If the output said the Cloud SDK component manager is disabled for installation, copy the command from output and run it.
     ```
 
-    kubectl `v1.18.19` works best with Kubeflow 1.3, you can install specific version by following instruction, for example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). But latest patch version of kubectl from `v1.17` to `v1.19` works well too.
+    You can install specific version of kubectl by following instruction (Example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). Latest patch version of kubectl from `v1.17` to `v1.19` works well too.
 
-    Note: `kpt v1.0.0-beta.1` or above doesn't work due to a known issue: https://github.com/kubeflow/pipelines/issues/6100. Please downgrade gcloud or install kpt separately https://github.com/GoogleContainerTools/kpt/releases/tag/v0.39.2 for now.
+    Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now.
 
 1. [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
 
@@ -88,6 +88,21 @@ The management cluster manifests live in GitHub repository [kubeflow/gcp-bluepri
 
 ### Configure Environment Variables
 
+Fill in environment variables in `gcp-blueprints/management/env.sh` as followed:
+
+```bash
+MGMT_PROJECT=<the project where you deploy your management cluster>
+MGMT_DIR=<path to your management cluster configuration directory>
+MGMT_NAME=<name of your management cluster>
+LOCATION=<location of your management cluster>
+```
+
+And run:
+
+```bash
+source env.sh
+```
+
 This guide assumes the following convention:
 
 * The `${MGMT_PROJECT}` environment variable contains the Google Cloud project
@@ -111,36 +126,10 @@ This guide assumes the following convention:
 * The `${LOCATION}` environment variable contains the location of your management cluster.
   you can choose between regional or zonal, see [Available regions and zones](https://cloud.google.com/compute/docs/regions-zones#available).
 
-Set these environment variables in your shell:
-
-```bash
-MGMT_PROJECT=<the project where you deploy your management cluster>
-MGMT_DIR=<path to your management cluster configuration directory>
-MGMT_NAME=<name of your management cluster>
-LOCATION=<location of your management cluster>
-```
-
-Alternatively, you can also fill in the same content in `gcp-blueprints/management/env.sh`, and run:
-
-```bash
-source env.sh
-```
 
 ### Configure kpt setter values
 
-Use kpt to [set values](https://googlecontainertools.github.io/kpt/guides/consumer/set/) for the name, project, and location of your management cluster:
-
-  ```bash
-  kpt cfg set -R . name "${MGMT_NAME}"
-  kpt cfg set -R . gcloud.core.project "${MGMT_PROJECT}"
-  kpt cfg set -R . location "${LOCATION}"
-  ```
-  
-Running `kpt cfg set` stores values you set in all `Kptfile` under `gcp-blueprints/management/`. The `-R` flag means `--recurse-subpackages`. It sets values recursively in all the nested subpackages in current directory `.` in one command. Commit the changes to source control to preserve your configuration.
-
-You can learn more about `kpt cfg set` in [kpt documentation](https://googlecontainertools.github.io/kpt/reference/cfg/set/), or by running `kpt cfg set --help`.
-
-Alternatively, you can run the following command for the same effect:
+Use kpt to [set values](https://catalog.kpt.dev/apply-setters/v0.2/) for the name, project, and location of your management cluster. Run the following command:
 
   ```bash
   bash kpt-set.sh
@@ -150,7 +139,7 @@ Note, you can find out which setters exist in a package and what their
 current values are by running the following command:
 
   ```bash
-  kpt cfg list-setters .
+  kpt fn eval -i list-setters:v0.1 ./manifests
   ```
 
 ### Deploy Management Cluster
@@ -167,7 +156,7 @@ current values are by running the following command:
     make hydrate-cluster
     ```
 
-    and look into `./build/cluster` folder.
+    and look into `./manifests/build/cluster` folder.
 
 1. Create a kubectl __context__ for the management cluster, it will be named `${MGMT_NAME}`:
 
@@ -192,7 +181,7 @@ current values are by running the following command:
     make hydrate-kcc
     ```
 
-    and check `./build/cnrm-install-*` folders.
+    and check `./manifests/build/cnrm-install-*` folders.
 
 ## Understanding the deployment process
 
@@ -205,17 +194,17 @@ Your management cluster directory contains the following files and directories:
 
 * **Makefile** is a file that defines rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
 
-* **cluster** is a kustomize package defining all the Google Cloud resources needed using [gcloud beta anthos apply](https://cloud.google.com/sdk/gcloud/reference/beta/anthos/apply). It can apply some Google Cloud resource types using the same resource definition for Config Connector. You can edit this kustomize package in order to customize the Google Cloud resources for your purposes.
+* **manifests/cluster** is a kustomize package defining all the Google Cloud resources needed using [gcloud beta anthos apply](https://cloud.google.com/sdk/gcloud/reference/beta/anthos/apply). It can apply some Google Cloud resource types using the same resource definition for Config Connector. You can edit this kustomize package in order to customize the Google Cloud resources for your purposes.
 
-* **cnrm-install-\*** folders contain kustomize packages for Google Cloud services, iam policies and Kubernetes resources to install Config Connector following [Advanced installation options for Config Connector](https://cloud.google.com/config-connector/docs/how-to/advanced-install).
+* **manifests/cnrm-install-\*** folders contain kustomize packages for Google Cloud services, iam policies and Kubernetes resources to install Config Connector following [Advanced installation options for Config Connector](https://cloud.google.com/config-connector/docs/how-to/advanced-install).
 
-* **build** is a directory that will contain the hydrated manifests outputted by
+* **manifests/build** is a directory that will contain the hydrated manifests outputted by
   the `make` rules.
 
 
 ### Customizing the installation
 
-Once you understand the folder layout, you can create [Kustomize](https://kustomize.io/) `overlays` folder in corresponding directory, for example `cnrm-install/iam`, so you can define patches in `overlays` folder. Then use overlays in `kustomization.yaml` file.
+Once you understand the folder layout, you can create [Kustomize](https://kustomize.io/) `overlays` folder in corresponding directory, for example `manifests/cnrm-install/iam`, so you can define patches in `overlays` folder. Then use overlays in `kustomization.yaml` file.
 
 The following tips help you customize, verify and re-apply them to your cluster.
 
@@ -235,7 +224,7 @@ make hydrate-cluster
 make hydrate-kcc
 ```
 
-and refer to hydrated resources in `./build/*`.
+and refer to hydrated resources in `./manifests/build/*`.
 
 To apply your customizations:
 

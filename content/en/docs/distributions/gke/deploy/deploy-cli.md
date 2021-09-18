@@ -43,13 +43,11 @@ Before installing Kubeflow on the command line:
     gcloud components update
     ```
 
-    kubectl `v1.18.19` works best with Kubeflow 1.3, you can install specific version by following instruction, for example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). But latest patch version of kubectl from `v1.17` to `v1.19` works well too.
+    You can install specific version of kubectl by following instruction (Example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). Latest patch version of kubectl from `v1.17` to `v1.19` works well too.
 
-    Note: `kpt v1.0.0-beta.1` or above doesn't work due to a known issue: https://github.com/kubeflow/pipelines/issues/6100. Please downgrade gcloud or install kpt separately https://github.com/GoogleContainerTools/kpt/releases/tag/v0.39.2 for now.
+    Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now.
 
 1. Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
-    
-    Kustomize `v4.2.0` works with Kubeflow v1.3.x.
     
     To deploy the latest version of Kustomize on a Linux or Mac machine, run the following commands:
 
@@ -85,11 +83,6 @@ Before installing Kubeflow on the command line:
    
    **Note:** The Kubeflow deployment process is not compatible with yq v4 or later.
 
-1. Install jq https://stedolan.github.io/jq/ ,for example, we can run the following command on Ubuntu and Debian: 
-
-    ```bash
-    sudo apt install jq
-    ```
 
 ### Fetch kubeflow/gcp-blueprints and upstream packages
 
@@ -166,14 +159,13 @@ Note, you can find out which setters exist in a package and their
 current values by running the following commands:
 
   ```bash
-  kpt cfg list-setters .
-  kpt cfg list-setters common/managed-storage
-  kpt cfg list-setters apps/pipelines
+  kpt fn eval -i list-setters:v0.1 ./apps
+  kpt fn eval -i list-setters:v0.1 ./common
   ```
 
-You can learn more about `kpt cfg set` in [kpt documentation](https://googlecontainertools.github.io/kpt/reference/cfg/set/), or by running `kpt cfg set --help`.
+You can learn more about `list-setters` in [kpt documentation](https://catalog.kpt.dev/list-setters/v0.1/).
 
-#### Management cluster config
+### Management cluster config
 
 You need to configure the kubectl context `${MGMTCTXT}` to create a namespace same as your Kubeflow project, you only need to do this once for each Kubeflow project.
 
@@ -190,11 +182,12 @@ You need to configure the kubectl context `${MGMTCTXT}` to create a namespace sa
   ```
 
 
-## Authorize Cloud Config Connector for each Kubeflow project
+#### Authorize Cloud Config Connector for each Kubeflow project
 
 In the [Management cluster deployment](/docs/distributions/gke/deploy/management-setup/) we created the Google Cloud service account **${MGMT_NAME}-cnrm-system@${MGMT_PROJECT}.iam.gserviceaccount.com**
 this is the service account that Config Connector will use to create any Google Cloud resources. If your Management cluster and Kubeflow cluster live in different projects, you need to grant this Google Cloud service account sufficient privileges to create the desired
-resources in Kubeflow project.
+resources in Kubeflow project. You only need to do this once for each Kubeflow project.
+
 
 The easiest way to do this is to grant the Google Cloud service account owner permissions on one or more projects.
 
@@ -208,9 +201,10 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
 
    ```bash
    pushd "../management"
-   kpt cfg set -R . name "${MGMT_NAME}"
-   kpt cfg set -R . gcloud.core.project "${MGMT_PROJECT}"
-   kpt cfg set -R . managed-project "${KF_PROJECT}"
+   kpt fn eval --image gcr.io/kpt-fn/apply-setters:v0.1 ./managed-project --\
+        name="${MGMT_NAME}" \
+        gcloud.core.project="${MGMT_PROJECT}" \
+        managed-project="${KF_PROJECT}"
    ```
 
 1. Update the policy:
@@ -323,9 +317,9 @@ directories:
 
 * **apps**, **common**, **contrib** are a series of independent components  directory containing kustomize packages for deploying Kubeflow components. The structure is to align with upstream [kubeflow/manifests](https://github.com/kubeflow/manifests).
 
-  * `kubeflow/gcp-blueprints` only stores `kustomization.yaml` and `patches` for Google Cloud specific resources.
+  * [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints) repository only stores `kustomization.yaml` and `patches` for Google Cloud specific resources.
 
-  * `./pull_upstream.sh` will pull `kubeflow/manifests` and store manifests in `upstream` folder of each component in this guide. `kubeflow/gcp-blueprints` repo doesn't store the copy of upstream manifests.
+  * `./pull_upstream.sh` will pull `kubeflow/manifests` and store manifests in `upstream` folder of each component in this guide. [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints) repository doesn't store the copy of upstream manifests.
 
 * **build** is a directory that will contain the hydrated manifests outputted by
   the `make` rules, each component will have its own **build** directory. You can customize the **build** path when calling `make` command.
