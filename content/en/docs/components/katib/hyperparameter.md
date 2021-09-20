@@ -34,7 +34,7 @@ To install Katib as part of Kubeflow, follow the
 
 If you want to install Katib separately from Kubeflow, or to get a later version
 of Katib, you can use one of the following Katib installs. To install the specific
-Katib release (e.g. `v0.11.1`), modify `?ref=master` to `?ref=v0.11.1`.
+Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
 
 1. **Katib Standalone Installation**
 
@@ -114,7 +114,9 @@ katib-ui-5767cfccdc-v9fcs           1/1     Running     0          80s
 ```
 
 - `katib-controller` - the controller to manage Katib Kubernetes CRDs
-  ([`Experiment`, `Suggestion`, `Trial`](/docs/components/katib/overview/#katib-concepts))
+  ([`Experiment`](/docs/components/katib/overview/#experiment),
+  [`Suggestion`](/docs/components/katib/overview/#suggestion),
+  [`Trial`](/docs/components/katib/overview/#trial))
 
 - `katib-ui` - the Katib user interface.
 
@@ -125,8 +127,6 @@ katib-ui-5767cfccdc-v9fcs           1/1     Running     0          80s
 - (Optional) `katib-cert-generator` - the certificate generator for Katib
   standalone installation. Learn more about the cert generator in the
   [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md#katib-cert-generator)
-
-- <a id="katib-ui"></a>
 
 ## Accessing the Katib UI
 
