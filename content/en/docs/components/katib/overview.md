@@ -165,6 +165,9 @@ the main configurations:
 - **Search algorithm**: The algorithm to use when searching for the optimal
   hyperparameter values.
 
+Katib experiment is defined as a
+[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
+
 For details of how to define your experiment, follow the guide to [running an
 experiment](/docs/components/katib/experiment/).
 
@@ -174,6 +177,9 @@ A _suggestion_ is a set of hyperparameter values that the hyperparameter
 tuning process has proposed. Katib creates a trial to evaluate the suggested
 set of values.
 
+Katib suggestion is defined as a
+[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
+
 ### Trial
 
 A _trial_ is one iteration of the hyperparameter tuning process. A trial
@@ -182,6 +188,9 @@ The list of parameter assignments corresponds to a suggestion.
 
 Each experiment runs several trials. The experiment runs the trials until it
 reaches either the objective or the configured maximum number of trials.
+
+Katib trial is defined as a
+[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
 
 ### Worker job
 

@@ -15,6 +15,13 @@ For an overview of the concepts around Katib and hyperparameter tuning, check th
 
 Let's set up and configure Katib on your Kubernetes cluster with Kubeflow.
 
+### Prerequisites
+
+This is the minimal requirements to install Katib:
+
+- Kubernetes >= 1.17
+- `kubectl` >= 1.21
+
 <a id="katib-install"></a>
 
 ### Installing Katib
@@ -26,15 +33,8 @@ To install Katib as part of Kubeflow, follow the
 [Kubeflow installation guide](/docs/started/getting-started/).
 
 If you want to install Katib separately from Kubeflow, or to get a later version
-of Katib, you can use various Katib installs. Run the following command to clone
-Katib repository:
-
-```shell
-git clone https://github.com/kubeflow/katib
-cd katib
-```
-
-You can use one of the following Katib installations.
+of Katib, you can use one of the following Katib installs. To install the specific
+Katib release (e.g. `v0.11.1`), modify `?ref=master` to `?ref=v0.11.1`.
 
 1. **Katib Standalone Installation**
 
@@ -42,7 +42,7 @@ You can use one of the following Katib installations.
    (`katib-controller`, `katib-ui`, `katib-mysql`, `katib-db-manager`, and `katib-cert-generator`):
 
    ```shell
-   make deploy
+   kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=master"
    ```
 
    This installation doesn't require any additional setup on your Kubernetes cluster.
@@ -53,7 +53,7 @@ You can use one of the following Katib installations.
    [Cert Manager](https://cert-manager.io/docs/installation/kubernetes/) requirement:
 
    ```shell
-   kustomize build manifests/v1beta1/installs/katib-cert-manager | kubectl apply -f -
+   kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-cert-manager?ref=master"
    ```
 
    This installation uses Cert Manager instead of `katib-cert-generator`
@@ -65,7 +65,7 @@ You can use one of the following Katib installations.
    Run the following command to deploy Katib with custom Database (DB) backend:
 
    ```shell
-   kustomize build manifests/v1beta1/installs/katib-external-db | kubectl apply -f -
+   kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-external-db?ref=master"
    ```
 
    This installation allows to use custom MySQL DB instead of `katib-mysql`.
@@ -79,7 +79,7 @@ You can use one of the following Katib installations.
    Run the following command to deploy Katib on [OpenShift](https://docs.openshift.com/) v4.4+:
 
    ```shell
-   kustomize build ./manifests/v1beta1/installs/katib-openshift | oc apply -f - -l type!=local
+   kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-openshift?ref=master"
    ```
 
    This installation uses OpenShift service controller instead of `katib-cert-generator`
@@ -98,7 +98,35 @@ deploy [PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persi
 to bind [PVC](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/mysql/pvc.yaml)
 for the Katib DB component.
 
-<a id="katib-ui"></a>
+### Katib components
+
+Run the following command to verify that Katib components are running:
+
+```shell
+$ kubectl get pods -n kubeflow
+
+NAME                                READY   STATUS      RESTARTS   AGE
+katib-cert-generator-79g7d          0/1     Completed   0          79s
+katib-controller-566595bdd8-8w7sx   1/1     Running     0          82s
+katib-db-manager-57cd769cdb-vt7zs   1/1     Running     0          82s
+katib-mysql-7894994f88-djp7m        1/1     Running     0          81s
+katib-ui-5767cfccdc-v9fcs           1/1     Running     0          80s
+```
+
+- `katib-controller` - the controller to manage Katib Kubernetes CRDs
+  ([`Experiment`, `Suggestion`, `Trial`](/docs/components/katib/overview/#katib-concepts))
+
+- `katib-ui` - the Katib user interface.
+
+- `katib-db-manager` - the GRPC API server to control Katib DB interface.
+
+- `katib-mysql` - the `mysql` DB backend to store Katib experiments metrics.
+
+- (Optional) `katib-cert-generator` - the certificate generator for Katib
+  standalone installation. Learn more about the cert generator in the
+  [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md#katib-cert-generator)
+
+- <a id="katib-ui"></a>
 
 ## Accessing the Katib UI
 
