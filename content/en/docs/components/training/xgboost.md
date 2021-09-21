@@ -1,5 +1,5 @@
 +++
-title = "XGBoost Training"
+title = "XGBoost Training (XGBoostJob)"
 description = "Instructions for using XGBoost"
 weight = 30
                     
@@ -31,6 +31,18 @@ xgboostjobs.kubeflow.org                       4d
 ...
 ```
 
+Check that the Training operator is running via:
+
+```
+kubectl get pods -n kubeflow
+```
+
+The output should include `training-operator-xxx` like the following:
+
+```
+NAME                                READY   STATUS    RESTARTS   AGE
+training-operator-d466b46bc-xbqvs   1/1     Running   0          4m37s
+```
 
 ## Creating a XGBoost Job
 
