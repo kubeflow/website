@@ -43,7 +43,7 @@ Check that the Training operator is running via:
 kubectl get pods -n kubeflow
 ```
 
-The output should include `training-operaror-xxx` like the following:
+The output should include `training-operator-xxx` like the following:
 
 ```
 NAME                                READY   STATUS    RESTARTS   AGE
