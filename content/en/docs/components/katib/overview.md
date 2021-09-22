@@ -79,7 +79,7 @@ hyperparameter tuning job (_experiment_). Each trial tests a different set of
 hyperparameter configurations. At the end of the experiment, Katib outputs
 the optimized values for the hyperparameters.
 
-You can improve you hyperparameter tunning experiments by using
+You can improve your hyperparameter tunning experiments by using
 [early stopping](https://en.wikipedia.org/wiki/Early_stopping) techniques.
 Follow the [early stopping guide](/docs/components/katib/early-stopping/)
 for the details.
