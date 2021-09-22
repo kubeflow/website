@@ -22,6 +22,7 @@ weight = 10
 | kubeflowkatib/suggestion-enas |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/nas/enas/v1beta1/Dockerfile> |
 | kubeflowkatib/suggestion-darts |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/nas/darts/v1beta1/Dockerfile> |
 | kubeflowkatib/suggestion-goptuna |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/goptuna/v1beta1/Dockerfile> |
+| kubeflowkatib/suggestion-optuna |    <https://github.com/kubeflow/katib/blob/master/cmd/suggestion/optuna/v1beta1/Dockerfile> |
 | kubeflowkatib/earlystopping-medianstop |    <https://github.com/kubeflow/katib/blob/master/cmd/earlystopping/medianstop/v1beta1/Dockerfile> |
 | kubeflowkatib/file-metrics-collector |    <https://github.com/kubeflow/katib/blob/master/cmd/metricscollector/v1beta1/file-metricscollector/Dockerfile> |
 | kubeflowkatib/tfevent-metrics-collector |    <https://github.com/kubeflow/katib/blob/master/cmd/metricscollector/v1beta1/tfevent-metricscollector/Dockerfile> |
