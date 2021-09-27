@@ -4,6 +4,8 @@ description = "Setting up a management cluster on Google Cloud"
 weight = 4
 +++
 
+[kubeflow/gcp-blueprints version]: v1.4.0-rc.0
+
 This guide describes how to setup a management cluster which you will use to deploy one or more instances of Kubeflow.
 
 The management cluster is used to run [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview). Cloud Config Connector is a Kubernetes addon that allows you to manage Google Cloud resources through Kubernetes.
@@ -61,21 +63,21 @@ to manage Google Cloud infrastructure using GitOps.
 
 ### Fetch kubeflow/gcp-blueprints package
 
-The management cluster manifests live in GitHub repository [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints), use the following commands to pull Kubeflow v1.3 manifests:
+The management cluster manifests live in GitHub repository [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints), use the following commands to pull Kubeflow manifests:
 
-1. Clone the GitHub repository and check out the v1.3.1 tag:
+1. Clone the GitHub repository and check out the [kubeflow/gcp-blueprints version] tag:
 
     ```bash
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     cd gcp-blueprints
-    git checkout tags/v1.3.1 -b v1.3.1
+    git checkout tags/[kubeflow/gcp-blueprints version] -b [kubeflow/gcp-blueprints version]
     ```
 
     Alternatively, you can get the package by using `kpt`:
 
     ```bash
-    # Check out Kubeflow v1.3.1 blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.1 gcp-blueprints
+    # Check out Kubeflow [kubeflow/gcp-blueprints version] blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@[kubeflow/gcp-blueprints version] gcp-blueprints
     cd gcp-blueprints
     ```
 
