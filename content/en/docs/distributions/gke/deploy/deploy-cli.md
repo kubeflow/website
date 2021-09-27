@@ -39,67 +39,30 @@ Before installing Kubeflow on the command line:
 1. Install gcloud components
 
     ```bash
-    gcloud components install kubectl kpt anthoscli beta
+    gcloud components install kubectl kustomize kpt anthoscli beta
     gcloud components update
     ```
 
     You can install specific version of kubectl by following instruction (Example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). Latest patch version of kubectl from `v1.17` to `v1.19` works well too.
 
-    Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now.
-
-1. Install [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
-    
-    To deploy the latest version of Kustomize on a Linux or Mac machine, run the following commands:
-
-    ```bash
-    # Detect your OS and download corresponding latest Kustomize binary
-    curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
-
-    # Add the kustomize package to your $PATH env variable
-    sudo mv ./kustomize /usr/local/bin/kustomize
-    ```
-
-    Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/vX.Y.Z` in the output if you've successfully deployed Kustomize.
-
-1. Use one of the following options to install
-   [yq v3](https://github.com/mikefarah/yq).
-
-   * If you have [Go](https://golang.org) installed, use the following command
-     to install yq v3.
-
-     ```bash
-     GO111MODULE=on go get github.com/mikefarah/yq/v3
-     ```
-    
-    * If you don't have [Go](https://golang.org) installed,  follow the
-     instructions in the yq repository to
-     [install yq v3](https://github.com/mikefarah/yq#install). For example:
-
-        ```bash
-        sudo wget https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -O /usr/bin/yq && sudo chmod +x /usr/bin/yq
-        yq --version
-        # yq version 3.4.1
-        ```
-   
-   **Note:** The Kubeflow deployment process is not compatible with yq v4 or later.
-
+    Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository. gcloud hasn't caught up with this kpt version yet, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now. Note that kpt requires docker to be installed.
 
 ### Fetch kubeflow/gcp-blueprints and upstream packages
 
 1. If you have already installed Management cluster, you have `kubeflow/gcp-blueprints` locally. You just need to run `cd kubeflow` to access Kubeflow cluster manifests. Otherwise, you can run the following commands:
 
     ```bash
-    # Check out Kubeflow v1.3.1 blueprints
+    # Check out Kubeflow v1.4.0-rc.0 blueprints
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     cd gcp-blueprints
-    git checkout tags/v1.3.1 -b v1.3.1
+    git checkout tags/v1.4.0-rc.0 -b v1.4.0-rc.0
     ```
 
     Alternatively, you can get the package by using `kpt`:
 
     ```bash
-    # Check out Kubeflow v1.3.1 blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.3.1 gcp-blueprints
+    # Check out Kubeflow v1.4.0-rc.0 blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.4.0-rc.0 gcp-blueprints
     cd gcp-blueprints
     ```
 
@@ -123,7 +86,7 @@ Log in to gcloud. You only need to run this command once:
   ```
 
 
-1. Review and fill all the environment variables in `gcp-blueprints/kubeflow/env.sh`, they will be used by `kpt setter` later on, and some of them will be used in this deployment guide. Review the comment in `env.sh` for the explanation for each environment variable. After defining these environment variables, run:
+1. Review and fill all the environment variables in `gcp-blueprints/kubeflow/env.sh`, they will be used by `kpt` later on, and some of them will be used in this deployment guide. Review the comment in `env.sh` for the explanation for each environment variable. After defining these environment variables, run:
 
     ```bash
     source env.sh
@@ -136,9 +99,7 @@ Log in to gcloud. You only need to run this command once:
    export CLIENT_SECRET=<Your CLIENT_SECRET>
    ```
 
-    {{% alert title="Note" %}}Do not omit the <b>export</b> because scripts triggered by <b>make</b> need these environment variables. {{% /alert %}}
-
-    {{% alert title="Note" %}}Do not check in these two environment variables configuration to source control, they are secrets.{{% /alert %}}
+    {{% alert title="Note" %}}Do not omit the <b>export</b> because scripts triggered by <b>make</b> need these environment variables. Do not check in these two environment variables configuration to source control, they are secrets.{{% /alert %}}
    
 
 ### Configure Kubeflow

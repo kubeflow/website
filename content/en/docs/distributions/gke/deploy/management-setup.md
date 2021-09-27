@@ -4,8 +4,6 @@ description = "Setting up a management cluster on Google Cloud"
 weight = 4
 +++
 
-[kubeflow/gcp-blueprints version]: v1.4.0-rc.0
-
 This guide describes how to setup a management cluster which you will use to deploy one or more instances of Kubeflow.
 
 The management cluster is used to run [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview). Cloud Config Connector is a Kubernetes addon that allows you to manage Google Cloud resources through Kubernetes.
@@ -23,61 +21,33 @@ to manage Google Cloud infrastructure using GitOps.
 1. [gcloud components](https://cloud.google.com/sdk/docs/components)
 
     ```bash
-    gcloud components install kubectl kpt anthoscli beta
+    gcloud components install kubectl kustomize kpt anthoscli beta
     gcloud components update
     # If the output said the Cloud SDK component manager is disabled for installation, copy the command from output and run it.
     ```
 
     You can install specific version of kubectl by following instruction (Example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). Latest patch version of kubectl from `v1.17` to `v1.19` works well too.
 
-    Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now.
+    Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository. gcloud hasn't caught up with this kpt version yet, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now. Note that kpt requires docker to be installed.
 
-1. [Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/).
-
-    **Note:** Starting from Kubeflow v1.2, we fixed the compatibility problem with Kustomize `v3.2.1+`, so you can now install any Kustomize `v3+`, including the latest Kustomize versions.
-
-    To deploy the latest version of Kustomize on a Linux or Mac machine, run the following commands:
-
-    ```bash
-    # Detect your OS and download corresponding latest Kustomize binary
-    curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
-
-    # Add the kustomize package to your $PATH env variable
-    sudo mv ./kustomize /usr/local/bin/kustomize
-    ```
-
-    Then, to verify the installation, run `kustomize version`. You should see `Version:kustomize/vX.Y.Z` in the output if you've successfully deployed Kustomize.
-
-1. [yq v3](https://github.com/mikefarah/yq/releases/tag/3.4.1)
-
-    Follow the instructions in the yq repository to
-   [install yq v3](https://github.com/mikefarah/yq#install). For example:
-
-    ```bash
-    sudo wget https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -O /usr/bin/yq && sudo chmod +x /usr/bin/yq
-    yq --version
-    # yq version 3.4.1
-    ```
-   
-   **Note:** The Kubeflow deployment process is not compatible with yq v4 or later. Learn more about the [changes from yq v3 to v4](https://mikefarah.gitbook.io/yq/upgrading-from-v3#navigating).
 
 ### Fetch kubeflow/gcp-blueprints package
 
 The management cluster manifests live in GitHub repository [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints), use the following commands to pull Kubeflow manifests:
 
-1. Clone the GitHub repository and check out the [kubeflow/gcp-blueprints version] tag:
+1. Clone the GitHub repository and check out the v1.4.0-rc.0 tag:
 
     ```bash
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     cd gcp-blueprints
-    git checkout tags/[kubeflow/gcp-blueprints version] -b [kubeflow/gcp-blueprints version]
+    git checkout tags/v1.4.0-rc.0 -b v1.4.0-rc.0
     ```
 
     Alternatively, you can get the package by using `kpt`:
 
     ```bash
-    # Check out Kubeflow [kubeflow/gcp-blueprints version] blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@[kubeflow/gcp-blueprints version] gcp-blueprints
+    # Check out Kubeflow v1.4.0-rc.0 blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.4.0-rc.0 gcp-blueprints
     cd gcp-blueprints
     ```
 
