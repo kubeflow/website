@@ -53,3 +53,54 @@ Nutanix volumes are created with the default storage class configured in the Kar
       modes=dsl.VOLUME_MODE_RWM,
       storage_class="files-sc")
    ```
+
+## Using Nutanix Objects as an artifact store
+
+In order to use Nutanix Objects as an underlying artifact store, we need to edit the `workflow-controller-configmap` ConfigMap in the `kubeflow` namespace. See [Nutanix Objects Docs](https://portal.nutanix.com/page/documents/details?targetId=Objects-v3_2:Objects-v3_2) for more details on creating object store and buckets.
+```
+kubectl -n kubeflow edit configmap workflow-controller-configmap 
+```
+In the ConfigMap, we need to modify the s3 config with the Nutanix Objects config:
+ - endpoint: This is endpoint for Nutanix Objects store
+ - bucket: This is the name of the Objects store bucket
+ - accessKeySecret: reference to the access key ID in kubernetes secret for Objects store
+ - secretKeySecret: reference to the secret access key in kubernetes secret for Objects store
+```
+    s3:
+      endpoint: "x.x.x.x"
+      bucket: "ml-pipeline-storage"
+      keyFormat: "artifacts/{{workflow.name}}/{{pod.name}}"
+      # insecure will disable TLS. Primarily used for minio installs not configured with TLS
+      insecure: true
+      accessKeySecret:
+        name: mlpipeline-ntnx-objects-artifact
+        key: object_store_access_key_id
+      secretKeySecret:
+        name: mlpipeline-ntnx-objects-artifact
+        key: object_store_secret_access_key
+```
+
+We also need to create the secret that is being referenced in the ConfigMap above
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mlpipeline-ntnx-objects-artifact
+stringData:
+  object_store_access_key_id: <ACCESS_KEY_ID>
+  object_store_secret_access_key: <SECRET_ACCESS_KEY>
+  region: us-east-1
+```
+
+After creating the secret we need to deploy the secret in the user namespace.
+
+```
+kubectl -n kubeflow-user-example-com apply -f mlpipeline-ntnx-objects-artifact-secret.yaml 
+```
+
+**Note**: installing this secret in kubeflow namespace does not work, it has be in present in user's namespace
+
+![objects_browser](/docs/images/nutanix/objects_browser.png)
+
+To verify this is working correctly, you can check Nutanix Objects browser to see if your artifacts are created and show
+up inside your buckets.
