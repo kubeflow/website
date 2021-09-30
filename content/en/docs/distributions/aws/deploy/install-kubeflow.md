@@ -233,7 +233,9 @@ staticPasswords:
 
 # If you want to add a static user (test@kubeflow.org: 123456789)
 # The password (123456789) must be hashed with bcrypt with an at least 10 difficulty level.
-# You can use an online tool like: https://passwordhashing.com/BCrypt
+# You can use an online tool, but BE CAREFUL!
+# At least one such site will display your plain-text password, apparently for all other users to see.
+
 # After change, the example of configmap:
 staticPasswords:
 - email: admin@kubeflow.org
