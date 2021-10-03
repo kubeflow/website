@@ -106,7 +106,7 @@ Run the following commands to set up and deploy Kubeflow.
 1. Unpack the tar ball:
 
     ```
-    tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
+    tar -xvf kfctl_{{% aws/kfctl-aws %}}_<platform>.tar.gz
     ```
 
 1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the
