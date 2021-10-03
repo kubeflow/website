@@ -99,9 +99,9 @@ Run the following commands to set up and deploy Kubeflow.
     az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
     ```
 
-1. Download the kfctl {{% kf-latest-version %}} release from the
+1. Download the kfctl {{% aws/kfctl-aws %}} release from the
   [Kubeflow releases
-  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
+  page](https://github.com/kubeflow/kfctl/releases/tag/{{% aws/kfctl-aws %}}).
 
 1. Unpack the tar ball:
 

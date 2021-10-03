@@ -17,14 +17,14 @@ This section shows the how to set up Kubeflow with authentication and authorizat
 
 ## Kubeflow configuration
 
-1. Download the kfctl {{% kf-latest-version %}} release from the
+1. Download the kfctl {{% aws/kfctl-aws %}} release from the
   [Kubeflow releases
-  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
+  page](https://github.com/kubeflow/kfctl/releases/tag/{{% aws/kfctl-aws %}}).
 
 1. Unpack the tar ball:
 
     ```
-    tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
+    tar -xvf kfctl_{{% aws/kfctl-aws %}}_<platform>.tar.gz
     ```
 
 1. Run the below commands to build configuration files before deploying Kubeflow. The code below includes an optional command to add the binary kfctl to your path - if you don’t add it, you must use the full path to the kfctl binary each time you run it.
