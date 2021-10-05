@@ -185,6 +185,11 @@ githubbranch = "v1.3-branch"
   version = "v1.2"
   githubbranch = "v1.2-branch"
   url = "https://v1-2-branch.kubeflow.org"
+  
+[[params.versions]]
+  version = "v1.3"
+  githubbranch = "v1.3-branch"
+  url = "https://v1-3-branch.kubeflow.org"
 
 # Docsy: User interface configuration
 [params.ui]
