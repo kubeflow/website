@@ -107,12 +107,46 @@ documentation for that application.
         <td></td>
       </tr>
       <tr>
-        <td><a href="/docs/components/katib/overview/">Hyperparameter
-          tuning: Katib</a>
+        <td><a href="/docs/components/katib/overview/">Automated Machine Learning: Katib</a>
           (<a href="https://github.com/kubeflow/katib">GitHub</a>)
           </td>
         <td>Beta</td>
-        <td>v1alpha3</td>
+        <td>v1beta1</td>
+      </tr>
+      <tr>
+        <td><a href="/docs/components/training/tftraining/">TensorFlow training: TFJob</a>
+          (<a href="https://github.com/kubeflow/training-operator">GitHub</a>)
+        </td>
+        <td>Stable</td>
+        <td>1.0.0</td>
+      </tr>
+      <tr>
+        <td><a href="/docs/components/training/pytorch/">PyTorch training: PyTorchJob</a> 
+          (<a href="https://github.com/kubeflow/training-operator">GitHub</a>)
+        </td>
+        <td>Stable</td>
+        <td>1.0.0</td>
+      </tr>
+      <tr>
+        <td><a href="/docs/components/training/mxnet/">MXNet training: MXJob</a>
+          (<a href="https://github.com/kubeflow/training-operator">GitHub</a>)
+        </td>
+        <td>Stable</td>
+        <td>1.0.0</td>
+      </tr>
+      <tr>
+        <td><a href="/docs/components/training/xgboost/">XGBoost training: XGBoostJob</a>
+          (<a href="https://github.com/kubeflow/training-operator">GitHub</a>)
+        </td>
+        <td>Stable</td>
+        <td>1.0.0</td>
+      </tr>
+      <tr>
+        <td><a href="/docs/components/training/mpi/">MPI training: MPIJob</a>
+          (<a href="https://github.com/kubeflow/mpi-operator">GitHub</a>)
+        </td>
+        <td>Alpha</td>
+        <td></td>
       </tr>
       <tr>
         <td><a href="/docs/components/kfserving/kfserving/">KFServing</a>
@@ -120,22 +154,6 @@ documentation for that application.
         </td>
         <td>Beta</td>
         <td>v0.5.1</td>
-      </tr>
-      <tr>
-        <td><a href="/docs/components/training/mpi/">MPI training: MPI 
-          operator</a>
-          (<a href="https://github.com/kubeflow/mpi-operator">GitHub</a>)
-        </td>
-        <td>Alpha</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a href="/docs/components/training/mxnet/">MXNet training: MXNet 
-          operator</a>
-          (<a href="https://github.com/kubeflow/mxnet-operator">GitHub</a>)
-        </td>
-        <td>Alpha</td>
-        <td></td>
       </tr>
       <tr>
         <td><a href="/docs/components/notebooks/why-use-jupyter-notebook/">Notebook web
@@ -168,33 +186,11 @@ documentation for that application.
         <td>1.0.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/components/training/pytorch/">PyTorch training: PyTorch operator</a> 
-          (<a href="https://github.com/kubeflow/pytorch-operator">GitHub</a>)
-        </td>
-        <td>Stable</td>
-        <td>1.0.0</td>
-      </tr>
-      <tr>
         <td><a href="/docs/external-add-ons/serving/seldon">Seldon Core Serving</a> 
           (<a href="https://github.com/SeldonIO/seldon-core">GitHub</a>)
         </td>
         <td>Stable</td>
         <td>1.0.1</td>
-      </tr>
-      <tr>
-        <td><a href="/docs/components/training/tftraining/">TensorFlow training:
-          TFJob operator</a>
-          (<a href="https://github.com/kubeflow/tf-operator">GitHub</a>)
-        </td>
-        <td>Stable</td>
-        <td>1.0.0</td>
-      </tr>
-      <tr>
-        <td>XGBoost training: XGBoost operator
-        (<a href="https://github.com/kubeflow/xgboost-operator">GitHub</a>)
-        </td>
-        <td>Alpha</td>
-        <td></td>
       </tr>
     </tbody>
   </table>
