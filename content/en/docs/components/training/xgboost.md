@@ -14,9 +14,11 @@ This page describes `XGBoostJob` for training a machine learning model with [XGB
 to run XGBoost training jobs on Kubernetes. The Kubeflow implementation of
 `XGBoostJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
 
-## Installing Training Operator
+## Installing XGBoost Operator
 
 If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
+
+> By default, XGBoost Operator will be deployed as a controller in training operator.
 
 ## Verify that XGBoost support is included in your Kubeflow deployment
 
