@@ -48,9 +48,9 @@ NAME                                READY   STATUS    RESTARTS   AGE
 training-operator-d466b46bc-xbqvs   1/1     Running   0          4m37s
 ```
 
-## Creating a XGBoost Job
+## Creating a XGBoost training job
 
-You can create XGBoost Job by defining a `XGboostJob` config file. See the
+You can create a training job by defining a `XGboostJob` config file. See the
 manifests for the [IRIS example](https://github.com/kubeflow/training-operator/blob/master/examples/xgboost/xgboostjob.yaml).
 You may change the config file based on your requirements. eg: add `CleanPodPolicy`
 in Spec to `None` to retain pods after job termination.
