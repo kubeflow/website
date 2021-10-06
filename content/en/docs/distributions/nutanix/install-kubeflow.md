@@ -19,7 +19,7 @@ weight = 4
 
 ## Installing Kubeflow
 
-Do these steps to deploy Kubeflow 1.3 on your Karbon cluster.
+Do these steps to deploy Kubeflow 1.4 on your Karbon cluster.
 
 1. Download the terraform script to deploy kubeflow on Nutanix Karbon by cloning the Github repository shown.
 
@@ -37,7 +37,7 @@ Do these steps to deploy Kubeflow 1.3 on your Karbon cluster.
    prism_central_endpoint = "enter endpoint_ip_or_host_fqdn"
    karbon_cluster_name    = "enter karbon_cluster_name"
    kubeconfig_filename    = "enter karbon_cluster_name-kubectl.cfg"
-   kubeflow_version       = "1.3.0"
+   kubeflow_version       = "1.4.0"
    ```
 
 3. Apply terraform commands to deploy Kubeflow in the cluster.  
