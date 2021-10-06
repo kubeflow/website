@@ -112,8 +112,9 @@ Before you use the auto-tuning example, there is some preparatory work need to b
 To let TVM tune your network, you should create a docker image which has TVM module.
 Then, you need a auto-tuning script to specify which network will be tuned and set the auto-tuning parameters.
 For more details, please see [tutorials](https://docs.tvm.ai/tutorials/autotvm/tune_relay_mobile_gpu.html#sphx-glr-tutorials-autotvm-tune-relay-mobile-gpu-py).
-Finally, you need a startup script to start the auto-tuning program. In fact, MXJob will set all the parameters as environment variables and the startup script need to reed these variable and then transmit them to auto-tuning script.
-We provide an example under `examples/tune/`, tuning result will be saved in a log file like resnet-18.log in the example we gave. You can refer it for details.
+Finally, you need a startup script to start the auto-tuning program. In fact,
+MXJob will set all the parameters as environment variables and the startup script
+needs to read these variable and then transmit them to the auto-tuning script.
 
 ## Using GPUs
 

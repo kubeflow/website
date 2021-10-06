@@ -81,7 +81,7 @@ spec:
 
 With using volcano scheduler to apply gang-scheduling, a job can run only if there are enough resources for all the pods of the job. Otherwise, all the pods will be in pending state waiting for enough resources. For example, if a job requiring N pods is created and there are only enough resources to schedule N-2 pods, then N pods of the job will stay pending.
 
-**Note:** when in a high workload, if a pod of the job dies when the job is still running, it might give other pods chance to occupied the resources and cause deadlock.
+**Note:** when in a high workload, if a pod of the job dies when the job is still running, it might give other pods a chance to occupy the resources and cause deadlock.
 
 ## Troubleshooting
 
