@@ -1,43 +1,31 @@
 +++
 title = "Submit Kubernetes Resources"
-description = "Submitting Kubernetes resources from a Jupyter notebook"
+description = "Submitting Kubernetes resources from a Notebook"
 weight = 40
                     
 +++
-Kubeflow assigns the `default-editor` service account to the Jupyter notebook
-Pods. This service account is bound to the `kubeflow-edit` ClusterRole, which has namespace-scoped permissions to the many Kubernetes resources including:
 
-* Pods
-* Deployments
-* Services
-* Jobs
-* TFJobs
-* PyTorchJobs
+## Notebook Pod ServiceAccount
 
-You can get a full list of these permissions using:
+Kubeflow assigns the `default-editor` Kubernetes ServiceAccount to the Notebook Pods.
+The Kubernetes `default-editor` ServiceAccount is bound to the `kubeflow-edit` ClusterRole, which has namespace-scoped permissions to many Kubernetes resources.
+
+You can get the full list of RBAC for `ClusterRole/kubeflow-edit` using:
 ```
 kubectl describe clusterrole kubeflow-edit
 ```
 
-You can therefore create the above Kubernetes resources directly from your
-Jupyter notebook in Kubeflow. The Kubernetes
-[`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-command-line tool is pre-installed in the notebook.
+## Kubectl in Notebook Pod
 
-Run the following command in a Jupyter notebook cell to create Kubernetes
-resources:
+Because every Notebook Pod has the highly-privileged `default-editor` Kubernetes ServiceAccount bound to it, you can run `kubectl` inside it without providing additional authentication.
 
+For example, the following command will create the resources defined in `test.yaml`:
+
+```shell
+kubectl create -f "test.yaml" --namespace "MY_PROFILE_NAMESPACE"
 ```
-!kubectl create -f myspec.yaml
-```
-
-The `myspec.yaml` file should describe one of the above Kubernetes resources.
-For information about the format of the YAML file, see the
-[Kubernetes object guide](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/).
 
 ## Next steps
 
-* See the guide to [setting up
-  your Jupyter notebooks in Kubeflow](/docs/components/notebooks/setup/).
-* Explore the [components of Kubeflow](/docs/components/), including custom
-  Kubernetes resources.
+- See the Kubeflow Notebook [quickstart guide](/docs/components/notebooks/quickstart-guide/).
+- Explore the other [components of Kubeflow](/docs/components/).
