@@ -97,7 +97,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/centraldashboard">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.4-rc.0</td>
       </tr>
       <tr>
         <td><a href="/docs/external-add-ons/feature-store/overview">Feature store: Feast</a>
@@ -112,14 +112,14 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/katib">GitHub</a>)
           </td>
         <td>Beta</td>
-        <td>v1alpha3</td>
+        <td>v0.12.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/kfserving/kfserving/">KFServing</a>
           (<a href="https://github.com/kubeflow/kfserving">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td>v0.5.1</td>
+        <td>v0.6.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/training/mpi/">MPI training: MPI 
@@ -127,7 +127,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/mpi-operator">GitHub</a>)
         </td>
         <td>Alpha</td>
-        <td></td>
+        <td>v0.3.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/training/mxnet/">MXNet training: MXNet 
@@ -142,7 +142,7 @@ documentation for that application.
           app</a>
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/deprecated/jupyter-web-app">GitHub</a>)
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.4-rc.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/notebooks/why-use-jupyter-notebook/">Notebook 
@@ -150,18 +150,17 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.4-rc.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/components/pipelines/overview/pipelines-overview/">Pipelines</a>
+        <td><a href="/docs/components/pipelines/overview/pipelines-overview/">Kubeflow Pipelines</a>
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>1.7.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/components/multi-tenancy/">Profile 
-          Controller for multi-user isolation</a> 
+        <td><a href="/docs/components/multi-tenancy/">Profiles + KFAM</a> 
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller">GitHub</a>)
         </td>
         <td>Stable</td>
