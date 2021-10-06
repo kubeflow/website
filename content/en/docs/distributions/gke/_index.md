@@ -1,5 +1,5 @@
 +++
-title = "Kubeflow on Google Cloud"
-description = "Running Kubeflow on Kubernetes Engine and Google Cloud Platform"
-weight = 20
+title = "Google Cloud distribution of Kubeflow"
+description = "Documentation for Google Cloud distribution of Kubeflow"
+weight = 50
 +++

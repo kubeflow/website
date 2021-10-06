@@ -26,109 +26,55 @@ Packaged distributions are developed and supported by their respective maintaine
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
-        <th>Name</th>
+        <th>Distribution</th>
         <th>Maintainer</th>
-        <th>Platform</th>
-        <th>Version</th>
+        <th>Target Platform</th>
+        <th>Kubeflow Version</th>
         <th>Docs</th>
-        <th>Website</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Kubeflow on AWS</td>
-        <td>Amazon Web Services (AWS)</td>
-        <td>Amazon Elastic Kubernetes Service (EKS)</td>
-        <td>1.2</td>
-        <td><a href="/docs/distributions/aws/">Docs</a></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Kubeflow on Azure</td>
-        <td>Microsoft Azure</td>
-        <td>Azure Kubernetes Service (AKS)</td>
-        <td>1.2</td>
-        <td><a href="/docs/distributions/azure/">Docs</a></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Kubeflow on Google Cloud</td>
-        <td>Google Cloud</td>
-        <td>Google Kubernetes Engine (GKE)</td>
-        <td>1.4</td>
-        <td><a href="/docs/distributions/gke/">Docs</a></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Kubeflow on IBM Cloud</td>
-        <td>IBM Cloud</td>
-        <td>IBM Cloud Kubernetes Service (IKS) </td>
-        <td>1.4</td>
-        <td><a href="/docs/distributions/ibm/">Docs</a></td>
-        <td><a href="https://github.com/IBM/manifests/tree/v1.4.0">External Website</a></td>
-      </tr>
-      <tr>
-        <td>Kubeflow on Nutanix</td>
-        <td>Nutanix</td>
-        <td>Nutanix Karbon</td>
-        <td>1.4</td>
-        <td><a href="/docs/distributions/nutanix/">Docs</a></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Kubeflow on OpenShift</td>
-        <td>Red Hat</td>
-        <td>OpenShift</td>
+        <td><a href="https://github.com/argoflow/argoflow">Argoflow</a></td>
+        <td>Open Source</td>
+        <td>Any Kubernetes</td>
         <td>1.3</td>
-        <td><a href="/docs/distributions/openshift/">Docs</a></td>
-        <td><a href="https://opendatahub.io/docs/kubeflow.html">External Website</a></td>
+        <td>-</td>
       </tr>
       <tr>
-        <td>Argoflow</td>
-        <td>Argoflow Community</td>
-        <td>Conformant Kubernetes</td>
-        <td>1.3</td>
-        <td>N/A</td>
-        <td><a href="https://github.com/argoflow/argoflow">External Website</a></td>
+        <td><a href="https://www.arrikto.com/enterprise-kubeflow/">Arrikto Enterprise Kubeflow</a></td>
+        <td>Arrikto</td>
+        <td>EKS, AKS, GKE</td>
+        <td>1.4</td>
+        <td><a href="/docs/distributions/ekf/">Docs</a></td>
       </tr>
       <tr>
-        <td>Arrikto MiniKF</td>
+        <td><a href="https://www.arrikto.com/get-started/">Arrikto MiniKF</a></td>
         <td>Arrikto</td>
         <td>AWS Marketplace, GCP Marketplace, Vagrant</td>
-        <td>1.3</td>
-        <td><a href="/docs/distributions/minikf/">Docs</a></td>
-        <td><a href="https://www.arrikto.com/get-started/">External Website</a></td>
-      </tr>
-      <tr>
-        <td>Arrikto Enterprise Kubeflow</td>
-        <td>Arrikto</td>
-        <td>EKS, 
-            AKS,
-            GKE 
-        </td>
         <td>1.4</td>
-        <td>
-          <a href="/docs/distributions/ekf/">Docs</a>
-        </td>
-        <td>
-          <a href="https://www.arrikto.com/enterprise-kubeflow/">External Website</a>
-        </td>
+        <td><a href="/docs/distributions/minikf/">Docs</a></td>
       </tr>
       <tr>
-        <td>Kubeflow Charmed Operators</td>
+        <td><a href="https://github.com/kubeflow/gcp-blueprints">Google Cloud distribution of Kubeflow</a></td>
+        <td>Google Cloud</td>
+        <td>GKE</td>
+        <td>1.4</td>
+        <td><a href="/docs/distributions/gke/">Docs</a></td>
+      </tr>
+      <tr>
+        <td><a href="https://charmed-kubeflow.io/docs">Kubeflow Charmed Operators</a></td>
         <td>Canonical</td>
-        <td>Conformant Kubernetes</td>
+        <td>Any Kubernetes</td>
         <td>1.3</td>
         <td><a href="/docs/distributions/charmed/">Docs</a></td>
-        <td><a href="https://charmed-kubeflow.io/docs">External Website</a></td>
       </tr>
       <tr>
-        <td>MicroK8s Kubeflow Add-on</td>
+        <td><a href="https://microk8s.io/docs/addon-kubeflow">MicroK8s Kubeflow Add-on</a></td>
         <td>Canonical</td>
         <td>MicroK8s</td>
         <td>1.3</td>
         <td><a href="/docs/distributions/microk8s/">Docs</a></td>
-        <td><a href="https://microk8s.io/docs/addon-kubeflow">External Website</a></td>
       </tr>
     </tbody>
   </table>
@@ -142,7 +88,47 @@ This method is for advanced users. The Kubeflow community will not support envir
 {{% /alert %}}
 
 The <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests Working Group</a> is responsible for aggregating the authoritative manifests of each official Kubeflow component.
-While these manifests are intended to be the base of packaged distributions, advanced users may choose to install them directly by following <a href="https://github.com/kubeflow/manifests#installation">these instructions</a>.
+While these manifests are intended to be the base of packaged distributions, advanced users may choose to install them directly by following the <a href="https://github.com/kubeflow/manifests#installation">instructions on the `kubeflow/manifests` repo</a>.
+
+<b>There are a number of guides that cover deploying `kubeflow/manifests` onto specific platforms:</b>
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Guide</th>
+        <th>Target Platform</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="/docs/guides/deploying-manifests-on-aws/">Deploying Manifests on AWS</a></td>
+        <td>Amazon Elastic Kubernetes Service (EKS)</td>
+      </tr>
+      <tr>
+        <td><a href="/docs/guides/deploying-manifests-on-azure/">Deploying Manifests on Azure</a></td>
+        <td>Azure Kubernetes Service (AKS)</td>
+      </tr>
+      <tr>
+        <td><a href="/docs/guides/deploying-manifests-on-ibm-cloud/">Deploying Manifests on IBM Cloud</a></td>
+        <td>IBM Cloud Kubernetes Service (IKS)</td>
+      </tr>
+      <tr>
+        <td><a href="/docs/guides/deploying-manifests-on-nutanix-karbon/">Deploying Manifests on Nutanix Karbon</a></td>
+        <td>Nutanix Karbon</td>
+      </tr>
+      <tr>
+        <td><a href="/docs/guides/deploying-manifests-on-openshift/">Deploying Manifests on OpenShift</a></td>
+        <td>OpenShift</td>
+      </tr>
+      <tr>
+        <td><a href="/docs/guides/deploying-manifests-with-kubeflow-operator/">Deploying Manifests with Kubeflow Operator</a></td>
+        <td>Any Kubernetes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 
 <a id="next-steps"></a>
 ## Next steps

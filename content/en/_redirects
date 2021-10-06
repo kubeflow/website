@@ -165,7 +165,12 @@ docs/started/requirements/                    /docs/started/getting-started/
 # IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
 # ===============
-/docs/guides/*                      /docs/:splat
+/docs/distributions/aws/*           /docs/guides/deploying-manifests-on-aws/:splat
+/docs/distributions/azure/*         /docs/guides/deploying-manifests-on-azure/:splat
+/docs/distributions/ibm/*           /docs/guides/deploying-manifests-on-ibm-cloud/:splat
+/docs/distributions/nutanix/*       /docs/guides/deploying-manifests-on-nutanix-karbon/:splat
+/docs/distributions/openshift/*     /docs/guides/deploying-manifests-on-openshift/:splat
+/docs/distributions/operator/*      /docs/guides/deploying-manifests-with-kubeflow-operator/:splat
 /docs/pipelines/concepts/*          /docs/components/pipelines/overview/concepts/:splat
 /docs/pipelines/*                   /docs/components/pipelines/:splat
 /docs/aws/*                         /docs/distributions/aws/:splat

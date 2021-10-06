@@ -1,5 +1,5 @@
 +++
 title = "Kubeflow Charmed Operators"
-description = "Charmed Operators for Kubeflow deployment and day-2 operations"
+description = "Documentation for Kubeflow Charmed Operators"
 weight = 50
 +++

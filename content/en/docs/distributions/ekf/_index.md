@@ -1,6 +1,6 @@
 +++
 title = "Arrikto Enterprise Kubeflow"
-description = "Kubeflow distribution with additional automation, reproducibility, portability, and security features"
+description = "Documentation for Arrikto Enterprise Kubeflow"
 weight = 50
 +++
 

@@ -1,5 +1,5 @@
 +++
 title = "Arrikto MiniKF"
-description = "Running Kubeflow with MiniKF"
+description = "Documentation for Arrikto MiniKF"
 weight = 50
 +++

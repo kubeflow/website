@@ -1,5 +1,5 @@
 +++
 title = "MicroK8s Kubeflow add-on"
-description = "Running Kubeflow on MicroK8s"
+description = "Documentation for MicroK8s Kubeflow add-on"
 weight = 50
 +++
