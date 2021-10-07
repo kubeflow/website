@@ -2,7 +2,7 @@
 title = "Running an Experiment"
 description = "How to configure and run a hyperparameter tuning or neural architecture search experiment in Katib"
 weight = 30
-                    
+
 +++
 
 This guide describes how to configure and run a Katib experiment.
@@ -321,12 +321,12 @@ Katib supports the following algorithm settings:
     <tbody>
       <tr>
         <td>base_estimator</td>
-        <td>[“GP”, “RF”, “ET”, “GBRT” or sklearn regressor, default=“GP”]: 
+        <td>[“GP”, “RF”, “ET”, “GBRT” or sklearn regressor, default=“GP”]:
           Should inherit from <code>sklearn.base.RegressorMixin</code>.
-          The <code>predict</code> method should have an optional 
-          <code>return_std</code> argument, which returns 
-          <code>std(Y | x)</code> along with <code>E[Y | x]</code>. If 
-          <code>base_estimator</code> is one of 
+          The <code>predict</code> method should have an optional
+          <code>return_std</code> argument, which returns
+          <code>std(Y | x)</code> along with <code>E[Y | x]</code>. If
+          <code>base_estimator</code> is one of
           [“GP”, “RF”, “ET”, “GBRT”], the system uses a default surrogate model
           of the corresponding type. Learn more information in the
           <a href="https://scikit-optimize.github.io/stable/modules/generated/skopt.Optimizer.html#skopt.Optimizer">skopt
@@ -335,10 +335,10 @@ Katib supports the following algorithm settings:
       </tr>
       <tr>
         <td>n_initial_points</td>
-        <td>[int, default=10]: Number of evaluations of <code>func</code> with 
-          initialization points before approximating it with 
+        <td>[int, default=10]: Number of evaluations of <code>func</code> with
+          initialization points before approximating it with
           <code>base_estimator</code>. Points provided as <code>x0</code> count
-          as initialization points. 
+          as initialization points.
           If <code>len(x0) &lt; n_initial_points</code>, the
           system samples additional points at random. Learn more information in the
           <a href="https://scikit-optimize.github.io/stable/modules/generated/skopt.Optimizer.html#skopt.Optimizer">skopt
@@ -355,7 +355,7 @@ Katib supports the following algorithm settings:
       </tr>
       <tr>
         <td>acq_optimizer</td>
-        <td>[string, “sampling” or “lbfgs”, default=“auto”]: The method to 
+        <td>[string, “sampling” or “lbfgs”, default=“auto”]: The method to
           minimize the acquisition function. The system updates the fit model
           with the optimal value obtained by optimizing <code>acq_func</code>
           with <code>acq_optimizer</code>. Learn more information in the
@@ -908,14 +908,7 @@ To run a hyperparameter tuning experiment from the Katib UI:
 1. Follow the getting-started guide to
    [access the Katib UI](/docs/components/katib/hyperparameter/#katib-ui).
 
-1. Click **Hyperparameter Tuning** on the Katib home page.
-
-1. Open the Katib menu panel on the left, then open the **HP** section and
-   click **Submit**:
-
-   <img src="/docs/components/katib/images/menu.png"
-     alt="The Katib menu panel"
-     class="mt-3 mb-3 border border-info rounded">
+1. Click **NEW EXPERIMENT** on the Katib home page.
 
 1. You should be able to view tabs offering you the following options:
 
@@ -934,13 +927,6 @@ To run a hyperparameter tuning experiment from the Katib UI:
        class="mt-3 mb-3 border border-info rounded">
 
 View the results of the experiment in the Katib UI:
-
-1. Open the Katib menu panel on the left, then open the **HP** section and
-   click **Monitor**:
-
-   <img src="/docs/components/katib/images/menu.png"
-     alt="The Katib menu panel"
-     class="mt-3 mb-3 border border-info rounded">
 
 1. You should be able to view the list of experiments:
 

@@ -2,7 +2,7 @@
 title = "Getting Started with Katib"
 description = "How to set up Katib and perform hyperparameter tuning"
 weight = 20
-                    
+
 +++
 
 This guide shows how to get started with Katib and run a few examples using the
@@ -364,15 +364,6 @@ In addition, `status` shows the experiment's trials with their current status.
 View the results of the experiment in the Katib UI:
 
 1. Open the Katib UI as described [above](#katib-ui).
-
-1. Click **Hyperparameter Tuning** on the Katib home page.
-
-1. Open the Katib menu panel on the left, then open the **HP** section and
-   click **Monitor**:
-
-   <img src="/docs/components/katib/images/menu.png"
-     alt="The Katib menu panel"
-     class="mt-3 mb-3 border border-info rounded">
 
 1. You should be able to view the list of experiments:
 
