@@ -97,13 +97,13 @@ Using kustomize together with kubectl to deploy kubeflow:
 1. Clone the manifest repo as follows:
 
    ```shell
-   git clone https://github.com/IBM/manifests.git -b v1.4.0 ibm-manifests-140
+   git clone https://github.com/IBM/manifests.git -b v1.3.1 ibm-manifests-131
    ```
 
-2. Change directory to `ibm-manifests-140`:
+2. Change directory to `ibm-manifests-131`:
 
    ```shell
-   cd ibm-manifests-140
+   cd ibm-manifests-131
    ```
 
 3. Generate password for default user: `user@example.com`
@@ -112,7 +112,7 @@ Using kustomize together with kubectl to deploy kubeflow:
    ```
    Type your password and press `<Enter>` after you see `Password:` prompt. Copy the hash code for next step.
 
-4. Edit `dist/stacks/ibm/application/dex-auth/custom-env.yaml` and fill the relevant field
+4. Edit `distributions/stacks/ibm/application/dex-auth/custom-env.yaml` and fill the relevant field
    with the hash code from previous step:
    ```
    staticPasswords:
@@ -181,17 +181,17 @@ configuration parameters from your AppID:
 1. Clone the manifest repo as follows:
 
    ```shell
-   git clone https://github.com/IBM/manifests.git -b v1.4.0 ibm-manifests-140
+   git clone https://github.com/IBM/manifests.git -b v1.3.1 ibm-manifests-131
    ```
 
-2. Change directory to `ibm-manifests-140`:
+2. Change directory to `ibm-manifests-131`:
 
    ```shell
-   cd ibm-manifests-140
+   cd ibm-manifests-131
    ```
 
-3. Update the `dist/stacks/ibm/application/oidc-authservice-appid/params.env`
-   and `dist/stacks/ibm/application/oidc-authservice-appid/secret_params.env`
+3. Update the `distributions/stacks/ibm/application/oidc-authservice-appid/params.env`
+   and `distributions/stacks/ibm/application/oidc-authservice-appid/secret_params.env`
    with values collected in [Prereq](#prerequisites-1) section.
    You will need the following values:
     * `<oAuthServerUrl>` - fill in the value of oAuthServerUrl
@@ -216,7 +216,7 @@ configuration parameters from your AppID:
    To apply just the `oidc-authservice-appid` you can use this command:
 
    ```bash
-   kustomize build dist/stacks/ibm/application/oidc-authservice-appid | kubectl apply -f -
+   kustomize build distributions/stacks/ibm/application/oidc-authservice-appid | kubectl apply -f -
    ```
 
 ### Verify mutli-user installation
