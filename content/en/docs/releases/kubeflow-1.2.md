@@ -1,0 +1,49 @@
++++
+title = "Kubeflow 1.2"
+description = "Information about the Kubeflow 1.2 release"
+weight = 102
++++
+
+## 1.2.0
+
+<div class="table-responsive">
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="table-light">Release Date</th>
+      <td>
+        2020-11-18 (<a href="https://blog.kubeflow.org/release/official/2020/11/18/kubeflow-1.2-blog-post.html">Blog</a>)
+      </td>
+    </tr>
+    <tr>
+      <th class="table-light">Roadmap</th>
+      <td>
+        <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-12-features-release-date-november-2020">
+          ROADMAP.md#kubeflow-12-features-release-date-november-2020
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th class="table-light">Manifests</th>
+      <td>
+        <b>Final:</b> 
+          <a href="https://github.com/kubeflow/manifests/releases/tag/v1.2.0">v1.2.0</a>
+        <br>
+        <b>Candidates:</b>
+          <a href="https://github.com/kubeflow/manifests/releases/tag/v1.2-rc.2">v1.2-rc.2</a>,
+          <a href="https://github.com/kubeflow/manifests/releases/tag/v1.2-rc.1">v1.2-rc.1</a>,
+          <a href="https://github.com/kubeflow/manifests/releases/tag/v1.2-rc.0">v1.2-rc.0</a>
+        <br>
+         <b>Branch:</b>
+          <a href="https://github.com/kubeflow/manifests/tree/v1.2-branch">v1.2-branch</a>
+      </td>
+    </tr>
+    <tr>
+      <th class="table-light">Release Team</th>
+      <td>
+        <b>Lead:</b> Jiaxin Shan (<a href="https://github.com/Jeffwan">@Jeffwan</a>)
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
