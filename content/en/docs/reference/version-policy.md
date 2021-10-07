@@ -111,42 +111,42 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/katib">GitHub</a>)
           </td>
         <td>Beta</td>
-        <td>v1beta1</td>
+        <td>v0.12.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/training/tftraining/">TensorFlow training: TFJob</a>
           (<a href="https://github.com/kubeflow/training-operator">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.3.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/training/pytorch/">PyTorch training: PyTorchJob</a> 
           (<a href="https://github.com/kubeflow/training-operator">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.3.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/training/mxnet/">MXNet training: MXJob</a>
           (<a href="https://github.com/kubeflow/training-operator">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.3.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/training/xgboost/">XGBoost training: XGBoostJob</a>
           (<a href="https://github.com/kubeflow/training-operator">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.3.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/training/mpi/">MPI training: MPIJob</a>
           (<a href="https://github.com/kubeflow/mpi-operator">GitHub</a>)
         </td>
         <td>Alpha</td>
-        <td></td>
+        <td>v0.3.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/kfserving/kfserving/">KFServing</a>
