@@ -20,11 +20,11 @@ Katib has these CRD examples in upstream:
 
 - [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
 
-- [Kubeflow `MPIJob`](/docs/components/training/mpi)
-
 - [Kubeflow `XGBoostJob`](/docs/components/training/xgboost)
 
 - [Kubeflow `MXJob`](/docs/components/training/mxnet)
+
+- [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
 - [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
 
@@ -69,10 +69,10 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
   - `reference` - the parameter name that experiment's suggestion returns.
     Usually, for the hyperparameter tuning parameter references are equal to the
     experiment search space. For example, in grid example search space has
-    [three parameters](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L19-L36)
+    [three parameters](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/hp-tuning/grid.yaml#L18-L36)
     (`lr`, `num-layers` and `optimizer`) and `trialParameters` contains each of
     these parameters in
-    [`reference`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L39-L48).
+    [`reference`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/hp-tuning/grid.yaml#L39-L48).
 
 - You have to define your experiment's trial template in **one** of the `trialSpec`
   or `configMap` sources.
@@ -85,14 +85,14 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
   experiment's suggestion.
 
   For example,
-  [`--lr=${trialParameters.learningRate}`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L62)
-  is the [`learningRate`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L40)
+  [`--lr=${trialParameters.learningRate}`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/hp-tuning/grid.yaml#L62)
+  is the [`learningRate`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/hp-tuning/grid.yaml#L40)
   parameter.
 
   - `trialSpec` - the experiment's trial template in
     [unstructured](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1/unstructured)
     format. The template should be a valid YAML. Check the
-    [grid example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/grid-example.yaml#L49-L65).
+    [grid example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/hp-tuning/grid.yaml#L49-L65).
 
   - `configMap` - Kubernetes ConfigMap specification where the experiment's
     trial template is located. This ConfigMap must have the label
@@ -109,7 +109,7 @@ To define experiment's trial, you should specify these parameters in `.spec.tria
     1. `templatePath` - the ConfigMap's data path to the template.
 
     Check the example with
-    [ConfigMap source](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/trial-configmap-source.yaml#L50-L53)
+    [ConfigMap source](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/trial-template/trial-configmap-source.yaml#L50-L53)
     for the trial template.
 
 `.spec.trialTemplate` parameters below are used to control trial behavior.
@@ -130,9 +130,9 @@ If parameter has the default value, it can be **omitted** in the experiment YAML
   all worker's Pods. Learn more about Katib metrics collector in
   [running an experiment guide](/docs/components/katib/experiment/#metrics-collector).
   Check the example with
-  [`primaryPodLabels`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/mpijob-horovod.yaml#L29-L30).
+  [`primaryPodLabels`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/mpijob-horovod.yaml#L29-L30).
 
-  The default value for Kubeflow `TFJob` and `PyTorchJob` is `job-role: master`
+  The default value for Kubeflow `TFJob`, `PyTorchJob`, `MXJob`, and `XGBoostJob` is `job-role: master`
 
   The `primaryPodLabels` default value works only if you specify your template
   in `.spec.trialTemplate.trialSpec`. For the `configMap` template source you
@@ -227,21 +227,21 @@ The table below shows the connection between
 </div>
 
 Check the example of
-[using trial metadata](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/trial-metadata-substitution.yaml).
+[using trial metadata](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/trial-template/trial-metadata-substitution.yaml).
 
 <a id="custom-resource"></a>
 
 ## Use custom Kubernetes resource as a trial template
 
 In Katib examples you can find the following trial worker types:
-[Kubernetes `Job`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/random-example.yaml),
-[Kubeflow `TFJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/tfjob-example.yaml),
-[Kubeflow `PyTorchJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/pytorchjob-example.yaml),
-[Kubeflow `MPIJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/mpijob-horovod.yaml),
-[Kubeflow `XGBoostJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/xgboost-lightgbm.yaml),
+[Kubernetes `Job`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/hp-tuning/random.yaml),
+[Kubeflow `TFJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/tfjob-mnist-with-summaries.yaml),
+[Kubeflow `PyTorchJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/pytorchjob-mnist.yaml),
+[Kubeflow `XGBoostJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/xgboostjob-lightgbm.yaml),
 [Kubeflow `MXJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/mxjob-byteps.yaml),
+[Kubeflow `MPIJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/mpijob-horovod.yaml),
 [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton),
-and [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
+and [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo).
 
 It is possible to use your own Kubernetes CRD or other Kubernetes resource
 (e.g. [Kubernetes `Deployment`](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/))
