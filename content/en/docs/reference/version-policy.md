@@ -97,7 +97,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/centraldashboard">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>v1.4-rc.0</td>
+        <td>v1.4</td>
       </tr>
       <tr>
         <td><a href="/docs/external-add-ons/feature-store/overview">Feature store: Feast</a>
@@ -142,7 +142,7 @@ documentation for that application.
           app</a>
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/deprecated/jupyter-web-app">GitHub</a>)
         <td>Stable</td>
-        <td>v1.4-rc.0</td>
+        <td>v1.4</td>
       </tr>
       <tr>
         <td><a href="/docs/components/notebooks/why-use-jupyter-notebook/">Notebook 
@@ -150,7 +150,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>v1.4-rc.0</td>
+        <td>v1.4</td>
       </tr>
       <tr>
         <td><a href="/docs/components/pipelines/overview/pipelines-overview/">Kubeflow Pipelines</a>
