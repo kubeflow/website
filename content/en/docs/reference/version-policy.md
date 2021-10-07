@@ -135,7 +135,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/mxnet-operator">GitHub</a>)
         </td>
         <td>Alpha</td>
-        <td></td>
+        <td>v1.3.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/notebooks/why-use-jupyter-notebook/">Notebook web
@@ -160,7 +160,7 @@ documentation for that application.
         <td>1.7.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/components/multi-tenancy/">Profiles + KFAM</a> 
+        <td><a href="/docs/components/multi-tenancy/">Profile Controller for multi-user isolation</a> 
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller">GitHub</a>)
         </td>
         <td>Stable</td>
@@ -171,7 +171,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/pytorch-operator">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.3.0</td>
       </tr>
       <tr>
         <td><a href="/docs/external-add-ons/serving/seldon">Seldon Core Serving</a> 
@@ -186,14 +186,14 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/tf-operator">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.3.0</td>
       </tr>
       <tr>
         <td>XGBoost training: XGBoost operator
         (<a href="https://github.com/kubeflow/xgboost-operator">GitHub</a>)
         </td>
         <td>Alpha</td>
-        <td></td>
+        <td>v1.3.0</td>
       </tr>
     </tbody>
   </table>
