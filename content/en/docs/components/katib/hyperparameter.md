@@ -2,7 +2,7 @@
 title = "Getting Started with Katib"
 description = "How to set up Katib and perform hyperparameter tuning"
 weight = 20
-                    
+
 +++
 
 This guide shows how to get started with Katib and run a few examples using the
@@ -158,30 +158,6 @@ http://localhost:8080/katib/
 
 Check [this guide](https://github.com/kubeflow/katib/tree/master/pkg/ui/v1beta1)
 if you want to contribute to Katib UI.
-
-### The new Katib UI
-
-During Kubeflow 1.3 we have worked on a new iteration of the UI, which is
-rewritten in Angular and is utilizing the common code of the other Kubeflow
-[dashboards](https://github.com/kubeflow/kubeflow/tree/master/components/crud-web-apps).
-While this UI is not yet on par with the current default one, we are actively
-working to get it up to speed and provide all the existing functionalities.
-
-The users are currently able to list, delete and create Katib Experiments in
-their cluster via this new UI as well as inspect the owned Trials.
-One important missing functionalities are the ability to edit the Trial Template
-ConfigMaps and view neural architecture search Experiments.
-
-While this UI is not ready to replace the current one we would like to
-encourage users to also give it a try and provide us with feedback.
-
-To try it out you should update the Katib UI image `newName` with the new
-registry `docker.io/kubeflowkatib/katib-new-ui` in the
-[Kustomize manifests](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/installs/katib-standalone/kustomization.yaml#L29).
-
-<img src="/docs/components/katib/images/new-ui.png"
-  alt="The Katib new UI"
-  class="mt-3 mb-3 border border-info rounded">
 
 ## Examples
 
@@ -416,15 +392,6 @@ In addition, `status` shows the experiment's trials with their current status.
 View the results of the experiment in the Katib UI:
 
 1. Open the Katib UI as described [above](#katib-ui).
-
-1. Click **Hyperparameter Tuning** on the Katib home page.
-
-1. Open the Katib menu panel on the left, then open the **HP** section and
-   click **Monitor**:
-
-   <img src="/docs/components/katib/images/menu.png"
-     alt="The Katib menu panel"
-     class="mt-3 mb-3 border border-info rounded">
 
 1. You should be able to view the list of experiments:
 
