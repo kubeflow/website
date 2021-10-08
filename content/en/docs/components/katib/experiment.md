@@ -148,7 +148,9 @@ These are the fields in the experiment configuration spec:
 
   - [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
-  - [Kubeflow `XGBoostJob`](https://github.com/kubeflow/xgboost-operator)
+  - [Kubeflow `XGBoostJob`](/docs/components/training/xgboost)
+
+  - [Kubeflow `MXJob`](/docs/components/training/mxnet)
 
   - [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
 

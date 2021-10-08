@@ -22,7 +22,9 @@ Katib has these CRD examples in upstream:
 
 - [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
-- [Kubeflow `XGBoostJob`](https://github.com/kubeflow/xgboost-operator)
+- [Kubeflow `XGBoostJob`](/docs/components/training/xgboost)
+
+- [Kubeflow `MXJob`](/docs/components/training/mxnet)
 
 - [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
 
@@ -237,6 +239,7 @@ In Katib examples you can find the following trial worker types:
 [Kubeflow `PyTorchJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/pytorchjob-example.yaml),
 [Kubeflow `MPIJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/mpijob-horovod.yaml),
 [Kubeflow `XGBoostJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/xgboost-lightgbm.yaml),
+[Kubeflow `MXJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/mxjob-byteps.yaml),
 [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton),
 and [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
 
