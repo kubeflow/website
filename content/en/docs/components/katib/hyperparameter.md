@@ -193,7 +193,7 @@ an experiment using the random search example:
 1. Edit `random.yaml` and change the following line to use your Kubeflow
    user profile namespace (e.g. `kubeflow-user-example-com`):
 
-   ```shell
+   ```
    namespace: kubeflow
    ```
 
@@ -236,7 +236,7 @@ This example randomly generates the following hyperparameters:
 Check the experiment status:
 
 ```shell
-kubectl -n <YOUR_USER_PROFILE_NAMESPACE> get experiment random -o yaml
+kubectl -n kubeflow-user-example-com get experiment random -o yaml
 ```
 
 The output of the above command should look similar to this:
@@ -431,7 +431,7 @@ the Kubeflow's [TensorFlow training job operator](/docs/components/training/tftr
 1. Edit `tfjob-mnist-with-summaries.yaml` and change the following line to use your Kubeflow
    user profile namespace (e.g. `kubeflow-user-example-com`):
 
-   ```shell
+   ```
    namespace: kubeflow
    ```
 
@@ -453,7 +453,7 @@ the Kubeflow's [TensorFlow training job operator](/docs/components/training/tftr
 1. You can check the status of the experiment:
 
    ```shell
-   kubectl -n <YOUR_USER_PROFILE_NAMESPACE> get experiment tfjob-mnist-with-summaries -o yaml
+   kubectl -n kubeflow-user-example-com get experiment tfjob-mnist-with-summaries -o yaml
    ```
 
 Follow the steps as described for the _random search algorithm example_
@@ -474,7 +474,7 @@ using Kubeflow's [PyTorch training job operator](/docs/components/training/pytor
 1. Edit `pytorchjob-mnist.yaml` and change the following line to use your
    Kubeflow user profile namespace (e.g. `kubeflow-user-example-com`):
 
-   ```shell
+   ```
    namespace: kubeflow
    ```
 
@@ -495,7 +495,7 @@ using Kubeflow's [PyTorch training job operator](/docs/components/training/pytor
 1. You can check the status of the experiment:
 
    ```shell
-   kubectl -n <YOUR_USER_PROFILE_NAMESPACE> describe experiment pytorchjob-mnist
+   kubectl -n kubeflow-user-example-com describe experiment pytorchjob-mnist
    ```
 
 Follow the steps as described for the _random search algorithm example_
@@ -506,7 +506,7 @@ Follow the steps as described for the _random search algorithm example_
 To remove Katib from your Kubernetes cluster run:
 
 ```shell
-make undeploy
+kubectl delete -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=master"
 ```
 
 ## Next steps
