@@ -20,9 +20,9 @@ Katib has these CRD examples in upstream:
 
 - [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
 
-- [Kubeflow `XGBoostJob`](/docs/components/training/xgboost)
-
 - [Kubeflow `MXJob`](/docs/components/training/mxnet)
+
+- [Kubeflow `XGBoostJob`](/docs/components/training/xgboost)
 
 - [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
@@ -151,7 +151,7 @@ If parameter has the default value, it can be **omitted** in the experiment YAML
   The default value for Kubernetes `Job` is
   `status.conditions.#(type=="Complete")#|#(status=="True")#`
 
-  The default value for Kubeflow `TFJob` and `PyTorchJob` is
+  The default value for Kubeflow `TFJob`, `PyTorchJob`, `MXJob`, and `XGBoostJob` is
   `status.conditions.#(type=="Succeeded")#|#(status=="True")#`
 
   The `successCondition` default value works only if you specify your template
@@ -167,7 +167,7 @@ If parameter has the default value, it can be **omitted** in the experiment YAML
   The default value for Kubernetes `Job` is
   `status.conditions.#(type=="Failed")#|#(status=="True")#`
 
-  The default value for Kubeflow `TFJob` and `PyTorchJob` is
+  The default value for Kubeflow `TFJob`, `PyTorchJob`, `MXJob`, and `XGBoostJob` is
   `status.conditions.#(type=="Failed")#|#(status=="True")#`
 
   The `failureCondition` default value works only if you specify your template
@@ -237,8 +237,8 @@ In Katib examples you can find the following trial worker types:
 [Kubernetes `Job`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/hp-tuning/random.yaml),
 [Kubeflow `TFJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/tfjob-mnist-with-summaries.yaml),
 [Kubeflow `PyTorchJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/pytorchjob-mnist.yaml),
-[Kubeflow `XGBoostJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/xgboostjob-lightgbm.yaml),
 [Kubeflow `MXJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/mxjob-byteps.yaml),
+[Kubeflow `XGBoostJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/xgboostjob-lightgbm.yaml),
 [Kubeflow `MPIJob`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/mpijob-horovod.yaml),
 [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton),
 and [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo).
