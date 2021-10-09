@@ -78,7 +78,7 @@ It is required by certain sample jobs/pipelines where multiple pods write result
 A job or a pipeline can also write to a common object storage like `minio`, so the absence of this feature is 
 not a blocker for working with Kubeflow.
 Examples of jobs/pipelines that will not work, are: 
-[Distributed training with tf-operator](https://github.com/kubeflow/tf-operator/tree/master/examples/v1/mnist_with_summaries)
+[Distributed training with Kubeflow TFJob](https://github.com/kubeflow/training-operator/tree/master/examples/tensorflow/mnist_with_summaries)
 
 If you are on `vpc-gen2` and still need RWX, you may try [portworx enterprise product](https://portworx.com/products/features/).
 To set it up on IBM Cloud use the [portworx install with IBM Cloud](https://docs.portworx.com/portworx-install-with-kubernetes/cloud/ibm/) guide. 

@@ -1,18 +1,24 @@
 +++
 title = "XGBoost Training (XGBoostJob)"
-description = "Instructions for using XGBoost"
+description = "Using XGBoostJob to train a model with XGBoost"
 weight = 30
                     
 +++
 
 {{% stable-status %}}
 
-This page describes XGBoostJob for training a machine learning model with XGBoost.
+This page describes `XGBoostJob` for training a machine learning model with [XGBoost](https://github.com/dmlc/xgboost).
 
-## Installing Training Operator
+`XGBoostJob` is a Kubernetes
+[custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+to run XGBoost training jobs on Kubernetes. The Kubeflow implementation of
+`XGBoostJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
+
+## Installing XGBoost Operator
 
 If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
 
+> By default, XGBoost Operator will be deployed as a controller in training operator.
 
 ## Verify that XGBoost support is included in your Kubeflow deployment
 
@@ -44,34 +50,42 @@ NAME                                READY   STATUS    RESTARTS   AGE
 training-operator-d466b46bc-xbqvs   1/1     Running   0          4m37s
 ```
 
-## Creating a XGBoost Job
+## Creating a XGBoost training job
 
-You can create XGBoost Job by defining a XGboostJob config file. See the manifests for the [IRIS example](https://github.com/kubeflow/tf-operator/blob/master/examples/xgboost/xgboostjob.yaml). You may change the config file based on your requirements. eg: add `CleanPodPolicy` in Spec to `None` to retain pods after job termination.
+You can create a training job by defining a `XGboostJob` config file. See the
+manifests for the [IRIS example](https://github.com/kubeflow/training-operator/blob/master/examples/xgboost/xgboostjob.yaml).
+You may change the config file based on your requirements. E.g.: add `CleanPodPolicy`
+in Spec to `None` to retain pods after job termination.
 
 ```
 cat xgboostjob.yaml
 ```
-Deploy the XGBoostJob resource to start training:
+
+Deploy the `XGBoostJob` resource to start training:
 
 ```
 kubectl create -f xgboostjob.yaml
 ```
+
 You should now be able to see the created pods matching the specified number of replicas.
 
 ```
-kubectl get pods -l job-name=xgboost-dist-iris-test-train 
+kubectl get pods -l job-name=xgboost-dist-iris-test-train
 ```
+
 Training takes 5-10 minutes on a cpu cluster. Logs can be inspected to see its training progress.
 
 ```
 PODNAME=$(kubectl get pods -l job-name=xgboost-dist-iris-test-train,replica-type=master,replica-index=0 -o name)
 kubectl logs -f ${PODNAME}
 ```
-## Monitoring a XGBoost Job
+
+## Monitoring a XGBoostJob
 
 ```
 kubectl get -o yaml xgboostjobs xgboost-dist-iris-test-train
 ```
+
 See the status section to monitor the job status. Here is sample output when the job is successfully completed.
 
 ```yaml
@@ -95,59 +109,59 @@ spec:
       template:
         spec:
           containers:
-          - args:
-            - --job_type=Train
-            - --xgboost_parameter=objective:multi:softprob,num_class:3
-            - --n_estimators=10
-            - --learning_rate=0.1
-            - --model_path=/tmp/xgboost-model
-            - --model_storage_type=local
-            image: docker.io/merlintang/xgboost-dist-iris:1.1
-            imagePullPolicy: Always
-            name: xgboost
-            ports:
-            - containerPort: 9991
-              name: xgboostjob-port
-              protocol: TCP
+            - args:
+                - --job_type=Train
+                - --xgboost_parameter=objective:multi:softprob,num_class:3
+                - --n_estimators=10
+                - --learning_rate=0.1
+                - --model_path=/tmp/xgboost-model
+                - --model_storage_type=local
+              image: docker.io/merlintang/xgboost-dist-iris:1.1
+              imagePullPolicy: Always
+              name: xgboost
+              ports:
+                - containerPort: 9991
+                  name: xgboostjob-port
+                  protocol: TCP
     Worker:
       replicas: 2
       restartPolicy: ExitCode
       template:
         spec:
           containers:
-          - args:
-            - --job_type=Train
-            - --xgboost_parameter="objective:multi:softprob,num_class:3"
-            - --n_estimators=10
-            - --learning_rate=0.1
-            image: docker.io/merlintang/xgboost-dist-iris:1.1
-            imagePullPolicy: Always
-            name: xgboost
-            ports:
-            - containerPort: 9991
-              name: xgboostjob-port
-              protocol: TCP
+            - args:
+                - --job_type=Train
+                - --xgboost_parameter="objective:multi:softprob,num_class:3"
+                - --n_estimators=10
+                - --learning_rate=0.1
+              image: docker.io/merlintang/xgboost-dist-iris:1.1
+              imagePullPolicy: Always
+              name: xgboost
+              ports:
+                - containerPort: 9991
+                  name: xgboostjob-port
+                  protocol: TCP
 status:
   completionTime: "2021-09-06T18:34:23Z"
   conditions:
-  - lastTransitionTime: "2021-09-06T18:34:06Z"
-    lastUpdateTime: "2021-09-06T18:34:06Z"
-    message: xgboostJob xgboost-dist-iris-test-train is created.
-    reason: XGBoostJobCreated
-    status: "True"
-    type: Created
-  - lastTransitionTime: "2021-09-06T18:34:06Z"
-    lastUpdateTime: "2021-09-06T18:34:06Z"
-    message: XGBoostJob xgboost-dist-iris-test-train is running.
-    reason: XGBoostJobRunning
-    status: "False"
-    type: Running
-  - lastTransitionTime: "2021-09-06T18:34:23Z"
-    lastUpdateTime: "2021-09-06T18:34:23Z"
-    message: XGBoostJob xgboost-dist-iris-test-train is successfully completed.
-    reason: XGBoostJobSucceeded
-    status: "True"
-    type: Succeeded
+    - lastTransitionTime: "2021-09-06T18:34:06Z"
+      lastUpdateTime: "2021-09-06T18:34:06Z"
+      message: xgboostJob xgboost-dist-iris-test-train is created.
+      reason: XGBoostJobCreated
+      status: "True"
+      type: Created
+    - lastTransitionTime: "2021-09-06T18:34:06Z"
+      lastUpdateTime: "2021-09-06T18:34:06Z"
+      message: XGBoostJob xgboost-dist-iris-test-train is running.
+      reason: XGBoostJobRunning
+      status: "False"
+      type: Running
+    - lastTransitionTime: "2021-09-06T18:34:23Z"
+      lastUpdateTime: "2021-09-06T18:34:23Z"
+      message: XGBoostJob xgboost-dist-iris-test-train is successfully completed.
+      reason: XGBoostJobSucceeded
+      status: "True"
+      type: Succeeded
   replicaStatuses:
     Master:
       succeeded: 1
