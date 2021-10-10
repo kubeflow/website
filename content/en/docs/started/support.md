@@ -11,10 +11,7 @@ suggestion about Kubeflow.
 ## Levels of support
 
 Kubeflow applications offer various levels of support, based on the application
-status. To see the status of each application, refer to the 
-[Kubeflow application 
-matrix](/docs/reference/version-policy/#kubeflow-application-matrix) on the
-version policies page.
+status.
 
 The following table describes the level of support that you can expect based on
 the status of an application:

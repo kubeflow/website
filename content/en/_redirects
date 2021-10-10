@@ -154,6 +154,13 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Rename Getting Started to Installing Kubeflow
 /docs/started/getting-started           /docs/started/installing-kubeflow
 
+# Remove Reference section
+/docs/reference/katib/*            /docs/components/katib/api-reference/api-reference
+/docs/reference/notebook/*         /docs/components/notebooks/api-reference
+/docs/reference/mpijob/*           /docs/components/training
+/docs/reference/pytorchjob/*       /docs/components/training
+/docs/reference/tfjob/*            /docs/components/training
+
 # ===============
 # IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
