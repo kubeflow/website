@@ -124,6 +124,7 @@ Kubeflow Pipelines updates.
 | 1.1.0                  | 1.0.0                      |
 | 1.2.0                  | 1.0.4                      |
 | 1.3.0                  | 1.5.0                      |
+| 1.4.0                  | 1.7.0                      |
 
 Note: Google Cloud, AWS, and IBM Cloud have supported Kubeflow Pipelines 1.0.0 with multi-user separation. Other platforms might not be up-to-date for now, refer to [this GitHub issue](https://github.com/kubeflow/manifests/issues/1364#issuecomment-668415871) for status.
 
