@@ -8,7 +8,7 @@ This guide demonstrates how to connect to Kubeflow Pipelines using [the Kubeflow
 
 
 The Kubeflow Pipelines REST API is available at the same endpoint as the Kubeflow Pipelines user interface (UI).
-The SDK client can send requests to this endpoint to upload pipelines, create pipeline runs, schedule recurring runs and more.
+The SDK client can send requests to this endpoint to upload pipelines, create pipeline runs, schedule recurring runs, and more.
 
 
 ## Before you begin
@@ -207,7 +207,7 @@ Cross-namespace access can be achieved in two ways:
 
 #### How Multi-User mode in-cluster authentication works
 
-When using Kubeflow Pipelines SDK in the same cluster, it authenticates as default-editor in your namespace using ServiceAccountToken 
+When calling Kubeflow Pipelines API in the same cluster, Kubeflow Pipelines SDK authenticates itself as `default-editor` in your namespace using ServiceAccountToken 
 [projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection). This is where a verifiable token with a limited lifetime is being injected into a Pod (e.g. Jupyter notebook's).
 
 Then Kubeflow Pipelines SDK uses this token to authorize against Kubeflow Pipelines API.
