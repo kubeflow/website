@@ -77,11 +77,11 @@ Packaged distributions are developed and supported by their respective maintaine
       </tr>
       <tr>
         <td>Kubeflow on OpenShift</td>
-        <td>IBM Cloud</td>
+        <td>Red Hat</td>
         <td>OpenShift</td>
         <td>1.3</td>
         <td><a href="/docs/distributions/openshift/">Docs</a></td>
-        <td></td>
+        <td><a href="https://opendatahub.io/docs/kubeflow.html">External Website</a></td>
       </tr>
       <tr>
         <td>Argoflow</td>
