@@ -6,17 +6,18 @@ weight = 25
 
 This guide demonstrates how to connect to Kubeflow Pipelines using [the Kubeflow Pipelines SDK client](/docs/components/pipelines/sdk/sdk-overview/), and how to [configure the SDK client using environment variables](#configure-sdk-client-by-environment-variables).
 
+
+The Kubeflow Pipelines REST API is available at the same endpoint as the Kubeflow Pipelines user interface (UI).
+The SDK client can send requests to this endpoint to upload pipelines, create pipeline runs, schedule recurring runs and more.
+
+
 ## Before you begin
 
 * You need a Kubeflow Pipelines deployment using one of the [installation options](/docs/components/pipelines/installation/overview/).
 * [Install the Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/).
 
-## Connect to Kubeflow Pipelines using SDK
 
-The Kubeflow Pipelines REST API is available at the same endpoint as the Kubeflow Pipelines user interface (UI).
-The SDK client can send requests to this endpoint to upload pipelines, create pipeline runs, schedule recurring runs and more.
-
-### Connect to Kubeflow Pipelines from outside your cluster
+## Connect to Kubeflow Pipelines from outside your cluster
 
 Kubeflow distributions secure the Kubeflow Pipelines public endpoint with authentication and authorization.
 Since Kubeflow distributions can have different authentication and authorization requirements, the steps needed to connect to your Kubeflow Pipelines instance might be different depending on the Kubeflow distribution you installed. Refer to documentation for [your Kubeflow distribution](/docs/started/installing-kubeflow/):
@@ -51,9 +52,9 @@ print(client.list_experiments())
 Note, for Kubeflow Pipelines in multi-user mode, you cannot access the API using kubectl port-forward
 because it requires authentication. Refer to distribution specific documentation as recommended above.
 
-### Connect to Kubeflow Pipelines from the same cluster
+## Connect to Kubeflow Pipelines from the same cluster
 
-#### Non-multi-user mode
+### Non-multi-user mode
 
 As mentioned above, the Kubeflow Pipelines API Kubernetes service is `ml-pipeline-ui`.
 
@@ -85,9 +86,9 @@ client = kfp.Client(host=f'http://ml-pipeline-ui.{namespace}:80')
 print(client.list_experiments())
 ```
 
-#### Multi-User mode
+### Multi-User mode
 
-Note, multi-user mode technical details were put in the [How in-cluster authentication works](#how-in-cluster-authentication-works) section below.
+Note, multi-user mode technical details were put in the [How in-cluster authentication works](#how-multi-user-mode-in-cluster-authentication-works) section below.
 
 Choose your use-case from one of the options below:
 
@@ -148,7 +149,7 @@ Choose your use-case from one of the options below:
     namespace: my-namespace
   spec:
     containers:
-    - image: my-image:latext 
+    - image: my-image:latest 
       name: access-kfp-example
       volumeMounts:
         - mountPath: /var/run/secrets/kubeflow/pipelines
@@ -164,7 +165,7 @@ Choose your use-case from one of the options below:
                 audience: pipelines.kubeflow.org      
   ```
 
-##### Managing cross-namespaces access to Kubeflow Pipelines API
+#### Managing access to Kubeflow Pipelines API across namespaces
 
 As already mentioned, access to Kubeflow Pipelines API requires per namespace setup.
 Alternatively, you can configure the access in a single namespace and allow other
@@ -204,13 +205,12 @@ Cross-namespace access can be achieved in two ways:
   Specifically, the owner of the `namespace-2` uses Kubeflow UI "Manage contributors" page. In the "Contributors to your namespace" 
   textbox he adds email address associated with the `namespace-1`.
 
-##### How Multi-User mode in-cluster authentication works
+#### How Multi-User mode in-cluster authentication works
 
-Authentication uses ServiceAccountToken 
-[projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection). 
-Simply put, the token is first being injected into a Pod (e.g. Jupyter notebook's). 
+When using Kubeflow Pipelines SDK in the same cluster, it authenticates as default-editor in your namespace using ServiceAccountToken 
+[projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection). This is where a verifiable token with a limited lifetime is being injected into a Pod (e.g. Jupyter notebook's).
+
 Then Kubeflow Pipelines SDK uses this token to authorize against Kubeflow Pipelines API.
-
 It is important to understand that `serviceAccountToken` method respects the Kubeflow Pipelines RBAC, 
 and does not allow access beyond what the ServiceAcount running the notebook Pod has.
 
