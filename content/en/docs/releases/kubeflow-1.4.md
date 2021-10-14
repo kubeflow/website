@@ -11,7 +11,9 @@ weight = 100
   <tbody>
     <tr>
       <th class="table-light">Release Date</th>
-      <td>TBD</td>
+      <td>
+        2021-10-12 (<a href="https://blog.kubeflow.org/kubeflow-1.4-release/">Blog</a>)
+      </td>
     </tr>
     <tr>
       <th class="table-light">Roadmap</th>
@@ -25,7 +27,7 @@ weight = 100
       <th class="table-light">Manifests</th>
       <td>
         <b>Final:</b> 
-          TBD
+          <a href="https://github.com/kubeflow/manifests/releases/tag/v1.4.0">v1.4.0</a>
         <br>
         <b>Candidates:</b>
           <a href="https://github.com/kubeflow/manifests/releases/tag/v1.4.0-rc.2">1.4.0-rc.2</a>,
@@ -80,55 +82,55 @@ weight = 100
         <td rowspan="9" class="align-middle">Notebooks Working Group</td>
         <td>Admission Webhook (PodDefaults)</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4-rc.1/components/admission-webhook">v1.4-rc.1</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4.0/components/admission-webhook">v1.4.0</a>
         </td>
       </tr>
       <tr>
         <td>Central Dashboard</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4-rc.1/components/centraldashboard">v1.4-rc.1</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4.0/components/centraldashboard">v1.4.0</a>
         </td>
       </tr>
       <tr>
         <td>Jupyter Web App</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4-rc.1/components/crud-web-apps/jupyter">v1.4-rc.1</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4.0/components/crud-web-apps/jupyter">v1.4.0</a>
         </td>
       </tr>
       <tr>
         <td>Kubeflow Access Management API</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4-rc.1/components/access-management">v1.4-rc.1</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4.0/components/access-management">v1.4.0</a>
         </td>
       </tr>
       <tr>
         <td>Notebook Controller</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4-rc.1/components/notebook-controller">v1.4-rc.1</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4.0/components/notebook-controller">v1.4.0</a>
         </td>
       </tr>
       <tr>
         <td>Profile Controller</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4-rc.1/components/profile-controller">v1.4-rc.1</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4.0/components/profile-controller">v1.4.0</a>
         </td>
       </tr>
       <tr>
         <td>Tensorboard Controller</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4-rc.1/components/notebook-controller">v1.4-rc.1</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4.0/components/notebook-controller">v1.4.0</a>
         </td>
       </tr>
       <tr>
         <td>Tensorboard Web App</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4-rc.1/components/crud-web-apps/volumes">v1.4-rc.1</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4.0/components/crud-web-apps/volumes">v1.4.0</a>
         </td>
       </tr>
       <tr>
         <td>Volumes Web App</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4-rc.1/components/crud-web-apps/tensorboards">v1.4-rc.1</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.4.0/components/crud-web-apps/tensorboards">v1.4.0</a>
         </td>
       </tr>
       <!-- ======================= -->
