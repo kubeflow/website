@@ -1,5 +1,5 @@
 +++
-title = "Kubeflow 1.4 (unreleased)"
+title = "Kubeflow 1.4"
 description = "Information about the Kubeflow 1.4 release"
 weight = 100
 +++
