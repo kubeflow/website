@@ -7,7 +7,7 @@ weight = 10
 
 | Image Name        | Dockerfile Location |
 | ------------- |---------------|
-| tf_operator      | <https://github.com/kubeflow/tf-operator/tree/master/build/images/tf_operator> |
+| kubeflow/training-operator     | <https://github.com/kubeflow/training-operator/blob/master/build/images/training-operator/Dockerfile> |
 | ml-pipeline/persistenceagent      | <https://github.com/kubeflow/pipelines/tree/master/backend> |
 | ml-pipeline/scheduledworkflow | <https://github.com/kubeflow/pipelines/tree/master/backend> |
 | ml-pipeline/frontend | <https://github.com/kubeflow/pipelines/blob/master/frontend/Dockerfile> |
