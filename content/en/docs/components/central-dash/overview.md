@@ -34,7 +34,7 @@ The Kubeflow UIs include the following:
 * **Runs**: To manage KFP runs.
 * **Recurring Runs**: To manage KFP recurring runs.
 * **Artifacts**: To track ML Metadata (MLMD) artifacts.
-* **Executions**: To track executions of Pipelines.
+* **Executions**: To track various component executions in MLMD.
 * **Manage Contributors**: To configure user access sharing across namespaces in
   the Kubeflow deployment.
 
