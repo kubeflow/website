@@ -28,7 +28,7 @@ The Kubeflow UIs include the following:
 * **TensorBoards**: To manage TensorBoard servers.
 * **Models**: To manage deployed [KFServing models](/docs/components/kfserving/kfserving/).
 * **Volumes**: To manage the cluster's Volumes.
-* **Experiments (AutoML)**: To manage [Hyper Parameter tuning](/docs/components/katib/) experiments.
+* **Experiments (AutoML)**: To manage [Katib](/docs/components/katib/) experiments.
 * **Experiments (KFP)**: To manage [Kubeflow Pipelines](/docs/components/pipelines/) experiments.
 * **Pipelines**: To manage KFP pipelines.
 * **Runs**: To manage KFP runs.
