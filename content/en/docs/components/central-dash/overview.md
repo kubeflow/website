@@ -22,7 +22,7 @@ following features:
 
 The Kubeflow UIs include the following:
 
-* **Home**:, Home, the central hub to access recent resources, active
+* **Home**: Home, the central hub to access recent resources, active
   experiments, and useful documentation.
 * **Notebook Servers**: To manage [Notebook servers](/docs/components/notebooks/).
 * **TensorBoards**: To manage TensorBoard servers.
