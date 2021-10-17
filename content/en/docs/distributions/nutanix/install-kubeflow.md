@@ -10,7 +10,7 @@ weight = 4
 
 * Make sure you first create a Kubernetes cluster using Nutanix Karbon. See [Nutanix Karbon documentation](https://portal.nutanix.com/page/documents/details?targetId=Karbon-v2_2:kar-karbon-deploy-karbon-t.html) at the Nutanix Support Portal. 
 
-* Install [Terraform](https://www.terraform.io/downloads.html) based on your platform
+* Install [Terraform](https://www.terraform.io/downloads.html) and [Helm](https://helm.sh/) based on your platform
 
 * Install kubectl from [Install Tools](https://kubernetes.io/docs/tasks/tools/#kubectl)
 
@@ -40,7 +40,12 @@ Do these steps to deploy Kubeflow 1.4 on your Karbon cluster.
    kubeflow_version       = "1.4.0"
    ```
 
-3. Apply terraform commands to deploy Kubeflow in the cluster.  
+3. (Optional) Enable prometheus monitoring in `env.tfvars` with the following variable:
+   ```
+   install_prometheus     = true
+   ```
+
+4. Apply terraform commands to deploy Kubeflow in the cluster.  
 
    ```
    terraform init
@@ -48,7 +53,7 @@ Do these steps to deploy Kubeflow 1.4 on your Karbon cluster.
    terraform apply --var-file=env.tfvars
    ```
 
-4. Make sure all the pods are running before continuing to the next step.
+5. Make sure all the pods are running before continuing to the next step.
 
    ```
    $ kubectl -n kubeflow get pods
@@ -230,4 +235,13 @@ There are multiple ways to acces your Kubeflow Central Dashboard:
     kubectl -n istio-system apply -f certificate.yaml
     ```
   - You can now access the kubeflow dashboard by navigating to the istio-ingressgateway external IP e.g. `x.x.x.x`
+
+
+## Access Grafana
+The default way to access the Grafana Dashboard is by using Port-Forward. You can port forward the servcie port to local port 8081.
     
+   ```
+   kubectl --kubeconfig=./kaplin1.cfg port-forward svc/kubeflow-monitoring-grafana -n kubeflow-monitoring 8080:80
+   ```
+    
+  You can now access the Grafana Dashboard at http://localhost:8081. Default user login is "admin" and password |prom-operator".
