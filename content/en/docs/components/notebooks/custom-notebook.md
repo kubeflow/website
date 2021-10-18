@@ -78,6 +78,17 @@ ENV NB_PREFIX /
 CMD ["sh","-c", "jupyter notebook --notebook-dir=/home/jovyan --ip=0.0.0.0 --no-browser --allow-root --port=8888 --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_origin='*' --NotebookApp.base_url=${NB_PREFIX}"]
 ```
 
+Though, in case you want to run a JupyterLab server, make sure to include these lines:
+```
+ENV SERVER_PREFIX="/"
+
+RUN pip install jupyterlab
+
+CMD ["sh","-c", "jupyter lab --notebook-dir=/home/jovyan --ip=0.0.0.0 --no-browser --allow-root --port=8888 --ServerApp.token='' --ServerApp.password='' --ServerApp.allow_origin='*' --ServerApp.default_url=${SERVER_PREFIX}"]
+```
+in your Dockerfile.
+
+
 ## Next steps
 
 When starting a Jupyter notebook server from the
