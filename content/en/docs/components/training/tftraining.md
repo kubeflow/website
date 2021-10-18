@@ -215,6 +215,9 @@ If you haven't already done so please follow the [Getting Started Guide](/docs/s
 
 > By default, `TFJob` Operator will be deployed as a controller in training operator.
 
+If you want to install a standalone version of the training operator without Kubeflow,
+see the [kubeflow/training-operator's README](https://github.com/kubeflow/training-operator#installation).
+
 ### Verify that TFJob support is included in your Kubeflow deployment
 
 Check that the TensorFlow custom resource is installed:
