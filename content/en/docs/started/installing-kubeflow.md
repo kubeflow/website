@@ -55,7 +55,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on Google Cloud</td>
         <td>Google Cloud</td>
         <td>Google Kubernetes Engine (GKE)</td>
-        <td>1.3</td>
+        <td>1.4</td>
         <td><a href="/docs/distributions/gke/">Docs</a></td>
         <td></td>
       </tr>
@@ -63,25 +63,25 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on IBM Cloud</td>
         <td>IBM Cloud</td>
         <td>IBM Cloud Kubernetes Service (IKS) </td>
-        <td>1.3</td>
+        <td>1.4</td>
         <td><a href="/docs/distributions/ibm/">Docs</a></td>
-        <td></td>
+        <td><a href="https://github.com/IBM/manifests/tree/v1.4.0">External Website</a></td>
       </tr>
       <tr>
         <td>Kubeflow on Nutanix</td>
         <td>Nutanix</td>
         <td>Nutanix Karbon</td>
-        <td>1.3</td>
+        <td>1.4</td>
         <td><a href="/docs/distributions/nutanix/">Docs</a></td>
         <td></td>
       </tr>
       <tr>
         <td>Kubeflow on OpenShift</td>
-        <td>IBM Cloud</td>
+        <td>Red Hat</td>
         <td>OpenShift</td>
         <td>1.3</td>
         <td><a href="/docs/distributions/openshift/">Docs</a></td>
-        <td></td>
+        <td><a href="https://opendatahub.io/docs/kubeflow.html">External Website</a></td>
       </tr>
       <tr>
         <td>Argoflow</td>
@@ -106,7 +106,7 @@ Packaged distributions are developed and supported by their respective maintaine
             AKS,
             GKE 
         </td>
-        <td>1.3</td>
+        <td>1.4</td>
         <td>
           <a href="/docs/distributions/ekf/">Docs</a>
         </td>

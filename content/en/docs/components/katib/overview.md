@@ -211,9 +211,11 @@ Katib has these CRD examples in upstream:
 
 - [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
 
-- [Kubeflow `MPIJob`](/docs/components/training/mpi)
+- [Kubeflow `MXJob`](/docs/components/training/mxnet)
 
-- [Kubeflow `XGBoostJob`](https://github.com/kubeflow/xgboost-operator)
+- [Kubeflow `XGBoostJob`](/docs/components/training/xgboost)
+
+- [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
 - [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
 

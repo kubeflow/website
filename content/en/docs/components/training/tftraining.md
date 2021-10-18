@@ -12,9 +12,9 @@ This page describes `TFJob` for training a machine learning model with [TensorFl
 ## What is TFJob?
 
 `TFJob` is a Kubernetes
-[custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) to run TensorFlow training jobs on Kubernetes. The Kubeflow
-implementation of `TFJob` is in
-[`training-operator`](https://github.com/kubeflow/tf-operator).
+[custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+to run TensorFlow training jobs on Kubernetes. The Kubeflow implementation of
+`TFJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
 
 **Note**: `TFJob` doesn't work in a user namespace by default because of Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection). In order to get `TFJob` running, it needs annotation `sidecar.istio.io/inject: "false"` to disable it for `TFJob` pods.
 
@@ -215,6 +215,9 @@ If you haven't already done so please follow the [Getting Started Guide](/docs/s
 
 > By default, `TFJob` Operator will be deployed as a controller in training operator.
 
+If you want to install a standalone version of the training operator without Kubeflow,
+see the [kubeflow/training-operator's README](https://github.com/kubeflow/training-operator#installation).
+
 ### Verify that TFJob support is included in your Kubeflow deployment
 
 Check that the TensorFlow custom resource is installed:
@@ -247,12 +250,12 @@ training-operator-d466b46bc-xbqvs   1/1     Running   0          4m37s
 
 ## Running the Mnist example
 
-See the manifests for the [distributed MNIST example](https://github.com/kubeflow/tf-operator/blob/master/examples/tensorflow/simple.yaml). You may change the config file based on your requirements.
+See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/master/examples/tensorflow/simple.yaml). You may change the config file based on your requirements.
 
 Deploy the `TFJob` resource to start training:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/tf-operator/master/examples/tensorflow/simple.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/master/examples/tensorflow/simple.yaml
 ```
 
 Monitor the job (see the [detailed guide below](#monitoring-your-job)):
@@ -686,20 +689,19 @@ Here are some steps to follow to troubleshoot your job
      then you can do
 
      ```
-      kubectl -n ${USER_NAMESPACE} describe tfjobs -o yaml ${JOB_NAME}
+     kubectl -n ${USER_NAMESPACE} describe tfjobs ${JOB_NAME}
      ```
 
    - The bottom of the output should include a list of events emitted by the job; e.g.
 
-     ```
+     ```yaml
      Events:
-     Type     Reason                          Age                From         Message
-     ----     ------                          ----               ----         -------
-     Warning  SettedPodTemplateRestartPolicy  19s (x2 over 19s)  tf-operator  Restart policy in pod template will be overwritten by restart policy in replica spec
-     Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-worker-0
-     Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-worker-0
-     Normal   SuccessfulCreatePod             19s                tf-operator  Created pod: tfjob2-ps-0
-     Normal   SuccessfulCreateService         19s                tf-operator  Created service: tfjob2-ps-0
+      Type    Reason                   Age   From              Message
+      ----    ------                   ----  ----              -------
+      Normal  SuccessfulCreatePod      90s   tfjob-controller  Created pod: tfjob2-worker-0
+      Normal  SuccessfulCreatePod      90s   tfjob-controller  Created pod: tfjob2-ps-0
+      Normal  SuccessfulCreateService  90s   tfjob-controller  Created service: tfjob2-worker-0
+      Normal  SuccessfulCreateService  90s   tfjob-controller  Created service: tfjob2-ps-0
      ```
 
    - Kubernetes only preserves events for **1 hour** (see [kubernetes/kubernetes#52521](https://github.com/kubernetes/kubernetes/issues/52521))

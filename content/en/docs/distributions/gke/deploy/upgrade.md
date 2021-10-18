@@ -236,6 +236,8 @@ To upgrade from specific versions of Kubeflow, you may need to take certain manu
    bash ./pull-upstream.sh
    ```
 
+1. (Optional) If you only want to upgrade some of Kubeflow components, you can comment non-upgrade components in `kubeflow/config.yaml` file. Commands below will only apply the remaining components.
+
 1. Make sure you have checked in `build` folders for each component. The following command will change them so you can compare for difference.
 
     ```bash
@@ -336,14 +338,14 @@ You will see output similar to
 ...
 ```
 
-Taking the first line as example, you can split this line by `:`, use the first half for ASM configuration package version, and the second half for `install_asm` script version. Therefore, assigning these two values to `${ASM_PACKAGE_VERSION}` and `${INSTALL_ASM_SCRIPT_VERSION}` in [kubeflow/common/asm/Makefile](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/Makefile) like below:
+Taking the first line as example, you can split this line by `:`, use the first half for ASM configuration package version, and the second half for `install_asm` script version. Therefore, assigning these two values to `${ASM_PACKAGE_VERSION}` and `${INSTALL_ASM_SCRIPT_VERSION}` in [kubeflow/asm/Makefile](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/asm/Makefile) like below:
 
 ```
 ASM_PACKAGE_VERSION=1.9.3-asm.2+config2
 INSTALL_ASM_SCRIPT_VERSION=install_asm_1.9.3-asm.2-config2
 ```
 
-Then run following command under path `kubeflow/common/asm` to install new ASM, the old ASM will not be uninstalled:
+Then run following command under path `kubeflow/asm` to install new ASM, the old ASM will not be uninstalled:
 
 ```bash
 make apply
@@ -352,7 +354,7 @@ make apply
 Once installed successfully, you can see istiod `Deployment` in your cluster with name in pattern `istiod-asm-VERSION-REVISION`, for example: `istiod-asm-193-2`.
 
 
-### Upgrade for other Kubeflow components
+### Upgrade other Kubeflow components to use new ASM
 
 There are multiple Kubeflow components with ASM namespace label, including user created namespaces. To upgrade them at once, change the following line in `kubeflow/env.sh` with targeted ASM version `asm-VERSION-REVISION`, like `asm-193-2`. 
 
