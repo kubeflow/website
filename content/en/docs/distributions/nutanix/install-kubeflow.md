@@ -244,4 +244,4 @@ The default way to access the Grafana Dashboard is by using Port-Forward. You ca
    kubectl --kubeconfig=./kaplin1.cfg port-forward svc/kubeflow-monitoring-grafana -n kubeflow-monitoring 8080:80
    ```
     
-  You can now access the Grafana Dashboard at http://localhost:8081. Default user login is "admin" and password |prom-operator".
+  You can now access the Grafana Dashboard at http://localhost:8081. Default user login is "admin" and password "prom-operator".
