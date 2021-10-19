@@ -20,6 +20,9 @@ If you haven't already done so please follow the [Getting Started Guide](/docs/s
 
 > By default, PyTorch Operator will be deployed as a controller in training operator.
 
+If you want to install a standalone version of the training operator without Kubeflow,
+see the [kubeflow/training-operator's README](https://github.com/kubeflow/training-operator#installation).
+
 ### Verify that PyTorchJob support is included in your Kubeflow deployment
 
 Check that the PyTorch custom resource is installed:
