@@ -43,7 +43,7 @@ Before installing Kubeflow on the command line:
     gcloud components update
     ```
 
-    You can install specific version of kubectl by following instruction (Example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). Latest patch version of kubectl from `v1.17` to `v1.19` works well too.
+    You can install specific version of kubectl by following instruction (Example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)). Latest patch version of kubectl from `v1.17` to `v1.19` works well too.
 
     Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository. gcloud hasn't caught up with this kpt version yet, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now. Note that kpt requires docker to be installed.
 
