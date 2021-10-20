@@ -141,7 +141,7 @@ Add the following  under staticPasswords section
   ```
 
 ## Access Kubeflow Central Dashboard
-There are multiple ways to acces your Kubeflow Central Dashboard:
+There are multiple ways to access your Kubeflow Central Dashboard:
 - Port Forward: The default way to access Kubeflow Central Dashboard is by using Port-Forward. You can port forward the istio ingress gateway to local port 8080.
     
    ```
@@ -237,11 +237,44 @@ There are multiple ways to acces your Kubeflow Central Dashboard:
   - You can now access the kubeflow dashboard by navigating to the istio-ingressgateway external IP e.g. `x.x.x.x`
 
 
-## Access Grafana
-The default way to access the Grafana Dashboard is by using Port-Forward. You can port forward the servcie port to local port 8081.
+## Access Grafana Dashboard (Optional)
+
+Grafana dashboard requires prometheus installation (step 3 durign the installation).
+
+The are multuple ways to access  way to access the Grafana Dashboard:
+- Port Forward: The default way to access is by using Port-Forward. You can port forward the servcie port to local port 8081.
     
    ```
-   kubectl --kubeconfig=./kaplin1.cfg port-forward svc/kubeflow-monitoring-grafana -n kubeflow-monitoring 8080:80
+   kubectl --kubeconfig=./kaplin1.cfg port-forward svc/kubeflow-monitoring-grafana -n kubeflow-monitoring 8081:80
    ```
+
+  You can now access the Grafana Dashboard at `http://localhost:8081`.
     
-  You can now access the Grafana Dashboard at http://localhost:8081. Default user login is "admin" and password "prom-operator".
+- NodePort: For accessing through NodePort, you need to reconfigure an existing service `kubeflow-monitoring-grafana` in `kubeflow-monitoring` namespace.
+  ```
+spec:
+  ports:
+    - name: service
+      protocol: TCP
+      port: 80
+      targetPort: 3000
+      nodePort: 30007
+  selector:
+    app.kubernetes.io/instance: kubeflow-monitoring
+    app.kubernetes.io/name: grafana
+  clusterIP: 172.19.164.121
+  type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+   ```
+  Then access your cluster at `https://<worknernode-ip>:30007`
+
+- LoadBalancer: If you have a LoadBalancer set up (See optional "Setup a LoadBalancer" section above), you can access the dashboard using the external IP by making the following changes.
+
+
+  - Update Istio Gateway to expose port 443 with HTTPS and make port 80 redirect to 443:
+
+  - You can now access the kubeflow dashboard by navigating to the istio-ingressgateway external IP e.g. `x.x.x.x`
+
+
+> **_NOTE:_**  Default Grafana Dashboard user login is "admin" with password "prom-operator".
