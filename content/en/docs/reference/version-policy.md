@@ -224,7 +224,7 @@ one of the following Kubeflow SDKs and command-line interfaces
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>1.7.0</td>
       </tr>
     </tbody>
   </table>
