@@ -112,7 +112,7 @@ The Kubeflow Pipelines SDK includes the following packages:
   Methods in this package include, but are not limited to, the following:
 
   * `kfp.Client.create_experiment` creates a pipeline 
-    [experiment](/docs/components/pipelines/concepts/experiment/) and returns an
+    [experiment](/docs/components/pipelines/overview/concepts/experiment/) and returns an
     experiment object.
   * `kfp.Client.run_pipeline` runs a pipeline and returns a run object.
   * `kfp.Client.create_run_from_pipeline_func` compiles a pipeline function and submits it
