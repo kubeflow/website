@@ -243,7 +243,7 @@ At a high level, the execution of a pipeline proceeds as follows:
   execute the containers needed to complete the pipeline.
   The containers execute within Kubernetes Pods on virtual machines.
   An example controller is the
-  **[Argo Workflow](https://github.com/argoproj/argo)** controller,
+  **[Argo Workflow](https://github.com/argoproj/argo-workflows)** controller,
   which orchestrates task-driven workflows.
 * **Artifact storage**: The Pods store two kinds of data: 
 
