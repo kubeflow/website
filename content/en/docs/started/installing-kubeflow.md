@@ -84,8 +84,8 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="https://opendatahub.io/docs/kubeflow.html">External Website</a></td>
       </tr>
       <tr>
-        <td>Argoflow</td>
-        <td>Argoflow Community</td>
+        <td>ArgoCD</td>
+        <td>ArgoCD Community</td>
         <td>Conformant Kubernetes</td>
         <td>1.3</td>
         <td>N/A</td>
