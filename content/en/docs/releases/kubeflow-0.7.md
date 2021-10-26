@@ -26,15 +26,10 @@ weight = 105
     <tr>
       <th class="table-light">Manifests</th>
       <td>
-        <b>Final:</b> 
+        <b>Release:</b> 
           <a href="https://github.com/kubeflow/manifests/releases/tag/v0.7.0-rc.2">v0.7.0-rc.2</a>
         <br>
-        <b>Candidates:</b>
-          <a href="https://github.com/kubeflow/manifests/releases/tag/v0.7.0-rc.2">v0.7.0-rc.2</a>,
-          <a href="https://github.com/kubeflow/manifests/releases/tag/v0.7.0-rc.1">v0.7.0-rc.1</a>
-          <a href="https://github.com/kubeflow/manifests/releases/tag/v0.7.0-rc.0">v0.7.0-rc.0</a>
-        <br>
-         <b>Branch:</b>
+        <b>Branch:</b>
           <a href="https://github.com/kubeflow/manifests/tree/v0.7-branch">v0.7-branch</a>
       </td>
     </tr>

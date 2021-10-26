@@ -24,13 +24,10 @@ weight = 104
     <tr>
       <th class="table-light">Manifests</th>
       <td>
-        <b>Final:</b> 
+        <b>Release:</b> 
           <a href="https://github.com/kubeflow/manifests/releases/tag/v1.0.2">v1.0.2</a>
         <br>
-        <b>Candidates:</b>
-          N/A
-        <br>
-         <b>Branch:</b>
+        <b>Branch:</b>
           <a href="https://github.com/kubeflow/manifests/tree/v1.0-branch">v1.0-branch</a>
       </td>
     </tr>
@@ -64,13 +61,10 @@ weight = 104
     <tr>
       <th class="table-light">Manifests</th>
       <td>
-        <b>Final:</b> 
+        <b>Release:</b> 
           <a href="https://github.com/kubeflow/manifests/releases/tag/v1.0.1">v1.0.1</a>
         <br>
-        <b>Candidates:</b>
-          N/A
-        <br>
-         <b>Branch:</b>
+        <b>Branch:</b>
           <a href="https://github.com/kubeflow/manifests/tree/v1.0-branch">v1.0-branch</a>
       </td>
     </tr>
@@ -106,13 +100,10 @@ weight = 104
     <tr>
       <th class="table-light">Manifests</th>
       <td>
-        <b>Final:</b> 
+        <b>Release:</b> 
           <a href="https://github.com/kubeflow/manifests/releases/tag/v1.0.0">v1.0.0</a>
         <br>
-        <b>Candidates:</b>
-          <a href="https://github.com/kubeflow/manifests/releases/tag/v1.0-rc.0">v1.0-rc.0</a>
-        <br>
-         <b>Branch:</b>
+        <b>Branch:</b>
           <a href="https://github.com/kubeflow/manifests/tree/v1.0-branch">v1.0-branch</a>
       </td>
     </tr>
