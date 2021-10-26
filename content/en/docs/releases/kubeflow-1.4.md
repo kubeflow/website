@@ -38,6 +38,8 @@ weight = 100
       <td>
         <b>Lead:</b> Kimonas Sotirchos (<a href="https://github.com/kimwnasptd">@kimwnasptd</a>)
         <br>
+        <b>Member:</b> Anna Jung (<a href="https://github.com/annajung">@annajung</a>)
+        <br>
         <b>Member:</b> David van der Spek (<a href="https://github.com/DavidSpek">@DavidSpek</a>)
         <br>
         <b>Member:</b> Rui Vasconcelos (<a href="https://github.com/RFMVasconcelos">@RFMVasconcelos</a>)
