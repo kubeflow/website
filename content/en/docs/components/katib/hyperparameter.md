@@ -38,7 +38,7 @@ Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
 
 1. **Katib Standalone Installation**
    
-   There are two installations to install Katib standalone, 
+   There are two ways to install Katib by standalone, 
    both of which do not require any additional setup on your Kubernetes cluster.
 
    1. **Basic Installation**
