@@ -47,7 +47,21 @@ Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
 
    This installation doesn't require any additional setup on your Kubernetes cluster.
 
-2. **Katib Cert Manager Installation**
+2. **Katib with Controller Leader Election**
+    
+   Run the following command to deploy Katib with Controller
+   [Leader Election](https://kubernetes.io/blog/2016/01/simple-leader-election-with-kubernetes/):
+
+    ```shell
+   kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-leader-election?ref=master"
+   ```
+
+   This installation is almost the same as `Katib Standalone Installation`,
+   although you can make katib-controller High Availability(HA) using leader election.
+   If you plan to use Katib in an environment where high SLAs and SLOs are required, 
+   such as a production environment, consider choosing this installation.
+
+3. **Katib Cert Manager Installation**
 
    Run the following command to deploy Katib with
    [Cert Manager](https://cert-manager.io/docs/installation/kubernetes/) requirement:
@@ -60,7 +74,7 @@ Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
    to provision Katib webhooks certificates. You have to deploy Cert Manager on
    your Kubernetes cluster before deploying Katib using this installation.
 
-3. **Katib External DB Installation**
+4. **Katib External DB Installation**
 
    Run the following command to deploy Katib with custom Database (DB) backend:
 
@@ -74,7 +88,7 @@ Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
    to point at your custom MySQL DB. Learn more about `katib-db-manager`
    environment variables in [this guide](https://www.kubeflow.org/docs/components/katib/env-variables/#katib-db-manager).
 
-4. **Katib on OpenShift**
+5. **Katib on OpenShift**
 
    Run the following command to deploy Katib on [OpenShift](https://docs.openshift.com/) v4.4+:
 
