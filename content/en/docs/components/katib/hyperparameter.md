@@ -60,8 +60,8 @@ Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
       ```
       
       This installation is almost the same as `Basic Installation`,
-      although you can make katib-controller High Availability(HA) using leader election.
-      If you plan to use Katib in an environment where high SLAs and SLOs are required, 
+      although you can make `katib-controller` Highly Available (HA) using leader election.
+      If you plan to use Katib in an environment where high Service Level Agreements (SLAs) and Service Level Objectives (SLOs) are required, 
       such as a production environment, consider choosing this installation.
 
 2. **Katib Cert Manager Installation**
