@@ -54,5 +54,6 @@ export PATH=/some/path:$PATH
 
  ## Next Steps
 
- 1. Go here for installing [Kubeflow on IKS](/docs/distributions/ibm/deploy/install-kubeflow-on-iks)
- 2. Go here for installing [Kubeflow on IBM OpenShift](/docs/distributions/ibm/deploy/install-kubeflow-on-ibm-openshift)
+ 1. Check [Kubeflow Compatibility](/docs/distributions/ibm/deploy/iks-compatibility)
+ 2. Go here for installing [Kubeflow on IKS](/docs/distributions/ibm/deploy/install-kubeflow-on-iks)
+ 3. Go here for installing [Kubeflow on IBM OpenShift](/docs/distributions/ibm/deploy/install-kubeflow-on-ibm-openshift)

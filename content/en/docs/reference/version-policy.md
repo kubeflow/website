@@ -97,7 +97,7 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/centraldashboard">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.4.0</td>
       </tr>
       <tr>
         <td><a href="/docs/external-add-ons/feature-store/overview">Feature store: Feast</a>
@@ -153,14 +153,14 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/kfserving">GitHub</a>)
         </td>
         <td>Beta</td>
-        <td>v0.5.1</td>
+        <td>v0.6.1</td>
       </tr>
       <tr>
         <td><a href="/docs/components/notebooks/why-use-jupyter-notebook/">Notebook web
           app</a>
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/deprecated/jupyter-web-app">GitHub</a>)
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.4.0</td>
       </tr>
       <tr>
         <td><a href="/docs/components/notebooks/why-use-jupyter-notebook/">Notebook 
@@ -168,22 +168,21 @@ documentation for that application.
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.4.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/components/pipelines/overview/pipelines-overview/">Pipelines</a>
+        <td><a href="/docs/components/pipelines/overview/pipelines-overview/">Kubeflow Pipelines</a>
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>1.7.0</td>
       </tr>
       <tr>
-        <td><a href="/docs/components/multi-tenancy/">Profile 
-          Controller for multi-user isolation</a> 
+        <td><a href="/docs/components/multi-tenancy/">Profile Controller for multi-user isolation</a> 
           (<a href="https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>v1.4.0</td>
       </tr>
       <tr>
         <td><a href="/docs/external-add-ons/serving/seldon">Seldon Core Serving</a> 
@@ -225,7 +224,7 @@ one of the following Kubeflow SDKs and command-line interfaces
           (<a href="https://github.com/kubeflow/pipelines">GitHub</a>)
         </td>
         <td>Stable</td>
-        <td>1.0.0</td>
+        <td>1.7.0</td>
       </tr>
     </tbody>
   </table>
