@@ -53,4 +53,4 @@ master should share the same identity management.
 ## Next steps
 
 * Learn [how to use multi-user isolation and profiles](/docs/components/multi-tenancy/getting-started/).
-* Read more about [Istio in Kubeflow](/docs/other-guides/istio-in-kubeflow/).
+* Read more about [Istio in Kubeflow](/docs/external-add-ons/istio/istio-in-kubeflow/).

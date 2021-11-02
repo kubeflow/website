@@ -33,7 +33,7 @@ Some hints:
 - Capitalize (almost) every word in page titles. (That is, use title case.) The
   little words like "and", "in", etc, don't get a capital letter.
 - In page content, use capitals only for brand names, like Kubeflow, Kubernetes,
-  and so on. See more about brand names [below](#brand-names).
+  and so on. See more about brand names [below](#use-full-correct-brand-names).
 - Don't use capital letters to emphasize words.
 
 ## Spell out abbreviations and acronyms on first use
@@ -303,7 +303,7 @@ image show up nicely on the page:
 To see some examples of styled images, take a look at the
 [OAuth setup page](/docs/gke/deploy/oauth-setup/).
 To see the markup, search for `.png` in the [page
-source](https://raw.githubusercontent.com/kubeflow/website/master/content/en/docs/gke/deploy/oauth-setup.md).
+source](https://raw.githubusercontent.com/kubeflow/website/master/content/en/docs/distributions/gke/deploy/oauth-setup.md).
 
 For more help, see the guide to
 [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/)

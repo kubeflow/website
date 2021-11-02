@@ -93,7 +93,7 @@ To learn more, read the following guides to the Kubeflow components:
   [Jupyter notebooks](/docs/components/notebooks/). Use notebooks for interactive data 
   science and experimenting with ML workflows.
 
-* [Kubeflow Pipelines](/docs/components/pipelines/pipelines-overview/) is a platform for 
+* [Kubeflow Pipelines](/docs/components/pipelines/overview/pipelines-overview/) is a platform for 
   building, deploying, and managing multi-step ML workflows based on Docker 
   containers.
 
@@ -136,8 +136,6 @@ of your Kubeflow deployment. Read
 Various components of Kubeflow offer APIs and Python SDKs. See the following
 sets of reference documentation:
 
-* [Kubeflow reference docs](/docs/reference/) for guides to the Kubeflow
-  Metadata API and SDK, the PyTorchJob CRD, and the TFJob CRD.
 * [Pipelines reference docs](/docs/components/pipelines/reference/) for the Kubeflow
   Pipelines API and SDK, including the Kubeflow Pipelines domain-specific
   language (DSL).

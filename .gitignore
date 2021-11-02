@@ -11,3 +11,9 @@ resources/
 
 # IntelliJ
 .idea/
+
+# Notebooks
+.ipynb_checkpoints
+#
+# vim files
+**/*.swp

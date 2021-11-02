@@ -36,20 +36,19 @@ pygmentsStyle = "tango"
 # Top-level navigation (horizontal)
 
 [[menu.main]]
-    name = "What is Kubeflow?"
-    weight = -103
-    url = "/docs/about/kubeflow/"
-[[menu.main]]
     name = "Documentation"
     weight = -101
+    pre = "<i class='fas fa-book pr-2'></i>"
     url = "/docs/"
 [[menu.main]]
     name = "Blog"
     weight = -100
+    pre = "<i class='fas fa-rss pr-2'></i>"
     url = "https://blog.kubeflow.org/"
 [[menu.main]]
     name = "GitHub"
     weight = -99
+    pre = "<i class='fab fa-github pr-2'></i>"
     url = "https://github.com/kubeflow/"
 
 # Docsy: Configure the format of URLs per section.
@@ -115,12 +114,12 @@ privacy_policy = "https://policies.google.com/privacy"
 gcs_engine_id = "007239566369470735695:624rglujm-w"
 
 # Text label for the version menu in the top bar of the website.
-version_menu = "v1.3"
+version_menu = "Kubeflow Version"
 
 # The major.minor version tag for the version of the docs represented in this
 # branch of the repository. Used in the "version-banner" partial to display a
 # version number for this doc set.
-version = "v1.3"
+version = "master"
 
 # Flag used in the "version-banner" partial to decide whether to display a 
 # banner on every page indicating that this is an archived version of the docs.
@@ -132,7 +131,7 @@ url_latest_version = "https://kubeflow.org/docs/"
 
 # A variable used in various docs to determine URLs for config files etc.
 # To find occurrences, search the repo for 'params "githubbranch"'.
-githubbranch = "v1.3-branch"
+githubbranch = "master"
 
 # Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
@@ -142,34 +141,24 @@ githubbranch = "v1.3-branch"
   url = "https://master.kubeflow.org"
 
 [[params.versions]]
-  version = "v0.2"
-  githubbranch = "v0.2-branch"
-  url = "https://v0-2.kubeflow.org"
+  version = "v1.4"
+  githubbranch = "v1.4-branch"
+  url = "https://v1-4-branch.kubeflow.org"
 
 [[params.versions]]
-  version = "v0.3"
-  githubbranch = "v0.3-branch"
-  url = "https://v0-3.kubeflow.org"
+  version = "v1.3"
+  githubbranch = "v1.3-branch"
+  url = "https://v1-3-branch.kubeflow.org"
 
 [[params.versions]]
-  version = "v0.4"
-  githubbranch = "v0.4-branch"
-  url = "https://v0-4.kubeflow.org"
+  version = "v1.2"
+  githubbranch = "v1.2-branch"
+  url = "https://v1-2-branch.kubeflow.org"
 
 [[params.versions]]
-  version = "v0.5"
-  githubbranch = "v0.5-branch"
-  url = "https://v0-5.kubeflow.org"
-
-[[params.versions]]
-  version = "v0.6"
-  githubbranch = "v0.6-branch"
-  url = "https://v0-6.kubeflow.org"
-
-[[params.versions]]
-  version = "v0.7"
-  githubbranch = "v0.7-branch"
-  url = "https://v0-7.kubeflow.org"
+  version = "v1.1"
+  githubbranch = "v1.1-branch"
+  url = "https://v1-1-branch.kubeflow.org"
 
 [[params.versions]]
   version = "v1.0"
@@ -177,14 +166,34 @@ githubbranch = "v1.3-branch"
   url = "https://v1-0-branch.kubeflow.org"
 
 [[params.versions]]
-  version = "v1.1"
-  githubbranch = "v1.1-branch"
-  url = "https://v1-1-branch.kubeflow.org"
-  
+  version = "v0.7"
+  githubbranch = "v0.7-branch"
+  url = "https://v0-7.kubeflow.org"
+
 [[params.versions]]
-  version = "v1.2"
-  githubbranch = "v1.2-branch"
-  url = "https://v1-2-branch.kubeflow.org"
+  version = "v0.6"
+  githubbranch = "v0.6-branch"
+  url = "https://v0-6.kubeflow.org"
+
+[[params.versions]]
+  version = "v0.5"
+  githubbranch = "v0.5-branch"
+  url = "https://v0-5.kubeflow.org"
+
+[[params.versions]]
+  version = "v0.4"
+  githubbranch = "v0.4-branch"
+  url = "https://v0-4.kubeflow.org"
+
+[[params.versions]]
+  version = "v0.3"
+  githubbranch = "v0.3-branch"
+  url = "https://v0-3.kubeflow.org"
+
+[[params.versions]]
+  version = "v0.2"
+  githubbranch = "v0.2-branch"
+  url = "https://v0-2.kubeflow.org"
 
 # Docsy: User interface configuration
 [params.ui]

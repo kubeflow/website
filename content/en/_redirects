@@ -47,6 +47,9 @@
 /docs/pipelines/sdk/gcp/preemptible/           /docs/distributions/gke/pipelines/preemptible/
 /docs/pipelines/reusable-components/           /docs/examples/shared-resources/
 /docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
+/docs/pipelines/sdk/build-component/           /docs/components/pipelines/sdk/build-pipeline/
+/docs/components/pipelines/sdk/build-component/    /docs/components/pipelines/sdk/build-pipeline/
+/docs/components/pipelines/upgrade/            /docs/components/pipelines/installation/upgrade/
 
 # Moved the guide to monitoring GKE deployments.
 /docs/other-guides/monitoring/                 /docs/distributions/gke/monitoring/
@@ -94,6 +97,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Remove Kubeflow installation on existing EKS cluster
 /docs/aws/deploy/existing-cluster/             /docs/distributions/aws/deploy/install-kubeflow/
 
+# Remove examples docs
+/docs/examples/*                                /docs/started/kubeflow-examples
+
 # Move the kustomize guide to the config section
 /docs/components/misc/kustomize/              /docs/distributions/kfctl/kustomize/
 
@@ -138,7 +144,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/started/workstation/minikf-aws                    /docs/distributions/minikf/minikf-aws
 /docs/started/workstation/minikf-gcp                    /docs/distributions/minikf/minikf-gcp
 
-# Distinguish components from external add-ons 
+# Distinguish components from external add-ons
 /docs/components/fairing                       /docs/external-add-ons/fairing
 /docs/components/istio                         /docs/external-add-ons/istio
 /docs/components/feature-store                 /docs/external-add-ons/feature-store
@@ -148,8 +154,15 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Rename Getting Started to Installing Kubeflow
 /docs/started/getting-started           /docs/started/installing-kubeflow
 
+# Remove Reference section
+/docs/reference/katib/*            /docs/components/katib/api-reference/api-reference
+/docs/reference/notebook/*         /docs/components/notebooks/api-reference
+/docs/reference/mpijob/*           /docs/components/training
+/docs/reference/pytorchjob/*       /docs/components/training
+/docs/reference/tfjob/*            /docs/components/training
+
 # ===============
-# IMPORTANT NOTE: 
+# IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
 # ===============
 /docs/guides/*                      /docs/:splat

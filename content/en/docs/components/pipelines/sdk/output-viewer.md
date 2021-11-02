@@ -4,10 +4,7 @@ description = "Visualizing the results of your pipelines component"
 weight = 80
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
+
 
 This page shows you how to use the Kubeflow Pipelines UI to visualize output 
 from a Kubeflow Pipelines component. 
@@ -21,9 +18,8 @@ guide to [Python Based Visualizations](/docs/components/pipelines/sdk/python-bas
 
 The Kubeflow Pipelines UI offers built-in support for several types of 
 visualizations, which you can use to provide rich performance evaluation and 
-comparison data. To make use of this programmable UI, your pipeline component 
-must write a JSON file to the component's local filesystem. You can do this at 
-any point during the pipeline execution.
+comparison data. Follow the instruction below to write visualization output
+data to file system. You can do this at any point during the pipeline execution.
 
 You can view the output visualizations in the following places on the Kubeflow
 Pipelines UI:
@@ -40,7 +36,7 @@ Pipelines UI:
       alt="Output visualization from a pipeline run"
       class="mt-3 mb-3 border border-info rounded">
 
-* The **Artifacts** tab shows the visualization for the selected pipeline step.
+* The **Visualizations** tab shows the visualization for the selected pipeline step.
   To open the tab in the Kubeflow Pipelines UI:
 
   1. Click **Experiments** to see your current pipeline experiments.
@@ -48,9 +44,9 @@ Pipelines UI:
   1. Click the *run name* of the run that you want to view.
   1. On the **Graph** tab, click the step representing the pipeline component 
     that you want to view. The step details slide into view, showing the
-    **Artifacts** tab.
+    **Visualizations** tab.
 
-    <img src="/docs/images/taxi-tip-prediction-step-output-table.png" 
+    <img src="/docs/images/pipelines/confusion-matrix-task.png" 
       alt="Table-based visualization from a pipeline component"
       class="mt-3 mb-3 border border-info rounded">
 
@@ -58,10 +54,235 @@ All screenshots and code snippets on this page come from a
 sample pipeline that you can run directly from the Kubeflow Pipelines UI.
 See the [sample description and links below](#example-source).
 
-## Writing out metadata for the output viewers
+<a id="v2-visualization"></a>
+## v2 SDK: Use SDK visualization APIs
 
-The pipeline component must write a JSON file specifying metadata for the
-output viewer(s) that you want to use for visualizing the results. The
+For KFP [SDK v2 and v2 compatible mode](/docs/components/pipelines/sdk/v2/), you can use 
+convenient SDK APIs and system artifact types for metrics visualization. Currently KFP
+supports ROC Curve, Confusion Matrix and Scalar Metrics formats. Full pipeline example
+of all metrics visualizations can be found in [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py). 
+
+### Requirements
+
+* Use Kubeflow Pipelines v1.7.0 or above: [upgrade Kubeflow Pipelines](/docs/components/pipelines/installation/standalone-deployment/#upgrading-kubeflow-pipelines).
+* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when [compile and run your pipelines](/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline).
+* Make sure to use the latest environment kustomize manifest [pipelines/manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml).
+
+
+For a usage guide of each metric visualization output, refer to sections below:
+
+### Confusion Matrix
+
+Define `Output[ClassificationMetrics]` argument in your component function, then
+output Confusion Matrix data using API 
+`log_confusion_matrix(self, categories: List[str], matrix: List[List[int]])`. `categories`
+provides a list of names for each label, `matrix` provides prediction performance for corresponding
+label. There are multiple APIs you can use for logging Confusion Matrix. Refer to 
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L255-L256) for detail.
+
+Refer to example below for logging Confusion Matrix:
+
+```
+@component(
+    packages_to_install=['sklearn'],
+    base_image='python:3.9'
+)
+def iris_sgdclassifier(test_samples_fraction: float, metrics: Output[ClassificationMetrics]):
+    from sklearn import datasets, model_selection
+    from sklearn.linear_model import SGDClassifier
+    from sklearn.metrics import confusion_matrix
+
+    iris_dataset = datasets.load_iris()
+    train_x, test_x, train_y, test_y = model_selection.train_test_split(
+        iris_dataset['data'], iris_dataset['target'], test_size=test_samples_fraction)
+
+
+    classifier = SGDClassifier()
+    classifier.fit(train_x, train_y)
+    predictions = model_selection.cross_val_predict(classifier, train_x, train_y, cv=3)
+    metrics.log_confusion_matrix(
+        ['Setosa', 'Versicolour', 'Virginica'],
+        confusion_matrix(train_y, predictions).tolist() # .tolist() to convert np array to list.
+    )
+
+@dsl.pipeline(
+    name='metrics-visualization-pipeline')
+def metrics_visualization_pipeline():
+    iris_sgdclassifier_op = iris_sgdclassifier(test_samples_fraction=0.3)
+```
+
+Visualization of Confusion Matrix is as below:
+
+<img src="/docs/images/pipelines/v2/confusion-matrix.png" 
+  alt="V2 Confusion matrix visualization"
+  class="mt-3 mb-3 border border-info rounded">
+
+### ROC Curve 
+
+Define `Output[ClassificationMetrics]` argument in your component function, then
+output ROC Curve data using API 
+`log_roc_curve(self, fpr: List[float], tpr: List[float], threshold: List[float])`. 
+`fpr` defines a list of False Positive Rate values, `tpr` defines a list of 
+True Positive Rate values, `threshold` indicates the level of sensitivity and specificity 
+of this probability curve. There are multiple APIs you can use for logging ROC Curve. Refer to 
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L163-L164) for detail.
+
+```
+@component(
+    packages_to_install=['sklearn'],
+    base_image='python:3.9',
+)
+def wine_classification(metrics: Output[ClassificationMetrics]):
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.metrics import roc_curve
+    from sklearn.datasets import load_wine
+    from sklearn.model_selection import train_test_split, cross_val_predict
+
+    X, y = load_wine(return_X_y=True)
+    # Binary classification problem for label 1.
+    y = y == 1
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
+    rfc = RandomForestClassifier(n_estimators=10, random_state=42)
+    rfc.fit(X_train, y_train)
+    y_scores = cross_val_predict(rfc, X_train, y_train, cv=3, method='predict_proba')
+    y_predict = cross_val_predict(rfc, X_train, y_train, cv=3, method='predict')
+    fpr, tpr, thresholds = roc_curve(y_true=y_train, y_score=y_scores[:,1], pos_label=True)
+    metrics.log_roc_curve(fpr, tpr, thresholds)
+
+@dsl.pipeline(
+    name='metrics-visualization-pipeline')
+def metrics_visualization_pipeline():
+    wine_classification_op = wine_classification()
+```
+
+Visualization of ROC Curve is as below:
+
+<img src="/docs/images/pipelines/v2/roc-curve.png" 
+  alt="V2 ROC Curve visualization"
+  class="mt-3 mb-3 border border-info rounded">
+
+### Scalar Metrics
+
+Define `Output[Metrics]` argument in your component function, then
+output Scalar data using API `log_metric(self, metric: str, value: float)`. 
+You can define any amount of metric by calling this API multiple times.
+`metric` defines the name of metric, `value` is the value of this metric. Refer to 
+[artifacts_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L124) 
+for detail.
+
+```
+@component(
+    packages_to_install=['sklearn'],
+    base_image='python:3.9',
+)
+def digit_classification(metrics: Output[Metrics]):
+    from sklearn import model_selection
+    from sklearn.linear_model import LogisticRegression
+    from sklearn import datasets
+    from sklearn.metrics import accuracy_score
+
+    # Load digits dataset
+    iris = datasets.load_iris()
+
+    # # Create feature matrix
+    X = iris.data
+
+    # Create target vector
+    y = iris.target
+
+    #test size
+    test_size = 0.33
+
+    seed = 7
+    #cross-validation settings
+    kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+
+    #Model instance
+    model = LogisticRegression()
+    scoring = 'accuracy'
+    results = model_selection.cross_val_score(model, X, y, cv=kfold, scoring=scoring)
+
+    #split data
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=test_size, random_state=seed)
+    #fit model
+    model.fit(X_train, y_train)
+
+    #accuracy on test set
+    result = model.score(X_test, y_test)
+    metrics.log_metric('accuracy', (result*100.0))
+
+@dsl.pipeline(
+    name='metrics-visualization-pipeline')
+def metrics_visualization_pipeline():
+    digit_classification_op = digit_classification()
+```
+
+Visualization of Scalar Metrics is as below:
+
+<img src="/docs/images/pipelines/v2/scalar-metrics.png" 
+  alt="V2 Scalar Metrics visualization"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+### Markdown
+
+Define `Output[Markdown]` argument in your component function, then
+write Markdown file to path `<artifact_argument_name>.path`. 
+Refer to
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L420-L428) 
+for detail.
+
+```
+@component
+def markdown_visualization(markdown_artifact: Output[Markdown]):
+    markdown_content = '## Hello world \n\n Markdown content'
+    with open(markdown_artifact.path, 'w') as f:
+        f.write(markdown_content)
+```
+
+<img src="/docs/images/pipelines/v2/markdown-visualization.png" 
+  alt="Markdown visualization in v2 compatible mode"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+
+### Single HTML file
+
+You can specify an HTML file that your component creates, and the Kubeflow Pipelines UI renders that HTML in the output page. The HTML file must be self-contained, with no references to other files in the filesystem. The HTML file can contain absolute references to files on the web. Content running inside the HTML file is sandboxed in an iframe and cannot communicate with the Kubeflow Pipelines UI.
+
+Define `Output[HTML]` argument in your component function, then
+write HTML file to path `<artifact_argument_name>.path`. 
+Refer to
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L409-L417) 
+for detail.
+
+
+```
+@component
+def html_visualization(html_artifact: Output[HTML]):
+    html_content = '<!DOCTYPE html><html><body><h1>Hello world</h1></body></html>'
+    with open(html_artifact.path, 'w') as f:
+        f.write(html_content)
+```
+
+<img src="/docs/images/taxi-tip-analysis-step-output-webapp-popped-out.png" 
+  alt="Web app output from a pipeline component"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+## Source of v2 examples
+
+The metric visualization in V2 or V2 compatible mode depends on SDK visualization APIs,
+refer to [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py)
+for a complete pipeline example. Follow instruction
+[Compile and run your pipeline](/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline)
+to compile in V2 compatible mode.
+
+## v1 SDK: Writing out metadata for the output viewers
+
+For KFP v1, the pipeline component must write a JSON file specifying metadata
+for the output viewer(s) that you want to use for visualizing the results. The
 component must also export a file output artifact with an artifact name of
 `mlpipeline-ui-metadata`, or else the Kubeflow Pipelines UI will not render
 the visualization. In other words, the `.outputs.artifacts` setting for the
@@ -215,6 +436,10 @@ confusion matrix CSV file as a string in `source` field directly.
 **Example:**
 
 ```Python
+
+def confusion_matrix_viz(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+    
   metadata = {
     'outputs' : [{
       'type': 'confusion_matrix',
@@ -229,8 +454,9 @@ confusion matrix CSV file as a string in `source` field directly.
       'labels': list(map(str, vocab)),
     }]
   }
-  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
@@ -262,6 +488,9 @@ The viewer can read the Markdown data from the following locations:
 
 **Example:**
 ```Python
+def markdown_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+    
   metadata = {
     'outputs' : [
     # Markdown that is hardcoded inline
@@ -276,8 +505,9 @@ The viewer can read the Markdown data from the following locations:
       'type': 'markdown',
     }]
   }
-  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
@@ -318,8 +548,11 @@ curve CSV file as a string in `source` field directly.
 **Example:**
 
 ```Python
+def roc_vis(roc_csv_file_path: str, mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+
   df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr, 'thresholds': thresholds})
-  roc_file = os.path.join(args.output, 'roc.csv')
+  roc_file = os.path.join(roc_csv_file_path, 'roc.csv')
   with file_io.FileIO(roc_file, 'w') as f:
     df_roc.to_csv(f, columns=['fpr', 'tpr', 'thresholds'], header=False, index=False)
 
@@ -335,8 +568,9 @@ curve CSV file as a string in `source` field directly.
       'source': roc_file
     }]
   }
-  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
@@ -369,6 +603,9 @@ in `source` field directly.
 **Example:**
 
 ```Python
+def table_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+
   metadata = {
     'outputs' : [{
       'type': 'table',
@@ -378,13 +615,14 @@ in `source` field directly.
       'source': prediction_results
     }]
   }
-  with open('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
 
-<img src="/docs/images/taxi-tip-prediction-step-output-table.png" 
+<img src="/docs/images/pipelines/taxi-tip-prediction-step-output-table.png" 
   alt="Table-based visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -416,14 +654,18 @@ management tools.
 **Example:**
 
 ```Python
+def tensorboard_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+
   metadata = {
     'outputs' : [{
       'type': 'tensorboard',
       'source': args.job_dir,
     }]
   }
-  with open('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
@@ -456,6 +698,9 @@ Specify `'storage': 'inline'` to embed raw html in `source` field directly.
 **Example:**
 
 ```Python
+def tensorboard_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+  import json
+
   static_html_path = os.path.join(output_dir, _OUTPUT_HTML_FILE)
   file_io.write_string_to_file(static_html_path, rendered_template)
 
@@ -470,8 +715,9 @@ Specify `'storage': 'inline'` to embed raw html in `source` field directly.
       'source': '<h1>Hello, World!</h1>',
     }]
   }
-  with file_io.FileIO('/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
+
+  with open(mlpipeline_ui_metadata_path, 'w') as metadata_file:
+    json.dump(metadata, metadata_file)
 ```
 
 **Visualization on the Kubeflow Pipelines UI:**
@@ -481,9 +727,9 @@ Specify `'storage': 'inline'` to embed raw html in `source` field directly.
   class="mt-3 mb-3 border border-info rounded">
 
 <a id="example-source"></a>
-## Source of examples on this page
+## Source of v1 examples
 
-The above examples come from the *tax tip prediction* sample that is
+The v1 examples come from the *tax tip prediction* sample that is
 pre-installed when you deploy Kubeflow. 
 
 You can run the sample by selecting 
@@ -506,14 +752,15 @@ The pipeline uses a number of prebuilt, reusable components, including:
 * The [tfma 
   component](https://github.com/kubeflow/pipelines/blob/master/components/dataflow/tfma/src/model_analysis.py)
   which writes out the data for the `web-app` viewer.
-* The [dataflow predict 
-  component](https://github.com/kubeflow/pipelines/blob/master/components/dataflow/predict/src/predict.py)
-  which writes out the data for the `table` viewer.
 
-## Usage in lightweight python components
+## Lightweight Python component Notebook example
 
-For lightweight components, the syntax is slightly different. You can refer to
+For a complete example of lightweigh Python component, you can refer to
 [the lightweight python component notebook example](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb) to learn more about declaring output visualizations.
+
+## YAML component example
+
+You can also configure visualization in a component.yaml file. Refer to `{name: MLPipeline UI Metadata}` output in [Create Tensorboard Visualization component](https://github.com/kubeflow/pipelines/blob/f61048b5d2e1fb5a6a61782d570446b0ec940ff7/components/tensorflow/tensorboard/prepare_tensorboard/component.yaml#L12).
 
 ## Next step
 

@@ -1,76 +1,87 @@
 +++
-title = "PyTorch Training"
-description = "Instructions for using PyTorch"
+title = "PyTorch Training (PyTorchJob)"
+description = "Using PyTorchJob to train a model with PyTorch"
 weight = 15
                     
 +++
 
 {{% stable-status %}}
 
-This guide walks you through using PyTorch with Kubeflow.
+This page describes `PyTorchJob` for training a machine learning model with [PyTorch](https://pytorch.org/).
+
+`PyTorchJob` is a Kubernetes
+[custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+to run PyTorch training jobs on Kubernetes. The Kubeflow implementation of
+`PyTorchJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
 
 ## Installing PyTorch Operator
 
 If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
 
-An **alpha** version of PyTorch support was introduced with Kubeflow 0.2.0. You must be using a version of Kubeflow between 0.2.0 and 0.3.5 to use this version.
+> By default, PyTorch Operator will be deployed as a controller in training operator.
 
-More recently, a **beta** version of PyTorch support was introduced with Kubeflow 0.4.0. You must be using a version of Kubeflow newer than 0.4.0 to use this version.
+If you want to install a standalone version of the training operator without Kubeflow,
+see the [kubeflow/training-operator's README](https://github.com/kubeflow/training-operator#installation).
 
-## Verify that PyTorch support is included in your Kubeflow deployment
+### Verify that PyTorchJob support is included in your Kubeflow deployment
 
-Check that the PyTorch custom resource is installed
+Check that the PyTorch custom resource is installed:
 
 ```
 kubectl get crd
 ```
 
-The output should include `pytorchjobs.kubeflow.org`
+The output should include `pytorchjobs.kubeflow.org` like the following:
 
 ```
-NAME                                           AGE
+NAME                                             CREATED AT
 ...
-pytorchjobs.kubeflow.org                       4d
+pytorchjobs.kubeflow.org                         2021-09-06T18:33:58Z
 ...
 ```
 
-If it is not included you can add it as follows
+Check that the Training operator is running via:
 
 ```
-export KF_DIR=<your Kubeflow installation directory>
-cd ${KF_DIR}/kustomize
-kubectl apply -f pytorch-job-crds.yaml
-kubectl apply -f pytorch-operator.yaml
+kubectl get pods -n kubeflow
 ```
 
-## Creating a PyTorch Job
-
-You can create PyTorch Job by defining a PyTorchJob config file. See the manifests for the [distributed MNIST example](https://github.com/kubeflow/pytorch-operator/tree/master/examples/mnist). You may change the config file based on your requirements.
+The output should include `training-operaror-xxx` like the following:
 
 ```
-cat pytorch_job_mnist.yaml
+NAME                                READY   STATUS    RESTARTS   AGE
+training-operator-d466b46bc-xbqvs   1/1     Running   0          4m37s
 ```
-Deploy the PyTorchJob resource to start training:
+
+## Creating a PyTorch training job
+
+You can create a training job by defining a `PyTorchJob` config file. See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/master/examples/pytorch/simple.yaml). You may change the config file based on your requirements.
+
+Deploy the `PyTorchJob` resource to start training:
 
 ```
-kubectl create -f pytorch_job_mnist.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/master/examples/pytorch/simple.yaml
 ```
+
 You should now be able to see the created pods matching the specified number of replicas.
 
 ```
-kubectl get pods -l pytorch_job_name=pytorch-tcp-dist-mnist
+kubectl get pods -l job-name=pytorch-simple -n kubeflow
 ```
-Training should run for about 10 epochs and takes 5-10 minutes on a cpu cluster. Logs can be inspected to see its training progress.
+
+Training takes 5-10 minutes on a cpu cluster. Logs can be inspected to see its training progress.
 
 ```
-PODNAME=$(kubectl get pods -l pytorch_job_name=pytorch-tcp-dist-mnist,pytorch-replica-type=master,pytorch-replica-index=0 -o name)
-kubectl logs -f ${PODNAME}
+PODNAME=$(kubectl get pods -l job-name=pytorch-simple,replica-type=master,replica-index=0 -o name -n kubeflow)
+kubectl logs -f ${PODNAME} -n kubeflow
 ```
-## Monitoring a PyTorch Job
+
+## Monitoring a PyTorchJob
 
 ```
-kubectl get -o yaml pytorchjobs pytorch-tcp-dist-mnist
+kubectl get -o yaml pytorchjobs pytorch-simple -n kubeflow
 ```
+
 See the status section to monitor the job status. Here is sample output when the job is successfully completed.
 
 ```

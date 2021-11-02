@@ -167,17 +167,9 @@ without access control:
 * Artifacts, Executions, and other metadata entities in [Machine Learning Metadata (MLMD)](https://www.tensorflow.org/tfx/guide/mlmd).
 * [Minio artifact storage](https://min.io/) which contains pipeline runs' input/output artifacts.
 
-### In-cluster API request authentication
+## In-cluster API request authentication
 
-Clients can only access the Kubeflow Pipelines API from the public endpoint
-that enforces authentication.
+Refer to [Connect to Kubeflow Pipelines from the same cluster](/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-the-same-cluster) for details.
 
-In-cluster direct access to the API endpoint is denied by Istio authorization
-policies, because there's no secure way to authenticate in-cluster requests to
-the Kubeflow Pipelines API server yet.
-
-If you need to access the API endpoint from in-cluster workload like Jupyter
-notebooks or cron tasks, current suggested workaround is to connect through
-public endpoint and follow platform specific documentation to authenticate
-programmatically using user credentials. For Google Cloud, you can refer to
-[Connecting to Kubeflow Pipelines in a full Kubeflow deployment on Google Cloud](/docs/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-in-a-full-kubeflow-deployment).
+Alternatively, in-cluster workloads like Jupyter notebooks or cron tasks can also access Kubeflow Pipelines API through the public endpoint. This option is platform specific and explained in 
+[Connect to Kubeflow Pipelines from outside your cluster](/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-outside-your-cluster).

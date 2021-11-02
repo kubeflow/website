@@ -2,7 +2,7 @@
 title = "Running an Experiment"
 description = "How to configure and run a hyperparameter tuning or neural architecture search experiment in Katib"
 weight = 30
-                    
+
 +++
 
 This guide describes how to configure and run a Katib experiment.
@@ -32,7 +32,7 @@ optimize, the objective metric to use when determining optimal values, the
 search algorithm to use during optimization, and other configurations.
 
 As a reference, you can use the YAML file of the
-[random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/random-example.yaml).
+[random search algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/hp-tuning/random.yaml).
 
 The list below describes the fields in the YAML file for an experiment. The
 Katib UI offers the corresponding fields. You can choose to configure and run
@@ -100,7 +100,7 @@ These are the fields in the experiment configuration spec:
 
   where the Katib controller is searching for the best maximum from the all
   latest reported `accuracy` metrics for each trial. Check the
-  [metrics strategies example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metric-strategy-example.yaml).
+  [metrics strategies example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metrics-collector/metrics-collection-strategy.yaml).
   The default strategy type for each metric is equal to the objective `type`.
 
   Refer to the
@@ -137,7 +137,8 @@ These are the fields in the experiment configuration spec:
 
   Katib dynamically supports any kind of
   [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
-  By default, you can use one of the following job types to train your model:
+  In Katib [examples](https://github.com/kubeflow/katib/tree/master/examples/v1beta1),
+  you can find the following job types to train your model:
 
   - [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 
@@ -145,9 +146,15 @@ These are the fields in the experiment configuration spec:
 
   - [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
 
+  - [Kubeflow `MXJob`](/docs/components/training/mxnet)
+
+  - [Kubeflow `XGBoostJob`](/docs/components/training/xgboost)
+
   - [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
-  - [Tekton `Pipeline`](https://github.com/tektoncd/pipeline)
+  - [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
+
+  - [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
 
   Refer to the
   [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
@@ -214,7 +221,9 @@ Here's a list of the search algorithms available in Katib:
 - [Bayesian optimization](#bayesian)
 - [Hyperband](#hyperband)
 - [Tree of Parzen Estimators (TPE)](#tpe-search)
+- [Multivariate TPE](#multivariate-tpe-search)
 - [Covariance Matrix Adaptation Evolution Strategy (CMA-ES)](#cmaes)
+- [Sobol's Quasirandom Sequence](#sobol)
 - [Neural Architecture Search based on ENAS](#enas)
 - [Differentiable Architecture Search (DARTS)](#darts)
 
@@ -253,7 +262,9 @@ use when combinatorial exploration is not possible. If the number of continuous
 variables is high, you should use quasi random sampling instead.
 
 Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/),
-[Goptuna](https://github.com/c-bata/goptuna) or [Chocolate](https://chocolate.readthedocs.io) optimization
+[Goptuna](https://github.com/c-bata/goptuna),
+[Chocolate](https://chocolate.readthedocs.io) or
+[Optuna](https://github.com/optuna/optuna) optimization
 framework for its random search.
 
 Katib supports the following algorithm settings:
@@ -312,12 +323,12 @@ Katib supports the following algorithm settings:
     <tbody>
       <tr>
         <td>base_estimator</td>
-        <td>[“GP”, “RF”, “ET”, “GBRT” or sklearn regressor, default=“GP”]: 
+        <td>[“GP”, “RF”, “ET”, “GBRT” or sklearn regressor, default=“GP”]:
           Should inherit from <code>sklearn.base.RegressorMixin</code>.
-          The <code>predict</code> method should have an optional 
-          <code>return_std</code> argument, which returns 
-          <code>std(Y | x)</code> along with <code>E[Y | x]</code>. If 
-          <code>base_estimator</code> is one of 
+          The <code>predict</code> method should have an optional
+          <code>return_std</code> argument, which returns
+          <code>std(Y | x)</code> along with <code>E[Y | x]</code>. If
+          <code>base_estimator</code> is one of
           [“GP”, “RF”, “ET”, “GBRT”], the system uses a default surrogate model
           of the corresponding type. Learn more information in the
           <a href="https://scikit-optimize.github.io/stable/modules/generated/skopt.Optimizer.html#skopt.Optimizer">skopt
@@ -326,10 +337,10 @@ Katib supports the following algorithm settings:
       </tr>
       <tr>
         <td>n_initial_points</td>
-        <td>[int, default=10]: Number of evaluations of <code>func</code> with 
-          initialization points before approximating it with 
+        <td>[int, default=10]: Number of evaluations of <code>func</code> with
+          initialization points before approximating it with
           <code>base_estimator</code>. Points provided as <code>x0</code> count
-          as initialization points. 
+          as initialization points.
           If <code>len(x0) &lt; n_initial_points</code>, the
           system samples additional points at random. Learn more information in the
           <a href="https://scikit-optimize.github.io/stable/modules/generated/skopt.Optimizer.html#skopt.Optimizer">skopt
@@ -346,7 +357,7 @@ Katib supports the following algorithm settings:
       </tr>
       <tr>
         <td>acq_optimizer</td>
-        <td>[string, “sampling” or “lbfgs”, default=“auto”]: The method to 
+        <td>[string, “sampling” or “lbfgs”, default=“auto”]: The method to
           minimize the acquisition function. The system updates the fit model
           with the optimal value obtained by optimizing <code>acq_func</code>
           with <code>acq_optimizer</code>. Learn more information in the
@@ -383,12 +394,99 @@ Hyperband also focuses on the speed of the search.
 
 The algorithm name in Katib is `tpe`.
 
-Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/) or
-[Goptuna](https://github.com/c-bata/goptuna) optimization
+Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/),
+[Goptuna](https://github.com/c-bata/goptuna) or
+[Optuna](https://github.com/optuna/optuna) optimization
 framework for its TPE search.
 
 This method provides a [forward and reverse gradient-based](https://arxiv.org/pdf/1703.01785.pdf)
 search.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>n_EI_candidates</td>
+        <td>[int]: Number of candidate samples used to calculate the expected improvement.</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>random_state</td>
+        <td>[int]: Set <code>random_state</code> to something other than None
+          for reproducible results.</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>gamma</td>
+        <td>[float]: The threshold to split between l(x) and g(x), check equation 2 in
+        <a href="https://papers.nips.cc/paper/2011/file/86e8f7ab32cfd12577bc2619bc635690-Paper.pdf">
+        this Paper</a>. Value must be in (0, 1) range.</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>prior_weight</td>
+        <td>[float]: Smoothing factor for counts, to avoid having 0 probability.
+        Value must be > 0.</td>
+        <td>1.1</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<a id="multivariate-tpe-search"></a>
+
+#### Multivariate TPE
+
+The algorithm name in Katib is `multivariate-tpe`.
+
+Katib uses the [Optuna](http://hyperopt.github.io/hyperopt/) optimization
+framework for its Multivariate TPE search.
+
+[Multivariate TPE](https://tech.preferred.jp/en/blog/multivariate-tpe-makes-optuna-even-more-powerful/)
+is improved version of independent (default) TPE. This method finds
+dependencies among hyperparameters in search space.
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>n_ei_candidates</td>
+        <td>[int]: Number of Trials used to calculate the expected improvement.</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>random_state</td>
+        <td>[int]: Set <code>random_state</code> to something other than None
+          for reproducible results.</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>n_startup_trials</td>
+        <td>[int]: Number of initial Trials for which the random search algorithm generates
+        hyperparameters.</td>
+        <td>5</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <a id="cmaes"></a>
 
@@ -396,7 +494,8 @@ search.
 
 The algorithm name in Katib is `cmaes`.
 
-Katib uses the [Goptuna](https://github.com/c-bata/goptuna) optimization
+Katib uses the [Goptuna](https://github.com/c-bata/goptuna) or
+[Optuna](https://github.com/optuna/optuna) optimization
 framework for its CMA-ES search.
 
 The [Covariance Matrix Adaptation Evolution Strategy](https://en.wikipedia.org/wiki/CMA-ES)
@@ -435,6 +534,19 @@ Katib supports the following algorithm settings:
     </tbody>
   </table>
 </div>
+
+<a id="sobol"></a>
+
+#### Sobol's Quasirandom Sequence
+
+The algorithm name in Katib is `sobol`.
+
+Katib uses the [Goptuna](https://github.com/c-bata/goptuna) optimization
+framework for its Sobol's quasirandom search.
+
+The [Sobol's quasirandom sequence](https://dl.acm.org/doi/10.1145/641876.641879)
+is a low-discrepancy sequence. And it is known that Sobol's quasirandom sequence can
+provide better uniformity properties.
 
 <a id="enas"></a>
 
@@ -540,7 +652,7 @@ For more information, check:
   [Efficient Neural Architecture Search (ENAS)](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/enas).
 
 - The ENAS example —
-  [`enas-example-gpu.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/enas-example-gpu.yaml) —
+  [`enas-gpu.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/enas-gpu.yaml) —
   which attempts to show all possible operations. Due to the large search
   space, the example is not likely to generate a good result.
 
@@ -669,7 +781,7 @@ For more information, check:
   [Differentiable Architecture Search](https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/darts).
 
 - The DARTS example —
-  [`darts-example-gpu.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/darts-example-gpu.yaml).
+  [`darts-gpu.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/darts-gpu.yaml).
 
 <a id="metrics-collector"></a>
 
@@ -694,23 +806,23 @@ To define the metrics collector for your experiment:
      output location (_standard output_). This is the default metrics collector.
 
    - `File`: Katib collects the metrics from an arbitrary file, which
-     you specify in the `.source.fileSystemPath.path` field. Training container should log metrics to this file.
-     Check the
-     [file metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/file-metricscollector-example.yaml#L15-L22).
+     you specify in the `.source.fileSystemPath.path` field. Training container
+     should log metrics to this file. Check the
+     [file metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metrics-collector/file-metrics-collector.yaml#L13-L22).
      The default file path is `/var/log/katib/metrics.log`.
 
    - `TensorFlowEvent`: Katib collects the metrics from a directory path
      containing a [tf.Event](https://www.tensorflow.org/api_docs/python/tf/compat/v1/Event).
      You should specify the path in the `.source.fileSystemPath.path` field.
      Check the
-     [TFJob example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/tfjob-example.yaml#L16-L22).
+     [TFJob example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/kubeflow-training-operator/tfjob-mnist-with-summaries.yaml#L16-L22).
      The default directory path is `/var/log/katib/tfevent/`.
 
    - `Custom`: Specify this value if you need to use a custom way to collect
      metrics. You must define your custom metrics collector container
      in the `.collector.customCollector` field.
      Check the
-     [custom metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/custom-metricscollector-example.yaml#L15-L35).
+     [custom metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metrics-collector/custom-metrics-collector.yaml#L13-L35).
 
    - `None`: Specify this value if you don't need to use Katib's metrics
      collector. For example, your training code may handle the persistent
@@ -718,7 +830,7 @@ To define the metrics collector for your experiment:
 
 1. Write code in your training container to print or save to the file metrics in the format
    specified in the `.source.filter.metricsFormat`
-   field. The default format is `([\w|-]+)\s*=\s*((-?\d+)(\.\d+)?)`.
+   field. The default format is `([\w|-]+)\s*=\s*([+-]?\d(\.\d+)?([Ee][+-]?\d+)?)`.
    Each element is a regular expression with two subexpressions. The first
    matched expression is taken as the metric name. The second matched
    expression is taken as the metric value.
@@ -729,12 +841,12 @@ To define the metrics collector for your experiment:
 
    ```shell
    epoch 1:
-   loss=0.3
+   loss=3.0e-02
    recall=0.5
    precision=0.4
 
    epoch 2:
-   loss=0.2
+   loss=1.3e-02
    recall=0.55
    precision=0.5
    ```
@@ -767,10 +879,10 @@ kubectl apply -f <your-path/your-experiment-config.yaml>
   [getting-started guide](/docs/components/katib/hyperparameter/#examples).
 
 Run the following command to launch an experiment
-using the random algorithm example:
+using the random search algorithm example:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/random-example.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/hp-tuning/random.yaml
 ```
 
 Check the experiment status:
@@ -779,10 +891,10 @@ Check the experiment status:
 kubectl -n kubeflow describe experiment <your-experiment-name>
 ```
 
-For example, to check the status of the random algorithm example:
+For example, to check the status of the random search algorithm experiment run:
 
 ```shell
-kubectl -n kubeflow describe experiment random-example
+kubectl -n kubeflow describe experiment random
 ```
 
 ### Running the experiment from the Katib UI
@@ -798,14 +910,7 @@ To run a hyperparameter tuning experiment from the Katib UI:
 1. Follow the getting-started guide to
    [access the Katib UI](/docs/components/katib/hyperparameter/#katib-ui).
 
-1. Click **Hyperparameter Tuning** on the Katib home page.
-
-1. Open the Katib menu panel on the left, then open the **HP** section and
-   click **Submit**:
-
-   <img src="/docs/components/katib/images/menu.png"
-     alt="The Katib menu panel"
-     class="mt-3 mb-3 border border-info rounded">
+1. Click **NEW EXPERIMENT** on the Katib home page.
 
 1. You should be able to view tabs offering you the following options:
 
@@ -824,13 +929,6 @@ To run a hyperparameter tuning experiment from the Katib UI:
        class="mt-3 mb-3 border border-info rounded">
 
 View the results of the experiment in the Katib UI:
-
-1. Open the Katib menu panel on the left, then open the **HP** section and
-   click **Monitor**:
-
-   <img src="/docs/components/katib/images/menu.png"
-     alt="The Katib menu panel"
-     class="mt-3 mb-3 border border-info rounded">
 
 1. You should be able to view the list of experiments:
 
@@ -863,7 +961,7 @@ View the results of the experiment in the Katib UI:
 ## Next steps
 
 - Learn how to run the
-  [random algorithm and other Katib examples](/docs/components/katib/hyperparameter/#random-algorithm).
+  [random search algorithm and other Katib examples](/docs/components/katib/hyperparameter/#random-search).
 
 - How to
   [restart your experiment and use the resume policies](/docs/components/katib/resume-experiment/).

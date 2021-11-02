@@ -155,11 +155,3 @@ $google_font_family: "Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap
     #pageContent .lead:nth-child(2n+0) > .text {
       -ms-flex-order: 1;
           order: 1; } }
-
-footer {
-  min-height: auto;
-
-  @media (max-width: 991.98px) {
-    min-height: auto;
-  }
-}

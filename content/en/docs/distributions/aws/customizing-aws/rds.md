@@ -23,9 +23,7 @@ export AWS_CLUSTER_NAME=<your_cluster_name>
 # Retrieve your VpcId
 aws ec2 describe-vpcs \
     --filters Name=tag:alpha.eksctl.io/cluster-name,Values=$AWS_CLUSTER_NAME \
-    | jq -r '.Vpcs[].VpcIdaws ec2 describe-vpcs \
-    --filters Name=tag:alpha.eksctl.io/cluster-name,Values=$AWS_CLUSTER_NAME \
-    | jq -r '.Vpcs[].VpcId''
+    | jq -r '.Vpcs[].VpcId'
 
 # Retrieve the list of SubnetId's of your cluster's Private subnets, select at least two
 aws ec2 describe-subnets \
@@ -102,4 +100,4 @@ Modify the `${CONFIG_FILE}` file to add `external-mysql` in both pipeline and me
     kfctl apply -V -f ${CONFIG_FILE}
     ```
 
-Your pipeline and metadata will now using Amazon RDS. Review [troubleshooting section](../troubleshooting-aws/#amazon-rds-connectivity-issues) if you run into any issues.
+Your pipeline and metadata will now using Amazon RDS. Review [troubleshooting section](.../troubleshooting-aws/#amazon-rds-connectivity-issues) if you run into any issues.

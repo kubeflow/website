@@ -56,7 +56,7 @@ Follow these instructions if you want to
 Before asking to join the community, we ask that you first make a small number of contributions
 to demonstrate your intent to continue contributing to Kubeflow.
 
-There are are a number of ways to contribute to Kubeflow
+There are a number of ways to contribute to Kubeflow
 
 - Submit PRs
 - File issues reporting bugs or providing feedback

@@ -1,29 +1,33 @@
 +++
-title = "Set up a Google Cloud Project"
+title = "Set up Project"
 description = "Creating a Google Cloud project for your Kubeflow deployment"
-weight = 1
+weight = 2
 +++
+
+In order to create GKE cluster and deploy Kubeflow on it, you need to set up a Google Cloud project
+and enable necessary APIs for the deployment.
+
+## Set up project and API scopes
 
 Follow these steps to set up your Google Cloud project:
 
-1. Select or create a project on the 
-  [Google Cloud Console](https://console.cloud.google.com/cloud-resource-manager).
+*  Select or create a project on the 
+  [Google Cloud Console](https://console.cloud.google.com/cloud-resource-manager). If you plan to use different Google Cloud projects for __Management Cluster__ and __Kubeflow Clusters__: create __one Management project__ for Management Cluster, and create __one or more Kubeflow projects__ for Kubeflow Clusters.
 
 
-1. Make sure that you have the 
-  [owner role](https://cloud.google.com/iam/docs/understanding-roles#primitive_role_definitions)
+*  Make sure that you have the 
+  [Owner role](https://cloud.google.com/iam/docs/understanding-roles#primitive_role_definitions)
   for the project in Cloud IAM (Identity and Access Management).
   The deployment process creates various service accounts with
   appropriate roles in order to enable seamless integration with
   Google Cloud services. This process requires that you have the 
   owner role for the project in order to deploy Kubeflow.
 
-1. Make sure that billing is enabled for your project. Refer to the guide to
-  [modifying a project's billing 
-  settings](https://cloud.google.com/billing/docs/how-to/modify-project).
+*  Make sure that billing is enabled for your project. Refer to
+  [Enable billing for a project](https://cloud.google.com/billing/docs/how-to/modify-project).
 
-1. Go to the following pages on the Google Cloud Console and ensure that the 
-  specified APIs are enabled:
+*  Open following pages on the Google Cloud Console and ensure that the 
+  specified APIs are enabled for all projects:
 
     * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
     * [Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com)
@@ -31,7 +35,9 @@ Follow these steps to set up your Google Cloud project:
     * [Service Management API](https://console.cloud.google.com/apis/api/servicemanagement.googleapis.com)
     * [Cloud Resource Manager API](https://console.developers.google.com/apis/library/cloudresourcemanager.googleapis.com)
     * [AI Platform Training & Prediction API](https://console.developers.google.com/apis/library/ml.googleapis.com)
+    * [Cloud Identity-Aware Proxy API](https://console.cloud.google.com/apis/library/iap.googleapis.com)
     * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/external-add-ons/fairing/) in your Kubeflow cluster)
+    * [Cloud SQL Admin API](https://console.cloud.google.com/apis/library/sqladmin.googleapis.com)
 
     You can also enable these APIs by running the following command in Cloud Shell:
     ```bash
@@ -42,17 +48,18 @@ Follow these steps to set up your Google Cloud project:
       servicemanagement.googleapis.com \
       cloudresourcemanager.googleapis.com \
       ml.googleapis.com \
-      meshconfig.googleapis.com
+      iap.googleapis.com \
+      sqladmin.googleapis.com \
+      meshconfig.googleapis.com 
 
     # Cloud Build API is optional, you need it if using Fairing.
     # gcloud services enable cloudbuild.googleapis.com
     ```
 
-1. If you are using the 
-  [Google Cloud Free Tier](https://cloud.google.com/free/docs/gcp-free-tier) or the
-  12-month trial period with $300 credit, note that you can't run the default
-  Google Cloud installation of Kubeflow, because the free tier does not offer enough
-  resources. You need to 
+*  If you are using the
+  [Google Cloud Free Program](https://cloud.google.com/free/docs/gcp-free-tier) or the
+  12-month trial period with $300 credit, note that the free tier does not offer enough
+  resources for default full Kubeflow installation. You need to 
   [upgrade to a paid account](https://cloud.google.com/free/docs/gcp-free-tier#how-to-upgrade).
   
     For more information, see the following issues: 
@@ -62,11 +69,12 @@ Follow these steps to set up your Google Cloud project:
     * [kubeflow/kubeflow #3936](https://github.com/kubeflow/kubeflow/issues/3936)
       requests a Kubeflow configuration to work with a free trial project.
 
-1. Read the Google Cloud guide to [resource quotas](https://cloud.google.com/compute/quotas)
-  to understand the quotas on resource usage that Compute Engine enforces, and 
-  to learn how to check your quota and how to request an increase in quota.
+    Read the Google Cloud [Resource quotas](https://cloud.google.com/compute/quotas)
+    to understand quotas on resource usage that Compute Engine enforces, and 
+    to learn how to check and increase your quotas.
+
   
-1. Initialize your project to prepare it for Anthos Service Mesh installation:
+*  Initialize your project to prepare it for Anthos Service Mesh installation:
 
     ```bash
     PROJECT_ID=<YOUR_PROJECT_ID>
@@ -92,8 +100,9 @@ cluster for you.
 
 ## Next steps
 
-* [Set up an OAuth credential](/docs/gke/deploy/oauth-setup) to use 
+* [Set up an OAuth credential](/docs/distributions/gke/deploy/oauth-setup) to use 
   [Cloud Identity-Aware Proxy (Cloud IAP)](https://cloud.google.com/iap/docs/).
   Cloud IAP is recommended for production deployments or deployments with access 
   to sensitive data.
-* Follow the [instructions](/docs/gke/deploy/deploy-cli) to deploy Kubeflow using kubectl, kustomize and kpt.
+* [Set up Management Cluster](/docs/distributions/gke/deploy/management-setup) to deploy and manage Kubeflow clusters.
+* [Deploy Kubeflow](/docs/distributions/gke/deploy/deploy-cli) using kubectl, kustomize and kpt.

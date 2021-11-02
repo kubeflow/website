@@ -47,12 +47,12 @@ and run a local server to host your website. This section shows you how.
 
 ### Install Hugo and other dependencies
 
-You need Hugo version 0.60 or later, and it must be the **extended** version of 
-Hugo. Hugo version 0.60 and later support the Goldmark renderer for Markdown.
+You need Hugo version 0.80 or later, and it must be the **extended** version of 
+Hugo. Hugo version 0.80 and later support the Goldmark renderer for Markdown.
 Goldmark offers improved rendering of some text formatting such as lists. 
 
 **Note:** From April 2020 onwards, Kubeflow recommends that you use 
-**Hugo version 0.68.3** or later. The Kubeflow website now uses Hugo 0.68.3 via
+**Hugo version 0.88.1** or later. The Kubeflow website now uses Hugo 0.88.1 via
 Netlify. 
 
 To get the latest extended version of Hugo:
@@ -65,9 +65,9 @@ To get the latest extended version of Hugo:
 
 For example, to install Hugo on Linux:
 
-1.  Download `hugo_extended_0.68.3_Linux-64bit.tar.gz`
+1.  Download `hugo_extended_0.88.1_Linux-64bit.tar.gz`
     (or the latest version) from the
-    [Hugo releases](https://github.com/gohugoio/hugo/releases/tag/v0.68.3) page.
+    [Hugo releases](https://github.com/gohugoio/hugo/releases/tag/v0.88.1) page.
 
 1.  Create a new directory:
 
@@ -75,7 +75,7 @@ For example, to install Hugo on Linux:
 
 1.  Extract the file you downloaded to `$HOME/hugo`.
 
-        tar -zxvf hugo_extended_0.68.3_Linux-64bit.tar.gz
+        tar -zxvf hugo_extended_0.88.1_Linux-64bit.tar.gz
 
 For more details about installing Hugo, See the 
 [Hugo installation guide](https://gohugo.io/getting-started/installing/). 
@@ -189,6 +189,10 @@ You can override the default styles and add new ones:
   You can also use `_variables_project.scss` to specify your own values for any 
   of the default 
   [Bootstrap 4 variables](https://getbootstrap.com/docs/4.0/getting-started/theming/).
+* Custom styles [`_styles_project` file](https://github.com/kubeflow/website/blob/master/assets/scss/_styles_project.scss) and regenerate resources 
+    ```
+    hugo
+    ```
 
 
 Styling of images:

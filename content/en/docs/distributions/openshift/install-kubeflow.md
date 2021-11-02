@@ -37,10 +37,12 @@ Minimal:
 
 ## Installing Kubeflow
 
-Use the following steps to install Kubeflow 1.0 on OpenShift 4.x.
+Use the following steps to install Kubeflow 1.3 on OpenShift 4.x.
+
 
 1. Download the example "kfdef" for Kubeflow 1.3 on Openshift from [kubeflow/manifests/distributions/kfdef]
-(https://raw.githubusercontent.com/kubeflow/manifests/master/distributions/kfdef/kfctl_openshift_v1.3.0.yaml).
+(https://raw.githubusercontent.com/opendatahub-io/manifests/v1.3-branch/distributions/kfdef/kfctl_openshift_v1.3.0.yaml).
+
 
 
 1. Build the deployment configuration using the example OpenShift KFDef file.

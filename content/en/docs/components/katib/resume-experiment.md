@@ -75,7 +75,7 @@ Learn more about Katib concepts
 in the [overview guide](/docs/components/katib/overview/#katib-concepts).
 
 Check the
-[`never-resume.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/resume-experiment/never-resume.yaml#L20)
+[`never-resume.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/resume-experiment/never-resume.yaml#L18)
 example for more details.
 
 ### Resume policy: LongRunning
@@ -98,15 +98,14 @@ is attached to the suggestion's Deployment.
 
 Katib controller creates
 [PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
-and
-[PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
 in addition to the suggestion's Deployment and Service.
 
-**Note:** If you specify
-[storage class name](https://kubernetes.io/docs/concepts/storage/storage-classes/)
-in the Katib configuration settings for the PVC differently from the
-`katib-suggestion`, Katib controller creates only PVC. Follow the
-[Katib configuration guide](/docs/components/katib/katib-config/#suggestion-volume-settings)
+**Note:** Your Kubernetes cluster must have `StorageClass` for
+[dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
+to automatically provision storage for the created PVC. Otherwise, you have to define
+suggestion's [PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
+specification in the Katib configuration settings and Katib controller will create PVC and PV.
+Follow the [Katib configuration guide](/docs/components/katib/katib-config/#suggestion-volume-settings)
 to set up the suggestion's volume settings.
 
 - PVC is deployed with the name: `<suggestion-name>-<suggestion-algorithm>`
