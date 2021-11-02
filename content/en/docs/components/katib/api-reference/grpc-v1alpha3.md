@@ -1,8 +1,7 @@
 +++
-title = "Katib"
-description = "Reference documentation for Katib"
-weight = 100
-                    
+title = "Katib gRPC (v1alpha3)"
+description = "Reference documentation for the `v1alpha3` version of the Katib gRPC API."
+weight = 20
 +++
 
 This is the legacy gRPC API reference for Katib v1alpha3 version.

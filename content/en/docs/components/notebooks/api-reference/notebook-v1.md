@@ -1,8 +1,9 @@
 +++
-title = "Notebook CRD V1 Reference"
-description = "Reference documentation for version v1 of the Notebook custom resource."
+title = "Notebook (v1)"
+description = "Reference documentation for the `v1` version of the `Notebook` resource"
 weight = 10
 +++
+
 <p>Packages:</p>
 <ul>
 <li>
