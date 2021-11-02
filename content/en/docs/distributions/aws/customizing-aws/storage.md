@@ -35,6 +35,7 @@ If it's not already in place, specify a storage class for EFS and create it with
 ```shell
 cat << EOF > efs-sc.yaml
 apiVersion: storage.k8s.io/v1
+kind: StorageClass
 metadata:
   name: efs-sc
 provisioner: efs.csi.aws.com
