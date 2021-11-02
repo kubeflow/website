@@ -99,7 +99,7 @@ For example, to modify settings for the Jupyter web app:
 
 1. Redeploy Kubeflow using `Makefile`:
 
-    ```
+    ```bash
     cd "${KF_DIR}"
     make apply
     ```
