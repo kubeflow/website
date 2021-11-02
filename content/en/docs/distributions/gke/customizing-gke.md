@@ -4,13 +4,12 @@ description = "Tailoring a GKE deployment of Kubeflow"
 weight = 20
 +++
 
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
-
 This guide describes how to customize your deployment of Kubeflow on Google 
 Kubernetes Engine (GKE) on Google Cloud.
+
+## Before you start
+
+The variables defined in this page can be found in [gcp-blueprint/kubeflow/env.sh](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/env.sh). They are the same value as you set based on your [Kubeflow deployment](/docs/distributions/gke/deploy/deploy-cli/#environment-variables). 
 
 ## Customizing Kubeflow before deployment
 
@@ -38,7 +37,7 @@ This guide assumes the following settings:
 
   ```
   export KF_DIR=<path to your Kubeflow application directory>
-  cd ${KF_DIR}
+  cd "${KF_DIR}"
   ``` 
 
 * Make sure your environment variables are set up for the Kubeflow cluster you want to customize. For further background about the settings, see the guide to
@@ -94,14 +93,14 @@ For example, to modify settings for the Jupyter web app:
 1. Verify the output resources in `/build` folder using `Makefile`"
 
     ```bash
-    cd ${KF_DIR}
+    cd "${KF_DIR}"
     make hydrate
     ```
 
 1. Redeploy Kubeflow using `Makefile`:
 
     ```
-    cd ${KF_DIR}
+    cd "${KF_DIR}"
     make apply
     ```
 
@@ -161,18 +160,18 @@ command:
 gcloud compute accelerator-types list
 ```
  
-Create the [ContainerNodePool](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containernodepool) resource adopting GPU, for exmaple, create a new file `containernodepool-gpu.yaml` file and fulfill the value below:
+Create the [ContainerNodePool](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containernodepool) resource adopting GPU, for exmaple, create a new file `containernodepool-gpu.yaml` file and fulfill the value `KUBEFLOW-NAME`, `KF-PROJECT`, `LOCATION` based on your [Kubeflow deployment](/docs/distributions/gke/deploy/deploy-cli/#environment-variables):
 
 ```
 apiVersion: container.cnrm.cloud.google.com/v1beta1
 kind: ContainerNodePool
 metadata:
   labels:
-    kf-name: KUBEFLOW-NAME # {"$kpt-set":"name"}
+    kf-name: KF_NAME # kpt-set: ${name}
   name: containernodepool-gpu
-  namespace: KF-PROJECT # {"$kpt-set":"project"}
+  namespace: KF_PROJECT # kpt-set: ${gcloud.core.project}
 spec:
-  location: LOCATION # {"$kpt-set":"location"}
+  location: LOCATION # kpt-set: ${location}
   initialNodeCount: 1
   autoscaling:
     minNodeCount: 0
@@ -195,28 +194,28 @@ spec:
     autoRepair: true
     autoUpgrade: true
   clusterRef:
-    name: KUBEFLOW-NAME # {"$kpt-set":"name"}
-    namespace: KF-PROJECT # {"$kpt-set":"project"}
+    name: KF_NAME # kpt-set: ${name}
+    namespace: KF_PROJECT # kpt-set: ${gcloud.core.project}
 ```
 
-Note that the `metadata:name` should be unique in your Kubeflow project. Because management cluster uses this as ID and your Google Cloud project as namespace to identify a nodepool.
+Note that the `metadata:name` must be unique in your Kubeflow project. Because the management cluster uses this as ID and your Google Cloud project as a namespace to identify a node pool.
 
-Apply the nodepool patch file above by running:
+Apply the node pool patch file above by running:
 
 ```bash
-kubectl --context=${MGMTCTXT} --namespace=${KF_PROJECT} apply -f <path-to-gpu-nodepool-file>
+kubectl --context="${MGMTCTXT}" --namespace="${KF_PROJECT}" apply -f <path-to-gpu-nodepool-file>
 ```
 
 After adding GPU nodes to your cluster, you need to install NVIDIA's device drivers to the nodes. Google provides a DaemonSet that automatically installs the drivers for you.
 To deploy the installation DaemonSet, run the following command:
 
 ```bash
-kubectl --context=${KF_NAME} apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
+kubectl --context="${KF_NAME}" apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
 ```
 
 
-To disable node-autoprovisioning, edit content for `${KF_DIR}/common/cluster/upstream/cluster.yaml`, set 
-[`enabled`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L73) 
+To disable node-autoprovisioning, edit `${KF_DIR}/common/cluster/upstream/cluster.yaml` to set
+[`enabled`](https://github.com/kubeflow/gcp-blueprints/blob/v1.3.0/kubeflow/common/cluster/upstream/cluster.yaml#L30) 
 to `false`:
 
 ```
@@ -229,6 +228,8 @@ to `false`:
 
 
 ### Add Cloud TPUs to your cluster
+
+Note: The following instruction should be used when creating GKE cluster, because the TPU enablement flag `enableTpu` is immutable once cluster is created. You need to create new cluster if existing cluster doesn't have TPU enabled.
 
 Set [`enableTpu:true`](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containercluster)
 in `${KF_DIR}/common/cluster/upstream/cluster.yaml` and enable alias IP (VPC-native traffic routing):
@@ -276,14 +277,10 @@ spec:
 
 ```
 
-You can learn more at [Creating a new cluster with Cloud TPU support](https://cloud.google.com/tpu/docs/kubernetes-engine-setup#new-cluster). And view an example for [Vpc Native Container Cluster](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containercluster) config connector yaml file.
-
-Note that this field is immutable once cluster is created. You need to create new cluster if existing cluster doesn't have TPU enabled.
-
-
+You can learn more at [Creating a new cluster with Cloud TPU support](https://cloud.google.com/tpu/docs/kubernetes-engine-setup#new-cluster), and view an example [Vpc Native Container Cluster](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containercluster) config connector yaml file.
 
 ## More customizations
 
 Refer to the navigation panel on the left of these docs for more customizations,
-including [using your own domain](/docs/gke/custom-domain), 
-[setting up Cloud Filestore](/docs/gke/cloud-filestore), and more.
+including [using your own domain](/docs/distributions/gke/custom-domain), 
+[setting up Cloud Filestore](/docs/distributions/gke/cloud-filestore), and more.

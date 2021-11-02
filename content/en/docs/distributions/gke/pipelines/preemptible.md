@@ -31,6 +31,10 @@ cluster can autoscale based on current workloads.
 This guide assumes that you have already deployed Kubeflow Pipelines. If not,
 follow the guide to [deploying Kubeflow on Google Cloud](/docs/gke/deploy/).
 
+## Before you start
+
+The variables defined in this page can be found in [gcp-blueprint/kubeflow/env.sh](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/env.sh). They are the same value as you set based on your [Kubeflow deployment](/docs/distributions/gke/deploy/deploy-cli/#environment-variables). 
+
 ## Using preemptible VMs with Kubeflow Pipelines
 
 In summary, the steps to schedule a pipeline to run on [preemptible
@@ -46,18 +50,18 @@ The following sections contain more detail about the above steps.
 
 ### 1. Create a node pool with preemptible VMs
 
-Create a `preemptible-nodepool.yaml` as below and fulfill all placerholder content:
+Create a `preemptible-nodepool.yaml` as below and fulfill all placerholder content `KF_NAME`, `KF_PROJECT`, `LOCATION`:
 
 ```
 apiVersion: container.cnrm.cloud.google.com/v1beta1
 kind: ContainerNodePool
 metadata:
   labels:
-    kf-name: KF_NAME # {"$kpt-set":"name"}
+    kf-name: KF_NAME # kpt-set: ${name}
   name: PREEMPTIBLE_CPU_POOL
-  namespace: KF_PROJECT # {"$kpt-set":"project"}
+  namespace: KF_PROJECT # kpt-set: ${gcloud.core.project}
 spec:
-  location: LOCATION # {"$kpt-set":"location"}
+  location: LOCATION # kpt-set: ${location}
   initialNodeCount: 1
   autoscaling:
     minNodeCount: 0
@@ -76,15 +80,15 @@ spec:
     - "https://www.googleapis.com/auth/monitoring"
     - "https://www.googleapis.com/auth/devstorage.read_only"
     serviceAccountRef:
-      external: KF-NAME-vm@KF-PROJECT.iam.gserviceaccount.com # {"$kpt-set":"vm-sa-ref"}
+      external: KF_NAME-vm@KF_PROJECT.iam.gserviceaccount.com # kpt-set: ${name}-vm@${gcloud.core.project}.iam.gserviceaccount.com
     metadata:
       disable-legacy-endpoints: "true"
   management:
     autoRepair: true
     autoUpgrade: true
   clusterRef:
-    name: KF_NAME # {"$kpt-set":"name"}
-    namespace: KF_PROJECT # {"$kpt-set":"project"}
+    name: KF_NAME # kpt-set: ${name}
+    namespace: KF_PROJECT # kpt-set: ${name}
 ```
 
 
@@ -101,6 +105,31 @@ Apply the nodepool patch file above by running:
 ```bash
 kubectl --context=${MGMTCTXT} --namespace=${KF_PROJECT} apply -f <path-to-nodepool-file>/preemptible-nodepool.yaml
 ```
+
+#### For Kubeflow Pipelines standalone only
+
+Alternatively, if you are on Kubeflow Pipelines standalone, or AI Platform Pipelines, you can run this command to create node pool:
+
+```
+gcloud container node-pools create PREEMPTIBLE_CPU_POOL \
+    --cluster=CLUSTER_NAME \
+      --enable-autoscaling --max-nodes=MAX_NODES --min-nodes=MIN_NODES \
+      --preemptible \
+      --node-taints=preemptible=true:NoSchedule \
+      --service-account=DEPLOYMENT_NAME-vm@PROJECT_NAME.iam.gserviceaccount.com
+```
+
+Below is an example of command:
+
+```
+gcloud container node-pools create preemptible-cpu-pool \
+  --cluster=user-4-18 \
+    --enable-autoscaling --max-nodes=4 --min-nodes=0 \
+    --preemptible \
+    --node-taints=preemptible=true:NoSchedule \
+    --service-account=user-4-18-vm@ml-pipeline-project.iam.gserviceaccount.com
+```
+
 
 ### 2. Schedule your pipeline to run on the preemptible VMs
 
@@ -194,11 +223,11 @@ apiVersion: container.cnrm.cloud.google.com/v1beta1
 kind: ContainerNodePool
 metadata:
   labels:
-    kf-name: KF_NAME # {"$kpt-set":"name"}
+    kf-name: KF_NAME # kpt-set: ${name}
   name: KF_NAME-containernodepool-gpu
-  namespace: KF_PROJECT # {"$kpt-set":"project"}
+  namespace: KF_PROJECT # kpt-set: ${gcloud.core.project}
 spec:
-  location: LOCATION # {"$kpt-set":"location"}
+  location: LOCATION # kpt-set: ${location}
   initialNodeCount: 1
   autoscaling:
     minNodeCount: 0
@@ -213,7 +242,7 @@ spec:
     - "https://www.googleapis.com/auth/monitoring"
     - "https://www.googleapis.com/auth/devstorage.read_only"
     serviceAccountRef:
-      external: KF_NAME-vm@KF_PROJECT.iam.gserviceaccount.com # {"kpt-set":"vm-sa-ref"}
+      external: KF_NAME-vm@KF_PROJECT.iam.gserviceaccount.com # kpt-set: ${name}-vm@${gcloud.core.project}.iam.gserviceaccount.com
     guestAccelerator:
     - type: "nvidia-tesla-k80"
       count: 1
@@ -223,8 +252,8 @@ spec:
     autoRepair: true
     autoUpgrade: true
   clusterRef:
-    name: KF_NAME # {"$kpt-set":"name"}
-    namespace: KF_PROJECT # {"$kpt-set":"project"}
+    name: KF_NAME # kpt-set: ${name}
+    namespace: KF_PROJECT # kpt-set: ${gcloud.core.project}
 ```
 
 Where:
@@ -233,7 +262,34 @@ Where:
 +   `KF_NAME` is the name of the Kubeflow GKE cluster.
 +   `KF_PROJECT` is the name of your Kubeflow Google Cloud project. 
 +   `LOCATION` is the region of this nodepool, for example: us-west1-b.
-+   `KF_NAME-vm@KF_PROJECT.iam.gserviceaccount.com` is your service account, replace the `KF_NAME` and `KF_PROJECT` using the value above  in this pattern, you can get vm service account you have already created in Kubeflow cluster deployment
++   `KF_NAME-vm@KF_PROJECT.iam.gserviceaccount.com` is your service account, replace the `KF_NAME` and `KF_PROJECT` using the value above  in this pattern, you can get vm service account you have already created in Kubeflow cluster deployment.
+
+
+#### For Kubeflow Pipelines standalone only
+
+Alternatively, if you are on Kubeflow Pipelines standalone, or AI Platform Pipelines, you can run this command to create node pool:
+
+```
+gcloud container node-pools create PREEMPTIBLE_GPU_POOL \
+    --cluster=CLUSTER_NAME \
+    --enable-autoscaling --max-nodes=MAX_NODES --min-nodes=MIN_NODES \
+    --preemptible \
+    --node-taints=preemptible=true:NoSchedule \
+    --service-account=DEPLOYMENT_NAME-vm@PROJECT_NAME.iam.gserviceaccount.com \
+    --accelerator=type=GPU_TYPE,count=GPU_COUNT
+```
+
+Below is an example of command:
+
+```
+gcloud container node-pools create preemptible-gpu-pool \
+    --cluster=user-4-18 \
+    --enable-autoscaling --max-nodes=4 --min-nodes=0 \
+    --preemptible \
+    --node-taints=preemptible=true:NoSchedule \
+    --service-account=user-4-18-vm@ml-pipeline-project.iam.gserviceaccount.com \
+    --accelerator=type=nvidia-tesla-t4,count=2
+```
 
 
 ### 3. Schedule your pipeline to run on the preemptible VMs with preemptible GPUs
