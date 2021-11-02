@@ -37,15 +37,32 @@ of Katib, you can use one of the following Katib installs. To install the specif
 Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
 
 1. **Katib Standalone Installation**
+   
+   There are two ways to install Katib by standalone, 
+   both of which do not require any additional setup on your Kubernetes cluster.
 
-   Run the following command to deploy Katib with the main components
-   (`katib-controller`, `katib-ui`, `katib-mysql`, `katib-db-manager`, and `katib-cert-generator`):
+   1. **Basic Installation**
 
-   ```shell
-   kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=master"
-   ```
+      Run the following command to deploy Katib with the main components
+      (`katib-controller`, `katib-ui`, `katib-mysql`, `katib-db-manager`, and `katib-cert-generator`):
 
-   This installation doesn't require any additional setup on your Kubernetes cluster.
+      ```shell
+      kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=master"
+      ```
+
+   2. **Controller Leader Election Support**
+    
+      Run the following command to deploy Katib with Controller
+      [Leader Election](https://kubernetes.io/blog/2016/01/simple-leader-election-with-kubernetes/):
+
+      ```shell
+      kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-leader-election?ref=master"
+      ```
+      
+      This installation is almost the same as `Basic Installation`,
+      although you can make `katib-controller` Highly Available (HA) using leader election.
+      If you plan to use Katib in an environment where high Service Level Agreements (SLAs) and Service Level Objectives (SLOs) are required, 
+      such as a production environment, consider choosing this installation.
 
 2. **Katib Cert Manager Installation**
 
