@@ -155,6 +155,7 @@ Choose your use-case from one of the options below:
         - mountPath: /var/run/secrets/kubeflow/pipelines
           name: volume-kf-pipeline-token
           readOnly: true
+    serviceAccountName: default-editor
     volumes:
       - name: volume-kf-pipeline-token
         projected:
@@ -164,6 +165,11 @@ Choose your use-case from one of the options below:
                 expirationSeconds: 7200
                 audience: pipelines.kubeflow.org      
   ```
+
+  Note that this example uses `default-editor` in `my-namespace` as the service account identity, but you can configure
+  to use any service account that runs in your Pod. You need to bind service account to cluster role `kubeflow-pipelines-edit`
+  or `kubeflow-pipelines-view` documented in 
+  [view-edit-cluster-roles.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/base/installs/multi-user/view-edit-cluster-roles.yaml#L7-L32).
 
 #### Managing access to Kubeflow Pipelines API across namespaces
 
@@ -207,7 +213,7 @@ Cross-namespace access can be achieved in two ways:
 
 #### How Multi-User mode in-cluster authentication works
 
-When calling Kubeflow Pipelines API in the same cluster, Kubeflow Pipelines SDK authenticates itself as `default-editor` in your namespace using ServiceAccountToken 
+When calling Kubeflow Pipelines API in the same cluster, Kubeflow Pipelines SDK authenticates itself as your Pod's service account in your namespace using ServiceAccountToken 
 [projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection). This is where a verifiable token with a limited lifetime is being injected into a Pod (e.g. Jupyter notebook's).
 
 Then Kubeflow Pipelines SDK uses this token to authorize against Kubeflow Pipelines API.
