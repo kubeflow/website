@@ -40,7 +40,7 @@ Use the [gcloud container clusters create command](https://cloud.google.com/sdk/
 
 CLUSTER_NAME="kubeflow-pipelines-standalone"
 ZONE="us-central1-a"
-MACHINE_TYPE="n1-standard-2" # A machine with 2 CPUs and 7.50GB memory
+MACHINE_TYPE="e2-standard-2" # A machine with 2 CPUs and 8GB memory
 SCOPES="cloud-platform" # This scope is needed for running some pipeline samples. Read the warning below for its security implication
 
 gcloud container clusters create $CLUSTER_NAME \
