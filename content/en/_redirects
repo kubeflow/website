@@ -167,6 +167,16 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/notebooks/troubleshoot                   /docs/components/notebooks/troubleshooting
 /docs/components/notebooks/why-use-jupyter-notebook       /docs/components/notebooks/overview
 
+# Refactor Pipelines section
+/docs/components/pipelines/overview/concepts/*                /docs/components/pipelines/concepts/:splat
+/docs/components/pipelines/sdk/v2/*                           /docs/components/pipelines/sdk-v2/:splat
+/docs/components/pipelines/caching                            /docs/components/pipelines/overview/caching
+/docs/components/pipelines/caching-v2                         /docs/components/pipelines/overview/caching-v2
+/docs/components/pipelines/installation/compatibility-matrix/ /docs/components/pipelines/installation/tfx-compatibility-matrix/
+/docs/components/pipelines/multi-user                         /docs/components/pipelines/overview/multi-user
+/docs/components/pipelines/overview/pipelines-overview        /docs/components/pipelines/overview/introduction
+/docs/components/pipelines/pipeline-root                      /docs/components/pipelines/overview/pipeline-root
+
 # ===============
 # IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom

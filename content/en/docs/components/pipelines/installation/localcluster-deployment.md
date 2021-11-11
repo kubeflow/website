@@ -1,7 +1,7 @@
 +++
-title = "Deploying Kubeflow Pipelines on a local cluster"
-description = "How to deploy Kubeflow Pipelines locally with kind, K3s, and K3ai for testing purposes"
-weight = 30
+title = "Local Deployment"
+description = "Information about local Deployment of Kubeflow Pipelines (kind, K3s, K3ai)"
+weight = 20
 +++
 
 This guide shows how to deploy Kubeflow Pipelines standalone on a local

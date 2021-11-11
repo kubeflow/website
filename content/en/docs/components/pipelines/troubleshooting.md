@@ -1,7 +1,7 @@
 +++
 title = "Troubleshooting"
-description = "Finding and fixing problems in your Kubeflow Pipelines deployment"
-weight = 65
+description = "Troubleshooting guide for Kubeflow Pipelines"
+weight = 90
                     
 +++
 

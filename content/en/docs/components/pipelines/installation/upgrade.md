@@ -1,7 +1,7 @@
 +++
 title = "Upgrade Notes"
 description = "Notices and breaking changes when you upgrade Kubeflow Pipelines Backend"
-weight = 35
+weight = 90
 +++
 
 This page introduces notices and breaking changes you need to know when upgrading Kubeflow Pipelines Backend.

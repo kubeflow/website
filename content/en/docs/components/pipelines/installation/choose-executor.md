@@ -1,7 +1,7 @@
 +++
-title = "Argo Workflow Executors"
-description = "How to choose and configure the Argo Workflow Executor?"
-weight = 40
+title = "Choosing an Argo Workflows Executor"
+description = "How to choose an Argo Workflows Executor"
+weight = 80
 +++
 
 An Argo workflow executor is a process that conforms to a specific interface that allows Argo to perform certain actions like monitoring pod logs, collecting artifacts, managing container lifecycles, etc.

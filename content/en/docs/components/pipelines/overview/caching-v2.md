@@ -1,7 +1,7 @@
 +++
 title = "Caching v2"
 description = "Getting started with Kubeflow Pipelines caching v2"
-weight = 50
+weight = 41
 
 +++
 {{% beta-status

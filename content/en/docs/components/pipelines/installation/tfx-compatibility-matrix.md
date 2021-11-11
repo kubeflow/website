@@ -1,7 +1,7 @@
 +++
-title = "Compatibility Matrix"
+title = "TFX Compatibility Matrix"
 description = "Kubeflow Pipelines compatibility matrix with TensorFlow Extended (TFX)"
-weight = 50
+weight = 100
 +++
 
 ## Kubeflow Pipelines Backend and TFX compatibility

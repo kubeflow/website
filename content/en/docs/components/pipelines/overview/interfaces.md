@@ -1,5 +1,5 @@
 +++
-title = "Introduction to the Pipelines Interfaces"
+title = "Pipelines Interfaces"
 description = "The ways you can interact with the Kubeflow Pipelines system"
 weight = 20
                     

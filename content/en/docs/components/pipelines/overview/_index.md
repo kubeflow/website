@@ -1,5 +1,5 @@
 +++
-title = "Understanding Pipelines"
-description = "Overview and concepts in Kubeflow Pipelines"
+title = "Overview"
+description = "Overview of Kubeflow Pipelines"
 weight = 20
 +++
