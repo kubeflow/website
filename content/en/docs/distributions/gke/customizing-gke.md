@@ -4,13 +4,12 @@ description = "Tailoring a GKE deployment of Kubeflow"
 weight = 20
 +++
 
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
-
 This guide describes how to customize your deployment of Kubeflow on Google 
 Kubernetes Engine (GKE) on Google Cloud.
+
+## Before you start
+
+The variables defined in this page can be found in [gcp-blueprint/kubeflow/env.sh](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/env.sh). They are the same value as you set based on your [Kubeflow deployment](/docs/distributions/gke/deploy/deploy-cli/#environment-variables). 
 
 ## Customizing Kubeflow before deployment
 
@@ -38,11 +37,12 @@ This guide assumes the following settings:
 
   ```
   export KF_DIR=<path to your Kubeflow application directory>
-  cd ${KF_DIR}
+  cd "${KF_DIR}"
   ``` 
 
 * Make sure your environment variables are set up for the Kubeflow cluster you want to customize. For further background about the settings, see the guide to
   [deploying Kubeflow with the CLI](/docs/gke/deploy/deploy-cli).
+
 
 ## Customizing Google Cloud resources
 
@@ -93,14 +93,14 @@ For example, to modify settings for the Jupyter web app:
 1. Verify the output resources in `/build` folder using `Makefile`"
 
     ```bash
-    cd ${KF_DIR}
+    cd "${KF_DIR}"
     make hydrate
     ```
 
 1. Redeploy Kubeflow using `Makefile`:
 
-    ```
-    cd ${KF_DIR}
+    ```bash
+    cd "${KF_DIR}"
     make apply
     ```
 
@@ -156,12 +156,66 @@ options:
 To see which accelerators are available in each zone, run the following
 command:
 
-```
+```bash
 gcloud compute accelerator-types list
 ```
  
-To disable node-autoprovisioning, edit content for `${KF_DIR}/common/cluster/upstream/cluster.yaml`, set 
-[`enabled`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L73) 
+Create the [ContainerNodePool](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containernodepool) resource adopting GPU, for exmaple, create a new file `containernodepool-gpu.yaml` file and fulfill the value `KUBEFLOW-NAME`, `KF-PROJECT`, `LOCATION` based on your [Kubeflow deployment](/docs/distributions/gke/deploy/deploy-cli/#environment-variables):
+
+```
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerNodePool
+metadata:
+  labels:
+    kf-name: KF_NAME # kpt-set: ${name}
+  name: containernodepool-gpu
+  namespace: KF_PROJECT # kpt-set: ${gcloud.core.project}
+spec:
+  location: LOCATION # kpt-set: ${location}
+  initialNodeCount: 1
+  autoscaling:
+    minNodeCount: 0
+    maxNodeCount: 5
+  nodeConfig:
+    machineType: n1-standard-4
+    diskSizeGb: 100
+    diskType: pd-standard
+    preemptible: true
+    oauthScopes:
+    - "https://www.googleapis.com/auth/logging.write"
+    - "https://www.googleapis.com/auth/monitoring"
+    - "https://www.googleapis.com/auth/devstorage.read_only"
+    guestAccelerator:
+    - type: "nvidia-tesla-k80"
+      count: 1
+    metadata:
+      disable-legacy-endpoints: "true"
+  management:
+    autoRepair: true
+    autoUpgrade: true
+  clusterRef:
+    name: KF_NAME # kpt-set: ${name}
+    namespace: KF_PROJECT # kpt-set: ${gcloud.core.project}
+```
+
+Note that the `metadata:name` must be unique in your Kubeflow project. Because the management cluster uses this as ID and your Google Cloud project as a namespace to identify a node pool.
+
+Apply the node pool patch file above by running:
+
+```bash
+kubectl --context="${MGMTCTXT}" --namespace="${KF_PROJECT}" apply -f <path-to-gpu-nodepool-file>
+```
+
+After adding GPU nodes to your cluster, you need to install NVIDIA's device drivers to the nodes. Google provides a DaemonSet that automatically installs the drivers for you.
+To deploy the installation DaemonSet, run the following command:
+
+```bash
+kubectl --context="${KF_NAME}" apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
+```
+
+
+To disable node-autoprovisioning, edit `${KF_DIR}/common/cluster/upstream/cluster.yaml` to set
+[`enabled`](https://github.com/kubeflow/gcp-blueprints/blob/v1.3.0/kubeflow/common/cluster/upstream/cluster.yaml#L30) 
 to `false`:
 
 ```
@@ -172,64 +226,61 @@ to `false`:
     ...
 ```
 
-Then create the [ContainerNodePool](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containernodepool) resource adopting GPU, for example:
-
-```
-  apiVersion: container.cnrm.cloud.google.com/v1beta1
-  kind: ContainerNodePool
-  metadata:
-    labels:
-      mesh_id: "proj-PROJECT_NUMBER" # {"$kpt-set":"asm-mesh-id"}
-    name: containernodepool-gpu
-  spec:
-    location: LOCATION # {"$kpt-set":"location"}
-    initialNodeCount: 1
-    autoscaling:
-      minNodeCount: 1
-      maxNodeCount: 5
-    nodeConfig:
-      machineType: n1-standard-4
-      diskSizeGb: 100
-      diskType: pd-standard
-      preemptible: false
-      oauthScopes:
-        - "https://www.googleapis.com/auth/logging.write"
-        - "https://www.googleapis.com/auth/monitoring"
-      guestAccelerator:
-        - type: "nvidia-tesla-k80"
-          count: 1
-      metadata:
-        disable-legacy-endpoints: "true"
-    management:
-      autoRepair: true
-      autoUpgrade: true
-    clusterRef:
-      name: "PROJECT/LOCATION/KUBEFLOW-NAME" # {"$kpt-set":"cluster-name"}
-```
-
-You must also set 
-[`gpu-pool-initialNodeCount`](https://github.com/kubeflow/manifests/blob/4d2939d6c1a5fd862610382fde130cad33bfef75/gcp/deployment_manager_configs/cluster-kubeflow.yaml#L58).
-
-After adding GPU nodes to your cluster, you need to install NVIDIA's device drivers to the nodes. Google provides a DaemonSet that automatically installs the drivers for you.
-To deploy the installation DaemonSet, run the following command:
-```
-kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
-```
-
 
 ### Add Cloud TPUs to your cluster
 
+Note: The following instruction should be used when creating GKE cluster, because the TPU enablement flag `enableTpu` is immutable once cluster is created. You need to create new cluster if existing cluster doesn't have TPU enabled.
+
 Set [`enableTpu:true`](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containercluster)
-in `${KF_DIR}/common/cluster/upstream/cluster.yaml`:
+in `${KF_DIR}/common/cluster/upstream/cluster.yaml` and enable alias IP (VPC-native traffic routing):
 
 ```
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerCluster
+...
+spec:
   ...
   enableTpu: true
+  networkingMode: VPC_NATIVE
+  networkRef:
+    name: containercluster-dep-vpcnative
+  subnetworkRef:
+    name: containercluster-dep-vpcnative
+  ipAllocationPolicy:
+    servicesSecondaryRangeName: servicesrange
+    clusterSecondaryRangeName: clusterrange
   ...
+...
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeNetwork
+metadata:
+  name: containercluster-dep-vpcnative
+spec:
+  routingMode: REGIONAL
+  autoCreateSubnetworks: false
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeSubnetwork
+metadata:
+  name: containercluster-dep-vpcnative
+spec:
+  ipCidrRange: 10.2.0.0/16
+  region: us-west1
+  networkRef:
+    name: containercluster-dep-vpcnative
+  secondaryIpRange:
+  - rangeName: servicesrange
+    ipCidrRange: 10.3.0.0/16
+  - rangeName: clusterrange
+    ipCidrRange: 10.4.0.0/16
+
 ```
+
+You can learn more at [Creating a new cluster with Cloud TPU support](https://cloud.google.com/tpu/docs/kubernetes-engine-setup#new-cluster), and view an example [Vpc Native Container Cluster](https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containercluster) config connector yaml file.
 
 ## More customizations
 
 Refer to the navigation panel on the left of these docs for more customizations,
-including [using your own domain](/docs/gke/custom-domain), 
-[setting up Cloud Filestore](/docs/gke/cloud-filestore), and more.
+including [using your own domain](/docs/distributions/gke/custom-domain), 
+[setting up Cloud Filestore](/docs/distributions/gke/cloud-filestore), and more.

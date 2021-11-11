@@ -8,16 +8,40 @@ This page describes the Kubeflow resources and support options that you can
 explore when you encounter a problem, have a question, or want to make a
 suggestion about Kubeflow.
 
+<a id="application-status"></a>
+## Application status
+
+Starting from the release of Kubeflow v1.0, the Kubeflow community
+attributes *stable status* to those applications and components that
+meet a defined level of stability, supportability, and upgradability.
+
+When you deploy Kubeflow to a Kubernetes cluster, your deployment includes a
+number of applications. Application versioning is independent of Kubeflow
+versioning. An application moves to version 1.0 when the application meets
+certain [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md)
+in terms of stability, upgradability, and the provision of services such as
+logging and monitoring.
+
+When an application moves to version 1.0, the Kubeflow community will
+decide whether to mark that version of the application as *stable* in the next
+major or minor release of Kubeflow.
+
+Application status indicators for Kubeflow:
+
+* **Stable** means that the application complies with the
+  [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md)
+  to reach application version 1.0, and that the Kubeflow community has deemed
+  the application stable for this release of Kubeflow.
+* **Beta** means that the application is working towards a version 1.0 release
+  and its maintainers have communicated a timeline for satisfying the criteria
+  for the stable status.
+* **Alpha** means that the application is in the early phases of
+  development and/or integration into Kubeflow.
+
+<a id="levels-of-support"></a>
 ## Levels of support
 
-Kubeflow applications offer various levels of support, based on the application
-status. To see the status of each application, refer to the 
-[Kubeflow application 
-matrix](/docs/reference/version-policy/#kubeflow-application-matrix) on the
-version policies page.
-
-The following table describes the level of support that you can expect based on
-the status of an application:
+The following table describes the level of support that you can expect based on the status of an application:
 
 <div class="table-responsive">
   <table class="table table-bordered">

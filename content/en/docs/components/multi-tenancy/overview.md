@@ -38,4 +38,4 @@ When configuring multi-user isolation along with your security and identity mana
 
 ## Next steps
 
-* Learn [how more on multi-user isolation and profiles](/docs/components/multi-tenancy/getting-started/).
+* Learn more about [multi-user isolation design](/docs/components/multi-tenancy/design/).

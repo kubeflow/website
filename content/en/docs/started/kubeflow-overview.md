@@ -136,8 +136,6 @@ of your Kubeflow deployment. Read
 Various components of Kubeflow offer APIs and Python SDKs. See the following
 sets of reference documentation:
 
-* [Kubeflow reference docs](/docs/reference/) for guides to the Kubeflow
-  Metadata API and SDK, the PyTorchJob CRD, and the TFJob CRD.
 * [Pipelines reference docs](/docs/components/pipelines/reference/) for the Kubeflow
   Pipelines API and SDK, including the Kubeflow Pipelines domain-specific
   language (DSL).

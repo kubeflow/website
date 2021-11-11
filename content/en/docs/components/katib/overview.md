@@ -127,7 +127,7 @@ You can use the following interfaces to interact with Katib:
     alt="The Katib home page within the Kubeflow UI"
     class="mt-3 mb-3 border border-info rounded">
 
-- A gRPC API. Check the [API reference](/docs/reference/katib/v1beta1/katib).
+- A gRPC API. Check the [API reference](/docs/components/katib/api-reference/).
 
 - Command-line interfaces (CLIs):
 
