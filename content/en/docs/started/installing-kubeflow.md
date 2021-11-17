@@ -110,7 +110,7 @@ While these manifests are intended to be the base of packaged distributions, adv
         <td>Azure Kubernetes Service (AKS)</td>
       </tr>
       <tr>
-        <td><a href="/docs/guides/deploying-manifests-on-ibm-cloud/">Deploying <code>kubeflow/manifests</code> on IBM Cloud</a></td>
+        <td><a href="/docs/guides/deploying-manifests-on-ibm-cloud/">Deploying <code>ibm/manifests</code> on IBM Cloud</a></td>
         <td>IBM Cloud Kubernetes Service (IKS)</td>
       </tr>
       <tr>
