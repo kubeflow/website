@@ -102,27 +102,27 @@ While these manifests are intended to be the base of packaged distributions, adv
     </thead>
     <tbody>
       <tr>
-        <td><a href="/docs/guides/deploying-manifests-on-aws/">Deploying Manifests on AWS</a></td>
+        <td><a href="/docs/guides/deploying-manifests-on-aws/">Deploying <code>kubeflow/manifests</code> on AWS</a></td>
         <td>Amazon Elastic Kubernetes Service (EKS)</td>
       </tr>
       <tr>
-        <td><a href="/docs/guides/deploying-manifests-on-azure/">Deploying Manifests on Azure</a></td>
+        <td><a href="/docs/guides/deploying-manifests-on-azure/">Deploying <code>kubeflow/manifests</code> on Azure</a></td>
         <td>Azure Kubernetes Service (AKS)</td>
       </tr>
       <tr>
-        <td><a href="/docs/guides/deploying-manifests-on-ibm-cloud/">Deploying Manifests on IBM Cloud</a></td>
+        <td><a href="/docs/guides/deploying-manifests-on-ibm-cloud/">Deploying <code>kubeflow/manifests</code> on IBM Cloud</a></td>
         <td>IBM Cloud Kubernetes Service (IKS)</td>
       </tr>
       <tr>
-        <td><a href="/docs/guides/deploying-manifests-on-nutanix-karbon/">Deploying Manifests on Nutanix Karbon</a></td>
+        <td><a href="/docs/guides/deploying-manifests-on-nutanix-karbon/">Deploying <code>kubeflow/manifests</code> on Nutanix Karbon</a></td>
         <td>Nutanix Karbon</td>
       </tr>
       <tr>
-        <td><a href="/docs/guides/deploying-manifests-on-openshift/">Deploying Manifests on OpenShift</a></td>
+        <td><a href="/docs/guides/deploying-manifests-on-openshift/">Deploying <code>kubeflow/manifests</code> on OpenShift</a></td>
         <td>OpenShift</td>
       </tr>
       <tr>
-        <td><a href="/docs/guides/deploying-manifests-with-kubeflow-operator/">Deploying Manifests with Kubeflow Operator</a></td>
+        <td><a href="/docs/guides/deploying-manifests-with-kubeflow-operator/">Deploying <code>kubeflow/manifests</code> with Kubeflow Operator</a></td>
         <td>Any Kubernetes</td>
       </tr>
     </tbody>
