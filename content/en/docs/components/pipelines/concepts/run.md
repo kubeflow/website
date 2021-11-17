@@ -15,7 +15,7 @@ output artifacts, and logs for each step in the run.
 A *recurring run*, or job in the Kubeflow Pipelines [backend APIs](https://github.com/kubeflow/pipelines/tree/06e4dc660498ce10793d566ca50b8d0425b39981/backend/api/go_http_client/job_client), is a repeatable run of
 a pipeline. The configuration for a recurring run includes a copy of a pipeline
 with all parameter values specified and a 
-[run trigger](/docs/components/pipelines/overview/concepts/run-trigger/).
+[run trigger](/docs/components/pipelines/concepts/run-trigger/).
 You can start a recurring run inside any experiment, and it will periodically
 start a new copy of the run configuration. You can enable/disable the recurring
 run from the Kubeflow Pipelines UI. You can also specify the maximum number of
@@ -25,7 +25,7 @@ triggered to run frequently.
 
 ## Next steps
 
-* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/pipelines-overview/).
-* Follow the [pipelines quickstart guide](/docs/components/pipelines/pipelines-quickstart/) 
+* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/introduction/).
+* Follow the [pipelines quickstart guide](/docs/components/pipelines/overview/quickstart/) 
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.

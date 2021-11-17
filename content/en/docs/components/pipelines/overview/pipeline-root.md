@@ -7,7 +7,7 @@ weight = 50
 {{% beta-status
 feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
 
-Starting from [Kubeflow Pipelines SDK v2](https://www.kubeflow.org/docs/components/pipelines/sdk/v2/) and Kubeflow Pipelines 1.7.0, Kubeflow Pipelines supports a new intermediate artifact repository feature: pipeline root in both [standalone deployment](https://www.kubeflow.org/docs/components/pipelines/installation/standalone-deployment/) and [AI platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs).
+Starting from [Kubeflow Pipelines SDK v2](https://www.kubeflow.org/docs/components/pipelines/sdk-v2/) and Kubeflow Pipelines 1.7.0, Kubeflow Pipelines supports a new intermediate artifact repository feature: pipeline root in both [standalone deployment](https://www.kubeflow.org/docs/components/pipelines/installation/standalone-deployment/) and [AI platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs).
 
 ## Before you start
 This guide tells you the basic concepts of Kubeflow Pipelines pipeline root and how to use it.
@@ -56,7 +56,7 @@ kubectl edit configMap kfp-launcher -n ${namespace}
 This pipeline root will be the default pipeline root for all pipelines running in the Kubernetes namespace unless you override it using one of the following options:
 
 ####  Via Building Pipelines
-You can configure a pipeline root through the `kfp.dsl.pipeline` annotation when [building pipelines](https://www.kubeflow.org/docs/components/pipelines/sdk/v2/build-pipeline/#build-your-pipeline)
+You can configure a pipeline root through the `kfp.dsl.pipeline` annotation when [building pipelines](https://www.kubeflow.org/docs/components/pipelines/sdk-v2/build-pipeline/#build-your-pipeline)
 
 ####  Via Submitting a Pipeline through SDK
 You can configure pipeline root via `pipeline_root` argument when you submit a Pipeline using one of the following:

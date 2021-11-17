@@ -415,7 +415,7 @@ kfp.compiler.Compiler().compile(
 2.  Upload and run your `pipeline.yaml` using the Kubeflow Pipelines user interface.
 See the guide to [getting started with the UI][quickstart].
 
-[quickstart]: https://www.kubeflow.org/docs/components/pipelines/pipelines-quickstart
+[quickstart]: https://www.kubeflow.org/docs/components/pipelines/overview/quickstart
 
 #### Option 2: run the pipeline using Kubeflow Pipelines SDK client
 

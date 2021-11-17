@@ -14,7 +14,7 @@ building and running pipelines that are compatible with the Pipelines SDK v2.
 
 [Learn more about Pipelines SDK v2][kfpv2].
 
-[kfpv2]: https://www.kubeflow.org/docs/components/pipelines/sdk/v2/v2-compatibility/
+[kfpv2]: https://www.kubeflow.org/docs/components/pipelines/sdk-v2/v2-compatibility/
 
 ## Before you begin
 
@@ -592,7 +592,7 @@ See this [sample component][org-sample] for a real-life component example.
   [best practices](/docs/components/pipelines/sdk/best-practices) for designing and
   writing components.
 * For quick iteration,
-  [build lightweight Python function-based components](/docs/components/pipelines/sdk/v2/python-function-components/)
+  [build lightweight Python function-based components](/docs/components/pipelines/sdk-v2/python-function-components/)
   directly from Python functions.
 * Use SDK APIs to visualize pipeline result, follow 
   [Visualize Results in the Pipelines UI](/docs/components/pipelines/sdk/output-viewer/#v2-visualization)

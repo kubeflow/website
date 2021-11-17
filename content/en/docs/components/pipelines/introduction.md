@@ -13,7 +13,7 @@ scalable machine learning (ML) workflows based on Docker containers.
 ## Quickstart
 
 Run your first pipeline by following the 
-[pipelines quickstart guide](/docs/components/pipelines/pipelines-quickstart).
+[pipelines quickstart guide](/docs/components/pipelines/overview/quickstart).
 
 ## What is Kubeflow Pipelines?
 
@@ -56,7 +56,7 @@ A _pipeline component_ is a self-contained set of user code, packaged as a
 performs one step in the pipeline. For example, a component can be responsible
 for data preprocessing, data transformation, model training, and so on.
 
-See the conceptual guides to [pipelines](/docs/components/pipelines/overview/concepts/pipeline/)
+See the conceptual guides to [pipelines](/docs/components/pipelines/concepts/pipeline/)
 and [components](/docs/components/pipelines/concepts/component/).
 
 ## Example of a pipeline
@@ -275,7 +275,7 @@ At a high level, the execution of a pipeline proceeds as follows:
 ## Next steps
 
 * Follow the 
-  [pipelines quickstart guide](/docs/components/pipelines/pipelines-quickstart) to 
+  [pipelines quickstart guide](/docs/components/pipelines/overview/quickstart) to 
   deploy Kubeflow and run a sample pipeline directly from the 
   Kubeflow Pipelines UI.
 * Build machine-learning pipelines with the [Kubeflow Pipelines 
