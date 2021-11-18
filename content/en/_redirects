@@ -161,6 +161,12 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/reference/pytorchjob/*       /docs/components/training
 /docs/reference/tfjob/*            /docs/components/training
 
+# Cleanup of Notebooks Docs
+/docs/components/notebooks/custom-notebook                /docs/components/notebooks/container-images
+/docs/components/notebooks/setup                          /docs/components/notebooks/quickstart-guide
+/docs/components/notebooks/troubleshoot                   /docs/components/notebooks/troubleshooting
+/docs/components/notebooks/why-use-jupyter-notebook       /docs/components/notebooks/overview
+
 # ===============
 # IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
