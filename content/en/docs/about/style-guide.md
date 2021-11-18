@@ -306,9 +306,9 @@ To see the markup, search for `.png` in the [page
 source](https://raw.githubusercontent.com/kubeflow/website/master/content/en/docs/distributions/gke/deploy/oauth-setup.md).
 
 For more help, see the guide to
-[Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/)
+[Bootstrap image styling](https://getbootstrap.com/docs/4.6/content/images/)
 and the Bootstrap utilities, such as
-[borders](https://getbootstrap.com/docs/4.0/utilities/borders/).
+[borders](https://getbootstrap.com/docs/4.6/utilities/borders/).
 
 ## A detailed style guide
 
