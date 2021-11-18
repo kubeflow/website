@@ -5,9 +5,12 @@ weight = 30
                     
 +++
 
+{{% alert title="Warning" color="warning" %}}
 This section introduces the examples in the 
 [kubeflow/examples](https://github.com/kubeflow/examples) repository.
-Before using a sample, check the sample's README file for known issues.
+There are out-of-date examples in this repository, check the sample's README file before using.
+{{% /alert %}}
+
 
 {{% blocks/sample-section title="MNIST image classification"
   kfctl="v1.0.0"
