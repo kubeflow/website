@@ -6,9 +6,7 @@ weight = 30
 +++
 
 {{% alert title="Warning" color="warning" %}}
-This section introduces some examples in the 
-[kubeflow/examples](https://github.com/kubeflow/examples) repository.
-There are out-of-date examples in this repository, check the sample's README file before using.
+Some examples in [kubeflow/examples](https://github.com/kubeflow/examples) repository have not been tested with newer versions of Kubeflow. Please refer to the README of your chosen example.
 {{% /alert %}}
 
 
