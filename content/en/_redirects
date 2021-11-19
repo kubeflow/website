@@ -178,7 +178,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/serving/*          /docs/external-add-ons/serving/:splat
 /docs/distributions/aws/*           /docs/guides/deploying-manifests-on-aws/:splat
 /docs/distributions/azure/*         /docs/guides/deploying-manifests-on-azure/:splat
-/docs/distributions/ibm/*           /docs/guides/deploying-manifests-on-ibm-cloud/:splat
 /docs/distributions/nutanix/*       /docs/guides/deploying-manifests-on-nutanix-karbon/:splat
 /docs/distributions/openshift/*     /docs/guides/deploying-manifests-on-openshift/:splat
 /docs/distributions/operator/*      /docs/guides/deploying-manifests-with-kubeflow-operator/:splat

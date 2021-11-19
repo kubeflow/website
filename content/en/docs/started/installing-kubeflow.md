@@ -63,6 +63,13 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="/docs/distributions/gke/">Docs</a></td>
       </tr>
       <tr>
+        <td><a href="https://github.com/IBM/manifests/tree/v1.4.0">IBM Cloud distribution of Kubeflow</a></td>
+        <td>IBM Cloud</td>
+        <td>IKS</td>
+        <td>1.4</td>
+        <td><a href="/docs/distributions/ibm/">Docs</a></td>
+      </tr>
+      <tr>
         <td><a href="https://charmed-kubeflow.io/docs">Kubeflow Charmed Operators</a></td>
         <td>Canonical</td>
         <td>Any Kubernetes</td>
@@ -108,10 +115,6 @@ While these manifests are intended to be the base of packaged distributions, adv
       <tr>
         <td><a href="/docs/guides/deploying-manifests-on-azure/">Deploying <code>kubeflow/manifests</code> on Azure</a></td>
         <td>Azure Kubernetes Service (AKS)</td>
-      </tr>
-      <tr>
-        <td><a href="/docs/guides/deploying-manifests-on-ibm-cloud/">Deploying <code>ibm/manifests</code> on IBM Cloud</a></td>
-        <td>IBM Cloud Kubernetes Service (IKS)</td>
       </tr>
       <tr>
         <td><a href="/docs/guides/deploying-manifests-on-nutanix-karbon/">Deploying <code>kubeflow/manifests</code> on Nutanix Karbon</a></td>
