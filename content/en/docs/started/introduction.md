@@ -1,9 +1,7 @@
 +++
-title = "Introduction to Kubeflow"
+title = "Introduction"
 description = "An introduction to Kubeflow"
 weight = 1
-aliases = ["/docs/", "/docs/about/", "/docs/kubeflow/"]
-                    
 +++
 
 The Kubeflow project is dedicated to making deployments of machine learning (ML)
@@ -27,7 +25,7 @@ Watch the following video which provides an introduction to Kubeflow.
 
 ## What is Kubeflow?
 
-Kubeflow is _the machine learning toolkit for Kubernetes_. Learn about [Kubeflow use cases](/docs/about/use-cases/).
+Kubeflow is _the machine learning toolkit for Kubernetes_.
 
 To use Kubeflow, the basic workflow is:
 
@@ -85,6 +83,5 @@ The following components also have roadmaps:
 ## Getting involved
 
 There are many ways to contribute to Kubeflow, and we welcome contributions!
-Read the [contributor's guide](/docs/about/contributing) to get started on the
-code, and get to know the community in the
-[community guide](/docs/about/community).
+
+Read the [contributor's guide](/docs/about/contributing/) to get started on the code, and learn about the community on the [community page](/docs/about/community/).

@@ -218,35 +218,29 @@ no = 'Sorry to hear that. Please <a href="https://github.com/kubeflow/website/is
 [params.links]
 # Docsy: "User" links will show on left side of footer and in the community page if you have one.
 [[params.links.user]]
-	name ="Twitter"
-	url = "https://twitter.com/kubeflow"
+	name = "Twitter"
+	url = "https://twitter.com/kubeflow/"
 	icon = "fab fa-twitter"
-        desc = "Follow us on Twitter to get the latest news"
-[[params.links.user]]
-	name = "GitHub"
-	url = "https://github.com/kubeflow/kubeflow"
-	icon = "fab fa-github"
-        desc = "Development takes place here!"
+    desc = "Follow us on Twitter to get the latest news!"
 [[params.links.user]]
 	name = "Slack"
-	url = "https://kubeflow.slack.com/join/shared_invite/zt-cpr020z4-PfcAue_2nw67~iIDy7maAQ"
+	url = "/docs/about/community/#slack"
 	icon = "fab fa-slack"
-        desc = "Chat with other project contributors"
+    desc = "Join the Kubeflow Slack Workspace!"
 [[params.links.user]]
 	name = "Mailing list"
-	url = "https://groups.google.com/forum/#!forum/kubeflow-discuss"
+	url = "/docs/about/community/#mailing-list"
 	icon = "fa fa-envelope"
-        desc = "Discussion and help from your fellow users"
+	desc = "Join the Kubeflow Mailing List!"
 [[params.links.user]]
-	name = "Calendar"
-	url = "https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com&ctz=America%2FLos_Angeles"
+	name = "Weekly Community Call"
+	url = "/docs/about/community/#weekly-community-call"
 	icon = "fa fa-calendar"
-        desc = "Discussion and help from your fellow users"
-
+	desc = "Join the weekly Kubeflow Community Call!"
 
 # Docsy: "Developer" links will show on right side of footer and in the community page if you have one.
 #[[params.links.developer]]
 #	name = "A name"
 #	url = "http://example.com"
 #	icon = "fab fa-envelope"
-#       desc = "A description"
+#	desc = "A description"

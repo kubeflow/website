@@ -1,8 +1,7 @@
 +++
 title = "Examples"
 description = "Examples that demonstrate machine learning with Kubeflow"
-weight = 30
-                    
+weight = 99
 +++
 
 {{% alert title="Warning" color="warning" %}}

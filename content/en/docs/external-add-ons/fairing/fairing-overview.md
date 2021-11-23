@@ -57,7 +57,7 @@ The following are the goals of the [Kubeflow Fairing project][fairing-repo]:
 [kubeflow-notebooks]: /docs/components/notebooks/setup/
 [ai-platform]: https://cloud.google.com/ml-engine/docs/
 [fairing-repo]: https://github.com/kubeflow/fairing
-[kubeflow]: /docs/about/kubeflow/
+[kubeflow]: /docs/started/
 
 [conf]: /docs/external-add-ons/fairing/configure-fairing/
 [install]: /docs/external-add-ons/fairing/install-fairing/

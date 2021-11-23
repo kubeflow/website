@@ -177,6 +177,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/overview/concepts/*                /docs/components/pipelines/concepts/:splat
 /docs/components/pipelines/sdk/v2/*                           /docs/components/pipelines/sdk-v2/:splat
 
+# Restructure About section
+/docs/about/kubeflow           /docs/started/introduction
+
 # ===============
 # IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom

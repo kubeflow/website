@@ -1,8 +1,7 @@
 +++
 title = "Kubeflow Overview"
-description = "How Kubeflow helps you organize your ML workflow"
+description = "An overview of the Kubeflow platform"
 weight = 10
-                    
 +++
 
 <!--
