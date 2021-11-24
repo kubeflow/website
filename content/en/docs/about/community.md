@@ -10,7 +10,7 @@ aliases = ["/docs/community/"]
 Join the official Kubeflow Slack with [this invite link](https://join.slack.com/t/kubeflow/shared_invite/zt-n73pfj05-l206djXlXk5qdQKs4o1Zkg).
 
 {{% alert title="Tip" color="info" %}}
-If the above invite has expired, please [raise an issue on the `kubeflow/website` repo](https://github.com/kubeflow/website/issues/new), as Slack invites expire after 2000 uses.
+If the above invite has expired, please [raise an issue on the `kubeflow/website` repo](https://github.com/kubeflow/website/issues/new).
 {{% /alert %}}
 
 The Kubeflow Slack workspace has many channels, here are a few examples:
@@ -43,13 +43,19 @@ More detail about the Kubeflow mailing lists:
 ## Weekly Community Call
 
 The Kubeflow community holds a public call every Tuesday, alternating between `US East/EMEA` and `US West/APAC` friendly times.
-Meeting notes can be found in [this Google Doc](http://bit.ly/kf-meeting-notes), and call recordings can be found in [this YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5).
 
 {{% alert title="Tip" color="info" %}}
-Joining [kubeflow-discuss](https://groups.google.com/g/kubeflow-discuss) will automatically send a calendar invitation to your email address.
-
-Alternatively you can use these links for the [Google Calendar](https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com) and [iCal file](https://calendar.google.com/calendar/ical/kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com/public/basic.ics).
+Joining the [kubeflow-discuss](https://groups.google.com/g/kubeflow-discuss) Google Group will automatically send a calendar invitation to your email address.
 {{% /alert %}}
+
+More detail about the Kubeflow weekly community call:
+
+| Description | Link |
+| --- | --- |
+| Meeting Notes | [Google Doc](http://bit.ly/kf-meeting-notes)
+| Call Recordings | [YouTube Playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5)
+| Community Calendar | [Google Calendar](https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com) and [iCal file](https://calendar.google.com/calendar/ical/kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com/public/basic.ics)
+| Community Calendar Management | [GitHub Repo](https://github.com/kubeflow/community/tree/master/calendar)
 
 ## Blog
 
@@ -57,11 +63,14 @@ The official Kubeflow blog is [found here](https://blog.kubeflow.org).
 
 {{% alert title="Tip" color="info" %}}
 To contribute an article for the blog, please raise an issue on the [kubeflow/community](https://github.com/kubeflow/community) GitHub repo.
-
-The articles are managed on the [kubeflow/blog](https://github.com/kubeflow/blog) GitHub repo.
+Note that articles are managed on the [kubeflow/blog](https://github.com/kubeflow/blog) GitHub repo.
 {{% /alert %}}
 
-## Working Groups
+## Kubeflow Trademark
+
+The Kubeflow trademark and logos are registered trademarks of Google, please review the [Kubeflow Brand Guidelines](https://github.com/kubeflow/community/blob/master/KUBEFLOW_BRAND_GUIDELINES.pdf) for more information.
+
+## Kubeflow Working Groups
 
 The Kubeflow project has a number of Working Groups (WGs) who each maintain some aspect of the Kubeflow project.
 
@@ -199,8 +208,3 @@ The Kubeflow project has a number of Working Groups (WGs) who each maintain some
   </tbody> 
 </table>
 </div>
-
-
-## Kubeflow Trademark
-
-The Kubeflow trademark and logos are registered trademarks of Google, please review the [Kubeflow Brand Guidelines](https://github.com/kubeflow/community/blob/master/KUBEFLOW_BRAND_GUIDELINES.pdf) for more information.
