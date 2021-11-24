@@ -1,6 +1,6 @@
 +++
 title = "Installing Kubeflow"
-description = "Overview of installation choices for Kubeflow"
+description = "Deployment options for Kubeflow"
 weight = 20
 
 +++
