@@ -178,7 +178,8 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/sdk/v2/*                           /docs/components/pipelines/sdk-v2/:splat
 
 # Restructure About section
-/docs/about/kubeflow           /docs/started/introduction
+/docs/about/kubeflow             /docs/started/introduction
+/docs/started/kubeflow-overview  /docs/started/architecture
 
 # ===============
 # IMPORTANT NOTE:

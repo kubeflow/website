@@ -12,11 +12,11 @@ you are running Kubernetes, you should be able to run Kubeflow.
 
 ## Getting started with Kubeflow
 
-Read the [Kubeflow overview](/docs/started/kubeflow-overview/) for an
-introduction to the Kubeflow architecture and to see how you can use Kubeflow
+Read the [architecture overview](/docs/started/architecture/) for an
+introduction to the architecture of Kubeflow and to see how you can use Kubeflow
 to manage your ML workflow.
 
-Follow the [getting-started guide](/docs/started/getting-started/) to set up
+Follow [Installing Kubeflow](/docs/started/installing-kubeflow/) to set up
 your environment and install Kubeflow.
 
 Watch the following video which provides an introduction to Kubeflow.
@@ -35,13 +35,15 @@ To use Kubeflow, the basic workflow is:
   environment.
 
 You can adapt the configuration to choose the platforms and services that you
-want to use for each stage of the ML workflow: data preparation, model training,
-prediction serving, and service management.
+want to use for each stage of the ML workflow: 
+
+1. data preparation
+2. model training,
+3. prediction serving
+4. service management
 
 You can choose to deploy your Kubernetes workloads locally, on-premises, or to
 a cloud environment.
-
-Read the [Kubeflow overview](/docs/started/kubeflow-overview/) for more details.
 
 ## The Kubeflow mission
 
@@ -66,7 +68,8 @@ configure based on the cluster it deploys into.
 
 ## History
 
-Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/). It began as just a simpler way to run TensorFlow jobs on Kubernetes, but has since expanded to be a multi-architecture, multi-cloud framework for running end-to-end machine learning workflows.
+Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/). 
+It began as just a simpler way to run TensorFlow jobs on Kubernetes, but has since expanded to be a multi-architecture, multi-cloud framework for running end-to-end machine learning workflows.
 
 ## Roadmaps
 
@@ -78,7 +81,6 @@ The following components also have roadmaps:
 - [KF Serving](https://github.com/kubeflow/kfserving/blob/master/ROADMAP.md)
 - [Katib](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
 - [Training Operator](https://github.com/kubeflow/common/blob/master/ROADMAP.md)
-- [Kubeflow Notebooks](https://github.com/kubeflow/kubeflow/issues/5978)
 
 ## Getting involved
 
