@@ -1,7 +1,7 @@
 +++
 title = "Caching"
 description = "Getting started with Kubeflow Pipelines step caching"
-weight = 50
+weight = 40
                     
 +++
 {{% alpha-status

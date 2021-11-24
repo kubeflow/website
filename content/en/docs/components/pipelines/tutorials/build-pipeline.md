@@ -64,7 +64,7 @@ dsl-compile --py ${DIR}/sequential.py --output ${DIR}/sequential.tar.gz
 ### Deploy the pipeline
 
 Upload the generated `.tar.gz` file through the Kubeflow Pipelines UI. See the
-guide to [getting started with the UI](/docs/components/pipelines/pipelines-quickstart).
+guide to [getting started with the UI](/docs/components/pipelines/overview/quickstart).
 
 ## Building a pipeline in a Jupyter notebook
 

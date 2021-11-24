@@ -57,7 +57,7 @@ See the [sample description and links below](#example-source).
 <a id="v2-visualization"></a>
 ## v2 SDK: Use SDK visualization APIs
 
-For KFP [SDK v2 and v2 compatible mode](/docs/components/pipelines/sdk/v2/), you can use 
+For KFP [SDK v2 and v2 compatible mode](/docs/components/pipelines/sdk-v2/), you can use 
 convenient SDK APIs and system artifact types for metrics visualization. Currently KFP
 supports ROC Curve, Confusion Matrix and Scalar Metrics formats. Full pipeline example
 of all metrics visualizations can be found in [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py). 
@@ -65,7 +65,7 @@ of all metrics visualizations can be found in [metrics_visualization_v2.py](http
 ### Requirements
 
 * Use Kubeflow Pipelines v1.7.0 or above: [upgrade Kubeflow Pipelines](/docs/components/pipelines/installation/standalone-deployment/#upgrading-kubeflow-pipelines).
-* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when [compile and run your pipelines](/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline).
+* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when [compile and run your pipelines](/docs/components/pipelines/sdk-v2/build-pipeline/#compile-and-run-your-pipeline).
 * Make sure to use the latest environment kustomize manifest [pipelines/manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml).
 
 
@@ -276,7 +276,7 @@ def html_visualization(html_artifact: Output[HTML]):
 The metric visualization in V2 or V2 compatible mode depends on SDK visualization APIs,
 refer to [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py)
 for a complete pipeline example. Follow instruction
-[Compile and run your pipeline](/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline)
+[Compile and run your pipeline](/docs/components/pipelines/sdk-v2/build-pipeline/#compile-and-run-your-pipeline)
 to compile in V2 compatible mode.
 
 ## v1 SDK: Writing out metadata for the output viewers
@@ -735,7 +735,7 @@ pre-installed when you deploy Kubeflow.
 You can run the sample by selecting 
 **[Sample] ML - TFX - Taxi Tip Prediction Model Trainer** from the 
 Kubeflow Pipelines UI. For help getting started with the UI, follow the 
-[Kubeflow Pipelines quickstart](/docs/components/pipelines/pipelines-quickstart/).
+[Kubeflow Pipelines quickstart](/docs/components/pipelines/overview/quickstart/).
 
 <!--- TODO: Will replace the tfx cab with tfx oss when it is ready.-->
 The pipeline uses a number of prebuilt, reusable components, including:

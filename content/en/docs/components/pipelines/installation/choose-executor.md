@@ -1,7 +1,7 @@
 +++
-title = "Argo Workflow Executors"
-description = "How to choose and configure the Argo Workflow Executor?"
-weight = 40
+title = "Choosing an Argo Workflows Executor"
+description = "How to choose an Argo Workflows Executor"
+weight = 80
 +++
 
 An Argo workflow executor is a process that conforms to a specific interface that allows Argo to perform certain actions like monitoring pod logs, collecting artifacts, managing container lifecycles, etc.
@@ -81,7 +81,7 @@ Pipelines test infrastructure has been running stably with the emissary executor
   * Cannot escape the privileges of the pod's service account.
 * Migration: `command` must be specified in [Kubeflow Pipelines component specification](https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/).
 
-  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](https://www.kubeflow.org/docs/components/pipelines/sdk/v2/v2-compatibility/), refer to
+  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](https://www.kubeflow.org/docs/components/pipelines/sdk-v2/v2-compatibility/), refer to
   [known caveats & breaking changes](https://github.com/kubeflow/pipelines/issues/6133).
 
 #### Migrate to Emissary Executor

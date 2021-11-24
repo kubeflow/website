@@ -108,5 +108,5 @@ authentication through IAP.
 
   However, it fails authorization checks for Kubeflow Pipelines with multi-user
   isolation in the full Kubeflow deployment starting from Kubeflow 1.1.
-  Multi-user isolation requires all API access to authenticate as a user. Refer to [Kubeflow Pipelines Multi-user isolation documentation](/docs/components/pipelines/multi-user/#in-cluster-request-authentication)
+  Multi-user isolation requires all API access to authenticate as a user. Refer to [Kubeflow Pipelines Multi-user isolation documentation](/docs/components/pipelines/overview/multi-user/#in-cluster-request-authentication)
   for more details.

@@ -1,7 +1,7 @@
 +++
 title = "Multi-user Isolation for Pipelines"
 description = "Getting started with Kubeflow Pipelines multi-user isolation"
-weight = 35
+weight = 30
 +++
 
 Multi-user isolation for Kubeflow Pipelines is an integration to [Kubeflow multi-user isolation](/docs/components/multi-tenancy/).

@@ -151,8 +151,8 @@ client.create_run_from_pipeline_func(
 
 Kubeflow Pipelines v2 compatible mode is currently in Beta stage. It is under active development and some features may not be complete. To find out its current caveats, refer to [v2 compatible mode -- known caveats & breaking changes #6133](https://github.com/kubeflow/pipelines/issues/6133).
 
-[build-pipeline]: /docs/components/pipelines/sdk/v2/build-pipeline/
-[build-component]: /docs/components/pipelines/sdk/v2/component-development/
-[python-component]: /docs/components/pipelines/sdk/v2/python-function-components/
+[build-pipeline]: /docs/components/pipelines/sdk-v2/build-pipeline/
+[build-component]: /docs/components/pipelines/sdk-v2/component-development/
+[python-component]: /docs/components/pipelines/sdk-v2/python-function-components/
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
 [connect-api]: /docs/components/pipelines/sdk/connect-api/ 
