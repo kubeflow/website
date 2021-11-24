@@ -1,6 +1,6 @@
 +++
 title = "Architecture"
-description = "Architecture overview of the Kubeflow platform"
+description = "An overview of Kubeflow's architecture"
 weight = 10
 +++
 
