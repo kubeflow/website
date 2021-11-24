@@ -198,16 +198,16 @@ In the `Domain name` choose `Use your domain`, type `auth.platform.domain.com` a
   class="mt-3 mb-3 border border-info rounded">
 
 
-When it's created, it will return the `Alias target` cloudfront address for which you need to create a `A Record` `auth.platform.domain.com` in the hosted zone.
+When it's created, it will return the `Alias target` cloudfront address for which you need to create a `A Record` `auth.platform.domain.com` in the hosted zone using the alias button.
 
-<img src="https://graffity-public-assets.s3.ap-southeast-1.amazonaws.com/route53-a-record-auth.png"
+<img src="/docs/images/aws/route53-a-record-auth-v2.png"
   alt="Route53 auth A Record"
   class="mt-3 mb-3 border border-info rounded">
 
 
 Take note of the following 5 values:
 
-* The ARN (`certArn`) of the certificate from the Certificate Manager of your region, 'eu-west-1' in this case.
+* The ARN (`certArn`) of the certificate from the Certificate Manager of of the deployment region (i.e. cluster region), 'eu-west-1' in this case.
 * The Pool ARN (`cognitoUserPoolArn`) of the user pool found in Cognito general settings.
 * The App client id (`cognitoAppClientId`), found in Cognito App clients.
 * The `auth.platform.domain.com` as the `cognitoUserPoolDomain`.
@@ -248,7 +248,7 @@ kfctl build -f {{% aws/config-file-aws-cognito %}} -V
 kfctl apply -f {{% aws/config-file-aws-cognito %}} -V
 ```
 
-That shouldn't take a long time. There shouldn't by any errors, and when ready you can validate that you can see the kubeflow namespace by following command:
+That shouldn't take a long time. There shouldn't be any errors, and when ready you can validate that you can see the kubeflow namespace by using the following command:
 ```
 kubectl -n kubeflow get all
 ```
@@ -263,13 +263,12 @@ istio-system   istio-ingress   *       123-istiosystem-istio-2af2-4567.eu-west-1
 
 When ready, copy the ALB DNS name of that load balancer and create 3 CNAME entries to it in Route53:
 
-* `*.platform.domain.com`
 * `*.default.platform.domain.com`
 * `kubeflow.platform.domain.com`
 
 Also remember to update A record for `platform.domain.com` using ALB DNS name.
 
-<img src="https://graffity-public-assets.s3.ap-southeast-1.amazonaws.com/route53-a-record-platform.png"
+<img src="/docs/images/aws/route53-a-record-platform-v2.png"
   alt="Route53 platform A Record"
   class="mt-3 mb-3 border border-info rounded">
 
