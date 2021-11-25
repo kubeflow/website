@@ -1,6 +1,6 @@
-{{ $cover := .HasShortcode "blocks/cover" }}
+{{ $cover := and (.HasShortcode "blocks/cover") (not .Site.Params.ui.navbar_translucent_over_cover_disable) }}
 <nav class="js-navbar-scroll navbar navbar-expand-md navbar-dark {{ if $cover}} td-navbar-cover {{ end }} td-navbar py-2">
-	<a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
+        <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
 		<span class="navbar-logo">{{ with resources.Get "icons/logo.svg" }}{{ ( . | minify).Content | safeHTML }} {{ end }}</span><span class="brand-name text-uppercase font-weight-bold">{{ .Site.Title }}</span>
 	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_navbar" aria-controls="main_navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,8 +23,8 @@
 			</li>
 			{{ end }}
 			{{ if  .Site.Params.versions }}
-      <li class="nav-item dropdown mt-1 mt-lg-0 mr-2">
-        {{ partial "navbar-version-selector.html" . }}
+			<li class="nav-item dropdown mt-1 mt-lg-0 mr-2">
+				{{ partial "navbar-version-selector.html" . }}
 			</li>
 			{{ end }}
 			{{ if  (gt (len .Site.Home.Translations) 0) }}

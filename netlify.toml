@@ -1,13 +1,17 @@
 [build]
   publish = "public"
-  command = "hugo"
+  command = "git submodule update --init --recursive && hugo --gc --minify"
+  image = "netlify/build:focal"
 
 [context.deploy-preview.environment]
-  HUGO_VERSION = "0.89.2"
+  HUGO_VERSION = "0.89.4"
+  NODE_VERSION = "16"
 
 [context.production.environment]
-  HUGO_VERSION = "0.89.2"
+  HUGO_VERSION = "0.89.4"
   HUGO_ENV = "production"
+  NODE_VERSION = "16"
 
 [context.branch-deploy.environment]
-  HUGO_VERSION = "0.89.2"
+  HUGO_VERSION = "0.89.4"
+  NODE_VERSION = "16"
