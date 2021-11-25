@@ -1,8 +1,8 @@
 {
   "name": "website",
   "devDependencies": {
-    "autoprefixer": "^9.8.8",
+    "autoprefixer": "^10.4.0",
     "postcss": "^8.4.1",
-    "postcss-cli": "^8.3.1"
+    "postcss-cli": "^9.0.2"
   }
 }
