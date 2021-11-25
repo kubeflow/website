@@ -1,17 +1,20 @@
+// --------------------------------------------------
+// remove whitespace after footer
+// --------------------------------------------------
 footer {
   min-height: auto;
-
-  @media (max-width: 991.98px) {
-    min-height: auto;
-  }
 }
 
-@media (min-width: 768px) {
-  .td-sidebar-nav__section > ul {
-    padding-left: .5rem !important;
-  }
+// --------------------------------------------------
+// prevent overflow of long names in sidebar
+// --------------------------------------------------
+.td-sidebar-nav__section > ul {
+  overflow-wrap: break-word;
 }
 
+// --------------------------------------------------
+// for navbar dropdown menu (on phones)
+// --------------------------------------------------
 .td-navbar {
   min-height: auto;
 }
@@ -25,6 +28,9 @@ footer {
   }
 }
 
+// --------------------------------------------------
+// 404 page
+// --------------------------------------------------
 .error-page {
   margin-top: 120px;
   ul {
@@ -53,5 +59,31 @@ footer {
   
   @media (max-width: 767px) {
     margin-top: 50px;
+  }
+}
+
+// --------------------------------------------------
+// nav-tabs and tab-content
+// --------------------------------------------------
+.nav-tabs {
+  border-bottom: none !important;
+}
+
+.td-content > ul li,
+.td-content > ol li.nav-item {
+  margin-bottom: 0px;
+}
+
+.td-content .tab-content .highlight {
+  margin: 0;
+}
+
+.tab-pane {
+  border-radius: 0.25rem;
+  padding: 0 16px 16px;
+
+  border: 1px solid #dee2e6;
+  &:first-of-type.active {
+    border-top-left-radius: 0;
   }
 }
