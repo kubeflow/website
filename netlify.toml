@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "hugo"
+  command = "git submodule update --init --recursive && hugo"
 
 [context.deploy-preview.environment]
   HUGO_VERSION = "0.89.4"
