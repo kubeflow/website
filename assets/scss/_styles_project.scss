@@ -13,33 +13,69 @@ footer {
 }
 
 // --------------------------------------------------
-// add padding above sidebar search
-// --------------------------------------------------
-.td-sidebar__search {
-  padding-top: 1.5rem;
-}
-
-// --------------------------------------------------
-// for navbar dropdown menu (on phones)
+// custom navbar with larger logo, dropdown on mobile
 // --------------------------------------------------
 .td-navbar {
   min-height: auto;
-}
 
-.navbar-nav {
-  @media (max-width: 992px) {
-    font-size: .875rem;
-    .dropdown {
-      min-width: inherit;
+  .navbar-brand {
+    margin: 0;
+    padding: 0;
+
+    .text-uppercase {
+      display: none;
+    }
+
+    .navbar-logo {
+      svg {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        z-index: 33;
+        padding: 10px;
+        height: 95px;
+        background: white;
+        border: 2px solid #4279f4;
+        border-top: none;
+
+        @include media-breakpoint-down(md) {
+          width: 80px;
+          height: auto;
+          padding: 6px;
+        }
+      }
+    }
+  }
+
+  .navbar-nav {
+    @include media-breakpoint-down(md) {
+      font-size: .875rem;
+      .dropdown {
+        min-width: inherit;
+      }
     }
   }
 }
+
+.td-sidebar {
+  padding-bottom: 0.5rem;
+
+  .td-sidebar__inner {
+    padding-top: 30px;
+
+    @include media-breakpoint-down(md) {
+      padding-top: 10px;
+    }
+  }
+}
+
 
 // --------------------------------------------------
 // 404 page
 // --------------------------------------------------
 .error-page {
   margin-top: 120px;
+
   ul {
     margin-bottom: 50px;
     list-style-type: none;
@@ -60,17 +96,18 @@ footer {
     margin-bottom: 20px;
   }
 
-  @media (min-width: 768px) and (max-width: 991px){
+  @media (min-width: 768px) and (max-width: 991px) {
     margin-top: 100px;
   }
-  
+
   @media (max-width: 767px) {
     margin-top: 50px;
   }
 }
 
 // --------------------------------------------------
-// nav-tabs and tab-content
+// for tabbed code blocks
+// https://github.com/kubeflow/website/pull/2779
 // --------------------------------------------------
 .nav-tabs {
   border-bottom: none !important;
@@ -90,6 +127,7 @@ footer {
   padding: 0 16px 16px;
 
   border: 1px solid #dee2e6;
+
   &:first-of-type.active {
     border-top-left-radius: 0;
   }
