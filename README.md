@@ -155,10 +155,16 @@ weight = 1
 
 ## Working with the theme
 
-The theme files are in the 
-[`themes/docsy` directory](https://github.com/kubeflow/website/tree/master/themes/docsy).
-**Do not change these files**, because they are overwritten each time we update
-the website to a  later version of the theme, and your changes will be lost.
+The theme files are a [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) in the 
+[`themes/docsy` directory](https://github.com/kubeflow/website/tree/master/themes/docsy),
+**do not change these files**, they are not actually inside this repo, but are part of the 
+[google/docsy](https://github.com/google/docsy) repo.
+
+To update referenced docsy commit, run the following command at the root of the repo:
+
+```bash
+git submodule update --remote
+```
 
 ## Documentation style guide
 
