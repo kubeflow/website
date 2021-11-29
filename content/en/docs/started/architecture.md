@@ -1,8 +1,7 @@
 +++
-title = "Kubeflow Overview"
-description = "How Kubeflow helps you organize your ML workflow"
+title = "Architecture"
+description = "An overview of Kubeflow's architecture"
 weight = 10
-                    
 +++
 
 <!--
@@ -21,6 +20,7 @@ production-level serving.
 ## Conceptual overview
 
 Kubeflow is *the ML toolkit for Kubernetes*.
+
 The following diagram shows Kubeflow as a platform for arranging the
 components of your ML system on top of Kubernetes:
 
@@ -93,7 +93,7 @@ To learn more, read the following guides to the Kubeflow components:
   [Jupyter notebooks](/docs/components/notebooks/). Use notebooks for interactive data 
   science and experimenting with ML workflows.
 
-* [Kubeflow Pipelines](/docs/components/pipelines/introduction/) is a platform for 
+* [Kubeflow Pipelines](/docs/components/pipelines/) is a platform for 
   building, deploying, and managing multi-step ML workflows based on Docker 
   containers.
 
@@ -144,5 +144,4 @@ sets of reference documentation:
 
 ## Next steps
 
-See how to [install Kubeflow](/docs/started/getting-started/) depending on
-your chosen environment (local, cloud, or on-premises).
+* Follow [Installing Kubeflow](/docs/started/installing-kubeflow/) to set up your environment and install Kubeflow.
