@@ -115,7 +115,6 @@ def train(
         for i in range(num_steps):
             output_file.write(f'Step {i}\n=====\n')
 
-
     # Model artifact has a `.metadata` dictionary
     # to store arbitrary metadata for the output artifact.
     model.metadata['accuracy'] = 0.9
