@@ -1,13 +1,13 @@
 +++
 title = "Examples"
 description = "Examples that demonstrate machine learning with Kubeflow"
-weight = 30
-                    
+weight = 99
 +++
 
-This section introduces the examples in the 
-[kubeflow/examples](https://github.com/kubeflow/examples) repository.
-Before using a sample, check the sample's README file for known issues.
+{{% alert title="Warning" color="warning" %}}
+Some examples in [kubeflow/examples](https://github.com/kubeflow/examples) repository have not been tested with newer versions of Kubeflow. Please refer to the README of your chosen example.
+{{% /alert %}}
+
 
 {{% blocks/sample-section title="MNIST image classification"
   kfctl="v1.0.0"

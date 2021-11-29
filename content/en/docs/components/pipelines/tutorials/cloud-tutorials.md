@@ -7,7 +7,7 @@ weight = 40
 
 {{% alert title="Opportunity to add cloud tutorials" color="info" %}}
 <p><b>Invitation:</b> Create a cloud-specific tutorial and link it here.
-See the <a href="/docs/about/docs/">guide to the Kubeflow docs</a>.</p>
+See the <a href="/docs/about/style-guide/">style guide for the Kubeflow docs</a>.</p>
 {{% /alert %}}
 
 * [Pipelines End-to-end on Azure](/docs/azure/azureendtoend/): An end-to-end tutorial for Kubeflow Pipelines on Microsoft Azure.

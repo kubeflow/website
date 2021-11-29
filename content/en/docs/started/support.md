@@ -1,7 +1,7 @@
 +++
-title = "Support"
-description = "Where to go with questions and suggestions"
-weight = 110
+title = "Get Support"
+description = "Where to get support for Kubeflow"
+weight = 80
 +++
 
 This page describes the Kubeflow resources and support options that you can
@@ -107,7 +107,7 @@ You can ask questions and make suggestions in the following places:
 * **Slack** for online chat and messaging. See details of Kubeflow's 
   [Slack workspace and channels](/docs/about/community/#slack).
 * **Kubeflow discuss** for email-based group discussion. Join the
-  [kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss) 
+  [kubeflow-discuss](/docs/about/community/#mailing-list)
   group.
 * **Kubeflow documentation** for overviews and how-to guides. In particular,
   refer to the following documents when troubleshooting a problem:

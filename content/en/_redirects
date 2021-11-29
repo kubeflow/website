@@ -161,6 +161,26 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/reference/pytorchjob/*       /docs/components/training
 /docs/reference/tfjob/*            /docs/components/training
 
+# Cleanup of Notebooks Docs
+/docs/components/notebooks/custom-notebook                /docs/components/notebooks/container-images
+/docs/components/notebooks/setup                          /docs/components/notebooks/quickstart-guide
+/docs/components/notebooks/troubleshoot                   /docs/components/notebooks/troubleshooting
+/docs/components/notebooks/why-use-jupyter-notebook       /docs/components/notebooks/overview
+
+# Refactor Pipelines section
+/docs/components/pipelines/caching                            /docs/components/pipelines/overview/caching
+/docs/components/pipelines/caching-v2                         /docs/components/pipelines/overview/caching-v2
+/docs/components/pipelines/multi-user                         /docs/components/pipelines/overview/multi-user
+/docs/components/pipelines/pipeline-root                      /docs/components/pipelines/overview/pipeline-root
+/docs/components/pipelines/pipelines-overview                 /docs/components/pipelines/introduction
+/docs/components/pipelines/pipelines-quickstart               /docs/components/pipelines/overview/quickstart
+/docs/components/pipelines/overview/concepts/*                /docs/components/pipelines/concepts/:splat
+/docs/components/pipelines/sdk/v2/*                           /docs/components/pipelines/sdk-v2/:splat
+
+# Restructure About section
+/docs/about/kubeflow             /docs/started/introduction
+/docs/started/kubeflow-overview  /docs/started/architecture
+
 # ===============
 # IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom

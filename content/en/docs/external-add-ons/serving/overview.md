@@ -164,7 +164,7 @@ Further information:
  * KFServing:
    * [Kubeflow documentation](/docs/components/kfserving/)
    * [GitHub repository](https://github.com/kubeflow/kfserving)
-   * [Community](/docs/about/community/)
+   * [Kubeflow Community](/docs/about/community/)
  * Seldon Core
    * [Kubeflow documentation](/docs/external-add-ons/serving/seldon/)
    * [Seldon Core documentation](https://docs.seldon.io/projects/seldon-core/en/latest/)

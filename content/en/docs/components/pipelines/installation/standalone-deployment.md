@@ -1,7 +1,7 @@
 +++
-title = "Kubeflow Pipelines Standalone Deployment"
-description = "Instructions to deploy Kubeflow Pipelines standalone to a cluster"
-weight = 20
+title = "Standalone Deployment"
+description = "Information about Standalone Deployment of Kubeflow Pipelines"
+weight = 30
 +++
 
 As an alternative to deploying Kubeflow Pipelines (KFP) as part of the

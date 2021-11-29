@@ -1,5 +1,5 @@
 +++
-title = "Installation Options for Kubeflow Pipelines"
+title = "Installation Options"
 description = "Overview of the ways to deploy Kubeflow Pipelines"
 weight = 10
                     
