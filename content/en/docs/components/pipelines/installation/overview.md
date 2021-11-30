@@ -196,7 +196,7 @@ Google Cloud Integrations
   * A Kubeflow Pipelines public endpoint with auth support is **auto-configured** for you.
   * (Optional) You can choose to persist your data in Google Cloud managed storage services (Cloud SQL and Cloud Storage).
   * You can [authenticate to Google Cloud with the Compute Engine default service account](/docs/gke/pipelines/authentication-pipelines/#compute-engine-default-service-account). However, this method may not be suitable if you need workload permission separation.
-  * You can deploy AI Platform Pipelines on both public and private GKE clusters as long as the cluster adhere to [these](https://cloud.google.com/ai-platform/pipelines/docs/configure-gke-cluster#ensure) requirements.
+  * You can deploy AI Platform Pipelines on both public and private GKE clusters as long as the cluster adheres to [these](https://cloud.google.com/ai-platform/pipelines/docs/configure-gke-cluster#ensure) requirements.
 
 Notes on specific features
 :
