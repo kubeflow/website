@@ -14,7 +14,7 @@ with Execution or Artifact, etc. Learn more at [ML Metadata Get Started](https:/
 
 You can view the connection between Artifacts and Executions across Pipeline Runs, if 
 one Artifact is being used by multiple Executions in different Runs. This connection visualization
-is called *Lineage Graph*.
+is called a *Lineage Graph*.
 
 ## Next steps
 
