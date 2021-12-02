@@ -830,7 +830,7 @@ To define the metrics collector for your experiment:
 
 1. Write code in your training container to print or save to the file metrics in the format
    specified in the `.source.filter.metricsFormat`
-   field. The default format is `([\w|-]+)\s*=\s*([+-]?\d(\.\d+)?([Ee][+-]?\d+)?)`.
+   field. The default format is `([\w|-]+)\s*=\s*([+-]?\d*(\.\d+)?([Ee][+-]?\d+)?)`.
    Each element is a regular expression with two subexpressions. The first
    matched expression is taken as the metric name. The second matched
    expression is taken as the metric value.
