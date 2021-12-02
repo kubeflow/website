@@ -843,12 +843,12 @@ To define the metrics collector for your experiment:
    epoch 1:
    loss=3.0e-02
    recall=0.5
-   precision=0.4
+   precision=.4
 
    epoch 2:
    loss=1.3e-02
    recall=0.55
-   precision=0.5
+   precision=.5
    ```
 
 ## Running the experiment
