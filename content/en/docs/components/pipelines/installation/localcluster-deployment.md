@@ -7,10 +7,11 @@ weight = 20
 This guide shows how to deploy Kubeflow Pipelines standalone on a local
 Kubernetes cluster using:
 
-- kind
+- K3ai
+- KinD
 - K3s
 - K3s on Windows Subsystem for Linux (WSL)
-- K3ai [*alpha*]
+
 
 Such deployment methods can be part of your local environment using the supplied
 kustomize manifests for test purposes. This guide is an alternative to
@@ -27,6 +28,46 @@ kustomize manifests for test purposes. This guide is an alternative to
 - For native support of kustomize, you will need kubectl v1.14 or higher. You
   can download and install kubectl by following the [kubectl installation
   guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+## K3ai 
+
+K3ai is a lightweight "infrastructure in a box" designed specifically to install
+and configure AI tools and platforms on portable hardware, such as laptops and
+edge devices. This enables users to perform quick experimentations with Kubeflow
+on a local cluster.
+
+K3ai's main goal is to provide a quick way to install Kubernetes (different flavors) and
+Kubeflow Pipelines plus all the Kubeflow components.
+(For Kubeflow and other component support, check [K3ai's
+website](https://k3ai.in) for updates.) To
+install Kubeflow Pipelines using K3ai, run the following commands:
+
+- Install K3ai
+
+```SHELL
+curl -sfL https://get.k3ai.in | sh -
+```
+
+- Deploy a Cluster
+
+```SHELL
+k3ai cluster deploy -t k3s -n mycluster
+```
+
+- Deploy a Kubeflow pipelines (Argo backend)
+
+```SHELL
+k3ai plugin deploy -n kf-pa -t mycluster
+```
+
+- Test a simple pipeline on Kubeflow pipelines
+
+```SHELL
+k3ai run -s https://github.com/k3ai/samples/kfp -e condition.py -b kfp -t mycluster
+```
+
+For more information about K3ai, refer to the
+[official documentation](https://k3ai.in).
 
 ## kind
 
@@ -277,33 +318,6 @@ To set up access to your WSL instance:
 3. Run kubectl in a Windows terminal. If you don't kubectl installed, follow the
    official [Kubernetes on Windows instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows).
 
-## K3ai [*alpha*]
-
-K3ai is a lightweight "infrastructure in a box" designed specifically to install
-and configure AI tools and platforms on portable hardware, such as laptops and
-edge devices. This enables users to perform quick experimentations with Kubeflow
-on a local cluster.
-
-K3ai's main goal is to provide a quick way to install Kubernetes (K3s-based) and
-Kubeflow Pipelines with NVIDIA GPU support and TensorFlow Serving with just one
-line. (For Kubeflow and other component support, check [K3ai's
-website](https://kf5ai.gitbook.io/k3ai/#components-of-k-3-ai) for updates.) To
-install Kubeflow Pipelines using K3ai, run the following commands:
-
-- With CPU-only support:
-
-```SHELL
-curl -sfL https://get.k3ai.in | bash -s -- --cpu --plugin_kfpipelines
-```
-
-- With GPU support:
-
-```SHELL
-curl -sfL https://get.k3ai.in | bash -s -- --gpu --plugin_kfpipelines
-```
-
-For more information about K3ai, refer to the
-[official documentation](https://docs.k3ai.in).
 
 ## Deploying Kubeflow Pipelines
 
