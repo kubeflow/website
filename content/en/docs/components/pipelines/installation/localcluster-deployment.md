@@ -29,18 +29,19 @@ kustomize manifests for test purposes. This guide is an alternative to
   can download and install kubectl by following the [kubectl installation
   guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
+
 ## K3ai 
 
 K3ai is a lightweight "infrastructure in a box" designed specifically to install
 and configure AI tools and platforms on portable hardware, such as laptops and
 edge devices. This enables users to perform quick experimentations with Kubeflow
-on a local cluster.
+on a local cluster or in the context of a CI/CD environment (i.e.: GitHub Actions).
 
 K3ai's main goal is to provide a quick way to install Kubernetes (different flavors) and
 Kubeflow Pipelines plus all the Kubeflow components.
 (For Kubeflow and other component support, check [K3ai's
-website](https://k3ai.in) for updates.) To
-install Kubeflow Pipelines using K3ai, run the following commands:
+website](https://k3ai.in) for updates.
+To install Kubeflow Pipelines using K3ai, run the following commands:
 
 - Install K3ai
 
@@ -68,6 +69,7 @@ k3ai run -s https://github.com/k3ai/samples/kfp -e condition.py -b kfp -t myclus
 
 For more information about K3ai, refer to the
 [official documentation](https://k3ai.in).
+
 
 ## kind
 
