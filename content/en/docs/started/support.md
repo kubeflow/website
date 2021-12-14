@@ -170,6 +170,11 @@ The following organizations offer advice and support for Kubeflow deployments:
         <a href="https://github.com/SeldonIO/seldon-core/issues">Issue 
         tracker</a></td>
       </tr>    
+      <tr>
+        <td><a href="https://d2iq.com/products/kaptain">D2iQ</a></td>
+        <td> 
+        <a href="mailto:sales@d2iq.com">sales@d2iq.com</a></td>
+      </tr> 
     </tbody>
   </table>
 </div>
