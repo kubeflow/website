@@ -130,6 +130,18 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="/docs/distributions/microk8s/">Docs</a></td>
         <td><a href="https://microk8s.io/docs/addon-kubeflow">External Website</a></td>
       </tr>
+      <tr>
+        <td>Enterprise Kubeflow on D2iQ Kaptain</td>
+        <td>D2iQ</td>
+        <td>D2iQ Kubernetes Platform (DKP)</td>
+        <td>1.2</td>
+        <td>
+          <a href="/docs/distributions/dkp/">Docs</a>
+        </td>
+        <td>
+          <a href="https://d2iq.com/products/kaptain">External Website</a>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
