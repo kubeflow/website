@@ -53,7 +53,19 @@ Note, for Kubeflow Pipelines in multi-user mode, you cannot access the API using
 because it requires authentication. Refer to distribution specific documentation as recommended above.
 
 ## Connect to Kubeflow Pipelines from the same cluster
+### Generate the correct cluster URL
 
+To connect to the cluster on the full Kubeflow deployment, you must add `/_/pipeline` to the domain.
+
+For standalone KFP deployment:
+```python
+uri = domain
+```
+
+For full KF deployment:
+```python
+uri = domain/_/pipeline
+```
 ### Non-multi-user mode
 
 As mentioned above, the Kubeflow Pipelines API Kubernetes service is `ml-pipeline-ui`.
@@ -85,7 +97,6 @@ namespace = 'kubeflow' # or the namespace you deployed Kubeflow Pipelines
 client = kfp.Client(host=f'http://ml-pipeline-ui.{namespace}:80')
 print(client.list_experiments())
 ```
-
 ### Multi-User mode
 
 Note, multi-user mode technical details were put in the [How in-cluster authentication works](#how-multi-user-mode-in-cluster-authentication-works) section below.
