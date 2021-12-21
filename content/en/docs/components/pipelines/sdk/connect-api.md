@@ -54,7 +54,7 @@ because it requires authentication. Refer to distribution specific documentation
 
 ### Generate the correct cluster URL
 
-To connect to the cluster on the full Kubeflow deployment, you must add `/_/pipeline` to the domain.
+On the full Kubeflow deployment, to connect to the cluster and generate the correct URL for your experiment details, you must add a `/_/pipeline` suffix to the deployment domain:
 
 For standalone KFP deployment:
 ```python
@@ -65,6 +65,7 @@ For full KF deployment:
 ```python
 kfp.Client(host='http://deployment_domain/_/pipeline')
 ```
+
 ## Connect to Kubeflow Pipelines from the same cluster
 ### Non-multi-user mode
 
