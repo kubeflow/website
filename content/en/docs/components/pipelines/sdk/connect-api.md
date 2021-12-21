@@ -97,6 +97,7 @@ namespace = 'kubeflow' # or the namespace you deployed Kubeflow Pipelines
 client = kfp.Client(host=f'http://ml-pipeline-ui.{namespace}:80')
 print(client.list_experiments())
 ```
+
 ### Multi-User mode
 
 Note, multi-user mode technical details were put in the [How in-cluster authentication works](#how-multi-user-mode-in-cluster-authentication-works) section below.
