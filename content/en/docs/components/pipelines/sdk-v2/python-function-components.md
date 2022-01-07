@@ -394,7 +394,7 @@ To accept a file as an input parameter, use one of the following type annotation
 
 To return a file as an output, use one of the following type annotations:
 
-*   [`kfp.dsl.Output`][output]: Use this generic type hin to specify that your
+*   [`kfp.dsl.Output`][output]: Use this generic type hint to specify that your
     function expects this argument to be an [`Artifact`][kfp-artifact]. Your
     function can use the argument's `path` property to get the
     artifact path to write to, and the `metadata` property to log key/value metadata.
