@@ -3,14 +3,14 @@
   command = "git submodule update --init --recursive && hugo --gc --minify"
 
 [context.deploy-preview.environment]
-  HUGO_VERSION = "0.89.4"
+  HUGO_VERSION = "0.91.2"
   NODE_VERSION = "16"
 
 [context.production.environment]
-  HUGO_VERSION = "0.89.4"
+  HUGO_VERSION = "0.91.2"
   HUGO_ENV = "production"
   NODE_VERSION = "16"
 
 [context.branch-deploy.environment]
-  HUGO_VERSION = "0.89.4"
+  HUGO_VERSION = "0.91.2"
   NODE_VERSION = "16"
