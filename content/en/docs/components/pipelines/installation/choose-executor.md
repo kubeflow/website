@@ -27,7 +27,7 @@ team only recommend choosing between docker executor and emissary executor.
 
 ### Docker Executor
 
-Docker executor is the **default** workflow executor.
+Docker executor is the **default** workflow executor. But Kubeflow Pipelines v1.8 will switch to Emissary Executor as default executor.
 
 {{% alert title="Warning" color="warning" %}}
 Docker executor depends on docker container runtime, which will be deprecated on Kubernetes 1.20+.
