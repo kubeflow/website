@@ -132,3 +132,11 @@ footer {
     border-top-left-radius: 0;
   }
 }
+
+nav.foldable-nav .ul-1 .with-child>label:hover:before {
+  transform: none;
+}
+
+nav.foldable-nav .ul-1 .with-child>input:checked~label:hover:before {
+  transform: rotate(90deg) !important;
+}
