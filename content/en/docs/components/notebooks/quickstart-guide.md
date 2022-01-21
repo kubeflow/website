@@ -62,7 +62,7 @@ weight = 10
 10. *(Optional)* Specify one or more __"data volumes"__ to be mounted as a PVC Volumes.
 
 11. *(Optional)* Specify one or more additional __"configurations"__
-    - These correspond to [PodDefault resources](https://github.com/kubeflow/kubeflow/blob/master/components/admission-webhook/README.md) which exit in your profile namespace.
+    - These correspond to [PodDefault resources](https://github.com/kubeflow/kubeflow/blob/master/components/admission-webhook/README.md) which exist in your profile namespace.
     - Kubeflow matches the labels in the __"configurations"__ field against the properties specified in the PodDefault manifest.
     - For example, select the label `add-gcp-secret` in the __"configurations"__ field to match to a PodDefault manifest containing the following configuration:
     ```yaml
