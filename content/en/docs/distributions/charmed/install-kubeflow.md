@@ -54,7 +54,7 @@ You can read more about controllers in the [Juju documentation](https://juju.is/
 
 A model in Juju is a blank canvas where your operators will be deployed, and it holds a 1:1 relationship with a Kubernetes namespace.
 
-You can create a model and give it a name, e.g. `kubeflow`, with the `add-model` command, and you will also be creating a Kubernetes namespace of the same name:
+Using the `add-model` command, create a new model and name it `kubeflow` (which will then also create a Kubernetes namespace of the same name):
 
 ```bash
 juju add-model kubeflow
@@ -68,10 +68,10 @@ To deploy the full Kubeflow bundle, you'll need at least 50Gb available of disk,
 If you have fewer resources, deploy kubeflow-lite or kubeflow-edge.
 {{% /alert %}}
 
-Once you have a model, you can simply `juju deploy` any of the provided [Kubeflow bundles](https://charmed-kubeflow.io/docs/operators-and-bundles) into your cluster, prepending with `cs:`. For the _Kubeflow lite_ bundle, run:
+Once you have a model, you can simply `juju deploy` any of the provided [Kubeflow bundles](https://charmed-kubeflow.io/docs/operators-and-bundles) into your cluster. For the _Kubeflow lite_ bundle, run:
 
 ```bash
-juju deploy cs:kubeflow-lite
+juju deploy kubeflow-lite --trust
 ```
 
 and your Kubeflow installation should begin!
