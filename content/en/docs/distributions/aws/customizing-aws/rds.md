@@ -22,11 +22,13 @@ export AWS_CLUSTER_NAME=<your_cluster_name>
 
 # Retrieve your VpcId
 aws ec2 describe-vpcs \
+    --output json \
     --filters Name=tag:alpha.eksctl.io/cluster-name,Values=$AWS_CLUSTER_NAME \
     | jq -r '.Vpcs[].VpcId'
 
 # Retrieve the list of SubnetId's of your cluster's Private subnets, select at least two
 aws ec2 describe-subnets \
+    --output json \
     --filters Name=tag:alpha.eksctl.io/cluster-name,Values=$AWS_CLUSTER_NAME Name=tag:aws:cloudformation:logical-id,Values=SubnetPrivate* \
     | jq -r '.Subnets[].SubnetId'
 
@@ -36,7 +38,7 @@ INSTANCE_IDS=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].
 for i in "${INSTANCE_IDS[@]}"
 do
   echo "SecurityGroup for EC2 instance $i ..."
-aws ec2 describe-instances --instance-ids $i | jq -r '.Reservations[].Instances[].SecurityGroups[].GroupId'
+aws ec2 describe-instances --output json --instance-ids $i | jq -r '.Reservations[].Instances[].SecurityGroups[].GroupId'
 done  
 ```
 
