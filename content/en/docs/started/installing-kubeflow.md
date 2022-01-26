@@ -94,7 +94,7 @@ Packaged distributions are developed and supported by their respective maintaine
       <tr>
         <td>Arrikto MiniKF</td>
         <td>Arrikto</td>
-        <td>AWS Marketplace, GCP Marketplace, Vagrant</td>
+        <td>AWS Marketplace, GCP Marketplace</td>
         <td>1.3</td>
         <td><a href="/docs/distributions/minikf/">Docs</a></td>
         <td><a href="https://www.arrikto.com/get-started/">External Website</a></td>
