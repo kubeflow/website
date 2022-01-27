@@ -367,7 +367,7 @@ create_step_merge_csv = kfp.components.create_component_from_func(
 
 ```python
 web_downloader_op = kfp.components.load_component_from_url(
-    'https://raw.githubusercontent.com/kubeflow/pipelines/master/components/web/Download/component.yaml')
+    'https://raw.githubusercontent.com/kubeflow/pipelines/master/components/contrib/web/Download/component.yaml')
 ```
 
 2.  Define your pipeline as a Python function. 
