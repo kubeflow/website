@@ -1,243 +1,216 @@
 baseURL = "/"
-languageCode = "en-us"
 title = "Kubeflow"
-theme = ["docsy"]
 description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
-Paginate = 20
 
-# SEO
 enableRobotsTXT = true
 
-# Docsy: Gives values to .Lastmod etc.
+theme = ["docsy"]
+
+###############################################################################
+# Docsy
+###############################################################################
 enableGitInfo = true
 
-# Docsy: Language settings
+# language settings
 contentDir = "content/en"
 defaultContentLanguage = "en"
-# Tell Hugo not to include the /en/ element in the URL path for English docs:
+# tell Hugo not to include the /en/ element in the URL path for English docs
 defaultContentLanguageInSubdir = false
-# Docsy: Useful when translating.
+# useful when translating
 enableMissingTranslationPlaceholders = true
-
+# disable taxonomies
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
-# Docsy: Highlighting config
-pygmentsCodeFences = true
-pygmentsUseClasses = false
-# Use the new Chroma Go highlighter in Hugo.
-pygmentsUseClassic = false
-#pygmentsOptions = "linenos=table"
-# See https://help.farbox.com/pygments.html
-pygmentsStyle = "tango"
-
- # Docsy: First one is picked as the Twitter card image if not set on page.
- #images = ["images/project-illustration.png"]
-
-# Top-level navigation (horizontal)
-
-[[menu.main]]
-    name = "What is Kubeflow?"
-    weight = -103
-    url = "/docs/about/kubeflow/"
-[[menu.main]]
+###############################################################################
+# Hugo - Top-level navigation (horizontal)
+###############################################################################
+[menu]
+  [[menu.main]]
     name = "Documentation"
     weight = -101
+    pre = "<i class='fas fa-book pr-2'></i>"
     url = "/docs/"
-[[menu.main]]
+  [[menu.main]]
     name = "Blog"
     weight = -100
+    pre = "<i class='fas fa-rss pr-2'></i>"
     url = "https://blog.kubeflow.org/"
-[[menu.main]]
+  [[menu.main]]
     name = "GitHub"
     weight = -99
+    pre = "<i class='fab fa-github pr-2'></i>"
     url = "https://github.com/kubeflow/"
 
-# Docsy: Configure the format of URLs per section.
-#[permalinks]
-#blog = "/:section/:year/:month/:day/:slug/"
-
-# Docsy: Configuration for Goldmark markdown parser, which is default from 
-# Hugo 0.60 onwards. https://github.com/yuin/goldmark/
+###############################################################################
+# Docsy - Goldmark markdown parser
+###############################################################################
 [markup]
-[markup.goldmark]
-[markup.goldmark.renderer]
-# Allow Goldmark to render raw HTML:
+  [markup.goldmark]
+    [markup.goldmark.renderer]
       unsafe = true
+  [markup.highlight]
+    # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
+    style = "tango"
+    guessSyntax = "true"
 
-# Docsy: Image processing configuration.
+###############################################################################
+# Docsy - Image processing configuration
+###############################################################################
 [imaging]
-resampleFilter = "CatmullRom"
-quality = 75
-anchor = "smart"
+  resampleFilter = "CatmullRom"
+  quality = 75
+  anchor = "smart"
 
+###############################################################################
+# Docsy - Services configuration
+###############################################################################
 [services]
-[services.googleAnalytics]
-id = "UA-135379910-1"
+  [services.googleAnalytics]
+  id = "UA-135379910-1"
 
-# Docsy: Language configuration
-
+###############################################################################
+# Docsy - Language configuration
+###############################################################################
 [languages]
-[languages.en]
-title = "Kubeflow"
-description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
-languageName ="English"
-# Weight used for sorting in the language menu:
-weight = 1
+  [languages.en]
+    title = "Kubeflow"
+    description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
+    languageName ="English"
+    # weight used for sorting in the language menu
+    weight = 1
 
-# Below is an example of another language (Norwegian):
-#[languages.no]
-#title = "Docsy"
-#description = "Docsy er operativsystem for skyen"
-#languageName ="Norsk"
-#contentDir = "content/no"
-time_format_default = "02.01.2006"
-time_format_blog = "02.01.2006"
-
-# Site params
-
+###############################################################################
+# Docsy - Site Parameters
+###############################################################################
 [params]
+  github_repo = "https://github.com/kubeflow/website"
+  github_project_repo = "https://github.com/kubeflow/kubeflow"
 
-# GitHub repository for in-page links to editing a page and opening and issues.
-github_repo = "https://github.com/kubeflow/website"
-# An optional link to a related project repo. For example, the sibling repository where your product code lives.
-github_project_repo = "https://github.com/kubeflow/kubeflow"
+  RSSLink = "/index.xml"
+  author = "kubeflow.org" # add your company name
+  github = "kubeflow" # add your github profile name
+  twitter = "kubeflow" # add your twitter profile
 
-RSSLink = "/index.xml"
-author = "kubeflow.org" # add your company name
-github = "kubeflow" # add your github profile name
-twitter = "kubeflow" # add your twitter profile
-#email = "myemail@myaddress.xxx"
+  copyright = "The Kubeflow Authors."
+  privacy_policy = "https://policies.google.com/privacy"
 
-copyright = "The Kubeflow Authors."
-privacy_policy = "https://policies.google.com/privacy"
+  # Google Custom Search Engine ID.
+  gcs_engine_id = "007239566369470735695:624rglujm-w"
 
-# Docsy: Google Custom Search Engine ID. Remove or comment out to disable search.
-gcs_engine_id = "007239566369470735695:624rglujm-w"
+  # Text label for the version menu in the top bar of the website.
+  version_menu = "Kubeflow Version"
 
-# Text label for the version menu in the top bar of the website.
-version_menu = "v1.3"
-
-# The major.minor version tag for the version of the docs represented in this
-# branch of the repository. Used in the "version-banner" partial to display a
-# version number for this doc set.
-version = "v1.3"
-
-# Flag used in the "version-banner" partial to decide whether to display a 
-# banner on every page indicating that this is an archived version of the docs.
-archived_version = false
-
-# A link to latest version of the docs. Used in the "version-banner" partial to
-# point people to the main doc site.
-url_latest_version = "https://kubeflow.org/docs/"
-
-# A variable used in various docs to determine URLs for config files etc.
-# To find occurrences, search the repo for 'params "githubbranch"'.
-githubbranch = "v1.3-branch"
-
-# Add new release versions here. These entries appear in the drop-down menu
-# at the top of the website.
-[[params.versions]]
+  # The major.minor version tag for the version of the docs represented in this
+  # branch of the repository. Used in the "version-banner" partial to display a
+  # version number for this doc set.
   version = "master"
+
+  # Flag used in the "version-banner" partial to decide whether to display a
+  # banner on every page indicating that this is an archived version of the docs.
+  archived_version = false
+
+  # A link to latest version of the docs. Used in the "version-banner" partial to
+  # point people to the main doc site.
+  url_latest_version = "https://kubeflow.org/docs/"
+
+  # A variable used in various docs to determine URLs for config files etc.
+  # To find occurrences, search the repo for 'params "githubbranch"'.
   githubbranch = "master"
-  url = "https://master.kubeflow.org"
 
-[[params.versions]]
-  version = "v0.2"
-  githubbranch = "v0.2-branch"
-  url = "https://v0-2.kubeflow.org"
+  # These entries appear in the drop-down menu at the top of the website.
+  [[params.versions]]
+    version = "master"
+    githubbranch = "master"
+    url = "https://master.kubeflow.org"
+  [[params.versions]]
+    version = "v1.4"
+    githubbranch = "v1.4-branch"
+    url = "https://v1-4-branch.kubeflow.org"
+  [[params.versions]]
+    version = "v1.3"
+    githubbranch = "v1.3-branch"
+    url = "https://v1-3-branch.kubeflow.org"
+  [[params.versions]]
+    version = "v1.2"
+    githubbranch = "v1.2-branch"
+    url = "https://v1-2-branch.kubeflow.org"
+  [[params.versions]]
+    version = "v1.1"
+    githubbranch = "v1.1-branch"
+    url = "https://v1-1-branch.kubeflow.org"
+  [[params.versions]]
+    version = "v1.0"
+    githubbranch = "v1.0-branch"
+    url = "https://v1-0-branch.kubeflow.org"
+  [[params.versions]]
+    version = "v0.7"
+    githubbranch = "v0.7-branch"
+    url = "https://v0-7.kubeflow.org"
+  [[params.versions]]
+    version = "v0.6"
+    githubbranch = "v0.6-branch"
+    url = "https://v0-6.kubeflow.org"
+  [[params.versions]]
+    version = "v0.5"
+    githubbranch = "v0.5-branch"
+    url = "https://v0-5.kubeflow.org"
+  [[params.versions]]
+    version = "v0.4"
+    githubbranch = "v0.4-branch"
+    url = "https://v0-4.kubeflow.org"
+  [[params.versions]]
+    version = "v0.3"
+    githubbranch = "v0.3-branch"
+    url = "https://v0-3.kubeflow.org"
+  [[params.versions]]
+    version = "v0.2"
+    githubbranch = "v0.2-branch"
+    url = "https://v0-2.kubeflow.org"
 
-[[params.versions]]
-  version = "v0.3"
-  githubbranch = "v0.3-branch"
-  url = "https://v0-3.kubeflow.org"
+  # User interface configuration
+  [params.ui]
+    # Enable the logo
+    navbar_logo = true
+    # Enable to show the side bar menu in its compact state.
+    sidebar_menu_compact = true
+    # Enable the search box in the side bar.
+    sidebar_search_disable = false
+    # Set to true to disable breadcrumb navigation.
+    breadcrumb_disable = false
+    # Show expand/collapse icon for sidebar sections
+    sidebar_menu_foldable = true
+    # Disable about button in footer
+    footer_about_disable = true
 
-[[params.versions]]
-  version = "v0.4"
-  githubbranch = "v0.4-branch"
-  url = "https://v0-4.kubeflow.org"
+      # Adds a H2 section titled "Feedback" to the bottom of each doc. The responses are sent to Google Analytics as events.
+      # This feature depends on [services.googleAnalytics] and will be disabled if "services.googleAnalytics.id" is not set.
+      # If you want this feature, but occasionally need to remove the "Feedback" section from a single page,
+      # add "hide_feedback: true" to the page's front matter.
+      [params.ui.feedback]
+        enable = true
+        # The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
+        yes = 'Glad to hear it! Please <a href="https://github.com/kubeflow/website/issues/new">tell us how we can improve</a>.'
+        no = 'Sorry to hear that. Please <a href="https://github.com/kubeflow/website/issues/new">tell us how we can improve</a>.'
 
-[[params.versions]]
-  version = "v0.5"
-  githubbranch = "v0.5-branch"
-  url = "https://v0-5.kubeflow.org"
-
-[[params.versions]]
-  version = "v0.6"
-  githubbranch = "v0.6-branch"
-  url = "https://v0-6.kubeflow.org"
-
-[[params.versions]]
-  version = "v0.7"
-  githubbranch = "v0.7-branch"
-  url = "https://v0-7.kubeflow.org"
-
-[[params.versions]]
-  version = "v1.0"
-  githubbranch = "v1.0-branch"
-  url = "https://v1-0-branch.kubeflow.org"
-
-[[params.versions]]
-  version = "v1.1"
-  githubbranch = "v1.1-branch"
-  url = "https://v1-1-branch.kubeflow.org"
-  
-[[params.versions]]
-  version = "v1.2"
-  githubbranch = "v1.2-branch"
-  url = "https://v1-2-branch.kubeflow.org"
-
-# Docsy: User interface configuration
-[params.ui]
-# Docsy: Enable to show the side bar menu in its compact state.
-sidebar_menu_compact = true
-# Docsy: Disable the search box in the side bar.
-sidebar_search_disable = true
-#  Docsy: Set to true to disable breadcrumb navigation.
-breadcrumb_disable = false
-
-# Adds a H2 section titled "Feedback" to the bottom of each doc. The responses are sent to Google Analytics as events.
-# This feature depends on [services.googleAnalytics] and will be disabled if "services.googleAnalytics.id" is not set.
-# If you want this feature, but occasionally need to remove the "Feedback" section from a single page,
-# add "hide_feedback: true" to the page's front matter.
-[params.ui.feedback]
-enable = true
-# The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
-yes = 'Glad to hear it! Please <a href="https://github.com/kubeflow/website/issues/new">tell us how we can improve</a>.'
-no = 'Sorry to hear that. Please <a href="https://github.com/kubeflow/website/issues/new">tell us how we can improve</a>.'
-
-
-[params.links]
-# Docsy: "User" links will show on left side of footer and in the community page if you have one.
-[[params.links.user]]
-	name ="Twitter"
-	url = "https://twitter.com/kubeflow"
-	icon = "fab fa-twitter"
-        desc = "Follow us on Twitter to get the latest news"
-[[params.links.user]]
-	name = "GitHub"
-	url = "https://github.com/kubeflow/kubeflow"
-	icon = "fab fa-github"
-        desc = "Development takes place here!"
-[[params.links.user]]
-	name = "Slack"
-	url = "https://kubeflow.slack.com/join/shared_invite/zt-cpr020z4-PfcAue_2nw67~iIDy7maAQ"
-	icon = "fab fa-slack"
-        desc = "Chat with other project contributors"
-[[params.links.user]]
-	name = "Mailing list"
-	url = "https://groups.google.com/forum/#!forum/kubeflow-discuss"
-	icon = "fa fa-envelope"
-        desc = "Discussion and help from your fellow users"
-[[params.links.user]]
-	name = "Calendar"
-	url = "https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com&ctz=America%2FLos_Angeles"
-	icon = "fa fa-calendar"
-        desc = "Discussion and help from your fellow users"
-
-
-# Docsy: "Developer" links will show on right side of footer and in the community page if you have one.
-#[[params.links.developer]]
-#	name = "A name"
-#	url = "http://example.com"
-#	icon = "fab fa-envelope"
-#       desc = "A description"
+  # Links in footer
+  [params.links]
+    [[params.links.user]]
+      name = "Twitter"
+      url = "https://twitter.com/kubeflow/"
+      icon = "fab fa-twitter"
+      desc = "Follow us on Twitter to get the latest news!"
+    [[params.links.user]]
+      name = "Slack"
+      url = "/docs/about/community/#slack"
+      icon = "fab fa-slack"
+      desc = "Join the Kubeflow Slack Workspace!"
+    [[params.links.user]]
+      name = "Mailing list"
+      url = "/docs/about/community/#mailing-list"
+      icon = "fa fa-envelope"
+      desc = "Join the Kubeflow Mailing List!"
+    [[params.links.user]]
+      name = "Weekly Community Call"
+      url = "/docs/about/community/#weekly-community-call"
+      icon = "fa fa-calendar"
+      desc = "Join the weekly Kubeflow Community Call!"

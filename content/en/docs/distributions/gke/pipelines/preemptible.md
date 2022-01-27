@@ -4,10 +4,7 @@ description = "Configuring preemptible VMs and GPUs for Kubeflow Pipelines on Go
 weight = 80
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
+
 
 This document describes how to configure preemptible virtual machines
 ([preemptible VMs](https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms))
@@ -34,6 +31,10 @@ cluster can autoscale based on current workloads.
 This guide assumes that you have already deployed Kubeflow Pipelines. If not,
 follow the guide to [deploying Kubeflow on Google Cloud](/docs/gke/deploy/).
 
+## Before you start
+
+The variables defined in this page can be found in [gcp-blueprint/kubeflow/env.sh](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/env.sh). They are the same value as you set based on your [Kubeflow deployment](/docs/distributions/gke/deploy/deploy-cli/#environment-variables). 
+
 ## Using preemptible VMs with Kubeflow Pipelines
 
 In summary, the steps to schedule a pipeline to run on [preemptible
@@ -49,41 +50,86 @@ The following sections contain more detail about the above steps.
 
 ### 1. Create a node pool with preemptible VMs
 
-Use the `gcloud` command to
-[create a node pool](https://cloud.google.com/sdk/gcloud/reference/container/node-pools/create).
-The following example includes placeholders to illustrate the important
-configurations:
+Create a `preemptible-nodepool.yaml` as below and fulfill all placerholder content `KF_NAME`, `KF_PROJECT`, `LOCATION`:
 
-    gcloud container node-pools create PREEMPTIBLE_CPU_POOL \
-    	--cluster=CLUSTER_NAME \
-        --enable-autoscaling --max-nodes=MAX_NODES --min-nodes=MIN_NODES \
-        --preemptible \
-        --node-taints=preemptible=true:NoSchedule \
-        --service-account=DEPLOYMENT_NAME-vm@PROJECT_NAME.iam.gserviceaccount.com
+```
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerNodePool
+metadata:
+  labels:
+    kf-name: KF_NAME # kpt-set: ${name}
+  name: PREEMPTIBLE_CPU_POOL
+  namespace: KF_PROJECT # kpt-set: ${gcloud.core.project}
+spec:
+  location: LOCATION # kpt-set: ${location}
+  initialNodeCount: 1
+  autoscaling:
+    minNodeCount: 0
+    maxNodeCount: 5
+  nodeConfig:
+    machineType: n1-standard-4
+    diskSizeGb: 100
+    diskType: pd-standard
+    preemptible: true
+    taint:
+    - effect: NO_SCHEDULE
+      key: preemptible
+      value: "true"
+    oauthScopes:
+    - "https://www.googleapis.com/auth/logging.write"
+    - "https://www.googleapis.com/auth/monitoring"
+    - "https://www.googleapis.com/auth/devstorage.read_only"
+    serviceAccountRef:
+      external: KF_NAME-vm@KF_PROJECT.iam.gserviceaccount.com # kpt-set: ${name}-vm@${gcloud.core.project}.iam.gserviceaccount.com
+    metadata:
+      disable-legacy-endpoints: "true"
+  management:
+    autoRepair: true
+    autoUpgrade: true
+  clusterRef:
+    name: KF_NAME # kpt-set: ${name}
+    namespace: KF_PROJECT # kpt-set: ${name}
+```
+
 
 Where:
 
 +   `PREEMPTIBLE_CPU_POOL` is the name of the node pool. 
-+   `CLUSTER_NAME` is the name of the GKE cluster.
-+   `MAX_NODES` and `MIN_NODES` are the maximum and minimum number of nodes
-    for the [GKE 
-    autoscaling](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-autoscaler)
-    functionality.
-+   `DEPLOYMENT_NAME` is the name of your Kubeflow deployment. If you used
-    [the CLI to deploy Kubeflow](/docs/gke/deploy/deploy-cli/),
-    this name is the value of the `${KF_NAME}` environment variable. If you used
-    the [deployment UI](/docs/gke/deploy/deploy-ui/),
-    this name is the value you specified as the deployment name.
-+   `PROJECT_NAME` is the name of your Google Cloud project.
++   `KF_NAME` is the name of the Kubeflow GKE cluster.
++   `KF_PROJECT` is the name of your Kubeflow Google Cloud project. 
++   `LOCATION` is the region of this nodepool, for example: us-west1-b.
++   `KF_NAME-vm@KF_PROJECT.iam.gserviceaccount.com` is your service account, replace the `KF_NAME` and `KF_PROJECT` using the value above  in this pattern, you can get vm service account you have already created in Kubeflow cluster deployment
 
-Below is an example of the command:
+Apply the nodepool patch file above by running:
 
-    gcloud container node-pools create preemptible-cpu-pool \
-    	--cluster=user-4-18 \
-        --enable-autoscaling --max-nodes=4 --min-nodes=0 \
-        --preemptible \
-        --node-taints=preemptible=true:NoSchedule \
-        --service-account=user-4-18-vm@ml-pipeline-project.iam.gserviceaccount.com
+```bash
+kubectl --context=${MGMTCTXT} --namespace=${KF_PROJECT} apply -f <path-to-nodepool-file>/preemptible-nodepool.yaml
+```
+
+#### For Kubeflow Pipelines standalone only
+
+Alternatively, if you are on Kubeflow Pipelines standalone, or AI Platform Pipelines, you can run this command to create node pool:
+
+```
+gcloud container node-pools create PREEMPTIBLE_CPU_POOL \
+    --cluster=CLUSTER_NAME \
+      --enable-autoscaling --max-nodes=MAX_NODES --min-nodes=MIN_NODES \
+      --preemptible \
+      --node-taints=preemptible=true:NoSchedule \
+      --service-account=DEPLOYMENT_NAME-vm@PROJECT_NAME.iam.gserviceaccount.com
+```
+
+Below is an example of command:
+
+```
+gcloud container node-pools create preemptible-cpu-pool \
+  --cluster=user-4-18 \
+    --enable-autoscaling --max-nodes=4 --min-nodes=0 \
+    --preemptible \
+    --node-taints=preemptible=true:NoSchedule \
+    --service-account=user-4-18-vm@ml-pipeline-project.iam.gserviceaccount.com
+```
+
 
 ### 2. Schedule your pipeline to run on the preemptible VMs
 
@@ -168,48 +214,83 @@ resources in your project, go to the
 [Quotas](https://console.cloud.google.com/iam-admin/quotas) page in the Google Cloud
 Console.
 
-### 2. Create a  node pool of preemptible VMs with preemptible GPUs
+### 2. Create a node pool of preemptible VMs with preemptible GPUs
 
-Use the `gcloud` command to
-[create a node pool](https://cloud.google.com/sdk/gcloud/reference/container/node-pools/create).
-The following example includes placeholders to illustrate the important
-configurations:
+Create a `preemptible-gpu-nodepool.yaml` as below and fulfill all placerholder content:
 
-    gcloud container node-pools create PREEMPTIBLE_GPU_POOL \
-        --cluster=CLUSTER_NAME \
-        --enable-autoscaling --max-nodes=MAX_NODES --min-nodes=MIN_NODES \
-        --preemptible \
-        --node-taints=preemptible=true:NoSchedule \
-        --service-account=DEPLOYMENT_NAME-vm@PROJECT_NAME.iam.gserviceaccount.com \
-        --accelerator=type=GPU_TYPE,count=GPU_COUNT
+```
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerNodePool
+metadata:
+  labels:
+    kf-name: KF_NAME # kpt-set: ${name}
+  name: KF_NAME-containernodepool-gpu
+  namespace: KF_PROJECT # kpt-set: ${gcloud.core.project}
+spec:
+  location: LOCATION # kpt-set: ${location}
+  initialNodeCount: 1
+  autoscaling:
+    minNodeCount: 0
+    maxNodeCount: 5
+  nodeConfig:
+    machineType: n1-standard-4
+    diskSizeGb: 100
+    diskType: pd-standard
+    preemptible: true
+    oauthScopes:
+    - "https://www.googleapis.com/auth/logging.write"
+    - "https://www.googleapis.com/auth/monitoring"
+    - "https://www.googleapis.com/auth/devstorage.read_only"
+    serviceAccountRef:
+      external: KF_NAME-vm@KF_PROJECT.iam.gserviceaccount.com # kpt-set: ${name}-vm@${gcloud.core.project}.iam.gserviceaccount.com
+    guestAccelerator:
+    - type: "nvidia-tesla-k80"
+      count: 1
+    metadata:
+      disable-legacy-endpoints: "true"
+  management:
+    autoRepair: true
+    autoUpgrade: true
+  clusterRef:
+    name: KF_NAME # kpt-set: ${name}
+    namespace: KF_PROJECT # kpt-set: ${gcloud.core.project}
+```
 
 Where:
 
-+   `PREEMPTIBLE_GPU_POOL` is the name of the node pool. 
-+   `CLUSTER_NAME` is the name of the GKE cluster.
-+   `MAX_NODES` and `MIN_NODES` are the maximum and minimum number of nodes
-    for the
-    [GKE autoscaling](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-autoscaler)
-    functionality.
-+   `DEPLOYMENT_NAME` is the name of your Kubeflow deployment. If you used
-    [the CLI to deploy Kubeflow](/docs/gke/deploy/deploy-cli/),
-    this name is the value of the `${KF_NAME}` environment variable. If you used
-    the [deployment UI](/docs/gke/deploy/deploy-ui/),
-    this name is the value you specified as the deployment name.
-+   `PROJECT_NAME` is the name of your Google Cloud project.
-+   `GPU_TYPE` is the [type of
-    GPU](https://cloud.google.com/compute/docs/gpus/).
-+   `GPU_COUNT` is the number of GPUs.
++   `PREEMPTIBLE_CPU_POOL` is the name of the node pool. 
++   `KF_NAME` is the name of the Kubeflow GKE cluster.
++   `KF_PROJECT` is the name of your Kubeflow Google Cloud project. 
++   `LOCATION` is the region of this nodepool, for example: us-west1-b.
++   `KF_NAME-vm@KF_PROJECT.iam.gserviceaccount.com` is your service account, replace the `KF_NAME` and `KF_PROJECT` using the value above  in this pattern, you can get vm service account you have already created in Kubeflow cluster deployment.
 
-Below is an example of the command:
 
-    gcloud container node-pools create preemptible-gpu-pool \
-        --cluster=user-4-18 \
-        --enable-autoscaling --max-nodes=4 --min-nodes=0 \
-        --preemptible \
-        --node-taints=preemptible=true:NoSchedule \
-        --service-account=user-4-18-vm@ml-pipeline-project.iam.gserviceaccount.com \
-        --accelerator=type=nvidia-tesla-t4,count=2
+#### For Kubeflow Pipelines standalone only
+
+Alternatively, if you are on Kubeflow Pipelines standalone, or AI Platform Pipelines, you can run this command to create node pool:
+
+```
+gcloud container node-pools create PREEMPTIBLE_GPU_POOL \
+    --cluster=CLUSTER_NAME \
+    --enable-autoscaling --max-nodes=MAX_NODES --min-nodes=MIN_NODES \
+    --preemptible \
+    --node-taints=preemptible=true:NoSchedule \
+    --service-account=DEPLOYMENT_NAME-vm@PROJECT_NAME.iam.gserviceaccount.com \
+    --accelerator=type=GPU_TYPE,count=GPU_COUNT
+```
+
+Below is an example of command:
+
+```
+gcloud container node-pools create preemptible-gpu-pool \
+    --cluster=user-4-18 \
+    --enable-autoscaling --max-nodes=4 --min-nodes=0 \
+    --preemptible \
+    --node-taints=preemptible=true:NoSchedule \
+    --service-account=user-4-18-vm@ml-pipeline-project.iam.gserviceaccount.com \
+    --accelerator=type=nvidia-tesla-t4,count=2
+```
+
 
 ### 3. Schedule your pipeline to run on the preemptible VMs with preemptible GPUs
 
@@ -269,57 +350,14 @@ For example:
       import kfp.compiler as compiler
       compiler.Compiler().compile(flipcoin, __file__ + '.zip')
 
-## Comparison with Cloud AI Platform Training service
+## Debugging
 
-[Cloud AI Platform Training](https://cloud.google.com/ml-engine/docs/) is a Google Cloud
-machine learning (ML) training service that supports distributed training and
-hyperparameter tuning, and requires no complex GKE configuration. Cloud AI
-Platform Training charges the Compute Engine costs only for the runtime of the
-job. 
+Run the following command if your nodepool didn't show up or has error during provisioning:
 
-The table below compares Cloud AI Platform Training with Kubeflow Pipelines
-running preemptible VMs or GPUs:
+```bash
+kubectl --context=${MGMTCTXT} --namespace=${KF_PROJECT} describe containernodepool -l kf-name=${KF_NAME}
+```
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <thead class="thead-light">
-      <tr>
-        <th></th>
-        <th>Cloud AI Platform Training</th>
-        <th>Kubeflow Pipelines with preemption</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Configuration</td>
-        <td>No GKE configuration</td>
-        <td>Requires GKE configuration</td>
-      </tr>
-      <tr>
-        <td>Cost</td>
-        <td>Compute Engine costs for the job lifetime</td>
-        <td>Lower price with preemptible VMs/GPUs/TPUs</td>
-      </tr>
-      <tr>
-        <td>Accelerator</td>
-        <td>Supports various VM types, GPUs, and CPUs</td>
-        <td>Support various VM types, GPUs, and CPUs</td>
-      </tr>
-      <tr>
-      <td>Scalability</td>
-        <td>Automates resource provisioning and supports distributed training</td>
-        <td>Requires manual configuration such as <a
-        href="https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler">GKE
-        autoscaler</a> and distributed training workflow</td>
-      </tr>
-      <tr>
-        <td>Features</td>
-        <td>Out-of-box support for hyperparameter tuning</td>
-        <td>Do-it-yourself hyperparameter tuning with Katib</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 
 ## Next steps
 

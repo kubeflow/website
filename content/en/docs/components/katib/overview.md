@@ -79,7 +79,7 @@ hyperparameter tuning job (_experiment_). Each trial tests a different set of
 hyperparameter configurations. At the end of the experiment, Katib outputs
 the optimized values for the hyperparameters.
 
-You can improve you hyperparameter tunning experiments by using
+You can improve your hyperparameter tunning experiments by using
 [early stopping](https://en.wikipedia.org/wiki/Early_stopping) techniques.
 Follow the [early stopping guide](/docs/components/katib/early-stopping/)
 for the details.
@@ -127,7 +127,7 @@ You can use the following interfaces to interact with Katib:
     alt="The Katib home page within the Kubeflow UI"
     class="mt-3 mb-3 border border-info rounded">
 
-- A gRPC API. Check the [API reference](/docs/reference/katib/v1beta1/katib).
+- A gRPC API. Check the [API reference on GitHub](https://github.com/kubeflow/katib/blob/master/pkg/apis/manager/v1beta1/gen-doc/api.md).
 
 - Command-line interfaces (CLIs):
 
@@ -165,6 +165,9 @@ the main configurations:
 - **Search algorithm**: The algorithm to use when searching for the optimal
   hyperparameter values.
 
+Katib experiment is defined as a
+[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
+
 For details of how to define your experiment, follow the guide to [running an
 experiment](/docs/components/katib/experiment/).
 
@@ -174,6 +177,9 @@ A _suggestion_ is a set of hyperparameter values that the hyperparameter
 tuning process has proposed. Katib creates a trial to evaluate the suggested
 set of values.
 
+Katib suggestion is defined as a
+[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
+
 ### Trial
 
 A _trial_ is one iteration of the hyperparameter tuning process. A trial
@@ -182,6 +188,9 @@ The list of parameter assignments corresponds to a suggestion.
 
 Each experiment runs several trials. The experiment runs the trials until it
 reaches either the objective or the configured maximum number of trials.
+
+Katib trial is defined as a
+[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
 
 ### Worker job
 
@@ -202,9 +211,11 @@ Katib has these CRD examples in upstream:
 
 - [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
 
-- [Kubeflow `MPIJob`](/docs/components/training/mpi)
+- [Kubeflow `MXJob`](/docs/components/training/mxnet)
 
-- [Kubeflow `XGBoostJob`](https://github.com/kubeflow/xgboost-operator)
+- [Kubeflow `XGBoostJob`](/docs/components/training/xgboost)
+
+- [Kubeflow `MPIJob`](/docs/components/training/mpi)
 
 - [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
 

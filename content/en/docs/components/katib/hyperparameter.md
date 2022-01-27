@@ -2,7 +2,7 @@
 title = "Getting Started with Katib"
 description = "How to set up Katib and perform hyperparameter tuning"
 weight = 20
-                    
+
 +++
 
 This guide shows how to get started with Katib and run a few examples using the
@@ -15,6 +15,13 @@ For an overview of the concepts around Katib and hyperparameter tuning, check th
 
 Let's set up and configure Katib on your Kubernetes cluster with Kubeflow.
 
+### Prerequisites
+
+This is the minimal requirements to install Katib:
+
+- Kubernetes >= 1.17
+- `kubectl` >= 1.21
+
 <a id="katib-install"></a>
 
 ### Installing Katib
@@ -26,26 +33,36 @@ To install Katib as part of Kubeflow, follow the
 [Kubeflow installation guide](/docs/started/getting-started/).
 
 If you want to install Katib separately from Kubeflow, or to get a later version
-of Katib, you can use various Katib installs. Run the following command to clone
-Katib repository:
-
-```shell
-git clone https://github.com/kubeflow/katib
-cd katib
-```
-
-You can use one of the following Katib installations.
+of Katib, you can use one of the following Katib installs. To install the specific
+Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
 
 1. **Katib Standalone Installation**
+   
+   There are two ways to install Katib by standalone, 
+   both of which do not require any additional setup on your Kubernetes cluster.
 
-   Run the following command to deploy Katib with the main components
-   (`katib-controller`, `katib-ui`, `katib-mysql`, `katib-db-manager`, and `katib-cert-generator`):
+   1. **Basic Installation**
 
-   ```shell
-   make deploy
-   ```
+      Run the following command to deploy Katib with the main components
+      (`katib-controller`, `katib-ui`, `katib-mysql`, `katib-db-manager`, and `katib-cert-generator`):
 
-   This installation doesn't require any additional setup on your Kubernetes cluster.
+      ```shell
+      kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=master"
+      ```
+
+   2. **Controller Leader Election Support**
+    
+      Run the following command to deploy Katib with Controller
+      [Leader Election](https://kubernetes.io/blog/2016/01/simple-leader-election-with-kubernetes/):
+
+      ```shell
+      kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-leader-election?ref=master"
+      ```
+      
+      This installation is almost the same as `Basic Installation`,
+      although you can make `katib-controller` Highly Available (HA) using leader election.
+      If you plan to use Katib in an environment where high Service Level Agreements (SLAs) and Service Level Objectives (SLOs) are required, 
+      such as a production environment, consider choosing this installation.
 
 2. **Katib Cert Manager Installation**
 
@@ -53,7 +70,7 @@ You can use one of the following Katib installations.
    [Cert Manager](https://cert-manager.io/docs/installation/kubernetes/) requirement:
 
    ```shell
-   kustomize build manifests/v1beta1/installs/katib-cert-manager | kubectl apply -f -
+   kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-cert-manager?ref=master"
    ```
 
    This installation uses Cert Manager instead of `katib-cert-generator`
@@ -65,7 +82,7 @@ You can use one of the following Katib installations.
    Run the following command to deploy Katib with custom Database (DB) backend:
 
    ```shell
-   kustomize build manifests/v1beta1/installs/katib-external-db | kubectl apply -f -
+   kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-external-db?ref=master"
    ```
 
    This installation allows to use custom MySQL DB instead of `katib-mysql`.
@@ -79,7 +96,7 @@ You can use one of the following Katib installations.
    Run the following command to deploy Katib on [OpenShift](https://docs.openshift.com/) v4.4+:
 
    ```shell
-   kustomize build ./manifests/v1beta1/installs/katib-openshift | oc apply -f - -l type!=local
+   kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-openshift?ref=master"
    ```
 
    This installation uses OpenShift service controller instead of `katib-cert-generator`
@@ -98,7 +115,35 @@ deploy [PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persi
 to bind [PVC](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/mysql/pvc.yaml)
 for the Katib DB component.
 
-<a id="katib-ui"></a>
+### Katib components
+
+Run the following command to verify that Katib components are running:
+
+```shell
+$ kubectl get pods -n kubeflow
+
+NAME                                READY   STATUS      RESTARTS   AGE
+katib-cert-generator-79g7d          0/1     Completed   0          79s
+katib-controller-566595bdd8-8w7sx   1/1     Running     0          82s
+katib-db-manager-57cd769cdb-vt7zs   1/1     Running     0          82s
+katib-mysql-7894994f88-djp7m        1/1     Running     0          81s
+katib-ui-5767cfccdc-v9fcs           1/1     Running     0          80s
+```
+
+- `katib-controller` - the controller to manage Katib Kubernetes CRDs
+  ([`Experiment`](/docs/components/katib/overview/#experiment),
+  [`Suggestion`](/docs/components/katib/overview/#suggestion),
+  [`Trial`](/docs/components/katib/overview/#trial))
+
+- `katib-ui` - the Katib user interface.
+
+- `katib-db-manager` - the GRPC API server to control Katib DB interface.
+
+- `katib-mysql` - the `mysql` DB backend to store Katib experiments metrics.
+
+- (Optional) `katib-cert-generator` - the certificate generator for Katib
+  standalone installation. Learn more about the cert generator in the
+  [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md#katib-cert-generator)
 
 ## Accessing the Katib UI
 
@@ -131,37 +176,13 @@ http://localhost:8080/katib/
 Check [this guide](https://github.com/kubeflow/katib/tree/master/pkg/ui/v1beta1)
 if you want to contribute to Katib UI.
 
-### The new Katib UI
-
-During Kubeflow 1.3 we have worked on a new iteration of the UI, which is
-rewritten in Angular and is utilizing the common code of the other Kubeflow
-[dashboards](https://github.com/kubeflow/kubeflow/tree/master/components/crud-web-apps).
-While this UI is not yet on par with the current default one, we are actively
-working to get it up to speed and provide all the existing functionalities.
-
-The users are currently able to list, delete and create Katib Experiments in
-their cluster via this new UI as well as inspect the owned Trials.
-One important missing functionalities are the ability to edit the Trial Template
-ConfigMaps and view neural architecture search Experiments.
-
-While this UI is not ready to replace the current one we would like to
-encourage users to also give it a try and provide us with feedback.
-
-To try it out you should update the Katib UI image `newName` with the new
-registry `docker.io/kubeflowkatib/katib-new-ui` in the
-[Kustomize manifests](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/installs/katib-standalone/kustomization.yaml#L29).
-
-<img src="/docs/components/katib/images/new-ui.png"
-  alt="The Katib new UI"
-  class="mt-3 mb-3 border border-info rounded">
-
 ## Examples
 
 This section introduces some examples that you can run to try Katib.
 
-<a id="random-algorithm"></a>
+<a id="random-search"></a>
 
-### Example using random algorithm
+### Example using random search algorithm
 
 You can create an experiment for Katib by defining the experiment in a YAML
 configuration file. The YAML file defines the configurations for the experiment,
@@ -169,28 +190,28 @@ including the hyperparameter feasible space, optimization parameter,
 optimization goal, suggestion algorithm, and so on.
 
 This example uses the [YAML file for the
-random algorithm example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/random-example.yaml).
+random search example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/hp-tuning/random.yaml).
 
-The random algorithm example uses an MXNet neural network to train an image
+The random search algorithm example uses an MXNet neural network to train an image
 classification model using the MNIST dataset. You can check training container source code
-[here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/mxnet-mnist).
+[here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/trial-images/mxnet-mnist).
 The experiment runs twelve training jobs with various hyperparameters and saves the results.
 
 If you installed Katib as part of Kubeflow, you can't run experiments in the
 Kubeflow namespace. Run the following commands to change namespace and launch
-an experiment using the random algorithm example:
+an experiment using the random search example:
 
 1. Download the example:
 
    ```shell
-   curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/random-example.yaml --output random-example.yaml
+   curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/hp-tuning/random.yaml --output random.yaml
    ```
 
-1. Edit `random-example.yaml` and change the following line to use your Kubeflow
-   user profile namespace:
+1. Edit `random.yaml` and change the following line to use your Kubeflow
+   user profile namespace (e.g. `kubeflow-user-example-com`):
 
-   ```shell
-   Namespace: kubeflow
+   ```
+   namespace: kubeflow
    ```
 
 1. (Optional) **Note:** Katib's experiments don't work with
@@ -199,10 +220,10 @@ an experiment using the random algorithm example:
    Istio, you have to disable sidecar injection. To do that, specify this annotation:
    `sidecar.istio.io/inject: "false"` in your experiment's trial template.
 
-   For the provided random example with Kubernetes
+   For the provided random search example with Kubernetes
    [`Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
    trial template, annotation should be under
-   [`.trialSpec.spec.template.metadata.annotations`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/random-example.yaml#L52).
+   [`.trialSpec.spec.template.metadata.annotations`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/hp-tuning/random.yaml#L52).
    For the Kubeflow `TFJob` or other training operators check
    [here](/docs/components/training/tftraining/#what-is-tfjob)
    how to set the annotation.
@@ -210,7 +231,7 @@ an experiment using the random algorithm example:
 1. Deploy the example:
 
    ```shell
-   kubectl apply -f random-example.yaml
+   kubectl apply -f random.yaml
    ```
 
 This example embeds the hyperparameters as arguments. You can embed
@@ -232,7 +253,7 @@ This example randomly generates the following hyperparameters:
 Check the experiment status:
 
 ```shell
-kubectl -n <YOUR_USER_PROFILE_NAMESPACE> get experiment random-example -o yaml
+kubectl -n kubeflow-user-example-com get experiment random -o yaml
 ```
 
 The output of the above command should look similar to this:
@@ -241,15 +262,10 @@ The output of the above command should look similar to this:
 apiVersion: kubeflow.org/v1beta1
 kind: Experiment
 metadata:
-  creationTimestamp: "2020-10-23T21:27:53Z"
-  finalizers:
-    - update-prometheus-metrics
-  generation: 1
-  name: random-example
-  namespace: "<YOUR_USER_PROFILE_NAMESPACE>"
-  resourceVersion: "147081981"
-  selfLink: /apis/kubeflow.org/v1beta1/namespaces/<YOUR_USER_PROFILE_NAMESPACE>/experiments/random-example
-  uid: fb3776e8-0f83-4783-88b6-80d06867ca0b
+  ...
+  name: random
+  namespace: kubeflow-user-example-com
+  ...
 spec:
   algorithm:
     algorithmName: random
@@ -320,52 +336,52 @@ spec:
                   - --lr=${trialParameters.learningRate}
                   - --num-layers=${trialParameters.numberLayers}
                   - --optimizer=${trialParameters.optimizer}
-                image: docker.io/kubeflowkatib/mxnet-mnist:v1beta1-e294a90
+                image: docker.io/kubeflowkatib/mxnet-mnist:v1beta1-45c5727
                 name: training-container
             restartPolicy: Never
 status:
   conditions:
-    - lastTransitionTime: "2020-10-23T21:27:53Z"
-      lastUpdateTime: "2020-10-23T21:27:53Z"
+    - lastTransitionTime: "2021-10-07T21:12:06Z"
+      lastUpdateTime: "2021-10-07T21:12:06Z"
       message: Experiment is created
       reason: ExperimentCreated
       status: "True"
       type: Created
-    - lastTransitionTime: "2020-10-23T21:28:13Z"
-      lastUpdateTime: "2020-10-23T21:28:13Z"
+    - lastTransitionTime: "2021-10-07T21:12:28Z"
+      lastUpdateTime: "2021-10-07T21:12:28Z"
       message: Experiment is running
       reason: ExperimentRunning
       status: "True"
       type: Running
   currentOptimalTrial:
-    bestTrialName: random-example-smpc6ws2
+    bestTrialName: random-hpsrsdqp
     observation:
       metrics:
-        - latest: "0.993170"
-          max: "0.993170"
-          min: "0.920293"
+        - latest: "0.993054"
+          max: "0.993054"
+          min: "0.917694"
           name: Train-accuracy
-        - latest: "0.978006"
-          max: "0.978603"
-          min: "0.959295"
+        - latest: "0.979598"
+          max: "0.979598"
+          min: "0.957106"
           name: Validation-accuracy
     parameterAssignments:
       - name: lr
-        value: "0.02889324678979306"
+        value: "0.024736875661534784"
       - name: num-layers
-        value: "5"
+        value: "4"
       - name: optimizer
         value: sgd
   runningTrialList:
-    - random-example-26d5wzn2
-    - random-example-98fpd29m
-    - random-example-x2vjlzzv
-  startTime: "2020-10-23T21:27:53Z"
+    - random-2dwxbwcg
+    - random-6jd8hmnd
+    - random-7gks8bmf
+  startTime: "2021-10-07T21:12:06Z"
   succeededTrialList:
-    - random-example-n9c4j4cv
-    - random-example-qfb68jpb
-    - random-example-s96tq48v
-    - random-example-smpc6ws2
+    - random-xhpcrt2p
+    - random-hpsrsdqp
+    - random-kddxqqg9
+    - random-4lkr5cjp
   trials: 7
   trialsRunning: 3
   trialsSucceeded: 4
@@ -388,15 +404,6 @@ In addition, `status` shows the experiment's trials with their current status.
 View the results of the experiment in the Katib UI:
 
 1. Open the Katib UI as described [above](#katib-ui).
-
-1. Click **Hyperparameter Tuning** on the Katib home page.
-
-1. Open the Katib menu panel on the left, then open the **HP** section and
-   click **Monitor**:
-
-   <img src="/docs/components/katib/images/menu.png"
-     alt="The Katib menu panel"
-     class="mt-3 mb-3 border border-info rounded">
 
 1. You should be able to view the list of experiments:
 
@@ -430,19 +437,19 @@ View the results of the experiment in the Katib UI:
 
 If you installed Katib as part of Kubeflow, you can’t run experiments in the
 Kubeflow namespace. Run the following commands to launch an experiment using
-the Kubeflow's TensorFlow training job operator, TFJob:
+the Kubeflow's [TensorFlow training job operator](/docs/components/training/tftraining), `TFJob`:
 
-1. Download `tfjob-example.yaml`:
+1. Download `tfjob-mnist-with-summaries.yaml`:
 
    ```shell
-   curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/tfjob-example.yaml --output tfjob-example.yaml
+   curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/kubeflow-training-operator/tfjob-mnist-with-summaries.yaml --output tfjob-mnist-with-summaries.yaml
    ```
 
-1. Edit `tfjob-example.yaml` and change the following line to use your Kubeflow
-   user profile namespace:
+1. Edit `tfjob-mnist-with-summaries.yaml` and change the following line to use your Kubeflow
+   user profile namespace (e.g. `kubeflow-user-example-com`):
 
-   ```shell
-   Namespace: kubeflow
+   ```
+   namespace: kubeflow
    ```
 
 1. (Optional) **Note:** Katib's experiments don't work with
@@ -457,35 +464,35 @@ the Kubeflow's TensorFlow training job operator, TFJob:
 1. Deploy the example:
 
    ```shell
-   kubectl apply -f tfjob-example.yaml
+   kubectl apply -f tfjob-mnist-with-summaries.yaml
    ```
 
 1. You can check the status of the experiment:
 
    ```shell
-   kubectl -n <YOUR_USER_PROFILE_NAMESPACE> get experiment tfjob-example -o yaml
+   kubectl -n kubeflow-user-example-com get experiment tfjob-mnist-with-summaries -o yaml
    ```
 
-Follow the steps as described for the _random algorithm example_
+Follow the steps as described for the _random search algorithm example_
 [above](#view-ui) to obtain the results of the experiment in the Katib UI.
 
 ### PyTorch example
 
 If you installed Katib as part of Kubeflow, you can’t run experiments in the
 Kubeflow namespace. Run the following commands to launch an experiment
-using Kubeflow's PyTorch training job operator, PyTorchJob:
+using Kubeflow's [PyTorch training job operator](/docs/components/training/pytorch), `PyTorchJob`:
 
-1. Download `pytorchjob-example.yaml`:
+1. Download `pytorchjob-mnist.yaml`:
 
    ```shell
-   curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/pytorchjob-example.yaml --output pytorchjob-example.yaml
+   curl https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/kubeflow-training-operator/pytorchjob-mnist.yaml --output pytorchjob-mnist.yaml
    ```
 
-1. Edit `pytorchjob-example.yaml` and change the following line to use your
-   Kubeflow user profile namespace:
+1. Edit `pytorchjob-mnist.yaml` and change the following line to use your
+   Kubeflow user profile namespace (e.g. `kubeflow-user-example-com`):
 
-   ```shell
-   Namespace: kubeflow
+   ```
+   namespace: kubeflow
    ```
 
 1. (Optional) **Note:** Katib's experiments don't work with
@@ -499,16 +506,16 @@ using Kubeflow's PyTorch training job operator, PyTorchJob:
 1. Deploy the example:
 
    ```shell
-   kubectl apply -f pytorchjob-example.yaml
+   kubectl apply -f pytorchjob-mnist.yaml
    ```
 
 1. You can check the status of the experiment:
 
    ```shell
-   kubectl -n <YOUR_USER_PROFILE_NAMESPACE> describe experiment pytorchjob-example
+   kubectl -n kubeflow-user-example-com describe experiment pytorchjob-mnist
    ```
 
-Follow the steps as described for the _random algorithm example_
+Follow the steps as described for the _random search algorithm example_
 [above](#view-ui) to get the results of the experiment in the Katib UI.
 
 ## Cleaning up
@@ -516,7 +523,7 @@ Follow the steps as described for the _random algorithm example_
 To remove Katib from your Kubernetes cluster run:
 
 ```shell
-make undeploy
+kubectl delete -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=master"
 ```
 
 ## Next steps

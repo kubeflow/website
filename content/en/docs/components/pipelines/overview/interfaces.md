@@ -1,5 +1,5 @@
 +++
-title = "Introduction to the Pipelines Interfaces"
+title = "Pipelines Interfaces"
 description = "The ways you can interact with the Kubeflow Pipelines system"
 weight = 20
                     
@@ -25,15 +25,15 @@ From the Kubeflow Pipelines UI you can perform the following tasks:
   that someone has shared with you.
 * Create an *experiment* to group one or more of your pipeline runs.
   See the [definition of an
-  experiment](/docs/components/pipelines/overview/concepts/experiment/).
+  experiment](/docs/components/pipelines/concepts/experiment/).
 * Create and start a *run* within the experiment. A run is a single execution
   of a pipeline. See the [definition of a
-  run](/docs/components/pipelines/overview/concepts/run/).
+  run](/docs/components/pipelines/concepts/run/).
 * Explore the configuration, graph, and output of your pipeline run.
 * Compare the results of one or more runs within an experiment.
 * Schedule runs by creating a recurring run.
 
-See the [quickstart guide](/docs/components/pipelines/pipelines-quickstart/) for more
+See the [quickstart guide](/docs/components/pipelines/overview/quickstart/) for more
 information about accessing the Kubeflow Pipelines UI and running the samples.
 
 When building a pipeline component, you can write out information for display

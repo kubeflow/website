@@ -1,5 +1,5 @@
 +++
-title = "Notebook Servers"
-description = "Using Jupyter notebooks in Kubeflow"
+title = "Kubeflow Notebooks"
+description = "Documentation for Kubeflow Notebooks"
 weight = 10
 +++

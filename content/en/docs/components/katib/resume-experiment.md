@@ -75,7 +75,7 @@ Learn more about Katib concepts
 in the [overview guide](/docs/components/katib/overview/#katib-concepts).
 
 Check the
-[`never-resume.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/resume-experiment/never-resume.yaml#L20)
+[`never-resume.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/resume-experiment/never-resume.yaml#L18)
 example for more details.
 
 ### Resume policy: LongRunning

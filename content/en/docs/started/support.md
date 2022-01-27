@@ -1,23 +1,47 @@
 +++
-title = "Support"
-description = "Where to go with questions and suggestions"
-weight = 110
+title = "Get Support"
+description = "Where to get support for Kubeflow"
+weight = 80
 +++
 
 This page describes the Kubeflow resources and support options that you can
 explore when you encounter a problem, have a question, or want to make a
 suggestion about Kubeflow.
 
+<a id="application-status"></a>
+## Application status
+
+Starting from the release of Kubeflow v1.0, the Kubeflow community
+attributes *stable status* to those applications and components that
+meet a defined level of stability, supportability, and upgradability.
+
+When you deploy Kubeflow to a Kubernetes cluster, your deployment includes a
+number of applications. Application versioning is independent of Kubeflow
+versioning. An application moves to version 1.0 when the application meets
+certain [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md)
+in terms of stability, upgradability, and the provision of services such as
+logging and monitoring.
+
+When an application moves to version 1.0, the Kubeflow community will
+decide whether to mark that version of the application as *stable* in the next
+major or minor release of Kubeflow.
+
+Application status indicators for Kubeflow:
+
+* **Stable** means that the application complies with the
+  [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md)
+  to reach application version 1.0, and that the Kubeflow community has deemed
+  the application stable for this release of Kubeflow.
+* **Beta** means that the application is working towards a version 1.0 release
+  and its maintainers have communicated a timeline for satisfying the criteria
+  for the stable status.
+* **Alpha** means that the application is in the early phases of
+  development and/or integration into Kubeflow.
+
+<a id="levels-of-support"></a>
 ## Levels of support
 
-Kubeflow applications offer various levels of support, based on the application
-status. To see the status of each application, refer to the 
-[Kubeflow application 
-matrix](/docs/reference/version-policy/#kubeflow-application-matrix) on the
-version policies page.
-
-The following table describes the level of support that you can expect based on
-the status of an application:
+The following table describes the level of support that you can expect based on the status of an application:
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -83,7 +107,7 @@ You can ask questions and make suggestions in the following places:
 * **Slack** for online chat and messaging. See details of Kubeflow's 
   [Slack workspace and channels](/docs/about/community/#slack).
 * **Kubeflow discuss** for email-based group discussion. Join the
-  [kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss) 
+  [kubeflow-discuss](/docs/about/community/#mailing-list)
   group.
 * **Kubeflow documentation** for overviews and how-to guides. In particular,
   refer to the following documents when troubleshooting a problem:
@@ -105,11 +129,10 @@ You can ask questions and make suggestions in the following places:
   * [kfctl command-line tool](https://github.com/kubeflow/kfctl/issues)
   * [Kustomize manifests](https://github.com/kubeflow/manifests/issues)
   * [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/issues)
-  * [Katib hyperparameter tuning](https://github.com/kubeflow/katib/issues)
+  * [Katib AutoML](https://github.com/kubeflow/katib/issues)
   * [Metadata](https://github.com/kubeflow/metadata/issues)
   * [Fairing notebook SDK](https://github.com/kubeflow/fairing/issues)
-  * [TensorFlow training (TFJob)](https://github.com/kubeflow/tf-operator/issues)
-  * [PyTorch training (PyTorchJob)](https://github.com/kubeflow/pytorch-operator/issues)
+  * [Kubeflow Training (TFJob, PyTorchJob, MXJob, XGBoostJob)](https://github.com/kubeflow/training-operator/issues)
   * [KFServing](https://github.com/kubeflow/kfserving/issues)
   * [Examples](https://github.com/kubeflow/examples/issues)
   * [Documentation](https://github.com/kubeflow/website/issues)
@@ -197,10 +220,9 @@ Keep up with Kubeflow news:
 
   * [Kubeflow core](https://github.com/kubeflow/kubeflow/releases)
   * [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/releases)
-  * [Katib hyperparameter tuning](https://github.com/kubeflow/katib/releases)
+  * [Katib AutoML](https://github.com/kubeflow/katib/releases)
   * [Metadata](https://github.com/kubeflow/metadata/releases)
   * [Fairing notebook SDK](https://github.com/kubeflow/fairing/releases)
-  * [TensorFlow training (TFJob)](https://github.com/kubeflow/tf-operator/releases)
-  * [PyTorch training (PyTorchJob)](https://github.com/kubeflow/pytorch-operator/releases)
+  * [Kubeflow Training Operator](https://github.com/kubeflow/training-operator/releases)
   * [KFServing](https://github.com/kubeflow/kfserving/releases)
   

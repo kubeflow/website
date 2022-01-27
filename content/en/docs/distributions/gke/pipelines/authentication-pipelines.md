@@ -79,7 +79,7 @@ You can also continue to use `use_gcp_secret` in a cluster with Workload Identit
 
 #### Cluster setup to use Workload Identity for Full Kubeflow
 
-Starting from Kubeflow 1.1, Kubeflow Pipelines [supports multi-user isolation](/docs/components/pipelines/multi-user/). Therefore, pipeline runs are executed in user namespaces using the `default-editor` KSA. The `default-editor` KSA is auto-bound to the GSA specified in the user profile, which defaults to a shared GSA `${KFNAME}-user@${PROJECT}.iam.gserviceaccount.com`.
+Starting from Kubeflow 1.1, Kubeflow Pipelines [supports multi-user isolation](/docs/components/pipelines/overview/multi-user/). Therefore, pipeline runs are executed in user namespaces using the `default-editor` KSA. The `default-editor` KSA is auto-bound to the GSA specified in the user profile, which defaults to a shared GSA `${KFNAME}-user@${PROJECT}.iam.gserviceaccount.com`.
 
 If you want to bind the `default-editor` KSA with a different GSA for a specific namespace, refer to the [In-cluster authentication to Google Cloud](/docs/gke/authentication/#in-cluster-authentication) guide.
 

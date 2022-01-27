@@ -1,13 +1,13 @@
 +++
 title = "Installing Kubeflow"
-description = "Overview of installation choices for Kubeflow"
+description = "Deployment options for Kubeflow"
 weight = 20
 
 +++
 
 Kubeflow is an end-to-end Machine Learning (ML) platform for Kubernetes, it provides components for each stage in the ML lifecycle, from exploration through to training and deployment.
 Operators can choose what is best for their users, there is no requirement to deploy every component.
-To read more about the components and architecture of Kubeflow, please see the <a href="/docs/started/kubeflow-overview/">Kubeflow Overview</a> page.
+To read more about the components and architecture of Kubeflow, please see the <a href="/docs/started/architecture/">Kubeflow Architecture</a> page.
 
 There are two pathways to get up and running with Kubeflow, you may either:
 1. Use a [packaged distribution](#packaged-distributions)
@@ -55,7 +55,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on Google Cloud</td>
         <td>Google Cloud</td>
         <td>Google Kubernetes Engine (GKE)</td>
-        <td>1.3</td>
+        <td>1.4</td>
         <td><a href="/docs/distributions/gke/">Docs</a></td>
         <td></td>
       </tr>
@@ -63,25 +63,25 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on IBM Cloud</td>
         <td>IBM Cloud</td>
         <td>IBM Cloud Kubernetes Service (IKS) </td>
-        <td>1.3</td>
+        <td>1.4</td>
         <td><a href="/docs/distributions/ibm/">Docs</a></td>
-        <td></td>
+        <td><a href="https://github.com/IBM/manifests/tree/v1.4.0">External Website</a></td>
       </tr>
       <tr>
         <td>Kubeflow on Nutanix</td>
         <td>Nutanix</td>
         <td>Nutanix Karbon</td>
-        <td>1.3</td>
+        <td>1.4</td>
         <td><a href="/docs/distributions/nutanix/">Docs</a></td>
         <td></td>
       </tr>
       <tr>
         <td>Kubeflow on OpenShift</td>
-        <td>IBM Cloud</td>
+        <td>Red Hat</td>
         <td>OpenShift</td>
         <td>1.3</td>
         <td><a href="/docs/distributions/openshift/">Docs</a></td>
-        <td></td>
+        <td><a href="https://opendatahub.io/docs/kubeflow.html">External Website</a></td>
       </tr>
       <tr>
         <td>Argoflow</td>
@@ -106,7 +106,7 @@ Packaged distributions are developed and supported by their respective maintaine
             AKS,
             GKE 
         </td>
-        <td>1.3</td>
+        <td>1.4</td>
         <td>
           <a href="/docs/distributions/ekf/">Docs</a>
         </td>
@@ -118,7 +118,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow Charmed Operators</td>
         <td>Canonical</td>
         <td>Conformant Kubernetes</td>
-        <td>1.3</td>
+        <td>1.4</td>
         <td><a href="/docs/distributions/charmed/">Docs</a></td>
         <td><a href="https://charmed-kubeflow.io/docs">External Website</a></td>
       </tr>

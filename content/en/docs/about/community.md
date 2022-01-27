@@ -1,101 +1,210 @@
 +++
-title = "Community"
+title =  "Community"
 description = "About the Kubeflow community"
-weight = 4
+weight = 10
 aliases = ["/docs/community/"]
-                    
 +++
 
-In the interest of fostering an open and welcoming environment, we as
-contributors and maintainers pledge to make participation in our project and
-our community a harassment-free experience for everyone, regardless of age, body
-size, disability, ethnicity, gender identity and expression, level of
-experience, education, socio-economic status, nationality, personal appearance,
-race, religion, or sexual identity and orientation.
+## Slack
 
-The Kubeflow community is guided by our [Code of
-Conduct](https://github.com/kubeflow/community/blob/master/CODE_OF_CONDUCT.md),
-which we encourage everybody to read before participating. We hold our leaders
-accountable for the guidelines in
-[this document](https://github.com/kubeflow/community/blob/master/INCLUSIVITY.md).
+Join the official Kubeflow Slack with [this invite link](https://join.slack.com/t/kubeflow/shared_invite/zt-n73pfj05-l206djXlXk5qdQKs4o1Zkg).
 
-## Welcome to all Google Summer of Code (GSoC) participants
+{{% alert title="Tip" color="info" %}}
+If the above invite has expired, please [raise an issue on the `kubeflow/website` repo](https://github.com/kubeflow/website/issues/new).
+{{% /alert %}}
 
-The Kubeflow community is delighted to be part of
-**Google Summer of Code 2020**. Community
-mentors look forward to working with students on their GSoC projects.
+The Kubeflow Slack workspace has many channels, here are a few examples:
 
-[Visit the Kubeflow GSoC page](/docs/about/gsoc/) to find handy information and
-links for GSoC students and mentors.
+| Topic | Slack Channel |
+| --- | --- |
+| General Discussion | [#general](https://kubeflow.slack.com/archives/C7REE0ETX)
+| Feature Requests | [#feature-requests](https://kubeflow.slack.com/archives/C01A7RYEYMB)
+| Job Postings | [#job-postings](https://kubeflow.slack.com/archives/CJ9PJE5FS)
+| Kubeflow - Pipelines | [#kubeflow-pipelines](https://kubeflow.slack.com/archives/CE10KS9M4)
+| Kubeflow - Notebooks | [#kubeflow-notebooks](https://kubeflow.slack.com/archives/CESP7FCQ7)
+| Kubeflow - KFServing | [#kubeflow-kfserving](https://kubeflow.slack.com/archives/CH6E58LNP)
+| Platform - AWS | [#platform-aws](https://kubeflow.slack.com/archives/CKBA5D0MU)
+| Platform - Azure | [#platform-azure](https://kubeflow.slack.com/archives/CUW6SLCPR)
+| Platform - GCP | [#platform-gcp](https://kubeflow.slack.com/archives/CKH7V1M7F)
+| Users - China | [#users-china](https://kubeflow.slack.com/archives/C93HYNM9C)
+| Users - Korea | [#users-korea](https://kubeflow.slack.com/archives/CKPCJB9AP)
+| Users - Oceania | [#users-oceania](https://kubeflow.slack.com/archives/C023ZN1R9FC)
 
-## Community discussions
+## Mailing List
 
-There are many ways to contribute! Join one of our communication channels,
-attend a community meeting, get to know the community, discuss updates, suggest
-exciting new integrations.
-
-### Community meetings
-
-[**Meeting calendar**](https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com&ctz=America%2FLos_Angeles) ([iCal version](https://calendar.google.com/calendar/ical/kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com/public/basic.ics)).
-
-[Meeting notes](http://bit.ly/kf-meeting-notes).
-
-If your group has a regular meeting, talk to
-[@ewilderj](https://github.com/ewilderj) about getting it added to the calendar.
-
-### Kubeflow community call
-
-The project team holds a weekly community call on Tuesdays. This call alternates
-weekly between US East/EMEA and US West/APAC friendly times. Joining the
-[kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss)
-mailing list will automatically send you calendar invitations for the meetings,
-or you can subscribe to the community meeting calendar above.
-
-Agenda, notes, and a reminder of the next call are sent to the kubeflow-discuss
-mailing list.
-
-<a id="slack"></a>
-
-### Slack community and channels
-
-The Kubeflow Slack workspace is
-[kubeflow.slack.com](https://kubeflow.slack.com/). To join, click this
-[**invitation to our Slack
-workspace**](https://kubeflow.slack.com/join/shared_invite/zt-n73pfj05-l206djXlXk5qdQKs4o1Zkg#/).
-
-The Kubeflow Slack workspace offers several channels. Here are a few examples:
-
-| Topic                                                                                     | Slack channel                                                        |
-| :---------------------------------------------------------------------------------------- | :------------------------------------------------------------------- |
-| General discussion                                                                        | [#general](https://kubeflow.slack.com/messages/C7REE0EHK)            |
-| Community meeting chat                                                                    | [#community](https://kubeflow.slack.com/messages/C8Q0QJYNB)          |
-| Documentation ([GitHub](https://github.com/kubeflow/website))                             | [#website](https://kubeflow.slack.com/messages/CA4M298LD)            |
-| Examples ([GitHub](https://github.com/kubeflow/examples))                                 | [#kubeflow-examples](https://kubeflow.slack.com/messages/CA30Q9A4U)  |
-| Google Summer of Code (GSoC)                                                              | [#gsoc](https://kubeflow.slack.com/messages/CUF1GCJ4Q)               |
-| KFServing ([GitHub](https://github.com/kubeflow/kfserving))                               | [#kfserving](https://kubeflow.slack.com/messages/CH6E58LNP)          |
-| On-prem SIG                                                                               | [#sig-onprem](https://kubeflow.slack.com/archives/C01C9NPD15H)       |
-| Pipelines ([GitHub](https://github.com/kubeflow/pipelines))                               | [#kubeflow-pipelines](https://kubeflow.slack.com/messages/CE10KS9M4) |
-| Product management                                                                        | [#product-management](https://kubeflow.slack.com/messages/CGP3DKT5E) |
-| WG AutoML ([GitHub](https://github.com/kubeflow/community/tree/master/wg-automl))         | [#wg-automl](https://kubeflow.slack.com/messages/C018PMV53NW)        |
-| WG Training ([GitHub](https://github.com/kubeflow/community/tree/master/wg-training))     | [#wg-training](https://kubeflow.slack.com/messages/C018N3M6QKB)      |
-
-### Mailing lists
-
-The primary mailing list (email group) is
-[kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss).
+The official Kubeflow mailing list is a Google Group called [kubeflow-discuss](https://groups.google.com/g/kubeflow-discuss).
 
 More detail about the Kubeflow mailing lists:
 
-| Topic              | Mailing list                                                                 |
-| :----------------- | :--------------------------------------------------------------------------- |
-| General discussion | [kubeflow-discuss](https://groups.google.com/forum/#!forum/kubeflow-discuss) |
+| Topic | Mailing List |
+| --- | --- |
+| General Discussion | [kubeflow-discuss](https://groups.google.com/g/kubeflow-discuss)
 
-## Who should consider contributing to Kubeflow?
+## Weekly Community Call
 
-- Folks who want to add support for other ML frameworks (e.g. PyTorch, XGBoost, scikit-learn)
-- Folks who want to bring more Kubernetes magic to ML (e.g. ISTIO integration for prediction)
-- Folks who want to make Kubeflow a richer ML platform (e.g. support for ML pipelines, hyperparameter tuning, neural architecture search)
-- Folks who want to tune Kubeflow for their particular Kubernetes distribution or Cloud
-- Folks who want to write tutorials or blog posts showing how to use Kubeflow to solve ML problems
+The Kubeflow community holds a public call every Tuesday, alternating between `US East/EMEA` and `US West/APAC` friendly times.
 
-For details on contributing please look at [the contributor's guide](/docs/about/contributing/).
+{{% alert title="Tip" color="info" %}}
+Joining the [kubeflow-discuss](https://groups.google.com/g/kubeflow-discuss) Google Group will automatically send a calendar invitation to your email address.
+{{% /alert %}}
+
+More detail about the Kubeflow weekly community call:
+
+| Description | Link |
+| --- | --- |
+| Meeting Notes | [Google Doc](http://bit.ly/kf-meeting-notes)
+| Call Recordings | [YouTube Playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5)
+| Community Calendar | [Google Calendar](https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com) and [iCal file](https://calendar.google.com/calendar/ical/kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com/public/basic.ics)
+| Community Calendar Management | [GitHub Repo](https://github.com/kubeflow/community/tree/master/calendar)
+
+## Blog
+
+The official Kubeflow blog is [found here](https://blog.kubeflow.org).
+
+{{% alert title="Tip" color="info" %}}
+To contribute an article for the blog, please raise an issue on the [kubeflow/community](https://github.com/kubeflow/community) GitHub repo.
+Note that articles are managed on the [kubeflow/blog](https://github.com/kubeflow/blog) GitHub repo.
+{{% /alert %}}
+
+## Kubeflow Trademark
+
+The Kubeflow trademark and logos are registered trademarks of Google, please review the [Kubeflow Brand Guidelines](https://github.com/kubeflow/community/blob/master/KUBEFLOW_BRAND_GUIDELINES.pdf) for more information.
+
+## Kubeflow Working Groups
+
+The Kubeflow project has a number of Working Groups (WGs) who each maintain some aspect of the Kubeflow project.
+
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Working Group</th>
+        <th>Maintained Components</th>
+      </tr>
+    </thead>
+  <tbody>
+      <!-- ======================= -->
+      <!-- AutoML Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">
+          <a href="https://github.com/kubeflow/community/tree/master/wg-automl">AutoML</a> 
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/katib">Katib</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Deployment Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">
+          <a href="https://github.com/kubeflow/community/tree/master/wg-deployment">Deployment</a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/kfctl">kfctl</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Manifests Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">
+          <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests</a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/manifests">Manifests Repository</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Notebooks Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="9" class="align-middle">
+          <a href="https://github.com/kubeflow/community/tree/master/wg-notebooks">Notebooks</a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/admission-webhook">Admission Webhook (PodDefaults)</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/centraldashboard">Central Dashboard</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/crud-web-apps/jupyter">Jupyter Web App</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/access-management">Kubeflow Access Management API (KFAM)</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller">Notebook Controller</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller">Profile Controller</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/tensorboard-controller">Tensorboard Controller</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/crud-web-apps/tensorboards">Tensorboard Web App</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/crud-web-apps/volumes">Volumes Web App</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Pipelines Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="2" class="align-middle">
+          <a href="https://github.com/kubeflow/community/tree/master/wg-pipelines">Pipelines</a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/pipelines">Kubeflow Pipelines</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/kfp-tekton">Kubeflow Pipelines on Tekton</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Serving Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">
+          <a href="https://github.com/kubeflow/community/tree/master/wg-serving">Serving</a>
+        </td>
+        <td>
+          <a href="https://github.com/kserve/kserve">KServe (formerly KFServing)</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Training Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">
+          <a href="https://github.com/kubeflow/community/tree/master/wg-training">Training</a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/training-operator">Kubeflow Training Operator</a>
+        </td>
+      </tr>
+  </tbody> 
+</table>
+</div>

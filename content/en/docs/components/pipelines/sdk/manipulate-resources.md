@@ -23,7 +23,7 @@ is rendered easy in the common case.
 
 This class represents a step of the pipeline which manipulates Kubernetes resources.
 It implements
-[Argo's resource template](https://github.com/argoproj/argo/tree/master/examples#kubernetes-resources).
+[Argo's resource template](https://github.com/argoproj/argo-workflows/tree/master/examples#kubernetes-resources).
 
 This feature allows users to perform some action (`get`, `create`, `apply`,
 `delete`, `replace`, `patch`) on Kubernetes resources.

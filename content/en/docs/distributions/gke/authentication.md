@@ -105,7 +105,7 @@ You can find more details on workload identity in the [GKE documentation](https:
 
 ### Authentication from Kubeflow Pipelines
 
-Starting from Kubeflow v1.1, Kubeflow Pipelines [supports multi-user isolation](/docs/components/pipelines/multi-user/). Therefore, pipeline runs are executed in user namespaces also using the `default-editor` KSA.
+Starting from Kubeflow v1.1, Kubeflow Pipelines [supports multi-user isolation](/docs/components/pipelines/overview/multi-user/). Therefore, pipeline runs are executed in user namespaces also using the `default-editor` KSA.
 
 Additionally, the Kubeflow Pipelines UI, visualization, and TensorBoard server instances are deployed in your user namespace using the `default-editor` KSA. Therefore, to [visualize results in the Pipelines UI](/docs/components/pipelines/sdk/output-viewer/), they can fetch artifacts in Google Cloud Storage using permissions of the same GSA you configured for this namespace.
 

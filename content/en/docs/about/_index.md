@@ -1,5 +1,5 @@
 +++
 title = "About"
-description = "Information about Kubeflow software, community, docs, and events."
+description = "About Kubeflow and its community"
 weight = 10
 +++

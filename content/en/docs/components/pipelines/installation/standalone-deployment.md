@@ -1,7 +1,7 @@
 +++
-title = "Kubeflow Pipelines Standalone Deployment"
-description = "Instructions to deploy Kubeflow Pipelines standalone to a cluster"
-weight = 20
+title = "Standalone Deployment"
+description = "Information about Standalone Deployment of Kubeflow Pipelines"
+weight = 30
 +++
 
 As an alternative to deploying Kubeflow Pipelines (KFP) as part of the
@@ -40,7 +40,7 @@ Use the [gcloud container clusters create command](https://cloud.google.com/sdk/
 
 CLUSTER_NAME="kubeflow-pipelines-standalone"
 ZONE="us-central1-a"
-MACHINE_TYPE="n1-standard-2" # A machine with 2 CPUs and 7.50GB memory
+MACHINE_TYPE="e2-standard-2" # A machine with 2 CPUs and 8GB memory.
 SCOPES="cloud-platform" # This scope is needed for running some pipeline samples. Read the warning below for its security implication
 
 gcloud container clusters create $CLUSTER_NAME \
@@ -48,6 +48,8 @@ gcloud container clusters create $CLUSTER_NAME \
      --machine-type $MACHINE_TYPE \
      --scopes $SCOPES
 ```
+
+**Note**: `e2-standard-2` doesn't support GPU. You can choose machine types that meet your need by referring to guidance in [Cloud Machine families](http://cloud/compute/docs/machine-types).
 
 **Warning**: Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](/docs/gke/authentication/#authentication-from-kubeflow-pipelines).
 
@@ -98,10 +100,11 @@ See the Google Kubernetes Engine (GKE) guide to
      **Note**: `kubectl apply -k` accepts local paths and paths that are formatted as [hashicorp/go-getter URLs](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md#url-format). While the paths in the preceding commands look like URLs, the paths are not valid URLs.
 
      {{% alert title="Deprecation Notice" color="warning" %}}
-Kubeflow Pipelines default to the docker executor, but docker executor will be
-deprecated on Kubernetes 1.20+.
-To prepare for the deprecation, refer to [Argo Workflow Executors](/docs/components/pipelines/installation/choose-executor)
-for migration instructions.
+Kubeflow Pipelines will change default executor from Docker to Emissary starting KFP backend v1.8, docker executor has been
+deprecated on Kubernetes 1.20+. 
+
+For Kubeflow Pipelines before v1.8, configure to use Emissary executor by
+referring to [Argo Workflow Executors](/docs/components/pipelines/installation/choose-executor).
      {{% /alert %}}
 
 1. Get the public URL for the Kubeflow Pipelines UI and use it to access the Kubeflow Pipelines UI:

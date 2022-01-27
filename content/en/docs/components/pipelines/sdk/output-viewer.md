@@ -57,7 +57,7 @@ See the [sample description and links below](#example-source).
 <a id="v2-visualization"></a>
 ## v2 SDK: Use SDK visualization APIs
 
-For KFP [SDK v2 and v2 compatible mode](/docs/components/pipelines/sdk/v2/), you can use 
+For KFP [SDK v2 and v2 compatible mode](/docs/components/pipelines/sdk-v2/), you can use 
 convenient SDK APIs and system artifact types for metrics visualization. Currently KFP
 supports ROC Curve, Confusion Matrix and Scalar Metrics formats. Full pipeline example
 of all metrics visualizations can be found in [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py). 
@@ -65,7 +65,7 @@ of all metrics visualizations can be found in [metrics_visualization_v2.py](http
 ### Requirements
 
 * Use Kubeflow Pipelines v1.7.0 or above: [upgrade Kubeflow Pipelines](/docs/components/pipelines/installation/standalone-deployment/#upgrading-kubeflow-pipelines).
-* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when [compile and run your pipelines](/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline).
+* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when [compile and run your pipelines](/docs/components/pipelines/sdk-v2/build-pipeline/#compile-and-run-your-pipeline).
 * Make sure to use the latest environment kustomize manifest [pipelines/manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml).
 
 
@@ -73,12 +73,12 @@ For a usage guide of each metric visualization output, refer to sections below:
 
 ### Confusion Matrix
 
-Define `Output[ClassificationMetrics]` parameter in your component function, then
+Define `Output[ClassificationMetrics]` argument in your component function, then
 output Confusion Matrix data using API 
 `log_confusion_matrix(self, categories: List[str], matrix: List[List[int]])`. `categories`
 provides a list of names for each label, `matrix` provides prediction performance for corresponding
 label. There are multiple APIs you can use for logging Confusion Matrix. Refer to 
-[io_types.py](https://github.com/kubeflow/pipelines/blob/b7084f29068a2c46832b3b02e9ffe1a002eb13cb/sdk/python/kfp/dsl/io_types.py#L241) for detail.
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L255-L256) for detail.
 
 Refer to example below for logging Confusion Matrix:
 
@@ -119,13 +119,13 @@ Visualization of Confusion Matrix is as below:
 
 ### ROC Curve 
 
-Define `Output[ClassificationMetrics]` parameter in your component function, then
+Define `Output[ClassificationMetrics]` argument in your component function, then
 output ROC Curve data using API 
 `log_roc_curve(self, fpr: List[float], tpr: List[float], threshold: List[float])`. 
 `fpr` defines a list of False Positive Rate values, `tpr` defines a list of 
 True Positive Rate values, `threshold` indicates the level of sensitivity and specificity 
 of this probability curve. There are multiple APIs you can use for logging ROC Curve. Refer to 
-[io_types.py](https://github.com/kubeflow/pipelines/blob/b7084f29068a2c46832b3b02e9ffe1a002eb13cb/sdk/python/kfp/dsl/io_types.py#L151) for detail.
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L163-L164) for detail.
 
 ```
 @component(
@@ -164,15 +164,14 @@ Visualization of ROC Curve is as below:
 
 ### Scalar Metrics
 
-Define `Output[Metrics]` parameter in your component function, then
+Define `Output[Metrics]` argument in your component function, then
 output Scalar data using API `log_metric(self, metric: str, value: float)`. 
 You can define any amount of metric by calling this API multiple times.
 `metric` defines the name of metric, `value` is the value of this metric. Refer to 
-[io_types.py](https://github.com/kubeflow/pipelines/blob/b7084f29068a2c46832b3b02e9ffe1a002eb13cb/sdk/python/kfp/dsl/io_types.py#L112) 
+[artifacts_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L124) 
 for detail.
 
 ```
-
 @component(
     packages_to_install=['sklearn'],
     base_image='python:3.9',
@@ -225,12 +224,59 @@ Visualization of Scalar Metrics is as below:
   alt="V2 Scalar Metrics visualization"
   class="mt-3 mb-3 border border-info rounded">
 
+
+### Markdown
+
+Define `Output[Markdown]` argument in your component function, then
+write Markdown file to path `<artifact_argument_name>.path`. 
+Refer to
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L420-L428) 
+for detail.
+
+```
+@component
+def markdown_visualization(markdown_artifact: Output[Markdown]):
+    markdown_content = '## Hello world \n\n Markdown content'
+    with open(markdown_artifact.path, 'w') as f:
+        f.write(markdown_content)
+```
+
+<img src="/docs/images/pipelines/v2/markdown-visualization.png" 
+  alt="Markdown visualization in v2 compatible mode"
+  class="mt-3 mb-3 border border-info rounded">
+
+
+
+### Single HTML file
+
+You can specify an HTML file that your component creates, and the Kubeflow Pipelines UI renders that HTML in the output page. The HTML file must be self-contained, with no references to other files in the filesystem. The HTML file can contain absolute references to files on the web. Content running inside the HTML file is sandboxed in an iframe and cannot communicate with the Kubeflow Pipelines UI.
+
+Define `Output[HTML]` argument in your component function, then
+write HTML file to path `<artifact_argument_name>.path`. 
+Refer to
+[artifact_types.py](https://github.com/kubeflow/pipelines/blob/55a2fb5c20011b01945c9867ddff0d39e9db1964/sdk/python/kfp/v2/components/types/artifact_types.py#L409-L417) 
+for detail.
+
+
+```
+@component
+def html_visualization(html_artifact: Output[HTML]):
+    html_content = '<!DOCTYPE html><html><body><h1>Hello world</h1></body></html>'
+    with open(html_artifact.path, 'w') as f:
+        f.write(html_content)
+```
+
+<img src="/docs/images/taxi-tip-analysis-step-output-webapp-popped-out.png" 
+  alt="Web app output from a pipeline component"
+  class="mt-3 mb-3 border border-info rounded">
+
+
 ## Source of v2 examples
 
 The metric visualization in V2 or V2 compatible mode depends on SDK visualization APIs,
 refer to [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py)
 for a complete pipeline example. Follow instruction
-[Compile and run your pipeline](/docs/components/pipelines/sdk/v2/build-pipeline/#compile-and-run-your-pipeline)
+[Compile and run your pipeline](/docs/components/pipelines/sdk-v2/build-pipeline/#compile-and-run-your-pipeline)
 to compile in V2 compatible mode.
 
 ## v1 SDK: Writing out metadata for the output viewers
@@ -689,7 +735,7 @@ pre-installed when you deploy Kubeflow.
 You can run the sample by selecting 
 **[Sample] ML - TFX - Taxi Tip Prediction Model Trainer** from the 
 Kubeflow Pipelines UI. For help getting started with the UI, follow the 
-[Kubeflow Pipelines quickstart](/docs/components/pipelines/pipelines-quickstart/).
+[Kubeflow Pipelines quickstart](/docs/components/pipelines/overview/quickstart/).
 
 <!--- TODO: Will replace the tfx cab with tfx oss when it is ready.-->
 The pipeline uses a number of prebuilt, reusable components, including:

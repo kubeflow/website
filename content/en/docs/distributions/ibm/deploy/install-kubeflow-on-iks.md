@@ -4,7 +4,7 @@ description = "Instructions for deploying Kubeflow on IBM Cloud Kubernetes Servi
 weight = 6
 +++
 
-This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud Kubernetes Service (IKS).
+This guide describes how to use the kustomize + kubectl to deploy Kubeflow on IBM Cloud Kubernetes Service (IKS).
 
 ## Prerequisites
 
@@ -36,7 +36,8 @@ This guide describes how to use the kfctl binary to deploy Kubeflow on IBM Cloud
 
 * kustomize (version 3.2.0) ([download link](https://github.com/kubernetes-sigs/kustomize/releases/tag/v3.2.0))
 
-* [Python 3](https://www.python.org/downloads/) with passlib and bcrypt packages installed
+* [Python 3](https://www.python.org/downloads/) with [passlib](https://pypi.org/project/passlib/)
+  and [bcrypt](https://pypi.org/project/bcrypt/) packages installed
 
 ### Storage setup for a **Classic** IBM Cloud Kubernetes cluster
 
@@ -77,7 +78,7 @@ It is required by certain sample jobs/pipelines where multiple pods write result
 A job or a pipeline can also write to a common object storage like `minio`, so the absence of this feature is 
 not a blocker for working with Kubeflow.
 Examples of jobs/pipelines that will not work, are: 
-[Distributed training with tf-operator](https://github.com/kubeflow/tf-operator/tree/master/examples/v1/mnist_with_summaries)
+[Distributed training with Kubeflow TFJob](https://github.com/kubeflow/training-operator/tree/master/examples/tensorflow/mnist_with_summaries)
 
 If you are on `vpc-gen2` and still need RWX, you may try [portworx enterprise product](https://portworx.com/products/features/).
 To set it up on IBM Cloud use the [portworx install with IBM Cloud](https://docs.portworx.com/portworx-install-with-kubernetes/cloud/ibm/) guide. 
@@ -96,13 +97,13 @@ Using kustomize together with kubectl to deploy kubeflow:
 1. Clone the manifest repo as follows:
 
    ```shell
-   git clone https://github.com/IBM/manifests.git -b v1.3.1 ibm-manifests-131
+   git clone https://github.com/IBM/manifests.git -b v1.4.0 ibm-manifests-140
    ```
 
-2. Change directory to `ibm-manifests-131`:
+2. Change directory to `ibm-manifests-140`:
 
    ```shell
-   cd ibm-manifests-131
+   cd ibm-manifests-140
    ```
 
 3. Generate password for default user: `user@example.com`
@@ -111,7 +112,7 @@ Using kustomize together with kubectl to deploy kubeflow:
    ```
    Type your password and press `<Enter>` after you see `Password:` prompt. Copy the hash code for next step.
 
-4. Edit `distributions/stacks/ibm/application/dex-auth/custom-env.yaml` and fill the relevant field
+4. Edit `dist/stacks/ibm/application/dex-auth/custom-env.yaml` and fill the relevant field
    with the hash code from previous step:
    ```
    staticPasswords:
@@ -150,15 +151,15 @@ For authentication,  IBM Cloud uses [AppID](https://cloud.ibm.com/catalog/servic
 1. Follow the [Creating an App ID service instance on IBM Cloud](https://cloud.ibm.com/catalog/services/app-id) guide to learn about Kubeflow authentication. 
 You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=appid-getting-started) with different authentication methods.
 
-2. Follow the [Registering your app](https://cloud.ibm.com/docs/appid?topic=appid-app#app-register) section of the App ID guide
-to create an application with type _regularwebapp_ under the provisioned AppID
-instance. Make sure the _scope_ contains _email_. Then retrieve the following
-configuration parameters from your AppID:
+2. Follow the [Registering your app](https://cloud.ibm.com/docs/appid?topic=appid-app#app-register)
+   section of the App ID guide to create an application with type
+   _regularwebapp_ under the provisioned AppID instance. Make sure the _scope_
+   contains _email_. Then retrieve the following configuration parameters from your AppID:
     * `clientId`
     * `secret`
     * `oAuthServerUrl`
 
-    You will be using these information in the subsequent sections.  
+   You will be using these information in the subsequent sections.
   
 3. Register the Kubeflow OIDC redirect page. The Kubeflow `REDIRECT_URL` URL is
    `[http|https]://<kubeflow-FQDN>/login/oidc`, depends on if you enable the HTTPS or not.
@@ -167,55 +168,71 @@ configuration parameters from your AppID:
    [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-a-loadbalancer)
    and use the **EXTERNAL_IP** for your `<kubeflow-FQDN>`. Or use `ibmcloud ks nlb-dns` command
    to map the **EXTERNAL_IP** to the generated FQDN for your cluster. In this case, you use the
-   generated FQDN as `kubeflow-FQDN`.
+   generated FQDN as `kubeflow-FQDN`. If you enable HTTPS, you shall use generated FQDN.
 
 4. Then, you need to place the Kubeflow OIDC `REDIRECT_URL` under **Manage Authentication** > **Authentication settings** > **Add web redirect URLs**.
   
-<img src="/docs/images/ibm/appid-redirect-settings.png" 
-  alt="APP ID Redirect Settings"
-  class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/images/ibm/appid-redirect-settings.png" alt="APP ID Redirect Settings" class="mt-3 mb-3 border border-info rounded">
 
+   Example:
+   `https://my-kubeflow-442dbba0442be6c8c50f31ed96b00601-0000.sjc04.containers.appdomain.cloud/login/oidc`
 ### Deploy: Using kustomize together with kubectl
 
 1. Clone the manifest repo as follows:
 
    ```shell
-   git clone https://github.com/IBM/manifests.git -b v1.3.1 ibm-manifests-131
+   git clone https://github.com/IBM/manifests.git -b v1.4.0 ibm-manifests-140
    ```
 
-2. Change directory to `ibm-manifests-131`:
+2. Change directory to `ibm-manifests-140`:
 
    ```shell
-   cd ibm-manifests-131
+   cd ibm-manifests-140
    ```
 
-3. Update the `distributions/stacks/ibm/application/oidc-authservice-appid/params.env`
-   and `distributions/stacks/ibm/application/oidc-authservice-appid/secret_params.env`
+3. Update the `dist/stacks/ibm/application/oidc-authservice-appid/params.env`
    with values collected in [Prereq](#prerequisites-1) section.
    You will need the following values:
-    * `<oAuthServerUrl>` - fill in the value of oAuthServerUrl
-    * `<clientId>` - fill in the value of clientId
-    * `<secret>` - fill in the value of secret
+    * `<oAuthServerUrl>` - replace `<APP_ID_oauthServerUrl>`
     * `<kubeflow-FQDN>` - fill in the FQDN of Kubeflow, if you don't know yet, just give a dummy one like
       `localhost`. Then change it after you got one. Or get default FQDN of your cluster by this command:
       `ibmcloud ks nlb-dns ls -c <cluster name>` (replace `<cluter name>` with your cluster name)
 
+   Example:
+   ```
+   OIDC_PROVIDER=https://us-south.appid.cloud.ibm.com/oauth/v4/f341ff8b-a088-497a-same-5da4628df7fd
+   REDIRECT_URL=https://my-kubeflow-442dbba0442be6c8c50f31ed96b00601-0000.sjc04.containers.appdomain.cloud/login/oidc
+   OIDC_AUTH_URL=https://us-south.appid.cloud.ibm.com/oauth/v4/f341ff8b-a088-497a-same-5da4628df7fd/authorization
+   ```
 
-4. You can apply the `kustomize` file in `iks-multi` folder:
+4. Update the `dist/stacks/ibm/application/oidc-authservice-appid/secret_params.env`
+   with values collected in [Prereq](#prerequisites-1) section.
+   You will need the following values:
+    * `<clientId>` - replace the `<APP_ID_clientId>`
+    * `<secret>` - replace the `<APP_ID_secret>`
+
+   Example:
+   ```
+   CLIENT_SECRET=NjNhZDA3ODAtM2I3MCSECRETLTkwN2QtNDdhYmU5ZGIyMTBl
+   CLIENT_ID=52b3e496-8888-8888-ABC9-c0da309cdf52
+   ```
+
+5. You can apply the `kustomize` file in `iks-multi` folder:
 
    ```bash
    while ! kustomize build iks-multi | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
    ```
 
-5. If at any point the values change and you have to change them, you can either patch the
+6. If at any point the values change and you have to change them, you can either patch the
    [configmap](#patch-configmap) and [secret](#patch-secret) or change the content in the
    files and apply the kustomize again. You will need to restart authservice with
-   `kubectl rollout restart statefulset authservice -n istio-system` .
+   `kubectl delete pod -l app-authservice -n istio-system` .
 
    To apply just the `oidc-authservice-appid` you can use this command:
 
    ```bash
-   kustomize build distributions/stacks/ibm/application/oidc-authservice-appid | kubectl apply -f -
+   kustomize build dist/stacks/ibm/application/oidc-authservice-appid | kubectl apply -f -
+   kubectl delete pod -l app-authservice -n istio-system
    ```
 
 ### Verify mutli-user installation
@@ -223,7 +240,7 @@ configuration parameters from your AppID:
 Check the pod `authservice-0` is in running state in namespace `istio-system`:
 
 ```SHELL
-kubectl get pod authservice-0 -n istio-system
+kubectl get pod -l app=authservice -n istio-system
 ```
 
 ### Extra network setup requirement for **vpc-gen2** clusters only
@@ -264,28 +281,24 @@ Then, you will have the required DNS name as Kubeflow FQDN to enable the OIDC fl
 
 
 1. Follow the step [Adding redirect URIs](https://cloud.ibm.com/docs/appid?topic=appid-managing-idp#add-redirect-uri)
-to fill a URL for AppID to redirect to Kubeflow. The URL should look like `https://<kubeflow-FQDN>/login/oidc`.
+   to fill a URL for AppID to redirect to Kubeflow. The URL should look like `https://<kubeflow-FQDN>/login/oidc`.
 
 2. Update the secret `appid-application-configuration` with the updated Kubeflow FQDN to replace `<kubeflow-FQDN>` in below command:
 
    ```SHELL
    export REDIRECT_URL=https://<kubeflow-FQDN>/login/oidc
-   export PATCH=$(printf '{"data": {"REDIRECT_URL": "%s"}}' $REDIRECT_URL)
+   export PATCH=$(printf '{"data": {"REDIRECT_URL": "%s"}}' "$REDIRECT_URL")
 
-   kubectl patch configmap appid-application-configuration -n istio-system -p=$PATCH
+   kubectl patch configmap/oidc-authservice-parameters -n istio-system -p="$PATCH"
    ```
 
 3. Restart the pod `authservice-0`:
 
    ```shell
-   kubectl rollout restart statefulset authservice -n istio-system
+   kubectl delete pod -l app=authservice -n istio-system
    ```
 
 Then, visit `https://<kubeflow-FQDN>/`. The page should redirect you to AppID for authentication.
-
-## Additional information
-
-You can find general information about Kubeflow configuration in the guide to [configuring Kubeflow with kfctl and kustomize](/docs/methods/kfctl/kustomize/).
 
 ## Troubleshooting
 
@@ -310,5 +323,5 @@ There is a small delay, usually ~5 mins, for above commands to take effect.
 You might see the `authservice-0` pod taking some time to restart. If that happens you can delete to pod which will kick off restart from kubernetes reconciler.
 
 ```bash
-kubectl delete po authservice -n istio-system
+kubectl delete pod -l app=authservice -n istio-system
 ```

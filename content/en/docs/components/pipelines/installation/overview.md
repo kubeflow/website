@@ -1,5 +1,5 @@
 +++
-title = "Installation Options for Kubeflow Pipelines"
+title = "Installation Options"
 description = "Overview of the ways to deploy Kubeflow Pipelines"
 weight = 10
                     
@@ -123,6 +123,8 @@ Kubeflow Pipelines updates.
 | 1.0.2                  | 0.2.5                      |
 | 1.1.0                  | 1.0.0                      |
 | 1.2.0                  | 1.0.4                      |
+| 1.3.0                  | 1.5.0                      |
+| 1.4.0                  | 1.7.0                      |
 
 Note: Google Cloud, AWS, and IBM Cloud have supported Kubeflow Pipelines 1.0.0 with multi-user separation. Other platforms might not be up-to-date for now, refer to [this GitHub issue](https://github.com/kubeflow/manifests/issues/1364#issuecomment-668415871) for status.
 
@@ -194,6 +196,7 @@ Google Cloud Integrations
   * A Kubeflow Pipelines public endpoint with auth support is **auto-configured** for you.
   * (Optional) You can choose to persist your data in Google Cloud managed storage services (Cloud SQL and Cloud Storage).
   * You can [authenticate to Google Cloud with the Compute Engine default service account](/docs/gke/pipelines/authentication-pipelines/#compute-engine-default-service-account). However, this method may not be suitable if you need workload permission separation.
+  * You can deploy AI Platform Pipelines on both public and private GKE clusters as long as the cluster [has sufficient resources for AI Platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs/configure-gke-cluster#ensure).
 
 Notes on specific features
 :

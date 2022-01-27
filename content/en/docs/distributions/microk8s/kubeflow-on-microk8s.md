@@ -20,12 +20,12 @@ Alternatively, you can install MicroK8s on a Linux appliance with [Multipass](ht
 
 To get Kubeflow running using MicroK8s, you'll need to install MicroK8s, enable basic services, and then enable Kubeflow.
 
-**Note:** You need MicroK8s version 1.18 and above to enable and run Kubeflow.
+**Note:** You need MicroK8s version 1.18, 1.19, 1.20 or 1.21 to enable and run Kubeflow. The latest version (1.22) is not currently supported by Kubeflow itself.
 
 1. Install MicroK8s by running the following command:
 
     ```shell
-    sudo snap install microk8s --classic
+    sudo snap install microk8s --classic --channel=1.21/stable
     ```
 
 2. Add yourself (current user) to admin group:
