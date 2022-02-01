@@ -1,7 +1,7 @@
 +++
 title = "Kubeflow Versioning Policies"
 description = "Versioning policies and status of Kubeflow applications and other components"
-weight = 05
+weight = "05"
                     
 +++
 

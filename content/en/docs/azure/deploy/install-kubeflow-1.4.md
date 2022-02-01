@@ -5,49 +5,28 @@ description = "Instructions for deploying Kubeflow 1.4 on Azure"
 weight = 4
                     
 +++
-This guide describes how to use the kfctl binary to
+This guide describes how to use the kustomize to
 deploy Kubeflow on Azure.
 
 ## Prerequisites
 
-- Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux)
+- Install [kustomize version 3.2.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/v3.2.0) 
+  - Check installed version ```kustomize version```
 - Install and configure the [Azure Command Line Interface (Az)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
   - Log in with ```az login```
+- Create Azure Resource Group and Cluster
+  - You need to have Azure Resource Group and AKS cluster setup. 
 - (Optional) Install Docker
   - For Windows and WSL: [Guide](https://docs.docker.com/docker-for-windows/wsl/)
   - For other OS: [Docker Desktop](https://docs.docker.com/docker-hub/)
 
-You do not need to have an existing Azure Resource Group or Cluster for AKS (Azure Kubernetes Service). You can create a cluster in the deployment process.
-
 ## Understanding the deployment process
 
-The deployment process is controlled by the following commands:
+The deployment process is split into two ways:
 
-* **build** - (Optional) Creates configuration files defining the various
-  resources in your deployment. You only need to run `kfctl build` if you want
-  to edit the resources before running `kfctl apply`.
-* **apply** - Creates or updates the resources.
-* **delete** - Deletes the resources.
-
-### App layout
-
-Your Kubeflow application directory **${KF_DIR}** contains the following files and
-directories:
-
-* **${CONFIG_FILE}** is a YAML file that defines configurations related to your
-  Kubeflow deployment.
-
-  * This file is a copy of the GitHub-based configuration YAML file that
-    you used when deploying Kubeflow. For example, {{% azure/config-uri-azure %}}.
-  * When you run `kfctl apply` or `kfctl build`, kfctl creates
-    a local version of the configuration file, `${CONFIG_FILE}`,
-    which you can further customize if necessary.
-
-* **kustomize** is a directory that contains the kustomize packages for Kubeflow applications.
-  * The directory is created when you run `kfctl build` or `kfctl apply`.
-  * You can customize the Kubernetes resources (modify the manifests and run `kfctl apply` again).
-
-If you experience any issues running these scripts, see the [troubleshooting guidance](/docs/azure/troubleshooting-azure) for more information.
+* **Install with a single command** - Entire Kubeflow is installed using a single command. You only need to run `while ! kustomize build example | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done` if you want
+  to build all the components of Kubeflow [Guide](https://github.com/kubeflow/manifests#install-with-a-single-command)
+* **Install individual components** - Installs each individuals components of Kubeflow seperately. [Guide](https://github.com/kubeflow/manifests#install-individual-components)
 
 ## Azure setup
 
