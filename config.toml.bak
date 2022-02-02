@@ -11,7 +11,7 @@ enableRobotsTXT = true
 # Docsy: Gives values to .Lastmod etc.
 enableGitInfo = true
 
-# Docsy: Language settings 
+# Docsy: Language settings
 contentDir = "content/en"
 defaultContentLanguage = "en"
 # Tell Hugo not to include the /en/ element in the URL path for English docs:

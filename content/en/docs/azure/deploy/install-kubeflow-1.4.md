@@ -14,13 +14,13 @@ deploy Kubeflow on Azure.
   - Check installed version ```kustomize version```
 - Install and configure the [Azure Command Line Interface (Az)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
   - Log in with ```az login```
-- Create Azure Resource Group and Cluster
-  - You need to have Azure Resource Group and AKS cluster setup. 
 - (Optional) Install Docker
   - For Windows and WSL: [Guide](https://docs.docker.com/docker-for-windows/wsl/)
   - For other OS: [Docker Desktop](https://docs.docker.com/docker-hub/)
 
-## Understanding the deployment process
+You do not need to have an existing Azure Resource Group or Cluster for AKS (Azure Kubernetes Service). You can create a cluster in the deployment process.
+
+## Deployment
 
 The deployment process is split into two ways:
 
@@ -30,7 +30,9 @@ The deployment process is split into two ways:
 
 ## Azure setup
 
-### To log into Azure from the command line interface, run the following commands
+### Azure Login
+
+To log into Azure from the command line interface, run the following commands
 
   ```
   az login
@@ -60,71 +62,38 @@ Example variables:
 
 - `NAME=KubeTestCluster`
 - `AGENT_SIZE=Standard_D4s_v3`
-- `AGENT_COUNT=2`
+- `AGENT_COUNT=3`
 - `RESOURCE_GROUP_NAME=KubeTest`
 
 **NOTE**:  If you are using a GPU based AKS cluster (For example: AGENT_SIZE=Standard_NC6), you also need to [install the NVidia drivers](https://docs.microsoft.com/azure/aks/gpu-cluster#install-nvidia-drivers) on the cluster nodes before you can use GPUs with Kubeflow.
 
 ## Kubeflow installation
 
-Run the following commands to set up and deploy Kubeflow.
+After creating resource group and AKS, run the following commands
 
-1. Create user credentials. You only need to run this command once.
-
-    ```
-    az aks get-credentials -n <NAME> -g <RESOURCE_GROUP_NAME>
-    ```
-
-1. [Install Istio in Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install?pivots=client-operating-system-linux)
-
-1. Download the kfctl {{% kf-latest-version %}} release from the
-  [Kubeflow releases
-  page](https://github.com/kubeflow/kfctl/releases/tag/{{% kf-latest-version %}}).
-
-1. Unpack the tar ball:
+1. Create user credentials. You only need to run this command once, it will update kubeconfig file to current cluster that you have setup .
 
     ```
-    tar -xvf kfctl_{{% kf-latest-version %}}_<platform>.tar.gz
+    az aks get-credentials --resource-group <RESOURCE_GROUP_NAME> --name <CLUSTER_NAME> --admin
     ```
 
-1. Run the following commands to set up and deploy Kubeflow. The code below includes an optional command to add the
-   binary kfctl to your path. If you don’t add the binary to your path, you must use the full path to the kfctl binary each time you run it.
+1. Download the kubectl v1.20.5 release from the
+  [kubectl page](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux).
+
+1. Check installed version:
 
     ```
-    # The following command is optional, to make kfctl binary easier to use.
-    export PATH=$PATH:<path to where kfctl was unpacked>
-
-    # Set KF_NAME to the name of your Kubeflow deployment. This also becomes the
-    # name of the directory containing your configuration.
-    # For example, your deployment name can be 'my-kubeflow' or 'kf-test'.
-    export KF_NAME=<your choice of name for the Kubeflow deployment>
-
-    # Set the path to the base directory where you want to store one or more
-    # Kubeflow deployments. For example, /opt/.
-    # Then set the Kubeflow application directory for this deployment.
-    export BASE_DIR=<path to a base directory>
-    export KF_DIR=${BASE_DIR}/${KF_NAME}
-
-    # Set the configuration file to use, such as the file specified below:
-    export CONFIG_URI="{{% azure/config-uri-azure %}}"
-
-    # Generate and deploy Kubeflow:
-    mkdir -p ${KF_DIR}
-    cd ${KF_DIR}
-    kfctl apply -V -f ${CONFIG_URI}
+    kubectl version --client
     ```
 
-    * **${KF_NAME}** - The name of your Kubeflow deployment.
-      If you want a custom deployment name, specify that name here.
-      For example,  `my-kubeflow` or `kf-test`.
-      The value of KF_NAME must consist of lower case alphanumeric characters or
-      '-', and must start and end with an alphanumeric character.
-      The value of this variable cannot be greater than 25 characters. It must
-      contain just a name, not a directory path.
-      This value also becomes the name of the directory where your Kubeflow
-      configurations are stored, that is, the Kubeflow application directory.
+1. Run the following commands to set up and deploy Kubeflow. 
+    ```
+    git clone https://github.com/kubeflow/manifests
 
-    * **${KF_DIR}** - The full path to your Kubeflow application directory.
+    cd manifests
+
+    while ! kustomize build example | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
+    ```
 
 2. Run this command to check that the resources have been deployed correctly in namespace `kubeflow`:
 
@@ -132,20 +101,164 @@ Run the following commands to set up and deploy Kubeflow.
       kubectl get all -n kubeflow
       ```  
 
-3. Open the Kubeflow Dashboard
+3. Change destination rule
 
-    The default installation does not create an external endpoint but you can use port-forwarding to visit your cluster.
-    Run the following command:
+    The default installation comes with destinationrule `spec.trafficPolicy: ISTIO_MUTUAL` , change this to `DISABLE`
 
      ```
-     kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
+     kubectl edit destinationrule -n kubeflow ml-pipeline
+
+     # Modify tls.mode (last line) from ISTIO_MUTUAL to DISABLE after modifying we should have
+     # spec:
+     #    host:ml-pipeline...
+     #    trafficPolicy:
+     #      tls:
+     #        mode: DISABLE
      ```
 
-     Next, open `http://localhost:8080` in your browser.
+    Also, change this:
+    ```
+    kubectl edit destinationrule -n kubeflow ml-pipeline-ui
 
-    To open the dashboard to a public IP address, you should first implement a solution to prevent unauthorized access.
-    You can read more about Azure authentication options from [Access Control for Azure Deployment](/docs/azure/authentication).
+     # Modify tls.mode (last line) from ISTIO_MUTUAL to DISABLE after modifying we should have
+     # spec:
+     #    host:ml-pipeline...
+     #    trafficPolicy:
+     #      tls:
+     #        mode: DISABLE
+    ```
 
-## Additional information
+    Update Istio Gateway to expose port 443 with HTTPS and make port 80 redirect to 443:
+    ```
+    kubectl edit -n kubeflow gateways.networking.istio.io kubeflow-gateway
+    ```
 
-  You can find general information about Kubeflow configuration in the guide to [configuring Kubeflow with kfctl and kustomize](/docs/other-guides/kustomize/).
+    The Gateway spec should look like the following:
+    ```
+    apiVersion: networking.istio.io/v1alpha3
+    kind: Gateway
+    metadata:
+        annotations: ..
+        creationTimeStamp: ..
+        generation: ..
+        name: ..
+        namespace: ..
+        uid: ..
+        resourceversion: ..
+        selflink: ..
+    spec:
+      selector:
+        istio: ingressgateway
+      servers:
+      - hosts:
+        - '*'
+        port:
+            name: http
+            number: 80
+            protocol: HTTP
+    ```
+    After this we append lines at the end of the Gateway spec. These lines begin with `tls` as shown. The final Gateway spec after appending lines should look as follows:
+
+    ```
+    apiVersion: networking.istio.io/v1alpha3
+    kind: Gateway
+    metadata:
+        annotations: ..
+        creationTimeStamp: ..
+        generation: ..
+        name: ..
+        namespace: ..
+        uid: ..
+        resourceversion: ..
+        selflink: ..
+    spec:
+      selector:
+        istio: ingressgateway
+      servers:
+      - hosts:
+        - '*'
+        port:
+            name: http
+            number: 80
+            protocol: HTTP
+        # Upgrade HTTP to HTTPS
+        tls:
+            httpsRedirect: true
+      - hosts:
+        - '*'
+        port:
+            name: https
+            number: 443
+            protocol: HTTPS
+        tls:
+            mode: SIMPLE
+            privateKey: /etc/istio/ingressgateway-certs/tls.key
+            serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
+    ```
+7. Expose load balancer
+
+    To expose Kubeflow with a load balancer service, change the type of the istio-ingressgateway service to LoadBalancer.
+    ```
+    kubectl patch service -n istio-system istio-ingressgateway -p '{"spec": {"type": "LoadBalancer"}}'
+    ```
+
+    After that, obtain the LoadBalancer IP address (this may take more than 15 minutes)
+    ```
+    kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0]}'
+    ```
+    create a self-signed certificate with cert-manager:
+
+    `nano certificate.yaml`:
+    ```
+    apiVersion: cert-manager.io/v1alpha2
+    kind: Certificate
+    metadata:
+        name: istio-ingressgateway-certs
+        namespace: istio-system
+    spec:
+        commonName: istio-ingressgateway.istio-system.svc
+        # Use ipAddresses if your LoadBalancer issues an IP address
+        ipAddresses:
+        - <LoadBalancer IP>
+        isCA: true
+        issuerRef:
+            kind: ClusterIssuer
+            name: kubeflow-self-signing-issuer
+        secretName: istio-ingressgateway-certs
+
+    ```
+    After creating certificate apply it:
+    ```
+    kubectl apply -f certificate.yaml -n istio-system
+    ```
+
+7. Change container runtime from docker to pns
+
+    Open configmap `workflow-controller-configmap` in the `Kubeflow` namespace and change the `containerRuntimeExecutor` from `docker` to `pns`.
+
+8. Update argo access
+
+    Create and apply this file:
+    `nano argo-edit.yaml`
+
+    ```
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      labels:
+        rbac.authorization.kubeflow.org/aggregate-to-kubeflow-edit: "true"
+      name: kubeflow-argo-access
+    rules:
+      - apiGroups:
+          - argoproj.io
+        resources:
+          - 'workflows'
+        verbs:
+          - get
+    ```
+    
+
+    Apply it using `kubectl apply -f argo-edit.yaml`.
+    And now navigate to loadbalancer IP and login to Kubeflow using default `email : user@example.com` and `password : 12341234`
+
+
