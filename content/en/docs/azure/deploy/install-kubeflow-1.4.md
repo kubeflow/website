@@ -267,6 +267,6 @@ After creating resource group and AKS, run the following commands
     kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0]}'
     ```
 
-    Next, open <loadbalancerip> in your browser. Login to Kubeflow using default `email : user@example.com` and `password : 12341234`
+    Next, open `<loadbalancerip>` in your browser. Login to Kubeflow using default `email : user@example.com` and `password : 12341234`
 
 
