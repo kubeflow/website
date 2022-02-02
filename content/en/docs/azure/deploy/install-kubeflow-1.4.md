@@ -259,6 +259,14 @@ After creating resource group and AKS, run the following commands
     
 
     Apply it using `kubectl apply -f argo-edit.yaml`.
-    And now navigate to loadbalancer IP and login to Kubeflow using default `email : user@example.com` and `password : 12341234`
+
+9. Open the Kubeflow Dashboard
+
+    Run the following command:
+    ```
+    kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0]}'
+    ```
+
+    Next, open <loadbalancerip> in your browser. Login to Kubeflow using default `email : user@example.com` and `password : 12341234`
 
 
