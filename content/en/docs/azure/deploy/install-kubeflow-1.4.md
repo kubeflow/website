@@ -262,7 +262,7 @@ After creating resource group and AKS, run the following commands
 
 9. Open the Kubeflow Dashboard
 
-    Run the following command:
+    Run the following command to get dashboard IP:
     ```
     kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0]}'
     ```
