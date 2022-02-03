@@ -260,7 +260,7 @@ After creating resource group and AKS, run the following commands
 
     Apply it using `kubectl apply -f argo-edit.yaml`.
 
-9. Steps to open the Kubeflow Dashboard 
+9. Steps to open the Kubeflow Dashboard  
 
     Run the following command to get dashboard IP:
     ```
