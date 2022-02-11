@@ -117,10 +117,10 @@ Kubeflow {{% kf-latest-version %}} provides automatic profile creation:
    Modify the kustomize/centraldashboard/base/parama.env to set the registration variable to false
 
    ```
-   clusterDomain=cluster.local
-   userid-header=kubeflow-userid
-   userid-prefix=
-   registration-flow=false
+   CD_CLUSTER_DOMAIN=cluster.local
+   CD_USERID_HEADER=kubeflow-userid
+   CD_USERID_PREFIX=
+   CD_REGISTRATION_FLOW=false
    ```
 
   - When an authenticated user logs into the system and visits the central
