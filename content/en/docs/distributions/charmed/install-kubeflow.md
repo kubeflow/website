@@ -1,10 +1,10 @@
 +++
-title = "Installing Kubeflow with Charmed Operators"
+title = "Charmed Kubeflow deployment guide"
 description = "Instructions for Kubeflow deployment with Kubeflow Charmed Operators"
 weight = 10
 +++
 
-This guide outlines the steps you need to install and deploy Kubeflow with [Charmed Operators](https://charmed-kubeflow.io/docs) and [Juju](https://juju.is/docs/kubernetes) on any conformant Kubernetes, including [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/), [Amazon Elastic Kubernetes Service (EKS)](https://docs.aws.amazon.com/eks/index.html), [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/), [OpenShift](https://docs.openshift.com), and any [kubeadm](https://kubernetes.io/docs/reference/setup-tools/kubeadm/)-deployed cluster (provided that you have access to it via `kubectl`). 
+Get up and running with Charmed Kubeflow in half an hour or less. This guide outlines the steps you need to install and deploy Kubeflow with [Charmed Operators](https://charmed-kubeflow.io/docs) and [Juju](https://juju.is/docs/kubernetes) on any conformant Kubernetes, including [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/), [Amazon Elastic Kubernetes Service (EKS)](https://docs.aws.amazon.com/eks/index.html), [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/), [OpenShift](https://docs.openshift.com), and any [kubeadm](https://kubernetes.io/docs/reference/setup-tools/kubeadm/)-deployed cluster (provided that you have access to it via `kubectl`). 
 
 #### 1. Install the Juju client
 
@@ -65,7 +65,7 @@ You can list your models with the `juju models` command.
 
 {{% alert color="warning" %}}
 To deploy the full Kubeflow bundle, you'll need at least 50Gb available of disk, 14Gb of RAM, and 2 CPUs available in your machine/VM.
-If you have fewer resources, deploy kubeflow-lite or kubeflow-edge.
+If you have fewer resources, deploy kubeflow-lite.
 {{% /alert %}}
 
 Once you have a model, you can simply `juju deploy` any of the provided [Kubeflow bundles](https://charmed-kubeflow.io/docs/operators-and-bundles) into your cluster. For the _Kubeflow lite_ bundle, run:
@@ -106,3 +106,7 @@ For more documentation, visit the [Charmed Kubeflow website](https://charmed-kub
 #### Having issues?
 
 If you have any issues or questions, feel free to create a GitHub issue [here](https://github.com/canonical/bundle-kubeflow/issues).
+
+#### Need 24/7 support?
+
+You can get 24/7 support, expert professional services and managed service backed by an SLA from Canonical, the team behind Charmed Kubeflow. [Contact us](https://charmed-kubeflow.io/#get-in-touch) now to learn more.
