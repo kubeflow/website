@@ -1,5 +1,6 @@
 approvers:
-  - RFMVasconcelos
-  - knkski
-reviewers:
+  - grobbie
   - DomFleischmann
+reviewers:
+  - ca-scribner
+  - DnPlas
