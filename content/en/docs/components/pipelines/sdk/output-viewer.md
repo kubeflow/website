@@ -65,7 +65,7 @@ of all metrics visualizations can be found in [metrics_visualization_v2.py](http
 ### Requirements
 
 * Use Kubeflow Pipelines v1.7.0 or above: [upgrade Kubeflow Pipelines](/docs/components/pipelines/installation/standalone-deployment/#upgrading-kubeflow-pipelines).
-* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when [compile and run your pipelines](/docs/components/pipelines/sdk-v2/build-pipeline/#compile-and-run-your-pipeline).
+* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when you [compile and run your pipelines](/docs/components/pipelines/sdk-v2/build-pipeline/#compile-and-run-your-pipeline).
 * Make sure to use the latest environment kustomize manifest [pipelines/manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml).
 
 
