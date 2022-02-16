@@ -27,7 +27,7 @@ currently does not check the input value against the schema when you submit a pi
 future. 
 
 There is a set of [core types](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/types.py) defined in the 
-pipeline SDK and you can use these core types or define your custom types. 
+Pipelines SDK and you can use these core types or define your custom types. 
 
 In the component YAML, types are specified as a string or a dictionary with the OpenAPI Schema, as illustrated below.
 "*component a*" expects an input with Integer type and emits three outputs with the type GCSPath, customized_type and GCRPath. 
