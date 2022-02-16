@@ -7,7 +7,7 @@ weight = 40
 {{% alpha-status
 feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
 
-Starting from Kubeflow Pipelines 0.4, Kubeflow Pipelines supports step caching capabilities in both standalone deployment and AI platform Pipelines.
+Starting from Kubeflow Pipelines 0.4, Kubeflow Pipelines supports step caching capabilities in both standalone deployment and AI Platform Pipelines.
 
 ## Before you start
 
