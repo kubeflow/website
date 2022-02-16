@@ -20,7 +20,7 @@ Pipeline root represents an artifact repository where Kubeflow Pipelines stores 
 This feature supports MinIO, S3, GCS natively using [Go CDK](https://github.com/google/go-cloud). Artifacts can be more accessible in S3 and GCS when integrating Kubeflow Pipelines with other systems.
 
 **Note:** For MinIO, you can't change the MinIO instance. Kubeflow Pipelines can only use the Minio instance deployed with itself.
-(Please thumb ub this [GitHub Issue](https://github.com/kubeflow/pipelines/issues/6517) if you need to specify the Minio instance)
+(Please thumb up this [GitHub Issue](https://github.com/kubeflow/pipelines/issues/6517) if you need to specify the Minio instance.)
 
 ## How to configure pipeline root authentication 
 #### MinIO
