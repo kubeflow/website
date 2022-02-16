@@ -255,7 +255,7 @@ The following sections describe how to pass parameters by value and by file.
 
 When you use the Kubeflow Pipelines SDK to convert your Python function to a
 pipeline component, the Kubeflow Pipelines SDK uses the function's interface
-to define the interface of your component in the following ways.
+to define the interface of your component in the following ways:
 
 *   Some arguments define input parameters.
 *   Some arguments define output parameters.
