@@ -84,6 +84,8 @@ make delete-cluster
 
 Note, after deleting the management cluster, all the managed Google Cloud
 resources will be kept. You will be responsible for managing them by yourself.
+If you want to delete the managed Google Cloud resources, make sure to delete resources in the `${KF_PROJECT}` namespace in the management cluster first.
+You can learn more about the `${KF_PROJECT}` namespace in `gcp-blueprints/kubeflow/kcc` folder.
 
 You can create a management cluster to manage them again if you apply the same
 Config Connector resources. Refer to [Managing and deleting resources - Acquiring an existing resource](https://cloud.google.com/config-connector/docs/how-to/managing-deleting-resources#acquiring_an_existing_resource).
