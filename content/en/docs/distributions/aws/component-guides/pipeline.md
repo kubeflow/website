@@ -1,7 +1,7 @@
 +++
 title = "Kubeflow Pipelines on AWS"
 description = "Kubeflow Pipelines on Amazon EKS"
-weight = 50
+weight = 20
 +++
 
 ## Authenticate Kubeflow Pipeline using SDK inside cluster

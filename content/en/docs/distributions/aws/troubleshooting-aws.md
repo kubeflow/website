@@ -1,7 +1,7 @@
 +++
-title = "Troubleshooting Kubeflow on Amazon EKS"
+title = "Troubleshooting Kubeflow on AWS"
 description = "Diagnose and fix issues you may encounter in your Kubeflow deployment"
-weight = 100
+weight = 30
 +++
 
 For general errors related to Kubernetes and Amazon EKS, please refer to the [Amazon EKS User Guide](https://docs.aws.amazon.com/eks/latest/userguide/troubleshooting.html) troubleshooting section.

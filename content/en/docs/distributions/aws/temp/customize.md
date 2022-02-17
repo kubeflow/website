@@ -1,5 +1,5 @@
 +++
-title = "Customizing Kubeflow on AWS"
+title = "Customization Guides for Kubeflow on AWS"
 description = "Tailoring a deployment of Kubeflow on AWS and Amazon EKS"
 weight = 10
 +++
