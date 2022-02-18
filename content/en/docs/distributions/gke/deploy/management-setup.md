@@ -58,15 +58,19 @@ The management cluster manifests live in GitHub repository [kubeflow/gcp-bluepri
     cd management
     ```
 
+{{% alert title="Tip" color="info" %}}
+  To continuously manage the management cluster, you are recommended to check
+  the management configuration directory into source control. For example, `MGMT_DIR=~/gcp-blueprints/management/`.
+{{% /alert %}}
+
 ### Configure Environment Variables
 
 Fill in environment variables in `gcp-blueprints/management/env.sh` as followed:
 
 ```bash
 MGMT_PROJECT=<the project where you deploy your management cluster>
-MGMT_DIR=<path to your management cluster configuration directory>
 MGMT_NAME=<name of your management cluster>
-LOCATION=<location of your management cluster>
+LOCATION=<location of your management cluster, use either us-central1 or us-east1>
 ```
 
 And run:
@@ -79,15 +83,8 @@ This guide assumes the following convention:
 
 * The `${MGMT_PROJECT}` environment variable contains the Google Cloud project
   ID where management cluster is deployed to.
-* The `${MGMT_DIR}` environment variable contains the path to
-  your management directory, which holds your management cluster configuration
-  files. For example, `~/gcp-blueprints/management/`. You can choose any path
-  you would like for the directory `${MGMT_DIR}`.
-
-  To continuously manage the management cluster, you are recommended to check
-  the management configuration directory into source control.
- * `${MGMT_NAME}` is the cluster name of your management cluster and the prefix for other Google Cloud resources created in the deployment process. Management cluster
-   should be a different cluster from your Kubeflow cluster.
+* `${MGMT_NAME}` is the cluster name of your management cluster and the prefix for other Google Cloud resources created in the deployment process. Management cluster
+  should be a different cluster from your Kubeflow cluster.
 
    Note, `${MGMT_NAME}` should
    * start with a lowercase letter
@@ -114,21 +111,17 @@ current values are by running the following command:
   kpt fn eval -i list-setters:v0.1 ./manifests
   ```
 
+### Prerequisite for Config Controller
+
+In order to deploy Google Cloud Services like Kubernetes resources, we need to create a management cluster with Config Controller installed. Follow [Before you begin](https://cloud.google.com/anthos-config-management/docs/how-to/config-controller-setup#before_you_begin) to create default network if not existed. Make sure to use `${MGMT_PROJECT}` for PROJECT_ID.
+
 ### Deploy Management Cluster
 
 1. Deploy the management cluster by applying cluster resources:
 
     ```bash
-    make apply-cluster
+    make create-cluster
     ```
-
-    Optionally, you can verify the management cluster spec before applying it by:
-
-    ```bash
-    make hydrate-cluster
-    ```
-
-    and look into `./manifests/build/cluster` folder.
 
 1. Create a kubectl __context__ for the management cluster, it will be named `${MGMT_NAME}`:
 
@@ -136,78 +129,62 @@ current values are by running the following command:
     make create-context
     ```
 
-1. Install the Cloud Config Connector:
+1. Grant permission to Config Controller service account:
 
     ```bash
-    make apply-kcc
+    make grant-owner-permission
     ```
 
-    This step:
+    Config Controller has created a default service account, this step grants owner permission to this service account in order to 
+    allow Config Controller to manage Google Cloud resources. Refer to [Config Controller setup](https://cloud.google.com/anthos-config-management/docs/how-to/config-controller-setup#set_up).
 
-    * Installs Config Connector in your cluster, and
-    * Creates the Google Cloud service account **${MGMT_NAME}-cnrm-system@${MGMT_PROJECT}.iam.gserviceaccount.com**.
-
-    Optionally, you can verify the Config Connector installation before applying it by:
-
-    ```bash
-    make hydrate-kcc
-    ```
-
-    and check `./manifests/build/cnrm-install-*` folders.
 
 ## Understanding the deployment process
 
 This section gives you more details about the configuration and
 deployment process, so that you can customize your management cluster if necessary.
 
-### Management cluster folder layout
+### Config Controller
 
-Your management cluster directory contains the following files and directories:
+Management cluster is a tool for managing Google Cloud services like KRM, for example: GKE container cluster, MySQL database, etc. 
+And you can use one Managment cluster for multiple Kubeflow clusters, across multiple Google Cloud projects.
+This capability is offered by [Config Connector](https://cloud.google.com/config-connector/docs/how-to/getting-started). 
+
+Starting with Kubeflow 1.5, we leveraged the managed version of Config Connector, which is called [Config Controller](https://cloud.google.com/anthos-config-management/docs/concepts/config-controller-overview). 
+Therefore, The Management cluster is the Config Controller cluster deployed using [Config Controller setup](https://cloud.google.com/anthos-config-management/docs/how-to/config-controller-setup) process.
+Note that you can create only one Management cluster within a Google Cloud project, and you usually need just one Management cluster.
+
+
+
+### Management cluster layout
+
+Inside the Config Controller, we manange Google Cloud resources in namespace mode. That means one namespace is responsible to manage Google Cloud resources deployed to the Google Cloud project with the same name. Your management cluster contains following namespaces:
+
+1. config-control
+1. namespace with the same name as your Kubeflow clusters' Google Cloud project name
+
+`config-control` is the default namespace which is installed while creating Management cluster, you have granted the default service account (like `service-<management-project-id>@gcp-sa-yakima.iam.gserviceaccount.com`)
+within this project to manage Config Connector. It is the prerequisite for managing resources in other Google Cloud projects.
+
+`namespace with the same name as your Kubeflow clusters' Google Cloud project name` is the resource pool for Kubeflow cluster's Google Cloud project.
+For each Kubeflow Google Cloud project, you will have service account with pattern `kcc-<kf-project-name>@<management-project-name>.iam.gserviceaccount.com` in `config-control` namespace, and it needs to have owner permission to `${KF_PROJECT}`, you will perform this step during [Deploy Kubeflow cluster](/docs/gke/deploy/deploy-cli/). After setup, your Google Cloud resources in Kubeflow cluster project will be deployed to the namespace with name `${KF_PROJECT}` in the management cluster.
+
+Your management cluster directory contains the following file:
 
 * **Makefile** is a file that defines rules to automate deployment process. You can refer to [GNU make documentation](https://www.gnu.org/software/make/manual/make.html#Introduction) for more introduction. The Makefile we provide is designed to be user maintainable. You are encouraged to read, edit and maintain it to suit your own deployment customization needs.
 
-* **manifests/cluster** is a kustomize package defining all the Google Cloud resources needed using [gcloud beta anthos apply](https://cloud.google.com/sdk/gcloud/reference/beta/anthos/apply). It can apply some Google Cloud resource types using the same resource definition for Config Connector. You can edit this kustomize package in order to customize the Google Cloud resources for your purposes.
+### Debug
 
-* **manifests/cnrm-install-\*** folders contain kustomize packages for Google Cloud services, iam policies and Kubernetes resources to install Config Connector following [Advanced installation options for Config Connector](https://cloud.google.com/config-connector/docs/how-to/advanced-install).
-
-* **manifests/build** is a directory that will contain the hydrated manifests outputted by
-  the `make` rules.
-
-
-### Customizing the installation
-
-Once you understand the folder layout, you can create [Kustomize](https://kustomize.io/) `overlays` folder in corresponding directory, for example `manifests/cnrm-install/iam`, so you can define patches in `overlays` folder. Then use overlays in `kustomization.yaml` file.
-
-The following tips help you customize, verify and re-apply them to your cluster.
-
-Some useful links for Kustomize:
-
-* [patchesStrategicMerge](https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/) let you patch any fields of an existing resource using a partial resource definition.
-* Reference for all Kustomize features: https://kubectl.docs.kubernetes.io/references/kustomize/.
-
-To get detailed reference for Google Cloud resources, refer to
-[Config Connector resources reference](https://cloud.google.com/config-connector/docs/reference/overview).
-
-To verify whether hydrated resources match your expectation:
+If you encounter issue creating Google Cloud resources using Config Controller. You can list resources in the `${KF_PROJECT}` namespace of management cluster to learn about the detail.
+Learn more with [Monitoring your resources](https://cloud.google.com/config-connector/docs/how-to/monitoring-your-resources)
 
 ```bash
-make hydrate-cluster
-# or
-make hydrate-kcc
+kubectl --context=${MGMT_NAME} get all -n ${KF_PROJECT}
+
+# If you want to check the service account creation status
+kubectl --context=${MGMT_NAME} get IAMServiceAccount -n ${KF_PROJECT}
+kubectl --context=${MGMT_NAME} get IAMServiceAccount <service-account-name> -n ${KF_PROJECT} -oyaml
 ```
-
-and refer to hydrated resources in `./manifests/build/*`.
-
-To apply your customizations:
-
-```bash
-make apply-cluster
-# or
-make apply-kcc
-```
-
-Note that, some fields in some resources may be immutable. You may need to
-manually delete them before applying again.
 
 
 ### FAQs
