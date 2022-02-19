@@ -4,9 +4,9 @@ description = "AWS-optimized Notebooks based on AWS Deep Learning Containers"
 weight = 10
 +++
 
-## AWS Optimized Notebook Images
+## AWS-optimized Notebook images
 
-Installing Kubeflow on AWS using this guide will include AWS-optimized Kubeflow Notebook Images as the default options in the notebook server.
+Installing Kubeflow on AWS includes AWS-optimized Kubeflow Notebook images as default options for a Jupyter Notebook server.
 
 These images are based on [AWS Deep Learning Containers](https://docs.aws.amazon.com/deep-learning-containers/latest/devguide/what-is-dlc.html). AWS Deep Learning Containers provide optimized environments with popular machine learning frameworks such as TensorFlow and PyTorch, and are available in the Amazon Elastic Container Registry (Amazon ECR). For more information on AWS Deep Learning Container options, see [Available Deep Learning Containers Images](https://github.com/aws/deep-learning-containers/blob/master/available_images.md).
 
