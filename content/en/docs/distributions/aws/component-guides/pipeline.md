@@ -1,6 +1,6 @@
 +++
 title = "Kubeflow Pipelines on AWS"
-description = "Kubeflow Pipelines on Amazon EKS"
+description = "Get started with Kubeflow Pipelines on Amazon EKS"
 weight = 20
 +++
 

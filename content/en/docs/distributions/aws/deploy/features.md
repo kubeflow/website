@@ -1,5 +1,6 @@
 +++
 title = "AWS Features for Kubeflow"
+description = "Get to know the benefits of using Kubeflow with AWS service intergrations"
 weight = 10
 +++
 

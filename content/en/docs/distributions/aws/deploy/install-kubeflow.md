@@ -1,6 +1,6 @@
 +++
 title = "Install Kubeflow"
-description = "Instructions for deploying Kubeflow on Amazon EKS"
+description = "Get started and explore options for deploying Kubeflow on Amazon EKS"
 weight = 20
 +++
 

@@ -1,6 +1,6 @@
 +++
 title = "Uninstall Kubeflow"
-description = "Instructions for uninstalling Kubeflow"
+description = "Delete Kubeflow deployments and Amazon EKS clusters"
 weight = 30
 +++
 

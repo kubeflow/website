@@ -1,6 +1,6 @@
 +++
 title = "Optimized Jupyter Notebooks on AWS"
-description = "AWS-optimized Notebooks based on AWS Deep Learning Containers"
+description = "Work in AWS-optimized Notebooks based on AWS Deep Learning Containers"
 weight = 10
 +++
 

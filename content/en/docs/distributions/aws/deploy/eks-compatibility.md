@@ -1,6 +1,6 @@
 +++
 title = "Amazon EKS and Kubeflow Compatibility"
-description = "Compatibility matrix for Kubeflow on AWS"
+description = "Check compatibility between Amazon EKS and Kubeflow versions"
 weight = 25
 +++
 
