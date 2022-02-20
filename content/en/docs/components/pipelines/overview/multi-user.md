@@ -106,10 +106,10 @@ for more details.
 Detailed documentation for the Kubeflow Pipelines SDK can be found in the
 [Kubeflow Pipelines SDK Reference](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html).
 
-### When using REST API or generated python API client
+### When using REST API or generated Python API client
 
 Similarly, when calling [REST API endpoints](/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/)
-or using [the generated python API client](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.server_api.html),
+or using [the generated Python API client](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.server_api.html),
 namespace argument is required for experiment APIs. Note that namespace is
 referred to using a resource reference. The resource reference **type** is
 `NAMESPACE` and resource reference **key id** is the namespace name.
