@@ -5,10 +5,9 @@ weight = 2
 
 +++
 
-The Models web app is an abstraction that provides users a graphical UI to
-manage their Model servers, by performing CRUD operations on
-top of `InferenceService`
-[CustomResources](https://github.com/kubeflow/kfserving/tree/master/pkg/apis/serving).
+The Models web app is responsible for allowing the user to manipulate the Model Servers in their Kubeflow cluster. To achieve this it provides a user friendly way to handle the lifecycle of `InferenceService` CRs.
+
+The web app currently works with `v1beta1` versions of `InferenceService` objects.
 
 The web app is also exposing information from the underlying Knative resources,
 like Conditions from the Knative Configurations, Route and Revisions as well as
@@ -16,12 +15,7 @@ live logs from the Model server pod.
 
 ## Installation and Access
 
-The web app's manifests are part of the upstream [KFServing
-manifests](https://github.com/kubeflow/kfserving/tree/master/config/web-app).
-This means that the necessary resources will be deployed when installing
-KFServing. KFServing manifests for the [0.6 release](https://github.com/kubeflow/kfserving/tree/release-0.6)
-come with two flavors, _standalone_ and _kubeflow_. The web app's
-manifests are part of both installation options.
+Refer https://github.com/kserve/models-web-app/#development for installation
 
 The web app includes the following resources:
 * A `Deployment` for running the backend server, and serving the static frontend files
@@ -150,7 +144,7 @@ The main page of the app provides a list of all the InferenceServices that are
 deployed in the selected Namespace. The frontend periodically polls the backend
 for the latest state of InferenceServices.
 
-<img src="../pics/webapp-list.png" alt="Models web app main page">
+<img src="./pics/webapp-list.png" alt="Models web app main page">
 
 ### Creating
 
@@ -161,7 +155,7 @@ Note that the backend will override the provided `.metadata.namespace` field of
 the submitted object, to prevent users from trying to create InferenceServices
 in other namespaces.
 
-<img src="../pics/webapp-new.png" alt="Models web app create page">
+<img src="./pics/webapp-new.png" alt="Models web app create page">
 
 ### Deleting
 
@@ -188,7 +182,7 @@ view a more detailed summary of the CR's state. In this page users can inspect:
 4. Logs from the created Pods (LOGS)
 4. The YAML file as is in the K8s API Server (YAML)
 
-<img src="../pics/webapp-overview.png" alt="Models web app overview page">
+<img src="./pics/webapp-overview.png" alt="Models web app overview page">
 
 {{% alert title="Note" color="info" %}}
 To gather the logs the backend will:
@@ -287,7 +281,7 @@ After applying these YAMLs, based on your installation mode, and ensuring the
 Grafana instance is exposed under `/grafana` the web app will show the
 `METRICS` tab.
 
-<img src="../pics/webapp-metrics.png" alt="Models web app metrics page">
+<img src="./pics/webapp-metrics.png" alt="Models web app metrics page">
 
 ## Configurations
 
