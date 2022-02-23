@@ -133,6 +133,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Moved KFServing
 /docs/components/serving/kfserving/         /docs/components/kfserving
 
+# Moved KServe/KFserving Docs to External Addons
+/docs/components/kfserving/ /docs/external-add-ons/kserve
+
 # Moved MicroK8s to distributions
 /docs/started/workstation/kubeflow-on-microk8s    /docs/distributions/microk8s/kubeflow-on-microk8s
 
