@@ -9,10 +9,10 @@ transferred to an independent [<u>KServe GitHub organization</u>](https://github
 Group leads.
 
 
-This doc explains how to migrate existing inference services from KFServing to KServe without downtime.
+This doc explains how to migrate existing InferenceServices from KFServing to KServe without downtime.
 
 !!! note 
-    The migration job will by default delete the leftover KFServing installation after migrating the inference services from
+    The migration job will by default delete the leftover KFServing installation after migrating the InferenceServices from
     `serving.kubeflow.org` to `serving.kserve.io`.
 
 ### Migrating from Kubeflow-based KFServing
@@ -43,7 +43,7 @@ This doc explains how to migrate existing inference services from KFServing to K
     ```
 
 4. Update the models web app to use the new InferenceService API group `serving.kserve.io`
-    - Change the deployment image to `kserve/models-web-app:v0.7.0-rc0`
+    - Change the deployment image to `kserve/models-web-app:v0.7.0`
     - This is a temporary fix until the next Kubeflow release includes these changes
 
     ```bash
