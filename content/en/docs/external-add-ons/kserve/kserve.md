@@ -35,7 +35,7 @@ Our strong community contributions help KServe to grow. We have a Technical Stee
 KServe works with Kubeflow 1.5. Kustomize installation files are [located in the manifests repo](https://github.com/kubeflow/manifests/tree/master/contrib/kserve).
 Check the examples running KServe on Istio/Dex in the [`KServe/KServe`](https://github.com/KServe/KServe/tree/master/docs/samples/istio-dex) repository. For installation on major cloud providers with Kubeflow, follow their installation docs.
  
-Kubeflow 1.5 includes KServe v0.7 which promoted the core InferenceService API from v1alpha2 to v1beta1 stable and added v1alpha1 version of Multi-Model Serving. Additionally, LFAI Trusted AI Projects on AI Fairness, AI Explainability and Adversarial Robustness have been integrated in KServe, and we have made KServe available on OpenShift as well. To know more, please read the [release blog](https://kserve.github.io/website/blog/articles/2021-10-11-KServe-0.7-release/) and follow the [release notes](https://github.com/KServe/KServe/releases/tag/v0.7.0)
+Kubeflow 1.5 includes KServe v0.7 which promoted the core InferenceService API from v1alpha2 to v1beta1 stable and added ModelMesh component to the release. Additionally, LFAI Trusted AI Projects on AI Fairness, AI Explainability and Adversarial Robustness have been integrated with KServe, and we have made KServe available on OpenShift as well. To know more, please read the [release blog](https://kserve.github.io/website/blog/articles/2021-10-11-KServe-0.7-release/) and follow the [release notes](https://github.com/KServe/KServe/releases/tag/v0.7.0)
  
 ## Standalone KServe
   ### [Quickstart Install](https://kserve.github.io/website/0.7/get_started/)
