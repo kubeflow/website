@@ -9,10 +9,10 @@ weight = 2
   feedbacklink="https://github.com/KServe/KServe/issues" %}}
 
 !!! note 
-    ### [KFServing is now KServe](https://kserve.github.io/website/0.7/blog/articles/2021-09-27-kfserving-transition/)
-        The KFServing GitHub repository  transferred to an independent KServe GitHub organization under the stewardship of the Kubeflow Serving Working Group leads.
-    ### [KServe Docs](https://kserve.github.io/website/0.7/)
-        The majority of KServe docs will be available on the new docs website and it is recommended to refer to the docs on the KServe website rather than this website
+      ### [KFServing is now KServe](https://kserve.github.io/website/0.7/blog/articles/2021-09-27-kfserving-transition/)
+            The KFServing GitHub repository  transferred to an independent KServe GitHub organization under the stewardship of the Kubeflow Serving Working Group leads.
+      ### [KServe Docs](https://kserve.github.io/website/0.7/)
+          The majority of KServe docs will be available on the new docs website and it is recommended to refer to the docs on the KServe website rather than this website
 
 
 <img src="./pics/kserve.png" alt="KServe">
