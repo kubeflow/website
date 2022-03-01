@@ -4,13 +4,17 @@ description = "Get started with Kubeflow Pipelines on Amazon EKS"
 weight = 20
 +++
 
-## Authenticate Kubeflow Pipeline using SDK inside cluster
+For more information about Kubeflow Pipelines, see [Connecting to the Kubeflow Pipelines using the SDK client](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/). 
 
-In v1.1.0, in-cluster communication from notebook to Kubeflow Pipeline is not supported in this phase. In order to use `kfp` as previous, user needs to pass a cookie to KFP for communication as a workaround.
+Refer to the following guides to connect to Kubeflow Piplines:
+  - From [outside your cluster](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-outside-your-cluster)
+  - From [inside your cluster](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-the-same-cluster) 
 
-You can follow following steps to get cookie from your browser after you login Kubeflow. Following examples uses Chrome browser.
+## Authenticate Kubeflow Pipelines using SDK inside cluster
 
-> Note: You have to use images in [AWS Jupyter Notebook](/docs/distributions/aws/notebook-server) because it includes a critical SDK fix [here](https://github.com/kubeflow/pipelines/pull/4285).
+In-cluster communication from Kubeflow Notebooks to Kubeflow Pipelines is not natively supported. As a workaround to use `kfp`, you can use the following steps to pass a cookie from your browser after you log into Kubeflow. The following example uses a Chrome browser.
+
+> Note: It is necessary to use the container images listed in [AWS-Optimized Kubeflow Notebooks](/docs/distributions/aws/notebook-server) because they include a critical [SDK fix](https://github.com/kubeflow/pipelines/pull/4285).
 
 <img src="/docs/images/aws/kfp-sdk-browser-cookie.png"
   alt="KFP SDK Browser Cookie"
@@ -21,11 +25,11 @@ You can follow following steps to get cookie from your browser after you login K
   class="mt-3 mb-3 border border-info rounded">
 
 
-Once you get cookie, you can easily authenticate `kfp` by passing the `cookies`. Please look at code snippets based on the manifest you use.
+Once you get a cookie, authenticate `kfp` by passing the cookie from your browser. Use the session based on the appropriate manifest for your deployment. 
 
-To get `<aws_alb_host>`, please run `kubectl get ingress -n istio-system` and get value from `ADDRESS` field.
+To get `<aws_alb_host>`, run `kubectl get ingress -n istio-system` and note the value of the `ADDRESS` field.
 
- - dex {{% aws/config-uri-aws-standard %}}
+ - **Dex** 
 
 ```bash
 import kfp
@@ -34,7 +38,7 @@ client = kfp.Client(host='http://<aws_alb_host>/pipeline', cookies=authservice_s
 client.list_experiments(namespace="<your_namespace>")
 ```
 
- - cognito {{% aws/config-uri-aws-cognito %}}
+ - **Cognito**
 
 ```bash
 import kfp
@@ -46,24 +50,20 @@ client.list_experiments(namespace="<your_namespace>")
 
 ## Authenticate Kubeflow Pipeline using SDK outside cluster
 
-- dex {{% aws/config-uri-aws-standard %}}
+- **Dex**
 
-To do programmatic authentication with Dex, refer to the following comments under the [#140](https://github.com/kubeflow/kfctl/issues/140) issue in the `kfctl` repository: [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) and [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-719894529).
+To do programmatic authentication with Dex, refer to the following comments under [issue #140](https://github.com/kubeflow/kfctl/issues/140) in the `kfctl` repository: [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) and [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-719894529).
 
 
-- cognito {{% aws/config-uri-aws-cognito %}}
+- **Cognito**
 
-You can still retrieve session cookie and pass to backend like we do [here]
-(#authenticate-kubeflow-pipeline-using-sdk-inside-cluster)
-
-If you are looking for end to end experience, this is working in progress. Once [feat(sdk): Enable AWS ALB authentication in KFP SDK Client](https://github.com/kubeflow/pipelines/pull/4182) PR is merged,
-user can pass Cognito user username and password to authenticate KFP via AWS Application Load Balancer.
+To retrieve a session cookie and pass it to the backend, see [Authenticate Kubeflow Pipelines using SDK inside cluster](#authenticate-kubeflow-pipelines-using-sdk-inside-cluster).
 
 ## S3 Access from Kubeflow Pipelines
 
-Currently, it's still recommended to use aws credentials or [kube2iam](https://github.com/jtblin/kube2iam) to managed S3 access from Kubeflow Pipelines. [IAM Role for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) requires applications to use latest AWS SDK to support `assume-web-identity-role`, we are still working on it. Track progress in issue [#3405](https://github.com/kubeflow/pipelines/issues/3405)
+It is recommended to use AWS credentials or [kube2iam](https://github.com/jtblin/kube2iam) to manage S3 access for Kubeflow Pipelines. [IAM Role for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) requires applications to use the latest AWS SDK to support the `assume-web-identity-role`. This requirement is in development, and progress can be tracked in the [open GitHub issue](https://github.com/kubeflow/pipelines/issues/3405).
 
-A Kubernetes Secret is required by Kubeflow Pipelines and applications to access S3. Make sure it has S3 read and write access.
+A Kubernetes Secret is required by Kubeflow Pipelines and applications to access S3. Be sure that the Kubernetes Secret has S3 read and write access.
 
 ```
 apiVersion: v1
@@ -82,8 +82,7 @@ data:
 
 > Note: To get base64 string, run `echo -n $AWS_ACCESS_KEY_ID | base64`
 
-
-## Configure containers to use AWS credentials
+### Configure containers to use AWS credentials
 
 If you write any files to S3 in your application, use `use_aws_secret` to attach an AWS secret to access S3.
 
@@ -108,7 +107,7 @@ def iris_pipeline():
 
 ```
 
-## Support S3 Artifact Store
+### Support S3 Artifact Store
 
 Kubeflow Pipelines supports different artifact viewers. You can create files in S3 and reference them in output artifacts in your application as follows:
 
@@ -145,7 +144,7 @@ with file_io.FileIO('/tmp/mlpipeline-ui-metadata.json', 'w') as f:
 
 In order for `ml-pipeline-ui` to read these artifacts:
 
-1. Create a Kubernetes secret `aws-secret` in `kubeflow` namespace. Follow instructions [here](#s3-access-from-kubeflow-pipelines).
+1. Create a Kubernetes secret `aws-secret` in the `kubeflow` namespace. Follow instructions [here](#s3-access-from-kubeflow-pipelines).
 
 1. Update deployment `ml-pipeline-ui` to use AWS credential environment variables by running `kubectl edit deployment ml-pipeline-ui -n kubeflow`.
 
@@ -176,7 +175,7 @@ In order for `ml-pipeline-ui` to read these artifacts:
            name: ml-pipeline-ui
    ```
 
-Here's an example.
+Your artifact store should look similar to the following:
 <img src="/docs/images/aws/kfp-viewer-tensorboard.png"
   alt="Kubeflow Pipelines viewer tensorboard"
   class="mt-3 mb-3 border border-info rounded">

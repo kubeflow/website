@@ -6,14 +6,14 @@ weight = 25
 
 ## Compatibility
 
-Starting with Kubeflow version 1.2, Amazon EKS maintains end-to-end testing between EKS Kubernetes versions and Kubeflow versions. The following table relates compatibility between Kubernetes versions on Amazon EKS and Kubeflow v1.3.0.
+Starting with Kubeflow version 1.2, Amazon EKS maintains end-to-end testing between EKS Kubernetes versions and Kubeflow versions. The following table relates compatibility between Kubernetes versions on Amazon EKS and Kubeflow v1.3.1.
 
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
         <th>EKS Versions</th>
-        <th>Kubeflow v1.3.0</th>
+        <th>Kubeflow v1.3.1</th>
       </tr>
     </thead>
     <tbody>
