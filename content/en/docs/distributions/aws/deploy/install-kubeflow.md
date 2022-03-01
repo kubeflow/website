@@ -24,13 +24,11 @@ The default deployment will leverage [Dex](https://dexidp.io/), an OpenID Connec
 
 Optionally, you may deploy Kubeflow with an integration for [AWS Cognito](https://aws.amazon.com/cognito/) for your authentication needs. Refer to the [Deploying Kubeflow with AWS Cognito as idP](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch/distributions/aws/examples/cognito) guide.
 
-### Component integrations
+### Integration with storage and database services
 
 Kubeflow components on AWS can be deployed with integrations for [Amazon S3](https://aws.amazon.com/s3/) and [Amazon RDS](https://aws.amazon.com/rds/). Refer to the [Kustomize Manifests for RDS and S3](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch/distributions/aws/examples/rds-s3) guide for deployment configuration instructions.
 
 For convenience, there is also a single guide for deploying Kubeflow on AWS with [RDS, S3, and Cognito](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch/distributions/aws/examples/cognito-rds-s3).
-
-### Persistent storage
 
 Along with Kubernetes support for Amazon EBS, Kubeflow on AWS has integrations for using [Amazon EFS](https://aws.amazon.com/efs/) or [Amazon FSx for Lustre](https://aws.amazon.com/fsx/lustre/) for persistent storage.
 
@@ -82,7 +80,7 @@ For instructions on connecting to your Kubeflow deployment, see [Connect to your
 
 For security reasons, be sure that you [change the default user password](https://github.com/awslabs/kubeflow-manifests/#change-default-user-password).
 
-## Post Installation
+## Post-installation
 
 Kubeflow provides multi-tenancy support and users are not able to create notebooks in either the `kubeflow` or `default` namespaces. For more information, see [Multi-Tenancy](https://www.kubeflow.org/docs/components/multi-tenancy/). 
 

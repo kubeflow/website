@@ -17,6 +17,7 @@ Running Kubeflow on AWS gives you the following feature benefits and configurati
 ## Integrate with AWS storage and database solutions
 * Leverage the **[Amazon FSx CSI driver](https://github.com/kubernetes-sigs/aws-fsx-csi-driver)** to manage Lustre file systems which are optimized for compute-intensive workloads, such as high-performance computing and machine learning. **[Amazon FSx for Lustre](https://aws.amazon.com/fsx/lustre/)** can scale to hundreds of GBps of throughput and millions of IOPS.
 * Use Kubeflow with **[Amazon Elastic File System (EFS)](https://aws.amazon.com/efs/)** for a simple, scalabale, and serverless storage solution. 
-* Integrate Kubeflow with **[Amazon Relational Database Service (RDS)](https://aws.amazon.com/rds/)** for a highly scalable and easy-to-use pipelines and metadata store.
+* Deploy Kubeflow with integrations for [Amazon S3](https://aws.amazon.com/s3/) for an easy-to-use pipeline artifacts store.
+* Integrate Kubeflow with **[Amazon Relational Database Service (RDS)](https://aws.amazon.com/rds/)** for a highly scalable pipelines and metadata store.
 
 To get started with Kubeflow on AWS, see [Install Kubeflow](https://www.kubeflow.org/docs/distributions/aws/deploy/install-kubeflow/). 
