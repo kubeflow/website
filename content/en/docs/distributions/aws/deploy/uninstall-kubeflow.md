@@ -21,7 +21,7 @@ kustomize build example | kubectl delete -f
 
 > Note: This will not delete your Amazon EKS cluster.
 
-Cleanup steps for specific deployment options can be found in their respective [installation directories](https://github.com/awslabs/kubeflow-manifests/tree/main/docs/deployment). 
+Cleanup steps for specific deployment options can be found in their respective [installation directories](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch/distributions/aws/examples). 
 
 ## (Optional) Delete Amazon EKS Cluster
 
