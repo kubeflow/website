@@ -111,7 +111,7 @@ can use to train and serve a model trained on the MNIST dataset:
   class="mt-3 mb-3 border border-info rounded">
 
 For details of the workflow and to run the system yourself, see the 
-[end-to-end tutorial for Kubeflow on GCP](/docs/gke/gcp-e2e/).
+[end-to-end tutorial for Kubeflow on GCP](https://github.com/kubeflow/examples/tree/master/mnist#mnist-on-kubeflow-on-gcp).
 
 <a id="interfaces"></a>
 ## Kubeflow interfaces
