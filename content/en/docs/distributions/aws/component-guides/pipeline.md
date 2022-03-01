@@ -6,11 +6,13 @@ weight = 20
 
 For more information about Kubeflow Pipelines, see [Connecting to the Kubeflow Pipelines using the SDK client](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/). 
 
-Refer to the following guides to connect to Kubeflow Piplines:
-  - From [outside your cluster](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-outside-your-cluster)
-  - From [inside your cluster](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-the-same-cluster) 
-
 ## Authenticate Kubeflow Pipelines using SDK inside cluster
+
+Refer to the following guide to connect to Kubeflow Pipelines from [inside your cluster](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-the-same-cluster).
+
+## Authenticate Kubeflow Pipelines using SDK outside cluster
+
+Refer to the following guide to connect to Kubeflow Pipelines from [outside your cluster](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-outside-your-cluster).
 
 In-cluster communication from Kubeflow Notebooks to Kubeflow Pipelines is not natively supported. As a workaround to use `kfp`, you can use the following steps to pass a cookie from your browser after you log into Kubeflow. The following example uses a Chrome browser.
 
@@ -29,7 +31,7 @@ Once you get a cookie, authenticate `kfp` by passing the cookie from your browse
 
 To get `<aws_alb_host>`, run `kubectl get ingress -n istio-system` and note the value of the `ADDRESS` field.
 
- - **Dex** 
+### **Dex** 
 
 ```bash
 import kfp
@@ -38,7 +40,9 @@ client = kfp.Client(host='http://<aws_alb_host>/pipeline', cookies=authservice_s
 client.list_experiments(namespace="<your_namespace>")
 ```
 
- - **Cognito**
+To do programmatic authentication with Dex, refer to the following comments under [issue #140](https://github.com/kubeflow/kfctl/issues/140) in the `kfctl` repository: [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) and [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-719894529).
+
+### **Cognito**
 
 ```bash
 import kfp
@@ -47,15 +51,6 @@ alb_session_cookie1='AWSELBAuthSessionCookie-1=<cookie1>'
 client = kfp.Client(host='https://<aws_alb_host>/pipeline', cookies=f"{alb_session_cookie0};{alb_session_cookie1}")
 client.list_experiments(namespace="<your_namespace>")
 ```
-
-## Authenticate Kubeflow Pipeline using SDK outside cluster
-
-- **Dex**
-
-To do programmatic authentication with Dex, refer to the following comments under [issue #140](https://github.com/kubeflow/kfctl/issues/140) in the `kfctl` repository: [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) and [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-719894529).
-
-
-- **Cognito**
 
 To retrieve a session cookie and pass it to the backend, see [Authenticate Kubeflow Pipelines using SDK inside cluster](#authenticate-kubeflow-pipelines-using-sdk-inside-cluster).
 
