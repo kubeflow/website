@@ -30,7 +30,7 @@ For convenience, there is also a single guide for deploying Kubeflow on AWS with
 
 ### Vanilla version with dex for auth and ebs volumes as PV
 
-The default deployment will leverage [Dex](https://dexidp.io/), an OpenID Connect provider. See the [AWS Kubeflow Manifests](https://github.com/awslabs/kubeflow-manifests#dex) component notes for more information.
+The default deployment will leverage [Dex](https://dexidp.io/), an OpenID Connect provider. See the [vanilla installation](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch/distributions/aws/examples/vanilla) example for more information.
 
 ## Additional component integrations
 
@@ -47,6 +47,12 @@ Refer to the [Amazon EFS example](https://github.com/awslabs/kubeflow-manifests/
 Amazon FSx for Lustre provides a high-performance file system optimized for fast processing for machine learning and high performance computing (HPC) workloads.  Lustre also supports `ReadWriteMany`. One difference between Amazon EFS and Lustre is that Lustre can be used to cache training data with direct connectivity to Amazon S3 as the backing store. With this configuration, you don't need to transfer data to the file system before using the volume.
 
 Refer to the [Amazon FSx for Lustre example](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch/distributions/aws/examples/storage/fsx-for-lustre) for more details.
+
+## Usage tracking
+
+AWS uses customer feedback and usage information to improve the quality of the services and software we offer to customers. We have added usage data collection to the AWS Kubeflow distribution in order to better understand customer usage and guide future improvements. Usage tracking for Kubeflow is activated by default, but is entirely voluntary and can be deactivated at any time.
+
+For more information, see [Usage Tracking](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch/distributions/aws/examples#usage-tracking).
 
 ## Post-installation
 
