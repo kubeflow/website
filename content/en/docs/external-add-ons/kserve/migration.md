@@ -1,3 +1,10 @@
++++
+title = "Migration"
+description = "Migrating from KFServing to KServe"
+weight = 2
+
++++
+
 # Migrating from KFServing
 
 ### **KFServing is now KServe**
