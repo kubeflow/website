@@ -5,20 +5,8 @@ weight = 2
 
 +++
 
-### **KFServing is now KServe**
-### [Blog Post](https://kserve.github.io/website/0.7/blog/articles/2021-09-27-kfserving-transition/)
-
-We are excited to announce the next chapter for KFServing.
-In coordination with the Kubeflow Project Steering Group, the [<u>KFServing GitHub repository</u>](https://github.com/kubeflow/kfserving) has now been
-transferred to an independent [<u>KServe GitHub organization</u>](https://github.com/kserve/kserve) under the stewardship of the Kubeflow Serving Working
-Group leads.
-
-
-This document explains how to migrate existing InferenceServices from KFServing v0.5.x or v0.6.x to KServe without downtime.
-
-!!! note
-    The migration job will by default delete the leftover KFServing installation after migrating the InferenceServices from
-    `serving.kubeflow.org` to `serving.kserve.io`.
+The migration job will by default delete the leftover KFServing installation after migrating the InferenceServices from
+`serving.kubeflow.org` to `serving.kserve.io`.
 
 ### Migrating from Kubeflow-based KFServing
 
