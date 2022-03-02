@@ -23,4 +23,12 @@ Along with specific machine learning frameworks, these container images have add
 - `docker-client`
 - `kubeflow-metadata`
 - `kfp`
-- `kfserving`
+- `kfp-server-api`
+- `kfserving` 
+- `h5py`
+- `pandas`
+- `matplotlib`
+- `xgboost`
+- `ipympl`
+- `awscli`
+- `boto3`

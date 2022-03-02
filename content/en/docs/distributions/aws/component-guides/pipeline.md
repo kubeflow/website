@@ -56,7 +56,7 @@ To retrieve a session cookie and pass it to the backend, see [Authenticate Kubef
 
 ## S3 Access from Kubeflow Pipelines
 
-It is recommended to use AWS credentials or [kube2iam](https://github.com/jtblin/kube2iam) to manage S3 access for Kubeflow Pipelines. [IAM Role for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) requires applications to use the latest AWS SDK to support the `assume-web-identity-role`. This requirement is in development, and progress can be tracked in the [open GitHub issue](https://github.com/kubeflow/pipelines/issues/3405).
+It is recommended to use AWS credentials to manage S3 access for Kubeflow Pipelines. [IAM Role for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) requires applications to use the latest AWS SDK to support the `assume-web-identity-role`. This requirement is in development, and progress can be tracked in the [open GitHub issue](https://github.com/kubeflow/pipelines/issues/3405).
 
 A Kubernetes Secret is required by Kubeflow Pipelines and applications to access S3. Be sure that the Kubernetes Secret has S3 read and write access.
 
@@ -75,73 +75,15 @@ data:
 - YOUR_BASE64_ACCESS_KEY: Base64 string of `AWS_ACCESS_KEY_ID`
 - YOUR_BASE64_SECRET_ACCESS: Base64 string of `AWS_SECRET_ACCESS_KEY`
 
-> Note: To get base64 string, run `echo -n $AWS_ACCESS_KEY_ID | base64`
+> Note: To get a Base64 string, run `echo -n $AWS_ACCESS_KEY_ID | base64`
 
 ### Configure containers to use AWS credentials
-
-If you write any files to S3 in your application, use `use_aws_secret` to attach an AWS secret to access S3.
-
-```python
-import kfp
-from kfp import components
-from kfp import dsl
-from kfp.aws import use_aws_secret
-
-def iris_comp():
-    return kfp.dsl.ContainerOp(
-        .....
-        output_artifact_paths={'mlpipeline-ui-metadata': '/mlpipeline-ui-metadata.json'}
-    )
-
-@dsl.pipeline(
-    name='IRIS Classification pipeline',
-    description='IRIS Classification using LR in SKLEARN'
-)
-def iris_pipeline():
-    iris_task = iris_comp().apply(use_aws_secret('aws-secret', 'AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY'))
-
-```
-
-### Support S3 Artifact Store
-
-Kubeflow Pipelines supports different artifact viewers. You can create files in S3 and reference them in output artifacts in your application as follows:
-
-```python
-metadata = {
-        'outputs' : [
-          {
-              'source': 's3://bucket/kubeflow/README.md',
-              'type': 'markdown',
-          },
-          {
-              'type': 'confusion_matrix',
-              'format': 'csv',
-              'schema': [
-                  {'name': 'target', 'type': 'CATEGORY'},
-                  {'name': 'predicted', 'type': 'CATEGORY'},
-                  {'name': 'count', 'type': 'NUMBER'},
-              ],
-              'source': s3://bucket/confusion_matrics.csv,
-              # Convert vocab to string because for bealean values we want "True|False" to match csv data.
-              'labels': list(map(str, vocab)),
-          },
-          {
-              'type': 'tensorboard',
-              'source': s3://bucket/tb-events,
-          }
-        ]
-    }
-
-with file_io.FileIO('/tmp/mlpipeline-ui-metadata.json', 'w') as f:
-    json.dump(metadata, f)
-
-```
 
 In order for `ml-pipeline-ui` to read these artifacts:
 
 1. Create a Kubernetes secret `aws-secret` in the `kubeflow` namespace. Follow instructions [here](#s3-access-from-kubeflow-pipelines).
 
-1. Update deployment `ml-pipeline-ui` to use AWS credential environment variables by running `kubectl edit deployment ml-pipeline-ui -n kubeflow`.
+2. Update deployment `ml-pipeline-ui` to use AWS credential environment variables by running `kubectl edit deployment ml-pipeline-ui -n kubeflow`.
 
    ```
    apiVersion: extensions/v1beta1
@@ -170,83 +112,42 @@ In order for `ml-pipeline-ui` to read these artifacts:
            name: ml-pipeline-ui
    ```
 
-Your artifact store should look similar to the following:
-<img src="/docs/images/aws/kfp-viewer-tensorboard.png"
-  alt="Kubeflow Pipelines viewer tensorboard"
-  class="mt-3 mb-3 border border-info rounded">
+#### Example Pipeline 
 
-## Support TensorBoard in Kubeflow Pipelines
+If you write any files to S3 in your application, use `use_aws_secret` to attach an AWS secret to access S3.
 
- [TensorBoard](/docs/components/pipelines/sdk/output-viewer/#tensorboard) needs some extra settings on AWS like below:
+```python
+from kfp.aws import use_aws_secret
 
-1. Create a Kubernetes secret `aws-secret` in the `kubeflow` namespace. Follow instructions [here](#s3-access-from-kubeflow-pipelines).
+def s3_op():
+    import boto3
+    s3 = boto3.client("s3", region_name="<region>")
+    s3.create_bucket(
+        Bucket="<test>", CreateBucketConfiguration={"LocationConstraint": "<region>"}
+    )
 
-1. Create a ConfigMap to store the configuration of TensorBoard on your cluster. Replace `<your_region>` with your S3 region.
-   ```
-   apiVersion: v1
-   kind: ConfigMap
-   metadata:
-     name: ml-pipeline-ui-viewer-template
-   data:
-     viewer-tensorboard-template.json: |
-       {
-           "spec": {
-               "containers": [
-                   {
-                       "env": [
-                           {
-                               "name": "AWS_ACCESS_KEY_ID",
-                               "valueFrom": {
-                                   "secretKeyRef": {
-                                       "name": "aws-secret",
-                                       "key": "AWS_ACCESS_KEY_ID"
-                                   }
-                               }
-                           },
-                           {
-                               "name": "AWS_SECRET_ACCESS_KEY",
-                               "valueFrom": {
-                                   "secretKeyRef": {
-                                       "name": "aws-secret",
-                                       "key": "AWS_SECRET_ACCESS_KEY"
-                                   }
-                               }
-                           },
-                           {
-                               "name": "AWS_REGION",
-                               "value": "<your_region>"
-                           }
-                       ]
-                   }
-               ]
-           }
-       }
-   ```
+s3_op = create_component_from_func(
+    s3_op, base_image="python", packages_to_install=["boto3"]
+)
 
-1. Update the `ml-pipeline-ui` deployment to use the ConfigMap by running `kubectl edit deployment ml-pipeline-ui -n kubeflow`.
+@dsl.pipeline(
+    name="S3 KFP Component",
+    description="Tests S3 Access from KFP",
+)
+def s3_pipeline():
+    s3_op().set_display_name("S3 KFP Component").apply(
+        use_aws_secret("aws-secret", "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY")
+    )
 
-   ```
-   apiVersion: extensions/v1beta1
-   kind: Deployment
-   metadata:
-     name: ml-pipeline-ui
-     namespace: kubeflow
-     ...
-   spec:
-     template:
-       spec:
-         containers:
-         - env:
-           - name: VIEWER_TENSORBOARD_POD_TEMPLATE_SPEC_PATH
-             value: /etc/config/viewer-tensorboard-template.json
-           ....
-           volumeMounts:
-           - mountPath: /etc/config
-             name: config-volume
-         .....
-         volumes:
-         - configMap:
-             defaultMode: 420
-             name: ml-pipeline-ui-viewer-template
-           name: config-volume
-   ```
+kfp_client = kfp.Client()
+namespace = "kubeflow-user-example-com"
+run_id = kfp_client.create_run_from_pipeline_func(
+    s3_pipeline, namespace=namespace, arguments={}
+).run_id
+```
+
+### Ongoing Kubeflow Pipelines support
+
+Support for S3 Artifacts and Tensorboard is in active development. You can track the [open issue](https://github.com/kubeflow/kubeflow/issues/6328) to stay up-to-date on progress.
+
+
