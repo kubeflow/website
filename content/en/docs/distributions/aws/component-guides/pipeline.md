@@ -14,9 +14,9 @@ Refer to the following guide to connect to Kubeflow Pipelines from [inside your 
 
 Refer to the following guide to connect to Kubeflow Pipelines from [outside your cluster](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-outside-your-cluster).
 
-In-cluster communication from Kubeflow Notebooks to Kubeflow Pipelines is not natively supported. As a workaround to use `kfp`, you can use the following steps to pass a cookie from your browser after you log into Kubeflow. The following example uses a Chrome browser.
+Refer to the following steps to use `kfp` to pass a cookie from your browser after you log into Kubeflow. The following example uses a Chrome browser.
 
-> Note: It is necessary to use the container images listed in [AWS-Optimized Kubeflow Notebooks](/docs/distributions/aws/notebook-server) because they include a critical [SDK fix](https://github.com/kubeflow/pipelines/pull/4285).
+> Note: It is necessary to use the latest container images listed in [AWS-Optimized Kubeflow Notebooks](/docs/distributions/aws/notebook-server) because they include a critical [SDK fix](https://github.com/kubeflow/pipelines/pull/4285).
 
 <img src="/docs/images/aws/kfp-sdk-browser-cookie.png"
   alt="KFP SDK Browser Cookie"
@@ -26,33 +26,47 @@ In-cluster communication from Kubeflow Notebooks to Kubeflow Pipelines is not na
   alt="KFP SDK Browser Cookie Detail"
   class="mt-3 mb-3 border border-info rounded">
 
-
-Once you get a cookie, authenticate `kfp` by passing the cookie from your browser. Use the session based on the appropriate manifest for your deployment. 
-
-To get `<aws_alb_host>`, run `kubectl get ingress -n istio-system` and note the value of the `ADDRESS` field.
+Once you get a cookie, authenticate `kfp` by passing the cookie from your browser. Use the session based on the appropriate manifest for your deployment, as done in the following examples. 
 
 ### **Dex** 
 
+If you want to use port forwarding to access Kubeflow, run the following command and use `http://localhost:8080/pipeline` as the host.
+
 ```bash
-import kfp
-authservice_session='authservice_session=<cookie>'
-client = kfp.Client(host='http://<aws_alb_host>/pipeline', cookies=authservice_session)
-client.list_experiments(namespace="<your_namespace>")
+kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
 ```
+
+Pass the cookie from your browser: 
+```bash
+# This is the "Domain" in your cookies. Eg: "localhost:8080" or "<ingress_alb_address>.elb.amazonaws.com"
+kubeflow_gateway_endpoint="<YOUR_KUBEFLOW_GATEWAY_ENDPOINT>"
+
+authservice_session_cookie="<YOUR_COOKIE>"
+
+namespace="<YOUR_NAMESPACE>"
+
+client *=* kfp.Client*(*host*=*f"http://{kubeflow_gateway_endpoint}/pipeline", cookies*=*f"authservice_session={authservice_session_cookie}"*)*
+client.list_experiments*(*namespace*=*namespace*)*
+```
+
+If you want to set up application load balancing (ALB) with Dex, see [Connect to Your Kubeflow Cluster](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch/distributions/aws/examples/vanilla#connect-to-your-kubeflow-cluster) and use the ALB address as the Kubeflow Endpoint. 
 
 To do programmatic authentication with Dex, refer to the following comments under [issue #140](https://github.com/kubeflow/kfctl/issues/140) in the `kfctl` repository: [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) and [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-719894529).
 
 ### **Cognito**
 
 ```bash
-import kfp
-alb_session_cookie0='AWSELBAuthSessionCookie-0=<cookie0>'
-alb_session_cookie1='AWSELBAuthSessionCookie-1=<cookie1>'
-client = kfp.Client(host='https://<aws_alb_host>/pipeline', cookies=f"{alb_session_cookie0};{alb_session_cookie1}")
-client.list_experiments(namespace="<your_namespace>")
-```
+# This is the "Domain" in your cookies. eg: kubeflow.<platform.example.com>
+kubeflow_gateway_endpoint="<YOUR_KUBEFLOW_HTTPS_GATEWAY_ENDPOINT>"
 
-To retrieve a session cookie and pass it to the backend, see [Authenticate Kubeflow Pipelines using SDK inside cluster](#authenticate-kubeflow-pipelines-using-sdk-inside-cluster).
+alb_session_cookie0="<YOUR_COOKIE_0>"
+alb_session_cookie1="<YOUR_COOKIE_1>"
+
+namespace="<YOUR_NAMESPACE>"
+
+client = kfp.Client(host=f"https://{kubeflow_gateway_endpoint}/pipeline", cookies=f"AWSELBAuthSessionCookie-0={alb_session_cookie0};AWSELBAuthSessionCookie-1={alb_session_cookie1}")
+client.list_experiments(namespace=namespace)
+```
 
 ## S3 Access from Kubeflow Pipelines
 
@@ -112,7 +126,7 @@ In order for `ml-pipeline-ui` to read these artifacts:
            name: ml-pipeline-ui
    ```
 
-#### Example Pipeline 
+### Example Pipeline 
 
 If you write any files to S3 in your application, use `use_aws_secret` to attach an AWS secret to access S3.
 
@@ -146,8 +160,12 @@ run_id = kfp_client.create_run_from_pipeline_func(
 ).run_id
 ```
 
-### Ongoing Kubeflow Pipelines support
+## Support S3 Artifact Store
 
-Support for S3 Artifacts and Tensorboard is in active development. You can track the [open issue](https://github.com/kubeflow/kubeflow/issues/6328) to stay up-to-date on progress.
+Support for S3 Artifact Store is in active development. You can track the [open issue](https://github.com/awslabs/kubeflow-manifests/issues/117) to stay up-to-date on progress.
+
+## Support TensorBoard in Kubeflow Pipelines
+
+Support for TensorBoard in Kubeflow Pipelines is in active development. You can track the [open issue](https://github.com/awslabs/kubeflow-manifests/issues/118) to stay up-to-date on progress.
 
 

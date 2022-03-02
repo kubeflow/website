@@ -6,7 +6,7 @@ weight = 10
 
 Running Kubeflow on AWS gives you the following feature benefits and configuration options:
 
-> Note: Beginning with v1.3, development for Kubeflow on AWS can be found in the [AWS Labs repository](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch). Previous versions can be found in the [Kubeflow manifests repository](https://github.com/kubeflow/manifests). 
+> Note: Beginning with v1.3, development for Kubeflow on AWS can be found in the [AWS Labs repository](https://github.com/awslabs/kubeflow-manifests). Previous versions can be found in the [Kubeflow manifests repository](https://github.com/kubeflow/manifests). 
 
 ## Manage AWS compute environments
 * Provision and manage your **[Amazon Elastic Kubernetes Service (EKS)](https://aws.amazon.com/eks/)** clusters with **[eksctl](https://github.com/weaveworks/eksctl)** and easily configure multiple compute and GPU node configurations.

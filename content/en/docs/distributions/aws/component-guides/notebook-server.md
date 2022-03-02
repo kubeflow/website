@@ -4,7 +4,7 @@ description = "Work in AWS-optimized Notebooks based on AWS Deep Learning Contai
 weight = 10
 +++
 
-Installing Kubeflow on AWS includes AWS-optimized container images as default options for a Kubeflow Notebook server. For more information on gettings started with Kubeflow Notebooks, see the [Quickstart Guide](https://www.kubeflow.org/docs/components/notebooks/quickstart-guide/).
+Installing Kubeflow on AWS includes AWS-optimized container images as default options for a Kubeflow Jupyter Notebook server. For more information on gettings started with Kubeflow Notebooks, see the [Quickstart Guide](https://www.kubeflow.org/docs/components/notebooks/quickstart-guide/).
 
 ## AWS-optimized container images
 
@@ -21,12 +21,8 @@ These images are based on [AWS Deep Learning Containers](https://docs.aws.amazon
 
 Along with specific machine learning frameworks, these container images have additional pre-installed packages:
 - `kfp`
-- `kfp-server-api`
 - `kfserving` 
 - `h5py`
 - `pandas`
-- `matplotlib`
-- `xgboost`
-- `ipympl`
 - `awscli`
 - `boto3`
