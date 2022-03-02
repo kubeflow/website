@@ -6,9 +6,9 @@ weight = 2
 +++
 
   ### [KFServing is now KServe](https://kserve.github.io/website/0.7/blog/articles/2021-09-27-kfserving-transition/)
-        The KFServing GitHub repository  transferred to an independent KServe GitHub organization under the stewardship of the Kubeflow Serving Working Group leads.
+  The KFServing GitHub repository  transferred to an independent KServe GitHub organization under the stewardship of the Kubeflow Serving Working Group leads.
   ### [KServe Docs](https://kserve.github.io/website/0.7/)
-      The majority of KServe docs will be available on the new docs website and it is recommended to refer to the docs on the KServe website rather than this website
+  The majority of KServe docs will be available on the new docs website and it is recommended to refer to the docs on the KServe website rather than this website
 
 
 <img src="../pics/kserve.png" alt="KServe">
@@ -35,7 +35,7 @@ Kubeflow 1.5 includes KServe v0.7 which promoted the core InferenceService API f
  
 ## Standalone KServe
   ### [Quickstart Install](https://kserve.github.io/website/0.7/get_started/)
-    KServe Quickstart Environments are for experimentation use only. For production installation, see our [Administrator's Guide](https://kserve.github.io/website/0.7/admin/serverless/)
+  KServe Quickstart Environments are for experimentation use only. For production installation, see our [Administrator's Guide](https://kserve.github.io/website/0.7/admin/serverless/)
   
 ## Learn more
  
