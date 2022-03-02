@@ -45,8 +45,8 @@ authservice_session_cookie="<YOUR_COOKIE>"
 
 namespace="<YOUR_NAMESPACE>"
 
-client *=* kfp.Client*(*host*=*f"http://{kubeflow_gateway_endpoint}/pipeline", cookies*=*f"authservice_session={authservice_session_cookie}"*)*
-client.list_experiments*(*namespace*=*namespace*)*
+client = kfp.Client(host=f"http://{kubeflow_gateway_endpoint}/pipeline", cookies=f"authservice_session={authservice_session_cookie}")
+client.list_experiments(namespace=namespace)
 ```
 
 If you want to set up application load balancing (ALB) with Dex, see [Connect to Your Kubeflow Cluster](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch/distributions/aws/examples/vanilla#connect-to-your-kubeflow-cluster) and use the ALB address as the Kubeflow Endpoint. 
