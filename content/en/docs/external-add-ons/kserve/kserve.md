@@ -4,18 +4,14 @@ description = "Model serving using KServe"
 weight = 2
  
 +++
- 
-{{% beta-status
-  feedbacklink="https://github.com/KServe/KServe/issues" %}}
 
-!!! note 
-      ### [KFServing is now KServe](https://kserve.github.io/website/0.7/blog/articles/2021-09-27-kfserving-transition/)
-            The KFServing GitHub repository  transferred to an independent KServe GitHub organization under the stewardship of the Kubeflow Serving Working Group leads.
-      ### [KServe Docs](https://kserve.github.io/website/0.7/)
-          The majority of KServe docs will be available on the new docs website and it is recommended to refer to the docs on the KServe website rather than this website
+  ### [KFServing is now KServe](https://kserve.github.io/website/0.7/blog/articles/2021-09-27-kfserving-transition/)
+        The KFServing GitHub repository  transferred to an independent KServe GitHub organization under the stewardship of the Kubeflow Serving Working Group leads.
+  ### [KServe Docs](https://kserve.github.io/website/0.7/)
+      The majority of KServe docs will be available on the new docs website and it is recommended to refer to the docs on the KServe website rather than this website
 
 
-<img src="./pics/kserve.png" alt="KServe">
+<img src="../pics/kserve.png" alt="KServe">
 
  
 KServe enables serverless inferencing on Kubernetes and provides performant, high abstraction interfaces for common machine learning (ML) frameworks like TensorFlow, XGBoost, scikit-learn, PyTorch, and ONNX to solve production model serving use cases.
@@ -28,7 +24,7 @@ You can use KServe to do the following:
  
 * Enable a simple, pluggable, and complete story for your production ML inference server by providing prediction, pre-processing, post-processing and explainability out of the box.
  
-Our strong community contributions help KServe to grow. We have a Technical Steering Committee driven by Bloomberg, IBM Cloud, Seldon, Amazon Web Services (AWS) and NVIDIA. [Browse the KServe GitHub repo](https://github.com/KServe/KServe) to give us feedback!
+Our strong community contributions help KServe to grow. We have a Technical Steering Committee driven by Bloomberg, IBM Cloud, Seldon, Amazon Web Services (AWS) and NVIDIA. [Browse the KServe GitHub repo](https://github.com/KServe/KServe/issues) to give us feedback!
  
 ## Install with Kubeflow
  
@@ -39,8 +35,7 @@ Kubeflow 1.5 includes KServe v0.7 which promoted the core InferenceService API f
  
 ## Standalone KServe
   ### [Quickstart Install](https://kserve.github.io/website/0.7/get_started/)
-!!! warning
-    KServe Quickstart Environments are for experimentation use only. For production installation, see our [Administrator's Guide](../admin)
+    KServe Quickstart Environments are for experimentation use only. For production installation, see our [Administrator's Guide](https://kserve.github.io/website/0.7/admin/serverless/)
   
 ## Learn more
  
