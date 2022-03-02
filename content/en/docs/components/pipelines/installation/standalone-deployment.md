@@ -181,7 +181,7 @@ To deploy Kubeflow Pipelines standalone in namespace `<my-namespace>`:
      kubectl apply -k manifests/kustomize/env/dev
      ```
 
-     **Note**: If using GCP Cloud SQL and Google Cloud Storage, apply with this command:
+     **Note**: If using GCP Cloud SQL and Google Cloud Storage, set the proper values in [manifests/kustomize/env/gcp/params.env](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/gcp/params.env), then apply with this command:
 
      ```
      kubectl apply -k manifests/kustomize/cluster-scoped-resources
@@ -200,7 +200,7 @@ By default, the KFP standalone deployment installs an [inverting proxy agent](ht
      kubectl apply -k manifests/kustomize/env/dev
      ```
 
-     **Note**: If using GCP Cloud SQL and Google Cloud Storage, apply with this command:
+     **Note**: If using GCP Cloud SQL and Google Cloud Storage, set the proper values in [manifests/kustomize/env/gcp/params.env](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/gcp/params.env), then apply with this command:
 
      ```
      kubectl apply -k manifests/kustomize/env/gcp
