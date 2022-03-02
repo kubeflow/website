@@ -5,10 +5,8 @@ weight = 2
 
 +++
 
-# Migrating from KFServing
-
 ### **KFServing is now KServe**
-###[Blog Post](https://kserve.github.io/website/0.7/blog/articles/2021-09-27-kfserving-transition/)
+### [Blog Post](https://kserve.github.io/website/0.7/blog/articles/2021-09-27-kfserving-transition/)
 
 We are excited to announce the next chapter for KFServing.
 In coordination with the Kubeflow Project Steering Group, the [<u>KFServing GitHub repository</u>](https://github.com/kubeflow/kfserving) has now been
