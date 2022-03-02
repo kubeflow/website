@@ -2,7 +2,7 @@
 title = "Design for Multi-user Isolation"
 description = "In-depth design for supporting multi-user isolation"
 weight = 20
-                    
+
 +++
 
 {{% stable-status %}}
@@ -15,9 +15,9 @@ Specifically, Kubeflow defines user-specific namespaces and uses Kubernetes
 to manage user access.
 
 This feature enables users to share access to their workspaces.
-Workspace owners can share/revoke workspace access with other users through the 
+Workspace owners can share/revoke workspace access with other users through the
 Kubeflow UI.
-After being invited, users have permissions to edit the workspace and operate 
+After being invited, users have permissions to edit the workspace and operate
 Kubeflow custom resources.
 
 Kubeflow multi-tenancy is self-served - a new user can self-register to create and own
