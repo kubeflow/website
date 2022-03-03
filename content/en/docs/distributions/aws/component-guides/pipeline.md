@@ -4,7 +4,7 @@ description = "Get started with Kubeflow Pipelines on Amazon EKS"
 weight = 20
 +++
 
-For more information about Kubeflow Pipelines, see [Connecting to the Kubeflow Pipelines using the SDK client](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/). 
+For an overview of connecting to Kubeflow Pipelines using the SDK client, see [the Pipelines SDK guide](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/). 
 
 ## Authenticate Kubeflow Pipelines using SDK inside cluster
 
@@ -15,8 +15,6 @@ Refer to the following guide to connect to Kubeflow Pipelines from [inside your 
 Refer to the following guide to connect to Kubeflow Pipelines from [outside your cluster](https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api/#connect-to-kubeflow-pipelines-from-outside-your-cluster).
 
 Refer to the following steps to use `kfp` to pass a cookie from your browser after you log into Kubeflow. The following example uses a Chrome browser.
-
-> Note: It is necessary to use the latest container images listed in [AWS-Optimized Kubeflow Notebooks](/docs/distributions/aws/notebook-server) because they include a critical [SDK fix](https://github.com/kubeflow/pipelines/pull/4285).
 
 <img src="/docs/images/aws/kfp-sdk-browser-cookie.png"
   alt="KFP SDK Browser Cookie"
@@ -49,7 +47,7 @@ client = kfp.Client(host=f"http://{kubeflow_gateway_endpoint}/pipeline", cookies
 client.list_experiments(namespace=namespace)
 ```
 
-If you want to set up application load balancing (ALB) with Dex, see [Connect to Your Kubeflow Cluster](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch/distributions/aws/examples/vanilla#connect-to-your-kubeflow-cluster) and use the ALB address as the Kubeflow Endpoint. 
+If you want to set up application load balancing (ALB) with Dex, see [Exposing Kubeflow over Load Balancer](https://github.com/awslabs/kubeflow-manifests/tree/v1.3-branch/distributions/aws/examples/vanilla#exposing-kubeflow-over-load-balancer) and use the ALB address as the Kubeflow Endpoint.
 
 To do programmatic authentication with Dex, refer to the following comments under [issue #140](https://github.com/kubeflow/kfctl/issues/140) in the `kfctl` repository: [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-578837304) and [#140 (comment)](https://github.com/kubeflow/kfctl/issues/140#issuecomment-719894529).
 
@@ -95,7 +93,7 @@ data:
 
 In order for `ml-pipeline-ui` to read these artifacts:
 
-1. Create a Kubernetes secret `aws-secret` in the `kubeflow` namespace. Follow instructions [here](#s3-access-from-kubeflow-pipelines).
+1. Create a Kubernetes secret `aws-secret` in the `kubeflow` namespace.
 
 2. Update deployment `ml-pipeline-ui` to use AWS credential environment variables by running `kubectl edit deployment ml-pipeline-ui -n kubeflow`.
 
@@ -160,7 +158,7 @@ run_id = kfp_client.create_run_from_pipeline_func(
 ).run_id
 ```
 
-## Support S3 Artifact Store
+## Support S3 as a source for Kubeflow Pipelines output viewers
 
 Support for S3 Artifact Store is in active development. You can track the [open issue](https://github.com/awslabs/kubeflow-manifests/issues/117) to stay up-to-date on progress.
 

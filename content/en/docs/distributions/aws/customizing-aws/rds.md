@@ -1,5 +1,5 @@
 +++
-title = "Get started with Amazon RDS"
+title = "Using Amazon RDS with MySQL"
 description = "Using Amazon RDS with MySQL for Kubeflow on AWS"
 weight = 30
 +++

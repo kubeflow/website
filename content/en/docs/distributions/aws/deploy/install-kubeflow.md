@@ -68,7 +68,7 @@ kustomize build distributions/aws/aws-telemetry | kubectl apply -f -
 
 You can deactivate usage tracking by skipping the telemetry component installation in one of two ways:
 
-1. For single line installation, comment out the `aws-telemetry` line in the `kustomization.yaml` file. e.g. in [cognito-rds-s3 kustomization.yaml](cognito-rds-s3/kustomization.yaml#L59) file:
+1. For single line installation, comment out the `aws-telemetry` line in the `kustomization.yaml` file. e.g. in [cognito-rds-s3 kustomization.yaml](https://github.com/awslabs/kubeflow-manifests/blob/v1.3-branch/distributions/aws/examples/cognito-rds-s3/kustomization.yaml#L58-L59) file:
     ```
     # ./../aws-telemetry
     ```
