@@ -35,4 +35,3 @@ Starting with Kubeflow version 1.2, Amazon EKS maintains end-to-end testing betw
 
 - **Incompatible**: the combination is not known to work together
 - **Compatible**: all Kubeflow features have been tested and verified for the EKS Kubernetes version
-- **No known issues**: the combination has not been fully tested but there are no reported issues
