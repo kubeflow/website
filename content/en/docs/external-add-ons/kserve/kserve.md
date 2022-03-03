@@ -7,7 +7,7 @@ weight = 2
 
 
 
-<img src="./pics/kserve.png" alt="KServe" width="640px">
+<img src="../pics/kserve.png" alt="KServe" width="640px">
 
  
 KServe enables serverless inferencing on Kubernetes and provides performant, high abstraction interfaces for common machine learning (ML) frameworks like TensorFlow, XGBoost, scikit-learn, PyTorch, and ONNX to solve production model serving use cases.
