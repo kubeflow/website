@@ -307,7 +307,7 @@ curl -sfL https://get.k3ai.in | bash -s -- --gpu --plugin_kfpipelines
 ```
 
 For more information about K3ai, refer to the
-[official documentation](https://docs.k3ai.in).
+[official documentation](https://k3ai.github.io/docs/intro).
 
 ## Deploying Kubeflow Pipelines
 
