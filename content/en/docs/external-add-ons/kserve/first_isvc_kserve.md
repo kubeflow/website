@@ -189,6 +189,9 @@ When you are done with your InferenceService, you can delete it by running the f
 KServe.delete(name, namespace=namespace)
 ```
 
+## Next Steps
+[**E2E MNIST with Kubeflow MNIST Tutorial**](https://github.com/kubeflow/pipelines/blob/master/samples/contrib/kubeflow-e2e-mnist/kubeflow-e2e-mnist.ipynb),which provides an end-to-end test sequence i.e. start a notebook, run a pipeline, execute training, hyperparameter tuning and model serving with KServe
+
 
 <div class="notebook-links">
 <a class="colab-link" href="https://colab.research.google.com/github/kubeflow/website/blob/master/content/en/docs/external-add-ons/kserve/first_isvc_kserve.ipynb">Run in Google Colab</a>
