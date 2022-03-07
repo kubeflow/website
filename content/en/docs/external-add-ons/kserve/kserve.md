@@ -13,7 +13,7 @@ weight = 2
 KServe enables serverless inferencing on Kubernetes and provides performant, high abstraction interfaces for common machine learning (ML) frameworks like TensorFlow, XGBoost, scikit-learn, PyTorch, and ONNX to solve production model serving use cases.
  
   ### [KFServing is now KServe](https://kserve.github.io/website/0.7/blog/articles/2021-09-27-kfserving-transition/)
-  The KFServing GitHub repository  transferred to an independent KServe GitHub organization under the stewardship of the Kubeflow Serving Working Group leads.
+  The KFServing GitHub repository has been transferred to an independent KServe GitHub organization under the stewardship of the Kubeflow Serving Working Group leads.
   ### [KServe Docs](https://kserve.github.io/website/0.7/)
   The majority of KServe docs will be available on the new docs website and it is recommended to refer to the docs on the KServe website rather than this website
 
@@ -25,7 +25,7 @@ You can use KServe to do the following:
  
 * Enable a simple, pluggable, and complete story for your production ML inference server by providing prediction, pre-processing, post-processing and explainability out of the box.
  
-Our strong community contributions help KServe to grow. We have a Technical Steering Committee driven by Bloomberg, IBM Cloud, Seldon, Amazon Web Services (AWS) and NVIDIA. [Browse the KServe GitHub repo](https://github.com/KServe/KServe/issues) to give us feedback!
+Our strong community contributions help KServe to grow. We have a Technical Steering Committee driven by Bloomberg, IBM Cloud, Seldon, Amazon Web Services (AWS) and NVIDIA.  Please browse the [KServe GitHub repo](https://github.com/KServe/KServe) and [raise issues](https://github.com/KServe/KServe/issues) to give us feedback!
  
 ## Install with Kubeflow
  
