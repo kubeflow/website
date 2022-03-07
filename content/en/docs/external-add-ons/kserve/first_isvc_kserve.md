@@ -1,6 +1,6 @@
 +++
 title = "Run your first InferenceService"
-description = "None"
+description = "A tutorial on building and deploying a model using the KServe Python SDK"
 weight = 900
 +++
 
@@ -190,7 +190,7 @@ KServe.delete(name, namespace=namespace)
 ```
 
 ## Next Steps
-[**E2E MNIST with Kubeflow MNIST Tutorial**](https://github.com/kubeflow/pipelines/blob/master/samples/contrib/kubeflow-e2e-mnist/kubeflow-e2e-mnist.ipynb),which provides an end-to-end test sequence i.e. start a notebook, run a pipeline, execute training, hyperparameter tuning and model serving with KServe
+[**Kubeflow Pipelines E2E MNIST Tutorial**](https://github.com/kubeflow/pipelines/blob/master/samples/contrib/kubeflow-e2e-mnist/kubeflow-e2e-mnist.ipynb) - provides an end-to-end test sequence (i.e. start a notebook, run a pipeline, execute training, hyperparameter tuning, and model serving with KServe).
 
 
 <div class="notebook-links">
