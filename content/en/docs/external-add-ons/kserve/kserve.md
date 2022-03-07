@@ -25,7 +25,7 @@ You can use KServe to do the following:
  
 * Enable a simple, pluggable, and complete story for your production ML inference server by providing prediction, pre-processing, post-processing and explainability out of the box.
  
-Our strong community contributions help KServe to grow. We have a Technical Steering Committee driven by Bloomberg, IBM Cloud, Seldon, Amazon Web Services (AWS) and NVIDIA. [Browse the KServe GitHub repo](https://github.com/KServe/KServe/issues) to give us feedback!
+Our strong community contributions help KServe to grow. We have a Technical Steering Committee driven by Bloomberg, IBM Cloud, Seldon, Amazon Web Services (AWS) and NVIDIA.  Please browse the [KServe GitHub repo](https://github.com/KServe/KServe) and [raise issues](https://github.com/KServe/KServe/issues) to give us feedback!
  
 ## Install with Kubeflow
  
