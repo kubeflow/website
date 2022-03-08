@@ -97,13 +97,13 @@ Using kustomize together with kubectl to deploy kubeflow:
 1. Clone the manifest repo as follows:
 
    ```shell
-   git clone https://github.com/IBM/manifests.git -b v1.4.0 ibm-manifests-140
+   git clone https://github.com/IBM/manifests.git -b v1.5-branch ibm-manifests-150
    ```
 
-2. Change directory to `ibm-manifests-140`:
+2. Change directory to `ibm-manifests-150`:
 
    ```shell
-   cd ibm-manifests-140
+   cd ibm-manifests-150
    ```
 
 3. Generate password for default user: `user@example.com`
@@ -181,13 +181,13 @@ You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=ap
 1. Clone the manifest repo as follows:
 
    ```shell
-   git clone https://github.com/IBM/manifests.git -b v1.4.0 ibm-manifests-140
+   git clone https://github.com/IBM/manifests.git -b v1.5-branch ibm-manifests-150
    ```
 
-2. Change directory to `ibm-manifests-140`:
+2. Change directory to `ibm-manifests-150`:
 
    ```shell
-   cd ibm-manifests-140
+   cd ibm-manifests-150
    ```
 
 3. Update the `dist/stacks/ibm/application/oidc-authservice-appid/params.env`
@@ -226,13 +226,13 @@ You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=ap
 6. If at any point the values change and you have to change them, you can either patch the
    [configmap](#patch-configmap) and [secret](#patch-secret) or change the content in the
    files and apply the kustomize again. You will need to restart authservice with
-   `kubectl delete pod -l app-authservice -n istio-system` .
+   `kubectl delete pod -l app=authservice -n istio-system` .
 
    To apply just the `oidc-authservice-appid` you can use this command:
 
    ```bash
    kustomize build dist/stacks/ibm/application/oidc-authservice-appid | kubectl apply -f -
-   kubectl delete pod -l app-authservice -n istio-system
+   kubectl delete pod -l app=authservice -n istio-system
    ```
 
 ### Verify mutli-user installation

@@ -146,11 +146,11 @@ Kubernetes Service 37 days before it expires. After this secret is updated, you
 must manually copy it to the `istio-ingressgateway-certs` secret by repeating
 commands in step 5 and 6.
 
-## Optional - KFServing configuration
+## Optional - KServe configuration
 
-With this HTTPS setup, you need to make additional changes to get KFServing to work.
+With this HTTPS setup, you need to make additional changes to get KServe to work.
 
-1. First, update the Knative domain that is used for the KFServing routes to the
+1. First, update the Knative domain that is used for the KServe routes to the
 hostname that you used when updating `kubeflow-gateway`.
 
     ```shell
@@ -270,5 +270,5 @@ the content of the cookie is retrieved from the browser, it can be added as a he
 (e.g. `"Cookie: authservice_session=MTYwNz..."`). For example:
 
 ```shell
-curl -v https://sklearn-iris-kfserving-test.kf-dev-442dbba0442be6c8c50f31ed96b00532-0001.sjc03.containers.appdomain.cloud/v1/models/sklearn-iris:predict -d '{"instances": [[6.8,  2.8,  4.8,  1.4],[6.0,  3.4,  4.5,  1.6]]}' -H "Cookie: authservice_session=MTYwODMyODk5M3xOd3dBTkVzeU5VSlJRazlQVnpWT1dGUldWa0ZXVDBRMVFsY3pVVFZHVVVGV01rWkRORmd6VmxCVVNsQkVSa2xaUlZVMFRUVldVMEU9fJBHfRCAvs6nSh_J04VlBEq_yqhkUvc5Z1Mqahe9klOd"
+curl -v https://sklearn-iris-kserve-test.kf-dev-442dbba0442be6c8c50f31ed96b00532-0001.sjc03.containers.appdomain.cloud/v1/models/sklearn-iris:predict -d '{"instances": [[6.8,  2.8,  4.8,  1.4],[6.0,  3.4,  4.5,  1.6]]}' -H "Cookie: authservice_session=MTYwODMyODk5M3xOd3dBTkVzeU5VSlJRazlQVnpWT1dGUldWa0ZXVDBRMVFsY3pVVFZHVVVGV01rWkRORmd6VmxCVVNsQkVSa2xaUlZVMFRUVldVMEU9fJBHfRCAvs6nSh_J04VlBEq_yqhkUvc5Z1Mqahe9klOd"
 ```
