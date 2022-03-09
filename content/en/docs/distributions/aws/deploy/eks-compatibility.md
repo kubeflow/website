@@ -35,3 +35,10 @@ Starting with Kubeflow version 1.2, Amazon EKS maintains end-to-end testing betw
 
 - **Incompatible**: the combination is not known to work together
 - **Compatible**: all Kubeflow features have been tested and verified for the EKS Kubernetes version
+
+### Kubeflow v1.4 and v1.5 Support
+
+Support for Kubeflow-v1.4 and Kubeflow-v1.5 are in active development. You can track the following issues to stay up-to-date on progress:
+  - [v1.4 tracking issue](https://github.com/awslabs/kubeflow-manifests/issues/27)
+  - [v1.5 tracking issue](https://github.com/awslabs/kubeflow-manifests/issues/91)
+
