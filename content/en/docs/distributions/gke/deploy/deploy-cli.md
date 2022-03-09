@@ -224,7 +224,7 @@ To access the Kubeflow central dashboard, follow these steps:
     ```
 
 1. Follow the instructions on the UI to create a namespace. Refer to this guide on
-  [creation of profiles](/docs/components/multi-tenancy/getting-started/#automatic-creation-of-profiles).
+  [creation of profiles](/docs/components/multi-tenancy/getting-started/#automatic-profile-creation).
 
 Notes:
 
