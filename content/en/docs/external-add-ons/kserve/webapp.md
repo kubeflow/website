@@ -5,10 +5,9 @@ weight = 2
 
 +++
 
-The Models web app is an abstraction that provides users a graphical UI to
-manage their Model servers, by performing CRUD operations on
-top of `InferenceService`
-[CustomResources](https://github.com/kubeflow/kfserving/tree/master/pkg/apis/serving).
+The Models web app is responsible for allowing the user to manipulate the Model Servers in their Kubeflow cluster. To achieve this it provides a user friendly way to handle the lifecycle of `InferenceService` CRs.
+
+The web app currently works with `v1beta1` versions of `InferenceService` objects.
 
 The web app is also exposing information from the underlying Knative resources,
 like Conditions from the Knative Configurations, Route and Revisions as well as
@@ -16,12 +15,7 @@ live logs from the Model server pod.
 
 ## Installation and Access
 
-The web app's manifests are part of the upstream [KFServing
-manifests](https://github.com/kubeflow/kfserving/tree/master/config/web-app).
-This means that the necessary resources will be deployed when installing
-KFServing. KFServing manifests for the [0.6 release](https://github.com/kubeflow/kfserving/tree/release-0.6)
-come with two flavors, _standalone_ and _kubeflow_. The web app's
-manifests are part of both installation options.
+Refer https://github.com/kserve/models-web-app/#development for installation
 
 The web app includes the following resources:
 * A `Deployment` for running the backend server, and serving the static frontend files
@@ -31,56 +25,31 @@ The web app includes the following resources:
 * A `VirtualService` for exposing the app via the cluster's Istio Ingress
     Gateway
 
+### Kubeflow
+
+The web app is included as a part of the Kubeflow [1.5
+release](https://github.com/kubeflow/manifests/tree/v1.5-branch/contrib/kserve/models-web-app) manifests.
+It is [exposed](https://github.com/kubeflow/manifests/blob/v1.5-branch/apps/centraldashboard/upstream/base/configmap.yaml#L30) via the
+Central Dashboard, out of the box.
+
 ### Standalone
+
 In this case all the resources of the web app will be installed in the
-`kfserving-system` namespace. Users can access the web app either via the
+`kserve` namespace. Users can access the web app either via the
 `knative-ingress-gateway.knative-serving` Istio Ingress Gateway or by
 port-forwarding the backend.
 
 #### Port forwarding
 ```bash
 # set the following ENV vars in the app's Deployment
-kubectl edit -n kfserving-system deployments.apps kfserving-models-web-app
+kubectl edit -n kserve deployments.apps kserve-models-web-app
 # APP_PREFIX: /
 # APP_DISABLE_AUTH: "True"
 # APP_SECURE_COOKIES: "False"
 
 # expose the app under localhost:5000
-kubectl port-forward -n kfserving-system svc/kfserving-models-web-app 5000:80
+kubectl port-forward -n kserve svc/kserve-models-web-app 5000:80
 ```
-
-### Kubeflow
-The web app is not part of the Kubeflow [1.3
-release](https://github.com/kubeflow/manifests/tree/v1.3-branch) manifests. The web
-app was introduced in KFServing `0.6` and the Kubeflow manifests for `1.3`
-include KFServing `0.5`.
-
-The KFServing manifests include a `kubeflow` overlay, which you can apply in
-you cluster to launch the web app in a Kubeflow `1.3` installation. You can
-also add the following section to the [Central Dashboard's
-ConfigMap](https://github.com/kubeflow/kubeflow/blob/v1.3-branch/components/centraldashboard/config/centraldashboard-config.yaml)
-in order to add an entry for this web app:
-```yaml
-{
-  "link": "/models/",
-  "text": "Models",
-  "icon": "settings_ethernet"
-},
-```
-
-{{% alert title="Note" color="info" %}}
-This web app will be part of Kubeflow installation manifests and exposed via the
-Central Dashboard, out of the box, in the 1.4 release.
-{{% /alert %}}
-
-{{% alert title="Note" color="info" %}}
-If you installed KFServing 0.6
-alongside Kubeflow 1.3, which ships with Knative 0.17, then you will need to
-modify your _inferenceservice-config_ ConfigMap and revert __localGateway__ and
-__localGatewayService__ values to:
-1. __localGateway__: cluster-local-gateway.knative-serving
-2. __localGatewayService__: cluster-local-gateway.istio-system.svc.cluster.local
-{{% /alert %}}
 
 ## Authorization
 
@@ -123,7 +92,7 @@ namespaces to the user and allow them to select any of them. The backend will
 make a LIST request to the API Server to get all the namespaces. In this case
 the only authorization check that takes place is in the K8s API Server that
 ensures the [web app Pod's
-ServiceAccount](https://github.com/kubeflow/kfserving/blob/master/config/web-app/rbac.yaml)
+ServiceAccount](https://github.com/kserve/models-web-app/blob/release-0.7/config/base/rbac.yaml)
 has permissions to list namespaces.
 
 In _kubeflow_ mode the [Central
@@ -150,7 +119,7 @@ The main page of the app provides a list of all the InferenceServices that are
 deployed in the selected Namespace. The frontend periodically polls the backend
 for the latest state of InferenceServices.
 
-<img src="../pics/webapp-list.png" alt="Models web app main page">
+<img src="./pics/webapp-list.png" alt="Models web app main page">
 
 ### Creating
 
@@ -161,7 +130,7 @@ Note that the backend will override the provided `.metadata.namespace` field of
 the submitted object, to prevent users from trying to create InferenceServices
 in other namespaces.
 
-<img src="../pics/webapp-new.png" alt="Models web app create page">
+<img src="./pics/webapp-new.png" alt="Models web app create page">
 
 ### Deleting
 
@@ -188,12 +157,12 @@ view a more detailed summary of the CR's state. In this page users can inspect:
 4. Logs from the created Pods (LOGS)
 4. The YAML file as is in the K8s API Server (YAML)
 
-<img src="../pics/webapp-overview.png" alt="Models web app overview page">
+<img src="./pics/webapp-overview.png" alt="Models web app overview page">
 
 {{% alert title="Note" color="info" %}}
 To gather the logs the backend will:
 1. Filter all the pods that have a `serving.knative.dev/revision` label
-2. Get the logs from the `kfserving-container`
+2. Get the logs from the `kserve-container`
 {{% /alert %}}
 
 ## Metrics
@@ -272,22 +241,22 @@ spec:
         - cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account
   selector:
     matchLabels:
-      kustomize.component: kfserving-models-web-app
-      app.kubernetes.io/component: kfserving-models-web-app
+      kustomize.component: kserve-models-web-app
+      app.kubernetes.io/component: kserve-models-web-app
 {{< /blocks/tab >}}}
 {{< /blocks/tabs >}}
 
 {{% alert title="Note" color="info" %}}
 If you installed the app in the _standalone_ mode then you will need to instead
 use the __knative-serving/knative-ingress-gateway__ Ingress Gateway and deploy
-the AuthorizationPolicy in the __kfserving-system__ namespace instead.
+the AuthorizationPolicy in the __kserve__ namespace instead.
 {{% /alert %}}
 
 After applying these YAMLs, based on your installation mode, and ensuring the
 Grafana instance is exposed under `/grafana` the web app will show the
 `METRICS` tab.
 
-<img src="../pics/webapp-metrics.png" alt="Models web app metrics page">
+<img src="./pics/webapp-metrics.png" alt="Models web app metrics page">
 
 ## Configurations
 
