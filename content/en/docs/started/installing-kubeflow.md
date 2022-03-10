@@ -39,7 +39,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on AWS</td>
         <td>Amazon Web Services (AWS)</td>
         <td>Amazon Elastic Kubernetes Service (EKS)</td>
-        <td>1.2</td>
+        <td>1.3</td>
         <td><a href="/docs/distributions/aws/">Docs</a></td>
         <td></td>
       </tr>
