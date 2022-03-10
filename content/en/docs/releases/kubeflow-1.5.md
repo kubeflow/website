@@ -12,7 +12,7 @@ weight = 99
     <tr>
       <th class="table-light">Release Date</th>
       <td>
-        2022-03-11
+        2022-03-10
       </td>
     </tr>
     <tr>
