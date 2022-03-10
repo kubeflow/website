@@ -95,16 +95,16 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Arrikto MiniKF</td>
         <td>Arrikto</td>
         <td>AWS Marketplace, GCP Marketplace</td>
-        <td>1.3</td>
+        <td>1.4</td>
         <td><a href="/docs/distributions/minikf/">Docs</a></td>
         <td><a href="https://www.arrikto.com/get-started/">External Website</a></td>
       </tr>
       <tr>
         <td>Arrikto Enterprise Kubeflow</td>
         <td>Arrikto</td>
-        <td>EKS, 
+        <td>EKS,
             AKS,
-            GKE 
+            GKE
         </td>
         <td>1.4</td>
         <td>
@@ -127,7 +127,7 @@ Packaged distributions are developed and supported by their respective maintaine
 </div>
 
 <a id="manifests"></a>
-## Install the Kubeflow Manifests manually 
+## Install the Kubeflow Manifests manually
 
 {{% alert color="warning" %}}
 This method is for advanced users. The Kubeflow community will not support environment-specific issues. If you need support, please consider using a [packaged distribution](#packaged-distributions) of Kubeflow.
