@@ -256,6 +256,10 @@ To upgrade from specific versions of Kubeflow, you may need to take certain manu
 Kubeflow on Google Cloud doesn't guarantee the upgrade for each Kubeflow component always works with the general upgrade guide here. Please refer to corresponding repository in [Kubeflow org](https://github.com/kubeflow) for upgrade support.
 {{% /alert %}}
 
+### Upgrade Kubeflow cluster to v1.5
+
+Starting from Kubeflow v1.5, Kubeflow manifests have included KServe as an independent component from kfserving, Google Cloud distribution has switched over from kfserving to KServe for default installed components. If you want to upgrade Kubeflow while keeping kfsering, you can comment KServe and uncomment kfserving in `gcp-blueprints/kubeflow/config.yaml` file. If you want to upgrade to KServe, follow the [KServe Migration guide](https://github.com/kserve/kserve/tree/master/hack/kserve_migration).
+
 ### Upgrade Kubeflow cluster to v1.3
 
 Due to the refactoring of `kubeflow/manifests` repository, the way we depend on `kubeflow/gcp-blueprints` has changed drastically. Upgrade to Kubeflow cluster v1.3 is not supported. And individual component upgrade has been deferred to its corresponding repository for support.

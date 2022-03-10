@@ -47,6 +47,8 @@ Before installing Kubeflow on the command line:
 
     Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository. gcloud hasn't caught up with this kpt version yet, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now. Note that kpt requires docker to be installed.
 
+    Note: You also need to [install required tools](https://cloud.google.com/service-mesh/v1.10/docs/scripted-install/asm-onboarding#installing_required_tools) for ASM installation tool `install_asm`.
+
 ### Fetch kubeflow/gcp-blueprints and upstream packages
 
 1. If you have already installed Management cluster, you have `kubeflow/gcp-blueprints` locally. You just need to run `cd kubeflow` to access Kubeflow cluster manifests. Otherwise, you can run the following commands:

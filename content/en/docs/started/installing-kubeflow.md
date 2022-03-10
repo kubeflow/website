@@ -55,7 +55,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on Google Cloud</td>
         <td>Google Cloud</td>
         <td>Google Kubernetes Engine (GKE)</td>
-        <td>1.4</td>
+        <td>{{% gke/latest-version %}}</td>
         <td><a href="/docs/distributions/gke/">Docs</a></td>
         <td></td>
       </tr>
