@@ -42,7 +42,7 @@ weight = 99
         <br>
         <b>Member:</b> Dominik Fleischmann (<a href="https://github.com/DomFleischmann">@DomFleischmann</a>)
         <br>
-        <b>Member:</b> Kylie Travis (<a href="https://github.com/Bhakti087">Bhakti087</a>)
+        <b>Member:</b> Kylie Travis (<a href="https://github.com/Bhakti087">@Bhakti087</a>)
         <br>
         <b>Member:</b> Mathew Wicks (<a href="https://github.com/thesuperzapper">@thesuperzapper</a>)
         <br>
