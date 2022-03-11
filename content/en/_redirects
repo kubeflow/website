@@ -176,7 +176,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/caching-v2                         /docs/components/pipelines/overview/caching-v2
 /docs/components/pipelines/multi-user                         /docs/components/pipelines/overview/multi-user
 /docs/components/pipelines/pipeline-root                      /docs/components/pipelines/overview/pipeline-root
-/docs/components/pipelines/pipelines-overview                 /docs/components/pipelines/introduction
+/docs/components/pipelines/overview/pipelines-overview        /docs/components/pipelines/introduction
 /docs/components/pipelines/pipelines-quickstart               /docs/components/pipelines/overview/quickstart
 /docs/components/pipelines/overview/concepts/*                /docs/components/pipelines/concepts/:splat
 /docs/components/pipelines/sdk/v2/*                           /docs/components/pipelines/sdk-v2/:splat
