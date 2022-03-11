@@ -82,6 +82,8 @@ cd "${MGMT_DIR}"
 make delete-cluster
 ```
 
+Starting from Kubeflow v1.5, Google Cloud distribution has switched to Config Controller for Google-managed Management cluster. You can learn more detail by reading [Delete your Config Controller](https://cloud.google.com/anthos-config-management/docs/how-to/config-controller-setup#delete_your).
+
 Note, after deleting the management cluster, all the managed Google Cloud
 resources will be kept. You will be responsible for managing them by yourself.
 If you want to delete the managed Google Cloud resources, make sure to delete resources in the `${KF_PROJECT}` namespace in the management cluster first.
