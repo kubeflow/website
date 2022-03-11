@@ -63,13 +63,15 @@ servers in your primary profile which you have view and modify access to.
 
 ## Onboarding a new user
 
-Kubeflow {{% kf-latest-version %}} provides automatic profile creation for authenticated users on
-first login. Additionally, an **administrator** can create a profile for any
-user in the Kubeflow cluster.  Here an administrator is a person who has
-[*cluster-admin*](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
+An **administrator** can manually create a profile for any user in the Kubeflow cluster.
+Here an administrator is a person who has [*cluster-admin*](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
 role binding in the Kubernetes cluster. This person has permissions to create
 and modify Kubernetes resources in the cluster. For example, the person who
 deployed Kubeflow will have administration privileges in the cluster.
+
+We recommend this approach, since it encourages the adoption of GitOps processes for handling the Profile creation.
+
+Kubeflow {{% kf-latest-version %}} optionally provides automatic Profile creation workflow for authenticated users on first login.
 
 ### Pre-requisites: grant user minimal Kubernetes cluster access
 
@@ -105,34 +107,6 @@ the user's email address:
     ```
     gcloud projects add-iam-policy-binding [PROJECT] --member=user:[EMAIL] --role=roles/viewer
     ```
-
-### Automatic creation of profiles
-
-Kubeflow {{% kf-latest-version %}} provides automatic profile creation:
-
-  - The Kubeflow deployment process automatically creates a profile for the user
-    performing the deployment. When the user access the Kubeflow central dashboard
-    they see their profile in the dropdown list.
-  - The automatic profile creation can be disabled as part of the deployment by setting the registration-flow env variable to false. And an admin can manually create profiles per user or per project and add collaborators through YAML files.
-   Modify the kustomize/centraldashboard/base/parama.env to set the registration variable to false
-
-   ```
-   clusterDomain=cluster.local
-   userid-header=kubeflow-userid
-   userid-prefix=
-   registration-flow=false
-   ```
-
-  - When an authenticated user logs into the system and visits the central
-    dashboard for the first time, they trigger a profile creation automatically.
-      - A brief message introduces profiles: <img
-        src="/docs/images/auto-profile1.png" alt="Automatic profile creation
-        step 1" class="mt-3 mb-3 border border-info rounded">
-      - The user can name their profile and click *Finish*:  <img
-        src="/docs/images/auto-profile2.png" alt="Automatic profile creation
-        step 2" class="mt-3 mb-3 border border-info rounded">
-      - This redirects the user to the dashboard where they can view and select
-        their profile in the dropdown list.
 
 ### Manual profile creation
 
@@ -222,6 +196,31 @@ kubectl apply -f profile.yaml  #if you are modifying the profiles
 
 This will create multiple profiles, one for each individual listed in the sections
 in `profile.yaml`.
+
+### Automatic profile creation
+
+Kubeflow {{% kf-latest-version %}} provides automatic profile creation:
+
+  - Automatic profile creation is not activated by default, and needs to be explicitly included as part of deployment. After turning on automatic user profile creation during deployment, a new user profile is created for authenticated users on their first login. Users will be able to see their new profile in the dropdown list of the Kubeflow central dashboard.
+  - The automatic profile creation can be enabled as part of the deployment by setting the `CD_REGISTRATION_FLOW` env variable to `true`. Modify the `<manifests-path>/apps/centraldashboard/upstream/base/params.env` to set the registration variable to `true`
+
+   ```
+   CD_CLUSTER_DOMAIN=cluster.local
+   CD_USERID_HEADER=kubeflow-userid
+   CD_USERID_PREFIX=
+   CD_REGISTRATION_FLOW=true
+   ```
+
+  - When an authenticated user logs into the system and visits the central
+    dashboard for the first time, they trigger a profile creation automatically.
+      - A brief message introduces profiles: <img
+        src="/docs/images/auto-profile1.png" alt="Automatic profile creation
+        step 1" class="mt-3 mb-3 border border-info rounded">
+      - The user can name their profile and click *Finish*:  <img
+        src="/docs/images/auto-profile2.png" alt="Automatic profile creation
+        step 2" class="mt-3 mb-3 border border-info rounded">
+      - This redirects the user to the dashboard where they can view and select
+        their profile in the dropdown list.
 
 ## Listing and describing profiles
 
