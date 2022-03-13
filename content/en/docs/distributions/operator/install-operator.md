@@ -34,7 +34,7 @@ Previous method is convenient and simple enough without any knowledges of the Op
 
 ### Prerequisites
 
-* Install [kustomize](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/INSTALL.md)
+* Install [kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/)
 
 ### Clone the [`kfctl`](https://github.com/kubeflow/kfctl.git) repo and switch to the desired release branch
 
