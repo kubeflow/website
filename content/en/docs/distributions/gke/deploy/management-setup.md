@@ -23,7 +23,7 @@ to manage Google Cloud infrastructure using GitOps.
     ```bash
     gcloud components install kubectl kustomize kpt anthoscli beta
     gcloud components update
-    # If the output said the Cloud SDK component manager is disabled for installation, copy the command from output and run it.
+    # If the output indicates the Cloud SDK component manager is disabled for installation, copy the command from output and run it.
     ```
 
     You can install specific version of kubectl by following instruction (Example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)). Latest patch version of kubectl from `v1.17` to `v1.19` works well too.
