@@ -43,7 +43,7 @@ For more details, go to the [official Juju documentation](https://juju.is/docs/c
 To operate workloads on your Kubernetes cluster, Juju uses controllers. You can create a controller with the  `bootstrap`  command:
 
 ```bash
-juju bootstrap myk8s my-controller --agent-version="2.9.22"
+juju bootstrap myk8s my-controller
 ```
 
 This command will create a couple of pods under the `my-controller` namespace. You can see your controllers with the `juju controllers` command.
