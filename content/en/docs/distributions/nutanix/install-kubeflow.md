@@ -19,7 +19,7 @@ weight = 4
 
 ## Installing Kubeflow
 
-Do these steps to deploy Kubeflow 1.4 on your Karbon cluster.
+Do these steps to deploy Kubeflow {{% nutanix/latest-version %}} on your Karbon cluster.
 
 1. Download the terraform script to deploy kubeflow on Nutanix Karbon by cloning the Github repository shown.
 
@@ -37,7 +37,7 @@ Do these steps to deploy Kubeflow 1.4 on your Karbon cluster.
    prism_central_endpoint = "enter endpoint_ip_or_host_fqdn"
    karbon_cluster_name    = "enter karbon_cluster_name"
    kubeconfig_filename    = "enter karbon_cluster_name-kubectl.cfg"
-   kubeflow_version       = "1.4.0"
+   kubeflow_version       = "{{% nutanix/latest-version %}}"
    ```
 
 3. Apply terraform commands to deploy Kubeflow in the cluster.  
@@ -230,4 +230,4 @@ There are multiple ways to acces your Kubeflow Central Dashboard:
     kubectl -n istio-system apply -f certificate.yaml
     ```
   - You can now access the kubeflow dashboard by navigating to the istio-ingressgateway external IP e.g. `x.x.x.x`
-    
+
