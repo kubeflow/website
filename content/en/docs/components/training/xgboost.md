@@ -40,6 +40,8 @@ xgboostjobs.kubeflow.org                       4d
 ...
 ```
 
+Check that the Training operator is running via:
+
 ```
 kubectl get pods -n kubeflow
 ```
