@@ -123,6 +123,10 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     githubbranch = "master"
     url = "https://master.kubeflow.org"
   [[params.versions]]
+    version = "v1.5"
+    githubbranch = "v1.5-branch"
+    url = "https://v1-5-branch.kubeflow.org"
+  [[params.versions]]
     version = "v1.4"
     githubbranch = "v1.4-branch"
     url = "https://v1-4-branch.kubeflow.org"

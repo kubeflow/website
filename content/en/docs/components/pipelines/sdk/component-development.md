@@ -168,7 +168,7 @@ section provides some guidelines on standard container creation.
     *   Files in your `./src` directory are copied into
         `/pipelines/component/src` in the container image.
   
-1.  Create a script named `build_image.sh ` that uses Docker to build your
+1.  Create a script named `build_image.sh` that uses Docker to build your
     container image and push your container image to a container registry.
     Your Kubernetes cluster must be able to access your container registry
     to run your component. Examples of container registries include [Google

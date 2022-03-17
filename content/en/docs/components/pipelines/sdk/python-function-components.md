@@ -86,7 +86,7 @@ For more information about the Kubeflow Pipelines SDK, see the [SDK reference gu
 This section demonstrates how to get started building Python function-based components by walking
 through the process of creating a simple component.
 
-1.  Define your component's code as a [standalone python function](#standalone). In this example,
+1.  Define your component's code as a [standalone Python function](#standalone). In this example,
     the function adds two floats and returns the sum of the two arguments.
 
 
@@ -255,7 +255,7 @@ The following sections describe how to pass parameters by value and by file.
 
 When you use the Kubeflow Pipelines SDK to convert your Python function to a
 pipeline component, the Kubeflow Pipelines SDK uses the function's interface
-to define the interface of your component in the following ways.
+to define the interface of your component in the following ways:
 
 *   Some arguments define input parameters.
 *   Some arguments define output parameters.

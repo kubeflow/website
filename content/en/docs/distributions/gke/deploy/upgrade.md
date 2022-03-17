@@ -24,6 +24,8 @@ This guide assumes the following settings:
 
 ## General upgrade instructions
 
+Starting from Kubeflow v1.5, we have integrated with [Config Controller](https://cloud.google.com/anthos-config-management/docs/concepts/config-controller-overview). You don't need to manually upgrade Management cluster any more, since it managed by [Upgrade Config Controller](https://cloud.google.com/anthos-config-management/docs/how-to/config-controller-setup#upgrade).
+
 Starting from Kubeflow v1.3, we have reworked on the structure of `kubeflow/gcp-blueprints` repository. All resources are located in `gcp-blueprints/management` directory. Upgrade to Management cluster v1.3 is not supported.
 
 Before Kubeflow v1.3, both management cluster and Kubeflow cluster follow the same `instance` and `upstream` folder convention. To upgrade, you'll typically need to update packages in `upstream` to the new version and repeat the `make apply-<subcommand>` commands in their respective deployment process.
@@ -32,7 +34,7 @@ However, specific upgrades might need manual actions below.
 
 ## Upgrading management cluster
 
-### General instruction for upgrading management cluster
+### Upgrading management cluster before 1.5
 
 It is strongly recommended to use source control to keep a copy of your working repository for recording changes at each step.
 
@@ -253,6 +255,10 @@ To upgrade from specific versions of Kubeflow, you may need to take certain manu
 {{% alert title="Note" %}}
 Kubeflow on Google Cloud doesn't guarantee the upgrade for each Kubeflow component always works with the general upgrade guide here. Please refer to corresponding repository in [Kubeflow org](https://github.com/kubeflow) for upgrade support.
 {{% /alert %}}
+
+### Upgrade Kubeflow cluster to v1.5
+
+Starting from Kubeflow v1.5, Kubeflow manifests have included KServe as an independent component from kfserving, Google Cloud distribution has switched over from kfserving to KServe for default installed components. If you want to upgrade Kubeflow while keeping kfsering, you can comment KServe and uncomment kfserving in `gcp-blueprints/kubeflow/config.yaml` file. If you want to upgrade to KServe, follow the [KServe Migration guide](https://github.com/kserve/kserve/tree/master/hack/kserve_migration).
 
 ### Upgrade Kubeflow cluster to v1.3
 

@@ -47,22 +47,24 @@ Before installing Kubeflow on the command line:
 
     Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository. gcloud hasn't caught up with this kpt version yet, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now. Note that kpt requires docker to be installed.
 
+    Note: You also need to [install required tools](https://cloud.google.com/service-mesh/v1.10/docs/scripted-install/asm-onboarding#installing_required_tools) for ASM installation tool `install_asm`.
+
 ### Fetch kubeflow/gcp-blueprints and upstream packages
 
 1. If you have already installed Management cluster, you have `kubeflow/gcp-blueprints` locally. You just need to run `cd kubeflow` to access Kubeflow cluster manifests. Otherwise, you can run the following commands:
 
     ```bash
-    # Check out Kubeflow v1.4.0 blueprints
+    # Check out Kubeflow v{{% gke/latest-version %}} blueprints
     git clone https://github.com/kubeflow/gcp-blueprints.git 
     cd gcp-blueprints
-    git checkout tags/v1.4.0 -b v1.4.0
+    git checkout tags/v{{% gke/latest-version %}} -b v{{% gke/latest-version %}}
     ```
 
     Alternatively, you can get the package by using `kpt`:
 
     ```bash
-    # Check out Kubeflow v1.4.0 blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v1.4.0 gcp-blueprints
+    # Check out Kubeflow v{{% gke/latest-version %}} blueprints
+    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v{{% gke/latest-version %}} gcp-blueprints
     cd gcp-blueprints
     ```
 
@@ -101,9 +103,6 @@ Log in to gcloud. You only need to run this command once:
 
     {{% alert title="Note" %}}Do not omit the <b>export</b> because scripts triggered by <b>make</b> need these environment variables. Do not check in these two environment variables configuration to source control, they are secrets.{{% /alert %}}
    
-
-### Configure Kubeflow
-
 #### kpt setter config
 
 Run the following commands to configure kpt setter for your Kubeflow cluster:
@@ -126,29 +125,11 @@ current values by running the following commands:
 
 You can learn more about `list-setters` in [kpt documentation](https://catalog.kpt.dev/list-setters/v0.1/).
 
-### Management cluster config
-
-You need to configure the kubectl context `${MGMTCTXT}` to create a namespace same as your Kubeflow project, you only need to do this once for each Kubeflow project.
-
-* Choose the management cluster context
-
-  ```bash
-  kubectl config use-context "${MGMTCTXT}"
-  ```
-
-* Create a namespace in your management cluster for the Kubeflow project if you haven't done so.
-
-  ```bash
-  kubectl create namespace "${KF_PROJECT}"
-  ```
-
-
 #### Authorize Cloud Config Connector for each Kubeflow project
 
-In the [Management cluster deployment](/docs/distributions/gke/deploy/management-setup/) we created the Google Cloud service account **${MGMT_NAME}-cnrm-system@${MGMT_PROJECT}.iam.gserviceaccount.com**
-this is the service account that Config Connector will use to create any Google Cloud resources. If your Management cluster and Kubeflow cluster live in different projects, you need to grant this Google Cloud service account sufficient privileges to create the desired
-resources in Kubeflow project. You only need to do this once for each Kubeflow project.
-
+In the [Management cluster deployment](/docs/distributions/gke/deploy/management-setup/) we created the Google Cloud service account **serviceAccount:kcc-${KF_PROJECT}@${MGMT_PROJECT}.iam.gserviceaccount.com**
+this is the service account that Config Connector will use to create any Google Cloud resources in `${KF_PROJECT}`. You need to grant this Google Cloud service account sufficient privileges to create the desired resources in Kubeflow project. 
+You only need to perform steps below once for each Kubeflow project, but make sure to do it even when KF_PROJECT and MGMT_PROJECT are the same project.
 
 The easiest way to do this is to grant the Google Cloud service account owner permissions on one or more projects.
 
@@ -156,31 +137,24 @@ The easiest way to do this is to grant the Google Cloud service account owner pe
 
     ```bash
     MGMT_PROJECT=<the project where you deploy your management cluster>
+    MGMT_NAME=<the kubectl context name for management cluster>
     ```
+1. Apply ConfigConnectorContext for `${KF_PROJECT}` in management cluster:
 
-1. Redirect to `management` directory and configure kpt setter:
-
-   ```bash
-   pushd "../management"
-   kpt fn eval --image gcr.io/kpt-fn/apply-setters:v0.1 ./managed-project --\
-        name="${MGMT_NAME}" \
-        gcloud.core.project="${MGMT_PROJECT}" \
-        managed-project="${KF_PROJECT}"
-   ```
-
-1. Update the policy:
-
-   ```bash
-   gcloud beta anthos apply ./managed-project/iam.yaml
-   ```
-
-   Optionally, to restrict permissions you want to grant to this service account. You can edit `./managed-project/iam.yaml` and specify more granular roles. Refer to [IAMPolicy Config Connector reference](https://cloud.google.com/config-connector/docs/reference/resource-docs/iam/iampolicy) for exact fields you can set.
-
-1. Return to `gcp-blueprints/kubeflow` directory:
-    
     ```bash
-    popd
+    make apply-kcc
     ```
+
+
+### Configure Kubeflow
+
+Make sure you are using KF_PROJECT in the gcloud CLI tool:
+
+  ```bash
+  gcloud config set project ${KF_PROJECT}
+  ```
+
+
 
 ### Deploy Kubeflow
 
@@ -252,7 +226,7 @@ To access the Kubeflow central dashboard, follow these steps:
     ```
 
 1. Follow the instructions on the UI to create a namespace. Refer to this guide on
-  [creation of profiles](/docs/components/multi-tenancy/getting-started/#automatic-creation-of-profiles).
+  [creation of profiles](/docs/components/multi-tenancy/getting-started/#automatic-profile-creation).
 
 Notes:
 

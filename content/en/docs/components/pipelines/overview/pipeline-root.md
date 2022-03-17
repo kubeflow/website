@@ -7,11 +7,11 @@ weight = 50
 {{% beta-status
 feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
 
-Starting from [Kubeflow Pipelines SDK v2](https://www.kubeflow.org/docs/components/pipelines/sdk-v2/) and Kubeflow Pipelines 1.7.0, Kubeflow Pipelines supports a new intermediate artifact repository feature: pipeline root in both [standalone deployment](https://www.kubeflow.org/docs/components/pipelines/installation/standalone-deployment/) and [AI platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs).
+Starting from [Kubeflow Pipelines SDK v2](https://www.kubeflow.org/docs/components/pipelines/sdk-v2/) and Kubeflow Pipelines 1.7.0, Kubeflow Pipelines supports a new intermediate artifact repository feature: pipeline root in both [standalone deployment](https://www.kubeflow.org/docs/components/pipelines/installation/standalone-deployment/) and [AI Platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs).
 
 ## Before you start
 This guide tells you the basic concepts of Kubeflow Pipelines pipeline root and how to use it.
-This guide assumes that you already have Kubeflow Pipelines installed, or want to use standalone or AI platform Pipelines options in the [Kubeflow Pipelines deployment
+This guide assumes that you already have Kubeflow Pipelines installed, or want to use standalone or AI Platform Pipelines options in the [Kubeflow Pipelines deployment
 guide](/docs/components/pipelines/installation/) to deploy Kubeflow Pipelines.
 
 ## What is pipeline root?
@@ -20,7 +20,7 @@ Pipeline root represents an artifact repository where Kubeflow Pipelines stores 
 This feature supports MinIO, S3, GCS natively using [Go CDK](https://github.com/google/go-cloud). Artifacts can be more accessible in S3 and GCS when integrating Kubeflow Pipelines with other systems.
 
 **Note:** For MinIO, you can't change the MinIO instance. Kubeflow Pipelines can only use the Minio instance deployed with itself.
-(Please thumb ub this [GitHub Issue](https://github.com/kubeflow/pipelines/issues/6517) if you need to specify the Minio instance)
+(Please thumb up this [GitHub Issue](https://github.com/kubeflow/pipelines/issues/6517) if you need to specify the Minio instance.)
 
 ## How to configure pipeline root authentication 
 #### MinIO

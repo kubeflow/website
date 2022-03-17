@@ -79,7 +79,7 @@ and [components](/docs/components/pipelines/concepts/component/).
 *   Use the unit testing libraries that are standard for the language you're
     using.
 *   Try to design the component code so that it can be tested using unit tests.
-    Do not use network unless necessary
+    Do not use network unless necessary.
 
 *   Prepare small input data files so that the component code can be tested in
     isolation. For example, for an ML prediction component prepare a small model

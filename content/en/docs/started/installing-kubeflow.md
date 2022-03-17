@@ -39,7 +39,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on AWS</td>
         <td>Amazon Web Services (AWS)</td>
         <td>Amazon Elastic Kubernetes Service (EKS)</td>
-        <td>1.2</td>
+        <td>1.3</td>
         <td><a href="/docs/distributions/aws/">Docs</a></td>
         <td></td>
       </tr>
@@ -55,7 +55,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on Google Cloud</td>
         <td>Google Cloud</td>
         <td>Google Kubernetes Engine (GKE)</td>
-        <td>1.4</td>
+        <td>{{% gke/latest-version %}}</td>
         <td><a href="/docs/distributions/gke/">Docs</a></td>
         <td></td>
       </tr>
@@ -63,9 +63,9 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on IBM Cloud</td>
         <td>IBM Cloud</td>
         <td>IBM Cloud Kubernetes Service (IKS) </td>
-        <td>1.4</td>
+        <td>1.5</td>
         <td><a href="/docs/distributions/ibm/">Docs</a></td>
-        <td><a href="https://github.com/IBM/manifests/tree/v1.4.0">External Website</a></td>
+        <td><a href="https://github.com/IBM/manifests/tree/v1.5-branch">External Website</a></td>
       </tr>
       <tr>
         <td>Kubeflow on Nutanix</td>
@@ -94,17 +94,17 @@ Packaged distributions are developed and supported by their respective maintaine
       <tr>
         <td>Arrikto MiniKF</td>
         <td>Arrikto</td>
-        <td>AWS Marketplace, GCP Marketplace, Vagrant</td>
-        <td>1.3</td>
+        <td>AWS Marketplace, GCP Marketplace</td>
+        <td>1.4</td>
         <td><a href="/docs/distributions/minikf/">Docs</a></td>
         <td><a href="https://www.arrikto.com/get-started/">External Website</a></td>
       </tr>
       <tr>
         <td>Arrikto Enterprise Kubeflow</td>
         <td>Arrikto</td>
-        <td>EKS, 
+        <td>EKS,
             AKS,
-            GKE 
+            GKE
         </td>
         <td>1.4</td>
         <td>
@@ -115,27 +115,19 @@ Packaged distributions are developed and supported by their respective maintaine
         </td>
       </tr>
       <tr>
-        <td>Kubeflow Charmed Operators</td>
+        <td>Charmed Kubeflow</td>
         <td>Canonical</td>
         <td>Conformant Kubernetes</td>
         <td>1.4</td>
         <td><a href="/docs/distributions/charmed/">Docs</a></td>
-        <td><a href="https://charmed-kubeflow.io/docs">External Website</a></td>
-      </tr>
-      <tr>
-        <td>MicroK8s Kubeflow Add-on</td>
-        <td>Canonical</td>
-        <td>MicroK8s</td>
-        <td>1.3</td>
-        <td><a href="/docs/distributions/microk8s/">Docs</a></td>
-        <td><a href="https://microk8s.io/docs/addon-kubeflow">External Website</a></td>
+        <td><a href="https://charmed-kubeflow.io/docs/quickstart">External Website</a></td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <a id="manifests"></a>
-## Install the Kubeflow Manifests manually 
+## Install the Kubeflow Manifests manually
 
 {{% alert color="warning" %}}
 This method is for advanced users. The Kubeflow community will not support environment-specific issues. If you need support, please consider using a [packaged distribution](#packaged-distributions) of Kubeflow.
