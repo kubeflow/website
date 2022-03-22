@@ -7,7 +7,7 @@ aliases = ["/docs/community/"]
 
 ## Slack
 
-Join the official Kubeflow Slack with [this invite link](https://join.slack.com/t/kubeflow/shared_invite/zt-n73pfj05-l206djXlXk5qdQKs4o1Zkg).
+Join the official Kubeflow Slack with [this invite link](https://join.slack.com/t/kubeflow/shared_invite/zt-15p4qkx7a-gy2kDrQS52Y44HoSssxpcw).
 
 {{% alert title="Tip" color="info" %}}
 If the above invite has expired, please [raise an issue on the `kubeflow/website` repo](https://github.com/kubeflow/website/issues/new).
