@@ -238,7 +238,7 @@ depending on their data type.
 All outputs are returned as files, using the the paths that Kubeflow Pipelines
 provides.
 
-[kfp-artifact]: https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/io_types.py
+[kfp-artifact]: https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/deprecated/dsl/io_types.py
 
 Python function-based components make it easier to build pipeline components
 by building the component specification for you. Python function-based
