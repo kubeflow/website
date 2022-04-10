@@ -807,9 +807,18 @@ To define the metrics collector for your experiment:
 
    - `File`: Katib collects the metrics from an arbitrary file, which
      you specify in the `.source.fileSystemPath.path` field. Training container
-     should log metrics to this file. Check the
-     [file metrics collector example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metrics-collector/file-metrics-collector.yaml#L13-L22).
-     The default file path is `/var/log/katib/metrics.log`.
+     should log metrics to this file in `TEXT` or `JSON` format. If you select `JSON` format, metrics must be line-separated by `epoch` or `step` as follows, and the key for timestamp must be `timestamp`:
+
+     ```json
+     {"epoch": 0, "foo": “bar", “fizz": “buzz", "timestamp": 1638422847.28721…}
+     {"epoch": 1, "foo": “bar", “fizz": “buzz", "timestamp": 1638422847.287801…}
+     {"epoch": 2, "foo": “bar", “fizz": “buzz", "timestamp": "2021-12-02T14:27:50.000035161+09:00"…}
+     {"epoch": 3, "foo": “bar", “fizz": “buzz", "timestamp": "2021-12-02T14:27:50.000037459+09:00"…}
+     …
+     ```
+
+     Check the file metrics collector example for [`TEXT`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metrics-collector/file-metrics-collector.yaml#L13-L22) and [`JSON`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/metrics-collector/file-metrics-collector-with-json-format.yaml#L13-L20) format.
+     Also, the default file path is `/var/log/katib/metrics.log`, and the default file format is `TEXT`.
 
    - `TensorFlowEvent`: Katib collects the metrics from a directory path
      containing a [tf.Event](https://www.tensorflow.org/api_docs/python/tf/compat/v1/Event).
@@ -828,7 +837,7 @@ To define the metrics collector for your experiment:
      collector. For example, your training code may handle the persistent
      storage of its own metrics.
 
-1. Write code in your training container to print or save to the file metrics in the format
+2. Write code in your training container to print or save to the file metrics in the format
    specified in the `.source.filter.metricsFormat`
    field. The default format is `([\w|-]+)\s*=\s*([+-]?\d*(\.\d+)?([Ee][+-]?\d+)?)`.
    Each element is a regular expression with two subexpressions. The first
