@@ -89,41 +89,6 @@ data:
 
 > Note: To get a Base64 string, run `echo -n $AWS_ACCESS_KEY_ID | base64`
 
-### Configure containers to use AWS credentials
-
-In order for `ml-pipeline-ui` to read these artifacts:
-
-1. Create a Kubernetes secret `aws-secret` in the `kubeflow` namespace.
-
-2. Update deployment `ml-pipeline-ui` to use AWS credential environment variables by running `kubectl edit deployment ml-pipeline-ui -n kubeflow`.
-
-   ```
-   apiVersion: extensions/v1beta1
-   kind: Deployment
-   metadata:
-     name: ml-pipeline-ui
-     namespace: kubeflow
-     ...
-   spec:
-     template:
-       spec:
-         containers:
-         - env:
-           - name: AWS_ACCESS_KEY_ID
-             valueFrom:
-               secretKeyRef:
-                 key: AWS_ACCESS_KEY_ID
-                 name: aws-secret
-           - name: AWS_SECRET_ACCESS_KEY
-             valueFrom:
-               secretKeyRef:
-                 key: AWS_SECRET_ACCESS_KEY
-                 name: aws-secret
-           ....
-           image: gcr.io/ml-pipeline/frontend:0.2.0
-           name: ml-pipeline-ui
-   ```
-
 ### Example Pipeline 
 
 If you write any files to S3 in your application, use `use_aws_secret` to attach an AWS secret to access S3.
