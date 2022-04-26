@@ -23,7 +23,7 @@ Kubeflow distributions secure the Kubeflow Pipelines public endpoint with authen
 Since Kubeflow distributions can have different authentication and authorization requirements, the steps needed to connect to your Kubeflow Pipelines instance might be different depending on the Kubeflow distribution you installed. Refer to documentation for [your Kubeflow distribution](/docs/started/installing-kubeflow/):
 
 * [Connecting to Kubeflow Pipelines on Google Cloud using the SDK](/docs/distributions/gke/pipelines/authentication-sdk/)
-* [Kubeflow Pipelines on AWS](/docs/distributions/aws/component-guides/pipeline/#authenticate-kubeflow-pipelines-using-sdk-outside-cluster)
+* [Kubeflow Pipelines on AWS](https://awslabs.github.io/kubeflow-manifests/docs/component-guides/pipelines/)
 * [Authentication using OIDC in Azure](/docs/distributions/azure/authentication-oidc/)
 * [Pipelines on IBM Cloud Kubernetes Service (IKS)](/docs/distributions/ibm/pipelines/)
 
