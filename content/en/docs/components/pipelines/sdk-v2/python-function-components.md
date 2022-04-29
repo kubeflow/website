@@ -310,7 +310,7 @@ The following example demonstrates how to return multiple outputs by value.
 [kfp-metrics]: https://www.kubeflow.org/docs/components/pipelines/sdk/pipelines-metrics/
 [input-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.InputPath
 [output-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.OutputPath
-[vs-dsl-component]: https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/v2/dsl/component_decorator.py
+[vs-dsl-component]: https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/v2/components/component_decorator.py
 
 
 ```python
