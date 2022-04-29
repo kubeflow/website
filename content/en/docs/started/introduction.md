@@ -77,7 +77,7 @@ To see what's coming up in future versions of Kubeflow, refer to the [Kubeflow r
 
 The following components also have roadmaps:
 
-- [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
+- [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/ROADMAP.md)
 - [KF Serving](https://github.com/kubeflow/kfserving/blob/master/ROADMAP.md)
 - [Katib](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
 - [Training Operator](https://github.com/kubeflow/common/blob/master/ROADMAP.md)

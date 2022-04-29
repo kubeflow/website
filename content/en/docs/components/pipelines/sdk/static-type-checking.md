@@ -26,7 +26,7 @@ property, which defines the input parameter schema. **Warning**: the pipeline sy
 currently does not check the input value against the schema when you submit a pipeline run. However, this feature will come in the near 
 future. 
 
-There is a set of [core types](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/types.py) defined in the 
+There is a set of [core types](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/dsl/types.py) defined in the 
 Pipelines SDK and you can use these core types or define your custom types. 
 
 In the component YAML, types are specified as a string or a dictionary with the OpenAPI Schema, as illustrated below.
@@ -141,7 +141,7 @@ and the corresponding OpenAPI Schema properties are equal. Examples of type chec
 * {'GCSPath': {'openapi_schema_validator': '{"type": "string", "pattern": "^gs://.*$"}'}} vs.  
 {'GCSPath': {'openapi_schema_validator': '{"type": "string", "pattern": "^gcs://.*$"}'}}
 
-If inconsistent types are detected, it throws an [InconsistentTypeException](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/types.py).
+If inconsistent types are detected, it throws an [InconsistentTypeException](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/dsl/types.py).
 
 
 ## Type checking configuration
@@ -191,4 +191,4 @@ type checking would still fail if some I/Os lack the type information and some I
 
 Learn how to define a KubeFlow pipeline with Python DSL and compile the
 pipeline with type checking: a 
-[Jupyter notebook demo](https://github.com/kubeflow/pipelines/blob/master/samples/core/dsl_static_type_checking/dsl_static_type_checking.ipynb).
+[Jupyter notebook demo](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/core/dsl_static_type_checking/dsl_static_type_checking.ipynb).

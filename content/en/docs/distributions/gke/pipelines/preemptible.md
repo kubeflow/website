@@ -144,9 +144,9 @@ your pipeline, add the following to the `ContainerOp` instance:
 The above function works for both methods of generating the `ContainerOp`:
 
 +   The `ContainerOp` generated from 
-[`kfp.components.func_to_container_op`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/components/_python_op.py).
+[`kfp.components.func_to_container_op`](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/components/_python_op.py).
 +   The `ContainerOp` generated from the task factory function, which is
-    loaded by [`components.load_component_from_url`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/components/_components.py).
+    loaded by [`components.load_component_from_url`](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/components/_components.py).
 
 **Note**: 
 
@@ -302,9 +302,9 @@ your pipeline, add the following to the `ContainerOp` instance:
 The above function works for both methods of generating the `ContainerOp`:
 
 +   The `ContainerOp` generated from 
-[`kfp.components.func_to_container_op`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/components/_python_op.py).
+[`kfp.components.func_to_container_op`](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/components/_python_op.py).
 +   The `ContainerOp` generated from the task factory function, which is
-    loaded by [`components.load_component_from_url`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/components/_components.py).
+    loaded by [`components.load_component_from_url`](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/components/_components.py).
 
 **Note**: 
 

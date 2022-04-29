@@ -76,7 +76,7 @@ specification.
 ### Samples
 
 For better understanding, please refer to the following samples:
-[1](https://github.com/kubeflow/pipelines/blob/master/samples/core/resource_ops/resource_ops.py)
+[1](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/core/resource_ops/resource_ops.py)
 
 ---
 
@@ -197,10 +197,10 @@ Extra arguments:
 ### Samples
 
 For better understanding, please refer to the following samples:
-[1](https://github.com/kubeflow/pipelines/blob/master/samples/core/volume_ops/volume_ops.py),
-[2](https://github.com/kubeflow/pipelines/blob/master/samples/contrib/volume_ops/volumeop_dag.py),
-[3](https://github.com/kubeflow/pipelines/blob/master/samples/contrib/volume_ops/volumeop_parallel.py),
-[4](https://github.com/kubeflow/pipelines/blob/master/samples/contrib/volume_ops/volumeop_sequential.py)
+[1](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/core/volume_ops/volume_ops.py),
+[2](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/contrib/volume_ops/volumeop_dag.py),
+[3](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/contrib/volume_ops/volumeop_parallel.py),
+[4](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/contrib/volume_ops/volumeop_sequential.py)
 
 ---
 
@@ -261,18 +261,18 @@ The user may otherwise use the `step.outputs["name"]` as `data_source`.
 ### Samples
 
 For better understanding, please refer to the following samples:
-[1](https://github.com/kubeflow/pipelines/blob/master/samples/core/volume_snapshot_ops/volume_snapshot_ops.py),
-[2](https://github.com/kubeflow/pipelines/blob/master/samples/contrib/volume_snapshot_ops/volume_snapshotop_rokurl.py)
+[1](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/core/volume_snapshot_ops/volume_snapshot_ops.py),
+[2](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/contrib/volume_snapshot_ops/volume_snapshotop_rokurl.py)
 
 ## Next steps
 
 * See samples in Kubeflow Pipelines 
-  [repository](https://github.com/kubeflow/pipelines/tree/master/samples).
+  [repository](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples).
   For instance, check these samples of 
-  [ResourceOps](https://github.com/kubeflow/pipelines/tree/master/samples/core/resource_ops), 
-  [VolumeOps](https://github.com/kubeflow/pipelines/tree/master/samples/core/volume_ops)
+  [ResourceOps](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/core/resource_ops), 
+  [VolumeOps](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/core/volume_ops)
   and 
-  [VolumeSnapshotOps](https://github.com/kubeflow/pipelines/tree/master/samples/core/volume_snapshot_ops).
+  [VolumeSnapshotOps](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/core/volume_snapshot_ops).
 * Learn more about the 
   [Kubeflow Pipelines domain-specific language (DSL)](/docs/components/pipelines/sdk/dsl-overview/),
   a set of Python libraries that you can use to specify ML pipelines.

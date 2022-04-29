@@ -162,17 +162,17 @@ and use it as your working directory.
 ### Deploy on GCP with Cloud SQL and Google Cloud Storage
 
 **Note**: This is recommended for production environments. For more details about customizing your environment
-for GCP, see the [Kubeflow Pipelines GCP manifests](https://github.com/kubeflow/pipelines/tree/master/manifests/kustomize/env/gcp).
+for GCP, see the [Kubeflow Pipelines GCP manifests](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/env/gcp).
 
 ### Change deployment namespace
 
 To deploy Kubeflow Pipelines standalone in namespace `<my-namespace>`:
 
 1. Set the `namespace` field to `<my-namespace>` in
-   [dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml) or
-   [gcp/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/gcp/kustomization.yaml).
+   [dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/env/dev/kustomization.yaml) or
+   [gcp/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/env/gcp/kustomization.yaml).
 
-1. Set the `namespace` field to `<my-namespace>` in [cluster-scoped-resources/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/cluster-scoped-resources/kustomization.yaml)
+1. Set the `namespace` field to `<my-namespace>` in [cluster-scoped-resources/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/cluster-scoped-resources/kustomization.yaml)
 
 1. Apply the changes to update the Kubeflow Pipelines deployment:
 
@@ -181,7 +181,7 @@ To deploy Kubeflow Pipelines standalone in namespace `<my-namespace>`:
      kubectl apply -k manifests/kustomize/env/dev
      ```
 
-     **Note**: If using GCP Cloud SQL and Google Cloud Storage, set the proper values in [manifests/kustomize/env/gcp/params.env](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/gcp/params.env), then apply with this command:
+     **Note**: If using GCP Cloud SQL and Google Cloud Storage, set the proper values in [manifests/kustomize/env/gcp/params.env](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/env/gcp/params.env), then apply with this command:
 
      ```
      kubectl apply -k manifests/kustomize/cluster-scoped-resources
@@ -192,7 +192,7 @@ To deploy Kubeflow Pipelines standalone in namespace `<my-namespace>`:
 
 By default, the KFP standalone deployment installs an [inverting proxy agent](https://github.com/google/inverting-proxy) that exposes a public URL. If you want to skip the installation of the inverting proxy agent, complete the following:
 
-1. Comment out the proxy components in the base `kustomization.yaml`. For example in [manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml) comment out `inverse-proxy`.
+1. Comment out the proxy components in the base `kustomization.yaml`. For example in [manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/env/dev/kustomization.yaml) comment out `inverse-proxy`.
 
 1. Apply the changes to update the Kubeflow Pipelines deployment:
 
@@ -200,7 +200,7 @@ By default, the KFP standalone deployment installs an [inverting proxy agent](ht
      kubectl apply -k manifests/kustomize/env/dev
      ```
 
-     **Note**: If using GCP Cloud SQL and Google Cloud Storage, set the proper values in [manifests/kustomize/env/gcp/params.env](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/gcp/params.env), then apply with this command:
+     **Note**: If using GCP Cloud SQL and Google Cloud Storage, set the proper values in [manifests/kustomize/env/gcp/params.env](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/env/gcp/params.env), then apply with this command:
 
      ```
      kubectl apply -k manifests/kustomize/env/gcp

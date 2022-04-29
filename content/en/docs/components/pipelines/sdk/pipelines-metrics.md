@@ -111,7 +111,7 @@ implementation:
     - {outputPath: MLPipeline Metrics}
 ```
 
-Refer to the [full example](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py) of a component that generates a confusion matrix data from prediction results.
+Refer to the [full example](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/components/local/confusion_matrix/src/confusion_matrix.py) of a component that generates a confusion matrix data from prediction results.
 
 * The output name must be `MLPipeline Metrics` or `MLPipeline_Metrics` (case does not matter).
 * The `name` of each metric must match the following pattern: `^[a-zA-Z]([-_a-zA-Z0-9]{0,62}[a-zA-Z0-9])?$`.

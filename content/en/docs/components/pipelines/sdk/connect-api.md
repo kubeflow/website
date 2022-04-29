@@ -169,7 +169,7 @@ Choose your use-case from one of the options below:
   Note that this example uses `default-editor` in `my-namespace` as the service account identity, but you can configure
   to use any service account that runs in your Pod. You need to bind service account to cluster role `kubeflow-pipelines-edit`
   or `kubeflow-pipelines-view` documented in 
-  [view-edit-cluster-roles.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/base/installs/multi-user/view-edit-cluster-roles.yaml#L7-L32).
+  [view-edit-cluster-roles.yaml](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/base/installs/multi-user/view-edit-cluster-roles.yaml#L7-L32).
 
 #### Managing access to Kubeflow Pipelines API across namespaces
 

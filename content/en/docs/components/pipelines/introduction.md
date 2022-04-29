@@ -64,7 +64,7 @@ and [components](/docs/components/pipelines/concepts/component/).
 The screenshots and code below show the `xgboost-training-cm.py` pipeline, which
 creates an XGBoost model using structured data in CSV format. You can see the
 source code and other information about the pipeline on
-[GitHub](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm).
+[GitHub](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/core/xgboost_training_cm).
 
 ### The runtime execution graph of the pipeline
 
@@ -79,7 +79,7 @@ Kubeflow Pipelines UI:
 
 Below is an extract from the Python code that defines the 
 `xgboost-training-cm.py` pipeline. You can see the full code on 
-[GitHub](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm).
+[GitHub](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/core/xgboost_training_cm).
 
 ```python
 @dsl.pipeline(
@@ -229,9 +229,9 @@ At a high level, the execution of a pipeline proceeds as follows:
 
 * **Python SDK**: You create components or specify a pipeline using the Kubeflow
   Pipelines domain-specific language 
-  ([DSL](https://github.com/kubeflow/pipelines/tree/master/sdk/python/kfp/dsl)).
+  ([DSL](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/dsl)).
 * **DSL compiler**: The
-  [DSL compiler](https://github.com/kubeflow/pipelines/tree/master/sdk/python/kfp/compiler)
+  [DSL compiler](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/compiler)
   transforms your pipeline's Python code into a static configuration (YAML).
 * **Pipeline Service**: You call the Pipeline Service to create a
   pipeline run from the static configuration. 

@@ -41,7 +41,7 @@ kubectl create secret generic azcreds --from-literal=AZ_SUBSCRIPTION_ID=$AZ_SUBS
 Model registration allows you to store and version your models in Azure Machine Learning in your workspace. The model registry makes it easy to organize and keep track of your trained models. After you register the model, you can then download or deploy it and receive all the registered files.
 
 
-To learn more about the Azure ML Register Model pipeline component, refer to the [official repository](https://github.com/kubeflow/pipelines/tree/master/components/azure/azureml/aml-register-model).
+To learn more about the Azure ML Register Model pipeline component, refer to the [official repository](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/components/azure/azureml/aml-register-model).
 
 
 To learn more about using Azure ML to manage the lifecycle of your models, go to [Model management, deployment, and monitoring](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
@@ -53,7 +53,7 @@ Trained machine learning models are deployed as web services in the cloud and yo
 - An entry script
 - Azure ML environment configurations
 
-For more information about the Azure ML Deploy Model pipeline component, check the [official repository](https://github.com/kubeflow/pipelines/tree/master/components/azure/azureml/aml-deploy-model).
+For more information about the Azure ML Deploy Model pipeline component, check the [official repository](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/components/azure/azureml/aml-deploy-model).
 
 To learn more about using Azure ML to manage the lifecycle of your models, go to [Model management, deployment, and monitoring](https://docs.microsoft.com/en-us/azure/machine-learning/concept-model-management-and-deployment).
 
