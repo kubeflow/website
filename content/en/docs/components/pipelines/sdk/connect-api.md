@@ -170,6 +170,16 @@ Choose your use-case from one of the options below:
   to use any service account that runs in your Pod. You need to bind service account to cluster role `kubeflow-pipelines-edit`
   or `kubeflow-pipelines-view` documented in 
   [view-edit-cluster-roles.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/base/installs/multi-user/view-edit-cluster-roles.yaml#L7-L32).
+  
+After setting any of the above configuration to use the ServiceAccountToken projection, run the following python code to instantiate the kfp.Client:
+
+```python
+import kfp
+client = kfp.Client()
+print(client.list_experiments())
+```
+
+Note that `host` is not provided. This is due to the SDK figuring out that it is running inside a kubernetes cluster and that the auth token is mounted in `$KF_PIPELINES_SA_TOKEN_PATH`
 
 #### Managing access to Kubeflow Pipelines API across namespaces
 
