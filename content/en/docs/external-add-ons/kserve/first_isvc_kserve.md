@@ -190,7 +190,7 @@ KServe.delete(name, namespace=namespace)
 ```
 
 ## Next Steps
-[**Kubeflow Pipelines E2E MNIST Tutorial**](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/samples/contrib/kubeflow-e2e-mnist/kubeflow-e2e-mnist.ipynb) - provides an end-to-end test sequence (i.e. start a notebook, run a pipeline, execute training, hyperparameter tuning, and model serving with KServe).
+[**Kubeflow Pipelines E2E MNIST Tutorial**](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/contrib/kubeflow-e2e-mnist/kubeflow-e2e-mnist.ipynb) - provides an end-to-end test sequence (i.e. start a notebook, run a pipeline, execute training, hyperparameter tuning, and model serving with KServe).
 
 
 <div class="notebook-links">

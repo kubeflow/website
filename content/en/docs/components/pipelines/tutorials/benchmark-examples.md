@@ -4,7 +4,7 @@ description = "How to use the Kubeflow Pipelines Benchmark Scripts"
 weight = 10
 +++
 
-This guide explains the Kubeflow Pipelines [benchmark scripts](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/tools/benchmarks)
+This guide explains the Kubeflow Pipelines [benchmark scripts](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/tools/benchmarks)
 and demonstrates how to use them to collect basic performance data of a given
 Kubeflow Pipelines instance.
 

@@ -126,7 +126,7 @@ The Kubeflow Pipelines SDK includes the following packages:
   Kubeflow Pipelines. Examples include utility functions for on premises,
   Google Cloud Platform (GCP), Amazon Web Services (AWS), and Microsoft Azure.
 
-* [Kubeflow Pipelines diagnose_me modules](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/cli/diagnose_me) include classes and functions that help with environment diagnostic tasks. 
+* [Kubeflow Pipelines diagnose_me modules](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/sdk/python/kfp/cli/diagnose_me) include classes and functions that help with environment diagnostic tasks. 
  
   * `kfp.cli.diagnose_me.dev_env` reports on diagnostic metadata from your development environment, such as your python library version.
   * `kfp.cli.diagnose_me.kubernetes_cluster` reports on diagnostic data from your Kubernetes cluster, such as Kubernetes secrets.

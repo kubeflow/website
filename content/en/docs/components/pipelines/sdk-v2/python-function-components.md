@@ -279,7 +279,7 @@ depending on their data type.
 All outputs are returned as files, using the the paths that Kubeflow Pipelines
 provides.
 
-[kfp-artifact]: https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/dsl/io_types.py
+[kfp-artifact]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/io_types.py
 
 The following sections describe how to pass parameters and artifacts to your function. 
 
@@ -310,7 +310,7 @@ The following example demonstrates how to return multiple outputs by value.
 [kfp-metrics]: https://www.kubeflow.org/docs/components/pipelines/sdk/pipelines-metrics/
 [input-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.InputPath
 [output-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.OutputPath
-[vs-dsl-component]: https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/v2/components/component_decorator.py
+[vs-dsl-component]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/v2/components/component_decorator.py
 
 
 ```python
@@ -419,7 +419,7 @@ To return a file as an output, use one of the following type annotations:
 
 [input]: https://github.com/kubeflow/pipelines/blob/c5daa7532d18687b180badfca8d750c801805712/sdk/python/kfp/dsl/io_types.py
 [output]: https://github.com/kubeflow/pipelines/blob/c5daa7532d18687b180badfca8d750c801805712/sdk/python/kfp/dsl/io_types.py
-[kfp-artifact]: https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk/python/kfp/dsl/io_types.py
+[kfp-artifact]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/io_types.py
 
 
 

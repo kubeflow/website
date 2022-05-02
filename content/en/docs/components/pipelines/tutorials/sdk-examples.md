@@ -110,7 +110,7 @@ client = kfp.Client(host)
 # if you want to filter on the pipeline name, then 'key' is set to 'name' as
 # shown below.
 # The 'op' specifies the operator used in a predicate. The operator can be
-# EQUALS, NOT_EQUALS, GREATER_THAN, etc. The complete list is at [filter.proto](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/backend/api/filter.proto#L32)
+# EQUALS, NOT_EQUALS, GREATER_THAN, etc. The complete list is at [filter.proto](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/backend/api/filter.proto#L32)
 # When using the operator in a string-typed predicate, you need to use the
 # corresponding integer value of the enum. For Example, you can use the integer
 # value 1 to indicate EQUALS as shown below.
@@ -122,4 +122,4 @@ pipelines = client.pipelines.list_pipelines(filter=filter)
 
 ### Example 3: Creating a run using a pipeline version
 
-Examine the run_service_api.ipynb notebook to [learn more about creating a run using a pipeline version](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/tools/benchmarks/run_service_api.ipynb).
+Examine the run_service_api.ipynb notebook to [learn more about creating a run using a pipeline version](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/tools/benchmarks/run_service_api.ipynb).

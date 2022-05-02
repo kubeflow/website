@@ -112,8 +112,8 @@ Deploy via [Pipelines Standalone](/docs/components/pipelines/installation/overvi
 
 The following helper bash scripts bind Workload Identities for KSAs used by Kubeflow Pipelines:
 
-* [gcp-workload-identity-setup.sh](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/gcp-workload-identity-setup.sh) helps you create GSAs and bind them to KSAs used by pipelines workloads. This script provides an interactive command line dialog with explanation messages.
-* [wi-utils.sh](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/wi-utils.sh) alternatively provides minimal utility bash functions that let you customize your setup. The minimal utilities make it easy to read and use programmatically.
+* [gcp-workload-identity-setup.sh](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/manifests/kustomize/gcp-workload-identity-setup.sh) helps you create GSAs and bind them to KSAs used by pipelines workloads. This script provides an interactive command line dialog with explanation messages.
+* [wi-utils.sh](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/manifests/kustomize/wi-utils.sh) alternatively provides minimal utility bash functions that let you customize your setup. The minimal utilities make it easy to read and use programmatically.
 
 For example, to get a default setup using `gcp-workload-identity-setup.sh`, you can
 ```

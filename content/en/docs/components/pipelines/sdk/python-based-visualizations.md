@@ -93,7 +93,7 @@ arguments.
 
 1. Enable custom visualizations within Kubeflow Pipelines.
     * If you have not yet deployed Kubeflow Pipelines to your cluster,
-    you can edit the [frontend deployment YAML](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/base/pipeline/ml-pipeline-ui-deployment.yaml)
+    you can edit the [frontend deployment YAML](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/manifests/kustomize/base/pipeline/ml-pipeline-ui-deployment.yaml)
     file to include the following YAML that specifies that custom visualizations
     are allowed via environment variables.
 
@@ -152,7 +152,7 @@ A demo of the above instructions is as follows.
     * This is because a single Python kernel is used to generate visualizations.
     * If visualizations are a major part of your workflow, it is recommended to
     increase the number of replicas within the
-    [visualization deployment YAML](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/base/pipeline/ml-pipeline-visualization-deployment.yaml)
+    [visualization deployment YAML](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/manifests/kustomize/base/pipeline/ml-pipeline-visualization-deployment.yaml)
     file or within the visualization service deployment itself.
         * _Please note that this does not directly solve the issue, instead it
         decreases the likelihood of experiencing delays when generating
@@ -169,7 +169,7 @@ A demo of the above instructions is as follows.
     kernel timeout of the visualization service, set the **KERNEL_TIMEOUT**
     environment variable of the visualization service deployment to be the new
     timeout length in seconds within the
-    [visualization deployment YAML](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/manifests/kustomize/base/pipeline/ml-pipeline-visualization-deployment.yaml)
+    [visualization deployment YAML](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/manifests/kustomize/base/pipeline/ml-pipeline-visualization-deployment.yaml)
     file or within the visualization service deployment itself.
 
         ```
@@ -183,7 +183,7 @@ A demo of the above instructions is as follows.
     sent and received by a server. To allow for visualizations that are larger
     than 4MB in size to be generated, you must manually set
     **MaxCallRecvMsgSize** for gRPC. This can be done by editing the provided
-    options given to the gRPC server within [main.go](https://github.com/kubeflow/pipelines/blob/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/backend/src/apiserver/main.go#L128)
+    options given to the gRPC server within [main.go](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/backend/src/apiserver/main.go#L128)
     to
 
         ```golang

@@ -6,7 +6,7 @@ weight = 20
 +++
 
 This guide tells you how to install the 
-[Kubeflow Pipelines SDK](https://github.com/kubeflow/pipelines/tree/18e1db1013337d1e7fdc8aa2f9b04c0b73f4726b/sdk)
+[Kubeflow Pipelines SDK](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/sdk)
 which you can use to build machine learning pipelines. You can use the SDK
 to execute your pipeline, or alternatively you can upload the pipeline to
 the Kubeflow Pipelines UI for execution.
