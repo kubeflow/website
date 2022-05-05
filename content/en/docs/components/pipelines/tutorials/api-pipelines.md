@@ -22,7 +22,7 @@ You also need to install [jq](https://stedolan.github.io/jq/download/), and the 
 
 ## Building and running a pipeline
 
-Follow this guide to download, compile, and run the [`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/master/samples/core/sequential/sequential.py). To learn how to compile and run pipelines using the Kubeflow Pipelines SDK or a Jupyter notebook, follow the [experimenting with Kubeflow Pipelines samples tutorial](/docs/components/pipelines/tutorials/build-pipeline/).
+Follow this guide to download, compile, and run the [`sequential.py` sample pipeline](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/core/sequential/sequential.py). To learn how to compile and run pipelines using the Kubeflow Pipelines SDK or a Jupyter notebook, follow the [experimenting with Kubeflow Pipelines samples tutorial](/docs/components/pipelines/tutorials/build-pipeline/).
 
 ```
 PIPELINE_URL=https://raw.githubusercontent.com/kubeflow/pipelines/master/samples/core/sequential/sequential.py

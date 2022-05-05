@@ -238,7 +238,7 @@ depending on their data type.
 All outputs are returned as files, using the the paths that Kubeflow Pipelines
 provides.
 
-[kfp-artifact]: https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/io_types.py
+[kfp-artifact]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/io_types.py
 
 Python function-based components make it easier to build pipeline components
 by building the component specification for you. Python function-based
@@ -373,11 +373,11 @@ Learn more about [building Python function-based components][python-function-com
 
 The following example shows the updated `merge_csv` function.
 
-[web-download-component]: https://github.com/kubeflow/pipelines/blob/master/components/web/Download/component.yaml
+[web-download-component]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/components/web/Download/component.yaml
 [python-function-components]: https://www.kubeflow.org/docs/components/pipelines/sdk-v2/python-function-components/
-[input]: https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/io_types.py
-[output]: https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/io_types.py
-[dsl-component]: https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_component.py
+[input]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/io_types.py
+[output]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/io_types.py
+[dsl-component]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/_component.py
 
 
 ```python
@@ -505,7 +505,7 @@ client.create_run_from_pipeline_func(
     pipeline][conditional].
 
 
-[conditional]: https://github.com/kubeflow/pipelines/blob/master/samples/tutorials/DSL%20-%20Control%20structures/DSL%20-%20Control%20structures.py
+[conditional]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/tutorials/DSL%20-%20Control%20structures/DSL%20-%20Control%20structures.py
 [k8s-resources]: https://www.kubeflow.org/docs/components/pipelines/sdk/manipulate-resources/
 
 

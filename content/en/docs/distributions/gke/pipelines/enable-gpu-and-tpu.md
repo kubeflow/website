@@ -55,7 +55,7 @@ nodeSelector:
   cloud.google.com/gke-accelerator: nvidia-tesla-p4
 ```
 
-See [GPU tutorial](https://github.com/kubeflow/pipelines/tree/master/samples/tutorials/gpu) for a complete example to build a Kubeflow pipeline that uses GPUs.
+See [GPU tutorial](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/samples/tutorials/gpu) for a complete example to build a Kubeflow pipeline that uses GPUs.
 
 Check the [GKE GPU guide](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus) to learn more about GPU settings. 
 
@@ -83,6 +83,6 @@ container:
       tf-version.cloud-tpus.google.com: "1.12"
 ```
 
-To learn more, see an [example pipeline that uses a preemptible node pool with TPU or GPU.](https://github.com/kubeflow/pipelines/blob/master/samples/core/preemptible_tpu_gpu/preemptible_tpu_gpu.py).
+To learn more, see an [example pipeline that uses a preemptible node pool with TPU or GPU.](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/core/preemptible_tpu_gpu/preemptible_tpu_gpu.py).
 
 See the [GKE TPU Guide](https://cloud.google.com/tpu/docs/kubernetes-engine-setup) to learn more about TPU settings.

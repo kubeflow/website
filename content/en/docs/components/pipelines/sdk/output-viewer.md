@@ -60,13 +60,13 @@ See the [sample description and links below](#example-source).
 For KFP [SDK v2 and v2 compatible mode](/docs/components/pipelines/sdk-v2/), you can use 
 convenient SDK APIs and system artifact types for metrics visualization. Currently KFP
 supports ROC Curve, Confusion Matrix and Scalar Metrics formats. Full pipeline example
-of all metrics visualizations can be found in [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py). 
+of all metrics visualizations can be found in [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/test/metrics_visualization_v2.py). 
 
 ### Requirements
 
 * Use Kubeflow Pipelines v1.7.0 or above: [upgrade Kubeflow Pipelines](/docs/components/pipelines/installation/standalone-deployment/#upgrading-kubeflow-pipelines).
 * Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when you [compile and run your pipelines](/docs/components/pipelines/sdk-v2/build-pipeline/#compile-and-run-your-pipeline).
-* Make sure to use the latest environment kustomize manifest [pipelines/manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/env/dev/kustomization.yaml).
+* Make sure to use the latest environment kustomize manifest [pipelines/manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/manifests/kustomize/env/dev/kustomization.yaml).
 
 
 For a usage guide of each metric visualization output, refer to sections below:
@@ -274,7 +274,7 @@ def html_visualization(html_artifact: Output[HTML]):
 ## Source of v2 examples
 
 The metric visualization in V2 or V2 compatible mode depends on SDK visualization APIs,
-refer to [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/master/samples/test/metrics_visualization_v2.py)
+refer to [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/test/metrics_visualization_v2.py)
 for a complete pipeline example. Follow instruction
 [Compile and run your pipeline](/docs/components/pipelines/sdk-v2/build-pipeline/#compile-and-run-your-pipeline)
 to compile in V2 compatible mode.
@@ -741,22 +741,22 @@ Kubeflow Pipelines UI. For help getting started with the UI, follow the
 The pipeline uses a number of prebuilt, reusable components, including:
 
 * The [Confusion Matrix 
-  component](https://github.com/kubeflow/pipelines/blob/master/components/local/confusion_matrix/src/confusion_matrix.py)
+  component](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/components/local/confusion_matrix/src/confusion_matrix.py)
   which writes out the data for the `confusion_matrix` viewer.
 * The [ROC 
-  component](https://github.com/kubeflow/pipelines/blob/master/components/local/roc/src/roc.py)
+  component](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/components/local/roc/src/roc.py)
   which writes out the data for the `roc` viewer.
 * The [dnntrainer 
-  component](https://github.com/kubeflow/pipelines/blob/master/components/kubeflow/dnntrainer/src/trainer/task.py)
+  component](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/components/kubeflow/dnntrainer/src/trainer/task.py)
   which writes out the data for the `tensorboard` viewer.
 * The [tfma 
-  component](https://github.com/kubeflow/pipelines/blob/master/components/dataflow/tfma/src/model_analysis.py)
+  component](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/components/deprecated/dataflow/tfma/component.yaml)
   which writes out the data for the `web-app` viewer.
 
 ## Lightweight Python component Notebook example
 
 For a complete example of lightweigh Python component, you can refer to
-[the lightweight python component notebook example](https://github.com/kubeflow/pipelines/blob/master/samples/core/lightweight_component/lightweight_component.ipynb) to learn more about declaring output visualizations.
+[the lightweight python component notebook example](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/core/lightweight_component/lightweight_component.ipynb) to learn more about declaring output visualizations.
 
 ## YAML component example
 

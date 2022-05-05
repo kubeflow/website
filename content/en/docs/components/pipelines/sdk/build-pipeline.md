@@ -318,7 +318,7 @@ $ head merged_data.csv
         
     The following example shows the updated `merge_csv` function.
 
-[web-download-component]: https://github.com/kubeflow/pipelines/blob/master/components/web/Download/component.yaml
+[web-download-component]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/components/web/Download/component.yaml
 [python-function-components]: https://www.kubeflow.org/docs/components/pipelines/sdk/python-function-components/
 [input-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html?highlight=inputpath#kfp.components.InputPath
 [output-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html?highlight=outputpath#kfp.components.OutputPath
@@ -449,7 +449,7 @@ client.create_run_from_pipeline_func(
 *   Learn how to [manipulate Kubernetes resources in a
     pipeline][k8s-resources] (Experimental).
 
-[conditional]: https://github.com/kubeflow/pipelines/blob/master/samples/tutorials/DSL%20-%20Control%20structures/DSL%20-%20Control%20structures.py
+[conditional]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/tutorials/DSL%20-%20Control%20structures/DSL%20-%20Control%20structures.py
 [recursion]: https://www.kubeflow.org/docs/components/pipelines/sdk/dsl-recursion/
 [k8s-resources]: https://www.kubeflow.org/docs/components/pipelines/sdk/manipulate-resources/
 

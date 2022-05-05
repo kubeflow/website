@@ -56,7 +56,7 @@ workload:
     alt="Run results on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-You can find the [source code for the **Data passing in python components** tutorial](https://github.com/kubeflow/pipelines/tree/master/samples/tutorials/Data%20passing%20in%20python%20components) in the Kubeflow Pipelines repo.
+You can find the [source code for the **Data passing in python components** tutorial](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/samples/tutorials/Data%20passing%20in%20python%20components) in the Kubeflow Pipelines repo.
 
 ## Run an ML pipeline
 
@@ -89,7 +89,7 @@ Follow these steps to run the sample:
       alt="XGBoost results on the pipelines UI"
       class="mt-3 mb-3 border border-info rounded">
 
-You can find the [source code for the **XGBoost - Iterative model training** demo](https://github.com/kubeflow/pipelines/tree/master/samples/core/xgboost_training_cm) in the Kubeflow Pipelines repo.
+You can find the [source code for the **XGBoost - Iterative model training** demo](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/samples/core/xgboost_training_cm) in the Kubeflow Pipelines repo.
 
 ## Next steps
 

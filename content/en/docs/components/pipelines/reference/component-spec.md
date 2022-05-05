@@ -51,7 +51,7 @@ See some examples of real-world
 ## Detailed specification (ComponentSpec)
 
 This section describes the 
-[ComponentSpec](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/components/_structures.py).
+[ComponentSpec](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/components/_structures.py).
 
 ### Metadata
 
@@ -80,7 +80,7 @@ This section describes the
         as hints for pipeline authors and can be used by the pipeline system/UI
         to validate arguments and connections between components. Basic types
         are **String**, **Integer**, **Float**, and **Bool**. See the full list
-        of [types](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/types.py)
+        of [types](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/types.py)
         defined by the Kubeflow Pipelines SDK.
     * `optional`: Specifies if input is optional or not. This is of type
         **Bool**, and defaults to **False**. **Only valid for inputs.**

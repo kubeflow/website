@@ -122,4 +122,4 @@ Your metadata database should now be using the Azure Database for MySQL.
 
 To configure the pipeline database using an external Azure Database for MySQL,
 go to [KFP customizations for
-Azure](https://github.com/kubeflow/pipelines/tree/master/manifests/kustomize/env/azure).
+Azure](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/manifests/kustomize/env/azure).
