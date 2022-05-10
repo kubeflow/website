@@ -92,12 +92,12 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="https://github.com/argoflow/argoflow">External Website</a></td>
       </tr>
       <tr>
-        <td>Arrikto MiniKF</td>
+        <td>Arrikto Kubeflow as a Service</td>
         <td>Arrikto</td>
-        <td>AWS Marketplace, GCP Marketplace</td>
+        <td>Fully Managed</td>
         <td>1.4</td>
-        <td><a href="/docs/distributions/minikf/">Docs</a></td>
-        <td><a href="https://www.arrikto.com/get-started/">External Website</a></td>
+        <td>N/A</td>
+        <td><a href="http://kubeflow.arrikto.com/">External Website</a></td>
       </tr>
       <tr>
         <td>Arrikto Enterprise Kubeflow</td>
