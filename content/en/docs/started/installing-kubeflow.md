@@ -84,6 +84,14 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="https://opendatahub.io/docs/kubeflow.html">External Website</a></td>
       </tr>
       <tr>
+        <td>Kubeflow on HPE Ezmeral</td>
+        <td>HPE</td>
+        <td>HPE Ezmeral Runtime Enterprise</td>
+        <td>1.3</td>
+        <td>N/A</td>
+        <td><a href="https://docs.containerplatform.hpe.com/54/">External Website</a></td>
+      </tr>
+      <tr>
         <td>Argoflow</td>
         <td>Argoflow Community</td>
         <td>Conformant Kubernetes</td>
