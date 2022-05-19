@@ -7,7 +7,7 @@ weight = 45
 +++                 
 
 
-[MLRun serving](https://docs.mlrun.org/en/latest/serving/index.html) graphs allow you to build, test, deploy, and monitor real-time data processing and advanced model serving pipelines with minimal effort.
+[MLRun serving](https://docs.mlrun.org/en/latest/serving/build-graph-model-serving.html) graphs allow you to build, test, deploy, and monitor real-time data processing and advanced model serving pipelines with minimal effort.
 MLRun Serving is built on top of the real-time serverless framework [Nuclio](https://github.com/nuclio/nuclio), and is API compatible with KFServing v2. MLRun’s serving functions can be deployed automatically using CLI, SDK, or Kubeflow Pipelines (KFP) operations.
 
 With MLRun Serving you compose a graph of steps (composed of pre-defined graph blocks or native python classes/functions).
