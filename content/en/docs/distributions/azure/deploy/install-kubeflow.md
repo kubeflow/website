@@ -73,17 +73,20 @@ Example variables:
 Create a specifically defined cluster:
   
   ```
-  az aks create -g <RESOURCE_GROUP_NAME> -n <NAME> -s <AGENT_SIZE> -c <AGENT_COUNT> -l <LOCATION> --generate-ssh-keys
+  az aks create -g <RESOURCE_GROUP_NAME> -n <NAME> -s <AGENT_SIZE> -c <AGENT_COUNT> -l <LOCATION> --generate-ssh-keys --kubernetes-version <KUBERNETES_VERSION>
   ```
-
+  
 Example variables:
 
 - `NAME=KubeTestCluster`
 - `AGENT_SIZE=Standard_D4s_v3`
 - `AGENT_COUNT=2`
 - `RESOURCE_GROUP_NAME=KubeTest`
+- `KUBERNETES_VERSION=1.21.9`
 
 **NOTE**:  If you are using a GPU based AKS cluster (For example: AGENT_SIZE=Standard_NC6), you also need to [install the NVidia drivers](https://docs.microsoft.com/azure/aks/gpu-cluster#install-nvidia-drivers) on the cluster nodes before you can use GPUs with Kubeflow.
+
+**NOTE**: It is necessary to specify a version of Kubernetes which supports the version of Kubeflow you are about to install. 
 
 ## Kubeflow installation
 
