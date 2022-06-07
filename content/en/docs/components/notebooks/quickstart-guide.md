@@ -40,7 +40,7 @@ weight = 10
    class="mt-3 mb-3 border border-info rounded">
 
 5. Enter a __"Name"__ for your notebook server.
-    - The name can include letters and numbers, but no spaces.
+    - The name can include lowercase letters and numbers, but no spaces.
     - For example, `my-first-notebook`.
 
    <img src="/docs/images/new-notebook-server.png"
@@ -59,10 +59,10 @@ weight = 10
 
 9. Specify a __"workspace volume"__ to be mounted as a PVC Volume on your home folder.
 
-10. *(Optional)* Specify one or more __"data volumes"__ to be mounted as a PVC Volumes.
+10. *(Optional)* Specify one or more __"data volumes"__ to be mounted as PVC Volumes.
 
 11. *(Optional)* Specify one or more additional __"configurations"__
-    - These correspond to [PodDefault resources](https://github.com/kubeflow/kubeflow/blob/master/components/admission-webhook/README.md) which exit in your profile namespace.
+    - These correspond to [PodDefault resources](https://github.com/kubeflow/kubeflow/blob/master/components/admission-webhook/README.md) which exist in your profile namespace.
     - Kubeflow matches the labels in the __"configurations"__ field against the properties specified in the PodDefault manifest.
     - For example, select the label `add-gcp-secret` in the __"configurations"__ field to match to a PodDefault manifest containing the following configuration:
     ```yaml
@@ -95,7 +95,7 @@ weight = 10
     - As a workaround, Kubeflow mounts an empty directory volume at `/dev/shm`.
 
 14. Click __"LAUNCH"__ to create a new Notebook CRD with your specified settings.
-    - You should see an entry for your new notebook server on the __"Notebook Servers"__ page
+    - You should see an entry for your new notebook server on the __"Notebook Servers"__ page.
     - There should be a spinning indicator in the __"Status"__ column.
     - It can take a few minutes for kubernetes to provision the notebook server pod.
     - You can check the status of your Pod by hovering your mouse cursor over the icon in the __"Status"__ column.
