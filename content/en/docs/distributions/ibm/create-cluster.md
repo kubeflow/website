@@ -6,7 +6,7 @@ weight = 3
 
 This guide describes how to create a Kubernetes cluster with IBM Cloud Kubernetes Service.
 
-[IBM Cloud Kubernetes Service](https://www.ibm.com/cloud/container-service/) provides powerful tools and services to help deploy highly available containerized apps in Kubernetes clusters and to automate, isolate, secure, manage, and monitor your workloads across zones or regions. 
+[IBM Cloud Kubernetes Service](https://www.ibm.com/cloud/kubernetes-service) provides powerful tools and services to help deploy highly available containerized apps in Kubernetes clusters and to automate, isolate, secure, manage, and monitor your workloads across zones or regions. 
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ This guide describes how to create a Kubernetes cluster with IBM Cloud Kubernete
     ibmcloud plugin install container-service
     ```
 
-    Refer to this [link](https://cloud.ibm.com/docs/cli?topic=containers-cli-plugin-kubernetes-service-cli) for more info on IBM Cloud Kubernetes Service CLI.
+    Refer to this [link](https://cloud.ibm.com/docs/cli?topic=containers-kubernetes-service-cli) for more info on IBM Cloud Kubernetes Service CLI.
 
 4. Authenticating with IBM Cloud
 
@@ -67,7 +67,7 @@ The next section will explain how to create and set up a new IBM Cloud Kubernete
 Choose the region and the worker node provider for your cluster, and set the environment variables.
 
 ```shell
-export KUBERNETES_VERSION=1.17
+export KUBERNETES_VERSION=1.21
 export CLUSTER_ZONE=dal13
 export WORKER_NODE_PROVIDER=classic
 export CLUSTER_NAME=kubeflow
@@ -139,22 +139,12 @@ export WORKER_NODE_FLAVOR=b3c.4x16
 
 Run with the following command to create a cluster:
 
-```shell
-ibmcloud ks cluster create ${WORKER_NODE_PROVIDER} \
-  --name ${CLUSTER_NAME} \
-  --zone=${CLUSTER_ZONE} \
-  --version=${KUBERNETES_VERSION} \
-  --flavor ${WORKER_NODE_FLAVOR} \
-  --workers=2
-```
-
 Replace the `workers` parameter above with the desired number of worker nodes.
 
-
-**Note**: If you're starting in a fresh account with no public and private VLANs, they are created automatically for you
+If you're starting in a fresh account with no public and private VLANs, they are created automatically for you
 when creating a Kubernetes cluster with worker nodes provider `classic` for the first time. If you already have VLANs
 configured in your account, retrieve them via `ibmcloud ks vlans --zone ${CLUSTER_ZONE}` and include the public and 
-private VLAN ids (set in the `PUBLIC_VLAN_ID` and `PRIVATE_VLAN_ID` environment variables) in the command, for example:
+private VLAN ids (set in the `PUBLIC_VLAN_ID` and `PRIVATE_VLAN_ID` environment variables) in the command.
 
 ```shell
 ibmcloud ks cluster create ${WORKER_NODE_PROVIDER} \
