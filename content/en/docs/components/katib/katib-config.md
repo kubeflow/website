@@ -209,6 +209,12 @@ any other settings, a default value is set automatically.
              Hyperband</a> implementation</td>
          </tr>
          <tr>
+           <td><code>suggestion-pbt</code></td>
+           <td><code>pbt</code></td>
+           <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/pbt">Katib
+             PBT</a> implementation</td>
+         </tr>
+         <tr>
            <td><code>suggestion-enas</code></td>
            <td><code>enas</code></td>
            <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/enas">Katib
