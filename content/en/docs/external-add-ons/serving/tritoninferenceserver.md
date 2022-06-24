@@ -12,5 +12,5 @@ needs to be updated for Kubeflow 1.1.
 Kubeflow currently doesn't have a specific guide for NVIDIA Triton Inference 
 Server. Note that Triton was previously known as the TensorRT Inference Server.
 See the [NVIDIA
-documentation](https://github.com/NVIDIA/triton-inference-server/tree/master/deploy/single_server)
+documentation](https://github.com/NVIDIA/triton-inference-server/tree/master/deploy/gcp)
 for instructions on running NVIDIA inference server on Kubernetes.
