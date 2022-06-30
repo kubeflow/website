@@ -15,7 +15,7 @@ This guide describes how to use the kustomize + kubectl to deploy Kubeflow on VM
 
 * NOTE: All prerequisites must be installed and configured before creating the Tanzu Kubernetes cluster.
 Perform the following steps:
-1.	Download and Install kubectl for vSphere in our validation for Kubeflow version 1.5 of kubectl requires v1.21+.
+1.	Download and Install kubectl for vSphere for Kubeflow version 1.5,kubectl requires v1.21+.
 2.	Make sure you first create a Tanzu Kubernetes cluster and install GPU Operator on your Tanzu Kubernetes cluster in the configuration session.
 3.	Install Kustomize for Kubeflow installation
 ## Deploy Kubeflow
