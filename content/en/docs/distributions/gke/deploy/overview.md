@@ -49,4 +49,4 @@ Once you finish deployment, you will be able to:
 ## Next steps
 
 - Repeat [Deploy Kubeflow Cluster](/docs/distributions/gke/deploy/deploy-cli/) if you want to deploy multiple clusters.
-- Run a full ML workflow on Kubeflow, using the [end-to-end MNIST tutorial](/docs/distributions/ibm/iks-e2e/#run-the-mnist-tutorial-on-iks).
+- Run a full ML workflow on Kubeflow, using the [end-to-end MNIST tutorial](https://github.com/kubeflow/pipelines/blob/e42d9d2609369b96973c821dca11fe5b2565e705/samples/contrib/kubeflow-e2e-mnist/kubeflow-e2e-mnist.ipynb).
