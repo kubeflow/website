@@ -24,8 +24,6 @@ This guide assumes the following settings:
 
 ## General upgrade instructions
 
-Starting from Kubeflow v1.5.1 we upgraded ASM to v1.13, which comes with a slightly different upgrade process. Please, follow instructions on how to [upgrade ASM (Anthos Service Mesh)](#upgrade-asm-anthos-service-mesh)
-
 Starting from Kubeflow v1.5, we have integrated with [Config Controller](https://cloud.google.com/anthos-config-management/docs/concepts/config-controller-overview). You don't need to manually upgrade Management cluster any more, since it managed by [Upgrade Config Controller](https://cloud.google.com/anthos-config-management/docs/how-to/config-controller-setup#upgrade).
 
 Starting from Kubeflow v1.3, we have reworked on the structure of `kubeflow/gcp-blueprints` repository. All resources are located in `gcp-blueprints/management` directory. Upgrade to Management cluster v1.3 is not supported.
@@ -260,7 +258,7 @@ Kubeflow on Google Cloud doesn't guarantee the upgrade for each Kubeflow compone
 
 ### Upgrade Kubeflow cluster to v1.5
 
-Starting from Kubeflow v1.5.1 we upgraded ASM to v1.13. Please, follow the instructions on how to [upgrade ASM (Anthos Service Mesh)](#upgrade-asm-anthos-service-mesh). If you want to use ASM version prior to 1.11, refer to [the legacy instructions](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/deprecated/README.md).
+Starting from Kubeflow v1.5.1 we upgraded ASM to v1.13. Follow the instructions on how to [upgrade ASM (Anthos Service Mesh)](#upgrade-asm-anthos-service-mesh). If you want to use ASM version prior to 1.11, refer to [the legacy instructions](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/deprecated/README.md).
 
 Starting from Kubeflow v1.5, Kubeflow manifests have included KServe as an independent component from kfserving, Google Cloud distribution has switched over from kfserving to KServe for default installed components. If you want to upgrade Kubeflow while keeping kfsering, you can comment KServe and uncomment kfserving in `gcp-blueprints/kubeflow/config.yaml` file. If you want to upgrade to KServe, follow the [KServe Migration guide](https://github.com/kserve/kserve/tree/master/hack/kserve_migration).
 
