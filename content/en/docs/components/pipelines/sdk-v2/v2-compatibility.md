@@ -116,7 +116,7 @@ def add(a: float, b: float) -> float:
   description='An example pipeline that performs addition calculations.',
   # pipeline_root='gs://my-pipeline-root/example-pipeline'
 )
-def add_pipeline(a: float=1, b: float=7):
+def add_pipeline(a: float = 1, b: float = 7):
   add_task = add(a, b)
 ```
 
