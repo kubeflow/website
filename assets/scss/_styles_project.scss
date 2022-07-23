@@ -140,3 +140,17 @@ nav.foldable-nav .ul-1 .with-child>label:hover:before {
 nav.foldable-nav .ul-1 .with-child>input:checked~label:hover:before {
   transform: rotate(90deg) !important;
 }
+
+#pageContent {
+  .card-deck {
+    .card {
+      height: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .col {
+      margin-bottom: 24px;
+    }
+  }
+}
