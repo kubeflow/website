@@ -187,7 +187,7 @@ Follow these steps to verify the deployment:
    your `kubectl` credentials to point to the new cluster:
 
     ```bash
-    gcloud container clusters get-credentials "${KF_NAME}" --zone "${ZONE}" --project "${KF_PROJECT}"
+    gcloud container clusters get-credentials "${KF_NAME}" --zone "${REGION}" --project "${KF_PROJECT}"
     ```
 
     Then, check what's installed in the `kubeflow` namespace of your GKE cluster:
