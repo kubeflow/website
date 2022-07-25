@@ -122,6 +122,14 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="/docs/distributions/charmed/">Docs</a></td>
         <td><a href="https://charmed-kubeflow.io/docs/quickstart">External Website</a></td>
       </tr>
+      <tr>
+        <td>Kubeflow on VMware vSphere</td>
+        <td>VMware</td>
+        <td>Tanzu Kubernetes Grid(TKG)</td>
+        <td>1.5</td>
+        <td><a href="/docs/distributions/vmware/">Docs</a></td>
+        <td><a href="https://core.vmware.com/aiml-solutions">External Website</a></td>
+      </tr>
     </tbody>
   </table>
 </div>
