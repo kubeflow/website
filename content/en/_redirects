@@ -94,9 +94,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/use-cases/kubeflow-on-multinode-cluster/ /docs/other-guides/kubeflow-on-multinode-cluster/
 /docs/use-cases/job-scheduling/                /docs/other-guides/job-scheduling/
 
-# Remove Kubeflow installation on existing EKS cluster
-/docs/aws/deploy/existing-cluster/             /docs/distributions/aws/deploy/install-kubeflow/
-
 # Remove examples docs
 /docs/examples/*                                /docs/started/kubeflow-examples
 
@@ -192,7 +189,8 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/guides/*                      /docs/:splat
 /docs/pipelines/concepts/*          /docs/components/pipelines/overview/concepts/:splat
 /docs/pipelines/*                   /docs/components/pipelines/:splat
-/docs/aws/*                         /docs/distributions/aws/:splat
+/docs/distributions/aws/*           /docs/aws/
+/docs/aws/*                         /docs/distributions/aws/
 /docs/azure/*                       /docs/distributions/azure/:splat
 /docs/gke/*                         /docs/distributions/gke/:splat
 /docs/ibm/*                         /docs/distributions/ibm/:splat
