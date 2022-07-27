@@ -88,7 +88,7 @@ spec:
     autoUpgrade: true
   clusterRef:
     name: KF_NAME # kpt-set: ${name}
-    namespace: KF_PROJECT # kpt-set: ${name}
+    namespace: KF_PROJECT # kpt-set: ${gcloud.core.project}
 ```
 
 
