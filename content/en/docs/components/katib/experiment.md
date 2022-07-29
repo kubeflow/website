@@ -115,10 +115,10 @@ These are the fields in the experiment configuration spec:
   experiment will be running until the objective goal is reached or the experiment
   reaches a maximum number of failed trials.
 
-- **maxFailedTrialCount**: The maximum number of failed trials before Katib
-  should stop the experiment. This is equivalent to the number of failed
-  hyperparameter sets that Katib should test.
-  If the number of failed trials exceeds `maxFailedTrialCount`, Katib stops the
+- **maxFailedTrialCount**: The maximum number of trials allowed to fail.
+  This is equivalent to the number of failed hyperparameter sets that Katib should test.
+  Katib recognizes trials with a status of `Failed` or `MetricsUnavailable` as `Failed` trials,
+  and if the number of failed trials reaches `maxFailedTrialCount`, Katib stops the
   experiment with a status of `Failed`.
 
 - **algorithm**: The search algorithm that you want Katib to use to find the
@@ -226,6 +226,7 @@ Here's a list of the search algorithms available in Katib:
 - [Sobol's Quasirandom Sequence](#sobol)
 - [Neural Architecture Search based on ENAS](#enas)
 - [Differentiable Architecture Search (DARTS)](#darts)
+- [Population Based Training (PBT)](#pbt)
 
 More algorithms are under development.
 
@@ -782,6 +783,53 @@ For more information, check:
 
 - The DARTS example —
   [`darts-gpu.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/nas/darts-gpu.yaml).
+
+
+<a id="pbt"></a>
+
+#### Population Based Training (PBT)
+
+The algorithm name in Katib is `pbt`.
+
+Review the population based training [paper](https://arxiv.org/abs/1711.09846) for more details about the algorithm.
+
+The PBT service requires a Persistent Volume Claim with [RWX access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) to share resources between Suggestion and Trials. Currently, Katib Experiments should have <code>resumePolicy: FromVolume</code> to run the PBT algorithm. Learn more about resume policies in [this guide](/docs/components/katib/resume-experiment/).
+
+Katib supports the following algorithm settings:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>suggestion_trial_dir</td>
+        <td>The location within the trial container where checkpoints are saved</td>
+        <td><code>/var/log/katib/checkpoints/</code></td>
+      </tr>
+      <tr>
+        <td>n_population</td>
+        <td>Number of trial seeds per generation</td>
+        <td>40</td>
+      </tr>
+      <tr>
+        <td>resample_probability</td>
+        <td>null (default): perturbs the hyperparameter by 0.8 or 1.2. 0-1: resamples the original distribution by the specified probability</td>
+        <td>0.3</td>
+      </tr>
+      <tr>
+        <td>truncation_threshold</td>
+        <td>Exploit threshold for pruning low performing seeds</td>
+        <td>0.4</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <a id="metrics-collector"></a>
 
