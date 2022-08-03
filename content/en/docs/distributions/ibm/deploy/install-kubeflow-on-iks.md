@@ -97,13 +97,13 @@ Using kustomize together with kubectl to deploy kubeflow:
 1. Clone the manifest repo as follows:
 
    ```shell
-   git clone https://github.com/IBM/manifests.git -b v1.5-branch ibm-manifests-150
+   git clone https://github.com/IBM/manifests.git -b v1.6-branch ibm-manifests-160
    ```
 
-2. Change directory to `ibm-manifests-150`:
+2. Change directory to `ibm-manifests-160`:
 
    ```shell
-   cd ibm-manifests-150
+   cd ibm-manifests-160
    ```
 
 3. Generate password for default user: `user@example.com`
@@ -181,13 +181,13 @@ You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=ap
 1. Clone the manifest repo as follows:
 
    ```shell
-   git clone https://github.com/IBM/manifests.git -b v1.5-branch ibm-manifests-150
+   git clone https://github.com/IBM/manifests.git -b v1.6-branch ibm-manifests-160
    ```
 
-2. Change directory to `ibm-manifests-150`:
+2. Change directory to `ibm-manifests-160`:
 
    ```shell
-   cd ibm-manifests-150
+   cd ibm-manifests-160
    ```
 
 3. Update the `dist/stacks/ibm/application/oidc-authservice-appid/params.env`
@@ -304,7 +304,7 @@ Then, visit `https://<kubeflow-FQDN>/`. The page should redirect you to AppID fo
 
 ### Expose the Kubeflow endpoint as a LoadBalancer
 
-By default, the Kubeflow deployment on IBM Cloud only exposes the endpoint as [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) 31380. If you want to expose the endpoint as a [LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer), run:
+By default, the Kubeflow deployment on IBM Cloud only exposes the endpoint as [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) 30380. If you want to expose the endpoint as a [LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer), run:
 
 ```shell
 kubectl patch svc istio-ingressgateway -n istio-system -p '{"spec": {"type": "LoadBalancer"}}'
