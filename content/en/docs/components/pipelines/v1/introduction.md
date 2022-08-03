@@ -1,7 +1,7 @@
 +++
 title = "Introduction"
 description = "An introduction to the goals and main concepts of Kubeflow Pipelines"
-weight = 1
+weight = 10
                     
 +++
 
