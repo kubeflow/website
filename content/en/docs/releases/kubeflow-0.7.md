@@ -16,11 +16,13 @@ weight = 105
       </td>
     </tr>
     <tr>
-      <th class="table-light">Roadmap</th>
+      <th class="table-light">Media</th>
       <td>
-        <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-07">
-          ROADMAP.md#kubeflow-07
-        </a>
+        <b>Blog:</b> 
+          <a href="https://medium.com/kubeflow/kubeflow-v0-7-delivers-beta-functionality-in-the-leadup-to-v1-0-1e63036c07b8">Kubeflow 0.7 Release Announcement</a>
+        <br>
+        <b>Roadmap:</b>
+          <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-07">Kubeflow 0.7 Features</a>
       </td>
     </tr>
     <tr>
