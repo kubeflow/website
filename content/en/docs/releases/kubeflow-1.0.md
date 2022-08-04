@@ -16,9 +16,16 @@ weight = 104
       </td>
     </tr>
     <tr>
-      <th class="table-light">Roadmap</th>
+      <th class="table-light">Media</th>
       <td>
-        N/A
+        <b>Blog:</b> 
+          <a href="https://blog.kubeflow.org/releases/2020/03/02/kubeflow-1-0-cloud-native-ml-for-everyone.html">Kubeflow 1.0 Release Announcement</a>
+        <br>
+        <b>Video:</b> 
+          <a href="https://www.youtube.com/watch?v=L6wG_mpRWe8">Kubeflow 1.0 Release Community Webinar</a>
+        <br>
+        <b>Roadmap:</b>
+          <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-10">Kubeflow 1.0 Features</a>
       </td>
     </tr>
     <tr>
@@ -53,9 +60,16 @@ weight = 104
       </td>
     </tr>
     <tr>
-      <th class="table-light">Roadmap</th>
+      <th class="table-light">Media</th>
       <td>
-        N/A
+        <b>Blog:</b> 
+          <a href="https://blog.kubeflow.org/releases/2020/03/02/kubeflow-1-0-cloud-native-ml-for-everyone.html">Kubeflow 1.0 Release Announcement</a>
+        <br>
+        <b>Video:</b> 
+          <a href="https://www.youtube.com/watch?v=L6wG_mpRWe8">Kubeflow 1.0 Release Community Webinar</a>
+        <br>
+        <b>Roadmap:</b>
+          <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-10">Kubeflow 1.0 Features</a>
       </td>
     </tr>
     <tr>
@@ -86,15 +100,20 @@ weight = 104
     <tr>
       <th class="table-light">Release Date</th>
       <td>
-        2020-02-20 (<a href="https://blog.kubeflow.org/releases/2020/03/02/kubeflow-1-0-cloud-native-ml-for-everyone.html">Blog</a>)
+        2020-02-20
       </td>
     </tr>
     <tr>
-      <th class="table-light">Roadmap</th>
+      <th class="table-light">Media</th>
       <td>
-        <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-10">
-          ROADMAP.md#kubeflow-10
-        </a>
+        <b>Blog:</b> 
+          <a href="https://blog.kubeflow.org/releases/2020/03/02/kubeflow-1-0-cloud-native-ml-for-everyone.html">Kubeflow 1.0 Release Announcement</a>
+        <br>
+        <b>Video:</b> 
+          <a href="https://www.youtube.com/watch?v=L6wG_mpRWe8">Kubeflow 1.0 Release Community Webinar</a>
+        <br>
+        <b>Roadmap:</b>
+          <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-10">Kubeflow 1.0 Features</a>
       </td>
     </tr>
     <tr>

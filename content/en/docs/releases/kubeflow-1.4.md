@@ -16,9 +16,16 @@ weight = 100
       </td>
     </tr>
     <tr>
-      <th class="table-light">Roadmap</th>
+      <th class="table-light">Media</th>
       <td>
-        N/A
+        <b>Blog:</b> 
+          <a href="https://blog.kubeflow.org/kubeflow-1.4-release/">Kubeflow 1.4 Release Announcement</a>
+        <br>
+        <b>Video:</b> 
+          <a href="https://www.youtube.com/watch?v=gG61gHw4J14">Kubeflow 1.4 Release Overview</a>
+        <br>
+        <b>Roadmap:</b>
+          <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-141-release-delivered-december-2021">Kubeflow 1.4.1 Features</a>
       </td>
     </tr>
     <tr>
@@ -182,15 +189,20 @@ weight = 100
     <tr>
       <th class="table-light">Release Date</th>
       <td>
-        2021-10-12 (<a href="https://blog.kubeflow.org/kubeflow-1.4-release/">Blog</a>)
+        2021-10-12
       </td>
     </tr>
     <tr>
-      <th class="table-light">Roadmap</th>
+      <th class="table-light">Media</th>
       <td>
-        <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-14-release-due-september-2021">
-          ROADMAP.md#kubeflow-14-release-due-september-2021
-        </a>
+        <b>Blog:</b> 
+          <a href="https://blog.kubeflow.org/kubeflow-1.4-release/">Kubeflow 1.4 Release Announcement</a>
+        <br>
+        <b>Video:</b> 
+          <a href="https://www.youtube.com/watch?v=gG61gHw4J14">Kubeflow 1.4 Release Overview</a>
+        <br>
+        <b>Roadmap:</b>
+          <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-14-release-delivered-october-2021">Kubeflow 1.4 Features</a>
       </td>
     </tr>
     <tr>

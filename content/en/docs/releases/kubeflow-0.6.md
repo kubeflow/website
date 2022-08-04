@@ -16,9 +16,16 @@ weight = 106
       </td>
     </tr>
     <tr>
-      <th class="table-light">Roadmap</th>
+      <th class="table-light">Media</th>
       <td>
-        N/A
+        <b>Blog:</b> 
+          <a href="https://medium.com/kubeflow/kubeflow-v0-6-a-robust-foundation-for-artifact-tracking-data-versioning-multi-user-support-9896d329412c">Kubeflow 0.6 Release Announcement</a>
+        <br>
+        <b>Video:</b> 
+          <a href="https://www.youtube.com/watch?v=fiFk5FB7il8">Kubeflow 0.6 Release Feature Review</a>
+        <br>
+        <b>Roadmap:</b>
+          <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-06">Kubeflow 0.6 Features</a>
       </td>
     </tr>
     <tr>
@@ -49,15 +56,20 @@ weight = 106
     <tr>
       <th class="table-light">Release Date</th>
       <td>
-        2019-07-19 (<a href="https://medium.com/kubeflow/kubeflow-v0-6-a-robust-foundation-for-artifact-tracking-data-versioning-multi-user-support-9896d329412c">Blog</a>)
+        2019-07-19
       </td>
     </tr>
     <tr>
-      <th class="table-light">Roadmap</th>
+      <th class="table-light">Media</th>
       <td>
-        <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-06">
-          ROADMAP.md#kubeflow-06
-        </a>
+        <b>Blog:</b> 
+          <a href="https://medium.com/kubeflow/kubeflow-v0-6-a-robust-foundation-for-artifact-tracking-data-versioning-multi-user-support-9896d329412c">Kubeflow 0.6 Release Announcement</a>
+        <br>
+        <b>Video:</b> 
+          <a href="https://www.youtube.com/watch?v=fiFk5FB7il8">Kubeflow 0.6 Release Feature Review</a>
+        <br>
+        <b>Roadmap:</b>
+          <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-06">Kubeflow 0.6 Features</a>
       </td>
     </tr>
     <tr>
