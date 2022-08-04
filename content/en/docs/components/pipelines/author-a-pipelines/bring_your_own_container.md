@@ -20,15 +20,15 @@ $ pip install --upgrade kfp
 
 2. Import the `kfp`, and `kfp.dsl` packages.
 
-
 ```python
 import kfp
 from kfp.dsl import (
-    container_component,
-    ContainerSpec,
-    Input,
-    Output,
+  container_component,
+  ContainerSpec,
+  pipeline,
+  OutputPath,
 )
+ 
 ```
 
 3. Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
@@ -50,16 +50,49 @@ For more information about the Kubeflow Pipelines SDK, see the [SDK reference gu
 
 1. This section demonstrates how to get started building container-based components by creating a simple hello world component.
 
-Define your component’s code as a python function that returns a `dsl.ContainerSpec` object to specify the container image and the commands to be run in the container and wrap the function into a `@container_component` decorator. The decorator will compose a `ComponentSpec` object using the `ContainerSpec` to be compiled for execution.
+Define your component’s code as a python function that returns a `dsl.ContainerSpec` object to specify the container image and the commands to be run in the container and wrap the function into a `@container_component` decorator. The decorator will compose a `ComponentSpec` object using the `ContainerSpec` to be compiled for execution. In this example, we use a shell script to demonstrate 
+how developers should pass the variables into the program in their containers.  
   <!-- TODO: add hyperlink to source code of ContainerSpec  -->
 
 ```python
-
+@container_component
+def hello_world_comp(text: str, out_filename: dsl.OutputPath(str)):
+    return ContainerSpec(
+        image=..., # put your container image on gcs here
+        command=['hello_world.sh'],
+        args=['--in', text, '--out', out_filename])
 ```
 
-2. 
+Meanwhile, add a shell script on your container that outputs the text:
+```shell
+echo $2 >> $4
+```
 
-3.
+2. Create pipeline using components. [Learn more about creating and running pipelines][build-pipelines].
+
+[build-pipelines]: TODO
+
+
+```python
+@pipeline(
+    name='hello-world-pipeline',
+    description='An example pipeline made of container-based component.'
+)
+def hello_world_pipeline(text: str):
+    hello_world_comp(text)
+```
+
+3. Compile and run your pipeline. [Learn more about compiling and running pipelines][build-pipelines].
+
+[build-pipelines]: TODO
+
+```python
+arguments = {'text': 'Welcome to KFP v2!'}
+client.create_run_from_pipeline_func(
+    add_pipeline,
+    arguments=arguments
+)
+```
 
 ## Building a container-based component
 
