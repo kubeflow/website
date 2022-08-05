@@ -46,7 +46,7 @@ Pipelines UI:
     that you want to view. The step details slide into view, showing the
     **Visualizations** tab.
 
-    <img src="/docs/images/pipelines/confusion-matrix-task.png" 
+    <img src="/docs/images/pipelines/v1/confusion-matrix-task.png" 
       alt="Table-based visualization from a pipeline component"
       class="mt-3 mb-3 border border-info rounded">
 
@@ -113,7 +113,7 @@ def metrics_visualization_pipeline():
 
 Visualization of Confusion Matrix is as below:
 
-<img src="/docs/images/pipelines/v2/confusion-matrix.png" 
+<img src="/docs/images/pipelines/v1/v2-compatible/confusion-matrix.png" 
   alt="V2 Confusion matrix visualization"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -158,7 +158,7 @@ def metrics_visualization_pipeline():
 
 Visualization of ROC Curve is as below:
 
-<img src="/docs/images/pipelines/v2/roc-curve.png" 
+<img src="/docs/images/pipelines/v1/v2-compatible/roc-curve.png" 
   alt="V2 ROC Curve visualization"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -220,7 +220,7 @@ def metrics_visualization_pipeline():
 
 Visualization of Scalar Metrics is as below:
 
-<img src="/docs/images/pipelines/v2/scalar-metrics.png" 
+<img src="/docs/images/pipelines/v1/v2-compatible/scalar-metrics.png" 
   alt="V2 Scalar Metrics visualization"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -241,7 +241,7 @@ def markdown_visualization(markdown_artifact: Output[Markdown]):
         f.write(markdown_content)
 ```
 
-<img src="/docs/images/pipelines/v2/markdown-visualization.png" 
+<img src="/docs/images/pipelines/v1/v2-compatible/markdown-visualization.png" 
   alt="Markdown visualization in v2 compatible mode"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -622,7 +622,7 @@ def table_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
 
 **Visualization on the Kubeflow Pipelines UI:**
 
-<img src="/docs/images/pipelines/taxi-tip-prediction-step-output-table.png" 
+<img src="/docs/images/pipelines/v1/taxi-tip-prediction-step-output-table.png" 
   alt="Table-based visualization from a pipeline component"
   class="mt-3 mb-3 border border-info rounded">
 

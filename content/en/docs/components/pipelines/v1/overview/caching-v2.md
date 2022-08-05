@@ -26,7 +26,7 @@ Note: If the producer task which generates an artifact is not cached, then the p
 
 If there is a matching execution in Kubeflow Pipelines, the outputs of that execution are used, and the task is skipped. An example of cache being hit:
 
-<img src="/docs/images/pipelines/v2/cacheicon.png" 
+<img src="/docs/images/pipelines/v1/v2-compatible/cacheicon.png" 
   alt="Cache is hit on KFPv2 pipelines"
   class="mt-3 mb-3 border border-info rounded">
 

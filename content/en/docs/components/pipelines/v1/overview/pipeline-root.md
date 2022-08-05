@@ -66,6 +66,6 @@ You can configure pipeline root via `pipeline_root` argument when you submit a P
 
 ####  Via Submitting a Pipeline Run through UI
 You can configure a pipeline root via the `pipeline_root` run parameters when you submit a pipeline run in the UI
-<img src="/docs/images/pipelines/v2/pipelines-ui-pipelineroot.png"
+<img src="/docs/images/pipelines/v1/v2-compatible/pipelines-ui-pipelineroot.png"
 alt="Configure pipeline root on the pipelines UI"
 class="mt-3 mb-3 border border-info rounded">
