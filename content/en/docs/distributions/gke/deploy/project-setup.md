@@ -39,6 +39,8 @@ Follow these steps to set up your Google Cloud project:
     * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/external-add-ons/fairing/) in your Kubeflow cluster)
     * [Cloud SQL Admin API](https://console.cloud.google.com/apis/library/sqladmin.googleapis.com)
     * [Config Controller (KRM API Hosting API)](https://console.cloud.google.com/apis/library/krmapihosting.googleapis.com)
+    * [Google Cloud Endpoints](https://console.cloud.google.com/apis/library/endpoints.googleapis.com)
+    * [Service Control API](https://console.cloud.google.com/apis/library/servicecontrol.googleapis.com)
 
     You can also enable these APIs by running the following command in Cloud Shell:
     ```bash
@@ -52,7 +54,9 @@ Follow these steps to set up your Google Cloud project:
       iap.googleapis.com \
       sqladmin.googleapis.com \
       meshconfig.googleapis.com \
-      krmapihosting.googleapis.com
+      krmapihosting.googleapis.com \
+      servicecontrol.googleapis.com \
+      endpoints.googleapis.com
 
     # Cloud Build API is optional, you need it if using Fairing.
     # gcloud services enable cloudbuild.googleapis.com
