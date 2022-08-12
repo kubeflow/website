@@ -4,14 +4,11 @@ description = "Using the KFPv2 Run Comparison page to compare parameters and met
 weight = 15
 +++
 
-Kubeflow Pipelines is a platform for building and deploying portable, 
-scalable machine learning (ML) workflows based on Docker containers.
-
 ## Prerequisites
 
 To compare pipeline runs, you need to first have at least two pipeline runs of the same version!
 You can run your first pipeline by following the 
-[pipelines quickstart guide](/docs/components/pipelines/overview/quickstart).
+[pipelines quickstart guide](/docs/components/pipelines/quickstart).
 
 This page will show the v2 UI, which allows you to compare the following visualization types:
 * Scalar Metrics
@@ -130,11 +127,10 @@ from becoming too cluttered.
 
 ## Conclusion
 
-The KFPv2 Run Comparison page takes advantage of the new MLMD artifact design with v2 to
-enable users to perform faster analysis when comparing their runs and highlight positive and negative
-impacts and features of their models.
+The KFPv2 Run Comparison page allows users to perform faster analysis when comparing their runs
+by comparing different visualization types across pipeline run artifacts.
 
 ## Next Steps
 
-* Follow the full guide to experimenting with
-  [the Kubeflow Pipelines samples](/docs/components/pipelines/tutorials/build-pipeline/).
+* Learn more about the Kubeflow community at the
+  [Community and Support tab](/docs/components/pipelines/community-and-support/).
