@@ -181,7 +181,7 @@ You do not need to write an importer component; it can be imported from the `dsl
 ```python
 from kfp import dsl
 
-@dsl.pipeline():
+@dsl.pipeline()
 def my_pipeline():
     importer_task = dsl.importer(
         artifact_uri='gs://ml-pipeline-playground/shakespeare1.txt',
