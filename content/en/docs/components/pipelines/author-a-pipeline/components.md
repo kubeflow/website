@@ -52,7 +52,7 @@ from kfp import dsl
 
 @dsl.component(
     base_image='python:3.7',
-    packages_to_install=['tensorflow']
+    packages_to_install=['tensorflow==2.9.1']
 )
 def train_model(
     dataset: Input[Dataset],
@@ -82,7 +82,7 @@ def train_model(
     my_model.save(model.path)
 ```
 
-Notice the `base_image` argument to the `@kfp.dsl.component` decorator. Despite not having the word "container" in its name, lightweight components are still executed as a container at runtime. The `@kfp.dsl.component` decorator mereley provides a convient Pythonic interface to defining this container image, command, and arguments. [`python:3.7`](https://hub.docker.com/_/python) is the default image, but can be changed to any image accessible to the executing backend, as long as the image has a Python interpreter available as `python3`.
+Notice the `base_image` argument to the `@kfp.dsl.component` decorator. Despite not having the word "container" in its name, lightweight components are still executed as a container at runtime. The `@kfp.dsl.component` decorator mereley provides a convient Pythonic interface to defining this container image, command, and arguments. [`python:3.7`](https://hub.docker.com/_/python) is the default image, but can be changed to any image accessible to the executing backend, as long as the image has a Python interpreter available as `python3`. Packages in `packages_to_install` will be pip installed at container runtime.
 
 **When to use?** Lightweight components should be used any time your component implementation can be written as a standalone Python function and does not require an abundance of source code.
 
