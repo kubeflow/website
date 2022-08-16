@@ -172,7 +172,7 @@ client.create_run_from_pipeline_func(
 ```
 
 <!-- TODO: fill in the links below in the new docs -->
-[build-pipelines]: TODO
+[build-pipelines]: /docs/components/pipelines/quickstart
 [connect-api]: https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api
 [dsl-component-spec]: TODO
 [dsl-container-spec]: TODO
