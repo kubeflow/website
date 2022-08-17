@@ -43,21 +43,21 @@ For more information about the Kubeflow Pipelines SDK, see the [SDK reference gu
 
 1. This section demonstrates how to get started building container-based components by creating a simple hello world component.
 
-Define your component’s code as a python function that returns a `dsl.ContainerSpec` object to specify the container image and the commands to be run in the container and wrap the function into a `@container_component` decorator. The decorator will compose a `ComponentSpec` object using the `ContainerSpec` to be compiled for execution. (Learn more about [ComponentSpec][dsl-component-spec] and [ContainerSpec][dsl-container-spec].) The inputs and outputs of the component should be written in the function signature with type annotations. In this example, we use a shell script to demonstrate how you could use a simple program in the container to pass data through this interface.  
+Define your component’s code as a python function that returns a `dsl.ContainerSpec` object to specify the container image and the commands to be run in the container and wrap the function into a `@container_component` decorator. The decorator will compose a `ComponentSpec` object using the `ContainerSpec` to be compiled for execution. (Learn more about [ComponentSpec][dsl-component-spec] and [ContainerSpec][dsl-container-spec].) The inputs and outputs of the component should be written in the function signature with type annotations. In this example, we use a bash script to demonstrate how you could use a simple program in the container to pass data through this interface.  
   <!-- TODO: add hyperlink to source code of ContainerSpec  -->
 
 ```python
 @container_component
 def hello_world_comp(text: str, out_filename: dsl.OutputPath(str)):
     return ContainerSpec(
-        image=..., # put your container image on gcs here
+        image='python:3.7' # or put your custom container image here
         command=['hello_world.sh'],
         args=['--in', text, '--out', out_filename]
     )
 ```
 
-Meanwhile, add a shell script on your container that takes outputs the text into the provided path:
-```shell
+Meanwhile, add a bash script on your container that takes outputs the text into the provided path:
+```bash
 echo $2 >> $4
 ```
 
@@ -68,14 +68,14 @@ echo $2 >> $4
     name='hello-world-pipeline',
     description='An example pipeline made of container-based component.'
 )
-def hello_world_pipeline(text: str):
-    hello_world_comp(text)
+def hello_world_pipeline(input_text: str):
+    hello_world_comp(text=input_text)
 ```
 
 3. Compile and run your pipeline. [Learn more about compiling and running pipelines][build-pipelines].
 
 ```python
-arguments = {'text': 'Welcome to KFP v2!'}
+arguments = {'input_text': 'Welcome to KFP v2!'}
 client.create_run_from_pipeline_func(
     add_pipeline,
     arguments=arguments
