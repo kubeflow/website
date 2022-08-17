@@ -4,7 +4,6 @@ description = "Author KFP components"
 weight = 4
 +++
 
-<!-- TODO: replace (/) with cross-section links -->
 
 ## Summary
 A *component* is the basic unit of execution logic in KFP. A component is a named template for how to run a container using an image, a command, and arguments. Components may also have inputs and outputs, making a component a computational template, analogous to a function.
@@ -37,12 +36,12 @@ To create a lightweight component, you must:
     
     Valid return annotations include `str`, `int`, `float`, `bool`, `dict`, and `list`. You may also specify multiple return values by using these annotations within a `typing.NamedTuple`.
 
-    For detailed discussion on type annotations and runtime behavior, see [Data Passing](/).
+    For detailed discussion on type annotations and runtime behavior, see [Data Passing][data-passing].
 
 3. Decorate your function with the `@kfp.dsl.component` decorator.
     This decorator transforms a Python function into a component that can be used within a pipeline.
 
-    For a comprehensive list of `@kfp.dsl.component` decorator arguments, see the DSL [reference documentation](https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html).
+    For a comprehensive list of `@kfp.dsl.component` decorator arguments, see the DSL [reference documentation][dsl-reference-documentation].
 
 
 The following is an example of a lightweight component that trains a model on an existing input `Dataset` artifact for `num_epochs` epochs, then saves the output `Model` artifact.
@@ -82,7 +81,7 @@ def train_model(
     my_model.save(model.path)
 ```
 
-Notice the `base_image` argument to the `@kfp.dsl.component` decorator. Despite not having the word "container" in its name, lightweight components are still executed as a container at runtime. The `@kfp.dsl.component` decorator mereley provides a convient Pythonic interface to defining this container image, command, and arguments. [`python:3.7`](https://hub.docker.com/_/python) is the default image, but can be changed to any image accessible to the executing backend, as long as the image has a Python interpreter available as `python3`. Packages in `packages_to_install` will be pip installed at container runtime.
+Notice the `base_image` argument to the `@kfp.dsl.component` decorator. Despite not having the word "container" in its name, lightweight components are still executed as a container at runtime. The `@kfp.dsl.component` decorator mereley provides a convient Pythonic interface to defining this container image, command, and arguments. [`python:3.7`][python-docker-image] is the default image, but can be changed to any image accessible to the executing backend, as long as the image has a Python interpreter available as `python3`. Packages in `packages_to_install` will be pip installed at container runtime.
 
 **When to use?** Lightweight components should be used any time your component implementation can be written as a standalone Python function and does not require an abundance of source code.
 
@@ -168,9 +167,9 @@ To create a containerized component, you must:
 <!-- @zichuan-scott-xu to provide this section -->
 
 ## Special case: Importer components
-Unlike the previous three authoring approaches, an importer component not a general authoring style but a pre-baked component for a specific use case: loading a machine learning [artifact](/) from remote storage to machine learning metadata (MLMD).
+Unlike the previous three authoring approaches, an importer component not a general authoring style but a pre-baked component for a specific use case: loading a machine learning [artifact][data-passing] from remote storage to machine learning metadata (MLMD).
 
-**Before you continue:** Understand how KFP [Artifacts](/) work.
+**Before you continue:** Understand how KFP [Artifacts][data-passing] work.
 
 Often times, the output artifact from one task is an input artifact to another task. In this case, the artifact can be easily accessed from the upstream task using `my_task.outputs['artifact_name']`. Additionally, the artifact is already registered in MLMD.
 
@@ -220,3 +219,7 @@ def my_pipeline():
 ```
 
 The `components` module also includes `.load_component_from_text` and `.load_component_from_url` for loading YAML from different sources.
+
+[data-passing]: /docs/components/pipelines/author-a-pipeline/data-passing
+[dsl-reference-documentation]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html
+[python-docker-image]: https://hub.docker.com/_/python
