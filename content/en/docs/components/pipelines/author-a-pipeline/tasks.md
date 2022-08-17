@@ -4,10 +4,8 @@ description = "Understand and use KFP tasks"
 weight = 4
 +++
 
-<!-- TODO: replace (/) with cross-section links -->
-
 ## Summary
-A *task* is an execution of a [component](content/en/docs/components/pipelines/author-a-pipeline/components) with a set of inputs. It can be thought of as an instantiation of a component template. A pipeline is composed of individual tasks that may or may not pass data betwen one another.
+A *task* is an execution of a [component][components] with a set of inputs. It can be thought of as an instantiation of a component template. A pipeline is composed of individual tasks that may or may not pass data betwen one another.
 
 One component can be used to instantiate multiple tasks within a single pipeline. Tasks can also be created and executed dynamically using pipeline control flow features such as loops, conditions, and exit handlers.
 
@@ -38,7 +36,7 @@ def my_pipeline():
     my_task2 = concat_comp(prefix=my_task1.output, text='!')
 ```
 
-For more information on passing inputs and outputs between components, see [Data Passing](/).
+For more information on passing inputs and outputs between components, see [Data Passing][data-passing].
 
 
 ### Explicitly dependent tasks
@@ -91,7 +89,7 @@ The KFP SDK provides the following task methods for setting task-level configura
 * `.set_memory_limit`
 * `.set_retry`
 
-For detailed information on how to use the above methods, see the [`kfp.dsl.PipelineTask` reference documentation](https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html).
+For detailed information on how to use the above methods, see the [`kfp.dsl.PipelineTask` reference documentation][dsl-reference-docs].
 
 ### Caching
 KFP provides task-level output caching to reduce redundant computation by skipping the execution of tasks that were completed in a previous pipeline run. Caching is enabled by default, but can be disabled by calling `.set_caching_options(False)` on a task.
@@ -100,3 +98,7 @@ The cache key is determined by the task's component specification (image, comman
 
 When a task's cache hits and its execution is skipped, it will be displayed on the KFP UI:
 <!-- TODO: add photo of cache on UI -->
+
+[components]: /docs/components/pipelines/author-a-pipeline/components
+[dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html
+[data-passing]: /docs/components/pipelines/author-a-pipeline/data-passing
