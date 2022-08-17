@@ -1,17 +1,17 @@
 +++
 title = "Introduction"
-description = "An introduction to the goals and main concepts of Kubeflow Pipelines"
+description = "What is Kubeflow Pipelines?"
 weight = 1
                     
 +++
 
 {{% stable-status %}}
 
-Kubeflow Pipelines is a platform for building and deploying portable, 
-scalable machine learning (ML) workflows based on Docker containers.
+Kubeflow Pipelines (KFP) is a platform for building and deploying portable, 
+scalable machine learning workflows based on Docker containers.
 
 ## Quickstart
-
+To get started
 Run your first pipeline by following the 
 [pipelines quickstart guide](/docs/components/pipelines/overview/quickstart).
 
@@ -282,3 +282,5 @@ At a high level, the execution of a pipeline proceeds as follows:
   SDK](/docs/components/pipelines/sdk/sdk-overview/).
 * Follow the full guide to experimenting with
   [the Kubeflow Pipelines samples](/docs/components/pipelines/tutorials/build-pipeline/).
+
+[quickstart]: (/docs/components/pipelines/overview/quickstart)
