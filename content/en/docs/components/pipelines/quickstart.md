@@ -12,7 +12,7 @@ In this tutorial we will deploy a Kubernetes cluster, deploy a KFP standalone de
 If you already have a Kubernetes cluster, you can skip this step. If you do not have a Kubernetes cluster, follow sections (a) or (b) below to deploy a local cluster or a GCP cluster, depending on your preference.
 
 #### a) Deploy a local cluster
-To deploy a Kubernetes cluster locally, start by installing [kind](https://kind.sigs.k8s.io/).
+To deploy a Kubernetes cluster locally, start by installing [kind][kind].
 
 **On Linux:**  
 ```shell
@@ -34,7 +34,7 @@ KIND_DIRECTORY='<my_directory_in_path>'
 curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/latest/kind-windows-amd64
 Move-Item .\kind-windows-amd64.exe c:\{KIND_DIRECTORY}\kind.exe
 ```
-or install kind from [Chocolatey](https://chocolatey.org/packages/kind):
+or install kind from [Chocolatey][chocolatey]:
 
 ```shell
 choco install kind
@@ -60,7 +60,7 @@ gcloud container clusters create $CLUSTER_NAME \
      --machine-type $MACHINE_TYPE \
      --scopes $SCOPES
 ```
-**Warning:** Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](/docs/distributions/gke/authentication/#authentication-from-kubeflow-pipelines).
+**Warning:** Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP][authenticating-pipelines-gcp].
 
 ### 2) Deploy a KFP standalone instance into your cluster
 Now that you have a Kubernetes cluster, you can deploy a KFP standalone instance into this cluster. Replace `PIPELINE_VERSION` with the desired version of KFP and run the following script:
@@ -79,7 +79,7 @@ If you've deployed KFP on a local cluster, run the following to port forward the
 kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
 ```
 
-then visit [http://localhost:8080](http://localhost:8080) to view the KFP Dashboard.
+then visit [http://localhost:8080][localhost] to view the KFP Dashboard.
 
 If you've deployed KFP on a cluster on GCP, run the following to get the public URL for the KFP Dashboard:
 
@@ -329,6 +329,14 @@ Congratulations! You now have a KFP deployment, an end-to-end machine learning p
 
 
 ## Next steps
-* See [Installation](/docs/components/pipelines/installation/) for additional ways to deploy KFP
-* See [Author a Pipeline](/docs/components/pipelines/author-a-pipeline/) to learn more about feautres available when authoring pipelines
-* See [Dashboard](/docs/components/pipelines/user-interface/) for learn more about the KFP Dashboard
+* See [Installation][installation] for additional ways to deploy KFP
+* See [Author a Pipeline][author-a-pipeline] to learn more about feautres available when authoring pipelines
+* See [Dashboard][dashboard] for learn more about the KFP Dashboard
+
+[kind]: [https://kind.sigs.k8s.io/]
+[dashboard]: /docs/components/pipelines/user-interface/
+[author-a-pipeline]: /docs/components/pipelines/author-a-pipeline/
+[installation]: /docs/components/pipelines/installation/
+[localhost]: http://localhost:8080
+[chocolatey]: https://chocolatey.org/packages/kind
+[authenticating-pipelines-gcp]: /docs/distributions/gke/authentication/#authentication-from-kubeflow-pipelines
