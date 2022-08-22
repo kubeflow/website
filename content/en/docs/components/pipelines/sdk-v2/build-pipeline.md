@@ -408,7 +408,7 @@ def merge_csv(tar_data: Input[Artifact], output_csv: Output[Dataset]):
 
 ```python
 web_downloader_op = kfp.components.load_component_from_url(
-    'https://raw.githubusercontent.com/kubeflow/pipelines/master/components/web/Download/component-sdk-v2.yaml')
+    'https://raw.githubusercontent.com/kubeflow/pipelines/1.8.13/components/web/Download/component-sdk-v2.yaml')
 ```
 
 2.  Define your pipeline as a Python function. 
