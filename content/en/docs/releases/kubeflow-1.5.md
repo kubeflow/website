@@ -19,7 +19,7 @@ weight = 99
       <th class="table-light">Media</th>
       <td>
         <b>Blog:</b> 
-          <a href="https://blog.kubeflow.org/kubeflow-1.5-release/">Kubeflow 1.5 Release Announcement</a>
+          <a href="https://blog.kubeflow.org/kubeflow-1.5.1-release/">Kubeflow 1.5.1 Release Announcement</a>
         <br>
         <b>Video:</b> 
           <a href="https://www.youtube.com/watch?v=QNNCM9Kq3Q0">Kubeflow 1.5 Release Overview</a>
