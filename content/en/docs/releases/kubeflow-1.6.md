@@ -184,3 +184,64 @@ weight = 98
   </tbody>
 </table>
 </div>
+
+<br>
+<b>Versions of dependencies in 1.6.0:</b>
+
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Dependent Component Name</th>
+        <th>Version</th>
+      </tr>
+    </thead>
+  <tbody>
+      <!-- ======================= -->
+      <!-- Kubernetes -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">Kubernetes</td>
+        <td>
+          1.22
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Istio -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">Istio</td>
+        <td>
+          1.14.1
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Knative  -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">Knative</td>
+        <td>
+          1.2
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Cert Manager  -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">Cert Manager</td>
+        <td>
+          1.5.0
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Dex  -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">Dex</td>
+        <td>
+          2.31.2
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
