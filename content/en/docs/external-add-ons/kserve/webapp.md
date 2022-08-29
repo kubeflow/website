@@ -119,7 +119,7 @@ The main page of the app provides a list of all the InferenceServices that are
 deployed in the selected Namespace. The frontend periodically polls the backend
 for the latest state of InferenceServices.
 
-<img src="./pics/webapp-list.png" alt="Models web app main page">
+<img src="/docs/external-add-ons/kserve/pics/webapp-list.png" alt="Models web app main page">
 
 ### Creating
 
@@ -130,7 +130,7 @@ Note that the backend will override the provided `.metadata.namespace` field of
 the submitted object, to prevent users from trying to create InferenceServices
 in other namespaces.
 
-<img src="./pics/webapp-new.png" alt="Models web app create page">
+<img src="/docs/external-add-ons/kserve/pics/webapp-new.png" alt="Models web app create page">
 
 ### Deleting
 
@@ -157,7 +157,7 @@ view a more detailed summary of the CR's state. In this page users can inspect:
 4. Logs from the created Pods (LOGS)
 4. The YAML file as is in the K8s API Server (YAML)
 
-<img src="./pics/webapp-overview.png" alt="Models web app overview page">
+<img src="/docs/external-add-ons/kserve/pics/webapp-overview.png" alt="Models web app overview page">
 
 {{% alert title="Note" color="info" %}}
 To gather the logs the backend will:
@@ -256,7 +256,7 @@ After applying these YAMLs, based on your installation mode, and ensuring the
 Grafana instance is exposed under `/grafana` the web app will show the
 `METRICS` tab.
 
-<img src="./pics/webapp-metrics.png" alt="Models web app metrics page">
+<img src="/docs/external-add-ons/kserve/pics/webapp-metrics.png" alt="Models web app metrics page">
 
 ## Configurations
 

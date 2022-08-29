@@ -423,7 +423,7 @@ The following examples demonstrate how to specify your component's interface.
         ]
     ```
 
-[dsl-types]: https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/types.py
+[dsl-types]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/types.py
 [dsl-type-checking]: https://www.kubeflow.org/docs/components/pipelines/sdk/static-type-checking/
 
 ### Specify your component's metadata
@@ -584,7 +584,7 @@ components/<component group>/<component name>/
 
 See this [sample component][org-sample] for a real-life component example.
 
-[org-sample]: https://github.com/kubeflow/pipelines/tree/master/components/sample/keras/train_classifier
+[org-sample]: https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/components/sample/keras/train_classifier
 
 ## Next steps
 
@@ -606,4 +606,4 @@ See this [sample component][org-sample] for a real-life component example.
   resources](/docs/examples/shared-resources/).
 
 
-[kfp-artifact]: https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/io_types.py
+[kfp-artifact]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/io_types.py

@@ -23,7 +23,7 @@ Kubeflow distributions secure the Kubeflow Pipelines public endpoint with authen
 Since Kubeflow distributions can have different authentication and authorization requirements, the steps needed to connect to your Kubeflow Pipelines instance might be different depending on the Kubeflow distribution you installed. Refer to documentation for [your Kubeflow distribution](/docs/started/installing-kubeflow/):
 
 * [Connecting to Kubeflow Pipelines on Google Cloud using the SDK](/docs/distributions/gke/pipelines/authentication-sdk/)
-* [Kubeflow Pipelines on AWS](https://www.kubeflow.org/docs/distributions/aws/component-guides/pipeline/)
+* [Kubeflow Pipelines on AWS](https://awslabs.github.io/kubeflow-manifests/docs/component-guides/pipelines/)
 * [Authentication using OIDC in Azure](/docs/distributions/azure/authentication-oidc/)
 * [Pipelines on IBM Cloud Kubernetes Service (IKS)](/docs/distributions/ibm/pipelines/)
 
@@ -169,7 +169,7 @@ Choose your use-case from one of the options below:
   Note that this example uses `default-editor` in `my-namespace` as the service account identity, but you can configure
   to use any service account that runs in your Pod. You need to bind service account to cluster role `kubeflow-pipelines-edit`
   or `kubeflow-pipelines-view` documented in 
-  [view-edit-cluster-roles.yaml](https://github.com/kubeflow/pipelines/blob/master/manifests/kustomize/base/installs/multi-user/view-edit-cluster-roles.yaml#L7-L32).
+  [view-edit-cluster-roles.yaml](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/manifests/kustomize/base/installs/multi-user/view-edit-cluster-roles.yaml#L7-L32).
 
 #### Managing access to Kubeflow Pipelines API across namespaces
 

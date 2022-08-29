@@ -64,7 +64,7 @@ introduces the following changes:
             are always passed by value, which means that they are inserted into the
             command used to execute the component. Parameters are stored in ML Metadata. 
 
-        *   [Artifacts](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/io_types.py)
+        *   [Artifacts](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/io_types.py)
             are larger inputs or outputs, such as datasets or models. Input
             artifacts are always passed as a reference to a path. 
 
@@ -75,7 +75,7 @@ introduces the following changes:
 *   The following changes affect how you define a pipeline:
 
     *   Pipeline functions must be decorated with
-         [`@kfp.dsl.pipeline`](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline.py). Specify the following arguments for the 
+         [`@kfp.dsl.pipeline`](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/_pipeline.py). Specify the following arguments for the 
          `@pipeline` annotation.
 
         *   `name`: The pipeline name is used when querying MLMD to store or lookup
@@ -116,7 +116,7 @@ def add(a: float, b: float) -> float:
   description='An example pipeline that performs addition calculations.',
   # pipeline_root='gs://my-pipeline-root/example-pipeline'
 )
-def add_pipeline(a: float=1, b: float=7):
+def add_pipeline(a: float = 1, b: float = 7):
   add_task = add(a, b)
 ```
 

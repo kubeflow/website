@@ -21,7 +21,7 @@ block to be executed and exited based on dynamic conditions.
 
 ### Decorator
 
-Decorate the recursive function with [kfp.dsl.graph_component](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_component.py)
+Decorate the recursive function with [kfp.dsl.graph_component](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/_component.py)
 as illustrated below. The decorator does not require any arguments.
 ```python
 import kfp.dsl as dsl
@@ -45,7 +45,7 @@ def pipeline():
 ```
 
 ### Function signature
-Define the function signature as a standard Python function. The input parameters are [PipelineParams](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_pipeline_param.py).
+Define the function signature as a standard Python function. The input parameters are [PipelineParams](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/_pipeline_param.py).
 
 ### Function body
 Similar to the pipeline function body, you can instantiate components, create [conditions](https://github.com/kubeflow/pipelines/blob/f8b0f5bf0cc0b5aceb8aedfd21e93156e363ea48/sdk/python/kfp/dsl/_ops_group.py#L110),
@@ -55,7 +55,7 @@ two components *op_a* and *op_b* are created inside the condition.
 
 ### Call the recursive function in the pipeline function
 You can pass pipeline/component output to the recursive function and specify the dependencies explicitly with *after()* function, similar to
-the [ContainerOp](https://github.com/kubeflow/pipelines/blob/master/sdk/python/kfp/dsl/_container_op.py). In the example above, the output of *op_a* 
+the [ContainerOp](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/_container_op.py). In the example above, the output of *op_a* 
 defined in the pipeline is passed to the recursive function and the *task_factory_c* component is specified to depend on the *graph_op_a*. 
 The recursive function can also be explicitly specified to depend on the ContainerOps. For example, *graph_op_a* depends on *op_b* in the pipeline.
 
@@ -93,4 +93,4 @@ multiple recursive function calls in the function body.
 
 ## Next steps
 
-* See [recursion sample](https://github.com/kubeflow/pipelines/blob/master/samples/core/recursion/recursion.py)
+* See [recursion sample](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/core/recursion/recursion.py)

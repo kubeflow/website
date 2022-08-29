@@ -12,15 +12,20 @@ weight = 103
     <tr>
       <th class="table-light">Release Date</th>
       <td>
-        2020-07-31 (<a href="https://blog.kubeflow.org/release/official/2020/07/31/kubeflow-1.1-blog-post.html">Blog</a>)
+        2020-07-31
       </td>
     </tr>
     <tr>
-      <th class="table-light">Roadmap</th>
+      <th class="table-light">Media</th>
       <td>
-        <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-11-features-release-date-late-june-2020">
-          ROADMAP.md#kubeflow-11-features-release-date-late-june-2020
-        </a>
+        <b>Blog:</b> 
+          <a href="https://blog.kubeflow.org/release/official/2020/07/31/kubeflow-1.1-blog-post.html">Kubeflow 1.1 Release Announcement</a>
+        <br>
+        <b>Video:</b> 
+          <a href="https://www.youtube.com/watch?v=kd-mWl1cq48">Kubeflow 1.1 Community Release Update</a>
+        <br>
+        <b>Roadmap:</b>
+          <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-11-features-release-date-late-june-2020">Kubeflow 1.1 Features</a>
       </td>
     </tr>
     <tr>

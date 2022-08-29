@@ -12,7 +12,7 @@ that can be executed in a Kubeflow environment.
 Below is an example of a Piepline created with Elyra, you can identify the components/tasks
 and related properties that are all managed in the visual editor.
 
-<img src="./elyra-pipeline-covid-scenario.png" alt="A pipeline example created using Elyra Pipeline Visual Editor" class="mt-3 mb-3 p-3 border border-info rounded" />
+<img src="/docs/external-add-ons/elyra/elyra-pipeline-covid-scenario.png" alt="A pipeline example created using Elyra Pipeline Visual Editor" class="mt-3 mb-3 p-3 border border-info rounded" />
 
 To learn more about Elyra, visit <a href="https://github.com/elyra-ai/elyra" target="_blank">Elyra GitHub project</a>
 
