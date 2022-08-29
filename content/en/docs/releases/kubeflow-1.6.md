@@ -242,6 +242,15 @@ weight = 98
           2.31.2
         </td>
       </tr>
+      <!-- ======================= -->
+      <!-- Kustomize  -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">Kustomize</td>
+        <td>
+          3.2.0
+        </td>
+      </tr>
   </tbody>
 </table>
 </div>
