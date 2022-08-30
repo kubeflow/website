@@ -184,7 +184,8 @@ compiler.Compiler().compile(pipeline_func=my_pipeline, package_path='pipeline.ya
 ```
 
 ### 4) View the pipeline in the KFP Dashbaord
-Open the URL printed by step three to view the pipeline run on the KFP Dashboard. By clicking on each task node, you can view inputs, outputs, logs, and other task details.
+Open the URL printed by step three to view the pipeline run on the KFP Dashboard. By clicking on each task node, you can view inputs, outputs, and other task details.
+<!-- TODO: add logs to this list when available in v2 -->
 
 <img src="/docs/images/pipelines/addition_pipeline_ui.png" 
 alt="Pipelines Dashboard"
