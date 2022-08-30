@@ -137,7 +137,7 @@ First, we begin by creating a lightweight Python component using the `@dsl.compo
 def addition_component(num1: int, num2: int) -> int:
     return num1 + num2
 ```
-This decorator transforms a Python function into a component that can be used within a pipeline. Type annotations on the parameters and return value are required, as this tells the KFP executor how to serialize and deserialize data as it is passed between components. It also allows the KFP compiler to type check your pipeline.
+This decorator transforms a Python function into a component that can be used within a pipeline. Type annotations on the parameters and return value are required, as this tells the KFP executor how to serialize and deserialize data as it is passed between components. It also allows the KFP compiler to type check data passing between tasks in your pipeline.
 
 Second, we create a pipeline using the `@dsl.pipeline` decorator:
 ```python
