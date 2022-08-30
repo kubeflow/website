@@ -63,9 +63,9 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on IBM Cloud</td>
         <td>IBM Cloud</td>
         <td>IBM Cloud Kubernetes Service (IKS) </td>
-        <td>1.5</td>
+        <td>{{% iks/latest-version %}}</td>
         <td><a href="/docs/distributions/ibm/">Docs</a></td>
-        <td><a href="https://github.com/IBM/manifests/tree/v1.5-branch">External Website</a></td>
+        <td><a href="https://github.com/IBM/manifests/tree/{{% iks/latest-branch %}}">External Website</a></td>
       </tr>
       <tr>
         <td>Kubeflow on Nutanix</td>
