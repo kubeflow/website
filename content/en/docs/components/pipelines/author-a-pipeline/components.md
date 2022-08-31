@@ -83,9 +83,9 @@ def train_model(
 
 Notice the `base_image` argument to the `@kfp.dsl.component` decorator. Despite not having the word "container" in its name, lightweight components are still executed as a container at runtime. The `@kfp.dsl.component` decorator mereley provides a convient Pythonic interface to defining this container image, command, and arguments. [`python:3.7`][python-docker-image] is the default image, but can be changed to any image accessible to the executing backend, as long as the image has a Python interpreter available as `python3`. Packages in `packages_to_install` will be pip installed at container runtime.
 
-**When to use?** Lightweight components should be used any time your component implementation can be written as a standalone Python function and does not require an abundance of source code.
+**When to use?** Lightweight components should be used if your component implementation can be written as a standalone Python function and does not require an abundance of source code. This is the preferred authoring approach for quick demos and when authoring components in a noteebok.
 
-For more involved components, prefer containerized components and custom container components for their increased flexibility.
+For more involved components and for production usage, prefer containerized components and custom container components for their increased flexibility.
 
 Note: This authoring approach replaces `kfp.components.create_component_from_func` in KFP v1.
 
