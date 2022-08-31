@@ -6,64 +6,12 @@ weight = 3
 +++
 <!-- TODO: add links to more thorough content docs -->
 <!-- TODO: add UI screenshots for final pipeline -->
-In this tutorial we will deploy a Kubernetes cluster, deploy a KFP standalone deployment into that cluster, create and run a simple pipeline using the KFP SDK, view the pipeline on the KFP Dashboard, then create a more involved machine learning pipeline that uses additional KFP features.
+In this tutorial we will deploy a KFP standalone deployment into an existing Kubernetes cluster, create and run a simple pipeline using the KFP SDK, view the pipeline on the KFP Dashboard, then create a more involved machine learning pipeline that uses additional KFP features.
 
-### 1) Deploy a Kubernetes cluster
-If you already have a Kubernetes cluster, you can skip this step. If you do not have a Kubernetes cluster, follow sections (a) or (b) below to deploy a local cluster or a GCP cluster, depending on your preference.
+### 1) Deploy a KFP standalone instance into your cluster
+The first step is to deploy a KFP standalone instance into an existing Kubernetes cluster. If you don't yet have a Kubernetes cluster, see [Installation][installation]. For this step, you will need to have [kubectl](https://kubernetes.io/docs/tasks/tools/) installed.
 
-#### a) Deploy a local cluster
-To deploy a Kubernetes cluster locally, start by installing [kind][kind].
-
-**On Linux:**  
-```shell
-curl -Lo ./kind https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64 && \
-chmod +x ./kind && \
-mv ./kind /bin/kind
-```
-
-**On macOS:**  
-```shell
-brew install kind
-```
-
-**On Windows:**  
-Replace `KIND_DIRECTORY` with the directory in `PATH` where you wish to save kind.
-
-```shell
-KIND_DIRECTORY='<my_directory_in_path>'
-curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/latest/kind-windows-amd64
-Move-Item .\kind-windows-amd64.exe c:\{KIND_DIRECTORY}\kind.exe
-```
-or install kind from [Chocolatey][chocolatey]:
-
-```shell
-choco install kind
-```
-
-**All platforms:**  
-After you've installed kind you can create a cluster by running:
-```shell
-kind create cluster
-```
-
-#### b) Deploy a cluster on GCP
-To deploy a Kubernetes cluster on GCP, use the `gcloud` CLI:
-
-```shell
-CLUSTER_NAME="kubeflow-pipelines-standalone"
-ZONE="us-central1-a"
-MACHINE_TYPE="e2-standard-2" # 2 CPUs and 8GB memory
-SCOPES="cloud-platform" # This scope is needed for running some pipelines. Read the warning below for security implications.
-
-gcloud container clusters create $CLUSTER_NAME \
-     --zone $ZONE \
-     --machine-type $MACHINE_TYPE \
-     --scopes $SCOPES
-```
-**Warning:** Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP][authenticating-pipelines-gcp].
-
-### 2) Deploy a KFP standalone instance into your cluster
-Now that you have a Kubernetes cluster, you can deploy a KFP standalone instance into this cluster. Replace `PIPELINE_VERSION` with the desired version of KFP and run the following script:
+Once you have configured your [kubectl context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) to connect with your cluster. Replace `PIPELINE_VERSION` with the desired version of KFP and run the following script:
 
 ```shell
 export PIPELINE_VERSION="2.0.0-alpha.3"
@@ -73,23 +21,10 @@ kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION"
 ```
 
-If you've deployed KFP on a local cluster, run the following to port forward the KFP Dashboard:
+Once you have deployed Kubernetes, obtain your KFP endpoint by following the instructions on [Installation][installation].
+<!-- TODO: add more precise section link when available -->
 
-```shell
-kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
-```
-
-then visit [http://localhost:8080][localhost] to view the KFP Dashboard.
-
-If you've deployed KFP on a cluster on GCP, run the following to get the public URL for the KFP Dashboard:
-
-```shell
-kubectl describe configmap inverse-proxy-config -n kubeflow | grep googleusercontent.com
-```
-
-Open the returned URL in your browser to view the KFP Dashboard.
-
-### 3) Compose and submit simple pipeline
+### 2) Compose and submit simple pipeline
 Now we'll compose a pipeline and submit it for execution by KFP using the KFP SDK.
 
 To install the KFP SDK (v2 is currently in pre-release), run:
@@ -173,9 +108,9 @@ url = f'{endpoint}/#/runs/details/{run.run_id}'
 print(url)
 ```
 
-`endpoint` should be the KFP Dashboard URL you obtained in the previous step.
+`endpoint` should be the KFP endpoint URL you obtained in the previous step.
 
-Alternatively, we could have compiled the pipeline to YAML for use at another time:
+Alternatively, we could have compiled the pipeline to [IR YAML][ir-yaml] for use at another time:
 
 ```python
 from kfp import compiler
@@ -183,7 +118,7 @@ from kfp import compiler
 compiler.Compiler().compile(pipeline_func=my_pipeline, package_path='pipeline.yaml')
 ```
 
-### 4) View the pipeline in the KFP Dashbaord
+### 3) View the pipeline in the KFP Dashbaord
 Open the URL printed by step three to view the pipeline run on the KFP Dashboard. By clicking on each task node, you can view inputs, outputs, and other task details.
 <!-- TODO: add logs to this list when available in v2 -->
 
@@ -191,7 +126,7 @@ Open the URL printed by step three to view the pipeline run on the KFP Dashboard
 alt="Pipelines Dashboard"
 class="mt-3 mb-3 border border-info rounded">
 
-### 5) Build a more advanced pipeline
+### 4) Build a more advanced pipeline
 We'll finish by building a more advanced pipeline that demonstrates some additional KFP pipeline composition features.
 
 The following machine learning pipeline creates a dataset, normalizes the features of the dataset as a preprocessing step, and trains a simple machine learning model on the data using different hyperparameters.
@@ -341,3 +276,5 @@ Congratulations! You now have a KFP deployment, an end-to-end machine learning p
 [localhost]: http://localhost:8080
 [chocolatey]: https://chocolatey.org/packages/kind
 [authenticating-pipelines-gcp]: /docs/distributions/gke/authentication/#authentication-from-kubeflow-pipelines
+[ir-yaml]: /docs/components/pipelines/compile-a-pipeline/
+<!-- todo: add more precise ir-yaml link when available -->
