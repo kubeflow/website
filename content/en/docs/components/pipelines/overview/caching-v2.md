@@ -36,3 +36,17 @@ If there is a matching execution in Kubeflow Pipelines, the outputs of that exec
 Cache is enabled by default with [Kubeflow Pipelines SDK v2](https://www.kubeflow.org/docs/components/pipelines/sdk-v2/) using `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode.
 
 You can turn off execution caching for pipeline runs that are created using Python. When you run a pipeline using [create_run_from_pipeline_func](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client.create_run_from_pipeline_func) or [create_run_from_pipeline_package](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client.create_run_from_pipeline_package) or [run_pipeline](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client.run_pipeline,) you can use the `enable_caching` argument to specify that this pipeline run does not use caching.
+
+You can control step-level caching using [BaseOp.set_caching_options](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.BaseOp.set_caching_options).
+As cache is enabled by default, pass `False` if you want to disable caching for a step.
+
+```
+def some_pipeline():
+      # task is a target step in a pipeline
+      task = some_op()
+      task.set_caching_options(False)
+```
+
+Note that caching option set at submission time takes presedence over that of compile time settings.
+If you pass `True` to `enable_caching` argument of [create_run_from_pipeline_func](https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client.create_run_from_pipeline_func),
+caching is enabled even for a step you disable.
