@@ -215,7 +215,7 @@ If `DB_NAME=postgres`, it uses `pq` driver and this data source name:
 
 Katib DB components supports MySQL and Postgres.
 
-#### Katib MySQL
+### Katib MySQL
 
 For the [Katib MySQL](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/mysql/mysql.yaml)
 you need to set these environment variables:
@@ -234,7 +234,7 @@ Katib MySQL environment variables must be matched with the Katib DB Manager envi
 1. `MYSQL_ROOT_PASSWORD` = `DB_PASSWORD`
 1. `MYSQL_DATABASE` = `KATIB_MYSQL_DB_DATABASE`
 
-#### Katib Postgres
+### Katib Postgres
 
 For the [Katib Postgres](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/postgres/postgres.yaml)
 you need to set these environment variables:
