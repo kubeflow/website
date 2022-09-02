@@ -69,7 +69,7 @@ Ultimately, each authoring style creates a component definitied by an `image`, `
 There is one additional type of input, `PipelineTaskFinalStatus`, which allows access to the metadata of one task from within another. This input is a special case, as it is neither a parameter nor an artifact. Use of this input is covered in [Authoring: Pipelines][pipelines].
 
 ### Input parameters
-Input parameters are declared when you use a `str`, `int`, `float`, `bool`, `dict` or `list` type annotation. The data passed to parameters typed with `dict` or `list` may only container JSON-serializable Python primitives. Inner types to `dict` and `list`, such as `Dict[str, str]` or `List[int]` are not respected. `Union` types are not permitted.
+Input parameters are declared when you use a `str`, `int`, `float`, `bool`, `dict` or `list` type annotation. The data passed to parameters typed with `dict` or `list` may only container JSON-serializable Python primitives. `Union` types are not permitted.
 
 In the example `create_dataset` component, `initial_text` is an input parameter. In `augment_dataset`, `text` and `num` are input parameters.
 
