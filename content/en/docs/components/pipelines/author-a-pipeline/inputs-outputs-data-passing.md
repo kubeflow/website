@@ -1,5 +1,5 @@
 +++
-title = "Task I/O"
+title = "Component I/O"
 description = "Use parameter/artifact inputs and outputs"
 weight = 3                 
 +++
