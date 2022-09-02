@@ -58,8 +58,8 @@ kubeflow_namespace = "kubeflow"
 # the namespace of your pipelines user (where the pipeline will be executed)
 user_namespace = "jane-doe"
 
-# when `path` is None, the `KF_PIPELINES_SA_TOKEN_PATH` environment variable is used
-# (if `KF_PIPELINES_SA_TOKEN_PATH` is unset, the default is: `/var/run/secrets/kubeflow/pipelines/token`)
+# the KF_PIPELINES_SA_TOKEN_PATH environment variable is used when no `path` is set
+# the default KF_PIPELINES_SA_TOKEN_PATH is /var/run/secrets/kubeflow/pipelines/token
 credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
 
 # create a client
@@ -103,8 +103,8 @@ kubeflow_namespace = "kubeflow"
 # the namespace of your pipelines user (where the pipeline will be executed)
 user_namespace = "jane-doe"
 
-# when `path` is None, the `KF_PIPELINES_SA_TOKEN_PATH` environment variable is used
-# (if `KF_PIPELINES_SA_TOKEN_PATH` is unset, the default is: `/var/run/secrets/kubeflow/pipelines/token`)
+# the KF_PIPELINES_SA_TOKEN_PATH environment variable is used when no `path` is set
+# the default KF_PIPELINES_SA_TOKEN_PATH is /var/run/secrets/kubeflow/pipelines/token
 credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
 
 # create a client
