@@ -203,11 +203,11 @@ Let's introduce two more components for sake of demonstrating passing parameters
 from typing import NamedTuple
 
 @dsl.component
-def named_tuple(an_id: int) -> NamedTuple('Output', [('name', str), ('id', int)]):
+def named_tuple(an_id: int) -> NamedTuple('Outputs', [('name', str), ('id', int)]):
     """Lightweight Python component with a NamedTuple output."""
     from typing import NamedTuple
-    output = NamedTuple('Output', [('name', str), ('id', int)])
-    return output('my_dataset', an_id)
+    outputs = NamedTuple('Outputs', [('name', str), ('id', int)])
+    return outputs('my_dataset', an_id)
 
 @dsl.container_component
 def identity_container(integer: int, output_int: OutputPath(int)):
