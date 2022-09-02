@@ -6,29 +6,32 @@ weight = 30
 
 Multi-user isolation for Kubeflow Pipelines is part of Kubeflow's overall [multi-tenancy](/docs/components/multi-tenancy/) feature.
 
-Refer to [Getting Started with Multi-user isolation](/docs/components/multi-tenancy/getting-started/) for the common Kubeflow multi-user operations 
-like [Managing contributors](/docs/components/multi-tenancy/getting-started/#managing-contributors-through-the-kubeflow-ui).
-
-{{% alert title="Warning" color="warning" %}}
-Kubeflow makes no security guarantees about profile isolation.
-It is very likely that malicious attempts to infiltrate other user's profiles will succeed.
+{{% alert title="Tip" color="info" %}}
+* Kubeflow Pipelines multi-user isolation is only supported in ["full" Kubeflow deployments](/docs/components/pipelines/installation/overview/#full-kubeflow-deployment).
+* Refer to [Getting Started with Multi-user isolation](/docs/components/multi-tenancy/getting-started/) for the common Kubeflow multi-user operations 
+  like [Managing contributors](/docs/components/multi-tenancy/getting-started/#managing-contributors-through-the-kubeflow-ui).
 {{% /alert %}}
 
 ## How are resources separated?
 
 Kubeflow Pipelines separates resources using Kubernetes namespaces that are managed by Kubeflow's [Profile resources](/docs/components/multi-tenancy/overview/#key-concepts).
+Other users cannot see resources in your Profile/Namespace without permission, because the Kubeflow Pipelines API server 
+rejects requests for namespaces that the current user is not authorized to access.
 
-Experiments belong to namespaces directly, runs and recurring runs belong to their parent experiment's namespace.
+"Experiments" belong to namespaces directly, runs and recurring runs belong to their parent experiment's namespace.
 
-Pipeline runs are executed in user namespaces, so that users can leverage Kubernetes namespace isolation. 
+"Pipeline Runs" are executed in user namespaces, so that users can leverage Kubernetes namespace isolation. 
 For example, they can configure different secrets for other services in different namespaces.
 
-Other users cannot see resources in your namespace without permission, because the Kubeflow Pipelines API server 
-rejects requests for namespaces that the current user is not authorized to access.
+{{% alert title="Warning" color="warning" %}}
+Kubeflow makes no hard security guarantees about Profile isolation.
+<br>
+User profiles have no additional isolation beyond what is provided by Kubernetes Namespaces.
+{{% /alert %}}
 
 ## When using the UI
 
-When you visit the Kubeflow Pipelines UI from the Kubeflow Dashboard, it only shows experiments, runs, and recurring runs in your chosen namespace. 
+When you visit the Kubeflow Pipelines UI from the Kubeflow Dashboard, it only shows "experiments", "runs", and "recurring runs" in your chosen namespace. 
 Similarly, when you create resources from the UI, they also belong to the namespace you have chosen.
 
 {{% alert title="Warning" color="warning" %}}
@@ -37,13 +40,14 @@ Pipeline definitions are not isolated right now, and are shared across all names
 
 ## When using the SDK
 
-How you connect the Pipelines SDK to Kubeflow Pipelines will depend on where you are running your code:
+How to connect Pipelines SDK to Kubeflow Pipelines will depend on __what kind__ of Kubeflow deployment you have, and __from where you are running your code__.
 
-* [Multi-user Kubeflow (from inside cluster)](/docs/components/pipelines/sdk/connect-api/#multi-user-kubeflow-from-inside-cluster)
-* [Multi-user Kubeflow (from outside cluster)](/docs/components/pipelines/sdk/connect-api/#multi-user-kubeflow-from-outside-cluster)
+* [Full Kubeflow (from inside cluster)](/docs/components/pipelines/sdk/connect-api/#full-kubeflow-subfrom-inside-clustersub)
+* [Full Kubeflow (from outside cluster)](/docs/components/pipelines/sdk/connect-api/#full-kubeflow-subfrom-outside-clustersub)
+* [Standalone Kubeflow Pipelines (from inside cluster)](/docs/components/pipelines/sdk/connect-api/#standalone-kubeflow-pipelines-subfrom-inside-clustersub)
+* [Standalone Kubeflow Pipelines (from outside cluster)](/docs/components/pipelines/sdk/connect-api/#standalone-kubeflow-pipelines-subfrom-outside-clustersub)
 
-When calling SDK methods for experiments, you will need to provide a namespace argument. 
-For example, to create an experiment (and associated run) from a Pod inside the cluster, you may use the following code:
+The following Python code will create an experiment (and associated run) from a Pod inside a full Kubeflow cluster.
 
 ```python
 import kfp
@@ -76,23 +80,18 @@ print(client.list_runs(namespace=user_namespace))
 ```
 
 {{% alert title="Tip" color="info" %}}
-To set a default namespace for Pipelines SDK commands, use the [`kfp.Client().set_user_namespace()`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client.set_user_namespace) method. 
-This method stores your user namespace in a configuration file at `$HOME/.config/kfp/context.json`.
-{{% /alert %}}
-
-{{% alert title="Tip" color="info" %}}
-Detailed documentation for `kfp.Client()` can be found in the [Kubeflow Pipelines SDK Reference](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html).
+* To set a default namespace for Pipelines SDK commands, use the [`kfp.Client().set_user_namespace()`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client.set_user_namespace) method, 
+  this method stores your user namespace in a configuration file at `$HOME/.config/kfp/context.json`.
+* Detailed documentation for `kfp.Client()` can be found in the [Kubeflow Pipelines SDK Reference](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html).
 {{% /alert %}}
 
 ## When using the REST API
 
-When calling the [Kubeflow Pipelines REST API](/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/), a namespace argument is required for experiment APIs. 
+When calling the [Kubeflow Pipelines REST API](/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/), a namespace argument is required for experiment APIs.
+<br>
+The namespace is specified by a "resource reference" with `type` of `NAMESPACE` and `key.id` equal to the namespace name.
 
-{{% alert title="Tip" color="info" %}}
-The namespace is specified by a "resource reference" with **type** of `NAMESPACE` and **key.id** equal to the namespace name.
-{{% /alert %}}
-
-The following code uses the [generated python API client](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.server_api.html) to create an experiment and pipeline run:
+The following code uses the [generated python API client](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.server_api.html) to create an experiment and pipeline run.
 
 ```python
 import kfp
@@ -128,7 +127,7 @@ experiment: ApiExperiment = client._experiment_api.create_experiment(
 )
 print("-------- BEGIN: EXPERIMENT --------")
 print(experiment)
-print("-------- END: EXPERIMENT --------")
+print("-------- END: EXPERIMENT ----------")
 
 # get the experiment by name (only necessary if you comment out the `create_experiment()` call)
 # experiment: ApiExperiment = client.get_experiment(
@@ -156,7 +155,7 @@ run: ApiRunDetail = client._run_api.create_run(
 )
 print("-------- BEGIN: RUN --------")
 print(run)
-print("-------- END: RUN --------")
+print("-------- END: RUN ----------")
 
 # view the pipeline run
 runs: ApiListRunsResponse = client._run_api.list_runs(
@@ -165,7 +164,7 @@ runs: ApiListRunsResponse = client._run_api.list_runs(
 )
 print("-------- BEGIN: RUNS --------")
 print(runs)
-print("-------- END: RUN --------")
+print("-------- END: RUNS ----------")
 ```
 
 ## Current limitations
