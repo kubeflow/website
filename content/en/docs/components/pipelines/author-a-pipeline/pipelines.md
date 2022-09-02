@@ -7,7 +7,7 @@ weight = 5
 A *pipeline* is a description of a multi-task workflow, including how tasks relate to each other to form an computational graph. Pipelines may have inputs which can be passed to tasks within the pipeline.
 
 ## Author a pipeline
-Unlike components which have three authoring approaches, pipelines have one authoring approach: they are defined using Python pipeline functions decorated with `@dsl.pipeline()`. For example:
+Unlike components which have three authoring approaches, pipelines have one authoring approach: they are defined using Python pipeline functions decorated with `@dsl.pipeline`. For example:
 
 ```python
 from kfp import dsl
@@ -20,7 +20,7 @@ def my_pipeline(text: str):
 The `@dsl.pipeline` decorator takes three optional arguments.
 * `name` is the name of your pipeline. If not provided, the name defaults to a sanitized version of the pipeline function name.
 * `description` is a description of the pipeline.
-* `pipeline_root` is the remote storage root path from which your pipeline will write and read artifacts (e.g., `gcs://my/path`).
+* `pipeline_root` is the remote storage root path from which your pipeline will write and read artifacts (e.g., `gs://my/path`).
 
 A pipeline function is a function that may have inputs, instantiates components as tasks and uses them to form a computational graph, and only uses the KFP domain-specific language objects and syntax within the function scope. Let's walk through each of these parts one-by-one.
 
