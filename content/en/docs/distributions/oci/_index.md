@@ -1,7 +1,6 @@
 +++
 title = "Kubeflow on Oracle Cloud Infrastructure"
-description = "Running Kubeflow on Oracle Container Engine for Kubernetes
-"
+description = "Running Kubeflow on Oracle Container Engine for Kubernetes"
 weight = 60
 +++
 
