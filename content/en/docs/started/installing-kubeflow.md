@@ -76,6 +76,14 @@ Packaged distributions are developed and supported by their respective maintaine
         <td></td>
       </tr>
       <tr>
+        <td>Kubeflow on OCI</td>
+        <td>Oracle Cloud Infrastructure</td>
+        <td>Oracle Container Engine for Kubernetes (OKE)</td>
+        <td>1.6</td>
+        <td><a href="/docs/distributions/oci/">Docs</a></td>
+        <td><a href="https://github.com/oracle-devrel/kubeflow-oke">External Website</a></td>
+      </tr>
+      <tr>
         <td>Kubeflow on OpenShift</td>
         <td>Red Hat</td>
         <td>OpenShift</td>
