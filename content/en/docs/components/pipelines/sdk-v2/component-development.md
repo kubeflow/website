@@ -66,12 +66,12 @@ are passed in as command-line arguments.
 
 When you design your component's code, consider the following:
 
-*   Which inputs and outputs are _parameters_ and which are _artifacts_? 
+*   Which inputs and outputs are _parameters_ and which are _artifacts_?
     Component inputs and outputs are classified as either _parameters_ or
     _artifacts_, depending on their data type and how they are passed to
     components as inputs. All outputs are returned as files, using the the
     paths that Kubeflow Pipelines provides.
-    
+
 
     _Parameters_ typically represent settings that affect the behavior of your pipeline.
     Parameters are passed into your component by value, and can be of any of
@@ -80,12 +80,12 @@ When you design your component's code, consider the following:
     to pass as a command-line argument.
 
     _Artifacts_ represent large or complex data structures like datasets or models, and
-    are passed into components as a reference to a file path. 
+    are passed into components as a reference to a file path.
 
     If you have large amounts of string data to pass to your component, such as a JSON
     file, annotate that input or output as a type of [`Artifact`][kfp-artifact], such
     as [`Dataset`][kfp-artifact], to let Kubeflow Pipelines know to pass this to
-    your component as a file.  
+    your component as a file.
 
     In addition to the artifact’s data, you can also read and write the artifact's
     metadata. For output artifacts, you can record metadata as key-value pairs, such
@@ -118,11 +118,11 @@ When you design your component's code, consider the following:
 
 The following is an example program written using Python3. This program reads a
 given number of lines from an input file and writes those lines to an output
-file. This means that this function accepts three command-line parameters: 
+file. This means that this function accepts three command-line parameters:
 
 *   The path to the input file.
 *   The number of lines to read.
-*   The path to the output file. 
+*   The path to the output file.
 
 ```python
 #!/usr/bin/env python3
@@ -134,13 +134,13 @@ def do_work(input1_file, output1_file, param1):
   for x, line in enumerate(input1_file):
     if x >= param1:
       break
-    _ = output1_file.write(line)
-  
+    _ = output1_file.write(line +'\n')
+
 # Defining and parsing the command-line arguments
 parser = argparse.ArgumentParser(description='My program description')
 # Paths must be passed in, not hardcoded
-parser.add_argument('--input1-path', type=str,
-  help='Path of the local file containing the Input 1 data.')
+parser.add_argument('--input1-value', type=str,
+  help='Value of the Input 1 data.')
 parser.add_argument('--output1-path', type=str,
   help='Path of the local file where the Output 1 data should be written.')
 parser.add_argument('--param1', type=int, default=100,
@@ -151,18 +151,17 @@ args = parser.parse_args()
 # may or may not exist).
 Path(args.output1_path).parent.mkdir(parents=True, exist_ok=True)
 
-with open(args.input1_path, 'r') as input1_file:
-    with open(args.output1_path, 'w') as output1_file:
-        do_work(input1_file, output1_file, args.param1)
+with open(args.output1_path, 'w') as output1_file:
+    do_work(args.input1_value.split('\n'), output1_file, args.param1)
 ```
 
 If this program is saved as `program.py`, the command-line invocation of this
 program is:
 
 ```bash
-python3 program.py --input1-path <path-to-the-input-file> \
+python3 program.py --input1-value <input-value> \
   --param1 <number-of-lines-to-read> \
-  --output1-path <path-to-write-the-output-to> 
+  --output1-path <path-to-write-the-output-to>
 ```
 
 ## Containerize your component's code
@@ -178,7 +177,7 @@ section provides some guidelines on standard container creation.
 
     *   The base container image. For example, the operating system that your
         code runs on.
-    *   Any dependencies that need to be installed for your code to run. 
+    *   Any dependencies that need to be installed for your code to run.
     *   Files to copy into the container, such as the runnable code for this
         component.
 
@@ -189,19 +188,19 @@ section provides some guidelines on standard container creation.
     RUN python3 -m pip install keras
     COPY ./src /pipelines/component/src
     ```
-    
+
     In this example:
 
     *   The base container image is [`python:3.7`][python37].
     *   The `keras` Python package is installed in the container image.
     *   Files in your `./src` directory are copied into
         `/pipelines/component/src` in the container image.
-  
+
 1.  Create a script named `build_image.sh ` that uses Docker to build your
     container image and push your container image to a container registry.
     Your Kubernetes cluster must be able to access your container registry
     to run your component. Examples of container registries include [Google
-    Container Registry][google-container-registry] and 
+    Container Registry][google-container-registry] and
     [Docker Hub][docker-hub].
 
     The following example builds a container image, pushes it to a container
@@ -216,15 +215,15 @@ section provides some guidelines on standard container creation.
     image_tag=latest
     full_image_name=${image_name}:${image_tag}
 
-    cd "$(dirname "$0")" 
+    cd "$(dirname "$0")"
     docker build -t "${full_image_name}" .
     docker push "$full_image_name"
 
     # Output the strict image name, which contains the sha256 image digest
     docker inspect --format="{{index .RepoDigests 0}}" "${full_image_name}"
-    ``` 
+    ```
 
-    In the preceding example: 
+    In the preceding example:
 
     *   The `image_name` specifies the full name of your container image in the
         container registry.
@@ -260,7 +259,7 @@ implementation. The following sections provide an overview of how to create a
 component specification by demonstrating how to define the component's
 implementation, interface, and metadata.
 
-To learn more about defining a component specification, see the 
+To learn more about defining a component specification, see the
 [component specification reference guide][component-spec].
 
 [component-spec]: /docs/components/pipelines/reference/component-spec/
@@ -268,7 +267,7 @@ To learn more about defining a component specification, see the
 ### Define your component's implementation
 
 The following example creates a component specification YAML and defines the
-component's implementation. 
+component's implementation.
 
 1.  Create a file named `component.yaml` and open it in a text editor.
 1.  Create your component's implementation section and specify the strict name
@@ -284,24 +283,24 @@ component's implementation.
 
 1.  Define a `command` for your component's implementation. This field
     specifies the command-line arguments that are used to run your program in
-    the container. 
+    the container.
 
     ```yaml
     implementation:
       container:
         image: gcr.io/my-org/my-image@sha256:a172..752f
-        # command is a list of strings (command-line arguments). 
-        # The YAML language has two syntaxes for lists and you can use either of them. 
+        # command is a list of strings (command-line arguments).
+        # The YAML language has two syntaxes for lists and you can use either of them.
         # Here we use the "flow syntax" - comma-separated strings inside square brackets.
         command: [
-          python3, 
+          python3,
           # Path of the program inside the container
           /pipelines/component/src/program.py,
-          --input1-path,
-          {inputPath: input_1},
-          --param1, 
+          --input1-value,
+          {inputValue: input_1},
+          --param1,
           {inputValue: parameter_1},
-          --output1-path, 
+          --output1-path,
           {outputPath: output_1},
         ]
     ```
@@ -328,15 +327,15 @@ component's implementation.
         This placeholder is replaced with the path where your program writes
         this output's data. This lets the Kubeflow Pipelines system read the
         contents of the file and store it as the value of the specified output.
- 
+
     The `<input-name>` name must match the name of an input in the `inputs`
     section of your component specification. The `<output-name>` name must
     match the name of an output in the `outputs` section of your component
-    specification.  
+    specification.
 
 ### Define your component's interface
 
-The following examples demonstrate how to specify your component's interface. 
+The following examples demonstrate how to specify your component's interface.
 
 1.  To define an input in your `component.yaml`, add an item to the
     `inputs` list with the following attributes:
@@ -351,7 +350,7 @@ The following examples demonstrate how to specify your component's interface.
     *   `optional`: Specifies if this input is optional. The value of this
         attribute is of type `Bool`, and defaults to **False**.
 
-    In this example, the Python program has two inputs: 
+    In this example, the Python program has two inputs:
 
     *   `input_1` contains `String` data.
     *   `Parameter 1` contains an `Integer`.
@@ -364,7 +363,7 @@ The following examples demonstrate how to specify your component's interface.
 
     Note: `input_1` and `parameter_1` do not specify any details about how they
     are stored or how much data they contain. Consider using naming conventions
-    to indicate if inputs are expected to be artifacts or parameters. 
+    to indicate if inputs are expected to be artifacts or parameters.
 
 1.  After your component finishes its task, the component's outputs are passed
     to your pipeline as paths. At runtime, Kubeflow Pipelines creates a
@@ -400,25 +399,25 @@ The following examples demonstrate how to specify your component's interface.
     inputs:
     - {name: input_1, type: String, description: 'Data for input_1'}
     - {name: parameter_1, type: Integer, default: '100', description: 'Number of lines to copy'}
-    
+
     outputs:
     - {name: output_1, type: String, description: 'output_1 data.'}
 
     implementation:
       container:
         image: gcr.io/my-org/my-image@sha256:a172..752f
-        # command is a list of strings (command-line arguments). 
-        # The YAML language has two syntaxes for lists and you can use either of them. 
+        # command is a list of strings (command-line arguments).
+        # The YAML language has two syntaxes for lists and you can use either of them.
         # Here we use the "flow syntax" - comma-separated strings inside square brackets.
         command: [
-          python3, 
+          python3,
           # Path of the program inside the container
           /pipelines/component/src/program.py,
-          --input1-path,
-          {inputPath: input_1},
-          --param1, 
+          --input1-value,
+          {inputValue: input_1},
+          --param1,
           {inputValue: parameter_1},
-          --output1-path, 
+          --output1-path,
           {outputPath: output_1},
         ]
     ```
@@ -445,18 +444,18 @@ outputs:
 implementation:
   container:
     image: gcr.io/my-org/my-image@sha256:a172..752f
-    # command is a list of strings (command-line arguments). 
-    # The YAML language has two syntaxes for lists and you can use either of them. 
+    # command is a list of strings (command-line arguments).
+    # The YAML language has two syntaxes for lists and you can use either of them.
     # Here we use the "flow syntax" - comma-separated strings inside square brackets.
     command: [
-      python3, 
+      python3,
       # Path of the program inside the container
       /pipelines/component/src/program.py,
-      --input1-path,
-      {inputPath: input_1},
-      --param1, 
+      --input1-value,
+      {inputValue: input_1},
+      --param1,
       {inputValue: parameter_1},
-      --output1-path, 
+      --output1-path,
       {outputPath: output_1},
     ]
 ```
@@ -466,7 +465,7 @@ implementation:
 You can use the Kubeflow Pipelines SDK to load your component using methods
 such as the following:
 
-*   [`kfp.components.load_component_from_file`][kfp-load-comp-file]: 
+*   [`kfp.components.load_component_from_file`][kfp-load-comp-file]:
     Use this method to load your component from a `component.yaml` path.
 *   [`kfp.components.load_component_from_url`][kfp-load-comp-url]:
     Use this method to load a `component.yaml` from a URL.
@@ -485,7 +484,7 @@ in the following ways to ensure that it is valid and Pythonic.
     values and outputs.
 *   Input and output names are converted to Pythonic names (spaces and symbols
     are replaced with underscores and letters are converted to lowercase). For
-    example, an input named `Input 1` is converted to `input_1`. 
+    example, an input named `Input 1` is converted to `input_1`.
 
 The following example demonstrates how to load the text of your component
 specification and run it in a single-step pipeline. Before you run this
@@ -510,18 +509,18 @@ outputs:
 implementation:
   container:
     image: gcr.io/my-org/my-image@sha256:a172..752f
-    # command is a list of strings (command-line arguments). 
-    # The YAML language has two syntaxes for lists and you can use either of them. 
+    # command is a list of strings (command-line arguments).
+    # The YAML language has two syntaxes for lists and you can use either of them.
     # Here we use the "flow syntax" - comma-separated strings inside square brackets.
     command: [
-      python3, 
+      python3,
       # Path of the program inside the container
       /pipelines/component/src/program.py,
-      --input1-path,
-      {inputPath: input_1},
-      --param1, 
+      --input1-value,
+      {inputValue: input_1},
+      --param1,
       {inputValue: parameter_1},
-      --output1-path, 
+      --output1-path,
       {outputPath: output_1},
     ]""")
 
@@ -529,7 +528,7 @@ implementation:
 # for the component's inputs and output paths and returns a pipeline step
 # (ContainerOp instance).
 #
-# To inspect the get_lines_op function in Jupyter Notebook, enter 
+# To inspect the get_lines_op function in Jupyter Notebook, enter
 # "get_lines_op(" in a cell and press Shift+Tab.
 # You can also get help by entering `help(get_lines_op)`, `get_lines_op?`,
 # or `get_lines_op??`.
@@ -538,7 +537,7 @@ implementation:
 @dsl.pipeline(
     pipeline_root='gs://my-pipeline-root/example-pipeline',
     name="example-pipeline",
-) 
+)
 def my_pipeline():
     get_lines_step = create_step_get_lines(
         # Input name "Input 1" is converted to pythonic parameter name "input_1"
@@ -564,7 +563,7 @@ client.create_run_from_pipeline_func(my_pipeline, arguments={},
 ## Organizing the component files
 
 This section provides a recommended way to organize a component's files. There
-is no requirement that you must organize the files in this way. However, using 
+is no requirement that you must organize the files in this way. However, using
 the standard organization makes it possible to reuse the same scripts for
 testing, image building, and component versioning.
 
@@ -594,7 +593,7 @@ See this [sample component][org-sample] for a real-life component example.
 * For quick iteration,
   [build lightweight Python function-based components](/docs/components/pipelines/sdk-v2/python-function-components/)
   directly from Python functions.
-* Use SDK APIs to visualize pipeline result, follow 
+* Use SDK APIs to visualize pipeline result, follow
   [Visualize Results in the Pipelines UI](/docs/components/pipelines/sdk/output-viewer/#v2-visualization)
   for various visualization types.
 * See how to [export metrics from your
