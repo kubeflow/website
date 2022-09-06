@@ -66,7 +66,7 @@ Component inputs are specified by the component function's signature. This appli
 
 Ultimately, each authoring style creates a component definitied by an `image`, `command`, and `args`. When you use an input, it is represented as a placeholder in the `command` or `args` and is interpolated at component runtime.
 
-There is one additional type of input, `PipelineTaskFinalStatus`, which allows access to the metadata of one task from within another. This input is a special case, as it is neither a parameter nor an artifact. Use of this input is covered in [Authoring: Pipelines][pipelines].
+There is one additional type of input, the struct `PipelineTaskFinalStatus`, which allows access to the metadata of one task from within another via a system-provided value at runtime. This input is a special case, as it is neither a typical parameter nor an artifact and it is only usable in `dsl.ExitHandler` exit tasks. Use of this input is covered in [Authoring: Pipelines][pipelines].
 
 ### Input parameters
 Input parameters are declared when you use a `str`, `int`, `float`, `bool`, `dict` or `list` type annotation. The data passed to parameters typed with `dict` or `list` may only container JSON-serializable Python primitives. `Union` types are not permitted.
@@ -106,13 +106,13 @@ You may also specify multiple output parameters by using these annotations withi
 
 ```python
 from kfp import dsl
-from typing import NamedTuple
+import typing
 
 @dsl.component
-def my_component() -> NamedTuple('Output', [('name', str), ('id', int)]):
+def my_component() -> typing.NamedTuple('Outputs', [('name', str), ('id', int)]):
     from typing import NamedTuple
 
-    output = NamedTuple('Output', [('name', str), ('id', int)])
+    output = typing.NamedTuple('Outputs', [('name', str), ('id', int)])
     return output('my_dataset', 123)
 ```
 
