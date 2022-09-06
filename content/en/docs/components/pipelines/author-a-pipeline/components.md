@@ -164,7 +164,80 @@ To create a containerized component, you must:
 **When to use?** Containerized Python components should be used any time your component is implemented as Python code, but cannot be written as a standalone Python function or you wish to organize source code outside of the component Python function definition.
 
 ### 3. Custom container components
-<!-- @zichuan-scott-xu to provide this section -->
+
+Container-based components make it easier to use the pre-existed container to build a KFP component. 
+The user will control the container entrypoint and is able to define the component by specifying their container, commands, and args in a `ContainerSpec` object with similar authoring experiences as defining Python components. 
+
+To define a container component, you must:
+1) Write your component’s code as a python function that returns a `dsl.ContainerSpec` object to specify the container image and the commands to be run in the container and wrap the function into a `@container_component` decorator. The function should satisfy the following requirements:
+
+    *   It should not use any code declared outside of the function definition.
+    *   The function should do nothing other than returning a `dsl.ContainerSpec`
+        object, with the following parameters:
+        * image: The target image where the command (with args) is executed. The user will control the entrypoint of the image.
+        * command(optional): The command to be executed. 
+        * args(optional): The arguments of the command. It’s recommended to place the input of the     components in the args section instead of the command section.
+
+    The decorator will then compose a `ComponentSpec` object using the `ContainerSpec` to be compiled for execution. (Learn more about [ContainerSpec][dsl-reference-documentation] in documentation.) 
+
+2) Specify your function's inputs and outputs in the function's    signature [Learn more about passing data between components][data-passing]. Specifically for container-based component, your function's inputs and outputs must meet the following requirements:
+    
+    *   All your function's arguments must have data type annotations.
+    *   Different from a Python component, your return type annotation for the function 
+        must either be `dsl.ContainerSpec` or omitted. 
+    *   If the function accepts or returns large amounts of data or complex
+        data types, you must annotate that argument as an _artifact_. Note that in the function you defined, you can only access artifacts via its `.url`, `.path`, or `.metadata` attribute. Accessing any other attribute or the artifact variable by itself is currently not allowed. 
+
+Here is a minimal example that uses a bash script to demonstrate the use of container component:
+```python
+from kfp import dsl
+@dsl.container_component
+def hello_world_comp(text: str, out_filename: dsl.OutputPath(str)):
+    return dsl.ContainerSpec(
+        image='python:3.7' # or put your custom container image here
+        command=['source', 'hello_world.sh'],
+        args=['--in', text, '--out', out_filename]
+    )
+```
+
+Meanwhile, add a bash script `hello_world.sh` on your container that takes outputs the text into the provided path:
+```bash
+echo $2 >> $4
+```
+Below is a more complex example that authors a pipelines from two container component. Just as using with a Python component, we can access the outputs of a `container_component` for downstream tasks as demonstrated in the pipeline:
+```python
+from kfp.dsl import (
+  container_component,
+  ContainerSpec,
+  Dataset,
+  Input, 
+  Output,
+) 
+
+@container_component
+def component1(text: str, output_gcs: Output[Dataset]):
+    return ContainerSpec(
+        image='google/cloud-sdk:slim',
+        command=[
+            'sh -c | set -e -x', 'echo', text, 
+            '| gsutil cp -', output_gcs.uri
+        ]
+    )
+
+@container_component
+def component2(input_gcs: Input[Dataset]):
+    return ContainerSpec(
+        image='google/cloud-sdk:slim',
+        command=['sh -c', '|', 'set -e -x gsutil cat'],
+        args=[input_gcs.path]
+    )
+
+@pipeline(name='two-step-pipeline-containerized')
+def two_step_pipeline_containerized(text: str):
+    component_1 = component1(text).set_display_name('Producer')
+    component_2 = component2(input_gcs=component_1.outputs['output_gcs'])
+    component_2.set_display_name('Consumer')
+```
 
 ## Special case: Importer components
 Unlike the previous three authoring approaches, an importer component not a general authoring style but a pre-baked component for a specific use case: loading a machine learning [artifact][data-passing] from remote storage to machine learning metadata (MLMD).
