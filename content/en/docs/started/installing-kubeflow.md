@@ -125,7 +125,7 @@ Packaged distributions are developed and supported by their respective maintaine
       <tr>
         <td>Kubeflow for Oracle Container Engine for Kubernetes</td>
         <td>Oracle</td>
-        <td>Oracale Cloud Infrastructure (OCI)</td>
+        <td>Oracle Cloud Infrastructure (OCI)</td>
         <td>1.6</td>
         <td>N/A</td>
         <td><a href="https://github.com/oracle-devrel/kubeflow-oke">External Website</a></td>
