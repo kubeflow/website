@@ -79,7 +79,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Kubeflow on OpenShift</td>
         <td>Red Hat</td>
         <td>OpenShift</td>
-        <td>1.3</td>
+        <td>1.6</td>
         <td><a href="/docs/distributions/openshift/">Docs</a></td>
         <td><a href="https://opendatahub.io/docs/kubeflow.html">External Website</a></td>
       </tr>
