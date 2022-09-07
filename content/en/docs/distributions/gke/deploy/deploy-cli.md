@@ -164,7 +164,7 @@ To deploy Kubeflow, run the following command:
 make apply
 ```
 
-* If deployment returns in error due to missing resources in `serving.kserve.io` API group rerun `make apply`. This is due to a race condition between CRD and runtime in KServe.
+* If deployment returns an error due to missing resources in `serving.kserve.io` API group, rerun `make apply`. This is due to a race condition between CRD and runtime resources in KServe.
 
   * This issue is being tracked in [kubeflow/gcp-blueprints#384](https://github.com/kubeflow/gcp-blueprints/issues/384)
 
