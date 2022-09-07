@@ -118,9 +118,9 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Charmed Kubeflow</td>
         <td>Canonical</td>
         <td>Conformant Kubernetes</td>
-        <td>1.4</td>
+        <td>1.6</td>
         <td><a href="/docs/distributions/charmed/">Docs</a></td>
-        <td><a href="https://charmed-kubeflow.io/docs/quickstart">External Website</a></td>
+        <td><a href="https://charmed-kubeflow.io/">External Website</a></td>
       </tr>
     </tbody>
   </table>

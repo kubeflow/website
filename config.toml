@@ -123,6 +123,10 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     githubbranch = "master"
     url = "https://master.kubeflow.org"
   [[params.versions]]
+    version = "v1.6"
+    githubbranch = "v1.6-branch"
+    url = "https://v1-6-branch.kubeflow.org"
+  [[params.versions]]
     version = "v1.5"
     githubbranch = "v1.5-branch"
     url = "https://v1-5-branch.kubeflow.org"
@@ -166,10 +170,6 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     version = "v0.3"
     githubbranch = "v0.3-branch"
     url = "https://v0-3.kubeflow.org"
-  [[params.versions]]
-    version = "v0.2"
-    githubbranch = "v0.2-branch"
-    url = "https://v0-2.kubeflow.org"
 
   # User interface configuration
   [params.ui]
