@@ -29,6 +29,7 @@ Follow these steps to set up your Google Cloud project:
 *  Open following pages on the Google Cloud Console and ensure that the 
   specified APIs are enabled for all projects:
 
+    * [Service Usage API](https://cloud.google.com/service-usage/docs/reference/rest)
     * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
     * [Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com)
     * [Identity and Access Management (IAM) API](https://console.cloud.google.com/apis/library/iam.googleapis.com)
@@ -39,12 +40,13 @@ Follow these steps to set up your Google Cloud project:
     * [Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) (It's required if you plan to use [Fairing](https://www.kubeflow.org/docs/external-add-ons/fairing/) in your Kubeflow cluster)
     * [Cloud SQL Admin API](https://console.cloud.google.com/apis/library/sqladmin.googleapis.com)
     * [Config Controller (KRM API Hosting API)](https://console.cloud.google.com/apis/library/krmapihosting.googleapis.com)
-    * [Google Cloud Endpoints](https://console.cloud.google.com/apis/library/endpoints.googleapis.com)
     * [Service Control API](https://console.cloud.google.com/apis/library/servicecontrol.googleapis.com)
+    * [Google Cloud Endpoints](https://console.cloud.google.com/apis/library/endpoints.googleapis.com)
 
     You can also enable these APIs by running the following command in Cloud Shell:
     ```bash
     gcloud services enable \
+      serviceusage.googleapis.com \
       compute.googleapis.com \
       container.googleapis.com \
       iam.googleapis.com \
