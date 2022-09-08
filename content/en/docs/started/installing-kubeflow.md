@@ -123,7 +123,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="https://charmed-kubeflow.io/docs/quickstart">External Website</a></td>
       </tr>
       <tr>
-        <td>Kubeflow for Oracle Container Engine for Kubernetes</td>
+        <td>Kubeflow on Oracle Container Engine for Kubernetes</td>
         <td>Oracle</td>
         <td>Oracle Cloud Infrastructure (OCI)</td>
         <td>1.6</td>
