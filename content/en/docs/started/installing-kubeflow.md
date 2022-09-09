@@ -122,6 +122,14 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="/docs/distributions/charmed/">Docs</a></td>
         <td><a href="https://charmed-kubeflow.io/">External Website</a></td>
       </tr>
+      <tr>
+        <td>Kubeflow on Oracle Container Engine for Kubernetes</td>
+        <td>Oracle</td>
+        <td>Oracle Cloud Infrastructure (OCI)</td>
+        <td>1.6</td>
+        <td>N/A</td>
+        <td><a href="https://github.com/oracle-devrel/kubeflow-oke">External Website</a></td>
+      </tr>
     </tbody>
   </table>
 </div>
