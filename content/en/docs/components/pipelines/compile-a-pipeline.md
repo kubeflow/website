@@ -44,6 +44,8 @@ The `Compiler.compile` method accepts a few optional additional parameters:
 
 Sets the name of the pipeline (or component). This is written to IR as the  `pipelineInfo.name` field. Will override the `name` passed to the `@dsl.pipeline` decorator.
 
+The pipeline name, whether set through the decorator or the compiler, names your pipeline template. When you upload your pipeline, a pipeline context by this name will be created. The pipeline context enables the backend and the Dashboard to associate artifacts and executions created from runs of the same pipeline template. This allows you, for example, to compare metrics artifacts from multiple runs of the same training pipeline to find the best model.
+
 **`pipeline_parameters`** (`Dict[str, Any]`)
 
 A map of parameter names to argument values. This amounts to providing default values for pipeline or component parameters. These defaults can be overriden at pipeline submission time.
