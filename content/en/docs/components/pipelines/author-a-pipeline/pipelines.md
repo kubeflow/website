@@ -12,7 +12,7 @@ Unlike components which have three authoring approaches, pipelines have one auth
 ```python
 from kfp import dsl
 
-@dsl.pipeline()
+@dsl.pipeline
 def my_pipeline(text: str):
     my_task = my_component(arg1=text)
 ```
@@ -24,24 +24,9 @@ The `@dsl.pipeline` decorator takes three optional arguments.
 
 A pipeline function is a function that may have inputs, instantiates components as tasks and uses them to form a computational graph, and only uses the KFP domain-specific language objects and syntax within the function scope. Let's walk through each of these parts one-by-one.
 
-First, like a component, a pipeline function may have inputs. This allows your pipeline to serve as a computational template that can be executed with different input parameters.
+First, like a component, a pipeline function may have inputs and outputs. This allows your pipeline to serve as a computational template that can be executed with different input parameters to create a specified set of outputs. See [Component I/O: Pipeline I/O][component-io-pipeline-io] for how to use type annotations in a pipeline.
 
-All pipeline inputs must include type annotations. Valid parameter annotations include `str`, `int`, `float`, `bool`, `dict`, and `list`. Input parameters may also have defaults.
-
-The following pipeline has a `str` parameter `text` and an `int` parameter `number`. `number` has a default value of `10`.
-
-```python
-from kfp import dsl
-
-@dsl.pipeline()
-def my_pipeline(text: str, number: int = 10):
-    ...
-```
-
-<!-- TODO: when adding docs for pipeline as component, use this line instead: -->
-<!-- Valid parameter annotations include `str`, `int`, `float`, `bool`, `dict`, `list`, `OutputPath`, `InputPath`, `Input[<Artifact>]`, and `Output[<Artifact>]`. -->
-
-Second, a pipeline function instantiates components as tasks and uses them to form a computational graph. For information on how to instatiate components as tasks and pass data between them, see [Task I/O: Passing data between tasks][task-io]. For information on task dependencies, see [Tasks][tasks].
+Second, a pipeline function instantiates components as tasks and uses them to form a computational graph. For information on how to instatiate components as tasks and pass data between them, see [Task I/O: Passing data between tasks][component-io]. For information on task dependencies, see [Tasks][tasks].
 
 Third, a pipeline function only uses domain-specific language (DSL) objects and syntax within the function scope. Because the body of a Python pipeline function must ultimately be compiled to IR YAML, pipeline functions only support a very narrow set of Python language features, as specified by the KFP DSL. In addition to instantiation and data passing between tasks, the only three other features permitted are `dsl.Condition`, `dsl.ParallelFor` and `dsl.ExitHandler`. Use of these three features is covered in the next section. Use of classes, list comprehensions, lambda functions, and other arbitrary Python language features are not permitted within the scope of a Python pipeline function.
 
@@ -58,7 +43,7 @@ In the following pipeline, `conditional_task` only executes if `coin_flip_task` 
 ```python
 from kfp import dsl
 
-@dsl.pipeline()
+@dsl.pipeline
 def my_pipeline():
     coin_flip_task = flip_coin()
     with dsl.Condition(coin_flip_task.output == 'heads'):
@@ -74,7 +59,7 @@ In the following pipeline, `train_model` will train a model for 1, 5, 10, and 25
 ```python
 from kfp import dsl
 
-@dsl.pipeline()
+@dsl.pipeline
 def my_pipeline():
     with dsl.ParallelFor(
         items=[1, 5, 10, 25],
@@ -91,7 +76,7 @@ In the following pipeline, `clean_up_task` will execute after either both `creat
 ```python
 from kfp import dsl
 
-@dsl.pipeline()
+@dsl.pipeline
 def my_pipeline():
     clean_up_task = clean_up_resources()
     with dsl.ExitHandler(exit_task=clean_up_task):
@@ -123,7 +108,7 @@ def fail_op():
     import sys
     sys.exit(1)
 
-@dsl.pipeline()
+@dsl.pipeline
 def my_pipeline():
     print_op()
     print_status_task = exit_op(user_input='Task execution status:')
@@ -131,11 +116,8 @@ def my_pipeline():
         fail_op()
 ```
 
-<!-- TODO: pipelines as components/tasks -->
 
-<!-- TODO: loading a pipeline -->
-
-<!-- TODO: component v pipeline as task best practices -->
-
-[task-io]: /docs/components/pipelines/author-a-pipeline/inputs-outputs-data-passing#Passing-data-between-tasks
+[component-io]: /docs/components/pipelines/author-a-pipeline/inputs-outputs-data-passing#Passing-data-between-tasks
+[components]: /docs/components/pipelines/author-a-pipeline/components
 [tasks]: /docs/components/pipelines/author-a-pipeline/tasks
+[component-io-pipeline-io]: /docs/components/pipelines/author-a-pipeline/inputs-outputs-data-passing/#pipeline-io
