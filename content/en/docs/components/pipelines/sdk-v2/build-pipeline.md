@@ -373,7 +373,7 @@ Learn more about [building Python function-based components][python-function-com
 
 The following example shows the updated `merge_csv` function.
 
-[web-download-component]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/components/web/Download/component.yaml
+[web-download-component]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/components/web/Download/component-sdk-v2.yaml
 [python-function-components]: https://www.kubeflow.org/docs/components/pipelines/sdk-v2/python-function-components/
 [input]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/io_types.py
 [output]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/io_types.py
@@ -408,7 +408,7 @@ def merge_csv(tar_data: Input[Artifact], output_csv: Output[Dataset]):
 
 ```python
 web_downloader_op = kfp.components.load_component_from_url(
-    'https://raw.githubusercontent.com/kubeflow/pipelines/master/components/web/Download/component-sdk-v2.yaml')
+    'https://raw.githubusercontent.com/kubeflow/pipelines/master/components/contrib/web/Download/component-sdk-v2.yaml')
 ```
 
 2.  Define your pipeline as a Python function. 
