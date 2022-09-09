@@ -150,6 +150,64 @@ with open(resulting_dataset.path, 'w') as f:
     f.write(resulting_dataset_text)
 ```
 
+## Pipeline I/O
+A pipeline may be used like a component by instantiating it as a task within another pipeline.
+
+### Inputs
+All pipeline inputs must include type annotations. Valid input parameter annotations include `str`, `int`, `float`, `bool`, `dict`, `list`. Input parameters may also have defaults. The only valid input artifact annotation is `Input[<Artifact>]` (where `<Artifact>` is any KFP-compatible artifact class). Input artifacts may not have defaults.
+
+The following simple pipeline has a `str` parameter `text` and an `int` parameter `number`. `number` has a default value of `10`.
+
+
+```python
+from kfp import dsl
+
+@dsl.pipeline
+def my_pipeline(text: str, number: int = 10):
+    ...
+```
+
+Ultimately, all inputs must be passed to an inner "primitive" component in order to perform computation on the input. See [Passing data between tasks: From a pipeline input](#from-a-pipeline-input) for information about how to pass data from a pipeline input to a component within the pipeline.
+
+### Outputs
+Pipelines may also have output parameters. All outputs are specified by a normal Python function return type annotation indicated by the `->` token (e.g., `-> int`). Valid parameter type annotations include `str`, `int`, `float`, `bool`, `dict`, and `list`. Valid artifact type return annotations include `<Artifact>` (where `<Artifact>` is a KFP-compatible artifact class). You may specify multiple outputs using a `typing.NamedTuple` return annotation (see [Python Components](#python-components)) for more information on how to use named tuple return types.
+
+Ultimately, all outputs must be created by an inner "primitive" component. Pipelines may return this output as its output.
+
+For example, the following `double` pipeline returns the single `int` output of the `multiply` component:
+
+```python
+from kfp import dsl
+
+@dsl.component
+def multiply(a: int, b: int) -> int:
+    return a * b
+
+@dsl.pipeline
+def double(number: int) -> int:
+    return multiply(num1=a, num2=2).output
+```
+
+In the following different example, the `training_workflow` pipeline returns a `Model` from the inner `train_model` component:
+
+```python
+from kfp import dsl
+from kfp.dsl import Dataset, Input, Model, Output
+
+@dsl.component
+def train_model(dataset: Input[Dataset], model: Output[Model]):
+    # do training
+    trained_model = ...
+    trained_model.save(model.path)
+
+@dsl.pipeline
+def training_workflow() -> Model:
+    get_dataset_op = get_dataset()
+    train_model_op = train_model(dataset=get_dataset_op.outputs['dataset'])
+    return train_model_op.outputs['model']
+```
+
+
 ## Passing data between tasks
 
 To instantiate a component as a task, you must pass to it any required inputs. Required inputs include all input parameters without default values and all input artifacts.
@@ -184,8 +242,6 @@ To pass data from a pipeline input to an inner task, simply pass the variable na
 def my_pipeline(pipeline_var_x: int):
     task = identity(x=pipeline_var_x)
 ```
-
-<!-- TODO(pipeline as task): add pipeline-level artifact input/output -->
 
 ### From a task output
 Tasks provide references to their outputs in order to support passing data between tasks in a pipeline.
