@@ -105,14 +105,14 @@ In our example, `augment_dataset` has a one integer output.
 You may also specify multiple output parameters by using these annotations within a `typing.NamedTuple` as follows:
 
 ```python
-import typing
+from typing import NamedTuple
 from kfp import dsl
 
 @dsl.component
-def my_component() -> typing.NamedTuple('Outputs', [('name', str), ('id', int)]):
+def my_component() -> NamedTuple('Outputs', [('name', str), ('id', int)]):
     from typing import NamedTuple
 
-    output = typing.NamedTuple('Outputs', [('name', str), ('id', int)])
+    output = NamedTuple('Outputs', [('name', str), ('id', int)])
     return output('my_dataset', 123)
 ```
 
