@@ -22,7 +22,7 @@ weight = 98
           <a href="https://blog.kubeflow.org/kubeflow-1.6-release/">Kubeflow 1.6 Release Announcement</a>
         <br>
         <b>Video:</b> 
-          TBA
+          <a href="https://youtu.be/RR1xSfnFGGI">Kubeflow 1.6 Release Overview</a>
         <br>
         <b>Roadmap:</b>
           <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-16-release-due-september-2022">Kubeflow 1.6 Features</a>
