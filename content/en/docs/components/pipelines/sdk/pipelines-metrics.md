@@ -140,4 +140,4 @@ The following example shows the **accuracy-score** and
 ## Next step
 
 Visualize the output of your component by [writing out metadata for an output 
-viewer](/docs/components/pipelines/metrics/output-viewer/).
+viewer](/docs/components/pipelines/sdk/output-viewer/).
