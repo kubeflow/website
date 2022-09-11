@@ -6,7 +6,7 @@ weight = 10
 +++                 
 {{% stable-status %}}
 
-Use this guide if you want to get an introduction to the Kubeflow Piplines user interface (UI) and get a simple pipeline running quickly. 
+Use this guide if you want to get an introduction to the Kubeflow Pipelines user interface (UI) and get a simple pipeline running quickly. 
 
 The goal with this quickstart guide is to shows how to use two of the samples that come with 
 the Kubeflow Pipelines installation and are visible on the Kubeflow Pipelines
