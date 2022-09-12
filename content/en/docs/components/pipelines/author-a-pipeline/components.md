@@ -164,7 +164,58 @@ To create a containerized component, you must:
 **When to use?** Containerized Python components should be used any time your component is implemented as Python code, but cannot be written as a standalone Python function or you wish to organize source code outside of the component Python function definition.
 
 ### 3. Custom container components
-<!-- @zichuan-scott-xu to provide this section -->
+
+Custom container components allow you to specify a container to execute as your component. The `dsl.ContainerSpec` object allows you to specify a container via an image, command, and args.
+
+To define a container component, you must:
+1) Write your component’s code as a Python function that returns a `dsl.ContainerSpec` object to specify the container image and the commands to be run in the container and wrap the function into a `@container_component` decorator. The function should do nothing other than returning a `dsl.ContainerSpec` object, with the following parameters:
+    * `image`: The image that the container will run. You can use `command` and `args` to control the entrypoint.
+    * `command` (optional): The command to be executed. 
+    * `args` (optional): The arguments of the command. It’s recommended to place the input of the components in the args section instead of the command section.
+
+    The decorator will then compose a component using the `ContainerSpec`, which can be used the same as a Python component. (Learn more about [ContainerSpec][dsl-reference-documentation] in documentation.) 
+
+2) Specify your function's inputs and outputs in the function's signature [Learn more about passing data between components][data-passing]. Specifically for custom container components, your function's inputs and outputs must meet the following requirements:
+    
+    *   All your function's arguments must have data type annotations.
+    *   Different from a Python component, your return type annotation for the function 
+        must either be `dsl.ContainerSpec` or omitted. 
+    *   If the function accepts or returns large amounts of data or complex
+        data types, you must annotate that argument as an _artifact_. Note that in the function you defined, you can only access artifacts via its `.url`, `.path`, or `.metadata` attribute. Accessing any other attribute or the artifact variable by itself is not allowed. 
+
+Below is an example that authors a pipelines from two container component. Just as using with a Python component, you can access the outputs of a `container_component` for downstream tasks as demonstrated in the pipeline:
+```python
+from kfp.dsl import (
+  container_component,
+  ContainerSpec,
+  Dataset,
+  Input,
+  pipeline,
+  Output,
+) 
+
+@container_component
+def create_dataset(text: str, output_gcs: Output[Dataset]):
+    return ContainerSpec(
+        image='alpine',
+        command=[
+            'sh',
+            '-c',
+            'mkdir --parents $(dirname "$1") && echo "$0" > "$1"',
+        ],
+        args=[text, output_gcs.path])
+
+
+@container_component
+def print_dataset(input_gcs: Input[Dataset]):
+    return ContainerSpec(image='alpine', command=['cat'], args=[input_gcs.path])
+
+@pipeline
+def two_step_pipeline_containerized(text: str):
+    create_dataset_task = create_dataset(text)
+    print_dataset_task = print_dataset(input_gcs=create_dataset_task.outputs['output_gcs'])
+```
+In the above example, the `create_dataset` component takes in a text and output it to a path as an artifact. Then, the `print_dataset` component retrieves the artifact output by the `create_dataset` component and prints it out.
 
 ## Special case: Importer components
 Unlike the previous three authoring approaches, an importer component not a general authoring style but a pre-baked component for a specific use case: loading a machine learning [artifact][data-passing] from remote storage to machine learning metadata (MLMD).
