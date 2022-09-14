@@ -117,7 +117,7 @@ def my_pipeline():
 ```
 
 
-[component-io]: /docs/components/pipelines/author-a-pipeline/component-io#passing-data-between-tasks
-[components]: /docs/components/pipelines/author-a-pipeline/components
-[tasks]: /docs/components/pipelines/author-a-pipeline/tasks
-[component-io-pipeline-io]: /docs/components/pipelines/author-a-pipeline/component-io/#pipeline-io
+[component-io]: /docs/components/pipelines/v2/author-a-pipeline/component-io#passing-data-between-tasks
+[components]: /docs/components/pipelines/v2/author-a-pipeline/components
+[tasks]: /docs/components/pipelines/v2/author-a-pipeline/tasks
+[component-io-pipeline-io]: /docs/components/pipelines/v2/author-a-pipeline/component-io/#pipeline-io

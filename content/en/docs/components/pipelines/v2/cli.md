@@ -111,12 +111,12 @@ This command builds an image with all the source code found in `COMPONENTS_DIREC
 kfp component build src/ --component-filepattern my_component --push-image
 ```
 
-For detailed information about all arguments/flags, see [CLI reference documentation](https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-component-build). For information about creating containerized components, see [Authoring Python Containerized Components][/docs/components/pipelines/author-a-pipeline/components/#2-containerized-python-components].
+For detailed information about all arguments/flags, see [CLI reference documentation](https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-component-build). For information about creating containerized components, see [Authoring Python Containerized Components][/docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components].
 
 <!-- TODO(GA): remove --pre -->
 Note: To use this command you'll need to install the KFP SDK with the additional Docker dependency: `pip install --pre kfp[all]`.
 
 [cli-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html
-[author-a-pipeline]: /docs/components/pipelines/author-a-pipeline
-[lightweight-python-component]: /docs/components/pipelines/author-a-pipeline/components/#1-lighweight-python-function-based-components
-[containerized-python-components]: /docs/components/pipelines/author-a-pipeline/components/#2-containerized-python-components
+[author-a-pipeline]: /docs/components/pipelines/v2/author-a-pipeline
+[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components
+[containerized-python-components]: /docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components

@@ -266,15 +266,14 @@ Congratulations! You now have a KFP deployment, an end-to-end machine learning p
 ## Next steps
 * See [Installation][installation] for additional ways to deploy KFP
 * See [Author a Pipeline][author-a-pipeline] to learn more about feautres available when authoring pipelines
-* See [Dashboard][dashboard] for learn more about the KFP Dashboard
 
 [kind]: [https://kind.sigs.k8s.io/]
-[dashboard]: /docs/components/pipelines/user-interface/
-[author-a-pipeline]: /docs/components/pipelines/author-a-pipeline/
-[pipelines]: /docs/components/pipelines/author-a-pipeline/pipelines
-[installation]: /docs/components/pipelines/installation/
+
+[author-a-pipeline]: /docs/components/pipelines/v2/author-a-pipeline/
+[pipelines]: /docs/components/pipelines/v2/author-a-pipeline/pipelines
+[installation]: /docs/components/pipelines/v2/installation/
 [localhost]: http://localhost:8080
 [chocolatey]: https://chocolatey.org/packages/kind
 [authenticating-pipelines-gcp]: /docs/distributions/gke/authentication/#authentication-from-kubeflow-pipelines
-[ir-yaml]: /docs/components/pipelines/compile-a-pipeline/#ir-yaml
-[lightweight-python-component]: /docs/components/pipelines/author-a-pipeline/components/#1-lighweight-python-function-based-components
+[ir-yaml]: /docs/components/pipelines/v2/compile-a-pipeline/#ir-yaml
+[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components

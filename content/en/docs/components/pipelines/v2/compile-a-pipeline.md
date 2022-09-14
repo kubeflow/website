@@ -103,7 +103,7 @@ The [`deployment_spec`][deployment-spec-schema] section contains a map of execut
 
 [pipeline-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L50
 [argo-workflow]: https://argoproj.github.io/argo-workflows/
-[container-component-authoring]: /docs/components/pipelines/author-a-pipeline/components/#3-custom-container-components
+[container-component-authoring]: /docs/components/pipelines/v2/author-a-pipeline/components/#3-custom-container-components
 [compiled-output-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml
 [components-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L1-L21
 [deployment-spec-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L23-L49
@@ -122,4 +122,4 @@ The [`deployment_spec`][deployment-spec-schema] section contains a map of execut
 [component-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L85-L96
 [executor-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L788-L803
 [dag-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L98-L105
-[type-checking]: /docs/components/pipelines/author-a-pipeline/component-io#component-interfaces-and-type-checking
+[type-checking]: /docs/components/pipelines/v2/author-a-pipeline/component-io#component-interfaces-and-type-checking

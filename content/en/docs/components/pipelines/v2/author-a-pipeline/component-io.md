@@ -392,13 +392,13 @@ The KFP SDK compiler has the ability to use the type annotations you provide to 
 * An artifact output type (`Dataset`, `Model`, etc.) must match the artifact input type to which it is passed _or_ either of the two artifact annotations must use the generic KFP `Artifact` class.
 
 
-[components]: /docs/components/pipelines/author-a-pipeline/components.md
-[pipelines]: /docs/components/pipelines/author-a-pipeline/pipelines
-[lightweight-python-component]: /docs/components/pipelines/author-a-pipeline/components/#1-lighweight-python-function-based-components
-[containerized-python-component]: /docs/components/pipelines/author-a-pipeline/components/#2-containerized-python-components
-[custom-container-component]: /docs/components/pipelines/author-a-pipeline/components/#3-custom-container-components
+[components]: /docs/components/pipelines/v2/author-a-pipeline/components.md
+[pipelines]: /docs/components/pipelines/v2/author-a-pipeline/pipelines
+[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components
+[containerized-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components
+[custom-container-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#3-custom-container-components
 [minio]: https://min.io/
 [gcs]: https://cloud.google.com/storage
 [aws-s3]: https://aws.amazon.com/s3/
-[importer-component]: /docs/components/pipelines/author-a-pipeline/components/#special-case-importer-components
-[component-io]: /docs/components/pipelines/author-a-pipeline/component-io/
+[importer-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#special-case-importer-components
+[component-io]: /docs/components/pipelines/v2/author-a-pipeline/component-io/
