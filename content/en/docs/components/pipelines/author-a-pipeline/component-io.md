@@ -1,7 +1,7 @@
 +++
 title = "Component I/O"
 description = "Use parameter/artifact inputs and outputs"
-weight = 3                 
+weight = 4
 +++
 
 Components may accept inputs and create outputs. Inputs and outputs can be one of two types: parameters or artifacts. The following matrix describes possible component inputs and outputs:
@@ -62,7 +62,7 @@ def my_pipeline(initial_text: str = 'initial dataset text'):
 This pipeline uses a container component `create_dataset` to construct an initial `Dataset` artifact containing `initial_text`. Then, the downstream lightweight Python component `augment_dataset` appends `text` repeated `num` times to the dataset and saves it as a new dataset.
 
 ## Inputs
-Component inputs are specified by the component function's signature. This applies for all authoring approaches: [lightweight Python components][lightweight-python-component], [containerized Python components][containerized-python-component], and [container components][container-component].
+Component inputs are specified by the component function's signature. This applies for all authoring approaches: [lightweight Python components][lightweight-python-component], [containerized Python components][containerized-python-component], and [custom container components][custom-container-component].
 
 Ultimately, each authoring style creates a component definitied by an `image`, `command`, and `args`. When you use an input, it is represented as a placeholder in the `command` or `args` and is interpolated at component runtime.
 
@@ -78,7 +78,7 @@ Input parameters may have default values. For example, `augment_dataset`'s `num`
 Within a component function body, use input parameters just as you would in a normal Python function.
 
 ### Input artifacts
-Input artifacts are defined when you use an `Input[<ArtifactClass>]` annotation. For more information about artifacts, see [Artifacts][artifacts].
+Input artifacts are defined when you use an `Input[<ArtifactClass>]` annotation. For more information about artifacts, see [Component I/O][component-io].
 
 At component runtime, input artifacts are copied to the local filesystem by the executing backend. This abstracts away the need for the component author to know where artifacts are stored in remote storage and allows component authors to only interact with the local filesystem when implementing a component that uses an artifact. All artifacts implement a `.path` method, which can be used to access the local path where the artifact file has been copied.
 
@@ -394,12 +394,11 @@ The KFP SDK compiler has the ability to use the type annotations you provide to 
 
 [components]: /docs/components/pipelines/author-a-pipeline/components.md
 [pipelines]: /docs/components/pipelines/author-a-pipeline/pipelines
-[lightweight-python-component]: /
-[container-component]: /
-[containerized-python-component]: /
-[containerized-python-component]: /
+[lightweight-python-component]: /docs/components/pipelines/author-a-pipeline/components/#1-lighweight-python-function-based-components
+[containerized-python-component]: /docs/components/pipelines/author-a-pipeline/components/#2-containerized-python-components
+[custom-container-component]: /docs/components/pipelines/author-a-pipeline/components/#3-custom-container-components
 [minio]: https://min.io/
 [gcs]: https://cloud.google.com/storage
 [aws-s3]: https://aws.amazon.com/s3/
-[importer-component]: /
-[artifacts]: /docs/components/pipelines/author-a-pipeline/artifacts
+[importer-component]: /docs/components/pipelines/author-a-pipeline/components/#special-case-importer-components
+[component-io]: /docs/components/pipelines/author-a-pipeline/component-io/

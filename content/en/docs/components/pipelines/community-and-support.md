@@ -9,15 +9,15 @@ There are several places to get help with KFP:
 
 * [kubeflow-pipelines][kfp-stack-overflow] on Stack Overflow
 * The #kubeflow-pipelines channel in the [Kubeflow Slack Workspace](https://kubeflow.slack.com/)
-* Via a GitHub Issue describing your problem in the [kubeflow/pipelines repository][github-issues]
-* In the [Kubeflow Pipelines Community Meeting](#KFP-Community-Meeting)
+* Via a GitHub Issue describing your problem in the [kubeflow/pipelines repository][create-github-issue]
+* In the Kubeflow Pipelines Community Meeting
 ## Kubeflow Pipelines Community Meeting
-There is a Kubeflow Pipelines Community meeting every other Wednesday. This is an opportunity to learn about changes to KFP developments, discuss feature requests, and ask questions. When making a feature request, it is best to include a [GitHub Issue][github-issues] as a written accompaniment to your request.
+There is a Kubeflow Pipelines Community meeting every other Wednesday. This is an opportunity to learn about changes to KFP developments, discuss feature requests, and ask questions. When making a feature request, it is best to include a [GitHub Issue][create-github-issue] as a written accompaniment to your request.
 
 To participate, join [kubeflow-discuss][kubeflow-discuss-google-group] on Google Groups.
 
 ## Bugs and Feature Requests
-Bugs and feature requests should be recorded as GitHub Issues in the [kubeflow/pipelines repository][github-issues].
+Bugs and feature requests should be recorded as GitHub Issues in the [kubeflow/pipelines repository][create-github-issue].
 
 ## Contributing
 KFP is an open source project and welcomes community contribution. KFP has several components, each with its own contributing guidelines:
@@ -27,7 +27,7 @@ KFP is an open source project and welcomes community contribution. KFP has sever
 * [SDK contributing guidelines][sdk-contributing-guidelines]
 
 [kfp-stack-overflow]: https://stackoverflow.com/questions/tagged/kubeflow-pipelines
-[github-issues]: https://github.com/kubeflow/pipelines/issues/
+[create-github-issue]: https://github.com/kubeflow/pipelines/issues/new/choose
 [kubeflow-discuss-google-group]: https://groups.google.com/g/kubeflow-discuss
 [backend-contributing-guidelines]: https://github.com/kubeflow/pipelines/blob/fe66d20b98c84961b96eb8c52f3fdac69e017bce/backend/README.md
 [frontend-contributing-guidelines]: https://github.com/kubeflow/pipelines/blob/fe66d20b98c84961b96eb8c52f3fdac69e017bce/frontend/README.md

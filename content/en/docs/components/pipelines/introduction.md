@@ -15,7 +15,7 @@ To get started quickly with a KFP deployment and usage example, see the [Quickst
 ## Objectives
 Kubeflow Pipelines' primary objectives are to enable:
 * End-to-end orchestration of machine learning workflows
-* Pipeline composability through [reusable components and pipelines][author-a-pipeline]
+* Pipeline composability through reusable components and pipelines
 * Easy management, tracking, and visualization of pipeline definitions, pipeline runs, experiments, and machine learning artifacts
 * Efficient use of compute resources by eliminating redundant executions through [caching][caching]
 * Cross-platform pipeline portability through a platform-neutral [IR YAML pipeline definition][ir-yaml]
@@ -46,7 +46,7 @@ At a high level, a typical KFP user experience is as follows:
   [pipelines quickstart guide](/docs/components/pipelines/quickstart) to 
   deploy Kubeflow Pipelines and run your first pipeline
 * Learn more about [different ways to install KFP][installation]
-* Learn more about [approaches to author pipelines][author-a-pipeline]
+* Learn more about [authoring pipelines][author-a-pipeline]
 
 [quickstart]: /docs/components/pipelines/quickstart
 [author-a-pipeline]: /docs/components/pipelines/author-a-pipeline
@@ -56,6 +56,5 @@ At a high level, a typical KFP user experience is as follows:
 [compile-a-pipeline]: /docs/components/pipelines/compile-a-pipeline
 [installation]: /docs/components/pipelines/installation
 [dashboard]: /docs/components/pipelines/user-interface
-<!-- TODO: add cross-section links -->
-[caching]: /
-[ir-yaml]: /
+[caching]: /docs/components/pipelines/author-a-pipeline/tasks/#caching
+[ir-yaml]: /docs/components/pipelines/compile-a-pipeline/#ir-yaml

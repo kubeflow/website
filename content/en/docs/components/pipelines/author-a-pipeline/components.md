@@ -1,7 +1,7 @@
 +++
 title = "Components"
 description = "Author KFP components"
-weight = 4
+weight = 1
 +++
 
 
@@ -277,6 +277,6 @@ def my_pipeline():
 
 The `components` module also includes `.load_component_from_text` and `.load_component_from_url` for loading YAML from different sources.
 
-[data-passing]: /docs/components/pipelines/author-a-pipeline/data-passing
+[data-passing]: /docs/components/pipelines/author-a-pipeline/component-io
 [dsl-reference-documentation]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html
 [python-docker-image]: https://hub.docker.com/_/python

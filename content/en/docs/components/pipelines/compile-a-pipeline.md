@@ -52,7 +52,7 @@ A map of parameter names to argument values. This amounts to providing default v
 
 **`type_check`** (`bool`)
 
-Whether to enable static type checking during compilation. For more information about type checking, see [Component interfaces and type checking][type-checking].
+Whether to enable static type checking during compilation. For more information about type checking, see [Component I/O: Component interfaces and type checking][type-checking].
 
 ## IR YAML
 When you compile a pipeline it is written to intermediate representation (IR) YAML. An IR YAML is an instance of the [`PipelineSpec`][pipeline-spec] protocol buffer message type, a platform-agnostic pipeline representation protocol.
@@ -103,15 +103,15 @@ The [`deployment_spec`][deployment-spec-schema] section contains a map of execut
 
 [pipeline-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L50
 [argo-workflow]: https://argoproj.github.io/argo-workflows/
-[container-component-authoring]: /content/en/docs/components/pipelines/author-a-pipeline/components.md
-[compiled-output-example]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/sdk/python/kfp/compiler/test_data/pipelines/two_step_pipeline.yaml
-[components-example]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/sdk/python/kfp/compiler/test_data/pipelines/two_step_pipeline.yaml#L1-L21
-[deployment-spec-example]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/sdk/python/kfp/compiler/test_data/pipelines/two_step_pipeline.yaml#L23-L49
-[root-example]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/sdk/python/kfp/compiler/test_data/pipelines/two_step_pipeline.yaml#L52-L85
-[pipeline-info-example]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/sdk/python/kfp/compiler/test_data/pipelines/two_step_pipeline.yaml#L50-L51
-[sdk-version-example]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/sdk/python/kfp/compiler/test_data/pipelines/two_step_pipeline.yaml#L87
-[schema-version-example]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/sdk/python/kfp/compiler/test_data/pipelines/two_step_pipeline.yaml#L86
-[default-pipeline-root-example]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/sdk/python/kfp/compiler/test_data/pipelines/two_step_pipeline.yaml#L22
+[container-component-authoring]: /docs/components/pipelines/author-a-pipeline/components/#3-custom-container-components
+[compiled-output-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml
+[components-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L1-L21
+[deployment-spec-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L23-L49
+[root-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L52-L85
+[pipeline-info-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L50-L51
+[sdk-version-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L87
+[schema-version-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L86
+[default-pipeline-root-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L22
 [components-schema]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L74-L75
 [deployment-spec-schema]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L56
 [root-schema]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L77-L79
@@ -122,4 +122,4 @@ The [`deployment_spec`][deployment-spec-schema] section contains a map of execut
 [component-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L85-L96
 [executor-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L788-L803
 [dag-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L98-L105
-[type-checking]: /docs/components/pipelines/author-a-pipeline/inputs-outputs-data-passing#component-interfaces-and-type-checking
+[type-checking]: /docs/components/pipelines/author-a-pipeline/component-io#component-interfaces-and-type-checking
