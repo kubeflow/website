@@ -59,7 +59,7 @@ def my_pipeline(initial_text: str = 'initial dataset text'):
         text='additional text')
 ```
 
-This pipeline uses a container component `create_dataset` to construct an initial `Dataset` artifact containing `initial_text`. Then, the downstream lightweight Python component `augment_dataset` appends `text` repeated `num` times to the dataset and saves it as a new dataset.
+This pipeline uses a [custom container component][custom-container-component] `create_dataset` to construct an initial `Dataset` artifact containing `initial_text`. Then, the downstream [lightweight Python component][lightweight-python-component] `augment_dataset` appends `text` repeated `num` times to the dataset and saves it as a new dataset.
 
 ## Inputs
 Component inputs are specified by the component function's signature. This applies for all authoring approaches: [lightweight Python components][lightweight-python-component], [containerized Python components][containerized-python-component], and [custom container components][custom-container-component].
@@ -118,10 +118,10 @@ def my_component() -> NamedTuple('Outputs', [('name', str), ('id', int)]):
 
 
 
-#### Container components
-For container components, output parameters are declared via an `OutputPath` annotation, which is a class that takes a type as its only argument (e.g., `OutputPath(int)`). At runtime, the backend will pass a filepath string to parameters with this annotation. This string indicating where in the container filesystem the component should write this parameter output. The backend will copy the file specified by this path to remote storage after component execution.
+#### Custom container components
+For [custom container components][custom-container-component], output parameters are declared via an `OutputPath` annotation, which is a class that takes a type as its only argument (e.g., `OutputPath(int)`). At runtime, the backend will pass a filepath string to parameters with this annotation. This string indicating where in the container filesystem the component should write this parameter output. The backend will copy the file specified by this path to remote storage after component execution.
 
-While the lightweight component executor handles writing the output parameters to the correct local filepath, container component authors must implement this in the container component logic.
+While the lightweight component executor handles writing the output parameters to the correct local filepath, custom container component authors must implement this in the container logic.
 
 For example, the following very simple `create_text_output_parameter` component creates the output parameter string `"some text"` by using an `OutputPath(str)` annotation and writing the parameter to the path in the variable `output_string_path`:
 
@@ -267,7 +267,7 @@ def named_tuple(an_id: int) -> NamedTuple('Outputs', [('name', str), ('id', int)
 
 @dsl.container_component
 def identity_container(integer: int, output_int: OutputPath(int)):
-    """Container component that creates an integer output parameter."""
+    """Custom container component that creates an integer output parameter."""
     return dsl.ContainerSpec(
         image='alpine',
         command=[
@@ -339,7 +339,7 @@ There several placeholders that may be used in this style, including:
 
 
 ## Placeholders
-In general, each of the three component authoring styles handle the injection of placeholders into your container `command` and `args`, allowing the component author to not have to worry about them. However, there are two types of placeholders you may wish to use directly: `ConcatPlaceholder` and `IfPresentPlaceholder`. These placeholders may only be used when authoring [container components][container-component] via the `@dsl.container_component` decorator.
+In general, each of the three component authoring styles handle the injection of placeholders into your container `command` and `args`, allowing the component author to not have to worry about them. However, there are two types of placeholders you may wish to use directly: `ConcatPlaceholder` and `IfPresentPlaceholder`. These placeholders may only be used when authoring [custom container components][custom-container-component] via the `@dsl.container_component` decorator.
 
 ### ConcatPlaceholder
 

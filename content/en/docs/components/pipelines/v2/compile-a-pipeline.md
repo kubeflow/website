@@ -59,7 +59,7 @@ When you compile a pipeline it is written to intermediate representation (IR) YA
 
 IR YAML is considered an intermediate representation because the KFP backend compiles `PipelineSpec` to [Argo Workflow][argo-workflow] YAML as the final execution definition for execution on Kubernetes.
 
-Unlike v1 component YAML, IR YAML is not intended to be written directly. For a KFP v2 authoring experience similar to the v1 component YAML authoring experience, see [Author a Pipeline: Container Components][container-component-authoring].
+Unlike v1 component YAML, IR YAML is not intended to be written directly. For a KFP v2 authoring experience similar to the v1 component YAML authoring experience, see [Author a Pipeline: Custom Container Components][custom-container-component-authoring].
 
 IR YAML contains 7 top-level fields:
 
@@ -103,7 +103,7 @@ The [`deployment_spec`][deployment-spec-schema] section contains a map of execut
 
 [pipeline-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L50
 [argo-workflow]: https://argoproj.github.io/argo-workflows/
-[container-component-authoring]: /docs/components/pipelines/v2/author-a-pipeline/components/#3-custom-container-components
+[custom-container-component-authoring]: /docs/components/pipelines/v2/author-a-pipeline/components/#3-custom-container-components
 [compiled-output-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml
 [components-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L1-L21
 [deployment-spec-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L23-L49
