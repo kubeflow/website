@@ -4,7 +4,6 @@ description = "Getting started with Kubeflow Pipelines"
 weight = 3
                     
 +++
-<!-- TODO: add links to more thorough content docs -->
 <!-- TODO: add UI screenshots for final pipeline -->
 In this tutorial we will deploy a KFP standalone deployment into an existing Kubernetes cluster, create and run a simple pipeline using the KFP SDK, view the pipeline on the KFP Dashboard, then create a more involved machine learning pipeline that uses additional KFP features.
 
@@ -21,7 +20,7 @@ kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION"
 ```
 
-Once you have deployed Kubernetes, obtain your KFP endpoint by following the instructions on [Installation][installation].
+Once you have deployed Kubernetes, obtain your KFP endpoint by following [these instructions][installation].
 <!-- TODO: add more precise section link when available -->
 
 ### 2) Compose and submit simple pipeline
@@ -65,8 +64,8 @@ print(url)
 
 Let's walk through each part step-by-step.
 
-<!-- TODO: add lightweight component authoring link -->
-First, we begin by creating a lightweight Python component using the `@dsl.component` decorator:
+First, we begin by creating a [lightweight Python component][lightweight-python-component] using the `@dsl.component` decorator:
+
 ```python
 @dsl.component
 def addition_component(num1: int, num2: int) -> int:
@@ -74,7 +73,7 @@ def addition_component(num1: int, num2: int) -> int:
 ```
 This decorator transforms a Python function into a component that can be used within a pipeline. Type annotations on the parameters and return value are required, as this tells the KFP executor how to serialize and deserialize data as it is passed between components. It also allows the KFP compiler to type check data passing between tasks in your pipeline.
 
-Second, we create a pipeline using the `@dsl.pipeline` decorator:
+Second, we [create a pipeline][pipelines] using the `@dsl.pipeline` decorator:
 ```python
 @dsl.pipeline(name='addition-pipeline')
 def my_pipeline(a: int, b: int, c: int = 10):
@@ -267,14 +266,14 @@ Congratulations! You now have a KFP deployment, an end-to-end machine learning p
 ## Next steps
 * See [Installation][installation] for additional ways to deploy KFP
 * See [Author a Pipeline][author-a-pipeline] to learn more about feautres available when authoring pipelines
-* See [Dashboard][dashboard] for learn more about the KFP Dashboard
 
 [kind]: [https://kind.sigs.k8s.io/]
-[dashboard]: /docs/components/pipelines/user-interface/
-[author-a-pipeline]: /docs/components/pipelines/author-a-pipeline/
-[installation]: /docs/components/pipelines/installation/
+
+[author-a-pipeline]: /docs/components/pipelines/v2/author-a-pipeline/
+[pipelines]: /docs/components/pipelines/v2/author-a-pipeline/pipelines
+[installation]: /docs/components/pipelines/v2/installation/
 [localhost]: http://localhost:8080
 [chocolatey]: https://chocolatey.org/packages/kind
 [authenticating-pipelines-gcp]: /docs/distributions/gke/authentication/#authentication-from-kubeflow-pipelines
-[ir-yaml]: /docs/components/pipelines/compile-a-pipeline/
-<!-- todo: add more precise ir-yaml link when available -->
+[ir-yaml]: /docs/components/pipelines/v2/compile-a-pipeline/#ir-yaml
+[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components

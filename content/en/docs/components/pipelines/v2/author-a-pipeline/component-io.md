@@ -1,7 +1,7 @@
 +++
 title = "Component I/O"
 description = "Use parameter/artifact inputs and outputs"
-weight = 3                 
+weight = 4
 +++
 
 Components may accept inputs and create outputs. Inputs and outputs can be one of two types: parameters or artifacts. The following matrix describes possible component inputs and outputs:
@@ -59,10 +59,10 @@ def my_pipeline(initial_text: str = 'initial dataset text'):
         text='additional text')
 ```
 
-This pipeline uses a container component `create_dataset` to construct an initial `Dataset` artifact containing `initial_text`. Then, the downstream lightweight Python component `augment_dataset` appends `text` repeated `num` times to the dataset and saves it as a new dataset.
+This pipeline uses a [custom container component][custom-container-component] `create_dataset` to construct an initial `Dataset` artifact containing `initial_text`. Then, the downstream [lightweight Python component][lightweight-python-component] `augment_dataset` appends `text` repeated `num` times to the dataset and saves it as a new dataset.
 
 ## Inputs
-Component inputs are specified by the component function's signature. This applies for all authoring approaches: [lightweight Python components][lightweight-python-component], [containerized Python components][containerized-python-component], and [container components][container-component].
+Component inputs are specified by the component function's signature. This applies for all authoring approaches: [lightweight Python components][lightweight-python-component], [containerized Python components][containerized-python-component], and [custom container components][custom-container-component].
 
 Ultimately, each authoring style creates a component definitied by an `image`, `command`, and `args`. When you use an input, it is represented as a placeholder in the `command` or `args` and is interpolated at component runtime.
 
@@ -78,7 +78,7 @@ Input parameters may have default values. For example, `augment_dataset`'s `num`
 Within a component function body, use input parameters just as you would in a normal Python function.
 
 ### Input artifacts
-Input artifacts are defined when you use an `Input[<ArtifactClass>]` annotation. For more information about artifacts, see [Artifacts][artifacts].
+Input artifacts are defined when you use an `Input[<ArtifactClass>]` annotation. For more information about artifacts, see [Component I/O][component-io].
 
 At component runtime, input artifacts are copied to the local filesystem by the executing backend. This abstracts away the need for the component author to know where artifacts are stored in remote storage and allows component authors to only interact with the local filesystem when implementing a component that uses an artifact. All artifacts implement a `.path` method, which can be used to access the local path where the artifact file has been copied.
 
@@ -118,10 +118,10 @@ def my_component() -> NamedTuple('Outputs', [('name', str), ('id', int)]):
 
 
 
-#### Container components
-For container components, output parameters are declared via an `OutputPath` annotation, which is a class that takes a type as its only argument (e.g., `OutputPath(int)`). At runtime, the backend will pass a filepath string to parameters with this annotation. This string indicating where in the container filesystem the component should write this parameter output. The backend will copy the file specified by this path to remote storage after component execution.
+#### Custom container components
+For [custom container components][custom-container-component], output parameters are declared via an `OutputPath` annotation, which is a class that takes a type as its only argument (e.g., `OutputPath(int)`). At runtime, the backend will pass a filepath string to parameters with this annotation. This string indicating where in the container filesystem the component should write this parameter output. The backend will copy the file specified by this path to remote storage after component execution.
 
-While the lightweight component executor handles writing the output parameters to the correct local filepath, container component authors must implement this in the container component logic.
+While the lightweight component executor handles writing the output parameters to the correct local filepath, custom container component authors must implement this in the container logic.
 
 For example, the following very simple `create_text_output_parameter` component creates the output parameter string `"some text"` by using an `OutputPath(str)` annotation and writing the parameter to the path in the variable `output_string_path`:
 
@@ -267,7 +267,7 @@ def named_tuple(an_id: int) -> NamedTuple('Outputs', [('name', str), ('id', int)
 
 @dsl.container_component
 def identity_container(integer: int, output_int: OutputPath(int)):
-    """Container component that creates an integer output parameter."""
+    """Custom container component that creates an integer output parameter."""
     return dsl.ContainerSpec(
         image='alpine',
         command=[
@@ -339,7 +339,7 @@ There several placeholders that may be used in this style, including:
 
 
 ## Placeholders
-In general, each of the three component authoring styles handle the injection of placeholders into your container `command` and `args`, allowing the component author to not have to worry about them. However, there are two types of placeholders you may wish to use directly: `ConcatPlaceholder` and `IfPresentPlaceholder`. These placeholders may only be used when authoring [container components][container-component] via the `@dsl.container_component` decorator.
+In general, each of the three component authoring styles handle the injection of placeholders into your container `command` and `args`, allowing the component author to not have to worry about them. However, there are two types of placeholders you may wish to use directly: `ConcatPlaceholder` and `IfPresentPlaceholder`. These placeholders may only be used when authoring [custom container components][custom-container-component] via the `@dsl.container_component` decorator.
 
 ### ConcatPlaceholder
 
@@ -392,14 +392,13 @@ The KFP SDK compiler has the ability to use the type annotations you provide to 
 * An artifact output type (`Dataset`, `Model`, etc.) must match the artifact input type to which it is passed _or_ either of the two artifact annotations must use the generic KFP `Artifact` class.
 
 
-[components]: /docs/components/pipelines/author-a-pipeline/components.md
-[pipelines]: /docs/components/pipelines/author-a-pipeline/pipelines
-[lightweight-python-component]: /
-[container-component]: /
-[containerized-python-component]: /
-[containerized-python-component]: /
+[components]: /docs/components/pipelines/v2/author-a-pipeline/components.md
+[pipelines]: /docs/components/pipelines/v2/author-a-pipeline/pipelines
+[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components
+[containerized-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components
+[custom-container-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#3-custom-container-components
 [minio]: https://min.io/
 [gcs]: https://cloud.google.com/storage
 [aws-s3]: https://aws.amazon.com/s3/
-[importer-component]: /
-[artifacts]: /docs/components/pipelines/author-a-pipeline/artifacts
+[importer-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#special-case-importer-components
+[component-io]: /docs/components/pipelines/v2/author-a-pipeline/component-io/

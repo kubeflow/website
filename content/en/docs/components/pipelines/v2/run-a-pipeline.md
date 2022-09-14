@@ -74,7 +74,7 @@ kfp run create --experiment-name my-experiment --package-file path/to/pipeline.y
 
 For more information about the `kfp run create` command, see the [KFP Command Line Interface reference documentation][kfp-run-create-reference-docs]. For more information on the KFP CLI generally see [Command Line Interface user docs][kfp-cli].
 
-[compile-a-pipeline]: /docs/components/pipelines/compile-a-pipeline/
+[compile-a-pipeline]: /docs/components/pipelines/v2/compile-a-pipeline/
 [kfp-sdk-api-ref-client]: https://kubeflow-pipelines.readthedocs.io/en/master/source/client.html
-[kfp-cli]: /docs/components/pipelines/cli/
+[kfp-cli]: /docs/components/pipelines/v2/cli/
 [kfp-run-create-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-run-create

@@ -96,9 +96,8 @@ The CLI compiler also accepts a `--pipeline-parameters` argument as JSON:
 kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --pipeline-parameters '{"param1": 2.0, "param2": "my_val"}'
 ```
 
-## Build KFP Python-based containerized components
-<!-- TODO: add/update link to other authoring documentat -->
-The KFP SDK support authoring containerized components, allowing the use of more and better-organized source code than does the simpler [lightweight Python component][lightweight-python-component] authoring experience.
+## Build KFP containerized Python components
+The KFP SDK support authoring [containerized Python components][containerized-python-components], allowing the use of more and better-organized source code than does the simpler [lightweight Python component][lightweight-python-component] authoring experience.
 
 The KFP CLI provides a convenience command for streamlining the process of building a containerized component:
 
@@ -112,11 +111,12 @@ This command builds an image with all the source code found in `COMPONENTS_DIREC
 kfp component build src/ --component-filepattern my_component --push-image
 ```
 
-For detailed information about all arguments/flags, see [CLI reference documentation](https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-component-build). For information about creating containerized components, see [Authoring Python Containerized Components][components].
+For detailed information about all arguments/flags, see [CLI reference documentation](https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-component-build). For information about creating containerized components, see [Authoring Python Containerized Components][/docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components].
 
 <!-- TODO(GA): remove --pre -->
 Note: To use this command you'll need to install the KFP SDK with the additional Docker dependency: `pip install --pre kfp[all]`.
 
 [cli-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html
-[author-a-pipeline]: /docs/components/pipelines/author-a-pipeline
-[components]: /docs/components/pipelines/author-a-pipeline/components
+[author-a-pipeline]: /docs/components/pipelines/v2/author-a-pipeline
+[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components
+[containerized-python-components]: /docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components

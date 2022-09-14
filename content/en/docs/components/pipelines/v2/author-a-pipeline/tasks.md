@@ -1,7 +1,7 @@
 +++
 title = "Tasks"
 description = "Understand and use KFP tasks"
-weight = 4
+weight = 2
 +++
 
 ## Summary
@@ -36,7 +36,7 @@ def my_pipeline():
     my_task2 = concat_comp(prefix=my_task1.output, text='!')
 ```
 
-For more information on passing inputs and outputs between components, see [Data Passing][data-passing].
+For more information on passing inputs and outputs between components, see [Data Passing: Passing data between tasks][data-passing].
 
 
 ### Explicitly dependent tasks
@@ -99,6 +99,6 @@ The cache key is determined by the task's component specification (image, comman
 When a task's cache hits and its execution is skipped, it will be displayed on the KFP UI:
 <!-- TODO: add photo of cache on UI -->
 
-[components]: /docs/components/pipelines/author-a-pipeline/components
+[components]: /docs/components/pipelines/v2/author-a-pipeline/components
 [dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html
-[data-passing]: /docs/components/pipelines/author-a-pipeline/data-passing
+[data-passing]: /docs/components/pipelines/v2/author-a-pipeline/component-io/#passing-data-between-tasks

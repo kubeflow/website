@@ -1,7 +1,7 @@
 +++
 title = "Components"
 description = "Author KFP components"
-weight = 4
+weight = 1
 +++
 
 
@@ -167,7 +167,7 @@ To create a containerized component, you must:
 
 Custom container components allow you to specify a container to execute as your component. The `dsl.ContainerSpec` object allows you to specify a container via an image, command, and args.
 
-To define a container component, you must:
+To define a custom container component, you must:
 1) Write your component’s code as a Python function that returns a `dsl.ContainerSpec` object to specify the container image and the commands to be run in the container and wrap the function into a `@container_component` decorator. The function should do nothing other than returning a `dsl.ContainerSpec` object, with the following parameters:
     * `image`: The image that the container will run. You can use `command` and `args` to control the entrypoint.
     * `command` (optional): The command to be executed. 
@@ -183,7 +183,7 @@ To define a container component, you must:
     *   If the function accepts or returns large amounts of data or complex
         data types, you must annotate that argument as an _artifact_. Note that in the function you defined, you can only access artifacts via its `.url`, `.path`, or `.metadata` attribute. Accessing any other attribute or the artifact variable by itself is not allowed. 
 
-Below is an example that authors a pipelines from two container component. Just as using with a Python component, you can access the outputs of a `container_component` for downstream tasks as demonstrated in the pipeline:
+Below is an example that authors a pipelines from two custom container components. Just as using with a Python component, you can access the outputs of a `container_component` for downstream tasks as demonstrated in the pipeline:
 ```python
 from kfp.dsl import (
   container_component,
@@ -277,6 +277,6 @@ def my_pipeline():
 
 The `components` module also includes `.load_component_from_text` and `.load_component_from_url` for loading YAML from different sources.
 
-[data-passing]: /docs/components/pipelines/author-a-pipeline/data-passing
+[data-passing]: /docs/components/pipelines/v2/author-a-pipeline/component-io
 [dsl-reference-documentation]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html
 [python-docker-image]: https://hub.docker.com/_/python
