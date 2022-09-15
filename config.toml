@@ -4,7 +4,7 @@ description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightf
 
 enableRobotsTXT = true
 
-theme = ["docsy"]
+theme = ["github.com/google/docsy", "github.com/google/docsy/dependencies"]
 
 ###############################################################################
 # Docsy

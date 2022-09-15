@@ -3,14 +3,17 @@
   command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo --gc --minify"
 
 [context.deploy-preview.environment]
-  HUGO_VERSION = "0.92.0"
+  HUGO_VERSION = "0.102.3"
   NODE_VERSION = "16"
+  GO_VERSION = "1.19"
 
 [context.production.environment]
-  HUGO_VERSION = "0.92.0"
+  HUGO_VERSION = "0.102.3"
   HUGO_ENV = "production"
   NODE_VERSION = "16"
+  GO_VERSION = "1.19"
 
 [context.branch-deploy.environment]
-  HUGO_VERSION = "0.92.0"
+  HUGO_VERSION = "0.102.3"
   NODE_VERSION = "16"
+  GO_VERSION = "1.19"
