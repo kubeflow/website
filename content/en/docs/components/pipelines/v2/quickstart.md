@@ -13,7 +13,7 @@ The first step is to deploy a KFP standalone instance into an existing Kubernete
 Once you have configured your [kubectl context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) to connect with your cluster. Replace `PIPELINE_VERSION` with the desired version of KFP and run the following script:
 
 ```shell
-export PIPELINE_VERSION="2.0.0-alpha.3"
+export PIPELINE_VERSION="2.0.0-alpha.4"
 
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
 kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
