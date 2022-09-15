@@ -36,7 +36,7 @@ def my_pipeline():
     my_task2 = concat_comp(prefix=my_task1.output, text='!')
 ```
 
-For more information on passing inputs and outputs between components, see [Data Passing: Passing data between tasks][data-passing].
+For more information on passing inputs and outputs between components, see [Component I/O: Passing data between tasks][component-io-passing-data-between-tasks].
 
 
 ### Explicitly dependent tasks
@@ -101,4 +101,4 @@ When a task's cache hits and its execution is skipped, it will be displayed on t
 
 [components]: /docs/components/pipelines/v2/author-a-pipeline/components
 [dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html
-[data-passing]: /docs/components/pipelines/v2/author-a-pipeline/component-io/#passing-data-between-tasks
+[component-io-passing-data-between-tasks]: /docs/components/pipelines/v2/author-a-pipeline/component-io-passing-data-between-tasks/#passing-data-between-tasks
