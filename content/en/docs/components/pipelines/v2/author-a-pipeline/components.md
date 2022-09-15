@@ -218,7 +218,7 @@ def two_step_pipeline_containerized(text: str):
 In the above example, the `create_dataset` component takes in a text and output it to a path as an artifact. Then, the `print_dataset` component retrieves the artifact output by the `create_dataset` component and prints it out.
 
 ## Special case: Importer components
-Unlike the previous three authoring approaches, an importer component not a general authoring style but a pre-baked component for a specific use case: loading a machine learning [artifact][data-passing] from remote storage to machine learning metadata (MLMD).
+Unlike the previous three authoring approaches, an importer component not a general authoring style but a pre-baked component for a specific use case: loading a machine learning artifact from remote storage to machine learning metadata (MLMD).
 
 **Before you continue:** Understand how KFP [Artifacts][data-passing] work.
 
