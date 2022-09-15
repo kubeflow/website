@@ -36,7 +36,7 @@ A critical difference between components and pipelines is how control flow is au
 
 ### dsl.Condition
 
-The `dsl.Condition` context manager allows conditional execution of tasks within its scope based on the output of an upstream task. The context manager takes two arguments: a required `condition` and an optional `name`. The `condition` is a comparative expression where at least one of the two operands is an output from an upstream task.
+The [`dsl.Condition`][dsl-reference-docs] context manager allows conditional execution of tasks within its scope based on the output of an upstream task. The context manager takes two arguments: a required `condition` and an optional `name`. The `condition` is a comparative expression where at least one of the two operands is an output from an upstream task.
 
 In the following pipeline, `conditional_task` only executes if `coin_flip_task` has the output `'heads'`.
 
@@ -52,7 +52,7 @@ def my_pipeline():
 
 ### dsl.ParallelFor
 
-The `dsl.ParallelFor` context manager allows parallelized execution of tasks over a static set of items. The context manager takes two arguments: a required `items`, an optional `parallelism`, and an optional `name`. `items` is the static set of items to loop over, while `parallelism` is the maximum number of concurrent iterations permitted while executing the `dsl.ParallelFor` group. `parallelism=0` indicates unconstrained parallelism.
+The [`dsl.ParallelFor`][dsl-reference-docs] context manager allows parallelized execution of tasks over a static set of items. The context manager takes two arguments: a required `items`, an optional `parallelism`, and an optional `name`. `items` is the static set of items to loop over, while `parallelism` is the maximum number of concurrent iterations permitted while executing the `dsl.ParallelFor` group. `parallelism=0` indicates unconstrained parallelism.
 
 In the following pipeline, `train_model` will train a model for 1, 5, 10, and 25 epochs, with no more than two training tasks running at one time:
 
@@ -69,7 +69,7 @@ def my_pipeline():
 ```
 
 ### dsl.ExitHandler
-The `dsl.ExitHandler` context manager allows pipeline authors to specify an "exit handler" task which will run after the tasks within its scope finish execution or one of them fails. This is analogous to using `try:` followed by `finally:` in normal Python. The context manager takes two arguments: a required `exit_task` and an optional `name`. The `exit_task` is the "exit handler" task and must be instantiated before the `dsl.ExitHandler` context manager is entered.
+The [`dsl.ExitHandler`][dsl-reference-docs] context manager allows pipeline authors to specify an "exit handler" task which will run after the tasks within its scope finish execution or one of them fails. This is analogous to using `try:` followed by `finally:` in normal Python. The context manager takes two arguments: a required `exit_task` and an optional `name`. The `exit_task` is the "exit handler" task and must be instantiated before the `dsl.ExitHandler` context manager is entered.
 
 In the following pipeline, `clean_up_task` will execute after either both `create_dataset` and `train_and_save_models` finish or one of them fails:
 
@@ -121,3 +121,5 @@ def my_pipeline():
 [components]: /docs/components/pipelines/v2/author-a-pipeline/components
 [tasks]: /docs/components/pipelines/v2/author-a-pipeline/tasks
 [component-io-pipeline-io]: /docs/components/pipelines/v2/author-a-pipeline/component-io/#pipeline-io
+<!-- TODO: make this reference more precise throughout -->
+[dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html
