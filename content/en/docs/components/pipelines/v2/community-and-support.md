@@ -29,6 +29,6 @@ KFP is an open source project and welcomes community contribution. KFP has sever
 [kfp-stack-overflow]: https://stackoverflow.com/questions/tagged/kubeflow-pipelines
 [create-github-issue]: https://github.com/kubeflow/pipelines/issues/new/choose
 [kubeflow-discuss-google-group]: https://groups.google.com/g/kubeflow-discuss
-[backend-contributing-guidelines]: https://github.com/kubeflow/pipelines/blob/fe66d20b98c84961b96eb8c52f3fdac69e017bce/backend/README.md
-[frontend-contributing-guidelines]: https://github.com/kubeflow/pipelines/blob/fe66d20b98c84961b96eb8c52f3fdac69e017bce/frontend/README.md
-[sdk-contributing-guidelines]: https://github.com/kubeflow/pipelines/blob/fe66d20b98c84961b96eb8c52f3fdac69e017bce/sdk/CONTRIBUTING.md
+[backend-contributing-guidelines]: https://github.com/kubeflow/pipelines/blob/master/backend/README.md
+[frontend-contributing-guidelines]: https://github.com/kubeflow/pipelines/blob/master/frontend/README.md
+[sdk-contributing-guidelines]: https://github.com/kubeflow/pipelines/blob/master/sdk/CONTRIBUTING.md
