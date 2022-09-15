@@ -37,7 +37,7 @@ At a high level, a typical KFP user experience is as follows:
 1. [Author a pipeline][author-a-pipeline] with one or more components using the **Python KFP SDK**'s domain-specific language (DSL). You may wish to [author your own components][components] or use prebuilt components provided by other authors.
 2. [Compile the pipeline][compile-a-pipeline] to YAML using the **KFP SDK's DSL compiler**.
 3. Submit the pipeline to run on the **KFP backend**, which orchestrates the Kubernetes Pod creation and data passing required to execute your workflow.
-4. View your runs, experiments, and machine learning artifacts on the **KFP Dashboard**.
+4. View your runs, [enter my fix here] experiments, and machine learning artifacts on the **KFP Dashboard**.
 
 
 ## Next steps
