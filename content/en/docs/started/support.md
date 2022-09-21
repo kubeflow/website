@@ -105,9 +105,9 @@ to helping you diagnose and address the problem if all the following are true:
 You can ask questions and make suggestions in the following places:
 
 * **Slack** for online chat and messaging. See details of Kubeflow's 
-  [Slack workspace and channels](/docs/about/community/#slack).
+  [Slack workspace and channels](/docs/about/community/#kubeflow-slack).
 * **Kubeflow discuss** for email-based group discussion. Join the
-  [kubeflow-discuss](/docs/about/community/#mailing-list)
+  [kubeflow-discuss](/docs/about/community/#kubeflow-mailing-list)
   group.
 * **Kubeflow documentation** for overviews and how-to guides. In particular,
   refer to the following documents when troubleshooting a problem:
