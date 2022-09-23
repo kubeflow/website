@@ -1,255 +1,377 @@
 +++
-title = "Connecting to Kubeflow Pipelines using the SDK client"
-description = "How to connect to Kubeflow Pipelines using the SDK client and configure the SDK client using environment variables"
+title = "Connect the Pipelines SDK to Kubeflow Pipelines"
+description = "How to connect the Pipelines SDK to Kubeflow Pipelines in various ways"
 weight = 25
 +++
 
-This guide demonstrates how to connect to Kubeflow Pipelines using [the Kubeflow Pipelines SDK client](/docs/components/pipelines/sdk/sdk-overview/), and how to [configure the SDK client using environment variables](#configure-sdk-client-by-environment-variables).
+How to connect Pipelines SDK to Kubeflow Pipelines will depend on __what kind__ of Kubeflow deployment you have, and __from where you are running your code__.
+
+* [Full Kubeflow (from inside cluster)](#full-kubeflow-subfrom-inside-clustersub)
+* [Full Kubeflow (from outside cluster)](#full-kubeflow-subfrom-outside-clustersub)
+* [Standalone Kubeflow Pipelines (from inside cluster)](#standalone-kubeflow-pipelines-subfrom-inside-clustersub)
+* [Standalone Kubeflow Pipelines (from outside cluster)](#standalone-kubeflow-pipelines-subfrom-outside-clustersub)
 
 
-The Kubeflow Pipelines REST API is available at the same endpoint as the Kubeflow Pipelines user interface (UI).
-The SDK client can send requests to this endpoint to upload pipelines, create pipeline runs, schedule recurring runs, and more.
+{{% alert title="Tip" color="info" %}}
+Before you begin, you will need to:
+* [Deploy Kubeflow Pipelines](/docs/components/pipelines/installation/overview/)
+* [Install the Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/)
+{{% /alert %}}
 
+## Full Kubeflow <sub>(from inside cluster)</sub>
 
-## Before you begin
+<details>
+<summary>Click to expand</summary>
+<hr>
 
-* You need a Kubeflow Pipelines deployment using one of the [installation options](/docs/components/pipelines/installation/overview/).
-* [Install the Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/).
+When running the Pipelines SDK inside a multi-user Kubeflow cluster, a [ServiceAccount token volume](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection) 
+can be mounted to the Pod, the Kubeflow Pipelines SDK can use this token to authenticate itself with the Kubeflow Pipelines API.
 
-
-## Connect to Kubeflow Pipelines from outside your cluster
-
-Kubeflow distributions secure the Kubeflow Pipelines public endpoint with authentication and authorization.
-Since Kubeflow distributions can have different authentication and authorization requirements, the steps needed to connect to your Kubeflow Pipelines instance might be different depending on the Kubeflow distribution you installed. Refer to documentation for [your Kubeflow distribution](/docs/started/installing-kubeflow/):
-
-* [Connecting to Kubeflow Pipelines on Google Cloud using the SDK](/docs/distributions/gke/pipelines/authentication-sdk/)
-* [Kubeflow Pipelines on AWS](https://awslabs.github.io/kubeflow-manifests/docs/component-guides/pipelines/)
-* [Authentication using OIDC in Azure](/docs/distributions/azure/authentication-oidc/)
-* [Pipelines on IBM Cloud Kubernetes Service (IKS)](/docs/distributions/ibm/pipelines/)
-
-For [Kubeflow Pipelines standalone](https://www.kubeflow.org/docs/components/pipelines/installation/standalone-deployment/) and [Google Cloud AI Platform Pipelines](/docs/components/pipelines/installation/overview/#google-cloud-ai-platform-pipelines), you can also connect to the API via `kubectl port-forward`.
-
-Kubeflow Pipelines standalone deploys a Kubernetes service named `ml-pipeline-ui` in your Kubernetes cluster without extra authentication.
-
-You can use [kubectl port-forward](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/) to port forward the Kubernetes service locally to your laptop outside of the cluster:
-
-```bash
-# Change the namespace if you deployed Kubeflow Pipelines in a different
-# namespace.
-$ kubectl port-forward svc/ml-pipeline-ui 3000:80 --namespace kubeflow
-```
-
-You can verify that port forwarding is working properly by visiting [http://localhost:3000](http://localhost:3000) in your browser. If port forwarding is working properly, the Kubeflow Pipelines UI appears.
-
-Run the following python code to instantiate the `kfp.Client`:
+The following code creates a `kfp.Client()` using a ServiceAccount token for authentication.
 
 ```python
 import kfp
-client = kfp.Client(host='http://localhost:3000')
+
+# the namespace in which you deployed Kubeflow Pipelines
+namespace = "kubeflow"
+
+# the KF_PIPELINES_SA_TOKEN_PATH environment variable is used when no `path` is set
+# the default KF_PIPELINES_SA_TOKEN_PATH is /var/run/secrets/kubeflow/pipelines/token
+credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
+
+client = kfp.Client(host=f"http://ml-pipeline-ui.{namespace}", credentials=credentials)
+
 print(client.list_experiments())
 ```
 
-Note, for Kubeflow Pipelines in multi-user mode, you cannot access the API using kubectl port-forward
-because it requires authentication. Refer to distribution specific documentation as recommended above.
+The following Pod demonstrates mounting a ServiceAccount token volume.
 
-## Connect to Kubeflow Pipelines from the same cluster
-
-### Non-multi-user mode
-
-As mentioned above, the Kubeflow Pipelines API Kubernetes service is `ml-pipeline-ui`.
-
-Using [Kubernetes standard mechanisms to discover the service](https://kubernetes.io/docs/concepts/services-networking/service/#discovering-services), you can access `ml-pipeline-ui` service from a Pod in the same namespace by DNS name:
-
-```python
-import kfp
-client = kfp.Client(host='http://ml-pipeline-ui:80')
-print(client.list_experiments())
-```
-
-Or, you can access `ml-pipeline-ui` service by using environment variables:
-
-```python
-import kfp
-import os
-host = os.getenv('ML_PIPELINE_UI_SERVICE_HOST')
-port = os.getenv('ML_PIPELINE_UI_SERVICE_PORT')
-client = kfp.Client(host=f'http://{host}:{port}')
-print(client.list_experiments())
-```
-
-When accessing Kubeflow Pipelines from a Pod in a different namespace, you must access by the service name and the namespace:
-
-```python
-import kfp
-namespace = 'kubeflow' # or the namespace you deployed Kubeflow Pipelines
-client = kfp.Client(host=f'http://ml-pipeline-ui.{namespace}:80')
-print(client.list_experiments())
-```
-
-### Multi-User mode
-
-Note, multi-user mode technical details were put in the [How in-cluster authentication works](#how-multi-user-mode-in-cluster-authentication-works) section below.
-
-Choose your use-case from one of the options below:
-
-* **Access Kubeflow Pipelines from Jupyter notebook**
-
-  In order to **access Kubeflow Pipelines from Jupyter notebook**, an additional per namespace (profile) manifest is required:
-
-  ```yaml
-  apiVersion: kubeflow.org/v1alpha1
-  kind: PodDefault
-  metadata:
-    name: access-ml-pipeline
-    namespace: "<YOUR_USER_PROFILE_NAMESPACE>"
-  spec:
-    desc: Allow access to Kubeflow Pipelines
-    selector:
-      matchLabels:
-        access-ml-pipeline: "true"
-    volumes:
-      - name: volume-kf-pipeline-token
-        projected:
-          sources:
-            - serviceAccountToken:
-                path: token
-                expirationSeconds: 7200
-                audience: pipelines.kubeflow.org      
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: access-kfp-example
+spec:
+  containers:
+  - image: hello-world:latest
+    name: hello-world
+    env:
+      - ## this environment variable is automatically read by `kfp.Client()`
+        ## this is the default value, but we show it here for clarity
+        name: KF_PIPELINES_SA_TOKEN_PATH
+        value: /var/run/secrets/kubeflow/pipelines/token
     volumeMounts:
       - mountPath: /var/run/secrets/kubeflow/pipelines
         name: volume-kf-pipeline-token
         readOnly: true
-    env:
-      - name: KF_PIPELINES_SA_TOKEN_PATH
-        value: /var/run/secrets/kubeflow/pipelines/token
-  ```
+  volumes:
+    - name: volume-kf-pipeline-token
+      projected:
+        sources:
+          - serviceAccountToken:
+              path: token
+              expirationSeconds: 7200
+              ## defined by the `TOKEN_REVIEW_AUDIENCE` environment variable on the `ml-pipeline` deployment
+              audience: pipelines.kubeflow.org      
+```
 
-  After the manifest is applied, newly created Jupyter notebook contains an additional option in the **configurations** section.
-  Read more about **configurations** in the [Jupyter notebook server](/docs/components/notebooks/setup/#create-a-jupyter-notebook-server-and-add-a-notebook).
+You may use Kubeflow's [`PodDefaults`](https://github.com/kubeflow/kubeflow/tree/master/components/admission-webhook) to inject the required ServiceAccount token volume into your Pods:
 
-  Note, Kubeflow `kfp.Client` expects token either in `KF_PIPELINES_SA_TOKEN_PATH` environment variable or 
-  mounted to `/var/run/secrets/kubeflow/pipelines/token`. Do not change these values in the manifest. 
-  Similarly, `audience` should not be modified as well. No additional setup is required to refresh tokens.
+```yaml
+apiVersion: kubeflow.org/v1alpha1
+kind: PodDefault
+metadata:
+  name: access-ml-pipeline
+  namespace: "<YOUR_USER_PROFILE_NAMESPACE>"
+spec:
+  desc: Allow access to Kubeflow Pipelines
+  selector:
+    matchLabels:
+      access-ml-pipeline: "true"
+  env:
+    - ## this environment variable is automatically read by `kfp.Client()`
+      ## this is the default value, but we show it here for clarity
+      name: KF_PIPELINES_SA_TOKEN_PATH
+      value: /var/run/secrets/kubeflow/pipelines/token
+  volumes:
+    - name: volume-kf-pipeline-token
+      projected:
+        sources:
+          - serviceAccountToken:
+              path: token
+              expirationSeconds: 7200
+              ## defined by the `TOKEN_REVIEW_AUDIENCE` environment variable on the `ml-pipeline` deployment
+              audience: pipelines.kubeflow.org      
+  volumeMounts:
+    - mountPath: /var/run/secrets/kubeflow/pipelines
+      name: volume-kf-pipeline-token
+      readOnly: true
+```
 
-  Remember the setup has to be repeated per each namespace (profile) that should have access to Kubeflow Pipelines API from within Jupyter notebook.
+{{% alert title="Tip" color="info" %}}
+* `PodDefaults` are namespaced resources, so you need to create one inside __each__ of your Kubeflow `Profile` namespaces.
+* The Notebook Spawner UI will be aware of any `PodDefaults` in the user's namespace (they are selectable under the "configurations" section).
+{{% /alert %}}
 
-* **Access Kubeflow Pipelines from within any Pod**
+### RBAC Authorization
 
-  In this case, the configuration is almost similar to the Jupyter Notebook case described above. 
-  The Pod manifest has to be extended with projected volume and mounted into either 
-  `KF_PIPELINES_SA_TOKEN_PATH` or `/var/run/secrets/kubeflow/pipelines/token`. 
+The Kubeflow Pipelines API respects Kubernetes RBAC, and will check RoleBindings assigned to the ServiceAccount before allowing it to take Pipelines API actions.
 
-  Manifest below shows example Pod with token mounted into `/var/run/secrets/kubeflow/pipelines/token`:
+For example, this RoleBinding allows Pods with the `default-editor` ServiceAccount in `namespace-2` to manage Kubeflow Pipelines in `namespace-1`:
 
-  ```yaml
-  apiVersion: v1
-  kind: Pod
-  metadata:
-    name: access-kfp-example
-    namespace: my-namespace
-  spec:
-    containers:
-    - image: my-image:latest 
-      name: access-kfp-example
-      volumeMounts:
-        - mountPath: /var/run/secrets/kubeflow/pipelines
-          name: volume-kf-pipeline-token
-          readOnly: true
-    serviceAccountName: default-editor
-    volumes:
-      - name: volume-kf-pipeline-token
-        projected:
-          sources:
-            - serviceAccountToken:
-                path: token
-                expirationSeconds: 7200
-                audience: pipelines.kubeflow.org      
-  ```
-
-  Note that this example uses `default-editor` in `my-namespace` as the service account identity, but you can configure
-  to use any service account that runs in your Pod. You need to bind service account to cluster role `kubeflow-pipelines-edit`
-  or `kubeflow-pipelines-view` documented in 
-  [view-edit-cluster-roles.yaml](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/manifests/kustomize/base/installs/multi-user/view-edit-cluster-roles.yaml#L7-L32).
-
-#### Managing access to Kubeflow Pipelines API across namespaces
-
-As already mentioned, access to Kubeflow Pipelines API requires per namespace setup.
-Alternatively, you can configure the access in a single namespace and allow other
-namespaces to access Kubeflow Pipelines API through it.
-
-Note, the examples below assume that `namespace-1` is a namespace (profile) that will be granted access to Kubeflow Pipelines API 
-through the `namespace-2` namespace. The `namespace-2` should already be configured to access Kubeflow Pipelines API.
-
-Cross-namespace access can be achieved in two ways:
-
-* **With additional RBAC settings.**
-
-  This option requires that only `namespace-2` has to have `PodDefault` manifest configured.
-
-  Access is granted by giving `namespace-1:ServiceAccount/default-editor` the `ClusterRole/kubeflow-edit` in `namespace-2`:
-
-  ```
-  apiVersion: rbac.authorization.k8s.io/v1
-  kind: RoleBinding
-  metadata:
-    name: kubeflow-edit-namespace-1
-    namespace: namespace-2
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: kubeflow-edit
-  subjects:
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: allow-namespace-2-kubeflow-edit
+  ## this RoleBinding is in `namespace-1`, because it grants access to `namespace-1`
+  namespace: namespace-1
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubeflow-edit
+subjects:
   - kind: ServiceAccount
     name: default-editor
-    namespace: namespace-1
-  ```
+    ## the ServiceAccount lives in `namespace-2`
+    namespace: namespace-2
+```
 
-* **By sharing access to the other profile.**
+{{% alert title="Tip" color="info" %}}
+* Review the ClusterRole called [`aggregate-to-kubeflow-pipelines-edit`](https://github.com/kubeflow/pipelines/blob/efb96135033fc6e6e55078d33814c45a98566e68/manifests/kustomize/base/installs/multi-user/view-edit-cluster-roles.yaml#L36-L99) 
+for a list of some important `pipelines.kubeflow.org` RBAC verbs.
+* Kubeflow Notebooks pods run as the `default-editor` ServiceAccount by default, so the RoleBindings for `default-editor` apply to them
+and give them access to submit pipelines in their own namespace.
+{{% /alert %}}
 
-  In this scenario, access is granted by `namespace-2` adding `namespace-1` as a  
-  [contributor](https://www.kubeflow.org/docs/components/multi-tenancy/getting-started/#managing-contributors-through-the-kubeflow-ui). 
-  Specifically, the owner of the `namespace-2` uses Kubeflow UI "Manage contributors" page. In the "Contributors to your namespace" 
-  textbox he adds email address associated with the `namespace-1`.
+</details>
 
-#### How Multi-User mode in-cluster authentication works
+## Full Kubeflow <sub>(from outside cluster)</sub>
 
-When calling Kubeflow Pipelines API in the same cluster, Kubeflow Pipelines SDK authenticates itself as your Pod's service account in your namespace using ServiceAccountToken 
-[projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection). This is where a verifiable token with a limited lifetime is being injected into a Pod (e.g. Jupyter notebook's).
+<details>
+<summary>Click to expand</summary>
+<hr>
 
-Then Kubeflow Pipelines SDK uses this token to authorize against Kubeflow Pipelines API.
-It is important to understand that `serviceAccountToken` method respects the Kubeflow Pipelines RBAC, 
-and does not allow access beyond what the ServiceAcount running the notebook Pod has.
+The process to authenticate the Pipelines SDK from outside the cluster in multi-user mode will vary by distribution:
 
-More details about `PodDefault` can be found [here](https://github.com/kubeflow/kubeflow/blob/master/components/admission-webhook/README.md).
+* [Kubeflow on Google Cloud](/docs/distributions/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-in-a-full-kubeflow-deployment)
+* [Kubeflow on AWS](/docs/distributions/aws/pipeline/#authenticate-kubeflow-pipeline-using-sdk-outside-cluster)
+* [Kubeflow on Azure](https://awslabs.github.io/kubeflow-manifests/docs/component-guides/pipelines/)
+* [Kubeflow on IBM Cloud](/docs/distributions/ibm/pipelines/#2-authenticating-multi-user-kubeflow-pipelines-with-the-sdk)
 
-## Configure SDK client by environment variables
+### Example for Dex
 
-It's usually beneficial to configure the Kubeflow Pipelines SDK client using Kubeflow Pipelines environment variables,
-so that you can initiate `kfp.Client` instances without any explicit arguments.
+For the deployments that use [Dex](https://dexidp.io/) as their identity provider, this example demonstrates how to authenticate the Pipelines SDK from outside the cluster.
 
-For example, when the API endpoint is [http://localhost:3000](http://localhost:3000), run the following to configure environment variables in bash:
+__Step 1:__ expose your `istio-ingressgateway` service locally (if your Kubeflow Istio gateway is not already exposed on a domain)
 
 ```bash
-export KF_PIPELINES_ENDPOINT=http://localhost:3000
+# `svc/istio-ingressgateway` may be called something else, or use different ports
+kubectl port-forward --namespace istio-system svc/istio-ingressgateway 8080:80
 ```
 
-Or configure in a Jupyter Notebook by using the [IPython built-in `%env` magic command](https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-env):
+__Step 2:__ this Python code defines a `get_istio_auth_session()` function that returns a session cookie by authenticating with dex
 
 ```python
-%env KF_PIPELINES_ENDPOINT=http://localhost:3000
+import re
+import requests
+from urllib.parse import urlsplit
+
+def get_istio_auth_session(url: str, username: str, password: str) -> dict:
+    """
+    Determine if the specified URL is secured by Dex and try to obtain a session cookie.
+    WARNING: only Dex `staticPasswords` and `LDAP` authentication are currently supported
+             (we default default to using `staticPasswords` if both are enabled)
+
+    :param url: Kubeflow server URL, including protocol
+    :param username: Dex `staticPasswords` or `LDAP` username
+    :param password: Dex `staticPasswords` or `LDAP` password
+    :return: auth session information
+    """
+    # define the default return object
+    auth_session = {
+        "endpoint_url": url,    # KF endpoint URL
+        "redirect_url": None,   # KF redirect URL, if applicable
+        "dex_login_url": None,  # Dex login URL (for POST of credentials)
+        "is_secured": None,     # True if KF endpoint is secured
+        "session_cookie": None  # Resulting session cookies in the form "key1=value1; key2=value2"
+    }
+
+    # use a persistent session (for cookies)
+    with requests.Session() as s:
+
+        ################
+        # Determine if Endpoint is Secured
+        ################
+        resp = s.get(url, allow_redirects=True)
+        if resp.status_code != 200:
+            raise RuntimeError(
+                f"HTTP status code '{resp.status_code}' for GET against: {url}"
+            )
+
+        auth_session["redirect_url"] = resp.url
+
+        # if we were NOT redirected, then the endpoint is UNSECURED
+        if len(resp.history) == 0:
+            auth_session["is_secured"] = False
+            return auth_session
+        else:
+            auth_session["is_secured"] = True
+
+        ################
+        # Get Dex Login URL
+        ################
+        redirect_url_obj = urlsplit(auth_session["redirect_url"])
+
+        # if we are at `/auth?=xxxx` path, we need to select an auth type
+        if re.search(r"/auth$", redirect_url_obj.path): 
+            
+            #######
+            # TIP: choose the default auth type by including ONE of the following
+            #######
+            
+            # OPTION 1: set "staticPasswords" as default auth type
+            redirect_url_obj = redirect_url_obj._replace(
+                path=re.sub(r"/auth$", "/auth/local", redirect_url_obj.path)
+            )
+            # OPTION 2: set "ldap" as default auth type 
+            # redirect_url_obj = redirect_url_obj._replace(
+            #     path=re.sub(r"/auth$", "/auth/ldap", redirect_url_obj.path)
+            # )
+            
+        # if we are at `/auth/xxxx/login` path, then no further action is needed (we can use it for login POST)
+        if re.search(r"/auth/.*/login$", redirect_url_obj.path):
+            auth_session["dex_login_url"] = redirect_url_obj.geturl()
+
+        # else, we need to be redirected to the actual login page
+        else:
+            # this GET should redirect us to the `/auth/xxxx/login` path
+            resp = s.get(redirect_url_obj.geturl(), allow_redirects=True)
+            if resp.status_code != 200:
+                raise RuntimeError(
+                    f"HTTP status code '{resp.status_code}' for GET against: {redirect_url_obj.geturl()}"
+                )
+
+            # set the login url
+            auth_session["dex_login_url"] = resp.url
+
+        ################
+        # Attempt Dex Login
+        ################
+        resp = s.post(
+            auth_session["dex_login_url"],
+            data={"login": username, "password": password},
+            allow_redirects=True
+        )
+        if len(resp.history) == 0:
+            raise RuntimeError(
+                f"Login credentials were probably invalid - "
+                f"No redirect after POST to: {auth_session['dex_login_url']}"
+            )
+
+        # store the session cookies in a "key1=value1; key2=value2" string
+        auth_session["session_cookie"] = "; ".join([f"{c.name}={c.value}" for c in s.cookies])
+
+    return auth_session
 ```
 
-Then you can use the SDK client without explicit arguments.
+__Step 3:__ this Python code uses the above `get_istio_auth_session()` function to create a `kfp.Client()`
 
 ```python
 import kfp
-# When not specified, host defaults to env var KF_PIPELINES_ENDPOINT.
-# This is now equivalent to `client = kfp.Client(host='http://localhost:3000')`
-client = kfp.Client()
+
+KUBEFLOW_ENDPOINT = "http://localhost:8080"
+KUBEFLOW_USERNAME = "user@example.com"
+KUBEFLOW_PASSWORD = "12341234"
+
+auth_session = get_istio_auth_session(
+    url=KUBEFLOW_ENDPOINT,
+    username=KUBEFLOW_USERNAME,
+    password=KUBEFLOW_PASSWORD
+)
+
+client = kfp.Client(host=f"{KUBEFLOW_ENDPOINT}/pipeline", cookies=auth_session["session_cookie"])
 print(client.list_experiments())
 ```
 
-Refer to [more configurable environment variables here](https://github.com/kubeflow/pipelines/blob/54ac9a6a7173aecbbb30a043b2077e790cac6953/sdk/python/kfp/_client.py#L84-L90).
+</details>
+
+## Standalone Kubeflow Pipelines <sub>(from inside cluster)</sub>
+
+<details>
+<summary>Click to expand</summary>
+<hr>
+
+{{% alert title="Warning" color="warning" %}}
+This information only applies to _Standalone Kubeflow Pipelines_.
+{{% /alert %}}
+
+When running inside the Kubernetes cluster, you may connect Pipelines SDK directly to the `ml-pipeline-ui` service via [cluster-internal service DNS resolution](https://kubernetes.io/docs/concepts/services-networking/service/#discovering-services).
+
+{{% alert title="Tip" color="info" %}}
+In [standalone deployments](/docs/components/pipelines/installation/standalone-deployment/) of Kubeflow Pipelines, there is no authentication enforced on the `ml-pipeline-ui` service.
+{{% /alert %}}
+
+For example, when running in the __same namespace__ as Kubeflow:
+
+```python
+import kfp
+
+client = kfp.Client(host="http://ml-pipeline-ui:80")
+
+print(client.list_experiments())
+```
+
+For example, when running in a __different namespace__ to Kubeflow:
+
+```python
+import kfp
+
+# the namespace in which you deployed Kubeflow Pipelines
+namespace = "kubeflow" 
+
+client = kfp.Client(host=f"http://ml-pipeline-ui.{namespace}")
+
+print(client.list_experiments())
+```
+
+</details>
+
+## Standalone Kubeflow Pipelines <sub>(from outside cluster)</sub>
+
+<details>
+<summary>Click to expand</summary>
+<hr>
+
+{{% alert title="Warning" color="warning" %}}
+This information only applies to _Standalone Kubeflow Pipelines_.
+{{% /alert %}}
+
+When running outside the Kubernetes cluster, you may connect Pipelines SDK to the `ml-pipeline-ui` service by using [kubectl port-forwarding](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/).
+
+{{% alert title="Tip" color="info" %}}
+In [standalone deployments](/docs/components/pipelines/installation/standalone-deployment/) of Kubeflow Pipelines, there is no authentication enforced on the `ml-pipeline-ui` service.
+{{% /alert %}}
+
+__Step 1:__ run the following command on your external system to initiate port-forwarding:
+
+```bash
+# change `--namespace` if you deployed Kubeflow Pipelines into a different namespace
+kubectl port-forward --namespace kubeflow svc/ml-pipeline-ui 3000:80
+```
+
+__Step 2:__ the following code will create a `kfp.Client()` against your port-forwarded `ml-pipeline-ui` service:
+
+```python
+import kfp
+
+client = kfp.Client(host="http://localhost:3000")
+
+print(client.list_experiments())
+```
+
+</details>
+
 
 ## Next Steps
 
