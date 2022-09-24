@@ -122,6 +122,14 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="/docs/distributions/charmed/">Docs</a></td>
         <td><a href="https://charmed-kubeflow.io/docs/quickstart">External Website</a></td>
       </tr>
+      <tr>
+        <td>Kubeflow on Civo</td>
+        <td>Rishit Dagli</td>
+        <td>Civo Cloud</td>
+        <td>1.6.0-rc.1</td>
+        <td><a href="/docs/distributions/civo/">Docs</a></td>
+        <td><a href="https://www.civo.com/marketplace/Kubeflow">External Website</a></td>
+      </tr>
     </tbody>
   </table>
 </div>
