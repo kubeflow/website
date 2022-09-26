@@ -14,9 +14,9 @@ For detailed guidance about each step, see the following sections.
 
 <details>
   <summary><h2>Step 1: Deploy a KFP standalone instance into an existing Kubernetes cluster</h2></summary>
+  <hr/>
   This step shows how to deploy a KFP standalone instance into an existing Kubernetes cluster.
   
-<!-- REVIEWER COMMENT (REMOVE BEFORE PUBLISHING): A more "elegant" alternative is to group the prerequisites for all the steps together in one section -->
   ### Before you begin
   You need the following prerequisites:
   * **An existing Kubernetes cluster**: If you don't have a Kubernetes cluster, see [Installation][installation] for instructions about how to get one.
@@ -39,6 +39,7 @@ For detailed guidance about each step, see the following sections.
 </details>
 <details>
   <summary><h2>Step 2: Create and run a simple pipeline using the KFP SDK</h2></summary>
+  <hr/>
 This step shows how to use the KFP SDK to compose a pipeline and submit it for execution by KFP.
 
 ### Before you begin
@@ -46,8 +47,11 @@ Run the following script to install the KFP SDK:
 ```shell
 pip install kfp --pre
 ```
+
+{{% alert title="Tip" color="info" %}}
 This script installs KFP v2, which is currently in pre-release state.
-<!-- REVIEWER COMMENT (REMOVE BEFORE PUBLISHING): Do we have any provision to format this as a note? -->
+{{% /alert %}}
+
 
 ### Create and run a simple pipeline
 The following simple pipeline adds two integers, and then adds another integer to the result to come up with a final sum.
@@ -137,8 +141,9 @@ The above code consists of the following parts:
   ```
 </details>
 <details>
-<summary><h2>Step 3: View the pipeline in the KFP Dashboard</h2></summary>
-This step shows how to view the pipeline run on the KFP Dashboard. To do this, go to the URL printed in [step 2](#step-2-create-and-run-a-simple-pipeline-using-the-kfp-sdk).
+  <summary><h2>Step 3: View the pipeline in the KFP Dashboard</h2></summary>
+  <hr/>
+This step shows how to view the pipeline run on the KFP Dashboard. To do this, go to the URL printed from step 2.
 
 To view the details of each task, including input and output, click the appropriate task node.
 <!-- TODO: add logs to this list when available in v2 -->
@@ -149,6 +154,7 @@ class="mt-3 mb-3 border border-info rounded">
 </details>
 <details>
   <summary><h2>Step 4: Build a more advanced ML pipeline that uses additional KFP features</h2></summary>
+  <hr/>
 This step shows how to build a more advanced machine learning (ML) pipeline that demonstrates some additional KFP pipeline composition features.
 
 The following ML pipeline creates a dataset, normalizes the features of the dataset as a preprocessing step, and trains a simple ML model on the data using different hyperparameters:
@@ -288,11 +294,9 @@ This example introduces the following new features in the pipeline:
 
 * One of the **DSL control flow features**, `dsl.ParallelFor`, is used. It is a context manager that lets pipeline authors write a `for` loop. This `for` loop is executed at pipeline runtime. Using `dsl.ParallelFor` to iterate over the `neighbors` pipeline argument lets you execute the  `train_model` component with different arguments and test multiple hyperparameters in one pipeline run. Other control flow features include `dsl.Condition` and `dsl.ExitHandler`.
 
-## Congratulations!
+Congratulations! You now have a KFP deployment, an end-to-end machine learning pipeline, and an introduction to the UI. That's just the beginning of KFP pipeline and Dashboard features.
 
-You now have a KFP deployment, an end-to-end machine learning pipeline, and an introduction to the UI. That's just the beginning of KFP pipeline and Dashboard features.
-
-<!-- REVIEWER COMMENT (REMOVE BEFORE PUBLISHING): This statement, while exciting, might seem prematurely truncated. Is there anything else we could add here, like directing the user to the links under "Next steps")? -->
+<!TODO: Add some more content to direct the user to what comes next. -->
 
 
 ## Next steps
