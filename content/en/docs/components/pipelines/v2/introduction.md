@@ -34,7 +34,7 @@ Pipelines are written in Python for an easy authoring experience, compiled to YA
 
 ## What does using KFP look like?
 
-At a high level, using KFP consists of the following steps:
+At a high level, the KFP user journey consists of the following steps:
 
 1. [Author a pipeline][author-a-pipeline] with one or more components using the **Python KFP SDK**'s domain-specific language (DSL). You can [author your own components][components] or use prebuilt components provided by other authors.
 2. [Compile the pipeline][compile-a-pipeline] into a static configuration (YAML) by using the **KFP SDK's DSL compiler**.
