@@ -8,7 +8,7 @@ weight = 3
 {{% stable-status %}}
 
 <!-- TODO: add UI screenshots for final pipeline -->
-This tutorial helps you get started with KFP through the following steps:
+This tutorial helps you get started with KFP. Click each step to view the instructions:
 
 <details>
   <summary><h2>Step 1: Deploy a KFP standalone instance into an existing Kubernetes cluster</h2></summary>
