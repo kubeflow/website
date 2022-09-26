@@ -121,7 +121,7 @@ Using kustomize together with kubectl to deploy kubeflow:
    ```
    You can also change the email value if needed.
 
-5. Apply the `kustomize` file under `iks-single` folder for single user deployment:
+5. Apply the `kustomize` file under `iks-single` folder for single user deployment (Hint: you don't need to *cd* into the *iks-single* folger):
 
    ```shell
    while ! kustomize build iks-single | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
