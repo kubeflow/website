@@ -33,7 +33,7 @@ This tutorial helps you get started with KFP through the following steps:
   ```
 
   After you deploy Kubernetes, obtain your KFP endpoint by following [these instructions][installation].
-  <!-- TODO: add more precise section link when available -->
+  <!-- TODO: add more precise section link and descriptive link text (with more context) when available -->
 </details>
 <details>
   <summary><h2>Step 2: Create and run a simple pipeline using the KFP SDK</h2></summary>
