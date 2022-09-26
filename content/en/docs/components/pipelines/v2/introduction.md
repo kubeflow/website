@@ -29,7 +29,7 @@ The primary objectives of Kubeflow Pipelines are to enable the following:
 
 A [_pipeline_][pipelines] is the description of a workflow with one or more steps, also known as [_tasks_][tasks]. A task is defined by a single container execution. Each task in a pipeline consists of input and output parameters. By specifying the output of one task as the input of another task, a pipeline author can form a computed acyclic graph (DAG) of tasks.
 
-Pipelines are written in Python to provide an easy authoring experience, compiled to YAML for portability, and executed on Kubernetes for scalability.
+Pipelines are written in Python for an easy authoring experience, compiled to YAML for portability, and executed on Kubernetes for scalability.
 
 
 ## What does using KFP look like?
