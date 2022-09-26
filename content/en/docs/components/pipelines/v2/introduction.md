@@ -12,7 +12,7 @@ scalable machine learning (ML) workflows by using Docker containers.
 
 KFP is available as a core component of Kubeflow or as a standalone installation. To quickly get started with a KFP deployment and usage example, see the [Quickstart][quickstart] guide.
 
-<!-- REVIEWER COMMENT (REMOVE BEFORE PUBLISHING): Best to comment these out until the topic is available -->
+<!-- TODO: Include these links once the topic is available -->
 <!-- [Learn more about installing Kubeflow][Installation]
 [Learn more about installing Kubeflow Pipelines standalone][Installation] -->
 
