@@ -111,6 +111,13 @@ Using kustomize together with kubectl to deploy kubeflow:
    python3 -c 'from passlib.hash import bcrypt; import getpass; print(bcrypt.using(rounds=12, ident="2y").hash(getpass.getpass()))'
    ```
    Type your password and press `<Enter>` after you see `Password:` prompt. Copy the hash code for next step.
+   
+   In case you get an error like *ModuleNotFoundError: No module named 'passlib'*:
+   ```shell
+   python -m venv /tmp/kubeflow (optional)
+   source /tmp/kubeflow/bin/activate (optional)
+   pip install passlib
+   ```
 
 4. Edit `dist/stacks/ibm/application/dex-auth/custom-env.yaml` and fill the relevant field
    with the hash code from previous step:
