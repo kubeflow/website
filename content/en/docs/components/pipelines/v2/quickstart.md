@@ -291,7 +291,7 @@ This example introduces the following new features in the pipeline:
   `create_dataset_task.outputs['iris_dataset']`
 
 * One of the **DSL control flow features**, `dsl.ParallelFor`, is used. It is a context manager that lets pipeline authors write a `for` loop. This `for` loop is executed at pipeline runtime. Using `dsl.ParallelFor` to iterate over the `neighbors` pipeline argument lets you execute the  `train_model` component with different arguments and test multiple hyperparameters in one pipeline run. Other control flow features include `dsl.Condition` and `dsl.ExitHandler`.
-
+</details>
 Congratulations! You now have a KFP deployment, an end-to-end machine learning pipeline, and an introduction to the UI. That's just the beginning of KFP pipeline and Dashboard features.
 
 <!TODO: Add some more content to direct the user to what comes next. -->
