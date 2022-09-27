@@ -168,7 +168,7 @@ To gather the logs the backend will:
 ## Metrics
 
 As mentioned in the above sections the web app allows users to inspect the
-metrics from the InferenceService. This tab will __not__ be enable by default.
+metrics from the InferenceService. This tab will __not__ be enabled by default.
 In order to expose it the users will need to install Grafana and Prometheus.
 
 Currently the frontend is expecting to find a Grafana exposed in the `/grafana`
