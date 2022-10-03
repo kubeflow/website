@@ -87,7 +87,7 @@ Example variables:
 
 ## Kubeflow installation
 
-**Important**: To deploy Kubeflow on Azure with multi-user authentication and namespace separation, use the instructions for [Authentication using OICD in Azure](/docs/azure/authentication-oidc). The instructions in this guide apply only to a single-user Kubeflow deployment. Such a deployment cannot be upgraded to a multi-user deployment at this time.
+**Important**: To deploy Kubeflow on Azure with multi-user authentication and namespace separation, use the instructions for [Authentication using OIDC in Azure](/docs/azure/authentication-oidc). The instructions in this guide apply only to a single-user Kubeflow deployment. Such a deployment cannot be upgraded to a multi-user deployment at this time.
 
 **Note**: kfctl is currently available for Linux and macOS users only. If you use Windows, you can install kfctl on Windows Subsystem for Linux (WSL). Refer to the official [instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for setting up WSL.
 
