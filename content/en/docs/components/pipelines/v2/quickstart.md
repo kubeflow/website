@@ -144,6 +144,7 @@ The above code consists of the following parts:
 <details>
   <summary><a name="kfp_qs_step3"></a><h2 style="display:inline;">Step 3: View the pipeline in the KFP Dashboard</h2></summary>
   <hr/>
+
 This step shows how to view the pipeline run on the KFP Dashboard. To do this, go to the URL printed from [step 2](#kfp_qs_step_2).
 
 To view the details of each task, including input and output, click the appropriate task node.
