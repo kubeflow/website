@@ -5,7 +5,6 @@ weight = 1
                     
 +++
 
-{{% stable-status %}}
 
 Kubeflow Pipelines (KFP) is a platform for building and deploying portable and
 scalable machine learning (ML) workflows by using Docker containers.
@@ -27,18 +26,18 @@ The primary objectives of Kubeflow Pipelines are to enable the following:
 
 ## What is a pipeline?
 
-A [_pipeline_][pipelines] is the description of a workflow with one or more steps, also known as [_tasks_][tasks]. A task is defined by a single container execution. Each task in a pipeline consists of input and output parameters. By specifying the output of one task as the input of another task, a pipeline author can form a computed acyclic graph (DAG) of tasks.
+A [_pipeline_][pipelines] is the definition of a workflow with one or more steps called [_tasks_][tasks]. A task is defined by a single container execution and includes output parameters. Each task in a pipeline might also include input parameters. By specifying the output of one task as the input of another task, a pipeline author can form a computed acyclic graph (DAG) of tasks.
 
 Pipelines are written in Python for an easy authoring experience, compiled to YAML for portability, and executed on Kubernetes for scalability.
 
 
 ## What does using KFP look like?
 
-At a high level, the KFP user journey consists of the following steps:
+At a high level, using KFP consists of the following steps:
 
 1. [Author a pipeline][author-a-pipeline] with one or more components using the **Python KFP SDK**'s domain-specific language (DSL). You can [author your own components][components] or use prebuilt components provided by other authors.
-2. [Compile the pipeline][compile-a-pipeline] into a static configuration (YAML) by using the **KFP SDK's DSL compiler**.
-3. Submit the pipeline to run on the **KFP backend**. The **KFP backend** orchestrates the Kubernetes Pod creation and data passes, which are required to execute your workflow.
+2. [Compile the pipeline][compile-a-pipeline] into a static representation (YAML) by using the **KFP SDK's DSL compiler**.
+3. Submit the pipeline to run on the **KFP backend**. The KFP backend orchestrates the Kubernetes Pod creation and data passes, which are required to execute your workflow.
 4. View your runs, experiments, and ML artifacts on the **KFP Dashboard**.
 
 
@@ -47,7 +46,8 @@ At a high level, the KFP user journey consists of the following steps:
 * Follow the 
   [pipelines quickstart guide][Quickstart] guide to 
   deploy Kubeflow Pipelines and run your first pipeline
-* Learn more about the [different ways to install KFP][installation]
+<!-- TODO: Uncomment these links once the topic is created -->
+<!-- * Learn more about the [different ways to install KFP][installation] -->
 * Learn more about [authoring pipelines][author-a-pipeline]
 
 [quickstart]: /docs/components/pipelines/v2/quickstart
