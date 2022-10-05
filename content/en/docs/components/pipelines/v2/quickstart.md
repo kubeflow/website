@@ -7,12 +7,17 @@ weight = 3
 
 <style type="text/css">
 summary::marker {
-    font-size: 25px;
+    font-size: 1.5rem;
+}
+summary {
+    margin-bottom: 1.5rem;
 }
 </style>
 
 <!-- TODO: add UI screenshots for final pipeline -->
-This tutorial helps you get started with KFP. Before you begin, you need the following prerequisites:
+This tutorial helps you get started with KFP.
+
+Before you begin, you need the following prerequisites:
 
   * **An existing Kubernetes cluster**: If you don't have a Kubernetes cluster, see [Installation][installation] for instructions about how to get one.
   
@@ -23,12 +28,12 @@ This tutorial helps you get started with KFP. Before you begin, you need the fol
     pip install kfp --pre
     ```
 
-    Note: This command installs KFP v2, which is in pre-release stage and is not yet stable. The v2 documentation is being developed continually and some of the links to the v2 documentation might be unavailable.
+    **Note:** This command installs KFP v2, which is in pre-release stage and is not yet stable. The v2 documentation is being developed continually and some of the links to the v2 documentation might be unavailable.
 
 After you complete the prerequisites, click each step to view the instructions:
 
 <details>
-  <summary><a name="kfp_qs_step1"></a><h2 style="display:inline;">Step 1: Deploy a KFP standalone instance into an existing Kubernetes cluster</h2></summary>
+  <summary><a name="kfp_qs_step1"></a><h2 style="display:inline;">Step 1: Deploy a KFP standalone instance into your cluster</h2></summary>
   <hr/>
   This step shows how to deploy a KFP standalone instance into an existing Kubernetes cluster.
 
@@ -110,7 +115,7 @@ The above code consists of the following parts:
 
   You must always pass component arguments as keyword arguments.
 
-* In the fourth part, the following lines instantiate a KFP client using the endpoint obtained in [step 1](#step-1-deploy-a-kfp-standalone-instance-into-an-existing-kubernetes-cluster) and submit the pipeline to the KFP backend with the required pipeline arguments:
+* In the fourth part, the following lines instantiate a KFP client using the endpoint obtained in [step 1](#kfp_qs_step1) and submit the pipeline to the KFP backend with the required pipeline arguments:
 
   ```python
   endpoint = '<KFP_ENDPOINT>'
@@ -139,7 +144,7 @@ The above code consists of the following parts:
 <details>
   <summary><a name="kfp_qs_step3"></a><h2 style="display:inline;">Step 3: View the pipeline in the KFP Dashboard</h2></summary>
   <hr/>
-This step shows how to view the pipeline run on the KFP Dashboard. To do this, go to the URL printed from [step 2](#kfp_step_2).
+This step shows how to view the pipeline run on the KFP Dashboard. To do this, go to the URL printed from [step 2](#kfp_qs_step_2).
 
 To view the details of each task, including input and output, click the appropriate task node.
 <!-- TODO: add logs to this list when available in v2 -->
@@ -149,9 +154,9 @@ alt="Pipelines Dashboard"
 class="mt-3 mb-3 border border-info rounded">
 </details>
 <details>
-  <summary><a name="kfp_qs_step4"></a><h2 style="display:inline;">Step 4: Build a more advanced ML pipeline that uses additional KFP features</h2></summary>
+  <summary><a name="kfp_qs_step4"></a><h2 style="display:inline;">Step 4: Build a more advanced ML pipeline</h2></summary>
   <hr/>
-This step shows how to build a more advanced machine learning (ML) pipeline that demonstrates some additional KFP pipeline composition features.
+This step shows how to build a more advanced machine learning (ML) pipeline that demonstrates additional KFP pipeline composition features.
 
 The following ML pipeline creates a dataset, normalizes the features of the dataset as a preprocessing step, and trains a simple ML model on the data using different hyperparameters:
 
@@ -290,10 +295,10 @@ This example introduces the following new features in the pipeline:
 
 * One of the **DSL control flow features**, `dsl.ParallelFor`, is used. It is a context manager that lets pipeline authors create tasks. These tasks execute in parallel in a loop. Using `dsl.ParallelFor` to iterate over the `neighbors` pipeline argument lets you execute the  `train_model` component with different arguments and test multiple hyperparameters in one pipeline run. Other control flow features include `dsl.Condition` and `dsl.ExitHandler`.
 </details>
+
 Congratulations! You now have a KFP deployment, an end-to-end ML pipeline, and an introduction to the UI. That's just the beginning of KFP pipeline and Dashboard features.
 
 <!TODO: Add some more content to direct the user to what comes next. -->
-
 
 ## Next steps
 * See [Installation][installation] for additional ways to deploy KFP
