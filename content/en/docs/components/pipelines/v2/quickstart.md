@@ -5,22 +5,32 @@ weight = 3
                     
 +++
 
-{{% stable-status %}}
+<style type="text/css">
+summary::marker {
+    font-size: 25px;
+}
+</style>
 
 <!-- TODO: add UI screenshots for final pipeline -->
-This tutorial helps you get started with KFP. Click each step to view the instructions:
+This tutorial helps you get started with KFP. Before you begin, you need the following prerequisites:
+
+  * **An existing Kubernetes cluster**: If you don't have a Kubernetes cluster, see [Installation][installation] for instructions about how to get one.
+  
+  * **The [kubectl](https://kubernetes.io/docs/tasks/tools/) command-line tool**: Install and configure your [kubectl context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) to connect with your cluster.
+  
+  * Run the following script to install the KFP SDK:
+    ```shell
+    pip install kfp --pre
+    ```
+
+    Note: This command installs KFP v2, which is in pre-release stage and is not yet stable. The v2 documentation is being developed continually and some of the links to the v2 documentation might be unavailable.
+
+After you complete the prerequisites, click each step to view the instructions:
 
 <details>
-  <summary><h2>Step 1: Deploy a KFP standalone instance into an existing Kubernetes cluster</h2></summary>
+  <summary><a name="kfp_qs_step1"></a><h2 style="display:inline;">Step 1: Deploy a KFP standalone instance into an existing Kubernetes cluster</h2></summary>
   <hr/>
   This step shows how to deploy a KFP standalone instance into an existing Kubernetes cluster.
-  
-  ### Before you begin
-  You need the following prerequisites:
-  * **An existing Kubernetes cluster**: If you don't have a Kubernetes cluster, see [Installation][installation] for instructions about how to get one.
-  * **The [kubectl](https://kubernetes.io/docs/tasks/tools/) command-line tool**: Install and configure your [kubectl context].       (https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) to connect with your cluster. 
-
-  ### Deploy a KFP standalone instance into your cluster
 
   Run the following script after replacing `PIPELINE_VERSION` with the desired version of KFP:
 
@@ -36,22 +46,10 @@ This tutorial helps you get started with KFP. Click each step to view the instru
   <!-- TODO: add more precise section link and descriptive link text (with more context) when available -->
 </details>
 <details>
-  <summary><h2>Step 2: Create and run a simple pipeline using the KFP SDK</h2></summary>
+  <summary><a name="kfp_qs_step2"></a><h2 style="display:inline;">Step 2: Create and run a simple pipeline using the KFP SDK</h2></summary>
   <hr/>
 This step shows how to use the KFP SDK to compose a pipeline and submit it for execution by KFP.
 
-### Before you begin
-Run the following script to install the KFP SDK:
-```shell
-pip install kfp --pre
-```
-
-{{% alert title="Tip" color="info" %}}
-This script installs KFP v2, which is currently in pre-release state.
-{{% /alert %}}
-
-
-### Create and run a simple pipeline
 The following simple pipeline adds two integers, and then adds another integer to the result to come up with a final sum.
 
 ```python
@@ -128,7 +126,7 @@ The above code consists of the following parts:
   print(url)
   ```
 
-  In this example, replace `endpoint` with the KFP endpoint URL you obtained in the from [step 1](#step-1-deploy-a-kfp-standalone-instance-into-an-existing-kubernetes-cluster).
+  In this example, replace `endpoint` with the KFP endpoint URL you obtained in the from [step 1](#kfp_qs_step1).
 
   Alternatively, you can compile the pipeline to [IR YAML][ir-yaml] for use at another time:
 
@@ -139,9 +137,9 @@ The above code consists of the following parts:
   ```
 </details>
 <details>
-  <summary><h2>Step 3: View the pipeline in the KFP Dashboard</h2></summary>
+  <summary><a name="kfp_qs_step3"></a><h2 style="display:inline;">Step 3: View the pipeline in the KFP Dashboard</h2></summary>
   <hr/>
-This step shows how to view the pipeline run on the KFP Dashboard. To do this, go to the URL printed from step 2.
+This step shows how to view the pipeline run on the KFP Dashboard. To do this, go to the URL printed from [step 2](#kfp_step_2).
 
 To view the details of each task, including input and output, click the appropriate task node.
 <!-- TODO: add logs to this list when available in v2 -->
@@ -151,7 +149,7 @@ alt="Pipelines Dashboard"
 class="mt-3 mb-3 border border-info rounded">
 </details>
 <details>
-  <summary><h2>Step 4: Build a more advanced ML pipeline that uses additional KFP features</h2></summary>
+  <summary><a name="kfp_qs_step4"></a><h2 style="display:inline;">Step 4: Build a more advanced ML pipeline that uses additional KFP features</h2></summary>
   <hr/>
 This step shows how to build a more advanced machine learning (ML) pipeline that demonstrates some additional KFP pipeline composition features.
 
@@ -276,9 +274,9 @@ This example introduces the following new features in the pipeline:
 
 *  Some Python **packages to install** are added at component runtime, using the `packages_to_install` argument on the `@dsl.component` decorator, as follows:
 
-  `@dsl.component(packages_to_install=['pandas==1.3.5'])`
+    `@dsl.component(packages_to_install=['pandas==1.3.5'])`
 
-  To use a library after installing it, you must include its import statements within the scope of the component function, so that the library is imported at component runtime.
+    To use a library after installing it, you must include its import statements within the scope of the component function, so that the library is imported at component runtime.
 
 * **Input and output artifacts** of types `Dataset` and `Model` are introduced in the component signature to describe the input and output artifacts of the components. This is done using the type annotation generics `Input[]` and `Output[]` for input and output artifacts respectively.
 
@@ -290,9 +288,9 @@ This example introduces the following new features in the pipeline:
   
   `create_dataset_task.outputs['iris_dataset']`
 
-* One of the **DSL control flow features**, `dsl.ParallelFor`, is used. It is a context manager that lets pipeline authors write a `for` loop. This `for` loop is executed at pipeline runtime. Using `dsl.ParallelFor` to iterate over the `neighbors` pipeline argument lets you execute the  `train_model` component with different arguments and test multiple hyperparameters in one pipeline run. Other control flow features include `dsl.Condition` and `dsl.ExitHandler`.
+* One of the **DSL control flow features**, `dsl.ParallelFor`, is used. It is a context manager that lets pipeline authors create tasks. These tasks execute in parallel in a loop. Using `dsl.ParallelFor` to iterate over the `neighbors` pipeline argument lets you execute the  `train_model` component with different arguments and test multiple hyperparameters in one pipeline run. Other control flow features include `dsl.Condition` and `dsl.ExitHandler`.
 </details>
-Congratulations! You now have a KFP deployment, an end-to-end machine learning pipeline, and an introduction to the UI. That's just the beginning of KFP pipeline and Dashboard features.
+Congratulations! You now have a KFP deployment, an end-to-end ML pipeline, and an introduction to the UI. That's just the beginning of KFP pipeline and Dashboard features.
 
 <!TODO: Add some more content to direct the user to what comes next. -->
 
