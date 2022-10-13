@@ -31,7 +31,7 @@ to manage Google Cloud infrastructure using GitOps.
     Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository. gcloud hasn't caught up with this kpt version yet, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now. Note that kpt requires docker to be installed.
 
 
-### Fetch GoogleCloudPlatform/kubeflow-distributio package
+### Fetch GoogleCloudPlatform/kubeflow-distribution package
 
 The management cluster manifests live in GitHub repository [GoogleCloudPlatform/kubeflow-distribution](https://github.com/GoogleCloudPlatform/kubeflow-distribution/), use the following commands to pull Kubeflow manifests:
 
