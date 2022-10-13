@@ -39,7 +39,7 @@ The management cluster manifests live in GitHub repository [GoogleCloudPlatform/
 
     ```bash
     git clone https://github.com/GoogleCloudPlatform/kubeflow-distribution.git 
-    cd gcp-blueprints
+    cd kubeflow-distribution
     git checkout tags/v{{% gke/latest-version %}} -b v{{% gke/latest-version %}}
     ```
 
