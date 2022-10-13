@@ -31,7 +31,7 @@ to manage Google Cloud infrastructure using GitOps.
     Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository. gcloud hasn't caught up with this kpt version yet, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now. Note that kpt requires docker to be installed.
 
 
-### Fetch kubeflow/gcp-blueprints package
+### Fetch GoogleCloudPlatform/kubeflow-distributio package
 
 The management cluster manifests live in GitHub repository [GoogleCloudPlatform/kubeflow-distribution](https://github.com/GoogleCloudPlatform/kubeflow-distribution/), use the following commands to pull Kubeflow manifests:
 
@@ -52,7 +52,7 @@ The management cluster manifests live in GitHub repository [GoogleCloudPlatform/
     ```
 
 
-1. Go to `gcp-blueprints/management` directory for Management cluster configurations.
+1. Go to `kubeflow-distribution/management` directory for Management cluster configurations.
 
     ```bash
     cd management
@@ -60,12 +60,12 @@ The management cluster manifests live in GitHub repository [GoogleCloudPlatform/
 
 {{% alert title="Tip" color="info" %}}
   To continuously manage the management cluster, you are recommended to check
-  the management configuration directory into source control. For example, `MGMT_DIR=~/gcp-blueprints/management/`.
+  the management configuration directory into source control. For example, `MGMT_DIR=~/kubeflow-distribution/management/`.
 {{% /alert %}}
 
 ### Configure Environment Variables
 
-Fill in environment variables in `gcp-blueprints/management/env.sh` as followed:
+Fill in environment variables in `kubeflow-distribution/management/env.sh` as followed:
 
 ```bash
 MGMT_PROJECT=<the project where you deploy your management cluster>
