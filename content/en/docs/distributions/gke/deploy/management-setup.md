@@ -33,12 +33,12 @@ to manage Google Cloud infrastructure using GitOps.
 
 ### Fetch kubeflow/gcp-blueprints package
 
-The management cluster manifests live in GitHub repository [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints), use the following commands to pull Kubeflow manifests:
+The management cluster manifests live in GitHub repository [GoogleCloudPlatform/kubeflow-distribution](https://github.com/GoogleCloudPlatform/kubeflow-distribution/), use the following commands to pull Kubeflow manifests:
 
 1. Clone the GitHub repository and check out the v{{% gke/latest-version %}} tag:
 
     ```bash
-    git clone https://github.com/kubeflow/gcp-blueprints.git 
+    git clone https://github.com/GoogleCloudPlatform/kubeflow-distribution.git 
     cd gcp-blueprints
     git checkout tags/v{{% gke/latest-version %}} -b v{{% gke/latest-version %}}
     ```
@@ -47,7 +47,7 @@ The management cluster manifests live in GitHub repository [kubeflow/gcp-bluepri
 
     ```bash
     # Check out Kubeflow v{{% gke/latest-version %}} blueprints
-    kpt pkg get https://github.com/kubeflow/gcp-blueprints.git@v{{% gke/latest-version %}} gcp-blueprints
+    kpt pkg get https://github.com/GoogleCloudPlatform/kubeflow-distribution.git@v{{% gke/latest-version %}} gcp-blueprints
     cd gcp-blueprints
     ```
 
