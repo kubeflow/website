@@ -20,13 +20,13 @@ This guide assumes the following settings:
   are the same as in [Deploy using kubectl and kpt](/docs/distributions/gke/deploy/deploy-cli#environment-variables).
 * The `${KF_DIR}` environment variable contains the path to
   your Kubeflow application directory, which holds your Kubeflow configuration 
-  files. For example, `/opt/gcp-blueprints/kubeflow/`.
+  files. For example, `/opt/kubeflow-distribution/kubeflow/`.
 
 ## General upgrade instructions
 
 Starting from Kubeflow v1.5, we have integrated with [Config Controller](https://cloud.google.com/anthos-config-management/docs/concepts/config-controller-overview). You don't need to manually upgrade Management cluster any more, since it managed by [Upgrade Config Controller](https://cloud.google.com/anthos-config-management/docs/how-to/config-controller-setup#upgrade).
 
-Starting from Kubeflow v1.3, we have reworked on the structure of `kubeflow/gcp-blueprints` repository. All resources are located in `gcp-blueprints/management` directory. Upgrade to Management cluster v1.3 is not supported.
+Starting from Kubeflow v1.3, we have reworked on the structure of `GoogleCloudPlatform/kubeflow-distribution` repository. All resources are located in `kubeflow-distribution/management` directory. Upgrade to Management cluster v1.3 is not supported.
 
 Before Kubeflow v1.3, both management cluster and Kubeflow cluster follow the same `instance` and `upstream` folder convention. To upgrade, you'll typically need to update packages in `upstream` to the new version and repeat the `make apply-<subcommand>` commands in their respective deployment process.
 
@@ -38,7 +38,7 @@ However, specific upgrades might need manual actions below.
 
 It is strongly recommended to use source control to keep a copy of your working repository for recording changes at each step.
 
-Due to the refactoring of `kubeflow/manifests` repository, the way we depend on `kubeflow/gcp-blueprints` has changed drastically. This section suits for upgrading from Kubeflow 1.3 to higher.
+Due to the refactoring of `kubeflow/manifests` repository, the way we depend on `GoogleCloudPlatform/kubeflow-distribution` has changed drastically. This section suits for upgrading from Kubeflow 1.3 to higher.
 
 
 1. The instructions below assume that your current working directory is
@@ -73,13 +73,13 @@ Due to the refactoring of `kubeflow/manifests` repository, the way we depend on 
    1.46.0
    ```
    
-1. Merge the content from new Kubeflow version of `kubeflow/gcp-blueprints`
+1. Merge the content from new Kubeflow version of `GoogleCloudPlatform/kubeflow-distribution`
 
    ```bash
    WORKING_BRANCH=<your-github-working-branch>
    VERSION_TAG=<targeted-kubeflow-version-tag-on-github>
    git checkout -b "${WORKING_BRANCH}"
-   git remote add upstream https://github.com/kubeflow/gcp-blueprints.git # This is one time only.
+   git remote add upstream https://github.com/GoogleCloudPlatform/kubeflow-distribution.git # This is one time only.
    git fetch upstream 
    git merge "${VERSION_TAG}"
    ```
@@ -151,7 +151,7 @@ Due to the refactoring of `kubeflow/manifests` repository, the way we depend on 
 
    These commands uninstall the config connector without removing your resources.
 
-1. Replace your `./Makefile` with the version in Kubeflow `v1.2.0`: <https://github.com/kubeflow/gcp-blueprints/blob/v1.2.0/management/Makefile>.
+1. Replace your `./Makefile` with the version in Kubeflow `v1.2.0`: <https://github.com/GoogleCloudPlatform/kubeflow-distribution/blob/v1.2.0/management/Makefile>.
 
    If you made any customizations in `./Makefile`, you should merge your changes with the upstream version. We've refactored the Makefile to move substantial commands into the upstream package, so hopefully future upgrades won't require a manual merge of the Makefile.
 
@@ -221,13 +221,13 @@ To upgrade from specific versions of Kubeflow, you may need to take certain manu
       kubectl config use-context ${KF_NAME}
       ```
 
-1. Merge the new version of `kubeflow/gcp-blueprints` (example: v1.3.1), you don't need to do it again if you have already done so during management cluster upgrade.
+1. Merge the new version of `GoogleCloudPlatform/kubeflow-distribution` (example: v1.3.1), you don't need to do it again if you have already done so during management cluster upgrade.
 
    ```bash
    WORKING_BRANCH=<your-github-working-branch>
    VERSION_TAG=<targeted-kubeflow-version-tag-on-github>
    git checkout -b "${WORKING_BRANCH}"
-   git remote add upstream https://github.com/kubeflow/gcp-blueprints.git # This is one time only.
+   git remote add upstream https://github.com/GoogleCloudPlatform/kubeflow-distribution.git # This is one time only.
    git fetch upstream 
    git merge "${VERSION_TAG}"
    ```
@@ -260,20 +260,20 @@ Kubeflow on Google Cloud doesn't guarantee the upgrade for each Kubeflow compone
 
 Starting from Kubeflow v1.6.0:
 * Component with deprecated API versions were upgraded to support GKE v1.22. If you would like to upgrade your GKE cluster, follow [GCP instructions](https://cloud.google.com/kubernetes-engine/docs/how-to/upgrading-a-cluster).
-* ASM was upgraded to v1.14. Follow the instructions on how to [upgrade ASM (Anthos Service Mesh)](#upgrade-asm-anthos-service-mesh). If you want to use ASM version prior to 1.11, refer to [the legacy instructions](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/deprecated/README.md). 
+* ASM was upgraded to v1.14. Follow the instructions on how to [upgrade ASM (Anthos Service Mesh)](#upgrade-asm-anthos-service-mesh). If you want to use ASM version prior to 1.11, refer to [the legacy instructions](https://github.com/GoogleCloudPlatform/kubeflow-distribution/blob/master/kubeflow/common/asm/deprecated/README.md). 
 * Knative was upgraded to v1.2. Follow [Knative instructions](https://knative.dev/docs/install/upgrade/upgrade-installation/) to check current version and see if the update includes any breaking changes.
 * Cert-manager was upgraded to v1.5. To check your current version and see if the update includes any breaking changes, follow the [cert-manager instructions](https://cert-manager.io/docs/installation/upgrading/). 
 * Deprecated kfserving component was removed. To upgrade to KServe, follow the [KServe Migration guide](https://github.com/kserve/kserve/tree/master/hack/kserve_migration).
 
 ### Upgrade Kubeflow cluster to v1.5
 
-In Kubeflow v1.5.1 we use ASM v1.13. See [how to upgrade ASM](#upgrade-asm-anthos-service-mesh). To use ASM versions prior to 1.11, follow [the legacy instructions](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/deprecated/README.md).
+In Kubeflow v1.5.1 we use ASM v1.13. See [how to upgrade ASM](#upgrade-asm-anthos-service-mesh). To use ASM versions prior to 1.11, follow [the legacy instructions](https://github.com/GoogleCloudPlatform/kubeflow-distribution/blob/master/kubeflow/common/asm/deprecated/README.md).
 
-Starting from Kubeflow v1.5, Kubeflow manifests have included KServe as an independent component from kfserving, Google Cloud distribution has switched over from kfserving to KServe for default installed components. If you want to upgrade Kubeflow while keeping kfsering, you can comment KServe and uncomment kfserving in `gcp-blueprints/kubeflow/config.yaml` file. If you want to upgrade to KServe, follow the [KServe Migration guide](https://github.com/kserve/kserve/tree/master/hack/kserve_migration).
+Starting from Kubeflow v1.5, Kubeflow manifests have included KServe as an independent component from kfserving, Google Cloud distribution has switched over from kfserving to KServe for default installed components. If you want to upgrade Kubeflow while keeping kfsering, you can comment KServe and uncomment kfserving in `kubeflow-distribution/kubeflow/config.yaml` file. If you want to upgrade to KServe, follow the [KServe Migration guide](https://github.com/kserve/kserve/tree/master/hack/kserve_migration).
 
 ### Upgrade Kubeflow cluster to v1.3
 
-Due to the refactoring of `kubeflow/manifests` repository, the way we depend on `kubeflow/gcp-blueprints` has changed drastically. Upgrade to Kubeflow cluster v1.3 is not supported. And individual component upgrade has been deferred to its corresponding repository for support.
+Due to the refactoring of `kubeflow/manifests` repository, the way we depend on `GoogleCloudPlatform/kubeflow-distribution` has changed drastically. Upgrade to Kubeflow cluster v1.3 is not supported. And individual component upgrade has been deferred to its corresponding repository for support.
 
 ### Upgrade Kubeflow cluster from v1.1 to v1.2
 
@@ -294,7 +294,7 @@ Due to the refactoring of `kubeflow/manifests` repository, the way we depend on 
       kubectl config use-context ${KF_NAME}
       ```
 
-1. (Recommended) Replace your `./Makefile` with the version in Kubeflow `v1.2.0`: <https://github.com/kubeflow/gcp-blueprints/blob/v1.2.0/kubeflow/Makefile>.
+1. (Recommended) Replace your `./Makefile` with the version in Kubeflow `v1.2.0`: <https://github.com/GoogleCloudPlatform/kubeflow-distribution/blob/v1.2.0/kubeflow/Makefile>.
 
     If you made any customizations in `./Makefile`, you should merge your changes with the upstream version.
 
@@ -332,7 +332,7 @@ Due to the refactoring of `kubeflow/manifests` repository, the way we depend on 
 
 ## Upgrade ASM (Anthos Service Mesh)
 
-If you want to upgrade ASM instead of the Kubeflow components, refer to [kubeflow/common/asm/README.md](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/README.md) for the latest instructions on upgrading ASM. Detailed explanation is listed below. Note: if you are going to upgrade major or minor version of ASM, it is recommended to read [the official ASM upgrade documentation](https://cloud.google.com/service-mesh/docs/upgrade-path-old-versions-gke) before proceeding with the steps below.
+If you want to upgrade ASM instead of the Kubeflow components, refer to [kubeflow/common/asm/README.md](https://github.com/GoogleCloudPlatform/kubeflow-distribution/blob/master/kubeflow/common/asm/README.md) for the latest instructions on upgrading ASM. Detailed explanation is listed below. Note: if you are going to upgrade major or minor version of ASM, it is recommended to read [the official ASM upgrade documentation](https://cloud.google.com/service-mesh/docs/upgrade-path-old-versions-gke) before proceeding with the steps below.
 
 ### Install a new ASM workload
 
@@ -342,7 +342,7 @@ In order to use the new ASM version, we need to download the corresponding ASM c
 curl https://storage.googleapis.com/csm-artifacts/asm/ASMCLI_VERSIONS
 ```
 
-It should return a list of ASM versions that can be installed with asmcli script. To install older versions, refer to [the legacy instructions](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/common/asm/deprecated/README.md). The returned list will have a format of `${ASM_PACKAGE_VERSION}:${ASMCLI_SCRIPT_VERSION}`. For example, in the following output:
+It should return a list of ASM versions that can be installed with asmcli script. To install older versions, refer to [the legacy instructions](https://github.com/GoogleCloudPlatform/kubeflow-distribution/blob/master/kubeflow/common/asm/deprecated/README.md). The returned list will have a format of `${ASM_PACKAGE_VERSION}:${ASMCLI_SCRIPT_VERSION}`. For example, in the following output:
 
 ```
 ...
@@ -360,7 +360,7 @@ ASM_PACKAGE_VERSION=1.13.2-asm.5+config2
 ASMCLI_SCRIPT_VERSION=asmcli_1.13.2-asm.5-config2
 ```
 
-You need to set these two values in [kubeflow/asm/Makefile](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/asm/Makefile). Then, run the following command in `kubeflow/asm` directory to install the new ASM. Note, the old ASM will not be uninstalled.
+You need to set these two values in [kubeflow/asm/Makefile](https://github.com/GoogleCloudPlatform/kubeflow-distribution/blob/master/kubeflow/asm/Makefile). Then, run the following command in `kubeflow/asm` directory to install the new ASM. Note, the old ASM will not be uninstalled.
 
 ```bash
 make apply
