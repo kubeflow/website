@@ -1,5 +1,5 @@
 +++
-title = "Paddle Training (PaddleJob)"
+title = "PaddlePaddle Training (PaddleJob)"
 description = "Using PaddleJob to train a model with PaddlePaddle"
 weight = 15
                     
@@ -54,7 +54,7 @@ training-operator-worker-0          1/1     Running   0          4m37s
 training-operator-worker-1          1/1     Running   0          4m37s
 ```
 
-## Creating a Paddle training job
+## Creating a PaddlePaddle training job
 
 You can create a training job by defining a `PaddleJob` config file. See the manifests for the [distributed example](https://github.com/kubeflow/training-operator/blob/master/examples/paddlepaddle/simple-cpu.yaml). You may change the config file based on your requirements.
 
