@@ -1,104 +1,75 @@
 +++
-title = "Compile a Pipeline"
+title = "Compile a pipeline"
 description = "Compile a pipeline definition to YAML"
 weight = 5
 +++
 
-While pipelines and components are authored in Python, they can be compiled to intermediate representation (IR) YAML ([example][compiled-output-example]).
+You can compile your pipeline or component to intermediate representation (IR) YAML.  The IR YAML definition preserves a static representation of the pipeline or component. You can submit the YAML definition to the KFP backend for execution, or deserialize it using the KFP SDK for integration into another pipeline.
+([View an example on Github][compiled-output-example]).
 
-A YAML pipeline/component definition preserves a static representation of your pipeline/component. This YAML can be submitted to the KFP backend for execution or deserialized by the KFP SDK for integration into another pipeline.
+**Note:** Pipelines as well as components are authored in Python. A pipeline is a template representing a multistep workflow, whereas a component is a template representing a single step workflow.
 
-## Compiling
-First let's define a very simple pipeline:
+## Compile a pipeline
 
-```python
-from kfp import compiler
-from kfp import dsl
+Pipelines as well as components are workflow templates authored in Python. A pipeline represents a multistep workflow, whereas a component represents a single step workflow. You can compile a pipeline or a template into IR YAML using the `Compiler.compile` method. To do this, follow these steps:
 
-@dsl.component
-def addition_component(num1: int, num2: int) -> int:
-    return num1 + num2
+1.  Define a simple pipeline:
 
-@dsl.pipeline(name='addition-pipeline')
-def my_pipeline(a: int, b: int, c: int = 10):
-    add_task_1 = addition_component(num1=a, num2=b)
-    add_task_2 = addition_component(num1=add_task_1.output, num2=c)
-```
+    ```python
+    from kfp import compiler
+    from kfp import dsl
 
-Now we can compile the pipeline to the file `my_pipeline.yaml`:
+    @dsl.component
+    def addition_component(num1: int, num2: int) -> int:
+      return num1 + num2
 
-```python
-cmplr = compiler.Compiler()
-cmplr.compile(my_pipeline, package_path='my_pipeline.yaml')
-```
+    @dsl.pipeline(name='addition-pipeline')
+    def my_pipeline(a: int, b: int, c: int = 10):
+      add_task_1 = addition_component(num1=a, num2=b)
+      add_task_2 = addition_component(num1=add_task_1.output, num2=c)
+    ```
 
-Just as a pipeline is a template for a multi-step workflow, a component is a template for a single-step workflow. We can also compile the component `addition_component` directly:
+1.  Compile the pipeline to the file `my_pipeline.yaml`:
 
-```python
-cmplr.compile(addition_component, package_path='addition_component.yaml')
-```
+    ```python
+    cmplr = compiler.Compiler()
+    cmplr.compile(my_pipeline, package_path='my_pipeline.yaml')
+    ```
 
-The `Compiler.compile` method accepts a few optional additional parameters:
+1.  _Optional:_ Directly  compile the component `addition_component` to the file `addition_component.yaml`:
 
-**`pipeline_name`** (`string`)
+    ```python
+    cmplr.compile(addition_component, package_path='addition_component.yaml')
+    ```
 
-Sets the name of the pipeline (or component). This is written to IR as the  `pipelineInfo.name` field. Will override the `name` passed to the `@dsl.pipeline` decorator.
+<!-- TODO: Include pipeline or component name in the table #} -->
 
-The pipeline name, whether set through the decorator or the compiler, names your pipeline template. When you upload your pipeline, a pipeline context by this name will be created. The pipeline context enables the backend and the Dashboard to associate artifacts and executions created from runs of the same pipeline template. This allows you, for example, to compare metrics artifacts from multiple runs of the same training pipeline to find the best model.
+The `Compiler.compile` method accepts the following parameters:
 
-**`pipeline_parameters`** (`Dict[str, Any]`)
-
-A map of parameter names to argument values. This amounts to providing default values for pipeline or component parameters. These defaults can be overriden at pipeline submission time.
-
-**`type_check`** (`bool`)
-
-Whether to enable static type checking during compilation. For more information about type checking, see [Component I/O: Component interfaces and type checking][type-checking].
+| Name | Type | Description |
+|------|------|-------------|
+| `package_path` | `string` | _Required_<br/>URI of the compiled IR YAML output file.
+| `pipeline_name` | `string` | _Optional_<br/>If specified, sets the name of the pipeline template in the `pipelineInfo.name` field in the compiled IR YAML output. Overrides the name of the pipeline or component specified by the `name` parameter in the `@dsl.pipeline` decorator.<br/>For more information about the `pipelineInfo.name` field, see [`pipelineInfo` parameter](#kfp_iryaml_pipelineinfo). |
+| `pipeline_parameters` | `Dict[str, Any]` | _Optional_<br/>A mapping of parameter names to argument values. This lets you provide default values for pipeline or component parameters. You can override these default values during pipeline submission.
+| `type_check` | `bool` | _Optional_<br/>Indicates whether static type checking is enabled during compilation.<br/>For more information about type checking, see [Component I/O: Component interfaces and type checking][type-checking].
 
 ## IR YAML
-When you compile a pipeline it is written to intermediate representation (IR) YAML. An IR YAML is an instance of the [`PipelineSpec`][pipeline-spec] protocol buffer message type, a platform-agnostic pipeline representation protocol.
 
-IR YAML is considered an intermediate representation because the KFP backend compiles `PipelineSpec` to [Argo Workflow][argo-workflow] YAML as the final execution definition for execution on Kubernetes.
+The IR YAML is an intermediate representation of a compiled pipeline or component. It is an instance of the [`PipelineSpec`][pipeline-spec] protocol buffer message type, which is a platform-agnostic pipeline representation protocol. It is considered an intermediate representation because the KFP backend compiles `PipelineSpec` to [Argo Workflow][argo-workflow] YAML as the final execution definition for execution on Kubernetes.
 
-Unlike v1 component YAML, IR YAML is not intended to be written directly. For a KFP v2 authoring experience similar to the v1 component YAML authoring experience, see [Author a Pipeline: Custom Container Components][custom-container-component-authoring].
+Unlike the v1 component YAML, the IR YAML is not intended to be written directly. To learn how to author pipelines and components in KFP v2 similar to authoring component YAML in KFP v1, see [Author a Pipeline: Custom Container Components][custom-container-component-authoring].
 
-IR YAML contains 7 top-level fields:
+The compiled IR YAML file contains the following sections:
 
-**components**
-
-The [`components`][components-schema] section is a map of component name to [`ComponentSpec`][component-spec] for all components used in the pipeline. `ComponentSpec` defines the interface (inputs and outputs) of a component. For primitive components, `ComponentSpec` contains a reference to the executor containing the component implementation. For pipelines used as components, `ComponentSpec` contains a [DagSpec][dag-spec] which includes references to its underlying primitive components.
-
-[Example][components-example]
-
-**deployment_spec**
-
-The [`deployment_spec`][deployment-spec-schema] section contains a map of executor name to [`ExecutorSpec`][executor-spec]. `ExecutorSpec` contains the implementation for a primitive component.
-
-[Example][deployment-spec-example]
-
-**root**  
-[`root`][root-schema] defines the steps of the outermost (root) pipeline definition. It is itself a [`ComponentSpec`][component-spec]. This is the pipeline executed when the YAML is submitted.
-
-[Example][root-example]
-
-**pipeline_info**  
-[`pipeline_info`][pipeline-info-schema] contains pipeline metadata, including the pipeline name.
-
-[Example][pipeline-info-example]  
-
-**sdk_version**  
-[`sdk_version`][sdk-version-schema] records which version of the KFP SDK compiled the pipeline.
-
-[Example][sdk-version-example]  
-
-**schema_version**  
-[`schema_version`][schema-version-schema] records which version of the `PipelineSpec` schema is used for the IR YAML.
-
-[Example][schema-version-example]
-
-**default_pipeline_root**  
-[`default_pipeline_root`][default-pipeline-root-schema] is the remote storage root path where the pipeline outputs will be written, such as a Google Cloud Storage URI (`gcs://my/path`).
-
-[Example][default-pipeline-root-example]  
+| Section | Description | Example |
+|-------|-------------|---------|
+| [`components`][components-schema] | This section is a map of the names of all components used in the pipeline to [`ComponentSpec`][component-spec]. `ComponentSpec` defines the interface, including inputs and outputs, of a component.<br/>For primitive components, `ComponentSpec` contains a reference to the executor containing the component implementation.<br/>For pipelines used as components, `ComponentSpec` contains a [DagSpec][dag-spec] instance, which includes references to the underlying primitive components. | [View on Github][components-example]
+| [`deployment_spec`][deployment-spec-schema] | This section contains a map of executor name to [`ExecutorSpec`][executor-spec]. `ExecutorSpec` contains the implementation for a primitive component. | [View on Github][deployment-spec-example]
+| [`root`][root-schema] | This section defines the steps of the outermost pipeline definition, also called the pipeline root definition. The root definition is an instance of [`ComponentSpec`][component-spec], which is also the pipeline executed on Kubernetes when you submit the IR YAML definition to Kubernetes. | [View on Github][root-example]
+| [`pipeline_info`][pipeline-info-schema] <a id="kfp_iryaml_pipelineinfo"></a> | This section contains pipeline metadata, including the `pipelineInfo.name` field. This field contains the name of your pipeline template. When you upload your pipeline, a pipeline context name is created based on this template name. The pipeline context lets the backend and the dashboard associate artifacts and executions from pipeline runs using the pipeline template. You can use a pipeline context to determine the best model by comparing metrics and artifacts from multiple pipeline runs based on the same training pipeline. | [View on Github][pipeline-info-example]  
+| [`sdk_version`][sdk-version-schema] | This section records the version of the KFP SDK used to compiled the pipeline. | [View on Github][sdk-version-example]  
+| [`schema_version`][schema-version-schema] | This section records the version of the `PipelineSpec` schema used for the IR YAML. | [View on Github][schema-version-example]
+| [`default_pipeline_root`][default-pipeline-root-schema] | This section records the remote storage root path, such as a Google Cloud Storage URI, where the pipeline output is written. | [View on Github][default-pipeline-root-example]  
 
 
 [pipeline-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L50
