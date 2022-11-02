@@ -4,119 +4,161 @@ description = "Interact with KFP via the CLI"
 weight = 8
 +++
 
+<!-- TODO: Improve or standardize rendering of variables and placeholders -->
+<!-- TODO: Standardize inline references to KFP CLI SDK -->
+
 <!-- TODO: use /latest instead of /master when SDK goes GA -->
-This section provides a high-level summary of the KFP command line interface (CLI). For more detailed API documentation, see the [KFP CLI reference][cli-reference-docs].
+This section provides a summary of the available commands in the KFP CLI. For more comprehensive documentation about all the available commands in the KFP CLI, see [Command Line Interface][cli-reference-docs] in the [KFP SDK API reference][kfp-sdk-api-ref].
 
 ## Usage
 The KFP CLI is installed with the KFP SDK as `kfp`.
 
-You can check that the KFP CLI is installed in your environment by running:
+### Check availability of KFP CLI
+
+To check whether KFP CLI is installed in your environment, run the following command:
 
 ```shell
 kfp --version
 ```
 
-All commands assume the general structure:
+### General syntax
+
+All commands in the KFP CLI use the following general syntax:
 
 ```shell
 kfp [OPTIONS] COMMAND [ARGS]...
 ```
 
-For example, to list all runs for a specific endpoint:
+For example, to list all runs for a specific endpoint, run the following command:
 
 ```shell
 kfp --endpoint http://my_kfp_endpoint.com run list
 ```
 
-You can get help for a particular command directly on the command line using `--help`:
+### Get help for a command
+
+To get help for a specific command, use the argument `--help` directly in the command line. For example, to view guidance about the `kfp run` command, type the following command:
 
 ```shell
 kfp run --help
 ```
+## Main functons of the KFP CLI
 
-The KFP CLI serves three main functions:
-1. Interacting with KFP resources
-2. Compiling pipelines
-3. Building Python-based containerized components
+You can use the KFP CLI to do the following:
 
-## Interact with KFP resources
-The majority of the KFP CLI commands involve creating, reading, updating, or deleting KFP resources via the KFP backend. All of these commands take a common structure:
+* [Interact with KFP resources](#cli_interact_with_kfp_resources)
+
+* [Compile pipelines](#cli_compile_pipelines)
+
+* [Build containerized Python components](#cli_build_python_components)
+
+### Interact with KFP resources<a id="cli_interact_with_kfp_resources"></a>
+
+The majority of the KFP CLI commands let you create, read, update, or delete KFP resources from the KFP backend. All of these commands use the following general syntax:
 
 ```shell
 kfp <resource_name> <action>
 ```
 
-`<resource_name>` can be one of the following:
+The `<resource_name>` argument can be one of the following:
 * `run`
 * `recurring-run`
 * `pipeline`
 * `experiment`
 
-All resources support the following actions:
+For all values of the `<resource_name>` argument, the `<action>` argument can be one of the following:
 * `create`
 * `list`
 * `get`
 * `delete`
 
-Some resources have resource-specific actions, including:
-* For `run`:
-  * `archive`
-  * `unarchive`
+Some resource names have additional resource-specific actions. The following table lists a few examples of resource-specific actions:
 
-* For `recurring-run`:
-  * `disable`
-  * `enable`
+| Resource name | Additional resource-specific actions
+|---------------|--------
+| `run` | <ul><li>`archive`</li><li>`unarchive`</li></ul>
+| `recurring-run` | <ul><li>`disable`</li><li>`enable`</li></ul>
+| `experiment` | <ul><li>`archive`</li><li>`unarchive`</li></ul>
+| `pipeline` |  | <ul><li>`create-version`</li><li>`list-versions`</li><li>`get-versions`</li><li>`delete-versions`</li></ul>
 
-* For `experiment`
-  * `archive`
-  * `unarchive`
+### Compile pipelines<a id="cli_compile_pipelines"></a>
 
-* For `pipeline`:
-  * `create-version`
-  * `list-versions`
-  * `get-versions`
-  * `delete-versions`
+You can use the `kfp dsl compile` command to compile pipelines or components defined in a Python file to IR YAML.
 
+* To compile a pipeline defined in a Python file, run the following command:
 
-## Compile pipelines
-The KFP supports compiling a pipeline defined in a Python file to YAML using the `kfp dsl compile` command:
+  ```shell
+  kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml
+  ```
+<!-- TODO: Validate or review these commands -->
+* To compile a pipeline from a Python file containing multiple pipeline definitions, use the `--function` argument:
 
+  ```shell
+  kfp dsl compile --py [PATH_TO_INPUT_PYTHON] --output [PATH_TO_OUTPUT_YAML] --function my_pipeline
+  ```
+
+  For example:
+
+  ```shell
+  kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --function my_pipeline
+  ```
+
+* To compile a component from a Python file containing multiple pipeline or component definitions, use the `--function` argument:
+
+  ```shell
+  kfp dsl compile [PATH_TO_INPUT_PYTHON] --output [PATH_TO_OUTPUT_YAML] --function my_component
+  ```
+
+  For example:
+  ```shell
+  kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --function my_component
+  ```
+
+* To specify pipeline parameters, use the `--pipeline-parameters` argument and provide the parameters as JSON:
+
+  ```shell
+  kfp dsl compile [PATH_TO_INPUT_PYTHON] --output [PATH_TO_OUTPUT_YAML] --pipeline-parameters [PIPELINE_PARAMETERS_JSON]
+  ```
+
+  For example:
+    ```shell
+  kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --pipeline-parameters '{"param1": 2.0, "param2": "my_val"}'
+  ```
+
+### Build containerized Python components<a id="cli_build_python_components"></a>
+<!-- TODO: Revisit the links after the refactoring is completed -->
+
+You can author [containerized Python components][containerized-python-components] in the KFP SDK. This lets you use handle more source code with better code organization than the simpler [lightweight Python component][lightweight-python-component] authoring experience.
+
+<!-- TODO(GA): remove --pre -->
+
+#### Before you begin
+
+Run the following command to install the KFP SDK with the additional Docker dependency:
 ```shell
-kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml
+pip install --pre kfp[all]
 ```
 
-To compile a pipeline from a Python file containing multiple pipeline definitions or to compile a component, provide a `--function` argument:
+#### Build a containerized component
+
+To build a containerized component, use the following convenience command in the KFP CLI:
 
 ```shell
-kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --function my_component
+kfp component build [OPTIONS] [COMPONENTS_DIRECTORY] [ARGS]...
 ```
 
-The CLI compiler also accepts a `--pipeline-parameters` argument as JSON:
-```shell
-kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --pipeline-parameters '{"param1": 2.0, "param2": "my_val"}'
-```
+This command lets you build an image with all the source code found in `COMPONENTS_DIRECTORY`. It uses the component found in the directory as the component runtime entrypoint.
 
-## Build KFP containerized Python components
-The KFP SDK support authoring [containerized Python components][containerized-python-components], allowing the use of more and better-organized source code than does the simpler [lightweight Python component][lightweight-python-component] authoring experience.
-
-The KFP CLI provides a convenience command for streamlining the process of building a containerized component:
-
-```shell
-kfp component build [OPTIONS] COMPONENTS_DIRECTORY [ARGS]...
-```
-
-This command builds an image with all the source code found in `COMPONENTS_DIRECTORY` and uses the component found in the directory as the component runtime entrypoint.
+Example usage:
 
 ```shell
 kfp component build src/ --component-filepattern my_component --push-image
 ```
 
-For detailed information about all arguments/flags, see [CLI reference documentation](https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-component-build). For information about creating containerized components, see [Authoring Python Containerized Components][/docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components].
-
-<!-- TODO(GA): remove --pre -->
-Note: To use this command you'll need to install the KFP SDK with the additional Docker dependency: `pip install --pre kfp[all]`.
+For more information about the arguments and flags supported by the `kfp component build` command, see [build](https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-component-build) in the [KFP SDK API reference][kfp-sdk-api-ref]. For more information about creating containerized components, see [Authoring Python Containerized Components](/docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components).
 
 [cli-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html
+[kfp-sdk-api-ref]: https://kubeflow-pipelines.readthedocs.io/en/master/index.html
 [author-a-pipeline]: /docs/components/pipelines/v2/author-a-pipeline
 [lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components
 [containerized-python-components]: /docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components
