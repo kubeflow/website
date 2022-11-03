@@ -130,6 +130,14 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>N/A</td>
         <td><a href="https://github.com/oracle-devrel/kubeflow-oke">External Website</a></td>
       </tr>
+      <tr>
+        <td>Kubeflow on vSphere</td>
+        <td>VMware</td>
+        <td>vSphere</td>
+        <td>1.6</td>
+        <td>N/A</td>
+        <td><a href="https://vmware.github.io/ml-ops-platform-for-vsphere/">External Website</a></td>
+      </tr>
     </tbody>
   </table>
 </div>
