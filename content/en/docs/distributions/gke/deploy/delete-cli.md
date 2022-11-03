@@ -19,7 +19,7 @@ This guide assumes the following settings:
   
 * The `${KF_DIR}` environment variable contains the path to
   your Kubeflow application directory, which holds your Kubeflow configuration 
-  files. For example, `/opt/gcp-blueprints/kubeflow/`.
+  files. For example, `/opt/kubeflow-distribution/kubeflow/`.
 
 ## Deleting your Kubeflow cluster
 
@@ -87,7 +87,7 @@ Starting from Kubeflow v1.5, Google Cloud distribution has switched to Config Co
 Note, after deleting the management cluster, all the managed Google Cloud
 resources will be kept. You will be responsible for managing them by yourself.
 If you want to delete the managed Google Cloud resources, make sure to delete resources in the `${KF_PROJECT}` namespace in the management cluster first.
-You can learn more about the `${KF_PROJECT}` namespace in `gcp-blueprints/kubeflow/kcc` folder.
+You can learn more about the `${KF_PROJECT}` namespace in `kubeflow-distribution/kubeflow/kcc` folder.
 
 You can create a management cluster to manage them again if you apply the same
 Config Connector resources. Refer to [Managing and deleting resources - Acquiring an existing resource](https://cloud.google.com/config-connector/docs/how-to/managing-deleting-resources#acquiring_an_existing_resource).

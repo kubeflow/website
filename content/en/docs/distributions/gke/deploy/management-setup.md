@@ -28,7 +28,7 @@ to manage Google Cloud infrastructure using GitOps.
 
     You can install specific version of kubectl by following instruction (Example: [Install kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)). Latest patch version of kubectl from `v1.17` to `v1.19` works well too.
 
-    Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `kubeflow/gcp-blueprints` repository. gcloud hasn't caught up with this kpt version yet, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now. Note that kpt requires docker to be installed.
+    Note: Starting from Kubeflow 1.4, it requires `kpt v1.0.0-beta.6` or above to operate in `GoogleCloudPlatform/kubeflow-distribution` repository. gcloud hasn't caught up with this kpt version yet, [install kpt](https://kpt.dev/installation/) separately from https://github.com/GoogleContainerTools/kpt/tags for now. Note that kpt requires docker to be installed.
 
 
 ### Fetch GoogleCloudPlatform/kubeflow-distribution package
@@ -47,8 +47,8 @@ The management cluster manifests live in GitHub repository [GoogleCloudPlatform/
 
     ```bash
     # Check out Kubeflow v{{% gke/latest-version %}} blueprints
-    kpt pkg get https://github.com/GoogleCloudPlatform/kubeflow-distribution.git@v{{% gke/latest-version %}} gcp-blueprints
-    cd gcp-blueprints
+    kpt pkg get https://github.com/GoogleCloudPlatform/kubeflow-distribution.git@v{{% gke/latest-version %}} kubeflow-distribution
+    cd kubeflow-distribution
     ```
 
 
@@ -197,7 +197,7 @@ kubectl --context=${MGMT_NAME} get IAMServiceAccount <service-account-name> -n $
 
   The management cluster is very lightweight cluster that runs [Cloud Config Connector](https://cloud.google.com/config-connector/docs/overview). Cloud Config Connector makes it easier to configure Google Cloud resources using YAML and Kustomize.
 
-For a more detailed explanation of the drastic changes happened in Kubeflow v1.1 on Google Cloud, read [kubeflow/gcp-blueprints #123](https://github.com/kubeflow/gcp-blueprints/issues/123).
+For a more detailed explanation of the drastic changes happened in Kubeflow v1.1 on Google Cloud, read [GoogleCloudPlatform/kubeflow-distribution #123](https://github.com/GoogleCloudPlatform/kubeflow-distribution/issues/123).
 
 ## Next steps
 * [Deploy Kubeflow](/docs/distributions/gke/deploy/deploy-cli) using kubectl, kustomize and kpt.

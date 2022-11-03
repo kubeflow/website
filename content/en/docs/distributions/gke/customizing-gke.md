@@ -9,7 +9,7 @@ Kubernetes Engine (GKE) on Google Cloud.
 
 ## Before you start
 
-The variables defined in this page can be found in [gcp-blueprint/kubeflow/env.sh](https://github.com/kubeflow/gcp-blueprints/blob/master/kubeflow/env.sh). They are the same value as you set based on your [Kubeflow deployment](/docs/distributions/gke/deploy/deploy-cli/#environment-variables). 
+The variables defined in this page can be found in [kubeflow-distribution/kubeflow/env.sh](https://github.com/GoogleCloudPlatform/kubeflow-distribution/blob/master/kubeflow/env.sh). They are the same value as you set based on your [Kubeflow deployment](/docs/distributions/gke/deploy/deploy-cli/#environment-variables). 
 
 ## Customizing Kubeflow before deployment
 
@@ -17,7 +17,7 @@ The Kubeflow deployment process is divided into two steps, **hydrate** and
 **apply**, so that you can modify your configuration before deploying your 
 Kubeflow cluster.
 
-Follow the guide to [deploying Kubeflow on Google Cloud](/docs/gke/deploy/deploy-cli/). You can add your patches in corresponding component folder, and include those patches in `kustomization.yaml` file. Learn more about the usage of [kustomize](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/). You can also find the existing kustomization in [kubeflow/gcp-blueprints](https://github.com/kubeflow/gcp-blueprints) as example. After adding the patches, you can run `make hydrate` to validate the resulting resources. Finally, you can run `make apply` to deploy the customized Kubeflow.
+Follow the guide to [deploying Kubeflow on Google Cloud](/docs/gke/deploy/deploy-cli/). You can add your patches in corresponding component folder, and include those patches in `kustomization.yaml` file. Learn more about the usage of [kustomize](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/). You can also find the existing kustomization in [GoogleCloudPlatform/kubeflow-distribution](https://github.com/GoogleCloudPlatform/kubeflow-distribution) as example. After adding the patches, you can run `make hydrate` to validate the resulting resources. Finally, you can run `make apply` to deploy the customized Kubeflow.
 
 
 ## Customizing an existing deployment
@@ -33,7 +33,7 @@ This guide assumes the following settings:
 
 * The `${KF_DIR}` environment variable contains the path to
   your Kubeflow application directory, which holds your Kubeflow configuration 
-  files. For example, `/opt/gcp-blueprints/kubeflow/`.
+  files. For example, `/opt/kubeflow-distribution/kubeflow/`.
 
   ```
   export KF_DIR=<path to your Kubeflow application directory>
@@ -215,7 +215,7 @@ kubectl --context="${KF_NAME}" apply -f https://raw.githubusercontent.com/Google
 
 
 To disable node-autoprovisioning, edit `${KF_DIR}/common/cluster/upstream/cluster.yaml` to set
-[`enabled`](https://github.com/kubeflow/gcp-blueprints/blob/v1.3.0/kubeflow/common/cluster/upstream/cluster.yaml#L30) 
+[`enabled`](https://github.com/GoogleCloudPlatform/kubeflow-distribution/blob/v1.3.0/kubeflow/common/cluster/upstream/cluster.yaml#L30) 
 to `false`:
 
 ```
