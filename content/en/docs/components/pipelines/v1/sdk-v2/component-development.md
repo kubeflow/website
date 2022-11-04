@@ -601,7 +601,7 @@ See this [sample component][org-sample] for a real-life component example.
   pipeline](/docs/components/pipelines/sdk/pipelines-metrics/).
 * Visualize the output of your component by
   [adding metadata for an output
-  viewer](/docs/components/pipelines/metrics/output-viewer/).
+  viewer](/docs/components/pipelines/sdk/output-viewer/).
 * Explore the [reusable components and other shared
   resources](/docs/examples/shared-resources/).
 
