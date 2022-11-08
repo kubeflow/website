@@ -4,7 +4,7 @@ description = "Information about the Kubeflow 1.6 release"
 weight = 98
 +++
 
-## 1.6.1
+## Kubeflow 1.6.1
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -64,8 +64,7 @@ weight = 98
 </table>
 </div>
 
-<br>
-<b>Versions of components in 1.6.1:</b>
+### Component Versions
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -185,15 +184,19 @@ weight = 98
 </table>
 </div>
 
-<br>
-<b>Versions of dependencies in 1.6.1:</b>
+### Dependency Versions (Manifests)
+
+{{% alert title="Note" color="warning" %}}
+This information is only for the manifests found in the <a href="https://github.com/kubeflow/manifests">kubeflow/manifests</a> repository, packaged distributions may have different requirements or supported versions.
+{{% /alert %}}
 
 <div class="table-responsive">
 <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
-        <th>Dependent Component Name</th>
-        <th>Version</th>
+        <th>Dependency</th>
+        <th>Validated or Included Version(s)</th>
+        <th>Notes</th>
       </tr>
     </thead>
   <tbody>
@@ -201,61 +204,79 @@ weight = 98
       <!-- Kubernetes -->
       <!-- ======================= -->
       <tr>
-        <td rowspan="1" class="align-middle">Kubernetes</td>
         <td>
-          1.22
+          <a href="https://kubernetes.io/">Kubernetes</a>
+        </td>
+        <td>1.22</td>
+        <td rowspan="4" class="align-middle">
+          <i>Other versions may work, but have not been validated by the <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Kubeflow Manifests Working Group</a>.</i>
         </td>
       </tr>
       <!-- ======================= -->
       <!-- Istio -->
       <!-- ======================= -->
       <tr>
-        <td rowspan="1" class="align-middle">Istio</td>
         <td>
-          1.14.1
+          <a href="https://istio.io/">Istio</a>
         </td>
+        <td>1.14.1</td>
       </tr>
       <!-- ======================= -->
-      <!-- Knative  -->
+      <!-- cert-manager  -->
       <!-- ======================= -->
       <tr>
-        <td rowspan="1" class="align-middle">Knative</td>
         <td>
-          1.2
+          <a href="https://cert-manager.io/">cert-manager</a>
         </td>
+        <td>1.5.0</td>
       </tr>
       <!-- ======================= -->
-      <!-- Cert Manager  -->
+      <!-- dex  -->
       <!-- ======================= -->
       <tr>
-        <td rowspan="1" class="align-middle">Cert Manager</td>
         <td>
-          1.5.0
+          <a href="https://dexidp.io/">dex</a>
         </td>
-      </tr>
-      <!-- ======================= -->
-      <!-- Dex  -->
-      <!-- ======================= -->
-      <tr>
-        <td rowspan="1" class="align-middle">Dex</td>
-        <td>
-          2.31.2
-        </td>
+        <td>2.31.2</td>
       </tr>
       <!-- ======================= -->
       <!-- Kustomize  -->
       <!-- ======================= -->
       <tr>
-        <td rowspan="1" class="align-middle">Kustomize</td>
         <td>
-          3.2.0
+          <a href="https://kustomize.io/">Kustomize</a>
         </td>
+        <td>3.2.0</td>
+        <td>
+          <i>Newer versions of Kustomize are not currently supported, follow <a href="https://github.com/kubeflow/manifests/issues/1797">kubeflow/manifests#1797</a> for progress on this issue.</i>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Knative Serving -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://knative.dev/docs/serving/">Knative Serving</a>
+        </td>
+        <td>1.2.5</td>
+        <td rowspan="2" class="align-middle">
+          <i>Knative is only needed when using the optional <a href="https://kserve.github.io/website/">KServe Component</a>.</i>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Knative Eventing -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://knative.dev/docs/eventing/">Knative Eventing</a>
+        </td>
+        <td>1.2.4</td>
       </tr>
   </tbody>
 </table>
 </div>
 
-## 1.6.0
+## Kubeflow 1.6.0
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -315,8 +336,7 @@ weight = 98
 </table>
 </div>
 
-<br>
-<b>Versions of components in 1.6.0:</b>
+### Component Versions
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -436,15 +456,19 @@ weight = 98
 </table>
 </div>
 
-<br>
-<b>Versions of dependencies in 1.6.0:</b>
+### Dependency Versions (Manifests)
+
+{{% alert title="Note" color="warning" %}}
+This information is only for the manifests found in the <a href="https://github.com/kubeflow/manifests">kubeflow/manifests</a> repository, packaged distributions may have different requirements or supported versions.
+{{% /alert %}}
 
 <div class="table-responsive">
 <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
-        <th>Dependent Component Name</th>
-        <th>Version</th>
+        <th>Dependency</th>
+        <th>Validated or Included Version(s)</th>
+        <th>Notes</th>
       </tr>
     </thead>
   <tbody>
@@ -452,55 +476,73 @@ weight = 98
       <!-- Kubernetes -->
       <!-- ======================= -->
       <tr>
-        <td rowspan="1" class="align-middle">Kubernetes</td>
         <td>
-          1.22
+          <a href="https://kubernetes.io/">Kubernetes</a>
+        </td>
+        <td>1.22</td>
+        <td rowspan="4" class="align-middle">
+          <i>Other versions may work, but have not been validated by the <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Kubeflow Manifests Working Group</a>.</i>
         </td>
       </tr>
       <!-- ======================= -->
       <!-- Istio -->
       <!-- ======================= -->
       <tr>
-        <td rowspan="1" class="align-middle">Istio</td>
         <td>
-          1.14.1
+          <a href="https://istio.io/">Istio</a>
         </td>
+        <td>1.14.1</td>
       </tr>
       <!-- ======================= -->
-      <!-- Knative  -->
+      <!-- cert-manager  -->
       <!-- ======================= -->
       <tr>
-        <td rowspan="1" class="align-middle">Knative</td>
         <td>
-          1.2
+          <a href="https://cert-manager.io/">cert-manager</a>
         </td>
+        <td>1.5.0</td>
       </tr>
       <!-- ======================= -->
-      <!-- Cert Manager  -->
+      <!-- dex  -->
       <!-- ======================= -->
       <tr>
-        <td rowspan="1" class="align-middle">Cert Manager</td>
         <td>
-          1.5.0
+          <a href="https://dexidp.io/">dex</a>
         </td>
-      </tr>
-      <!-- ======================= -->
-      <!-- Dex  -->
-      <!-- ======================= -->
-      <tr>
-        <td rowspan="1" class="align-middle">Dex</td>
-        <td>
-          2.31.2
-        </td>
+        <td>2.31.2</td>
       </tr>
       <!-- ======================= -->
       <!-- Kustomize  -->
       <!-- ======================= -->
       <tr>
-        <td rowspan="1" class="align-middle">Kustomize</td>
         <td>
-          3.2.0
+          <a href="https://kustomize.io/">Kustomize</a>
         </td>
+        <td>3.2.0</td>
+        <td>
+          <i>Newer versions of Kustomize are not currently supported, follow <a href="https://github.com/kubeflow/manifests/issues/1797">kubeflow/manifests#1797</a> for progress on this issue.</i>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Knative Serving -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://knative.dev/docs/serving/">Knative Serving</a>
+        </td>
+        <td>1.2.5</td>
+        <td rowspan="2" class="align-middle">
+          <i>Knative is only needed when using the optional <a href="https://kserve.github.io/website/">KServe Component</a>.</i>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Knative Eventing -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://knative.dev/docs/eventing/">Knative Eventing</a>
+        </td>
+        <td>1.2.4</td>
       </tr>
   </tbody>
 </table>
