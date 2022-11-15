@@ -100,7 +100,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="https://github.com/argoflow/argoflow">External Website</a></td>
       </tr>
       <tr>
-        <td>#o Kubeflow as a Service</td>
+        <td>Arrikto Kubeflow as a Service</td>
         <td>Arrikto</td>
         <td>Fully Managed</td>
         <td>1.4</td>
