@@ -40,8 +40,8 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Deutsche Telekom</td>
         <td>Hyperscaler, Open Telekom Cloud and on premiseS</td>
         <td>1.6.1</td>
-        <td><a href="[/docs/distributions/aws/](https://awslabs.github.io/kubeflow-manifests](https://www.t-systems.com/de/en/cloud-services/cloud-application-services/telekom-data-science-platform)">Docs</a></td>
-        <td><a href="https://awslabs.github.io/kubeflow-manifests](https://www.t-systems.com/de/en/cloud-services/cloud-application-services/telekom-data-science-platform">External Website</a></td>
+        <td><a href="https://www.t-systems.com/de/en/cloud-services/cloud-application-services/telekom-data-science-platform">Docs</a></td>
+        <td><a href="https://www.t-systems.com/de/en/cloud-services/cloud-application-services/telekom-data-science-platform">External Website</a></td>
       </tr>
       <tr>
         <td>Kubeflow on AWS</td>
