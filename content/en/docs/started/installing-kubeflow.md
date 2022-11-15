@@ -36,6 +36,14 @@ Packaged distributions are developed and supported by their respective maintaine
     </thead>
     <tbody>
       <tr>
+        <td>Telekom Data Science Platform (focus on high security and regulated sectors)</td>
+        <td>Deutsche Telekom</td>
+        <td>Hyperscaler, Open Telekom Cloud and on premiseS</td>
+        <td>1.6.1</td>
+        <td><a href="[/docs/distributions/aws/](https://awslabs.github.io/kubeflow-manifests](https://www.t-systems.com/de/en/cloud-services/cloud-application-services/telekom-data-science-platform)">Docs</a></td>
+        <td><a href="https://awslabs.github.io/kubeflow-manifests](https://www.t-systems.com/de/en/cloud-services/cloud-application-services/telekom-data-science-platform">External Website</a></td>
+      </tr>
+      <tr>
         <td>Kubeflow on AWS</td>
         <td>Amazon Web Services (AWS)</td>
         <td>Amazon Elastic Kubernetes Service (EKS)</td>
@@ -92,7 +100,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td><a href="https://github.com/argoflow/argoflow">External Website</a></td>
       </tr>
       <tr>
-        <td>Arrikto Kubeflow as a Service</td>
+        <td>#o Kubeflow as a Service</td>
         <td>Arrikto</td>
         <td>Fully Managed</td>
         <td>1.4</td>
