@@ -26,15 +26,19 @@ To submit a pipeline to the KFP Dashboard:
 
     <img src="/docs/images/pipelines/submit-a-pipeline-on-dashboard.png" alt="Upload pipeline button" class="mt-3 mb-3 border border-info rounded">
 
-<!-- TODO: This section needs more work -->
+1. On the **Upload Pipeline or Pipeline Version** page, perform the following steps:
 
-1. On the **Upload Pipeline or Pipeline Version** page, click **Upload a file** to upload the compiled IR YAML definition of your pipeline.
+   1. Select the **Create a new pipeline** option.
+   
+      Note: To create a new pipeline based on an existing pipeline, select the **Create a new pipeline version under an existing pipeline** option. If you select this option, you can select a pipeline template.
+      
+   2. Click **Upload a file** to upload the compiled IR YAML definition of your pipeline.
 
-    <img src="/docs/images/pipelines/upload-a-pipeline.png"  alt="Upload pipeline screen" class="mt-3 mb-3 border border-info rounded">
+      <img src="/docs/images/pipelines/upload-a-pipeline.png"  alt="Upload pipeline screen" class="mt-3 mb-3 border border-info rounded">
 
-1. Complete the other fields on the page and click **Create**.
+1. Complete the other fields on the page and then click **Create**.
 
-1. Click the **Runs** tab, and then click **+ Create run**.
+1. Click the **Runs** tab and then click **+ Create run**.
 
     <img src="/docs/images/pipelines/create-run.png" alt="Create run button" class="mt-3 mb-3 border border-info rounded">
 
@@ -43,7 +47,6 @@ To submit a pipeline to the KFP Dashboard:
 1. Specify any additional run parameters and click **Start**.
 
     <img src="/docs/images/pipelines/start-a-run.png" alt="Start a run screen" class="mt-3 mb-3 border border-info rounded">
-
 
 ## Run a pipeline from the KFP SDK client <a id="run_from_sdk_client"></a>
 
@@ -92,10 +95,10 @@ kfp run create [OPTIONS] [ARGS]...
 For example, run the following command to submit the IR YAML file at `path/to/pipeline.yaml` to the KFP backend:
 
 ```shell
-kfp run create --experiment-name my-experiment --package-file path/to/pipeline.yaml
+kfp run create --experiment-name my-experiment --package-file path/to/pipeline.yaml param="a" other_param=2
 ```
 
-For more information about the `kfp run create` command, see [create][kfp-run-create-reference-docs] in the [KFP SDK API reference][kfp-sdk-api-ref]. For more information on the available commands in the KFP CLI, see [Command Line Interface][kfp-cli] in the [KFP SDK API reference][kfp-sdk-api-ref].
+For more information about the `kfp run create` command, see [run create][kfp-run-create-reference-docs] in the [KFP SDK API reference][kfp-sdk-api-ref]. For more information on the available commands in the KFP CLI, see [Command Line Interface][kfp-cli] in the [KFP SDK API reference][kfp-sdk-api-ref].
 
 [compile-a-pipeline]: /docs/components/pipelines/v2/compile-a-pipeline/
 [kfp-sdk-api-ref-client]: https://kubeflow-pipelines.readthedocs.io/en/master/source/client.html
