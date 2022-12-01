@@ -8,7 +8,7 @@ weight = 8
 <!-- TODO: Standardize inline references to KFP CLI SDK -->
 
 <!-- TODO: use /latest instead of /master when SDK goes GA -->
-This section provides a summary of the available commands in the KFP CLI. For more comprehensive documentation about all the available commands in the KFP CLI, see [Command Line Interface][cli-reference-docs] in the [KFP SDK API reference][kfp-sdk-api-ref].
+This section provides a summary of the available commands in the KFP CLI. For more comprehensive documentation about all the available commands in the KFP CLI, see [Command Line Interface][cli-reference-docs] in the [KFP SDK reference documentation][kfp-sdk-api-ref].
 
 ## Usage
 The KFP CLI is installed with the KFP SDK as `kfp`.
@@ -85,36 +85,32 @@ Some resource names have additional resource-specific actions. The following tab
 
 You can use the `kfp dsl compile` command to compile pipelines or components defined in a Python file to IR YAML.
 
-* To compile a pipeline defined in a Python file, run the following command:
+* To compile a pipeline definition defined in a Python file, run the following command.
 
+  ```shell
+  kfp dsl compile --py [PATH_TO_INPUT_PYTHON] --output [PATH_TO_OUTPUT_YAML] --function [PIPELINE_NAME]
+  ```
+  
+  For example:
+  
   ```shell
   kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml
   ```
-<!-- TODO: Validate or review these commands -->
-* To compile a pipeline from a Python file containing multiple pipeline definitions, use the `--function` argument:
-
-  ```shell
-  kfp dsl compile --py [PATH_TO_INPUT_PYTHON] --output [PATH_TO_OUTPUT_YAML] --function my_pipeline
-  ```
-
+  
+  To compile a single pipeline or component from a Python file containing multiple pipeline or component definitions, use the `--function` argument.
+  
   For example:
-
+  
   ```shell
   kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --function my_pipeline
   ```
-
-* To compile a component from a Python file containing multiple pipeline or component definitions, use the `--function` argument:
-
-  ```shell
-  kfp dsl compile [PATH_TO_INPUT_PYTHON] --output [PATH_TO_OUTPUT_YAML] --function my_component
-  ```
-
+  
   For example:
   ```shell
   kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --function my_component
   ```
 
-* To specify pipeline parameters, use the `--pipeline-parameters` argument and provide the parameters as JSON:
+* To specify pipeline parameters, use the `--pipeline-parameters` argument and provide the parameters as JSON.
 
   ```shell
   kfp dsl compile [PATH_TO_INPUT_PYTHON] --output [PATH_TO_OUTPUT_YAML] --pipeline-parameters [PIPELINE_PARAMETERS_JSON]
@@ -147,9 +143,9 @@ To build a containerized component, use the following convenience command in the
 kfp component build [OPTIONS] [COMPONENTS_DIRECTORY] [ARGS]...
 ```
 
-This command lets you build an image with all the source code found in `COMPONENTS_DIRECTORY`. It uses the component found in the directory as the component runtime entrypoint.
+Using this command, you can build an image with all the source code found in `COMPONENTS_DIRECTORY`. The command uses the component found in the directory as the component runtime entrypoint.
 
-Example usage:
+For example:
 
 ```shell
 kfp component build src/ --component-filepattern my_component --push-image
