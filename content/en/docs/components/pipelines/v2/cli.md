@@ -46,11 +46,11 @@ kfp run --help
 
 You can use the KFP CLI to do the following:
 
-* [Interact with KFP resources][(#cli_interact_with_kfp_resources)](https://github.com/sen-sam/website/edit/patch-1/content/en/docs/components/pipelines/v2/cli.md?pr=%2Fkubeflow%2Fwebsite%2Fpull%2F3392)
+* [Interact with KFP resources](#interact_with_kfp_resources)
 
-* [Compile pipelines](#cli_compile_pipelines)
+* [Compile pipelines](#compile_pipelines)
 
-* [Build containerized Python components](#cli_build_python_components)
+* [Build containerized Python components](#build_containerized_python_components)
 
 ### Interact with KFP resources
 
