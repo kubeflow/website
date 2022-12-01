@@ -105,7 +105,6 @@ You can use the `kfp dsl compile` command to compile pipelines or components def
   kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --function my_pipeline
   ```
   
-  For example:
   ```shell
   kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --function my_component
   ```
