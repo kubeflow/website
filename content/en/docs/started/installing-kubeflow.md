@@ -97,7 +97,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Fully Managed</td>
         <td>1.4</td>
         <td>N/A</td>
-        <td><a href="http://kubeflow.arrikto.com/">External Website</a></td>
+        <td><a href="https://kubeflow.arrikto.com/">External Website</a></td>
       </tr>
       <tr>
         <td>Arrikto Enterprise Kubeflow</td>

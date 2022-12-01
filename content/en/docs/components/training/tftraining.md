@@ -202,7 +202,7 @@ consists of 3 fields
     For background information on exit codes, see the [GNU guide to
     termination signals](https://www.gnu.org/software/libc/manual/html_node/Termination-Signals.html)
     and the [Linux Documentation
-    Project](http://tldp.org/LDP/abs/html/exitcodes.html).
+    Project](https://tldp.org/LDP/abs/html/exitcodes.html).
 
   - **Never** means pods that terminate will never be restarted. This policy
     should rarely be used because Kubernetes will terminate pods for any number

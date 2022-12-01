@@ -8,7 +8,7 @@ weight = 10
 {{% alpha-status 
   feedbacklink="https://github.com/feast-dev/feast/issues" %}}
   
-Use [Feast](http://feast.dev/) for defining, managing, discovering, validating, and serving features to your models during training and inference.
+Use [Feast](https://feast.dev/) for defining, managing, discovering, validating, and serving features to your models during training and inference.
 
 This page introduces feature store concepts as well as Feast as a component of Kubeflow.
 
@@ -28,7 +28,7 @@ Feature stores are systems that help to address some of the key challenges that 
 
 ## Feast as a feature store
 
-[Feast](http://feast.dev/) is an [open-source](https://github.com/feast-dev/feast) feature store that helps teams operate ML systems at scale by allowing them to define, manage, validate, and serve features to models in production. 
+[Feast](https://feast.dev/) is an [open-source](https://github.com/feast-dev/feast) feature store that helps teams operate ML systems at scale by allowing them to define, manage, validate, and serve features to models in production. 
 
 Feast provides the following functionality:
 
@@ -52,7 +52,7 @@ Please follow the [Getting Started with Feast](/docs/external-add-ons/feature-st
 
 ## Resources
 
-* [Feast: Documentation](http://docs.feast.dev/)
+* [Feast: Documentation](https://docs.feast.dev/)
 * [Feast: Source Code](https://github.com/feast-dev/feast)
 * [Google Cloud - Introducing Feast: An open source feature store for machine learning](https://cloud.google.com/blog/products/ai-machine-learning/introducing-feast-an-open-source-feature-store-for-machine-learning)
 * [Medium - Feast: Bridging ML Models and Data](https://blog.gojekengineering.com/feast-bridging-ml-models-and-data-efd06b7d1644)

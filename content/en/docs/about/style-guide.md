@@ -19,7 +19,7 @@ The Kubeflow docs aim for:
 ## Use standard American spelling
 
 Use American spelling rather than Commonwealth or British spelling.
-Refer to [Merriam-Webster's Collegiate Dictionary, Eleventh Edition](http://www.merriam-webster.com/).
+Refer to [Merriam-Webster's Collegiate Dictionary, Eleventh Edition](https://www.merriam-webster.com/).
 
 ## Use capital letters sparingly
 

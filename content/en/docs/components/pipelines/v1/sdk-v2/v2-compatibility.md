@@ -11,8 +11,8 @@ The Kubeflow Pipelines SDK provides a set of Python packages that you can use to
 
 Kubeflow Pipelines SDK v2 compatibility mode lets you use the new pipeline semantics and gain the benefits of logging your metadata to ML Metadata. You can use ML Metadata to help answer questions about the lineage of your pipeline’s artifacts.
 
-To learn more about the work towards Kubeflow Pipelines v2, read the design documents for [Kubeflow Pipelines v2](http://bit.ly/kfp-v2) and [Kubeflow Pipelines v2 compatible
-mode](http://bit.ly/kfp-v2-compatible), or join the Kubeflow Pipelines community.
+To learn more about the work towards Kubeflow Pipelines v2, read the design documents for [Kubeflow Pipelines v2](https://bit.ly/kfp-v2) and [Kubeflow Pipelines v2 compatible
+mode](https://bit.ly/kfp-v2-compatible), or join the Kubeflow Pipelines community.
 
 ## Before you begin
 
