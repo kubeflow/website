@@ -117,7 +117,8 @@ You can use the `kfp dsl compile` command to compile pipelines or components def
   ```
 
   For example:
-    ```shell
+  
+  ```shell
   kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --pipeline-parameters '{"param1": 2.0, "param2": "my_val"}'
   ```
 
@@ -131,19 +132,18 @@ You can author [containerized Python components][containerized-python-components
 #### Before you begin
 
 Run the following command to install the KFP SDK with the additional Docker dependency:
+
 ```shell
 pip install --pre kfp[all]
 ```
 
 #### Build a containerized component
 
-To build a containerized component, use the following convenience command in the KFP CLI:
+To build a containerized component, use the following convenience command in the KFP CLI. Using this command, you can build an image with all the source code found in `COMPONENTS_DIRECTORY`. The command uses the component found in the directory as the component runtime entrypoint.
 
 ```shell
 kfp component build [OPTIONS] [COMPONENTS_DIRECTORY] [ARGS]...
 ```
-
-Using this command, you can build an image with all the source code found in `COMPONENTS_DIRECTORY`. The command uses the component found in the directory as the component runtime entrypoint.
 
 For example:
 
