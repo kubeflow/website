@@ -46,13 +46,13 @@ kfp run --help
 
 You can use the KFP CLI to do the following:
 
-* [Interact with KFP resources](#cli_interact_with_kfp_resources)
+* [Interact with KFP resources][(#cli_interact_with_kfp_resources)](https://github.com/sen-sam/website/edit/patch-1/content/en/docs/components/pipelines/v2/cli.md?pr=%2Fkubeflow%2Fwebsite%2Fpull%2F3392)
 
 * [Compile pipelines](#cli_compile_pipelines)
 
 * [Build containerized Python components](#cli_build_python_components)
 
-### Interact with KFP resources<a id="cli_interact_with_kfp_resources"></a>
+### Interact with KFP resources
 
 The majority of the KFP CLI commands let you create, read, update, or delete KFP resources from the KFP backend. All of these commands use the following general syntax:
 
@@ -81,7 +81,7 @@ Some resource names have additional resource-specific actions. The following tab
 | `experiment` | <ul><li>`archive`</li><li>`unarchive`</li></ul>
 | `pipeline` |  | <ul><li>`create-version`</li><li>`list-versions`</li><li>`get-versions`</li><li>`delete-versions`</li></ul>
 
-### Compile pipelines<a id="cli_compile_pipelines"></a>
+### Compile pipelines
 
 You can use the `kfp dsl compile` command to compile pipelines or components defined in a Python file to IR YAML.
 
@@ -121,7 +121,7 @@ You can use the `kfp dsl compile` command to compile pipelines or components def
   kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --pipeline-parameters '{"param1": 2.0, "param2": "my_val"}'
   ```
 
-### Build containerized Python components<a id="cli_build_python_components"></a>
+### Build containerized Python components
 <!-- TODO: Revisit the links after the refactoring is completed -->
 
 You can author [containerized Python components][containerized-python-components] in the KFP SDK. This lets you use handle more source code with better code organization than the simpler [lightweight Python component][lightweight-python-component] authoring experience.
