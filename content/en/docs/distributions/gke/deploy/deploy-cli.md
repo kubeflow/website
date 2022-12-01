@@ -17,7 +17,7 @@ Before installing Kubeflow on the command line:
 
    * If you don't have a management cluster follow the [instructions](/docs/distributions/gke/deploy/management-setup/)
 
-   * Your management cluster will need a namespace setup to administer the Google Cloud project where Kubeflow will be deployed. This step will be included in later step of current page.
+   * Your management cluster will need a namespace setup to administer the Google Cloud project where Kubeflow will be deployed. This step will be included in the later step of the current page.
 
 1. You need to use Linux or [Cloud Shell](https://cloud.google.com/shell/) for ASM installation. Currently ASM installation doesn't work on macOS because it [comes with an old version of bash](https://cloud.google.com/service-mesh/docs/scripted-install/asm-onboarding#installing_required_tools).
 
