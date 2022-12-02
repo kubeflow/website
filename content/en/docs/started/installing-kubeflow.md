@@ -95,7 +95,7 @@ Packaged distributions are developed and supported by their respective maintaine
         <td>Arrikto Kubeflow as a Service</td>
         <td>Arrikto</td>
         <td>Fully Managed</td>
-        <td>1.4</td>
+        <td>1.5</td>
         <td>N/A</td>
         <td><a href="http://kubeflow.arrikto.com/">External Website</a></td>
       </tr>
@@ -106,7 +106,7 @@ Packaged distributions are developed and supported by their respective maintaine
             AKS,
             GKE
         </td>
-        <td>1.4</td>
+        <td>1.5</td>
         <td>
           <a href="/docs/distributions/ekf/">Docs</a>
         </td>
