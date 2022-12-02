@@ -1,10 +1,10 @@
 +++
 title = "Run a Pipeline"
-description = "Execute a pipeline on the KFP backend"
+description = "Run a pipeline"
 weight = 6
 +++
 
-You can run a pipeline in three ways using the KFP SDK:
+You can run a pipeline in three ways:
 
 * [Run a pipeline from the KFP Dashboard](#run_from_dashboard)
 
