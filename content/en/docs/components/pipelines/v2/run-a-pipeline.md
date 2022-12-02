@@ -30,7 +30,7 @@ To submit a pipeline to the KFP Dashboard:
 
    a. Select the **Create a new pipeline** option.
    
-      Note: To create a new pipeline based on an existing pipeline, select the **Create a new pipeline version under an existing pipeline** option. If you select this option, you can select a pipeline template.
+          Note: To create a new pipeline based on an existing pipeline, select the **Create a new pipeline version under an existing pipeline** option. If you select this option, you can select a pipeline template.
       
    b. Click **Upload a file** to upload the compiled IR YAML definition of your pipeline.
 
