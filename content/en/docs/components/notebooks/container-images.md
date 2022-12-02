@@ -68,7 +68,23 @@ For Kubeflow Notebooks to work with a container image, the image must:
   - the UID of `jovyan` should be `1000`
 - start successfully with an empty PVC mounted at `/home/jovyan`:
   - kubeflow mounts a PVC at `/home/jovyan` to keep state across Pod restarts
-  
+
+### Group Requirements
+Kubeflow Notebooks images are grouped by server type to ensure networking is configured correctly for Kubeflow usage. Therefore, when using a custom image that is natively supported, it should be manually added to the appropriate group during creation or as an entry to the notebook [configuration file](https://github.com/kubeflow/manifests/blob/f40fefafab30834515889d712697e915eeca123b/apps/jupyter/jupyter-web-app/upstream/base/configs/spawner_ui_config.yaml#L18).
+
+- Jupyterlab images should reside in the notebook images group "jupyterlab"  
+<img src="/docs/images/notebook-images-group-jupyterlab.png" 
+     alt="description"  
+     class="mt-3 mb-3 border border-info rounded">  
+- Visual Studio Code (code-server) images should reside in the notebook images group 1  
+<img src="/docs/images/notebook-images-group-1.png" 
+     alt="description"  
+     class="mt-3 mb-3 border border-info rounded">
+- RStudio images should reside in the notebook images group 2  
+<img src="/docs/images/notebook-images-group-2.png" 
+     alt="description"  
+     class="mt-3 mb-3 border border-info rounded">  
+
 ## Next steps
 
 - Use your container image by specifying it when spawning your notebook server.
