@@ -6,7 +6,7 @@ weight = 45
 +++
 
 
-[BentoML](https://bentoml.org) makes it easy to create ML-powered prediction services that are ready to deploy and scale.
+[BentoML](https://bentoml.org) is an open-source framework for serving, managing, and deploying machine learning models. It provides a standardized structure for packaging and exporting trained models, along with all of the dependencies required to run them, making it easy to share and deploy these models in a reproducible way. BentoML also includes features for tracking and managing the lifecycle of machine learning models, including versioning and artifact management, making it a useful tool for collaboration and production deployment of machine learning models.
 
 Data Scientists and ML Engineers use BentoML to:
 
