@@ -336,6 +336,8 @@ There several placeholders that may be used in this style, including:
 * `dsl.PIPELINE_JOB_ID_PLACEHOLDER`
 * `dsl.PIPELINE_TASK_NAME_PLACEHOLDER`
 * `dsl.PIPELINE_TASK_ID_PLACEHOLDER`
+* `dsl.PIPELINE_JOB_CREATE_TIME_UTC_PLACEHOLDER`
+* `dsl.PIPELINE_JOB_SCHEDULE_TIME_UTC_PLACEHOLDER`
 
 
 ## Placeholders
