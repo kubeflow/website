@@ -136,9 +136,9 @@ Run the following command to install the KFP SDK with the additional Docker depe
 pip install --pre kfp[all]
 ```
 
-#### Build a containerized component
+#### Build the component
 
-To build a containerized component, use the following convenience command in the KFP CLI. Using this command, you can build an image with all the source code found in `COMPONENTS_DIRECTORY`. The command uses the component found in the directory as the component runtime entrypoint.
+To build a containerized Python component, use the following convenience command in the KFP CLI. Using this command, you can build an image with all the source code found in `COMPONENTS_DIRECTORY`. The command uses the component found in the directory as the component runtime entrypoint.
 
 ```shell
 kfp component build [OPTIONS] [COMPONENTS_DIRECTORY] [ARGS]...
@@ -150,7 +150,7 @@ For example:
 kfp component build src/ --component-filepattern my_component --push-image
 ```
 
-For more information about the arguments and flags supported by the `kfp component build` command, see [build](https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-component-build) in the [KFP SDK API reference][kfp-sdk-api-ref]. For more information about creating containerized components, see [Authoring Python Containerized Components](/docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components).
+For more information about the arguments and flags supported by the `kfp component build` command, see [build](https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-component-build) in the [KFP SDK API reference][kfp-sdk-api-ref]. For more information about creating containerized Python components, see [Authoring Python Containerized Components](/docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components).
 
 [cli-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html
 [kfp-sdk-api-ref]: https://kubeflow-pipelines.readthedocs.io/en/master/index.html
