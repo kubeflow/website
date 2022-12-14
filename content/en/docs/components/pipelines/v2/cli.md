@@ -46,11 +46,11 @@ kfp run --help
 
 You can use the KFP CLI to do the following:
 
-* [Interact with KFP resources](#interact_with_kfp_resources)
+* [Interact with KFP resources](#interact-with-kfp-resources)
 
-* [Compile pipelines](#compile_pipelines)
+* [Compile pipelines](#compile-pipelines)
 
-* [Build containerized Python components](#build_containerized_python_components)
+* [Build containerized Python components](#build-containerized-python-components)
 
 ### Interact with KFP resources
 
