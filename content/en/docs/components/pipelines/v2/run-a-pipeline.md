@@ -1,6 +1,6 @@
 +++
-title = "Run a Pipeline"
-description = "Run a pipeline"
+title = "Run a pipeline"
+description = "Run a pipeline on the KFP backend"
 weight = 6
 +++
 
