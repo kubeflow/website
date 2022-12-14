@@ -54,7 +54,7 @@ client.create_run_from_pipeline_package('pipeline.yaml', arguments={'param': 'a'
 To submit a Python pipeline function for execution use the `.create_run_from_pipeline_func` convenience method, which wraps compilation and run submission into one method:
 
 ```python
-client.create_run_from_pipeline_func(pipeline_fn, arguments={'param': 'a', 'other_param': 2})
+client.create_run_from_pipeline_func(pipeline_func, arguments={'param': 'a', 'other_param': 2})
 ```
 
 See the [KFP SDK Client reference documentation][kfp-sdk-api-ref-client] for a detailed description of the `Client` constructor and method parameters.
