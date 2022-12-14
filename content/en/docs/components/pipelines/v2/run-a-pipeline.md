@@ -6,11 +6,11 @@ weight = 6
 
 You can run a pipeline in three ways:
 
-* [Run from KFP Dashboard](#run_from_kfp_dashboard)
+* [Run from KFP Dashboard](#run-from-kfp-dashboard)
 
-* [Run from KFP SDK client](#run_from_kfp_sdk_client)
+* [Run from KFP SDK client](#run-from-kfp-sdk-client)
 
-* [Run from KFP SDK CLI](#run_from_kfp_sdk_cli)
+* [Run from KFP SDK CLI](#run-from-kfp-sdk-cli)
 
 <!-- TODO: Create a pipeline under an existing pipeline from the KFP Dashboard #} -->
 
