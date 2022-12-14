@@ -79,7 +79,7 @@ Some resource names have additional resource-specific actions. The following tab
 | `run` | <ul><li>`archive`</li><li>`unarchive`</li></ul>
 | `recurring-run` | <ul><li>`disable`</li><li>`enable`</li></ul>
 | `experiment` | <ul><li>`archive`</li><li>`unarchive`</li></ul>
-| `pipeline` |  | <ul><li>`create-version`</li><li>`list-versions`</li><li>`get-versions`</li><li>`delete-versions`</li></ul>
+| `pipeline` | <ul><li>`create-version`</li><li>`list-versions`</li><li>`get-versions`</li><li>`delete-versions`</li></ul>
 
 ### Compile pipelines
 
