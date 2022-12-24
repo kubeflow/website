@@ -246,8 +246,28 @@ continuous) and the number of possibilities is low. A grid search
 performs an exhaustive combinatorial search over all possibilities,
 making the search process extremely long even for medium sized problems.
 
-Katib uses the [Chocolate](https://chocolate.readthedocs.io) optimization
+Katib uses the [Optuna](https://github.com/optuna/optuna) optimization
 framework for its grid search.
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>random_state</td>
+        <td>[int]: Set <code>random_state</code> to something other than None
+          for reproducible results.</td>
+        <td>10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <a id="random-search"></a>
 
