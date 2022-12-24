@@ -283,8 +283,7 @@ use when combinatorial exploration is not possible. If the number of continuous
 variables is high, you should use quasi random sampling instead.
 
 Katib uses the [Hyperopt](https://hyperopt.github.io/hyperopt/),
-[Goptuna](https://github.com/c-bata/goptuna),
-[Chocolate](https://chocolate.readthedocs.io) or
+[Goptuna](https://github.com/c-bata/goptuna) or
 [Optuna](https://github.com/optuna/optuna) optimization
 framework for its random search.
 
@@ -326,8 +325,7 @@ steps, making it a good choice when the time to
 complete the evaluation of a parameter configuration is long.
 
 Katib uses the
-[Scikit-Optimize](https://github.com/scikit-optimize/scikit-optimize) or
-[Chocolate](https://chocolate.readthedocs.io) optimization framework
+[Scikit-Optimize](https://github.com/scikit-optimize/scikit-optimize) optimization framework
 for its Bayesian search. Scikit-Optimize is also known as `skopt`.
 
 Katib supports the following algorithm settings:

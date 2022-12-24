@@ -183,11 +183,6 @@ any other settings, a default value is set automatically.
            <td><a href="https://github.com/hyperopt/hyperopt">Hyperopt</a> optimization framework</td>
          </tr>
          <tr>
-           <td><code>suggestion-chocolate</code></td>
-           <td><code>grid</code>, <code>random</code>, <code>quasirandom</code>, <code>bayesianoptimization</code>, <code>mocmaes</code></td>
-           <td><a href="https://github.com/AIworx-Labs/chocolate">Chocolate</a> optimization framework</td>
-         </tr>
-         <tr>
            <td><code>suggestion-skopt</code></td>
            <td><code>bayesianoptimization</code></td>
            <td><a href="https://github.com/scikit-optimize/scikit-optimize">Scikit-optimize</a> optimization framework</td>
