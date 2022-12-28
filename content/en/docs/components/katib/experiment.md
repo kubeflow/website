@@ -262,7 +262,7 @@ sampling without replacement. Random search is therefore the best algorithm to
 use when combinatorial exploration is not possible. If the number of continuous
 variables is high, you should use quasi random sampling instead.
 
-Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/),
+Katib uses the [Hyperopt](https://hyperopt.github.io/hyperopt/),
 [Goptuna](https://github.com/c-bata/goptuna),
 [Chocolate](https://chocolate.readthedocs.io) or
 [Optuna](https://github.com/optuna/optuna) optimization
@@ -395,7 +395,7 @@ Hyperband also focuses on the speed of the search.
 
 The algorithm name in Katib is `tpe`.
 
-Katib uses the [Hyperopt](http://hyperopt.github.io/hyperopt/),
+Katib uses the [Hyperopt](https://hyperopt.github.io/hyperopt/),
 [Goptuna](https://github.com/c-bata/goptuna) or
 [Optuna](https://github.com/optuna/optuna) optimization
 framework for its TPE search.
@@ -449,7 +449,7 @@ Katib supports the following algorithm settings:
 
 The algorithm name in Katib is `multivariate-tpe`.
 
-Katib uses the [Optuna](http://hyperopt.github.io/hyperopt/) optimization
+Katib uses the [Optuna](https://hyperopt.github.io/hyperopt/) optimization
 framework for its Multivariate TPE search.
 
 [Multivariate TPE](https://tech.preferred.jp/en/blog/multivariate-tpe-makes-optuna-even-more-powerful/)

@@ -46,7 +46,7 @@ Alternatively, you can manually subscribe to the ["Kubeflow Community" calendar]
 
 | Useful Links |
 | --- | --- |
-| Kubeflow Community Call - Notes | [Google Doc](http://bit.ly/kf-meeting-notes)
+| Kubeflow Community Call - Notes | [Google Doc](https://bit.ly/kf-meeting-notes)
 | Kubeflow Community Call - Recordings | [YouTube Playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5)
 
 ## Kubeflow Community Calendars
