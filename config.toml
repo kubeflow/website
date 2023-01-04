@@ -20,7 +20,18 @@ defaultContentLanguageInSubdir = false
 enableMissingTranslationPlaceholders = true
 # disable taxonomies
 disableKinds = ["taxonomy", "taxonomyTerm"]
-
+# deprecated directories
+ignoreFiles = [
+  "content/en/docs/distributions/gke/deploy/*", 
+  "content/en/docs/distributions/gke/pipelines/*", 
+  "content/en/docs/distributions/gke/anthos.md", 
+  "content/en/docs/distributions/gke/authentication.md",
+  "content/en/docs/distributions/gke/authentication.md", 
+  "content/en/docs/distributions/gke/custom-domain.md", 
+  "content/en/docs/distributions/gke/customizing-gke.md", 
+  "content/en/docs/distributions/gke/private-clusters.md", 
+  "content/en/docs/distributions/gke/troubleshooting-gke.md"
+  ]
 ###############################################################################
 # Hugo - Top-level navigation (horizontal)
 ###############################################################################
