@@ -1,6 +1,6 @@
 +++
-title = "Reference"
-description = "Reference docs for Kubeflow Pipelines"
+title = "Pipelines SDK Reference"
+description = "Reference documentation for the Kubeflow Pipelines SDK"
 weight = 11                 
 +++
 
