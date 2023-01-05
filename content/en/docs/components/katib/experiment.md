@@ -246,8 +246,28 @@ continuous) and the number of possibilities is low. A grid search
 performs an exhaustive combinatorial search over all possibilities,
 making the search process extremely long even for medium sized problems.
 
-Katib uses the [Chocolate](https://chocolate.readthedocs.io) optimization
+Katib uses the [Optuna](https://github.com/optuna/optuna) optimization
 framework for its grid search.
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>random_state</td>
+        <td>[int]: Set <code>random_state</code> to something other than None
+          for reproducible results.</td>
+        <td>10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <a id="random-search"></a>
 
@@ -263,8 +283,7 @@ use when combinatorial exploration is not possible. If the number of continuous
 variables is high, you should use quasi random sampling instead.
 
 Katib uses the [Hyperopt](https://hyperopt.github.io/hyperopt/),
-[Goptuna](https://github.com/c-bata/goptuna),
-[Chocolate](https://chocolate.readthedocs.io) or
+[Goptuna](https://github.com/c-bata/goptuna) or
 [Optuna](https://github.com/optuna/optuna) optimization
 framework for its random search.
 
@@ -306,8 +325,7 @@ steps, making it a good choice when the time to
 complete the evaluation of a parameter configuration is long.
 
 Katib uses the
-[Scikit-Optimize](https://github.com/scikit-optimize/scikit-optimize) or
-[Chocolate](https://chocolate.readthedocs.io) optimization framework
+[Scikit-Optimize](https://github.com/scikit-optimize/scikit-optimize) optimization framework
 for its Bayesian search. Scikit-Optimize is also known as `skopt`.
 
 Katib supports the following algorithm settings:
