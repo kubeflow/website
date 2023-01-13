@@ -1,5 +1,5 @@
 +++
-title = "Command Line Interface"
+title = "Command-line Interface"
 description = "Interact with KFP via the CLI"
 weight = 8
 +++
