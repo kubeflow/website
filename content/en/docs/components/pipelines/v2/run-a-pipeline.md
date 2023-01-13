@@ -72,8 +72,9 @@ For example, the following command submits the `path/to/pipeline.yaml` IR YAML t
 kfp run create --experiment-name my-experiment --package-file path/to/pipeline.yaml
 ```
 
-For more information about the `kfp run create` command, see the [KFP Command Line Interface reference documentation][kfp-run-create-reference-docs]. For more information on the KFP CLI generally see [Command Line Interface user docs][kfp-cli].
+For more information about the `kfp run create` command, see [Command Line Interface][kfp-run-create-reference-docs] in the [KFP SDK reference documentation][kfp-sdk-api-ref]. For a summary of the available commands in the KFP CLI, see [Command-line Interface][kfp-cli].
 
+[kfp-sdk-api-ref]: https://kubeflow-pipelines.readthedocs.io/en/master/index.html
 [compile-a-pipeline]: /docs/components/pipelines/v2/compile-a-pipeline/
 [kfp-sdk-api-ref-client]: https://kubeflow-pipelines.readthedocs.io/en/master/source/client.html
 [kfp-cli]: /docs/components/pipelines/v2/cli/
