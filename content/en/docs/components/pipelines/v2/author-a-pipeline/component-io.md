@@ -64,7 +64,7 @@ This pipeline uses a [custom container component][custom-container-component] `c
 ## Inputs
 Component inputs are specified by the component function's signature. This applies for all authoring approaches: [lightweight Python components][lightweight-python-component], [containerized Python components][containerized-python-component], and [custom container components][custom-container-component].
 
-Ultimately, each authoring style creates a component definitied by an `image`, `command`, and `args`. When you use an input, it is represented as a placeholder in the `command` or `args` and is interpolated at component runtime.
+Ultimately, each authoring style creates a component defined by an `image`, `command`, and `args`. When you use an input, it is represented as a placeholder in the `command` or `args` and is interpolated at component runtime.
 
 There is one additional type of input, the struct `PipelineTaskFinalStatus`, which allows access to the metadata of one task from within another via a system-provided value at runtime. This input is a special case, as it is neither a typical parameter nor an artifact and it is only usable in `dsl.ExitHandler` exit tasks. Use of this input is covered in [Authoring: Pipelines][pipelines].
 
@@ -82,7 +82,7 @@ Input artifacts are defined when you use an `Input[<ArtifactClass>]` annotation.
 
 At component runtime, input artifacts are copied to the local filesystem by the executing backend. This abstracts away the need for the component author to know where artifacts are stored in remote storage and allows component authors to only interact with the local filesystem when implementing a component that uses an artifact. All artifacts implement a `.path` method, which can be used to access the local path where the artifact file has been copied.
 
-Let's see how this works in practice. In our example pipeline, `augment_dataset` specifies the input `existing_dataset: Input[Dataset]`. In the pipeline definition, we pass the output dataset from `create_dataset` to this parameter. When the `augument_dataset` component runs, the executing backend copies the `output_dataset` artifact file to the container filesystem and passes in an instance of `Dataset` as an argument to `existing_dataset`. The `Dataset` instance has a `.path` handle to its location in the container filesystem, allowing the component to read it:
+Let's see how this works in practice. In our example pipeline, `augment_dataset` specifies the input `existing_dataset: Input[Dataset]`. In the pipeline definition, we pass the output dataset from `create_dataset` to this parameter. When the `augment_dataset` component runs, the executing backend copies the `output_dataset` artifact file to the container filesystem and passes in an instance of `Dataset` as an argument to `existing_dataset`. The `Dataset` instance has a `.path` handle to its location in the container filesystem, allowing the component to read it:
 
 ```python
 with open(existing_dataset.path, 'r') as f:
@@ -396,7 +396,7 @@ The KFP SDK compiler has the ability to use the type annotations you provide to 
 
 [components]: /docs/components/pipelines/v2/author-a-pipeline/components.md
 [pipelines]: /docs/components/pipelines/v2/author-a-pipeline/pipelines
-[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components
+[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lightweight-python-function-based-components
 [containerized-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components
 [custom-container-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#3-custom-container-components
 [minio]: https://min.io/

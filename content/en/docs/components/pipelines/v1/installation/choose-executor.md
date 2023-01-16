@@ -67,7 +67,7 @@ improvements can make it the default executor that most people should use in the
 future.
 
 Therefore, the team makes a commitment to actively collect feedback and fix bugs
-for the emissary executor, so that we can stablize it faster.
+for the emissary executor, so that we can stabilize it faster.
 Submit your feedback in [the Emissary Executor feedback github issue](https://github.com/kubeflow/pipelines/issues/6249).
 
 So far, Kubeflow

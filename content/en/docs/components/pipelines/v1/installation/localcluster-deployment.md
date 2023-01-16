@@ -281,7 +281,7 @@ To set up access to your WSL instance:
 
 K3ai is a lightweight "infrastructure in a box" designed specifically to install
 and configure AI tools and platforms on portable hardware, such as laptops and
-edge devices. This enables users to perform quick experimentations with Kubeflow
+edge devices. This enables users to perform quick experiments with Kubeflow
 on a local cluster.
 
 K3ai's main goal is to provide a quick way to install Kubernetes (K3s-based) and
@@ -318,7 +318,7 @@ Executors](https://argoproj.github.io/argo-workflows/workflow-executors/) and re
 1. To deploy the Kubeflow Pipelines, run the following commands:
 
     ```shell
-    # env/platform-agnostic-pns hasn't been publically released, so you will install it from master
+    # env/platform-agnostic-pns hasn't been publicly released, so you will install it from master
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io

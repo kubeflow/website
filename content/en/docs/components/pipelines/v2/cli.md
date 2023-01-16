@@ -42,7 +42,7 @@ To get help for a specific command, use the argument `--help` directly in the co
 ```shell
 kfp run --help
 ```
-## Main functons of the KFP CLI
+## Main functions of the KFP CLI
 
 You can use the KFP CLI to do the following:
 
@@ -155,5 +155,5 @@ For more information about the arguments and flags supported by the `kfp compone
 [cli-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html
 [kfp-sdk-api-ref]: https://kubeflow-pipelines.readthedocs.io/en/master/index.html
 [author-a-pipeline]: /docs/components/pipelines/v2/author-a-pipeline
-[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components
+[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lightweight-python-function-based-components
 [containerized-python-components]: /docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components

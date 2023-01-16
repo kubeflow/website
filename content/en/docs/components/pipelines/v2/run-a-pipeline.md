@@ -38,7 +38,7 @@ To submit a pipeline to the KFP Dashboard:
 
 
 ## 2. Run from the KFP SDK client
-You may also programatically submit pipeline runs from the KFP SDK client. The client supports two ways of submitting runs: from IR YAML or from a Python pipeline function. For either approach, start by instantiating a `Client` using the `host` URL of your KFP instance:
+You may also programmatically submit pipeline runs from the KFP SDK client. The client supports two ways of submitting runs: from IR YAML or from a Python pipeline function. For either approach, start by instantiating a `Client` using the `host` URL of your KFP instance:
 
 ```python
 from kfp.client import Client

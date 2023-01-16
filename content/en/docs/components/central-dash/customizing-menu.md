@@ -121,7 +121,7 @@ data:
 
 The users can see a new item (in this case, it is MyApp as well) on the menubar.
 They can either jump to `http(s)://gateway/_/myapp/profile1/` or `http(s)://gateway/_/myapp/profile2/` based on the namespace selection.
-The actual inside content of iframe is swiched by the namespace. 
+The actual inside content of iframe is switched by the namespace. 
 
 If sidecar injection is enabled, the authorization to the app is done by istio.
 e.g) The users who don't belong to profile2 can't access to `http(s)://gateway/_/myapp/profile2/`.
