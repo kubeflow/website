@@ -276,7 +276,11 @@ Follow these two simple steps to integrate your custom CRD in Katib:
        - pipelineruns
        - taskruns
      verbs:
-       - "*"
+       - "get"
+       - "list"
+       - "watch"
+       - "create"
+       - "delete"
    ```
 
 1. Modify Katib controller
