@@ -71,7 +71,7 @@ const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${time
 document.getElementById('calendar-container').innerHTML = html;
 </script>
 
-## Kubeflow Blog
+## Kubeflow Blog and Other Resources
 
 The Kubeflow project maintains an official blog that can be [found here](https://blog.kubeflow.org).
 
@@ -79,6 +79,8 @@ The Kubeflow project maintains an official blog that can be [found here](https:/
 To contribute an article for the blog, please raise an issue on the [kubeflow/community](https://github.com/kubeflow/community) GitHub repo or create a thread on the [mailing list](#kubeflow-mailing-list).
 Note, articles are published using the [kubeflow/blog](https://github.com/kubeflow/blog) GitHub repo.
 {{% /alert %}}
+
+In addition, please check out the community-curated [awesome list of projects and resources related to Kubeflow](https://github.com/terrytangyuan/awesome-kubeflow).
 
 ## Kubeflow Trademark
 
