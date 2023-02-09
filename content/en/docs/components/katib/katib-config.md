@@ -183,11 +183,6 @@ any other settings, a default value is set automatically.
            <td><a href="https://github.com/hyperopt/hyperopt">Hyperopt</a> optimization framework</td>
          </tr>
          <tr>
-           <td><code>suggestion-chocolate</code></td>
-           <td><code>grid</code>, <code>random</code>, <code>quasirandom</code>, <code>bayesianoptimization</code>, <code>mocmaes</code></td>
-           <td><a href="https://github.com/AIworx-Labs/chocolate">Chocolate</a> optimization framework</td>
-         </tr>
-         <tr>
            <td><code>suggestion-skopt</code></td>
            <td><code>bayesianoptimization</code></td>
            <td><a href="https://github.com/scikit-optimize/scikit-optimize">Scikit-optimize</a> optimization framework</td>
@@ -199,7 +194,7 @@ any other settings, a default value is set automatically.
          </tr>
          <tr>
            <td><code>suggestion-optuna</code></td>
-           <td><code>multivariate-tpe</code>, <code>tpe</code>, <code>cmaes</code>, <code>random</code></td>
+           <td><code>multivariate-tpe</code>, <code>tpe</code>, <code>cmaes</code>, <code>random</code>, <code>grid</code></td>
            <td><a href="https://github.com/optuna/optuna">Optuna</a> optimization framework</td>
          </tr>
          <tr>

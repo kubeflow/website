@@ -52,7 +52,7 @@ These are the fields in the experiment configuration spec:
   Katib generates hyperparameter combinations in the range based on the
   hyperparameter tuning algorithm that you specify.
   Refer to the
-  [`ParameterSpec` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L185-L206).
+  [`ParameterSpec` type](https://github.com/kubeflow/katib/blob/318f66890ebee00eba9893f7145d366795caa1d0/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L193-L214).
 
 - **objective**: The metric that you want to optimize.
   The objective metric is also called the _target variable_.
@@ -157,7 +157,7 @@ These are the fields in the experiment configuration spec:
   - [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
 
   Refer to the
-  [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
+  [`TrialTemplate` type](https://github.com/kubeflow/katib/blob/318f66890ebee00eba9893f7145d366795caa1d0/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L216-L278).
   Follow the [trial template guide](/docs/components/katib/trial-template/)
   to understand how to specify `trialTemplate` parameters, save templates in
   `ConfigMaps` and support custom Kubernetes resources in Katib.
@@ -173,36 +173,36 @@ These are the fields in the experiment configuration spec:
   to optimize, including the number of layers in the network, the types of
   operations, and more.
   Refer to the
-  [`NasConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L296).
+  [`NasConfig` type](https://github.com/kubeflow/katib/blob/318f66890ebee00eba9893f7145d366795caa1d0/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L303-L320).
 
   - **graphConfig**: The graph config that defines structure for a
     directed acyclic graph of the neural network. You can specify the number of layers,
     `input_sizes` for the input layer and `output_sizes` for the output layer.
     Refer to the
-    [`GraphConfig` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L301-L306).
+    [`GraphConfig` type](https://github.com/kubeflow/katib/blob/318f66890ebee00eba9893f7145d366795caa1d0/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L309-L314).
 
   - **operations**: The range of operations that you want to tune for your ML model.
     For each neural network layer the NAS algorithm selects one of the operations
     to build a neural network. Each operation contains sets of **parameters** which
     are described above.
     Refer to the
-    [`Operation` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L308-L312).
+    [`Operation` type](https://github.com/kubeflow/katib/blob/318f66890ebee00eba9893f7145d366795caa1d0/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L316-L320).
 
     You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/nas).
 
 - **resumePolicy**: The experiment resume policy. Can be one of
-  `LongRunning`, `Never` or `FromVolume`. The default value is `LongRunning`.
+  `LongRunning`, `Never` or `FromVolume`. The default value is `Never`.
   Refer to the
-  [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L58).
+  [`ResumePolicy` type](https://github.com/kubeflow/katib/blob/318f66890ebee00eba9893f7145d366795caa1d0/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L60).
   To find out how to modify a running experiment and use various
   restart policies follow the
   [resume an experiment guide](/docs/components/katib/resume-experiment/).
 
 _Background information about Katib's `Experiment`, `Suggestion` and `Trial`
 type:_ In Kubernetes terminology, Katib's
-[`Experiment` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L278),
-[`Suggestion` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/suggestions/v1beta1/suggestion_types.go#L128) and
-[`Trial` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/trials/v1beta1/trial_types.go#L129)
+[`Experiment` type](https://github.com/kubeflow/katib/blob/318f66890ebee00eba9893f7145d366795caa1d0/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L286),
+[`Suggestion` type](https://github.com/kubeflow/katib/blob/318f66890ebee00eba9893f7145d366795caa1d0/pkg/apis/controller/suggestions/v1beta1/suggestion_types.go#L131) and
+[`Trial` type](https://github.com/kubeflow/katib/blob/318f66890ebee00eba9893f7145d366795caa1d0/pkg/apis/controller/trials/v1beta1/trial_types.go#L134)
 is a [custom resource (CR)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 The YAML file that you create for your experiment is the CR specification.
 
@@ -246,8 +246,28 @@ continuous) and the number of possibilities is low. A grid search
 performs an exhaustive combinatorial search over all possibilities,
 making the search process extremely long even for medium sized problems.
 
-Katib uses the [Chocolate](https://chocolate.readthedocs.io) optimization
+Katib uses the [Optuna](https://github.com/optuna/optuna) optimization
 framework for its grid search.
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Setting name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>random_state</td>
+        <td>[int]: Set <code>random_state</code> to something other than None
+          for reproducible results.</td>
+        <td>10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <a id="random-search"></a>
 
@@ -263,8 +283,7 @@ use when combinatorial exploration is not possible. If the number of continuous
 variables is high, you should use quasi random sampling instead.
 
 Katib uses the [Hyperopt](https://hyperopt.github.io/hyperopt/),
-[Goptuna](https://github.com/c-bata/goptuna),
-[Chocolate](https://chocolate.readthedocs.io) or
+[Goptuna](https://github.com/c-bata/goptuna) or
 [Optuna](https://github.com/optuna/optuna) optimization
 framework for its random search.
 
@@ -306,8 +325,7 @@ steps, making it a good choice when the time to
 complete the evaluation of a parameter configuration is long.
 
 Katib uses the
-[Scikit-Optimize](https://github.com/scikit-optimize/scikit-optimize) or
-[Chocolate](https://chocolate.readthedocs.io) optimization framework
+[Scikit-Optimize](https://github.com/scikit-optimize/scikit-optimize) optimization framework
 for its Bayesian search. Scikit-Optimize is also known as `skopt`.
 
 Katib supports the following algorithm settings:
