@@ -85,7 +85,7 @@ The KFP SDK provides the following task methods for setting task-level configura
 * `.set_cpu_limit`
 * `.set_display_name`
 * `.set_env_variable`
-* `.set_gpu_limit`
+* `.set_accelerator_limit`
 * `.set_memory_limit`
 * `.set_retry`
 
