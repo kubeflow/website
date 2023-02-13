@@ -115,6 +115,24 @@ def my_pipeline():
     with dsl.ExitHandler(exit_task=print_status_task):
         fail_op()
 ```
+#### ignore upstream failure
+Another similiar method to achieve the same process as the exithandler while at the same time allowing tasks to collect output from upstream tasks is the [`ignore_upstream_failure()`][ignore-upstream-failure] configuration from [`pipeline_task`][tasks-configurations]
+
+If called, the pipeline task will run when any specified upstream tasks complete, even if unsuccessful. This method effectively turns the caller task into an exit task if the caller task has upstream dependencies. If the task has no upstream tasks, either via data exchange or an explicit dependency via .after(), this method has no effect.
+
+In the following pipeline, `clean_up_task` will execute after `print_op` regardless of if the task fails or not
+
+```python
+from kfp import dsl
+
+@dsl.pipeline()
+def my_pipeline(text: str = 'message'):
+    task = fail_op(message=text)
+    clean_up_task = print_op(
+        message=task.output).ignore_upstream_failure()
+```
+
+An important thing to note is that the component used for the caller task is required to have a default value for all inputs read from the upstream tasks, this is to make sure the caller tasks never fails regardless of the status of the upstream tasks, since if an upstream tasks fails to produce the inputs it would use the default value. 
 
 
 [component-io]: /docs/components/pipelines/v2/author-a-pipeline/component-io#passing-data-between-tasks
@@ -123,3 +141,5 @@ def my_pipeline():
 [component-io-pipeline-io]: /docs/components/pipelines/v2/author-a-pipeline/component-io/#pipeline-io
 <!-- TODO: make this reference more precise throughout -->
 [dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html
+[ignore-upstream-failure]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.PipelineTask.ignore_upstream_failure
+[tasks-configurations]:  https://www.kubeflow.org/docs/components/pipelines/v2/author-a-pipeline/tasks/#task-level-configurations
