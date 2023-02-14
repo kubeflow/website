@@ -115,12 +115,12 @@ def my_pipeline():
     with dsl.ExitHandler(exit_task=print_status_task):
         fail_op()
 ```
-#### ignore upstream failure
+#### Ignore upstream failure
 Another similiar method to achieve the same process as the exithandler while at the same time allowing tasks to collect output from upstream tasks is the [`ignore_upstream_failure()`][ignore-upstream-failure] configuration from [`pipeline_task`][tasks-configurations]
 
-If called, the pipeline task will run when any specified upstream tasks complete, even if unsuccessful. This method effectively turns the caller task into an exit task if the caller task has upstream dependencies. If the task has no upstream tasks, either via data exchange or an explicit dependency via .after(), this method has no effect.
+If called, the pipeline task will run when any specified upstream tasks complete, even if unsuccessful. This method effectively turns the caller task into an exit task if the caller task has upstream dependencies. If the task has no upstream tasks, either via data exchange or an explicit dependency via `.after()`, this method has no effect.
 
-In the following pipeline, `clean_up_task` will execute after `print_op` regardless of if the task fails or not
+In the following pipeline, `clean_up_task` will execute after `fail_op` regardless of if the task fails or not
 
 ```python
 from kfp import dsl
