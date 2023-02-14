@@ -74,15 +74,15 @@ Kubeflow Notebooks images are grouped by server type to ensure networking is con
 
 - Jupyterlab images should reside in the notebook images group "jupyterlab"  
 <img src="/docs/images/notebook-images-group-jupyterlab.png" 
-     alt="description"  
+     alt="Jupyterlab notebook images group"  
      class="mt-3 mb-3 border border-info rounded">  
 - Visual Studio Code (code-server) images should reside in the notebook images group 1  
 <img src="/docs/images/notebook-images-group-1.png" 
-     alt="description"  
+     alt="Notebook images group 1"  
      class="mt-3 mb-3 border border-info rounded">
 - RStudio images should reside in the notebook images group 2  
 <img src="/docs/images/notebook-images-group-2.png" 
-     alt="description"  
+     alt="Notebook images group 2"  
      class="mt-3 mb-3 border border-info rounded">  
 
 ## Next steps
