@@ -99,7 +99,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
       </tr>
       <tr>
-        <td>Open Data Hub</td>
+        <td>Kubeflow on OpenShift</td>
         <td>Red Hat</td>
         <td>
           OpenShift
@@ -156,7 +156,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
       </tr>
       <tr>
-        <td>Kubeflow on Oracle Cloud Infrastructure</td>
+        <td>Kubeflow on Oracle Container Engine for Kubernetes</td>
         <td>Oracle</td>
         <td>
           Oracle Container Engine for Kubernetes (OKE)
