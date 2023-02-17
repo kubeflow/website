@@ -123,7 +123,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
           <a href="https://www.arrikto.com/kubeflow-as-a-service/">Website</a>
         </td>
         <td>
-          Proprietary
+          1.5.0
         </td>
       </tr>
       <tr>
@@ -139,7 +139,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
           <a href="https://www.arrikto.com/enterprise-kubeflow/">Website</a>
         </td>
         <td>
-          Proprietary <sup>[<a href="https://docs.arrikto.com/Changelog.html">Release Notes</a>]</sup>
+          1.5.0 <sup>[<a href="https://docs.arrikto.com/Changelog.html">Release Notes</a>]</sup>
         </td>
       </tr>
       <tr>
