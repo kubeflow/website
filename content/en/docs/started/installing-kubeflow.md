@@ -52,7 +52,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
           <a href="https://awslabs.github.io/kubeflow-manifests">Website</a>
         </td>
         <td>
-          1.6.1 <sup>[<a href="https://github.com/awslabs/kubeflow-manifests/releases/tag/v1.6.1-aws-b1.0.0">Release Notes</a>]</sup>
+          {{% aws/latest-version %}} <sup>[<a href="https://github.com/awslabs/kubeflow-manifests/releases">Release Notes</a>]</sup>
         </td>
       </tr>
       <tr>
