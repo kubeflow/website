@@ -1,6 +1,6 @@
 +++
 title = "MakinaRocks Link"
-description = "Link enables data scientists to build pipelines(ML workflows) in their familiar environment in the easiest way."
+description = "Link is a development tool for data scientists to build pipelines(ML workflows) in their familiar environment in the easiest way."
 weight = 30
 +++
 
