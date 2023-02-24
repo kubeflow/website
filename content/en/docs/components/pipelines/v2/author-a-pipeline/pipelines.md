@@ -116,11 +116,11 @@ def my_pipeline():
         fail_op()
 ```
 #### Ignore upstream failure
-Another similiar method to achieve the same process as the exithandler while at the same time allowing tasks to collect output from upstream tasks is the [`ignore_upstream_failure()`][ignore-upstream-failure] configuration from [`pipeline_task`][tasks-configurations]
+The [ignore_upstream_failure()][ignore-upstream-failure] configuration from [pipeline_task] is useful if the calle task has upstream dependencies. This method converts the caller task into an exit handler task if the pipeline task fails and continues to collect outputs from the upstream tasks.
 
-If called, the pipeline task will run when any specified upstream tasks complete, even if unsuccessful. This method effectively turns the caller task into an exit task if the caller task has upstream dependencies. If the task has no upstream tasks, either via data exchange or an explicit dependency via `.after()`, this method has no effect.
+If the task has no upstream tasks, either through data exchange or an explicit dependency by using .after(), this method has no effect.
 
-In the following pipeline, `clean_up_task` will execute after `fail_op` regardless of if the task fails or not
+In the following pipeline, `clean_up_task` is executed after `fail_op`, regardless of whether the task fails or not
 
 ```python
 from kfp import dsl
@@ -132,7 +132,7 @@ def my_pipeline(text: str = 'message'):
         message=task.output).ignore_upstream_failure()
 ```
 
-An important thing to note is that the component used for the caller task is required to have a default value for all inputs read from the upstream tasks, this is to make sure the caller tasks never fails regardless of the status of the upstream tasks, since if an upstream tasks fails to produce the inputs it would use the default value. 
+Note that the component used for the caller task requires a default value for each input read from an upstream task. The default value is applied if an upstream task fails to produce inputs. Specifying default values ensures that the caller task always succeeds, regardless of the status of the upstream task. 
 
 
 [component-io]: /docs/components/pipelines/v2/author-a-pipeline/component-io#passing-data-between-tasks
