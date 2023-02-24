@@ -116,11 +116,11 @@ def my_pipeline():
         fail_op()
 ```
 #### Ignore upstream failure
-The [ignore_upstream_failure()][ignore-upstream-failure] configuration from [pipeline_task] is useful if the calle task has upstream dependencies. This method converts the caller task into an exit handler task if the pipeline task fails and continues to collect outputs from the upstream tasks.
+The [ignore_upstream_failure()][ignore-upstream-failure] configuration from [pipeline_task] is useful if the caller task has upstream dependencies. If the pipeline task fails, this method converts the caller task into an exit handler and continues to collect outputs from the upstream tasks.
 
 If the task has no upstream tasks, either through data exchange or an explicit dependency by using .after(), this method has no effect.
 
-In the following pipeline, `clean_up_task` is executed after `fail_op`, regardless of whether the task fails or not
+In the following pipeline definition, `clean_up_task` is executed after `fail_op`, regardless of whether the task fails or not:
 
 ```python
 from kfp import dsl
