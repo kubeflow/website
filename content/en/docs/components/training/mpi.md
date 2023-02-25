@@ -75,6 +75,38 @@ Deploy the `MPIJob` resource to start training:
 kubectl apply -f examples/v2beta1/tensorflow-benchmarks/tensorflow-benchmarks.yaml
 ```
 
+## Scheduling Policy
+The MPI Operator supports the [gang-scheduling](/docs/components/training/job-scheduling#running-jobs-with-gang-scheduling).
+If you want to modify the PodGroup parameters, you can configure in the following:  
+
+```diff
+apiVersion: kubeflow.org/v2beta1
+kind: MPIJob
+metadata:
+  name: tensorflow-benchmarks
+spec:
+  slotsPerWorker: 1
+  runPolicy:
+    cleanPodPolicy: Running
++   schedulingPolicy:
++     minAvailable: 10
++     queue: test-queue
++     minResources:
++       requests:
++         cpu: 3000m
++     priorityClass: high
+  mpiReplicaSpecs:
+...
+```
+
+In addition, those fields are passed to the PodGroup for the volcano according to the following: 
+
+- `.spec.runPolicy.schedulingPolicy.minAvailable` defines the minimal number of members to run the PodGroup and is passed to `.spec.mimMember`.
+When using this field, you must ensure the application supports resizing (e.g., Elastic Horovod). If not set, it defaults to the number of workers.
+- `.spec.runPolicy.schedulingPolicy.queue` defines the queue name to allocate resource for the PodGroup and is passed to `.spec.queue`.
+- `.spec.runPolicy.schedulingPolicy.minResources` defines the minimal resources of members to run the PodGroup and is passed to `.spec.mimResources`.
+- `.spec.runPolicy.schedulingPolicy.priorityClass` defines the PodGroup's PriorityClass and is passed to `.spec.priorityClassName`.
+
 ## Monitoring an MPI Job
 
 Once the `MPIJob` resource is created, you should now be able to see the created pods matching the specified number of GPUs. You can also monitor the job status from the status section. Here is sample output when the job is successfully completed.
