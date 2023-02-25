@@ -95,17 +95,36 @@ spec:
 +       requests:
 +         cpu: 3000m
 +     priorityClass: high
++     scheduleTimeoutSeconds: 180
   mpiReplicaSpecs:
 ...
 ```
 
-In addition, those fields are passed to the PodGroup for the volcano according to the following: 
+In addition, those fields are passed to the PodGroup for the volcano or the coscheduling plugin according to the following: 
 
-- `.spec.runPolicy.schedulingPolicy.minAvailable` defines the minimal number of members to run the PodGroup and is passed to `.spec.mimMember`.
-When using this field, you must ensure the application supports resizing (e.g., Elastic Horovod). If not set, it defaults to the number of workers.
-- `.spec.runPolicy.schedulingPolicy.queue` defines the queue name to allocate resource for the PodGroup and is passed to `.spec.queue`.
-- `.spec.runPolicy.schedulingPolicy.minResources` defines the minimal resources of members to run the PodGroup and is passed to `.spec.mimResources`.
-- `.spec.runPolicy.schedulingPolicy.priorityClass` defines the PodGroup's PriorityClass and is passed to `.spec.priorityClassName`.
+- `.spec.runPolicy.schedulingPolicy.minAvailable` defines the minimal number of members to run the PodGroup and is passed to `.spec.minMember`.
+When using this field, you must ensure the application supports resizing (e.g., Elastic Horovod).
+- `.spec.runPolicy.schedulingPolicy.queue` defines the queue name to allocate resource for the PodGroup. However, iff you use the volcano as a gang scheduler, this is passed to `.spec.queue`.
+- `.spec.runPolicy.schedulingPolicy.minResources` defines the minimal resources of members to run the PodGroup and is passed to `.spec.minResources`.
+- `.spec.runPolicy.schedulingPolicy.priorityClass` defines the PodGroup's PriorityClass. However, iff you use the volcano as a gang scheduler, this is passed to `.spec.priorityClassName`.
+- `.spec.runPolicy.schedulingPolicy.scheduleTimeutSeconds` defines the maximal time of members to wait before run the PodGroup.
+However, iff you use the coscheduling plugin as a gang scheduler, this is passed to `.spec.scheduleTimeutSeconds`.
+
+Also, if you don't set the fields, mpi-operator populates them based on the following:
+
+volcano:
+- `.spec.runPolicy.schedulingPolicy.minAvailable`: The number of a launcher and workers.
+- `.spec.runPolicy.schedulingPolicy.queue`: A value of the `scheduling.volcano.sh/group-name` in `.spec.annotations`.
+- `.spec.runPolicy.schedulingPolicy.minResources`: Nothing is set.
+- `.spec.runPolicy.schedulingPolicy.priorityClass`: It uses the priorityClass for the launcher. If one for the launcher doesn't set, it uses one for the workers.  
+
+scheduler-plugins:
+- `.spec.runPolicy.schedulingPolicy.minAvailable`: The number of a launcher and workers.
+- `.spec.runPolicy.schedulingPolicy.minResources`: The sum of resources defined in all containers. 
+However, if the number of replicas (`.spec.mpiReplicaSpecs[Launcher].replicas` + `.spec.mpiReplicaSpecs[Worker].replicas`) is more of minMembers,
+it reorders replicas according to each priorityClass setting in `podSpec.priorityClassName` and then resources with a priority less than minMember will not be added to minResources.
+Note that it doesn't account for the priorityClass specified in podSpec.priorityClassName if the priorityClass doesn't exist in the cluster when it reorders replicas.
+- `.spec.runPolicy.schedulingPolicy.scheduleTimeutSeconds`: 0
 
 ## Monitoring an MPI Job
 
