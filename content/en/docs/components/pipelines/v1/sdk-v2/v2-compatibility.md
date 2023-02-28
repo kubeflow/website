@@ -154,5 +154,5 @@ Kubeflow Pipelines v2 compatible mode is currently in Beta stage. It is under ac
 [build-pipeline]: /docs/components/pipelines/sdk-v2/build-pipeline/
 [build-component]: /docs/components/pipelines/sdk-v2/component-development/
 [python-component]: /docs/components/pipelines/sdk-v2/python-function-components/
-[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client
 [connect-api]: /docs/components/pipelines/sdk/connect-api/ 

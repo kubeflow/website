@@ -18,7 +18,7 @@ $ pip3 install kfp --upgrade
 
 For more information about the Kubeflow Pipelines SDK, see the [SDK reference guide][sdk-ref].
 
-[sdk-ref]: https://kubeflow-pipelines.readthedocs.io/en/latest/index.html
+[sdk-ref]: https://kubeflow-pipelines.readthedocs.io/en/stable/index.html
 
 ## Understanding pipeline components
 
