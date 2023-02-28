@@ -115,6 +115,24 @@ def my_pipeline():
     with dsl.ExitHandler(exit_task=print_status_task):
         fail_op()
 ```
+#### Ignore upstream failure
+The [`.ignore_upstream_failure()`][ignore-upstream-failure] configuration from [`pipeline_task`][tasks-configurations] is useful if the caller task wants to ignore the failures of upstream tasks. If the pipeline task fails, this method converts the caller task into an exit handler and continues to collect outputs from the upstream tasks.
+
+If the task has no upstream tasks, either through data exchange or an explicit dependency by using `.after()`, this method has no effect.
+
+In the following pipeline definition, `clean_up_task` is executed after `fail_op`, regardless of whether the task fails or not:
+
+```python
+from kfp import dsl
+
+@dsl.pipeline()
+def my_pipeline(text: str = 'message'):
+    task = fail_op(message=text)
+    clean_up_task = print_op(
+        message=task.output).ignore_upstream_failure()
+```
+
+Note that the component used for the caller task requires a default value for each input read from an upstream task. The default value is applied if the upstream task fails to produce the outputs that are passed as inputs to the caller task. Specifying default values ensures that the caller task always succeeds, regardless of the status of the upstream task. 
 
 
 [component-io]: /docs/components/pipelines/v2/author-a-pipeline/component-io#passing-data-between-tasks
@@ -123,3 +141,5 @@ def my_pipeline():
 [component-io-pipeline-io]: /docs/components/pipelines/v2/author-a-pipeline/component-io/#pipeline-io
 <!-- TODO: make this reference more precise throughout -->
 [dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html
+[ignore-upstream-failure]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.PipelineTask.ignore_upstream_failure
+[tasks-configurations]:  https://www.kubeflow.org/docs/components/pipelines/v2/author-a-pipeline/tasks/#task-level-configurations

@@ -88,6 +88,7 @@ The KFP SDK provides the following task methods for setting task-level configura
 * `.set_accelerator_limit`
 * `.set_memory_limit`
 * `.set_retry`
+* `.ignore_upstream_failure`
 
 For detailed information on how to use the above methods, see the [`kfp.dsl.PipelineTask` reference documentation][dsl-reference-docs].
 
