@@ -264,7 +264,7 @@ when designing a pipeline.
     public website. The function extracts the CSV files and then merges them
     into a single file.
 
-[container-op]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.dsl.html#kfp.dsl.ContainerOp
+[container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp
 [component-spec]: https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/
 [python-function-component]: https://www.kubeflow.org/docs/components/pipelines/sdk-v2/python-function-components/
 [component-dev]: https://www.kubeflow.org/docs/components/pipelines/sdk-v2/component-development/
@@ -403,7 +403,7 @@ def merge_csv(tar_data: Input[Artifact], output_csv: Output[Dataset]):
     to load the component specification YAML for any components that you are
     reusing in this pipeline.
 
-[load_component_from_url]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html?highlight=load_component_from_url#kfp.components.load_component_from_url
+[load_component_from_url]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html?highlight=load_component_from_url#kfp.components.load_component_from_url
 
 
 ```python
@@ -476,7 +476,7 @@ See the guide to [getting started with the UI][quickstart].
 
 1.  Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
 
-[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client
 [connect-api]: https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api
 
 
