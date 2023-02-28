@@ -116,9 +116,9 @@ def my_pipeline():
         fail_op()
 ```
 #### Ignore upstream failure
-The [ignore_upstream_failure()][ignore-upstream-failure] configuration from [pipeline_task] is useful if the caller task has upstream dependencies. If the pipeline task fails, this method converts the caller task into an exit handler and continues to collect outputs from the upstream tasks.
+The [`.ignore_upstream_failure()`][ignore-upstream-failure] configuration from [`pipeline_task`][tasks-configurations] is useful if the caller task wants to ignore the failures of upstream tasks. If the pipeline task fails, this method converts the caller task into an exit handler and continues to collect outputs from the upstream tasks.
 
-If the task has no upstream tasks, either through data exchange or an explicit dependency by using .after(), this method has no effect.
+If the task has no upstream tasks, either through data exchange or an explicit dependency by using `.after()`, this method has no effect.
 
 In the following pipeline definition, `clean_up_task` is executed after `fail_op`, regardless of whether the task fails or not:
 
@@ -132,7 +132,7 @@ def my_pipeline(text: str = 'message'):
         message=task.output).ignore_upstream_failure()
 ```
 
-Note that the component used for the caller task requires a default value for each input read from an upstream task. The default value is applied if an upstream task fails to produce inputs. Specifying default values ensures that the caller task always succeeds, regardless of the status of the upstream task. 
+Note that the component used for the caller task requires a default value for each input read from an upstream task. The default value is applied if the upstream task fails to produce the outputs that are passed as inputs to the caller task. Specifying default values ensures that the caller task always succeeds, regardless of the status of the upstream task. 
 
 
 [component-io]: /docs/components/pipelines/v2/author-a-pipeline/component-io#passing-data-between-tasks
