@@ -85,22 +85,24 @@ def my_pipeline():
     max_accuracy(models=dsl.Collected(train_model_task.outputs['model']))
 ```
 
-Downstream tasks may consume `dsl.Collected` outputs via an input annotated with a `List` of parameters or `List` of artifacts. For example, `max_accuracy` in the above example has the input `models` with type `List[Model]`:
+Downstream tasks might consume `dsl.Collected` outputs via an input annotated with a `List` of parameters or a `List` of artifacts. For example, `max_accuracy` in the preceding example has the input `models` with type `Output[List[Model]]`, shown by the following component definition:
 
 ```python
 from kfp import dsl
 from kfp.dsl import Model, Output
 
 @dsl.component
-def select_best(models: List[Model]) -> float:
+def select_best(models: Output[List[Model]]) -> float:
     return max(score_model(model) for model in models)
 ```
 
-`dsl.Collected` can be used to collect outputs from nested loops as well.
+You can also use `dsl.Collected` to collect outputs from nested loops as well.
 
-Collection of *parameters* from nested loops will result in a *nested list* of parameters (e.g., two nested `dsl.ParallelFor` groups results in a **list of lists** of parameters). By comparison, collection of *artifacts* from nested loops results in a *flattened* lists of artifacts (e.g., any number of nested `dsl.ParallelFor` groups results in a **single list** containing all artifacts).
+Collection of *parameters* from nested loops will result in a *nested list* of parameters. For example, collection of parameters from two nested `dsl.ParallelFor` groups results in a *list of lists* of parameters.
 
-You may also return a `dsl.Collected` from a pipeline using a `List` of parameters or `List` of artifacts return annotation:
+By comparison, collection of *artifacts* from nested loops results in a *flattened* lists of artifacts. For example, collection of artifacts from five nested `dsl.ParallelFor` groups still results in a *single list* containing all artifacts.
+
+You might also return a `dsl.Collected` from a pipeline using a return annotation of a `List` of parameters or a `List` of artifacts:
 
 ```python
 from kfp import dsl
