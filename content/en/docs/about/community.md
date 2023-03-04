@@ -5,17 +5,15 @@ weight = 10
 aliases = ["/docs/community/"]
 +++
 
-## Slack
+## Kubeflow Slack
 
-[Join the official Kubeflow Slack!](https://invite.playplay.io/invite?team_id=T7QLHSH6U)
+The Official Kubeflow Slack is used for informal discussions among users and contributors.
 
-{{% alert title="Tip" color="info" %}}
-If the above link is not working, please [raise an issue on the `kubeflow/website` repo](https://github.com/kubeflow/website/issues/new).
-{{% /alert %}}
+<a href="https://invite.playplay.io/invite?team_id=T7QLHSH6U">
+  <button class="btn btn-primary py-2 px-5 mb-3">Click to join:<br>Kubeflow Slack</button>
+</a>
 
-The Kubeflow Slack workspace has many channels, here are a few examples:
-
-| Topic | Slack Channel |
+| Popular Kubeflow Slack Channels |
 | --- | --- |
 | General Discussion | [#general](https://kubeflow.slack.com/archives/C7REE0ETX)
 | Feature Requests | [#feature-requests](https://kubeflow.slack.com/archives/C01A7RYEYMB)
@@ -30,41 +28,59 @@ The Kubeflow Slack workspace has many channels, here are a few examples:
 | Users - Korea | [#users-korea](https://kubeflow.slack.com/archives/CKPCJB9AP)
 | Users - Oceania | [#users-oceania](https://kubeflow.slack.com/archives/C023ZN1R9FC)
 
-## Mailing List
+## Kubeflow Mailing List
 
 The official Kubeflow mailing list is a Google Group called [kubeflow-discuss](https://groups.google.com/g/kubeflow-discuss).
 
-More detail about the Kubeflow mailing lists:
+<a href="https://groups.google.com/g/kubeflow-discuss">
+  <button class="btn btn-primary py-2 px-5">Click to join:<br>Kubeflow Mailing List</button>
+</a>
 
-| Topic | Mailing List |
+## Kubeflow Community Call
+
+The Kubeflow community holds weekly Zoom calls for all users and contributors to discuss issues/proposals and present demos/products.
+Kubeflow community calls are held each Tuesday and alternate between `8:00am San Francisco` time and `8:00am London` time.
+
+Joining the [mailing list](#kubeflow-mailing-list) should automatically add these events to your Google Calendar.
+Alternatively, you can manually subscribe to the ["Kubeflow Community" calendar](#kubeflow-community-calendars).
+
+| Useful Links |
 | --- | --- |
-| General Discussion | [kubeflow-discuss](https://groups.google.com/g/kubeflow-discuss)
+| Kubeflow Community Call - Notes | [Google Doc](https://bit.ly/kf-meeting-notes)
+| Kubeflow Community Call - Recordings | [YouTube Playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5)
 
-## Weekly Community Call
+## Kubeflow Community Calendars
 
-The Kubeflow community holds a public call every Tuesday, alternating between `US East/EMEA` and `US West/APAC` friendly times.
+The following calendars are maintained by [Kubeflow Working Groups](#kubeflow-working-groups) and contain meetings that you may wish to attend.
+
+| Calendar | Link |
+| --- | --- |
+| Kubeflow Community | [Google Calendar](https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com/public/basic.ics), [Git Repo](https://github.com/kubeflow/community/tree/master/calendar))
+| Kubeflow Release Team | [Google Calendar](https://calendar.google.com/calendar/embed?src=c_c5i4tlc61oq2kehbhv9h3gveuo%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/c_c5i4tlc61oq2kehbhv9h3gveuo%40group.calendar.google.com/public/basic.ics))
+| Kubeflow AutoML WG | [Google Calendar](https://calendar.google.com/calendar/embed?src=d49nsiefsnfgkf91o0u8h2jhk4%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/d49nsiefsnfgkf91o0u8h2jhk4%40group.calendar.google.com/public/basic.ics))
+| Kubeflow Manifests WG | [Google Calendar](https://calendar.google.com/calendar/embed?src=c_mhv1kfv9na0pdile4qju6o5v60%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/c_mhv1kfv9na0pdile4qju6o5v60%40group.calendar.google.com/public/basic.ics))
+| Kubeflow Notebooks WG | [Google Calendar](https://calendar.google.com/calendar/embed?src=c_ptktc8ulh50db8bqvr9fd4ubqs%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/c_ptktc8ulh50db8bqvr9fd4ubqs%40group.calendar.google.com/public/basic.ics))
+| KServe Community | [Google Calendar](https://calendar.google.com/calendar/u/0/embed?src=4fqdmu5fp4l0bgdlf4lm1atnsl2j4612@import.calendar.google.com) ([iCal](https://wiki.lfaidata.foundation/rest/calendar-services/1.0/calendar/export/subcalendar/private/079ecdf0bfab77646c9e00df7b1c28f34f67f852.ics))
+
+This is an aggregated view of the community calendars and should be displayed in your device's timezone.
+
+<div id="calendar-container"></div>
+<script type="text/javascript">
+const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&ctz=Australia%2FSydney&showPrint=0&showDate=1&mode=AGENDA&showTitle=0&src=NGZxZG11NWZwNGwwYmdkbGY0bG0xYXRuc2wyajQ2MTJAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&src=ZDQ5bnNpZWZzbmZna2Y5MW8wdThoMmpoazRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=a3ViZWZsb3cub3JnXzdsNXZuYm44c3VqMnNlMTBzZW44MWQ5NDI4QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y19taHYxa2Z2OW5hMHBkaWxlNHFqdTZvNXY2MEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19wdGt0Yzh1bGg1MGRiOGJxdnI5ZmQ0dWJxc0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19jNWk0dGxjNjFvcTJrZWhiaHY5aDNndmV1b0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
+document.getElementById('calendar-container').innerHTML = html;
+</script>
+
+## Kubeflow Blog and Other Resources
+
+The Kubeflow project maintains an official blog that can be [found here](https://blog.kubeflow.org).
 
 {{% alert title="Tip" color="info" %}}
-Joining the [kubeflow-discuss](https://groups.google.com/g/kubeflow-discuss) Google Group will automatically send a calendar invitation to your email address.
+To contribute an article for the blog, please raise an issue on the [kubeflow/community](https://github.com/kubeflow/community) GitHub repo or create a thread on the [mailing list](#kubeflow-mailing-list).
+Note, articles are published using the [kubeflow/blog](https://github.com/kubeflow/blog) GitHub repo.
 {{% /alert %}}
 
-More detail about the Kubeflow weekly community call:
-
-| Description | Link |
-| --- | --- |
-| Meeting Notes | [Google Doc](http://bit.ly/kf-meeting-notes)
-| Call Recordings | [YouTube Playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5)
-| Community Calendar | [Google Calendar](https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com) and [iCal file](https://calendar.google.com/calendar/ical/kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com/public/basic.ics)
-| Community Calendar Management | [GitHub Repo](https://github.com/kubeflow/community/tree/master/calendar)
-
-## Blog
-
-The official Kubeflow blog is [found here](https://blog.kubeflow.org).
-
-{{% alert title="Tip" color="info" %}}
-To contribute an article for the blog, please raise an issue on the [kubeflow/community](https://github.com/kubeflow/community) GitHub repo.
-Note that articles are managed on the [kubeflow/blog](https://github.com/kubeflow/blog) GitHub repo.
-{{% /alert %}}
+In addition, please check out the community-curated [awesome list of projects and resources related to Kubeflow](https://github.com/terrytangyuan/awesome-kubeflow).
 
 ## Kubeflow Trademark
 
@@ -73,6 +89,7 @@ The Kubeflow trademark and logos are registered trademarks of Google, please rev
 ## Kubeflow Working Groups
 
 The Kubeflow project has a number of Working Groups (WGs) who each maintain some aspect of the Kubeflow project.
+The following table outlines which components are maintained by each Working Group.
 
 <div class="table-responsive">
 <table class="table table-bordered">

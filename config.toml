@@ -20,7 +20,18 @@ defaultContentLanguageInSubdir = false
 enableMissingTranslationPlaceholders = true
 # disable taxonomies
 disableKinds = ["taxonomy", "taxonomyTerm"]
-
+# deprecated directories
+ignoreFiles = [
+  "content/en/docs/distributions/gke/deploy/*", 
+  "content/en/docs/distributions/gke/pipelines/*", 
+  "content/en/docs/distributions/gke/anthos.md", 
+  "content/en/docs/distributions/gke/authentication.md",
+  "content/en/docs/distributions/gke/authentication.md", 
+  "content/en/docs/distributions/gke/custom-domain.md", 
+  "content/en/docs/distributions/gke/customizing-gke.md", 
+  "content/en/docs/distributions/gke/private-clusters.md", 
+  "content/en/docs/distributions/gke/troubleshooting-gke.md"
+  ]
 ###############################################################################
 # Hugo - Top-level navigation (horizontal)
 ###############################################################################
@@ -123,6 +134,10 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     githubbranch = "master"
     url = "https://master.kubeflow.org"
   [[params.versions]]
+    version = "v1.6"
+    githubbranch = "v1.6-branch"
+    url = "https://v1-6-branch.kubeflow.org"
+  [[params.versions]]
     version = "v1.5"
     githubbranch = "v1.5-branch"
     url = "https://v1-5-branch.kubeflow.org"
@@ -166,10 +181,6 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     version = "v0.3"
     githubbranch = "v0.3-branch"
     url = "https://v0-3.kubeflow.org"
-  [[params.versions]]
-    version = "v0.2"
-    githubbranch = "v0.2-branch"
-    url = "https://v0-2.kubeflow.org"
 
   # User interface configuration
   [params.ui]
@@ -204,17 +215,17 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
       icon = "fab fa-twitter"
       desc = "Follow us on Twitter to get the latest news!"
     [[params.links.user]]
-      name = "Slack"
-      url = "/docs/about/community/#slack"
+      name = "Kubeflow Slack"
+      url = "/docs/about/community/#kubeflow-slack"
       icon = "fab fa-slack"
       desc = "Join the Kubeflow Slack Workspace!"
     [[params.links.user]]
-      name = "Mailing list"
-      url = "/docs/about/community/#mailing-list"
+      name = "Kubeflow Mailing List"
+      url = "/docs/about/community/#kubeflow-mailing-list"
       icon = "fa fa-envelope"
       desc = "Join the Kubeflow Mailing List!"
     [[params.links.user]]
-      name = "Weekly Community Call"
-      url = "/docs/about/community/#weekly-community-call"
+      name = "Kubeflow Community Calendars"
+      url = "/docs/about/community/#kubeflow-community-calendars"
       icon = "fa fa-calendar"
-      desc = "Join the weekly Kubeflow Community Call!"
+      desc = "View the Kubeflow Community Calendars!"

@@ -4,7 +4,7 @@ description = "Information about the Kubeflow 0.6 release"
 weight = 106
 +++
 
-## 0.6.1
+## Kubeflow 0.6.1
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -48,7 +48,7 @@ weight = 106
 </table>
 </div>
 
-## 0.6.0
+## Kubeflow 0.6.0
 
 <div class="table-responsive">
 <table class="table table-bordered">

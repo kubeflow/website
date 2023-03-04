@@ -304,7 +304,7 @@ spec:
           - ftrl
       name: optimizer
       parameterType: categorical
-  resumePolicy: LongRunning
+  resumePolicy: Never
   trialTemplate:
     failureCondition: status.conditions.#(type=="Failed")#|#(status=="True")#
     primaryContainerName: training-container

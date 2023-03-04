@@ -4,7 +4,7 @@ description = "Information about the Kubeflow 1.3 release"
 weight = 101
 +++
 
-## 1.3.1
+## Kubeflow 1.3.1
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -48,8 +48,7 @@ weight = 101
 </table>
 </div>
 
-<br>
-<b>Versions of components in 1.3.1:</b>
+### Component Versions
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -193,7 +192,7 @@ weight = 101
 </table>
 </div>
 
-## 1.3.0
+## Kubeflow 1.3.0
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -237,8 +236,7 @@ weight = 101
 </table>
 </div>
 
-<br>
-<b>Versions of components in 1.3.0:</b>
+### Component Versions
 
 <div class="table-responsive">
 <table class="table table-bordered">

@@ -62,7 +62,7 @@ data:
 ```
 
 "icon" can be chosen from iron-icons.
-You can see the list of iron-icons in this [icon-demo](http://kevingleason.me/Polymer-Todo/bower_components/iron-icons/demo/index.html).
+You can see the list of iron-icons in this [icon-demo](https://kevingleason.me/Polymer-Todo/bower_components/iron-icons/demo/index.html).
 
 The change of configuration would be reflected soon.
 If not, please rollout centraldashboard and reload the web browser.

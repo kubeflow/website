@@ -4,7 +4,7 @@ description = "Information about the Kubeflow 1.1 release"
 weight = 103
 +++
 
-## 1.1.0
+## Kubeflow 1.1.0
 
 <div class="table-responsive">
 <table class="table table-bordered">

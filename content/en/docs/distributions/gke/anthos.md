@@ -14,7 +14,7 @@ Using Anthos, you can create a consistent setup across your on-premises and
 cloud environments, helping you to automate policy and security at scale.
 
 We are collecting interest for Kubeflow on GKE On Prem. You can subscribe
-to the GitHub issue [kubeflow/gcp-blueprints#138](https://github.com/kubeflow/gcp-blueprints/issues/138).
+to the GitHub issue [GoogleCloudPlatform/kubeflow-distribution#138](https://github.com/GoogleCloudPlatform/kubeflow-distribution/issues/138).
 
 ## Next steps
 

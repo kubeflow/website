@@ -9,18 +9,26 @@ Kubeflow is an end-to-end Machine Learning (ML) platform for Kubernetes, it prov
 Operators can choose what is best for their users, there is no requirement to deploy every component.
 To read more about the components and architecture of Kubeflow, please see the <a href="/docs/started/architecture/">Kubeflow Architecture</a> page.
 
+### How to install Kubeflow?
+
 There are two pathways to get up and running with Kubeflow, you may either:
-1. Use a [packaged distribution](#packaged-distributions)
-1. Use the [manifests](#manifests) (advanced)
+
+1. [Use a packaged distribution](#packaged-distributions-of-kubeflow)
+2. [Use the raw manifests](#raw-kubeflow-manifests) <sup>(for advanced users)</sup>
 
 <a id="packaged-distributions"></a>
-## Install a packaged Kubeflow distribution
+<a id="install-a-packaged-kubeflow-distribution"></a>
+## Packaged Distributions of Kubeflow 
 
-{{% alert color="warning" %}}
-Packaged distributions are developed and supported by their respective maintainers, the Kubeflow community does not currently endorse or certify any distribution.
+{{% alert title="Note" color="warning" %}}
+Packaged distributions are developed and supported by their respective maintainers, <b>the Kubeflow community does not endorse or certify any specific distribution</b>.
+
+In the near future, there are plans to introduce <a href="https://github.com/kubeflow/community/blob/master/proposals/kubeflow-conformance-program-proposal.md">conformance testing for distributions</a>, you may track progress on this initiative by following <a href="https://github.com/kubeflow/kubeflow/issues/6485">kubeflow/kubeflow#6485</a>.
 {{% /alert %}}
 
-<b>See the table below for a list of options and links to documentation:</b>
+### Active Distributions
+
+The following table lists <b>active distributions</b> that have <b>had a recent release</b> (within the last 6 months).
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -28,113 +36,215 @@ Packaged distributions are developed and supported by their respective maintaine
       <tr>
         <th>Name</th>
         <th>Maintainer</th>
-        <th>Platform</th>
-        <th>Version</th>
-        <th>Docs</th>
-        <th>Website</th>
+        <th>Target Platform</th>
+        <th>Link</th>
+        <th>Kubeflow Version</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>Kubeflow on AWS</td>
-        <td>Amazon Web Services (AWS)</td>
-        <td>Amazon Elastic Kubernetes Service (EKS)</td>
-        <td>{{% aws/latest-version %}}</td>
-        <td><a href="/docs/distributions/aws/">Docs</a></td>
-        <td><a href="https://awslabs.github.io/kubeflow-manifests">External Website</a></td>
-      </tr>
-      <tr>
-        <td>Kubeflow on Azure</td>
-        <td>Microsoft Azure</td>
-        <td>Azure Kubernetes Service (AKS)</td>
-        <td>1.2</td>
-        <td><a href="/docs/distributions/azure/">Docs</a></td>
-        <td></td>
+        <td>Amazon Web Services</td>
+        <td>
+          Amazon Elastic Kubernetes Service (EKS)
+        </td>
+        <td>
+          <a href="https://awslabs.github.io/kubeflow-manifests">Website</a>
+        </td>
+        <td>
+          {{% aws/latest-version %}} <sup>[<a href="https://github.com/awslabs/kubeflow-manifests/releases">Release Notes</a>]</sup>
+        </td>
       </tr>
       <tr>
         <td>Kubeflow on Google Cloud</td>
         <td>Google Cloud</td>
-        <td>Google Kubernetes Engine (GKE)</td>
-        <td>{{% gke/latest-version %}}</td>
-        <td><a href="/docs/distributions/gke/">Docs</a></td>
-        <td></td>
+        <td>
+          Google Kubernetes Engine (GKE)
+        </td>
+        <td>
+          <a href="https://googlecloudplatform.github.io/kubeflow-gke-docs">Website</a>
+        </td>
+        <td>
+          1.6.1 <sup>[<a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/#161">Release Notes</a>]</sup>
+        </td>
       </tr>
       <tr>
         <td>Kubeflow on IBM Cloud</td>
         <td>IBM Cloud</td>
-        <td>IBM Cloud Kubernetes Service (IKS) </td>
-        <td>1.5</td>
-        <td><a href="/docs/distributions/ibm/">Docs</a></td>
-        <td><a href="https://github.com/IBM/manifests/tree/v1.5-branch">External Website</a></td>
+        <td>
+          IBM Cloud Kubernetes Service (IKS)
+        </td>
+        <td>
+          <a href="https://github.com/IBM/manifests/tree/{{% iks/latest-branch %}}">Website</a>
+          <br>
+          <sub><a href="/docs/distributions/ibm/">Legacy Docs</a></sub>
+        </td>
+        <td>
+          1.6.1 <sup>[<a href="https://github.com/IBM/manifests/releases/tag/v1.6.1">Release Notes</a>]</sup>
+        </td>
       </tr>
       <tr>
         <td>Kubeflow on Nutanix</td>
         <td>Nutanix</td>
-        <td>Nutanix Karbon</td>
-        <td>{{% nutanix/latest-version %}}</td>
-        <td><a href="/docs/distributions/nutanix/">Docs</a></td>
-        <td></td>
+        <td>
+          Nutanix Kubernetes Engine
+        </td>
+        <td>
+          <s>Website</s>
+          <br>
+          <sub><a href="/docs/distributions/nutanix/">Legacy Docs</a></sub>
+        </td>
+        <td>
+          1.6.0
+        </td>
       </tr>
       <tr>
         <td>Kubeflow on OpenShift</td>
         <td>Red Hat</td>
-        <td>OpenShift</td>
-        <td>1.3</td>
-        <td><a href="/docs/distributions/openshift/">Docs</a></td>
-        <td><a href="https://opendatahub.io/docs/kubeflow.html">External Website</a></td>
-      </tr>
-      <tr>
-        <td>Argoflow</td>
-        <td>Argoflow Community</td>
-        <td>Conformant Kubernetes</td>
-        <td>1.3</td>
-        <td>N/A</td>
-        <td><a href="https://github.com/argoflow/argoflow">External Website</a></td>
+        <td>
+          OpenShift
+        </td>
+        <td>
+          <a href="https://opendatahub.io/docs/kubeflow.html">Website</a>
+          <br>
+          <sub><a href="/docs/distributions/openshift/">Legacy Docs</a></sub>
+        </td>
+        <td>
+          1.6.0
+        </td>
       </tr>
       <tr>
         <td>Arrikto Kubeflow as a Service</td>
-        <td>Arrikto</td>
-        <td>Fully Managed</td>
-        <td>1.4</td>
-        <td>N/A</td>
-        <td><a href="http://kubeflow.arrikto.com/">External Website</a></td>
+        <td rowspan="2">Arrikto</td>
+        <td>
+          N/A <sup>(fully managed)</sup>
+        </td>
+        <td>
+          <a href="https://www.arrikto.com/kubeflow-as-a-service/">Website</a>
+        </td>
+        <td>
+          1.5.0
+        </td>
       </tr>
       <tr>
         <td>Arrikto Enterprise Kubeflow</td>
-        <td>Arrikto</td>
-        <td>EKS,
-            AKS,
-            GKE
-        </td>
-        <td>1.4</td>
         <td>
-          <a href="/docs/distributions/ekf/">Docs</a>
+          ◦ Amazon Elastic Kubernetes Service (EKS)
+          <br>
+          ◦ Azure Kubernetes Service (AKS)
+          <br>
+          ◦ Google Kubernetes Engine (GKE)
         </td>
         <td>
-          <a href="https://www.arrikto.com/enterprise-kubeflow/">External Website</a>
+          <a href="https://www.arrikto.com/enterprise-kubeflow/">Website</a>
+        </td>
+        <td>
+          1.5.0 <sup>[<a href="https://docs.arrikto.com/Changelog.html">Release Notes</a>]</sup>
         </td>
       </tr>
       <tr>
         <td>Charmed Kubeflow</td>
         <td>Canonical</td>
-        <td>Conformant Kubernetes</td>
-        <td>1.4</td>
-        <td><a href="/docs/distributions/charmed/">Docs</a></td>
-        <td><a href="https://charmed-kubeflow.io/docs/quickstart">External Website</a></td>
+        <td>
+          All Conformant Kubernetes
+        </td>
+        <td>
+          <a href="https://charmed-kubeflow.io/">Website</a>
+        </td>
+        <td>
+          1.6.1
+        </td>
+      </tr>
+      <tr>
+        <td>Kubeflow on Oracle Container Engine for Kubernetes</td>
+        <td>Oracle</td>
+        <td>
+          Oracle Container Engine for Kubernetes (OKE)
+        </td>
+        <td>
+          <a href="https://github.com/oracle-devrel/kubeflow-oke">Website</a>
+        </td>
+        <td>
+          1.6.0
+        </td>
+      </tr>
+      <tr>
+        <td>Kubeflow on vSphere</td>
+        <td>VMware</td>
+        <td>VMware vSphere</td>
+        <td>
+          <a href="https://vmware.github.io/ml-ops-platform-for-vsphere/">Website</a>
+        </td>
+        <td>
+          1.6.0
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Legacy Distributions
+
+The following table lists <b>legacy distributions</b> which have <b>not had a recent release</b> (within the last 6 months).
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Name</th>
+        <th>Maintainer</th>
+        <th>Target Platform</th>
+        <th>Link</th>
+        <th>Latest Release</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Argoflow</td>
+        <td>Argoflow Users</td>
+        <td>
+          All Conformant Kubernetes
+        </td>
+        <td>
+          <a href="https://github.com/argoflow">Website</a>
+        </td>
+        <td>
+          1.3.0
+        </td>
+      </tr>
+      <tr>
+        <td>Kubeflow on Azure</td>
+        <td>N/A <sup>(not maintained)</sup></td>
+        <td>
+          Azure Kubernetes Service (AKS)
+        </td>
+        <td>
+          <s>Website</s>
+          <br>
+          <sub><a href="/docs/distributions/azure/">Legacy Docs</a></sub>
+        </td>
+        <td>
+          1.2.0 <sup>[<a href="https://github.com/kubeflow/manifests/pull/1642">Release Notes</a>]</sup>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <a id="manifests"></a>
-## Install the Kubeflow Manifests manually
+<a id="install-the-kubeflow-manifests-manually"></a>
+## Raw Kubeflow Manifests
 
-{{% alert color="warning" %}}
-This method is for advanced users. The Kubeflow community will not support environment-specific issues. If you need support, please consider using a [packaged distribution](#packaged-distributions) of Kubeflow.
+{{% alert title="Warning" color="warning" %}}
+This method is for advanced users.
+
+The Kubeflow community is not able to provide support for environment-specific issues when using the raw manifests.
+If you need support, please consider using a [packaged distribution](#packaged-distributions-of-kubeflow).
 {{% /alert %}}
 
-The <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests Working Group</a> is responsible for aggregating the authoritative manifests of each official Kubeflow component.
-While these manifests are intended to be the base of packaged distributions, advanced users may choose to install them directly by following <a href="https://github.com/kubeflow/manifests#installation">these instructions</a>.
+The raw <a href="https://github.com/kubeflow/manifests">Kubeflow manifests</a> are aggregated by the <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests Working Group</a> 
+and are intended to be used as the base of packaged distributions,
+<b>advanced users may choose to install the manifests directly</b> by following <a href="https://github.com/kubeflow/manifests#installation">these instructions</a>.
 
 <a id="next-steps"></a>
 ## Next steps

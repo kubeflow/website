@@ -1,5 +1,7 @@
 # Kubeflow Website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/80644d22-0685-44d0-83bd-187d55464321/deploy-status)](https://app.netlify.com/sites/competent-brattain-de2d6d/deploys)
+
 Welcome to the GitHub repository for Kubeflow's public website!
 
 The docs website is hosted at https://www.kubeflow.org.

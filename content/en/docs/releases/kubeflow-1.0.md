@@ -4,7 +4,7 @@ description = "Information about the Kubeflow 1.0 release"
 weight = 104
 +++
 
-## 1.0.2
+## Kubeflow 1.0.2
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -48,7 +48,7 @@ weight = 104
 </table>
 </div>
 
-## 1.0.1
+## Kubeflow 1.0.1
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -92,7 +92,7 @@ weight = 104
 </table>
 </div>
 
-## 1.0.0
+## Kubeflow 1.0.0
 
 <div class="table-responsive">
 <table class="table table-bordered">
