@@ -10,7 +10,7 @@ Uninstall Kubeflow on your IBM Cloud IKS cluster.
 1. Go to your Kubeflow deployment directory where you download the
    IBM manifests repository: https://github.com/IBM/manifests.git
    ```shell
-   cd ibm-manifests-160
+   cd ibm-manifests-17
    ```
 
 2. Run the following command to get Kubeflow Profiles:
