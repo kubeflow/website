@@ -97,13 +97,13 @@ Using kustomize together with kubectl to deploy kubeflow:
 1. Clone the manifest repo as follows:
 
    ```shell
-   git clone https://github.com/IBM/manifests.git -b v1.6-branch ibm-manifests-160
+   git clone https://github.com/IBM/manifests.git -b v1.7-branch ibm-manifests-17
    ```
 
-2. Change directory to `ibm-manifests-160`:
+2. Change directory to `ibm-manifests-17`:
 
    ```shell
-   cd ibm-manifests-160
+   cd ibm-manifests-17
    ```
 
 3. Generate password for default user: `user@example.com`
@@ -162,7 +162,7 @@ You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=ap
    You will be using these information in the subsequent sections.
   
 3. Register the Kubeflow OIDC redirect page. The Kubeflow `REDIRECT_URL` URL is
-   `[http|https]://<kubeflow-FQDN>/login/oidc`, depends on if you enable the HTTPS or not.
+   `[http|https]://<kubeflow-FQDN>/authservice/oidc/callback`, depends on if you enable the HTTPS or not.
    `<kubeflow-FQDN>` is the endpoint for accessing Kubeflow. By default, the `<kubeflow-FQDN>`
    on IBM Cloud is `<worker_node_external_ip>:30380`. To get a static ip, you can
    [expose the Kubeflow endpoint as a LoadBalancer](#expose-the-kubeflow-endpoint-as-a-loadbalancer)
@@ -175,19 +175,19 @@ You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=ap
    <img src="/docs/images/ibm/appid-redirect-settings.png" alt="APP ID Redirect Settings" class="mt-3 mb-3 border border-info rounded">
 
    Example:
-   `https://my-kubeflow-442dbba0442be6c8c50f31ed96b00601-0000.sjc04.containers.appdomain.cloud/login/oidc`
+   `https://my-kubeflow-442dbba0442be6c8c50f31ed96b00601-0000.sjc04.containers.appdomain.cloud/authservice/oidc/callback`
 ### Deploy: Using kustomize together with kubectl
 
 1. Clone the manifest repo as follows:
 
    ```shell
-   git clone https://github.com/IBM/manifests.git -b v1.6-branch ibm-manifests-160
+   git clone https://github.com/IBM/manifests.git -b v1.7-branch ibm-manifests-17
    ```
 
-2. Change directory to `ibm-manifests-160`:
+2. Change directory to `ibm-manifests-17`:
 
    ```shell
-   cd ibm-manifests-160
+   cd ibm-manifests-17
    ```
 
 3. Update the `dist/stacks/ibm/application/oidc-authservice-appid/params.env`
@@ -201,7 +201,7 @@ You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=ap
    Example:
    ```
    OIDC_PROVIDER=https://us-south.appid.cloud.ibm.com/oauth/v4/f341ff8b-a088-497a-same-5da4628df7fd
-   REDIRECT_URL=https://my-kubeflow-442dbba0442be6c8c50f31ed96b00601-0000.sjc04.containers.appdomain.cloud/login/oidc
+   REDIRECT_URL=https://my-kubeflow-442dbba0442be6c8c50f31ed96b00601-0000.sjc04.containers.appdomain.cloud/authservice/oidc/callback
    OIDC_AUTH_URL=https://us-south.appid.cloud.ibm.com/oauth/v4/f341ff8b-a088-497a-same-5da4628df7fd/authorization
    ```
 
@@ -281,12 +281,12 @@ Then, you will have the required DNS name as Kubeflow FQDN to enable the OIDC fl
 
 
 1. Follow the step [Adding redirect URIs](https://cloud.ibm.com/docs/appid?topic=appid-managing-idp#add-redirect-uri)
-   to fill a URL for AppID to redirect to Kubeflow. The URL should look like `https://<kubeflow-FQDN>/login/oidc`.
+   to fill a URL for AppID to redirect to Kubeflow. The URL should look like `https://<kubeflow-FQDN>/authservice/oidc/callback`.
 
 2. Update the secret `appid-application-configuration` with the updated Kubeflow FQDN to replace `<kubeflow-FQDN>` in below command:
 
    ```SHELL
-   export REDIRECT_URL=https://<kubeflow-FQDN>/login/oidc
+   export REDIRECT_URL=https://<kubeflow-FQDN>/authservice/oidc/callback
    export PATCH=$(printf '{"data": {"REDIRECT_URL": "%s"}}' "$REDIRECT_URL")
 
    kubectl patch configmap/oidc-authservice-parameters -n istio-system -p="$PATCH"
