@@ -100,7 +100,7 @@ You can use `dsl.Collected` to collect outputs from nested loops.
 
 Collection of *parameters* from nested loops will result in a *nested list* of parameters. For example, collection of parameters from two nested `dsl.ParallelFor` groups results in a *list of lists* of parameters.
 
-By comparison, collection of *artifacts* from nested loops results in a *flattened* lists of artifacts. For example, collection of artifacts from five nested `dsl.ParallelFor` groups still results in a *single list* containing all artifacts.
+By comparison, collection of *artifacts* from nested loops results in a *flattened* lists of artifacts. For example, collection of artifacts from five nested `dsl.ParallelFor` groups still results in a *flat list* containing all artifacts.
 
 You can also return a `dsl.Collected` from a pipeline. Use a `List` of parameters or a `List` of artifacts in the return annotation, as shown in the following example:
 
