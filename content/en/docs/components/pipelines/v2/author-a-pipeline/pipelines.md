@@ -85,7 +85,7 @@ def my_pipeline():
     max_accuracy(models=dsl.Collected(train_model_task.outputs['model']))
 ```
 
-Downstream tasks might consume `dsl.Collected` outputs via an input annotated with a `List` of parameters or a `List` of artifacts. For example, `max_accuracy` in the preceding example has the input `models` with type `Output[List[Model]]`, shown by the following component definition:
+Downstream tasks might consume `dsl.Collected` outputs via an input annotated with a `List` of parameters or a `List` of artifacts. For example, `max_accuracy` in the preceding example has the input `models` with type `Output[List[Model]]`, as shown by the following component definition:
 
 ```python
 from kfp import dsl
@@ -96,13 +96,13 @@ def select_best(models: Output[List[Model]]) -> float:
     return max(score_model(model) for model in models)
 ```
 
-You can also use `dsl.Collected` to collect outputs from nested loops as well.
+You can use `dsl.Collected` to collect outputs from nested loops.
 
 Collection of *parameters* from nested loops will result in a *nested list* of parameters. For example, collection of parameters from two nested `dsl.ParallelFor` groups results in a *list of lists* of parameters.
 
 By comparison, collection of *artifacts* from nested loops results in a *flattened* lists of artifacts. For example, collection of artifacts from five nested `dsl.ParallelFor` groups still results in a *single list* containing all artifacts.
 
-You might also return a `dsl.Collected` from a pipeline using a return annotation of a `List` of parameters or a `List` of artifacts:
+You can also return a `dsl.Collected` from a pipeline. Use a `List` of parameters or a `List` of artifacts in the return annotation, as shown in the following example:
 
 ```python
 from kfp import dsl
