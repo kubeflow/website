@@ -56,6 +56,20 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
       </tr>
       <tr>
+        <td>Kubeflow on Azure</td>
+        <td>Microsoft Azure</td>
+        <td>
+          Azure Kubernetes Service (AKS)
+        </td>
+        <td>
+          <a href="https://azure.github.io/kubeflow-aks/main">Website</a>
+        </td>
+        <td>
+          1.6.1
+        </td>
+      </tr>
+      <tr>
+      <tr>
         <td>Kubeflow on Google Cloud</td>
         <td>Google Cloud</td>
         <td>
@@ -210,21 +224,6 @@ The following table lists <b>legacy distributions</b> which have <b>not had a re
         </td>
         <td>
           1.3.0
-        </td>
-      </tr>
-      <tr>
-        <td>Kubeflow on Azure</td>
-        <td>N/A <sup>(not maintained)</sup></td>
-        <td>
-          Azure Kubernetes Service (AKS)
-        </td>
-        <td>
-          <s>Website</s>
-          <br>
-          <sub><a href="/docs/distributions/azure/">Legacy Docs</a></sub>
-        </td>
-        <td>
-          1.2.0 <sup>[<a href="https://github.com/kubeflow/manifests/pull/1642">Release Notes</a>]</sup>
         </td>
       </tr>
     </tbody>
