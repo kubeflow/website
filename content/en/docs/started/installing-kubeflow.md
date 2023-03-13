@@ -57,7 +57,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
       </tr>
       <tr>
         <td>Kubeflow on Azure</td>
-        <td>Microsoft Azure</td>
+        <td>Microsoft Azure</td> 
         <td>
           Azure Kubernetes Service (AKS)
         </td>
