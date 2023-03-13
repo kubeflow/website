@@ -80,7 +80,7 @@ print_env_var().set_env_variable('MY_ENV_VAR', 'hello').set_env_variable('OTHER_
 ```
 
 The KFP SDK provides the following task methods for setting task-level configurations:
-* `.add_node_selector_constraint`
+* `.add_accelerator_type`
 * `.set_caching_options`
 * `.set_cpu_limit`
 * `.set_display_name`
