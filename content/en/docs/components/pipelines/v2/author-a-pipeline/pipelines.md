@@ -68,6 +68,55 @@ def my_pipeline():
         train_model(epochs=epochs)
 ```
 
+### dsl.Collected
+
+Use [`dsl.Collected`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Collected) with `dsl.ParallelFor` to gather outputs from a parallel loop of tasks:
+
+```python
+from kfp import dsl
+
+@dsl.pipeline
+def my_pipeline():
+    with dsl.ParallelFor(
+        items=[1, 5, 10, 25],
+        parallelism=2
+    ) as epochs:
+        train_model_task = train_model(epochs=epochs)
+    max_accuracy(models=dsl.Collected(train_model_task.outputs['model']))
+```
+
+Downstream tasks might consume `dsl.Collected` outputs via an input annotated with a `List` of parameters or a `List` of artifacts. For example, `max_accuracy` in the preceding example has the input `models` with type `Output[List[Model]]`, as shown by the following component definition:
+
+```python
+from kfp import dsl
+from kfp.dsl import Model, Output
+
+@dsl.component
+def select_best(models: Output[List[Model]]) -> float:
+    return max(score_model(model) for model in models)
+```
+
+You can use `dsl.Collected` to collect outputs from nested loops in a *nested list* of parameters. For example, output parameters from two nested `dsl.ParallelFor` groups are collected in a multilevel nested list of parameters, where each nested list contains the output parameters from one of the `dsl.ParallelFor` groups. The number of nested levels is based on the depth of the `ParallelFor` group.
+
+By comparison, *artifacts* from nested loops are collected in a *flat* list.
+
+You can also return a `dsl.Collected` from a pipeline. Use a `List` of parameters or a `List` of artifacts in the return annotation, as shown in the following example:
+
+```python
+from kfp import dsl
+from kfp.dsl import Model
+
+@dsl.pipeline
+def my_pipeline() -> List[Model]:
+    with dsl.ParallelFor(
+        items=[1, 5, 10, 25],
+        parallelism=2
+    ) as epochs:
+        train_model_task = train_model(epochs=epochs)
+    return dsl.Collected(train_model_task.outputs['model'])
+```
+
+
 ### dsl.ExitHandler
 The [`dsl.ExitHandler`][dsl-reference-docs] context manager allows pipeline authors to specify an "exit handler" task which will run after the tasks within its scope finish execution or one of them fails. This is analogous to using `try:` followed by `finally:` in normal Python. The context manager takes two arguments: a required `exit_task` and an optional `name`. The `exit_task` is the "exit handler" task and must be instantiated before the `dsl.ExitHandler` context manager is entered.
 
