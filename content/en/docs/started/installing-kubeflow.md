@@ -65,7 +65,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
           <a href="https://azure.github.io/kubeflow-aks/main">Website</a>
         </td>
         <td>
-          1.6.1
+          1.6.1 <sup>[<a href="https://github.com/Azure/kubeflow-aks/releases/tag/v1.6.1-original">Release Notes</a>]</sup>
         </td>
       </tr>
       <tr>
