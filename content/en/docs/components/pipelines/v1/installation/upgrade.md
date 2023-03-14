@@ -26,4 +26,6 @@ For upgrade instructions, refer to distribution specific documentations:
 
 * **Notice**: [Kubeflow Pipelines SDK v2 compatibility mode](/docs/components/pipelines/sdk-v2/v2-compatibility/) (Beta) was recently released. The new mode adds support for tracking pipeline runs and artifacts using ML Metadata. In v1.7 backend, complete UI support and caching capabilities for v2 compatibility mode are newly added. We welcome any [feedback](https://github.com/kubeflow/pipelines/issues/6451) on positive experiences or issues you encounter.
 
-* **Notice**: In v1.7 frontend, run metrics columns are deprecated in the run list page, but users can still get the same information by using [KFPv2 Scalar metrics](https://www.kubeflow.org/docs/components/pipelines/v1/sdk/output-viewer/#scalar-metrics)
+## Upgrading to v2.0
+
+* **Notice**: In v2.0 frontend, run metrics columns are deprecated in the run list page, but users can still get the same information by using [KFPv2 Scalar metrics](docs/components/pipelines/v1/sdk/output-viewer/#scalar-metrics)
