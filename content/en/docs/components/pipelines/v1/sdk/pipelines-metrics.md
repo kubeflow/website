@@ -120,23 +120,6 @@ Refer to the [full example](https://github.com/kubeflow/pipelines/blob/sdk/relea
 * `numberValue` must be a numeric value.
 * `format` can only be `PERCENTAGE`, `RAW`, or not set.
 
-## View the metrics
-
-To see a visualization of the metrics:
-
-1. Open the **Experiments** page in the Kubeflow Pipelines UI.
-1. Click one of your experiments. The **Runs** page opens showing the top two 
-  metrics, where *top* is determined by prevalence (that is, the metrics with 
-  the highest count) and then by metric name. 
-  The metrics appear as columns for each run.
-  
-The following example shows the **accuracy-score** and 
-**roc-auc-score** metrics for two runs within an experiment:
-
-<img src="/docs/images/taxi-tip-run-scores.png" 
-  alt="Metrics from a pipeline run"
-  class="mt-3 mb-3 border border-info rounded">
-
 ## Next step
 
 Visualize the output of your component by [writing out metadata for an output 
