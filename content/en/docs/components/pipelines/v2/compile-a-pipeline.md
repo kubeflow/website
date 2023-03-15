@@ -1,66 +1,80 @@
 +++
 title = "Compile a pipeline"
-description = "Compile a pipeline definition to YAML"
-weight = 5
+description = "Compile pipelines and components to YAML"
+weight = 7
 +++
 
-You can compile your pipeline or component to intermediate representation (IR) YAML.  The IR YAML definition preserves a static representation of the pipeline or component. You can submit the YAML definition to the KFP backend for execution, or deserialize it using the KFP SDK for integration into another pipeline.
-([View an example on GitHub][compiled-output-example]).
+To submit a pipeline for execution, you must compile it to YAML with the KFP SDK compiler:
 
-**Note:** Pipelines as well as components are authored in Python. A pipeline is a template representing a multistep workflow, whereas a component is a template representing a single step workflow.
+```python
+from kfp import dsl
+from kfp import compiler
 
-## Compile a pipeline
+@dsl.component
+def comp(message: str) -> str:
+    print(message)
+    return message
 
-You can compile a pipeline or a template into IR YAML using the `Compiler.compile` method. To do this, follow these steps:
 
-1.  Define a simple pipeline:
+@dsl.pipeline
+def my_pipeline(message: str) -> str:
+    """My ML pipeline."""
+    return comp(message=message).output
 
-    ```python
-    from kfp import compiler
-    from kfp import dsl
+compiler.Compiler().compile(my_pipeline, package_path='pipeline.yaml')
+```
 
-    @dsl.component
-    def addition_component(num1: int, num2: int) -> int:
-      return num1 + num2
+In this example, the compiler creates a file called `pipeline.yaml`, which contains a hermetic representation of your pipeline. The output is called intermediate representation (IR) YAML. You can view an example of IR YAML on [GitHub][compiled-output-example]. The contents of the file is the serialized [`PipelineSpec`][pipeline-spec] protocol buffer message and is not intended to be human-readable.
 
-    @dsl.pipeline(name='addition-pipeline')
-    def my_pipeline(a: int, b: int, c: int = 10):
-      add_task_1 = addition_component(num1=a, num2=b)
-      add_task_2 = addition_component(num1=add_task_1.output, num2=c)
-    ```
+You can find human-readable information about the pipeline in the comments at the top of the compiled YAML:
 
-1.  Compile the pipeline to the file `my_pipeline.yaml`:
+```yaml
+# PIPELINE DEFINITION
+# Name: my-pipeline
+# Description: My ML pipeline.
+# Inputs:
+#    message: str
+# Outputs:
+#    Output: str
+...
+```
 
-    ```python
-    cmplr = compiler.Compiler()
-    cmplr.compile(my_pipeline, package_path='my_pipeline.yaml')
-    ```
+You can also compile components to IR YAML:
 
-1.  Compile the component `addition_component` to the file `addition_component.yaml`:
+```python
+compiler.Compiler().compile(comp, package_path='component.yaml')
+```
 
-    ```python
-    cmplr.compile(addition_component, package_path='addition_component.yaml')
-    ```
-
-<!-- TODO: Replace <br> with MD line breaks -->
-
-The `Compiler.compile` method accepts the following parameters:
+## Compiler arguments
+The [`Compiler.compile`][compiler-compile] method accepts the following arguments:
 
 | Name | Type | Description |
 |------|------|-------------|
-| `pipeline_func` | `function` | _Required_<br/>Pipeline function constructed with the @dsl.pipeline or component constructed with the @dsl.component decorator.
+| `pipeline_func` | `function` | _Required_<br/>Pipeline function constructed with the `@dsl.pipeline` or component constructed with the @dsl.component decorator.
 | `package_path` | `string` | _Required_<br/>Output YAML file path. For example, `~/my_pipeline.yaml` or `~/my_component.yaml`.
 | `pipeline_name` | `string` | _Optional_<br/>If specified, sets the name of the pipeline template in the `pipelineInfo.name` field in the compiled IR YAML output. Overrides the name of the pipeline or component specified by the `name` parameter in the `@dsl.pipeline` decorator.
 | `pipeline_parameters` | `Dict[str, Any]` | _Optional_<br/>Map of parameter names to argument values. This lets you provide default values for pipeline or component parameters. You can override these default values during pipeline submission.
-| `type_check` | `bool` | _Optional_<br/>Indicates whether static type checking is enabled during compilation.<br/>For more information about type checking, see [Component I/O: Component interfaces and type checking][type-checking].
+| `type_check` | `bool` | _Optional_<br/>Indicates whether static type checking is enabled during compilation.<br/>
+
+
+## Type checking
+By default, the DSL compiler statically type checks your pipeline to ensure type consistency between components that pass data between one another. Static type checking helps identify component I/O inconsistencies without having to run the pipeline, shortening development iterations.
+
+Specifically, the type checker checks for type equality between the type of data a component input expects and the type of the data provided. See [Data Types][data-types] for more information about KFP data types.
+
+For example, for parameters, a list input may only be passed to parameters with a `typing.List` annotation. Similarly, a float may only be passed to parameter with a `float` annotation.
+
+Input data types and annotations must also match for artifacts, with one exception: the `Artifact` type is compatible with all other artifact types. In this sense, the `Artifact` type is both the default artifact type and an artifact "any" type.
+
+As described in the following section, you can disable type checking.
 
 ## IR YAML
 
 The IR YAML is an intermediate representation of a compiled pipeline or component. It is an instance of the [`PipelineSpec`][pipeline-spec] protocol buffer message type, which is a platform-agnostic pipeline representation protocol. It is considered an intermediate representation because the KFP backend compiles `PipelineSpec` to [Argo Workflow][argo-workflow] YAML as the final pipeline definition for execution.
 
-Unlike the v1 component YAML, the IR YAML is not intended to be written directly. To learn how to author pipelines and components in KFP v2 similar to authoring component YAML in KFP v1, see [Author a Pipeline: Custom Container Components][custom-container-component-authoring].
+Unlike the v1 component YAML, the IR YAML is not intended to be written directly.
 
-The compiled IR YAML file contains the following sections:
+While IR YAML is not intended to be easily human readable, you can still inspect it if you know a bit about its contents:
 
 | Section | Description | Example |
 |-------|-------------|---------|
@@ -73,9 +87,8 @@ The compiled IR YAML file contains the following sections:
 | [`default_pipeline_root`][default-pipeline-root-schema] | This section records the remote storage root path, such as a MiniIO URI or Google Cloud Storage URI, where the pipeline output is written. | [View on Github][default-pipeline-root-example]  
 
 
-[pipeline-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L50
+[pipeline-spec]: https://github.com/kubeflow/pipelines/blob/master/api/v2alpha1/pipeline_spec.proto#L50
 [argo-workflow]: https://argoproj.github.io/argo-workflows/
-[custom-container-component-authoring]: /docs/components/pipelines/v2/author-a-pipeline/components/#3-custom-container-components
 [compiled-output-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml
 [components-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L1-L21
 [deployment-spec-example]: https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml#L23-L49
@@ -94,4 +107,5 @@ The compiled IR YAML file contains the following sections:
 [component-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L85-L96
 [executor-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L788-L803
 [dag-spec]: https://github.com/kubeflow/pipelines/blob/41b69fd90da812005965f2209b64fd1278f1cdc9/api/v2alpha1/pipeline_spec.proto#L98-L105
-[type-checking]: /docs/components/pipelines/v2/author-a-pipeline/component-io#component-interfaces-and-type-checking
+[data-types]: /docs/components/pipelines/v2/data-types
+[compiler-compile]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/compiler.html#kfp.compiler.Compiler.compile

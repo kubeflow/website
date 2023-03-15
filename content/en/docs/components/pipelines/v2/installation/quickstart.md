@@ -1,7 +1,7 @@
 +++
 title = "Quickstart"
 description = "Get started with Kubeflow Pipelines"
-weight = 3
+weight = 2
                     
 +++
 
@@ -15,7 +15,7 @@ summary {
 </style>
 
 <!-- TODO: add UI screenshots for final pipeline -->
-This tutorial helps you get started with KFP.
+This tutorial helps you get started with a KFP deployment and a pipeline created with the KFP SDK.
 
 Before you begin, you need the following prerequisites:
 
@@ -88,7 +88,7 @@ print(url)
 
 The above code consists of the following parts:
 
-* In the first part, the following lines create a [lightweight Python component][lightweight-python-component] by using the `@dsl.component` decorator:
+* In the first part, the following lines create a [Lightweight Python Component][lightweight-python-component] by using the `@dsl.component` decorator:
   ```python
   @dsl.component
   def addition_component(num1: int, num2: int) -> int:
@@ -303,15 +303,10 @@ Congratulations! You now have a KFP deployment, an end-to-end ML pipeline, and a
 
 ## Next steps
 * See [Installation][installation] for additional ways to deploy KFP
-* See [Author a Pipeline][author-a-pipeline] to learn more about feautres available when authoring pipelines
+* See [Pipelines][pipelines] to learn more about feautres available when authoring pipelines
 
-[kind]: [https://kind.sigs.k8s.io/]
 
-[author-a-pipeline]: /docs/components/pipelines/v2/author-a-pipeline/
-[pipelines]: /docs/components/pipelines/v2/author-a-pipeline/pipelines
+[pipelines]: /docs/components/pipelines/v2/pipelines/
 [installation]: /docs/components/pipelines/v2/installation/
-[localhost]: http://localhost:8080
-[chocolatey]: https://chocolatey.org/packages/kind
-[authenticating-pipelines-gcp]: /docs/distributions/gke/authentication/#authentication-from-kubeflow-pipelines
 [ir-yaml]: /docs/components/pipelines/v2/compile-a-pipeline/#ir-yaml
-[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components
+[lightweight-python-component]: /docs/components/pipelines/v2/components/lightweight-python-components

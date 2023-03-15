@@ -1,7 +1,7 @@
 +++
 title = "Command Line Interface"
 description = "Interact with KFP via the CLI"
-weight = 8
+weight = 9
 +++
 
 <!-- TODO: Improve or standardize rendering of variables and placeholders -->
@@ -46,11 +46,16 @@ kfp run --help
 
 You can use the KFP CLI to do the following:
 
-* [Interact with KFP resources](#interact-with-kfp-resources)
-
-* [Compile pipelines](#compile-pipelines)
-
-* [Build containerized Python components](#build-containerized-python-components)
+- [Usage](#usage)
+  - [Check availability of KFP CLI](#check-availability-of-kfp-cli)
+  - [General syntax](#general-syntax)
+  - [Get help for a command](#get-help-for-a-command)
+- [Main functons of the KFP CLI](#main-functons-of-the-kfp-cli)
+  - [Interact with KFP resources](#interact-with-kfp-resources)
+  - [Compile pipelines](#compile-pipelines)
+  - [Build containerized Python components](#build-containerized-python-components)
+    - [Before you begin](#before-you-begin)
+    - [Build the component](#build-the-component)
 
 ### Interact with KFP resources
 
@@ -124,7 +129,7 @@ You can use the `kfp dsl compile` command to compile pipelines or components def
 ### Build containerized Python components
 <!-- TODO: Revisit the links after the refactoring is completed -->
 
-You can author [containerized Python components][containerized-python-components] in the KFP SDK. This lets you use handle more source code with better code organization than the simpler [lightweight Python component][lightweight-python-component] authoring experience.
+You can author [Containerized Python Components][containerized-python-components] in the KFP SDK. This lets you use handle more source code with better code organization than the simpler [Lightweight Python Component][lightweight-python-component] authoring experience.
 
 <!-- TODO(GA): remove --pre -->
 
@@ -150,10 +155,9 @@ For example:
 kfp component build src/ --component-filepattern my_component --push-image
 ```
 
-For more information about the arguments and flags supported by the `kfp component build` command, see [build](https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-component-build) in the [KFP SDK API reference][kfp-sdk-api-ref]. For more information about creating containerized Python components, see [Authoring Python Containerized Components](/docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components).
+For more information about the arguments and flags supported by the `kfp component build` command, see [build](https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-component-build) in the [KFP SDK API reference][kfp-sdk-api-ref]. For more information about creating containerized Python components, see [Authoring Python Containerized Components][containerized-python-components].
 
 [cli-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html
 [kfp-sdk-api-ref]: https://kubeflow-pipelines.readthedocs.io/en/master/index.html
-[author-a-pipeline]: /docs/components/pipelines/v2/author-a-pipeline
-[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components
-[containerized-python-components]: /docs/components/pipelines/v2/author-a-pipeline/components/#2-containerized-python-components
+[lightweight-python-component]: /docs/components/pipelines/v2/components/lightweight-python-components
+[containerized-python-components]: /docs/components/pipelines/v2/components/containerized-python-components
