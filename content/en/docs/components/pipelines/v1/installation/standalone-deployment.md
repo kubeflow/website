@@ -154,7 +154,7 @@ referring to [Argo Workflow Executors](/docs/components/pipelines/installation/c
 
 ## Customizing Kubeflow Pipelines
 
-Kubeflow Pipelines can be configured through kustomize [overlays](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#overlay).
+Kubeflow Pipelines can be configured through kustomize [overlays](https://kubectl.docs.kubernetes.io/references/kustomize/glossary/#overlay).
 
 To begin, first clone the [Kubeflow Pipelines GitHub repository](https://github.com/kubeflow/pipelines),
 and use it as your working directory.
