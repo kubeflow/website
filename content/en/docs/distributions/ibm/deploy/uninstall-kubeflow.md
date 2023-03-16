@@ -34,10 +34,10 @@ Uninstall Kubeflow on your IBM Cloud IKS cluster.
 
    For single-user deployment:
    ```shell
-   kustomize build iks-single | kubectl delete -f -
+   kustomize build iks-single 2>/dev/null | awk '!/well-defined/' | kubectl delete -f -
    ```
 
    For multi-user deployment:
    ```shell
-   kustomize build iks-multi | kubectl delete -f -
+   kustomize build iks-multi 2>/dev/null | awk '!/well-defined/' | kubectl delete -f -
    ```

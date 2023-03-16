@@ -34,7 +34,7 @@ This guide describes how to use the kustomize + kubectl to deploy Kubeflow on IB
 
   Replace `<cluster_name>` with your cluster name.
 
-* kustomize (version 3.2.0) ([download link](https://github.com/kubernetes-sigs/kustomize/releases/tag/v3.2.0))
+* kustomize (version 5.0.0) ([download link](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.0.0))
 
 * [Python 3](https://www.python.org/downloads/) with [passlib](https://pypi.org/project/passlib/)
   and [bcrypt](https://pypi.org/project/bcrypt/) packages installed
@@ -124,7 +124,7 @@ Using kustomize together with kubectl to deploy kubeflow:
 5. Apply the `kustomize` file under `iks-single` folder for single user deployment:
 
    ```shell
-   while ! kustomize build iks-single | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
+   while ! kustomize build iks-single 2>/dev/null | awk '!/well-defined/' | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
    ```
 
 ### Accessing your cluster
@@ -220,7 +220,7 @@ You can also learn [how to use App ID](https://cloud.ibm.com/docs/appid?topic=ap
 5. You can apply the `kustomize` file in `iks-multi` folder:
 
    ```bash
-   while ! kustomize build iks-multi | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
+   while ! kustomize build iks-multi 2>/dev/null | awk '!/well-defined/' | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
    ```
 
 6. If at any point the values change and you have to change them, you can either patch the
