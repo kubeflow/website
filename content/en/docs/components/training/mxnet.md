@@ -246,7 +246,7 @@ status:
 ```
 
 The first thing to note is the **RuntimeId**. This is a random unique
-string which is used to give names to all the K8s resouces
+string which is used to give names to all the K8s resources
 (e.g Job controllers & services) that are created by the `MXJob`.
 
 As with other K8S resources status provides information about the state

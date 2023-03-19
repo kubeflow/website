@@ -18,10 +18,10 @@ At the lowest level of execution, all components define their execution logic vi
 
 The KFP SDK exposes three ways of authoring components with these three properties.
 
-### 1. Lighweight Python function-based components
-The most simple way to author a component is via a lightweight Python function-based component (also known as a lightweight component).
+### 1. Lightweight Python function-based components
+The simplest way to author a component is via a lightweight Python function-based component (also known as a lightweight component).
 
-Lightweight components provides a fully Pythonic approach to creating a component that executes a single Python function within a container at runtime.
+Lightweight components provide a fully Pythonic approach to creating a component that executes a single Python function within a container at runtime.
 
 To create a lightweight component, you must:
 1. Define a standalone function.
@@ -81,9 +81,9 @@ def train_model(
     my_model.save(model.path)
 ```
 
-Notice the `base_image` argument to the `@kfp.dsl.component` decorator. Despite not having the word "container" in its name, lightweight components are still executed as a container at runtime. The `@kfp.dsl.component` decorator mereley provides a convient Pythonic interface to defining this container image, command, and arguments. [`python:3.7`][python-docker-image] is the default image, but can be changed to any image accessible to the executing backend, as long as the image has a Python interpreter available as `python3`. Packages in `packages_to_install` will be pip installed at container runtime.
+Notice the `base_image` argument to the `@kfp.dsl.component` decorator. Despite not having the word "container" in its name, lightweight components are still executed as a container at runtime. The `@kfp.dsl.component` decorator merely provides a convenient Pythonic interface to defining this container image, command, and arguments. [`python:3.7`][python-docker-image] is the default image, but can be changed to any image accessible to the executing backend, as long as the image has a Python interpreter available as `python3`. Packages in `packages_to_install` will be pip installed at container runtime.
 
-**When to use?** Lightweight components should be used if your component implementation can be written as a standalone Python function and does not require an abundance of source code. This is the preferred authoring approach for quick demos and when authoring components in a noteebok.
+**When to use?** Lightweight components should be used if your component implementation can be written as a standalone Python function and does not require an abundance of source code. This is the preferred authoring approach for quick demos and when authoring components in a notebook.
 
 For more involved components and for production usage, prefer containerized components and custom container components for their increased flexibility.
 
@@ -104,7 +104,7 @@ To create a containerized component, you must:
 
     b) The `tensorflow` import is included outside of the `train_model` function. This is possible because the entire module will be executed at component runtime, not only the Python function as in a lightweight component.
 
-    c) The component uses functions defined in `my_helper_module` imported via a [relative import](https://docs.python.org/3/reference/import.html#package-relative-imports). This is possible because `my_helper_module.py` will be included in the container image created in Step 2 below. This is unlike a lighweight component, which only uses the source code included in the Python function definition. This helper code could have also been defined within the same module outside of the `train_model` function.
+    c) The component uses functions defined in `my_helper_module` imported via a [relative import](https://docs.python.org/3/reference/import.html#package-relative-imports). This is possible because `my_helper_module.py` will be included in the container image created in Step 2 below. This is unlike a lightweight component, which only uses the source code included in the Python function definition. This helper code could have also been defined within the same module outside of the `train_model` function.
 
     The following containerized component adapts the lightweight component in the previous section to a containerized component. Notice that most of the logic is extracted into helper functions in `my_helper_module`, permitting a cleaner, modular component function:
 
@@ -183,7 +183,7 @@ To define a custom container component, you must:
     *   If the function accepts or returns large amounts of data or complex
         data types, you must annotate that argument as an _artifact_. Note that in the function you defined, you can only access artifacts via its `.url`, `.path`, or `.metadata` attribute. Accessing any other attribute or the artifact variable by itself is not allowed. 
 
-Below is an example that authors a pipelines from two custom container components. Just as using with a Python component, you can access the outputs of a `container_component` for downstream tasks as demonstrated in the pipeline:
+Below is an example that authors a pipeline from two custom container components. Just as using with a Python component, you can access the outputs of a `container_component` for downstream tasks as demonstrated in the pipeline:
 ```python
 from kfp.dsl import (
   container_component,

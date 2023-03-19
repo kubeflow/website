@@ -5,7 +5,7 @@ weight = 2
 +++
 
 ## Summary
-A *task* is an execution of a [component][components] with a set of inputs. It can be thought of as an instantiation of a component template. A pipeline is composed of individual tasks that may or may not pass data betwen one another.
+A *task* is an execution of a [component][components] with a set of inputs. It can be thought of as an instantiation of a component template. A pipeline is composed of individual tasks that may or may not pass data between one another.
 
 One component can be used to instantiate multiple tasks within a single pipeline. Tasks can also be created and executed dynamically using pipeline control flow features such as loops, conditions, and exit handlers.
 

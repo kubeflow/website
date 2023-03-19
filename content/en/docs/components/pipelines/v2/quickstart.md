@@ -303,7 +303,7 @@ Congratulations! You now have a KFP deployment, an end-to-end ML pipeline, and a
 
 ## Next steps
 * See [Installation][installation] for additional ways to deploy KFP
-* See [Author a Pipeline][author-a-pipeline] to learn more about feautres available when authoring pipelines
+* See [Author a Pipeline][author-a-pipeline] to learn more about features available when authoring pipelines
 
 [kind]: [https://kind.sigs.k8s.io/]
 
@@ -314,4 +314,4 @@ Congratulations! You now have a KFP deployment, an end-to-end ML pipeline, and a
 [chocolatey]: https://chocolatey.org/packages/kind
 [authenticating-pipelines-gcp]: /docs/distributions/gke/authentication/#authentication-from-kubeflow-pipelines
 [ir-yaml]: /docs/components/pipelines/v2/compile-a-pipeline/#ir-yaml
-[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lighweight-python-function-based-components
+[lightweight-python-component]: /docs/components/pipelines/v2/author-a-pipeline/components/#1-lightweight-python-function-based-components

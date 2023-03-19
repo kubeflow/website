@@ -26,7 +26,7 @@ A pipeline function is a function that may have inputs, instantiates components 
 
 First, like a component, a pipeline function may have inputs and outputs. This allows your pipeline to serve as a computational template that can be executed with different input parameters to create a specified set of outputs. See [Component I/O: Pipeline I/O][component-io-pipeline-io] for how to use type annotations in a pipeline.
 
-Second, a pipeline function instantiates components as tasks and uses them to form a computational graph. For information on how to instatiate components as tasks and pass data between them, see [Component I/O: Passing data between tasks][component-io]. For information on task dependencies, see [Tasks][tasks].
+Second, a pipeline function instantiates components as tasks and uses them to form a computational graph. For information on how to instantiate components as tasks and pass data between them, see [Component I/O: Passing data between tasks][component-io]. For information on task dependencies, see [Tasks][tasks].
 
 Third, a pipeline function only uses domain-specific language (DSL) objects and syntax within the function scope. Because the body of a Python pipeline function must ultimately be compiled to IR YAML, pipeline functions only support a very narrow set of Python language features, as specified by the KFP DSL. In addition to instantiation and data passing between tasks, the only three other features permitted are `dsl.Condition`, `dsl.ParallelFor` and `dsl.ExitHandler`. Use of these three features is covered in the next section. Use of classes, list comprehensions, lambda functions, and other arbitrary Python language features are not permitted within the scope of a Python pipeline function.
 
