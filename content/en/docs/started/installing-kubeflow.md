@@ -94,7 +94,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
           <sub><a href="/docs/distributions/ibm/">Legacy Docs</a></sub>
         </td>
         <td>
-          1.6.1 <sup>[<a href="https://github.com/IBM/manifests/releases/tag/v1.6.1">Release Notes</a>]</sup>
+          {{% iks/latest-version %}} <sup>[<a href="https://github.com/IBM/manifests/releases/tag/v{{% iks/latest-version %}}">Release Notes</a>]</sup>
         </td>
       </tr>
       <tr>
