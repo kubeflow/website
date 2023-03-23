@@ -38,7 +38,7 @@ You can adapt the configuration to choose the platforms and services that you
 want to use for each stage of the ML workflow: 
 
 1. data preparation
-2. model training,
+2. model training
 3. prediction serving
 4. service management
 
@@ -62,7 +62,7 @@ system take care of the "boring stuff". While we have started with a narrow set
 of technologies, we are working with many different projects to include
 additional tooling.
 
-Ultimately, we want to have a set of simple manifests that give you an easy to
+Ultimately, we want to have a set of simple manifests that give you an easy way to
 use ML stack _anywhere_ Kubernetes is already running, and that can self
 configure based on the cluster it deploys into.
 
