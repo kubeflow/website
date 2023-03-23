@@ -54,8 +54,10 @@ mv ./kind /{YOUR_KIND_DIRECTORY}/kind
 
 Replace the following:
 
-* `{KIND_VERSION}`: the kind version; for example, `v0.8.1` as of the date this
-  guide was written
+* `{KIND_VERSION}`: the kind version; for example, `v0.17.0` as of the date this
+  guide was written (check the latest
+  stable binary versions on the [kind releases
+  pages](https://github.com/kubernetes-sigs/kind/releases))
 * `{YOUR_KIND_DIRECTORY}`: your directory in PATH
 
 **On macOS:**
@@ -82,13 +84,10 @@ brew install kind
 
   Replace the following:
 
-  - `{KIND_VERSION}`: the kind version - for example, `v0.9` (check the latest
+* `{KIND_VERSION}`: the kind version; for example, `v0.17.0` as of the date this
+  guide was written. (check the latest
   stable binary versions on the [kind releases
   pages](https://github.com/kubernetes-sigs/kind/releases))
-  - `{YOUR_KIND_DIRECTORY}`: your directory for kind in PATH
-
-* `{KIND_VERSION}`: the kind version; for example, `v0.8.1` as of the date this
-  guide was written
 * `{YOUR_KIND_DIRECTORY}`: your directory in PATH
 
 - Alternatively, you can use Chocolatey [https://chocolatey.org/packages/kind](https://chocolatey.org/packages/kind):
@@ -101,9 +100,6 @@ brew install kind
 use the standard kubeflow pipeline manifests.
 
 **References**:
-
-**References:**
-
 - [kind: Quick Start Guide](https://kind.sigs.k8s.io/docs/user/quick-start/)
 - [kind: Known Issues](https://kind.sigs.k8s.io/docs/user/known-issues/)
 - [kind: Working Offline](https://kind.sigs.k8s.io/docs/user/working-offline/)
@@ -318,11 +314,15 @@ Executors](https://argoproj.github.io/argo-workflows/workflow-executors/) and re
 1. To deploy the Kubeflow Pipelines, run the following commands:
 
     ```shell
-    # env/platform-agnostic-pns hasn't been publically released, so you will install it from master
-    export PIPELINE_VERSION={{% pipelines/latest-version %}}
-    kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
-    kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-    kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
+
+    git clone https://github.com/kubeflow/pipelines.git 
+    cd pipelines/manifests/kustomize
+
+    KFP_ENV=platform-agnostic
+    kubectl apply -k cluster-scoped-resources/
+    kubectl wait crd/applications.app.k8s.io --for condition=established --timeout=60s
+    kubectl apply -k "env/${KFP_ENV}/"
+    kubectl wait pods -l application-crd-id=kubeflow-pipelines -n kubeflow --for condition=Ready --timeout=1800s
     ```
 
     The Kubeflow Pipelines deployment may take several minutes to complete.
