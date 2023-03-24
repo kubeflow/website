@@ -1,7 +1,7 @@
 +++
 title = "Community and Support"
 description = "Where to get help, contribute, and learn more"
-weight = 11                 
+weight = 10
 +++
 
 ## Help

@@ -1,10 +1,10 @@
 +++
 title = "Run a Pipeline"
 description = "Execute a pipeline on the KFP backend"
-weight = 6
+weight = 8
 +++
 
-The KFP SDK offers three ways to run a pipeline.
+The KFP offers three ways to run a pipeline.
 
 ## 1. Run from the KFP Dashboard
 The first and easiest way to run a pipeline is by submitting it via the KFP dashboard.
@@ -74,7 +74,7 @@ kfp run create --experiment-name my-experiment --package-file path/to/pipeline.y
 
 For more information about the `kfp run create` command, see the [KFP Command Line Interface reference documentation][kfp-run-create-reference-docs]. For more information on the KFP CLI generally see [Command Line Interface user docs][kfp-cli].
 
-[compile-a-pipeline]: /docs/components/pipelines/v2/compile-a-pipeline/
+[compile-a-pipeline]: /docs/components/pipelines/v2/compile-a-pipeline
 [kfp-sdk-api-ref-client]: https://kubeflow-pipelines.readthedocs.io/en/master/source/client.html
 [kfp-cli]: /docs/components/pipelines/v2/cli/
 [kfp-run-create-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-run-create
