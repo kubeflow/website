@@ -104,12 +104,10 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
           Nutanix Kubernetes Engine
         </td>
         <td>
-          <s>Website</s>
-          <br>
-          <sub><a href="/docs/distributions/nutanix/">Legacy Docs</a></sub>
+          <a href="https://nutanix.github.io/kubeflow-manifests">Website</a>
         </td>
         <td>
-          1.6.0
+          1.7.0
         </td>
       </tr>
       <tr>
