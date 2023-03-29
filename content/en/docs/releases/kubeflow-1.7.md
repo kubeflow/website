@@ -1,7 +1,7 @@
 +++
 title = "Kubeflow 1.7"
 description = "Information about the Kubeflow 1.7 release"
-weight = 98
+weight = 97
 +++
 
 ## Kubeflow 1.7.0
@@ -12,7 +12,7 @@ weight = 98
     <tr>
       <th class="table-light">Release Date</th>
       <td>
-        2023-03-15
+        2023-03-29
       </td>
     </tr>
     <tr>
@@ -35,7 +35,7 @@ weight = 98
           <a href="https://github.com/kubeflow/manifests/releases/tag/v1.7.0">v1.7.0</a>
         <br>
         <b>Branch:</b>
-          <a href="https://github.com/kubeflow/manifests/tree/v1.7-branch">v1.6-branch</a>
+          <a href="https://github.com/kubeflow/manifests/tree/v1.7-branch">v1.7-branch</a>
       </td>
     </tr>
     <tr>
