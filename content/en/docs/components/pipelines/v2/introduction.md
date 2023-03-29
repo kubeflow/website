@@ -2,23 +2,23 @@
 title = "Introduction"
 description = "What is Kubeflow Pipelines?"
 weight = 1
-                    
 +++
 
 
 Kubeflow Pipelines (KFP) is a platform for building and deploying portable and scalable machine learning (ML) workflows using Docker containers.
 
-With KFP you can author [components][components] and [pipelines][pipelines] using the [KFP Python SDK][pypi], compile pipelines to an [intermediate representation YAML][ir-yaml], and submit the pipeline to run on a KFP-conformant backend such as the [open source KFP backend][oss-be] or [Google Cloud Vertex AI Pipelines](https://cloud.google.com/vertex-ai/docs/pipelines/introduction).
+With KFP you can author [components][components] and [pipelines][pipelines] using the [KFP Python SDK][pypi], compile pipelines to an [intermediate representation YAML][ir-yaml], and submit the pipeline to run on a KFP-conformant backend such as the [open source KFP backend][installation] or [Google Cloud Vertex AI Pipelines](https://cloud.google.com/vertex-ai/docs/pipelines/introduction).
 
-The [open source KFP backend][oss-be] is available as a core component of Kubeflow or as a standalone installation. Follow the [installation][installation] instructions and [Hello World Pipeline][hello-world-pipeline] example to quickly get started with KFP.
-
+The [open source KFP backend][installation] is available as a core component of Kubeflow or as a standalone installation. Follow the [installation][installation] instructions and [Hello World Pipeline][hello-world-pipeline] example to quickly get started with KFP.
 
 <!-- TODO: Include these links once the topic is available -->
 <!-- [Learn more about installing Kubeflow][Installation]
 [Learn more about installing Kubeflow Pipelines standalone][Installation] -->
 
 ## Why Kubeflow Pipelines?
+
 KFP enables data scientists and machine learning engineers to:
+
 * Author end-to-end ML workflows natively in Python
 * Create fully custom ML components or leverage an ecosystem of existing components
 * Easily manage, track, and visualize pipeline definitions, runs, experiments, and ML artifacts
@@ -31,7 +31,8 @@ A [pipeline][pipelines] is a definition of a workflow that composes one or more 
 
 <!-- TODO: Uncomment these links once the topic is created -->
 ## Next steps
-* [Install KFP][installation]
+
+* [Hello World Pipeline][hello-world-pipeline]
 * Learn more about [authoring components][components]
 * Learn more about [authoring pipelines][pipelines]
 
@@ -39,7 +40,6 @@ A [pipeline][pipelines] is a definition of a workflow that composes one or more 
 [pipelines]: /docs/components/pipelines/v2/pipelines
 [installation]: /docs/components/pipelines/v2/installation
 [ir-yaml]: /docs/components/pipelines/v2/compile-a-pipeline#ir-yaml
-[oss-be]: /docs/components/pipelines/v2/installation/
 <!-- GA TODO: drop /#history tag -->
 [pypi]: https://pypi.org/project/kfp/#history
 [hello-world-pipeline]: /docs/components/pipelines/v2/hello-world
