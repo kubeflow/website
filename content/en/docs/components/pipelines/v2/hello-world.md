@@ -35,7 +35,7 @@ from kfp import compiler
 compiler.Compiler().compile(hello_pipeline, 'pipeline.yaml')
 ```
 
-The [`dsl.component`][dsl-component] and [`dsl.pipeline`][dsl-pipeline] decorators turn your type-annotated Python functions into components and pipelines, respectively. The KFP SDK compiler compiles the domain-specific language (DSL) objects to a hermetic pipeline [YAML file][ir-yaml].
+The [`dsl.component`][dsl-component] and [`dsl.pipeline`][dsl-pipeline] decorators turn your type-annotated Python functions into components and pipelines, respectively. The KFP SDK compiler compiles the domain-specific language (DSL) objects to a self-contained pipeline [YAML file][ir-yaml].
 
 You can submit the YAML file to a KFP-conformant backend for execution. If you have already deployed a [KFP open source backend instance][installation] and obtained the endpoint for your deployment, you can submit the pipeline for execution using the KFP SDK [`Client`][client]. The following submits the pipeline for execution with the argument `recipient='World'`:
 
@@ -53,7 +53,7 @@ run = client.create_run_from_pipeline_package(
 
 The client will print a link to view the pipeline execution graph and logs in the UI. In this case, the pipeline has one task that prints and returns `'Hello, World!'`.
 
-In the next few sections you'll learn more about the core concepts of authoring pipelines and how to create more expressive, useful pipelines.
+In the next few sections, you'll learn more about the core concepts of authoring pipelines and how to create more expressive, useful pipelines.
 
 [installation]: /docs/components/pipelines/v2/installation/
 [client]: https://kubeflow-pipelines.readthedocs.io/en/master/source/client.html#kfp.client.Client
