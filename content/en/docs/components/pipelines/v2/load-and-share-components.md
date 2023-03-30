@@ -1,5 +1,5 @@
 +++
-title = "Load and share components"
+title = "Load and Share Components"
 description = "Load and use an ecosystem of components"
 weight = 8
 +++
