@@ -79,7 +79,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
           <a href="https://googlecloudplatform.github.io/kubeflow-gke-docs">Website</a>
         </td>
         <td>
-          1.6.1 <sup>[<a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/#161">Release Notes</a>]</sup>
+          1.7.0 <sup>[<a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/#170">Release Notes</a>]</sup>
         </td>
       </tr>
       <tr>
