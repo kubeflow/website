@@ -450,7 +450,7 @@ If you believe we missed a breaking change or an important migration step, pleas
 [dsl-container-component]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.container_component
 [dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.ParallelFor
 [gcpc]: https://cloud.google.com/vertex-ai/docs/pipelines/components-introduction
-[ir-yaml]: http://localhost:1313/docs/components/pipelines/v2/compile-a-pipeline/#ir-yaml
+[ir-yaml]: /docs/components/pipelines/v2/compile-a-pipeline/#ir-yaml
 [lightweight-python-components]: /docs/components/pipelines/v2/components/lightweight-python-components/
 [load]: /docs/components/pipelines/v2/load-and-share-components/
 [new-issue]: https://github.com/kubeflow/pipelines/issues/new
