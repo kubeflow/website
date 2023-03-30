@@ -2,8 +2,11 @@
 title = "Migrate from KFP SDK v1"
 description = "v1 to v2 migration instructions and breaking changes"
 weight = 3
-
 +++
+
+If you have existing KFP pipelines, either compiled to [Argo Workflow][argo] (using the SDK v1 main namespace) or to [IR YAML][ir-YAML] (using the SDK v1 v2-namespace), you can run these pipelines on the new [KFP v2 backend][oss-be-v2] without any changes.
+
+If you wish to author new pipelines, there are some recommended and required steps to migrate your pipeline authoring code to the KFP SDK v2.
 
 ## Terminology
 
@@ -464,3 +467,4 @@ If you believe we missed a breaking change or an important migration step, pleas
 [vertex-customjob]: https://cloud.google.com/vertex-ai/docs/training/create-custom-job
 [vertex-pipelines]: https://cloud.google.com/vertex-ai/docs/pipelines/introduction
 [vertex-sdk]: https://cloud.google.com/vertex-ai/docs/pipelines/run-pipeline#vertex-ai-sdk-for-python
+[argo]: https://argoproj.github.io/argo-workflows/
