@@ -19,15 +19,13 @@ Lightweight Python Components are constructed by decorating Python functions wit
 ### Python function requirements
 To decorate a function with the `@dsl.component` decorator it must meet two requirements:
 
-
 1. **Type annotations:** The function inputs and outputs must have valid KFP [type annotations][data-types].
 
-    There are two categories of inputs and outputs in KFP: [parameters][parameters] and [artifacts][artifacts]. There are specific types of parameters and artifacts within each category. Every input and output will have a specific type indicated indicated by its type annotation.
-    
-    In the preceding `add` component, both inputs `a` and `b` are parameters typed `int`. There is one output, also typed `int`.
-    
-    Valid parameter annotations include Python's built-in `int`, `float`, `str`, `bool`, `typing.Dict`, and `typing.List`. Artifact annotations are discussed in detail in [Data Types: Artifacts][artifacts].
+    There are two categories of inputs and outputs in KFP: [parameters][parameters] and [artifacts][artifacts]. There are specific types of parameters and artifacts within each category. Every input and output will have a specific type indicated by its type annotation.
 
+    In the preceding `add` component, both inputs `a` and `b` are parameters typed `int`. There is one output, also typed `int`.
+
+    Valid parameter annotations include Python's built-in `int`, `float`, `str`, `bool`, `typing.Dict`, and `typing.List`. Artifact annotations are discussed in detail in [Data Types: Artifacts][artifacts].
 
 2. **Hermetic:** The Python function may not reference any symbols defined outside of its body.
 
@@ -42,16 +40,17 @@ To decorate a function with the `@dsl.component` decorator it must meet two requ
     ```
 
     By comparison, the following is invalid and will fail at runtime:
+
     ```python
     # non-example!
     INVALID_CONSTANT = 2
-    
+
     @dsl.component
     def errored_double(a: int) -> int:
         """Fails at runtime."""
         return INVALID_CONSTANT * a
     ```
-    
+
     Imports must also be included in the function body:
 
     ```python
@@ -61,16 +60,14 @@ To decorate a function with the `@dsl.component` decorator it must meet two requ
         print(os.environ)
     ```
 
-
     For many realistic components, hermeticism can be a fairly constraining requirement. [Containerized Python Components][containerized-python-components] is a more flexible authoring approach that drops this requirement.
 
 ### dsl.component decorator arguments
-In the above examples we used the [`@dsl.component`][dsl-component] decorator with only one argument: the Python function. The decorator accepts some additional arguments.
+In the above examples, we used the [`@dsl.component`][dsl-component] decorator with only one argument: the Python function. The decorator accepts some additional arguments.
 
 #### packages_to_install
 
 Most realistic Lightweight Python Components will depend on other Python libraries. You can pass a list of requirements to `packages_to_install` and the component will install these packages at runtime before executing the component function.
-
 
 This is similar to including requirements in a [`requirements.txt`][requirements-txt] file.
 
@@ -79,6 +76,7 @@ This is similar to including requirements in a [`requirements.txt`][requirements
 def sin(val: float = 3.14) -> float:
     return np.sin(val).item()
 ```
+
 #### pip_index_urls
 
 `pip_index_urls` exposes the ability to pip install `packages_to_install` from package indices other than the default [PyPI.org][pypi-org].
@@ -117,12 +115,12 @@ def print_py_version():
 ```
 
 #### install_kfp_package
+
 `install_kfp_package` can be used together with `pip_index_urls` to provide granular control over installation of the `kfp` package at component runtime.
 
 By default, Python Components install `kfp` at runtime. This is required to define symbols used by your component (such as [artifact annotations][artifacts]) and to access additional KFP library code required to execute your component remotely. If `install_kfp_package` is `False`, `kfp` will not be installed via the normal automatic mechanism. Instead, you can use `packages_to_install` and `pip_index_urls` to install a different version of `kfp`, possibly from a non-default pip index URL.
 
 Note that setting `install_kfp_package` to `False` is rarely necessary and is discouraged for the majority of use cases.
-
 
 [hello-world-pipeline]: /docs/components/pipelines/v2/hello-world
 [containerized-python-components]: /docs/components/pipelines/v2/components/containerized-python-components

@@ -40,6 +40,7 @@ compiler.Compiler().compile(hello_pipeline, 'pipeline.yaml')
 If you run this pipeline, you'll see the string `Hello` in `say_hello`'s logs.
 
 ### Use component inputs
+
 To be more useful, `say_hello` should be able to accept arguments. You can modify `say_hello` so that it accepts an input argument `name`:
 
 ```python
@@ -67,8 +68,8 @@ def say_hello(name: str):
 When you run the component with the argument `name='World'`, you’ll see the string `'Hello, World!'` in `say_hello`’s logs.
 
 ### Create component outputs
- 
-Unlike Python functions, containers do not have a standard mechanism for returning values. To enable Container Components to have outputs, KFP requires you to write outputs to a file inside the container. KFP will read this file and persist the output to [ML Metadata][ml-metadata].
+
+Unlike Python functions, containers do not have a standard mechanism for returning values. To enable Container Components to have outputs, KFP requires you to write outputs to a file inside the container. KFP will read this file and persist the output.
 
 To return an output string from the say `say_hello` component, you can add an output parameter to the function using a `dsl.OutputPath(str)` annotation:
 
@@ -96,6 +97,7 @@ def say_hello(name: str, greeting: dsl.OutputPath(str)):
         ],
         args=[name, greeting])
 ```
+
 ### Use in a pipeline
 
 Finally, you can use the updated `say_hello` component in a pipeline:
@@ -123,4 +125,3 @@ This should look very similar to the [Hello World pipeline][hello-world-pipeline
 [dsl-outputpath]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.OutputPath
 [dsl-container-component]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.container_component
 [dsl-containerspec]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ContainerSpec
-[ml-metadata]: https://github.com/google/ml-metadata

@@ -25,7 +25,7 @@ Start by creating an empty `src/` directory to contain your source code:
 src/
 ```
 
-Next, add the following simple module `src/math_utils.py` with one helper function:
+Next, add the following simple module, `src/math_utils.py`, with one helper function:
 
 ```python
 # src/math_utils.py
@@ -64,11 +64,11 @@ def add(a: int, b: int) -> int:
     return add_numbers(a, b)
 ```
 
-Setting `target_image` at once specifies the [tag][image-tag] for the image you'll build in Step 3 and instructs KFP to run the decorated Python function in a container that uses the image with that tag.
+Setting `target_image` both (a) specifies the [tag][image-tag] for the image you'll build in Step 3, and (b) instructs KFP to run the decorated Python function in a container that uses the image with that tag.
 
 In a Containerized Python Component, `base_image` specifies the base image that KFP will use when building your new container image. Specifically, KFP uses the `base_image` argument for the [`FROM`][docker-from] instruction in the Dockerfile used to build your image.
 
-The previous example includes `base_image` for clarity, but this is not necessary as `base_image` will to default to `'python:3.7'` if omitted.
+The previous example includes `base_image` for clarity, but this is not necessary as `base_image` will default to `'python:3.7'` if omitted.
 
 ### 3. Build the component
 Now that your code is in a standalone directory and you've specified a target image, you can conveniently build an image using the [`kfp component build`][kfp-component-build] CLI command:
