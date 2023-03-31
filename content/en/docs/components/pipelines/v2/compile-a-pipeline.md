@@ -1,5 +1,5 @@
 +++
-title = "Compile a pipeline"
+title = "Compile a Pipeline"
 description = "Compile pipelines and components to YAML"
 weight = 7
 +++
