@@ -33,6 +33,12 @@ KFP SDK v1 v2-namespace imports (`from kfp.v2 import *`) should be converted to 
 
 **Change:** Remove the `.v2` module from any KFP SDK v1 v2-namespace imports.
 
+<style>
+    th {
+        text-align: center;
+    }
+</style>
+
 <table>
 <tr>
 <th>Previous usage</th>
