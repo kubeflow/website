@@ -4,14 +4,13 @@ description = "Create pipelines with control flow"
 weight = 2
 +++
 
-Although a KFP pipeline decoratored with the `@dsl.pipeline` decorator looks like a normal Python function, it is actually an expression of pipeline topology and control flow semantics, constructed using the KFP domain-specific language (DSL). [Pipeline Basics][pipeline-basics] covered how data passing expresses [pipeline topology through task dependencies][data-passing]. This section describes how to use control flow in your pipelines using the KFP DSL. The DSL features three types of control flow, each implemented by a Python context manager:
+Although a KFP pipeline decorated with the `@dsl.pipeline` decorator looks like a normal Python function, it is actually an expression of pipeline topology and control flow semantics, constructed using the KFP domain-specific language (DSL). [Pipeline Basics][pipeline-basics] covered how data passing expresses [pipeline topology through task dependencies][data-passing]. This section describes how to use control flow in your pipelines using the KFP DSL. The DSL features three types of control flow, each implemented by a Python context manager:
 
 1. Conditions
 2. Looping
 3. Exit handling
 
 ### Conditions (dsl.Condition)
-
 
 The [`dsl.Condition`][dsl-condition] context manager enables conditional execution of tasks within its scope based on the output of an upstream task or pipeline input parameter. The context manager takes two arguments: a required `condition` and an optional `name`. The `condition` is a comparative expression where at least one of the two operands is an output from an upstream task or a pipeline input parameter.
 
@@ -89,11 +88,11 @@ def my_pipeline() -> List[Model]:
     return dsl.Collected(train_model_task.outputs['model'])
 ```
 
-
 ### Exit handling (dsl.ExitHandler)
-The [`dsl.ExitHandler`][dsl-exithandler] context manager allows pipeline authors to specify an exit task which will run after the tasks within the context manager's scope finish execution, even if one of those tasks fails. This is analogous to using `try:` block followed by `finally:` block in normal Python, where the exit task is in the `finally:` block. The context manager takes two arguments: a required `exit_task` and an optional `name`. `exit_task` accepts an instantiated [`PipelineTask`][dsl-pipelinetask].
 
-In the following pipeline, `clean_up_task` will execute after either both `create_dataset` and `train_and_save_models` finish or either of them fail:
+The [`dsl.ExitHandler`][dsl-exithandler] context manager allows pipeline authors to specify an exit task which will run after the tasks within the context manager's scope finish execution, even if one of those tasks fails. This is analogous to using a `try:` block followed by a `finally:` block in normal Python, where the exit task is in the `finally:` block. The context manager takes two arguments: a required `exit_task` and an optional `name`. `exit_task` accepts an instantiated [`PipelineTask`][dsl-pipelinetask].
+
+In the following pipeline, `clean_up_task` will execute after both `create_dataset` and `train_and_save_models` finish or either of them fail:
 
 ```python
 from kfp import dsl
@@ -137,7 +136,9 @@ def my_pipeline():
     with dsl.ExitHandler(exit_task=print_status_task):
         fail_op()
 ```
+
 #### Ignore upstream failure
+
 The [`.ignore_upstream_failure()`][ignore-upstream-failure] task method on [`PipelineTask`][dsl-pipelinetask] enables another approach to author pipelines with exit handling behavior. Calling this method on a task causes the task to ignore failures of any specified upstream tasks (as established by data exchange or by use of [`.after()`][dsl-pipelinetask-after]). If the task has no upstream tasks, this method has no effect.
 
 In the following pipeline definition, `clean_up_task` is executed after `fail_op`, regardless of whether `fail_op` succeeds:
@@ -152,7 +153,7 @@ def my_pipeline(text: str = 'message'):
         message=task.output).ignore_upstream_failure()
 ```
 
-Note that the component used for the caller task (`print_op` in the example above) requires a default value for all inputs it consumes from an upstream task. The default value is applied if the upstream task fails to produce the outputs that are passed to the caller task. Specifying default values ensures that the caller task always succeeds, regardless of the status of the upstream task. 
+Note that the component used for the caller task (`print_op` in the example above) requires a default value for all inputs it consumes from an upstream task. The default value is applied if the upstream task fails to produce the outputs that are passed to the caller task. Specifying default values ensures that the caller task always succeeds, regardless of the status of the upstream task.
 
 [data-passing]: /docs/components/pipelines/v2/pipelines/pipeline-basics#data-passing-and-task-dependencies
 [pipeline-basics]: /docs/components/pipelines/v2/pipelines/pipeline-basics

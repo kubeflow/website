@@ -4,8 +4,7 @@ description = "Compose components into pipelines"
 weight = 1
 +++
 
-While components have three authoring approaches, pipelines have one authoring approach: they are defined with a pipeline function decorated with the [`@dsl.pipeline`][dsl-pipeline] decorator. Take the following pipeline `pythagorean`, which implements the Pythagorean theorem as a pipeline via simple arithmetic components:
-
+While components have three authoring approaches, pipelines have one authoring approach: they are defined with a pipeline function decorated with the [`@dsl.pipeline`][dsl-pipeline] decorator. Take the following pipeline, `pythagorean`, which implements the Pythagorean theorem as a pipeline via simple arithmetic components:
 
 ```python
 from kfp import dsl
@@ -30,11 +29,10 @@ def pythagorean(a: float, b: float) -> float:
     return square_root(x=sum_task.output).output
 ```
 
-
-Although a KFP pipeline decoratored with the `@dsl.pipeline` decorator looks like a normal Python function, it is actually an expression of pipeline topology and [control flow][control-flow] semantics, constructed using the KFP domain-specific language (DSL).
-
+Although a KFP pipeline decoratored with the `@dsl.pipeline` decorator looks like a normal Python function, it is actually an expression of pipeline topology and [control flow][control-flow] semantics, constructed using the [KFP domain-specific language][dsl-reference-docs] (DSL).
 
 A pipeline definition has four parts:
+
 1. The pipeline decorator
 2. Inputs and outputs declared in the function signature
 3. Data passing and task dependencies
@@ -44,6 +42,7 @@ A pipeline definition has four parts:
 This section covers the first four parts. [Control flow][control-flow] is covered in the next section.
 
 ### The pipeline decorator
+
 KFP pipelines are defined inside functions decorated with the `@dsl.pipeline` decorator. The decorator takes three optional arguments:
 
 * `name` is the name of your pipeline. If not provided, the name defaults to a sanitized version of the pipeline function name.
@@ -61,9 +60,10 @@ def pythagorean(a: float, b: float) -> float:
 ```
 
 ### Pipeline inputs and outputs
+
 Like [components][components], pipeline inputs and outputs are defined by the parameters and annotations in the pipeline function signature.
 
-In the preceding example, `pythagorean` accepts inputs `a` and `b` each typed `float` and creates one `float` output.
+In the preceding example, `pythagorean` accepts inputs `a` and `b`, each typed `float`, and creates one `float` output.
 
 Pipeline inputs are declaried via function input parameters/annotations and pipeline outputs are declared via function output annotations. Pipeline outputs will _never be declared via pipeline function input parameters_, unlike for components that use [output artifacts][output-artifacts] or [Container Components that use `dsl.OutputPath`][container-component-outputs].
 
@@ -79,9 +79,9 @@ For tasks with multiple outputs or named outputs, access the output using `Pipel
 
 In the absence of data exchange, tasks will run in parallel for efficient pipeline executions. This is the case for `a_sq_task` and `b_sq_task` which do not exchange data.
 
-When tasks exchange data, an execution ordering is established between those tasks. This is to ensure that upstream tasks create their outputs before downstream tasks attempt to consume those outputs. For example, in `pythagorean`, the backend will execute `a_sq_task` and `b_sq_task` before it executes `sum_task`. Similarly, it will execute `sum_task` before it executes the final task created from the `square_root` component.  
+When tasks exchange data, an execution ordering is established between those tasks. This is to ensure that upstream tasks create their outputs before downstream tasks attempt to consume those outputs. For example, in `pythagorean`, the backend will execute `a_sq_task` and `b_sq_task` before it executes `sum_task`. Similarly, it will execute `sum_task` before it executes the final task created from the `square_root` component.
 
-In some cases, you may wish to establish execution ordering in the asbence of data exchange. In these cases, you can call one task's `.after()` method on another task. For example, while `a_sq_task` and `b_sq_task` do not exchange data, we can specify `a_sq_task` to run before `b_sq_task`:
+In some cases, you may wish to establish execution ordering in the absence of data exchange. In these cases, you can call one task's `.after()` method on another task. For example, while `a_sq_task` and `b_sq_task` do not exchange data, we can specify `a_sq_task` to run before `b_sq_task`:
 
 ```python
 @dsl.pipeline
@@ -93,6 +93,7 @@ def pythagorean(a: float, b: float) -> float:
 ```
 
 ### Task configurations
+
 The KFP SDK exposes several platform-agnostic task-level configurations via task methods. Platform-agnostic configurations are those that are expected to exhibit similar execution behavior on all KFP-conformant backends, such as the [open source KFP backend][oss-be] or [Google Cloud Vertex AI Pipelines][vertex-pipelines].
 
 All platform-agnostic task-level configurations are set using [`PipelineTask`][pipelinetask] methods. Take the following environment variable example:
@@ -120,6 +121,7 @@ print_env_var().set_env_variable('MY_ENV_VAR', 'hello').set_env_variable('OTHER_
 ```
 
 The KFP SDK provides the following task methods for setting task-level configurations:
+
 * `.add_accelerator_type`
 * `.set_accelerator_limit`
 * `.set_cpu_limit`
@@ -133,6 +135,7 @@ The KFP SDK provides the following task methods for setting task-level configura
 See the [`PipelineTask` reference documentation][pipelinetask] for more information about these methods.
 
 ### Pipelines as components
+
 Pipelines can themselves be used as components in other pipelines, just as you would use any other single-step component in a pipeline. For example, we could easily recompose the preceding `pythagorean` pipeline to use an inner helper pipeline `square_and_sum`:
 
 ```python
@@ -157,7 +160,6 @@ def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
 [pipelinetask]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.PipelineTask
 [vertex-pipelines]: https://cloud.google.com/vertex-ai/docs/pipelines/introduction
 [oss-be]: /docs/components/pipelines/v2/installation/
-[dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html
 [data-types]: /docs/components/pipelines/v2/data-types
 [output-artifacts]: /docs/components/pipelines/v2/data-types/artifacts#using-output-artifacts
 [container-component-outputs]: /docs/components/pipelines/v2/components/container-components#create-component-outputs
