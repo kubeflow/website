@@ -302,7 +302,7 @@ def flip_coin(rand: int, result: dsl.OutputPath(str)):
 
 `VolumeOp` and `ResourceOp` expose direct access to Kubernetes resources within a pipeline definition. There is no support for these features on a non-Kubernetes platforms.
 
-These features will be supported via platform-specific functionality, which includes Kubernetes-specific functionality. This functionality is a work in progress.
+These features will be supported via platform-specific functionality, which includes Kubernetes-specific functionality. This functionality is a work in progress and will be supported in the KFP v2 GA release.
 
 <!-- TODO: link to docs and add change instructions once released -->
 
