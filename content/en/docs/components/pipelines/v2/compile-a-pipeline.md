@@ -15,7 +15,6 @@ def comp(message: str) -> str:
     print(message)
     return message
 
-
 @dsl.pipeline
 def my_pipeline(message: str) -> str:
     """My ML pipeline."""
@@ -39,13 +38,19 @@ You can find human-readable information about the pipeline in the comments at th
 ...
 ```
 
-You can also compile components to IR YAML:
+You can also compile components, as opposed to pipelines, to IR YAML:
 
 ```python
+@dsl.component
+def comp(message: str) -> str:
+    print(message)
+    return message
+
 compiler.Compiler().compile(comp, package_path='component.yaml')
 ```
 
 ## Compiler arguments
+
 The [`Compiler.compile`][compiler-compile] method accepts the following arguments:
 
 | Name | Type | Description |
@@ -56,13 +61,13 @@ The [`Compiler.compile`][compiler-compile] method accepts the following argument
 | `pipeline_parameters` | `Dict[str, Any]` | _Optional_<br/>Map of parameter names to argument values. This lets you provide default values for pipeline or component parameters. You can override these default values during pipeline submission.
 | `type_check` | `bool` | _Optional_<br/>Indicates whether static type checking is enabled during compilation.<br/>
 
-
 ## Type checking
+
 By default, the DSL compiler statically type checks your pipeline to ensure type consistency between components that pass data between one another. Static type checking helps identify component I/O inconsistencies without having to run the pipeline, shortening development iterations.
 
 Specifically, the type checker checks for type equality between the type of data a component input expects and the type of the data provided. See [Data Types][data-types] for more information about KFP data types.
 
-For example, for parameters, a list input may only be passed to parameters with a `typing.List` annotation. Similarly, a float may only be passed to parameter with a `float` annotation.
+For example, for parameters, a list input may only be passed to parameters with a `typing.List` annotation. Similarly, a float may only be passed to parameters with a `float` annotation.
 
 Input data types and annotations must also match for artifacts, with one exception: the `Artifact` type is compatible with all other artifact types. In this sense, the `Artifact` type is both the default artifact type and an artifact "any" type.
 
@@ -78,14 +83,13 @@ While IR YAML is not intended to be easily human readable, you can still inspect
 
 | Section | Description | Example |
 |-------|-------------|---------|
-| [`components`][components-schema] | This section is a map of the names of all components used in the pipeline to [`ComponentSpec`][component-spec]. `ComponentSpec` defines the interface, including inputs and outputs, of a component.<br/>For primitive components, `ComponentSpec` contains a reference to the executor containing the component implementation.<br/>For pipelines used as components, `ComponentSpec` contains a [DagSpec][dag-spec] instance, which includes references to the underlying primitive components. | [View on Github][components-example]
+| [`components`][components-schema] | This section is a map of the names of all components used in the pipeline to [`ComponentSpec`][component-spec]. `ComponentSpec` defines the interface, including inputs and outputs, of a component.<br/>For primitive components, `ComponentSpec` contains a reference to the executor containing the component implementation.<br/><br/>For pipelines used as components, `ComponentSpec` contains a [DagSpec][dag-spec] instance, which includes references to the underlying primitive components. | [View on Github][components-example]
 | [`deployment_spec`][deployment-spec-schema] | This section contains a map of executor name to [`ExecutorSpec`][executor-spec]. `ExecutorSpec` contains the implementation for a primitive component. | [View on Github][deployment-spec-example]
 | [`root`][root-schema] | This section defines the steps of the outermost pipeline definition, also called the pipeline root definition. The root definition is the workflow executed when you submit the IR YAML. It is an instance of [`ComponentSpec`][component-spec]. | [View on Github][root-example]
-| [`pipeline_info`][pipeline-info-schema] <a id="kfp_iryaml_pipelineinfo"></a> | This section contains pipeline metadata, including the `pipelineInfo.name` field. This field contains the name of your pipeline template. When you upload your pipeline, a pipeline context name is created based on this template name. The pipeline context lets the backend and the dashboard associate artifacts and executions from pipeline runs using the pipeline template. You can use a pipeline context to determine the best model by comparing metrics and artifacts from multiple pipeline runs based on the same training pipeline. | [View on Github][pipeline-info-example]  
+| [`pipeline_info`][pipeline-info-schema] <a id="kfp_iryaml_pipelineinfo"></a> | This section contains pipeline metadata, including the `pipelineInfo.name` field. This field contains the name of your pipeline template. When you upload your pipeline, a pipeline context name is created based on this template name. The pipeline context lets the backend and the dashboard associate artifacts and executions from pipeline runs using the pipeline template. You can use a pipeline context to determine the best model by comparing metrics and artifacts from multiple pipeline runs based on the same training pipeline. | [View on Github][pipeline-info-example]
 | [`sdk_version`][sdk-version-schema] | This section records the version of the KFP SDK used to compile the pipeline. | [View on Github][sdk-version-example]
 | [`schema_version`][schema-version-schema] | This section records the version of the `PipelineSpec` schema used for the IR YAML. | [View on Github][schema-version-example]
-| [`default_pipeline_root`][default-pipeline-root-schema] | This section records the remote storage root path, such as a MiniIO URI or Google Cloud Storage URI, where the pipeline output is written. | [View on Github][default-pipeline-root-example]  
-
+| [`default_pipeline_root`][default-pipeline-root-schema] | This section records the remote storage root path, such as a MinIO URI or Google Cloud Storage URI, where the pipeline output is written. | [View on Github][default-pipeline-root-example]
 
 [pipeline-spec]: https://github.com/kubeflow/pipelines/blob/master/api/v2alpha1/pipeline_spec.proto#L50
 [argo-workflow]: https://argoproj.github.io/argo-workflows/
