@@ -4,6 +4,8 @@ description = "Compile pipelines and components to YAML"
 weight = 7
 +++
 
+{{% kfp-v2-keywords %}}
+
 To submit a pipeline for execution, you must compile it to YAML with the KFP SDK compiler:
 
 ```python

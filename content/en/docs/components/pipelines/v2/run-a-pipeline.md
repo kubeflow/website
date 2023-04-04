@@ -4,6 +4,8 @@ description = "Execute a pipeline on the KFP backend"
 weight = 8
 +++
 
+{{% kfp-v2-keywords %}}
+
 The KFP offers three ways to run a pipeline.
 
 ## 1. Run from the KFP Dashboard

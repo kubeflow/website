@@ -4,6 +4,8 @@ description = "Author KFP components"
 weight = 5
 +++
 
+{{% kfp-v2-keywords %}}
+
 Components are the building blocks of KFP pipelines. A component is a remote function definition; it specifies inputs, has user-defined logic in its body, and can create outputs. When the component template is instantiated with input parameters, we call it a task.
 
 KFP provides two high-level ways to author components: **Python Components** and **Container Components.**

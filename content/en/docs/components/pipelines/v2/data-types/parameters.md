@@ -4,6 +4,8 @@ description = "Pass small amounts of data between components"
 weight = 1
 +++
 
+{{% kfp-v2-keywords %}}
+
 Parameters are useful for passing small amounts of data between components and when the data created by a component does not represent a machine learning artifact such as a model, dataset, or more complex data type.
 
 Specify parameter inputs and outputs using built-in Python type annotations:

@@ -4,6 +4,8 @@ description = "v1 to v2 migration instructions and breaking changes"
 weight = 3
 +++
 
+{{% kfp-v2-keywords %}}
+
 If you have existing KFP pipelines, either compiled to [Argo Workflow][argo] (using the SDK v1 main namespace) or to [IR YAML][ir-YAML] (using the SDK v1 v2-namespace), you can run these pipelines on the new [KFP v2 backend][oss-be-v2] without any changes.
 
 If you wish to author new pipelines, there are some recommended and required steps to migrate your pipeline authoring code to the KFP SDK v2.

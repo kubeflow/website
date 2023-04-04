@@ -4,6 +4,8 @@ description = "Interact with KFP via the CLI"
 weight = 9
 +++
 
+{{% kfp-v2-keywords %}}
+
 <!-- TODO: Improve or standardize rendering of variables and placeholders -->
 <!-- TODO: Standardize inline references to KFP CLI SDK -->
 

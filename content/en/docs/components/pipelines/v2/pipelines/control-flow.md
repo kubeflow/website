@@ -4,6 +4,8 @@ description = "Create pipelines with control flow"
 weight = 2
 +++
 
+{{% kfp-v2-keywords %}}
+
 Although a KFP pipeline decorated with the `@dsl.pipeline` decorator looks like a normal Python function, it is actually an expression of pipeline topology and control flow semantics, constructed using the KFP domain-specific language (DSL). [Pipeline Basics][pipeline-basics] covered how data passing expresses [pipeline topology through task dependencies][data-passing]. This section describes how to use control flow in your pipelines using the KFP DSL. The DSL features three types of control flow, each implemented by a Python context manager:
 
 1. Conditions
