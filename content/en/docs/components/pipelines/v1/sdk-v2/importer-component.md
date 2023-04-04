@@ -4,6 +4,9 @@ description = "Use an importer component to import artifacts from remote storage
 weight = 51
 +++
 
+<!-- no index to improve relative search ranking of KFP SDK v2 docs over KFP SDK v1 v2-namepsace docs -->
+{{% no-index %}}
+
 The KFP SDK v2 provides an importer component as a pre-baked component for a specific use case: importing a machine learning from remote storage to machine learning metadata (MLMD).
 
 Typically, the input artifact to a task is an output from an upstream task. In this case, the artifact can be easily accessed from the upstream task using `my_task.outputs['artifact_name']`. The artifact is also registered in MLMD when it is created by the upstream task.

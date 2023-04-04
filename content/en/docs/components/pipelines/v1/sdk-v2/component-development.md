@@ -4,6 +4,9 @@ description = "A tutorial on how to use the Pipelines SDK v2 to create component
 weight = 40
 +++
 
+<!-- no index to improve relative search ranking of KFP SDK v2 docs over KFP SDK v1 v2-namepsace docs -->
+{{% no-index %}}
+
 A pipeline component is a self-contained set of code that performs one step in
 your ML workflow. This document describes the concepts required to build
 components, and demonstrates how to get started building components.
