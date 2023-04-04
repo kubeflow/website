@@ -4,6 +4,8 @@ description = "Component and pipeline I/O types"
 weight = 6
 +++
 
+{{% kfp-v2-keywords %}}
+
 KFP components and pipelines can accept inputs and create outputs. To do so, they must declare typed interfaces through their function signatures and annotations.
 
 There are two groups of types in KFP: parameters and artifacts. Parameters are useful for passing small amounts of data between components. Artifacts types are the mechanism by which KFP provides first-class support for ML artifact outputs, such as datasets, models, metrics, etc.

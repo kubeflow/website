@@ -4,6 +4,8 @@ description = "Create a component via an arbitrary container definition"
 weight = 4
 +++
 
+{{% kfp-v2-keywords %}}
+
 In KFP, each task execution corresponds to a container execution. This means that all components, even Python Components, are defined by an `image`, `command`, and `args`.
 
 Python Components are unique because they abstract most aspects of the container definition away from the user, making it convenient to construct components that use pure Python. Under the hood, the KFP SDK sets the `image`, `commands`, and `args` to the values needed to execute the Python component for the user.

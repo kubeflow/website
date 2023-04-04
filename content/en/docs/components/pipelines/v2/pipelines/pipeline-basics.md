@@ -4,6 +4,8 @@ description = "Compose components into pipelines"
 weight = 1
 +++
 
+{{% kfp-v2-keywords %}}
+
 While components have three authoring approaches, pipelines have one authoring approach: they are defined with a pipeline function decorated with the [`@dsl.pipeline`][dsl-pipeline] decorator. Take the following pipeline, `pythagorean`, which implements the Pythagorean theorem as a pipeline via simple arithmetic components:
 
 ```python

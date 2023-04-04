@@ -4,6 +4,8 @@ description = "Create Python components with more complex dependencies"
 weight = 3
 +++
 
+{{% kfp-v2-keywords %}}
+
 The following assumes a basic familiarity with [Lightweight Python Components][lightweight-python-components].
 
 Containerized Python Components extend [Lightweight Python Components][lightweight-python-components] by relaxing the constraint that Lightweight Python Components be hermetic (i.e., fully self-contained). This means Containerized Python Component functions can depend on symbols defined outside of the function, imports outside of the function, code in adjacent Python modules, etc. To achieve this, the KFP SDK provides a convenient way to package your Python code into a container.

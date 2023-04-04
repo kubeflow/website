@@ -4,6 +4,8 @@ description = "Create a component from a self-contained Python function"
 weight = 1
 +++
 
+{{% kfp-v2-keywords %}}
+
 The easiest way to get started authoring components is by creating a Lightweight Python Component. We saw an example of a Lightweight Python Component with `say_hello` in the [Hello World pipeline example][hello-world-pipeline]. Here is another Lightweight Python Component that adds two integers together:
 
 ```python

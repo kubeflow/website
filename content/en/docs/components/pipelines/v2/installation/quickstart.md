@@ -4,6 +4,8 @@ description = "Get started with Kubeflow Pipelines"
 weight = 2
 +++
 
+{{% kfp-v2-keywords %}}
+
 <style type="text/css">
 summary::marker {
     font-size: 1.5rem;

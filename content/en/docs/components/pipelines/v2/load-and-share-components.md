@@ -4,6 +4,8 @@ description = "Load and use an ecosystem of components"
 weight = 8
 +++
 
+{{% kfp-v2-keywords %}}
+
 This section describes how to load and use existing components. In this section, "components" refers to both single-step components and pipelines, which can also be [used as components][pipeline-as-component].
 
 IR YAML serves as a portable, sharable computational template. This allows you compile and share your components with others, as well as leverage an ecosystem of existing components.

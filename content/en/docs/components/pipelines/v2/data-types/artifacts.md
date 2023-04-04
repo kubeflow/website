@@ -4,6 +4,8 @@ description = "Create, use, pass, and track ML artifacts"
 weight = 2
 +++
 
+{{% kfp-v2-keywords %}}
+
 Most machine learning pipelines aim to create one or more machine learning artifacts, such as a model, dataset, evaluation metrics, etc.
 
 KFP provides first-class support for creating machine learning artifacts via the [`dsl.Artifact`][dsl-artifact] class and other artifact subclasses. KFP maps these artifacts to their underlying [ML Metadata][ml-metadata] schema title, the canonical name for the artifact type.

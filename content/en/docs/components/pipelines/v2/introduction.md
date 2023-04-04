@@ -4,6 +4,7 @@ description = "What is Kubeflow Pipelines?"
 weight = 1
 +++
 
+{{% kfp-v2-keywords %}}
 
 Kubeflow Pipelines (KFP) is a platform for building and deploying portable and scalable machine learning (ML) workflows using Docker containers.
 

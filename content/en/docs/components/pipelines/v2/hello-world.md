@@ -4,6 +4,8 @@ description = "Create your first pipeline"
 weight = 3
 +++
 
+{{% kfp-v2-keywords %}}
+
 To get started with the tutorials, pip install `kfp` v2:
 
 ```sh

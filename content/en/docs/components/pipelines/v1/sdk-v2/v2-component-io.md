@@ -4,6 +4,9 @@ description = "Differences between artifacts and parameters, and how to migrate 
 weight = 20
 +++
 
+<!-- no index to improve relative search ranking of KFP SDK v2 docs over KFP SDK v1 v2-namepsace docs -->
+{{% no-index %}}
+
 {{% beta-status
   feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
 
