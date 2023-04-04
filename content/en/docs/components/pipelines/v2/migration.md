@@ -324,7 +324,7 @@ In KFP v2, both components and pipelines are compiled to the same [IR YAML][ir-y
 
 KFP v2 will continue to support loading existing v1 component YAML using the [`components.load_component_from_file`][components-load-component-from-file] function and [similar functions][load] for backward compatibility.
 
-**Change:** To author components via custom image, command, and args, use the [`@dsl.container_component`][dsl-container-component] decorator as described in [Container Components][container-components]
+**Change:** To author components via custom image, command, and args, use the [`@dsl.container_component`][dsl-container-component] decorator as described in [Container Components][container-components]. Note that unlike when authoring v1 component YAML, Container Components do not support setting environment variables on the component itself. Environment variables should be set on the task instantiated from the component within a pipeline definition using the [`.set_env_variable`][dsl-pipelinetask-set-env-variable] task [configuration method][task-configuration-methods].
 
 #### v1 lightweight component types InputTextFile, InputBinaryFile, OutputTextFile and OutputBinaryFile support
 
@@ -476,3 +476,5 @@ If you believe we missed a breaking change or an important migration step, pleas
 [vertex-pipelines]: https://cloud.google.com/vertex-ai/docs/pipelines/introduction
 [vertex-sdk]: https://cloud.google.com/vertex-ai/docs/pipelines/run-pipeline#vertex-ai-sdk-for-python
 [argo]: https://argoproj.github.io/argo-workflows/
+[dsl-pipelinetask-set-env-variable]: https://kubeflow-pipelines.readthedocs.io/en/2.0.0b13/source/dsl.html#kfp.dsl.PipelineTask.set_env_variable
+[task-configuration-methods]: https://www.kubeflow.org/docs/components/pipelines/v2/pipelines/pipeline-basics/#task-configurations
