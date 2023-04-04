@@ -89,12 +89,10 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
           IBM Cloud Kubernetes Service (IKS)
         </td>
         <td>
-          <a href="https://github.com/IBM/manifests/tree/{{% iks/latest-branch %}}">Website</a>
-          <br>
-          <sub><a href="/docs/distributions/ibm/">Legacy Docs</a></sub>
+          <a href="https://ibm.github.io/manifests/">Website</a>
         </td>
         <td>
-          1.6.1 <sup>[<a href="https://github.com/IBM/manifests/releases/tag/v1.6.1">Release Notes</a>]</sup>
+          {{% iks/latest-version %}} <sup>[<a href="https://github.com/IBM/manifests/releases/tag/v{{% iks/latest-version %}}">Release Notes</a>]</sup>
         </td>
       </tr>
       <tr>
