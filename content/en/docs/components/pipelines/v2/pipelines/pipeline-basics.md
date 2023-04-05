@@ -94,6 +94,30 @@ def pythagorean(a: float, b: float) -> float:
     ...
 ```
 
+#### Special input types
+There are a few special input values that you can pass to a component within your pipeline definition to give the component access to some metadata about itself. These values can be passed to input parameters typed `str`.
+
+For example, the following `print_op` component prints the pipeline job name at component runtime using [`dsl.PIPELINE_JOB_NAME_PLACEHOLDER`][dsl-pipeline-job-name-placeholder]:
+
+```python
+from kfp import dsl
+
+@dsl.pipeline
+def my_pipeline():
+    print_op(text=dsl.PIPELINE_JOB_NAME_PLACEHOLDER)
+```
+
+There several special values that may be used in this style, including:
+* `dsl.PIPELINE_JOB_NAME_PLACEHOLDER`
+* `dsl.PIPELINE_JOB_RESOURCE_NAME_PLACEHOLDER`
+* `dsl.PIPELINE_JOB_ID_PLACEHOLDER`
+* `dsl.PIPELINE_TASK_NAME_PLACEHOLDER`
+* `dsl.PIPELINE_TASK_ID_PLACEHOLDER`
+* `dsl.PIPELINE_JOB_CREATE_TIME_UTC_PLACEHOLDER`
+* `dsl.PIPELINE_JOB_SCHEDULE_TIME_UTC_PLACEHOLDER`
+
+See the [KFP SDK DSL reference docs][dsl-reference-docs] for more information about the data provided by each special input.
+
 ### Task configurations
 
 The KFP SDK exposes several platform-agnostic task-level configurations via task methods. Platform-agnostic configurations are those that are expected to exhibit similar execution behavior on all KFP-conformant backends, such as the [open source KFP backend][oss-be] or [Google Cloud Vertex AI Pipelines][vertex-pipelines].
@@ -166,3 +190,4 @@ def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
 [output-artifacts]: /docs/components/pipelines/v2/data-types/artifacts#using-output-artifacts
 [container-component-outputs]: /docs/components/pipelines/v2/components/container-components#create-component-outputs
 [parameters-namedtuple]: /docs/components/pipelines/v2/data-types/parameters#multiple-output-parameters
+[dsl-pipeline-job-name-placeholder]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.PIPELINE_JOB_NAME_PLACEHOLDER

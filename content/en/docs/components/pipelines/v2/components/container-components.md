@@ -121,9 +121,74 @@ Note that you will never provide output parameters to components when constructi
 
 This should look very similar to the [Hello World pipeline][hello-world-pipeline] with one key difference: since `greeting` is a named output parameter, we access it and return it from the pipeline using `hello_task.outputs['greeting']`, instead of `hello_task.output`. Data passing is discussed in more detail in [Pipelines Basics][pipeline-basics].
 
+### Special placeholders
+Each of the three component authoring styles automatically handle data passing into your component via placeholders in the container `command` and `args`. In general, you do not need to know how this works. Container Components also enable you to directly utilize two special placeholders if you wish: [`dsl.ConcatPlaceholder`][dsl-concatplaceholder] and [`dsl.IfPresentPlaceholder`][dsl-ifpresentplaceholder].
+
+You may only use these placeholders in the [`dsl.ContainerSpec`][dsl-containerspec] returned from a Container Component authored via the [`@dsl.container_component`][dsl-container-component] decorator.
+
+#### dsl.ConcatPlaceholder
+
+When you provide a container `command` or container `args` as a list of strings, each element in the list is concatenated using a space separator, then issued to the container at runtime. Concatenating one input to another string without a space separator requires special handling provided by the [`dsl.ConcatPlaceholder`][dsl-concatplaceholder].
+
+`dsl.ConcatPlaceholder` takes one argument, `items`, which may be a list of any combination of static strings, upstream outputs, pipeline parameters, or other instances of `dsl.ConcatPlaceholder` or `dsl.IfPresentPlaceholder`. At runtime, these strings will be concatenated together without a separator.
+
+For example, you can use `dsl.ConcatPlaceholder` to concatenate a file path prefix, suffix, and extension:
+
+```python
+from kfp import dsl
+
+@dsl.container_component
+def concatenator(prefix: str, suffix: str):
+    return dsl.ContainerSpec(
+        image='alpine',
+        command=[
+            'my_program.sh'
+        ],
+        args=['--input', dsl.ConcatPlaceholder([prefix, suffix, '.txt'])]
+    )
+```
+
+#### dsl.IfPresentPlaceholder
+[`dsl.IfPresentPlaceholder`][dsl-ifpresentplaceholder] is used to conditionally provide command line arguments. The `dsl.IfPresentPlaceholder` takes three arguments: `input_name`, `then`, and optionally `else_`. This placeholder is easiest to understand through an example:
+
+```python
+@dsl.container_component
+def hello_someone(optional_name: str = None):
+    return dsl.ContainerSpec(
+        image='python:3.7',
+        command=[
+            'say_hello',
+            dsl.IfPresentPlaceholder(
+                input_name='optional_name', then=['--name', optional_name])
+        ])
+```
+
+If the `hello_someone` component is passed `'world'` as an argument for `optional_name`, the component will pass `--name world` to the executable `say_hello`. If `optional_name` is not provided, `--name world` is omitted.
+
+The third parameter `else_` can be used to provide a default value to fall back to if `input_name` is not provided. For example:
+
+```python
+@dsl.container_component
+def hello_someone(optional_name: str = None):
+    return dsl.ContainerSpec(
+        image='python:3.7',
+        command=[
+            'say_hello',
+            dsl.IfPresentPlaceholder(
+                input_name='optional_name',
+                then=['--name', optional_name],
+                else_=['--name', 'friend'])
+        ])
+```
+
+Arguments to `then` and `else_` may be a list of any combination of static strings, upstream outputs, pipeline parameters, or other instances of `dsl.ConcatPlaceholder` or `dsl.IfPresentPlaceholder`
+
+
 [hello-world-pipeline]: /docs/components/pipelines/v2/hello-world
 [pipeline-basics]: /docs/components/pipelines/v2/pipelines/pipeline-basics
 [alpine]: https://hub.docker.com/_/alpine
 [dsl-outputpath]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.OutputPath
 [dsl-container-component]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.container_component
 [dsl-containerspec]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ContainerSpec
+[dsl-concatplaceholder]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ConcatPlaceholder
+[dsl-ifpresentplaceholder]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.IfPresentPlaceholder
