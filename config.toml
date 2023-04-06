@@ -134,6 +134,10 @@ ignoreFiles = [
     githubbranch = "master"
     url = "https://master.kubeflow.org"
   [[params.versions]]
+    version = "v1.7"
+    githubbranch = "v1.7-branch"
+    url = "https://v1-7-branch.kubeflow.org"
+  [[params.versions]]
     version = "v1.6"
     githubbranch = "v1.6-branch"
     url = "https://v1-6-branch.kubeflow.org"
