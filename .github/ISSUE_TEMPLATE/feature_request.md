@@ -4,11 +4,11 @@ about: Suggest an idea for this project
 
 ---
 
-/kind feature
+kind/feature
 
 <!-- This section is for requesting new features/enhancements. -->
 
-<!-- Before sumbitting this issue, please do fill in the following information. -->
+<!-- Before submitting this issue, please fill in the following information. -->
 
 **Why you need this feature:**
 [Is your feature request related to a problem? Please describe in details]

@@ -4,11 +4,11 @@ about: Tell us about a problem you are experiencing
 
 ---
 
-/kind bug
+kind/bug
 
 <!-- This is an improvement needed section where you can report any bugs or suggestions for improvements, etc. -->
 
-<!-- Before sumbitting this issue, please do fill in the following information. -->
+<!-- Before submitting this issue, please fill in the following information. -->
 
 **What steps did you take and what happened:**
 [A clear and concise description of what the bug is.]
