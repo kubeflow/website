@@ -1,5 +1,5 @@
 +++
-title = "Special case: Importer Components"
+title = "Special Case: Importer Components"
 description = "Import artifacts from outside your pipeline"
 weight = 5
 +++
