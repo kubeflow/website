@@ -145,7 +145,7 @@ from kfp.dsl import Output
 
 @dsl.component
 def print_artifact(model: Output[Model]):
-    print('URI:', dataset.uri)
+    print('URI:', model.uri)
 ```
 
 Note that you will never pass an output artifact to a component directly when composing your pipeline. For example, in `concat_pipeline2` above, we do not pass `out_dataset` to the `concat_component`. The output artifact will be passed to the component automatically with the correct system-generated URI at runtime.
@@ -159,9 +159,9 @@ from kfp.dsl import Output
 
 @dsl.component
 def print_and_create_artifact(model: Output[Model]):
-    print('path:', dataset.path)
-    with open(dataset.path, 'w') as f:
-        f.write('my dataset!')
+    print('path:', model.path)
+    with open(model.path, 'w') as f:
+        f.write('my model!')
 ```
 
 After the task executes, KFP handles copying the file at `.path` to the URI at `.uri` automatically, allowing you to create artifact files by only interacting with the local filesystem. This approach works when the output artifact is stored as a file or directory.
