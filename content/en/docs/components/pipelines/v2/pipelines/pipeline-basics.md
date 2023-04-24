@@ -50,16 +50,20 @@ KFP pipelines are defined inside functions decorated with the `@dsl.pipeline` de
 * `name` is the name of your pipeline. If not provided, the name defaults to a sanitized version of the pipeline function name.
 * `description` is a description of the pipeline.
 * `pipeline_root` is the root path of the remote storage destination within which the tasks in your pipeline will create outputs. `pipeline_root` may also be set or overridden by pipeline submission clients.
+* `display_name` is a human-readable for your pipeline.
 
 You can modify the definition of `pythagorean` to use these arguments:
 
 ```python
 @dsl.pipeline(name='pythagorean-theorem-pipeline',
               description='Solve for the length of a hypotenuse of a triangle with sides length `a` and `b`.',
-              pipeline_root='gs://my-pipelines-bucket')
+              pipeline_root='gs://my-pipelines-bucket',
+              display_name='Pythagorean pipeline.')
 def pythagorean(a: float, b: float) -> float:
     ...
 ```
+
+Also see [Additional Functionality: Component docstring format][component-docstring-format] for information on how to provide pipeline metadata via docstrings.
 
 ### Pipeline inputs and outputs
 
@@ -191,3 +195,4 @@ def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
 [container-component-outputs]: /docs/components/pipelines/v2/components/container-components#create-component-outputs
 [parameters-namedtuple]: /docs/components/pipelines/v2/data-types/parameters#multiple-output-parameters
 [dsl-pipeline-job-name-placeholder]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.PIPELINE_JOB_NAME_PLACEHOLDER
+[component-docstring-format]: /docs/components/pipelines/v2/components/additional-functionality#component-docstring-format
