@@ -119,6 +119,7 @@ There several special values that may be used in this style, including:
 * `dsl.PIPELINE_TASK_ID_PLACEHOLDER`
 * `dsl.PIPELINE_JOB_CREATE_TIME_UTC_PLACEHOLDER`
 * `dsl.PIPELINE_JOB_SCHEDULE_TIME_UTC_PLACEHOLDER`
+* `dsl.PIPELINE_ROOT_PLACEHOLDER`
 
 See the [KFP SDK DSL reference docs][dsl-reference-docs] for more information about the data provided by each special input.
 
