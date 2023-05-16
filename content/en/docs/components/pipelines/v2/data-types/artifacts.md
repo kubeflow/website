@@ -200,6 +200,16 @@ def count_rows(dataset: Input[Dataset]) -> int:
 
 In KFP artifacts can have metadata, which can be accessed in a component via the artifact's `.metadata` attribute. Metadata is useful for recording information about the artifact such as which ML framework generated the artifact, what its downstream uses are, etc. For output artifacts, metadata can be set directly on the `.metadata` dictionary, as shown for `model` in the preceding `training_component`.
 
+### Lists of artifacts
+
+{{% oss-be-unsupported feature_name="`dsl.Collected` and lists of artifacts" gh_issue_link=https://github.com/kubeflow/pipelines/issues/6161 %}}
+
+KFP supports input lists of artifacts, annotated as `Input[List[Artifact]]`. This is useful for collecting output artifacts from a loop of tasks using the [`dsl.ParallelFor`][dsl-parallelfor] and [`dsl.Collected`][dsl-collected] control flow objects.
+
+Pipelines can also return an output list of artifacts by using a `-> List[Artifact]` return annotation and returning a [`dsl.Collected`][dsl-collected] instance. 
+
+Both consuming an input list of artifacts and returning an output list of artifacts from a pipeline are described in [Pipeline Control Flow: Parallel looping][parallel-looping]. Creating output lists of artifacts from a single-step component is not currently supported.
+
 
 [ml-metadata]: https://github.com/google/ml-metadata
 [compiler]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/compiler.html#kfp.compiler.Compiler
@@ -213,3 +223,6 @@ In KFP artifacts can have metadata, which can be accessed in a component via the
 [dsl-markdown]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Markdown
 [type-checking]: /docs/components/pipelines/v2/compile-a-pipeline#type-checking
 [oss-be]: /docs/components/pipelines/v2/installation/
+[dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ParallelFor
+[dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Collected
+[parallel-looping]: https://www.kubeflow.org/docs/components/pipelines/v2/pipelines/control-flow/#parallel-looping-dslparallelfor
