@@ -64,7 +64,7 @@ def my_pipeline():
     max_accuracy(models=dsl.Collected(train_model_task.outputs['model']))
 ```
 
-Downstream tasks might consume `dsl.Collected` outputs via an input annotated with a `List` of parameters or a `List` of artifacts. For example, `max_accuracy` in the preceding example has the input `models` with type `Input[List[Model]]`, as shown by the following component definition:
+Downstream tasks might consume `dsl.Collected` outputs via an input annotated with a `List` of parameters or a `List` of artifacts. For example, `select_best` in the preceding example has the input `models` with type `Input[List[Model]]`, as shown by the following component definition:
 
 ```python
 from kfp import dsl
