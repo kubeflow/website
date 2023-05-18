@@ -121,6 +121,8 @@ There several special values that may be used in this style, including:
 * `dsl.PIPELINE_JOB_SCHEDULE_TIME_UTC_PLACEHOLDER`
 * `dsl.PIPELINE_ROOT_PLACEHOLDER`
 
+{{% oss-be-unsupported feature_name="`PIPELINE_JOB_CREATE_TIME_UTC_PLACEHOLDER`, `PIPELINE_JOB_SCHEDULE_TIME_UTC_PLACEHOLDER`, and `PIPELINE_ROOT_PLACEHOLDER`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/6155 %}}
+
 See the [KFP SDK DSL reference docs][dsl-reference-docs] for more information about the data provided by each special input.
 
 ### Task configurations
@@ -162,6 +164,8 @@ The KFP SDK provides the following task methods for setting task-level configura
 * `.set_display_name`
 * `.set_retry`
 * `.ignore_upstream_failure`
+
+{{% oss-be-unsupported feature_name="`.ignore_upstream_failure`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/9459 %}}
 
 See the [`PipelineTask` reference documentation][pipelinetask] for more information about these methods.
 
