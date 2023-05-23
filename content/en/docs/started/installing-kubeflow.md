@@ -109,21 +109,6 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
       </tr>
       <tr>
-        <td>Kubeflow on OpenShift</td>
-        <td>Red Hat</td>
-        <td>
-          OpenShift
-        </td>
-        <td>
-          <a href="https://opendatahub.io/docs/kubeflow.html">Website</a>
-          <br>
-          <sub><a href="/docs/distributions/openshift/">Legacy Docs</a></sub>
-        </td>
-        <td>
-          1.6.0
-        </td>
-      </tr>
-      <tr>
         <td>Arrikto Kubeflow as a Service</td>
         <td rowspan="2">Arrikto</td>
         <td>
@@ -220,6 +205,19 @@ The following table lists <b>legacy distributions</b> which have <b>not had a re
         </td>
         <td>
           1.3.0
+        </td>
+      </tr>
+      <tr>
+        <td>Kubeflow on OpenShift</td>
+        <td>Red Hat</td>
+        <td>
+          OpenShift
+        </td>
+        <td>
+          <a href="https://github.com/opendatahub-io/manifests">Website</a>
+        </td>
+        <td>
+          1.6.0
         </td>
       </tr>
     </tbody>
