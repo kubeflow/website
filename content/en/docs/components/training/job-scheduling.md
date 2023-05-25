@@ -15,10 +15,7 @@ to support gang-scheduling in Kubeflow, to allow jobs to run multiple pods at th
 
 ## Running jobs with gang-scheduling
 
-Training Operator supports running jobs with gang-scheduling using Volcano Scheduler and Scheduler Plugins with coscheduling.
-
-**Note:** Scheduler Plugins with coscheduling is currently supported only in [Training Operator](https://github.com/kubeflow/training-operator).
-[MPI Operator](https://github.com/kubeflow/mpi-operator) does not support that.
+Training Operator and MPI Operator support running jobs with gang-scheduling using Volcano Scheduler and Scheduler Plugins with coscheduling.
 
 ### Scheduler Plugins with coscheduling
 
