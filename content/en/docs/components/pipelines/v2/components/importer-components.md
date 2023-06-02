@@ -6,7 +6,7 @@ weight = 5
 
 {{% kfp-v2-keywords %}}
 
-Unlike the other three authoring approaches, an importer component is not a general authoring style but a pre-baked component for a specific use case: loading a machine learning artifact from from a URI into the current pipeline and, as a result, into [ML Metadata][ml-metadata]. This section assumes basic familiarity with KFP [artifacts][artifacts].
+Unlike the other three authoring approaches, an importer component is not a general authoring style but a pre-baked component for a specific use case: loading a machine learning artifact from a URI into the current pipeline and, as a result, into [ML Metadata][ml-metadata]. This section assumes basic familiarity with KFP [artifacts][artifacts].
 
 As described in [Pipeline Basics][pipeline-basics], inputs to a task are typically outputs of an upstream task. When this is the case, artifacts are easily accessed on the upstream task using `my_task.outputs['<output-key>']`. The artifact is also registered in ML Metadata when it is created by the upstream task.
 
