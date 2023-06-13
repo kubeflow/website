@@ -444,6 +444,36 @@ def pipeline():
 </tr>
 </table>
 
+#### Typecasting behavior change
+
+**Affects:** KFP OSS users and Vertex AI Pipelines users
+
+KFP SDK v1 had more lenient pipeline typechecking than does KFP SDK v2. Some pipelines that utilized this leniency may not be compilable using KFP SDK v2. For example, parameters typed with `float` would accept the string `"0.1"`:
+
+```python
+from kfp.v2 import compiler
+from kfp.v2 import dsl
+from kfp import components
+
+
+@dsl.component
+def train(
+    number_of_epochs: int,
+    learning_rate: float,
+):
+    print(f"number_of_epochs={number_of_epochs}")
+    print(f"learning_rate={learning_rate}")
+
+
+def training_pipeline(number_of_epochs: int = 1):
+    train(
+        number_of_epochs=number_of_epochs,
+        learning_rate="0.1",  # string cannot be passed to float parameter using KFP SDK v2
+    )
+```
+
+**Change:** We recommend updating your components and pipelines to use types strictly.
+
 ## Did we miss something?
 
 If you believe we missed a breaking change or an important migration step, please [create an issue][new-issue] describing the change in the [kubeflow/pipelines repository][pipelines-repo].
