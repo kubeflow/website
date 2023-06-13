@@ -468,7 +468,7 @@ def train(
 def training_pipeline(number_of_epochs: int = 1):
     train(
         number_of_epochs=number_of_epochs,
-        learning_rate="0.1",
+        learning_rate="0.1",  # string cannot be passed to float parameter using KFP SDK v2
     )
 ```
 
