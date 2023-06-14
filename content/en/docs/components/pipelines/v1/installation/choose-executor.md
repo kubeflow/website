@@ -158,7 +158,7 @@ modifications.
 
 ### Docker Executor
 
-Docker executor used to be the **default** workflow executor before Kubeflow Pipelines v1.8.
+Docker executor used to be the default workflow executor before Kubeflow Pipelines v1.8.
 
 {{% alert title="Warning" color="warning" %}}
 Docker executor depends on docker container runtime, which is deprecated on Kubernetes 1.20+.
