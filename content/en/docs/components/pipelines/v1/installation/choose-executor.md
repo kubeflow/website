@@ -22,7 +22,7 @@ team only recommend choosing between emissary executor and docker executor.
 
 ### Emissary Executor
 
-Emissary executor is a relatively new workflow executor. It was first released in Argo Workflows v3.1 (June 2021).
+Emissary executor is the **default** workflow executor for Kubeflow Pipelines v1.8+. It was first released in Argo Workflows v3.1 (June 2021).
 The Kubeflow Pipelines team believe that its architectural and portability
 improvements can make it the default executor that most people should use going forward.
 
