@@ -59,19 +59,10 @@ you will always find error messages like:
 
 ### Emissary Executor
 
-{{% alpha-status feedbacklink="https://github.com/kubeflow/pipelines/issues/6249" %}}
 
-Emissary executor is a new workflow executor. It was first released in Argo Workflows v3.1 (June 2021).
-However, the Kubeflow Pipelines team believe that its architectural and portability
-improvements can make it the default executor that most people should use in the
-future.
-
-Therefore, the team makes a commitment to actively collect feedback and fix bugs
-for the emissary executor, so that we can stablize it faster.
-Submit your feedback in [the Emissary Executor feedback github issue](https://github.com/kubeflow/pipelines/issues/6249).
-
-So far, Kubeflow
-Pipelines test infrastructure has been running stably with the emissary executor.
+Emissary executor is a relatively new workflow executor. It was first released in Argo Workflows v3.1 (June 2021).
+The Kubeflow Pipelines team believe that its architectural and portability
+improvements can make it the default executor that most people should use going forward.
 
 * Container Runtime: any
 * Reliability: not yet well-tested and not yet popular, but the Kubeflow Pipelines
