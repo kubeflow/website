@@ -10,55 +10,17 @@ Kubeflow Pipelines runs on [Argo Workflows](https://argoproj.github.io/workflows
 
 ## Choosing the Workflow Executor
 
-1. Some users may value stability and backward compatibility. For example, if you
-   are running Kubeflow Pipelines in a production cluster or you maintain production
-   pipelines that you don't want to break or migrate.
+1. [Emissary executor](#emissary-executor) has been Kubeflow Pipelines' default executor since Feburay 2022 when KFP 1.8 went GA. 
+   We recommend Emissary executor unless you have known compatibility issues with Emissary, in which case please submit your
+   feedback in [the Emissary Executor feedback Github issue](https://github.com/kubeflow/pipelines/issues/6249).
 
-   In this case, we recommend you use [docker executor](#docker-executor) and configure your Kubernetes nodes to use docker container runtime.
-
-   However, Kubernetes is deprecating docker as a container runtime, so we recommend
-   starting to try out emissary and prepare for a migration when it's stable.
-
-1. For users less concerned with stability and backwards compatibility, we
-   recommend trying out the new [emissary executor](#emissary-executor).
+1. [Docker executor](#docker-executor) is avaiable as a legacy choice. In case you do have compatibilty issues with Emissary executor,
+   and your cluster is running on an older version of Kubernests (<1.20), you can configure to use Docker executor.
 
 Note that Argo Workflows support other workflow executors, but the Kubeflow Pipelines
-team only recommend choosing between docker executor and emissary executor.
-
-### Docker Executor
-
-Docker executor is the **default** workflow executor. But Kubeflow Pipelines v1.8 will switch to Emissary Executor as default executor.
-
-{{% alert title="Warning" color="warning" %}}
-Docker executor depends on docker container runtime, which will be deprecated on Kubernetes 1.20+.
-{{% /alert %}}
-
-* Container Runtime: docker only. However, [Kubernetes is deprecating Docker as a container runtime after v1.20](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/).
-  On Google Kubernetes Engine (GKE) 1.19+, container runtime already defaults to containerd.
-* Reliability: most well-tested and most popular argo workflows executor
-* Security: least secure
-  * It requires `privileged` access to `docker.sock` of the host to be mounted which.
-  Often rejected by Open Policy Agent (OPA) or your Pod Security Policy (PSP).
-  GKE autopilot mode also rejects it, because [No privileged Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview#no_privileged_pods).
-  * It can escape the privileges of the pod's service account.
-
-#### Prepare a GKE cluster for Docker Executor
-
-For GKE, the node image decides which container runtime is used. To use docker
-container runtime, you need to [specify a node image](https://cloud.google.com/kubernetes-engine/docs/how-to/node-images) with Docker.
-
-You must use one of the following node images:
-
-* Container-Optimized OS with Docker (cos)
-* Ubuntu with Docker (ubuntu)
-
-If your nodes are not using docker as container runtime, when you run pipelines
-you will always find error messages like:
-
-> This step is in Error state with this message: failed to save outputs: Error response from daemon: No such container: XXXXXX
+team only recommend choosing between emissary executor and docker executor.
 
 ### Emissary Executor
-
 
 Emissary executor is a relatively new workflow executor. It was first released in Argo Workflows v3.1 (June 2021).
 The Kubeflow Pipelines team believe that its architectural and portability
@@ -193,6 +155,38 @@ Note: Kubeflow Pipelines SDK compiler always specifies a command for
 [python function based components](https://www.kubeflow.org/docs/components/pipelines/sdk/python-function-components/).
 Therefore, these components will continue to work on emissary executor without
 modifications.
+
+### Docker Executor
+
+Docker executor used to be the **default** workflow executor before Kubeflow Pipelines v1.8.
+
+{{% alert title="Warning" color="warning" %}}
+Docker executor depends on docker container runtime, which is deprecated on Kubernetes 1.20+.
+{{% /alert %}}
+
+* Container Runtime: docker only. However, [Kubernetes is deprecating Docker as a container runtime after v1.20](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/).
+  On Google Kubernetes Engine (GKE) 1.19+, container runtime already defaults to containerd.
+* Reliability: most well-tested and most popular argo workflows executor
+* Security: least secure
+  * It requires `privileged` access to `docker.sock` of the host to be mounted which.
+  Often rejected by Open Policy Agent (OPA) or your Pod Security Policy (PSP).
+  GKE autopilot mode also rejects it, because [No privileged Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview#no_privileged_pods).
+  * It can escape the privileges of the pod's service account.
+
+#### Prepare a GKE cluster for Docker Executor
+
+For GKE, the node image decides which container runtime is used. To use docker
+container runtime, you need to [specify a node image](https://cloud.google.com/kubernetes-engine/docs/how-to/node-images) with Docker.
+
+You must use one of the following node images:
+
+* Container-Optimized OS with Docker (cos)
+* Ubuntu with Docker (ubuntu)
+
+If your nodes are not using docker as container runtime, when you run pipelines
+you will always find error messages like:
+
+> This step is in Error state with this message: failed to save outputs: Error response from daemon: No such container: XXXXXX
 
 ## References
 
