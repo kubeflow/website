@@ -15,7 +15,7 @@ Kubeflow Pipelines runs on [Argo Workflows](https://argoproj.github.io/workflows
    feedback in [the Emissary Executor feedback Github issue](https://github.com/kubeflow/pipelines/issues/6249).
 
 1. [Docker executor](#docker-executor) is avaiable as a legacy choice. In case you do have compatibilty issues with Emissary executor,
-   and your cluster is running on an older version of Kubernests (<1.20), you can configure to use Docker executor.
+   and your cluster is running on an older version of Kubernetes (<1.20), you can configure to use Docker executor.
 
 Note that Argo Workflows support other workflow executors, but the Kubeflow Pipelines
 team only recommend choosing between emissary executor and docker executor.
