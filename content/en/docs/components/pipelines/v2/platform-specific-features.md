@@ -25,7 +25,7 @@ The following assumes basic familiarity with [PersistentVolume and PersistentVol
 ### Step 1: Install the platform-specific plugin library with the KFP SDK
 
 ```sh
-pip install kfp[kubernetes] --pre
+pip install kfp[kubernetes]
 ```
 
 ### Step 2: Create components that read/write to the mount path

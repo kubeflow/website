@@ -64,7 +64,7 @@ Note that if you provide a `description` argument to the [`@dsl.pipeline`][dsl-p
 
 [ir-yaml]: /docs/components/pipelines/v2/compile-a-pipeline#ir-yaml
 [google-docstring-style]: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
-[dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.pipeline
+[dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.pipeline
 [output-artifacts]: /docs/components/pipelines/v2/data-types/artifacts#declaring-inputoutput-artifacts
 [dsl-outputpath]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.OutputPath
 [output-type-marker]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Output

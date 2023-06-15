@@ -310,9 +310,7 @@ def flip_coin(rand: int, result: dsl.OutputPath(str)):
 
 `VolumeOp` and `ResourceOp` expose direct access to Kubernetes resources within a pipeline definition. There is no support for these features on a non-Kubernetes platforms.
 
-These features will be supported via platform-specific functionality, which includes Kubernetes-specific functionality. This functionality is a work in progress and will be supported in the KFP v2 GA release.
-
-<!-- TODO: link to docs and add change instructions once released -->
+KFP v2 enables support for [platform-specific features](/docs/components/pipelines/v2/platform-specific-features/) via KFP SDK extension libraries. Kubernetes-specific features are supported in KFP v2 via the [`kfp-kubernetes`](https://kfp-kubernetes.readthedocs.io/) extension library.
 
 #### v1 component YAML support
 
@@ -481,15 +479,15 @@ If you believe we missed a breaking change or an important migration step, pleas
 [artifacts]: /docs/components/pipelines/v2/data-types/artifacts
 [cli]: /docs/components/pipelines/v2/cli/
 [compile]: /docs/components/pipelines/v2/compile-a-pipeline
-[compiler-compile]: https://kubeflow-pipelines.readthedocs.io/en/master/source/compiler.html#kfp.compiler.Compiler.compile
-[components-load-component-from-file]: https://kubeflow-pipelines.readthedocs.io/en/master/source/components.html#kfp.components.load_component_from_file
+[compiler-compile]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/compiler.html#kfp.compiler.Compiler.compile
+[components-load-component-from-file]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.load_component_from_file
 [container-components]: https://www.kubeflow.org/docs/components/pipelines/v2/components/containerized-python-components/
 [containerized-python-components]: /docs/components/pipelines/v2/components/containerized-python-components/
 [create-custom-training-job-from-component]: https://cloud.google.com/vertex-ai/docs/pipelines/customjob-component
-[dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.Collected
-[dsl-component]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.component
-[dsl-container-component]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.container_component
-[dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.ParallelFor
+[dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.Collected
+[dsl-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.component
+[dsl-container-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.container_component
+[dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.ParallelFor
 [gcpc]: https://cloud.google.com/vertex-ai/docs/pipelines/components-introduction
 [ir-yaml]: /docs/components/pipelines/v2/compile-a-pipeline/#ir-yaml
 [lightweight-python-components]: /docs/components/pipelines/v2/components/lightweight-python-components/

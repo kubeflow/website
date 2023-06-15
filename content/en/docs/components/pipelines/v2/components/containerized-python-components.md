@@ -100,7 +100,7 @@ compiler.Compiler().compile(addition_pipeline, 'pipeline.yaml')
 Since `add`'s `target_image` uses [Google Cloud Artifact Registry][artifact-registry] (indicated by the `gcr.io` URI), the pipeline shown here assumes you have pushed your image to Google Cloud Artifact Registry, you are running your pipeline on [Google Cloud Vertex AI Pipelines][vertex-pipelines], and you have configured [IAM permissions][iam] so that Vertex AI Pipelines can pull images from Artifact Registry.
 
 
-[kfp-component-build]: https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-component-build
+[kfp-component-build]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/cli.html#kfp-component-build
 [lightweight-python-components]: /docs/components/pipelines/v2/components/lightweight-python-components
 [image-tag]: https://docs.docker.com/engine/reference/commandline/tag/
 [docker-from]: https://docs.docker.com/engine/reference/builder/#from
