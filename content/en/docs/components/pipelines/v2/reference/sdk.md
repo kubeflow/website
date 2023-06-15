@@ -5,6 +5,4 @@ weight = 20
                     
 +++
 
-See the [generated reference docs for the Python 
-SDK V2](https://kubeflow-pipelines.readthedocs.io/en/stable/) (hosted on 
-*Read the Docs*).
+See the [KFP SDK v2 reference documentation](https://kubeflow-pipelines.readthedocs.io/en/stable/).
