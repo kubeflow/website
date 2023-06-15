@@ -1,5 +1,5 @@
 +++
-title = "Platform-specific features"
+title = "Platform-specific Features"
 description = "Author tasks with platform-specific functionality"
 weight = 10
 +++
