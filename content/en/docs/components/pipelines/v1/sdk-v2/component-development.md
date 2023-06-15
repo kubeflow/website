@@ -21,10 +21,10 @@ building and running pipelines that are compatible with the Pipelines SDK v2.
 
 ## Before you begin
 
-Run the following command to install the Kubeflow Pipelines SDK v1.6.1 or higher.
+Run the following command to install the Kubeflow Pipelines SDK v1.8.
 
 ```bash
-pip install kfp --upgrade
+pip install kfp==1.8
 ```
 
 For more information about the Kubeflow Pipelines SDK, see the [SDK reference guide][sdk-ref].
