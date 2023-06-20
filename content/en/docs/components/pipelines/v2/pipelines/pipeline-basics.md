@@ -188,16 +188,16 @@ def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
 ```
 
 <!-- TODO: make this reference more precise throughout -->
-[dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html
-[dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.pipeline
+[dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html
+[dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.pipeline
 [control-flow]: /docs/components/pipelines/v2/pipelines/control-flow
 [components]: /docs/components/pipelines/v2/components
-[pipelinetask]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.PipelineTask
+[pipelinetask]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.PipelineTask
 [vertex-pipelines]: https://cloud.google.com/vertex-ai/docs/pipelines/introduction
 [oss-be]: /docs/components/pipelines/v2/installation/
 [data-types]: /docs/components/pipelines/v2/data-types
 [output-artifacts]: /docs/components/pipelines/v2/data-types/artifacts#using-output-artifacts
 [container-component-outputs]: /docs/components/pipelines/v2/components/container-components#create-component-outputs
 [parameters-namedtuple]: /docs/components/pipelines/v2/data-types/parameters#multiple-output-parameters
-[dsl-pipeline-job-name-placeholder]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.PIPELINE_JOB_NAME_PLACEHOLDER
+[dsl-pipeline-job-name-placeholder]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.PIPELINE_JOB_NAME_PLACEHOLDER
 [component-docstring-format]: /docs/components/pipelines/v2/components/additional-functionality#component-docstring-format

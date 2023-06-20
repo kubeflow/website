@@ -13,7 +13,7 @@ components, and demonstrates how to get started building components.
 Run the following command to install the Kubeflow Pipelines SDK.
 
 ```python
-$ pip3 install kfp --upgrade
+$ pip install kfp==1.8
 ```
 
 For more information about the Kubeflow Pipelines SDK, see the [SDK reference guide][sdk-ref].

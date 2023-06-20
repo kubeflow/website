@@ -171,7 +171,7 @@ def my_pipeline() -> NamedTuple('pipeline_outputs', c=int, d=str):
 [containerized-python-components]: /docs/components/pipelines/v2/components/containerized-python-components
 [container-component]: /docs/components/pipelines/v2/components/container-components
 [container-component-outputs]: /docs/components/pipelines/v2/components/container-components#create-component-outputs
-[pipelinetask]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.PipelineTask
+[pipelinetask]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.PipelineTask
 [dsl-outputpath]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.OutputPath
 [ml-metadata]: https://github.com/google/ml-metadata
 [typing-namedtuple]: https://docs.python.org/3/library/typing.html#typing.NamedTuple

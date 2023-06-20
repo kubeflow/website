@@ -56,7 +56,7 @@ This document describes how to build Python function-based components and use th
 
 
 ```python
-$ pip3 install kfp --upgrade
+$ pip install kfp==1.8
 ```
 
 2. Import the `kfp` package.

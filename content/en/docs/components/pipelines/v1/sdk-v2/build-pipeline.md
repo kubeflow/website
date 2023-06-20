@@ -48,13 +48,13 @@ building and running pipelines that are compatible with the Pipelines SDK v2.
 
 ## Before you begin
 
-1.  Run the following command to install the Kubeflow Pipelines SDK v1.6.2 or higher.
+1.  Run the following command to install the Kubeflow Pipelines SDK v1.8.
     If you run this command in a Jupyter notebook, restart the kernel after
     installing the SDK. 
 
 
 ```python
-$ pip install --upgrade kfp
+$ pip install kfp==1.8
 ```
 
 2.  Import the `kfp` packages.

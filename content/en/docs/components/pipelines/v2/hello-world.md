@@ -9,7 +9,7 @@ weight = 3
 To get started with the tutorials, pip install `kfp` v2:
 
 ```sh
-pip install kfp --pre
+pip install kfp
 ```
 
 Here is a simple pipeline that prints a greeting:
@@ -58,9 +58,9 @@ The client will print a link to view the pipeline execution graph and logs in th
 In the next few sections, you'll learn more about the core concepts of authoring pipelines and how to create more expressive, useful pipelines.
 
 [installation]: /docs/components/pipelines/v2/installation/
-[client]: https://kubeflow-pipelines.readthedocs.io/en/master/source/client.html#kfp.client.Client
-[compiler]: https://kubeflow-pipelines.readthedocs.io/en/master/source/compiler.html#kfp.compiler.Compiler
+[client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.client.Client
+[compiler]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/compiler.html#kfp.compiler.Compiler
 [ir-yaml]: /docs/components/pipelines/v2/compile-a-pipeline#ir-yaml
 [compile-a-pipeline]: /docs/components/pipelines/v2/compile-a-pipeline/
-[dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.pipeline
-[dsl-component]: https://kubeflow-pipelines.readthedocs.io/en/master/source/dsl.html#kfp.dsl.component
+[dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.pipeline
+[dsl-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.component

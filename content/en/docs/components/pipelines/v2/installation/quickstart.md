@@ -26,10 +26,8 @@ Before you begin, you need the following prerequisites:
 
 * Run the following script to install the KFP SDK:
   ```shell
-  pip install kfp --pre
+  pip install kfp
   ```
-
-  **Note:** This command installs KFP v2, which is in pre-release stage and is not yet stable. The v2 documentation is being developed continually and some of the links to the v2 documentation might be unavailable.
 
 After you complete the prerequisites, click each step to view the instructions:
 
