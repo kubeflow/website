@@ -23,7 +23,7 @@ MLRun's underline serverless engine ([Nuclio](https://nuclio.io/)) uses a high-p
 
 MLRun Serving provides native model monitoring, including auto drift detection and custom metric, models can be tracked via the Grafana plug-in or in MLRun UI ([see details](https://docs.mlrun.org/en/latest/model_monitoring/index.html)). 
 
-The serving pipelines can be tested locally or in a notebook, and deployed into multiple managed serverless functions in a single command (`deploy()`). Such functions are fully managed, with logging, monitoring, auto-scaling, security, etc., which eliminate the deployment overhead, improve performance and scalability, and accelerate time to production.   
+The serving pipelines can be tested locally or in a workbench, and deployed into multiple managed serverless functions in a single command (`deploy()`). Such functions are fully managed, with logging, monitoring, auto-scaling, security, etc., which eliminate the deployment overhead, improve performance and scalability, and accelerate time to production.   
 
 MLRun serving is natively integrated with MLRun Online Feature Store, which can be used to generate and/or enrich real-time feature vectors as well as store back production features for later analysis and re-training.
 
@@ -123,7 +123,7 @@ See the documentation links below for more advanced examples
 	- [Creating Custom Model Serving Class](https://docs.mlrun.org/en/latest/serving/model-api.html#creating-custom-model-serving-class)
 	- [Model Server API](https://docs.mlrun.org/en/latest/serving/model-api.html#model-server-api)
 	- [Model Monitoring](https://docs.mlrun.org/en/latest/serving/model-api.html#model-monitoring)
-- [Advance Graph Notebook Example](https://docs.mlrun.org/en/latest/serving/graph-example.html)
+- [Advance Graph Workbench Example](https://docs.mlrun.org/en/latest/serving/graph-example.html)
 	- [Define Functions and Classes (used in our graph)](https://docs.mlrun.org/en/latest/serving/graph-example.html#define-functions-and-classes-used-in-our-graph)
 	- [Create a New Serving Function and Graph](https://docs.mlrun.org/en/latest/serving/graph-example.html#create-a-new-serving-function-and-graph) 
 	- [Test our functions locally](https://docs.mlrun.org/en/latest/serving/graph-example.html#test-our-function-locally) 

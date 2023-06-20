@@ -161,7 +161,7 @@ The following table outlines which components are maintained by each Working Gro
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller">Notebook Controller</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/notebook-controller">Workbench Controller</a>
         </td>
       </tr>
       <tr>

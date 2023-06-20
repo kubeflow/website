@@ -1,6 +1,6 @@
 +++
 title = "Experiment with the Pipelines Samples"
-description = "Get started with the Kubeflow Pipelines notebooks and samples"
+description = "Get started with the Kubeflow Pipelines workbenches and samples"
 weight = 30
                     
 +++
@@ -69,17 +69,17 @@ guide to [getting started with the UI](/docs/components/pipelines/overview/quick
 ## Building a pipeline in a Jupyter notebook
 
 You can choose to build your pipeline in a Jupyter notebook. The
-[sample notebooks](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/samples/core)
+[sample workbenches](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/samples/core)
 walk you through the process.
 
 It's easiest to use the Jupyter services that are installed in the same cluster as 
 the Kubeflow Pipelines system. 
 
-Note: The notebook samples don't work on Jupyter notebooks outside the same 
+Note: The workbench samples don't work on workbench outside the same 
 cluster, because the Python library communicates with the Kubeflow Pipelines 
 system through in-cluster service names.
 
-Follow these steps to start a notebook:
+Follow these steps to start a workbench:
 
 1. Deploy Kubeflow:
 
@@ -90,7 +90,7 @@ Follow these steps to start a notebook:
     * When Kubeflow is running, access the Kubeflow UI at a URL of the form
       `https://<deployment-name>.endpoints.<project>.cloud.goog/`.
 
-1. Follow the [Kubeflow notebooks setup guide](/docs/components/notebooks/setup/) to
+1. Follow the [Kubeflow workbenches setup guide](/docs/components/notebooks/setup/) to
   create a Jupyter notebook server and open the Jupyter UI.
 
 1. Download the sample notebooks from

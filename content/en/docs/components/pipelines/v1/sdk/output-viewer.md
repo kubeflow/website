@@ -753,10 +753,10 @@ The pipeline uses a number of prebuilt, reusable components, including:
   component](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/components/deprecated/dataflow/tfma/component.yaml)
   which writes out the data for the `web-app` viewer.
 
-## Lightweight Python component Notebook example
+## Lightweight Python component Workbench example
 
 For a complete example of lightweigh Python component, you can refer to
-[the lightweight python component notebook example](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/core/lightweight_component/lightweight_component.ipynb) to learn more about declaring output visualizations.
+[the lightweight python component workbench example](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/core/lightweight_component/lightweight_component.ipynb) to learn more about declaring output visualizations.
 
 ## YAML component example
 

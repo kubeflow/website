@@ -1,13 +1,13 @@
 +++
 title = "Submit Kubernetes Resources"
-description = "Submitting Kubernetes resources from a Notebook"
+description = "Submitting Kubernetes resources from a Workbench"
 weight = 40
                     
 +++
 
-## Notebook Pod ServiceAccount
+## Workbench Pod ServiceAccount
 
-Kubeflow assigns the `default-editor` Kubernetes ServiceAccount to the Notebook Pods.
+Kubeflow assigns the `default-editor` Kubernetes ServiceAccount to the Workbench Pods.
 The Kubernetes `default-editor` ServiceAccount is bound to the `kubeflow-edit` ClusterRole, which has namespace-scoped permissions to many Kubernetes resources.
 
 You can get the full list of RBAC for `ClusterRole/kubeflow-edit` using:
@@ -15,9 +15,9 @@ You can get the full list of RBAC for `ClusterRole/kubeflow-edit` using:
 kubectl describe clusterrole kubeflow-edit
 ```
 
-## Kubectl in Notebook Pod
+## Kubectl in Workbench Pod
 
-Because every Notebook Pod has the highly-privileged `default-editor` Kubernetes ServiceAccount bound to it, you can run `kubectl` inside it without providing additional authentication.
+Because every Workbench Pod has the highly-privileged `default-editor` Kubernetes ServiceAccount bound to it, you can run `kubectl` inside it without providing additional authentication.
 
 For example, the following command will create the resources defined in `test.yaml`:
 
@@ -27,5 +27,5 @@ kubectl create -f "test.yaml" --namespace "MY_PROFILE_NAMESPACE"
 
 ## Next steps
 
-- See the Kubeflow Notebook [quickstart guide](/docs/components/notebooks/quickstart-guide/).
+- See the Kubeflow Workbench [quickstart guide](/docs/components/notebooks/quickstart-guide/).
 - Explore the other [components of Kubeflow](/docs/components/).

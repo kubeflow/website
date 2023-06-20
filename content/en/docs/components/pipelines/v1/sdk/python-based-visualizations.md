@@ -6,7 +6,7 @@ weight = 1400
 
 {{% alert title="Deprecated" color="warning" %}}
 Python based visualization is deprecated. We recommend fetching data via
-Kubeflow Pipelines SDK and visualizing from your own notebook instead.
+Kubeflow Pipelines SDK and visualizing from your own workbench instead.
 {{% /alert %}}
 
 This page describes Python based visualizations, how to create them, and how to

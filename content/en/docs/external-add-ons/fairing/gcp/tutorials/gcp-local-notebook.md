@@ -1,15 +1,15 @@
 +++
-title = "Train and Deploy on GCP from a Local Notebook"
-description = "Use Kubeflow Fairing to train and deploy a model on Google Cloud Platform (GCP) from a local notebook."
+title = "Train and Deploy on GCP from a Local Workbench"
+description = "Use Kubeflow Fairing to train and deploy a model on Google Cloud Platform (GCP) from a local workbench."
 weight = 30
                     
 +++
 
 This guide introduces you to using Kubeflow Fairing to train and deploy a
 model to Kubeflow on Google Kubernetes Engine (GKE), and Google Cloud ML Engine.
-As an example, this guide uses a local notebook to demonstrate how to:
+As an example, this guide uses a local workbench to demonstrate how to:
 
-*  Train an XGBoost model in a local notebook,
+*  Train an XGBoost model in a local workbench,
 *  Use Kubeflow Fairing to train an XGBoost model remotely on Kubeflow,
 *  Use Kubeflow Fairing to train an XGBoost model remotely on Cloud ML Engine, 
 *  Use Kubeflow Fairing to deploy a trained model to Kubeflow, and

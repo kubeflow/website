@@ -6,7 +6,7 @@ weight = 45
 
 This page documents how to run the [Fairing prediction example
 notebook][xgb-notebook] on [Azure Kubernetes Service
-(AKS)][az-kubernetes] in a notebook hosted on Kubeflow.
+(AKS)][az-kubernetes] in a workbench hosted on Kubeflow.
 
 ## Prerequisites
 
@@ -102,7 +102,7 @@ Run the following commands to set up your credentials as a Kubernetes secret.
     * **AZ_SUBSCRIPTION:** The Azure Subscription ID of your account. You can
       get the Subscription ID from the `id` field in the output of `az account
       show`.
-    * **TARGET_NAMESPACE:** Specify the namespace that your Notebook Server is
+    * **TARGET_NAMESPACE:** Specify the namespace that your Workbench Server is
       in. For example, this guide recommends using `kubeflow-anonymous`.
     * **ACR_NAME:** The name of an ACR that the service principal can access.
     
@@ -128,10 +128,10 @@ Run the following commands to set up your credentials as a Kubernetes secret.
     -p "{\"imagePullSecrets\": [{\"name\": \"acrcreds\"}]}"
     ```
 
-## Creating a Notebook Server in Kubeflow
+## Creating a Workbench Server in Kubeflow
 
-To create a notebook server, use your Web browser to access the Kubeflow
-Central Dashboard and select the **Notebook Servers** panel from the menu.
+To create a workbench server, use your Web browser to access the Kubeflow
+Central Dashboard and select the **Workbench Servers** panel from the menu.
 
 First, select the target namespace in which you want to host the server. In the
 default Kubeflow installation, there should be a namespace `kubeflow-anonymous`
@@ -142,16 +142,16 @@ mandatory fields. The fields with default values can all be left as they
 are and do not have to be modified to run the example notebook.
 
 After launching the server, wait for the **CONNECT** button to appear and click
-**CONNECT** to launch your Notebook Server. It may take up to a minute for the
+**CONNECT** to launch your Workbench Server. It may take up to a minute for the
 server to be ready for connections.
 
 ## Cloning the example notebook
 
 Clone the Kubeflow Fairing repository to download the files used in this example. 
 
-1.  Connect to your notebook server, then click the new terminal option
+1.  Connect to your workbench server, then click the new terminal option
     like in the screenshot below:
-    <img src="/docs/images/azure-notebook-new-terminal.png" alt="Creating new terminal after connecting to notebook server" class="mt-3 mb-3 p-3 border border-info rounded" />
+    <img src="/docs/images/azure-notebook-new-terminal.png" alt="Creating new terminal after connecting to workbench server" class="mt-3 mb-3 p-3 border border-info rounded" />
 
 1.  Run the following command to clone the Kubeflow Fairing project:
     
@@ -159,10 +159,10 @@ Clone the Kubeflow Fairing repository to download the files used in this example
     git clone https://github.com/kubeflow/fairing.git
     ```
 
-    This command clones the project including the example into your notebook server.
+    This command clones the project including the example into your workbench server.
 
 You can now close the terminal window, and you should now see the `fairing` folder
-in your notebooks server's Files tab. Navigate to the example notebooks at
+in your workbench server's Files tab. Navigate to the example notebooks at
 `fairing/examples/prediction/xgboost-high-level-apis.ipynb`.
 
 ## Executing the notebook

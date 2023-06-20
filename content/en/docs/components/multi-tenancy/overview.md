@@ -30,7 +30,7 @@ With multi-user isolation, Users are authenticated and authorized, and then prov
 
 ## Current integration 
 
-These Kubeflow Components can support multi-user isolation: Central Dashboard, Notebooks, Pipelines, AutoML (Katib), KFServing.  Furthermore, resources created by the notebooks (for example, training jobs and deployments) also inherit the same access.
+These Kubeflow Components can support multi-user isolation: Central Dashboard, Workbenches, Pipelines, AutoML (Katib), KFServing.  Furthermore, resources created by the workbenches (for example, training jobs and deployments) also inherit the same access.
 
 Important notes: Multi-user isolation has several configurable dependencies, especially those related to how Kubeflow is configured with the underlying Kubernetes cluster’s identity management system.   Additionally, Kubeflow multi-user isolation doesn’t provide hard security guarantees against malicious attempts to infiltrate another user’s profile.
 

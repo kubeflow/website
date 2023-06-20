@@ -1,11 +1,11 @@
 +++
 title = "Container Images"
-description = "About Container Images for Kubeflow Notebooks"
+description = "About Container Images for Kubeflow Workbenches"
 weight = 30
                     
 +++
-Kubeflow Notebooks natively supports three types of notebooks, [JupyterLab](https://github.com/jupyterlab/jupyterlab), [RStudio](https://github.com/rstudio/rstudio), and [Visual Studio Code (code-server)](https://github.com/cdr/code-server), but any web-based IDE should work.
-Notebook servers run as containers inside a Kubernetes Pod, which means the type of IDE (and which packages are installed) is determined by the Docker image you pick for your server.
+Kubeflow Workbenches natively supports three types of workbenches, [JupyterLab](https://github.com/jupyterlab/jupyterlab), [RStudio](https://github.com/rstudio/rstudio), and [Visual Studio Code (code-server)](https://github.com/cdr/code-server), but any web-based IDE should work.
+Workbench servers run as containers inside a Kubernetes Pod, which means the type of IDE (and which packages are installed) is determined by the Docker image you pick for your server.
 
 ## Images
 
@@ -13,7 +13,7 @@ We provide a number of [example container images](https://github.com/kubeflow/ku
 
 ### Base Images
 
-These images provide a common starting point for Kubeflow Notebook containers.
+These images provide a common starting point for Kubeflow Workbench containers.
 See [custom images](#custom-images) to learn how to extend them with your own packages.
 
 Dockerfile | Registry | Notes
@@ -43,15 +43,15 @@ Dockerfile | Registry | Notes
 
 ### Image Dependency Chart
 
-This flow-chart shows how our notebook container images depend on each other.
+This flow-chart shows how our workbench container images depend on each other.
 
 <img src="/docs/images/notebook-container-image-chart.png" 
-     alt="A flow-chart showing how notebook container images depend on each other"  
+     alt="A flow-chart showing how workbench container images depend on each other"  
      class="mt-3 mb-3 border border-info rounded">
 
 ## Custom Images
 
-Packages installed by users __after spawning__ a Kubeflow Notebook will only last the lifetime of the pod (unless installed into a PVC-backed directory).
+Packages installed by users __after spawning__ a Kubeflow Workbench will only last the lifetime of the pod (unless installed into a PVC-backed directory).
 
 To ensure packages are preserved throughout Pod restarts users will need to either:
 1. [Build custom images that include them](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers#custom-images), or
@@ -59,7 +59,7 @@ To ensure packages are preserved throughout Pod restarts users will need to eith
 
 ### Image Requirements
 
-For Kubeflow Notebooks to work with a container image, the image must:
+For Kubeflow Workbenches to work with a container image, the image must:
 - expose an HTTP interface on port `8888`:
   - kubeflow sets an environment variable `NB_PREFIX` at runtime with the URL path we expect the container be listening under
   - kubeflow uses IFrames, so ensure your application sets `Access-Control-Allow-Origin: *` in HTTP response headers
@@ -71,5 +71,5 @@ For Kubeflow Notebooks to work with a container image, the image must:
   
 ## Next steps
 
-- Use your container image by specifying it when spawning your notebook server.
+- Use your container image by specifying it when spawning your workbench server.
   (See the [quickstart guide](/docs/components/notebooks/quickstart-guide/).)

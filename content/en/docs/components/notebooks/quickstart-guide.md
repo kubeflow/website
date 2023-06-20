@@ -1,6 +1,6 @@
 +++
 title = "Quickstart Guide"
-description = "Getting started with Kubeflow Notebooks"
+description = "Getting started with Kubeflow Workbenches"
 weight = 10
                     
 +++
@@ -9,10 +9,10 @@ weight = 10
 
 1. Install Kubeflow by following [Getting Started - Installing Kubeflow](/docs/started/installing-kubeflow/).
 2. Open the Kubeflow [Central Dashboard](/docs/components/central-dash/) in your browser.
-3. Click __"Notebooks"__ in the left-hand panel.
-4. Click __"New Server"__ to create a new notebook server.
-5. Specify the configs for your notebook server.
-6. Click  __"CONNECT"__ once the notebook has been provisioned
+3. Click __"Workbenches"__ in the left-hand panel.
+4. Click __"New Workbench"__ to create a new workbench server.
+5. Specify the configs for your workbench server.
+6. Click  __"CONNECT"__ once the workbench has been provisioned
 
 ## Detailed Steps
 
@@ -23,39 +23,39 @@ weight = 10
     - Choose the namespace that corresponds to your Kubeflow Profile.
       (See the page on [multi-user isolation](/docs/components/multi-tenancy/) for more information about Profiles.)
 
-   <img src="/docs/images/notebooks-namespace.png"
+   <img src="/docs/images/workbenches-namespace.png"
    alt="Selecting a Kubeflow namespace"
    class="mt-3 mb-3 border border-info rounded">
 
-3. Click __"Notebook Servers"__ in the left-hand panel:
+3. Click __"Workbenches"__ in the left-hand panel:
 
-   <img src="/docs/images/jupyterlink.png"
-   alt="Opening notebooks from the Kubeflow UI"
+   <img src="/docs/images/workbenchlink.png"
+   alt="Opening workbenches from the Kubeflow UI"
    class="mt-3 mb-3 border border-info rounded">
 
-4. Click __"New Server"__ on the __"Notebook Servers"__ page:
+4. Click __"New Workbench"__ on the __"Workbenches"__ page:
 
-   <img src="/docs/images/add-notebook-server.png"
-   alt="The Kubeflow notebook servers page"
+   <img src="/docs/images/add-workbench-server.png"
+   alt="The Kubeflow workbench servers page"
    class="mt-3 mb-3 border border-info rounded">
 
-5. Enter a __"Name"__ for your notebook server.
+5. Enter a __"Name"__ for your workbench server.
     - The name can include letters and numbers, but no spaces.
-    - For example, `my-first-notebook`.
+    - For example, `my-first-workbench`.
 
-   <img src="/docs/images/new-notebook-server.png"
-   alt="Form for adding a Kubeflow notebook server"
+   <img src="/docs/images/new-workbench-server.png"
+   alt="Form for adding a Kubeflow workbench server"
    class="mt-3 mb-3 border border-info rounded">
 
-6. Select a Docker __"Image"__ for your notebook server
+6. Select a Docker __"Image"__ for your workbench server
     - __Custom image__: If you select the custom option, you must specify a Docker image in  the form `registry/image:tag`.
       (See the guide on [container images](/docs/components/notebooks/container-images/).)
     - __Standard image__: Click the __"Image"__ dropdown menu to see the list of available images.
       (You can choose from the list configured by your Kubeflow administrator)
 
-7. Specify the amount of __"CPU"__ that your notebook server will request.
+7. Specify the amount of __"CPU"__ that your workbench server will request.
 
-8. Specify the amount of __"RAM"__ that your notebook server will request.
+8. Specify the amount of __"RAM"__ that your workbench server will request.
 
 9. Specify a __"workspace volume"__ to be mounted as a PVC Volume on your home folder.
 
@@ -85,8 +85,8 @@ weight = 10
         secretName: gcp-secret
     ```
 
-12. *(Optional)* Specify any __"GPUs"__ that your notebook server will request.
-    - Kubeflow uses "limits" in Pod requests to provision GPUs onto the notebook Pods
+12. *(Optional)* Specify any __"GPUs"__ that your workbench server will request.
+    - Kubeflow uses "limits" in Pod requests to provision GPUs onto the workbench Pods
       (Details about scheduling GPUs can be found in the [Kubernetes Documentation](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/).)
 
 13. *(Optional)* Specify the setting for __"enable shared memory"__.
@@ -94,16 +94,16 @@ weight = 10
     - Currently, there is no implementation in Kubernetes to activate shared memory.
     - As a workaround, Kubeflow mounts an empty directory volume at `/dev/shm`.
 
-14. Click __"LAUNCH"__ to create a new Notebook CRD with your specified settings.
-    - You should see an entry for your new notebook server on the __"Notebook Servers"__ page
+14. Click __"LAUNCH"__ to create a new Workbench CRD with your specified settings.
+    - You should see an entry for your new workbench server on the __"Workbenches"__ page
     - There should be a spinning indicator in the __"Status"__ column.
-    - It can take a few minutes for kubernetes to provision the notebook server pod.
+    - It can take a few minutes for kubernetes to provision the workbench server pod.
     - You can check the status of your Pod by hovering your mouse cursor over the icon in the __"Status"__ column.
 
-15. Click __"CONNECT"__ to view the web interface exposed by your notebook server.
+15. Click __"CONNECT"__ to view the web interface exposed by your workbench server.
 
-    <img src="/docs/images/notebook-servers.png"
-    alt="Opening notebooks from the Kubeflow UI"
+    <img src="/docs/images/workbench-servers.png"
+    alt="Opening workbenches from the Kubeflow UI"
     class="mt-3 mb-3 border border-info rounded">
 
 ## Next steps

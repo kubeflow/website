@@ -13,17 +13,17 @@ You can use Kubeflow Fairing to build, train, and deploy machine learning (ML)
 models in a hybrid cloud environment directly from Python code or a Jupyter
 notebook. This guide describes how to install Kubeflow Fairing in your
 development environment for [local development][local], or [development in a
-hosted notebook][hosted].
+hosted workbench][hosted].
 
-## Using Kubeflow Fairing with Kubeflow notebooks
+## Using Kubeflow Fairing with Kubeflow workbenches
 
-Kubeflow notebook servers that are built from one of the standard Jupyter
+Kubeflow workbench servers that are built from one of the standard Jupyter
 Docker images include Kubeflow Fairing and come preconfigured for using
 Kubeflow Fairing to run training jobs on your Kubeflow cluster.
 
-If you use a Kubeflow notebook server that was built from a custom Jupyter
+If you use a Kubeflow workbench server that was built from a custom Jupyter
 Docker image as your development environment, follow the instruction on
-[setting up Kubeflow Fairing in a hosted notebook environment][hosted].  
+[setting up Kubeflow Fairing in a hosted workbench environment][hosted].  
 
 ## Set up Kubeflow Fairing for local development 
 
@@ -138,15 +138,15 @@ configuring Kubeflow Fairing][conf].
 Follow these instructions to set up Kubeflow Fairing in a hosted Jupyter
 notebook. 
 
-If you are using a Kubeflow notebook server that was built from one of the
-standard Jupyter Docker images, your notebooks environment has been
+If you are using a Kubeflow workbench server that was built from one of the
+standard Jupyter Docker images, your workbenches environment has been
 preconfigured for training and deploying ML models with Kubeflow Fairing and
 no additional installation steps are required.  
 
 ### Prerequisites
 
 Check the following prerequisites to verify that Kubeflow Fairing is compatible
-with your hosted notebook environment.
+with your hosted workbench environment.
 
 1.  In the Jupyter notebooks user interface, click **File** > **New** >
     **Terminal** in the menu to start a new terminal session in your notebook

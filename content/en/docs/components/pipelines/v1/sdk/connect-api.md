@@ -110,7 +110,7 @@ spec:
 
 {{% alert title="Tip" color="info" %}}
 * `PodDefaults` are namespaced resources, so you need to create one inside __each__ of your Kubeflow `Profile` namespaces.
-* The Notebook Spawner UI will be aware of any `PodDefaults` in the user's namespace (they are selectable under the "configurations" section).
+* The Workbench Spawner UI will be aware of any `PodDefaults` in the user's namespace (they are selectable under the "configurations" section).
 {{% /alert %}}
 
 ### RBAC Authorization
@@ -140,7 +140,7 @@ subjects:
 {{% alert title="Tip" color="info" %}}
 * Review the ClusterRole called [`aggregate-to-kubeflow-pipelines-edit`](https://github.com/kubeflow/pipelines/blob/efb96135033fc6e6e55078d33814c45a98566e68/manifests/kustomize/base/installs/multi-user/view-edit-cluster-roles.yaml#L36-L99) 
 for a list of some important `pipelines.kubeflow.org` RBAC verbs.
-* Kubeflow Notebooks pods run as the `default-editor` ServiceAccount by default, so the RoleBindings for `default-editor` apply to them
+* Kubeflow Workbenches pods run as the `default-editor` ServiceAccount by default, so the RoleBindings for `default-editor` apply to them
 and give them access to submit pipelines in their own namespace.
 {{% /alert %}}
 

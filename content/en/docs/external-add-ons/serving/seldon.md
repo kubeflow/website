@@ -141,6 +141,6 @@ You should see a response:
 ## Further documentation
 
    * [Seldon Core documentation](https://docs.seldon.io/projects/seldon-core/en/latest/)
-   * [Example notebooks](https://docs.seldon.io/projects/seldon-core/en/latest/examples/notebooks.html)
+   * [Example workbench](https://docs.seldon.io/projects/seldon-core/en/latest/examples/notebooks.html)
    * [GitHub repository](https://github.com/SeldonIO/seldon-core)
    * [Community](https://docs.seldon.io/projects/seldon-core/en/latest/developer/community.html)

@@ -22,7 +22,7 @@ The Kubeflow Pipelines platform consists of:
 * A user interface (UI) for managing and tracking experiments, jobs, and runs.
 * An engine for scheduling multi-step ML workflows.
 * An SDK for defining and manipulating pipelines and components.
-* Notebooks for interacting with the system using the SDK.
+* Workbenches for interacting with the system using the SDK.
 
 The following are the goals of Kubeflow Pipelines:
 

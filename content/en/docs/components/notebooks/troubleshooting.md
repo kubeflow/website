@@ -1,13 +1,13 @@
 +++
 title = "Troubleshooting"
-description = "Problems and solutions for common problems with Kubeflow Notebooks"
+description = "Problems and solutions for common problems with Kubeflow Workbenches"
 weight = 100
                     
 +++
 
-## ISSUE: notebook not starting
+## ISSUE: workbench not starting
 
-### SOLUTION: check events of Notebook
+### SOLUTION: check events of Workbench
 
 Run the following command then check the `events` section to make sure that there are no errors:
 
@@ -39,11 +39,11 @@ Run the following command to get the logs from the Pod:
 kubectl logs "${MY_NOTEBOOK_NAME}-0" --namespace "${MY_PROFILE_NAMESPACE}"
 ```
 
-## ISSUE: manually delete notebook
+## ISSUE: manually delete workbench
 
-### SOLUTION: use kubectl to delete Notebook resource
+### SOLUTION: use kubectl to delete Workbench resource
 
-Run the following command to delete a Notebook resource manually:
+Run the following command to delete a Workbench resource manually:
 
 ```shell
 kubectl delete notebook "${MY_NOTEBOOK_NAME}" --namespace "${MY_PROFILE_NAMESPACE}"
