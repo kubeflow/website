@@ -22,7 +22,7 @@ The following table presents a comprehensive overview of the version compatibili
 
 * **v2 features** refer to the features available when running v2 pipelines--these are pipelines produced using v2 versions of the KFP SDK, they are persisted as Intermediate Representation (IR) in YAML format.
 
-* Pipelines produced using the v2 compiler (`kfp.v2.compiler`) in the SDK v1.8, which are IR in JSON format, were partially and momentarily supported by the KFP Runtime v1.8 via *v2-compatible* mode. The support for v2-compatible mode has been discontinued.
+* Pipelines produced using the v2 namespace (`kfp.v2`) in the SDK v1.8 were partially and momentarily supported by the KFP Runtime v1.8 via *v2-compatible* mode. The support for v2-compatible mode has been discontinued.
 
 * The KFP Runtime v2.0.* supports v2 features and v1 features at the same time. Depending on whether users are running v1 pipelines vs. v2 pipelines, the KFP Runtime behaves differently. The most noticeable difference users can perceive is v1 pipelines are rendered using the old v1-style DAG UI, while v2 pipelines are rendered in the v2 modern DAG UI.
 
