@@ -25,7 +25,7 @@ def my_pipeline():
 You can also load a component directly from a URL, such as a GitHub URL:
 
 ```python
-loaded_comp = components.load_component_from_url('https://github.com/kubeflow/pipelines/blob/984d8a039d2ff105ca6b21ab26be057b9552b51d/sdk/python/test_data/pipelines/two_step_pipeline.yaml')
+loaded_comp = components.load_component_from_url('https://raw.githubusercontent.com/kubeflow/pipelines/2.0.0/sdk/python/test_data/components/add_numbers.yaml')
 ```
 
 Lastly, you can load a component from a string using [`components.load_component_from_text`][components-load-component-from-text]:
@@ -35,6 +35,18 @@ with open('component.yaml') as f:
     component_str = f.read()
 
 loaded_comp = components.load_component_from_text(component_str)
+```
+
+As components and pipelines are persisted in the same format (IR YAML), you can also load a pipeline from a local file, URL, or string, just like you load components. Once loaded, a pipeline can be used in another pipeline:
+
+```python
+from kfp import components
+
+loaded_pipeline = components.load_component_from_url('https://raw.githubusercontent.com/kubeflow/pipelines/2.0.0/sdk/python/test_data/pipelines/pipeline_in_pipeline_complex.yaml')
+
+@dsl.pipeline
+def my_pipeline():
+    loaded_pipeline(msg='Hello KFP v2!')
 ```
 
 Some libraries, such as [Google Cloud Pipeline Components][gcpc] package and provide reusable components in a pip-installable [Python package][gcpc-pypi].

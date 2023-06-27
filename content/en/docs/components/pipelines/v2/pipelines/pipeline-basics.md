@@ -174,12 +174,25 @@ See the [`PipelineTask` reference documentation][pipelinetask] for more informat
 Pipelines can themselves be used as components in other pipelines, just as you would use any other single-step component in a pipeline. For example, we could easily recompose the preceding `pythagorean` pipeline to use an inner helper pipeline `square_and_sum`:
 
 ```python
+from kfp import dsl
+
+@dsl.component
+def square(x: float) -> float:
+    return x ** 2
+
+@dsl.component
+def add(x: float, y: float) -> float:
+    return x + y
+
+@dsl.component
+def square_root(x: float) -> float:
+    return x ** .5
+
 @dsl.pipeline
 def square_and_sum(a: float, b: float) -> float:
     a_sq_task = square(x=a)
     b_sq_task = square(x=b)
     return add(x=a_sq_task.output, y=b_sq_task.output).output
-
 
 @dsl.pipeline
 def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
