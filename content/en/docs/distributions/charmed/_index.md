@@ -13,7 +13,7 @@ Charmed Kubeflow is Canonical’s version of the upstream Kubeflow project. It u
 * _Integrated_: A growing ecosystem of extensions and integrations, such as [MLFlow](https://mlflow.org/) to help scale up your data science initiatives.
 * _Available_: Charmed Kubeflow is a fully portable solution for any cloud, including on-premise Kubernetes. Train your teams once to work anywhere.
 * _Supported_: [24/7 support](https://ubuntu.com/support), [professional services](https://ubuntu.com/ai/services) and [managed services](https://ubuntu.com/managed/apps) with guaranteed SLA are available.
-* _Community-driven:_ Charmed Kubeflow is an [open-source product](htt://github.com/canonical/bundle-kubeflow) driven by the community’s [feedback](https://discourse.charmhub.io/tag/kubeflow). You can always contribute or get our team’s support.
+* _Community-driven:_ Charmed Kubeflow is an [open-source product](https://github.com/canonical/bundle-kubeflow) driven by the community’s [feedback](https://discourse.charmhub.io/tag/kubeflow). You can always contribute or get our team’s support.
 
 ---
 

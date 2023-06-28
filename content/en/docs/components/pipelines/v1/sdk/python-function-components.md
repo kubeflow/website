@@ -56,7 +56,7 @@ This document describes how to build Python function-based components and use th
 
 
 ```python
-$ pip3 install kfp --upgrade
+$ pip install kfp==1.8
 ```
 
 2. Import the `kfp` package.
@@ -69,7 +69,7 @@ from kfp.components import create_component_from_func
 
 3. Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
 
-[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.client.html#kfp.Client
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client
 [connect-api]: https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api
 
 
@@ -316,7 +316,7 @@ The following example demonstrates how to return multiple outputs by value,
 including component metadata and metrics. 
 
 [python37]: https://hub.docker.com/layers/python/library/python/3.7/images/sha256-7eef781ed825f3b95c99f03f4189a8e30e718726e8490651fa1b941c6c815ad1?context=explore
-[create-component-from-func]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.create_component_from_func
+[create-component-from-func]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.create_component_from_func
 [subprocess]: https://docs.python.org/3/library/subprocess.html
 [tf-docker]: https://www.tensorflow.org/install/docker
 [pytorch-docker]: https://hub.docker.com/r/pytorch/pytorch/tags
@@ -325,8 +325,8 @@ including component metadata and metrics.
 [named-tuple]: https://docs.python.org/3/library/collections.html#collections.namedtuple
 [kfp-visualize]: https://www.kubeflow.org/docs/components/pipelines/sdk/output-viewer/
 [kfp-metrics]: https://www.kubeflow.org/docs/components/pipelines/sdk/pipelines-metrics/
-[input-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.InputPath
-[output-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.OutputPath
+[input-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.InputPath
+[output-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.OutputPath
 
 
 ```python
@@ -434,12 +434,12 @@ To return a file as an output, use one of the following type annotations:
     that your function expects a parameter to be an
     [`io.TextIOWrapper`][textiowrapper] that this function can write to.
 
-[input-binary]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.InputBinaryFile
-[input-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.InputPath
-[input-text]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.InputTextFile
-[output-binary]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.OutputBinaryFile
-[output-path]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.OutputPath
-[output-text]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/kfp.components.html#kfp.components.OutputTextFile
+[input-binary]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.InputBinaryFile
+[input-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.InputPath
+[input-text]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.InputTextFile
+[output-binary]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.OutputBinaryFile
+[output-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.OutputPath
+[output-text]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.OutputTextFile
 [bytesio]: https://docs.python.org/3/library/io.html#io.BytesIO
 [textiowrapper]: https://docs.python.org/3/library/io.html#io.TextIOWrapper
 

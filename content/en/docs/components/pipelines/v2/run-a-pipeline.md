@@ -1,10 +1,12 @@
 +++
 title = "Run a Pipeline"
 description = "Execute a pipeline on the KFP backend"
-weight = 6
+weight = 8
 +++
 
-The KFP SDK offers three ways to run a pipeline.
+{{% kfp-v2-keywords %}}
+
+The KFP offers three ways to run a pipeline.
 
 ## 1. Run from the KFP Dashboard
 The first and easiest way to run a pipeline is by submitting it via the KFP dashboard.
@@ -54,7 +56,7 @@ client.create_run_from_pipeline_package('pipeline.yaml', arguments={'param': 'a'
 To submit a Python pipeline function for execution use the `.create_run_from_pipeline_func` convenience method, which wraps compilation and run submission into one method:
 
 ```python
-client.create_run_from_pipeline_func('pipeline.yaml', arguments={'param': 'a', 'other_param': 2})
+client.create_run_from_pipeline_func(pipeline_func, arguments={'param': 'a', 'other_param': 2})
 ```
 
 See the [KFP SDK Client reference documentation][kfp-sdk-api-ref-client] for a detailed description of the `Client` constructor and method parameters.

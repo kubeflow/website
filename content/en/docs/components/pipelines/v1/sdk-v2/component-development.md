@@ -4,6 +4,9 @@ description = "A tutorial on how to use the Pipelines SDK v2 to create component
 weight = 40
 +++
 
+<!-- no index to improve relative search ranking of KFP SDK v2 docs over KFP SDK v1 v2-namepsace docs -->
+{{% no-index %}}
+
 A pipeline component is a self-contained set of code that performs one step in
 your ML workflow. This document describes the concepts required to build
 components, and demonstrates how to get started building components.
@@ -18,15 +21,15 @@ building and running pipelines that are compatible with the Pipelines SDK v2.
 
 ## Before you begin
 
-Run the following command to install the Kubeflow Pipelines SDK v1.6.1 or higher.
+Run the following command to install the Kubeflow Pipelines SDK v1.8.
 
 ```bash
-pip install kfp --upgrade
+pip install kfp==1.8
 ```
 
 For more information about the Kubeflow Pipelines SDK, see the [SDK reference guide][sdk-ref].
 
-[sdk-ref]: https://kubeflow-pipelines.readthedocs.io/en/latest/index.html
+[sdk-ref]: https://kubeflow-pipelines.readthedocs.io/en/stable/index.html
 
 ## Understanding pipeline components
 

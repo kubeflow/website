@@ -10,6 +10,10 @@ For upgrade instructions, refer to distribution specific documentations:
 
 * [Upgrading Kubeflow Pipelines on Google Cloud](/docs/distributions/gke/pipelines/upgrade/)
 
+## Upgrading to v2.0
+
+* **Notice**: In v2.0 frontend, run metrics columns are deprecated in the run list page, but users can still get the same information by using [KFPv2 Scalar metrics](/docs/components/pipelines/v1/sdk/output-viewer/#scalar-metrics)
+
 ## Upgrading to [v1.7]
 
 [v1.7]: https://github.com/kubeflow/pipelines/releases/tag/1.7.0

@@ -1,8 +1,10 @@
 +++
 title = "Installation"
-description = "Options to install Kubeflow Pipelines"
-weight = 2                 
+description = "Options for deploying Kubeflow Pipelines"
+weight = 4
 +++
+
+{{% kfp-v2-keywords %}}
 
 This page will be available soon. For similar information, see [KFP v1 installation documentation][v1-installation].
 

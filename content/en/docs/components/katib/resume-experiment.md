@@ -62,7 +62,7 @@ as described [above](#modify-experiment)
 To control various resume policies, you can specify `.spec.resumePolicy`
 for the experiment.
 Refer to the
-[`ResumePolicy` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L58).
+[`ResumePolicy` type](https://github.com/kubeflow/katib/blob/318f66890ebee00eba9893f7145d366795caa1d0/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L60).
 
 ### Resume policy: Never
 
@@ -74,9 +74,8 @@ are deleted and you can't restart the experiment.
 Learn more about Katib concepts
 in the [overview guide](/docs/components/katib/overview/#katib-concepts).
 
-Check the
-[`never-resume.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/resume-experiment/never-resume.yaml#L18)
-example for more details.
+This is the default policy for all Katib experiments.
+You can omit `.spec.resumePolicy` parameter for that functionality.
 
 ### Resume policy: LongRunning
 
@@ -87,8 +86,10 @@ running. Modify experiment's trial count parameters to restart the experiment.
 When you delete the experiment, the suggestion's Deployment and
 Service are deleted.
 
-This is the default policy for all Katib experiments.
-You can omit `.spec.resumePolicy` parameter for that functionality.
+
+Check the
+[`long-running-resume.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/resume-experiment/long-running-resume.yaml#L19)
+example for more details.
 
 ### Resume policy: FromVolume
 
@@ -123,7 +124,7 @@ When you delete the experiment, the suggestion's Deployment, Service,
 PVC and PV are deleted automatically.
 
 Check the
-[`from-volume-resume.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/resume-experiment/from-volume-resume.yaml#L18)
+[`from-volume-resume.yaml`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/resume-experiment/from-volume-resume.yaml#L19)
 example for more details.
 
 ## Next steps
