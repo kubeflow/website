@@ -45,7 +45,7 @@ in the [overview guide](/docs/components/katib/overview/#trial).
 
 Trial template specification is located under `.spec.trialTemplate` of your experiment.
 For the API overview refer to the
-[`TrialTemplate` type](https://github.com/kubeflow/katib/blob/master/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L208-L270).
+[`TrialTemplate` type](https://github.com/kubeflow/katib/blob/318f66890ebee00eba9893f7145d366795caa1d0/pkg/apis/controller/experiments/v1beta1/experiment_types.go#L216-L278).
 
 To define experiment's trial, you should specify these parameters in `.spec.trialTemplate`:
 
@@ -276,7 +276,11 @@ Follow these two simple steps to integrate your custom CRD in Katib:
        - pipelineruns
        - taskruns
      verbs:
-       - "*"
+       - "get"
+       - "list"
+       - "watch"
+       - "create"
+       - "delete"
    ```
 
 1. Modify Katib controller

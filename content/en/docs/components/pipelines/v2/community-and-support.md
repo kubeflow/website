@@ -1,8 +1,10 @@
 +++
 title = "Community and Support"
 description = "Where to get help, contribute, and learn more"
-weight = 11                 
+weight = 10
 +++
+
+{{% kfp-v2-keywords %}}
 
 ## Help
 There are several places to get help with KFP:

@@ -29,28 +29,7 @@ Starting from Kubeflow 1.3, the official installation documentation uses a combi
 ### Install kubectl and kustomize
 
 * [Install kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) 
-* [Download kustomize 3.2.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/v3.2.0)
-
-To use the `kustomize` binary, you need to make it executable and move it to your path.
-
-To add `kustomize` to your global path, run the following commands:
-
-```bash
-wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/<distribution>
-chmod +x <distribution>
-mv <distribution> /usr/local/bin/kustomize
-```
-
-Your machine might already have `kustomize` installed. If you want to temporarily add this version of `kustomize` to your path, run the following commands:
-
-```bash
-wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/<distribution>
-chmod +x <distribution>
-mv <distribution> /some/path/kustomize
-# /some/path should not already be in path. 
-export PATH=/some/path:$PATH
-# order is important here. $PATH needs to be the last thing. We are trying to put our kustomize before the kustomize installtion in system.
-```
+* [Download kustomize 5.0.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.0.0)
 
  ## Next Steps
 

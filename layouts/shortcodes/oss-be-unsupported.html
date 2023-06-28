@@ -1,0 +1,5 @@
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">Not yet supported</h4>
+  {{ if .Get "feature_name"}} {{ with .Get "feature_name" }} 
+  {{ . }} {{ end }} {{ else }}This feature {{ end }} is not yet supported by the KFP orchestration backend, but may be supported by other orchestration backends.{{ if .Get "feature_name"}} {{ with .Get "gh_issue_link" }} You can track support for this feature via the <a href="{{ . | safeURL }}">GitHub issue</a></h4>. {{ end }} {{ else }} {{ end }}
+</div>

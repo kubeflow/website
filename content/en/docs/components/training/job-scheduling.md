@@ -15,15 +15,14 @@ to support gang-scheduling in Kubeflow, to allow jobs to run multiple pods at th
 
 ## Running jobs with gang-scheduling
 
-Training Operator supports running jobs with gang-scheduling using Volcano Scheduler and Scheduler Plugins with coscheduling.
-
-**Note:** Scheduler Plugins with coscheduling is currently supported only in [Training Operator](https://github.com/kubeflow/training-operator).
-[MPI Operator](https://github.com/kubeflow/mpi-operator) does not support that.
+Training Operator and MPI Operator support running jobs with gang-scheduling using Volcano Scheduler and Scheduler Plugins with coscheduling.
 
 ### Scheduler Plugins with coscheduling
 
 You have to install the Scheduler Plugins with coscheduling in your cluster first as a default scheduler or a secondary scheduler of Kubernetes and
 configure operator to select the scheduler name for gang-scheduling in the following:
+
+- training-operator
 
 ```diff
 ...
@@ -34,6 +33,36 @@ configure operator to select the scheduler name for gang-scheduling in the follo
 +           - --gang-scheduler-name=scheduler-plugins
           image: kubeflow/training-operator
           name: training-operator
+...
+```
+
+- mpi-operator (installed scheduler-plugins as a default scheduler)
+
+```diff
+...
+    spec:
+      containers:
+      - args:
++       - --gang-scheduling=default-scheduler
+        - -alsologtostderr
+        - --lock-namespace=mpi-operator
+        image: mpioperator/mpi-operator:0.4.0
+        name: mpi-operator
+...
+```
+
+- mpi-operator (installed scheduler-plugins as a secondary scheduler)
+
+```diff
+...
+    spec:
+      containers:
+      - args:
++       - --gang-scheduling=scheduler-plugins-scheduler
+        - -alsologtostderr
+        - --lock-namespace=mpi-operator
+        image: mpioperator/mpi-operator:0.4.0
+        name: mpi-operator
 ...
 ```
 
@@ -75,6 +104,8 @@ In installing Scheduler Plugins as a default scheduler, you don't need to specif
 You have to install volcano scheduler in your cluster first as a secondary scheduler of Kubernetes and
 configure operator to select the scheduler name for gang-scheduling in the following:
 
+- training-operator
+
 ```diff
 ...
     spec:
@@ -84,6 +115,21 @@ configure operator to select the scheduler name for gang-scheduling in the follo
 +           - --gang-scheduler-name=volcano
           image: kubeflow/training-operator
           name: training-operator
+...
+```
+
+- mpi-operator
+
+```diff
+...
+    spec:
+      containers:
+      - args:
++       - --gang-scheduling=volcano
+        - -alsologtostderr
+        - --lock-namespace=mpi-operator
+        image: mpioperator/mpi-operator:0.4.0
+        name: mpi-operator
 ...
 ```
 
