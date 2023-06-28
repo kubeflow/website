@@ -103,7 +103,7 @@ These arguments approximately translate to the following `pip install` command:
 pip install custom-ml-package==0.0.1 numpy==1.21.6 kfp==2 --index-url http://myprivaterepo.com/simple --trusted-host http://myprivaterepo.com/simple --extra-index-url http://pypi.org/simple --trusted-host http://pypi.org/simple
 ```
 
-Note that when you set `pip_index_urls`, KFP does not include `'http://pypi.org/simple'` automatically. If you wish to pip install packages from a private repository _and_ the default public repository, you should include both the private and default URLs as shown in the preceding component `comp`.
+Note that when you set `pip_index_urls`, KFP does not include `'https://pypi.org/simple'` automatically. If you wish to pip install packages from a private repository _and_ the default public repository, you should include both the private and default URLs as shown in the preceding component `comp`.
 
 #### base_image
 
