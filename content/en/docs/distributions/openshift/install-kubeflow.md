@@ -46,10 +46,11 @@ Use the following steps to install Kubeflow 1.6 on OpenShift 4.9.
 git clone https://github.com/opendatahub-io/manifests.git --branch v1.6-branch-openshift
 ```
 
-2. Create `kubeflow` namespace
+2. Create `kubeflow` namespaces
 
 ```commandline
 oc create ns kubeflow
+oc create ns kubeflow-user-example-com
 ```
 
 4. Deploy all Kubeflow components under `openshift` stack using the following command:
