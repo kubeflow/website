@@ -18,6 +18,14 @@ summary {
 <!-- TODO: add UI screenshots for final pipeline -->
 This tutorial helps you get started with deploying a KFP standalone instance, using KFP dashboard, and creating a pipeline with the KFP SDK.
 
+Before you begin, you need the following prerequisites:
+
+* **An existing Kubernetes cluster**: If you don't have a Kubernetes cluster, see [Installation][installation] for instructions about how to get one.
+
+* **The [kubectl](https://kubernetes.io/docs/tasks/tools/) command-line tool**: Install and configure your [kubectl context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) to connect with your cluster.
+
+After you complete the prerequisites, click each section to view the instructions:
+
 <details>
 <summary><a name="kfp_qs_deployment"></a><h2 style="display:inline;">Deploy a KFP standalone instance into your cluster</h2></summary>
 
@@ -38,29 +46,30 @@ After you deploy Kubernetes, obtain your KFP endpoint by following [these instru
 </details>
 
 <details>
-<summary><a name="kfp_qs_ui"></a><h2 style="display:inline;">Run a basic pipeline on the KFP Dashboard</h2></summary>
+<summary><a name="kfp_qs_ui"></a><h2 style="display:inline;">Run a basic pipeline 
+  using KFP Dashboard and SDK</h2></summary>
 
-Kubeflow Pipelines offers a few samples that you can use to try out
-Kubeflow Pipelines quickly. The steps below show you how to run a basic sample that
-includes some Python operations, but doesn't include a machine learning (ML) 
-workload:
+### **KFP Dashboard** ###
+  Kubeflow Pipelines offers a few samples that you can use to try out
+  Kubeflow Pipelines quickly. The steps below show you how to run a basic sample that
+  includes some Python operations, but doesn't include a machine learning (ML) 
+  workload:
 
 1. Click the name of the sample, **[Tutorial] Data passing in python components**, on the pipelines UI:
-  <img src="/docs/images/v2/click-pipeline-sample.png" 
+  <img src="/docs/images/v2/click-pipeline-example.png" 
     alt="Pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-2. Click **Create experiment**:
-  <img src="/docs/images/v2/pipelines-start-experiment.png" 
-    alt="Creating an experiment on the pipelines UI"
-    class="mt-3 mb-3 border border-info rounded">
-
-3. Follow the prompts to create an **experiment** and then create a **run**. 
-  The sample supplies default values for all the parameters you need. The 
-  following screenshot assumes you've already created an experiment named
-  _My experiment_ and are now creating a run named _My first run_:
+2. Click **Create run**:
   <img src="/docs/images/v2/pipelines-start-run.png" 
     alt="Creating a run on the pipelines UI"
+    class="mt-3 mb-3 border border-info rounded">
+
+3. Follow the prompts to create a **run**. 
+  The sample supplies default values for all the parameters you need. The 
+  following screenshot assumes you are now creating a run named _My first run_:
+  <img src="/docs/images/v2/pipelines-start-run-details.png" 
+    alt="Details page of creating a run on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
 4. Click **Start** to run the pipeline.
@@ -71,20 +80,10 @@ workload:
     alt="Run results on the pipelines UI"
     class="mt-3 mb-3 border border-info rounded">
 
-You can find the [source code for the **Data passing in python components** tutorial](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/samples/tutorials/Data%20passing%20in%20python%20components) in the Kubeflow Pipelines repo.
+You can find the [source code for the **Data passing in python components** tutorial](https://github.com/kubeflow/pipelines/tree/2.0.0/samples/tutorials/Data%20passing%20in%20python%20components) in the Kubeflow Pipelines repo.
 
-</details>
-
-<details>
-<summary><a name="kfp_qs_sdk"></a><h2 style="display:inline;">Create and run a simple pipeline using the KFP SDK</h2></summary>
-
-This section shows how to use the KFP SDK to compose a pipeline and submit it for execution by KFP.
-
-Before you begin, you need the following prerequisites:
-
-* **An existing Kubernetes cluster**: If you don't have a Kubernetes cluster, see [Installation][installation] for instructions about how to get one.
-
-* **The [kubectl](https://kubernetes.io/docs/tasks/tools/) command-line tool**: Install and configure your [kubectl context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) to connect with your cluster.
+### **KFP SDK** ###
+  This section shows how to use the KFP SDK to compose a pipeline and submit it for execution by KFP.
 
 * Run the following script to install the KFP SDK:
   ```shell
@@ -190,6 +189,7 @@ To view the details of each task, including input and output, click the appropri
 <img src="/docs/images/pipelines/addition_pipeline_ui.png"
 alt="Pipelines Dashboard"
 class="mt-3 mb-3 border border-info rounded">
+
 
 </details>
 
