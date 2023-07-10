@@ -46,7 +46,7 @@ After you deploy Kubernetes, obtain your KFP endpoint by following [these instru
 </details>
 
 <details>
-<summary><a name="kfp_qs_ui"></a><h2 style="display:inline;">Run a basic pipeline 
+<summary><a name="kfp_qs_basic_pipeline"></a><h2 style="display:inline;">Run a basic pipeline 
   using KFP Dashboard and SDK</h2></summary>
 
 ### **KFP Dashboard** ###
