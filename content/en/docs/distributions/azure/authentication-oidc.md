@@ -83,7 +83,7 @@ This section shows the how to set up Kubeflow with authentication and authorizat
 
 1. Configure OIDC scopes:
 
-    In `.cache/manifests/manifests-{kkubeflow version}-branch/istio/oidc-authservice/base/statefulset.yaml` update [OIDC scopes](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes) to remove groups and keep profile and email.
+    In `.cache/manifests/manifests-{kubeflow version}-branch/istio/oidc-authservice/base/statefulset.yaml` update [OIDC scopes](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes) to remove groups and keep profile and email.
 
     ```
     - name: OIDC_SCOPES
