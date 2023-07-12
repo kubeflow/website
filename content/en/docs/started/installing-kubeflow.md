@@ -166,6 +166,17 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
       </tr>
       <tr>
+        <td>deployKF</td>
+        <td>Aranui Solutions</td>
+        <td>All Conformant Kubernetes</td>
+        <td>
+          <a href="https://www.deploykf.org/">Website</a>
+        </td>
+        <td>
+          1.7.0 <sup>[<a href="https://www.deploykf.org/releases/version-matrix/#kubeflow-tools">Version Matrix</a>]</sup>
+        </td>
+      </tr>
+      <tr>
         <td>Kubeflow on Oracle Container Engine for Kubernetes</td>
         <td>Oracle</td>
         <td>
