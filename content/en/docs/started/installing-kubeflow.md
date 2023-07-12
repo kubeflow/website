@@ -167,7 +167,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
       </tr>
       <tr>
         <td>deployKF</td>
-        <td>deployKF</td>
+        <td>Aranui Solutions</td>
         <td>All Conformant Kubernetes</td>
         <td>
           <a href="https://www.deploykf.org/">Website</a>
