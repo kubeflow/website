@@ -109,20 +109,8 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
       </tr>
       <tr>
-        <td>Arrikto Kubeflow as a Service</td>
-        <td rowspan="2">Arrikto</td>
-        <td>
-          N/A <sup>(fully managed)</sup>
-        </td>
-        <td>
-          <a href="https://www.arrikto.com/kubeflow-as-a-service/">Website</a>
-        </td>
-        <td>
-          1.5.0
-        </td>
-      </tr>
-      <tr>
         <td>Arrikto Enterprise Kubeflow</td>
+        <td>Arrikto</td>
         <td>
           ◦ Amazon Elastic Kubernetes Service (EKS)
           <br>
