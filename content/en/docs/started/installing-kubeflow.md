@@ -167,10 +167,10 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         <td>VMware</td>
         <td>VMware vSphere</td>
         <td>
-          <a href="https://vmware.github.io/ml-ops-platform-for-vsphere/">Website</a>
+          <a href="https://vmware.github.io/vSphere-machine-learning-extension/">Website</a>
         </td>
         <td>
-          1.6.0
+          1.6.1
         </td>
       </tr>
     </tbody>
