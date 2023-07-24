@@ -10,6 +10,8 @@ The following assumes a basic familiarity with [Lightweight Python Components][l
 
 Containerized Python Components extend [Lightweight Python Components][lightweight-python-components] by relaxing the constraint that Lightweight Python Components be hermetic (i.e., fully self-contained). This means Containerized Python Component functions can depend on symbols defined outside of the function, imports outside of the function, code in adjacent Python modules, etc. To achieve this, the KFP SDK provides a convenient way to package your Python code into a container.
 
+As a production software best practice, component authors should prefer Containerized Python Components to [Lightweight Python Components][lightweight-python-components] when their component specifies [`packages_to_install`][packages-to-install], since the KFP SDK will install these dependencies into the component's image when it is built, rather than at task runtime.
+
 The following shows how to use Containerized Python Components by modifying the `add` component from the [Lightweight Python Components][lightweight-python-components] example:
 
 ```python
@@ -107,3 +109,4 @@ Since `add`'s `target_image` uses [Google Cloud Artifact Registry][artifact-regi
 [artifact-registry]: https://cloud.google.com/artifact-registry/docs/docker/authentication
 [vertex-pipelines]: https://cloud.google.com/vertex-ai/docs/pipelines/introduction
 [iam]: https://cloud.google.com/iam
+[packages-to-install]: https://www.kubeflow.org/docs/components/pipelines/v2/components/lightweight-python-components/#packages_to_install

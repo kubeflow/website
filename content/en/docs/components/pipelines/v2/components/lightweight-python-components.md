@@ -79,6 +79,8 @@ def sin(val: float = 3.14) -> float:
     return np.sin(val).item()
 ```
 
+**Note:** As a production software best practice, prefer using [Containerized Python Components][containerized-python-components] when your component specifies `packages_to_install` to eliminate installation of your dependencies at runtime.
+
 #### pip_index_urls
 
 `pip_index_urls` exposes the ability to pip install `packages_to_install` from package indices other than the default [PyPI.org][pypi-org].
