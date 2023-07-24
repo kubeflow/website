@@ -32,14 +32,14 @@ and Kubeflow Fairing installed in your development environment.
 *  If you have not installed Kubeflow Fairing, follow the [installing
    Kubeflow Fairing][fairing-install] guide.
 
-## Using Kubeflow Fairing with Kubeflow notebooks
+## Using Kubeflow Fairing with Kubeflow workbenches
 
-The standard Kubeflow notebook images include Kubeflow Fairing and come
+The standard Kubeflow workbench images include Kubeflow Fairing and come
 preconfigured to run training jobs on your Kubeflow cluster. No additional
 configuration is required.
 
-If you built your Kubeflow notebook server from a custom Jupyter Docker image,
-follow the instruction in this guide to configure your notebooks environment
+If you built your Kubeflow workbench server from a custom Docker image,
+follow the instruction in this guide to configure your workbenches environment
 with access to your Kubeflow environment.
 
 ## Configure Docker with access to your container image registry

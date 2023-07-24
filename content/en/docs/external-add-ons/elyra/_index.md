@@ -16,4 +16,4 @@ and related properties that are all managed in the visual editor.
 
 To learn more about Elyra, visit <a href="https://github.com/elyra-ai/elyra" target="_blank">Elyra GitHub project</a>
 
-To enable Elyra in your Kubeflow Environment, visit <a href="https://elyra.readthedocs.io/en/stable/recipes/using-elyra-with-kubeflow-notebook-server.html" target="_blank">Using Elyra with the Kubeflow Notebook Server</a>
+To enable Elyra in your Kubeflow Environment, visit <a href="https://elyra.readthedocs.io/en/stable/recipes/using-elyra-with-kubeflow-notebook-server.html" target="_blank">Using Elyra with the Kubeflow Workbench Server</a>

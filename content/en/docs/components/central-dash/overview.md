@@ -11,10 +11,10 @@ Your Kubeflow deployment includes a central dashboard that provides quick access
 to the Kubeflow components deployed in your cluster. The dashboard includes the
 following features:
 
-- Shortcuts to specific actions, a list of recent pipelines and notebooks, and
+- Shortcuts to specific actions, a list of recent pipelines and workbenches, and
   metrics, giving you an overview of your jobs and cluster in one view.
 - A housing for the UIs of the components running in the cluster, including
-  **Pipelines**, **Katib**, **Notebooks**, and more.
+  **Pipelines**, **Katib**, **Workbenches**, and more.
 - A [registration flow](/docs/components/central-dash/registration-flow/) that
   prompts new users to set up their namespace if necessary.
 
@@ -24,7 +24,7 @@ The Kubeflow UIs include the following:
 
 * **Home**: Home, the central hub to access recent resources, active
   experiments, and useful documentation.
-* **Notebook Servers**: To manage [Notebook servers](/docs/components/notebooks/).
+* **Workbench Servers**: To manage [Workbench servers](/docs/components/notebooks/).
 * **TensorBoards**: To manage TensorBoard servers.
 * **Models**: To manage deployed [KFServing models](/docs/components/kfserving/kfserving/).
 * **Volumes**: To manage the cluster's Volumes.
@@ -125,4 +125,4 @@ You can access Kubeflow via `kubectl` and port-forwarding as follows:
   option](/docs/components/multi-tenancy/) where you
   can set up a single namespace for a shared deployment or configure
   multi-tenancy for your Kubeflow deployment.
-* [Set up your Jupyter notebooks](/docs/components/notebooks/setup/) in Kubeflow.
+* [Set up your Workbenches](/docs/components/notebooks/setup/) in Kubeflow.

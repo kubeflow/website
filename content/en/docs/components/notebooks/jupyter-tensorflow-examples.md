@@ -1,6 +1,6 @@
 +++
 title = "Jupyter TensorFlow Examples"
-description = "Examples using Jupyter and TensorFlow in Kubeflow Notebooks"
+description = "Examples using Jupyter and TensorFlow in Kubeflow Workbenches"
 weight = 40
 
 +++
@@ -9,7 +9,7 @@ weight = 40
 
 (adapted from [tensorflow/tensorflow - mnist_softmax.py](https://github.com/tensorflow/tensorflow/blob/r1.4/tensorflow/examples/tutorials/mnist/mnist_softmax.py))
 
-1. When creating your notebook server choose a [container image](/docs/components/notebooks/container-images/) which has Jupyter and TensorFlow installed.
+1. When creating your workbench server choose a [container image](/docs/components/notebooks/container-images/) which has Jupyter and TensorFlow installed.
 
 2. Use Jupyter's interface to create a new **Python 3** notebook.
 
@@ -55,4 +55,4 @@ weight = 40
 
 - See a [simple example](https://github.com/kubeflow/examples/tree/master/pipelines/simple-notebook-pipeline) of creating Kubeflow pipelines in a Jupyter notebook.
 - Build machine-learning pipelines with the [Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/sdk-overview/).
-- Learn the advanced features available from a Kubeflow notebook, such as [submitting Kubernetes resources](/docs/components/notebooks/submit-kubernetes/) or [building Docker images](/docs/components/notebooks/custom-notebook/). 
+- Learn the advanced features available from a Kubeflow workbench, such as [submitting Kubernetes resources](/docs/components/notebooks/submit-kubernetes/) or [building Docker images](/docs/components/notebooks/custom-notebook/). 

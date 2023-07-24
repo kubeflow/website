@@ -13,10 +13,10 @@ Read the following tutorials to learn more about using Kubeflow Fairing to train
 and deploy on various environments such as on the Google Cloud Platform (GCP).
 
 *  Learn how to [train and deploy a model on GCP from a local
-   notebook][gcp-local].
-*  Learn how to [train and deploy a model on GCP from a notebook hosted on
+   workbench][gcp-local].
+*  Learn how to [train and deploy a model on GCP from a workbench hosted on
    Kubeflow][gcp-kubeflow].
-*  Learn how to [train and deploy a model on Azure from a notebook hosted on
+*  Learn how to [train and deploy a model on Azure from a workbench hosted on
    Kubeflow][azure-fairing].
 
 [gcp-local]: /docs/external-add-ons/fairing/gcp/tutorials/gcp-local-notebook/

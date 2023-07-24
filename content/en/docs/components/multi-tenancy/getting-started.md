@@ -29,36 +29,36 @@ to which you have view or modify access.
   alt="Select active profile "
   class="mt-3 mb-3 border border-info rounded">
 
-This guide illustrates the user isolation functionality using the Jupyter
-notebooks service which is the first service in the system to have full
+This guide illustrates the user isolation functionality using the Kubeflow
+workbenches service which is the first service in the system to have full
 integration with the multi-user isolation functionality.
 
-After you select an active profile, the Notebooks Servers UI
-displays only the active notebook servers in the currently selected
-profile. All other notebook servers remain hidden from you. If you switch
-the active profile, the view switches the list of active notebooks
-appropriately. You can connect to any of the listed notebook servers and
-view and modify the existing Jupyter notebooks available in the server.
+After you select an active profile, the Workbenches Servers UI
+displays only the active workbench servers in the currently selected
+profile. All other workbench servers remain hidden from you. If you switch
+the active profile, the view switches the list of active workbenches
+appropriately. You can connect to any of the listed workbench servers and
+view and modify the existing Kubeflow workbenches available in the server.
 
-For example, the following image shows the list of notebook servers available
+For example, the following image shows the list of workbench servers available
 in a user's primary profile:
 
 <img src="/docs/images/notebooks-in-profile.png"
-  alt="List of notebooks in active profile "
+  alt="List of workbenches in active profile "
   class="mt-3 mb-3 border border-info rounded">
 
-When an unauthorized user accesses the notebooks in this profile, they see an
+When an unauthorized user accesses the workbenches in this profile, they see an
 error:
 
 <img src="/docs/images/notebook-access-error.png"
-  alt="Error listing notebooks in inacessible profile"
+  alt="Error listing workbenches in inacessible profile"
   class="mt-3 mb-3 border border-info rounded">
 
-When you create Jupyter notebook servers from the Notebooks Servers UI,
-the notebook pods are created in your active profile. If you don't have
+When you create workbench servers from the Workbenches Servers UI,
+the workbench pods are created in your active profile. If you don't have
 modify access to the active profile, you can only browse currently active
-notebook servers and access the existing notebooks but cannot create
-new notebook servers in that profile. You can create notebook
+workbench servers and access the existing workbenches but cannot create
+new workbench servers in that profile. You can create workbench
 servers in your primary profile which you have view and modify access to.
 
 ## Onboarding a new user
@@ -285,8 +285,8 @@ profiles in the system along with their contributors.
 
 
 The contributors have access to all the Kubernetes resources in the
-namespace and can create notebook servers as well as access
-existing notebooks.
+namespace and can create workbench servers as well as access
+existing workbenches.
 
 ## Managing contributors manually
 

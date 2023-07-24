@@ -4,7 +4,7 @@ description = "Help diagnose and fix issues you may encounter in your Kubeflow d
 weight = 100
                     
 +++
-### Jupyter Notebook ‘is not a valid page’ when accessing notebook
+### Jupyter Notebook ‘is not a valid page’ when accessing workbench
 Restarting the ambassador pods will often fix this issue:
 `kubectl delete pods -l service=ambassador`
 

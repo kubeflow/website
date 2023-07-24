@@ -90,7 +90,7 @@ components are useful at each stage:
 To learn more, read the following guides to the Kubeflow components:
 
 * Kubeflow includes services for spawning and managing 
-  [Jupyter notebooks](/docs/components/notebooks/). Use notebooks for interactive data 
+  [Workbenches](/docs/components/notebooks/). Use workbenches for interactive data 
   science and experimenting with ML workflows.
 
 * [Kubeflow Pipelines](/docs/components/pipelines/) is a platform for 

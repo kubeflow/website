@@ -1,6 +1,6 @@
 +++
-title = "Train and Deploy on GCP from a Kubeflow Notebook"
-description = "Use Kubeflow Fairing to train and deploy a model on Google Cloud Platform (GCP) from a notebook that is hosted on Kubeflow"
+title = "Train and Deploy on GCP from a Kubeflow Workbench"
+description = "Use Kubeflow Fairing to train and deploy a model on Google Cloud Platform (GCP) from a workbench that is hosted on Kubeflow"
 weight = 35
                     
 +++
@@ -9,22 +9,22 @@ This guide introduces you to using [Kubeflow Fairing][fairing-repo] to train and
 deploy a model to Kubeflow on Google Kubernetes Engine (GKE) and 
 Google AI Platform Training.
 
-Your Kubeflow deployment includes services for spawning and managing Jupyter
-notebooks. Kubeflow Fairing is preinstalled in the Kubeflow notebooks, along
+Your Kubeflow deployment includes services for spawning and managing workbenches.
+Kubeflow Fairing is preinstalled in the Kubeflow workbenches, along
 with a number of machine learning (ML) libraries.
 
-## Set up Kubeflow and access the Kubeflow notebook environment
+## Set up Kubeflow and access the Kubeflow workbench environment
 
-Follow the [Kubeflow notebook setup guide](/docs/components/notebooks/setup/)
-to install Kubeflow, access your Kubeflow hosted notebook environment, and 
-create a new notebook server.
+Follow the [Kubeflow workbench setup guide](/docs/components/notebooks/setup/)
+to install Kubeflow, access your Kubeflow hosted workbench environment, and 
+create a new workbench server.
 
 When selecting a Docker image and other settings for the baseline deployment
-of your notebook server, you can leave all the settings at the default value.
+of your workbench server, you can leave all the settings at the default value.
 
 ## Run the example notebook
 
-As an example, this guide uses a notebook that is hosted on Kubeflow
+As an example, this guide uses a Jupyter notebook that is hosted on Kubeflow
 to demonstrate how to:
 
 *  Train an XGBoost model in a notebook,

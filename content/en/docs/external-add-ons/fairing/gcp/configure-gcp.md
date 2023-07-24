@@ -12,14 +12,14 @@ deploy a model on Kubeflow on Google Kubernetes Engine (GKE).
 If you have not installed Kubeflow Fairing, follow the guide to [installing
 Kubeflow Fairing][fairing-install] before continuing.
 
-## Using Kubeflow Fairing with Kubeflow notebooks
+## Using Kubeflow Fairing with Kubeflow workbenches
 
-The standard Kubeflow notebook images include Kubeflow Fairing and come
+The standard Kubeflow workbench images include Kubeflow Fairing and come
 preconfigured to run training jobs on your Kubeflow cluster. No additional
 configuration is required.
 
-If your Kubeflow notebook server was built from a custom Jupyter Docker image,
-follow the instruction in this guide to configure your notebooks environment
+If your Kubeflow workbench server was built from a custom Docker image,
+follow the instruction in this guide to configure your workbenches environment
 with access to your Kubeflow environment.
 
 ## Install and configure the Google Cloud SDK

@@ -546,7 +546,7 @@ def my_pipeline():
         parameter_1='5',
     )
 
-# If you run this command on a Jupyter notebook running on Kubeflow,
+# If you run this command on a workbench running on Kubeflow,
 # you can exclude the host parameter.
 # client = kfp.Client()
 client = kfp.Client(host='<your-kubeflow-pipelines-host-name>')

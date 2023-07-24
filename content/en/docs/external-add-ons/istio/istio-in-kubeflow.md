@@ -58,7 +58,7 @@ Kubeflow uses Istio as a uniform way to secure, connect, and monitor microservic
 
 The following diagram illustrates how user requests interact with services in
 Kubeflow. It walks through the process when a user requests to create a new
-notebook server via the Notebooks Servers UI accessible through the Kubeflow Central Dashboard.
+workbench server via the Workbenches Servers UI accessible through the Kubeflow Central Dashboard.
 
 <!--
 Note for authors: The source of the diagram is
@@ -78,11 +78,11 @@ in the "Doc diagrams" folder in the public Kubeflow shared drive.
      the access to the service and the requested namespace. If either of those
      are inaccessible to the user, an error response is sent back. 
   1. If the request is validated, it is forwarded to the appropriate controller
-     (Notebooks Controller in this case).
-  1. Notebooks Controller validates authorization with Kubernetes RBAC and creates the
-     notebook pod in the namespace that the user requested.
+     (Workbenches Controller in this case).
+  1. Workbenches Controller validates authorization with Kubernetes RBAC and creates the
+     workbench pod in the namespace that the user requested.
 
-Further actions by the user with the notebook to create training jobs or other
+Further actions by the user with the workbench to create training jobs or other
 resources in the namespace go through a similar process. Profiles Controller
 manages the creation of profiles, and creates and applies appropriate Istio
 policies. For more details, please see [multi-user
@@ -93,4 +93,4 @@ isolation](/docs/components/multi-tenancy/).
 
 Currently it is not possible to deploy Kubeflow without Istio. Kubeflow needs the Istio
 Custom Resource Definitions (CRDs) to express the new route to access the
-created Notebook from the Gateway. 
+created Workbench from the Gateway. 

@@ -40,7 +40,7 @@ data:
         {
           "type": "item",
           "link": "/jupyter/",
-          "text": "Notebooks",
+          "text": "Workbenches",
           "icon": "book"
         },
 .
@@ -98,7 +98,7 @@ data:
         {
           "type": "item",
           "link": "/jupyter/",
-          "text": "Notebooks",
+          "text": "Workbenches",
           "icon": "book"
         },
 .

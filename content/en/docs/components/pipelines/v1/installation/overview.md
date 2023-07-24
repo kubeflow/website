@@ -88,9 +88,9 @@ Notes on specific features
 :
   * After deployment, your Kubernetes cluster contains Kubeflow Pipelines only.
   It does not include the other Kubeflow components.
-  For example, to use a Jupyter Notebook, you must use a local notebook or a
-  hosted notebook in a cloud service such as the [AI Platform
-  Notebooks](https://cloud.google.com/ai-platform/notebooks/docs/).
+  For example, to use a Jupyter Notebook, you must use a local workbench or a
+  hosted workbench in a cloud service such as the [AI Platform
+  Workbenches](https://cloud.google.com/ai-platform/notebooks/docs/).
   * Kubeflow Pipelines multi-user support is **not available** in standalone, because
   multi-user support depends on other Kubeflow components.
 
@@ -143,7 +143,7 @@ Notes on specific features
   * After deployment, your Kubernetes cluster includes all the
   [Kubeflow components](/docs/components/).
   For example, you can use the Jupyter notebook services
-  [deployed with Kubeflow](/docs/components/notebooks/) to create one or more notebook
+  [deployed with Kubeflow](/docs/components/notebooks/) to create one or more workbench
   servers in your Kubeflow cluster.
   * Kubeflow Pipelines multi-user support is **only available** in full Kubeflow. It supports
   using a single Kubeflow Pipelines control plane to orchestrate user pipeline
@@ -177,7 +177,7 @@ Interfaces
     services
   * Kubeflow Pipelines UI via the **Open Pipelines Dashboard** link in the
     Google Cloud Console
-  * Kubeflow Pipelines SDK in Cloud Notebooks
+  * Kubeflow Pipelines SDK in Cloud Workbenches
   * Kubeflow Pipelines endpoint of your instance is auto-configured for you
 
 Release Schedule
@@ -203,6 +203,6 @@ Notes on specific features
   * After deployment, your Kubernetes cluster contains Kubeflow Pipelines only.
   It does not include the other Kubeflow components.
   For example, to use a Jupyter Notebook, you can use [AI Platform
-  Notebooks](https://cloud.google.com/ai-platform/notebooks/docs/).
+  Workbenches](https://cloud.google.com/ai-platform/notebooks/docs/).
   * Kubeflow Pipelines multi-user support is **not available** in AI Platform Pipelines, because
   multi-user support depends on other Kubeflow components.
