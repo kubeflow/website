@@ -12,9 +12,9 @@ Although a KFP pipeline decorated with the `@dsl.pipeline` decorator looks like 
 2. Looping
 3. Exit handling
 
-### Conditions (dsl.Condition)
+### Conditions (dsl.If, dsl.Elif, dsl.Else)
 
-The [`dsl.Condition`][dsl-condition] context manager enables conditional execution of tasks within its scope based on the output of an upstream task or pipeline input parameter. The context manager takes two arguments: a required `condition` and an optional `name`. The `condition` is a comparative expression where at least one of the two operands is an output from an upstream task or a pipeline input parameter.
+The [`dsl.If`][dsl-if] context manager enables conditional execution of tasks within its scope based on the output of an upstream task or pipeline input parameter. The context manager takes two arguments: a required `condition` and an optional `name`. The `condition` is a comparative expression where at least one of the two operands is an output from an upstream task or a pipeline input parameter.
 
 In the following pipeline, `conditional_task` only executes if `coin_flip_task` has the output `'heads'`.
 
@@ -24,10 +24,29 @@ from kfp import dsl
 @dsl.pipeline
 def my_pipeline():
     coin_flip_task = flip_coin()
-    with dsl.Condition(coin_flip_task.output == 'heads'):
+    with dsl.If(coin_flip_task.output == 'heads'):
         conditional_task = my_comp()
 ```
 
+You may also use [`dsl.Elif`][dsl-elif] and [`dsl.Else`][dsl-else] context managers **immediately downstream** of `dsl.If` for additional conditional control flow functionality:
+
+```python
+from kfp import dsl
+
+@dsl.pipeline
+def my_pipeline():
+    coin_flip_task = flip_three_sided_coin()
+    with dsl.If(coin_flip_task.output == 'heads'):
+        print_comp(text='Got heads!')
+    with dsl.Elif(coin_flip_task.output == 'tails'):
+        print_comp(text='Got tails!')
+    with dsl.Else():
+        print_comp(text='Draw!')
+```
+
+{{% alert title="Deprecated" color="warning" %}}
+dsl.Condition is deprecated in favor of the functionally identical dsl.If, which is concise, Pythonic, and consistent with the dsl.Elif and dsl.Else objects.
+{{% /alert %}}
 ### Parallel looping (dsl.ParallelFor)
 
 The [`dsl.ParallelFor`][dsl-parallelfor] context manager allows parallel execution of tasks over a static set of items. The context manager takes three arguments: a required `items`, an optional `parallelism`, and an optional `name`. `items` is the static set of items to loop over and `parallelism` is the maximum number of concurrent iterations permitted while executing the `dsl.ParallelFor` group. `parallelism=0` indicates unconstrained parallelism.
@@ -170,3 +189,6 @@ Note that the component used for the caller task (`print_op` in the example abov
 [ignore-upstream-failure]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.PipelineTask.ignore_upstream_failure
 [dsl-pipelinetask]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.PipelineTask
 [dsl-pipelinetask-after]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.PipelineTask.after
+[dsl-if]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.If
+[dsl-elif]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Elif
+[dsl-else]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Else
