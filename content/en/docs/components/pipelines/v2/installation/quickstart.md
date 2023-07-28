@@ -34,7 +34,7 @@ This step demonstrates how to deploy a KFP standalone instance into an existing 
 Run the following script after replacing `PIPELINE_VERSION` with the desired version of KFP (release are listed [here][releases]):
 
 ```shell
-export PIPELINE_VERSION="2.0.0"
+export PIPELINE_VERSION={{% pipelines/latest-version %}}
 
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
 kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
