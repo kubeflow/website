@@ -152,146 +152,186 @@ and give them access to submit pipelines in their own namespace.
 <summary>Click to expand</summary>
 <hr>
 
-The process to authenticate the Pipelines SDK from outside the cluster in multi-user mode will vary by distribution:
+When running the Kubeflow Pipelines SDK from outside a multi-user Kubeflow cluster (e.g. on a laptop), the `kfp.Client()` will need to be initialized with credentials.
 
-* [Kubeflow on Google Cloud](/docs/distributions/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-in-a-full-kubeflow-deployment)
-* [Kubeflow on AWS](/docs/distributions/aws/pipeline/#authenticate-kubeflow-pipeline-using-sdk-outside-cluster)
-* [Kubeflow on Azure](https://awslabs.github.io/kubeflow-manifests/docs/component-guides/pipelines/)
-* [Kubeflow on IBM Cloud](/docs/distributions/ibm/pipelines/#2-authenticating-multi-user-kubeflow-pipelines-with-the-sdk)
+{{% alert title="Tip" color="info" %}}
+The process required will vary depending on which [distribution of Kubeflow](/docs/started/installing-kubeflow/#packaged-distributions-of-kubeflow) is being used.
+{{% /alert %}}
 
 ### Example for Dex
 
-For the deployments that use [Dex](https://dexidp.io/) as their identity provider, this example demonstrates how to authenticate the Pipelines SDK from outside the cluster.
+This example is for distributions of Kubeflow which use [Dex](https://dexidp.io/) as their identity provider and have `staticPasswords` or `ldap` configured.
 
-__Step 1:__ expose your `istio-ingressgateway` service locally (if your Kubeflow Istio gateway is not already exposed on a domain)
+##### Step 1:
+
+Expose your `istio-ingressgateway` service locally (if your Kubeflow Istio gateway is not already exposed on a public domain).
 
 ```bash
 # `svc/istio-ingressgateway` may be called something else, or use different ports
 kubectl port-forward --namespace istio-system svc/istio-ingressgateway 8080:80
 ```
 
-__Step 2:__ this Python code defines a `get_istio_auth_session()` function that returns a session cookie by authenticating with dex
+##### Step 2:
+
+This Python code defines a `KFPClientManager()` class which creates authenticated `kfp.Client()` instances when `get_kfp_client()` is called.
 
 ```python
 import re
-import requests
 from urllib.parse import urlsplit
 
-def get_istio_auth_session(url: str, username: str, password: str) -> dict:
+import kfp
+import requests
+import urllib3
+
+
+class KFPClientManager:
     """
-    Determine if the specified URL is secured by Dex and try to obtain a session cookie.
-    WARNING: only Dex `staticPasswords` and `LDAP` authentication are currently supported
-             (we default default to using `staticPasswords` if both are enabled)
-
-    :param url: Kubeflow server URL, including protocol
-    :param username: Dex `staticPasswords` or `LDAP` username
-    :param password: Dex `staticPasswords` or `LDAP` password
-    :return: auth session information
+    A class that creates `kfp.Client` instances with Dex authentication.
     """
-    # define the default return object
-    auth_session = {
-        "endpoint_url": url,    # KF endpoint URL
-        "redirect_url": None,   # KF redirect URL, if applicable
-        "dex_login_url": None,  # Dex login URL (for POST of credentials)
-        "is_secured": None,     # True if KF endpoint is secured
-        "session_cookie": None  # Resulting session cookies in the form "key1=value1; key2=value2"
-    }
 
-    # use a persistent session (for cookies)
-    with requests.Session() as s:
+    def __init__(
+        self,
+        api_url: str,
+        dex_username: str,
+        dex_password: str,
+        dex_auth_type: str = "local",
+        skip_tls_verify: bool = False,
+    ):
+        """
+        Initialize the KfpClient
 
-        ################
-        # Determine if Endpoint is Secured
-        ################
-        resp = s.get(url, allow_redirects=True)
+        :param api_url: the Kubeflow Pipelines API URL
+        :param skip_tls_verify: if True, skip TLS verification
+        :param dex_username: the Dex username
+        :param dex_password: the Dex password
+        :param dex_auth_type: the auth type to use if Dex has multiple enabled, one of: ['ldap', 'local']
+        """
+        self._api_url = api_url
+        self._skip_tls_verify = skip_tls_verify
+        self._dex_username = dex_username
+        self._dex_password = dex_password
+        self._dex_auth_type = dex_auth_type
+        self._client = None
+
+        # ensure `dex_default_auth_type` is valid
+        if self._dex_auth_type not in ["ldap", "local"]:
+            raise ValueError(
+                f"Invalid `dex_auth_type` '{self._dex_auth_type}', must be one of: ['ldap', 'local']"
+            )
+
+    def _get_session_cookies(self) -> str:
+        """
+        Get the session cookies by authenticating against Dex
+        :return: a string of session cookies in the form "key1=value1; key2=value2"
+        """
+
+        # use a persistent session (for cookies)
+        s = requests.Session()
+
+        # disable SSL verification, if requested
+        if self._skip_tls_verify:
+            s.verify = False
+            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+        # GET the api_url, which should redirect to Dex
+        resp = s.get(self._api_url, allow_redirects=True)
         if resp.status_code != 200:
             raise RuntimeError(
-                f"HTTP status code '{resp.status_code}' for GET against: {url}"
+                f"HTTP status code '{resp.status_code}' for GET against: {self._api_url}"
             )
 
-        auth_session["redirect_url"] = resp.url
-
-        # if we were NOT redirected, then the endpoint is UNSECURED
+        # if we were NOT redirected, then the endpoint is unsecured
         if len(resp.history) == 0:
-            auth_session["is_secured"] = False
-            return auth_session
-        else:
-            auth_session["is_secured"] = True
-
-        ################
-        # Get Dex Login URL
-        ################
-        redirect_url_obj = urlsplit(auth_session["redirect_url"])
+            # no cookies are needed
+            return ""
 
         # if we are at `/auth?=xxxx` path, we need to select an auth type
-        if re.search(r"/auth$", redirect_url_obj.path): 
-            
-            #######
-            # TIP: choose the default auth type by including ONE of the following
-            #######
-            
-            # OPTION 1: set "staticPasswords" as default auth type
-            redirect_url_obj = redirect_url_obj._replace(
-                path=re.sub(r"/auth$", "/auth/local", redirect_url_obj.path)
+        url_obj = urlsplit(resp.url)
+        if re.search(r"/auth$", url_obj.path):
+            url_obj = url_obj._replace(
+                path=re.sub(r"/auth$", f"/auth/{self._dex_auth_type}", url_obj.path)
             )
-            # OPTION 2: set "ldap" as default auth type 
-            # redirect_url_obj = redirect_url_obj._replace(
-            #     path=re.sub(r"/auth$", "/auth/ldap", redirect_url_obj.path)
-            # )
-            
-        # if we are at `/auth/xxxx/login` path, then no further action is needed (we can use it for login POST)
-        if re.search(r"/auth/.*/login$", redirect_url_obj.path):
-            auth_session["dex_login_url"] = redirect_url_obj.geturl()
 
-        # else, we need to be redirected to the actual login page
+        # if we are at `/auth/xxxx/login` path, then we are at the login page
+        if re.search(r"/auth/.*/login$", url_obj.path):
+            dex_login_url = url_obj.geturl()
         else:
-            # this GET should redirect us to the `/auth/xxxx/login` path
-            resp = s.get(redirect_url_obj.geturl(), allow_redirects=True)
+            # otherwise, we need to follow a redirect to the login page
+            resp = s.get(url_obj.geturl(), allow_redirects=True)
             if resp.status_code != 200:
                 raise RuntimeError(
-                    f"HTTP status code '{resp.status_code}' for GET against: {redirect_url_obj.geturl()}"
+                    f"HTTP status code '{resp.status_code}' for GET against: {url_obj.geturl()}"
                 )
+            dex_login_url = resp.url
 
-            # set the login url
-            auth_session["dex_login_url"] = resp.url
-
-        ################
-        # Attempt Dex Login
-        ################
+        # attempt Dex login
         resp = s.post(
-            auth_session["dex_login_url"],
-            data={"login": username, "password": password},
-            allow_redirects=True
+            dex_login_url,
+            data={"login": self._dex_username, "password": self._dex_password},
+            allow_redirects=True,
         )
-        if len(resp.history) == 0:
+        if resp.status_code != 200:
             raise RuntimeError(
-                f"Login credentials were probably invalid - "
-                f"No redirect after POST to: {auth_session['dex_login_url']}"
+                f"HTTP status code '{resp.status_code}' for POST against: {dex_login_url}"
             )
 
-        # store the session cookies in a "key1=value1; key2=value2" string
-        auth_session["session_cookie"] = "; ".join([f"{c.name}={c.value}" for c in s.cookies])
+        # if we were NOT redirected, then the login credentials were probably invalid
+        if len(resp.history) == 0:
+            raise RuntimeError(
+                f"Login credentials are probably invalid - "
+                f"No redirect after POST to: {dex_login_url}"
+            )
 
-    return auth_session
+        return "; ".join([f"{c.name}={c.value}" for c in s.cookies])
+
+    def _create_kfp_client(self) -> kfp.Client:
+        try:
+            session_cookies = self._get_session_cookies()
+        except Exception as ex:
+            raise RuntimeError(f"Failed to get Dex session cookies") from ex
+
+        # monkey patch the kfp.Client to support disabling SSL verification
+        # kfp only added support in v2: https://github.com/kubeflow/pipelines/pull/7174
+        original_load_config = kfp.Client._load_config
+
+        def patched_load_config(client_self, *args, **kwargs):
+            config = original_load_config(client_self, *args, **kwargs)
+            config.verify_ssl = not self._skip_tls_verify
+            return config
+
+        patched_kfp_client = kfp.Client
+        patched_kfp_client._load_config = patched_load_config
+
+        return patched_kfp_client(
+            host=self._api_url,
+            cookies=session_cookies,
+        )
+
+    def get_kfp_client(self) -> kfp.Client:
+        """Get a newly authenticated Kubeflow Pipelines client."""
+        return self._create_kfp_client()
 ```
 
-__Step 3:__ this Python code uses the above `get_istio_auth_session()` function to create a `kfp.Client()`
+##### Step 3:
+
+This Python code uses the previously defined `KFPClientManager()` class to create an authenticated `kfp.Client()`.
 
 ```python
-import kfp
-
-KUBEFLOW_ENDPOINT = "http://localhost:8080"
-KUBEFLOW_USERNAME = "user@example.com"
-KUBEFLOW_PASSWORD = "12341234"
-
-auth_session = get_istio_auth_session(
-    url=KUBEFLOW_ENDPOINT,
-    username=KUBEFLOW_USERNAME,
-    password=KUBEFLOW_PASSWORD
+# initialize a KFPClientManager
+kfp_client_manager = KFPClientManager(
+    api_url="http://localhost:8080/pipeline",
+    dex_username="user@example.com",
+    dex_password="12341234",
+    dex_auth_type="local",
+    skip_tls_verify=False,
 )
 
-client = kfp.Client(host=f"{KUBEFLOW_ENDPOINT}/pipeline", cookies=auth_session["session_cookie"])
-print(client.list_experiments())
+# get an authenticated KFP client
+# TIP: long-lived sessions might need to get a new client when their session expires
+kfp_client = kfp_client_manager.get_kfp_client()
+
+# test the client by listing experiments
+kfp_client.list_experiments(namespace="my-profile-namespace")
 ```
 
 </details>
