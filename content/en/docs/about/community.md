@@ -39,7 +39,7 @@ The official Kubeflow mailing list is a Google Group called [kubeflow-discuss](h
 ## Kubeflow Community Call
 
 The Kubeflow community holds weekly Zoom calls for all users and contributors to discuss issues/proposals and present demos/products.
-Kubeflow community calls are held each Tuesday and alternate between `8:00am San Francisco` time and `8:00am London` time.
+Kubeflow community calls are held every other Tuesday at `8:00am San Francisco` time.
 
 Joining the [mailing list](#kubeflow-mailing-list) should automatically add these events to your Google Calendar.
 Alternatively, you can manually subscribe to the ["Kubeflow Community" calendar](#kubeflow-community-calendars).
@@ -56,18 +56,24 @@ The following calendars are maintained by [Kubeflow Working Groups](#kubeflow-wo
 | Calendar | Link |
 | --- | --- |
 | Kubeflow Community | [Google Calendar](https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com/public/basic.ics), [Git Repo](https://github.com/kubeflow/community/tree/master/calendar))
-| Kubeflow Release Team | [Google Calendar](https://calendar.google.com/calendar/embed?src=c_c5i4tlc61oq2kehbhv9h3gveuo%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/c_c5i4tlc61oq2kehbhv9h3gveuo%40group.calendar.google.com/public/basic.ics))
 | Kubeflow AutoML WG | [Google Calendar](https://calendar.google.com/calendar/embed?src=d49nsiefsnfgkf91o0u8h2jhk4%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/d49nsiefsnfgkf91o0u8h2jhk4%40group.calendar.google.com/public/basic.ics))
-| Kubeflow Manifests WG | [Google Calendar](https://calendar.google.com/calendar/embed?src=c_mhv1kfv9na0pdile4qju6o5v60%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/c_mhv1kfv9na0pdile4qju6o5v60%40group.calendar.google.com/public/basic.ics))
-| Kubeflow Notebooks WG | [Google Calendar](https://calendar.google.com/calendar/embed?src=c_ptktc8ulh50db8bqvr9fd4ubqs%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/c_ptktc8ulh50db8bqvr9fd4ubqs%40group.calendar.google.com/public/basic.ics))
-| KServe Community | [Google Calendar](https://calendar.google.com/calendar/u/0/embed?src=4fqdmu5fp4l0bgdlf4lm1atnsl2j4612@import.calendar.google.com) ([iCal](https://wiki.lfaidata.foundation/rest/calendar-services/1.0/calendar/export/subcalendar/private/079ecdf0bfab77646c9e00df7b1c28f34f67f852.ics))
+| KServe Community | [Google Calendar](https://calendar.google.com/calendar/embed?src=4fqdmu5fp4l0bgdlf4lm1atnsl2j4612%40import.calendar.google.com) ([iCal](https://wiki.lfaidata.foundation/rest/calendar-services/1.0/calendar/export/subcalendar/private/079ecdf0bfab77646c9e00df7b1c28f34f67f852.ics))
 
 This is an aggregated view of the community calendars and should be displayed in your device's timezone.
 
 <div id="calendar-container"></div>
 <script type="text/javascript">
 const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&ctz=Australia%2FSydney&showPrint=0&showDate=1&mode=AGENDA&showTitle=0&src=NGZxZG11NWZwNGwwYmdkbGY0bG0xYXRuc2wyajQ2MTJAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&src=ZDQ5bnNpZWZzbmZna2Y5MW8wdThoMmpoazRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=a3ViZWZsb3cub3JnXzdsNXZuYm44c3VqMnNlMTBzZW44MWQ5NDI4QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y19taHYxa2Z2OW5hMHBkaWxlNHFqdTZvNXY2MEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19wdGt0Yzh1bGg1MGRiOGJxdnI5ZmQ0dWJxc0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19jNWk0dGxjNjFvcTJrZWhiaHY5aDNndmV1b0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
+const calender_src_list = [
+  // Kubeflow Community
+  "kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com",
+  // Kubeflow AutoML WG
+  "d49nsiefsnfgkf91o0u8h2jhk4%40group.calendar.google.com",
+  // KServe Community
+  "4fqdmu5fp4l0bgdlf4lm1atnsl2j4612%40import.calendar.google.com",
+];
+let calender_src = calender_src_list.map(src => `&src=${src}&color=%23A79B8E`).join('');
+const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&showPrint=0&showDate=1&mode=AGENDA&showTitle=0${calender_src}" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
 document.getElementById('calendar-container').innerHTML = html;
 </script>
 
