@@ -80,9 +80,9 @@ print(client.list_runs(namespace=user_namespace))
 ```
 
 {{% alert title="Tip" color="info" %}}
-* To set a default namespace for Pipelines SDK commands, use the [`kfp.Client().set_user_namespace()`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client.set_user_namespace) method, 
+* To set a default namespace for Pipelines SDK commands, use the [`kfp.Client().set_user_namespace()`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.Client.set_user_namespace) method, 
   this method stores your user namespace in a configuration file at `$HOME/.config/kfp/context.json`.
-* Detailed documentation for `kfp.Client()` can be found in the [Kubeflow Pipelines SDK Reference](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html).
+* Detailed documentation for `kfp.Client()` can be found in the [Kubeflow Pipelines SDK Reference](https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html).
 {{% /alert %}}
 
 ## When using the REST API

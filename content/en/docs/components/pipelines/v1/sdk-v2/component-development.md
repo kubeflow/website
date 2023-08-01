@@ -559,10 +559,10 @@ client.create_run_from_pipeline_func(my_pipeline, arguments={},
     mode=kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE)
 ```
 
-[kfp-load-comp-file]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.load_component_from_file
-[kfp-load-comp-url]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.load_component_from_url
-[kfp-load-comp-text]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.load_component_from_text
-[kfp-containerop]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp
+[kfp-load-comp-file]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.load_component_from_file
+[kfp-load-comp-url]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.load_component_from_url
+[kfp-load-comp-text]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.load_component_from_text
+[kfp-containerop]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.ContainerOp
 
 ## Organizing the component files
 

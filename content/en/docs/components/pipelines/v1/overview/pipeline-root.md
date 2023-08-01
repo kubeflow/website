@@ -41,7 +41,7 @@ If you want to specify the `pipeline root` to S3, please choose one of the follo
 `dsl.get_pipeline_conf().add_op_transformer(aws.use_aws_secret('xxx', ‘xxx’, ‘xxx’))`
   
 **references**:
-* [add-op-transformer](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.PipelineConf.add_op_transformer)
+* [add-op-transformer](https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.PipelineConf.add_op_transformer)
 * [use-aws-secret](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.extensions.html#kfp.aws.use_aws_secret)
 
 ## How to configure pipeline root
@@ -60,9 +60,9 @@ You can configure a pipeline root through the `kfp.dsl.pipeline` annotation when
 
 ####  Via Submitting a Pipeline through SDK
 You can configure pipeline root via `pipeline_root` argument when you submit a Pipeline using one of the following:
-* [create_run_from_pipeline_func](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client.create_run_from_pipeline_func)
-* [create_run_from_pipeline_package](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client.create_run_from_pipeline_package) 
-* [run_pipeline](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client.run_pipeline).
+* [create_run_from_pipeline_func](https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.Client.create_run_from_pipeline_func)
+* [create_run_from_pipeline_package](https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.Client.create_run_from_pipeline_package) 
+* [run_pipeline](https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.Client.run_pipeline).
 
 ####  Via Submitting a Pipeline Run through UI
 You can configure a pipeline root via the `pipeline_root` run parameters when you submit a pipeline run in the UI
