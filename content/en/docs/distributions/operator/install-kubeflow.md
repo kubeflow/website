@@ -12,7 +12,7 @@ This guide describes how to use the Kubeflow Operator to deploy Kubeflow. As men
 
 ## Deployment Instructions
 
-The Kubeflow Operator uses the KfDef as its custom resource. You can compose a KfDef configuration or pick a default KfDef from the Kubeflow [manifests](https://github.com/kubeflow/manifests/tree/master/kfdef) repo. Keep in mind choosing the release that will work with the Kubeflow Operator.
+The Kubeflow Operator uses the KfDef as its custom resource. You can compose a KfDef configuration or pick a default KfDef from the Kubeflow [-manifests-](https://github.com/kubeflow/manifests/tree/master/kfdef) repo. Keep in mind choosing the release that will work with the Kubeflow Operator.
 
 ### Prepare KfDef configuration
 
