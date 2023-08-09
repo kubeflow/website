@@ -201,9 +201,15 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/istio/*            /docs/external-add-ons/istio/:splat
 /docs/components/feature-store/*    /docs/external-add-ons/feature-store/:splat
 /docs/components/serving/*          /docs/external-add-ons/serving/:splat
+
+# redirect distribution pages to external websites
+/docs/distributions/aws/*           https://awslabs.github.io/kubeflow-manifests/
 /docs/distributions/azure/*         https://azure.github.io/kubeflow-aks/main/
+/docs/distributions/charmed/*       https://charmed-kubeflow.io/
+/docs/distributions/ekf/*           https://www.arrikto.com/enterprise-kubeflow/
 /docs/distributions/gke/*           https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/:splat
 /docs/distributions/ibm/*           https://ibm.github.io/manifests/
+/docs/distributions/nutanix/*       https://nutanix.github.io/kubeflow-manifests/
 
 # remove distributions section
 /docs/distributions/*    /docs/started/installing-kubeflow
