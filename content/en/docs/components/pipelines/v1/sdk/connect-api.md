@@ -173,7 +173,7 @@ kubectl port-forward --namespace istio-system svc/istio-ingressgateway 8080:80
 
 ##### Step 2:
 
-This Python code defines a `KFPClientManager()` class which creates authenticated `kfp.Client()` instances when `get_kfp_client()` is called.
+This Python code defines a `KFPClientManager()` class which creates authenticated `kfp.Client()` instances when `create_kfp_client()` is called.
 
 ```python
 import re
@@ -307,7 +307,7 @@ class KFPClientManager:
             cookies=session_cookies,
         )
 
-    def get_kfp_client(self) -> kfp.Client:
+    def create_kfp_client(self) -> kfp.Client:
         """Get a newly authenticated Kubeflow Pipelines client."""
         return self._create_kfp_client()
 ```
@@ -326,9 +326,9 @@ kfp_client_manager = KFPClientManager(
     skip_tls_verify=False,
 )
 
-# get an authenticated KFP client
+# get a newly authenticated KFP client
 # TIP: long-lived sessions might need to get a new client when their session expires
-kfp_client = kfp_client_manager.get_kfp_client()
+kfp_client = kfp_client_manager.create_kfp_client()
 
 # test the client by listing experiments
 kfp_client.list_experiments(namespace="my-profile-namespace")
