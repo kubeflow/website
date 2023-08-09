@@ -205,3 +205,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/distributions/azure/*         https://azure.github.io/kubeflow-aks/main/
 /docs/distributions/gke/*           https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/:splat
 /docs/distributions/ibm/*           https://ibm.github.io/manifests/
+
+# remove distributions section
+/docs/distributions/*    /docs/started/installing-kubeflow
