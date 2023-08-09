@@ -186,7 +186,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/started/kubeflow-overview  /docs/started/architecture
 
 # move istio from external-add-ons to multi-tenancy component
-/docs/external-add-ons/istio/     /docs/components/multi-tenancy/istio
 /docs/external-add-ons/istio/*    /docs/components/multi-tenancy/istio
 
 # ===============
