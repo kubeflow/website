@@ -11,8 +11,8 @@ weight = 9
 
 This section provides a summary of the available commands in the KFP CLI. For more comprehensive documentation about all the available commands in the KFP CLI, see [Command Line Interface][cli-reference-docs] in the [KFP SDK reference documentation][kfp-sdk-api-ref].
 
-## Usage
-The KFP CLI is installed with the KFP SDK as `kfp`.
+## Installation
+The KFP CLI is installed when you install the KFP SDK: `pip install kfp`.
 
 ### Check availability of KFP CLI
 
@@ -47,7 +47,7 @@ kfp run --help
 
 You can use the KFP CLI to do the following:
 
-- [Usage](#usage)
+- [Installation](#installation)
   - [Check availability of KFP CLI](#check-availability-of-kfp-cli)
   - [General syntax](#general-syntax)
   - [Get help for a command](#get-help-for-a-command)
