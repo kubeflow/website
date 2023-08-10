@@ -109,23 +109,6 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
       </tr>
       <tr>
-        <td>Arrikto Enterprise Kubeflow</td>
-        <td>Arrikto</td>
-        <td>
-          ◦ Amazon Elastic Kubernetes Service (EKS)
-          <br>
-          ◦ Azure Kubernetes Service (AKS)
-          <br>
-          ◦ Google Kubernetes Engine (GKE)
-        </td>
-        <td>
-          <a href="https://www.arrikto.com/enterprise-kubeflow/">Website</a>
-        </td>
-        <td>
-          1.5.0 <sup>[<a href="https://docs.arrikto.com/Changelog.html">Release Notes</a>]</sup>
-        </td>
-      </tr>
-      <tr>
         <td>Charmed Kubeflow</td>
         <td>Canonical</td>
         <td>
@@ -217,6 +200,23 @@ The following table lists <b>legacy distributions</b> which have <b>not had a re
         </td>
         <td>
           1.6.0
+        </td>
+      </tr>
+      <tr>
+        <td>Arrikto Enterprise Kubeflow</td>
+        <td>Arrikto</td>
+        <td>
+          ◦ Amazon Elastic Kubernetes Service (EKS)
+          <br>
+          ◦ Azure Kubernetes Service (AKS)
+          <br>
+          ◦ Google Kubernetes Engine (GKE)
+        </td>
+        <td>
+          <a href="https://www.arrikto.com/enterprise-kubeflow/">Website</a>
+        </td>
+        <td>
+          1.5.0 <sup>[<a href="https://docs.arrikto.com/Changelog.html">Release Notes</a>]</sup>
         </td>
       </tr>
     </tbody>
