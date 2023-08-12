@@ -5,8 +5,6 @@ weight = 1
 +++
 
 
-# Overview
-
 By default, Kubeflow Pipelines deployment manifests are provided for demo purpose.
 Demo manifests aim to provide the most flexible, cost efficient, and straightforward
 deployment steps for your first try. Make sure to evaluate the configuration and adjust
@@ -39,6 +37,7 @@ this value for your users, for example: `^.*.yourdomain.com$` in the
 #### Full fledged Kubeflow deployment
 
 For full fledged Kubeflow, each namespace is corrsponded to a project with the same name as namespace.
-To configure the `ALLOWED_ARTIFACT_DOMAIN_REGEX` value for user namespace, modify `ml-pipeline-ui-artifact`
-in [sync.py](https://github.com/kubeflow/pipelines/blob/b630d5c8ae7559be0011e67f01e3aec1946ef765/manifests/kustomize/base/installs/multi-user/pipelines-profile-controller/sync.py#L304-L310) for `ALLOWED_ARTIFACT_DOMAIN_REGEX` environment variable, just like Standalone Kubeflow Pipelines
+To configure the `ALLOWED_ARTIFACT_DOMAIN_REGEX` value for user namespace, add an entry in `ml-pipeline-ui-artifact`
+just like this example in [sync.py](https://github.com/kubeflow/pipelines/blob/b630d5c8ae7559be0011e67f01e3aec1946ef765/manifests/kustomize/base/installs/multi-user/pipelines-profile-controller/sync.py#L304-L310) for `ALLOWED_ARTIFACT_DOMAIN_REGEX` environment variable,
+the entry is identical to the environment variable instruction in Standalone Kubeflow Pipelines
 deployment.
