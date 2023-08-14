@@ -5,10 +5,9 @@ weight = 1
 +++
 
 
-By default, Kubeflow Pipelines deployment manifests are provided for demo purpose.
-Demo manifests aim to provide the most flexible, cost efficient, and straightforward
-deployment steps for your first try. Make sure to evaluate the configuration and adjust
-accordingly before you serve Kubeflow Pipelines in production. 
+By default, you can use Kubeflow Pipelines deployment manifests as provided,
+which aim to offer the a standard configuration for most use cases. At the meantime,
+customizations are available for more advanced usage.
 
 When deploying Kubeflow Pipelines servers, you can pass various environment variables
 to customize the behavior of servers.
@@ -30,7 +29,7 @@ is not allowed.
 #### Standalone Kubeflow Pipelines deployment
 
 By default, the value for `ALLOWED_ARTIFACT_DOMAIN_REGEX` is `"^.*$"`. You can customize
-this value for your users, for example: `^.*.yourdomain.com$` in the
+this value for your users, for example: `^.*.yourdomain$` in the
 [ml-pipeline-ui-deployment.yaml](https://github.com/kubeflow/pipelines/blob/b630d5c8ae7559be0011e67f01e3aec1946ef765/manifests/kustomize/base/pipeline/ml-pipeline-ui-deployment.yaml#L32-L50).
 
 
