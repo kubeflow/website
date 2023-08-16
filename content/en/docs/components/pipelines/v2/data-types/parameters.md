@@ -147,7 +147,7 @@ def my_pipeline() -> int:
 See [Container Components: Create component outputs][container-component-outputs] for more information on how to use `dsl.OutputPath`
 
 ### Multiple output parameters
-You can specify multiple named output parameters using a [`typing.NamedTuple`][typing-namedtuple]. You can access a named output using `.output['<output-key>']` on [`PipelineTask`][pipelinetask]:
+You can specify multiple named output parameters using a [`typing.NamedTuple`][typing-namedtuple]. You can access a named output using `.outputs['<output-key>']` on [`PipelineTask`][pipelinetask]:
 
 ```python
 from kfp import dsl

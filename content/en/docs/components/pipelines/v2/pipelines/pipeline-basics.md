@@ -81,7 +81,7 @@ When you call a component in a pipeline definition, it constructs a [`PipelineTa
 
 For a task with a single unnamed output indicated by a single return annotation, access the output using `PipelineTask.output`. This the case for the components `square`, `add`, and `square_root`, which each have one unnamed output.
 
-For tasks with multiple outputs or named outputs, access the output using `PipelineTask.output['<output-key>']`. Using named output parameters is described in more detail in [Data Types: Parameters][parameters-namedtuple].
+For tasks with multiple outputs or named outputs, access the output using `PipelineTask.outputs['<output-key>']`. Using named output parameters is described in more detail in [Data Types: Parameters][parameters-namedtuple].
 
 In the absence of data exchange, tasks will run in parallel for efficient pipeline executions. This is the case for `a_sq_task` and `b_sq_task` which do not exchange data.
 
