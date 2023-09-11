@@ -220,7 +220,7 @@ when designing a pipeline.
     public website. The function extracts the CSV files and then merges them
     into a single file.
 
-[container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp
+[container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.ContainerOp
 [component-spec]: https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/
 [python-function-component]: https://www.kubeflow.org/docs/components/pipelines/sdk/python-function-components/
 [component-dev]: https://www.kubeflow.org/docs/components/pipelines/sdk/component-development/
@@ -320,8 +320,8 @@ $ head merged_data.csv
 
 [web-download-component]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/components/web/Download/component.yaml
 [python-function-components]: https://www.kubeflow.org/docs/components/pipelines/sdk/python-function-components/
-[input-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html?highlight=inputpath#kfp.components.InputPath
-[output-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html?highlight=outputpath#kfp.components.OutputPath
+[input-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html?highlight=inputpath#kfp.components.InputPath
+[output-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html?highlight=outputpath#kfp.components.OutputPath
 
 
 ```python
@@ -344,8 +344,8 @@ def merge_csv(file_path: comp.InputPath('Tarball'),
     in, the path to save the component specification to, and a list of PyPI
     packages that need to be installed in the container at runtime.
 
-[create_component_from_func]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html#kfp.components.create_component_from_func
-[container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.dsl.html#kfp.dsl.ContainerOp
+[create_component_from_func]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.create_component_from_func
+[container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.ContainerOp
 
 
 ```python
@@ -362,7 +362,7 @@ create_step_merge_csv = kfp.components.create_component_from_func(
     to load the component specification YAML for any components that you are
     reusing in this pipeline.
 
-[load_component_from_url]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.components.html?highlight=load_component_from_url#kfp.components.load_component_from_url
+[load_component_from_url]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html?highlight=load_component_from_url#kfp.components.load_component_from_url
 
 
 ```python
@@ -421,7 +421,7 @@ See the guide to [getting started with the UI][quickstart].
 
 1.  Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
 
-[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.client.html#kfp.Client
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.Client
 [connect-api]: https://www.kubeflow.org/docs/components/pipelines/sdk/connect-api
 
 
