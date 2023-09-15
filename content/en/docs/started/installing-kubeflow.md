@@ -112,7 +112,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         <td>Charmed Kubeflow</td>
         <td>Canonical</td>
         <td>
-          All Conformant Kubernetes
+          All Certified Kubernetes Distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>]</sup>
         </td>
         <td>
           <a href="https://charmed-kubeflow.io/">Website</a>
@@ -124,7 +124,9 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
       <tr>
         <td>deployKF</td>
         <td>Aranui Solutions</td>
-        <td>All Conformant Kubernetes</td>
+        <td>
+          All Certified Kubernetes Distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>]</sup>
+        </td>
         <td>
           <a href="https://www.deploykf.org/">Website</a>
         </td>
@@ -180,7 +182,7 @@ The following table lists <b>legacy distributions</b> which have <b>not had a re
         <td>Argoflow</td>
         <td>Argoflow Users</td>
         <td>
-          All Conformant Kubernetes
+          All Certified Kubernetes Distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>]</sup>
         </td>
         <td>
           <a href="https://github.com/argoflow">Website</a>
