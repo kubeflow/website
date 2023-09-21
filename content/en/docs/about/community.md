@@ -21,6 +21,8 @@ The Official Kubeflow Slack is used for informal discussions among users and con
 | Kubeflow - Pipelines | [#kubeflow-pipelines](https://kubeflow.slack.com/archives/CE10KS9M4)
 | Kubeflow - Notebooks | [#kubeflow-notebooks](https://kubeflow.slack.com/archives/CESP7FCQ7)
 | Kubeflow - KFServing | [#kubeflow-kfserving](https://kubeflow.slack.com/archives/CH6E58LNP)
+| Kubeflow - Training Operator | [#wg-training](https://kubeflow.slack.com/archives/C018N3M6QKB)
+| Kubeflow - AutoML | [#wg-automl](https://kubeflow.slack.com/archives/C018PMV53NW)
 | Platform - AWS | [#platform-aws](https://kubeflow.slack.com/archives/CKBA5D0MU)
 | Platform - Azure | [#platform-azure](https://kubeflow.slack.com/archives/CUW6SLCPR)
 | Platform - GCP | [#platform-gcp](https://kubeflow.slack.com/archives/CKH7V1M7F)
@@ -56,7 +58,6 @@ The following calendars are maintained by [Kubeflow Working Groups](#kubeflow-wo
 | Calendar | Link |
 | --- | --- |
 | Kubeflow Community | [Google Calendar](https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com/public/basic.ics), [Git Repo](https://github.com/kubeflow/community/tree/master/calendar))
-| Kubeflow AutoML WG | [Google Calendar](https://calendar.google.com/calendar/embed?src=d49nsiefsnfgkf91o0u8h2jhk4%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/d49nsiefsnfgkf91o0u8h2jhk4%40group.calendar.google.com/public/basic.ics))
 | KServe Community | [Google Calendar](https://calendar.google.com/calendar/embed?src=4fqdmu5fp4l0bgdlf4lm1atnsl2j4612%40import.calendar.google.com) ([iCal](https://wiki.lfaidata.foundation/rest/calendar-services/1.0/calendar/export/subcalendar/private/079ecdf0bfab77646c9e00df7b1c28f34f67f852.ics))
 
 This is an aggregated view of the community calendars and should be displayed in your device's timezone.
@@ -67,8 +68,6 @@ const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const calender_src_list = [
   // Kubeflow Community
   "kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com",
-  // Kubeflow AutoML WG
-  "d49nsiefsnfgkf91o0u8h2jhk4%40group.calendar.google.com",
   // KServe Community
   "4fqdmu5fp4l0bgdlf4lm1atnsl2j4612%40import.calendar.google.com",
 ];
