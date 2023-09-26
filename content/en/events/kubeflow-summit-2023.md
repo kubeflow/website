@@ -134,27 +134,30 @@ Our summit will feature engaging sessions, hands-on workshops, and networking op
 
 Discover the latest advancements in Kubeflow, learn from industry leaders, and gain insights into real-world use cases. Whether you're a developer, data scientist, or IT professional, this event is designed to inspire and empower you.
 
-| Start Time | End Time | Speaker                  | Session                                                                             |
-|------------|----------|--------------------------|-------------------------------------------------------------------------------------|
-| 7:30 AM    | 8:15 AM  | -                        | Registration Open                                                                   |
-| 8:15 AM    | 8:30 AM  | Josh Bottom              | Welcome & Opening Remarks                                                           |
-| 8:30 AM    | 9:00 AM  | Oswaldo Gome             | Simplifying Machine Learning deployments through Cloud Native Buildpacks and KServe |
-| 9:00 AM    | 9:30 AM  | Omri Shiv                | The Journey to Supporting 60 Million DAUs starts by supporting 200                  |
-| 9:30 AM    | 10:00 AM | TBD                      | TBD                                                                                 |
-| -          | -        | -                        | -                                                                                   |
-| 10:00 AM   | 10:15 AM | -                        | Break                                                                               |
-| -          | -        | -                        | -                                                                                   |
-| 10:15 AM   | 12:00 PM | -                        | Kubeflow Working Group Updates and Discussion                                       |
-| -          | -        | -                        | -                                                                                   |
-| 12:00 PM   | 1:30 PM  | -                        | Lunch                                                                               |
-| -          | -        | -                        | -                                                                                   |
-| 1:30 PM    | 1:45 PM  | -                        | Ignite Style Lightning Talks (5 minutes each)                                       |
-| 1:45 PM    | 2:00 PM  | Mathew Wicks             | deployKF: A Better Way to Deploy Kubeflow and More                                  |
-| 2:00 PM    | 2:30 PM  | Jooho Lee                | Scale Your Models to Zero with Knative and Kserve                                   |
-| 2:30 PM    | 3:00 PM  | Qi Liu                   | Platform to Enable AI workload for Multi-Cloud with Hardware accelerations          |
-| -          | -        | -                        | -                                                                                   |
-| 3:15 PM    | 3:45 PM  | Michal Hucko             | How to use Kubeflow with MLflow                                                     |
-| 3:45 PM    | 4:15 PM  | Vendant Mahabaleshwarkar | Monitoring the performance of your deployed models using OpenDataHub                |
-| 4:15 PM    | 4:45 PM  | Tommy Li                 | Tekton Optimizations for Kubeflow Pipelines 2.0: Challenges and Benefits            |
-| -          | -        | -                        | -                                                                                   |
-| 4:45 PM    | 5:00 PM  | Josh Bottom              | Closing Remarks                                                                     |
+| Start Time | End Time | Speaker                  | Session                                                                              |
+|------------|----------|--------------------------|--------------------------------------------------------------------------------------|
+| 7:30 AM    | 8:15 AM  | -                        | Registration Open                                                                    |
+| 8:15 AM    | 8:30 AM  | Josh Bottom              | Welcome & Opening Remarks                                                            |
+| 8:30 AM    | 9:00 AM  | Oswaldo Gome             | Simplifying Machine Learning deployments through Cloud Native Buildpacks and KServe  |
+| 9:00 AM    | 9:30 AM  | Omri Shiv                | The Journey to Supporting 60 Million DAUs starts by supporting 200                   |
+| 9:30 AM    | 10:00 AM | TBD                      | TBD                                                                                  |
+| -          | -        | -                        | -                                                                                    |
+| 10:00 AM   | 10:15 AM | -                        | Break                                                                                |
+| -          | -        | -                        | -                                                                                    |
+| 10:15 AM   | 12:00 PM | -                        | Kubeflow Working Group Updates and Discussion                                        |
+| -          | -        | -                        | -                                                                                    |
+| 12:00 PM   | 1:30 PM  | -                        | Lunch                                                                                |
+| -          | -        | -                        | -                                                                                    |
+| 1:30 PM    | 1:45 PM  | -                        | Ignite Style Lightning Talks (5 minutes each)                                        |
+| 1:45 PM    | 2:00 PM  | Mathew Wicks             | deployKF: A Better Way to Deploy Kubeflow and More                                   |
+| 2:00 PM    | 2:30 PM  | Jooho Lee                | Scale Your Models to Zero with Knative and Kserve                                    |
+| 2:30 PM    | 3:00 PM  | Qi Liu                   | Platform to Enable AI workload for Multi-Cloud with Hardware accelerations           |
+| -          | -        | -                        | -                                                                                    |
+| 3:00 PM    | 3:15 PM  | -                        | Break                                                                                |
+| -          | -        | -                        | -                                                                                    |
+| 3:15 PM    | 3:45 PM  | Michal Hucko             | How to use Kubeflow with MLflow                                                      |
+| 3:45 PM    | 4:15 PM  | Vendant Mahabaleshwarkar | Monitoring the performance of your deployed models using OpenDataHub                 |
+| 4:15 PM    | 4:45 PM  | Tommy Li                 | Tekton Optimizations for Kubeflow Pipelines 2.0: Challenges and Benefits             |
+| 4:45 PM    | 5:15 PM  | Ajay Tyagi               | Scaling your Kubeflow Implementation Enterprise Wide, from tens to hundreds of users |
+| -          | -        | -                        | -                                                                                    |
+| 5:15 PM    | 5:30 PM  | Josh Bottom              | Closing Remarks                                                                      |
