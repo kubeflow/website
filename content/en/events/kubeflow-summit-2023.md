@@ -90,7 +90,7 @@ We are excited to announce the following speakers will be presenting at the Kube
       {{< card title="Josh Bottom" 
                subtitle="Kubeflow Steering Committee">}}
       {{< /card >}}
-      {{< card title="Oswaldo Gome" 
+      {{< card title="Oswaldo Gomez" 
                subtitle="Roche">}}
       {{< /card >}}
       {{< card title="Omri Shiv" 
@@ -138,7 +138,7 @@ Discover the latest advancements in Kubeflow, learn from industry leaders, and g
 |------------|----------|--------------------------|-------------------------------------------------------------------------------------|
 | 7:30 AM    | 8:15 AM  | -                        | Registration Open                                                                   |
 | 8:15 AM    | 8:30 AM  | Josh Bottom              | Welcome & Opening Remarks                                                           |
-| 8:30 AM    | 9:00 AM  | Oswaldo Gome             | Simplifying Machine Learning deployments through Cloud Native Buildpacks and KServe |
+| 8:30 AM    | 9:00 AM  | Oswaldo Gomez            | Simplifying Machine Learning deployments through Cloud Native Buildpacks and KServe |
 | 9:00 AM    | 9:30 AM  | Omri Shiv                | The Journey to Supporting 60 Million DAUs starts by supporting 200                  |
 | 9:30 AM    | 10:00 AM | TBD                      | TBD                                                                                 |
 | -          | -        | -                        | -                                                                                   |
