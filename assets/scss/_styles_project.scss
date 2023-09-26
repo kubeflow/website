@@ -1,4 +1,38 @@
 // --------------------------------------------------
+// fix header position
+// --------------------------------------------------
+@include media-breakpoint-up(md) {
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .td-navbar:not(.td-navbar-cover) {
+    position: unset;
+  }
+
+  .td-main {
+    main {
+      padding-top: 1rem;
+    }
+
+    .td-sidebar {
+      padding-top: 0rem;
+    }
+
+    .td-sidebar-toc {
+      padding-top: 1.25rem;
+    }
+
+  }
+
+  .td-outer {
+    height: 100%;
+  }
+}
+
+// --------------------------------------------------
 // remove whitespace after footer
 // --------------------------------------------------
 footer {
@@ -62,6 +96,7 @@ footer {
 
   .td-sidebar__inner {
     padding-top: 30px;
+    height: unset;
 
     @include media-breakpoint-down(md) {
       padding-top: 10px;
