@@ -24,7 +24,7 @@ Kubeflow is *the ML toolkit for Kubernetes*.
 The following diagram shows Kubeflow as a platform for arranging the
 components of your ML system on top of Kubernetes:
 
-<img src="/docs/images/kubeflow-overview-platform-diagram.svg" 
+<img src="/docs/images/kubeflow_architecture.drawio.svg" 
   alt="An architectural overview of Kubeflow on Kubernetes"
   class="mt-3 mb-3 border border-info rounded">
 
