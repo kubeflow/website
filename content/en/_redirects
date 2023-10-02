@@ -185,6 +185,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/about/kubeflow             /docs/started/introduction
 /docs/started/kubeflow-overview  /docs/started/architecture
 
+# ===============
 # IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
 # ===============
