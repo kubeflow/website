@@ -37,7 +37,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         <th>Name</th>
         <th>Maintainer</th>
         <th>Target Platform</th>
-        <th>Link</th>
+        <th>Links</th>
         <th>Kubeflow Version</th>
       </tr>
     </thead>
@@ -50,6 +50,8 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
         <td>
           <a href="https://awslabs.github.io/kubeflow-manifests">Website</a>
+          <br>
+          {{< github-repo-stars "awslabs/kubeflow-manifests" >}}
         </td>
         <td>
           {{% aws/latest-version %}} <sup>[<a href="https://github.com/awslabs/kubeflow-manifests/releases">Release Notes</a>]</sup>
@@ -63,6 +65,8 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
         <td>
           <a href="https://azure.github.io/kubeflow-aks/main">Website</a>
+          <br>
+          {{< github-repo-stars "azure/kubeflow-aks" >}}
         </td>
         <td>
           1.7.0 <sup>[<a href="https://github.com/Azure/kubeflow-aks/releases/tag/v1.7.0">Release Notes</a>]</sup>
@@ -77,6 +81,8 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
         <td>
           <a href="https://googlecloudplatform.github.io/kubeflow-gke-docs">Website</a>
+          <br>
+          {{< github-repo-stars "GoogleCloudPlatform/kubeflow-distribution" >}}
         </td>
         <td>
           1.7.0 <sup>[<a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/#170">Release Notes</a>]</sup>
@@ -90,6 +96,8 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
         <td>
           <a href="https://ibm.github.io/manifests/">Website</a>
+          <br>
+          {{< github-repo-stars "IBM/manifests" >}}
         </td>
         <td>
           {{% iks/latest-version %}} <sup>[<a href="https://github.com/IBM/manifests/releases/tag/v{{% iks/latest-version %}}">Release Notes</a>]</sup>
@@ -103,6 +111,8 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
         <td>
           <a href="https://nutanix.github.io/kubeflow-manifests">Website</a>
+          <br>
+          {{< github-repo-stars "nutanix/kubeflow-manifests" >}}
         </td>
         <td>
           1.7.0
@@ -116,6 +126,8 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
         <td>
           <a href="https://charmed-kubeflow.io/">Website</a>
+          <br>
+          {{< github-repo-stars "canonical/bundle-kubeflow" >}}
         </td>
         <td>
           1.7.0
@@ -129,6 +141,8 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
         <td>
           <a href="https://www.deploykf.org/">Website</a>
+          <br>
+          {{< github-repo-stars "deployKF/deployKF" >}}
         </td>
         <td>
           1.7.0 <sup>[<a href="https://www.deploykf.org/releases/version-matrix/#kubeflow-tools">Version Matrix</a>]</sup>
@@ -142,6 +156,8 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         </td>
         <td>
           <a href="https://github.com/oracle-devrel/kubeflow-oke">Website</a>
+          <br>
+          {{< github-repo-stars "oracle-devrel/kubeflow-oke" >}}
         </td>
         <td>
           1.6.0
@@ -153,6 +169,8 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
         <td>VMware vSphere</td>
         <td>
           <a href="https://vmware.github.io/vSphere-machine-learning-extension/">Website</a>
+          <br>
+          {{< github-repo-stars "vmware/vSphere-machine-learning-extension" >}}
         </td>
         <td>
           1.6.1
