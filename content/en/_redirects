@@ -210,6 +210,3 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/distributions/gke/*           https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/:splat
 /docs/distributions/ibm/*           https://ibm.github.io/manifests/
 /docs/distributions/nutanix/*       https://nutanix.github.io/kubeflow-manifests/
-
-# remove distributions section
-/docs/distributions/*    /docs/started/installing-kubeflow
