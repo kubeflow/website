@@ -179,6 +179,71 @@ t2 = comp().after(t1)
 
 This usage was primarily used by KFP SDK v1 users who implemented a custom `dsl.ParallelFor` fan-in. KFP SDK v2 natively supports fan-in from [`dsl.ParallelFor`][dsl-parallelfor] using [`dsl.Collected`][dsl-collected]. See [Control Flow][parallelfor-control-flow] user docs for instructions.
 
+#### Importer component import statement
+
+The location of the `importer_node` object has changed.
+
+**Change:** Import from `kfp.dsl`.
+
+<table>
+<tr>
+<th>Previous usage</th>
+<th>New usage</th>
+</tr>
+<tr>
+<td>
+
+```python
+from kfp.components import importer_node
+```
+
+</td>
+<td>
+
+```python
+from kfp.dsl import importer_node
+```
+
+</td>
+</tr>
+</table>
+
+#### Adding node selector constraint/accelerator
+
+The task method `.add_node_selector_constraint` is deprecated in favor of `.add_node_selector_constraint`. Compared to the previous implementation of `.add_node_selector_constraint`, both methods have the `label_name` parameter removed and the `value` parameter is replaced by the parameter `accelerator`.
+
+**Change:** Use `task.set_accelerator_type(accelerator=...)`. Provide the previous `value` argument to the `accelerator` parameter. Omit the `label_name`.
+
+<table>
+<tr>
+<th>Previous usage</th>
+<th>New usage</th>
+</tr>
+<tr>
+<td>
+
+```python
+@dsl.pipeline
+def my_pipeline():
+    task.add_node_selector_constraint(
+        label_name='cloud.google.com/gke-accelerator',
+        value='NVIDIA_TESLA_A100',
+    )
+```
+
+</td>
+<td>
+
+```python
+@dsl.pipeline
+def my_pipeline():
+    task.set_accelerator_type(accelerator="NVIDIA_TESLA_K80")
+```
+
+</td>
+</tr>
+</table>
+
 ## SDK v1 to SDK v2
 
 KFP SDK v2 is generally not backward compatible with user code that uses the KFP SDK v1 main namespace. This section describes some of the important breaking changes and migration steps to upgrade to KFP SDK v2.
@@ -257,6 +322,40 @@ def pipeline():
 </td>
 </tr>
 </table>
+
+#### Keyword arguments required
+
+**Affects:** KFP OSS users and Vertex AI Pipelines users
+
+Keyword arguments are required when instantiating components as tasks within a pipeline definition.
+
+**Change:** Use keyword arguments.
+
+<table>
+<tr>
+<th>Previous usage</th>
+<th>New usage</th>
+</tr>
+<tr>
+<td>
+
+```python
+def my_pipeline():
+    trainer_component(100, 0.1)
+```
+
+</td>
+<td>
+
+```python
+def my_pipeline():
+    trainer_component(epochs=100, learning_rate=0.1)
+```
+
+</td>
+</tr>
+</table>
+
 
 #### ContainerOp support
 
