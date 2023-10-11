@@ -15,6 +15,79 @@
 /docs/guides/components/components     /docs/components/
 /docs/guides/pipelines/deploy-pipelines-service/  /docs/components/pipelines/pipelines-quickstart/
 
+# Removed the `kpf.` prefix from some filenames when we transitioned from 1.8 to 2.0
+# Fixes https://github.com/kubeflow/website/issues/3584
+
+/1.8.13/source/dsl.html    /1.8.13/source/kfp.dsl.html
+/1.8.13/source/dsl.html    /1.8.13/source/kfp.dsl.html
+/1.8.13/source/compiler.html    /1.8.13/source/kfp.compiler.html
+/1.8.13/source/components.html    /1.8.13/source/kfp.components.html
+/1.8.13/source/client.html    /1.8.13/source/kfp.client.html
+/1.8.13/source/registry.html    /1.8.13/source/kfp.registry.html
+
+/1.8.14/source/dsl.html    /1.8.14/source/kfp.dsl.html
+/1.8.14/source/dsl.html    /1.8.14/source/kfp.dsl.html
+/1.8.14/source/compiler.html    /1.8.14/source/kfp.compiler.html
+/1.8.14/source/components.html    /1.8.14/source/kfp.components.html
+/1.8.14/source/client.html    /1.8.14/source/kfp.client.html
+/1.8.14/source/registry.html    /1.8.14/source/kfp.registry.html
+
+/1.8.15/source/dsl.html    /1.8.15/source/kfp.dsl.html
+/1.8.15/source/dsl.html    /1.8.15/source/kfp.dsl.html
+/1.8.15/source/compiler.html    /1.8.15/source/kfp.compiler.html
+/1.8.15/source/components.html    /1.8.15/source/kfp.components.html
+/1.8.15/source/client.html    /1.8.15/source/kfp.client.html
+/1.8.15/source/registry.html    /1.8.15/source/kfp.registry.html
+
+/1.8.16/source/dsl.html    /1.8.16/source/kfp.dsl.html
+/1.8.16/source/dsl.html    /1.8.16/source/kfp.dsl.html
+/1.8.16/source/compiler.html    /1.8.16/source/kfp.compiler.html
+/1.8.16/source/components.html    /1.8.16/source/kfp.components.html
+/1.8.16/source/client.html    /1.8.16/source/kfp.client.html
+/1.8.16/source/registry.html    /1.8.16/source/kfp.registry.html
+
+/1.8.17/source/dsl.html    /1.8.17/source/kfp.dsl.html
+/1.8.17/source/dsl.html    /1.8.17/source/kfp.dsl.html
+/1.8.17/source/compiler.html    /1.8.17/source/kfp.compiler.html
+/1.8.17/source/components.html    /1.8.17/source/kfp.components.html
+/1.8.17/source/client.html    /1.8.17/source/kfp.client.html
+/1.8.17/source/registry.html    /1.8.17/source/kfp.registry.html
+
+/1.8.18/source/dsl.html    /1.8.18/source/kfp.dsl.html
+/1.8.18/source/dsl.html    /1.8.18/source/kfp.dsl.html
+/1.8.18/source/compiler.html    /1.8.18/source/kfp.compiler.html
+/1.8.18/source/components.html    /1.8.18/source/kfp.components.html
+/1.8.18/source/client.html    /1.8.18/source/kfp.client.html
+/1.8.18/source/registry.html    /1.8.18/source/kfp.registry.html
+
+/1.8.19/source/dsl.html    /1.8.19/source/kfp.dsl.html
+/1.8.19/source/dsl.html    /1.8.19/source/kfp.dsl.html
+/1.8.19/source/compiler.html    /1.8.19/source/kfp.compiler.html
+/1.8.19/source/components.html    /1.8.19/source/kfp.components.html
+/1.8.19/source/client.html    /1.8.19/source/kfp.client.html
+/1.8.19/source/registry.html    /1.8.19/source/kfp.registry.html
+
+/1.8.20/source/dsl.html    /1.8.20/source/kfp.dsl.html
+/1.8.20/source/dsl.html    /1.8.20/source/kfp.dsl.html
+/1.8.20/source/compiler.html    /1.8.20/source/kfp.compiler.html
+/1.8.20/source/components.html    /1.8.20/source/kfp.components.html
+/1.8.20/source/client.html    /1.8.20/source/kfp.client.html
+/1.8.20/source/registry.html    /1.8.20/source/kfp.registry.html
+
+/1.8.21/source/dsl.html    /1.8.21/source/kfp.dsl.html
+/1.8.21/source/dsl.html    /1.8.21/source/kfp.dsl.html
+/1.8.21/source/compiler.html    /1.8.21/source/kfp.compiler.html
+/1.8.21/source/components.html    /1.8.21/source/kfp.components.html
+/1.8.21/source/client.html    /1.8.21/source/kfp.client.html
+/1.8.21/source/registry.html    /1.8.21/source/kfp.registry.html
+
+/1.8.22/source/dsl.html    /1.8.22/source/kfp.dsl.html
+/1.8.22/source/dsl.html    /1.8.22/source/kfp.dsl.html
+/1.8.22/source/compiler.html    /1.8.22/source/kfp.compiler.html
+/1.8.22/source/components.html    /1.8.22/source/kfp.components.html
+/1.8.22/source/client.html    /1.8.22/source/kfp.client.html
+/1.8.22/source/registry.html    /1.8.22/source/kfp.registry.html
+
 # Merged duplicate page pipelines-samples.md into build-pipeline.md
 /docs/pipelines/pipelines-samples/	   /docs/components/pipelines/build-pipeline/
 
