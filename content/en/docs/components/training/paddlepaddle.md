@@ -9,10 +9,14 @@ weight = 15
 
 This page describes `PaddleJob` for training a machine learning model with [PaddlePaddle](https://www.paddlepaddle.org.cn/).
 
+## What is PaddleJob?
+
 `PaddleJob` is a Kubernetes
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 to run PaddlePaddle training jobs on Kubernetes. The Kubeflow implementation of
 `PaddleJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
+
+**Note**: `PaddleJob` doesn't work in a user namespace by default because of Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection). To resolve this,  use the annotation `sidecar.istio.io/inject: "false"` to disable sidecar injection for `PaddleJob` pods.
 
 ## Installing Paddle Operator
 
