@@ -78,7 +78,6 @@ You should provide task outputs to the `dsl.OneOf` using `.output` or `.outputs[
 
 The [`dsl.ParallelFor`][dsl-parallelfor] context manager allows parallel execution of tasks over a static set of items. The context manager takes three arguments: a required `items`, an optional `parallelism`, and an optional `name`. `items` is the static set of items to loop over and `parallelism` is the maximum number of concurrent iterations permitted while executing the `dsl.ParallelFor` group. `parallelism=0` indicates unconstrained parallelism.
 
-{{% oss-be-unsupported feature_name="Setting `parallelism`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/8718 %}}
 
 In the following pipeline, `train_model` will train a model for 1, 5, 10, and 25 epochs, with no more than two training tasks running at one time:
 
@@ -93,9 +92,9 @@ def my_pipeline():
     ) as epochs:
         train_model(epochs=epochs)
 ```
+{{% oss-be-unsupported feature_name="Setting `parallelism`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/8718 %}}
 
 #### dsl.Collected
-{{% oss-be-unsupported feature_name="`dsl.Collected`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/6161 %}}
 
 Use [`dsl.Collected`][dsl-collected] with `dsl.ParallelFor` to gather outputs from a parallel loop of tasks:
 
@@ -140,6 +139,8 @@ def my_pipeline() -> List[Model]:
         train_model_task = train_model(epochs=epochs)
     return dsl.Collected(train_model_task.outputs['model'])
 ```
+
+{{% oss-be-unsupported feature_name="`dsl.Collected`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/6161 %}}
 
 ### Exit handling (dsl.ExitHandler)
 
