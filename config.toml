@@ -22,6 +22,7 @@ enableMissingTranslationPlaceholders = true
 disableKinds = ["taxonomy"]
 # deprecated directories
 ignoreFiles = []
+
 ###############################################################################
 # Hugo - Top-level navigation (horizontal)
 ###############################################################################
@@ -59,6 +60,12 @@ ignoreFiles = []
     # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
     style = "tango"
     guessSyntax = "true"
+
+###############################################################################
+# Docsy - Mermaid configuration
+###############################################################################
+[params.mermaid]
+enable = true
 
 ###############################################################################
 # Docsy - Image processing configuration
