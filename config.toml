@@ -19,19 +19,9 @@ defaultContentLanguageInSubdir = false
 # useful when translating
 enableMissingTranslationPlaceholders = true
 # disable taxonomies
-disableKinds = ["taxonomy", "taxonomyTerm"]
+disableKinds = ["taxonomy"]
 # deprecated directories
-ignoreFiles = [
-  "content/en/docs/distributions/gke/deploy/*", 
-  "content/en/docs/distributions/gke/pipelines/*", 
-  "content/en/docs/distributions/gke/anthos.md", 
-  "content/en/docs/distributions/gke/authentication.md",
-  "content/en/docs/distributions/gke/authentication.md", 
-  "content/en/docs/distributions/gke/custom-domain.md", 
-  "content/en/docs/distributions/gke/customizing-gke.md", 
-  "content/en/docs/distributions/gke/private-clusters.md", 
-  "content/en/docs/distributions/gke/troubleshooting-gke.md"
-  ]
+ignoreFiles = []
 ###############################################################################
 # Hugo - Top-level navigation (horizontal)
 ###############################################################################
@@ -91,10 +81,11 @@ ignoreFiles = [
 [languages]
   [languages.en]
     title = "Kubeflow"
-    description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
     languageName ="English"
-    # weight used for sorting in the language menu
     weight = 1
+
+    [languages.en.params]
+      description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 
 ###############################################################################
 # Docsy - Site Parameters
