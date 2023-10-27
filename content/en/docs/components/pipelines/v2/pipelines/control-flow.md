@@ -47,11 +47,37 @@ def my_pipeline():
 {{% alert title="Deprecated" color="warning" %}}
 dsl.Condition is deprecated in favor of the functionally identical dsl.If, which is concise, Pythonic, and consistent with the dsl.Elif and dsl.Else objects.
 {{% /alert %}}
+
+#### dsl.OneOf
+
+[`dsl.OneOf`][dsl-oneof] can be used to gather outputs from mutually exclusive branches into a single task output which can be consumed by a downstream task or outputted from a pipeline. Branches are mutually exclusive if exactly one will be executed. To enforce this, the KFP SDK compiler requires `dsl.OneOf` consume from taksks within a logically associated group of conditional branches and that one of the branches is a `dsl.Else` branch.
+
+```python
+from kfp import dsl
+
+@dsl.pipeline
+def my_pipeline() -> str:
+    coin_flip_task = flip_three_sided_coin()
+    with dsl.If(coin_flip_task.output == 'heads'):
+        t1 = print_and_return(text='Got heads!')
+    with dsl.Elif(coin_flip_task.output == 'tails'):
+        t2 = print_and_return(text='Got tails!')
+    with dsl.Else():
+        t3 = print_and_return(text='Draw!')
+    
+    oneof = dsl.OneOf(t1.output, t2.output, t3.output)
+    announce_result(oneof)
+    return oneof
+```
+
+You should provide task outputs to the `dsl.OneOf` using `.output` or `.outputs[<key>]`, just as you would pass an output to a downstream task. The outputs provided to `dsl.OneOf` must be of the same type and cannot be other instances of `dsl.OneOf` or [`dsl.Collected`][dsl-collected].
+
+{{% oss-be-unsupported feature_name="`dsl.OneOf`" %}}
+
 ### Parallel looping (dsl.ParallelFor)
 
 The [`dsl.ParallelFor`][dsl-parallelfor] context manager allows parallel execution of tasks over a static set of items. The context manager takes three arguments: a required `items`, an optional `parallelism`, and an optional `name`. `items` is the static set of items to loop over and `parallelism` is the maximum number of concurrent iterations permitted while executing the `dsl.ParallelFor` group. `parallelism=0` indicates unconstrained parallelism.
 
-{{% oss-be-unsupported feature_name="Setting `parallelism`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/8718 %}}
 
 In the following pipeline, `train_model` will train a model for 1, 5, 10, and 25 epochs, with no more than two training tasks running at one time:
 
@@ -66,10 +92,11 @@ def my_pipeline():
     ) as epochs:
         train_model(epochs=epochs)
 ```
+{{% oss-be-unsupported feature_name="Setting `parallelism`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/8718 %}}
 
-{{% oss-be-unsupported feature_name="`dsl.Collected`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/6161 %}}
+#### dsl.Collected
 
-Use [`dsl.Collected`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Collected) with `dsl.ParallelFor` to gather outputs from a parallel loop of tasks:
+Use [`dsl.Collected`][dsl-collected] with `dsl.ParallelFor` to gather outputs from a parallel loop of tasks:
 
 ```python
 from kfp import dsl
@@ -112,6 +139,8 @@ def my_pipeline() -> List[Model]:
         train_model_task = train_model(epochs=epochs)
     return dsl.Collected(train_model_task.outputs['model'])
 ```
+
+{{% oss-be-unsupported feature_name="`dsl.Collected`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/6161 %}}
 
 ### Exit handling (dsl.ExitHandler)
 
@@ -192,3 +221,5 @@ Note that the component used for the caller task (`print_op` in the example abov
 [dsl-if]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.If
 [dsl-elif]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Elif
 [dsl-else]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Else
+[dsl-oneof]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.OneOf
+[dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Collected
