@@ -16,7 +16,7 @@ In general, artifacts and their associated annotations serve several purposes:
 * To enable [type checking][type-checking] of pipelines that create ML artifacts
 * To make the contents of some artifact types easily observable via special UI rendering
 
-The following `training_component` demonstrates standard usage of both input and output artifacts:
+The following `training_component` demonstrates usage of both input and output artifacts using the [traditional artifact syntax][traditional-artifact-syntax]:
 
 ```python
 from kfp.dsl import Input, Output, Dataset, Model
@@ -34,13 +34,181 @@ def training_component(dataset: Input[Dataset], model: Output[Model]):
 ```
 
 This `training_component` does the following:
-1. Accepts an input dataset
+1. Accepts an input dataset and declares an output model
 2. Reads the input dataset's content from the local filesystem
 3. Trains a model (omitted)
 4. Saves the model as a component output
 5. Sets some metadata about the saved model
 
 As illustrated by `training_component`, artifacts are simply a thin wrapper around some artifact properties, including the `.path` from which the artifact can be read/written and the artifact's `.metadata`. The following sections describe these properties and other aspects of artifacts in detail.
+
+### Artifact properties
+
+To use create and consume artifacts from components, you'll use the available properties on [artifact instances](#artifact-types). Artifacts feature four properties:  
+* `name`, the name of the artifact (cannot be overwritten on Vertex Pipelines).  
+* `.uri`, the location of your artifact object. For input artifacts, this is where the object resides currently. For output artifacts, this is where you will write the artifact from within your component.  
+* `.metadata`, additional key-value pairs about the artifact.  
+* `.path`, a local path that corresponds to the artifact's `.uri`.
+
+The artifact `.path` attribute is particularly helpful. When you write the contents of your artifact to the location provided by the artifact's `.path` attribute, the pipelines backend will handle copying the file at `.path` to the URI at `.uri` automatically, allowing you to create artifact files within a component by only interacting with the task's local filesystem.
+
+As you will see more in the other examples in this section, each of these properties are accessible on artifacts inside components:
+
+```python
+from kfp import dsl
+from kfp.dsl import Dataset
+from kfp.dsl import Input
+
+@dsl.component
+def print_artifact_properties(dataset: Input[Dataset]):
+    with open(dataset.path) as f:
+        lines = f.readlines()
+    
+    print('Information about the artifact')
+    print('Name:', dataset.name)
+    print('URI:', dataset.uri)
+    print('Path:', dataset.path)
+    print('Metadata:', dataset.metadata)
+    
+    return len(lines)
+```
+
+Note that input artifacts should be treated as immutable. You should not try to modify the contents of the file at `.path` and any changes to the artifact's properties will not affect the artifact's metadata in [ML Metadata][ml-metadata].
+
+### Artifacts in components
+
+The KFP SDK supports two forms of artifact authoring syntax for components: traditional and Pythonic.
+
+The **traditional artifact** authoring syntax is the original artifact authoring style provided by the KFP SDK. The traditional artifact authoring syntax is supported for both [Python Components][python-components] and [Container Components][container-components]. It is supported at runtime by the open source KFP backend and the Google Cloud Vertex Pipelines backend.
+
+The **Pythonic artifact** authoring syntax provides an alterative artifact I/O syntax that is familiar to Python developers. The Pythonic artifact authoring syntax is supported for [Python Components][python-components] only. This syntax is not supported for [Container Components][container-components]. It is currently only supported at runtime by the Google Cloud Vertex Pipelines backend.
+
+#### Traditional artifact syntax
+
+When using the traditional artifact authoring syntax, all artifacts are provided to the component function as an input wrapped in an `Input` or `Output` type marker.
+
+```python
+def my_component(in_artifact: Input[Artifact], out_artifact: Output[Artifact]):
+    ...
+```
+
+For _input artifacts_, you can read the artifact using its `.uri` or `.path` attribute.
+
+For _output artifacts_, a pre-constructed output artifact will be passed into the component. You can update the output artifact's [properties](#artifact-properties) in place and write the artifact's contents to the artifact's `.path` or `.uri` attribute. You should not return the artifact instance from your component. For example:
+
+```python
+from kfp import dsl
+from kfp.dsl import Dataset, Input, Model, Output
+
+@dsl.component
+def train_model(dataset: Input[Dataset], model: Output[Model]):
+    with open(dataset.path) as f:
+        dataset_lines = f.readlines()
+
+    # train a model
+    trained_model = ...
+    
+    trained_model.save(model.path)
+    model.metadata['samples'] = len(dataset_lines)
+```
+
+#### **New** Pythonic artifact syntax
+
+To use the Pythonic artifact authoring syntax, simply annotate your components with the artifact class as you would when writing normal Python.
+
+```python
+def my_component(in_artifact: Artifact) -> Artifact:
+    ...
+```
+
+Inside the body of your component, you can read artifacts passed in as input (no change from the traditional artifact authoring syntax). For artifact outputs, you'll construct the artifact in your component code, then return the artifact as an output. For example:
+
+```python
+from kfp import dsl
+from kfp.dsl import Dataset, Model
+
+@dsl.component
+def train_model(dataset: Dataset) -> Model:
+    with open(dataset.path) as f:
+        dataset_lines = f.readlines()
+
+    # train a model
+    trained_model = ...
+
+    model_artifact = Model(uri=dsl.get_uri(), metadata={'samples': len(dataset_lines)})
+    trained_model.save(model_artifact.path)
+    
+    return model_artifact
+```
+
+For a typical output artifact which is written to one or more files, the `dsl.get_uri` function can be used at runtime to obtain a unique object storage URI that corresponds to the current task. The optional `suffix` parameter is useful for avoiding path collisions when your component has multiple artifact outputs.
+
+Multiple output artifacts should be specified similarly to [multiple output parameters][multiple-outputs]:
+
+```python
+from kfp import dsl
+from kfp.dsl import Dataset, Model
+from typing import NamedTuple
+
+@dsl.component
+def train_multiple_models(
+    dataset: Dataset,
+) -> NamedTuple('outputs', model1=Model, model2=Model):
+    with open(dataset.path) as f:
+        dataset_lines = f.readlines()
+
+    # train a model
+    trained_model1 = ...
+    trained_model2 = ...
+    
+    model_artifact1 = Model(uri=dsl.get_uri(suffix='model1'), metadata={'samples': len(dataset_lines)})
+    trained_model1.save(model_artifact1.path)
+    
+    model_artifact2 = Model(uri=dsl.get_uri(suffix='model2'), metadata={'samples': len(dataset_lines)})
+    trained_model2.save(model_artifact2.path)
+    
+    outputs = NamedTuple('outputs', model1=Model, model2=Model)
+    return outputs(model1=model_artifact1, model2=model_artifact2)
+```
+
+{{% oss-be-unsupported feature_name="The Pythonic artifact authoring syntax" %}}
+
+### Artifacts in pipelines
+
+Irrespective of whether your components use the Pythonic or traditional artifact authoring syntax, pipelines that use artifacts should be annotated with the [Pythonic artifact syntax][pythonic-artifact-syntax]:
+
+```python
+def my_pipeline(in_artifact: Artifact) -> Artifact:
+    ...
+```
+
+See the following pipeline which accepts a `Dataset` as input and outputs a `Model`, surfaced from the inner component `train_model`:
+
+```python
+from kfp import dsl
+from kfp.dsl import Dataset, Model
+
+@dsl.pipeline
+def augment_and_train(dataset: Dataset) -> Model:
+    augment_task = augment_dataset(dataset=dataset)
+    return train_model(dataset=augment_task.output).output
+```
+
+The [KFP SDK compiler][compiler] will type check artifact usage according to the rules described in [Type Checking][type-checking].
+
+Please see [Pipeline Basics](pipelines) for comprehensive documentation on how to author a pipeline.
+
+
+### Lists of artifacts
+
+{{% oss-be-unsupported feature_name="`dsl.Collected` and lists of artifacts" gh_issue_link=https://github.com/kubeflow/pipelines/issues/6161 %}}
+
+KFP supports input lists of artifacts, annotated as `List[Artifact]` or `Input[List[Artifact]]`. This is useful for collecting output artifacts from a loop of tasks using the [`dsl.ParallelFor`][dsl-parallelfor] and [`dsl.Collected`][dsl-collected] control flow objects.
+
+Pipelines can also return an output list of artifacts by using a `-> List[Artifact]` return annotation and returning a [`dsl.Collected`][dsl-collected] instance. 
+
+Both consuming an input list of artifacts and returning an output list of artifacts from a pipeline are described in [Pipeline Control Flow: Parallel looping][parallel-looping]. Creating output lists of artifacts from a single-step component is not currently supported.
+
 
 ### Artifact types
 
@@ -54,161 +222,13 @@ The artifact annotation indicates the type of the artifact. KFP provides several
 | [`Metrics`][dsl-metrics]                     | system.Metrics                     |
 | [`ClassificationMetrics`][dsl-classificationmetrics]       | system.ClassificationMetrics       |
 | [`SlicedClassificationMetrics`][dsl-slicedclassificationmetrics] | system.SlicedClassificationMetrics |
-| [`HTML`][dsl-html]                        | system.HTML                        |
+| [`HTML`][dsl-html]                        | system.HTML                        |****
 | [`Markdown`][dsl-markdown]                    | system.Markdown                    |
 
 
 `Artifact`, `Dataset`, `Model`, and `Metrics` are the most generic and commonly used artifact types. `Artifact` is the default artifact base type and should be used in cases where the artifact type does not fit neatly into another artifact category. `Artifact` is also compatible with all other artifact types. In this sense, the `Artifact` type is also an artifact "any" type.
 
 On the [KFP open source][oss-be] UI, `ClassificationMetrics`, `SlicedClassificationMetrics`, `HTML`, and `Markdown` provide special UI rendering to make the contents of the artifact easily observable.
-
-<!-- TODO: describe strongly-typed schemas -->
-
-### Declaring Input/Output artifacts
-
-In _components_, an artifact annotation must always be wrapped in an `Input` or `Output` type marker to indicate the artifact's I/O type. This is required, as it would otherwise be ambiguous whether an artifact is an input or output since input and output artifacts are both declared via Python function parameters.
-
-In _pipelines_, input artifact annotations should be wrapped in an `Input` type marker and, unlike in components, output artifacts should be provided as a return annotation as shown in `concat_pipeline`'s `Dataset` output:
-
-```python
-from kfp import dsl
-from kfp.dsl import Dataset, Input, Output
-
-@dsl.component
-def concat_component(
-    dataset1: Input[Dataset],
-    dataset2: Input[Dataset],
-    out_dataset: Output[Dataset],
-):
-    with open(dataset1.path) as f:
-        contents1 = f.read()
-    with open(dataset2.path) as f:
-        contents2 = f.read()
-    with open(out_dataset.path, 'w') as f:
-        f.write(contents1 + contents2)
-
-@dsl.pipeline
-def concat_pipeline(
-    d1: Input[Dataset],
-    d2: Input[Dataset],
-) -> Dataset:
-    return concat_component(
-        dataset1=d1,
-        dataset2=d2
-    ).output['out_dataset']
-```
-
-You can specify multiple pipeline artifact outputs, just as you would for parameters. This is shown by `concat_pipeline2`'s outputs `intermediate_dataset` and `final_dataset`:
-
-```python
-from typing import NamedTuple
-from kfp import dsl
-from kfp.dsl import Dataset, Input
-
-@dsl.pipeline
-def concat_pipeline2(
-    d1: Input[Dataset],
-    d2: Input[Dataset],
-    d3: Input[Dataset],
-) -> NamedTuple('Outputs',
-                intermediate_dataset=Dataset,
-                final_dataset=Dataset):
-    Outputs = NamedTuple('Outputs',
-                         intermediate_dataset=Dataset,
-                         final_dataset=Dataset)
-    concat1 = concat_component(
-        dataset1=d1,
-        dataset2=d2
-    )
-    concat2 = concat_component(
-        dataset1=concat1.outputs['out_dataset'],
-        dataset2=d3
-    )
-    return Outputs(intermediate_dataset=concat1.outputs['out_dataset'],
-                   final_dataset=concat2.outputs['out_dataset'])
-```
-
-The [KFP SDK compiler][compiler] will type check artifact usage according to the rules described in [Type Checking][type-checking].
-
-### Using output artifacts
-
-When you use an input or output annotation in a component, your component effectively makes a request at runtime for a URI path to the artifact.
-
-For output artifacts, the artifact being created does not yet exist (your component is going to create it!). To make it easy for components to create artifacts, the KFP backend provides a unique system-generated URI where the component should write the output artifact. For both input and output artifacts, the URI is a path within the cloud object storage bucket specified as the pipeline root. The URI uniquely identifies the output by its name, producer task, and pipeline. The system-generated URI is accessible as an attribute on the `.uri` attribute of the artifact instance automatically passed to the component at runtime:
-
-<!-- TODO: need to document pipeline_root and link here -->
-
-```python
-from kfp import dsl
-from kfp.dsl import Model
-from kfp.dsl import Output
-
-@dsl.component
-def print_artifact(model: Output[Model]):
-    print('URI:', model.uri)
-```
-
-Note that you will never pass an output artifact to a component directly when composing your pipeline. For example, in `concat_pipeline2` above, we do not pass `out_dataset` to the `concat_component`. The output artifact will be passed to the component automatically with the correct system-generated URI at runtime.
-
-While you can write output artifacts directly to the URI, KFP provides an even easier mechanism via the artifact's `.path` attribute:
-
-```python
-from kfp import dsl
-from kfp.dsl import Model
-from kfp.dsl import Output
-
-@dsl.component
-def print_and_create_artifact(model: Output[Model]):
-    print('path:', model.path)
-    with open(model.path, 'w') as f:
-        f.write('my model!')
-```
-
-After the task executes, KFP handles copying the file at `.path` to the URI at `.uri` automatically, allowing you to create artifact files by only interacting with the local filesystem. This approach works when the output artifact is stored as a file or directory.
-
-For cases where the output artifact is not easily represented by a file (for example, the output is a container image containing a model), you should override the system-generated `.uri` by setting it on the artifact directly, then write the output to that location. KFP will store the updated URI in ML Metadata. The artifact's `.path` attribute will not be useful.
-
-### Using input artifacts
-
-For input artifacts, the artifact URI already exists since the artifact has already been created. KFP handles passing the correct URI to your component based on the data exchange established in your pipeline. As for output artifacts, KFP handles copying the existing file at `.uri` to the path at `.path` so that your component can read it from the local filesystem.
-
-Input artifacts should be treated as immutable. You should not try to modify the contents of the file at `.path` and any changes to `.metadata` will not affect the artifact's metadata in [ML Metadata][ml-metadata].
-
-### Artifact name and metadata
-
-In addition to `.uri` and `.path`, artifacts also have a `.name` and `.metadata`.
-
-
-```python
-from kfp import dsl
-from kfp.dsl import Dataset
-from kfp.dsl import Input
-
-@dsl.component
-def count_rows(dataset: Input[Dataset]) -> int:
-    with open(dataset.path) as f:
-        lines = f.readlines()
-    
-    print('Information about the artifact:')
-    print('Name:', dataset.name)
-    print('URI:', dataset.uri)
-    print('Path:', dataset.path)
-    print('Metadata:', dataset.metadata)
-    
-    return len(lines)
-```
-
-In KFP artifacts can have metadata, which can be accessed in a component via the artifact's `.metadata` attribute. Metadata is useful for recording information about the artifact such as which ML framework generated the artifact, what its downstream uses are, etc. For output artifacts, metadata can be set directly on the `.metadata` dictionary, as shown for `model` in the preceding `training_component`.
-
-### Lists of artifacts
-
-{{% oss-be-unsupported feature_name="`dsl.Collected` and lists of artifacts" gh_issue_link=https://github.com/kubeflow/pipelines/issues/6161 %}}
-
-KFP supports input lists of artifacts, annotated as `Input[List[Artifact]]`. This is useful for collecting output artifacts from a loop of tasks using the [`dsl.ParallelFor`][dsl-parallelfor] and [`dsl.Collected`][dsl-collected] control flow objects.
-
-Pipelines can also return an output list of artifacts by using a `-> List[Artifact]` return annotation and returning a [`dsl.Collected`][dsl-collected] instance. 
-
-Both consuming an input list of artifacts and returning an output list of artifacts from a pipeline are described in [Pipeline Control Flow: Parallel looping][parallel-looping]. Creating output lists of artifacts from a single-step component is not currently supported.
 
 
 [ml-metadata]: https://github.com/google/ml-metadata
@@ -223,6 +243,12 @@ Both consuming an input list of artifacts and returning an output list of artifa
 [dsl-markdown]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Markdown
 [type-checking]: /docs/components/pipelines/v2/compile-a-pipeline#type-checking
 [oss-be]: /docs/components/pipelines/v2/installation/
+[pipelines]: /docs/components/pipelines/v2/pipelines/pipelines-basics/
+[container-components]: /docs/components/pipelines/v2/components/lightweight-python-components/
+[python-components]: /docs/components/pipelines/v2/components/container-components
 [dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ParallelFor
 [dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Collected
 [parallel-looping]: https://www.kubeflow.org/docs/components/pipelines/v2/pipelines/control-flow/#parallel-looping-dslparallelfor
+[traditional-artifact-syntax]: /docs/components/pipelines/v2/data-types/artifacts/#traditional-artifact-syntax
+[multiple-outputs]: /docs/components/pipelines/v2/data-types/parameters/#multiple-output-parameters
+[pythonic-artifact-syntax]: /docs/components/pipelines/v2/data-types/artifacts/#new-pythonic-artifact-syntax
