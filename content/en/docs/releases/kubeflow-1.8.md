@@ -22,7 +22,7 @@ weight = 97
           <a href="https://blog.kubeflow.org/kubeflow-1.8-release/">Kubeflow 1.8 Release Announcement</a>
         <br>
         <b>Video:</b> 
-          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Kubeflow 1.8 Release Overview (TBA)</a>
+          <a>Kubeflow 1.8 Release Overview (TBA)</a>
         <br>
         <b>Roadmap:</b>
           <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-18-release-planned-for-release-oct-2023">Kubeflow 1.8 Features</a>
@@ -42,6 +42,10 @@ weight = 97
       <th class="table-light">Release Team</th>
       <td>
         <b>Lead:</b> Daniela Plascencia (<a href="https://github.com/DnPlas">@DnPlas</a>)
+        <br>
+        <b>Member:</b> Amber Graner (<a href="https://github.com/akgraner">@akgraner</a>)
+        <br>
+        <b>Member:</b> Julius von Kohout (<a href="https://github.com/juliusvonkohout">@juliusvonkohout</a>)
         <br>
         <b>Member:</b> Amber Graner (<a href="https://github.com/akgraner">@akgraner</a>)
         <br>
