@@ -1,7 +1,7 @@
 +++
 title = "Kubeflow 1.8"
 description = "Information about the Kubeflow 1.8 release"
-weight = 97
+weight = 96
 +++
 
 ## Kubeflow 1.8.0
