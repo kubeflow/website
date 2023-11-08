@@ -84,14 +84,20 @@ $google_font_family: "Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap
     float: right;
     margin: 0 0 1.5em 1.5em; }
 
-#overview, #community {
-  padding: 6em 1.5em 3em 1.5em;
+#overview, #cncf, #community {
+  padding: 3em 1.5em 3em 1.5em;
   text-align: center;
   margin: 0; }
   #overview p, #community p {
     font-size: 1.125em;}
+  #cncf h4 {
+    color: black;}
 
 #overview {
+  border-bottom: 2px solid #b6d0ff;
+}
+
+#cncf {
   border-bottom: 2px solid #b6d0ff;
 }
 

@@ -108,6 +108,7 @@ enable = true
 
   copyright = "The Kubeflow Authors."
   privacy_policy = "https://policies.google.com/privacy"
+  trademark = "https://www.linuxfoundation.org/trademark-usage/"
 
   # Google Custom Search Engine ID.
   gcs_engine_id = "007239566369470735695:624rglujm-w"
