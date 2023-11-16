@@ -130,7 +130,7 @@ enable = true
 
   # A variable used in various docs to determine URLs for config files etc.
   # To find occurrences, search the repo for 'params "githubbranch"'.
-  githubbranch = "master"
+  github_branch = "master"
 
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
