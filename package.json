@@ -1,8 +1,24 @@
 {
   "name": "website",
+  "scripts": {
+    "_build": "hugo --cleanDestinationDir -e dev -DFE",
+    "_get:submodule": "set -x && git submodule update --init ${DEPTH:- --depth 1}",
+    "_prebuild": "npm run get:submodule",
+    "_prepare:docsy": "cd themes/docsy && npm install",
+    "_serve:hugo": "hugo serve -DFE --minify",
+    "build:preview": "set -x && npm run _build -- --minify --baseURL \"${DEPLOY_PRIME_URL:-/}\"",
+    "build:production": "hugo --cleanDestinationDir --minify",
+    "build": "npm run _build",
+    "get:submodule": "npm run _get:${GET:-submodule}",
+    "postget:submodule": "git submodule",
+    "prepare": "npm run get:submodule && npm run _prepare:docsy",
+    "serve": "npm run _serve:hugo",
+    "test": "echo 'TODO: setup link checking'"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.1",
     "postcss-cli": "^9.1.0"
-  }
+  },
+  "private": true,
+  "spelling": "cSpell:ignore docsy postget -"
 }
