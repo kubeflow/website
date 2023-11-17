@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  HUGO_VERSION = "0.119.0"
+  NODE_ENV = "production"
   NODE_VERSION = "18"
   command = "npm run build:preview"
 
