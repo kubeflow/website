@@ -1,7 +1,5 @@
 [build]
   publish = "public"
-  NODE_ENV = "production"
-  NODE_VERSION = "18"
   command = "npm run build:preview"
 
 [context.production]
