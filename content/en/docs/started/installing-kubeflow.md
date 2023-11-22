@@ -105,7 +105,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
           <a href="https://nutanix.github.io/kubeflow-manifests">Website</a>
         </td>
         <td>
-          1.7.0
+          {{% nutanix/latest-version %}}
         </td>
       </tr>
       <tr>
