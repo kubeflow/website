@@ -1,11 +1,9 @@
 +++
-title = "Design for Multi-user Isolation"
-description = "In-depth design for supporting multi-user isolation"
+title = "Multi-User Design"
+description = "Design of multi-user isolation in Kubeflow"
 weight = 20
                     
 +++
-
-{{% stable-status %}}
 
 ## Design overview
 
@@ -40,6 +38,7 @@ via the Kubeflow central dashboard and via the kubectl command-line interface (C
   class="mt-3 mb-3 border border-info rounded">
 
 ## Feature requirements
+
 - Kubeflow uses [Istio](https://istio.io/) to apply access control over in-cluster traffic.
 - Kubeflow profile controller needs `cluster admin` permission.
 - Kubeflow UI needs to be served behind an identity aware proxy. The identity aware proxy and Kubernetes
@@ -47,10 +46,7 @@ master should share the same identity management.
 - The Kubeflow installation on Google Cloud uses [GKE](https://cloud.google.com/kubernetes-engine) and [IAP](https://cloud.google.com/iap/docs/concepts-overview).
 - On-premises installations of Kubeflow make use of [Dex](https://github.com/dexidp/dex), a flexible OpenID Connect (OIDC) provider.
 
-## Supported platforms
-* Kubeflow multi-tenancy is enabled by default if you deploy Kubeflow on GCP with [IAP](/docs/gke/deploy).
-
 ## Next steps
 
-* Learn [how to use multi-user isolation and profiles](/docs/components/multi-tenancy/getting-started/).
-* Read more about [Istio in Kubeflow](/docs/external-add-ons/istio/istio-in-kubeflow/).
+* Learn how to configure user access [with profiles](/docs/components/central-dash/profiles).
+* Learn about [how Istio is used](/docs/components/central-dash/multi-tenancy/istio/) in Kubeflow.

@@ -188,6 +188,16 @@ docs/started/requirements/                    /docs/started/getting-started/
 # move istio from external-add-ons to multi-tenancy component
 /docs/external-add-ons/istio/*    /docs/components/multi-tenancy/istio
 
+# move multi-tenancy under central dashboard
+/docs/components/multi-tenancy/getting-started /docs/components/central-dash/profiles
+/docs/components/multi-tenancy/*               /docs/components/central-dash/multi-tenancy/:splat
+
+# remove registration-flow page
+/docs/components/central-dash/registration-flow /docs/components/central-dash/profiles
+
+# rename customize dashboard page
+/docs/components/central-dash/customizing-menu /docs/components/central-dash/customize
+
 # ===============
 # IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom

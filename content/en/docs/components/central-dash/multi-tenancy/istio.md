@@ -1,6 +1,6 @@
 +++
 title = "Istio Usage in Kubeflow"
-description = "Managing access to Kubeflow applications and resources via Istio"
+description = "Overview of how Kubeflow uses Istio"
 weight = 50
                     
 +++
