@@ -190,7 +190,10 @@ docs/started/requirements/                    /docs/started/getting-started/
 
 # move multi-tenancy under central dashboard
 /docs/components/multi-tenancy/getting-started /docs/components/central-dash/profiles
-/docs/components/multi-tenancy/*               /docs/components/central-dash/multi-tenancy/:splat
+/docs/components/multi-tenancy/design          /docs/components/central-dash/multi-tenancy/design
+/docs/components/multi-tenancy/istio           /docs/components/central-dash/multi-tenancy/istio
+/docs/components/multi-tenancy/overview        /docs/components/central-dash/multi-tenancy/overview
+/docs/components/multi-tenancy                 /docs/components/central-dash/multi-tenancy
 
 # remove registration-flow page
 /docs/components/central-dash/registration-flow /docs/components/central-dash/profiles
