@@ -224,7 +224,7 @@ enable = true
     [[params.links.user]]
       name = "Twitter"
       url = "https://twitter.com/kubeflow/"
-      icon = "fab fa-twitter"
+      icon = "fab fa-x-twitter"
       desc = "Follow us on Twitter to get the latest news!"
     [[params.links.user]]
       name = "Kubeflow Slack"
