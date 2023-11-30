@@ -203,6 +203,27 @@ docs/started/requirements/                    /docs/started/getting-started/
 # rename customize dashboard page
 /docs/components/central-dash/customizing-menu /docs/components/central-dash/customize
 
+# rename feature-store to feast
+/docs/external-add-ons/feature-store/overview/        /docs/external-add-ons/feast/introduction
+/docs/external-add-ons/feature-store/getting-started/ /docs/external-add-ons/feast/getting-started
+/docs/external-add-ons/feature-store/                 /docs/external-add-ons/feast
+
+# rename kserve/kserve to kserve/introduction
+/docs/external-add-ons/kserve/kserve/ /docs/external-add-ons/kserve/introduction
+
+# redirect kserve pages to kserve website
+/docs/external-add-ons/kserve/first_isvc_kserve/ https://kserve.github.io/website/latest/get_started/first_isvc/
+/docs/external-add-ons/kserve/migration/         https://kserve.github.io/website/latest/admin/migration/
+
+# move bentoml to its own section
+/docs/external-add-ons/serving/bentoml/ /docs/external-add-ons/bentoml/introduction
+
+# move seldon to its own section
+/docs/external-add-ons/serving/seldon/ /docs/external-add-ons/seldon/introduction
+
+# move mlrun to its own section
+/docs/external-add-ons/serving/mlrun/ /docs/external-add-ons/mlrun/introduction
+
 # ===============
 # IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
