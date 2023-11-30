@@ -4,17 +4,17 @@ description = "How multi-user isolation works in Kubeflow Pipelines"
 weight = 30
 +++
 
-Multi-user isolation for Kubeflow Pipelines is part of Kubeflow's overall [multi-tenancy](/docs/components/multi-tenancy/) feature.
+Multi-user isolation for Kubeflow Pipelines is part of Kubeflow's overall [multi-tenancy](/docs/concepts/multi-tenancy/) feature.
 
 {{% alert title="Tip" color="info" %}}
 * Kubeflow Pipelines multi-user isolation is only supported in ["full" Kubeflow deployments](/docs/components/pipelines/installation/overview/#full-kubeflow-deployment).
-* Refer to [Getting Started with Multi-user isolation](/docs/components/multi-tenancy/getting-started/) for the common Kubeflow multi-user operations 
-  like [Managing contributors](/docs/components/multi-tenancy/getting-started/#managing-contributors-through-the-kubeflow-ui).
+* Refer to docs about [profiles and namespaces](/docs/components/central-dash/profiles/) for the common Kubeflow multi-user operations 
+  like [managing profile contributors](/docs/components/central-dash/profiles/#manage-profile-contributors).
 {{% /alert %}}
 
 ## How are resources separated?
 
-Kubeflow Pipelines separates resources using Kubernetes namespaces that are managed by Kubeflow's [Profile resources](/docs/components/multi-tenancy/overview/#key-concepts).
+Kubeflow Pipelines separates resources using Kubernetes namespaces that are managed by [Kubeflow Profiles](/docs/components/central-dash/profiles/).
 Other users cannot see resources in your Profile/Namespace without permission, because the Kubeflow Pipelines API server 
 rejects requests for namespaces that the current user is not authorized to access.
 

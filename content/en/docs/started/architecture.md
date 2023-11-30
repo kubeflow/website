@@ -4,6 +4,10 @@ description = "An overview of Kubeflow's architecture"
 weight = 10
 +++
 
+{{% alert title="Out of date" color="warning" %}}
+We're sorry, this page is currently very out of date. We are working on updating it.
+{{% /alert %}}
+
 <!--
 Note for authors: The source of the diagrams is held in Google Slides decks,
 in the "Doc diagrams" folder in the public Kubeflow shared drive.

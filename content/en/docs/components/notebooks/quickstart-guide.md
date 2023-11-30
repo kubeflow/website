@@ -21,7 +21,7 @@ weight = 10
 2. Select a Namespace:
     - Click the namespace dropdown to see the list of available namespaces.
     - Choose the namespace that corresponds to your Kubeflow Profile.
-      (See the page on [multi-user isolation](/docs/components/multi-tenancy/) for more information about Profiles.)
+      (See the page on [profiles and namespaces](/docs/components/central-dash/profiles/) for more information)
 
    <img src="/docs/images/notebooks-namespace.png"
    alt="Selecting a Kubeflow namespace"
