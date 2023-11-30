@@ -2,7 +2,7 @@
 title = "Installing Kubeflow"
 description = "Deployment options for Kubeflow"
 weight = 20
-
+icon = "fa-solid fa-star"
 +++
 
 Kubeflow is an end-to-end Machine Learning (ML) platform for Kubernetes, it provides components for each stage in the ML lifecycle, from exploration through to training and deployment.
