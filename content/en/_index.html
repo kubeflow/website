@@ -28,12 +28,10 @@ title = "Kubeflow"
   <div class="container">
     <h3 class="section-head">What is Kubeflow?</h3>
     <p class="mx-auto col-md-8 px-0">
-      The Kubeflow project is dedicated to making deployments of machine
-      learning (ML) workflows on Kubernetes simple, portable and scalable. Our
-      goal is not to recreate other services, but to provide a straightforward
-      way to deploy best-of-breed open-source systems for ML to diverse
-      infrastructures. Anywhere you are running Kubernetes, you should be able
-      to run Kubeflow.
+      The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable.
+      Our goal is not to recreate other services, but to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures.
+      <br><br>
+      Anywhere you are running Kubernetes, you should be able to run Kubeflow.
     </p>
   </div>
 </div>
@@ -53,7 +51,7 @@ title = "Kubeflow"
         <div class="card-body bg-primary-dark">
           <h5 class="card-title text-white section-head">Pipelines</h5>
           <p class="card-text text-white">
-            <a target="_blank" rel="noopener" href="/docs/components/pipelines/v2/introduction/" >Kubeflow Pipelines</a> (KFP) is a platform for building then deploying portable and scalable machine learning workflows using Kubernetes.
+            <a target="_blank" rel="noopener" href="/docs/components/pipelines/v2/introduction/">Kubeflow Pipelines</a> (KFP) is a platform for building then deploying portable and scalable machine learning workflows using Kubernetes.
           </p>
         </div>
       </div>
@@ -68,10 +66,28 @@ title = "Kubeflow"
         <div class="card-body bg-primary-dark">
           <h5 class="card-title text-white section-head">Notebooks</h5>
           <p class="card-text text-white">
-            <a target="_blank" rel="noopener" href="/docs/components/notebooks/overview/" >Kubeflow Notebooks</a> lets you run web-based development environments on your Kubernetes cluster by running them inside Pods.
+            <a target="_blank" rel="noopener" href="/docs/components/notebooks/overview/">Kubeflow Notebooks</a> lets you run web-based development environments on your Kubernetes cluster by running them inside Pods.
           </p>
         </div>
       </div>
+      <div class="card border-primary-dark">
+        <img
+          src="/docs/images/logos/dashboard.png"
+          class="card-img-top"
+          draggable="false"
+          style="padding: 2rem;"
+          alt="People Icon"
+        />
+        <div class="card-body bg-primary-dark">
+          <h5 class="card-title text-white section-head">Dashboard</h5>
+          <p class="card-text text-white">
+            <a href="/docs/components/central-dash/overview/" target="_blank" rel="noopener">Kubeflow Central Dashboard</a> is our hub which connects the authenticated web interfaces of Kubeflow and other ecosystem components.
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="card-deck">
       <div class="card border-primary-dark">
         <img
           src="/docs/images/logos/katib.png"
@@ -81,17 +97,28 @@ title = "Kubeflow"
           alt="Katib Logo"
         />
         <div class="card-body bg-primary-dark">
-          <h5 class="card-title text-white section-head">
-            AutoML
-          </h5>
+          <h5 class="card-title text-white section-head">AutoML</h5>
           <p class="card-text text-white">
             <a target="_blank" rel="noopener" href="/docs/components/katib/overview/">Katib</a> is a Kubernetes-native project for automated machine learning (AutoML) with support for hyperparameter tuning, early stopping and neural architecture search.
           </p>
         </div>
       </div>
-    </div>
-    <br />
-    <div class="card-deck">
+     <div class="card border-primary-dark">
+        <img
+          src="/docs/images/logos/tensorflow-pytorch.png"
+          class="card-img-top"
+          draggable="false"
+          style="padding: 2rem;"
+          alt="TensorFlow + PyTorch Logo"
+        />
+        <div class="card-body bg-primary-dark">
+          <h5 class="card-title text-white section-head">Model Training</h5>
+          <p class="card-text text-white">
+            <a href="/docs/components/training/" target="_blank" rel="noopener" >Kubeflow Training Operator</a> is a unified interface for model training on Kubernetes.
+            It rus scalable and distributed training jobs for popular frameworks including PyTorch, TensorFlow, MPI, MXNet, PaddlePaddle, and XGBoost.
+          </p>
+        </div>
+      </div>
       <div class="card border-primary-dark">
         <img
           src="/docs/images/logos/kserve.png"
@@ -103,38 +130,8 @@ title = "Kubeflow"
         <div class="card-body bg-primary-dark">
           <h5 class="card-title text-white section-head">Model Serving</h5>
           <p class="card-text text-white">
-            <a href="https://kserve.github.io/website/" target="_blank" rel="noopener" >KServe</a> (previously <a href="/docs/external-add-ons/kserve/kserve/" target="_blank" rel="noopener" >KFServing</a>) aims to solve production model serving on Kubernetes by providing performant, high abstraction interfaces for common ML frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX.
-          </p>
-        </div>
-      </div>
-      <div class="card border-primary-dark">
-        <img
-          src="/docs/images/logos/tensorflow-pytorch.png"
-          class="card-img-top"
-          draggable="false"
-          style="padding: 2rem;"
-          alt="TensorFlow + PyTorch Logo"
-        />
-        <div class="card-body bg-primary-dark">
-          <h5 class="card-title text-white section-head">Model Training</h5>
-          <p class="card-text text-white">
-            <a href="/docs/components/training/" target="_blank" rel="noopener" >Kubeflow Training Operators</a>
-            provide a unified, Kubernetes interface for training machine learning models on multiple frameworks including PyTorch, TensorFlow, MPI, MXNet, PaddlePaddle, and XGBoost.
-          </p>
-        </div>
-      </div>
-      <div class="card border-primary-dark">
-        <img
-          src="/docs/images/logos/Community.png"
-          class="card-img-top"
-          draggable="false"
-          style="padding: 2rem;"
-          alt="People Icon"
-        />
-        <div class=" card-body bg-primary-dark">
-          <h5 class="card-title text-white section-head">Community</h5>
-          <p class="card-text text-white">
-            We are an open and welcoming <a href="/docs/about/community/" target="_blank" rel="noopener">community</a> of software developers, data scientists, and organizations!
+            <a href="https://kserve.github.io/website/" target="_blank" rel="noopener" >KServe</a> <small>(previously <a href="/docs/external-add-ons/kserve/kserve/" target="_blank" rel="noopener" >KFServing</a>)</small> solves production model serving on Kubernetes.
+            It delivers high-abstraction and performant interfaces for frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX.
           </p>
         </div>
       </div>
@@ -149,6 +146,7 @@ title = "Kubeflow"
   <div class="container">
     <h3 class="section-head">Join our Community</h3>
     <p class="mx-auto col-md-7 px-0">
+      We are an open and welcoming <a href="/docs/about/community/" target="_blank" rel="noopener">community</a> of software developers, data scientists, and organizations!
       Check out the <a href="/docs/about/community/#kubeflow-community-call">weekly community call</a>, get involved in discussions on the <a href="/docs/about/community/#kubeflow-mailing-list">mailing list</a> or chat with others on the <a href="/docs/about/community/#kubeflow-slack">Slack Workspace</a>!
     </p>
   </div>
