@@ -455,6 +455,6 @@ client.create_run_from_pipeline_func(
 
 
 <div class="notebook-links">
-<a class="colab-link" href="https://colab.research.google.com/github/kubeflow/website/blob/master/content/en/docs/components/pipelines/sdk/build-pipeline.ipynb">Run in Google Colab</a>
-<a class="github-link" href="https://github.com/kubeflow/website/blob/master/content/en/docs/components/pipelines/sdk/build-pipeline.ipynb">View source on GitHub</a>
+<a class="colab-link" href="https://colab.research.google.com/github/kubeflow/website/blob/master/content/en/docs/components/pipelines/v1/sdk/build-pipeline.ipynb">Run in Google Colab</a>
+<a class="github-link" href="https://github.com/kubeflow/website/blob/master/content/en/docs/components/pipelines/v1/sdk/build-pipeline.ipynb">View source on GitHub</a>
 </div>
