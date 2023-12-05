@@ -20,19 +20,27 @@ There are two pathways to get up and running with Kubeflow, you may either:
 <a id="install-a-packaged-kubeflow-distribution"></a>
 ## Packaged Distributions of Kubeflow 
 
-{{% alert title="Note" color="warning" %}}
-Packaged distributions are developed and supported by their respective maintainers, <b>the Kubeflow community does not endorse or certify any specific distribution</b>.
+{{% alert title="Conformance and Certification" color="warning" %}}
+Packaged distributions are developed and supported by their respective maintainers.
+The Kubeflow community <strong>does not endorse or certify</strong> any specific distribution.
 
 In the near future, there are plans to introduce <a href="https://github.com/kubeflow/community/blob/master/proposals/kubeflow-conformance-program-proposal.md">conformance testing for distributions</a>, you may track progress on this initiative by following <a href="https://github.com/kubeflow/kubeflow/issues/6485">kubeflow/kubeflow#6485</a>.
 {{% /alert %}}
 
+{{% alert title="Distribution Names" color="info" %}}
+Some distributions have names like `Kubeflow on <PLATFORM>`.
+Please note, they are not the "official installation method" for Kubeflow on that platform, it is simply the name of a distribution.
+
+There are discussions about renaming these distributions to avoid confusion with others that may be available on the same platform.
+{{% /alert %}}
+
 ### Active Distributions
 
-The following table lists <b>active distributions</b> that have <b>had a recent release</b> (within the last 6 months).
+The following table lists <strong>active distributions</strong> that are <em>currently maintained</em> by their respective maintainers.
 
-<div class="table-responsive">
+<div class="table-responsive distributions-table-active">
   <table class="table table-bordered">
-    <thead class="thead-light">
+    <thead>
       <tr>
         <th>Name</th>
         <th>Maintainer</th>
@@ -68,7 +76,6 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
           1.7.0 <sup>[<a href="https://github.com/Azure/kubeflow-aks/releases/tag/v1.7.0">Release Notes</a>]</sup>
         </td>
       </tr>
-      <tr>
       <tr>
         <td>Kubeflow on Google Cloud</td>
         <td>Google Cloud</td>
@@ -164,11 +171,11 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
 
 ### Legacy Distributions
 
-The following table lists <b>legacy distributions</b> which have <b>not had a recent release</b> (within the last 6 months).
+The following table lists <strong>legacy distributions</strong> which have <em>not had a recent release</em> (within the last 6 months), or whose maintainers have indicated that they are <em>no longer actively maintaining the distribution</em>.
 
-<div class="table-responsive">
+<div class="table-responsive distributions-table-legacy">
   <table class="table table-bordered">
-    <thead class="thead-light">
+    <thead>
       <tr>
         <th>Name</th>
         <th>Maintainer</th>
@@ -231,14 +238,13 @@ The following table lists <b>legacy distributions</b> which have <b>not had a re
 
 {{% alert title="Warning" color="warning" %}}
 This method is for advanced users.
-
 The Kubeflow community is not able to provide support for environment-specific issues when using the raw manifests.
 If you need support, please consider using a [packaged distribution](#packaged-distributions-of-kubeflow).
 {{% /alert %}}
 
-The raw <a href="https://github.com/kubeflow/manifests">Kubeflow manifests</a> are aggregated by the <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests Working Group</a> 
-and are intended to be used as the base of packaged distributions,
-<b>advanced users may choose to install the manifests directly</b> by following <a href="https://github.com/kubeflow/manifests#installation">these instructions</a>.
+The raw <a href="https://github.com/kubeflow/manifests"><code>kubeflow/manifests</code></a> are aggregated by the <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Manifests Working Group</a> 
+and are intended to be used as the <strong>base of packaged distributions</strong>.
+However, advanced users that are willing to make manual patches may choose to install the manifests directly by following <a href="https://github.com/kubeflow/manifests#installation">these instructions</a>.
 
 <a id="next-steps"></a>
 ## Next steps

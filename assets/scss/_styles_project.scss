@@ -286,6 +286,18 @@ footer {
 }
 
 // --------------------------------------------------
+// Installing Kubeflow page
+// --------------------------------------------------
+.distributions-table-active thead {
+  background-color: $primary;
+  color: $secondary;
+}
+
+.distributions-table-legacy thead {
+  background-color: $info;
+}
+
+// --------------------------------------------------
 // 404 page
 // --------------------------------------------------
 .error-page {
