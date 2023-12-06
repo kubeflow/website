@@ -7,19 +7,14 @@ weight = 80
 
 
 This page shows you how to use the Kubeflow Pipelines UI to visualize output 
-from a Kubeflow Pipelines component. 
-For details about how to build a component, see the guide to 
-[building your own component](/docs/components/pipelines/sdk/build-component/).
-
-Kubeflow Pipelines provides a new method of generating visualizations. See the
-guide to [Python Based Visualizations](/docs/components/pipelines/sdk/python-based-visualizations/).
+from a Kubeflow Pipelines [component](/docs/components/pipelines/concepts/component/). 
 
 ## Introduction
 
 The Kubeflow Pipelines UI offers built-in support for several types of 
 visualizations, which you can use to provide rich performance evaluation and 
-comparison data. Follow the instruction below to write visualization output
-data to file system. You can do this at any point during the pipeline execution.
+comparison data. Follow the instructions below to write visualization output
+data to the file system. You can do this at any point during the pipeline execution.
 
 You can view the output visualizations in the following places on the Kubeflow
 Pipelines UI:
