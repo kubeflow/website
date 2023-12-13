@@ -5,8 +5,8 @@ weight = 5
 +++
 
 Kubeflow Training Operator is a Kubernetes-native project for fine-tuning and scalable
-distributed training of machine learning (ML) models created using various ML frameworks
-(e.g. PyTorch, Tensorflow, XGBoost, and others).
+distributed training of machine learning (ML) models created with various ML frameworks such as
+PyTorch, Tensorflow, XGBoost, and others.
 
 Training Operator allows you to use Kubernetes workloads to effectively train your large models
 via Kubernetes Custom Resources APIs or using Training Operator Python SDK.
@@ -30,14 +30,14 @@ To perform distributed training Training Operator implements the following
 | Tensorflow   | TFJob           |
 | Apache MXNet | MXJob           |
 | XGBoost      | XGBoostJob      |
-| MPI          | MPI             |
+| MPI          | MPIJob          |
 | PaddlePaddle | PaddleJob       |
 
-You can learn more about each framework in the appropriate section.
+You can learn more about each framework in the appropriate guide.
 
 ## Getting Started
 
-You can create your first Training Operator job using Python SDK. You can define training function
+You can create your first Training Operator job using Python SDK. Define the training function
 that implements end-to-end model training. Training Operator schedules appropriate resources
 to run this training function on every Worker.
 
@@ -47,11 +47,11 @@ Install Training Operator SDK:
 pip install kubeflow-training
 ```
 
-You can implement your training loop in the train function.
-Each Worker will execute this function on the appropriate Kubernetes Pod. Usually, this function
-contains logic to download dataset, create model, train the model.
+You can implement your training loop in the train function. Each Worker will execute this function
+on the appropriate Kubernetes Pod. Usually, this function contains logic to download dataset,
+create model, and train the model.
 
-World Size and Rank will be set by Training Operator controller to perform
+World Size and Rank will be set automatically by Training Operator controller to perform
 [PyTorch DDP](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
 For example:
@@ -80,7 +80,7 @@ def train_func():
     # Start model training.
     model.train()
 
-# Start PyTorchJob with 100 Workers and 2 GPUs per worker.
+# Start PyTorchJob with 100 Workers and 2 GPUs per Worker.
 from kubeflow.training import TrainingClient
 TrainingClient().create_job(
     name="pytorch-ddp",
@@ -89,3 +89,10 @@ TrainingClient().create_job(
     resources_per_worker={"gpu": "2"},
 )
 ```
+
+## Next steps
+
+- Learn more about [the PyTorchJob APIs](/docs/components/training/pytorch/).
+
+- Follow [the scheduling guide](/docs/components/training/job-scheduling.md) to configure various
+  job schedulers for Training Operator jobs.
