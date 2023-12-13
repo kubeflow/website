@@ -51,22 +51,41 @@ You can implement your training loop in the train function.
 Each Worker will execute this function on the appropriate Kubernetes Pod. Usually, this function
 contains logic to download dataset, create model, train the model.
 
-World Size and Rank will be set by Training Operator controller to perform PyTorch DDP.
+World Size and Rank will be set by Training Operator controller to perform
+[PyTorch DDP](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
 For example:
 
 ```python
 def train_func():
     import torch
+    import os
 
+    # Create model.
     class Net(torch.nn.Module):
         """Create the Pytorch model"""
+        ...
+    model = Net()
 
+    # Download dataset.
+    train_loader = torch.utils.data.DataLoader(...)
 
-    torch.distributed.init_process_group(backend="gloo", rank=RANK, world_size=WORLD_SIZE)
-    Distributor = nn.parallel.DistributedDataParallel
+    # Attach model to PyTorch distributor.
+    RANK = int(os.environ["RANK"])
+    WORLD_SIZE = int(os.environ["WORLD_SIZE"])
+    torch.distributed.init_process_group(backend="nccl", rank=RANK, world_size=WORLD_SIZE)
+    Distributor = torch.nn.parallel.DistributedDataParallel
     model = Distributor(model)
 
-    ...
+    # Start model training.
+    model.train()
 
+# Start PyTorchJob with 100 Workers and 2 GPUs per worker.
+from kubeflow.training import TrainingClient
+TrainingClient().create_job(
+    name="pytorch-ddp",
+    func=train_func,
+    num_workers=100,
+    resources_per_worker={"gpu": "2"},
+)
 ```
