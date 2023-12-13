@@ -1,5 +1,5 @@
 +++
-title = "Training Operators"
-description = "Training of ML models in Kubeflow through operators"
+title = "Training Operator"
+description = "Documentation for Kubeflow Training Operator"
 weight = 70
 +++

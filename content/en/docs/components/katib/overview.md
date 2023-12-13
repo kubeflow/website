@@ -1,6 +1,6 @@
 +++
-title = "Introduction to Katib"
-description = "Overview of Katib for hyperparameter tuning and neural architecture search"
+title = "Overview"
+description = "An overview for Kubeflow Katib"
 weight = 10
                     
 +++
@@ -37,6 +37,10 @@ and many more. Additional algorithm support is coming soon.
 The [Katib project](https://github.com/kubeflow/katib) is open source.
 The [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)
 is a good starting point for developers who want to contribute to the project.
+
+<img src="/docs/components/katib/images/katib-overview.drawio.png"
+  alt="Katib Overview"
+  class="mt-3 mb-3 border border-info rounded">
 
 ## Hyperparameters and hyperparameter tuning
 
