@@ -96,5 +96,5 @@ TrainingClient().create_job(
 
 - Learn more about [the PyTorchJob APIs](/docs/components/training/pytorch/).
 
-- Follow [the scheduling guide](/docs/components/training/job-scheduling.md) to configure various
+- Follow [the scheduling guide](/docs/components/training/job-scheduling/) to configure various
   job schedulers for Training Operator jobs.
