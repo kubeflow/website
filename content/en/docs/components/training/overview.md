@@ -17,7 +17,9 @@ Training Operator implements centralized Kubernetes controller to orchestrate di
 
 This diagram shows the major features of Training Operator and supported ML frameworks.
 
-![training-operator-overview](images/training-operator-overview.drawio.png)
+<img src="/docs/components/training/images/training-operator-overview.drawio.png"
+  alt="Training Operator Overview"
+  class="mt-3 mb-3">
 
 ## Custom Resources for ML Frameworks
 
