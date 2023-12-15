@@ -30,7 +30,7 @@ on top of Kubernetes.
 
 <img src="/docs/started/images/kubeflow-overview.drawio.png"
   alt="Kubeflow overview"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3">
 
 The following diagrams shows Kubeflow as a platform for arranging the
 components of your ML system on top of Kubernetes:
