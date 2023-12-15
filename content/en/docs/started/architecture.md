@@ -28,7 +28,7 @@ Kubeflow is _the ML toolkit for Kubernetes_.
 The following diagrams shows the main Kubeflow components to cover each step of ML lifecycle
 on top of Kubernetes.
 
-<img src="/docs/images/kubeflow-overview.drawio.svg"
+<img src="/docs/started/images/kubeflow-overview.drawio.png"
   alt="Kubeflow overview"
   class="mt-3 mb-3 border border-info rounded">
 
