@@ -30,7 +30,6 @@ To perform distributed training Training Operator implements the following
 | ------------ | --------------- |
 | PyTorch      | PyTorchJob      |
 | Tensorflow   | TFJob           |
-| Apache MXNet | MXJob           |
 | XGBoost      | XGBoostJob      |
 | MPI          | MPIJob          |
 | PaddlePaddle | PaddleJob       |
