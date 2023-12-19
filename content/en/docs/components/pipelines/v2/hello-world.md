@@ -6,11 +6,7 @@ weight = 3
 
 {{% kfp-v2-keywords %}}
 
-To get started with the tutorials, pip install `kfp` v2:
-
-```sh
-pip install kfp
-```
+To get started with the tutorials, [install the KFP CLI v2][cli].
 
 Here is a simple pipeline that prints a greeting:
 
@@ -57,6 +53,7 @@ The client will print a link to view the pipeline execution graph and logs in th
 
 In the next few sections, you'll learn more about the core concepts of authoring pipelines and how to create more expressive, useful pipelines.
 
+[cli]: /docs/components/pipelines/v2/cli/
 [installation]: /docs/components/pipelines/v2/installation/
 [client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.client.Client
 [compiler]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/compiler.html#kfp.compiler.Compiler

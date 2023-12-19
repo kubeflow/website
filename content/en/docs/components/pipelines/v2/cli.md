@@ -14,6 +14,9 @@ This section provides a summary of the available commands in the KFP CLI. For mo
 ## Installation
 The KFP CLI is installed when you install the KFP SDK: `pip install kfp`.
 
+⚠️ Warning:
+The KFP CLI requires a Python version up to 3.11.
+
 ### Check availability of KFP CLI
 
 To check whether KFP CLI is installed in your environment, run the following command:
