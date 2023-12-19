@@ -10,7 +10,7 @@ recreate other services, but to provide a straightforward way to deploy
 best-of-breed open-source systems for ML to diverse infrastructures. Anywhere
 you are running Kubernetes, you should be able to run Kubeflow.
 
-The following diagrams shows the main Kubeflow components to cover each step of ML lifecycle
+The following diagram shows the main Kubeflow components to cover each step of ML lifecycle
 on top of Kubernetes.
 
 <img src="/docs/started/images/kubeflow-overview.drawio.png"
