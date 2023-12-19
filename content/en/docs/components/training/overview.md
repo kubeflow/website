@@ -4,14 +4,25 @@ description = "An overview of Kubeflow Training Operator"
 weight = 5
 +++
 
+## What is Kubeflow Training Operator ?
+
 Kubeflow Training Operator is a Kubernetes-native project for fine-tuning and scalable
 distributed training of machine learning (ML) models created with various ML frameworks such as
 PyTorch, Tensorflow, XGBoost, and others.
+
+User can integrate other ML libraries such as [HuggingFace](https://huggingface.co),
+[DeepSpeed](https://github.com/microsoft/DeepSpeed), or [Megatron](https://github.com/NVIDIA/Megatron-LM)
+with Training Operator to orchestrate their ML training on Kubernetes.
 
 Training Operator allows you to use Kubernetes workloads to effectively train your large models
 via Kubernetes Custom Resources APIs or using Training Operator Python SDK.
 
 Training Operator implements centralized Kubernetes controller to orchestrate distributed training jobs.
+
+Users can run High-performance computing (HPC) tasks with Training Operator and MPIJob since it
+supports running Message Passing Interface (MPI) on Kubernetes which is heavily used for HPC.
+Training Operator implements V1 API version of MPI Operator. For MPI Operator V2 version,
+please follow [this guide](/docs/components/training/mpi/) to install MPI Operator V2.
 
 ## Architecture
 
