@@ -186,7 +186,10 @@ You can run your first HyperParameter Tuning Experiment using
 [Katib Python SDK](https://github.com/kubeflow/katib/tree/master/sdk/python/v1beta1).
 
 In the following example we are going to maximize a simple objective function:
-$F(a,b) = 4a - b^2$. The bigger $a$ and the lesser $b$ value, the bigger the function value $F$.
+
+$F(a,b) = 4a - b^2$
+
+The bigger $a$ and the lesser $b$ value, the bigger the function value $F$.
 
 ```python
 import kubeflow.katib as katib
