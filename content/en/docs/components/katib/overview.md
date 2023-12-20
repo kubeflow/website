@@ -8,8 +8,7 @@ weight = 10
 {{% beta-status
   feedbacklink="https://github.com/kubeflow/katib/issues" %}}
 
-This guide introduces the concepts of hyperparameter tuning, neural
-architecture search, and the Katib system as a component of Kubeflow.
+## What is Katib ?
 
 Katib is a Kubernetes-native project for automated machine learning (AutoML).
 Katib supports hyperparameter tuning, early stopping and
@@ -37,6 +36,11 @@ and many more. Additional algorithm support is coming soon.
 The [Katib project](https://github.com/kubeflow/katib) is open source.
 The [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)
 is a good starting point for developers who want to contribute to the project.
+
+## Architecture
+
+This diagram shows the major features of Katib and supported optimization frameworks to perform
+various AutoML algorithms.
 
 <img src="/docs/components/katib/images/katib-overview.drawio.png"
   alt="Katib Overview"
