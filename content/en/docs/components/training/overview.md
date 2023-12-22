@@ -35,17 +35,16 @@ This diagram shows the major features of Training Operator and supported ML fram
 ## Custom Resources for ML Frameworks
 
 To perform distributed training Training Operator implements the following
-[Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/):
+[Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+for each ML framework:
 
-| ML Framework | Custom Resource |
-| ------------ | --------------- |
-| PyTorch      | PyTorchJob      |
-| Tensorflow   | TFJob           |
-| XGBoost      | XGBoostJob      |
-| MPI          | MPIJob          |
-| PaddlePaddle | PaddleJob       |
-
-You can learn more about each framework in the appropriate guide.
+| ML Framework | Custom Resource                                      |
+| ------------ | ---------------------------------------------------- |
+| PyTorch      | [PyTorchJob](/docs/components/training/pytorch/)     |
+| Tensorflow   | [TFJob](/docs/components/training/tftraining/)       |
+| XGBoost      | [XGBoostJob](/docs/components/training/xgboost/)     |
+| MPI          | [MPIJob](/docs/components/training/mpi/)             |
+| PaddlePaddle | [PaddleJob](/docs/components/training/paddlepaddle/) |
 
 ## Getting Started
 
