@@ -1,7 +1,7 @@
 +++
 title = "Command Line Interface"
 description = "Interact with KFP via the CLI"
-weight = 9
+weight = 10
 +++
 
 {{% kfp-v2-keywords %}}
