@@ -37,8 +37,8 @@ of Katib, you can use one of the following Katib installs. To install the specif
 Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
 
 1. **Katib Standalone Installation**
-   
-   There are two ways to install Katib by standalone, 
+
+   There are two ways to install Katib by standalone,
    both of which do not require any additional setup on your Kubernetes cluster.
 
    1. **Basic Installation**
@@ -51,17 +51,17 @@ Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
       ```
 
    2. **Controller Leader Election Support**
-    
+
       Run the following command to deploy Katib with Controller
       [Leader Election](https://kubernetes.io/blog/2016/01/simple-leader-election-with-kubernetes/):
 
       ```shell
       kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-leader-election?ref=master"
       ```
-      
+
       This installation is almost the same as `Basic Installation`,
       although you can make `katib-controller` Highly Available (HA) using leader election.
-      If you plan to use Katib in an environment where high Service Level Agreements (SLAs) and Service Level Objectives (SLOs) are required, 
+      If you plan to use Katib in an environment where high Service Level Agreements (SLAs) and Service Level Objectives (SLOs) are required,
       such as a production environment, consider choosing this installation.
 
 2. **Katib Cert Manager Installation**
@@ -179,6 +179,52 @@ if you want to contribute to Katib UI.
 ## Examples
 
 This section introduces some examples that you can run to try Katib.
+
+## Quickstart with Katib SDK
+
+You can run your first HyperParameter Tuning Experiment using
+[Katib Python SDK](https://github.com/kubeflow/katib/tree/master/sdk/python/v1beta1).
+
+In the following example we are going to maximize a simple objective function:
+
+$F(a,b) = 4a - b^2$
+
+The bigger $a$ and the lesser $b$ value, the bigger the function value $F$.
+
+```python
+import kubeflow.katib as katib
+
+# Step 1. Create an objective function.
+def objective(parameters):
+    # Import required packages.
+    import time
+    time.sleep(5)
+    # Calculate objective function.
+    result = 4 * int(parameters["a"]) - float(parameters["b"]) ** 2
+    # Katib parses metrics in this format: <metric-name>=<metric-value>.
+    print(f"result={result}")
+
+# Step 2. Create HyperParameter search space.
+parameters = {
+    "a": katib.search.int(min=10, max=20),
+    "b": katib.search.double(min=0.1, max=0.2)
+}
+
+# Step 3. Create Katib Experiment with 12 Trials and 2 GPUs per Trial.
+katib_client = katib.KatibClient()
+name = "tune-experiment"
+katib_client.tune(
+    name=name,
+    objective=objective,
+    parameters=parameters,
+    objective_metric_name="result",
+    max_trial_count=12,
+    resources_per_trial={"gpu": "2"},
+)
+
+# Step 4. Get the best HyperParameters.
+print(katib_client.get_optimal_hyperparameters(name))
+```
 
 <a id="random-search"></a>
 
