@@ -194,6 +194,12 @@ deployment:
         <td>katib</td>
         <td>No</td>
       </tr>
+      <tr>
+        <td><code>SKIP_DB_INITIALIZATION</code></td>
+        <td>Option to skip DB table initialization</td>
+        <td>false</td>
+        <td>No</td>
+      </tr>
     </tbody>
   </table>
 </div>
