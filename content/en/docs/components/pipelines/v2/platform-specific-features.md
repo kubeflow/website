@@ -1,7 +1,7 @@
 +++
 title = "Platform-specific Features"
 description = "Author tasks with platform-specific functionality"
-weight = 10
+weight = 12
 +++
 
 
@@ -71,7 +71,7 @@ def my_pipeline():
 This component provisions a 5GB PVC from the [StorageClass][storage-class] `'standard'` with the `ReadWriteMany` [access mode][access-mode]. The PVC will be named after the underlying Argo workflow that creates it, concatenated with the suffix `-my-pvc`. The `CreatePVC` component returns this name as the output `'name'`.
 
 
-### Step 4: Read a write data to the PVC
+### Step 4: Read and write data to the PVC
 
 Next, we'll use the `mount_pvc` task modifier with the `producer` and `consumer` components. We'll also schedule `task2` to run after `task1` to prevent the components from writing and reading to the PVC at the same time.
 

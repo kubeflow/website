@@ -41,12 +41,12 @@ This section will show you how to develop the website locally, by running a loca
 
 To install Hugo, follow the [instructions for your system type](https://gohugo.io/getting-started/installing/).
 
-**NOTE:** we recommend that you use Hugo version `0.92.0`, as this is currently the version we deploy to Netlify.
+**NOTE:** we recommend that you use Hugo version `0.119.0`, as this is currently the version we deploy to Netlify.
 
 For example, using homebrew to install hugo on macOS or linux:
 
 ```bash
-# WARNING: this may install a newer version than `0.92.0`
+# WARNING: this may install a newer version than `0.119.0`
 brew install hugo
 ```
 
@@ -74,19 +74,26 @@ Follow the usual GitHub workflow of forking the repository on GitHub and then cl
     cd website/
     ```
 
-3. Recursively download the submodules (for docsy):
+3. Initialize the Docsy submodule:
 
     ```bash
     git submodule update --init --recursive
     ```
 
-4. Start your local Hugo server:
+4. Install Docsy dependencies:
+
+    ```bash
+    # NOTE: ensure you have node 18 installed
+    (cd themes/docsy/ && npm install)
+    ```
+
+5. Start your local Hugo server:
 
     ```bash
     hugo server -D
     ```
 
-5. You can access your website at [http://localhost:1313/](http://localhost:1313/)
+6. You can access your website at [http://localhost:1313/](http://localhost:1313/)
 
 ### Useful docs
 
@@ -126,7 +133,11 @@ The theme files are managed with a [git submodule](https://git-scm.com/book/en/v
 To update referenced docsy commit, run the following command at the root of the repo:
 
 ```bash
-git submodule update --remote
+# for example, to update docsy to v0.6.0
+# WARNING: updating the docsy version will require you to update our overrides
+#          check under: `layouts/partials` and `assets/scss`
+git -C themes/docsy fetch --tags
+git -C themes/docsy checkout tags/v0.6.0
 ```
 
 ## Documentation style guide

@@ -90,11 +90,14 @@ We are excited to announce the following speakers will be presenting at the Kube
       {{< card title="Josh Bottom" 
                subtitle="Kubeflow Steering Committee">}}
       {{< /card >}}
-      {{< card title="Oswaldo Gome" 
+      {{< card title="Oswaldo Gomez" 
                subtitle="Roche">}}
       {{< /card >}}
       {{< card title="Omri Shiv" 
                subtitle="Roblox">}}
+      {{< /card >}}
+      {{< card title="Krzysztof Romanowski" 
+               subtitle="Roche">}}
       {{< /card >}}
       {{< card title="Vaibhav Jain" 
                subtitle="Red Hat">}}
@@ -104,6 +107,27 @@ We are excited to announce the following speakers will be presenting at the Kube
       {{< /card >}}
       {{< card title="Mathew Wicks" 
                subtitle="Kubeflow Community Manager & Notebooks Lead">}}
+      {{< /card >}}
+      {{< card title="Diana Atanasova" 
+               subtitle="Kubeflow Security Team">}}
+      {{< /card >}}
+      {{< card title="Julius von Kohout" 
+               subtitle="Kubeflow Security Team">}}
+      {{< /card >}}
+      {{< card title="Johnu George" 
+               subtitle="Kubeflow Training Lead">}}
+      {{< /card >}}
+      {{< card title="Andrey Velichkevich" 
+               subtitle="Kubeflow AutoML Lead">}}
+      {{< /card >}}
+      {{< card title="James Lui" 
+               subtitle="Kubeflow Pipelines Lead">}}
+      {{< /card >}}
+      {{< card title="Kimonas Sotirchos" 
+               subtitle="Kubeflow Notebooks & Manifests Lead">}}
+      {{< /card >}}
+      {{< card title="Dan Sun" 
+               subtitle="KServe Lead">}}
       {{< /card >}}
       {{< card title="Jooho Lee" 
                subtitle="Red Hat">}}
@@ -123,6 +147,15 @@ We are excited to announce the following speakers will be presenting at the Kube
       {{< card title="Ajay Tyagi" 
                subtitle="DKube">}}
       {{< /card >}}
+      {{< card title="Ricardo Rocha" 
+               subtitle="CERN">}}
+      {{< /card >}}
+      {{< card title="Roy Budhaditya" 
+               subtitle="Deloitte">}}
+      {{< /card >}}
+      {{< card title="Prerit Shah" 
+               subtitle="Equinor">}}
+      {{< /card >}}
     </div>
   </div>
 </div>
@@ -134,30 +167,38 @@ Our summit will feature engaging sessions, hands-on workshops, and networking op
 
 Discover the latest advancements in Kubeflow, learn from industry leaders, and gain insights into real-world use cases. Whether you're a developer, data scientist, or IT professional, this event is designed to inspire and empower you.
 
-| Start Time | End Time | Speaker                  | Session                                                                              |
-|------------|----------|--------------------------|--------------------------------------------------------------------------------------|
-| 7:30 AM    | 8:15 AM  | -                        | Registration Open                                                                    |
-| 8:15 AM    | 8:30 AM  | Josh Bottom              | Welcome & Opening Remarks                                                            |
-| 8:30 AM    | 9:00 AM  | Oswaldo Gome             | Simplifying Machine Learning deployments through Cloud Native Buildpacks and KServe  |
-| 9:00 AM    | 9:30 AM  | Omri Shiv                | The Journey to Supporting 60 Million DAUs starts by supporting 200                   |
-| 9:30 AM    | 10:00 AM | TBD                      | TBD                                                                                  |
-| -          | -        | -                        | -                                                                                    |
-| 10:00 AM   | 10:15 AM | -                        | Break                                                                                |
-| -          | -        | -                        | -                                                                                    |
-| 10:15 AM   | 12:00 PM | -                        | Kubeflow Working Group Updates and Discussion                                        |
-| -          | -        | -                        | -                                                                                    |
-| 12:00 PM   | 1:30 PM  | -                        | Lunch                                                                                |
-| -          | -        | -                        | -                                                                                    |
-| 1:30 PM    | 1:45 PM  | -                        | Ignite Style Lightning Talks (5 minutes each)                                        |
-| 1:45 PM    | 2:00 PM  | Mathew Wicks             | deployKF: A Better Way to Deploy Kubeflow and More                                   |
-| 2:00 PM    | 2:30 PM  | Jooho Lee                | Scale Your Models to Zero with Knative and Kserve                                    |
-| 2:30 PM    | 3:00 PM  | Qi Liu                   | Platform to Enable AI workload for Multi-Cloud with Hardware accelerations           |
-| -          | -        | -                        | -                                                                                    |
-| 3:00 PM    | 3:15 PM  | -                        | Break                                                                                |
-| -          | -        | -                        | -                                                                                    |
-| 3:15 PM    | 3:45 PM  | Michal Hucko             | How to use Kubeflow with MLflow                                                      |
-| 3:45 PM    | 4:15 PM  | Vendant Mahabaleshwarkar | Monitoring the performance of your deployed models using OpenDataHub                 |
-| 4:15 PM    | 4:45 PM  | Tommy Li                 | Tekton Optimizations for Kubeflow Pipelines 2.0: Challenges and Benefits             |
-| 4:45 PM    | 5:15 PM  | Ajay Tyagi               | Scaling your Kubeflow Implementation Enterprise Wide, from tens to hundreds of users |
-| -          | -        | -                        | -                                                                                    |
-| 5:15 PM    | 5:30 PM  | Josh Bottom              | Closing Remarks                                                                      |
+| Start Time | End Time | Speaker                             | Session                                                                                  |
+|------------|----------|-------------------------------------|------------------------------------------------------------------------------------------|
+| 7:30 AM    | 8:15 AM  | -                                   | Registration Open                                                                        |
+| 8:15 AM    | 8:25 AM  | Josh Bottom                         | Welcome & Opening Remarks                                                                |
+| 8:25 AM    | 8:30 AM  | Ricardo Rocha                       | USER STORY: Kubeflow at CERN                                                             |
+| 8:30 AM    | 9:00 AM  | Oswaldo Gomez                       | Simplifying Machine Learning deployments through Cloud Native Buildpacks and KServe      |
+| 9:00 AM    | 9:30 AM  | Omri Shiv                           | The Journey to Supporting 60 Million DAUs starts by supporting 200                       |
+| 9:30 AM    | 9:45 AM  | Krzysztof Romanowski                | Integrating oauth2-proxy into Istio Service Mesh for Seamless Authentication in Kubeflow |
+| 9:45 AM    | 9:50 AM  | Roy Budhaditya                      | USER STORY: Kubeflow at Deloitte                                                         |
+| 9:55 AM    | 10:00 AM | Prerit Shah                         | USER STORY: Kubeflow at Equinor                                                          |
+| -          | -        | -                                   | -                                                                                        |
+| 10:00 AM   | 10:15 AM | -                                   | Break                                                                                    |
+| -          | -        | -                                   | -                                                                                        |
+| 10:15 AM   | 10:35 PM | Diana Atanasova & Julius von Kohout | Kubeflow Security Team Update                                                            |
+| 10:35 AM   | 10:55 AM | Johnu George                        | WG Update: Training                                                                      |
+| 10:55 AM   | 11:15 AM | Andrey Velichkevich                 | WG Update: AutoML                                                                        |
+| 11:15 AM   | 11:35 AM | James Lui                           | WG Update: Pipelines                                                                     |
+| 11:35 AM   | 11:55 AM | Kimonas Sotirchos                   | WG Update: Notebooks & Manifests                                                         |
+| 11:55 AM   | 12:15 PM | Dan Sun                             | KServe Update                                                                            |
+| -          | -        | -                                   | -                                                                                        |
+| 12:15 PM   | 1:30 PM  | -                                   | Lunch                                                                                    |
+| -          | -        | -                                   | -                                                                                        |
+| 1:30 PM    | 1:40 PM  | -                                   | Ignite Style Lightning Talks (5 minutes each)                                            |
+| 1:40 PM    | 1:45 PM  | Josh Bottom                         | Kubeflow Steering Committee Update                                                       |
+| 1:45 PM    | 2:00 PM  | Mathew Wicks                        | deployKF: A Better Way to Deploy Kubeflow and More                                       |
+| 2:00 PM    | 2:30 PM  | Jooho Lee                           | Scale Your Models to Zero with Knative and Kserve                                        |
+| 2:30 PM    | 3:00 PM  | Qi Liu                              | Platform to Enable AI workload for Multi-Cloud with Hardware accelerations               |
+| -          | -        | -                                   | -                                                                                        |
+| 3:00 PM    | 3:15 PM  | -                                   | Break                                                                                    |
+| -          | -        | -                                   | -                                                                                        |
+| 3:15 PM    | 3:45 PM  | Michal Hucko                        | How to use Kubeflow with MLflow                                                          |
+| 3:45 PM    | 4:15 PM  | Vendant Mahabaleshwarkar            | Monitoring the performance of your deployed models using OpenDataHub                     |
+| 4:15 PM    | 4:45 PM  | Tommy Li                            | Tekton Optimizations for Kubeflow Pipelines 2.0: Challenges and Benefits                 |
+| 4:45 PM    | 5:15 PM  | Ajay Tyagi                          | Scaling your Kubeflow Implementation Enterprise Wide, from tens to hundreds of users     |
+| 5:15 PM    | 5:30 PM  | Josh Bottom                         | Closing Remarks                                                                          |

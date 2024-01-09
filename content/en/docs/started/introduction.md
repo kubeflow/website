@@ -10,6 +10,13 @@ recreate other services, but to provide a straightforward way to deploy
 best-of-breed open-source systems for ML to diverse infrastructures. Anywhere
 you are running Kubernetes, you should be able to run Kubeflow.
 
+The following diagram shows the main Kubeflow components to cover each step of ML lifecycle
+on top of Kubernetes.
+
+<img src="/docs/started/images/kubeflow-intro-diagram.drawio.svg"
+  alt="Kubeflow overview"
+  class="mt-3 mb-3">
+
 ## Getting started with Kubeflow
 
 Read the [architecture overview](/docs/started/architecture/) for an
@@ -35,7 +42,7 @@ To use Kubeflow, the basic workflow is:
   environment.
 
 You can adapt the configuration to choose the platforms and services that you
-want to use for each stage of the ML workflow: 
+want to use for each stage of the ML workflow:
 
 1. data preparation
 2. model training,
@@ -68,7 +75,7 @@ configure based on the cluster it deploys into.
 
 ## History
 
-Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/). 
+Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/).
 It began as just a simpler way to run TensorFlow jobs on Kubernetes, but has since expanded to be a multi-architecture, multi-cloud framework for running end-to-end machine learning workflows.
 
 ## Roadmaps
