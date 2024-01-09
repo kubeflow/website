@@ -13,7 +13,7 @@ you are running Kubernetes, you should be able to run Kubeflow.
 The following diagram shows the main Kubeflow components to cover each step of ML lifecycle
 on top of Kubernetes.
 
-<img src="/docs/started/images/kubeflow-overview.drawio.png"
+<img src="/docs/started/images/kubeflow-intro-diagram.drawio.svg"
   alt="Kubeflow overview"
   class="mt-3 mb-3">
 
