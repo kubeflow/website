@@ -57,7 +57,7 @@ This section describes the
 
     * `annotations`: A string key-value map used to add information about the component.
         Currently, the annotations get translated to Kubernetes annotations when the component task is executed on Kubernetes. Current limitation: the key cannot contain more that one slash ("/"). See more information in the
-        [Kubernetes user guide](https://kubernetes.io/docs/user-guide/annotations).
+        [Kubernetes user guide](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
     * `labels`: Deprecated. Use `annotations`.
 
 ### Interface
