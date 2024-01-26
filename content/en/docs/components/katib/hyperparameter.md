@@ -137,7 +137,7 @@ katib-ui-5767cfccdc-v9fcs           1/1     Running     0          80s
   - (Optional) If certificate generator is enabled in
     [Katib Config](/docs/components/katib/katib-config/), Katib controller deployment will create
     self-signed certificate for the Katib webhooks. Learn more about the cert generator in the
-    [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md#katib-cert-generator)
+    [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md#katib-cert-generator).
 
 - `katib-ui` - the Katib user interface.
 
