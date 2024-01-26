@@ -43,8 +43,8 @@ Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
 
    1. **Basic Installation**
 
-      Run the following command to deploy Katib with the main components
-      (`katib-controller`, `katib-ui`, `katib-mysql`, `katib-db-manager`, and `katib-cert-generator`):
+      Run the following command to deploy the default Katib Control Plane components:
+      (`katib-controller`, `katib-ui`, `katib-mysql`, and `katib-db-manager`):
 
       ```shell
       kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=master"
@@ -73,7 +73,7 @@ Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
    kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-cert-manager?ref=master"
    ```
 
-   This installation uses Cert Manager instead of `katib-cert-generator`
+   This installation uses Cert Manager instead of Katib certificate generator
    to provision Katib webhooks certificates. You have to deploy Cert Manager on
    your Kubernetes cluster before deploying Katib using this installation.
 
@@ -99,7 +99,7 @@ Katib release (e.g. `v0.11.1`), modify `ref=master` to `ref=v0.11.1`.
    kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-openshift?ref=master"
    ```
 
-   This installation uses OpenShift service controller instead of `katib-cert-generator`
+   This installation uses OpenShift service controller instead of Katib certificate generator
    to provision Katib webhooks certificates.
 
 Above installations deploy
@@ -123,7 +123,6 @@ Run the following command to verify that Katib components are running:
 $ kubectl get pods -n kubeflow
 
 NAME                                READY   STATUS      RESTARTS   AGE
-katib-cert-generator-79g7d          0/1     Completed   0          79s
 katib-controller-566595bdd8-8w7sx   1/1     Running     0          82s
 katib-db-manager-57cd769cdb-vt7zs   1/1     Running     0          82s
 katib-mysql-7894994f88-djp7m        1/1     Running     0          81s
@@ -133,17 +132,18 @@ katib-ui-5767cfccdc-v9fcs           1/1     Running     0          80s
 - `katib-controller` - the controller to manage Katib Kubernetes CRDs
   ([`Experiment`](/docs/components/katib/overview/#experiment),
   [`Suggestion`](/docs/components/katib/overview/#suggestion),
-  [`Trial`](/docs/components/katib/overview/#trial))
+  [`Trial`](/docs/components/katib/overview/#trial)).
+
+  - (Optional) If certificate generator is enabled in
+    [Katib Config](/docs/components/katib/katib-config/), Katib controller deployment will create
+    self-signed certificate for the Katib webhooks. Learn more about the cert generator in the
+    [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md#katib-cert-generator)
 
 - `katib-ui` - the Katib user interface.
 
 - `katib-db-manager` - the GRPC API server to control Katib DB interface.
 
 - `katib-mysql` - the `mysql` DB backend to store Katib experiments metrics.
-
-- (Optional) `katib-cert-generator` - the certificate generator for Katib
-  standalone installation. Learn more about the cert generator in the
-  [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md#katib-cert-generator)
 
 ## Accessing the Katib UI
 

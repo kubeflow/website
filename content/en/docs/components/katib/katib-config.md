@@ -6,436 +6,391 @@ weight = 70
 +++
 
 This guide describes
-[Katib config](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/controller/katib-config.yaml) —
-the Kubernetes
-[Config Map](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) that contains information about:
+[the Katib Config](https://github.com/kubeflow/katib/blob/19268062f1b187dde48114628e527a2a35b01d64/manifests/v1beta1/installs/katib-standalone/katib-config.yaml) —
+the main configuration file for every Katib component. We use Kubernetes
+[ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) to
+fetch that config into [the Katib control plane components](/docs/components/katib/hyperparameter/#katib-install).
 
-1. Current
-   [metrics collectors](/docs/components/katib/experiment/#metrics-collector)
-   (`key = metrics-collector-sidecar`).
-
-1. Current
-   [algorithms](/docs/components/katib/experiment/#search-algorithms-in-detail)
-   (suggestions) (`key = suggestion`).
-
-1. Current
-   [early stopping algorithms](/docs/components/katib/early-stopping/#early-stopping-algorithms-in-detail)
-   (`key = early-stopping`).
-
-The Katib Config Map must be deployed in the
+The ConfigMap must be deployed in the
 [`KATIB_CORE_NAMESPACE`](/docs/components/katib/env-variables/#katib-controller)
-namespace with the `katib-config` name. The Katib controller parses the Katib config when
-you submit your experiment.
+namespace with the `katib-config` name.
 
-You can edit this Config Map even after deploying Katib.
-
-If you are deploying Katib in the Kubeflow namespace, run this command to edit your Katib config:
+Katib config has initialization (`init`) and runtime (`runtime`) parameters. You can modify these
+parameters by editing the `katib-config` ConfigMap:
 
 ```shell
 kubectl edit configMap katib-config -n kubeflow
 ```
 
-## Metrics Collector Sidecar settings
+## Initialization Parameters
 
-These settings are related to Katib metrics collectors, where:
+Katib Config parameters under `init` key represent initialization parameters for
+the Katib control plane. These parameters can be modified before Katib control plane is deployed.
 
-- key: `metrics-collector-sidecar`
-- value: corresponding JSON settings for each metrics collector kind
-
-Example for the `File` metrics collector with all settings:
-
-```json
-metrics-collector-sidecar: |-
-{
-  "File": {
-    "image": "docker.io/kubeflowkatib/file-metrics-collector",
-    "imagePullPolicy": "Always",
-    "resources": {
-      "requests": {
-        "memory": "200Mi",
-        "cpu": "250m",
-        "ephemeral-storage": "200Mi"
-      },
-      "limits": {
-        "memory": "1Gi",
-        "cpu": "500m",
-        "ephemeral-storage": "2Gi"
-      }
-    },
-    "waitAllProcesses": false
-  },
-  ...
-}
+```yaml
+apiVersion: config.kubeflow.org/v1beta1
+kind: KatibConfig
+init:
+  certGenerator:
+    enabled: true
+    ...
+  controller:
+    trialResources:
+      - Job.v1.batch
+      - TFJob.v1.kubeflow.org
+    ...
 ```
 
-All of these settings except **`image`** can be omitted. If you don't specify any other settings,
-a default value is set automatically.
+It has settings for the following Katib components:
 
-1. `image` - a Docker image for the `File` metrics collector's container (**must be specified**).
+1. Katib certificate generator (key: `certGenerator`).
 
-1. `imagePullPolicy` - an [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
-   for the `File` metrics collector's container.
+1. Katib controller (key: `controller`).
 
-   The default value is `IfNotPresent`
+### Katib Certificate Generator Parameters
 
-1. `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
-   for the `File` metrics collector's container. In the above example you
-   can check how to specify `limits` and `requests`. Currently, you can specify
-   only `memory`, `cpu` and `ephemeral-storage` resources.
+Parameters under `.init.certGenerator` configure the Katib certificate generator:
 
-   The default values for the `requests` are:
+- `.init.certGenerator.enable` - whether to enable Katib certificate generator.
 
-   - `memory = 10Mi`
-   - `cpu = 50m`
-   - `ephemeral-storage = 500Mi`
+  The default value is `false`
 
-   The default values for the `limits` are:
+- `.init.certGenerator.webhookServiceName` - service name for the Katib webhooks. If it is set,
+  Katib cert generator is forcefully enabled.
 
-   - `memory = 100Mi`
-   - `cpu = 500m`
-   - `ephemeral-storage = 5Gi`
+  The default value is `katib-controller`
 
-   You can run your metrics collector's container without requesting
-   the `cpu`, `memory`, or `ephemeral-storage` resource from the Kubernetes cluster.
-   For instance, you have to remove `ephemeral-storage` from the container resources to use the
-   [Google Kubernetes Engine cluster autoscaler](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#limitations).
+- `.init.certGenerator.webhookSecretName` - secret name to store Katib webhooks certificates.
+  If it is set, Katib cert generator is forcefully enabled.
 
-   To remove specific resources from the metrics collector's container set the
-   negative values in requests and limits in your Katib config as follows:
+  The default value is `katib-webhook-cert`
 
-   ```json
-   "requests": {
-     "cpu": "-1",
-     "memory": "-1",
-     "ephemeral-storage": "-1"
-   },
-   "limits": {
-     "cpu": "-1",
-     "memory": "-1",
-     "ephemeral-storage": "-1"
-   }
-   ```
+### Katib Controller Parameters
 
-1. `waitAllProcesses` - a flag to define whether the metrics collector should
-   wait until all processes in the training container are finished before start
-   to collect metrics.
+Parameters under `.init.controller` configure the Katib controller:
 
-   The default value is `true`
+- `.init.controller.experimentSuggestionName` - the implementation of Suggestion interface for
+  Experiment controller.
 
-## Suggestion settings
+  The default value is `default`
 
-These settings are related to Katib suggestions, where:
+- `.init.controller.metricsAddr` - the TCP address that the Katib controller should bind to
+  for serving prometheus metrics.
 
-- key: `suggestion`
-- value: corresponding JSON settings for each algorithm name
+  The default value is `8080`
 
-If you want to use a new algorithm, you need to update the Katib config. For example,
-using a `random` algorithm with all settings looks as follows:
+- `.init.controller.healthzAddr` - the TCP address that the Katib controller should bind to
+  for health probes.
 
-```json
-suggestion: |-
-{
-  "random": {
-    "image": "docker.io/kubeflowkatib/suggestion-hyperopt",
-    "imagePullPolicy": "Always",
-    "resources": {
-      "requests": {
-        "memory": "100Mi",
-        "cpu": "100m",
-        "ephemeral-storage": "100Mi"
-      },
-      "limits": {
-        "memory": "500Mi",
-        "cpu": "500m",
-        "ephemeral-storage": "3Gi"
-      }
-    },
-    "serviceAccountName": "random-sa"
-  },
-  ...
-}
+  The default value is `18080`
+
+- `.init.controller.injectSecurityContext` - whether to inject security context to Katib
+  Metrics Collector sidecar container from Katib Trial training container.
+
+  The default value is `false`
+
+- `.init.controller.trialResources` - list of resources that can be used as Trial template.
+  The trial resources must be in this format: Kind.version.group (e.g. `TFJob.v1.kubeflow.org`).
+  Follow [this guide](/docs/components/katib/trial-template/#use-custom-kubernetes-resource-as-a-trial-template)
+  to understand how to make Katib Trial work with your CRDs.
+
+  The default value is `[Job.v1.batch]`
+
+- `.init.controller.webhookPort` - port number for Katib admission webhooks.
+
+  The default value is `8443`
+
+- `.init.controller.enableLeaderElection` - whether to enable leader election for Katib controller.
+  If this value is true only single Katib controller Pod is active.
+
+  The default value is `false`
+
+- `.init.controller.leaderElectionID` - ID for the Katib controller leader election.
+
+  The default value is `3fbc96e9.katib.kubeflow.org`
+
+## Runtime Parameters
+
+Katib Config parameters under `runtime` key represent runtime parameters for
+the Katib Experiment. These parameters can be modified before Katib Experiment is created. When
+Katib Experiment is created Katib controller fetches the latest configuration from `katib-config`
+ConfigMap.
+
+```yaml
+apiVersion: config.kubeflow.org/v1beta1
+kind: KatibConfig
+runtime:
+  metricsCollectors:
+    - kind: StdOut
+      image: docker.io/kubeflowkatib/file-metrics-collector:latest
+    ...
+  suggestions:
+    - algorithmName: random
+      image: docker.io/kubeflowkatib/suggestion-hyperopt:latest
+    ...
+  earlyStoppings:
+    - algorithmName: medianstop
+      image: docker.io/kubeflowkatib/earlystopping-medianstop:latest
+    ...
 ```
 
-All of these settings except **`image`** can be omitted. If you don't specify
-any other settings, a default value is set automatically.
+### Metrics Collectors Parameters
 
-1. `image` - a Docker image for the suggestion's container with a `random`
-   algorithm (**must be specified**).
+Parameters under `.runtime.metricsCollectors` configure container for
+[the Katib metrics collector](docs/components/katib/experiment/#metrics-collector).
+The following settings are **required** for each Katib metrics collector that you want to use in your Katib Experiments:
 
-   Image example: `docker.io/kubeflowkatib/<suggestion-name>`
+- `.kind` - one of the Katib metrics collector types.
 
-   For each algorithm (suggestion) you can specify one of the following
-   suggestion names in the Docker image:
+- `.image` - a Docker image for the metrics collector's container.
 
-   <div class="table-responsive">
-     <table class="table table-bordered">
-       <thead class="thead-light">
-         <tr>
-           <th>Suggestion name</th>
-           <th>List of supported algorithms</th>
-           <th>Description</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <td><code>suggestion-hyperopt</code></td>
-           <td><code>random</code>, <code>tpe</code></td>
-           <td><a href="https://github.com/hyperopt/hyperopt">Hyperopt</a> optimization framework</td>
-         </tr>
-         <tr>
-           <td><code>suggestion-skopt</code></td>
-           <td><code>bayesianoptimization</code></td>
-           <td><a href="https://github.com/scikit-optimize/scikit-optimize">Scikit-optimize</a> optimization framework</td>
-         </tr>
-         <tr>
-           <td><code>suggestion-goptuna</code></td>
-           <td><code>cmaes</code>, <code>random</code>, <code>tpe</code>, <code>sobol</code></td>
-           <td><a href="https://github.com/c-bata/goptuna">Goptuna</a> optimization framework</td>
-         </tr>
-         <tr>
-           <td><code>suggestion-optuna</code></td>
-           <td><code>multivariate-tpe</code>, <code>tpe</code>, <code>cmaes</code>, <code>random</code>, <code>grid</code></td>
-           <td><a href="https://github.com/optuna/optuna">Optuna</a> optimization framework</td>
-         </tr>
-         <tr>
-           <td><code>suggestion-hyperband</code></td>
-           <td><code>hyperband</code></td>
-           <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/hyperband">Katib
-             Hyperband</a> implementation</td>
-         </tr>
-         <tr>
-           <td><code>suggestion-pbt</code></td>
-           <td><code>pbt</code></td>
-           <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/pbt">Katib
-             PBT</a> implementation</td>
-         </tr>
-         <tr>
-           <td><code>suggestion-enas</code></td>
-           <td><code>enas</code></td>
-           <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/enas">Katib
-             ENAS</a> implementation</td>
-         </tr>
-         <tr>
-           <td><code>suggestion-darts</code></td>
-           <td><code>darts</code></td>
-           <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/darts">Katib
-             DARTS</a> implementation</td>
-         </tr>
-       </tbody>
-     </table>
-   </div>
+The following settings are **optional**:
 
-1. `imagePullPolicy` - an [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
-   for the suggestion's container with a `random` algorithm.
+- `.imagePullPolicy` - an [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
+  for the metrics collector's container.
 
-   The default value is `IfNotPresent`
+  The default value is `IfNotPresent`
 
-1. `resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
-   for the suggestion's container with a `random` algorithm.
-   In the above example you can check how to specify `limits` and `requests`.
-   Currently, you can specify only `memory`, `cpu` and
-   `ephemeral-storage` resources.
+- `.resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
+  for the metrics collector's container.
 
-   The default values for the `requests` are:
+  The default values for the `resources` are:
 
-   - `memory = 10Mi`
-   - `cpu = 50m`
-   - `ephemeral-storage = 500Mi`
+  ```yaml
+  metricsCollectors:
+    - kind: StdOut
+      image: docker.io/kubeflowkatib/file-metrics-collector:latest
+      resources:
+        requests:
+          cpu: 50m
+          memory: 10Mi
+          ephemeral-storage: 500Mi
+        limits:
+          cpu: 500m
+          memory: 100Mi
+          ephemeral-storage: 5Gi
+  ```
 
-   The default values for the `limits` are:
+  You can run your metrics collector's container without requesting
+  the `cpu`, `memory`, or `ephemeral-storage` resource from the Kubernetes cluster.
+  For instance, you have to remove `ephemeral-storage` from the container resources to use the
+  [Google Kubernetes Engine cluster autoscaler](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#limitations).
 
-   - `memory = 100Mi`
-   - `cpu = 500m`
-   - `ephemeral-storage = 5Gi`
+  To remove specific resources from the metrics collector's container set the
+  negative values in requests and limits in your Katib config as follows:
 
-   You can run your suggestion's container without requesting
-   the `cpu`, `memory`, or `ephemeral-storage` resource from the Kubernetes cluster.
-   For instance, you have to remove `ephemeral-storage` from the container resources to use the
-   [Google Kubernetes Engine cluster autoscaler](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#limitations).
+  ```yaml
+  resources:
+    requests:
+      cpu: -1
+      memory: -1
+      ephemeral-storage: -1
+    limits:
+      cpu: -1
+      memory: -1
+      ephemeral-storage: -1
+  ```
 
-   To remove specific resources from the suggestion's container set the
-   negative values in requests and limits in your Katib config as follows:
+- `.waitAllProcesses` - a flag to define whether the metrics collector
+  should wait until all processes in the training container are finished before start
+  to collect metrics.
 
-   ```json
-   "requests": {
-     "cpu": "-1",
-     "memory": "-1",
-     "ephemeral-storage": "-1"
-   },
-   "limits": {
-     "cpu": "-1",
-     "memory": "-1",
-     "ephemeral-storage": "-1"
-   }
-   ```
+  The default value is `true`
 
-1. `serviceAccountName` - a [service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
-   for the suggestion's container with a `random` algorithm.
+### Suggestions Parameters
 
-   In the above example, the `random-sa` service account is attached for each
-   experiment's suggestion with a `random` algorithm until you change or delete
-   this service account from the Katib config.
+Parameters under `.runtime.suggestions` configure Deployment for
+[the Katib Suggestions](/docs/components/katib/overview/#suggestion). Every Suggestion represents
+one of the AutoML algorithms that you can use in Katib Experiments.
+The following settings are **required** for Suggestion Deployment:
 
-   By default, the suggestion pod doesn't have any specific service account,
-   in which case, the pod uses the
-   [default](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server)
-   service account.
+- `.algorithmName` - one of the Katib algorithm names (e.g. `tpe`).
 
-   **Note:** If you want to run your experiments with
-   [early stopping](/docs/components/katib/early-stopping/),
-   the suggestion's deployment must have permission to update the experiment's
-   trial status. If you don't specify a service account in the Katib config,
-   Katib controller creates required
-   [Kubernetes Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac)
-   for the suggestion.
+- `.image` - a Docker image for the Suggestion Deployment's container. Image
+  example: `docker.io/kubeflowkatib/<suggestion-name>`
 
-   If you need your own service account for the experiment's
-   suggestion with early stopping, you have to follow the rules:
+  For each algorithm you can specify one of the following suggestion names in the Docker image:
 
-   - The service account name can't be equal to
-     `<experiment-name>-<experiment-algorithm>`
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>Suggestion name</th>
+          <th>List of supported algorithms</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>suggestion-hyperopt</code></td>
+          <td><code>random</code>, <code>tpe</code></td>
+          <td><a href="https://github.com/hyperopt/hyperopt">Hyperopt</a> optimization framework</td>
+        </tr>
+        <tr>
+          <td><code>suggestion-skopt</code></td>
+          <td><code>bayesianoptimization</code></td>
+          <td><a href="https://github.com/scikit-optimize/scikit-optimize">Scikit-optimize</a> optimization framework</td>
+        </tr>
+        <tr>
+          <td><code>suggestion-goptuna</code></td>
+          <td><code>cmaes</code>, <code>random</code>, <code>tpe</code>, <code>sobol</code></td>
+          <td><a href="https://github.com/c-bata/goptuna">Goptuna</a> optimization framework</td>
+        </tr>
+        <tr>
+          <td><code>suggestion-optuna</code></td>
+          <td><code>multivariate-tpe</code>, <code>tpe</code>, <code>cmaes</code>, <code>random</code>, <code>grid</code></td>
+          <td><a href="https://github.com/optuna/optuna">Optuna</a> optimization framework</td>
+        </tr>
+        <tr>
+          <td><code>suggestion-hyperband</code></td>
+          <td><code>hyperband</code></td>
+          <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/hyperband">Katib
+            Hyperband</a> implementation</td>
+        </tr>
+        <tr>
+          <td><code>suggestion-pbt</code></td>
+          <td><code>pbt</code></td>
+          <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/pbt">Katib
+            PBT</a> implementation</td>
+        </tr>
+        <tr>
+          <td><code>suggestion-enas</code></td>
+          <td><code>enas</code></td>
+          <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/enas">Katib
+            ENAS</a> implementation</td>
+        </tr>
+        <tr>
+          <td><code>suggestion-darts</code></td>
+          <td><code>darts</code></td>
+          <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/suggestion/v1beta1/nas/darts">Katib
+            DARTS</a> implementation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-   - The service account must have sufficient permissions to update
-     the experiment's trial status.
+The following settings are **optional**:
 
-### Suggestion volume settings
+- `.<ContainerV1>` - you can specify all
+  [container parameters](https://github.com/kubernetes/api/blob/669e693933c77e91648f8602dc2555d96e6279ad/core/v1/types.go#L2608)
+  inline for your Suggestion Deployment. For example, `.resources` for container resources or
+  `.env` for container environment variables.
 
-When you create an experiment with
+  Configuration for `.resources` works the same as for metrics collector's container `resources`.
+
+- `.serviceAccountName` - a [ServiceAccount](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
+  for the Suggestion Deployment.
+
+  By default, the Suggestion Pod doesn't have any specific ServiceAccount,
+  in which case, the Pod uses the
+  [default](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server)
+  service account.
+
+  **Note:** If you want to run your Experiments with
+  [early stopping](/docs/components/katib/early-stopping/),
+  the Suggestion's Deployment must have permission to update the Experiment's
+  Trial status. If you don't specify a ServiceAccount in the Katib config,
+  Katib controller creates required
+  [Kubernetes Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac)
+  for the suggestion.
+
+  If you need your own ServiceAccount for the experiment's
+  suggestion with early stopping, you have to follow the rules:
+
+  - The ServiceAccount name can't be equal to
+    `<experiment-name>-<experiment-algorithm>`
+
+  - The ServiceAccount must have sufficient permissions to update
+    the experiment's trial status.
+
+#### Suggestion Volume Parameters
+
+When you create an Experiment with
 [`FromVolume` resume policy](/docs/components/katib/resume-experiment#resume-policy-fromvolume),
 you are able to specify
 [PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
 and
 [PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
-settings for the experiment's suggestion. Learn more about Katib concepts
+settings for the Experiment's Suggestion. Learn more about Katib concepts
 in the [overview guide](/docs/components/katib/overview/#suggestion).
 
 If PV settings are empty, Katib controller creates only PVC.
-If you want to use the default volume specification, you can omit these settings.
+If you want to use the default volume specification, you can omit these parameters.
 
-Follow the example for the `random` algorithm:
+For example, Suggestion volume config for `random` algorithm:
 
-```json
-suggestion: |-
-{
-  "random": {
-    "image": "docker.io/kubeflowkatib/suggestion-hyperopt",
-    "volumeMountPath": "/opt/suggestion/data",
-    "persistentVolumeClaimSpec": {
-      "accessModes": [
-        "ReadWriteMany"
-      ],
-      "resources": {
-        "requests": {
-          "storage": "3Gi"
-        }
-      },
-      "storageClassName": "katib-suggestion"
-    },
-    "persistentVolumeSpec": {
-      "accessModes": [
-        "ReadWriteMany"
-      ],
-      "capacity": {
-        "storage": "3Gi"
-      },
-      "hostPath": {
-        "path": "/tmp/suggestion/unique/path"
-      },
-      "storageClassName": "katib-suggestion"
-    },
-    "persistentVolumeLabels": {
-      "type": "local"
-    }
-  },
-  ...
-}
+```yaml
+suggestions:
+  - algorithmName: random
+    image: docker.io/kubeflowkatib/suggestion-hyperopt:latest
+    volumeMountPath: /opt/suggestion/data
+    persistentVolumeClaimSpec:
+      accessModes:
+        - ReadWriteMany
+      resources:
+        requests:
+          storage: 3Gi
+      storageClassName: katib-suggestion
+    persistentVolumeSpec:
+      accessModes:
+        - ReadWriteMany
+      capacity:
+        storage: 3Gi
+      hostPath:
+        path: /tmp/suggestion/unique/path
+      storageClassName: katib-suggestion
+    persistentVolumeLabels:
+      type: local
 ```
 
-1. `volumeMountPath` - a [mount path](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/#configure-a-volume-for-a-pod)
-   for the suggestion's container with `random` algorithm.
+- `.volumeMountPath` - a [mount path](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/#configure-a-volume-for-a-pod)
+  for the Suggestion Deployment's container.
 
-   The default value is `/opt/katib/data`
+  The default value is `/opt/katib/data`
 
-1. `persistentVolumeClaimSpec` - a [PVC specification](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#persistentvolumeclaimspec-v1-core)
-   for the suggestion's PVC.
+- `.persistentVolumeClaimSpec` - a [PVC specification](https://github.com/kubernetes/api/blob/669e693933c77e91648f8602dc2555d96e6279ad/core/v1/types.go#L487)
+  for the Suggestion Deployment's PVC.
 
-   The default value is set, if you don't specify any of these settings:
+  The default value is set, if you don't specify any of these settings:
 
-   - `persistentVolumeClaimSpec.accessModes[0]` - the default value is
-     [`ReadWriteOnce`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
+  - `.persistentVolumeClaimSpec.accessModes[0]` - the default value is
+    [`ReadWriteOnce`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
 
-   - `persistentVolumeClaimSpec.resources.requests.storage` - the default value
-     is `1Gi`
+  - `.persistentVolumeClaimSpec.resources.requests.storage` - the default value is `1Gi`
 
-1. `persistentVolumeSpec` - a [PV specification](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#persistentvolumespec-v1-core)
-   for the suggestion's PV.
+- `.persistentVolumeSpec` - a [PV specification](https://github.com/kubernetes/api/blob/669e693933c77e91648f8602dc2555d96e6279ad/core/v1/types.go#L324)
+  for the Suggestion Deployment's PV.
 
-   PV `persistentVolumeReclaimPolicy` is always equal to **`Delete`** to properly
-   remove all resources once Katib experiment is deleted. To know more about
-   PV reclaim policies check the
-   [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming).
+  PV `persistentVolumeReclaimPolicy` is always equal to **`Delete`** to properly
+  remove all resources once Katib experiment is deleted. To know more about
+  PV reclaim policies check the
+  [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming).
 
-1. `persistentVolumeLabels` - [PV labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
-   for the suggestion's PV.
+- `.persistentVolumeLabels` - [PV labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+  for the Suggestion Deployment's PV.
 
-## Early stopping settings
+### Early Stoppings Parameters
 
-These settings are related to Katib early stopping, where:
+Parameters under `.runtime.earlyStoppings` configure container for
+[the Katib Early Stopping algorithms](/docs/components/katib/early-stopping/#early-stopping-algorithms-in-detail).
+The following settings are **required** for each early stopping algorithm that you want
+to use in your Katib Experiments:
 
-- key: `early-stopping`
-- value: corresponding JSON settings for each early stopping algorithm name
+- `.algorithmName` - one of the early stopping algorithm names (e.g. `medianstop`).
 
-If you want to use a new early stopping algorithm, you need to update the
-Katib config. For example, using a `medianstop` early stopping algorithm with
-all settings looks as follows:
+- `.image` - a Docker image for the early stopping container.
 
-```json
-early-stopping: |-
-{
-  "medianstop": {
-    "image": "docker.io/kubeflowkatib/earlystopping-medianstop",
-    "imagePullPolicy": "Always"
-  },
-  ...
-}
-```
+The following settings are **optional**:
 
-All of these settings except **`image`** can be omitted. If you don't specify
-any other settings, a default value is set automatically.
+- `.imagePullPolicy` - an [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
+  for the early stopping's container.
 
-1. `image` - a Docker image for the early stopping's container with a
-   `medianstop` algorithm (**must be specified**).
+  The default value is `IfNotPresent`
 
-   Image example: `docker.io/kubeflowkatib/<early-stopping-name>`
+- `.resources` - [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-requests-and-limits-of-pod-and-container)
+  for the early stopping's container.
 
-   For each early stopping algorithm you can specify one of the following
-   early stopping names in the Docker image:
-
-   <div class="table-responsive">
-     <table class="table table-bordered">
-       <thead class="thead-light">
-         <tr>
-           <th>Early stopping name</th>
-           <th>Early stopping algorithm</th>
-           <th>Description</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <td><code>earlystopping-medianstop</code></td>
-           <td><code>medianstop</code></td>
-           <td><a href="https://github.com/kubeflow/katib/tree/master/pkg/earlystopping/v1beta1/medianstop">Katib
-             Median Stopping</a> implementation</td>
-         </tr>
-       </tbody>
-     </table>
-   </div>
-
-1. `imagePullPolicy` - an
-   [image pull policy](https://kubernetes.io/docs/concepts/configuration/overview/#container-images)
-   for the early stopping's container with a `medianstop` algorithm.
-
-   The default value is `IfNotPresent`
+  Configuration for `.resources` works the same as for metrics collector's container `resources`.
 
 ## Next steps
 
