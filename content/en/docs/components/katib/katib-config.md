@@ -194,7 +194,7 @@ The following settings are **optional**:
 - `waitAllProcesses` - a flag to define whether the metrics collector should wait until all
   processes in the Trial's training container are finished before start to collect metrics.
 
-  The default value is `true`
+  The default value is `false`
 
 ### Suggestions Parameters
 
