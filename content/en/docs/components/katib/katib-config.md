@@ -53,7 +53,7 @@ The following parameters set in `.init.certGenerator` configure the Katib certif
 
 - `enable` - whether to enable Katib certificate generator.
 
-  The default value is `true`
+  The default value is `false`
 
 - `webhookServiceName` - a service name for the Katib webhooks. If it is set, Katib certificate
   generator is forcefully enabled.
