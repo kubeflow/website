@@ -38,6 +38,12 @@ The official Kubeflow mailing list is a Google Group called [kubeflow-discuss](h
   <button class="btn btn-primary py-2 px-5">Click to join:<br>Kubeflow Mailing List</button>
 </a>
 
+## Kubeflow on Social Networking
+
+- Official [YouTube Channel](https://www.youtube.com/@Kubeflow/featured") for Kubeflow. You can find the most recent videos covering a range of topics related to Kubeflow.
+- Join [LinkedIn](https://www.linkedin.com/company/kubeflow/) for latest news in Kubeflow.
+- Follow us on X formerly known as [Twitter](https://twitter.com/kubeflow) for latest news on Kubeflow.
+
 ## Kubeflow Community Call
 
 The Kubeflow community holds weekly Zoom calls for all users and contributors to discuss issues/proposals and present demos/products.
@@ -110,7 +116,7 @@ The following table outlines which components are maintained by each Working Gro
       <!-- ======================= -->
       <tr>
         <td rowspan="1" class="align-middle">
-          <a href="https://github.com/kubeflow/community/tree/master/wg-automl">AutoML</a> 
+          <a href="https://github.com/kubeflow/community/tree/master/wg-automl">AutoML</a>
         </td>
         <td>
           <a href="https://github.com/kubeflow/katib">Katib</a>
@@ -227,6 +233,6 @@ The following table outlines which components are maintained by each Working Gro
           <a href="https://github.com/kubeflow/training-operator">Kubeflow Training Operator</a>
         </td>
       </tr>
-  </tbody> 
+  </tbody>
 </table>
 </div>
