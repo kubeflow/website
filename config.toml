@@ -28,11 +28,15 @@ ignoreFiles = []
 ###############################################################################
 [menu]
   [[menu.main]]
-    name = "Kubeflow Summit 2023 "
+    name = "Google Summer Of Code 2024 "
     weight = -1000
     pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
-    post = "<br><span class='badge badge-warning'>Oct 6th</span> <span class='badge badge-warning'>Irving, Texas</span> <span class='badge badge-warning'>Virtual</span>"
-    url = "/events/kubeflow-summit-2023/"
+    url = "/events/gsoc-2024/"
+  [[menu.main]]
+    name = "Events"
+    weight = -101
+    pre = "<i class='fas fa-book pr-2'></i>"
+    url = "/events/"
   [[menu.main]]
     name = "Documentation"
     weight = -101
