@@ -28,7 +28,7 @@ ignoreFiles = []
 ###############################################################################
 [menu]
   [[menu.main]]
-    name = "Kubeflow Summit EU / KubeCon EU "
+    name = "Kubeflow Summit / KubeCon Europe "
     weight = -1000
     pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
     post = "<br><span class='badge badge-warning'>19 March, 2024</span> <span class='badge badge-warning'>Paris, France</span> "
