@@ -29,7 +29,7 @@ In the near future, there are plans to introduce <a href="https://github.com/kub
 
 {{% alert title="Distribution Names" color="info" %}}
 Some distributions have names like `Kubeflow on <PLATFORM>`.
-Please note, they are not the "official installation method" for Kubeflow on that platform, it is simply the name of a distribution.
+Please note, they are __not__ the only way to use Kubeflow on that platform, it is simply the name of a distribution.
 
 There are discussions about renaming these distributions to avoid confusion with others that may be available on the same platform.
 {{% /alert %}}
