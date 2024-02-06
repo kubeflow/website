@@ -161,7 +161,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           QBO
         </td>
         <td>
-          {{% qbo/latest-version %}} <sup>[<a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">Release Notes</a>]</sup>
+          {{% qke/latest-version %}} <sup>[<a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">Release Notes</a>]</sup>
         </td>
         <td>
           QBO Kubernetes Engine (QKE) Community and Cloud Editions

@@ -18,11 +18,8 @@ Learn more about Kubeflow in the [Introduction](/docs/started/introduction/) and
 Anywhere you are running Kubernetes, you should be able to run Kubeflow.
 There are two primary ways to install Kubeflow:
 
-- [What is Kubeflow?](#what-is-kubeflow)
-- [How to install Kubeflow?](#how-to-install-kubeflow)
-- [Packaged Distributions of Kubeflow](#packaged-distributions-of-kubeflow)
-- [Raw Kubeflow Manifests](#raw-kubeflow-manifests)
-- [Next steps](#next-steps)
+1. [**Packaged Distributions**](#packaged-distributions-of-kubeflow)
+1. [**Raw Manifests**](#raw-kubeflow-manifests) <sup>(advanced users)</sup>
 
 <a id="packaged-distributions"></a>
 <a id="install-a-packaged-kubeflow-distribution"></a>
@@ -158,20 +155,6 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
-          QBO
-        </td>
-        <td>
-          {{% qbo/latest-version %}} <sup>[<a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">Release Notes</a>]</sup>
-        </td>
-        <td>
-          QBO Kubernetes Engine (QKE) Community and Cloud Editions
-        </td>
-        <td>
-          <a href="https://docs.qbo.io/#/qke?id=kubeflow">Website</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
           Red Hat
             <br><small>Open Data Hub</small>
         </td>
@@ -179,6 +162,97 @@ The following table lists distributions which are <em>maintained</em> by their r
           {{% redhat/latest-version %}}
         </td>
         <td>
+<<<<<<< HEAD
+=======
+          1.8.0
+        </td>
+      </tr>
+      <tr>
+        <td>deployKF</td>
+        <td>Aranui Solutions</td>
+        <td>
+          All Certified Kubernetes Distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>]</sup>
+        </td>
+        <td>
+          <a href="https://www.deploykf.org/">Website</a>
+        </td>
+        <td>
+          1.7.0 <sup>[<a href="https://www.deploykf.org/releases/version-matrix/#kubeflow-tools">Version Matrix</a>]</sup>
+        </td>
+      </tr>
+      <tr>
+        <td>Kubeflow on Oracle Container Engine for Kubernetes</td>
+        <td>Oracle</td>
+        <td>
+          Oracle Container Engine for Kubernetes (OKE)
+        </td>
+        <td>
+          <a href="https://github.com/oracle-devrel/kubeflow-oke">Website</a>
+        </td>
+        <td>
+          1.6.0
+        </td>
+      </tr>
+      <tr>
+        <td>Kubeflow on vSphere</td>
+        <td>VMware</td>
+        <td>VMware vSphere</td>
+        <td>
+          <a href="https://vmware.github.io/vSphere-machine-learning-extension/">Website</a>
+        </td>
+        <td>
+          1.6.1
+        </td>
+      </tr>
+      <tr>
+        <td>Kubeflow on QBO</td>
+        <td>QBO</td>
+        <td>QBO Kubernetes Engine Community Edition (QKE CE), QBO Kubernetes Engine Cloud (QKE Cloud)</td>
+        <td>
+          <a href="https://docs.qbo.io/#/ai_and_ml?id=kubeflow">Website</a>
+        </td>
+        <td>
+          v1.7.0, v1.8.0 (Linux, Windows WSL2)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Legacy Distributions
+
+The following table lists <b>legacy distributions</b> which have <b>not had a recent release</b> (within the last 6 months).
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Name</th>
+        <th>Maintainer</th>
+        <th>Target Platform</th>
+        <th>Link</th>
+        <th>Latest Release</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Argoflow</td>
+        <td>Argoflow Users</td>
+        <td>
+          All Certified Kubernetes Distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>]</sup>
+        </td>
+        <td>
+          <a href="https://github.com/argoflow">Website</a>
+        </td>
+        <td>
+          1.3.0
+        </td>
+      </tr>
+      <tr>
+        <td>Kubeflow on OpenShift</td>
+        <td>Red Hat</td>
+        <td>
+>>>>>>> 571ec230 (add qbo to list of distributions)
           OpenShift
         </td>
         <td>
