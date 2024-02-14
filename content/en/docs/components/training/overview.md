@@ -8,7 +8,7 @@ weight = 5
 
 Kubeflow Training Operator is a Kubernetes-native project for fine-tuning and scalable
 distributed training of machine learning (ML) models created with various ML frameworks such as
-PyTorch, Tensorflow, XGBoost, and others.
+PyTorch, TensorFlow, XGBoost, and others.
 
 User can integrate other ML libraries such as [HuggingFace](https://huggingface.co),
 [DeepSpeed](https://github.com/microsoft/DeepSpeed), or [Megatron](https://github.com/NVIDIA/Megatron-LM)
@@ -33,7 +33,7 @@ for each ML framework:
 | ML Framework | Custom Resource                                      |
 | ------------ | ---------------------------------------------------- |
 | PyTorch      | [PyTorchJob](/docs/components/training/pytorch/)     |
-| Tensorflow   | [TFJob](/docs/components/training/tftraining/)       |
+| TensorFlow   | [TFJob](/docs/components/training/tftraining/)       |
 | XGBoost      | [XGBoostJob](/docs/components/training/xgboost/)     |
 | MPI          | [MPIJob](/docs/components/training/mpi/)             |
 | PaddlePaddle | [PaddleJob](/docs/components/training/paddlepaddle/) |
@@ -48,7 +48,7 @@ This diagram shows the major features of Training Operator and supported ML fram
 
 Training Operator is responsible to schedule the appropriate Kubernetes workloads to implement
 various distributed training strategies for different ML frameworks. The following examples show
-how Training Operator allows to run distributed PyTorch and Tensorflow on Kubernetes.
+how Training Operator allows to run distributed PyTorch and TensorFlow on Kubernetes.
 
 ### Distributed Training for PyTorch
 
@@ -72,9 +72,9 @@ in every worker (`g1, g2, g3, g4`) and model is trained.
 You can define various distributed strategy supported by PyTorch in your training code, and Training
 Operator will set the appropriate environment variables for `torchrun`.
 
-### Distributed Training for Tensorflow
+### Distributed Training for TensorFlow
 
-This diagram shows how Training Operator creates Tensorflow parameter server (PS) and workers for
+This diagram shows how Training Operator creates TensorFlow parameter server (PS) and workers for
 [PS distributed training](https://www.tensorflow.org/tutorials/distribute/parameter_server_training).
 
 <img src="/docs/components/training/images/distributed-tfjob.drawio.svg"
@@ -82,16 +82,16 @@ This diagram shows how Training Operator creates Tensorflow parameter server (PS
   class="mt-3 mb-3">
 
 User is responsible to write a training code using native
-[Tensorflow Distributed APIs](https://www.tensorflow.org/guide/distributed_training) and create a
+[TensorFlow Distributed APIs](https://www.tensorflow.org/guide/distributed_training) and create a
 TFJob with required number PSs, workers, and GPUs using Training Operator Python SDK.
 Then, Training Operator creates Kubernetes pods with appropriate environment variables for
 [`TF_CONFIG`](https://www.tensorflow.org/guide/distributed_training#setting_up_the_tf_config_environment_variable)
-to start distributed Tensorflow training job.
+to start distributed TensorFlow training job.
 
 Parameter server splits training data for every worker and averages model weights based on gradients
 produced by every worker.
 
-You can define various distributed strategy supported by Tensorflow in your training code, and Training
+You can define various distributed strategy supported by TensorFlow in your training code, and Training
 Operator will set the appropriate environment variables for `TF_CONFIG`.
 
 ## Getting Started
