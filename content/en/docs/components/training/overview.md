@@ -91,8 +91,9 @@ to start distributed TensorFlow training job.
 Parameter server splits training data for every worker and averages model weights based on gradients
 produced by every worker.
 
-You can define various distributed strategy supported by TensorFlow in your training code, and Training
-Operator will set the appropriate environment variables for `TF_CONFIG`.
+You can define various [distributed strategy supported by TensorFlow](https://www.tensorflow.org/guide/distributed_training#types_of_strategies)
+in your training code, and Training Operator will set the appropriate environment
+variables for `TF_CONFIG`.
 
 ## Getting Started
 
