@@ -69,8 +69,9 @@ PyTorch training job.
 At the end of the ring all-reduce algorithm gradients are synchronized
 in every worker (`g1, g2, g3, g4`) and model is trained.
 
-You can define various distributed strategy supported by PyTorch in your training code, and Training
-Operator will set the appropriate environment variables for `torchrun`.
+You can define various distributed strategy supported by PyTorch in your training code
+(e.g. [PyTorch FSDP](https://pytorch.org/docs/stable/fsdp.html)), and Training Operator will set
+the appropriate environment variables for `torchrun`.
 
 ### Distributed Training for TensorFlow
 
