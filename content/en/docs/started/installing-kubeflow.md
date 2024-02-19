@@ -118,7 +118,7 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
           <a href="https://charmed-kubeflow.io/">Website</a>
         </td>
         <td>
-          1.7.0
+          1.8.0
         </td>
       </tr>
       <tr>

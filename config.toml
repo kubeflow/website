@@ -28,13 +28,18 @@ ignoreFiles = []
 ###############################################################################
 [menu]
   [[menu.main]]
-    name = "Kubeflow Summit 2023 "
+    name = "Kubeflow Summit / KubeCon Europe "
     weight = -1000
     pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
-    post = "<br><span class='badge badge-warning'>Oct 6th</span> <span class='badge badge-warning'>Irving, Texas</span> <span class='badge badge-warning'>Virtual</span>"
-    url = "/events/kubeflow-summit-2023/"
+    post = "<br><span class='badge badge-warning'>19 March, 2024</span> <span class='badge badge-warning'>Paris, France</span> "
+    url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/kubeflow-summit/"
   [[menu.main]]
-    name = "Documentation"
+    name = "Events"
+    weight = -102
+    pre = "<i class='fas fa-calendar pr-2'></i>"
+    url = "/events/"
+  [[menu.main]]
+    name = "Docs"
     weight = -101
     pre = "<i class='fas fa-book pr-2'></i>"
     url = "/docs/"
