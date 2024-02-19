@@ -4,10 +4,6 @@ description = "An overview of Kubeflow's architecture"
 weight = 10
 +++
 
-{{% alert title="Out of date" color="warning" %}}
-We're sorry, this page is currently very out of date. We are working on updating it.
-{{% /alert %}}
-
 <!--
 Note for authors: The source of the diagrams is held in Google Slides decks,
 in the "Doc diagrams" folder in the public Kubeflow shared drive.
@@ -28,7 +24,7 @@ Kubeflow is *the ML toolkit for Kubernetes*.
 The following diagram shows Kubeflow as a platform for arranging the
 components of your ML system on top of Kubernetes:
 
-<img src="/docs/images/kubeflow-overview-platform-diagram.svg" 
+<img src="/docs/started/images/kubeflow-architecture.drawio.svg"
   alt="An architectural overview of Kubeflow on Kubernetes"
   class="mt-3 mb-3 border border-info rounded">
 
