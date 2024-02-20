@@ -245,7 +245,7 @@ The following table lists <strong>legacy distributions</strong> which have <em>n
 The raw Kubeflow Manifests are aggregated by the [Manifests Working Group](https://github.com/kubeflow/community/tree/master/wg-manifests)
 and are intended to be used as the __base of packaged distributions__.
 
-Very advanced users may choose to install the manifests for a specific Kubeflow version by following the instructions in the `README` in the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
+Very advanced users may choose to install the manifests for a specific Kubeflow version by following the instructions in the `README` of the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
 
 - [__Kubeflow 1.8:__](/docs/releases/kubeflow-1.8/)
    - [`v1.8-branch`](https://github.com/kubeflow/manifests/tree/v1.8-branch#installation) <sup>(development branch)</sup>
