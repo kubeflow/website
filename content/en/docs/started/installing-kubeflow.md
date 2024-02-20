@@ -17,7 +17,7 @@ Learn more about Kubeflow on the [Introduction](/docs/started/introduction/) and
 Anywhere you are running Kubernetes, you should be able to run Kubeflow.
 There are two primary ways to install Kubeflow:
 
-1. [__Packaged Distributions__](#packaged-distributions-of-kubeflow) <sup>(recommended)</sup>
+1. [__Packaged Distributions__](#packaged-distributions-of-kubeflow)
 2. [__Raw Manifests__](#raw-kubeflow-manifests) <sup>(advanced users)</sup>
 
 <a id="packaged-distributions"></a>
@@ -255,7 +255,8 @@ Very advanced users may choose to install the manifests for a specific Kubeflow 
    - [`v1.7.0`](https://github.com/kubeflow/manifests/tree/v1.7.0#installation)
 
 {{% alert title="Warning" color="warning" %}}
-Kubeflow is a complex system with many components and dependencies, using the raw manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
+Kubeflow is a complex system with many components and dependencies.
+Using the raw manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
 
 When using the raw manifests, the Kubeflow community is not able to provide support for environment-specific issues or custom configurations.
 If you need support, please consider using a [packaged distribution](#packaged-distributions-of-kubeflow).
