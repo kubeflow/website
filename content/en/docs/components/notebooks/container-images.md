@@ -142,7 +142,7 @@ The purpose of this script is to snapshot any `KUBERNETES_*` environment variabl
 
 Extra services to be monitored by `s6-overlay` should be placed in their own folder under `/etc/services.d/` containing a script called `run` and optionally a finishing script `finish`.
 
-An example of a service can be found in the `run` script of [jupyter/s6/services.d/jupyterlab](jupyter/s6/services.d/jupyterlab) which is used to start JupyterLab itself.
+An example of a service can be found in the `run` script of [`.jupyter/s6/services.d/jupyterlab`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter/s6/services.d/jupyterlab) which is used to start JupyterLab itself.
 For more information about the `run` and `finish` scripts, please see the [s6-overlay documentation](https://github.com/just-containers/s6-overlay#writing-a-service-script).
 
 #### Run Services As Root
