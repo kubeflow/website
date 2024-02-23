@@ -14,6 +14,8 @@ and manage Apache MXNet jobs just like built-in K8S resources.
 
 The Kubeflow implementation of `MXJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
 
+**Note**: `MXJob` doesn’t work in a user namespace by default because of Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection). In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"` to disable it for either `MXJob` pods or namespace. To view an example of how to add this annotation to your `yaml` file, see the [`TFJob` documentation](https://www.kubeflow.org/docs/components/training/tftraining/).
+
 ## Installing MXNet Operator
 
 If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
