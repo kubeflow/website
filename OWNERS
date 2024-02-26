@@ -1,18 +1,10 @@
 approvers:
-  - animeshsingh
   - chensun
   - james-jwu
-  - knkski
-  - shannonbradshaw
+  - thesuperzapper
   - zijianjoy
 reviewers:
-  - 8bitmp3
-  - aronchick
-  - berndverst
-  - dansanche
-  - dsdinter
-  - Jeffwan
-  - jinchihe
-  - nickchase
-  - pdmack
-  - terrytangyuan
+  - chensun
+  - james-jwu
+  - thesuperzapper
+  - zijianjoy
