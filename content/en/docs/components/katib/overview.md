@@ -46,108 +46,20 @@ various AutoML algorithms.
   alt="Katib Overview"
   class="mt-3 mb-3">
 
-## Hyperparameters and hyperparameter tuning
+This diagram shows how Katib performs Hyperparameter tuning:
 
-_Hyperparameters_ are the variables that control the model training process.
-They include:
+<img src="/docs/components/katib/images/katib-architecture.drawio.svg"
+  alt="Katib Overview"
+  class="mt-3 mb-3">
 
-- The learning rate.
-- The number of layers in a neural network.
-- The number of nodes in each layer.
+First of all, user need to write ML training code which will be evaluated on every Katib Trial
+with different Hyperparameters. Then, using Katib Python SDK user should set objective, search
+space, search algorithm, Trial resources, and create the Katib Experiment.
 
-Hyperparameter values are not _learned_. In other words, in contrast to the
-node weights and other training _parameters_, the model training process does
-not adjust the hyperparameter values.
+Follow the [quickstart guide](/docs/components/katib/hyperparameter/#quickstart-with-katib-sdk)
+to create your first Katib Experiment.
 
-_Hyperparameter tuning_ is the process of optimizing the hyperparameter values
-to maximize the predictive accuracy of the model. If you don't use Katib or a
-similar system for hyperparameter tuning, you need to run many training jobs
-yourself, manually adjusting the hyperparameters to find the optimal values.
-
-Automated hyperparameter tuning works by optimizing a target variable,
-also called the _objective metric_, that you specify in the configuration for
-the hyperparameter tuning job. A common metric is the model's accuracy
-in the validation pass of the training job (_validation-accuracy_). You also
-specify whether you want the hyperparameter tuning job to _maximize_ or
-_minimize_ the metric.
-
-For example, the following graph from Katib shows the level of validation accuracy
-for various combinations of hyperparameter values (the learning rate, the number of
-layers, and the optimizer):
-
-<img src="/docs/components/katib/images/random-example-graph.png"
-  alt="Graph produced by the random example"
-  class="mt-3 mb-3 border border-info rounded">
-
-_(To run the example that produced this graph, follow the [getting-started
-guide](/docs/components/katib/hyperparameter/).)_
-
-Katib runs several training jobs (known as _trials_) within each
-hyperparameter tuning job (_experiment_). Each trial tests a different set of
-hyperparameter configurations. At the end of the experiment, Katib outputs
-the optimized values for the hyperparameters.
-
-You can improve your hyperparameter tunning experiments by using
-[early stopping](https://en.wikipedia.org/wiki/Early_stopping) techniques.
-Follow the [early stopping guide](/docs/components/katib/early-stopping/)
-for the details.
-
-## Neural architecture search
-
-{{% alert title="Alpha version" color="warning" %}}
-NAS is currently in <b>alpha</b> with limited support. The Kubeflow team is
-interested in any feedback you may have, in particular with regards to usability
-of the feature. You can log issues and comments in
-the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
-{{% /alert %}}
-
-In addition to hyperparameter tuning, Katib offers a _neural architecture
-search_ feature. You can use the NAS to design
-your artificial neural network, with a goal of maximizing the predictive
-accuracy and performance of your model.
-
-NAS is closely related to hyperparameter tuning. Both are subsets of AutoML.
-While hyperparameter tuning optimizes the model's hyperparameters, a NAS system
-optimizes the model's structure, node weights and hyperparameters.
-
-NAS technology in general uses various techniques to find the optimal neural
-network design.
-
-You can submit Katib jobs from the command line or from the UI. (Learn more
-about the Katib interfaces later on this page.) The following screenshot shows
-part of the form for submitting a NAS job from the Katib UI:
-
-<img src="/docs/components/katib/images/nas-parameters.png"
-  alt="Submitting a neural architecture search from the Katib UI"
-  class="mt-3 mb-3 border border-info rounded">
-
-## Katib interfaces
-
-You can use the following interfaces to interact with Katib:
-
-- A web UI that you can use to submit experiments and to monitor your results.
-  Check the [getting-started
-  guide](/docs/components/katib/hyperparameter/#katib-ui)
-  for information on how to access the UI.
-  The Katib home page within Kubeflow looks like this:
-
-  <img src="/docs/components/katib/images/home-page.png"
-    alt="The Katib home page within the Kubeflow UI"
-    class="mt-3 mb-3 border border-info rounded">
-
-- A gRPC API. Check the [API reference on GitHub](https://github.com/kubeflow/katib/blob/master/pkg/apis/manager/v1beta1/gen-doc/api.md).
-
-- Command-line interfaces (CLIs):
-
-  - The Kubernetes CLI, **kubectl**, is useful for running commands against your
-    Kubeflow cluster. Learn about kubectl in the [Kubernetes
-    documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-
-- Katib Python SDK. Check the [Katib Python SDK documentation on GitHub](https://github.com/kubeflow/katib/tree/master/sdk/python/v1beta1).
-
-## Katib concepts
-
-This section describes the terms used in Katib.
+Katib implements the following Custom Resource Definitions (CRDs) to tune Hyperparameters:
 
 ### Experiment
 
@@ -230,6 +142,105 @@ Katib has these CRD examples in upstream:
 - [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
 
 By offering the above worker job types, Katib supports multiple ML frameworks.
+
+## Hyperparameters and hyperparameter tuning
+
+_Hyperparameters_ are the variables that control the model training process.
+They include:
+
+- The learning rate.
+- The number of layers in a neural network.
+- The number of nodes in each layer.
+
+Hyperparameter values are not _learned_. In other words, in contrast to the
+node weights and other training _parameters_, the model training process does
+not adjust the hyperparameter values.
+
+_Hyperparameter tuning_ is the process of optimizing the hyperparameter values
+to maximize the predictive accuracy of the model. If you don't use Katib or a
+similar system for hyperparameter tuning, you need to run many training jobs
+yourself, manually adjusting the hyperparameters to find the optimal values.
+
+Automated hyperparameter tuning works by optimizing a target variable,
+also called the _objective metric_, that you specify in the configuration for
+the hyperparameter tuning job. A common metric is the model's accuracy
+in the validation pass of the training job (_validation-accuracy_). You also
+specify whether you want the hyperparameter tuning job to _maximize_ or
+_minimize_ the metric.
+
+For example, the following graph from Katib shows the level of validation accuracy
+for various combinations of hyperparameter values (the learning rate, the number of
+layers, and the optimizer):
+
+<img src="/docs/components/katib/images/random-example-graph.png"
+  alt="Graph produced by the random example"
+  class="mt-3 mb-3 border border-info rounded">
+
+_(To run the example that produced this graph, follow the [getting-started
+guide](/docs/components/katib/hyperparameter/).)_
+
+Katib runs several training jobs (known as _trials_) within each
+hyperparameter tuning job (_experiment_). Each trial tests a different set of
+hyperparameter configurations. At the end of the experiment, Katib outputs
+the optimized values for the hyperparameters.
+
+You can improve your hyperparameter tuning experiments by using
+[early stopping](https://en.wikipedia.org/wiki/Early_stopping) techniques.
+Follow the [early stopping guide](/docs/components/katib/early-stopping/)
+for the details.
+
+## Neural architecture search
+
+{{% alert title="Alpha version" color="warning" %}}
+NAS is currently in <b>alpha</b> with limited support. The Kubeflow team is
+interested in any feedback you may have, in particular with regards to usability
+of the feature. You can log issues and comments in
+the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
+{{% /alert %}}
+
+In addition to hyperparameter tuning, Katib offers a _neural architecture
+search_ feature. You can use the NAS to design
+your artificial neural network, with a goal of maximizing the predictive
+accuracy and performance of your model.
+
+NAS is closely related to hyperparameter tuning. Both are subsets of AutoML.
+While hyperparameter tuning optimizes the model's hyperparameters, a NAS system
+optimizes the model's structure, node weights and hyperparameters.
+
+NAS technology in general uses various techniques to find the optimal neural
+network design.
+
+You can submit Katib jobs from the command line or from the UI. (Learn more
+about the Katib interfaces later on this page.) The following screenshot shows
+part of the form for submitting a NAS job from the Katib UI:
+
+<img src="/docs/components/katib/images/nas-parameters.png"
+  alt="Submitting a neural architecture search from the Katib UI"
+  class="mt-3 mb-3 border border-info rounded">
+
+## Katib interfaces
+
+You can use the following interfaces to interact with Katib:
+
+- A web UI that you can use to submit experiments and to monitor your results.
+  Check the [getting-started
+  guide](/docs/components/katib/hyperparameter/#katib-ui)
+  for information on how to access the UI.
+  The Katib home page within Kubeflow looks like this:
+
+  <img src="/docs/components/katib/images/home-page.png"
+    alt="The Katib home page within the Kubeflow UI"
+    class="mt-3 mb-3 border border-info rounded">
+
+- A gRPC API. Check the [API reference on GitHub](https://github.com/kubeflow/katib/blob/master/pkg/apis/manager/v1beta1/gen-doc/api.md).
+
+- Command-line interfaces (CLIs):
+
+  - The Kubernetes CLI, **kubectl**, is useful for running commands against your
+    Kubeflow cluster. Learn about kubectl in the [Kubernetes
+    documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+- Katib Python SDK. Check the [Katib Python SDK documentation on GitHub](https://github.com/kubeflow/katib/tree/master/sdk/python/v1beta1).
 
 ## Next steps
 
