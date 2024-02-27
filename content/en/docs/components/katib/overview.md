@@ -46,6 +46,103 @@ various AutoML algorithms.
   alt="Katib Overview"
   class="mt-3 mb-3">
 
+This diagram shows how Katib performs Hyperparameter tuning:
+
+<img src="/docs/components/katib/images/katib-architecture.drawio.svg"
+  alt="Katib Overview"
+  class="mt-3 mb-3">
+
+First of all, user need to write ML training code which will be evaluated on every Katib Trial
+with different Hyperparameters. Then, using Katib Python SDK user should set objective, search
+space, search algorithm, Trial resources, and create the Katib Experiment.
+
+Follow the [quickstart guide](/docs/components/katib/hyperparameter/#quickstart-with-katib-sdk)
+to create your first Katib Experiment.
+
+Katib implements the following Custom Resource Definitions (CRDs) to tune Hyperparameters:
+
+### Experiment
+
+An _Experiment_ is a single tuning run, also called an optimization run.
+
+You specify configuration settings to define the Experiment. The following are
+the main configurations:
+
+- **Objective**: What you want to optimize. This is the objective metric, also
+  called the target variable. A common metric is the model's accuracy
+  in the validation pass of the training job (_validation-accuracy_). You also
+  specify whether you want the hyperparameter tuning job to _maximize_ or
+  _minimize_ the metric.
+
+- **Search space**: The set of all possible hyperparameter values that the
+  hyperparameter tuning job should consider for optimization, and the
+  constraints for each hyperparameter. Other names for search space include
+  _feasible set_ and _solution space_. For example, you may provide the
+  names of the hyperparameters that you want to optimize. For each
+  hyperparameter, you may provide a _minimum_ and _maximum_ value or a _list_
+  of allowable values.
+
+- **Search algorithm**: The algorithm to use when searching for the optimal
+  hyperparameter values.
+
+Katib Experiment is defined as a
+[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
+
+For details of how to define your Experiment, follow the guide to [running an
+experiment](/docs/components/katib/experiment/).
+
+### Suggestion
+
+A _Suggestion_ is a set of hyperparameter values that the hyperparameter
+tuning process has proposed. Katib creates a Trial to evaluate the suggested
+set of values.
+
+Katib Suggestion is defined as a
+[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
+
+### Trial
+
+A _Trial_ is one iteration of the hyperparameter tuning process. A Trial
+corresponds to one worker job instance with a list of parameter assignments.
+The list of parameter assignments corresponds to a Suggestion.
+
+Each Experiment runs several Trials. The Experiment runs the Trials until it
+reaches either the objective or the configured maximum number of Trials.
+
+Katib trial is defined as a
+[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
+
+### Worker job
+
+The _worker job_ is the process that runs to evaluate a Trial and calculate
+its objective value.
+
+The worker job can be any type of Kubernetes resource or
+[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
+Follow the
+[Trial template guide](/docs/components/katib/trial-template/#custom-resource)
+to check how to support your own Kubernetes resource in Katib.
+
+Katib has these CRD examples in upstream:
+
+- [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
+
+- [Kubeflow `TFJob`](/docs/components/training/tftraining/)
+
+- [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
+
+- [Kubeflow `MXJob`](/docs/components/training/mxnet)
+
+- [Kubeflow `XGBoostJob`](/docs/components/training/xgboost)
+
+- [Kubeflow `MPIJob`](/docs/components/training/mpi)
+
+- [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
+
+- [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
+
+By offering the above worker job types, Katib supports multiple ML frameworks.
+
 ## Hyperparameters and hyperparameter tuning
 
 _Hyperparameters_ are the variables that control the model training process.
@@ -82,12 +179,12 @@ layers, and the optimizer):
 _(To run the example that produced this graph, follow the [getting-started
 guide](/docs/components/katib/hyperparameter/).)_
 
-Katib runs several training jobs (known as _trials_) within each
-hyperparameter tuning job (_experiment_). Each trial tests a different set of
-hyperparameter configurations. At the end of the experiment, Katib outputs
+Katib runs several training jobs (known as _Trials_) within each
+hyperparameter tuning job (_Experiment_). Each Trial tests a different set of
+hyperparameter configurations. At the end of the Experiment, Katib outputs
 the optimized values for the hyperparameters.
 
-You can improve your hyperparameter tunning experiments by using
+You can improve your hyperparameter tuning Experiments by using
 [early stopping](https://en.wikipedia.org/wiki/Early_stopping) techniques.
 Follow the [early stopping guide](/docs/components/katib/early-stopping/)
 for the details.
@@ -125,7 +222,7 @@ part of the form for submitting a NAS job from the Katib UI:
 
 You can use the following interfaces to interact with Katib:
 
-- A web UI that you can use to submit experiments and to monitor your results.
+- A web UI that you can use to submit Experiments and to monitor your results.
   Check the [getting-started
   guide](/docs/components/katib/hyperparameter/#katib-ui)
   for information on how to access the UI.
@@ -144,92 +241,6 @@ You can use the following interfaces to interact with Katib:
     documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 - Katib Python SDK. Check the [Katib Python SDK documentation on GitHub](https://github.com/kubeflow/katib/tree/master/sdk/python/v1beta1).
-
-## Katib concepts
-
-This section describes the terms used in Katib.
-
-### Experiment
-
-An _experiment_ is a single tuning run, also called an optimization run.
-
-You specify configuration settings to define the experiment. The following are
-the main configurations:
-
-- **Objective**: What you want to optimize. This is the objective metric, also
-  called the target variable. A common metric is the model's accuracy
-  in the validation pass of the training job (_validation-accuracy_). You also
-  specify whether you want the hyperparameter tuning job to _maximize_ or
-  _minimize_ the metric.
-
-- **Search space**: The set of all possible hyperparameter values that the
-  hyperparameter tuning job should consider for optimization, and the
-  constraints for each hyperparameter. Other names for search space include
-  _feasible set_ and _solution space_. For example, you may provide the
-  names of the hyperparameters that you want to optimize. For each
-  hyperparameter, you may provide a _minimum_ and _maximum_ value or a _list_
-  of allowable values.
-
-- **Search algorithm**: The algorithm to use when searching for the optimal
-  hyperparameter values.
-
-Katib experiment is defined as a
-[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
-
-For details of how to define your experiment, follow the guide to [running an
-experiment](/docs/components/katib/experiment/).
-
-### Suggestion
-
-A _suggestion_ is a set of hyperparameter values that the hyperparameter
-tuning process has proposed. Katib creates a trial to evaluate the suggested
-set of values.
-
-Katib suggestion is defined as a
-[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
-
-### Trial
-
-A _trial_ is one iteration of the hyperparameter tuning process. A trial
-corresponds to one worker job instance with a list of parameter assignments.
-The list of parameter assignments corresponds to a suggestion.
-
-Each experiment runs several trials. The experiment runs the trials until it
-reaches either the objective or the configured maximum number of trials.
-
-Katib trial is defined as a
-[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
-
-### Worker job
-
-The _worker job_ is the process that runs to evaluate a trial and calculate
-its objective value.
-
-The worker job can be any type of Kubernetes resource or
-[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
-Follow the
-[trial template guide](/docs/components/katib/trial-template/#custom-resource)
-to check how to support your own Kubernetes resource in Katib.
-
-Katib has these CRD examples in upstream:
-
-- [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
-
-- [Kubeflow `TFJob`](/docs/components/training/tftraining/)
-
-- [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
-
-- [Kubeflow `MXJob`](/docs/components/training/mxnet)
-
-- [Kubeflow `XGBoostJob`](/docs/components/training/xgboost)
-
-- [Kubeflow `MPIJob`](/docs/components/training/mpi)
-
-- [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
-
-- [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
-
-By offering the above worker job types, Katib supports multiple ML frameworks.
 
 ## Next steps
 
