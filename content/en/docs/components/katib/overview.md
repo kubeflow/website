@@ -63,9 +63,9 @@ Katib implements the following Custom Resource Definitions (CRDs) to tune Hyperp
 
 ### Experiment
 
-An _experiment_ is a single tuning run, also called an optimization run.
+An _Experiment_ is a single tuning run, also called an optimization run.
 
-You specify configuration settings to define the experiment. The following are
+You specify configuration settings to define the Experiment. The following are
 the main configurations:
 
 - **Objective**: What you want to optimize. This is the objective metric, also
@@ -85,42 +85,42 @@ the main configurations:
 - **Search algorithm**: The algorithm to use when searching for the optimal
   hyperparameter values.
 
-Katib experiment is defined as a
+Katib Experiment is defined as a
 [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
 
-For details of how to define your experiment, follow the guide to [running an
+For details of how to define your Experiment, follow the guide to [running an
 experiment](/docs/components/katib/experiment/).
 
 ### Suggestion
 
-A _suggestion_ is a set of hyperparameter values that the hyperparameter
-tuning process has proposed. Katib creates a trial to evaluate the suggested
+A _Suggestion_ is a set of hyperparameter values that the hyperparameter
+tuning process has proposed. Katib creates a Trial to evaluate the suggested
 set of values.
 
-Katib suggestion is defined as a
+Katib Suggestion is defined as a
 [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
 
 ### Trial
 
-A _trial_ is one iteration of the hyperparameter tuning process. A trial
+A _Trial_ is one iteration of the hyperparameter tuning process. A Trial
 corresponds to one worker job instance with a list of parameter assignments.
-The list of parameter assignments corresponds to a suggestion.
+The list of parameter assignments corresponds to a Suggestion.
 
-Each experiment runs several trials. The experiment runs the trials until it
-reaches either the objective or the configured maximum number of trials.
+Each Experiment runs several Trials. The Experiment runs the Trials until it
+reaches either the objective or the configured maximum number of Trials.
 
 Katib trial is defined as a
 [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
 
 ### Worker job
 
-The _worker job_ is the process that runs to evaluate a trial and calculate
+The _worker job_ is the process that runs to evaluate a Trial and calculate
 its objective value.
 
 The worker job can be any type of Kubernetes resource or
 [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 Follow the
-[trial template guide](/docs/components/katib/trial-template/#custom-resource)
+[Trial template guide](/docs/components/katib/trial-template/#custom-resource)
 to check how to support your own Kubernetes resource in Katib.
 
 Katib has these CRD examples in upstream:
@@ -179,12 +179,12 @@ layers, and the optimizer):
 _(To run the example that produced this graph, follow the [getting-started
 guide](/docs/components/katib/hyperparameter/).)_
 
-Katib runs several training jobs (known as _trials_) within each
-hyperparameter tuning job (_experiment_). Each trial tests a different set of
-hyperparameter configurations. At the end of the experiment, Katib outputs
+Katib runs several training jobs (known as _Trials_) within each
+hyperparameter tuning job (_Experiment_). Each Trial tests a different set of
+hyperparameter configurations. At the end of the Experiment, Katib outputs
 the optimized values for the hyperparameters.
 
-You can improve your hyperparameter tuning experiments by using
+You can improve your hyperparameter tuning Experiments by using
 [early stopping](https://en.wikipedia.org/wiki/Early_stopping) techniques.
 Follow the [early stopping guide](/docs/components/katib/early-stopping/)
 for the details.
@@ -222,7 +222,7 @@ part of the form for submitting a NAS job from the Katib UI:
 
 You can use the following interfaces to interact with Katib:
 
-- A web UI that you can use to submit experiments and to monitor your results.
+- A web UI that you can use to submit Experiments and to monitor your results.
   Check the [getting-started
   guide](/docs/components/katib/hyperparameter/#katib-ui)
   for information on how to access the UI.
