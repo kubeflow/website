@@ -36,7 +36,7 @@ In the near future, there are plans to introduce <a href="https://github.com/kub
 {{% /alert %}}
 
 Some distributions can be deployed on all certified Kubernetes
-distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>], some of them
+distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>]</sup>, some of them
 can be deployed only in specific Kubernetes environment (e.g. EKS or GKE).
 
 The following table lists distributions which are <em>maintained</em> by their respective maintainers.
@@ -78,20 +78,6 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           <a href="https://www.deploykf.org/">Website</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          All Certified Kubernetes Distributions
-        </td>
-        <td>
-          1.3.0
-        </td>
-        <td>
-          Argoflow Users
-        </td>
-        <td>
-          <a href="https://github.com/argoflow">Website</a>
         </td>
       </tr>
       <tr>
@@ -222,6 +208,20 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           <a href="https://www.arrikto.com/enterprise-kubeflow/">Website</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          All Certified Kubernetes Distributions
+        </td>
+        <td>
+          1.3.0
+        </td>
+        <td>
+          Argoflow Users
+        </td>
+        <td>
+          <a href="https://github.com/argoflow">Website</a>
         </td>
       </tr>
     </tbody>
