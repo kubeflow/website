@@ -56,7 +56,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           Canonical / Charmed Kubeflow
         </td>
         <td>
-          1.8.0
+          {{% canonical/latest-version %}}
         </td>
         <td>
           <a href="https://charmed-kubeflow.io/">Website</a>
@@ -70,7 +70,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           Aranui Solutions / deployKF
         </td>
         <td>
-          1.7.0 <sup>[<a href="https://www.deploykf.org/releases/version-matrix/#kubeflow-tools">Version Matrix</a>]</sup>
+          {{% deploykf/latest-version %}} <sup>[<a href="https://www.deploykf.org/releases/version-matrix/#kubeflow-tools">Version Matrix</a>]</sup>
         </td>
         <td>
           <a href="https://www.deploykf.org/">Website</a>
@@ -96,7 +96,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           Google Cloud
         </td>
         <td>
-          1.8.0 <sup>[<a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/#180">Release Notes</a>]</sup>
+          {{% gke/latest-version %}} <sup>[<a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/">Release Notes</a>]</sup>
         </td>
         <td>
           <a href="https://googlecloudplatform.github.io/kubeflow-gke-docs">Website</a>
@@ -152,7 +152,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           Microsoft Azure
         </td> 
         <td>
-          1.7.0 <sup>[<a href="https://github.com/Azure/kubeflow-aks/releases/tag/v1.7.0">Release Notes</a>]</sup>
+          {{% azure/latest-version %}} <sup>[<a href="https://github.com/Azure/kubeflow-aks/releases/tag/v{{% azure/latest-version %}}">Release Notes</a>]</sup>
         </td>
         <td>
           <a href="https://azure.github.io/kubeflow-aks/main">Website</a>
@@ -166,7 +166,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           VMware
         </td>
         <td>
-          1.6.1
+          {{% vmware/latest-version %}}
         </td>
         <td>
           <a href="https://vmware.github.io/vSphere-machine-learning-extension/">Website</a>
@@ -180,7 +180,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           Red Hat
         </td>
         <td>
-          1.6.0
+          {{% redhat/latest-version %}}
         </td>
         <td>
           <a href="https://github.com/opendatahub-io/manifests">Website</a>
@@ -194,7 +194,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           Oracle
         </td>
         <td>
-          1.6.0
+          {{% oracle/latest-version %}}
         </td>
         <td>
           <a href="https://github.com/oracle-devrel/kubeflow-oke">Website</a>
