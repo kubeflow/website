@@ -46,8 +46,8 @@ The following table lists distributions which are <em>maintained</em> by their r
     <thead>
       <tr>
         <th>Target Platform</th>
-        <th>Maintainer / Distribution Name</th>
         <th>Kubeflow Version</th>
+        <th>Maintainer / Distribution Name</th>
         <th>Link</th>
       </tr>
     </thead>
@@ -57,10 +57,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           All Certified Kubernetes Distributions
         </td>
         <td>
-          Canonical / Charmed Kubeflow
+          {{% canonical/latest-version %}}
         </td>
         <td>
-          {{% canonical/latest-version %}}
+          Canonical / Charmed Kubeflow
         </td>
         <td>
           <a href="https://charmed-kubeflow.io/">Website</a>
@@ -71,10 +71,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           All Certified Kubernetes Distributions
         </td>
         <td>
-          Aranui Solutions / deployKF
+          {{% deploykf/latest-version %}} <sup>[<a href="https://www.deploykf.org/releases/version-matrix/#kubeflow-tools">Version Matrix</a>]</sup>
         </td>
         <td>
-          {{% deploykf/latest-version %}} <sup>[<a href="https://www.deploykf.org/releases/version-matrix/#kubeflow-tools">Version Matrix</a>]</sup>
+          Aranui Solutions / deployKF
         </td>
         <td>
           <a href="https://www.deploykf.org/">Website</a>
@@ -85,10 +85,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           All Certified Kubernetes Distributions
         </td>
         <td>
-          Argoflow Users
+          1.3.0
         </td>
         <td>
-          1.3.0
+          Argoflow Users
         </td>
         <td>
           <a href="https://github.com/argoflow">Website</a>
@@ -99,10 +99,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           Google Kubernetes Engine (GKE)
         </td>
         <td>
-          Google Cloud
+          {{% gke/latest-version %}} <sup>[<a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/">Release Notes</a>]</sup>
         </td>
         <td>
-          {{% gke/latest-version %}} <sup>[<a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/">Release Notes</a>]</sup>
+          Google Cloud
         </td>
         <td>
           <a href="https://googlecloudplatform.github.io/kubeflow-gke-docs">Website</a>
@@ -113,10 +113,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           IBM Cloud Kubernetes Service (IKS)
         </td>
         <td>
-          IBM Cloud
+          {{% iks/latest-version %}} <sup>[<a href="https://github.com/IBM/manifests/releases/tag/v{{% iks/latest-version %}}">Release Notes</a>]</sup>
         </td>
         <td>
-          {{% iks/latest-version %}} <sup>[<a href="https://github.com/IBM/manifests/releases/tag/v{{% iks/latest-version %}}">Release Notes</a>]</sup>
+          IBM Cloud
         </td>
         <td>
           <a href="https://ibm.github.io/manifests/">Website</a>
@@ -127,10 +127,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           Nutanix Kubernetes Engine
         </td>
         <td>
-          Nutanix
+          {{% nutanix/latest-version %}}
         </td>
         <td>
-          {{% nutanix/latest-version %}}
+          Nutanix
         </td>
         <td>
           <a href="https://nutanix.github.io/kubeflow-manifests">Website</a>
@@ -141,10 +141,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           Amazon Elastic Kubernetes Service (EKS)
         </td>
         <td>
-          Amazon Web Services
+          {{% aws/latest-version %}} <sup>[<a href="https://github.com/awslabs/kubeflow-manifests/releases">Release Notes</a>]</sup>
         </td>
         <td>
-          {{% aws/latest-version %}} <sup>[<a href="https://github.com/awslabs/kubeflow-manifests/releases">Release Notes</a>]</sup>
+          Amazon Web Services
         </td>
         <td>
           <a href="https://awslabs.github.io/kubeflow-manifests">Website</a>
@@ -155,10 +155,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           Azure Kubernetes Service (AKS)
         </td>
         <td>
-          Microsoft Azure
-        </td> 
-        <td>
           {{% azure/latest-version %}} <sup>[<a href="https://github.com/Azure/kubeflow-aks/releases/tag/v{{% azure/latest-version %}}">Release Notes</a>]</sup>
+        </td>
+        <td>
+          Microsoft Azure
         </td>
         <td>
           <a href="https://azure.github.io/kubeflow-aks/main">Website</a>
@@ -169,10 +169,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           VMware vSphere
         </td>
         <td>
-          VMware
+          {{% vmware/latest-version %}}
         </td>
         <td>
-          {{% vmware/latest-version %}}
+          VMware
         </td>
         <td>
           <a href="https://vmware.github.io/vSphere-machine-learning-extension/">Website</a>
@@ -183,10 +183,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           OpenShift
         </td>
         <td>
-          Red Hat
+          {{% redhat/latest-version %}}
         </td>
         <td>
-          {{% redhat/latest-version %}}
+          Red Hat
         </td>
         <td>
           <a href="https://github.com/opendatahub-io/manifests">Website</a>
@@ -197,10 +197,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           Oracle Container Engine for Kubernetes (OKE)
         </td>
         <td>
-          Oracle
+          {{% oracle/latest-version %}}
         </td>
         <td>
-          {{% oracle/latest-version %}}
+          Oracle
         </td>
         <td>
           <a href="https://github.com/oracle-devrel/kubeflow-oke">Website</a>
@@ -215,10 +215,10 @@ The following table lists distributions which are <em>maintained</em> by their r
           ◦ Google Kubernetes Engine (GKE)
         </td>
         <td>
-          Arrikto
+          1.5.0 <sup>[<a href="https://docs.arrikto.com/Changelog.html">Release Notes</a>]</sup>
         </td>
         <td>
-          1.5.0 <sup>[<a href="https://docs.arrikto.com/Changelog.html">Release Notes</a>]</sup>
+          Arrikto
         </td>
         <td>
           <a href="https://www.arrikto.com/enterprise-kubeflow/">Website</a>
