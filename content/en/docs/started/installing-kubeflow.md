@@ -35,6 +35,10 @@ The Kubeflow community <strong>does not endorse or certify</strong> any specific
 In the near future, there are plans to introduce <a href="https://github.com/kubeflow/community/blob/master/proposals/kubeflow-conformance-program-proposal.md">conformance testing for distributions</a>, you may track progress on this initiative by following <a href="https://github.com/kubeflow/kubeflow/issues/6485">kubeflow/kubeflow#6485</a>.
 {{% /alert %}}
 
+Some distributions can be deployed on all certified Kubernetes
+distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>], some of them
+can be deployed only in specific Kubernetes environment (e.g. EKS or GKE).
+
 The following table lists distributions which are <em>maintained</em> by their respective maintainers.
 
 <div class="table-responsive distributions-table-active">
@@ -42,7 +46,7 @@ The following table lists distributions which are <em>maintained</em> by their r
     <thead>
       <tr>
         <th>Target Platform</th>
-        <th>Maintainer / Name</th>
+        <th>Maintainer / Distribution Name</th>
         <th>Kubeflow Version</th>
         <th>Link</th>
       </tr>
@@ -50,7 +54,7 @@ The following table lists distributions which are <em>maintained</em> by their r
     <tbody>
       <tr>
         <td>
-          All Certified Kubernetes Distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>]</sup>
+          All Certified Kubernetes Distributions
         </td>
         <td>
           Canonical / Charmed Kubeflow
@@ -64,7 +68,7 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
-          All Certified Kubernetes Distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>]</sup>
+          All Certified Kubernetes Distributions
         </td>
         <td>
           Aranui Solutions / deployKF
@@ -78,9 +82,11 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
-          All Certified Kubernetes Distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>]</sup>
+          All Certified Kubernetes Distributions
         </td>
-        <td>Argoflow Users</td>
+        <td>
+          Argoflow Users
+        </td>
         <td>
           1.3.0
         </td>
