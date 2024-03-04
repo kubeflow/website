@@ -192,38 +192,6 @@ The following table lists distributions which are <em>maintained</em> by their r
           <a href="https://github.com/oracle-devrel/kubeflow-oke">Website</a>
         </td>
       </tr>
-      <tr>
-        <td>
-          ◦ Amazon Elastic Kubernetes Service (EKS)
-          <br>
-          ◦ Azure Kubernetes Service (AKS)
-          <br>
-          ◦ Google Kubernetes Engine (GKE)
-        </td>
-        <td>
-          1.5.0 <sup>[<a href="https://docs.arrikto.com/Changelog.html">Release Notes</a>]</sup>
-        </td>
-        <td>
-          Arrikto
-        </td>
-        <td>
-          <a href="https://www.arrikto.com/enterprise-kubeflow/">Website</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          All Certified Kubernetes Distributions
-        </td>
-        <td>
-          1.3.0
-        </td>
-        <td>
-          Argoflow Users
-        </td>
-        <td>
-          <a href="https://github.com/argoflow">Website</a>
-        </td>
-      </tr>
     </tbody>
   </table>
 </div>
