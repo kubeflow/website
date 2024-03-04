@@ -58,7 +58,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           All Certified Kubernetes Distributions
         </td>
         <td>
-          {{% canonical/latest-version %}}
+          {{% canonical/latest-version %}} <sup>[<a href="https://charmed-kubeflow.io/docs/release-notes">Release Notes</a>]</sup>
         </td>
         <td>
           Canonical / Charmed Kubeflow
