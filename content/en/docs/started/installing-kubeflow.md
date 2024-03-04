@@ -218,6 +218,7 @@ Using the raw manifests requires a deep understanding of Kubernetes, Istio, and 
 
 When using the raw manifests, the Kubeflow community is not able to provide support for environment-specific issues or custom configurations.
 If you need support, please consider using a [packaged distribution](#packaged-distributions-of-kubeflow).
+Nevertheless, we welcome contributions and bug reports very much.
 {{% /alert %}}
 
 <a id="next-steps"></a>
