@@ -195,6 +195,12 @@ deployment:
         <td>No</td>
       </tr>
       <tr>
+        <td><code>KATIB_POSTGRESQL_SSL_MODE</code></td>
+        <td>Katib Postgres SSL mode</td>
+        <td>disable</td>
+        <td>No</td>
+      </tr>
+      <tr>
         <td><code>SKIP_DB_INITIALIZATION</code></td>
         <td>Option to skip DB table initialization</td>
         <td>false</td>
