@@ -13,7 +13,7 @@ Operators can choose what is best for their users, there is no requirement to de
 Learn more about Kubeflow in the [Introduction](/docs/started/introduction/) and
 [Architecture](/docs/started/architecture/) pages.
 
-### How to install Kubeflow?
+## How to install Kubeflow?
 
 Anywhere you are running Kubernetes, you should be able to run Kubeflow.
 There are two primary ways to install Kubeflow:
@@ -27,7 +27,9 @@ There are two primary ways to install Kubeflow:
 ## Packaged Distributions of Kubeflow
 
 Packaged distributions are maintained by various organizations and typically aim to provide
-a simplified installation and management experience for Kubeflow.
+a simplified installation and management experience for Kubeflow. Some distributions can be
+deployed on [all certified Kubernetes distributions](https://kubernetes.io/partners/#conformance),
+while others target a specific platform (e.g. EKS or GKE).
 
 {{% alert title="Note" color="warning" %}}
 Packaged distributions are developed and supported by their respective maintainers.
@@ -36,11 +38,7 @@ The Kubeflow community <strong>does not endorse or certify</strong> any specific
 In the near future, there are plans to introduce <a href="https://github.com/kubeflow/community/blob/master/proposals/kubeflow-conformance-program-proposal.md">conformance testing for distributions</a>, you may track progress on this initiative by following <a href="https://github.com/kubeflow/kubeflow/issues/6485">kubeflow/kubeflow#6485</a>.
 {{% /alert %}}
 
-Some distributions can be deployed on all certified Kubernetes
-distributions <sup>[<a href="https://kubernetes.io/partners/#conformance">1</a>]</sup>, some of them
-can be deployed only in specific Kubernetes environment (e.g. EKS or GKE).
-
-The following table lists distributions which are <em>maintained</em> by their respective maintainers.
+The following table lists distributions which are <em>maintained</em> by their respective maintainers:
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
