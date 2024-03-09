@@ -9,7 +9,7 @@ aliases = ["/docs/community/"]
 
 The Official Kubeflow Slack is used for informal discussions among users and contributors.
 
-<a href="https://invite.playplay.io/invite?team_id=T7QLHSH6U">
+<a href="https://communityinviter.com/apps/kubeflow/slack">
   <button class="btn btn-primary py-2 px-5 mb-3">Click to join:<br>Kubeflow Slack</button>
 </a>
 
