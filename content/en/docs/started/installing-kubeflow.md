@@ -43,19 +43,6 @@ The following table lists <b>active distributions</b> that have <b>had a recent 
     </thead>
     <tbody>
       <tr>
-        <td>Kubeflow on AWS</td>
-        <td>Amazon Web Services</td>
-        <td>
-          Amazon Elastic Kubernetes Service (EKS)
-        </td>
-        <td>
-          <a href="https://awslabs.github.io/kubeflow-manifests">Website</a>
-        </td>
-        <td>
-          {{% aws/latest-version %}} <sup>[<a href="https://github.com/awslabs/kubeflow-manifests/releases">Release Notes</a>]</sup>
-        </td>
-      </tr>
-      <tr>
         <td>Kubeflow on Azure</td>
         <td>Microsoft Azure</td> 
         <td>
@@ -219,6 +206,19 @@ The following table lists <b>legacy distributions</b> which have <b>not had a re
         </td>
         <td>
           1.5.0 <sup>[<a href="https://docs.arrikto.com/Changelog.html">Release Notes</a>]</sup>
+        </td>
+      </tr>
+      <tr>
+        <td>Kubeflow on AWS</td>
+        <td>Amazon Web Services</td>
+        <td>
+          Amazon Elastic Kubernetes Service (EKS)
+        </td>
+        <td>
+          <a href="https://awslabs.github.io/kubeflow-manifests">Website</a>
+        </td>
+        <td>
+          {{% aws/latest-version %}} <sup>[<a href="https://github.com/awslabs/kubeflow-manifests/releases">Release Notes</a>]</sup>
         </td>
       </tr>
     </tbody>
