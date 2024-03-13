@@ -44,7 +44,9 @@ The following table lists distributions which are <em>maintained</em> by their r
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Maintainer // Distribution Name</th>
+        <th>Maintainer
+          <br><small>Distribution Name</small>
+        </th>
         <th>Kubeflow Version</th>
         <th>Target Platform</th>
         <th>Link</th>
@@ -67,7 +69,8 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
-          Aranui Solutions // deployKF
+          Aranui Solutions
+            <br><small>deployKF</small>
         </td>
         <td>
           {{% deploykf/latest-version %}} <sup>[<a href="https://www.deploykf.org/releases/version-matrix/#kubeflow-tools">Version Matrix</a>]</sup>
@@ -81,7 +84,8 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
-          Canonical // Charmed Kubeflow
+          Canonical
+            <br><small>Charmed Kubeflow</small>
         </td>
         <td>
           {{% canonical/latest-version %}} <sup>[<a href="https://charmed-kubeflow.io/docs/release-notes">Release Notes</a>]</sup>
@@ -151,7 +155,8 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
-          Red Hat // Open Data Hub
+          Red Hat
+            <br><small>Open Data Hub</small>
         </td>
         <td>
           {{% redhat/latest-version %}}
