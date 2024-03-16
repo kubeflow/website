@@ -158,16 +158,16 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
-          QBO
+          QBO Cloud & QBO Community Edition
         </td>
         <td>
-          {{% qbo/latest-version %}} <sup>[<a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">Release Notes</a>]</sup>
+          {{% gke/latest-version %}} <sup>[<a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/">Release Notes</a>]</sup>
         </td>
         <td>
-          QBO Kubernetes Engine (QKE) Community and Cloud Editions
+          QBO Kubernetes Engine (QKE)
         </td>
-         <td>
-          <a href="https://docs.qbo.io/#/qke?id=kubeflow">Website</a>
+        <td>
+          <a href="https://googlecloudplatform.github.io/kubeflow-gke-docs">Website</a>
         </td>
       </tr>
       <tr>

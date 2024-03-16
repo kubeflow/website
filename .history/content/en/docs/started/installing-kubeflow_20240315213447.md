@@ -166,8 +166,8 @@ The following table lists distributions which are <em>maintained</em> by their r
         <td>
           QBO Kubernetes Engine (QKE) Community and Cloud Editions
         </td>
-         <td>
-          <a href="https://docs.qbo.io/#/qke?id=kubeflow">Website</a>
+        <td>
+          v1.7.0, v1.8.0 (Linux, Windows WSL2)
         </td>
       </tr>
       <tr>

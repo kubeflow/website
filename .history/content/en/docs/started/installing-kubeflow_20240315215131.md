@@ -167,7 +167,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           QBO Kubernetes Engine (QKE) Community and Cloud Editions
         </td>
          <td>
-          <a href="https://docs.qbo.io/#/qke?id=kubeflow">Website</a>
+          <a href="https://github.com/opendatahub-io/manifests">Website</a>
         </td>
       </tr>
       <tr>
