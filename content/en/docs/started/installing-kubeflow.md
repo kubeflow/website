@@ -18,11 +18,8 @@ Learn more about Kubeflow in the [Introduction](/docs/started/introduction/) and
 Anywhere you are running Kubernetes, you should be able to run Kubeflow.
 There are two primary ways to install Kubeflow:
 
-- [What is Kubeflow?](#what-is-kubeflow)
-- [How to install Kubeflow?](#how-to-install-kubeflow)
-- [Packaged Distributions of Kubeflow](#packaged-distributions-of-kubeflow)
-- [Raw Kubeflow Manifests](#raw-kubeflow-manifests)
-- [Next steps](#next-steps)
+1. [**Packaged Distributions**](#packaged-distributions-of-kubeflow)
+1. [**Raw Manifests**](#raw-kubeflow-manifests) <sup>(advanced users)</sup>
 
 <a id="packaged-distributions"></a>
 <a id="install-a-packaged-kubeflow-distribution"></a>
