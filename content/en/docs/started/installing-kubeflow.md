@@ -168,6 +168,21 @@ The following table lists distributions which are <em>maintained</em> by their r
           <a href="https://github.com/opendatahub-io/manifests">Website</a>
         </td>
       </tr>
+     <tr>
+        <td>
+          Treebeardtech
+            <br><small>kubeflow-helm</small>
+        </td>
+        <td>
+          {{% treebeardtech/latest-version %}}
+        </td>
+        <td>
+          All Certified Kubernetes Distributions
+        </td>
+        <td>
+          <a href="https://github.com/treebeardtech/kubeflow-helm">Website</a>
+        </td>
+      </tr>
       <tr>
         <td>
           VMware
