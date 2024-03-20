@@ -31,14 +31,7 @@ a simplified installation and management experience for Kubeflow. Some distribut
 deployed on [all certified Kubernetes distributions](https://kubernetes.io/partners/#conformance),
 while others target a specific platform (e.g. EKS or GKE).
 
-{{% alert title="Note" color="warning" %}}
-Packaged distributions are developed and supported by their respective maintainers.
-The Kubeflow community <strong>does not endorse or certify</strong> any specific distribution.
-
-In the near future, there are plans to introduce <a href="https://github.com/kubeflow/community/blob/master/proposals/kubeflow-conformance-program-proposal.md">conformance testing for distributions</a>, you may track progress on this initiative by following <a href="https://github.com/kubeflow/kubeflow/issues/6485">kubeflow/kubeflow#6485</a>.
-{{% /alert %}}
-
-The following table lists distributions which are <em>maintained</em> by their respective maintainers:
+The following table lists distributions, which are <em>maintained</em> by their respective maintainers:
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
@@ -186,10 +179,52 @@ The following table lists distributions which are <em>maintained</em> by their r
   </table>
 </div>
 
+{{% alert title="Note" color="info" %}}
+Packaged distributions are developed and supported by their respective maintainers.
+The Kubeflow community <strong>does not endorse or certify</strong> any specific distribution.
+
+In the near future, there are plans to introduce <a href="https://github.com/kubeflow/community/blob/master/proposals/kubeflow-conformance-program-proposal.md">conformance testing for distributions</a>, you may track progress on this initiative by following <a href="https://github.com/kubeflow/kubeflow/issues/6485">kubeflow/kubeflow#6485</a>.
+{{% /alert %}}
+
 ## Raw Kubeflow Manifests
 
 The raw Kubeflow Manifests are aggregated by the [Manifests Working Group](https://github.com/kubeflow/community/tree/master/wg-manifests)
 and are intended to be used as the **base of packaged distributions**.
+
+### Guides for Specific Platforms
+
+Some groups maintain guides for installing the raw Kubeflow manifests on their platform:
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Kubeflow Version</th>
+        <th>Target Platform</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          QBO
+        </td>
+        <td>
+          {{% qbo/latest-version %}}
+        </td>
+        <td>
+          QBO Kubernetes Engine
+        </td>
+        <td>
+          <a href="https://docs.qbo.io/#/qke?id=kubeflow">Guide</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Generic Instructions
 
 Advanced users may choose to install the manifests for a specific Kubeflow version by following the
 instructions in the `README` of the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
@@ -209,8 +244,6 @@ When using the raw manifests, the Kubeflow community is not able to provide supp
 If you need support, please consider using a [packaged distribution](#packaged-distributions-of-kubeflow).
 Nevertheless, we welcome contributions and bug reports very much.
 {{% /alert %}}
-
-<a id="next-steps"></a>
 
 ## Next steps
 
