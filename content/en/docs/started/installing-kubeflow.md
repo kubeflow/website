@@ -171,7 +171,7 @@ The following table lists distributions which are <em>maintained</em> by their r
      <tr>
         <td>
           Treebeardtech
-            <br><small>kubeflow-helm</small>
+            <br><small>kubeflow-bootstrap</small>
         </td>
         <td>
           {{% treebeardtech/latest-version %}}
@@ -180,7 +180,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           All Certified Kubernetes Distributions
         </td>
         <td>
-          <a href="https://github.com/treebeardtech/kubeflow-helm">Website</a>
+          <a href="https://github.com/treebeardtech/kubeflow-bootstrap">Website</a>
         </td>
       </tr>
       <tr>
