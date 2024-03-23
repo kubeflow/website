@@ -240,7 +240,7 @@ random search example](https://github.com/kubeflow/katib/blob/master/examples/v1
 
 The random search algorithm example uses an MXNet neural network to train an image
 classification model using the MNIST dataset. You can check training container source code
-[here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/trial-images/mxnet-mnist).
+[here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/trial-images/pytorch-mnist).
 The experiment runs twelve training jobs with various hyperparameters and saves the results.
 
 If you installed Katib as part of Kubeflow, you can't run experiments in the
