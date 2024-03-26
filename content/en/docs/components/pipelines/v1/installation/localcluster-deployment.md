@@ -100,8 +100,6 @@ brew install kind
 **Note:** kind uses containerd as a default container-runtime hence you cannot
 use the standard kubeflow pipeline manifests.
 
-**References**:
-
 **References:**
 
 - [kind: Quick Start Guide](https://kind.sigs.k8s.io/docs/user/quick-start/)
@@ -373,3 +371,9 @@ Below are the steps to remove Kubeflow Pipelines on kind, K3s, or K3ai:
   kubectl delete -k manifests/kustomize/env/platform-agnostic-pns
   kubectl delete -k manifests/kustomize/cluster-scoped-resources
   ```
+
+## FAQs
+
+#### Why the mysql pod always crash on the kind cluster with the error `mysqld: Can't read dir of '/etc/mysql/conf.d/' (OS errno 13 - Permission denied)`?
+
+This is because your host has enabled the [AppArmor security module](https://en.wikipedia.org/wiki/AppArmor). To fix this, you can disable AppArmor on your host or for the mysql application only. For more details, please refer to [AppArmor issue](https://kind.sigs.k8s.io/docs/user/known-issues/#apparmor).
