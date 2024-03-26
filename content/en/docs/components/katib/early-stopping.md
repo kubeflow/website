@@ -28,7 +28,7 @@ stopped. Currently, early stopping works only with
 **Note**: Your training container must print training logs with the timestamp,
 because early stopping algorithms need to know the sequence of reported metrics.
 Check the
-[`MXNet` example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/trial-images/mxnet-mnist/mnist.py#L36)
+[`PyTorch` example](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/trial-images/pytorch-mnist/mnist.py#L141)
 to learn how to add a date format to your logs.
 
 ## Configure the experiment with early stopping
