@@ -2,7 +2,7 @@
 title = "Installing Kubeflow"
 description = "Deployment options for Kubeflow"
 weight = 20
-
+icon = "fa-solid fa-star"
 +++
 
 ## What is Kubeflow?
