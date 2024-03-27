@@ -155,6 +155,20 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
+          QBO
+        </td>
+        <td>
+          {{% qbo/latest-version %}} <sup>[<a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">Release Notes</a>]</sup>
+        </td>
+        <td>
+          QBO Kubernetes Engine (QKE)
+        </td>
+         <td>
+          <a href="https://docs.qbo.io/#/qke?id=kubeflow">Website</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
           Red Hat
             <br><small>Open Data Hub</small>
         </td>
