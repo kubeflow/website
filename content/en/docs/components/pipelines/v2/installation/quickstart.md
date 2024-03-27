@@ -93,6 +93,8 @@ You can find the [source code for the **Data passing in python components** tuto
 The following simple pipeline adds two integers, and then adds another integer to the result to come up with a final sum.
 
 ```python
+from urllib.parse import urljoin
+
 from kfp import dsl
 from kfp import client
 
@@ -117,7 +119,7 @@ run = kfp_client.create_run_from_pipeline_func(
         'b': 2
     },
 )
-url = f'{endpoint}/#/runs/details/{run.run_id}'
+url = urljoin(endpoint, f'/#/runs/details/{run.run_id}')
 print(url)
 ```
 
@@ -159,6 +161,8 @@ The above code consists of the following parts:
 * In the fourth part, the following lines instantiate a KFP client using the endpoint obtained in [deployment step](#kfp_qs_deployment) and submit the pipeline to the KFP backend with the required pipeline arguments:
 
   ```python
+  from urllib.parse import urljoin
+
   endpoint = '<KFP_ENDPOINT>'
   kfp_client = client.Client(host=endpoint)
   run = kfp_client.create_run_from_pipeline_func(
@@ -168,7 +172,7 @@ The above code consists of the following parts:
       'b': 2
     },
   )
-  url = f'{endpoint}/#/runs/details/{run.run_id}'
+  url = urljoin(endpoint, f'/#/runs/details/{run.run_id}')
   print(url)
   ```
 
@@ -202,6 +206,7 @@ The following ML pipeline creates a dataset, normalizes the features of the data
 
 ```python
 from typing import List
+from urllib.parse import urljoin
 
 from kfp import client
 from kfp import dsl
@@ -311,7 +316,7 @@ run = kfp_client.create_run_from_pipeline_func(
         'neighbors': [3, 6, 9]
     },
 )
-url = f'{endpoint}/#/runs/details/{run.run_id}'
+url = urljoin(endpoint, f'/#/runs/details/{run.run_id}')
 print(url)
 ```
 
