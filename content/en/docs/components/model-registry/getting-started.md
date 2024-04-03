@@ -60,7 +60,7 @@ kubectl wait --for=condition=available -n kubeflow deployment/model-registry-dep
 kubectl logs -n kubeflow deployment/model-registry-deployment
 ```
 
-Optionally, you can also manually forward the REST api container port of Model Registry and interact with the [REST api](https://editor.swagger.io/?url=https://raw.githubusercontent.com/kubeflow/model-registry/main/api/openapi/model-registry.yaml),
+Optionally, you can also manually forward the REST API container port of Model Registry and interact with the [REST API](https://editor.swagger.io/?url=https://raw.githubusercontent.com/kubeflow/model-registry/main/api/openapi/model-registry.yaml),
 for example with:
 ```shell
 kubectl port-forward svc/model-registry-service -n kubeflow 8081:8080
