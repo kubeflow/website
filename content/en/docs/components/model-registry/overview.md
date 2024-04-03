@@ -21,7 +21,7 @@ It provides a central interface for all stakeholders in the ML lifecycle to coll
   class="mt-3 mb-3">
 
 DevOps, Data Scientists, and developers need to collaborate with other users in the ML workflow to get models into production.
-Data scientists need an efficient way to share model versions, artifacts and metadata with other users that need to access to those models as part of the MLOps workflow.
+Data scientists need an efficient way to share model versions, artifacts and metadata with other users that need access to those models as part of the MLOps workflow.
 
 <!--
 ## Architecture
