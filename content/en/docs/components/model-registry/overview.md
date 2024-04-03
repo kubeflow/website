@@ -8,7 +8,7 @@ weight = 10
 {{% alpha-status
   feedbacklink="https://github.com/kubeflow/model-registry" %}}
 
-## What is Model Registry ?
+## What is Model Registry?
 
 A model registry is an important component in the life cycle of AI/ML models, an integral component for any MLOps platform and for ML workflows.
 
