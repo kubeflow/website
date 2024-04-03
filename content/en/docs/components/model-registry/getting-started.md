@@ -33,7 +33,7 @@ You can skip this step if you have already installed Kubeflow >=1.9. Your Kubefl
 deployment includes Model Registry ([see tracker issue](https://github.com/kubeflow/manifests/issues/2631)).
 
 To install Model Registry as part of Kubeflow, follow the
-[Kubeflow installation guide](/docs/started/getting-started/).
+[Kubeflow installation guide](/docs/started/installing-kubeflow/).
 
 If you want to install Model Registry separately from Kubeflow, or to get a later version
 of Model Registry, you can use one of the following Model Registry manifests.
