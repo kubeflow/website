@@ -130,7 +130,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           Microsoft Azure
         </td>
         <td>
-          {{% azure/latest-version %}} <sup>[<a href="https://github.com/Azure/kubeflow-aks/releases/tag/v{{% azure/latest-version %}}">Release Notes</a>]</sup>
+            1.8.0 <sup>[<a href="https://github.com/Azure/kubeflow-aks/releases/tag/v1.8.0">Release Notes</a>]</sup>
         </td>
         <td>
           Azure Kubernetes Service (AKS)
