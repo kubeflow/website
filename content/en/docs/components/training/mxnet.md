@@ -5,6 +5,11 @@ weight = 25
                     
 +++
 
+{{% alert title="Warning" color="warning" %}}
+Kubeflow `MXJob` will be deprecated and removed in the future Training Operator 1.9 release since
+[Apache MXNet project](https://github.com/apache/mxnet) has been archived.
+{{% /alert %}}
+
 This guide walks you through using [Apache MXNet (incubating)](https://github.com/apache/incubator-mxnet) with Kubeflow.
 
 MXNet Operator provides a Kubernetes custom resource `MXJob` that makes it easy to run distributed or non-distributed
