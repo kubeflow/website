@@ -12,7 +12,7 @@ The Model Registry is a passive repository for metadata and is not meant to be a
 {{% /alert %}}
 
 
-Kubeflow Model Registry make use of the Google community project [ML-Metadata](https://github.com/google/ml-metadata) as one of its core component. ML-Metadata provides a very extensible schema that is generic, similar to a key-value store, but also allows for the creation of logical schemas that can be queried as if they were physical schemas. Those can be manipulated using their bindings in the Python library. This model is extended to provide the metadata management service capabilities for Model Registry.
+Kubeflow Model Registry makes use of the Google community project [ML-Metadata](https://github.com/google/ml-metadata) as one of its core component. ML-Metadata provides a very extensible schema that is generic, similar to a key-value store, but also allows for the creation of logical schemas that can be queried as if they were physical schemas. Those can be manipulated using their bindings in the Python library. This model is extended to provide the metadata management service capabilities for Model Registry.
 
 The Model Registry uses the ml-metadata project’s C++ server as-is to handle the storing of the metadata, while domain-specific Model Registry features are added as extensions (microservices). As part of these extensions, Model Registry provides:
 - Python/Go extensions to support the Model Registry interaction
