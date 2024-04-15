@@ -25,5 +25,5 @@ Data scientists need an efficient way to share model versions, artifacts and met
 
 ## Next steps
 
-Follow the [getting started guide](/docs/components/model-registry/getting-started/)
-to set up Model Registry and run some examples.
+- Follow the [installation guide](/docs/components/model-registry/installation/) to set up Model Registry
+- Run some examples following the [getting started guide](/docs/components/model-registry/getting-started/)
