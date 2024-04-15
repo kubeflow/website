@@ -19,8 +19,8 @@ Let's set up and configure Katib on your Kubernetes cluster with Kubeflow.
 
 This is the minimal requirements to install Katib:
 
-- Kubernetes >= 1.17
-- `kubectl` >= 1.21
+- Kubernetes >= 1.27
+- `kubectl` >= 1.27
 
 <a id="katib-install"></a>
 
