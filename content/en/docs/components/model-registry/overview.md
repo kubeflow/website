@@ -16,18 +16,12 @@ A model registry provides a central index for ML model developers to index and m
 It fills a gap between model experimentation and production activities.
 It provides a central interface for all stakeholders in the ML lifecycle to collaborate on ML models.
 
-<img src="/docs/components/model-registry/images/index-mr-loop.png"
+<img src="/docs/components/model-registry/images/MLloopinnerouter.png"
   alt="Model Registry MLOps loop"
   class="mt-3 mb-3">
 
 DevOps, Data Scientists, and developers need to collaborate with other users in the ML workflow to get models into production.
 Data scientists need an efficient way to share model versions, artifacts and metadata with other users that need access to those models as part of the MLOps workflow.
-
-<!--
-## Architecture
-
-tbd, take from Proposal
--->
 
 ## Next steps
 
