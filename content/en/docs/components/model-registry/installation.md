@@ -37,7 +37,7 @@ kubectl apply -k "https://github.com/kubeflow/model-registry/tree/main/manifests
 As the default installation provides an Istio mesh, apply the necessary manifests:
 
 ```shell
-kubectl apply -k "https://github.com/kubeflow/model-registry/tree/main/manifests/kustomize/options/istio?ref=main"
+kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/istio?ref=main"
 ```
 
 ## Check Model Registry setup
