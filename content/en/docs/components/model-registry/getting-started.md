@@ -141,7 +141,7 @@ api_version = constants.KSERVE_GROUP + '/' + kserve_version
 isvc = V1beta1InferenceService(api_version=api_version,
                                kind=constants.KSERVE_KIND,
                                metadata=client.V1ObjectMeta(
-                                   name=name, namespace=namespace, annotations={'sidecar.istio.io/inject':'false', 'serving.kserve.io/deploymentMode': 'ModelMesh'},
+                                   name=name, namespace=namespace,
                                    labels={'modelregistry/registered-model-id': registered_model.id, 'modelregistry/model-version-id': model_version.id}
                                ),
                                spec=V1beta1InferenceServiceSpec(
@@ -149,6 +149,7 @@ isvc = V1beta1InferenceService(api_version=api_version,
                                  model=V1beta1ModelSpec(
                                      storage_uri=storage_uri,
                                      model_format=V1beta1ModelFormat(name=model_format_name, version=model_format_version),
+                                     runtime="kserve-ovms",
                                      protocol_version='v2'
                                  )
                                )))
@@ -156,7 +157,8 @@ KServe = KServeClient()
 KServe.create(isvc)
 ```
 
-An inference endpoint is now created using the artifact metadata retrieved from the Model Registry.
+An inference endpoint is now created, using the artifact metadata retrieved from the Model Registry (previous step),
+specifying the serving runtime to be used to serve the model, and references to the original entities in Model Registry.
 
 ## Next steps
 
