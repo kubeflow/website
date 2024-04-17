@@ -20,6 +20,13 @@ It provides a central interface for all stakeholders in the ML lifecycle to coll
   alt="Model Registry MLOps loop"
   class="mt-3 mb-3">
 
+- **Create**: during the creation phase, the Model Registry facilitates collaboration between different teams in order to track changes, experiment with different model architectures, and maintain a history of model iterations.
+- **Verify**: in the verification stage, the Model Registry can support in making sure that models undergo rigorous testing and validation before progressing further, maintaining a record of performance metrics and test results for each version.
+- **Package**: the Model Registry assists in organizing model artifacts and dependencies, enabling seamless integration with deployment pipelines and ensuring reproducibility across environments.
+- **Release**: when releasing a model, the Model Registry manages the transition of validated versions to production-ready status, helping organization to maintain versioning conventions and facilitating approval workflows.
+- **Deploy**: during deployment, the Model Registry provides information of the approved model versions and associated artifacts, ensuring consistency and traceability across deployment environments.
+- **Monitor**: in the monitoring phase, the Model Registry supports ongoing performance monitoring and model drift detection by maintaining a comprehensive record of deployed models and linking to their performance metrics, facilitating proactive maintenance and retraining as needed.
+
 DevOps, Data Scientists, and developers need to collaborate with other users in the ML workflow to get models into production.
 Data scientists need an efficient way to share model versions, artifacts and metadata with other users that need access to those models as part of the MLOps workflow.
 
