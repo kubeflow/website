@@ -28,13 +28,13 @@ If you want to install Model Registry separately from Kubeflow, or to get a late
 of Model Registry, you can use one of the following Model Registry manifests.
 Remember to substitute the relevant release (e.g. `v0.1.2`), modify `ref=main` to `ref=v0.1.2`.
 
-The following steps show how to install Model Registry using a default Kubeflow >=1.8 installation.
+The following steps show how to install Model Registry in the context of a default Kubeflow >=1.8 installation.
 
 ```shell
 kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/overlays/db?ref=main"
 ```
 
-As the default installation provides an Istio mesh, apply the necessary manifests:
+As the default Kubeflow installation provides an Istio mesh, apply the necessary manifests:
 
 ```shell
 kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/istio?ref=main"
