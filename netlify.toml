@@ -1,16 +1,6 @@
 [build]
   publish = "public"
-  command = "cd themes/docsy && git submodule update -f --init && npm install && cd ../.. && hugo --gc --minify"
+  command = "npm run build:preview"
 
-[context.deploy-preview.environment]
-  HUGO_VERSION = "0.119.0"
-  NODE_VERSION = "18"
-
-[context.production.environment]
-  HUGO_VERSION = "0.119.0"
-  HUGO_ENV = "production"
-  NODE_VERSION = "18"
-
-[context.branch-deploy.environment]
-  HUGO_VERSION = "0.119.0"
-  NODE_VERSION = "18"
+[context.production]
+  command = "npm run build:production"
