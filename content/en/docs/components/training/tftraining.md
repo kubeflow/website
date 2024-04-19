@@ -173,31 +173,11 @@ consists of 3 fields
   - **ExitCode** means the restart behavior is dependent on the exit code of
     the `tensorflow` container as follows:
 
-    - Exit code `0` indicates the process completed successfully and will
-      not be restarted.
+    - Exit code `1-127` indicate a permanent error and the container
+      will not be restarted.
 
-    - The following exit codes indicate a permanent error and the container
-      will not be restarted:
-
-      - `1`: general errors
-      - `2`: misuse of shell builtins
-      - `126`: command invoked cannot execute
-      - `127`: command not found
-      - `128`: invalid argument to exit
-      - `139`: container terminated by SIGSEGV (invalid memory reference)
-
-    - The following exit codes indicate a retryable error and the container
-      will be restarted:
-
-      - `130`: container terminated by SIGINT (keyboard Control-C)
-      - `137`: container received a SIGKILL
-      - `143`: container received a SIGTERM
-
-    - Exit code `138` corresponds to SIGUSR1 and is reserved for
-      user-specified retryable errors.
-
-    - Other exit codes are undefined and there is no guarantee about the
-      behavior.
+    - Exit code `128-255` indicate a retryable error and the container
+      will be restarted.
 
     For background information on exit codes, see the [GNU guide to
     termination signals](https://www.gnu.org/software/libc/manual/html_node/Termination-Signals.html)
