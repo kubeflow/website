@@ -36,7 +36,7 @@ This section describes Model Registry use-cases in the context of a MLOps Platfo
 
 A company, ACME Inc., is developing a machine-learning model for predicting customer churn. They require a centralized model registry for their MLOps platform (based on Kubeflow) for managing their ML model development lifecycle, including training, experimentation, and deployment. They want to ensure model governance, reproducibility, and efficient collaboration across data scientists and engineers.
 
-### Persona:
+### Personas
 
 * **Data Scientist**: Responsible for developing and evaluating different models for customer churn prediction. They need to track the performance of various model versions and compare them easily.
 * **MLOps Engineer**: Responsible for deploying the chosen model into production. They need to access the latest model version and its metadata to configure the deployment environment.
