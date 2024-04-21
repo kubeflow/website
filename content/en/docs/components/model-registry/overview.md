@@ -38,7 +38,7 @@ A company, ACME Inc., is developing a machine-learning model for predicting cust
 
 ### Personas
 
-* **Data Scientist**: Responsible for developing and evaluating different models for customer churn prediction. They need to track the performance of various model versions and compare them easily.
+* **Data Scientist**: develops and evaluates different models for customer churn prediction. Tracks the performance of various model versions to compare them easily.
 * **MLOps Engineer**: Responsible for deploying the chosen model into production. They need to access the latest model version and its metadata to configure the deployment environment.
 * **Business Analyst**: Monitors the deployed model's performance and makes decisions based on its predictions. They need to understand the lineage of the model and its operational metrics.
 
