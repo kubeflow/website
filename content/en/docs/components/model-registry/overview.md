@@ -44,7 +44,7 @@ A company, ACME Inc., is developing a machine-learning model for predicting cust
 
 ### Use Case 1: Tracking the Training of Models
 
-The _Data Scientist_ uses Kubeflow Notebooks to perform exploratory research and trains several types of models, with different hyperparameters and metrics. The Kubeflow Model Registry is used to track those models, in order to make comparisons and identify the best-performing model. Once the champion model is selected, the _Data Scientist_ shares the model with the team. The _Data Scientist_ also tracks the lineage of training data sources and notebook code.
+The _Data Scientist_ uses Kubeflow Notebooks to perform exploratory research and trains several types of models, with different hyperparameters and metrics. The Kubeflow Model Registry is used to track those models, in order to make comparisons and identify the best-performing model. Once the champion model is selected, the _Data Scientist_ shares the model with the team by maintaining the appropriate status flag on the registry. The _Data Scientist_ also tracks the lineage of training data sources and notebook code.
 
 * Track models available on storage: once the model is stored, it can then be tracked in the Kubeflow Model Registry for managing its lifecycle. The Model Registry can catalog, list, index, share, record, organize this information. This allows the _Data Scientist_ to compare different versions and revert to previous versions if needed.
 * Track and compare performance: View key metrics like accuracy, recall, and precision for each model version. This helps identify the best-performing model for deployment.
@@ -63,7 +63,7 @@ The _Data Scientist_ after identifying a base model, uses KubeFlow Pipelines, Ka
 
 ### Use Case 3: Model Deployment
 
-The MLOps Engineer uses Kubeflow Model Registry to locate the most recent version for a given model, verify it is approved for deployment, understand model format, architecture, hyperparameters, and performance metrics to configure the serving environment; once deployed, Model Registry is used to continue monitoring and track deployed models for performance and mitigate drift.
+The _MLOps Engineer_ uses Kubeflow Model Registry to locate the most recent version for a given model, verify it is approved for deployment, understand model format, architecture, hyperparameters, and performance metrics to configure the serving environment; once deployed, Model Registry is used to continue monitoring and track deployed models for performance and mitigate drift.
 
 * Retrieve the latest model version: Easily access the model version approved for deployment.
 * Access model metadata: Understand the model's architecture, hyperparameters, and performance metrics. This helps the MLOps engineer to configure the deployment environment and monitor performance after deployment.
@@ -72,7 +72,7 @@ The MLOps Engineer uses Kubeflow Model Registry to locate the most recent versio
 
 ### Use Case 4: Monitoring and Governance
 
-The Business Analyst uses Kubeflow Model Registry to audit deployed models, monitor model performance, track key metrics and identify when model is drifting or needs re-training; capabilities of model lineage enable identifying all related artifacts such as training which was used or the original training data.
+The _Business Analyst_ uses Kubeflow Model Registry to audit deployed models, monitor model performance, track key metrics and identify when model is drifting or needs re-training; capabilities of model lineage enable identifying all related artifacts such as training which was used or the original training data.
 
 * View model performance metrics: Track key metrics in real-time to understand how the model is performing in production.
 * Identify model drift: can be used as a reference and baseline, by integrating with other tools, to detect if the model's predictions are deviating from expected behavior.
