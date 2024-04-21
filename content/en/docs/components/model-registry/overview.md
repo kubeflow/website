@@ -40,7 +40,7 @@ A company, ACME Inc., is developing a machine-learning model for predicting cust
 
 * **Data Scientist**: develops and evaluates different models for customer churn prediction. Tracks the performance of various model versions to compare them easily.
 * **MLOps Engineer**: deploys the chosen model into production. Uses the latest model version and its metadata to configure the deployment environment.
-* **Business Analyst**: Monitors the deployed model's performance and makes decisions based on its predictions. They need to understand the lineage of the model and its operational metrics.
+* **Business Analyst**: Monitors the deployed model's performance and makes decisions based on its predictions. Uses model lineage and metadata to drive business outcomes.
 
 ### Use Case 1: Tracking the Training of Models
 
