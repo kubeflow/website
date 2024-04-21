@@ -72,10 +72,10 @@ The _MLOps Engineer_ uses Kubeflow Model Registry to locate the most recent vers
 
 ### Use Case 4: Monitoring and Governance
 
-The _Business Analyst_ uses Kubeflow Model Registry to audit deployed models, monitor model performance, track key metrics and identify when model is drifting or needs re-training; capabilities of model lineage enable identifying all related artifacts such as training which was used or the original training data.
+The _Business Analyst_ uses Kubeflow Model Registry to audit deployed models, monitor model performance by integrating with observability tools to track key metrics and identify when model is drifting or needs re-training; capabilities of model lineage enable identifying all related artifacts such as training which was used or the original training data.
 
-* View model performance metrics: Track key metrics in real-time to understand how the model is performing in production.
-* Identify model drift: can be used as a reference and baseline, by integrating with other tools, to detect if the model's predictions are deviating from expected behavior.
+* View model performance metrics: Links to observability tools tracking key metrics in real-time to understand how the model is performing in production.
+* Identify model drift: Can be used as a reference and baseline, by integrating with other tools, to detect if the model's predictions are deviating from expected behavior.
 * Access model lineage: Understand the model's origin and training details to diagnose and address performance issues.
 * Audit model usage: Track who uses the model, ensuring compliance with data privacy and security regulations. Together with lineage, they provide very important capabilities in heavily regulated industries (e.g.: FSI, Healthcare, etc.) and with respect to country regulations (e.g.: GDPR, EU AI Act, etc.).
 
