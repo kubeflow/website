@@ -21,7 +21,7 @@ It provides a central interface for all stakeholders in the ML lifecycle to coll
   class="mt-3 mb-3">
 
 - **Create**: during the creation phase, the Model Registry facilitates collaboration between different teams in order to track changes, experiment with different model architectures, and maintain a history of model iterations.
-- **Verify**: in the verification stage, the Model Registry can support in making sure that models undergo rigorous testing and validation before progressing further, maintaining a record of performance metrics and test results for each version.
+- **Verify**: in the verification stage, the Model Registry supports rigorous testing and validation before progressing further, maintaining a record of performance metrics and test results for each version.
 - **Package**: the Model Registry assists in organizing model artifacts and dependencies, enabling seamless integration with deployment pipelines and ensuring reproducibility across environments.
 - **Release**: when releasing a model, the Model Registry manages the transition of validated versions to production-ready status, helping organization to maintain versioning conventions and facilitating approval workflows.
 - **Deploy**: during deployment, the Model Registry provides information of the approved model versions and associated artifacts, ensuring consistency and traceability across deployment environments.
