@@ -53,7 +53,7 @@ The _Data Scientist_ uses Kubeflow Notebooks to perform exploratory research and
 
 ### Use Case 2: Experimenting with Different Model Weights to Optimize Model Accuracy
 
-The _Data Scientist_ after identifying a base model, uses KubeFlow Pipelines, Katib, and other components to experiment model with alternative weights, hyperparameters, and other variations to improve the model’s performance metrics; Kubeflow Model Registry can be used to track data related to experiments and runs for comparison, reproducibility and collaboration.
+The _Data Scientist_ after identifying a base model, uses Kubeflow Pipelines, Katib, and other components to experiment model training with alternative weights, hyperparameters, and other variations to improve the model’s performance metrics; Kubeflow Model Registry can be used to track data related to experiments and runs for comparison, reproducibility and collaboration.
 
 * Register the Base Model: Track the Base Model storage location along with hyperparameters in the Model Registry. 
 * Track Experiments/Runs: With Kubeflow pipelines or using the Kubeflow Notebooks, track every variation of the hyper-parameters along with any configuration in that specific Experiment. With each run the different parameters can be tracked in the Model Registry.
