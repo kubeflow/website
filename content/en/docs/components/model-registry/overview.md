@@ -44,7 +44,7 @@ A company, ACME Inc., is developing a machine-learning model for predicting cust
 
 ### Use Case 1: Tracking the Training of Models
 
-The_ Data Scientist_ uses Kubeflow Notebooks to perform exploratory research and trains several types of models, with different hyperparameters and metrics. The Kubeflow Model Registry is used to track those models, in order to make comparisons and identify the best-performing model. Once the champion model is selected, the _Data Scientist _shares the model with the team. The _Data Scientist_ also tracks the lineage of training data sources and notebook code.
+The _Data Scientist_ uses Kubeflow Notebooks to perform exploratory research and trains several types of models, with different hyperparameters and metrics. The Kubeflow Model Registry is used to track those models, in order to make comparisons and identify the best-performing model. Once the champion model is selected, the _Data Scientist_ shares the model with the team. The _Data Scientist_ also tracks the lineage of training data sources and notebook code.
 
 * Track models available on storage: once the model is stored, it can then be tracked in the Kubeflow Model Registry for managing its lifecycle. The Model Registry the registry can catalog, list, index, share, record, organize this information. This allows the _Data Scientist_ to compare different versions and revert to previous versions if needed.
 * Track and compare performance: View key metrics like accuracy, recall, and precision for each model version. This helps identify the best-performing model for deployment.
