@@ -526,7 +526,7 @@ Follow the steps as described for the _random search algorithm example_
 
 If you installed Katib as part of Kubeflow, you can’t run experiments in the
 Kubeflow namespace. Run the following commands to launch an experiment
-using Kubeflow's [PyTorch training job operator](/docs/components/training/pytorch), `PyTorchJob`:
+using Kubeflow's [PyTorch training job operator](/docs/components/training/user-guides/pytorch), `PyTorchJob`:
 
 1. Download `pytorchjob-mnist.yaml`:
 

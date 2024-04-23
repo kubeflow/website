@@ -1,6 +1,6 @@
 +++
 title = "Overview"
-description = "An overview of Kubeflow Training Operator"
+description = "An overview of Training Operator"
 weight = 10
 +++
 
@@ -22,7 +22,7 @@ Training Operator implements centralized Kubernetes controller to orchestrate di
 Users can run High-performance computing (HPC) tasks with Training Operator and MPIJob since it
 supports running Message Passing Interface (MPI) on Kubernetes which is heavily used for HPC.
 Training Operator implements V1 API version of MPI Operator. For MPI Operator V2 version,
-please follow [this guide](/docs/components/training/mpi/) to install MPI Operator V2.
+please follow [this guide](/docs/components/training/user-guides/mpi/) to install MPI Operator V2.
 
 <img src="/docs/components/training/images/training-operator-overview.drawio.png"
   alt="Training Operator Overview"
@@ -41,13 +41,13 @@ To perform distributed training Training Operator implements the following
 [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 for each ML framework:
 
-| ML Framework | Custom Resource                                            |
-| ------------ | ---------------------------------------------------------- |
-| PyTorch      | [PyTorchJob](/docs/components/training/pytorch/)           |
-| TensorFlow   | [TFJob](/docs/components/training/user-guides/tensorflow/) |
-| XGBoost      | [XGBoostJob](/docs/components/training/xgboost/)           |
-| MPI          | [MPIJob](/docs/components/training/mpi/)                   |
-| PaddlePaddle | [PaddleJob](/docs/components/training/paddlepaddle/)       |
+| ML Framework | Custom Resource                                                  |
+| ------------ | ---------------------------------------------------------------- |
+| PyTorch      | [PyTorchJob](/docs/components/training/user-guides/pytorch/)     |
+| TensorFlow   | [TFJob](/docs/components/training/user-guides/tensorflow/)       |
+| XGBoost      | [XGBoostJob](/docs/components/training/user-guides/xgboost/)     |
+| MPI          | [MPIJob](/docs/components/training/user-guides/mpi/)             |
+| PaddlePaddle | [PaddleJob](/docs/components/training/user-guides/paddlepaddle/) |
 
 ## Next steps
 
