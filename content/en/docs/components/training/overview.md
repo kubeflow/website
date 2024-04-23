@@ -4,6 +4,8 @@ description = "An overview of Training Operator"
 weight = 10
 +++
 
+{{% stable-status %}}
+
 ## What is Training Operator ?
 
 Training Operator is a Kubernetes-native project for fine-tuning and scalable
