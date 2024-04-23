@@ -16,7 +16,7 @@ Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-
 In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"`
 to disable it for either `PaddleJob` pods or namespace.
 To view an example of how to add this annotation to your `yaml` file,
-see the [`TFJob` documentation](https://www.kubeflow.org/docs/components/training/user-guides/tensorflow).
+see the [`TFJob` documentation](/docs/components/training/user-guides/tensorflow/).
 
 ## Creating a PaddlePaddle training job
 

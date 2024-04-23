@@ -142,15 +142,15 @@ These are the fields in the experiment configuration spec:
 
   - [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 
-  - [Kubeflow `TFJob`](/docs/components/training/user-guides/tensorflow)
+  - [Kubeflow `TFJob`](/docs/components/training/user-guides/tensorflow/)
 
   - [Kubeflow `PyTorchJob`](/docs/components/training/user-guides/pytorch/)
 
-  - [Kubeflow `MXJob`](/docs/components/training/user-guides/mxnet)
+  - [Kubeflow `MXJob`](/docs/components/training/user-guides/mxnet/)
 
-  - [Kubeflow `XGBoostJob`](/docs/components/training/user-guides/xgboost)
+  - [Kubeflow `XGBoostJob`](/docs/components/training/user-guides/xgboost/)
 
-  - [Kubeflow `MPIJob`](/docs/components/training/user-guides/mpi)
+  - [Kubeflow `MPIJob`](/docs/components/training/user-guides/mpi/)
 
   - [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
 

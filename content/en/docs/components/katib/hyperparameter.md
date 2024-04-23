@@ -483,7 +483,7 @@ View the results of the experiment in the Katib UI:
 
 If you installed Katib as part of Kubeflow, you can’t run experiments in the
 Kubeflow namespace. Run the following commands to launch an experiment using
-the Kubeflow's [TensorFlow training job operator](/docs/components/training/user-guides/tensorflow), `TFJob`:
+the Kubeflow's [TensorFlow training job operator](/docs/components/training/user-guides/tensorflow/), `TFJob`:
 
 1. Download `tfjob-mnist-with-summaries.yaml`:
 
