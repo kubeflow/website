@@ -82,11 +82,11 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/trtinferenceserver            /docs/external-add-ons/serving/tritoninferenceserver
 /docs/components/tfbatchpredict                /docs/external-add-ons/serving/tfbatchpredict
 /docs/components/tftraining                    /docs/components/training/user-guides/tensorflow
-/docs/components/pytorch                       /docs/components/training/user-guides/pytorch
-/docs/components/mpi                           /docs/components/training/user-guides/mpi
-/docs/components/mxnet                         /docs/components/training/user-guides/mxnet
-/docs/components/paddlepaddle                  /docs/components/training/user-guides/paddle
-/docs/components/xgboost                       /docs/components/training/user-guides/xgboost
+/docs/components/training/pytorch              /docs/components/training/user-guides/pytorch
+/docs/components/training/mpi                  /docs/components/training/user-guides/mpi
+/docs/components/training/mxnet                /docs/components/training/user-guides/mxnet
+/docs/components/training/paddlepaddle         /docs/components/training/user-guides/paddle
+/docs/components/training/xgboost              /docs/components/training/user-guides/xgboost
 /docs/components/training/tftraining           /docs/components/training/user-guides/tensorflow
 /docs/components/tfserving_new                 /docs/external-add-ons/serving/tfserving_new
 

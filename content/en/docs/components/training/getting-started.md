@@ -13,15 +13,15 @@ You need to install the following components to run examples:
 - Training Operator [installed](/docs/components/training/installation/#installing-training-operator).
 - Training Python SDK [installed](/docs/components/training/installation/#installing-training-python-sdk).
 
-## Getting Started with PyTorch
+## Getting Started with PyTorchJob
 
-You can create your first Training Operator distributed Job using Python SDK. Define the
+You can create your first Training Operator distributed PyTorchJob using Python SDK. Define the
 training function that implements end-to-end model training. Each Worker will execute this
 function on the appropriate Kubernetes Pod. Usually, this function contains logic to
 download dataset, create model, and train the model.
 
-World Size and Rank will be set automatically as environment variables by Training Operator
-controller to perform [PyTorch Distributed Data Parallel (DDP)](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
+Training Operator will automatically set `WORLD_SIZE` and `RANK` for the appropriate PyTorchJob
+worker to perform [PyTorch Distributed Data Parallel (DDP)](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
 For example:
 
@@ -57,10 +57,10 @@ TrainingClient().create_job(
 )
 ```
 
-## Getting Started with TensorFlow
+## Getting Started with TFJob
 
-Similar to PyTorch example, you can use the Python SDK to create your distributed TFJob. Run the
-following script to create TFJob using pre-created Docker image:
+Similar to PyTorchJob example, you can use the Python SDK to create your first distributed
+TensorFlow job. Run the following script to create TFJob with pre-created Docker image:
 `docker.io/kubeflow/tf-mnist-with-summaries:latest` that contains
 [distributed TensorFlow code](https://github.com/kubeflow/training-operator/tree/e6b4300f9dfebb5c2a3269641c828add367688ee/examples/tensorflow/mnist_with_summaries):
 
@@ -89,4 +89,4 @@ TrainingClient().get_job_logs(
 
 - Run [FashionMNIST example](https://github.com/kubeflow/training-operator/blob/7345e33b333ba5084127efe027774dd7bed8f6e6/examples/pytorch/image-classification/Train-CNN-with-FashionMNIST.ipynb) with using Training Operator Python SDK.
 
-- Learn more about [the PyTorchJob APIs](/docs/components/training/pytorch/).
+- Learn more about [the PyTorchJob APIs](/docs/components/training/user-guides/pytorch/).
