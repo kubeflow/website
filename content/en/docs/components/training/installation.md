@@ -32,7 +32,7 @@ kubectl apply -k "github.com/kubeflow/training-operator/manifests/overlays/stand
 Run the following command to install the latest changes of Training Operator:
 
 ```shell
-kubectl apply -k "github.com/kubeflow/training-operator/manifests/overlays/standalone?ref=v1.7.0"
+kubectl apply -k "github.com/kubeflow/training-operator/manifests/overlays/standalone"
 ```
 
 After installing Training Operator, you can verify that controller is running as follows:
@@ -44,7 +44,20 @@ NAME                                             READY   STATUS    RESTARTS   AG
 training-operator-658c68d697-46zmn               1/1     Running   0          90s
 ```
 
-## Installing Training Operator Python SDK
+Run this command to check installed Kubernetes CRDs for each supported ML framework:
+
+```shell
+$ kubectl get crd
+
+mpijobs.kubeflow.org                                     2023-06-09T00:31:07Z
+mxjobs.kubeflow.org                                      2023-06-09T00:31:05Z
+paddlejobs.kubeflow.org                                  2023-06-09T00:31:09Z
+pytorchjobs.kubeflow.org                                 2023-06-09T00:31:06Z
+tfjobs.kubeflow.org                                      2023-06-09T00:31:04Z
+xgboostjobs.kubeflow.org                                 2023-06-09T00:31:04Z
+```
+
+## Installing Training Python SDK
 
 Training Operator [implements Python SDK](https://pypi.org/project/kubeflow-training/)
 to simplify creation of distributed training and fine-tuning jobs for Data Scientists.
@@ -72,4 +85,4 @@ pip install -U kubeflow-training[huggingface]
 
 ## Next steps
 
-Run your first training Job following the [Getting Started guide](/docs/components/training/getting-started/).
+Run your first Training Operator Job by following the [Getting Started guide](/docs/components/training/getting-started/).
