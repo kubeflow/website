@@ -1,8 +1,7 @@
 +++
 title = "MPI Training (MPIJob)"
 description = "Instructions for using MPI for training"
-weight = 35
-                    
+weight = 60
 +++
 
 {{% beta-status
@@ -12,7 +11,12 @@ This guide walks you through using MPI for training.
 
 The MPI Operator, `MPIJob`, makes it easy to run allreduce-style distributed training on Kubernetes. Please check out [this blog post](https://medium.com/kubeflow/introduction-to-kubeflow-mpi-operator-and-industry-adoption-296d5f2e6edc) for an introduction to MPI Operator and its industry adoption.
 
-**Note**: `MPIJob` doesn’t work in a user namespace by default because of Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection). In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"` to disable it for either `MPIJob` pods or namespace. To view an example of how to add this annotation to your `yaml` file, see the [`TFJob` documentation](https://www.kubeflow.org/docs/components/training/tftraining/).
+**Note**: `MPIJob` doesn’t work in a user namespace by default because of
+Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
+In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"`
+to disable it for either `MPIJob` pods or namespace.
+To view an example of how to add this annotation to your `yaml` file,
+see the [`TFJob` documentation](https://www.kubeflow.org/docs/components/training/user-guides/tensorflow).
 
 ## Installation
 
@@ -78,8 +82,9 @@ kubectl apply -f examples/v2beta1/tensorflow-benchmarks/tensorflow-benchmarks.ya
 ```
 
 ## Scheduling Policy
+
 The MPI Operator supports the [gang-scheduling](/docs/components/training/job-scheduling#running-jobs-with-gang-scheduling).
-If you want to modify the PodGroup parameters, you can configure in the following:  
+If you want to modify the PodGroup parameters, you can configure in the following:
 
 ```diff
 apiVersion: kubeflow.org/v2beta1
@@ -102,30 +107,32 @@ spec:
 ...
 ```
 
-In addition, those fields are passed to the PodGroup for the volcano or the coscheduling plugin according to the following: 
+In addition, those fields are passed to the PodGroup for the volcano or the coscheduling plugin according to the following:
 
 - `.spec.runPolicy.schedulingPolicy.minAvailable` defines the minimal number of members to run the PodGroup and is passed to `.spec.minMember`.
-When using this field, you must ensure the application supports resizing (e.g., Elastic Horovod).
+  When using this field, you must ensure the application supports resizing (e.g., Elastic Horovod).
 - `.spec.runPolicy.schedulingPolicy.queue` defines the queue name to allocate resource for the PodGroup. However, iff you use the volcano as a gang scheduler, this is passed to `.spec.queue`.
 - `.spec.runPolicy.schedulingPolicy.minResources` defines the minimal resources of members to run the PodGroup and is passed to `.spec.minResources`.
 - `.spec.runPolicy.schedulingPolicy.priorityClass` defines the PodGroup's PriorityClass. However, iff you use the volcano as a gang scheduler, this is passed to `.spec.priorityClassName`.
 - `.spec.runPolicy.schedulingPolicy.scheduleTimeutSeconds` defines the maximal time of members to wait before run the PodGroup.
-However, iff you use the coscheduling plugin as a gang scheduler, this is passed to `.spec.scheduleTimeutSeconds`.
+  However, iff you use the coscheduling plugin as a gang scheduler, this is passed to `.spec.scheduleTimeutSeconds`.
 
 Also, if you don't set the fields, mpi-operator populates them based on the following:
 
 volcano:
+
 - `.spec.runPolicy.schedulingPolicy.minAvailable`: The number of a launcher and workers.
 - `.spec.runPolicy.schedulingPolicy.queue`: A value of the `scheduling.volcano.sh/group-name` in `.spec.annotations`.
 - `.spec.runPolicy.schedulingPolicy.minResources`: Nothing is set.
-- `.spec.runPolicy.schedulingPolicy.priorityClass`: It uses the priorityClass for the launcher. If one for the launcher doesn't set, it uses one for the workers.  
+- `.spec.runPolicy.schedulingPolicy.priorityClass`: It uses the priorityClass for the launcher. If one for the launcher doesn't set, it uses one for the workers.
 
 scheduler-plugins:
+
 - `.spec.runPolicy.schedulingPolicy.minAvailable`: The number of a launcher and workers.
-- `.spec.runPolicy.schedulingPolicy.minResources`: The sum of resources defined in all containers. 
-However, if the number of replicas (`.spec.mpiReplicaSpecs[Launcher].replicas` + `.spec.mpiReplicaSpecs[Worker].replicas`) is more of minMembers,
-it reorders replicas according to each priorityClass setting in `podSpec.priorityClassName` and then resources with a priority less than minMember will not be added to minResources.
-Note that it doesn't account for the priorityClass specified in podSpec.priorityClassName if the priorityClass doesn't exist in the cluster when it reorders replicas.
+- `.spec.runPolicy.schedulingPolicy.minResources`: The sum of resources defined in all containers.
+  However, if the number of replicas (`.spec.mpiReplicaSpecs[Launcher].replicas` + `.spec.mpiReplicaSpecs[Worker].replicas`) is more of minMembers,
+  it reorders replicas according to each priorityClass setting in `podSpec.priorityClassName` and then resources with a priority less than minMember will not be added to minResources.
+  Note that it doesn't account for the priorityClass specified in podSpec.priorityClassName if the priorityClass doesn't exist in the cluster when it reorders replicas.
 - `.spec.runPolicy.schedulingPolicy.scheduleTimeutSeconds`: 0
 
 ## Monitoring an MPI Job
@@ -274,12 +281,12 @@ cat examples/pi/pi-intel.yaml
 
 ## Exposed Metrics
 
-| Metric name | Metric type | Description | Labels |
-| ----------- | ----------- | ----------- | ------ |
-|mpi\_operator\_jobs\_created\_total | Counter  | Counts number of MPI jobs created | |
-|mpi\_operator\_jobs\_successful\_total | Counter  | Counts number of MPI jobs successful | |
-|mpi\_operator\_jobs\_failed\_total | Counter  | Counts number of MPI jobs failed| |
-|mpi\_operator\_job\_info | Gauge | Information about MPIJob | `launcher`=&lt;launcher-pod-name&gt; <br> `namespace`=&lt;job-namespace&gt; |
+| Metric name                        | Metric type | Description                          | Labels                                                                      |
+| ---------------------------------- | ----------- | ------------------------------------ | --------------------------------------------------------------------------- |
+| mpi_operator_jobs_created_total    | Counter     | Counts number of MPI jobs created    |                                                                             |
+| mpi_operator_jobs_successful_total | Counter     | Counts number of MPI jobs successful |                                                                             |
+| mpi_operator_jobs_failed_total     | Counter     | Counts number of MPI jobs failed     |                                                                             |
+| mpi_operator_job_info              | Gauge       | Information about MPIJob             | `launcher`=&lt;launcher-pod-name&gt; <br> `namespace`=&lt;job-namespace&gt; |
 
 ### Join Metrics
 

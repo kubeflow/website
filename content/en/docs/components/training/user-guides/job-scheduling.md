@@ -2,20 +2,22 @@
 title = "Job Scheduling"
 description = "How to schedule a job with gang-scheduling"
 weight = 60
-                    
 +++
 
-{{% alpha-status
-  feedbacklink="https://github.com/kubeflow/training-operator/issues" %}}
-
-This guide describes how to use 
+This guide describes how to use [Kueue](https://kueue.sigs.k8s.io/),
 [Volcano Scheduler](https://github.com/volcano-sh/volcano) and
 [Scheduler Plugins with coscheduling](https://github.com/kubernetes-sigs/scheduler-plugins/blob/2502825c671063af5b2aa78a1d34b24917f2def4/pkg/coscheduling/README.md)
 to support gang-scheduling in Kubeflow, to allow jobs to run multiple pods at the same time.
 
 ## Running jobs with gang-scheduling
 
-Training Operator and MPI Operator support running jobs with gang-scheduling using Volcano Scheduler and Scheduler Plugins with coscheduling.
+Training Operator and MPI Operator support running jobs with gang-scheduling using Kueue, Volcano Scheduler,
+and Scheduler Plugins with coscheduling.
+
+### Using Kueue with Training Operator Jobs
+
+Follow [this guide to learn](https://kueue.sigs.k8s.io/docs/tasks/run/kubeflow/) how to use Kueue
+with Training Operator Jobs and manage queues for your ML training jobs
 
 ### Scheduler Plugins with coscheduling
 
@@ -67,13 +69,13 @@ configure operator to select the scheduler name for gang-scheduling in the follo
 ```
 
 - Follow to [instructions in the kubernetes-sigs/scheduler-plugins repository](https://github.com/kubernetes-sigs/scheduler-plugins/blob/2502825c671063af5b2aa78a1d34b24917f2def4/doc/install.md#install-release-v0249-and-use-coscheduling)
-to install the Scheduler Plugins with coscheduling.
+  to install the Scheduler Plugins with coscheduling.
 
 **Note:** Scheduler Plugins and operator in Kubeflow achieve gang-scheduling by using [PodGroup](https://github.com/kubernetes-sigs/scheduler-plugins/blob/2502825c671063af5b2aa78a1d34b24917f2def4/pkg/coscheduling/README.md#podgroup).
 Operator will create the PodGroup of the job automatically.
 
 If you install Scheduler Plugins in your cluster as a secondary scheduler,
-you need to specify the scheduler name in CustomJob resources (e.g., TFJob), for example: 
+you need to specify the scheduler name in CustomJob resources (e.g., TFJob), for example:
 
 ```diff
 apiVersion: "kubeflow.org/v1"

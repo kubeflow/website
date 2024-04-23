@@ -271,7 +271,7 @@ an experiment using the random search example:
    trial template, annotation should be under
    [`.trialSpec.spec.template.metadata.annotations`](https://github.com/kubeflow/katib/blob/master/examples/v1beta1/hp-tuning/random.yaml#L52).
    For the Kubeflow `TFJob` or other training operators check
-   [here](/docs/components/training/tftraining/#what-is-tfjob)
+   [here](/docs/components/training/user-guides/tensorflow/#what-is-tfjob)
    how to set the annotation.
 
 1. Deploy the example:
@@ -483,7 +483,7 @@ View the results of the experiment in the Katib UI:
 
 If you installed Katib as part of Kubeflow, you can’t run experiments in the
 Kubeflow namespace. Run the following commands to launch an experiment using
-the Kubeflow's [TensorFlow training job operator](/docs/components/training/tftraining), `TFJob`:
+the Kubeflow's [TensorFlow training job operator](/docs/components/training/user-guides/tensorflow), `TFJob`:
 
 1. Download `tfjob-mnist-with-summaries.yaml`:
 
@@ -504,7 +504,7 @@ the Kubeflow's [TensorFlow training job operator](/docs/components/training/tftr
    Istio, you have to disable sidecar injection. To do that, specify this annotation:
    `sidecar.istio.io/inject: "false"` in your experiment's trial template.
    For the provided `TFJob` example check
-   [here](/docs/components/training/tftraining/#what-is-tfjob)
+   [here](/docs/components/training/user-guides/tensorflow/#what-is-tfjob)
    how to set the annotation.
 
 1. Deploy the example:
@@ -547,7 +547,7 @@ using Kubeflow's [PyTorch training job operator](/docs/components/training/pytor
    Istio, you have to disable sidecar injection. To do that, specify this annotation:
    `sidecar.istio.io/inject: "false"` in your experiment's trial template.
    For the provided `PyTorchJob` example setting the annotation should be similar to
-   [`TFJob`](/docs/components/training/tftraining/#what-is-tfjob)
+   [`TFJob`](/docs/components/training/user-guides/tensorflow/#what-is-tfjob)
 
 1. Deploy the example:
 

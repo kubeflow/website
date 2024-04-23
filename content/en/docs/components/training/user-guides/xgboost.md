@@ -1,11 +1,8 @@
 +++
 title = "XGBoost Training (XGBoostJob)"
 description = "Using XGBoostJob to train a model with XGBoost"
-weight = 30
-                    
+weight = 50
 +++
-
-{{% stable-status %}}
 
 This page describes `XGBoostJob` for training a machine learning model with [XGBoost](https://github.com/dmlc/xgboost).
 
@@ -14,46 +11,12 @@ This page describes `XGBoostJob` for training a machine learning model with [XGB
 to run XGBoost training jobs on Kubernetes. The Kubeflow implementation of
 `XGBoostJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
 
-**Note**: `XGBoostJob` doesn’t work in a user namespace by default because of Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection). In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"` to disable it for either `XGBoostJob` pods or namespace. To view an example of how to add this annotation to your `yaml` file, see the [`TFJob` documentation](https://www.kubeflow.org/docs/components/training/tftraining/).
-
-## Installing XGBoost Operator
-
-If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
-
-> By default, XGBoost Operator will be deployed as a controller in training operator.
-
-If you want to install a standalone version of the training operator without Kubeflow,
-see the [kubeflow/training-operator's README](https://github.com/kubeflow/training-operator#installation).
-
-## Verify that XGBoost support is included in your Kubeflow deployment
-
-Check that the XGboost custom resource is installed
-
-```
-kubectl get crd
-```
-
-The output should include `xgboostjobs.kubeflow.org`
-
-```
-NAME                                           AGE
-...
-xgboostjobs.kubeflow.org                       4d
-...
-```
-
-Check that the Training operator is running via:
-
-```
-kubectl get pods -n kubeflow
-```
-
-The output should include `training-operator-xxx` like the following:
-
-```
-NAME                                READY   STATUS    RESTARTS   AGE
-training-operator-d466b46bc-xbqvs   1/1     Running   0          4m37s
-```
+**Note**: `XGBoostJob` doesn’t work in a user namespace by default because of
+Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
+In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"`
+to disable it for either `PyTorchJob` pods or namespace.
+To view an example of how to add this annotation to your `yaml` file,
+see the [`XGBoostJob` documentation](https://www.kubeflow.org/docs/components/training/user-guides/tensorflow).
 
 ## Creating a XGBoost training job
 

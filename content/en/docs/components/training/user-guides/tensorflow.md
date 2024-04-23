@@ -2,10 +2,7 @@
 title = "TensorFlow Training (TFJob)"
 description = "Using TFJob to train a model with TensorFlow"
 weight = 10
-                    
 +++
-
-{{% stable-status %}}
 
 This page describes `TFJob` for training a machine learning model with [TensorFlow](https://www.tensorflow.org/).
 
@@ -16,7 +13,10 @@ This page describes `TFJob` for training a machine learning model with [TensorFl
 to run TensorFlow training jobs on Kubernetes. The Kubeflow implementation of
 `TFJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
 
-**Note**: `TFJob` doesn't work in a user namespace by default because of Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection). In order to get `TFJob` running, it needs annotation `sidecar.istio.io/inject: "false"` to disable it for `TFJob` pods.
+**Note**: `TFJob` doesn't work in a user namespace by default because of Istio
+[automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
+In order to get `TFJob` running, it needs annotation `sidecar.istio.io/inject: "false"`
+to disable it for `TFJob` pods.
 
 A `TFJob` is a resource with a YAML representation like the one below (edit to use the container image and command for your own training code):
 
@@ -208,45 +208,6 @@ consists of 3 fields
     should rarely be used because Kubernetes will terminate pods for any number
     of reasons (e.g. node becomes unhealthy) and this will prevent the job from
     recovering.
-
-## Installing TensorFlow Operator
-
-If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
-
-> By default, `TFJob` Operator will be deployed as a controller in training operator.
-
-If you want to install a standalone version of the training operator without Kubeflow,
-see the [kubeflow/training-operator's README](https://github.com/kubeflow/training-operator#installation).
-
-### Verify that TFJob support is included in your Kubeflow deployment
-
-Check that the TensorFlow custom resource is installed:
-
-```
-kubectl get crd
-```
-
-The output should include `tfjobs.kubeflow.org` like the following:
-
-```
-NAME                                             CREATED AT
-...
-tfjobs.kubeflow.org                         2021-09-06T18:33:58Z
-...
-```
-
-Check that the Training operator is running via:
-
-```
-kubectl get pods -n kubeflow
-```
-
-The output should include `training-operaror-xxx` like the following:
-
-```
-NAME                                READY   STATUS    RESTARTS   AGE
-training-operator-d466b46bc-xbqvs   1/1     Running   0          4m37s
-```
 
 ## Running the Mnist example
 
@@ -746,5 +707,4 @@ Here are some steps to follow to troubleshoot your job
 
 ## More information
 
-- Explore the [`TFJob` reference documentation](/docs/reference/tfjob).
 - See how to [run a job with gang-scheduling](/docs/use-cases/job-scheduling#running-jobs-with-gang-scheduling).

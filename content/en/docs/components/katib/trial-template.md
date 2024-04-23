@@ -16,7 +16,7 @@ Katib has these CRD examples in upstream:
 
 - [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 
-- [Kubeflow `TFJob`](/docs/components/training/tftraining/)
+- [Kubeflow `TFJob`](/docs/components/user-guides/tensorflow/)
 
 - [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
 
