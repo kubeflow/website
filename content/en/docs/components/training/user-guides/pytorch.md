@@ -118,3 +118,9 @@ status:
     Worker: {}
   startTime: 2018-12-16T21:40:45Z
 ```
+
+## Next steps
+
+- Learn about [distributed training](/docs/components/training/reference/distributed-training/) in Training Operator.
+
+- See how to [run a job with gang-scheduling](/docs/use-cases/job-scheduling#running-jobs-with-gang-scheduling).

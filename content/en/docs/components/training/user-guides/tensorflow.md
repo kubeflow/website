@@ -705,6 +705,8 @@ Here are some steps to follow to troubleshoot your job
 1. If the containers start; check the logs of the containers following the instructions
    in the previous section.
 
-## More information
+## Next steps
+
+- Learn about [distributed training](/docs/components/training/reference/distributed-training/) in Training Operator.
 
 - See how to [run a job with gang-scheduling](/docs/use-cases/job-scheduling#running-jobs-with-gang-scheduling).
