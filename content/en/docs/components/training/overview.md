@@ -35,7 +35,12 @@ various distributed training strategies for different ML frameworks.
 
 ## Why Training Operator ?
 
-TODO (andreyvelich): Explain value of Training Operator.
+Training Operator addresses Model Training and Model Fine-Tuning step in AI/ML lifecycle as shown on
+that diagram:
+
+<img src="/docs/components/training/images/ml-lifecycle-training-operator.drawio.png"
+  alt="Training Operator Overview"
+  class="mt-3 mb-3">
 
 ## Custom Resources for ML Frameworks
 
