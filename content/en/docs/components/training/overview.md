@@ -42,17 +42,17 @@ that diagram:
   alt="AI/ML Lifecycle Training Operator"
   class="mt-3 mb-3">
 
-- Training Operator simplifies ability to run distributed training and fine-tuning.
+- **Training Operator simplifies ability to run distributed training and fine-tuning.**
 
 Users can easily scale their model training from single machine to large-scale distributed
 Kubernetes cluster using APIs and interfaces provided by Training Operator.
 
-- Training Operator is extensible and portable.
+- **Training Operator is extensible and portable.**
 
 Users can deploy Training Operator on any cloud where you have Kubernetes cluster and users can
 integrate their own ML frameworks written in any programming languages with Training Operator.
 
-- Training Operator is integrated with Kubernetes ecosystem.
+- **Training Operator is integrated with Kubernetes ecosystem.**
 
 Users can leverage Kubernetes advanced scheduling techniques such as Kueue, Volcano, and YuniKorn
 with Training Operator to optimize cost savings for ML training resources.
