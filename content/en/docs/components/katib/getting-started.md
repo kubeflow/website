@@ -161,4 +161,4 @@ In addition, `status` shows the Experiment's Trials with their current status.
 
 - Learn how to configure [Katib Experiment parameters](/docs/components/katib/user-guides/hp-tuning/configure-experiment).
 
-- Check more [Katib Examples](https://github.com/kubeflow/katib/tree/025ce256a4ck%20ge0e7cb048d340454fa74040a54a2f8/examples/v1beta1).
+- Check more [Katib Examples](https://github.com/kubeflow/katib/tree/ea46a7f2b73b2d316b6b7619f99eb440ede1909b/examples/v1beta1).

@@ -1,7 +1,7 @@
 +++
 title = "How to use Trial Templates"
 description = "Trial template parameters overview and how use CRDs with Katib Trials"
-weight = 50
+weight = 60
 +++
 
 This guide describes how to configure Trial template parameters and use custom

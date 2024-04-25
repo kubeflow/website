@@ -93,35 +93,20 @@ The list below describes the fields in the YAML file for an Experiment.
 
 - **trialTemplate**: The template that defines the Trial. You have to package your ML training code
   into a Docker image, as described
-  [above](/docs/components/katib/user-guides/hp-tuning/configure/experiment/#create-image-for-training-code).
-  `trialTemplate.trialSpec` is your [unstructured](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1/unstructured)
+  [above](#create-image-for-training-code). `trialTemplate.trialSpec` is your
+  [unstructured](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1/unstructured)
   template with model parameters, which are substituted from `trialTemplate.trialParameters`.
   For example, your training container can receive HPs as command-line arguments or as environment
   variables. You have to set the name of your training container in `trialTemplate.primaryContainerName`.
 
   Follow the [Trial template guide](/docs/components/katib/user-guides/trial-template/) to learn how
-  to use any Kubernetes resource as Katib Trial and how to save Trial templates in the `ConfigMap`.
+  to use any Kubernetes resource as Katib Trial and how to use ConfigMap for Trial templates.
 
 ## Next steps
 
-- Learn how to run the
-  [random search algorithm and other Katib examples](/docs/components/katib/hyperparameter/#random-search).
+- Learn about [HP tuning algorithms](/docs/components/katib/user-guides/hp-tuning/configure-algorithm).
 
-- How to
-  [restart your experiment and use the resume policies](/docs/components/katib/resume-experiment/).
-
-- Learn to configure your
-  [trial templates](/docs/components/katib/trial-template/).
-
-- For an overview of the concepts involved in hyperparameter tuning and
-  neural architecture search, check the
-  [introduction to Katib](/docs/components/katib/overview/).
+- How to configure [Katib Trial template](/docs/components/katib/user-guides/trial-template).
 
 - Boost your hyperparameter tuning experiment with
-  the [early stopping guide](/docs/components/katib/early-stopping/)
-
-- Check the
-  [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
-
-- How to [set up environment variables](/docs/components/katib/env-variables/)
-  for each Katib component.
+  the [early stopping guide](/docs/components/katib/user-guides/early-stopping/)
