@@ -1,8 +1,7 @@
 +++
-title = "Katib Configuration Overview"
-description = "How to make changes in Katib configuration"
+title = "How to use Katib Config"
+description = "Katib configuration overview and how to update values"
 weight = 70
-                    
 +++
 
 This guide describes
@@ -12,7 +11,7 @@ the main configuration file for every Katib component. We use Kubernetes
 fetch that config into [the Katib control plane components](/docs/components/katib/hyperparameter/#katib-install).
 
 The ConfigMap must be deployed in the
-[`KATIB_CORE_NAMESPACE`](/docs/components/katib/env-variables/#katib-controller)
+[`KATIB_CORE_NAMESPACE`](/docs/components/katib/user-guides/env-variables/#katib-controller)
 namespace with the `katib-config` name.
 
 Katib config has the initialization: `init` and the runtime: `runtime` parameters. You can modify
@@ -91,7 +90,7 @@ The following parameters set in `.init.controller` configure the Katib controlle
 
 - `trialResources` - list of resources that can be used as a Trial template. The Trial resources
   must be in this format: Kind.version.group (e.g. `TFJob.v1.kubeflow.org`).
-  Follow [this guide](/docs/components/katib/trial-template/#use-custom-kubernetes-resource-as-a-trial-template)
+  Follow [this guide](/docs/components/katib/user-guides/trial-template/#use-custom-kubernetes-resource-as-a-trial-template)
   to understand how to make Katib Trial work with your Kubernetes CRDs.
 
   The default value is `[Job.v1.batch]`
@@ -137,7 +136,7 @@ runtime:
 ### Metrics Collectors Parameters
 
 Parameters set in `.runtime.metricsCollectors` configure container for
-[the Katib metrics collector](docs/components/katib/experiment/#metrics-collector).
+[the Katib metrics collector](docs/components/katib/user-guides/metrics-collector/#metrics-collector).
 The following settings are **required** for each Katib metrics collector that you want to use in your Katib Experiments:
 
 - `kind` - one of the Katib metrics collector types.
@@ -199,7 +198,7 @@ The following settings are **optional**:
 ### Suggestions Parameters
 
 Parameters set in `.runtime.suggestions` configure Deployment for
-[the Katib Suggestions](/docs/components/katib/overview/#suggestion). Every Suggestion represents
+[the Katib Suggestions](/docs/components/katib/reference/architecture/#suggestion). Every Suggestion represents
 one of the AutoML algorithms that you can use in Katib Experiments.
 The following settings are **required** for Suggestion Deployment:
 
@@ -305,7 +304,7 @@ The following settings are **optional**:
 #### Suggestion Volume Parameters
 
 When you create an Experiment with
-[`FromVolume` resume policy](/docs/components/katib/resume-experiment#resume-policy-fromvolume),
+[`FromVolume` resume policy](/docs/components/katib/user-guide/resume-experiment#resume-policy-fromvolume),
 you are able to specify
 [PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
 and
@@ -374,7 +373,7 @@ suggestions:
 ### Early Stoppings Parameters
 
 Parameters set in `runtime.earlyStoppings` configure container for
-[the Katib Early Stopping algorithms](/docs/components/katib/early-stopping/#early-stopping-algorithms-in-detail).
+[the Katib Early Stopping algorithms](/docs/components/katib/user-guides/early-stopping/#early-stopping-algorithms-in-detail).
 The following settings are **required** for each early stopping algorithm that you want
 to use in your Katib Experiments:
 

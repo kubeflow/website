@@ -1,18 +1,15 @@
 +++
-title = "Environment Variables for Katib Components"
-description = "How to set up environment variables for each Katib component"
+title = "How to Configure Environment for Katib Components"
+description = "List of environment variables that accepted by Katib components"
 weight = 80
-                    
 +++
 
-This guide describes environment variables for each Katib component.
-If you want to change your Katib installation,
-you can modify some of these variables.
+This guide describes environment variables for each Katib component. If you want to change your
+Katib installation, you can modify some of these variables.
 
-In the tables below you can find descriptions, default values and mandatory
-properties for all environment variables in each Katib component.
-If a variable has a mandatory property, you need to set the relevant
-environment variable in an appropriate Katib component's manifest.
+In the tables below you can find descriptions, default values and mandatory properties for all
+environment variables in each Katib component. If a variable has a mandatory property, you need to
+set the relevant environment variable in an appropriate Katib component's manifest.
 
 ## Katib Controller
 
@@ -210,8 +207,10 @@ deployment:
   </table>
 </div>
 
-Currently, Katib DB Manager supports only **MySQL** and **Postgres** database. (`DB_NAME` env variable must be filled with one of `mysql` or `postgres`)  
-However, you can use your own DB Manager and Database to report metrics by implements the [katib db interface](https://github.com/kubeflow/katib/blob/master/pkg/db/v1beta1/common/kdb.go).
+Currently, Katib DB Manager supports only **MySQL** and **Postgres** database. (`DB_NAME` env
+variable must be filled with one of `mysql` or `postgres`). However, you can use your own DB Manager
+and Database to report metrics by implements the
+[katib db interface](https://github.com/kubeflow/katib/blob/master/pkg/db/v1beta1/common/kdb.go).
 
 For the [Katib DB Manager](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/db-manager/db-manager.yaml#L25)
 you can change `DB_PASSWORD` to your own DB password.
