@@ -45,7 +45,7 @@ is a good starting point for developers who want to contribute to the project.
 Katib addresses AutoML step for hyperparameter optimization or Neural Architecture Search
 in AI/ML lifecycle as shown on that diagram:
 
-<img src="/docs/components/katib/images/ml-lifecycle-katib.drawio.png"
+<img src="/docs/components/katib/images/ml-lifecycle-katib.drawio.svg"
   alt="AI/ML Lifecycle Katib"
   class="mt-3 mb-3">
 
