@@ -49,7 +49,7 @@ in AI/ML lifecycle as shown on that diagram:
   alt="AI/ML Lifecycle Katib"
   class="mt-3 mb-3">
 
-- Katib can orchestrate multi-node & multi-GPU [distributed training workloads](/docs/components/katib/user-guides/trial-template).
+- **Katib can orchestrate multi-node & multi-GPU [distributed training workloads](/docs/components/katib/user-guides/trial-template)**.
 
 Katib is integrated with Kubeflow Training Operator jobs such as PyTorchJob, which allows to
 optimize hyperparameters for large models of any size.
@@ -57,14 +57,14 @@ optimize hyperparameters for large models of any size.
 In addition to that, Katib can orchestrate workflows such as Argo Workflows and Tekton Pipelines
 for more advanced optimization task.
 
-- Katib is extensible and portable.
+- **Katib is extensible and portable.**
 
 Katib orchestrate Kubernetes containers to [perform hyperparameter tuning job](/docs/components/katib/reference/archiecture),
 which allows to use Katib with any ML training framework.
 
 Users can even use Katib to optimize non-ML tasks as long as optimization metrics can be collected.
 
-- Katib has rich support of optimization algorithm.
+- **Katib has rich support of optimization algorithm.**
 
 Katib is integrated with many optimization frameworks such as [Hyperopt](https://hyperopt.github.io/hyperopt/) and
 [Optuna](https://optuna.org/) which implements most of the state of the art optimization algorithms.
@@ -73,6 +73,6 @@ Users can leverage Katib control plane to implement and benchmark [their own opt
 
 ## Next steps
 
-- Follow [the installation guide](/docs/components/training/installation/) to deploy Katib.
+- Follow [the installation guide](/docs/components/katib/installation/) to deploy Katib.
 
 - Run examples from [getting started guide](/docs/components/katib/getting-started/).

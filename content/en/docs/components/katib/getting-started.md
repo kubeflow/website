@@ -48,7 +48,7 @@ parameters = {
     "b": katib.search.double(min=0.1, max=0.2)
 }
 
-# [3] Create Katib Experiment with 12 Trials and 2 GPUs per Trial.
+# [3] Create Katib Experiment with 12 Trials and 2 CPUs per Trial.
 name = "tune-experiment"
 katib.KatibClient().tune(
     name=name,
@@ -56,7 +56,7 @@ katib.KatibClient().tune(
     parameters=parameters,
     objective_metric_name="result",
     max_trial_count=12,
-    resources_per_trial={"gpu": "2"},
+    resources_per_trial={"cpu": "2"},
 )
 
 # [4] Wait until Katib Experiment is complete
@@ -146,8 +146,19 @@ status:
   trialsSucceeded: 4
 ```
 
+You can check information about the best Trial in `status.currentOptimalTrial`.
+
+- `.currentOptimalTrial.bestTrialName` is the Trial name.
+
+- `.currentOptimalTrial.observation.metrics` is the `max`, `min` and `latest` recorded values for objective
+  and additional metrics.
+
+- `.currentOptimalTrial.parameterAssignments` is the corresponding hyperparameter set.
+
+In addition, `status` shows the Experiment's Trials with their current status.
+
 ## Next steps
 
-- Learn more about [Katib Experiment APIs](/docs/components/katib/user-guides/experiment)
-- Run more [Katib Examples](https://github.com/kubeflow/katib/tree/025ce256a4ck%20ge0e7cb048d340454fa74040a54a2f8/examples/v1beta1)
-  with using Training Operator Python SDK.
+- Learn how to configure [Katib Experiment parameters](/docs/components/katib/user-guides/hp-tuning/configure-experiment).
+
+- Check more [Katib Examples](https://github.com/kubeflow/katib/tree/025ce256a4ck%20ge0e7cb048d340454fa74040a54a2f8/examples/v1beta1).
