@@ -26,13 +26,13 @@ You can install Training Operator as a standalone component.
 Run the following command to install the stable release of Training Operator: `v1.7.0`
 
 ```shell
-kubectl apply -k "github.com/kubeflow/training-operator/manifests/overlays/standalone?ref=v1.7.0"
+kubectl apply -k github.com/kubeflow/training-operator.git/manifests/overlays/standalone?ref=v1.7.0
 ```
 
 Run the following command to install the latest changes of Training Operator:
 
 ```shell
-kubectl apply -k "github.com/kubeflow/training-operator/manifests/overlays/standalone"
+kubectl apply -k github.com/kubeflow/training-operator.git/manifests/overlays/standalone?ref=master
 ```
 
 After installing Training Operator, you can verify that controller is running as follows:
