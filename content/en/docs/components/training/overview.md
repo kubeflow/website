@@ -63,13 +63,13 @@ To perform distributed training Training Operator implements the following
 [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 for each ML framework:
 
-| ML Framework | Custom Resource                                                  |
-| ------------ | ---------------------------------------------------------------- |
-| PyTorch      | [PyTorchJob](/docs/components/training/user-guides/pytorch/)     |
-| TensorFlow   | [TFJob](/docs/components/training/user-guides/tensorflow/)       |
-| XGBoost      | [XGBoostJob](/docs/components/training/user-guides/xgboost/)     |
-| MPI          | [MPIJob](/docs/components/training/user-guides/mpi/)             |
-| PaddlePaddle | [PaddleJob](/docs/components/training/user-guides/paddlepaddle/) |
+| ML Framework | Custom Resource                                              |
+| ------------ | ------------------------------------------------------------ |
+| PyTorch      | [PyTorchJob](/docs/components/training/user-guides/pytorch/) |
+| TensorFlow   | [TFJob](/docs/components/training/user-guides/tensorflow/)   |
+| XGBoost      | [XGBoostJob](/docs/components/training/user-guides/xgboost/) |
+| MPI          | [MPIJob](/docs/components/training/user-guides/mpi/)         |
+| PaddlePaddle | [PaddleJob](/docs/components/training/user-guides/paddle/)   |
 
 ## Next steps
 
