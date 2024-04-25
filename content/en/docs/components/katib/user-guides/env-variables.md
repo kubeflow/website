@@ -1,7 +1,7 @@
 +++
-title = "How to Configure Environment for Katib Components"
+title = "How to configure env variables"
 description = "List of environment variables that accepted by Katib components"
-weight = 80
+weight = 90
 +++
 
 This guide describes environment variables for each Katib component. If you want to change your

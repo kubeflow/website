@@ -1,7 +1,7 @@
 +++
 title = "Katib Installation Options"
 description = "Overview of the ways to install Katib control plane"
-weight = 60
+weight = 80
 +++
 
 Katib offers a few installation options to install control plane. This page describes the options

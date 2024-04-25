@@ -1,7 +1,7 @@
 +++
 title = "How to Configure Early Stopping"
 description = "Early Stopping overview for Katib Experiments"
-weight = 20
+weight = 50
 +++
 
 This guide shows how you can use [early stopping](https://en.wikipedia.org/wiki/Early_stopping)

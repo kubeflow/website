@@ -1,7 +1,7 @@
 +++
-title = "Katib UI"
+title = "How to use Katib UI"
 description = "How to access and use Katib UI"
-weight = 10
+weight = 30
 +++
 
 This page describes how to access and use Katib UI. Follow

@@ -1,7 +1,7 @@
 +++
 title = "How to Resume Experiments"
 description = "How to modify running Experiments and resume completed Experiments"
-weight = 30
+weight = 70
 +++
 
 This guide describes how to modify running experiments and restart completed experiments.

@@ -1,5 +1,5 @@
 +++
-title = "How to Configure Katib Metrics Collector"
+title = "How to Configure Metrics Collector"
 description = "Overview of Katib metrics collector and how to configure it"
 weight = 40
 +++

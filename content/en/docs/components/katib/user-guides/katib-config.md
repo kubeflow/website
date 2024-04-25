@@ -1,7 +1,7 @@
 +++
 title = "How to use Katib Config"
 description = "Katib configuration overview and how to update values"
-weight = 70
+weight = 80
 +++
 
 This guide describes
