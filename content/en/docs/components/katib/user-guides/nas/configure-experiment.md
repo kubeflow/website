@@ -1,5 +1,5 @@
 +++
-title = "How to Configure Katib Experiment"
+title = "How to Configure Experiment"
 description = "Katib Experiment specification for neural architecture search"
 weight = 10
 +++

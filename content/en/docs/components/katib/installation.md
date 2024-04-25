@@ -35,8 +35,6 @@ kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib
 
 After installing Katib, you can verify that all control plane components are running:
 
-````shell
-
 ```shell
 $ kubectl get pods -n kubeflow
 
@@ -45,7 +43,7 @@ katib-controller-566595bdd8-8w7sx   1/1     Running     0          82s
 katib-db-manager-57cd769cdb-vt7zs   1/1     Running     0          82s
 katib-mysql-7894994f88-djp7m        1/1     Running     0          81s
 katib-ui-5767cfccdc-v9fcs           1/1     Running     0          80s
-````
+```
 
 **Note**. Your Kubernetes cluster must have `StorageClass` for dynamic volume provisioning for Katib DB.
 For more information, check the Kubernetes documentation on
@@ -65,7 +63,7 @@ Katib has the following components on the control plane:
   [`Trial`](/docs/components/katib/reference/architecture/#trial).
 
   - (Optional) If certificate generator is enabled in
-    [Katib Config](/docs/components/katib/katib-config/), Katib controller deployment will create
+    [Katib Config](/docs/components/katib/user-guides/katib-config/), Katib controller deployment will create
     self-signed certificate for the Katib webhooks. Learn more about the cert generator in the
     [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md#katib-cert-generator).
 

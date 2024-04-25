@@ -1,7 +1,7 @@
 +++
-title = "Neural Architecture Search with Katib"
+title = "Neural Architecture Search"
 description = "User guides to run Neural Architecture Search Experiments"
-weight = 10
+weight = 20
 +++
 
 {{% alert title="Alpha version" color="warning" %}}

@@ -1,5 +1,5 @@
 +++
-title = "How to Configure Hyperparameter Tuning Algorithm"
+title = "How to Configure Algorithms"
 description = "List of supported algorithms for hyperparameter tuning"
 weight = 20
 +++

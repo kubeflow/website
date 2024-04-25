@@ -1,6 +1,6 @@
 +++
-title = "How to Configure Katib Experiment"
-description = "Katib Experiment specification for hyperparameter tuning job"
+title = "How to Configure Experiment"
+description = "Katib Experiment specification for hyperparameter tuning"
 weight = 10
 +++
 
@@ -69,7 +69,7 @@ The list below describes the fields in the YAML file for an Experiment.
 
 - **algorithm**: The search algorithm that you want Katib to use to find the best HPs.
   Examples include random search, grid search, Bayesian optimization, and more.
-  Check the [HP tuning algorithms](/docs/components/katib/user-guides/hp-tuning/configure-algorithms/)
+  Check the [HP tuning algorithms](/docs/components/katib/user-guides/hp-tuning/configure-algorithm/)
   to learn how to configure them.
 
 - **parallelTrialCount**: The maximum number of HP sets that Katib

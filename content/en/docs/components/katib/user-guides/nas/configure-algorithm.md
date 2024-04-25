@@ -11,8 +11,8 @@ them.
 
 Katib currently supports several search algorithms for HP tuning:
 
-- [Efficient NAS](/docs/components/katib/user-guides/nas/configure-algorithms/#efficient-nas)
-- [Differentiable Architecture Search](/docs/components/katib/user-guides/nas/configure-algorithms/#differentiable-architecture-search)
+- [Efficient NAS](/docs/components/katib/user-guides/nas/configure-algorithm/#efficient-nas)
+- [Differentiable Architecture Search](/docs/components/katib/user-guides/nas/configure-algorithm/#differentiable-architecture-search)
 
 ### Efficient NAS
 
