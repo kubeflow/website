@@ -15,9 +15,9 @@ Katib currently supports several search algorithms for NAS:
 - [Random Search](#random-search)
 - [Bayesian Optimization](#bayesian-optimization)
 - [Hyperband](#hyperband)
-- [Tree of Parzen Estimators](#tree-of-parzen-estimators)
+- [Tree of Parzen Estimators](#tree-of-parzen-estimators-tpe)
 - [Multivariate TPE](#multivariate-tpe)
-- [Covariance Matrix Adaptation Evolution Strategy](#cma-es)
+- [Covariance Matrix Adaptation Evolution Strategy (CMA-ES)](#covariance-matrix-adaptation-evolution-strategy-cma-es)
 - [Sobol Quasirandom Sequence](#sobol-quasirandom-sequence)
 - [Population Based Training](#population-based-training)
 
@@ -343,7 +343,7 @@ The algorithm name in Katib is `pbt`.
 
 Review the population based training [paper](https://arxiv.org/abs/1711.09846) for more details about the algorithm.
 
-The PBT service requires a Persistent Volume Claim with [RWX access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) to share resources between Suggestion and Trials. Currently, Katib Experiments should have <code>resumePolicy: FromVolume</code> to run the PBT algorithm. Learn more about resume policies in [this guide](/docs/components/katib/resume-experiment/).
+The PBT service requires a Persistent Volume Claim with [RWX access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) to share resources between Suggestion and Trials. Currently, Katib Experiments should have <code>resumePolicy: FromVolume</code> to run the PBT algorithm. Learn more about resume policies in [this guide](/docs/components/katib/user-guides/resume-experiment/).
 
 Katib supports the following algorithm settings:
 
@@ -381,11 +381,9 @@ Katib supports the following algorithm settings:
   </table>
 </div>
 
-## Add a new HP Tuning Algorithm to Katib
+## Use Custom Algorithm in Katib
 
-You can add an algorithm to Katib yourself. the design of Katib follows the `ask-and-tell` pattern:
-
-This pattern follows this:
+You can add an HP tuning algorithm to Katib yourself. The design of Katib follows the `ask-and-tell` pattern:
 
 1. Ask for a new set of parameters
 1. Walk to the Experiment and program in the new parameters
@@ -472,11 +470,11 @@ class HyperoptService(
         )
 ```
 
-### Package Algorithm Service as Docker Image
+### Build Docker Image for Algorithm Service
 
-You should build Docker image from your Algorithm service, for that add a new Docker image under
+You should build Docker image for your Algorithm service, for that add a new Docker image under
 `cmd/suggestion`, for example: [cmd/suggestion/hyperopt](https://github.com/kubeflow/katib/tree/6f372f68089c0a01d2c06e98489557a88e5a7183/cmd/suggestion/hyperopt/v1beta1).
-The new GRPC server should serve in port **6789**.
+The new gRPC server should serve in port **6789**.
 
 After that you can build Docker image from your algorithm:
 
@@ -486,8 +484,8 @@ docker build . -f cmd/suggestion/<PATH_TO_DOCKER> -t <DOCKER_IMAGE>
 
 ### Update the Katib Config with
 
-Update the [Katib config](../manifests/v1beta1/installs/katib-standalone/katib-config.yaml) with
-the new algorithm entity:
+Update the [Katib config](/docs/components/katib/user-guides/katib-config/#suggestions-parameters)
+with the new algorithm entity:
 
 ```diff
   runtime:
@@ -500,12 +498,10 @@ the new algorithm entity:
 +       image: <DOCKER_IMAGE>
 ```
 
-Follow [this guide](/docs/components/katib/user-guides/katib-config/) to learn more about Katib Config.
-
 ### Contribute the Algorithm to Katib
 
-If you want to contribute the algorithm to Katib, you could add unit test and/or
-e2e test for it in the CI and submit a PR.
+If you want to contribute the algorithm to Katib, you could add unit test and/or e2e test for it
+in the CI and submit a PR.
 
 #### Add Unit Tests for the Algorithm
 
@@ -536,7 +532,3 @@ if __name__ == '__main__':
 ```
 
 You can setup the gRPC server using `grpc_testing`, then define your own test cases.
-
-#### Add E2E Test for the Algorithm
-
-TODO (andreyvelich): Add instructions for E2E tests.

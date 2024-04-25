@@ -4,11 +4,18 @@ description = "Katib Experiment specification for neural architecture search"
 weight = 10
 +++
 
+{{% alert title="Alpha version" color="warning" %}}
+Neural architecture search is currently in <b>alpha</b> with limited support. The Kubeflow team is
+interested in any feedback you may have, in particular with regards to usability
+of the feature. You can log issues and comments in
+the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
+{{% /alert %}}
+
 This guide describes how to configure Katib Experiment for neural architecture search (NAS).
 
 Before reading this guide, please follow
-[the guide to configure Experiment](/docs/components/katib/user-guides/hp-tuning/configure/experiment/#create-image-for-training-code)
-for hyperparameter (HP) tuning to understand the common parameters for NAS.
+[the guide to configure Experiment](/docs/components/katib/user-guides/hp-tuning/configure-experiment)
+for hyperparameter (HP) tuning to understand the common Experiment parameters for NAS.
 
 ## Configuring the Experiment
 
@@ -22,7 +29,7 @@ As a reference, you can use the YAML file of the
 
 The list below describes the NAS-specific parameters in the YAML file for an Experiment.
 
-- **nasConfig**: The configuration for a neural architecture search (NAS). You can specify the
+- **nasConfig**: The configuration for NAS. You can specify the
   configurations of the neural network design that you want to optimize, including the number of
   layers in the network, the types of operations, and more.
 
@@ -34,28 +41,8 @@ The list below describes the NAS-specific parameters in the YAML file for an Exp
     network layer the NAS algorithm selects one of the operations to build a neural network.
     Each operation contains sets of **parameters** similar to HP tuning Experiment.
 
-    You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/nas).
+You can find all NAS examples [here](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/nas).
 
 ## Next steps
 
-- Learn how to run the
-  [random search algorithm and other Katib examples](/docs/components/katib/hyperparameter/#random-search).
-
-- How to
-  [restart your experiment and use the resume policies](/docs/components/katib/resume-experiment/).
-
-- Learn to configure your
-  [trial templates](/docs/components/katib/trial-template/).
-
-- For an overview of the concepts involved in hyperparameter tuning and
-  neural architecture search, check the
-  [introduction to Katib](/docs/components/katib/overview/).
-
-- Boost your hyperparameter tuning experiment with
-  the [early stopping guide](/docs/components/katib/early-stopping/)
-
-- Check the
-  [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
-
-- How to [set up environment variables](/docs/components/katib/env-variables/)
-  for each Katib component.
+- Learn about [NAS algorithms](/docs/components/katib/user-guides/nas/configure-algorithm).
