@@ -75,9 +75,9 @@ You can submit an hyperparameter tuning Experiment from the Katib UI.
 
 1. (Optional) If you want to modify Experiment YAML, you can click edit and submit YAML at the bottom.
 
-<img src="/docs/components/katib/images/deploy-yaml.png"
-    alt="Deploy Katib Experiment using YAML"
-    class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/components/katib/images/deploy-yaml.png"
+       alt="Deploy Katib Experiment using YAML"
+       class="mt-3 mb-3 border border-info rounded">
 
 1. Create Katib Experiment.
 
@@ -118,25 +118,27 @@ Follow these steps to get Katib Experiment results:
 Follow [this guide](/docs/components/katib/user-guides/early-stopping) to learn how early stopping
 works in Katib.
 
-Select early stopping algorithm while creating Katib Experiment:
+1. Select early stopping algorithm while creating Katib Experiment:
 
-<img src="/docs/components/katib/images/early-stopping-parameter.png"
-  alt="Katib Experiment with Early Stopping"
-  class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/components/katib/images/early-stopping-parameter.png"
+       alt="Katib Experiment with Early Stopping"
+       class="mt-3 mb-3 border border-info rounded">
 
-After your Experiment is complete, you can check your results in the Katib UI.
-The Trial statuses on the experiment monitor page should look as follows:
+1. After your Experiment is complete, you can check your results in the Katib UI. The Trial statuses
+   on the Experiment monitor page should look as follows:
 
-<img src="/docs/components/katib/images/early-stopping-trials.png"
-  alt="Trials view with early stopping"
-  class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/components/katib/images/early-stopping-trials.png"
+       alt="Trials view with early stopping"
+       class="mt-3 mb-3 border border-info rounded">
 
-You can click on the early stopped Trial name to get reported metrics before this Trial is early stopped:
+1. You can click on the early stopped Trial name to get reported metrics before this Trial was early stopped:
 
-<img src="/docs/components/katib/images/early-stopping-trial-info.png"
-  alt="Early stopped Trial metrics"
-  class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/components/katib/images/early-stopping-trial-info.png"
+     alt="Early stopped Trial metrics"
+     class="mt-3 mb-3 border border-info rounded">
 
 ## Next Steps
 
-- TODO:
+- Understand how [Katib metrics collector works](/docs/components/katib/user-guides/metrics-collector).
+
+- Learn how to use [early stopping within Katib Experiments](/docs/components/katib/user-guides/early-stopping)
