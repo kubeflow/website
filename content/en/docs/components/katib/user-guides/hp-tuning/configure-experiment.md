@@ -109,4 +109,4 @@ The list below describes the fields in the YAML file for an Experiment.
 - How to configure [Katib Trial template](/docs/components/katib/user-guides/trial-template).
 
 - Boost your hyperparameter tuning experiment with
-  the [early stopping guide](/docs/components/katib/user-guides/early-stopping/)
+  the [early stopping guide](/docs/components/katib/user-guides/early-stopping/).

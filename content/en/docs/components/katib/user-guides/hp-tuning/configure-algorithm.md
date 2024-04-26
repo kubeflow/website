@@ -281,7 +281,7 @@ Katib supports the following algorithm settings:
   </table>
 </div>
 
-### Covariance Matrix Adaptation Evolution Strategy
+### Covariance Matrix Adaptation Evolution Strategy (CMA-ES)
 
 The algorithm name in Katib is `cmaes`.
 
