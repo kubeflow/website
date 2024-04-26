@@ -359,12 +359,12 @@ Katib supports the following algorithm settings:
     <tbody>
       <tr>
         <td>suggestion_trial_dir</td>
-        <td>The location within the trial container where checkpoints are saved</td>
+        <td>The location within the Trial container where checkpoints are saved</td>
         <td><code>/var/log/katib/checkpoints/</code></td>
       </tr>
       <tr>
         <td>n_population</td>
-        <td>Number of trial seeds per generation</td>
+        <td>Number of Trial seeds per generation</td>
         <td>40</td>
       </tr>
       <tr>
@@ -393,7 +393,7 @@ You can add an HP tuning algorithm to Katib yourself. The design of Katib follow
 When an Experiment is created, one algorithm service as Kubernetes Deployment will be created.
 Then Katib asks for new sets of parameters via `GetSuggestions` gRPC call. After that, Katib
 creates new Trials according to the sets and observe the outcome. When the Trials are finished,
-Katib tells the metrics of the finished trials to the algorithm, and ask another new sets.
+Katib tells the metrics of the finished Trials to the algorithm, and ask another new sets.
 
 ### Create a new Algorithm Service
 
@@ -427,8 +427,8 @@ class HyperoptService(
         #                HyperParameter(name: param-4, type: DOUBLE, min: 1, max: 5, step: )]
         #   )
         search_space = HyperParameterSearchSpace.convert(request.experiment)
-        # Convert the trials in GRPC request to the trials in algorithm side.
-        # trials example:
+        # Convert the Trials in GRPC request to the Trials in algorithm side.
+        # Trials example:
         #   [Trial(
         #       assignment: [Assignment(name=param-1, value=2),
         #                    Assignment(name=param-2, value=cat1),

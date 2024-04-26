@@ -157,8 +157,8 @@ The following items can be implemented in Katib to better support ENAS:
 1. Add support for recurrent neural networks and build a training container for the Penn Treebank task.
 1. Add parameter sharing, if possible.
 1. Change LSTM cell from self defined functions in LSTM.py to `tf.nn.rnn_cell.LSTMCell`
-1. Store the suggestion checkpoint to PVC to protect against unexpected enas service pod restarts
-1. Add `RequestCount` into API so that the suggestion can clean the information of completed studies.
+1. Store the Suggestion checkpoint to PVC to protect against unexpected enas service pod restarts
+1. Add `RequestCount` into API so that the Suggestion can clean the information of completed studies.
 
 ## Differentiable Architecture Search (DARTS)
 

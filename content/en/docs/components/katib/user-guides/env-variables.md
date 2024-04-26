@@ -1,7 +1,7 @@
 +++
 title = "How to configure env variables"
 description = "List of environment variables that accepted by Katib components"
-weight = 90
+weight = 80
 +++
 
 This guide describes environment variables for each Katib component. If you want to change your
@@ -262,3 +262,7 @@ Katib Postgres environment variables must be matched with the Katib DB Manager e
 1. `POSTGRES_USER` = `DB_USER`
 1. `POSTGRES_PASSWORD` = `DB_PASSWORD`
 1. `POSTGRES_DB` = `KATIB_POSTGRESQL_DB_DATABASE`
+
+## Next steps
+
+- Learn about different [options to install Katib](/docs/components/katib/user-guides/installation-options/).

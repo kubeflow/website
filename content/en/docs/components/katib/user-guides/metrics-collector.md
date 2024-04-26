@@ -8,14 +8,14 @@ This guide describes how Katib metrics collector works.
 
 ## Metrics Collector
 
-In the `metricsCollectorSpec` section of the YAML configuration file, you can
-define how Katib should collect the metrics from each trial, such as the accuracy and loss metrics.
+In the `metricsCollectorSpec` section of the Experiment YAML configuration file, you can
+define how Katib should collect the metrics from each Trial, such as the accuracy and loss metrics.
 
-Your training code can record the metrics into `stdout` or into arbitrary output files. Katib
+Your training code can record the metrics into `StdOut` or into arbitrary output files. Katib
 collects the metrics using a _sidecar_ container. A sidecar is a utility container that supports
 the main container in the Kubernetes Pod.
 
-To define the metrics collector for your experiment:
+To define the metrics collector for your Experiment:
 
 1. Specify the collector type in the `.collector.kind` field.
    Katib's metrics collector supports the following collector types:

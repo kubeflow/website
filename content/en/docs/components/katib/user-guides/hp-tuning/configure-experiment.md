@@ -35,7 +35,7 @@ The list below describes the fields in the YAML file for an Experiment.
   metric for a set of hyperparameters reaches the `goal`, Katib stops trying more hyperparameter combinations.
 
   You can run the Experiment without specifying the `goal`. In that case, Katib
-  runs the Experiment until the corresponding successful trials reach `maxTrialCount`.
+  runs the Experiment until the corresponding successful Trials reach `maxTrialCount`.
   `maxTrialCount` parameter is described below.
 
   The default way to calculate the Experiment's objective is:
@@ -62,7 +62,7 @@ The list below describes the fields in the YAML file for an Experiment.
   ```
 
   In that case, Katib controller searches for the best maximum from the all latest reported
-  `accuracy` metrics for each trial. Check the
+  `accuracy` metrics for each Trial. Check the
   [metrics strategies example](https://github.com/kubeflow/katib/blob/fc858d15dd41ff69166a2020efa200199063f9ba/examples/v1beta1/metrics-collector/metrics-collection-strategy.yaml).
 
   The default strategy type for each metric is equal to the objective `type`.
@@ -82,7 +82,7 @@ The list below describes the fields in the YAML file for an Experiment.
 
 - **maxFailedTrialCount**: The maximum number of Trials allowed to fail. This is equivalent to the
   number of failed HP sets that Katib should test. Katib recognizes Trials with a status of
-  `Failed` or `MetricsUnavailable` as `Failed` Trials, and if the number of failed trials reaches
+  `Failed` or `MetricsUnavailable` as `Failed` Trials, and if the number of failed Trials reaches
   `maxFailedTrialCount`, Katib stops the Experiment with a status of `Failed`.
 
 - **parameters**: The range of the HPs that you want to tune for your machine learning (ML) model.
@@ -108,5 +108,5 @@ The list below describes the fields in the YAML file for an Experiment.
 
 - How to configure [Katib Trial template](/docs/components/katib/user-guides/trial-template).
 
-- Boost your hyperparameter tuning experiment with
+- Boost your hyperparameter tuning Experiment with
   the [early stopping guide](/docs/components/katib/user-guides/early-stopping/).

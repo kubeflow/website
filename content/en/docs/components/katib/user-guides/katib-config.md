@@ -8,7 +8,7 @@ This guide describes
 [the Katib Config](https://github.com/kubeflow/katib/blob/19268062f1b187dde48114628e527a2a35b01d64/manifests/v1beta1/installs/katib-standalone/katib-config.yaml) —
 the main configuration file for every Katib component. We use Kubernetes
 [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) to
-fetch that config into [the Katib control plane components](/docs/components/katib/hyperparameter/#katib-install).
+fetch that config into [the Katib control plane components](/docs/components/katib/installation/#katib-control-plane-components).
 
 The ConfigMap must be deployed in the
 [`KATIB_CORE_NAMESPACE`](/docs/components/katib/user-guides/env-variables/#katib-controller)
@@ -136,7 +136,7 @@ runtime:
 ### Metrics Collectors Parameters
 
 Parameters set in `.runtime.metricsCollectors` configure container for
-[the Katib metrics collector](docs/components/katib/user-guides/metrics-collector/#metrics-collector).
+[the Katib metrics collector](/docs/components/katib/user-guides/metrics-collector).
 The following settings are **required** for each Katib metrics collector that you want to use in your Katib Experiments:
 
 - `kind` - one of the Katib metrics collector types.
@@ -207,7 +207,7 @@ The following settings are **required** for Suggestion Deployment:
 - `image` - a Docker image for the Suggestion Deployment's container. Image
   example: `docker.io/kubeflowkatib/<suggestion-name>`
 
-  For each algorithm you can specify one of the following suggestion names in the Docker image:
+  For each algorithm you can specify one of the following Suggestion names in the Docker image:
 
   <div class="table-responsive">
     <table class="table table-bordered">
@@ -285,21 +285,21 @@ The following settings are **optional**:
   service account.
 
   **Note:** If you want to run your Experiments with
-  [early stopping](/docs/components/katib/early-stopping/),
+  [early stopping](/docs/components/katib/user-guides/early-stopping/),
   the Suggestion's Deployment must have permission to update the Experiment's
   Trial status. If you don't specify a ServiceAccount in the Katib config,
   Katib controller creates required
   [Kubernetes Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac)
-  for the suggestion.
+  for the Suggestion.
 
-  If you need your own ServiceAccount for the experiment's
-  suggestion with early stopping, you have to follow the rules:
+  If you need your own ServiceAccount for the Experiment's
+  Suggestion with early stopping, you have to follow the rules:
 
   - The ServiceAccount name can't be equal to
     `<experiment-name>-<experiment-algorithm>`
 
   - The ServiceAccount must have sufficient permissions to update
-    the experiment's trial status.
+    the Experiment's Trial status.
 
 #### Suggestion Volume Parameters
 
@@ -363,7 +363,7 @@ suggestions:
   for the Suggestion Deployment's PV.
 
   Suggestion Deployment's PV always has **`persistentVolumeReclaimPolicy: Delete`** to properly
-  remove all resources once Katib experiment is deleted. To know more about PV reclaim policies
+  remove all resources once Katib Experiment is deleted. To know more about PV reclaim policies
   check the
   [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming).
 
@@ -373,7 +373,7 @@ suggestions:
 ### Early Stoppings Parameters
 
 Parameters set in `runtime.earlyStoppings` configure container for
-[the Katib Early Stopping algorithms](/docs/components/katib/user-guides/early-stopping/#early-stopping-algorithms-in-detail).
+[the Katib Early Stopping algorithms](/docs/components/katib/user-guides/early-stopping/#early-stopping-algorithms).
 The following settings are **required** for each early stopping algorithm that you want
 to use in your Katib Experiments:
 
@@ -395,11 +395,5 @@ The following settings are **optional**:
 
 ## Next steps
 
-- Learn how to
-  [configure and run your Katib experiments](/docs/components/katib/experiment/).
-
-- How to
-  [restart your experiment and use the resume policies](/docs/components/katib/resume-experiment/).
-
-- How to [set up environment variables](/docs/components/katib/env-variables/)
-  for each Katib component.
+- How to [set up environment variables](/docs/components/katib/user-guides/env-variables/) for
+  various Katib component.

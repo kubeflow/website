@@ -1,7 +1,7 @@
 +++
 title = "Katib Installation Options"
 description = "Overview of the ways to install Katib control plane"
-weight = 80
+weight = 90
 +++
 
 Katib offers a few installation options to install control plane. This page describes the options
@@ -47,8 +47,7 @@ kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib
 This installation allows to use custom instance of MySQL DB instead `katib-mysql`.
 You have to modify the appropriate environment variables for `katib-db-manager` in the
 [secrets.env](https://github.com/kubeflow/katib/blob/ea46a7f2b73b2d316b6b7619f99eb440ede1909b/manifests/v1beta1/installs/katib-external-db/secrets.env)
-with your MySQL DB values. Learn more about `katib-db-manager` environment variables in
-[this guide](/docs/components/katib/env-variables/#katib-db-manager).
+with your MySQL DB values.
 
 ### Katib with Cert Manager
 
@@ -74,4 +73,7 @@ kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib
 This installation uses OpenShift service controller instead of Katib certificate generator to
 provision Katib webhooks certificates.
 
-After installing Training Operator, you can verify that controller is running as follows:
+## Next Steps
+
+- How to [set up environment variables](/docs/components/katib/user-guides/env-variables/) for
+  various Katib component.

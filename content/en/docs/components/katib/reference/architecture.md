@@ -26,7 +26,7 @@ You can improve your hyperparameter tuning Experiments by using
 [early stopping](https://en.wikipedia.org/wiki/Early_stopping) techniques.
 Follow the [early stopping guide](/docs/components/katib/user-guides/early-stopping/) for the details.
 
-### Katib Architecture for Hyperparameter Tuning
+## Katib Architecture for Hyperparameter Tuning
 
 This diagram shows how Katib performs Hyperparameter tuning:
 
@@ -42,7 +42,7 @@ Katib implements the following
 [Kubernetes Custom Resource Definitions (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 to tune Hyperparameters.
 
-#### Experiment
+### Experiment
 
 An _Experiment_ is a single tuning run, also called an optimization run.
 
@@ -62,12 +62,9 @@ You specify configuration settings to define the Experiment. The following are t
 - **Search algorithm**: The algorithm to use when searching for the optimal hyperparameter values.
   For example, Bayesian Optimization or Random Search.
 
-Katib Experiment is defined as a
+For details of how to define your Experiment, follow [this guide](/docs/components/katib/user-guides/hp-tuning/configure-experiment/)
 
-For details of how to define your Experiment, follow the guide to [running an
-experiment](/docs/components/katib/experiment/).
-
-#### Suggestion
+### Suggestion
 
 A _Suggestion_ is a set of hyperparameter values that the hyperparameter tuning process has proposed.
 Katib creates a Trial to evaluate the suggested set of values.
@@ -89,24 +86,6 @@ The Worker can be any type of Kubernetes resource or
 [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 Follow the [Trial template guide](/docs/components/katib/user-guides/trial-template/#custom-resource)
 to check how to support your own Kubernetes resource in Katib.
-
-Katib has example for these CRDs:
-
-- [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
-
-- [Kubeflow `TFJob`](/docs/components/training/user-guides/tensorflow/)
-
-- [Kubeflow `PyTorchJob`](/docs/components/training/user-guides/pytorch)
-
-- [Kubeflow `MXJob`](/docs/components/training/user-guides/mxnet)
-
-- [Kubeflow `XGBoostJob`](/docs/components/training/user-guides/xgboost)
-
-- [Kubeflow `MPIJob`](/docs/components/training/user-guides/mpi)
-
-- [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
-
-- [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
 
 ## Neural Architecture Search
 

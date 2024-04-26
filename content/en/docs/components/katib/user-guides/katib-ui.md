@@ -104,7 +104,7 @@ Follow these steps to get Katib Experiment results:
 1. If you click to the Trials tab, you will see list of Trials that ran withing the Experiment.
 
    <img src="/docs/components/katib/images/random-example-trials.png"
-     alt="Trials that ran during the experiment"
+     alt="Trials that ran during the Experiment"
      class="mt-3 mb-3 border border-info rounded">
 
 1. You can click on Trial name to get metrics for the particular Trial:

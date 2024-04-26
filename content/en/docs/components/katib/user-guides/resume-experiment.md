@@ -4,13 +4,13 @@ description = "How to modify running Experiments and resume completed Experiment
 weight = 70
 +++
 
-This guide describes how to modify running experiments and restart completed experiments.
+This guide describes how to modify running Experiments and restart completed Experiments.
 You will learn about changing the Experiment execution process and use various
 resume policies for the Katib Experiment.
 
 ## Modify Running Experiment
 
-While the experiment is running you are able to change Trial count parameters. For example, you
+While the Experiment is running you are able to change Trial count parameters. For example, you
 can decrease the maximum number of hyperparameter sets that are trained in parallel.
 
 You can change only **`parallelTrialCount`**, **`maxTrialCount`** and **`maxFailedTrialCount`**
@@ -18,7 +18,7 @@ Experiment parameters.
 
 Use Kubernetes API or `kubectl`
 [in-place update of resources](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/#in-place-updates-of-resources)
-to make experiment changes. For example, run:
+to make Experiment changes. For example, run:
 
 ```shell
 kubectl edit experiment <experiment-name> -n <experiment-namespace>
@@ -28,20 +28,20 @@ Make appropriate changes and save it. Controller automatically processes
 the new parameters and makes necessary changes.
 
 - If you want to increase or decrease parallel Trial execution, modify `parallelTrialCount`.
-  Controller accordingly creates or deletes trials in line with the `parallelTrialCount` value.
+  Controller accordingly creates or deletes Trials in line with the `parallelTrialCount` value.
 
 - If you want to increase or decrease maximum Trial count, modify `maxTrialCount`. `maxTrialCount`
-  should be greater than current count of `Succeeded` trials.
+  should be greater than current count of `Succeeded` Trials.
   You can remove the `maxTrialCount` parameter, if your Experiment should run endless
-  with `parallelTrialCount` of parallel Trials until the experiment reaches `Goal` or `maxFailedTrialCount`
+  with `parallelTrialCount` of parallel Trials until the Experiment reaches `Goal` or `maxFailedTrialCount`
 
 - If you want to increase or decrease maximum failed Trial count, modify `maxFailedTrialCount`.
-  You can remove the `maxFailedTrialCount` parameter, if the experiment should not reach `Failed` status.
+  You can remove the `maxFailedTrialCount` parameter, if the Experiment should not reach `Failed` status.
 
 ## Resume Succeeded Experiment
 
 Katib Experiment is restartable only if it is in **`Succeeded`** status because `maxTrialCount`
-has been reached. To check current experiment status run:
+has been reached. To check current Experiment status run:
 `kubectl get experiment <experiment-name> -n <experiment-namespace>`.
 
 To restart an Experiment, you are able to change only **`parallelTrialCount`**,
@@ -56,7 +56,7 @@ the Suggestion's [Deployment](https://kubernetes.io/docs/concepts/workloads/cont
 and [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
 are deleted and you can't restart the Experiment.
 
-This is the default policy for all Katib experiments. You can omit `.spec.resumePolicy` parameter
+This is the default policy for all Katib Experiments. You can omit `.spec.resumePolicy` parameter
 for that functionality.
 
 ### Resume policy: LongRunning
@@ -72,13 +72,13 @@ example for more details.
 ### Resume policy: FromVolume
 
 Use this policy if you intend to restart the Experiment. In that case, [volume](https://kubernetes.io/docs/concepts/storage/volumes/)
-is attached to the suggestion's Deployment.
+is attached to the Suggestion's Deployment.
 
 Katib controller creates [PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
-in addition to the suggestion's Deployment and Service.
+in addition to the Suggestion's Deployment and Service.
 
 - PVC is deployed with the name: `<suggestion-name>-<suggestion-algorithm>`
-  in the suggestion namespace.
+  in the Suggestion namespace.
 
 - PV is deployed with the name:
   `<suggestion-name>-<suggestion-algorithm>-<suggestion-namespace>`
@@ -95,11 +95,4 @@ example for more details.
 
 ## Next steps
 
-- Learn how to
-  [configure and run your Katib experiments](/docs/components/katib/experiment/).
-
-- Check the
-  [Katib Configuration (Katib config)](/docs/components/katib/katib-config/).
-
-- How to [set up environment variables](/docs/components/katib/env-variables/)
-  for each Katib component.
+- Learn how to [configure and run your Katib Experiments](/docs/components/katib/user-guides/hp-tuning/configure-experiment).
