@@ -1,13 +1,13 @@
 +++
-title = "How to fine-tune LLM with Kubeflow"
+title = "How to Fine-Tune LLM with Kubeflow"
 description = "Overview of LLM fine-tuning API in Training Operator"
 weight = 10
 +++
 
 {{% alert title="Warning" color="warning" %}}
 This feature is in **alpha** stage and Kubeflow community is looking for your feedback. Please
-share your experience using #kubeflow-training-operator Slack channel or
-[Kubeflow Training Operator GitHib](https://github.com/kubeflow/training-operator/issues/new).
+share your experience using [#kubeflow-training-operator Slack channel](https://kubeflow.slack.com/archives/C985VJN9F)
+or [Kubeflow Training Operator GitHib](https://github.com/kubeflow/training-operator/issues/new).
 {{% /alert %}}
 
 In the rapidly evolving landscape of machine learning (ML) and artificial intelligence (AI),
@@ -32,8 +32,8 @@ in setting up and executing fine-tuning tasks on distributed systems.
 ## How to use Fine-Tuning API ?
 
 [Training Operator Python SDK](/docs/components/training/installation/#installing-training-python-sdk)
-implements a `train` Python API that simplify ability to fine-tune LLMs with distributed PyTorchJob
-workers.
+implements a [`train` Python API](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/training/api/training_client.py#L112)
+that simplify ability to fine-tune LLMs with distributed PyTorchJob workers.
 
 You need to provide the following parameters to use `train` API:
 
@@ -90,9 +90,6 @@ TrainingClient().train(
 After you execute `train` API, Training Operator will orchestrate appropriate PyTorchJob resources
 to fine-tune LLM.
 
-Learn more about `train` API parameters in
-[the Python SDK source code](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/training/api/training_client.py#L112).
-
 ## Architecture
 
 In the following diagram you can see how `train` API works:
@@ -108,11 +105,13 @@ In the following diagram you can see how `train` API works:
   pre-trained model and dataset with provided parameters.
 
 - PVC with [`ReadOnlyMany` access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
-  it attached to each PyTorchJob worker to distribute model and dataset across Pods.
+  it attached to each PyTorchJob worker to distribute model and dataset across Pods. **Note**: Your
+  Kubernetes cluster must support volumes with `ReadOnlyMany` access mode, otherwise you can use a
+  single PyTorchJob worker.
 
 - Every PyTorchJob worker runs LLM Trainer that fine-tunes model using provided parameters.
 
-Training Operator implements `train` API using these pre-created components:
+Training Operator implements `train` API with these pre-created components:
 
 ### Model Provider
 
@@ -140,7 +139,7 @@ to fine-tune LLMs.
 You can implement your own trainer for other ML use-cases such as image classification,
 voice recognition, etc.
 
-## User Value for this feature
+## User Value for this Feature
 
 Different user personas can benefit from this feature:
 
@@ -160,5 +159,5 @@ Different user personas can benefit from this feature:
 
 - Run example to [fine-tune TinyLlama LLM](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/examples/pytorch/language-modeling/train_api_hf_dataset.ipynb)
 
-- Check this example to compare `create_job` and `train` API for
+- Check this example to compare `create_job` and `train` Python API for
   [fine-tuning BERT LLM](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/examples/pytorch/text-classification/Fine-Tune-BERT-LLM.ipynb).
