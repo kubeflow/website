@@ -52,26 +52,26 @@ You can submit an hyperparameter tuning Experiment from the Katib UI.
 
 1. You should be able to view tabs offering you the following options:
 
-- **Metadata:** Type name of your Experiment.
+   - **Metadata:** Type name of your Experiment.
 
-- **Trial Thresholds:** Choose how many Trials you want to run.
+   - **Trial Thresholds:** Choose how many Trials you want to run.
 
-- **Objective:** Add metrics that you want to optimize and type of optimization.
+   - **Objective:** Add metrics that you want to optimize and type of optimization.
 
-- **Search Algorithm:** Select hyperparameter tuning algorithm and configure algorithm settings.
+   - **Search Algorithm:** Select hyperparameter tuning algorithm and configure algorithm settings.
 
-- **Early Stopping:** Add early stopping algorithm if that is required.
+   - **Early Stopping:** Add early stopping algorithm if that is required.
 
-- **Hyper Parameters:** Add hyperparameters and search space that you want to optimize.
+   - **Hyper Parameters:** Add hyperparameters and search space that you want to optimize.
 
-- **Metrics Collector:** Modify metrics collector type if that is required.
+   - **Metrics Collector:** Modify metrics collector type if that is required.
 
-- **Trial Template:** Configure parameters for your Trial template. Every hyperparameter must have
-  reference to the `trialParameters` values.
+   - **Trial Template:** Configure parameters for your Trial template. Every hyperparameter must have
+     reference to the `trialParameters` values.
 
-  <img src="/docs/components/katib/images/deploy-parameters.png"
-    alt="Deploy Katib Experiment using parameters"
-    class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/components/katib/images/deploy-parameters.png"
+        alt="Deploy Katib Experiment using parameters"
+        class="mt-3 mb-3 border border-info rounded">
 
 1. (Optional) If you want to modify Experiment YAML, you can click edit and submit YAML at the bottom.
 
