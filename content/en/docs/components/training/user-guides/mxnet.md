@@ -1,8 +1,7 @@
 +++
 title = "MXNet Training (MXJob)"
 description = "Using MXJob to train a model with Apache MXNet"
-weight = 25
-                    
+weight = 40
 +++
 
 {{% alert title="Warning" color="warning" %}}
@@ -19,46 +18,12 @@ and manage Apache MXNet jobs just like built-in K8S resources.
 
 The Kubeflow implementation of `MXJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
 
-**Note**: `MXJob` doesn’t work in a user namespace by default because of Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection). In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"` to disable it for either `MXJob` pods or namespace. To view an example of how to add this annotation to your `yaml` file, see the [`TFJob` documentation](https://www.kubeflow.org/docs/components/training/tftraining/).
-
-## Installing MXNet Operator
-
-If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
-
-> By default, MXNet Operator will be deployed as a controller in training operator.
-
-If you want to install a standalone version of the training operator without Kubeflow,
-see the [kubeflow/training-operator's README](https://github.com/kubeflow/training-operator#installation).
-
-### Verify that MXJob support is included in your Kubeflow deployment
-
-Check that the Apache MXNet custom resource is installed:
-
-```
-kubectl get crd
-```
-
-The output should include `mxjobs.kubeflow.org` like the following:
-
-```
-NAME                                             CREATED AT
-...
-mxjobs.kubeflow.org                              2021-09-06T18:33:57Z
-...
-```
-
-Check that the Training operator is running via:
-
-```
-kubectl get pods -n kubeflow
-```
-
-The output should include `training-operator-xxx` like the following:
-
-```
-NAME                                READY   STATUS    RESTARTS   AGE
-training-operator-d466b46bc-xbqvs   1/1     Running   0          4m37s
-```
+**Note**: `MXJob` doesn’t work in a user namespace by default because of
+Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
+In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"`
+to disable it for either `MXJob` pods or namespace.
+To view an example of how to add this annotation to your `yaml` file,
+see the [`TFJob` documentation](/docs/components/training/user-guides/tensorflow/).
 
 ## Creating a Apache MXNet training job
 

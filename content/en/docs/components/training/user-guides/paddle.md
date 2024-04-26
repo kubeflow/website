@@ -1,11 +1,8 @@
 +++
 title = "PaddlePaddle Training (PaddleJob)"
 description = "Using PaddleJob to train a model with PaddlePaddle"
-weight = 15
-                    
+weight = 30
 +++
-
-{{% beta-status %}}
 
 This page describes `PaddleJob` for training a machine learning model with [PaddlePaddle](https://www.paddlepaddle.org.cn/).
 
@@ -14,48 +11,12 @@ This page describes `PaddleJob` for training a machine learning model with [Padd
 to run PaddlePaddle training jobs on Kubernetes. The Kubeflow implementation of
 `PaddleJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
 
-
-**Note**: `PaddleJob` doesn’t work in a user namespace by default because of Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection). In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"` to disable it for either `PaddleJob` pods or namespace. To view an example of how to add this annotation to your `yaml` file, see the [`TFJob` documentation](https://www.kubeflow.org/docs/components/training/tftraining/).
-
-## Installing Paddle Operator
-
-If you haven't already done so please follow the [Getting Started Guide](/docs/started/getting-started/) to deploy Kubeflow.
-
-> By default, Paddle Operator will be deployed as a controller in training operator.
-
-If you want to install a standalone version of the training operator without Kubeflow,
-see the [kubeflow/training-operator's README](https://github.com/kubeflow/training-operator#installation).
-
-### Verify that PaddleJob support is included in your Kubeflow deployment
-
-Check that the Paddle custom resource is installed:
-
-```
-kubectl get crd
-```
-
-The output should include `paddlejobs.kubeflow.org` like the following:
-
-```
-NAME                                            CREATED AT
-...
-paddlejobs.kubeflow.org                         2022-10-21T05:37:53Z
-...
-```
-
-Check that the Training operator is running via:
-
-```
-kubectl get pods -n kubeflow
-```
-
-The output should include `job-name-worker-<rank>` like the following:
-
-```
-NAME                                READY   STATUS    RESTARTS   AGE
-training-operator-worker-0          1/1     Running   0          4m37s
-training-operator-worker-1          1/1     Running   0          4m37s
-```
+**Note**: `PaddleJob` doesn’t work in a user namespace by default because of
+Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
+In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"`
+to disable it for either `PaddleJob` pods or namespace.
+To view an example of how to add this annotation to your `yaml` file,
+see the [`TFJob` documentation](/docs/components/training/user-guides/tensorflow/).
 
 ## Creating a PaddlePaddle training job
 
@@ -156,4 +117,3 @@ status:
       succeeded: 2
   startTime: "2022-10-24T03:47:45Z"
 ```
-
