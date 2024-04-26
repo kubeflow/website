@@ -139,8 +139,6 @@ sets of reference documentation:
 * [Pipelines reference docs](/docs/components/pipelines/reference/) for the Kubeflow
   Pipelines API and SDK, including the Kubeflow Pipelines domain-specific
   language (DSL).
-* [Fairing reference docs](/docs/external-add-ons/fairing/reference/) for the Kubeflow Fairing
-  SDK.
 
 ## Next steps
 
