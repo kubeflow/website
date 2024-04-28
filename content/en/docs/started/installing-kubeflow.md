@@ -5,30 +5,65 @@ weight = 20
 
 +++
 
-## What is Kubeflow?
+Kubeflow is the ecosystem of various applications created to address each stage in the AI/ML lifecycle,
+from exploration to training and serving. You can deploy Kubeflow components as standalone applications
+or deploy Kubeflow as an end-to-end AI/ML platform. Anywhere you are running Kubernetes,
+you should be able to run Kubeflow.
 
-Kubeflow is an end-to-end Machine Learning (ML) platform for Kubernetes, it provides components for each stage in the ML lifecycle, from exploration through to training and deployment.
-Operators can choose what is best for their users, there is no requirement to deploy every component.
+There are a few ways to install Kubeflow:
 
-Learn more about Kubeflow in the [Introduction](/docs/started/introduction/) and
-[Architecture](/docs/started/architecture/) pages.
+- [**Install Kubeflow Components Standalone**](#install-kubeflow-components-standalone)
+- [**Install Kubeflow Platform from Raw Manifests**](#install-kubeflow-platform-from-raw-manifests)
+- [**Install Kubeflow Platform from Packaged Distributions**](#install-kubeflow-platform-from-packages-distributions)
 
-## How to install Kubeflow?
+## Install Kubeflow Components Standalone
 
-Anywhere you are running Kubernetes, you should be able to run Kubeflow.
-There are two primary ways to install Kubeflow:
+Kubeflow components can be deployed as standalone applications. You can integrate those components
+to your existing AI/ML platform. For example, for Model Training you can install Training Operator
+or for Model Serving you can install KServe.
 
-1. [**Packaged Distributions**](#packaged-distributions-of-kubeflow)
-1. [**Raw Manifests**](#raw-kubeflow-manifests) <sup>(advanced users)</sup>
+Follow the appropriate guides to install required Kubeflow components in standalone mode:
 
-<a id="packaged-distributions"></a>
-<a id="install-a-packaged-kubeflow-distribution"></a>
+- Install [Kubeflow Pipelines](/docs/components/pipelines/v2/installation/quickstart/)
+- Install [Kubeflow Training Operator](/docs/components/training/installation/#installing-training-operator)
+- Install [Kubeflow MPI Operator](/docs/components/training/user-guides/mpi/#installation)
+- Install [Kubeflow Katib] (TODO: Add link after #3723)
+- Install [KServe](https://kserve.github.io/website/0.10/admin/serverless/serverless/)
+- Install Kubeflow Model Registry (TODO: Add link after #3698)
 
-## Packaged Distributions of Kubeflow
+## Install Kubeflow Platform from Raw Manifests
+
+The raw Kubeflow Manifests are aggregated by the
+[Manifests Working Group](https://github.com/kubeflow/community/tree/master/wg-manifests)
+and are intended to be used as the **base of packaged distributions**.
+
+Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
+applications which makes **Kubeflow Platform**.
+
+Users may choose to install the manifests for a specific Kubeflow version by following the
+instructions in the `README` of the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
+
+- [**Kubeflow 1.8:**](/docs/releases/kubeflow-1.8/)
+  - [`v1.8-branch`](https://github.com/kubeflow/manifests/tree/v1.8-branch#installation) <sup>(development branch)</sup>
+  - [`v1.8.0`](https://github.com/kubeflow/manifests/tree/v1.8.0#installation)
+- [**Kubeflow 1.7:**](/docs/releases/kubeflow-1.7/)
+  - [`v1.7-branch`](https://github.com/kubeflow/manifests/tree/v1.7-branch#installation) <sup>(development branch)</sup>
+  - [`v1.7.0`](https://github.com/kubeflow/manifests/tree/v1.7.0#installation)
+
+{{% alert title="Warning" color="warning" %}}
+Kubeflow is a complex system with many components and dependencies.
+Using the raw manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
+
+When using the raw manifests, the Kubeflow community is not able to provide support for environment-specific issues or custom configurations.
+If you need support, please consider using a [packaged distribution](#packaged-distributions-of-kubeflow).
+Nevertheless, we welcome contributions and bug reports very much.
+{{% /alert %}}
+
+## Install Kubeflow Platform from Packages Distributions
 
 Packaged distributions are maintained by various organizations and typically aim to provide
-a simplified installation and management experience for Kubeflow. Some distributions can be
-deployed on [all certified Kubernetes distributions](https://kubernetes.io/partners/#conformance),
+a simplified installation and management experience for **Kubeflow Platform**. Some distributions
+can be deployed on [all certified Kubernetes distributions](https://kubernetes.io/partners/#conformance),
 while others target a specific platform (e.g. EKS or GKE).
 
 {{% alert title="Note" color="warning" %}}
@@ -200,33 +235,9 @@ The following table lists distributions which are <em>maintained</em> by their r
   </table>
 </div>
 
-## Raw Kubeflow Manifests
-
-The raw Kubeflow Manifests are aggregated by the [Manifests Working Group](https://github.com/kubeflow/community/tree/master/wg-manifests)
-and are intended to be used as the **base of packaged distributions**.
-
-Advanced users may choose to install the manifests for a specific Kubeflow version by following the
-instructions in the `README` of the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
-
-- [**Kubeflow 1.8:**](/docs/releases/kubeflow-1.8/)
-  - [`v1.8-branch`](https://github.com/kubeflow/manifests/tree/v1.8-branch#installation) <sup>(development branch)</sup>
-  - [`v1.8.0`](https://github.com/kubeflow/manifests/tree/v1.8.0#installation)
-- [**Kubeflow 1.7:**](/docs/releases/kubeflow-1.7/)
-  - [`v1.7-branch`](https://github.com/kubeflow/manifests/tree/v1.7-branch#installation) <sup>(development branch)</sup>
-  - [`v1.7.0`](https://github.com/kubeflow/manifests/tree/v1.7.0#installation)
-
-{{% alert title="Warning" color="warning" %}}
-Kubeflow is a complex system with many components and dependencies.
-Using the raw manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
-
-When using the raw manifests, the Kubeflow community is not able to provide support for environment-specific issues or custom configurations.
-If you need support, please consider using a [packaged distribution](#packaged-distributions-of-kubeflow).
-Nevertheless, we welcome contributions and bug reports very much.
-{{% /alert %}}
-
-<a id="next-steps"></a>
-
 ## Next steps
 
-- Review the Kubeflow <a href="/docs/components/">component documentation</a>
-- Explore the <a href="/docs/components/pipelines/sdk/">Kubeflow Pipelines SDK</a>
+- Check [the Kubeflow introduction page](/docs/started/introduction/).
+- Explore the [Kubeflow architecture](/docs/started/architecture) and how Kubeflow components fit
+  into the AI/ML lifecycle.
+- Review [the Kubeflow components documentation](/docs/components/).
