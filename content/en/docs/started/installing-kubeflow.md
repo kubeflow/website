@@ -5,7 +5,7 @@ weight = 20
 
 +++
 
-Kubeflow is the ecosystem of various applications created to address each stage in the AI/ML lifecycle,
+Kubeflow is an ecosystem of various applications created to address each stage in the AI/ML lifecycle,
 from exploration to training and serving. You can deploy Kubeflow components as standalone applications
 or deploy Kubeflow as an end-to-end AI/ML platform. Anywhere you are running Kubernetes,
 you should be able to run Kubeflow.
@@ -38,7 +38,8 @@ The raw Kubeflow Manifests are aggregated by the
 and are intended to be used as the **base of packaged distributions**.
 
 Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
-applications which makes **Kubeflow Platform**.
+applications which makes **Kubeflow Platform**. This installation is helpful when you want to try
+out the end-to-end Kubeflow Platform capabilities.
 
 Users may choose to install the manifests for a specific Kubeflow version by following the
 instructions in the `README` of the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
