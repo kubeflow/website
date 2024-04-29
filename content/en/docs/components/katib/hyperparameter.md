@@ -3,6 +3,8 @@ title = "Getting Started with Katib"
 description = "How to set up Katib and perform hyperparameter tuning"
 weight = 20
 
+## enable MathJax for this page
+mathjax = true
 +++
 
 This guide shows how to get started with Katib and run a few examples using the
@@ -187,9 +189,14 @@ You can run your first HyperParameter Tuning Experiment using
 
 In the following example we are going to maximize a simple objective function:
 
-$F(a,b) = 4a - b^2$
+<!-- NOTE: we wrap MathJax blocks in <p> to ensure it has the max-width of the content -->
+<p>
+$$
+F(a,b) = 4a - b^2
+$$
+</p>
 
-The bigger $a$ and the lesser $b$ value, the bigger the function value $F$.
+The bigger \(a\) and the lesser \(b\) value, the bigger the function value \(F\).
 
 ```python
 import kubeflow.katib as katib

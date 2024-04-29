@@ -41,13 +41,19 @@ This section will show you how to develop the website locally, by running a loca
 
 To install Hugo, follow the [instructions for your system type](https://gohugo.io/getting-started/installing/).
 
-**NOTE:** we recommend that you use Hugo version `0.119.0`, as this is currently the version we deploy to Netlify.
+**NOTE:** we recommend that you use Hugo version `0.124.1`, as this is currently the version we deploy to Netlify.
 
 For example, using homebrew to install hugo on macOS or linux:
 
 ```bash
-# WARNING: this may install a newer version than `0.119.0`
-brew install hugo
+# WARNING: using `brew install hugo` will install the latest version of hugo
+#          which may not be compatible with the website
+
+# TIP: to install hugo run the following commands
+HOMEBREW_COMMIT="9d025105a8be086b2eeb3b1b2697974f848dbaac" # 0.124.1
+curl -fL -o "hugo.rb" "https://raw.githubusercontent.com/Homebrew/homebrew-core/${HOMEBREW_COMMIT}/Formula/h/hugo.rb"
+brew install ./hugo.rb
+brew pin hugo
 ```
 
 ### Install Node Packages
