@@ -19,6 +19,7 @@ Anywhere you are running Kubernetes, you should be able to run Kubeflow.
 There are two primary ways to install Kubeflow:
 
 1. [**Packaged Distributions**](#packaged-distributions-of-kubeflow)
+1. [**Standalone Components**](#standalone-components)
 1. [**Raw Manifests**](#raw-kubeflow-manifests) <sup>(advanced users)</sup>
 
 <a id="packaged-distributions"></a>
@@ -31,14 +32,14 @@ a simplified installation and management experience for Kubeflow. Some distribut
 deployed on [all certified Kubernetes distributions](https://kubernetes.io/partners/#conformance),
 while others target a specific platform (e.g. EKS or GKE).
 
-{{% alert title="Note" color="warning" %}}
+{{% alert title="Note" color="dark" %}}
 Packaged distributions are developed and supported by their respective maintainers.
 The Kubeflow community <strong>does not endorse or certify</strong> any specific distribution.
 
-In the near future, there are plans to introduce <a href="https://github.com/kubeflow/community/blob/master/proposals/kubeflow-conformance-program-proposal.md">conformance testing for distributions</a>, you may track progress on this initiative by following <a href="https://github.com/kubeflow/kubeflow/issues/6485">kubeflow/kubeflow#6485</a>.
+In the near future, there are plans to introduce <a href="https://github.com/kubeflow/community/blob/master/proposals/kubeflow-conformance-program-proposal.md">conformance testing for distributions</a>, you may track progress on this initiative by following <a href="https://github.com/kubeflow/kubeflow/issues/6485"><code>kubeflow/kubeflow#6485</code></a>.
 {{% /alert %}}
 
-The following table lists distributions which are <em>maintained</em> by their respective maintainers:
+The following table lists packaged distributions of Kubeflow and their respective maintainers:
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
@@ -200,6 +201,192 @@ The following table lists distributions which are <em>maintained</em> by their r
   </table>
 </div>
 
+## Standalone Components
+
+Some components in the [Kubeflow Ecosystem](/docs/started/architecture/#conceptual-overview) may be deployed as standalone services, without the need to install the full platform.
+
+{{% alert title="Note" color="dark" %}}
+Some features may be __limited or unavailable__ when using standalone components.
+For example, standalone Kubeflow Pipelines does not include multi-user support, and is limited to a single Namespace.
+
+A few [packaged distributions](#packaged-distributions-of-kubeflow) allow you to choose which components are installed, while still providing the full version of those components.
+{{% /alert %}}
+
+The following table lists each component of Kubeflow and whether it supports standalone deployment:
+
+<div class="table-responsive components-table">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Kubeflow Component</th>
+        <th>Source Code</th>
+        <th>Supports Standalone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="/docs/components/central-dash/">
+            Kubeflow Central Dashboard
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/kubeflow">
+            <code>kubeflow/kubeflow</code>
+          </a>
+        </td>
+        <td>
+          <span class="badge badge-warning">No</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/docs/components/notebooks/">
+            Kubeflow Notebooks
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/kubeflow">
+            <code>kubeflow/kubeflow</code>
+          </a>
+        </td>
+        <td>
+          <span class="badge badge-warning">No</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/docs/components/pipelines/">
+            Kubeflow Pipelines
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/pipelines">
+            <code>kubeflow/pipelines</code>
+          </a>
+        </td>
+        <td>
+          <span class="badge badge-success">Yes</span> | <a href="/docs/components/pipelines/v1/installation/standalone-deployment/">Installation Guide</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/docs/components/katib/">
+            Kubeflow Katib
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/katib">
+            <code>kubeflow/katib</code>
+          </a>
+        </td>
+        <td>
+          <span class="badge badge-warning">No</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/docs/components/training/">
+            Kubeflow Training Operator
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/training-operator">
+            <code>kubeflow/training-operator</code>
+          </a>
+        </td>
+        <td>
+          <span class="badge badge-success">Yes</span>
+          |
+          <a href="/docs/components/training/installation/">Installation Guide</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Kubeflow MPI Operator
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/mpi-operator">
+            <code>kubeflow/mpi-operator</code>
+          </a>
+        </td>
+        <td>
+          <span class="badge badge-success">Yes</span>
+          |
+          <a href="/docs/components/training/user-guides/mpi/#installation">Installation Guide</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Kubeflow Spark Operator
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/spark-operator">
+            <code>kubeflow/spark-operator</code>
+          </a>
+        </td>
+        <td>
+          <span class="badge badge-success">Yes</span> 
+          | 
+          <a href="https://github.com/kubeflow/spark-operator/blob/master/docs/quick-start-guide.md">Installation Guide</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### External Add-Ons
+
+There are a number of [External Add-Ons](/docs/external-add-ons/) which are commonly deployed alongside the Kubeflow ecosystem.
+These tools are __maintained by external organizations__ and are not part of the core Kubeflow project.
+However, some are included in the [Raw Kubeflow Manifests](#raw-kubeflow-manifests) (under the `contrib` folder), so are available in most [packaged distributions](#packaged-distributions-of-kubeflow).
+
+The following table lists some popular add-ons and whether they are included in the raw manifests:
+
+<div class="table-responsive components-table">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>External Add-On</th>
+        <th>Source Code</th>
+        <th>In Kubeflow Manifests</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="https://kserve.github.io/website/latest/">
+            KServe
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kserve/kserve">
+            <code>kserve/kserve</code>
+          </a>
+        </td>
+        <td>
+          <span class="badge badge-success">Yes</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://feast.dev/">
+            Feast
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/feast-dev/feast">
+            <code>feast-dev/feast</code>
+          </a>
+        </td>
+        <td>
+          <span class="badge badge-warning">No</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 ## Raw Kubeflow Manifests
 
 The raw Kubeflow Manifests are aggregated by the [Manifests Working Group](https://github.com/kubeflow/community/tree/master/wg-manifests)
@@ -216,15 +403,13 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
   - [`v1.7.0`](https://github.com/kubeflow/manifests/tree/v1.7.0#installation)
 
 {{% alert title="Warning" color="warning" %}}
-Kubeflow is a complex system with many components and dependencies.
+Kubeflow is a __complex system__ with many components and dependencies.
 Using the raw manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
 
 When using the raw manifests, the Kubeflow community is not able to provide support for environment-specific issues or custom configurations.
 If you need support, please consider using a [packaged distribution](#packaged-distributions-of-kubeflow).
 Nevertheless, we welcome contributions and bug reports very much.
 {{% /alert %}}
-
-<a id="next-steps"></a>
 
 ## Next steps
 

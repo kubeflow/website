@@ -289,7 +289,12 @@ footer {
 // Installing Kubeflow page
 // --------------------------------------------------
 .distributions-table thead {
-  background-color: $primary;
+  background-color: $dark;
+  color: $secondary;
+}
+
+.components-table thead {
+  background-color: $dark;
   color: $secondary;
 }
 
