@@ -61,15 +61,25 @@ ignoreFiles = []
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+    # For MathJax
+    # https://gohugo.io/content-management/mathematics/#setup
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+
   [markup.highlight]
     # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
     style = "tango"
     guessSyntax = "true"
 
 ###############################################################################
-# Docsy - Mermaid configuration
+# Docsy - DrawIO configuration
 ###############################################################################
-[params.mermaid]
+[params.drawio]
 enable = true
 
 ###############################################################################
@@ -137,6 +147,10 @@ enable = true
   # A variable used in various docs to determine URLs for config files etc.
   # To find occurrences, search the repo for 'params "githubbranch"'.
   github_branch = "master"
+
+  # Disable MathJax by default
+  # NOTE: enable it per-page with `mathjax: true` in front matter
+  mathjax = false
 
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
