@@ -1,6 +1,6 @@
 +++
 title = "How to configure env variables"
-description = "List of environment variables that accepted by Katib components"
+description = "List of environment variables accepted by Katib components"
 weight = 80
 +++
 
