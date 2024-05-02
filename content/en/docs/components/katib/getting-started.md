@@ -106,8 +106,8 @@ You can create hyperparameter tuning job by defining YAML configuration file for
 This example uses the [YAML file for the random search example](https://github.com/kubeflow/katib/blob/fc858d15dd41ff69166a2020efa200199063f9ba/examples/v1beta1/hp-tuning/random.yaml).
 
 The Experiment's Trials use PyTorch model to train an image classification model for the
-FashionMNIST dataset. You can check [the training container source code](https://github.com/kubeflow/katib/tree/fc858d15dd41ff69166a2020efa200199063f9ba/examples/v1beta1/trial-images/pytorch-mnist). **Note** since that this training container downloads FashionMNIST
-dataset, you [need to disable Istio sidecar injection](/docs/components/katib/user-guides/hp-tuning/configure-experiment/#running-katib-experiment-with-istio/)
+FashionMNIST dataset. You can check [the training container source code](https://github.com/kubeflow/katib/tree/fc858d15dd41ff69166a2020efa200199063f9ba/examples/v1beta1/trial-images/pytorch-mnist). **Note:** Since that this training container downloads FashionMNIST
+dataset, you [need to disable Istio sidecar injection](/docs/components/katib/user-guides/hp-tuning/configure-experiment/#running-katib-experiment-with-istio)
 if you deploy Katib with Kubeflow Platform.
 
 Deploy the Experiment:
