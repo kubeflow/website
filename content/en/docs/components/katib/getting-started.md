@@ -29,6 +29,12 @@ $$
 
 The bigger \(a\) and the lesser \(b\) value, the bigger the function value \(F\).
 
+If you install Katib as part of Kubeflow Platform, you can open a new
+[Kubeflow Notebook](/docs/components/notebooks/quickstart-guide/) to run this script. If you
+install Katib standalone, make sure that you
+[configure local `kubeconfig`](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#programmatic-access-to-the-api)
+to access your Kubernetes cluster where you installed Katib control plane.
+
 ```python
 # [1] Create an objective function.
 def objective(parameters):
@@ -64,6 +70,34 @@ katib.KatibClient().wait_for_experiment_condition(name=name)
 
 # [5] Get the best hyperparameters.
 print(katib.KatibClient().get_optimal_hyperparameters(name))
+```
+
+You should get the following output for the best Trial, hyperparameters, and observation metrics:
+
+```json
+{
+  "best_trial_name": "tune-experiment-nmggpxx2",
+  "parameter_assignments": [
+    {
+      "name": "a",
+      "value": "19"
+    },
+    {
+      "name": "b",
+      "value": "0.13546396192975868"
+    }
+  ],
+  "observation": {
+    "metrics": [
+      {
+        "latest": "75.98164951501829",
+        "max": "75.98164951501829",
+        "min": "75.98164951501829",
+        "name": "result"
+      }
+    ]
+  }
+}
 ```
 
 ## Getting Started with Katib Experiment YAML
@@ -158,6 +192,9 @@ You can check information about the best Trial in `status.currentOptimalTrial`.
 In addition, `status` shows the Experiment's Trials with their current status.
 
 ## Next steps
+
+- Check [the Katib UI guide](/docs/components/katib/user-guides/katib-ui/) to get more information
+  about your Katib Experiments.
 
 - Learn how to configure [Katib Experiment parameters](/docs/components/katib/user-guides/hp-tuning/configure-experiment).
 

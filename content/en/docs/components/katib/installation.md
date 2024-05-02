@@ -33,7 +33,9 @@ Run the following command to install the latest changes of Katib:
 kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=master"
 ```
 
-After installing Katib, you can verify that all control plane components are running:
+After installing Katib, you can verify that all
+[Katib control plane components](/docs/components/katib/reference/architecture/#katib-control-plane-components)
+are running:
 
 ```shell
 $ kubectl get pods -n kubeflow
@@ -52,9 +54,6 @@ If your cluster doesn't have dynamic volume provisioning, you must manually depl
 [PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
 to bind [PVC](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/mysql/pvc.yaml)
 for the Katib DB component.
-
-Learn more about Katib control plane components in the
-[Katib architecture guide](/docs/components/katib/reference/architecture/#katib-control-plane-components).
 
 ## Installing Katib Python SDK
 
