@@ -26,7 +26,7 @@ components of your ML system on top of Kubernetes:
 
 <img src="/docs/started/images/kubeflow-architecture.drawio.svg"
   alt="An architectural overview of Kubeflow on Kubernetes"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3">
 
 Kubeflow builds on [Kubernetes](https://kubernetes.io/) as a system for
 deploying, scaling, and managing complex systems.
@@ -48,7 +48,7 @@ The following diagram shows the ML lifecycle stages in sequence:
 
 <img src="/docs/started/images/ml-lifecycle.drawio.svg"
   alt="ML Lifecycle"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3">
 
 Looking at the stages in more detail:
 
@@ -79,7 +79,7 @@ AI application for users:
 
 <img src="/docs/started/images/ml-lifecycle-prod-dev.drawio.svg"
   alt="ML Lifecycle with Prod and Dev"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3">
 
 ## Kubeflow Components in the ML Lifecycle
 
@@ -87,7 +87,7 @@ The next diagram shows how Kubeflow components are used for each stage in the ML
 
 <img src="/docs/started/images/ml-lifecycle-kubeflow.drawio.svg"
   alt="Kubeflow Components in ML Lifecycle"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3">
 
 - [Kubeflow Spark Operator](https://github.com/kubeflow/spark-operator) can be used for data
   preparation and feature engineering step.
