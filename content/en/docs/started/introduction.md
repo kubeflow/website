@@ -43,7 +43,7 @@ The Kubeflow Platform can be installed via
 
 ## Getting started with Kubeflow
 
-The following diagram shows the main Kubeflow components to cover each step of ML lifecycle
+The following diagram shows the main Kubeflow components to cover each stage of ML lifecycle
 on top of Kubernetes.
 
 <img src="/docs/started/images/kubeflow-intro-diagram.drawio.svg"
