@@ -107,6 +107,26 @@ node weights and hyperparameters.
 NAS technology in general uses various techniques to find the optimal neural network design.
 
 Learn more about various NAS algorithms in
-[Differentiable Architecture Search](https://github.com/kubeflow/katib/tree/025ce256a4c0e7cb048d340454fa74040a54a2f8/pkg/suggestion/v1beta1/nas/darts)
-and [Efficient Neural Architecture Search](https://github.com/kubeflow/katib/tree/025ce256a4c0e7cb048d340454fa74040a54a2f8/pkg/suggestion/v1beta1/nas/enas)
+[Differentiable Architecture Search](/docs/components/katib/reference/nas-algorithms/#differentiable-architecture-search-darts)
+and [Efficient Neural Architecture Search](/docs/components/katib/reference/nas-algorithms/#efficient-neural-architecture-search-enas)
 guides.
+
+## Katib Control Plane Components
+
+Katib has the following components on the control plane to run Experiments:
+
+- `katib-controller` - the controller to manage Katib Kubernetes CRDs:
+  [`Experiment`](experiment),
+  [`Suggestion`](suggestion),
+  [`Trial`](trial).
+
+  - (Optional) If certificate generator is enabled in
+    [Katib Config](/docs/components/katib/user-guides/katib-config/), Katib controller deployment will create
+    self-signed certificate for the Katib webhooks. Learn more about the cert generator in the
+    [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md#katib-cert-generator).
+
+- `katib-ui` - the Katib user interface.
+
+- `katib-db-manager` - the gRPC API server to control Katib DB interface.
+
+- `katib-mysql` - the MySQL DB backend to store Katib Experiments metrics.

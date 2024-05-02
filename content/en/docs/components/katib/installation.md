@@ -53,25 +53,8 @@ If your cluster doesn't have dynamic volume provisioning, you must manually depl
 to bind [PVC](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/mysql/pvc.yaml)
 for the Katib DB component.
 
-### Katib Control Plane Components
-
-Katib has the following components on the control plane:
-
-- `katib-controller` - the controller to manage Katib Kubernetes CRDs:
-  [`Experiment`](/docs/components/katib/reference/architecture/#experiment),
-  [`Suggestion`](/docs/components/katib/reference/architecture/#suggestion),
-  [`Trial`](/docs/components/katib/reference/architecture/#trial).
-
-  - (Optional) If certificate generator is enabled in
-    [Katib Config](/docs/components/katib/user-guides/katib-config/), Katib controller deployment will create
-    self-signed certificate for the Katib webhooks. Learn more about the cert generator in the
-    [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md#katib-cert-generator).
-
-- `katib-ui` - the Katib user interface.
-
-- `katib-db-manager` - the gRPC API server to control Katib DB interface.
-
-- `katib-mysql` - the MySQL DB backend to store Katib Experiments metrics.
+Learn more about Katib control plane components in the
+[Katib architecture guide](/docs/components/katib/reference/architecture/#katib-control-plane-components).
 
 ## Installing Katib Python SDK
 
