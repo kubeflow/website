@@ -52,25 +52,25 @@ The following diagram shows the ML lifecycle stages in sequence:
 
 Looking at the stages in more detail:
 
-- In the _Data Preparation_ step you ingest raw data, perform feature engineering to ML features in
-  the offline feature store, and prepare training data for model development. Usually, this step is
-  associated with data processing tools such as Spark, Dask, Flink, or Ray.
+- In the _Data Preparation_ step you ingest raw data, perform feature engineering to extract ML
+  features for the offline feature store, and prepare training data for model development.
+  Usually, this step is associated with data processing tools such as Spark, Dask, Flink, or Ray.
 
-- In the _Model Development_ step you choose an ML framework, develop your model architecture or
-  explore the existing pre-trained models for fine-tuning like BERT or LLama.
+- In the _Model Development_ step you choose an ML framework, develop your model architecture and
+  explore the existing pre-trained models for fine-tuning like BERT or Llama.
 
 - In the _Model Optimization_ step you can optimize your model hyperparameters and optimize your
-  model with various AutoML algorithms such as neural architecture search or model compression.
+  model with various AutoML algorithms such as neural architecture search and model compression.
 
 - In the _Model Training_ step you train or fine-tune your model on the large-scale
-  compute environment. You should use distributed training if your models are large and single GPU
-  can't handle model size. The results of the model training is the trained model artifact that you
-  can store in _Model Storage_.
+  compute environment. You should use distributed training if single GPU can't handle your
+  model size. The results of the model training is the trained model artifact that you
+  can store in the _Model Storage_.
 
-- Finally, in the _Model Serving_ step you serve your model artifact for online or batch inference.
-  Depends on the use-case your model can perform predictive or generative AI tasks. In this step
-  you are using online feature store to extract features. You should monitor your model performance,
-  and feed the results into your previous steps in the ML lifecycle.
+- In the _Model Serving_ step you serve your model artifact for online or batch inference. Your
+  model can perform predictive or generative AI tasks depends on the use-case. During model serving
+  step you are using online feature store to extract features. You should monitor your model
+  performance, and feed the results into your previous steps in the ML lifecycle.
 
 ### ML Lifecycle for Production and Development Phases
 
@@ -85,7 +85,7 @@ AI application for users:
 
 The next diagram shows how Kubeflow components are used for each stage in the ML lifecycle:
 
-<img src="ml-lifecycle-kubeflow.drawio.svg"
+<img src="/docs/started/images/ml-lifecycle-kubeflow.drawio.svg"
   alt="Kubeflow Components in ML Lifecycle"
   class="mt-3 mb-3 border border-info rounded">
 
@@ -112,6 +112,9 @@ The next diagram shows how Kubeflow components are used for each stage in the ML
 
 - [Kubeflow Pipelines](/docs/components/pipelines/) can be used to build, deploy, and manage each
   step in the ML lifecycle.
+
+You can use every Kubeflow component as a standalone tool to integrate into your AI/ML Platform
+or you can deploy Kubeflow Platform to get all Kubeflow components for end-to-end ML lifecycle.
 
 ## Kubeflow Interfaces
 
