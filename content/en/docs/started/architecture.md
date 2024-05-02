@@ -77,8 +77,8 @@ Looking at the stages in more detail:
 ML lifecycle can be split between development and production phases with the primary goal to produce
 AI application for users:
 
-<img src="/docs/started/images/ml-lifecycle-prod-dev.drawio.svg"
-  alt="ML Lifecycle with Prod and Dev"
+<img src="/docs/started/images/ml-lifecycle-dev-prod.drawio.svg"
+  alt="ML Lifecycle with Development and Production"
   class="mt-3 mb-3">
 
 ## Kubeflow Components in the ML Lifecycle
