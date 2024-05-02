@@ -72,7 +72,7 @@ katib.KatibClient().wait_for_experiment_condition(name=name)
 print(katib.KatibClient().get_optimal_hyperparameters(name))
 ```
 
-You should get the following output for the best Trial, hyperparameters, and observation metrics:
+You should get similar output for the most optimal Trial, hyperparameters, and observation metrics:
 
 ```json
 {
@@ -106,25 +106,9 @@ You can create hyperparameter tuning job by defining YAML configuration file for
 This example uses the [YAML file for the random search example](https://github.com/kubeflow/katib/blob/fc858d15dd41ff69166a2020efa200199063f9ba/examples/v1beta1/hp-tuning/random.yaml).
 
 The Experiment's Trials use PyTorch model to train an image classification model for the
-FashionMNIST dataset. You can check [the training container source code](https://github.com/kubeflow/katib/tree/fc858d15dd41ff69166a2020efa200199063f9ba/examples/v1beta1/trial-images/pytorch-mnist).
-
-**Note:** This Experiment doesn't work with
-[Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
-If you deploy Katib with Kubeflow platform, you have to disable Istio sidecar injection. To do that,
-specify this annotation: `sidecar.istio.io/inject: "false"` in your Experiment Trial's template:
-
-```yaml
-trialSpec:
-  apiVersion: batch/v1
-  kind: Job
-  spec:
-    template:
-      metadata:
-        "sidecar.istio.io/inject": "false"
-```
-
-If you use `TFJob` or other Training Operator jobs in your Trial template check
-[here](/docs/components/training/user-guides/tensorflow/#what-is-tfjob) how to set the annotation.
+FashionMNIST dataset. You can check [the training container source code](https://github.com/kubeflow/katib/tree/fc858d15dd41ff69166a2020efa200199063f9ba/examples/v1beta1/trial-images/pytorch-mnist). **Note** since that this training container downloads FashionMNIST
+dataset, you [need to disable Istio sidecar injection](/docs/components/katib/user-guides/hp-tuning/configure-experiment/#running-katib-experiment-with-istio/)
+if you deploy Katib with Kubeflow Platform.
 
 Deploy the Experiment:
 
@@ -180,16 +164,37 @@ status:
   trialsSucceeded: 4
 ```
 
-You can check information about the best Trial in `status.currentOptimalTrial`.
+You can check information about the best Trial in `status.currentOptimalTrial`. In addition,
+`status` shows the Experiment's Trials with their current status. For example, run this command
+to get information for the most optimal Trial:
 
-- `.currentOptimalTrial.bestTrialName` is the Trial name.
+```json
+$ kubectl get experiment random -n kubeflow -o=jsonpath='{.status.currentOptimalTrial}'
 
-- `.currentOptimalTrial.observation.metrics` is the `max`, `min` and `latest` recorded values for objective
-  and additional metrics.
-
-- `.currentOptimalTrial.parameterAssignments` is the corresponding hyperparameter set.
-
-In addition, `status` shows the Experiment's Trials with their current status.
+{
+  "bestTrialName": "random-hpsrsdqp",
+  "observation": {
+    "metrics": [
+      {
+        "latest": "0.11513",
+        "max": "0.53415",
+        "min": "0.01235",
+        "name": "loss"
+      }
+    ]
+  },
+  "parameterAssignments": [
+    {
+      "name": "lr",
+      "value": "0.024736875661534784",
+    },
+    {
+      "name": "momentum",
+      "value": "0.6612351235123"
+    }
+  ]
+}
+```
 
 ## Next steps
 

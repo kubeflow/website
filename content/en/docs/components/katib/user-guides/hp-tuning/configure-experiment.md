@@ -102,6 +102,27 @@ The list below describes the fields in the YAML file for an Experiment.
   Follow the [Trial template guide](/docs/components/katib/user-guides/trial-template/) to learn how
   to use any Kubernetes resource as Katib Trial and how to use ConfigMap for Trial templates.
 
+### Running Katib Experiment with Istio
+
+Katib Experiment from [this directory](https://github.com/kubeflow/katib/tree/ea46a7f2b73b2d316b6b7619f99eb440ede1909b/examples/v1beta1)
+doesn't work with [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection)
+since Trials require access to the internet to download datasets. If you deploy Katib with
+Kubeflow platform, you can disable Istio sidecar injection. Specify this annotation: `sidecar.istio.io/inject: "false"`
+in your Experiment Trial's template to disable Istio sidecar injection:
+
+```yaml
+trialSpec:
+  apiVersion: batch/v1
+  kind: Job
+  spec:
+    template:
+      metadata:
+        "sidecar.istio.io/inject": "false"
+```
+
+If you use `PyTorchJob` or other Training Operator jobs in your Trial template check
+[here](/docs/components/training/user-guides/tensorflow/#what-is-tfjob) how to set the annotation.
+
 ## Next steps
 
 - Learn about [HP tuning algorithms](/docs/components/katib/user-guides/hp-tuning/configure-algorithm).
