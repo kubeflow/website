@@ -10,38 +10,11 @@ share your experience using [#kubeflow-training-operator Slack channel](https://
 or [Kubeflow Training Operator GitHib](https://github.com/kubeflow/training-operator/issues/new).
 {{% /alert %}}
 
-In the rapidly evolving landscape of machine learning (ML) and artificial intelligence (AI),
-the ability to fine-tune pre-trained models represents a significant leap towards achieving custom
-solutions with less effort and time. Fine-tuning allows practitioners to adapt large language models
-(LLMs) like BERT or GPT to their specific needs by training these models on custom datasets.
-This process maintains the model's architecture and learned parameters while making it more relevant
-to particular applications. Whether you're working in natural language processing (NLP),
-image classification, or another ML domain, fine-tuning can drastically improve performance and
-applicability of pre-existing models to new datasets and problems.
+This page describes how to use a [`train` API from Training Python SDK](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/training/api/training_client.py#L112) that simplifies the ability to fine-tune LLMs with
+distributed PyTorchJob workers.
 
-## Why Training Operator Fine-Tune API Matter ?
-
-Training Operator Python SDK introduction of Fine-Tune API is a game-changer for ML practitioners
-operating within the Kubernetes ecosystem. Historically, Training Operator has streamlined the
-orchestration of ML workloads on Kubernetes, making distributed training more accessible. However,
-fine-tuning tasks often require extensive manual intervention, including the configuration of
-training environments and the distribution of data across nodes. The Fine-Tune APIs aim to simplify
-this process, offering an easy-to-use Python interface that abstracts away the complexity involved
-in setting up and executing fine-tuning tasks on distributed systems.
-
-Different user personas can benefit from this feature:
-
-- **MLOps Engineers:** Can leverage these APIs to automate and streamline the setup and execution of
-  fine-tuning tasks, reducing operational overhead.
-
-- **Data Scientists:** Can focus more on model experimentation and less on the logistical aspects of
-  distributed training, speeding up the iteration cycle.
-
-- **Business Owners:** Can expect quicker turnaround times for tailored ML solutions, enabling faster
-  response to market needs or operational challenges.
-
-- **Platform Engineers:** Can utilize these APIs to better operationalize the ML toolkit, ensuring
-  scalability and efficiency in managing ML workflows.
+If you want to learn more about how the fine-tuning API fit in the Kubeflow ecosystem, head to
+[explanation guide](/docs/components/training/explanation/fine-tuning).
 
 ## Prerequisites
 
@@ -49,10 +22,6 @@ You need to install Training Python SDK [with fine-tuning support](/docs/compone
 to run this API.
 
 ## How to use Fine-Tuning API ?
-
-[Training Operator Python SDK](/docs/components/training/installation/#installing-training-python-sdk)
-implements a [`train` Python API](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/training/api/training_client.py#L112)
-that simplifies the ability to fine-tune LLMs with distributed PyTorchJob workers.
 
 You need to provide the following parameters to use the `train` API:
 

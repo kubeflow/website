@@ -1,5 +1,5 @@
 +++
-title = "Fine-Tuning with Training Operator"
+title = "LLM Fine-Tuning with Training Operator"
 description = "How Training Operator performs fine-tuning on Kubernetes"
 weight = 10
 +++
