@@ -10,8 +10,8 @@ This guide describes how to get started with Training Operator and run a few sim
 
 You need to install the following components to run examples:
 
-- Training Operator [installed](/docs/components/training/installation/#installing-training-operator).
-- Training Python SDK [installed](/docs/components/training/installation/#installing-training-python-sdk).
+- Training Operator control plane [installed](/docs/components/training/installation/#installing-control-plane).
+- Training Python SDK [installed](/docs/components/training/installation/#installing-python-sdk).
 
 ## Getting Started with PyTorchJob
 

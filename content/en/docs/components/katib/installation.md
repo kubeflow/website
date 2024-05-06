@@ -12,8 +12,13 @@ These are minimal requirements to install Katib.
 
 - Kubernetes >= 1.27
 - `kubectl` >= 1.27
+- Python >= 3.7
 
 ## Installing Katib
+
+You need to install Katib control plane and Python SDK to create Katib Experiments.
+
+### Installing Control Plane
 
 You can skip these steps if you have already
 [installed Kubeflow platform](/docs/started/installing-kubeflow/#how-to-install-kubeflow)
@@ -21,19 +26,19 @@ using manifests or package distributions. Kubeflow platform includes Katib.
 
 You can install Katib as a standalone component.
 
-Run the following command to install the stable release of Katib: `v0.16.0`
+Run the following command to install the stable release of Katib control plane: `v0.16.0`
 
 ```shell
 kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=v0.16.0"
 ```
 
-Run the following command to install the latest changes of Katib:
+Run the following command to install the latest changes of Katib control plane:
 
 ```shell
 kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=master"
 ```
 
-After installing Katib, you can verify that all
+After installing it, you can verify that all
 [Katib control plane components](/docs/components/katib/reference/architecture/#katib-control-plane-components)
 are running:
 
@@ -55,7 +60,7 @@ If your cluster doesn't have dynamic volume provisioning, you must manually depl
 to bind [PVC](https://github.com/kubeflow/katib/blob/master/manifests/v1beta1/components/mysql/pvc.yaml)
 for the Katib DB component.
 
-## Installing Katib Python SDK
+### Installing Python SDK
 
 Katib [implements Python SDK](https://pypi.org/project/kubeflow-katib/)
 to simplify creation of Katib Experiments for Data Scientists.

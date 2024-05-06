@@ -12,8 +12,8 @@ This guide describes how to get started with Katib and run a few examples.
 
 You need to install the following Katib components to run examples:
 
-- Katib [installed](/docs/components/katib/installation/#installing-katib).
-- Katib Python SDK [installed](/docs/components/katib/installation/#installing-katib-python-sdk).
+- Katib control plane [installed](/docs/components/katib/installation/#installing-control-plane).
+- Katib Python SDK [installed](/docs/components/katib/installation/#installing-python-sdk).
 
 ## Getting Started with Katib Python SDK
 

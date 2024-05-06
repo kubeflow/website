@@ -14,8 +14,13 @@ These are minimal requirements to install Training Operator:
 
 - Kubernetes >= 1.27
 - `kubectl` >= 1.27
+- Python >= 3.7
 
 ## Installing Training Operator
+
+You need to install Training Operator control plane and Python SDK to create training jobs.
+
+### Installing Control Plane
 
 You can skip these steps if you have already
 [installed Kubeflow platform](https://www.kubeflow.org/docs/started/installing-kubeflow/#how-to-install-kubeflow)
@@ -23,19 +28,19 @@ using manifests or package distributions. Kubeflow platform includes Training Op
 
 You can install Training Operator as a standalone component.
 
-Run the following command to install the stable release of Training Operator: `v1.7.0`
+Run the following command to install the stable release of Training Operator control plane: `v1.7.0`
 
 ```shell
 kubectl apply -k "github.com/kubeflow/training-operator.git/manifests/overlays/standalone?ref=v1.7.0"
 ```
 
-Run the following command to install the latest changes of Training Operator:
+Run the following command to install the latest changes of Training Operator control plane:
 
 ```shell
 kubectl apply -k "github.com/kubeflow/training-operator.git/manifests/overlays/standalone?ref=master"
 ```
 
-After installing Training Operator, you can verify that controller is running as follows:
+After installing it, you can verify that Training Operator controller is running as follows:
 
 ```shell
 $ kubectl get pods -n kubeflow
@@ -57,7 +62,7 @@ tfjobs.kubeflow.org                                      2023-06-09T00:31:04Z
 xgboostjobs.kubeflow.org                                 2023-06-09T00:31:04Z
 ```
 
-## Installing Training Python SDK
+### Installing Python SDK
 
 Training Operator [implements Python SDK](https://pypi.org/project/kubeflow-training/)
 to simplify creation of distributed training and fine-tuning jobs for Data Scientists.
@@ -74,7 +79,7 @@ You can also install the Python SDK using the specific GitHub commit, for exampl
 pip install git+https://github.com/kubeflow/training-operator.git@7345e33b333ba5084127efe027774dd7bed8f6e6#subdirectory=sdk/python
 ```
 
-### Install Python SDK with Fine-Tuning Capabilities
+#### Install Python SDK with Fine-Tuning Capabilities
 
 If you want to use `train` API for LLM fine-tuning with Training Operator, install the Python SDK
 with the additional packages from HuggingFace:
