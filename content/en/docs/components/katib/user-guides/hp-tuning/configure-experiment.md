@@ -123,6 +123,102 @@ trialSpec:
 If you use `PyTorchJob` or other Training Operator jobs in your Trial template check
 [here](/docs/components/training/user-guides/tensorflow/#what-is-tfjob) how to set the annotation.
 
+## Running the Experiment
+
+You can create hyperparameter tuning Experiment using the
+[YAML file for the random search example](https://github.com/kubeflow/katib/blob/fc858d15dd41ff69166a2020efa200199063f9ba/examples/v1beta1/hp-tuning/random.yaml).
+
+The Experiment's Trials use PyTorch model to train an image classification model for the
+FashionMNIST dataset. You can check [the training container source code](https://github.com/kubeflow/katib/tree/fc858d15dd41ff69166a2020efa200199063f9ba/examples/v1beta1/trial-images/pytorch-mnist). **Note:** Since this training container downloads FashionMNIST
+dataset, you [need to disable Istio sidecar injection](#running-katib-experiment-with-istio)
+if you deploy Katib with Kubeflow Platform.
+
+Deploy the Experiment:
+
+```shell
+kubectl create -f https://raw.githubusercontent.com/kubeflow/katib/master/examples/v1beta1/hp-tuning/random.yaml
+```
+
+This example randomly generates the following hyperparameters:
+
+- `--lr`: Learning rate. Type: double.
+- `--momentum`: Momentum for PyTorch optimizer. Type: double.
+
+You can check the results of your Experiment in the `status` specification.
+
+```yaml
+$ kubectl -n kubeflow get experiment random -o yaml
+
+apiVersion: kubeflow.org/v1beta1
+kind: Experiment
+metadata:
+  ...
+  name: random
+  namespace: kubeflow
+  ...
+spec:
+  ...
+status:
+  currentOptimalTrial:
+    bestTrialName: random-hpsrsdqp
+    observation:
+      metrics:
+        - latest: "0.11513"
+          max: "0.53415"
+          min: "0.01235"
+          name: loss
+    parameterAssignments:
+      - name: lr
+        value: "0.024736875661534784"
+      - name: momentum
+        value: "0.6612351235123"
+  runningTrialList:
+    - random-2dwxbwcg
+    - random-6jd8hmnd
+    - random-7gks8bmf
+  startTime: "2021-10-07T21:12:06Z"
+  succeededTrialList:
+    - random-xhpcrt2p
+    - random-hpsrsdqp
+    - random-kddxqqg9
+    - random-4lkr5cjp
+  trials: 7
+  trialsRunning: 3
+  trialsSucceeded: 4
+```
+
+Check information about the best Trial in `status.currentOptimalTrial` parameter. In addition,
+`status` shows the Experiment's Trials with their current status. For example, run this command
+to get information for the most optimal Trial:
+
+```json
+$ kubectl get experiment random -n kubeflow -o=jsonpath='{.status.currentOptimalTrial}'
+
+{
+  "bestTrialName": "random-hpsrsdqp",
+  "observation": {
+    "metrics": [
+      {
+        "latest": "0.11513",
+        "max": "0.53415",
+        "min": "0.01235",
+        "name": "loss"
+      }
+    ]
+  },
+  "parameterAssignments": [
+    {
+      "name": "lr",
+      "value": "0.024736875661534784",
+    },
+    {
+      "name": "momentum",
+      "value": "0.6612351235123"
+    }
+  ]
+}
+```
+
 ## Next steps
 
 - Learn about [HP tuning algorithms](/docs/components/katib/user-guides/hp-tuning/configure-algorithm).
