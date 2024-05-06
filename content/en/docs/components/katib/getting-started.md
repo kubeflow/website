@@ -100,6 +100,13 @@ You should get similar output for the most optimal Trial, hyperparameters, and o
 }
 ```
 
+In [the Katib UI](/docs/components/katib/user-guides/katib-ui/) you should see list of all
+completed Trials with results:
+
+<img src="/docs/components/katib/images/getting-started-example.png"
+  alt="Getting Started Example"
+  class="mt-3 mb-3">
+
 ## Next steps
 
 - Check [the Katib UI guide](/docs/components/katib/user-guides/katib-ui/) to get more information
