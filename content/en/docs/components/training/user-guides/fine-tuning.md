@@ -1,5 +1,5 @@
 +++
-title = "How to Fine-Tune LLM with Kubeflow"
+title = "How to Fine-Tune LLMs with Kubeflow"
 description = "Overview of LLM fine-tuning API in Training Operator"
 weight = 10
 +++
@@ -25,17 +25,36 @@ Training Operator Python SDK introduction of Fine-Tune API is a game-changer for
 operating within the Kubernetes ecosystem. Historically, Training Operator has streamlined the
 orchestration of ML workloads on Kubernetes, making distributed training more accessible. However,
 fine-tuning tasks often require extensive manual intervention, including the configuration of
-training environments and the distribution of data across nodes. The Fine Tune APIs aim to simplify
+training environments and the distribution of data across nodes. The Fine-Tune APIs aim to simplify
 this process, offering an easy-to-use Python interface that abstracts away the complexity involved
 in setting up and executing fine-tuning tasks on distributed systems.
+
+Different user personas can benefit from this feature:
+
+- **MLOps Engineers:** Can leverage these APIs to automate and streamline the setup and execution of
+  fine-tuning tasks, reducing operational overhead.
+
+- **Data Scientists:** Can focus more on model experimentation and less on the logistical aspects of
+  distributed training, speeding up the iteration cycle.
+
+- **Business Owners:** Can expect quicker turnaround times for tailored ML solutions, enabling faster
+  response to market needs or operational challenges.
+
+- **Platform Engineers:** Can utilize these APIs to better operationalize the ML toolkit, ensuring
+  scalability and efficiency in managing ML workflows.
+
+## Prerequisites
+
+You need to install Training Python SDK [with fine-tuning support](/docs/components/training/installation/#install-python-sdk-with-fine-tuning-capabilities)
+to run this API.
 
 ## How to use Fine-Tuning API ?
 
 [Training Operator Python SDK](/docs/components/training/installation/#installing-training-python-sdk)
 implements a [`train` Python API](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/training/api/training_client.py#L112)
-that simplify ability to fine-tune LLMs with distributed PyTorchJob workers.
+that simplifies the ability to fine-tune LLMs with distributed PyTorchJob workers.
 
-You need to provide the following parameters to use `train` API:
+You need to provide the following parameters to use the `train` API:
 
 - Pre-trained model parameters.
 - Dataset parameters.
@@ -96,73 +115,8 @@ TrainingClient().train(
 )
 ```
 
-After you execute `train` API, Training Operator will orchestrate appropriate PyTorchJob resources
+After you execute `train`, Training Operator will orchestrate appropriate PyTorchJob resources
 to fine-tune LLM.
-
-## Architecture
-
-In the following diagram you can see how `train` API works:
-
-<img src="/docs/components/training/images/fine-tune-llm-api.drawio.svg"
-  alt="Fine-Tune API for LLMs"
-  class="mt-3 mb-3">
-
-- Once user executes `train` API, Training Operator creates PyTorchJob with appropriate resources
-  to fine-tune LLM.
-
-- Storage initializer InitContainer is added to the PyTorchJob worker 0 to download
-  pre-trained model and dataset with provided parameters.
-
-- PVC with [`ReadOnlyMany` access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
-  it attached to each PyTorchJob worker to distribute model and dataset across Pods. **Note**: Your
-  Kubernetes cluster must support volumes with `ReadOnlyMany` access mode, otherwise you can use a
-  single PyTorchJob worker.
-
-- Every PyTorchJob worker runs LLM Trainer that fine-tunes model using provided parameters.
-
-Training Operator implements `train` API with these pre-created components:
-
-### Model Provider
-
-Model provider downloads pre-trained model. Currently, Training Operator supports
-[HuggingFace model provider](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/storage_initializer/hugging_face.py#L56)
-that downloads model from HuggingFace Hub.
-
-You can implement your own model provider by using [this abstract base class](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/storage_initializer/abstract_model_provider.py#L4)
-
-### Dataset Provider
-
-Dataset provider downloads dataset. Currently, Training Operator supports
-[AWS S3](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/storage_initializer/s3.py#L37)
-and [HuggingFace](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/storage_initializer/hugging_face.py#L92)
-dataset providers.
-
-You can implement your own dataset provider by using [this abstract base class](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/storage_initializer/abstract_dataset_provider.py)
-
-### LLM Trainer
-
-Trainer implements training loop to fine-tune LLM. Currently, Training Operator supports
-[HuggingFace trainer](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/trainer/hf_llm_training.py#L118-L139)
-to fine-tune LLMs.
-
-You can implement your own trainer for other ML use-cases such as image classification,
-voice recognition, etc.
-
-## User Value for this Feature
-
-Different user personas can benefit from this feature:
-
-- **MLOps Engineers:** Can leverage these APIs to automate and streamline the setup and execution of
-  fine-tuning tasks, reducing operational overhead.
-
-- **Data Scientists:** Can focus more on model experimentation and less on the logistical aspects of
-  distributed training, speeding up the iteration cycle.
-
-- **Business Owners:** Can expect quicker turnaround times for tailored ML solutions, enabling faster
-  response to market needs or operational challenges.
-
-- **Platform Engineers:** Can utilize these APIs to better operationalize the ML toolkit, ensuring
-  scalability and efficiency in managing ML workflows.
 
 ## Next Steps
 
@@ -170,3 +124,5 @@ Different user personas can benefit from this feature:
 
 - Check this example to compare `create_job` and `train` Python API for
   [fine-tuning BERT LLM](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/examples/pytorch/text-classification/Fine-Tune-BERT-LLM.ipynb).
+
+- Understand [the architecture behind `train` API](/docs/components/training/reference/fine-tuning).
