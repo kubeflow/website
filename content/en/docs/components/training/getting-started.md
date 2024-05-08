@@ -10,8 +10,8 @@ This guide describes how to get started with Training Operator and run a few sim
 
 You need to install the following components to run examples:
 
-- Training Operator [installed](/docs/components/training/installation/#installing-training-operator).
-- Training Python SDK [installed](/docs/components/training/installation/#installing-training-python-sdk).
+- Training Operator control plane [installed](/docs/components/training/installation/#installing-control-plane).
+- Training Python SDK [installed](/docs/components/training/installation/#installing-python-sdk).
 
 ## Getting Started with PyTorchJob
 
@@ -23,7 +23,11 @@ download dataset, create model, and train the model.
 Training Operator will automatically set `WORLD_SIZE` and `RANK` for the appropriate PyTorchJob
 worker to perform [PyTorch Distributed Data Parallel (DDP)](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
-For example:
+If you install Training Operator as part of Kubeflow Platform, you can open a new
+[Kubeflow Notebook](/docs/components/notebooks/quickstart-guide/) to run this script. If you
+install Training Operator standalone, make sure that you
+[configure local `kubeconfig`](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#programmatic-access-to-the-api)
+to access your Kubernetes cluster where you installed Training Operator.
 
 ```python
 def train_func():

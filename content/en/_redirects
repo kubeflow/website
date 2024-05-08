@@ -70,7 +70,6 @@
 docs/started/requirements/                    /docs/started/getting-started/
 
 # Created a new components layout
-/docs/components/hyperparameter                /docs/components/katib/overview
 /docs/components/chainer                       /docs/components/training/chainer
 /docs/components/modeldb                       /docs/components/misc/modeldb
 /docs/components/mpi                           /docs/components/training/mpi
@@ -234,3 +233,11 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/distributions/gke/*           https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/:splat
 /docs/distributions/ibm/*           https://ibm.github.io/manifests/
 /docs/distributions/nutanix/*       https://nutanix.github.io/kubeflow-manifests/
+
+# Refactor Katib docs
+/docs/components/hyperparameter                /docs/components/katib/overview
+/docs/components/katib/hyperparameter          /docs/components/katib/getting-started.md
+/docs/components/katib/experiment              /docs/components/katib/user-guides/hp-tuning/configure-experiment
+/docs/components/katib/early-stopping          /docs/components/katib/user-guides/early-stopping
+/docs/components/katib/resume-experiment       /docs/components/katib/user-guides/resume-experiment
+/docs/components/katib/trial-template          /docs/components/katib/user-guides/trial-template
