@@ -112,6 +112,8 @@ completed Trials with results:
 - Check [the Katib UI guide](/docs/components/katib/user-guides/katib-ui/) to get more information
   about your Katib Experiments.
 
+- Run Katib hyperparameter tuning [Experiment using YAML](/docs/components/katib/user-guides/hp-tuning/configure-experiment/#running-the-experiment).
+
 - Learn how to configure [Katib Experiment parameters](/docs/components/katib/user-guides/hp-tuning/configure-experiment).
 
 - Check more [Katib Examples](https://github.com/kubeflow/katib/tree/ea46a7f2b73b2d316b6b7619f99eb440ede1909b/examples/v1beta1).
