@@ -236,7 +236,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 
 # Refactor Katib docs
 /docs/components/hyperparameter                /docs/components/katib/overview
-/docs/components/katib/hyperparameter          /docs/components/katib/getting-started.md
+/docs/components/katib/hyperparameter          /docs/components/katib/getting-started
 /docs/components/katib/experiment              /docs/components/katib/user-guides/hp-tuning/configure-experiment
 /docs/components/katib/early-stopping          /docs/components/katib/user-guides/early-stopping
 /docs/components/katib/resume-experiment       /docs/components/katib/user-guides/resume-experiment
