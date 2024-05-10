@@ -5,62 +5,134 @@ weight = 20
 
 +++
 
-## What is Kubeflow ?
-
-Kubeflow is a community and ecosystem of open-source projects to address each stage in the
-machine learning (ML) lifecycle. It makes ML on Kubernetes simple, portable, and scalable.
-Its goal is to facilitate the orchestration of Kubernetes workloads for ML and to empower users to
-deploy best-in-class open-source systems for ML to diverse cloud infrastructures.
-Whether you’re a researcher, data scientist, ML engineer, or a team of developers, Kubeflow offers
-modular and scalable tools that cater to all aspects of the ML lifecycle: from building ML models to
-deploying them to production for AI applications.
-
-## What are Kubeflow Standalone Components?
-
-Kubeflow is composed of multiple, independent open-source projects which address different aspects
-of a ML lifecycle. These standalone components are designed to be usable both within the Kubeflow
-platform and independently. These components can be installed on their own on a Kubernetes cluster,
-providing flexibility to users who may not require the full capabilities of Kubeflow Platform but
-wish to leverage specific functionalities in the ML lifecycle.
-
-## What is Kubeflow Platform ?
-
-The Kubeflow Platform refers to the full suite of Kubeflow components bundled together with
-additional integration and management tools. Installing Kubeflow as a platform means deploying a
-comprehensive ML toolkit that integrates these components into a cohesive system, optimized for
-managing the end-to-end ML lifecycle. These includes not only the standalone components but also:
-
-- Central Dashboard for easy navigation and management.
-- Multi-user capabilities and access management.
-- Additional tooling and services for data management, visualization, and more.
-
-This integrated environment ensures that all the different pieces work together seamlessly,
-providing a more robust and streamlined user experience.
-
-Kubeflow Platform can be installed via Raw Manifests or Package Distributions.
+This pages shows how to install Kubeflow standalone components or Kubeflow Platform using package
+distributions or raw manifests. Check [the introduction guide](/docs/started/introduction) to
+understand what are Kubeflow standalone components and what is Kubeflow Platform.
 
 ## Installing Kubeflow
 
+You can install Kubeflow components using one of these methods:
+
 - [**Install Kubeflow Components Standalone**](#install-kubeflow-components-standalone)
-- [**Install Kubeflow Platform from Packaged Distributions**](#install-kubeflow-platform-from-packages-distributions)
-- [**Install Kubeflow Platform from Raw Manifests**](#install-kubeflow-platform-from-raw-manifests)
+- [**Install Kubeflow Platform from Packaged Distributions**](#install-kubeflow-platform-from-packaged-distributions)
+- [**Install Kubeflow Platform from Raw Manifests**](#install-kubeflow-platform-from-raw-manifests) <sup>(advanced users)</sup>
 
 ### Install Kubeflow Components Standalone
 
 Kubeflow components can be deployed as standalone applications. You can integrate those components
-to your existing AI/ML platform. For example, for Model Training you can install Training Operator
-or for Model Serving you can install KServe.
+to your existing AI/ML platform. This is the easiest method to get started with Kubeflow ecosystem
+since those components don't require additional management used in Kubeflow Platform.
 
-Follow the appropriate guides to install required Kubeflow components in standalone mode:
+This table points to the installation guide for every Kubeflow component, the GitHub repository, and corresponding [stage of ML lifecycle](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle) for every Kubeflow component.
 
-- Install [Kubeflow Pipelines](/docs/components/pipelines/v2/installation/quickstart/)
-- Install [Kubeflow Training Operator](/docs/components/training/installation/#installing-training-operator)
-- Install [Kubeflow MPI Operator](/docs/components/training/user-guides/mpi/#installation)
-- Install [Kubeflow Katib] (TODO: Add link after #3723)
-- Install [KServe](https://kserve.github.io/website/0.10/admin/serverless/serverless/)
-- Install Kubeflow Model Registry (TODO: Add link after #3698)
+<div class="table-responsive components-table">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Source Code</th>
+        <th>Stage of ML Lifecycle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="/docs/components/training/installation/#installing-training-operator">
+            Kubeflow Training Operator
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/training-operator">
+            <code>kubeflow/training-operator</code>
+          </a>
+        </td>
+        <td>
+          Model Training and Fine-Tuning
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/docs/components/katib/installation/#installing-katib">
+            Kubeflow Katib
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/katib">
+            <code>kubeflow/katib</code>
+          </a>
+        </td>
+        <td>
+          Model Optimization and AutoML
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <a href="/docs/components/training/user-guides/mpi/#installation">
+            Kubeflow MPI Operator
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/mpi-operator">
+            <code>kubeflow/mpi-operator</code>
+          </a>
+        </td>
+        <td>
+          All-Reduce Model Training
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <a href="/docs/components/model-registry/installation/#installing-model-registry">
+            Kubeflow Model Registry
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/model-registry">
+            <code>kubeflow/model-registry</code>
+          </a>
+        </td>
+        <td>
+          Model Registry
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <a href="https://kserve.github.io/website/master/admin/serverless/serverless">
+            KServe
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kserve/kserve">
+            <code>kserve/kserve</code>
+          </a>
+        </td>
+        <td>
+          Model Serving
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="docs/components/pipelines/v2/installation/quickstart/">
+            Kubeflow Pipelines
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/pipelines">
+            <code>kubeflow/pipelines</code>
+          </a>
+        </td>
+        <td>
+          ML Workflows and Schedulers
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-## Install Kubeflow Platform from Packages Distributions
+**Note**. Currently, Kubeflow Notebooks can't be deployed as a standalone application, but Notebooks
+WG is working on that as part of [this issue](https://github.com/kubeflow/kubeflow/issues/7549).
+
+## Install Kubeflow Platform from Packaged Distributions
 
 Packaged distributions are maintained by various organizations and typically aim to provide
 a simplified installation and management experience for **Kubeflow Platform**. Some distributions
@@ -269,5 +341,5 @@ Nevertheless, we welcome contributions and bug reports very much.
 
 - Check [the Kubeflow introduction page](/docs/started/introduction/).
 - Explore the [Kubeflow architecture](/docs/started/architecture) and how Kubeflow components fit
-  into the AI/ML lifecycle.
+  into the ML lifecycle.
 - Review [the Kubeflow components documentation](/docs/components/).
