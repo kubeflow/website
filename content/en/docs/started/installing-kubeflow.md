@@ -5,7 +5,7 @@ weight = 20
 
 +++
 
-This pages shows how to install Kubeflow standalone components or Kubeflow Platform using package
+This pages describes how to install Kubeflow standalone components or Kubeflow Platform using package
 distributions or raw manifests. Check [the introduction guide](/docs/started/introduction) to
 understand what are Kubeflow standalone components and what is Kubeflow Platform.
 
@@ -21,11 +21,13 @@ You can install Kubeflow components using one of these methods:
 
 Kubeflow components can be deployed as standalone applications. You can integrate those components
 to your existing AI/ML platform. This is the easiest method to get started with Kubeflow ecosystem
-since those components don't require additional management used in Kubeflow Platform.
+since those components usually don't require additional management tools used in Kubeflow Platform.
 
-This table points to the installation guide for every Kubeflow component, the GitHub repository, and corresponding [stage of ML lifecycle](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle) for every Kubeflow component.
+This table points to the installation guide for every Kubeflow component, the GitHub repository,
+and corresponding [stage of ML lifecycle](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle)
+for every Kubeflow component.
 
-<div class="table-responsive components-table">
+<div class="table-responsive distributions-table">
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -147,7 +149,7 @@ This table points to the installation guide for every Kubeflow component, the Gi
 **Note**. Currently, Kubeflow Notebooks can't be deployed as a standalone application, but Notebooks
 WG is working on that as part of [this issue](https://github.com/kubeflow/kubeflow/issues/7549).
 
-## Install Kubeflow Platform from Packaged Distributions
+### Install Kubeflow Platform from Packaged Distributions
 
 Packaged distributions are maintained by various organizations and typically aim to provide
 a simplified installation and management experience for **Kubeflow Platform**. Some distributions

@@ -36,7 +36,9 @@ managing the end-to-end ML lifecycle. These includes not only the standalone com
 This integrated environment ensures that all the different pieces work together seamlessly,
 providing a more robust and streamlined user experience.
 
-Kubeflow Platform can be installed via Raw Manifests or Package Distributions.
+Kubeflow Platform can be installed via
+[Packaged Distributions](/docs/started/installing-kubeflow/#install-kubeflow-platform-from-packaged-distributions) or
+[Raw Manifests](/docs/started/installing-kubeflow/#install-kubeflow-platform-from-raw-manifests).
 
 ## Getting started with Kubeflow
 
