@@ -37,17 +37,17 @@ This table points to the installation guide for every Kubeflow component, the Gi
     <tbody>
       <tr>
         <td>
-          <a href="/docs/components/training/installation/#installing-training-operator">
-            Kubeflow Training Operator
+          <a href="https://github.com/kubeflow/spark-operator/tree/master?tab=readme-ov-file#installation">
+            Kubeflow Spark Operator
           </a>
         </td>
         <td>
-          <a href="https://github.com/kubeflow/training-operator">
-            <code>kubeflow/training-operator</code>
+          <a href="https://github.com/kubeflow/spark-operator">
+            <code>kubeflow/spark-operator</code>
           </a>
         </td>
         <td>
-          Model Training and Fine-Tuning
+          Data Preparation
         </td>
       </tr>
       <tr>
@@ -63,6 +63,21 @@ This table points to the installation guide for every Kubeflow component, the Gi
         </td>
         <td>
           Model Optimization and AutoML
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/docs/components/training/installation/#installing-training-operator">
+            Kubeflow Training Operator
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/training-operator">
+            <code>kubeflow/training-operator</code>
+          </a>
+        </td>
+        <td>
+          Model Training and Fine-Tuning
         </td>
       </tr>
       <tr>
