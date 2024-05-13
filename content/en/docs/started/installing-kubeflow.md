@@ -328,8 +328,7 @@ The following table lists distributions which are <em>maintained</em> by their r
 ### Install Kubeflow Platform from Raw Manifests
 
 The raw Kubeflow Manifests are aggregated by the
-[Manifests Working Group](https://github.com/kubeflow/community/tree/master/wg-manifests)
-and are intended to be used as the **base of packaged distributions**.
+Manifests Working Group and are intended to be used as the **base of packaged distributions**.
 
 Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
 applications which makes **Kubeflow Platform**. This installation is helpful when you want to try
