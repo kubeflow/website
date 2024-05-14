@@ -8,8 +8,8 @@ weight = 1
 
 Kubeflow is a community and ecosystem of open-source projects to address each stage in the
 machine learning (ML) lifecycle. It makes ML on Kubernetes simple, portable, and scalable.
-Its goal is to facilitate the orchestration of Kubernetes workloads for ML and to empower users to
-deploy best-in-class open-source systems for ML to diverse cloud infrastructures.
+The Kubeflow goal is to facilitate the orchestration of Kubernetes ML workloads and to empower users
+to deploy best-in-class open-source systems to any Cloud infrastructure.
 Whether you’re a researcher, data scientist, ML engineer, or a team of developers, Kubeflow offers
 modular and scalable tools that cater to all aspects of the ML lifecycle: from building ML models to
 deploying them to production for AI applications.
@@ -18,9 +18,9 @@ deploying them to production for AI applications.
 
 Kubeflow is composed of multiple, independent open-source projects which address different aspects
 of a ML lifecycle. These standalone components are designed to be usable both within the Kubeflow
-Platform and independently. These components can be installed on their own on a Kubernetes cluster,
+Platform and independently. These components can be installed independently on a Kubernetes cluster,
 providing flexibility to users who may not require the full capabilities of Kubeflow Platform but
-wish to leverage specific functionalities in the ML lifecycle.
+wish to leverage specific ML functionalities.
 
 ## What is Kubeflow Platform ?
 
