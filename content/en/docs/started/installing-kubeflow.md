@@ -44,21 +44,6 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
     <tbody>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/spark-operator/tree/master?tab=readme-ov-file#installation">
-            Kubeflow Spark Operator
-          </a>
-        </td>
-        <td>
-          Data Preparation
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/spark-operator">
-            <code>kubeflow/spark-operator</code>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
           <a href="/docs/components/katib/installation/#installing-katib">
             Kubeflow Katib
           </a>
@@ -69,51 +54,6 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
         <td>
           <a href="https://github.com/kubeflow/katib">
             <code>kubeflow/katib</code>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="/docs/components/training/installation/#installing-training-operator">
-            Kubeflow Training Operator
-          </a>
-        </td>
-        <td>
-          Model Training and Fine-Tuning
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/training-operator">
-            <code>kubeflow/training-operator</code>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-         <a href="/docs/components/training/user-guides/mpi/#installation">
-            Kubeflow MPI Operator
-          </a>
-        </td>
-        <td>
-          All-Reduce Model Training
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/mpi-operator">
-            <code>kubeflow/mpi-operator</code>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-         <a href="/docs/components/model-registry/installation/#installing-model-registry">
-            Kubeflow Model Registry
-          </a>
-        </td>
-        <td>
-          Model Registry
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/model-registry">
-            <code>kubeflow/model-registry</code>
           </a>
         </td>
       </tr>
@@ -134,6 +74,36 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
       </tr>
       <tr>
         <td>
+         <a href="/docs/components/model-registry/installation/#installing-model-registry">
+            Kubeflow Model Registry
+          </a>
+        </td>
+        <td>
+          Model Registry
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/model-registry">
+            <code>kubeflow/model-registry</code>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <a href="/docs/components/training/user-guides/mpi/#installation">
+            Kubeflow MPI Operator
+          </a>
+        </td>
+        <td>
+          All-Reduce Model Training
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/mpi-operator">
+            <code>kubeflow/mpi-operator</code>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <a href="docs/components/pipelines/v2/installation/quickstart/">
             Kubeflow Pipelines
           </a>
@@ -144,6 +114,36 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
         <td>
           <a href="https://github.com/kubeflow/pipelines">
             <code>kubeflow/pipelines</code>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/spark-operator/tree/master?tab=readme-ov-file#installation">
+            Kubeflow Spark Operator
+          </a>
+        </td>
+        <td>
+          Data Preparation
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/spark-operator">
+            <code>kubeflow/spark-operator</code>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/docs/components/training/installation/#installing-training-operator">
+            Kubeflow Training Operator
+          </a>
+        </td>
+        <td>
+          Model Training and Fine-Tuning
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/training-operator">
+            <code>kubeflow/training-operator</code>
           </a>
         </td>
       </tr>
