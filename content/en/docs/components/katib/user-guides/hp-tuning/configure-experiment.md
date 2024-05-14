@@ -117,7 +117,8 @@ trialSpec:
   spec:
     template:
       metadata:
-        "sidecar.istio.io/inject": "false"
+        annotations:
+          "sidecar.istio.io/inject": "false"
 ```
 
 If you use `PyTorchJob` or other Training Operator jobs in your Trial template check
