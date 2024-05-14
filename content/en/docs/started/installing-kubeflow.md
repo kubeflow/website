@@ -5,13 +5,15 @@ weight = 20
 
 +++
 
-This pages describes how to install Kubeflow standalone components or Kubeflow Platform using package
-distributions or raw manifests. Check [the introduction guide](/docs/started/introduction) to
+This page describes how to install Kubeflow standalone components or Kubeflow Platform using package
+distributions or raw manifests.
+
+Read [the introduction guide](/docs/started/introduction) to
 understand what are Kubeflow standalone components and what is Kubeflow Platform.
 
 ## Installing Kubeflow
 
-You can install Kubeflow components using one of these methods:
+You can install Kubeflow using one of these methods:
 
 - [**Install Kubeflow Components Standalone**](#install-kubeflow-components-standalone)
 - [**Install Kubeflow Platform from Packaged Distributions**](#install-kubeflow-platform-from-packaged-distributions)
@@ -19,21 +21,24 @@ You can install Kubeflow components using one of these methods:
 
 ### Install Kubeflow Components Standalone
 
-Kubeflow components can be deployed as standalone applications. You can integrate those components
-to your existing AI/ML platform. This is the easiest method to get started with Kubeflow ecosystem
-since those components usually don't require additional management tools used in Kubeflow Platform.
+Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptual-overview) may be
+deployed as standalone services, without the need to install the full platform. You might integrate
+these services as part of your existing AI/ML platform or use them independently.
 
-This table points to the installation guide for every Kubeflow component, the GitHub repository,
-and corresponding [stage of ML lifecycle](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle)
-for every Kubeflow component.
+This is the easiest method to get started with Kubeflow ecosystem since those components usually
+don't require additional management tools used in Kubeflow Platform.
+
+The following table lists Kubeflow components that may be deployed in a standalone mode. It also
+lists their associated GitHub repository and
+corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle).
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
     <thead>
       <tr>
         <th>Component</th>
+        <th>ML Lifecycle Stage</th>
         <th>Source Code</th>
-        <th>Stage of ML Lifecycle</th>
       </tr>
     </thead>
     <tbody>
@@ -44,12 +49,12 @@ for every Kubeflow component.
           </a>
         </td>
         <td>
+          Data Preparation
+        </td>
+        <td>
           <a href="https://github.com/kubeflow/spark-operator">
             <code>kubeflow/spark-operator</code>
           </a>
-        </td>
-        <td>
-          Data Preparation
         </td>
       </tr>
       <tr>
@@ -59,12 +64,12 @@ for every Kubeflow component.
           </a>
         </td>
         <td>
+          Model Optimization and AutoML
+        </td>
+        <td>
           <a href="https://github.com/kubeflow/katib">
             <code>kubeflow/katib</code>
           </a>
-        </td>
-        <td>
-          Model Optimization and AutoML
         </td>
       </tr>
       <tr>
@@ -74,12 +79,12 @@ for every Kubeflow component.
           </a>
         </td>
         <td>
+          Model Training and Fine-Tuning
+        </td>
+        <td>
           <a href="https://github.com/kubeflow/training-operator">
             <code>kubeflow/training-operator</code>
           </a>
-        </td>
-        <td>
-          Model Training and Fine-Tuning
         </td>
       </tr>
       <tr>
@@ -89,12 +94,12 @@ for every Kubeflow component.
           </a>
         </td>
         <td>
+          All-Reduce Model Training
+        </td>
+        <td>
           <a href="https://github.com/kubeflow/mpi-operator">
             <code>kubeflow/mpi-operator</code>
           </a>
-        </td>
-        <td>
-          All-Reduce Model Training
         </td>
       </tr>
       <tr>
@@ -104,12 +109,12 @@ for every Kubeflow component.
           </a>
         </td>
         <td>
+          Model Registry
+        </td>
+        <td>
           <a href="https://github.com/kubeflow/model-registry">
             <code>kubeflow/model-registry</code>
           </a>
-        </td>
-        <td>
-          Model Registry
         </td>
       </tr>
       <tr>
@@ -119,12 +124,12 @@ for every Kubeflow component.
           </a>
         </td>
         <td>
+          Model Serving
+        </td>
+        <td>
           <a href="https://github.com/kserve/kserve">
             <code>kserve/kserve</code>
           </a>
-        </td>
-        <td>
-          Model Serving
         </td>
       </tr>
       <tr>
@@ -134,12 +139,12 @@ for every Kubeflow component.
           </a>
         </td>
         <td>
+          ML Workflows and Schedules
+        </td>
+        <td>
           <a href="https://github.com/kubeflow/pipelines">
             <code>kubeflow/pipelines</code>
           </a>
-        </td>
-        <td>
-          ML Workflows and Schedulers
         </td>
       </tr>
     </tbody>
@@ -355,7 +360,6 @@ Nevertheless, we welcome contributions and bug reports very much.
 
 ## Next steps
 
-- Check [the Kubeflow introduction page](/docs/started/introduction/).
-- Explore the [Kubeflow architecture](/docs/started/architecture) and how Kubeflow components fit
-  into the ML lifecycle.
-- Review [the Kubeflow components documentation](/docs/components/).
+- Review our [Introduction to Kubeflow](/docs/started/introduction/).
+- Explore the [Architecture of Kubeflow](/docs/started/architecture).
+- Learn more about the [Components of Kubeflow](/docs/components/).
