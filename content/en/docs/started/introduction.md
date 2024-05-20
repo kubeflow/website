@@ -27,7 +27,8 @@ wish to leverage specific ML functionalities.
 The Kubeflow Platform refers to the full suite of Kubeflow components bundled together with
 additional integration and management tools. Installing Kubeflow as a platform means deploying a
 comprehensive ML toolkit that integrates these components into a cohesive system, optimized for
-managing the end-to-end ML lifecycle. These includes not only the standalone components but also:
+managing the end-to-end ML lifecycle. This includes the standalone components coupled with these
+integrations and management tools:
 
 - Central Dashboard for easy navigation and management.
 - Multi-user capabilities and access management.

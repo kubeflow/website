@@ -5,11 +5,11 @@ weight = 20
 
 +++
 
-This page describes how to install Kubeflow standalone components or Kubeflow Platform using package
+This guide describes how to install Kubeflow standalone components or Kubeflow Platform using package
 distributions or raw manifests.
 
-Read [the introduction guide](/docs/started/introduction) to
-understand what are Kubeflow standalone components and what is Kubeflow Platform.
+Read [the introduction guide](/docs/started/introduction) to understand what are Kubeflow
+standalone components and what is Kubeflow Platform.
 
 ## Installing Kubeflow
 
@@ -25,8 +25,8 @@ Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptu
 deployed as standalone services, without the need to install the full platform. You might integrate
 these services as part of your existing AI/ML platform or use them independently.
 
-This is the easiest method to get started with Kubeflow ecosystem since those components usually
-don't require additional management tools used in Kubeflow Platform.
+This is a easier method to get started with Kubeflow ecosystem since those components usually
+don't require additional management tools used in a Kubeflow Platform.
 
 The following table lists Kubeflow components that may be deployed in a standalone mode. It also
 lists their associated GitHub repository and
@@ -157,7 +157,7 @@ WG is working on that as part of [this issue](https://github.com/kubeflow/kubefl
 ### Install Kubeflow Platform from Packaged Distributions
 
 Packaged distributions are maintained by various organizations and typically aim to provide
-a simplified installation and management experience for **Kubeflow Platform**. Some distributions
+a simplified installation and management experience for your **Kubeflow Platform**. Some distributions
 can be deployed on [all certified Kubernetes distributions](https://kubernetes.io/partners/#conformance),
 while others target a specific platform (e.g. EKS or GKE).
 
@@ -360,6 +360,6 @@ Nevertheless, we welcome contributions and bug reports very much.
 
 ## Next steps
 
-- Review our [Introduction to Kubeflow](/docs/started/introduction/).
-- Explore the [Architecture of Kubeflow](/docs/started/architecture).
-- Learn more about the [Components of Kubeflow](/docs/components/).
+- Review our [introduction to Kubeflow](/docs/started/introduction/).
+- Explore the [architecture of Kubeflow](/docs/started/architecture).
+- Learn more about the [components of Kubeflow](/docs/components/).
