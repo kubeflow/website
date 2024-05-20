@@ -10,7 +10,7 @@ weight = 10
 
 ## What is Model Registry?
 
-A model registry is an important component in the life cycle of AI/ML models, an integral component for any MLOps platform and for ML workflows.
+A model registry is an important component in the lifecycle of AI/ML models, an integral component for any MLOps platform and for ML workflows.
 
 A model registry provides a central index for ML model developers to index and manage models, versions, and ML artifacts metadata.
 It fills a gap between model experimentation and production activities.
