@@ -20,6 +20,7 @@ To follow along the examples in this guide, you will need a Kubeflow installatio
 
 - Kubeflow [installed](docs/started/installing-kubeflow/)
 - Model Registry [installed](/docs/components/model-registry/installation/)
+- Python >= 3.9, < 3.11
 
 ## Example: track Model Artifacts from a Notebook
 
