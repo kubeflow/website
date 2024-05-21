@@ -66,7 +66,7 @@ rm = registry.register_model(registeredmodel_name,
                                 )
 ```
 
-You can reference the pydoc documentation for additional information on indexing metadata on Model Registry, using the Model Registry Python client.
+For more information on indexing metadata in the Model Registry, refer to the pydoc documentation of the Model Registry Python client.
 
 ### Retrieve a given Model Artifact metadata
 
