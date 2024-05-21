@@ -33,7 +33,7 @@ From the Kubeflow Pipelines UI you can perform the following tasks:
 * Compare the results of one or more runs within an experiment.
 * Schedule runs by creating a recurring run.
 
-See the [quickstart guide](/docs/components/pipelines/overview/quickstart/) for more
+See the [quickstart guide](/docs/components/pipelines/legacy-v1/overview/quickstart/) for more
 information about accessing the Kubeflow Pipelines UI and running the samples.
 
 When building a pipeline component, you can write out information for display
@@ -47,7 +47,7 @@ The Kubeflow Pipelines SDK provides a set of Python packages that you can use to
 specify and run your ML workflows.
 
 See the [introduction to the Kubeflow Pipelines 
-SDK](/docs/components/pipelines/sdk/sdk-overview/) for an overview of the ways you can
+SDK](/docs/components/pipelines/legacy-v1/sdk/sdk-overview/) for an overview of the ways you can
 use the SDK to build pipeline components and pipelines.
 
 ## REST API

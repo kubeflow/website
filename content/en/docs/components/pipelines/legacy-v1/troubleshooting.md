@@ -11,7 +11,7 @@ may encounter.
 ## Diagnosing problems in your Kubeflow Pipelines environment
 
 For help diagnosing environment issues that affect Kubeflow Pipelines, run
-the [`kfp diagnose_me` command-line tool](/docs/components/pipelines/sdk/sdk-overview/#kfp-cli-tool).
+the [`kfp diagnose_me` command-line tool](/docs/components/pipelines/legacy-v1/sdk/sdk-overview/#kfp-cli-tool).
 
 The `kfp diagnose_me` CLI reports on the configuration of your local
 development environment, Kubernetes cluster, or Google Cloud environment.

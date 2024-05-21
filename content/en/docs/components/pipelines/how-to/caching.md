@@ -1,7 +1,7 @@
 +++
 title = "Use Caching"
 description = "How to use caching in Kubeflow Pipelines."
-weight = 12
+weight = 13
 +++
 
 Kubeflow Pipelines support caching to eliminate redundant executions and improve

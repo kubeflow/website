@@ -109,4 +109,4 @@ Since `add`'s `target_image` uses [Google Cloud Artifact Registry][artifact-regi
 [artifact-registry]: https://cloud.google.com/artifact-registry/docs/docker/authentication
 [vertex-pipelines]: https://cloud.google.com/vertex-ai/docs/pipelines/introduction
 [iam]: https://cloud.google.com/iam
-[packages-to-install]: https://www.kubeflow.org/docs/components/pipelines/how-to/create-components/lightweight-python-components//#packages_to_install
+[packages-to-install]: /docs/components/pipelines/how-to/create-components/lightweight-python-components#packages_to_install

@@ -16,7 +16,7 @@ components.
 
 Set up your environment: 
 
-- [Install Kubeflow](/docs/started/getting-started/)
+- [Install Kubeflow](/docs/started/)
 - [Install the Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/)
 
 

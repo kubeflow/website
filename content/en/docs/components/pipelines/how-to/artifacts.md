@@ -1,6 +1,6 @@
 +++
 title = "Create, use, pass, and track ML artifacts"
-weight = 10
+weight = 11
 +++
 
 {{% kfp-v2-keywords %}}
@@ -195,7 +195,7 @@ def augment_and_train(dataset: Dataset) -> Model:
 
 The [KFP SDK compiler][compiler] will type check artifact usage according to the rules described in [Type Checking][type-checking].
 
-Please see [Pipeline Basics](pipelines) for comprehensive documentation on how to author a pipeline.
+Please see [Pipeline Basics][pipelines] for comprehensive documentation on how to author a pipeline.
 
 
 ### Lists of artifacts
@@ -241,13 +241,13 @@ On the [KFP open source][oss-be] UI, `ClassificationMetrics`, `SlicedClassificat
 [dsl-html]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.HTML
 [dsl-markdown]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Markdown
 [type-checking]: /docs/components/pipelines/how-to/compile-a-pipeline#type-checking
-[oss-be]: /docs/components/pipelines/v2/installation/
-[pipelines]: /docs/components/pipelines/v2/pipelines/pipelines-basics/
+[oss-be]: /docs/components/pipelines/overview/installation/
+[pipelines]: /docs/components/pipelines/how-to/create-components/compose-components-into-pipelines/
 [container-components]: /docs/components/pipelines/how-to/create-components/lightweight-python-components//
 [python-components]: /docs/components/pipelines/how-to/create-components/container-components
 [dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ParallelFor
 [dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Collected
-[parallel-looping]: https://www.kubeflow.org/docs/components/pipelines/how-to/control-flow/#parallel-looping-dslparallelfor
+[parallel-looping]: /docs/components/pipelines/how-to/control-flow/#parallel-looping-dslparallelfor
 [traditional-artifact-syntax]: /docs/components/pipelines/how-to/artifacts/#traditional-artifact-syntax
 [multiple-outputs]: /docs/components/pipelines/how-to/parameters/#multiple-output-parameters
 [pythonic-artifact-syntax]: /docs/components/pipelines/how-to/artifacts/#new-pythonic-artifact-syntax

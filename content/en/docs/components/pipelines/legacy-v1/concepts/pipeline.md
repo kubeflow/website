@@ -6,7 +6,7 @@ weight = 10
 +++
 
 A *pipeline* is a description of a machine learning (ML) workflow, including all
-of the [components](/docs/components/pipelines/concepts/component/) in the workflow and how the components relate to each other in
+of the [components](/docs/components/pipelines/legacy-v1/concepts/component/) in the workflow and how the components relate to each other in
 the form of a [graph](/docs/components/pipelines/concepts/graph/). The pipeline
 configuration includes the definition of the inputs (parameters) required to run
 the pipeline and the inputs and outputs of each component.
@@ -19,6 +19,6 @@ After developing your pipeline, you can upload your pipeline using the Kubeflow 
 
 ## Next steps
 * Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/introduction/).
-* Follow the [pipelines quickstart guide](/docs/components/pipelines/overview/quickstart/) 
+* Follow the [pipelines quickstart guide](/docs/components/pipelines/legacy-v1/overview/quickstart/) 
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.

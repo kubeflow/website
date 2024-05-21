@@ -1,6 +1,6 @@
 +++
 title = "Author Tasks with Platform-Specific Functionality"
-weight = 15
+weight = 16
 +++
 
 
@@ -106,7 +106,7 @@ For the full pipeline and more information, see a [similar example][full-example
 
 
 [ir-yaml]: /docs/components/pipelines/how-to/compile-a-pipeline#ir-yaml
-[oss-be]: /docs/components/pipelines/v2/installation/
+[oss-be]: /docs/components/pipelines/overview/installation/
 [kfp-kubernetes-pypi]: https://pypi.org/project/kfp-kubernetes/
 [task-level-config-methods]: /docs/components/pipelines/how-to/create-components/compose-components-into-pipelines/#task-configurations
 [kfp-kubernetes-docs]: https://kfp-kubernetes.readthedocs.io/
@@ -114,5 +114,5 @@ For the full pipeline and more information, see a [similar example][full-example
 [storage-class]: https://kubernetes.io/docs/concepts/storage/storage-classes/
 [access-mode]: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes
 [full-example]: https://kfp-kubernetes.readthedocs.io/en/kfp-kubernetes-0.0.1/#persistentvolumeclaim-dynamically-create-pvc-mount-then-delete
-[authoring-components]: http://localhost:1313/docs/components/pipelines/v2/components/
-[authoring-pipelines]: http://localhost:1313/docs/components/pipelines/v2/pipelines/
+[authoring-components]: http://localhost:1313/docs/components/pipelines/how-to/create-components/
+[authoring-pipelines]: http://localhost:1313/docs/components/pipelines/how-to/

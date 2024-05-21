@@ -33,5 +33,5 @@ For more detailed information on feature support, please refer to the version-sp
 * [Kubeflow Pipelines v1][kfp-v1-doc]
 * [Kubeflow Pipelines v2][kfp-v2-doc]
 
-[kfp-v1-doc]: /docs/components/pipelines/v1
-[kfp-v2-doc]: /docs/components/pipelines/v2
+[kfp-v1-doc]: /docs/components/pipelines/legacy-v1
+[kfp-v2-doc]: /docs/components/pipelines/

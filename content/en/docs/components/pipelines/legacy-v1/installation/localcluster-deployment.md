@@ -16,7 +16,7 @@ Such deployment methods can be part of your local environment using the supplied
 kustomize manifests for test purposes. This guide is an alternative to
 
 [Deploying Kubeflow Pipelines
-(KFP)](/docs/started/getting-started/#installing-kubeflow).
+(KFP)](/docs/started/#installing-kubeflow).
 
 ## Before you get started
 

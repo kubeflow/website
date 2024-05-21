@@ -7,7 +7,7 @@ weight = 80
 
 
 This page shows you how to use the Kubeflow Pipelines UI to visualize output 
-from a Kubeflow Pipelines [component](/docs/components/pipelines/concepts/component/). 
+from a Kubeflow Pipelines [component](/docs/components/pipelines/legacy-v1/concepts/component/). 
 
 ## Introduction
 
@@ -730,7 +730,7 @@ pre-installed when you deploy Kubeflow.
 You can run the sample by selecting 
 **[Sample] ML - TFX - Taxi Tip Prediction Model Trainer** from the 
 Kubeflow Pipelines UI. For help getting started with the UI, follow the 
-[Kubeflow Pipelines quickstart](/docs/components/pipelines/overview/quickstart/).
+[Kubeflow Pipelines quickstart](/docs/components/pipelines/legacy-v1/overview/quickstart/).
 
 <!--- TODO: Will replace the tfx cab with tfx oss when it is ready.-->
 The pipeline uses a number of prebuilt, reusable components, including:

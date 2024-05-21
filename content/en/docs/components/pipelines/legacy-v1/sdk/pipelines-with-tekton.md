@@ -11,7 +11,7 @@ to compile, upload and run your Kubeflow Pipeline DSL Python scripts on a
 
 ## SDK packages
 
-The `kfp-tekton` SDK is an extension to the [Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/sdk-overview/)
+The `kfp-tekton` SDK is an extension to the [Kubeflow Pipelines SDK](/docs/components/pipelines/legacy-v1/sdk/sdk-overview/)
 adding the `TektonCompiler` and the `TektonClient`:
 
 * `kfp_tekton.compiler` includes classes and methods for compiling pipeline 

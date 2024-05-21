@@ -58,7 +58,7 @@ deserialize the data for use in the downstream component.
 ## Next steps
 
 * Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/introduction/).
-* Follow the [pipelines quickstart guide](/docs/components/pipelines/overview/quickstart/) 
+* Follow the [pipelines quickstart guide](/docs/components/pipelines/legacy-v1/overview/quickstart/) 
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.
 * Build your own 

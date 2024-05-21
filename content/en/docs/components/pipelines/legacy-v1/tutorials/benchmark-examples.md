@@ -51,7 +51,7 @@ To run the provided benchmark scripts, you need the following:
    run, job, and experiment services from your Jupyter notebook environment.
 *  A Kubeflow Pipelines cluster. If you do not have a Kubeflow Pipelines
    cluster, learn more about your [options for installing Kubeflow
-   Pipelines](/docs/components/pipelines/installation/overview/).
+   Pipelines](/docs/components/pipelines/legacy-v1/overview/).
 *  A pipeline manifest. For example, this guide uses the
    [taxi_updated_pool.yaml](https://storage.googleapis.com/ml-pipeline/sample-benchmark/taxi_updated_pool.yaml)
    pipeline manifest file.

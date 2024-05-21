@@ -129,7 +129,7 @@ Note that setting `install_kfp_package` to `False` is rarely necessary and is di
 [hello-world-pipeline]: /docs/components/pipelines/overview/getting-started
 [containerized-python-components]: /docs/components/pipelines/how-to/create-components/containerized-python-components
 [dsl-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.component
-[data-types]: /docs/components/pipelines/v2/data-types
+[data-types]: /docs/components/pipelines/how-to/data-types
 [parameters]: /docs/components/pipelines/how-to/parameters
 [artifacts]: /docs/components/pipelines/how-to/artifacts
 [requirements-txt]: https://pip.pypa.io/en/stable/reference/requirements-file-format/

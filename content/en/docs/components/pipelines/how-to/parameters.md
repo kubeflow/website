@@ -1,6 +1,6 @@
 +++
 title = "Pass small amounts of data between components"
-weight = 9
+weight = 10
 +++
 
 {{% kfp-v2-keywords %}}

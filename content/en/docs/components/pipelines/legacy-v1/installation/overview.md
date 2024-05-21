@@ -101,7 +101,7 @@ Use this option to deploy Kubeflow Pipelines to your local machine, on-premises,
 or to a cloud, as part of a full Kubeflow installation.
 
 Installation guide
-: [Kubeflow installation guide](/docs/started/getting-started/)
+: [Kubeflow installation guide](/docs/started/)
 
 Interfaces
 :

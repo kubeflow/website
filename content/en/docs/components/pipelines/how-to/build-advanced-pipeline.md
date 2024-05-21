@@ -1,6 +1,6 @@
 +++
 title = "Build a More Advanced ML Pipeline"
-weight = 11
+weight = 12
 +++
 
 {{% kfp-v2-keywords %}}

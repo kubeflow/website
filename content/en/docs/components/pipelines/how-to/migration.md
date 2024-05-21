@@ -1,7 +1,7 @@
 +++
 title = "Migrate from KFP SDK v1"
 description = "v1 to v2 migration instructions and breaking changes"
-weight = 14
+weight = 15
 +++
 
 {{% kfp-v2-keywords %}}
@@ -580,7 +580,7 @@ If you believe we missed a breaking change or an important migration step, pleas
 [compile]: /docs/components/pipelines/how-to/compile-a-pipeline
 [compiler-compile]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/compiler.html#kfp.compiler.Compiler.compile
 [components-load-component-from-file]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.load_component_from_file
-[container-components]: https://www.kubeflow.org/docs/components/pipelines/how-to/create-components/containerized-python-components/
+[container-components]: /docs/components/pipelines/how-to/create-components/containerized-python-components/
 [containerized-python-components]: /docs/components/pipelines/how-to/create-components/containerized-python-components/
 [create-custom-training-job-from-component]: https://cloud.google.com/vertex-ai/docs/pipelines/customjob-component
 [dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.Collected
@@ -593,7 +593,7 @@ If you believe we missed a breaking change or an important migration step, pleas
 [load]: /docs/components/pipelines/how-to/load-and-share-components/
 [new-issue]: https://github.com/kubeflow/pipelines/issues/new
 [oss-be-v1]: /docs/components/pipelines/legacy-v1/
-[oss-be-v2]: /docs/components/pipelines/v2/installation/
+[oss-be-v2]: /docs/components/pipelines/overview/installation/
 [parallelfor-control-flow]: /docs/components/pipelines/how-to/control-flow/#parallel-looping-dslparallelfor
 [parameters]: /docs/components/pipelines/how-to/parameters
 [pipelines-repo]: https://github.com/kubeflow/pipelines
@@ -604,4 +604,4 @@ If you believe we missed a breaking change or an important migration step, pleas
 [vertex-sdk]: https://cloud.google.com/vertex-ai/docs/pipelines/run-pipeline#vertex-ai-sdk-for-python
 [argo]: https://argoproj.github.io/argo-workflows/
 [dsl-pipelinetask-set-env-variable]: https://kubeflow-pipelines.readthedocs.io/en/2.0.0b13/source/dsl.html#kfp.dsl.PipelineTask.set_env_variable
-[task-configuration-methods]: https://www.kubeflow.org/docs/components/pipelines/how-to/create-components/compose-components-into-pipelines/#task-configurations
+[task-configuration-methods]: /docs/components/pipelines/how-to/create-components/compose-components-into-pipelines/#task-configurations

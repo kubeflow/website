@@ -38,6 +38,7 @@
 /docs/components/pipelines/v2/components/additional-functionality/           /docs/components/pipelines/how-to/create-components/additional-functionality/
 /docs/components/pipelines/v2/load-and-share-components/                     /docs/components/pipelines/how-to/load-and-share-components/
 /docs/components/pipelines/v2/pipelines/control-flow/                        /docs/components/pipelines/how-to/control-flow/
+/docs/components/pipelines/v2/data-types/                                    /docs/components/pipelines/how-to/data-types/
 /docs/components/pipelines/v2/data-types/parameters/                         /docs/components/pipelines/how-to/parameters/
 /docs/components/pipelines/v2/data-types/artifacts/                          /docs/components/pipelines/how-to/artifacts/
 /docs/components/pipelines/v2/caching/                                       /docs/components/pipelines/how-to/caching/
@@ -47,6 +48,7 @@
 /docs/components/pipelines/v2/community-and-support/                         /docs/components/pipelines/reference/community-and-support/
 /docs/components/pipelines/v2/version-compatibility/                         /docs/components/pipelines/reference/version-compatibility/
 /docs/components/pipelines/v2/reference/api/kubeflow-pipeline-api-spec/      /docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/
+/docs/components/pipelines/overview/quickstart/                              /docs/components/pipelines/overview/
 
 # Restructured the pipelines docs.
 /docs/pipelines/                                    /docs/components/pipelines
