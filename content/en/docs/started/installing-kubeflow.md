@@ -11,21 +11,21 @@ distributions or raw manifests.
 Read [the introduction guide](/docs/started/introduction) to understand what are Kubeflow
 standalone components and what is Kubeflow Platform.
 
-## Installing Kubeflow
-
 You can install Kubeflow using one of these methods:
 
 - [**Install Kubeflow Components Standalone**](#install-kubeflow-components-standalone)
-- [**Install Kubeflow Platform from Packaged Distributions**](#install-kubeflow-platform-from-packaged-distributions)
-- [**Install Kubeflow Platform from Raw Manifests**](#install-kubeflow-platform-from-raw-manifests) <sup>(advanced users)</sup>
 
-### Install Kubeflow Components Standalone
+- Install Kubeflow Platform
+  - [**From Packaged Distributions**](#from-packaged-distributions)
+  - [**From Raw Manifests**](#from-raw-manifests) <sup>(advanced users)</sup>
+
+## Install Kubeflow Components Standalone
 
 Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptual-overview) may be
 deployed as standalone services, without the need to install the full platform. You might integrate
 these services as part of your existing AI/ML platform or use them independently.
 
-This is a easier method to get started with Kubeflow ecosystem since those components usually
+This is a quick and easier method to get started with Kubeflow ecosystem since those components usually
 don't require additional management tools used in a Kubeflow Platform.
 
 The following table lists Kubeflow components that may be deployed in a standalone mode. It also
@@ -154,7 +154,12 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
 **Note**. Currently, Kubeflow Notebooks can't be deployed as a standalone application, but Notebooks
 WG is working on that as part of [this issue](https://github.com/kubeflow/kubeflow/issues/7549).
 
-### Install Kubeflow Platform from Packaged Distributions
+## Install Kubeflow Platform
+
+You can use one of the following methods to install Kubeflow Platform to get full suite of Kubeflow
+components bundled together with additional integration and management tools.
+
+### From Packaged Distributions
 
 Packaged distributions are maintained by various organizations and typically aim to provide
 a simplified installation and management experience for your **Kubeflow Platform**. Some distributions
@@ -330,10 +335,10 @@ The following table lists distributions which are <em>maintained</em> by their r
   </table>
 </div>
 
-### Install Kubeflow Platform from Raw Manifests
+### From Raw Manifests
 
-The raw Kubeflow Manifests are aggregated by the
-Manifests Working Group and are intended to be used as the **base of packaged distributions**.
+The raw Kubeflow Manifests are aggregated by the Manifests Working Group and are intended to be
+used as the **base of packaged distributions**.
 
 Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
 applications which makes **Kubeflow Platform**. This installation is helpful when you want to try
