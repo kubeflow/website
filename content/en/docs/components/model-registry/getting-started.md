@@ -18,7 +18,7 @@ The logical model is exposed via the Model Registry [REST API](https://editor.sw
 
 To follow along the examples in this guide, you will need a Kubeflow installation and the Model Registry installed:
 
-- Kubeflow [installed](docs/started/installing-kubeflow/)
+- Kubeflow [installed](/docs/started/installing-kubeflow/)
 - Model Registry [installed](/docs/components/model-registry/installation/)
 - Python >= 3.9, < 3.11
 
