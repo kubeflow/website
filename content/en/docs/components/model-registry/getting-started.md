@@ -87,6 +87,9 @@ print(registry.get_model_artifact(registeredmodel_name, version_name))
 
 This section details a step by step example on using Model Registry to retrieve indexed ML artifacts metadata, and using that metadata to create an inference endpoint deployment.
 
+Without Model Registry, you would need to fill this information manually and potentially from several sources, resulting in a not-trivial, manual process.
+Using Model Registry ensures simplified access to accurate metadata, and enables you to automate deployment based on the Model Registry values, as also shown in the example below.
+
 Note: the provided example uses the Model Registry Python client and KServe Python SDK. You can analogously make use of the Model Registry REST APIs, and your own Add-on SDK as needed.
 
 ### Retrieve a given Model Artifact metadata
