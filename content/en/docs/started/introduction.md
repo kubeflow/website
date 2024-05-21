@@ -4,42 +4,40 @@ description = "An introduction to Kubeflow"
 weight = 1
 +++
 
-## What is Kubeflow ?
+## What is Kubeflow
 
 Kubeflow is a community and ecosystem of open-source projects to address each stage in the
 machine learning (ML) lifecycle. It makes ML on Kubernetes simple, portable, and scalable.
 The goal of Kubeflow is to facilitate the orchestration of Kubernetes ML workloads and to empower
-users to deploy best-in-class open-source systems to any Cloud infrastructure.
+users to deploy best-in-class open-source tools on any Cloud infrastructure.
 Whether you’re a researcher, data scientist, ML engineer, or a team of developers, Kubeflow offers
 modular and scalable tools that cater to all aspects of the ML lifecycle: from building ML models to
 deploying them to production for AI applications.
 
-## What are Kubeflow Standalone Components?
+## What are Kubeflow Standalone Components
 
-Kubeflow is composed of multiple, independent open-source projects which address different aspects
-of a ML lifecycle. These standalone components are designed to be usable both within the Kubeflow
-Platform and independently. These components can be installed independently on a Kubernetes cluster,
-providing flexibility to users who may not require the full capabilities of Kubeflow Platform but
+Kubeflow is composed of multiple open-source projects which address different aspects
+of the ML lifecycle. These standalone components are designed to be usable both within the Kubeflow
+Platform and independently. These components can be installed standalone on a Kubernetes cluster,
+providing flexibility to users who may not require the full Kubeflow Platform capabilities but
 wish to leverage specific ML functionalities.
 
-## What is Kubeflow Platform ?
+## What is Kubeflow Platform
 
 The Kubeflow Platform refers to the full suite of Kubeflow components bundled together with
-additional integration and management tools. Installing Kubeflow as a platform means deploying a
-comprehensive ML toolkit that integrates these components into a cohesive system, optimized for
-managing the end-to-end ML lifecycle. This includes the standalone components coupled with these
-integrations and management tools:
+additional integration and management tools. Using Kubeflow as a platform means deploying a
+comprehensive ML toolkit fot the entire ML lifecycle. This includes the standalone components
+coupled with these integrations and management tools:
 
-- Central Dashboard for easy navigation and management.
-- Multi-user capabilities and access management.
-- Additional tooling and services for data management, visualization, and more.
+- [**Central Dashboard**](/docs/components/central-dash/overview/) for easy navigation and management.
 
-This integrated environment ensures that all the different pieces work together seamlessly,
-providing a more robust and streamlined user experience.
+- Multi-user capabilities and access management with [Kubeflow Profiles](/docs/components/central-dash/profiles/).
 
-Kubeflow Platform can be installed via
-[Packaged Distributions](/docs/started/installing-kubeflow/#install-kubeflow-platform-from-packaged-distributions) or
-[Raw Manifests](/docs/started/installing-kubeflow/#install-kubeflow-platform-from-raw-manifests).
+- Additional tooling for data management (PVC Viewer), visualization (TensorBoards), and more.
+
+The Kubeflow Platform can be installed via
+[Packaged Distributions](/docs/started/installing-kubeflow/#packaged-distributions) or
+[Raw Manifests](/docs/started/installing-kubeflow/#raw-manifests).
 
 ## Getting started with Kubeflow
 

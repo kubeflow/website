@@ -8,16 +8,15 @@ weight = 20
 This guide describes how to install Kubeflow standalone components or Kubeflow Platform using package
 distributions or raw manifests.
 
-Read [the introduction guide](/docs/started/introduction) to understand what are Kubeflow
-standalone components and what is Kubeflow Platform.
+Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, Kubeflow
+standalone components and Kubeflow Platform.
+
+## Installing Kubeflow
 
 You can install Kubeflow using one of these methods:
 
 - [**Install Kubeflow Components Standalone**](#install-kubeflow-components-standalone)
-
-- Install Kubeflow Platform
-  - [**From Packaged Distributions**](#from-packaged-distributions)
-  - [**From Raw Manifests**](#from-raw-manifests) <sup>(advanced users)</sup>
+- [**Install Kubeflow Platform**](#install-kubeflow-platform)
 
 ## Install Kubeflow Components Standalone
 
@@ -159,7 +158,7 @@ WG is working on that as part of [this issue](https://github.com/kubeflow/kubefl
 You can use one of the following methods to install Kubeflow Platform to get full suite of Kubeflow
 components bundled together with additional integration and management tools.
 
-### From Packaged Distributions
+### Packaged Distributions
 
 Packaged distributions are maintained by various organizations and typically aim to provide
 a simplified installation and management experience for your **Kubeflow Platform**. Some distributions
@@ -335,7 +334,7 @@ The following table lists distributions which are <em>maintained</em> by their r
   </table>
 </div>
 
-### From Raw Manifests
+### Raw Manifests
 
 The raw Kubeflow Manifests are aggregated by the Manifests Working Group and are intended to be
 used as the **base of packaged distributions**.
