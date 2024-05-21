@@ -48,7 +48,7 @@ You now have a Model Registry client instance: `registry`.
 
 ### Register a Model Artifact metadata
 
-You can use the `register_model` method to index a model artifacts and its metadata, for instance:
+You can use the `register_model` method to index a model's artifacts and its metadata, for instance:
 
 ```python
 registeredmodel_name = "mnist"
