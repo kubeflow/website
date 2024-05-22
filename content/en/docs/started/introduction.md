@@ -15,10 +15,10 @@ Whether you’re a researcher, data scientist, ML engineer, or a team of develop
 modular and scalable tools that cater to all aspects of the ML lifecycle: from building ML models to
 deploying them to production for AI applications.
 
-## What are Kubeflow Standalone Components
+## What are Standalone Kubeflow Components
 
-Kubeflow ecosystem is composed of multiple open-source projects that address different aspects of
-the ML lifecycle. Many of these projects are designed to be usable both within the
+The Kubeflow ecosystem is composed of multiple open-source projects that address different aspects
+of the ML lifecycle. Many of these projects are designed to be usable both within the
 Kubeflow Platform and independently.
 
 These Kubeflow components can be installed standalone on a Kubernetes cluster. It provides
@@ -29,8 +29,9 @@ leverage specific ML functionalities such as model training or model serving.
 
 The Kubeflow Platform refers to the full suite of Kubeflow components bundled together with
 additional integration and management tools. Using Kubeflow as a platform means deploying a
-comprehensive ML toolkit fot the entire ML lifecycle. This includes the standalone components
-coupled with these integrations and management tools:
+comprehensive ML toolkit for the entire ML lifecycle.
+
+In addition to the standalone Kubeflow components, the Kubeflow Platform includes
 
 - [Kubeflow Notebooks](/docs/components/notebooks/overview) for interactive data exploration and
   model development.

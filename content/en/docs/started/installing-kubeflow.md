@@ -11,14 +11,14 @@ distributions or raw manifests.
 Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, Kubeflow
 standalone components and Kubeflow Platform.
 
-## Installing Methods
+## Installation Methods
 
 You can install Kubeflow using one of these methods:
 
-- [**Kubeflow Components Standalone**](#kubeflow-components-standalone)
+- [**Standalone Kubeflow Components**](#standalone-kubeflow-components)
 - [**Kubeflow Platform**](#kubeflow-platform)
 
-### Kubeflow Components Standalone
+### Standalone Kubeflow Components
 
 Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptual-overview) may be
 deployed as standalone services, without the need to install the full platform. You might integrate
