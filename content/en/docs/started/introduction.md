@@ -29,10 +29,10 @@ additional integration and management tools. Using Kubeflow as a platform means 
 comprehensive ML toolkit fot the entire ML lifecycle. This includes the standalone components
 coupled with these integrations and management tools:
 
-- [**Central Dashboard**](/docs/components/central-dash/overview/) for easy navigation and management.
-
-- Multi-user capabilities and access management with [Kubeflow Profiles](/docs/components/central-dash/profiles/).
-
+- [Kubeflow Notebooks](/docs/components/notebooks/overview) for interactive data exploration and
+  model development.
+- [Central Dashboard](/docs/components/central-dash/overview/) for easy navigation and management
+  with [Kubeflow Profiles](/docs/components/central-dash/profiles/) for access control.
 - Additional tooling for data management (PVC Viewer), visualization (TensorBoards), and more.
 
 The Kubeflow Platform can be installed via

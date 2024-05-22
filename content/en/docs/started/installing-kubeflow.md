@@ -150,9 +150,6 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
   </table>
 </div>
 
-**Note**. Currently, Kubeflow Notebooks can't be deployed as a standalone application, but Notebooks
-WG is working on that as part of [this issue](https://github.com/kubeflow/kubeflow/issues/7549).
-
 ## Install Kubeflow Platform
 
 You can use one of the following methods to install Kubeflow Platform to get full suite of Kubeflow
