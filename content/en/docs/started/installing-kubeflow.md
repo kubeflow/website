@@ -11,14 +11,14 @@ distributions or raw manifests.
 Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, Kubeflow
 standalone components and Kubeflow Platform.
 
-## Installing Kubeflow
+## Installing Methods
 
 You can install Kubeflow using one of these methods:
 
-- [**Install Kubeflow Components Standalone**](#install-kubeflow-components-standalone)
-- [**Install Kubeflow Platform**](#install-kubeflow-platform)
+- [**Kubeflow Components Standalone**](#kubeflow-components-standalone)
+- [**Kubeflow Platform**](#kubeflow-platform)
 
-## Install Kubeflow Components Standalone
+### Kubeflow Components Standalone
 
 Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptual-overview) may be
 deployed as standalone services, without the need to install the full platform. You might integrate
@@ -150,12 +150,12 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
   </table>
 </div>
 
-## Install Kubeflow Platform
+### Kubeflow Platform
 
 You can use one of the following methods to install Kubeflow Platform to get full suite of Kubeflow
 components bundled together with additional integration and management tools.
 
-### Packaged Distributions
+#### Packaged Distributions
 
 Packaged distributions are maintained by various organizations and typically aim to provide
 a simplified installation and management experience for your **Kubeflow Platform**. Some distributions
@@ -331,7 +331,7 @@ The following table lists distributions which are <em>maintained</em> by their r
   </table>
 </div>
 
-### Raw Manifests
+#### Raw Manifests
 
 The raw Kubeflow Manifests are aggregated by the Manifests Working Group and are intended to be
 used as the **base of packaged distributions**.
