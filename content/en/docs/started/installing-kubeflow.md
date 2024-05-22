@@ -5,11 +5,11 @@ weight = 20
 
 +++
 
-This guide describes how to install Kubeflow standalone components or Kubeflow Platform using package
+This guide describes how to install standalone Kubeflow components or Kubeflow Platform using package
 distributions or raw manifests.
 
-Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, Kubeflow
-standalone components and Kubeflow Platform.
+Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, standalone
+Kubeflow components and Kubeflow Platform.
 
 ## Installation Methods
 
@@ -21,8 +21,8 @@ You can install Kubeflow using one of these methods:
 ### Standalone Kubeflow Components
 
 Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptual-overview) may be
-deployed as standalone services, without the need to install the full platform. You might integrate
-these services as part of your existing AI/ML platform or use them independently.
+deployed as standalone services, without the need to install the full Kubeflow platform. You might
+integrate these services as part of your existing AI/ML platform or use them independently.
 
 This is a quick and easier method to get started with Kubeflow ecosystem since those components usually
 don't require additional management tools used in a Kubeflow Platform.
@@ -152,8 +152,8 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
 
 ### Kubeflow Platform
 
-You can use one of the following methods to install Kubeflow Platform to get full suite of Kubeflow
-components bundled together with additional integration and management tools.
+You can use one of the following methods to install [Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform)
+to get full suite of standalone Kubeflow components bundled together with additional tools.
 
 #### Packaged Distributions
 

@@ -96,9 +96,9 @@ To see what's coming up in future versions of Kubeflow, refer to the [Kubeflow r
 The following components also have roadmaps:
 
 - [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
-- [KF Serving](https://github.com/kubeflow/kfserving/blob/master/ROADMAP.md)
+- [KServe](https://github.com/kserve/kserve/blob/master/ROADMAP.md)
 - [Katib](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
-- [Training Operator](https://github.com/kubeflow/common/blob/master/ROADMAP.md)
+- [Training Operator](https://github.com/kubeflow/training-operator/blob/master/docs/roadmap.md)
 
 ## Getting involved
 
@@ -108,5 +108,5 @@ Read the [contributor's guide](/docs/about/contributing/) to get started on the 
 
 ## Next Steps
 
-- Follow [the installation guide](/docs/started/installing-kubeflow) to deploy Kubeflow standalone
-  components or Kubeflow Platform.
+- Follow [the installation guide](/docs/started/installing-kubeflow) to deploy standalone
+  Kubeflow components or Kubeflow Platform.
