@@ -49,11 +49,12 @@ Looking at the stages in more detail:
 
 - In the _Model Optimization_ step you can optimize your model hyperparameters and optimize your
   model with various AutoML algorithms such as neural architecture search and model compression.
+  During model optimization you can store ML metadata in the _Model Registry_.
 
 - In the _Model Training_ step you train or fine-tune your model on the large-scale
   compute environment. You should use distributed training if single GPU can't handle your
   model size. The results of the model training is the trained model artifact that you
-  can store in the _Model Storage_.
+  can store in the _Model Registry_.
 
 - In the _Model Serving_ step you serve your model artifact for online or batch inference. Your
   model can perform predictive or generative AI tasks depends on the use-case. During model serving
