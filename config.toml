@@ -28,10 +28,10 @@ ignoreFiles = []
 ###############################################################################
 [menu]
   [[menu.main]]
-    name = "Cloud Native + Kubernetes AI Day / KubeCon"
+    name = "Cloud Native + Kubernetes AI Day"
     weight = -1000
     pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
-    post = "<br><span class='badge badge-warning'>19 March, 2024</span> <span class='badge badge-warning'>Salt Lake City, Utah</span> "
+    post = "<br><span class='badge badge-warning'>Nov 12th, 2024</span> <span class='badge badge-warning'>Salt Lake City, Utah</span> "
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/cloud-native-kubernetes-ai-day/"
   [[menu.main]]
     name = "Events"
