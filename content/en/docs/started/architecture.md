@@ -4,24 +4,14 @@ description = "An overview of Kubeflow's architecture"
 weight = 10
 +++
 
-<!--
-Note for authors: The source of the diagrams is held in Google Slides decks,
-in the "Doc diagrams" folder in the public Kubeflow shared drive.
--->
+This guide introduces Kubeflow ecosystem and explains how Kubeflow components fit in ML lifecycle.
 
-This guide introduces Kubeflow as a platform for developing and deploying a
-machine learning (ML) system.
+Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, standalone
+Kubeflow components and Kubeflow Platform.
 
-Kubeflow is a platform for data scientists who want to build and experiment with
-ML pipelines. Kubeflow is also for ML engineers and operational teams who want
-to deploy ML systems to various environments for development, testing, and
-production-level serving.
+## Kubeflow Ecosystem
 
-## Conceptual overview
-
-Kubeflow is _the ML toolkit for Kubernetes_.
-
-The following diagram shows Kubeflow as a platform for arranging the
+The following diagram shows Kubeflow ecosystem for arranging the
 components of your ML system on top of Kubernetes:
 
 <img src="/docs/started/images/kubeflow-architecture.drawio.svg"
@@ -32,9 +22,7 @@ Kubeflow builds on [Kubernetes](https://kubernetes.io/) as a system for
 deploying, scaling, and managing complex systems.
 
 Using the Kubeflow configuration interfaces (see [below](#kubeflow-interfaces)) you can
-specify the ML tools required for your workflow. Then you can deploy the
-workflow to various clouds, local, and on-premises platforms for experimentation and
-for production use.
+specify the ML tools required for your use cases.
 
 ## Introducing the ML Lifecycle
 
@@ -74,8 +62,8 @@ Looking at the stages in more detail:
 
 ### ML Lifecycle for Production and Development Phases
 
-ML lifecycle can be split between development and production phases with the primary goal to produce
-AI application for users:
+ML lifecycle can be split between development and production phases with the primary goal to
+produce AI application for users:
 
 <img src="/docs/started/images/ml-lifecycle-dev-prod.drawio.svg"
   alt="ML Lifecycle with Development and Production"
@@ -101,8 +89,8 @@ The next diagram shows how Kubeflow components are used for each stage in the ML
 - [Kubeflow Training Operator](/docs/components/training/) can be used for large-scale distributed
   training or fine-tuning.
 
-- [Kubeflow Model Registry](/docs/components/model-registry/) can be used to store model artifacts
-  and preparing model for production serving.
+- [Kubeflow Model Registry](/docs/components/model-registry/) can be used to store ML metadata,
+  model artifacts, and preparing model for production serving.
 
 - [KServe](https://kserve.github.io/website/master/) can be used for online and batch inference
   in the model serving step.
