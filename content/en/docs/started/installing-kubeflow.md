@@ -6,7 +6,7 @@ weight = 20
 +++
 
 This guide describes how to install standalone Kubeflow components or Kubeflow Platform using package
-distributions or raw manifests.
+distributions or Kubeflow manifests.
 
 Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, standalone
 Kubeflow components and Kubeflow Platform.
@@ -43,21 +43,6 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
     <tbody>
       <tr>
         <td>
-          <a href="/docs/components/katib/installation/#installing-katib">
-            Kubeflow Katib
-          </a>
-        </td>
-        <td>
-          Model Optimization and AutoML
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/katib">
-            <code>kubeflow/katib</code>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
          <a href="https://kserve.github.io/website/master/admin/serverless/serverless">
             KServe
           </a>
@@ -68,6 +53,21 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
         <td>
           <a href="https://github.com/kserve/kserve">
             <code>kserve/kserve</code>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/docs/components/katib/installation/#installing-katib">
+            Kubeflow Katib
+          </a>
+        </td>
+        <td>
+          Model Optimization and AutoML
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/katib">
+            <code>kubeflow/katib</code>
           </a>
         </td>
       </tr>
@@ -331,9 +331,9 @@ The following table lists distributions which are <em>maintained</em> by their r
   </table>
 </div>
 
-#### Raw Manifests
+#### Kubeflow Manifests
 
-The raw Kubeflow Manifests are aggregated by the Manifests Working Group and are intended to be
+The Kubeflow Manifests are aggregated by the Manifests Working Group and are intended to be
 used as the **base of packaged distributions**.
 
 Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
@@ -352,9 +352,9 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
 
 {{% alert title="Warning" color="warning" %}}
 Kubeflow is a complex system with many components and dependencies.
-Using the raw manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
+Using the Kubeflow manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
 
-When using the raw manifests, the Kubeflow community is not able to provide support for environment-specific issues or custom configurations.
+When using the Kubeflow manifests, the community is not able to provide support for environment-specific issues or custom configurations.
 If you need support, please consider using a [packaged distribution](#packaged-distributions-of-kubeflow).
 Nevertheless, we welcome contributions and bug reports very much.
 {{% /alert %}}

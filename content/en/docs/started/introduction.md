@@ -41,7 +41,7 @@ In addition to the standalone Kubeflow components, the Kubeflow Platform include
 
 The Kubeflow Platform can be installed via
 [Packaged Distributions](/docs/started/installing-kubeflow/#packaged-distributions) or
-[Raw Manifests](/docs/started/installing-kubeflow/#raw-manifests).
+[Kubeflow Manifests](/docs/started/installing-kubeflow/#kubeflow-manifests).
 
 ## Getting started with Kubeflow
 
