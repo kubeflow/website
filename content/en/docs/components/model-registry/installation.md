@@ -16,14 +16,18 @@ These are the minimal requirements to install Model Registry:
 
 <a id="model-registry-install"></a>
 
-## Installing Model Registry (as part of Kubeflow)
+## Installing Model Registry
 
-Make sure you have a Kubeflow installation available; you can consult the [Kubeflow installation guide](/docs/started/installing-kubeflow/) for more information.
+Kubeflow Model registry may be installed as part of a Kubeflow Platform, or as a standalone component.
+The best option for you will depend on your specific requirements.
 
-To install Model Registry as part of Kubeflow follow the instructions to apply the [Model Registry manifests](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream#readme), which are available from Kubeflow >=1.9.
-For more information, [see tracker issue](https://github.com/kubeflow/manifests/issues/2631).
+### Installing on Kubeflow Platform
 
-## Installing Model Registry standalone
+Kubeflow Model Registry is available as an opt-in alpha component in Kubeflow Platform 1.9+, see [Installing Kubeflow](/docs/started/installing-kubeflow/) to learn more about deploying the Kubeflow Platform.
+
+If you have deployed the raw manifests, you may follow [these instructions](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream#readme) to deploy Model Registry; please raise any feedback on [`kubeflow/manifests#2631`](https://github.com/kubeflow/manifests/issues/2631).
+
+### Standalone installation
 
 If you want to install Model Registry separately from Kubeflow, or to get a later version
 of Model Registry, you can the Model Registry manifests directly from the [Model Registry repository](https://github.com/kubeflow/model-registry).
