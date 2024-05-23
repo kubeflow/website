@@ -5,30 +5,31 @@ weight = 10
 aliases = ["/docs/community/"]
 +++
 
-## Kubeflow Slack
+## Kubeflow Slack Channels
 
-The Official Kubeflow Slack is used for informal discussions among users and contributors.
+Kubeflow is part of the vibrant CNCF community, we use the [CNCF Slack](https://slack.cncf.io/) for informal discussions among users and contributors.
+Please join the [Kubeflow channels](#slack-channels) to join the conversation and get help from the community.
 
-<a href="https://communityinviter.com/apps/kubeflow/slack">
-  <button class="btn btn-primary py-2 px-5 mb-3">Click to join:<br>Kubeflow Slack</button>
+<a href="https://slack.cncf.io/">
+  <button class="btn btn-primary py-2 px-5 mb-3">Click to join:<br><b>CNCF Slack</b></button>
 </a>
 
-| Popular Kubeflow Slack Channels |
-| --- | --- |
-| General Discussion | [#general](https://kubeflow.slack.com/archives/C7REE0ETX)
-| Feature Requests | [#feature-requests](https://kubeflow.slack.com/archives/C01A7RYEYMB)
-| Job Postings | [#job-postings](https://kubeflow.slack.com/archives/CJ9PJE5FS)
-| Kubeflow - Pipelines | [#kubeflow-pipelines](https://kubeflow.slack.com/archives/CE10KS9M4)
-| Kubeflow - Notebooks | [#kubeflow-notebooks](https://kubeflow.slack.com/archives/CESP7FCQ7)
-| Kubeflow - Training Operator | [#kubeflow-training-operator](https://kubeflow.slack.com/archives/C985VJN9F)
-| Kubeflow - Katib | [#kubeflow-katib](https://kubeflow.slack.com/archives/CE0BURK1B)
-| KServe | [#kserve](https://kubeflow.slack.com/archives/CH6E58LNP)
-| Platform - AWS | [#platform-aws](https://kubeflow.slack.com/archives/CKBA5D0MU)
-| Platform - Azure | [#platform-azure](https://kubeflow.slack.com/archives/CUW6SLCPR)
-| Platform - GCP | [#platform-gcp](https://kubeflow.slack.com/archives/CKH7V1M7F)
-| Users - China | [#users-china](https://kubeflow.slack.com/archives/C93HYNM9C)
-| Users - Korea | [#users-korea](https://kubeflow.slack.com/archives/CKPCJB9AP)
-| Users - Oceania | [#users-oceania](https://kubeflow.slack.com/archives/C023ZN1R9FC)
+### Slack Channels
+
+The following table lists official Kubeflow channels which are hosted on the __CNCF Slack__:
+
+| Description                 | Link                                                                             |
+|-----------------------------|----------------------------------------------------------------------------------|
+| Announcements               | [#kubeflow-announcements](https://app.slack.com/client/T08PSQ7BQ/C01EV0FV154)    |
+| GSoC Participants           | [#kubeflow-gsoc-participants](https://app.slack.com/client/T08PSQ7BQ/C0742LBR5BM) |
+| Katib                       | [#kubeflow-katib](https://app.slack.com/client/T08PSQ7BQ/C073N7AS48P)            |
+| Model Registry              | [#kubeflow-model-registry](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R)   |
+| Notebooks                   | [#kubeflow-notebooks](https://app.slack.com/client/T08PSQ7BQ/C073W562HFY)        |
+| Pipelines                   | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)       |
+| Release Team Communications | [#kubeflow-release](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)          |
+| Spark Operator              | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG)   |
+| Training Operators          | [#kubeflow-training](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)         |
+| KServe                      | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                    |
 
 ## Kubeflow Mailing List
 
