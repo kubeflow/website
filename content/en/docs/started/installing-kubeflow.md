@@ -18,7 +18,7 @@ You can install Kubeflow using one of these methods:
 - [**Standalone Kubeflow Components**](#standalone-kubeflow-components)
 - [**Kubeflow Platform**](#kubeflow-platform)
 
-### Standalone Kubeflow Components
+## Standalone Kubeflow Components
 
 Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptual-overview) may be
 deployed as standalone services, without the need to install the full Kubeflow platform. You might
@@ -150,12 +150,12 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
   </table>
 </div>
 
-### Kubeflow Platform
+## Kubeflow Platform
 
 You can use one of the following methods to install [Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform)
 to get full suite of standalone Kubeflow components bundled together with additional tools.
 
-#### Packaged Distributions
+### Packaged Distributions
 
 Packaged distributions are maintained by various organizations and typically aim to provide
 a simplified installation and management experience for your **Kubeflow Platform**. Some distributions
@@ -331,7 +331,7 @@ The following table lists distributions which are <em>maintained</em> by their r
   </table>
 </div>
 
-#### Kubeflow Manifests
+### Kubeflow Manifests
 
 The Kubeflow Manifests are aggregated by the Manifests Working Group and are intended to be
 used as the **base of packaged distributions**.
