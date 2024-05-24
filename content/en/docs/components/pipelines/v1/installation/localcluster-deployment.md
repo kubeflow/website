@@ -318,11 +318,10 @@ Executors](https://argoproj.github.io/argo-workflows/workflow-executors/) and re
 1. To deploy the Kubeflow Pipelines, run the following commands:
 
     ```shell
-    # env/platform-agnostic-pns hasn't been publically released, so you will install it from master
     export PIPELINE_VERSION={{% pipelines/latest-version %}}
     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
     kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-    kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
+    kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic?ref=$PIPELINE_VERSION"
     ```
 
     The Kubeflow Pipelines deployment may take several minutes to complete.
