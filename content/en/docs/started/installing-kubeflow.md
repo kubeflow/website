@@ -24,7 +24,7 @@ Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptu
 deployed as standalone services, without the need to install the full Kubeflow platform. You might
 integrate these services as part of your existing AI/ML platform or use them independently.
 
-This is a quick and easier method to get started with Kubeflow ecosystem since those components usually
+This is a quick and easy method to get started with Kubeflow ecosystem since those components usually
 don't require additional management tools used in a Kubeflow Platform.
 
 The following table lists Kubeflow components that may be deployed in a standalone mode. It also
