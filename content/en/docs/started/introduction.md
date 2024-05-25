@@ -19,11 +19,9 @@ deploying them to production for AI applications.
 
 The Kubeflow ecosystem is composed of multiple open-source projects that address different aspects
 of the ML lifecycle. Many of these projects are designed to be usable both within the
-Kubeflow Platform and independently.
-
-These Kubeflow components can be installed standalone on a Kubernetes cluster. It provides
-flexibility to users who may not require the full Kubeflow Platform capabilities but wish to
-leverage specific ML functionalities such as model training or model serving.
+Kubeflow Platform and independently. These Kubeflow components can be installed standalone on a
+Kubernetes cluster. It provides flexibility to users who may not require the full Kubeflow Platform
+capabilities but wish to leverage specific ML functionalities such as model training or model serving.
 
 ## What is Kubeflow Platform
 
