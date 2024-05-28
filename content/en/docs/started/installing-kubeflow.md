@@ -152,8 +152,8 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
 
 ## Kubeflow Platform
 
-You can use one of the following methods to install [Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform)
-to get full suite of standalone Kubeflow components bundled together with additional tools.
+You can use one of the following methods to install the [Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform)
+and get the full suite of Kubeflow components bundled together with additional tools.
 
 ### Packaged Distributions
 
@@ -337,8 +337,8 @@ The Kubeflow Manifests are aggregated by the Manifests Working Group and are int
 used as the **base of packaged distributions**.
 
 Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
-applications which makes **Kubeflow Platform**. This installation is helpful when you want to try
-out the end-to-end Kubeflow Platform capabilities.
+applications that comprise the **Kubeflow Platform**. This installation is helpful when you want to
+try out the end-to-end Kubeflow Platform capabilities.
 
 Users may choose to install the manifests for a specific Kubeflow version by following the
 instructions in the `README` of the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
@@ -355,7 +355,7 @@ Kubeflow is a complex system with many components and dependencies.
 Using the Kubeflow manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
 
 When using the Kubeflow manifests, the community is not able to provide support for environment-specific issues or custom configurations.
-If you need support, please consider using a [packaged distribution](#packaged-distributions-of-kubeflow).
+If you need support, please consider using a [packaged distribution](#packaged-distributions).
 Nevertheless, we welcome contributions and bug reports very much.
 {{% /alert %}}
 
