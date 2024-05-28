@@ -30,7 +30,7 @@ If you have deployed the Kubeflow manifests, you may follow [these instructions]
 ### Standalone installation
 
 If you want to install Model Registry separately from Kubeflow, or to get a later version
-of Model Registry, you can the Model Registry manifests directly from the [Model Registry repository](https://github.com/kubeflow/model-registry).
+of Model Registry, you can install the Model Registry manifests directly from the [Model Registry repository](https://github.com/kubeflow/model-registry).
 
 The manifests by defaut deploy the Model Registry in the `kubeflow` namespace;
 you must ensure the `kubeflow` namespace is available (e.g.: `kubectl create namespace kubeflow`)
