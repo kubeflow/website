@@ -204,7 +204,7 @@ The following table lists distributions which are <em>maintained</em> by their r
             <br><small>deployKF</small>
         </td>
         <td>
-          {{% deploykf/latest-version %}} <sup>[<a href="https://www.deploykf.org/releases/version-matrix/#kubeflow-tools">Version Matrix</a>]</sup>
+          {{% deploykf/latest-version %}} <sup>[<a href="https://www.deploykf.org/releases/tool-versions/#kubeflow-ecosystem">Version Matrix</a>]</sup>
         </td>
         <td>
           All Certified Kubernetes Distributions
