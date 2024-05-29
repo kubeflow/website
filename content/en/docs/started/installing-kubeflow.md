@@ -5,30 +5,161 @@ weight = 20
 
 +++
 
-## What is Kubeflow?
+This guide describes how to install standalone Kubeflow components or Kubeflow Platform using package
+distributions or Kubeflow manifests.
 
-Kubeflow is an end-to-end Machine Learning (ML) platform for Kubernetes, it provides components for each stage in the ML lifecycle, from exploration through to training and deployment.
-Operators can choose what is best for their users, there is no requirement to deploy every component.
+Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, standalone
+Kubeflow components and Kubeflow Platform.
 
-Learn more about Kubeflow in the [Introduction](/docs/started/introduction/) and
-[Architecture](/docs/started/architecture/) pages.
+## Installation Methods
 
-## How to install Kubeflow?
+You can install Kubeflow using one of these methods:
 
-Anywhere you are running Kubernetes, you should be able to run Kubeflow.
-There are two primary ways to install Kubeflow:
+- [**Standalone Kubeflow Components**](#standalone-kubeflow-components)
+- [**Kubeflow Platform**](#kubeflow-platform)
 
-1. [**Packaged Distributions**](#packaged-distributions-of-kubeflow)
-1. [**Raw Manifests**](#raw-kubeflow-manifests) <sup>(advanced users)</sup>
+## Standalone Kubeflow Components
 
-<a id="packaged-distributions"></a>
-<a id="install-a-packaged-kubeflow-distribution"></a>
+Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptual-overview) may be
+deployed as standalone services, without the need to install the full Kubeflow platform. You might
+integrate these services as part of your existing AI/ML platform or use them independently.
 
-## Packaged Distributions of Kubeflow
+These components are a quick and easy method to get started with the Kubeflow ecosystem. They
+provide flexibility to users who may not require the capabilities of a full Kubeflow Platform.
+
+The following table lists Kubeflow components that may be deployed in a standalone mode. It also
+lists their associated GitHub repository and
+corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle).
+
+<div class="table-responsive distributions-table">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>ML Lifecycle Stage</th>
+        <th>Source Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+         <a href="https://kserve.github.io/website/master/admin/serverless/serverless">
+            KServe
+          </a>
+        </td>
+        <td>
+          Model Serving
+        </td>
+        <td>
+          <a href="https://github.com/kserve/kserve">
+            <code>kserve/kserve</code>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/docs/components/katib/installation/#installing-katib">
+            Kubeflow Katib
+          </a>
+        </td>
+        <td>
+          Model Optimization and AutoML
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/katib">
+            <code>kubeflow/katib</code>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <a href="/docs/components/model-registry/installation/#installing-model-registry">
+            Kubeflow Model Registry
+          </a>
+        </td>
+        <td>
+          Model Registry
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/model-registry">
+            <code>kubeflow/model-registry</code>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <a href="/docs/components/training/user-guides/mpi/#installation">
+            Kubeflow MPI Operator
+          </a>
+        </td>
+        <td>
+          All-Reduce Model Training
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/mpi-operator">
+            <code>kubeflow/mpi-operator</code>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/docs/components/pipelines/v2/installation/quickstart/">
+            Kubeflow Pipelines
+          </a>
+        </td>
+        <td>
+          ML Workflows and Schedules
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/pipelines">
+            <code>kubeflow/pipelines</code>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/spark-operator/tree/master?tab=readme-ov-file#installation">
+            Kubeflow Spark Operator
+          </a>
+        </td>
+        <td>
+          Data Preparation
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/spark-operator">
+            <code>kubeflow/spark-operator</code>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/docs/components/training/installation/#installing-training-operator">
+            Kubeflow Training Operator
+          </a>
+        </td>
+        <td>
+          Model Training and Fine-Tuning
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/training-operator">
+            <code>kubeflow/training-operator</code>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Kubeflow Platform
+
+You can use one of the following methods to install the [Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform)
+and get the full suite of Kubeflow components bundled together with additional tools.
+
+### Packaged Distributions
 
 Packaged distributions are maintained by various organizations and typically aim to provide
-a simplified installation and management experience for Kubeflow. Some distributions can be
-deployed on [all certified Kubernetes distributions](https://kubernetes.io/partners/#conformance),
+a simplified installation and management experience for your **Kubeflow Platform**. Some distributions
+can be deployed on [all certified Kubernetes distributions](https://kubernetes.io/partners/#conformance),
 while others target a specific platform (e.g. EKS or GKE).
 
 {{% alert title="Note" color="warning" %}}
@@ -200,12 +331,16 @@ The following table lists distributions which are <em>maintained</em> by their r
   </table>
 </div>
 
-## Raw Kubeflow Manifests
+### Kubeflow Manifests
 
-The raw Kubeflow Manifests are aggregated by the [Manifests Working Group](https://github.com/kubeflow/community/tree/master/wg-manifests)
-and are intended to be used as the **base of packaged distributions**.
+The Kubeflow Manifests are aggregated by the Manifests Working Group and are intended to be
+used as the **base of packaged distributions**.
 
-Advanced users may choose to install the manifests for a specific Kubeflow version by following the
+Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
+applications that comprise the **Kubeflow Platform**. This installation is helpful when you want to
+try out the end-to-end Kubeflow Platform capabilities.
+
+Users may choose to install the manifests for a specific Kubeflow version by following the
 instructions in the `README` of the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
 
 - [**Kubeflow 1.8:**](/docs/releases/kubeflow-1.8/)
@@ -217,16 +352,15 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
 
 {{% alert title="Warning" color="warning" %}}
 Kubeflow is a complex system with many components and dependencies.
-Using the raw manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
+Using the Kubeflow manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
 
-When using the raw manifests, the Kubeflow community is not able to provide support for environment-specific issues or custom configurations.
-If you need support, please consider using a [packaged distribution](#packaged-distributions-of-kubeflow).
+When using the Kubeflow manifests, the community is not able to provide support for environment-specific issues or custom configurations.
+If you need support, please consider using a [packaged distribution](#packaged-distributions).
 Nevertheless, we welcome contributions and bug reports very much.
 {{% /alert %}}
 
-<a id="next-steps"></a>
-
 ## Next steps
 
-- Review the Kubeflow <a href="/docs/components/">component documentation</a>
-- Explore the <a href="/docs/components/pipelines/sdk/">Kubeflow Pipelines SDK</a>
+- Review our [introduction to Kubeflow](/docs/started/introduction/).
+- Explore the [architecture of Kubeflow](/docs/started/architecture).
+- Learn more about the [components of Kubeflow](/docs/components/).
