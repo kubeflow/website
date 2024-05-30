@@ -206,7 +206,7 @@ def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
 [components]: /docs/components/pipelines/how-to/create-components
 [pipelinetask]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.PipelineTask
 [vertex-pipelines]: https://cloud.google.com/vertex-ai/docs/pipelines/introduction
-[oss-be]: /docs/components/pipelines/overview/installation/
+[oss-be]: /docs/components/pipelines/operator-guides/installation/
 [data-types]: /docs/components/pipelines/how-to/data-types
 [output-artifacts]: /docs/components/pipelines/how-to/artifacts#using-output-artifacts
 [container-component-outputs]: /docs/components/pipelines/how-to/create-components/container-components#create-component-outputs

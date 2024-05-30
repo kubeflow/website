@@ -1,7 +1,7 @@
 +++
 title = "Server Configuration"
 description = "Guidance on managing your Kubeflow Pipelines instances"
-weight = 14
+weight = 2
 +++
 
 

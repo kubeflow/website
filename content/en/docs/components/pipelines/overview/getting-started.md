@@ -57,7 +57,7 @@ The client will print a link to view the pipeline execution graph and logs in th
 
 In the next few sections, you'll learn more about the core concepts of authoring pipelines and how to create more expressive, useful pipelines.
 
-[installation]: /docs/components/pipelines/overview/installation/
+[installation]: /docs/components/pipelines/operator-guides/installation/
 [client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.client.Client
 [compiler]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/compiler.html#kfp.compiler.Compiler
 [ir-yaml]: /docs/components/pipelines/how-to/compile-a-pipeline#ir-yaml

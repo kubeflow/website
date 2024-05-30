@@ -241,7 +241,7 @@ On the [KFP open source][oss-be] UI, `ClassificationMetrics`, `SlicedClassificat
 [dsl-html]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.HTML
 [dsl-markdown]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Markdown
 [type-checking]: /docs/components/pipelines/how-to/compile-a-pipeline#type-checking
-[oss-be]: /docs/components/pipelines/overview/installation/
+[oss-be]: /docs/components/pipelines/operator-guides/installation/
 [pipelines]: /docs/components/pipelines/how-to/create-components/compose-components-into-pipelines/
 [container-components]: /docs/components/pipelines/how-to/create-components/lightweight-python-components//
 [python-components]: /docs/components/pipelines/how-to/create-components/container-components

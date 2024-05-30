@@ -39,7 +39,7 @@ A [pipeline][pipelines] is a definition of a workflow that composes one or more 
 
 [components]: /docs/components/pipelines/how-to/create-components
 [pipelines]: /docs/components/pipelines/how-to
-[installation]: /docs/components/pipelines/overview/installation
+[installation]: /docs/components/pipelines/operator-guides/installation
 [ir-yaml]: /docs/components/pipelines/how-to/compile-a-pipeline#ir-yaml
 [pypi]: https://pypi.org/project/kfp/
 [hello-world-pipeline]: /docs/components/pipelines/overview/getting-started

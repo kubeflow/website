@@ -1,7 +1,7 @@
 +++
 title = "Installation"
 description = "Options for deploying Kubeflow Pipelines"
-weight = 2
+weight = 1
 +++
 
 {{% kfp-v2-keywords %}}

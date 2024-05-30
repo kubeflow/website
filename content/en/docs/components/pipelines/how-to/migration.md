@@ -593,7 +593,7 @@ If you believe we missed a breaking change or an important migration step, pleas
 [load]: /docs/components/pipelines/how-to/load-and-share-components/
 [new-issue]: https://github.com/kubeflow/pipelines/issues/new
 [oss-be-v1]: /docs/components/pipelines/legacy-v1/
-[oss-be-v2]: /docs/components/pipelines/overview/installation/
+[oss-be-v2]: /docs/components/pipelines/operator-guides/installation/
 [parallelfor-control-flow]: /docs/components/pipelines/how-to/control-flow/#parallel-looping-dslparallelfor
 [parameters]: /docs/components/pipelines/how-to/parameters
 [pipelines-repo]: https://github.com/kubeflow/pipelines

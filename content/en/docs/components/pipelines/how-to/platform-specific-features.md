@@ -106,7 +106,7 @@ For the full pipeline and more information, see a [similar example][full-example
 
 
 [ir-yaml]: /docs/components/pipelines/how-to/compile-a-pipeline#ir-yaml
-[oss-be]: /docs/components/pipelines/overview/installation/
+[oss-be]: /docs/components/pipelines/operator-guides/installation/
 [kfp-kubernetes-pypi]: https://pypi.org/project/kfp-kubernetes/
 [task-level-config-methods]: /docs/components/pipelines/how-to/create-components/compose-components-into-pipelines/#task-configurations
 [kfp-kubernetes-docs]: https://kfp-kubernetes.readthedocs.io/
