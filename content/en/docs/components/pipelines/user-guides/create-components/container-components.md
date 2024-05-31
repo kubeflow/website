@@ -185,7 +185,7 @@ Arguments to `then` and `else_` may be a list of any combination of static strin
 
 
 [hello-world-pipeline]: /docs/components/pipelines/getting-started
-[pipeline-basics]: /docs/components/pipelines/how-to/create-components/compose-components-into-pipelines
+[pipeline-basics]: /docs/components/pipelines/user-guides/create-components/compose-components-into-pipelines
 [alpine]: https://hub.docker.com/_/alpine
 [dsl-outputpath]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.OutputPath
 [dsl-container-component]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.container_component

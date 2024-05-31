@@ -166,10 +166,10 @@ def my_pipeline() -> NamedTuple('pipeline_outputs', c=int, d=str):
 
 
 [ml-metadata]: https://github.com/google/ml-metadata
-[lightweight-python-components]: /docs/components/pipelines/how-to/create-components/lightweight-python-components/
-[containerized-python-components]: /docs/components/pipelines/how-to/create-components/containerized-python-components
-[container-component]: /docs/components/pipelines/how-to/create-components/container-components
-[container-component-outputs]: /docs/components/pipelines/how-to/create-components/container-components#create-component-outputs
+[lightweight-python-components]: /docs/components/pipelines/user-guides/create-components/lightweight-python-components/
+[containerized-python-components]: /docs/components/pipelines/user-guides/create-components/containerized-python-components
+[container-component]: /docs/components/pipelines/user-guides/create-components/container-components
+[container-component-outputs]: /docs/components/pipelines/user-guides/create-components/container-components#create-component-outputs
 [pipelinetask]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.PipelineTask
 [dsl-outputpath]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.OutputPath
 [ml-metadata]: https://github.com/google/ml-metadata

@@ -202,14 +202,14 @@ def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
 <!-- TODO: make this reference more precise throughout -->
 [dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html
 [dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.pipeline
-[control-flow]: /docs/components/pipelines/how-to/control-flow
-[components]: /docs/components/pipelines/how-to/create-components
+[control-flow]: /docs/components/pipelines/user-guides/control-flow
+[components]: /docs/components/pipelines/user-guides/create-components
 [pipelinetask]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.PipelineTask
 [vertex-pipelines]: https://cloud.google.com/vertex-ai/docs/pipelines/introduction
 [oss-be]: /docs/components/pipelines/operator-guides/installation/
-[data-types]: /docs/components/pipelines/how-to/data-types
-[output-artifacts]: /docs/components/pipelines/how-to/artifacts#using-output-artifacts
-[container-component-outputs]: /docs/components/pipelines/how-to/create-components/container-components#create-component-outputs
-[parameters-namedtuple]: /docs/components/pipelines/how-to/parameters#multiple-output-parameters
+[data-types]: /docs/components/pipelines/user-guides/data-types
+[output-artifacts]: /docs/components/pipelines/user-guides/artifacts#using-output-artifacts
+[container-component-outputs]: /docs/components/pipelines/user-guides/create-components/container-components#create-component-outputs
+[parameters-namedtuple]: /docs/components/pipelines/user-guides/parameters#multiple-output-parameters
 [dsl-pipeline-job-name-placeholder]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.PIPELINE_JOB_NAME_PLACEHOLDER
-[component-docstring-format]: /docs/components/pipelines/how-to/create-components/additional-functionality#component-docstring-format
+[component-docstring-format]: /docs/components/pipelines/user-guides/create-components/additional-functionality#component-docstring-format

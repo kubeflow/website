@@ -208,8 +208,8 @@ def my_pipeline(text: str = 'message'):
 
 Note that the component used for the caller task (`print_op` in the example above) requires a default value for all inputs it consumes from an upstream task. The default value is applied if the upstream task fails to produce the outputs that are passed to the caller task. Specifying default values ensures that the caller task always succeeds, regardless of the status of the upstream task.
 
-[data-passing]: /docs/components/pipelines/how-to/create-components/compose-components-into-pipelines#data-passing-and-task-dependencies
-[pipeline-basics]: /docs/components/pipelines/how-to/create-components/compose-components-into-pipelines
+[data-passing]: /docs/components/pipelines/user-guides/create-components/compose-components-into-pipelines#data-passing-and-task-dependencies
+[pipeline-basics]: /docs/components/pipelines/user-guides/create-components/compose-components-into-pipelines
 [dsl-condition]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Condition
 [dsl-exithandler]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ExitHandler
 [dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ParallelFor

@@ -127,11 +127,11 @@ By default, Python Components install `kfp` at runtime. This is required to defi
 Note that setting `install_kfp_package` to `False` is rarely necessary and is discouraged for the majority of use cases.
 
 [hello-world-pipeline]: /docs/components/pipelines/getting-started
-[containerized-python-components]: /docs/components/pipelines/how-to/create-components/containerized-python-components
+[containerized-python-components]: /docs/components/pipelines/user-guides/create-components/containerized-python-components
 [dsl-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.component
-[data-types]: /docs/components/pipelines/how-to/data-types
-[parameters]: /docs/components/pipelines/how-to/parameters
-[artifacts]: /docs/components/pipelines/how-to/artifacts
+[data-types]: /docs/components/pipelines/user-guides/data-types
+[parameters]: /docs/components/pipelines/user-guides/parameters
+[artifacts]: /docs/components/pipelines/user-guides/artifacts
 [requirements-txt]: https://pip.pypa.io/en/stable/reference/requirements-file-format/
 [pypi-org]: https://pypi.org/
 [pip-install]: https://pip.pypa.io/en/stable/cli/pip_install/
