@@ -180,8 +180,62 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/pipeline-root                      /docs/components/pipelines/overview/pipeline-root
 /docs/components/pipelines/overview/pipelines-overview        /docs/components/pipelines/introduction
 /docs/components/pipelines/pipelines-quickstart               /docs/components/pipelines/overview/quickstart
-/docs/components/pipelines/overview/concepts/*                /docs/components/pipelines/concepts/:splat
-/docs/components/pipelines/sdk/v2/*                           /docs/components/pipelines/sdk-v2/:splat
+
+# Restructure About section
+/docs/about/kubeflow             /docs/started/introduction
+/docs/started/kubeflow-overview  /docs/started/architecture
+
+# move istio from external-add-ons to multi-tenancy component
+/docs/external-add-ons/istio/*    /docs/components/multi-tenancy/istio
+
+# merge multi-tenancy/getting-started with profiles
+/docs/components/multi-tenancy/getting-started /docs/components/central-dash/profiles
+
+# move multi-tenancy to concepts
+/docs/components/multi-tenancy/design          /docs/concepts/multi-tenancy/design
+/docs/components/multi-tenancy/istio           /docs/concepts/multi-tenancy/istio
+/docs/components/multi-tenancy/overview        /docs/concepts/multi-tenancy/overview
+/docs/components/multi-tenancy                 /docs/concepts/multi-tenancy
+
+# remove registration-flow page
+/docs/components/central-dash/registration-flow /docs/components/central-dash/profiles
+
+# rename customize dashboard page
+/docs/components/central-dash/customizing-menu /docs/components/central-dash/customize
+
+# ===============
+# IMPORTANT NOTE:
+# Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
+# ===============
+/docs/guides/*                      /docs/:splat
+/docs/pipelines/concepts/*          /docs/components/pipelines/overview/concepts/:splat
+/docs/pipelines/*                   /docs/components/pipelines/:splat
+/docs/aws/*                         /docs/distributions/aws/
+/docs/azure/*                       /docs/distributions/azure/:splat
+/docs/gke/*                         /docs/distributions/gke/:splat
+/docs/ibm/*                         /docs/distributions/ibm/:splat
+/docs/openshift/*                   /docs/distributions/openshift/:splat
+/docs/components/fairing/*          /docs/external-add-ons/fairing/:splat
+/docs/components/istio/*            /docs/external-add-ons/istio/:splat
+/docs/components/feature-store/*    /docs/external-add-ons/feature-store/:splat
+/docs/components/serving/*          /docs/external-add-ons/serving/:splat
+
+# redirect distribution pages to external websites
+/docs/distributions/aws/*           https://awslabs.github.io/kubeflow-manifests/
+/docs/distributions/azure/*         https://azure.github.io/kubeflow-aks/main/
+/docs/distributions/charmed/*       https://charmed-kubeflow.io/
+/docs/distributions/ekf/*           https://www.arrikto.com/enterprise-kubeflow/
+/docs/distributions/gke/*           https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/:splat
+/docs/distributions/ibm/*           https://ibm.github.io/manifests/
+/docs/distributions/nutanix/*       https://nutanix.github.io/kubeflow-manifests/
+
+# Refactor Katib docs
+/docs/components/hyperparameter                /docs/components/katib/overview
+/docs/components/katib/hyperparameter          /docs/components/katib/getting-started
+/docs/components/katib/experiment              /docs/components/katib/user-guides/hp-tuning/configure-experiment
+/docs/components/katib/early-stopping          /docs/components/katib/user-guides/early-stopping
+/docs/components/katib/resume-experiment       /docs/components/katib/user-guides/resume-experiment
+/docs/components/katib/trial-template          /docs/components/katib/user-guides/trial-template
 
 # Restructured the pipeline docs (https://github.com/kubeflow/website/issues/3716)
 /docs/components/pipelines/v1/introduction/                                 /docs/components/pipelines/legacy-v1/introduction/
@@ -264,62 +318,3 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/v2/version-compatibility/                        /docs/components/pipelines/reference/version-compatibility/
 /docs/components/pipelines/v2/reference/api/kubeflow-pipeline-api-spec/     /docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/
 /docs/components/pipelines/overview/quickstart/                             /docs/components/pipelines/overview/
-
-# pipelines v1 -> v2 redirects
-/docs/components/pipelines/*        /docs/components/pipelines/v1/:splat
-
-# Restructure About section
-/docs/about/kubeflow             /docs/started/introduction
-/docs/started/kubeflow-overview  /docs/started/architecture
-
-# move istio from external-add-ons to multi-tenancy component
-/docs/external-add-ons/istio/*    /docs/components/multi-tenancy/istio
-
-# merge multi-tenancy/getting-started with profiles
-/docs/components/multi-tenancy/getting-started /docs/components/central-dash/profiles
-
-# move multi-tenancy to concepts
-/docs/components/multi-tenancy/design          /docs/concepts/multi-tenancy/design
-/docs/components/multi-tenancy/istio           /docs/concepts/multi-tenancy/istio
-/docs/components/multi-tenancy/overview        /docs/concepts/multi-tenancy/overview
-/docs/components/multi-tenancy                 /docs/concepts/multi-tenancy
-
-# remove registration-flow page
-/docs/components/central-dash/registration-flow /docs/components/central-dash/profiles
-
-# rename customize dashboard page
-/docs/components/central-dash/customizing-menu /docs/components/central-dash/customize
-
-# ===============
-# IMPORTANT NOTE:
-# Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
-# ===============
-/docs/guides/*                      /docs/:splat
-/docs/pipelines/concepts/*          /docs/components/pipelines/overview/concepts/:splat
-/docs/pipelines/*                   /docs/components/pipelines/:splat
-/docs/aws/*                         /docs/distributions/aws/
-/docs/azure/*                       /docs/distributions/azure/:splat
-/docs/gke/*                         /docs/distributions/gke/:splat
-/docs/ibm/*                         /docs/distributions/ibm/:splat
-/docs/openshift/*                   /docs/distributions/openshift/:splat
-/docs/components/fairing/*          /docs/external-add-ons/fairing/:splat
-/docs/components/istio/*            /docs/external-add-ons/istio/:splat
-/docs/components/feature-store/*    /docs/external-add-ons/feature-store/:splat
-/docs/components/serving/*          /docs/external-add-ons/serving/:splat
-
-# redirect distribution pages to external websites
-/docs/distributions/aws/*           https://awslabs.github.io/kubeflow-manifests/
-/docs/distributions/azure/*         https://azure.github.io/kubeflow-aks/main/
-/docs/distributions/charmed/*       https://charmed-kubeflow.io/
-/docs/distributions/ekf/*           https://www.arrikto.com/enterprise-kubeflow/
-/docs/distributions/gke/*           https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/:splat
-/docs/distributions/ibm/*           https://ibm.github.io/manifests/
-/docs/distributions/nutanix/*       https://nutanix.github.io/kubeflow-manifests/
-
-# Refactor Katib docs
-/docs/components/hyperparameter                /docs/components/katib/overview
-/docs/components/katib/hyperparameter          /docs/components/katib/getting-started
-/docs/components/katib/experiment              /docs/components/katib/user-guides/hp-tuning/configure-experiment
-/docs/components/katib/early-stopping          /docs/components/katib/user-guides/early-stopping
-/docs/components/katib/resume-experiment       /docs/components/katib/user-guides/resume-experiment
-/docs/components/katib/trial-template          /docs/components/katib/user-guides/trial-template
