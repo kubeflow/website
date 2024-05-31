@@ -1,5 +1,5 @@
 +++
-title = "Introduction"
+title = "Overview"
 description = "What is Kubeflow Pipelines?"
 weight = 1
 +++
@@ -42,5 +42,5 @@ A [pipeline][pipelines] is a definition of a workflow that composes one or more 
 [installation]: /docs/components/pipelines/operator-guides/installation
 [ir-yaml]: /docs/components/pipelines/how-to/compile-a-pipeline#ir-yaml
 [pypi]: https://pypi.org/project/kfp/
-[hello-world-pipeline]: /docs/components/pipelines/overview/getting-started
+[hello-world-pipeline]: /docs/components/pipelines/getting-started
 [control-flow]: /docs/components/pipelines/how-to/control-flow

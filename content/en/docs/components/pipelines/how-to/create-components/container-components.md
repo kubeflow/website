@@ -184,7 +184,7 @@ def hello_someone(optional_name: str = None):
 Arguments to `then` and `else_` may be a list of any combination of static strings, upstream outputs, pipeline parameters, or other instances of `dsl.ConcatPlaceholder` or `dsl.IfPresentPlaceholder`
 
 
-[hello-world-pipeline]: /docs/components/pipelines/overview/getting-started
+[hello-world-pipeline]: /docs/components/pipelines/getting-started
 [pipeline-basics]: /docs/components/pipelines/how-to/create-components/compose-components-into-pipelines
 [alpine]: https://hub.docker.com/_/alpine
 [dsl-outputpath]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.OutputPath

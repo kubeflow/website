@@ -237,11 +237,11 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/v1/reference/component-spec/                     /docs/components/pipelines/legacy-v1/reference/component-spec/
 /docs/components/pipelines/v1/reference/api/kubeflow-pipeline-api-spec/     /docs/components/pipelines/legacy-v1/reference/api/kubeflow-pipeline-api-spec/
 /docs/components/pipelines/v1/reference/sdk/                                /docs/components/pipelines/legacy-v1/reference/sdk/
-/docs/components/pipelines/v2/introduction/                                 /docs/components/pipelines/overview/introduction/
+/docs/components/pipelines/v2/introduction/                                 /docs/components/pipelines/overview/
 /docs/components/pipelines/v2/installation/quickstart/                      /docs/components/pipelines/operator-guides/installation/
-/docs/components/pipelines/v2/hello-world/                                  /docs/components/pipelines/overview/getting-started/
+/docs/components/pipelines/v2/hello-world/                                  /docs/components/pipelines/getting-started/
 /docs/components/pipelines/v2/run-a-pipeline/                               /docs/components/pipelines/how-to/run-a-pipeline/
-/docs/components/pipelines/v2/installation/quickstart/                      /docs/components/pipelines/overview/introduction/
+/docs/components/pipelines/v2/installation/quickstart/                      /docs/components/pipelines/overview/
 /docs/components/pipelines/v2/compile-a-pipeline/                           /docs/components/pipelines/how-to/compile-a-pipeline/
 /docs/components/pipelines/v2/local-execution/                              /docs/components/pipelines/how-to/execute-kfp-pipelines-locally/
 /docs/components/pipelines/v2/cli/                                          /docs/components/pipelines/how-to/cli/

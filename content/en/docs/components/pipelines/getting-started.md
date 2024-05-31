@@ -1,7 +1,7 @@
 +++
 title = "Getting started"
 description = "Create your first pipeline"
-weight = 3
+weight = 2
 +++
 
 {{% kfp-v2-keywords %}}
