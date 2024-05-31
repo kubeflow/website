@@ -13,6 +13,6 @@ groups. Experiments can contain arbitrary runs, including
 ## Next steps
 
 * Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/introduction/).
-* Follow the [pipelines quickstart guide](/docs/components/pipelines/legacy-v1/overview/quickstart/) 
+* Follow the [pipelines quickstart guide](/docs/components/pipelines/getting-started/) 
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.

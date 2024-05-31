@@ -7,7 +7,7 @@ weight = 80
 
 
 This page shows you how to use the Kubeflow Pipelines UI to visualize output 
-from a Kubeflow Pipelines [component](/docs/components/pipelines/legacy-v1/concepts/component/). 
+from a Kubeflow Pipelines [component](/docs/components/pipelines/concepts/component/). 
 
 ## Introduction
 
