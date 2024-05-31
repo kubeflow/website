@@ -1,7 +1,7 @@
 +++
 title = "Load and Share Components"
 description = "Load and use an ecosystem of components"
-weight = 7
+weight = 8
 +++
 
 {{% kfp-v2-keywords %}}
@@ -51,7 +51,7 @@ def my_pipeline():
 
 Some libraries, such as [Google Cloud Pipeline Components][gcpc] package and provide reusable components in a pip-installable [Python package][gcpc-pypi].
 
-[pipeline-as-component]: /docs/components/pipelines/user-guides/create-components/compose-components-into-pipelines#pipelines-as-components
+[pipeline-as-component]: /docs/components/pipelines/user-guides/components/compose-components-into-pipelines#pipelines-as-components
 [gcpc]: https://cloud.google.com/vertex-ai/docs/pipelines/components-introduction
 [gcpc-pypi]: https://pypi.org/project/google-cloud-pipeline-components/
 [components-module]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/components.html

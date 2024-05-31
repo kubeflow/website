@@ -1,7 +1,7 @@
 +++
 title = "Migrate from KFP SDK v1"
 description = "v1 to v2 migration instructions and breaking changes"
-weight = 15
+weight = 1
 +++
 
 {{% kfp-v2-keywords %}}
@@ -409,7 +409,7 @@ def flip_coin(rand: int, result: dsl.OutputPath(str)):
 
 `VolumeOp` and `ResourceOp` expose direct access to Kubernetes resources within a pipeline definition. There is no support for these features on a non-Kubernetes platforms.
 
-KFP v2 enables support for [platform-specific features](/docs/components/pipelines/user-guides/platform-specific-features/) via KFP SDK extension libraries. Kubernetes-specific features are supported in KFP v2 via the [`kfp-kubernetes`](https://kfp-kubernetes.readthedocs.io/) extension library.
+KFP v2 enables support for [platform-specific features](/docs/components/pipelines/user-guides/core-functions/platform-specific-features/) via KFP SDK extension libraries. Kubernetes-specific features are supported in KFP v2 via the [`kfp-kubernetes`](https://kfp-kubernetes.readthedocs.io/) extension library.
 
 #### v1 component YAML support
 
@@ -575,27 +575,27 @@ def training_pipeline(number_of_epochs: int = 1):
 
 If you believe we missed a breaking change or an important migration step, please [create an issue][new-issue] describing the change in the [kubeflow/pipelines repository][pipelines-repo].
 
-[artifacts]: /docs/components/pipelines/user-guides/artifacts
-[cli]: /docs/components/pipelines/user-guides/cli/
-[compile]: /docs/components/pipelines/user-guides/compile-a-pipeline
+[artifacts]: /docs/components/pipelines/user-guides/data-handling/artifacts
+[cli]: /docs/components/pipelines/user-guides/core-functions/cli/
+[compile]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline
 [compiler-compile]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/compiler.html#kfp.compiler.Compiler.compile
 [components-load-component-from-file]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.load_component_from_file
-[container-components]: /docs/components/pipelines/user-guides/create-components/containerized-python-components/
-[containerized-python-components]: /docs/components/pipelines/user-guides/create-components/containerized-python-components/
+[container-components]: /docs/components/pipelines/user-guides/components/containerized-python-components/
+[containerized-python-components]: /docs/components/pipelines/user-guides/components/containerized-python-components/
 [create-custom-training-job-from-component]: https://cloud.google.com/vertex-ai/docs/pipelines/customjob-component
 [dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.Collected
 [dsl-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.component
 [dsl-container-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.container_component
 [dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.ParallelFor
 [gcpc]: https://cloud.google.com/vertex-ai/docs/pipelines/components-introduction
-[ir-yaml]: /docs/components/pipelines/user-guides/compile-a-pipeline/#ir-yaml
-[lightweight-python-components]: /docs/components/pipelines/user-guides/create-components/lightweight-python-components//
+[ir-yaml]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/#ir-yaml
+[lightweight-python-components]: /docs/components/pipelines/user-guides/components/lightweight-python-components//
 [load]: /docs/components/pipelines/user-guides/load-and-share-components/
 [new-issue]: https://github.com/kubeflow/pipelines/issues/new
 [oss-be-v1]: /docs/components/pipelines/legacy-v1/
 [oss-be-v2]: /docs/components/pipelines/operator-guides/installation/
 [parallelfor-control-flow]: /docs/components/pipelines/user-guides/control-flow/#parallel-looping-dslparallelfor
-[parameters]: /docs/components/pipelines/user-guides/parameters
+[parameters]: /docs/components/pipelines/user-guides/data-handling/parameters
 [pipelines-repo]: https://github.com/kubeflow/pipelines
 [semver-minor-version]: https://semver.org/#:~:text=MINOR%20version%20when%20you%20add%20functionality%20in%20a%20backwards%20compatible%20manner
 [v1-component-yaml-example]: https://github.com/kubeflow/pipelines/blob/01c87f8a032e70a6ca92cdbefa974a7da387f204/sdk/python/test_data/v1_component_yaml/add_component.yaml
@@ -604,4 +604,4 @@ If you believe we missed a breaking change or an important migration step, pleas
 [vertex-sdk]: https://cloud.google.com/vertex-ai/docs/pipelines/run-pipeline#vertex-ai-sdk-for-python
 [argo]: https://argoproj.github.io/argo-workflows/
 [dsl-pipelinetask-set-env-variable]: https://kubeflow-pipelines.readthedocs.io/en/2.0.0b13/source/dsl.html#kfp.dsl.PipelineTask.set_env_variable
-[task-configuration-methods]: /docs/components/pipelines/user-guides/create-components/compose-components-into-pipelines/#task-configurations
+[task-configuration-methods]: /docs/components/pipelines/user-guides/components/compose-components-into-pipelines/#task-configurations

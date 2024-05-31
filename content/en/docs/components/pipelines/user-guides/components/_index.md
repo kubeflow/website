@@ -1,6 +1,6 @@
 +++
 title = "Create components"
-weight = 6
+weight = 3
 +++
 
 {{% kfp-v2-keywords %}}

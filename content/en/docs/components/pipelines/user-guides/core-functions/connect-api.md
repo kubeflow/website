@@ -1,7 +1,7 @@
 +++
 title = "Connect the Pipelines SDK to Kubeflow Pipelines"
 description = "How to connect the Pipelines SDK to Kubeflow Pipelines in various ways"
-weight = 25
+weight = 7
 +++
 
 How to connect Pipelines SDK to Kubeflow Pipelines will depend on __what kind__ of Kubeflow deployment you have, and __from where you are running your code__.

@@ -132,9 +132,9 @@ Local execution comes with several limitations:
 While local pipeline execution has full support for sequential and nested pipelines, it does not yet support `dsl.Condition`, `dsl.ParallelFor`, or `dsl.ExitHandler`.
 
 
-[lightweight-python-component]: /docs/components/pipelines/user-guides/create-components/lightweight-python-components/
-[containerized-python-components]: /docs/components/pipelines/user-guides/create-components/containerized-python-components
-[container-components]: /docs/components/pipelines/user-guides/create-components/container-components
+[lightweight-python-component]: /docs/components/pipelines/user-guides/components/lightweight-python-components/
+[containerized-python-components]: /docs/components/pipelines/user-guides/components/containerized-python-components
+[container-components]: /docs/components/pipelines/user-guides/components/container-components
 
 
 

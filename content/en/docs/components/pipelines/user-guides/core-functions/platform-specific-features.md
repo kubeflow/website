@@ -1,6 +1,6 @@
 +++
 title = "Author Tasks with Platform-Specific Functionality"
-weight = 16
+weight = 10
 +++
 
 
@@ -105,14 +105,14 @@ Finally, we can schedule deletion of the PVC after `task2` finishes to clean up 
 For the full pipeline and more information, see a [similar example][full-example] in the [`kfp-kubernetes` documentation][kfp-kubernetes-docs].
 
 
-[ir-yaml]: /docs/components/pipelines/user-guides/compile-a-pipeline#ir-yaml
+[ir-yaml]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline#ir-yaml
 [oss-be]: /docs/components/pipelines/operator-guides/installation/
 [kfp-kubernetes-pypi]: https://pypi.org/project/kfp-kubernetes/
-[task-level-config-methods]: /docs/components/pipelines/user-guides/create-components/compose-components-into-pipelines/#task-configurations
+[task-level-config-methods]: /docs/components/pipelines/user-guides/components/compose-components-into-pipelines/#task-configurations
 [kfp-kubernetes-docs]: https://kfp-kubernetes.readthedocs.io/
 [persistent-volume]: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
 [storage-class]: https://kubernetes.io/docs/concepts/storage/storage-classes/
 [access-mode]: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes
 [full-example]: https://kfp-kubernetes.readthedocs.io/en/kfp-kubernetes-0.0.1/#persistentvolumeclaim-dynamically-create-pvc-mount-then-delete
-[authoring-components]: http://localhost:1313/docs/components/pipelines/user-guides/create-components/
+[authoring-components]: http://localhost:1313/docs/components/pipelines/user-guides/components/
 [authoring-pipelines]: http://localhost:1313/docs/components/pipelines/user-guides/

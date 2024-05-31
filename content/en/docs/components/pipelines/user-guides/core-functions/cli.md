@@ -157,5 +157,5 @@ For more information about the arguments and flags supported by the `kfp compone
 
 [cli-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/cli.html
 [kfp-sdk-api-ref]: https://kubeflow-pipelines.readthedocs.io/en/stable/index.html
-[lightweight-python-component]: /docs/components/pipelines/user-guides/create-components/lightweight-python-components/
-[containerized-python-components]: /docs/components/pipelines/user-guides/create-components/containerized-python-components
+[lightweight-python-component]: /docs/components/pipelines/user-guides/components/lightweight-python-components/
+[containerized-python-components]: /docs/components/pipelines/user-guides/components/containerized-python-components

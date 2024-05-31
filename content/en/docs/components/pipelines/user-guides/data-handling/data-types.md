@@ -1,7 +1,7 @@
 +++
 title = "Data Types"
 description = "Component and pipeline I/O types"
-weight = 9
+weight = 1
 +++
 
 {{% kfp-v2-keywords %}}
@@ -15,5 +15,5 @@ So far [Hello World pipeline][hello-world] and the examples in [Components][comp
 KFP automatically tracks the way parameters and artifacts are passed between components and stores the this data passing history in [ML Metadata][ml-metadata]. This enables out-of-the-box ML artifact lineage tracking and easily reproducible pipeline executions. Furthermore, KFP's strongly-typed components provide a data contract between tasks in a pipeline.
 
 [hello-world]: /docs/components/pipelines/getting-started
-[components]: /docs/components/pipelines/user-guides/create-components
+[components]: /docs/components/pipelines/user-guides/components
 [ml-metadata]: https://github.com/google/ml-metadata

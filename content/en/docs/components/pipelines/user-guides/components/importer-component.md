@@ -34,7 +34,7 @@ The `importer` component permits setting artifact metadata via the `metadata` ar
 
 You may also specify a boolean `reimport` argument. If `reimport` is `False`, KFP will check to see if the artifact has already been imported to ML Metadata and, if so, use it. This is useful for avoiding duplicative artifact entries in ML Metadata when multiple pipeline runs import the same artifact. If `reimport` is `True`, KFP will reimport the artifact as a new artifact in ML Metadata regardless of whether it was previously imported.
 
-[pipeline-basics]: /docs/components/pipelines/user-guides/create-components/compose-components-into-pipelines
+[pipeline-basics]: /docs/components/pipelines/user-guides/components/compose-components-into-pipelines
 [dsl-importer]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.importer
-[artifacts]: /docs/components/pipelines/user-guides/artifacts
+[artifacts]: /docs/components/pipelines/user-guides/data-handling/artifacts
 [ml-metadata]: https://github.com/google/ml-metadata

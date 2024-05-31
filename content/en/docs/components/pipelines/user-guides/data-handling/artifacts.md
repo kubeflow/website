@@ -1,6 +1,6 @@
 +++
 title = "Create, use, pass, and track ML artifacts"
-weight = 11
+weight = 3
 +++
 
 {{% kfp-v2-keywords %}}
@@ -240,14 +240,14 @@ On the [KFP open source][oss-be] UI, `ClassificationMetrics`, `SlicedClassificat
 [dsl-slicedclassificationmetrics]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.SlicedClassificationMetrics
 [dsl-html]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.HTML
 [dsl-markdown]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Markdown
-[type-checking]: /docs/components/pipelines/user-guides/compile-a-pipeline#type-checking
+[type-checking]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline#type-checking
 [oss-be]: /docs/components/pipelines/operator-guides/installation/
-[pipelines]: /docs/components/pipelines/user-guides/create-components/compose-components-into-pipelines/
-[container-components]: /docs/components/pipelines/user-guides/create-components/lightweight-python-components//
-[python-components]: /docs/components/pipelines/user-guides/create-components/container-components
+[pipelines]: /docs/components/pipelines/user-guides/components/compose-components-into-pipelines/
+[container-components]: /docs/components/pipelines/user-guides/components/lightweight-python-components//
+[python-components]: /docs/components/pipelines/user-guides/components/container-components
 [dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ParallelFor
 [dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Collected
 [parallel-looping]: /docs/components/pipelines/user-guides/control-flow/#parallel-looping-dslparallelfor
-[traditional-artifact-syntax]: /docs/components/pipelines/user-guides/artifacts/#traditional-artifact-syntax
-[multiple-outputs]: /docs/components/pipelines/user-guides/parameters/#multiple-output-parameters
-[pythonic-artifact-syntax]: /docs/components/pipelines/user-guides/artifacts/#new-pythonic-artifact-syntax
+[traditional-artifact-syntax]: /docs/components/pipelines/user-guides/data-handling/artifacts/#traditional-artifact-syntax
+[multiple-outputs]: /docs/components/pipelines/user-guides/data-handling/parameters/#multiple-output-parameters
+[pythonic-artifact-syntax]: /docs/components/pipelines/user-guides/data-handling/artifacts/#new-pythonic-artifact-syntax
