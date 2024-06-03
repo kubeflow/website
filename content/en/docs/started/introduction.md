@@ -50,12 +50,8 @@ on top of Kubernetes.
   alt="Kubeflow overview"
   class="mt-3 mb-3">
 
-Read the [architecture overview](/docs/started/architecture/) for an
-introduction to the architecture of Kubeflow and to see how you can use Kubeflow
-to manage your ML workflow.
-
-Follow [Installing Kubeflow](/docs/started/installing-kubeflow/) to set up
-your environment and install Kubeflow.
+Read the [architecture overview](/docs/started/architecture/) to learn about Kubeflow ecosystem
+and to see how Kubeflow components fit in ML lifecycle.
 
 Watch the following video which provides an introduction to Kubeflow.
 
@@ -108,3 +104,5 @@ Read the [contributor's guide](/docs/about/contributing/) to get started on the 
 
 - Follow [the installation guide](/docs/started/installing-kubeflow) to deploy standalone
   Kubeflow components or Kubeflow Platform.
+
+-
