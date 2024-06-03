@@ -345,7 +345,7 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
 
 - [**Kubeflow 1.8.1:**](/docs/releases/kubeflow-1.8/)
   - [`v1.8-branch`](https://github.com/kubeflow/manifests/tree/v1.8-branch#installation) <sup>(development branch)</sup>
-  - [`v1.8.0`](https://github.com/kubeflow/manifests/tree/v1.8.0#installation)
+  - [`v1.8.1`](https://github.com/kubeflow/manifests/tree/v1.8.1#installation)
 - [**Kubeflow 1.7:**](/docs/releases/kubeflow-1.7/)
   - [`v1.7-branch`](https://github.com/kubeflow/manifests/tree/v1.7-branch#installation) <sup>(development branch)</sup>
   - [`v1.7.0`](https://github.com/kubeflow/manifests/tree/v1.7.0#installation)
