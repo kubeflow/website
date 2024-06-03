@@ -334,7 +334,7 @@ The following table lists distributions which are <em>maintained</em> by their r
 ### Kubeflow Manifests
 
 The Kubeflow Manifests are aggregated by the Manifests Working Group and are intended to be
-used as the **base of packaged distributions**.
+used by users with Kubernetes knowledge and as the base of packaged distributions.
 
 Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
 applications that comprise the **Kubeflow Platform**. This installation is helpful when you want to
