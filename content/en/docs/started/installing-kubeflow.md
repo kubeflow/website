@@ -351,11 +351,8 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
   - [`v1.7.0`](https://github.com/kubeflow/manifests/tree/v1.7.0#installation)
 
 {{% alert title="Warning" color="warning" %}}
-Kubeflow is a complex system with many components and dependencies.
-Using the Kubeflow manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
-
-When using the Kubeflow manifests, the community is not able to provide support for environment-specific issues or custom configurations.
-If you need support, please consider using a [packaged distribution](#packaged-distributions).
+Using the Kubeflow manifests requires some understanding of Kubernetes.
+The Kubeflow community support for Kubeflow manifests is best-effort for environment-specific issues or custom configurations.
 Nevertheless, we welcome contributions and bug reports very much.
 {{% /alert %}}
 
