@@ -343,7 +343,7 @@ try out the end-to-end Kubeflow Platform capabilities.
 Users may choose to install the manifests for a specific Kubeflow version by following the
 instructions in the `README` of the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
 
-- [**Kubeflow 1.8:**](/docs/releases/kubeflow-1.8/)
+- [**Kubeflow 1.8.1:**](/docs/releases/kubeflow-1.8/)
   - [`v1.8-branch`](https://github.com/kubeflow/manifests/tree/v1.8-branch#installation) <sup>(development branch)</sup>
   - [`v1.8.0`](https://github.com/kubeflow/manifests/tree/v1.8.0#installation)
 - [**Kubeflow 1.7:**](/docs/releases/kubeflow-1.7/)
