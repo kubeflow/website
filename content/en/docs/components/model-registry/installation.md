@@ -36,8 +36,7 @@ The manifests by defaut deploy the Model Registry in the `kubeflow` namespace;
 you must ensure the `kubeflow` namespace is available (e.g.: `kubectl create namespace kubeflow`)
 or modify the [kustomization file](https://github.com/kubeflow/model-registry/blob/v0.2.0-alpha/manifests/kustomize/overlays/db/kustomization.yaml#L3) accordingly to your setup.
 
-Remember to substitute the relevant release version number, by modifying the actual `ref=` to your desired version number.
-For example, modify `ref=v0.2.0-alpha` to `ref=v0.3.2` if you want to deploy version 0.3.2 instead.
+Run the following command to install the latest alpha release version of Model Registry:
 
 ```shell
 kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/overlays/db?ref=v0.2.0-alpha"
@@ -48,6 +47,9 @@ You may also apply the Istio-related manifests if your cluster installation prov
 ```shell
 kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/istio?ref=v0.2.0-alpha"
 ```
+
+If you want instead to install the latest changes or another release of Model Registry, modify the above commands with the desired `ref=`.
+For example, modify `ref=v0.2.0-alpha` to `ref=main` if you want to deploy the latest changes directly from the main branch instead.
 
 ## Check Model Registry setup
 
