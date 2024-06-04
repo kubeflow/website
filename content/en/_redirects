@@ -244,7 +244,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/v1/overview/interfaces/                          /docs/components/pipelines/interfaces/
 /docs/components/pipelines/v1/overview/multi-user/                          /docs/components/pipelines/legacy-v1/overview/multi-user/
 /docs/components/pipelines/v1/overview/caching/                             /docs/components/pipelines/legacy-v1/overview/caching/
-/docs/components/pipelines/v1/overview/pipeline-root/                       /docs/components/pipelines/legacy-v1/overview/pipeline-root/
+/docs/components/pipelines/v1/overview/pipeline-root/                       /docs/components/pipelines/concepts/pipeline-root/
 /docs/components/pipelines/v1/concepts/                                     /docs/components/pipelines/concepts/
 /docs/components/pipelines/v1/concepts/pipeline/                            /docs/components/pipelines/concepts/pipeline/
 /docs/components/pipelines/v1/concepts/component/                           /docs/components/pipelines/concepts/component/

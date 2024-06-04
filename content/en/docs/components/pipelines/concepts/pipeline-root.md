@@ -1,7 +1,7 @@
 +++
 title = "Pipeline Root"
 description = "Getting started with Kubeflow Pipelines pipeline root"
-weight = 50
+weight = 15
 
 +++
 {{% beta-status
