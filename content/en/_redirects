@@ -286,9 +286,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/v1/tutorials/cloud-tutorials/                    /docs/components/pipelines/legacy-v1/tutorials/cloud-tutorials/
 /docs/components/pipelines/v1/troubleshooting/                              /docs/components/pipelines/legacy-v1/troubleshooting/
 /docs/components/pipelines/v1/reference/                                    /docs/components/pipelines/legacy-v1/reference/
-/docs/components/pipelines/v1/reference/component-spec/                     /docs/components/pipelines/legacy-v1/reference/component-spec/
+/docs/components/pipelines/v1/reference/component-spec/                     /docs/components/pipelines/reference/component-spec/
 /docs/components/pipelines/v1/reference/api/kubeflow-pipeline-api-spec/     /docs/components/pipelines/legacy-v1/reference/api/kubeflow-pipeline-api-spec/
-/docs/components/pipelines/v1/reference/component-spec/                     /docs/components/pipelines/legacy-v1/reference/component-spec/
+/docs/components/pipelines/v1/reference/component-spec/                     /docs/components/pipelines/reference/component-spec/
 /docs/components/pipelines/v1/reference/api/kubeflow-pipeline-api-spec/     /docs/components/pipelines/legacy-v1/reference/api/kubeflow-pipeline-api-spec/
 /docs/components/pipelines/v1/reference/sdk/                                /docs/components/pipelines/legacy-v1/reference/sdk/
 /docs/components/pipelines/v2/introduction/                                 /docs/components/pipelines/overview/

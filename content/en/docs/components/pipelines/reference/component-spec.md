@@ -1,7 +1,7 @@
 +++
 title = "Component Specification"
 description = "Definition of a Kubeflow Pipelines component"
-weight = 10
+weight = 4
                     
 +++
 {{% alert title="Out of date" color="warning" %}}
