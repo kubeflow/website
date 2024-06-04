@@ -1,5 +1,5 @@
 +++
-title = " Pipelines SDK Reference"
+title = "Pipelines SDK Reference"
 description = "Reference documentation for the Kubeflow Pipelines SDK Version 2"
 weight = 5
                     
