@@ -4,10 +4,6 @@ description = "Definition of a Kubeflow Pipelines component"
 weight = 4
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
-{{% /alert %}}
 
 This specification describes the container component data model for Kubeflow
 Pipelines. The data model is serialized to a file in YAML format for sharing.
