@@ -1,5 +1,5 @@
 +++
 title = "Operator Guides"
 description = "Documentation for operators of Kubeflow Pipelines."
-weight = 5
+weight = 6
 +++
