@@ -13,7 +13,7 @@ For an overview of Feast, please read [Introduction to Feast](/docs/external-add
 
 **Overview**
 
-* This guide assumes that you have a running Kubeflow cluster already. If you don't have Kubeflow installed, then head on over to the [Kubeflow installation guide](/docs/started/getting-started).
+* This guide assumes that you have a running Kubeflow cluster already. If you don't have Kubeflow installed, then head on over to the [Kubeflow installation guide](/docs/started/getting-started/).
 * This guide also assumes that you have a running online feature store that Feast supports (Redis, Datastore, DynamoDB).
 * The latest version of Feast does not need to be installed into Kubernetes. It is possible to run Feast completely from CI or as a client library (during training or inference)
 * Feast requires a bucket (S3, GCS, Minio, etc) to maintain a feature registry, requires an online feature store for serving feature values, and it requires a scheduler to keep the online store up to date.
