@@ -52,25 +52,27 @@ Looking at the stages in more detail:
   During model optimization you can store ML metadata in the _Model Registry_.
 
 - In the _Model Training_ step you train or fine-tune your model on the large-scale
-  compute environment. You should use distributed training if single GPU can't handle your
+  compute environment. You should use a distributed training if single GPU can't handle your
   model size. The results of the model training is the trained model artifact that you
   can store in the _Model Registry_.
 
 - In the _Model Serving_ step you serve your model artifact for online or batch inference. Your
-  model can perform predictive or generative AI tasks depends on the use-case. During model serving
-  step you are using online feature store to extract features. You should monitor your model
+  model may perform predictive or generative AI tasks depending on the use-case. During the model
+  serving step you may use an online feature store to extract features. You monitor the model
   performance, and feed the results into your previous steps in the ML lifecycle.
 
 ### ML Lifecycle for Production and Development Phases
 
-ML lifecycle can be split between development and production phases with the primary goal to
-produce AI application for users:
+The ML lifecycle may be split conceptually split between _development_ and _production_ phases, with
+the primary goal to produce AI application for users.
+
+This diagram explores which stages fit into each phase:
 
 <img src="/docs/started/images/ml-lifecycle-dev-prod.drawio.svg"
   alt="ML Lifecycle with Development and Production"
   class="mt-3 mb-3">
 
-## Kubeflow Components in the ML Lifecycle
+### Kubeflow Components in the ML Lifecycle
 
 The next diagram shows how Kubeflow components are used for each stage in the ML lifecycle:
 
@@ -91,19 +93,22 @@ The next diagram shows how Kubeflow components are used for each stage in the ML
   training or fine-tuning.
 
 - [Kubeflow Model Registry](/docs/components/model-registry/) can be used to store ML metadata,
-  model artifacts, and preparing model for production serving.
+  model artifacts, and preparing models for production serving.
 
 - [KServe](https://kserve.github.io/website/master/) can be used for online and batch inference
   in the model serving step.
 
-- [FEAST](https://feast.dev/) can be used for feature store and to manage offline and online
+- [Feast](https://feast.dev/) can be used as a feature store and to manage offline and online
   features.
 
 - [Kubeflow Pipelines](/docs/components/pipelines/) can be used to build, deploy, and manage each
   step in the ML lifecycle.
 
-You can use every Kubeflow component as a standalone tool to integrate into your AI/ML Platform
-or you can deploy Kubeflow Platform to get all Kubeflow components for end-to-end ML lifecycle.
+You can use most Kubeflow components as
+[standalone tools](/docs/started/introduction/#what-are-standalone-kubeflow-components) and
+integrate them into your existing AI/ML Platform, or you can deploy the full
+[Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform) to get all Kubeflow
+components for an end-to-end ML lifecycle.
 
 ## Kubeflow Interfaces
 
@@ -118,18 +123,19 @@ The Kubeflow UI looks like this:
   alt="The Kubeflow UI"
   class="mt-3 mb-3 border border-info rounded">
 
-The UI offers a central dashboard that you can use to access the components
-of your Kubeflow deployment. Read
-[how to access the central dashboard](/docs/components/central-dash/overview/).
+The Kubeflow Platform includes [Kubeflow Central Dashboard](/docs/components/central-dash/overview/)
+which acts as a hub for your ML platform and tools by exposing the UIs of components running in the
+cluster.
 
-## Kubeflow APIs and SDKs
+### Kubeflow APIs and SDKs
 
 <!--
 TODO (andreyvelich): Add reference docs once this issue is implemented: https://github.com/kubeflow/katib/issues/2081
 -->
 
-Various components of Kubeflow offer APIs and Python SDKs. See the following
-sets of reference documentation:
+Various components of Kubeflow offer APIs and Python SDKs.
+
+See the following sets of reference documentation:
 
 - [Pipelines reference docs](/docs/components/pipelines/reference/) for the Kubeflow
   Pipelines API and SDK, including the Kubeflow Pipelines domain-specific
