@@ -351,8 +351,8 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
   - [`v1.7.0`](https://github.com/kubeflow/manifests/tree/v1.7.0#installation)
 
 {{% alert title="Warning" color="warning" %}}
-Using the Kubeflow manifests requires some understanding of Kubernetes.
-The Kubeflow community support for Kubeflow manifests is best-effort for environment-specific issues or custom configurations.
+Using the Kubeflow manifests requires basic Kubernetes knowledge.
+The Kubeflow community support for Kubeflow manifests is only best-effort and not guaranteed for environment-specific issues or custom configurations.
 Nevertheless, we welcome contributions and bug reports very much.
 {{% /alert %}}
 
