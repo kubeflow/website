@@ -63,10 +63,8 @@ Looking at the stages in more detail:
 
 ### ML Lifecycle for Production and Development Phases
 
-The ML lifecycle may be split conceptually split between _development_ and _production_ phases, with
-the primary goal to produce AI application for users.
-
-This diagram explores which stages fit into each phase:
+The ML lifecycle for AI applications may be conceptually split between _development_ and
+_production_ phases, this diagram explores which stages fit into each phase:
 
 <img src="/docs/started/images/ml-lifecycle-dev-prod.drawio.svg"
   alt="ML Lifecycle with Development and Production"
