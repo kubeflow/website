@@ -11,18 +11,15 @@ Kubeflow components and Kubeflow Platform.
 
 ## Kubeflow Ecosystem
 
-The following diagram shows Kubeflow ecosystem for arranging the
-components of your ML system on top of Kubernetes:
+The following diagram gives an overview of the Kubeflow Ecosystem and how it relates to the wider
+Kubernetes and AI/ML landscapes.
 
 <img src="/docs/started/images/kubeflow-architecture.drawio.svg"
   alt="An architectural overview of Kubeflow on Kubernetes"
   class="mt-3 mb-3">
 
 Kubeflow builds on [Kubernetes](https://kubernetes.io/) as a system for
-deploying, scaling, and managing complex systems.
-
-Using the Kubeflow configuration interfaces (see [below](#kubeflow-interfaces)) you can
-specify the ML tools required for your use cases.
+deploying, scaling, and managing AI/ML infrastructure.
 
 ## Introducing the ML Lifecycle
 
@@ -78,27 +75,23 @@ The next diagram shows how Kubeflow components are used for each stage in the ML
   alt="Kubeflow Components in ML Lifecycle"
   class="mt-3 mb-3">
 
+See the following links for more information about each Kubeflow component:
+
 - [Kubeflow Spark Operator](https://github.com/kubeflow/spark-operator) can be used for data
   preparation and feature engineering step.
 
 - [Kubeflow Notebooks](/docs/components/notebooks/) can be used for model development and interactive
   data science to experiment with your ML workflows.
-
 - [Kubeflow Katib](/docs/components/katib/) can be used for model optimization and hyperparameter
   tuning using various AutoML algorithms.
-
 - [Kubeflow Training Operator](/docs/components/training/) can be used for large-scale distributed
   training or fine-tuning.
-
 - [Kubeflow Model Registry](/docs/components/model-registry/) can be used to store ML metadata,
   model artifacts, and preparing models for production serving.
-
 - [KServe](https://kserve.github.io/website/master/) can be used for online and batch inference
   in the model serving step.
-
 - [Feast](https://feast.dev/) can be used as a feature store and to manage offline and online
   features.
-
 - [Kubeflow Pipelines](/docs/components/pipelines/) can be used to build, deploy, and manage each
   step in the ML lifecycle.
 
@@ -138,10 +131,8 @@ See the following sets of reference documentation:
 - [Pipelines reference docs](/docs/components/pipelines/reference/) for the Kubeflow
   Pipelines API and SDK, including the Kubeflow Pipelines domain-specific
   language (DSL).
-
 - [Training Operator Python SDK](https://github.com/kubeflow/training-operator/blob/86e0df17db715543b366e885c9ae659aa1342c8e/sdk/python/kubeflow/training/api/training_client.py)
   to manage Training Operator jobs using Python APIs.
-
 - [Katib Python SDK](https://github.com/kubeflow/katib/blob/086093fed72610c227e3ae1b4044f27afa940852/sdk/python/v1beta1/kubeflow/katib/api/katib_client.py)
   to manage Katib hyperparameter tuning Experiments using Python APIs.
 
