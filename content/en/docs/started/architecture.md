@@ -82,16 +82,22 @@ See the following links for more information about each Kubeflow component:
 
 - [Kubeflow Notebooks](/docs/components/notebooks/) can be used for model development and interactive
   data science to experiment with your ML workflows.
+
 - [Kubeflow Katib](/docs/components/katib/) can be used for model optimization and hyperparameter
   tuning using various AutoML algorithms.
+
 - [Kubeflow Training Operator](/docs/components/training/) can be used for large-scale distributed
   training or fine-tuning.
+
 - [Kubeflow Model Registry](/docs/components/model-registry/) can be used to store ML metadata,
   model artifacts, and preparing models for production serving.
+
 - [KServe](https://kserve.github.io/website/master/) can be used for online and batch inference
   in the model serving step.
+
 - [Feast](https://feast.dev/) can be used as a feature store and to manage offline and online
   features.
+
 - [Kubeflow Pipelines](/docs/components/pipelines/) can be used to build, deploy, and manage each
   step in the ML lifecycle.
 
