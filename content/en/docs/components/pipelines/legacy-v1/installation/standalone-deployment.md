@@ -104,7 +104,7 @@ Kubeflow Pipelines will change default executor from Docker to Emissary starting
 deprecated on Kubernetes 1.20+. 
 
 For Kubeflow Pipelines before v1.8, configure to use Emissary executor by
-referring to [Argo Workflow Executors](/docs/components/pipelines/installation/choose-executor).
+referring to [Argo Workflow Executors](/docs/components/pipelines/legacy-v1/installation/choose-executor).
      {{% /alert %}}
 
 1. Get the public URL for the Kubeflow Pipelines UI and use it to access the Kubeflow Pipelines UI:

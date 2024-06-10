@@ -49,7 +49,7 @@
 /docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
 /docs/pipelines/sdk/build-component/           /docs/components/pipelines/sdk/build-pipeline/
 /docs/components/pipelines/sdk/build-component/    /docs/components/pipelines/sdk/build-pipeline/
-/docs/components/pipelines/upgrade/            /docs/components/pipelines/installation/upgrade/
+/docs/components/pipelines/upgrade/            /docs/components/pipelines/operator-guides/installation/upgrade/
 
 # Moved the guide to monitoring GKE deployments.
 /docs/other-guides/monitoring/                 /docs/distributions/gke/monitoring/
@@ -61,7 +61,7 @@
 /docs/pipelines/sdk/dsl-overview/              /docs/components/pipelines/sdk/sdk-overview/
 
 # Created a new section for pipelines installation.
-/docs/pipelines/standalone-deployment-gcp/    /docs/components/pipelines/installation/standalone-deployment/
+/docs/pipelines/standalone-deployment-gcp/    /docs/components/pipelines/operator-guides/installation/standalone-deployment/
 
 # Removed the downloads page from Reference to Getting Started with Kubeflow
 /docs/reference/downloads/                     /docs/started/getting-started/

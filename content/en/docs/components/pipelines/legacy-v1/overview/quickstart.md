@@ -15,7 +15,7 @@ Kubeflow Pipelines UI.
 
 ## Deploy Kubeflow and open the Kubeflow Pipelines UI
 
-There are several options to [deploy Kubeflow Pipelines](/docs/components/pipelines/legacy-v1/overview/), follow the option that best suits your needs. If you are uncertain and just want to try out kubeflow pipelines it is recommended to start with the [standalone deployment](/docs/components/pipelines/installation/standalone-deployment/).
+There are several options to [deploy Kubeflow Pipelines](/docs/components/pipelines/legacy-v1/overview/), follow the option that best suits your needs. If you are uncertain and just want to try out kubeflow pipelines it is recommended to start with the [standalone deployment](/docs/components/pipelines/legacy-v1/installation/standalone-deployment/).
 
 Once you have deployed Kubeflow Pipelines, make sure you can access the UI. The steps to access the UI vary based on the method you used to deploy Kubeflow Pipelines.
 

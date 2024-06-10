@@ -14,7 +14,7 @@ portable installation that only includes Kubeflow Pipelines.
 * Kubeflow Pipelines as [part of a full Kubeflow deployment](#full-kubeflow-deployment) provides
 all Kubeflow components and more integration with each platform.
 * **Beta**: [Google Cloud AI Platform Pipelines](#google-cloud-ai-platform-pipelines) makes it easier to install and use Kubeflow Pipelines on Google Cloud by providing a management UI on [Google Cloud Console](https://console.cloud.google.com/ai-platform/pipelines/clusters).
-* A [local](/docs/components/pipelines/installation/localcluster-deployment) Kubeflow Pipelines deployment for testing purposes.
+* A [local](/docs/components/pipelines/legacy-v1/installation/localcluster-deployment) Kubeflow Pipelines deployment for testing purposes.
 
 ## Choosing an installation option
 
@@ -23,7 +23,7 @@ all Kubeflow components and more integration with each platform.
     If yes, choose the [full Kubeflow deployment](#full-kubeflow-deployment).
 1. Can you use a cloud/on-prem Kubernetes cluster?
 
-    If you can't, you should try using Kubeflow Pipelines on a local Kubernetes cluster for learning and testing purposes by following the steps in [Deploying Kubeflow Pipelines on a local cluster](/docs/components/pipelines/installation/localcluster-deployment).
+    If you can't, you should try using Kubeflow Pipelines on a local Kubernetes cluster for learning and testing purposes by following the steps in [Deploying Kubeflow Pipelines on a local cluster](/docs/components/pipelines/legacy-v1/installation/localcluster-deployment).
 1. Do you want to use Kubeflow Pipelines with [multi-user support](https://github.com/kubeflow/pipelines/issues/1223)?
 
     If yes, choose the [full Kubeflow deployment](#full-kubeflow-deployment) with version >= v1.1.
@@ -56,7 +56,7 @@ Kubeflow Pipelines into an existing Kubernetes cluster.
 
 Installation guide
 : [Kubeflow Pipelines Standalone deployment
-  guide](/docs/components/pipelines/installation/standalone-deployment/)
+  guide](/docs/components/pipelines/legacy-v1/installation/standalone-deployment/)
 
 Interfaces
 :
@@ -74,7 +74,7 @@ Release Schedule
 You will have access to the latest features.
 
 Upgrade Support (**Beta**)
-: [Upgrading Kubeflow Pipelines Standalone](/docs/components/pipelines/installation/standalone-deployment/#upgrading-kubeflow-pipelines) introduces how to upgrade
+: [Upgrading Kubeflow Pipelines Standalone](/docs/components/pipelines/legacy-v1/installation/standalone-deployment/#upgrading-kubeflow-pipelines) introduces how to upgrade
 in place.
 
 Google Cloud Integrations

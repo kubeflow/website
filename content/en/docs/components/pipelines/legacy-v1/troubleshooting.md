@@ -88,4 +88,4 @@ You can resolve this issue by using one of the following options:
 
 ## TFX visualizations do not show up or throw an error
 
-Confirm your Kubeflow Pipelines backend version is compatible with your TFX version, refer to [Kubeflow Pipelines Compatibility Matrix](/docs/components/pipelines/installation/compatibility-matrix/).
+Confirm your Kubeflow Pipelines backend version is compatible with your TFX version, refer to [Kubeflow Pipelines Compatibility Matrix](/docs/components/pipelines/legacy-v1/installation/compatibility-matrix/).

@@ -7,12 +7,12 @@ weight = 15
 {{% beta-status
 feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
 
-Starting from [Kubeflow Pipelines SDK v2](https://www.kubeflow.org/docs/components/pipelines/sdk-v2/) and Kubeflow Pipelines 1.7.0, Kubeflow Pipelines supports a new intermediate artifact repository feature: pipeline root in both [standalone deployment](https://www.kubeflow.org/docs/components/pipelines/installation/standalone-deployment/) and [AI Platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs).
+Starting from [Kubeflow Pipelines SDK v2](https://www.kubeflow.org/docs/components/pipelines/sdk-v2/) and Kubeflow Pipelines 1.7.0, Kubeflow Pipelines supports a new intermediate artifact repository feature: pipeline root in both [standalone deployment](https://www.kubeflow.org/docs/components/pipelines/legacy-v1/installation/standalone-deployment/) and [AI Platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs).
 
 ## Before you start
 This guide tells you the basic concepts of Kubeflow Pipelines pipeline root and how to use it.
 This guide assumes that you already have Kubeflow Pipelines installed, or want to use standalone or AI Platform Pipelines options in the [Kubeflow Pipelines deployment
-guide](/docs/components/pipelines/installation/) to deploy Kubeflow Pipelines.
+guide](/docs/components/pipelines/operator-guides/installation/) to deploy Kubeflow Pipelines.
 
 ## What is pipeline root?
 

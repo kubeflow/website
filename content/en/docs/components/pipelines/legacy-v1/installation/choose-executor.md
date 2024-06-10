@@ -92,7 +92,7 @@ To upgrade, refer to [upgrading Kubeflow Pipelines](/docs/components/pipelines/u
 
 For [AI Platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs), check the "Use emissary executor" checkbox during installation.
 
-For [Kubeflow Pipelines Standalone](https://www.kubeflow.org/docs/components/pipelines/installation/standalone-deployment/), install `env/platform-agnostic-emissary`:
+For [Kubeflow Pipelines Standalone](https://www.kubeflow.org/docs/components/pipelines/legacy-v1/installation/standalone-deployment/), install `env/platform-agnostic-emissary`:
 
 ```bash
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-emissary?ref=$PIPELINE_VERSION"

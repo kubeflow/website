@@ -12,7 +12,7 @@ Starting from Kubeflow Pipelines 0.4, Kubeflow Pipelines supports step caching c
 ## Before you start
 
 This guide tells you the basic concepts of Kubeflow Pipelines step caching and how to use it. 
-This guide assumes that you already have Kubeflow Pipelines installed or want to use options in the [Kubeflow Pipelines deployment guide](/docs/components/pipelines/installation/) to deploy Kubeflow Pipelines.
+This guide assumes that you already have Kubeflow Pipelines installed or want to use options in the [Kubeflow Pipelines deployment guide](/docs/components/pipelines/operator-guides/installation/) to deploy Kubeflow Pipelines.
 
 ## What is step caching?
 

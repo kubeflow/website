@@ -309,7 +309,7 @@ This information only applies to _Standalone Kubeflow Pipelines_.
 When running inside the Kubernetes cluster, you may connect Pipelines SDK directly to the `ml-pipeline-ui` service via [cluster-internal service DNS resolution](https://kubernetes.io/docs/concepts/services-networking/service/#discovering-services).
 
 {{% alert title="Tip" color="info" %}}
-In [standalone deployments](/docs/components/pipelines/installation/standalone-deployment/) of Kubeflow Pipelines, there is no authentication enforced on the `ml-pipeline-ui` service.
+In [standalone deployments](/docs/components/pipelines/legacy-v1/installation/standalone-deployment/) of Kubeflow Pipelines, there is no authentication enforced on the `ml-pipeline-ui` service.
 {{% /alert %}}
 
 For example, when running in the __same namespace__ as Kubeflow:
@@ -350,7 +350,7 @@ This information only applies to _Standalone Kubeflow Pipelines_.
 When running outside the Kubernetes cluster, you may connect Pipelines SDK to the `ml-pipeline-ui` service by using [kubectl port-forwarding](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/).
 
 {{% alert title="Tip" color="info" %}}
-In [standalone deployments](/docs/components/pipelines/installation/standalone-deployment/) of Kubeflow Pipelines, there is no authentication enforced on the `ml-pipeline-ui` service.
+In [standalone deployments](/docs/components/pipelines/legacy-v1/installation/standalone-deployment/) of Kubeflow Pipelines, there is no authentication enforced on the `ml-pipeline-ui` service.
 {{% /alert %}}
 
 __Step 1:__ run the following command on your external system to initiate port-forwarding:

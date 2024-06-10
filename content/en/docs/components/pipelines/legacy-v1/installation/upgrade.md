@@ -18,7 +18,7 @@ For upgrade instructions, refer to distribution specific documentations:
 
 [v1.7]: https://github.com/kubeflow/pipelines/releases/tag/1.7.0
 
-* **Breaking Change**: Metadata UI and visualizations are not compatible with TensorFlow Extended (TFX) <= v1.0.0. Upgrade to v1.2.0 or above, refer to [Kubeflow Pipelines Backend and TensorFlow Extended (TFX) compatibility matrix](/docs/components/pipelines/installation/compatibility-matrix/).
+* **Breaking Change**: Metadata UI and visualizations are not compatible with TensorFlow Extended (TFX) <= v1.0.0. Upgrade to v1.2.0 or above, refer to [Kubeflow Pipelines Backend and TensorFlow Extended (TFX) compatibility matrix](/docs/components/pipelines/legacy-v1/installation/compatibility-matrix/).
 
 * **Notice**: Emissary executor (Alpha), a new argo workflow executor is available as an option. Due to [Kubernetes deprecating Docker as a container runtime after v1.20](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/), emissary may become the default workflow executor for Kubeflow Pipelines in the near future.
 
@@ -26,6 +26,6 @@ For upgrade instructions, refer to distribution specific documentations:
 
     Alternatively, using emissary executor (Alpha) removes the restriction on container runtime, but note some of your pipelines may require manual migrations. The Kubeflow Pipelines team welcomes your feedback in [the Emissary Executor feedback github issue](https://github.com/kubeflow/pipelines/issues/6249).
 
-    For detailed configuration and migration instructions for both options, refer to [Argo Workflow Executors](https://www.kubeflow.org/docs/components/pipelines/installation/choose-executor/).
+    For detailed configuration and migration instructions for both options, refer to [Argo Workflow Executors](https://www.kubeflow.org/docs/components/pipelines/legacy-v1/installation/choose-executor/).
 
 * **Notice**: [Kubeflow Pipelines SDK v2 compatibility mode](/docs/components/pipelines/sdk-v2/v2-compatibility/) (Beta) was recently released. The new mode adds support for tracking pipeline runs and artifacts using ML Metadata. In v1.7 backend, complete UI support and caching capabilities for v2 compatibility mode are newly added. We welcome any [feedback](https://github.com/kubeflow/pipelines/issues/6451) on positive experiences or issues you encounter.
