@@ -16,7 +16,7 @@ Please join the [Kubeflow channels](#slack-channels) to join the conversation an
 
 ### Slack Channels
 
-The following table lists official Kubeflow channels which are hosted on the __CNCF Slack__:
+The following table lists official Kubeflow channels which are hosted on the **CNCF Slack**:
 
 | Description                             | Link                                                                              |
 |-----------------------------------------|-----------------------------------------------------------------------------------|
@@ -28,7 +28,7 @@ The following table lists official Kubeflow channels which are hosted on the __C
 | Pipelines                               | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)         |
 | Platform Manifests and Release Planning | [#kubeflow-platform](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)          |
 | Spark Operator                          | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG)    |
-| Training Operators                      | [#kubeflow-training](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)          |
+| Training Operator and MPI Operator      | [#kubeflow-training](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)          |
 | KServe                                  | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                     |
 
 ## Kubeflow Mailing List
