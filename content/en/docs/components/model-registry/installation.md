@@ -50,8 +50,6 @@ If your Kubernetes cluster uses Istio, you MUST apply the Istio-compatibility ma
 kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/istio?ref=v0.2.0-alpha"
 ```
 
-If you want instead to install the latest changes or another release of Model Registry, modify the above commands with the desired `ref=`.
-For example, modify `ref=v0.2.0-alpha` to `ref=main` if you want to deploy the latest changes directly from the main branch instead.
 
 ## Check Model Registry setup
 
