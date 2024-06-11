@@ -41,21 +41,19 @@ The Kubeflow Platform can be installed via
 [Packaged Distributions](/docs/started/installing-kubeflow/#packaged-distributions) or
 [Kubeflow Manifests](/docs/started/installing-kubeflow/#kubeflow-manifests).
 
-## Getting started with Kubeflow
+## Kubeflow Overview Diagram
 
-The following diagram shows the main Kubeflow components to cover each step of ML lifecycle
+The following diagram shows the main Kubeflow components to cover each stage of the ML lifecycle
 on top of Kubernetes.
 
 <img src="/docs/started/images/kubeflow-intro-diagram.drawio.svg"
   alt="Kubeflow overview"
   class="mt-3 mb-3">
 
-Read the [architecture overview](/docs/started/architecture/) for an
-introduction to the architecture of Kubeflow and to see how you can use Kubeflow
-to manage your ML workflow.
+Read the [architecture overview](/docs/started/architecture/) to learn about the Kubeflow ecosystem
+and to see how Kubeflow components fit in ML lifecycle.
 
-Follow [Installing Kubeflow](/docs/started/installing-kubeflow/) to set up
-your environment and install Kubeflow.
+## Kubeflow Video Introduction
 
 Watch the following video which provides an introduction to Kubeflow.
 
