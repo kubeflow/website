@@ -21,7 +21,7 @@ From the Kubeflow Pipelines UI you can perform the following tasks:
 * Run one or more of the preloaded samples to try out pipelines quickly.
 * Upload a pipeline as a compressed file. The pipeline can be one that you
   have built (see how to [build a 
-  pipeline](/docs/components/pipelines/sdk/build-pipeline/)) or one 
+  pipeline](/docs/components/pipelines/legacy-v1/sdk/build-pipeline/)) or one 
   that someone has shared with you.
 * Create an *experiment* to group one or more of your pipeline runs.
   See the [definition of an
@@ -38,8 +38,8 @@ information about accessing the Kubeflow Pipelines UI and running the samples.
 
 When building a pipeline component, you can write out information for display
 in the UI. See the guides to [exporting 
-metrics](/docs/components/pipelines/sdk/pipelines-metrics/) and [visualizing results in 
-the UI](/docs/components/pipelines/sdk/output-viewer/).
+metrics](/docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/) and [visualizing results in 
+the UI](/docs/components/pipelines/legacy-v1/sdk/output-viewer/).
 
 ## Python SDK
 

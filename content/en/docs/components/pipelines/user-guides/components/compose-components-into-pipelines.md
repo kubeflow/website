@@ -202,7 +202,7 @@ def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
 <!-- TODO: make this reference more precise throughout -->
 [dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html
 [dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.pipeline
-[control-flow]: /docs/components/pipelines/user-guides/control-flow
+[control-flow]: /docs/components/pipelines/user-guides/core-functions/control-flow
 [components]: /docs/components/pipelines/user-guides/components
 [pipelinetask]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.PipelineTask
 [vertex-pipelines]: https://cloud.google.com/vertex-ai/docs/pipelines/introduction

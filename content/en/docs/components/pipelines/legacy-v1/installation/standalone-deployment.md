@@ -115,7 +115,7 @@ referring to [Argo Workflow Executors](/docs/components/pipelines/legacy-v1/inst
 
 ## Upgrading Kubeflow Pipelines
 
-1. For release notices and breaking changes, refer to [Upgrading Kubeflow Pipelines](/docs/components/pipelines/upgrade).
+1. For release notices and breaking changes, refer to [Upgrading Kubeflow Pipelines](/docs/components/pipelines/legacy-v1/installation/upgrade/).
 
 1. Check the [Kubeflow Pipelines GitHub repository](https://github.com/kubeflow/pipelines/releases) for available releases.
 

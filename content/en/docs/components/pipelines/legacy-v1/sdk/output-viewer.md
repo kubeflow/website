@@ -383,7 +383,7 @@ viewers later on the page.
         below as examples.</p>
         <p><b>Be aware</b>, support for inline visualizations, other than
         markdown, was introduced in Kubeflow Pipelines 0.2.5. Before using these
-        visualizations, [upgrade  your Kubeflow Pipelines cluster](/docs/components/pipelines/upgrade/)
+        visualizations, [upgrade  your Kubeflow Pipelines cluster](/docs/components/pipelines/legacy-v1/installation/upgrade//)
         to version 0.2.5 or higher.</p>
         </td>
       </tr>
@@ -756,8 +756,3 @@ For a complete example of lightweigh Python component, you can refer to
 ## YAML component example
 
 You can also configure visualization in a component.yaml file. Refer to `{name: MLPipeline UI Metadata}` output in [Create Tensorboard Visualization component](https://github.com/kubeflow/pipelines/blob/f61048b5d2e1fb5a6a61782d570446b0ec940ff7/components/tensorflow/tensorboard/prepare_tensorboard/component.yaml#L12).
-
-## Next step
-
-See how to [export metrics from your 
-pipeline](/docs/components/pipelines/metrics/pipelines-metrics/).

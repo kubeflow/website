@@ -25,7 +25,7 @@ triggered to run frequently.
 
 ## Next steps
 
-* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/introduction/).
+* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/overview/).
 * Follow the [pipelines quickstart guide](/docs/components/pipelines/getting-started/) 
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.

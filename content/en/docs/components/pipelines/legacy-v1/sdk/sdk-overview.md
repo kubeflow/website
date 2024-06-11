@@ -16,7 +16,7 @@ workflow and how the components interact with each other.
 
 **Note**: The SDK documentation here refers to [Kubeflow Pipelines with Argo](https://github.com/kubeflow/pipelines) which is the default.
 If you are running [Kubeflow Pipelines with Tekton](https://github.com/kubeflow/kfp-tekton) instead,
-please follow the [Kubeflow Pipelines SDK for Tekton](/docs/components/pipelines/sdk/pipelines-with-tekton) documentation.
+please follow the [Kubeflow Pipelines SDK for Tekton](/docs/components/pipelines/legacy-v1/sdk/pipelines-with-tekton) documentation.
 
 ## SDK packages
 
@@ -65,7 +65,7 @@ The Kubeflow Pipelines SDK includes the following packages:
 
   * `kfp.dsl.PipelineParam` represents a pipeline parameter that you can pass
     from one pipeline component to another. See the guide to 
-    [pipeline parameters](/docs/components/pipelines/sdk/parameters/).
+    [pipeline parameters](/docs/components/pipelines/legacy-v1/sdk/parameters/).
   * `kfp.dsl.component` is a decorator for DSL functions that returns a
     pipeline component.
     ([`ContainerOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.ContainerOp)).
@@ -78,7 +78,7 @@ The Kubeflow Pipelines SDK includes the following packages:
     include basic types like `String`, `Integer`, `Float`, and `Bool`, as well
     as domain-specific types like `GCPProjectID` and `GCRPath`.
     See the guide to 
-    [DSL static type checking](/docs/components/pipelines/sdk/static-type-checking).
+    [DSL static type checking](/docs/components/pipelines/legacy-v1/sdk/static-type-checking).
   * [`kfp.dsl.ResourceOp`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.ResourceOp)
     represents a pipeline task (op) which lets you directly manipulate 
     Kubernetes resources (`create`, `get`, `apply`, ...).
@@ -119,7 +119,7 @@ The Kubeflow Pipelines SDK includes the following packages:
     for execution on Kubeflow Pipelines.
   * `kfp.Client.create_run_from_pipeline_package` runs a local pipeline package on Kubeflow Pipelines.
   * `kfp.Client.upload_pipeline` uploads a local file to create a new pipeline in Kubeflow Pipelines.
-  * `kfp.Client.upload_pipeline_version` uploads a local file to create a pipeline version. [Follow an example to learn more about creating a pipeline version](/docs/components/pipelines/tutorials/sdk-examples).
+  * `kfp.Client.upload_pipeline_version` uploads a local file to create a pipeline version. [Follow an example to learn more about creating a pipeline version](/docs/components/pipelines/legacy-v1/tutorials/sdk-examples).
 
 * [Kubeflow Pipelines extension modules](https://kubeflow-pipelines.readthedocs.io/en/stable/source/kfp.extensions.html)
   include classes and functions for specific platforms on which you can use
@@ -155,7 +155,7 @@ The Kubeflow Pipelines CLI tool enables you to use a subset of the Kubeflow Pipe
 ## Installing the SDK
 
 Follow the guide to 
-[installing the Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/).
+[installing the Kubeflow Pipelines SDK](/docs/components/pipelines/legacy-v1/sdk/install-sdk/).
 
 ## Building pipelines and components
 
@@ -166,7 +166,7 @@ A Kubeflow _pipeline_ is a portable and scalable definition of an ML workflow.
 Each step in your ML workflow, such as preparing data or training a model,
 is an instance of a pipeline component.
 
-[Learn more about building pipelines](/docs/components/pipelines/sdk/build-pipeline).
+[Learn more about building pipelines](/docs/components/pipelines/legacy-v1/sdk/build-pipeline).
 
 A pipeline _component_ is a self-contained set of code that performs one step
 in your ML workflow. Components are defined in a component specification, which
@@ -183,13 +183,13 @@ Use the following options to create or reuse pipeline components.
 *   You can build components by defining a component specification for a
     containerized application.
 
-    [Learn more about building pipeline components](/docs/components/pipelines/sdk/component-development).
+    [Learn more about building pipeline components](/docs/components/pipelines/legacy-v1/sdk/component-development).
 
 *   Lightweight Python function-based components make it easier to build a
     component by using the Kubeflow Pipelines SDK to generate the component
     specification for a Python function.
 
-    [Learn how to build a Python function-based component](/docs/components/pipelines/sdk/python-function-components).
+    [Learn how to build a Python function-based component](/docs/components/pipelines/legacy-v1/sdk/python-function-components).
 
 *   You can reuse prebuilt components in your pipeline.
 
@@ -199,7 +199,7 @@ Use the following options to create or reuse pipeline components.
 ## Next steps
 
 * Learn how to [write recursive functions in the 
-  DSL](/docs/components/pipelines/sdk/dsl-recursion).
-* Build a [pipeline component](/docs/components/pipelines/sdk/component-development/).
+  DSL](/docs/components/pipelines/legacy-v1/sdk/dsl-recursion).
+* Build a [pipeline component](/docs/components/pipelines/legacy-v1/sdk/component-development/).
 * Find out how to use the DSL to [manipulate Kubernetes resources dynamically 
-  as steps of your pipeline](/docs/components/pipelines/sdk/manipulate-resources/).
+  as steps of your pipeline](/docs/components/pipelines/legacy-v1/sdk/manipulate-resources/).

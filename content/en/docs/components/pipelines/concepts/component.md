@@ -57,11 +57,11 @@ deserialize the data for use in the downstream component.
 
 ## Next steps
 
-* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/introduction/).
+* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/overview/).
 * Follow the [pipelines quickstart guide](/docs/components/pipelines/getting-started/) 
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.
 * Build your own 
-  [component and pipeline](/docs/components/pipelines/sdk/build-component/).
-* Build a [reusable component](/docs/components/pipelines/sdk/component-development/) for
+  [component and pipeline](/docs/components/pipelines/legacy-v1/sdk/build-component/).
+* Build a [reusable component](/docs/components/pipelines/legacy-v1/sdk/component-development/) for
   sharing in multiple pipelines.

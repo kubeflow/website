@@ -395,7 +395,7 @@ The following examples demonstrate how to specify your component's interface.
     ```
 
 [dsl-types]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/types.py
-[dsl-type-checking]: https://www.kubeflow.org/docs/components/pipelines/sdk/static-type-checking/
+[dsl-type-checking]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/static-type-checking/
 
 ### Specify your component's metadata
 
@@ -588,15 +588,15 @@ See this [sample component][org-sample] for a real-life component example.
 ## Next steps
 
 * Consolidate what you've learned by reading the
-  [best practices](/docs/components/pipelines/sdk/best-practices) for designing and
+  [best practices](/docs/components/pipelines/legacy-v1/sdk/best-practices/) for designing and
   writing components.
 * For quick iteration,
-  [build lightweight Python function-based components](/docs/components/pipelines/sdk/python-function-components/)
+  [build lightweight Python function-based components](/docs/components/pipelines/legacy-v1/sdk/python-function-components/)
   directly from Python functions.
 * See how to [export metrics from your
-  pipeline](/docs/components/pipelines/sdk/pipelines-metrics/).
+  pipeline](/docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/).
 * Visualize the output of your component by
   [adding metadata for an output
-  viewer](/docs/components/pipelines/sdk/output-viewer/).
+  viewer](/docs/components/pipelines/legacy-v1/sdk/output-viewer/).
 * Explore the [reusable components and other shared
   resources](/docs/examples/shared-resources/).

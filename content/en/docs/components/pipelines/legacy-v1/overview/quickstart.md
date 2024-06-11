@@ -94,11 +94,11 @@ You can find the [source code for the **XGBoost - Iterative model training** dem
 ## Next steps
 
 * Learn more about the 
-  [important concepts](/docs/pipelines/overview/concepts/) in Kubeflow
+  [important concepts](/docs/components/pipelines/concepts/) in Kubeflow
   Pipelines.
 * This page showed you how to run some of the examples supplied in the Kubeflow
   Pipelines UI. Next, you may want to run a pipeline from a notebook, or compile 
   and run a sample from the code. See the guide to experimenting with
-  [the Kubeflow Pipelines samples](/docs/components/pipelines/tutorials/build-pipeline/).
+  [the Kubeflow Pipelines samples](/docs/components/pipelines/legacy-v1/tutorials/build-pipeline/).
 * Build your own machine-learning pipelines with the [Kubeflow Pipelines 
   SDK](/docs/components/pipelines/legacy-v1/sdk/sdk-overview/).

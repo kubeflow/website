@@ -114,5 +114,5 @@ For the full pipeline and more information, see a [similar example][full-example
 [storage-class]: https://kubernetes.io/docs/concepts/storage/storage-classes/
 [access-mode]: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes
 [full-example]: https://kfp-kubernetes.readthedocs.io/en/kfp-kubernetes-0.0.1/#persistentvolumeclaim-dynamically-create-pvc-mount-then-delete
-[authoring-components]: http://localhost:1313/docs/components/pipelines/user-guides/components/
-[authoring-pipelines]: http://localhost:1313/docs/components/pipelines/user-guides/
+[authoring-components]: /docs/components/pipelines/user-guides/components/
+[authoring-pipelines]: /docs/components/pipelines/user-guides/

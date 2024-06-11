@@ -34,13 +34,13 @@ improvements can make it the default executor that most people should use going 
   * Cannot escape the privileges of the pod's service account.
 * Migration: `command` must be specified in [Kubeflow Pipelines component specification](https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/).
 
-  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](https://www.kubeflow.org/docs/components/pipelines/sdk-v2/v2-compatibility/), refer to
+  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/v2-compatibility/), refer to
   [known caveats & breaking changes](https://github.com/kubeflow/pipelines/issues/6133).
 
 #### Migrate to Emissary Executor
 
 Prerequisite: emissary executor is only available in Kubeflow Pipelines backend version 1.7+.
-To upgrade, refer to [upgrading Kubeflow Pipelines](/docs/components/pipelines/upgrade/).
+To upgrade, refer to [upgrading Kubeflow Pipelines](/docs/components/pipelines/legacy-v1/installation/upgrade//).
 
 ##### Configure an existing Kubeflow Pipelines cluster to use emissary executor
 
@@ -92,7 +92,7 @@ To upgrade, refer to [upgrading Kubeflow Pipelines](/docs/components/pipelines/u
 
 For [AI Platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs), check the "Use emissary executor" checkbox during installation.
 
-For [Kubeflow Pipelines Standalone](https://www.kubeflow.org/docs/components/pipelines/legacy-v1/installation/standalone-deployment/), install `env/platform-agnostic-emissary`:
+For [Kubeflow Pipelines Standalone](/docs/components/pipelines/legacy-v1/installation/standalone-deployment/), install `env/platform-agnostic-emissary`:
 
 ```bash
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-emissary?ref=$PIPELINE_VERSION"
@@ -152,7 +152,7 @@ Step by step component migration tutorial:
 1. The updated component can run on emissary executor now.
 
 Note: Kubeflow Pipelines SDK compiler always specifies a command for
-[python function based components](https://www.kubeflow.org/docs/components/pipelines/sdk/python-function-components/).
+[python function based components](https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/python-function-components/).
 Therefore, these components will continue to work on emissary executor without
 modifications.
 

@@ -37,4 +37,4 @@ def my_pipeline(
 ```
 
 For more information, you can refer to the guide on
-[building components and pipelines](/docs/components/pipelines/sdk/component-development/).
+[building components and pipelines](/docs/components/pipelines/legacy-v1/sdk/component-development/).

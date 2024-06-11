@@ -26,6 +26,6 @@ For upgrade instructions, refer to distribution specific documentations:
 
     Alternatively, using emissary executor (Alpha) removes the restriction on container runtime, but note some of your pipelines may require manual migrations. The Kubeflow Pipelines team welcomes your feedback in [the Emissary Executor feedback github issue](https://github.com/kubeflow/pipelines/issues/6249).
 
-    For detailed configuration and migration instructions for both options, refer to [Argo Workflow Executors](https://www.kubeflow.org/docs/components/pipelines/legacy-v1/installation/choose-executor/).
+    For detailed configuration and migration instructions for both options, refer to [Argo Workflow Executors](/docs/components/pipelines/legacy-v1/installation/choose-executor/).
 
-* **Notice**: [Kubeflow Pipelines SDK v2 compatibility mode](/docs/components/pipelines/sdk-v2/v2-compatibility/) (Beta) was recently released. The new mode adds support for tracking pipeline runs and artifacts using ML Metadata. In v1.7 backend, complete UI support and caching capabilities for v2 compatibility mode are newly added. We welcome any [feedback](https://github.com/kubeflow/pipelines/issues/6451) on positive experiences or issues you encounter.
+* **Notice**: [Kubeflow Pipelines SDK v2 compatibility mode](/docs/components/pipelines/legacy-v1/sdk/v2-compatibility/) (Beta) was recently released. The new mode adds support for tracking pipeline runs and artifacts using ML Metadata. In v1.7 backend, complete UI support and caching capabilities for v2 compatibility mode are newly added. We welcome any [feedback](https://github.com/kubeflow/pipelines/issues/6451) on positive experiences or issues you encounter.

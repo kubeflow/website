@@ -23,7 +23,7 @@ Use this command to help resolve issues like the following:
 
 To use the `kfp diagnose_me` CLI, follow these steps:
 
-1.  Install the [Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/).
+1.  Install the [Kubeflow Pipelines SDK](/docs/components/pipelines/legacy-v1/sdk/install-sdk/).
 1.  Follow the [guide to configuring access to Kubernetes clusters][kubeconfig],
     to update your kubeconfig file with appropriate credentials and endpoint
     information to access your Kubeflow cluster.
@@ -44,7 +44,7 @@ installing or using the Kubeflow Pipelines SDK.
 
 This error indicates that you have not installed the `kfp` package in your
 Python3 environment. Follow the instructions in the [Kubeflow Pipelines SDK
-installation guide](/docs/components/pipelines/sdk/install-sdk/), if you have not already
+installation guide](/docs/components/pipelines/legacy-v1/sdk/install-sdk/), if you have not already
 installed the SDK.
 
 If you have already installed the Kubeflow Pipelines SDK, check that you have

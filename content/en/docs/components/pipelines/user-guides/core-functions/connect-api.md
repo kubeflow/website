@@ -15,7 +15,7 @@ How to connect Pipelines SDK to Kubeflow Pipelines will depend on __what kind__ 
 {{% alert title="Tip" color="info" %}}
 Before you begin, you will need to:
 * [Deploy Kubeflow Pipelines](/docs/components/pipelines/legacy-v1/overview/)
-* [Install the Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/)
+* [Install the Kubeflow Pipelines SDK](/docs/components/pipelines/legacy-v1/sdk/install-sdk/)
 {{% /alert %}}
 
 ## Full Kubeflow <sub>(from inside cluster)</sub>
@@ -375,6 +375,6 @@ print(client.list_experiments())
 
 ## Next Steps
 
-* [Using the Kubeflow Pipelines SDK](/docs/components/pipelines/tutorials/sdk-examples/)
+* [Using the Kubeflow Pipelines SDK](/docs/components/pipelines/legacy-v1/tutorials/sdk-examples/)
 * [Kubeflow Pipelines SDK Reference](https://kubeflow-pipelines.readthedocs.io/en/stable/)
-* [Experiment with the Kubeflow Pipelines API](/docs/components/pipelines/tutorials/api-pipelines/)
+* [Experiment with the Kubeflow Pipelines API](/docs/components/pipelines/legacy-v1/tutorials/api-pipelines/)

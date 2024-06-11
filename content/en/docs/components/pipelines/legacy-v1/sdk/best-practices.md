@@ -11,7 +11,7 @@ needs to be updated for Kubeflow 1.1.
 
 This page describes some recommended practices for designing
 components. For an application of these best practices, see the
-[component development guide](/docs/components/pipelines/sdk/component-development). If 
+[component development guide](/docs/components/pipelines/legacy-v1/sdk/component-development). If 
 you're new to pipelines, see the conceptual guides to 
 [pipelines](/docs/components/pipelines/concepts/pipeline/)
 and [components](/docs/components/pipelines/concepts/component/).

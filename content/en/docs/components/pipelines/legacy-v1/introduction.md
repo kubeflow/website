@@ -281,4 +281,4 @@ At a high level, the execution of a pipeline proceeds as follows:
 * Build machine-learning pipelines with the [Kubeflow Pipelines 
   SDK](/docs/components/pipelines/legacy-v1/sdk/sdk-overview/).
 * Follow the full guide to experimenting with
-  [the Kubeflow Pipelines samples](/docs/components/pipelines/tutorials/build-pipeline/).
+  [the Kubeflow Pipelines samples](/docs/components/pipelines/legacy-v1/tutorials/build-pipeline/).

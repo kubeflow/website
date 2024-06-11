@@ -247,7 +247,7 @@ On the [KFP open source][oss-be] UI, `ClassificationMetrics`, `SlicedClassificat
 [python-components]: /docs/components/pipelines/user-guides/components/container-components
 [dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ParallelFor
 [dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Collected
-[parallel-looping]: /docs/components/pipelines/user-guides/control-flow/#parallel-looping-dslparallelfor
+[parallel-looping]: /docs/components/pipelines/user-guides/core-functions/control-flow/#parallel-looping-dslparallelfor
 [traditional-artifact-syntax]: /docs/components/pipelines/user-guides/data-handling/artifacts/#traditional-artifact-syntax
 [multiple-outputs]: /docs/components/pipelines/user-guides/data-handling/parameters/#multiple-output-parameters
 [pythonic-artifact-syntax]: /docs/components/pipelines/user-guides/data-handling/artifacts/#new-pythonic-artifact-syntax

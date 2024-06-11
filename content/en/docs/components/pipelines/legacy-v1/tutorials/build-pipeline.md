@@ -21,7 +21,7 @@ Set up your environment:
 
 1. Clone or download the
   [Kubeflow Pipelines samples](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/samples).
-1. Install the [Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/).
+1. Install the [Kubeflow Pipelines SDK](/docs/components/pipelines/legacy-v1/sdk/install-sdk/).
 1. Activate your Python 3 environment if you haven't done so already:
 
     ```
@@ -129,6 +129,6 @@ The following notebooks are available:
 * Learn the various ways to use the [Kubeflow Pipelines 
   SDK](/docs/components/pipelines/legacy-v1/sdk/sdk-overview/).
 * See how to 
-  [build your own pipeline components](/docs/components/pipelines/sdk/build-component/).
+  [build your own pipeline components](/docs/components/pipelines/legacy-v1/sdk/build-component/).
 * Read more about 
-  [building lightweight components](/docs/components/pipelines/sdk/lightweight-python-components/).
+  [building lightweight components](/docs/components/pipelines/legacy-v1/sdk/lightweight-python-components/).

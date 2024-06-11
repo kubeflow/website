@@ -23,33 +23,33 @@
 
 # Restructured the pipelines docs.
 /docs/pipelines/                                    /docs/components/pipelines
-/docs/pipelines/output-viewer/                      /docs/components/pipelines/sdk/output-viewer/
-/docs/pipelines/pipelines-metrics/                  /docs/components/pipelines/sdk/pipelines-metrics/
-/docs/pipelines/build-component/                    /docs/components/pipelines/sdk/build-component/
-/docs/pipelines/install-sdk/                        /docs/components/pipelines/sdk/install-sdk/
-/docs/pipelines/lightweight-python-components/      /docs/components/pipelines/sdk/python-function-components/
-/docs/pipelines/sdk/lightweight-python-components/  /docs/components/pipelines/sdk/python-function-components/
-/docs/pipelines/build-pipeline/                     /docs/components/pipelines/tutorials/build-pipeline/
-/docs/pipelines/pipelines-tutorial/                 /docs/components/pipelines/tutorials/cloud-tutorials/
-/docs/pipelines/tutorials/pipelines-tutorial/       /docs/components/pipelines/tutorials/cloud-tutorials/
-/docs/gke/pipelines-tutorial/                       /docs/components/pipelines/tutorials/cloud-tutorials/
-/docs/gke/pipelines/pipelines-tutorial/             /docs/components/pipelines/tutorials/cloud-tutorials/
+/docs/pipelines/output-viewer/                      /docs/components/pipelines/legacy-v1/sdk/output-viewer/
+/docs/pipelines/pipelines-metrics/                  /docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/
+/docs/pipelines/build-component/                    /docs/components/pipelines/legacy-v1/sdk/build-component/
+/docs/pipelines/install-sdk/                        /docs/components/pipelines/legacy-v1/sdk/install-sdk/
+/docs/pipelines/lightweight-python-components/      /docs/components/pipelines/legacy-v1/sdk/python-function-components/
+/docs/pipelines/sdk/lightweight-python-components/  /docs/components/pipelines/legacy-v1/sdk/python-function-components/
+/docs/pipelines/build-pipeline/                     /docs/components/pipelines/legacy-v1/tutorials/build-pipeline/
+/docs/pipelines/pipelines-tutorial/                 /docs/components/pipelines/legacy-v1/tutorials/cloud-tutorials/
+/docs/pipelines/tutorials/pipelines-tutorial/       /docs/components/pipelines/legacy-v1/tutorials/cloud-tutorials/
+/docs/gke/pipelines-tutorial/                       /docs/components/pipelines/legacy-v1/tutorials/cloud-tutorials/
+/docs/gke/pipelines/pipelines-tutorial/             /docs/components/pipelines/legacy-v1/tutorials/cloud-tutorials/
 /docs/gke/authentication-pipelines/                 /docs/distributions/gke/pipelines/authentication-pipelines/
 
-/docs/pipelines/metrics/                       /docs/components/pipelines/sdk/pipelines-metrics/
-/docs/pipelines/metrics/pipelines-metrics/     /docs/components/pipelines/sdk/pipelines-metrics/
-/docs/pipelines/metrics/output-viewer/         /docs/components/pipelines/sdk/output-viewer/
-/docs/pipelines/pipelines-overview/            /docs/components/pipelines/overview/pipelines-overview/
-/docs/pipelines/enable-gpu-and-tpu/            /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
-/docs/pipelines/sdk/enable-gpu-and-tpu/        /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
-/docs/pipelines/sdk/gcp/enable-gpu-and-tpu/    /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
-/docs/pipelines/preemptible/                   /docs/distributions/gke/pipelines/preemptible/
-/docs/pipelines/sdk/gcp/preemptible/           /docs/distributions/gke/pipelines/preemptible/
-/docs/pipelines/reusable-components/           /docs/examples/shared-resources/
-/docs/pipelines/sdk/reusable-components/       /docs/examples/shared-resources/
-/docs/pipelines/sdk/build-component/           /docs/components/pipelines/sdk/build-pipeline/
-/docs/components/pipelines/sdk/build-component/    /docs/components/pipelines/sdk/build-pipeline/
-/docs/components/pipelines/upgrade/            /docs/components/pipelines/operator-guides/installation/upgrade/
+/docs/pipelines/metrics/                            /docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/
+/docs/pipelines/metrics/pipelines-metrics/          /docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/
+/docs/pipelines/metrics/output-viewer/              /docs/components/pipelines/legacy-v1/sdk/output-viewer/
+/docs/pipelines/pipelines-overview/                 /docs/components/pipelines/overview/pipelines-overview/
+/docs/pipelines/enable-gpu-and-tpu/                 /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/enable-gpu-and-tpu/             /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/gcp/enable-gpu-and-tpu/         /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/preemptible/                        /docs/distributions/gke/pipelines/preemptible/
+/docs/pipelines/sdk/gcp/preemptible/                /docs/distributions/gke/pipelines/preemptible/
+/docs/pipelines/reusable-components/                /docs/examples/shared-resources/
+/docs/pipelines/sdk/reusable-components/            /docs/examples/shared-resources/
+/docs/pipelines/sdk/build-component/                /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
+/docs/components/pipelines/sdk/build-component/     /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
+/docs/components/pipelines/upgrade/                 /docs/components/pipelines/legacy-v1/installation/upgrade/
 
 # Moved the guide to monitoring GKE deployments.
 /docs/other-guides/monitoring/                 /docs/distributions/gke/monitoring/
@@ -58,10 +58,10 @@
 /docs/pipelines/pipelines-concepts/            /docs/components/pipelines/concepts/
 
 # Replaces Pipelines DSL overview with SDK overview
-/docs/pipelines/sdk/dsl-overview/              /docs/components/pipelines/sdk/sdk-overview/
+/docs/pipelines/sdk/dsl-overview/              /docs/components/pipelines/legacy-v1/sdk/sdk-overview/
 
 # Created a new section for pipelines installation.
-/docs/pipelines/standalone-deployment-gcp/    /docs/components/pipelines/operator-guides/installation/standalone-deployment/
+/docs/pipelines/standalone-deployment-gcp/    /docs/components/pipelines/operator-guides/installation/
 
 # Removed the downloads page from Reference to Getting Started with Kubeflow
 /docs/reference/downloads/                     /docs/started/getting-started/
@@ -178,7 +178,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/caching-v2                         /docs/components/pipelines/overview/caching-v2
 /docs/components/pipelines/multi-user                         /docs/components/pipelines/overview/multi-user
 /docs/components/pipelines/pipeline-root                      /docs/components/pipelines/overview/pipeline-root
-/docs/components/pipelines/overview/pipelines-overview        /docs/components/pipelines/introduction
+/docs/components/pipelines/overview/pipelines-overview        /docs/components/pipelines/overview
 /docs/components/pipelines/pipelines-quickstart               /docs/components/pipelines/overview/quickstart
 
 # Restructure About section
@@ -305,8 +305,8 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/v2/components/container-components/              /docs/components/pipelines/user-guides/components/container-components/
 /docs/components/pipelines/v2/components/importer-component/                /docs/components/pipelines/user-guides/components/importer-component/
 /docs/components/pipelines/v2/components/additional-functionality/          /docs/components/pipelines/user-guides/components/additional-functionality/
-/docs/components/pipelines/v2/load-and-share-components/                    /docs/components/pipelines/user-guides/load-and-share-components/
-/docs/components/pipelines/v2/pipelines/control-flow/                       /docs/components/pipelines/user-guides/control-flow/
+/docs/components/pipelines/v2/load-and-share-components/                    /docs/components/pipelines/user-guides/components/load-and-share-components//
+/docs/components/pipelines/v2/pipelines/control-flow/                       /docs/components/pipelines/user-guides/core-functions/control-flow/
 /docs/components/pipelines/v2/data-types/                                   /docs/components/pipelines/user-guides/data-handling/data-types/
 /docs/components/pipelines/v2/data-types/parameters/                        /docs/components/pipelines/user-guides/data-handling/parameters/
 /docs/components/pipelines/v2/data-types/artifacts/                         /docs/components/pipelines/user-guides/data-handling/artifacts/

@@ -17,7 +17,7 @@ components.
 Set up your environment: 
 
 - [Install Kubeflow](/docs/started/)
-- [Install the Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/install-sdk/)
+- [Install the Kubeflow Pipelines SDK](/docs/components/pipelines/legacy-v1/sdk/install-sdk/)
 
 
 
@@ -26,7 +26,7 @@ Set up your environment:
 In this example, you pass an environment variable to a lightweight Python 
 component, which writes the variable's value to the log.
 
-[Learn more about lightweight Python components](/docs/components/pipelines/sdk/lightweight-python-components/)
+[Learn more about lightweight Python components](/docs/components/pipelines/legacy-v1/sdk/lightweight-python-components/)
 
 To build a component, define a stand-alone Python function and then call 
 [kfp.components.func_to_container_op(func)](https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.func_to_container_op) to convert the 
