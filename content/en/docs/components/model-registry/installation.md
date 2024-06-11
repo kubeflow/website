@@ -44,7 +44,7 @@ Run the following command to install the `v0.2.0-alpha` release of Model Registr
 kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/overlays/db?ref=v0.2.0-alpha"
 ```
 
-You may also apply the Istio-related manifests if your cluster installation provides an Istio-mesh; these are also required when using Model Registry as part of Kubeflow.
+If your Kubernetes cluster uses Istio, you MUST apply the Istio-compatibility manifests (e.g. when using a full Kubeflow Platform). However, these are NOT required for non-Istio clusters.
 
 ```shell
 kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/istio?ref=v0.2.0-alpha"
