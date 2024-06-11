@@ -32,9 +32,9 @@ improvements can make it the default executor that most people should use going 
 * Security: more secure
   * No `privileged` access.
   * Cannot escape the privileges of the pod's service account.
-* Migration: `command` must be specified in [Kubeflow Pipelines component specification](https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/).
+* Migration: `command` must be specified in [Kubeflow Pipelines component specification](/docs/components/pipelines/reference/component-spec/).
 
-  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/v2-compatibility/), refer to
+  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](/docs/components/pipelines/legacy-v1/sdk/v2-compatibility/), refer to
   [known caveats & breaking changes](https://github.com/kubeflow/pipelines/issues/6133).
 
 #### Migrate to Emissary Executor
@@ -105,7 +105,7 @@ existing clusters.
 ##### Migrate pipeline components to run on emissary executor
 
 Some pipeline components require manual updates to run on emissary executor.
-For [Kubeflow Pipelines component specification](https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/) YAML,
+For [Kubeflow Pipelines component specification](/docs/components/pipelines/reference/component-spec/) YAML,
 the `command` field must be specified.
 
 Step by step component migration tutorial:
@@ -152,7 +152,7 @@ Step by step component migration tutorial:
 1. The updated component can run on emissary executor now.
 
 Note: Kubeflow Pipelines SDK compiler always specifies a command for
-[python function based components](https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/python-function-components/).
+[python function based components](/docs/components/pipelines/legacy-v1/sdk/python-function-components/).
 Therefore, these components will continue to work on emissary executor without
 modifications.
 

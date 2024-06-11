@@ -395,7 +395,7 @@ The following examples demonstrate how to specify your component's interface.
     ```
 
 [dsl-types]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/sdk/python/kfp/dsl/types.py
-[dsl-type-checking]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/static-type-checking/
+[dsl-type-checking]: /docs/components/pipelines/legacy-v1/sdk/static-type-checking/
 
 ### Specify your component's metadata
 

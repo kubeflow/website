@@ -62,6 +62,6 @@ deserialize the data for use in the downstream component.
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.
 * Build your own 
-  [component and pipeline](/docs/components/pipelines/legacy-v1/sdk/build-component/).
+  [component and pipeline](/docs/components/pipelines/legacy-v1/sdk/component-development//).
 * Build a [reusable component](/docs/components/pipelines/legacy-v1/sdk/component-development/) for
   sharing in multiple pipelines.

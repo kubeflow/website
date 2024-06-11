@@ -54,7 +54,7 @@ kubectl edit configMap kfp-launcher -n ${namespace}
 This pipeline root will be the default pipeline root for all pipelines running in the Kubernetes namespace unless you override it using one of the following options:
 
 ####  Via Building Pipelines
-You can configure a pipeline root through the `kfp.dsl.pipeline` annotation when [building pipelines](https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/build-pipeline/#build-your-pipeline)
+You can configure a pipeline root through the `kfp.dsl.pipeline` annotation when [building pipelines](/docs/components/pipelines/legacy-v1/sdk/build-pipeline/#build-your-pipeline)
 
 ####  Via Submitting a Pipeline through SDK
 You can configure pipeline root via `pipeline_root` argument when you submit a Pipeline using one of the following:

@@ -47,7 +47,7 @@ Python function-based components make it easier to iterate quickly by letting yo
 component code as a Python function and generating the [component specification][component-spec] for you.
 This document describes how to build Python function-based components and use them in your pipeline.
 
-[component-spec]: https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/
+[component-spec]: /docs/components/pipelines/reference/component-spec/
 
 ## Before you begin
 
@@ -70,7 +70,7 @@ from kfp.components import create_component_from_func
 3. Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
 
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.Client
-[connect-api]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/connect-api
+[connect-api]: /docs/components/pipelines/legacy-v1/sdk/connect-api
 
 
 ```python
@@ -110,7 +110,7 @@ add_op = create_component_from_func(
 
 3.  Create and run your pipeline. [Learn more about creating and running pipelines][build-pipelines].
 
-[build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/build-component/
+[build-pipelines]: /docs/components/pipelines/legacy-v1/sdk/component-development//
 
 
 ```python
@@ -323,8 +323,8 @@ including component metadata and metrics.
 [dockerfile]: https://docs.docker.com/engine/reference/builder/
 [named-tuple-hint]: https://docs.python.org/3/library/typing.html#typing.NamedTuple
 [named-tuple]: https://docs.python.org/3/library/collections.html#collections.namedtuple
-[kfp-visualize]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/output-viewer/
-[kfp-metrics]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/
+[kfp-visualize]: /docs/components/pipelines/legacy-v1/sdk/output-viewer/
+[kfp-metrics]: /docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/
 [input-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.InputPath
 [output-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.OutputPath
 
@@ -563,7 +563,7 @@ def calc_pipeline(
 
 5.  Compile and run your pipeline. [Learn more about compiling and running pipelines][build-pipelines].
 
-[build-pipelines]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/build-pipeline/#compile-and-run-your-pipeline
+[build-pipelines]: /docs/components/pipelines/legacy-v1/sdk/build-pipeline/#compile-and-run-your-pipeline
 
 
 ```python

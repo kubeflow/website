@@ -221,11 +221,11 @@ when designing a pipeline.
     into a single file.
 
 [container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.ContainerOp
-[component-spec]: https://www.kubeflow.org/docs/components/pipelines/reference/component-spec/
-[python-function-component]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/python-function-components/
-[component-dev]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/component-development/
-[python-function-component-data-passing]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/python-function-components/#understanding-how-data-is-passed-between-components
-[prebuilt-components]: https://www.kubeflow.org/docs/examples/shared-resources/
+[component-spec]: /docs/components/pipelines/reference/component-spec/
+[python-function-component]: /docs/components/pipelines/legacy-v1/sdk/python-function-components/
+[component-dev]: /docs/components/pipelines/legacy-v1/sdk/component-development/
+[python-function-component-data-passing]: /docs/components/pipelines/legacy-v1/sdk/python-function-components/#understanding-how-data-is-passed-between-components
+[prebuilt-components]: /docs/examples/shared-resources/
 
 
 ```python
@@ -319,7 +319,7 @@ $ head merged_data.csv
     The following example shows the updated `merge_csv` function.
 
 [web-download-component]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/components/web/Download/component.yaml
-[python-function-components]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/python-function-components/
+[python-function-components]: /docs/components/pipelines/legacy-v1/sdk/python-function-components/
 [input-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html?highlight=inputpath#kfp.components.InputPath
 [output-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html?highlight=outputpath#kfp.components.OutputPath
 
@@ -415,14 +415,14 @@ kfp.compiler.Compiler().compile(
 2.  Upload and run your `pipeline.yaml` using the Kubeflow Pipelines user interface.
 See the guide to [getting started with the UI][quickstart].
 
-[quickstart]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/overview/quickstart
+[quickstart]: /docs/components/pipelines/legacy-v1/overview/quickstart
 
 #### Option 2: run the pipeline using Kubeflow Pipelines SDK client
 
 1.  Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
 
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.Client
-[connect-api]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/connect-api
+[connect-api]: /docs/components/pipelines/legacy-v1/sdk/connect-api
 
 
 ```python
@@ -450,8 +450,8 @@ client.create_run_from_pipeline_func(
     pipeline][k8s-resources] (Experimental).
 
 [conditional]: https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/tutorials/DSL%20-%20Control%20structures/DSL%20-%20Control%20structures.py
-[recursion]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/dsl-recursion/
-[k8s-resources]: https://www.kubeflow.org/docs/components/pipelines/legacy-v1/sdk/manipulate-resources/
+[recursion]: /docs/components/pipelines/legacy-v1/sdk/dsl-recursion/
+[k8s-resources]: /docs/components/pipelines/legacy-v1/sdk/manipulate-resources/
 
 
 <div class="notebook-links">

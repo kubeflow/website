@@ -129,6 +129,6 @@ The following notebooks are available:
 * Learn the various ways to use the [Kubeflow Pipelines 
   SDK](/docs/components/pipelines/legacy-v1/sdk/sdk-overview/).
 * See how to 
-  [build your own pipeline components](/docs/components/pipelines/legacy-v1/sdk/build-component/).
+  [build your own pipeline components](/docs/components/pipelines/legacy-v1/sdk/component-development//).
 * Read more about 
   [building lightweight components](/docs/components/pipelines/legacy-v1/sdk/lightweight-python-components/).
