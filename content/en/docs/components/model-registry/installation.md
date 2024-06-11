@@ -36,6 +36,8 @@ The manifests by defaut deploy the Model Registry in the `kubeflow` namespace;
 you must ensure the `kubeflow` namespace is available (e.g.: `kubectl create namespace kubeflow`)
 or modify the [kustomization file](https://github.com/kubeflow/model-registry/blob/v0.2.0-alpha/manifests/kustomize/overlays/db/kustomization.yaml#L3) accordingly to your setup.
 
+See the list of available versions on the [GitHub releases](https://github.com/kubeflow/model-registry/releases) of the `kubeflow/model-registry` repository. To install a specific release of the Model Registry, modify the following commands with the desired `ref=<GIT_TAG>`.
+
 Run the following command to install the latest alpha release version of Model Registry:
 
 ```shell
