@@ -11,13 +11,13 @@ How you access the Istio gateway varies depending on how you've configured it.
 
 ## Packaged Distributions
 
-Each [packaged distribution of Kubeflow](/docs/started/installing-kubeflow/#packaged-distributions-of-kubeflow) will have its own way of accessing the central dashboard.
+Each [packaged distribution of Kubeflow](/docs/started/installing-kubeflow/#packaged-distributions) will have its own way of accessing the central dashboard.
 
 For more information, please see the documentation of the distribution you are using.
 
 ## Raw Manifests
 
-If you are using the [Raw Kubeflow Manifests](/docs/started/installing-kubeflow/#raw-kubeflow-manifests), you may access the Istio gateway with `kubectl` port-forwarding or another method.
+If you are using the default [Kubeflow Manifests](/docs/started/installing-kubeflow/#kubeflow-manifests), you may access the Istio gateway with `kubectl` port-forwarding or another method.
 
 ### kubectl port-forwarding
 
