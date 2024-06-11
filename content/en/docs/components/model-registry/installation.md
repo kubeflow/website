@@ -38,7 +38,7 @@ or modify the [kustomization file](https://github.com/kubeflow/model-registry/bl
 
 See the list of available versions on the [GitHub releases](https://github.com/kubeflow/model-registry/releases) of the `kubeflow/model-registry` repository. To install a specific release of the Model Registry, modify the following commands with the desired `ref=<GIT_TAG>`.
 
-Run the following command to install the latest alpha release version of Model Registry:
+Run the following command to install the `v0.2.0-alpha` release of Model Registry:
 
 ```shell
 kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/overlays/db?ref=v0.2.0-alpha"
