@@ -110,7 +110,7 @@ add_op = create_component_from_func(
 
 3.  Create and run your pipeline. [Learn more about creating and running pipelines][build-pipelines].
 
-[build-pipelines]: /docs/components/pipelines/legacy-v1/sdk/component-development//
+[build-pipelines]: /docs/components/pipelines/legacy-v1/sdk/component-development/
 
 
 ```python
