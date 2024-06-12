@@ -305,7 +305,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/v2/components/container-components/              /docs/components/pipelines/user-guides/components/container-components/
 /docs/components/pipelines/v2/components/importer-component/                /docs/components/pipelines/user-guides/components/importer-component/
 /docs/components/pipelines/v2/components/additional-functionality/          /docs/components/pipelines/user-guides/components/additional-functionality/
-/docs/components/pipelines/v2/load-and-share-components/                    /docs/components/pipelines/user-guides/components/load-and-share-components//
+/docs/components/pipelines/v2/load-and-share-components/                    /docs/components/pipelines/user-guides/components/load-and-share-components/
 /docs/components/pipelines/v2/pipelines/control-flow/                       /docs/components/pipelines/user-guides/core-functions/control-flow/
 /docs/components/pipelines/v2/data-types/                                   /docs/components/pipelines/user-guides/data-handling/data-types/
 /docs/components/pipelines/v2/data-types/parameters/                        /docs/components/pipelines/user-guides/data-handling/parameters/
