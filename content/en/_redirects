@@ -25,7 +25,7 @@
 /docs/pipelines/                                    /docs/components/pipelines
 /docs/pipelines/output-viewer/                      /docs/components/pipelines/legacy-v1/sdk/output-viewer/
 /docs/pipelines/pipelines-metrics/                  /docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/
-/docs/pipelines/build-component/                    /docs/components/pipelines/legacy-v1/sdk/component-development//
+/docs/pipelines/build-component/                    /docs/components/pipelines/legacy-v1/sdk/component-development/
 /docs/pipelines/install-sdk/                        /docs/components/pipelines/legacy-v1/sdk/install-sdk/
 /docs/pipelines/lightweight-python-components/      /docs/components/pipelines/legacy-v1/sdk/python-function-components/
 /docs/pipelines/sdk/lightweight-python-components/  /docs/components/pipelines/legacy-v1/sdk/python-function-components/
