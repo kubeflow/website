@@ -7,7 +7,7 @@ weight = 10
 {{% alert title="Warning" color="warning" %}}
 This feature is in **alpha** stage and Kubeflow community is looking for your feedback. Please
 share your experience using [#kubeflow-training-operator Slack channel](https://kubeflow.slack.com/archives/C985VJN9F)
-or [Kubeflow Training Operator GitHib](https://github.com/kubeflow/training-operator/issues/new).
+or [Kubeflow Training Operator GitHub](https://github.com/kubeflow/training-operator/issues/new).
 {{% /alert %}}
 
 This page describes how to use a [`train` API from Training Python SDK](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/training/api/training_client.py#L112) that simplifies the ability to fine-tune LLMs with
