@@ -16,7 +16,7 @@
 /docs/guides/pipelines/deploy-pipelines-service/  /docs/components/pipelines/pipelines-quickstart/
 
 # Merged duplicate page pipelines-samples.md into build-pipeline.md
-/docs/pipelines/pipelines-samples/	   /docs/components/pipelines/build-pipeline/
+/docs/pipelines/pipelines-samples/	   /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
 
 # Removed redundant UI guide. Quickstart is a better destination.
 /docs/pipelines/pipelines-ui/	         /docs/components/pipelines/pipelines-quickstart/
@@ -74,7 +74,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/modeldb                       /docs/components/misc/modeldb
 /docs/components/mpi                           /docs/components/training/mpi
 /docs/components/mxnet                         /docs/components/training/mxnet
-/docs/components/pipelines                     /docs/components/pipelines/pipelines
 /docs/components/pytorch                       /docs/components/training/pytorch
 /docs/components/nuclio                        /docs/components/misc/nuclio
 /docs/components/seldon                        /docs/external-add-ons/serving/seldon
@@ -174,10 +173,10 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/notebooks/why-use-jupyter-notebook       /docs/components/notebooks/overview
 
 # Refactor Pipelines section
-/docs/components/pipelines/caching                            /docs/components/pipelines/overview/caching
-/docs/components/pipelines/caching-v2                         /docs/components/pipelines/overview/caching-v2
-/docs/components/pipelines/multi-user                         /docs/components/pipelines/overview/multi-user
-/docs/components/pipelines/pipeline-root                      /docs/components/pipelines/overview/pipeline-root
+/docs/components/pipelines/caching                            /docs/components/pipelines/legacy-v1/overview/caching
+/docs/components/pipelines/caching-v2                         /docs/components/pipelines/user-guides/core-functions/caching
+/docs/components/pipelines/multi-user                         /docs/components/pipelines/legacy-v1/overview/multi-user
+/docs/components/pipelines/pipeline-root                      /docs/components/pipelines/concepts/pipeline-root
 /docs/components/pipelines/overview/pipelines-overview        /docs/components/pipelines/overview
 /docs/components/pipelines/pipelines-quickstart               /docs/components/pipelines/overview/quickstart
 
@@ -208,8 +207,8 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
 # ===============
 /docs/guides/*                      /docs/:splat
-/docs/pipelines/concepts/*          /docs/components/pipelines/overview/concepts/:splat
-/docs/pipelines/*                   /docs/components/pipelines/:splat
+/docs/pipelines/concepts/*          /docs/components/pipelines/concepts
+/docs/pipelines/*                   /docs/components/pipelines
 /docs/aws/*                         /docs/distributions/aws/
 /docs/azure/*                       /docs/distributions/azure/:splat
 /docs/gke/*                         /docs/distributions/gke/:splat
