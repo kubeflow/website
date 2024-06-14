@@ -29,11 +29,15 @@ $$
 
 The bigger \(a\) and the lesser \(b\) value, the bigger the function value \(F\).
 
-If you install Katib as part of Kubeflow Platform, you can open a new
-[Kubeflow Notebook](/docs/components/notebooks/quickstart-guide/) to run this script. If you
-install Katib standalone, make sure that you
+If you install Katib standalone, make sure that you
 [configure local `kubeconfig`](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#programmatic-access-to-the-api)
 to access your Kubernetes cluster where you installed Katib control plane.
+
+If you install Katib as part of Kubeflow Platform, you can open a new
+[Kubeflow Notebook](/docs/components/notebooks/quickstart-guide/) to run this script.
+
+**Note**. If you use Katib within Kubeflow Platform to run this example, you need to use this
+namespace: `KatibClient(namespace="kubeflow-user-example-com")`.
 
 ```python
 # [1] Create an objective function.
@@ -55,8 +59,10 @@ parameters = {
 }
 
 # [3] Create Katib Experiment with 12 Trials and 2 CPUs per Trial.
+katib_client = KatibClient(namespace="kubeflow")
+
 name = "tune-experiment"
-katib.KatibClient().tune(
+katib_client.tune(
     name=name,
     objective=objective,
     parameters=parameters,
@@ -66,10 +72,10 @@ katib.KatibClient().tune(
 )
 
 # [4] Wait until Katib Experiment is complete
-katib.KatibClient().wait_for_experiment_condition(name=name)
+katib_client.wait_for_experiment_condition(name=name)
 
 # [5] Get the best hyperparameters.
-print(katib.KatibClient().get_optimal_hyperparameters(name))
+print(katib_client.get_optimal_hyperparameters(name))
 ```
 
 You should get similar output for the most optimal Trial, hyperparameters, and observation metrics:
