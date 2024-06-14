@@ -693,7 +693,7 @@ Specify `'storage': 'inline'` to embed raw html in `source` field directly.
 **Example:**
 
 ```Python
-def tensorboard_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
+def webapp_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
   import json
 
   static_html_path = os.path.join(output_dir, _OUTPUT_HTML_FILE)
