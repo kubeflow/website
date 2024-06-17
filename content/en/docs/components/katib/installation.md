@@ -65,13 +65,19 @@ for the Katib DB component.
 Katib [implements Python SDK](https://pypi.org/project/kubeflow-katib/)
 to simplify creation of Katib Experiments for Data Scientists.
 
-Run the following command to install the stable release of Katib SDK:
+Run the following command to install the latest stable release of Katib SDK:
 
 ```shell
 pip install -U kubeflow-katib
 ```
 
-You can also install the Python SDK using the specific GitHub commit, for example:
+Run the following command to install the latest changes of Katib SDK:
+
+```shell
+pip install git+https://github.com/kubeflow/katib.git@master#subdirectory=sdk/python/v1beta1
+```
+
+Otherwise, you can also install the Katib SDK using the specific GitHub commit, for example:
 
 ```shell
 pip install git+https://github.com/kubeflow/katib.git@ea46a7f2b73b2d316b6b7619f99eb440ede1909b#subdirectory=sdk/python/v1beta1
