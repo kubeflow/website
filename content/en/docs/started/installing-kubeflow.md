@@ -118,7 +118,7 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/spark-operator/tree/master?tab=readme-ov-file#installation">
+          <a href="/docs/components/spark-operator/getting-started#installation">
             Kubeflow Spark Operator
           </a>
         </td>
