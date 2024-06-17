@@ -31,13 +31,13 @@ kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/m
 You should now be able to see the created pods matching the specified number of replicas.
 
 ```
-kubectl get pods -l job-name=pytorch-simple -n kubeflow
+kubectl get pods -l training.kubeflow.org/job-name=pytorch-simple -n kubeflow
 ```
 
 Training takes 5-10 minutes on a cpu cluster. Logs can be inspected to see its training progress.
 
 ```
-PODNAME=$(kubectl get pods -l job-name=pytorch-simple,replica-type=master,replica-index=0 -o name -n kubeflow)
+PODNAME=$(kubectl get pods -l training.kubeflow.org/job-name=pytorch-simple,training.kubeflow.org/replica-type=master,training.kubeflow.org/replica-index=0 -o name -n kubeflow)
 kubectl logs -f ${PODNAME} -n kubeflow
 ```
 
@@ -123,4 +123,4 @@ status:
 
 - Learn about [distributed training](/docs/components/training/reference/distributed-training/) in Training Operator.
 
-- See how to [run a job with gang-scheduling](/docs/use-cases/job-scheduling#running-jobs-with-gang-scheduling).
+- See how to [run a job with gang-scheduling](/docs/components/training/user-guides/job-scheduling#running-jobs-with-gang-scheduling).
