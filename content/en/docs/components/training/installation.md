@@ -67,13 +67,19 @@ xgboostjobs.kubeflow.org                                 2023-06-09T00:31:04Z
 Training Operator [implements Python SDK](https://pypi.org/project/kubeflow-training/)
 to simplify creation of distributed training and fine-tuning jobs for Data Scientists.
 
-Run the following command to install the stable release of Training Operator SDK:
+Run the following command to install the latest stable release of Training SDK:
 
 ```shell
 pip install -U kubeflow-training
 ```
 
-You can also install the Python SDK using the specific GitHub commit, for example:
+Run the following command to install the latest changes of Training SDK:
+
+```shell
+pip install git+https://github.com/kubeflow/training-operator.git@master#subdirectory=sdk/python
+```
+
+Otherwise, you can also install the Training SDK using the specific GitHub commit, for example:
 
 ```shell
 pip install git+https://github.com/kubeflow/training-operator.git@7345e33b333ba5084127efe027774dd7bed8f6e6#subdirectory=sdk/python

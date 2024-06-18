@@ -59,7 +59,7 @@ parameters = {
 }
 
 # [3] Create Katib Experiment with 12 Trials and 2 CPUs per Trial.
-katib_client = KatibClient(namespace="kubeflow")
+katib_client = katib.KatibClient(namespace="kubeflow")
 
 name = "tune-experiment"
 katib_client.tune(
