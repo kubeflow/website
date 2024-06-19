@@ -21,7 +21,7 @@ You can install Kubeflow using one of these methods:
 ## Standalone Kubeflow Components
 
 Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptual-overview) may be
-deployed as standalone services, without the need to install the full Kubeflow platform. You might
+deployed as standalone services, without the need to install the full Kubeflow Platform. You might
 integrate these services as part of your existing AI/ML platform or use them independently.
 
 These components are a quick and easy method to get started with the Kubeflow ecosystem. They
@@ -351,7 +351,7 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
   - [`v1.7.0`](https://github.com/kubeflow/manifests/tree/v1.7.0#installation)
 
 {{% alert title="Warning" color="warning" %}}
-The Kubeflow manifests provide a quick way to get a minimum viable Kubeflow platform up and running.
+The Kubeflow manifests provide a quick way to get a minimum viable Kubeflow Platform up and running.
 The Kubeflow community support for Kubeflow manifests is only best-effort, non-commercial and not guaranteed for environment-specific issues or custom configurations. 
 Nevertheless, we welcome contributions and bug reports very much.
 For commercial production-level usage and support there are many options. You can use a third-party commercial distribution, hire consultants or build up the knowledge yourself to maintain and extend your Kubeflow installation.
