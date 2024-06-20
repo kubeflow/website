@@ -18,4 +18,4 @@ is called a *Lineage Graph*.
 
 ## Next steps
 
-* Learn about [output Aritfact](/docs/components/pipelines/concepts/output-artifact).
+* Learn about [output Artifact](/docs/components/pipelines/concepts/output-artifact).
