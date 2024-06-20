@@ -28,7 +28,7 @@ spec:
 
 ## Specifying Deployment Mode
 
-A `SparkApplication` should set `.spec.deployMode` to `cluster`, as `client` is not currently implemented. The driver pod will then run `spark-submit` in `client` mode internally to run the driver program. Additional details of how `SparkApplication`s are run can be found in the [design documentation](../../overview#architecture).
+A `SparkApplication` should set `.spec.deployMode` to `cluster`, as `client` is not currently implemented. The driver pod will then run `spark-submit` in `client` mode internally to run the driver program. Additional details of how `SparkApplication`s are run can be found in the [design documentation](/docs/components/spark-operator/overview#architecture).
 
 ## Specifying Application Dependencies
 
@@ -149,7 +149,7 @@ Values specified using those two fields get converted to Spark configuration pro
 
 ## Specifying Environment Variables
 
-There are two fields for specifying environment variables for the driver and/or executor containers, namely `.spec.driver.env` (or `.spec.executor.env` for the executor container) and `.spec.driver.envFrom` (or `.spec.executor.envFrom` for the executor container). Specifically, `.spec.driver.env` (and `.spec.executor.env`) takes a list of [EnvVar](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#envvar-v1-core), each of which specifies an environment variable or the source of an environment variable, e.g., a name-value pair, a ConfigMap key, a Secret key, etc. Alternatively, `.spec.driver.envFrom` (and `.spec.executor.envFrom`) takes a list of [EnvFromSource](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#envfromsource-v1-core) and allows [using all key-value pairs in a ConfigMap or Secret as environment variables](https://v1-15.docs.kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables). The `SparkApplication` snippet below shows the use of both fields:
+There are two fields for specifying environment variables for the driver and/or executor containers, namely `.spec.driver.env` (or `.spec.executor.env` for the executor container) and `.spec.driver.envFrom` (or `.spec.executor.envFrom` for the executor container). Specifically, `.spec.driver.env` (and `.spec.executor.env`) takes a list of [EnvVar](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#envvar-v1-core), each of which specifies an environment variable or the source of an environment variable, e.g., a name-value pair, a ConfigMap key, a Secret key, etc. Alternatively, `.spec.driver.envFrom` (and `.spec.executor.envFrom`) takes a list of [EnvFromSource](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#envfromsource-v1-core) and allows [using all key-value pairs in a ConfigMap or Secret as environment variables](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables). The `SparkApplication` snippet below shows the use of both fields:
 
 ```yaml
 spec:
@@ -225,7 +225,7 @@ spec:
       quantity: 1
 ```
 
-Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Host Network
 
@@ -247,7 +247,7 @@ spec:
     memory: "512m"
 ```
 
-Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Mounting Secrets
 
@@ -266,7 +266,7 @@ The type of a Secret as specified by the `secretType` field is a hint to the ope
 [Getting Started with Authentication](https://cloud.google.com/docs/authentication/getting-started) for more information on how to authenticate with GCP services using a service account JSON key file. Note that the operator assumes that the key of the service account JSON key file in the Secret data map is **`key.json`** so it is able to set the environment variable automatically. Similarly, if the type of a Secret is **`HadoopDelegationToken`**, the operator additionally sets the environment variable **`HADOOP_TOKEN_FILE_LOCATION`** to point to the file storing the Hadoop delegation token. In this case, the operator assumes that the key of the delegation token file in the Secret data map is **`hadoop.token`**.
 The `secretType` field should have the value `Generic` if no extra configuration is required.
 
-Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Mounting ConfigMaps
 
@@ -281,20 +281,20 @@ spec:
         path: /mnt/config-maps
 ```
 
-Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Mounting a ConfigMap storing Spark Configuration Files
 
 A `SparkApplication` can specify a Kubernetes ConfigMap storing Spark configuration files such as `spark-env.sh` or `spark-defaults.conf` using the optional field `.spec.sparkConfigMap` whose value is the name of the ConfigMap. The ConfigMap is assumed to be in the same namespace as that of the `SparkApplication`. The operator mounts the ConfigMap onto path `/etc/spark/conf` in both the driver and executors. Additionally, it also sets the environment variable `SPARK_CONF_DIR` to point to `/etc/spark/conf` in the driver and executors.
 
 Note that the mutating admission webhook is needed to use this feature. Please refer to the
-[Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+[Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Mounting a ConfigMap storing Hadoop Configuration Files
 
 A `SparkApplication` can specify a Kubernetes ConfigMap storing Hadoop configuration files such as `core-site.xml` using the optional field `.spec.hadoopConfigMap` whose value is the name of the ConfigMap. The ConfigMap is assumed to be in the same namespace as that of the `SparkApplication`. The operator mounts the ConfigMap onto path  `/etc/hadoop/conf` in both the driver and executors. Additionally, it also sets the environment variable `HADOOP_CONF_DIR` to point to `/etc/hadoop/conf` in the driver and executors.
 
-Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Mounting Volumes
 
@@ -323,7 +323,7 @@ spec:
 
 ```
 
-Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Using Secrets As Environment Variables
 
@@ -375,7 +375,7 @@ spec:
           ...
 ```
 
-Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+Note that the mutating admission webhook is needed to use this feature. Please refer to the [Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Using Tolerations
 
@@ -398,7 +398,7 @@ spec:
 ```
 
 Note that the mutating admission webhook is needed to use this feature. Please refer to the
-[Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+[Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Using Security Context
 
@@ -422,11 +422,11 @@ spec:
 ```
 
 Note that the mutating admission webhook is needed to use this feature. Please refer to the
-[Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+[Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Using Sidecar Containers
 
-A `SparkApplication` can specify one or more optional sidecar containers for the driver or executor pod, using the optional field `.spec.driver.sidecars` or `.spec.executor.sidecars`. The specification of each sidecar container follows the [Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.14/#container-v1-core) API definition. Below is an example:
+A `SparkApplication` can specify one or more optional sidecar containers for the driver or executor pod, using the optional field `.spec.driver.sidecars` or `.spec.executor.sidecars`. The specification of each sidecar container follows the [Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#container-v1-core) API definition. Below is an example:
 
 ```yaml
 spec:
@@ -443,11 +443,11 @@ spec:
 ```
 
 Note that the mutating admission webhook is needed to use this feature. Please refer to the
-[Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+[Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Using Init-Containers
 
-A `SparkApplication` can optionally specify one or more [init-containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) for the driver or executor pod, using the optional field `.spec.driver.initContainers` or `.spec.executor.initContainers`, respectively. The specification of each init-container follows the [Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.14/#container-v1-core) API definition. Below is an example:
+A `SparkApplication` can optionally specify one or more [init-containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) for the driver or executor pod, using the optional field `.spec.driver.initContainers` or `.spec.executor.initContainers`, respectively. The specification of each init-container follows the [Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#container-v1-core) API definition. Below is an example:
 
 ```yaml
 spec:
@@ -464,7 +464,7 @@ spec:
 ```
 
 Note that the mutating admission webhook is needed to use this feature. Please refer to the
-[Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+[Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Using DNS Settings
 
@@ -486,7 +486,7 @@ spec:
 ```
 
 Note that the mutating admission webhook is needed to use this feature. Please refer to the
-[Getting Started](../../getting-started) on how to enable the mutating admission webhook.
+[Getting Started](/docs/components/spark-operator/getting-started) on how to enable the mutating admission webhook.
 
 ## Using Volume For Scratch Space
 

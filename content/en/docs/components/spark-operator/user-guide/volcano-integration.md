@@ -29,7 +29,7 @@ helm install my-release spark-operator/spark-operator \
 
 ## Run Spark Application with Volcano scheduler
 
-Now, we can run a updated version of spark application (with `batchScheduler` configured), for instance:
+Now, we can run an updated version of spark application (with `batchScheduler` configured), for instance:
 
 ```yaml
 apiVersion: sparkoperator.k8s.io/v1beta2
@@ -90,7 +90,7 @@ If SparkApplication is configured to run with Volcano, there are some details un
 2. Before submitting spark application, Kubernetes Operator for Apache Spark will create a Volcano native resource
    `PodGroup`[here](https://github.com/volcano-sh/volcano/blob/a8fb05ce6c6902e366cb419d6630d66fc759121e/pkg/apis/scheduling/v1alpha2/types.go#L93) for the whole application.
    and as a brief introduction, most of the Volcano's advanced scheduling features, such as pod delay creation, resource fairness and gang scheduling are all depend on this resource.
-   Also a new pod annotation named `scheduling.k8s.io/group-name` will be added.
+   Also, a new pod annotation named `scheduling.k8s.io/group-name` will be added.
 3. Volcano scheduler will take over all of the pods that both have schedulerName and annotation correctly configured for scheduling.
 
 Kubernetes Operator for Apache Spark enables end user to have fine-grained controlled on batch scheduling via attribute `BatchSchedulerOptions`. `BatchSchedulerOptions` is a string dictionary
