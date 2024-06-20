@@ -24,7 +24,7 @@ custom `spark-env.sh` that points the environment variable `HADOOP_CONF_DIR` to 
 The GCS and BigQuery connectors need to authenticate with the GCS and BigQuery services before they can use the services.
 The connectors support using a [GCP service account JSON key file](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)
 for authentication. The service account must have the necessary IAM roles for access GCS and/or BigQuery granted. The
-[tutorial](https://cloud.google.com/solutions/spark-on-kubernetes-engine) has detailed information on how to create an
+[tutorial](https://cloud.google.com/solutions/spark-on-kubernetes-engine) has detailed information on how to create a
 service account, grant it the right roles, furnish a key, and download a JSON key file. To tell the connectors to use
 a service JSON key file for authentication, the following Hadoop configuration properties
 must be set:
