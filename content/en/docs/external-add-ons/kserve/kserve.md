@@ -15,7 +15,7 @@ KServe enables serverless inferencing on Kubernetes and provides performant, hig
   ### [KFServing is now KServe](https://kserve.github.io/website/0.7/blog/articles/2021-09-27-kfserving-transition/)
   The KFServing GitHub repository has been transferred to an independent KServe GitHub organization under the stewardship of the Kubeflow Serving Working Group leads.
   ### [KServe Docs](https://kserve.github.io/website/0.7/)
-  The majority of KServe docs will be available on the new docs website and it is recommended to refer to the docs on the KServe website rather than this website
+  The majority of KServe docs will be available on the new docs website and it is recommended to refer to the docs on the [KServe website](https://kserve.github.io/website/) rather than this website
 
 You can use KServe to do the following:
  
