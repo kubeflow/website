@@ -96,7 +96,7 @@ In addition, please check out the community-curated [awesome list of projects an
 
 ## Kubeflow Trademark
 
-The Kubeflow trademark and logos are registered trademarks of Google, please review the [Kubeflow Brand Guidelines](https://github.com/kubeflow/community/blob/master/KUBEFLOW_BRAND_GUIDELINES.pdf) for more information.
+The Kubeflow trademark and logos are registered trademarks of Google, please review the [Kubeflow Brand Guidelines](https://www.linuxfoundation.org/legal/trademark-usage) for more information.
 
 ## Kubeflow Working Groups
 
