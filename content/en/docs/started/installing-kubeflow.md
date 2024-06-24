@@ -21,7 +21,7 @@ You can install Kubeflow using one of these methods:
 ## Standalone Kubeflow Components
 
 Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptual-overview) may be
-deployed as standalone services, without the need to install the full Kubeflow platform. You might
+deployed as standalone services, without the need to install the full Kubeflow Platform. You might
 integrate these services as part of your existing AI/ML platform or use them independently.
 
 These components are a quick and easy method to get started with the Kubeflow ecosystem. They
@@ -334,7 +334,7 @@ The following table lists distributions which are <em>maintained</em> by their r
 ### Kubeflow Manifests
 
 The Kubeflow Manifests are aggregated by the Manifests Working Group and are intended to be
-used as the **base of packaged distributions**.
+used by users with Kubernetes knowledge and as the base of packaged distributions.
 
 Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
 applications that comprise the **Kubeflow Platform**. This installation is helpful when you want to
@@ -345,18 +345,16 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
 
 - [**Kubeflow 1.8:**](/docs/releases/kubeflow-1.8/)
   - [`v1.8-branch`](https://github.com/kubeflow/manifests/tree/v1.8-branch#installation) <sup>(development branch)</sup>
-  - [`v1.8.0`](https://github.com/kubeflow/manifests/tree/v1.8.0#installation)
+  - [`v1.8.1`](https://github.com/kubeflow/manifests/tree/v1.8.1#installation)
 - [**Kubeflow 1.7:**](/docs/releases/kubeflow-1.7/)
   - [`v1.7-branch`](https://github.com/kubeflow/manifests/tree/v1.7-branch#installation) <sup>(development branch)</sup>
   - [`v1.7.0`](https://github.com/kubeflow/manifests/tree/v1.7.0#installation)
 
 {{% alert title="Warning" color="warning" %}}
-Kubeflow is a complex system with many components and dependencies.
-Using the Kubeflow manifests requires a deep understanding of Kubernetes, Istio, and Kubeflow itself.
-
-When using the Kubeflow manifests, the community is not able to provide support for environment-specific issues or custom configurations.
-If you need support, please consider using a [packaged distribution](#packaged-distributions).
+The Kubeflow manifests provide a quick way to get a minimum viable Kubeflow Platform up and running.
+The Kubeflow community support for Kubeflow manifests is only best-effort, non-commercial and not guaranteed for environment-specific issues or custom configurations. 
 Nevertheless, we welcome contributions and bug reports very much.
+For commercial production-level usage and support there are many options. You can use a third-party commercial distribution, hire consultants or build up the knowledge yourself to maintain and extend your Kubeflow installation.
 {{% /alert %}}
 
 ## Next steps
