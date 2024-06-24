@@ -52,7 +52,7 @@ See the [sample description and links below](#example-source).
 <a id="v2-visualization"></a>
 ## v2 SDK: Use SDK visualization APIs
 
-For KFP [SDK v2 and v2 compatible mode](/docs/components/pipelines/sdk-v2/), you can use 
+For KFP [SDK v2 and v2 compatible mode](https://kubeflow-pipelines.readthedocs.io/en/stable/), you can use 
 convenient SDK APIs and system artifact types for metrics visualization. Currently KFP
 supports ROC Curve, Confusion Matrix and Scalar Metrics formats. Full pipeline example
 of all metrics visualizations can be found in [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/test/metrics_visualization_v2.py). 
@@ -60,7 +60,7 @@ of all metrics visualizations can be found in [metrics_visualization_v2.py](http
 ### Requirements
 
 * Use Kubeflow Pipelines v1.7.0 or above: [upgrade Kubeflow Pipelines](/docs/components/pipelines/legacy-v1/installation/standalone-deployment/#upgrading-kubeflow-pipelines).
-* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when you [compile and run your pipelines](/docs/components/pipelines/sdk-v2/build-pipeline/#compile-and-run-your-pipeline).
+* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when you [compile and run your pipelines](/docs/components/pipelines/user-guides/core-functions/run-a-pipeline/).
 * Make sure to use the latest environment kustomize manifest [pipelines/manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/manifests/kustomize/env/dev/kustomization.yaml).
 
 
@@ -271,7 +271,7 @@ def html_visualization(html_artifact: Output[HTML]):
 The metric visualization in V2 or V2 compatible mode depends on SDK visualization APIs,
 refer to [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/test/metrics_visualization_v2.py)
 for a complete pipeline example. Follow instruction
-[Compile and run your pipeline](/docs/components/pipelines/sdk-v2/build-pipeline/#compile-and-run-your-pipeline)
+[Compile and run your pipeline](/docs/components/pipelines/user-guides/core-functions/run-a-pipeline/)
 to compile in V2 compatible mode.
 
 ## v1 SDK: Writing out metadata for the output viewers
