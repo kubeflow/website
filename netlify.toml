@@ -2,6 +2,9 @@
   publish = "public"
   command = "cd themes/docsy && git submodule update -f --init && npm install && cd ../.. && hugo --gc --minify"
 
+[[plugins]]
+package = "netlify-plugin-checklinks"
+
 [context.deploy-preview.environment]
   HUGO_VERSION = "0.124.1"
   NODE_VERSION = "18"
