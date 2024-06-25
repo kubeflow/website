@@ -56,6 +56,8 @@ def consumer() -> str:
 Now that we have our components, we can begin constructing a pipeline. First, we need a PVC to mount. We'll use the `kubernetes.CreatePVC` pre-baked component to dynamically provision a PVC.
 
 ```python
+from kfp import kubernetes
+
 @dsl.pipeline
 def my_pipeline():
     pvc1 = kubernetes.CreatePVC(
