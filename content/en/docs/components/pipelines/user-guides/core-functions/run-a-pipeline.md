@@ -21,7 +21,7 @@ To submit a pipeline to the KFP Dashboard:
   alt="Upload pipeline button"
   class="mt-3 mb-3 border border-info rounded">
 
-3. Upload the pipeline IR YAML to "Upload a file", populate the upload pipeline form, and click "Create".
+3. Upload the pipeline IR YAML file or an archived pipeline as a .zip or .tar.gz file, populate the upload pipeline form, and click “Create”.
 
 <img src="/docs/images/pipelines/upload-a-pipeline.png" 
   alt="Upload pipeline screen"
