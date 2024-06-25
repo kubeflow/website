@@ -88,7 +88,7 @@ If you have a [configured Docker to use a private image registry](https://docs.d
 Finally, you can use the component in a pipeline:
 
 ```python
-from kfp import dsl
+from kfp import compiler, dsl
 
 @dsl.pipeline
 def addition_pipeline(x: int, y: int) -> int:
