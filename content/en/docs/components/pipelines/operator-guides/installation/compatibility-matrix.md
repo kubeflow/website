@@ -16,11 +16,11 @@ Pipelines written in any version of [TensorFlow Extended (TFX)](https://www.tens
 The following table shows UI feature compatibility for TFX and Kubeflow Pipelines Backend versions:
 
 | [TFX] \ [KFP Backend] | [KFP Backend] <= 1.5                              | [KFP Backend] >= 1.7                           |
-| --------------------- | ------------------------------------------------- | ---------------------------------------------- |
-| [TFX] <= 0.28.0       | Fully Compatible  ✅                              | Metadata UI not compatible<sup>[2](#fn2)</sup> |
+|-----------------------|---------------------------------------------------|------------------------------------------------|
+| [TFX] <= 0.28.0       | Fully Compatible  ✅                               | Metadata UI not compatible<sup>[2](#fn2)</sup> |
 | [TFX] 0.29.0, 0.30.0  | Visualizations not compatible<sup>[1](#fn1)</sup> | Metadata UI not compatible<sup>[2](#fn2)</sup> |
 | [TFX] 1.0.0           | Metadata UI not compatible<sup>[2](#fn2)</sup>    | Metadata UI not compatible<sup>[2](#fn2)</sup> |
-| [TFX] >= 1.2.0        | Metadata UI not compatible<sup>[2](#fn2)</sup>    | Fully Compatible  ✅                           |
+| [TFX] >= 1.2.0        | Metadata UI not compatible<sup>[2](#fn2)</sup>    | Fully Compatible  ✅                            |
 
 Detailed explanations:
 

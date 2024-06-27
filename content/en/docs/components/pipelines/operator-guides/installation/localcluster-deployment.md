@@ -21,7 +21,7 @@ Such deployment methods can be part of your local environment using the supplied
 kustomize manifests for test purposes. This guide is an alternative to
 
 [Deploying Kubeflow Pipelines
-(KFP)](/docs/started/#installing-kubeflow).
+(KFP)](/docs/started/installing-kubeflow).
 
 ## Before you get started
 
@@ -164,7 +164,7 @@ enhancements:
   * Embedded service loadbalancer
   * Embedded network policy controller
 
-You can find the the official K3s installation script to install it as a service
+You can find the official K3s installation script to install it as a service
 on systemd- or openrc-based systems on the official
 [K3s website](https://get.k3s.io).
 
@@ -216,7 +216,7 @@ curl -sfL https://get.k3s.io | sh -
 The Windows Subsystem for Linux (WSL) lets developers run a GNU/Linux
 environment—including most command-line tools, utilities, and applications—
 directly on Windows, unmodified, without the overhead of a traditional virtual
-machine or dualboot setup.
+machine or dual-boot setup.
 
 The full instructions for installing WSL can be found on the
 [official Windows site](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
@@ -227,7 +227,7 @@ WSL.
 1. Install [WSL] by following the official [docs](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
 2. As per the official instructions, update WSL and download your preferred
-   distibution:
+   distribution:
 
 - [SUSE Linux Enterprise Server 15
   SP1](https://www.microsoft.com/store/apps/9PN498VPMF3Z)
@@ -249,7 +249,7 @@ Below are the steps to create a cluster on K3s in WSL
     sudo ./k3s server
     ```
 
-    This will bootstrap a Kubernetes cluster but you will cannot yet access from
+    This will bootstrap a Kubernetes cluster, but you will cannot yet access from
     your Windows machine to the cluster itself.
 
     **Note:** You can't install K3s using the curl script because there is no
@@ -276,7 +276,7 @@ To set up access to your WSL instance:
 1. Copy `/etc/rancher/k3s/k3s.yaml` from WSL to `$HOME/.kube/config`.
 
 2. Edit the copied file by changing the server URL from `https://localhost:6443`
-   to the IP of the your WSL instance (`ip addr show dev eth0`) (For example,
+   to the IP of your WSL instance (`ip addr show dev eth0`) (For example,
    `https://192.168.170.170:6443`.)
 
 3. Run kubectl in a Windows terminal. If you don't kubectl installed, follow the
@@ -286,7 +286,7 @@ To set up access to your WSL instance:
 
 K3ai is a lightweight "infrastructure in a box" designed specifically to install
 and configure AI tools and platforms on portable hardware, such as laptops and
-edge devices. This enables users to perform quick experimentations with Kubeflow
+edge devices. This enables users to perform quick experiments with Kubeflow
 on a local cluster.
 
 K3ai's main goal is to provide a quick way to install Kubernetes (K3s-based) and
@@ -361,7 +361,7 @@ Below are the steps to remove Kubeflow Pipelines on kind, K3s, or K3ai:
   kubectl delete -k {YOUR_MANIFEST_FILE}`
   ```
 
-- To uninstall Kubeflow Pipelines using manifests from Kubeflow Pipelines's
+- To uninstall Kubeflow Pipelines using manifests from Kubeflow Pipelines'
   GitHub repository, run these commands:
 
   ```shell
