@@ -3,6 +3,11 @@ title = "Standalone Deployment"
 description = "Information about Standalone Deployment of Kubeflow Pipelines"
 weight = 30
 +++
+{{% alert title="Old Version" color="warning" %}}
+This page is about __Kubeflow Pipelines V1__, for information about __Kubeflow Pipelines V2__, please see the [new docs](/docs/components/pipelines).
+
+Please note that Kubeflow Pipelines V2 supports running V1 pipelines in a [backwards compatible mode](/docs/components/pipelines/user-guides/migration).
+{{% /alert %}}
 
 As an alternative to deploying Kubeflow Pipelines (KFP) as part of the
 [Kubeflow deployment](/docs/started/#installing-kubeflow), you also have a choice

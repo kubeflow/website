@@ -4,10 +4,11 @@ description = "Getting started with Kubeflow Pipelines step caching"
 weight = 40
                     
 +++
-{{% alpha-status
-feedbacklink="https://github.com/kubeflow/pipelines/issues" %}}
+{{% alert title="Old Version" color="warning" %}}
+This page is about __Kubeflow Pipelines V1__, for information about __Kubeflow Pipelines V2__, please see the [new docs](/docs/components/pipelines).
 
-Starting from Kubeflow Pipelines 0.4, Kubeflow Pipelines supports step caching capabilities in both standalone deployment and AI Platform Pipelines.
+Please note that Kubeflow Pipelines V2 supports running V1 pipelines in a [backwards compatible mode](/docs/components/pipelines/user-guides/migration).
+{{% /alert %}}
 
 ## Before you start
 

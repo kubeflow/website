@@ -4,9 +4,10 @@ description = "How to set and use environment variables in Kubeflow pipelines"
 weight = 115
                     
 +++
-{{% alert title="Out of date" color="warning" %}}
-This guide contains outdated information pertaining to Kubeflow 1.0. This guide
-needs to be updated for Kubeflow 1.1.
+{{% alert title="Old Version" color="warning" %}}
+This page is about __Kubeflow Pipelines V1__, for information about __Kubeflow Pipelines V2__, please see the [new docs](/docs/components/pipelines).
+
+Please note that Kubeflow Pipelines V2 supports running V1 pipelines in a [backwards compatible mode](/docs/components/pipelines/user-guides/migration).
 {{% /alert %}}
 
 This page describes how to pass environment variables to Kubeflow pipeline 

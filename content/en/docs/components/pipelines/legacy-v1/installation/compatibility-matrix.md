@@ -3,6 +3,11 @@ title = "Compatibility Matrix"
 description = "Kubeflow Pipelines compatibility matrix with TensorFlow Extended (TFX)"
 weight = 100
 +++
+{{% alert title="Old Version" color="warning" %}}
+This page is about __Kubeflow Pipelines V1__, for information about __Kubeflow Pipelines V2__, please see the [new docs](/docs/components/pipelines).
+
+Please note that Kubeflow Pipelines V2 supports running V1 pipelines in a [backwards compatible mode](/docs/components/pipelines/user-guides/migration).
+{{% /alert %}}
 
 ## Kubeflow Pipelines Backend and TFX compatibility
 
