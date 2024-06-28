@@ -200,8 +200,6 @@ Please see [Pipeline Basics][pipelines] for comprehensive documentation on how t
 
 ### Lists of artifacts
 
-{{% oss-be-unsupported feature_name="`dsl.Collected` and lists of artifacts" gh_issue_link=https://github.com/kubeflow/pipelines/issues/6161 %}}
-
 KFP supports input lists of artifacts, annotated as `List[Artifact]` or `Input[List[Artifact]]`. This is useful for collecting output artifacts from a loop of tasks using the [`dsl.ParallelFor`][dsl-parallelfor] and [`dsl.Collected`][dsl-collected] control flow objects.
 
 Pipelines can also return an output list of artifacts by using a `-> List[Artifact]` return annotation and returning a [`dsl.Collected`][dsl-collected] instance. 
