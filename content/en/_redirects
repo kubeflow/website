@@ -15,6 +15,9 @@
 /docs/guides/components/components     /docs/components/
 /docs/guides/pipelines/deploy-pipelines-service/  /docs/components/pipelines/pipelines-quickstart/
 
+# https://github.com/kubeflow/website/pull/3786
+/docs/components/pipelines/legacy-v1/overview/multi-user    /docs/components/pipelines/operator-guides/multi-user
+
 # Merged duplicate page pipelines-samples.md into build-pipeline.md
 /docs/pipelines/pipelines-samples/	   /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
 
@@ -175,7 +178,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Refactor Pipelines section
 /docs/components/pipelines/caching                            /docs/components/pipelines/legacy-v1/overview/caching
 /docs/components/pipelines/caching-v2                         /docs/components/pipelines/user-guides/core-functions/caching
-/docs/components/pipelines/multi-user                         /docs/components/pipelines/legacy-v1/overview/multi-user
+/docs/components/pipelines/multi-user                         /docs/components/pipelines/operator-guides/multi-user
 /docs/components/pipelines/pipeline-root                      /docs/components/pipelines/concepts/pipeline-root
 /docs/components/pipelines/overview/pipelines-overview        /docs/components/pipelines/overview
 /docs/components/pipelines/pipelines-quickstart               /docs/components/pipelines/overview/quickstart
@@ -260,7 +263,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/v1/overview/                                     /docs/components/pipelines/legacy-v1/overview/
 /docs/components/pipelines/v1/overview/caching/                             /docs/components/pipelines/legacy-v1/overview/caching/
 /docs/components/pipelines/v1/overview/interfaces/                          /docs/components/pipelines/interfaces/
-/docs/components/pipelines/v1/overview/multi-user/                          /docs/components/pipelines/legacy-v1/overview/multi-user/
+/docs/components/pipelines/v1/overview/multi-user/                          /docs/components/pipelines/operator-guides/multi-user/
 /docs/components/pipelines/v1/overview/pipeline-root/                       /docs/components/pipelines/concepts/pipeline-root/
 /docs/components/pipelines/v1/overview/quickstart/                          /docs/components/pipelines/legacy-v1/overview/quickstart/
 /docs/components/pipelines/v1/reference/                                    /docs/components/pipelines/legacy-v1/reference/
