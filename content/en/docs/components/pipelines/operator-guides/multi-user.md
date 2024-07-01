@@ -1,7 +1,7 @@
 +++
 title = "Multi-user Isolation"
 description = "How multi-user isolation works in Kubeflow Pipelines"
-weight = 30
+weight = 3
 +++
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
