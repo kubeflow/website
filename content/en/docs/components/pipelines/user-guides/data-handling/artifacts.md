@@ -243,8 +243,8 @@ On the [KFP open source][oss-be] UI, `ClassificationMetrics`, `SlicedClassificat
 [type-checking]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline#type-checking
 [oss-be]: /docs/components/pipelines/operator-guides/installation/
 [pipelines]: /docs/components/pipelines/user-guides/components/compose-components-into-pipelines/
-[container-components]: /docs/components/pipelines/user-guides/components/lightweight-python-components//
-[python-components]: /docs/components/pipelines/user-guides/components/container-components
+[container-components]: /docs/components/pipelines/user-guides/components/container-components
+[python-components]: /docs/components/pipelines/user-guides/components/lightweight-python-components
 [dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ParallelFor
 [dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Collected
 [parallel-looping]: /docs/components/pipelines/user-guides/core-functions/control-flow/#parallel-looping-dslparallelfor
