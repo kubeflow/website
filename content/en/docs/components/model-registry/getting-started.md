@@ -41,7 +41,7 @@ You can now create a client instance pointing to your deployed Model Registry fr
 ```python
 from model_registry import ModelRegistry
 
-registry = ModelRegistry(server_address="model-registry-service.kubeflow.svc.cluster.local", port=9090, author="your name")
+registry = ModelRegistry(server_address="model-registry-service.kubeflow.svc.cluster.local", port=9090, author="your name", is_secure=False)
 ```
 
 You now have a Model Registry client instance: `registry`.
@@ -99,7 +99,7 @@ You can use the Model Registry Python client to retrieve the needed ML artifact 
 ```python
 from model_registry import ModelRegistry
 
-registry = ModelRegistry(server_address="model-registry-service.kubeflow.svc.cluster.local", port=9090, author="mmortari")
+registry = ModelRegistry(server_address="model-registry-service.kubeflow.svc.cluster.local", port=9090, author="mmortari", is_secure=False)
 
 lookup_name = "mnist"
 lookup_version="v20231206163028"
