@@ -55,12 +55,6 @@ run = client.create_run_from_pipeline_package(
 
 The client will print a link to view the pipeline execution graph and logs in the UI. In this case, the pipeline has one task that prints and returns `'Hello, World!'`.
 
-In the next few sections, you'll learn more about the core concepts of authoring pipelines and how to create more expressive, useful pipelines.
+## Next steps
 
-[installation]: /docs/components/pipelines/operator-guides/installation/
-[client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.client.Client
-[compiler]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/compiler.html#kfp.compiler.Compiler
-[ir-yaml]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline#ir-yaml
-[compile-a-pipeline]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/
-[dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.pipeline
-[dsl-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.component
+* Learn more about [Connecting the Pipelines SDK to Kubeflow Pipelines](/docs/components/pipelines/user-guides/core-functions/connect-api/).
