@@ -31,7 +31,7 @@ This section details a step by step example on using Model Registry from a Noteb
 You can install the Model Registry python client in a Notebook, for instance with:
 
 ```
-!pip install model-registry
+!pip install --pre model-registry=="0.2.2a1"
 ```
 
 Note: depending on your Python and Notebook environment, you might need to fine-tune the dependencies of: `ml-metadata`, `protobuf`, `grpcio`, or `tensorflow` if used.
