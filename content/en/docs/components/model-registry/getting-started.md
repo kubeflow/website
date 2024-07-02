@@ -31,7 +31,7 @@ This section details a step by step example on using Model Registry from a Noteb
 You can install the Model Registry python client in a Notebook, for instance with:
 
 ```
-!pip install model-registry
+!pip install --pre model-registry=="0.2.2a1"
 ```
 
 Note: depending on your Python and Notebook environment, you might need to fine-tune the dependencies of: `ml-metadata`, `protobuf`, `grpcio`, or `tensorflow` if used.
@@ -41,7 +41,7 @@ You can now create a client instance pointing to your deployed Model Registry fr
 ```python
 from model_registry import ModelRegistry
 
-registry = ModelRegistry(server_address="model-registry-service.kubeflow.svc.cluster.local", port=9090, author="your name")
+registry = ModelRegistry(server_address="model-registry-service.kubeflow.svc.cluster.local", port=9090, author="your name", is_secure=False)
 ```
 
 You now have a Model Registry client instance: `registry`.
@@ -99,10 +99,10 @@ You can use the Model Registry Python client to retrieve the needed ML artifact 
 ```python
 from model_registry import ModelRegistry
 
-registry = ModelRegistry(server_address="model-registry-service.kubeflow.svc.cluster.local", port=9090, author="mmortari")
+registry = ModelRegistry(server_address="model-registry-service.kubeflow.svc.cluster.local", port=9090, author="mmortari", is_secure=False)
 
 lookup_name = "mnist"
-lookup_version="v20231206163028"
+lookup_version = "v0.1"
 
 print("RegisteredModel:")
 registered_model = registry.get_registered_model(lookup_name)
