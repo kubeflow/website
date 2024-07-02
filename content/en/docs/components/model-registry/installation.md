@@ -72,6 +72,24 @@ curl -X 'GET' \
 
 If you are not receiving a `2xx` response, it might be the case you are trying to consume a different version (`v1alphaX`) of the REST API than intended.
 
+### Perform the check from within a Notebook
+
+To check the connection to the Model Registry from a Notebook instead, start a Terminal from the Notebook environment, then you can dry-run the connection with the following command:
+
+```
+curl model-registry-service.kubeflow.svc.cluster.local:8080/api/model_registry/v1alpha3/registered_models
+```
+
+or, alternatively, with the following command:
+
+```
+wget -nv -O- model-registry-service.kubeflow.svc.cluster.local:8080/api/model_registry/v1alpha3/registered_models
+```
+
+If the command executes without any error, you will get a JSON response from Model Registry, indicating the connection and request was successful.
+
+You can use the same commands in a Jupyter Notebook cell by prefixing the command with `!` (e.g.: `! curl ...`).
+
 ## Next steps
 
 - Run some examples following the [getting started guide](/docs/components/model-registry/getting-started/)
