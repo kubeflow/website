@@ -102,7 +102,7 @@ from model_registry import ModelRegistry
 registry = ModelRegistry(server_address="model-registry-service.kubeflow.svc.cluster.local", port=9090, author="mmortari", is_secure=False)
 
 lookup_name = "mnist"
-lookup_version="v20231206163028"
+lookup_version = "v0.1"
 
 print("RegisteredModel:")
 registered_model = registry.get_registered_model(lookup_name)
