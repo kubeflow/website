@@ -3,7 +3,12 @@ title = "Quickstart"
 description = "Getting started with Kubeflow Pipelines"
 weight = 10
 
-+++                 
++++ 
+{{% alert title="Old Version" color="warning" %}}
+This page is about __Kubeflow Pipelines V1__, for information about __Kubeflow Pipelines V2__, please see the [new docs](/docs/components/pipelines).
+
+Please note that Kubeflow Pipelines V2 supports running V1 pipelines in a [backwards compatible mode](/docs/components/pipelines/user-guides/migration).
+{{% /alert %}}
 {{% stable-status %}}
 
 Use this guide if you want to get an introduction to the Kubeflow Piplines user interface (UI) and get a simple pipeline running quickly. 
