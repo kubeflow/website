@@ -10,7 +10,7 @@ Please note that Kubeflow Pipelines V2 supports running V1 pipelines in a [backw
 {{% /alert %}}
 
 As an alternative to deploying Kubeflow Pipelines (KFP) as part of the
-[Kubeflow deployment](/docs/started/#installing-kubeflow), you also have a choice
+[Kubeflow deployment](/docs/started/installing-kubeflow), you also have a choice
 to deploy only Kubeflow Pipelines. Follow the instructions below to deploy
 Kubeflow Pipelines standalone using the supplied kustomize manifests.
 
@@ -35,7 +35,7 @@ You need kubectl version 1.14 or higher for native support of kustomize.
 
 ### Set up your cluster
 
-If you have an existing Kubernetes cluster, continue with the instructions for [configuring kubectl to talk to your cluster](#configure-kubectl).
+If you have an existing Kubernetes cluster, continue with the instructions for [configuring kubectl to talk to your cluster](#configure-kubectl-to-talk-to-your-cluster).
 
 See the GKE guide to [creating a cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster) for Google Cloud Platform (GCP).
 
@@ -54,11 +54,9 @@ gcloud container clusters create $CLUSTER_NAME \
      --scopes $SCOPES
 ```
 
-**Note**: `e2-standard-2` doesn't support GPU. You can choose machine types that meet your need by referring to guidance in [Cloud Machine families](http://cloud/compute/docs/machine-types).
+**Note**: `e2-standard-2` doesn't support GPU. You can choose machine types that meet your need by referring to guidance in [Cloud Machine families](https://cloud.google.com/compute/docs/machine-resource).
 
-**Warning**: Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](/docs/gke/authentication/#authentication-from-kubeflow-pipelines).
-
-Note, some legacy pipeline examples may need minor code change to run on clusters with `SCOPES="cloud-platform"`, refer to [Authoring Pipelines to use default service account](/docs/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-default-service-account).
+**Warning**: Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster.
 
 **References**:
 
@@ -68,7 +66,7 @@ Note, some legacy pipeline examples may need minor code change to run on cluster
 
   * [gcloud command reference](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create)
 
-### Configure kubectl to talk to your cluster {#configure-kubectl}
+### Configure kubectl to talk to your cluster
 
 See the Google Kubernetes Engine (GKE) guide to
 [configuring cluster access for kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
@@ -109,7 +107,7 @@ Kubeflow Pipelines will change default executor from Docker to Emissary starting
 deprecated on Kubernetes 1.20+. 
 
 For Kubeflow Pipelines before v1.8, configure to use Emissary executor by
-referring to [Argo Workflow Executors](/docs/components/pipelines/legacy-v1/installation/choose-executor).
+referring to [Argo Workflow Executors](/docs/components/pipelines/operator-guides/installation/choose-executor).
      {{% /alert %}}
 
 1. Get the public URL for the Kubeflow Pipelines UI and use it to access the Kubeflow Pipelines UI:
@@ -120,7 +118,7 @@ referring to [Argo Workflow Executors](/docs/components/pipelines/legacy-v1/inst
 
 ## Upgrading Kubeflow Pipelines
 
-1. For release notices and breaking changes, refer to [Upgrading Kubeflow Pipelines](/docs/components/pipelines/legacy-v1/installation/upgrade/).
+1. For release notices and breaking changes, refer to [Upgrading Kubeflow Pipelines](/docs/components/pipelines/operator-guides/installation/upgrade/).
 
 1. Check the [Kubeflow Pipelines GitHub repository](https://github.com/kubeflow/pipelines/releases) for available releases.
 
@@ -283,10 +281,4 @@ bases:
 MountVolume.SetUp failed for volume "gcp-credentials-user-gcp-sa" : secret "user-gcp-sa" not found
 ```
 
-You should remove `use_gcp_secret` usages as documented in [Authenticating Pipelines to GCP](/docs/distributions/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity).
-
-
-## What's next
-
-* [Connecting to Kubeflow Pipelines standalone on Google Cloud using the SDK](/docs/distributions/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-standalone-or-ai-platform-pipelines)
-* [Authenticating Pipelines to GCP](/docs/distributions/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity) if you want to use GCP services in Kubeflow Pipelines.
+You should remove `use_gcp_secret` usages.
