@@ -15,11 +15,11 @@ Kubeflow Pipelines runs on [Argo Workflows](https://argoproj.github.io/workflows
 
 ## Choosing the Workflow Executor
 
-1. [Emissary executor](#emissary-executor) has been Kubeflow Pipelines' default executor since February 2022 when KFP 1.8 went GA. 
+1. [Emissary executor](#emissary-executor) has been Kubeflow Pipelines' default executor since Feburay 2022 when KFP 1.8 went GA. 
    We recommend Emissary executor unless you have known compatibility issues with Emissary, in which case please submit your
-   feedback in [the Emissary Executor feedback GitHub issue](https://github.com/kubeflow/pipelines/issues/6249).
+   feedback in [the Emissary Executor feedback Github issue](https://github.com/kubeflow/pipelines/issues/6249).
 
-1. [Docker executor](#docker-executor) is available as a legacy choice. In case you do have compatibility issues with Emissary executor,
+1. [Docker executor](#docker-executor) is available as a legacy choice. In case you do have compatibilty issues with Emissary executor,
    and your cluster is running on an older version of Kubernetes (<1.20), you can configure to use Docker executor.
 
 Note that Argo Workflows support other workflow executors, but the Kubeflow Pipelines
@@ -39,13 +39,13 @@ improvements can make it the default executor that most people should use going 
   * Cannot escape the privileges of the pod's service account.
 * Migration: `command` must be specified in [Kubeflow Pipelines component specification](/docs/components/pipelines/reference/component-spec/).
 
-  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](/docs/components/pipelines/reference/version-compatibility/), refer to
+  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](/docs/components/pipelines/legacy-v1/sdk/v2-compatibility/), refer to
   [known caveats & breaking changes](https://github.com/kubeflow/pipelines/issues/6133).
 
 #### Migrate to Emissary Executor
 
 Prerequisite: emissary executor is only available in Kubeflow Pipelines backend version 1.7+.
-To upgrade, refer to [upgrading Kubeflow Pipelines](/docs/components/pipelines/operator-guides/installation/upgrade/).
+To upgrade, refer to [upgrading Kubeflow Pipelines](/docs/components/pipelines/legacy-v1/installation/upgrade//).
 
 ##### Configure an existing Kubeflow Pipelines cluster to use emissary executor
 
@@ -97,7 +97,7 @@ To upgrade, refer to [upgrading Kubeflow Pipelines](/docs/components/pipelines/o
 
 For [AI Platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs), check the "Use emissary executor" checkbox during installation.
 
-For [Kubeflow Pipelines Standalone](/docs/components/pipelines/operator-guides/installation/standalone-deployment/), install `env/platform-agnostic-emissary`:
+For [Kubeflow Pipelines Standalone](/docs/components/pipelines/legacy-v1/installation/standalone-deployment/), install `env/platform-agnostic-emissary`:
 
 ```bash
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-emissary?ref=$PIPELINE_VERSION"
@@ -157,7 +157,7 @@ Step by step component migration tutorial:
 1. The updated component can run on emissary executor now.
 
 Note: Kubeflow Pipelines SDK compiler always specifies a command for
-[python function based components](https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.PythonComponent).
+[python function based components](/docs/components/pipelines/legacy-v1/sdk/python-function-components/).
 Therefore, these components will continue to work on emissary executor without
 modifications.
 
