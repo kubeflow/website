@@ -20,7 +20,7 @@ You can install Kubeflow using one of these methods:
 
 ## Standalone Kubeflow Components
 
-Some components in the [Kubeflow ecosystem](/docs/started/architecture/#conceptual-overview) may be
+Some components in the [Kubeflow ecosystem](/docs/started/architecture/#kubeflow-ecosystem) may be
 deployed as standalone services, without the need to install the full Kubeflow Platform. You might
 integrate these services as part of your existing AI/ML platform or use them independently.
 

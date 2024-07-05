@@ -69,7 +69,7 @@ Users can even use Katib to optimize non-ML tasks as long as optimization metric
 Katib is integrated with many optimization frameworks such as [Hyperopt](https://hyperopt.github.io/hyperopt/) and
 [Optuna](https://optuna.org/) which implements most of the state of the art optimization algorithms.
 
-Users can leverage Katib control plane to implement and benchmark [their own optimization algorithms](/docs/components/katib/user-guides/hp-tuning/configure-algorithm/#add-a-new-hp-tuning-algorithm-to-katib)
+Users can leverage Katib control plane to implement and benchmark [their own optimization algorithms](/docs/components/katib/user-guides/hp-tuning/configure-algorithm/#use-custom-algorithm-in-katib)
 
 ## Next steps
 

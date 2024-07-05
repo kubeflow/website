@@ -248,7 +248,7 @@ enable = true
       desc = "Follow us on Twitter to get the latest news!"
     [[params.links.user]]
       name = "Kubeflow Slack"
-      url = "/docs/about/community/#kubeflow-slack"
+      url = "/docs/about/community/#kubeflow-slack-channels"
       icon = "fab fa-slack"
       desc = "Join the Kubeflow Slack Workspace!"
     [[params.links.user]]

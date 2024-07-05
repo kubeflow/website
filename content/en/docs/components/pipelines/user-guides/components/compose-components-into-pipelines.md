@@ -208,7 +208,7 @@ def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
 [vertex-pipelines]: https://cloud.google.com/vertex-ai/docs/pipelines/introduction
 [oss-be]: /docs/components/pipelines/operator-guides/installation/
 [data-types]: /docs/components/pipelines/user-guides/data-handling/data-types
-[output-artifacts]: /docs/components/pipelines/user-guides/data-handling/artifacts#using-output-artifacts
+[output-artifacts]: /docs/components/pipelines/user-guides/data-handling/artifacts
 [container-component-outputs]: /docs/components/pipelines/user-guides/components/container-components#create-component-outputs
 [parameters-namedtuple]: /docs/components/pipelines/user-guides/data-handling/parameters#multiple-output-parameters
 [dsl-pipeline-job-name-placeholder]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.PIPELINE_JOB_NAME_PLACEHOLDER

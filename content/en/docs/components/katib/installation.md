@@ -21,7 +21,7 @@ You need to install Katib control plane and Python SDK to create Katib Experimen
 ### Installing Control Plane
 
 You can skip these steps if you have already
-[installed Kubeflow platform](/docs/started/installing-kubeflow/#how-to-install-kubeflow)
+[installed Kubeflow platform](/docs/started/installing-kubeflow/)
 using manifests or package distributions. Kubeflow platform includes Katib.
 
 You can install Katib as a standalone component.

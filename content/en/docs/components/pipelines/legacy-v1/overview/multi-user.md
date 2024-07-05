@@ -12,7 +12,7 @@ Please note that Kubeflow Pipelines V2 supports running V1 pipelines in a [backw
 Multi-user isolation for Kubeflow Pipelines is part of Kubeflow's overall [multi-tenancy](/docs/concepts/multi-tenancy/) feature.
 
 {{% alert title="Tip" color="info" %}}
-* Kubeflow Pipelines multi-user isolation is only supported in ["full" Kubeflow deployments](/docs/components/pipelines/legacy-v1/overview/#full-kubeflow-deployment).
+* Kubeflow Pipelines multi-user isolation is only supported in ["full" Kubeflow deployments](/docs/components/pipelines/operator-guides/installation/overview/#full-kubeflow-deployment).
 * Refer to docs about [profiles and namespaces](/docs/components/central-dash/profiles/) for the common Kubeflow multi-user operations 
   like [managing profile contributors](/docs/components/central-dash/profiles/#manage-profile-contributors).
 {{% /alert %}}
