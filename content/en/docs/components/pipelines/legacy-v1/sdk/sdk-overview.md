@@ -11,8 +11,6 @@ Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we 
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
-{{% stable-status %}}
-
 The [Kubeflow Pipelines 
 SDK](https://kubeflow-pipelines.readthedocs.io/en/stable/source/html)
 provides a set of Python packages that you can use to specify and run your 
