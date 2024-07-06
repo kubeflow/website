@@ -19,7 +19,7 @@ portable installation that only includes Kubeflow Pipelines.
 * Kubeflow Pipelines as [part of a full Kubeflow deployment](/docs/components/pipelines/operator-guides/installation/overview/#full-kubeflow-deployment) provides
 all Kubeflow components and more integration with each platform.
 * **Beta**: [Google Cloud AI Platform Pipelines](#google-cloud-ai-platform-pipelines) makes it easier to install and use Kubeflow Pipelines on Google Cloud by providing a management UI on [Google Cloud Console](https://console.cloud.google.com/ai-platform/pipelines/clusters).
-* A [local](/docs/components/pipelines/operator-guides/installation/localcluster-deployment) Kubeflow Pipelines deployment for testing purposes.
+* A [local](/docs/components/pipelines/legacy-v1/installation/localcluster-deployment) Kubeflow Pipelines deployment for testing purposes.
 
 ## Choosing an installation option
 
@@ -28,7 +28,7 @@ all Kubeflow components and more integration with each platform.
     If yes, choose the [full Kubeflow deployment](/docs/components/pipelines/operator-guides/installation/overview/#full-kubeflow-deployment).
 1. Can you use a cloud/on-prem Kubernetes cluster?
 
-    If you can't, you should try using Kubeflow Pipelines on a local Kubernetes cluster for learning and testing purposes by following the steps in [Deploying Kubeflow Pipelines on a local cluster](/docs/components/pipelines/operator-guides/installation/localcluster-deployment).
+    If you can't, you should try using Kubeflow Pipelines on a local Kubernetes cluster for learning and testing purposes by following the steps in [Deploying Kubeflow Pipelines on a local cluster](/docs/components/pipelines/legacy-v1/installation/localcluster-deployment).
 1. Do you want to use Kubeflow Pipelines with [multi-user support](https://github.com/kubeflow/pipelines/issues/1223)?
 
     If yes, choose the [full Kubeflow deployment](/docs/components/pipelines/operator-guides/installation/overview/#full-kubeflow-deployment) with version >= v1.1.
@@ -59,32 +59,38 @@ To deploy Kubeflow Pipelines Standalone, you use kustomize manifests only.
 This process makes it simpler to customize your deployment and to integrate
 Kubeflow Pipelines into an existing Kubernetes cluster.
 
-Installation guide: [Kubeflow Pipelines Standalone deployment
-  guide](/docs/components/pipelines/operator-guides/installation/standalone-deployment/)
+Installation guide
+: [Kubeflow Pipelines Standalone deployment
+  guide](/docs/components/pipelines/legacy-v1/installation/standalone-deployment/)
 
-Interfaces:
+Interfaces
+:
   * Kubeflow Pipelines UI
   * Kubeflow Pipelines SDK
   * Kubeflow Pipelines API
-  * Kubeflow Pipelines endpoint is **only autoconfigured** for Google Cloud.
+  * Kubeflow Pipelines endpoint is **only auto-configured** for Google Cloud.
 
   If you wish to deploy Kubeflow Pipelines on other platforms, you can either access it through
   `kubectl port-forward` or configure your own platform specific auth-enabled
   endpoint by yourself.
 
-Release Schedule: Kubeflow Pipelines Standalone is available for every Kubeflow Pipelines release.
+Release Schedule
+: Kubeflow Pipelines Standalone is available for every Kubeflow Pipelines release.
 You will have access to the latest features.
 
-Upgrade Support (**Beta**): [Upgrading Kubeflow Pipelines Standalone](/docs/components/pipelines/operator-guides/installation/standalone-deployment/#upgrading-kubeflow-pipelines) introduces how to upgrade
+Upgrade Support (**Beta**)
+: [Upgrading Kubeflow Pipelines Standalone](/docs/components/pipelines/legacy-v1/installation/standalone-deployment/#upgrading-kubeflow-pipelines) introduces how to upgrade
 in place.
 
-Google Cloud Integrations:
-  * A Kubeflow Pipelines public endpoint with auth support is **autoconfigured** for you.
+Google Cloud Integrations
+:
+  * A Kubeflow Pipelines public endpoint with auth support is **auto-configured** for you.
   * Open the Kubeflow Pipelines UI via the **Open Pipelines Dashboard** link in [the AI Platform Pipelines dashboard of Cloud Console](https://console.cloud.google.com/ai-platform/pipelines/clusters).
   * (Optional) You can choose to persist your data in Google Cloud managed storage (Cloud SQL and Cloud Storage).
-  * All options to authenticate to Google Cloud are supported.
+  * [All options to authenticate to Google Cloud](/docs/gke/pipelines/authentication-pipelines/) are supported.
 
-Notes on specific features:
+Notes on specific features
+:
   * After deployment, your Kubernetes cluster contains Kubeflow Pipelines only.
   It does not include the other Kubeflow components.
   For example, to use a Jupyter Notebook, you must use a local notebook or a
@@ -99,17 +105,20 @@ Notes on specific features:
 Use this option to deploy Kubeflow Pipelines to your local machine, on-premises,
 or to a cloud, as part of a full Kubeflow installation.
 
-Installation guide: [Kubeflow installation guide](/docs/started/)
+Installation guide
+: [Kubeflow installation guide](/docs/started/)
 
-Interfaces:
+Interfaces
+:
   * Kubeflow UI
   * Kubeflow Pipelines UI within or outside the Kubeflow UI
   * Kubeflow Pipelines SDK
   * Kubeflow Pipelines API
   * Other Kubeflow APIs
-  * Kubeflow Pipelines endpoint is autoconfigured with auth support for each platform
+  * Kubeflow Pipelines endpoint is auto-configured with auth support for each platform
 
-Release Schedule: The full Kubeflow is released quarterly. It has significant delay in receiving
+Release Schedule
+: The full Kubeflow is released quarterly. It has significant delay in receiving
 Kubeflow Pipelines updates.
 
 | Kubeflow Version       | Kubeflow Pipelines Version |
@@ -124,15 +133,18 @@ Kubeflow Pipelines updates.
 
 Note: Google Cloud, AWS, and IBM Cloud have supported Kubeflow Pipelines 1.0.0 with multi-user separation. Other platforms might not be up-to-date for now, refer to [this GitHub issue](https://github.com/kubeflow/manifests/issues/1364#issuecomment-668415871) for status.
 
-Upgrade Support:
-Refer to [the full Kubeflow section of upgrading Kubeflow Pipelines on Google Cloud](/docs/components/pipelines/operator-guides/installation/upgrade) guide.
+Upgrade Support
+:
+Refer to [the full Kubeflow section of upgrading Kubeflow Pipelines on Google Cloud](/docs/gke/pipelines/upgrade/#full-kubeflow) guide.
 
-Google Cloud Integrations:
-  * A Kubeflow Pipelines public endpoint with auth support is **autoconfigured** for you using [Cloud Identity-Aware Proxy](https://cloud.google.com/iap).
+Google Cloud Integrations
+:
+  * A Kubeflow Pipelines public endpoint with auth support is **auto-configured** for you using [Cloud Identity-Aware Proxy](https://cloud.google.com/iap).
   * There's no current support for persisting your data in Google Cloud managed storage (Cloud SQL and Cloud Storage). Refer to [this GitHub issue](https://github.com/kubeflow/pipelines/issues/4356) for the latest status.
-  * You can authenticate to Google Cloud with Workload Identity.
+  * You can [authenticate to Google Cloud with Workload Identity](/docs/gke/pipelines/authentication-pipelines/#workload-identity).
 
-Notes on specific features:
+Notes on specific features
+:
   * After deployment, your Kubernetes cluster includes all the
   [Kubeflow components](/docs/components/).
   For example, you can use the Jupyter notebook services
@@ -161,30 +173,38 @@ Use this option to deploy Kubeflow Pipelines to Google Kubernetes Engine (GKE)
 from Google Cloud Marketplace. You can deploy Kubeflow Pipelines to an existing or new
 GKE cluster and manage your cluster within Google Cloud.
 
-Installation guide: [Google Cloud AI Platform Pipelines documentation](https://cloud.google.com/ai-platform/pipelines/docs)
+Installation guide
+: [Google Cloud AI Platform Pipelines documentation](https://cloud.google.com/ai-platform/pipelines/docs)
 
-Interfaces:
+Interfaces
+:
   * Google Cloud Console for managing the Kubeflow Pipelines cluster and other Google Cloud
     services
   * Kubeflow Pipelines UI via the **Open Pipelines Dashboard** link in the
     Google Cloud Console
   * Kubeflow Pipelines SDK in Cloud Notebooks
-  * Kubeflow Pipelines endpoint of your instance is autoconfigured for you
+  * Kubeflow Pipelines endpoint of your instance is auto-configured for you
 
-Release Schedule: AI Platform Pipelines is available for a chosen set of stable Kubeflow
+Release Schedule
+: AI Platform Pipelines is available for a chosen set of stable Kubeflow
 Pipelines releases. You will receive updates slightly slower than Kubeflow
 Pipelines Standalone.
 
-Upgrade Support (**Alpha**): An in-place upgrade is not supported.
+Upgrade Support (**Alpha**)
+: An in-place upgrade is not supported.
 
-Google Cloud Integrations:
+To upgrade AI Platform Pipelines by reinstalling it (with existing data), refer to the [Upgrading AI Platform Pipelines](/docs/gke/pipelines/upgrade/#ai-platform-pipelines) guide.
+
+Google Cloud Integrations
+:
   * You can deploy AI Platform Pipelines on [Cloud Console UI](https://console.cloud.google.com/marketplace/details/google-cloud-ai-platform/kubeflow-pipelines).
-  * A Kubeflow Pipelines public endpoint with auth support is **autoconfigured** for you.
+  * A Kubeflow Pipelines public endpoint with auth support is **auto-configured** for you.
   * (Optional) You can choose to persist your data in Google Cloud managed storage services (Cloud SQL and Cloud Storage).
-  * You can authenticate to Google Cloud with the Compute Engine default service account. However, this method may not be suitable if you need workload permission separation.
+  * You can [authenticate to Google Cloud with the Compute Engine default service account](/docs/gke/pipelines/authentication-pipelines/#compute-engine-default-service-account). However, this method may not be suitable if you need workload permission separation.
   * You can deploy AI Platform Pipelines on both public and private GKE clusters as long as the cluster [has sufficient resources for AI Platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs/configure-gke-cluster#ensure).
 
-Notes on specific features:
+Notes on specific features
+:
   * After deployment, your Kubernetes cluster contains Kubeflow Pipelines only.
   It does not include the other Kubeflow components.
   For example, to use a Jupyter Notebook, you can use [AI Platform
