@@ -90,7 +90,7 @@ The following parameters set in `.init.controller` configure the Katib controlle
 
 - `trialResources` - list of resources that can be used as a Trial template. The Trial resources
   must be in this format: Kind.version.group (e.g. `TFJob.v1.kubeflow.org`).
-  Follow [this guide](/docs/components/katib/user-guides/trial-template/#use-custom-kubernetes-resource-as-a-trial-template)
+  Follow [this guide](/docs/components/katib/user-guides/trial-template/#use-crds-with-trial-template)
   to understand how to make Katib Trial work with your Kubernetes CRDs.
 
   The default value is `[Job.v1.batch]`

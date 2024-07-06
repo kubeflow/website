@@ -7,7 +7,7 @@ weight = 10
 <p>Packages:</p>
 <ul>
 <li>
-<a href="#kubeflow.org%2fv1">kubeflow.org/v1</a>
+<a href="#kubeflow.org/v1">kubeflow.org/v1</a>
 </li>
 </ul>
 <h2 id="kubeflow.org/v1">kubeflow.org/v1</h2>

@@ -23,7 +23,7 @@ You need to install Training Operator control plane and Python SDK to create tra
 ### Installing Control Plane
 
 You can skip these steps if you have already
-[installed Kubeflow platform](https://www.kubeflow.org/docs/started/installing-kubeflow/#how-to-install-kubeflow)
+[installed Kubeflow platform](https://www.kubeflow.org/docs/started/installing-kubeflow/)
 using manifests or package distributions. Kubeflow platform includes Training Operator.
 
 You can install Training Operator as a standalone component.

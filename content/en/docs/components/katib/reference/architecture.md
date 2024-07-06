@@ -84,7 +84,7 @@ The _Worker_ is the process that runs to evaluate a Trial and calculate its obje
 
 The Worker can be any type of Kubernetes resource or
 [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
-Follow the [Trial template guide](/docs/components/katib/user-guides/trial-template/#custom-resource)
+Follow the [Trial template guide](/docs/components/katib/user-guides/trial-template/)
 to check how to support your own Kubernetes resource in Katib.
 
 ## Neural Architecture Search
