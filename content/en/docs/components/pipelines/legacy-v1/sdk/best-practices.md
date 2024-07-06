@@ -5,9 +5,10 @@ weight = 60
                     
 +++
 {{% alert title="Old Version" color="warning" %}}
-This page is about __Kubeflow Pipelines V1__, for information about __Kubeflow Pipelines V2__, please see the [new docs](/docs/components/pipelines).
+This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Please note that Kubeflow Pipelines V2 supports running V1 pipelines in a [backwards compatible mode](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
 This page describes some recommended practices for designing
