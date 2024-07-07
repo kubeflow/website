@@ -1,24 +1,20 @@
 +++
-title = "Connect the Pipelines SDK to Kubeflow Pipelines"
-description = "How to connect the Pipelines SDK to Kubeflow Pipelines in various ways"
-weight = 7
+title = "Connect the SDK to the API"
+description = "Learn how to connect the Kubeflow Pipelines SDK to the API."
+weight = 201
 +++
 
-How to connect Pipelines SDK to Kubeflow Pipelines will depend on __what kind__ of Kubeflow deployment you have, and __from where you are running your code__.
+## Overview
 
-* [Full Kubeflow (from inside cluster)](#full-kubeflow-subfrom-inside-clustersub)
-* [Full Kubeflow (from outside cluster)](#full-kubeflow-subfrom-outside-clustersub)
-* [Standalone Kubeflow Pipelines (from inside cluster)](#standalone-kubeflow-pipelines-subfrom-inside-clustersub)
-* [Standalone Kubeflow Pipelines (from outside cluster)](#standalone-kubeflow-pipelines-subfrom-outside-clustersub)
+The [Kubeflow Pipelines SDK](https://kubeflow-pipelines.readthedocs.io/en/stable/) provides a Python interface to interact with the Kubeflow Pipelines API. 
+This guide will show you how to connect the SDK to the Pipelines API in various scenarios.
 
 
-{{% alert title="Tip" color="info" %}}
-Before you begin, you will need to:
-* [Deploy Kubeflow Pipelines](/docs/components/pipelines/legacy-v1/overview/)
-* [Install the Kubeflow Pipelines SDK](/docs/components/pipelines/legacy-v1/sdk/install-sdk/)
-{{% /alert %}}
+## Kubeflow Platform
 
-## Full Kubeflow <sub>(from inside cluster)</sub>
+When running Kubeflow Pipelines as part of a multi-user [Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform), how you authenticate the Pipelines SDK will depend on whether you are running your code __inside__ or __outside__ the cluster.
+
+### **Kubeflow Platform - Inside the Cluster**
 
 <details>
 <summary>Click to expand</summary>
@@ -32,16 +28,14 @@ The following code creates a `kfp.Client()` using a ServiceAccount token for aut
 ```python
 import kfp
 
-# the namespace in which you deployed Kubeflow Pipelines
-namespace = "kubeflow"
+# by default, when run from inside a Kubernetes cluster:
+#  - the token is read from the `KF_PIPELINES_SA_TOKEN_PATH` path
+#  - the host is set to `http://ml-pipeline-ui.kubeflow.svc.cluster.local`
+kfp_client = kfp.Client()
 
-# the KF_PIPELINES_SA_TOKEN_PATH environment variable is used when no `path` is set
-# the default KF_PIPELINES_SA_TOKEN_PATH is /var/run/secrets/kubeflow/pipelines/token
-credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
-
-client = kfp.Client(host=f"http://ml-pipeline-ui.{namespace}", credentials=credentials)
-
-print(client.list_experiments())
+# test the client by listing experiments
+experiments = kfp_client.list_experiments(namespace="my-profile")
+print(experiments)
 ```
 
 The following Pod demonstrates mounting a ServiceAccount token volume.
@@ -113,7 +107,7 @@ spec:
 * The Notebook Spawner UI will be aware of any `PodDefaults` in the user's namespace (they are selectable under the "configurations" section).
 {{% /alert %}}
 
-### RBAC Authorization
+#### RBAC Authorization
 
 The Kubeflow Pipelines API respects Kubernetes RBAC, and will check RoleBindings assigned to the ServiceAccount before allowing it to take Pipelines API actions.
 
@@ -142,177 +136,229 @@ subjects:
 for a list of some important `pipelines.kubeflow.org` RBAC verbs.
 * Kubeflow Notebooks pods run as the `default-editor` ServiceAccount by default, so the RoleBindings for `default-editor` apply to them
 and give them access to submit pipelines in their own namespace.
+* For more information about profiles, see the [Manage Profile Contributors](/docs/components/central-dash/profiles/#manage-profile-contributors) guide.
 {{% /alert %}}
 
 </details>
 
-## Full Kubeflow <sub>(from outside cluster)</sub>
+### **Kubeflow Platform - Outside the Cluster**
 
 <details>
 <summary>Click to expand</summary>
 <hr>
 
-The process to authenticate the Pipelines SDK from outside the cluster in multi-user mode will vary by distribution:
+{{% alert title="Tip" color="info" %}}
+The process to authenticate the Pipelines SDK from outside the cluster will vary by [Kubeflow Distribution](/docs/started/installing-kubeflow/#packaged-distributions) and identity provider.
 
-* [Kubeflow on Google Cloud](/docs/distributions/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-in-a-full-kubeflow-deployment)
-* [Kubeflow on AWS](/docs/distributions/aws/pipeline/#authenticate-kubeflow-pipeline-using-sdk-outside-cluster)
-* [Kubeflow on Azure](https://awslabs.github.io/kubeflow-manifests/docs/component-guides/pipelines/)
-* [Kubeflow on IBM Cloud](/docs/distributions/ibm/pipelines/#2-authenticating-multi-user-kubeflow-pipelines-with-the-sdk)
-
-### Example for Dex
-
-For the deployments that use [Dex](https://dexidp.io/) as their identity provider, this example demonstrates how to authenticate the Pipelines SDK from outside the cluster.
+Because most distributions use [Dex](https://dexidp.io/) as their identity provider, this example will show you how to authenticate with Dex using a Python script.
+{{% /alert %}}
 
 __Step 1:__ expose your `istio-ingressgateway` service locally (if your Kubeflow Istio gateway is not already exposed on a domain)
 
 ```bash
-# `svc/istio-ingressgateway` may be called something else, or use different ports
+# TIP: `svc/istio-ingressgateway` may be called something else, or use different ports in your distribution
 kubectl port-forward --namespace istio-system svc/istio-ingressgateway 8080:80
 ```
 
-__Step 2:__ this Python code defines a `get_istio_auth_session()` function that returns a session cookie by authenticating with dex
+__Step 2:__ this Python code defines a `KFPClientManager()` class that creates authenticated `kfp.Client()` instances using Dex
 
 ```python
 import re
+from urllib.parse import urlsplit, urlencode
+
+import kfp
 import requests
-from urllib.parse import urlsplit
+import urllib3
 
-def get_istio_auth_session(url: str, username: str, password: str) -> dict:
+
+class KFPClientManager:
     """
-    Determine if the specified URL is secured by Dex and try to obtain a session cookie.
-    WARNING: only Dex `staticPasswords` and `LDAP` authentication are currently supported
-             (we default default to using `staticPasswords` if both are enabled)
-
-    :param url: Kubeflow server URL, including protocol
-    :param username: Dex `staticPasswords` or `LDAP` username
-    :param password: Dex `staticPasswords` or `LDAP` password
-    :return: auth session information
+    A class that creates `kfp.Client` instances with Dex authentication.
     """
-    # define the default return object
-    auth_session = {
-        "endpoint_url": url,    # KF endpoint URL
-        "redirect_url": None,   # KF redirect URL, if applicable
-        "dex_login_url": None,  # Dex login URL (for POST of credentials)
-        "is_secured": None,     # True if KF endpoint is secured
-        "session_cookie": None  # Resulting session cookies in the form "key1=value1; key2=value2"
-    }
 
-    # use a persistent session (for cookies)
-    with requests.Session() as s:
+    def __init__(
+        self,
+        api_url: str,
+        dex_username: str,
+        dex_password: str,
+        dex_auth_type: str = "local",
+        skip_tls_verify: bool = False,
+    ):
+        """
+        Initialize the KfpClient
 
-        ################
-        # Determine if Endpoint is Secured
-        ################
-        resp = s.get(url, allow_redirects=True)
-        if resp.status_code != 200:
-            raise RuntimeError(
-                f"HTTP status code '{resp.status_code}' for GET against: {url}"
+        :param api_url: the Kubeflow Pipelines API URL
+        :param skip_tls_verify: if True, skip TLS verification
+        :param dex_username: the Dex username
+        :param dex_password: the Dex password
+        :param dex_auth_type: the auth type to use if Dex has multiple enabled, one of: ['ldap', 'local']
+        """
+        self._api_url = api_url
+        self._skip_tls_verify = skip_tls_verify
+        self._dex_username = dex_username
+        self._dex_password = dex_password
+        self._dex_auth_type = dex_auth_type
+        self._client = None
+
+        # disable SSL verification, if requested
+        if self._skip_tls_verify:
+            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+        # ensure `dex_default_auth_type` is valid
+        if self._dex_auth_type not in ["ldap", "local"]:
+            raise ValueError(
+                f"Invalid `dex_auth_type` '{self._dex_auth_type}', must be one of: ['ldap', 'local']"
             )
 
-        auth_session["redirect_url"] = resp.url
+    def _get_session_cookies(self) -> str:
+        """
+        Get the session cookies by authenticating against Dex
+        :return: a string of session cookies in the form "key1=value1; key2=value2"
+        """
 
-        # if we were NOT redirected, then the endpoint is UNSECURED
-        if len(resp.history) == 0:
-            auth_session["is_secured"] = False
-            return auth_session
+        # use a persistent session (for cookies)
+        s = requests.Session()
+
+        # GET the api_url, which should redirect to Dex
+        resp = s.get(
+            self._api_url, allow_redirects=True, verify=not self._skip_tls_verify
+        )
+        if resp.status_code == 200:
+            pass
+        elif resp.status_code == 403:
+            # if we get 403, we might be at the oauth2-proxy sign-in page
+            # the default path to start the sign-in flow is `/oauth2/start?rd=<url>`
+            url_obj = urlsplit(resp.url)
+            url_obj = url_obj._replace(
+                path="/oauth2/start", query=urlencode({"rd": url_obj.path})
+            )
+            resp = s.get(
+                url_obj.geturl(), allow_redirects=True, verify=not self._skip_tls_verify
+            )
         else:
-            auth_session["is_secured"] = True
+            raise RuntimeError(
+                f"HTTP status code '{resp.status_code}' for GET against: {self._api_url}"
+            )
 
-        ################
-        # Get Dex Login URL
-        ################
-        redirect_url_obj = urlsplit(auth_session["redirect_url"])
+        # if we were NOT redirected, then the endpoint is unsecured
+        if len(resp.history) == 0:
+            # no cookies are needed
+            return ""
 
         # if we are at `/auth?=xxxx` path, we need to select an auth type
-        if re.search(r"/auth$", redirect_url_obj.path): 
-            
-            #######
-            # TIP: choose the default auth type by including ONE of the following
-            #######
-            
-            # OPTION 1: set "staticPasswords" as default auth type
-            redirect_url_obj = redirect_url_obj._replace(
-                path=re.sub(r"/auth$", "/auth/local", redirect_url_obj.path)
+        url_obj = urlsplit(resp.url)
+        if re.search(r"/auth$", url_obj.path):
+            url_obj = url_obj._replace(
+                path=re.sub(r"/auth$", f"/auth/{self._dex_auth_type}", url_obj.path)
             )
-            # OPTION 2: set "ldap" as default auth type 
-            # redirect_url_obj = redirect_url_obj._replace(
-            #     path=re.sub(r"/auth$", "/auth/ldap", redirect_url_obj.path)
-            # )
-            
-        # if we are at `/auth/xxxx/login` path, then no further action is needed (we can use it for login POST)
-        if re.search(r"/auth/.*/login$", redirect_url_obj.path):
-            auth_session["dex_login_url"] = redirect_url_obj.geturl()
 
-        # else, we need to be redirected to the actual login page
+        # if we are at `/auth/xxxx/login` path, then we are at the login page
+        if re.search(r"/auth/.*/login$", url_obj.path):
+            dex_login_url = url_obj.geturl()
         else:
-            # this GET should redirect us to the `/auth/xxxx/login` path
-            resp = s.get(redirect_url_obj.geturl(), allow_redirects=True)
+            # otherwise, we need to follow a redirect to the login page
+            resp = s.get(
+                url_obj.geturl(), allow_redirects=True, verify=not self._skip_tls_verify
+            )
             if resp.status_code != 200:
                 raise RuntimeError(
-                    f"HTTP status code '{resp.status_code}' for GET against: {redirect_url_obj.geturl()}"
+                    f"HTTP status code '{resp.status_code}' for GET against: {url_obj.geturl()}"
                 )
+            dex_login_url = resp.url
 
-            # set the login url
-            auth_session["dex_login_url"] = resp.url
-
-        ################
-        # Attempt Dex Login
-        ################
+        # attempt Dex login
         resp = s.post(
-            auth_session["dex_login_url"],
-            data={"login": username, "password": password},
-            allow_redirects=True
+            dex_login_url,
+            data={"login": self._dex_username, "password": self._dex_password},
+            allow_redirects=True,
+            verify=not self._skip_tls_verify,
         )
-        if len(resp.history) == 0:
+        if resp.status_code != 200:
             raise RuntimeError(
-                f"Login credentials were probably invalid - "
-                f"No redirect after POST to: {auth_session['dex_login_url']}"
+                f"HTTP status code '{resp.status_code}' for POST against: {dex_login_url}"
             )
 
-        # store the session cookies in a "key1=value1; key2=value2" string
-        auth_session["session_cookie"] = "; ".join([f"{c.name}={c.value}" for c in s.cookies])
+        # if we were NOT redirected, then the login credentials were probably invalid
+        if len(resp.history) == 0:
+            raise RuntimeError(
+                f"Login credentials are probably invalid - "
+                f"No redirect after POST to: {dex_login_url}"
+            )
 
-    return auth_session
+        return "; ".join([f"{c.name}={c.value}" for c in s.cookies])
+
+    def _create_kfp_client(self) -> kfp.Client:
+        try:
+            session_cookies = self._get_session_cookies()
+        except Exception as ex:
+            raise RuntimeError(f"Failed to get Dex session cookies") from ex
+
+        # monkey patch the kfp.Client to support disabling SSL verification
+        # kfp only added support in v2: https://github.com/kubeflow/pipelines/pull/7174
+        original_load_config = kfp.Client._load_config
+
+        def patched_load_config(client_self, *args, **kwargs):
+            config = original_load_config(client_self, *args, **kwargs)
+            config.verify_ssl = not self._skip_tls_verify
+            return config
+
+        patched_kfp_client = kfp.Client
+        patched_kfp_client._load_config = patched_load_config
+
+        return patched_kfp_client(
+            host=self._api_url,
+            cookies=session_cookies,
+        )
+
+    def create_kfp_client(self) -> kfp.Client:
+        """Get a newly authenticated Kubeflow Pipelines client."""
+        return self._create_kfp_client()
 ```
 
-__Step 3:__ this Python code uses the above `get_istio_auth_session()` function to create a `kfp.Client()`
+__Step 3:__ this Python code uses the above `KFPClientManager()` class to create a `kfp.Client()`
 
 ```python
-import kfp
+# initialize a KFPClientManager
+kfp_client_manager = KFPClientManager(
+    api_url="http://localhost:8080/pipeline",
+    skip_tls_verify=True,
 
-KUBEFLOW_ENDPOINT = "http://localhost:8080"
-KUBEFLOW_USERNAME = "user@example.com"
-KUBEFLOW_PASSWORD = "12341234"
+    dex_username="user@example.com",
+    dex_password="12341234",
 
-auth_session = get_istio_auth_session(
-    url=KUBEFLOW_ENDPOINT,
-    username=KUBEFLOW_USERNAME,
-    password=KUBEFLOW_PASSWORD
+    # can be 'ldap' or 'local' depending on your Dex configuration
+    dex_auth_type="local",
 )
 
-client = kfp.Client(host=f"{KUBEFLOW_ENDPOINT}/pipeline", cookies=auth_session["session_cookie"])
-print(client.list_experiments())
+# get a newly authenticated KFP client
+# TIP: long-lived sessions might need to get a new client when their session expires
+kfp_client = kfp_client_manager.create_kfp_client()
+
+# test the client by listing experiments
+experiments = kfp_client.list_experiments(namespace="my-profile")
+print(experiments)
 ```
 
 </details>
 
-## Standalone Kubeflow Pipelines <sub>(from inside cluster)</sub>
+## Standalone Kubeflow Pipelines
+
+When running Kubeflow Pipelines in [standalone mode](/docs/components/pipelines/operator-guides/installation/), there will be no concept of multi-user authentication or RBAC.
+The specific steps will depend on whether you are running your code __inside__ or __outside__ the cluster.
+
+### **Standalone KFP - Inside the Cluster**
 
 <details>
 <summary>Click to expand</summary>
 <hr>
 
-{{% alert title="Warning" color="warning" %}}
-This information only applies to _Standalone Kubeflow Pipelines_.
-{{% /alert %}}
-
 When running inside the Kubernetes cluster, you may connect Pipelines SDK directly to the `ml-pipeline-ui` service via [cluster-internal service DNS resolution](https://kubernetes.io/docs/concepts/services-networking/service/#discovering-services).
 
-{{% alert title="Tip" color="info" %}}
+{{% alert title="Warning" color="warning" %}}
 In [standalone deployments](/docs/components/pipelines/operator-guides/installation/) of Kubeflow Pipelines, there is no authentication enforced on the `ml-pipeline-ui` service.
 {{% /alert %}}
 
-For example, when running in the __same namespace__ as Kubeflow:
+When running in the __same namespace__ as Kubeflow:
 
 ```python
 import kfp
@@ -322,7 +368,7 @@ client = kfp.Client(host="http://ml-pipeline-ui:80")
 print(client.list_experiments())
 ```
 
-For example, when running in a __different namespace__ to Kubeflow:
+When running in a __different namespace__ to Kubeflow:
 
 ```python
 import kfp
@@ -337,19 +383,15 @@ print(client.list_experiments())
 
 </details>
 
-## Standalone Kubeflow Pipelines <sub>(from outside cluster)</sub>
+### **Standalone KFP - Outside the Cluster**
 
 <details>
 <summary>Click to expand</summary>
 <hr>
 
-{{% alert title="Warning" color="warning" %}}
-This information only applies to _Standalone Kubeflow Pipelines_.
-{{% /alert %}}
-
 When running outside the Kubernetes cluster, you may connect Pipelines SDK to the `ml-pipeline-ui` service by using [kubectl port-forwarding](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/).
 
-{{% alert title="Tip" color="info" %}}
+{{% alert title="Warning" color="warning" %}}
 In [standalone deployments](/docs/components/pipelines/operator-guides/installation/) of Kubeflow Pipelines, there is no authentication enforced on the `ml-pipeline-ui` service.
 {{% /alert %}}
 
@@ -372,9 +414,4 @@ print(client.list_experiments())
 
 </details>
 
-
-## Next Steps
-
-* [Using the Kubeflow Pipelines SDK](/docs/components/pipelines/legacy-v1/tutorials/sdk-examples/)
-* [Kubeflow Pipelines SDK Reference](https://kubeflow-pipelines.readthedocs.io/en/stable/)
-* [Experiment with the Kubeflow Pipelines API](/docs/components/pipelines/legacy-v1/tutorials/api-pipelines/)
+<br>
