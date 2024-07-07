@@ -1,7 +1,7 @@
 +++
 title = "Use Caching"
-description = "How to use caching in Kubeflow Pipelines."
-weight = 5
+description = "Learn about caching in Kubeflow Pipelines."
+weight = 104
 +++
 
 Kubeflow Pipelines support caching to eliminate redundant executions and improve
@@ -26,7 +26,7 @@ be marked with a green "arrow from cloud" icon.
 ## How to use caching
 
 Caching is enabled by default for all components in KFP. You can disable caching
-for a component by calling `.set_caching_options(False)` on a task object.
+for a component by calling [`.set_caching_options(enable_caching=False)`](https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.PipelineTask.set_caching_options) on a task object.
 
 ```python
 from kfp import dsl

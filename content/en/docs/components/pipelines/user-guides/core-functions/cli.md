@@ -1,6 +1,7 @@
 +++
-title = "Interact with KFP via the CLI"
-weight = 4
+title = "Use the KFP CLI"
+description = "Learn how to interact with Kubeflow Pipelines using the KFP CLI."
+weight = 203
 +++
 
 {{% kfp-v2-keywords %}}
