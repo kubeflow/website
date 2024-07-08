@@ -1,6 +1,6 @@
 +++
 title = "Kubernetes Platform-specific Features"
-description = "Reference documentation for the Kubeflow Pipelines SDK Version 2"
+description = "Reference documentation for the `kfp-kubernetes` Python library"
 weight = 6
                     
 +++
