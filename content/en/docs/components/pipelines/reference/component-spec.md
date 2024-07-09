@@ -42,7 +42,7 @@ implementation:
 ```
 
 See some examples of real-world 
-[component specifications](https://github.com/kubeflow/pipelines/search?q=filename%3Acomponent.yaml&unscoped_q=filename%3Acomponent.yaml).
+[component specifications](https://github.com/search?q=repo%3Akubeflow%2Fpipelines+path%3A**%2Fcomponent.yaml&type=code).
 
 ## Detailed specification (ComponentSpec)
 
