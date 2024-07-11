@@ -1,16 +1,32 @@
 +++
 title = "Execute KFP pipelines locally"
-weight = 3
+description = "Learn how to run Kubeflow Pipelines locally."
+weight = 200
 +++
 
 {{% kfp-v2-keywords %}}
 
 ## Overview
+
 KFP supports executing components and pipelines locally, enabling a tight development loop before running your code remotely.
 
-Executing components and pipelines locally is easy. Simply initialize a local session using `local.init()`, then call the component or pipeline like a normal Python function. KFP will log information about the execution. Once execution completes, you can access the task outputs just as you would when composing a pipeline; the only difference is that the outputs are now materialized values, not references to future outputs.
+Executing components and pipelines locally is easy. Simply initialize a local session using `local.init()`, then call the component or pipeline like a normal Python function. 
+KFP will log information about the execution. 
+Once execution completes, you can access the task outputs just as you would when composing a pipeline; the only difference is that the outputs are now materialized values, not references to future outputs.
 
-In the following example, we use the `DockerRunner` type. Runner types are covered in more detail below.
+## Limitations
+
+Local execution is designed to help quickly *test* components and pipelines locally before testing in a remote environment.
+
+Local execution comes with several limitations:
+
+- Local execution does not feature optimizations and additional features such as caching, retry, etc. While these feature are important for production pipelines, they are less critical for a local testing environment. You will find that task methods like `.set_retry`, `.set_caching_options`, etc. have no effect locally.
+- Local execution makes simple assumptions about the resources available on your machine. Local execution does not support specifying resource requests/limits/affinities related to memory, cores, accelerators, etc. You will find that task methods like `.set_memory_limit`, `.set_memory_request`, `.set_accelerator_type` etc. have no effect locally.
+- While local pipeline execution has full support for sequential and nested pipelines, it does not yet support `dsl.Condition`, `dsl.ParallelFor`, or `dsl.ExitHandler`.
+
+## Basic Example
+
+In the following example, we use the `DockerRunner` type, the [runner types](#runner-types) are covered in more detail below.
 
 ```python
 from kfp import local
@@ -59,9 +75,11 @@ def add(a: int, b: int, out_artifact: Output[Artifact]):
 
 
 task = add(a=1, b=2)
+
 # can read artifact contents
 with open(task.outputs['out_artifact'].path) as f:
     contents = f.read()
+
 assert json.loads(contents) == 3
 assert task.outputs['out_artifact'].metadata['operation'] == 'addition'
 ```
@@ -74,13 +92,17 @@ local.init(runner=...,
            pipeline_root='~/my/component/outputs')
 ```
 
-## Local runners
+## Runner Types
 
-You can choose from two local runner types which indicate how and where your component should be executed: `DockerRunner` and `SubprocessRunner`.
+Kubeflow pipelines has two local runners that you can use to execute your components and pipelines locally: `DockerRunner` and `SubprocessRunner`.
 
-### Recommended: DockerRunner
+__We strongly recommended using `DockerRunner` whenever possible.__
 
-When invoking components locally using the `DockerRunner`, the task will execute in a container.
+### **Runner:** DockerRunner
+
+The `DockerRunner` requires [Docker to be installed](https://docs.docker.com/engine/install/), but requires essentially no knowledge of Docker to use.
+
+For example, to use the `DockerRunner`:
 
 ```python
 from kfp import local
@@ -89,19 +111,19 @@ local.init(runner=local.DockerRunner())
 ```
 
 Since the local `DockerRunner` executes each task in a separate container, the `DockerRunner`:
+
 - Offers the strongest form of local runtime environment isolation
 - Is most faithful to the remote runtime environment
 - Allows execution of all component types: [Lightweight Python Component][lightweight-python-component], [Containerized Python Components][containerized-python-components], and [Container Components][container-components]
 
-**It is recommended to use `DockerRunner` whenever possible.**
+When you use the `DockerRunner`, KFP mounts your local pipeline root to the container to write outputs outside of the container. 
+This means that your component outputs will still be available for inspection even after the container exits.
 
-When you use the `DockerRunner`, KFP mounts your local pipeline root to the container to write outputs outside of the container. This means that your component outputs will still be available for inspection even after the container exits.
+### **Runner:** SubprocessRunner
 
-The `DockerRunner` requires [Docker to be installed](https://docs.docker.com/engine/install/), but requires essentially no knowledge of Docker to use.
+The `SubprocessRunner` is only recommended where Docker cannot be installed, such as in some notebook environments.
 
-### Alternative: SubprocessRunner
-
-The `SubprocessRunner` is recommended when executing components in local environments where Docker cannot be installed, such as in some notebook environments.
+For example, to use the `SubprocessRunner`:
 
 ```python
 from kfp import local
@@ -114,23 +136,17 @@ Since `SubprocessRunner` runs your code in a subprocess, the `SubprocessRunner`:
 - Does not support custom images or easily support tasks with complex environment dependencies
 - Only allows execution of [Lightweight Python Component][lightweight-python-component]
 
-By default, the `SubprocessRunner` will install your dependencies into a virtual environment. This is recommended, but can be disabled by setting `use_venv=False`:
+{{% alert title="Tip" color="info" %}}
+By default, the `SubprocessRunner` will install your dependencies into a virtual environment.
+
+This is recommended, but can be disabled by setting `use_venv=False`:
 
 ```python
 from kfp import local
 
 local.init(runner=local.SubprocessRunner(use_venv=False))
 ```
-
-## Limitations
-Local execution is designed to help quickly *test* components and pipelines locally before testing in a remote environment.
-
-Local execution comes with several limitations:
-- Local execution does not feature optimizations and additional features such as caching, retry, etc. While these feature are important for production pipelines, they are less critical for a local testing environment. You will find that task methods like `.set_retry`, `.set_caching_options`, etc. have no effect locally.
-- Local execution makes simple assumptions about the resources available on your machine. Local execution does not support specifying resource requests/limits/affinities related to memory, cores, accelerators, etc. You will find that task methods like `.set_memory_limit`, `.set_memory_request`, `.set_accelerator_type` etc. have no effect locally.
-
-While local pipeline execution has full support for sequential and nested pipelines, it does not yet support `dsl.Condition`, `dsl.ParallelFor`, or `dsl.ExitHandler`.
-
+{{% /alert %}}
 
 [lightweight-python-component]: /docs/components/pipelines/user-guides/components/lightweight-python-components/
 [containerized-python-components]: /docs/components/pipelines/user-guides/components/containerized-python-components

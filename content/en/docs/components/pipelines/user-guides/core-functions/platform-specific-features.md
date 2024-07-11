@@ -1,35 +1,44 @@
 +++
-title = "Author Tasks with Platform-Specific Functionality"
-weight = 10
+title = "Use Platform-Specific Features"
+description = "Learn how to use platform-specific features in Kubeflow Pipelines in your pipelines."
+weight = 105
 +++
 
+## Overview
 
-One of the benefits of KFP is cross-platform portability. The KFP SDK compiles pipeline definitions to [IR YAML][ir-yaml] which can be read and executed by different backends, including the [Kubeflow Pipelines open source backend][oss-be] and [Vertex AI Pipelines](https://cloud.google.com/vertex-ai/docs/pipelines/introduction).
+One of the benefits of KFP is cross-platform portability. 
+The KFP SDK compiles pipeline definitions to [IR YAML][ir-yaml] which can be read and executed by different backends, including the Kubeflow Pipelines [open source backend][oss-be] and [Vertex AI Pipelines](https://cloud.google.com/vertex-ai/docs/pipelines/introduction).
 
 For cases where features are not portable across platforms, users may author pipelines with platform-specific functionality via KFP SDK platform-specific plugin libraries.
-
-In general, platform-specific plugin libraries provide functions that act on tasks similarly to [task-level configuration methods][task-level-config-methods] provided by the KFP SDK directly. Platform-specific plugin libraries may also provide pre-baked components.
-
-
+In general, platform-specific plugin libraries provide functions that act on tasks similarly to [task-level configuration methods][task-level-config-methods] provided by the KFP SDK directly. 
 
 <!-- TODO: add docs on how to create a platform-specific authoring library -->
 
-## Example: Read/write to a Kubernetes PVC using kfp-kubernetes
-Currently the only KFP SDK platform-specific plugin library is [`kfp-kubernetes`][kfp-kubernetes-pypi], which is supported by the [Kubeflow Pipelines open source backend][oss-be] and enables direct access to some Kubernetes resources and functionality.
+## kfp-kubernetes
 
-The following uses `kfp-kubernetes` to demonstrate typical usage of a plugin library. Specifically, we will use `kfp-kubernetes` to create a [PersistentVolumeClaim (PVC)][persistent-volume], use the PVC to pass data between tasks, and delete the PVC after using it. See the [`kfp-kubernetes` documentation for more information][kfp-kubernetes-docs].
+Currently, the only KFP SDK platform-specific plugin library is [`kfp-kubernetes`][kfp-kubernetes-pypi], which is supported by the Kubeflow Pipelines [open source backend][oss-be] and enables direct access to some Kubernetes resources and functionality.
 
-The following assumes basic familiarity with [PersistentVolume and PersistentVolumeClaim][persistent-volume] concepts in Kubernetes, [authoring components][authoring-components], and [authoring pipelines][authoring-pipelines].
+For more information, see the [`kfp-kubernetes` documentation ][kfp-kubernetes-docs].
 
-### Step 1: Install the platform-specific plugin library with the KFP SDK
+### **Kubernetes PersistentVolumeClaims**
+
+In this example we will use `kfp-kubernetes` to create a [PersistentVolumeClaim (PVC)][persistent-volume], use the PVC to pass data between tasks, and then delete the PVC.
+
+We will assume you have basic familiarity with `PersistentVolume` and `PersistentVolumeClaim` resources in Kubernetes, in addition to [authoring components][authoring-components], and [authoring pipelines][authoring-pipelines] in KFP.
+
+#### **Step 1:** Install the `kfp-kubernetes` library
+
+Run the following command to install the `kfp-kubernetes` library:
 
 ```sh
 pip install kfp[kubernetes]
 ```
 
-### Step 2: Create components that read/write to the mount path
+#### **Step 2:** Create components that read/write to the mount path
 
-Create two simple components that read and write to a file. In a later step, we will mount the associated volume to the `/data` directory.
+Create two simple components that read and write to a file in the `/data` directory. 
+
+In a later step, we will mount a PVC volume to the `/data` directory.
 
 ```python
 from kfp import dsl
@@ -51,9 +60,11 @@ def consumer() -> str:
     return content
 ```
 
-### Step 3: Dynamically provision a PVC using CreatePVC
+#### **Step 3:** Dynamically provision a PVC using CreatePVC
 
-Now that we have our components, we can begin constructing a pipeline. First, we need a PVC to mount. We'll use the `kubernetes.CreatePVC` pre-baked component to dynamically provision a PVC.
+Now that we have our components, we can begin constructing a pipeline. 
+
+We need a PVC to mount, so we will create one using the `kubernetes.CreatePVC` pre-baked component:
 
 ```python
 from kfp import kubernetes
@@ -69,12 +80,14 @@ def my_pipeline():
     )
 ```
 
-This component provisions a 5GB PVC from the [StorageClass][storage-class] `'standard'` with the `ReadWriteMany` [access mode][access-mode]. The PVC will be named after the underlying Argo workflow that creates it, concatenated with the suffix `-my-pvc`. The `CreatePVC` component returns this name as the output `'name'`.
+This component provisions a 5GB PVC from the [StorageClass][storage-class] `'standard'` with the `ReadWriteMany` [access mode][access-mode].
+The PVC will be named after the underlying Argo workflow that creates it, concatenated with the suffix `-my-pvc`. The `CreatePVC` component returns this name as the output `'name'`.
 
+#### **Step 4:** Read and write data to the PVC
 
-### Step 4: Read and write data to the PVC
+Next, we'll use the `mount_pvc` task modifier with the `producer` and `consumer` components. 
 
-Next, we'll use the `mount_pvc` task modifier with the `producer` and `consumer` components. We'll also schedule `task2` to run after `task1` to prevent the components from writing and reading to the PVC at the same time.
+We schedule `task2` to run after `task1` so the components don't read and write to the PVC at the same time.
 
 ```python
     # write to the PVC
@@ -95,13 +108,14 @@ Next, we'll use the `mount_pvc` task modifier with the `producer` and `consumer`
     task2.after(task1)
 ```
 
-### Step 5: Delete the PVC
+#### **Step 5:** Delete the PVC
 
 Finally, we can schedule deletion of the PVC after `task2` finishes to clean up the Kubernetes resources we created.
 
 ```python
     delete_pvc1 = kubernetes.DeletePVC(
-        pvc_name=pvc1.outputs['name']).after(task2)
+        pvc_name=pvc1.outputs['name']
+    ).after(task2)
 ```
 
 For the full pipeline and more information, see a [similar example][full-example] in the [`kfp-kubernetes` documentation][kfp-kubernetes-docs].

@@ -1,16 +1,20 @@
 +++
 title = "Compile a Pipeline"
-description = "Compile pipelines and components to YAML"
-weight = 2
+description = "Define and compile a basic pipeline using the KFP SDK."
+weight = 101
 +++
 
 {{% kfp-v2-keywords %}}
 
-To submit a pipeline for execution, you must compile it to YAML with the KFP SDK compiler:
+## Overview
+
+To [submit a pipeline for execution](/docs/components/pipelines/user-guides/core-functions/run-a-pipeline/), you must compile it to YAML with the KFP SDK compiler.
+
+In the following example, the compiler creates a file called `pipeline.yaml`, which contains a hermetic representation of your pipeline.
+The output is called an [Intermediate Representation (IR) YAML](#ir-yaml), which is a serialized [`PipelineSpec`][pipeline-spec] protocol buffer message.
 
 ```python
-from kfp import dsl
-from kfp import compiler
+from kfp import compiler, dsl
 
 @dsl.component
 def comp(message: str) -> str:
@@ -25,9 +29,19 @@ def my_pipeline(message: str) -> str:
 compiler.Compiler().compile(my_pipeline, package_path='pipeline.yaml')
 ```
 
-In this example, the compiler creates a file called `pipeline.yaml`, which contains a hermetic representation of your pipeline. The output is called intermediate representation (IR) YAML. You can view an example of IR YAML on [GitHub][compiled-output-example]. The contents of the file is the serialized [`PipelineSpec`][pipeline-spec] protocol buffer message and is not intended to be human-readable.
+Because components are actually pipelines, you may also compile them to IR YAML:
 
-You can find human-readable information about the pipeline in the comments at the top of the compiled YAML:
+```python
+@dsl.component
+def comp(message: str) -> str:
+    print(message)
+    return message
+
+compiler.Compiler().compile(comp, package_path='component.yaml')
+```
+
+You can view an [example of IR YAML][compiled-output-example] on GitHub. 
+The contents of the file are not intended to be human-readable, however the comments at the top of the file provide a summary of the pipeline:
 
 ```yaml
 # PIPELINE DEFINITION
@@ -40,16 +54,21 @@ You can find human-readable information about the pipeline in the comments at th
 ...
 ```
 
-You can also compile components, as opposed to pipelines, to IR YAML:
+## Type checking
 
-```python
-@dsl.component
-def comp(message: str) -> str:
-    print(message)
-    return message
+By default, the DSL compiler statically type checks your pipeline to ensure type consistency between components that pass data between one another. 
+Static type checking helps identify component I/O inconsistencies without having to run the pipeline, shortening development iterations.
 
-compiler.Compiler().compile(comp, package_path='component.yaml')
-```
+Specifically, the type checker checks for type equality between the type of data a component input expects and the type of the data provided. 
+See [Data Types][data-types] for more information about KFP data types.
+
+For example, for parameters, a list input may only be passed to parameters with a `typing.List` annotation. 
+Similarly, a float may only be passed to parameters with a `float` annotation.
+
+Input data types and annotations must also match for artifacts, with one exception: the `Artifact` type is compatible with all other artifact types. 
+In this sense, the `Artifact` type is both the default artifact type and an artifact "any" type.
+
+As described in the following section, you can disable type checking.
 
 ## Compiler arguments
 
@@ -63,25 +82,14 @@ The [`Compiler.compile`][compiler-compile] method accepts the following argument
 | `pipeline_parameters` | `Dict[str, Any]` | _Optional_<br/>Map of parameter names to argument values. This lets you provide default values for pipeline or component parameters. You can override these default values during pipeline submission.
 | `type_check` | `bool` | _Optional_<br/>Indicates whether static type checking is enabled during compilation.<br/>
 
-## Type checking
-
-By default, the DSL compiler statically type checks your pipeline to ensure type consistency between components that pass data between one another. Static type checking helps identify component I/O inconsistencies without having to run the pipeline, shortening development iterations.
-
-Specifically, the type checker checks for type equality between the type of data a component input expects and the type of the data provided. See [Data Types][data-types] for more information about KFP data types.
-
-For example, for parameters, a list input may only be passed to parameters with a `typing.List` annotation. Similarly, a float may only be passed to parameters with a `float` annotation.
-
-Input data types and annotations must also match for artifacts, with one exception: the `Artifact` type is compatible with all other artifact types. In this sense, the `Artifact` type is both the default artifact type and an artifact "any" type.
-
-As described in the following section, you can disable type checking.
-
 ## IR YAML
 
-The IR YAML is an intermediate representation of a compiled pipeline or component. It is an instance of the [`PipelineSpec`][pipeline-spec] protocol buffer message type, which is a platform-agnostic pipeline representation protocol. It is considered an intermediate representation because the KFP backend compiles `PipelineSpec` to [Argo Workflow][argo-workflow] YAML as the final pipeline definition for execution.
+The IR YAML is an intermediate representation of a compiled pipeline or component. 
+It is an instance of the [`PipelineSpec`][pipeline-spec] protocol buffer message type, which is a platform-agnostic pipeline representation protocol. 
+It is considered an intermediate representation because the KFP backend compiles `PipelineSpec` to [Argo Workflow][argo-workflow] YAML as the final pipeline definition for execution.
 
 Unlike the v1 component YAML, the IR YAML is not intended to be written directly.
-
-While IR YAML is not intended to be easily human readable, you can still inspect it if you know a bit about its contents:
+While IR YAML is not intended to be easily human-readable, you can still inspect it if you know a bit about its contents:
 
 | Section | Description | Example |
 |-------|-------------|---------|
