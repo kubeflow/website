@@ -35,7 +35,7 @@ package = "netlify-plugin-checklinks"
     "public/docs/started/getting-started",
     "public/docs/other-guides",
     "public/docs/external-add-ons/istio",
-    "public/404.html",
+    #"public/404.html",
   ]
 
 [context.deploy-preview.environment]
