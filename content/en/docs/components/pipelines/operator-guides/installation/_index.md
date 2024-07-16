@@ -31,4 +31,4 @@ You should be familiar with [Kubernetes](https://kubernetes.io/docs/home/),
      kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
      ```
 
-3. Open [kubeflow-pipelines](http://localhost:8080)
+3. Open http://localhost:8080 on your browser to see the Kubeflow Pipelines UI.
