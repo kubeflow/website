@@ -2,6 +2,41 @@
   publish = "public"
   command = "cd themes/docsy && git submodule update -f --init && npm install && cd ../.. && hugo --gc --minify"
 
+[[context.deploy-preview.plugins]]
+package = "netlify-plugin-checklinks"
+
+  [context.deploy-preview.plugins.inputs]
+
+  # You can mark some check as todo, which will execute the check, but allow failures.
+  # todoPatterns is an array of strings you can match against failing reports
+  todoPatterns = [
+    "public/docs/components/central-dash/",
+    "public/docs/components/notebooks/",
+
+    "public/docs/components/pipelines/",
+    "public/docs/gke/pipelines/authentication-pipelines",
+    "public/docs/gke/pipelines/upgrade",
+
+    "public/docs/components/katib/",
+    "public/docs/components/kfserving/",
+    "public/docs/components/training/",
+
+    "public/docs/distributions/gke/",
+    "public/docs/gke/deploy/oauth-setup",
+
+    "public/docs/distributions/aws/",
+    "public/docs/distributions/ibm/",
+
+    "public/fonts/glyphicons",
+    "public/docs/experiment",
+    "public/docs/suggestion",
+    "public/docs/trial",
+    "public/docs/examples/shared-resources",
+    "public/docs/started/getting-started",
+    "public/docs/other-guides",
+    "public/docs/external-add-ons/istio",
+  ]
+
 [context.deploy-preview.environment]
   HUGO_VERSION = "0.124.1"
   NODE_VERSION = "18"

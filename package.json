@@ -2,6 +2,7 @@
   "name": "website",
   "devDependencies": {
     "autoprefixer": "^10.4.0",
+    "netlify-plugin-checklinks": "^4.1.1",
     "postcss": "^8.4.1",
     "postcss-cli": "^9.1.0"
   }
