@@ -25,3 +25,10 @@ You should be familiar with [Kubernetes](https://kubernetes.io/docs/home/),
      ```
 
      The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
+
+2. Run the following to port-forward:
+     ```
+     kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
+     ```
+
+3. Open [kubeflow-pipelines](http://localhost:8080)
