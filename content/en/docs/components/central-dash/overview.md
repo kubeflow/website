@@ -21,7 +21,10 @@ Some core features of the central dashboard include:
 
 Here is a screenshot of the Kubeflow Central Dashboard:
 
-<img src="/docs/images/central-ui.png" alt="Kubeflow central UI" class="mt-3 mb-3 border border-info rounded"></img>
+<img src="/docs/images/dashboard/homepage.png" 
+     alt="Kubeflow Central Dashboard - Homepage" 
+     class="mt-3 mb-3 border border-info rounded">
+</img>
 
 ## Navigation
 
@@ -33,38 +36,46 @@ Here is a list of the main pages, grouped by component.
 
 The following sections are available in all Kubeflow deployments:
 
-- **Home**: landing page for the Kubeflow Central Dashboard
-- **Manage Contributors**: manage contributors for the current profile/namespace
+- **Home**: landing page for Kubeflow Central Dashboard
+- **Manage Contributors**: manage contributors of profiles (namespaces) that you own
 
 ### Kubeflow Notebooks
 
 The following sections are available when [Kubeflow Notebooks](/docs/components/notebooks/) is installed:
 
 - **Notebooks**: manage Kubeflow Notebooks
+- **TensorBoards**: manage TensorBoard instances
 - **Volumes**: manage Kubernetes PVC Volumes
 
-### Kubeflow Pipelines
-
-The following sections are available when [Kubeflow Pipelines](/docs/components/pipelines/) is installed:
-
-- **Experiments (KFP)**: manage KFP experiments
-- **Runs**: manage KFP runs
-- **Recurring Runs**: To manage KFP recurring runs
-- **Pipelines**: manage KFP pipelines
-- **Artifacts**: track ML Metadata (MLMD) artifacts
-- **Executions**: track various component executions in MLMD
-
-### Katib
+### Kubeflow Katib
 
 The following sections are available when [Katib](/docs/components/katib/) is installed:
 
-- **Experiments (AutoML)**: manage Katib experiments
+- **Katib Experiments**: manage Katib AutoML experiments
 
 ### KServe
 
 The following sections are available when [KServe](/docs/external-add-ons/kserve/) is installed:
 
-- **Models**: manage deployed KServe models
+- **KServe Endpoints**: manage deployed KServe model endpoints
+
+### Kubeflow Pipelines
+
+When [Kubeflow Pipelines](/docs/components/pipelines/) is installed, you can select **Pipelines** from the sidebar:
+
+<img src="/docs/images/dashboard/pipelines-runs.png" 
+     alt="Kubeflow Central Dashboard - Pipelines - Runs" 
+     class="mt-3 mb-3 border border-info rounded">
+</img>
+
+In the **Pipelines** section, you can access the following pages:
+
+- **Pipelines**: manage pipeline definitions
+- **Experiments**: manage pipeline experiments
+- **Runs**: manage pipeline runs
+- **Recurring Runs**: manage recurring pipeline runs
+- **Artifacts**: track artifacts produced by pipelines stored in MLMD
+- **Executions**: track executions of pipeline components stored in MLMD
 
 ## Next steps
 

@@ -114,11 +114,12 @@ Kubeflow and to build and run your ML workflows on Kubeflow.
 
 ### Kubeflow User Interface (UI)
 
-The Kubeflow UI looks like this:
+The Kubeflow Central Dashboard looks like this:
 
-<img src="/docs/images/central-ui.png" 
-  alt="The Kubeflow UI"
-  class="mt-3 mb-3 border border-info rounded">
+<img src="/docs/images/dashboard/homepage.png" 
+     alt="Kubeflow Central Dashboard - Homepage" 
+     class="mt-3 mb-3 border border-info rounded">
+</img>
 
 The Kubeflow Platform includes [Kubeflow Central Dashboard](/docs/components/central-dash/overview/)
 which acts as a hub for your ML platform and tools by exposing the UIs of components running in the
