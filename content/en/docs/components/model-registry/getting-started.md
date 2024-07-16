@@ -18,147 +18,115 @@ The logical model is exposed via the Model Registry [REST API](https://editor.sw
 
 To follow along the examples in this guide, you will need a Kubeflow installation and the Model Registry installed:
 
-- Kubeflow [installed](/docs/started/installing-kubeflow/)
-- Model Registry [installed](/docs/components/model-registry/installation/)
-- Python >= 3.9, < 3.11
+- [Kubeflow](/docs/started/installing-kubeflow/)
+- [Model Registry](/docs/components/model-registry/installation/)
+- Python >= 3.9
 
-## Example: track Model Artifacts from a Notebook
+<!-- TODO: list python client as a requirement -->
 
-This section details a step by step example on using Model Registry from a Notebook, installing and creating a client instance, indexing metadata, and retrieving metadata.
+## Setup
 
-### Install Model Registry Python client
+To use Model Registry on a notebook you should first install the Python client:
 
-You can install the Model Registry python client in a Notebook, for instance with:
-
-```
-!pip install --pre model-registry=="0.2.2a1"
+```raw
+!pip install --pre model-registry=="0.2.3a1"
 ```
 
-Note: depending on your Python and Notebook environment, you might need to fine-tune the dependencies of: `ml-metadata`, `protobuf`, `grpcio`, or `tensorflow` if used.
+Note that depending on your environment there might be conflicting dependency versions for packages that depend on
+`pydantic`.
 
-You can now create a client instance pointing to your deployed Model Registry from the previous steps.
+You can get a client pointing to your deployed Model Registry from the previous steps:
 
 ```python
 from model_registry import ModelRegistry
 
-registry = ModelRegistry(server_address="model-registry-service.kubeflow.svc.cluster.local", port=9090, author="your name", is_secure=False)
+registry = ModelRegistry(
+    server_address="http://model-registry-service.kubeflow.svc.cluster.local",
+    port=8080,
+    author="your name",
+    is_secure=False
+)
 ```
 
-You now have a Model Registry client instance: `registry`.
+<!-- TODO: missing link -->
+For more information on client setup and capabilities, refer to the Model Registry Python client documentation.
 
-### Register a Model Artifact metadata
+## Register metadata
 
 You can use the `register_model` method to index a model's artifacts and its metadata, for instance:
 
 ```python
-registeredmodel_name = "mnist"
-version_name = "v0.1"
-rm = registry.register_model(registeredmodel_name,
-                                "https://github.com/tarilabs/demo20231212/raw/main/v1.nb20231206162408/mnist.onnx",
-                                model_format_name="onnx",
-                                model_format_version="1",
-                                version=version_name,
-                                description="lorem ipsum mnist",
-                                metadata={
-                                    "accuracy": 3.14,
-                                    "license": "apache-2.0",
-                                }
-                                )
+rm = registry.register_model(
+    "mnist",
+    "https://github.com/tarilabs/demo20231212/raw/main/v1.nb20231206162408/mnist.onnx",
+    model_format_name="onnx",
+    model_format_version="1",
+    version="v0.1",
+    description="lorem ipsum mnist",
+    metadata={
+        "accuracy": 3.14,
+        "license": "apache-2.0",
+    }
+)
 ```
 
-For more information on indexing metadata in the Model Registry, refer to the pydoc documentation of the Model Registry Python client.
-
-### Retrieve a given Model Artifact metadata
+## Retrieving metadata
 
 Continuing on the previous example, you can use the following methods to retrieve the metadata associated with a given Model Artifact:
 
 ```python
-print("RegisteredModel:")
-print(registry.get_registered_model(registeredmodel_name))
+model = registry.get_registered_model("mnist")
+print("Registered Model:", model, "with ID", model.id)
 
-print("ModelVersion:")
-print(registry.get_model_version(registeredmodel_name, version_name))
+version = registry.get_model_version("mnist", "v0.1")
+print("Model Version:", version, "with ID", version.id)
 
-print("ModelArtifact:")
-print(registry.get_model_artifact(registeredmodel_name, version_name))
+art = registry.get_model_artifact("mnist", "v0.1")
+print("Model Artifact:", art, "with ID", art.id)
 ```
 
-## Example add-on: deploy inference endpoint using Model Registry metadata 
+These can be used to create a KServe inference endpoint.
 
-This section details a step by step example on using Model Registry to retrieve indexed ML artifacts metadata, and using that metadata to create an inference endpoint deployment.
+## Deploy an inference endpoint
 
-Without Model Registry, you would need to fill this information manually and potentially from several sources, resulting in a not-trivial, manual process.
+Normally you would need to provide your deployment metadata manually resulting in an error-prone process, especially
+when such data has to be gathered from several sources.
 Using Model Registry ensures simplified access to accurate metadata, and enables you to automate deployment based on the Model Registry values, as also shown in the example below.
 
 Note: the provided example uses the Model Registry Python client and KServe Python SDK. You can analogously make use of the Model Registry REST APIs, and your own Add-on SDK as needed.
 
-### Retrieve a given Model Artifact metadata
-
-You can use the Model Registry Python client to retrieve the needed ML artifact metadata, for example:
-
-```python
-from model_registry import ModelRegistry
-
-registry = ModelRegistry(server_address="model-registry-service.kubeflow.svc.cluster.local", port=9090, author="mmortari", is_secure=False)
-
-lookup_name = "mnist"
-lookup_version = "v0.1"
-
-print("RegisteredModel:")
-registered_model = registry.get_registered_model(lookup_name)
-print(registered_model)
-print("ModelVersion:")
-model_version = registry.get_model_version(lookup_name, lookup_version)
-print(model_version)
-print("ModelArtifact:")
-model_artifact = registry.get_model_artifact(lookup_name, lookup_version)
-print(model_artifact)
-
-storage_uri = model_artifact.uri
-model_format_name = model_artifact.model_format_name
-model_format_version = model_artifact.model_format_version
-```
-
-These metadata values can be used to create a KServe modelmesh inference endpoint.
-
-### Create an inference endpoint using the retrieved metadata
-
 You can use the retrieved metadata from the previous step with the KServe Python SDK to create an inference endpoint, for example:
 
 ```python
-from kubernetes import client 
-from kserve import KServeClient
-from kserve import constants
-from kserve import utils
-from kserve import V1beta1InferenceService
-from kserve import V1beta1InferenceServiceSpec
-from kserve import V1beta1PredictorSpec
-from kserve import V1beta1SKLearnSpec
-from kserve import V1beta1ModelSpec
-from kserve import V1beta1ModelFormat
+from kubernetes import client
+import kserve
 
-namespace = utils.get_default_target_namespace()
-name='mnist'
-kserve_version='v1beta1'
-api_version = constants.KSERVE_GROUP + '/' + kserve_version
-
-isvc = V1beta1InferenceService(api_version=api_version,
-                               kind=constants.KSERVE_KIND,
-                               metadata=client.V1ObjectMeta(
-                                   name=name, namespace=namespace,
-                                   labels={'modelregistry/registered-model-id': registered_model.id, 'modelregistry/model-version-id': model_version.id}
-                               ),
-                               spec=V1beta1InferenceServiceSpec(
-                               predictor=V1beta1PredictorSpec(
-                                 model=V1beta1ModelSpec(
-                                     storage_uri=storage_uri,
-                                     model_format=V1beta1ModelFormat(name=model_format_name, version=model_format_version),
-                                     runtime="kserve-ovms",
-                                     protocol_version='v2'
-                                 )
-                               )))
-KServe = KServeClient()
-KServe.create(isvc)
+isvc = kserve.V1beta1InferenceService(
+    api_version=kserve.constants.KSERVE_GROUP + "/v1beta1",
+    kind=kserve.constants.KSERVE_KIND,
+    metadata=client.V1ObjectMeta(
+        name="mnist",
+        namespace=kserve.utils.get_default_target_namespace(),
+        labels={
+            "modelregistry/registered-model-id": model.id,
+            "modelregistry/model-version-id": version.id,
+        },
+    ),
+    spec=kserve.V1beta1InferenceServiceSpec(
+        predictor=kserve.V1beta1PredictorSpec(
+            model=kserve.V1beta1ModelSpec(
+                storage_uri=art.uri,
+                model_format=kserve.V1beta1ModelFormat(
+                    name=art.model_format_name, version=art.model_format_version
+                ),
+                runtime="kserve-ovms",
+                protocol_version="v2",
+            )
+        )
+    ),
+)
+ks_client = kserve.KServeClient()
+ks_client.create(isvc)
 ```
 
 An inference endpoint is now created, using the artifact metadata retrieved from the Model Registry (previous step),
