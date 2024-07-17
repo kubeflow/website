@@ -76,7 +76,7 @@ from kfp.components import create_component_from_func
 3. Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
 
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.Client
-[connect-api]: /docs/components/pipelines/legacy-v1/sdk/connect-api
+[connect-api]: /docs/components/pipelines/user-guides/core-functions/connect-api
 
 
 ```python
@@ -330,7 +330,7 @@ including component metadata and metrics.
 [named-tuple-hint]: https://docs.python.org/3/library/typing.html#typing.NamedTuple
 [named-tuple]: https://docs.python.org/3/library/collections.html#collections.namedtuple
 [kfp-visualize]: /docs/components/pipelines/legacy-v1/sdk/output-viewer/
-[kfp-metrics]: /docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/
+[kfp-metrics]: /docs/components/pipelines/legacy-v1/sdk/output-viewer/#v2-sdk-use-sdk-visualization-apis
 [input-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.InputPath
 [output-path]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.OutputPath
 

@@ -89,7 +89,7 @@ Follow these steps to start a notebook:
 
 1. Deploy Kubeflow:
 
-    * Follow the [GCP deployment guide](/docs/gke/deploy/), including the step 
+    * Follow the [GCP deployment guide](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/deploy/), including the step 
       to deploy Kubeflow using the 
       [Kubeflow deployment UI](https://deploy.kubeflow.cloud/).
 
@@ -137,4 +137,4 @@ The following notebooks are available:
 * See how to 
   [build your own pipeline components](/docs/components/pipelines/legacy-v1/sdk/component-development/).
 * Read more about 
-  [building lightweight components](/docs/components/pipelines/legacy-v1/sdk/lightweight-python-components/).
+  [building lightweight components](/docs/components/pipelines/user-guides/components/lightweight-python-components/).

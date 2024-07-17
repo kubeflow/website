@@ -53,7 +53,7 @@ If your component's code is implemented as a Python function, use the
 Kubeflow Pipelines SDK to package your function as a component. [Learn more
 about building Python function-based components][python-function-components].
 
-[python-function-components]: https://www.kubeflow.org/docs/pipelines/sdk/python-function-components/
+[python-function-components]: https://www.kubeflow.org/docs/components/pipelines/user-guides/components/
 
 <a name="design"></a>
 ## Designing a pipeline component
@@ -600,7 +600,7 @@ See this [sample component][org-sample] for a real-life component example.
   [build lightweight Python function-based components](/docs/components/pipelines/legacy-v1/sdk/python-function-components/)
   directly from Python functions.
 * See how to [export metrics from your
-  pipeline](/docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/).
+  pipeline](/docs/components/pipelines/legacy-v1/sdk/output-viewer/#v2-sdk-use-sdk-visualization-apis).
 * Visualize the output of your component by
   [adding metadata for an output
   viewer](/docs/components/pipelines/legacy-v1/sdk/output-viewer/).

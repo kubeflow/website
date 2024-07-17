@@ -11,7 +11,7 @@ For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.
 {{% /alert %}}
 
 As an alternative to deploying Kubeflow Pipelines (KFP) as part of the
-[Kubeflow deployment](/docs/started/#installing-kubeflow), you also have a choice
+[Kubeflow deployment](/docs/started/installing-kubeflow), you also have a choice
 to deploy only Kubeflow Pipelines. Follow the instructions below to deploy
 Kubeflow Pipelines standalone using the supplied kustomize manifests.
 
@@ -57,9 +57,9 @@ gcloud container clusters create $CLUSTER_NAME \
 
 **Note**: `e2-standard-2` doesn't support GPU. You can choose machine types that meet your need by referring to guidance in [Cloud Machine families](http://cloud/compute/docs/machine-types).
 
-**Warning**: Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](/docs/gke/authentication/#authentication-from-kubeflow-pipelines).
+**Warning**: Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/authentication/#authentication-from-kubeflow-pipelines).
 
-Note, some legacy pipeline examples may need minor code change to run on clusters with `SCOPES="cloud-platform"`, refer to [Authoring Pipelines to use default service account](/docs/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-default-service-account).
+Note, some legacy pipeline examples may need minor code change to run on clusters with `SCOPES="cloud-platform"`, refer to [Authoring Pipelines to use default service account](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/#authoring-pipelines-to-use-default-service-account).
 
 **References**:
 

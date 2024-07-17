@@ -24,7 +24,7 @@
 # Restructured the pipelines docs.
 /docs/pipelines/                                    /docs/components/pipelines
 /docs/pipelines/output-viewer/                      /docs/components/pipelines/legacy-v1/sdk/output-viewer/
-/docs/pipelines/pipelines-metrics/                  /docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/
+/docs/pipelines/pipelines-metrics/                  /docs/components/pipelines/legacy-v1/sdk/output-viewer/#v2-sdk-use-sdk-visualization-apis
 /docs/pipelines/build-component/                    /docs/components/pipelines/legacy-v1/sdk/component-development/
 /docs/pipelines/install-sdk/                        /docs/components/pipelines/legacy-v1/sdk/install-sdk/
 /docs/pipelines/lightweight-python-components/      /docs/components/pipelines/legacy-v1/sdk/python-function-components/
@@ -36,8 +36,8 @@
 /docs/gke/pipelines/pipelines-tutorial/             /docs/components/pipelines/legacy-v1/tutorials/cloud-tutorials/
 /docs/gke/authentication-pipelines/                 /docs/distributions/gke/pipelines/authentication-pipelines/
 
-/docs/pipelines/metrics/                            /docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/
-/docs/pipelines/metrics/pipelines-metrics/          /docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/
+/docs/pipelines/metrics/                            /docs/components/pipelines/legacy-v1/sdk/output-viewer/#v2-sdk-use-sdk-visualization-apis
+/docs/pipelines/metrics/pipelines-metrics/          /docs/components/pipelines/legacy-v1/sdk/output-viewer/#v2-sdk-use-sdk-visualization-apis
 /docs/pipelines/metrics/output-viewer/              /docs/components/pipelines/legacy-v1/sdk/output-viewer/
 /docs/pipelines/pipelines-overview/                 /docs/components/pipelines/overview/pipelines-overview/
 /docs/pipelines/enable-gpu-and-tpu/                 /docs/distributions/gke/pipelines/enable-gpu-and-tpu/

@@ -290,7 +290,7 @@ The following code snippet shows the typical styling that makes an image show up
   class="mt-3 mb-3 p-3 border border-info rounded">
 ```
 
-To see some examples of styled images, take a look at the [OAuth setup page](/docs/gke/deploy/oauth-setup/).
+To see some examples of styled images, take a look at the [OAuth setup page](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/deploy/oauth-setup/).
 
 For more help, see the guide to [Bootstrap image styling](https://getbootstrap.com/docs/4.6/content/images/) and the Bootstrap utilities, such as [borders](https://getbootstrap.com/docs/4.6/utilities/borders/).
 

@@ -13,7 +13,7 @@ For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.
 Multi-user isolation for Kubeflow Pipelines is part of Kubeflow's overall [multi-tenancy](/docs/concepts/multi-tenancy/) feature.
 
 {{% alert title="Tip" color="info" %}}
-* Kubeflow Pipelines multi-user isolation is only supported in ["full" Kubeflow deployments](/docs/components/pipelines/operator-guides/installation/overview/#full-kubeflow-deployment).
+* Kubeflow Pipelines multi-user isolation is only supported in ["full" Kubeflow deployments](/docs/started/installing-kubeflow/#kubeflow-platform).
 * Refer to docs about [profiles and namespaces](/docs/components/central-dash/profiles/) for the common Kubeflow multi-user operations 
   like [managing profile contributors](/docs/components/central-dash/profiles/#manage-profile-contributors).
 {{% /alert %}}
@@ -48,10 +48,10 @@ Pipeline definitions are not isolated right now, and are shared across all names
 
 How to connect Pipelines SDK to Kubeflow Pipelines will depend on __what kind__ of Kubeflow deployment you have, and __from where you are running your code__.
 
-* [Full Kubeflow (from inside cluster)](/docs/components/pipelines/legacy-v1/sdk/connect-api/#full-kubeflow-subfrom-inside-clustersub)
-* [Full Kubeflow (from outside cluster)](/docs/components/pipelines/legacy-v1/sdk/connect-api/#full-kubeflow-subfrom-outside-clustersub)
-* [Standalone Kubeflow Pipelines (from inside cluster)](/docs/components/pipelines/legacy-v1/sdk/connect-api/#standalone-kubeflow-pipelines-subfrom-inside-clustersub)
-* [Standalone Kubeflow Pipelines (from outside cluster)](/docs/components/pipelines/legacy-v1/sdk/connect-api/#standalone-kubeflow-pipelines-subfrom-outside-clustersub)
+* [Full Kubeflow (from inside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#full-kubeflow-subfrom-inside-clustersub)
+* [Full Kubeflow (from outside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#full-kubeflow-subfrom-outside-clustersub)
+* [Standalone Kubeflow Pipelines (from inside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#standalone-kubeflow-pipelines-subfrom-inside-clustersub)
+* [Standalone Kubeflow Pipelines (from outside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#standalone-kubeflow-pipelines-subfrom-outside-clustersub)
 
 The following Python code will create an experiment (and associated run) from a Pod inside a full Kubeflow cluster.
 
