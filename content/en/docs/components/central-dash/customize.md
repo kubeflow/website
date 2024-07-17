@@ -8,16 +8,23 @@ weight = 90
 
 The Kubeflow Central Dashboard provides a way to customize the menu items and integrate third-party apps.
 
-For example, the below image shows the Kubeflow Central Dashboard with a custom "My App" menu item:
+For example, the below image shows the Kubeflow Central Dashboard with a custom **"My App"** menu item:
 
-<img src="/docs/images/customize-menu-add-app.png" alt="Display third party app on a kubeflow dashboard" class="mt-3 mb-3 border border-info rounded"></img>
+<img src="/docs/images/dashboard/custom-menu-item.png" 
+     alt="Kubeflow Central Dashboard - Customize Menu Items"
+     class="mt-3 mb-3 border border-info rounded">
+</img>
 
 ## Central Dashboard ConfigMap
 
 The Kubeflow Central Dashboard is configured using a Kubernetes ConfigMap.
 
-The `CD_CONFIGMAP_NAME` environment variable on the central-dashboard Deployment specifies the name of the ConfigMap.
-By default, the ConfigMap is named `centraldashboard-config`. You can find the default ConfigMap in the [`/apps/centraldashboard/upstream/base/configmap.yaml` file of the `kubeflow/manifests`](https://github.com/kubeflow/manifests/blob/v1.8.0/apps/centraldashboard/upstream/base/configmap.yaml) repository.
+The `CD_CONFIGMAP_NAME` environment variable on the central-dashboard Deployment specifies the name of the ConfigMap (`centraldashboard-config` by default).
+
+You can find examples of the ConfigMap in the following locations:
+
+- [Default](https://github.com/kubeflow/kubeflow/blob/v1.9.0/components/centraldashboard/manifests/base/configmap.yaml)
+- [Default + KServe](https://github.com/kubeflow/kubeflow/blob/v1.9.0/components/centraldashboard/manifests/overlays/kserve/patches/configmap.yaml)
 
 ## External Links
 

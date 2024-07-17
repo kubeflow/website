@@ -14,12 +14,15 @@ Profiles and their child Namespaces are reconciled by the [Kubeflow Profile Cont
 
 ## Central Dashboard
 
-You can select the active profile from the top bar on the Kubeflow Central Dashboard.
-Users can only see profiles to which they have owner, modify, or view access.
-
+Select the active profile with the drop-down found in the top bar of Kubeflow Central Dashboard.
 Most Kubeflow components use the active profile to determine which resources to display, and what permissions to grant.
 
-<img src="/docs/images/select-profile.png" alt="Select active profile" class="mt-3 mb-3 border border-info rounded"></img>
+Users can only see profiles to which they have owner, contributor (read + write), or viewer (read) access.
+
+<img src="/docs/images/dashboard/homepage-profile-selector.png" 
+     alt="Kubeflow Central Dashboard - Profile Selector" 
+     class="mt-3 mb-3 border border-info rounded">
+</img>
 
 ## Automatic Profile Creation
 
@@ -42,11 +45,19 @@ Here is an example of the automatic profile creation flow:
 
 1. A new user logs into Kubeflow for the first time:
 
-<img src="/docs/images/auto-profile1-crop.png" alt="Automatic profile creation step 1" class="mt-3 mb-3 border border-info rounded" style="width: 100%; max-width: 30em"></img>
+<img src="/docs/images/dashboard/auto-profile-step-1.png"
+     alt="Kubeflow Central Dashboard - Automatic Profile Creation - Step 1"
+     class="mt-3 mb-3 border border-info rounded"
+     style="width: 100%; max-width: 30em">
+</img>
 
 2. The user can name their profile and click *Finish*: 
 
-<img src="/docs/images/auto-profile2.png" alt="Automatic profile creation step 2" class="mt-3 mb-3 border border-info rounded" style="width: 100%; max-width: 30em"></img>
+<img src="/docs/images/dashboard/auto-profile-step-2.png"
+     alt="Kubeflow Central Dashboard - Automatic Profile Creation - Step 2"
+     class="mt-3 mb-3 border border-info rounded"
+     style="width: 100%; max-width: 30em">
+</img>
 
 ## Profile Resources
 
@@ -153,11 +164,18 @@ To add contributors with "view" access, you must use the [manual method](#manage
 
 The __owner__ of a profile can use the __Manage Contributors__ tab in the Kubeflow Central Dashboard to add or remove contributors.
 
-<img src="/docs/images/multi-user-contributors.png" alt="Manage Contributors in Profiles" class="mt-3 mb-3 border border-info rounded"></img>
+<img src="/docs/images/dashboard/homepage-manage-contributors.png" 
+     alt="Kubeflow Central Dashboard - Manage Contributors Link"
+     class="mt-3 mb-3 border border-info rounded">
+</img>
 
 Contributors are managed with the "Contributors to your namespace" field.
 
-<img src="/docs/images/add-contributors.png" alt="Add Contributors" class="mt-3 mb-3 border border-info rounded"></img>
+<img src="/docs/images/dashboard/manage-contributors.png" 
+     alt="Kubeflow Central Dashboard - Manage Contributors"
+     class="mt-3 mb-3 border border-info rounded"
+     style="width: 100%; max-width: 40em">
+</img>
 
 ### Manage Contributors Manually
 
