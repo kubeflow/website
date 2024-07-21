@@ -107,37 +107,56 @@ nav.foldable-nav .with-child, nav.foldable-nav .without-child {
 // style the sidebar like a folder tree
 nav.foldable-nav {
 
-  // bold and color the active page
-  a.active {
-    color: $primary !important;
-    font-weight: 700 !important;
-  }
-
+  // apply styles to the main sidebar sections
   .ul-1 {
+
+    // reduce padding of the sidebar links
     .with-child {
       padding-left: 1.5rem;
       position: relative;
     }
-
     .without-child {
       padding-left: 0.7rem;
       position: relative;
     }
 
-    // show a border on the left of open sections
-    .with-child > input:checked ~ ul {
-      border-left: .1rem dotted black;
-      margin-left: -0.75rem;
-    }
-
-    // color the border for the active path
-    .active-path.with-child ul {
-      border-left: .1rem dotted rgba(66, 121, 244, 0.6) !important;
+    // make the active link bold
+    a.active {
+      color: $primary !important;
+      font-weight: 700 !important;
     }
 
     // bold the chain of pages leading to the active page
-    .active-path > label a {
+    .with-child.active-path > label a {
       font-weight: 700;
+    }
+
+    // show a border on the left of open sections
+    .with-child > input:checked ~ ul {
+      border-left: .1rem dotted $gray-400;
+
+      // round the bottom left corner
+      border-bottom-left-radius: 1rem;
+
+      // position the border correctly
+      padding-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
+      margin-left: -0.77rem;
+    }
+
+    // color the border for the active path
+    .with-child.active-path > ul {
+      border-left: .1rem solid rgb(190, 212, 255) !important;
+    }
+
+    // make the arrow for open non-active sections gray
+    .with-child > input:checked ~ label:before {
+      color: $gray-900;
+    }
+
+    // make the arrow for open active sections blue
+    .with-child.active-path > input:checked ~ label:before {
+      color: $primary;
     }
   }
 }
