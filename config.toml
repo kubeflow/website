@@ -34,15 +34,15 @@ ignoreFiles = []
     post = "<br><span class='badge badge-warning'>Nov 12th, 2024</span> <span class='badge badge-warning'>Salt Lake City, Utah</span> "
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/cloud-native-kubernetes-ai-day/"
   [[menu.main]]
-    name = "Events"
-    weight = -102
-    pre = "<i class='fas fa-calendar pr-2'></i>"
-    url = "/events/"
-  [[menu.main]]
     name = "Docs"
-    weight = -101
+    weight = -102
     pre = "<i class='fas fa-book pr-2'></i>"
     url = "/docs/"
+  [[menu.main]]
+    name = "Events"
+    weight = -101
+    pre = "<i class='fas fa-calendar pr-2'></i>"
+    url = "/events/"
   [[menu.main]]
     name = "Blog"
     weight = -100

@@ -20,6 +20,7 @@
     </span>
     {{- /**/ -}}
   </a>
+  <div class="filler"></div>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_navbar" aria-controls="main_navbar" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -27,7 +28,8 @@
     <ul class="navbar-nav ml-auto pt-4 pt-md-0 my-2 my-md-1">
       {{ $p := . -}}
       {{ range .Site.Menus.main -}}
-      <li class="nav-item mr-2 mr-lg-4 mt-1 mt-lg-0">
+      {{ $longContent := gt (len .Name) 10 -}}
+      <li class="nav-item mr-2 mr-lg-4 mt-1 mt-lg-0 {{- if $longContent }} long-content {{- end }}">
         {{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
         {{ with .Page }}{{ $active = or $active ( $.IsDescendant .) }}{{ end -}}
         {{ $pre := .Pre -}}
@@ -48,7 +50,7 @@
       </li>
       {{ end -}}
       {{ if .Site.Params.versions -}}
-      <li class="nav-item dropdown mt-1 mt-lg-0 mr-2">
+      <li class="nav-item dropdown mt-1 mt-lg-0">
         {{ partial "navbar-version-selector.html" . -}}
       </li>
       {{ end -}}

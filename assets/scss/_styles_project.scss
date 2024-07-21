@@ -1,4 +1,15 @@
 // --------------------------------------------------
+// reduce padding for small screens
+// --------------------------------------------------
+@include media-breakpoint-down(md) {
+  .td-main {
+    main {
+      padding-top: 0.5rem;
+    }
+  }
+}
+
+// --------------------------------------------------
 // fix header position
 // --------------------------------------------------
 @include media-breakpoint-up(md) {
@@ -21,10 +32,13 @@
       padding-top: 0rem;
     }
 
+    .td-sidebar__inner {
+      top: 8rem;
+    }
+
     .td-sidebar-toc {
       padding-top: 1.25rem;
     }
-
   }
 
   .td-outer {
@@ -49,10 +63,103 @@ footer {
 }
 
 // --------------------------------------------------
-// prevent overflow of long names in sidebar
+// sidebar styling
 // --------------------------------------------------
+.td-sidebar {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 2rem;
+  }
+}
+
+// sidebar search styling
+.td-sidebar__search {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 1rem;
+
+  margin: 0;
+
+  .td-search {
+    width: 100%;
+  }
+}
+
+.td-sidebar-nav {
+  padding-left: 0.4rem;
+  padding-right: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0;
+
+  margin: 0;
+}
+
+// reduce padding for the root level of the sidebar
+nav.foldable-nav .with-child, nav.foldable-nav .without-child {
+  padding-left: 0;
+  position: unset;
+}
+
+// style the sidebar like a folder tree
+nav.foldable-nav {
+
+  // bold and color the active page
+  a.active {
+    color: $primary !important;
+    font-weight: 700 !important;
+  }
+
+  .ul-1 {
+    .with-child {
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .without-child {
+      padding-left: 0.7rem;
+      position: relative;
+    }
+
+    // show a border on the left of open sections
+    .with-child > input:checked ~ ul {
+      border-left: .1rem dotted black;
+      margin-left: -0.75rem;
+    }
+
+    // color the border for the active path
+    .active-path.with-child ul {
+      border-left: .1rem dotted rgba(66, 121, 244, 0.6) !important;
+    }
+
+    // bold the chain of pages leading to the active page
+    .active-path > label a {
+      font-weight: 700;
+    }
+  }
+}
+
+// prevent overflow of long names in sidebar
 .td-sidebar-nav__section > ul {
   overflow-wrap: break-word;
+}
+
+// --------------------------------------------------
+// slightly rotate the dropdown arrow on hover
+// --------------------------------------------------
+@media(hover: hover) and (pointer:fine) {
+    nav.foldable-nav .ul-1 .with-child > label:hover:before {
+        transform: rotate(30deg);
+        transition: transform .5s;
+    }
+
+    nav.foldable-nav .ul-1 .with-child > input:checked ~ label:hover:before {
+        transform: rotate(60deg);
+        transition: transform .5s;
+    }
 }
 
 // --------------------------------------------------
@@ -90,25 +197,36 @@ footer {
     }
   }
 
+  // this filler ensures that the navbar links are on the right
+  // and the links do not go under the logo (which uses absolute positioning)
+  .filler {
+      flex-grow: 1;
+      min-width: 120px;
+
+      @include media-breakpoint-down(md) {
+        min-width: 100px;
+      }
+  }
+
   .navbar-nav {
+    // allow wrapping of navbar links
+    white-space: normal;
+    .dropdown-toggle {
+      white-space: normal;
+    }
+
+    // prevent long links from taking up too much space
+    @include media-breakpoint-between(sm, lg) {
+      .nav-item.long-content {
+        font-size: 70%;
+      }
+    }
+
     @include media-breakpoint-down(md) {
       font-size: .875rem;
       .dropdown {
         min-width: inherit;
       }
-    }
-  }
-}
-
-.td-sidebar {
-  padding-bottom: 0.5rem;
-
-  .td-sidebar__inner {
-    padding-top: 30px;
-    height: unset;
-
-    @include media-breakpoint-down(md) {
-      padding-top: 10px;
     }
   }
 }
@@ -354,12 +472,4 @@ footer {
   &:first-of-type.active {
     border-top-left-radius: 0;
   }
-}
-
-nav.foldable-nav .ul-1 .with-child>label:hover:before {
-  transform: none;
-}
-
-nav.foldable-nav .ul-1 .with-child>input:checked~label:hover:before {
-  transform: rotate(90deg) !important;
 }
