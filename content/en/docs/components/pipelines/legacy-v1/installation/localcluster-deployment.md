@@ -321,15 +321,16 @@ Docker Desktop is secure, out-of-the-box containerization software offering deve
 You can install and configure Docker-Desktop by following the
 [official quick start](https://www.docker.com/products/docker-desktop/).
 
-**on Windows** - download and run the Docker Desktop Installer.exe file, and follow the instructions inside the installer.
+**on Windows** - 
+download and run the Docker Desktop Installer.exe file, and follow the instructions inside the installer.
 
 ### 2. Creating a cluster on Docker-Desktop
 
 Having installed Docker-Desktop, you can create a Kubernetes cluster on Docker-Desktop by following those steps:
 1. Open the Docker-Desktop dashboard.
-2. Open the settings by pressing the settings button.
-3. Navigating to the Kubernetes tab on the left side.
-4. Checking the 'Enable Kubernetes' checkbox, and pressing on 'Apply and restart'. and wait for the app to restart.
+2. Open the settings by clicking the settings button.
+3. Navigate to the Kubernetes tab on the left side.
+4. Check the 'Enable Kubernetes' checkbox, click 'Apply and restart' and wait for the app to restart.
 5. In order to check if the cluster is up and running, open the command prompt and run the following command:
     ```SHELL
     kubectl cluster-info   
