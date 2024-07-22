@@ -1,4 +1,4 @@
-{{- if not .IsHome }}
+{{- if and (not .IsHome) .File }}
 <script type="application/ld+json">
 [
   {
@@ -7,7 +7,11 @@
       "articleSection" : {{ .Section }},
       "name" : {{ .Title }},
       "headline" : {{ .Title }},
-      "description" : {{ if .Description }}{{ .Description }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ end }}{{ end }},
+      {{- if .Description }}
+      "description" : {{ .Description }},
+      {{- else if .IsPage }}
+      "description" : {{ .Summary }},
+      {{- end }}
       "inLanguage" : "en-US",
       "copyrightHolder" : {{ .Site.Param "copyright" }},
       "copyrightYear" : {{ .Lastmod.Year }},
