@@ -1,0 +1,61 @@
+{{- if .IsHome }}
+  <!-- NOTE: the homepage uses a hand-made social image -->
+  {{- $img := resources.Get "/social/social_home.png" }}
+
+  <!-- Fingerprint the image to get the hash -->
+  {{- $img := $img | resources.Fingerprint "md5" }}
+
+  <!-- OpenGraph metadata (used by Facebook, LinkedIn, etc.) -->
+  <meta property="og:image" content="{{ $img.Permalink }}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="{{ $img.Width }}">
+  <meta property="og:image:height" content="{{ $img.Height }}">
+
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ $img.Permalink }}">
+
+{{- else if not .File }}
+  <!-- NOTE: we filter out any pages that are not actually files (only the 404 page should match this) -->
+
+{{- else }}
+  <!-- NOTE: all other pages use dynamically generated social images -->
+  {{- $base := resources.Get "/social/social_base.png" }}
+  {{- $font := resources.Get "/fonts/Inter-Medium.ttf"}}
+
+  <!-- Generate the image text by appending all but the first two ancestors (which are the same for all) -->
+  {{- $text := "" }}
+  {{- range $index, $ancestor := .Page.Ancestors.Reverse }}
+    {{- if gt $index 1 }}
+      {{- $text = printf "%s%s ‣ " $text $ancestor.Title }}
+    {{- end }}
+  {{- end }}
+  {{- $text = printf "%s%s" $text .Title }}
+
+  <!-- We use Hugo's filter feature to apply text over a base PNG -->
+  {{- $img_opts := dict
+    "color" "#ffffff"
+    "size" 64
+    "linespacing" 2
+    "x" 65
+    "y" 320
+    "font" $font
+  }}
+  {{- $img := $base.Filter (images.Text $text $img_opts) }}
+
+  <!-- Rename the image to `social.png` and put it under the same path as the page html -->
+  {{- $img = $img | resources.Copy (path.Join .Page.RelPermalink "social.png")}}
+
+  <!-- Fingerprint the image to get the hash -->
+  {{- $img := $img | resources.Fingerprint "md5" }}
+
+  <!-- OpenGraph metadata (used by Facebook, LinkedIn, etc.) -->
+  <meta property="og:image" content="{{ $img.Permalink }}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="{{ $img.Width }}">
+  <meta property="og:image:height" content="{{ $img.Height }}">
+
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ $img.Permalink }}">
+{{- end }}
