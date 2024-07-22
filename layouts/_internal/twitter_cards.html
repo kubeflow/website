@@ -1,0 +1,24 @@
+<!-- Modified from: https://github.com/gohugoio/hugo/blob/v0.129.0/tpl/tplimpl/embedded/templates/opengraph.html -->
+<!-- We remove the `twitter:image` meta tags because we generate them in `social_image_generator.html` -->
+<!-- We remove `.Summary` from the description generator, because it usually crazy long, so the site description is better -->
+
+{{- with or .Title site.Title site.Params.title | plainify }}
+  <meta name="twitter:title" content="{{ . }}">
+{{- end }}
+
+{{- with or .Description site.Params.description | plainify | htmlUnescape | chomp }}
+  <meta name="twitter:description" content="{{ . }}">
+{{- end }}
+
+{{- $twitterSite := "" }}
+{{- with site.Params.social }}
+  {{- if reflect.IsMap . }}
+    {{- with .twitter }}
+      {{- $content := . }}
+      {{- if not (strings.HasPrefix . "@") }}
+        {{- $content = printf "@%v" . }}
+      {{- end }}
+      <meta name="twitter:site" content="{{ $content }}">
+    {{- end }}
+  {{- end }}
+{{- end }}

@@ -12,9 +12,6 @@
 <meta name="robots" content="noindex, nofollow">
 {{ end -}}
 
-<!-- include our custom Kubeflow "seo_schema" partial -->
-{{ partial "seo_schema" . }}
-
 {{ partialCached "favicons.html" . }}
 <title>
   {{- if .IsHome -}}
@@ -28,6 +25,13 @@
 {{ template "_internal/opengraph.html" . -}}
 {{ template "_internal/schema.html" . -}}
 {{ template "_internal/twitter_cards.html" . -}}
+
+<!-- include our custom Kubeflow "social_image_generator" partial -->
+{{ partial "social_image_generator" . }}
+
+<!-- include our custom Kubeflow "seo_schema" partial -->
+{{ partial "seo_schema" . }}
+
 {{ partialCached "head-css.html" . "asdf" -}}
 <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
