@@ -17,6 +17,7 @@ Kubernetes cluster using:
 - K3s
 - K3s on Windows Subsystem for Linux (WSL)
 - K3ai [*alpha*]
+- Docker-Desktop
 
 Such deployment methods can be part of your local environment using the supplied
 kustomize manifests for test purposes. This guide is an alternative to
@@ -311,10 +312,34 @@ curl -sfL https://get.k3ai.in | bash -s -- --gpu --plugin_kfpipelines
 For more information about K3ai, refer to the
 [official documentation](https://k3ai.github.io/docs/intro).
 
+## Docker-Desktop
+
+Docker Desktop is secure, out-of-the-box containerization software offering developers and teams a robust, hybrid toolkit to build, share, and run applications anywhere.
+
+### 1. installing Docker-Desktop
+
+You can install and configure Docker-Desktop by following the
+[official quick start](https://www.docker.com/products/docker-desktop/).
+
+**on Windows** - download and run the Docker Desktop Installer.exe file, and follow the instructions inside the installer.
+
+### 2. Creating a cluster on Docker-Desktop
+
+Having installed Docker-Desktop, you can create a Kubernetes cluster on Docker-Desktop by following those steps:
+1. open the Docker-Desktop dashboard.
+2. open the settings by pressing the settings button.
+3. navigating to the Kubernetes tab on the left side.
+4. checking the 'Enable Kubernetes' checkbox, and pressing on 'Apply and restart'. and wait for the app to restart.
+5. in order to check if the cluster is up and running, open the the command prompt and run the following command: "kubectl cluster-info" and you should see the following output:
+   "Kubernetes control plane is running at https://kubernetes.docker.internal:<some-port>
+   CoreDNS is running at https://kubernetes.docker.internal:<some-port>/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
 ## Deploying Kubeflow Pipelines
 
 The installation process for Kubeflow Pipelines is the same for all three
-environments covered in this guide: kind, K3s, and K3ai.
+environments covered in this guide: kind, K3s, Docker-desktop, and K3ai.
 
 **Note**: Process Namespace Sharing (PNS) is not mature in Argo yet - for more
 information go to [Argo
