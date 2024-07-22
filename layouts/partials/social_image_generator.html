@@ -10,10 +10,12 @@
   <meta property="og:image:type" content="{{ $img.MediaType.Type }}">
   <meta property="og:image:width" content="{{ $img.Width }}">
   <meta property="og:image:height" content="{{ $img.Height }}">
+  {{ template "_internal/opengraph.html" . }}
 
   <!-- Twitter Card metadata -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="{{ $img.Permalink }}">
+  {{ template "_internal/twitter_cards.html" . }}
 
 {{- else if not .File }}
   <!-- NOTE: we filter out any pages that are not actually files (only the 404 page should match this) -->
@@ -54,8 +56,10 @@
   <meta property="og:image:type" content="{{ $img.MediaType.Type }}">
   <meta property="og:image:width" content="{{ $img.Width }}">
   <meta property="og:image:height" content="{{ $img.Height }}">
+  {{ template "_internal/opengraph.html" . }}
 
   <!-- Twitter Card metadata -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="{{ $img.Permalink }}">
+  {{ template "_internal/twitter_cards.html" . -}}
 {{- end }}

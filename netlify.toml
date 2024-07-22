@@ -55,14 +55,16 @@ package = "netlify-plugin-checklinks"
   ]
 
 [context.deploy-preview.environment]
+  HUGO_ENV = "development"
   HUGO_VERSION = "0.124.1"
   NODE_VERSION = "18"
 
 [context.production.environment]
-  HUGO_VERSION = "0.124.1"
   HUGO_ENV = "production"
+  HUGO_VERSION = "0.124.1"
   NODE_VERSION = "18"
 
 [context.branch-deploy.environment]
+  HUGO_ENV = "development"
   HUGO_VERSION = "0.124.1"
   NODE_VERSION = "18"
