@@ -69,6 +69,11 @@ The following calendars are maintained by [Kubeflow Working Groups](#kubeflow-wo
 
 This is an aggregated view of the community calendars and should be displayed in your device's timezone.
 
+<style>
+#calendar-container {
+   overflow: auto;
+}
+</style>
 <div id="calendar-container"></div>
 <script type="text/javascript">
 const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;

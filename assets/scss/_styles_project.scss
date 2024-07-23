@@ -10,40 +10,81 @@
 }
 
 // --------------------------------------------------
-// fix header position
+// remove 80% content width limit for large screens
+// --------------------------------------------------
+.td-max-width-on-larger-screens {
+    @include media-breakpoint-up(lg) {
+        max-width: 100%;
+    }
+}
+
+// --------------------------------------------------
+// correctly color the sidebars (when on wide screen)
+// --------------------------------------------------
+.td-outer {
+  height: 100%;
+  background-color: $td-sidebar-bg-color;
+}
+.td-sidebar {
+  background-color: unset;
+}
+main {
+  background-color: #ffffff;
+}
+
+// --------------------------------------------------
+// fix positions
 // --------------------------------------------------
 @include media-breakpoint-up(md) {
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  .td-navbar:not(.td-navbar-cover) {
-    position: unset;
-  }
-
   .td-main {
-    main {
-      padding-top: 1rem;
+    // note, this is required to ensure the footer not visible for short pages
+    // and that is important to prevent the "search" and "toc" sidebars from being
+    // underneath the the header
+    .td-main_inner {
+      min-height: 100vh;
     }
 
+    // left-hand sidebar
     .td-sidebar {
-      padding-top: 0rem;
+      position: sticky;
+      padding-top: 2rem;
+      top: 5rem;
+      height: calc(100vh - 5rem);
+      .td-sidebar__inner {
+        position: unset;
+        top: unset;
+        height: unset;
+      }
     }
 
-    .td-sidebar__inner {
-      top: 8rem;
+    // main content area
+    main {
+      padding-top: 2rem;
+      padding-bottom: 7rem;
+      top: 5rem;
     }
 
+    // right hand sidebar
     .td-sidebar-toc {
-      padding-top: 1.25rem;
+      position: sticky;
+      padding-top: 1rem;
+      top: 5rem;
+      height: calc(100vh - 5rem);
+
+      // add separator line before toc list
+      .td-toc {
+        padding-top: 1rem;
+        border-top: 0.1rem solid $border-color;
+      }
     }
   }
+}
 
-  .td-outer {
-    height: 100%;
-  }
+// --------------------------------------------------
+// prevent sidebar from appearing over the footer
+// --------------------------------------------------
+footer {
+  z-index: 1000;
 }
 
 // --------------------------------------------------
@@ -86,6 +127,9 @@ footer {
 
   .td-search {
     width: 100%;
+    @include media-breakpoint-up(md) {
+      padding-right: 0.5rem;
+    }
   }
 }
 
@@ -367,7 +411,7 @@ nav.foldable-nav {
     font-size: 1em;
   }
 
-  @media screen and (min-width: 480px) {
+  @include media-breakpoint-up(sm) {
     #overview, #community {
       font-size: 1.125em;
     }
@@ -380,7 +424,7 @@ nav.foldable-nav {
     }
   }
 
-  @media screen and (min-width: 769px) {
+  @include media-breakpoint-up(md) {
     #pageContent .lead {
       margin-top: 1em;
       display: -ms-flexbox;
@@ -456,11 +500,11 @@ nav.foldable-nav {
     margin-bottom: 20px;
   }
 
-  @media (min-width: 768px) and (max-width: 991px) {
+  @include media-breakpoint-between(md, lg) {
     margin-top: 100px;
   }
 
-  @media (max-width: 767px) {
+  @include media-breakpoint-down(md) {
     margin-top: 50px;
   }
 }
