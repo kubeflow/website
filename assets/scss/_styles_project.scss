@@ -211,17 +211,17 @@ nav.foldable-nav {
 }
 
 // --------------------------------------------------
-// slightly rotate the dropdown arrow on hover
+// fix the arrow transform animation on desktop
 // --------------------------------------------------
-@media(hover: hover) and (pointer:fine) {
-    nav.foldable-nav .ul-1 .with-child > label:hover:before {
-        transform: rotate(30deg);
-        transition: transform .5s;
-    }
+@media (hover: hover) and (pointer: fine) {
+    nav.foldable-nav {
+        .ul-1 .with-child > label:hover:before {
+            transition: transform 0.3s;
+        }
 
-    nav.foldable-nav .ul-1 .with-child > input:checked ~ label:hover:before {
-        transform: rotate(60deg);
-        transition: transform .5s;
+        .ul-1 .with-child > input:checked ~ label:hover:before {
+            transition: transform 0.3s;
+        }
     }
 }
 
