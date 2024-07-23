@@ -22,14 +22,12 @@
   {{ end -}}
 </title>
 <meta name="description" content="{{ template "partials/page-description.html" . }}">
-{{ template "_internal/opengraph.html" . -}}
 {{ template "_internal/schema.html" . -}}
-{{ template "_internal/twitter_cards.html" . -}}
 
-<!-- include our custom Kubeflow "social_image_generator" partial -->
+<!-- include our custom "social_image_generator" partial -->
 {{ partial "social_image_generator" . }}
 
-<!-- include our custom Kubeflow "seo_schema" partial -->
+<!-- include our custom "seo_schema" partial -->
 {{ partial "seo_schema" . }}
 
 {{ partialCached "head-css.html" . "asdf" -}}

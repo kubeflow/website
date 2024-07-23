@@ -117,9 +117,8 @@ enable = true
   github_project_repo = "https://github.com/kubeflow/kubeflow"
 
   RSSLink = "/index.xml"
-  author = "kubeflow.org" # add your company name
-  github = "kubeflow" # add your github profile name
-  twitter = "kubeflow" # add your twitter profile
+  author = "kubeflow.org"
+  github = "kubeflow"
 
   copyright = "The Kubeflow Authors."
   privacy_policy = "https://policies.google.com/privacy"
@@ -151,6 +150,12 @@ enable = true
   # Disable MathJax by default
   # NOTE: enable it per-page with `mathjax: true` in front matter
   mathjax = false
+
+  # Social media accounts
+  [params.social]
+
+    # Twitter account (used to set `twitter:site` in the SEO partial)
+    twitter = "kubeflow"
 
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
