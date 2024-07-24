@@ -55,7 +55,6 @@ When you are ready to join
   for more information about artifacts to include with your PR and how to test your PR.
 - After the PR is merged an admin will send you an invitation
   - This is a manual process that's generally run a couple of times a week
-  - If a week passes without receiving an invitation reach out on [kubeflow#community](https://kubeflow.slack.com/messages/C8Q0QJYNB/convo/CABQ2BWHW-1544147308.002500/)
 
 ### Companies/organizations
 
