@@ -91,7 +91,7 @@ If you want to use `train` API for LLM fine-tuning with Training Operator, insta
 with the additional packages from HuggingFace:
 
 ```shell
-pip install -U kubeflow-training[huggingface]
+pip install -U "kubeflow-training[huggingface]"
 ```
 
 ## Next steps
