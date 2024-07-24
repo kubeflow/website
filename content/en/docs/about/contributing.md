@@ -15,7 +15,7 @@ There are just a few small guidelines you need to follow.
 
 Kubeflow uses Developer Certificate of Origin ([DCO](https://github.com/apps/dco/)).
 
-Check https://github.com/kubeflow/community/tree/master/dco-signoff-hook#signing-off-commits to learn how to sign off your contributions.
+Check <https://github.com/kubeflow/community/tree/master/dco-signoff-hook#signing-off-commits> to learn how to sign off your contributions.
 
 ### Follow the code of conduct
 
@@ -30,29 +30,26 @@ Follow these instructions if you want to:
 - Become part of the Kubeflow build cop or release teams
 - Be recognized as an individual or organization contributing to Kubeflow
 
+**Note**: Anyone can contribute to Kubeflow, adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml) is not a mandatory step.
+
 ### Joining the Kubeflow GitHub Org
 
 Before asking to join the community, we ask that you first make a small number of contributions
-to demonstrate your intent to continue contributing to Kubeflow.
+to demonstrate your intent to continue contributing to Kubeflow. This should number at least 2 to 3 contributions.
+Contributions are defined as follows:
 
-- **Note**: Anyone can contribute to Kubeflow, adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml)
-  is not a mandatory step.
-
-There are a number of ways to contribute to Kubeflow:
-
-- Submit PRs
+- Submitting PRs
 - File issues reporting bugs or providing feedback
 - Answer questions on Slack or GitHub issues
 
 You can use this [table](https://kubeflow.devstats.cncf.io/d/9/developer-activity-counts-by-repository-group-table?orgId=1) to see how many contributions you've made.
 
-- **Note**: This only counts GitHub related ways of contributing
+- **Note**: This table only counts GitHub related ways of contributing
 
 When you are ready to join
 
 - Send a PR adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml#L19).
-  Follow the instructions in [Joining the Kubeflow GitHub organization](https://github.com/kubeflow/internal-acls#joining-kubeflow-github-organization)
-  for more information about artifacts to include with your PR and how to test your PR.
+  - Follow the instructions in [Joining the Kubeflow GitHub organization](https://github.com/kubeflow/internal-acls#joining-kubeflow-github-organization) for more information about artifacts to include with your PR and how to test your PR.
 - After the PR is merged an admin will send you an invitation
   - This is a manual process that's generally run a couple of times a week
 
