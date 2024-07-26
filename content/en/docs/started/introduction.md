@@ -7,10 +7,10 @@ weight = 1
 ## What is Kubeflow
 
 Kubeflow is a community and ecosystem of open-source projects to address each stage in the
-[machine learning (ML) lifecycle](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle).
-It makes AI/ML on Kubernetes simple, portable, and scalable. We are an _ecosystem_ of Kubernetes
-based components for each stage in the ML Lifecycle with support for best-in-class
-open source tools and frameworks.
+[machine learning (ML) lifecycle](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle)
+with support for best-in-class open source
+[tools and frameworks](/docs/started/architecture/#kubeflow-ecosystem). Kubeflow makes AI/ML
+on Kubernetes simple, portable, and scalable.
 
 Whether you’re a researcher, data scientist, ML engineer, or a team of developers, Kubeflow offers
 modular and scalable tools that cater to all aspects of the ML lifecycle: from building ML models to
