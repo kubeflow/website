@@ -61,7 +61,5 @@
   {{ $enableGtagForUniversalAnalytics := not .Site.Params.disableGtagForUniversalAnalytics -}}
   {{ if (or $enableGtagForUniversalAnalytics (hasPrefix .Site.GoogleAnalytics "G-")) -}}
     {{ template "_internal/google_analytics_gtag.html" . -}}
-  {{ else -}}
-    {{ template "_internal/google_analytics_async.html" . -}}
   {{ end -}}
 {{ end -}}
