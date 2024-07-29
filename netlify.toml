@@ -27,7 +27,6 @@ package = "netlify-plugin-checklinks"
 
   # If a link contains these patterns it will not fail the build, but will be reported as a TODO in the build log.
   todoPatterns = [
-    "public/docs/components/central-dash/",
     "public/docs/components/notebooks/",
 
     "public/docs/components/pipelines/",
