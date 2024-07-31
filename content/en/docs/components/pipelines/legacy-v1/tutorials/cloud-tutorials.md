@@ -16,5 +16,5 @@ For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.
 See the <a href="/docs/about/style-guide/">style guide for the Kubeflow docs</a>.</p>
 {{% /alert %}}
 
-* [Pipelines End-to-end on Azure](/docs/azure/azureendtoend/): An end-to-end tutorial for Kubeflow Pipelines on Microsoft Azure.
+* [Pipelines End-to-end on Azure](https://azure.github.io/kubeflow-aks/main/): An end-to-end tutorial for Kubeflow Pipelines on Microsoft Azure.
 * [Pipelines on Google Cloud Platform](https://g.co/codelabs/kfp-gis) : This GCP tutorial walks through a Kubeflow Pipelines example that shows training a Tensor2Tensor model for GitHub issue summarization, both via the Pipelines Dashboard UI, and from a Jupyter notebook

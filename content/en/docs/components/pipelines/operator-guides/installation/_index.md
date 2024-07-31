@@ -6,7 +6,7 @@ weight = 1
 {{% kfp-v2-keywords %}}
 
 As an alternative to deploying Kubeflow Pipelines (KFP) as part of the
-[Kubeflow deployment](/docs/started/#installing-kubeflow), you also have a choice
+[Kubeflow deployment](/docs/started/installing-kubeflow), you also have a choice
 to deploy only Kubeflow Pipelines. Follow the instructions below to deploy
 Kubeflow Pipelines standalone using the supplied kustomize manifests.
 

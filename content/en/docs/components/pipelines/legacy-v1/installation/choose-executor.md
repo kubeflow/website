@@ -40,7 +40,7 @@ improvements can make it the default executor that most people should use going 
   * Cannot escape the privileges of the pod's service account.
 * Migration: `command` must be specified in [Kubeflow Pipelines component specification](/docs/components/pipelines/reference/component-spec/).
 
-  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](/docs/components/pipelines/legacy-v1/sdk/v2-compatibility/), refer to
+  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](/docs/components/pipelines/user-guides/migration/), refer to
   [known caveats & breaking changes](https://github.com/kubeflow/pipelines/issues/6133).
 
 #### Migrate to Emissary Executor

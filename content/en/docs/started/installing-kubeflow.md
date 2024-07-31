@@ -103,7 +103,7 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
       </tr>
       <tr>
         <td>
-          <a href="/docs/components/pipelines/v2/installation/quickstart/">
+          <a href="/docs/components/pipelines/operator-guides/installation/">
             Kubeflow Pipelines
           </a>
         </td>

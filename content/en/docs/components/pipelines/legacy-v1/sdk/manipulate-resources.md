@@ -276,7 +276,7 @@ For better understanding, please refer to the following samples:
   and 
   [VolumeSnapshotOps](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/samples/core/volume_snapshot_ops).
 * Learn more about the 
-  [Kubeflow Pipelines domain-specific language (DSL)](/docs/components/pipelines/legacy-v1/sdk/dsl-overview/),
+  [Kubeflow Pipelines domain-specific language (DSL)](https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html),
   a set of Python libraries that you can use to specify ML pipelines.
 * For quick iteration, 
   [build components and pipelines](/docs/components/pipelines/legacy-v1/sdk/component-development/).

@@ -12,4 +12,4 @@ For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.
 {{% /alert %}}
 
 For pipeline features that are specific to GCP, including SDK features, see the 
-[GCP section of the docs](/docs/gke/pipelines/).
+[GCP section of the docs](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/).

@@ -38,7 +38,7 @@ information about accessing the Kubeflow Pipelines UI and running the samples.
 
 When building a pipeline component, you can write out information for display
 in the UI. See the guides to [exporting 
-metrics](/docs/components/pipelines/legacy-v1/sdk/pipelines-metrics/) and [visualizing results in 
+metrics](/docs/components/pipelines/legacy-v1/sdk/output-viewer/#v2-sdk-use-sdk-visualization-apis) and [visualizing results in 
 the UI](/docs/components/pipelines/legacy-v1/sdk/output-viewer/).
 
 ## Python SDK

@@ -173,8 +173,8 @@ You can override the default styles and add new ones:
 
 Styling of images:
 
-* To see some examples of styled images, take a look at the [OAuth setup page](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) in the Kubeflow docs. 
-  Search for `.png` in the [page source](https://raw.githubusercontent.com/kubeflow/website/master/content/en/docs/gke/deploy/oauth-setup.md).
+* To see some examples of styled images, take a look at the [OAuth setup page](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/deploy/oauth-setup/) in the Kubeflow docs. 
+  Search for `.png` in the [page source](https://raw.githubusercontent.com/GoogleCloudPlatform/kubeflow-gke-docs/main/content/en/docs/deploy/oauth-setup.md).
 
 * For more help, see the guide to
   [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/).
