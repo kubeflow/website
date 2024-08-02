@@ -1,0 +1,44 @@
+{{ $original := replaceRE `\s` "" .Inner }}
+<div id="swagger-ui-container"></div>
+<script>
+  window.onload = function () {
+    // we create a shadow DOM to encapsulate the swagger UI,
+    // this avoids style conflicts with the rest of the page
+    const shadowRoot = document.getElementById('swagger-ui-container').attachShadow({mode: 'open'});
+
+    // add the swagger UI CSS
+    const linkNode = document.createElement('link');
+    linkNode.rel = 'stylesheet';
+    linkNode.href = 'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui.css';
+    linkNode.integrity = 'sha384-wxLW6kwyHktdDGr6Pv1zgm/VGJh99lfUbzSn6HNHBENZlCN7W602k9VkGdxuFvPn';
+    linkNode.crossOrigin = 'anonymous';
+    shadowRoot.appendChild(linkNode);
+
+    // add custom styles to the shadow DOM
+    const styleNode = document.createElement('style');
+    styleNode.textContent = `
+      #swagger-ui-container_inner {
+        word-break: break-all;
+      }
+      .swagger-ui .wrapper {
+        padding: 0;
+      }
+    `;
+    shadowRoot.appendChild(styleNode);
+
+    // create the swagger UI container
+    const swaggerNode = document.createElement('div');
+    swaggerNode.id = 'swagger-ui-container_inner';
+    shadowRoot.appendChild(swaggerNode);
+
+    const ui = SwaggerUIBundle({
+      url: {{ $original | relURL }},
+      domNode: swaggerNode,
+      presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIStandalonePreset
+      ]
+    });
+    window.ui = ui;
+  };
+</script>

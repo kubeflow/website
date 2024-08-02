@@ -19,18 +19,32 @@
 }
 
 // --------------------------------------------------
-// correctly color the sidebars (when on wide screen)
+// color the sidebars darker than main content area
 // --------------------------------------------------
-.td-outer {
-  padding: 0;
-  height: 100%;
-  background-color: $td-sidebar-bg-color;
+@include media-breakpoint-down(sm) {
+  .td-outer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .td-sidebar {
+    background-color: $td-sidebar-bg-color;
+  }
 }
-.td-sidebar {
-  background-color: unset;
-}
-main {
-  background-color: #ffffff;
+@include media-breakpoint-up(md) {
+  .td-outer {
+    background-color: $td-sidebar-bg-color;
+    height: unset;
+  }
+  .td-sidebar, .td-sidebar-toc {
+    background-color: unset;
+  }
+  .td-main {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  main {
+    background-color: #ffffff;
+  }
 }
 
 // --------------------------------------------------
@@ -56,35 +70,59 @@ main {
 
     // left-hand sidebar
     .td-sidebar {
-      position: sticky;
-      padding-top: 2rem;
-      top: 5rem;
-      height: calc(100vh - 5rem);
+      padding: 0;
+
       .td-sidebar__inner {
-        position: unset;
-        top: unset;
-        height: unset;
+        position: sticky;
+        top: 7rem;
+        height: calc(100vh - 7rem);
+
+        padding-left: 0.75rem;
+        padding-right: 0;
       }
     }
 
     // main content area
     main {
-      padding-top: 2rem;
-      padding-bottom: 7rem;
-      top: 5rem;
+      padding-top: 7rem;
+      padding-bottom: 3rem;
     }
 
     // right hand sidebar
     .td-sidebar-toc {
-      position: sticky;
-      padding-top: 1rem;
-      top: 5rem;
-      height: calc(100vh - 5rem);
+      height: unset;
+      padding: 0;
+
+      // the default theme makes the outer div stickey, but we use the inner div
+      position: relative;
+      top: unset;
+      overflow-y: unset;
+
+      .td-sidebar-toc__inner {
+        position: sticky;
+        top: 7rem;
+        height: calc(100vh - 7rem);
+
+        padding-left: 0.75rem;
+        padding-right: 1.5rem;
+
+        // allow the toc to scroll
+        overflow-y: auto;
+      }
 
       // add separator line before toc list
       .td-toc {
         padding-top: 1rem;
         border-top: 0.1rem solid $border-color;
+
+        // fix the padding of the toc list
+        ul {
+          margin-bottom: 0;
+        }
+        a {
+          padding-top: 0.2rem;
+          padding-bottom: 0.2rem;
+        }
       }
     }
   }
@@ -102,8 +140,6 @@ footer {
 // --------------------------------------------------
 footer {
   min-height: auto;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
 
   p {
     margin-bottom: 0.4rem;
@@ -131,7 +167,7 @@ footer {
 // sidebar search styling
 .td-sidebar__search {
   padding-top: 0;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
 
   margin: 0;
 
@@ -157,12 +193,15 @@ footer {
 }
 
 .td-sidebar-nav {
-  padding-left: 0.4rem;
-  padding-right: 0;
-  padding-top: 0.5rem;
+  padding-left: 0;
+  padding-right: 1.25rem;
+  padding-top: 0;
   padding-bottom: 2rem;
 
-  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 // reduce padding for the root level of the sidebar
@@ -321,6 +360,11 @@ nav.foldable-nav {
 // Home page
 // --------------------------------------------------
 .td-home {
+
+  // animate the background color change of navbar
+  .td-navbar {
+    transition: background-color 75ms linear;
+  }
 
   .card-img-top {
     object-fit: scale-down;
