@@ -28,18 +28,84 @@
     `;
     shadowRoot.appendChild(styleNode);
 
+    // add a description for the input
+    const descriptionNode = document.createElement('p');
+    descriptionNode.textContent = 'Enter the base URL of your Kubeflow Pipelines API:';
+    shadowRoot.appendChild(descriptionNode);
+
+    // create an input so users can change the base URL
+    const validColor = '#f3ffef';
+    const invalidColor = '#ffefef';
+    const inputNode = document.createElement('input');
+    inputNode.type = 'url';
+    inputNode.defaultValue = "https://kubeflow.example.com/pipeline/"
+    inputNode.style.width = '90%';
+    inputNode.style.padding = '1rem';
+    inputNode.style.border = '1px solid rgba(0, 0, 0, 0.125)';
+    inputNode.style.backgroundColor = validColor;
+    shadowRoot.appendChild(inputNode);
+
+    // if the user changes the base url, ensure its valid
+    inputNode.addEventListener('input', (event) => {
+      var parsedURL;
+      try {
+        parsedURL = new URL(event.target.value);
+        if (parsedURL.protocol !== 'http:' && parsedURL.protocol !== 'https:') {
+          throw new Error('Invalid protocol');
+        }
+        event.target.style.backgroundColor = validColor;
+        event.target.setCustomValidity('');
+      } catch (error) {
+        event.target.style.backgroundColor = invalidColor;
+        event.target.setCustomValidity(error.message);
+      }
+      event.target.reportValidity();
+    });
+
     // create the swagger UI container
     const swaggerNode = document.createElement('div');
     swaggerNode.id = 'swagger-ui-container_inner';
     shadowRoot.appendChild(swaggerNode);
 
+    // store the original spec URL
+    let specURL = new URL("{{ $original | relURL }}")
+
+    // define a request interceptor to update the base URL
+    const requestInterceptor = (request) => {
+      if (!request.loadSpec) {
+        // get path from the request URL
+        // NOTE: we remove the beginning slash which is always present
+        requestURL = new URL(request.url);
+        requestPath = requestURL.pathname.substring(1);
+
+        // get the path of the user-provided base URL
+        // NOTE: we remove the trailing slash, if present
+        if (inputNode.validity.valid) {
+          baseURL = new URL(inputNode.value);
+        } else {
+          baseURL = new URL(inputNode.defaultValue);
+        }
+        pathToAdd = baseURL.pathname;
+        pathToAdd = pathToAdd.endsWith('/') ? pathToAdd.substring(0, pathToAdd.length - 1) : pathToAdd;
+
+        // update the request URL
+        requestURL.protocol = baseURL.protocol;
+        requestURL.host = baseURL.host;
+        requestURL.port = baseURL.port;
+        requestURL.pathname = pathToAdd + '/' + requestPath;
+
+        // update the request
+        request.url = requestURL.toString();
+      }
+      return request;
+    };
+
+    // initialize the swagger UI
     const ui = SwaggerUIBundle({
-      url: {{ $original | relURL }},
+      url: specURL.toString(),
       domNode: swaggerNode,
-      presets: [
-        SwaggerUIBundle.presets.apis,
-        SwaggerUIStandalonePreset
-      ]
+      presets: [SwaggerUIBundle.presets.apis],
+      requestInterceptor: requestInterceptor,
     });
     window.ui = ui;
   };

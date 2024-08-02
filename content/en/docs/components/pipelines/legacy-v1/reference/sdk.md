@@ -12,5 +12,5 @@ For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.
 {{% /alert %}}
 
 See the [generated reference docs for the Python 
-SDK](https://kubeflow-pipelines.readthedocs.io/en/stable/) (hosted on 
+SDK](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/) (hosted on 
 *Read the Docs*).
