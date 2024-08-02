@@ -18,7 +18,9 @@
     const styleNode = document.createElement('style');
     styleNode.textContent = `
       #swagger-ui-container_inner {
-        word-break: break-all;
+        @media (max-width: 768px) {
+          overflow-wrap: anywhere;
+        }
       }
       .swagger-ui .wrapper {
         padding: 0;
