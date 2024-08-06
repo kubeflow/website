@@ -41,8 +41,11 @@ https://kubeflow.example.com/pipeline/apis/v2beta1/runs?namespace=team-1
 
 # Swagger UI
 
-The following [Swagger UI](https://github.com/swagger-api/swagger-ui) is automatically generated from the latest version of Kubeflow Pipelines.
-Note, the "try it out" feature will not work, but it can help you construct the correct API calls.
+The following [Swagger UI](https://github.com/swagger-api/swagger-ui) is automatically generated from the [`{{% pipelines/latest-version %}}`](https://github.com/kubeflow/pipelines/releases/tag/{{% pipelines/latest-version %}}) version of Kubeflow Pipelines for the [`v2beta1` REST API](https://github.com/kubeflow/pipelines/blob/{{% pipelines/latest-version %}}/backend/api/v2beta1/swagger/kfp_api_single_file.swagger.json).
+
+{{% alert title="Note" color="info" %}}
+The _try it out_ feature of Swagger UI does not work due to authentication and CORS, but it can help you construct the correct API calls.
+{{% /alert %}}
 
 {{< swaggerui-inline >}}
 https://raw.githubusercontent.com/kubeflow/pipelines/{{% pipelines/latest-version %}}/backend/api/v2beta1/swagger/kfp_api_single_file.swagger.json
