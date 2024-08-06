@@ -15,7 +15,7 @@ Some core features of the central dashboard include:
 
 - Authentication and authorization based on [Profiles and Namespaces](/docs/components/central-dash/profiles/).
 - Access to the [user interface's](#navigation) of Kubeflow components.
-- The ability to [customize and include links](/docs/components/central-dash/customizing-menu/) to third-party applications.
+- The ability to [customize and include links](/docs/components/central-dash/customize/) to third-party applications.
 
 ## Screenshots
 
