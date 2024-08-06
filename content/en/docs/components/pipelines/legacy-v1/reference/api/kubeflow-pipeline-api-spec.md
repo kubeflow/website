@@ -15,24 +15,24 @@ For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.
 
 This document describes the API specification for the `v1beta1` Kubeflow Pipelines REST API.
 
-## API Endpoint
+## About the REST API
 
 In most deployments of the [Kubeflow Platform](/docs/started/installing-kubeflow/#kubeflow-platform), the Kubeflow Pipelines REST API is available under the `/pipeline/` HTTP path.
 For example, if you host Kubeflow at `https://kubeflow.example.com`, the API will be available at `https://kubeflow.example.com/pipeline/`.
 
 {{% alert title="Tip" color="dark" %}}
-In most cases, we recommend using the [Kubeflow Pipelines Python SDK](/docs/components/pipelines/legacy-v1/reference/sdk/) to interact with the API, as it provides a more user-friendly interface.
+We recommend using the [Kubeflow Pipelines Python SDK](/docs/components/pipelines/legacy-v1/reference/sdk/) as it provides a more user-friendly interface.
 See the [Connect SDK to the API](/docs/components/pipelines/user-guides/core-functions/connect-api/) guide for more information.
 {{% /alert %}}
 
-## Authentication
+### Authentication
 
 How requests are authenticated and authorized will depend on the distribution you are using.
 Typically, you will need to provide a token or cookie in the request headers.
 
 Please refer to the documentation of your [Kubeflow distribution](/docs/started/installing-kubeflow/#kubeflow-platform) for more information.
 
-## Example Usage
+### Example Usage
 
 To use the API, you will need to send HTTP requests to the appropriate endpoints.
 
@@ -42,11 +42,7 @@ For example, to list pipeline runs in the `team-1` namespace, send a `GET` reque
 https://kubeflow.example.com/pipeline/apis/v1beta1/runs?resource_reference_key.type=NAMESPACE&resource_reference_key.id=team-1
 ```
 
----
-
-<br>
-
-# Swagger UI
+## Swagger UI
 
 The following [Swagger UI](https://github.com/swagger-api/swagger-ui) is automatically generated from the [`{{% pipelines/latest-version %}}`](https://github.com/kubeflow/pipelines/releases/tag/{{% pipelines/latest-version %}}) version of Kubeflow Pipelines for the [`v1beta1` REST API](https://github.com/kubeflow/pipelines/blob/{{% pipelines/latest-version %}}/backend/api/v1beta1/swagger/kfp_api_single_file.swagger.json).
 
