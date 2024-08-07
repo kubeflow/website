@@ -34,15 +34,15 @@ ignoreFiles = []
     post = "<br><span class='badge badge-warning'>Nov 12th, 2024</span> <span class='badge badge-warning'>Salt Lake City, Utah</span> "
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/cloud-native-kubernetes-ai-day/"
   [[menu.main]]
-    name = "Events"
-    weight = -102
-    pre = "<i class='fas fa-calendar pr-2'></i>"
-    url = "/events/"
-  [[menu.main]]
     name = "Docs"
-    weight = -101
+    weight = -102
     pre = "<i class='fas fa-book pr-2'></i>"
     url = "/docs/"
+  [[menu.main]]
+    name = "Events"
+    weight = -101
+    pre = "<i class='fas fa-calendar pr-2'></i>"
+    url = "/events/"
   [[menu.main]]
     name = "Blog"
     weight = -100
@@ -53,6 +53,12 @@ ignoreFiles = []
     weight = -99
     pre = "<i class='fab fa-github pr-2'></i>"
     url = "https://github.com/kubeflow/"
+
+###############################################################################
+# Docsy - Output Formats
+###############################################################################
+[outputs]
+section = [ "HTML" ]
 
 ###############################################################################
 # Docsy - Goldmark markdown parser
@@ -128,7 +134,7 @@ enable = true
   gcs_engine_id = "007239566369470735695:624rglujm-w"
 
   # Text label for the version menu in the top bar of the website.
-  version_menu = "Kubeflow Version"
+  version_menu = "Version"
 
   # The major.minor version tag for the version of the docs represented in this
   # branch of the repository. Used in the "version-banner" partial to display a
@@ -150,6 +156,10 @@ enable = true
   # Disable MathJax by default
   # NOTE: enable it per-page with `mathjax: true` in front matter
   mathjax = false
+
+  # Disable Swagger UI by default
+  # NOTE: enable it per-page with `swaggerui: true` in front matter
+  swaggerui = false
 
   # Social media accounts
   [params.social]
@@ -245,8 +255,9 @@ enable = true
       [params.ui.feedback]
         enable = true
         # The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
-        yes = 'Glad to hear it! Please <a href="https://github.com/kubeflow/website/issues/new">tell us how we can improve</a>.'
-        no = 'Sorry to hear that. Please <a href="https://github.com/kubeflow/website/issues/new">tell us how we can improve</a>.'
+        # NOTE: the actual content of the responses is set in the "layouts/partials/feedback.html" file.
+        yes = ""
+        no = ""
 
   # Links in footer
   [params.links]

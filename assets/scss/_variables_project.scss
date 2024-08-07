@@ -6,6 +6,15 @@ html.smooth-scroll {
   scroll-behavior: smooth;
 }
 
+// Bootstrap container-max-widths
+// NOTE: we increase the max-widths to make the content wider compared to the Bootstrap defaults
+$container-max-widths: (
+  sm: 768px, // default: 540px, breakpoint: 576px
+  md: 992px, // default: 720px, breakpoint: 768px
+  lg: 1200px, // default: 960px, breakpoint: 992px
+  xl: 1440px // default: 1140px, breakpoint: 1200px
+);
+
 // Theme colors
 $primary: #4279f4;
 $secondary: #fff;

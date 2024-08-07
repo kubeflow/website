@@ -1,0 +1,8 @@
+[post_create_issue]
+other = "Give page feedback"
+
+[post_create_project_issue]
+other = "Create project issue"
+
+[print_entire_section]
+other = "Print this section"
