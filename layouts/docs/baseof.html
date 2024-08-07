@@ -20,7 +20,7 @@
               {{ partial "taxonomy_terms_clouds.html" . }}
             </div>
           </aside>
-          <main class="col-12 col-md-9 col-xl-8 pl-md-4 pr-md-5 pl-xl-5" role="main">
+          <main class="col-12 col-md-9 col-xl-8 px-4 pl-md-4 pr-md-5 pl-xl-5" role="main">
             {{ partial "version-banner.html" . }}
             {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
             {{ block "main" . }}{{ end }}
