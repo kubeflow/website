@@ -22,36 +22,11 @@ Check <https://github.com/kubeflow/community/tree/master/dco-signoff-hook#signin
 Please make sure to read and observe our [Code of Conduct](https://github.com/kubeflow/community/blob/master/CODE_OF_CONDUCT.md)
 and [inclusivity document](https://github.com/kubeflow/community/blob/master/INCLUSIVITY.md).
 
-## Joining the community
+## Membership
 
-Follow these instructions if you want to:
+Details about the different types of Kubeflow members as well as membership criteria can be found at [Community Membership](/docs/about/membership/)
 
-- Become a member of the Kubeflow GitHub org (see below)
-- Become part of the Kubeflow build cop or release teams
-- Be recognized as an individual or organization contributing to Kubeflow
-
-**Note**: Anyone can contribute to Kubeflow, adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml) is not a mandatory step.
-
-### Joining the Kubeflow GitHub Org
-
-Before asking to join the community, we ask that you first make a small number of contributions
-to demonstrate your intent to continue contributing to Kubeflow. This should number at least 2 to 3 contributions.
-Contributions are defined as follows:
-
-- Submitting PRs
-- File issues reporting bugs or providing feedback
-- Answer questions on Slack or GitHub issues
-
-You can use this [table](https://kubeflow.devstats.cncf.io/d/9/developer-activity-counts-by-repository-group-table?orgId=1) to see how many contributions you've made.
-
-- **Note**: This table only counts GitHub related ways of contributing
-
-When you are ready to join
-
-- Send a PR adding yourself as a member in [org.yaml](https://github.com/kubeflow/internal-acls/blob/master/github-orgs/kubeflow/org.yaml#L19).
-  - Follow the instructions in [Joining the Kubeflow GitHub organization](https://github.com/kubeflow/internal-acls#joining-kubeflow-github-organization) for more information about artifacts to include with your PR and how to test your PR.
-- After the PR is merged an admin will send you an invitation
-  - This is a manual process that's generally run a couple of times a week
+**Note**: Anyone can contribute to Kubeflow, joining the Kubeflow organization is not a mandatory step.
 
 ### Companies/organizations
 
@@ -123,7 +98,7 @@ In GitHub terms, this means they are either collaborators of the repo, or member
 
 A typical OWNERS file looks like:
 
-```
+```yaml
 approvers:
   - alice
   - bob     # this is a comment
@@ -145,7 +120,7 @@ We use aliases for groups instead of GitHub Teams, because changes to GitHub Tea
 
 A sample OWNERS_ALIASES file looks like:
 
-```
+```yaml
 aliases:
   sig-foo:
     - david
