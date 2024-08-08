@@ -8,7 +8,7 @@ weight = 10
 
 ## What is Training Operator ?
 
-Training Operator is a Kubernetes-native project for fine-tuning and scalable
+The Training Operator is a Kubernetes-native project for fine-tuning and scalable
 distributed training of machine learning (ML) models created with various ML frameworks such as
 PyTorch, TensorFlow, XGBoost, and others.
 
@@ -56,6 +56,14 @@ integrate their own ML frameworks written in any programming languages with Trai
 
 Users can leverage Kubernetes advanced scheduling techniques such as Kueue, Volcano, and YuniKorn
 with Training Operator to optimize cost savings for ML training resources.
+
+## Architecture
+
+The V1 Training Operator architecture diagram can be seen in the diagram below:
+
+<img src="/docs/components/training/images/training-operator-v1-architecture.drawio.svg"
+  alt="Training Operator V1 Architecture"
+  class="mt-3 mb-3">
 
 ## Custom Resources for ML Frameworks
 
