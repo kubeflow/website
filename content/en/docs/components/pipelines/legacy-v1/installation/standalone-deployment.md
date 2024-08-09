@@ -11,7 +11,7 @@ For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.
 {{% /alert %}}
 
 As an alternative to deploying Kubeflow Pipelines (KFP) as part of the
-[Kubeflow deployment](/docs/started/#installing-kubeflow), you also have a choice
+[Kubeflow deployment](/docs/started/installing-kubeflow), you also have a choice
 to deploy only Kubeflow Pipelines. Follow the instructions below to deploy
 Kubeflow Pipelines standalone using the supplied kustomize manifests.
 
@@ -107,7 +107,7 @@ See the Google Kubernetes Engine (GKE) guide to
 
      {{% alert title="Deprecation Notice" color="warning" %}}
 Kubeflow Pipelines will change default executor from Docker to Emissary starting KFP backend v1.8, docker executor has been
-deprecated on Kubernetes 1.20+. 
+deprecated on Kubernetes 1.20+.
 
 For Kubeflow Pipelines before v1.8, configure to use Emissary executor by
 referring to [Argo Workflow Executors](/docs/components/pipelines/legacy-v1/installation/choose-executor).

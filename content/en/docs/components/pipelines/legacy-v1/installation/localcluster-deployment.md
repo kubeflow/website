@@ -23,7 +23,7 @@ Such deployment methods can be part of your local environment using the supplied
 kustomize manifests for test purposes. This guide is an alternative to
 
 [Deploying Kubeflow Pipelines
-(KFP)](/docs/started/#installing-kubeflow).
+(KFP)](/docs/started/installing-kubeflow).
 
 ## Before you get started
 
@@ -321,7 +321,7 @@ Docker Desktop is secure, out-of-the-box containerization software offering deve
 You can install and configure Docker-Desktop by following the
 [official quick start](https://www.docker.com/products/docker-desktop/).
 
-**on Windows** - 
+**on Windows** -
 download and run the Docker Desktop Installer.exe file, and follow the instructions inside the installer.
 
 ### 2. Creating a cluster on Docker-Desktop
@@ -333,7 +333,7 @@ Having installed Docker-Desktop, you can create a Kubernetes cluster on Docker-D
 4. Check the 'Enable Kubernetes' checkbox, click 'Apply and restart' and wait for the app to restart.
 5. In order to check if the cluster is up and running, open the command prompt and run the following command:
     ```SHELL
-    kubectl cluster-info   
+    kubectl cluster-info
     ```
    You should see the following output:
     ```SHELL
@@ -372,7 +372,7 @@ Executors](https://argoproj.github.io/argo-workflows/workflow-executors/) and re
 
     Then, open the Kubeflow Pipelines UI at `http://localhost:8080/` or - if you are
     using kind or K3s within a virtual machine - `http://{YOUR_VM_IP_ADDRESS}:8080/`
-    
+
     Note that K3ai will automatically print the URL for the web UI at the end of
     the installation process.
 

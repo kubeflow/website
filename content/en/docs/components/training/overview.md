@@ -1,73 +1,65 @@
 +++
 title = "Overview"
-description = "An overview of Training Operator"
+description = "An overview of the Training Operator"
 weight = 10
 +++
 
 {{% stable-status %}}
 
-## What is Training Operator ?
+## What is the Training Operator
 
 The Training Operator is a Kubernetes-native project for fine-tuning and scalable
-distributed training of machine learning (ML) models created with various ML frameworks such as
+distributed training of machine learning (ML) models created with different ML frameworks such as
 PyTorch, TensorFlow, XGBoost, and others.
 
-User can integrate other ML libraries such as [HuggingFace](https://huggingface.co),
+You can integrate other ML libraries such as [HuggingFace](https://huggingface.co),
 [DeepSpeed](https://github.com/microsoft/DeepSpeed), or [Megatron-LM](https://github.com/NVIDIA/Megatron-LM)
-with Training Operator to orchestrate their ML training on Kubernetes.
+with the Training Operator to orchestrate their ML training on Kubernetes.
 
-Training Operator allows you to use Kubernetes workloads to effectively train your large models
-via Kubernetes Custom Resources APIs or using Training Operator Python SDK.
+The Training Operator allows you to use Kubernetes workloads to effectively train your large models
+via Kubernetes Custom Resources APIs or using the Training Operator Python SDK.
 
-Training Operator implements centralized Kubernetes controller to orchestrate distributed training jobs.
+The Training Operator implements a centralized Kubernetes controller to orchestrate distributed training jobs.
 
-Users can run High-performance computing (HPC) tasks with Training Operator and MPIJob since it
+You can run high-performance computing (HPC) tasks with the Training Operator and MPIJob since it
 supports running Message Passing Interface (MPI) on Kubernetes which is heavily used for HPC.
-Training Operator implements V1 API version of MPI Operator. For MPI Operator V2 version,
+The Training Operator implements the V1 API version of MPI Operator. For the MPI Operator V2 version,
 please follow [this guide](/docs/components/training/user-guides/mpi/) to install MPI Operator V2.
 
 <img src="/docs/components/training/images/training-operator-overview.drawio.png"
   alt="Training Operator Overview"
   class="mt-3 mb-3">
 
-Training Operator is responsible for scheduling the appropriate Kubernetes workloads to implement
+The Training Operator is responsible for scheduling the appropriate Kubernetes workloads to implement
 various distributed training strategies for different ML frameworks.
 
-## Why Training Operator ?
+## Why use the Training Operator
 
-Training Operator addresses Model Training and Model Fine-Tuning step in AI/ML lifecycle as shown on
-that diagram:
+The Training Operator addresses the Model Training and Model Fine-Tuning steps in the AI/ML
+lifecycle as shown in diagram below:
 
 <img src="/docs/components/training/images/ml-lifecycle-training-operator.drawio.svg"
   alt="AI/ML Lifecycle Training Operator"
   class="mt-3 mb-3">
 
-- **Training Operator simplifies ability to run distributed training and fine-tuning.**
+- **The Training Operator simplifies the ability to run distributed training and fine-tuning.**
 
-Users can easily scale their model training from single machine to large-scale distributed
+You can easily scale their model training from single machine to large-scale distributed
 Kubernetes cluster using APIs and interfaces provided by Training Operator.
 
-- **Training Operator is extensible and portable.**
+- **The Training Operator is extensible and portable.**
 
-Users can deploy Training Operator on any cloud where you have Kubernetes cluster and users can
+You can deploy Training Operator on any cloud where you have Kubernetes cluster and you can
 integrate their own ML frameworks written in any programming languages with Training Operator.
 
-- **Training Operator is integrated with Kubernetes ecosystem.**
+- **The Training Operator is integrated with the Kubernetes ecosystem.**
 
-Users can leverage Kubernetes advanced scheduling techniques such as Kueue, Volcano, and YuniKorn
-with Training Operator to optimize cost savings for ML training resources.
-
-## Architecture
-
-The V1 Training Operator architecture diagram can be seen in the diagram below:
-
-<img src="/docs/components/training/images/training-operator-v1-architecture.drawio.svg"
-  alt="Training Operator V1 Architecture"
-  class="mt-3 mb-3">
+You can leverage Kubernetes advanced scheduling techniques such as Kueue, Volcano, and YuniKorn
+with the Training Operator to optimize cost savings for your ML training resources.
 
 ## Custom Resources for ML Frameworks
 
-To perform distributed training Training Operator implements the following
+To perform distributed training the Training Operator implements the following
 [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 for each ML framework:
 
@@ -81,6 +73,6 @@ for each ML framework:
 
 ## Next steps
 
-- Follow [the installation guide](/docs/components/training/installation/) to deploy Training Operator.
+- Follow [the installation guide](/docs/components/training/installation/) to deploy the Training Operator.
 
 - Run examples from [getting started guide](/docs/components/training/getting-started/).
