@@ -6,7 +6,7 @@ weight = 10
 
 {{% alert title="Warning" color="warning" %}}
 This feature is in **alpha** stage and the Kubeflow community is looking for your feedback. Please
-share your experience using the [#kubeflow-training Slack channel](https://cloud-native.slack.com/archives/C0742LDFZ4K)
+share your experience using the [#kubeflow-training Slack channel](/docs/about/community/#kubeflow-slack-channels)
 or [Kubeflow Training Operator GitHib](https://github.com/kubeflow/training-operator/issues/new).
 {{% /alert %}}
 

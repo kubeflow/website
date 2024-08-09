@@ -11,7 +11,7 @@ For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.
 {{% /alert %}}
 
 As an alternative to deploying Kubeflow Pipelines (KFP) as part of the
-[Kubeflow deployment](/docs/started/installing-kubeflow), you also have a choice
+[Kubeflow deployment](/docs/started/installing-kubeflow/#kubeflow-platform), you also have a choice
 to deploy only Kubeflow Pipelines. Follow the instructions below to deploy
 Kubeflow Pipelines standalone using the supplied kustomize manifests.
 

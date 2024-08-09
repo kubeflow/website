@@ -22,8 +22,7 @@ Kubernetes cluster using:
 Such deployment methods can be part of your local environment using the supplied
 kustomize manifests for test purposes. This guide is an alternative to
 
-[Deploying Kubeflow Pipelines
-(KFP)](/docs/started/installing-kubeflow).
+[Deploying Kubeflow Pipelines (KFP)](/docs/started/installing-kubeflow/#kubeflow-platform).
 
 ## Before you get started
 
