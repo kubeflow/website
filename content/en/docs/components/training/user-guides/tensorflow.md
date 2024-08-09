@@ -11,11 +11,11 @@ This page describes `TFJob` for training a machine learning model with [TensorFl
 `TFJob` is a Kubernetes
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 to run TensorFlow training jobs on Kubernetes. The Kubeflow implementation of
-`TFJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
+`TFJob` is in the [`training-operator`](https://github.com/kubeflow/training-operator).
 
 **Note**: `TFJob` doesn't work in a user namespace by default because of Istio
 [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
-In order to get `TFJob` running, it needs annotation `sidecar.istio.io/inject: "false"`
+In order to get `TFJob` running, it needs the annotation `sidecar.istio.io/inject: "false"`
 to disable it for `TFJob` pods.
 
 A `TFJob` is a resource with a YAML representation like the one below (edit to use the container image and command for your own training code):
@@ -64,7 +64,8 @@ spec:
                 - --training_steps=1000
 ```
 
-If you want to give your `TFJob` pods access to credentials secrets, such as the GCP credentials automatically created when you do a GKE-based Kubeflow installation, you can mount and use a secret like this:
+If you want to give your `TFJob` pods access to credentials secrets, such as the Google Cloud credentials
+automatically created when you do a GKE-based Kubeflow installation, you can mount and use a secret like this:
 
 ```yaml
 apiVersion: kubeflow.org/v1
@@ -134,7 +135,7 @@ spec:
 
 If you are not familiar with Kubernetes resources please refer to the page [Understanding Kubernetes Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/).
 
-What makes `TFJob` different from built in [controllers](https://kubernetes.io/docs/concepts/workloads/controllers/) is the `TFJob` spec is designed to manage
+What makes `TFJob` different from built in [controllers](https://kubernetes.io/docs/concepts/workloads/controllers/) is that the `TFJob` spec is designed to manage
 [distributed TensorFlow training jobs](https://www.tensorflow.org/guide/distributed_training).
 
 A distributed TensorFlow job typically contains 0 or more of the following processes

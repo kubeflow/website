@@ -4,23 +4,24 @@ description = "Using PaddleJob to train a model with PaddlePaddle"
 weight = 30
 +++
 
-This page describes `PaddleJob` for training a machine learning model with [PaddlePaddle](https://www.paddlepaddle.org.cn/).
+This page describes the `PaddleJob` for training a machine learning model with [PaddlePaddle](https://www.paddlepaddle.org.cn/).
 
-`PaddleJob` is a Kubernetes
+The `PaddleJob` is a Kubernetes
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 to run PaddlePaddle training jobs on Kubernetes. The Kubeflow implementation of
-`PaddleJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
+the `PaddleJob` is in the [`training-operator`](https://github.com/kubeflow/training-operator).
 
-**Note**: `PaddleJob` doesn’t work in a user namespace by default because of
+**Note**: The `PaddleJob` doesn’t work in a user namespace by default because of
 Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
 In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"`
-to disable it for either `PaddleJob` pods or namespace.
+to disable it for either the `PaddleJob` pods or namespace.
 To view an example of how to add this annotation to your `yaml` file,
 see the [`TFJob` documentation](/docs/components/training/user-guides/tensorflow/).
 
 ## Creating a PaddlePaddle training job
 
-You can create a training job by defining a `PaddleJob` config file. See the manifests for the [distributed example](https://github.com/kubeflow/training-operator/blob/master/examples/paddlepaddle/simple-cpu.yaml). You may change the config file based on your requirements.
+You can create a training job by defining a `PaddleJob` config file. See the manifests for the [distributed example](https://github.com/kubeflow/training-operator/blob/master/examples/paddlepaddle/simple-cpu.yaml).
+You may change the config file based on your requirements.
 
 Deploy the `PaddleJob` resource to start training:
 

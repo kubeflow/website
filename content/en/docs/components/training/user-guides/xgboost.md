@@ -4,23 +4,23 @@ description = "Using XGBoostJob to train a model with XGBoost"
 weight = 50
 +++
 
-This page describes `XGBoostJob` for training a machine learning model with [XGBoost](https://github.com/dmlc/xgboost).
+This page describes the `XGBoostJob` for training a machine learning model with [XGBoost](https://github.com/dmlc/xgboost).
 
 `XGBoostJob` is a Kubernetes
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 to run XGBoost training jobs on Kubernetes. The Kubeflow implementation of
-`XGBoostJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
+`XGBoostJob` is in the [`training-operator`](https://github.com/kubeflow/training-operator).
 
 **Note**: `XGBoostJob` doesn’t work in a user namespace by default because of
 Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
-In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"`
-to disable it for either `PyTorchJob` pods or namespace.
+In order to get it running, it needs the annotation `sidecar.istio.io/inject: "false"`
+to disable it for either the `PyTorchJob` pods or namespace.
 To view an example of how to add this annotation to your `yaml` file,
 see the [`XGBoostJob` documentation](/docs/components/training/user-guides/tensorflow/).
 
 ## Creating a XGBoost training job
 
-You can create a training job by defining a `XGboostJob` config file. See the
+You can create a training job by defining an `XGboostJob` config file. See the
 manifests for the [IRIS example](https://github.com/kubeflow/training-operator/blob/master/examples/xgboost/xgboostjob.yaml).
 You may change the config file based on your requirements. E.g.: add `CleanPodPolicy`
 in Spec to `None` to retain pods after job termination.

@@ -6,21 +6,22 @@ weight = 20
 
 This page describes `PyTorchJob` for training a machine learning model with [PyTorch](https://pytorch.org/).
 
-`PyTorchJob` is a Kubernetes
+The `PyTorchJob` is a Kubernetes
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 to run PyTorch training jobs on Kubernetes. The Kubeflow implementation of
-`PyTorchJob` is in [`training-operator`](https://github.com/kubeflow/training-operator).
+the `PyTorchJob` is in the [`training-operator`](https://github.com/kubeflow/training-operator).
 
 **Note**: `PyTorchJob` doesn’t work in a user namespace by default because of
 Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
-In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"`
-to disable it for either `PyTorchJob` pods or namespace.
+In order to get it running, it needs the annotation `sidecar.istio.io/inject: "false"`
+to disable it for either `PyTorchJob` pods or the namespace.
 To view an example of how to add this annotation to your `yaml` file,
 see the [`TFJob` documentation](/docs/components/training/user-guides/tensorflow/).
 
 ## Creating a PyTorch training job
 
-You can create a training job by defining a `PyTorchJob` config file. See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/master/examples/pytorch/simple.yaml). You may change the config file based on your requirements.
+You can create a training job by defining a `PyTorchJob` config file. See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/master/examples/pytorch/simple.yaml).
+You may change the config file based on your requirements.
 
 Deploy the `PyTorchJob` resource to start training:
 
@@ -121,6 +122,6 @@ status:
 
 ## Next steps
 
-- Learn about [distributed training](/docs/components/training/reference/distributed-training/) in Training Operator.
+- Learn about [distributed training](/docs/components/training/reference/distributed-training/) in the Training Operator.
 
 - See how to [run a job with gang-scheduling](/docs/components/training/user-guides/job-scheduling#running-jobs-with-gang-scheduling).

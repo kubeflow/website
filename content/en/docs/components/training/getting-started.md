@@ -1,33 +1,33 @@
 +++
 title = "Getting Started"
-description = "Get started with Training Operator"
+description = "Get started with the Training Operator"
 weight = 30
 +++
 
-This guide describes how to get started with Training Operator and run a few simple examples.
+This guide describes how to get started with the Training Operator and run a few simple examples.
 
 ## Prerequisites
 
 You need to install the following components to run examples:
 
-- Training Operator control plane [installed](/docs/components/training/installation/#installing-control-plane).
-- Training Python SDK [installed](/docs/components/training/installation/#installing-python-sdk).
+- The Training Operator control plane [installed](/docs/components/training/installation/#installing-the-control-plane).
+- The Training Python SDK [installed](/docs/components/training/installation/#installing-the-python-sdk).
 
 ## Getting Started with PyTorchJob
 
-You can create your first Training Operator distributed PyTorchJob using Python SDK. Define the
+You can create your first Training Operator distributed PyTorchJob using the Python SDK. Define the
 training function that implements end-to-end model training. Each Worker will execute this
 function on the appropriate Kubernetes Pod. Usually, this function contains logic to
 download dataset, create model, and train the model.
 
-Training Operator will automatically set `WORLD_SIZE` and `RANK` for the appropriate PyTorchJob
+The Training Operator will automatically set `WORLD_SIZE` and `RANK` for the appropriate PyTorchJob
 worker to perform [PyTorch Distributed Data Parallel (DDP)](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
-If you install Training Operator as part of Kubeflow Platform, you can open a new
+If you install the Training Operator as part of the Kubeflow Platform, you can open a new
 [Kubeflow Notebook](/docs/components/notebooks/quickstart-guide/) to run this script. If you
-install Training Operator standalone, make sure that you
+install the Training Operator standalone, make sure that you
 [configure local `kubeconfig`](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#programmatic-access-to-the-api)
-to access your Kubernetes cluster where you installed Training Operator.
+to access your Kubernetes cluster where you installed the Training Operator.
 
 ```python
 def train_func():
@@ -115,7 +115,7 @@ TrainingClient().create_job(
 
 ## Getting Started with TFJob
 
-Similar to PyTorchJob example, you can use the Python SDK to create your first distributed
+Similar to the PyTorchJob example, you can use the Python SDK to create your first distributed
 TensorFlow job. Run the following script to create TFJob with pre-created Docker image:
 `docker.io/kubeflow/tf-mnist-with-summaries:latest` that contains
 [distributed TensorFlow code](https://github.com/kubeflow/training-operator/tree/e6b4300f9dfebb5c2a3269641c828add367688ee/examples/tensorflow/mnist_with_summaries):
@@ -140,9 +140,8 @@ TrainingClient().get_job_logs(
     follow=True,
 )
 ```
-
 ## Next steps
 
-- Run [FashionMNIST example](https://github.com/kubeflow/training-operator/blob/7345e33b333ba5084127efe027774dd7bed8f6e6/examples/pytorch/image-classification/Train-CNN-with-FashionMNIST.ipynb) with using Training Operator Python SDK.
+- Run the [FashionMNIST example](https://github.com/kubeflow/training-operator/blob/7345e33b333ba5084127efe027774dd7bed8f6e6/examples/pytorch/image-classification/Train-CNN-with-FashionMNIST.ipynb) with using Training Operator Python SDK.
 
 - Learn more about [the PyTorchJob APIs](/docs/components/training/user-guides/pytorch/).
