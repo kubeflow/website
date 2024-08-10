@@ -13,17 +13,22 @@
     display: block;
   }
 </style>
-<div class="card mt-4 col-12 col-sm-6">
+<div class="card mt-4 col-12 col-sm-7 d-print-none">
   <div class="card-body">
     <h3 class="card-title">Feedback</h3>
     <p class="card-text">Was this page helpful?</p>
     <button class="btn btn-primary feedback--answer feedback--answer-yes" style="width: 5rem;">Yes</button>
     <button class="btn btn-primary feedback--answer feedback--answer-no" style="width: 5rem;">No</button>
     <p class="feedback--response feedback--response-yes">
-      {{ .yes | safeHTML }}
+      Thank you for your feedback!
     </p>
     <p class="feedback--response feedback--response-no">
-      {{ .no | safeHTML }}
+      We're sorry this page wasn't helpful.
+      {{- if .File }}
+      {{- $gh_repo := ($.Param "github_repo") }}
+      {{- $issuesURL := printf "%s/issues/new?title=[Feedback]+%s" $gh_repo (safeURL .File.Path) }}
+      If you have a moment, please <a href="{{ $issuesURL }}" target="_blank">share your feedback</a> so we can improve.
+      {{- end }}
     </p>
   </div>
 </div>

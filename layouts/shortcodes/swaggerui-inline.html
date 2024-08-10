@@ -1,0 +1,156 @@
+{{- $remote_url := replaceRE `\s` "" .Inner }}
+{{- warnf "Getting remote resource %q for page: %q" $remote_url .Page.File.Path }}
+{{- $swagger_json := resources.GetRemote $remote_url }}
+{{- if not $swagger_json }}
+  {{- errorf "Unable to get remote resource %q" $remote_url }}
+{{- end }}
+<div id="swagger-ui-container"></div>
+<script>
+  window.onload = function () {
+    // we create a shadow DOM to encapsulate the swagger UI,
+    // this avoids style conflicts with the rest of the page
+    const shadowRoot = document.getElementById('swagger-ui-container').attachShadow({mode: 'open'});
+
+    // add the swagger UI CSS
+    const linkNode = document.createElement('link');
+    linkNode.rel = 'stylesheet';
+    linkNode.href = 'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui.css';
+    linkNode.integrity = 'sha384-wxLW6kwyHktdDGr6Pv1zgm/VGJh99lfUbzSn6HNHBENZlCN7W602k9VkGdxuFvPn';
+    linkNode.crossOrigin = 'anonymous';
+    shadowRoot.appendChild(linkNode);
+
+    // add custom styles to the shadow DOM
+    const styleNode = document.createElement('style');
+    styleNode.textContent = `
+      #swagger-ui-container_inner {
+        @media (max-width: 768px) {
+          overflow-wrap: anywhere;
+        }
+      }
+      .swagger-ui .wrapper {
+        padding: 0;
+      }
+    `;
+    shadowRoot.appendChild(styleNode);
+
+    // create an input div to encapsulate the input and description
+    const inputDiv = document.createElement('div');
+    inputDiv.style.display = 'flex';
+    inputDiv.style.flexDirection = 'column';
+    inputDiv.style.marginBottom = '1rem';
+    shadowRoot.appendChild(inputDiv);
+
+    // add a description for the input
+    const descriptionNode = document.createElement('p');
+    descriptionNode.textContent = 'Enter the base URL of your Kubeflow Pipelines API:';
+    descriptionNode.style.marginBottom = '0.5rem';
+    inputDiv.appendChild(descriptionNode);
+
+    // create an input so users can change the base URL
+    const validColor = '#f3ffef';
+    const invalidColor = '#ffefef';
+    const inputNode = document.createElement('input');
+    inputNode.type = 'url';
+    inputNode.defaultValue = "https://kubeflow.example.com/pipeline/"
+    inputNode.style.width = '90%';
+    inputNode.style.padding = '1rem';
+    inputNode.style.border = '1px solid rgba(0, 0, 0, 0.125)';
+    inputNode.style.backgroundColor = validColor;
+    inputNode.disabled = true;
+    inputDiv.appendChild(inputNode);
+
+    // if the user changes the base url, ensure its valid
+    inputNode.addEventListener('input', (event) => {
+      var parsedURL;
+      try {
+        parsedURL = new URL(event.target.value);
+        if (parsedURL.protocol !== 'http:' && parsedURL.protocol !== 'https:') {
+          throw new Error('Invalid protocol');
+        }
+        event.target.style.backgroundColor = validColor;
+        event.target.setCustomValidity('');
+      } catch (error) {
+        event.target.style.backgroundColor = invalidColor;
+        event.target.setCustomValidity(error.message);
+      }
+      event.target.reportValidity();
+    });
+
+    // create the swagger UI container
+    const swaggerNode = document.createElement('div');
+    swaggerNode.id = 'swagger-ui-container_inner';
+    shadowRoot.appendChild(swaggerNode);
+
+    // define a request interceptor to update the base URL
+    const requestInterceptor = (request) => {
+      if (!request.loadSpec) {
+        // get path from the request URL
+        // NOTE: we remove the beginning slash which is always present
+        requestURL = new URL(request.url);
+        requestPath = requestURL.pathname.substring(1);
+
+        // get the path of the user-provided base URL
+        // NOTE: we remove the trailing slash, if present
+        if (inputNode.validity.valid) {
+          baseURL = new URL(inputNode.value);
+        } else {
+          baseURL = new URL(inputNode.defaultValue);
+        }
+        pathToAdd = baseURL.pathname;
+        pathToAdd = pathToAdd.endsWith('/') ? pathToAdd.substring(0, pathToAdd.length - 1) : pathToAdd;
+
+        // update the request URL
+        requestURL.protocol = baseURL.protocol;
+        requestURL.host = baseURL.host;
+        requestURL.port = baseURL.port;
+        requestURL.pathname = pathToAdd + '/' + requestPath;
+
+        // update the request
+        request.url = requestURL.toString();
+      }
+      return request;
+    };
+
+    // fetch the spec as a JavaScript object and store as `swaggerSpec` variable
+    const request = new Request({{ $swagger_json.RelPermalink }});
+    fetch(request)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch the swagger spec');
+        }
+        return response.json();
+      })
+      .then((swaggerSpec) => {
+        // remove the info section from the spec
+        // NOTE: this prevents having an extra heading and other info
+        delete swaggerSpec.info;
+
+        // remove the schemes section from the spec
+        // NOTE: this prevents having a dropdown for HTTP/HTTPS
+        delete swaggerSpec.schemes;
+
+        // remove the security sections from the spec
+        // NOTE: this prevents having the "authorization" buttons
+        delete swaggerSpec.security;
+        delete swaggerSpec.securityDefinitions;
+
+        // add the base URL to the spec
+        swaggerSpec.host = 'HOST_NAME';
+        swaggerSpec.basePath = 'BASE_PATH';
+
+        // initialize the swagger UI
+        const ui = SwaggerUIBundle({
+          spec: swaggerSpec,
+          domNode: swaggerNode,
+          presets: [SwaggerUIBundle.presets.apis],
+          requestInterceptor: requestInterceptor,
+        });
+
+        // enable the input field
+        inputNode.disabled = false;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+</script>
