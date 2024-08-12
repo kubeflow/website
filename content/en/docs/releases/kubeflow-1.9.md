@@ -12,7 +12,7 @@ weight = 95
     <tr>
       <th class="table-light">Release Date</th>
       <td>
-        2023-03-29
+        2024-07-22
       </td>
     </tr>
     <tr>
@@ -22,7 +22,7 @@ weight = 95
           <a href="https://blog.kubeflow.org/kubeflow-1.9-release/">Kubeflow 1.9 Release Announcement</a>
         <br>
         <b>Video:</b> 
-          To be published
+          <a href="https://www.youtube.com/watch?v=3sZzE-vPsMI">Kubeflow 1.9 Release Update</a>
         <br>
         <b>Roadmap:</b>
           <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-19-release-planned-for-release-jul-2024">Kubeflow 1.9 Features</a>
