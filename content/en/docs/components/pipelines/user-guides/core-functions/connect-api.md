@@ -245,14 +245,14 @@ class KFPClientManager:
             # no cookies are needed
             return ""
 
-        # if we are at `/auth?=xxxx` path, we need to select an auth type
+        # if we are at `.../auth` path, we need to select an auth type
         url_obj = urlsplit(resp.url)
         if re.search(r"/auth$", url_obj.path):
             url_obj = url_obj._replace(
                 path=re.sub(r"/auth$", f"/auth/{self._dex_auth_type}", url_obj.path)
             )
 
-        # if we are at `/auth/xxxx/login` path, then we are at the login page
+        # if we are at `../auth/xxxx/login` path, then we are at the login page
         if re.search(r"/auth/.*/login$", url_obj.path):
             dex_login_url = url_obj.geturl()
         else:
@@ -284,6 +284,23 @@ class KFPClientManager:
                 f"Login credentials are probably invalid - "
                 f"No redirect after POST to: {dex_login_url}"
             )
+
+        # if we are at `../approval` path, we need to approve the login
+        url_obj = urlsplit(resp.url)
+        if re.search(r"/approval$", url_obj.path):
+            dex_approval_url = url_obj.geturl()
+
+            # approve the login
+            resp = s.post(
+                dex_approval_url,
+                data={"approval": "approve"},
+                allow_redirects=True,
+                verify=not self._skip_tls_verify,
+            )
+            if resp.status_code != 200:
+                raise RuntimeError(
+                    f"HTTP status code '{resp.status_code}' for POST against: {url_obj.geturl()}"
+                )
 
         return "; ".join([f"{c.name}={c.value}" for c in s.cookies])
 
