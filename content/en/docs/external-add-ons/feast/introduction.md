@@ -8,11 +8,17 @@ weight = 10
 
 [Feast](https://docs.feast.dev/) is an [open-source](https://github.com/feast-dev/feast) feature store that helps teams operate ML systems at scale by allowing them to define, manage, validate, and serve features to models in production. 
 
+The following diagram shows the architecture of Feast:
+
+<img src="/docs/external-add-ons/feast/images/feast-architecture.png" 
+     alt="Feast architecture diagram"
+     class="p-2"></img>
+
 Feast provides the following functionality:
 
-- __Load streaming and batch data__: Feast is built to be able to ingest data from a variety of bounded or unbounded sources. 
-  Feast allows users to ingest data from streams, object stores, databases, or notebooks. 
-  Data that is ingested into Feast is persisted in both online store and historical stores, which in turn is used for the creation of training datasets and serving features to online systems.
+- __Load streaming, batch, and request-time data__: Feast is built to be able to ingest data from a variety of bounded or unbounded sources. 
+  Feast allows users to ingest data from api-calls, streams, object stores, databases, or notebooks.
+  Data that is ingested into Feast can be persisted in both online store and historical stores, which in turn is used for the creation of training datasets and serving features to online systems.
 
 - __Standardized definitions__: Feast becomes the single source of truth for all feature definitions and data within an organization.
   Teams are able to capture documentation, metadata, and metrics about features. 
@@ -29,6 +35,7 @@ Feast provides the following functionality:
   By building ML systems on feature references, teams abstract away the underlying data infrastructure and make it possible to safely move models between training and serving without a drop in data consistency.
 
 - __Feature sharing and reuse__: Feast provides a discovery and metadata API that allows teams to track, share, and reuse features across projects. 
+  Feast also provides a light-weight web UI to expose this metadata.
   Feast also decouples the process of creating features from the process of consumption, meaning teams that start new projects can begin by simply consuming features that already exist in the store, instead of starting from scratch.
 
 - __Statistics and validation__: Feast allows for the generation of statistics based on features within the systems.
@@ -44,8 +51,8 @@ Some of the key challenges that feature stores help to address include:
 - __Feature sharing and reuse__: Engineering features is one of the most time-consuming activities in building an end-to-end ML system, yet many teams continue to develop features in silos. 
   This leads to a high amount of re-development and duplication of work across teams and projects.
 
-- __Serving features at scale__: Models need data that can come from a variety of sources, including event streams, data lakes, warehouses, or notebooks. 
-  ML teams need to be able to store and serve all these data sources to their models in a performant and reliable way. 
+- __Serving features at scale__: Models need data that can come from a variety of sources, including api-calls, event streams, data lakes, warehouses, or notebooks.
+  ML teams need to be able to store and serve all these data sources to their models in a performant and reliable way.
   The challenge is scalable production of massive datasets of features for model training, and providing access to real-time feature data at low latency and high throughput in serving.
 
 - __Consistency between training and serving__: The separation between data scientists and engineering teams often lead to the re-development of feature transformations when moving from training to online serving. 
@@ -57,6 +64,8 @@ Some of the key challenges that feature stores help to address include:
 - __Data quality and validation__: Features are business critical inputs to ML systems. Teams need to be confident in the quality of data that is served in production and need to be able to react when there is any drift in the underlying data.
 
 ## How to use Feast with Kubeflow?
+
+Feast can be run on the same Kubernetes cluster as Kubeflow, and may be used to serve features for models that are trained in [Kubeflow Pipelines](/docs/components/notebooks/overview/) and deployed with [KServe](/docs/external-add-ons/kserve/introduction/).
 
 ### Requirements
 
@@ -79,21 +88,21 @@ To use Feast with Kubeflow, please follow the following steps
 
 Please their [production usage](https://docs.feast.dev/how-to-guides/running-feast-in-production) guide for best practices when running Feast in production.
 
-### Accessing Feast from Kubeflow
+### Using Feast APIs
 
 Once Feast is installed within the same Kubernetes cluster as Kubeflow, users can access its APIs directly without any additional steps.
 
-Feast APIs can roughly be grouped into the following sections:
+Feast provides the following categories of APIs:
 
 - __Feature definition and management__: 
     - Feast provides both a [Python SDK](https://docs.feast.dev/getting-started/quickstart) and [CLI](https://docs.feast.dev/reference/feast-cli-commands) for interacting with Feast Core. 
-      Feast Core allows users to define and register features and entities and their associated metadata and schemas.
-      The Python SDK is typically used from within a Jupyter notebook by end users to administer Feast, but ML teams may opt to version control feature specifications in order to follow a GitOps based approach.
+    - Feast Core allows users to define and register features and entities and their associated metadata and schemas.
+    - The Python SDK is typically used from within a Jupyter notebook by end users to administer Feast, but ML teams may opt to version control feature specifications in order to follow a GitOps based approach.
 - __Model training__: 
    - The Feast Python SDK can be used to trigger the [creation of training datasets](https://docs.feast.dev/how-to-guides/feast-snowflake-gcp-aws/build-a-training-dataset). 
-     The most natural place to use this SDK is to create a training dataset as part of a [Kubeflow Pipeline](/docs/components/pipelines/overview/) prior to model training.
+   - The most natural place to use this SDK is to create a training dataset as part of a [Kubeflow Pipeline](/docs/components/pipelines/overview/) prior to model training.
 - __Model serving__: 
    - The Feast Python SDK can also be used for [online feature retrieval](https://docs.feast.dev/how-to-guides/feast-snowflake-gcp-aws/read-features-from-the-online-store).
-     This client is used to retrieve feature values for inference with [Model Serving](/docs/components/pipelines/overview/) systems like KFServing, TFX, or Seldon.
+     This client is used to retrieve feature values for inference with model-serving-systems like [KServe](/docs/external-add-ons/kserve/introduction/).
 
-Please see their [tutorials page](https://docs.feast.dev/tutorials/tutorials-overview) for more information on how to use Feast.
+Please see the Feast [tutorials page](https://docs.feast.dev/tutorials/tutorials-overview) for more information on using Feast.

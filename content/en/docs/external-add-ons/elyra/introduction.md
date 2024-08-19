@@ -9,9 +9,11 @@ weight = 10
 [Elyra](https://elyra.readthedocs.io/en/stable/index.html) is an [open-source](https://github.com/elyra-ai/elyra) tool to reduce model development life cycle complexities. 
 Elyra is a _JupyterLab extension_ that provides a _visual pipeline editor_ to enable low-code creation of pipelines that can be executed with Kubeflow Pipelines.
 
-Below is an example of a Pipeline created with Elyra, you can identify the components/tasks and related properties that are all managed in the visual editor.
+The following screenshot shows an example of a Pipeline created with Elyra:
 
-<img src="/docs/external-add-ons/elyra/elyra-pipeline-covid-scenario.png" alt="A pipeline example created using Elyra Pipeline Visual Editor" class="mt-3 mb-3 p-3 border border-info rounded"></img>
+<img src="/docs/external-add-ons/elyra/images/elyra-pipeline-screenshot.png"
+     alt="An example of a Pipeline created with Elyra"
+     class="p-2"></img>
 
 ## How to use Elyra with Kubeflow?
 
