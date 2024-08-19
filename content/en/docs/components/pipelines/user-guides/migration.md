@@ -694,7 +694,7 @@ If you believe we missed a breaking change or an important migration step, pleas
 [new-issue]: https://github.com/kubeflow/pipelines/issues/new
 [oss-be-v1]: /docs/components/pipelines/legacy-v1/
 [oss-be-v2]: /docs/components/pipelines/operator-guides/installation/
-[parallelfor-control-flow]: /docs/components/pipelines/user-guides/core-functions/control-flow/#parallel-looping-dslparallelfor
+[parallelfor-control-flow]: /docs/components/pipelines/user-guides/core-functions/control-flow/#dslparallelfor
 [parameters]: /docs/components/pipelines/user-guides/data-handling/parameters
 [pipelines-repo]: https://github.com/kubeflow/pipelines
 [semver-minor-version]: https://semver.org/#:~:text=MINOR%20version%20when%20you%20add%20functionality%20in%20a%20backwards%20compatible%20manner

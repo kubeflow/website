@@ -245,7 +245,7 @@ class KFPClientManager:
             # no cookies are needed
             return ""
 
-        # if we are at `.../auth` path, we need to select an auth type
+        # if we are at `../auth` path, we need to select an auth type
         url_obj = urlsplit(resp.url)
         if re.search(r"/auth$", url_obj.path):
             url_obj = url_obj._replace(

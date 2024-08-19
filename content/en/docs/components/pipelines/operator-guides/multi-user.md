@@ -42,10 +42,10 @@ Pipeline definitions are not isolated right now, and are shared across all names
 
 How to connect Pipelines SDK to Kubeflow Pipelines will depend on __what kind__ of Kubeflow deployment you have, and __from where you are running your code__.
 
-* [Full Kubeflow (from inside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#full-kubeflow-subfrom-inside-clustersub)
-* [Full Kubeflow (from outside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#full-kubeflow-subfrom-outside-clustersub)
-* [Standalone Kubeflow Pipelines (from inside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#standalone-kubeflow-pipelines-subfrom-inside-clustersub)
-* [Standalone Kubeflow Pipelines (from outside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#standalone-kubeflow-pipelines-subfrom-outside-clustersub)
+* [Full Kubeflow (from inside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#kubeflow-platform---inside-the-cluster)
+* [Full Kubeflow (from outside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#kubeflow-platform---outside-the-cluster)
+* [Standalone Kubeflow Pipelines (from inside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#standalone-kfp---inside-the-cluster)
+* [Standalone Kubeflow Pipelines (from outside cluster)](/docs/components/pipelines/user-guides/core-functions/connect-api/#standalone-kfp---outside-the-cluster)
 
 The following Python code will create an experiment (and associated run) from a Pod inside a full Kubeflow cluster.
 
