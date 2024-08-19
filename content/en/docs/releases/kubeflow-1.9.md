@@ -12,7 +12,7 @@ weight = 95
     <tr>
       <th class="table-light">Release Date</th>
       <td>
-        2023-03-29
+        2024-07-22
       </td>
     </tr>
     <tr>
