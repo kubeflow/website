@@ -24,7 +24,7 @@ The following table shows which versions of KFP backend are included in each ver
 
 Release Date | Kubeflow Platform Version | KFP Backend Version | SDK Mode: [`v1`](/docs/components/pipelines/legacy-v1/sdk/) | SDK Mode: [`v2`](/docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/) | SDK Mode: [`v2-compatible`](https://v1-7-branch.kubeflow.org/docs/components/pipelines/v1/sdk-v2/)
 --- | --- | --- | --- | --- | ---
-Unreleased | [Kubeflow 1.9](/docs/releases/kubeflow-1.9/) | [2.2.0](https://github.com/kubeflow/pipelines/releases/tag/2.2.0) | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-xmark"></i>
+2024-07-22 | [Kubeflow 1.9](/docs/releases/kubeflow-1.9/) | [2.2.0](https://github.com/kubeflow/pipelines/releases/tag/2.2.0) | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-xmark"></i>
 2023-11-01 | [Kubeflow 1.8](/docs/releases/kubeflow-1.8/) | [2.0.3](https://github.com/kubeflow/pipelines/releases/tag/2.0.3) | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-xmark"></i>
 2023-03-29 | [Kubeflow 1.7](/docs/releases/kubeflow-1.7/) | [2.0.0-alpha.7](https://github.com/kubeflow/pipelines/releases/tag/2.0.0-alpha.7) | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-xmark"></i> | <i class="fa-solid fa-check"></i> 
 2022-10-10 | [Kubeflow 1.6](/docs/releases/kubeflow-1.6/) | [2.0.0-alpha.5](https://github.com/kubeflow/pipelines/releases/tag/2.0.0-alpha.5) | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-xmark"></i> | <i class="fa-solid fa-check"></i> 

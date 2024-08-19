@@ -1,6 +1,6 @@
 +++
 title = "Use Platform-Specific Features"
-description = "Learn how to use platform-specific features in Kubeflow Pipelines in your pipelines."
+description = "Learn how to use platform-specific features in Kubeflow Pipelines."
 weight = 105
 +++
 
