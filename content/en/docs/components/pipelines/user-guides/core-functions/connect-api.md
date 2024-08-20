@@ -20,10 +20,10 @@ When running Kubeflow Pipelines as part of a multi-user [Kubeflow Platform](/doc
 <summary>Click to expand</summary>
 <hr>
 
-When running the Pipelines SDK inside a multi-user Kubeflow cluster, a [ServiceAccount token volume](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection) 
-can be mounted to the Pod, the Kubeflow Pipelines SDK can use this token to authenticate itself with the Kubeflow Pipelines API.
+A [ServiceAccount token volume](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection) can be mounted to a Pod running in the same cluster as Kubeflow Pipelines.
+The Kubeflow Pipelines SDK can use this token to authenticate itself with the Kubeflow Pipelines API.
 
-The following code creates a `kfp.Client()` using a ServiceAccount token for authentication.
+The following Python code will create a `kfp.Client()` using a ServiceAccount token for authentication:
 
 ```python
 import kfp
@@ -38,7 +38,12 @@ experiments = kfp_client.list_experiments(namespace="my-profile")
 print(experiments)
 ```
 
-The following Pod demonstrates mounting a ServiceAccount token volume.
+#### ServiceAccount Token Volume
+
+To use the preceding code, you will need to run it from a Pod that has a ServiceAccount token volume mounted.
+You may manually add a `volume` and `volumeMount` to your PodSpec or use Kubeflow's [`PodDefaults`](https://github.com/kubeflow/kubeflow/tree/master/components/admission-webhook) to inject the required volume.
+
+__Option 1 - manually add a volume to your PodSpec:__
 
 ```yaml
 apiVersion: v1
@@ -69,7 +74,7 @@ spec:
               audience: pipelines.kubeflow.org      
 ```
 
-You may use Kubeflow's [`PodDefaults`](https://github.com/kubeflow/kubeflow/tree/master/components/admission-webhook) to inject the required ServiceAccount token volume into your Pods:
+__Option 2 - use a `PodDefault` to inject the volume:__
 
 ```yaml
 apiVersion: kubeflow.org/v1alpha1
@@ -147,20 +152,25 @@ and give them access to submit pipelines in their own namespace.
 <summary>Click to expand</summary>
 <hr>
 
-{{% alert title="Tip" color="info" %}}
-The process to authenticate the Pipelines SDK from outside the cluster will vary by [Kubeflow Distribution](/docs/started/installing-kubeflow/#packaged-distributions) and identity provider.
-
-Because most distributions use [Dex](https://dexidp.io/) as their identity provider, this example will show you how to authenticate with Dex using a Python script.
+{{% alert title="Kubeflow Notebooks" color="warning" %}}
+As Kubeflow Notebooks run on Pods _inside the cluster_, they can NOT use the following method to authenticate the Pipelines SDK, see the [inside the cluster](#kubeflow-platform---inside-the-cluster) method.
 {{% /alert %}}
 
-__Step 1:__ expose your `istio-ingressgateway` service locally (if your Kubeflow Istio gateway is not already exposed on a domain)
+The precise method to authenticate from _outside the cluster_ will depend on how you [deployed Kubeflow Platform](/docs/started/installing-kubeflow/#kubeflow-platform). 
+Because most distributions use [Dex](https://dexidp.io/) as their identity provider, this example will show you how to authenticate with Dex using a Python script.
+
+You will need to make the Kubeflow Pipelines API accessible on the remote machine.
+If your Kubeflow Istio gateway is already exposed, skip this step and use that URL directly.
+
+The following command will expose the `istio-ingressgateway` service on `localhost:8080`:
 
 ```bash
-# TIP: `svc/istio-ingressgateway` may be called something else, or use different ports in your distribution
+# TIP: svc/istio-ingressgateway may be called something else, 
+#      or use different ports in your distribution
 kubectl port-forward --namespace istio-system svc/istio-ingressgateway 8080:80
 ```
 
-__Step 2:__ this Python code defines a `KFPClientManager()` class that creates authenticated `kfp.Client()` instances using Dex
+The following Python code defines a `KFPClientManager()` class that creates an authenticated `kfp.Client()` by interacting with Dex:
 
 ```python
 import re
@@ -332,7 +342,7 @@ class KFPClientManager:
         return self._create_kfp_client()
 ```
 
-__Step 3:__ this Python code uses the above `KFPClientManager()` class to create a `kfp.Client()`
+The following Python code shows how to use the `KFPClientManager()` class to create a `kfp.Client()`:
 
 ```python
 # initialize a KFPClientManager
