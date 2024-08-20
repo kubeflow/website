@@ -133,7 +133,7 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
       </tr>
       <tr>
         <td>
-          <a href="/docs/components/training/installation/#installing-training-operator">
+          <a href="/docs/components/training/installation/#installing-the-training-operator">
             Kubeflow Training Operator
           </a>
         </td>
@@ -352,7 +352,7 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
 
 {{% alert title="Warning" color="warning" %}}
 The Kubeflow manifests provide a quick way to get a minimum viable Kubeflow Platform up and running.
-The Kubeflow community support for Kubeflow manifests is only best-effort, non-commercial and not guaranteed for environment-specific issues or custom configurations. 
+The Kubeflow community support for Kubeflow manifests is only best-effort, non-commercial and not guaranteed for environment-specific issues or custom configurations.
 Nevertheless, we welcome contributions and bug reports very much.
 For commercial production-level usage and support there are many options. You can use a third-party commercial distribution, hire consultants or build up the knowledge yourself to maintain and extend your Kubeflow installation.
 {{% /alert %}}

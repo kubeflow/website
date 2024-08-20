@@ -1,34 +1,34 @@
 +++
 title = "Installation"
-description = "How to install Training Operator"
+description = "How to install the Training Operator"
 weight = 20
 +++
 
-This guide describes how to install Training Operator on your Kubernetes cluster.
-Training Operator is a lightweight Kubernetes controller that orchestrates appropriate Kubernetes
-workloads to perform distributed ML training and fine-tuning.
+This guide describes how to install the Training Operator on your Kubernetes cluster.
+The Training Operator is a lightweight Kubernetes controller that orchestrates the
+appropriate Kubernetes workloads to perform distributed ML training and fine-tuning.
 
 ## Prerequisites
 
-These are minimal requirements to install Training Operator:
+These are the minimal requirements to install the Training Operator:
 
 - Kubernetes >= 1.27
 - `kubectl` >= 1.27
 - Python >= 3.7
 
-## Installing Training Operator
+## Installing the Training Operator
 
-You need to install Training Operator control plane and Python SDK to create training jobs.
+You need to install the Training Operator control plane and Python SDK to create training jobs.
 
-### Installing Control Plane
+### Installing the Control Plane
 
 You can skip these steps if you have already
 [installed Kubeflow platform](https://www.kubeflow.org/docs/started/installing-kubeflow/)
-using manifests or package distributions. Kubeflow platform includes Training Operator.
+using manifests or package distributions. The Kubeflow platform includes the Training Operator.
 
-You can install Training Operator as a standalone component.
+You can install the Training Operator as a standalone component.
 
-Run the following command to install the stable release of Training Operator control plane: `v1.7.0`
+Run the following command to install the stable release of the Training Operator control plane: `v1.7.0`
 
 ```shell
 kubectl apply -k "github.com/kubeflow/training-operator.git/manifests/overlays/standalone?ref=v1.7.0"
@@ -62,12 +62,12 @@ tfjobs.kubeflow.org                                      2023-06-09T00:31:04Z
 xgboostjobs.kubeflow.org                                 2023-06-09T00:31:04Z
 ```
 
-### Installing Python SDK
+### Installing the Python SDK
 
-Training Operator [implements Python SDK](https://pypi.org/project/kubeflow-training/)
+The Training Operator [implements a Python SDK](https://pypi.org/project/kubeflow-training/)
 to simplify creation of distributed training and fine-tuning jobs for Data Scientists.
 
-Run the following command to install the latest stable release of Training SDK:
+Run the following command to install the latest stable release of the Training SDK:
 
 ```shell
 pip install -U kubeflow-training
@@ -85,9 +85,9 @@ Otherwise, you can also install the Training SDK using the specific GitHub commi
 pip install git+https://github.com/kubeflow/training-operator.git@7345e33b333ba5084127efe027774dd7bed8f6e6#subdirectory=sdk/python
 ```
 
-#### Install Python SDK with Fine-Tuning Capabilities
+#### Install the Python SDK with Fine-Tuning Capabilities
 
-If you want to use `train` API for LLM fine-tuning with Training Operator, install the Python SDK
+If you want to use the `train` API for LLM fine-tuning with the Training Operator, install the Python SDK
 with the additional packages from HuggingFace:
 
 ```shell

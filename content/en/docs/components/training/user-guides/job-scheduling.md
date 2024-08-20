@@ -11,7 +11,7 @@ to support gang-scheduling in Kubeflow, to allow jobs to run multiple pods at th
 
 ## Running jobs with gang-scheduling
 
-Training Operator and MPI Operator support running jobs with gang-scheduling using Kueue, Volcano Scheduler,
+The Training Operator and the MPI Operator support running jobs with gang-scheduling using Kueue, Volcano Scheduler,
 and Scheduler Plugins with coscheduling.
 
 ### Using Kueue with Training Operator Jobs
@@ -21,8 +21,8 @@ with Training Operator Jobs and manage queues for your ML training jobs
 
 ### Scheduler Plugins with coscheduling
 
-You have to install the Scheduler Plugins with coscheduling in your cluster first as a default scheduler or a secondary scheduler of Kubernetes and
-configure operator to select the scheduler name for gang-scheduling in the following:
+You have to install the Scheduler Plugins with coscheduling in your cluster first as the default scheduler or a secondary scheduler of Kubernetes and
+configure the operator to select the scheduler name for gang-scheduling in the following:
 
 - training-operator
 
@@ -68,14 +68,14 @@ configure operator to select the scheduler name for gang-scheduling in the follo
 ...
 ```
 
-- Follow to [instructions in the kubernetes-sigs/scheduler-plugins repository](https://github.com/kubernetes-sigs/scheduler-plugins/blob/2502825c671063af5b2aa78a1d34b24917f2def4/doc/install.md#install-release-v0249-and-use-coscheduling)
+- Follow the [instructions in the kubernetes-sigs/scheduler-plugins repository](https://github.com/kubernetes-sigs/scheduler-plugins/blob/2502825c671063af5b2aa78a1d34b24917f2def4/doc/install.md#install-release-v0249-and-use-coscheduling)
   to install the Scheduler Plugins with coscheduling.
 
-**Note:** Scheduler Plugins and operator in Kubeflow achieve gang-scheduling by using [PodGroup](https://github.com/kubernetes-sigs/scheduler-plugins/blob/2502825c671063af5b2aa78a1d34b24917f2def4/pkg/coscheduling/README.md#podgroup).
-Operator will create the PodGroup of the job automatically.
+**Note:** The Scheduler Plugins and operator in Kubeflow achieve gang-scheduling by using [PodGroup](https://github.com/kubernetes-sigs/scheduler-plugins/blob/2502825c671063af5b2aa78a1d34b24917f2def4/pkg/coscheduling/README.md#podgroup).
+The Operator will create the PodGroup of the job automatically.
 
-If you install Scheduler Plugins in your cluster as a secondary scheduler,
-you need to specify the scheduler name in CustomJob resources (e.g., TFJob), for example:
+If you install the Scheduler Plugins in your cluster as a secondary scheduler,
+you need to specify the scheduler name in the CustomJob resources (e.g., TFJob), for example:
 
 ```diff
 apiVersion: "kubeflow.org/v1"
@@ -99,12 +99,12 @@ spec:
                 - "/var/tf_mnist/mnist_with_summaries.py"
 ```
 
-In installing Scheduler Plugins as a default scheduler, you don't need to specify the scheduler name in CustomJob resources (e.g., TFJob).
+If you install the Scheduler Plugins as a default scheduler, you don't need to specify the scheduler name in CustomJob resources (e.g., TFJob).
 
 ### Volcano Scheduler
 
 You have to install volcano scheduler in your cluster first as a secondary scheduler of Kubernetes and
-configure operator to select the scheduler name for gang-scheduling in the following:
+configure the operator to select the scheduler name for gang-scheduling in the following:
 
 - training-operator
 
@@ -137,7 +137,7 @@ configure operator to select the scheduler name for gang-scheduling in the follo
 
 - Follow the [instructions in the volcano repository](https://github.com/volcano-sh/volcano) to install Volcano.
 
-**Note:** Volcano scheduler and operator in Kubeflow achieve gang-scheduling by using [PodGroup](https://volcano.sh/en/docs/podgroup/).
+**Note:** Volcano scheduler and the operator in Kubeflow achieve gang-scheduling by using [PodGroup](https://volcano.sh/en/docs/podgroup/).
 Operator will create the PodGroup of the job automatically.
 
 The yaml to use volcano scheduler to schedule your job as a gang is the same as non-gang-scheduler, for example:
@@ -199,20 +199,20 @@ spec:
 
 ## About gang-scheduling
 
-With using Volcano Scheduler or Scheduler Plugins with coscheduling to apply gang-scheduling,
+When using Volcano Scheduler or the Scheduler Plugins with coscheduling to apply gang-scheduling,
 a job can run only if there are enough resources for all the pods of the job.
-Otherwise, all the pods will be in pending state waiting for enough resources.
+Otherwise, all of the pods will be in a pending state waiting for enough resources.
 For example, if a job requiring N pods is created and there are only enough resources to schedule N-2 pods,
 then N pods of the job will stay pending.
 
-**Note:** when in a high workload, if a pod of the job dies when the job is still running,
+**Note:** when under high workloads, if a pod of the job dies when the job is still running,
 it might give other pods a chance to occupy the resources and cause deadlock.
 
 ## Troubleshooting
 
 If you keep getting problems related to RBAC in your volcano scheduler.
 
-You can try to add the following rules into your clusterrole of scheduler used by volcano scheduler.
+You can try to add the following rules into your clusterrole of scheduler used by the volcano scheduler.
 
 ```
 - apiGroups:
