@@ -8,7 +8,7 @@ This guide describes
 [the Katib Config](https://github.com/kubeflow/katib/blob/19268062f1b187dde48114628e527a2a35b01d64/manifests/v1beta1/installs/katib-standalone/katib-config.yaml) —
 the main configuration file for every Katib component. We use Kubernetes
 [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) to
-fetch that config into [the Katib control plane components](/docs/components/katib/installation/#installing-control-plane).
+fetch that config into [the Katib control plane components](/docs/components/katib/installation/#katib-control-plane-components).
 
 The ConfigMap must be deployed in the
 [`KATIB_CORE_NAMESPACE`](/docs/components/katib/user-guides/env-variables/#katib-controller)
