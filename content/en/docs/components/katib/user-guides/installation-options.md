@@ -6,7 +6,7 @@ weight = 90
 
 Katib offers a few installation options to install control plane. This page describes the options
 and the features available with each option. Check
-[the installation guide](/docs/components/katib/installation/#katib-control-plane-components) to
+[the installation guide](/docs/components/katib/installation/#installing-control-plane) to
 understand the Katib control plane components.
 
 ## The Default Katib Standalone Installation
