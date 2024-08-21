@@ -343,16 +343,16 @@ try out the end-to-end Kubeflow Platform capabilities.
 Users may choose to install the manifests for a specific Kubeflow version by following the
 instructions in the `README` of the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
 
+- [**Kubeflow 1.9:**](/docs/releases/kubeflow-1.9/)
+  - [`v1.9-branch`](https://github.com/kubeflow/manifests/tree/v1.9-branch#installation) <sup>(development branch)</sup>
+  - [`v1.9.0`](https://github.com/kubeflow/manifests/tree/v1.9.0#installation)
 - [**Kubeflow 1.8:**](/docs/releases/kubeflow-1.8/)
   - [`v1.8-branch`](https://github.com/kubeflow/manifests/tree/v1.8-branch#installation) <sup>(development branch)</sup>
   - [`v1.8.1`](https://github.com/kubeflow/manifests/tree/v1.8.1#installation)
-- [**Kubeflow 1.7:**](/docs/releases/kubeflow-1.7/)
-  - [`v1.7-branch`](https://github.com/kubeflow/manifests/tree/v1.7-branch#installation) <sup>(development branch)</sup>
-  - [`v1.7.0`](https://github.com/kubeflow/manifests/tree/v1.7.0#installation)
 
 {{% alert title="Warning" color="warning" %}}
 The Kubeflow manifests provide a quick way to get a minimum viable Kubeflow Platform up and running.
-The Kubeflow community support for Kubeflow manifests is only best-effort, non-commercial and not guaranteed for environment-specific issues or custom configurations. 
+The Kubeflow community support for Kubeflow manifests is only best-effort, non-commercial and not guaranteed for environment-specific issues or custom configurations.
 Nevertheless, we welcome contributions and bug reports very much.
 For commercial production-level usage and support there are many options. You can use a third-party commercial distribution, hire consultants or build up the knowledge yourself to maintain and extend your Kubeflow installation.
 {{% /alert %}}
