@@ -582,10 +582,18 @@ nav.foldable-nav {
   color: $secondary;
 }
 
-// make the "btn-primary" lighter within the table
-.distributions-table .btn-primary {
-    background: #5e8df6 linear-gradient(180deg,#7aa1f7, #5e8df6) repeat-x;
-    border-color: #5e8df6;
+// create new colors for the distribution "kubeflow version" buttons
+.btn-kf-version-current {
+    color: #fff;
+    background: #6ca1ff linear-gradient(180deg, #7aaaff, #6ca1ff) repeat-x;
+    border-color: #6ca1ff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.btn-kf-version-legacy {
+    color: #fff;
+    background: #b9c0c7 linear-gradient(180deg, #c7ccd2, #b9c0c7) repeat-x;
+    border-color: #b9c0c7;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 // --------------------------------------------------
