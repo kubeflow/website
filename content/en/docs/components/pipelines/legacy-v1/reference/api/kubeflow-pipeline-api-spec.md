@@ -2,8 +2,6 @@
 title = "Pipelines API Reference (v1beta1)"
 description = "API Reference for Kubeflow Pipelines API - v1beta1"
 weight = 3
-
-swaggerui = true
 +++
 
 {{% alert title="Old Version" color="warning" %}}

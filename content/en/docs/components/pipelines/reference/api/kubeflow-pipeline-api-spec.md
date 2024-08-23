@@ -2,8 +2,6 @@
 title = "Pipelines API Reference (v2beta1)"
 description = "API Reference for Kubeflow Pipelines API - v2beta1"
 weight = 3
-
-swaggerui = true
 +++
 
 This document describes the API specification for the `v2beta1` Kubeflow Pipelines REST API.

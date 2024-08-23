@@ -1,0 +1,76 @@
+{{ .Page.Store.Set "hasPopper" true }}
+{{- $version_full := replaceRE `\s` "" .Inner }}
+{{- $version_short := replaceRE `^(\d+)\.(\d+)\.(\d+).*` `$1.$2` $version_full }}
+
+{{- $latest_release_json_path := "release-info/latest.json" }}
+{{- $latest_release_json := .Page.Resources.Get $latest_release_json_path }}
+{{- if not $latest_release_json }}
+  {{- errorf `Failed to get "latest" release info, no file at %q.` $latest_release_json_path }}
+{{- end }}
+{{- $latest_release := $latest_release_json | transform.Unmarshal }}
+{{- $latest_release_full := $latest_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$1.$2.$3` }}
+{{- $latest_release_major := $latest_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$1` | int  }}
+{{- $latest_release_minor := $latest_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$2` | int  }}
+
+{{- $this_release_json_path := printf "release-info/v%s.json" $version_full }}
+{{- $this_release_json := .Page.Resources.Get $this_release_json_path }}
+{{- if not $this_release_json }}
+  {{- errorf "Failed to get release info for version %q, no file at %q. !!!! TIP: use 'get_new_releases.sh' to update Kubeflow release information !!!!" $version_full $this_release_json_path $version_full }}
+{{- end }}
+{{- $this_release := $this_release_json | transform.Unmarshal }}
+{{- $this_release_major := $this_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$1` | int }}
+{{- $this_release_minor := $this_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$2` | int }}
+{{- $this_release_date := $this_release.publish_date | time.AsTime }}
+{{- $this_release_date_string := $this_release_date | time.Format ":date_long" }}
+
+{{- $this_version_lag := sub $latest_release_minor $this_release_minor }}
+{{- $popup_content_prefix := printf "This distribution includes Kubeflow %s which was released on <strong>%s</strong> and is <strong>%d</strong> minor versions behind the latest release." $version_full $this_release_date_string $this_version_lag }}
+
+{{- $button_style := "" }}
+{{- $popup_icon := "" }}
+{{- $popup_title := "" }}
+{{- $popup_content :=  "" }}
+{{- if eq $this_version_lag 0 }}
+  {{- $button_style = "btn-primary" }}
+  {{- $popup_icon = "" }}
+  {{- $popup_title = "Version Info" }}
+  {{- $popup_content = printf `%s<br><br>This distribution is currently considered up-to-date.` $popup_content_prefix }}
+{{- else if eq $this_version_lag 1 }}
+  {{- $button_style = "btn-primary" }}
+  {{- $popup_icon = "" }}
+  {{- $popup_title = "Version Info" }}
+  {{- $popup_content = printf `%s<br><br>Reach out to the maintainers if you are interested in Kubeflow %s support.` $popup_content_prefix $latest_release_full }}
+{{- else if eq $this_version_lag 2 }}
+  {{- $button_style = "btn-info" }}
+  {{- $popup_icon = "fa-solid fa-triangle-exclamation" }}
+  {{- $popup_title = "Version Warning" }}
+  {{- $popup_content = printf `%s<br><br>You may wish to confirm this distribution is still supported by its maintainers.` $popup_content_prefix }}
+{{- else }}
+  {{- $button_style = "btn-info" }}
+  {{- $popup_icon = "fa-solid fa-skull" }}
+  {{- $popup_title = "Version Warning" }}
+  {{- $popup_content = printf `%s<br><br>This distribution may no longer be supported by its maintainers.` $popup_content_prefix }}
+{{- end }}
+
+<button
+  type="button"
+  class="btn btn-sm {{ $button_style }}"
+  data-container="body"
+  data-placement="right"
+  data-toggle="popover"
+  data-trigger="hover focus"
+  data-html="true"
+  title="{{ $popup_title }}"
+  data-content="{{ $popup_content }}"
+>
+  {{- if $popup_icon }}
+  <i class="fas {{ $popup_icon }}"></i>
+  {{- end }}
+  <span>
+    {{- if eq $this_version_lag 0 }}
+    <strong>{{ $version_short }}</strong>
+    {{- else }}
+    {{ $version_short }}
+    {{- end }}
+  </span>
+</button>

@@ -582,6 +582,12 @@ nav.foldable-nav {
   color: $secondary;
 }
 
+// make the "btn-primary" lighter within the table
+.distributions-table .btn-primary {
+    background: #5e8df6 linear-gradient(180deg,#7aa1f7, #5e8df6) repeat-x;
+    border-color: #5e8df6;
+}
+
 // --------------------------------------------------
 // 404 page
 // --------------------------------------------------
