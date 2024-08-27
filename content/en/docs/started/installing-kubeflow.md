@@ -133,7 +133,7 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
       </tr>
       <tr>
         <td>
-          <a href="/docs/components/training/installation/#installing-training-operator">
+          <a href="/docs/components/training/installation/#installing-the-training-operator">
             Kubeflow Training Operator
           </a>
         </td>

@@ -1,17 +1,17 @@
 +++
-title = "LLM Fine-Tuning with Training Operator"
-description = "Why Training Operator needs fine-tuning API"
+title = "LLM Fine-Tuning with the Training Operator"
+description = "Why the Training Operator needs the fine-tuning API"
 weight = 10
 +++
 
 {{% alert title="Warning" color="warning" %}}
-This feature is in **alpha** stage and Kubeflow community is looking for your feedback. Please
-share your experience using [#kubeflow-training-operator Slack channel](https://kubeflow.slack.com/archives/C985VJN9F)
+This feature is in **alpha** stage and the Kubeflow community is looking for your feedback. Please
+share your experience using the [#kubeflow-training Slack channel](/docs/about/community/#kubeflow-slack-channels)
 or [Kubeflow Training Operator GitHib](https://github.com/kubeflow/training-operator/issues/new).
 {{% /alert %}}
 
-This page explains how [Training Operator fine-tuning API](/docs/components/training/user-guides/fine-tuning)
-fits into Kubeflow ecosystem.
+This page explains how the [Training Operator fine-tuning API](/docs/components/training/user-guides/fine-tuning)
+fits into the Kubeflow ecosystem.
 
 In the rapidly evolving landscape of machine learning (ML) and artificial intelligence (AI),
 the ability to fine-tune pre-trained models represents a significant leap towards achieving custom
@@ -22,23 +22,23 @@ to particular applications. Whether you're working in natural language processin
 image classification, or another ML domain, fine-tuning can drastically improve performance and
 applicability of pre-existing models to new datasets and problems.
 
-## Why Training Operator Fine-Tune API Matter ?
+## Why does the Training Operator's Fine-Tuning API Matter ?
 
-Training Operator Python SDK introduction of Fine-Tune API is a game-changer for ML practitioners
-operating within the Kubernetes ecosystem. Historically, Training Operator has streamlined the
+The introduction of the Fine-Tuning API in the Training Operator is a game-changer for ML practitioners
+operating within the Kubernetes ecosystem. Historically, the Training Operator has streamlined the
 orchestration of ML workloads on Kubernetes, making distributed training more accessible. However,
 fine-tuning tasks often require extensive manual intervention, including the configuration of
-training environments and the distribution of data across nodes. The Fine-Tune API aim to simplify
+training environments and the distribution of data across nodes. The Fine-Tuning API aims to simplify
 this process, offering an easy-to-use Python interface that abstracts away the complexity involved
 in setting up and executing fine-tuning tasks on distributed systems.
 
-## The Rationale Behind Kubeflow's Fine-Tune API
+## The Rationale Behind Kubeflow's Fine-Tuning API
 
-Implementing Fine-Tune API within Training Operator is a logical step in enhancing the platform's
+Implementing the Fine-Tuning API within the Training Operator is a logical step in enhancing the platform's
 capabilities. By providing this API, Training Operator not only simplifies the user experience for
 ML practitioners but also leverages its existing infrastructure for distributed training.
 This approach aligns with Kubeflow's mission to democratize distributed ML training, making it more
-accessible and less cumbersome for users. The API facilitate a seamless transition from model
+accessible and less cumbersome for users. The API facilitates a seamless transition from model
 development to deployment, supporting the fine-tuning of LLMs on custom datasets without the need
 for extensive manual setup or specialized knowledge of Kubernetes internals.
 

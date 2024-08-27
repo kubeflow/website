@@ -14,7 +14,7 @@ The MPI Operator, `MPIJob`, makes it easy to run allreduce-style distributed tra
 **Note**: `MPIJob` doesn’t work in a user namespace by default because of
 Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection).
 In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"`
-to disable it for either `MPIJob` pods or namespace.
+to disable it for either the `MPIJob` pods or namespace.
 To view an example of how to add this annotation to your `yaml` file,
 see the [`TFJob` documentation](/docs/components/training/user-guides/tensorflow/).
 
@@ -117,7 +117,7 @@ In addition, those fields are passed to the PodGroup for the volcano or the cosc
 - `.spec.runPolicy.schedulingPolicy.scheduleTimeutSeconds` defines the maximal time of members to wait before run the PodGroup.
   However, iff you use the coscheduling plugin as a gang scheduler, this is passed to `.spec.scheduleTimeutSeconds`.
 
-Also, if you don't set the fields, mpi-operator populates them based on the following:
+Also, if you don't set the fields, the MPI Operator populates them based on the following:
 
 volcano:
 
@@ -295,7 +295,7 @@ For example `kube_pod_info * on(pod,namespace) group_left label_replace(mpi_oper
 
 ## Docker Images
 
-We push Docker images of [mpioperator on Dockerhub](https://hub.docker.com/u/mpioperator) for every release.
+We push Docker images of the [mpioperator on Dockerhub](https://hub.docker.com/u/mpioperator) for every release.
 You can use the following Dockerfile to build the image yourself:
 
 - [mpi-operator](https://github.com/kubeflow/mpi-operator/blob/master/Dockerfile)

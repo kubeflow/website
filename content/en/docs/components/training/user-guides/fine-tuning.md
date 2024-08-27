@@ -1,27 +1,27 @@
 +++
 title = "How to Fine-Tune LLMs with Kubeflow"
-description = "Overview of LLM fine-tuning API in Training Operator"
+description = "Overview of the LLM fine-tuning API in the Training Operator"
 weight = 10
 +++
 
 {{% alert title="Warning" color="warning" %}}
-This feature is in **alpha** stage and Kubeflow community is looking for your feedback. Please
-share your experience using [#kubeflow-training-operator Slack channel](https://kubeflow.slack.com/archives/C985VJN9F)
-or [Kubeflow Training Operator GitHub](https://github.com/kubeflow/training-operator/issues/new).
+This feature is in **alpha** stage and the Kubeflow community is looking for your feedback. Please
+share your experience using the [#kubeflow-training Slack channel](https://cloud-native.slack.com/archives/C0742LDFZ4K)
+or the [Kubeflow Training Operator GitHub](https://github.com/kubeflow/training-operator/issues/new).
 {{% /alert %}}
 
-This page describes how to use a [`train` API from Training Python SDK](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/training/api/training_client.py#L112) that simplifies the ability to fine-tune LLMs with
-distributed PyTorchJob workers.
+This page describes how to use a [`train` API from the Training Python SDK](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/training/api/training_client.py#L112)
+that simplifies the ability to fine-tune LLMs with distributed PyTorchJob workers.
 
-If you want to learn more about how the fine-tuning API fit in the Kubeflow ecosystem, head to
-[explanation guide](/docs/components/training/explanation/fine-tuning).
+If you want to learn more about how the fine-tuning API fits in the Kubeflow ecosystem, head to
+the [explanation guide](/docs/components/training/explanation/fine-tuning).
 
 ## Prerequisites
 
-You need to install Training Python SDK [with fine-tuning support](/docs/components/training/installation/#install-python-sdk-with-fine-tuning-capabilities)
+You need to install the Training Python SDK [with fine-tuning support](/docs/components/training/installation/#install-the-python-sdk-with-fine-tuning-capabilities)
 to run this API.
 
-## How to use Fine-Tuning API ?
+## How to use the Fine-Tuning API?
 
 You need to provide the following parameters to use the `train` API:
 
@@ -30,8 +30,8 @@ You need to provide the following parameters to use the `train` API:
 - Trainer parameters.
 - Number of PyTorch workers and resources per workers.
 
-For example, you can use `train` API as follows to fine-tune BERT model using Yelp Review dataset
-from HuggingFace Hub:
+For example, you can use the `train` API to fine-tune the BERT model using the Yelp Review dataset
+from HuggingFace Hub with the code below:
 
 ```python
 import transformers
@@ -84,14 +84,14 @@ TrainingClient().train(
 )
 ```
 
-After you execute `train`, Training Operator will orchestrate appropriate PyTorchJob resources
-to fine-tune LLM.
+After you execute `train`, the Training Operator will orchestrate the appropriate PyTorchJob resources
+to fine-tune the LLM.
 
 ## Next Steps
 
-- Run example to [fine-tune TinyLlama LLM](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/examples/pytorch/language-modeling/train_api_hf_dataset.ipynb)
+- Run the example to [fine-tune the TinyLlama LLM](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/examples/pytorch/language-modeling/train_api_hf_dataset.ipynb)
 
-- Check this example to compare `create_job` and `train` Python API for
+- Check this example to compare the `create_job` and the `train` Python API for
   [fine-tuning BERT LLM](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/examples/pytorch/text-classification/Fine-Tune-BERT-LLM.ipynb).
 
 - Understand [the architecture behind `train` API](/docs/components/training/reference/fine-tuning).

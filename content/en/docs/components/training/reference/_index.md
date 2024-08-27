@@ -1,5 +1,5 @@
 +++
 title = "Reference"
-description = "Reference docs for Training Operator"
+description = "Reference docs for the Training Operator"
 weight = 50
 +++
