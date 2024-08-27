@@ -1,83 +1,150 @@
 +++
 title = "Run a Pipeline"
 description = "Execute a pipeline on the KFP backend"
-weight = 1
+weight = 100
 +++
 
 {{% kfp-v2-keywords %}}
 
-The KFP offers three ways to run a pipeline.
+## Overview
 
-## 1. Run from the KFP Dashboard
+Kubeflow Pipelines (KFP) provides several ways to trigger a pipeline run:
+
+1. [__KFP Dashboard__](#run-pipeline---kfp-dashboard)
+2. [__KFP SDK Client__](#run-pipeline---kfp-sdk-client)
+3. [__KFP CLI__](#run-pipeline---kfp-cli)
+
+{{% alert title="Tip" color="info" %}}
+This guide only covers how to trigger an immediate pipeline run. 
+For more advanced scheduling options please see the "Recurring Runs" section of the dashboard and API.
+{{% /alert %}}
+
+## Run Pipeline - KFP Dashboard
+
 The first and easiest way to run a pipeline is by submitting it via the KFP dashboard.
 
-To submit a pipeline to the KFP Dashboard:
+To submit a pipeline for an immediate run:
 
-1. [Compile the pipeline][compile-a-pipeline] to IR YAML.
+1. [Compile a pipeline][compile-a-pipeline] to IR YAML.
 
-2.  From the Dashboard, select "+ Upload pipeline".
+2. From the "Pipelines" tab in the dashboard, select `+ Upload pipeline`:
 
-<img src="/docs/images/pipelines/submit-a-pipeline-on-dashboard.png" 
-  alt="Upload pipeline button"
-  class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/images/pipelines/submit-a-pipeline-on-dashboard.png" 
+        alt="Upload pipeline button"
+        class="mt-3 mb-3 border border-info rounded">
 
-3. Upload the pipeline IR YAML file or an archived pipeline as a .zip or .tar.gz file, populate the upload pipeline form, and click “Create”.
+3. Upload the pipeline `.yaml`, `.zip` or `.tar.gz` file, populate the upload form, then click `Create`.
 
-<img src="/docs/images/pipelines/upload-a-pipeline.png" 
-  alt="Upload pipeline screen"
-  class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/images/pipelines/upload-a-pipeline.png" 
+        alt="Upload pipeline screen" 
+        class="mt-3 mb-3 border border-info rounded">
 
-4. From the Runs tab, select "+ Create run":
+4. From the "Runs" tab, select `+ Create run`:
 
-<img src="/docs/images/pipelines/create-run.png" 
-  alt="Create run button"
-  class="mt-3 mb-3 border border-info rounded">
+   <img src="/docs/images/pipelines/create-run.png" 
+        alt="Create run button"
+        class="mt-3 mb-3 border border-info rounded">
 
-5. Choose the pipeline you uploaded, provide a name, any run parameters, and click "Start".
-<img src="/docs/images/pipelines/start-a-run.png" 
-  alt="Start a run screen"
-  class="mt-3 mb-3 border border-info rounded">
+5. Select the pipeline you want to run, populate the run form, then click `Start`:
 
+   <img src="/docs/images/pipelines/start-a-run.png" 
+        alt="Start a run screen"
+        class="mt-3 mb-3 border border-info rounded">
 
-## 2. Run from the KFP SDK client
-You may also programatically submit pipeline runs from the KFP SDK client. The client supports two ways of submitting runs: from IR YAML or from a Python pipeline function. For either approach, start by instantiating a `Client` using the `host` URL of your KFP instance:
+## Run Pipeline - KFP SDK Client
 
-```python
-from kfp.client import Client
-client = Client(host='<YOUR_HOST_URL>')
-```
+You may also programmatically submit pipeline runs from the KFP SDK client. 
+The client supports two ways of submitting runs: _from IR YAML_ or _from a Python pipeline function_. 
 
-To submit IR YAML for execution use the `.create_run_from_pipeline_package` method:
+{{% alert title="Note" color="dark" %}}
+See the [Connect the SDK to the API](/docs/components/pipelines/user-guides/core-functions/connect-api/) guide for more information about creating a KFP client.
+{{% /alert %}}
 
-```python
-client.create_run_from_pipeline_package('pipeline.yaml', arguments={'param': 'a', 'other_param': 2})
-```
-
-To submit a Python pipeline function for execution use the `.create_run_from_pipeline_func` convenience method, which wraps compilation and run submission into one method:
+For either approach, start by instantiating a [`kfp.Client()`][kfp-client]:
 
 ```python
-client.create_run_from_pipeline_func(pipeline_func, arguments={'param': 'a', 'other_param': 2})
+import kfp
+
+# TIP: you may need to authenticate with the KFP instance
+kfp_client = kfp.Client()
 ```
 
-See the [KFP SDK Client reference documentation][kfp-sdk-api-ref-client] for a detailed description of the `Client` constructor and method parameters.
+To submit __IR YAML__ for execution use the [`.create_run_from_pipeline_package()`][kfp-client-create_run_from_pipeline_package] method:
 
-## 3. Run from the KFP SDK CLI
-The `kfp run create` command allows you to submit a pipeline from the command line. `kfp run create --help` shows that this command takes the form:
+```python
+#from kfp import compiler, dsl
+#
+#@dsl.component
+#def add(a: float, b: float) -> float:
+#   return a + b
+#
+#@dsl.pipeline(name="Add two Numbers")
+#def add_pipeline(a: float, b: float):
+#   add_task = add(a=a, b=b)
+#
+#compiler.Compiler().compile(
+#    add_pipeline, 
+#    package_path="./add-pipeline.yaml"
+#)
+
+kfp_client.create_run_from_pipeline_package(
+    "./add-pipeline.yaml", 
+    arguments={
+        "a": 1,
+        "b": 2,
+    }
+)
+```
+
+To submit a python __pipeline function__ for execution use the [`.create_run_from_pipeline_func()`][kfp-client-create_run_from_pipeline_func] convenience method, which wraps compilation and run submission into one method:
+
+```python
+#from kfp import dsl
+#
+#@dsl.component
+#def add(a: float, b: float) -> float:
+#    return a + b
+#
+#@dsl.pipeline(name="Add two Numbers")
+#def add_pipeline(a: float, b: float):
+#    add_task = add(a=a, b=b)
+
+kfp_client.create_run_from_pipeline_func(
+    add_pipeline,
+    arguments={
+        "a": 1,
+        "b": 2,
+    }
+)
+```
+
+## Run Pipeline - KFP CLI
+
+The [`kfp run create`][kfp-cli-run-create] command allows you to submit a pipeline from the command line. 
+
+Here is the output of `kfp run create --help`:
 
 ```shell
 kfp run create [OPTIONS] [ARGS]...
 ```
 
-For example, the following command submits the `path/to/pipeline.yaml` IR YAML to the KFP backend:
+For example, the following command submits the `./path/to/pipeline.yaml` IR YAML to the KFP backend:
 
 ```shell
-kfp run create --experiment-name my-experiment --package-file path/to/pipeline.yaml
+kfp run create \
+  --experiment-name "my-experiment" \
+  --package-file "./path/to/pipeline.yaml"
 ```
 
-For more information about the `kfp run create` command, see [Command Line Interface][kfp-run-create-reference-docs] in the [KFP SDK reference documentation][kfp-sdk-api-ref]. For a summary of the available commands in the KFP CLI, see [Command-line Interface][kfp-cli].
+For more information about the `kfp` CLI, please see:
 
-[kfp-sdk-api-ref]: https://kubeflow-pipelines.readthedocs.io/en/master/index.html
+- [Use the CLI][use-the-cli]
+- [CLI Reference][kfp-cli]
+
 [compile-a-pipeline]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/
-[kfp-sdk-api-ref-client]: https://kubeflow-pipelines.readthedocs.io/en/master/source/client.html
-[kfp-cli]: /docs/components/pipelines/user-guides/core-functions/cli/
-[kfp-run-create-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/master/source/cli.html#kfp-run-create
+[use-the-cli]: /docs/components/pipelines/user-guides/core-functions/cli/
+[kfp-cli]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/cli.html
+[kfp-cli-run-create]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/cli.html#kfp-run-create
+[kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/client.html#kfp.client.Client
+[kfp-client-create_run_from_pipeline_func]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/client.html#kfp.client.Client.create_run_from_pipeline_func
+[kfp-client-create_run_from_pipeline_package]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/client.html#kfp.client.Client.create_run_from_pipeline_package

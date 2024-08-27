@@ -39,7 +39,7 @@ wget -O ${PIPELINE_FILE} ${PIPELINE_URL}
 dsl-compile --py ${PIPELINE_FILE} --output ${PIPELINE_NAME}.tar.gz
 ```
 
-After running the commands above, you should get two files in your current directory: `sequential.py` and `sequential.tar.gz`. Run the following command to deploy the generated `.tar.gz` file as you would do using the [Kubeflow Pipelines UI](/docs/components/pipelines/user-guides/core-functions/run-a-pipeline/#1-run-from-the-kfp-dashboard), but this time using the REST API.
+After running the commands above, you should get two files in your current directory: `sequential.py` and `sequential.tar.gz`. Run the following command to deploy the generated `.tar.gz` file as you would do using the [Kubeflow Pipelines UI](/docs/components/pipelines/user-guides/core-functions/run-a-pipeline/#run-pipeline---kfp-dashboard), but this time using the REST API.
 
 ```
 SVC=localhost:8888
