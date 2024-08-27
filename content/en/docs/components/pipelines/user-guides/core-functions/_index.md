@@ -1,5 +1,5 @@
 +++
 title = "Core Functions"
-description = "Documentation for users of Kubeflow Pipelines."
+description = "Learn about the core functions of Kubeflow Pipelines."
 weight = 2
 +++

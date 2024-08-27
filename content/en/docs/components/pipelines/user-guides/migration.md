@@ -1,258 +1,77 @@
 +++
-title = "Migrate from KFP SDK v1"
-description = "v1 to v2 migration instructions and breaking changes"
+title = "Migrate to Kubeflow Pipelines v2"
+description = "Migrate to the new Kubeflow Pipelines v2 backend and SDK."
 weight = 1
 +++
 
 {{% kfp-v2-keywords %}}
 
-If you have existing KFP pipelines, either compiled to [Argo Workflow][argo] (using the SDK v1 main namespace) or to [IR YAML][ir-YAML] (using the SDK v1 v2-namespace), you can run these pipelines on the new [KFP v2 backend][oss-be-v2] without any changes.
+## Overview 
 
-If you wish to author new pipelines, there are some recommended and required steps to migrate your pipeline authoring code to the KFP SDK v2.
+Kubeflow Pipelines V2 is a significant update to the Kubeflow Pipelines (KFP) platform.
+
+The key features introduced by KFP V2 are:
+
+- A more pythonic SDK - use decorators like ([`@dsl.pipeline`][dsl-pipeline], [`@dsl.component`][dsl-component], [`@dsl.container_component`][dsl-container-component])
+- Decouple from Argo Workflows - compile pipelines to a generic [IR YAML][ir-yaml] rather than Argo `Workflow` YAML
+- Enhanced Workflow GUI - visualize pipelines, sub-DAGs (nested pipelines), loops, and artifacts (datasets, models, and metrics) to understand and debug your pipelines
+
+## Version Matrix
+
+The first version of [Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform) to include the Kubeflow Pipelines V2 backend was [Kubeflow 1.8](/docs/releases/kubeflow-1.8/).
+
+The following table shows which versions of KFP backend are included in each version of Kubeflow Platform:
+
+Release Date | Kubeflow Platform Version | KFP Backend Version | SDK Mode: [`v1`](/docs/components/pipelines/legacy-v1/sdk/) | SDK Mode: [`v2`](/docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/) | SDK Mode: [`v2-compatible`](https://v1-7-branch.kubeflow.org/docs/components/pipelines/v1/sdk-v2/)
+--- | --- | --- | --- | --- | ---
+2024-07-22 | [Kubeflow 1.9](/docs/releases/kubeflow-1.9/) | [2.2.0](https://github.com/kubeflow/pipelines/releases/tag/2.2.0) | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-xmark"></i>
+2023-11-01 | [Kubeflow 1.8](/docs/releases/kubeflow-1.8/) | [2.0.3](https://github.com/kubeflow/pipelines/releases/tag/2.0.3) | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-xmark"></i>
+2023-03-29 | [Kubeflow 1.7](/docs/releases/kubeflow-1.7/) | [2.0.0-alpha.7](https://github.com/kubeflow/pipelines/releases/tag/2.0.0-alpha.7) | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-xmark"></i> | <i class="fa-solid fa-check"></i> 
+2022-10-10 | [Kubeflow 1.6](/docs/releases/kubeflow-1.6/) | [2.0.0-alpha.5](https://github.com/kubeflow/pipelines/releases/tag/2.0.0-alpha.5) | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-xmark"></i> | <i class="fa-solid fa-check"></i> 
+2022-06-15 | [Kubeflow 1.5](/docs/releases/kubeflow-1.5/) | [1.8.2](https://github.com/kubeflow/pipelines/releases/tag/1.8.2)  | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-xmark"></i> | <i class="fa-solid fa-xmark"></i>
+
+## Backward Compatibility
+
+If you have existing KFP Pipelines that you compiled with the V1 SDK, you can run them on the new KFP V2 backend without any changes.
+If you wish to author new pipelines, there are some recommended and required steps to migrate which are detailed below.
+
+{{% alert title="Warning" color="warning" %}}
+Running V1 pipelines on KFP V2 requires that you compile and submit them using the V1 SDK.
+The last version of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), there will be no further releases.
+{{% /alert %}}
 
 ## Terminology
 
-- **SDK v1**: The `1.x.x` versions of the KFP SDK. `1.8` is the highest [minor version][semver-minor-version] of the v1 KFP SDK that will be released.
-- **SDK v1 v2-namespace**: Refers to the v1 KFP SDK's `v2` module (i.e., `from kfp.v2 import *`), which permits access to v2 authoring syntax and compilation to [IR YAML][ir-yaml] from the v1 SDK. You should assume that references to the v1 SDK *do not* refer to the v2-namespace unless explicitly stated. Until the release of the [v2 KFP OSS backend][oss-be-v2], these pipelines were only executable on [Google Cloud Vertex AI Pipelines][vertex-pipelines].
-- **SDK v2**: The `2.x.x` versions of the KFP SDK. Uses the v2 authoring syntax and compiles to IR YAML.
+Term | Definition
+--- | ---
+SDK v1 | The `1.x.x` versions of the [`kfp`](https://pypi.org/project/kfp/1.8.22/) Python SDK.
+SDK v2 | The `2.x.x` versions of the [`kfp`](https://pypi.org/project/kfp/) Python SDK.
+SDK v1 (v2-namespace) | The preview V2 module that was available in the V1 SDK (e.g. `from kfp.v2 import *`).<br>_Only ever used by [Google Cloud Vertex AI Pipelines][vertex-pipelines] users._
+
+## Migration Paths
+
+How you migrate to KFP V2 will depend on your current SDK version and usage.
 
 There are two common migration paths:
 
-1. If your existing `kfp==1.x.x` code imports from the `v2` namespace (i.e., `from kfp.v2 import *`), follow the [SDK v1 v2-namespace to SDK v2](#sdk-v1-v2-namespace-to-sdk-v2) migration instructions. This migration path only affects v1 SDK users that were running pipelines on [Google Cloud Vertex AI Pipelines][vertex-pipelines].
-1. If your existing `kfp==1.x.x` code imports from the main namespace (i.e., `from kfp import *`), follow the [SDK v1 to SDK v2](#sdk-v1-to-sdk-v2) migration instructions.
+1. [__SDK v1__ → __SDK v2__](#migrate-from-sdk-v1-to-sdk-v2)
+2. [__SDK v1 (v2-namespace) → SDK v2__](#migrate-from-sdk-v1-v2-namespace-to-sdk-v2)
 
-## SDK v1 v2-namespace to SDK v2
+<br>
 
-With few exceptions, KFP SDK v2 is backward compatible with user code that uses the KFP SDK v1 v2-namespace.
-
-### Non-breaking changes
-
-This section documents non-breaking changes in SDK v2 relative to the SDK v1 v2-namespace. We suggest you migrate your code to the "New usage", even though the "Previous usage" will still work with warnings.
-
-#### Import namespace
-
-KFP SDK v1 v2-namespace imports (`from kfp.v2 import *`) should be converted to imports from the primary namespace (`from kfp import *`).
-
-**Change:** Remove the `.v2` module from any KFP SDK v1 v2-namespace imports.
-
-<style>
-    th {
-        text-align: center;
-    }
-</style>
-
-<table>
-<tr>
-<th>Previous usage</th>
-<th>New usage</th>
-</tr>
-<tr>
-<td>
-
-```python
-from kfp.v2 import dsl
-from kfp.v2 import compiler
-
-@dsl.pipeline(name='my-pipeline')
-def pipeline():
-  ...
-
-compiler.Compiler().compile(...)
-```
-
-</td>
-<td>
-
-```python
-from kfp import dsl
-from kfp import compiler
-
-@dsl.pipeline(name='my-pipeline')
-def pipeline():
-  ...
-
-compiler.Compiler().compile(...)
-```
-
-</td>
-</tr>
-</table>
-
-#### output_component_file parameter
-
-In KFP SDK v2, components can be [compiled][compile] to and [loaded][load] from [IR YAML][ir-yaml] in the same way as pipelines.
-
-KFP SDK v1 v2-namespace supported compiling components via the [`@dsl.component`][dsl-component] decorator's `output_component_file` parameter. This is deprecated in KFP SDK v2. If you choose to still use this parameter, your pipeline will be compiled to [IR YAML][ir-yaml] instead of v1 component YAML.
-
-**Change:** Remove uses of `output_component_file`. Replace with a call to [`Compiler().compile()`][compiler-compile].
-
-<table>
-<tr>
-<th>Previous usage</th>
-<th>New usage</th>
-</tr>
-<tr>
-<td>
-
-```python
-from kfp.v2.dsl import component
-
-@component(output_component_file='my_component.yaml')
-def my_component(input: str):
-   ...
-```
-
-</td>
-<td>
-
-```python
-from kfp.dsl import component
-from kfp import compiler
-
-@component()
-def my_component(input: str):
-   ...
-
-compiler.Compiler().compile(my_component, 'my_component.yaml')
-```
-
-</td>
-</tr>
-</table>
-
-#### Pipeline package file extension
-
-The KFP compiler will compile your pipeline according to the extension provided to the compiler (`.yaml` or `.json`).
-
-In KFP SDK v2, YAML is the preferred serialization format.
-
-**Change:** Convert `package_path` arguments that use a `.json` extension to use a `.yaml` extension.
-
-<table>
-<tr>
-<th>Previous usage</th>
-<th>New usage</th>
-</tr>
-<tr>
-<td>
-
-```python
-from kfp.v2 import compiler
-# .json extension, deprecated format
-compiler.Compiler().compile(pipeline, package_path='my_pipeline.json')
-```
-
-</td>
-<td>
-
-```python
-from kfp import compiler
-# .yaml extension, preferred format
-compiler.Compiler().compile(pipeline, package_path='my_pipeline.yaml')
-```
-
-</td>
-</tr>
-</table>
-
-### Breaking changes
-
-There are only a few subtle breaking changes in SDK v2 relative to the SDK v1 v2-namespace.
-
-#### Drop support for Python 3.6
-
-KFP SDK v1 supported Python 3.6. KFP SDK v2 supports Python >=3.7.0,\<3.12.0.
-
-#### CLI output change
-
-The v2 [KFP CLI][cli] is more consistent, readable, and parsable. Code that parsed the v1 CLI output may fail to parse the v2 CLI output.
-
-#### .after referencing upstream task in a dsl.ParallelFor loop
-
-The following pipeline cannot be compiled in KFP SDK v2:
-
-```python
-with dsl.ParallelFor(...):
-    t1 = comp()
-t2 = comp().after(t1)
-```
-
-This usage was primarily used by KFP SDK v1 users who implemented a custom `dsl.ParallelFor` fan-in. KFP SDK v2 natively supports fan-in from [`dsl.ParallelFor`][dsl-parallelfor] using [`dsl.Collected`][dsl-collected]. See [Control Flow][parallelfor-control-flow] user docs for instructions.
-
-#### Importer component import statement
-
-The location of the `importer_node` object has changed.
-
-**Change:** Import from `kfp.dsl`.
-
-<table>
-<tr>
-<th>Previous usage</th>
-<th>New usage</th>
-</tr>
-<tr>
-<td>
-
-```python
-from kfp.components import importer_node
-```
-
-</td>
-<td>
-
-```python
-from kfp.dsl import importer_node
-```
-
-</td>
-</tr>
-</table>
-
-#### Adding node selector constraint/accelerator
-
-The task method `.add_node_selector_constraint` is deprecated in favor of `.add_node_selector_constraint`. Compared to the previous implementation of `.add_node_selector_constraint`, both methods have the `label_name` parameter removed and the `value` parameter is replaced by the parameter `accelerator`.
-
-**Change:** Use `task.set_accelerator_type(accelerator=...)`. Provide the previous `value` argument to the `accelerator` parameter. Omit the `label_name`.
-
-<table>
-<tr>
-<th>Previous usage</th>
-<th>New usage</th>
-</tr>
-<tr>
-<td>
-
-```python
-@dsl.pipeline
-def my_pipeline():
-    task.add_node_selector_constraint(
-        label_name='cloud.google.com/gke-accelerator',
-        value='NVIDIA_TESLA_A100',
-    )
-```
-
-</td>
-<td>
-
-```python
-@dsl.pipeline
-def my_pipeline():
-    task.set_accelerator_type(accelerator="NVIDIA_TESLA_K80")
-```
-
-</td>
-</tr>
-</table>
-
-## SDK v1 to SDK v2
+### **Migrate from 'SDK v1' to 'SDK v2'**
 
 KFP SDK v2 is generally not backward compatible with user code that uses the KFP SDK v1 main namespace. This section describes some of the important breaking changes and migration steps to upgrade to KFP SDK v2.
 
 We indicate whether each breaking change affects [KFP OSS backend][oss-be-v1] users or [Google Cloud Vertex AI Pipelines][vertex-pipelines] users.
 
-### Breaking changes
+#### **Breaking changes**
 
-#### create_component_from_func and func_to_container_op support
+<details>
+<summary>Click to expand</summary>
+<hr>
+
+##### **create_component_from_func and func_to_container_op support**
 
 **Affects:** KFP OSS users and Vertex AI Pipelines users
 
@@ -323,7 +142,9 @@ def pipeline():
 </tr>
 </table>
 
-#### Keyword arguments required
+---
+
+##### **Keyword arguments required**
 
 **Affects:** KFP OSS users and Vertex AI Pipelines users
 
@@ -356,8 +177,9 @@ def my_pipeline():
 </tr>
 </table>
 
+---
 
-#### ContainerOp support
+##### **ContainerOp support**
 
 **Affects:** KFP OSS users
 
@@ -403,7 +225,9 @@ def flip_coin(rand: int, result: dsl.OutputPath(str)):
 </tr>
 </table>
 
-#### VolumeOp and ResourceOp support
+---
+
+##### **VolumeOp and ResourceOp support**
 
 **Affects:** KFP OSS users
 
@@ -411,7 +235,9 @@ def flip_coin(rand: int, result: dsl.OutputPath(str)):
 
 KFP v2 enables support for [platform-specific features](/docs/components/pipelines/user-guides/core-functions/platform-specific-features/) via KFP SDK extension libraries. Kubernetes-specific features are supported in KFP v2 via the [`kfp-kubernetes`](https://kfp-kubernetes.readthedocs.io/) extension library.
 
-#### v1 component YAML support
+---
+
+##### **v1 component YAML support**
 
 **Affects:** KFP OSS users and Vertex AI Pipelines users
 
@@ -423,7 +249,9 @@ KFP v2 will continue to support loading existing v1 component YAML using the [`c
 
 **Change:** To author components via custom image, command, and args, use the [`@dsl.container_component`][dsl-container-component] decorator as described in [Container Components][container-components]. Note that unlike when authoring v1 component YAML, Container Components do not support setting environment variables on the component itself. Environment variables should be set on the task instantiated from the component within a pipeline definition using the [`.set_env_variable`][dsl-pipelinetask-set-env-variable] task [configuration method][task-configuration-methods].
 
-#### v1 lightweight component types InputTextFile, InputBinaryFile, OutputTextFile and OutputBinaryFile support
+---
+
+##### **v1 lightweight component types InputTextFile, InputBinaryFile, OutputTextFile and OutputBinaryFile support**
 
 **Affects:** KFP OSS users and Vertex AI Pipelines users
 
@@ -433,7 +261,9 @@ KFP SDK v2 does not support authoring with these types since users can easily do
 
 **Change:** Component authors should inputs and outputs using KFP's [artifact][artifacts] and [parameter][parameters] types.
 
-#### AIPlatformClient support
+---
+
+##### **AIPlatformClient support**
 
 **Affects:** Vertex AI Pipelines users
 
@@ -489,7 +319,9 @@ job.submit()
 </tr>
 </table>
 
-#### run_as_aiplatform_custom_job support
+---
+
+##### **run_as_aiplatform_custom_job support**
 
 **Affects:** Vertex AI Pipelines users
 
@@ -541,7 +373,9 @@ def pipeline():
 </tr>
 </table>
 
-#### Typecasting behavior change
+---
+
+##### **Typecasting behavior change**
 
 **Affects:** KFP OSS users and Vertex AI Pipelines users
 
@@ -571,9 +405,274 @@ def training_pipeline(number_of_epochs: int = 1):
 
 **Change:** We recommend updating your components and pipelines to use types strictly.
 
+---
+
+</details>
+
+<br>
+<br>
+
+### **Migrate from 'SDK v1 (v2-namespace)' to 'SDK v2'**
+
+With few exceptions, KFP SDK v2 is backward compatible with user code that uses the KFP SDK v1 v2-namespace.
+
+{{% alert title="Note" color="dark" %}}
+This migration path ONLY affects v1 SDK users that were running pipelines on Google Cloud's Vertex AI Pipelines.
+{{% /alert %}}
+
+#### **Non-breaking changes**
+
+This section documents non-breaking changes in SDK v2 relative to the SDK v1 v2-namespace.
+We suggest you migrate your code to the "New usage", even though the "Previous usage" will still work with warnings.
+
+<details>
+<summary>Click to expand</summary>
+<hr>
+
+##### **Import namespace**
+
+KFP SDK v1 v2-namespace imports (`from kfp.v2 import *`) should be converted to imports from the primary namespace (`from kfp import *`).
+
+**Change:** Remove the `.v2` module from any KFP SDK v1 v2-namespace imports.
+
+<style>
+    th {
+        text-align: center;
+    }
+</style>
+
+<table>
+<tr>
+<th>Previous usage</th>
+<th>New usage</th>
+</tr>
+<tr>
+<td>
+
+```python
+from kfp.v2 import dsl
+from kfp.v2 import compiler
+
+@dsl.pipeline(name='my-pipeline')
+def pipeline():
+  ...
+
+compiler.Compiler().compile(...)
+```
+
+</td>
+<td>
+
+```python
+from kfp import dsl
+from kfp import compiler
+
+@dsl.pipeline(name='my-pipeline')
+def pipeline():
+  ...
+
+compiler.Compiler().compile(...)
+```
+
+</td>
+</tr>
+</table>
+
+---
+
+##### **output_component_file parameter**
+
+In KFP SDK v2, components can be [compiled][compile] to and [loaded][load] from [IR YAML][ir-yaml] in the same way as pipelines.
+
+KFP SDK v1 v2-namespace supported compiling components via the [`@dsl.component`][dsl-component] decorator's `output_component_file` parameter. This is deprecated in KFP SDK v2. If you choose to still use this parameter, your pipeline will be compiled to [IR YAML][ir-yaml] instead of v1 component YAML.
+
+**Change:** Remove uses of `output_component_file`. Replace with a call to [`Compiler().compile()`][compiler-compile].
+
+<table>
+<tr>
+<th>Previous usage</th>
+<th>New usage</th>
+</tr>
+<tr>
+<td>
+
+```python
+from kfp.v2.dsl import component
+
+@component(output_component_file='my_component.yaml')
+def my_component(input: str):
+   ...
+```
+
+</td>
+<td>
+
+```python
+from kfp.dsl import component
+from kfp import compiler
+
+@component()
+def my_component(input: str):
+   ...
+
+compiler.Compiler().compile(my_component, 'my_component.yaml')
+```
+
+</td>
+</tr>
+</table>
+
+---
+
+##### **Pipeline package file extension**
+
+The KFP compiler will compile your pipeline according to the extension provided to the compiler (`.yaml` or `.json`).
+
+In KFP SDK v2, YAML is the preferred serialization format.
+
+**Change:** Convert `package_path` arguments that use a `.json` extension to use a `.yaml` extension.
+
+<table>
+<tr>
+<th>Previous usage</th>
+<th>New usage</th>
+</tr>
+<tr>
+<td>
+
+```python
+from kfp.v2 import compiler
+# .json extension, deprecated format
+compiler.Compiler().compile(pipeline, package_path='my_pipeline.json')
+```
+
+</td>
+<td>
+
+```python
+from kfp import compiler
+# .yaml extension, preferred format
+compiler.Compiler().compile(pipeline, package_path='my_pipeline.yaml')
+```
+
+</td>
+</tr>
+</table>
+
+---
+
+</details>
+
+#### **Breaking changes**
+
+There are only a few subtle breaking changes in SDK v2 relative to the SDK v1 v2-namespace.
+
+<details>
+<summary>Click to expand</summary>
+<hr>
+
+##### **Drop support for Python 3.6**
+
+KFP SDK v1 supported Python 3.6. KFP SDK v2 supports Python >=3.7.0,\<3.12.0.
+
+---
+
+##### **CLI output change**
+
+The v2 [KFP CLI][cli] is more consistent, readable, and parsable. Code that parsed the v1 CLI output may fail to parse the v2 CLI output.
+
+---
+
+##### **.after referencing upstream task in a dsl.ParallelFor loop**
+
+The following pipeline cannot be compiled in KFP SDK v2:
+
+```python
+with dsl.ParallelFor(...):
+    t1 = comp()
+t2 = comp().after(t1)
+```
+
+This usage was primarily used by KFP SDK v1 users who implemented a custom `dsl.ParallelFor` fan-in. KFP SDK v2 natively supports fan-in from [`dsl.ParallelFor`][dsl-parallelfor] using [`dsl.Collected`][dsl-collected]. See [Control Flow][parallelfor-control-flow] user docs for instructions.
+
+---
+
+##### **Importer component import statement**
+
+The location of the `importer_node` object has changed.
+
+**Change:** Import from `kfp.dsl`.
+
+<table>
+<tr>
+<th>Previous usage</th>
+<th>New usage</th>
+</tr>
+<tr>
+<td>
+
+```python
+from kfp.components import importer_node
+```
+
+</td>
+<td>
+
+```python
+from kfp.dsl import importer_node
+```
+
+</td>
+</tr>
+</table>
+
+---
+
+##### **Adding node selector constraint/accelerator**
+
+The task method `.add_node_selector_constraint` is deprecated in favor of `.add_node_selector_constraint`. Compared to the previous implementation of `.add_node_selector_constraint`, both methods have the `label_name` parameter removed and the `value` parameter is replaced by the parameter `accelerator`.
+
+**Change:** Use `task.set_accelerator_type(accelerator=...)`. Provide the previous `value` argument to the `accelerator` parameter. Omit the `label_name`.
+
+<table>
+<tr>
+<th>Previous usage</th>
+<th>New usage</th>
+</tr>
+<tr>
+<td>
+
+```python
+@dsl.pipeline
+def my_pipeline():
+    task.add_node_selector_constraint(
+        label_name='cloud.google.com/gke-accelerator',
+        value='NVIDIA_TESLA_A100',
+    )
+```
+
+</td>
+<td>
+
+```python
+@dsl.pipeline
+def my_pipeline():
+    task.set_accelerator_type(accelerator="NVIDIA_TESLA_K80")
+```
+
+</td>
+</tr>
+</table>
+
+---
+
+</details>
+
+<br>
+
 ## Did we miss something?
 
-If you believe we missed a breaking change or an important migration step, please [create an issue][new-issue] describing the change in the [kubeflow/pipelines repository][pipelines-repo].
+If you believe we missed a breaking change or an important migration step, please [create an issue][new-issue] describing the change in the [`kubeflow/pipelines` repository][pipelines-repo].
 
 [artifacts]: /docs/components/pipelines/user-guides/data-handling/artifacts
 [cli]: /docs/components/pipelines/user-guides/core-functions/cli/
@@ -586,6 +685,7 @@ If you believe we missed a breaking change or an important migration step, pleas
 [dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.Collected
 [dsl-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.component
 [dsl-container-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.container_component
+[dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.pipeline
 [dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.ParallelFor
 [gcpc]: https://cloud.google.com/vertex-ai/docs/pipelines/components-introduction
 [ir-yaml]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/#ir-yaml
@@ -594,7 +694,7 @@ If you believe we missed a breaking change or an important migration step, pleas
 [new-issue]: https://github.com/kubeflow/pipelines/issues/new
 [oss-be-v1]: /docs/components/pipelines/legacy-v1/
 [oss-be-v2]: /docs/components/pipelines/operator-guides/installation/
-[parallelfor-control-flow]: /docs/components/pipelines/user-guides/core-functions/control-flow/#parallel-looping-dslparallelfor
+[parallelfor-control-flow]: /docs/components/pipelines/user-guides/core-functions/control-flow/#dslparallelfor
 [parameters]: /docs/components/pipelines/user-guides/data-handling/parameters
 [pipelines-repo]: https://github.com/kubeflow/pipelines
 [semver-minor-version]: https://semver.org/#:~:text=MINOR%20version%20when%20you%20add%20functionality%20in%20a%20backwards%20compatible%20manner
@@ -602,6 +702,5 @@ If you believe we missed a breaking change or an important migration step, pleas
 [vertex-customjob]: https://cloud.google.com/vertex-ai/docs/training/create-custom-job
 [vertex-pipelines]: https://cloud.google.com/vertex-ai/docs/pipelines/introduction
 [vertex-sdk]: https://cloud.google.com/vertex-ai/docs/pipelines/run-pipeline#vertex-ai-sdk-for-python
-[argo]: https://argoproj.github.io/argo-workflows/
 [dsl-pipelinetask-set-env-variable]: https://kubeflow-pipelines.readthedocs.io/en/2.0.0b13/source/dsl.html#kfp.dsl.PipelineTask.set_env_variable
 [task-configuration-methods]: /docs/components/pipelines/user-guides/components/compose-components-into-pipelines/#task-configurations

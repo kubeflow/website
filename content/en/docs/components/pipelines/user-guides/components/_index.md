@@ -1,5 +1,6 @@
 +++
 title = "Create components"
+description = "Create pipelines with reusable components."
 weight = 3
 +++
 
