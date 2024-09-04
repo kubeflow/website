@@ -29,12 +29,11 @@ To define the metrics collector for your Experiment:
      metrics must be line-separated by `epoch` or `step` as follows, and the key for timestamp must
      be `timestamp`:
 
-     ```json
-     {"epoch": 0, "foo": “bar", “fizz": “buzz", "timestamp": 1638422847.28721…}
-     {"epoch": 1, "foo": “bar", “fizz": “buzz", "timestamp": 1638422847.287801…}
-     {"epoch": 2, "foo": “bar", “fizz": “buzz", "timestamp": "2021-12-02T14:27:50.000035161+09:00"…}
-     {"epoch": 3, "foo": “bar", “fizz": “buzz", "timestamp": "2021-12-02T14:27:50.000037459+09:00"…}
-     …
+     ```
+     {"epoch": 0, "foo": "bar", "fizz": "buzz", "timestamp": "2021-12-02T14:27:51"}
+     {"epoch": 1, "foo": "bar", "fizz": "buzz", "timestamp": "2021-12-02T14:27:52"}
+     {"epoch": 2, "foo": "bar", "fizz": "buzz", "timestamp": "2021-12-02T14:27:53"}
+     {"epoch": 3, "foo": "bar", "fizz": "buzz", "timestamp": "2021-12-02T14:27:54"}
      ```
 
      Check the file metrics collector example for [`TEXT`](https://github.com/kubeflow/katib/blob/ea46a7f2b73b2d316b6b7619f99eb440ede1909b/examples/v1beta1/metrics-collector/file-metrics-collector.yaml#L14-L24)
