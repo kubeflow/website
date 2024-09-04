@@ -129,7 +129,7 @@ enable = true
   gcs_engine_id = "007239566369470735695:624rglujm-w"
 
   # Text label for the version menu in the top bar of the website.
-  version_menu = "Kubeflow Version"
+  version_menu = "Archive: 1.9"
 
   # The major.minor version tag for the version of the docs represented in this
   # branch of the repository. Used in the "version-banner" partial to display a
@@ -142,7 +142,7 @@ enable = true
 
   # A link to latest version of the docs. Used in the "version-banner" partial to
   # point people to the main doc site.
-  url_latest_version = "https://kubeflow.org/docs/"
+  url_latest_version = "https://www.kubeflow.org/docs/"
 
   # A variable used in various docs to determine URLs for config files etc.
   # To find occurrences, search the repo for 'params "githubbranch"'.
@@ -154,67 +154,67 @@ enable = true
 
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
-    version = "master"
+    version = "Latest"
     githubbranch = "master"
-    url = "https://master.kubeflow.org"
+    url = "https://www.kubeflow.org"
   [[params.versions]]
-    version = "v1.9"
+    version = "Archive: 1.9"
     githubbranch = "v1.9-branch"
     url = "https://v1-9-branch.kubeflow.org"
   [[params.versions]]
-    version = "v1.8"
+    version = "Archive: 1.8"
     githubbranch = "v1.8-branch"
     url = "https://v1-8-branch.kubeflow.org"
   [[params.versions]]
-    version = "v1.7"
+    version = "Archive: 1.7"
     githubbranch = "v1.7-branch"
     url = "https://v1-7-branch.kubeflow.org"
   [[params.versions]]
-    version = "v1.6"
+    version = "Archive: 1.6"
     githubbranch = "v1.6-branch"
     url = "https://v1-6-branch.kubeflow.org"
   [[params.versions]]
-    version = "v1.5"
+    version = "Archive: 1.5"
     githubbranch = "v1.5-branch"
     url = "https://v1-5-branch.kubeflow.org"
   [[params.versions]]
-    version = "v1.4"
+    version = "Archive: 1.4"
     githubbranch = "v1.4-branch"
     url = "https://v1-4-branch.kubeflow.org"
   [[params.versions]]
-    version = "v1.3"
+    version = "Archive: 1.3"
     githubbranch = "v1.3-branch"
     url = "https://v1-3-branch.kubeflow.org"
   [[params.versions]]
-    version = "v1.2"
+    version = "Archive: 1.2"
     githubbranch = "v1.2-branch"
     url = "https://v1-2-branch.kubeflow.org"
   [[params.versions]]
-    version = "v1.1"
+    version = "Archive: 1.1"
     githubbranch = "v1.1-branch"
     url = "https://v1-1-branch.kubeflow.org"
   [[params.versions]]
-    version = "v1.0"
+    version = "Archive: 1.0"
     githubbranch = "v1.0-branch"
     url = "https://v1-0-branch.kubeflow.org"
   [[params.versions]]
-    version = "v0.7"
+    version = "Archive: 0.7"
     githubbranch = "v0.7-branch"
     url = "https://v0-7.kubeflow.org"
   [[params.versions]]
-    version = "v0.6"
+    version = "Archive: 0.6"
     githubbranch = "v0.6-branch"
     url = "https://v0-6.kubeflow.org"
   [[params.versions]]
-    version = "v0.5"
+    version = "Archive: 0.5"
     githubbranch = "v0.5-branch"
     url = "https://v0-5.kubeflow.org"
   [[params.versions]]
-    version = "v0.4"
+    version = "Archive: 0.4"
     githubbranch = "v0.4-branch"
     url = "https://v0-4.kubeflow.org"
   [[params.versions]]
-    version = "v0.3"
+    version = "Archive: 0.3"
     githubbranch = "v0.3-branch"
     url = "https://v0-3.kubeflow.org"
 
