@@ -36,7 +36,7 @@ To define the pull-based metrics collector for your Experiment:
      metrics must be line-separated by `epoch` or `step` as follows, and the key for timestamp must
      be `timestamp`:
 
-     ```
+     ```json
      {"epoch": 0, "foo": "bar", "fizz": "buzz", "timestamp": "2021-12-02T14:27:51"}
      {"epoch": 1, "foo": "bar", "fizz": "buzz", "timestamp": "2021-12-02T14:27:52"}
      {"epoch": 2, "foo": "bar", "fizz": "buzz", "timestamp": "2021-12-02T14:27:53"}
@@ -86,7 +86,10 @@ To define the pull-based metrics collector for your Experiment:
 
 ## Push-based Metrics Collector
 
-Your training code needs to call [`report_metrics`](https://github.com/kubeflow/katib/blob/master/sdk/python/v1beta1/kubeflow/katib/api/report_metrics.py#L26) function in Python SDK to record metrics.
+Your training code needs to call [`report_metrics()`](https://github.com/kubeflow/katib/blob/e251a07cb9491e2d892db306d925dddf51cb0930/sdk/python/v1beta1/kubeflow/katib/api/report_metrics.py#L26) function in Python SDK to record metrics. 
+The `report_metrics()` function works by parsing the metrics in `metrics` field into a gRPC request, automatically adding the current timestamp for users, and sending the request to Katib DB Manager. 
+
+But before that, `kubeflow-katib` package should be installed in your training container. 
 
 To define the push-based metrics collector for your Experiment, you have two options:
 
@@ -94,7 +97,7 @@ To define the push-based metrics collector for your Experiment, you have two opt
 
     1. Specify the collector type `Push` in the `.collector.kind` field.
 
-    2. Write code in your training container to call `report_metrics` to report metrics.
+    2. Write code in your training container to call `report_metrics()` to report metrics.
 
 - [`tune`](https://github.com/kubeflow/katib/blob/master/sdk/python/v1beta1/kubeflow/katib/api/katib_client.py#L166) function
 
@@ -103,44 +106,23 @@ To define the push-based metrics collector for your Experiment, you have two opt
     ```
     import kubeflow.katib as katib
 
-    # Step 1. Create an objective function with push-based metrics collection.
     def objective(parameters):
-      # Import required packages.
       import time
       import kubeflow.katib as katib
       time.sleep(5)
-      # Calculate objective function.
-      result = 4 * int(parameters["a"]) - float(parameters["b"]) ** 2
+      result = 4 * int(parameters["a"])
       # Push metrics to Katib DB.
       katib.report_metrics({"result": result})
 
-    # Step 2. Create HyperParameter search space.
-    parameters = {
-      "a": katib.search.int(min=10, max=20),
-      "b": katib.search.double(min=0.1, max=0.2)
-    }
-
-    # Step 3. Create Katib Experiment with 4 Trials and 2 CPUs per Trial.
-    # We choose to install the latest changes of Python SDK because `report_metrics` has not been supported yet. 
-    # Thus, the base image must have `git` command to download the package.
-    katib_client = katib.KatibClient(namespace="kubeflow")
-    name = "tune-experiment"
-    katib_client.tune(
-      name=name,
+    katib.KatibClient(namespace="kubeflow").tune(
+      name="push-metrics-exp",
       objective=objective,
-      parameters=parameters,
-      base_image="electronicwaste/push-metrics-collector:v0.0.9", # python:3.11-slim + git
+      parameters= {"a": katib.search.int(min=10, max=20)}
       objective_metric_name="result",
-      max_trial_count=4,
-      resources_per_trial={"cpu": "2"},
-      packages_to_install=["git+https://github.com/kubeflow/katib.git@master#subdirectory=sdk/python/v1beta1"],
-      # packages_to_install=["kubeflow-katib==0.18.0"],
+      max_trial_count=2,
       metrics_collector_config={"kind": "Push"},
+      # When SDK is released, replace it with packages_to_install=["kubeflow-katib==0.18.0"].
+      # Currently, the training container should have `git` package to install this SDK. 
+      packages_to_install=["git+https://github.com/kubeflow/katib.git@master#subdirectory=sdk/python/v1beta1"],
     )
-
-    # Step 4. Wait until Katib Experiment is complete
-    katib_client.wait_for_experiment_condition(name=name)
-
-    # Step 5. Get the best HyperParameters.
-    print(katib_client.get_optimal_hyperparameters(name))
     ```
