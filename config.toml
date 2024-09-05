@@ -222,18 +222,6 @@ enable = true
     version = "Archive: 0.6"
     githubbranch = "v0.6-branch"
     url = "https://v0-6.kubeflow.org"
-  [[params.versions]]
-    version = "Archive: 0.5"
-    githubbranch = "v0.5-branch"
-    url = "https://v0-5.kubeflow.org"
-  [[params.versions]]
-    version = "Archive: 0.4"
-    githubbranch = "v0.4-branch"
-    url = "https://v0-4.kubeflow.org"
-  [[params.versions]]
-    version = "Archive: 0.3"
-    githubbranch = "v0.3-branch"
-    url = "https://v0-3.kubeflow.org"
 
   # User interface configuration
   [params.ui]
