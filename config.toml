@@ -107,7 +107,7 @@ gcs_engine_id = "007239566369470735695:624rglujm-w"
 
 # Add new release versions here
 # Text label for the version menu in the top bar of the website.
-version_menu = "Archive: 0.6"
+version_menu = "v0.6"
 
 # The major.minor version tag for the version of the docs represented in this
 # branch of the repository. Used in the "version-banner" partial to display a
@@ -133,23 +133,23 @@ githubbranch = "v0.6-branch"
   githubbranch = "master"
   url = "https://www.kubeflow.org"
 [[params.versions]]
-  version = "Archive: 0.6"
+  version = "v0.6"
   githubbranch = "v0.6-branch"
   url = "https://v0-6.kubeflow.org"
 [[params.versions]]
-  version = "Archive: 0.5"
+  version = "v0.5"
   githubbranch = "v0.5-branch"
   url = "https://v0-5.kubeflow.org"
 [[params.versions]]
-  version = "Archive: 0.4"
+  version = "v0.4"
   githubbranch = "v0.4-branch"
   url = "https://v0-4.kubeflow.org"
 [[params.versions]]
-  version = "Archive: 0.3"
+  version = "v0.3"
   githubbranch = "v0.3-branch"
   url = "https://v0-3.kubeflow.org"
 [[params.versions]]
-  version = "Archive: 0.2"
+  version = "v0.2"
   githubbranch = "v0.2-branch"
   url = "https://v0-2.kubeflow.org"
 
