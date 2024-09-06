@@ -3,7 +3,9 @@
   command = "hugo"
 
 [context.deploy-preview.environment]
-  HUGO_VERSION = "0.51"
+  HUGO_VERSION = "0.81.0"
+  NODE_VERSION = "10"
 
 [context.production.environment]
-  HUGO_VERSION = "0.51"
+  HUGO_VERSION = "0.81.0"
+  NODE_VERSION = "10"
