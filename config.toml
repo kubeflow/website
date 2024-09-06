@@ -133,26 +133,33 @@ enable = true
   # Google Custom Search Engine ID.
   gcs_engine_id = "007239566369470735695:624rglujm-w"
 
-  # Text label for the version menu in the top bar of the website, depends on the branch:
-  #  - master -> "Latest"
-  #  - v1.0-branch -> "v1.0"
-  version_menu = "Latest"
+  # The text label for the version menu in the top bar.
+  # The value depends on the branch:
+  #  - `master` -> "Versions"
+  #  - `v1.0-branch` -> "v1.0"
+  version_menu = "Versions"
 
-  # The major.minor version tag for the version of the docs represented in this
-  # branch of the repository. Used in the "version-banner" partial to display a
-  # version number for this doc set.
+  # The version of the docs. This is used in the "version-banner" partial.
+  # The value depends on the branch:
+  #  - `master` -> "REPLACE_WITH_VERSION_ON_ARCHIVE"
+  #  - `v1.0-branch` -> "v1.0"
   version = "REPLACE_WITH_VERSION_ON_ARCHIVE"
 
-  # Flag used in the "version-banner" partial to decide whether to display a
-  # banner on every page indicating that this is an archived version of the docs.
+  # If the "version-banner" partial should display at the top of each page.
+  # The value depends on the branch:
+  #  - `master` -> false
+  #  - `v*-branch` -> true
   archived_version = false
 
-  # A link to latest version of the docs. Used in the "version-banner" partial to
-  # point people to the main doc site.
+  # The URL of the latest version of the docs.
+  # Used in the "version-banner" partial.
   url_latest_version = "https://www.kubeflow.org/docs/"
 
-  # A variable used in various docs to determine URLs for config files etc.
-  # To find occurrences, search the repo for 'params "githubbranch"'.
+  # The GitHub branch for the current version of the docs.
+  # Used to generate the "Edit this page" link.
+  # The value depends on the branch:
+  #  - `master` -> "master"
+  #  - `v1.0-branch` -> "v1.0-branch"
   github_branch = "master"
 
   # Disable MathJax by default
@@ -214,14 +221,6 @@ enable = true
     version = "v1.0"
     githubbranch = "v1.0-branch"
     url = "https://v1-0-branch.kubeflow.org"
-  [[params.versions]]
-    version = "v0.7"
-    githubbranch = "v0.7-branch"
-    url = "https://v0-7.kubeflow.org"
-  [[params.versions]]
-    version = "v0.6"
-    githubbranch = "v0.6-branch"
-    url = "https://v0-6.kubeflow.org"
 
   # User interface configuration
   [params.ui]
