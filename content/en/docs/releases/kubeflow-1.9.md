@@ -22,7 +22,7 @@ weight = 95
           <a href="https://blog.kubeflow.org/kubeflow-1.9-release/">Kubeflow 1.9 Release Announcement</a>
         <br>
         <b>Video:</b> 
-          To be published
+          <a href="https://www.youtube.com/watch?v=bzu2Qqv4Ij0">Kubeflow 1.9 Release Update</a>
         <br>
         <b>Roadmap:</b>
           <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-19-release-planned-for-release-jul-2024">Kubeflow 1.9 Features</a>
