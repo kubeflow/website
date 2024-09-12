@@ -319,6 +319,8 @@ def my_pipeline():
         fail_op()
 ```
 
+{{% oss-be-unsupported feature_name="Setting `PipelineTaskFinalStatus`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/10917 %}}
+
 #### **Example:** Ignoring upstream task failures
 
 The [`.ignore_upstream_failure()`][ignore-upstream-failure] task method on [`PipelineTask`][dsl-pipelinetask] enables another approach to author pipelines with exit handling behavior. 
