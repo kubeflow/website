@@ -4,10 +4,13 @@
 
 [context.deploy-preview.environment]
   HUGO_VERSION = "0.88.1"
+  NODE_VERSION = "16"
 
 [context.production.environment]
   HUGO_VERSION = "0.88.1"
+  NODE_VERSION = "16"
   HUGO_ENV = "production"
 
 [context.branch-deploy.environment]
   HUGO_VERSION = "0.88.1"
+  NODE_VERSION = "16"
