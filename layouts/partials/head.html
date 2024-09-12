@@ -1,11 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {{ hugo.Generator }}
-{{ if eq (getenv "HUGO_ENV") "production" }}
-<META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
-{{ else }}
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-{{ end }}
+<!-- Prevent search engines from indexing this old site -->
+<meta name="robots" content="noindex">
 {{ range .AlternativeOutputFormats -}}
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
 {{ end -}}
