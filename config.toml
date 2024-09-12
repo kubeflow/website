@@ -107,11 +107,11 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 
   # Flag used in the "version-banner" partial to decide whether to display a
   # banner on every page indicating that this is an archived version of the docs.
-  archived_version = false
+  archived_version = true
 
   # A link to latest version of the docs. Used in the "version-banner" partial to
   # point people to the main doc site.
-  url_latest_version = "https://kubeflow.org/docs/"
+  url_latest_version = "https://www.kubeflow.org/docs/"
 
   # A variable used in various docs to determine URLs for config files etc.
   # To find occurrences, search the repo for 'params "githubbranch"'.
@@ -119,9 +119,9 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
-    version = "master"
+    version = "Latest"
     githubbranch = "master"
-    url = "https://master.kubeflow.org"
+    url = "https://www.kubeflow.org"
   [[params.versions]]
     version = "v1.6"
     githubbranch = "v1.6-branch"
