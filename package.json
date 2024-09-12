@@ -1,0 +1,8 @@
+{
+  "name": "website",
+  "devDependencies": {
+    "autoprefixer": "^9.4.3",
+    "postcss": "^7.0.6",
+    "postcss-cli": "^6.1.0"
+  }
+}
