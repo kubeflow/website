@@ -39,7 +39,7 @@ The official Kubeflow mailing list is a Google Group called [kubeflow-discuss](h
   <button class="btn btn-primary py-2 px-5">Click to join:<br>Kubeflow Mailing List</button>
 </a>
 
-## Kubeflow on Social Networking
+## Kubeflow on Social Media
 
 - Official [YouTube Channel](https://www.youtube.com/@Kubeflow/featured") for Kubeflow. You can find the most recent videos covering a range of topics related to Kubeflow.
 - Join [LinkedIn](https://www.linkedin.com/company/kubeflow/) for latest news in Kubeflow.
