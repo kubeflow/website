@@ -105,19 +105,7 @@ The Kubeflow trademark and logos are registered trademarks of Google, please rev
 
 ## Kubeflow Steering Committee
 
-The [Kubeflow Steering Committee (KSC)](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md) is the governing body of the Kubeflow project, providing decision-making and oversight pertaining to the Kubeflow project policies, sub-organizations, and financial planning, and defines the project values and structure.
-
-The current membership of the committee is (listed alphabetically by first name):
-
-| Name                | Organization | GitHub                                             | Term Start | Term End   |
-|---------------------|--------------|----------------------------------------------------|------------|------------|
-| Andrey Velichkevich | Apple        | [andreyvelich](https://github.com/andreyvelich/)   | 02/01/2024 | 02/01/2026 |
-| Johnu George        | Nutanix      | [johnugeorge](https://github.com/johnugeorge/)     | 02/01/2024 | 02/01/2026 |
-| Josh Bottum         | Independent  | [jbottum](https://github.com/jbottum/)             | 02/01/2024 | 02/01/2025 |
-| James Wu            | Google       | [james-jwu](https://github.com/james-jwu/)         | 02/01/2024 | 02/01/2025 |
-| Yuan Tang           | Red Hat      | [terrytangyuan](https://github.com/terrytangyuan/) | 02/01/2024 | 02/01/2026 |
-
-See [contact info](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#getting-in-touch) if you'd like to raise any issues to the committee.
+The [Kubeflow Steering Committee (KSC)](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md) is the governing body of the Kubeflow project, providing decision-making and oversight pertaining to the Kubeflow project policies, sub-organizations, and financial planning, and defines the project values and structure. The list of committee members can be found [here](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#committee-members). See [contact info](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#getting-in-touch) if you'd like to raise any issues to the committee.
 
 ## Kubeflow Working Groups
 
