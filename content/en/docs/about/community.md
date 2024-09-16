@@ -105,7 +105,7 @@ The Kubeflow trademark and logos are registered trademarks of Google, please rev
 
 ## Kubeflow Steering Committee
 
-The [Kubeflow Steering Committee (KSC)](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md) is the governing body of the Kubeflow project, providing decision-making and oversight pertaining to the Kubeflow project policies, sub-organizations, and financial planning, and defines the project values and structure. The list of committee members can be found [here](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#committee-members). See [contact info](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#getting-in-touch) if you'd like to raise any issues to the committee.
+The [Kubeflow Steering Committee (KSC)](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md) is the governing body of the Kubeflow project, providing decision-making and oversight pertaining to the Kubeflow project policies, sub-organizations, and financial planning, and defines the project values and structure.
 
 ## Kubeflow Working Groups
 
