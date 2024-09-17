@@ -14,11 +14,10 @@ guide](/docs/components/pipelines/operator-guides/installation/) to deploy Kubef
 
 ## What is pipeline root?
 
-Pipeline root represents an artifact repository where Kubeflow Pipelines stores a pipeline's artifacts.
-This feature supports MinIO, S3, GCS natively using [Go CDK](https://github.com/google/go-cloud). Artifacts can be more accessible in S3 and GCS when integrating Kubeflow Pipelines with other systems.
+Pipeline root represents the path within an object store bucket where Kubeflow Pipelines stores a pipeline's artifacts.
+This feature supports MinIO, S3, GCS natively using [Go CDK](https://github.com/google/go-cloud). 
 
-**Note:** For MinIO, you can't change the MinIO instance. Kubeflow Pipelines can only use the Minio instance deployed with itself.
-(Please thumb up this [GitHub Issue](https://github.com/kubeflow/pipelines/issues/6517) if you need to specify the Minio instance.)
+Artifacts can be more accessible in S3 and GCS when integrating Kubeflow Pipelines with other systems.
 
 ## How to configure pipeline root authentication 
 #### MinIO
@@ -45,13 +44,9 @@ If you want to specify the `pipeline root` to S3, please choose one of the follo
 ## How to configure pipeline root
 
 #### Via ConfigMaps
+The default Pipeline root at the Kubeflow pipeline deployment level can be changed by configuring the KFP Launcher configmap.
 
-You can configure default pipeline root for Kubeflow Pipelines via changing the `defaultPipelineRoot` entry of  ConfigMaps `kfp-launcher` in Kubernetes namespace.
-
-```shell
-kubectl edit configMap kfp-launcher -n ${namespace}
-```
-This pipeline root will be the default pipeline root for all pipelines running in the Kubernetes namespace unless you override it using one of the following options:
+Instructions can be found [here](/docs/components/pipelines/operator-guides/configure-object-store.md#kfp-launcher-object-store-configuration).
 
 ####  Via Building Pipelines
 You can configure a pipeline root through the `kfp.dsl.pipeline` annotation when [building pipelines](/docs/components/pipelines/legacy-v1/sdk/build-pipeline/#build-your-pipeline)
