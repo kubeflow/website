@@ -42,10 +42,10 @@ Lastly, move your component to `src/my_component.py` and modify it to use the he
 ```python
 # src/my_component.py
 from kfp import dsl
-from math_utils import add_numbers
 
 @dsl.component
 def add(a: int, b: int) -> int:
+    from math_utils import add_numbers
     return add_numbers(a, b)
 ```
 
@@ -62,9 +62,10 @@ src/
 In this step, you'll provide `base_image` and `target_image` arguments to the `@dsl.component` decorator of your component in `src/my_component.py`:
 
 ```python
-@dsl.component(base_image='python:3.7',
+@dsl.component(base_image='python:3.11',
                target_image='gcr.io/my-project/my-component:v1')
 def add(a: int, b: int) -> int:
+    from math_utils import add_numbers
     return add_numbers(a, b)
 ```
 
@@ -72,7 +73,7 @@ Setting `target_image` both (a) specifies the [tag][image-tag] for the image you
 
 In a Containerized Python Component, `base_image` specifies the base image that KFP will use when building your new container image. Specifically, KFP uses the `base_image` argument for the [`FROM`][docker-from] instruction in the Dockerfile used to build your image.
 
-The previous example includes `base_image` for clarity, but this is not necessary as `base_image` will default to `'python:3.7'` if omitted.
+The previous example includes `base_image` for clarity, but this is not necessary as `base_image` will default to `'python:3.11'` if omitted.
 
 ### 3. Build the component
 Now that your code is in a standalone directory and you've specified a target image, you can conveniently build an image using the [`kfp component build`][kfp-component-build] CLI command:
@@ -88,7 +89,9 @@ If you have a [configured Docker to use a private image registry](https://docs.d
 Finally, you can use the component in a pipeline:
 
 ```python
-from kfp import dsl
+# pipeline.py
+from kfp import compiler, dsl
+from src.my_component import add
 
 @dsl.pipeline
 def addition_pipeline(x: int, y: int) -> int:
@@ -97,6 +100,15 @@ def addition_pipeline(x: int, y: int) -> int:
     return task2.output
 
 compiler.Compiler().compile(addition_pipeline, 'pipeline.yaml')
+```
+
+Your directory now looks like this:
+
+```txt
+pipeline.py
+src/
+├── my_component.py
+└── math_utils.py
 ```
 
 Since `add`'s `target_image` uses [Google Cloud Artifact Registry][artifact-registry] (indicated by the `gcr.io` URI), the pipeline shown here assumes you have pushed your image to Google Cloud Artifact Registry, you are running your pipeline on [Google Cloud Vertex AI Pipelines][vertex-pipelines], and you have configured [IAM permissions][iam] so that Vertex AI Pipelines can pull images from Artifact Registry.
