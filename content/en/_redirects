@@ -203,7 +203,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/central-dash/registration-flow /docs/components/central-dash/profiles
 
 # rename customize dashboard page
-/docs/components/central-dash/customizing-menu /docs/components/central-dash/customize
+/docs/components/central-dash/customize /docs/components/central-dash/customize
 
 # rename feature-store to feast
 /docs/external-add-ons/feature-store/overview/        /docs/external-add-ons/feast/introduction
