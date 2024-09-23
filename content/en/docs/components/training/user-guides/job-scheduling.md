@@ -1,7 +1,7 @@
 +++
 title = "Job Scheduling"
 description = "How to schedule a job with gang-scheduling"
-weight = 60
+weight = 70
 +++
 
 This guide describes how to use [Kueue](https://kueue.sigs.k8s.io/),
