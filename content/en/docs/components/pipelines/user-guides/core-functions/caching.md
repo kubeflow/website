@@ -58,6 +58,10 @@ client.create_run_from_pipeline_func(
 )
 ```
 
+## Upcoming caching enhancement
+
+Once it is released, KFP SDK v2.10.0 will provide the following caching enhancement:
+
 The `--disable-execution-caching-by-default` flag disables caching for all pipeline tasks by default.
 
 Example:
