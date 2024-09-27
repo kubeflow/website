@@ -54,9 +54,13 @@ from kfp.client import Client
 client = Client()
 client.create_run_from_pipeline_func(
     hello_pipeline,
-    enable_caching=True,  # overrides the above disableing of caching
+    enable_caching=True,  # overrides the above disabling of caching
 )
 ```
+
+## Upcoming caching enhancement
+
+Once it is released, KFP SDK v2.10.0 will provide the following caching enhancement:
 
 The `--disable-execution-caching-by-default` flag disables caching for all pipeline tasks by default.
 
