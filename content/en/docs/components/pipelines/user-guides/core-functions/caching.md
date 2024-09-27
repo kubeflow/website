@@ -54,7 +54,7 @@ from kfp.client import Client
 client = Client()
 client.create_run_from_pipeline_func(
     hello_pipeline,
-    enable_caching=True,  # overrides the above disableing of caching
+    enable_caching=True,  # overrides the above disabling of caching
 )
 ```
 
