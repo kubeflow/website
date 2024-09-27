@@ -1,33 +1,33 @@
 ---
-title: Running Multiple Instances Of The Operator
+title: Running Multiple Instances of the Spark Operator
 description: |
-    Running Multiple Instances Of The Operator Within The Same K8s Cluster
+    Running Multiple Instances of the Spark Operator within the Same K8s Cluster
 weight: 70
 ---
 
-If you need to run multiple instances of the operator within the same k8s cluster. Therefore, you need to make sure that the running instances should not compete for the same custom resources or pods. You can achieve this:
+If you need to run multiple instances of the Spark operator within the same k8s cluster, then you need to ensure that the running instances should not watch the same spark job namespace.
+For example, you can deploy two Spark operator instances in the `spark-operator` namespace, one with release name `spark-operator-1` which watches the `spark-1` namespace:
 
-Either:
+```bash
+# Create the spark-1 namespace if it does not exist
+kubectl create ns spark-1
 
-- By specifying a different `namespace` flag for each instance of the operator.
-
-Or if you want your operator to watch specific resources that may exist in different namespaces:
-
-- You need to add custom labels on resources by defining for each instance of the operator a different set of labels in `-label-selector-filter (e.g. env=dev,app-type=spark)`.
-- Run different `webhook` instances by specifying different `-webhook-config-name` flag for each deployment of the operator.
-- Specify different `webhook-svc-name` and/or `webhook-svc-namespace` for each instance of the operator.
-- Edit the job that generates the certificates `webhook-init` by specifying the namespace and the service name of each instance of the operator, `e.g. command: ["/usr/bin/gencerts.sh", "-n", "ns-op1", "-s", "spark-op1-webhook", "-p"]`. Where `spark-op1-webhook` should match what you have specified in `webhook-svc-name`. For instance, if you use the following [helm chart](https://github.com/helm/charts/tree/master/incubator/sparkoperator) to deploy the operator you may specify for each instance of the operator a different `--namespace` and `--name-template` arguments to make sure you generate a different certificate for each instance, e.g:
-
-```shell
-helm install spark-op1 incubator/sparkoperator --namespace ns-op1
-helm install spark-op2 incubator/sparkoperator --namespace ns-op2
+# Install the Spark operator with release name spark-operator-1
+helm install spark-operator-1 spark-operator/spark-operator \
+    --namespace spark-operator \
+    --create-namespace \
+    --set 'spark.jobNamespaces={spark-1}'
 ```
 
-Will run 2 `webhook-init` jobs. Each job executes respectively the command:
+And then deploy another one with release name `spark-operator-2` which watches the `spark-2` namespace:
 
-```yaml
-command: ["/usr/bin/gencerts.sh", "-n", "ns-op1", "-s", "spark-op1-webhook", "-p"`]
-command: ["/usr/bin/gencerts.sh", "-n", "ns-op2", "-s", "spark-op2-webhook", "-p"`]
+```bash
+# Create the spark-2 namespace if it does not exist
+kubectl create ns spark-2
+
+# Install the Spark operator with release name spark-operator-2
+helm install spark-operator-2 spark-operator/spark-operator \
+    --namespace spark-operator \
+    --create-namespace \
+    --set 'spark.jobNamespaces={spark-2}'
 ```
-
-- Although resources are already filtered with respect to the specified labels on resources. You may also specify different labels in `-webhook-namespace-selector` and attach these labels to the namespaces on which you want the webhook to listen to.
