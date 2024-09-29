@@ -304,7 +304,7 @@ The following settings are **optional**:
 #### Suggestion Volume Parameters
 
 When you create an Experiment with
-[`FromVolume` resume policy](/docs/components/katib/user-guide/resume-experiment#resume-policy-fromvolume),
+[`FromVolume` resume policy](/docs/components/katib/user-guides/resume-experiment#resume-policy-fromvolume),
 you are able to specify
 [PersistentVolume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
 and
