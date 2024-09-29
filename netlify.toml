@@ -33,8 +33,7 @@ package = "netlify-plugin-checklinks"
     "public/docs/components/pipelines/reference/api/fonts/",
     "public/docs/components/pipelines/fonts/",
     "public/docs/components/pipelines/legacy-v1/fonts/",
-
-    "public/docs/components/katib/",
+    
     "public/docs/components/training/",
 
     "public/docs/distributions/gke/",
