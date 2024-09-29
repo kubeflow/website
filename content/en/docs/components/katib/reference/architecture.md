@@ -116,9 +116,9 @@ guides.
 Katib has the following components on the control plane to run Experiments:
 
 - `katib-controller` - the controller to manage Katib Kubernetes CRDs:
-  [`Experiment`](experiment),
-  [`Suggestion`](suggestion),
-  [`Trial`](trial).
+  [`Experiment`](#experiment),
+  [`Suggestion`](#suggestion),
+  [`Trial`](#trial).
 
   - (Optional) If certificate generator is enabled in
     [Katib Config](/docs/components/katib/user-guides/katib-config/), Katib controller deployment will create
