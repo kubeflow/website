@@ -96,6 +96,7 @@ Follow the usual GitHub workflow of forking the repository on GitHub and then cl
 5. Start your local Hugo server:
 
     ```bash
+    # NOTE: You should ensure that you are in the root directory of the repository.
     hugo server -D
     ```
 
