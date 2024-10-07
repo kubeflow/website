@@ -38,7 +38,7 @@ Labels information can be interpreted as follow:
 | Label name                          |  Description                     | 
 |------------------------------------|---------|--------------------------|
 | `namespace`   | The Kubernetes namespace where the job is running        |
-| `framework` | The machine learning framework used(e.g. TensorFlow,PyTorch)     | 
+| `framework` | The machine learning framework used (e.g. TensorFlow,PyTorch)     | 
 
 
 Important: Metrics are only generated in response to specific events. For example, job creation metrics will only appear after a job has been created. If a metric is not visible, it may be because the corresponding event has not occurred yet.
