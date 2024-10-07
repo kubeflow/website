@@ -54,6 +54,47 @@ from kfp.client import Client
 client = Client()
 client.create_run_from_pipeline_func(
     hello_pipeline,
-    enable_caching=True,  # overrides the above disableing of caching
+    enable_caching=True,  # overrides the above disabling of caching
 )
 ```
+
+## Upcoming caching enhancement
+
+Once it is released, KFP SDK v2.10.0 will provide the following caching enhancement:
+
+The `--disable-execution-caching-by-default` flag disables caching for all pipeline tasks by default.
+
+Example:
+```
+kfp dsl compile --py my_pipeline.py --output my_pipeline.yaml --disable-execution-caching-by-default
+```
+
+You can also set the default caching behavior by using the `KFP_DISABLE_EXECUTION_CACHING_BY_DEFAULT` environment variable. When set to true, 1, or other truthy values, it will disable execution caching by default for all pipelines. When set to false or when absent, the default of caching enabled remains.\
+Example:
+```
+KFP_DISABLE_EXECUTION_CACHING_BY_DEFAULT=true \
+kfp dsl compile --py my_pipeline.py --output my_pipeline.yaml
+```
+This environment variable also works for `Compiler().compile()`.
+
+Given the following pipeline file:
+```
+@dsl.pipeline(name='my-pipeline')
+def my_pipeline():
+    task_1 = create_dataset()
+    task_2 = create_dataset()
+    task_1.set_caching_options(False)
+
+Compiler().compile(
+    pipeline_func=my_pipeline,
+    package_path='my_pipeline.yaml',
+)
+```
+Executing this
+```
+KFP_DISABLE_EXECUTION_CACHING_BY_DEFAULT=true \
+python my_pipeline.py
+```
+will result in `task_2` having caching disabled.
+
+**NOTE**: Since Python initializes configurations during the import process, setting the `KFP_DISABLE_EXECUTION_CACHING_BY_DEFAULT` environment variable after importing pipeline components will not affect the caching behavior. Therefore, always set it before importing any Kubeflow Pipelines components.
