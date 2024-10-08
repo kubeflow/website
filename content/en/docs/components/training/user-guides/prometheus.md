@@ -56,7 +56,7 @@ training_operator_jobs_created_total{framework="tensorflow",job_namespace="kubef
 | `training_operator_jobs_failed_total`    |  Total number of failed jobs       |  `namespace`, `framework` |
 | `training_operator_jobs_restarted_total` |  Total number of restarted jobs   |  `namespace`, `framework`|
 
-Labels information can be interpreted as follow:
+Labels information can be interpreted as follows:
 | Label name                          |  Description                     | 
 |------------------------------------|---------|--------------------------|
 | `namespace`   | The Kubernetes namespace where the job is running        |
