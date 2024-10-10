@@ -154,7 +154,7 @@ replica (as listed above) to the **TFReplicaSpec** for that replica. **TFReplica
 consists of 3 fields
 
 - **replicas** The number of replicas of this type to spawn for this `TFJob`.
-- **template** A [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#podtemplatespec-v1-core) that describes the pod to create
+- **template** A [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#podtemplatespec-v1-core) that describes the pod to create
   for each replica.
 
   - **The pod must include a container named `tensorflow`**.
@@ -592,13 +592,6 @@ further analysis.
 
 ### Stackdriver on GKE
 
-See the guide to [logging and monitoring](/docs/gke/monitoring/) for
-instructions on getting logs using Stackdriver.
-
-As described in the guide to
-[logging and monitoring](https://www.kubeflow.org/docs/gke/monitoring/#filter-with-labels),
-it's possible to fetch the logs for a particular replica based on pod labels.
-
 Using the Stackdriver UI you can use a query like
 
 ```
@@ -710,4 +703,4 @@ Here are some steps to follow to troubleshoot your job
 
 - Learn about [distributed training](/docs/components/training/reference/distributed-training/) in Training Operator.
 
-- See how to [run a job with gang-scheduling](/docs/use-cases/job-scheduling#running-jobs-with-gang-scheduling).
+- See how to [run a job with gang-scheduling](/docs/components/training/user-guides/job-scheduling/#running-jobs-with-gang-scheduling).

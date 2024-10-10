@@ -34,8 +34,6 @@ package = "netlify-plugin-checklinks"
     "public/docs/components/pipelines/fonts/",
     "public/docs/components/pipelines/legacy-v1/fonts/",
 
-    "public/docs/components/training/",
-
     "public/docs/distributions/gke/",
 
     "public/docs/distributions/aws/",
