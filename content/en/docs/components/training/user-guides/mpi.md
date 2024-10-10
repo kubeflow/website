@@ -69,7 +69,7 @@ kubectl kustomize base | kubectl apply -f -
 
 ## Creating an MPI Job
 
-You can create an MPI job by defining an `MPIJob` config file. See [TensorFlow benchmark example](https://github.com/kubeflow/mpi-operator/blob/master/examples/v2beta1/tensorflow-benchmarks.yaml) config file for launching a multi-node TensorFlow benchmark training job. You may change the config file based on your requirements.
+You can create an MPI job by defining an `MPIJob` config file. See [TensorFlow benchmark example](https://github.com/kubeflow/mpi-operator/blob/master/examples/v2beta1/tensorflow-benchmarks/tensorflow-benchmarks.yaml) config file for launching a multi-node TensorFlow benchmark training job. You may change the config file based on your requirements.
 
 ```
 cat examples/v2beta1/tensorflow-benchmarks/tensorflow-benchmarks.yaml
@@ -83,7 +83,7 @@ kubectl apply -f examples/v2beta1/tensorflow-benchmarks/tensorflow-benchmarks.ya
 
 ## Scheduling Policy
 
-The MPI Operator supports the [gang-scheduling](/docs/components/training/job-scheduling#running-jobs-with-gang-scheduling).
+The MPI Operator supports the [gang-scheduling](/docs/components/training/user-guides/job-scheduling/#running-jobs-with-gang-scheduling).
 If you want to modify the PodGroup parameters, you can configure in the following:
 
 ```diff

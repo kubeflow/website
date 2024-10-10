@@ -154,7 +154,7 @@ replica (as listed above) to the **TFReplicaSpec** for that replica. **TFReplica
 consists of 3 fields
 
 - **replicas** The number of replicas of this type to spawn for this `TFJob`.
-- **template** A [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#podtemplatespec-v1-core) that describes the pod to create
+- **template** A [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#podtemplatespec-v1-core) that describes the pod to create
   for each replica.
 
   - **The pod must include a container named `tensorflow`**.
@@ -710,4 +710,4 @@ Here are some steps to follow to troubleshoot your job
 
 - Learn about [distributed training](/docs/components/training/reference/distributed-training/) in Training Operator.
 
-- See how to [run a job with gang-scheduling](/docs/use-cases/job-scheduling#running-jobs-with-gang-scheduling).
+- See how to [run a job with gang-scheduling](/docs/components/training/user-guides/job-scheduling/#running-jobs-with-gang-scheduling).
