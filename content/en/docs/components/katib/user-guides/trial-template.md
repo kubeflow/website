@@ -20,7 +20,7 @@ In Katib examples, you can find the following examples for Trial's Workers:
 
 - [Kubeflow `PyTorchJob`](/docs/components/training/user-guides/pytorch/)
 
-- [Kubeflow `MXJob`](/docs/components/training/user-guides/mxnet)
+- [Kubeflow `PaddleJob`](/docs/components/training/user-guides/paddle)
 
 - [Kubeflow `XGBoostJob`](/docs/components/training/user-guides/xgboost)
 
