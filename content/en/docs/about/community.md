@@ -74,7 +74,7 @@ The following list shows available Kubeflow community meetings with the correspo
 | Kubeflow Notebooks WG           | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)   |                                                                                              |
 | Kubeflow Platform WG            | [Google Doc](https://bit.ly/kf-wg-manifests-notes)   |                                                                                              |
 | Kubeflow Pipelines WG           | [Google Doc](http://bit.ly/kfp-meeting-notes)        |                                                                                              |
-| Kubeflow Release meeting        | [Google Doc](https://bit.ly/kf-release-team-notes)   |                                                                                              |
+| Kubeflow Release team call      | [Google Doc](https://bit.ly/kf-release-team-notes)   |                                                                                              |
 | Kubeflow Spark Operator call    | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
 | KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                 |                                                                                              |
 
