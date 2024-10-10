@@ -28,10 +28,10 @@ using manifests or package distributions. The Kubeflow platform includes the Tra
 
 You can install the Training Operator as a standalone component.
 
-Run the following command to install the stable release of the Training Operator control plane: `v1.7.0`
+Run the following command to install the stable release of the Training Operator control plane: `v1.8.1`
 
 ```shell
-kubectl apply -k "github.com/kubeflow/training-operator.git/manifests/overlays/standalone?ref=v1.7.0"
+kubectl apply -k "github.com/kubeflow/training-operator.git/manifests/overlays/standalone?ref=v1.8.1"
 ```
 
 Run the following command to install the latest changes of Training Operator control plane:

@@ -35,10 +35,19 @@ def train_func():
     import torch.nn.functional as F
     from torch.utils.data import DistributedSampler
     from torchvision import datasets, transforms
+    import torch.distributed as dist
 
-    # [1] Setup PyTorch DDP. WORLD_SIZE and RANK environments will be set by Training Operator.
-    torch.distributed.init_process_group(backend="nccl")
+    # [1] Setup PyTorch DDP. Distributed environment will be set automatically by Training Operator.
+    dist.init_process_group(backend="nccl")
     Distributor = torch.nn.parallel.DistributedDataParallel
+    local_rank = int(os.getenv("LOCAL_RANK", 0))
+    print(
+        "Distributed Training for WORLD_SIZE: {}, RANK: {}, LOCAL_RANK: {}".format(
+            dist.get_world_size(),
+            dist.get_rank(),
+            local_rank,
+        )
+    )
 
     # [2] Create PyTorch CNN Model.
     class Net(torch.nn.Module):
@@ -59,8 +68,8 @@ def train_func():
             x = self.fc2(x)
             return F.log_softmax(x, dim=1)
 
-    # [3] Attach model to GPU and distributor.
-    device = "cuda"
+    # [3] Attach model to the correct GPU device and distributor.
+    device = torch.device(f"cuda:{local_rank}")
     model = Net().to(device)
     model = Distributor(model)
     optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
@@ -90,7 +99,7 @@ def train_func():
             loss = F.nll_loss(output, target)
             loss.backward()
             optimizer.step()
-            if batch_idx % 10 == 0:
+            if batch_idx % 10 == 0 and dist.get_rank() == 0:
                 print(
                     "Train Epoch: {} [{}/{} ({:.0f}%)]\tloss={:.4f}".format(
                         epoch,
@@ -104,10 +113,11 @@ def train_func():
 
 from kubeflow.training import TrainingClient
 
-# Start PyTorchJob with 3 Workers and 1 GPUs per Worker.
+# Start PyTorchJob with 3 Workers and 1 GPU per Worker (e.g. multi-node, multi-worker job).
 TrainingClient().create_job(
     name="pytorch-ddp",
     train_func=train_func,
+    num_procs_per_worker="auto",
     num_workers=3,
     resources_per_worker={"gpu": "1"},
 )
@@ -140,6 +150,7 @@ TrainingClient().get_job_logs(
     follow=True,
 )
 ```
+
 ## Next steps
 
 - Run the [FashionMNIST example](https://github.com/kubeflow/training-operator/blob/7345e33b333ba5084127efe027774dd7bed8f6e6/examples/pytorch/image-classification/Train-CNN-with-FashionMNIST.ipynb) with using Training Operator Python SDK.
