@@ -49,6 +49,7 @@ registry = ModelRegistry(
 ```
 
 <!-- TODO: missing link -->
+
 For more information on client setup and capabilities, refer to the Model Registry Python client documentation.
 
 ## Register metadata
@@ -135,7 +136,6 @@ specifying the serving runtime to be used to serve the model, and references to 
 ## Next steps
 
 - Get involved:
-  - Model Registry working group: https://www.kubeflow.org/docs/about/community/#kubeflow-community-calendars
+  - Model Registry working group: https://www.kubeflow.org/docs/about/community/#kubeflow-community-meetings
   - https://github.com/kubeflow/model-registry
 - Feedback: {{% alpha-status feedbacklink="https://github.com/kubeflow/model-registry" %}}
-

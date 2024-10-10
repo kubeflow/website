@@ -278,6 +278,6 @@ enable = true
       desc = "Join the Kubeflow Mailing List!"
     [[params.links.user]]
       name = "Kubeflow Community Calendars"
-      url = "/docs/about/community/#kubeflow-community-calendars"
+      url = "/docs/about/community/#kubeflow-community-meetings"
       icon = "fa fa-calendar"
       desc = "View the Kubeflow Community Calendars!"
