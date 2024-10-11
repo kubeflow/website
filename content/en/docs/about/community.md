@@ -154,22 +154,6 @@ The following table outlines which components are maintained by each Working Gro
         </td>
       </tr>
       <!-- ======================= -->
-      <!-- Data Working Group -->
-      <!-- ======================= -->
-      <tr>
-        <td rowspan="2" class="align-middle">
-          <a href="https://github.com/kubeflow/community/tree/master/wg-data">Data</a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/model-registry">Model Registry</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/kubeflow/spark-operator">Spark Operator</a>
-        </td>
-      </tr>
-      <!-- ======================= -->
       <!-- Manifests Working Group -->
       <!-- ======================= -->
       <tr>
