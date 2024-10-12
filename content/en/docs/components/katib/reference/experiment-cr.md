@@ -12,7 +12,7 @@ hyperparameters tuning for user's Machine learning model. The Experiment
 workflow looks as follows:
 
 <center>
-<img width="100%" alt="image" src="images/katib-workflow.png">
+<img width="100%" alt="image" src="../images/katib-workflow.png">
 </center>
 
 1. The `Experiment` CR is submitted to the Kubernetes API server. Katib
