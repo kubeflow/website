@@ -4,7 +4,7 @@ description = "What happens after an `Experiment` CR is created"
 weight = 10
 +++
 
-## What happens after an `Experiment` CR is created
+## Katib Experiment Lifecycle
 
 When user creates an `Experiment` CR, Katib `Experiment` controller,
 `Suggestion` controller and `Trial` controller is working together to achieve
