@@ -42,12 +42,12 @@
   {{- $popup_content = printf `%s<br><br>Reach out to the maintainers if you are interested in Kubeflow %s support.` $popup_content_prefix $latest_release_full }}
 {{- else if eq $this_version_lag 2 }}
   {{- $button_style = "btn-kf-version-legacy" }}
-  {{- $popup_icon = "fa-solid fa-triangle-exclamation" }}
+  {{- $popup_icon = "" }}
   {{- $popup_title = "Version Warning" }}
   {{- $popup_content = printf `%s<br><br>You may wish to confirm this distribution is still supported by its maintainers.` $popup_content_prefix }}
 {{- else }}
   {{- $button_style = "btn-kf-version-legacy" }}
-  {{- $popup_icon = "fa-solid fa-skull" }}
+  {{- $popup_icon = "" }}
   {{- $popup_title = "Version Warning" }}
   {{- $popup_content = printf `%s<br><br>This distribution may no longer be supported by its maintainers.` $popup_content_prefix }}
 {{- end }}
