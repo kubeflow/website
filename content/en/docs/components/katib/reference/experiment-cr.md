@@ -6,7 +6,7 @@ weight = 10
 
 ## Katib Experiment Lifecycle
 
-When user creates an `Experiment` CR, Katib `Experiment` controller,
+When user creates an Experiment, Katib Experiment controller,
 `Suggestion` controller and `Trial` controller is working together to achieve
 hyperparameters tuning for user's Machine learning model. The Experiment
 workflow looks as follows:
