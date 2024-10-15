@@ -11,9 +11,7 @@ When user creates an Experiment, Katib Experiment controller,
 hyperparameters tuning for user's Machine learning model. The Experiment
 workflow looks as follows:
 
-<center>
-<img width="100%" src="/docs/components/katib/images/katib-workflow.png" alt="Katib Workflow"
-</center>
+<img src="/docs/components/katib/images/katib-workflow.png" alt="Katib Workflow" class="mt-3 mb-3">
 
 1. The `Experiment` is submitted to the Kubernetes API server. Katib
    `Experiment` mutating and validating webhook is called to set the default
