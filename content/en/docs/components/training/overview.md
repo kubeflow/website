@@ -10,7 +10,7 @@ weight = 10
 
 The Training Operator is a Kubernetes-native project for fine-tuning and scalable
 distributed training of machine learning (ML) models created with different ML frameworks such as
-PyTorch, TensorFlow, XGBoost, and others.
+PyTorch, TensorFlow, XGBoost, JAX, and others.
 
 You can integrate other ML libraries such as [HuggingFace](https://huggingface.co),
 [DeepSpeed](https://github.com/microsoft/DeepSpeed), or [Megatron-LM](https://github.com/NVIDIA/Megatron-LM)
@@ -26,7 +26,7 @@ supports running Message Passing Interface (MPI) on Kubernetes which is heavily 
 The Training Operator implements the V1 API version of MPI Operator. For the MPI Operator V2 version,
 please follow [this guide](/docs/components/training/user-guides/mpi/) to install MPI Operator V2.
 
-<img src="/docs/components/training/images/training-operator-overview.drawio.png"
+<img src="/docs/components/training/images/training-operator-overview.drawio.svg"
   alt="Training Operator Overview"
   class="mt-3 mb-3">
 
@@ -70,6 +70,7 @@ for each ML framework:
 | XGBoost      | [XGBoostJob](/docs/components/training/user-guides/xgboost/) |
 | MPI          | [MPIJob](/docs/components/training/user-guides/mpi/)         |
 | PaddlePaddle | [PaddleJob](/docs/components/training/user-guides/paddle/)   |
+| JAX          | [JAXJob](/docs/components/training/user-guides/jax/)   |
 
 ## Next steps
 
