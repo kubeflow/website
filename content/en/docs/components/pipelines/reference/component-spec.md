@@ -91,7 +91,7 @@ This section describes the
     * `container`:
         Describes the Docker container that implements the component. A portable 
         subset of the Kubernetes
-        [Container v1 spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.12/#container-v1-core).
+        [Container v1 spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#container-v1-core).
 
         * `image`: Name of the Docker image.
         * `command`: Entrypoint array. The Docker image's

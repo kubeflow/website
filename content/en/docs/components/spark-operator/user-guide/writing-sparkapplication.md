@@ -149,7 +149,7 @@ Values specified using those two fields get converted to Spark configuration pro
 
 ## Specifying Environment Variables
 
-There are two fields for specifying environment variables for the driver and/or executor containers, namely `.spec.driver.env` (or `.spec.executor.env` for the executor container) and `.spec.driver.envFrom` (or `.spec.executor.envFrom` for the executor container). Specifically, `.spec.driver.env` (and `.spec.executor.env`) takes a list of [EnvVar](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#envvar-v1-core), each of which specifies an environment variable or the source of an environment variable, e.g., a name-value pair, a ConfigMap key, a Secret key, etc. Alternatively, `.spec.driver.envFrom` (and `.spec.executor.envFrom`) takes a list of [EnvFromSource](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#envfromsource-v1-core) and allows [using all key-value pairs in a ConfigMap or Secret as environment variables](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables). The `SparkApplication` snippet below shows the use of both fields:
+There are two fields for specifying environment variables for the driver and/or executor containers, namely `.spec.driver.env` (or `.spec.executor.env` for the executor container) and `.spec.driver.envFrom` (or `.spec.executor.envFrom` for the executor container). Specifically, `.spec.driver.env` (and `.spec.executor.env`) takes a list of [EnvVar](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#envvar-v1-core), each of which specifies an environment variable or the source of an environment variable, e.g., a name-value pair, a ConfigMap key, a Secret key, etc. Alternatively, `.spec.driver.envFrom` (and `.spec.executor.envFrom`) takes a list of [EnvFromSource](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#envfromsource-v1-core) and allows [using all key-value pairs in a ConfigMap or Secret as environment variables](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables). The `SparkApplication` snippet below shows the use of both fields:
 
 ```yaml
 spec:
@@ -426,7 +426,7 @@ Note that the mutating admission webhook is needed to use this feature. Please r
 
 ## Using Sidecar Containers
 
-A `SparkApplication` can specify one or more optional sidecar containers for the driver or executor pod, using the optional field `.spec.driver.sidecars` or `.spec.executor.sidecars`. The specification of each sidecar container follows the [Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#container-v1-core) API definition. Below is an example:
+A `SparkApplication` can specify one or more optional sidecar containers for the driver or executor pod, using the optional field `.spec.driver.sidecars` or `.spec.executor.sidecars`. The specification of each sidecar container follows the [Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#container-v1-core) API definition. Below is an example:
 
 ```yaml
 spec:
@@ -447,7 +447,7 @@ Note that the mutating admission webhook is needed to use this feature. Please r
 
 ## Using Init-Containers
 
-A `SparkApplication` can optionally specify one or more [init-containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) for the driver or executor pod, using the optional field `.spec.driver.initContainers` or `.spec.executor.initContainers`, respectively. The specification of each init-container follows the [Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#container-v1-core) API definition. Below is an example:
+A `SparkApplication` can optionally specify one or more [init-containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) for the driver or executor pod, using the optional field `.spec.driver.initContainers` or `.spec.executor.initContainers`, respectively. The specification of each init-container follows the [Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#container-v1-core) API definition. Below is an example:
 
 ```yaml
 spec:
