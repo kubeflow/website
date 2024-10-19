@@ -14,9 +14,11 @@ Metrics are only generated in response to specific events. For example, job crea
 The Training Operator includes a built-in `/metrics` endpoint exposes Prometheus metrics. This feature is enabled by default and requires no additional configuration for basic use.
 
 ### Configuring Metrics Port
-By default, metrics are exposed on port 8080. If you want to change the default port for metrics exporting, simply add the `metrics-bind-address` argument.
+By default, metrics are exposed on port 8080 and can be scraped from any IP address. 
 
-For example, to change the metrics port to 8082:
+If you want to change the default port for metrics exporting and limit which IP address can scrape the metrics, simply add the `metrics-bind-address` argument. 
+
+**For example**:
 ```yaml
 # deployment.yaml for the Training Operator
 spec:
@@ -31,8 +33,14 @@ spec:
             name: webhook-server
             protocol: TCP
         args:
-        - "--metrics-bind-address=:8082" # Metrics port changed to 8082
+        - "--metrics-bind-address=192.168.1.100:8082" 
 ```
+
+**Explanation:**
+
+`--metrics-bind-address=192.168.1.100:8082` specifies that metrics are now available on **port 8082**, restricted to the IP address **192.168.1.100**. Alternatively, you can bind the metrics to all interfaces by using **0.0.0.0:8082**.
+
+
 ### Accessing the Metrics
 The method to access these metrics may vary depending on your Kubernetes setup and environment. For example, use the following command for local environments:
 ```
