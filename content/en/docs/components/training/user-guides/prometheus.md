@@ -62,5 +62,3 @@ Labels information can be interpreted as follows:
 | `namespace`   | The Kubernetes namespace where the job is running        |
 | `framework` | The machine learning framework used (e.g. TensorFlow,PyTorch)     | 
 
-
-
