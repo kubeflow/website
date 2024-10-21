@@ -29,7 +29,7 @@ To follow along the examples in this guide, you will need a Kubeflow installatio
 To use Model Registry on a notebook you should first install the Python client:
 
 ```raw
-!pip install --pre model-registry=="0.2.3a1"
+!pip install --pre model-registry=="0.2.5a1"
 ```
 
 Note that depending on your environment there might be conflicting dependency versions for packages that depend on
