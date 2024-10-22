@@ -1,7 +1,7 @@
 +++
 title = "MPI Training (MPIJob)"
 description = "Instructions for using MPI for training"
-weight = 60
+weight = 70
 +++
 
 {{% beta-status
