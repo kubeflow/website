@@ -583,16 +583,10 @@ nav.foldable-nav {
 }
 
 // create new colors for the distribution "kubeflow version" buttons
-.btn-kf-version-current {
+.btn-kf-version {
     color: #fff;
-    background: #6ca1ff linear-gradient(180deg, #7aaaff, #6ca1ff) repeat-x;
-    border-color: #6ca1ff;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
-}
-.btn-kf-version-legacy {
-    color: #fff;
-    background: #b9c0c7 linear-gradient(180deg, #c7ccd2, #b9c0c7) repeat-x;
-    border-color: #b9c0c7;
+    background: #8fb8ff linear-gradient(180deg, #94bbff, #8fb8ff) repeat-x;
+    border-color: #8fb8ff;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
