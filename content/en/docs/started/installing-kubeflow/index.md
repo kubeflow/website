@@ -188,7 +188,7 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% aws/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/awslabs/kubeflow-manifests/releases">[Release Notes]</a></sup>
+          <sup><a href="https://github.com/awslabs/kubeflow-manifests/releases">[release notes]</a></sup>
         </td>
         <td>
           Amazon Elastic Kubernetes Service (EKS)
@@ -204,10 +204,11 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% deploykf/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://www.deploykf.org/releases/tool-versions/#kubeflow-ecosystem">[Version Matrix]</a></sup>
+          <sup><a href="https://www.deploykf.org/releases/tool-versions/#kubeflow-ecosystem">[version matrix]</a></sup>
         </td>
         <td>
-          All Certified Kubernetes Distributions
+          Multiple
+          <sup><a href="https://www.deploykf.org/guides/getting-started/#kubernetes-cluster">[list]</a></sup>
         </td>
         <td>
           <a href="https://www.deploykf.org/">Website</a>
@@ -220,10 +221,10 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% canonical/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://charmed-kubeflow.io/docs/release-notes">[Release Notes]</a></sup>
+          <sup><a href="https://charmed-kubeflow.io/docs/release-notes">[release notes]</a></sup>
         </td>
         <td>
-          All Certified Kubernetes Distributions
+          Multiple
         </td>
         <td>
           <a href="https://charmed-kubeflow.io/">Website</a>
@@ -235,7 +236,7 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% gke/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/">[Release Notes]</a></sup>
+          <sup><a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/">[release notes]</a></sup>
         </td>
         <td>
           Google Kubernetes Engine (GKE)
@@ -250,7 +251,7 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% iks/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/IBM/manifests/releases">[Release Notes]</a></sup>
+          <sup><a href="https://github.com/IBM/manifests/releases">[release notes]</a></sup>
         </td>
         <td>
           IBM Cloud Kubernetes Service (IKS)
@@ -265,7 +266,7 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% azure/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/Azure/kubeflow-aks/releases">[Release Notes]</a></sup>
+          <sup><a href="https://github.com/Azure/kubeflow-aks/releases">[release notes]</a></sup>
         </td>
         <td>
           Azure Kubernetes Service (AKS)
@@ -294,7 +295,7 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% qbo/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">[Release Notes]</a></sup>
+          <sup><a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">[release notes]</a></sup>
         </td>
         <td>
           QBO Kubernetes Engine (QKE)
