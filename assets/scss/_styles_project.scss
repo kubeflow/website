@@ -1,4 +1,14 @@
 // --------------------------------------------------
+// popover styles
+// --------------------------------------------------
+.popover-header {
+  color: #fff;
+  font-weight: 600;
+  background-color: $dark;
+  padding: 0.75rem;
+}
+
+// --------------------------------------------------
 // reduce padding for small screens
 // --------------------------------------------------
 @include media-breakpoint-down(md) {
