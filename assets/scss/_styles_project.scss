@@ -1,4 +1,14 @@
 // --------------------------------------------------
+// popover styles
+// --------------------------------------------------
+.popover-header {
+  color: #fff;
+  font-weight: 600;
+  background-color: $dark;
+  padding: 0.75rem;
+}
+
+// --------------------------------------------------
 // reduce padding for small screens
 // --------------------------------------------------
 @include media-breakpoint-down(md) {
@@ -580,14 +590,6 @@ nav.foldable-nav {
 .distributions-table thead {
   background-color: $primary;
   color: $secondary;
-}
-
-// create new colors for the distribution "kubeflow version" buttons
-.btn-kf-version {
-    color: #fff;
-    background: #8fb8ff linear-gradient(180deg, #94bbff, #8fb8ff) repeat-x;
-    border-color: #8fb8ff;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 // --------------------------------------------------

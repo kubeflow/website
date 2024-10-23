@@ -24,29 +24,29 @@
 {{- $this_release_date_string := $this_release_date | time.Format ":date_long" }}
 
 {{- $this_version_lag := sub $latest_release_minor $this_release_minor }}
-{{- $popup_content_prefix := printf "This distribution includes Kubeflow %s which was released on <strong>%s</strong> and is <strong>%d</strong> minor versions behind the latest release." $version_full $this_release_date_string $this_version_lag }}
+{{- $popup_content_prefix := printf "Kubeflow %s was initially released on <strong>%s</strong> and is <strong>%d</strong> minor versions behind the latest release." $version_full $this_release_date_string $this_version_lag }}
 
 {{- $button_style := "" }}
 {{- $popup_icon := "" }}
 {{- $popup_title := "" }}
 {{- $popup_content :=  "" }}
 {{- if eq $this_version_lag 0 }}
-  {{- $button_style = "btn-kf-version" }}
+  {{- $button_style = "btn-outline-primary" }}
   {{- $popup_icon = "" }}
   {{- $popup_title = "Version Info" }}
   {{- $popup_content = printf `%s<br><br>This distribution is currently considered up-to-date.` $popup_content_prefix }}
 {{- else if eq $this_version_lag 1 }}
-  {{- $button_style = "btn-kf-version" }}
+  {{- $button_style = "btn-outline-primary" }}
   {{- $popup_icon = "" }}
   {{- $popup_title = "Version Info" }}
-  {{- $popup_content = printf `%s<br><br>Reach out to the maintainers if you are interested in Kubeflow %s support.` $popup_content_prefix $latest_release_full }}
+  {{- $popup_content = printf `%s<br><br>If you want this distribution to support Kubeflow %s, please reach out to its maintainers.` $popup_content_prefix $latest_release_full }}
 {{- else if eq $this_version_lag 2 }}
-  {{- $button_style = "btn-kf-version" }}
+  {{- $button_style = "btn-outline-primary" }}
   {{- $popup_icon = "" }}
   {{- $popup_title = "Version Warning" }}
   {{- $popup_content = printf `%s<br><br>You may wish to confirm this distribution is still supported by its maintainers.` $popup_content_prefix }}
 {{- else }}
-  {{- $button_style = "btn-kf-version" }}
+  {{- $button_style = "btn-outline-primary" }}
   {{- $popup_icon = "" }}
   {{- $popup_title = "Version Warning" }}
   {{- $popup_content = printf `%s<br><br>We suggest you confirm this distribution is still supported by its maintainers.` $popup_content_prefix }}
