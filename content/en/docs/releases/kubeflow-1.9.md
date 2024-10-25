@@ -85,6 +85,16 @@ weight = 95
         </td>
       </tr>
       <!-- ======================= -->
+      <!-- Data Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">Data Working Group</td>
+        <td>Model Registry</td>
+        <td>
+          <a href="https://github.com/kubeflow/model-registry/releases/tag/v0.2.1-alpha">v0.2.1</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
       <!-- Notebooks Working Group -->
       <!-- ======================= -->
       <tr>
