@@ -173,7 +173,7 @@ The following organizations offer advice and support for Kubeflow deployments:
       <tr>
         <td><a href="https://www.rafay.co/">Rafay Systems</a></td>
         <td> 
-        <a href="https://docs.rafay.co/aiml/mlops-kubeflow/install/k8s_only/design/">Kubeflow on your Infra</a></td>
+        <a href="https://docs.rafay.co/aiml/mlops-kubeflow/overview/">Kubeflow on your Infra</a></td>
       </tr>
     </tbody>
   </table>
