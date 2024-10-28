@@ -333,6 +333,21 @@ The following table lists distributions which are <em>maintained</em> by their r
           <a href="https://vmware.github.io/vSphere-machine-learning-extension/">Website</a>
         </td>
       </tr>
+      <tr>
+        <td>
+          Rafay Systems
+        </td>
+        <td>
+          {{% rafay/latest-version %}} <sup>[<a href="https://docs.rafay.co/aiml/mlops-kubeflow/support/">Support Matrix</a>]</sup>
+        </td>
+        <td>
+          All Certified Kubernetes Distributions
+        </td>
+        <td>
+          <a href="https://docs.rafay.co/aiml/mlops-kubeflow/overview/">Website</a>
+        </td>
+      </tr>
+      <tr>
     </tbody>
   </table>
 </div>
