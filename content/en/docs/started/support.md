@@ -165,6 +165,11 @@ The following organizations offer advice and support for Kubeflow deployments:
         <a href="http://www.pattersonconsultingtn.com/offerings/managed_kubeflow.html">Managed Kubeflow</a></td>
       </tr>
       <tr>
+        <td><a href="https://www.rafay.co/">Rafay Systems</a></td>
+        <td> 
+        <a href="https://docs.rafay.co/aiml/mlops-kubeflow/overview/">Kubeflow on your Infra</a></td>
+      </tr>
+      <tr>
         <td><a href="https://www.seldon.io/">Seldon</a></td>
         <td> 
         <a href="https://github.com/SeldonIO/seldon-core/issues">Issue 
