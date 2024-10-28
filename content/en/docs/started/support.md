@@ -175,11 +175,6 @@ The following organizations offer advice and support for Kubeflow deployments:
         <a href="https://github.com/SeldonIO/seldon-core/issues">Issue 
         tracker</a></td>
       </tr> 
-      <tr>
-        <td><a href="https://www.rafay.co/">Rafay Systems</a></td>
-        <td> 
-        <a href="https://docs.rafay.co/aiml/mlops-kubeflow/overview/">Kubeflow on your Infra</a></td>
-      </tr>
     </tbody>
   </table>
 </div>
