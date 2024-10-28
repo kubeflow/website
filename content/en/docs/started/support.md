@@ -79,6 +79,7 @@ You can ask questions and make suggestions in the following places:
 We want to promote commercial companies and idividuals that contribute back to the open source project.
 Below is a table of organizations that contribute to Kubeflow and offer commercial support:
 
+<<<<<<< HEAD
 | Provider                      | Support Link                                                                                                                                                    |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Aranui Solutions              | [Aranui Solutions](https://www.aranui.solutions/services)                                                                                                       |
@@ -86,6 +87,44 @@ Below is a table of organizations that contribute to Kubeflow and offer commerci
 | Freelancer Julius von Kohout  | [LinkedIn](https://de.linkedin.com/in/juliusvonkohout/), [Slack](https://cloud-native.slack.com/team/U06LW431SJF), [GitHub](https://github.com/juliusvonkohout) |
 | Red Hat                       | [Red Hat](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai)                                                                        |
 | Other Providers               | Please reach out to the Kubeflow Steering Committee with proof of significant contributions to the Kubeflow open source project                                 |
+=======
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Organization</th>
+        <th>Points of contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://www.arrikto.com">Arrikto</a></td>
+        <td><a href="mailto:sales@arrikto.com">sales@arrikto.com</a></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.ubuntu.com">Canonical</a></td>
+        <td><a href="https://ubuntu.com/kubeflow#get-in-touch">Get in touch</a></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.pattersonconsultingtn.com/">Patterson Consulting</a></td>
+        <td> 
+        <a href="http://www.pattersonconsultingtn.com/offerings/managed_kubeflow.html">Managed Kubeflow</a></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.seldon.io/">Seldon</a></td>
+        <td> 
+        <a href="https://github.com/SeldonIO/seldon-core/issues">Issue 
+        tracker</a></td>
+      </tr> 
+      <tr>
+        <td><a href="https://www.rafay.co/">Rafay Systems</a></td>
+        <td> 
+        <a href="https://docs.rafay.co/aiml/mlops-kubeflow/install/k8s_only/design/">Kubeflow on your Infra</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+>>>>>>> 9e4d406a (Updated  support.md with Rafay System details)
 
 <a id="cloud-support"></a>
 If you are using a managed offer from a cloud provider for Kubeflow, then the cloud
