@@ -25,6 +25,7 @@
 
 {{- $this_version_lag := sub $latest_release_minor $this_release_minor }}
 {{- $popup_content_prefix := printf "Kubeflow %s was initially released on <strong>%s</strong> and is <strong>%d</strong> minor versions behind the latest release." $version_full $this_release_date_string $this_version_lag }}
+{{- $popup_content_suffix := "Distributions are supported by their maintainers. Contact the provider for information on support and updates." }}
 
 {{- $button_style := "" }}
 {{- $popup_icon := "" }}
@@ -34,22 +35,22 @@
   {{- $button_style = "btn-outline-primary" }}
   {{- $popup_icon = "" }}
   {{- $popup_title = "Version Info" }}
-  {{- $popup_content = printf `%s<br><br>This distribution is currently considered up-to-date.` $popup_content_prefix }}
+  {{- $popup_content = printf `%s<br><br>%s` $popup_content_prefix $popup_content_suffix }}
 {{- else if eq $this_version_lag 1 }}
   {{- $button_style = "btn-outline-primary" }}
   {{- $popup_icon = "" }}
   {{- $popup_title = "Version Info" }}
-  {{- $popup_content = printf `%s<br><br>If you want this distribution to support Kubeflow %s, please reach out to its maintainers.` $popup_content_prefix $latest_release_full }}
+  {{- $popup_content = printf `%s<br><br>%s` $popup_content_prefix $popup_content_suffix }}
 {{- else if eq $this_version_lag 2 }}
   {{- $button_style = "btn-outline-primary" }}
   {{- $popup_icon = "" }}
-  {{- $popup_title = "Version Warning" }}
-  {{- $popup_content = printf `%s<br><br>You may wish to confirm this distribution is still supported by its maintainers.` $popup_content_prefix }}
+  {{- $popup_title = "Version Info" }}
+  {{- $popup_content = printf `%s<br><br>%s` $popup_content_prefix $popup_content_suffix }}
 {{- else }}
   {{- $button_style = "btn-outline-primary" }}
   {{- $popup_icon = "" }}
-  {{- $popup_title = "Version Warning" }}
-  {{- $popup_content = printf `%s<br><br>We suggest you confirm this distribution is still supported by its maintainers.` $popup_content_prefix }}
+  {{- $popup_title = "Version Info" }}
+  {{- $popup_content = printf `%s<br><br>%s` $popup_content_prefix $popup_content_suffix }}
 {{- end }}
 
 <button
