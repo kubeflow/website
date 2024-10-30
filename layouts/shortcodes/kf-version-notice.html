@@ -15,7 +15,7 @@
 {{- $this_release_json_path := printf "release-info/v%s.json" $version_full }}
 {{- $this_release_json := .Page.Resources.Get $this_release_json_path }}
 {{- if not $this_release_json }}
-  {{- errorf "Failed to get release info for version %q, no file at %q. !!!! TIP: use 'get_new_releases.sh' to update Kubeflow release information !!!!" $version_full $this_release_json_path $version_full }}
+  {{- errorf "Failed to get release info for version %q, no file at %q.\n\n\n!!!! TIP: run the './content/en/docs/started/installing-kubeflow/get_new_releases.sh' to update Kubeflow release information !!!!\n\n\n" $version_full $this_release_json_path $version_full }}
 {{- end }}
 {{- $this_release := $this_release_json | transform.Unmarshal }}
 {{- $this_release_major := $this_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$1` | int }}
