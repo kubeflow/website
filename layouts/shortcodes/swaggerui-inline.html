@@ -1,3 +1,4 @@
+{{ .Page.Store.Set "hasSwagger" true }}
 {{- $remote_url := replaceRE `\s` "" .Inner }}
 {{- warnf "Getting remote resource %q for page: %q" $remote_url .Page.File.Path }}
 {{- $swagger_json := resources.GetRemote $remote_url }}
