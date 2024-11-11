@@ -29,7 +29,8 @@ To follow along the examples in this guide, you will need a Kubeflow installatio
 To use Model Registry on a notebook you should first install the Python client:
 
 ```raw
-!pip install --pre model-registry=="0.2.3a1"
+!pip install model-registry=="0.2.10"
+!pip install kserve=="0.13"
 ```
 
 Note that depending on your environment there might be conflicting dependency versions for packages that depend on
@@ -58,15 +59,15 @@ You can use the `register_model` method to index a model's artifacts and its met
 
 ```python
 rm = registry.register_model(
-    "mnist",
-    "https://github.com/tarilabs/demo20231212/raw/main/v1.nb20231206162408/mnist.onnx",
-    model_format_name="onnx",
+    "iris",
+    "gs://kfserving-examples/models/sklearn/1.0/model",
+    model_format_name="sklearn",
     model_format_version="1",
-    version="v0.1",
-    description="lorem ipsum mnist",
+    version="v1",
+    description="Iris scikit-learn model",
     metadata={
         "accuracy": 3.14,
-        "license": "apache-2.0",
+        "license": "BSD 3-Clause License",
     }
 )
 ```
@@ -76,13 +77,13 @@ rm = registry.register_model(
 Continuing on the previous example, you can use the following methods to retrieve the metadata associated with a given Model Artifact:
 
 ```python
-model = registry.get_registered_model("mnist")
+model = registry.get_registered_model("iris")
 print("Registered Model:", model, "with ID", model.id)
 
-version = registry.get_model_version("mnist", "v0.1")
+version = registry.get_model_version("iris", "v1")
 print("Model Version:", version, "with ID", version.id)
 
-art = registry.get_model_artifact("mnist", "v0.1")
+art = registry.get_model_artifact("iris", "v1")
 print("Model Artifact:", art, "with ID", art.id)
 ```
 
@@ -92,9 +93,11 @@ These can be used to create a KServe inference endpoint.
 
 Normally you would need to provide your deployment metadata manually resulting in an error-prone process, especially
 when such data has to be gathered from several sources.
-Using Model Registry ensures simplified access to accurate metadata, and enables you to automate deployment based on the Model Registry values, as also shown in the example below.
+Using Model Registry ensures simplified access to accurate metadata, and enables you to automate deployment based on the Model Registry values, as also shown in the examples below.
 
-Note: the provided example uses the Model Registry Python client and KServe Python SDK. You can analogously make use of the Model Registry REST APIs, and your own Add-on SDK as needed.
+Note: the provided examples uses the Model Registry Python client and KServe Python SDK. You can analogously make use of the Model Registry REST APIs, and your own Add-on SDK as needed.
+
+### Using Model Registry metadata
 
 You can use the retrieved metadata from the previous step with the KServe Python SDK to create an inference endpoint, for example:
 
@@ -106,7 +109,7 @@ isvc = kserve.V1beta1InferenceService(
     api_version=kserve.constants.KSERVE_GROUP + "/v1beta1",
     kind=kserve.constants.KSERVE_KIND,
     metadata=client.V1ObjectMeta(
-        name="mnist",
+        name="iris-model",
         namespace=kserve.utils.get_default_target_namespace(),
         labels={
             "modelregistry/registered-model-id": model.id,
@@ -120,8 +123,6 @@ isvc = kserve.V1beta1InferenceService(
                 model_format=kserve.V1beta1ModelFormat(
                     name=art.model_format_name, version=art.model_format_version
                 ),
-                runtime="kserve-ovms",
-                protocol_version="v2",
             )
         )
     ),
@@ -132,6 +133,42 @@ ks_client.create(isvc)
 
 An inference endpoint is now created, using the artifact metadata retrieved from the Model Registry (previous step),
 specifying the serving runtime to be used to serve the model, and references to the original entities in Model Registry.
+
+### Using Model Registry Custom Storage Initializer
+
+The Model Registry Custom Storage Initializer (CSI) is a custom implementation of the KServe Storage Initializer that allows you to use Model Registry metadata to download and deploy models (see [Installation instructions](installation.md)). You can create an InferenceService that references the model and version in the Model Registry:
+
+```python
+from kubernetes import client
+import kserve
+
+isvc = kserve.V1beta1InferenceService(
+    api_version=kserve.constants.KSERVE_GROUP + "/v1beta1",
+    kind=kserve.constants.KSERVE_KIND,
+    metadata=client.V1ObjectMeta(
+        name="iris-model",
+        namespace=kserve.utils.get_default_target_namespace(),
+        labels={
+            "modelregistry/registered-model-id": model.id,
+            "modelregistry/model-version-id": version.id,
+        },
+    ),
+    spec=kserve.V1beta1InferenceServiceSpec(
+        predictor=kserve.V1beta1PredictorSpec(
+            model=kserve.V1beta1ModelSpec(
+                storage_uri="model-registry://iris/v1", # The protocol is model-registry://{modelName}/{modelVersion}
+                model_format=kserve.V1beta1ModelFormat(
+                    name=art.model_format_name, version=art.model_format_version
+                ),
+            )
+        )
+    ),
+)
+ks_client = kserve.KServeClient()
+ks_client.create(isvc)
+```
+
+The InferenceService is now created, the CSI retrieves the latest artifact data associated with the model version from the Model Registry, and then downloads the model from its URI.
 
 ## Next steps
 
