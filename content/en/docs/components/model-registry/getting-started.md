@@ -29,8 +29,8 @@ To follow along the examples in this guide, you will need a Kubeflow installatio
 To use Model Registry on a notebook you should first install the Python client:
 
 ```raw
-!pip install --pre model-registry=="0.2.10"
-!pip install --pre kserve=="0.13"
+!pip install model-registry=="0.2.10"
+!pip install kserve=="0.13"
 ```
 
 Note that depending on your environment there might be conflicting dependency versions for packages that depend on
@@ -135,7 +135,7 @@ specifying the serving runtime to be used to serve the model, and references to 
 
 ### Using Model Registry Custom Storage Initializer
 
-The Model Registry Custom Storage Initializer (CSI) is a custom implementation of the KServe Storage Initializer that allows you to use Model Registry metadata to download and deploy models. You can create an InferenceService that references the model and version in the Model Registry:
+The Model Registry Custom Storage Initializer (CSI) is a custom implementation of the KServe Storage Initializer that allows you to use Model Registry metadata to download and deploy models (see [Installation instructions](installation.md)). You can create an InferenceService that references the model and version in the Model Registry:
 
 ```python
 from kubernetes import client
