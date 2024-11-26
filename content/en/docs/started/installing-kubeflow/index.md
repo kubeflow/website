@@ -162,11 +162,9 @@ a simplified installation and management experience for your **Kubeflow Platform
 can be deployed on [all certified Kubernetes distributions](https://kubernetes.io/partners/#conformance),
 while others target a specific platform (e.g. EKS or GKE).
 
-{{% alert title="Note" color="warning" %}}
+{{% alert title="Note" color="dark" %}}
 Packaged distributions are developed and supported by their respective maintainers.
 The Kubeflow community <strong>does not endorse or certify</strong> any specific distribution.
-
-In the near future, there are plans to introduce <a href="https://github.com/kubeflow/community/blob/master/proposals/kubeflow-conformance-program-proposal.md">conformance testing for distributions</a>, you may track progress on this initiative by following <a href="https://github.com/kubeflow/kubeflow/issues/6485">kubeflow/kubeflow#6485</a>.
 {{% /alert %}}
 
 The following table lists distributions which are <em>maintained</em> by their respective maintainers:
@@ -189,7 +187,8 @@ The following table lists distributions which are <em>maintained</em> by their r
           Amazon Web Services
         </td>
         <td>
-          {{% aws/latest-version %}} <sup>[<a href="https://github.com/awslabs/kubeflow-manifests/releases">Release Notes</a>]</sup>
+          {{< kf-version-notice >}}{{% aws/latest-version %}}{{< /kf-version-notice >}}
+          <sup><a href="https://github.com/awslabs/kubeflow-manifests/releases">[Release Notes]</a></sup>
         </td>
         <td>
           Amazon Elastic Kubernetes Service (EKS)
@@ -204,7 +203,8 @@ The following table lists distributions which are <em>maintained</em> by their r
             <br><small>deployKF</small>
         </td>
         <td>
-          {{% deploykf/latest-version %}} <sup>[<a href="https://www.deploykf.org/releases/tool-versions/#kubeflow-ecosystem">Version Matrix</a>]</sup>
+          {{< kf-version-notice >}}{{% deploykf/latest-version %}}{{< /kf-version-notice >}}
+          <sup><a href="https://www.deploykf.org/releases/tool-versions/#kubeflow-ecosystem">[Version Matrix]</a></sup>
         </td>
         <td>
           All Certified Kubernetes Distributions
@@ -219,7 +219,8 @@ The following table lists distributions which are <em>maintained</em> by their r
             <br><small>Charmed Kubeflow</small>
         </td>
         <td>
-          {{% canonical/latest-version %}} <sup>[<a href="https://charmed-kubeflow.io/docs/release-notes">Release Notes</a>]</sup>
+          {{< kf-version-notice >}}{{% canonical/latest-version %}}{{< /kf-version-notice >}}
+          <sup><a href="https://charmed-kubeflow.io/docs/release-notes">[Release Notes]</a></sup>
         </td>
         <td>
           All Certified Kubernetes Distributions
@@ -233,7 +234,8 @@ The following table lists distributions which are <em>maintained</em> by their r
           Google Cloud
         </td>
         <td>
-          {{% gke/latest-version %}} <sup>[<a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/">Release Notes</a>]</sup>
+          {{< kf-version-notice >}}{{% gke/latest-version %}}{{< /kf-version-notice >}}
+          <sup><a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/">[Release Notes]</a></sup>
         </td>
         <td>
           Google Kubernetes Engine (GKE)
@@ -247,7 +249,8 @@ The following table lists distributions which are <em>maintained</em> by their r
           IBM Cloud
         </td>
         <td>
-          {{% iks/latest-version %}} <sup>[<a href="https://github.com/IBM/manifests/releases/tag/v{{% iks/latest-version %}}">Release Notes</a>]</sup>
+          {{< kf-version-notice >}}{{% iks/latest-version %}}{{< /kf-version-notice >}}
+          <sup><a href="https://github.com/IBM/manifests/releases">[Release Notes]</a></sup>
         </td>
         <td>
           IBM Cloud Kubernetes Service (IKS)
@@ -261,7 +264,8 @@ The following table lists distributions which are <em>maintained</em> by their r
           Microsoft Azure
         </td>
         <td>
-          {{% azure/latest-version %}} <sup>[<a href="https://github.com/Azure/kubeflow-aks/releases/tag/v{{% azure/latest-version %}}">Release Notes</a>]</sup>
+          {{< kf-version-notice >}}{{% azure/latest-version %}}{{< /kf-version-notice >}}
+          <sup><a href="https://github.com/Azure/kubeflow-aks/releases">[Release Notes]</a></sup>
         </td>
         <td>
           Azure Kubernetes Service (AKS)
@@ -275,7 +279,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           Nutanix
         </td>
         <td>
-          {{% nutanix/latest-version %}}
+          {{< kf-version-notice >}}{{% nutanix/latest-version %}}{{< /kf-version-notice >}}
         </td>
         <td>
           Nutanix Kubernetes Engine
@@ -289,7 +293,8 @@ The following table lists distributions which are <em>maintained</em> by their r
           QBO
         </td>
         <td>
-          {{% qbo/latest-version %}} <sup>[<a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">Release Notes</a>]</sup>
+          {{< kf-version-notice >}}{{% qbo/latest-version %}}{{< /kf-version-notice >}}
+          <sup><a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">[Release Notes]</a></sup>
         </td>
         <td>
           QBO Kubernetes Engine (QKE)
@@ -304,7 +309,7 @@ The following table lists distributions which are <em>maintained</em> by their r
             <br><small>Open Data Hub</small>
         </td>
         <td>
-          {{% redhat/latest-version %}}
+          {{< kf-version-notice >}}{{% redhat/latest-version %}}{{< /kf-version-notice >}}
         </td>
         <td>
           OpenShift
@@ -318,7 +323,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           VMware
         </td>
         <td>
-          {{% vmware/latest-version %}}
+          {{< kf-version-notice >}}{{% vmware/latest-version %}}{{< /kf-version-notice >}}
         </td>
         <td>
           VMware vSphere
@@ -354,6 +359,7 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
 The Kubeflow manifests provide a quick way to get a minimum viable Kubeflow Platform up and running.
 The Kubeflow community support for Kubeflow manifests is only best-effort, non-commercial and not guaranteed for environment-specific issues or custom configurations.
 Nevertheless, we welcome contributions and bug reports very much.
+
 For commercial production-level usage and support there are many options. You can use a third-party commercial distribution, hire consultants or build up the knowledge yourself to maintain and extend your Kubeflow installation.
 {{% /alert %}}
 

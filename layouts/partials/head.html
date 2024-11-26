@@ -50,12 +50,16 @@
 {{ partialCached "math.html" . }}
 {{ end }}
 
-{{ if .Param "swaggerui" }}
+{{ if .Store.Get "hasSwagger" }}
 {{ partialCached "swaggerui.html" . }}
 {{ end }}
 
 {{ if .Store.Get "hasMermaid" }}
 {{ partialCached "mermaid.html" . }}
+{{ end }}
+
+{{ if or (.Store.Get "hasPopper") (.Param "popper") }}
+{{ partialCached "popper.html" . }}
 {{ end }}
 
 {{ partial "hooks/head-end.html" . -}}
