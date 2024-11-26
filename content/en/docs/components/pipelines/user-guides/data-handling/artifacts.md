@@ -29,7 +29,7 @@ def training_component(dataset: Input[Dataset], model: Output[Model]):
     # ... train tf_model model on contents of dataset ...
 
     tf_model.save(model.path)
-    tf_model.metadata['framework'] = 'tensorflow'
+    model.metadata['framework'] = 'tensorflow'
 ```
 
 This `training_component` does the following:
