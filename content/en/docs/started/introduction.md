@@ -95,7 +95,7 @@ The following components also have roadmaps:
 - [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
 - [KServe](https://github.com/kserve/kserve/blob/master/ROADMAP.md)
 - [Katib](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
-- [Training Operator](https://github.com/kubeflow/training-operator/blob/master/docs/roadmap.md)
+- [Training Operator](https://github.com/kubeflow/training-operator/blob/master/ROADMAP.md)
 
 ## Getting involved
 
