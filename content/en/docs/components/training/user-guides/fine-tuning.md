@@ -87,6 +87,19 @@ TrainingClient().train(
 After you execute `train`, the Training Operator will orchestrate the appropriate PyTorchJob resources
 to fine-tune the LLM.
 
+## Using custom images with Fine-Tuning API
+
+Platform engineers can customize the storage initializer and trainer images by setting the `STORAGE_INITIALIZER_IMAGE` and `TRAINER_TRANSFORMER_IMAGE` environment variables before executing the `train` command.
+
+For example: In your python code, set the env vars before executing `train`:
+```python
+...
+os.environ['STORAGE_INITIALIZER_IMAGE'] = 'docker.io/<username>/<custom-storage-initiailizer_image>'
+os.environ['TRAINER_TRANSFORMER_IMAGE'] = 'docker.io/<username>/<custom-trainer_transformer_image>'
+
+TrainingClient().train(...)
+```
+
 ## Next Steps
 
 - Run the example to [fine-tune the TinyLlama LLM](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/examples/pytorch/language-modeling/train_api_hf_dataset.ipynb)
