@@ -1,128 +1,83 @@
 +++
-title = "Central Dashboard"
-description = "Overview of the Kubeflow user interfaces (UIs)"
+title = "Overview"
+description = "Overview of the Kubeflow Central Dashboard"
 weight = 10
-
 +++
 
 {{% stable-status %}}
 
-Your Kubeflow deployment includes a central dashboard that provides quick access
-to the Kubeflow components deployed in your cluster. The dashboard includes the
-following features:
+## What is the Kubeflow Central Dashboard?
 
-- Shortcuts to specific actions, a list of recent pipelines and notebooks, and
-  metrics, giving you an overview of your jobs and cluster in one view.
-- A housing for the UIs of the components running in the cluster, including
-  **Pipelines**, **Katib**, **Notebooks**, and more.
-- A [registration flow](/docs/components/central-dash/registration-flow/) that
-  prompts new users to set up their namespace if necessary.
+The _Kubeflow Central Dashboard_ provides an authenticated web interface for Kubeflow and ecosystem components. 
+It acts as a hub for your machine learning platform and tools by exposing the UIs of components running in the cluster.
 
-## Overview of Kubeflow UIs
+Some core features of the central dashboard include:
 
-The Kubeflow UIs include the following:
+- Authentication and authorization based on [Profiles and Namespaces](/docs/components/central-dash/profiles/).
+- Access to the [user interface's](#navigation) of Kubeflow components.
+- The ability to [customize and include links](/docs/components/central-dash/customize/) to third-party applications.
 
-* **Home**: Home, the central hub to access recent resources, active
-  experiments, and useful documentation.
-* **Notebook Servers**: To manage [Notebook servers](/docs/components/notebooks/).
-* **TensorBoards**: To manage TensorBoard servers.
-* **Models**: To manage deployed [KFServing models](/docs/components/kfserving/kfserving/).
-* **Volumes**: To manage the cluster's Volumes.
-* **Experiments (AutoML)**: To manage [Katib](/docs/components/katib/) experiments.
-* **Experiments (KFP)**: To manage [Kubeflow Pipelines (KFP)](/docs/components/pipelines/) experiments.
-* **Pipelines**: To manage KFP pipelines.
-* **Runs**: To manage KFP runs.
-* **Recurring Runs**: To manage KFP recurring runs.
-* **Artifacts**: To track ML Metadata (MLMD) artifacts.
-* **Executions**: To track various component executions in MLMD.
-* **Manage Contributors**: To configure user access sharing across namespaces in
-  the Kubeflow deployment.
+## Screenshots
 
-The central dashboard looks like this:
+Here is a screenshot of the Kubeflow Central Dashboard:
 
-<img src="/docs/images/central-ui.png"
-  alt="Kubeflow central UI"
-  class="mt-3 mb-3 border border-info rounded">
+<img src="/docs/images/dashboard/homepage.png" 
+     alt="Kubeflow Central Dashboard - Homepage" 
+     class="mt-3 mb-3 border border-info rounded">
+</img>
 
-## Accessing the central dashboard
+## Navigation
 
-To access the central dashboard, you need to connect to the
-[Istio gateway](https://istio.io/docs/concepts/traffic-management/#gateways) that
-provides access to the Kubeflow
-[service mesh](https://istio.io/docs/concepts/what-is-istio/#what-is-a-service-mesh).
+Kubeflow and its components have a number of user interfaces which you access from the central dashboard.
 
-How you access the Istio gateway varies depending on how you've configured it.
+Here is a list of the main pages, grouped by component.
 
-## URL pattern with Google Cloud Platform (GCP)
+### Core Sections
 
-If you followed the guide to [deploying Kubeflow on GCP](/docs/gke/deploy/),
-the Kubeflow central UI is accessible at a URL of the following pattern:
+The following sections are available in all Kubeflow deployments:
 
-```
-https://<application-name>.endpoints.<project-id>.cloud.goog/
-```
+- **Home**: landing page for Kubeflow Central Dashboard
+- **Manage Contributors**: manage contributors of profiles (namespaces) that you own
 
-The URL brings up the dashboard illustrated above.
+### Kubeflow Notebooks
 
-If you deploy Kubeflow with Cloud Identity-Aware Proxy (IAP), Kubeflow uses the
-[Let's Encrypt](https://letsencrypt.org/) service to provide an SSL certificate
-for the Kubeflow UI. For troubleshooting issues with your certificate, see the
-guide to
-[monitoring your Cloud IAP setup](/docs/gke/deploy/monitor-iap-setup/).
+The following sections are available when [Kubeflow Notebooks](/docs/components/notebooks/) is installed:
 
-## Using kubectl and port-forwarding
+- **Notebooks**: manage Kubeflow Notebooks
+- **TensorBoards**: manage TensorBoard instances
+- **Volumes**: manage Kubernetes PVC Volumes
 
-If you didn't configure Kubeflow to integrate with an identity provider
-then you can port-forward directly to the Istio gateway.
+### Kubeflow Katib
 
-Port-forwarding typically does not work if any of the following are true:
+The following sections are available when [Katib](/docs/components/katib/) is installed:
 
-  * You've deployed Kubeflow on GCP using the default settings
-    with the [CLI deployment](/docs/gke/deploy/deploy-cli/).
+- **Katib Experiments**: manage Katib AutoML experiments
 
-  * You've configured the Istio ingress to only accept
-    HTTPS traffic on a specific domain or IP address.
+### KServe
 
-  * You've configured the Istio ingress to perform an authorization check
-    (for example, using Cloud IAP or [Dex](https://github.com/dexidp/dex)).
+The following sections are available when [KServe](/docs/external-add-ons/kserve/) is installed:
 
+- **KServe Endpoints**: manage deployed KServe model endpoints
 
-You can access Kubeflow via `kubectl` and port-forwarding as follows:
+### Kubeflow Pipelines
 
-1. Install `kubectl` if you haven't already done so:
+When [Kubeflow Pipelines](/docs/components/pipelines/) is installed, you can select **Pipelines** from the sidebar:
 
-    * If you're using Kubeflow on GCP, run the following command on the command
-    line: `gcloud components install kubectl`.
-    * Alternatively, follow the [`kubectl`
-    installation guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+<img src="/docs/images/dashboard/pipelines-runs.png" 
+     alt="Kubeflow Central Dashboard - Pipelines - Runs" 
+     class="mt-3 mb-3 border border-info rounded">
+</img>
 
-1. Use the following command to set up port forwarding to the
-  [Istio gateway](https://istio.io/docs/tasks/traffic-management/ingress/ingress-control/).
+In the **Pipelines** section, you can access the following pages:
 
-    {{% code-webui-port-forward %}}
-
-1. Access the central navigation dashboard at:
-
-    ```
-    http://localhost:8080/
-    ```
-
-    Depending on how you've configured Kubeflow, not all UIs work behind
-    port-forwarding to the reverse proxy.
-
-    For some web applications, you need to configure the base URL on which
-    the app is serving.
-
-    For example, if you deployed Kubeflow with an ingress serving at
-    `https://example.mydomain.com` and configured an application
-    to be served at the URL `https://example.mydomain.com/myapp`, then the
-    app may not work when served on
-    `https://localhost:8080/myapp` because the paths do not match.
+- **Pipelines**: manage pipeline definitions
+- **Experiments**: manage pipeline experiments
+- **Runs**: manage pipeline runs
+- **Recurring Runs**: manage recurring pipeline runs
+- **Artifacts**: track artifacts produced by pipelines stored in MLMD
+- **Executions**: track executions of pipeline components stored in MLMD
 
 ## Next steps
 
-* Explore the [contributor management
-  option](/docs/components/multi-tenancy/) where you
-  can set up a single namespace for a shared deployment or configure
-  multi-tenancy for your Kubeflow deployment.
-* [Set up your Jupyter notebooks](/docs/components/notebooks/setup/) in Kubeflow.
+- Learn how to [Access the Central Dashboard](/docs/components/central-dash/access/).
+- Learn about [Profiles and Namespaces](/docs/components/central-dash/profiles/).

@@ -54,5 +54,5 @@ weight = 40
 ## Next steps
 
 - See a [simple example](https://github.com/kubeflow/examples/tree/master/pipelines/simple-notebook-pipeline) of creating Kubeflow pipelines in a Jupyter notebook.
-- Build machine-learning pipelines with the [Kubeflow Pipelines SDK](/docs/components/pipelines/sdk/sdk-overview/).
-- Learn the advanced features available from a Kubeflow notebook, such as [submitting Kubernetes resources](/docs/components/notebooks/submit-kubernetes/) or [building Docker images](/docs/components/notebooks/custom-notebook/). 
+- Build machine-learning pipelines with the [Kubeflow Pipelines SDK](/docs/components/pipelines/legacy-v1/sdk/sdk-overview/).
+- Learn the advanced features available from a Kubeflow notebook, such as [submitting Kubernetes resources](/docs/components/notebooks/submit-kubernetes/) or [building Docker images](/docs/components/notebooks/container-images/). 

@@ -19,28 +19,30 @@ defaultContentLanguageInSubdir = false
 # useful when translating
 enableMissingTranslationPlaceholders = true
 # disable taxonomies
-disableKinds = ["taxonomy", "taxonomyTerm"]
+disableKinds = ["taxonomy"]
 # deprecated directories
-ignoreFiles = [
-  "content/en/docs/distributions/gke/deploy/*", 
-  "content/en/docs/distributions/gke/pipelines/*", 
-  "content/en/docs/distributions/gke/anthos.md", 
-  "content/en/docs/distributions/gke/authentication.md",
-  "content/en/docs/distributions/gke/authentication.md", 
-  "content/en/docs/distributions/gke/custom-domain.md", 
-  "content/en/docs/distributions/gke/customizing-gke.md", 
-  "content/en/docs/distributions/gke/private-clusters.md", 
-  "content/en/docs/distributions/gke/troubleshooting-gke.md"
-  ]
+ignoreFiles = []
+
 ###############################################################################
 # Hugo - Top-level navigation (horizontal)
 ###############################################################################
 [menu]
   [[menu.main]]
-    name = "Documentation"
-    weight = -101
+    name = "Kubeflow Summit"
+    weight = -1000
+    pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
+    post = "<br><span class='badge badge-warning'>April 1st, 2025</span> <span class='badge badge-warning'>London, England</span> "
+    url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/kubeflow-summit/"
+  [[menu.main]]
+    name = "Docs"
+    weight = -102
     pre = "<i class='fas fa-book pr-2'></i>"
     url = "/docs/"
+  [[menu.main]]
+    name = "Events"
+    weight = -101
+    pre = "<i class='fas fa-calendar pr-2'></i>"
+    url = "/events/"
   [[menu.main]]
     name = "Blog"
     weight = -100
@@ -53,16 +55,38 @@ ignoreFiles = [
     url = "https://github.com/kubeflow/"
 
 ###############################################################################
+# Docsy - Output Formats
+###############################################################################
+[outputs]
+section = [ "HTML" ]
+
+###############################################################################
 # Docsy - Goldmark markdown parser
 ###############################################################################
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+    # For MathJax
+    # https://gohugo.io/content-management/mathematics/#setup
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+
   [markup.highlight]
     # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
     style = "tango"
     guessSyntax = "true"
+
+###############################################################################
+# Docsy - DrawIO configuration
+###############################################################################
+[params.drawio]
+enable = true
 
 ###############################################################################
 # Docsy - Image processing configuration
@@ -77,7 +101,7 @@ ignoreFiles = [
 ###############################################################################
 [services]
   [services.googleAnalytics]
-  id = "UA-135379910-1"
+  id = "G-Y2KDEK0998"
 
 ###############################################################################
 # Docsy - Language configuration
@@ -85,10 +109,11 @@ ignoreFiles = [
 [languages]
   [languages.en]
     title = "Kubeflow"
-    description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
     languageName ="English"
-    # weight used for sorting in the language menu
     weight = 1
+
+    [languages.en.params]
+      description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 
 ###############################################################################
 # Docsy - Site Parameters
@@ -98,18 +123,18 @@ ignoreFiles = [
   github_project_repo = "https://github.com/kubeflow/kubeflow"
 
   RSSLink = "/index.xml"
-  author = "kubeflow.org" # add your company name
-  github = "kubeflow" # add your github profile name
-  twitter = "kubeflow" # add your twitter profile
+  author = "kubeflow.org"
+  github = "kubeflow"
 
   copyright = "The Kubeflow Authors."
   privacy_policy = "https://policies.google.com/privacy"
+  trademark = "https://www.linuxfoundation.org/trademark-usage/"
 
   # Google Custom Search Engine ID.
   gcs_engine_id = "007239566369470735695:624rglujm-w"
 
   # Text label for the version menu in the top bar of the website.
-  version_menu = "Kubeflow Version"
+  version_menu = "Version"
 
   # The major.minor version tag for the version of the docs represented in this
   # branch of the repository. Used in the "version-banner" partial to display a
@@ -126,13 +151,39 @@ ignoreFiles = [
 
   # A variable used in various docs to determine URLs for config files etc.
   # To find occurrences, search the repo for 'params "githubbranch"'.
-  githubbranch = "master"
+  github_branch = "master"
+
+  # Disable MathJax by default
+  # NOTE: enable it per-page with `mathjax: true` in front matter
+  mathjax = false
+
+  # Disable Swagger UI by default
+  # NOTE: enable it per-page with `swaggerui: true` in front matter
+  swaggerui = false
+
+  # Social media accounts
+  [params.social]
+
+    # Twitter account (used to set `twitter:site` in the SEO partial)
+    twitter = "kubeflow"
 
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
     version = "master"
     githubbranch = "master"
     url = "https://master.kubeflow.org"
+  [[params.versions]]
+    version = "v1.9"
+    githubbranch = "v1.9-branch"
+    url = "https://v1-9-branch.kubeflow.org"
+  [[params.versions]]
+    version = "v1.8"
+    githubbranch = "v1.8-branch"
+    url = "https://v1-8-branch.kubeflow.org"
+  [[params.versions]]
+    version = "v1.7"
+    githubbranch = "v1.7-branch"
+    url = "https://v1-7-branch.kubeflow.org"
   [[params.versions]]
     version = "v1.6"
     githubbranch = "v1.6-branch"
@@ -204,8 +255,9 @@ ignoreFiles = [
       [params.ui.feedback]
         enable = true
         # The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
-        yes = 'Glad to hear it! Please <a href="https://github.com/kubeflow/website/issues/new">tell us how we can improve</a>.'
-        no = 'Sorry to hear that. Please <a href="https://github.com/kubeflow/website/issues/new">tell us how we can improve</a>.'
+        # NOTE: the actual content of the responses is set in the "layouts/partials/feedback.html" file.
+        yes = ""
+        no = ""
 
   # Links in footer
   [params.links]
@@ -216,7 +268,7 @@ ignoreFiles = [
       desc = "Follow us on Twitter to get the latest news!"
     [[params.links.user]]
       name = "Kubeflow Slack"
-      url = "/docs/about/community/#kubeflow-slack"
+      url = "/docs/about/community/#kubeflow-slack-channels"
       icon = "fab fa-slack"
       desc = "Join the Kubeflow Slack Workspace!"
     [[params.links.user]]
@@ -226,6 +278,6 @@ ignoreFiles = [
       desc = "Join the Kubeflow Mailing List!"
     [[params.links.user]]
       name = "Kubeflow Community Calendars"
-      url = "/docs/about/community/#kubeflow-community-calendars"
+      url = "/docs/about/community/#kubeflow-community-meetings"
       icon = "fa fa-calendar"
       desc = "View the Kubeflow Community Calendars!"

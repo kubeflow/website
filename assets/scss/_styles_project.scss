@@ -1,15 +1,325 @@
 // --------------------------------------------------
+// popover styles
+// --------------------------------------------------
+.popover-header {
+  color: #fff;
+  font-weight: 600;
+  background-color: $dark;
+  padding: 0.75rem;
+}
+
+// --------------------------------------------------
+// reduce padding for small screens
+// --------------------------------------------------
+@include media-breakpoint-down(md) {
+  .td-main {
+    main {
+      padding-top: 1rem;
+    }
+  }
+}
+
+// --------------------------------------------------
+// increase 80% content width limit for large screens
+// --------------------------------------------------
+.td-max-width-on-larger-screens {
+    @include media-breakpoint-up(lg) {
+        max-width: 90%;
+    }
+}
+
+// --------------------------------------------------
+// color the sidebars darker than main content area
+// --------------------------------------------------
+@include media-breakpoint-down(sm) {
+  .td-main {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .td-sidebar {
+    background-color: $td-sidebar-bg-color;
+  }
+}
+@include media-breakpoint-up(md) {
+  .td-outer {
+    background-color: $td-sidebar-bg-color;
+    height: unset;
+  }
+  .td-sidebar, .td-sidebar-toc {
+    background-color: unset;
+  }
+  .td-main {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  main {
+    background-color: #ffffff;
+  }
+}
+
+// --------------------------------------------------
+// add border below search on small devices
+// --------------------------------------------------
+@include media-breakpoint-down(md) {
+   .td-sidebar {
+     border-bottom: 0.1rem solid $border-color;
+   }
+}
+
+// --------------------------------------------------
+// fix positions
+// --------------------------------------------------
+@include media-breakpoint-up(md) {
+  .td-main {
+    .td-main_inner {
+      // note, this is required to ensure the footer not visible for short pages
+      // which is important to prevent the "search" and "toc" sidebars from being
+      // underneath the the header
+      min-height: 100vh;
+
+      // ensure the background color is not visible because of left-right padding
+      // note that there is a default left-right margin of -15px, which we are
+      // selectively overwriting depending on the screen width
+      //  - there is a left sidebar for md and above
+      //  - there is a right sidebar for xl and above
+      margin-left: 0;
+      @include media-breakpoint-up(xl) {
+        margin-right: 0;
+      }
+    }
+
+    // left-hand sidebar
+    .td-sidebar {
+      padding-left: 0;
+      padding-right: 0.25rem;
+      padding-top: 7rem;
+      padding-bottom: 0;
+
+      .td-sidebar__inner {
+        position: sticky;
+        top: 7rem;
+        height: calc(100vh - 7rem);
+
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    // main content area
+    main {
+      padding-top: 7rem;
+      padding-bottom: 3rem;
+    }
+
+    // right hand sidebar
+    .td-sidebar-toc {
+      height: unset;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 7rem;
+      padding-bottom: 0;
+
+      // the default theme makes the outer div stickey, but we use the inner div
+      position: relative;
+      top: unset;
+      overflow-y: unset;
+
+      .td-sidebar-toc__inner {
+        position: sticky;
+        top: 7rem;
+        height: calc(100vh - 7rem);
+
+        padding-left: 1rem;
+        padding-right: 1.5rem;
+
+        // allow the toc to scroll
+        overflow-y: auto;
+      }
+
+      // add separator line before toc list
+      .td-toc {
+        padding-top: 1rem;
+        border-top: 0.1rem solid $border-color;
+
+        // fix the padding of the toc list
+        ul {
+          margin-bottom: 0;
+        }
+        a {
+          padding-top: 0.2rem;
+          padding-bottom: 0.2rem;
+        }
+      }
+    }
+  }
+}
+
+// --------------------------------------------------
+// prevent sidebar from appearing over the footer
+// --------------------------------------------------
+footer {
+  z-index: 1000;
+}
+
+// --------------------------------------------------
 // remove whitespace after footer
 // --------------------------------------------------
 footer {
   min-height: auto;
+
+  p {
+    margin-bottom: 0.4rem;
+    line-height: 1.0rem;
+  }
+
+  small {
+    font-size: 0.7rem;
+  }
 }
 
 // --------------------------------------------------
-// prevent overflow of long names in sidebar
+// sidebar styling
 // --------------------------------------------------
+.td-sidebar {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 2rem;
+  }
+}
+
+// sidebar search styling
+.td-sidebar__search {
+  padding-top: 0;
+  padding-bottom: 0.5rem;
+
+  margin: 0;
+
+  .td-search {
+    width: 100%;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    .td-search {
+      padding-right: 0.25rem;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-left: 0;
+    padding-right: 0;
+    .td-search {
+      padding-right: 0.5rem;
+    }
+  }
+}
+
+.td-sidebar-nav {
+  padding-left: 0;
+  padding-right: 0.75rem;
+  padding-top: 0;
+  padding-bottom: 2rem;
+
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1rem;
+  margin-bottom: 0;
+
+  // extra padding on mobile (in collapsible menu)
+  @include media-breakpoint-down(sm) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1.5rem;
+
+    margin-top: 0.5rem;
+  }
+}
+
+// reduce padding for the root level of the sidebar
+nav.foldable-nav .with-child, nav.foldable-nav .without-child {
+  padding-left: 0;
+  position: unset;
+}
+
+// style the sidebar like a folder tree
+nav.foldable-nav {
+
+  // apply styles to the main sidebar sections
+  .ul-1 {
+
+    // reduce padding of the sidebar links
+    .with-child {
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .without-child {
+      padding-left: 0.7rem;
+      position: relative;
+    }
+
+    // make the active link bold
+    a.active {
+      color: $primary !important;
+      font-weight: 700 !important;
+    }
+
+    // bold the chain of pages leading to the active page
+    .with-child.active-path > label a {
+      font-weight: 700;
+    }
+
+    // show a border on the left of open sections
+    .with-child > input:checked ~ ul {
+      border-left: .1rem dotted $gray-400;
+
+      // round the bottom left corner
+      border-bottom-left-radius: 1rem;
+
+      // position the border correctly
+      padding-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
+      margin-left: -0.77rem;
+    }
+
+    // color the border for the active path
+    .with-child.active-path > ul {
+      border-left: .1rem solid rgb(190, 212, 255) !important;
+    }
+
+    // make the arrow for open non-active sections gray
+    .with-child > input:checked ~ label:before {
+      color: $gray-900;
+    }
+
+    // make the arrow for open active sections blue
+    .with-child.active-path > input:checked ~ label:before {
+      color: $primary;
+    }
+  }
+}
+
+// prevent overflow of long names in sidebar
 .td-sidebar-nav__section > ul {
   overflow-wrap: break-word;
+}
+
+// --------------------------------------------------
+// fix the arrow transform animation on desktop
+// --------------------------------------------------
+@media (hover: hover) and (pointer: fine) {
+    nav.foldable-nav {
+        .ul-1 .with-child > label:hover:before {
+            transition: transform 0.3s;
+        }
+
+        .ul-1 .with-child > input:checked ~ label:hover:before {
+            transition: transform 0.3s;
+        }
+    }
 }
 
 // --------------------------------------------------
@@ -33,6 +343,7 @@ footer {
         top: 0;
         z-index: 33;
         padding: 10px;
+        margin: 0;
         height: 95px;
         background: white;
         border: 2px solid #4279f4;
@@ -47,7 +358,39 @@ footer {
     }
   }
 
+  // this filler ensures that the navbar links are on the right
+  // and the links do not go under the logo (which uses absolute positioning)
+  .filler {
+      flex-grow: 1;
+      min-width: 120px;
+
+      @include media-breakpoint-down(md) {
+        min-width: 100px;
+      }
+  }
+
+  // extra padding on mobile (in collapsible menu)
+  @include media-breakpoint-down(sm) {
+    .navbar-collapse {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
+
   .navbar-nav {
+    // allow wrapping of navbar links
+    white-space: normal;
+    .dropdown-toggle {
+      white-space: normal;
+    }
+
+    // prevent long links from taking up too much space
+    @include media-breakpoint-between(sm, lg) {
+      .nav-item.long-content {
+        font-size: 70%;
+      }
+    }
+
     @include media-breakpoint-down(md) {
       font-size: .875rem;
       .dropdown {
@@ -57,18 +400,197 @@ footer {
   }
 }
 
-.td-sidebar {
-  padding-bottom: 0.5rem;
+// --------------------------------------------------
+// Home page
+// --------------------------------------------------
+.td-home {
 
-  .td-sidebar__inner {
-    padding-top: 30px;
+  // dont color the outer div with the sidebar color
+  // as there is no sidebar on the main page
+  .td-outer {
+      background-color: unset;
+  }
 
-    @include media-breakpoint-down(md) {
-      padding-top: 10px;
+  // animate the background color change of navbar
+  .td-navbar {
+    transition: background-color 75ms linear;
+  }
+
+  .card-img-top {
+    object-fit: scale-down;
+  }
+
+  .text-white {
+    font-weight: 400;
+  }
+
+  .bg-primary-dark {
+    background-color: $dark;
+
+    a {
+      border-bottom: 0.1em dotted paleturquoise;
+
+      color: paleturquoise !important;
+      font-weight: 600;
+      padding: 0 0.2em 0.05em 0.2em;
+      text-decoration: none;
+
+      &:hover {
+        border-bottom: 1px dotted #fff;
+
+        color: #fff !important;
+      }
+    }
+  }
+
+  .border-primary-dark {
+    border-color: $info !important;
+  }
+
+  .section-head {
+    color: $primary;
+    font-weight: bold;
+    padding: 0 0 1.9rem 0;
+  }
+
+  .image {
+    display: block;
+  }
+
+  .image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .image.left, .image.right {
+    max-width: 45%;
+  }
+
+  .image.left::after, .image.right::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+
+  .image.left {
+    float: left;
+    margin: 0 1.5em 1.5em 0;
+  }
+
+  .image.right {
+    float: right;
+    margin: 0 0 1.5em 1.5em;
+  }
+
+  #overview, #pageContent, #cncf, #community {
+    padding: 4rem 0 4rem 0 !important;
+  }
+
+  #overview p, #community p {
+    font-size: 1.125em;
+  }
+
+  #overview {
+    border-bottom: 0.1rem solid #b6d0ff;
+  }
+
+  #pageContent .container {
+    max-width: 70rem;
+  }
+
+  #community {
+    border-top: 0.1rem solid #b6d0ff;
+    border-bottom: 0.1rem solid #b6d0ff;
+  }
+
+  #cncf {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    .cncf-title {
+      color: #6b7281;
+      font-weight: bold;
+      padding-top: 1.6rem;
+    }
+  }
+
+  #pageContent .lead {
+    margin: 0 1.5em 3em 1.5em;
+  }
+
+  #pageContent .lead > .image {
+    padding: 0 1.5em;
+    max-width: 60%;
+    margin-bottom: 1.5em;
+  }
+
+  #pageContent .lead > .text p {
+    font-size: 1em;
+  }
+
+  @include media-breakpoint-up(sm) {
+    #overview, #community {
+      font-size: 1.125em;
+    }
+    #pageContent .lead > .image {
+      max-width: 35%;
+      margin-bottom: 3em;
+    }
+    #pageContent .lead > .text p {
+      font-size: 1em;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    #pageContent .lead {
+      margin-top: 1em;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -ms-flex-align: stretch;
+      align-items: stretch;
+    }
+    #pageContent .lead > * {
+      -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+    }
+    #pageContent .lead > .image {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+    #pageContent .lead > .image > img {
+      max-width: 80%;
+      margin: 0 auto;
+    }
+    #pageContent .lead > .text {
+      -ms-flex-preferred-size: 70%;
+      flex-basis: 70%;
+    }
+    #pageContent .lead:nth-child(2n+0) > .image {
+      -ms-flex-order: 2;
+      order: 2;
+    }
+    #pageContent .lead:nth-child(2n+0) > .text {
+      -ms-flex-order: 1;
+      order: 1;
     }
   }
 }
 
+// --------------------------------------------------
+// Installing Kubeflow page
+// --------------------------------------------------
+.distributions-table thead {
+  background-color: $primary;
+  color: $secondary;
+}
 
 // --------------------------------------------------
 // 404 page
@@ -96,11 +618,11 @@ footer {
     margin-bottom: 20px;
   }
 
-  @media (min-width: 768px) and (max-width: 991px) {
+  @include media-breakpoint-between(md, lg) {
     margin-top: 100px;
   }
 
-  @media (max-width: 767px) {
+  @include media-breakpoint-down(md) {
     margin-top: 50px;
   }
 }
@@ -131,12 +653,4 @@ footer {
   &:first-of-type.active {
     border-top-left-radius: 0;
   }
-}
-
-nav.foldable-nav .ul-1 .with-child>label:hover:before {
-  transform: none;
-}
-
-nav.foldable-nav .ul-1 .with-child>input:checked~label:hover:before {
-  transform: rotate(90deg) !important;
 }

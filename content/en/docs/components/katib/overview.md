@@ -1,15 +1,13 @@
 +++
-title = "Introduction to Katib"
-description = "Overview of Katib for hyperparameter tuning and neural architecture search"
+title = "Overview"
+description = "An overview for Katib"
 weight = 10
-                    
 +++
 
 {{% beta-status
   feedbacklink="https://github.com/kubeflow/katib/issues" %}}
 
-This guide introduces the concepts of hyperparameter tuning, neural
-architecture search, and the Katib system as a component of Kubeflow.
+## What is Katib ?
 
 Katib is a Kubernetes-native project for automated machine learning (AutoML).
 Katib supports hyperparameter tuning, early stopping and
@@ -38,192 +36,43 @@ The [Katib project](https://github.com/kubeflow/katib) is open source.
 The [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)
 is a good starting point for developers who want to contribute to the project.
 
-## Hyperparameters and hyperparameter tuning
+<img src="/docs/components/katib/images/katib-overview.drawio.png"
+  alt="Katib Overview"
+  class="mt-3 mb-3">
 
-_Hyperparameters_ are the variables that control the model training process.
-They include:
+## Why Katib ?
 
-- The learning rate.
-- The number of layers in a neural network.
-- The number of nodes in each layer.
+Katib addresses AutoML step for hyperparameter optimization or Neural Architecture Search
+in AI/ML lifecycle as shown on that diagram:
 
-Hyperparameter values are not _learned_. In other words, in contrast to the
-node weights and other training _parameters_, the model training process does
-not adjust the hyperparameter values.
+<img src="/docs/components/katib/images/ml-lifecycle-katib.drawio.svg"
+  alt="AI/ML Lifecycle Katib"
+  class="mt-3 mb-3">
 
-_Hyperparameter tuning_ is the process of optimizing the hyperparameter values
-to maximize the predictive accuracy of the model. If you don't use Katib or a
-similar system for hyperparameter tuning, you need to run many training jobs
-yourself, manually adjusting the hyperparameters to find the optimal values.
+- **Katib can orchestrate multi-node & multi-GPU [distributed training workloads](/docs/components/katib/user-guides/trial-template)**.
 
-Automated hyperparameter tuning works by optimizing a target variable,
-also called the _objective metric_, that you specify in the configuration for
-the hyperparameter tuning job. A common metric is the model's accuracy
-in the validation pass of the training job (_validation-accuracy_). You also
-specify whether you want the hyperparameter tuning job to _maximize_ or
-_minimize_ the metric.
+Katib is integrated with Kubeflow Training Operator jobs such as PyTorchJob, which allows to
+optimize hyperparameters for large models of any size.
 
-For example, the following graph from Katib shows the level of validation accuracy
-for various combinations of hyperparameter values (the learning rate, the number of
-layers, and the optimizer):
+In addition to that, Katib can orchestrate workflows such as Argo Workflows and Tekton Pipelines
+for more advanced optimization use-cases.
 
-<img src="/docs/components/katib/images/random-example-graph.png"
-  alt="Graph produced by the random example"
-  class="mt-3 mb-3 border border-info rounded">
+- **Katib is extensible and portable.**
 
-_(To run the example that produced this graph, follow the [getting-started
-guide](/docs/components/katib/hyperparameter/).)_
+Katib runs Kubernetes containers to [perform hyperparameter tuning job](/docs/components/katib/reference/architecture),
+which allows to use Katib with any ML training framework.
 
-Katib runs several training jobs (known as _trials_) within each
-hyperparameter tuning job (_experiment_). Each trial tests a different set of
-hyperparameter configurations. At the end of the experiment, Katib outputs
-the optimized values for the hyperparameters.
+Users can even use Katib to optimize non-ML tasks as long as optimization metrics can be collected.
 
-You can improve your hyperparameter tunning experiments by using
-[early stopping](https://en.wikipedia.org/wiki/Early_stopping) techniques.
-Follow the [early stopping guide](/docs/components/katib/early-stopping/)
-for the details.
+- **Katib has rich support of optimization algorithms.**
 
-## Neural architecture search
+Katib is integrated with many optimization frameworks such as [Hyperopt](https://hyperopt.github.io/hyperopt/) and
+[Optuna](https://optuna.org/) which implements most of the state of the art optimization algorithms.
 
-{{% alert title="Alpha version" color="warning" %}}
-NAS is currently in <b>alpha</b> with limited support. The Kubeflow team is
-interested in any feedback you may have, in particular with regards to usability
-of the feature. You can log issues and comments in
-the [Katib issue tracker](https://github.com/kubeflow/katib/issues).
-{{% /alert %}}
-
-In addition to hyperparameter tuning, Katib offers a _neural architecture
-search_ feature. You can use the NAS to design
-your artificial neural network, with a goal of maximizing the predictive
-accuracy and performance of your model.
-
-NAS is closely related to hyperparameter tuning. Both are subsets of AutoML.
-While hyperparameter tuning optimizes the model's hyperparameters, a NAS system
-optimizes the model's structure, node weights and hyperparameters.
-
-NAS technology in general uses various techniques to find the optimal neural
-network design.
-
-You can submit Katib jobs from the command line or from the UI. (Learn more
-about the Katib interfaces later on this page.) The following screenshot shows
-part of the form for submitting a NAS job from the Katib UI:
-
-<img src="/docs/components/katib/images/nas-parameters.png"
-  alt="Submitting a neural architecture search from the Katib UI"
-  class="mt-3 mb-3 border border-info rounded">
-
-## Katib interfaces
-
-You can use the following interfaces to interact with Katib:
-
-- A web UI that you can use to submit experiments and to monitor your results.
-  Check the [getting-started
-  guide](/docs/components/katib/hyperparameter/#katib-ui)
-  for information on how to access the UI.
-  The Katib home page within Kubeflow looks like this:
-
-  <img src="/docs/components/katib/images/home-page.png"
-    alt="The Katib home page within the Kubeflow UI"
-    class="mt-3 mb-3 border border-info rounded">
-
-- A gRPC API. Check the [API reference on GitHub](https://github.com/kubeflow/katib/blob/master/pkg/apis/manager/v1beta1/gen-doc/api.md).
-
-- Command-line interfaces (CLIs):
-
-  - The Kubernetes CLI, **kubectl**, is useful for running commands against your
-    Kubeflow cluster. Learn about kubectl in the [Kubernetes
-    documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-
-- Katib Python SDK. Check the [Katib Python SDK documentation on GitHub](https://github.com/kubeflow/katib/tree/master/sdk/python/v1beta1).
-
-## Katib concepts
-
-This section describes the terms used in Katib.
-
-### Experiment
-
-An _experiment_ is a single tuning run, also called an optimization run.
-
-You specify configuration settings to define the experiment. The following are
-the main configurations:
-
-- **Objective**: What you want to optimize. This is the objective metric, also
-  called the target variable. A common metric is the model's accuracy
-  in the validation pass of the training job (_validation-accuracy_). You also
-  specify whether you want the hyperparameter tuning job to _maximize_ or
-  _minimize_ the metric.
-
-- **Search space**: The set of all possible hyperparameter values that the
-  hyperparameter tuning job should consider for optimization, and the
-  constraints for each hyperparameter. Other names for search space include
-  _feasible set_ and _solution space_. For example, you may provide the
-  names of the hyperparameters that you want to optimize. For each
-  hyperparameter, you may provide a _minimum_ and _maximum_ value or a _list_
-  of allowable values.
-
-- **Search algorithm**: The algorithm to use when searching for the optimal
-  hyperparameter values.
-
-Katib experiment is defined as a
-[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
-
-For details of how to define your experiment, follow the guide to [running an
-experiment](/docs/components/katib/experiment/).
-
-### Suggestion
-
-A _suggestion_ is a set of hyperparameter values that the hyperparameter
-tuning process has proposed. Katib creates a trial to evaluate the suggested
-set of values.
-
-Katib suggestion is defined as a
-[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
-
-### Trial
-
-A _trial_ is one iteration of the hyperparameter tuning process. A trial
-corresponds to one worker job instance with a list of parameter assignments.
-The list of parameter assignments corresponds to a suggestion.
-
-Each experiment runs several trials. The experiment runs the trials until it
-reaches either the objective or the configured maximum number of trials.
-
-Katib trial is defined as a
-[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
-
-### Worker job
-
-The _worker job_ is the process that runs to evaluate a trial and calculate
-its objective value.
-
-The worker job can be any type of Kubernetes resource or
-[Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
-Follow the
-[trial template guide](/docs/components/katib/trial-template/#custom-resource)
-to check how to support your own Kubernetes resource in Katib.
-
-Katib has these CRD examples in upstream:
-
-- [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
-
-- [Kubeflow `TFJob`](/docs/components/training/tftraining/)
-
-- [Kubeflow `PyTorchJob`](/docs/components/training/pytorch/)
-
-- [Kubeflow `MXJob`](/docs/components/training/mxnet)
-
-- [Kubeflow `XGBoostJob`](/docs/components/training/xgboost)
-
-- [Kubeflow `MPIJob`](/docs/components/training/mpi)
-
-- [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
-
-- [Argo `Workflows`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/argo)
-
-By offering the above worker job types, Katib supports multiple ML frameworks.
+Users can leverage Katib control plane to implement and benchmark [their own optimization algorithms](/docs/components/katib/user-guides/hp-tuning/configure-algorithm/#use-custom-algorithm-in-katib)
 
 ## Next steps
 
-Follow the [getting-started guide](/docs/components/katib/hyperparameter/)
-to set up Katib and run some hyperparameter tuning examples.
+- Follow [the installation guide](/docs/components/katib/installation/) to deploy Katib.
+
+- Run examples from [getting started guide](/docs/components/katib/getting-started/).

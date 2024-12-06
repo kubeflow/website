@@ -5,28 +5,35 @@ weight = 10
 aliases = ["/docs/community/"]
 +++
 
-## Kubeflow Slack
+## Contributing
 
-The Official Kubeflow Slack is used for informal discussions among users and contributors.
+If you are interested in learning more about how to participate in and contribute to the Kubeflow community, take a look at [Contributing](/docs/about/contributing/)!
 
-<a href="https://invite.playplay.io/invite?team_id=T7QLHSH6U">
-  <button class="btn btn-primary py-2 px-5 mb-3">Click to join:<br>Kubeflow Slack</button>
+## Kubeflow Slack Channels
+
+Kubeflow is part of the vibrant CNCF community, we use the [CNCF Slack](https://slack.cncf.io/) for informal discussions among users and contributors.
+Please join the [Kubeflow channels](#slack-channels) to join the conversation and get help from the community.
+
+<a href="https://slack.cncf.io/">
+  <button class="btn btn-primary py-2 px-5 mb-3">Click to join:<br><b>CNCF Slack</b></button>
 </a>
 
-| Popular Kubeflow Slack Channels |
-| --- | --- |
-| General Discussion | [#general](https://kubeflow.slack.com/archives/C7REE0ETX)
-| Feature Requests | [#feature-requests](https://kubeflow.slack.com/archives/C01A7RYEYMB)
-| Job Postings | [#job-postings](https://kubeflow.slack.com/archives/CJ9PJE5FS)
-| Kubeflow - Pipelines | [#kubeflow-pipelines](https://kubeflow.slack.com/archives/CE10KS9M4)
-| Kubeflow - Notebooks | [#kubeflow-notebooks](https://kubeflow.slack.com/archives/CESP7FCQ7)
-| Kubeflow - KFServing | [#kubeflow-kfserving](https://kubeflow.slack.com/archives/CH6E58LNP)
-| Platform - AWS | [#platform-aws](https://kubeflow.slack.com/archives/CKBA5D0MU)
-| Platform - Azure | [#platform-azure](https://kubeflow.slack.com/archives/CUW6SLCPR)
-| Platform - GCP | [#platform-gcp](https://kubeflow.slack.com/archives/CKH7V1M7F)
-| Users - China | [#users-china](https://kubeflow.slack.com/archives/C93HYNM9C)
-| Users - Korea | [#users-korea](https://kubeflow.slack.com/archives/CKPCJB9AP)
-| Users - Oceania | [#users-oceania](https://kubeflow.slack.com/archives/C023ZN1R9FC)
+### Slack Channels
+
+The following table lists official Kubeflow channels which are hosted on the **CNCF Slack**:
+
+| Description                             | Link                                                                              |
+| --------------------------------------- | --------------------------------------------------------------------------------- |
+| Announcements                           | [#kubeflow-announcements](https://app.slack.com/client/T08PSQ7BQ/C01EV0FV154)     |
+| GSoC Participants                       | [#kubeflow-gsoc-participants](https://app.slack.com/client/T08PSQ7BQ/C0742LBR5BM) |
+| Katib                                   | [#kubeflow-katib](https://app.slack.com/client/T08PSQ7BQ/C073N7AS48P)             |
+| Model Registry                          | [#kubeflow-model-registry](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R)    |
+| Notebooks                               | [#kubeflow-notebooks](https://app.slack.com/client/T08PSQ7BQ/C073W562HFY)         |
+| Pipelines                               | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)         |
+| Platform Manifests and Release Planning | [#kubeflow-platform](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)          |
+| Spark Operator                          | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG)    |
+| Training Operator and MPI Operator      | [#kubeflow-training](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)          |
+| KServe                                  | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                     |
 
 ## Kubeflow Mailing List
 
@@ -36,42 +43,73 @@ The official Kubeflow mailing list is a Google Group called [kubeflow-discuss](h
   <button class="btn btn-primary py-2 px-5">Click to join:<br>Kubeflow Mailing List</button>
 </a>
 
-## Kubeflow Community Call
+## Kubeflow Community Meetings
 
-The Kubeflow community holds weekly Zoom calls for all users and contributors to discuss issues/proposals and present demos/products.
-Kubeflow community calls are held each Tuesday and alternate between `8:00am San Francisco` time and `8:00am London` time.
+The Kubeflow community holds various meetings to all users and contributors to discus
+issues/proposals and present demos/products.
 
-Joining the [mailing list](#kubeflow-mailing-list) should automatically add these events to your Google Calendar.
-Alternatively, you can manually subscribe to the ["Kubeflow Community" calendar](#kubeflow-community-calendars).
+### Subscribe to the Kubeflow Calendar
 
-| Useful Links |
-| --- | --- |
-| Kubeflow Community Call - Notes | [Google Doc](https://bit.ly/kf-meeting-notes)
-| Kubeflow Community Call - Recordings | [YouTube Playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5)
+Joining the [kubeflow-discuss mailing list](#kubeflow-mailing-list) should automatically add
+the Kubeflow community meetings to your Google calendar. If you still can't see the invites,
+manually add [the Kubeflow calendar using this name](https://calendar.google.com/calendar/u/0/r/settings/addcalendar):
 
-## Kubeflow Community Calendars
+```shell
+kubeflow.org_7l5vnbn8suj2se10sen81d9428@group.calendar.google.com
+```
 
-The following calendars are maintained by [Kubeflow Working Groups](#kubeflow-working-groups) and contain meetings that you may wish to attend.
+<img src="/docs/about/images/google-calendar.png"
+      alt="Google Calendar"
+      class="mt-3 mb-3">
 
-| Calendar | Link |
-| --- | --- |
-| Kubeflow Community | [Google Calendar](https://calendar.google.com/calendar/embed?src=kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com/public/basic.ics), [Git Repo](https://github.com/kubeflow/community/tree/master/calendar))
-| Kubeflow Release Team | [Google Calendar](https://calendar.google.com/calendar/embed?src=c_c5i4tlc61oq2kehbhv9h3gveuo%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/c_c5i4tlc61oq2kehbhv9h3gveuo%40group.calendar.google.com/public/basic.ics))
-| Kubeflow AutoML WG | [Google Calendar](https://calendar.google.com/calendar/embed?src=d49nsiefsnfgkf91o0u8h2jhk4%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/d49nsiefsnfgkf91o0u8h2jhk4%40group.calendar.google.com/public/basic.ics))
-| Kubeflow Manifests WG | [Google Calendar](https://calendar.google.com/calendar/embed?src=c_mhv1kfv9na0pdile4qju6o5v60%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/c_mhv1kfv9na0pdile4qju6o5v60%40group.calendar.google.com/public/basic.ics))
-| Kubeflow Notebooks WG | [Google Calendar](https://calendar.google.com/calendar/embed?src=c_ptktc8ulh50db8bqvr9fd4ubqs%40group.calendar.google.com) ([iCal](https://calendar.google.com/calendar/ical/c_ptktc8ulh50db8bqvr9fd4ubqs%40group.calendar.google.com/public/basic.ics))
-| KServe Community | [Google Calendar](https://calendar.google.com/calendar/u/0/embed?src=4fqdmu5fp4l0bgdlf4lm1atnsl2j4612@import.calendar.google.com) ([iCal](https://wiki.lfaidata.foundation/rest/calendar-services/1.0/calendar/export/subcalendar/private/079ecdf0bfab77646c9e00df7b1c28f34f67f852.ics))
+### List of Available Meetings
 
-This is an aggregated view of the community calendars and should be displayed in your device's timezone.
+The following list shows available Kubeflow community meetings with the corresponding meeting notes and recordings.
 
+| Meeting Name                    | Meeting Notes                                        | Recordings                                                                                   |
+| ------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Kubeflow community call         | [Google Doc](https://bit.ly/kf-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
+| Kubeflow AutoML and Training WG | [Google Doc](https://bit.ly/2PWVCkV)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
+| Kubeflow Model Registry call    | [Google Doc](https://bit.ly/kf-model-registry-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
+| Kubeflow Notebooks WG           | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)   |                                                                                              |
+| Kubeflow Platform WG            | [Google Doc](https://bit.ly/kf-wg-manifests-notes)   |                                                                                              |
+| Kubeflow Pipelines WG           | [Google Doc](http://bit.ly/kfp-meeting-notes)        |                                                                                              |
+| Kubeflow Release team call      | [Google Doc](https://bit.ly/kf-release-team-notes)   |                                                                                              |
+| Kubeflow Spark Operator call    | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
+| KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                 |                                                                                              |
+
+### Kubeflow Community Calendar |
+
+This is an aggregated view of the Kubeflow community calendar and should be displayed in your
+device's timezone.
+
+<style>
+#calendar-container {
+   overflow: auto;
+}
+</style>
 <div id="calendar-container"></div>
 <script type="text/javascript">
 const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&ctz=Australia%2FSydney&showPrint=0&showDate=1&mode=AGENDA&showTitle=0&src=NGZxZG11NWZwNGwwYmdkbGY0bG0xYXRuc2wyajQ2MTJAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&src=ZDQ5bnNpZWZzbmZna2Y5MW8wdThoMmpoazRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=a3ViZWZsb3cub3JnXzdsNXZuYm44c3VqMnNlMTBzZW44MWQ5NDI4QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y19taHYxa2Z2OW5hMHBkaWxlNHFqdTZvNXY2MEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19wdGt0Yzh1bGg1MGRiOGJxdnI5ZmQ0dWJxc0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19jNWk0dGxjNjFvcTJrZWhiaHY5aDNndmV1b0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E&color=%23A79B8E" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
+const calender_src_list = [
+  // Kubeflow Community
+  "kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com",
+];
+let calender_src = calender_src_list.map(src => `&src=${src}&color=%23A79B8E`).join('');
+const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&showPrint=0&showDate=1&mode=AGENDA&showTitle=0${calender_src}" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
 document.getElementById('calendar-container').innerHTML = html;
 </script>
 
-## Kubeflow Blog
+## Kubeflow on Social Media
+
+- [Official Kubeflow YouTube Channel](https://www.youtube.com/@Kubeflow) for the
+  announcements and project updates.
+- [Kubeflow Community YouTube Channel](https://www.youtube.com/@KubeflowCommunity) for the working
+  group and community meeting recordings.
+- Join [LinkedIn](https://www.linkedin.com/company/kubeflow/) for latest news in Kubeflow.
+- Follow us on X formerly known as [Twitter](https://twitter.com/kubeflow) for latest news on Kubeflow.
+
+## Kubeflow Blog and Other Resources
 
 The Kubeflow project maintains an official blog that can be [found here](https://blog.kubeflow.org).
 
@@ -80,9 +118,15 @@ To contribute an article for the blog, please raise an issue on the [kubeflow/co
 Note, articles are published using the [kubeflow/blog](https://github.com/kubeflow/blog) GitHub repo.
 {{% /alert %}}
 
+In addition, please check out the community-curated [awesome list of projects and resources related to Kubeflow](https://github.com/terrytangyuan/awesome-kubeflow).
+
 ## Kubeflow Trademark
 
-The Kubeflow trademark and logos are registered trademarks of Google, please review the [Kubeflow Brand Guidelines](https://github.com/kubeflow/community/blob/master/KUBEFLOW_BRAND_GUIDELINES.pdf) for more information.
+The Kubeflow trademark and logos are registered trademarks of Google, please review the [Kubeflow Brand Guidelines](https://www.linuxfoundation.org/legal/trademark-usage) for more information.
+
+## Kubeflow Steering Committee
+
+The [Kubeflow Steering Committee (KSC)](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md) is the governing body of the Kubeflow project, providing decision-making and oversight pertaining to the Kubeflow project policies, sub-organizations, and financial planning, and defines the project values and structure.
 
 ## Kubeflow Working Groups
 
@@ -103,21 +147,10 @@ The following table outlines which components are maintained by each Working Gro
       <!-- ======================= -->
       <tr>
         <td rowspan="1" class="align-middle">
-          <a href="https://github.com/kubeflow/community/tree/master/wg-automl">AutoML</a> 
+          <a href="https://github.com/kubeflow/community/tree/master/wg-automl">AutoML</a>
         </td>
         <td>
           <a href="https://github.com/kubeflow/katib">Katib</a>
-        </td>
-      </tr>
-      <!-- ======================= -->
-      <!-- Deployment Working Group -->
-      <!-- ======================= -->
-      <tr>
-        <td rowspan="1" class="align-middle">
-          <a href="https://github.com/kubeflow/community/tree/master/wg-deployment">Deployment</a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/kfctl">kfctl</a>
         </td>
       </tr>
       <!-- ======================= -->
@@ -217,9 +250,9 @@ The following table outlines which components are maintained by each Working Gro
           <a href="https://github.com/kubeflow/community/tree/master/wg-training">Training</a>
         </td>
         <td>
-          <a href="https://github.com/kubeflow/training-operator">Kubeflow Training Operator</a>
+          <a href="https://github.com/kubeflow/training-operator">Training Operator</a>
         </td>
       </tr>
-  </tbody> 
+  </tbody>
 </table>
 </div>

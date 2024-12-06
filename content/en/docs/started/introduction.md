@@ -4,46 +4,61 @@ description = "An introduction to Kubeflow"
 weight = 1
 +++
 
-The Kubeflow project is dedicated to making deployments of machine learning (ML)
-workflows on Kubernetes simple, portable and scalable. Our goal is not to
-recreate other services, but to provide a straightforward way to deploy
-best-of-breed open-source systems for ML to diverse infrastructures. Anywhere
-you are running Kubernetes, you should be able to run Kubeflow.
+## What is Kubeflow
 
-## Getting started with Kubeflow
+Kubeflow is a community and ecosystem of open-source projects to address each stage in the
+[machine learning (ML) lifecycle](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle)
+with support for best-in-class open source
+[tools and frameworks](/docs/started/architecture/#kubeflow-ecosystem). Kubeflow makes AI/ML
+on Kubernetes simple, portable, and scalable.
 
-Read the [architecture overview](/docs/started/architecture/) for an
-introduction to the architecture of Kubeflow and to see how you can use Kubeflow
-to manage your ML workflow.
+Whether you’re a researcher, data scientist, ML engineer, or a team of developers, Kubeflow offers
+modular and scalable tools that cater to all aspects of the ML lifecycle: from building ML models to
+deploying them to production for AI applications.
 
-Follow [Installing Kubeflow](/docs/started/installing-kubeflow/) to set up
-your environment and install Kubeflow.
+## What are Standalone Kubeflow Components
+
+The Kubeflow ecosystem is composed of multiple open-source projects that address different aspects
+of the ML lifecycle. Many of these projects are designed to be usable both within the
+Kubeflow Platform and independently. These Kubeflow components can be installed standalone on a
+Kubernetes cluster. It provides flexibility to users who may not require the full Kubeflow Platform
+capabilities but wish to leverage specific ML functionalities such as model training or model serving.
+
+## What is Kubeflow Platform
+
+The Kubeflow Platform refers to the full suite of Kubeflow components bundled together with
+additional integration and management tools. Using Kubeflow as a platform means deploying a
+comprehensive ML toolkit for the entire ML lifecycle.
+
+In addition to the standalone Kubeflow components, the Kubeflow Platform includes
+
+- [Kubeflow Notebooks](/docs/components/notebooks/overview) for interactive data exploration and
+  model development.
+- [Central Dashboard](/docs/components/central-dash/overview/) for easy navigation and management
+  with [Kubeflow Profiles](/docs/components/central-dash/profiles/) for access control.
+- Additional tooling for data management (PVC Viewer), visualization (TensorBoards), and more.
+
+The Kubeflow Platform can be installed via
+[Packaged Distributions](/docs/started/installing-kubeflow/#packaged-distributions) or
+[Kubeflow Manifests](/docs/started/installing-kubeflow/#kubeflow-manifests).
+
+## Kubeflow Overview Diagram
+
+The following diagram shows the main Kubeflow components to cover each stage of the ML lifecycle
+on top of Kubernetes.
+
+<img src="/docs/started/images/kubeflow-intro-diagram.drawio.svg"
+  alt="Kubeflow overview"
+  class="mt-3 mb-3">
+
+Read the [architecture overview](/docs/started/architecture/) to learn about the Kubeflow ecosystem
+and to see how Kubeflow components fit in ML lifecycle.
+
+## Kubeflow Video Introduction
 
 Watch the following video which provides an introduction to Kubeflow.
 
 {{< youtube id="cTZArDgbIWw" title="Introduction to Kubeflow">}}
-
-## What is Kubeflow?
-
-Kubeflow is _the machine learning toolkit for Kubernetes_.
-
-To use Kubeflow, the basic workflow is:
-
-- Download and run the Kubeflow deployment binary.
-- Customize the resulting configuration files.
-- Run the specified script to deploy your containers to your specific
-  environment.
-
-You can adapt the configuration to choose the platforms and services that you
-want to use for each stage of the ML workflow: 
-
-1. data preparation
-2. model training,
-3. prediction serving
-4. service management
-
-You can choose to deploy your Kubernetes workloads locally, on-premises, or to
-a cloud environment.
 
 ## The Kubeflow mission
 
@@ -68,8 +83,10 @@ configure based on the cluster it deploys into.
 
 ## History
 
-Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/). 
+Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/).
 It began as just a simpler way to run TensorFlow jobs on Kubernetes, but has since expanded to be a multi-architecture, multi-cloud framework for running end-to-end machine learning workflows.
+
+The [Kubeflow logo represents](https://github.com/kubeflow/kubeflow/issues/187#issuecomment-375194419) the letters `K` and `F` inside the heptagon of the Kubernetes logo, which represent two communities: `Kubernetes` (cloud-native) and `flow` (Machine Learning). In this context, `flow` is not only indicating `TensorFlow`, but also all ML frameworks which make use of Dataflow Graph as the normal form for model/algorithm implementation.
 
 ## Roadmaps
 
@@ -78,12 +95,17 @@ To see what's coming up in future versions of Kubeflow, refer to the [Kubeflow r
 The following components also have roadmaps:
 
 - [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
-- [KF Serving](https://github.com/kubeflow/kfserving/blob/master/ROADMAP.md)
+- [KServe](https://github.com/kserve/kserve/blob/master/ROADMAP.md)
 - [Katib](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
-- [Training Operator](https://github.com/kubeflow/common/blob/master/ROADMAP.md)
+- [Training Operator](https://github.com/kubeflow/training-operator/blob/master/ROADMAP.md)
 
 ## Getting involved
 
 There are many ways to contribute to Kubeflow, and we welcome contributions!
 
 Read the [contributor's guide](/docs/about/contributing/) to get started on the code, and learn about the community on the [community page](/docs/about/community/).
+
+## Next Steps
+
+- Follow [the installation guide](/docs/started/installing-kubeflow) to deploy standalone
+  Kubeflow components or Kubeflow Platform.

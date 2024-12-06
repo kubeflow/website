@@ -4,144 +4,145 @@ description = "An overview of Kubeflow's architecture"
 weight = 10
 +++
 
-<!--
-Note for authors: The source of the diagrams is held in Google Slides decks,
-in the "Doc diagrams" folder in the public Kubeflow shared drive.
--->
+This guide introduces Kubeflow ecosystem and explains how Kubeflow components fit in ML lifecycle.
 
-This guide introduces Kubeflow as a platform for developing and deploying a
-machine learning (ML) system.
+Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, standalone
+Kubeflow components and Kubeflow Platform.
 
-Kubeflow is a platform for data scientists who want to build and experiment with
-ML pipelines. Kubeflow is also for ML engineers and operational teams who want
-to deploy ML systems to various environments for development, testing, and
-production-level serving.
+## Kubeflow Ecosystem
 
-## Conceptual overview
+The following diagram gives an overview of the Kubeflow Ecosystem and how it relates to the wider
+Kubernetes and AI/ML landscapes.
 
-Kubeflow is *the ML toolkit for Kubernetes*.
-
-The following diagram shows Kubeflow as a platform for arranging the
-components of your ML system on top of Kubernetes:
-
-<img src="/docs/images/kubeflow-overview-platform-diagram.svg" 
+<img src="/docs/started/images/kubeflow-architecture.drawio.svg"
   alt="An architectural overview of Kubeflow on Kubernetes"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3">
 
-Kubeflow builds on [Kubernetes](https://kubernetes.io/) as a system for 
-deploying, scaling, and managing complex systems.
+Kubeflow builds on [Kubernetes](https://kubernetes.io/) as a system for
+deploying, scaling, and managing AI/ML infrastructure.
 
-Using the Kubeflow configuration interfaces (see [below](#interfaces)) you can
-specify the ML tools required for your workflow. Then you can deploy the 
-workflow to various clouds, local, and on-premises platforms for experimentation and 
-for production use.
+## Introducing the ML Lifecycle
 
-## Introducing the ML workflow
-
-When you develop and deploy an ML system, the ML workflow typically consists of 
-several stages. Developing an ML system is an iterative process. 
-You need to evaluate the output of various stages of the ML workflow, and apply
-changes to the model and parameters when necessary to ensure the model keeps 
+When you develop and deploy an AI application, the ML lifecycle typically consists of
+several stages. Developing an ML system is an iterative process.
+You need to evaluate the output of various stages of the ML lifecycle, and apply
+changes to the model and parameters when necessary to ensure the model keeps
 producing the results you need.
 
-For the sake of simplicity, the following diagram
-shows the workflow stages in sequence. The arrow at the end of the workflow
-points back into the flow to indicate the iterative nature of the process:
+The following diagram shows the ML lifecycle stages in sequence:
 
-<img src="/docs/images/kubeflow-overview-workflow-diagram-1.svg" 
-  alt="A typical machine learning workflow"
-  class="mt-3 mb-3 border border-info rounded">
+<img src="/docs/started/images/ml-lifecycle.drawio.svg"
+  alt="ML Lifecycle"
+  class="mt-3 mb-3">
 
 Looking at the stages in more detail:
 
-* In the experimental phase, you develop your model based on initial
-  assumptions, and test and update the model iteratively to produce the
-  results you're looking for:
+- In the _Data Preparation_ step you ingest raw data, perform feature engineering to extract ML
+  features for the offline feature store, and prepare training data for model development.
+  Usually, this step is associated with data processing tools such as Spark, Dask, Flink, or Ray.
 
-  * Identify the problem you want the ML system to solve.
-  * Collect and analyze the data you need to train your ML model.
-  * Choose an ML framework and algorithm, and code the initial version of your 
-    model.
-  * Experiment with the data and with training your model.
-  * Tune the model hyperparameters to ensure the most efficient processing and the
-    most accurate results possible.
+- In the _Model Development_ step you choose an ML framework, develop your model architecture and
+  explore the existing pre-trained models for fine-tuning like BERT or Llama.
 
-* In the production phase, you deploy a system that performs the following 
-  processes:
+- In the _Model Optimization_ step you can optimize your model hyperparameters and optimize your
+  model with various AutoML algorithms such as neural architecture search and model compression.
+  During model optimization you can store ML metadata in the _Model Registry_.
 
-  * Transform the data into the format that your training system needs.
-    To ensure that your model behaves consistently during training and 
-    prediction, the transformation process must be the same in the experimental 
-    and production phases.
-  * Train the ML model.
-  * Serve the model for online prediction or for running in batch mode.
-  * Monitor the model's performance, and feed the results into your processes
-    for tuning or retraining the model.
+- In the _Model Training_ step you train or fine-tune your model on the large-scale
+  compute environment. You should use a distributed training if single GPU can't handle your
+  model size. The results of the model training is the trained model artifact that you
+  can store in the _Model Registry_.
 
-## Kubeflow components in the ML workflow
+- In the _Model Serving_ step you serve your model artifact for online or batch inference. Your
+  model may perform predictive or generative AI tasks depending on the use-case. During the model
+  serving step you may use an online feature store to extract features. You monitor the model
+  performance, and feed the results into your previous steps in the ML lifecycle.
 
-The next diagram adds Kubeflow to the workflow, showing which Kubeflow
-components are useful at each stage:
+### ML Lifecycle for Production and Development Phases
 
-<img src="/docs/images/kubeflow-overview-workflow-diagram-2.svg" 
-  alt="Where Kubeflow fits into a typical machine learning workflow"
-  class="mt-3 mb-3 border border-info rounded">
+The ML lifecycle for AI applications may be conceptually split between _development_ and
+_production_ phases, this diagram explores which stages fit into each phase:
 
-To learn more, read the following guides to the Kubeflow components:
+<img src="/docs/started/images/ml-lifecycle-dev-prod.drawio.svg"
+  alt="ML Lifecycle with Development and Production"
+  class="mt-3 mb-3">
 
-* Kubeflow includes services for spawning and managing 
-  [Jupyter notebooks](/docs/components/notebooks/). Use notebooks for interactive data 
-  science and experimenting with ML workflows.
+### Kubeflow Components in the ML Lifecycle
 
-* [Kubeflow Pipelines](/docs/components/pipelines/) is a platform for 
-  building, deploying, and managing multi-step ML workflows based on Docker 
-  containers.
+The next diagram shows how Kubeflow components are used for each stage in the ML lifecycle:
 
-* Kubeflow offers several [components](/docs/components/) that you can use
-  to build your ML training, hyperparameter tuning, and serving workloads across
-  multiple platforms.
+<img src="/docs/started/images/ml-lifecycle-kubeflow.drawio.svg"
+  alt="Kubeflow Components in ML Lifecycle"
+  class="mt-3 mb-3">
 
-## Example of a specific ML workflow
+See the following links for more information about each Kubeflow component:
 
-The following diagram shows a simple example of a specific ML workflow that you
-can use to train and serve a model trained on the MNIST dataset:
+- [Kubeflow Spark Operator](https://github.com/kubeflow/spark-operator) can be used for data
+  preparation and feature engineering step.
 
-<img src="/docs/images/kubeflow-gcp-e2e-tutorial-simplified.svg" 
-  alt="ML workflow for training and serving an MNIST model"
-  class="mt-3 mb-3 border border-info rounded">
+- [Kubeflow Notebooks](/docs/components/notebooks/) can be used for model development and interactive
+  data science to experiment with your ML workflows.
 
-For details of the workflow and to run the system yourself, see the 
-[end-to-end tutorial for Kubeflow on GCP](https://github.com/kubeflow/examples/tree/master/mnist#mnist-on-kubeflow-on-gcp).
+- [Kubeflow Katib](/docs/components/katib/) can be used for model optimization and hyperparameter
+  tuning using various AutoML algorithms.
 
-<a id="interfaces"></a>
-## Kubeflow interfaces
+- [Kubeflow Training Operator](/docs/components/training/) can be used for large-scale distributed
+  training or fine-tuning.
+
+- [Kubeflow Model Registry](/docs/components/model-registry/) can be used to store ML metadata,
+  model artifacts, and preparing models for production serving.
+
+- [KServe](https://kserve.github.io/website/master/) can be used for online and batch inference
+  in the model serving step.
+
+- [Feast](https://feast.dev/) can be used as a feature store and to manage offline and online
+  features.
+
+- [Kubeflow Pipelines](/docs/components/pipelines/) can be used to build, deploy, and manage each
+  step in the ML lifecycle.
+
+You can use most Kubeflow components as
+[standalone tools](/docs/started/introduction/#what-are-standalone-kubeflow-components) and
+integrate them into your existing AI/ML Platform, or you can deploy the full
+[Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform) to get all Kubeflow
+components for an end-to-end ML lifecycle.
+
+## Kubeflow Interfaces
 
 This section introduces the interfaces that you can use to interact with
 Kubeflow and to build and run your ML workflows on Kubeflow.
 
-### Kubeflow user interface (UI) 
+### Kubeflow User Interface (UI)
 
-The Kubeflow UI looks like this:
+The Kubeflow Central Dashboard looks like this:
 
-<img src="/docs/images/central-ui.png" 
-  alt="The Kubeflow UI"
-  class="mt-3 mb-3 border border-info rounded">
+<img src="/docs/images/dashboard/homepage.png" 
+     alt="Kubeflow Central Dashboard - Homepage" 
+     class="mt-3 mb-3 border border-info rounded">
+</img>
 
-The UI offers a central dashboard that you can use to access the components
-of your Kubeflow deployment. Read 
-[how to access the central dashboard](/docs/components/central-dash/overview/).
+The Kubeflow Platform includes [Kubeflow Central Dashboard](/docs/components/central-dash/overview/)
+which acts as a hub for your ML platform and tools by exposing the UIs of components running in the
+cluster.
 
-## Kubeflow APIs and SDKs
+### Kubeflow APIs and SDKs
 
-Various components of Kubeflow offer APIs and Python SDKs. See the following
-sets of reference documentation:
+<!--
+TODO (andreyvelich): Add reference docs once this issue is implemented: https://github.com/kubeflow/katib/issues/2081
+-->
 
-* [Pipelines reference docs](/docs/components/pipelines/reference/) for the Kubeflow
+Various components of Kubeflow offer APIs and Python SDKs.
+
+See the following sets of reference documentation:
+
+- [Pipelines reference docs](/docs/components/pipelines/reference/) for the Kubeflow
   Pipelines API and SDK, including the Kubeflow Pipelines domain-specific
   language (DSL).
-* [Fairing reference docs](/docs/external-add-ons/fairing/reference/) for the Kubeflow Fairing
-  SDK.
+- [Training Operator Python SDK](https://github.com/kubeflow/training-operator/blob/86e0df17db715543b366e885c9ae659aa1342c8e/sdk/python/kubeflow/training/api/training_client.py)
+  to manage Training Operator jobs using Python APIs.
+- [Katib Python SDK](https://github.com/kubeflow/katib/blob/086093fed72610c227e3ae1b4044f27afa940852/sdk/python/v1beta1/kubeflow/katib/api/katib_client.py)
+  to manage Katib hyperparameter tuning Experiments using Python APIs.
 
 ## Next steps
 
-* Follow [Installing Kubeflow](/docs/started/installing-kubeflow/) to set up your environment and install Kubeflow.
+- Follow [Installing Kubeflow](/docs/started/installing-kubeflow/) to set up your environment and install Kubeflow.

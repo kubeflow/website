@@ -41,13 +41,19 @@ This section will show you how to develop the website locally, by running a loca
 
 To install Hugo, follow the [instructions for your system type](https://gohugo.io/getting-started/installing/).
 
-**NOTE:** we recommend that you use Hugo version `0.92.0`, as this is currently the version we deploy to Netlify.
+**NOTE:** we recommend that you use Hugo version `0.124.1`, as this is currently the version we deploy to Netlify.
 
 For example, using homebrew to install hugo on macOS or linux:
 
 ```bash
-# WARNING: this may install a newer version than `0.92.0`
-brew install hugo
+# WARNING: using `brew install hugo` will install the latest version of hugo
+#          which may not be compatible with the website
+
+# TIP: to install hugo run the following commands
+HOMEBREW_COMMIT="9d025105a8be086b2eeb3b1b2697974f848dbaac" # 0.124.1
+curl -fL -o "hugo.rb" "https://raw.githubusercontent.com/Homebrew/homebrew-core/${HOMEBREW_COMMIT}/Formula/h/hugo.rb"
+brew install ./hugo.rb
+brew pin hugo
 ```
 
 ### Install Node Packages
@@ -74,19 +80,27 @@ Follow the usual GitHub workflow of forking the repository on GitHub and then cl
     cd website/
     ```
 
-3. Recursively download the submodules (for docsy):
+3. Initialize the Docsy submodule:
 
     ```bash
     git submodule update --init --recursive
     ```
 
-4. Start your local Hugo server:
+4. Install Docsy dependencies:
 
     ```bash
+    # NOTE: ensure you have node 18 installed
+    (cd themes/docsy/ && npm install)
+    ```
+
+5. Start your local Hugo server:
+
+    ```bash
+    # NOTE: You should ensure that you are in the root directory of the repository.
     hugo server -D
     ```
 
-5. You can access your website at [http://localhost:1313/](http://localhost:1313/)
+6. You can access your website at [http://localhost:1313/](http://localhost:1313/)
 
 ### Useful docs
 
@@ -126,7 +140,11 @@ The theme files are managed with a [git submodule](https://git-scm.com/book/en/v
 To update referenced docsy commit, run the following command at the root of the repo:
 
 ```bash
-git submodule update --remote
+# for example, to update docsy to v0.6.0
+# WARNING: updating the docsy version will require you to update our overrides
+#          check under: `layouts/partials` and `assets/scss`
+git -C themes/docsy fetch --tags
+git -C themes/docsy checkout tags/v0.6.0
 ```
 
 ## Documentation style guide
@@ -156,8 +174,8 @@ You can override the default styles and add new ones:
 
 Styling of images:
 
-* To see some examples of styled images, take a look at the [OAuth setup page](https://www.kubeflow.org/docs/gke/deploy/oauth-setup/) in the Kubeflow docs. 
-  Search for `.png` in the [page source](https://raw.githubusercontent.com/kubeflow/website/master/content/en/docs/gke/deploy/oauth-setup.md).
+* To see some examples of styled images, take a look at the [OAuth setup page](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/deploy/oauth-setup/) in the Kubeflow docs. 
+  Search for `.png` in the [page source](https://raw.githubusercontent.com/GoogleCloudPlatform/kubeflow-gke-docs/main/content/en/docs/deploy/oauth-setup.md).
 
 * For more help, see the guide to
   [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/).

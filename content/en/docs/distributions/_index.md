@@ -1,5 +1,5 @@
 +++
 title = "Distributions"
-description = "A list of available Kubeflow distributions"
+description = "Distributions of Kubeflow"
 weight = 40
 +++

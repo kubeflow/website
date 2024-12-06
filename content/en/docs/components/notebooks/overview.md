@@ -11,7 +11,7 @@ weight = 5
 Kubeflow Notebooks provides a way to run web-based development environments inside your Kubernetes cluster by running them inside Pods.
 
 Some key features include:
-- Native support for [JupyterLab](https://github.com/jupyterlab/jupyterlab), [RStudio](https://github.com/jupyterlab/jupyterlab), and [Visual Studio Code (code-server)](https://github.com/cdr/code-server).
+- Native support for [JupyterLab](https://github.com/jupyterlab/jupyterlab), [RStudio](https://github.com/rstudio/rstudio), and [Visual Studio Code (code-server)](https://github.com/cdr/code-server).
 - Users can create notebook containers directly in the cluster, rather than locally on their workstations.
 - Admins can provide standard notebook images for their organization with required packages pre-installed.
 - Access control is managed by Kubeflow's RBAC, enabling easier notebook sharing across the organization.
