@@ -188,6 +188,12 @@ will be removed from the Kubeflow GitHub Organizations and will be required to
 go through the org membership process again after re-familiarizing themselves
 with the current state.
 
+If anyone listed in OWNERS files should become inactive, here is what we will do:
+
+- If the person is in reviewers section, their GitHub id will be removed from the section.
+- If the person is in approvers section, their GitHub id will be moved
+  [the `emeritus_approvers` section](/docs/about/contributing/#emeritus).
+
 ### How inactivity is measured
 
 Inactive members are defined as members of one of the Kubeflow Organizations with **no** technical and non-technical contributions across any organization within 12 months. [DevStats](https://kubeflow.devstats.cncf.io/d/66/developer-activity-counts-by-companies?orgId=1&var-period_name=Last%20year&var-metric=contributions&var-repogroup_name=All&var-country_name=All&var-companies=All) offers an easy way to determine contributions to Kubeflow

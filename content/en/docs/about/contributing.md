@@ -80,6 +80,7 @@ The quality of a person's code review is limited by their familiarity with the c
 Our goal is to address both of these concerns through the prudent use and maintenance of OWNERS files
 
 <a name="owners-1"></a>
+
 ### OWNERS
 
 Each directory that contains a unit of independent code or content may also contain an OWNERS file.
@@ -94,6 +95,8 @@ OWNERS files are in YAML format and support the following keys:
     Allows the use case where `a/deep/nested/OWNERS` file prevents `a/OWNERS` file from having any
     effect on `a/deep/nested/bit/of/code`
 - `reviewers`: a list of GitHub usernames or aliases that are good candidates to `/lgtm` a PR
+- `emeritus_approvers` a list of GitHub usernames of folks who were previously in the `approvers`
+  section, but are no longer actively approving code. Please see [below](#emeritus) for more details.
 
 All users are expected to be assignable.
 In GitHub terms, this means they are either collaborators of the repo, or members of the organization to which the repo belongs.
@@ -103,11 +106,32 @@ A typical OWNERS file looks like:
 ```yaml
 approvers:
   - alice
-  - bob     # this is a comment
+  - bob # this is a comment
 reviewers:
   - alice
-  - carol   # this is another comment
+  - carol # this is another comment
   - sig-foo # this is an alias
+```
+
+#### Emeritus
+
+It is inevitable, but there are times when someone may shift focuses, change jobs or step away from
+a specific area in the project for a time. These people may be domain experts over certain areas of
+the codebase, but can no longer dedicate the time needed to handle the responsibilities of
+reviewing and approving changes. They are encouraged to add themselves as an “emeritus”
+approver under the `emeritus_approvers` key.
+
+GitHub usernames listed under the `emeritus_approvers` key can no longer approve code
+(use the /approve command) and will be ignored by prow for assignment. However, it can still be
+referenced by a person looking at the OWNERS file for a possible second or more informed opinion.
+
+When a contributor returns to being more active in that area, they may be promoted back to a
+regular approver at the discretion of the current approvers.
+
+```yaml
+emeritus_approvers:
+  - david
+  - emily
 ```
 
 #### OWNERS_ALIASES
