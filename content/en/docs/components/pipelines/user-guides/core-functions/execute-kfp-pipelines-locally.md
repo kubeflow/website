@@ -22,6 +22,7 @@ Local execution comes with several limitations:
 
 - Local execution does not feature optimizations and additional features such as caching, retry, etc. While these feature are important for production pipelines, they are less critical for a local testing environment. You will find that task methods like `.set_retry`, `.set_caching_options`, etc. have no effect locally.
 - Local execution makes simple assumptions about the resources available on your machine. Local execution does not support specifying resource requests/limits/affinities related to memory, cores, accelerators, etc. You will find that task methods like `.set_memory_limit`, `.set_memory_request`, `.set_accelerator_type` etc. have no effect locally.
+- Local execution doesn't support authentication mechanisms. If your component interacts with cloud resources or requires other privileged actions, you must test your pipeline in the cloud.
 - While local pipeline execution has full support for sequential and nested pipelines, it does not yet support `dsl.Condition`, `dsl.ParallelFor`, or `dsl.ExitHandler`.
 
 ## Basic Example
