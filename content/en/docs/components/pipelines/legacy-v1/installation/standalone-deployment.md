@@ -55,7 +55,7 @@ gcloud container clusters create $CLUSTER_NAME \
      --scopes $SCOPES
 ```
 
-**Note**: `e2-standard-2` doesn't support GPU. You can choose machine types that meet your need by referring to guidance in [Cloud Machine families](http://cloud/compute/docs/machine-types).
+**Note**: `e2-standard-2` doesn't support GPU. You can choose machine types that meet your need by referring to guidance in [Cloud Machine families](https://cloud.google.com/compute/docs/machine-resource).
 
 **Warning**: Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/authentication/#authentication-from-kubeflow-pipelines).
 
@@ -274,7 +274,7 @@ bases:
 ### Further reading
 
 * To learn about kustomize workflows with off-the-shelf configurations, see the
-[kustomize configuration workflows guide](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration).
+[kustomize configuration guide](https://kubectl.docs.kubernetes.io/guides/config_management/offtheshelf/).
 
 
 ## Troubleshooting
