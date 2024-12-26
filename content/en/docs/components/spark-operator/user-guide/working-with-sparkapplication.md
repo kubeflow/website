@@ -6,11 +6,11 @@ weight: 30
 
 ## Creating a New SparkApplication
 
-A `SparkApplication` can be created from a YAML file storing the `SparkApplication` specification using either the `kubectl apply -f <YAML file path>` command or the `sparkctl create <YAML file path>` command. Please refer to the `sparkctl` [README](https://github.com/kubeflow/spark-operator/blob/master/sparkctl/README.md#create) for usage of the `sparkctl create` command. Once a `SparkApplication` is successfully created, the operator will receive it and submits the application as configured in the specification to run on the Kubernetes cluster. Please note, that `SparkOperator` submits `SparkApplication` in `Cluster` mode only. 
+A `SparkApplication` can be created from a YAML file storing the `SparkApplication` specification using either the `kubectl apply -f <YAML file path>` command or the `sparkctl create <YAML file path>` command. Please refer to the `sparkctl` [README](https://github.com/kubeflow/spark-operator/blob/master/cmd/sparkctl/README.md#create) for usage of the `sparkctl create` command. Once a `SparkApplication` is successfully created, the operator will receive it and submits the application as configured in the specification to run on the Kubernetes cluster. Please note, that `SparkOperator` submits `SparkApplication` in `Cluster` mode only. 
 
 ## Deleting a SparkApplication
 
-A `SparkApplication` can be deleted using either the `kubectl delete <name>` command or the `sparkctl delete <name>` command. Please refer to the `sparkctl` [README](https://github.com/kubeflow/spark-operator/blob/master/sparkctl/README.md#delete) for usage of the `sparkctl delete`
+A `SparkApplication` can be deleted using either the `kubectl delete <name>` command or the `sparkctl delete <name>` command. Please refer to the `sparkctl` [README](https://github.com/kubeflow/spark-operator/blob/master/cmd/sparkctl/README.md#delete) for usage of the `sparkctl delete`
 command. Deleting a `SparkApplication` deletes the Spark application associated with it. If the application is running when the deletion happens, the application is killed and all Kubernetes resources associated with the application are deleted or garbage collected.
 
 ## Updating a SparkApplication
