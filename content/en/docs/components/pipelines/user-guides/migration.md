@@ -630,7 +630,7 @@ from kfp.dsl import importer_node
 
 ##### **Adding node selector constraint/accelerator**
 
-The task method `.add_node_selector_constraint` is deprecated in favor of `.add_node_selector_constraint`. Compared to the previous implementation of `.add_node_selector_constraint`, both methods have the `label_name` parameter removed and the `value` parameter is replaced by the parameter `accelerator`.
+The task method `.add_node_selector_constraint` is deprecated in favor of `.set_accelerator_type`. Compared to the previous implementation of `.add_node_selector_constraint`, both methods have the `label_name` parameter removed and the `value` parameter is replaced by the parameter `accelerator`.
 
 **Change:** Use `task.set_accelerator_type(accelerator=...)`. Provide the previous `value` argument to the `accelerator` parameter. Omit the `label_name`.
 
