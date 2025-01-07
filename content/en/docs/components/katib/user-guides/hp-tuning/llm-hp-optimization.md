@@ -1,6 +1,6 @@
 +++
-title = "How to Configure Algorithms"
-description = "List of supported algorithms for hyperparameter tuning"
+title = "How to Optimize LLM Hyperparameters"
+description = "API description"
 weight = 20
 +++
 
