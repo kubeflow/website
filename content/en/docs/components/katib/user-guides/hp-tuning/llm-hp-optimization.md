@@ -4,8 +4,19 @@ description = "API description"
 weight = 20
 +++
 
-This page describes LLM hyperparameter (HP) optimization API that Katib supports and how to configure
+This page describes LLM hyperparameter (HP) optimization Python API that Katib supports and how to configure
 it.
+
+## Prerequisites
+
+You need to install the following Katib components to run code in this guide:
+
+- Katib control plane [install](/docs/components/katib/installation/#installing-control-plane).
+- Katib Python SDK [install](/docs/components/katib/installation/#installing-python-sdk).
+
+Additionally install following python packages to run the example:
+
+- Transformers from Hugging Face [install](https://pypi.org/project/transformers/).
 
 ## LLM Hyperparameters Optimization
 
