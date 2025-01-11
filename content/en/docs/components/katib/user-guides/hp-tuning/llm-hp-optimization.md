@@ -12,11 +12,13 @@ it.
 You need to install the following Katib components to run code in this guide:
 
 - Katib control plane [install](/docs/components/katib/installation/#installing-control-plane).
+- Kubeflow Training SDK [install](https://github.com/kubeflow/training-operator/tree/1dfa40c12516fc9eb2ce12c5ef52da7d46670457/sdk/python)
 - Katib Python SDK [install](/docs/components/katib/installation/#installing-python-sdk).
 
 Additionally install following python packages to run the example:
 
 - Transformers from Hugging Face [install](https://pypi.org/project/transformers/).
+- Peft from Hugging Face [install](https://pypi.org/project/peft/)
 
 ## Load Model and Dataset
 
