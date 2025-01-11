@@ -126,9 +126,40 @@ s3_params = S3DatasetParams(
 ```
 
 
-### Hugging Face trainer params
+### HuggingFaceTrainerParams Description
 
-TODO
+The `HuggingFaceTrainerParams` class is used to define parameters for the training process in the Hugging Face framework. It includes the training arguments and LoRA configuration to optimize model training.
+
+| **Parameter**              | **Type**                            | **Description**                                                                                 |
+|----------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------|
+| `training_parameters`      | `transformers.TrainingArguments`    | Contains the training arguments like learning rate, epochs, batch size, etc.                    |
+| `lora_config`              | `LoraConfig`                        | LoRA configuration to reduce the number of trainable parameters in the model.                   |
+
+### Example Usage
+
+This is an **example** of how to use the `HuggingFaceTrainerParams` class to define the training and LoRA parameters.
+
+```python
+from transformers import TrainingArguments
+from peft import LoraConfig
+from kubeflow.storage_initializer.hugging_face import HuggingFaceTrainerParams
+
+# Set up training and LoRA configuration
+trainer_params = HuggingFaceTrainerParams(
+    training_parameters=TrainingArguments(
+        output_dir="results",
+        learning_rate=1e-5,
+        num_train_epochs=3,
+        per_device_train_batch_size=8,
+    ),
+    lora_config=LoraConfig(
+        r=8,
+        lora_alpha=16,
+        lora_dropout=0.1,
+        bias="none",
+    ),
+)
+```
 
 ### Example: Fine-Tuning Llama-3.2 for Binary Classification on IMDB Dataset
 
