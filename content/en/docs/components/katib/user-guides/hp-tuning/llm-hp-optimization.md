@@ -161,9 +161,6 @@ The following table outlines the Katib configuration used for hyperparameter tun
 | `parallel_trial_count`     | Number of trials to run in parallel, set to `2`.                     |
 | `resources_per_trial`      | Resources allocated for each trial: 2 GPUs, 4 CPUs, 10GB memory.    |
 
-This configuration is used to find the best hyperparameters for fine-tuning the Llama-3.2 model using Katib.
-
-
 ```python
 import kubeflow.katib as katib
 from kubeflow.katib import KatibClient
