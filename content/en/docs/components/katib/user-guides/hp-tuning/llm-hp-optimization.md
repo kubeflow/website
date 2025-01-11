@@ -1,10 +1,10 @@
 +++
-title = "How to Optimize LLM Hyperparameters"
+title = "How to Optimize Language Models Hyperparameters"
 description = "API description"
 weight = 20
 +++
 
-This page describes LLM hyperparameter (HP) optimization Python API that Katib supports and how to configure
+This page describes Language Models hyperparameter (HP) optimization Python API that Katib supports and how to configure
 it.
 
 ## Prerequisites
@@ -160,6 +160,74 @@ trainer_params = HuggingFaceTrainerParams(
         lora_dropout=0.1,
         bias="none",
     ),
+)
+```
+
+## Finetune Language Models
+
+In the context of fine-tuning large language models (LLMs) like GPT, BERT, or similar transformer-based models, it is crucial to optimize various hyperparameters to improve model performance. This sub-section covers the key parameters used in tuning LLMs via a `tune` function, specifically using tools like Katib for automated hyperparameter optimization in Kubernetes environments.
+
+### Key Parameters for LLM Hyperparameter Tuning
+
+| **Parameter**                   | **Description**                                                                 | **Required** |
+|----------------------------------|---------------------------------------------------------------------------------|--------------|
+| `name`                           | Name of the experiment.                                                          | Required     |
+| `model_provider_parameters`      | Parameters for the model provider, such as model type and configuration.        | Required     |
+| `dataset_provider_parameters`    | Parameters for the dataset provider, such as dataset configuration.             | Required     |
+| `trainer_parameters`             | Configuration for the trainer, including hyperparameters for model training.    | Required     |
+| `storage_config`                 | Configuration for storage, like PVC size and storage class.                     | Optional     |
+| `objective`                      | Objective function for training and optimization.                               | Optional     |
+| `base_image`                     | Base image for executing the objective function.                                | Optional     |
+| `parameters`                     | Hyperparameters for tuning the experiment.                                      | Optional     |
+| `namespace`                      | Kubernetes namespace for the experiment.                                        | Optional     |
+| `env_per_trial`                  | Environment variables for each trial.                                           | Optional     |
+| `algorithm_name`                 | Algorithm used for the hyperparameter search.                                   | Required     |
+| `algorithm_settings`             | Settings for the search algorithm.                                              | Optional     |
+| `objective_metric_name`          | Name of the objective metric for optimization.                                  | Required     |
+| `additional_metric_names`        | List of additional metrics to collect from the objective function.              | Optional     |
+| `objective_type`                 | Type of optimization for the objective metric (minimize or maximize).          | Required     |
+| `objective_goal`                 | The target value for the objective to succeed.                                  | Optional     |
+| `max_trial_count`                | Maximum number of trials to run.                                                | Optional     |
+| `parallel_trial_count`           | Number of trials to run in parallel.                                            | Optional     |
+| `max_failed_trial_count`         | Maximum number of failed trials allowed.                                        | Optional     |
+| `resources_per_trial`            | Resource requirements per trial, including CPU, memory, and GPU.                | Optional     |
+| `retain_trials`                  | Whether to retain resources from completed trials.                              | Optional     |
+| `packages_to_install`            | List of additional Python packages to install.                                  | Optional     |
+| `pip_index_url`                  | The PyPI URL from which to install Python packages.                             | Optional     |
+| `metrics_collector_config`       | Configuration for the metrics collector.                                        | Optional     |
+
+
+### Example:
+
+```python
+from kubeflow.katib import KatibClient
+
+cl = KatibClient(namespace="kubeflow")
+cl.tune(
+    name="LLM-Hyperparameter-Tuning",
+    model_provider_parameters=HuggingFaceModelParams(model_name="bert-base-uncased"),
+    dataset_provider_parameters=HuggingFaceDatasetParams(dataset_name="imdb"),
+    trainer_parameters=HuggingFaceTrainerParams(
+        training_parameters=transformers.TrainingArguments(
+            learning_rate=katib.search.double(min=1e-5, max=5e-5),
+            per_device_train_batch_size=katib.search.choice([16, 32, 64]),
+            num_train_epochs=3
+        )
+    ),
+    # Optional when model is used
+    # objective=lambda hp: train_model(hp['lr'], hp['per_device_train_batch_size']),
+    # parameters={
+    #     "lr": katib.search.double(min=1e-5, max=5e-5),
+    #     "per_device_train_batch_size": katib.search.choice([16, 32, 64])
+    # },
+    objective_metric_name="eval_loss",
+    objective_type="minimize",
+    max_trial_count=50,
+    parallel_trial_count=4,
+    resources_per_trial={"cpu": "4", "gpu": "2", "memory": "10Gi"},
+    # Optional
+    # packages_to_install=["transformers", "datasets"],
+    # metrics_collector_config={"kind": "Push"}
 )
 ```
 
