@@ -7,6 +7,12 @@ weight = 20
 This page describes Language Models hyperparameter (HP) optimization Python API that Katib supports and how to configure
 it.
 
+## Sections
+- [Prerequisites](#Prerequisites)
+- [Load Model and Dataset](#Load-Model-and-Dataset)
+- [Finetune](#Finetune-Language-Models)
+- [Example: Fine-Tuning Llama-3.2 for Binary Classification on IMDB Dataset](#example-fine-tuning-llama-32-for-binary-classification-on-imdb-dataset)
+
 ## Prerequisites
 
 You need to install the following Katib components to run code in this guide:
