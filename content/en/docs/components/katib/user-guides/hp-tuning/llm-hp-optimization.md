@@ -147,20 +147,39 @@ The `HuggingFaceTrainerParams` class is used to define parameters for the traini
 | `training_parameters`      | `transformers.TrainingArguments`    | Contains the training arguments like learning rate, epochs, batch size, etc.                    |
 | `lora_config`              | `LoraConfig`                        | LoRA configuration to reduce the number of trainable parameters in the model.                   |
 
+
+
+#### Katib Search API for Defining Hyperparameter Search Space
+
+The **Katib Search API** allows users to define the search space for hyperparameters during model tuning. This API supports continuous, discrete, and categorical parameter sampling, enabling flexible and efficient hyperparameter optimization.
+
+Below are the available methods for defining hyperparameter search spaces:
+
+| **Function**     | **Description**                                          | **Parameter Type** | **Arguments**                                      |
+|------------------|----------------------------------------------------------|--------------------|---------------------------------------------------|
+| `double()`       | Samples a continuous float value within a specified range. | `double`           | `min` (float, required), `max` (float, required), `step` (float, optional) |
+| `int()`          | Samples an integer value within a specified range.       | `int`              | `min` (int, required), `max` (int, required), `step` (int, optional) |
+| `categorical()`  | Samples a value from a predefined list of categories.    | `categorical`      | `list` (List, required)                            |
+
+
 ### Example Usage
 
 This is an **example** of how to use the `HuggingFaceTrainerParams` class to define the training and LoRA parameters.
 
 ```python
+import kubeflow.katib as katib
+from kubeflow.storage_initializer.hugging_face import HuggingFaceTrainerParams
+
 from transformers import TrainingArguments
 from peft import LoraConfig
-from kubeflow.storage_initializer.hugging_face import HuggingFaceTrainerParams
 
 # Set up training and LoRA configuration
 trainer_params = HuggingFaceTrainerParams(
     training_parameters=TrainingArguments(
         output_dir="results",
-        learning_rate=1e-5,
+        # Using katib search api to define a search space for the parameter
+        # learning_rate=1e-5,
+        learning_rate = katib.search.double(min=1e-05, max=5e-05),
         num_train_epochs=3,
         per_device_train_batch_size=8,
     ),
