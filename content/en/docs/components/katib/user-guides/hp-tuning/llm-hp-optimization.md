@@ -235,6 +235,8 @@ The parameters `model_provider_parameters`, `dataset_provider_parameters`, and `
 - **Define a Custom Objective Function:**  
   Customize the training process by specifying `objective`, `base_image`, and `parameters` to define a fully custom objective function.
 
+For more information on creating custom objective functions, visit the [Katib Custom Objective Functions Guide](https://www.kubeflow.org/docs/components/katib/getting-started/).
+
 Although these parameters are optional, the API internally checks their existence to ensure consistency and proper configuration.
 
 
