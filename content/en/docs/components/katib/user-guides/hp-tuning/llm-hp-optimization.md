@@ -225,7 +225,20 @@ In the context of fine-tuning large language models (LLMs) like GPT, BERT, or si
 | `pip_index_url`                  | The PyPI URL from which to install Python packages.                             | Optional     |
 | `metrics_collector_config`       | Configuration for the metrics collector.                                        | Optional     |
 
-### Example: Fine-Tuning Llama-3.2 for Binary Classification on IMDB Dataset
+### **Parameter Flexibility in the `tune` Function**
+
+The parameters `model_provider_parameters`, `dataset_provider_parameters`, and `trainer_parameters` are **optional** and default to `None` if not specified. This design offers users flexibility in configuring their hyperparameter optimization process. Users can choose between the following approaches:
+
+- **Use Predefined Models and Datasets:**  
+  Import models and datasets from external platforms by providing values for `model_provider_parameters`, `dataset_provider_parameters`, and `trainer_parameters`.
+
+- **Define a Custom Objective Function:**  
+  Customize the training process by specifying `objective`, `base_image`, and `parameters` to define a fully custom objective function.
+
+Although these parameters are optional, the API internally checks their existence to ensure consistency and proper configuration.
+
+
+## Example: Fine-Tuning Llama-3.2 for Binary Classification on IMDB Dataset
 
 This code provides an example of fine-tuning the [**Llama-3.2 model**](https://huggingface.co/meta-llama/Llama-3.2-1B) for a **binary classification** task on the [**IMDB movie reviews dataset**](https://huggingface.co/datasets/stanfordnlp/imdb). The **Llama-3.2 model** is fine-tuned using **LoRA** (Low-Rank Adaptation) to reduce the number of trainable parameters. The dataset used in this example consists of 1000 movie reviews from the **IMDB** dataset, and the training process is optimized through **Katib** to find the best hyperparameters.
 
