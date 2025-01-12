@@ -1,10 +1,10 @@
 +++
-title = "How to Optimize Language Models Hyperparameters"
+title = "How to Optimize Large Language Models Hyperparameters"
 description = "API description"
 weight = 20
 +++
 
-This page describes Language Models hyperparameter (HP) optimization Python API that Katib supports and how to configure
+This page describes Large Language Models hyperparameter (HP) optimization Python API that Katib supports and how to configure
 it.
 
 ## Sections
