@@ -182,9 +182,9 @@ In the context of fine-tuning large language models (LLMs) like GPT, BERT, or si
 | **Parameter**                   | **Description**                                                                 | **Required** |
 |----------------------------------|---------------------------------------------------------------------------------|--------------|
 | `name`                           | Name of the experiment.                                                          | Required     |
-| `model_provider_parameters`      | Parameters for the model provider, such as model type and configuration.        | Required     |
-| `dataset_provider_parameters`    | Parameters for the dataset provider, such as dataset configuration.             | Required     |
-| `trainer_parameters`             | Configuration for the trainer, including hyperparameters for model training.    | Required     |
+| `model_provider_parameters`      | Parameters for the model provider, such as model type and configuration.        | Optional     |
+| `dataset_provider_parameters`    | Parameters for the dataset provider, such as dataset configuration.             | Optional     |
+| `trainer_parameters`             | Configuration for the trainer, including hyperparameters for model training.    | Optional     |
 | `storage_config`                 | Configuration for storage, like PVC size and storage class.                     | Optional     |
 | `objective`                      | Objective function for training and optimization.                               | Optional     |
 | `base_image`                     | Base image for executing the objective function.                                | Optional     |
