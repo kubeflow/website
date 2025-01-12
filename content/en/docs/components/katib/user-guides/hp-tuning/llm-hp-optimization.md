@@ -193,7 +193,7 @@ In the context of fine-tuning large language models (LLMs) like GPT, BERT, or si
 | `env_per_trial`                  | Environment variables for each trial.                                           | Optional     |
 | `algorithm_name`                 | Algorithm used for the hyperparameter search.                                   | Optional     |
 | `algorithm_settings`             | Settings for the search algorithm.                                              | Optional     |
-| `objective_metric_name`          | Name of the objective metric for optimization.                                  | Required     |
+| `objective_metric_name`          | Name of the objective metric for optimization.                                  | Optional     |
 | `additional_metric_names`        | List of additional metrics to collect from the objective function.              | Optional     |
 | `objective_type`                 | Type of optimization for the objective metric (minimize or maximize).          | Optional     |
 | `objective_goal`                 | The target value for the objective to succeed.                                  | Optional     |
