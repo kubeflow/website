@@ -191,7 +191,7 @@ In the context of fine-tuning large language models (LLMs) like GPT, BERT, or si
 | `parameters`                     | Hyperparameters for tuning the experiment.                                      | Optional     |
 | `namespace`                      | Kubernetes namespace for the experiment.                                        | Optional     |
 | `env_per_trial`                  | Environment variables for each trial.                                           | Optional     |
-| `algorithm_name`                 | Algorithm used for the hyperparameter search.                                   | Required     |
+| `algorithm_name`                 | Algorithm used for the hyperparameter search.                                   | Optional     |
 | `algorithm_settings`             | Settings for the search algorithm.                                              | Optional     |
 | `objective_metric_name`          | Name of the objective metric for optimization.                                  | Required     |
 | `additional_metric_names`        | List of additional metrics to collect from the objective function.              | Optional     |
