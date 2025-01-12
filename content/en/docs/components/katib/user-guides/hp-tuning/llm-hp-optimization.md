@@ -206,41 +206,6 @@ In the context of fine-tuning large language models (LLMs) like GPT, BERT, or si
 | `pip_index_url`                  | The PyPI URL from which to install Python packages.                             | Optional     |
 | `metrics_collector_config`       | Configuration for the metrics collector.                                        | Optional     |
 
-
-### Example:
-
-```python
-from kubeflow.katib import KatibClient
-
-cl = KatibClient(namespace="kubeflow")
-cl.tune(
-    name="LLM-Hyperparameter-Tuning",
-    model_provider_parameters=HuggingFaceModelParams(model_name="bert-base-uncased"),
-    dataset_provider_parameters=HuggingFaceDatasetParams(dataset_name="imdb"),
-    trainer_parameters=HuggingFaceTrainerParams(
-        training_parameters=transformers.TrainingArguments(
-            learning_rate=katib.search.double(min=1e-5, max=5e-5),
-            per_device_train_batch_size=katib.search.choice([16, 32, 64]),
-            num_train_epochs=3
-        )
-    ),
-    # Optional when model is used
-    # objective=lambda hp: train_model(hp['lr'], hp['per_device_train_batch_size']),
-    # parameters={
-    #     "lr": katib.search.double(min=1e-5, max=5e-5),
-    #     "per_device_train_batch_size": katib.search.choice([16, 32, 64])
-    # },
-    objective_metric_name="eval_loss",
-    objective_type="minimize",
-    max_trial_count=50,
-    parallel_trial_count=4,
-    resources_per_trial={"cpu": "4", "gpu": "2", "memory": "10Gi"},
-    # Optional
-    # packages_to_install=["transformers", "datasets"],
-    # metrics_collector_config={"kind": "Push"}
-)
-```
-
 ### Example: Fine-Tuning Llama-3.2 for Binary Classification on IMDB Dataset
 
 This code provides an example of fine-tuning the [**Llama-3.2 model**](https://huggingface.co/meta-llama/Llama-3.2-1B) for a **binary classification** task on the [**IMDB movie reviews dataset**](https://huggingface.co/datasets/stanfordnlp/imdb). The **Llama-3.2 model** is fine-tuned using **LoRA** (Low-Rank Adaptation) to reduce the number of trainable parameters. The dataset used in this example consists of 1000 movie reviews from the **IMDB** dataset, and the training process is optimized through **Katib** to find the best hyperparameters.
