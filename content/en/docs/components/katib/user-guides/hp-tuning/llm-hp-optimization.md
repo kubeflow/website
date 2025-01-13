@@ -184,7 +184,6 @@ trainer_params = HuggingFaceTrainerParams(
     training_parameters=TrainingArguments(
         output_dir="results",
         # Using katib search api to define a search space for the parameter
-        # learning_rate=1e-5,
         learning_rate=katib.search.double(min=1e-05, max=5e-05),
         num_train_epochs=3,
         per_device_train_batch_size=8,
