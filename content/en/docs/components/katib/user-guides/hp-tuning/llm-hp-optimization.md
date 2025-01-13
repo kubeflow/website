@@ -6,8 +6,8 @@ weight = 20
 
 {{% alert title="Warning" color="warning" %}}
 This feature is in **alpha** stage and the Kubeflow community is looking for your feedback. Please
-share your experience using the [#kubeflow-katib Slack channel](https://cloud-native.slack.com/archives/C0742LDFZ4K)
-or the [Kubeflow Katib GitHub](https://github.com/kubeflow/katib/issues/new).
+share your experience using the [#kubeflow-katib Slack channel](https://cloud-native.slack.com/archives/C073N7AS48P)
+or the [Kubeflow Katib GitHub](https://github.com/kubeflow/katib/issues).
 {{% /alert %}}
 
 This page describes Large Language Models hyperparameter (HP) optimization Python API that Katib supports and how to configure
