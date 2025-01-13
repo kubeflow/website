@@ -190,7 +190,7 @@ trainer_params = HuggingFaceTrainerParams(
         per_device_train_batch_size=8,
     ),
     lora_config=LoraConfig(
-        r=8,
+        r=katib.search.int(min=8, max=32),
         lora_alpha=16,
         lora_dropout=0.1,
         bias="none",
