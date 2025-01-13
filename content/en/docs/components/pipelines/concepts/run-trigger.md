@@ -11,7 +11,7 @@ available:
 
 * Periodic: for an interval-based scheduling of runs (for example: every 2 hours 
   or every 45 minutes).
-* Cron: for specifying `cron` semantics for scheduling runs.
+* [Cron](https://en.wikipedia.org/wiki/Cron): for specifying `cron` semantics for scheduling runs.
 
 ## Next steps
 
