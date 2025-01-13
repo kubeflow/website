@@ -25,7 +25,7 @@ The benefits of this approach were:
 
 The V1 Training Operator architecture diagram can be seen in the diagram below:
 
-<img src="/docs/components/training/images/training-operator-v1-architecture.drawio.svg"
+<img src="/docs/components/training/legacy-v1/images/training-operator-v1-architecture.drawio.svg"
   alt="Training Operator V1 Architecture"
   class="mt-3 mb-3">
 

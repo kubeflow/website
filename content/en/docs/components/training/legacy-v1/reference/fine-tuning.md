@@ -11,7 +11,7 @@ This page shows how Training Operator implements the
 
 In the following diagram you can see how `train` Python API works:
 
-<img src="/docs/components/training/images/fine-tune-llm-api.drawio.svg"
+<img src="/docs/components/training/legacy-v1/images/fine-tune-llm-api.drawio.svg"
   alt="Fine-Tune API for LLMs"
   class="mt-3 mb-3">
 
