@@ -8,9 +8,9 @@ This page describes Large Language Models hyperparameter (HP) optimization Pytho
 it.
 
 ## Sections
-- [Prerequisites](#Prerequisites)
-- [Load Model and Dataset](#Load-Model-and-Dataset)
-- [Finetune](#Finetune-Language-Models)
+- [Prerequisites](#prerequisites)
+- [Load Model and Dataset](#load-model-and-dataset)
+- [Finetune](#finetune-language-models)
 - [Example: Fine-Tuning Llama-3.2 for Binary Classification on IMDB Dataset](#example-fine-tuning-llama-32-for-binary-classification-on-imdb-dataset)
 
 ## Prerequisites
