@@ -185,7 +185,7 @@ trainer_params = HuggingFaceTrainerParams(
         output_dir="results",
         # Using katib search api to define a search space for the parameter
         # learning_rate=1e-5,
-        learning_rate = katib.search.double(min=1e-05, max=5e-05),
+        learning_rate=katib.search.double(min=1e-05, max=5e-05),
         num_train_epochs=3,
         per_device_train_batch_size=8,
     ),
@@ -274,16 +274,6 @@ For more information on creating custom objective functions, visit the [Katib Cu
 
 This code provides an example of fine-tuning the [**Llama-3.2 model**](https://huggingface.co/meta-llama/Llama-3.2-1B) for a **binary classification** task on the [**IMDB movie reviews dataset**](https://huggingface.co/datasets/stanfordnlp/imdb). The **Llama-3.2 model** is fine-tuned using **LoRA** (Low-Rank Adaptation) to reduce the number of trainable parameters. The dataset used in this example consists of 1000 movie reviews from the **IMDB** dataset, and the training process is optimized through **Katib** to find the best hyperparameters.
 
-#### Model:
-- [**Llama-3.2** from Hugging Face](https://huggingface.co/meta-llama/Llama-3.2-1B)
-
-#### Dataset:
-- [**IMDB movie reviews**](https://huggingface.co/datasets/stanfordnlp/imdb) (1000 samples for training)
-
-#### Training:
-- Fine-tuning for binary classification
-- Hyperparameter tuning with Katib
-
 ### Katib Configuration
 
 The following table outlines the Katib configuration used for hyperparameter tuning in the fine-tuning process:
@@ -300,6 +290,8 @@ The following table outlines the Katib configuration used for hyperparameter tun
 | `max_trial_count`          | Maximum number of trials to run, set to `10`.                        |
 | `parallel_trial_count`     | Number of trials to run in parallel, set to `2`.                     |
 | `resources_per_trial`      | Resources allocated for each trial: 2 GPUs, 4 CPUs, 10GB memory.    |
+
+### Code Example
 
 ```python
 import kubeflow.katib as katib
