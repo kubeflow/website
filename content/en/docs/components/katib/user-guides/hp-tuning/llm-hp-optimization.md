@@ -1,5 +1,5 @@
 +++
-title = "How to Optimize Large Language Models Hyperparameters"
+title = "How to Optimize Hyperparameters of LLMs with Kubeflow"
 description = "API description"
 weight = 20
 +++
