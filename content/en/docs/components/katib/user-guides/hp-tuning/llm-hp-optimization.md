@@ -236,18 +236,15 @@ In the context of fine-tuning large language models (LLMs) like GPT, BERT, or si
 | `pip_index_url`                  | The PyPI URL from which to install Python packages.                             | Optional     |
 | `metrics_collector_config`       | Configuration for the metrics collector.                                        | Optional     |
 
-### Considerations for Hyperparameter Optimization
-
-Before exploring custom objective functions, consider the following important points:
-
 1. **Supported Objective Metric for LLMs**  
    Currently, for large language model (LLM) hyperparameter optimization, only `train_loss` is supported as the objective metric. This is because `train_loss` is the default metric produced by the `trainer.train()` function in Hugging Face, which our trainer utilizes. We plan to expand support for additional metrics in future updates.
 
-2. **Enabling Distributed Training with PyTorchJob**  
-   To leverage PyTorchJob for distributed training during hyperparameter optimization, users can define a `types.TrainerResources` object for the `resources_per_trial` parameter. This allows precise allocation of computational resources for each trial.
 
-   **Example Configuration:**
-   ```python
+2. **Enabling Distributed Training with PyTorchJob**  
+   To leverage PyTorchJob for distributed training during hyperparameter optimization, users can define a `types.TrainerResources` object for the `resources_per_trial` parameter. This allows precise allocation of computational resources for each trial.  
+
+    **Example Configuration:**
+    ```python
    resources_per_trial = types.TrainerResources(
        num_workers=4,                    # Number of distributed workers
        num_procs_per_worker=2,           # Processes per worker
@@ -257,23 +254,12 @@ Before exploring custom objective functions, consider the following important po
            "memory": "10G",              # Memory allocation
        },
    )
-   ```
+   ``` 
 
----
+3. **Defining a Custom Objective Function**  
+   In addition to importing models and datasets from external platforms using `model_provider_parameters`, `dataset_provider_parameters`, and `trainer_parameters`, users also have the flexibility to define a custom objective function, along with a custom image and parameters for hyperparameter optimization.
 
-### **Parameter Flexibility in the `tune` Function**
-
-The parameters `model_provider_parameters`, `dataset_provider_parameters`, and `trainer_parameters` are **optional** and default to `None` if not specified. This design offers users flexibility in configuring their hyperparameter optimization process. Users can choose between the following approaches:
-
-- **Use Predefined Models and Datasets:**  
-  Import models and datasets from external platforms by providing values for `model_provider_parameters`, `dataset_provider_parameters`, and `trainer_parameters`.
-
-- **Define a Custom Objective Function:**  
-  Customize the training process by specifying `objective`, `base_image`, and `parameters` to define a fully custom objective function.
-
-Although these parameters are optional, the API internally checks their existence to ensure consistency and proper configuration.
-
-For more information on creating custom objective functions, visit the [Katib Custom Objective Functions Guide](https://www.kubeflow.org/docs/components/katib/getting-started/).
+    For detailed instructions, refer to [this guide](https://www.kubeflow.org/docs/components/katib/getting-started/).
 
 ## Example: Fine-Tuning Llama-3.2 for Binary Classification on IMDB Dataset
 
