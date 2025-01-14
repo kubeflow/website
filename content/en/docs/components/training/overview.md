@@ -6,7 +6,7 @@ weight = 10
 
 {{% alert title="Note" color="dark" %}}
 Kubeflow Training project is currently in <strong>alpha</strong> status, and APIs may change.
-If you are using Kubeflow Training Operator V1, please refer [to this migration document](/docs/components/training/admin-guides/migration).
+If you are using Kubeflow Training Operator V1, please refer [to this migration document](/docs/components/training/operator-guides/migration).
 
 For legacy Kubeflow Training V1 documentation, please check [these guides](/docs/components/training/legacy-v1)
 {{% /alert %}}

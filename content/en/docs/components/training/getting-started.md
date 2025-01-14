@@ -11,7 +11,7 @@ with PyTorch.
 
 Ensure that you have access to a Kubernetes cluster with Kubeflow Training
 control plane installed. If it is not set up yet, follow
-[the installation guide](/docs/components/training/admin-guides/installation) to quickly deploy
+[the installation guide](/docs/components/training/operator-guides/installation) to quickly deploy
 Kubeflow Training on a local Kind cluster.
 
 ### Installing the Kubeflow Python SDK

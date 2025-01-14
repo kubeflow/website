@@ -58,4 +58,4 @@ kubectl apply --server-side -k "https://github.com/kubeflow/training-operator.gi
 
 ## Next Steps
 
-- How to [migrate from Kubeflow Training V1](/docs/components/training/admin-guides/migration).
+- How to [migrate from Kubeflow Training V1](/docs/components/training/operator-guides/migration).
