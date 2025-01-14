@@ -245,7 +245,10 @@ In the context of fine-tuning large language models (LLMs) like GPT, BERT, or si
 
     **Example Configuration:**
     ```python
-      resources_per_trial = types.TrainerResources(
+      from kubeflow.katib.types import TrainerResources
+
+   
+      resources_per_trial = TrainerResources(
        num_workers=4,                    # Number of distributed workers
        num_procs_per_worker=2,           # Processes per worker
        resources_per_worker={            # Resource allocation per worker
