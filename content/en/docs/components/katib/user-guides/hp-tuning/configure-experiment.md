@@ -122,7 +122,7 @@ trialSpec:
 ```
 
 If you use `PyTorchJob` or other Training Operator jobs in your Trial template check
-[here](/docs/components/training/user-guides/tensorflow/#what-is-tfjob) how to set the annotation.
+[here](/docs/components/training/legacy-v1/user-guides/tensorflow/#what-is-tfjob) how to set the annotation.
 
 ## Running the Experiment
 

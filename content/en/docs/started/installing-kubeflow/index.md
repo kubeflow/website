@@ -88,7 +88,7 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
       </tr>
       <tr>
         <td>
-         <a href="/docs/components/training/user-guides/mpi/#installation">
+         <a href="/docs/components/training/legacy-v1/user-guides/mpi/#installation">
             Kubeflow MPI Operator
           </a>
         </td>
@@ -133,12 +133,12 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
       </tr>
       <tr>
         <td>
-          <a href="/docs/components/training/installation/#installing-the-training-operator">
+          <a href="/docs/components/training/admin-guides/installation">
             Kubeflow Training Operator
           </a>
         </td>
         <td>
-          Model Training and Fine-Tuning
+          Model Training and LLMs Fine-Tuning
         </td>
         <td>
           <a href="https://github.com/kubeflow/training-operator">
