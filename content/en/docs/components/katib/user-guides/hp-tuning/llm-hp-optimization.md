@@ -47,15 +47,9 @@ from kubeflow.storage_initializer.hugging_face import (
 )
 ```
 
-### S3-Compatible Object Storage Integration
+### HuggingFaceModelParams
 
-In addition to Hugging Face, you can integrate with S3-compatible object storage platforms to load datasets. To work with S3, use the `S3DatasetParams` class to define your dataset parameters.
-
-```python
-from kubeflow.storage_initializer.s3 import S3DatasetParams
-```
-
-### HuggingFaceModelParams Description
+#### Description
 
 The `HuggingFaceModelParams` dataclass holds configuration parameters for initializing Hugging Face models with validation checks.
 
@@ -66,7 +60,7 @@ The `HuggingFaceModelParams` dataclass holds configuration parameters for initia
 | `access_token`   | `Optional[str]` (default: `None`)      | Token for accessing private models on Hugging Face.             |
 | `num_labels`     | `Optional[int]` (default: `None`)      | Number of output labels (used for classification tasks).        |
 
-### Supported Transformer Types (`TRANSFORMER_TYPES`)
+##### Supported Transformer Types (`TRANSFORMER_TYPES`)
 
 | **Model Type**                                 | **Task**                    |
 |------------------------------------------------|-----------------------------|
@@ -93,7 +87,9 @@ params = HuggingFaceModelParams(
 )
 ```
 
-### HuggingFaceDatasetParams Description
+### HuggingFaceDatasetParams
+
+#### Description
 
 The `HuggingFaceDatasetParams` class holds configuration parameters for loading datasets from Hugging Face with validation checks.
 
@@ -103,22 +99,7 @@ The `HuggingFaceDatasetParams` class holds configuration parameters for loading 
 | `access_token`   | `Optional[str]` (default: `None`) | Token for accessing private datasets on Hugging Face. |
 | `split`          | `Optional[str]` (default: `None`) | Dataset split to load (e.g., `"train"`, `"test"`). |
 
-### S3DatasetParams Description
-
-The `S3DatasetParams` class is used for loading datasets from S3-compatible object storage. The parameters are defined as follows:
-
-| **Parameter**     | **Type**           | **Description**                                                   |
-|-------------------|--------------------|-------------------------------------------------------------------|
-| `endpoint_url`    | `str`              | URL of the S3-compatible storage service.                         |
-| `bucket_name`     | `str`              | Name of the S3 bucket containing the dataset.                     |
-| `file_key`        | `str`              | Key (path) to the dataset file within the bucket.                 |
-| `region_name`     | `str`, optional    | The AWS region of the S3 bucket (optional).                       |
-| `access_key`      | `str`, optional    | The access key for authentication with S3 (optional).            |
-| `secret_key`      | `str`, optional    | The secret key for authentication with S3 (optional).            |
-
 #### Example Usage
-
-##### Hugging Face
 
 ```python
 from kubeflow.storage_initializer.hugging_face import HuggingFaceDatasetParams
@@ -131,24 +112,9 @@ dataset_params = HuggingFaceDatasetParams(
 )
 ```
 
-##### S3
+### HuggingFaceTrainerParams
 
-```python
-from kubeflow.storage_initializer.s3 import S3DatasetParams
-
-
-s3_params = S3DatasetParams(
-    endpoint_url="https://s3.amazonaws.com",
-    bucket_name="my-dataset-bucket",
-    file_key="datasets/train.csv",
-    region_name="us-west-2",
-    access_key="YOUR_ACCESS_KEY",
-    secret_key="YOUR_SECRET_KEY"
-)
-```
-
-
-### HuggingFaceTrainerParams Description
+#### Description
 
 The `HuggingFaceTrainerParams` class is used to define parameters for the training process in the Hugging Face framework. It includes the training arguments and LoRA configuration to optimize model training.
 
@@ -156,8 +122,6 @@ The `HuggingFaceTrainerParams` class is used to define parameters for the traini
 |----------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------|
 | `training_parameters`      | `transformers.TrainingArguments`    | Contains the training arguments like learning rate, epochs, batch size, etc.                    |
 | `lora_config`              | `LoraConfig`                        | LoRA configuration to reduce the number of trainable parameters in the model.                   |
-
-
 
 #### Katib Search API for Defining Hyperparameter Search Space
 
@@ -172,7 +136,7 @@ Below are the available methods for defining hyperparameter search spaces:
 | `categorical()`  | Samples a value from a predefined list of categories.    | `categorical`      | `list` (List, required)                            |
 
 
-### Example Usage
+#### Example Usage
 
 This is an **example** of how to use the `HuggingFaceTrainerParams` class to define the training and LoRA parameters.
 
@@ -201,6 +165,44 @@ trainer_params = HuggingFaceTrainerParams(
 )
 ```
 
+## S3-Compatible Object Storage Integration
+
+In addition to Hugging Face, you can integrate with S3-compatible object storage platforms to load datasets. To work with S3, use the `S3DatasetParams` class to define your dataset parameters.
+
+```python
+from kubeflow.storage_initializer.s3 import S3DatasetParams
+```
+
+### S3DatasetParams
+
+#### Description
+
+The `S3DatasetParams` class is used for loading datasets from S3-compatible object storage. The parameters are defined as follows:
+
+| **Parameter**     | **Type**           | **Description**                                                   |
+|-------------------|--------------------|-------------------------------------------------------------------|
+| `endpoint_url`    | `str`              | URL of the S3-compatible storage service.                         |
+| `bucket_name`     | `str`              | Name of the S3 bucket containing the dataset.                     |
+| `file_key`        | `str`              | Key (path) to the dataset file within the bucket.                 |
+| `region_name`     | `str`, optional    | The AWS region of the S3 bucket (optional).                       |
+| `access_key`      | `str`, optional    | The access key for authentication with S3 (optional).            |
+| `secret_key`      | `str`, optional    | The secret key for authentication with S3 (optional).            |
+
+#### Example Usage
+
+```python
+from kubeflow.storage_initializer.s3 import S3DatasetParams
+
+
+s3_params = S3DatasetParams(
+    endpoint_url="https://s3.amazonaws.com",
+    bucket_name="my-dataset-bucket",
+    file_key="datasets/train.csv",
+    region_name="us-west-2",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY"
+)
+```
 ## Finetune Language Models
 
 In the context of fine-tuning large language models (LLMs) like GPT, BERT, or similar transformer-based models, it is crucial to optimize various hyperparameters to improve model performance. This sub-section covers the key parameters used in tuning LLMs via a `tune` function, specifically using tools like Katib for automated hyperparameter optimization in Kubernetes environments.
@@ -243,7 +245,7 @@ In the context of fine-tuning large language models (LLMs) like GPT, BERT, or si
 
     **Example Configuration:**
     ```python
-   resources_per_trial = types.TrainerResources(
+      resources_per_trial = types.TrainerResources(
        num_workers=4,                    # Number of distributed workers
        num_procs_per_worker=2,           # Processes per worker
        resources_per_worker={            # Resource allocation per worker
