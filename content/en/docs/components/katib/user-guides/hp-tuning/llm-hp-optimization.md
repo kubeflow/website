@@ -87,6 +87,9 @@ The `HuggingFaceModelParams` dataclass holds configuration parameters for initia
 ```python
 from transformers import AutoModelForSequenceClassification
 
+from kubeflow.storage_initializer.hugging_face import HuggingFaceModelParams
+
+
 params = HuggingFaceModelParams(
     model_uri="bert-base-uncased",
     transformer_type=AutoModelForSequenceClassification,
@@ -123,6 +126,9 @@ The `S3DatasetParams` class is used for loading datasets from S3-compatible obje
 ##### Hugging Face
 
 ```python
+from kubeflow.storage_initializer.hugging_face import HuggingFaceDatasetParams
+
+
 dataset_params = HuggingFaceDatasetParams(
     repo_id="imdb",            # Public dataset repository ID on Hugging Face
     split="train",             # Dataset split to load
@@ -133,6 +139,9 @@ dataset_params = HuggingFaceDatasetParams(
 ##### S3
 
 ```python
+from kubeflow.storage_initializer.s3 import S3DatasetParams
+
+
 s3_params = S3DatasetParams(
     endpoint_url="https://s3.amazonaws.com",
     bucket_name="my-dataset-bucket",
