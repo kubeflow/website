@@ -5,7 +5,7 @@ weight = 10
 +++
 
 This page shows how Training Operator implements the
-[API to fine-tune LLMs](/docs/components/training/user-guides/fine-tuning).
+[API to fine-tune LLMs](/docs/components/training/legacy-v1/user-guides/fine-tuning).
 
 ## Architecture
 

@@ -701,6 +701,6 @@ Here are some steps to follow to troubleshoot your job
 
 ## Next steps
 
-- Learn about [distributed training](/docs/components/training/reference/distributed-training/) in Training Operator.
+- Learn about [distributed training](/docs/components/training/legacy-v1/reference/distributed-training/) in Training Operator.
 
-- See how to [run a job with gang-scheduling](/docs/components/training/user-guides/job-scheduling/#running-jobs-with-gang-scheduling).
+- See how to [run a job with gang-scheduling](/docs/components/training/legacy-v1/user-guides/job-scheduling/#running-jobs-with-gang-scheduling).

@@ -13,8 +13,8 @@ is already deployed using manifests or package distributions, as it includes Kub
 
 These are the minimal requirements to install the Kubeflow Training control plane:
 
-- Kubernetes >= 1.27
-- `kubectl` >= 1.27
+- Kubernetes >= 1.28
+- `kubectl` >= 1.28
 
 {{% alert title="Tip" color="primary" %}}
 If you don't have Kubernetes cluster, you can quickly create one locally using [Kind](https://kind.sigs.k8s.io/docs/user/quick-start#installing-with-a-package-manager):

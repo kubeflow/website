@@ -12,8 +12,8 @@ appropriate Kubernetes workloads to perform distributed ML training and fine-tun
 
 These are the minimal requirements to install the Training Operator:
 
-- Kubernetes >= 1.27
-- `kubectl` >= 1.27
+- Kubernetes >= 1.28
+- `kubectl` >= 1.28
 - Python >= 3.7
 
 ## Installing the Training Operator
@@ -96,4 +96,4 @@ pip install -U "kubeflow-training[huggingface]"
 
 ## Next steps
 
-Run your first Training Operator Job by following the [Getting Started guide](/docs/components/training/getting-started/).
+Run your first Training Operator Job by following the [Getting Started guide](/docs/components/training/legacy-v1/getting-started/).

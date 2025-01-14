@@ -24,7 +24,7 @@ The Training Operator implements a centralized Kubernetes controller to orchestr
 You can run high-performance computing (HPC) tasks with the Training Operator and MPIJob since it
 supports running Message Passing Interface (MPI) on Kubernetes which is heavily used for HPC.
 The Training Operator implements the V1 API version of MPI Operator. For the MPI Operator V2 version,
-please follow [this guide](/docs/components/training/user-guides/mpi/) to install MPI Operator V2.
+please follow [this guide](/docs/components/training/legacy-v1/user-guides/mpi/) to install MPI Operator V2.
 
 <img src="/docs/components/training/legacy-v1/images/training-operator-overview.drawio.svg"
   alt="Training Operator Overview"
@@ -63,17 +63,17 @@ To perform distributed training the Training Operator implements the following
 [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 for each ML framework:
 
-| ML Framework | Custom Resource                                              |
-| ------------ | ------------------------------------------------------------ |
-| PyTorch      | [PyTorchJob](/docs/components/training/user-guides/pytorch/) |
-| TensorFlow   | [TFJob](/docs/components/training/user-guides/tensorflow/)   |
-| XGBoost      | [XGBoostJob](/docs/components/training/user-guides/xgboost/) |
-| MPI          | [MPIJob](/docs/components/training/user-guides/mpi/)         |
-| PaddlePaddle | [PaddleJob](/docs/components/training/user-guides/paddle/)   |
-| JAX          | [JAXJob](/docs/components/training/user-guides/jax/)   |
+| ML Framework | Custom Resource                                                        |
+| ------------ | ---------------------------------------------------------------------- |
+| PyTorch      | [PyTorchJob](/docs/components/training/legacy-v1/user-guides/pytorch/) |
+| TensorFlow   | [TFJob](/docs/components/training/legacy-v1/user-guides/tensorflow/)   |
+| XGBoost      | [XGBoostJob](/docs/components/training/legacy-v1/user-guides/xgboost/) |
+| MPI          | [MPIJob](/docs/components/training/legacy-v1/user-guides/mpi/)         |
+| PaddlePaddle | [PaddleJob](/docs/components/training/legacy-v1/user-guides/paddle/)   |
+| JAX          | [JAXJob](/docs/components/training/legacy-v1/user-guides/jax/)         |
 
 ## Next steps
 
-- Follow [the installation guide](/docs/components/training/installation/) to deploy the Training Operator.
+- Follow [the installation guide](/docs/components/training/legacy-v1/installation/) to deploy the Training Operator.
 
-- Run examples from [getting started guide](/docs/components/training/getting-started/).
+- Run examples from [getting started guide](/docs/components/training/legacy-v1/getting-started/).

@@ -16,7 +16,7 @@ Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-
 In order to get it running, it needs the annotation `sidecar.istio.io/inject: "false"`
 to disable it for either the `PyTorchJob` pods or namespace.
 To view an example of how to add this annotation to your `yaml` file,
-see the [`XGBoostJob` documentation](/docs/components/training/user-guides/tensorflow/).
+see the [`XGBoostJob` documentation](/docs/components/training/legacy-v1/user-guides/tensorflow/).
 
 ## Creating a XGBoost training job
 

@@ -14,11 +14,11 @@ This page describes how to use a [`train` API from the Training Python SDK](http
 that simplifies the ability to fine-tune LLMs with distributed PyTorchJob workers.
 
 If you want to learn more about how the fine-tuning API fits in the Kubeflow ecosystem, head to
-the [explanation guide](/docs/components/training/explanation/fine-tuning).
+the [explanation guide](/docs/components/training/legacy-v1/explanation/fine-tuning).
 
 ## Prerequisites
 
-You need to install the Training Python SDK [with fine-tuning support](/docs/components/training/installation/#install-the-python-sdk-with-fine-tuning-capabilities)
+You need to install the Training Python SDK [with fine-tuning support](/docs/components/training/legacy-v1/installation/#install-the-python-sdk-with-fine-tuning-capabilities)
 to run this API.
 
 ## How to use the Fine-Tuning API?
@@ -92,6 +92,7 @@ to fine-tune the LLM.
 Platform engineers can customize the storage initializer and trainer images by setting the `STORAGE_INITIALIZER_IMAGE` and `TRAINER_TRANSFORMER_IMAGE` environment variables before executing the `train` command.
 
 For example: In your python code, set the env vars before executing `train`:
+
 ```python
 ...
 os.environ['STORAGE_INITIALIZER_IMAGE'] = 'docker.io/<username>/<custom-storage-initiailizer_image>'
@@ -107,4 +108,4 @@ TrainingClient().train(...)
 - Check this example to compare the `create_job` and the `train` Python API for
   [fine-tuning BERT LLM](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/examples/pytorch/text-classification/Fine-Tune-BERT-LLM.ipynb).
 
-- Understand [the architecture behind `train` API](/docs/components/training/reference/fine-tuning).
+- Understand [the architecture behind `train` API](/docs/components/training/legacy-v1/reference/fine-tuning).
