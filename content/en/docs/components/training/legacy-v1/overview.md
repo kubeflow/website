@@ -49,7 +49,7 @@ Kubernetes cluster using APIs and interfaces provided by Training Operator.
 
 - **The Training Operator is extensible and portable.**
 
-You can deploy Training Operator on any cloud where you have Kubernetes cluster and you can
+You can deploy the Training Operator on any cloud where you have Kubernetes cluster and you can
 integrate their own ML frameworks written in any programming languages with Training Operator.
 
 - **The Training Operator is integrated with the Kubernetes ecosystem.**

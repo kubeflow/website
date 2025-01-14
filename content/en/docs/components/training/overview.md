@@ -5,7 +5,7 @@ weight = 10
 +++
 
 {{% alert title="Note" color="dark" %}}
-The Kubeflow Training V2 is currently in <strong>alpha</strong> status, and APIs may change.
+The Kubeflow Training project is currently in <strong>alpha</strong> status, and APIs may change.
 If you are using the Kubeflow Training V1, please refer [to this migration document](/docs/components/training/admin-guides/migration).
 
 For legacy Kubeflow Training V1 documentation, please check [these guides](/docs/components/training/legacy-v1)
@@ -13,9 +13,9 @@ For legacy Kubeflow Training V1 documentation, please check [these guides](/docs
 
 ## What is the Kubeflow Training
 
-The Kubeflow Training is a Kubernetes-native project for large language models (LLMs) fine-tuning
-and scalable distributed training of machine learning (ML) models created with different ML
-frameworks such as PyTorch, JAX, TensorFlow, XGBoost, and others.
+The Kubeflow Training project is a Kubernetes-native solution designed for
+large language models (LLMs) fine-tuning and enabling scalable, distributed training of
+machine learning (ML) models across various frameworks, including PyTorch, JAX, TensorFlow, and XGBoost.
 
 You can integrate other ML libraries such as [HuggingFace](https://huggingface.co),
 [DeepSpeed](https://github.com/microsoft/DeepSpeed), or [Megatron-LM](https://github.com/NVIDIA/Megatron-LM)

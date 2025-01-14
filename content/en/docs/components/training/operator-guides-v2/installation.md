@@ -33,7 +33,7 @@ Run the following command to deploy the Kubeflow Training manager:
 TODO (andreyvelich): Change the link once V1 is removed.
 
 ```bash
-kubectl apply --server-side -k "github.com/kubeflow/training-operator.git/manifests/v2/overlays/manager?ref=master"
+kubectl apply --server-side -k "https://github.com/kubeflow/training-operator.git/manifests/v2/overlays/manager?ref=master"
 ```
 
 Ensure that the JobSet controller and Training Operator V2 pods are running:
@@ -43,6 +43,9 @@ TODO (andreyvelich): Add command to print output of
 ```bash
 $ kubectl get pods -n kubeflow-system
 
+NAME                                         READY   STATUS    RESTARTS   AGE
+jobset-controller-manager-59fc8bf679-7qb9x   2/2     Running   0          1m
+training-operator-v2-7b9949cc86-756rx        1/1     Running   0          1m
 ```
 
 ## Installing the Kubeflow Training Runtimes
@@ -50,7 +53,7 @@ $ kubectl get pods -n kubeflow-system
 Run the following command to deploy the Kubeflow Training Runtimes:
 
 ```bash
-kubectl apply --server-side -k "github.com/kubeflow/training-operator.git/manifests/v2/overlays/runtimes?ref=master"
+kubectl apply --server-side -k "https://github.com/kubeflow/training-operator.git/manifests/v2/overlays/runtimes?ref=master"
 ```
 
 ## Next Steps
