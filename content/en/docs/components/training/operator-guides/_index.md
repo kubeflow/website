@@ -1,5 +1,5 @@
 +++
-title = "Cluster Admin Guides"
-description = "Documentation for cluster administrators of Kubeflow Training"
+title = "Operator Guides"
+description = "Documentation for cluster operators of Kubeflow Training"
 weight = 50
 +++
