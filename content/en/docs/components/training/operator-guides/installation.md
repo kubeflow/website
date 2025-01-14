@@ -1,17 +1,17 @@
 +++
 title = "Installation"
-description = "How to install the Kubeflow Training control plane"
+description = "How to install Kubeflow Training control plane"
 weight = 10
 +++
 
-This guide describes how to install the Kubeflow Training control plane on a Kubernetes cluster.
+This guide describes how to install Kubeflow Training control plane on a Kubernetes cluster.
 
 You can skip these steps if [the Kubeflow platform](https://www.kubeflow.org/docs/started/installing-kubeflow/)
 is already deployed using manifests or package distributions, as it includes Kubeflow Training by default.
 
 ## Prerequisites
 
-These are the minimal requirements to install the Kubeflow Training control plane:
+These are the minimal requirements to install Kubeflow Training control plane:
 
 - Kubernetes >= 1.28
 - `kubectl` >= 1.28

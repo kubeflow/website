@@ -1,34 +1,34 @@
 +++
 title = "Overview"
-description = "An overview of the Kubeflow Training"
+description = "An overview of Kubeflow Training"
 weight = 10
 +++
 
 {{% alert title="Note" color="dark" %}}
-The Kubeflow Training project is currently in <strong>alpha</strong> status, and APIs may change.
-If you are using the Kubeflow Training V1, please refer [to this migration document](/docs/components/training/admin-guides/migration).
+Kubeflow Training project is currently in <strong>alpha</strong> status, and APIs may change.
+If you are using Kubeflow Training Operator V1, please refer [to this migration document](/docs/components/training/admin-guides/migration).
 
 For legacy Kubeflow Training V1 documentation, please check [these guides](/docs/components/training/legacy-v1)
 {{% /alert %}}
 
-## What is the Kubeflow Training
+## What is Kubeflow Training
 
-The Kubeflow Training project is a Kubernetes-native solution designed for
+Kubeflow Training project is a Kubernetes-native solution designed for
 large language models (LLMs) fine-tuning and enabling scalable, distributed training of
 machine learning (ML) models across various frameworks, including PyTorch, JAX, TensorFlow, and XGBoost.
 
 You can integrate other ML libraries such as [HuggingFace](https://huggingface.co),
 [DeepSpeed](https://github.com/microsoft/DeepSpeed), or [Megatron-LM](https://github.com/NVIDIA/Megatron-LM)
-with the Kubeflow Training to orchestrate their ML training on Kubernetes.
+with Kubeflow Training to orchestrate their ML training on Kubernetes.
 
-The Kubeflow Training allows you effortlessly develop your LLMs with the Kubeflow Python SDK and
+Kubeflow Training allows you effortlessly develop your LLMs with the Kubeflow Python SDK and
 build Kubernetes-native Training Runtimes with Kubernetes Custom Resources APIs.
 
 TODO (andreyvelich): Add diagram once it is ready.
 
 ## Who is this for
 
-The Kubeflow Training is designed for two primary user personas, each with specific resources and
+Kubeflow Training is designed for two primary user personas, each with specific resources and
 responsibilities:
 
 <img src="/docs/components/training/images/user-personas.drawio.svg"
@@ -37,11 +37,11 @@ responsibilities:
 
 ### User Personas
 
-The Kubeflow Training documentation is separated between these user personas:
+Kubeflow Training documentation is separated between these user personas:
 
-- [ML Users](/docs/components/training/user-guides): engineers and scientists who develop AI models
+- [ML Users](/docs/components/training/user-guides-v2): engineers and scientists who develop AI models
   using the Kubeflow Python SDK and TrainJob.
-- [Cluster Admins](/docs/components/training/admin-guides): administrators responsible for managing
+- [Cluster Operators](/docs/components/training/operator-guides): administrators responsible for managing
   Kubernetes clusters and Kubeflow Training Runtimes.
 - [Contributors](/docs/components/training/contributor-guides): open source contributors working on
   [Kubeflow Training project](https://github.com/kubeflow/training-operator).
@@ -52,7 +52,7 @@ Watch the following KubeCon + CloudNativeCon 2024 talk which provides an overvie
 
 {{< youtube id="Lgy4ir1AhYw" title="Kubeflow Training V2">}}
 
-## Why use the Kubeflow Training
+## Why use Kubeflow Training
 
 The Kubeflow Training supports key phases on the AI/ML lifecycle, including model training and LLMs
 fine-tuning, as shown in the diagram below:
@@ -86,4 +86,5 @@ Optimize GPU utilization and gang-scheduling for ML workloads by leveraging Kube
 
 ## Next steps
 
-Follow [the installation guide](/docs/components/training/installation/) to deploy the Kubeflow Training.
+Run your first Kubeflow Training Job by following the
+[Getting Started guide](/docs/components/training/getting-started/).
