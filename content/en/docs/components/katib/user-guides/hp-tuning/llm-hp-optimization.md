@@ -24,12 +24,12 @@ it.
 You need to install the following Katib components to run code in this guide:
 
 - Katib control plane – [install](/docs/components/katib/installation/#installing-control-plane).
-- Katib Python SDK with LLM Hyperparameter Optimization Support – [install](https://www.kubeflow.org/docs/components/katib/installation/#installing-python-sdk)
+- Katib Python SDK with LLM Hyperparameter Optimization Support – [install](/docs/components/katib/installation/#installing-python-sdk)
 
 Additionally, this API supports both non-distributed training and distributed training using **PyTorchJob**.  
 If you want to use **distributed training**, make sure to install the **Training Operator** control plane in addition to the packages mentioned above.
 
-- Training Operator control plane – [install](https://www.kubeflow.org/docs/components/training/installation/#installing-the-control-plane)
+- Training Operator control plane – [install](/docs/components/training/installation/#installing-the-control-plane)
 
 ## Load Model and Dataset
 
