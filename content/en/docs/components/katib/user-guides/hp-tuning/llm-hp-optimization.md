@@ -23,15 +23,13 @@ it.
 
 You need to install the following Katib components to run code in this guide:
 
-- Katib control plane [install](/docs/components/katib/installation/#installing-control-plane).
-- Katib Python SDK with LLM hyperparameter optimization support (`pip install -U kubeflow-katib[huggingface]`) or [install](/docs/components/katib/installation/#installing-python-sdk).
-- Transformers from Hugging Face [pypi](https://pypi.org/project/transformers/).
-- Peft from Hugging Face [pypi](https://pypi.org/project/peft/)
+- Katib control plane – [install](/docs/components/katib/installation/#installing-control-plane).
+- Katib Python SDK with LLM Hyperparameter Optimization Support – [install](https://www.kubeflow.org/docs/components/katib/installation/#installing-python-sdk)
 
-This API supports both non-distributed training and distributed training using **PyTorchJob**.  
+Additionally, this API supports both non-distributed training and distributed training using **PyTorchJob**.  
 If you want to use **distributed training**, make sure to install the **Training Operator** control plane in addition to the packages mentioned above.
 
-- Training Operator control plane [install](https://www.kubeflow.org/docs/components/training/installation/#installing-the-control-plane)
+- Training Operator control plane – [install](https://www.kubeflow.org/docs/components/training/installation/#installing-the-control-plane)
 
 ## Load Model and Dataset
 
