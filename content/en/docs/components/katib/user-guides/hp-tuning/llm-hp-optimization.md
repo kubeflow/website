@@ -245,7 +245,7 @@ In the context of fine-tuning large language models (LLMs) like GPT, BERT, or si
 
     **Example Configuration:**
     ```python
-      from kubeflow.katib.types import TrainerResources
+      from kubeflow.katib.types.trainer_resources import TrainerResources
 
    
       resources_per_trial = TrainerResources(
