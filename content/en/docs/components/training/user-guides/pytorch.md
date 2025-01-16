@@ -73,7 +73,7 @@ spec:
           creationTimestamp: null
         spec:
           containers:
-            - image: gcr.io/kubeflow-ci/pytorch-dist-mnist_test:1.0
+            - image: kubeflow/pytorch-dist-mnist:latest
               name: pytorch
               ports:
                 - containerPort: 23456
@@ -87,7 +87,7 @@ spec:
           creationTimestamp: null
         spec:
           containers:
-            - image: gcr.io/kubeflow-ci/pytorch-dist-mnist_test:1.0
+            - image: kubeflow/pytorch-dist-mnist:latest
               name: pytorch
               ports:
                 - containerPort: 23456
