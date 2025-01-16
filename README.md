@@ -264,4 +264,4 @@ Whenever any documents reference any source code, you should use the version sho
 https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
 ```
 
-This ensures that all the links in a versioned webpage point to the correct branch.
+This ensures that all the links in a versioned webpage point to the correct branch. 
