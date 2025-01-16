@@ -78,7 +78,7 @@ The following list shows available Kubeflow community meetings with the correspo
 | Kubeflow Spark Operator call    | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
 | KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                 |                                                                                              |
 
-### Kubeflow Community Calendar |
+### Kubeflow Community Calendar
 
 This is an aggregated view of the Kubeflow community calendar and should be displayed in your
 device's timezone.
