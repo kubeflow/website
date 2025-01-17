@@ -47,9 +47,9 @@ from kubeflow.storage_initializer.hugging_face import (
 )
 ```
 
-### HuggingFaceModelParams
+#### HuggingFaceModelParams
 
-#### Description
+##### Description
 
 The `HuggingFaceModelParams` dataclass holds configuration parameters for initializing Hugging Face models with validation checks.
 
@@ -60,7 +60,7 @@ The `HuggingFaceModelParams` dataclass holds configuration parameters for initia
 | `access_token`   | `Optional[str]` (default: `None`)      | Token for accessing private models on Hugging Face.             |
 | `num_labels`     | `Optional[int]` (default: `None`)      | Number of output labels (used for classification tasks).        |
 
-##### Supported Transformer Types (`TRANSFORMER_TYPES`)
+###### Supported Transformer Types (`TRANSFORMER_TYPES`)
 
 | **Model Type**                                 | **Task**                    |
 |------------------------------------------------|-----------------------------|
@@ -71,7 +71,7 @@ The `HuggingFaceModelParams` dataclass holds configuration parameters for initia
 | `AutoModelForMaskedLM`                        | Masked language modeling    |
 | `AutoModelForImageClassification`            | Image classification        |
 
-#### Example Usage
+##### Example Usage
 
 ```python
 from transformers import AutoModelForSequenceClassification
@@ -87,9 +87,9 @@ params = HuggingFaceModelParams(
 )
 ```
 
-### HuggingFaceDatasetParams
+#### HuggingFaceDatasetParams
 
-#### Description
+##### Description
 
 The `HuggingFaceDatasetParams` class holds configuration parameters for loading datasets from Hugging Face with validation checks.
 
@@ -99,7 +99,7 @@ The `HuggingFaceDatasetParams` class holds configuration parameters for loading 
 | `access_token`   | `Optional[str]` (default: `None`) | Token for accessing private datasets on Hugging Face. |
 | `split`          | `Optional[str]` (default: `None`) | Dataset split to load (e.g., `"train"`, `"test"`). |
 
-#### Example Usage
+##### Example Usage
 
 ```python
 from kubeflow.storage_initializer.hugging_face import HuggingFaceDatasetParams
@@ -112,9 +112,9 @@ dataset_params = HuggingFaceDatasetParams(
 )
 ```
 
-### HuggingFaceTrainerParams
+#### HuggingFaceTrainerParams
 
-#### Description
+##### Description
 
 The `HuggingFaceTrainerParams` class is used to define parameters for the training process in the Hugging Face framework. It includes the training arguments and LoRA configuration to optimize model training.
 
@@ -123,7 +123,7 @@ The `HuggingFaceTrainerParams` class is used to define parameters for the traini
 | `training_parameters`      | `transformers.TrainingArguments`    | Contains the training arguments like learning rate, epochs, batch size, etc.                    |
 | `lora_config`              | `LoraConfig`                        | LoRA configuration to reduce the number of trainable parameters in the model.                   |
 
-#### Katib Search API for Defining Hyperparameter Search Space
+##### Katib Search API for Defining Hyperparameter Search Space
 
 The **Katib Search API** allows users to define the search space for hyperparameters during model tuning. This API supports continuous, discrete, and categorical parameter sampling, enabling flexible and efficient hyperparameter optimization.
 
@@ -136,7 +136,7 @@ Below are the available methods for defining hyperparameter search spaces:
 | `categorical()`  | Samples a value from a predefined list of categories.    | `categorical`      | `list` (List, required)                            |
 
 
-#### Example Usage
+##### Example Usage
 
 This is an **example** of how to use the `HuggingFaceTrainerParams` class to define the training and LoRA parameters.
 
@@ -165,7 +165,7 @@ trainer_params = HuggingFaceTrainerParams(
 )
 ```
 
-## S3-Compatible Object Storage Integration
+### S3-Compatible Object Storage Integration
 
 In addition to Hugging Face, you can integrate with S3-compatible object storage platforms to load datasets. To work with S3, use the `S3DatasetParams` class to define your dataset parameters.
 
@@ -173,9 +173,9 @@ In addition to Hugging Face, you can integrate with S3-compatible object storage
 from kubeflow.storage_initializer.s3 import S3DatasetParams
 ```
 
-### S3DatasetParams
+#### S3DatasetParams
 
-#### Description
+##### Description
 
 The `S3DatasetParams` class is used for loading datasets from S3-compatible object storage. The parameters are defined as follows:
 
