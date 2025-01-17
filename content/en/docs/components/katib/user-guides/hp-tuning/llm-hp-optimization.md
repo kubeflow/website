@@ -16,8 +16,8 @@ it.
 ## Sections
 - [Prerequisites](#prerequisites)
 - [Load Model and Dataset](#load-model-and-dataset)
-- [Finetune](#finetune-language-models)
-- [Example: Fine-Tuning Llama-3.2 for Binary Classification on IMDB Dataset](#example-fine-tuning-llama-32-for-binary-classification-on-imdb-dataset)
+- [Optimizing Hyperparameters of Large Language Models](#optimizing-hyperparameters-of-large-language-models)
+- [Example: Optimizing Hyperparameters of Llama-3.2 for Binary Classification on IMDB Dataset](#example-optimizing-hyperparameters-of-llama-32-for-binary-classification-on-imdb-dataset)
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ If you want to use **distributed training**, make sure to install the **Training
 
 ## Load Model and Dataset
 
-To fine-tune a pre-trained model, it is essential to load the model and dataset from a provider. Currently, this can be done using external platforms like **Hugging Face** and **S3-compatible object storage** (e.g., Amazon S3) through the `storage_initializer` API from Kubeflow.
+To optimize hyperparameters of a pre-trained model, it is essential to load the model and dataset from a provider. Currently, this can be done using external platforms like **Hugging Face** and **S3-compatible object storage** (e.g., Amazon S3) through the `storage_initializer` API from Kubeflow.
 
 ### Hugging Face Integration
 
@@ -203,9 +203,9 @@ s3_params = S3DatasetParams(
     secret_key="YOUR_SECRET_KEY"
 )
 ```
-## Finetune Language Models
+## Optimizing Hyperparameters of Large Language Models
 
-In the context of fine-tuning large language models (LLMs) like GPT, BERT, or similar transformer-based models, it is crucial to optimize various hyperparameters to improve model performance. This sub-section covers the key parameters used in tuning LLMs via a `tune` function, specifically using tools like Katib for automated hyperparameter optimization in Kubernetes environments.
+In the context of optimizing hyperparameters of large language models (LLMs) like GPT, BERT, or similar transformer-based models, it is crucial to optimize various hyperparameters to improve model performance. This sub-section covers the key parameters used in tuning LLMs via a `tune` function, specifically using tools like Katib for automated hyperparameter optimization in Kubernetes environments.
 
 ### Key Parameters for LLM Hyperparameter Tuning
 
@@ -264,26 +264,26 @@ In the context of fine-tuning large language models (LLMs) like GPT, BERT, or si
 
     For detailed instructions, refer to [this guide](https://www.kubeflow.org/docs/components/katib/getting-started/).
 
-## Example: Fine-Tuning Llama-3.2 for Binary Classification on IMDB Dataset
+## Example: Optimizing Hyperparameters of Llama-3.2 for Binary Classification on IMDB Dataset
 
-This code provides an example of fine-tuning the [**Llama-3.2 model**](https://huggingface.co/meta-llama/Llama-3.2-1B) for a **binary classification** task on the [**IMDB movie reviews dataset**](https://huggingface.co/datasets/stanfordnlp/imdb). The **Llama-3.2 model** is fine-tuned using **LoRA** (Low-Rank Adaptation) to reduce the number of trainable parameters. The dataset used in this example consists of 1000 movie reviews from the **IMDB** dataset, and the training process is optimized through **Katib** to find the best hyperparameters.
+This code provides an example of hyperparameter optimized [**Llama-3.2 model**](https://huggingface.co/meta-llama/Llama-3.2-1B) for a **binary classification** task on the [**IMDB movie reviews dataset**](https://huggingface.co/datasets/stanfordnlp/imdb). The **Llama-3.2 model** is fine-tuned using **LoRA** (Low-Rank Adaptation) to reduce the number of trainable parameters. The dataset used in this example consists of 1000 movie reviews from the **IMDB** dataset, and the training process is optimized through **Katib** to find the best hyperparameters.
 
 ### Katib Configuration
 
-The following table outlines the Katib configuration used for hyperparameter tuning in the fine-tuning process:
+The following table outlines the Katib configuration used for hyperparameter optimization process:
 
-| **Parameter**              | **Description**                                                       |
-|----------------------------|-----------------------------------------------------------------------|
-| `exp_name`                 | Name of the experiment (`Llama-3.2-fine-tune`).                       |
-| `model_provider_parameters`| Parameters for the Hugging Face model (Llama-3.2).                    |
-| `dataset_provider_parameters`| Parameters for the IMDB dataset (1000 movie reviews).              |
-| `trainer_parameters`       | Parameters for the Hugging Face trainer, including LoRA settings.    |
-| `objective_metric_name`    | The objective metric to minimize, in this case, `"train_loss"`.      |
-| `objective_type`           | Type of optimization: `"minimize"` for training loss.                |
-| `algorithm_name`           | The optimization algorithm used, set to `"random"` for random search.|
-| `max_trial_count`          | Maximum number of trials to run, set to `10`.                        |
-| `parallel_trial_count`     | Number of trials to run in parallel, set to `2`.                     |
-| `resources_per_trial`      | Resources allocated for each trial: 2 GPUs, 4 CPUs, 10GB memory.    |
+| **Parameter**              | **Description**                                                |
+|----------------------------|----------------------------------------------------------------|
+| `exp_name`                 | Name of the experiment (`llama`).                              |
+| `model_provider_parameters`| Parameters for the Hugging Face model (Llama-3.2).             |
+| `dataset_provider_parameters`| Parameters for the IMDB dataset (1000 movie reviews).          |
+| `trainer_parameters`       | Parameters for the Hugging Face trainer, including LoRA settings. |
+| `objective_metric_name`    | The objective metric to minimize, in this case, `"train_loss"`. |
+| `objective_type`           | Type of optimization: `"minimize"` for training loss.          |
+| `algorithm_name`           | The optimization algorithm used, set to `"random"` for random search. |
+| `max_trial_count`          | Maximum number of trials to run, set to `10`.                  |
+| `parallel_trial_count`     | Number of trials to run in parallel, set to `2`.               |
+| `resources_per_trial`      | Resources allocated for each trial: 2 GPUs, 4 CPUs, 10GB memory. |
 
 ### Code Example
 
@@ -330,8 +330,8 @@ hf_tuning_parameters = HuggingFaceTrainerParams(
 
 cl = KatibClient(namespace="kubeflow")
 
-# Fine-tuning for Binary Classification
-exp_name = "Llama-3.2-fine-tune"
+# Optimizing Hyperparameters for Binary Classification
+exp_name = "llamafinetune"
 cl.tune(
 	name = exp_name,
 	model_provider_parameters = hf_model,
