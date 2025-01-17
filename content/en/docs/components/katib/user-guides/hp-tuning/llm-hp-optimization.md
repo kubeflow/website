@@ -241,7 +241,7 @@ In the context of optimizing hyperparameters of large language models (LLMs) lik
 
 
 2. **Enabling Distributed Training with PyTorchJob**  
-   To leverage PyTorchJob for distributed training during hyperparameter optimization, users can define a `types.TrainerResources` object for the `resources_per_trial` parameter. This allows precise allocation of computational resources for each trial.  
+   To enable PyTorchJob for distributed training during hyperparameter optimization, you must define `resources_per_trial` using the `TrainerResources` object when importing models and datasets from external platforms. This requirement applies regardless of whether you choose to use distributed training for LLM hyperparameter optimization. If you prefer not to use distributed training, simply set `num_workers=1`.
 
     **Example Configuration:**
     ```python
