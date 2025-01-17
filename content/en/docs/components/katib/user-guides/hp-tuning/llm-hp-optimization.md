@@ -188,7 +188,7 @@ The `S3DatasetParams` class is used for loading datasets from S3-compatible obje
 | `access_key`      | `str`, optional    | The access key for authentication with S3 (optional).            |
 | `secret_key`      | `str`, optional    | The secret key for authentication with S3 (optional).            |
 
-#### Example Usage
+##### Example Usage
 
 ```python
 from kubeflow.storage_initializer.s3 import S3DatasetParams
