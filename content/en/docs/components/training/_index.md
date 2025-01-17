@@ -1,5 +1,0 @@
-+++
-title = "Kubeflow Training"
-description = "Documentation for Kubeflow Training"
-weight = 20
-+++

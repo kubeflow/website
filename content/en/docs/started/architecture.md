@@ -86,8 +86,8 @@ See the following links for more information about each Kubeflow component:
 - [Kubeflow Katib](/docs/components/katib/) can be used for model optimization and hyperparameter
   tuning using various AutoML algorithms.
 
-- [Kubeflow Training Operator](/docs/components/training/) can be used for large-scale distributed
-  training or fine-tuning.
+- [Kubeflow Trainer](/docs/components/trainer/) can be used for large-scale distributed
+  training or LLM fine-tuning.
 
 - [Kubeflow Model Registry](/docs/components/model-registry/) can be used to store ML metadata,
   model artifacts, and preparing models for production serving.
