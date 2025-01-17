@@ -245,18 +245,13 @@ In the context of optimizing hyperparameters of large language models (LLMs) lik
 
     **Example Configuration:**
     ```python
-      from kubeflow.katib.types.trainer_resources import TrainerResources
+      import kubeflow.katib as katib
 
-   
-      resources_per_trial = TrainerResources(
-       num_workers=4,                    # Number of distributed workers
-       num_procs_per_worker=2,           # Processes per worker
-       resources_per_worker={            # Resource allocation per worker
-           "gpu": 2,                     # Number of GPUs
-           "cpu": 5,                     # Number of CPUs
-           "memory": "10G",              # Memory allocation
-       },
-   )
+      resources_per_trial=katib.TrainerResources(
+         num_workers=1,
+         num_procs_per_worker=1,
+         resources_per_worker={"gpu": 0, "cpu": 1, "memory": "10G",},
+      )
    ``` 
 
 3. **Defining a Custom Objective Function**  
