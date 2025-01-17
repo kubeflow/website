@@ -123,7 +123,7 @@ The `HuggingFaceTrainerParams` class is used to define parameters for the traini
 | `training_parameters`      | `transformers.TrainingArguments`    | Contains the training arguments like learning rate, epochs, batch size, etc.                    |
 | `lora_config`              | `LoraConfig`                        | LoRA configuration to reduce the number of trainable parameters in the model.                   |
 
-##### Katib Search API for Defining Hyperparameter Search Space
+###### Katib Search API for Defining Hyperparameter Search Space
 
 The **Katib Search API** allows users to define the search space for hyperparameters during model tuning. This API supports continuous, discrete, and categorical parameter sampling, enabling flexible and efficient hyperparameter optimization.
 
