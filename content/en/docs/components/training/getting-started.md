@@ -36,6 +36,7 @@ def train_func():
     from torch.utils.data import DistributedSampler
     from torchvision import datasets, transforms
     import torch.distributed as dist
+    import os
 
     # [1] Setup PyTorch DDP. Distributed environment will be set automatically by Training Operator.
     dist.init_process_group(backend="nccl")
@@ -116,8 +117,7 @@ from kubeflow.training import TrainingClient
 # Start PyTorchJob with 3 Workers and 1 GPU per Worker (e.g. multi-node, multi-worker job).
 TrainingClient().create_job(
     name="pytorch-ddp",
-    train_func=train_func,
-    num_procs_per_worker="auto",
+    train_func=train_func,    
     num_workers=3,
     resources_per_worker={"gpu": "1"},
 )
