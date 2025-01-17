@@ -326,7 +326,7 @@ hf_tuning_parameters = HuggingFaceTrainerParams(
 cl = KatibClient(namespace="kubeflow")
 
 # Optimizing Hyperparameters for Binary Classification
-exp_name = "llamafinetune"
+exp_name = "llama"
 cl.tune(
 	name = exp_name,
 	model_provider_parameters = hf_model,
