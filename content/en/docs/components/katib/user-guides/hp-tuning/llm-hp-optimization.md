@@ -240,7 +240,7 @@ In the context of optimizing hyperparameters of large language models (LLMs) lik
    Currently, for large language model (LLM) hyperparameter optimization, only `train_loss` is supported as the objective metric. This is because `train_loss` is the default metric produced by the `trainer.train()` function in Hugging Face, which our trainer utilizes. We plan to expand support for additional metrics in future updates.
 
 
-2. **Configuring resources_per_trial**  
+2. **Configuring `resources_per_trial`**  
    When importing models and datasets from external platforms, you are required to define `resources_per_trial` using the `TrainerResources` object. Setting `num_workers` to a value greater than 1 enables distributed training through PyTorchJob. To disable distributed training, simply set `num_workers=1`.
 
     **Example Configuration:**
