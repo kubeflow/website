@@ -26,8 +26,9 @@ You need to install the following Katib components to run code in this guide:
 - Katib control plane – [install](/docs/components/katib/installation/#installing-control-plane).
 - Katib Python SDK with LLM Hyperparameter Optimization Support – [install](/docs/components/katib/installation/#installing-python-sdk)
 
-Additionally, this API supports both non-distributed training and distributed training using **PyTorchJob**.  
-If you want to use **distributed training**, make sure to install the **Training Operator** control plane in addition to the packages mentioned above.
+Additionally, this API supports both non-distributed and distributed training using PyTorchJob. If you want to enable distributed training, you must install the Training Operator control plane in addition to the required packages mentioned above.
+
+Furthermore, when importing models and datasets from external platforms, you are required to define `resources_per_trial` using the `TrainerResources` object. This setup automatically utilizes PyTorchJob for training, making the installation of the Training Operator control plane **mandatory** in this case. Please ensure this setup is properly configured.
 
 - Training Operator control plane – [install](/docs/components/training/installation/#installing-the-control-plane)
 
