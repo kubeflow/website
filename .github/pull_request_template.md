@@ -24,7 +24,7 @@ Closes: #
 ### Labels
 <!-- Please include labels below by uncommenting them to help us better review PRs -->
 
-<!-- /area central dashboard -->
+<!-- /area centraldashboard -->
 <!-- /area katib -->
 <!-- /area model-registry -->
 <!-- /area notebooks -->
