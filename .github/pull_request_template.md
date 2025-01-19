@@ -24,12 +24,12 @@ Closes: #
 ### Labels
 <!-- Please include labels below by uncommenting them to help us better review PRs -->
 
-<!-- /area centraldashboard -->
+<!-- /area central-dashboard -->
 <!-- /area katib -->
 <!-- /area model-registry -->
 <!-- /area notebooks -->
 <!-- /area pipelines -->
-<!-- /area spark operator -->
+<!-- /area spark-operator -->
 <!-- /area trainer -->
 <!-- /area other -->
 ---
