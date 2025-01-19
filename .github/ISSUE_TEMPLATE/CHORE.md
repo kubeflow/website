@@ -19,13 +19,13 @@ title: "chore(<component>): <Chore Name>"
 ### Labels
 <!-- Please include labels below by uncommenting them to help us better triage issues -->
 
-<!-- /area central dashboard -->
+<!-- /area central-dashboard -->
 <!-- /area katib -->
 <!-- /area model-registry -->
 <!-- /area notebooks -->
 <!-- /area pipelines -->
-<!-- /area spark operator -->
-<!-- /area training -->
+<!-- /area spark-operator -->
+<!-- /area trainer -->
 <!-- /area other -->
 ---
 
