@@ -30,3 +30,42 @@ $navbar-dark-active-color: $navbar-dark-color;
 
 // Fonts
 $google_font_family: "Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" !default;
+
+:root {
+  --td-dark-gray-font: #dee2e6;
+  --td-dark-background: #2f2f2f;
+  --td-dark-code-background: #282828;
+  --td-dark-link: #6ab0f3;
+  --td-dark-link-hover: #8bc4f8;
+  --td-dark-border: #404040;
+  --td-dark-sidebar: #303030;
+  --td-dark-sidebar-text: #f0f0f0;
+  --td-dark-sidebar-hover: #3f3f3f;
+  --td-dark-navbar: #353535;
+  --bs-table-hover-color: #dee2e6;
+}
+
+[data-theme="light"] {
+  --bs-body-color: #212529;
+  --bs-body-bg: #fff;
+  --bs-body-text-align: left;
+  --bs-link-color: #0d6efd;
+  --bs-link-hover-color: #0a58ca;
+  --navbar-bg: #fff;
+  --navbar-color: rgba(0, 0, 0, 0.9);
+  --navbar-hover-color: rgba(0, 0, 0, 0.7);
+  --navbar-active-color: rgba(0, 0, 0, 0.9);
+  --navbar-disabled-color: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] {
+  --bs-body-color: var(--td-dark-gray-font);
+  --bs-body-bg: var(--td-dark-background);
+  --bs-link-color: var(--td-dark-link);
+  --bs-link-hover-color: var(--td-dark-link-hover);
+  --navbar-bg: var(--td-dark-navbar);
+  --navbar-color: rgba(255, 255, 255, 0.9);
+  --navbar-hover-color: rgba(255, 255, 255, 0.7);
+  --navbar-active-color: rgba(255, 255, 255, 0.9);
+  --navbar-disabled-color: rgba(255, 255, 255, 0.3);
+}
