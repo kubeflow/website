@@ -1,8 +1,9 @@
 ---
 name: Bug Report
-about: Report a bug encountered with Kubeflow Website
+description: Report a bug encountered with Kubeflow Website
 labels:
 - kind/bug
+title: "bug(<component>): <Bug Name>"
 ---
 **This is a Bug Report**
 
@@ -12,13 +13,17 @@ labels:
 <!--Required Information-->
 **Problem:**
 
+
 **Proposed Solution:**
 
-**Page to Update:**
+
+**Page to Update (provide the full path):**
 https://kubeflow.org/...
 
-<!--Optional Information (remove the comment tags around information you would like to include)-->
-<!--kubeflow Version:-->
+
+<!--Component/Kubeflow Version:-->
+**Component/Kubeflow Version:**
+
 
 <!--Additional Information:-->
 ### Labels
