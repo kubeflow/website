@@ -96,4 +96,4 @@ pip install -U "kubeflow-training[huggingface]"
 
 ## Next steps
 
-Run your first Training Operator Job by following the [Getting Started guide](/docs/components/trainer/getting-started/).
+Run your first Training Operator Job by following the [Getting Started guide](/docs/components/trainer/legacy-v1/getting-started/).

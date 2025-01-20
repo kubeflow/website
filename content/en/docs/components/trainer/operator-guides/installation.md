@@ -34,16 +34,14 @@ Run the following command to deploy the Kubeflow Trainer controller manager:
 kubectl apply --server-side -k "https://github.com/kubeflow/training-operator.git/manifests/v2/overlays/manager?ref=master"
 ```
 
-TODO (andreyvelich): Change the name.
-
 Ensure that the JobSet and Trainer controller manager pods are running:
 
 ```bash
 $ kubectl get pods -n kubeflow-system
 
-NAME                                         READY   STATUS    RESTARTS   AGE
-jobset-controller-manager-59fc8bf679-7qb9x   2/2     Running   0          1m
-training-operator-v2-7b9949cc86-756rx        1/1     Running   0          1m
+NAME                                                READY   STATUS    RESTARTS   AGE
+jobset-controller-manager-59fc8bf679-7qb9x          2/2     Running   0          1m
+trainer-controller-manager-7b9949cc86-756rx         1/1     Running   0          1m
 ```
 
 ## Installing the Kubeflow Training Runtimes

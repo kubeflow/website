@@ -68,7 +68,7 @@ fine-tuning, as shown in the diagram below:
 Effortlessly scale your model training from a single machine to large distributed Kubernetes
 clusters using Kubeflow Python APIs and supported Training Runtimes.
 
-- **Extensible and Portable.**
+- **Extensible and Portable**
 
 Deploy Kubeflow Trainer on any cloud platform with a Kubernetes cluster and integrate your own
 ML frameworks in any programming language.
@@ -76,6 +76,12 @@ ML frameworks in any programming language.
 - **Blueprints for LLMs Fine-Tuning**
 
 Fine-tune the latest LLMs on Kubernetes with ready-to-use Kubeflow LLM blueprints.
+
+- **Reduce GPU Cost**
+
+- Kubeflow Trainer implements custom dataset and model initializers to reduce GPU cost by
+  offloading I/O tasks to CPU workloads and to streamline assets initialization across distributed
+  training nodes.
 
 - **Seamless Kubernetes Integration**
 

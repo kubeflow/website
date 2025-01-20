@@ -1,5 +1,5 @@
 +++
-title = "Legacy (v1)"
+title = "Legacy Kubeflow Training Operator (v1)"
 description = "Kubeflow Training Operator V1 Documentation"
 weight = 999
 +++
