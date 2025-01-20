@@ -112,9 +112,8 @@ You can ask questions and make suggestions in the following places:
 * **Kubeflow documentation** for overviews and how-to guides. In particular,
   refer to the following documents when troubleshooting a problem:
 
-  * [Kubeflow installation and setup](/docs/started/getting-started/)
+  * [Kubeflow installation and setup](/docs/started/installing-kubeflow/)
   * [Kubeflow components](/docs/components/)
-  * [Further setup and troubleshooting](/docs/other-guides/)
 
 * **Kubeflow issue trackers** for known issues, questions, and feature requests.
   Search the open issues to see if someone else has already logged the problem 

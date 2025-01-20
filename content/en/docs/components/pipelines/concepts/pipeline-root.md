@@ -27,7 +27,7 @@ Kubeflow Pipelines is configured with the authentication of the MinIO instance d
 #### GCS
 If you want to specify the `pipeline root` to GCS :
 
-check [authentication-pipelines](https://www.kubeflow.org/docs/distributions/gke/pipelines/authentication-pipelines/)
+check [authentication-pipelines](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/authentication-pipelines/)
 
 #### S3
 If you want to specify the `pipeline root` to S3, please choose one of the following options:

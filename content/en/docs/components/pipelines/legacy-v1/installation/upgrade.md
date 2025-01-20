@@ -14,7 +14,7 @@ This page introduces notices and breaking changes you need to know when upgradin
 
 For upgrade instructions, refer to distribution specific documentations:
 
-* [Upgrading Kubeflow Pipelines on Google Cloud](/docs/distributions/gke/pipelines/upgrade/)
+* [Upgrading Kubeflow Pipelines on Google Cloud](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/upgrade/)
 
 ## Upgrading to v2.0
 
