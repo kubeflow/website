@@ -16,18 +16,13 @@ Kubeflow Trainer on your local Kind cluster.
 
 ### Installing the Kubeflow Python SDK
 
-Install the Kubeflow Python SDK to interact with Kubeflow Trainer APIs:
-
-```bash
-pip install kubeflow
-```
-
-Alternatively, install the latest Kubeflow Python SDK version directly
-from the source repository:
+Install the latest Kubeflow Python SDK version directly from the source repository:
 
 ```bash
 pip install git+https://github.com/kubeflow/training-operator.git@master#subdirectory=sdk_v2
 ```
+
+TODO (andreyvelich): Add command once we release SDK to PyPI: https://pypi.org/project/kubeflow
 
 ## Getting Started with PyTorch
 

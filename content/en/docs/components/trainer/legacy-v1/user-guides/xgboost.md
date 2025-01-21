@@ -21,7 +21,7 @@ see the [`XGBoostJob` documentation](/docs/components/trainer/legacy-v1/user-gui
 ## Creating a XGBoost training job
 
 You can create a training job by defining an `XGboostJob` config file. See the
-manifests for the [IRIS example](https://github.com/kubeflow/training-operator/blob/master/examples/xgboost/xgboostjob.yaml).
+manifests for the [IRIS example](https://github.com/kubeflow/training-operator/blob/release-1.9/examples/xgboost/xgboostjob.yaml).
 You may change the config file based on your requirements. E.g.: add `CleanPodPolicy`
 in Spec to `None` to retain pods after job termination.
 

@@ -20,13 +20,13 @@ see the [`TFJob` documentation](/docs/components/trainer/legacy-v1/user-guides/t
 
 ## Creating a PyTorch training job
 
-You can create a training job by defining a `PyTorchJob` config file. See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/master/examples/pytorch/simple.yaml).
+You can create a training job by defining a `PyTorchJob` config file. See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/release-1.9/examples/pytorch/simple.yaml).
 You may change the config file based on your requirements.
 
 Deploy the `PyTorchJob` resource to start training:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/master/examples/pytorch/simple.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/refs/heads/release-1.9/examples/pytorch/simple.yaml
 ```
 
 You should now be able to see the created pods matching the specified number of replicas.

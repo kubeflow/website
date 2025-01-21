@@ -212,12 +212,12 @@ consists of 3 fields
 
 ## Running the Mnist example
 
-See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/master/examples/tensorflow/simple.yaml). You may change the config file based on your requirements.
+See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/release-1.9/examples/tensorflow/simple.yaml). You may change the config file based on your requirements.
 
 Deploy the `TFJob` resource to start training:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/master/examples/tensorflow/simple.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/refs/heads/release-1.9/examples/tensorflow/simple.yaml
 ```
 
 Monitor the job (see the [detailed guide below](#monitoring-your-job)):

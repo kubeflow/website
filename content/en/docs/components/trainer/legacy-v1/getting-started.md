@@ -153,6 +153,6 @@ TrainingClient().get_job_logs(
 
 ## Next steps
 
-- Run the [FashionMNIST example](https://github.com/kubeflow/training-operator/blob/7345e33b333ba5084127efe027774dd7bed8f6e6/examples/pytorch/image-classification/Train-CNN-with-FashionMNIST.ipynb) with using Training Operator Python SDK.
+- Run the [FashionMNIST example](https://github.com/kubeflow/training-operator/blob/release-1.9/examples/pytorch/image-classification/Train-CNN-with-FashionMNIST.ipynb) with using Training Operator Python SDK.
 
 - Learn more about [the PyTorchJob APIs](/docs/components/trainer/legacy-v1/user-guides/pytorch/).
