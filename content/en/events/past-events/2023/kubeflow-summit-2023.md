@@ -1,6 +1,13 @@
 +++
 title = "Kubeflow Summit 2023"
 description = "October 6th, 2023 - Irving, TX, USA - Virtual Attendance Available"
+icon = "fa-solid fa-calendar-day"
+
+#
+# NOTE: to avoid 404 when we move events to the "/past-events/", 
+#       we explicitly set the URL here so it doesn't change
+#
+url = "/events/kubeflow-summit-2023/"
 +++
 
 ---
