@@ -16,7 +16,7 @@ Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-
 In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"`
 to disable it for either the `MPIJob` pods or namespace.
 To view an example of how to add this annotation to your `yaml` file,
-see the [`TFJob` documentation](/docs/components/training/user-guides/tensorflow/).
+see the [`TFJob` documentation](/docs/components/trainer/legacy-v1/user-guides/tensorflow/).
 
 ## Installation
 
@@ -83,7 +83,7 @@ kubectl apply -f examples/v2beta1/tensorflow-benchmarks/tensorflow-benchmarks.ya
 
 ## Scheduling Policy
 
-The MPI Operator supports the [gang-scheduling](/docs/components/training/user-guides/job-scheduling/#running-jobs-with-gang-scheduling).
+The MPI Operator supports the [gang-scheduling](/docs/components/trainer/legacy-v1/user-guides/job-scheduling/#running-jobs-with-gang-scheduling).
 If you want to modify the PodGroup parameters, you can configure in the following:
 
 ```diff

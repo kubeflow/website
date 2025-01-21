@@ -24,9 +24,9 @@ The Training Operator implements a centralized Kubernetes controller to orchestr
 You can run high-performance computing (HPC) tasks with the Training Operator and MPIJob since it
 supports running Message Passing Interface (MPI) on Kubernetes which is heavily used for HPC.
 The Training Operator implements the V1 API version of MPI Operator. For the MPI Operator V2 version,
-please follow [this guide](/docs/components/training/user-guides/mpi/) to install MPI Operator V2.
+please follow [this guide](/docs/components/trainer/legacy-v1/user-guides/mpi/) to install MPI Operator V2.
 
-<img src="/docs/components/training/images/training-operator-overview.drawio.svg"
+<img src="/docs/components/trainer/legacy-v1/images/training-operator-overview.drawio.svg"
   alt="Training Operator Overview"
   class="mt-3 mb-3">
 
@@ -38,7 +38,7 @@ various distributed training strategies for different ML frameworks.
 The Training Operator addresses the Model Training and Model Fine-Tuning steps in the AI/ML
 lifecycle as shown in diagram below:
 
-<img src="/docs/components/training/images/ml-lifecycle-training-operator.drawio.svg"
+<img src="/docs/components/trainer/legacy-v1/images/ml-lifecycle-training-operator.drawio.svg"
   alt="AI/ML Lifecycle Training Operator"
   class="mt-3 mb-3">
 
@@ -49,7 +49,7 @@ Kubernetes cluster using APIs and interfaces provided by Training Operator.
 
 - **The Training Operator is extensible and portable.**
 
-You can deploy Training Operator on any cloud where you have Kubernetes cluster and you can
+You can deploy the Training Operator on any cloud where you have Kubernetes cluster and you can
 integrate their own ML frameworks written in any programming languages with Training Operator.
 
 - **The Training Operator is integrated with the Kubernetes ecosystem.**
@@ -63,17 +63,17 @@ To perform distributed training the Training Operator implements the following
 [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 for each ML framework:
 
-| ML Framework | Custom Resource                                              |
-| ------------ | ------------------------------------------------------------ |
-| PyTorch      | [PyTorchJob](/docs/components/training/user-guides/pytorch/) |
-| TensorFlow   | [TFJob](/docs/components/training/user-guides/tensorflow/)   |
-| XGBoost      | [XGBoostJob](/docs/components/training/user-guides/xgboost/) |
-| MPI          | [MPIJob](/docs/components/training/user-guides/mpi/)         |
-| PaddlePaddle | [PaddleJob](/docs/components/training/user-guides/paddle/)   |
-| JAX          | [JAXJob](/docs/components/training/user-guides/jax/)   |
+| ML Framework | Custom Resource                                                       |
+| ------------ | --------------------------------------------------------------------- |
+| PyTorch      | [PyTorchJob](/docs/components/trainer/legacy-v1/user-guides/pytorch/) |
+| TensorFlow   | [TFJob](/docs/components/trainer/legacy-v1/user-guides/tensorflow/)   |
+| XGBoost      | [XGBoostJob](/docs/components/trainer/legacy-v1/user-guides/xgboost/) |
+| MPI          | [MPIJob](/docs/components/trainer/legacy-v1/user-guides/mpi/)         |
+| PaddlePaddle | [PaddleJob](/docs/components/trainer/legacy-v1/user-guides/paddle/)   |
+| JAX          | [JAXJob](/docs/components/trainer/legacy-v1/user-guides/jax/)         |
 
 ## Next steps
 
-- Follow [the installation guide](/docs/components/training/installation/) to deploy the Training Operator.
+- Follow [the installation guide](/docs/components/trainer/legacy-v1/installation/) to deploy the Training Operator.
 
-- Run examples from [getting started guide](/docs/components/training/getting-started/).
+- Run examples from [getting started guide](/docs/components/trainer/legacy-v1/getting-started/).

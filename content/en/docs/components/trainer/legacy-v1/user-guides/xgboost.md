@@ -16,12 +16,12 @@ Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-
 In order to get it running, it needs the annotation `sidecar.istio.io/inject: "false"`
 to disable it for either the `PyTorchJob` pods or namespace.
 To view an example of how to add this annotation to your `yaml` file,
-see the [`XGBoostJob` documentation](/docs/components/training/user-guides/tensorflow/).
+see the [`XGBoostJob` documentation](/docs/components/trainer/legacy-v1/user-guides/tensorflow/).
 
 ## Creating a XGBoost training job
 
 You can create a training job by defining an `XGboostJob` config file. See the
-manifests for the [IRIS example](https://github.com/kubeflow/training-operator/blob/master/examples/xgboost/xgboostjob.yaml).
+manifests for the [IRIS example](https://github.com/kubeflow/training-operator/blob/release-1.9/examples/xgboost/xgboostjob.yaml).
 You may change the config file based on your requirements. E.g.: add `CleanPodPolicy`
 in Spec to `None` to retain pods after job termination.
 

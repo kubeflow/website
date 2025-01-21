@@ -16,13 +16,13 @@ In Katib examples, you can find the following examples for Trial's Workers:
 
 - [Kubernetes `Job`](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 
-- [Kubeflow `TFJob`](/docs/components/training/user-guides/tensorflow)
+- [Kubeflow `TFJob`](/docs/components/trainer/legacy-v1/user-guides/tensorflow)
 
-- [Kubeflow `PyTorchJob`](/docs/components/training/user-guides/pytorch/)
+- [Kubeflow `PyTorchJob`](/docs/components/trainer/legacy-v1/user-guides/pytorch/)
 
-- [Kubeflow `XGBoostJob`](/docs/components/training/user-guides/xgboost)
+- [Kubeflow `XGBoostJob`](/docs/components/trainer/legacy-v1/user-guides/xgboost)
 
-- [Kubeflow `MPIJob`](/docs/components/training/user-guides/mpi)
+- [Kubeflow `MPIJob`](/docs/components/trainer/legacy-v1/user-guides/mpi)
 
 - [Tekton `Pipelines`](https://github.com/kubeflow/katib/tree/master/examples/v1beta1/tekton)
 

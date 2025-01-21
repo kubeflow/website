@@ -10,7 +10,7 @@ share your experience using the [#kubeflow-training Slack channel](/docs/about/c
 or [Kubeflow Training Operator GitHib](https://github.com/kubeflow/training-operator/issues/new).
 {{% /alert %}}
 
-This page explains how the [Training Operator fine-tuning API](/docs/components/training/user-guides/fine-tuning)
+This page explains how the [Training Operator fine-tuning API](/docs/components/trainer/legacy-v1/user-guides/fine-tuning)
 fits into the Kubeflow ecosystem.
 
 In the rapidly evolving landscape of machine learning (ML) and artificial intelligence (AI),
@@ -60,4 +60,4 @@ Different user personas can benefit from this feature:
 
 ## Next Steps
 
-- Understand [the architecture behind `train` API](/docs/components/training/reference/fine-tuning).
+- Understand [the architecture behind `train` API](/docs/components/trainer/legacy-v1/reference/fine-tuning).

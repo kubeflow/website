@@ -212,12 +212,12 @@ consists of 3 fields
 
 ## Running the Mnist example
 
-See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/master/examples/tensorflow/simple.yaml). You may change the config file based on your requirements.
+See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/release-1.9/examples/tensorflow/simple.yaml). You may change the config file based on your requirements.
 
 Deploy the `TFJob` resource to start training:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/master/examples/tensorflow/simple.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/refs/heads/release-1.9/examples/tensorflow/simple.yaml
 ```
 
 Monitor the job (see the [detailed guide below](#monitoring-your-job)):
@@ -701,6 +701,6 @@ Here are some steps to follow to troubleshoot your job
 
 ## Next steps
 
-- Learn about [distributed training](/docs/components/training/reference/distributed-training/) in Training Operator.
+- Learn about [distributed training](/docs/components/trainer/legacy-v1/reference/distributed-training/) in Training Operator.
 
-- See how to [run a job with gang-scheduling](/docs/components/training/user-guides/job-scheduling/#running-jobs-with-gang-scheduling).
+- See how to [run a job with gang-scheduling](/docs/components/trainer/legacy-v1/user-guides/job-scheduling/#running-jobs-with-gang-scheduling).

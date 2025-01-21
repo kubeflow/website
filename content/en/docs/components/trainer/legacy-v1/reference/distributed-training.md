@@ -11,7 +11,7 @@ This page shows different distributed strategies that can be used by the Trainin
 This diagram shows how the Training Operator creates PyTorch workers for the
 [ring all-reduce algorithm](https://tech.preferred.jp/en/blog/technologies-behind-distributed-deep-learning-allreduce/).
 
-<img src="/docs/components/training/images/distributed-pytorchjob.drawio.svg"
+<img src="/docs/components/trainer/legacy-v1/images/distributed-pytorchjob.drawio.svg"
   alt="Distributed PyTorchJob"
   class="mt-3 mb-3">
 
@@ -34,7 +34,7 @@ the appropriate environment variables for `torchrun`.
 This diagram shows how the Training Operator creates the TensorFlow parameter server (PS) and workers for
 [PS distributed training](https://www.tensorflow.org/tutorials/distribute/parameter_server_training).
 
-<img src="/docs/components/training/images/distributed-tfjob.drawio.svg"
+<img src="/docs/components/trainer/legacy-v1/images/distributed-tfjob.drawio.svg"
   alt="Distributed TFJob"
   class="mt-3 mb-3">
 

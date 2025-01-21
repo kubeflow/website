@@ -5,13 +5,13 @@ weight = 10
 +++
 
 This page shows how Training Operator implements the
-[API to fine-tune LLMs](/docs/components/training/user-guides/fine-tuning).
+[API to fine-tune LLMs](/docs/components/trainer/legacy-v1/user-guides/fine-tuning).
 
 ## Architecture
 
 In the following diagram you can see how `train` Python API works:
 
-<img src="/docs/components/training/images/fine-tune-llm-api.drawio.svg"
+<img src="/docs/components/trainer/legacy-v1/images/fine-tune-llm-api.drawio.svg"
   alt="Fine-Tune API for LLMs"
   class="mt-3 mb-3">
 
