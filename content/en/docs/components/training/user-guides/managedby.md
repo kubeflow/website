@@ -58,7 +58,7 @@ spec:
              args: ["python", "model.py"]
 ```
 
-## Cross-References
+## What's next?
 
 For more details on setting up and using MultiKueue with the Kubeflow Training Operator, refer to the following documentation pages:
 
