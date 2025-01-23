@@ -22,6 +22,7 @@
   {{ end -}}
 </title>
 <meta name="description" content="{{ template "partials/page-description.html" . }}">
+{{ template "_internal/opengraph.html" . -}}
 {{ template "_internal/schema.html" . -}}
 
 <!-- include our custom "social_image_generator" partial -->
@@ -32,8 +33,8 @@
 
 {{ partialCached "head-css.html" . "asdf" -}}
 <script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK"
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
   crossorigin="anonymous"></script>
 {{ if .Site.Params.offlineSearch -}}
 <script defer
@@ -70,6 +71,6 @@
   {{ if (or $enableGtagForUniversalAnalytics (hasPrefix .Site.GoogleAnalytics "G-")) -}}
     {{ template "_internal/google_analytics_gtag.html" . -}}
   {{ else -}}
-    {{ template "_internal/google_analytics_async.html" . -}}
+    {{ template "_internal/google_analytics.html" . -}}
   {{ end -}}
 {{ end -}}

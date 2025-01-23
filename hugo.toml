@@ -4,7 +4,7 @@ description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightf
 
 enableRobotsTXT = true
 
-theme = ["docsy"]
+theme = ["github.com/google/docsy"]
 
 ###############################################################################
 # Docsy
@@ -254,6 +254,8 @@ enable = true
     # Disable about button in footer
     footer_about_disable = true
 
+    showLightDarkModeMenu = true
+
       # Adds a H2 section titled "Feedback" to the bottom of each doc. The responses are sent to Google Analytics as events.
       # This feature depends on [services.googleAnalytics] and will be disabled if "services.googleAnalytics.id" is not set.
       # If you want this feature, but occasionally need to remove the "Feedback" section from a single page,
@@ -287,3 +289,10 @@ enable = true
       url = "/docs/about/community/#kubeflow-community-meetings"
       icon = "fa fa-calendar"
       desc = "View the Kubeflow Community Calendars!"
+
+[module]
+proxy = "direct"
+[[module.imports]]
+path = "github.com/google/docsy"
+
+

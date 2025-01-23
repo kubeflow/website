@@ -37,12 +37,12 @@
     padding-right: 0;
   }
   .td-sidebar {
-    background-color: $td-sidebar-bg-color;
+    background-color: var(--bs-body-tertiary-bg);
   }
 }
 @include media-breakpoint-up(md) {
   .td-outer {
-    background-color: $td-sidebar-bg-color;
+    background-color: var(--bs-body-tertiary-bg);
     height: unset;
   }
   .td-sidebar, .td-sidebar-toc {
@@ -51,9 +51,6 @@
   .td-main {
     padding-left: 0;
     padding-right: 0;
-  }
-  main {
-    background-color: #ffffff;
   }
 }
 

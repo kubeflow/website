@@ -60,6 +60,11 @@
         {{ partial "navbar-lang-selector.html" . -}}
       </li>
       {{ end -}}
+      {{ if .Site.Params.ui.showLightDarkModeMenu -}}
+      <li class="td-light-dark-menu nav-item dropdown mt-1 mt-lg-0 mr-2">
+        {{ partial "theme-toggler" . }}
+      </li>
+      {{ end -}}
     </ul>
   </div>
 </div>
