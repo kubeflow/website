@@ -348,11 +348,6 @@ To further debug and diagnose cluster problems, use `kubectl cluster-info dump`.
 The installation process for Kubeflow Pipelines is the same for all three
 environments covered in this guide: kind, K3s, Docker-desktop, and K3ai.
 
-**Note**: Process Namespace Sharing (PNS) is not mature in Argo yet - for more
-information go to [Argo
-Executors](https://argoproj.github.io/argo-workflows/workflow-executors/) and reference
-"pns executors" in any issue you may come across when using PNS.
-
 1. To deploy the Kubeflow Pipelines, run the following commands:
 
     ```shell
@@ -399,7 +394,7 @@ Below are the steps to remove Kubeflow Pipelines on kind, K3s, or K3ai:
 
   ```shell
   export PIPELINE_VERSION={{% pipelines/latest-version %}}
-  kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-pns?ref=$PIPELINE_VERSION"
+  kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic?ref=$PIPELINE_VERSION"
   kubectl delete -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
   ```
 
@@ -407,6 +402,6 @@ Below are the steps to remove Kubeflow Pipelines on kind, K3s, or K3ai:
   file system, run the following commands:
 
   ```shell
-  kubectl delete -k manifests/kustomize/env/platform-agnostic-pns
+  kubectl delete -k manifests/kustomize/env/platform-agnostic
   kubectl delete -k manifests/kustomize/cluster-scoped-resources
   ```
