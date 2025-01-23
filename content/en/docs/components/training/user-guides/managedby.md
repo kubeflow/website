@@ -60,6 +60,6 @@ spec:
 
 ## Cross-References
 
-For more details on setting up and using MultiQueue with the Kubeflow Training Operator, refer to the following documentation pages:
+For more details on setting up and using MultiKueue with the Kubeflow Training Operator, refer to the following documentation pages:
 
 - [Kueue/Kubeflow](https://kueue.sigs.k8s.io/docs/tasks/run/multikueue/kubeflow/)
