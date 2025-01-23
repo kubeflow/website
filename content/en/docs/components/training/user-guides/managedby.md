@@ -1,6 +1,6 @@
 +++
 title = "spec.managedBy"
-Desciption = "Using managedBy feild for MultiKueue"
+Desciption = "Using managedBy field for MultiKueue"
 weight = 60
 +++
 
