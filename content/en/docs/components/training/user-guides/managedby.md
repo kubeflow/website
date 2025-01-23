@@ -6,7 +6,7 @@ weight = 60
 
 ## Overview
 
-The `spec.managedBy` field is a new feature introduced for MultiQueue support in the Kubeflow Training Operator. This field allows for more robust management of multi-cluster job dispatching by specifying the managing entity.
+The `spec.managedBy` field is a new feature introduced in the Kubeflow Training Operator to support a more robust multi-cluster job dispatching by [MultiKueue](https://kueue.sigs.k8s.io/docs/concepts/multikueue/).
 
 ## Prerequisites
 
