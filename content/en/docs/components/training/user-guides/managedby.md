@@ -23,7 +23,7 @@ kind: "TFJob"
 metadata:
  name: "example-tfjob"
 spec:
- managedBy: "kueue"
+ managedBy: "kueue.x-k8s.io/multikueue"
  tfReplicaSpecs:
    ...
 ```
