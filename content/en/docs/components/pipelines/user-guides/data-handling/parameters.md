@@ -33,7 +33,7 @@ As with normal Python function, input parameters can have default values, indica
 
 Under the hood KFP passes all parameters to and from components by serializing them as JSON.
 
-For all Python Components ([Lightweight Python Components][lightweight-python-components] and [Containerized Python Components][containerized-python-components]), parameter serialization and deserialiation is invisible to the user; KFP handles this automatically.
+For all Python Components ([Lightweight Python Components][lightweight-python-components] and [Containerized Python Components][containerized-python-components]), parameter serialization and deserialization is invisible to the user; KFP handles this automatically.
 
 For [Container Components][container-component], input parameter deserialization is invisible to the user; KFP passes inputs to the component automatically. For Container Component *outputs*, the user code in the Container Component must handle serializing the output parameters as described in [Container Components: Create component outputs][container-component-outputs].
 
