@@ -6,6 +6,30 @@ weight = 40
 
 This guide describes how Katib metrics collector works.
 
+## Prerequisites
+
+Before running your hyperparameter tuning Katib Experiment with Python SDK,
+ensure the namespace label `katib.kubeflow.org/metrics-collector-injection: enabled`
+is present. This label enables the sidecar container injection to collect metrics during the experiment.
+
+You can configure the namespace by adding the following label `katib.kubeflow.org/metrics-collector-injection: enabled` 
+as is shown in the sample code:
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <your-namespace>
+  labels:
+    katib.kubeflow.org/metrics-collector-injection: enabled
+```
+
+Or you can add the label to an existing namespace using the following command:
+
+```bash
+kubectl label namespace <your-namespace> katib.kubeflow.org/metrics-collector-injection=enabled
+```
+
 ## Overview
 
 There are two ways to collect metrics:

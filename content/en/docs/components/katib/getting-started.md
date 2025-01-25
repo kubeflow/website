@@ -17,31 +17,6 @@ You need to install the following Katib components to run examples:
 
 ## Getting Started with Katib Python SDK
 
-### Adding Namespace Label for the Metrics Collector Injection
-
-Before running your hyperparameter tuning Katib Experiment with Python SDK, 
-ensure the namespace label `katib.kubeflow.org/metrics-collector-injection: enabled` 
-is present. This label enables the sidecar container injection to collect metrics during the experiment.
-
-You can configure the namespace using the following YAML:
-
-```yaml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: <your-namespace>
-  labels:
-    katib.kubeflow.org/metrics-collector-injection: enabled
-```
-
-Or you can add the label to an existing namespace using the following command:
-
-```bash
-kubectl label namespace <your-namespace> katib.kubeflow.org/metrics-collector-injection=enabled
-```
-
-### A Simple Example
-
 You can run your first hyperparameter tuning Katib Experiment using Python SDK.
 
 In the following example we are going to maximize a simple objective function:
@@ -63,6 +38,11 @@ If you install Katib as part of Kubeflow Platform, you can open a new
 
 **Note**. If you use Katib within Kubeflow Platform to run this example, you need to use this
 namespace: `KatibClient(namespace="kubeflow-user-example-com")`.
+
+**Note**. The `kubeflow` namespace is pre-configured with the required label 
+`katib.kubeflow.org/metrics-collector-injection: enabled` for metrics collection. If you want to use pull-based metrics collector 
+in other namespaces, you can attach this label following the instructions in the 
+[Metrics Collector](/docs/components/katib/user-guides/metrics-collector/#prerequisites).
 
 ```python
 # [1] Create an objective function.
