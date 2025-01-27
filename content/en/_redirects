@@ -338,3 +338,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/v2/reference/sdk/                                /docs/components/pipelines/reference/sdk/
 /docs/components/pipelines/v2/run-a-pipeline/                               /docs/components/pipelines/user-guides/core-functions/run-a-pipeline/
 /docs/components/pipelines/v2/version-compatibility/                        /docs/components/pipelines/reference/version-compatibility/
+
+# Remove Components / Multi-Tenancy section
+/docs/concepts/multi-tenancy/                /docs/components/central-dash/profiles/
+/docs/concepts/multi-tenancy/overview/       /docs/components/central-dash/profiles/
+/docs/concepts/multi-tenancy/design/         /docs/components/central-dash/profiles/
+/docs/concepts/multi-tenancy/istio/          /docs/components/central-dash/profiles/
