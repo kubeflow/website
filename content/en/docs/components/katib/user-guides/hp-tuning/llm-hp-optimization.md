@@ -23,11 +23,13 @@ it.
 
 You need to install the following Katib components to run code in this guide:
 
-- Katib control plane – [install](/docs/components/katib/installation/#installing-control-plane)
 - Training Operator control plane – [install](/docs/components/training/installation/#installing-the-control-plane)
+- Katib control plane – [install](/docs/components/katib/installation/#installing-control-plane)
 - Katib Python SDK with LLM Hyperparameter Optimization Support – [install](/docs/components/katib/installation/#installing-python-sdk)
 
 **Note:** If you choose to define your own custom objective function and optimize parameters within it, distributed training is currently not supported. In this case, installing the Training Operator control plane is not necessary. For detailed instructions, please refer to [this guide](/docs/components/katib/getting-started).
+
+**Note:** Ensure that the Training Operator control plane is installed prior to the Katib control plane. This guarantees that the correct namespace labels are applied and enables the PyTorchJob CRD to be utilized in Katib.
 
 ## Load Model and Dataset
 
