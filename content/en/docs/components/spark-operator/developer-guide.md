@@ -180,7 +180,7 @@ make kind-create-cluster
 make docker-build IMAGE_TAG=local
 
 # Load docker image to kind cluster
-make kind-load-image
+make kind-load-image IMAGE_TAG=local
 
 # Run e2e tests
 make e2e-test
