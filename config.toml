@@ -85,7 +85,7 @@ section = [ "HTML" ]
 
   [markup.highlight]
     # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
-    style = "tango"
+    noClasses = false
     guessSyntax = "true"
 
 ###############################################################################

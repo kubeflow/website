@@ -1,0 +1,25 @@
+@import "support/functions";
+@import "variables_project";
+@import "variables";
+@import "support/mixins";
+
+@import "../vendor/Font-Awesome/scss/fontawesome";
+@import "../vendor/Font-Awesome/scss/solid";
+@import "../vendor/Font-Awesome/scss/regular";
+@import "../vendor/Font-Awesome/scss/brands";
+
+[data-theme=light] {
+  color-scheme: light; // for scrollbars
+  @import "../vendor/bootstrap/scss/bootstrap";
+  @import "light/variables";
+  @import "docsy_main";
+  @import "light/styles";
+}
+
+[data-theme=dark] {
+  color-scheme: dark; // for scrollbars
+  @import "dark/bootstrap/main";
+  @import "dark/variables";
+  @import "docsy_main";
+  @import "dark/styles";
+}

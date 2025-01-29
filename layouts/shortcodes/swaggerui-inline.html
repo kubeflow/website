@@ -45,6 +45,7 @@
     const descriptionNode = document.createElement('p');
     descriptionNode.textContent = 'Enter the base URL of your Kubeflow Pipelines API:';
     descriptionNode.style.marginBottom = '0.5rem';
+    descriptionNode.style.color = '#222';
     inputDiv.appendChild(descriptionNode);
 
     // create an input so users can change the base URL
@@ -57,6 +58,7 @@
     inputNode.style.padding = '1rem';
     inputNode.style.border = '1px solid rgba(0, 0, 0, 0.125)';
     inputNode.style.backgroundColor = validColor;
+    inputNode.style.color = '#222';
     inputNode.disabled = true;
     inputDiv.appendChild(inputNode);
 
