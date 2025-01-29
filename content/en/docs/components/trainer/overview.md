@@ -4,7 +4,7 @@ description = "An overview of Kubeflow Trainer"
 weight = 10
 +++
 
-{{% alert title="Note" color="dark" %}}
+{{% alert title="Note" color="info" %}}
 Kubeflow Trainer project is currently in <strong>alpha</strong> status, and APIs may change.
 If you are using Kubeflow Training Operator V1, refer [to this migration document](/docs/components/trainer/operator-guides/migration).
 

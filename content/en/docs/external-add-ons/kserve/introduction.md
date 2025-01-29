@@ -4,7 +4,7 @@ description = "A brief introduction to KServe"
 weight = 1
 +++
 
-{{% alert title="KFServing is now KServe" color="dark" %}}
+{{% alert title="KFServing is now KServe" color="info" %}}
 _KFServing_ was renamed to _KServe_ in September 2021, when the `kubeflow/kfserving` GitHub repository was transferred to the independent [KServe GitHub organization](https://github.com/kserve).
 
 To learn about migrating from KFServing to KServe, see the [migration guide](https://kserve.github.io/website/0.13/admin/migration/) and the [blog post](https://blog.kubeflow.org/release/official/2021/09/27/kfserving-transition.html).

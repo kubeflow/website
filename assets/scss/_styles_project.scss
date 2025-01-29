@@ -1,11 +1,27 @@
 // --------------------------------------------------
 // popover styles
 // --------------------------------------------------
+.popover {
+  border: 1px solid $popover-border-color;
+}
+
 .popover-header {
-  color: #fff;
+  color: $white;
   font-weight: 600;
-  background-color: $dark;
+  background-color: $popover-header-bg;
   padding: 0.75rem;
+}
+
+.popover-body {
+  color: $body-color;
+  background-color: lighten($body-bg, 5%);
+}
+
+// --------------------------------------------------
+// mermaid (diagrams)
+// --------------------------------------------------
+.td-content pre.mermaid {
+  background-color: $code-block-bg;
 }
 
 // --------------------------------------------------
@@ -23,9 +39,9 @@
 // increase 80% content width limit for large screens
 // --------------------------------------------------
 .td-max-width-on-larger-screens {
-    @include media-breakpoint-up(lg) {
-        max-width: 90%;
-    }
+  @include media-breakpoint-up(lg) {
+    max-width: 90%;
+  }
 }
 
 // --------------------------------------------------
@@ -40,6 +56,7 @@
     background-color: $td-sidebar-bg-color;
   }
 }
+
 @include media-breakpoint-up(md) {
   .td-outer {
     background-color: $td-sidebar-bg-color;
@@ -53,7 +70,7 @@
     padding-right: 0;
   }
   main {
-    background-color: #ffffff;
+    background-color: $body-bg;
   }
 }
 
@@ -61,9 +78,9 @@
 // add border below search on small devices
 // --------------------------------------------------
 @include media-breakpoint-down(md) {
-   .td-sidebar {
-     border-bottom: 0.1rem solid $border-color;
-   }
+  .td-sidebar {
+    border-bottom: 0.1rem solid $border-color;
+  }
 }
 
 // --------------------------------------------------
@@ -145,6 +162,7 @@
         ul {
           margin-bottom: 0;
         }
+
         a {
           padding-top: 0.2rem;
           padding-bottom: 0.2rem;
@@ -201,6 +219,24 @@ footer {
     width: 100%;
   }
 
+  .td-search__icon {
+    color: $search-icon-color;
+  }
+
+  .td-search__input {
+    text-indent: 1.75rem;
+    background-color: $body-bg;
+    border: 1px solid $search-border-color;
+
+    &::placeholder {
+      color: $search-placeholder-color;
+    }
+  }
+
+  .td-sidebar__toggle {
+    color: $body-color;
+  }
+
   @include media-breakpoint-down(md) {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -237,6 +273,19 @@ footer {
 
     margin-top: 0.5rem;
   }
+
+  // make sidebar text work with dark theme
+  &__section-title {
+    a {
+      color: $td-sidebar-section-title-color;
+    }
+  }
+
+  .td-sidebar-link {
+    &__page {
+      color: $td-sidebar-link-color;
+    }
+  }
 }
 
 // reduce padding for the root level of the sidebar
@@ -256,6 +305,7 @@ nav.foldable-nav {
       padding-left: 1.5rem;
       position: relative;
     }
+
     .without-child {
       padding-left: 0.7rem;
       position: relative;
@@ -274,7 +324,7 @@ nav.foldable-nav {
 
     // show a border on the left of open sections
     .with-child > input:checked ~ ul {
-      border-left: .1rem dotted $gray-400;
+      border-left: .1rem dotted $td-sidebar-left-stroke-color;
 
       // round the bottom left corner
       border-bottom-left-radius: 1rem;
@@ -287,12 +337,17 @@ nav.foldable-nav {
 
     // color the border for the active path
     .with-child.active-path > ul {
-      border-left: .1rem solid rgb(190, 212, 255) !important;
+      border-left: .1rem solid $td-sidebar-left-stroke-active-color !important;
+    }
+
+    // make the arrow for the non-active sections gray
+    .with-child > label:before {
+      color: $td-sidebar-closed-color;
     }
 
     // make the arrow for open non-active sections gray
     .with-child > input:checked ~ label:before {
-      color: $gray-900;
+      color: $td-sidebar-closed-color;
     }
 
     // make the arrow for open active sections blue
@@ -311,22 +366,36 @@ nav.foldable-nav {
 // fix the arrow transform animation on desktop
 // --------------------------------------------------
 @media (hover: hover) and (pointer: fine) {
-    nav.foldable-nav {
-        .ul-1 .with-child > label:hover:before {
-            transition: transform 0.3s;
-        }
-
-        .ul-1 .with-child > input:checked ~ label:hover:before {
-            transition: transform 0.3s;
-        }
+  nav.foldable-nav {
+    .ul-1 .with-child > label:hover:before {
+      transition: transform 0.3s;
     }
+
+    .ul-1 .with-child > input:checked ~ label:hover:before {
+      transition: transform 0.3s;
+    }
+  }
 }
 
 // --------------------------------------------------
 // custom navbar with larger logo, dropdown on mobile
 // --------------------------------------------------
+.navbar-bg-onscroll {
+  background: $navbar-bg !important;
+}
+
 .td-navbar {
   min-height: auto;
+
+  background-color: $navbar-bg;
+
+  .vr {
+    display: inline-block;
+    width: 1px;
+    height: 100%;
+    background-color: white;
+    opacity: .15;
+  }
 
   .navbar-brand {
     margin: 0;
@@ -345,8 +414,8 @@ nav.foldable-nav {
         padding: 10px;
         margin: 0;
         height: 95px;
-        background: white;
-        border: 2px solid #4279f4;
+        background: $navbar-logo-bg;
+        border: 2px solid $navbar-logo-border;
         border-top: none;
 
         @include media-breakpoint-down(md) {
@@ -361,12 +430,12 @@ nav.foldable-nav {
   // this filler ensures that the navbar links are on the right
   // and the links do not go under the logo (which uses absolute positioning)
   .filler {
-      flex-grow: 1;
-      min-width: 120px;
+    flex-grow: 1;
+    min-width: 120px;
 
-      @include media-breakpoint-down(md) {
-        min-width: 100px;
-      }
+    @include media-breakpoint-down(md) {
+      min-width: 100px;
+    }
   }
 
   // extra padding on mobile (in collapsible menu)
@@ -380,8 +449,10 @@ nav.foldable-nav {
   .navbar-nav {
     // allow wrapping of navbar links
     white-space: normal;
+
     .dropdown-toggle {
       white-space: normal;
+      padding-right: 0.25rem;
     }
 
     // prevent long links from taking up too much space
@@ -391,11 +462,17 @@ nav.foldable-nav {
       }
     }
 
+    .dropdown {
+      min-width: unset;
+    }
+
     @include media-breakpoint-down(md) {
       font-size: .875rem;
-      .dropdown {
-        min-width: inherit;
-      }
+    }
+
+    // reduce padding for theme icon
+    .theme-icon-active i {
+      padding-right: 0.25rem !important;
     }
   }
 }
@@ -405,10 +482,16 @@ nav.foldable-nav {
 // --------------------------------------------------
 .td-home {
 
+  // make sure kubeflow title is white
+  .display-1 {
+    color: $white;
+    font-size: 3.5rem;
+  }
+
   // dont color the outer div with the sidebar color
   // as there is no sidebar on the main page
   .td-outer {
-      background-color: unset;
+    background-color: unset;
   }
 
   // animate the background color change of navbar
@@ -416,41 +499,52 @@ nav.foldable-nav {
     transition: background-color 75ms linear;
   }
 
-  .card-img-top {
-    object-fit: scale-down;
-  }
+  .card-deck {
+    .card {
+      border: 1px solid $home-card-body-bg;
+    }
 
-  .text-white {
-    font-weight: 400;
-  }
+    .card-img-top {
+      object-fit: scale-down;
+      background-color: $home-card-top-bg;
+    }
 
-  .bg-primary-dark {
-    background-color: $dark;
+    .card-title {
+      color: $home-card-body-title-color;
+      font-weight: bold;
+      font-size: 1.2rem;
+      padding-bottom: 1rem;
+    }
 
-    a {
-      border-bottom: 0.1em dotted paleturquoise;
+    .card-body {
+      color: $home-card-body-color;
+      background-color: $home-card-body-bg;
 
-      color: paleturquoise !important;
-      font-weight: 600;
-      padding: 0 0.2em 0.05em 0.2em;
-      text-decoration: none;
+      // make links in the card have a dotted underline
+      a {
+        color: lighten($primary, 15%);
+        border-bottom: 0.1em dotted lighten($primary, 15%);
 
-      &:hover {
-        border-bottom: 1px dotted #fff;
+        font-weight: 600;
+        padding: 0 0.1em 0.05em 0.1em;
+        text-decoration: none;
 
-        color: #fff !important;
+        &:hover {
+          border-bottom: 1px dotted $white;
+          color: $white !important;
+        }
       }
     }
   }
 
-  .border-primary-dark {
-    border-color: $info !important;
-  }
-
   .section-head {
-    color: $primary;
+    color: $home-section-title-color;
+
+    font-size: 1.8rem;
     font-weight: bold;
-    padding: 0 0 1.9rem 0;
+
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
   }
 
   .image {
@@ -492,7 +586,7 @@ nav.foldable-nav {
   }
 
   #overview {
-    border-bottom: 0.1rem solid #b6d0ff;
+    border-bottom: 0.1rem solid $info;
   }
 
   #pageContent .container {
@@ -500,8 +594,8 @@ nav.foldable-nav {
   }
 
   #community {
-    border-top: 0.1rem solid #b6d0ff;
-    border-bottom: 0.1rem solid #b6d0ff;
+    border-top: 0.1rem solid $info;
+    border-bottom: 0.1rem solid $info;
   }
 
   #cncf {
@@ -509,7 +603,8 @@ nav.foldable-nav {
     margin-bottom: 1.5rem;
 
     .cncf-title {
-      color: #6b7281;
+      color: $cncf-title-color;
+      font-size: 1.15rem;
       font-weight: bold;
       padding-top: 1.6rem;
     }
@@ -588,8 +683,8 @@ nav.foldable-nav {
 // Installing Kubeflow page
 // --------------------------------------------------
 .distributions-table thead {
-  background-color: $primary;
-  color: $secondary;
+  background-color: $navbar-bg;
+  color: $white;
 }
 
 // --------------------------------------------------
@@ -653,4 +748,51 @@ nav.foldable-nav {
   &:first-of-type.active {
     border-top-left-radius: 0;
   }
+}
+
+// --------------------------------------------------
+// for feedback partial
+// --------------------------------------------------
+.feedback--answer {
+  display: inline-block;
+}
+
+.feedback--answer-no {
+  margin-left: 1em;
+}
+
+.feedback--response {
+  display: none;
+  margin-top: 1em;
+}
+
+.feedback--response__visible {
+  display: block;
+}
+
+// --------------------------------------------------
+// code styling
+// --------------------------------------------------
+.td-content {
+  // set the background color of inline code
+  p code, li > code, table code {
+    background-color: $code-inline-bg;
+  }
+
+  // set the background color of code blocks
+  .highlight pre {
+    background-color: $code-block-bg;
+  }
+
+  // ensure links with code in them have the correct color
+  a > code {
+    color: unset;
+  }
+}
+
+// --------------------------------------------------
+// alert styling
+// --------------------------------------------------
+.alert {
+  background-color: $alert-bg;
 }

@@ -11,7 +11,7 @@ This document describes the API specification for the `v2beta1` Kubeflow Pipelin
 In most deployments of the [Kubeflow Platform](/docs/started/installing-kubeflow/#kubeflow-platform), the Kubeflow Pipelines REST API is available under the `/pipeline/` HTTP path.
 For example, if you host Kubeflow at `https://kubeflow.example.com`, the API will be available at `https://kubeflow.example.com/pipeline/`.
 
-{{% alert title="Tip" color="dark" %}}
+{{% alert title="Tip" color="info" %}}
 We recommend using the [Kubeflow Pipelines Python SDK](docs/components/pipelines/reference/sdk/) as it provides a more user-friendly interface.
 See the [Connect SDK to the API](/docs/components/pipelines/user-guides/core-functions/connect-api/) guide for more information.
 {{% /alert %}}

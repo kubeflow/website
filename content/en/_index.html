@@ -3,26 +3,31 @@ title = "Kubeflow"
 +++
 
 <!-- Hero section -->
-{{<blocks/cover title="Kubeflow" image_anchor="center" color="dark">}}
-<div class="px-2">
-  <p class="lead mt-5 mb-3">The Machine Learning Toolkit for Kubernetes</p>
+{{<blocks/cover title="Kubeflow" subtitle="The Machine Learning Toolkit for Kubernetes" image_anchor="center" color="dark">}}
+<div class="px-2 mt-5">
   <div class="mx-auto">
-    <a class="btn btn-lg btn-primary mr-1 mb-4" href="/docs/started/">
-      Get Started <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+    <a class="btn btn-lg btn-primary mr-md-1 mb-4 px-4 py-2" href="/docs/started/">
+      Get Started
+      <i class="fas fa-arrow-alt-circle-right ml-1"></i>
     </a>
-    <a class="btn btn-lg btn-secondary ml-1 mb-4" href="/docs/about/contributing/">
-      Contribute <i class="fas fa-pencil-alt ml-2"></i>
+    <a class="btn btn-lg btn-secondary ml-md-1 mb-4 px-4 py-2" href="/docs/about/contributing/">
+      Contribute
+      <i class="fas fa-pencil-alt ml-1"></i>
     </a>
   </div>
-  <div class="mt-5">
-    {{<blocks/link-down color="light">}}
+  <div class="mt-2">
+    <a class="btn btn-link text-light" href="#overview">
+      <i class="fa-solid fa-circle-chevron-down" style="font-size: 350%"></i>
+    </a>
   </div>
 </div>
 {{</blocks/cover>}}
 
 <div id="overview" class="text-center">
-  <h3 class="section-head">What is Kubeflow?</h3>
   <div class="container">
+    <h3 class="section-head">
+      <span class="border-bottom pb-2">What is Kubeflow?</span>
+    </h3>
     <p class="mx-auto col-11 col-xl-7 px-0">
       Kubeflow makes artificial intelligence and machine learning simple, portable, and scalable.
       We are an <i>ecosystem</i> of <a href="https://kubernetes.io/" target="_blank">Kubernetes</a>
@@ -36,10 +41,12 @@ title = "Kubeflow"
 </div>
 
 <section id="pageContent">
-  <h3 class="section-head text-center">Kubeflow Components</h3>
   <div class="container">
+    <h3 class="section-head text-center">
+      <span class="border-bottom pb-2">Kubeflow Components</span>
+    </h3>
     <div class="card-deck">
-      <div class="card border-primary-dark">
+      <div class="card">
         <a href="/docs/components/pipelines/overview/" target="_blank" rel="noopener" >
           <img
             src="/docs/images/logos/kubeflow.png"
@@ -50,13 +57,13 @@ title = "Kubeflow"
           />
         </a>
         <div class="card-body bg-primary-dark">
-          <h5 class="card-title text-white section-head">Pipelines</h5>
-          <p class="card-text text-white">
+          <div class="card-title">Pipelines</div>
+          <p class="card-text">
             <a target="_blank" rel="noopener" href="/docs/components/pipelines/overview/">Kubeflow Pipelines</a> (KFP) is a platform for building then deploying portable and scalable machine learning workflows using Kubernetes.
           </p>
         </div>
       </div>
-      <div class="card border-primary-dark">
+      <div class="card">
         <a href="/docs/components/notebooks/overview/" target="_blank" rel="noopener" >
           <img
             src="/docs/images/logos/jupyter-vscode-rlang.png"
@@ -67,13 +74,13 @@ title = "Kubeflow"
           />
         </a>
         <div class="card-body bg-primary-dark">
-          <h5 class="card-title text-white section-head">Notebooks</h5>
-          <p class="card-text text-white">
+          <div class="card-title">Notebooks</div>
+          <p class="card-text">
             <a target="_blank" rel="noopener" href="/docs/components/notebooks/overview/">Kubeflow Notebooks</a> lets you run web-based development environments on your Kubernetes cluster by running them inside Pods.
           </p>
         </div>
       </div>
-      <div class="card border-primary-dark">
+      <div class="card">
         <a href="/docs/components/central-dash/overview/" target="_blank" rel="noopener" >
           <img
             src="/docs/images/logos/dashboard.png"
@@ -84,8 +91,8 @@ title = "Kubeflow"
           />
         </a>
         <div class="card-body bg-primary-dark">
-          <h5 class="card-title text-white section-head">Dashboard</h5>
-          <p class="card-text text-white">
+          <div class="card-title">Dashboard</div>
+          <p class="card-text">
             <a href="/docs/components/central-dash/overview/" target="_blank" rel="noopener">Kubeflow Central Dashboard</a> is our hub which connects the authenticated web interfaces of Kubeflow and other ecosystem components.
           </p>
         </div>
@@ -93,26 +100,25 @@ title = "Kubeflow"
     </div>
     <br />
     <div class="card-deck">
-      <div class="card border-primary-dark">
-         <a href="/docs/components/trainer/overview/" target="_blank" rel="noopener" >
-           <img
-             src="/docs/images/logos/kubeflow-trainer.png"
-             class="card-img-top"
-             draggable="false"
-             style="padding: 2rem;"
-             alt="Kubeflow Trainer logo"
-           />
-         </a>
-         <div class="card-body bg-primary-dark">
-           <h5 class="card-title text-white section-head">Model Training</h5>
-           <p class="card-text text-white">
-             <a href="/docs/components/trainer/overview/" target="_blank" rel="noopener" >Kubeflow Trainer</a> is a Kubernetes-native project
-             designed for LLMs fine-tuning and enabling scalable, distributed training of ML models across
-             various frameworks, including PyTorch, JAX, TensorFlow, and others.
-           </p>
-         </div>
-       </div>
-      <div class="card border-primary-dark">
+     <div class="card">
+        <a href="/docs/components/trainer/overview/" target="_blank" rel="noopener" >
+          <img
+            src="/docs/images/logos/trainer.png"
+            class="card-img-top"
+            draggable="false"
+            style="padding: 2rem;"
+            alt="Kubeflow Trainer logo"
+          />
+        </a>
+        <div class="card-body bg-primary-dark">
+          <div class="card-title">Model Training</div>
+          <p class="card-text">
+            <a href="/docs/components/trainer/overview/" target="_blank" rel="noopener">Kubeflow Trainer</a> is a Kubernetes-native interface for training models and fine-tuning LLMs.
+            It enables scalable and distributed training with various frameworks including PyTorch, JAX, TensorFlow, and more.
+          </p>
+        </div>
+      </div>
+      <div class="card">
         <a href="/docs/components/katib/overview/" target="_blank" rel="noopener" >
           <img
             src="/docs/images/logos/katib.png"
@@ -123,13 +129,13 @@ title = "Kubeflow"
           />
         </a>
         <div class="card-body bg-primary-dark">
-          <h5 class="card-title text-white section-head">AutoML</h5>
-          <p class="card-text text-white">
+          <div class="card-title">AutoML</div>
+          <p class="card-text">
             <a target="_blank" rel="noopener" href="/docs/components/katib/overview/">Katib</a> is a Kubernetes-native project for automated machine learning (AutoML) with support for hyperparameter tuning, early stopping and neural architecture search.
           </p>
         </div>
       </div>
-      <div class="card border-primary-dark">
+      <div class="card">
         <a href="https://kserve.github.io/website/" target="_blank" rel="noopener" >
           <img
             src="/docs/images/logos/kserve.png"
@@ -140,8 +146,8 @@ title = "Kubeflow"
           />
         </a>
         <div class="card-body bg-primary-dark">
-          <h5 class="card-title text-white section-head">Model Serving</h5>
-          <p class="card-text text-white">
+          <div class="card-title">Model Serving</div>
+          <p class="card-text">
             <a href="/docs/external-add-ons/kserve/introduction/" target="_blank" rel="noopener">KServe</a> <small>(previously <em>KFServing</em>)</small> solves production model serving on Kubernetes.
             It delivers high-abstraction and performant interfaces for frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX.
           </p>
@@ -155,8 +161,10 @@ title = "Kubeflow"
 </section>
 
 <div id="community" class="text-center">
-  <h3 class="section-head">Join our Community</h3>
   <div class="container">
+    <h3 class="section-head">
+      <span class="border-bottom pb-2">Join our Community</span>
+    </h3>
     <p class="mx-auto col-md-7 px-0">
       We are an open and welcoming <a href="/docs/about/community/" target="_blank" rel="noopener">community</a> of software developers, data scientists, and organizations!
       Check out the <a href="/docs/about/community/#list-of-available-meetings">weekly community calls</a>, get involved in discussions on the <a href="/docs/about/community/#kubeflow-mailing-list">mailing list</a> or chat with others on the <a href="/docs/about/community/#kubeflow-slack-channels">Slack Workspace</a>!
@@ -170,10 +178,16 @@ title = "Kubeflow"
       <img
           src="/docs/images/logos/cncf.svg"
           draggable="false"
-          class="img-fluid"
+          class="show_light-only img-fluid
+          alt="Cloud Native Computing Foundation Logo"
+      />
+      <img
+          src="/docs/images/logos/cncf-white.svg"
+          draggable="false"
+          class="show_dark-only img-fluid
           alt="Cloud Native Computing Foundation Logo"
       />
     </div>
-    <h5 class="cncf-title">We are a Cloud Native Computing Foundation project.</h5>
+    <div class="cncf-title">We are a Cloud Native Computing Foundation project.</div>
   </div>
 </div>

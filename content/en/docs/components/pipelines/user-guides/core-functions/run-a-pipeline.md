@@ -56,7 +56,7 @@ To submit a pipeline for an immediate run:
 You may also programmatically submit pipeline runs from the KFP SDK client. 
 The client supports two ways of submitting runs: _from IR YAML_ or _from a Python pipeline function_. 
 
-{{% alert title="Note" color="dark" %}}
+{{% alert title="Note" color="info" %}}
 See the [Connect the SDK to the API](/docs/components/pipelines/user-guides/core-functions/connect-api/) guide for more information about creating a KFP client.
 {{% /alert %}}
 

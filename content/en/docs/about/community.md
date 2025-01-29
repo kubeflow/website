@@ -96,7 +96,7 @@ const calender_src_list = [
   "kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com",
 ];
 let calender_src = calender_src_list.map(src => `&src=${src}&color=%23A79B8E`).join('');
-const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&showPrint=0&showDate=1&mode=AGENDA&showTitle=0${calender_src}" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
+const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&showPrint=0&showDate=1&mode=AGENDA&showTitle=0${calender_src}" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
 document.getElementById('calendar-container').innerHTML = html;
 </script>
 
