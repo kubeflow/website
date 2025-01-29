@@ -10,9 +10,16 @@
     {{- /**/ -}}
     <span class="navbar-brand__logo navbar-logo">
       {{- if ne .Site.Params.ui.navbar_logo false -}}
-        {{ with resources.Get "icons/logo.svg" -}}
-          {{ ( . | minify).Content | safeHTML -}}
-        {{ end -}}
+        <span class="show_light-only">
+          {{ with resources.Get "icons/logo.svg" -}}
+            {{ ( . | minify).Content | safeHTML -}}
+          {{ end -}}
+        </span>
+        <span class="show_dark-only">
+          {{ with resources.Get "icons/logo-white.svg" -}}
+            {{ ( . | minify).Content | safeHTML -}}
+          {{ end -}}
+        </span>
       {{ end -}}
     </span>
     {{- /**/ -}}
@@ -28,28 +35,36 @@
 	<div class="collapse navbar-collapse ml-md-auto" id="main_navbar">
     <ul class="navbar-nav ml-auto pt-4 pt-md-0 my-2 my-md-1">
       {{ $p := . -}}
-      {{ range .Site.Menus.main -}}
-      {{ $longContent := gt (len .Name) 10 -}}
-      <li class="nav-item mr-2 mr-lg-4 mt-1 mt-lg-0 {{- if $longContent }} long-content {{- end }}">
-        {{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
-        {{ with .Page }}{{ $active = or $active ( $.IsDescendant .) }}{{ end -}}
-        {{ $pre := .Pre -}}
-        {{ $post := .Post -}}
-        {{ $url := urls.Parse .URL -}}
+      {{ $last := len .Site.Menus.main -}}
+      {{ range $i, $e := .Site.Menus.main -}}
+      {{ $longContent := gt (len $e.Name) 8 -}}
+      {{ $isLast := eq $i (sub $last 1) -}}
+      <li class="nav-item mt-1 mt-lg-0 {{ if $isLast }}mr-1 mr-lg-3 mr-xl-4{{ else }}mr-2 mr-xl-4{{- end }} {{- if $longContent }} long-content {{- end }}">
+        {{ $active := or ($p.IsMenuCurrent "main" $e) ($p.HasMenuCurrent "main" $e) -}}
+        {{ with $e.Page }}{{ $active = or $active ( $.IsDescendant $e) }}{{ end -}}
+        {{ $pre := $e.Pre -}}
+        {{ $post := $e.Post -}}
+        {{ $url := urls.Parse $e.URL -}}
         {{ $baseurl := urls.Parse $.Site.Params.Baseurl -}}
         <a {{/**/ -}}
           class="nav-link {{- if $active }} active {{- end }}" {{/**/ -}}
-          href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}"
+          href="{{ with $e.Page }}{{ $e.RelPermalink }}{{ else }}{{ $e.URL | relLangURL }}{{ end }}"
           {{- if ne $url.Host $baseurl.Host }} target="_blank" {{- end -}}
         >
-            {{- with .Pre }}{{ $pre }}{{ end -}}
+            {{- with $e.Pre }}{{ $pre }}{{ end -}}
             <span {{- if $active }} class="active" {{- end }}>
-              {{- .Name -}}
+              {{- $e.Name -}}
             </span>
-            {{- with .Post }}{{ $post }}{{ end -}}
+            {{- with $e.Post }}{{ $post }}{{ end -}}
         </a>
       </li>
       {{ end -}}
+      <li class="nav-item mr-2 mt-1 mt-lg-0 py-md-2">
+        <div class="vr"></div>
+      </li>
+      <li class="nav-item dropdown mt-1 mt-lg-0 mr-1 mr-xl-2">
+        {{ partial "theme-toggler" . }}
+      </li>
       {{ if .Site.Params.versions -}}
       <li class="nav-item dropdown mt-1 mt-lg-0">
         {{ partial "navbar-version-selector.html" . -}}
