@@ -256,7 +256,7 @@ The versioned sites follow this convention:
 * `vXXX-YYY.kubeflow.org` points to the release at vXXX.YYY-branch
 
 We also hook up each version to the dropdown on the website menu bar. 
-For information on how to update the website to a new version, see the [Kubeflow release guide](https://github.com/kubeflow/kubeflow/blob/master/docs_dev/releasing.md#releasing-a-new-version-of-the-website).
+
 
 Whenever any documents reference any source code, you should use the version shortcode in the links, like so:
 
