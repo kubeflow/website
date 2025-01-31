@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-description: Report a bug encountered with Kubeflow Website
+about: Report a bug encountered with Kubeflow Website
 labels:
 - kind/bug
 title: "bug(<component>): <Bug Name>"

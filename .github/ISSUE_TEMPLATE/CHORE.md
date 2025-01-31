@@ -1,6 +1,6 @@
 ---
 name: 🧹 Chore
-description: Create a Chore on Kubeflow Website
+about: Create a Chore on Kubeflow Website
 labels: 
 - kind/chore
 title: "chore(<component>): <Chore Name>"
