@@ -35,6 +35,5 @@ Closes: #
 <!-- /area gsoc -->
 <!-- /area website -->
 <!-- /area community -->
-<!-- /area other -->
 ---
 
