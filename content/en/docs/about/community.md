@@ -22,6 +22,9 @@ Please join the [Kubeflow channels](#slack-channels) to join the conversation an
 
 The following table lists official Kubeflow channels which are hosted on the **CNCF Slack**:
 
+<div class="table-responsive">
+<div class="table table-bordered">
+
 | Description                             | Link                                                                           |
 | --------------------------------------- | ------------------------------------------------------------------------------ |
 | Announcements                           | [#kubeflow-announcements](https://app.slack.com/client/T08PSQ7BQ/C01EV0FV154)  |
@@ -34,6 +37,9 @@ The following table lists official Kubeflow channels which are hosted on the **C
 | Spark Operator                          | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG) |
 | Kubeflow Trainer and MPI Operator       | [#kubeflow-trainer](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)        |
 | KServe                                  | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                  |
+
+</div>
+</div>
 
 ## Kubeflow Mailing List
 
@@ -67,6 +73,9 @@ kubeflow.org_7l5vnbn8suj2se10sen81d9428@group.calendar.google.com
 
 The following list shows available Kubeflow community meetings with the corresponding meeting notes and recordings.
 
+<div class="table-responsive">
+<div class="table table-bordered">
+
 | Meeting Name                    | Meeting Notes                                        | Recordings                                                                                   |
 | ------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | Kubeflow community call         | [Google Doc](https://bit.ly/kf-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
@@ -78,6 +87,9 @@ The following list shows available Kubeflow community meetings with the correspo
 | Kubeflow Release team call      | [Google Doc](https://bit.ly/kf-release-team-notes)   |                                                                                              |
 | Kubeflow Spark Operator call    | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
 | KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                 |                                                                                              |
+
+</div>
+</div>
 
 ### Kubeflow Community Calendar
 
