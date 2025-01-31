@@ -19,7 +19,8 @@ The following diagram shows the architecture of KServe:
 
 <img src="/docs/external-add-ons/kserve/pics/kserve-architecture.png"
      alt="KServe architecture diagram"
-     class="p-2"></img>
+     class="p-2">
+</img>
 
 KServe provides the following functionality:
  

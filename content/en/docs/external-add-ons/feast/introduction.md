@@ -12,7 +12,8 @@ The following diagram shows the architecture of Feast:
 
 <img src="/docs/external-add-ons/feast/images/feast-architecture.png" 
      alt="Feast architecture diagram"
-     class="p-2"></img>
+     class="p-2">
+</img>
 
 Feast provides the following functionality:
 

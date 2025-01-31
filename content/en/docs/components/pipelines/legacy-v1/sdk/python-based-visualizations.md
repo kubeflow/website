@@ -48,7 +48,7 @@ experimentation, and customization when visualizing results.
 
 <img src="/docs/images/python-based-visualizations1.png"
   alt="Confusion matrix visualization from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 ## Using predefined visualizations
 
@@ -56,7 +56,7 @@ experimentation, and customization when visualizing results.
 
 <img src="/docs/images/python-based-visualizations2.png"
   alt="Confusion matrix visualization from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 1. Open the details of a run.
 2. Select a component.
@@ -95,7 +95,7 @@ arguments.
 
 <img src="/docs/images/python-based-visualizations3.png"
   alt="Confusion matrix visualization from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 1. Enable custom visualizations within Kubeflow Pipelines.
     * If you have not yet deployed Kubeflow Pipelines to your cluster,

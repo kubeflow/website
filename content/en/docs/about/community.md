@@ -50,17 +50,18 @@ issues/proposals and present demos/products.
 
 ### Subscribe to the Kubeflow Calendar
 
-Joining the [kubeflow-discuss mailing list](#kubeflow-mailing-list) should automatically add
-the Kubeflow community meetings to your Google calendar. If you still can't see the invites,
-manually add [the Kubeflow calendar using this name](https://calendar.google.com/calendar/u/0/r/settings/addcalendar):
+By joining the [`kubeflow-discuss`](#kubeflow-mailing-list) mailing list, you should automatically see all the Kubeflow community meetings in your Google calendar.
 
-```shell
+If this does not work, [manually add](https://calendar.google.com/calendar/u/0/r/settings/addcalendar) the following name to your Google calendar:
+
+```text
 kubeflow.org_7l5vnbn8suj2se10sen81d9428@group.calendar.google.com
 ```
 
 <img src="/docs/about/images/google-calendar.png"
       alt="Google Calendar"
-      class="mt-3 mb-3">
+      class="mt-3 mb-3 border rounded">
+</img>
 
 ### List of Available Meetings
 

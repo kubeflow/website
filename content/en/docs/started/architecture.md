@@ -122,7 +122,7 @@ The Kubeflow Central Dashboard looks like this:
 
 <img src="/docs/images/dashboard/homepage.png" 
      alt="Kubeflow Central Dashboard - Homepage" 
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 </img>
 
 The Kubeflow Platform includes [Kubeflow Central Dashboard](/docs/components/central-dash/overview/)
