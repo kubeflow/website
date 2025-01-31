@@ -26,7 +26,8 @@ build Kubernetes-native Training Runtimes with Kubernetes Custom Resources APIs.
 
 <img src="/docs/components/trainer/images/trainer-tech-stack.drawio.svg"
   alt="Kubeflow Trainer Tech Stack"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white"
+  style="width: 100%; max-width: 30em">
 
 ## Who is this for
 
@@ -35,7 +36,8 @@ responsibilities:
 
 <img src="/docs/components/trainer/images/user-personas.drawio.svg"
   alt="Kubeflow Trainer Personas"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white"
+  style="width: 100%; max-width: 30em">
 
 ### User Personas
 
@@ -61,7 +63,7 @@ fine-tuning, as shown in the diagram below:
 
 <img src="/docs/components/trainer/images/ml-lifecycle-trainer.drawio.svg"
   alt="AI/ML Lifecycle Trainer"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 ### Key Benefits
 

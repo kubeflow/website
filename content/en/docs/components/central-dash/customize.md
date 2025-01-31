@@ -12,7 +12,7 @@ For example, the below image shows the Kubeflow Central Dashboard with a custom 
 
 <img src="/docs/images/dashboard/custom-menu-item.png" 
      alt="Kubeflow Central Dashboard - Customize Menu Items"
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 </img>
 
 ## Central Dashboard ConfigMap

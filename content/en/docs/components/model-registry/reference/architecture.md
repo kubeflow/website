@@ -4,7 +4,9 @@ description = "Reference documentation for the Kubeflow Model Registry"
 weight = 100
 +++
 
-![Model Registry High Level Architecture](/docs/components/model-registry/reference/images/model-registry-overview.jpg)
+<img src="/docs/components/model-registry/reference/images/model-registry-overview.jpg"
+  alt="Model Registry High Level Architecture"
+  class="mt-3 mb-3 border rounded">
 
 {{% alert title="Note" color="warning" %}}
 The Model Registry is a passive repository for metadata and is not meant to be a Control Plane. It does not perform any active orchestration or expose APIs to perform actions on underlying Kubernetes components.

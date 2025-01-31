@@ -49,7 +49,8 @@ on top of Kubernetes.
 
 <img src="/docs/started/images/kubeflow-intro-diagram.drawio.svg" 
      alt="Kubeflow Overview Diagram"
-     class="mt-3 mb-3 rounded">
+     class="mt-3 mb-3 border rounded p-3 bg-white"
+     style="width: 100%; max-width: 30em">
 </img>
 
 Read the [architecture overview](/docs/started/architecture/) to learn about the Kubeflow ecosystem
