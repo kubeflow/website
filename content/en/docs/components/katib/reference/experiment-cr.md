@@ -11,7 +11,9 @@ Suggestion controller and Trial controller is working together to achieve
 hyperparameters tuning for user's Machine learning model. The Experiment
 workflow looks as follows:
 
-<img src="/docs/components/katib/images/katib-workflow.png" alt="Katib Workflow" class="mt-3 mb-3">
+<img src="/docs/components/katib/images/katib-workflow.png" 
+     alt="Katib Workflow" 
+     class="mt-3 mb-3 border rounded p-3 bg-white">
 
 1. The Experiment is submitted to the Kubernetes API server. Katib
    Experiment mutating and validating webhook is called to set the default

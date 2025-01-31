@@ -13,7 +13,7 @@ A model registry is an important component in the lifecycle of AI/ML models, an 
 <p style="text-align: center;">
   <img src="/docs/components/model-registry/images/MLloopinnerouter.png"
     alt="Model Registry MLOps loop"
-    class="mt-3 mb-3">
+    class="mt-3 mb-3 border rounded p-3 bg-white">
 </p>
 
 A model registry provides a central index for ML model developers to index and manage models, versions, and ML artifacts metadata.
@@ -22,7 +22,7 @@ It provides a central interface for all stakeholders in the ML lifecycle to coll
 
 <img src="/docs/components/model-registry/images/ml-lifecycle-kubeflow-modelregistry.drawio.svg"
   alt="Kubeflow Components in ML Lifecycle"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 - **Create**: during the creation phase, the Model Registry facilitates collaboration between different teams in order to track changes, experiment with different model architectures, and maintain a history of model iterations.
 - **Verify**: in the verification stage, the Model Registry supports rigorous testing and validation before progressing further, maintaining a record of performance metrics and test results for each version.

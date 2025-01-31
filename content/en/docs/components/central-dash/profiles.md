@@ -21,7 +21,7 @@ Users can only see profiles to which they have owner, contributor (read + write)
 
 <img src="/docs/images/dashboard/homepage-profile-selector.png" 
      alt="Kubeflow Central Dashboard - Profile Selector" 
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 </img>
 
 ## Automatic Profile Creation
@@ -47,7 +47,7 @@ Here is an example of the automatic profile creation flow:
 
 <img src="/docs/images/dashboard/auto-profile-step-1.png"
      alt="Kubeflow Central Dashboard - Automatic Profile Creation - Step 1"
-     class="mt-3 mb-3 border border-info rounded"
+     class="mt-3 mb-3 border rounded"
      style="width: 100%; max-width: 30em">
 </img>
 
@@ -55,7 +55,7 @@ Here is an example of the automatic profile creation flow:
 
 <img src="/docs/images/dashboard/auto-profile-step-2.png"
      alt="Kubeflow Central Dashboard - Automatic Profile Creation - Step 2"
-     class="mt-3 mb-3 border border-info rounded"
+     class="mt-3 mb-3 border rounded"
      style="width: 100%; max-width: 30em">
 </img>
 
@@ -166,15 +166,15 @@ The __owner__ of a profile can use the __Manage Contributors__ tab in the Kubefl
 
 <img src="/docs/images/dashboard/homepage-manage-contributors.png" 
      alt="Kubeflow Central Dashboard - Manage Contributors Link"
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 </img>
 
 Contributors are managed with the "Contributors to your namespace" field.
 
 <img src="/docs/images/dashboard/manage-contributors.png" 
      alt="Kubeflow Central Dashboard - Manage Contributors"
-     class="mt-3 mb-3 border border-info rounded"
-     style="width: 100%; max-width: 40em">
+     class="mt-3 mb-3 border rounded"
+     style="width: 100%; max-width: 30em">
 </img>
 
 ### Manage Contributors Manually

@@ -172,7 +172,7 @@ In addition to the command line and Python clients, you can also use the Model R
 
    <img src="/docs/components/model-registry/images/model-registry-ui-main.png"
    alt="Model Registry Overview"
-   class="mt-3 mb-3">
+   class="mt-3 mb-3 border rounded">
 
 To access the Model Registry UI, navigate to the Kubeflow central dashboard and select the Model Registry component. From there, you can perform various actions such as:
 

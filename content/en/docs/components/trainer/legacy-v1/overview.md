@@ -33,7 +33,7 @@ please follow [this guide](/docs/components/trainer/legacy-v1/user-guides/mpi/) 
 
 <img src="/docs/components/trainer/legacy-v1/images/training-operator-overview.drawio.svg"
   alt="Training Operator Overview"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 The Training Operator is responsible for scheduling the appropriate Kubernetes workloads to implement
 various distributed training strategies for different ML frameworks.
@@ -45,7 +45,7 @@ lifecycle as shown in diagram below:
 
 <img src="/docs/components/trainer/legacy-v1/images/ml-lifecycle-training-operator.drawio.svg"
   alt="AI/ML Lifecycle Training Operator"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 - **The Training Operator simplifies the ability to run distributed training and fine-tuning.**
 

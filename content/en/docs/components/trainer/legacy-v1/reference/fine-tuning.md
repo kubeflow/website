@@ -20,7 +20,7 @@ In the following diagram you can see how `train` Python API works:
 
 <img src="/docs/components/trainer/legacy-v1/images/fine-tune-llm-api.drawio.svg"
   alt="Fine-Tune API for LLMs"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 - Once user executes `train` API, Training Operator creates PyTorchJob with appropriate resources
   to fine-tune LLM.
