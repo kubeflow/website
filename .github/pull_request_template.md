@@ -26,11 +26,15 @@ Closes: #
 
 <!-- /area central-dashboard -->
 <!-- /area katib -->
+<!-- /area kserve -->
 <!-- /area model-registry -->
 <!-- /area notebooks -->
 <!-- /area pipelines -->
 <!-- /area spark-operator -->
 <!-- /area trainer -->
+<!-- /area gsoc -->
+<!-- /area website -->
+<!-- /area community -->
 <!-- /area other -->
 ---
 
