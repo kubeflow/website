@@ -17,7 +17,7 @@ For example, the below image shows the Kubeflow Central Dashboard with a custom 
 
 ## Central Dashboard ConfigMap
 
-The Kubeflow Central Dashboard is configured using a [Kubernetes ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/).
+The Kubeflow Central Dashboard is configured using a Kubernetes [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/).
 
 The `CD_CONFIGMAP_NAME` environment variable on the central-dashboard Deployment specifies the name of the ConfigMap (`centraldashboard-config` by default).
 
