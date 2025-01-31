@@ -38,7 +38,6 @@ https://kubeflow.org/...
 <!-- /area gsoc -->
 <!-- /area website -->
 <!-- /area community -->
-<!-- /area other -->
 ---
 
 **Comments**

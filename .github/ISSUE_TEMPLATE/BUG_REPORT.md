@@ -40,7 +40,6 @@ https://kubeflow.org/...
 <!-- /area gsoc -->
 <!-- /area website -->
 <!-- /area community -->
-<!-- /area other -->
 ---
 
 <!-- Don't delete message below to encourage users to support your issue! -->

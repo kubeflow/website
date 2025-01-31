@@ -30,7 +30,6 @@ title: "chore(<component>): <Chore Name>"
 <!-- /area gsoc -->
 <!-- /area website -->
 <!-- /area community -->
-<!-- /area other -->
 ---
 
 <!-- Don't delete the message below to encourage users to support your issue! -->
