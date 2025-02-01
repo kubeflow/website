@@ -286,8 +286,9 @@ The following code snippet shows the typical styling that makes an image show up
 
 ```
 <img src="/docs/images/my-image.png"
-  alt="My image"
-  class="mt-3 mb-3 p-3 border border-info rounded">
+     alt="My image"
+     class="mt-3 mb-3 border rounded">
+</img>
 ```
 
 To see some examples of styled images, take a look at the [OAuth setup page](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/deploy/oauth-setup/).

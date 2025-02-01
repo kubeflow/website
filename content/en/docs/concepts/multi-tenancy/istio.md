@@ -55,7 +55,10 @@ It walks through the process when a user requests to create a new notebook serve
 Note for authors:
 The source of the diagram is in the "Doc diagrams" folder in the public Kubeflow shared drive.
 -->
-<img src="/docs/images/Istio-in-KF.svg" alt="Select active profile" class="mt-3 mb-3 border border-info rounded"></img>
+<img src="/docs/images/Istio-in-KF.svg" 
+     alt="Select active profile" 
+     class="mt-3 mb-3 border rounded">
+</img>
 
 1. The user request is intercepted by an identification proxy which talks to a SSO service provider such as IAM on Cloud Services Provider or Active Directory/LDAP on-premises.
 1. When the user is authenticated, the request is modified by the Istio Gateway to include a JWT Header token containing the identity of the user.
