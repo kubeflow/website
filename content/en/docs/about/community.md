@@ -25,7 +25,7 @@ The following table lists official Kubeflow channels which are hosted on the **C
 | Description                             | Link                                                                              |
 | --------------------------------------- | --------------------------------------------------------------------------------- |
 | Announcements                           | [#kubeflow-announcements](https://app.slack.com/client/T08PSQ7BQ/C01EV0FV154)     |
-| GSoC Participants                       | [#kubeflow-gsoc-participants](https://app.slack.com/client/T08PSQ7BQ/C0742LBR5BM) |
+| Contributors                            | [#kubeflow-contributors](https://app.slack.com/client/T08PSQ7BQ/C0742LBR5BM) |
 | Katib                                   | [#kubeflow-katib](https://app.slack.com/client/T08PSQ7BQ/C073N7AS48P)             |
 | Model Registry                          | [#kubeflow-model-registry](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R)    |
 | Notebooks                               | [#kubeflow-notebooks](https://app.slack.com/client/T08PSQ7BQ/C073W562HFY)         |
