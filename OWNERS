@@ -5,5 +5,11 @@ approvers:
   - johnugeorge
   - terrytangyuan
   - zijianjoy
+
 reviewers:
   - varodrig
+
+emeritus_approvers:
+  - james-jwu
+  - jbottum
+
