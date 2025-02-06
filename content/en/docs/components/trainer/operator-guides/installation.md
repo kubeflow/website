@@ -38,9 +38,9 @@ Ensure that the JobSet and Trainer controller manager pods are running:
 ```bash
 $ kubectl get pods -n kubeflow-system
 
-NAME                                                READY   STATUS    RESTARTS   AGE
-jobset-controller-manager-59fc8bf679-7qb9x          2/2     Running   0          1m
-trainer-controller-manager-7b9949cc86-756rx         1/1     Running   0          1m
+NAME                                                  READY   STATUS    RESTARTS   AGE
+jobset-controller-manager-54968bd57b-88dk4            2/2     Running   0          65s
+kubeflow-trainer-controller-manager-cc6468559-dblnw   1/1     Running   0          65s
 ```
 
 ## Installing the Kubeflow Training Runtimes
