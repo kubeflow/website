@@ -30,7 +30,7 @@ kind create cluster # or minikube start
 Run the following command to deploy the Kubeflow Trainer controller manager:
 
 ```bash
-kubectl apply --server-side -k "https://github.com/kubeflow/training-operator.git/manifests/overlays/manager?ref=master"
+kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/manager?ref=master"
 ```
 
 Ensure that the JobSet and Trainer controller manager pods are running:
@@ -48,7 +48,7 @@ trainer-controller-manager-7b9949cc86-756rx         1/1     Running   0         
 Run the following command to deploy the Kubeflow Training Runtimes:
 
 ```bash
-kubectl apply --server-side -k "https://github.com/kubeflow/training-operator.git/manifests/overlays/runtimes?ref=master"
+kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/runtimes?ref=master"
 ```
 
 ## Next Steps

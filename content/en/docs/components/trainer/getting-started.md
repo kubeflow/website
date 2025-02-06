@@ -25,3 +25,16 @@ pip install git+https://github.com/kubeflow/trainer.git@master#subdirectory=sdk
 ## Getting Started with PyTorch
 
 TODO (andreyvelich): Add example from the Notebook
+
+Before creating Kubeflow TrainJob, defines the training function that implements end-to-end model
+training. Each PyTorch node will execute this function using the appropriate distributed environment.
+
+Usually, this function contains log to download dataset, create model, and train the model.
+
+Kubeflow Trainer will automatically configure distributed environment for PyTorch to perform
+[Distributed Data Parallel (DDP)](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
+
+```python
+
+
+```

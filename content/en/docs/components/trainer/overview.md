@@ -46,7 +46,7 @@ Kubeflow Trainer documentation is separated between these user personas:
 - [Cluster Operators](/docs/components/trainer/operator-guides): administrators responsible for managing
   Kubernetes clusters and Kubeflow Training Runtimes.
 - [Contributors](/docs/components/trainer/contributor-guides): open source contributors working on
-  [Kubeflow Trainer project](https://github.com/kubeflow/training-operator).
+  [Kubeflow Trainer project](https://github.com/kubeflow/trainer).
 
 ## Kubeflow Trainer Introduction
 
