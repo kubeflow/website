@@ -24,11 +24,11 @@ pip install git+https://github.com/kubeflow/trainer.git@master#subdirectory=sdk
 
 ## Getting Started with PyTorch
 
-Before creating Kubeflow TrainJob, defines the training function that implements end-to-end model
-training. Each PyTorch node will execute this function using the appropriate distributed environment.
-Usually, this function contains log to download dataset, create model, and train the model.
+Before creating a Kubeflow TrainJob, defines the training function that handles end-to-end model
+training. Each PyTorch node will execute this function within the configured distributed environment.
+Typically, this function includes steps to download the dataset, initialize the model, and train it.
 
-Kubeflow Trainer will automatically configure distributed environment for PyTorch to perform
+Kubeflow Trainer automatically sets up the distributed environment for PyTorch, enabling
 [Distributed Data Parallel (DDP)](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
 ```python
@@ -127,7 +127,7 @@ def train_pytorch():
     dist.destroy_process_group()
 ```
 
-After configuring training function, check the available Kubeflow Training Runtimes.
+After configuring the training function, check the available Kubeflow Training Runtimes:
 
 ```python
 from kubeflow.trainer import TrainerClient, Trainer
@@ -136,13 +136,13 @@ for r in TrainerClient().list_runtimes():
     print(f"Runtime: {r.name}")
 ```
 
-You should see the `torch-distributed` Runtime which can be used for PyTorch:
+You should be able to see list of available Training Runtimes:
 
 ```python
 Runtime: torch-distributed
 ```
 
-Use the above Runtime to create Kubeflow TrainJob which scales your training function across
+Create a TrainJob using the `torch-distributed` Runtime, which scales your training function across
 4 PyTorch nodes, every node has 1 GPU.
 
 ```python
@@ -160,7 +160,7 @@ job_id = TrainerClient().train(
 )
 ```
 
-You can check the TrainJob's components and how many devices each PyTorch node uses:
+You can check the components of the TrainJob and the number of devices each PyTorch node is using:
 
 ```python
 for c in TrainerClient().get_job(name=job_id).components:
@@ -184,7 +184,8 @@ logs = TrainerClient().get_job_logs(job_id)
 print(logs["trainer-node-0"])
 ```
 
-Since you ran training on 4 GPUs, every PyTorch node uses 60,000/4 = 15,000 images from the dataset.
+Since training was run on 4 GPUs, each PyTorch node processes 60,000 / 4 = 15,000 images
+from the dataset:
 
 ```python
 
