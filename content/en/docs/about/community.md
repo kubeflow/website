@@ -32,7 +32,7 @@ The following table lists official Kubeflow channels which are hosted on the **C
 | Pipelines                               | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)         |
 | Platform Manifests and Release Planning | [#kubeflow-platform](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)          |
 | Spark Operator                          | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG)    |
-| Training Operator and MPI Operator      | [#kubeflow-training](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)          |
+| Kubeflow Trainer and MPI Operator       | [#kubeflow-training](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)          |
 | KServe                                  | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                     |
 
 ## Kubeflow Mailing List
@@ -250,7 +250,7 @@ The following table outlines which components are maintained by each Working Gro
           <a href="https://github.com/kubeflow/community/tree/master/wg-training">Training</a>
         </td>
         <td>
-          <a href="https://github.com/kubeflow/training-operator">Training Operator</a>
+          <a href="https://github.com/kubeflow/trainer">Training Operator</a>
         </td>
       </tr>
   </tbody>

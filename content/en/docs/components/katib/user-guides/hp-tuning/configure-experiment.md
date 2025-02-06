@@ -121,8 +121,8 @@ trialSpec:
           "sidecar.istio.io/inject": "false"
 ```
 
-If you use `PyTorchJob` or other Training Operator jobs in your Trial template check
-[here](/docs/components/training/user-guides/tensorflow/#what-is-tfjob) how to set the annotation.
+If you use `PyTorchJob` or other Training Operator jobs in your Trial template, check
+[here](/docs/components/trainer/legacy-v1/user-guides/tensorflow/#what-is-tfjob) how to set the annotation.
 
 ## Running the Experiment
 

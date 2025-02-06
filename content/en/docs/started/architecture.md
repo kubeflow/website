@@ -86,8 +86,8 @@ See the following links for more information about each Kubeflow component:
 - [Kubeflow Katib](/docs/components/katib/) can be used for model optimization and hyperparameter
   tuning using various AutoML algorithms.
 
-- [Kubeflow Training Operator](/docs/components/training/) can be used for large-scale distributed
-  training or fine-tuning.
+- [Kubeflow Trainer](/docs/components/trainer/) can be used for large-scale distributed
+  training or LLM fine-tuning.
 
 - [Kubeflow Model Registry](/docs/components/model-registry/) can be used to store ML metadata,
   model artifacts, and preparing models for production serving.
@@ -138,8 +138,8 @@ See the following sets of reference documentation:
 - [Pipelines reference docs](/docs/components/pipelines/reference/) for the Kubeflow
   Pipelines API and SDK, including the Kubeflow Pipelines domain-specific
   language (DSL).
-- [Training Operator Python SDK](https://github.com/kubeflow/training-operator/blob/86e0df17db715543b366e885c9ae659aa1342c8e/sdk/python/kubeflow/training/api/training_client.py)
-  to manage Training Operator jobs using Python APIs.
+- [Kubeflow Python SDK](https://github.com/kubeflow/training-operator/blob/master/sdk_v2/kubeflow/training/api/training_client.py)
+  to interact with Kubeflow Trainer APIs and to manage TrainJobs.
 - [Katib Python SDK](https://github.com/kubeflow/katib/blob/086093fed72610c227e3ae1b4044f27afa940852/sdk/python/v1beta1/kubeflow/katib/api/katib_client.py)
   to manage Katib hyperparameter tuning Experiments using Python APIs.
 

@@ -16,17 +16,17 @@ Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-
 In order to get it running, it needs the annotation `sidecar.istio.io/inject: "false"`
 to disable it for either `PyTorchJob` pods or the namespace.
 To view an example of how to add this annotation to your `yaml` file,
-see the [`TFJob` documentation](/docs/components/training/user-guides/tensorflow/).
+see the [`TFJob` documentation](/docs/components/trainer/legacy-v1/user-guides/tensorflow/).
 
 ## Creating a PyTorch training job
 
-You can create a training job by defining a `PyTorchJob` config file. See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/master/examples/pytorch/simple.yaml).
+You can create a training job by defining a `PyTorchJob` config file. See the manifests for the [distributed MNIST example](https://github.com/kubeflow/training-operator/blob/release-1.9/examples/pytorch/simple.yaml).
 You may change the config file based on your requirements.
 
 Deploy the `PyTorchJob` resource to start training:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/master/examples/pytorch/simple.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/refs/heads/release-1.9/examples/pytorch/simple.yaml
 ```
 
 You should now be able to see the created pods matching the specified number of replicas.
@@ -122,6 +122,6 @@ status:
 
 ## Next steps
 
-- Learn about [distributed training](/docs/components/training/reference/distributed-training/) in the Training Operator.
+- Learn about [distributed training](/docs/components/trainer/legacy-v1/reference/distributed-training/) in the Training Operator.
 
-- See how to [run a job with gang-scheduling](/docs/components/training/user-guides/job-scheduling#running-jobs-with-gang-scheduling).
+- See how to [run a job with gang-scheduling](/docs/components/trainer/legacy-v1/user-guides/job-scheduling#running-jobs-with-gang-scheduling).
