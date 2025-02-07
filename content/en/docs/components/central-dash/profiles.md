@@ -9,10 +9,6 @@ weight = 20
 A Kubeflow Profile is a [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) introduced by Kubeflow that wraps a Kubernetes [Namespace](https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/).
 
 
-Profile access management provides namespace level isolation based on:
-
-* Kubernetes RBAC
-* Istio AuthorizationPolicy
 
 Profile are owned by a single user, and can have multiple contributors with view or modify access.
 The owner of a profile can add and remove contributors (this can also be done by the cluster administrator).
