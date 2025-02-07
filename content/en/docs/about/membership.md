@@ -49,6 +49,8 @@ Members are *[continuously active]* contributors in the community. They can have
   - Make sure that the list of contributions included is representative of your work on the project.
 - Have your sponsoring reviewers reply confirmation of sponsorship
 - Once your sponsors have responded, your request will be reviewed by the Kubeflow team. Any missing information will be requested
+- After your PR is merged, you will get an email (to your GitHub-associated email address) inviting you to the Kubeflow GitHub org. Follow the instructions to accept your membership.
+- To confirm that the membership acceptance process has completed, you can search for your GitHub username at https://github.com/orgs/kubeflow/people.
 
 ### Responsibilities
 
