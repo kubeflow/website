@@ -1,7 +1,10 @@
+<!-- Add the component name to the PR's title. Example: pipelines: Fixed broken link in Getting Started with Kubeflow Pipelines -->
+
 
 **Checklist:**
 - [ ] You have [signed off your commits](https://www.kubeflow.org/docs/about/contributing/#sign-off-your-commits)
 - [ ] Ensure you follow best practices from our guide. [Contributing](https://github.com/kubeflow/website/blob/master/content/en/docs/about/contributing.md). 
+- [] You have included screenshots when changing the website style or adding a new page.
 
 
 **Description of your changes:**
