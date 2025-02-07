@@ -6,7 +6,7 @@ weight = 20
 
 ## What is a Kubeflow Profile?
 
-A Kubeflow Profile is a [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) introduced by Kubeflow that wraps a Kubernetes [Namespace](https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/). It is designed to solve access management within multi-user kubernetes cluster.
+A Kubeflow Profile is a [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) introduced by Kubeflow that wraps a Kubernetes [Namespace](https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/).
 
 
 Profile access management provides namespace level isolation based on:
