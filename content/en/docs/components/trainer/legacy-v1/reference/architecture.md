@@ -18,6 +18,7 @@ The dedicated "Backend" operator was not implemented and instead
 consolidated to the "Frontend" operator.
 
 The benefits of this approach were:
+
 1. Shared testing and release infrastructure
 2. Unlocked production grade features like manifests and metadata support
 3. Simpler Kubeflow releases
@@ -25,7 +26,7 @@ The benefits of this approach were:
 
 The V1 Training Operator architecture diagram can be seen in the diagram below:
 
-<img src="/docs/components/training/images/training-operator-v1-architecture.drawio.svg"
+<img src="/docs/components/trainer/legacy-v1/images/training-operator-v1-architecture.drawio.svg"
   alt="Training Operator V1 Architecture"
   class="mt-3 mb-3">
 

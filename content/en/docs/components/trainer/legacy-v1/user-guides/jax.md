@@ -15,13 +15,13 @@ The current custom resource for JAX has been tested to run multiple processes on
 
 ## Creating a JAX training job
 
-You can create a training job by defining a `JAXJob` config file. See the manifests for the [simple JAXJob example](https://github.com/kubeflow/training-operator/blob/master/examples/jax/cpu-demo/demo.yaml).
+You can create a training job by defining a `JAXJob` config file. See the manifests for the [simple JAXJob example](https://github.com/kubeflow/training-operator/blob/release-1.9/examples/jax/cpu-demo/demo.yaml).
 You may change the Job config file based on your requirements.
 
 Deploy the `JAXJob` resource to start training:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/refs/heads/master/examples/jax/cpu-demo/demo.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/refs/heads/release-1.9/examples/jax/cpu-demo/demo.yaml
 ```
 
 You should now be able to see the created pods matching the specified number of replicas.
@@ -79,33 +79,33 @@ spec:
       template:
         spec:
           containers:
-          - command:
-            - python3
-            - train.py
-            image: docker.io/kubeflow/jaxjob-simple:latest
-            imagePullPolicy: Always
-            name: jax
+            - command:
+                - python3
+                - train.py
+              image: docker.io/kubeflow/jaxjob-simple:latest
+              imagePullPolicy: Always
+              name: jax
 status:
   completionTime: "2024-09-22T20:11:34Z"
   conditions:
-  - lastTransitionTime: "2024-09-22T20:07:59Z"
-    lastUpdateTime: "2024-09-22T20:07:59Z"
-    message: JAXJob jaxjob-simple is created.
-    reason: JAXJobCreated
-    status: "True"
-    type: Created
-  - lastTransitionTime: "2024-09-22T20:11:28Z"
-    lastUpdateTime: "2024-09-22T20:11:28Z"
-    message: JAXJob kubeflow/jaxjob-simple is running.
-    reason: JAXJobRunning
-    status: "False"
-    type: Running
-  - lastTransitionTime: "2024-09-22T20:11:34Z"
-    lastUpdateTime: "2024-09-22T20:11:34Z"
-    message: JAXJob kubeflow/jaxjob-simple successfully completed.
-    reason: JAXJobSucceeded
-    status: "True"
-    type: Succeeded
+    - lastTransitionTime: "2024-09-22T20:07:59Z"
+      lastUpdateTime: "2024-09-22T20:07:59Z"
+      message: JAXJob jaxjob-simple is created.
+      reason: JAXJobCreated
+      status: "True"
+      type: Created
+    - lastTransitionTime: "2024-09-22T20:11:28Z"
+      lastUpdateTime: "2024-09-22T20:11:28Z"
+      message: JAXJob kubeflow/jaxjob-simple is running.
+      reason: JAXJobRunning
+      status: "False"
+      type: Running
+    - lastTransitionTime: "2024-09-22T20:11:34Z"
+      lastUpdateTime: "2024-09-22T20:11:34Z"
+      message: JAXJob kubeflow/jaxjob-simple successfully completed.
+      reason: JAXJobSucceeded
+      status: "True"
+      type: Succeeded
   replicaStatuses:
     Worker:
       selector: training.kubeflow.org/job-name=jaxjob-simple,training.kubeflow.org/operator-name=jaxjob-controller,training.kubeflow.org/replica-type=worker

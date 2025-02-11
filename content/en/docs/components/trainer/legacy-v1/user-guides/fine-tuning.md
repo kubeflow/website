@@ -10,15 +10,15 @@ share your experience using the [#kubeflow-training Slack channel](https://cloud
 or the [Kubeflow Training Operator GitHub](https://github.com/kubeflow/training-operator/issues/new).
 {{% /alert %}}
 
-This page describes how to use a [`train` API from the Training Python SDK](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/sdk/python/kubeflow/training/api/training_client.py#L112)
+This page describes how to use a [`train` API from the Training Python SDK](https://github.com/kubeflow/training-operator/blob/release-1.9/sdk/python/kubeflow/training/api/training_client.py#L95)
 that simplifies the ability to fine-tune LLMs with distributed PyTorchJob workers.
 
 If you want to learn more about how the fine-tuning API fits in the Kubeflow ecosystem, head to
-the [explanation guide](/docs/components/training/explanation/fine-tuning).
+the [explanation guide](/docs/components/trainer/legacy-v1/explanation/fine-tuning).
 
 ## Prerequisites
 
-You need to install the Training Python SDK [with fine-tuning support](/docs/components/training/installation/#install-the-python-sdk-with-fine-tuning-capabilities)
+You need to install the Training Python SDK [with fine-tuning support](/docs/components/trainer/legacy-v1/installation/#install-the-python-sdk-with-fine-tuning-capabilities)
 to run this API.
 
 ## How to use the Fine-Tuning API?
@@ -92,6 +92,7 @@ to fine-tune the LLM.
 Platform engineers can customize the storage initializer and trainer images by setting the `STORAGE_INITIALIZER_IMAGE` and `TRAINER_TRANSFORMER_IMAGE` environment variables before executing the `train` command.
 
 For example: In your python code, set the env vars before executing `train`:
+
 ```python
 ...
 os.environ['STORAGE_INITIALIZER_IMAGE'] = 'docker.io/<username>/<custom-storage-initiailizer_image>'
@@ -102,9 +103,9 @@ TrainingClient().train(...)
 
 ## Next Steps
 
-- Run the example to [fine-tune the TinyLlama LLM](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/examples/pytorch/language-modeling/train_api_hf_dataset.ipynb)
+- Run the example to [fine-tune the TinyLlama LLM](https://github.com/kubeflow/training-operator/blob/release-1.9/examples/pytorch/language-modeling/train_api_hf_dataset.ipynb)
 
 - Check this example to compare the `create_job` and the `train` Python API for
-  [fine-tuning BERT LLM](https://github.com/kubeflow/training-operator/blob/6ce4d57d699a76c3d043917bd0902c931f14080f/examples/pytorch/text-classification/Fine-Tune-BERT-LLM.ipynb).
+  [fine-tuning BERT LLM](https://github.com/kubeflow/training-operator/blob/release-1.9/examples/pytorch/text-classification/Fine-Tune-BERT-LLM.ipynb).
 
-- Understand [the architecture behind `train` API](/docs/components/training/reference/fine-tuning).
+- Understand [the architecture behind `train` API](/docs/components/trainer/legacy-v1/reference/fine-tuning).

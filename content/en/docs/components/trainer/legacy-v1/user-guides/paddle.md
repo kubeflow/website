@@ -16,17 +16,17 @@ Istio [automatic sidecar injection](https://istio.io/v1.3/docs/setup/additional-
 In order to get it running, it needs annotation `sidecar.istio.io/inject: "false"`
 to disable it for either the `PaddleJob` pods or namespace.
 To view an example of how to add this annotation to your `yaml` file,
-see the [`TFJob` documentation](/docs/components/training/user-guides/tensorflow/).
+see the [`TFJob` documentation](/docs/components/trainer/legacy-v1/user-guides/tensorflow/).
 
 ## Creating a PaddlePaddle training job
 
-You can create a training job by defining a `PaddleJob` config file. See the manifests for the [distributed example](https://github.com/kubeflow/training-operator/blob/master/examples/paddlepaddle/simple-cpu.yaml).
+You can create a training job by defining a `PaddleJob` config file. See the manifests for the [distributed example](https://github.com/kubeflow/training-operator/blob/release-1.9/examples/paddlepaddle/simple-cpu.yaml).
 You may change the config file based on your requirements.
 
 Deploy the `PaddleJob` resource to start training:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/master/examples/paddlepaddle/simple-cpu.yaml
+kubectl create -f https://raw.githubusercontent.com/kubeflow/training-operator/refs/heads/release-1.9/examples/paddlepaddle/simple-cpu.yaml
 ```
 
 You should now be able to see the created pods matching the specified number of replicas.
