@@ -120,7 +120,7 @@ def train_pytorch():
                     )
                 )
 
-    # Wait for the distributed training to complete and destroy to PyTorch distributed process group.
+    # Wait for the training to complete and destroy to PyTorch distributed process group.
     dist.barrier()
     if dist.get_rank() == 0:
         print("Training is finished")
@@ -148,7 +148,7 @@ Create a TrainJob using the `torch-distributed` Runtime, which scales your train
 ```python
 job_id = TrainerClient().train(
     trainer=Trainer(
-        func=train_fashion_mnist,
+        func=train_pytorch,
         num_nodes=4,
         resources_per_node={
             "cpu": 5,
@@ -179,7 +179,7 @@ Component: trainer-node-3, Status: Succeeded, Devices: gpu x 1
 Finally, you can check the training logs from the master node:
 
 ```python
-logs = TrainerClient().get_job_logs(job_id)
+logs = TrainerClient().get_job_logs(name=job_id)
 
 print(logs["trainer-node-0"])
 ```
