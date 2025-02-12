@@ -1,7 +1,15 @@
 approvers:
   - andreyvelich
-  - james-jwu
-  - jbottum
+  - franciscojavierarceo
+  - juliusvonkohout 
   - johnugeorge
   - terrytangyuan
   - zijianjoy
+
+reviewers:
+  - varodrig
+
+emeritus_approvers:
+  - james-jwu
+  - jbottum
+

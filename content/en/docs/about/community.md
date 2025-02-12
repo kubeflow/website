@@ -25,14 +25,14 @@ The following table lists official Kubeflow channels which are hosted on the **C
 | Description                             | Link                                                                              |
 | --------------------------------------- | --------------------------------------------------------------------------------- |
 | Announcements                           | [#kubeflow-announcements](https://app.slack.com/client/T08PSQ7BQ/C01EV0FV154)     |
-| GSoC Participants                       | [#kubeflow-gsoc-participants](https://app.slack.com/client/T08PSQ7BQ/C0742LBR5BM) |
+| Contributors                            | [#kubeflow-contributors](https://app.slack.com/client/T08PSQ7BQ/C0742LBR5BM) |
 | Katib                                   | [#kubeflow-katib](https://app.slack.com/client/T08PSQ7BQ/C073N7AS48P)             |
 | Model Registry                          | [#kubeflow-model-registry](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R)    |
 | Notebooks                               | [#kubeflow-notebooks](https://app.slack.com/client/T08PSQ7BQ/C073W562HFY)         |
 | Pipelines                               | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)         |
 | Platform Manifests and Release Planning | [#kubeflow-platform](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)          |
 | Spark Operator                          | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG)    |
-| Training Operator and MPI Operator      | [#kubeflow-training](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)          |
+| Kubeflow Trainer and MPI Operator       | [#kubeflow-training](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)          |
 | KServe                                  | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                     |
 
 ## Kubeflow Mailing List
@@ -78,7 +78,7 @@ The following list shows available Kubeflow community meetings with the correspo
 | Kubeflow Spark Operator call    | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
 | KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                 |                                                                                              |
 
-### Kubeflow Community Calendar |
+### Kubeflow Community Calendar
 
 This is an aggregated view of the Kubeflow community calendar and should be displayed in your
 device's timezone.
@@ -250,7 +250,7 @@ The following table outlines which components are maintained by each Working Gro
           <a href="https://github.com/kubeflow/community/tree/master/wg-training">Training</a>
         </td>
         <td>
-          <a href="https://github.com/kubeflow/training-operator">Training Operator</a>
+          <a href="https://github.com/kubeflow/trainer">Training Operator</a>
         </td>
       </tr>
   </tbody>

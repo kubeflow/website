@@ -35,7 +35,7 @@ Each element of `externalLinks` is a JSON object with the following fields:
 - `type`: must be set to `"item"`
 - `iframe`: must be set to `false`
 - `text`: the text to display for the link
-- `url`: the URL to open when the link is clicked
+- `link`: the URL to open when the link is clicked
 - `icon`: an [iron-icon](https://www.webcomponents.org/element/@polymer/iron-icons/demo/demo/index.html) name to display for the link.
     - Note, you must exclude the `icons:` prefix
     - For example, to use `icons:launch` you would set `"launch"`
@@ -62,7 +62,7 @@ data:
           "type": "item",
           "iframe": false,
           "text": "Kubeflow Website",
-          "url": "https://www.kubeflow.org/",
+          "link": "https://www.kubeflow.org/",
           "icon": "launch"
         }
       ],

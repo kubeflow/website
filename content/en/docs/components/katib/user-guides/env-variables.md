@@ -186,7 +186,7 @@ deployment:
         <td>No</td>
       </tr>
       <tr>
-        <td><code>KATIB_POSTGRESQL_DATABASE</code></td>
+        <td><code>KATIB_POSTGRESQL_DB_DATABASE</code></td>
         <td>Katib Postgres Database name</td>
         <td>katib</td>
         <td>No</td>

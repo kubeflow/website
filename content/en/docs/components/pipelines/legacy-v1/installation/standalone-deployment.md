@@ -55,7 +55,7 @@ gcloud container clusters create $CLUSTER_NAME \
      --scopes $SCOPES
 ```
 
-**Note**: `e2-standard-2` doesn't support GPU. You can choose machine types that meet your need by referring to guidance in [Cloud Machine families](http://cloud/compute/docs/machine-types).
+**Note**: `e2-standard-2` doesn't support GPU. You can choose machine types that meet your need by referring to guidance in [Cloud Machine families](https://cloud.google.com/compute/docs/machine-resource).
 
 **Warning**: Using `SCOPES="cloud-platform"` grants all GCP permissions to the cluster. For a more secure cluster setup, refer to [Authenticating Pipelines to GCP](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/authentication/#authentication-from-kubeflow-pipelines).
 
@@ -274,7 +274,7 @@ bases:
 ### Further reading
 
 * To learn about kustomize workflows with off-the-shelf configurations, see the
-[kustomize configuration workflows guide](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md#off-the-shelf-configuration).
+[kustomize configuration guide](https://kubectl.docs.kubernetes.io/guides/config_management/offtheshelf/).
 
 
 ## Troubleshooting
@@ -284,10 +284,10 @@ bases:
 MountVolume.SetUp failed for volume "gcp-credentials-user-gcp-sa" : secret "user-gcp-sa" not found
 ```
 
-You should remove `use_gcp_secret` usages as documented in [Authenticating Pipelines to GCP](/docs/distributions/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity).
+You should remove `use_gcp_secret` usages as documented in [Authenticating Pipelines to GCP](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity).
 
 
 ## What's next
 
-* [Connecting to Kubeflow Pipelines standalone on Google Cloud using the SDK](/docs/distributions/gke/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-standalone-or-ai-platform-pipelines)
-* [Authenticating Pipelines to GCP](/docs/distributions/gke/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity) if you want to use GCP services in Kubeflow Pipelines.
+* [Connecting to Kubeflow Pipelines standalone on Google Cloud using the SDK](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/authentication-sdk/#connecting-to-kubeflow-pipelines-standalone-or-ai-platform-pipelines)
+* [Authenticating Pipelines to GCP](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/authentication-pipelines/#authoring-pipelines-to-use-workload-identity) if you want to use GCP services in Kubeflow Pipelines.

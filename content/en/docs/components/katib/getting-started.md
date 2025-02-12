@@ -39,6 +39,11 @@ If you install Katib as part of Kubeflow Platform, you can open a new
 **Note**. If you use Katib within Kubeflow Platform to run this example, you need to use this
 namespace: `KatibClient(namespace="kubeflow-user-example-com")`.
 
+**Note**. The `kubeflow` namespace is pre-configured with the required label 
+`katib.kubeflow.org/metrics-collector-injection: enabled` for metrics collection. If you want to use pull-based metrics collector 
+in other namespaces, you can attach this label following the instructions in the 
+[Metrics Collector](/docs/components/katib/user-guides/metrics-collector/#prerequisites).
+
 ```python
 # [1] Create an objective function.
 def objective(parameters):
