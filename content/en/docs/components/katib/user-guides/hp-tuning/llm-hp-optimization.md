@@ -1,6 +1,6 @@
 +++
 title = "How to Optimize Hyperparameters of LLMs with Kubeflow"
-description = "API description"
+description = "API description of LLM hyperparameter optimization using Katib"
 weight = 20
 +++
 
