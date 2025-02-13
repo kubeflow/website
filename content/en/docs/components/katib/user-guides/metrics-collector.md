@@ -73,6 +73,9 @@ To define the pull-based metrics collector for your Experiment:
 
    - `TensorFlowEvent`: Katib collects the metrics from a directory path
      containing a [tf.Event](https://www.tensorflow.org/api_docs/python/tf/compat/v1/Event).
+     These are typically written by [tensorflow.summary](https://www.tensorflow.org/api_docs/python/tf/summary).
+     As of Katib 0.18, [torch.utils.tensorboard](https://pytorch.org/docs/stable/tensorboard.html) or
+     [tensorboardX](https://tensorboardx.readthedocs.io/en/latest/index.html) may also be used to write.
      You should specify the path in the `.source.fileSystemPath.path` field. Check the
      [TFJob example](https://github.com/kubeflow/katib/blob/ea46a7f2b73b2d316b6b7619f99eb440ede1909b/examples/v1beta1/kubeflow-training-operator/tfjob-mnist-with-summaries.yaml#L17-L23).
      The default directory path is `/var/log/katib/tfevent/`.
