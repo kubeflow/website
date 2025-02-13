@@ -268,10 +268,20 @@ enable = true
   # Links in footer
   [params.links]
     [[params.links.user]]
-      name = "Twitter"
-      url = "https://twitter.com/kubeflow/"
-      icon = "fab fa-twitter"
-      desc = "Follow us on Twitter to get the latest news!"
+      name = "X"
+      url = "https://x.com/kubeflow/"
+      icon = "fa-brands fa-x-twitter"
+      desc = "Follow us on X to get the latest news!"
+    [[params.links.user]]
+      name = "YouTube"
+      url = "https://www.youtube.com/kubeflow"
+      icon = "fab fa-youtube"
+      desc = "Subscribe to our YouTube channel for the latest videos!"
+    [[params.links.user]]
+      name = "LinkedIn"
+      url = "https://www.linkedin.com/company/kubeflow"
+      icon = "fab fa-linkedin"
+      desc = "Connect with us on LinkedIn for updates and networking!"
     [[params.links.user]]
       name = "Kubeflow Slack"
       url = "/docs/about/community/#kubeflow-slack-channels"
