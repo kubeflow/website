@@ -363,3 +363,4 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/training/user-guides/tensorflow/             /docs/components/trainer/legacy-v1/user-guides/tensorflow/
 /docs/components/training/user-guides/xgboost/                /docs/components/trainer/legacy-v1/user-guides/xgboost/
 /docs/components/training/                                    /docs/components/trainer/
+/docs/components/training/user-guides/pytorch/                /docs/components/trainer/legacy-v1/user-guides/pytorch/

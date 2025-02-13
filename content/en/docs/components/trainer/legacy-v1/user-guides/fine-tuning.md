@@ -4,10 +4,11 @@ description = "Overview of the LLM fine-tuning API in the Training Operator"
 weight = 10
 +++
 
-{{% alert title="Warning" color="warning" %}}
-This feature is in **alpha** stage and the Kubeflow community is looking for your feedback. Please
-share your experience using the [#kubeflow-training Slack channel](https://cloud-native.slack.com/archives/C0742LDFZ4K)
-or the [Kubeflow Training Operator GitHub](https://github.com/kubeflow/training-operator/issues/new).
+{{% alert title="Old Version" color="warning" %}}
+This page is about **Kubeflow Training Operator V1**, for the latest information check
+[the Kubeflow Trainer V2 documentation](/docs/components/trainer).
+
+Follow [this guide for migrating to Kubeflow Trainer V2](/docs/components/trainer/operator-guides/migration).
 {{% /alert %}}
 
 This page describes how to use a [`train` API from the Training Python SDK](https://github.com/kubeflow/training-operator/blob/release-1.9/sdk/python/kubeflow/training/api/training_client.py#L95)

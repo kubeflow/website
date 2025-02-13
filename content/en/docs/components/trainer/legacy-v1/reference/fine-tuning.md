@@ -4,6 +4,13 @@ description = "How Training Operator performs fine-tuning on Kubernetes"
 weight = 10
 +++
 
+{{% alert title="Old Version" color="warning" %}}
+This page is about **Kubeflow Training Operator V1**, for the latest information check
+[the Kubeflow Trainer V2 documentation](/docs/components/trainer).
+
+Follow [this guide for migrating to Kubeflow Trainer V2](/docs/components/trainer/operator-guides/migration).
+{{% /alert %}}
+
 This page shows how Training Operator implements the
 [API to fine-tune LLMs](/docs/components/trainer/legacy-v1/user-guides/fine-tuning).
 
