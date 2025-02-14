@@ -10,8 +10,7 @@ share your experience using the [#kubeflow-katib Slack channel](https://cloud-na
 or the [Kubeflow Katib GitHub](https://github.com/kubeflow/katib/issues).
 {{% /alert %}}
 
-This page describes how to implement Hyperparameter Optimization (HPO) using Python API that Katib supports and how to configure
-it.
+This page describes how to optimize hyperparameters (HPs) in the process of fine-tuning large language models (LLMs) using Katib's Python API and how to configure it.
 
 ## Prerequisites
 
