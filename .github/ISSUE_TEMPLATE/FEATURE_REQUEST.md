@@ -6,7 +6,7 @@ labels:
 title: "feature(<component>): <Feature Name>"
 ---
 **This is a Feature Request**
-<!-- Have a proposal about a component's functionality or feedback on a feature? Submit an issue on any of the kubeflow components on their associated repository https://github.com/kubeflow."
+<!-- Have a proposal about a component's functionality or feedback on a feature? Submit an issue on any of the kubeflow components on their associated repository https://github.com/kubeflow.
 
 <!-- Please only use this template for submitting feature/enhancement requests related to the website -->
 <!-- See https://www.kubeflow.org/docs/about/contributing/ for guidance on writing an actionable issue description. -->
