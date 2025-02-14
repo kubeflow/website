@@ -13,12 +13,6 @@ or the [Kubeflow Katib GitHub](https://github.com/kubeflow/katib/issues).
 This page describes how to implement Hyperparameter Optimization (HPO) using Python API that Katib supports and how to configure
 it.
 
-## Sections
-- [Prerequisites](#prerequisites)
-- [Load Model and Dataset](#load-model-and-dataset)
-- [Optimizing Hyperparameters of Large Language Models](#optimizing-hyperparameters-of-large-language-models)
-- [Example: Optimizing Hyperparameters of Llama-3.2 for Binary Classification on IMDB Dataset](#example-optimizing-hyperparameters-of-llama-32-for-binary-classification-on-imdb-dataset)
-
 ## Prerequisites
 
 You need to install the following Katib components to run code in this guide:
