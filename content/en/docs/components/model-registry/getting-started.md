@@ -1,8 +1,7 @@
 +++
 title = "Getting started"
 description = "Getting started with Model Registry using examples"
-weight = 30
-
+weight = 20
 +++
 
 This guide shows how to get started with Model Registry and run a few examples using the
@@ -10,9 +9,8 @@ command line or Python clients.
 
 At this time, the Model Registry does not include a web-based User Interface (UI), therefore this documentation focuses on backend services and APIs.
 
-For an overview of the logical model of model registry, check the
-[Model Registry logical model](https://github.com/kubeflow/model-registry/blob/main/docs/logical_model.md).
-The logical model is exposed via the Model Registry [REST API](https://editor.swagger.io/?url=https://raw.githubusercontent.com/kubeflow/model-registry/main/api/openapi/model-registry.yaml).
+For an overview of the logical model of model registry, check the [Model Registry logical model](https://github.com/kubeflow/model-registry/blob/main/docs/logical_model.md).
+The logical model is exposed via the Model Registry [REST API](reference/rest-api).
 
 ## Prerequisites
 
@@ -29,7 +27,7 @@ To follow along the examples in this guide, you will need a Kubeflow installatio
 To use Model Registry on a notebook you should first install the Python client:
 
 ```raw
-!pip install model-registry=="0.2.10"
+!pip install model-registry=="{{% model-registry/latest-version %}}"
 !pip install kserve=="0.13"
 ```
 
@@ -173,6 +171,7 @@ The InferenceService is now created, the CSI retrieves the latest artifact data 
 ## Next steps
 
 - Get involved:
-  - Model Registry working group: https://www.kubeflow.org/docs/about/community/#kubeflow-community-meetings
-  - https://github.com/kubeflow/model-registry
-- Feedback: {{% alpha-status feedbacklink="https://github.com/kubeflow/model-registry" %}}
+  - [Model Registry working group](https://www.kubeflow.org/docs/about/community/#kubeflow-community-meetings)
+  - [GitHub repository](https://github.com/kubeflow/model-registry)
+- Share your feedback:
+  - [File an issue](https://github.com/kubeflow/model-registry/issues)

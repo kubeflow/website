@@ -1,8 +1,7 @@
 +++
 title = "Installation"
 description = "How to set up Model Registry"
-weight = 20
-
+weight = 30
 +++
 
 This section details how to set up and configure Model Registry on your Kubernetes cluster with Kubeflow.
@@ -34,26 +33,29 @@ of Model Registry, you can install the Model Registry manifests directly from th
 
 By default, the manifests deploy the Model Registry in the `kubeflow` namespace;
 you must ensure the `kubeflow` namespace is available (for example: `kubectl create namespace kubeflow`)
-or modify [the kustomization file](https://github.com/kubeflow/model-registry/blob/v0.2.10/manifests/kustomize/overlays/db/kustomization.yaml#L3) to your desired namespace.
+or modify [the kustomization file](https://github.com/kubeflow/model-registry/blob/v{{% model-registry/latest-version %}}/manifests/kustomize/overlays/db/kustomization.yaml#L3) to your desired namespace.
 
 See the list of available versions on the [GitHub releases](https://github.com/kubeflow/model-registry/releases) of the `kubeflow/model-registry` repository. To install a specific release of the Model Registry, modify the following commands with the desired `ref=<GIT_TAG>`.
 
-Run the following command to install the `v0.2.10` release of Model Registry:
+Run the following command to install the `v{{% model-registry/latest-version %}}` release of Model Registry:
 
 ```shell
-kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/overlays/db?ref=v0.2.10"
+MODEL_REGISTRY_VERSION={{% model-registry/latest-version %}}
+kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/overlays/db?ref=v${MODEL_REGISTRY_VERSION}"
 ```
 
 If your Kubernetes cluster uses Istio, you MUST apply the Istio-compatibility manifests (e.g. when using a full Kubeflow Platform). However, these are NOT required for non-Istio clusters.
 
 ```shell
-kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/istio?ref=v0.2.10"
+MODEL_REGISTRY_VERSION={{% model-registry/latest-version %}}
+kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/istio?ref=v${MODEL_REGISTRY_VERSION}"
 ```
 
 If you want Kserve to be able to support `model-registry://` URI formats, you must apply the cluster-scoped `CustomStorageContainer` CR.
 
 ```shell
-kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/csi?ref=v0.2.10"
+MODEL_REGISTRY_VERSION={{% model-registry/latest-version %}}
+kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/csi?ref=v${MODEL_REGISTRY_VERSION}"
 ```
 
 ## Check Model Registry setup
@@ -65,7 +67,7 @@ kubectl wait --for=condition=available -n kubeflow deployment/model-registry-dep
 kubectl logs -n kubeflow deployment/model-registry-deployment
 ```
 
-Optionally, you can also manually forward the REST API container port of Model Registry and interact with the [REST API](https://editor.swagger.io/?url=https://raw.githubusercontent.com/kubeflow/model-registry/v0.2.10/api/openapi/model-registry.yaml),
+Optionally, you can also manually forward the REST API container port of Model Registry and interact with the [REST API](reference/rest-api),
 for example with:
 ```shell
 kubectl port-forward svc/model-registry-service -n kubeflow 8081:8080
@@ -97,4 +99,4 @@ You can use the same commands in a Jupyter Notebook cell by prefixing the comman
 
 ## Next steps
 
-- Run some examples following the [getting started guide](/docs/components/model-registry/getting-started/)
+- Follow the [Getting Started](getting-started.md) guide to learn how to use Model Registry.
