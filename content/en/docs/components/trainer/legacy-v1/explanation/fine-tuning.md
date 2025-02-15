@@ -4,10 +4,11 @@ description = "Why the Training Operator needs the fine-tuning API"
 weight = 10
 +++
 
-{{% alert title="Warning" color="warning" %}}
-This feature is in **alpha** stage and the Kubeflow community is looking for your feedback. Please
-share your experience using the [#kubeflow-training Slack channel](/docs/about/community/#kubeflow-slack-channels)
-or [Kubeflow Training Operator GitHib](https://github.com/kubeflow/training-operator/issues/new).
+{{% alert title="Old Version" color="warning" %}}
+This page is about **Kubeflow Training Operator V1**, for the latest information check
+[the Kubeflow Trainer V2 documentation](/docs/components/trainer).
+
+Follow [this guide for migrating to Kubeflow Trainer V2](/docs/components/trainer/operator-guides/migration).
 {{% /alert %}}
 
 This page explains how the [Training Operator fine-tuning API](/docs/components/trainer/legacy-v1/user-guides/fine-tuning)

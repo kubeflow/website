@@ -4,6 +4,13 @@ description = "How to schedule a job with gang-scheduling"
 weight = 70
 +++
 
+{{% alert title="Old Version" color="warning" %}}
+This page is about **Kubeflow Training Operator V1**, for the latest information check
+[the Kubeflow Trainer V2 documentation](/docs/components/trainer).
+
+Follow [this guide for migrating to Kubeflow Trainer V2](/docs/components/trainer/operator-guides/migration).
+{{% /alert %}}
+
 This guide describes how to use [Kueue](https://kueue.sigs.k8s.io/),
 [Volcano Scheduler](https://github.com/volcano-sh/volcano) and
 [Scheduler Plugins with coscheduling](https://github.com/kubernetes-sigs/scheduler-plugins/blob/2502825c671063af5b2aa78a1d34b24917f2def4/pkg/coscheduling/README.md)
