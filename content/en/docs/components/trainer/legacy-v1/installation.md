@@ -4,6 +4,13 @@ description = "How to install the Training Operator"
 weight = 20
 +++
 
+{{% alert title="Old Version" color="warning" %}}
+This page is about **Kubeflow Training Operator V1**, for the latest information check
+[the Kubeflow Trainer V2 documentation](/docs/components/trainer).
+
+Follow [this guide for migrating to Kubeflow Trainer V2](/docs/components/trainer/operator-guides/migration).
+{{% /alert %}}
+
 This guide describes how to install the Training Operator on your Kubernetes cluster.
 The Training Operator is a lightweight Kubernetes controller that orchestrates the
 appropriate Kubernetes workloads to perform distributed ML training and fine-tuning.
