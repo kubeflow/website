@@ -41,6 +41,6 @@ The following [Swagger UI](https://github.com/swagger-api/swagger-ui) is automat
 The _try it out_ feature of Swagger UI does not work due to authentication and CORS, but it can help you construct the correct API calls.
 {{% /alert %}}
 
-{{< swaggerui-inline >}}
+{{< swaggerui-inline component_name="Kubeflow Pipelines" default_input_url="https://kubeflow.example.com/pipeline/" >}}
 https://raw.githubusercontent.com/kubeflow/pipelines/{{% pipelines/latest-version %}}/backend/api/v2beta1/swagger/kfp_api_single_file.swagger.json
 {{< /swaggerui-inline >}}

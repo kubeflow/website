@@ -4,6 +4,13 @@ description = "Get started with the Training Operator"
 weight = 30
 +++
 
+{{% alert title="Old Version" color="warning" %}}
+This page is about **Kubeflow Training Operator V1**, for the latest information check
+[the Kubeflow Trainer V2 documentation](/docs/components/trainer).
+
+Follow [this guide for migrating to Kubeflow Trainer V2](/docs/components/trainer/operator-guides/migration).
+{{% /alert %}}
+
 This guide describes how to get started with the Training Operator and run a few simple examples.
 
 ## Prerequisites
