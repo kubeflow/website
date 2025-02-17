@@ -309,7 +309,8 @@ The following table lists distributions which are <em>maintained</em> by their r
           Rafay Systems
         </td>
         <td>
-          {{% rafay/latest-version %}} <sup>[<a href="https://docs.rafay.co/aiml/mlops-kubeflow/support/">Support Matrix</a>]</sup>
+          {{< kf-version-notice >}}{{% rafay/latest-version %}}{{< /kf-version-notice >}}
+          <sup><a href="https://docs.rafay.co/aiml/mlops-kubeflow/support/">[Support Matrix]</a></sup>
         </td>
         <td>
           All Certified Kubernetes Distributions
