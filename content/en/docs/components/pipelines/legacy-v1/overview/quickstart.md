@@ -11,7 +11,7 @@ Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we 
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
-Use this guide if you want to get an introduction to the Kubeflow Piplines user interface (UI) and get a simple pipeline running quickly. 
+Use this guide if you want to get an introduction to the Kubeflow Pipelines user interface (UI) and get a simple pipeline running quickly. 
 
 The goal with this quickstart guide is to shows how to use two of the samples that come with 
 the Kubeflow Pipelines installation and are visible on the Kubeflow Pipelines
