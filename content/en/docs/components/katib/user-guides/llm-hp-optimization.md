@@ -26,7 +26,7 @@ You need to install the following Katib components to run code in this guide:
 
 ## Load Model and Dataset
 
-To optimize hyperparameters of a pre-trained model, it is essential to load the model and dataset from a provider. Currently, this can be done using external platforms like **HuggingFace** and **S3-compatible object storage** (e.g., Amazon S3) through the `storage_initializer` API from Kubeflow.
+To optimize hyperparameters of a pre-trained model, it is essential to load the model and dataset from a provider. Currently, this can be done using external platforms like **HuggingFace** and **S3-compatible object storage** (e.g., Amazon S3) through the `storage_initializer` API from Kubeflow Training Operator.
 
 ### HuggingFace Integration
 
