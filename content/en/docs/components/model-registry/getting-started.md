@@ -7,7 +7,7 @@ weight = 20
 This guide shows how to get started with Model Registry and run a few examples using the
 command line or Python clients.
 
-At this time, the Model Registry does not include a web-based User Interface (UI), therefore this documentation focuses on backend services and APIs.
+<!-- TODO: Check with MR team to see if we include screenshots for a UI "get started" -->
 
 For an overview of the logical model of model registry, check the [Model Registry logical model](https://github.com/kubeflow/model-registry/blob/main/docs/logical_model.md).
 The logical model is exposed via the Model Registry [REST API](reference/rest-api).
