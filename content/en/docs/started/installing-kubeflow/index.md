@@ -339,7 +339,8 @@ The following table lists distributions which are <em>maintained</em> by their r
 
 ### Kubeflow Manifests
 
-The Kubeflow Manifests are aggregated by the Manifests Working Group and are intended to be
+The Kubeflow manifests are a collection of community maintained manifests.
+They are aggregated by the Manifests Working Group and are intended to be
 used by users with Kubernetes knowledge and as the base of packaged distributions.
 
 Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
@@ -355,14 +356,6 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
 - [**Kubeflow 1.8:**](/docs/releases/kubeflow-1.8/)
   - [`v1.8-branch`](https://github.com/kubeflow/manifests/tree/v1.8-branch#installation) <sup>(development branch)</sup>
   - [`v1.8.1`](https://github.com/kubeflow/manifests/tree/v1.8.1#installation)
-
-{{% alert title="Warning" color="warning" %}}
-The Kubeflow manifests provide a quick way to get a minimum viable Kubeflow Platform up and running.
-The Kubeflow community support for Kubeflow manifests is only best-effort, non-commercial and not guaranteed for environment-specific issues or custom configurations.
-Nevertheless, we welcome contributions and bug reports very much.
-
-For commercial production-level usage and support there are many options. You can use a third-party commercial distribution, hire consultants or build up the knowledge yourself to maintain and extend your Kubeflow installation.
-{{% /alert %}}
 
 ## Next steps
 
