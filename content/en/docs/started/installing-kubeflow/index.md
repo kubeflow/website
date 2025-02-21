@@ -339,7 +339,7 @@ The following table lists distributions which are <em>maintained</em> by their r
 
 ### Kubeflow Manifests
 
-The Kubeflow manifests are a collections of community maintained manifests.
+The Kubeflow manifests are a collection of community maintained manifests.
 They are aggregated by the Manifests Working Group and are intended to be
 used by users with Kubernetes knowledge and as the base of packaged distributions.
 
