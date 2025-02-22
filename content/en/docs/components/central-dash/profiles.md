@@ -6,13 +6,13 @@ weight = 20
 
 ## What is a Kubeflow Profile?
 
-A Profile is a Kubernetes CRD introduced by Kubeflow that wraps a Kubernetes Namespace.
-Profile are owned by a single user, and can have multiple contributors with view or modify access.
+A Kubeflow Profile is a [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) introduced by Kubeflow that wraps a Kubernetes [Namespace](https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/).
+Profiles are owned by a single user, and can have multiple contributors with view or modify access.
 The owner of a profile can add and remove contributors (this can also be done by the cluster administrator).
 
 Profiles and their child Namespaces are reconciled by the [Kubeflow Profile Controller](https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller) and contributors (not owners) are managed by the [Kubeflow Access Management API (KFAM)](https://github.com/kubeflow/kubeflow/tree/master/components/access-management).
 
-## Central Dashboard
+## Profiles in the Central Dashboard
 
 Select the active profile with the drop-down found in the top bar of Kubeflow Central Dashboard.
 Most Kubeflow components use the active profile to determine which resources to display, and what permissions to grant.

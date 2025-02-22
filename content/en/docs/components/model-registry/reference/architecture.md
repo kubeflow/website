@@ -1,8 +1,7 @@
 +++
-title = "Model Registry Reference"
+title = "Architecture"
 description = "Reference documentation for the Kubeflow Model Registry"
-weight = 20
-                    
+weight = 100
 +++
 
 ![Model Registry High Level Architecture](/docs/components/model-registry/reference/images/model-registry-overview.jpg)

@@ -338,3 +338,31 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/pipelines/v2/reference/sdk/                                /docs/components/pipelines/reference/sdk/
 /docs/components/pipelines/v2/run-a-pipeline/                               /docs/components/pipelines/user-guides/core-functions/run-a-pipeline/
 /docs/components/pipelines/v2/version-compatibility/                        /docs/components/pipelines/reference/version-compatibility/
+
+# Remove Components / Multi-Tenancy section
+/docs/concepts/multi-tenancy/                /docs/components/central-dash/profiles/
+/docs/concepts/multi-tenancy/overview/       /docs/components/central-dash/profiles/
+/docs/concepts/multi-tenancy/design/         /docs/components/central-dash/profiles/
+/docs/concepts/multi-tenancy/istio/          /docs/components/central-dash/profiles/
+
+# Kubeflow Trainer V2 (https://github.com/kubeflow/trainer/issues/2214)
+/docs/components/training/installation/                       /docs/components/trainer/legacy-v1/installation/
+/docs/components/training/explanation/                        /docs/components/trainer/legacy-v1/explanation/
+/docs/components/training/explanation/fine-tuning/            /docs/components/trainer/legacy-v1/explanation/fine-tuning/
+/docs/components/training/reference/                          /docs/components/trainer/legacy-v1/reference/
+/docs/components/training/reference/architecture/             /docs/components/trainer/legacy-v1/reference/architecture/
+/docs/components/training/reference/distributed-training/     /docs/components/trainer/legacy-v1/reference/distributed-training/
+/docs/components/training/reference/fine-tuning/              /docs/components/trainer/legacy-v1/reference/fine-tuning/
+/docs/components/training/user-guides/                        /docs/components/trainer/legacy-v1/user-guides/
+/docs/components/training/user-guides/fine-tuning/            /docs/components/trainer/legacy-v1/user-guides/fine-tuning/
+/docs/components/training/user-guides/jax/                    /docs/components/trainer/legacy-v1/user-guides/jax/
+/docs/components/training/user-guides/job-scheduling/         /docs/components/trainer/legacy-v1/user-guides/job-scheduling/
+/docs/components/training/user-guides/mpi/                    /docs/components/trainer/legacy-v1/user-guides/mpi/
+/docs/components/training/user-guides/paddle/                 /docs/components/trainer/legacy-v1/user-guides/paddle/
+/docs/components/training/user-guides/prometheus/             /docs/components/trainer/legacy-v1/user-guides/prometheus/
+/docs/components/training/user-guides/tensorflow/             /docs/components/trainer/legacy-v1/user-guides/tensorflow/
+/docs/components/training/user-guides/xgboost/                /docs/components/trainer/legacy-v1/user-guides/xgboost/
+/docs/components/training/                                    /docs/components/trainer/
+/docs/components/training/user-guides/pytorch/                /docs/components/trainer/legacy-v1/user-guides/pytorch/
+/docs/components/training/overview/                           /docs/components/trainer/legacy-v1/overview/
+/docs/components/training/getting-started/                    /docs/components/trainer/legacy-v1/getting-started/

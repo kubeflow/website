@@ -88,7 +88,7 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
       </tr>
       <tr>
         <td>
-         <a href="/docs/components/training/user-guides/mpi/#installation">
+         <a href="/docs/components/trainer/legacy-v1/user-guides/mpi/#installation">
             Kubeflow MPI Operator
           </a>
         </td>
@@ -133,12 +133,12 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
       </tr>
       <tr>
         <td>
-          <a href="/docs/components/training/installation/#installing-the-training-operator">
-            Kubeflow Training Operator
+          <a href="/docs/components/trainer/getting-started">
+            Kubeflow Trainer
           </a>
         </td>
         <td>
-          Model Training and Fine-Tuning
+          Model Training and LLMs Fine-Tuning
         </td>
         <td>
           <a href="https://github.com/kubeflow/training-operator">
@@ -158,11 +158,11 @@ and get the full suite of Kubeflow components bundled together with additional t
 ### Packaged Distributions
 
 Packaged distributions are maintained by various organizations and typically aim to provide
-a simplified installation and management experience for your **Kubeflow Platform**. Some distributions
-can be deployed on [all certified Kubernetes distributions](https://kubernetes.io/partners/#conformance),
+a simplified installation and management experience for your **Kubeflow Platform**. 
+Some can be deployed on multiple [Kubernetes distributions](https://kubernetes.io/partners/#conformance),
 while others target a specific platform (e.g. EKS or GKE).
 
-{{% alert title="Note" color="dark" %}}
+{{% alert title="" color="dark" %}}
 Packaged distributions are developed and supported by their respective maintainers.
 The Kubeflow community <strong>does not endorse or certify</strong> any specific distribution.
 {{% /alert %}}
@@ -188,7 +188,7 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% aws/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/awslabs/kubeflow-manifests/releases">[Release Notes]</a></sup>
+          <sup><a href="https://github.com/awslabs/kubeflow-manifests/releases">[release notes]</a></sup>
         </td>
         <td>
           Amazon Elastic Kubernetes Service (EKS)
@@ -204,10 +204,11 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% deploykf/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://www.deploykf.org/releases/tool-versions/#kubeflow-ecosystem">[Version Matrix]</a></sup>
+          <sup><a href="https://www.deploykf.org/releases/tool-versions/#kubeflow-ecosystem">[version matrix]</a></sup>
         </td>
         <td>
-          All Certified Kubernetes Distributions
+          Multiple
+          <sup><a href="https://www.deploykf.org/guides/getting-started/#kubernetes-cluster">[list]</a></sup>
         </td>
         <td>
           <a href="https://www.deploykf.org/">Website</a>
@@ -220,10 +221,10 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% canonical/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://charmed-kubeflow.io/docs/release-notes">[Release Notes]</a></sup>
+          <sup><a href="https://charmed-kubeflow.io/docs/release-notes">[release notes]</a></sup>
         </td>
         <td>
-          All Certified Kubernetes Distributions
+          Multiple
         </td>
         <td>
           <a href="https://charmed-kubeflow.io/">Website</a>
@@ -235,7 +236,7 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% gke/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/">[Release Notes]</a></sup>
+          <sup><a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/">[release notes]</a></sup>
         </td>
         <td>
           Google Kubernetes Engine (GKE)
@@ -250,7 +251,7 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% iks/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/IBM/manifests/releases">[Release Notes]</a></sup>
+          <sup><a href="https://github.com/IBM/manifests/releases">[release notes]</a></sup>
         </td>
         <td>
           IBM Cloud Kubernetes Service (IKS)
@@ -265,7 +266,7 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% azure/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/Azure/kubeflow-aks/releases">[Release Notes]</a></sup>
+          <sup><a href="https://github.com/Azure/kubeflow-aks/releases">[release notes]</a></sup>
         </td>
         <td>
           Azure Kubernetes Service (AKS)
@@ -294,7 +295,7 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% qbo/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">[Release Notes]</a></sup>
+          <sup><a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">[release notes]</a></sup>
         </td>
         <td>
           QBO Kubernetes Engine (QKE)
@@ -350,7 +351,7 @@ instructions in the `README` of the [`kubeflow/manifests`](https://github.com/ku
 
 - [**Kubeflow 1.9:**](/docs/releases/kubeflow-1.9/)
   - [`v1.9-branch`](https://github.com/kubeflow/manifests/tree/v1.9-branch#installation) <sup>(development branch)</sup>
-  - [`v1.9.0`](https://github.com/kubeflow/manifests/tree/v1.9.0#installation)
+  - [`v1.9.1`](https://github.com/kubeflow/manifests/tree/v1.9.1#installation)
 - [**Kubeflow 1.8:**](/docs/releases/kubeflow-1.8/)
   - [`v1.8-branch`](https://github.com/kubeflow/manifests/tree/v1.8-branch#installation) <sup>(development branch)</sup>
   - [`v1.8.1`](https://github.com/kubeflow/manifests/tree/v1.8.1#installation)

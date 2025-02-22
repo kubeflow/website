@@ -6,6 +6,30 @@ weight = 40
 
 This guide describes how Katib metrics collector works.
 
+## Prerequisites
+
+Before running your hyperparameter tuning Katib Experiment with Python SDK,
+ensure the namespace label `katib.kubeflow.org/metrics-collector-injection: enabled`
+is present. This label enables the sidecar container injection for pull-based metrics collectors to collect metrics during the experiment.
+
+You can configure the namespace by adding the following label `katib.kubeflow.org/metrics-collector-injection: enabled`
+as is shown in the sample code:
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <your-namespace>
+  labels:
+    katib.kubeflow.org/metrics-collector-injection: enabled
+```
+
+Or you can add the label to an existing namespace using the following command:
+
+```bash
+kubectl label namespace <your-namespace> katib.kubeflow.org/metrics-collector-injection=enabled
+```
+
 ## Overview
 
 There are two ways to collect metrics:
@@ -20,7 +44,7 @@ define how Katib should collect the metrics from each Trial, such as the accurac
 
 ## Pull-based Metrics Collector
 
-Your training code can record the metrics into `StdOut` or into arbitrary output files. 
+Your training code can record the metrics into `StdOut` or into arbitrary output files.
 
 To define the pull-based metrics collector for your Experiment:
 
@@ -49,6 +73,9 @@ To define the pull-based metrics collector for your Experiment:
 
    - `TensorFlowEvent`: Katib collects the metrics from a directory path
      containing a [tf.Event](https://www.tensorflow.org/api_docs/python/tf/compat/v1/Event).
+     These are typically written by [tensorflow.summary](https://www.tensorflow.org/api_docs/python/tf/summary).
+     As of Katib 0.18, [torch.utils.tensorboard](https://pytorch.org/docs/stable/tensorboard.html) or
+     [tensorboardX](https://tensorboardx.readthedocs.io/en/latest/index.html) may also be used to write metrics.
      You should specify the path in the `.source.fileSystemPath.path` field. Check the
      [TFJob example](https://github.com/kubeflow/katib/blob/ea46a7f2b73b2d316b6b7619f99eb440ede1909b/examples/v1beta1/kubeflow-training-operator/tfjob-mnist-with-summaries.yaml#L17-L23).
      The default directory path is `/var/log/katib/tfevent/`.
@@ -86,10 +113,10 @@ To define the pull-based metrics collector for your Experiment:
 
 ## Push-based Metrics Collector
 
-Your training code needs to call [`report_metrics()`](https://github.com/kubeflow/katib/blob/e251a07cb9491e2d892db306d925dddf51cb0930/sdk/python/v1beta1/kubeflow/katib/api/report_metrics.py#L26) function in Python SDK to record metrics. 
-The `report_metrics()` function works by parsing the metrics in `metrics` field into a gRPC request, automatically adding the current timestamp for users, and sending the request to Katib DB Manager. 
+Your training code needs to call [`report_metrics()`](https://github.com/kubeflow/katib/blob/e251a07cb9491e2d892db306d925dddf51cb0930/sdk/python/v1beta1/kubeflow/katib/api/report_metrics.py#L26) function in Python SDK to record metrics.
+The `report_metrics()` function works by parsing the metrics in `metrics` field into a gRPC request, automatically adding the current timestamp for users, and sending the request to Katib DB Manager.
 
-But before that, `kubeflow-katib` package should be installed in your training container. 
+But before that, `kubeflow-katib` package should be installed in your training container.
 
 To define the push-based metrics collector for your Experiment, you have two options:
 
@@ -122,7 +149,7 @@ To define the push-based metrics collector for your Experiment, you have two opt
       max_trial_count=2,
       metrics_collector_config={"kind": "Push"},
       # When SDK is released, replace it with packages_to_install=["kubeflow-katib==0.18.0"].
-      # Currently, the training container should have `git` package to install this SDK. 
+      # Currently, the training container should have `git` package to install this SDK.
       packages_to_install=["git+https://github.com/kubeflow/katib.git@master#subdirectory=sdk/python/v1beta1"],
     )
     ```
