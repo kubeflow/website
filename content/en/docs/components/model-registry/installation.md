@@ -26,6 +26,24 @@ Kubeflow Model Registry is available as an opt-in alpha component in Kubeflow Pl
 
 If you have deployed the Kubeflow manifests, you may follow [these instructions](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream#readme) to deploy Model Registry; please raise any feedback on [`kubeflow/model-registry`](https://github.com/kubeflow/model-registry/issues).
 
+To deploy Model Registry UI, you just need to follow the [UI section](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream#ui-installation) under the Model Registry installation guide targeting a integrated install.
+
+#### Installing on a Kubeflow Profile
+
+Kubeflow Central Dashboard uses [Profiles](/docs/components/central-dash/profiles/) to handle user namespaces and permissions. By default, the manifests deploy the Model Registry in the `kubeflow` namespace, to install a compatible version of Model Registry for Kubeflow, you should first head into the [istio overlay](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream/options/istio) and run the following commands:
+
+```shell
+kustomize set namespace <your-profile>
+kubectl apply -k .
+```
+
+Then head into the [db overlay](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream/overlays/db) and run the following commands:
+
+```shell
+kustomize set namespace <your-profile>
+kubectl apply -k .
+```
+
 ### Standalone installation
 
 If you want to install Model Registry separately from Kubeflow, or to get a later version
