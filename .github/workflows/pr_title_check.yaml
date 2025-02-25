@@ -12,6 +12,7 @@ jobs:
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
+	  shopt -s nocasematch
           VALID_COMPONENTS="central-dashboard|katib|kserve|model-registry|notebooks|pipelines|spark-operator|trainer|gsoc|website|community"
           if [[ ! "$PR_TITLE" =~ ^($VALID_COMPONENTS):\ .+ ]]; then
             echo "❌ PR title does not follow the correct format: 'component_name: description'"
