@@ -1,0 +1,26 @@
+name: Pull request title
+
+on:
+  pull_request_target:
+    types:
+      - edited
+      - opened
+      - reopened
+      - synchronize
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event.number }}
+  cancel-in-progress: true
+
+jobs:
+  verify-prefix:
+    name: verify component prefix
+    runs-on: ubuntu-latest
+    steps:
+    - uses: deepakputhraya/action-pr-title@master
+      with:
+        regex: '^[-A-Za-z]+: .+'
+        allowed_prefixes: 'central-dashboard,katib,kserve,model-registry,notebooks,pipelines,spark-operator,trainer,gsoc,website,community'
+        prefix_case_sensitive: false
+        verbal_description: 'should match format "{component}: {description}"'
+        github_token: ${{ secrets.GITHUB_TOKEN }}
