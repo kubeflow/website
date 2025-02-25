@@ -1,7 +1,7 @@
 +++
 title = "How to manage Jobs in multi-cluster environment"
 Desciption = "Using managedBy feild for MultiKueue"
-weight = 60
+weight = 10
 +++
 
 ## Overview
