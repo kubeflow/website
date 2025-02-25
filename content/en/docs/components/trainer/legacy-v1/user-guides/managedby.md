@@ -1,5 +1,5 @@
 +++
-title = "spec.runPolicy.managedBy"
+title = "How to manage Jobs in multi-cluster environment"
 Desciption = "Using managedBy feild for MultiKueue"
 weight = 60
 +++
@@ -24,7 +24,7 @@ metadata:
  name: "example-tfjob"
 spec:
  runPolicy:
-  managedBy: "kueue"
+  managedBy: "kueue.x-k8s.io/multikueue"
   tfReplicaSpecs:
     ...
 ```
@@ -40,7 +40,7 @@ metadata:
  name: "example-tfjob"
 spec:
  runPolicy:
-  managedBy: "kueue"
+  managedBy: "kueue.x-k8s.io/multikueue"
   tfReplicaSpecs:
     Chief:
       replicas: 1
@@ -60,7 +60,7 @@ spec:
               args: ["python", "model.py"]
 ```
 
-## Cross-References
+## More Details
 
 For more details on setting up and using MultiQueue with the Kubeflow Training Operator, refer to the following documentation pages:
 
