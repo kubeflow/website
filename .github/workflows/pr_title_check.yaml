@@ -1,0 +1,21 @@
+name: PR Title Validation
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  validate-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR Title Format
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          VALID_COMPONENTS="central-dashboard|katib|kserve|model-registry|notebooks|pipelines|spark-operator|trainer|gsoc|website|community"
+          if [[ ! "$PR_TITLE" =~ ^($VALID_COMPONENTS):\ .+ ]]; then
+            echo "❌ PR title does not follow the correct format: 'component_name: description'"
+            echo "Example: model-registry: Add model registry UI Installation instructions"
+            exit 1
+          fi
+          echo "✅ PR title format is correct."
