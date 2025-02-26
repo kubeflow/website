@@ -29,11 +29,11 @@ The Kubeflow community offers best-effort support for stable components. See the
 
 Kubeflow has an active and helpful community of users and contributors. 
 The Kubeflow community offers support on a best-effort basis for stable and beta
-applications.
+applications. If you need commercial support, please check the sections below.
 **Best-effort support** means that there's no formal agreement or
 commitment to solve a problem but the community appreciates the
 importance of addressing the problem as soon as possible. The community commits
-to helping you diagnose and address the problem if all the following are true:
+to helping you diagnose and address the problem if all of the following requirements are satisfied:
 
 * The cause falls within the technical framework that Kubeflow controls. For
   example, the Kubeflow community may not be able to help if the problem is 
@@ -53,7 +53,6 @@ You can ask questions and make suggestions in the following places:
 
   * [Kubeflow installation and setup](/docs/started/installing-kubeflow/)
   * [Kubeflow components](/docs/components/)
-  * [Further setup and troubleshooting](/docs/other-guides/)
 
 * **Kubeflow issue trackers** for known issues, questions, and feature requests.
   Search the open issues to see if someone else has already logged the problem 
