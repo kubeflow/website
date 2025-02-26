@@ -12,6 +12,7 @@ This page describes the Kubeflow resources and support options available when yo
 When you deploy Kubeflow to a Kubernetes cluster, your deployment includes multiple components. Note that component versioning is independent from Kubeflow versioning. Each component should meet certain [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md) regarding stability, upgradability, logging, monitoring, and security (such as adherence to PodSecurity standards restricted, network policies, and integration tests for authentication and authorization).
 
 Component status indicators:
+
 * **Stable**: The application complies with most of the criteria and is considered stable for this release.
 * **Beta**: The application is progressing toward meeting all criteria.
 * **Alpha**: The application is in early development or integration stages.
@@ -28,6 +29,7 @@ Component status indicators:
 Kubeflow has an active and helpful community of users and contributors. 
 The Kubeflow community offers support on a best-effort basis for stable and beta
 applications. If you need commercial support, please check the sections below.
+
 **Best-effort support** means that there's no formal agreement or
 commitment to solve a problem but the community appreciates the
 importance of addressing the problem as soon as possible. The community commits
@@ -42,22 +44,21 @@ to helping you diagnose and address the problem if all of the following requirem
 You can ask questions and make suggestions in the following places:
 
 * **Slack** for online chat and messaging, see [Slack workspace and channels](/docs/about/community/#kubeflow-slack-channels).
-* **Github discussions** TODO
+* **Github discussions** per repository, e.g. [here](https://github.com/kubeflow/manifests/discussions)
 * **Kubeflow discuss** for email-based group discussion. Join the
   [kubeflow-discuss](/docs/about/community/#kubeflow-mailing-list)
   group.
 * **Kubeflow documentation** for overviews and how-to guides. In particular,
   refer to the following documents when troubleshooting a problem:
-
   * [Kubeflow installation and setup](/docs/started/installing-kubeflow/)
   * [Kubeflow components](/docs/components/)
 
 * **Kubeflow issue trackers** for known issues, questions, and feature requests.
   Search the open issues to see if someone else has already logged the problem 
-  that you're encountering and learn about any workarounds to date. If no one
+  that you are encountering and learn about any workarounds. If no one
   has logged your problem, create a new issue to describe the problem.
 
-    Each Kubeflow application has its own issue tracker within the [Kubeflow
+    Each Kubeflow component has its own issue tracker within the [Kubeflow
     organization on GitHub](https://github.com/kubeflow). To get you started,
     here are the primary issue trackers:
 
