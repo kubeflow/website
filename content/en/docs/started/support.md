@@ -76,6 +76,7 @@ You can ask questions and make suggestions in the following places:
 <a id="provider-support"></a>
 ## Support from commercial providers in the Kubeflow Ecosystem
 
+We want to promote commercial companies and idividuals that contribute back to the open source project.
 Below is a table of organizations that contribute to Kubeflow and offer commercial support:
 
 | Provider               | Support Link                                                   |
