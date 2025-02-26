@@ -15,6 +15,7 @@ jobs:
           VALID_COMPONENTS="central-dashboard|katib|kserve|model-registry|notebooks|pipelines|spark-operator|trainer|gsoc|website|community"
           if [[ ! "$PR_TITLE" =~ ^($VALID_COMPONENTS):\ .+ ]]; then
             echo "❌ PR title does not follow the correct format: 'component_name: description'"
+            echo "Component value must be one of these central-dashboard|katib|kserve|model-registry|notebooks|pipelines|spark-operator|trainer|gsoc|website|community"
             echo "Example: model-registry: Add model registry UI Installation instructions"
             exit 1
           fi
