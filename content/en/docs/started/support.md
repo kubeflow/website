@@ -41,10 +41,9 @@ to helping you diagnose and address the problem if all the following are true:
 * Community members can reproduce the problem.
 * The reporter can assist with troubleshooting.
 
-usYou can ask questions and make suggestions in the following places:
+You can ask questions and make suggestions in the following places:
 
-* **Slack** for online chat and messaging. See details of Kubeflow's 
-  [Slack workspace and channels](/docs/about/community/#kubeflow-slack).
+* **Slack** for online chat and messaging, see [Slack workspace and channels](/docs/about/community/#kubeflow-slack-channels).
 * **Github discussions** TODO
 * **Kubeflow discuss** for email-based group discussion. Join the
   [kubeflow-discuss](/docs/about/community/#kubeflow-mailing-list)
@@ -52,7 +51,7 @@ usYou can ask questions and make suggestions in the following places:
 * **Kubeflow documentation** for overviews and how-to guides. In particular,
   refer to the following documents when troubleshooting a problem:
 
-  * [Kubeflow installation and setup](/docs/started/getting-started/)
+  * [Kubeflow installation and setup](/docs/started/installing-kubeflow/)
   * [Kubeflow components](/docs/components/)
   * [Further setup and troubleshooting](/docs/other-guides/)
 
@@ -65,18 +64,18 @@ usYou can ask questions and make suggestions in the following places:
     organization on GitHub](https://github.com/kubeflow). To get you started,
     here are the primary issue trackers:
 
-  * [Platform / Manifests](https://github.com/kubeflow/manifests/issues)
   * [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/issues)
   * [Katib AutoML](https://github.com/kubeflow/katib/issues)
   * [Trainer](https://github.com/kubeflow/training-operator/issues)
   * [Notebooks](https://github.com/kubeflow/notebooks/issues)
   * [Dashboard](https://github.com/kubeflow/dashboard/issues)
   * [Kserve](https://github.com/kserve/kserve/issues)
+  * [Platform / Manifests](https://github.com/kubeflow/manifests/issues)
   * [Examples](https://github.com/kubeflow/examples/issues)
   * [Website](https://github.com/kubeflow/website/issues)
 
 <a id="provider-support"></a>
-## Support from Providers in the Kubeflow Ecosystem
+## Support from commercial providers in the Kubeflow Ecosystem
 
 Below is a table of organizations that contribute to Kubeflow and offer commercial support:
 
