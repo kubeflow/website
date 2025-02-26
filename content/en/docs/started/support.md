@@ -9,13 +9,13 @@ This page describes the Kubeflow resources and support options available when yo
 <a id="application-status"></a>
 ## Component Status
 
-When you deploy Kubeflow to a Kubernetes cluster, your deployment includes multiple components. Note that component versioning is independent from Kubeflow versioning. Each component should meet certain [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md) regarding stability, upgradability, logging, monitoring, and security (such as adherence to PodSecurity standards restricted, network policies, and integration tests for authentication and authorization).
+When you deploy Kubeflow to a Kubernetes cluster, your deployment includes multiple components. Note that component versioning is independent from Kubeflow versioning. Each component should meet certain [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md) regarding stability, upgradability, logging, monitoring, and security (PodSecurityStandards restricted, network policies, and integration tests for authentication and authorization).
 
 Component status indicators:
 
 * **Stable**: The application complies with most of the criteria and is considered stable for this release.
-* **Beta**: The application is progressing toward meeting all criteria.
-* **Alpha**: The application is in early development or integration stages.
+* **Beta**: The application is progressing towards meeting most criteria.
+* **Alpha**: The application is in an early development or integration stage.
 
 <a id="levels-of-support"></a>
 ## Levels of Support
@@ -44,7 +44,7 @@ to helping you diagnose and address the problem if all of the following requirem
 You can ask questions and make suggestions in the following places:
 
 * **Slack** for online chat and messaging, see [Slack workspace and channels](/docs/about/community/#kubeflow-slack-channels).
-* **Github discussions** per repository, e.g. [here](https://github.com/kubeflow/manifests/discussions)
+* **GitHub discussions** per repository, e.g. [here](https://github.com/kubeflow/manifests/discussions)
 * **Kubeflow discuss** for email-based group discussion. Join the
   [kubeflow-discuss](/docs/about/community/#kubeflow-mailing-list)
   group.
@@ -92,11 +92,11 @@ provider may be able to help you diagnose and solve a problem.
 
 ## Getting Involved
 
-You can participate in Kubeflow by contributing funding, code, documentation, usecases or by joining community meetings. For more information, see the [Kubeflow Community page](/docs/about/community/).
+You can participate in Kubeflow by contributing funding, code, documentation, use cases or by joining community meetings. For more information, see the [Kubeflow Community page](/docs/about/community/).
 
 ## Stay Updated
 
 Keep up with Kubeflow news:
 * The [Kubeflow Blog](https://blog.kubeflow.org/) for release announcements, events, and tutorials.
 * [Kubeflow on Twitter](https://twitter.com/kubeflow) for technical tips.
-* Release notes for detailed updates on each Kubeflow application.  
+* Release notes for detailed updates on each Kubeflow application.
