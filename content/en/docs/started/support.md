@@ -9,10 +9,9 @@ This page describes the Kubeflow resources and support options available when yo
 <a id="application-status"></a>
 ## Component Status
 
-When you deploy Kubeflow to a Kubernetes cluster, your deployment includes multiple components. Note that component versioning is independent from Kubeflow versioning. Each component should meet certain criteria regarding stability, upgradability, logging, monitoring, and security (such as adherence to PodSecurity standards, network policies, and integration tests for authentication and authorization).
+When you deploy Kubeflow to a Kubernetes cluster, your deployment includes multiple components. Note that component versioning is independent from Kubeflow versioning. Each component should meet certain [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md) regarding stability, upgradability, logging, monitoring, and security (such as adherence to PodSecurity standards restricted, network policies, and integration tests for authentication and authorization).
 
-Application status indicators for Kubeflow:
-
+Component status indicators:
 * **Stable**: The application complies with most of the criteria and is considered stable for this release.
 * **Beta**: The application is progressing toward meeting all criteria.
 * **Alpha**: The application is in early development or integration stages.
@@ -20,9 +19,8 @@ Application status indicators for Kubeflow:
 <a id="levels-of-support"></a>
 ## Levels of Support
 
-The following table describes the level of support that you can expect based on the status of an application:
-
-The Kubeflow community offers best-effort support for stable components. See the section on community support below for a definition of best-effort support and the community channels where you can report and discuss the problem. You can also consider requesting  support from a commercial company or freelancer listed below.
+- The Kubeflow community offers best-effort support for stable components.
+- You can also consider requesting  support from a commercial company or freelancer listed below.
 
 <a id="community-support"></a>
 ## Support from the Kubeflow community
