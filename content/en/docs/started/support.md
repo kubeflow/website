@@ -20,7 +20,7 @@ Component status indicators:
 ## Levels of Support
 
 1. The Kubeflow community offers best-effort support for stable components.
-2. You can also consider requesting  support from a commercial company or freelancer listed below.
+2. You can also request commercial support from a company or freelancer listed below.
 
 <a id="community-support"></a>
 ## Support from the Kubeflow community
@@ -91,7 +91,7 @@ provider may be able to help you diagnose and solve a problem.
 
 ## Getting Involved
 
-You can participate in Kubeflow by contributing code, documentation, or by joining community meetings. For more information, see the [Kubeflow Community page](/docs/about/community/).
+You can participate in Kubeflow by contributing funding, code, documentation, usecases or by joining community meetings. For more information, see the [Kubeflow Community page](/docs/about/community/).
 
 ## Stay Updated
 
