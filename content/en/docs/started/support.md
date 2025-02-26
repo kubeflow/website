@@ -19,8 +19,8 @@ Component status indicators:
 <a id="levels-of-support"></a>
 ## Levels of Support
 
-- The Kubeflow community offers best-effort support for stable components.
-- You can also consider requesting  support from a commercial company or freelancer listed below.
+1. The Kubeflow community offers best-effort support for stable components.
+2. You can also consider requesting  support from a commercial company or freelancer listed below.
 
 <a id="community-support"></a>
 ## Support from the Kubeflow community
