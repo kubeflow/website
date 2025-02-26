@@ -87,7 +87,7 @@ Below is a table of organizations that contribute to Kubeflow and offer commerci
 | Other Providers        | ...                                                            |
 
 <a id="cloud-support"></a>
-If you are using the a managed offer from a cloud provider for Kubeflow, then the cloud
+If you are using a managed offer from a cloud provider for Kubeflow, then the cloud
 provider may be able to help you diagnose and solve a problem.
 
 ## Getting Involved
