@@ -6,6 +6,7 @@ weight = 80
 
 This page describes the Kubeflow resources and support options available when you encounter a problem, have a question, or want to make a suggestion about Kubeflow.
 
+<a id="application-status"></a>
 ## Component Status
 
 When you deploy Kubeflow to a Kubernetes cluster, your deployment includes multiple components. Note that component versioning is independent from Kubeflow versioning. Each component should meet certain criteria regarding stability, upgradability, logging, monitoring, and security (such as adherence to PodSecurity standards, network policies, and integration tests for authentication and authorization).
@@ -16,6 +17,7 @@ Application status indicators for Kubeflow:
 * **Beta**: The application is progressing toward meeting all criteria.
 * **Alpha**: The application is in early development or integration stages.
 
+<a id="levels-of-support"></a>
 ## Levels of Support
 
 The following table describes the level of support that you can expect based on the status of an application:
@@ -73,6 +75,7 @@ usYou can ask questions and make suggestions in the following places:
   * [Examples](https://github.com/kubeflow/examples/issues)
   * [Website](https://github.com/kubeflow/website/issues)
 
+<a id="provider-support"></a>
 ## Support from Providers in the Kubeflow Ecosystem
 
 Below is a table of organizations that contribute to Kubeflow and offer commercial support:
@@ -85,6 +88,7 @@ Below is a table of organizations that contribute to Kubeflow and offer commerci
 | Red Hat                | [Red Hat](https://...)                                         |
 | Other Providers        | ...                                                            |
 
+<a id="cloud-support"></a>
 If you are using the a managed offer from a cloud provider for Kubeflow, then the cloud
 provider may be able to help you diagnose and solve a problem.
 
