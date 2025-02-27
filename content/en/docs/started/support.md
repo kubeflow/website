@@ -78,13 +78,13 @@ You can ask questions and make suggestions in the following places:
 We want to promote commercial companies and idividuals that contribute back to the open source project.
 Below is a table of organizations that contribute to Kubeflow and offer commercial support:
 
-| Provider                      | Support Link                                                                                                                    |
-|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| Aranui Solutions              | [Aranui Solutions](https://www.aranui.solutions/services)                                                                       |
-| Canonical                     | [Ubuntu Kubeflow](https://ubuntu.com/kubeflow#get-in-touch)                                                                     |
-| Freelancer Julius von Kohout  | [LinkedIn](https://de.linkedin.com/in/juliusvonkohout/), Slack: Julius von Kohout, [GitHub](https://github.com/juliusvonkohout) |
-| Red Hat                       | [Red Hat](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai)                                        |
-| Other Providers               | Please reach out to the KSC with enough proof of contributions to the Kubeflow open source peoject                              |
+| Provider                      | Support Link                                                                                                                                                   |
+|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Aranui Solutions              | [Aranui Solutions](https://www.aranui.solutions/services)                                                                                                      |
+| Canonical                     | [Ubuntu Kubeflow](https://ubuntu.com/kubeflow#get-in-touch)                                                                                                    |
+| Freelancer Julius von Kohout  | [LinkedIn](https://de.linkedin.com/in/juliusvonkohout/), [Slack](https://cloud-native.slack.com/team/U06LW431SJF), [GitHub](https://github.com/juliusvonkohout) |
+| Red Hat                       | [Red Hat](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai)                                                                       |
+| Other Providers               | Please reach out to the KSC with enough proof of contributions to the Kubeflow open source peoject                                                             |
 
 <a id="cloud-support"></a>
 If you are using a managed offer from a cloud provider for Kubeflow, then the cloud
