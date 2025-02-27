@@ -97,6 +97,7 @@ You can participate in Kubeflow by contributing funding, code, documentation, us
 ## Stay Updated
 
 Keep up with Kubeflow news:
+* The [community page](https://www.kubeflow.org/docs/about/community/) with Slack channels, regular meetings and other guidelines.
 * The [Kubeflow Blog](https://blog.kubeflow.org/) for release announcements, events, and tutorials.
 * [Kubeflow on Twitter](https://twitter.com/kubeflow) for technical tips.
 * Release notes for detailed updates on each Kubeflow application.
