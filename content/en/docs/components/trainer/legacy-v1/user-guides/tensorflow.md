@@ -1,7 +1,7 @@
 +++
 title = "TensorFlow Training (TFJob)"
 description = "Using TFJob to train a model with TensorFlow"
-weight = 10
+weight = 20
 +++
 
 {{% alert title="Old Version" color="warning" %}}
