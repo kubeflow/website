@@ -65,7 +65,7 @@ You can ask questions and make suggestions in the following places:
 
   * [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/issues)
   * [Katib AutoML](https://github.com/kubeflow/katib/issues)
-  * [Trainer](https://github.com/kubeflow/training-operator/issues)
+  * [Trainer](https://github.com/kubeflow/trainer/issues)
   * [Notebooks](https://github.com/kubeflow/notebooks/issues)
   * [Dashboard](https://github.com/kubeflow/dashboard/issues)
   * [Kserve](https://github.com/kserve/kserve/issues)
