@@ -9,6 +9,7 @@ This page describes the Kubeflow resources and support options available when yo
 <a id="application-status"></a>
 ## Component Status
 
+Please make youself familiar with the [structure of Kubeflow](https://www.kubeflow.org/docs/started/introduction/#what-is-kubeflow) first. 
 When you deploy Kubeflow to a Kubernetes cluster, your deployment includes multiple projects. Note that project versioning is independent from Kubeflow Platform version. Each project should meet certain [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md) regarding stability, upgradability, logging, monitoring, and security (PodSecurityStandards restricted, network policies, and integration tests for authentication and authorization).
 
 Component status indicators:
