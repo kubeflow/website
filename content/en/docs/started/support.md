@@ -20,14 +20,14 @@ Component status indicators:
 <a id="levels-of-support"></a>
 ## Levels of Support
 
-1. The Kubeflow community offers best-effort support for stable components.
+1. The Kubeflow community provides best-effort support for stable components.
 2. You can also request commercial support from a company or freelancer listed below.
 
 <a id="community-support"></a>
 ## Support from the Kubeflow community
 
 Kubeflow has an active and helpful community of users and contributors. 
-The Kubeflow community offers support on a best-effort basis for stable and beta
+The Kubeflow community provides support on a best-effort basis for stable and beta
 applications. If you need commercial support, please check the sections below.
 
 **Best-effort support** means that there's no formal agreement or
@@ -78,13 +78,13 @@ You can ask questions and make suggestions in the following places:
 We want to promote commercial companies and idividuals that contribute back to the open source project.
 Below is a table of organizations that contribute to Kubeflow and offer commercial support:
 
-| Provider               | Support Link                                                   |
-|------------------------|----------------------------------------------------------------|
-| Canonical              | [Ubuntu Kubeflow](https://ubuntu.com/kubeflow#get-in-touch)    |
-| Aranui Solutions       | [Aranui Solutions](https://...)                                |
-| Freelance/Consulting   | Julius von Kohout on the Slack channel                         |
-| Red Hat                | [Red Hat](https://...)                                         |
-| Other Providers        | ...                                                            |
+| Provider                      | Support Link                                                                                                                    |
+|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| Aranui Solutions              | [Aranui Solutions](https://www.aranui.solutions/services)                                                                       |
+| Canonical                     | [Ubuntu Kubeflow](https://ubuntu.com/kubeflow#get-in-touch)                                                                     |
+| Freelancer Julius von Kohout  | [LinkedIn](https://de.linkedin.com/in/juliusvonkohout/), Slack: Julius von Kohout, [GitHub](https://github.com/juliusvonkohout) |
+| Red Hat                       | [Red Hat](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai)                                        |
+| Other Providers               | Please reach out to the KSC with enough proof of contributions to the Kubeflow open source peoject                              |
 
 <a id="cloud-support"></a>
 If you are using a managed offer from a cloud provider for Kubeflow, then the cloud
