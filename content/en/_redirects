@@ -18,7 +18,7 @@
 # https://github.com/kubeflow/website/pull/3786
 /docs/components/pipelines/legacy-v1/overview/multi-user    /docs/components/pipelines/operator-guides/multi-user
 
-# Merged duplicate page pipelines-samples.md into build-pipeline.md
+# Merged duplicate page pipelines-samples/ into build-pipeline/
 /docs/pipelines/pipelines-samples/	   /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
 
 # Removed redundant UI guide. Quickstart is a better destination.
@@ -366,3 +366,39 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/training/user-guides/pytorch/                /docs/components/trainer/legacy-v1/user-guides/pytorch/
 /docs/components/training/overview/                           /docs/components/trainer/legacy-v1/overview/
 /docs/components/training/getting-started/                    /docs/components/trainer/legacy-v1/getting-started/
+
+# Move Kubeflow Projects outside of components (https://github.com/kubeflow/website/issues/3982)
+
+# Kubeflow Dashboard
+/docs/components/central-dash/ /docs/components/kubeflow-dashboard/
+/docs/components/central-dash/overview/ /docs/components/kubeflow-dashboard/overview/
+/docs/components/central-dash/profiles/ /docs/components/kubeflow-dashboard/profiles/
+/docs/components/central-dash/access/ /docs/components/kubeflow-dashboard/access/
+/docs/components/central-dash/customize/ /docs/components/kubeflow-dashboard/customize/
+
+# Kubeflow Katib
+/docs/components/katib/ /docs/kubeflow-katib/
+/docs/components/katib/overview/ /docs/kubeflow-katib/overview/
+/docs/components/katib/getting-started/ /docs/kubeflow-katib/getting-started/
+/docs/components/katib/user-guides/ /docs/kubeflow-katib/user-guides/
+/docs/components/katib/user-guides/hp-tuning/ /docs/kubeflow-katib/user-guides/hp-tuning/
+/docs/components/katib/user-guides/hp-tuning/configure-algorithm/ /docs/kubeflow-katib/user-guides/hp-tuning/configure-algorithm/
+/docs/components/katib/user-guides/hp-tuning/configure-experiment/ /docs/kubeflow-katib/user-guides/hp-tuning/configure-experiment/
+/docs/components/katib/user-guides/nas/ /docs/kubeflow-katib/user-guides/nas/
+/docs/components/katib/user-guides/nas/configure-algorithm/ /docs/kubeflow-katib/user-guides/nas/configure-algorithm/
+/docs/components/katib/user-guides/nas/configure-experiment/ /docs/kubeflow-katib/user-guides/nas/configure-experiment/
+/docs/components/katib/user-guides/resume-experiment/ /docs/kubeflow-katib/user-guides/resume-experiment/
+/docs/components/katib/user-guides/katib-ui/ /docs/kubeflow-katib/user-guides/katib-ui/
+/docs/components/katib/user-guides/early-stopping/ /docs/kubeflow-katib/user-guides/early-stopping/
+/docs/components/katib/user-guides/trial-template/ /docs/kubeflow-katib/user-guides/trial-template/
+/docs/components/katib/user-guides/env-variables/ /docs/kubeflow-katib/user-guides/env-variables/
+/docs/components/katib/user-guides/installation-options/ /docs/kubeflow-katib/user-guides/installation-options/
+/docs/components/katib/user-guides/katib-config/ /docs/kubeflow-katib/user-guides/katib-config/
+/docs/components/katib/user-guides/metrics-collector/ /docs/kubeflow-katib/user-guides/metrics-collector/
+/docs/components/katib/installation/ /docs/kubeflow-katib/installation/
+/docs/components/katib/reference/ /docs/kubeflow-katib/reference/
+/docs/components/katib/reference/architecture/ /docs/kubeflow-katib/reference/architecture/
+/docs/components/katib/reference/experiment-cr/ /docs/kubeflow-katib/reference/experiment-cr/
+/docs/components/katib/reference/nas-algorithms/ /docs/kubeflow-katib/reference/nas-algorithms/
+
+# TODO: Add other projects.
