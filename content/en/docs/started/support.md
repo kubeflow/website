@@ -62,16 +62,15 @@ You can ask questions and make suggestions in the following places:
     Each Kubeflow component has its own issue tracker within the [Kubeflow
     organization on GitHub](https://github.com/kubeflow). To get you started,
     here are the primary issue trackers:
-
+  * [Kubeflow Spark Operator](https://github.com/kubeflow/spark-operator/issues)
   * [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/issues)
-  * [Katib AutoML](https://github.com/kubeflow/katib/issues)
-  * [Trainer](https://github.com/kubeflow/trainer/issues)
-  * [Notebooks](https://github.com/kubeflow/notebooks/issues)
-  * [Dashboard](https://github.com/kubeflow/dashboard/issues)
-  * [Kserve](https://github.com/kserve/kserve/issues)
-  * [Platform / Manifests](https://github.com/kubeflow/manifests/issues)
-  * [Examples](https://github.com/kubeflow/examples/issues)
-  * [Website](https://github.com/kubeflow/website/issues)
+  * [Kubeflow Katib](https://github.com/kubeflow/katib/issues)
+  * [Kubeflow Trainer](https://github.com/kubeflow/trainer/issues)
+  * [Kubeflow Notebooks](https://github.com/kubeflow/notebooks/issues)
+  * [Kubeflow Dashboard](https://github.com/kubeflow/dashboard/issues)
+  * [Kubeflow Kserve](https://github.com/kserve/kserve/issues)
+  * [Kubeflow Platform / Manifests](https://github.com/kubeflow/manifests/issues)
+  * [Kubeflow Website](https://github.com/kubeflow/website/issues)
 
 <a id="provider-support"></a>
 ## Support from commercial providers in the Kubeflow Ecosystem
