@@ -339,23 +339,19 @@ The following table lists distributions which are <em>maintained</em> by their r
 
 ### Kubeflow Manifests
 
-The Kubeflow manifests are a collection of community maintained manifests.
+The Kubeflow manifests are a collection of community maintained manifests to install Kubeflow in popular Kubernetes clusters such as Kind (locally), Minikube (locally), Rancher, EKS, AKS, GKE.
 They are aggregated by the Manifests Working Group and are intended to be
 used by users with Kubernetes knowledge and as the base of packaged distributions.
 
 Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
 applications that comprise the **Kubeflow Platform**. This installation is helpful when you want to
 try out the end-to-end Kubeflow Platform capabilities.
-
-Users may choose to install the manifests for a specific Kubeflow version by following the
-instructions in the `README` of the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
-
+ 
+If you want a stable / conservative experience we recommend to use the [latest stable release](https://github.com/kubeflow/manifests/releases): 
 - [**Kubeflow 1.9:**](/docs/releases/kubeflow-1.9/)
-  - [`v1.9-branch`](https://github.com/kubeflow/manifests/tree/v1.9-branch#installation) <sup>(development branch)</sup>
   - [`v1.9.1`](https://github.com/kubeflow/manifests/tree/v1.9.1#installation)
-- [**Kubeflow 1.8:**](/docs/releases/kubeflow-1.8/)
-  - [`v1.8-branch`](https://github.com/kubeflow/manifests/tree/v1.8-branch#installation) <sup>(development branch)</sup>
-  - [`v1.8.1`](https://github.com/kubeflow/manifests/tree/v1.8.1#installation)
+
+You can also install the master branch of [`kubeflow/manifests`](https://github.com/kubeflow/manifests) by following the instructions [here](https://github.com/kubeflow/manifests?tab=readme-ov-file#installation) and provide us feedback.
 
 ## Next steps
 
