@@ -103,7 +103,7 @@ To effectively evaluate the performance of the Kubeflow Spark Operator under hig
 * **API Server Total DB Size**: Tracks the size of the etcd database, ensuring it remains manageable and doesn’t degrade performance.
 * **Spark Application Object Count**: Counts the number of SparkApplication custom resources (CRs) in the cluster, reflecting workload scale.
 * **Node Object Count**: Monitors the number of nodes, verifying that the cluster scales appropriately for the workload.
-* **Pod Object Count**: Tracks the total number of pods, ensuring the cluster can support the expected volume (e.g., up to 36,000 pods).
+* **Pod Object Count**: Tracks the total number of pods, ensuring the cluster can support the expected volume (e.g., up to 36000 pods).
 
 ## How to run Benchmark test
 
@@ -149,7 +149,7 @@ locust --headless --only-summary -u 3 -r 1 \
 ```
 
 ## Benchmark results
-To assess the performance of the Kubeflow Spark Operator under high-concurrency workloads, we conducted two key tests: one with webhooks enabled and another with webhooks disabled. These tests involved submitting `6,000` Spark applications each with 1 driver and 5 executor pods, totaling 36,000 pods at a rate of 1,000 jobs per minute across three namespaces. Below, we detail the test configurations, observations, and key findings, presented in a clear and structured manner to highlight the operator’s behavior and limitations.
+To assess the performance of the Kubeflow Spark Operator under high-concurrency workloads, we conducted two key tests: one with webhooks enabled and another with webhooks disabled. These tests involved submitting `6000` Spark applications each with 1 driver and 5 executor pods, totaling `36000` pods at a rate of 1,000 jobs per minute across three namespaces. Below, we detail the test configurations, observations, and key findings, presented in a clear and structured manner to highlight the operator’s behavior and limitations.
 
 ### Test1:  6000 Spark Applications (With Webhook Enabled)
 
@@ -179,9 +179,8 @@ To assess the performance of the Kubeflow Spark Operator under high-concurrency 
   * CPU constraints limit job processing speed, making compute power a key factor for scalability.
   * Spark Operator's throughput indicated by the `spark_application_submit_count metric`, is soley influenced by CPU single core speed, available number of cores, and configured number goroutines(`20`).
   * Increasing goroutines from `10` to `20` on a `36 core` machine improved the job submission rate from `~130-140` to `~140-155` jobs per minute (`~7-11%` gain), but showed diminishing returns likely due to Spark Operator queue processing bottlenecks.
-![Spark Job Submission rate](spark-job-submission-rate.png)
 
-    
+![Spark Job Submission rate](/docs/components/spark-operator/performance/spark-job-submission-rate.png)
 
   - The number of applications submitted to the cluster does not affect the processing speed. There was no difference between `2000` apps and `6000` apps.
   - Memory footprint does not change between the number of apps submitted. However, with it does increase with the number of goroutine.
@@ -193,7 +192,7 @@ To assess the performance of the Kubeflow Spark Operator under high-concurrency 
     * The processing rate is capped by CPU limitations, preventing further scaling without additional compute resources.
     * Because the operator can only process `130` - `150` applications per minute, later Spark jobs took `~1` hour for their driver pods to spawn.
 
-![Job Strat Latency Rate](job-start-latency.jpg)
+![Job Strat Latency Rate](/docs/components/spark-operator/performance/job-start-latency.jpg)
 
 * **Time to Process Jobs**:
     * `~15` minutes to process `2,000` applications.
@@ -210,11 +209,11 @@ To assess the performance of the Kubeflow Spark Operator under high-concurrency 
     * This is caused by Spark querying executor pods frequently, not a limitation of the Spark Operator itself.
     * The increased API server load affects job submission latency and monitoring performance across the cluster.
 
-![P90 API Server Latency](p90-apiserver-latency.jpg)
+![P90 API Server Latency](/docs/components/spark-operator/performance/p90-apiserver-latency.jpg)
 
 Note that setting `spark.kubernetes.executor.enablePollingWithResourceVersion: "true"` in SparkApplication config greatly alleviates this issue.
 
-![P90 API Server Latency with Version](p90-apiserver-latency1.jpg)
+![P90 API Server Latency with Version](/docs/components/spark-operator/performance/p90-apiserver-latency1.jpg)
 
 However, this means the API server could return any version of pods especially in HA configurations. This could lead to an inconsistent state that Spark cannot recover from.
 
@@ -224,9 +223,11 @@ However, this means the API server could return any version of pods especially i
 * `~25 cores` in use.
 * Significantly increased API latency.
 
-![alt text](spark-operator-pod-metrics.jpg) 
-![alt text](kubernetes-metrics.jpg) 
-![alt text](spark-application-metrics.jpg)
+![alt text](/docs/components/spark-operator/performance/spark-operator-pod-metrics.jpg) 
+
+![alt text](/docs/components/spark-operator/performance/kubernetes-metrics.jpg) 
+
+![alt text](/docs/components/spark-operator/performance/spark-application-metrics.jpg)
 
 #### Test2:  6000 Spark Applications with 20 Controller Workers
 - 6000 Spark Jobs. Spread across three namespaces with 2000 applications in each namespace.
@@ -239,11 +240,13 @@ However, this means the API server could return any version of pods especially i
 - `35` cores in use. 
 - Otherwise results are similar to the default configuration results.
 
-![alt text](spark-operator-pod-metrics1.jpg) 
-![alt text](kubernetes-metrics1.jpg) 
-![alt text](spark-application-metrics1.jpg)
+![alt text](/docs/components/spark-operator/performance/spark-operator-pod-metrics1.jpg)
 
-#### Test3:  6000 Spark Applications with 20 Controller Workers and resource version set to 0.
+![alt text](/docs/components/spark-operator/performance/kubernetes-metrics1.jpg) 
+
+![alt text](/docs/components/spark-operator/performance/spark-application-metrics1.jpg)
+
+#### Test3: 6000 Spark Applications with 20 Controller Workers and resource version set to 0.
 
 **Changes:**
 * Increased available configured number of goroutine to `20` from `10` (default).
@@ -255,11 +258,13 @@ However, this means the API server could return any version of pods especially i
 * `140` - `150` apps processed per minute.
 * `35 cores` in use. 
 
-![alt text](spark-operator-pod-metrics3.jpg) 
-![alt text](kubernetes-metrics3.jpg) 
-![alt text](spark-application-metrics3.jpg)
+![alt text](/docs/components/spark-operator/performance/spark-operator-pod-metrics3.jpg) 
 
-#### Test4: 6,000 Spark Applications (With Webhook Disabled)
+![alt text](/docs/components/spark-operator/performance/kubernetes-metrics3.jpg) 
+
+![alt text](/docs/components/spark-operator/performance/spark-application-metrics3.jpg)
+
+#### Test4: 6000 Spark Applications (With Webhook Disabled)
 
 **Test Configuration:**
 * Identical to Test 1, except webhooks were disabled to evaluate their impact on performance.
@@ -285,7 +290,7 @@ However, this means the API server could return any version of pods especially i
 * This occurred because each SparkApplication creates a service object, and the accumulation of services overwhelmed environment variables storing host and port details. Service objects persist after job completion unless SparkApplication objects are manually removed. See this article for more information.
 
 ### Processing Delays
-* The operator processed `~130–150` applications per minute, leading to significant delays for large workloads (e.g., `~1` hour for driver pods to spawn in a `6,000` job submission). Status updates for some jobs lagged by up to `30 minutes` as the operator prioritized new submissions over updates.
+* The operator processed `~130–150` applications per minute, leading to significant delays for large workloads (e.g., `~1` hour for driver pods to spawn in a `6000` job submission). Status updates for some jobs lagged by up to `30 minutes` as the operator prioritized new submissions over updates.
 
 ## Recommendations
 
@@ -297,7 +302,7 @@ To optimize the Kubeflow Spark Operator for high-concurrency workloads, consider
 * **How**:
     * Deploy a separate Spark Operator instance per namespace (e.g., `spark-team-a`, `spark-team-b`, `spark-team-c`) using Helm.
     * Configure each instance with `spark.jobNamespaces` set to its respective namespaces.
-* **Benefit**: With three instances, each handling `2,000 jobs` from a `6,000` job submission, processing could complete in `~15` minutes (assuming even distribution), compared to `~1` hour with a single instance.
+* **Benefit**: With three instances, each handling `2,000 jobs` from a `6000` job submission, processing could complete in `~15` minutes (assuming even distribution), compared to `~1` hour with a single instance.
 * **Considerations**:
     * Assign each instance a unique service account with namespace-scoped RBAC rules for isolation.
     * The Helm chart defaults to cluster-wide permissions, so custom configurations may be required.
@@ -329,13 +334,13 @@ To optimize the Kubeflow Spark Operator for high-concurrency workloads, consider
 
 ### Optimize Kubernetes Cluster Performance
 
-* **Why**: High API server latency under load (e.g., `36,000` pod creations across `200 nodes`) hampers job processing. Existing node capacity (`m6a.4xlarge`, `16 vCPUs`, `64GB` RAM, up to `220` pods per node) is sufficient, but API server autoscaling and scheduler efficiency requires attention.
+* **Why**: High API server latency under load (e.g., `36000` pod creations across `200 nodes`) hampers job processing. Existing node capacity (`m6a.4xlarge`, `16 vCPUs`, `64GB` RAM, up to `220` pods per node) is sufficient, but API server autoscaling and scheduler efficiency requires attention.
 * **How**:
     * Scale API server replicas or allocate more resources (API server scaling is automatically handled by many cloud providers, including Amazon EKS).
 
 ### Manage Namespace Usage
 
-* **Why**: Excessive SparkApplications in one namespace (e.g., `6,000`) cause pod failures due to environment variable overflow from persistent service objects.
+* **Why**: Excessive SparkApplications in one namespace (e.g., `6000`) cause pod failures due to environment variable overflow from persistent service objects.
 * **How**:
     * Distribute Spark jobs across multiple namespaces (e.g., `spark-team-a`, `spark-team-b`, `spark-team-c`).
     * Set a `timeToLiveSeconds` duration for SparkApplication objects or deploy a custom garbage collection (GC) service to remove completed applications and their services.
