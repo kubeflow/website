@@ -32,19 +32,7 @@ To deploy Model Registry UI, you just need to follow the [UI section](https://gi
 
 #### Installing on a Kubeflow Profile
 
-Kubeflow Central Dashboard uses [Profiles](/docs/components/central-dash/profiles/) to handle user namespaces and permissions. By default, the manifests deploy the Model Registry in the `kubeflow` namespace, to install a compatible version of Model Registry for Kubeflow, you should first head into the [istio overlay](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream/options/istio) and run the following commands:
-
-```shell
-kustomize set namespace <your-profile>
-kubectl apply -k .
-```
-
-Then head into the [db overlay](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream/overlays/db) and run the following commands:
-
-```shell
-kustomize set namespace <your-profile>
-kubectl apply -k .
-```
+Kubeflow Central Dashboard uses [Profiles](/docs/components/central-dash/profiles/) to handle user namespaces and permissions. To install a new Model Registry instance on the targeted profile, just follow the instructions under ["Install MR on a Kubeflow Profile"](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream#installing-model-registry-on-a-kubeflow-profile) section.
 
 ### Standalone installation
 
