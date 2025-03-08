@@ -6,7 +6,7 @@ weight: 10
 
 ## Overview
 
-As organizations increasingly adopt Kubernetes for large-scale data processing, efficiently executing **Apache Spark** workloads on Kubernetes has become a critical need. The **Kubeflow Spark Operator** streamlines Spark job submission and management within Kubernetes, yet its capacity to handle high-concurrency workloads involving thousands of job submissions and tens of thousands of pods requires thorough validation. To assess the operator’s current performance, we developed benchmark scripts and conducted tests using Kubeflow Spark Operator. These tests are repeatable, enabling users to leverage this benchmarking toolkit to evaluate future releases as performance optimizations are introduced.
+As organizations increasingly adopt [Kubernetes](https://kubernetes.io/) for large-scale data processing, efficiently executing **[Apache Spark](https://spark.apache.org/)** workloads on Kubernetes has become a critical need. The **[Kubeflow Spark Operator](https://github.com/kubeflow/spark-operator)** streamlines Spark job submission and management within Kubernetes, yet its capacity to handle high-concurrency workloads involving thousands of job submissions and tens of thousands of pods requires thorough validation. To assess the operator’s current performance, we developed benchmark scripts and conducted tests using Kubeflow Spark Operator. These tests are repeatable, enabling users to leverage this benchmarking toolkit to evaluate future releases as performance optimizations are introduced.
 
 Benchmarking is essential to determine how effectively the Spark Operator performs under heavy load, particularly with thousands of concurrent job submissions and constrained resource allocations. Key objectives include:
 
@@ -15,7 +15,7 @@ Benchmarking is essential to determine how effectively the Spark Operator perfor
 * Assessing whether a single operator instance is sufficient or if multiple instances are required for enhanced performance.
 * Pinpointing bottlenecks in Kubernetes job scheduling, API responsiveness, and resource management.
 
-This guide offers a detailed framework for benchmarking the Kubeflow Spark Operator, adaptable to any Kubernetes cluster. While the configurations and results presented here are based on Amazon EKS, the methodology is flexible and can be applied to other cloud providers or on-premises Kubernetes environments.
+This guide offers a detailed framework for benchmarking the Kubeflow Spark Operator, adaptable to any Kubernetes cluster. While the configurations and results presented here are based on [Amazon EKS](https://aws.amazon.com/eks/), the methodology is flexible and can be applied to other cloud providers or on-premises Kubernetes environments.
 
 {{< note >}}
 These benchmarks focus on **evaluating the Spark Operator’s performance**, not the Spark jobs themselves. To isolate the operator’s ability to manage high job submission rates and pod launches, minimal resources are allocated to driver and executor pods. This approach reduces the number of nodes needed, allowing a clear assessment of the operator’s efficiency in scheduling and launching jobs under high concurrency.
@@ -70,7 +70,7 @@ Spark Operator [Helm chart](https://github.com/kubeflow/spark-operator/tree/mast
 
 ### 3. Metrics to Measure
 
-To effectively evaluate the performance of the Kubeflow Spark Operator under high-concurrency workloads, we have developed a custom Grafana dashboard as part of this benchmark. This dashboard is open-source and freely available, allowing you to monitor both Spark Operator and Kubernetes metrics in your own environment. Below, we outline the key metrics tracked by the dashboard, categorized into three main areas: **Spark Operator Pod Metrics**, **Spark Application Metrics**, and **Kubernetes Metrics**. These metrics provide a comprehensive view of resource usage, job processing efficiency, and cluster health.
+To effectively evaluate the performance of the Kubeflow Spark Operator under high-concurrency workloads, we have developed a new custom Grafana dashboard ([Spark-Operator Scale Test Dashboard](https://grafana.com/grafana/dashboards/23032-spark-operator-scale-test-dashboard/)) as part of this benchmark. This dashboard is open-source and freely available, allowing you to monitor both Spark Operator and Kubernetes metrics in your own environment. Below, we outline the key metrics tracked by the dashboard, categorized into three main areas: **Spark Operator Pod Metrics**, **Spark Application Metrics**, and **Kubernetes Metrics**. These metrics provide a comprehensive view of resource usage, job processing efficiency, and cluster health.
 
 #### Spark Operator Pod Metrics
 
@@ -129,6 +129,8 @@ The benchmarking process uses Locust, which creates user processes that execute 
 
 #### Installation
 
+​The benchmarking test kit and scripts are available at the [Data on EKS](https://github.com/awslabs/data-on-eks/tree/main/analytics/terraform/spark-k8s-operator/examples/benchmark/spark-operator-benchmark-kit) GitHub repository.
+
 To begin, install Locust and its dependencies in a virtual environment:
 
 ```sh
@@ -149,9 +151,9 @@ locust --headless --only-summary -u 3 -r 1 \
 ```
 
 ## Benchmark results
-To assess the performance of the Kubeflow Spark Operator under high-concurrency workloads, we conducted two key tests: one with webhooks enabled and another with webhooks disabled. These tests involved submitting `6000` Spark applications each with 1 driver and 5 executor pods, totaling `36000` pods at a rate of 1,000 jobs per minute across three namespaces. Below, we detail the test configurations, observations, and key findings, presented in a clear and structured manner to highlight the operator’s behavior and limitations.
+To assess the performance of the Kubeflow Spark Operator under high-concurrency workloads, we conducted two key tests: one with webhooks enabled and another with webhooks disabled. These tests involved submitting `6000` Spark applications each with 1 driver and 5 executor pods, totaling `36000` pods at a rate of 1000 jobs per minute across three namespaces. Below, we detail the test configurations, observations, and key findings, presented in a clear and structured manner to highlight the operator’s behavior and limitations.
 
-### Test1:  6000 Spark Applications (With Webhook Enabled)
+### Test1: 6000 Spark Applications (With Webhook Enabled)
 
 #### Test Configuration:
 
@@ -159,7 +161,7 @@ To assess the performance of the Kubeflow Spark Operator under high-concurrency 
     * **Instance Type**: `c5.9xlarge`
     * **Resources**: `36` vCPUs, `72` GB memory.
     * **Deployment**: Helm chart deployed with default values.
-    * **Controller Threads**: `20` threads.
+    * **Controller Threads**: `10` threads.
     * The operator was deployed with default helm configuration except for `metrics-job-start-latency-buckets` because the default maximum bucket size of 500 was too small to meaningfully measure job start time. Checkout the [PR](https://github.com/kubeflow/spark-operator/pull/2450)
 * **Spark Application Pods**:
     * **Number of Nodes**: `200`
@@ -195,8 +197,8 @@ To assess the performance of the Kubeflow Spark Operator under high-concurrency 
 ![Job Strat Latency Rate](/docs/components/spark-operator/performance/job-start-latency.jpg)
 
 * **Time to Process Jobs**:
-    * `~15` minutes to process `2,000` applications.
-    * `~30` minutes to process `4,000` applications.
+    * `~15` minutes to process `2000` applications.
+    * `~30` minutes to process `4000` applications.
     * These numbers align with the observed 130 apps per minute processing rate.
     * Because Spark operator was busy processing new applications, updates to status of submitted spark application were slow. Some applications took `~30` minutes for their status to be updated.
 * **Work Queue Duration Metric Reliability**:
@@ -283,7 +285,7 @@ However, this means the API server could return any version of pods especially i
 * Enabling `spark.kubernetes.executor.enablePollingWithResourceVersion: "true"` reduced API latency but introduced the risk of inconsistent pod states in high-availability (HA) setups, potentially leading to job failures.
 
 ### Webhook Overhead
-* Enabling webhooks added `~6`0 seconds of latency per job, significantly reducing throughput. Disabling webhooks improved performance by leveraging Pod Templates but sacrificed validation and mutation features.
+* Enabling webhooks added `~60` seconds of latency per job, significantly reducing throughput. Disabling webhooks improved performance by leveraging Pod Templates but sacrificed validation and mutation features.
 
 ### Namespace Management Issues
 * Running 6000 SparkApplications in a single namespace caused pod failures with the error: `exec /opt/entrypoint.sh: argument list too long`
@@ -302,18 +304,18 @@ To optimize the Kubeflow Spark Operator for high-concurrency workloads, consider
 * **How**:
     * Deploy a separate Spark Operator instance per namespace (e.g., `spark-team-a`, `spark-team-b`, `spark-team-c`) using Helm.
     * Configure each instance with `spark.jobNamespaces` set to its respective namespaces.
-* **Benefit**: With three instances, each handling `2,000 jobs` from a `6000` job submission, processing could complete in `~15` minutes (assuming even distribution), compared to `~1` hour with a single instance.
+* **Benefit**: With three instances, each handling `2000 jobs` from a `6000` job submission, processing could complete in `~15` minutes (assuming even distribution), compared to `~1` hour with a single instance.
 * **Considerations**:
     * Assign each instance a unique service account with namespace-scoped RBAC rules for isolation.
     * The Helm chart defaults to cluster-wide permissions, so custom configurations may be required.
 
-### Disable Webhooks (with Caution)
+### Disable Webhooks
 
 * **Why**: Webhooks add `~60` seconds of latency per job, severely impacting throughput under high concurrency.
 * **How**: Set `webhook.enable` to false in the Helm chart.
 * **Benefit**: Eliminating this overhead accelerates job starts, as demonstrated in benchmark tests.
 * **Considerations**:
-    * Use Pod Templates for volume configuration, node selectors, and taints to replace webhook functionality.
+    * Use `Pod Templates` for volume configuration, node selectors, and taints to replace webhook functionality.
 
 ### Increase the Number of Workers
 
@@ -328,8 +330,8 @@ To optimize the Kubeflow Spark Operator for high-concurrency workloads, consider
 
 * **Why**: These benchmarks didn’t cover the usage of Batch schedulers but `Volcano` or `Yunikorn` custom batch schedulers optimize resource allocation, reducing pod creation times for large-scale jobs.
 * **How**:
-    * Set batchScheduler.enable to true in the Helm chart.
-    * Specify a scheduler (e.g., Volcano or Yunikorn) and install it in the cluster
+    * Set `batchScheduler.enable` to true in the Helm chart.
+    * Specify a scheduler (e.g., `Volcano` or `Yunikorn`) and install it in the cluster
 * **Benefit**: Enhanced scheduling efficiency improves performance under high concurrency.
 
 ### Optimize Kubernetes Cluster Performance
@@ -347,9 +349,20 @@ To optimize the Kubeflow Spark Operator for high-concurrency workloads, consider
 * **Benefit**: Prevents failures and ensures reliable operation under high job volumes.
 * **Considerations**: Service objects aren’t automatically deleted upon job completion, so proactive cleanup is essential.
 
-### Monitor and Adjust
+### Monitor and Tune
 
 * **Why**: Continuous monitoring identifies bottlenecks and validates optimizations.
 * **How**: Use the provided Grafana dashboard (enabled via Helm) to track metrics like work queue depth, CPU usage, API latency, and processing rates.
 * **Benefit**: Data-driven tuning ensures the operator scales efficiently for large workloads.
 * **Considerations**: Focus on CPU saturation and API responsiveness to guide adjustments.
+
+### Future work
+We will continue running benchmarks to evaluate the effectiveness of these enhancements. Our goal is to improve the Spark Operator's performance by exploring the following community-suggested strategies:
+
+- **Go-based Spark Submit:** Transitioning from the current Java-based `spark-submit` to a Go-based implementation to reduce JVM startup latency and improve job submission efficiency.
+
+- **Controller Sharding:** Enhancing the Spark Operator's controller to enable parallel processing and improve scalability.​
+
+### Acknowledgments
+
+We extend our gratitude to [AWS](https://aws.amazon.com) for providing the infrastructure necessary for these benchmarks. We also thank Spark Operator community contributors *[Manabu McCloskey](https://github.com/nabuskey)*, *[Vara Bonthu](https://github.com/vara-bonthu)*, *[Alan Halcyon](https://github.com/alanty)* and *[Ratnopam Chakrabarti](https://github.com/ratnopamc)* for their efforts in executing these benchmarks.
