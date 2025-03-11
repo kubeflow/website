@@ -99,8 +99,7 @@ spec:
 +     minAvailable: 10
 +     queue: test-queue
 +     minResources:
-+       requests:
-+         cpu: 3000m
++       cpu: 3000m
 +     priorityClass: high
 +     scheduleTimeoutSeconds: 180
   mpiReplicaSpecs:
