@@ -7,8 +7,6 @@ weight = 20
 This guide shows how to get started with Model Registry and run a few examples using the
 command line or Python clients.
 
-At this time, the Model Registry does not include a web-based User Interface (UI), therefore this documentation focuses on backend services and APIs.
-
 For an overview of the logical model of model registry, check the [Model Registry logical model](https://github.com/kubeflow/model-registry/blob/main/docs/logical_model.md).
 The logical model is exposed via the Model Registry [REST API](reference/rest-api).
 
@@ -167,6 +165,23 @@ ks_client.create(isvc)
 ```
 
 The InferenceService is now created, the CSI retrieves the latest artifact data associated with the model version from the Model Registry, and then downloads the model from its URI.
+
+## Using the Model Registry UI
+
+In addition to the command line and Python clients, you can also use the Model Registry UI to manage your models. The UI provides an intuitive interface for registering, updating, and querying models and their metadata.
+
+   <img src="/docs/components/model-registry/images/model-registry-ui-main.png"
+   alt="Model Registry Overview"
+   class="mt-3 mb-3">
+
+To access the Model Registry UI, navigate to the Kubeflow central dashboard and select the Model Registry component. From there, you can perform various actions such as:
+
+- Registering new models
+- Viewing registered models and their versions
+- Updating model metadata
+- Deleting models
+
+For detailed instructions on using the Model Registry UI, refer to the [Model Registry UI documentation](https://github.com/kubeflow/model-registry/blob/main/clients/ui/README.md).
 
 ## Next steps
 
