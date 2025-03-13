@@ -121,7 +121,7 @@ Each node pool has three nodes of machine type `n1-standard-8`.
 
 <img src="/docs/images/benchmark-snapshot-1.png"
 alt="Benchmark Sample Output Plots"
-class="mt-3 mb-3 border border-info rounded">
+class="mt-3 mb-3 border rounded">
 
 ## Interpreting the results
 

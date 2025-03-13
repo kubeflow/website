@@ -31,32 +31,32 @@ To submit a pipeline for an immediate run:
 
    <img src="/docs/images/pipelines/submit-a-pipeline-on-dashboard.png" 
         alt="Upload pipeline button"
-        class="mt-3 mb-3 border border-info rounded">
+        class="mt-3 mb-3 border rounded">
 
 3. Upload the pipeline `.yaml`, `.zip` or `.tar.gz` file, populate the upload form, then click `Create`.
 
    <img src="/docs/images/pipelines/upload-a-pipeline.png" 
         alt="Upload pipeline screen" 
-        class="mt-3 mb-3 border border-info rounded">
+        class="mt-3 mb-3 border rounded">
 
 4. From the "Runs" tab, select `+ Create run`:
 
    <img src="/docs/images/pipelines/create-run.png" 
         alt="Create run button"
-        class="mt-3 mb-3 border border-info rounded">
+        class="mt-3 mb-3 border rounded">
 
 5. Select the pipeline you want to run, populate the run form, then click `Start`:
 
    <img src="/docs/images/pipelines/start-a-run.png" 
         alt="Start a run screen"
-        class="mt-3 mb-3 border border-info rounded">
+        class="mt-3 mb-3 border rounded">
 
 ## Run Pipeline - KFP SDK Client
 
 You may also programmatically submit pipeline runs from the KFP SDK client. 
 The client supports two ways of submitting runs: _from IR YAML_ or _from a Python pipeline function_. 
 
-{{% alert title="Note" color="dark" %}}
+{{% alert title="Note" color="info" %}}
 See the [Connect the SDK to the API](/docs/components/pipelines/user-guides/core-functions/connect-api/) guide for more information about creating a KFP client.
 {{% /alert %}}
 

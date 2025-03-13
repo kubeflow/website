@@ -32,7 +32,7 @@ This diagram shows how Katib performs Hyperparameter tuning:
 
 <img src="/docs/components/katib/images/katib-architecture.drawio.svg"
   alt="Katib Overview"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 First of all, users need to write ML training code which will be evaluated on every Katib Trial
 with different hyperparameters. Then, using Katib Python SDK users should set the objective, search
