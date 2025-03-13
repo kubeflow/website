@@ -130,7 +130,7 @@ def train_pytorch():
 After configuring the training function, check the available Kubeflow Training Runtimes:
 
 ```python
-from kubeflow.trainer import TrainerClient, Trainer
+from kubeflow.trainer import TrainerClient, CustomTrainer
 
 for r in TrainerClient().list_runtimes():
     print(f"Runtime: {r.name}")
@@ -147,7 +147,7 @@ Create a TrainJob using the `torch-distributed` Runtime, which scales your train
 
 ```python
 job_id = TrainerClient().train(
-    trainer=Trainer(
+    trainer=CustomTrainer(
         func=train_pytorch,
         num_nodes=4,
         resources_per_node={
