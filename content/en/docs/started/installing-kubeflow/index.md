@@ -333,6 +333,20 @@ The following table lists distributions which are <em>maintained</em> by their r
           <a href="https://vmware.github.io/vSphere-machine-learning-extension/">Website</a>
         </td>
       </tr>
+      <tr>
+        <td>
+          Civo
+        </td>
+        <td>
+          {{< kf-version-notice >}}{{% civo/latest-version %}}{{< /kf-version-notice >}}
+        </td>
+        <td>
+          Civo ML
+        </td>
+        <td>
+          <a href="https://www.civo.com/machine-learning">Website</a>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
