@@ -6,11 +6,12 @@ weight = 10
 
 ## Overview
 
-The `spec.runPolicy.managedBy` field is a new feature introduced for MultiQueue support in the Kubeflow Training Operator. This field allows for more robust management of multi-cluster job dispatching by specifying the managing entity.
+This documentation details the usage of the `MultiKueue` feature within the Kueue project, specifically for Kubeflow MPI Jobs. The `MultiKueue` capability allows for efficient management and scheduling of multiple queues, optimizing resource allocation and improving the overall efficiency of MPI Jobs.
+The `spec.runPolicy.managedBy` field is a new feature introduced for MultiKueue support in the Kubeflow Training Operator. This field allows for more robust management of multi-cluster job dispatching by specifying the managing entity.
 
 ## Prerequisites
 
-1. Ensure that you have the latest version of the Kubeflow Training Operator installed.
+1. Ensure that you have the version upto 1.9 of the Kubeflow Training Operator installed and version 0.11+ for kueue.
 2. Make sure Kueue is compiled against the new operator to leverage the `spec.runPolicy.managedBy` field.
 
 ## Usage
@@ -62,6 +63,7 @@ spec:
 
 ## More Details
 
-For more details on setting up and using MultiQueue with the Kubeflow Training Operator, refer to the following documentation pages:
+For more details on setting up and using MultiKueue with the Kubeflow Training Operator, refer to the following documentation pages:
 
 - [Kueue/Kubeflow](https://kueue.sigs.k8s.io/docs/tasks/run/multikueue/kubeflow/)
+- [kueue Docs]{https://kueue.sigs.k8s.io/docs/concepts/multikueue/}
