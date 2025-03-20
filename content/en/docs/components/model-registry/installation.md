@@ -131,13 +131,13 @@ If you are not receiving a `2xx` response, it might be the case you are trying t
 
 To check the connection to the Model Registry from a Notebook instead, start a Terminal from the Notebook environment, then you can dry-run the connection with the following command:
 
-```
+```shell
 curl model-registry-service.kubeflow.svc.cluster.local:8080/api/model_registry/v1alpha3/registered_models
 ```
 
 or, alternatively, with the following command:
 
-```
+```shell
 wget -nv -O- model-registry-service.kubeflow.svc.cluster.local:8080/api/model_registry/v1alpha3/registered_models
 ```
 

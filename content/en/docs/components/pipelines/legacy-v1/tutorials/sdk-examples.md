@@ -88,7 +88,7 @@ find a pipeline's ID:
 
 <img src="/docs/images/sdk-examples-snapshot-1.png"
 alt="Pipeline ID in Summary Card"
-class="mt-3 mb-3 border border-info rounded">
+class="mt-3 mb-3 border rounded">
 
 ### Example 2: Listing pipelines with a filter
 
