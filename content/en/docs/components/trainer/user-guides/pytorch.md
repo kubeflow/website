@@ -4,7 +4,7 @@ description = "How to develop PyTorch models with Kubeflow Trainer"
 weight = 10
 +++
 
-This page describes `PyTorchJob` for training a machine learning model with [PyTorch](https://pytorch.org/).
+This page describes how to use `PyTorchJob` for training a machine learning model with [PyTorch](https://pytorch.org/).
 
 The `PyTorchJob` is a Kubernetes
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
@@ -15,7 +15,7 @@ the `PyTorchJob` is in the [`trainer`](https://github.com/kubeflow/trainer).
 
 ### Define the Training Function
 
-The first step is to create function to train CNN model using Fashion MNIST data. Below is an example of a PyTorch training function using Distributed Data Parallel (DDP). The function configures distributed training, downloads the FashionMNIST dataset (only on the primary node), and runs training loops across workers. The code also shows how to clean up the distributed group at the end.
+The first step is to create a function to train a CNN model using the Fashion MNIST dataset. Below is an example of a PyTorch training function using Distributed Data Parallel (DDP). The function configures distributed training, downloads the FashionMNIST dataset (only on the primary node), and runs training loops across workers. The code also shows how to clean up the distributed group at the end.
 
 ```python
 def train_pytorch():
@@ -127,11 +127,11 @@ def train_pytorch():
 
 ### Scale PyTorch DDP with Kubeflow TrainJob
 
-You can use `TrainerClient()` from the Kubeflow SDK to communicate with Kubeflow Trainer APIs and scale your training function across multiple PyTorch training nodes.
+You can use the `TrainerClient()` from the Kubeflow SDK to communicate with Kubeflow Trainer APIs and scale your training function across multiple PyTorch training nodes.
 
-`TrainerClient()` verifies that you have required access to the Kubernetes cluster.
+`TrainerClient()` verifies that you have the required access to the Kubernetes cluster.
 
-Kubeflow Trainer creates a `TrainJob` resource and automatically sets the appropriate environment variables to set up PyTorch in distributed environment.
+The Kubeflow Trainer creates a `TrainJob` resource and automatically sets the appropriate environment variables to set up PyTorch in a distributed environment.
 
 ```python
 from kubeflow.trainer import CustomTrainer, TrainerClient
@@ -151,16 +151,16 @@ for runtime in client.list_runtimes():
         torch_runtime = runtime
 ```
 
-Additionally, it might show available accelerator type and number of available resources.
+Additionally, it might show available accelerator types and the number of available resources.
 
 ```bash
 Runtime(name='mpi-distributed', trainer=Trainer(trainer_type=<TrainerType.CUSTOM_TRAINER: 'CustomTrainer'>, framework=<Framework.TORCH: 'torch'>, entrypoint=['torchrun'], accelerator='Unknown', accelerator_count=1), pretrained_model=None)
 Runtime(name='torch-distributed', trainer=Trainer(trainer_type=<TrainerType.CUSTOM_TRAINER: 'CustomTrainer'>, framework=<Framework.TORCH: 'torch'>, entrypoint=['torchrun'], accelerator='Unknown', accelerator_count='Unknown'), pretrained_model=None)
 ```
 
-### Configure train() API
+### Configure the train() API
 
-Kubeflow TrainJob will train the above model on 2 PyTorch nodes. You can specify the resources needed per node.
+The Kubeflow TrainJob will train the above model on 2 PyTorch nodes. You can specify the resources needed per node.
 
 ```python
 job_name = client.train(
@@ -200,7 +200,7 @@ def wait_for_job_running():
 
 wait_for_job_running()
 ```
-After nodes are in running state, you can get individual status of each step.
+After nodes are in the running state, you can get the individual status of each step.
 ```python
 for step in client.get_job(name=job_name).steps:
     print(
@@ -283,7 +283,7 @@ _ = client.get_job_logs(job_name, follow=True)
 
 ### Delete the TrainJob
 
-When TrainJob is finished, you can delete the resource.
+When the TrainJob is finished, you can delete the resource.
 
 ```python
 client.delete_job(job_name)
