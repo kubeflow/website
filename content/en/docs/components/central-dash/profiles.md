@@ -51,7 +51,7 @@ Here is an example of the automatic profile creation flow:
      style="width: 100%; max-width: 30em">
 </img>
 
-2. The user can name their profile and click *Finish*: 
+2. The user can name their profile and click _Finish_:
 
 <img src="/docs/images/dashboard/auto-profile-step-2.png"
      alt="Kubeflow Central Dashboard - Automatic Profile Creation - Step 2"
@@ -65,20 +65,20 @@ The following resources are created for each profile:
 
 - A Kubernetes Namespace that shares the same name as the profile.
 - Kubernetes [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) for Users:
-    - For profile owner, a `RoleBinding` named `namespaceAdmin` to `ClusterRole/kubeflow-admin`
-    - For each contributor, a `RoleBinding` named `user-{EMAIL}-clusterrole-{ROLE}` to `ClusterRole/kubeflow-{ROLE}`
-       - `{EMAIL}` is the email of the contributor, special characters replaced with `-`, cast to lowercase.
-       - `{ROLE}` is the role of the contributor, either `edit` or `view`
+  - For profile owner, a `RoleBinding` named `namespaceAdmin` to `ClusterRole/kubeflow-admin`
+  - For each contributor, a `RoleBinding` named `user-{EMAIL}-clusterrole-{ROLE}` to `ClusterRole/kubeflow-{ROLE}`
+    - `{EMAIL}` is the email of the contributor, special characters replaced with `-`, cast to lowercase.
+    - `{ROLE}` is the role of the contributor, either `edit` or `view`
 - Kubernetes [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) for ServiceAccounts:
-    - For `ServiceAcount/default-editor`, a `RoleBinding` named `default-editor` to `ClusterRole/kubeflow-edit`
-    - For `ServiceAcount/default-viewer`, a `RoleBinding` named `default-viewer` to `ClusterRole/kubeflow-view`
+  - For `ServiceAccount/default-editor`, a `RoleBinding` named `default-editor` to `ClusterRole/kubeflow-edit`
+  - For `ServiceAccount/default-viewer`, a `RoleBinding` named `default-viewer` to `ClusterRole/kubeflow-view`
 - Istio [AuthorizationPolicies](https://istio.io/latest/docs/reference/config/security/authorization-policy/):
-    - For the profile owner, an `AuthorizationPolicy` named `ns-owner-access-istio`
-    - For each contributor, an `AuthorizationPolicy` named `user-{EMAIL}-clusterrole-{ROLE}`
-       - `{EMAIL}` is the email of the contributor, special characters replaced with `-`, cast to lowercase
-       - `{ROLE}` is the role of the contributor, either `edit` or `view`
+  - For the profile owner, an `AuthorizationPolicy` named `ns-owner-access-istio`
+  - For each contributor, an `AuthorizationPolicy` named `user-{EMAIL}-clusterrole-{ROLE}`
+    - `{EMAIL}` is the email of the contributor, special characters replaced with `-`, cast to lowercase
+    - `{ROLE}` is the role of the contributor, either `edit` or `view`
 
-## Manage Profiles 
+## Manage Profiles
 
 Because a Profile is a Kubernetes CRD, a cluster administrator can use `kubectl` commands to manage profiles.
 
@@ -107,7 +107,7 @@ spec:
   ## plugins extend the functionality of the profile
   ## https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller#plugins
   plugins: []
-  
+
   ## optionally create a ResourceQuota for the profile
   ## https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller#resourcequotaspec
   ## https://kubernetes.io/docs/reference/kubernetes-api/policy-resources/resource-quota-v1/#ResourceQuotaSpec
@@ -152,7 +152,7 @@ All resources created in the profile namespace will be deleted.
 
 ## Manage Profile Contributors
 
-Profile contributors are defined by the __presence__ of [specific `RoleBinding` and `AuthorizationPolicy` resources](#profile-resources) in the profile namespace.
+Profile contributors are defined by the **presence** of [specific `RoleBinding` and `AuthorizationPolicy` resources](#profile-resources) in the profile namespace.
 
 {{% alert title="Note" color="info" %}}
 The [central dashboard method](#manage-contributors-with-central-dashboard) ONLY allows you to add contributors with "edit" access.
@@ -162,7 +162,7 @@ To add contributors with "view" access, you must use the [manual method](#manage
 
 ### Manage Contributors with Central Dashboard
 
-The __owner__ of a profile can use the __Manage Contributors__ tab in the Kubeflow Central Dashboard to add or remove contributors.
+The **owner** of a profile can use the **Manage Contributors** tab in the Kubeflow Central Dashboard to add or remove contributors.
 
 <img src="/docs/images/dashboard/homepage-manage-contributors.png" 
      alt="Kubeflow Central Dashboard - Manage Contributors Link"

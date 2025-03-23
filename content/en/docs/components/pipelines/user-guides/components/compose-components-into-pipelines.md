@@ -30,7 +30,7 @@ def pythagorean(a: float, b: float) -> float:
     return square_root(x=sum_task.output).output
 ```
 
-Although a KFP pipeline decoratored with the `@dsl.pipeline` decorator looks like a normal Python function, it is actually an expression of pipeline topology and [control flow][control-flow] semantics, constructed using the [KFP domain-specific language][dsl-reference-docs] (DSL).
+Although a KFP pipeline decorated with the `@dsl.pipeline` decorator looks like a normal Python function, it is actually an expression of pipeline topology and [control flow][control-flow] semantics, constructed using the [KFP domain-specific language][dsl-reference-docs] (DSL).
 
 A pipeline definition has four parts:
 
@@ -46,10 +46,10 @@ This section covers the first four parts. [Control flow][control-flow] is covere
 
 KFP pipelines are defined inside functions decorated with the `@dsl.pipeline` decorator. The decorator takes three optional arguments:
 
-* `name` is the name of your pipeline. If not provided, the name defaults to a sanitized version of the pipeline function name.
-* `description` is a description of the pipeline.
-* `pipeline_root` is the root path of the remote storage destination within which the tasks in your pipeline will create outputs. `pipeline_root` may also be set or overridden by pipeline submission clients.
-* `display_name` is a human-readable for your pipeline.
+- `name` is the name of your pipeline. If not provided, the name defaults to a sanitized version of the pipeline function name.
+- `description` is a description of the pipeline.
+- `pipeline_root` is the root path of the remote storage destination within which the tasks in your pipeline will create outputs. `pipeline_root` may also be set or overridden by pipeline submission clients.
+- `display_name` is a human-readable for your pipeline.
 
 You can modify the definition of `pythagorean` to use these arguments:
 
@@ -70,7 +70,7 @@ Like [components][components], pipeline inputs and outputs are defined by the pa
 
 In the preceding example, `pythagorean` accepts inputs `a` and `b`, each typed `float`, and creates one `float` output.
 
-Pipeline inputs are declaried via function input parameters/annotations and pipeline outputs are declared via function output annotations. Pipeline outputs will _never be declared via pipeline function input parameters_, unlike for components that use [output artifacts][output-artifacts] or [Container Components that use `dsl.OutputPath`][container-component-outputs].
+Pipeline inputs are declared via function input parameters/annotations and pipeline outputs are declared via function output annotations. Pipeline outputs will _never be declared via pipeline function input parameters_, unlike for components that use [output artifacts][output-artifacts] or [Container Components that use `dsl.OutputPath`][container-component-outputs].
 
 For more information on how to declare pipeline function inputs and outputs, see [Data Types][data-types].
 
@@ -98,6 +98,7 @@ def pythagorean(a: float, b: float) -> float:
 ```
 
 #### Special input types
+
 There are a few special input values that you can pass to a component within your pipeline definition to give the component access to some metadata about itself. These values can be passed to input parameters typed `str`.
 
 For example, the following `print_op` component prints the pipeline job name at component runtime using [`dsl.PIPELINE_JOB_NAME_PLACEHOLDER`][dsl-pipeline-job-name-placeholder]:
@@ -111,14 +112,15 @@ def my_pipeline():
 ```
 
 There several special values that may be used in this style, including:
-* `dsl.PIPELINE_JOB_NAME_PLACEHOLDER`
-* `dsl.PIPELINE_JOB_RESOURCE_NAME_PLACEHOLDER`
-* `dsl.PIPELINE_JOB_ID_PLACEHOLDER`
-* `dsl.PIPELINE_TASK_NAME_PLACEHOLDER`
-* `dsl.PIPELINE_TASK_ID_PLACEHOLDER`
-* `dsl.PIPELINE_JOB_CREATE_TIME_UTC_PLACEHOLDER`
-* `dsl.PIPELINE_JOB_SCHEDULE_TIME_UTC_PLACEHOLDER`
-* `dsl.PIPELINE_ROOT_PLACEHOLDER`
+
+- `dsl.PIPELINE_JOB_NAME_PLACEHOLDER`
+- `dsl.PIPELINE_JOB_RESOURCE_NAME_PLACEHOLDER`
+- `dsl.PIPELINE_JOB_ID_PLACEHOLDER`
+- `dsl.PIPELINE_TASK_NAME_PLACEHOLDER`
+- `dsl.PIPELINE_TASK_ID_PLACEHOLDER`
+- `dsl.PIPELINE_JOB_CREATE_TIME_UTC_PLACEHOLDER`
+- `dsl.PIPELINE_JOB_SCHEDULE_TIME_UTC_PLACEHOLDER`
+- `dsl.PIPELINE_ROOT_PLACEHOLDER`
 
 {{% oss-be-unsupported feature_name="`PIPELINE_JOB_CREATE_TIME_UTC_PLACEHOLDER`, `PIPELINE_JOB_SCHEDULE_TIME_UTC_PLACEHOLDER`, and `PIPELINE_ROOT_PLACEHOLDER`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/6155 %}}
 
@@ -154,15 +156,15 @@ print_env_var().set_env_variable('MY_ENV_VAR', 'hello').set_env_variable('OTHER_
 
 The KFP SDK provides the following task methods for setting task-level configurations:
 
-* `.add_accelerator_type`
-* `.set_accelerator_limit`
-* `.set_cpu_limit`
-* `.set_memory_limit`
-* `.set_env_variable`
-* `.set_caching_options`
-* `.set_display_name`
-* `.set_retry`
-* `.ignore_upstream_failure`
+- `.add_accelerator_type`
+- `.set_accelerator_limit`
+- `.set_cpu_limit`
+- `.set_memory_limit`
+- `.set_env_variable`
+- `.set_caching_options`
+- `.set_display_name`
+- `.set_retry`
+- `.ignore_upstream_failure`
 
 {{% oss-be-unsupported feature_name="`.ignore_upstream_failure`" gh_issue_link=https://github.com/kubeflow/pipelines/issues/9459 %}}
 
@@ -200,6 +202,7 @@ def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
 ```
 
 <!-- TODO: make this reference more precise throughout -->
+
 [dsl-reference-docs]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html
 [dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.pipeline
 [control-flow]: /docs/components/pipelines/user-guides/core-functions/control-flow

@@ -12,6 +12,7 @@ weight = 203
 This section provides a summary of the available commands in the KFP CLI. For more comprehensive documentation about all the available commands in the KFP CLI, see [Command Line Interface][cli-reference-docs] in the [KFP SDK reference documentation][kfp-sdk-api-ref].
 
 ## Installation
+
 The KFP CLI is installed when you install the KFP SDK: `pip install kfp`.
 
 ### Check availability of KFP CLI
@@ -43,7 +44,8 @@ To get help for a specific command, use the argument `--help` directly in the co
 ```shell
 kfp run --help
 ```
-## Main functons of the KFP CLI
+
+## Main functions of the KFP CLI
 
 You can use the KFP CLI to do the following:
 
@@ -51,7 +53,7 @@ You can use the KFP CLI to do the following:
   - [Check availability of KFP CLI](#check-availability-of-kfp-cli)
   - [General syntax](#general-syntax)
   - [Get help for a command](#get-help-for-a-command)
-- [Main functons of the KFP CLI](#main-functons-of-the-kfp-cli)
+- [Main functions of the KFP CLI](#main-functons-of-the-kfp-cli)
   - [Interact with KFP resources](#interact-with-kfp-resources)
   - [Compile pipelines](#compile-pipelines)
   - [Build containerized Python components](#build-containerized-python-components)
@@ -67,62 +69,64 @@ kfp <resource_name> <action>
 ```
 
 The `<resource_name>` argument can be one of the following:
-* `run`
-* `recurring-run`
-* `pipeline`
-* `experiment`
+
+- `run`
+- `recurring-run`
+- `pipeline`
+- `experiment`
 
 For all values of the `<resource_name>` argument, the `<action>` argument can be one of the following:
-* `create`
-* `list`
-* `get`
-* `delete`
+
+- `create`
+- `list`
+- `get`
+- `delete`
 
 Some resource names have additional resource-specific actions. The following table lists a few examples of resource-specific actions:
 
-| Resource name | Additional resource-specific actions
-|---------------|--------
-| `run` | <ul><li>`archive`</li><li>`unarchive`</li></ul>
-| `recurring-run` | <ul><li>`disable`</li><li>`enable`</li></ul>
-| `experiment` | <ul><li>`archive`</li><li>`unarchive`</li></ul>
-| `pipeline` | <ul><li>`create-version`</li><li>`list-versions`</li><li>`get-versions`</li><li>`delete-versions`</li></ul>
+| Resource name   | Additional resource-specific actions                                                                        |
+| --------------- | ----------------------------------------------------------------------------------------------------------- |
+| `run`           | <ul><li>`archive`</li><li>`unarchive`</li></ul>                                                             |
+| `recurring-run` | <ul><li>`disable`</li><li>`enable`</li></ul>                                                                |
+| `experiment`    | <ul><li>`archive`</li><li>`unarchive`</li></ul>                                                             |
+| `pipeline`      | <ul><li>`create-version`</li><li>`list-versions`</li><li>`get-versions`</li><li>`delete-versions`</li></ul> |
 
 ### Compile pipelines
 
 You can use the `kfp dsl compile` command to compile pipelines or components defined in a Python file to IR YAML.
 
-* To compile a pipeline definition defined in a Python file, run the following command.
+- To compile a pipeline definition defined in a Python file, run the following command.
 
   ```shell
   kfp dsl compile --py [PATH_TO_INPUT_PYTHON] --output [PATH_TO_OUTPUT_YAML] --function [PIPELINE_NAME]
   ```
-  
+
   For example:
-  
+
   ```shell
   kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml
   ```
-  
+
   To compile a single pipeline or component from a Python file containing multiple pipeline or component definitions, use the `--function` argument.
-  
+
   For example:
-  
+
   ```shell
   kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --function my_pipeline
   ```
-  
+
   ```shell
   kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --function my_component
   ```
 
-* To specify pipeline parameters, use the `--pipeline-parameters` argument and provide the parameters as JSON.
+- To specify pipeline parameters, use the `--pipeline-parameters` argument and provide the parameters as JSON.
 
   ```shell
   kfp dsl compile [PATH_TO_INPUT_PYTHON] --output [PATH_TO_OUTPUT_YAML] --pipeline-parameters [PIPELINE_PARAMETERS_JSON]
   ```
 
   For example:
-  
+
   ```shell
   kfp dsl compile --py path/to/pipeline.py --output path/to/output.yaml --pipeline-parameters '{"param1": 2.0, "param2": "my_val"}'
   ```
@@ -130,7 +134,6 @@ You can use the `kfp dsl compile` command to compile pipelines or components def
 ### Build containerized Python components
 
 You can author [Containerized Python Components][containerized-python-components] in the KFP SDK. This lets you use handle more source code with better code organization than the simpler [Lightweight Python Component][lightweight-python-component] authoring experience.
-
 
 #### Before you begin
 

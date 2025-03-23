@@ -33,9 +33,9 @@ The Kubernetes Operator for Apache Spark currently supports the following list o
 The operator consists of:
 
 - a `SparkApplication` controller that watches events of creation, updates, and deletion of
-`SparkApplication` objects and acts on the watch events,
-- a *submission runner* that runs `spark-submit` for submissions received from the controller,
-- a *Spark pod monitor* that watches for Spark pods and sends pod status updates to the controller,
+  `SparkApplication` objects and acts on the watch events,
+- a _submission runner_ that runs `spark-submit` for submissions received from the controller,
+- a _Spark pod monitor_ that watches for Spark pods and sends pod status updates to the controller,
 - a [Mutating Admission Webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/) that handles customizations for Spark driver and executor pods based on the annotations on the pods added by the controller,
 - and also a command-line tool named `sparkctl` for working with the operator.
 
@@ -43,7 +43,7 @@ The following diagram shows how different components interact and work together.
 
 ![Architecture Diagram](architecture-diagram.png)
 
-Specifically, a user uses the `sparkctl` (or `kubectl`) to create a `SparkApplication` object. The `SparkApplication` controller receives the object through a watcher from the API server, creates a submission carrying the `spark-submit` arguments, and sends the submission to the *submission runner*. The submission runner submits the application to run and creates the driver pod of the application. Upon starting, the driver pod creates the executor pods. While the application is running, the *Spark pod monitor* watches the pods of the application and sends status updates of the pods back to the controller, which then updates the status of the application accordingly.
+Specifically, a user uses the `sparkctl` (or `kubectl`) to create a `SparkApplication` object. The `SparkApplication` controller receives the object through a watcher from the API server, creates a submission carrying the `spark-submit` arguments, and sends the submission to the _submission runner_. The submission runner submits the application to run and creates the driver pod of the application. Upon starting, the driver pod creates the executor pods. While the application is running, the _Spark pod monitor_ watches the pods of the application and sends status updates of the pods back to the controller, which then updates the status of the application accordingly.
 
 ## The CRD Controller
 
@@ -53,7 +53,7 @@ When a `SparkApplication` object gets updated (i.e., when the `UpdateFunc` callb
 
 The controller is also responsible for updating the status of a `SparkApplication` object with the help of the Spark pod monitor, which watches Spark pods and update the `SparkApplicationStatus` field of corresponding `SparkApplication` objects based on the status of the pods. The Spark pod monitor watches events of creation, updates, and deletion of Spark pods, creates status update messages based on the status of the pods, and sends the messages to the controller to process. When the controller receives a status update message, it gets the corresponding `SparkApplication` object from the cache store and updates the the `Status` accordingly.
 
-As described in [API Definition](https://github.com/kubeflow/spark-operator/blob/master/docs/api-docs.md), the `Status` field (of type `SparkApplicationStatus`) records the overall state of the application as well as the state of each executor pod. Note that the overall state of an application is determined by the driver pod state, except when submission fails, in which case no driver pod gets launched. Particularly, the final application state is set to the termination state of the driver pod when applicable, i.e., `COMPLETED` if the driver pod completed or `FAILED` if the driver pod failed. If the driver pod gets deleted while running, the final application state is set to `FAILED`. If submission fails, the application state is set to `FAILED_SUBMISSION`.  There are two terminal states: `COMPLETED` and `FAILED` which means that any Application in these states will never be retried by the Operator. All other states are non-terminal and based on the State as well as RestartPolicy (discussed below) can be retried.
+As described in [API Definition](https://github.com/kubeflow/spark-operator/blob/master/docs/api-docs.md), the `Status` field (of type `SparkApplicationStatus`) records the overall state of the application as well as the state of each executor pod. Note that the overall state of an application is determined by the driver pod state, except when submission fails, in which case no driver pod gets launched. Particularly, the final application state is set to the termination state of the driver pod when applicable, i.e., `COMPLETED` if the driver pod completed or `FAILED` if the driver pod failed. If the driver pod gets deleted while running, the final application state is set to `FAILED`. If submission fails, the application state is set to `FAILED_SUBMISSION`. There are two terminal states: `COMPLETED` and `FAILED` which means that any Application in these states will never be retried by the Operator. All other states are non-terminal and based on the State as well as RestartPolicy (discussed below) can be retried.
 
 As part of preparing a submission for a newly created `SparkApplication` object, the controller parses the object and adds configuration options for adding certain annotations to the driver and executor pods of the application. The annotations are later used by the mutating admission webhook to configure the pods before they start to run. For example,if a Spark application needs a certain Kubernetes ConfigMap to be mounted into the driver and executor pods, the controller adds an annotation that specifies the name of the ConfigMap to mount. Later the mutating admission webhook sees the annotation on the pods and mount the ConfigMap to the pods.
 
@@ -63,13 +63,13 @@ The operator provides a configurable option through the `RestartPolicy` field of
 
 - If the restart policy type is `Never`, the application is not restarted upon terminating.
 - If the restart policy type is `Always`, the application gets restarted regardless of the termination state of the application. Please note that such an Application will never end up in a terminal state of `COMPLETED` or `FAILED`.
-- If the restart policy type  is `OnFailure`, the application gets restarted if and only if the application failed and the retry limit is not reached. Note that in case the driver pod gets deleted while running, the application is considered being failed as discussed above. In this case, the application gets restarted if the restart policy is `OnFailure`.
+- If the restart policy type is `OnFailure`, the application gets restarted if and only if the application failed and the retry limit is not reached. Note that in case the driver pod gets deleted while running, the application is considered being failed as discussed above. In this case, the application gets restarted if the restart policy is `OnFailure`.
 
 When the operator decides to restart an application, it cleans up the Kubernetes resources associated with the previous terminated run of the application and enqueues the `SparkApplication` object of the application into the internal work queue, from which it gets picked up by a worker who will handle the submission. Note that instead of restarting the driver pod, the operator simply re-submits the application and lets the submission client create a new driver pod.
 
 ## Mutating Admission Webhook
 
-The operator comes with an optional mutating admission webhook for customizing Spark driver and executor pods based on certain annotations on the pods added by the CRD controller. The annotations are set by the operator based on the application specifications. All Spark pod customization needs except for those natively support by Spark on Kubernetes are handled by the mutating admission webhook.
+The operator comes with an optional mutating admission webhook for customizing Spark driver and executor pods based on certain annotations on the pods added by the CRD controller. The annotations are set by the operator based on the application specifications. All Spark pod customization needs except for those natively supported by Spark on Kubernetes are handled by the mutating admission webhook.
 
 ## Command-line Tool: Sparkctl
 
