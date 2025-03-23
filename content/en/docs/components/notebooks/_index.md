@@ -1,5 +1,5 @@
 +++
 title = "Kubeflow Notebooks"
-description = "Documentation for Kubeflow Notebooks"
+description = "Running Development Environments Inside Kubernetes Clusters"
 weight = 10
 +++

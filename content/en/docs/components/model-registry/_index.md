@@ -1,5 +1,5 @@
 +++
 title = "Model Registry"
-description = "Documentation for Kubeflow Model Registry"
+description = "Central Index for Indexing and Managing ML Models"
 weight = 70
 +++

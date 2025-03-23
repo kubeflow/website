@@ -1,5 +1,5 @@
 ---
 title: Spark Operator
-description: Documentation for Spark Operator
+description: "Kubernetes Operator for Apache Spark Application Management"
 weight: 70
 ---
