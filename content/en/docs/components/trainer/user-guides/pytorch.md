@@ -4,12 +4,12 @@ description = "How to develop PyTorch models with Kubeflow Trainer"
 weight = 10
 +++
 
-This page describes how to use `PyTorchJob` for training a machine learning model with [PyTorch](https://pytorch.org/).
+This page describes how to use `TrainJob` for training a machine learning model with [PyTorch](https://pytorch.org/).
 
-The `PyTorchJob` is a Kubernetes
+The `TrainJob` is a Kubernetes
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 to run PyTorch training jobs on Kubernetes. The Kubeflow implementation of
-the `PyTorchJob` is in the [`trainer`](https://github.com/kubeflow/trainer).
+the `TrainJob` is in the [`trainer`](https://github.com/kubeflow/trainer).
 
 ## Creating a PyTorch Training Job
 
@@ -182,7 +182,7 @@ job_name = client.train(
 
 ---
 
-## Monitoring and Managing a PyTorchJob
+## Monitoring and Managing a TrainJob
 ### Check TrainJob steps
 
 Since the TrainJob performs distributed training across 2 nodes, it generates 2 steps: `node-0`, `node-1`.
