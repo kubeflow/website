@@ -24,34 +24,56 @@ The best option for you will depend on your specific requirements.
 
 Kubeflow Model Registry is available as an opt-in alpha component in Kubeflow Platform 1.9+, see [Installing Kubeflow](/docs/started/installing-kubeflow/) to learn more about deploying the Kubeflow Platform.
 
-> **Note:** If you are planning to use the Kubeflow UI, please see the section below on installing Model Registry on a Kubeflow Profile. This will ensure proper integration with the Kubeflow Platform and Dashboard.
+These instructions assume that you've installed Kubeflow from the [manifests](https://github.com/kubeflow/manifests/), if you're using a distribution consult its documentation instead.
 
-If you have deployed the Kubeflow manifests, you may follow [these instructions](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream#readme) to deploy Model Registry; please raise any feedback on [`kubeflow/model-registry`](https://github.com/kubeflow/model-registry/issues).
+Clone the `model-registry` repository:
 
-To deploy Model Registry UI, you just need to follow the [UI section](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream#ui-installation) under the Model Registry installation guide targeting a integrated install.
-
-#### Installing on a Kubeflow Profile
-
-Kubeflow Central Dashboard uses [Profiles](/docs/components/central-dash/profiles/) to handle user namespaces and permissions. By default, the manifests deploy the Model Registry in the `kubeflow` namespace, to install a compatible version of Model Registry for Kubeflow, you should first head into the [istio overlay](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream/options/istio) and run the following commands:
-
-```shell
-kustomize set namespace <your-profile>
-kubectl apply -k .
+```sh
+git clone --depth 1 -b v{{% model-registry/latest-version %}} https://github.com/kubeflow/model-registry.git
 ```
 
-Then head into the [db overlay](https://github.com/kubeflow/manifests/tree/master/apps/model-registry/upstream/overlays/db) and run the following commands:
+Switch to the `manifests/kustomize` for the remaining commands in this section:
 
-```shell
-kustomize set namespace <your-profile>
-kubectl apply -k .
+```sh
+cd model-registry/manifests/kustomize
+```
+
+Kubeflow Central Dashboard uses [Profiles](/docs/components/central-dash/profiles/) to handle user namespaces and permissions. By default, the manifests deploy the Model Registry in the `kubeflow` namespace, to install a compatible version of Model Registry for Kubeflow, you should instead deploy to your profile namespace. Use the following command the modify the manifests for your profile:
+
+```sh
+PROFILE_NAME=<your-profile>
+for DIR in options/istio overlays/db ; do (cd $DIR; kustomize edit set namespace $PROFILE_NAME); done
+```
+
+{{% alert title="Note" color="info" %}}
+> If you're not sure of the profile name, you can find it in the name space drop-down on the Kubeflow Dashboard.
+{{% /alert %}}
+
+Now apply the manifests:
+
+```sh
+kubectl apply -k overlays/db
+kubectl apply -k options/istio
+kubectl apply -k options/ui/overlays/istio
+```
+
+It may take a few minutes for the pods to be ready, you can check the status of the pods in your profile namespace:
+
+```sh
+kubectl get pods -n $PROFILE_NAME -w
+```
+
+Finally, configure a Model Registry link in the Kubeflow Dashboard:
+
+```sh
+kubectl get configmap centraldashboard-config -n kubeflow -o json | jq '.data.links |= (fromjson | .menuLinks += [{"icon": "assignment", "link": "/model-registry/", "text": "Model Registry", "type": "item"}] | tojson)' | kubectl apply -f - -n kubeflow
 ```
 
 ### Standalone installation
 
-If you want to install Model Registry separately from Kubeflow, or to get a later version
-of Model Registry, you can install the Model Registry manifests directly from the [Model Registry repository](https://github.com/kubeflow/model-registry).
+It is also possible to install Model Registry as a standalone deployment, separately from Kubeflow.
 
-By default, the manifests deploy the Model Registry in the `kubeflow` namespace;
+By default, the [manifests](https://github.com/kubeflow/model-registry/tree/v{{% model-registry/latest-version %}}/manifests/kustomize) deploy the Model Registry in the `kubeflow` namespace;
 you must ensure the `kubeflow` namespace is available (for example: `kubectl create namespace kubeflow`)
 or modify [the kustomization file](https://github.com/kubeflow/model-registry/blob/v{{% model-registry/latest-version %}}/manifests/kustomize/overlays/db/kustomization.yaml#L3) to your desired namespace.
 
@@ -79,6 +101,12 @@ kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize
 ```
 
 ## Check Model Registry setup
+
+{{% alert title="Note" color="warning" %}}
+> The commands and addresses in this section assume you've installed
+> Model Registry in the `kubeflow` namespace. Adjust the commands appropriately
+> if you installed into another namespace.
+{{% /alert %}}
 
 You can check the status of the Model Registry deployment with your Kubernetes tooling, or for example with:
 
