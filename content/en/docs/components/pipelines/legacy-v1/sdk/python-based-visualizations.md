@@ -48,7 +48,7 @@ experimentation, and customization when visualizing results.
 
 <img src="/docs/images/python-based-visualizations1.png"
   alt="Confusion matrix visualization from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 ## Using predefined visualizations
 
@@ -56,7 +56,7 @@ experimentation, and customization when visualizing results.
 
 <img src="/docs/images/python-based-visualizations2.png"
   alt="Confusion matrix visualization from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 1. Open the details of a run.
 2. Select a component.
@@ -95,7 +95,7 @@ arguments.
 
 <img src="/docs/images/python-based-visualizations3.png"
   alt="Confusion matrix visualization from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 1. Enable custom visualizations within Kubeflow Pipelines.
     * If you have not yet deployed Kubeflow Pipelines to your cluster,
@@ -103,7 +103,7 @@ arguments.
     file to include the following YAML that specifies that custom visualizations
     are allowed via environment variables.
 
-        ```
+        ```yaml
         - env:
           - name: ALLOW_CUSTOM_VISUALIZATIONS
             value: true
@@ -145,11 +145,11 @@ A demo of the above instructions is as follows.
     * Get back to the Run Details page, and click the **Artifacts** tab.
     * At the top of the tab you should see a card named **Visualization Creator**, choose **Custom** from the drop down menu.
     * In the **Custom Visualization Code** field, fill in the following code snippet and replace [output file path] with the output file path you just copied from **mlpipeline-ui-metadata**.
-    <pre style="overflow-x:scroll;overflow-y:hidden;white-space:pre;">
-      import tensorflow_data_validation as tfdv
-      stats = tfdv.load_statistics('[output file path]/stats_tfrecord')
-      tfdv.visualize_statistics(stats)
-    </pre>
+         ```python
+         import tensorflow_data_validation as tfdv
+         stats = tfdv.load_statistics('[output file path]/stats_tfrecord')
+         tfdv.visualize_statistics(stats)
+         ```
     * Click **Generate Visualization** and wait.
 6. Move to the bottom of the **Artifacts** tab to find the generated visualization.
 
@@ -178,7 +178,7 @@ A demo of the above instructions is as follows.
     [visualization deployment YAML](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/manifests/kustomize/base/pipeline/ml-pipeline-visualization-deployment.yaml)
     file or within the visualization service deployment itself.
 
-        ```
+        ```yaml
         - env:
           - name: KERNEL_TIMEOUT
             value: 100

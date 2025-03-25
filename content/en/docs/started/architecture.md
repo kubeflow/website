@@ -14,9 +14,11 @@ Kubeflow components and Kubeflow Platform.
 The following diagram gives an overview of the Kubeflow Ecosystem and how it relates to the wider
 Kubernetes and AI/ML landscapes.
 
-<img src="/docs/started/images/kubeflow-architecture.drawio.svg"
-  alt="An architectural overview of Kubeflow on Kubernetes"
-  class="mt-3 mb-3">
+<img src="/docs/started/images/kubeflow-architecture.drawio.svg" 
+     alt="Kubeflow Ecosystem Diagram"
+     class="mt-3 mb-3 border rounded p-3 bg-white"
+     style="width: 100%; max-width: 40em">
+</img>
 
 Kubeflow builds on [Kubernetes](https://kubernetes.io/) as a system for
 deploying, scaling, and managing AI/ML infrastructure.
@@ -31,9 +33,10 @@ producing the results you need.
 
 The following diagram shows the ML lifecycle stages in sequence:
 
-<img src="/docs/started/images/ml-lifecycle.drawio.svg"
-  alt="ML Lifecycle"
-  class="mt-3 mb-3">
+<img src="/docs/started/images/ml-lifecycle.drawio.svg" 
+     alt="ML Lifecycle"
+     class="mt-3 mb-3 border rounded p-3 bg-white">
+</img>
 
 Looking at the stages in more detail:
 
@@ -63,17 +66,19 @@ Looking at the stages in more detail:
 The ML lifecycle for AI applications may be conceptually split between _development_ and
 _production_ phases, this diagram explores which stages fit into each phase:
 
-<img src="/docs/started/images/ml-lifecycle-dev-prod.drawio.svg"
-  alt="ML Lifecycle with Development and Production"
-  class="mt-3 mb-3">
+<img src="/docs/started/images/ml-lifecycle-dev-prod.drawio.svg" 
+     alt="ML Lifecycle with Development and Production"
+     class="mt-3 mb-3 rounded">
+</img>
 
 ### Kubeflow Components in the ML Lifecycle
 
 The next diagram shows how Kubeflow components are used for each stage in the ML lifecycle:
 
-<img src="/docs/started/images/ml-lifecycle-kubeflow.drawio.svg"
-  alt="Kubeflow Components in ML Lifecycle"
-  class="mt-3 mb-3">
+<img src="/docs/started/images/ml-lifecycle-kubeflow.drawio.svg" 
+     alt="Kubeflow Components in the ML Lifecycle"
+     class="mt-3 mb-3 border rounded p-3 bg-white">
+</img>
 
 See the following links for more information about each Kubeflow component:
 
@@ -118,7 +123,7 @@ The Kubeflow Central Dashboard looks like this:
 
 <img src="/docs/images/dashboard/homepage.png" 
      alt="Kubeflow Central Dashboard - Homepage" 
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 </img>
 
 The Kubeflow Platform includes [Kubeflow Central Dashboard](/docs/components/central-dash/overview/)

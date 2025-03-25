@@ -1,0 +1,30 @@
+// --------------------------------------------------
+// hide light-only elements
+// --------------------------------------------------
+.show_light-only {
+  display: none !important;
+}
+
+// --------------------------------------------------
+// chroma (code highlighter)
+// --------------------------------------------------
+@import "chroma/nordic";
+
+// --------------------------------------------------
+// swagger-ui
+// --------------------------------------------------
+#swagger-ui-container {
+  // as swagger-ui does not have a dark theme, we simply invert the colors for now
+  // https://github.com/swagger-api/swagger-ui/issues/5327
+  filter: invert(88%) hue-rotate(180deg);
+}
+
+// --------------------------------------------------
+// google calendar
+// --------------------------------------------------
+#calendar-container {
+  // as google calendar does not have a dark theme, we simply invert the colors for now
+  iframe {
+    filter: invert(88%) hue-rotate(180deg);
+  }
+}

@@ -33,7 +33,7 @@ The V1 Training Operator architecture diagram can be seen in the diagram below:
 
 <img src="/docs/components/trainer/legacy-v1/images/training-operator-v1-architecture.drawio.svg"
   alt="Training Operator V1 Architecture"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded">
 
 The diagram displays PyTorchJob and its configured communication methods but it
 is worth mentioning that each framework can have its own appraoch(es) to

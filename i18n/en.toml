@@ -6,3 +6,6 @@ other = "Create project issue"
 
 [print_entire_section]
 other = "Print this section"
+
+[ui_search]
+other = "Search"
