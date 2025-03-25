@@ -679,7 +679,7 @@ If you believe we missed a breaking change or an important migration step, pleas
 [compile]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline
 [compiler-compile]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/compiler.html#kfp.compiler.Compiler.compile
 [components-load-component-from-file]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.load_component_from_file
-[container-components]: /docs/components/pipelines/user-guides/components/containerized-python-components/
+[container-components]: /docs/components/pipelines/user-guides/components/container-components/
 [containerized-python-components]: /docs/components/pipelines/user-guides/components/containerized-python-components/
 [create-custom-training-job-from-component]: https://cloud.google.com/vertex-ai/docs/pipelines/customjob-component
 [dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.Collected
