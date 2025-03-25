@@ -24,7 +24,7 @@ pip install git+https://github.com/kubeflow/trainer.git@master#subdirectory=sdk
 
 ## Getting Started with PyTorch
 
-Before creating a Kubeflow TrainJob, defines the training function that handles end-to-end model
+Before creating a Kubeflow TrainJob, define the training function that handles end-to-end model
 training. Each PyTorch node will execute this function within the configured distributed environment.
 Typically, this function includes steps to download the dataset, initialize the model, and train it.
 
@@ -156,24 +156,24 @@ job_id = TrainerClient().train(
             "gpu": 1, # Comment this line if you don't have GPUs.
         },
     ),
-    runtime_ref="torch-distributed",
+    runtime=TrainerClient().get_runtime("torch-distributed"),
 )
 ```
 
-You can check the components of the TrainJob and the number of devices each PyTorch node is using:
+You can check the steps of the TrainJob and the number of devices each PyTorch node is using:
 
 ```python
-for c in TrainerClient().get_job(name=job_id).components:
-    print(f"Component: {c.name}, Status: {c.status}, Devices: {c.device} x {c.device_count}")
+for s in TrainerClient().get_job(name=job_id).steps:
+    print(f"Step: {s.name}, Status: {s.status}, Devices: {s.device} x {s.device_count}")
 ```
 
 The output:
 
 ```python
-Component: trainer-node-0, Status: Succeeded, Devices: gpu x 1
-Component: trainer-node-1, Status: Succeeded, Devices: gpu x 1
-Component: trainer-node-2, Status: Succeeded, Devices: gpu x 1
-Component: trainer-node-3, Status: Succeeded, Devices: gpu x 1
+Step: node-0, Status: Succeeded, Devices: gpu x 1
+Step: node-1, Status: Succeeded, Devices: gpu x 1
+Step: node-2, Status: Succeeded, Devices: gpu x 1
+Step: node-3, Status: Succeeded, Devices: gpu x 1
 ```
 
 Finally, you can check the training logs from the master node:
@@ -181,7 +181,7 @@ Finally, you can check the training logs from the master node:
 ```python
 logs = TrainerClient().get_job_logs(name=job_id)
 
-print(logs["trainer-node-0"])
+print(logs["node-0"])
 ```
 
 Since training was run on 4 GPUs, each PyTorch node processes 60,000 / 4 = 15,000 images
