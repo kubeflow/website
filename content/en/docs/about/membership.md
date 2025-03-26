@@ -100,7 +100,7 @@ Acceptance of code contributions requires at least one approver in addition to t
 
 The following apply to the part of codebase for which one would be a reviewer in an [OWNERS](/docs/about/contributing/#owners) file.
 
-- member for at least 3 months
+- Demonstrated consistent contributions for at least 2 to 3 months since their first contribution
 - Primary reviewer for at least 5 PRs to the codebase
 - Reviewed or merged at least 15 substantial PRs to the codebase
 - Knowledgeable about the codebase
