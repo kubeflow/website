@@ -151,9 +151,9 @@ kfp component build --component-filepattern the_component.py --no-build-image --
 Note that creating and maintaining custom containers can carry a significant maintenance burden. In general, a 1-to-1 relationship between components and containers is not needed or recommended, as AI/ML work is often highly iterative. A best practice is to work with a small set of base images that can support many components. If you need more control over the container build than the `kfp` CLI provides, consider using a container CLI like [docker][docker-cli] or [podman][podman-cli].
 
 
-[pipeline]: /docs/components/concepts/pipeline.md
+[pipeline]: /docs/components/pipelines/concepts/pipeline
 [KFP SDK]: https://kubeflow-pipelines.readthedocs.io
-[artifacts]: /docs/components/concepts/output-artifact.md
+[artifacts]: /docs/components/pipelines/concepts/output-artifact
 [python-sdk-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.component
 [yaml-component]: /docs/components/pipelines/reference/component-spec
 [docker-cli]: https://github.com/docker/cli
