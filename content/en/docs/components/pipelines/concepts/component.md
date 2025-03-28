@@ -5,15 +5,15 @@ weight = 20
 +++
 
 
-A **pipeline component** is the fundamental building block for ML engineers to construct a Kubeflow Pipelines [pipeline][pipeline]. The component structure serves the purpose of packaging a functional unit of code along with its dependencies, so that it can be run as part of a workflow in a Kubernetes-based environement. Components can be combined in a [pipeline][pipeline] that creates a repeatable workflow, with individual components coordinating on inputs and outputs like parameters and [artifacts][artifacts].
+A **pipeline component** is the fundamental building block for an ML engineer to construct a Kubeflow Pipelines [pipeline][pipeline]. The component structure serves the purpose of packaging a functional unit of code along with its dependencies, so that it can be run as part of a workflow in a Kubernetes environement. Components can be combined in a [pipeline][pipeline] that creates a repeatable workflow, with individual components coordinating on inputs and outputs like parameters and [artifacts][artifacts].
 
 A component is similar to a programming function. Indeed, it is most often implemented as a wrapper to a Python function using the [KFP Python SDK][KFP SDK]. However, a KFP component goes further than a simple function, with support for code dependencies, runtime environments, and distributed execution requirements.
 
-KFP components are designed to simplify constructing and running ML workflows in a Kubernetes-based environment. Using KFP components engineers can iterate faster, reduce maintenance overhead, and focus more attention on ML work.
+KFP components are designed to simplify constructing and running ML workflows in a Kubernetes environment. Using KFP components engineers can iterate faster, reduce maintenance overhead, and focus more attention on ML work.
 
 ## The Why Behind KFP Components
 
-Running ML code in a Kubernetes-based cluster presents many challenges. Some of the main challenges are:
+Running ML code in a Kubernetes cluster presents many challenges. Some of the main challenges are:
 - Managing **code dependencies** (Python libraries and versions)
 - Handling **system dependencies** (OS-level packages, GPU drivers, runtime environments)
 - **Building and maintaining container images** and everything around this from container registry support to CVE (Common Vulnerabilities and Exposures) fixes
