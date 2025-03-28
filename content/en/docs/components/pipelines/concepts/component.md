@@ -150,6 +150,17 @@ kfp component build --component-filepattern the_component.py --no-build-image --
 ```
 Note that creating and maintaining custom containers can carry a significant maintenance burden. In general, a 1-to-1 relationship between components and containers is not needed or recommended, as AI/ML work is often highly iterative. A best practice is to work with a small set of base images that can support many components. If you need more control over the container build than the `kfp` CLI provides, consider using a container CLI like [docker][docker-cli] or [podman][podman-cli].
 
+## Next steps
+
+* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/overview/).
+* Follow the [pipelines quickstart guide](/docs/components/pipelines/getting-started/) 
+  to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
+  Pipelines UI.
+* Build your own 
+  [component and pipeline](/docs/components/pipelines/legacy-v1/sdk/component-development/).
+* Build a [reusable component](/docs/components/pipelines/legacy-v1/sdk/component-development/) for
+  sharing in multiple pipelines.
+
 
 [pipeline]: /docs/components/pipelines/concepts/pipeline
 [KFP SDK]: https://kubeflow-pipelines.readthedocs.io
