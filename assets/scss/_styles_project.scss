@@ -543,30 +543,25 @@ nav.foldable-nav {
     }
   }
 
-  .trusted-logo-light {
+  .trusted-logo {
     pointer-events: none;
     user-select: none; 
-    max-height: 3rem; 
-    max-width: 12.5rem;
+    max-height: 50px; 
+    width: auto;
+    margin: 0 20px; 
     object-fit: contain; 
-    display: block !important;
   }
-
-  .trusted-logo-dark {
-    pointer-events: none;
-    user-select: none; 
-    max-height: 3rem; 
-    max-width: 12.5rem;
-    object-fit: contain; 
-    display: none !important;
-  }
-
+  
   .trusted-logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap; 
-    gap: 3rem;
+    gap: 20px; 
+  }
+  
+  .border-primary-dark {
+    border-color: $info !important;
   }
 
   .section-head {
