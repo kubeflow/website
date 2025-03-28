@@ -81,7 +81,7 @@ Observe that these are wrapped Python functions. The `@component` wrapper helps 
 
 The `hello_world` component just uses default behavior (run the Python function on the default base image, which is `python:3.9`). The `process_data` component adds layers of customization, by supplying the name of a specific `base_image`, and `packages_to_install`. This component also uses KFP's `Output[Dataset]` class, which takes care of creating a KFP [artifact][artifact] type output.
 
-Note that inputs and outputs are defined as Python function parameters. Also, dependencies can often be installed at runtime, avoiding the need for custom base containers. Python-based components give close access to the Python tools that ML experimenters rely on, like modules and imports, usage information, type hints, and debugging tools.
+Note that inputs and outputs are defined as Python function parameters. Also, dependencies can often be installed at runtime, avoiding the need for custom base images. Python-based components give close access to the Python tools that ML experimenters rely on, like modules and imports, usage information, type hints, and debugging tools.
 
 Provided that dependencies are satisfied in your environment, it is also easy to run Python-based components as simple Python functions, which can be useful for local work. For example, to run `process_data` as a Python function try:
 ``` python
