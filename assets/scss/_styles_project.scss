@@ -543,6 +543,27 @@ nav.foldable-nav {
     }
   }
 
+  .trusted-logo {
+    pointer-events: none;
+    user-select: none; 
+    max-height: 50px; 
+    width: auto;
+    margin: 0 20px; 
+    object-fit: contain; 
+  }
+  
+  .trusted-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 20px; 
+  }
+  
+  .border-primary-dark {
+    border-color: $info !important;
+  }
+
   .section-head {
     color: $home-section-title-color;
 
