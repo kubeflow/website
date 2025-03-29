@@ -15,10 +15,17 @@ $container-max-widths: (
   xl: 1440px // default: 1140px, breakpoint: 1200px
 );
 
+// Kubeflow colors
+// https://github.com/kubeflow/marketing-materials/blob/master/logos/Logo-File-Guide.pdf
+$kf-blue: #4279f4;
+$kf-darkblue: #0028aa;
+$kf-darkblue-alt: #213d7a;
+
 // Theme colors
-$primary: #4279f4;
+// NOTE: we don't use $kf-darkblue as $dark because it looks bad.
+$primary: $kf-blue;
 $secondary: #fff;
-$dark: #213d7a;
+$dark: $kf-darkblue-alt;
 $info: #17a2b8;
 $light: #dee2e6;
 

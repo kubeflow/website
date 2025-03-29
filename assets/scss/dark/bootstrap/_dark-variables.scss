@@ -45,14 +45,15 @@ $colors: map-merge(
   )
 );
 
-$primary:       #4279f4;
+// NOTE: we don't use $kf-darkblue as $dark because it looks bad.
+$primary:       $kf-blue;
 $secondary:     $gray-300;
 $success:       $green;
 $info:          $cyan;
 $warning:       $orange;
 $danger:        $red;
 $light:         $gray-500;
-$dark:          #213d7a;
+$dark:          $kf-darkblue-alt;
 
 $theme-colors: map-merge(
   $theme-colors,
