@@ -1,19 +1,11 @@
 <div class="td-search">
   <div class="td-search__icon"></div>
-  <input type="search" class="td-search__input form-control td-search-input" placeholder="{{ T "ui_search" }}" aria-label="{{ T "ui_search" }}" autocomplete="off">
-</div>
-<script>
-  $(document).ready(function() {
-    $(document).on('keypress', '.td-search input', function(e) {
-      if (e.keyCode !== 13) {
-        return
-      }
-
-      var query = $(this).val();
-      var searchPage = "{{ "search/" | absURL }}?q=" + query;
-      document.location = searchPage;
-
-      return false;
-    });
-  });
-</script> 
+  <input 
+    type="search" 
+    class="td-search__input form-control td-search-input" 
+    placeholder="{{ T "ui_search" }}" 
+    aria-label="{{ T "ui_search" }}" 
+    autocomplete="off"
+    onkeydown="if (event.keyCode === 13) { window.location.href = '/search/?q=' + encodeURIComponent(this.value); return false; }"
+  >
+</div> 
