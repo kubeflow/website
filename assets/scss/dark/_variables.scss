@@ -12,9 +12,12 @@ $td-sidebar-left-stroke-active-color: transparentize($primary, 0.8);
 // --------------------------------------------------
 // Search
 // --------------------------------------------------
-$search-icon-color: $teal;
-$search-placeholder-color: darken($teal, 10%);
-$search-border-color: darken($teal, 20%);
+$search-icon-color: $gray-500;
+$search-placeholder-color: $gray-500;
+$search-bg-color: $gray-800;
+$search-border-color: $gray-700;
+$search-border-focus-color: darken($teal, 10%);
+$search-shadow-color: transparentize($gray-600, 0.75);
 
 // --------------------------------------------------
 // Home page

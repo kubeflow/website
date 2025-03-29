@@ -225,11 +225,17 @@ footer {
 
   .td-search__input {
     text-indent: 1.75rem;
-    background-color: $body-bg;
-    border: 1px solid $search-border-color;
+    background-color: $search-bg-color;
+    border: 2px solid $search-border-color;
+    box-shadow: 0px 2px 8px 0px $search-shadow-color;
 
     &::placeholder {
       color: $search-placeholder-color;
+    }
+
+    &.form-control:focus {
+      border-color: $search-border-focus-color;
+      box-shadow: 0px 2px 8px 0px $search-shadow-color;
     }
   }
 
