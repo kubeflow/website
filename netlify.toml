@@ -2,16 +2,16 @@
   publish = "public"
   # setting baseURL is required for `PAGE.Permalink` to correctly include the full `https://DOMAIN/` prefix
   # which is required for things like `twitter:image` meta tags to work correctly
-  command = "cd themes/docsy && git submodule update -f --init && npm install && cd ../.. && hugo --gc --minify"
+  command = "cd themes/docsy && git submodule update -f --init && npm install && cd ../.. && hugo --gc --minify && npx pagefind --site public"
 
 [context.deploy-preview]
   # for deploy previews, the domain will be `https://deploy-preview-PR_NUMBER--competent-brattain-de2d6d.netlify.app/`
   # which can be read from the `DEPLOY_PRIME_URL` environment variable in Netlify
-  command = "cd themes/docsy && git submodule update -f --init && npm install && cd ../.. && hugo --gc --minify --baseURL $DEPLOY_PRIME_URL"
+  command = "cd themes/docsy && git submodule update -f --init && npm install && cd ../.. && hugo --gc --minify --baseURL $DEPLOY_PRIME_URL && npx pagefind --site public"
 
 [context.production]
   # for production, the domain will be `https://www.kubeflow.org/`
-  command = "cd themes/docsy && git submodule update -f --init && npm install && cd ../.. && hugo --gc --minify --baseURL https://www.kubeflow.org/"
+  command = "cd themes/docsy && git submodule update -f --init && npm install && cd ../.. && hugo --gc --minify --baseURL https://www.kubeflow.org/ && npx pagefind --site public"
 
 [[context.deploy-preview.plugins]]
 package = "netlify-plugin-checklinks"

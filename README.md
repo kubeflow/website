@@ -102,6 +102,19 @@ Follow the usual GitHub workflow of forking the repository on GitHub and then cl
 
 6. You can access your website at [http://localhost:1313/](http://localhost:1313/)
 
+7. For local development with search functionality, you need to build the search index:
+
+    ```bash
+    # Build the site
+    hugo
+    
+    # Generate search index
+    npx pagefind --site public --output-subdir ../static/pagefind
+    
+    # Run the local server with updated search index
+    hugo server -D
+    ```
+
 ### Useful docs
 
 * [User guide for the Docsy theme](https://www.docsy.dev/docs/getting-started/)
