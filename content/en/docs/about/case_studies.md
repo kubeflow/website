@@ -1,6 +1,9 @@
++++
 title = "Case Studies"
 description = "Discover how companies use Kubeflow in real-world applications."
+weight = 100
 aliases = ["/docs/CaseStudies/"]
++++
 
 ## Featured Case Studies
 
