@@ -116,6 +116,10 @@ The `HuggingFaceTrainerParams` class is used to define parameters for the traini
 | `training_parameters` | `transformers.TrainingArguments` | Contains the training arguments like learning rate, epochs, batch size, etc.  |
 | `lora_config`         | `LoraConfig`                     | LoRA configuration to reduce the number of trainable parameters in the model. |
 
+{{% alert title="Note" color="info" %}}
+Currently, only parameters within `training_parameters` and `lora_config` can be tuned using Katib's search API. Other fields are static and cannot be tuned.
+{{% /alert %}}
+
 ###### Katib Search API for Defining Hyperparameter Search Space
 
 The **Katib Search API** allows users to define the search space for hyperparameters during model tuning. This API supports continuous, discrete, and categorical parameter sampling, enabling flexible and efficient hyperparameter optimization.
@@ -165,6 +169,10 @@ In addition to Hugging Face, you can integrate with S3-compatible object storage
 from kubeflow.storage_initializer.s3 import S3DatasetParams
 ```
 
+{{% alert title="Note" color="info" %}}
+For detailed descriptions of Hugging Face and S3 parameter classes, please refer to the [Training Operator fine-tuning guide](/docs/components/training/sdk-guide/huggingface-integration).
+{{% /alert %}}
+
 #### S3DatasetParams
 
 ##### Description
@@ -209,9 +217,6 @@ In the context of optimizing hyperparameters of large language models (LLMs) lik
 | `dataset_provider_parameters` | Parameters for the dataset provider, such as dataset configuration.          | Optional     |
 | `trainer_parameters`          | Configuration for the trainer, including hyperparameters for model training. | Optional     |
 | `storage_config`              | Configuration for storage, like PVC size and storage class.                  | Optional     |
-| `objective`                   | Objective function for training and optimization.                            | Optional     |
-| `base_image`                  | Base image for executing the objective function.                             | Optional     |
-| `parameters`                  | Hyperparameters for tuning the experiment.                                   | Optional     |
 | `namespace`                   | Kubernetes namespace for the experiment.                                     | Optional     |
 | `env_per_trial`               | Environment variables for each trial.                                        | Optional     |
 | `algorithm_name`              | Algorithm used for the hyperparameter search.                                | Optional     |
@@ -243,7 +248,7 @@ In the context of optimizing hyperparameters of large language models (LLMs) lik
      resources_per_trial=katib.TrainerResources(
         num_workers=1,
         num_procs_per_worker=1,
-        resources_per_worker={"gpu": 0, "cpu": 1, "memory": "10G",},
+        resources_per_worker={"gpu": 0, "cpu": 1, "memory": "10G"},
      )
    ```
 
@@ -330,11 +335,11 @@ cl.tune(
 	algorithm_name = "random",
 	max_trial_count = 10,
 	parallel_trial_count = 2,
-	resources_per_trial={
-		"gpu": "2",
-		"cpu": "4",
-		"memory": "10G",
-	},
+	resources_per_trial=katib.TrainerResources(
+		num_workers=1,
+		num_procs_per_worker=1,
+		resources_per_worker={"gpu": 2, "cpu": 4, "memory": "10G"},
+	),
 )
 
 cl.wait_for_experiment_condition(name=exp_name)
