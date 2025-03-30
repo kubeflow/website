@@ -40,81 +40,21 @@ from kubeflow.storage_initializer.hugging_face import (
 )
 ```
 
+{{% alert title="Note" color="info" %}}
+The detailed descriptions of these parameter classes have been moved to the [Training Operator fine-tuning guide](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#huggingface-parameter-classes). This page provides a brief overview of how to use these classes with Katib for hyperparameter optimization.
+{{% /alert %}}
+
 #### HuggingFaceModelParams
 
-##### Description
-
-The `HuggingFaceModelParams` dataclass holds configuration parameters for initializing Hugging Face models with validation checks.
-
-| **Attribute**      | **Type**                          | **Description**                                            |
-| ------------------ | --------------------------------- | ---------------------------------------------------------- |
-| `model_uri`        | `str`                             | URI or path to the Hugging Face model (must not be empty). |
-| `transformer_type` | `TRANSFORMER_TYPES`               | Specifies the model type for various NLP/ML tasks.         |
-| `access_token`     | `Optional[str]` (default: `None`) | Token for accessing private models on Hugging Face.        |
-| `num_labels`       | `Optional[int]` (default: `None`) | Number of output labels (used for classification tasks).   |
-
-###### Supported Transformer Types (`TRANSFORMER_TYPES`)
-
-| **Model Type**                       | **Task**                 |
-| ------------------------------------ | ------------------------ |
-| `AutoModelForSequenceClassification` | Text classification      |
-| `AutoModelForTokenClassification`    | Named entity recognition |
-| `AutoModelForQuestionAnswering`      | Question answering       |
-| `AutoModelForCausalLM`               | Text generation (causal) |
-| `AutoModelForMaskedLM`               | Masked language modeling |
-| `AutoModelForImageClassification`    | Image classification     |
-
-##### Example Usage
-
-```python
-from transformers import AutoModelForSequenceClassification
-
-from kubeflow.storage_initializer.hugging_face import HuggingFaceModelParams
-
-
-params = HuggingFaceModelParams(
-    model_uri="bert-base-uncased",
-    transformer_type=AutoModelForSequenceClassification,
-    access_token="huggingface_access_token",
-    num_labels=2  # For binary classification
-)
-```
+The `HuggingFaceModelParams` dataclass holds configuration parameters for initializing Hugging Face models. For detailed documentation and examples, see the [Training Operator fine-tuning guide](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#huggingfacemodelparams).
 
 #### HuggingFaceDatasetParams
 
-##### Description
-
-The `HuggingFaceDatasetParams` class holds configuration parameters for loading datasets from Hugging Face with validation checks.
-
-| **Attribute**  | **Type**                          | **Description**                                                           |
-| -------------- | --------------------------------- | ------------------------------------------------------------------------- |
-| `repo_id`      | `str`                             | Identifier of the dataset repository on Hugging Face (must not be empty). |
-| `access_token` | `Optional[str]` (default: `None`) | Token for accessing private datasets on Hugging Face.                     |
-| `split`        | `Optional[str]` (default: `None`) | Dataset split to load (e.g., `"train"`, `"test"`).                        |
-
-##### Example Usage
-
-```python
-from kubeflow.storage_initializer.hugging_face import HuggingFaceDatasetParams
-
-
-dataset_params = HuggingFaceDatasetParams(
-    repo_id="imdb",            # Public dataset repository ID on Hugging Face
-    split="train",             # Dataset split to load
-    access_token=None          # Not needed for public datasets
-)
-```
+The `HuggingFaceDatasetParams` class holds configuration parameters for loading datasets from Hugging Face. For detailed documentation and examples, see the [Training Operator fine-tuning guide](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#huggingfacedatasetparams).
 
 #### HuggingFaceTrainerParams
 
-##### Description
-
-The `HuggingFaceTrainerParams` class is used to define parameters for the training process in the Hugging Face framework. It includes the training arguments and LoRA configuration to optimize model training.
-
-| **Parameter**         | **Type**                         | **Description**                                                               |
-| --------------------- | -------------------------------- | ----------------------------------------------------------------------------- |
-| `training_parameters` | `transformers.TrainingArguments` | Contains the training arguments like learning rate, epochs, batch size, etc.  |
-| `lora_config`         | `LoraConfig`                     | LoRA configuration to reduce the number of trainable parameters in the model. |
+The `HuggingFaceTrainerParams` class is used to define parameters for the training process in the Hugging Face framework. For detailed documentation and examples, see the [Training Operator fine-tuning guide](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#huggingfacetrainerparams).
 
 {{% alert title="Note" color="info" %}}
 Currently, only parameters within `training_parameters` and `lora_config` can be tuned using Katib's search API. Other fields are static and cannot be tuned.
@@ -170,7 +110,7 @@ from kubeflow.storage_initializer.s3 import S3DatasetParams
 ```
 
 {{% alert title="Note" color="info" %}}
-For detailed descriptions of Hugging Face and S3 parameter classes, please refer to the [Training Operator documentation](/docs/components/trainer/legacy-v1).
+For detailed descriptions of Hugging Face and S3 parameter classes, please refer to the [Training Operator documentation](/docs/components/training/).
 {{% /alert %}}
 
 #### S3DatasetParams
@@ -217,6 +157,9 @@ In the context of optimizing hyperparameters of large language models (LLMs) lik
 | `dataset_provider_parameters` | Parameters for the dataset provider, such as dataset configuration.          | Optional     |
 | `trainer_parameters`          | Configuration for the trainer, including hyperparameters for model training. | Optional     |
 | `storage_config`              | Configuration for storage, like PVC size and storage class.                  | Optional     |
+| `objective`                   | Objective function for training and optimization.                            | Optional     |
+| `base_image`                  | Base image for executing the objective function.                             | Optional     |
+| `parameters`                  | Hyperparameters for tuning the experiment.                                   | Optional     |
 | `namespace`                   | Kubernetes namespace for the experiment.                                     | Optional     |
 | `env_per_trial`               | Environment variables for each trial.                                        | Optional     |
 | `algorithm_name`              | Algorithm used for the hyperparameter search.                                | Optional     |
@@ -336,8 +279,8 @@ cl.tune(
 	max_trial_count = 10,
 	parallel_trial_count = 2,
 	resources_per_trial=katib.TrainerResources(
-		num_workers=1,
-		num_procs_per_worker=1,
+		num_workers=2,
+		num_procs_per_worker=2,
 		resources_per_worker={"gpu": 2, "cpu": 4, "memory": "10G"},
 	),
 )
