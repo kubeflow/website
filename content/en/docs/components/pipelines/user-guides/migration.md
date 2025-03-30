@@ -416,7 +416,7 @@ def training_pipeline(number_of_epochs: int = 1):
 
 With few exceptions, KFP SDK v2 is backward compatible with user code that uses the KFP SDK v1 v2-namespace.
 
-{{% alert title="Note" color="dark" %}}
+{{% alert title="Note" color="info" %}}
 This migration path ONLY affects v1 SDK users that were running pipelines on Google Cloud's Vertex AI Pipelines.
 {{% /alert %}}
 

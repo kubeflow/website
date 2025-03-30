@@ -23,7 +23,7 @@ Here is a screenshot of the Kubeflow Central Dashboard:
 
 <img src="/docs/images/dashboard/homepage.png" 
      alt="Kubeflow Central Dashboard - Homepage" 
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 </img>
 
 ## Navigation
@@ -65,7 +65,7 @@ When [Kubeflow Pipelines](/docs/components/pipelines/) is installed, you can sel
 
 <img src="/docs/images/dashboard/pipelines-runs.png" 
      alt="Kubeflow Central Dashboard - Pipelines - Runs" 
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 </img>
 
 In the **Pipelines** section, you can access the following pages:

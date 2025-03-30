@@ -9,6 +9,9 @@ This document outlines the various responsibilities of contributor roles in Kube
 
 Responsibilities for most roles are scoped to these repositories.
 
+<div class="table-responsive">
+<div class="table table-bordered">
+
 | Role | Responsibilities | Requirements | Defined by |
 | -----| ---------------- | ------------ | -------|
 | Member | Active contributor in the community | Sponsored by 2 Kubeflow members and multiple contributions to the project | Kubeflow GitHub org member|
@@ -17,6 +20,9 @@ Responsibilities for most roles are scoped to these repositories.
 | WG Lead  | Provides technical leadership for a Working Group | Have sufficient domain knowledge to provide effective technical leadership | [wgs.yaml] entry |
 | WG Chair | Provides overall leadership for a Working Group | Have sufficient domain knowledge to provide effective leadership | [wgs.yaml] entry |
 | Kubeflow Steering Commitee Member | The KSC provides leadership for the overall Kubeflow project | [Details](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#charter) | [Members](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#charter) |
+
+</div>
+</div>
 
 {{< note >}}
 Detailed documentation for Working Group structure and responsibilities can be found at [wg-governance.md](https://github.com/kubeflow/community/blob/master/wgs/wg-governance.md)

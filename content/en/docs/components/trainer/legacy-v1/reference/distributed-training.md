@@ -20,7 +20,7 @@ This diagram shows how the Training Operator creates PyTorch workers for the
 
 <img src="/docs/components/trainer/legacy-v1/images/distributed-pytorchjob.drawio.svg"
   alt="Distributed PyTorchJob"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 You are responsible for writing the training code using native
 [PyTorch Distributed APIs](https://pytorch.org/tutorials/beginner/dist_overview.html)
@@ -43,7 +43,7 @@ This diagram shows how the Training Operator creates the TensorFlow parameter se
 
 <img src="/docs/components/trainer/legacy-v1/images/distributed-tfjob.drawio.svg"
   alt="Distributed TFJob"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 You are responsible for writing the training code using native
 [TensorFlow Distributed APIs](https://www.tensorflow.org/guide/distributed_training) and creating a
