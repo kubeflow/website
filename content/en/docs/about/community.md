@@ -22,6 +22,9 @@ Please join the [Kubeflow channels](#slack-channels) to join the conversation an
 
 The following table lists official Kubeflow channels which are hosted on the **CNCF Slack**:
 
+<div class="table-responsive">
+<div class="table table-bordered">
+
 | Description                             | Link                                                                           |
 | --------------------------------------- | ------------------------------------------------------------------------------ |
 | Announcements                           | [#kubeflow-announcements](https://app.slack.com/client/T08PSQ7BQ/C01EV0FV154)  |
@@ -34,6 +37,9 @@ The following table lists official Kubeflow channels which are hosted on the **C
 | Spark Operator                          | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG) |
 | Kubeflow Trainer and MPI Operator       | [#kubeflow-trainer](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)        |
 | KServe                                  | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                  |
+
+</div>
+</div>
 
 ## Kubeflow Mailing List
 
@@ -50,21 +56,25 @@ issues/proposals and present demos/products.
 
 ### Subscribe to the Kubeflow Calendar
 
-Joining the [kubeflow-discuss mailing list](#kubeflow-mailing-list) should automatically add
-the Kubeflow community meetings to your Google calendar. If you still can't see the invites,
-manually add [the Kubeflow calendar using this name](https://calendar.google.com/calendar/u/0/r/settings/addcalendar):
+By joining the [`kubeflow-discuss`](#kubeflow-mailing-list) mailing list, you should automatically see all the Kubeflow community meetings in your Google calendar.
 
-```shell
+If this does not work, [manually add](https://calendar.google.com/calendar/u/0/r/settings/addcalendar) the following name to your Google calendar:
+
+```text
 kubeflow.org_7l5vnbn8suj2se10sen81d9428@group.calendar.google.com
 ```
 
 <img src="/docs/about/images/google-calendar.png"
       alt="Google Calendar"
-      class="mt-3 mb-3">
+      class="mt-3 mb-3 border rounded">
+</img>
 
 ### List of Available Meetings
 
 The following list shows available Kubeflow community meetings with the corresponding meeting notes and recordings.
+
+<div class="table-responsive">
+<div class="table table-bordered">
 
 | Meeting Name                    | Meeting Notes                                        | Recordings                                                                                   |
 | ------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
@@ -77,6 +87,9 @@ The following list shows available Kubeflow community meetings with the correspo
 | Kubeflow Release team call      | [Google Doc](https://bit.ly/kf-release-team-notes)   |                                                                                              |
 | Kubeflow Spark Operator call    | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
 | KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                 |                                                                                              |
+
+</div>
+</div>
 
 ### Kubeflow Community Calendar
 
@@ -96,7 +109,7 @@ const calender_src_list = [
   "kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com",
 ];
 let calender_src = calender_src_list.map(src => `&src=${src}&color=%23A79B8E`).join('');
-const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&showPrint=0&showDate=1&mode=AGENDA&showTitle=0${calender_src}" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
+const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&showPrint=0&showDate=1&mode=AGENDA&showTitle=0${calender_src}" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
 document.getElementById('calendar-container').innerHTML = html;
 </script>
 

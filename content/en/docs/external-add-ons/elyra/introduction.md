@@ -13,7 +13,8 @@ The following screenshot shows an example of a Pipeline created with Elyra:
 
 <img src="/docs/external-add-ons/elyra/images/elyra-pipeline-screenshot.png"
      alt="An example of a Pipeline created with Elyra"
-     class="p-2"></img>
+     class="mt-3 mb-3 border rounded">
+</img>
 
 ## How to use Elyra with Kubeflow?
 

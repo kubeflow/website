@@ -38,7 +38,7 @@ is a good starting point for developers who want to contribute to the project.
 
 <img src="/docs/components/katib/images/katib-overview.drawio.png"
   alt="Katib Overview"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 ## Why Katib ?
 
@@ -47,7 +47,7 @@ in AI/ML lifecycle as shown on that diagram:
 
 <img src="/docs/components/katib/images/ml-lifecycle-katib.drawio.svg"
   alt="AI/ML Lifecycle Katib"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 - **Katib can orchestrate multi-node & multi-GPU [distributed training workloads](/docs/components/katib/user-guides/trial-template)**.
 

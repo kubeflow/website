@@ -1,0 +1,55 @@
+// --------------------------------------------------
+// Sidebar
+// --------------------------------------------------
+$td-sidebar-section-title-color: $gray-400;
+$td-sidebar-link-color: $gray-400;
+$td-sidebar-bg-color: rgba($primary, 0.03);
+$td-sidebar-border-color: $border-color;
+$td-sidebar-closed-color: $gray-500;
+$td-sidebar-left-stroke-color: $gray-600;
+$td-sidebar-left-stroke-active-color: transparentize($primary, 0.8);
+
+// --------------------------------------------------
+// Search
+// --------------------------------------------------
+$search-icon-color: $gray-500;
+$search-placeholder-color: $gray-500;
+$search-bg-color: $gray-800;
+$search-border-color: $gray-700;
+$search-border-focus-color: darken($teal, 10%);
+$search-shadow-color: transparentize($gray-600, 0.75);
+
+// --------------------------------------------------
+// Home page
+// --------------------------------------------------
+$home-section-title-color: $cyan;
+$home-section-border-color: transparentize($gray-800, 0.5);
+$home-card-top-bg: rgba($dark, 0.1);
+$home-card-body-bg: $dark;
+$home-card-body-color: $gray-300;
+$home-card-body-title-color: $gray-200;
+$cncf-title-color: darken($body-color, 25%);
+
+// --------------------------------------------------
+// Navbar
+// --------------------------------------------------
+$navbar-bg: $dark;
+$navbar-logo-bg: $primary;
+$navbar-logo-border: lighten($navbar-bg, 5%);
+
+// --------------------------------------------------
+// Code
+// --------------------------------------------------
+$code-inline-bg: rgba($white, 0.05);
+$code-block-bg: rgba($white, 0.05);
+
+// --------------------------------------------------
+// Alerts
+// --------------------------------------------------
+$alert-bg: rgba($white, 0.03);
+
+// --------------------------------------------------
+// Popovers
+// --------------------------------------------------
+$popover-header-bg: $primary;
+$popover-border-color: $border-color;

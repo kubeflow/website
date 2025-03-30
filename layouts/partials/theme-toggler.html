@@ -1,0 +1,111 @@
+<a class="nav-link dropdown-toggle" href="#" id="themeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="theme-icon-active">
+      <i class="fas fa-circle-half-stroke"></i>
+    </span>
+    <span class="theme-name-active">Theme</span>
+</a>
+
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="themeDropdown">
+  <button type="button" class="dropdown-item d-flex align-items-center active" data-theme-value="light">
+    <span class="theme-icon mr-1">
+      <i class="fas fa-sun"></i>
+    </span>
+    <span class="theme-name">Light</span>
+    <span class="ml-2 d-none check-icon">
+      <i class="fas fa-check"></i>
+    </span>
+  </button>
+  <button type="button" class="dropdown-item d-flex align-items-center" data-theme-value="dark">
+    <span class="theme-icon mr-1">
+      <i class="far fa-moon"></i>
+    </span>
+    <span class="theme-name">Dark</span>
+    <span class="ml-2 d-none check-icon">
+      <i class="fas fa-check"></i>
+    </span>
+  </button>
+</div>
+
+<script>
+  window.changeTheme = function(theme) {
+  setStoredTheme(theme);
+  setTheme(theme);
+  showActiveTheme(theme);
+};
+(() => {
+  'use strict';
+
+  const getStoredTheme = () => localStorage.getItem('theme');
+  const setStoredTheme = theme => localStorage.setItem('theme', theme);
+
+  const getPreferredTheme = () => {
+    const storedTheme = getStoredTheme();
+    if (storedTheme) {
+      return storedTheme;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  const setTheme = theme => {
+    document.documentElement.setAttribute('data-theme', theme);
+  };
+
+  const showActiveTheme = (theme) => {
+    // Mark the active theme with a check icon and with 'active' class
+    const themeButtons = document.querySelectorAll('[data-theme-value]');
+    themeButtons.forEach(button => {
+      const buttonTheme = button.getAttribute('data-theme-value');
+      const checkIcon = button.querySelector('.check-icon');
+
+      button.classList.toggle('active', buttonTheme === theme);
+      if (checkIcon) {
+        checkIcon.classList.toggle('d-none', buttonTheme !== theme);
+      }
+    });
+
+    // Update the content of the dropdown toggle
+    const activeThemeIcon = document.querySelector('.theme-icon-active i');
+    const activeThemeName = document.querySelector('.theme-name-active');
+    if (activeThemeIcon) {
+      const selectedButton = document.querySelector(`[data-theme-value="${theme}"]`);
+      if (selectedButton) {
+        const buttonIcon = selectedButton.querySelector('.theme-icon i');
+        if (buttonIcon) {
+          activeThemeIcon.className = buttonIcon.className;
+        }
+        const buttonName = selectedButton.querySelector('.theme-name');
+        if (buttonName) {
+          activeThemeName.textContent = buttonName.textContent;
+        }
+      }
+    }
+  };
+
+  // Set theme on page load
+  setTheme(getPreferredTheme());
+  showActiveTheme(getPreferredTheme());
+
+  // Add event listeners
+  document.querySelectorAll('[data-theme-value]').forEach(button => {
+    button.addEventListener('click', () => {
+      const theme = button.getAttribute('data-theme-value');
+      setStoredTheme(theme);
+      setTheme(theme);
+      showActiveTheme(theme);
+    });
+  });
+
+  // Listen for OS theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!getStoredTheme()) {
+      setTheme(e.matches ? 'dark' : 'light');
+      showActiveTheme(e.matches ? 'dark' : 'light');
+    }
+  });
+
+  // Initialize Bootstrap dropdown
+  $(document).ready(function() {
+    $('.dropdown-toggle').dropdown();
+  });
+})();
+</script>

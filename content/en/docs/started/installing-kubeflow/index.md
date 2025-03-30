@@ -162,7 +162,7 @@ a simplified installation and management experience for your **Kubeflow Platform
 Some can be deployed on multiple [Kubernetes distributions](https://kubernetes.io/partners/#conformance),
 while others target a specific platform (e.g. EKS or GKE).
 
-{{% alert title="" color="dark" %}}
+{{% alert title="" color="info" %}}
 Packaged distributions are developed and supported by their respective maintainers.
 The Kubeflow community <strong>does not endorse or certify</strong> any specific distribution.
 {{% /alert %}}

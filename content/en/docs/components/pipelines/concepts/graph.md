@@ -16,7 +16,7 @@ The screenshot below shows an example of a pipeline graph:
 
 <img src="/docs/images/pipelines-xgboost-graph.png" 
   alt="XGBoost results on the pipelines UI"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 At the top right of each node is an icon indicating its status: running,
 succeeded, failed, or skipped. (A node can be skipped when its 
