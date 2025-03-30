@@ -170,7 +170,7 @@ from kubeflow.storage_initializer.s3 import S3DatasetParams
 ```
 
 {{% alert title="Note" color="info" %}}
-For detailed descriptions of Hugging Face and S3 parameter classes, please refer to the [Training Operator fine-tuning guide](/docs/components/training/sdk-guide/huggingface-integration).
+For detailed descriptions of Hugging Face and S3 parameter classes, please refer to the [Training Operator documentation](/docs/components/trainer/legacy-v1).
 {{% /alert %}}
 
 #### S3DatasetParams
