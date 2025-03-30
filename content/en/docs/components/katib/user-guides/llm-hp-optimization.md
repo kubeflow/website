@@ -109,9 +109,6 @@ In addition to Hugging Face, you can integrate with S3-compatible object storage
 from kubeflow.storage_initializer.s3 import S3DatasetParams
 ```
 
-{{% alert title="Note" color="info" %}}
-For detailed descriptions of Hugging Face and S3 parameter classes, please refer to the [Training Operator documentation](/docs/components/trainer/legacy-v1/).
-{{% /alert %}}
 
 #### S3DatasetParams
 
