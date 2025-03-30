@@ -23,6 +23,7 @@ $search-shadow-color: transparentize($gray-600, 0.75);
 // Home page
 // --------------------------------------------------
 $home-section-title-color: $cyan;
+$home-section-border-color: transparentize($gray-800, 0.5);
 $home-card-top-bg: rgba($dark, 0.1);
 $home-card-body-bg: $dark;
 $home-card-body-color: $gray-300;

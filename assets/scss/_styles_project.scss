@@ -592,7 +592,7 @@ nav.foldable-nav {
   }
 
   #overview {
-    border-bottom: 0.1rem solid $info;
+    border-bottom: 0.1rem solid $home-section-border-color;
   }
 
   #pageContent .container {
@@ -600,8 +600,8 @@ nav.foldable-nav {
   }
 
   #community {
-    border-top: 0.1rem solid $info;
-    border-bottom: 0.1rem solid $info;
+    border-top: 0.1rem solid $home-section-border-color;
+    border-bottom: 0.1rem solid $home-section-border-color;
   }
 
   #cncf {
