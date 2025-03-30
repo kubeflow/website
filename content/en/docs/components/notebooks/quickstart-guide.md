@@ -25,19 +25,19 @@ weight = 10
 
    <img src="/docs/images/notebooks-namespace.png"
    alt="Selecting a Kubeflow namespace"
-   class="mt-3 mb-3 border border-info rounded">
+   class="mt-3 mb-3 border rounded">
 
 3. Click __"Notebook Servers"__ in the left-hand panel:
 
    <img src="/docs/images/jupyterlink.png"
    alt="Opening notebooks from the Kubeflow UI"
-   class="mt-3 mb-3 border border-info rounded">
+   class="mt-3 mb-3 border rounded">
 
 4. Click __"New Server"__ on the __"Notebook Servers"__ page:
 
    <img src="/docs/images/add-notebook-server.png"
    alt="The Kubeflow notebook servers page"
-   class="mt-3 mb-3 border border-info rounded">
+   class="mt-3 mb-3 border rounded">
 
 5. Enter a __"Name"__ for your notebook server.
     - The name can include letters and numbers, but no spaces.
@@ -45,7 +45,7 @@ weight = 10
 
    <img src="/docs/images/new-notebook-server.png"
    alt="Form for adding a Kubeflow notebook server"
-   class="mt-3 mb-3 border border-info rounded">
+   class="mt-3 mb-3 border rounded">
 
 6. Select a Docker __"Image"__ for your notebook server
     - __Custom image__: If you select the custom option, you must specify a Docker image in  the form `registry/image:tag`.
@@ -104,7 +104,7 @@ weight = 10
 
     <img src="/docs/images/notebook-servers.png"
     alt="Opening notebooks from the Kubeflow UI"
-    class="mt-3 mb-3 border border-info rounded">
+    class="mt-3 mb-3 border rounded">
 
 ## Next steps
 

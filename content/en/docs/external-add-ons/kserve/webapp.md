@@ -57,7 +57,10 @@ The web app exposes information from the underlying Knative resources, like Cond
 The main page of the app provides a list of all the InferenceServices that are deployed in the selected Namespace. 
 The frontend periodically polls the backend for the latest state of InferenceServices.
 
-<img src="/docs/external-add-ons/kserve/pics/webapp-list.png" alt="Models web app main page" class="mt-3 mb-3 p-3 border border-info rounded"></img>
+<img src="/docs/external-add-ons/kserve/pics/webapp-list.png" 
+     alt="Models web app main page" 
+     class="mt-3 mb-3 border rounded">
+</img>
 
 ### Creating
 
@@ -66,7 +69,10 @@ The user can paste the YAML object of the InferenceService they wish to create.
 
 Note that the backend will override the provided `.metadata.namespace` field of the submitted object, to prevent users from trying to create InferenceServices in other namespaces.
 
-<img src="/docs/external-add-ons/kserve/pics/webapp-new.png" alt="Models web app create page" class="mt-3 mb-3 p-3 border border-info rounded"></img>
+<img src="/docs/external-add-ons/kserve/pics/webapp-new.png" 
+     alt="Models web app create page" 
+     class="mt-3 mb-3 border rounded">
+</img>
 
 ### Deleting
 
@@ -81,7 +87,10 @@ This means that the InferenceService CR will be deleted from the K8s API Server 
 
 Users can click on the name of an InferenceService, from the main page, and view a more detailed summary of the CR's state.
 
-<img src="/docs/external-add-ons/kserve/pics/webapp-overview.png" alt="Models web app overview page" class="mt-3 mb-3 p-3 border border-info rounded"></img>
+<img src="/docs/external-add-ons/kserve/pics/webapp-overview.png" 
+     alt="Models web app overview page" 
+     class="mt-3 mb-3 border rounded">
+</img>
 
 {{% alert title="Note" color="info" %}}
 To gather the logs the backend will:
@@ -173,7 +182,10 @@ If you installed the app in the _standalone_ mode then you will need to instead 
 
 After applying these YAMLs, based on your installation mode, and ensuring the Grafana instance is exposed under `/grafana` the web app will show the `METRICS` tab.
 
-<img src="/docs/external-add-ons/kserve/pics/webapp-metrics.png" alt="Models web app metrics page" class="mt-3 mb-3 p-3 border border-info rounded"></img>
+<img src="/docs/external-add-ons/kserve/pics/webapp-metrics.png" 
+     alt="Models web app metrics page" 
+     class="mt-3 mb-3 border rounded">
+</img>
 
 
 ## Architecture

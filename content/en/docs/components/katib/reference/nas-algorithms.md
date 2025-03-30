@@ -149,7 +149,7 @@ This neural architecture can be visualized as:
 
 <img src="/docs/components/katib/images/nas-example.png"
   alt="Example of NAS network"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 The following items can be implemented in Katib to better support ENAS:
 

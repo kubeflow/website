@@ -77,7 +77,7 @@ Kubeflow Pipelines UI:
 
 <img src="/docs/images/pipelines-xgboost-graph.png" 
   alt="XGBoost results on the pipelines UI"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 ### The Python code that represents the pipeline
 
@@ -198,7 +198,7 @@ values for the parameters:
 
 <img src="/docs/images/pipelines-start-xgboost-run.png" 
   alt="Starting the XGBoost run on the pipelines UI"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 ### Outputs from the pipeline
 
@@ -209,25 +209,28 @@ Prediction results:
 
 <img src="/docs/images/predict.png" 
   alt="Prediction output"
-  class="mt-3 mb-3 p-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded"
+  style="width: 100%; max-width: 30em">
 
 Confusion matrix:
 
 <img src="/docs/images/cm.png" 
   alt="Confusion matrix"
-  class="mt-3 mb-3 p-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded"
+  style="width: 100%; max-width: 30em">
 
 Receiver operating characteristics (ROC) curve:
 
 <img src="/docs/images/roc.png" 
   alt="ROC"
-  class="mt-3 mb-3 p-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded"
+  style="width: 100%; max-width: 30em">
 
 ## Architectural overview
 
 <img src="/docs/images/pipelines-architecture.png" 
   alt="Pipelines architectural diagram"
-  class="mt-3 mb-3 p-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 At a high level, the execution of a pipeline proceeds as follows: 
 

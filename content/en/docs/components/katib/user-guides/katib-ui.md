@@ -19,7 +19,7 @@ Click **Experiments (AutoML)** in the left-hand menu:
 
 <img src="/docs/components/katib/images/home-page-kubeflow-ui.png"
   alt="The Katib UI within the Kubeflow Central Dashboard"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 ## Accessing Katib UI Standalone
 
@@ -40,7 +40,7 @@ You need to select namespace to view Katib Experiments:
 
 <img src="/docs/components/katib/images/home-page-standalone.png"
   alt="The Katib UI Standalone"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 ## Running Hyperparameter Tuning Experiment from Katib UI
 
@@ -71,13 +71,13 @@ You can submit an hyperparameter tuning Experiment from the Katib UI.
 
    <img src="/docs/components/katib/images/deploy-parameters.png"
         alt="Deploy Katib Experiment using parameters"
-        class="mt-3 mb-3 border border-info rounded">
+        class="mt-3 mb-3 border rounded">
 
 1. (Optional) If you want to modify Experiment YAML, you can click edit and submit YAML at the bottom.
 
    <img src="/docs/components/katib/images/deploy-yaml.png"
        alt="Deploy Katib Experiment using YAML"
-       class="mt-3 mb-3 border border-info rounded">
+       class="mt-3 mb-3 border rounded">
 
 1. Create Katib Experiment.
 
@@ -89,7 +89,7 @@ Follow these steps to get Katib Experiment results:
 
    <img src="/docs/components/katib/images/home-page-kubeflow-ui.png"
      alt="List of Katib Experiments"
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 
 1. Click the name of your Experiment. For example, click **random-example**.
 
@@ -99,19 +99,19 @@ Follow these steps to get Katib Experiment results:
 
    <img src="/docs/components/katib/images/random-example-graph.png"
      alt="Graph produced by the random example"
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 
 1. If you click to the Trials tab, you will see list of Trials that ran withing the Experiment.
 
    <img src="/docs/components/katib/images/random-example-trials.png"
      alt="Trials that ran during the Experiment"
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 
 1. You can click on Trial name to get metrics for the particular Trial:
 
    <img src="/docs/components/katib/images/random-example-trial-info.png"
      alt="Trial metrics graph"
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 
 ### Create Katib Experiment with Early Stopping
 
@@ -122,20 +122,20 @@ works in Katib.
 
    <img src="/docs/components/katib/images/early-stopping-parameter.png"
        alt="Katib Experiment with Early Stopping"
-       class="mt-3 mb-3 border border-info rounded">
+       class="mt-3 mb-3 border rounded">
 
 1. After your Experiment is complete, you can check your results in the Katib UI. The Trial statuses
    on the Experiment monitor page should look as follows:
 
    <img src="/docs/components/katib/images/early-stopping-trials.png"
        alt="Trials view with early stopping"
-       class="mt-3 mb-3 border border-info rounded">
+       class="mt-3 mb-3 border rounded">
 
 1. You can click on the early stopped Trial name to get reported metrics before this Trial was early stopped:
 
    <img src="/docs/components/katib/images/early-stopping-trial-info.png"
      alt="Early stopped Trial metrics"
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 
 ## Next Steps
 

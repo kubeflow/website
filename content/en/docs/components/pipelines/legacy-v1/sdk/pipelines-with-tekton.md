@@ -50,13 +50,17 @@ We recommend to create a Python virtual environment first using
 [Miniconda](https://conda.io/miniconda.html) or a virtual environment
 manager such as `virtualenv` or the Python 3 `venv` module:
 
-    python3 -m venv .venv-kfp-tekton
-    source .venv-kfp-tekton/bin/activate
+```shell
+python3 -m venv .venv-kfp-tekton
+source .venv-kfp-tekton/bin/activate
+```
 
 You can install the latest release of the `kfp-tekton` compiler from
 [PyPi](https://pypi.org/project/kfp-tekton/):
-    
-    pip3 install kfp-tekton --upgrade
+
+```shell
+pip3 install kfp-tekton --upgrade
+````
 
 ## Compiling Kubeflow Pipelines DSL scripts
 
@@ -67,15 +71,16 @@ installing the `kfp-tekton` Python package.
 If you cloned the `kfp-tekton` project, you can find example pipelines in the
 `samples` folder or in the `sdk/python/tests/compiler/testdata` folder.
 
-    dsl-compile-tekton \
-        --py sdk/python/tests/compiler/testdata/parallel_join.py \
-        --output pipeline.yaml
-
+```shell
+dsl-compile-tekton \
+    --py sdk/python/tests/compiler/testdata/parallel_join.py \
+    --output pipeline.yaml
+```
 
 **Note**: If the KFP DSL script contains a `__main__` method calling the
 `kfp_tekton.compiler.TektonCompiler.compile()` function:
 
-```Python
+```python
 if __name__ == "__main__":
     from kfp_tekton.compiler import TektonCompiler
     TektonCompiler().compile(pipeline_func, "pipeline.yaml")
@@ -85,7 +90,9 @@ The pipeline can then be compiled by running the DSL script with `python3`
 directly from the command line, producing a Tekton YAML file `pipeline.yaml`
 in the same directory:
 
-    python3 pipeline.py
+```shell
+python3 pipeline.py
+```
 
 ## Additional documentation
 

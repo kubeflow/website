@@ -35,7 +35,7 @@ Pipelines UI:
 
     <img src="/docs/images/taxi-tip-run-output.png" 
       alt="Output visualization from a pipeline run"
-      class="mt-3 mb-3 border border-info rounded">
+      class="mt-3 mb-3 border rounded">
 
 * The **Visualizations** tab shows the visualization for the selected pipeline step.
   To open the tab in the Kubeflow Pipelines UI:
@@ -49,7 +49,7 @@ Pipelines UI:
 
     <img src="/docs/images/pipelines/v1/confusion-matrix-task.png" 
       alt="Table-based visualization from a pipeline component"
-      class="mt-3 mb-3 border border-info rounded">
+      class="mt-3 mb-3 border rounded">
 
 All screenshots and code snippets on this page come from a 
 sample pipeline that you can run directly from the Kubeflow Pipelines UI.
@@ -116,7 +116,8 @@ Visualization of Confusion Matrix is as below:
 
 <img src="/docs/images/pipelines/v1/v2-compatible/confusion-matrix.png" 
   alt="V2 Confusion matrix visualization"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded"
+  style="width: 100%; max-width: 30em">
 
 ### ROC Curve 
 
@@ -161,7 +162,8 @@ Visualization of ROC Curve is as below:
 
 <img src="/docs/images/pipelines/v1/v2-compatible/roc-curve.png" 
   alt="V2 ROC Curve visualization"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded"
+  style="width: 100%; max-width: 30em">
 
 ### Scalar Metrics
 
@@ -223,7 +225,8 @@ Visualization of Scalar Metrics is as below:
 
 <img src="/docs/images/pipelines/v1/v2-compatible/scalar-metrics.png" 
   alt="V2 Scalar Metrics visualization"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded"
+  style="width: 100%; max-width: 30em">
 
 
 ### Markdown
@@ -244,7 +247,7 @@ def markdown_visualization(markdown_artifact: Output[Markdown]):
 
 <img src="/docs/images/pipelines/v1/v2-compatible/markdown-visualization.png" 
   alt="Markdown visualization in v2 compatible mode"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 
 
@@ -269,7 +272,7 @@ def html_visualization(html_artifact: Output[HTML]):
 
 <img src="/docs/images/taxi-tip-analysis-step-output-webapp-popped-out.png" 
   alt="Web app output from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 
 ## Source of v2 examples
@@ -464,7 +467,7 @@ def confusion_matrix_viz(mlpipeline_ui_metadata_path: kfp.components.OutputPath(
 
 <img src="/docs/images/taxi-tip-confusion-matrix-step-output.png" 
   alt="Confusion matrix visualization from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 <a id="type-markdown"></a>
 ### Markdown
@@ -515,7 +518,7 @@ def markdown_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
 
 <img src="/docs/images/markdown-output.png" 
   alt="Markdown visualization from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 ### ROC curve
 
@@ -578,7 +581,7 @@ def roc_vis(roc_csv_file_path: str, mlpipeline_ui_metadata_path: kfp.components.
 
 <img src="/docs/images/taxi-tip-roc-step-output.png" 
   alt="ROC curve visualization from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 ### Table
 
@@ -625,7 +628,7 @@ def table_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
 
 <img src="/docs/images/pipelines/v1/taxi-tip-prediction-step-output-table.png" 
   alt="Table-based visualization from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 ### TensorBoard
 
@@ -673,7 +676,7 @@ def tensorboard_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
 
 <img src="/docs/images/taxi-tip-training-step-output-tensorboard.png" 
   alt="TensorBoard option output from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 ### Web app
 
@@ -725,7 +728,7 @@ def tensorboard_vis(mlpipeline_ui_metadata_path: kfp.components.OutputPath()):
 
 <img src="/docs/images/taxi-tip-analysis-step-output-webapp-popped-out.png" 
   alt="Web app output from a pipeline component"
-  class="mt-3 mb-3 border border-info rounded">
+  class="mt-3 mb-3 border rounded">
 
 <a id="example-source"></a>
 ## Source of v1 examples
