@@ -103,43 +103,11 @@ trainer_params = HuggingFaceTrainerParams(
 
 ### S3-Compatible Object Storage Integration
 
-In addition to Hugging Face, you can integrate with S3-compatible object storage platforms to load datasets. To work with S3, use the `S3DatasetParams` class to define your dataset parameters.
+In addition to Hugging Face, you can integrate with S3-compatible object storage platforms to 
+load datasets. To work with S3, use the `S3DatasetParams` class to define your dataset 
+parameters.
 
-```python
-from kubeflow.storage_initializer.s3 import S3DatasetParams
-```
-
-
-#### S3DatasetParams
-
-##### Description
-
-The `S3DatasetParams` class is used for loading datasets from S3-compatible object storage. The parameters are defined as follows:
-
-| **Parameter**  | **Type**        | **Description**                                       |
-| -------------- | --------------- | ----------------------------------------------------- |
-| `endpoint_url` | `str`           | URL of the S3-compatible storage service.             |
-| `bucket_name`  | `str`           | Name of the S3 bucket containing the dataset.         |
-| `file_key`     | `str`           | Key (path) to the dataset file within the bucket.     |
-| `region_name`  | `str`, optional | The AWS region of the S3 bucket (optional).           |
-| `access_key`   | `str`, optional | The access key for authentication with S3 (optional). |
-| `secret_key`   | `str`, optional | The secret key for authentication with S3 (optional). |
-
-##### Example Usage
-
-```python
-from kubeflow.storage_initializer.s3 import S3DatasetParams
-
-
-s3_params = S3DatasetParams(
-    endpoint_url="https://s3.amazonaws.com",
-    bucket_name="my-dataset-bucket",
-    file_key="datasets/train.csv",
-    region_name="us-west-2",
-    access_key="YOUR_ACCESS_KEY",
-    secret_key="YOUR_SECRET_KEY"
-)
-```
+For loading datasets from S3-compatible object storage, see the [S3DatasetParams documentation](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#s3datasetparams) in the Training Operator fine-tuning guide.
 
 ## Optimizing Hyperparameters of Large Language Models
 
@@ -154,9 +122,6 @@ In the context of optimizing hyperparameters of large language models (LLMs) lik
 | `dataset_provider_parameters` | Parameters for the dataset provider, such as dataset configuration.          | Optional     |
 | `trainer_parameters`          | Configuration for the trainer, including hyperparameters for model training. | Optional     |
 | `storage_config`              | Configuration for storage, like PVC size and storage class.                  | Optional     |
-| `objective`                   | Objective function for training and optimization.                            | Optional     |
-| `base_image`                  | Base image for executing the objective function.                             | Optional     |
-| `parameters`                  | Hyperparameters for tuning the experiment.                                   | Optional     |
 | `namespace`                   | Kubernetes namespace for the experiment.                                     | Optional     |
 | `env_per_trial`               | Environment variables for each trial.                                        | Optional     |
 | `algorithm_name`              | Algorithm used for the hyperparameter search.                                | Optional     |

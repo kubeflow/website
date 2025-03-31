@@ -186,6 +186,40 @@ trainer_params = HuggingFaceTrainerParams(
 )
 ```
 
+### S3DatasetParams
+
+#### Description
+
+The `S3DatasetParams` class is used for loading datasets from S3-compatible object storage. It includes validation checks to ensure proper configuration.
+
+| **Parameter**  | **Type**        | **Description**                                       |
+| -------------- | --------------- | ----------------------------------------------------- |
+| `endpoint_url` | `str`           | URL of the S3-compatible storage service.             |
+| `bucket_name`  | `str`           | Name of the S3 bucket containing the dataset.         |
+| `file_key`     | `str`           | Key (path) to the dataset file within the bucket.     |
+| `region_name`  | `str`, optional | The AWS region of the S3 bucket (optional).           |
+| `access_key`   | `str`, optional | The access key for authentication with S3 (optional). |
+| `secret_key`   | `str`, optional | The secret key for authentication with S3 (optional). |
+
+#### Implementation Details
+
+The `S3DatasetParams` class includes validation checks to ensure required parameters are provided and the endpoint URL is valid. The actual dataset download is handled by the `S3` class which uses boto3 to interact with the S3-compatible storage.
+
+#### Example Usage
+
+```python
+from kubeflow.storage_initializer.s3 import S3DatasetParams
+
+s3_params = S3DatasetParams(
+    endpoint_url="https://s3.amazonaws.com",
+    bucket_name="my-dataset-bucket",
+    file_key="datasets/train.csv",
+    region_name="us-west-2",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY"
+)
+```
+
 ## Using custom images with Fine-Tuning API
 
 Platform engineers can customize the storage initializer and trainer images by setting the `STORAGE_INITIALIZER_IMAGE` and `TRAINER_TRANSFORMER_IMAGE` environment variables before executing the `train` command.
