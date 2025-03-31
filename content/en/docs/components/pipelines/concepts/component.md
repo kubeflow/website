@@ -140,6 +140,7 @@ my_comp = load_component_from_file("my_component.yaml")
 
 Note that a component loaded from a YAML-based component will not have the same level of Python support that Python-based components do (like executing the function locally).
 
+<!-- TODO: Briefly discuss graph components, container components, and importer components (see sdk dsl scripts) -->
 
 ## "Containerize" a Component
 
