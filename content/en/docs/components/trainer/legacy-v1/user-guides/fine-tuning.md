@@ -88,7 +88,7 @@ TrainingClient().train(
 After you execute `train`, the Training Operator will orchestrate the appropriate PyTorchJob resources
 to fine-tune the LLM.
 
-## HuggingFace Parameter Classes
+## Dataset and Model Parameter Classes
 
 ### HuggingFaceModelParams
 
