@@ -41,7 +41,7 @@ from kubeflow.storage_initializer.hugging_face import (
 ```
 
 {{% alert title="Note" color="info" %}}
-The detailed descriptions of these parameter classes have been moved to the [Training Operator fine-tuning guide](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#huggingface-parameter-classes). This page provides a brief overview of how to use these classes with Katib for hyperparameter optimization.
+The detailed descriptions of these parameter classes have been moved to the [Training Operator fine-tuning guide](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#dataset-and-model-parameter-classes). This page provides a brief overview of how to use these classes with Katib for hyperparameter optimization.
 {{% /alert %}}
 
 #### HuggingFaceModelParams
