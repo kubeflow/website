@@ -103,28 +103,28 @@ The KFP Python SDK client (`kfp.client.Client`) supports submitting pipeline run
 The KFP documentation includes more detailed examples exploring pipeline implementation and runs. See the [Getting Started Guide][Getting Started] to quickly test out runing a pipeline on a KFP cluster. For a more in-depth treatment of pipeline implementation, visit the [User Guide][User Guide] section of the documentation, including sections on [Core Functions][Core Functions] and [Data Handling][Data Handling].
 
 ## Next steps
-* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/overview/).
-* Follow the [pipelines quickstart guide](/docs/components/pipelines/getting-started/) 
+* Read an [overview of Kubeflow Pipelines]( ../overview.md).
+* Follow the [pipelines quickstart guide][Getting Started] 
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.
 
 
-[pipeline]: /docs/components/pipelines/concepts/pipeline
-[component]: /docs/components/pipelines/concepts/component
-[graph]: /docs/components/pipelines/concepts/graph
-[step]: /docs/components/pipelines/concepts/step
-[run]: /docs/components/pipelines/concepts/run
+[pipeline]: ./pipeline.md
+[component]: ./component.md
+[graph]: ./graph.md
+[step]: ./step.md
+[run]: ./run.md
 [KFP SDK]: https://kubeflow-pipelines.readthedocs.io
-[IR YAML]: /docs/components/pipelines/concepts/ir-yaml
-[Getting Started]: docs/components/pipelines/getting-started
-[User Guide]: docs/components/pipelines/user-guides/
-[Data Handling]: docs/components/pipelines/user-guides/data-handling/parameters/
-[Core Fuctions]: /docs/components/pipelines/user-guides/core-functions/ 
-[Run a Pipeline]: /docs/components/pipelines/user-guides/core-functions/run-a-pipeline/
-[Compile a Pipeline]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/
-[Param Passing]: /docs/components/pipelines/user-guides/data-handling/parameters/
-[Artifact Handling]: /docs/components/pipelines/user-guides/data-handling/artifacts/
-[Exit Handling]: /docs/components/pipelines/user-guides/core-functions/control-flow/#exit-handling
-[Conditions]: /docs/components/pipelines/user-guides/core-functions/control-flow/#conditions
-[Caching]: /docs/components/pipelines/user-guides/core-functions/caching/
-[Pipeline Root]: /docs/components/pipelines/concepts/pipeline-root
+[IR YAML]: ./ir-yaml.md
+[Getting Started]: ../getting-started.md
+[User Guide]: ../user-guides/
+[Data Handling]: ../user-guides/data-handling/
+[Param Passing]:  ../user-guides/data-handling/parameters.md
+[Core Fuctions]:  ../user-guides/core-functions/ 
+[Run a Pipeline]:  ../user-guides/core-functions/run-a-pipeline.md
+[Compile a Pipeline]:  ../user-guides/core-functions/compile-a-pipeline.md
+[Artifact Handling]:  ../user-guides/data-handling/artifacts.md
+[Exit Handling]:  ../user-guides/core-functions/control-flow.md#exit-handling
+[Conditions]:  ../user-guides/core-functions/control-flow.md#conditions
+[Caching]:  ../user-guides/core-functions/caching.md
+[Pipeline Root]: ./pipeline-root.md
