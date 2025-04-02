@@ -62,7 +62,7 @@ def dataset_concatenator(
 
 Note that if you provide a `description` argument to the [`@dsl.pipeline`][dsl-pipeline] decorator, KFP will use this description instead of the docstring description.
 
-[ir-yaml]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline#ir-yaml
+[ir-yaml]: /docs/components/pipelines/concepts/ir-yaml
 [google-docstring-style]: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
 [dsl-pipeline]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.pipeline
 [output-artifacts]: /docs/components/pipelines/user-guides/data-handling/artifacts
