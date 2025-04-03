@@ -15,7 +15,7 @@ to carry out the [steps][step] ([components][component]) in the workflow ([pipel
 
 The work of an AI/ML engineer requires structured experimentation and iteration of workflows with complex data processing and model preparation. These workflows carry the expectation of on-demand specialized resources that are not only available, but that can coordinate closely towards optimized ML outcomes. Iteration needs are near-term (for example, during exploratory analysis and model development), as well as long-term (for example, to correct data drift, or to add a new ML feature).
 
-Kubeflow Pipelines enable AI/ML engineers to define the structure of their workflows using Python, for [pipelines][pipeline] that are executed on a Kubernetes cluster. Therfore, KFP combines the power of Python for experimentation and development, with the power of Kubernetes for resources and execution. This can translate to accelerated production-level AI/ML development, and ultimately to better AI/ML product outcomes. Some benefits include:
+Kubeflow Pipelines enable AI/ML engineers to define the structure of their workflows using Python, for [pipelines][pipeline] that are executed on a Kubernetes cluster. Therefore, KFP combines the power of Python for experimentation and development, with the power of Kubernetes for resources and execution. This can translate to accelerated production-level AI/ML development, and ultimately to better AI/ML product outcomes. Some benefits include:
 
 - **Structured workflow management**: organize and structure ML workflows, ensuring clarity and maintainability
 - **ML experimentation and iteration**: enable modification and quick iterations while ensuring repeatable and consistent structure
