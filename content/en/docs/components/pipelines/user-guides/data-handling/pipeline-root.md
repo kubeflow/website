@@ -32,7 +32,7 @@ check [authentication-pipelines](https://googlecloudplatform.github.io/kubeflow-
 #### S3
 If you want to specify the `pipeline root` to S3, please choose one of the following options:
 
-* Via [AWS IRSA](https://aws.amazon.com/blogs/containers/cross-account-iam-roles-for-kubernetes-service-accounts/):
+* Via [AWS IRSA](https://aws.amazon.com/blogs/containers/cross-account-iam-roles-for-kubernetes-service-accounts/)
 
 * Via kfp sdk:
 `dsl.get_pipeline_conf().add_op_transformer(aws.use_aws_secret('xxx', ‘xxx’, ‘xxx’))`
