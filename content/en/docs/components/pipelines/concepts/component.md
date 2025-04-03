@@ -9,7 +9,7 @@ A **pipeline component** is the fundamental building block for an ML engineer to
 
 A component is similar to a programming function. Indeed, it is most often implemented as a wrapper to a Python function using the [KFP Python SDK][KFP SDK]. However, a KFP component goes further than a simple function, with support for code dependencies, runtime environments, and distributed execution requirements.
 
-KFP components are designed to simplify constructing and running ML workflows in a Kubernetes environment. Using KFP components engineers can iterate faster, reduce maintenance overhead, and focus more attention on ML work.
+KFP components are designed to simplify constructing and running ML workflows in a Kubernetes environment. Using KFP components, engineers can iterate faster, reduce maintenance overhead, and focus more attention on ML work.
 
 ## The Why Behind KFP Components
 
@@ -58,7 +58,7 @@ The recommended way to define a component is using the `@dsl.component` decorato
 ```python
 from kfp.dsl import component, Output, Dataset
 
-# hello component
+# hello world component
 @component()
 def hello_world(name: str = "World") -> str:
     print(f"Hello {name}!")
