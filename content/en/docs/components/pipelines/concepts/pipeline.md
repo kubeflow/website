@@ -43,7 +43,7 @@ A KFP [pipeline][pipeline] consist of the following key elements:
 - **exit handling** - handles exit tasks, even if upstream tasks fail (see [Control Flow/Exit Handling][Exit Handling])
 
 ### 4. Runtime Logic
-- **caching** - cached outputs can be used per task (see [Caching[Caching]])
+- **caching** - cached outputs can be used per task (see [Caching][Caching])
 - **retries** - set retries for tasks
 - **resource requests and limits** - request memory, cpu, GPU
 - **node selectors** - request task containers to run on specific nodes
