@@ -25,9 +25,7 @@ You don't need to pass the authentication for MinIO.
 Kubeflow Pipelines is configured with the authentication of the MinIO instance deployed with itself.
 
 #### GCS
-If you want to specify the `pipeline root` to GCS :
-
-check [authentication-pipelines](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/authentication-pipelines/)
+If you want to specify the `pipeline root` to GCS, check [authentication-pipelines](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/authentication-pipelines/)
 
 #### S3
 If you want to specify the `pipeline root` to S3, please choose one of the following options:
