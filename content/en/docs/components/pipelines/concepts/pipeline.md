@@ -8,14 +8,14 @@ weight = 10
 A *pipeline* declares the logical structure for executing [components][component] together as a machine learning (ML) workflow in a Kubernetes cluster; this includes defining execution order and conditions, as well as configuring parameter passing and data flow. Pipelines are organized as directed [graphs][graph] that progress through individual [steps][step] (defined by [components][component]).
 
 When a pipeline is executed through a [run][run], the Kubeflow Pipelines backend converts the pipeline into instructions to launch Kubernetes Pods (and other resources)
-to carry out the [steps][step] ([components][component]) in the workflow ([pipeline][pipeline]). The Pods start containers, which in turn run their respective component code. The Kubeflow Pipelines backend manages the technical details of coornidating data passing and control flow at the container level.
+to carry out the [steps][step] ([components][component]) in the workflow ([pipeline][pipeline]). The Pods start containers, which in turn run their respective component code. The Kubeflow Pipelines backend manages the technical details of coordinating data passing and control flow at the container level.
 
 
 ## The Why Behind KFP Pipelines
 
 The work of an AI/ML engineer requires structured experimentation and iteration of workflows with complex data processing and model preparation. These workflows carry the expectation of on-demand specialized resources that are not only available, but that can coordinate closely towards optimized ML outcomes. Iteration needs are near-term (for example, during exploratory analysis and model development), as well as long-term (for example, to correct data drift, or to add a new ML feature).
 
-Kubeflow Pipelines enable AI/ML engineers to define the structure of their workflows using Python, for [pipelines][pipeline] that are executed on a Kubernetes cluster. Therfore, KFP combines the power of Python for experimentation and development, with the power of Kubernetes for resources and execution. This can translate to accelerated production-level AI/ML development, and ultimately to better AI/ML product outcomes. Some benefits include:
+Kubeflow Pipelines enable AI/ML engineers to define the structure of their workflows using Python, for [pipelines][pipeline] that are executed on a Kubernetes cluster. Therefore, KFP combines the power of Python for experimentation and development, with the power of Kubernetes for resources and execution. This can translate to accelerated production-level AI/ML development, and ultimately to better AI/ML product outcomes. Some benefits include:
 
 - **Structured workflow management**: organize and structure ML workflows, ensuring clarity and maintainability
 - **ML experimentation and iteration**: enable modification and quick iterations while ensuring repeatable and consistent structure
@@ -95,12 +95,12 @@ Step 1 defines two basic components, which are saved in `my_components.py`. Step
 
 A few things to note from the above construction are:
 - Since `step2` depends on the output of `step1`, the KFP backend will know to run the steps sequentially (when no dependency exists, steps run in parallel by default).
-- Steps `step1` and `step2` will run in independent containers, and KFP will take care of transfering the needed parameter.
-- The pipeline function, `arithmetic_pipeline`, is not run directly by the user, but rather compiled to [IR YAML][IR YAML]. Running the pipeline fuction will not run the steps. The comiler translates the pipeline and component Python instructions into instructions the KFP backend can understand.
+- Steps `step1` and `step2` will run in independent containers, and KFP will take care of transferring the needed parameter.
+- The pipeline function, `arithmetic_pipeline`, is not run directly by the user, but rather compiled to [IR YAML][IR YAML]. Running the pipeline function will not run the steps. The compiler translates the pipeline and component Python instructions into instructions the KFP backend can understand.
 
 The KFP Python SDK client (`kfp.client.Client`) supports submitting pipeline runs to the KFP backend either directly (`create_run_from_pipeline_func`), or from the compiled pipeline YAML file (`create_run_from_pipeline_package`). The KFP UI also supports running pipelines once their YAML files have been uploaded (either from the GUI or Python client interface).
 
-The KFP documentation includes more detailed examples exploring pipeline implementation and runs. See the [Getting Started Guide][Getting Started] to quickly test out runing a pipeline on a KFP cluster. For a more in-depth treatment of pipeline implementation, visit the [User Guide][User Guide] section of the documentation, including sections on [Core Functions][Core Functions] and [Data Handling][Data Handling].
+The KFP documentation includes more detailed examples exploring pipeline implementation and runs. See the [Getting Started Guide][Getting Started] to quickly test out running a pipeline on a KFP cluster. For a more in-depth treatment of pipeline implementation, visit the [User Guide][User Guide] section of the documentation, including sections on [Core Functions][Core Functions] and [Data Handling][Data Handling].
 
 ## Next steps
 * Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/overview/).

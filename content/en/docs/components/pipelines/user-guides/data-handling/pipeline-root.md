@@ -5,7 +5,7 @@ weight = 15
 
 +++
 
-Starting from [Kubeflow Pipelines SDK v2](https://kubeflow-pipelines.readthedocs.io/en/stable/) and Kubeflow Pipelines v2, Kubeflow Pipelines supports a new intermediate artifact repository feature: pipeline root in both [standalone deployment](/docs/components/pipelines/operator-guides/installation/) and [AI Platform Pipelines](https://cloud.google.com/ai-platform/pipelines/docs).
+Starting from [Kubeflow Pipelines SDK v2](https://kubeflow-pipelines.readthedocs.io/en/stable/) and Kubeflow Pipelines v2, Kubeflow Pipelines supports a new intermediate artifact repository feature: pipeline root.
 
 ## Before you start
 This guide tells you the basic concepts of Kubeflow Pipelines pipeline root and how to use it.
@@ -25,14 +25,12 @@ You don't need to pass the authentication for MinIO.
 Kubeflow Pipelines is configured with the authentication of the MinIO instance deployed with itself.
 
 #### GCS
-If you want to specify the `pipeline root` to GCS :
-
-check [authentication-pipelines](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/authentication-pipelines/)
+If you want to specify the `pipeline root` to GCS, check [authentication-pipelines](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/authentication-pipelines/)
 
 #### S3
 If you want to specify the `pipeline root` to S3, please choose one of the following options:
 
-* Via [AWS IRSA](https://aws.amazon.com/blogs/containers/cross-account-iam-roles-for-kubernetes-service-accounts/):
+* Via [AWS IRSA](https://aws.amazon.com/blogs/containers/cross-account-iam-roles-for-kubernetes-service-accounts/)
 
 * Via kfp sdk:
 `dsl.get_pipeline_conf().add_op_transformer(aws.use_aws_secret('xxx', ‘xxx’, ‘xxx’))`
@@ -52,7 +50,7 @@ The default Pipeline root at the Kubeflow pipeline deployment level can be chang
 Instructions can be found [here](/docs/components/pipelines/operator-guides/configure-object-store.md#kfp-launcher-object-store-configuration).
 
 ####  Via Building Pipelines
-You can configure a pipeline root through the `kfp.dsl.pipeline` annotation when [building pipelines](/docs/components/pipelines/legacy-v1/sdk/build-pipeline/#build-your-pipeline)
+You can configure a pipeline root through the `kfp.dsl.pipeline` annotation when [building pipelines](/docs/components/pipelines/legacy-v1/sdk/build-pipeline/#build-your-pipeline).
 
 ####  Via Submitting a Pipeline through SDK
 You can configure pipeline root via `pipeline_root` argument when you submit a Pipeline using one of the following:
