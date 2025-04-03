@@ -50,7 +50,7 @@ The default Pipeline root at the Kubeflow pipeline deployment level can be chang
 Instructions can be found [here](/docs/components/pipelines/operator-guides/configure-object-store.md#kfp-launcher-object-store-configuration).
 
 ####  Via Building Pipelines
-You can configure a pipeline root through the `kfp.dsl.pipeline` annotation when [building pipelines](/docs/components/pipelines/legacy-v1/sdk/build-pipeline/#build-your-pipeline)
+You can configure a pipeline root through the `kfp.dsl.pipeline` annotation when [building pipelines](/docs/components/pipelines/legacy-v1/sdk/build-pipeline/#build-your-pipeline).
 
 ####  Via Submitting a Pipeline through SDK
 You can configure pipeline root via `pipeline_root` argument when you submit a Pipeline using one of the following:
