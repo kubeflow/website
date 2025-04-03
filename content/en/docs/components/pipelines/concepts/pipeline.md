@@ -100,7 +100,7 @@ A few things to note from the above construction are:
 
 The KFP Python SDK client (`kfp.client.Client`) supports submitting pipeline runs to the KFP backend either directly (`create_run_from_pipeline_func`), or from the compiled pipeline YAML file (`create_run_from_pipeline_package`). The KFP UI also supports running pipelines once their YAML files have been uploaded (either from the GUI or Python client interface).
 
-The KFP documentation includes more detailed examples exploring pipeline implementation and runs. See the [Getting Started Guide][Getting Started] to quickly test out runing a pipeline on a KFP cluster. For a more in-depth treatment of pipeline implementation, visit the [User Guide][User Guide] section of the documentation, including sections on [Core Functions][Core Functions] and [Data Handling][Data Handling].
+The KFP documentation includes more detailed examples exploring pipeline implementation and runs. See the [Getting Started Guide][Getting Started] to quickly test out running a pipeline on a KFP cluster. For a more in-depth treatment of pipeline implementation, visit the [User Guide][User Guide] section of the documentation, including sections on [Core Functions][Core Functions] and [Data Handling][Data Handling].
 
 ## Next steps
 * Read an [overview of Kubeflow Pipelines]( ../overview.md).
