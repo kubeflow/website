@@ -8,7 +8,7 @@ weight = 10
 A *pipeline* declares the logical structure for executing [components][component] together as a machine learning (ML) workflow in a Kubernetes cluster; this includes defining execution order and conditions, as well as configuring parameter passing and data flow. Pipelines are organized as directed [graphs][graph] that progress through individual [steps][step] (defined by [components][component]).
 
 When a pipeline is executed through a [run][run], the Kubeflow Pipelines backend converts the pipeline into instructions to launch Kubernetes Pods (and other resources)
-to carry out the [steps][step] ([components][component]) in the workflow ([pipeline][pipeline]). The Pods start containers, which in turn run their respective component code. The Kubeflow Pipelines backend manages the technical details of coornidating data passing and control flow at the container level.
+to carry out the [steps][step] ([components][component]) in the workflow ([pipeline][pipeline]). The Pods start containers, which in turn run their respective component code. The Kubeflow Pipelines backend manages the technical details of coordinating data passing and control flow at the container level.
 
 
 ## The Why Behind KFP Pipelines
