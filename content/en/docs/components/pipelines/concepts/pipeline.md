@@ -96,7 +96,7 @@ Step 1 defines two basic components, which are saved in `my_components.py`. Step
 A few things to note from the above construction are:
 - Since `step2` depends on the output of `step1`, the KFP backend will know to run the steps sequentially (when no dependency exists, steps run in parallel by default).
 - Steps `step1` and `step2` will run in independent containers, and KFP will take care of transfering the needed parameter.
-- The pipeline function, `arithmetic_pipeline`, is not run directly by the user, but rather compiled to [IR YAML][IR YAML]. Running the pipeline fuction will not run the steps. The comiler translates the pipeline and component Python instructions into instructions the KFP backend can understand.
+- The pipeline function, `arithmetic_pipeline`, is not run directly by the user, but rather compiled to [IR YAML][IR YAML]. Running the pipeline function will not run the steps. The compiler translates the pipeline and component Python instructions into instructions the KFP backend can understand.
 
 The KFP Python SDK client (`kfp.client.Client`) supports submitting pipeline runs to the KFP backend either directly (`create_run_from_pipeline_func`), or from the compiled pipeline YAML file (`create_run_from_pipeline_package`). The KFP UI also supports running pipelines once their YAML files have been uploaded (either from the GUI or Python client interface).
 
