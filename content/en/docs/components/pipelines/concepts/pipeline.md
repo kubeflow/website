@@ -26,7 +26,7 @@ Kubeflow Pipelines enable AI/ML engineers to define the structure of their workf
 - **ML-first SDK and platform design** support ML experimentation, development, and production needs
 
 ## What Does a Pipeline Declaration Consist Of?
-A KFP [pipeline][pipeline] consist of the following key elements:
+A KFP [pipeline][pipeline] consists of the following key elements:
 ### 1. Input Parameters
 - **name, description, display_name** - pipeline-level metadata parameters
 - **pipeline_root** - object storage root path for metadata and artifact persistence (see [Pipeline Root][Pipeline Root])
