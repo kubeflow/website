@@ -11,7 +11,7 @@ When a pipeline is executed through a [run][run], the Kubeflow Pipelines backend
 to carry out the [steps][step] ([components][component]) in the workflow ([pipeline][pipeline]). The Pods start containers, which in turn run their respective component code. The Kubeflow Pipelines backend manages the technical details of coordinating data passing and control flow at the container level.
 
 
-## The Why Behind KFP Pipelines
+## The Why Behind Kubeflow Pipelines
 
 The work of an AI/ML engineer requires structured experimentation and iteration of workflows with complex data processing and model preparation. These workflows carry the expectation of on-demand specialized resources that are not only available, but that can coordinate closely towards optimized ML outcomes. Iteration needs are near-term (for example, during exploratory analysis and model development), as well as long-term (for example, to correct data drift, or to add a new ML feature).
 
@@ -26,7 +26,7 @@ Kubeflow Pipelines enable AI/ML engineers to define the structure of their workf
 - **ML-first SDK and platform design** support ML experimentation, development, and production needs
 
 ## What Does a Pipeline Declaration Consist Of?
-A KFP [pipeline][pipeline] consist of the following key elements:
+A KFP [pipeline][pipeline] consists of the following key elements:
 ### 1. Input Parameters
 - **name, description, display_name** - pipeline-level metadata parameters
 - **pipeline_root** - object storage root path for metadata and artifact persistence (see [Pipeline Root][Pipeline Root])
