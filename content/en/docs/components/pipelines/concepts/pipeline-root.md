@@ -112,11 +112,11 @@ For more details on setting up pipeline root defaults and overrides at the clust
   Pipelines UI.
 
 
-[artifact]: ./output-artifact.md
-[run]: ./run.md
-[Pipeline Root Guide]: ../user-guides/data-handling/pipeline-root.md
-[Object Store Configuration Guide]: ../operator-guides/configure-object-store
-[API Server Storage]: ../operator-guides/configure-object-store.md#kfp-api-server
-[ConfigMap-kfp-launcher-config]: ../operator-guides/configure-object-store.md#kfp-launcher-object-store-configuration
-[overview of Kubeflow Pipelines]: ../overview.md
-[pipelines quickstart guide]: ../getting-started.md
+[artifact]: /docs/components/pipelines/concepts/output-artifact
+[run]: /docs/components/pipelines/concepts/run
+[Pipeline Root Guide]: /docs/components/pipelines/user-guides/data-handling/pipeline-root
+[Object Store Configuration Guide]: /docs/components/pipelines/operator-guides/configure-object-store
+[API Server Storage]: /docs/components/pipelines/operator-guides/configure-object-store/#kfp-api-server
+[ConfigMap-kfp-launcher-config]: /docs/components/pipelines/operator-guides/configure-object-store/#kfp-launcher-object-store-configuration
+[overview of Kubeflow Pipelines]: /docs/components/pipelines/overview
+[pipelines quickstart guide]: /docs/components/pipelines/getting-started
