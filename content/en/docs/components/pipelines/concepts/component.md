@@ -81,7 +81,7 @@ Observe that these are wrapped Python functions. The `@component` wrapper helps 
 
 The `hello_world` component just uses the default behavior, which is to run the Python function on the default base image (`python:3.9`). 
 
-The `process_data` component adds layers of customization, by supplying the name of a specific `base_image`, and `packages_to_install`. Note the inclusion of the `import pandas as pd` statement inside the function; since the function will run inside a container (and won't have the script context), all non-builtin Python library dependencies need to be imported within the component function. This component also uses KFP's `Output[Dataset]` class, which takes care of creating a KFP [artifact][artifact] type output. 
+The `process_data` component adds layers of customization, by supplying the name of a specific `base_image`, and `packages_to_install`. Note the inclusion of the `import pandas as pd` statement inside the function; since the function will run inside a container (and won't have the script context), all non-builtin Python library dependencies need to be imported within the component function. This component also uses KFP's `Output[Dataset]` class, which takes care of creating a KFP [artifact][artifacts] type output. 
 
 Note that inputs and outputs are defined as Python function parameters. Also, dependencies can often be installed at runtime, avoiding the need for custom base containers. Python-based components give close access to the Python tools that ML experimenters rely on, like modules and imports, usage information, type hints, and debugging tools.
 
@@ -115,13 +115,13 @@ YAML-based components support system commands directly. In fact, any command (or
 ```yaml
 # my_component.yaml file
 name: my-component
-description:
+description: "Component that outputs \"<string prefix>...<num>\""
 
 inputs:
 - {name: string prefix, type: String}
 - {name: num, type: Integer}
 
-outputs:
+outputs: []
 
 implementation:
   container:
