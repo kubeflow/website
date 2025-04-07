@@ -116,7 +116,7 @@ completed Trials with results:
 
 <img src="/docs/components/katib/images/getting-started-example.png"
   alt="Getting Started Example"
-  class="mt-3 mb-3">
+  class="mt-3 mb-3 border rounded">
 
 ## Next steps
 

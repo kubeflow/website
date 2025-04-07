@@ -15,10 +15,9 @@ The default object store that is shipped as part of the Kubeflow Platform is Min
 The following diagram provides an simplified overview of how object storage is utilized and configured: 
 
 <img src="/docs/components/pipelines/operator-guides/images/kfp-obj-store-configurations.png"
-alt="KFP Object Store Configuration Overview"
-class="mt-3 mb-3"
-style="width: 75%; height: 75%;">
-
+     alt="KFP Object Store Configuration Overview"
+     class="mt-3 mb-3 border rounded p-3 bg-white"
+     style="width: 100%; max-width: 30em">
 
 ## Prerequisites
 

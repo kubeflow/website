@@ -14,7 +14,7 @@ You can access the Kubeflow Pipelines UI by clicking **Pipeline Dashboard** on
 the Kubeflow UI. The Kubeflow Pipelines UI looks like this:
   <img src="/docs/images/pipelines/v1/pipelines-ui.png" 
     alt="Pipelines UI"
-    class="mt-3 mb-3 border border-info rounded">
+    class="mt-3 mb-3 border rounded">
 
 From the Kubeflow Pipelines UI you can perform the following tasks:
 
