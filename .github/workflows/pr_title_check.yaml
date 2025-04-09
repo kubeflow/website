@@ -20,7 +20,7 @@ jobs:
             echo "Component value must be one of these central-dashboard|katib|kserve|model-registry|notebooks|pipelines|spark-operator|trainer|gsoc|website|community"
             echo "Example: model-registry: Add model registry UI Installation instructions"
 
-            COMMENT_BODY="⚠️ **Invalid PR Title** ⚠️\n\nYour PR title \`$PR_TITLE\` does not match the required format: \`component_name: description\`.\n\n**Allowed components (case sensitive):** \`central-dashboard, katib, kserve, model-registry, notebooks, pipelines, spark-operator, trainer, gsoc, website, community\`\n\n✅ **Example:** \`model-registry: Add model registry UI Installation instructions\`\n\nPlease update your PR title accordingly."
+            COMMENT_BODY="⚠️ **Invalid PR Title** ⚠️\n\nYour PR title \`$PR_TITLE\` does not match the required format: \`component_name: description\`.\n\n**Allowed components (case sensitive):** \`central-dashboard, katib, kserve, model-registry, notebooks, pipelines, spark-operator, trainer, gsoc, website, community\`\n\n✅ **Example:** \`model-registry: Add model registry UI Installation instructions\`\n\nPlease update your PR title accordingly by either using GITHUB GUI or by usinge `/retitle component_name: description` as stated above."
             
             # Post the comment to the PR using GitHub API
             curl -s -H "Authorization: token $GITHUB_TOKEN" \
