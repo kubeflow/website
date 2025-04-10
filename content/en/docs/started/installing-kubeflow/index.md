@@ -339,9 +339,8 @@ The following table lists distributions which are <em>maintained</em> by their r
 
 ### Kubeflow Manifests
 
-The Kubeflow manifests are a collection of community maintained manifests to install Kubeflow in popular Kubernetes clusters such as Kind (locally), Minikube (locally), Rancher, EKS, AKS, GKE.
-They are aggregated by the Manifests Working Group and are intended to be
-used by users with Kubernetes knowledge and as the base of packaged distributions.
+The Kubeflow Manifests are community maintained kustomize manifests which are tested to deploy a minimum-viable Kubeflow Platform on **[Kind](https://kind.sigs.k8s.io/)** clusters.
+They are aggregated by the Manifests Working Group, and are intended to be used as the base of packaged distributions and by those with Kubernetes knowledge.
 
 Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
 applications that comprise the **Kubeflow Platform**. This installation is helpful when you want to
