@@ -24,11 +24,20 @@ You should be familiar with [Kubernetes](https://kubernetes.io/docs/home/),
      kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION"
      ```
 
+> 💡 **Troubleshooting**: If you encounter persistent pod crashes (e.g., `proxy-agent`, `workflow-controller`) after applying the default config, you may try using the `platform-agnostic` configuration instead:
+>
+> ```bash
+> kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic?ref=$PIPELINE_VERSION"
+> ```
+>
+> This workaround was verified on Minikube using `v2.0.0`, and aligns with community suggestions in [kubeflow/pipelines#9546](https://github.com/kubeflow/pipelines/issues/9546). It may also help users facing similar pod crash issues in other environments or newer versions.
+
+
      The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
 
-2. Run the following to port-forward the Kubeflow Pipelines UI:
+1. Run the following to port-forward the Kubeflow Pipelines UI:
      ```
      kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
      ```
 
-3. Open http://localhost:8080 on your browser to see the Kubeflow Pipelines UI.
+2. Open http://localhost:8080 on your browser to see the Kubeflow Pipelines UI.
