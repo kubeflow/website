@@ -17,3 +17,6 @@ resources/
 #
 # vim files
 **/*.swp
+
+# Pagefind search indexes
+static/pagefind/

@@ -802,3 +802,65 @@ nav.foldable-nav {
 .alert {
   background-color: $alert-bg;
 }
+
+// --------------------------------------------------
+// Pagefind UI (Search Results) theming
+// --------------------------------------------------
+
+// Light mode styles (default)
+.pagefind-ui {
+  --pagefind-ui-primary: $primary;
+  --pagefind-ui-text: $body-color;
+  --pagefind-ui-background: $body-bg;
+  --pagefind-ui-border: $border-color;
+  --pagefind-ui-tag: $gray-300;
+  
+  // Search result title styling
+  .pagefind-ui__result-title {
+    color: $primary;
+    .pagefind-ui__result-link {
+      &:hover {
+        color: darken($primary, 10%);
+      }
+    }
+  }
+  
+
+  
+  // Search result borders
+  .pagefind-ui__result {
+    border-top: solid var(--pagefind-ui-border-width) $home-section-border-color;
+    
+    &:last-of-type {
+      border-bottom: solid var(--pagefind-ui-border-width) $home-section-border-color;
+    }
+  }
+  
+  // Search result tags
+  .pagefind-ui__result-tag {
+    background-color: $home-card-top-bg;
+  }
+  
+  // Search input
+  .pagefind-ui__search-input {
+    border: 2px solid $search-border-color;
+    border-radius: 2rem;
+    color: $body-color;
+    background-color: $search-bg-color;
+    
+    &:focus {
+      border-color: $search-border-focus-color;
+    }
+  }
+  
+  // Filter checkbox
+  .pagefind-ui__filter-checkbox {
+    border-color: $border-color;
+    
+    &:checked {
+      background-color: $primary;
+      border-color: $primary;
+    }
+  }
+}
+
