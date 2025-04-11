@@ -288,7 +288,7 @@ enable = true
       desc = "Connect with us on LinkedIn for updates and networking!"
     [[params.links.user]]
       name = "Kubeflow Slack"
-      url = "https://www.kubeflow.org/docs/about/community/#kubeflow-slack-channels"
+      url = "/docs/about/community/#kubeflow-slack-channels"
       icon = "fab fa-slack"
       desc = "Join the Kubeflow Slack Workspace!"
     [[params.links.user]]
