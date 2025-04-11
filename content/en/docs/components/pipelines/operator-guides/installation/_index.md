@@ -32,8 +32,7 @@ You should be familiar with [Kubernetes](https://kubernetes.io/docs/home/),
 >
 > This workaround was verified on Minikube using `v2.0.0`, and aligns with community suggestions in [kubeflow/pipelines#9546](https://github.com/kubeflow/pipelines/issues/9546). It may also help users facing similar pod crash issues in other environments or newer versions.
 
-
-     The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
+The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
 
 1. Run the following to port-forward the Kubeflow Pipelines UI:
      ```
