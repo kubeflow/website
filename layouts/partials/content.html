@@ -1,0 +1,38 @@
+<div class="td-content" data-pagefind-body>
+	<h1>{{ .Title }}</h1>
+	{{ with .Params.description }}<div class="lead">{{ . | markdownify }}</div>{{ end }}
+	<header class="article-meta">
+		{{ $context := . }}
+		{{ if .Page.Params.authors }}
+			<div class="taxonomy taxonomy-terms-article taxo-authors">
+				{{ range $index, $author := .Page.Params.authors }}
+					{{- if gt $index 0 }}, {{ end -}}
+					{{ with site.GetPage (printf "/authors/%s" (urlize $author)) }}
+						<a href="{{ .Permalink }}" class="taxonomy-term">
+							{{- if .Params.name -}}
+								{{ .Params.name }}
+							{{- else -}}
+								{{ .Title }}
+							{{- end -}}
+						</a>
+					{{ else }}
+						{{ $author }}
+					{{ end }}
+				{{ end }}
+			</div>
+		{{ end }}
+		{{ if (and (not .Params.hide_readingtime) (.Site.Params.ui.readingtime.enable)) }}
+			{{ partial "reading-time.html" . }}
+		{{ end }}
+	</header>
+	{{ .Content }}
+	{{ if (and (not .Params.hide_feedback) (.Site.Params.ui.feedback.enable) (.Site.GoogleAnalytics)) }}
+		{{ partial "feedback.html" .Site.Params.ui.feedback }}
+		<br />
+	{{ end }}
+	{{ if (.Site.Params.DisqusShortname) }}
+		<br />
+		{{ partial "disqus-comment.html" . }}
+	{{ end }}
+	{{ partial "page-meta-lastmod.html" . }}
+</div> 
