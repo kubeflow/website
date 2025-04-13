@@ -1,5 +1,9 @@
 {
   "name": "website",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "bootstrap": "^4.6.2"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
     "netlify-plugin-checklinks": "^4.1.1",

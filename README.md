@@ -1,7 +1,3 @@
-<div align="center">
-  <img src="./assets/icons/logo.svg" width="320">
-</div>
-
 # Kubeflow Website
 
 <h4 align="center">
@@ -105,8 +101,9 @@ Follow the usual GitHub workflow of forking the repository on GitHub and then cl
 4. Install Docsy dependencies:
 
    ```bash
+   # install the node packages (at the root of the repo)
    # NOTE: ensure you have node 18 installed
-   (cd themes/docsy/ && npm install)
+   npm install
    ```
 
 5. Start your local Hugo server:
@@ -159,6 +156,7 @@ To update referenced docsy commit, run the following command at the root of the 
 # for example, to update docsy to v0.6.0
 # WARNING: updating the docsy version will require you to update our overrides
 #          check under: `layouts/partials` and `assets/scss`
+#          also, we have [[module.mounts]] in `config.toml` that must align with the `config.yaml` from docsy
 git -C themes/docsy fetch --tags
 git -C themes/docsy checkout tags/v0.6.0
 ```
