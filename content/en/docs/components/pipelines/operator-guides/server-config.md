@@ -52,7 +52,7 @@ API Server deployment. All variables are optional.
 
 If `HTTP_PROXY` or `HTTPS_PROXY` is set and `NO_PROXY` is not set, `NO_PROXY` will automatically be set to `localhost,127.0.0.1,.svc.cluster.local,kubernetes.default.svc,metadata-grpc-service,0,1,2,3,4,5,6,7,8,9`.
 
-### Example of an API Server deployment with all `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY` set
+### Example of an API Server deployment with `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` set
 
 ```yaml
 apiVersion: apps/v1
