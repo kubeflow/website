@@ -543,14 +543,24 @@ nav.foldable-nav {
     }
   }
 
-  .trusted-logo {
+  .trusted-logo-light {
     pointer-events: none;
     user-select: none; 
     max-height: 3rem; 
     max-width: 12.5rem;
     object-fit: contain; 
+    display: block !important;
   }
-  
+
+  .trusted-logo-dark {
+    pointer-events: none;
+    user-select: none; 
+    max-height: 3rem; 
+    max-width: 12.5rem;
+    object-fit: contain; 
+    display: none !important;
+  }
+
   .trusted-logo-container {
     display: flex;
     justify-content: center;
