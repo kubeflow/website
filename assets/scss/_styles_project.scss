@@ -547,8 +547,7 @@ nav.foldable-nav {
     pointer-events: none;
     user-select: none; 
     max-height: 3rem; 
-    width: auto;
-    margin: 0 1.25rem; 
+    max-width: 12.5rem;
     object-fit: contain; 
   }
   
@@ -557,7 +556,7 @@ nav.foldable-nav {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap; 
-    gap: 1.25rem;
+    gap: 3rem;
   }
 
   .section-head {
@@ -602,10 +601,7 @@ nav.foldable-nav {
     margin: 0 0 1.5em 1.5em;
   }
 
-  #overview,
-  #pageContent,
-  #cncf,
-  #community {
+  #overview, #pageContent, #cncf, #community, #adopters {
     padding: 4rem 0 4rem 0 !important;
   }
 
@@ -615,6 +611,10 @@ nav.foldable-nav {
   }
 
   #overview {
+    border-bottom: 0.1rem solid $home-section-border-color;
+  }
+
+  #adopters {
     border-bottom: 0.1rem solid $home-section-border-color;
   }
 
