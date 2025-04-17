@@ -546,9 +546,9 @@ nav.foldable-nav {
   .trusted-logo {
     pointer-events: none;
     user-select: none; 
-    max-height: 50px; 
+    max-height: 3rem; 
     width: auto;
-    margin: 0 20px; 
+    margin: 0 1.25rem; 
     object-fit: contain; 
   }
   
@@ -557,11 +557,7 @@ nav.foldable-nav {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap; 
-    gap: 20px; 
-  }
-  
-  .border-primary-dark {
-    border-color: $info !important;
+    gap: 1.25rem;
   }
 
   .section-head {
