@@ -543,6 +543,32 @@ nav.foldable-nav {
     }
   }
 
+  .trusted-logo-light {
+    pointer-events: none;
+    user-select: none; 
+    max-height: 3rem; 
+    max-width: 12.5rem;
+    object-fit: contain; 
+    display: block !important;
+  }
+
+  .trusted-logo-dark {
+    pointer-events: none;
+    user-select: none; 
+    max-height: 3rem; 
+    max-width: 12.5rem;
+    object-fit: contain; 
+    display: none !important;
+  }
+
+  .trusted-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 3rem;
+  }
+
   .section-head {
     color: $home-section-title-color;
 
@@ -583,7 +609,7 @@ nav.foldable-nav {
     margin: 0 0 1.5em 1.5em;
   }
 
-  #overview, #pageContent, #cncf, #community {
+  #overview, #pageContent, #cncf, #community, #adopters {
     padding: 4rem 0 4rem 0 !important;
   }
 
@@ -592,6 +618,10 @@ nav.foldable-nav {
   }
 
   #overview {
+    border-bottom: 0.1rem solid $home-section-border-color;
+  }
+
+  #adopters {
     border-bottom: 0.1rem solid $home-section-border-color;
   }
 
