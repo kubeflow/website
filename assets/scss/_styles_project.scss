@@ -547,8 +547,7 @@ nav.foldable-nav {
     pointer-events: none;
     user-select: none; 
     max-height: 3rem; 
-    width: auto;
-    margin: 0 1.25rem; 
+    max-width: 12.5rem;
     object-fit: contain; 
   }
   
@@ -557,7 +556,7 @@ nav.foldable-nav {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap; 
-    gap: 1.25rem;
+    gap: 3rem;
   }
 
   .section-head {
