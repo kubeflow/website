@@ -79,7 +79,7 @@ def process_data(output_data: Output[Dataset]):
 
 Observe that these are wrapped Python functions. The `@component` wrapper helps the KFP Python SDK supply the needed context for running these functions in containers as part of a KFP [pipeline][pipeline].
 
-The `hello_world` component just uses the default behavior, which is to run the Python function on the default base image (`python:3.9`). 
+The `hello_world` component just uses the default behavior, which is to run the Python function on the default base image (`kfp.dsl.component_factory._DEFAULT_BASE_IMAGE`).
 
 The `process_data` component adds layers of customization, by supplying the name of a specific `base_image`, and `packages_to_install`. Note the inclusion of the `import pandas as pd` statement inside the function; since the function will run inside a container (and won't have the script context), all Python library dependencies need to be imported within the component function. This component also uses KFP's `Output[Dataset]` class, which takes care of creating a KFP [artifact][artifacts] type output. 
 
