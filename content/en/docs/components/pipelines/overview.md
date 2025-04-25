@@ -31,7 +31,7 @@ A [pipeline][pipelines] is a definition of a workflow that composes one or more 
 ## Next steps
 
 * [Install Kubeflow Pipelines][installation]
-* [Hello World Pipeline][hello-world-pipeline]
+* [Getting Started][getting-started]
 * Learn more about [authoring components][components]
 * Learn more about [authoring pipelines][pipelines]
 
