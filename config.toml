@@ -12,7 +12,6 @@ theme = ["docsy"]
 enableGitInfo = true
 
 # language settings
-contentDir = "content/en"
 defaultContentLanguage = "en"
 # tell Hugo not to include the /en/ element in the URL path for English docs
 defaultContentLanguageInSubdir = false
@@ -150,9 +149,53 @@ enable = true
     title = "Kubeflow"
     languageName ="English"
     weight = 1
+    contentDir = "content/en"
 
     [languages.en.params]
       description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
+  
+  [languages.bn]
+    title = "Kubeflow"
+    languageName = "বাংলা"
+    weight = 2
+    contentDir = "content/bn"
+    
+    [languages.bn.params]
+      description = "কুবফ্লো কুবারনেটিসে এমএল ওয়ার্কফ্লো ডেপ্লয়মেন্ট সহজ এবং স্বয়ংক্রিয় করে তোলে"
+
+[languages.bn.menu]
+  [[languages.bn.menu.main]]
+    name = "কুবফ্লো সামিট"
+    weight = -1000
+    pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
+    post = "<br><span class='badge badge-warning'>এপ্রিল ১, ২০২৫</span> <span class='badge badge-warning'>লন্ডন, ইংল্যান্ড</span> "
+    url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/kubeflow-summit/"
+  [[languages.bn.menu.main]]
+    name = "জিএসওসি ২০২৫"
+    weight = -900
+    pre = "<i class='fas pr-2'><img src='/docs/images/logos/gsoc.svg' style='height: 1.22em;'></i>"
+      post = "<br><span class='badge badge-info'>শীঘ্রই আসছে</span>"
+    url = "/events/gsoc-2025/"
+  [[languages.bn.menu.main]]
+    name = "ডকুমেন্টেশন"
+    weight = -102
+    pre = "<i class='fas fa-book pr-2'></i>"
+    url = "/docs/"
+  [[languages.bn.menu.main]]
+    name = "ইভেন্টস"
+    weight = -101
+    pre = "<i class='fas fa-calendar pr-2'></i>"
+    url = "/events/"
+  [[languages.bn.menu.main]]
+    name = "ব্লগ"
+    weight = -100
+    pre = "<i class='fas fa-rss pr-2'></i>"
+    url = "https://blog.kubeflow.org/"
+  [[languages.bn.menu.main]]
+    name = "গিটহাব"
+    weight = -99
+    pre = "<i class='fab fa-github pr-2'></i>"
+    url = "https://github.com/kubeflow/"
 
 ###############################################################################
 # Docsy - Site Parameters
