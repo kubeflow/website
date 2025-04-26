@@ -1,64 +1,64 @@
 +++
-title =  "Community"
-description = "About the Kubeflow community"
+title =  "সম্প্রদায়"
+description = "Kubeflow সম্প্রদায় সম্পর্কে"
 weight = 10
 aliases = ["/docs/community/"]
 +++
 
-## Contributing
+## অবদান রাখুন
 
-If you are interested in learning more about how to participate in and contribute to the Kubeflow community, take a look at [Contributing](/docs/about/contributing/)!
+যদি আপনি Kubeflow সম্প্রদায়ে অংশগ্রহণ এবং অবদান রাখার বিষয়ে আরও জানতে আগ্রহী হন, তবে [Contributing](/docs/about/contributing/) দেখুন!
 
-## Kubeflow Slack Channels
+## Kubeflow Slack চ্যানেলসমূহ
 
-Kubeflow is part of the vibrant CNCF community, we use the [CNCF Slack](https://slack.cncf.io/) for informal discussions among users and contributors.
-Please join the [Kubeflow channels](#slack-channels) to join the conversation and get help from the community.
+Kubeflow একটি প্রাণবন্ত CNCF সম্প্রদায়ের অংশ, আমরা ব্যবহারকারীদের এবং অবদানকারীদের মধ্যে অনানুষ্ঠানিক আলোচনার জন্য [CNCF Slack](https://slack.cncf.io/) ব্যবহার করি।
+
+অনুগ্রহ করে [Kubeflow চ্যানেলসমূহ](#slack-channels)-এ যোগ দিন এবং সম্প্রদায় থেকে সাহায্য পান।
 
 <a href="https://slack.cncf.io/">
-  <button class="btn btn-primary py-2 px-5 mb-3">Click to join:<br><b>CNCF Slack</b></button>
+  <button class="btn btn-primary py-2 px-5 mb-3">যোগ দিন:<br><b>CNCF Slack</b></button>
 </a>
 
-### Slack Channels
+### Slack চ্যানেলসমূহ
 
-The following table lists official Kubeflow channels which are hosted on the **CNCF Slack**:
+নিচের টেবিলে **CNCF Slack**-এ হোস্ট করা অফিসিয়াল Kubeflow চ্যানেলগুলোর তালিকা দেওয়া হয়েছে:
 
 <div class="table-responsive">
 <div class="table table-bordered">
 
-| Description                             | Link                                                                           |
-| --------------------------------------- | ------------------------------------------------------------------------------ |
-| Announcements                           | [#kubeflow-announcements](https://app.slack.com/client/T08PSQ7BQ/C01EV0FV154)  |
-| Contributors                            | [#kubeflow-contributors](https://app.slack.com/client/T08PSQ7BQ/C0742LBR5BM)   |
-| Katib                                   | [#kubeflow-katib](https://app.slack.com/client/T08PSQ7BQ/C073N7AS48P)          |
-| Model Registry                          | [#kubeflow-model-registry](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R) |
-| Notebooks                               | [#kubeflow-notebooks](https://app.slack.com/client/T08PSQ7BQ/C073W562HFY)      |
-| Pipelines                               | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)      |
-| Platform Manifests and Release Planning | [#kubeflow-platform](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)       |
-| Spark Operator                          | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG) |
-| Kubeflow Trainer and MPI Operator       | [#kubeflow-trainer](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)        |
-| KServe                                  | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                  |
+| বিবরণ                                       | লিঙ্ক                                                                          |
+| ------------------------------------------- | ------------------------------------------------------------------------------ |
+| ঘোষণাসমূহ                                   | [#kubeflow-announcements](https://app.slack.com/client/T08PSQ7BQ/C01EV0FV154)  |
+| অবদানকারীরা                                 | [#kubeflow-contributors](https://app.slack.com/client/T08PSQ7BQ/C0742LBR5BM)   |
+| Katib                                       | [#kubeflow-katib](https://app.slack.com/client/T08PSQ7BQ/C073N7AS48P)          |
+| Model Registry                              | [#kubeflow-model-registry](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R) |
+| Notebooks                                   | [#kubeflow-notebooks](https://app.slack.com/client/T08PSQ7BQ/C073W562HFY)      |
+| Pipelines                                   | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)      |
+| প্ল্যাটফর্ম ম্যানিফেস্ট এবং রিলিজ পরিকল্পনা | [#kubeflow-platform](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)       |
+| Spark Operator                              | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG) |
+| Kubeflow Trainer এবং MPI Operator           | [#kubeflow-trainer](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)        |
+| KServe                                      | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                  |
 
 </div>
 </div>
 
-## Kubeflow Mailing List
+## Kubeflow মেইলিং লিস্ট
 
-The official Kubeflow mailing list is a Google Group called [kubeflow-discuss](https://groups.google.com/g/kubeflow-discuss).
+অফিসিয়াল Kubeflow মেইলিং লিস্ট একটি Google Group নামে পরিচিত [kubeflow-discuss](https://groups.google.com/g/kubeflow-discuss)।
 
 <a href="https://groups.google.com/g/kubeflow-discuss">
-  <button class="btn btn-primary py-2 px-5">Click to join:<br>Kubeflow Mailing List</button>
+  <button class="btn btn-primary py-2 px-5">যোগ দিন:<br>Kubeflow মেইলিং লিস্ট</button>
 </a>
 
-## Kubeflow Community Meetings
+## Kubeflow সম্প্রদায়ের মিটিংসমূহ
 
-The Kubeflow community holds various meetings to all users and contributors to discus
-issues/proposals and present demos/products.
+Kubeflow সম্প্রদায় বিভিন্ন মিটিং আয়োজন করে যেখানে ব্যবহারকারী এবং অবদানকারীরা সমস্যা/প্রস্তাবনা নিয়ে আলোচনা করে এবং ডেমো/পণ্য উপস্থাপন করে।
 
-### Subscribe to the Kubeflow Calendar
+### Kubeflow ক্যালেন্ডারে সাবস্ক্রাইব করুন
 
-By joining the [`kubeflow-discuss`](#kubeflow-mailing-list) mailing list, you should automatically see all the Kubeflow community meetings in your Google calendar.
+[`kubeflow-discuss`](#kubeflow-mailing-list) মেইলিং লিস্টে যোগ দিলে, আপনি স্বয়ংক্রিয়ভাবে আপনার Google ক্যালেন্ডারে সমস্ত Kubeflow সম্প্রদায়ের মিটিং দেখতে পাবেন।
 
-If this does not work, [manually add](https://calendar.google.com/calendar/u/0/r/settings/addcalendar) the following name to your Google calendar:
+যদি এটি কাজ না করে, [ম্যানুয়ালি যোগ করুন](https://calendar.google.com/calendar/u/0/r/settings/addcalendar) নিম্নলিখিত নামটি আপনার Google ক্যালেন্ডারে:
 
 ```text
 kubeflow.org_7l5vnbn8suj2se10sen81d9428@group.calendar.google.com
@@ -69,14 +69,14 @@ kubeflow.org_7l5vnbn8suj2se10sen81d9428@group.calendar.google.com
       class="mt-3 mb-3 border rounded">
 </img>
 
-### List of Available Meetings
+### উপলব্ধ মিটিংসমূহের তালিকা
 
-The following list shows available Kubeflow community meetings with the corresponding meeting notes and recordings.
+নিচের তালিকায় উপলব্ধ Kubeflow সম্প্রদায়ের মিটিংসমূহ এবং সংশ্লিষ্ট মিটিং নোট এবং রেকর্ডিং দেওয়া হয়েছে।
 
 <div class="table-responsive">
 <div class="table table-bordered">
 
-| Meeting Name                    | Meeting Notes                                        | Recordings                                                                                   |
+| মিটিংয়ের নাম                   | মিটিং নোট                                            | রেকর্ডিংসমূহ                                                                                 |
 | ------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | Kubeflow community call         | [Google Doc](https://bit.ly/kf-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
 | Kubeflow AutoML and Training WG | [Google Doc](https://bit.ly/2PWVCkV)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |

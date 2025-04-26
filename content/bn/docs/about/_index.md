@@ -1,5 +1,5 @@
 +++
-title = "About"
-description = "About Kubeflow and its community"
+title = "সম্পর্কে (About)"
+description = "Kubeflow এবং এর সম্প্রদায় সম্পর্কে"
 weight = 10
 +++

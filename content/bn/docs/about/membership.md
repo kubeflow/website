@@ -1,221 +1,211 @@
 +++
-title = "Community Membership"
-description = "Guidelines for contributing to Kubeflow"
+title = "সম্প্রদায় সদস্যপদ"
+description = "Kubeflow-এ অবদান রাখার নির্দেশিকা"
 weight = 30
 aliases = ["/docs/membership/"]
 +++
 
-This document outlines the various responsibilities of contributor roles in Kubeflow. Kubeflow is divided into working groups that have stewardship over different subprojects/repositories
+এই ডকুমেন্টটি Kubeflow-এ অবদানকারীদের বিভিন্ন ভূমিকার দায়িত্ব নির্ধারণ করে। Kubeflow বিভিন্ন সাবপ্রজেক্ট/রিপোজিটরির উপর দায়িত্বশীল ওয়ার্কিং গ্রুপে বিভক্ত।
 
-Responsibilities for most roles are scoped to these repositories.
+বেশিরভাগ ভূমিকার দায়িত্ব এই রিপোজিটরিগুলির মধ্যে সীমাবদ্ধ।
 
 <div class="table-responsive">
 <div class="table table-bordered">
 
-| Role | Responsibilities | Requirements | Defined by |
-| -----| ---------------- | ------------ | -------|
-| Member | Active contributor in the community | Sponsored by 2 Kubeflow members and multiple contributions to the project | Kubeflow GitHub org member|
-| Reviewer | Review contributions from other members | History of review and authorship in a repository | [OWNERS](/docs/about/contributing/#owners) file reviewer entry |
-| Approver | Contributions acceptance approval| Highly experienced active reviewer and contributor to a repository | [OWNERS](/docs/about/contributing/#owners) file approver entry|
-| WG Lead  | Provides technical leadership for a Working Group | Have sufficient domain knowledge to provide effective technical leadership | [wgs.yaml] entry |
-| WG Chair | Provides overall leadership for a Working Group | Have sufficient domain knowledge to provide effective leadership | [wgs.yaml] entry |
-| Kubeflow Steering Commitee Member | The KSC provides leadership for the overall Kubeflow project | [Details](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#charter) | [Members](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#charter) |
+| ভূমিকা                          | দায়িত্ব                                                   | প্রয়োজনীয়তা                                                                                         | সংজ্ঞায়িত                                                                                        |
+| ------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| সদস্য                           | সম্প্রদায়ে সক্রিয় অবদানকারী                              | ২ জন Kubeflow সদস্য দ্বারা স্পন্সর এবং প্রকল্পে একাধিক অবদান                                          | Kubeflow GitHub org সদস্য                                                                         |
+| পর্যালোচক                       | অন্যান্য সদস্যদের অবদান পর্যালোচনা                         | একটি রিপোজিটরিতে পর্যালোচনা এবং লেখার ইতিহাস                                                          | [OWNERS](/docs/about/contributing/#owners) ফাইল পর্যালোচক এন্ট্রি                                 |
+| অনুমোদক                         | অবদান গ্রহণের অনুমোদন                                      | একটি রিপোজিটরিতে অত্যন্ত অভিজ্ঞ সক্রিয় পর্যালোচক এবং অবদানকারী                                       | [OWNERS](/docs/about/contributing/#owners) ফাইল অনুমোদক এন্ট্রি                                   |
+| WG লিড                          | একটি ওয়ার্কিং গ্রুপের জন্য প্রযুক্তিগত নেতৃত্ব প্রদান করে | কার্যকর প্রযুক্তিগত নেতৃত্ব প্রদানের জন্য পর্যাপ্ত ডোমেইন জ্ঞান রয়েছে                                | [wgs.yaml] এন্ট্রি                                                                                |
+| WG চেয়ার                       | একটি ওয়ার্কিং গ্রুপের জন্য সামগ্রিক নেতৃত্ব প্রদান করে    | কার্যকর নেতৃত্ব প্রদানের জন্য পর্যাপ্ত ডোমেইন জ্ঞান রয়েছে                                            | [wgs.yaml] এন্ট্রি                                                                                |
+| Kubeflow স্টিয়ারিং কমিটি সদস্য | KSC পুরো Kubeflow প্রকল্পের জন্য নেতৃত্ব প্রদান করে        | [বিস্তারিত](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#charter) | [সদস্য](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#charter) |
 
 </div>
 </div>
 
 {{< note >}}
-Detailed documentation for Working Group structure and responsibilities can be found at [wg-governance.md](https://github.com/kubeflow/community/blob/master/wgs/wg-governance.md)
+ওয়ার্কিং গ্রুপের কাঠামো এবং দায়িত্বের বিস্তারিত ডকুমেন্টেশন [wg-governance.md](https://github.com/kubeflow/community/blob/master/wgs/wg-governance.md) এ পাওয়া যাবে।
 {{< /note >}}
 
-## New contributors
+## নতুন অবদানকারী
 
-[New contributors] should be welcomed to the community by existing members, helped with PR workflow, and directed to the relevant documentation and communication channels.
+[নতুন অবদানকারী]দের বিদ্যমান সদস্যদের দ্বারা সম্প্রদায়ে স্বাগত জানানো উচিত, PR ওয়ার্কফ্লোতে সহায়তা করা উচিত, এবং প্রাসঙ্গিক ডকুমেন্টেশন এবং যোগাযোগ চ্যানেলগুলিতে নির্দেশিত হওয়া উচিত।
 
-## Established community members
+## প্রতিষ্ঠিত সম্প্রদায়ের সদস্যরা
 
-Established community members are expected to demonstrate their adherence to the principles in this document, familiarity with project organization, roles, policies, procedures, conventions, etc., and technical and/or writing ability. Role-specific expectations, responsibilities, and requirements are enumerated below.
+প্রতিষ্ঠিত সম্প্রদায়ের সদস্যদের এই ডকুমেন্টের নীতিগুলির প্রতি তাদের আনুগত্য, প্রকল্পের সংগঠন, ভূমিকা, নীতি, পদ্ধতি, রীতি ইত্যাদির সাথে পরিচিতি এবং প্রযুক্তিগত এবং/অথবা লেখার ক্ষমতা প্রদর্শন করতে হবে। ভূমিকা-নির্দিষ্ট প্রত্যাশা, দায়িত্ব এবং প্রয়োজনীয়তাগুলি নীচে বর্ণনা করা হয়েছে।
 
-## Member
+## সদস্য
 
-Members are *[continuously active]* contributors in the community. They can have issues and PRs assigned to them and tests are automatically run for their PRs. Members are expected to remain active contributors to the community.
+সদস্যরা সম্প্রদায়ে _[নিয়মিত সক্রিয়]_ অবদানকারী। তাদের কাছে সমস্যা এবং PR বরাদ্দ করা যেতে পারে এবং তাদের PR-এর জন্য স্বয়ংক্রিয়ভাবে পরীক্ষাগুলি চালানো হয়। সদস্যদের সম্প্রদায়ের সক্রিয় অবদানকারী হতে প্রত্যাশিত।
 
-**Defined by:** Member of the Kubeflow GitHub organization
+**সংজ্ঞায়িত:** Kubeflow GitHub সংস্থার সদস্য
 
-### Requirements
+### প্রয়োজনীয়তা
 
-- Enabled two-factor authentication on their GitHub account
-- Have made **at least** 2-3 [code contributions] or [non-code contributions] to the project or community.
-- Have read the [contributor guide].
-- Sponsored by 2 Kubeflow members. **Note the following requirements for sponsors**:
-- **[Open an issue with the membership template][membership template] against the kubeflow/internal-acls repo**
-  - Ensure your sponsors are @mentioned on the issue
-- **Open a pull request against the kubeflow/internal-acls repo**
-  - Complete every item on the checklist ([preview the current version of the template][membership template])
-  - Make sure that the list of contributions included is representative of your work on the project.
-- Have your sponsoring reviewers reply confirmation of sponsorship
-- Once your sponsors have responded, your request will be reviewed by the Kubeflow team. Any missing information will be requested
-- After your PR is merged, you will get an email (to your GitHub-associated email address) inviting you to the Kubeflow GitHub org. Follow the instructions to accept your membership.
-- To confirm that the membership acceptance process has completed, you can search for your GitHub username at https://github.com/orgs/kubeflow/people.
+- তাদের GitHub অ্যাকাউন্টে দুই-ফ্যাক্টর প্রমাণীকরণ সক্ষম করা হয়েছে
+- প্রকল্প বা সম্প্রদায়ে **অন্তত** 2-3 [কোড অবদান] বা [অ-কোড অবদান] করেছেন।
+- [অবদানকারী গাইড] পড়া হয়েছে।
+- ২ জন Kubeflow সদস্য দ্বারা স্পন্সর করা হয়েছে। **স্পন্সরের জন্য নিম্নলিখিত প্রয়োজনীয়তাগুলি লক্ষ্য করুন**:
+- **[kubeflow/internal-acls রিপোতে সদস্যপদ টেমপ্লেট সহ একটি ইস্যু খুলুন][membership template]**
+  - নিশ্চিত করুন যে আপনার স্পন্সররা ইস্যুতে @উল্লেখিত হয়েছে
+- **kubeflow/internal-acls রিপোর বিরুদ্ধে একটি পুল অনুরোধ খুলুন**
+  - চেকলিস্টের প্রতিটি আইটেম পূর্ণ করুন ([বর্তমান সংস্করণের টেমপ্লেটের প্রিভিউ দেখুন][membership template])
+  - নিশ্চিত করুন যে অন্তর্ভুক্ত অবদানগুলির তালিকা প্রকল্পে আপনার কাজের প্রতিনিধিত্ব করে।
+- আপনার স্পন্সরিং পর্যালোচকদের স্পন্সরশিপের নিশ্চিতকরণের জন্য প্রতিক্রিয়া জানানোর জন্য বলুন
+- একবার আপনার স্পন্সররা প্রতিক্রিয়া জানালে, আপনার অনুরোধটি Kubeflow দলের দ্বারা পর্যালোচনা করা হবে। যে কোনও অনুপস্থিত তথ্য অনুরোধ করা হবে
+- আপনার PR মিশ্রিত হওয়ার পরে, আপনাকে Kubeflow GitHub সংস্থায় আপনার সদস্যপদ গ্রহণ করতে নির্দেশনা সহ একটি ইমেল পাবেন। আপনার সদস্যপদ গ্রহণ করতে নির্দেশনাগুলি অনুসরণ করুন।
+- সদস্যপদ গ্রহণের প্রক্রিয়া সম্পন্ন হয়েছে তা নিশ্চিত করতে, আপনি https://github.com/orgs/kubeflow/people এ আপনার GitHub ব্যবহারকারীর নাম অনুসন্ধান করতে পারেন।
 
-### Responsibilities
+### দায়িত্ব
 
-- Responsive to issues and PRs assigned to them
-- Active participants in the Kubeflow community by participating in:
-  - Working Group Meetings
-  - Slack Discussions
-  - Project Discussions
-- Responsive to mentions of any teams they may be members of
-- Active owner of code they have contributed (unless ownership is explicitly transferred)
-  - Code is well tested
-  - Tests consistently pass
-  - Addresses bugs or issues discovered after code is accepted
-- Subscribed to <https://groups.google.com/g/kubeflow-discuss>
+- তাদের জন্য বরাদ্দকৃত সমস্যা এবং PRs প্রতি প্রতিক্রিয়াশীল
+- নিম্নলিখিতগুলির মাধ্যমে Kubeflow সম্প্রদায়ের সক্রিয় অংশগ্রহণকারী:
+  - ওয়ার্কিং গ্রুপ মিটিং
+  - স্ল্যাক আলোচনাসমূহ
+  - প্রকল্প আলোচনা
+- তারা যে কোনও দলের উল্লেখের প্রতি প্রতিক্রিয়াশীল হতে পারে যার তারা সদস্য হতে পারে
+- তারা যে কোডে অবদান রেখেছে তার সক্রিয় মালিক (যদি মালিকানা স্পষ্টভাবে স্থানান্তরিত না হয়)
+  - কোডটি ভালভাবে পরীক্ষা করা হয়েছে
+  - পরীক্ষাগুলি নিয়মিতভাবে পাস করে
+  - কোড গ্রহণের পরে আবিষ্কৃত বাগ বা সমস্যাগুলি সমাধান করে
+- <https://groups.google.com/g/kubeflow-discuss> এ সাবস্ক্রাইব করেছেন
 
 {{< note >}}
-Members who frequently contribute code are expected to proactively perform code reviews and work towards becoming a primary *reviewer* for the subproject that they are active in.
+যারা নিয়মিত কোডে অবদান রাখেন তারা প্রত্যাশিত যে তারা সক্রিয়ভাবে কোড পর্যালোচনা করবেন এবং তারা যে সাবপ্রজেক্টে সক্রিয় আছেন তার জন্য একটি প্রাথমিক _পর্যালোচক_ হয়ে উঠবেন।
 {{< /note >}}
 
-### Privileges
+### বিশেষাধিকার
 
-- Members can do `/lgtm` on open PRs.
-- They can be assigned to issues and PRs, and people can ask members for reviews with a `/cc @username`.
-- They are eligible to be appointed as a Kubeflow release manager
-- Tests can be run against their PRs automatically. No `/ok-to-test` needed.
-- Members can do `/ok-to-test` for PRs that have a `needs-ok-to-test` label, and use commands like `/close` to close PRs as well. A complete list of commands can be found in [the Prow documentation](https://prow.k8s.io/command-help)
+- সদস্যরা খোলা PRs এ `/lgtm` করতে পারেন।
+- তাদের কাছে সমস্যা এবং PR বরাদ্দ করা যেতে পারে, এবং লোকেরা সদস্যদের `/cc @username` দিয়ে পর্যালোচনা করার জন্য জিজ্ঞাসা করতে পারে।
+- তারা Kubeflow রিলিজ ম্যানেজার হিসাবে নিয়োগ পাওয়ার জন্য যোগ্য
+- তাদের PRs স্বয়ংক্রিয়ভাবে পরীক্ষা করা যেতে পারে। `/ok-to-test` প্রয়োজন নেই।
+- সদস্যরা `প্রয়োজনীয়-ok-to-test` লেবেলযুক্ত PRs এর জন্য `/ok-to-test` করতে পারেন এবং `/close` এর মতো কমান্ড ব্যবহার করে PRs বন্ধ করতে পারেন। কমান্ডগুলির সম্পূর্ণ তালিকা [Prow ডকুমেন্টেশনে](https://prow.k8s.io/command-help) পাওয়া যেতে পারে
 
-## Reviewer
+## পর্যালোচক
 
-Reviewers are able to review code for quality and correctness on some part of a subproject. They are knowledgeable about both the codebase and software engineering principles.
+পর্যালোচকরা সাবপ্রজেক্টের কিছু অংশের জন্য কোডের গুণমান এবং সঠিকতা পর্যালোচনা করতে সক্ষম। তারা কোডবেস এবং সফ্টওয়্যার প্রকৌশল নীতির সম্পর্কে জানেন।
 
-**Defined by:** *reviewers* entry in an `OWNERS` file in a repo owned by the Kubeflow organization.
+**সংজ্ঞায়িত:** Kubeflow সংস্থার অধীনে একটি রিপোতে একটি `OWNERS` ফাইলে _পর্যালোচক_ এন্ট্রি।
 
-Reviewer status can be scoped to either parts of the codebase or the root directory for the entire codebase.
+পর্যালোচক স্থিতি কোডবেসের কিছু অংশ বা কোডবেসের সম্পূর্ণ রুট ডিরেক্টরির জন্য স্কোপ করা যেতে পারে।
 
 {{< note >}}
-Acceptance of code contributions requires at least one approver in addition to the assigned reviewers.
+কোড অবদানের গ্রহণযোগ্যতার জন্য বরাদ্দকৃত পর্যালোচকদের অতিরিক্ত কমপক্ষে একজন অনুমোদকের প্রয়োজন।
 {{< /note >}}
 
-### Requirements
+### প্রয়োজনীয়তা
 
-The following apply to the part of codebase for which one would be a reviewer in an [OWNERS](/docs/about/contributing/#owners) file.
+OWNERS ফাইলের জন্য কোডবেসের যে অংশের জন্য একজন পর্যালোচক হবে তার জন্য নিম্নলিখিতগুলি প্রযোজ্য।
 
-- member for at least 3 months
-- Primary reviewer for at least 5 PRs to the codebase
-- Reviewed or merged at least 15 substantial PRs to the codebase
-- Knowledgeable about the codebase
-- Active engagement with the commmunity by answering user questions in GitHub issues and Slack
-- Sponsored by a subproject approver
-  - With no objections from other approvers
-  - Done through PR to update the OWNERS file
-- May either self-nominate or be nominated by an approver in this subproject
+- অন্তত ৩ মাসের জন্য সদস্য
+- কোডবেসে ৫টি PR এর জন্য প্রাথমিক পর্যালোচক
+- কোডবেসে ১৫টি গুরুত্বপূর্ণ PR পর্যালোচনা বা মিশ্রিত হয়েছে
+- কোডবেস সম্পর্কে জানেন
+- GitHub ইস্যু এবং স্ল্যাক-এ ব্যবহারকারীর প্রশ্নের উত্তর দিয়ে সম্প্রদায়ের সাথে সক্রিয় সম্পৃক্ততা
+- একটি সাবপ্রজেক্টের অনুমোদক দ্বারা স্পন্সর করা হয়েছে
+  - অন্যান্য অনুমোদকদের পক্ষ থেকে কোন আপত্তি ছাড়াই
+  - OWNERS ফাইল আপডেট করতে PR এর মাধ্যমে করা হয়েছে
+- স্ব-নামকরণ বা এই সাবপ্রজেক্টের একটি অনুমোদক দ্বারা মনোনীত হতে পারে
 
 {{< note >}}
-Working Group Leads may nominate and approve `Reviewers` that don't meet these requirements due to exceptional circumstances. While acceptable in the short term, Working Group Leads should ensure that these `Reviewers` eventually meet the requirements
+ওয়ার্কিং গ্রুপের লিডরা ব্যতিক্রমী পরিস্থিতির কারণে এই প্রয়োজনীয়তাগুলি পূরণ না করা `পর্যালোচক`দের মনোনীত এবং অনুমোদন করতে পারেন। স্বল্পমেয়াদে গ্রহণযোগ্য হলেও, ওয়ার্কিং গ্রুপের লিডদের নিশ্চিত করা উচিত যে এই `পর্যালোচক`রা অবশেষে প্রয়োজনীয়তাগুলি পূরণ করে
 {{< /note >}}
 
-The following apply to the part of codebase for which one would be a reviewer in an [OWNERS](/docs/about/contributing/#owners) file.
+OWNERS ফাইলের জন্য কোডবেসের যে অংশের জন্য একজন পর্যালোচক হবে তার জন্য নিম্নলিখিতগুলি প্রযোজ্য।
 
-### Responsibilities
+### দায়িত্ব
 
-- All responsiblities that community members have
-- Responsible for project quality control via code reviews
-  - Focus on code quality and correctness, including testing and factoring
-  - May also review for more holistic issues, but not a requirement
-- Expected to be responsive to review requests
-- Expected to actively engage with the community by answering questions in GitHub issues and Slack
-- Assigned PRs to review related to subproject of expertise
-- Assigned test bugs related to subproject of expertise
+- সম্প্রদায়ের সদস্যদের যে সমস্ত দায়িত্ব রয়েছে
+- কোড পর্যালোচনার মাধ্যমে প্রকল্পের গুণমান নিয়ন্ত্রণের জন্য দায়ী
+  - কোডের গুণমান এবং সঠিকতা, পরীক্ষণ এবং ফ্যাক্টরিংয়ের উপর ফোকাস করুন
+  - আরও সামগ্রিক সমস্যার জন্য পর্যালোচনা করতে পারে, তবে এটি একটি প্রয়োজনীয়তা নয়
+- পর্যালোচনা অনুরোধের প্রতি প্রতিক্রিয়া জানানো প্রত্যাশিত
+- GitHub ইস্যু এবং স্ল্যাক-এ প্রশ্নের উত্তর দিয়ে সম্প্রদায়ের সাথে সক্রিয়ভাবে জড়িত হওয়া প্রত্যাশিত
+- সাবপ্রজেক্টের বিশেষজ্ঞতার সাথে সম্পর্কিত পর্যালোচনা করার জন্য বরাদ্দকৃত PRs
+- সাবপ্রজেক্টের বিশেষজ্ঞতার সাথে সম্পর্কিত পরীক্ষার বাগগুলির জন্য বরাদ্দকৃত
 
-### Privileges
+### বিশেষাধিকার
 
-- All Privileges that community members have
-- Code reviewer status may be a precondition to accepting large code contributions
-- May get a badge on PR and issue comments
+- সম্প্রদায়ের সদস্যদের যে সমস্ত বিশেষাধিকার রয়েছে
+- কোড পর্যালোচক স্থিতি বড় কোড অবদানের গ্রহণের জন্য একটি পূর্বশর্ত হতে পারে
+- PR এবং ইস্যু মন্তব্যগুলিতে একটি ব্যাজ পেতে পারেন
 
-## Approver
+## অনুমোদক
 
-Code approvers are able to both review and approve code contributions. While
-code review is focused on code quality and correctness, approval is focused on
-holistic acceptance of a contribution including: backwards / forwards
-compatibility, adhering to API and flag conventions, subtle performance and
-correctness issues, interactions with other parts of the system, overall code test coverage, etc.
+কোড অনুমোদকরা কোড অবদানের পর্যালোচনা এবং অনুমোদন উভয়ই করতে সক্ষম। যদিও
+কোড পর্যালোচনা কোডের গুণমান এবং সঠিকতার উপর কেন্দ্রীভূত, অনুমোদন একটি অবদানের সামগ্রিক গ্রহণের উপর কেন্দ্রীভূত: পেছনের / ফরোয়ার্ডের সাথে সামঞ্জস্যতা,
+API এবং পতাকা রীতিনীতি মেনে চলা, সূক্ষ্ম কর্মক্ষমতা এবং সঠিকতা সমস্যা, সিস্টেমের অন্যান্য অংশের সাথে মিথস্ক্রিয়া, সামগ্রিক কোড পরীক্ষার কভারেজ, ইত্যাদি।
 
-**Defined by:** *approvers* entry in an OWNERS file in a repo owned by the Kubeflow organization.
+**সংজ্ঞায়িত:** Kubeflow সংস্থার অধীনে একটি রিপোতে একটি OWNERS ফাইলে _অনুমোদক_ এন্ট্রি।
 
-Approver status can be scoped to either parts of the codebase or the root directory for the entire codebase.
+অনুমোদক স্থিতি কোডবেসের কিছু অংশ বা কোডবেসের সম্পূর্ণ রুট ডিরেক্টরির জন্য স্কোপ করা যেতে পারে।
 
-### Requirements
+### প্রয়োজনীয়তা
 
-The following apply to the part of codebase for which one would be an approver in an [OWNERS](/docs/about/contributing/#owners) file.
+OWNERS ফাইলের জন্য কোডবেসের যে অংশের জন্য একজন অনুমোদক হবে তার জন্য নিম্নলিখিতগুলি প্রযোজ্য।
 
-- Have met the responsibilities of the `Reviewer` role (as defined above) of the codebase for at least 3 months
-- Primary reviewer for at least 10 substantial PRs to the codebase
-- Reviewed or merged at least 30 PRs to the codebase
-- Nominated by a WG Lead or Chair
-  - With no objections from other Leads or Chairs
-  - Done through PR to update the relevant OWNERS file
+- কোডবেসের জন্য `পর্যালোচক` ভূমিকার দায়িত্বগুলি (উপরের হিসাবে সংজ্ঞায়িত) পূরণ করেছেন অন্তত ৩ মাস
+- কোডবেসে ১০টি গুরুত্বপূর্ণ PR এর জন্য প্রাথমিক পর্যালোচক
+- কোডবেসে ৩০টি PR পর্যালোচনা বা মিশ্রিত হয়েছে
+- একটি WG লিড বা চেয়ার দ্বারা মনোনীত
+  - অন্যান্য লিড বা চেয়ারদের পক্ষ থেকে কোন আপত্তি ছাড়াই
+  - প্রাসঙ্গিক OWNERS ফাইল আপডেট করতে PR এর মাধ্যমে করা হয়েছে
 
 {{< note >}}
-Working Group Leads may nominate and approve `Approvers` that don't meet these requirements due to exceptional circumstances. While acceptable in the short term, Working Group Leads should ensure that these `Approvers` eventually meet the requirements
+ওয়ার্কিং গ্রুপের লিডরা ব্যতিক্রমী পরিস্থিতির কারণে এই প্রয়োজনীয়তাগুলি পূরণ না করা `অনুমোদক`দের মনোনীত এবং অনুমোদন করতে পারেন। স্বল্পমেয়াদে গ্রহণযোগ্য হলেও, ওয়ার্কিং গ্রুপের লিডদের নিশ্চিত করা উচিত যে এই `অনুমোদক`রা অবশেষে প্রয়োজনীয়তাগুলি পূরণ করে
 {{< /note >}}
 
-### Responsibilities
+### দায়িত্ব
 
-The following apply to the part of codebase for which one would be an approver in an [OWNERS](/docs/about/contributing/#owners) file.
+OWNERS ফাইলের জন্য কোডবেসের যে অংশের জন্য একজন অনুমোদক হবে তার জন্য নিম্নলিখিতগুলি প্রযোজ্য।
 
-- All responsibilities that reviewers have
-- Approver status may be a precondition to accepting large architectural contributions
-- Demonstrate sound technical judgement
-- Responsible for project quality control via code reviews
-  - Focus on holistic acceptance of contribution such as dependencies with other features, backwards / forwards
-    compatibility, API and flag definitions, etc
-- Expected to be responsive to review requests
-- Expected to be responsive to merge requests for pull requests when reviewed
-- Mentor contributors and reviewers
+- পর্যালোচকরা যে সমস্ত দায়িত্ব পালন করেন
+- বড় আর্কিটেকচারাল অবদানের গ্রহণের জন্য অনুমোদক স্থিতি একটি পূর্বশর্ত হতে পারে
+- সাউন্ড টেকনিক্যাল জাজমেন্ট প্রদর্শন করুন
+- প্রকল্পের গুণমান নিয়ন্ত্রণের জন্য দায়ী কোড পর্যালোচনার মাধ্যমে
+  - অন্যান্য বৈশিষ্ট্যের সাথে নির্ভরতা যেমন অবদানের সামগ্রিক গ্রহণের উপর ফোকাস করুন, পেছনের / ফরোয়ার্ডের সাথে সামঞ্জস্যতা, API এবং পতাকা সংজ্ঞা, ইত্যাদি
+- পর্যালোচনা অনুরোধের প্রতি প্রতিক্রিয়া জানানো প্রত্যাশিত
+- পর্যালোচনা করা হলে পুল অনুরোধের জন্য মিশ্রণ অনুরোধের প্রতি প্রতিক্রিয়া জানানো প্রত্যাশিত
+- অবদানকারী এবং পর্যালোচকদের ment
 
-### Privileges
+### বিশেষাধিকার
 
-- All privileges that reviewers have
-- May approve code contributions for acceptance
+- পর্যালোচকদের যে সমস্ত বিশেষাধিকার রয়েছে
+- কোড অবদানের গ্রহণের জন্য অনুমোদক হতে পারে
 
-## Inactive members
+## নিষ্ক্রিয় সদস্যরা
 
-*Members are continuously active contributors in the community.*
+_সদস্যরা সম্প্রদায়ে নিয়মিত সক্রিয় অবদানকারী।_
 
-A core principle in maintaining a healthy community is encouraging active
-participation. It is inevitable that people's focuses will change over time and
-they are not expected to be actively contributing forever.
+একটি স্বাস্থ্যকর সম্প্রদায় বজায় রাখার একটি মূল নীতিমালা হল সক্রিয় অংশগ্রহণকে উৎসাহিত করা। মানুষের ফোকাস সময়ের সাথে সাথে পরিবর্তিত হওয়া অনিবার্য এবং তাদের চিরকাল সক্রিয়ভাবে অবদান রাখার প্রত্যাশা করা হয় না।
 
-However, being a member of one of the Kubeflow GitHub organizations comes with
-an elevated set of permissions. These capabilities should not be used by those
-that are not familiar with the current state of the Kubeflow organization.
+তবে, Kubeflow GitHub সংস্থার একজন সদস্য হওয়ার সাথে সাথে অনুমোদনের একটি উন্নত সেট আসে। এই ক্ষমতাগুলি তাদের দ্বারা ব্যবহার করা উচিত নয় যারা Kubeflow সংস্থার বর্তমান অবস্থার সাথে পরিচিত নয়।
 
-Therefore members with an extended period (1 year) away from the organization with no activity
-will be removed from the Kubeflow GitHub Organizations and will be required to
-go through the org membership process again after re-familiarizing themselves
-with the current state.
+অতএব, ১ বছরেরও বেশি সময় ধরে কোন কার্যকলাপ ছাড়াই সংস্থার সাথে থাকা সদস্যদের Kubeflow GitHub সংস্থাগুলি থেকে সরিয়ে ফেলা হবে এবং তাদের বর্তমান অবস্থার সাথে পুনরায় পরিচিত হওয়ার পরে আবারও সংস্থার সদস্যপদ প্রক্রিয়ার মধ্য দিয়ে যেতে হবে।
 
-If anyone listed in OWNERS files should become inactive, here is what we will do:
+যদি কেউ OWNERS ফাইলগুলিতে তালিকাবদ্ধ হন তবে আমরা যা করব তা হল:
 
-- If the person is in reviewers section, their GitHub id will be removed from the section.
-- If the person is in approvers section, their GitHub id will be moved
+- যদি ব্যক্তিটি পর্যালোচক বিভাগের মধ্যে থাকে তবে তাদের GitHub আইডি বিভাগের বাইরে সরিয়ে ফেলা হবে।
+- যদি ব্যক্তিটি অনুমোদক বিভাগের মধ্যে থাকে তবে তাদের GitHub আইডি স্থানান্তরিত হবে
   [the `emeritus_approvers` section](/docs/about/contributing/#emeritus).
 
-### How inactivity is measured
+### নিষ্ক্রিয়তা কিভাবে পরিমাপ করা হয়
 
-Inactive members are defined as members of one of the Kubeflow Organizations with **no** technical and non-technical contributions across any organization within 12 months. [DevStats](https://kubeflow.devstats.cncf.io/d/66/developer-activity-counts-by-companies?orgId=1&var-period_name=Last%20year&var-metric=contributions&var-repogroup_name=All&var-country_name=All&var-companies=All) offers an easy way to determine contributions to Kubeflow
+নিষ্ক্রিয় সদস্যরা হলেন Kubeflow সংস্থার সদস্য যারা ১২ মাসের মধ্যে কোন প্রযুক্তিগত এবং অ-প্রযুক্তিগত অবদান ছাড়াই রয়েছেন। [DevStats](https://kubeflow.devstats.cncf.io/d/66/developer-activity-counts-by-companies?orgId=1&var-period_name=Last%20year&var-metric=contributions&var-repogroup_name=All&var-country_name=All&var-companies=All) Kubeflow-এ অবদানের সহজ উপায় অফার করে
 
-After an extended period away from the project with no activity those members would need to re-familiarize themselves with the current state before being able to contribute effectively.
+প্রকল্প থেকে দীর্ঘ সময় ধরে দূরে থাকার পরে কোন কার্যকলাপ ছাড়াই সেই সদস্যদের বর্তমান অবস্থার সাথে পুনরায় পরিচিত হতে হবে এর আগে তারা কার্যকরভাবে অবদান রাখতে সক্ষম হবে।
 
-## Credit
+## ক্রেডিট
 
-This set of guidelines is heavily inspired by the [Kubernetes membership guidelines](https://github.com/kubernetes/community/blob/master/community-membership.md?plain=1#community-membership).
+এই সেটের নির্দেশিকাগুলি [Kubernetes সদস্যপদ নির্দেশিকাগুলি](https://github.com/kubernetes/community/blob/master/community-membership.md?plain=1#community-membership) দ্বারা ব্যাপকভাবে অনুপ্রাণিত।
 
-[code contributions]: https://contribute.cncf.io/contributors/getting-started/#code-contributors
-[non-code contributions]: https://contribute.cncf.io/contributors/getting-started/#non-code-contributors
-[contributor guide]: https://www.kubeflow.org/docs/about/contributing/
-[membership template]: https://github.com/kubeflow/internal-acls/blob/master/.github/ISSUE_TEMPLATE/join_org.md
-[New contributors]: /docs/about/contributing/
-[continuously active]: #inactive-members
+[কোড অবদান]: https://contribute.cncf.io/contributors/getting-started/#code-contributors
+[অ-কোড অবদান]: https://contribute.cncf.io/contributors/getting-started/#non-code-contributors
+[অবদানকারী গাইড]: https://www.kubeflow.org/docs/about/contributing/
+[সদস্যপদ টেমপ্লেট]: https://github.com/kubeflow/internal-acls/blob/master/.github/ISSUE_TEMPLATE/join_org.md
+[নতুন অবদানকারী]: /docs/about/contributing/
+[নিয়মিত সক্রিয়]: #নিষ্ক্রিয়-সদস্যরা
 [wgs.yaml]: https://github.com/kubeflow/community/blob/master/wgs.yaml
