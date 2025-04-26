@@ -1,5 +1,5 @@
 +++
-title = "Distributions"
-description = "Distributions of Kubeflow"
+title = "বিতরণসমূহ"
+description = "Kubeflow-এর বিতরণসমূহ"
 weight = 40
 +++

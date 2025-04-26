@@ -1,107 +1,106 @@
 +++
-title = "Contributing"
-description = "Guidelines for contributing to Kubeflow"
+title = "অবদান রাখা"
+description = "Kubeflow-এ অবদান রাখার নির্দেশিকা"
 weight = 20
 aliases = ["/docs/contributing/"]
 +++
 
-This document is the single source of truth for how to contribute to the code base.
-We'd love to accept your patches and contributions to this project.
-There are just a few small guidelines you need to follow.
+এই ডকুমেন্টটি কোড বেসে অবদান রাখার জন্য একক উৎস।
+আমরা এই প্রকল্পে আপনার প্যাচ এবং অবদানকে স্বাগত জানাই।
+আপনাকে কেবল কয়েকটি ছোট নির্দেশিকা অনুসরণ করতে হবে।
 
-## Getting Started
+## শুরু করা
 
-### Sign off your commits
+### আপনার কমিট সাইন করুন
 
-Kubeflow uses Developer Certificate of Origin ([DCO](https://github.com/apps/dco/)).
+Kubeflow ডেভেলপার সার্টিফিকেট অফ অরিজিন ([DCO](https://github.com/apps/dco/)) ব্যবহার করে।
 
-Check <https://github.com/kubeflow/community/tree/master/dco-signoff-hook#signing-off-commits> to learn how to sign off your contributions.
+আপনার অবদান সাইন করার পদ্ধতি জানতে <https://github.com/kubeflow/community/tree/master/dco-signoff-hook#signing-off-commits> দেখুন।
 
-### Follow the code of conduct
+### আচরণবিধি অনুসরণ করুন
 
-Please make sure to read and observe our [Code of Conduct](https://github.com/kubeflow/community/blob/master/CODE_OF_CONDUCT.md)
-and [inclusivity document](https://github.com/kubeflow/community/blob/master/INCLUSIVITY.md).
+আমাদের [আচরণবিধি](https://github.com/kubeflow/community/blob/master/CODE_OF_CONDUCT.md) এবং [অন্তর্ভুক্তি ডকুমেন্ট](https://github.com/kubeflow/community/blob/master/INCLUSIVITY.md) পড়ুন এবং মেনে চলুন।
 
-## Membership
+## সদস্যপদ
 
-Details about the different types of Kubeflow members as well as membership criteria can be found at [Community Membership](/docs/about/membership/)
+Kubeflow সদস্যদের বিভিন্ন ধরণের বিবরণ এবং সদস্যপদ মানদণ্ড [Community Membership](/docs/about/membership/) এ পাওয়া যাবে।
 
-**Note**: Anyone can contribute to Kubeflow, joining the Kubeflow organization is not a mandatory step.
+**নোট**: যে কেউ Kubeflow-এ অবদান রাখতে পারে, Kubeflow সংগঠনে যোগদান একটি বাধ্যতামূলক পদক্ষেপ নয়।
 
-### Companies/organizations
+### কোম্পানি/সংগঠনসমূহ
 
-If you would like your company or organization to be acknowledged for contributing to Kubeflow, or participating in the community (being a user counts), please send a PR adding the relevant info to [member_organizations.yaml](https://github.com/kubeflow/community/blob/master/member_organizations.yaml).
+যদি আপনি চান যে আপনার কোম্পানি বা সংগঠনকে Kubeflow-এ অবদান রাখার জন্য স্বীকৃতি দেওয়া হোক, অথবা সম্প্রদায়ে অংশগ্রহণের জন্য (ব্যবহারকারী হওয়া গণ্য হয়), তাহলে [member_organizations.yaml](https://github.com/kubeflow/community/blob/master/member_organizations.yaml)-এ প্রাসঙ্গিক তথ্য যোগ করার জন্য একটি PR পাঠান।
 
-Additionally, if your company has adopted Kubeflow internally, we encouraage you to add yourself to [ADOPTERS.md](https://github.com/kubeflow/community/blob/master/ADOPTERS.md)!
+এছাড়াও, যদি আপনার কোম্পানি অভ্যন্তরীণভাবে Kubeflow গ্রহণ করে থাকে, তাহলে আমরা আপনাকে [ADOPTERS.md](https://github.com/kubeflow/community/blob/master/ADOPTERS.md)-এ নিজেকে যোগ করার জন্য উৎসাহিত করি!
 
-If you want your employee's GitHub contributions to be attributed to your company,
-please ask them to set the company field in their GitHub profile.
+যদি আপনি চান যে আপনার কর্মচারীদের GitHub অবদান আপনার কোম্পানির সাথে যুক্ত হোক,
+তাহলে তাদের GitHub প্রোফাইলে কোম্পানি ফিল্ড সেট করতে বলুন।
 
-## Your first contribution
+## আপনার প্রথম অবদান
 
-### Find something to work on
+### কাজ করার জন্য কিছু খুঁজুন
 
-Help is always welcome!
-For example, documentation (like the text you are reading now) can always use improvement.
-There's always code that can be clarified and variables or functions that can be renamed or commented.
-There's always a need for more test coverage.
-You get the idea - if you ever see something you think should be fixed, you should own it.
-Here is how you get started.
+সাহায্য সর্বদা স্বাগত জানানো হয়!
+উদাহরণস্বরূপ, ডকুমেন্টেশন (যেমন আপনি এখন যে টেক্সটটি পড়ছেন) সর্বদা উন্নতির জন্য ব্যবহার করা যেতে পারে।
+সর্বদা এমন কোড থাকে যা স্পষ্ট করা যেতে পারে এবং এমন ভেরিয়েবল বা ফাংশন থাকে যা পুনঃনামকরণ বা মন্তব্য করা যেতে পারে।
+সর্বদা আরও পরীক্ষার কভারেজের প্রয়োজন হয়।
+আপনি ধারণাটি পেয়ে গেছেন - যদি আপনি কখনও কিছু দেখতে পান যা আপনি মনে করেন ঠিক করা উচিত, আপনি এটি নিজের করে নিন।
+এখানে আপনি কীভাবে শুরু করবেন।
 
-### Starter issues
+### স্টার্টার ইস্যু
 
-To find Kubeflow issues that make good entry points:
+কুবফ্লো ইস্যুগুলি খুঁজতে যা ভাল প্রবেশের পয়েন্ট তৈরি করে:
 
-- Start with issues labeled **good first issue**. For example, see the good first issues in the [kubeflow/website repository](https://github.com/kubeflow/website/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) for documentation updates
-- If you're looking for good first issues for code, check out some of the following repositories:
+- **ভাল প্রথম সমস্যা** লেবেলযুক্ত ইস্যুগুলি দিয়ে শুরু করুন। উদাহরণস্বরূপ, ডকুমেন্টেশন আপডেটের জন্য [kubeflow/website repository](https://github.com/kubeflow/website/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) এ ভাল প্রথম সমস্যাগুলি দেখুন
+- আপনি যদি কোডের জন্য ভাল প্রথম সমস্যাগুলি খুঁজছেন তবে নিম্নলিখিত কিছু রিপোজিটরিতে যান:
   - [kubeflow/pipelines](https://github.com/kubeflow/pipelines/issues?q=is:open+is:issue+label:%22good+first+issue%22)
   - [kubeflow/trainer](https://github.com/kubeflow/trainer/issues?q=is:open+is:issue+label:%22good+first+issue%22)
   - [kubeflow/model-registry](https://github.com/kubeflow/model-registry/issues?q=is:issue+label:%22good+first+issue%22+is:open)
   - [kubeflow/notebooks](https://github.com/kubeflow/notebooks/issues?q=is:issue+label:%22good+first+issue%22+is:open)
-- For issues that require deeper knowledge of one or more technical aspects, look at issues labeled **help wanted**.
-  For example, see these issues in the [kubeflow/kubeflow repository](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-- Examine the issues in any of the [Kubeflow repositories](https://github.com/kubeflow).
+- এক বা একাধিক প্রযুক্তিগত দিক সম্পর্কে গভীর জ্ঞানের প্রয়োজনীয়তা সহ ইস্যুগুলির জন্য, **সাহায্য প্রয়োজন** লেবেলযুক্ত ইস্যুগুলির দিকে তাকান।
+  উদাহরণস্বরূপ, [kubeflow/kubeflow repository](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) এ এই ইস্যুগুলি দেখুন
+- যে কোনও [Kubeflow repositories](https://github.com/kubeflow) এর ইস্যুগুলি পরীক্ষা করুন।
 
-## Owners files and PR workflow
+## মালিকানা ফাইল এবং PR ওয়ার্কফ্লো
 
-Our PR workflow is nearly identical to Kubernetes'.
-Most of these instructions are a modified version of Kubernetes' [contributors](https://github.com/kubernetes/community/blob/master/contributors/guide/README.md)
-and [owners](https://github.com/kubernetes/community/blob/master/contributors/guide/owners.md#code-review-using-owners-files) guides.
+আমাদের PR ওয়ার্কফ্লো কুবেরনেটিসের সাথে প্রায় একই।
+এই নির্দেশিকাগুলির বেশিরভাগই কুবেরনেটিসের [অবদানকারীরা](https://github.com/kubernetes/community/blob/master/contributors/guide/README.md)
+এবং [মালিকরা](https://github.com/kubernetes/community/blob/master/contributors/guide/owners.md#code-review-using-owners-files) গাইড।
 
-### Overview of OWNERS files
+### OWNERS ফাইলের ওভারভিউ
 
-OWNERS files are used to designate responsibility over different parts of the Kubeflow codebase.
-Today, we use them to assign the **reviewer** and **approver** roles used in our two-phase code review process.
-Our OWNERS files were inspired by [Chromium OWNERS files](https://chromium.googlesource.com/chromium/src/+/master/docs/code_reviews.md),
-which in turn inspired [GitHub's CODEOWNERS files](https://help.github.com/articles/about-codeowners/).
+OWNERS ফাইলগুলি কুবফ্লো কোডবেসের বিভিন্ন অংশের উপর দায়িত্ব নির্ধারণ করতে ব্যবহৃত হয়।
+আজ, আমরা আমাদের দুই-পর্যায়ের কোড পর্যালোচনা প্রক্রিয়াতে ব্যবহৃত **পর্যালোচক** এবং **অনুমোদক** ভূমিকা নির্ধারণ করতে সেগুলি ব্যবহার করি।
+আমাদের OWNERS ফাইলগুলি [ক্রোমিয়াম OWNERS ফাইল](https://chromium.googlesource.com/chromium/src/+/master/docs/code_reviews.md) দ্বারা অনুপ্রাণিত হয়েছিল,
+যা পালাক্রমে [GitHub's CODEOWNERS files](https://help.github.com/articles/about-codeowners/) দ্বারা অনুপ্রাণিত হয়েছিল।
 
-The velocity of a project that uses code review is limited by the number of people capable of reviewing code.
-The quality of a person's code review is limited by their familiarity with the code under review.
-Our goal is to address both of these concerns through the prudent use and maintenance of OWNERS files
+কোড পর্যালোচনার জন্য একটি প্রকল্পের গতিশীলতা কোড পর্যালোচনা করার জন্য সক্ষম লোকের সংখ্যা দ্বারা সীমাবদ্ধ।
+একজন ব্যক্তির কোড পর্যালোচনার গুণমান পর্যালোচনার জন্য কোডের সাথে তাদের পরিচিতির দ্বারা সীমাবদ্ধ।
+আমাদের লক্ষ্য হল OWNERS ফাইলগুলির বিচক্ষণ ব্যবহার এবং রক্ষণাবেক্ষণের মাধ্যমে এই উভয় উদ্বেগের সমাধান করা
 
 <a name="owners-1"></a>
 
 ### OWNERS
 
-Each directory that contains a unit of independent code or content may also contain an OWNERS file.
-This file applies to everything within the directory, including the OWNERS file itself, sibling files, and child directories.
+প্রতিটি ডিরেক্টরির যা একটি স্বাধীন কোড বা বিষয়বস্তু ইউনিট ধারণ করে তা একটি OWNERS ফাইলও থাকতে পারে।
+এই ফাইলটি ডিরেক্টরির ভিতরে সবকিছুর জন্য প্রযোজ্য, যার মধ্যে OWNERS ফাইল নিজেই, ভাইবোন ফাইল এবং শিশু ডিরেক্টরিগুলি অন্তর্ভুক্ত রয়েছে।
 
-OWNERS files are in YAML format and support the following keys:
+OWNERS ফাইলগুলি YAML ফরম্যাটে রয়েছে এবং নিম্নলিখিত কী সমর্থন করে:
 
-- `approvers`: a list of GitHub usernames or aliases that can `/approve` a PR
-- `labels`: a list of GitHub labels to automatically apply to a PR
-- `options`: a map of options for how to interpret this OWNERS file, currently only one:
-  - `no_parent_owners`: defaults to `false` if not present; if `true`, exclude parent OWNERS files.
-    Allows the use case where `a/deep/nested/OWNERS` file prevents `a/OWNERS` file from having any
-    effect on `a/deep/nested/bit/of/code`
-- `reviewers`: a list of GitHub usernames or aliases that are good candidates to `/lgtm` a PR
-- `emeritus_approvers` a list of GitHub usernames of folks who were previously in the `approvers`
-  section, but are no longer actively approving code. Please see [below](#emeritus) for more details.
+- `approvers`: একটি GitHub ব্যবহারকারীর নাম বা অ্যালিয়াসের তালিকা যা একটি PR কে `/approve` করতে পারে
+- `labels`: একটি GitHub লেবেলের তালিকা স্বয়ংক্রিয়ভাবে একটি PR প্রয়োগ করতে
+- `options`: এই OWNERS ফাইলটি কীভাবে ব্যাখ্যা করতে হবে তার জন্য বিকল্পগুলির একটি মানচিত্র, বর্তমানে কেবল একটি:
+  - `no_parent_owners`: যদি উপস্থিত না থাকে তবে ডিফল্ট `false`; যদি `true`, প্যারেন্ট OWNERS ফাইলগুলি বাদ দিন।
+    `a/deep/nested/OWNERS` ফাইলের ক্ষেত্রে ব্যবহারের ক্ষেত্রে অনুমতি দেয় `a/OWNERS` ফাইলের
+    `a/deep/nested/bit/of/code` এর অধীনে বা আশেপাশে কোনও প্রভাব ফেলতে বাধা দেয়
+- `reviewers`: একটি GitHub ব্যবহারকারীর নাম বা অ্যালিয়াসের তালিকা যা একটি PR কে `/lgtm` করার জন্য ভাল প্রার্থী
+- `emeritus_approvers` একটি GitHub ব্যবহারকারীর নামের তালিকা যাদের আগে `approvers`
+  বিভাগ, কিন্তু আর সক্রিয়ভাবে কোড অনুমোদন করছে না। দয়া করে আরও বিশদ বিবরণের জন্য [নিচে](#emeritus) দেখুন।
 
-All users are expected to be assignable.
-In GitHub terms, this means they are either collaborators of the repo, or members of the organization to which the repo belongs.
+সমস্ত ব্যবহারকারী নিয়োগযোগ্য হতে হবে।
+GitHub শর্তাবলী অনুযায়ী, এর মানে হল যে তারা বা তো রিপোর সহযোগী, অথবা সেই সংগঠনের সদস্য যার সাথে রিপো সম্পর্কিত।
 
-A typical OWNERS file looks like:
+একটি সাধারণ OWNERS ফাইল দেখতে এইরকম:
 
 ```yaml
 approvers:
@@ -113,20 +112,14 @@ reviewers:
   - sig-foo # this is an alias
 ```
 
-#### Emeritus
+#### ইমেরিটাস
 
-It is inevitable, but there are times when someone may shift focuses, change jobs or step away from
-a specific area in the project for a time. These people may be domain experts over certain areas of
-the codebase, but can no longer dedicate the time needed to handle the responsibilities of
-reviewing and approving changes. They are encouraged to add themselves as an “emeritus”
-approver under the `emeritus_approvers` key.
+এটি অনিবার্য, কিন্তু এমন সময় থাকে যখন কেউ ফোকাস পরিবর্তন করতে পারে, চাকরি পরিবর্তন করতে পারে বা একটি নির্দিষ্ট এলাকা থেকে কিছু সময়ের জন্য দূরে সরে যেতে পারে। এই লোকেরা কোডবেসের নির্দিষ্ট ক্ষেত্রগুলির উপর ডোমেইন বিশেষজ্ঞ হতে পারে, কিন্তু পরিবর্তন পর্যালোচনা এবং অনুমোদনের দায়িত্বগুলি পরিচালনা করার জন্য প্রয়োজনীয় সময় দিতে পারে না। তাদের `emeritus_approvers` কী-এর অধীনে একটি "emeritus" অনুমোদক হিসাবে নিজেদের যোগ করতে উত্সাহিত করা হয়।
 
-GitHub usernames listed under the `emeritus_approvers` key can no longer approve code
-(use the /approve command) and will be ignored by prow for assignment. However, it can still be
-referenced by a person looking at the OWNERS file for a possible second or more informed opinion.
+`emeritus_approvers` কী-এর অধীনে তালিকাভুক্ত GitHub ব্যবহারকারীর নামগুলি আর কোড অনুমোদন করতে পারে না
+(`/approve` কমান্ডটি ব্যবহার করুন) এবং প্রোও দ্বারা নিয়োগের জন্য উপেক্ষা করা হবে। যাইহোক, এটি একটি ব্যক্তির দ্বারা OWNERS ফাইলটি দেখার সময় একটি সম্ভাব্য দ্বিতীয় বা আরও তথ্যপূর্ণ মতামতের জন্য এখনও উল্লেখ করা যেতে পারে।
 
-When a contributor returns to being more active in that area, they may be promoted back to a
-regular approver at the discretion of the current approvers.
+যখন একজন অবদানকারী সেই অঞ্চলে আরও সক্রিয় হতে ফিরে আসে, তখন তাদের বর্তমান অনুমোদকদের বিবেচনার ভিত্তিতে একটি নিয়মিত অনুমোদক হিসাবে পুনঃপ্রমোট করা হতে পারে।
 
 ```yaml
 emeritus_approvers:
@@ -136,15 +129,15 @@ emeritus_approvers:
 
 #### OWNERS_ALIASES
 
-Each repo may contain at its root an OWNERS_ALIAS file.
+প্রতিটি রিপোতে তার মূল্যে একটি OWNERS_ALIAS ফাইল থাকতে পারে।
 
-OWNERS_ALIAS files are in YAML format and support the following keys:
+OWNERS_ALIAS ফাইলগুলি YAML ফরম্যাটে রয়েছে এবং নিম্নলিখিত কী সমর্থন করে:
 
-- `aliases`: a mapping of alias name to a list of GitHub usernames
+- `aliases`: একটি অ্যালিয়াস নামের মানচিত্র একটি GitHub ব্যবহারকারীর নামের তালিকার জন্য
 
-We use aliases for groups instead of GitHub Teams, because changes to GitHub Teams are not publicly auditable.
+আমরা GitHub টিমের পরিবর্তে গ্রুপের জন্য অ্যালিয়াস ব্যবহার করি, কারণ GitHub টিমের পরিবর্তনগুলি জনসাধারণের অডিটযোগ্য নয়।
 
-A sample OWNERS_ALIASES file looks like:
+একটি নমুনা OWNERS_ALIASES ফাইল দেখতে এইরকম:
 
 ```yaml
 aliases:
@@ -156,159 +149,133 @@ aliases:
     - frank
 ```
 
-GitHub usernames and aliases listed in OWNERS files are case-insensitive.
+OWNERS ফাইলগুলিতে তালিকাবদ্ধ GitHub ব্যবহারকারীর নাম এবং অ্যালিয়াসগুলি কেস-অবহেলিত।
 
-### The code review process
+### কোড পর্যালোচনা প্রক্রিয়া
 
-- The **author** submits a PR
-- Phase 0: Automation suggests **reviewers** and **approvers** for the PR
-  - Determine the set of OWNERS files nearest to the code being changed
-  - Choose at least two suggested **reviewers**, trying to find a unique reviewer for every leaf
-    OWNERS file, and request their reviews on the PR
-  - Choose suggested **approvers**, one from each OWNERS file, and list them in a comment on the PR
-- Phase 1: Humans review the PR
-  - **Reviewers** look for general code quality, correctness, sane software engineering, style, etc.
-  - Anyone in the organization can act as a **reviewer** with the exception of the individual who
-    opened the PR
-  - If the code changes look good to them, a **reviewer** types `/lgtm` in a PR comment or review;
-    if they change their mind, they `/lgtm cancel`
-  - Once a **reviewer** has `/lgtm`'ed, [prow](https://prow.k8s.io)
-    ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) applies an `lgtm` label to the PR
-- Phase 2: Humans approve the PR
-  - The PR **author** `/assign`'s all suggested **approvers** to the PR, and optionally notifies
-    them (eg: "pinging @foo for approval")
-  - Only people listed in the relevant OWNERS files, either directly or through an alias, can act
-    as **approvers**, including the individual who opened the PR
-  - **Approvers** look for holistic acceptance criteria, including dependencies with other features,
-    forwards/backwards compatibility, API and flag definitions, etc
-  - If the code changes look good to them, an **approver** types `/approve` in a PR comment or
-    review; if they change their mind, they `/approve cancel`
-  - [prow](https://prow.k8s.io) ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) updates its
-    comment in the PR to indicate which **approvers** still need to approve
-  - Once all **approvers** (one from each of the previously identified OWNERS files) have approved,
-    [prow](https://prow.k8s.io) ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) applies an
-    `approved` label
-- Phase 3: Automation merges the PR:
+- **লেখক** একটি PR জমা দেয়
+- পর্যায় 0: স্বয়ংক্রিয়ভাবে PR এর জন্য **পর্যালোচক** এবং **অনুমোদক** প্রস্তাব করে
+  - পরিবর্তিত কোডের নিকটতম OWNERS ফাইলগুলির সেট নির্ধারণ করুন
+  - দুটি অন্তত প্রস্তাবিত **পর্যালোচক** বেছে নিন, প্রতিটি পাতা OWNERS ফাইলের জন্য একটি অনন্য পর্যালোচক খুঁজে বের করার চেষ্টা করুন, এবং PR-এ তাদের পর্যালোচনা অনুরোধ করুন
+  - প্রস্তাবিত **অনুমোদক** বেছে নিন, প্রতিটি OWNERS ফাইল থেকে একটি করে, এবং PR-এ একটি মন্তব্যে তাদের তালিকাবদ্ধ করুন
+- পর্যায় 1: মানুষ PR পর্যালোচনা করে
+  - **পর্যালোচক** সাধারণ কোডের গুণমান, সঠিকতা, স্বাভাবিক সফ্টওয়্যার প্রকৌশল, শৈলী ইত্যাদি খুঁজে বের করে।
+  - সংগঠনের যে কেউ **পর্যালোচক** হিসাবে কাজ করতে পারে PR খোলার ব্যতিক্রমী ব্যক্তি ছাড়া
+  - যদি কোড পরিবর্তন তাদের জন্য ভাল দেখায়, একটি **পর্যালোচক** PR মন্তব্য বা পর্যালোচনায় `/lgtm` টাইপ করে;
+    যদি তারা তাদের মন পরিবর্তন করে, তারা `/lgtm বাতিল`
+  - একবার একটি **পর্যালোচক** `/lgtm` করেছে, [prow](https://prow.k8s.io)
+    ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) PR-তে একটি `lgtm` লেবেল প্রয়োগ করে
+- পর্যায় 2: মানুষ PR অনুমোদন করে
+  - PR **লেখক** সমস্ত প্রস্তাবিত **অনুমোদক** কে PR-এ `/assign` করে, এবং বিকল্পভাবে তাদের জানায়
+    (যেমন: "অনুমোদনের জন্য @foo পিং করা")
+  - শুধুমাত্র প্রাসঙ্গিক OWNERS ফাইলগুলিতে তালিকাবদ্ধ লোকেরা **অনুমোদক** হিসাবে কাজ করতে পারে, সরাসরি বা একটি অ্যালিয়াসের মাধ্যমে, PR খোলার ব্যক্তি সহ
+  - **অনুমোদক** সামগ্রিক গ্রহণযোগ্যতা মানদণ্ড, অন্যান্য বৈশিষ্ট্যের সাথে নির্ভরশীলতা, অগ্রগতির সাথে সামঞ্জস্য, API এবং পতাকা সংজ্ঞা ইত্যাদি খুঁজে বের করে
+  - যদি কোড পরিবর্তন তাদের জন্য ভাল দেখায়, একটি **অনুমোদক** PR মন্তব্য বা পর্যালোচনায় `/approve` টাইপ করে;
+    যদি তারা তাদের মন পরিবর্তন করে, তারা `/approve cancel`
+  - [prow](https://prow.k8s.io) ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) তার
+    মন্তব্য আপডেট করে PR-এ কোন **অনুমোদক** এখনও অনুমোদন করতে হবে তা নির্দেশ করতে
+  - একবার সমস্ত **অনুমোদক** (পূর্বে চিহ্নিত OWNERS ফাইলগুলির প্রতিটি থেকে একটি) অনুমোদন করলে,
+    [prow](https://prow.k8s.io) ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) একটি প্রয়োগ করে
+    `approved` লেবেল
+- পর্যায় 3: স্বয়ংক্রিয়ভাবে PR মিশ্রিত করে:
 
-  - If all of the following are true:
+  - যদি নিম্নলিখিত সব সত্য হয়:
 
-    - All required labels are present (eg: `lgtm`, `approved`)
-    - Any blocking labels are missing (eg: there is no `do-not-merge/hold`, `needs-rebase`)
+    - সমস্ত প্রয়োজনীয় লেবেল উপস্থিত (যেমন: `lgtm`, `approved`)
+    - কোনও ব্লকিং লেবেল অনুপস্থিত (যেমন: সেখানে কোনও `do-not-merge/hold`, `needs-rebase` নেই)
 
-  - And if any of the following are true:
+  - এবং যদি নিম্নলিখিতগুলির মধ্যে কোনটি সত্য হয়:
 
-    - there are no presubmit prow jobs configured for this repo
-    - there are presubmit prow jobs configured for this repo, and they all pass after automatically
-      being re-run one last time
+    - এই রিপোর জন্য কোনও presubmit prow কাজ নেই
+    - এই রিপোর জন্য presubmit prow কাজ রয়েছে, এবং তারা সবগুলি শেষবার স্বয়ংক্রিয়ভাবে পুনরায় চালানোর পরে পাস করে
 
-  - Then the PR will automatically be merged
+  - তাহলে PR স্বয়ংক্রিয়ভাবে মিশ্রিত হবে
 
-### Quirks of the process
+### প্রক্রিয়ার অদ্ভুততা
 
-There are a number of behaviors we've observed that while _possible_ are discouraged, as they go
-against the intent of this review process. Some of these could be prevented in the future, but this
-is the state of today.
+একটি সংখ্যা আচরণ আমরা লক্ষ্য করেছি যে যদিও _সম্ভব_ বিরত রাখা হয়, কারণ তারা এই পর্যালোচনা প্রক্রিয়ার উদ্দেশ্যের বিরুদ্ধে যায়। এগুলির মধ্যে কিছু ভবিষ্যতে প্রতিরোধ করা যেতে পারে, কিন্তু আজকের এই অবস্থা।
 
-- An **approver**'s `/lgtm` is simultaneously interpreted as an `/approve`
-  - While a convenient shortcut for some, it can be surprising that the same command is interpreted
-    in one of two ways depending on who the commenter is
-  - Instead, explicitly write out `/lgtm` and `/approve` to help observers, or save the `/lgtm` for
-    a **reviewer**
-  - This goes against the idea of having at least two sets of eyes on a PR, and may be a sign that
-    there are too few **reviewers** (who aren't also **approver**)
-- Technically, anyone who is a member of the Kubeflow GitHub organization can drive-by `/lgtm` a
-  PR
-  - Drive-by reviews from non-members are encouraged as a way of demonstrating experience and
-    intent to become a collaborator or reviewer
-  - Drive-by `/lgtm`'s from members may be a sign that our OWNERS files are too small, or that the
-    existing **reviewers** are too unresponsive
-  - This goes against the idea of specifying **reviewers** in the first place, to ensure that
-    **author** is getting actionable feedback from people knowledgeable with the code
-- **Reviewers**, and **approvers** are unresponsive
-  - This causes a lot of frustration for **authors** who often have little visibility into why their
-    PR is being ignored
-  - Many **reviewers** and **approvers** are so overloaded by GitHub notifications that @mention'ing
-    is unlikely to get a quick response
-  - If an **author** `/assign`'s a PR, **reviewers** and **approvers** will be made aware of it on
-    their [PR dashboard](https://k8s-gubernator.appspot.com/pr)
-  - An **author** can work around this by manually reading the relevant OWNERS files,
-    `/unassign`'ing unresponsive individuals, and `/assign`'ing others
-  - This is a sign that our OWNERS files are stale; pruning the **reviewers** and **approvers** lists
-    would help with this
-  - It is the PR **authors** responsibility to drive a PR to resolution. This means if the PR **reviewers** are unresponsive they should escalate as noted below
-    - e.g ping **reviewers** in a timely manner to get it reviewed
-    - If the **reviewers** don't respond look at the OWNERs file in root and ping **approvers** listed there
-- **Authors** are unresponsive
-  - This costs a tremendous amount of attention as context for an individual PR is lost over time
-  - This hurts the project in general as its general noise level increases over time
-  - Instead, close PR's that are untouched after too long (we currently have a bot do this after 90 days)
+- একটি **অনুমোদক** এর `/lgtm` একসাথে একটি `/approve` হিসাবে ব্যাখ্যা করা হয়
+  - কিছু লোকের জন্য একটি সুবিধাজনক শর্টকাট হলেও, এটি বিস্ময়কর হতে পারে যে একই কমান্ডটি মন্তব্যকারীর উপর নির্ভর করে দুটি ভিন্ন উপায়ে ব্যাখ্যা করা হয়
+  - পরিবর্তে, পর্যবেক্ষকদের সহায়তা করতে `/lgtm` এবং `/approve` স্পষ্টভাবে লিখুন, অথবা `/lgtm` সংরক্ষণ করুন একটি **পর্যালোচক** এর জন্য
+  - এটি একটি PR-এ অন্তত দুটি চোখ রাখার ধারণার বিরুদ্ধে যায়, এবং এটি একটি সংকেত হতে পারে যে খুব কম **পর্যালোচক** রয়েছে (যারা **অনুমোদক** নয়)
+- প্রযুক্তিগতভাবে, কুবফ্লো গিটহাব সংগঠনের সদস্য যে কেউ ড্রাইভ-বাই `/lgtm` একটি PR করতে পারে
+  - অ-সদস্যদের ড্রাইভ-বাই পর্যালোচনা অভিজ্ঞতা এবং একটি সহযোগী বা পর্যালোচক হওয়ার উদ্দেশ্য প্রদর্শনের একটি উপায় হিসাবে উত্সাহিত করা হয়
+  - সদস্যদের ড্রাইভ-বাই `/lgtm` আমাদের OWNERS ফাইলগুলি খুব ছোট, বা বিদ্যমান **পর্যালোচক** খুব অপ্রতিসম্পন্ন তা নির্দেশ করতে পারে
+  - এটি প্রথম স্থানে **পর্যালোচক** নির্দিষ্ট করার ধারণার বিরুদ্ধে যায়, নিশ্চিত করতে যে **লেখক** কোডের সাথে পরিচিত লোকদের কাছ থেকে কার্যকরী প্রতিক্রিয়া পাচ্ছে
+- **পর্যালোচক**, এবং **অনুমোদক** অপ্রতিসম্পন্ন
+  - এটি **লেখকদের** জন্য অনেক হতাশার কারণ হয় যাদের প্রায়ই তাদের PR কেন উপেক্ষা করা হচ্ছে সে সম্পর্কে সামান্য দৃশ্যমানতা থাকে
+  - অনেক **পর্যালোচক** এবং **অনুমোদক** গিটহাব বিজ্ঞপ্তিতে এত বেশি ওভারলোডেড যে @mention'ing
+    একটি দ্রুত প্রতিক্রিয়া পেতে সম্ভবত নয়
+  - যদি একটি **লেখক** একটি PR কে `/assign` করে, তবে **পর্যালোচক** এবং **অনুমোদক** এর সম্পর্কে জানানো হবে
+    তাদের [PR ড্যাশবোর্ড](https://k8s-gubernator.appspot.com/pr) এ
+  - একটি **লেখক** এটি ম্যানুয়ালি প্রাসঙ্গিক OWNERS ফাইলগুলি পড়ে, অপ্রতিসম্পন্ন ব্যক্তিদের `/unassign` করে এবং অন্যান্যদের `/assign` করে এই সমস্যার সমাধান করতে পারে
+  - এটি আমাদের OWNERS ফাইলগুলি পুরানো যে একটি সংকেত; **পর্যালোচক** এবং **অনুমোদক** তালিকা ছাঁটাই করা এটির সাথে সাহায্য করবে
+  - এটি PR **লেখকদের** দায়িত্ব একটি PR সমাধানের দিকে পরিচালিত করা। এর মানে হল যে PR **পর্যালোচক** অপ্রতিসম্পন্ন হলে তাদের নীচে উল্লিখিত হিসাবে ত্বরান্বিত করা উচিত
+    - উদাহরণস্বরূপ সময়মতো পর্যালোচনা পেতে **পর্যালোচক** পিং করা
+    - যদি **পর্যালোচক** প্রতিক্রিয়া না দেয় তবে মূলের OWNERS ফাইলটি দেখুন এবং সেখানকার তালিকাভুক্ত **অনুমোদক** পিং করুন
+- **লেখক** অপ্রতিসম্পন্ন
+  - এটি একটি পৃথক PR এর জন্য প্রসঙ্গ হারিয়ে যাওয়ার কারণে প্রচুর মনোযোগের খরচ করে
+  - এটি প্রকল্পের জন্য সাধারণত ক্ষতি করে কারণ এর সাধারণ শব্দের স্তর সময়ের সাথে সাথে বাড়তে থাকে
+  - পরিবর্তে, PR বন্ধ করুন যা খুব দীর্ঘ সময়ের জন্য অটুট থাকে (আমরা বর্তমানে একটি বট এটি 90 দিন পরে করতে)
 
-## Automation using OWNERS files
+## OWNERS ফাইল ব্যবহার করে স্বয়ংক্রিয়করণ
 
 ### [`prow`](https://git.k8s.io/test-infra/prow)
 
-Prow receives events from GitHub, and reacts to them. It is effectively stateless. The following
-pieces of prow are used to implement the code review process above.
+Prow GitHub থেকে ইভেন্ট গ্রহণ করে, এবং তাদের প্রতি প্রতিক্রিয়া জানায়। এটি কার্যকরভাবে রাষ্ট্রহীন। পরবর্তী প্রোও এর টুকরোগুলি উপরের কোড পর্যালোচনা প্রক্রিয়া বাস্তবায়নের জন্য ব্যবহৃত হয়।
 
 - [cmd: tide](https://git.k8s.io/test-infra/prow/cmd/tide)
-  - per-repo configuration:
-    - `labels`: list of labels required to be present for merge (eg: `lgtm`)
-    - `missingLabels`: list of labels required to be missing for merge (eg: `do-not-merge/hold`)
-    - `reviewApprovedRequired`: defaults to `false`; when true, require that there must be at least
-      one [approved pull request review](https://help.github.com/articles/about-pull-request-reviews/)
-      present for merge
-    - `merge_method`: defaults to `merge`; when `squash` or `rebase`, use that merge method instead
-      when clicking a PR's merge button
-  - merges PR's once they meet the appropriate criteria as configured above
-  - if there are any presubmit prow jobs for the repo the PR is against, they will be re-run one
-    final time just prior to merge
+  - প্রতি-রিপো কনফিগারেশন:
+    - `labels`: তালিকা লেবেল মিশ্রণের জন্য উপস্থিত থাকতে হবে (যেমন: `lgtm`)
+    - `missingLabels`: তালিকা লেবেল মিশ্রণের জন্য অনুপস্থিত থাকতে হবে (যেমন: `do-not-merge/hold`)
+    - `reviewApprovedRequired`: ডিফল্ট `false`; যখন সত্য, তখন মিশ্রণের জন্য অন্তত একটি [অনুমোদিত পুল রিকোয়েস্ট পর্যালোচনা](https://help.github.com/articles/about-pull-request-reviews/) থাকতে হবে
+    - `merge_method`: ডিফল্ট `merge`; যখন `squash` বা `rebase`, একটি PR এর মিশ্রণ বোতামের ক্লিক করার সময় সেই মিশ্রণ পদ্ধতি ব্যবহার করুন
+  - একবার তারা উপরের কনফিগারেশনের অনুযায়ী উপযুক্ত মানদণ্ড পূরণ করলে PR মিশ্রিত করে
+  - যদি রিপোর জন্য কোনও presubmit prow কাজ থাকে তবে সেগুলি একবারের জন্য স্বয়ংক্রিয়ভাবে পুনরায় চালানোর আগে পুনরায় চালানো হবে
 - [plugin: assign](https://git.k8s.io/test-infra/prow/plugins/assign)
-  - assigns GitHub users in response to `/assign` comments on a PR
-  - unassigns GitHub users in response to `/unassign` comments on a PR
+  - একটি PR-তে `/assign` মন্তব্যের প্রতিক্রিয়ায় GitHub ব্যবহারকারীদের নিয়োগ করে
+  - একটি PR-তে `/unassign` মন্তব্যের প্রতিক্রিয়ায় GitHub ব্যবহারকারীদের অ-নিয়োগ করে
 - [plugin: approve](https://git.k8s.io/test-infra/prow/plugins/approve)
-  - per-repo configuration:
-    - `issue_required`: defaults to `false`; when `true`, require that the PR description link to
-      an issue, or that at least one **approver** issues a `/approve no-issue`
-    - `implicit_self_approve`: defaults to `false`; when `true`, if the PR author is in relevant
-      OWNERS files, act as if they have implicitly `/approve`'d
-  - adds the `approved` label once an **approver** for each of the required
-    OWNERS files has `/approve`'d
-  - comments as required OWNERS files are satisfied
-  - removes outdated approval status comments
+  - প্রতি-রিপো কনফিগারেশন:
+    - `issue_required`: ডিফল্ট `false`; যখন `true`, PR বর্ণনাটি একটি ইস্যুর সাথে লিঙ্ক করতে বা অন্তত একটি **অনুমোদক** `/approve no-issue` জারি করতে হবে তা প্রয়োজন
+    - `implicit_self_approve`: ডিফল্ট `false`; যখন `true`, যদি PR লেখক প্রাসঙ্গিক OWNERS ফাইলগুলিতে থাকে, তবে তারা যেন ইম্প্লিসিটলি `/approve` করেছে তেমন আচরণ করুন
+  - একটি `approved` লেবেল যোগ করে যখন প্রতিটি প্রয়োজনীয় OWNERS ফাইলের জন্য একটি **অনুমোদক** `/approve` করেছে
+  - প্রয়োজনীয় OWNERS ফাইলগুলি পূরণ হয়েছে হিসাবে মন্তব্য
+  - পুরানো অনুমোদন স্থিতি মন্তব্য মুছে ফেলে
 - [plugin: blunderbuss](https://git.k8s.io/test-infra/prow/plugins/blunderbuss)
-  - determines **reviewers** and requests their reviews on PR's
+  - নির্ধারণ করে **পর্যালোচক** এবং তাদের PR-এ পর্যালোচনা অনুরোধ করে
 - [plugin: lgtm](https://git.k8s.io/test-infra/prow/plugins/lgtm)
-  - adds the `lgtm` label when a **reviewer** comments `/lgtm` on a PR
-  - the **PR author** may not `/lgtm` their own PR
+  - একটি **পর্যালোচক** একটি PR-এ `/lgtm` মন্তব্য করলে `lgtm` লেবেলটি যোগ করে
+  - **PR লেখক** তাদের নিজস্ব PR `/lgtm` করতে পারে না
 - [pkg: k8s.io/test-infra/prow/repoowners](https://git.k8s.io/test-infra/prow/repoowners/repoowners.go)
-  - parses OWNERS and OWNERS_ALIAS files
-  - if the `no_parent_owners` option is encountered, parent owners are excluded from having
-    any influence over files adjacent to or underneath of the current OWNERS file
+  - OWNERS এবং OWNERS_ALIAS ফাইলগুলি পার্স করে
+  - যদি `no_parent_owners` বিকল্পটি পাওয়া যায় তবে প্যারেন্ট মালিকদের বাদ দেওয়া হয়
+    বর্তমান OWNERS ফাইলের নিকটবর্তী বা অধীন ফাইলগুলির উপর কোনও প্রভাব ফেলতে
 
-## Maintaining OWNERS files
+## OWNERS ফাইল রক্ষণাবেক্ষণ
 
-OWNERS files should be regularly maintained.
+OWNERS ফাইলগুলি নিয়মিত রক্ষণাবেক্ষণ করা উচিত।
 
-We encourage people to self-nominate or self-remove from OWNERS files via PR's. Ideally in the future
-we could use metrics-driven automation to assist in this process.
+আমরা লোকেদের স্ব-নামকরণ বা PR এর মাধ্যমে OWNERS ফাইল থেকে স্ব-অপসারণ করতে উত্সাহিত করি। ভবিষ্যতে আদর্শভাবে আমরা এই প্রক্রিয়ায় সহায়তা করার জন্য মেট্রিক-চালিত স্বয়ংক্রিয়করণ ব্যবহার করতে পারি।
 
-We should strive to:
+আমাদের চেষ্টা করা উচিত:
 
-- grow the number of OWNERS files
-- add new people to OWNERS files
-- ensure OWNERS files only contain org members and repo collaborators
-- ensure OWNERS files only contain people are actively contributing to or reviewing the code they own
-- remove inactive people from OWNERS files
+- OWNERS ফাইলের সংখ্যা বাড়ান
+- OWNERS ফাইলগুলিতে নতুন লোক যোগ করুন
+- নিশ্চিত OWNERS ফাইলগুলি কেবল org সদস্য এবং রিপো সহযোগীদের ধারণ করে
+- নিশ্চিত OWNERS ফাইলগুলি কেবল লোকদের ধারণ করে যারা তারা যে কোডের মালিকানা দাবি করে তাতে সক্রিয়ভাবে অবদান রাখছে বা পর্যালোচনা করছে
+- OWNERS ফাইল থেকে নিষ্ক্রিয় লোকদের সরান
 
-Bad examples of OWNERS usage:
+OWNERS ব্যবহারের খারাপ উদাহরণ:
 
-- directories that lack OWNERS files, resulting in too many hitting root OWNERS
-- OWNERS files that have a single person as both approver and reviewer
-- OWNERS files that haven't been touched in over 6 months
-- OWNERS files that have non-collaborators present
+- ডিরেক্টরিগুলি যা OWNERS ফাইলের অভাবে রয়েছে, যার ফলে খুব বেশি লোক রুট OWNERS এ আঘাত করছে
+- OWNERS ফাইলগুলি যার একটি একক ব্যক্তি উভয়ই অনুমোদক এবং পর্যালোচক
+- OWNERS ফাইল যা 6 মাসেরও বেশি সময় ধরে স্পর্শ করা হয়নি
+- OWNERS ফাইল যা অ-সহযোগীদের উপস্থিত রয়েছে
 
-Good examples of OWNERS usage:
+OWNERS ব্যবহারের ভাল উদাহরণ:
 
-- there are more `reviewers` than `approvers`
-- the `approvers` are not in the `reviewers` section
-- OWNERS files that are regularly updated (at least once per release)
+- সেখানে আরও `পর্যালোচক` আছে `অনুমোদক` তুলনায়
+- `অনুমোদক` `পর্যালোচক` বিভাগের মধ্যে নেই
+- OWNERS ফাইলগুলি নিয়মিত আপডেট করা হয় (প্রতি রিলিজে অন্তত একবার)

@@ -1,55 +1,52 @@
 +++
-title =  "Documentation Style Guide"
-description = "Style guide for writing Kubeflow documentation"
+title =  "ডকুমেন্টেশন স্টাইল গাইড"
+description = "Kubeflow ডকুমেন্টেশন লেখার জন্য স্টাইল গাইড"
 weight = 90
 +++
 
-This style guide is for the [Kubeflow documentation](/docs/).
-The style guide helps contributors to write documentation that readers can understand quickly and correctly. 
+এই স্টাইল গাইডটি [Kubeflow ডকুমেন্টেশন](/docs/) এর জন্য।
+স্টাইল গাইডটি অবদানকারীদের এমন ডকুমেন্টেশন লিখতে সহায়তা করে যা পাঠকরা দ্রুত এবং সঠিকভাবে বুঝতে পারে।
 
-The Kubeflow docs aim for:
+Kubeflow ডকসের লক্ষ্য:
 
-- Consistency in style and terminology, so that readers can expect certain
-  structures and conventions. Readers don't have to keep re-learning how to use
-  the documentation or questioning whether they've understood something
-  correctly.
-- Clear, concise writing so that readers can quickly find and understand the
-  information they need.
+- স্টাইল এবং পরিভাষায় সামঞ্জস্যতা, যাতে পাঠকরা নির্দিষ্ট কাঠামো এবং রীতিগুলি আশা করতে পারে।
+  পাঠকদের ডকুমেন্টেশন ব্যবহার করার পদ্ধতি পুনরায় শেখার বা তারা কিছু সঠিকভাবে বুঝেছে কিনা তা নিয়ে প্রশ্ন করার প্রয়োজন নেই।
+- পরিষ্কার, সংক্ষিপ্ত লেখা যাতে পাঠকরা দ্রুত প্রয়োজনীয় তথ্য খুঁজে এবং বুঝতে পারে।
 
-## Use standard American spelling
+## স্ট্যান্ডার্ড আমেরিকান বানান ব্যবহার করুন
 
-Use American spelling rather than Commonwealth or British spelling.
-Refer to [Merriam-Webster's Collegiate Dictionary, Eleventh Edition](https://www.merriam-webster.com/).
+কমনওয়েলথ বা ব্রিটিশ বানানের পরিবর্তে আমেরিকান বানান ব্যবহার করুন।
+[Merriam-Webster's Collegiate Dictionary, Eleventh Edition](https://www.merriam-webster.com/) দেখুন।
 
-## Use capital letters sparingly
+## বড় অক্ষর কম ব্যবহার করুন
 
-Some hints:
+কিছু টিপস:
 
-- Capitalize only the first letter of each heading within the page. (That is, use sentence case.)
-- Capitalize (almost) every word in page titles. (That is, use title case.) 
-  The little words like "and", "in", etc, don't get a capital letter.
-- In page content, use capitals only for brand names, like Kubeflow, Kubernetes, and so on. 
-  See more about brand names [below](#use-full-correct-brand-names).
-- Don't use capital letters to emphasize words.
+- পৃষ্ঠার প্রতিটি শিরোনামের প্রথম অক্ষর বড় করুন। (অর্থাৎ, বাক্য কেস ব্যবহার করুন।)
+- পৃষ্ঠার শিরোনামে (প্রায়) প্রতিটি শব্দ বড় করুন। (অর্থাৎ, শিরোনাম কেস ব্যবহার করুন।)
+  "and", "in" ইত্যাদি ছোট শব্দগুলি বড় অক্ষর পায় না।
+- পৃষ্ঠার বিষয়বস্তুতে, ব্র্যান্ড নামের জন্য বড় অক্ষর ব্যবহার করুন, যেমন Kubeflow, Kubernetes ইত্যাদি।
+  ব্র্যান্ড নাম সম্পর্কে আরও দেখুন [নিচে](#use-full-correct-brand-names)।
+- শব্দ জোর দেওয়ার জন্য বড় অক্ষর ব্যবহার করবেন না।
 
-## Spell out abbreviations and acronyms on first use
+## প্রথম ব্যবহারে সংক্ষিপ্ত রূপ এবং সংক্ষিপ্ত রূপ বর্ণনা করুন
 
-Always spell out the full term for every abbreviation or acronym the first time you use it on the page. 
-Don't assume people know what an abbreviation or acronym means, even if it seems like common knowledge.
+আপনি পৃষ্ঠায় যে কোনও সংক্ষিপ্ত রূপ বা সংক্ষিপ্ত রূপ প্রথমবার ব্যবহার করার সময় সম্পূর্ণ শর্তটি সর্বদা বর্ণনা করুন।
+মানুষ জানে না যে একটি সংক্ষিপ্ত রূপ বা সংক্ষিপ্ত রূপের অর্থ কী, এমনকি এটি সাধারণ জ্ঞান মনে হলেও।
 
-Example: "To run Kubernetes locally in a virtual machine (VM)"
+উদাহরণ: "স্থানীয়ভাবে একটি ভার্চুয়াল মেশিন (ভিএম) এ Kubernetes চালানোর জন্য"
 
-## Use contractions if you want to
+## আপনি চাইলে সংকোচন ব্যবহার করুন
 
-For example, it's fine to write "it's" instead of "it is".
+যেমন, "এটি" এর পরিবর্তে "এটি" লেখা ঠিক আছে।
 
 <a id="brand-names"></a>
 
-## Use full, correct brand names
+## সম্পূর্ণ, সঠিক ব্র্যান্ড নাম ব্যবহার করুন
 
-When referring to a product or brand, use the full name. 
-Capitalize the name as the product owners do in the product documentation. 
-Do not use abbreviations even if they're in common use, unless the product owner has sanctioned the abbreviation.
+যখন একটি পণ্য বা ব্র্যান্ডের উল্লেখ করা হয়, তখন সম্পূর্ণ নাম ব্যবহার করুন।
+পণ্য মালিকরা পণ্য ডকুমেন্টেশনে যেমন নামকরণ করেন তেমন নামকরণ করুন।
+অবশ্যই সংক্ষিপ্ত রূপ ব্যবহার করবেন না এমনকি সেগুলি সাধারণ ব্যবহারে থাকলেও, যতক্ষণ না পণ্য মালিক সংক্ষিপ্ত রূপটি অনুমোদন করেন।
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -76,22 +73,22 @@ Do not use abbreviations even if they're in common use, unless the product owner
   </table>
 </div>
 
-## Be consistent with punctuation
+## বিরাম চিহ্নের সাথে সঙ্গতিপূর্ণ হন
 
-Use punctuation consistently within a page. 
-For example, if you use a period (full stop) after every item in list, then use a period on all other lists on the page.
+একটি পৃষ্ঠার মধ্যে বিরাম চিহ্ন ব্যবহার করুন।
+যেমন, যদি আপনি তালিকার প্রতিটি আইটেমের পরে একটি পিরিয়ড (পূর্ণ বিরতি) ব্যবহার করেন, তবে পৃষ্ঠার সমস্ত অন্যান্য তালিকার পরে একটি পিরিয়ড ব্যবহার করুন।
 
-Check the other pages if you're unsure about a particular convention.
+আপনি যদি একটি নির্দিষ্ট রীতির বিষয়ে নিশ্চিত না হন তবে অন্যান্য পৃষ্ঠাগুলি পরীক্ষা করুন।
 
-Examples:
+উদাহরণ:
 
-- Most pages in the Kubeflow docs use a period at the end of every list item.
-- There is no period at the end of the page subtitle and the subtitle need not be a full sentence. 
-  (The subtitle comes from the `description` in the front matter of each page.)
+- Kubeflow ডকসের বেশিরভাগ পৃষ্ঠায় প্রতিটি তালিকা আইটেমের শেষে একটি পিরিয়ড রয়েছে।
+- পৃষ্ঠার উপশিরোনামের শেষে একটি পিরিয়ড নেই এবং উপশিরোনামটি একটি সম্পূর্ণ বাক্য হতে হবে না।
+  (উপশিরোনামটি প্রতিটি পৃষ্ঠার সামনের বিষয়ে `বর্ণনা` থেকে আসে।)
 
-## Use active voice rather than passive voice
+## ক্রিয়ামূলক কণ্ঠস্বর ব্যবহার করুন প্যাসিভ ভয়েসের পরিবর্তে
 
-Passive voice is often confusing, as it's not clear who should perform the action.
+প্যাসিভ ভয়েস প্রায়ই বিভ্রান্তিকর, কারণ এটি স্পষ্ট নয় যে ক্রিয়াটি কে সম্পাদন করা উচিত।
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -114,9 +111,9 @@ Passive voice is often confusing, as it's not clear who should perform the actio
   </table>
 </div>
 
-## Use simple present tense
+## সহজ বর্তমান কাল ব্যবহার করুন
 
-Avoid future tense ("will") and complex syntax such as conjunctive mood ("would", "should").
+ভবিষ্যৎ কাল ("হবে") এবং জটিল সিনট্যাক্স যেমন সংযোজক মুড ("হতো", "চাই") এড়িয়ে চলুন।
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -141,20 +138,20 @@ Avoid future tense ("will") and complex syntax such as conjunctive mood ("would"
   </table>
 </div>
 
-**Exception:** Use future tense if it's necessary to convey the correct meaning. This requirement is rare.
+**ব্যতিক্রম:** সঠিক অর্থ প্রকাশ করতে হলে ভবিষ্যৎ কাল ব্যবহার করুন। এই প্রয়োজনীয়তা বিরল।
 
-## Address the audience directly
+## সরাসরি দর্শকদের ঠিকানা
 
-Using "we" in a sentence can be confusing, because the reader may not know whether they're part of the "we" you're describing. 
+একটি বাক্যে "আমরা" ব্যবহার করা বিভ্রান্তিকর হতে পারে, কারণ পাঠক হয়তো জানেন না যে তারা আপনার বর্ণনা করা "আমরা" এর অংশ কিনা।
 
-For example, compare the following two statements:
+যেমন, নিম্নলিখিত দুটি বিবৃতির তুলনা করুন:
 
-- "In this release we've added many new features."
-- "In this tutorial we build a flying saucer."
+- "এই রিলিজে আমরা অনেক নতুন বৈশিষ্ট্য যোগ করেছি।"
+- "এই টিউটোরিয়ালে আমরা একটি উড়ন্ত সসার তৈরি করি।"
 
-The words "the developer" or "the user" can be ambiguous. 
-For example, if the reader is building a product that also has users, 
-then the reader does not know whether you're referring to the reader or the users of their product.
+"ডেভেলপার" বা "ব্যবহারকারী" শব্দগুলি অস্পষ্ট হতে পারে।
+যেমন, যদি পাঠক একটি পণ্য তৈরি করে যা ব্যবহারকারীদেরও রয়েছে,
+তাহলে পাঠক জানেন না যে আপনি পাঠক বা তাদের পণ্যের ব্যবহারকারীদের উল্লেখ করছেন কিনা।
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -178,10 +175,10 @@ then the reader does not know whether you're referring to the reader or the user
   </table>
 </div>
 
-## Use short, simple sentences
+## সংক্ষিপ্ত, সহজ বাক্য ব্যবহার করুন
 
-Keep sentences short. Short sentences are easier to read than long ones. 
-Below are some tips for writing short sentences.
+বাক্য সংক্ষিপ্ত রাখুন। সংক্ষিপ্ত বাক্যগুলি দীর্ঘ বাক্যের চেয়ে পড়তে সহজ।
+সংক্ষিপ্ত বাক্য লেখার জন্য নীচে কিছু টিপস দেওয়া হল।
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -258,53 +255,52 @@ Below are some tips for writing short sentences.
   </table>
 </div>
 
-## Avoid too much text styling
+## অতিরিক্ত টেক্সট স্টাইলিং এড়িয়ে চলুন
 
-Use **bold text** when referring to UI controls or other UI elements.
+UI নিয়ন্ত্রণ বা অন্যান্য UI উপাদানগুলির উল্লেখ করার সময় **বোল্ড টেক্সট** ব্যবহার করুন।
 
-Use `code style` for:
+নিম্নলিখিতগুলির জন্য `কোড শৈলী` ব্যবহার করুন:
 
-- filenames, directories, and paths
-- inline code and commands
-- object field names
+- ফাইলের নাম, ডিরেক্টরি এবং পথ
+- ইনলাইন কোড এবং কমান্ড
+- অবজেক্ট ক্ষেত্রের নাম
 
-Avoid using bold text or capital letters for emphasis. 
-If a page has too much textual highlighting it becomes confusing and even annoying.
+জোর দেওয়ার জন্য বোল্ড টেক্সট বা বড় অক্ষর ব্যবহার এড়িয়ে চলুন।
+যদি একটি পৃষ্ঠায় খুব বেশি টেক্সট হাইলাইটিং থাকে তবে এটি বিভ্রান্তিকর এবং এমনকি বিরক্তিকর হয়ে ওঠে।
 
-## Use angle brackets for placeholders
+## প্লেসহোল্ডার জন্য কোণার ব্র্যাকেট ব্যবহার করুন
 
-For example:
+যেমন:
 
 - `export KUBEFLOW_USERNAME=<your username>`
 - `--email <your email address>`
 
-## Style your images
+## আপনার চিত্রগুলি শৈলী
 
-The Kubeflow docs recognise Bootstrap classes to style images and other content.
+Kubeflow ডকস Bootstrap ক্লাসগুলি চিত্র এবং অন্যান্য সামগ্রীর শৈলী করতে স্বীকৃতি দেয়।
 
-The following code snippet shows the typical styling that makes an image show up nicely on the page:
+নিচের কোড স্নিপেটটি একটি চিত্রকে পৃষ্ঠায় সুন্দরভাবে প্রদর্শিত করতে সাধারণত ব্যবহৃত শৈলী দেখায়:
 
 ```html
 <!-- for wide images -->
-<img src="/docs/images/my-image.png"
-     alt="My image"
-     class="mt-3 mb-3 border rounded">
+<img src="/docs/images/my-image.png" alt="My image" class="mt-3 mb-3 border rounded" />
 
 <!-- for tall images -->
-<img src="/docs/images/my-image.png"
-     alt="My image"
-     class="mt-3 mb-3 border rounded"
-     style="width: 100%; max-width: 30em">
+<img
+  src="/docs/images/my-image.png"
+  alt="My image"
+  class="mt-3 mb-3 border rounded"
+  style="width: 100%; max-width: 30em" />
 ```
 
-To see some examples of styled images, take a look at the [OAuth setup page](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/deploy/oauth-setup/).
+শৈলীযুক্ত চিত্রের কিছু উদাহরণ দেখতে, [OAuth সেটআপ পৃষ্ঠা](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/deploy/oauth-setup/) দেখুন।
 
-For more help, see the guide to [Bootstrap image styling](https://getbootstrap.com/docs/4.6/content/images/) and the Bootstrap utilities, such as [borders](https://getbootstrap.com/docs/4.6/utilities/borders/).
+আরও সহায়তার জন্য, [বুটস্ট্র্যাপ ইমেজ স্টাইলিং](https://getbootstrap.com/docs/4.6/content/images/) এবং বুটস্ট্র্যাপ ইউটিলিটিগুলির মতো [সীমান্ত](https://getbootstrap.com/docs/4.6/utilities/borders/) এর গাইড দেখুন।
 
-## A detailed style guide
+## একটি বিস্তারিত শৈলী গাইড
 
-The [Google Developer Documentation Style Guide](https://developers.google.com/style/) contains detailed information about specific aspects of writing clear, readable, succinct documentation for a developer audience.
+[গুগল ডেভেলপার ডকুমেন্টেশন স্টাইল গাইড](https://developers.google.com/style/) একটি ডেভেলপার দর্শকের জন্য পরিষ্কার, পাঠযোগ্য, সংক্ষিপ্ত ডকুমেন্টেশন লেখার নির্দিষ্ট দিকগুলির বিষয়ে বিস্তারিত তথ্য ধারণ করে।
 
-## Next steps
+## পরবর্তী পদক্ষেপ
 
-- Take a look at the [documentation README](https://github.com/kubeflow/website/blob/master/README.md) for guidance on contributing to the Kubeflow docs.
+- Kubeflow ডকসের অবদান রাখার জন্য নির্দেশিকা জন্য [ডকুমেন্টেশন README](https://github.com/kubeflow/website/blob/master/README.md) দেখুন।

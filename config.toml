@@ -161,17 +161,17 @@ enable = true
     contentDir = "content/bn"
     
     [languages.bn.params]
-      description = "কুবফ্লো কুবারনেটিসে এমএল ওয়ার্কফ্লো ডেপ্লয়মেন্ট সহজ এবং স্বয়ংক্রিয় করে তোলে"
+      description = "কিউবফ্লো কুবারনেটিসে এমএল ওয়ার্কফ্লো ডেপ্লয়মেন্ট সহজ এবং স্বয়ংক্রিয় করে তোলে"
 
 [languages.bn.menu]
   [[languages.bn.menu.main]]
-    name = "কুবফ্লো সামিট"
+    name = "কিউবফ্লো সামিট"
     weight = -1000
     pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
     post = "<br><span class='badge badge-warning'>এপ্রিল ১, ২০২৫</span> <span class='badge badge-warning'>লন্ডন, ইংল্যান্ড</span> "
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/kubeflow-summit/"
   [[languages.bn.menu.main]]
-    name = "জিএসওসি ২০২৫"
+    name = "GSoC ২০২৫"
     weight = -900
     pre = "<i class='fas pr-2'><img src='/docs/images/logos/gsoc.svg' style='height: 1.22em;'></i>"
       post = "<br><span class='badge badge-info'>শীঘ্রই আসছে</span>"

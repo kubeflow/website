@@ -1,6 +1,13 @@
-{{/* Link directly to documentation etc., if possible. */ -}}
-{{ $langPage := cond (gt (len .Translations) 0) . .Site.Home -}}
-<a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+{{/* Link directly to documentation etc., if possible. */ -}} {{ $langPage := cond (gt (len .Translations) 0) .
+.Site.Home -}}
+<a
+  class="nav-link dropdown-toggle"
+  href="#"
+  id="langDropdown"
+  role="button"
+  data-toggle="dropdown"
+  aria-haspopup="true"
+  aria-expanded="false">
   <span class="language-icon mr-1">
     <i class="fas fa-globe"></i>
   </span>

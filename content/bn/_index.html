@@ -1,17 +1,17 @@
 +++
-title = "Kubeflow"
+title = "কিউবফ্লো (Kubeflow)"
 +++
 
 <!-- Hero section -->
-{{<blocks/cover title="Kubeflow" subtitle="The Machine Learning Toolkit for Kubernetes" image_anchor="center" color="dark">}}
+{{<blocks/cover title="কিউবফ্লো (Kubeflow)" subtitle="কুবেরনেটিসের জন্য মেশিন লার্নিং টুলকিট" image_anchor="center" color="dark">}}
 <div class="mt-5">
   <div class="mx-auto">
     <a class="btn btn-lg btn-primary mx-1 mb-3 mb-sm-0 px-3 px-md-4 py-2" href="/docs/started/">
-      Get Started
+      শুরু করুন
       <i class="fas fa-arrow-alt-circle-right ml-1"></i>
     </a>
     <a class="btn btn-lg btn-secondary mx-1 mb-3 mb-sm-0 px-3 px-md-4 py-2" href="/docs/about/contributing/">
-      Contribute
+      অবদান রাখুন
       <i class="fas fa-pencil-alt ml-1"></i>
     </a>
   </div>
@@ -26,16 +26,15 @@ title = "Kubeflow"
 <div id="overview" class="text-center">
   <div class="container">
     <h3 class="section-head">
-      <span class="border-bottom pb-2">What is Kubeflow?</span>
+      <span class="border-bottom pb-2">কিউবফ্লো কী?</span>
     </h3>
     <p class="mx-auto col-11 col-xl-7 px-0">
-      Kubeflow makes artificial intelligence and machine learning simple, portable, and scalable.
-      We are an <i>ecosystem</i> of <a href="https://kubernetes.io/" target="_blank">Kubernetes</a>
-      based components for each stage in
-      <a href="/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle" target="_blank">the AI/ML Lifecycle</a>
-      with support for best-in-class open source <a href="/docs/started/architecture/#kubeflow-ecosystem" target="_blank">tools and frameworks</a>.
+      কিউবফ্লো (Kubeflow) কৃত্রিম বুদ্ধিমত্তা (AI) ও মেশিন লার্নিং (ML) কে সহজ, বহনযোগ্য এবং স্কেলযোগ্য করে তোলে।
+      এটি <i>একটি ইকোসিস্টেম</i> যেখানে <a href="https://kubernetes.io/" target="_blank">Kubernetes</a>-ভিত্তিক বিভিন্ন কম্পোনেন্ট রয়েছে,
+      যা AI/ML লাইফসাইকেলের প্রতিটি ধাপে ব্যবহৃত হয়।
+      <a href="/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle" target="_blank">AI/ML লাইফসাইকেলের</a> জন্য সেরা ওপেন সোর্স <a href="/docs/started/architecture/#kubeflow-ecosystem" target="_blank">টুল ও ফ্রেমওয়ার্ক</a> সমর্থন করে।
       <br><br>
-      <a href="/docs/started/installing-kubeflow/" target="_blank">Deploy Kubeflow</a> anywhere you run Kubernetes.
+      <a href="/docs/started/installing-kubeflow/" target="_blank">আপনার Kubernetes-এ কিউবফ্লো ডিপ্লয় করুন</a> এবং AI/ML ওয়ার্কলোড সহজে পরিচালনা করুন।
     </p>
   </div>
 </div>
@@ -43,11 +42,12 @@ title = "Kubeflow"
 <section id="pageContent">
   <div class="container">
     <h3 class="section-head text-center">
-      <span class="border-bottom pb-2">Kubeflow Components</span>
+      <span class="border-bottom pb-2">কিউবফ্লো কম্পোনেন্টসমূহ</span>
     </h3>
     <div class="card-deck">
+      <!-- Pipelines Card -->
       <div class="card">
-        <a href="/docs/components/pipelines/overview/" target="_blank" rel="noopener" >
+        <a href="/docs/components/pipelines/overview/" target="_blank" rel="noopener">
           <img
             src="/docs/images/logos/kubeflow.png"
             class="card-img-top"
@@ -57,14 +57,15 @@ title = "Kubeflow"
           />
         </a>
         <div class="card-body bg-primary-dark">
-          <div class="card-title">Pipelines</div>
+          <div class="card-title">পাইপলাইনস</div>
           <p class="card-text">
-            <a target="_blank" rel="noopener" href="/docs/components/pipelines/overview/">Kubeflow Pipelines</a> (KFP) is a platform for building then deploying portable and scalable machine learning workflows using Kubernetes.
+            <a target="_blank" rel="noopener" href="/docs/components/pipelines/overview/">কিউবফ্লো পাইপলাইনস</a> (KFP) একটি প্ল্যাটফর্ম যা Kubernetes ব্যবহার করে পোর্টেবল এবং স্কেলযোগ্য মেশিন লার্নিং ওয়ার্কফ্লো তৈরি ও ডিপ্লয় করতে সাহায্য করে।
           </p>
         </div>
       </div>
+      <!-- Notebooks Card -->
       <div class="card">
-        <a href="/docs/components/notebooks/overview/" target="_blank" rel="noopener" >
+        <a href="/docs/components/notebooks/overview/" target="_blank" rel="noopener">
           <img
             src="/docs/images/logos/jupyter-vscode-rlang.png"
             class="card-img-top"
@@ -74,14 +75,15 @@ title = "Kubeflow"
           />
         </a>
         <div class="card-body bg-primary-dark">
-          <div class="card-title">Notebooks</div>
+          <div class="card-title">নোটবুকস</div>
           <p class="card-text">
-            <a target="_blank" rel="noopener" href="/docs/components/notebooks/overview/">Kubeflow Notebooks</a> lets you run web-based development environments on your Kubernetes cluster by running them inside Pods.
+            <a target="_blank" rel="noopener" href="/docs/components/notebooks/overview/">কিউবফ্লো নোটবুকস</a> আপনাকে Kubernetes ক্লাস্টারে পডের ভিতরে ওয়েব-ভিত্তিক ডেভেলপমেন্ট এনভায়রনমেন্ট চালাতে দেয়।
           </p>
         </div>
       </div>
+      <!-- Dashboard Card -->
       <div class="card">
-        <a href="/docs/components/central-dash/overview/" target="_blank" rel="noopener" >
+        <a href="/docs/components/central-dash/overview/" target="_blank" rel="noopener">
           <img
             src="/docs/images/logos/dashboard.png"
             class="card-img-top"
@@ -91,9 +93,9 @@ title = "Kubeflow"
           />
         </a>
         <div class="card-body bg-primary-dark">
-          <div class="card-title">Dashboard</div>
+          <div class="card-title">ড্যাশবোর্ড</div>
           <p class="card-text">
-            <a href="/docs/components/central-dash/overview/" target="_blank" rel="noopener">Kubeflow Central Dashboard</a> is our hub which connects the authenticated web interfaces of Kubeflow and other ecosystem components.
+            <a href="/docs/components/central-dash/overview/" target="_blank" rel="noopener">কিউবফ্লো সেন্ট্রাল ড্যাশবোর্ড</a> হল একটি কেন্দ্র যেখানে কিউবফ্লো এবং অন্যান্য ইকোসিস্টেম কম্পোনেন্টের প্রমাণীকৃত ওয়েব ইন্টারফেস সংযুক্ত থাকে।
           </p>
         </div>
       </div>
@@ -111,10 +113,10 @@ title = "Kubeflow"
           />
         </a>
         <div class="card-body bg-primary-dark">
-          <div class="card-title">Model Training</div>
+          <div class="card-title">মডেল ট্রেনিং</div>
           <p class="card-text">
-            <a href="/docs/components/trainer/overview/" target="_blank" rel="noopener">Kubeflow Trainer</a> is a Kubernetes-native project for fine-tuning LLMs and model training.
-            It enables scalable and distributed training with various frameworks including PyTorch, JAX, TensorFlow, and more.
+            <a href="/docs/components/trainer/overview/" target="_blank" rel="noopener">কিউবফ্লো ট্রেনার</a> একটি Kubernetes-নেটিভ প্রকল্প যা LLMs এবং মডেল ট্রেনিং-এর জন্য ফাইন-টিউনিং করতে ব্যবহৃত হয়।
+            এটি PyTorch, JAX, TensorFlow এবং অন্যান্য বিভিন্ন ফ্রেমওয়ার্কের সাথে স্কেলেবল এবং বিতরণকৃত প্রশিক্ষণ সক্ষম করে।
           </p>
         </div>
       </div>
@@ -129,9 +131,10 @@ title = "Kubeflow"
           />
         </a>
         <div class="card-body bg-primary-dark">
-          <div class="card-title">AutoML</div>
+          <div class="card-title">অটোএমএল</div>
           <p class="card-text">
-            <a target="_blank" rel="noopener" href="/docs/components/katib/overview/">Katib</a> is a Kubernetes-native project for automated machine learning (AutoML) with support for hyperparameter tuning, early stopping and neural architecture search.
+            <a target="_blank" rel="noopener" href="/docs/components/katib/overview/">কাতিব</a> একটি Kubernetes-নেটিভ প্রকল্প যা স্বয়ংক্রিয় মেশিন লার্নিং (AutoML) সমর্থন করে,
+            হাইপারপ্যারামিটার টিউনিং, প্রাথমিক স্টপিং এবং নিউরাল আর্কিটেকচার সার্চের জন্য সমর্থন সহ।
           </p>
         </div>
       </div>
@@ -146,10 +149,10 @@ title = "Kubeflow"
           />
         </a>
         <div class="card-body bg-primary-dark">
-          <div class="card-title">Model Serving</div>
+          <div class="card-title">মডেল সার্ভিং</div>
           <p class="card-text">
-            <a href="/docs/external-add-ons/kserve/introduction/" target="_blank" rel="noopener">KServe</a> <small>(previously <em>KFServing</em>)</small> solves production model serving on Kubernetes.
-            It delivers high-abstraction and performant interfaces for frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX.
+            <a href="/docs/external-add-ons/kserve/introduction/" target="_blank" rel="noopener">KServe</a> <small>(আগে <em>KFServing</em>)</small> উৎপাদন মডেল সার্ভিং সমাধান করে Kubernetes-এ।
+            এটি Tensorflow, XGBoost, ScikitLearn, PyTorch এবং ONNX এর মতো ফ্রেমওয়ার্কের জন্য উচ্চ-অ্যাবস্ট্রাকশন এবং কার্যকরী ইন্টারফেস সরবরাহ করে।
           </p>
         </div>
       </div>
@@ -163,11 +166,11 @@ title = "Kubeflow"
 <div id="community" class="text-center">
   <div class="container">
     <h3 class="section-head">
-      <span class="border-bottom pb-2">Join our Community</span>
+      <span class="border-bottom pb-2">আমাদের কমিউনিটিতে যোগ দিন</span>
     </h3>
     <p class="mx-auto col-md-7 px-0">
-      We are an open and welcoming <a href="/docs/about/community/" target="_blank" rel="noopener">community</a> of software developers, data scientists, and organizations!
-      Check out the <a href="/docs/about/community/#list-of-available-meetings">weekly community calls</a>, get involved in discussions on the <a href="/docs/about/community/#kubeflow-mailing-list">mailing list</a> or chat with others on the <a href="/docs/about/community/#kubeflow-slack-channels">Slack Workspace</a>!
+      আমরা একটি উন্মুক্ত এবং স্বাগতপূর্ণ <a href="/docs/about/community/" target="_blank" rel="noopener">কমিউনিটি</a> যেখানে সফটওয়্যার ডেভেলপার, ডেটা সায়েন্টিস্ট এবং বিভিন্ন প্রতিষ্ঠান অংশগ্রহণ করে!
+      <a href="/docs/about/community/#list-of-available-meetings">সাপ্তাহিক কমিউনিটি কল</a> দেখুন, <a href="/docs/about/community/#kubeflow-mailing-list">মেইলিং লিস্টে</a> আলোচনা করুন অথবা <a href="/docs/about/community/#kubeflow-slack-channels">স্ল্যাক ওয়ার্কস্পেসে</a> অন্যদের সাথে চ্যাট করুন!
     </p>
   </div>
 </div>
@@ -178,16 +181,16 @@ title = "Kubeflow"
       <img
           src="/docs/images/logos/cncf.svg"
           draggable="false"
-          class="show_light-only img-fluid
+          class="show_light-only img-fluid"
           alt="Cloud Native Computing Foundation Logo"
       />
       <img
           src="/docs/images/logos/cncf-white.svg"
           draggable="false"
-          class="show_dark-only img-fluid
+          class="show_dark-only img-fluid"
           alt="Cloud Native Computing Foundation Logo"
       />
     </div>
-    <div class="cncf-title">We are a Cloud Native Computing Foundation project.</div>
+    <div class="cncf-title">আমরা একটি ক্লাউড নেটিভ কম্পিউটিং ফাউন্ডেশন প্রকল্প।</div>
   </div>
 </div>
