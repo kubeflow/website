@@ -153,6 +153,15 @@ enable = true
 
     [languages.en.params]
       description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
+      
+  [languages.bn]
+    title = "Kubeflow"
+    languageName ="বাংলা"
+    contentDir = "content/bn"
+    weight = 2
+    
+    [languages.bn.params]
+      description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 
 ###############################################################################
 # Docsy - Site Parameters
