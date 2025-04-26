@@ -1,18 +1,16 @@
 +++
-title = "Architecture"
-description = "An overview of Kubeflow's architecture"
+title = "আর্কিটেকচার"
+description = "Kubeflow-এর আর্কিটেকচারের একটি ওভারভিউ"
 weight = 10
 +++
 
-This guide introduces Kubeflow ecosystem and explains how Kubeflow components fit in ML lifecycle.
+এই গাইডটি Kubeflow ইকোসিস্টেম পরিচিত করে এবং ব্যাখ্যা করে কিভাবে Kubeflow কম্পোনেন্টগুলি ML লাইফসাইকেলে ফিট করে।
 
-Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, standalone
-Kubeflow components and Kubeflow Platform.
+[Kubeflow পরিচিতি গাইড](/docs/started/introduction) পড়ুন Kubeflow, স্ট্যান্ডঅ্যালোন Kubeflow কম্পোনেন্ট এবং Kubeflow প্ল্যাটফর্ম সম্পর্কে আরও জানতে।
 
-## Kubeflow Ecosystem
+## Kubeflow ইকোসিস্টেম
 
-The following diagram gives an overview of the Kubeflow Ecosystem and how it relates to the wider
-Kubernetes and AI/ML landscapes.
+নিচের ডায়াগ্রামটি Kubeflow ইকোসিস্টেমের একটি ওভারভিউ দেয় এবং এটি কিভাবে বিস্তৃত Kubernetes এবং AI/ML ল্যান্ডস্কেপের সাথে সম্পর্কিত তা দেখায়।
 
 <img src="/docs/started/images/kubeflow-architecture.drawio.svg" 
      alt="Kubeflow Ecosystem Diagram"
@@ -20,134 +18,109 @@ Kubernetes and AI/ML landscapes.
      style="width: 100%; max-width: 40em">
 </img>
 
-Kubeflow builds on [Kubernetes](https://kubernetes.io/) as a system for
-deploying, scaling, and managing AI/ML infrastructure.
+Kubeflow [Kubernetes](https://kubernetes.io/) এর উপর ভিত্তি করে তৈরি হয়েছে AI/ML অবকাঠামো স্থাপন, স্কেলিং এবং পরিচালনার জন্য।
 
-## Introducing the ML Lifecycle
+## ML লাইফসাইকেল পরিচিতি
 
-When you develop and deploy an AI application, the ML lifecycle typically consists of
-several stages. Developing an ML system is an iterative process.
-You need to evaluate the output of various stages of the ML lifecycle, and apply
-changes to the model and parameters when necessary to ensure the model keeps
-producing the results you need.
+যখন আপনি একটি AI অ্যাপ্লিকেশন ডেভেলপ এবং ডিপ্লয় করেন, তখন ML লাইফসাইকেল সাধারণত বিভিন্ন ধাপ নিয়ে গঠিত। একটি ML সিস্টেম ডেভেলপ করা একটি পুনরাবৃত্তিমূলক প্রক্রিয়া।
+আপনাকে ML লাইফসাইকেলের বিভিন্ন ধাপের আউটপুট মূল্যায়ন করতে হবে এবং প্রয়োজন হলে মডেল এবং প্যারামিটারগুলিতে পরিবর্তন প্রয়োগ করতে হবে যাতে মডেলটি আপনার প্রয়োজনীয় ফলাফলগুলি উৎপন্ন করে।
 
-The following diagram shows the ML lifecycle stages in sequence:
+নিচের ডায়াগ্রামটি ML লাইফসাইকেলের পর্যায়গুলি ক্রমে দেখায়:
 
 <img src="/docs/started/images/ml-lifecycle.drawio.svg" 
      alt="ML Lifecycle"
      class="mt-3 mb-3 border rounded p-3 bg-white">
 </img>
 
-Looking at the stages in more detail:
+পর্যায়গুলি আরও বিস্তারিতভাবে দেখা যাক:
 
-- In the _Data Preparation_ step you ingest raw data, perform feature engineering to extract ML
-  features for the offline feature store, and prepare training data for model development.
-  Usually, this step is associated with data processing tools such as Spark, Dask, Flink, or Ray.
+- _ডেটা প্রস্তুতি_ পদক্ষেপে আপনি কাঁচা ডেটা গ্রহণ করেন, অফলাইন ফিচার স্টোরের জন্য এমএল বৈশিষ্ট্যগুলি বের করতে বৈশিষ্ট্য প্রকৌশল সম্পাদন করেন এবং মডেল উন্নয়নের জন্য প্রশিক্ষণ ডেটা প্রস্তুত করেন।
+  সাধারণত, এই পদক্ষেপটি Spark, Dask, Flink, বা Ray এর মতো ডেটা প্রক্রিয়াকরণ সরঞ্জামের সাথে সম্পর্কিত।
 
-- In the _Model Development_ step you choose an ML framework, develop your model architecture and
-  explore the existing pre-trained models for fine-tuning like BERT or Llama.
+- _মডেল উন্নয়ন_ পদক্ষেপে আপনি একটি এমএল ফ্রেমওয়ার্ক বেছে নেন, আপনার মডেল আর্কিটেকচার তৈরি করেন এবং ফাইন-টিউনিংয়ের জন্য বিদ্যমান প্রি-ট্রেইনড মডেলগুলি যেমন BERT বা Llama অন্বেষণ করেন।
 
-- In the _Model Optimization_ step you can optimize your model hyperparameters and optimize your
-  model with various AutoML algorithms such as neural architecture search and model compression.
-  During model optimization you can store ML metadata in the _Model Registry_.
+- _মডেল অপটিমাইজেশন_ পদক্ষেপে আপনি আপনার মডেলের হাইপারপ্যারামিটারগুলি অপটিমাইজ করতে পারেন এবং নিউরাল আর্কিটেকচার অনুসন্ধান এবং মডেল সংকোচনের মতো বিভিন্ন অটোএমএল অ্যালগরিদমের সাথে আপনার মডেলটি অপটিমাইজ করতে পারেন।
+  মডেল অপটিমাইজেশনের সময় আপনি _মডেল রেজিস্ট্রি_ তে এমএল মেটাডেটা সংরক্ষণ করতে পারেন।
 
-- In the _Model Training_ step you train or fine-tune your model on the large-scale
-  compute environment. You should use a distributed training if single GPU can't handle your
-  model size. The results of the model training is the trained model artifact that you
-  can store in the _Model Registry_.
+- _মডেল প্রশিক্ষণ_ পদক্ষেপে আপনি বৃহৎ আকারের কম্পিউট পরিবেশে আপনার মডেলটি প্রশিক্ষণ বা ফাইন-টিউন করেন। যদি একক GPU আপনার মডেল আকার পরিচালনা করতে না পারে তবে আপনাকে একটি বিতরণ করা প্রশিক্ষণ ব্যবহার করা উচিত। মডেল প্রশিক্ষণের ফলাফল হল প্রশিক্ষিত মডেল আর্টিফ্যাক্ট যা আপনি _মডেল রেজিস্ট্রি_ তে সংরক্ষণ করতে পারেন।
 
-- In the _Model Serving_ step you serve your model artifact for online or batch inference. Your
-  model may perform predictive or generative AI tasks depending on the use-case. During the model
-  serving step you may use an online feature store to extract features. You monitor the model
-  performance, and feed the results into your previous steps in the ML lifecycle.
+- _মডেল সার্ভিং_ পদক্ষেপে আপনি অনলাইন বা ব্যাচ ইনফারেন্সের জন্য আপনার মডেল আর্টিফ্যাক্টটি সার্ভ করেন। আপনার মডেলটি ব্যবহারের ক্ষেত্রে নির্ভর করে পূর্বাভাস বা উৎপাদক AI কাজ করতে পারে। মডেল সার্ভিং পদক্ষেপের সময় আপনি বৈশিষ্ট্যগুলি বের করতে একটি অনলাইন বৈশিষ্ট্য স্টোর ব্যবহার করতে পারেন। আপনি মডেলের কার্যকারিতা পর্যবেক্ষণ করেন, এবং ফলাফলগুলি ML লাইফসাইকেলের পূর্ববর্তী পদক্ষেপগুলিতে ফিড করেন।
 
-### ML Lifecycle for Production and Development Phases
+### উৎপাদন এবং উন্নয়ন পর্যায়ের জন্য এমএল লাইফসাইকেল
 
-The ML lifecycle for AI applications may be conceptually split between _development_ and
-_production_ phases, this diagram explores which stages fit into each phase:
+এআই অ্যাপ্লিকেশনের জন্য এমএল লাইফসাইকেলটি _উন্নয়ন_ এবং _উৎপাদন_ পর্যায়ের মধ্যে ধারণাগতভাবে বিভক্ত করা যেতে পারে, এই ডায়াগ্রামটি প্রতিটি পর্যায়ে কোনটি ফিট করে তা অন্বেষণ করে:
 
 <img src="/docs/started/images/ml-lifecycle-dev-prod.drawio.svg" 
      alt="ML Lifecycle with Development and Production"
      class="mt-3 mb-3 rounded">
 </img>
 
-### Kubeflow Components in the ML Lifecycle
+### এমএল লাইফসাইকেলে কুবফ্লো উপাদানগুলি
 
-The next diagram shows how Kubeflow components are used for each stage in the ML lifecycle:
+পরবর্তী ডায়াগ্রামটি দেখায় কিভাবে এমএল লাইফসাইকেলের প্রতিটি পর্যায়ের জন্য কুবফ্লো উপাদানগুলি ব্যবহার করা হয়:
 
 <img src="/docs/started/images/ml-lifecycle-kubeflow.drawio.svg" 
      alt="Kubeflow Components in the ML Lifecycle"
      class="mt-3 mb-3 border rounded p-3 bg-white">
 </img>
 
-See the following links for more information about each Kubeflow component:
+প্রতিটি কুবফ্লো উপাদান সম্পর্কে আরও তথ্যের জন্য নিম্নলিখিত লিঙ্কগুলি দেখুন:
 
-- [Kubeflow Spark Operator](https://github.com/kubeflow/spark-operator) can be used for data
-  preparation and feature engineering step.
+- [Kubeflow Spark Operator](https://github.com/kubeflow/spark-operator) ডেটা প্রস্তুতি এবং বৈশিষ্ট্য প্রকৌশল পদক্ষেপের জন্য ব্যবহার করা যেতে পারে।
 
-- [Kubeflow Notebooks](/docs/components/notebooks/) can be used for model development and interactive
-  data science to experiment with your ML workflows.
+- [Kubeflow Notebooks](/docs/components/notebooks/) মডেল উন্নয়ন এবং ইন্টারেক্টিভ ডেটা সায়েন্সের জন্য ব্যবহার করা যেতে পারে আপনার এমএল ওয়ার্কফ্লো নিয়ে পরীক্ষা-নিরীক্ষা করতে।
 
-- [Kubeflow Katib](/docs/components/katib/) can be used for model optimization and hyperparameter
-  tuning using various AutoML algorithms.
+- [Kubeflow Katib](/docs/components/katib/) বিভিন্ন অটোএমএল অ্যালগরিদম ব্যবহার করে মডেল অপটিমাইজেশন এবং হাইপারপ্যারামিটার টিউনিংয়ের জন্য ব্যবহার করা যেতে পারে।
 
-- [Kubeflow Trainer](/docs/components/trainer/) can be used for large-scale distributed
-  training or LLM fine-tuning.
+- [Kubeflow Trainer](/docs/components/trainer/) বৃহৎ আকারের বিতরণ করা প্রশিক্ষণ বা LLM ফাইন-টিউনিংয়ের জন্য ব্যবহার করা যেতে পারে।
 
-- [Kubeflow Model Registry](/docs/components/model-registry/) can be used to store ML metadata,
-  model artifacts, and preparing models for production serving.
+- [Kubeflow Model Registry](/docs/components/model-registry/) এমএল মেটাডেটা, মডেল আর্টিফ্যাক্টগুলি সংরক্ষণ এবং উৎপাদন সার্ভিংয়ের জন্য মডেল প্রস্তুত করতে ব্যবহার করা যেতে পারে।
 
-- [KServe](https://kserve.github.io/website/master/) can be used for online and batch inference
-  in the model serving step.
+- [KServe](https://kserve.github.io/website/master/) মডেল সার্ভিং পদক্ষেপে অনলাইন এবং ব্যাচ ইনফারেন্সের জন্য ব্যবহার করা যেতে পারে।
 
-- [Feast](https://feast.dev/) can be used as a feature store and to manage offline and online
-  features.
+- [Feast](https://feast.dev/) একটি বৈশিষ্ট্য স্টোর হিসাবে ব্যবহার করা যেতে পারে এবং অফলাইন এবং অনলাইন বৈশিষ্ট্যগুলি পরিচালনা করতে।
 
-- [Kubeflow Pipelines](/docs/components/pipelines/) can be used to build, deploy, and manage each
-  step in the ML lifecycle.
+- [Kubeflow Pipelines](/docs/components/pipelines/) এমএল লাইফসাইকেলের প্রতিটি পদক্ষেপ তৈরি, স্থাপন এবং পরিচালনা করতে ব্যবহার করা যেতে পারে।
 
-You can use most Kubeflow components as
-[standalone tools](/docs/started/introduction/#what-are-standalone-kubeflow-components) and
-integrate them into your existing AI/ML Platform, or you can deploy the full
-[Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform) to get all Kubeflow
-components for an end-to-end ML lifecycle.
+আপনি বেশিরভাগ কুবফ্লো উপাদানগুলি ব্যবহার করতে পারেন
+[স্ট্যান্ডঅ্যালোন টুলস](/docs/started/introduction/#what-are-standalone-kubeflow-components) এবং
+আপনার বিদ্যমান AI/ML প্ল্যাটফর্মে একত্রিত করুন, অথবা আপনি সমস্ত কুবফ্লো পেতে সম্পূর্ণ স্থাপন করতে পারেন
+[Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform) এমএল লাইফসাইকেলের জন্য উপাদান।
 
-## Kubeflow Interfaces
+## কুবফ্লো ইন্টারফেস
 
-This section introduces the interfaces that you can use to interact with
-Kubeflow and to build and run your ML workflows on Kubeflow.
+এই বিভাগটি সেই ইন্টারফেসগুলি পরিচিত করিয়ে দেয় যা আপনি কুবফ্লোর সাথে যোগাযোগ করতে এবং কুবফ্লোর উপর আপনার এমএল ওয়ার্কফ্লো তৈরি এবং চালানোর জন্য ব্যবহার করতে পারেন।
 
-### Kubeflow User Interface (UI)
+### কুবফ্লো ব্যবহারকারী ইন্টারফেস (ইউআই)
 
-The Kubeflow Central Dashboard looks like this:
+কুবফ্লো কেন্দ্রীয় ড্যাশবোর্ডটি এরকম দেখায়:
 
 <img src="/docs/images/dashboard/homepage.png" 
      alt="Kubeflow Central Dashboard - Homepage" 
      class="mt-3 mb-3 border rounded">
 </img>
 
-The Kubeflow Platform includes [Kubeflow Central Dashboard](/docs/components/central-dash/overview/)
-which acts as a hub for your ML platform and tools by exposing the UIs of components running in the
-cluster.
+কুবফ্লো প্ল্যাটফর্মে [কুবফ্লো কেন্দ্রীয় ড্যাশবোর্ড](/docs/components/central-dash/overview/) অন্তর্ভুক্ত রয়েছে
+যা ক্লাস্টারে চলমান উপাদানগুলির ইউআই প্রকাশ করে আপনার এমএল প্ল্যাটফর্ম এবং সরঞ্জামের জন্য একটি হাব হিসাবে কাজ করে।
 
-### Kubeflow APIs and SDKs
+### কুবফ্লো এপিআই এবং এসকেডি
 
 <!--
 TODO (andreyvelich): Add reference docs once this issue is implemented: https://github.com/kubeflow/katib/issues/2081
 -->
 
-Various components of Kubeflow offer APIs and Python SDKs.
+কুবফ্লোর বিভিন্ন উপাদান এপিআই এবং পাইথন এসকেডি অফার করে।
 
-See the following sets of reference documentation:
+নিম্নলিখিত রেফারেন্স ডকুমেন্টেশনের সেটগুলি দেখুন:
 
-- [Pipelines reference docs](/docs/components/pipelines/reference/) for the Kubeflow
-  Pipelines API and SDK, including the Kubeflow Pipelines domain-specific
-  language (DSL).
-- [Kubeflow Python SDK](https://github.com/kubeflow/trainer/blob/master/sdk/kubeflow/trainer/api/trainer_client.py)
-  to interact with Kubeflow Trainer APIs and to manage TrainJobs.
-- [Katib Python SDK](https://github.com/kubeflow/katib/blob/086093fed72610c227e3ae1b4044f27afa940852/sdk/python/v1beta1/kubeflow/katib/api/katib_client.py)
-  to manage Katib hyperparameter tuning Experiments using Python APIs.
+- [Pipelines reference docs](/docs/components/pipelines/reference/) কুবফ্লো
+  পাইপলাইন এপিআই এবং এসকেডি, কুবফ্লো পাইপলাইন ডোমেইন-নির্দিষ্ট
+  ভাষা (DSL) সহ।
+- [কুবফ্লো পাইথন এসকেডি](https://github.com/kubeflow/trainer/blob/master/sdk/kubeflow/trainer/api/trainer_client.py)
+  কুবফ্লো প্রশিক্ষক এপিআইয়ের সাথে যোগাযোগ করতে এবং ট্রেনজব পরিচালনা করতে।
+- [কাতিব পাইথন এসকেডি](https://github.com/kubeflow/katib/blob/086093fed72610c227e3ae1b4044f27afa940852/sdk/python/v1beta1/kubeflow/katib/api/katib_client.py)
+  পাইথন এপিআই ব্যবহার করে কাতিব হাইপারপ্যারামিটার টিউনিং পরীক্ষাগুলি পরিচালনা করতে।
 
-## Next steps
+## পরবর্তী পদক্ষেপ
 
-- Follow [Installing Kubeflow](/docs/started/installing-kubeflow/) to set up your environment and install Kubeflow.
+- আপনার পরিবেশ সেট আপ করতে এবং কুবফ্লো ইনস্টল করতে [Installing Kubeflow](/docs/started/installing-kubeflow/) অনুসরণ করুন।

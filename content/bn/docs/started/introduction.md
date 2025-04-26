@@ -1,51 +1,36 @@
 +++
-title = "Introduction"
-description = "An introduction to Kubeflow"
+title = "পরিচিতি"
+description = "Kubeflow-এর একটি পরিচিতি"
 weight = 1
 +++
 
-## What is Kubeflow
+## Kubeflow কী
 
-Kubeflow is a community and ecosystem of open-source projects to address each stage in the
-[machine learning (ML) lifecycle](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle)
-with support for best-in-class open source
-[tools and frameworks](/docs/started/architecture/#kubeflow-ecosystem). Kubeflow makes AI/ML
-on Kubernetes simple, portable, and scalable.
+Kubeflow একটি সম্প্রদায় এবং ওপেন-সোর্স প্রকল্পগুলির একটি ইকোসিস্টেম যা [মেশিন লার্নিং (ML) লাইফসাইকেল](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle)-এর প্রতিটি ধাপ সমাধান করতে সহায়তা করে। এটি শ্রেষ্ঠ-শ্রেণীর ওপেন সোর্স [সরঞ্জাম এবং ফ্রেমওয়ার্ক](/docs/started/architecture/#kubeflow-ecosystem) সমর্থন করে। Kubeflow Kubernetes-এ AI/ML সহজ, পোর্টেবল এবং স্কেলেবল করে তোলে।
 
-Whether you’re a researcher, data scientist, ML engineer, or a team of developers, Kubeflow offers
-modular and scalable tools that cater to all aspects of the ML lifecycle: from building ML models to
-deploying them to production for AI applications.
+আপনি একজন গবেষক, ডেটা বিজ্ঞানী, এমএল ইঞ্জিনিয়ার, বা ডেভেলপারদের একটি দল যাই হোন না কেন, Kubeflow মডুলার এবং স্কেলেবল সরঞ্জাম সরবরাহ করে যা ML লাইফসাইকেলের সমস্ত দিককে পূরণ করে: ML মডেল তৈরি করা থেকে শুরু করে AI অ্যাপ্লিকেশনের জন্য সেগুলিকে উৎপাদনে স্থাপন করা।
 
-## What are Standalone Kubeflow Components
+## স্ট্যান্ডঅলোন Kubeflow উপাদান কী
 
-The Kubeflow ecosystem is composed of multiple open-source projects that address different aspects
-of the ML lifecycle. Many of these projects are designed to be usable both within the
-Kubeflow Platform and independently. These Kubeflow components can be installed standalone on a
-Kubernetes cluster. It provides flexibility to users who may not require the full Kubeflow Platform
-capabilities but wish to leverage specific ML functionalities such as model training or model serving.
+Kubeflow ইকোসিস্টেমটি একাধিক ওপেন-সোর্স প্রকল্পের সমন্বয়ে গঠিত যা ML লাইফসাইকেলের বিভিন্ন দিক সমাধান করে। এই প্রকল্পগুলির অনেকগুলি Kubeflow প্ল্যাটফর্মের মধ্যে এবং স্বাধীনভাবে ব্যবহারযোগ্য হতে ডিজাইন করা হয়েছে। এই Kubeflow উপাদানগুলি একটি Kubernetes ক্লাস্টারে স্ট্যান্ডঅলোন ইনস্টল করা যেতে পারে। এটি ব্যবহারকারীদের জন্য নমনীয়তা প্রদান করে যারা হয়তো সম্পূর্ণ Kubeflow প্ল্যাটফর্মের ক্ষমতা প্রয়োজন নেই কিন্তু মডেল প্রশিক্ষণ বা মডেল সার্ভিংয়ের মতো নির্দিষ্ট ML কার্যকারিতা ব্যবহার করতে চান।
 
-## What is Kubeflow Platform
+## Kubeflow প্ল্যাটফর্ম কী
 
-The Kubeflow Platform refers to the full suite of Kubeflow components bundled together with
-additional integration and management tools. Using Kubeflow as a platform means deploying a
-comprehensive ML toolkit for the entire ML lifecycle.
+Kubeflow প্ল্যাটফর্ম বলতে সমস্ত Kubeflow উপাদানের পূর্ণ প্যাকেজ বোঝায় যা একত্রিতকরণ এবং ব্যবস্থাপনার জন্য অতিরিক্ত সরঞ্জাম সহ আসে। একটি প্ল্যাটফর্ম হিসাবে Kubeflow ব্যবহার করা মানে হল সম্পূর্ণ ML লাইফসাইকেলের জন্য একটি ব্যাপক ML টুলকিট স্থাপন করা।
 
-In addition to the standalone Kubeflow components, the Kubeflow Platform includes
+স্বতন্ত্র Kubeflow উপাদানগুলির পাশাপাশি, Kubeflow প্ল্যাটফর্মে অন্তর্ভুক্ত রয়েছে
 
-- [Kubeflow Notebooks](/docs/components/notebooks/overview) for interactive data exploration and
-  model development.
-- [Central Dashboard](/docs/components/central-dash/overview/) for easy navigation and management
-  with [Kubeflow Profiles](/docs/components/central-dash/profiles/) for access control.
-- Additional tooling for data management (PVC Viewer), visualization (TensorBoards), and more.
+- ইন্টারেক্টিভ ডেটা অন্বেষণ এবং মডেল উন্নয়নের জন্য [Kubeflow নোটবুক](/docs/components/notebooks/overview)।
+- সহজ নেভিগেশন এবং ব্যবস্থাপনার জন্য [কেন্দ্রিয় ড্যাশবোর্ড](/docs/components/central-dash/overview/) [Kubeflow প্রোফাইল](/docs/components/central-dash/profiles/) সহ অ্যাক্সেস নিয়ন্ত্রণের জন্য।
+- ডেটা পরিচালনার জন্য অতিরিক্ত টুলিং (PVC ভিউয়ার), ভিজ্যুয়ালাইজেশন (টেনসরবোর্ড) এবং আরও অনেক কিছু।
 
-The Kubeflow Platform can be installed via
-[Packaged Distributions](/docs/started/installing-kubeflow/#packaged-distributions) or
-[Kubeflow Manifests](/docs/started/installing-kubeflow/#kubeflow-manifests).
+Kubeflow প্ল্যাটফর্ম ইনস্টল করা যেতে পারে
+[প্যাকেজড বিতরণ](/docs/started/installing-kubeflow/#packaged-distributions) বা
+[Kubeflow Manifests](/docs/started/installing-kubeflow/#kubeflow-manifests) এর মাধ্যমে।
 
-## Kubeflow Overview Diagram
+## Kubeflow ওভারভিউ ডায়াগ্রাম
 
-The following diagram shows the main Kubeflow components to cover each stage of the ML lifecycle
-on top of Kubernetes.
+নিচের ডায়াগ্রামটি Kubernetes-এর শীর্ষে ML লাইফসাইকেলের প্রতিটি পর্যায় কভার করতে প্রধান Kubeflow উপাদানগুলি দেখায়।
 
 <img src="/docs/started/images/kubeflow-intro-diagram.drawio.svg" 
      alt="Kubeflow Overview Diagram"
@@ -53,61 +38,52 @@ on top of Kubernetes.
      style="width: 100%; max-width: 30em">
 </img>
 
-Read the [architecture overview](/docs/started/architecture/) to learn about the Kubeflow ecosystem
-and to see how Kubeflow components fit in ML lifecycle.
+Kubeflow ইকোসিস্টেম সম্পর্কে জানার জন্য এবং Kubeflow উপাদানগুলি ML লাইফসাইকেলে কীভাবে ফিট করে তা দেখতে [আর্কিটেকচার ওভারভিউ](/docs/started/architecture/) পড়ুন।
 
-## Kubeflow Video Introduction
+## Kubeflow ভিডিও পরিচিতি
 
-Watch the following video which provides an introduction to Kubeflow.
+নিচের ভিডিওটি দেখুন যা Kubeflow-এর একটি পরিচিতি প্রদান করে।
 
 {{< youtube id="cTZArDgbIWw" title="Introduction to Kubeflow">}}
 
-## The Kubeflow mission
+## Kubeflow মিশন
 
-Our goal is to make scaling machine learning (ML) models and deploying them to
-production as simple as possible, by letting Kubernetes do what it's great at:
+আমাদের লক্ষ্য হল মেশিন লার্নিং (এমএল) মডেলগুলি স্কেল করা এবং সেগুলিকে উৎপাদনে স্থাপন করা যতটা সম্ভব সহজ করা, কুবেরনেটিসকে তার দুর্দান্ত কাজ করতে দেওয়া:
 
-- Easy, repeatable, portable deployments on a diverse infrastructure
-  (for example, experimenting on a laptop, then moving to an on-premises
-  cluster or to the cloud)
-- Deploying and managing loosely-coupled microservices
-- Scaling based on demand
+- বিভিন্ন অবকাঠামোতে সহজ, পুনরাবৃত্তিযোগ্য, পোর্টেবল স্থাপনাগুলি
+  (যেমন, একটি ল্যাপটপে পরীক্ষা করা, তারপরে একটি অন-প্রিমিসেস ক্লাস্টার বা ক্লাউডে স্থানান্তরিত করা)
+- আলতোভাবে-সংযুক্ত মাইক্রোসার্ভিসগুলি স্থাপন এবং পরিচালনা করা
+- চাহিদার ভিত্তিতে স্কেলিং
 
-Because ML practitioners use a diverse set of tools, one of the key goals is to
-customize the stack based on user requirements (within reason) and let the
-system take care of the "boring stuff". While we have started with a narrow set
-of technologies, we are working with many different projects to include
-additional tooling.
+যেহেতু এমএল অনুশীলনকারীরা বিভিন্ন সরঞ্জাম সেট ব্যবহার করেন, একটি প্রধান লক্ষ্য হল ব্যবহারকারীর প্রয়োজনীয়তার উপর ভিত্তি করে স্ট্যাকটি কাস্টমাইজ করা (কার্যসাধনের মধ্যে) এবং সিস্টেমটিকে "বোরিং জিনিস" যত্ন নিতে দেওয়া। যদিও আমরা একটি সংকীর্ণ সেট প্রযুক্তি দিয়ে শুরু করেছি, আমরা অতিরিক্ত টুলিং অন্তর্ভুক্ত করতে অনেক ভিন্ন প্রকল্পের সাথে কাজ করছি।
 
-Ultimately, we want to have a set of simple manifests that give you an easy to
-use ML stack _anywhere_ Kubernetes is already running, and that can self
-configure based on the cluster it deploys into.
+অবশেষে, আমরা একটি সাধারণ ম্যানিফেস্টের সেট পেতে চাই যা আপনাকে একটি সহজ ML স্ট্যাক ব্যবহার করতে দেয় _যেখানে_ Kubernetes ইতিমধ্যে চলছে, এবং যা ক্লাস্টারটির উপর ভিত্তি করে স্বয়ংক্রিয় কনফিগার করতে পারে যেখানে এটি স্থাপন করে।
 
-## History
+## ইতিহাস
 
-Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/) internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/).
-It began as just a simpler way to run TensorFlow jobs on Kubernetes, but has since expanded to be a multi-architecture, multi-cloud framework for running end-to-end machine learning workflows.
+Kubeflow শুরু হয়েছিল Google যেভাবে [TensorFlow](https://www.tensorflow.org/) অভ্যন্তরীণভাবে চালায় তার একটি ওপেন সোর্সিং হিসাবে, একটি পাইপলাইনের উপর ভিত্তি করে যা [TensorFlow এক্সটেন্ডেড](https://www.tensorflow.org/tfx/)।
+এটি Kubernetes-এ TensorFlow কাজ চালানোর জন্য কেবল একটি সহজ উপায় হিসাবে শুরু হয়েছিল, তবে এটি পরবর্তীতে শেষ-থেকে-শেষ মেশিন লার্নিং ওয়ার্কফ্লো চালানোর জন্য একটি বহু-আর্কিটেকচার, বহু-কালো ফ্রেমওয়ার্কে সম্প্রসারিত হয়েছে।
 
-The [Kubeflow logo represents](https://github.com/kubeflow/kubeflow/issues/187#issuecomment-375194419) the letters `K` and `F` inside the heptagon of the Kubernetes logo, which represent two communities: `Kubernetes` (cloud-native) and `flow` (Machine Learning). In this context, `flow` is not only indicating `TensorFlow`, but also all ML frameworks which make use of Dataflow Graph as the normal form for model/algorithm implementation.
+[কুবফ্লো লোগো উপস্থাপন করে](https://github.com/kubeflow/kubeflow/issues/187#issuecomment-375194419) কুবফ্লো এবং ফ্লো এই দুটি সম্প্রদায়কে প্রতিনিধিত্ব করে, যা কুবফ্লো লোগোর হেপ্টাগনে অবস্থিত, যা কুবফ্লো এবং ফ্লো এই দুটি সম্প্রদায়কে প্রতিনিধিত্ব করে: `কুবেরনেটিস` (ক্লাউড-নেটিভ) এবং `ফ্লো` (মেশিন লার্নিং)। এই প্রসঙ্গে, `ফ্লো` কেবল `টেনসরফ্লো` নির্দেশ করছে না, বরং সমস্ত এমএল ফ্রেমওয়ার্ক যা মডেল/অ্যালগরিদম বাস্তবায়নের জন্য স্বাভাবিক ফর্ম হিসাবে ডেটাফ্লো গ্রাফ ব্যবহার করে।
 
-## Roadmaps
+## রোডম্যাপ
 
-To see what's coming up in future versions of Kubeflow, refer to the [Kubeflow roadmap](https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md).
+কুবফ্লোর ভবিষ্যতের সংস্করণে কী আসছে তা দেখতে, [কুবফ্লোর রোডম্যাপ](https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md) দেখুন।
 
-The following components also have roadmaps:
+নিচের উপাদানগুলিরও রোডম্যাপ রয়েছে:
 
-- [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
-- [KServe](https://github.com/kserve/kserve/blob/master/ROADMAP.md)
-- [Katib](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
-- [Training Operator](https://github.com/kubeflow/training-operator/blob/master/ROADMAP.md)
+- [কুবফ্লো পাইপলাইন](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
+- [কে সার্ভ](https://github.com/kserve/kserve/blob/master/ROADMAP.md)
+- [কাতিব](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
+- [প্রশিক্ষণ অপারেটর](https://github.com/kubeflow/training-operator/blob/master/ROADMAP.md)
 
-## Getting involved
+## জড়িত হওয়া
 
-There are many ways to contribute to Kubeflow, and we welcome contributions!
+Kubeflow-এ অবদান রাখার অনেক উপায় রয়েছে, এবং আমরা অবদানের স্বাগত জানাই!
 
-Read the [contributor's guide](/docs/about/contributing/) to get started on the code, and learn about the community on the [community page](/docs/about/community/).
+কোডে শুরু করার জন্য [অবদানকারীর গাইড](/docs/about/contributing/) পড়ুন, এবং [সম্প্রদায়ের পৃষ্ঠায়](/docs/about/community/) সম্প্রদায় সম্পর্কে জানুন।
 
-## Next Steps
+## পরবর্তী পদক্ষেপ
 
-- Follow [the installation guide](/docs/started/installing-kubeflow) to deploy standalone
-  Kubeflow components or Kubeflow Platform.
+- স্ট্যান্ডঅলোন স্থাপন করতে [স্থাপন গাইড](/docs/started/installing-kubeflow) অনুসরণ করুন
+  Kubeflow উপাদান বা Kubeflow প্ল্যাটফর্ম।
