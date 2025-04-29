@@ -543,30 +543,11 @@ nav.foldable-nav {
     }
   }
 
-  .trusted-logo-light {
+  .adopter-logo {
     pointer-events: none;
-    user-select: none; 
-    max-height: 3rem; 
-    max-width: 12.5rem;
-    object-fit: contain; 
-    display: block !important;
-  }
-
-  .trusted-logo-dark {
-    pointer-events: none;
-    user-select: none; 
-    max-height: 3rem; 
-    max-width: 12.5rem;
-    object-fit: contain; 
-    display: none !important;
-  }
-
-  .trusted-logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; 
-    gap: 3rem;
+    user-select: none;
+    height: 3rem;
+    width: 100%;
   }
 
   .section-head {
@@ -574,6 +555,7 @@ nav.foldable-nav {
 
     font-size: 1.8rem;
     font-weight: bold;
+    line-height: 1.8;
 
     margin-bottom: 2rem;
     padding-bottom: 1rem;
