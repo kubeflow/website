@@ -62,7 +62,7 @@ TrainingClient().train(
         training_parameters=transformers.TrainingArguments(
             output_dir="test_trainer",
             save_strategy="no",
-            evaluation_strategy="no",
+            eval_strategy="no",
             do_eval=False,
             disable_tqdm=True,
             log_level="info",
