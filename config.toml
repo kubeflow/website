@@ -61,7 +61,7 @@ ignoreFiles = []
 ###############################################################################
 [menu]
   [[menu.main]]
-    name = "Kubeflow Virtual Planning Symposium"
+    name = "Kubeflow Virtual Symposium"
     weight = -1000
     pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
     post = "<br><span class='badge badge-warning'>July 9th, 2025</span> <span class='badge badge-warning'>Virtual</span> "
