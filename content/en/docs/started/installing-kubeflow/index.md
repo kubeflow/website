@@ -141,8 +141,8 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
           Model Training and LLMs Fine-Tuning
         </td>
         <td>
-          <a href="https://github.com/kubeflow/training-operator">
-            <code>kubeflow/training-operator</code>
+          <a href="https://github.com/kubeflow/trainer">
+            <code>kubeflow/trainer</code>
           </a>
         </td>
       </tr>
