@@ -179,8 +179,8 @@ spec:
     model:
       storageUri: "model-registry://iris/v1"  # protocol format: model-registry://{modelName}/{modelVersion}
       modelFormat:
-        name: "MODEL_FORMAT_NAME"          # Replace with actual art.model_format_name (e.g., "sklearn")
-        version: "MODEL_FORMAT_VERSION"    # Replace with actual art.model_format_version (e.g., "1")
+        name: "sklearn"          # Replace if needed with art.model_format_name from model registry (typically one of https://kserve.github.io/website/latest/modelserving/v1beta1/serving_runtime)
+        version: "1"    # Replace if needed with art.model_format_version from model registry
 ```
 
 The InferenceService is now created, the CSI retrieves the latest artifact data associated with the model version from the Model Registry, and then downloads the model from its URI.
