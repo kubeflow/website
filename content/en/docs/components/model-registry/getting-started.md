@@ -163,6 +163,25 @@ isvc = kserve.V1beta1InferenceService(
 ks_client = kserve.KServeClient()
 ks_client.create(isvc)
 ```
+Alternatively, you can create the same InferenceService using a YAML manifest:
+
+```yaml
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: iris-model
+  namespace: kubeflow-user-example-com  # Replace if different from kserve.utils.get_default_target_namespace()
+  labels:
+    modelregistry/registered-model-id: "MODEL_ID"    # Replace with actual model.id value
+    modelregistry/model-version-id: "VERSION_ID"      # Replace with actual version.id value
+spec:
+  predictor:
+    model:
+      storageUri: "model-registry://iris/v1"  # protocol format: model-registry://{modelName}/{modelVersion}
+      modelFormat:
+        name: "sklearn"          # Replace if needed with art.model_format_name from model registry (typically one of https://kserve.github.io/website/latest/modelserving/v1beta1/serving_runtime)
+        version: "1"    # Replace if needed with art.model_format_version from model registry
+```
 
 The InferenceService is now created, the CSI retrieves the latest artifact data associated with the model version from the Model Registry, and then downloads the model from its URI.
 
