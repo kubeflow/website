@@ -1,0 +1,42 @@
++++
+title =  "Governance"
+description = "About the Kubeflow Governance Structure"
+weight = 10
+aliases = ["/docs/governance/"]
++++
+
+
+## Governance Structure
+
+Kubeflow Governance consists of four components.
+
+## 1. CNCF 
+Kubeflow is a part of the Cloud Native Computing Foundation and adheres to their governance structure, which can be [found here](https://github.com/cncf/foundation?tab=readme-ov-file#governance).
+
+## 1. Kubeflow Steering Committee (KSC)
+
+At a high level, the [Kubeflow Steering Committee (KSC)](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md) is the "root" level governance body.
+
+The KSC is responsible for the general health of the Kubeflow community. Responsibilities include maintaining the governance framework, code of conduct, community meetings, communication platforms, and test resources. Read more about their [charter here](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#charter).
+
+## 2. Kubeflow Outreach Committee (KOC)
+
+The [Kubeflow Outreach Committee (KOC)](https://github.com/kubeflow/community/blob/master/KUBEFLOW-OUTREACH-COMMITTEE.md) is dedicated to fostering growth, engagement, and community outreach for the Kubeflow project. It focuses on activities that promote Kubeflow to new and existing users, contributors, and stakeholders while building an inclusive, vibrant, and diverse community within the broader AI/ML ecosystem.
+
+## 3. Working Groups
+
+Kubeflow has multiple working groups that own subpojects. A major pillar of KF's governance model is working groups that own subprojects. At the time, formation of WGs and the precise processes by which WGs would operate was delayed until KF was large enough to warrant WGs. 
+
+There are several working groups that have different charters: 
+1. [AutoML WG](https://github.com/kubeflow/community/tree/master/wg-automl)
+1. [Manifests WG](https://github.com/kubeflow/community/tree/master/wg-manifests)
+1. [Deployment WG](https://github.com/kubeflow/community/tree/master/wg-deployment)
+1. [ML Experience WG](https://github.com/kubeflow/community/tree/master/wg-ml-experience)
+1. [Notebooks WG](https://github.com/kubeflow/community/tree/master/wg-notebooks)
+1. [Pipelines WG](https://github.com/kubeflow/community/tree/master/wg-pipelines)
+1. [Serving WG](https://github.com/kubeflow/community/tree/master/wg-serving)
+1. [Training WG](https://github.com/kubeflow/community/tree/master/wg-training)
+
+The overall WG Roles and Organizational Governance can be [found here](https://github.com/kubeflow/community/blob/master/wgs/wg-governance.md).
+
+To engage with these working groups, join the [Slack Channel](./community.md#slack-channels) or [community calls](./community.md#kubeflow-community-meetings).
