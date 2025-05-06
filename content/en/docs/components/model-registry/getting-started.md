@@ -170,7 +170,7 @@ apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
   name: iris-model
-  namespace: kubeflow  # Replace if different from kserve.utils.get_default_target_namespace()
+  namespace: kubeflow-user-example-com  # Replace if different from kserve.utils.get_default_target_namespace()
   labels:
     modelregistry/registered-model-id: "MODEL_ID"    # Replace with actual model.id value
     modelregistry/model-version-id: "VERSION_ID"      # Replace with actual version.id value
