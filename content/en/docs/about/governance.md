@@ -17,7 +17,11 @@ Kubeflow is a part of the Cloud Native Computing Foundation and adheres to their
 
 At a high level, the [Kubeflow Steering Committee (KSC)](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md) is the "root" level governance body.
 
-The KSC is responsible for the general health of the Kubeflow community. Responsibilities include maintaining the governance framework, code of conduct, community meetings, communication platforms, and test resources. Read more about their [charter here](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#charter).
+The Kubeflow Steering Committee (KSC) is the governing body of the Kubeflow project, providing decision-making and oversight pertaining to the Kubeflow project policies, sub-organizations, and financial planning, and defines the project values and structure.
+
+The governance of Kubeflow is an open, living document, and will continue to evolve as the community and project change.
+
+Read more about the KSC [charter here](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#charter).
 
 # 3. Kubeflow Outreach Committee (KOC)
 
@@ -40,3 +44,4 @@ There are several working groups that have different charters:
 The overall WG Roles and Organizational Governance can be [found here](https://github.com/kubeflow/community/blob/master/wgs/wg-governance.md).
 
 To engage with these working groups, join the [Slack Channel](./community.md#slack-channels) or [community calls](./community.md#kubeflow-community-meetings).
+
