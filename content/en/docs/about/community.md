@@ -137,10 +137,6 @@ In addition, please check out the community-curated [awesome list of projects an
 
 The Kubeflow trademark and logos are registered trademarks of The Linux Foundation® (TLF), please review the [Kubeflow Brand Guidelines](https://www.linuxfoundation.org/legal/trademark-usage) for more information.
 
-## Kubeflow Steering Committee
-
-The [Kubeflow Steering Committee (KSC)](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md) is the governing body of the Kubeflow project, providing decision-making and oversight pertaining to the Kubeflow project policies, sub-organizations, and financial planning, and defines the project values and structure.
-
 ## Kubeflow Working Groups
 
 The Kubeflow project has a number of Working Groups (WGs) who each maintain some aspect of the Kubeflow project.

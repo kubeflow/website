@@ -43,5 +43,5 @@ There are several working groups that have different charters:
 
 The overall WG Roles and Organizational Governance can be [found here](https://github.com/kubeflow/community/blob/master/wgs/wg-governance.md).
 
-To engage with these working groups, join the [Slack Channel](./community.md#slack-channels) or [community calls](./community.md#kubeflow-community-meetings).
+To find out how to engage with these working groups, see the [Kubeflow Working Groups page](./community.md) on our website.
 
