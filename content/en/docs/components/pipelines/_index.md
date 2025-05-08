@@ -1,5 +1,5 @@
 +++
 title = "Kubeflow Pipelines"
-description = "Documentation for Kubeflow Pipelines."
+description = "Building and Deploying Scalable ML Workflows in Docker Containers"
 weight = 15
 +++
