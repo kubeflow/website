@@ -185,6 +185,7 @@ data:
         endpoint: s3.amazonaws.com
         disableSSL: false
         region: us-east-2
+        forcePathStyle: true
         credentials:
           fromEnv: false
           secretRef:
@@ -215,6 +216,7 @@ data:
         endpoint: s3.amazonaws.com
         disableSSL: false
         region: us-east-2
+        forcePathStyle: true
         credentials:
           fromEnv: true
 kind: ConfigMap
@@ -327,6 +329,7 @@ s3:
     endpoint: http://some-s3-compliant-store-endpoint.com
     disableSSL: true
     region: minio
+    forcePathStyle: true
     credentials:
       fromEnv: false
       secretRef:
@@ -340,6 +343,7 @@ s3:
       keyPrefix: subfolder
       endpoint: s3.amazonaws.com
       region: us-east-2
+      forcePathStyle: false
       disableSSL: false
       credentials:
         fromEnv: false
