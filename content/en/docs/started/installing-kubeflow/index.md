@@ -301,7 +301,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           QBO Kubernetes Engine (QKE)
         </td>
          <td>
-          <a href="https://qbo.io/solutions/ai-ml">Website</a>
+          <a href="https://docs.qbo.io/demos/kubeflow">Website</a>
         </td>
       </tr>
       <tr>
