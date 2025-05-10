@@ -15,8 +15,12 @@ Kubeflow components and Kubeflow Platform.
 
 You can install Kubeflow using one of these methods:
 
-- [**Standalone Kubeflow Components**](#standalone-kubeflow-components)
-- [**Kubeflow Platform**](#kubeflow-platform)
+- [Installation Methods](#installation-methods)
+- [Standalone Kubeflow Components](#standalone-kubeflow-components)
+- [Kubeflow Platform](#kubeflow-platform)
+  - [Packaged Distributions](#packaged-distributions)
+  - [Kubeflow Manifests](#kubeflow-manifests)
+- [Next steps](#next-steps)
 
 ## Standalone Kubeflow Components
 
@@ -295,13 +299,13 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% qbo/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">[release notes]</a></sup>
+          <sup><a href="https://docs.qbo.io/news/2025/05/09/api-1-5-14-released/">[release notes]</a></sup>
         </td>
         <td>
           QBO Kubernetes Engine (QKE)
         </td>
          <td>
-          <a href="https://docs.qbo.io/#/qke?id=kubeflow">Website</a>
+          <a href="https://qbo.io/solutions/ai-ml">Website</a>
         </td>
       </tr>
       <tr>
