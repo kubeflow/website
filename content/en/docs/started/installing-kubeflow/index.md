@@ -15,12 +15,8 @@ Kubeflow components and Kubeflow Platform.
 
 You can install Kubeflow using one of these methods:
 
-- [Installation Methods](#installation-methods)
-- [Standalone Kubeflow Components](#standalone-kubeflow-components)
-- [Kubeflow Platform](#kubeflow-platform)
-  - [Packaged Distributions](#packaged-distributions)
-  - [Kubeflow Manifests](#kubeflow-manifests)
-- [Next steps](#next-steps)
+- [**Standalone Kubeflow Components**](#standalone-kubeflow-components)
+- [**Kubeflow Platform**](#kubeflow-platform)
 
 ## Standalone Kubeflow Components
 
