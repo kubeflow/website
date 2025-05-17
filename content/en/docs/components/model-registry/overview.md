@@ -4,7 +4,7 @@ description = "An overview for Kubeflow Model Registry"
 weight = 10
 +++
 
-{{% alpha-status feedbacklink="https://github.com/kubeflow/model-registry" %}}
+{{% alpha-status feedbacklink="https://github.com/kubeflow/model-registry/issues/new/choose" %}}
 
 ## What is Model Registry?
 
