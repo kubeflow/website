@@ -208,4 +208,4 @@ For detailed instructions on using the Model Registry UI, refer to the [Model Re
   - [Model Registry working group](https://www.kubeflow.org/docs/about/community/#kubeflow-community-meetings)
   - [GitHub repository](https://github.com/kubeflow/model-registry)
 - Share your feedback:
-  - [File an issue](https://github.com/kubeflow/model-registry/issues)
+  - [File an issue](https://github.com/kubeflow/model-registry/issues/new/choose)
