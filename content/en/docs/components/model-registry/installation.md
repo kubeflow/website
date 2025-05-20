@@ -83,21 +83,21 @@ Run the following command to install the `v{{% model-registry/latest-version %}}
 
 ```shell
 MODEL_REGISTRY_VERSION={{% model-registry/latest-version %}}
-kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/overlays/db?ref=v${MODEL_REGISTRY_VERSION}"
+kubectl apply -n kubeflow -k "https://github.com/kubeflow/model-registry/manifests/kustomize/overlays/db?ref=v${MODEL_REGISTRY_VERSION}"
 ```
 
 If your Kubernetes cluster uses Istio, you MUST apply the Istio-compatibility manifests (e.g. when using a full Kubeflow Platform). However, these are NOT required for non-Istio clusters.
 
 ```shell
 MODEL_REGISTRY_VERSION={{% model-registry/latest-version %}}
-kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/istio?ref=v${MODEL_REGISTRY_VERSION}"
+kubectl apply -n kubeflow -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/istio?ref=v${MODEL_REGISTRY_VERSION}"
 ```
 
 If you want Kserve to be able to support `model-registry://` URI formats, you must apply the cluster-scoped `CustomStorageContainer` CR.
 
 ```shell
 MODEL_REGISTRY_VERSION={{% model-registry/latest-version %}}
-kubectl apply -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/csi?ref=v${MODEL_REGISTRY_VERSION}"
+kubectl apply -n kubeflow -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/csi?ref=v${MODEL_REGISTRY_VERSION}"
 ```
 
 ## Check Model Registry setup
