@@ -184,21 +184,6 @@ The following table lists distributions which are <em>maintained</em> by their r
     <tbody>
       <tr>
         <td>
-          Amazon Web Services
-        </td>
-        <td>
-          {{< kf-version-notice >}}{{% aws/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/awslabs/kubeflow-manifests/releases">[release notes]</a></sup>
-        </td>
-        <td>
-          Amazon Elastic Kubernetes Service (EKS)
-        </td>
-        <td>
-          <a href="https://awslabs.github.io/kubeflow-manifests">Website</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
           Aranui Solutions
             <br><small>deployKF</small>
         </td>
@@ -317,20 +302,6 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           <a href="https://github.com/opendatahub-io/manifests">Website</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          VMware
-        </td>
-        <td>
-          {{< kf-version-notice >}}{{% vmware/latest-version %}}{{< /kf-version-notice >}}
-        </td>
-        <td>
-          VMware vSphere
-        </td>
-        <td>
-          <a href="https://vmware.github.io/vSphere-machine-learning-extension/">Website</a>
         </td>
       </tr>
     </tbody>
