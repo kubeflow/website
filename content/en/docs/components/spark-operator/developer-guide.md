@@ -50,7 +50,7 @@ Dependencies will be automatically downloaded locally to `bin` directory as need
 To see the full list of available targets, run the following command:
 
 ```bash
-$ make help         
+$ make help
 
 Usage:
   make <target>
@@ -66,16 +66,14 @@ Development
   go-clean                        Clean up caches and output.
   go-fmt                          Run go fmt against code.
   go-vet                          Run go vet against code.
-  lint                            Run golangci-lint linter.
-  lint-fix                        Run golangci-lint linter and perform fixes.
+  go-lint                         Run golangci-lint linter.
+  go-lint-fix                     Run golangci-lint linter and perform fixes.
   unit-test                       Run unit tests.
   e2e-test                        Run the e2e tests against a Kind k8s instance that is spun up.
 
 Build
   build-operator                  Build Spark operator.
-  build-sparkctl                  Build sparkctl binary.
-  install-sparkctl                Install sparkctl binary.
-  clean                           Clean spark-operator and sparkctl binaries.
+  clean                           Clean binaries.
   build-api-docs                  Build api documentation.
   docker-build                    Build docker image with the operator.
   docker-push                     Push docker image with the operator.
@@ -90,11 +88,11 @@ Helm
 Deployment
   kind-create-cluster             Create a kind cluster for integration tests.
   kind-load-image                 Load the image into the kind cluster.
-  kind-delete-custer              Delete the created kind cluster.
+  kind-delete-cluster             Delete the created kind cluster.
   install-crd                     Install CRDs into the K8s cluster specified in ~/.kube/config.
   uninstall-crd                   Uninstall CRDs from the K8s cluster specified in ~/.kube/config. Call with ignore-not-found=true to ignore resource not found errors during deletion.
   deploy                          Deploy controller to the K8s cluster specified in ~/.kube/config.
-  undeploy                        Undeploy controller from the K8s cluster specified in ~/.kube/config. Call with ignore-not-found=true to ignore resource not found errors during deletion.
+  undeploy                        Uninstall spark-operator
 
 Dependencies
   kustomize                       Download kustomize locally if necessary.
