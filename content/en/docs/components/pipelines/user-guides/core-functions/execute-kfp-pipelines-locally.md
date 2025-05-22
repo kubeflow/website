@@ -23,6 +23,7 @@ Local execution comes with several limitations:
 - Local execution does not feature optimizations and additional features such as caching, retry, etc. While these feature are important for production pipelines, they are less critical for a local testing environment. You will find that task methods like `.set_retry`, `.set_caching_options`, etc. have no effect locally.
 - Local execution makes simple assumptions about the resources available on your machine. Local execution does not support specifying resource requests/limits/affinities related to memory, cores, accelerators, etc. You will find that task methods like `.set_memory_limit`, `.set_memory_request`, `.set_accelerator_type` etc. have no effect locally.
 - Local execution doesn't support authentication mechanisms. If your component interacts with cloud resources or requires other privileged actions, you must test your pipeline in the cloud.
+  - Exception: Note that the `SubprocessRunner` component does support Google Cloud authentication.
 - While local pipeline execution has full support for sequential and nested pipelines, it does not yet support `dsl.Condition`, `dsl.ParallelFor`, or `dsl.ExitHandler`.
 
 ## Basic Example
@@ -91,6 +92,43 @@ By default, KFP will raise an exception if your component exits with a failure s
 local.init(runner=...,
            raise_on_error=False,
            pipeline_root='~/my/component/outputs')
+```
+
+## Google Cloud Example
+
+In the following example, we use `SubprocessRunner` to interact with Google Cloud services from the local machine.
+Before executing this script, you must authenticate with [Application Default Credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc). You can use the following command: `gcloud auth application-default login`
+
+```python
+# Before running this script setup Application Default Credentials
+# https://cloud.google.com/docs/authentication/provide-credentials-adc
+#  with command `gcloud auth application-default login`
+# for authorization into Google Cloud
+from kfp import dsl, local
+
+PROJECT_ID = "YOUR-PROJECT-ID"
+local.init(runner=local.SubprocessRunner())
+
+@dsl.component(
+    packages_to_install=["google-cloud-storage"]
+)
+def list_buckets(project_id: str) -> str:
+    import json
+    from google.cloud import storage
+    storage_client = storage.Client(project=project_id)
+    buckets = storage_client.list_buckets()
+    return json.dumps([bucket.name for bucket in buckets])
+
+@dsl.pipeline
+def gcs_list_pipeline(project_id: str) -> str:
+    list_task = list_buckets(
+        project_id=project_id,
+    )
+    return list_task.output
+
+
+if __name__ == "__main__":
+    gcs_list_pipeline(project_id=PROJECT_ID)
 ```
 
 ## Runner Types
