@@ -5,12 +5,8 @@
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
 {{ end -}}
 
-{{ $outputFormat := partial "outputformat.html" . -}}
-{{ if and hugo.IsProduction (ne $outputFormat "print") -}}
-<meta name="robots" content="index, follow">
-{{ else -}}
-<meta name="robots" content="noindex, nofollow">
-{{ end -}}
+<!-- Prevent search engines from indexing this old site -->
+<meta name="robots" content="noindex">
 
 {{ partialCached "favicons.html" . }}
 <title>
