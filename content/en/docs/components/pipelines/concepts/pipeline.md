@@ -103,12 +103,13 @@ The KFP Python SDK client (`kfp.client.Client`) supports submitting pipeline run
 The KFP documentation includes more detailed examples exploring pipeline implementation and runs. See the [Getting Started Guide][Getting Started] to quickly test out running a pipeline on a KFP cluster. For a more in-depth treatment of pipeline implementation, visit the [User Guide][User Guide] section of the documentation, including sections on [Core Functions][Core Functions] and [Data Handling][Data Handling].
 
 ## Next steps
-* Read an [overview of Kubeflow Pipelines](/docs/components/pipelines/overview/).
-* Follow the [pipelines quickstart guide](/docs/components/pipelines/getting-started/) 
+* Read an [overview of Kubeflow Pipelines][overview].
+* Follow the [pipelines quickstart guide][Getting Started] 
   to deploy Kubeflow and run a sample pipeline directly from the Kubeflow 
   Pipelines UI.
 
 
+[overview]: /docs/components/pipelines/overview
 [pipeline]: /docs/components/pipelines/concepts/pipeline
 [component]: /docs/components/pipelines/concepts/component
 [graph]: /docs/components/pipelines/concepts/graph
@@ -116,9 +117,9 @@ The KFP documentation includes more detailed examples exploring pipeline impleme
 [run]: /docs/components/pipelines/concepts/run
 [KFP SDK]: https://kubeflow-pipelines.readthedocs.io
 [IR YAML]: /docs/components/pipelines/concepts/ir-yaml
-[Getting Started]: docs/components/pipelines/getting-started
-[User Guide]: docs/components/pipelines/user-guides/
-[Data Handling]: docs/components/pipelines/user-guides/data-handling/parameters/
+[Getting Started]: /docs/components/pipelines/getting-started
+[User Guide]: /docs/components/pipelines/user-guides/
+[Data Handling]: /docs/components/pipelines/user-guides/data-handling/parameters/
 [Core Fuctions]: /docs/components/pipelines/user-guides/core-functions/ 
 [Run a Pipeline]: /docs/components/pipelines/user-guides/core-functions/run-a-pipeline/
 [Compile a Pipeline]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/
