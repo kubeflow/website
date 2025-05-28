@@ -268,7 +268,7 @@ The following table lists distributions which are <em>maintained</em> by their r
           {{< kf-version-notice >}}{{% nutanix/latest-version %}}{{< /kf-version-notice >}}
         </td>
         <td>
-          Nutanix Kubernetes Engine
+          Nutanix Kubernetes Platform
         </td>
         <td>
           <a href="https://nutanix.github.io/kubeflow-manifests">Website</a>
