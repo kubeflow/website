@@ -36,7 +36,7 @@ A KFP [pipeline][pipeline] consists of the following key elements:
 - **[component][component] tasks** - define the individual pipeline steps that will run in containers
 
 ### 3. Control Logic
-- **flow logic** - sequential, parallel (see [Control Flow][Control Flow])
+- **flow logic** - sequential, parallel (see [Control Flow][control-flow])
 - **conditional logic** - if, elif, else (see [Control Flow/Conditions][Conditions])
 - **parameter passing** - support for small values of types like strings, numbers, lists, dicts, bool (see [Pass small amounts of data between components][Param Passing])
 - **artifact inputs and outputs** - datasets, models, markdown, HTML, metrics (see [Create, use, pass, and track ML artifacts][Artifact Handling])
@@ -120,7 +120,7 @@ The KFP documentation includes more detailed examples exploring pipeline impleme
 [Getting Started]: /docs/components/pipelines/getting-started
 [User Guide]: /docs/components/pipelines/user-guides/
 [Data Handling]: /docs/components/pipelines/user-guides/data-handling/parameters/
-[Core Fuctions]: /docs/components/pipelines/user-guides/core-functions/ 
+[Core Functions]: /docs/components/pipelines/user-guides/core-functions/ 
 [Run a Pipeline]: /docs/components/pipelines/user-guides/core-functions/run-a-pipeline/
 [Compile a Pipeline]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/
 [Param Passing]: /docs/components/pipelines/user-guides/data-handling/parameters/
@@ -129,3 +129,4 @@ The KFP documentation includes more detailed examples exploring pipeline impleme
 [Conditions]: /docs/components/pipelines/user-guides/core-functions/control-flow/#conditions
 [Caching]: /docs/components/pipelines/user-guides/core-functions/caching/
 [Pipeline Root]: /docs/components/pipelines/concepts/pipeline-root
+[control-flow]: /docs/components/pipelines/user-guides/core-functions/control-flow

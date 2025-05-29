@@ -115,6 +115,7 @@ Guide]. Also, consult the [Pipeline Root Configuration Guide][Pipeline Root Guid
 
 [artifact]: /docs/components/pipelines/concepts/output-artifact
 [run]: /docs/components/pipelines/concepts/run
+[pipeline]: /docs/components/pipelines/concepts/pipeline
 [Pipeline Root Guide]: /docs/components/pipelines/user-guides/data-handling/pipeline-root
 [Kubeflow Pipelines deployment guide]: /docs/components/pipelines/operator-guides/installation/
 [API Server Storage]: /docs/components/pipelines/operator-guides/configure-object-store/#kfp-api-server
