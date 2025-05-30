@@ -24,8 +24,6 @@ The Kubernetes Operator for Apache Spark currently supports the following list o
 - Supports automatic application re-submission for updated `SparkApplication` objects with updated specification.
 - Supports automatic application restart with a configurable restart policy.
 - Supports automatic retries of failed submissions with optional linear back-off.
-- Supports mounting local Hadoop configuration as a Kubernetes ConfigMap automatically via `sparkctl`.
-- Supports automatically staging local application dependencies to Google Cloud Storage (GCS) via `sparkctl`.
 - Supports collecting and exporting application-level metrics and driver/executor metrics to Prometheus.
 
 ## Architecture
@@ -37,7 +35,6 @@ The operator consists of:
 - a *submission runner* that runs `spark-submit` for submissions received from the controller,
 - a *Spark pod monitor* that watches for Spark pods and sends pod status updates to the controller,
 - a [Mutating Admission Webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/) that handles customizations for Spark driver and executor pods based on the annotations on the pods added by the controller,
-- and also a command-line tool named `sparkctl` for working with the operator.
 
 The following diagram shows how different components interact and work together.
 
@@ -45,7 +42,7 @@ The following diagram shows how different components interact and work together.
   alt="Spark Operator Architecture Diagram"
   class="mt-3 mb-3 border rounded">
 
-Specifically, a user uses the `sparkctl` (or `kubectl`) to create a `SparkApplication` object. The `SparkApplication` controller receives the object through a watcher from the API server, creates a submission carrying the `spark-submit` arguments, and sends the submission to the *submission runner*. The submission runner submits the application to run and creates the driver pod of the application. Upon starting, the driver pod creates the executor pods. While the application is running, the *Spark pod monitor* watches the pods of the application and sends status updates of the pods back to the controller, which then updates the status of the application accordingly.
+Specifically, a user uses the `kubectl` to create a `SparkApplication` object. The `SparkApplication` controller receives the object through a watcher from the API server, creates a submission carrying the `spark-submit` arguments, and sends the submission to the *submission runner*. The submission runner submits the application to run and creates the driver pod of the application. Upon starting, the driver pod creates the executor pods. While the application is running, the *Spark pod monitor* watches the pods of the application and sends status updates of the pods back to the controller, which then updates the status of the application accordingly.
 
 ## The CRD Controller
 
@@ -72,7 +69,3 @@ When the operator decides to restart an application, it cleans up the Kubernetes
 ## Mutating Admission Webhook
 
 The operator comes with an optional mutating admission webhook for customizing Spark driver and executor pods based on certain annotations on the pods added by the CRD controller. The annotations are set by the operator based on the application specifications. All Spark pod customization needs except for those natively support by Spark on Kubernetes are handled by the mutating admission webhook.
-
-## Command-line Tool: Sparkctl
-
-[sparkctl](https://github.com/kubeflow/spark-operator/blob/master/cmd/sparkctl/README.md) is a command-line tool for working with the operator. It supports creating a `SparkApplication`object from a YAML file, listing existing `SparkApplication` objects, checking status of a `SparkApplication`, forwarding from a local port to the remote port on which the Spark driver runs, and deleting a `SparkApplication` object. For more details on `sparkctl`, please refer to [README](https://github.com/kubeflow/spark-operator/blob/master/cmd/sparkctl/README.md).
