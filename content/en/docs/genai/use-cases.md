@@ -14,13 +14,13 @@ Kubeflow is an open-source MLOps platform that unifies key components—Kubeflow
 ## Table of Contents
 
 1. [Synthetic Data Generation](#synthetic-data-generation)  
-2. [Retrieval-Augmented Generation (RAG)](#retrieval-augmented-generation-rag)  
-3. [Fine-Tuning LLMs](#fine-tuning-llms)  
-4. [Hyperparameter Optimization](#hyperparameter-optimization)  
-5. [Inference at Scale](#inference-at-scale)  
-6. [Model Evaluation](#model-evaluation)  
-7. [Beyond Core Use Cases](#beyond-core-use-cases)  
-8. [Conclusion](#conclusion)  
+1. [Retrieval-Augmented Generation (RAG)](#retrieval-augmented-generation-rag)  
+1. [Scaling RAG Data Transformation with Spark](#scaling-rag-data-transformation-with-spark)
+1. [Fine-Tuning LLMs](#fine-tuning-llms)  
+1. [Hyperparameter Optimization](#hyperparameter-optimization)  
+1. [Inference at Scale](#inference-at-scale)  
+1. [Model Evaluation](#model-evaluation)  
+1. [Beyond Core Use Cases](#beyond-core-use-cases)  
 
 ---
 
