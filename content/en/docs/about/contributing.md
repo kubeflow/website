@@ -205,9 +205,7 @@ GitHub usernames and aliases listed in OWNERS files are case-insensitive.
 
 ### Quirks of the process
 
-There are a number of behaviors we've observed that while _possible_ are discouraged, as they go
-against the intent of this review process. Some of these could be prevented in the future, but this
-is the state of today.
+There are a number of behaviors we’ve observed that, while possible, are discouraged, as they go against the intent of this review process. Some of these could be prevented in the future, but this is the state of things today.
 
 - An **approver**'s `/lgtm` is simultaneously interpreted as an `/approve`
   - While a convenient shortcut for some, it can be surprising that the same command is interpreted
