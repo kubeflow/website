@@ -4,7 +4,7 @@ description = "Information about the Kubeflow 1.10 release"
 weight = 95
 +++
 
-## Kubeflow 1.10.0
+## Kubeflow 1.10.1
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -153,7 +153,7 @@ weight = 95
         <td rowspan="1" class="align-middle">Pipelines Working Group</td>
         <td>Kubeflow Pipelines</td>
         <td>
-          <a href="https://github.com/kubeflow/pipelines/releases/tag/2.4.1">v2.4.1</a>
+          <a href="https://github.com/kubeflow/pipelines/releases/tag/2.5.0">v2.5.0</a>
         </td>
       </tr>
       <!-- ======================= -->
@@ -163,7 +163,7 @@ weight = 95
         <td rowspan="1" class="align-middle">Serving Working Group</td>
         <td>KServe</td>
         <td>
-          <a href="https://github.com/kserve/kserve/releases/tag/v0.14.1">v0.14.1</a>
+          <a href="https://github.com/kserve/kserve/releases/tag/v0.15.0">v0.15.0</a>
         </td>
       </tr>
       <!-- ======================= -->
@@ -173,7 +173,7 @@ weight = 95
         <td rowspan="1" class="align-middle">Training Working Group</td>
         <td>Training Operator</td>
         <td>
-          <a href="https://github.com/kubeflow/training-operator/releases/tag/v1.9.0">v1.9.0</a>
+          <a href="https://github.com/kubeflow/training-operator/releases/tag/v1.9.2">v1.9.2</a>
         </td>
       </tr>
       <!-- ======================= -->
@@ -183,13 +183,13 @@ weight = 95
         <td rowspan="2" class="align-middle">Data Working Group</td>
         <td>Model Registry</td>
         <td>
-          <a href="https://github.com/kubeflow/model-registry/releases/tag/v0.2.15">v0.2.15</a>
+          <a href="https://github.com/kubeflow/model-registry/releases/tag/v0.2.17">v0.2.17</a>
         </td>
       </tr>
       <tr>
         <td>Spark Operator</td>
         <td>
-          <a href="https://github.com/kubeflow/spark-operator/releases/tag/v2.1.0">v2.1.0</a>
+          <a href="https://github.com/kubeflow/spark-operator/releases/tag/v2.1.1">v2.1.1</a>
         </td>
       </tr>
   </tbody>
@@ -231,7 +231,7 @@ This information is only for the manifests found in the <a href="https://github.
         <td>
           <a href="https://istio.io/">Istio</a>
         </td>
-        <td>1.24.2</td>
+        <td>1.24.3</td>
       </tr>
       <!-- ======================= -->
       <!-- cert-manager  -->
@@ -267,7 +267,7 @@ This information is only for the manifests found in the <a href="https://github.
         <td>
           <a href="https://knative.dev/docs/serving/">Knative Serving</a>
         </td>
-        <td>1.16.4</td>
+        <td>1.16.2</td>
         <td rowspan="2" class="align-middle">
           <i>Knative is only needed when using the optional <a href="https://kserve.github.io/website/">KServe Component</a>.</i>
         </td>
