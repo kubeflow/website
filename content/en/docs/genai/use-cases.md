@@ -7,7 +7,10 @@ aliases = ["/genai/use-cases/"]
 
 # Powering GenAI Use Cases with Kubeflow
 
-Kubeflow is an open-source MLOps platform that unifies key components—Kubeflow Pipelines for workflow orchestration, the Training Operator for distributed model training, Katib for automated tuning, Feast for feature management, and KServe for scalable serving—to power every stage of a Generative AI (GenAI) application lifecycle. From generating synthetic data to retrieval-augmented generation (RAG), fine-tuning large language models (LLMs), hyperparameter optimization, inference at scale, and evaluation, Kubeflow’s modular, Kubernetes-native architecture makes building end-to-end GenAI pipelines both reproducible and production-ready.
+Kubeflow Projects are powered every stage of GenAI application lifecycle.
+
+From generating synthetic data to retrieval-augmented generation (RAG), fine-tuning large language models (LLMs), hyperparameter optimization, inference at scale, and evaluation,
+Kubeflow’s modular, Kubernetes-native architecture makes building end-to-end GenAI pipelines both reproducible and production-ready.
 
 ---
 
@@ -26,7 +29,7 @@ Kubeflow is an open-source MLOps platform that unifies key components—Kubeflow
 
 ## Synthetic Data Generation
 
-When real data is scarce or sensitive, Kubeflow Pipelines automates the creation of high-fidelity synthetic datasets using techniques like GANs, VAEs, and statistical copulas. By defining parameterized pipeline components that:
+When real data is scarce or sensitive, Kubeflow Pipelines automates the creation of high-fidelity synthetic datasets using techniques like [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), [VAEs](https://en.wikipedia.org/wiki/Variational_autoencoder), and [statistical copulas](https://gmd.copernicus.org/preprints/gmd-2020-427/gmd-2020-427.pdf). By defining parameterized pipeline components that:
 
 - Train synthesizer models  
 - Validate synthetic output against privacy/fidelity criteria  
@@ -54,7 +57,7 @@ This workflow is detailed in the [Katib RAG blog post](https://blog.kubeflow.org
 
 ## Scaling RAG Data Transformation with Spark
 
-Preprocessing massive document collections for RAG pipelines—text cleaning, chunking, and embedding generation—can become a bottleneck. Kubeflow integrates with the Spark Operator to run distributed Spark jobs on Kubernetes, allowing you to:
+Preprocessing massive document collections for RAG pipelines—text cleaning, chunking, and embedding generation—can become a bottleneck. Kubeflow integrates with the [Spark Operator](/docs/components/spark-operator/overview/) to run distributed Spark jobs on Kubernetes, allowing you to:
 
 - Ingest & Process Raw Documents: Read text files or PDFs from cloud storage (S3, GCS) or databases.
 - Text Chunking: Normalize, tokenize, and split content into fixed-size passages with overlap.
@@ -66,7 +69,7 @@ Preprocessing massive document collections for RAG pipelines—text cleaning, ch
 
 ## Fine-Tuning LLMs
 
-Domain-specific fine-tuning of pre-trained LLMs is streamlined by the Kubeflow Training Operator’s legacy Trainer API:
+Domain-specific fine-tuning of pre-trained LLMs is streamlined by the [Kubeflow Training Operator’s legacy Trainer API](docs/components/trainer/legacy-v1/user-guides/fine-tuning/):
 
 ```yaml
 apiVersion: kubeflow.org/v1
@@ -109,12 +112,10 @@ Automated tuning is essential to maximize model performance:
 
 Katib Experiments let you define hyperparameter search spaces and optimization objectives (e.g., minimize loss, maximize BLEU).
 
-GSoC-2024 Hyperparameter Optimization API provides programmatic Experiment/Trial management, metric collection, and result tracking.
-
-Explore the GSoC 2024 project here: [GSoC-2024 Project 4: HPO API](https://blog.kubeflow.org/gsoc-2024-project-4/).
+Katib allows you to effortlessly [optimize hyperparameters of LLMs using distributed PyTorchJobs](https://blog.kubeflow.org/gsoc-2024-project-4/).
 
 ## Inference at Scale
-After training and tuning, KServe delivers scalable, framework-agnostic inference:
+After training and tuning, [KServe](docs/external-add-ons/kserve/introduction) delivers scalable, framework-agnostic inference:
 
 - Expose models via Kubernetes Custom Resources
 
@@ -132,7 +133,7 @@ Rigorous evaluation guards against drift and degradation:
     - Statistical benchmarks for synthetic data
     - Text metrics (BLEU, ROUGE) for generation quality
 
-- Early-Stopping & Tuning
+- [Early-Stopping & Tuning](docs/components/katib/user-guides/early-stopping/)
     - Leverage Katib’s metric collector to enforce early-stop rules
     - Close the loop: evaluation → tuning → retrain
 
@@ -150,6 +151,6 @@ Kubeflow’s ecosystem continues to expand:
 
 - Feast [supports vector similarity search](https://docs.feast.dev/tutorials/rag-with-docling) for RAG and other next-gen AI workloads
 
-- Each component plugs seamlessly into Kubernetes, ensuring portability and consistency.
+- Each Kubeflow Project plugs seamlessly into Kubernetes, ensuring portability and consistency.
 
 
