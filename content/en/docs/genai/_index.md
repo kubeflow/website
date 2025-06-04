@@ -1,7 +1,7 @@
 +++
 title = "GenAI"
 description = "GenAI with Kubeflow"
-weight = 10
+weight = 25
 +++
 
 
