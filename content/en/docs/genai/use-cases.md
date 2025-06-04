@@ -69,6 +69,8 @@ Preprocessing massive document collections for RAG pipelines—text cleaning, ch
 
 ## Fine-Tuning LLMs
 
+Check out our [latest Fine-Tuning](https://github.com/kubeflow/trainer/blob/master/examples/deepspeed/text-summarization/T5-Fine-Tuning.ipynb) example with DeepSpeed and the Kubeflow Trainer v2!
+
 Domain-specific fine-tuning of pre-trained LLMs is streamlined by the [Kubeflow Training Operator’s legacy Trainer API](docs/components/trainer/legacy-v1/user-guides/fine-tuning/):
 
 ```yaml
