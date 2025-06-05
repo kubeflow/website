@@ -73,9 +73,7 @@ Development
 
 Build
   build-operator                  Build Spark operator.
-  build-sparkctl                  Build sparkctl binary.
-  install-sparkctl                Install sparkctl binary.
-  clean                           Clean spark-operator and sparkctl binaries.
+  clean                           Clean spark-operator.
   build-api-docs                  Build api documentation.
   docker-build                    Build docker image with the operator.
   docker-push                     Push docker image with the operator.
