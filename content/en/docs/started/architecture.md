@@ -138,7 +138,7 @@ See the following sets of reference documentation:
 - [Pipelines reference docs](/docs/components/pipelines/reference/) for the Kubeflow
   Pipelines API and SDK, including the Kubeflow Pipelines domain-specific
   language (DSL).
-- [Kubeflow Python SDK](https://github.com/kubeflow/trainer/blob/master/sdk/kubeflow/trainer/api/trainer_client.py)
+- [Kubeflow Python SDK](https://github.com/kubeflow/sdk/blob/main/python/kubeflow/trainer/api/trainer_client.py)
   to interact with Kubeflow Trainer APIs and to manage TrainJobs.
 - [Katib Python SDK](https://github.com/kubeflow/katib/blob/086093fed72610c227e3ae1b4044f27afa940852/sdk/python/v1beta1/kubeflow/katib/api/katib_client.py)
   to manage Katib hyperparameter tuning Experiments using Python APIs.
