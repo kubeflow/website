@@ -19,7 +19,7 @@ Kubeflow Trainer.
 Install the latest Kubeflow Python SDK version directly from the source repository:
 
 ```bash
-pip install git+https://github.com/kubeflow/trainer.git@master#subdirectory=sdk
+pip install git+https://github.com/kubeflow/sdk.git@main#subdirectory=python
 ```
 
 ## Getting Started with PyTorch
