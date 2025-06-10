@@ -45,7 +45,7 @@ Spark Operator [Helm chart](https://github.com/kubeflow/spark-operator/tree/mast
 
 * **Kubernetes Cluster**: Tested on **Amazon EKS 1.31** (eks.19), adaptable to any **Kubernetes** environment.
 * **Networking**:
-    * Two Subnets: Deployed to `100.64.128.0/171` and `100.64.0.0/17`  subnets (32766 IP addresses each) spread across two availability zones in a VPC with two CIDRs attached. Spark Jobs targeted to run one a single AZ.
+    * Two Subnets: Deployed to `100.64.128.0/17` and `100.64.0.0/17`  subnets (32766 IP addresses each) spread across two availability zones in a VPC with two CIDRs attached. Spark Jobs targeted to run one a single AZ.
 * **Node Configuration**:
     * **Dedicated Node Group for Spark Pods**: Optimized for pod bin-packing efficiency to minimize costs, using `200` `m6a.4xlarge nodes` (16 vCPUs, 64 GB RAM each). Default pod capacity is **110** per node, increased to **220** via kubelet settings (`maxPods`) to handle more Spark pods, each consuming one IP address.
     * **Dedicated Node Group for Spark Operator**: Ensures that the Spark Operator runs in isolation on a compute intensive c5.9xlarge instance, preventing interference from other workloads. This approach follows best practices for system-critical components, reducing the risk of eviction or resource contention.
