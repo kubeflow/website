@@ -505,7 +505,7 @@ nav.foldable-nav {
     transition: background-color 75ms linear;
   }
 
-  .card-deck {
+  .card-deck, .card-columns {
     .card {
       border: 1px solid $home-card-body-bg;
     }
