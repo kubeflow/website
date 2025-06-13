@@ -276,17 +276,17 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
-          QBO
+          QBO GPU Cloud
         </td>
         <td>
           {{< kf-version-notice >}}{{% qbo/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/alexeadem/qbo-ce/blob/main/CHANGELOG.md">[release notes]</a></sup>
+          <sup><a href="https://docs.qbo.io/news/2025/05/09/api-1-5-14-released/">[release notes]</a></sup>
         </td>
         <td>
           QBO Kubernetes Engine (QKE)
         </td>
          <td>
-          <a href="https://docs.qbo.io/#/qke?id=kubeflow">Website</a>
+          <a href="https://docs.qbo.io/demos/kubeflow">Website</a>
         </td>
       </tr>
       <tr>
