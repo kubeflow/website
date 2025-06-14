@@ -27,6 +27,8 @@ Read more about the KSC [charter here](https://github.com/kubeflow/community/blo
 
 The [Kubeflow Outreach Committee (KOC)](https://github.com/kubeflow/community/blob/master/KUBEFLOW-OUTREACH-COMMITTEE.md) is dedicated to fostering growth, engagement, and community outreach for the Kubeflow project. It focuses on activities that promote Kubeflow to new and existing users, contributors, and stakeholders while building an inclusive, vibrant, and diverse community within the broader AI/ML ecosystem.
 
+Read more about the KOC [charter here](https://github.com/kubeflow/community/blob/master/KUBEFLOW-OUTREACH-COMMITTEE.md#charter).
+
 ## 4. Working Groups
 
 Kubeflow has multiple working groups that own subpojects. A major pillar of KF's governance model is working groups that own subprojects. At the time, formation of WGs and the precise processes by which WGs would operate was delayed until KF was large enough to warrant WGs. 
