@@ -121,7 +121,7 @@ Finally, we can schedule deletion of the PVC after `task2` finishes to clean up 
 For the full pipeline and more information, see a [similar example][full-example] in the [`kfp-kubernetes` documentation][kfp-kubernetes-docs].
 
 
-[ir-yaml]: /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline#ir-yaml
+[ir-yaml]: /docs/components/pipelines/concepts/ir-yaml
 [oss-be]: /docs/components/pipelines/operator-guides/installation/
 [kfp-kubernetes-pypi]: https://pypi.org/project/kfp-kubernetes/
 [task-level-config-methods]: /docs/components/pipelines/user-guides/components/compose-components-into-pipelines/#task-configurations
