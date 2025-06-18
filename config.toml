@@ -64,7 +64,7 @@ ignoreFiles = []
     name = "Kubeflow Summit NA 2025"
     weight = -1100
     pre = "<i class='fas fa-bullhorn pr-2 text-danger'></i>"
-    post = "<br><span class='badge badge-danger'>CFP Open</span> <span class='badge badge-light'>Oct 2025</span>"
+    post = "<br><span class='badge badge-danger'>CFP Open</span> <span class='badge badge-light'>Nov 2025</span>"
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/kubeflow-summit/"
   [[menu.main]]
     name = "Kubeflow Virtual Symposium"
