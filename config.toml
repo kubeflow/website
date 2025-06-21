@@ -60,6 +60,12 @@ ignoreFiles = []
 # Hugo - Top-level navigation (horizontal)
 ###############################################################################
 [menu]
+ [[menu.main]]
+    name = "Kubeflow Summit NA 2025"
+    weight = -1100
+    pre = "<i class='fas fa-bullhorn pr-2 text-danger'></i>"
+    post = "<br><span class='badge badge-danger'>CFP Open</span> <span class='badge badge-light'>Nov 2025</span>"
+    url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/kubeflow-summit/"
   [[menu.main]]
     name = "Kubeflow Virtual Symposium"
     weight = -1000
@@ -70,7 +76,7 @@ ignoreFiles = []
     name = "GSoC 2025"
     weight = -900
     pre = "<i class='fas pr-2'><img src='/docs/images/logos/gsoc.svg' style='height: 1.22em;'></i>"
-      post = "<br><span class='badge badge-info'>Application Closed</span>"
+    post = "<br><span class='badge badge-success'>Ongoing</span>"
     url = "/events/gsoc-2025/"
   [[menu.main]]
     name = "Docs"

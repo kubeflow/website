@@ -62,7 +62,8 @@
     background-color: $td-sidebar-bg-color;
     height: unset;
   }
-  .td-sidebar, .td-sidebar-toc {
+  .td-sidebar,
+  .td-sidebar-toc {
     background-color: unset;
   }
   .td-main {
@@ -187,7 +188,7 @@ footer {
 
   p {
     margin-bottom: 0.4rem;
-    line-height: 1.0rem;
+    line-height: 1rem;
   }
 
   small {
@@ -295,17 +296,16 @@ footer {
 }
 
 // reduce padding for the root level of the sidebar
-nav.foldable-nav .with-child, nav.foldable-nav .without-child {
+nav.foldable-nav .with-child,
+nav.foldable-nav .without-child {
   padding-left: 0;
   position: unset;
 }
 
 // style the sidebar like a folder tree
 nav.foldable-nav {
-
   // apply styles to the main sidebar sections
   .ul-1 {
-
     // reduce padding of the sidebar links
     .with-child {
       padding-left: 1.5rem;
@@ -330,7 +330,7 @@ nav.foldable-nav {
 
     // show a border on the left of open sections
     .with-child > input:checked ~ ul {
-      border-left: .1rem dotted $td-sidebar-left-stroke-color;
+      border-left: 0.1rem dotted $td-sidebar-left-stroke-color;
 
       // round the bottom left corner
       border-bottom-left-radius: 1rem;
@@ -343,7 +343,7 @@ nav.foldable-nav {
 
     // color the border for the active path
     .with-child.active-path > ul {
-      border-left: .1rem solid $td-sidebar-left-stroke-active-color !important;
+      border-left: 0.1rem solid $td-sidebar-left-stroke-active-color !important;
     }
 
     // make the arrow for the non-active sections gray
@@ -400,7 +400,7 @@ nav.foldable-nav {
     width: 1px;
     height: 100%;
     background-color: white;
-    opacity: .15;
+    opacity: 0.15;
   }
 
   .navbar-brand {
@@ -453,8 +453,7 @@ nav.foldable-nav {
   }
 
   .navbar-nav {
-    // allow wrapping of navbar links
-    white-space: normal;
+    white-space: nowrap;
 
     .dropdown-toggle {
       white-space: normal;
@@ -473,7 +472,7 @@ nav.foldable-nav {
     }
 
     @include media-breakpoint-down(md) {
-      font-size: .875rem;
+      font-size: 0.875rem;
     }
 
     // reduce padding for theme icon
@@ -487,7 +486,6 @@ nav.foldable-nav {
 // Home page
 // --------------------------------------------------
 .td-home {
-
   // make sure kubeflow title is white
   .display-1 {
     color: $white;
@@ -505,7 +503,8 @@ nav.foldable-nav {
     transition: background-color 75ms linear;
   }
 
-  .card-deck, .card-columns {
+  .card-deck,
+  .card-columns {
     .card {
       border: 1px solid $home-card-body-bg;
     }
@@ -563,11 +562,13 @@ nav.foldable-nav {
     height: auto;
   }
 
-  .image.left, .image.right {
+  .image.left,
+  .image.right {
     max-width: 45%;
   }
 
-  .image.left::after, .image.right::after {
+  .image.left::after,
+  .image.right::after {
     clear: both;
     content: "";
     display: block;
@@ -583,11 +584,15 @@ nav.foldable-nav {
     margin: 0 0 1.5em 1.5em;
   }
 
-  #overview, #pageContent, #cncf, #community {
+  #overview,
+  #pageContent,
+  #cncf,
+  #community {
     padding: 4rem 0 4rem 0 !important;
   }
 
-  #overview p, #community p {
+  #overview p,
+  #community p {
     font-size: 1.125em;
   }
 
@@ -631,7 +636,8 @@ nav.foldable-nav {
   }
 
   @include media-breakpoint-up(sm) {
-    #overview, #community {
+    #overview,
+    #community {
       font-size: 1.125em;
     }
     #pageContent .lead > .image {
@@ -674,11 +680,11 @@ nav.foldable-nav {
       -ms-flex-preferred-size: 70%;
       flex-basis: 70%;
     }
-    #pageContent .lead:nth-child(2n+0) > .image {
+    #pageContent .lead:nth-child(2n + 0) > .image {
       -ms-flex-order: 2;
       order: 2;
     }
-    #pageContent .lead:nth-child(2n+0) > .text {
+    #pageContent .lead:nth-child(2n + 0) > .text {
       -ms-flex-order: 1;
       order: 1;
     }
@@ -781,7 +787,9 @@ nav.foldable-nav {
 // --------------------------------------------------
 .td-content {
   // set the background color of inline code
-  p code, li > code, table code {
+  p code,
+  li > code,
+  table code {
     background-color: $code-inline-bg;
   }
 
