@@ -453,7 +453,8 @@ nav.foldable-nav {
   }
 
   .navbar-nav {
-    white-space: nowrap;
+    // allow wrapping of navbar links
+    white-space: normal;
 
     .dropdown-toggle {
       white-space: normal;
