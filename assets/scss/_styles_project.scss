@@ -543,11 +543,19 @@ nav.foldable-nav {
     }
   }
 
+  .adopter-logo {
+    pointer-events: none;
+    user-select: none;
+    height: 3rem;
+    width: 100%;
+  }
+
   .section-head {
     color: $home-section-title-color;
 
     font-size: 1.8rem;
     font-weight: bold;
+    line-height: 1.8;
 
     margin-bottom: 2rem;
     padding-bottom: 1rem;
@@ -585,10 +593,7 @@ nav.foldable-nav {
     margin: 0 0 1.5em 1.5em;
   }
 
-  #overview,
-  #pageContent,
-  #cncf,
-  #community {
+  #overview, #pageContent, #cncf, #community, #adopters {
     padding: 4rem 0 4rem 0 !important;
   }
 
@@ -598,6 +603,10 @@ nav.foldable-nav {
   }
 
   #overview {
+    border-bottom: 0.1rem solid $home-section-border-color;
+  }
+
+  #adopters {
     border-bottom: 0.1rem solid $home-section-border-color;
   }
 
