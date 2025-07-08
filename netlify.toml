@@ -40,3 +40,11 @@ package = "netlify-plugin-checklinks"
   HUGO_ENV = "development"
   HUGO_VERSION = "0.124.1"
   NODE_VERSION = "18"
+
+# Headers are added for security best practices.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src https:"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
