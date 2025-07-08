@@ -45,6 +45,6 @@ package = "netlify-plugin-checklinks"
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src https:"
+    # Content-Security-Policy = "default-src https:"
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "SAMEORIGIN"
