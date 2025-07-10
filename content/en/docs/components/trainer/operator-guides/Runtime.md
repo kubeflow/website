@@ -1,6 +1,6 @@
 +++
 title = "Runtime Guide"
-description = ""
+description = "Training runtime management guide"
 weight = 30
 +++
 
@@ -9,10 +9,11 @@ This guide explains how cluster administrators should manage `TrainingRuntime` a
 
 **Note**: **Runtimes** are the configurations or the blueprints which has the optimal configuration to run desired/specific task.
 
-### What is ClusterTrainingRuntime?
+### What is ClusterTrainingRuntime
 The ClusterTrainingRuntime is a cluster-scoped API in Kubeflow Trainer that allows platform administrators to manage templates for TrainJobs. Runtimes can be deployed across the entire Kubernetes cluster and reused by ML engineers in their TrainJobs. It simplifies the process of running training jobs by providing standardized blueprints and ready-to-use environments.
 
 ### Example of ClusterTrainingRuntime
+
 ```YAML
     apiVersion: kubeflow.org/v2alpha1
     kind: ClusterTrainingRuntime
@@ -23,35 +24,37 @@ The ClusterTrainingRuntime is a cluster-scoped API in Kubeflow Trainer that allo
         numNodes: 2
         torch:
           numProcPerNode: auto
-    podGroupPolicy:
-        coscheduling:
-          scheduleTimeoutSeconds: 100
-    template:
-        spec:
-          replicatedJobs:
-            - name: initializer
-            - name: trainer-node
+      podGroupPolicy:
+          coscheduling:
+            scheduleTimeoutSeconds: 100
+      template:
+          spec:
+            replicatedJobs:
+              - name: initializer
+              - name: trainer-node
 ```
 - Referencing:
+In Kubeflow, a ClusterTrainingRuntime defines a reusable template for distributed training, specifying node count, processes, and scheduling policies. A TrainJob references this runtime via the runtimeRef field, linking to its apiGroup, kind and name. This enables the TrainJob to use the runtime’s configuration for consistent and modular training setups.
+
 ```YAML
     apiVersion: trainer.kubeflow.org/v2alpha1
     kind: TrainJob
     metadata:
         name: example-train-job
-        namespace: default #any namespace
+        namespace: default
     spec:
       runtimeRef:
         apiGroup: kubeflow.org
-        name: example-cluster-training-runtime
+        name: torch-cluster-runtime
         kind: ClusterTrainingRuntime
         ...
 ```
+### What is TrainingRuntime
 
-### What is TrainingRuntime?
-The Training Runtime on the other hand is a runtime defined at the namespace level. This means that the runtime once defined is specific for only a particular namespace. It can be perfect for teams or projects that need their own customized training setups, offering flexibility for decentralized control.
+The TrainingRuntime is a namespace-scoped API in Kubeflow Trainer that allows platform administrators to manage templates for TrainJobs per namespace. It can be perfect for teams or projects that need their own customized training setups, offering flexibility for decentralized control.
 
 ### Example of TrainingRuntime
-
+- Example:
 ```YAML
     apiVersion: kubeflow.org/v2alpha1
     kind: TrainingRuntime
@@ -69,6 +72,7 @@ The Training Runtime on the other hand is a runtime defined at the namespace lev
               - name: pytorch-container
                 image: pytorch/pytorch:1.9.0-cuda11.1-cudnn8-runtime
                 command: ["python", "/path/to/train.py"]
+                resources: 
 ```
 - Reference:
 ```YAML
@@ -90,7 +94,7 @@ The Training Runtime on the other hand is a runtime defined at the namespace lev
 The `MLPolicy` API configures the ML-specific parameters. For example, configuration for PyTorch Distributed or MPI hostfile location.
 
 Configuration
-Define MLPolicy in ClusterTrainingRuntime or TrainingRuntime:
+define MLPolicy in ClusterTrainingRuntime or TrainingRuntime:
 ```YAML
 mlPolicy:
   numNodes: 3
@@ -104,90 +108,85 @@ mlPolicy:
 
 For a complete list of available options and detailed API fields, refer to the [Kubeflow Trainer API reference](https://pkg.go.dev/github.com/kubeflow/training-operator@v1.9.2/pkg/apis/kubeflow.org/v2alpha1#MLPolicy).
 
-### What is Template ?
+### What is Template
+
 The `Template` API configures [the JobSet template](https://jobset.sigs.k8s.io/docs/overview/) to execute the TrainJob. Kubeflow Trainer controller manager creates the appropriate JobSet based on `Template` and other configurations from the runtime (e.g. `MLPolicy`).
 
 #### Template Configuration 
+
 For each job in replicatedJobs, you can provide detailed settings, like the container image, commands, and resource requirements.
 Here's an example below.
 ```YAML
 replicatedJobs:
-        - name: initializer
-          template:
-            spec:
-              containers:
-                - name: init-container
-                  image: busybox
-                  command: ["echo", "Initializing..."]
-        - name: trainer-node
-          template:
-            spec:
-              containers:
-                - name: trainer-container
-                  image: pytorch/pytorch:1.9.0-cuda11.1-cudnn8-runtime
-                  command: ["python", "/path/to/train.py"]
-                  resources:
-                    requests:
-                      cpu: "2"
-                      memory: "4Gi"
-                    limits:
-                      nvidia.com/gpu: "1"
-```
-
-Kubeflow has some Dedicated replicated jobset templete, Below is an example: 
-```YAML
-replicatedJobs:
-  - name: trainer-node
-    containers:
-      - name: trainer
-        image: docker.io/kubeflow/torch-llm-trainer
-        resources:
-          limits:
-            nvidia.com/gpu: 4
-        volumeMounts:
-          - mountPath: /workspace/dataset
-            name: storage-initializer
-          - mountPath: /workspace/model
-            name: storage-initializer
-    volumes:
-      - name: storage-initializer
-        persistentVolumeClaim:
-          claimName: storage-initializer
+  - name: initializer
+        template:
+          spec:
+            containers:
+              - name: init-container
+                image: busybox
+                command: ["echo", "Initializing..."]
+      - name: trainer-node
+        template:
+          spec:
+            containers:
+              - name: trainer-container
+                image: pytorch/pytorch:1.9.0-cuda11.1-cudnn8-runtime
+                command: ["python", "/path/to/train.py"]
+                resources:
+                  requests:
+                    cpu: "2"
+                    memory: "4Gi"
+                  limits:
+                    nvidia.com/gpu: "1"
 ```
 
 ### Ancestor Label Requirements for ReplicatedJobs
-When defining `replicatedJobs` such as `initializer` and `trainer-node` (or `node`), it is important to ensure that each job template includes the necessary ancestor labels. These labels are used by the Kubeflow Trainer controller to track job lineage, manage dependencies, and enable correct orchestration of distributed training jobs.
+When defining `replicatedJobs` such as `initializer` and `node`, it is important to ensure that each job template includes the necessary ancestor labels. These labels are used by the Kubeflow Trainer controller to inject values from the TrainJob to the underlying training job.
 
 **Required Labels:**
-- `kubeflow.org/ancestor`: Identifies the parent resource (e.g., the `TrainJob` or runtime) that created this job.
-- `kubeflow.org/role`: Specifies the role of the replicated job, such as `initializer` or `node`.
+- `trainer.kubeflow.org/trainjob-ancestor-step`: Specifies the role or step of the replicated job in the training workflow (e.g., `dataset-initializer`, `model-initializer` or `trainer`).
 
 **Example:**
 ```YAML
-replicatedJobs:
-  - name: initializer
-    template:
-      metadata:
-        labels:
-          kubeflow.org/ancestor: example-train-job
-          kubeflow.org/role: initializer
-      spec:
-        containers:
-          - name: init-container
-            image: busybox
-            command: ["echo", "Initializing..."]
-  - name: trainer-node
-    template:
-      metadata:
-        labels:
-          kubeflow.org/ancestor: example-train-job
-          kubeflow.org/role: node
-      spec:
-        containers:
-          - name: trainer-container
-            image: pytorch/pytorch:1.9.0-cuda11.1-cudnn8-runtime
-            command: ["python", "/path/to/train.py"]
+apiVersion: trainer.kubeflow.org/v1alpha1
+kind: ClusterTrainingRuntime
+metadata:
+  name: example-runtime
+spec:
+  template:
+    spec:
+      replicatedJobs:
+        - name: dataset-initializer
+          template:
+            metadata:
+              labels:
+                trainer.kubeflow.org/trainjob-ancestor-step: dataset-initializer
+            spec:
+              template:
+                spec:
+                  containers:
+                    - name: dataset-initializer
+                      image: ghcr.io/kubeflow/trainer/dataset-initializer
+        - name: model-initializer
+          template:
+            metadata:
+              labels:
+                trainer.kubeflow.org/trainjob-ancestor-step: model-initializer
+            spec:
+              template:
+                spec:
+                  containers:
+                    - name: model-initializer
+                      image: ghcr.io/kubeflow/trainer/model-initializer
+        - name: node
+          template:
+            metadata:
+              labels:
+                trainer.kubeflow.org/trainjob-ancestor-step: trainer
+            spec:
+              template:
+                spec:
+                  containers:
+                    - name: node
+                      image: ghcr.io/kubeflow/trainer/torchtune-trainer
 ```
-
-> **Note:**  
-> These labels must be present in the metadata of each replicated job template. The controller uses them to manage job dependencies and ensure correct execution order.
