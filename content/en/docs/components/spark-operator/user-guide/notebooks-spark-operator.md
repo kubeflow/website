@@ -81,20 +81,27 @@ spec:
 
 ```
 Apply it:
+
+This step creates a dedicated Kubernetes namespace (enterprise-gateway) and sets up a local persistent volume and claim using hostPath.
 ```yaml
 kubectl apply -f enterprise-gateway-storage.yaml
 ```
 Then deploy Enterprise Gateway using Helm:
+
+The command below uses a YAML file named enterprise-gateway-helm.yaml, which includes an example configuration shown below.
+
 ```yaml
 helm upgrade --install enterprise-gateway \
   https://github.com/jupyter-server/enterprise_gateway/releases/download/v3.2.3/jupyter_enterprise_gateway_helm-3.2.3.tar.gz \
   --namespace enterprise-gateway \
-  --values enterprise-gateway-minikube-helm.yaml \
+  --values enterprise-gateway-helm.yaml \
   --create-namespace \
   --wait
 
 ```
-Example configuration yaml: Save the following manifest as `enterprise-gateway-minikube-helm.yaml`:
+Example configuration yaml:
+
+ Save the following manifest as `enterprise-gateway-helm.yaml`.
 ```yaml
 image: elyra/enterprise-gateway:3.2.3
 imagePullPolicy: Always
@@ -123,9 +130,9 @@ kip:
 ```
 This deploys JEG with remote kernel management and persistent kernelspec storage.
 
-## Step 2: Configure the Notebook CR
+## Step 2: Configure the Notebook to connect to the Jupyter Gateway
 
-Edit your Kubeflow Notebook resource to add the following environment variables:
+Each user will have to edit their Kubeflow Notebook's custom resources to configure the following environment variables to allow notebook to connect to the deployed Jupyter gateway.
     
 ```yaml
 env:
@@ -136,7 +143,32 @@ env:
 
 ```
 
-You can do this from the Kubeflow UI, Lens, or using kubectl to edit notebooks.
+You can do this from the Lens, or using the following kubectl command below.
+
+The <NOTEBOOK_NAME> parameter is the name of the notebook created on the Kubeflow Notebook workspace.
+
+```yaml
+kubectl patch notebook <NOTEBOOK_NAME> \
+  -n kubeflow-user-example-com \
+  --type='json' \
+  -p='[
+    {
+      "op": "add",
+      "path": "/spec/template/spec/containers/0/env",
+      "value": [
+        {
+          "name": "JUPYTER_GATEWAY_URL",
+          "value": "http://enterprise-gateway.enterprise-gateway:8888"
+        },
+        {
+          "name": "JUPYTER_GATEWAY_REQUEST_TIMEOUT",
+          "value": "120"
+        }
+      ]
+    }
+  ]'
+
+```
 
 These variables configure JupyterLab to forward kernel execution to JEG, which then runs PySpark jobs via the Spark Operator.
 
