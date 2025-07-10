@@ -72,7 +72,15 @@ The TrainingRuntime is a namespace-scoped API in Kubeflow Trainer that allows pl
               - name: pytorch-container
                 image: pytorch/pytorch:1.9.0-cuda11.1-cudnn8-runtime
                 command: ["python", "/path/to/train.py"]
-                resources: 
+                resources:
+                  requests:
+                    cpu: "1"
+                    memory: "2Gi"
+                    nvidia.com/gpu: "1"
+                  limits:
+                    cpu: "2"
+                    memory: "4Gi"
+                    nvidia.com/gpu: "1"
 ```
 - Reference:
 ```YAML
@@ -148,7 +156,7 @@ When defining `replicatedJobs` such as `initializer` and `node`, it is important
 
 **Example:**
 ```YAML
-apiVersion: trainer.kubeflow.org/v1alpha1
+apiVersion: kubeflow.org/v2alpha1
 kind: ClusterTrainingRuntime
 metadata:
   name: example-runtime
