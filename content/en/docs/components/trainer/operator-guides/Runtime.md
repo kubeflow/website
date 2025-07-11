@@ -1,6 +1,6 @@
 +++
 title = "Runtime Guide"
-description = "Training runtime management guide"
+description = "How to manage Runtimes with Kubeflow Trainer"
 weight = 30
 +++
 
@@ -54,7 +54,7 @@ In Kubeflow, a ClusterTrainingRuntime defines a reusable template for distribute
 The TrainingRuntime is a namespace-scoped API in Kubeflow Trainer that allows platform administrators to manage templates for TrainJobs per namespace. It can be perfect for teams or projects that need their own customized training setups, offering flexibility for decentralized control.
 
 ### Example of TrainingRuntime
-- Example:
+
 ```YAML
     apiVersion: kubeflow.org/v2alpha1
     kind: TrainingRuntime
@@ -64,7 +64,7 @@ The TrainingRuntime is a namespace-scoped API in Kubeflow Trainer that allows pl
     spec:
       mlPolicy:
           numNodes: 1
-          pytorch:
+          torch:
             numProcPerNode: 4
       template:
           spec:
@@ -82,7 +82,8 @@ The TrainingRuntime is a namespace-scoped API in Kubeflow Trainer that allows pl
                     memory: "4Gi"
                     nvidia.com/gpu: "1"
 ```
-- Reference:
+Referencing: In case of TrainingRuntime, the Kubernetes namespace is equal to the TrainJob's namespace.
+
 ```YAML
         apiVersion: kubeflow.org/v2alpha1
         kind: TrainJob
@@ -129,23 +130,27 @@ replicatedJobs:
   - name: initializer
         template:
           spec:
-            containers:
-              - name: init-container
-                image: busybox
-                command: ["echo", "Initializing..."]
+            template:
+              spec:
+                containers:
+                  - name: init-container
+                    image: busybox
+                    command: ["echo", "Initializing..."]
       - name: trainer-node
         template:
           spec:
-            containers:
-              - name: trainer-container
-                image: pytorch/pytorch:1.9.0-cuda11.1-cudnn8-runtime
-                command: ["python", "/path/to/train.py"]
-                resources:
-                  requests:
-                    cpu: "2"
-                    memory: "4Gi"
-                  limits:
-                    nvidia.com/gpu: "1"
+            template:
+              spec:  
+                containers:
+                  - name: trainer-container
+                    image: pytorch/pytorch:1.9.0-cuda11.1-cudnn8-runtime
+                    command: ["python", "/path/to/train.py"]
+                    resources:
+                      requests:
+                        cpu: "2"
+                        memory: "4Gi"
+                      limits:
+                        nvidia.com/gpu: "1"
 ```
 
 ### Ancestor Label Requirements for ReplicatedJobs
