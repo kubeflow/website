@@ -82,7 +82,7 @@ The TrainingRuntime is a namespace-scoped API in Kubeflow Trainer that allows pl
                     memory: "4Gi"
                     nvidia.com/gpu: "1"
 ```
-Referencing: In case of TrainingRuntime, the Kubernetes namespace is equal to the TrainJob's namespace.
+Referencing: When using TrainingRuntime, the Kubernetes namespace must be the same as the TrainJob's namespace.
 
 ```YAML
         apiVersion: kubeflow.org/v2alpha1
@@ -102,8 +102,7 @@ Referencing: In case of TrainingRuntime, the Kubernetes namespace is equal to th
 
 The `MLPolicy` API configures the ML-specific parameters. For example, configuration for PyTorch Distributed or MPI hostfile location.
 
-Configuration
-define MLPolicy in ClusterTrainingRuntime or TrainingRuntime:
+To define MLPolicy in ClusterTrainingRuntime or TrainingRuntime:
 ```YAML
 mlPolicy:
   numNodes: 3
@@ -115,8 +114,7 @@ mlPolicy:
 - **Torch**: Configures distributed training for PyTorch jobs. Use this policy to set options like the number of processes per node (`numProcPerNode`) for PyTorch distributed workloads.
 - **MPI**: Configures distributed training using MPI. This policy allows you to specify options such as the number of processes per node and MPI implementation details.
 
-For a complete list of available options and detailed API fields, refer to the [Kubeflow Trainer API reference](https://pkg.go.dev/github.com/kubeflow/training-operator@v1.9.2/pkg/apis/kubeflow.org/v2alpha1#MLPolicy).
-
+For a complete list of available options and detailed API fields, refer to the [Kubeflow Trainer API reference](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#MLPolicy).
 ### What is Template
 
 The `Template` API configures [the JobSet template](https://jobset.sigs.k8s.io/docs/overview/) to execute the TrainJob. Kubeflow Trainer controller manager creates the appropriate JobSet based on `Template` and other configurations from the runtime (e.g. `MLPolicy`).
@@ -136,7 +134,7 @@ replicatedJobs:
                   - name: init-container
                     image: busybox
                     command: ["echo", "Initializing..."]
-      - name: trainer-node
+      - name: node
         template:
           spec:
             template:
