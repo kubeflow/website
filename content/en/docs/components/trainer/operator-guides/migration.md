@@ -23,15 +23,15 @@ The key features introduced by Kubeflow Trainer are:
 - Enhanced MPI support: featuring MPI-Operator V2 features with SSH-based optimization to boost
   MPI performance.
 
-## Migration paths
+## Migration Paths
 
 Kubeflow Trainer v2 introduces new APIs that replace the older, framework-specific CRDs such as `PyTorchJob`, `TFJob`, and `MPIJob`. These new APIs—`TrainingRuntime`, `TrainJob`, and `ClusterTrainingRuntime`—offer a more flexible and unified interface for defining training jobs across frameworks.
 
-This section shows how to migrate an existing PyTorch job to the new API.
+This section shows how to migrate an existing PyTorchJob to the new API.
 
 ### Migrate PyTorchJob to TrainingRuntime
 
-The following example demonstrates how to migrate from a `PyTorchJob` (v1) to a `TrainingRuntime` (v2alpha1).
+The following example demonstrates how to migrate from a `PyTorchJob` (v1) to a `TrainingRuntime` (v2alpha1),  utilizing the default Torch runtime and overriding it with TrainJob.
 
 ### Old: PyTorchJob (v1)
 ```yaml
@@ -61,44 +61,37 @@ spec:
               image: docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727
               command: ["python3", "/opt/pytorch-mnist/mnist.py", "--epochs=1"]
 ```
-### New: TrainingRuntime (v2alpha1)
+### New: TrainingRuntime with TrainJob Override (v2alpha1)
+
 ```yaml
 apiVersion: trainer.kubeflow.org/v2alpha1
-kind: TrainingRuntime
+kind: TrainJob
 metadata:
-  name: torch-distributed-multi-node
+  name: pytorch-simple
+  namespace: kubeflow
 spec:
-  mpiPolicy:
-    numNodes: 2
+  runtimeRef:
+    name: torch-distributed  
   template:
     spec:
-      replicatedJobs:
-        - name: node
-          template:
-            metadata:
-              labels:
-                trainer.kubeflow.org/trainjob-ancestor-step: trainer
-            spec:
-              containers:
-                - name: trainer
-                  image: docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727
-                  env:
-                    - name: MASTER_ADDR
-                      value: "pytorch-node-0-0.pytorch"
-                    - name: MASTER_PORT
-                      value: "29400"
-                  command: ["torchrun", "train.py"]
+      containers:
+        - name: trainer
+          image: docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727
+          command: ["torchrun", "/opt/pytorch-mnist/mnist.py", "--epochs=1"]
+          env:
+            - name: MASTER_ADDR
+              value: "pytorch-simple-0"  
+            - name: MASTER_PORT
+              value: "29400"
+      replicas: 2
 ```
-The new `TrainingRuntime` CRD allows you to define reusable templates and use MPI-based distributed training with greater flexibility. The `replicatedJobs` and `mpiPolicy` fields replace framework-specific roles like `Master` and `Worker`.
 
-### Version compatibility table
+### Additional Notes:
 
-The following table lists compatibility between Kubeflow Trainer versions, supported APIs, and minimum Kubernetes versions:
 
-| Trainer version | API version | CRDs introduced                                | Minimum Kubernetes version | Notes                        |
-|-----------------|-------------|-------------------------------------------------|-----------------------------|-------------------------------|
-| v1.4–v1.8       | v1          | `PyTorchJob`, `TFJob`, `MPIJob`, etc.          | 1.23+                       | Training Operator style       |
-| v1.9+           | v2alpha1    | `TrainingRuntime`, `TrainJob`, `ClusterTrainingRuntime` | 1.31.3+                     | Trainer v2 (breaking changes) |
+- The TrainingRuntime now leverages the default Torch runtime and is overridden with TrainJob to define the training configuration.
+
+- Kubeflow Trainer provides a Python SDK, enabling ML users to programmatically submit TrainJob instances without relying on kubectl, enhancing usability and integration with Kubeflow workflows.
 
 ### Additional information
 
@@ -107,5 +100,5 @@ The following table lists compatibility between Kubeflow Trainer versions, suppo
 - Initializer and multi-node coordination logic is managed by the system, reducing overhead on the training container.
 - Support for specifying `managedBy` fields and runtime API versions (via `runtimeRef.version`) is under consideration.
 
-You can find detailed proposals and discussion [in the Kubeflow Trainer GitHub repository](https://github.com/kubeflow/trainer/tree/master/docs/proposals).
+You can find detailed proposals and discussion [in the Kubeflow Trainer GitHub repository](https://github.com/kubeflow/trainer/tree/master/docs/proposals/2170-kubeflow-trainer-v2).
 
