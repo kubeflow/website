@@ -19,6 +19,8 @@ The following diagram illustrates how the components work together:
      class="mt-3 mb-3 border rounded">
 </img>
 
+---
+
 ## Overview
 
 In a typical Kubeflow setup, users access JupyterLab Notebooks through the central dashboard. These notebooks can now be configured to run PySpark code remotely through kernels managed by Jupyter Enterprise Gateway (JEG).
@@ -26,7 +28,7 @@ In a typical Kubeflow setup, users access JupyterLab Notebooks through the centr
 Behind the scenes:
 
 1. JEG receives execution requests from notebooks.
-2. JEG creates `SparkApplication` Custom Resources.
+2. JEG creates and submits `SparkApplication` Custom Resources.
 3. The Spark Operator handles the lifecycle of Spark driver and executor pods in Kubernetes.
 
 This architecture enables scalable, elastic execution of big data or distributed ML workloads.
@@ -36,11 +38,12 @@ This architecture enables scalable, elastic execution of big data or distributed
 - A running Kubeflow deployment with Notebook Controller enabled
 - Spark Operator installed and configured in the cluster
 - Helm installed locally
-- (Optional) Minikube for local development or testing
 
 ---
 
 ## Step 1: Deploy Enterprise Gateway
+
+This step creates a dedicated Kubernetes namespace (enterprise-gateway) and sets up a local persistent volume and claim using hostPath.
 
 Begin by creating the necessary storage resources. Save the following manifest as `enterprise-gateway-storage.yaml`:
 
@@ -80,28 +83,15 @@ spec:
       storage: 1Gi
 
 ```
-Apply it:
 
-This step creates a dedicated Kubernetes namespace (enterprise-gateway) and sets up a local persistent volume and claim using hostPath.
+Apply it:
 ```yaml
 kubectl apply -f enterprise-gateway-storage.yaml
 ```
-Then deploy Enterprise Gateway using Helm:
+Now we will be deploying Jupyter Enterpise Gateway with support for remote kernel management and persistent kernelspec storage.
 
-The command below uses a YAML file named enterprise-gateway-helm.yaml, which includes an example configuration shown below.
+Save the following manifest as `enterprise-gateway-helm.yaml` which will be used as the basic configuration for the gateway.
 
-```yaml
-helm upgrade --install enterprise-gateway \
-  https://github.com/jupyter-server/enterprise_gateway/releases/download/v3.2.3/jupyter_enterprise_gateway_helm-3.2.3.tar.gz \
-  --namespace enterprise-gateway \
-  --values enterprise-gateway-helm.yaml \
-  --create-namespace \
-  --wait
-
-```
-Example configuration yaml:
-
- Save the following manifest as `enterprise-gateway-helm.yaml`.
 ```yaml
 image: elyra/enterprise-gateway:3.2.3
 imagePullPolicy: Always
@@ -128,7 +118,20 @@ kip:
   defaultContainerRegistry: quay.io
 
 ```
-This deploys JEG with remote kernel management and persistent kernelspec storage.
+
+Then deploy Enterprise Gateway using Helm:
+
+The command below uses a YAML file named enterprise-gateway-helm.yaml, which includes an example configuration shown above.
+
+```yaml
+helm upgrade --install enterprise-gateway \
+  https://github.com/jupyter-server/enterprise_gateway/releases/download/v3.2.3/jupyter_enterprise_gateway_helm-3.2.3.tar.gz \
+  --namespace enterprise-gateway \
+  --values enterprise-gateway-helm.yaml \
+  --create-namespace \
+  --wait
+
+```
 
 ## Step 2: Configure the Notebook to connect to the Jupyter Gateway
 
