@@ -83,9 +83,9 @@ Fine-tune the latest LLMs on Kubernetes with ready-to-use Kubeflow LLM blueprint
 
 - **Reduce GPU Cost**
 
-- Kubeflow Trainer implements custom dataset and model initializers to reduce GPU cost by
-  offloading I/O tasks to CPU workloads and to streamline assets initialization across distributed
-  training nodes.
+Kubeflow Trainer implements custom dataset and model initializers to reduce GPU cost by
+offloading I/O tasks to CPU workloads and to streamline assets initialization across distributed
+training nodes.
 
 - **Seamless Kubernetes Integration**
 
