@@ -43,10 +43,10 @@ responsibilities:
 
 Kubeflow Trainer documentation is separated between these user personas:
 
-- [ML Users](/docs/components/trainer/user-guides): engineers and scientists who develop AI models
-  using the Kubeflow Python SDK and TrainJob.
-- [Cluster Operators](/docs/components/trainer/operator-guides): administrators responsible for managing
-  Kubernetes clusters and Kubeflow Training Runtimes.
+- [AI Practitioners](/docs/components/trainer/user-guides): ML engineers and data scientists who
+  develop AI models using the Kubeflow Python SDK and TrainJob.
+- [Platform Administrators](/docs/components/trainer/operator-guides): administrators and DevOps
+  engineers responsible for managing Kubernetes clusters and Kubeflow Training Runtimes.
 - [Contributors](/docs/components/trainer/contributor-guides): open source contributors working on
   [Kubeflow Trainer project](https://github.com/kubeflow/trainer).
 
