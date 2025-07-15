@@ -32,7 +32,7 @@ producing the results you need.
 The following diagram shows the AI lifecycle stages in sequence:
 
 <img src="/docs/started/images/ai-lifecycle.drawio.svg" 
-     alt="ML Lifecycle"
+     alt="AI Lifecycle"
      class="mt-3 mb-3 border rounded p-3 bg-white">
 </img>
 
@@ -65,7 +65,7 @@ The AI lifecycle for AI applications may be conceptually split between _developm
 _production_ phases, this diagram explores which stages fit into each phase:
 
 <img src="/docs/started/images/ai-lifecycle-dev-prod.drawio.svg" 
-     alt="ML Lifecycle with Development and Production"
+     alt="AI Lifecycle with Development and Production"
      class="mt-3 mb-3 rounded">
 </img>
 
@@ -74,7 +74,7 @@ _production_ phases, this diagram explores which stages fit into each phase:
 The next diagram shows how Kubeflow projects fit for each stage of the AI lifecycle:
 
 <img src="/docs/started/images/ai-lifecycle-kubeflow.drawio.svg" 
-     alt="Kubeflow Projects in the ML Lifecycle"
+     alt="Kubeflow Projects in the AI Lifecycle"
      class="mt-3 mb-3 border rounded p-3 bg-white">
 </img>
 

@@ -56,8 +56,7 @@ learn how Kubeflow projects fit in AI lifecycle.
 
 <img src="/docs/started/images/kubeflow-overview.drawio.svg" 
      alt="Kubeflow Overview Diagram"
-     class="mt-3 mb-3 border rounded p-3 bg-white"
-     style="width: 100%; max-width: 30em">
+     class="mt-3 mb-3 border rounded p-3 bg-white">
 </img>
 
 ## Kubeflow Video Introduction
