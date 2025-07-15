@@ -7,7 +7,7 @@ weight = 30
 ## Overview
 This guide explains how cluster administrators should manage `TrainingRuntime` and `ClusterTrainingRuntime`. It describes how to configure `MLPolicy`, `PodGroupPolicy`, and `Template` APIs.
 
-**Note**: **Runtimes** are the configurations or the blueprints which has the optimal configuration to run desired/specific task.
+**Note**: **Runtimes** are the configurations or the blueprints which have the optimal configuration to run desired/specific tasks.
 
 ### What is ClusterTrainingRuntime
 The ClusterTrainingRuntime is a cluster-scoped API in Kubeflow Trainer that allows platform administrators to manage templates for TrainJobs. Runtimes can be deployed across the entire Kubernetes cluster and reused by ML engineers in their TrainJobs. It simplifies the process of running training jobs by providing standardized blueprints and ready-to-use environments.
@@ -30,8 +30,9 @@ The ClusterTrainingRuntime is a cluster-scoped API in Kubeflow Trainer that allo
       template:
           spec:
             replicatedJobs:
-              - name: initializer
-              - name: trainer-node
+              - name: dataset-initializer
+              - name: model-initializer
+              - name: node
 ```
 - Referencing:
 In Kubeflow, a ClusterTrainingRuntime defines a reusable template for distributed training, specifying node count, processes, and scheduling policies. A TrainJob references this runtime via the runtimeRef field, linking to its apiGroup, kind and name. This enables the TrainJob to use the runtime’s configuration for consistent and modular training setups.
@@ -51,7 +52,7 @@ In Kubeflow, a ClusterTrainingRuntime defines a reusable template for distribute
 ```
 ### What is TrainingRuntime
 
-The TrainingRuntime is a namespace-scoped API in Kubeflow Trainer that allows platform administrators to manage templates for TrainJobs per namespace. It can be perfect for teams or projects that need their own customized training setups, offering flexibility for decentralized control.
+The TrainingRuntime is a namespace-scoped API in Kubeflow Trainer that allows platform administrators to manage templates for TrainJobs per namespace. It is ideal for teams or projects that need their own customized training setups, offering flexibility for decentralized control.
 
 ### Example of TrainingRuntime
 
