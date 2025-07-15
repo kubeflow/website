@@ -12,7 +12,7 @@ This guide will show you how to connect the SDK to the Pipelines API in various 
 
 ## Kubeflow Platform
 
-When running Kubeflow Pipelines as part of a multi-user [Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform), how you authenticate the Pipelines SDK will depend on whether you are running your code __inside__ or __outside__ the cluster.
+When running Kubeflow Pipelines as part of a multi-user [Kubeflow Platform](/docs/started/introduction/#what-is-the-kubeflow-ai-reference-platform), how you authenticate the Pipelines SDK will depend on whether you are running your code __inside__ or __outside__ the cluster.
 
 ### **Kubeflow Platform - Inside the Cluster**
 
@@ -156,7 +156,7 @@ and give them access to submit pipelines in their own namespace.
 As Kubeflow Notebooks run on Pods _inside the cluster_, they can NOT use the following method to authenticate the Pipelines SDK, see the [inside the cluster](#kubeflow-platform---inside-the-cluster) method.
 {{% /alert %}}
 
-The precise method to authenticate from _outside the cluster_ will depend on how you [deployed Kubeflow Platform](/docs/started/installing-kubeflow/#kubeflow-platform). 
+The precise method to authenticate from _outside the cluster_ will depend on how you [deployed Kubeflow Platform](/docs/started/installing-kubeflow/#kubeflow-ai-reference-platform). 
 Because most distributions use [Dex](https://dexidp.io/) as their identity provider, this example will show you how to authenticate with Dex using a Python script.
 
 You will need to make the Kubeflow Pipelines API accessible on the remote machine.

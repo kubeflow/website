@@ -30,7 +30,7 @@ flexibility to users who may not require the capabilities of a full Kubeflow AI 
 
 The following table lists Kubeflow projects that may be deployed in a standalone mode. It also
 lists their associated GitHub repository and
-corresponding [AI lifecycle stage](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle).
+corresponding [AI lifecycle stage](/docs/started/architecture/#kubeflow-projects-in-the-ai-lifecycle).
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
@@ -139,7 +139,7 @@ corresponding [AI lifecycle stage](/docs/started/architecture/#kubeflow-componen
 ## Kubeflow AI Reference Platform
 
 You can use one of the following methods to install the
-[Kubeflow AI reference platform](/docs/started/introduction/#what-is-kubeflow-platform)
+[Kubeflow AI reference platform](/docs/started/introduction/#what-is-the-kubeflow-ai-reference-platform)
 and get the full suite of Kubeflow projects bundled together with additional tools.
 
 ### Packaged Distributions
