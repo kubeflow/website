@@ -4,15 +4,16 @@ description = "An overview of Kubeflow's architecture"
 weight = 10
 +++
 
-This guide introduces Kubeflow ecosystem and explains how Kubeflow components fit in ML lifecycle.
+This guide introduces Kubeflow projects how they fit in each stage of the AI lifecycle.
 
-Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, standalone
-Kubeflow components and Kubeflow Platform.
+Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, Kubeflow
+projects, and Kubeflow AI reference platform.
 
 ## Kubeflow Ecosystem
 
 The following diagram gives an overview of the Kubeflow Ecosystem and how it relates to the wider
-Kubernetes and AI/ML landscapes.
+Kubernetes and AI landscape. Kubeflow builds on [Kubernetes](https://kubernetes.io/) as a system for
+deploying, scaling, and managing AI platforms.
 
 <img src="/docs/started/images/kubeflow-architecture.drawio.svg" 
      alt="Kubeflow Ecosystem Diagram"
@@ -20,20 +21,17 @@ Kubernetes and AI/ML landscapes.
      style="width: 100%; max-width: 40em">
 </img>
 
-Kubeflow builds on [Kubernetes](https://kubernetes.io/) as a system for
-deploying, scaling, and managing AI/ML infrastructure.
+## Introducing the AI Lifecycle
 
-## Introducing the ML Lifecycle
-
-When you develop and deploy an AI application, the ML lifecycle typically consists of
-several stages. Developing an ML system is an iterative process.
-You need to evaluate the output of various stages of the ML lifecycle, and apply
+When you develop and deploy an AI application, the AI lifecycle typically consists of
+several stages. Developing an AI system is an iterative process.
+You need to evaluate the output of various stages of the AI lifecycle, and apply
 changes to the model and parameters when necessary to ensure the model keeps
 producing the results you need.
 
-The following diagram shows the ML lifecycle stages in sequence:
+The following diagram shows the AI lifecycle stages in sequence:
 
-<img src="/docs/started/images/ml-lifecycle.drawio.svg" 
+<img src="/docs/started/images/ai-lifecycle.drawio.svg" 
      alt="ML Lifecycle"
      class="mt-3 mb-3 border rounded p-3 bg-white">
 </img>
@@ -47,52 +45,52 @@ Looking at the stages in more detail:
 - In the _Model Development_ step you choose an ML framework, develop your model architecture and
   explore the existing pre-trained models for fine-tuning like BERT or Llama.
 
-- In the _Model Optimization_ step you can optimize your model hyperparameters and optimize your
-  model with various AutoML algorithms such as neural architecture search and model compression.
-  During model optimization you can store ML metadata in the _Model Registry_.
-
-- In the _Model Training_ step you train or fine-tune your model on the large-scale
+- In the _Model Training_ step you train or fine-tune your models on the large-scale
   compute environment. You should use a distributed training if single GPU can't handle your
   model size. The results of the model training is the trained model artifact that you
   can store in the _Model Registry_.
 
+- In the _Model Optimization_ step you optimize your model hyperparameters and optimize your
+  model with various AutoML algorithms such as neural architecture search and model compression.
+  During model optimization you can store ML metadata in the _Model Registry_.
+
 - In the _Model Serving_ step you serve your model artifact for online or batch inference. Your
   model may perform predictive or generative AI tasks depending on the use-case. During the model
   serving step you may use an online feature store to extract features. You monitor the model
-  performance, and feed the results into your previous steps in the ML lifecycle.
+  performance, and feed the results into your previous steps in the AI lifecycle.
 
-### ML Lifecycle for Production and Development Phases
+### AI Lifecycle for Production and Development Phases
 
-The ML lifecycle for AI applications may be conceptually split between _development_ and
+The AI lifecycle for AI applications may be conceptually split between _development_ and
 _production_ phases, this diagram explores which stages fit into each phase:
 
-<img src="/docs/started/images/ml-lifecycle-dev-prod.drawio.svg" 
+<img src="/docs/started/images/ai-lifecycle-dev-prod.drawio.svg" 
      alt="ML Lifecycle with Development and Production"
      class="mt-3 mb-3 rounded">
 </img>
 
-### Kubeflow Components in the ML Lifecycle
+### Kubeflow Projects in the AI Lifecycle
 
-The next diagram shows how Kubeflow components are used for each stage in the ML lifecycle:
+The next diagram shows how Kubeflow projects fit for each stage of the AI lifecycle:
 
-<img src="/docs/started/images/ml-lifecycle-kubeflow.drawio.svg" 
-     alt="Kubeflow Components in the ML Lifecycle"
+<img src="/docs/started/images/ai-lifecycle-kubeflow.drawio.svg" 
+     alt="Kubeflow Projects in the ML Lifecycle"
      class="mt-3 mb-3 border rounded p-3 bg-white">
 </img>
 
-See the following links for more information about each Kubeflow component:
+See the following links for more information about each Kubeflow project:
 
-- [Kubeflow Spark Operator](https://github.com/kubeflow/spark-operator) can be used for data
+- [Kubeflow Spark Operator](/docs/components/spark-operator/) can be used for data
   preparation and feature engineering step.
 
 - [Kubeflow Notebooks](/docs/components/notebooks/) can be used for model development and interactive
-  data science to experiment with your ML workflows.
+  data science to experiment with your AI workflows.
+
+- [Kubeflow Trainer](/docs/components/trainer/) can be used for large-scale distributed
+  training or LLMs fine-tuning.
 
 - [Kubeflow Katib](/docs/components/katib/) can be used for model optimization and hyperparameter
   tuning using various AutoML algorithms.
-
-- [Kubeflow Trainer](/docs/components/trainer/) can be used for large-scale distributed
-  training or LLM fine-tuning.
 
 - [Kubeflow Model Registry](/docs/components/model-registry/) can be used to store ML metadata,
   model artifacts, and preparing models for production serving.
@@ -104,20 +102,18 @@ See the following links for more information about each Kubeflow component:
   features.
 
 - [Kubeflow Pipelines](/docs/components/pipelines/) can be used to build, deploy, and manage each
-  step in the ML lifecycle.
+  step in the AI lifecycle.
 
-You can use most Kubeflow components as
-[standalone tools](/docs/started/introduction/#what-are-standalone-kubeflow-components) and
-integrate them into your existing AI/ML Platform, or you can deploy the full
-[Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform) to get all Kubeflow
-components for an end-to-end ML lifecycle.
+AI platform teams can build on top of Kubeflow by using each
+[project independently](/docs/started/introduction/#what-are-kubeflow-projects) or deploying the
+entire [AI reference platform](/docs/started/introduction/#what-is-the-kubeflow-ai-reference-platform)
+to meet their specific needs.
 
 ## Kubeflow Interfaces
 
-This section introduces the interfaces that you can use to interact with
-Kubeflow and to build and run your ML workflows on Kubeflow.
+This section introduces the interfaces that you can use to interact with Kubeflow projects.
 
-### Kubeflow User Interface (UI)
+### Kubeflow Dashboard
 
 The Kubeflow Central Dashboard looks like this:
 
@@ -126,8 +122,8 @@ The Kubeflow Central Dashboard looks like this:
      class="mt-3 mb-3 border rounded">
 </img>
 
-The Kubeflow Platform includes [Kubeflow Central Dashboard](/docs/components/central-dash/overview/)
-which acts as a hub for your ML platform and tools by exposing the UIs of components running in the
+The Kubeflow AI reference platform includes [Kubeflow Central Dashboard](/docs/components/central-dash/overview/)
+which acts as a hub for your AI platform and tools by exposing the UIs of components running in the
 cluster.
 
 ### Kubeflow APIs and SDKs
@@ -136,7 +132,7 @@ cluster.
 TODO (andreyvelich): Add reference docs once this issue is implemented: https://github.com/kubeflow/katib/issues/2081
 -->
 
-Various components of Kubeflow offer APIs and Python SDKs.
+Various Kubeflow projects offer APIs and Python SDKs.
 
 See the following sets of reference documentation:
 

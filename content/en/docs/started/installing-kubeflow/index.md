@@ -5,38 +5,39 @@ weight = 20
 
 +++
 
-This guide describes how to install standalone Kubeflow components or Kubeflow Platform using package
+This guide describes how to install Kubeflow projects, or Kubeflow AI reference platform using package
 distributions or Kubeflow manifests.
 
-Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, standalone
-Kubeflow components and Kubeflow Platform.
+Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow,
+Kubeflow projects, and Kubeflow AI reference platform.
 
 ## Installation Methods
 
 You can install Kubeflow using one of these methods:
 
-- [**Standalone Kubeflow Components**](#standalone-kubeflow-components)
-- [**Kubeflow Platform**](#kubeflow-platform)
+- [**Kubeflow Projects**](#kubeflow-projects)
+- [**Kubeflow AI Reference Platform**](#kubeflow-ai-reference-platform)
 
-## Standalone Kubeflow Components
+## Kubeflow Projects
 
-Some components in the [Kubeflow ecosystem](/docs/started/architecture/#kubeflow-ecosystem) may be
-deployed as standalone services, without the need to install the full Kubeflow Platform. You might
-integrate these services as part of your existing AI/ML platform or use them independently.
+Kubeflow projects in the [Kubeflow ecosystem](/docs/started/architecture/#kubeflow-ecosystem) can be
+deployed as a standalone services, without the need to install the entire Kubeflow AI reference
+platform.You might integrate these services as part of your existing AI platform or use them
+independently.
 
-These components are a quick and easy method to get started with the Kubeflow ecosystem. They
-provide flexibility to users who may not require the capabilities of a full Kubeflow Platform.
+These projects are a quick and easy method to get started with the Kubeflow. They provide
+flexibility to users who may not require the capabilities of a full Kubeflow AI reference platform.
 
-The following table lists Kubeflow components that may be deployed in a standalone mode. It also
+The following table lists Kubeflow projects that may be deployed in a standalone mode. It also
 lists their associated GitHub repository and
-corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle).
+corresponding [AI lifecycle stage](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle).
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Component</th>
-        <th>ML Lifecycle Stage</th>
+        <th>Kubeflow Project</th>
+        <th>AI Lifecycle Stage</th>
         <th>Source Code</th>
       </tr>
     </thead>
@@ -83,21 +84,6 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
         <td>
           <a href="https://github.com/kubeflow/model-registry">
             <code>kubeflow/model-registry</code>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-         <a href="/docs/components/trainer/legacy-v1/user-guides/mpi/#installation">
-            Kubeflow MPI Operator
-          </a>
-        </td>
-        <td>
-          All-Reduce Model Training
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/mpi-operator">
-            <code>kubeflow/mpi-operator</code>
           </a>
         </td>
       </tr>
@@ -150,15 +136,16 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
   </table>
 </div>
 
-## Kubeflow Platform
+## Kubeflow AI Reference Platform
 
-You can use one of the following methods to install the [Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform)
-and get the full suite of Kubeflow components bundled together with additional tools.
+You can use one of the following methods to install the
+[Kubeflow AI reference platform](/docs/started/introduction/#what-is-kubeflow-platform)
+and get the full suite of Kubeflow projects bundled together with additional tools.
 
 ### Packaged Distributions
 
 Packaged distributions are maintained by various organizations and typically aim to provide
-a simplified installation and management experience for your **Kubeflow Platform**. 
+a simplified installation and management experience for your **Kubeflow Platform**.
 Some can be deployed on multiple [Kubernetes distributions](https://kubernetes.io/partners/#conformance),
 while others target a specific platform (e.g. EKS or GKE).
 
@@ -314,11 +301,12 @@ The Kubeflow manifests are a collection of community maintained manifests to ins
 They are aggregated by the Manifests Working Group and are intended to be
 used by users with Kubernetes knowledge and as the base of packaged distributions.
 
-Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
-applications that comprise the **Kubeflow Platform**. This installation is helpful when you want to
-try out the end-to-end Kubeflow Platform capabilities.
- 
-If you want a stable / conservative experience we recommend to use the [latest stable release](https://github.com/kubeflow/manifests/releases): 
+Kubeflow Manifests contain all Kubeflow projects, Kubeflow Central Dashboard, and other Kubeflow
+applications that comprise the **Kubeflow AI reference platform**. This installation is helpful when you want to
+try out the end-to-end Kubeflow AI reference platform capabilities.
+
+If you want a stable / conservative experience we recommend to use the [latest stable release](https://github.com/kubeflow/manifests/releases):
+
 - [**Kubeflow 1.10:**](/docs/releases/kubeflow-1.10/)
   - [`v1.10.1`](https://github.com/kubeflow/manifests/tree/v1.10.1#installation)
 
@@ -328,4 +316,4 @@ You can also install the master branch of [`kubeflow/manifests`](https://github.
 
 - Review our [introduction to Kubeflow](/docs/started/introduction/).
 - Explore the [architecture of Kubeflow](/docs/started/architecture).
-- Learn more about the [components of Kubeflow](/docs/components/).
+- Learn more about the [Kubeflow projects](/docs/components/).
