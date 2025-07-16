@@ -43,10 +43,10 @@ responsibilities:
 
 Kubeflow Trainer documentation is separated between these user personas:
 
-- [ML Users](/docs/components/trainer/user-guides): engineers and scientists who develop AI models
-  using the Kubeflow Python SDK and TrainJob.
-- [Cluster Operators](/docs/components/trainer/operator-guides): administrators responsible for managing
-  Kubernetes clusters and Kubeflow Training Runtimes.
+- [AI Practitioners](/docs/components/trainer/user-guides): ML engineers and data scientists who
+  develop AI models using the Kubeflow Python SDK and TrainJob.
+- [Platform Administrators](/docs/components/trainer/operator-guides): administrators and DevOps
+  engineers responsible for managing Kubernetes clusters and Kubeflow Training Runtimes.
 - [Contributors](/docs/components/trainer/contributor-guides): open source contributors working on
   [Kubeflow Trainer project](https://github.com/kubeflow/trainer).
 
@@ -58,11 +58,11 @@ Watch the following KubeCon + CloudNativeCon 2024 talk which provides an overvie
 
 ## Why use Kubeflow Trainer
 
-The Kubeflow Trainer supports key phases on the AI/ML lifecycle, including model training and LLMs
-fine-tuning, as shown in the diagram below:
+The Kubeflow Trainer supports key phases on the [AI lifecycle](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle),
+including model training and LLMs fine-tuning, as shown in the diagram below:
 
-<img src="/docs/components/trainer/images/ml-lifecycle-trainer.drawio.svg"
-  alt="AI/ML Lifecycle Trainer"
+<img src="/docs/components/trainer/images/ai-lifecycle-trainer.drawio.svg"
+  alt="AI Lifecycle Trainer"
   class="mt-3 mb-3 border rounded p-3 bg-white">
 
 ### Key Benefits
@@ -83,9 +83,9 @@ Fine-tune the latest LLMs on Kubernetes with ready-to-use Kubeflow LLM blueprint
 
 - **Reduce GPU Cost**
 
-- Kubeflow Trainer implements custom dataset and model initializers to reduce GPU cost by
-  offloading I/O tasks to CPU workloads and to streamline assets initialization across distributed
-  training nodes.
+Kubeflow Trainer implements custom dataset and model initializers to reduce GPU cost by
+offloading I/O tasks to CPU workloads and to streamline assets initialization across distributed
+training nodes.
 
 - **Seamless Kubernetes Integration**
 
